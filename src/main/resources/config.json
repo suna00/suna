@@ -1,0 +1,11 @@
+{
+  "project" : "ice2-cm",
+  "version" : "1.0.0",
+  "resource-path" : "/resource/ice2/res",
+  "json-path" : "/resource/ice2/json",
+  "profiles": [
+    {"dev":""},
+    {"stg":""},
+    {"prd":""}
+  ]
+}
