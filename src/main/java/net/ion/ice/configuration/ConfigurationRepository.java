@@ -19,7 +19,7 @@ public class ConfigurationRepository {
 
 
 
-    public enum Mode {LOCAL, REMOTE} ;
+    public enum Mode {LOCAL, REMOTE, CLUSTER} ;
 
     private Mode mode ;
 
@@ -62,6 +62,10 @@ public class ConfigurationRepository {
                     this.handler = new RemoteConfigurationHandler();
                 }
                 break;
+            case CLUSTER:
+                this.handler = new ClusterConfigurationHandler();
+                break;
+
             default:
                 this.handler = new LocalConfigurationHandler() ;
         }
