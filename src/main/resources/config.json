@@ -3,6 +3,9 @@
   "version" : "1.0.0",
   "resource-path" : "/resource/ice2/res",
   "json-path" : "/resource/ice2/json",
+  "configuration" : {
+    "path" : "/resource/ice2/config"
+  },
   "profiles": [
     {"dev":""},
     {"stg":""},

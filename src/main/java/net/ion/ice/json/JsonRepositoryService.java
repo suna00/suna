@@ -1,8 +1,8 @@
 package net.ion.ice.json;
 
 import net.ion.ice.CoreConfig;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import java.io.File;
  */
 @Service("jsonRepositoryService")
 public class JsonRepositoryService {
-    private static Logger logger = LogManager.getLogger();
+    private static Logger logger = LoggerFactory.getLogger(JsonRepositoryService.class);
 
     @Autowired
     private CoreConfig config ;

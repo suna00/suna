@@ -17,8 +17,6 @@ public class ConfigurationRepository {
     @Autowired
     private CoreConfig config ;
 
-
-
     public enum Mode {LOCAL, REMOTE, CLUSTER} ;
 
     private Mode mode ;

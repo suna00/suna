@@ -16,7 +16,7 @@ import java.util.Map;
  */
 @Component
 public class CoreConfig {
-    private static ClassPathResource configFilePath = new ClassPathResource("config.json");
+    private static ClassPathResource configFilePath = new ClassPathResource("/config.json");
     private static File configFile ;
     private static Map<String, Object> configData;
     private static String hostName ;

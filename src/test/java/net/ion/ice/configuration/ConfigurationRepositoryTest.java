@@ -6,13 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by jaehocho on 2017. 2. 11..
@@ -20,6 +19,7 @@ import static org.junit.Assert.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ConfigurationRepositoryTest {
+
     @Autowired
     private ConfigurationRepository configurationRepository ;
 
@@ -59,6 +59,7 @@ public class ConfigurationRepositoryTest {
         data.put("id", idx + "");
         data.put("name", name);
         data.put("order", idx);
+
         return data;
     }
 }
