@@ -2,7 +2,6 @@ package net.ion.ice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -10,17 +9,15 @@ import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
-import java.io.IOException;
-
 @SpringBootApplication
 @ComponentScan({ "net.ion.ice" })
 @EnableAsync
-public class Ice2CmApplication {
+public class Ice2Application {
 
 	public static final String USE_HAZELCAST = "true";
 
 	public static void main(String[] args) {
-		ApplicationContext ctx =  SpringApplication.run(Ice2CmApplication.class, args);
+		ApplicationContext ctx =  SpringApplication.run(Ice2Application.class, args);
 	}
 
 	@Bean

@@ -2,6 +2,24 @@
 # pick any available port.
 # This is necessary to be able to run multiple copies of the
 # application on the same machine.
+spring:
+  profiles:
+    active: dev
 server:
   port: 8080
 
+---
+#-Dspring.profiles.active=dev
+spring:
+  profiles: dev
+logging:
+  config: classpath:logback-dev.xml
+
+---
+#-Dspring.profiles.active=dev-2
+spring:
+  profiles: dev-2
+logging:
+  config: classpath:logback-dev-2.xml
+
+---

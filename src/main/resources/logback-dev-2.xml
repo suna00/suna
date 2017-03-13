@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <property name="LOG_PATH" value="/resource/log/application"/>
+    <property name="LOG_PATH" value="/resource/log/application2"/>
 
     <!-- 콘솔 로그 출력 -->
     <appender name="TEXT_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
@@ -21,7 +21,7 @@
             <jsonFactoryDecorator class="net.ion.ice.logging.ISO8601DateDecorator"/>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-        <FileNamePattern>${LOG_PATH}/log_%d{yyyy-MM-dd}.%i.json</FileNamePattern>
+            <FileNamePattern>${LOG_PATH}/log_%d{yyyy-MM-dd}.%i.json</FileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>5MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
