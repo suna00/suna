@@ -2,11 +2,28 @@
 <configuration>
     <property name="LOG_PATH" value="/resource/log/application"/>
 
+
     <!-- 콘솔 로그 출력 -->
     <appender name="TEXT_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <charset>UTF-8</charset>
-            <Pattern>%d %-4relative [%thread] %-5level %logger{35} - %msg%n</Pattern>
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %-4relative - [%thread] %logger{35} : %msg %n</Pattern>
+        </encoder>
+    </appender>
+
+    <appender name="TEXT_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${LOG_PATH}/out.log</File>
+        <!--<prudent>true</prudent>-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/out_%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+
+        <encoder>
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %-4relative - [%thread] %logger{35} : %msg %n</Pattern>
         </encoder>
     </appender>
 
@@ -21,17 +38,18 @@
             <jsonFactoryDecorator class="net.ion.ice.logging.ISO8601DateDecorator"/>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-        <FileNamePattern>${LOG_PATH}/log_%d{yyyy-MM-dd}.%i.json</FileNamePattern>
+            <fileNamePattern>${LOG_PATH}/log_%d{yyyy-MM-dd}.%i.json</fileNamePattern>
             <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>5MB</maxFileSize>
             </timeBasedFileNamingAndTriggeringPolicy>
-            <maxHistory>3</maxHistory>
+            <maxHistory>30</maxHistory>
         </rollingPolicy>
     </appender>
 
     <!-- INFO 레벨 이하 로그를 콘솔 및 파일로 출력 -->
     <root level="INFO">
         <appender-ref ref="TEXT_CONSOLE"/>
+        <appender-ref ref="TEXT_FILE"/>
         <appender-ref ref="JSON_FILE"/>
     </root>
 </configuration>
