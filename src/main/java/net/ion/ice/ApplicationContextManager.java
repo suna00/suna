@@ -3,6 +3,7 @@ package net.ion.ice;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.core.io.Resource;
 
 /**
  * Created by jaehocho on 2017. 2. 10..
@@ -19,5 +20,8 @@ public class ApplicationContextManager implements ApplicationContextAware{
         return context ;
     }
 
+    public static Resource getResource(String location){
+        return context.getResource(location) ;
+    }
 
 }

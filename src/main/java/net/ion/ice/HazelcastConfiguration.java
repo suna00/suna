@@ -1,20 +1,25 @@
-package net.ion.ice.session;
+package net.ion.ice;
 
 /**
  * Created by jaehocho on 2017. 3. 10..
  */
 
-import com.hazelcast.config.Config;
-import com.hazelcast.config.JoinConfig;
+import com.hazelcast.config.*;
+import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.web.WebFilter;
 
 import net.ion.ice.Ice2Application;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import static java.util.Collections.singletonList;
@@ -29,8 +34,16 @@ import static java.util.Collections.singletonList;
  * implementation.
  */
 @Configuration
+@ConfigurationProperties(prefix = "cluster")
 @ConditionalOnExpression(Ice2Application.USE_HAZELCAST)
 public class HazelcastConfiguration {
+    private List<String> members ;
+
+    private String baseDir ;
+
+    public HazelcastConfiguration(){
+        members = new ArrayList<>();
+    }
 
     /**
      * Create a Hazelcast {@code Config} object as a bean. Spring Boot will use
@@ -46,13 +59,39 @@ public class HazelcastConfiguration {
     public Config config() {
 
         Config config = new Config();
+//        config.setInstanceName("cluster") ;
 
         JoinConfig joinConfig = config.getNetworkConfig().getJoin();
 
         joinConfig.getMulticastConfig().setEnabled(false);
-        joinConfig.getTcpIpConfig().setEnabled(true).setMembers(singletonList("127.0.0.1"));
+        joinConfig.getTcpIpConfig().setEnabled(true).setMembers(members);
+
+        HotRestartPersistenceConfig hotRestartPersistenceConfig = null ;
+        if(StringUtils.isNotEmpty(baseDir)){
+            File _baseDir = new File(baseDir) ;
+            if(!_baseDir.exists()){
+                _baseDir.mkdirs() ;
+            }
+            hotRestartPersistenceConfig = new HotRestartPersistenceConfig();
+            hotRestartPersistenceConfig.setEnabled(true);
+            hotRestartPersistenceConfig.setBaseDir(_baseDir);
+            hotRestartPersistenceConfig.setValidationTimeoutSeconds(120);
+            hotRestartPersistenceConfig.setDataLoadTimeoutSeconds(900);
+            config.setHotRestartPersistenceConfig(hotRestartPersistenceConfig);
+        }
+
+//        ReplicatedMapConfig replicatedMapConfig =  config.getReplicatedMapConfig( "config" );
+//        replicatedMapConfig.setAsyncFillup(true);
+
+//        replicatedMapConfig.setInMemoryFormat( InMemoryFormat.BINARY );
+
 
         return config;
+    }
+
+    @Bean
+    public HazelcastInstance hazelcastInstance() {
+        return Hazelcast.newHazelcastInstance(config());
     }
 
     /**
@@ -82,6 +121,14 @@ public class HazelcastConfiguration {
         properties.put("sticky-session", "false");
 
         return new WebFilter(properties);
+    }
+
+    public List<String> getMembers(){
+        return members ;
+    }
+
+    public void setBaseDir(String baseDir) {
+        this.baseDir = baseDir;
     }
 }
 

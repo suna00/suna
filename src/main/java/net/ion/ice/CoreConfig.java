@@ -3,6 +3,7 @@ package net.ion.ice;
 import net.ion.ice.configuration.ConfigurationUtils;
 import net.ion.ice.json.JsonUtils;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -16,22 +17,16 @@ import java.util.Map;
  */
 @Component
 public class CoreConfig {
-    private static ClassPathResource configFilePath = new ClassPathResource("/config.json");
     private static File configFile ;
     private static Map<String, Object> configData;
     private static String hostName ;
 
     public CoreConfig(){
         try {
-            initConfig();
-        } catch (IOException e) {
+            hostName = ConfigurationUtils.getHostName() ;
+        } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-    public static synchronized void initConfig() throws IOException {
-        hostName = ConfigurationUtils.getHostName() ;
-        configFile = configFilePath.getFile() ;
-        initConfigData();
     }
 
     static void setHostName(String newHostName){
@@ -40,6 +35,9 @@ public class CoreConfig {
 
 
     static void initConfigData() throws IOException {
+        Resource configFilePath = ApplicationContextManager.getResource("config.json") ;
+        configFile = configFilePath.getFile() ;
+
         Map<String, Object> configSrc = JsonUtils.parsingJsonFileToMap(configFile) ;
         configData = new LinkedHashMap<String, Object>() ;
 
@@ -65,6 +63,13 @@ public class CoreConfig {
     }
 
     public static Object getConfigValue(String key) {
+        if(configFile == null){
+            try {
+                initConfigData();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         return JsonUtils.getValue(configData, key);
     }
 

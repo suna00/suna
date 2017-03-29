@@ -19,9 +19,6 @@ public class JsonRepositoryService {
     private CoreConfig config ;
     private File rootDir  ;
 
-    public JsonRepositoryService(){
-        initRepository() ;
-    }
 
     private void initRepository() {
         rootDir = new File((String) config.getConfigValue("json-path")) ;

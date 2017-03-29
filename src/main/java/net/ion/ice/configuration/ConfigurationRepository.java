@@ -24,11 +24,9 @@ public class ConfigurationRepository {
     private ConfigurationHandler handler ;
 
 
-    public ConfigurationRepository() {
-        initRepository() ;
-    }
-
     private void initRepository() {
+        if(this.handler != null) return ;
+
         if(config.getConfigValue("configuration.mode") == null){
             mode = Mode.LOCAL ;
         }else {
@@ -71,6 +69,7 @@ public class ConfigurationRepository {
 
 
     public Collection<Map<String,Object>> getConfigList(String type) {
+        initRepository();
         try {
             return handler.getConfigList(type) ;
         } catch (IOException e) {
@@ -80,6 +79,8 @@ public class ConfigurationRepository {
     }
 
     public void writeConfig(String type, Map<String, Object> configValue){
+        initRepository();
+
         try {
             if(!handler.checkLock(type)){
                 return ;
@@ -112,6 +113,8 @@ public class ConfigurationRepository {
 
 
     public void removeConfig(String type, Map<String, Object> configValue) {
+        initRepository();
+
         try {
             if(!handler.checkLock(type)){
                 return ;

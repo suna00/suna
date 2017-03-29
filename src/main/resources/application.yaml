@@ -8,6 +8,10 @@ spring:
 server:
   port: 8080
 
+hazelcast:
+  members:
+    - 127.0.0.1
+    - localhost
 ---
 #-Dspring.profiles.active=dev
 spring:
@@ -15,11 +19,21 @@ spring:
 logging:
   config: classpath:logback-dev.xml
 
+hazelcast:
+  baseDir: /resource/ice2/data_1
+  members:
+    - 127.0.0.1
+    - localhost
 ---
 #-Dspring.profiles.active=dev-2
 spring:
   profiles: dev-2
+server:
+  port: 8090
 logging:
   config: classpath:logback-dev-2.xml
+
+hazelcast:
+  baseDir: /resource/ice2/data_2
 
 ---
