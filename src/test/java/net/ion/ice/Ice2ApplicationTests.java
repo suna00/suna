@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class Ice2CmApplicationTests {
+public class Ice2ApplicationTests {
 
 	@Test
 	public void contextLoads() {

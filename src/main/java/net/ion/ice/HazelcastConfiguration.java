@@ -34,16 +34,13 @@ import static java.util.Collections.singletonList;
  * implementation.
  */
 @Configuration
-@ConfigurationProperties(prefix = "cluster")
+@ConfigurationProperties(prefix = "hazelcast")
 @ConditionalOnExpression(Ice2Application.USE_HAZELCAST)
 public class HazelcastConfiguration {
-    private List<String> members ;
+    private List<String> members = new ArrayList<>();
 
     private String baseDir ;
 
-    public HazelcastConfiguration(){
-        members = new ArrayList<>();
-    }
 
     /**
      * Create a Hazelcast {@code Config} object as a bean. Spring Boot will use
@@ -59,31 +56,31 @@ public class HazelcastConfiguration {
     public Config config() {
 
         Config config = new Config();
-//        config.setInstanceName("cluster") ;
+        config.setInstanceName("default-hazelcast") ;
 
         JoinConfig joinConfig = config.getNetworkConfig().getJoin();
 
         joinConfig.getMulticastConfig().setEnabled(false);
         joinConfig.getTcpIpConfig().setEnabled(true).setMembers(members);
 
-//        HotRestartPersistenceConfig hotRestartPersistenceConfig = null ;
-//        if(StringUtils.isNotEmpty(baseDir)){
-//            File _baseDir = new File(baseDir) ;
-//            if(!_baseDir.exists()){
-//                _baseDir.mkdirs() ;
-//            }
-//            hotRestartPersistenceConfig = new HotRestartPersistenceConfig();
-//            hotRestartPersistenceConfig.setEnabled(true);
-//            hotRestartPersistenceConfig.setBaseDir(_baseDir);
-//            hotRestartPersistenceConfig.setValidationTimeoutSeconds(120);
-//            hotRestartPersistenceConfig.setDataLoadTimeoutSeconds(900);
-//            config.setHotRestartPersistenceConfig(hotRestartPersistenceConfig);
-//        }
+        HotRestartPersistenceConfig hotRestartPersistenceConfig = null ;
+        if(StringUtils.isNotEmpty(baseDir)){
+            File _baseDir = new File(baseDir) ;
+            if(!_baseDir.exists()){
+                _baseDir.mkdirs() ;
+            }
+            hotRestartPersistenceConfig = new HotRestartPersistenceConfig();
+            hotRestartPersistenceConfig.setEnabled(true);
+            hotRestartPersistenceConfig.setBaseDir(_baseDir);
+            hotRestartPersistenceConfig.setValidationTimeoutSeconds(120);
+            hotRestartPersistenceConfig.setDataLoadTimeoutSeconds(900);
+            config.setHotRestartPersistenceConfig(hotRestartPersistenceConfig);
+        }
 
-//        ReplicatedMapConfig replicatedMapConfig =  config.getReplicatedMapConfig( "config" );
-//        replicatedMapConfig.setAsyncFillup(true);
+        ReplicatedMapConfig replicatedMapConfig =  config.getReplicatedMapConfig( "config" );
+        replicatedMapConfig.setAsyncFillup(true);
 
-//        replicatedMapConfig.setInMemoryFormat( InMemoryFormat.BINARY );
+        replicatedMapConfig.setInMemoryFormat( InMemoryFormat.BINARY );
 
 
         return config;
@@ -130,5 +127,7 @@ public class HazelcastConfiguration {
     public void setBaseDir(String baseDir) {
         this.baseDir = baseDir;
     }
+
+
 }
 

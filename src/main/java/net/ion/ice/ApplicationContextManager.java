@@ -1,5 +1,6 @@
 package net.ion.ice;
 
+import com.hazelcast.core.HazelcastInstance;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -24,4 +25,7 @@ public class ApplicationContextManager implements ApplicationContextAware{
         return context.getResource(location) ;
     }
 
+    public static HazelcastInstance getHazelcastIntance(){
+        return context.getBean(HazelcastInstance.class) ;
+    }
 }
