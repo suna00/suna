@@ -42,6 +42,21 @@ public class InfinispanRepositoryServiceTest {
 
         assertEquals(nodes.size(), 2) ;
 
+        for(int i=3; i<=10; i++){
+            Node anode = new Node("auto" + i, "test") ;
+            anode.put("key1", "auto " + i) ;
+            anode.put("key2", i) ;
+            nodes.put(anode.getId(), anode) ;
+        }
+
+
+        assertEquals(nodes.size(), 10) ;
+
+        for(int i=3; i<=10; i++){
+            nodes.remove("auto" + i) ;
+        }
+
+        assertEquals(nodes.size(), 2) ;
 
 
 //        StandardTokenizerFactory tokenizerFactory =

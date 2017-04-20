@@ -50,6 +50,8 @@ public class PropertiesFieldBridge implements FieldBridge {
         String key  = entry.getKey() ;
         if(key.equals("id")) return  ;
 
+        Object value = entry.getValue() ;
+
         if (!StringUtils.isEmpty(stringValue)) {
             if (pt.isAnalyze()) {
                 document.add(new org.apache.lucene.document.Field(key, stringValue, fieldType(pt)));
