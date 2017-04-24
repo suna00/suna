@@ -1,7 +1,10 @@
 package net.ion.ice.infinispan;
 
+import net.ion.ice.infinispan.lucene.LuceneQueryUtils;
+import net.ion.ice.infinispan.lucene.QueryType;
 import net.ion.ice.node.Node;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.lucene.search.Query;
 import org.apache.lucene.search.Sort;
 import org.apache.lucene.search.SortField;
 import org.hibernate.search.query.dsl.BooleanJunction;
@@ -42,6 +45,9 @@ public class InfinispanRepositoryService {
     public List<Object> getQueryNodes(String tid, String search){
         Cache<String, Node> cache = getNodeCache(tid) ;
 
+        List<QueryParam> queryParams = makeQueryParam(search) ;
+
+        Query query = LuceneQueryUtils.makeQuery(queryParams) ;
         SearchManager qf = Search.getSearchManager(cache);
         QueryBuilder queryBuilder = qf.buildQueryBuilderForClass(Node.class).get();
         CacheQuery cacheQuery = makeStringQuery(null, cache, search);
@@ -49,6 +55,28 @@ public class InfinispanRepositoryService {
         List<Object> list = cacheQuery.list();
 
         return list ;
+    }
+
+    private List<QueryParam> makeQueryParam(String search) {
+        List<QueryParam> queryParams = new ArrayList<>();
+
+        if (StringUtils.isNotEmpty(search)) {
+            for (String param : StringUtils.split(search, '&')) {
+                if (StringUtils.isNotEmpty(param) && StringUtils.contains(param, "=")) {
+                    String value = StringUtils.substringAfter(param, "=");
+                    if (StringUtils.isNotEmpty(value)) {
+                        value = value.equals("@sysdate") ? new SimpleDateFormat("yyyyMMdd HHmmss").format(new Date()) : value.equals("@sysday") ? new SimpleDateFormat("yyyyMMdd").format(new Date()) : value;
+                    }
+                    String paramName = StringUtils.substringBefore(param, "=") ;
+                    if(paramName.contains("_")){
+                        queryParams.add(new QueryParam(StringUtils.substringBeforeLast(paramName, "_"), StringUtils.substringAfterLast(paramName, "_"), value));
+                    }else {
+                        queryParams.add(new QueryParam(paramName, value));
+                    }
+                }
+            }
+        }
+        return queryParams ;
     }
 
     public static CacheQuery makeStringQuery(Node nodeType, Cache<String, Node> cache, String queryString) {

@@ -35,7 +35,7 @@ public class InfinispanCacheManager {
 
     private synchronized <K,V> Cache<K,V> cacheInit(String cacheType, long size) {
         manager.defineConfiguration(cacheType, new ConfigurationBuilder()
-                .invocationBatching().enable() //마이그 실행시 주석 제거
+//                .invocationBatching().enable() //마이그 실행시 주석 제거
                 .eviction().strategy(EvictionStrategy.LRU).size(size)
                 .persistence().passivation(false)
                 .addSingleFileStore()
@@ -46,7 +46,7 @@ public class InfinispanCacheManager {
                 .ignoreModifications(false)
                 .location(cachePath)
 //                .transaction().transactionMode(TransactionMode.TRANSACTIONAL).lockingMode(LockingMode.OPTIMISTIC) //마이그 실행시 주석 제거
-//                .transaction().transactionMode(TransactionMode.NON_TRANSACTIONAL) //마이그 실행시 주석
+                .transaction().transactionMode(TransactionMode.NON_TRANSACTIONAL) //마이그 실행시 주석
                 .indexing().index(Index.LOCAL)
                 .addProperty("hibernate.search.lucene_version", "LUCENE_CURRENT")
                 .addProperty("hibernate.search.default.directory_provider", "filesystem")

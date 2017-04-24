@@ -5,10 +5,12 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.io.Resource;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by jaehocho on 2017. 2. 10..
  */
+@Component
 public class ApplicationContextManager implements ApplicationContextAware{
     private static ApplicationContext context ;
 

@@ -9,6 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.transaction.*;
+
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 /**
@@ -22,7 +26,7 @@ public class InfinispanRepositoryServiceTest {
     private InfinispanRepositoryService repositoryService ;
 
     @Test
-    public void cacheInit(){
+    public void cacheInit() throws SystemException, NotSupportedException, HeuristicRollbackException, HeuristicMixedException, RollbackException {
         Cache<String, Node> nodes = repositoryService.getNodeCache("test") ;
 
 
@@ -30,6 +34,7 @@ public class InfinispanRepositoryServiceTest {
         node.put("key1", "value1") ;
         node.put("key2", 1) ;
 
+//        nodes.getAdvancedCache().getTransactionManager().begin();
         nodes.put(node.getId(), node) ;
 
 
@@ -57,8 +62,18 @@ public class InfinispanRepositoryServiceTest {
         }
 
         assertEquals(nodes.size(), 2) ;
-
+//        nodes.getAdvancedCache().getTransactionManager().commit();
 
 //        StandardTokenizerFactory tokenizerFactory =
+    }
+
+    @Test
+    public void query() throws SystemException, NotSupportedException, HeuristicRollbackException, HeuristicMixedException, RollbackException {
+        List<Object> result = repositoryService.getQueryNodes("test", "key1_matching=value1") ;
+
+        for(Object node : result){
+            System.out.println(node);
+        }
+
     }
 }

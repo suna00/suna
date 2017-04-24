@@ -1,4 +1,4 @@
-package net.ion.ice.infinispan;
+package net.ion.ice.infinispan.lucene;
 
 import org.apache.lucene.search.Query;
 

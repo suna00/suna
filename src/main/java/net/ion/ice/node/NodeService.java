@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * Created by jaeho on 2017. 4. 3..
  */
-@Service
+@Service("nodeService")
 public class NodeService {
 
     @Autowired
@@ -27,11 +27,17 @@ public class NodeService {
             return getNodeTypeNode() ;
         }
         Node nodeType = infinispanRepositoryService.getNode("nodeType", tid) ;
-        nodeType.put("properties", infinispanRepositoryService.getQueryNodes("propertyType", "typeId_matching=") + tid) ;
+        if(nodeType != null) {
+            nodeType.put("propertyTypes", infinispanRepositoryService.getQueryNodes("propertyType", "tid_matching=") + tid);
+        }
 
         return nodeType ;
     }
 
+    public Node getPropertyType(String tid, String pid){
+        Node propertyType = infinispanRepositoryService.getNode("propertyType", tid + "/" + pid) ;
+        return propertyType ;
+    }
 
     public Node getNodeTypeNode() {
         if(nodeType == null){
