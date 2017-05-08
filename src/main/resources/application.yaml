@@ -12,6 +12,7 @@ hazelcast:
   members:
     - 127.0.0.1
     - localhost
+
 ---
 #-Dspring.profiles.active=dev
 spring:
@@ -24,14 +25,30 @@ hazelcast:
   members:
     - 127.0.0.1
     - localhost
+
+session:
+  mode: cluster
+  baseDir: /resource/ice2/server
+  members:
+    - 127.0.0.1
+
+
 ---
 #-Dspring.profiles.active=dev-2
 spring:
   profiles: dev-2
 server:
   port: 8090
+
 logging:
   config: classpath:logback-dev-2.xml
+
+session:
+  mode: client
+  baseDir: /resource/ice2/client
+  members:
+    - 127.0.0.1
+
 
 hazelcast:
   baseDir: /resource/ice2/data_2

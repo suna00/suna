@@ -16,6 +16,7 @@ import org.infinispan.query.SearchManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -45,38 +46,55 @@ public class InfinispanRepositoryService {
     public List<Object> getQueryNodes(String tid, String search){
         Cache<String, Node> cache = getNodeCache(tid) ;
 
-        List<QueryParam> queryParams = makeQueryParam(search) ;
+        QueryContext queryContext = makeQueryContext(search) ;
+        queryContext.setSearchManager(Search.getSearchManager(cache));
 
-        Query query = LuceneQueryUtils.makeQuery(queryParams) ;
-        SearchManager qf = Search.getSearchManager(cache);
-        QueryBuilder queryBuilder = qf.buildQueryBuilderForClass(Node.class).get();
-        CacheQuery cacheQuery = makeStringQuery(null, cache, search);
+        CacheQuery cacheQuery = null;
+        try {
+            cacheQuery = LuceneQueryUtils.makeQuery(queryContext);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        SearchManager qf = Search.getSearchManager(cache);
+//        QueryBuilder queryBuilder = qf.buildQueryBuilderForClass(Node.class).get();
+//        CacheQuery cacheQuery = makeStringQuery(null, cache, search);
 
         List<Object> list = cacheQuery.list();
 
         return list ;
     }
 
-    private List<QueryParam> makeQueryParam(String search) {
-        List<QueryParam> queryParams = new ArrayList<>();
+    private QueryContext makeQueryContext(String searchText) {
+        QueryContext queryContext = new QueryContext() ;
+        List<QueryTerm> queryTerms = new ArrayList<>();
 
-        if (StringUtils.isNotEmpty(search)) {
-            for (String param : StringUtils.split(search, '&')) {
-                if (StringUtils.isNotEmpty(param) && StringUtils.contains(param, "=")) {
-                    String value = StringUtils.substringAfter(param, "=");
-                    if (StringUtils.isNotEmpty(value)) {
-                        value = value.equals("@sysdate") ? new SimpleDateFormat("yyyyMMdd HHmmss").format(new Date()) : value.equals("@sysday") ? new SimpleDateFormat("yyyyMMdd").format(new Date()) : value;
-                    }
-                    String paramName = StringUtils.substringBefore(param, "=") ;
-                    if(paramName.contains("_")){
-                        queryParams.add(new QueryParam(StringUtils.substringBeforeLast(paramName, "_"), StringUtils.substringAfterLast(paramName, "_"), value));
-                    }else {
-                        queryParams.add(new QueryParam(paramName, value));
-                    }
+        if(StringUtils.isEmpty(searchText)){
+            return queryContext ;
+        }
+
+        for (String param : StringUtils.split(searchText, '&')) {
+            if (StringUtils.isNotEmpty(param) && StringUtils.contains(param, "=")) {
+                String value = StringUtils.substringAfter(param, "=");
+                if(StringUtils.isEmpty(value)){
+                    continue;
+                }
+                value = value.equals("@sysdate") ? new SimpleDateFormat("yyyyMMdd HHmmss").format(new Date()) : value.equals("@sysday") ? new SimpleDateFormat("yyyyMMdd").format(new Date()) : value;
+                String paramName = StringUtils.substringBefore(param, "=") ;
+                if(StringUtils.isEmpty(paramName)){
+                    continue ;
+                }
+
+                if(paramName.equals("sorting")){
+//                    queryContext.setSorting(value) ;
+                }else if(paramName.contains("_")){
+                    queryTerms.add(new QueryTerm(StringUtils.substringBeforeLast(paramName, "_"), StringUtils.substringAfterLast(paramName, "_"), value));
+                }else {
+                    queryTerms.add(new QueryTerm(paramName, value));
                 }
             }
         }
-        return queryParams ;
+        queryContext.setQueryTerms(queryTerms);
+        return queryContext ;
     }
 
     public static CacheQuery makeStringQuery(Node nodeType, Cache<String, Node> cache, String queryString) {

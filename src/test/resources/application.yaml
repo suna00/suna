@@ -2,6 +2,9 @@
 # pick any available port.
 # This is necessary to be able to run multiple copies of the
 # application on the same machine.
+spring:
+  profiles:
+    active: dev
 
 server:
   port: 8080
@@ -15,5 +18,24 @@ hazelcast:
     - 127.0.0.1
     - localhost
 
+session:
+  mode: cluster
+  baseDir: /resource/test/session
+  members:
+    - 127.0.0.1
+    - localhost
+
 infinispan:
   cachePath: /resource/test/cache
+
+---
+#-Dspring.profiles.active=dev
+spring:
+  profiles: dev
+
+---
+#-Dspring.profiles.active=dev-2
+spring:
+  profiles: dev-2
+
+---

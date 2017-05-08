@@ -26,7 +26,6 @@ public class Node implements Map<String, Object>, Serializable{
     public static final String ID = "id";
     public static final String TID = "tid";
 
-
     @Id
     private String id ;
 
@@ -39,6 +38,7 @@ public class Node implements Map<String, Object>, Serializable{
     public Node(){
         properties = new ConcurrentHashMap<>() ;
     }
+
     public Node(String id, String tid){
         this.id = id ;
         this.tid = tid ;
@@ -125,5 +125,10 @@ public class Node implements Map<String, Object>, Serializable{
     public void setTid(String tid) {
         this.tid = tid;
         this.properties.put(TID, tid) ;
+    }
+
+    @Override
+    public String toString(){
+        return this.properties.toString() ;
     }
 }

@@ -1,4 +1,4 @@
-package net.ion.ice;
+package net.ion.ice.session;
 
 /**
  * Created by jaehocho on 2017. 3. 10..
@@ -34,9 +34,9 @@ import static java.util.Collections.singletonList;
  * implementation.
  */
 @Configuration
-@ConfigurationProperties(prefix = "hazelcast")
-@ConditionalOnExpression(Ice2Application.USE_HAZELCAST)
-public class HazelcastConfiguration {
+@ConfigurationProperties(prefix = "session")
+@ConditionalOnExpression("'${session.mode}' == 'cluster'")
+public class SessionConfiguration {
     private List<String> members = new ArrayList<>();
 
     private String baseDir ;
@@ -56,7 +56,7 @@ public class HazelcastConfiguration {
     public Config config() {
 
         Config config = new Config();
-        config.setInstanceName("default-hazelcast") ;
+        config.setInstanceName("session-hazelcast") ;
 
         JoinConfig joinConfig = config.getNetworkConfig().getJoin();
 
@@ -116,6 +116,7 @@ public class HazelcastConfiguration {
         Properties properties = new Properties();
         properties.put("instance-name", hazelcastInstance.getName());
         properties.put("sticky-session", "false");
+//        properties.put("use-client", "true");
 
         return new WebFilter(properties);
     }

@@ -45,7 +45,7 @@ public class InfinispanRepositoryServiceTest {
         nodes.put(node2.getId(), node2) ;
 
 
-        assertEquals(nodes.size(), 2) ;
+//        assertEquals(nodes.size(), 2) ;
 
         for(int i=3; i<=10; i++){
             Node anode = new Node("auto" + i, "test") ;
@@ -57,11 +57,11 @@ public class InfinispanRepositoryServiceTest {
 
         assertEquals(nodes.size(), 10) ;
 
-        for(int i=3; i<=10; i++){
-            nodes.remove("auto" + i) ;
-        }
-
-        assertEquals(nodes.size(), 2) ;
+//        for(int i=3; i<=10; i++){
+//            nodes.remove("auto" + i) ;
+//        }
+//
+//        assertEquals(nodes.size(), 2) ;
 //        nodes.getAdvancedCache().getTransactionManager().commit();
 
 //        StandardTokenizerFactory tokenizerFactory =
@@ -69,11 +69,19 @@ public class InfinispanRepositoryServiceTest {
 
     @Test
     public void query() throws SystemException, NotSupportedException, HeuristicRollbackException, HeuristicMixedException, RollbackException {
-        List<Object> result = repositoryService.getQueryNodes("test", "key1_matching=value1") ;
+        testQuery("key1_matching=value1") ;
+
+        testQuery("key1_matching=auto") ;
+//        testQuery("key1_matching=5") ;
+
+    }
+
+    private void testQuery(String search){
+        System.out.println("===" + search + "====");
+        List<Object> result = repositoryService.getQueryNodes("test", search) ;
 
         for(Object node : result){
             System.out.println(node);
         }
-
     }
 }
