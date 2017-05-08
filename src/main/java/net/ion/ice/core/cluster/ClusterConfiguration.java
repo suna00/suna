@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -26,22 +27,16 @@ import java.util.Properties;
  * {@code @ConditionalOnExpression} is true or not.
  *
  */
-@Service
+@Component
 public class ClusterConfiguration {
     private List<String> members = new ArrayList<>();
+    private HazelcastInstance hazelcast  ;
+
+    public ClusterConfiguration(){
+        hazelcast = Hazelcast.newHazelcastInstance(config());
+    }
 
 
-    /**
-     * Create a Hazelcast {@code Config} object as a bean. Spring Boot will use
-     * the presence of this to determine that a {@code HazelcastInstance} should
-     * be created with this configuration.
-     * <p>
-     * As a simple side-step to possible networking issues, turn off multicast
-     * in favour of TCP connection to the local host.
-     *
-     * @return Configuration for the Hazelcast instance
-     */
-    @Bean
     public Config config() {
 
         Config config = new Config();
@@ -57,10 +52,7 @@ public class ClusterConfiguration {
         return config;
     }
 
-    @Bean
-    public HazelcastInstance hazelcastInstance() {
-        return Hazelcast.newHazelcastInstance(config());
-    }
+
 
 
     public List<String> getMembers(){
