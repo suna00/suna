@@ -1,4 +1,4 @@
-package net.ion.ice.configuration;
+package net.ion.ice.core.configuration;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;

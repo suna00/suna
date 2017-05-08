@@ -1,5 +1,6 @@
 package net.ion.ice;
 
+import net.ion.ice.core.CoreConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
