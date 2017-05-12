@@ -1,10 +1,13 @@
 package net.ion.ice.core.cluster;
 
+import com.hazelcast.core.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.Set;
 
 /**
  * Created by jaeho on 2017. 3. 29..
@@ -15,20 +18,42 @@ public class ClusterController {
     private ClusterConfiguration config ;
 
     @RequestMapping(value = "/cluster")
-    public String index(HttpSession httpSession) {
-        config.getMembers() ;
+    @ResponseBody
+    public Set<Member> cluster() {
+        config.init();
 
-        Integer hits = (Integer) httpSession.getAttribute("hits");
+        Set<Member> members = config.getClusterMembers() ;
 
-//        LOGGER.info("index() called, hits was '{}', session id '{}'", hits, httpSession.getId());
-
-        if (hits == null) {
-            hits = 0;
+        for(Member member : members){
+            System.out.println( member.getAddress().getHost()) ;
         }
 
-        httpSession.setAttribute("hits", ++hits);
 
-        return "index";
+        return members ;
     }
 
+
+    @RequestMapping(value = "/client")
+    @ResponseBody
+    public Object client() {
+        config.init();
+
+        return config.getHazelcast().getClientService() ;
+    }
+
+    @RequestMapping(value = "/cardinal")
+    @ResponseBody
+    public Object cardinal() {
+        config.init();
+
+        return config.getHazelcast().getName() ;
+    }
+
+    @RequestMapping(value = "/endpoint")
+    @ResponseBody
+    public Object endpoint() {
+        config.init();
+
+        return config.getHazelcast().getLocalEndpoint() ;
+    }
 }

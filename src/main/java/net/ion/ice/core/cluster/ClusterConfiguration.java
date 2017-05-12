@@ -4,22 +4,17 @@ package net.ion.ice.core.cluster;
  * Created by jaehocho on 2017. 3. 10..
  */
 
-import com.hazelcast.config.*;
+import com.hazelcast.config.Config;
+import com.hazelcast.config.JoinConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
-import com.hazelcast.web.WebFilter;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
+import com.hazelcast.core.Member;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
+import java.util.Set;
 
 /**
  * A conditional configuration that potentially adds the bean definitions in
@@ -27,15 +22,18 @@ import java.util.Properties;
  * {@code @ConditionalOnExpression} is true or not.
  *
  */
-@Component
+@Configuration
+@ConfigurationProperties(prefix = "cluster")
 public class ClusterConfiguration {
     private List<String> members = new ArrayList<>();
     private HazelcastInstance hazelcast  ;
 
-    public ClusterConfiguration(){
-        hazelcast = Hazelcast.newHazelcastInstance(config());
-    }
 
+    public void init(){
+        if(hazelcast == null) {
+            hazelcast = Hazelcast.newHazelcastInstance(config());
+        }
+    }
 
     public Config config() {
 
@@ -47,20 +45,20 @@ public class ClusterConfiguration {
         joinConfig.getMulticastConfig().setEnabled(false);
         joinConfig.getTcpIpConfig().setEnabled(true).setMembers(members);
 
-
-
         return config;
     }
 
-
+    public Set<Member> getClusterMembers(){
+        return hazelcast.getCluster().getMembers() ;
+    }
 
 
     public List<String> getMembers(){
         return members ;
     }
 
-
-
-
+    public HazelcastInstance getHazelcast(){
+        return hazelcast ;
+    }
 }
 
