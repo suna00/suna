@@ -1,5 +1,6 @@
 package net.ion.ice.core.infinispan;
 
+import net.ion.ice.core.infinispan.lucene.AnalyzerFactory;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.core.SimpleAnalyzer;
 
@@ -13,11 +14,17 @@ public class QueryTerm {
     private QueryMethod method ;
     private Analyzer analyzer;
 
-    public QueryTerm(String queryKey, String method, String queryValue) {
+    public QueryTerm(String queryKey, String analyzer, String method, String queryValue) {
         this.queryKey = queryKey ;
 
         this.method = QueryMethod.valueOf(method.toUpperCase()) ;
         this.queryValue = queryValue ;
+        this.analyzer = AnalyzerFactory.getAnalyzer(analyzer) ;
+    }
+
+
+    public QueryTerm(String queryKey, String method, String queryValue) {
+        this(queryKey, "simple", method, queryValue) ;
     }
 
     public QueryTerm(String queryKey, String queryValue){

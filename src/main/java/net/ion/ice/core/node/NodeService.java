@@ -20,18 +20,20 @@ public class NodeService {
     @Autowired
     private InfinispanRepositoryService infinispanRepositoryService ;
 
-    private Node nodeType ;
+    private NodeType nodeType ;
 
-    public Node getNodeType(String tid){
+    public NodeType getNodeType(String tid){
         if(tid.equals("nodeType")){
             return getNodeTypeNode() ;
         }
-        Node nodeType = infinispanRepositoryService.getNode("nodeType", tid) ;
-        if(nodeType != null) {
-            nodeType.put("propertyTypes", infinispanRepositoryService.getQueryNodes("propertyType", "tid_matching=") + tid);
+        Node nodeTypeNode = infinispanRepositoryService.getNode("nodeType", tid) ;
+
+        if(nodeTypeNode != null) {
+            NodeType _nodeType = (NodeType) nodeTypeNode;
+            _nodeType.setPropertyTypes(infinispanRepositoryService.getQueryNodes("propertyType", "tid_matching=" + tid));
         }
 
-        return nodeType ;
+        return null ;
     }
 
     public Node getPropertyType(String tid, String pid){
@@ -39,7 +41,7 @@ public class NodeService {
         return propertyType ;
     }
 
-    public Node getNodeTypeNode() {
+    public NodeType getNodeTypeNode() {
         if(nodeType == null){
             Cache<String, Node> nodeTypeCache = infinispanRepositoryService.getNodeCache("nodeType") ;
             if(nodeTypeCache == null || nodeTypeCache.size() == 0){
@@ -50,20 +52,16 @@ public class NodeService {
                     } catch (IOException e) {
                     }
                 }
-
                 if(nodeType == null) {
                     initNodeType(nodeTypeCache);
                 }
             }
-
-
-
         }
         return nodeType;
     }
 
     private void initNodeType(Cache<String, Node> nodeTypeCache) {
-        nodeType = new Node("nodeType", "nodeType") ;
+        nodeType = new NodeType("nodeType", "nodeType") ;
         nodeType.put("tid", "nodeType") ;
         nodeType.put("repositoryType", "node") ;
         nodeType.put("typeName", "Node Type") ;

@@ -53,7 +53,34 @@ public class LuceneQueryUtils {
             query = booleanQueryBuilder.build();
         }
 
-        return queryContext.getSearchManager().getQuery(query, Node.class) ;
+        CacheQuery cacheQuery = queryContext.getSearchManager().getQuery(query, Node.class) ;
+
+        if(queryContext.hasSorting()) {
+            makeSorting(queryContext, cacheQuery);
+        }
+
+        return cacheQuery ;
+    }
+
+    private static void makeSorting(QueryContext queryContext, CacheQuery cacheQuery) {
+        String[] sortings = StringUtils.split(queryContext.getSorting(), ",");
+        List<SortField> sorts = new ArrayList<SortField>();
+        for (String sorting : sortings) {
+            String sortField = StringUtils.substringBefore(sorting.trim(), " ").trim();
+            String sortTypeStr = null;
+            if (StringUtils.contains(sortField, "(")) {
+                sortTypeStr = StringUtils.substringBefore(sortField, "(").trim();
+                sortField = StringUtils.substringBetween(sortField, "(", ")");
+            }
+            String order = StringUtils.substringAfter(sorting.trim(), " ").trim();
+
+
+            sorts.add(new SortField(order, sortTypeStr.equalsIgnoreCase("text") ? SortField.Type.STRING :
+                    sortTypeStr.equalsIgnoreCase("number") ? SortField.Type.LONG : (sortTypeStr.equalsIgnoreCase("double") ? SortField.Type.DOUBLE : SortField.Type.STRING), order.equalsIgnoreCase("desc") ? true : false));
+        }
+
+        Sort sort = new Sort(sorts.toArray(new SortField[sorts.size()]));
+        cacheQuery.sort(sort);
     }
 
     private static Query createLuceneQuery(QueryTerm term) throws IOException {
