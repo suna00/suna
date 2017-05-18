@@ -1,5 +1,7 @@
 package net.ion.ice.core.response;
 
+import net.ion.ice.core.node.QueryResult;
+
 import java.util.Collection;
 import java.util.Map;
 
@@ -7,18 +9,24 @@ import java.util.Map;
  * Created by jaehocho on 2017. 2. 11..
  */
 public class JsonArrayResponse extends JsonResponse {
-    private String result ;
-    private String resultMessage ;
-    private Integer totatCount ;
-    private Integer resultCount ;
+    protected Integer totatCount ;
+    protected Integer resultCount ;
 
-    private Collection<Map<String,Object>> items ;
+    private Collection<?> items ;
 
-    public JsonArrayResponse(Collection<Map<String, Object>> list) {
+    public JsonArrayResponse(Collection<?> list) {
         this.result = "200" ;
         this.resultMessage = "SUCCESS" ;
         this.totatCount = list.size() ;
         this.resultCount = list.size() ;
         this.items = list ;
+    }
+
+    public JsonArrayResponse(QueryResult queryResult) {
+        this.result = "200" ;
+        this.resultMessage = "SUCCESS" ;
+        this.totatCount = queryResult.getTotalSize() ;
+        this.resultCount = queryResult.getResultList().size() ;
+        this.items = queryResult.getResultList() ;
     }
 }

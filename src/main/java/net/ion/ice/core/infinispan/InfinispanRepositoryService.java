@@ -62,12 +62,9 @@ public class InfinispanRepositoryService {
     }
 
 
-    public List<Object> getQueryNodes(String tid, String search){
+    public QueryResult getQueryNodes(String tid, QueryContext queryContext){
         Cache<String, Node> cache = getNodeCache(tid) ;
 
-        NodeType nodeType = nodeService.getNodeType(tid) ;
-
-        QueryContext queryContext = makeQueryContext(search, nodeType) ;
         queryContext.setSearchManager(Search.getSearchManager(cache));
 
         CacheQuery cacheQuery = null;
@@ -79,72 +76,12 @@ public class InfinispanRepositoryService {
 
         List<Object> list = cacheQuery.list();
 
-        return list ;
+
+        return new QueryResult(list, cacheQuery.getResultSize()) ;
     }
 
-    private QueryContext makeQueryContext(String searchText, NodeType nodeType) {
-        QueryContext queryContext = new QueryContext() ;
-        List<QueryTerm> queryTerms = new ArrayList<>();
 
-        if(StringUtils.isEmpty(searchText)){
-            return queryContext ;
-        }
 
-        for (String param : StringUtils.split(searchText, '&')) {
-            if (StringUtils.isNotEmpty(param) && StringUtils.contains(param, "=")) {
-                String value = StringUtils.substringAfter(param, "=");
-                if(StringUtils.isEmpty(value)){
-                    continue;
-                }
-                value = value.equals("@sysdate") ? new SimpleDateFormat("yyyyMMdd HHmmss").format(new Date()) : value.equals("@sysday") ? new SimpleDateFormat("yyyyMMdd").format(new Date()) : value;
-                String paramName = StringUtils.substringBefore(param, "=") ;
-                if(StringUtils.isEmpty(paramName)){
-                    continue ;
-                }
-
-                if(nodeType == null) {
-                    if (paramName.equals("sorting")) {
-                        queryContext.setSorting(value);
-                    } else if (paramName.contains("_")) {
-                        String fieldId = StringUtils.substringBeforeLast(paramName, "_");
-                        queryTerms.add(new QueryTerm(StringUtils.substringBeforeLast(paramName, "_"), StringUtils.substringAfterLast(paramName, "_"), value));
-                    } else {
-                        queryTerms.add(new QueryTerm(paramName, value));
-                    }
-                }else{
-                    if (paramName.equals("sorting")) {
-                        queryContext.setSorting(value, nodeType);
-                    } else if (paramName.contains("_")) {
-                        String fieldId = StringUtils.substringBeforeLast(paramName, "_");
-                        String method = StringUtils.substringAfterLast(paramName, "_") ;
-                        QueryTerm queryTerm = makeQueryTerm(nodeType, queryTerms, fieldId, method, value) ;
-                        if(queryTerm == null){
-                            queryTerm = makeQueryTerm(nodeType, queryTerms, paramName, "matching", value) ;
-                        }
-
-                        if(queryTerm != null ){
-                            queryTerms.add(queryTerm) ;
-                        }
-
-                    } else {
-
-                        queryTerms.add(new QueryTerm(paramName, value));
-                    }
-
-                }
-            }
-        }
-        queryContext.setQueryTerms(queryTerms);
-        return queryContext ;
-    }
-
-    private QueryTerm makeQueryTerm(NodeType nodeType, List<QueryTerm> queryTerms, String fieldId, String method, String value) {
-        PropertyType propertyType = (PropertyType) nodeType.getPropertyType(fieldId);
-        if(propertyType != null && propertyType.indexing()) {
-            return new QueryTerm(fieldId, propertyType.getAnalyzer(), method, value);
-        }
-        return null ;
-    }
 
 
     public static CacheQuery makeQuery(SearchManager qf, QueryBuilder queryBuilder, Node nodeType, Cache<String, Node> cache, Map<String, String[]> params) {

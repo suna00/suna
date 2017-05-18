@@ -2,6 +2,7 @@ package net.ion.ice.core.node;
 
 import com.sun.tools.javac.util.List;
 import net.ion.ice.core.cluster.ClusterController;
+import net.ion.ice.core.response.JsonResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,14 +31,14 @@ public class NodeController {
     @ResponseBody
     public Object list(WebRequest request, @PathVariable String nodeType, HttpServletResponse response) throws IOException {
         try {
-            List<Node> nodeList = nodeService.getNodeList(nodeType, request.getParameterMap()) ;
-            return new ListResponse(nodeList) ;
+            QueryResult queryResult = nodeService.getNodeList(nodeType, request.getParameterMap()) ;
+            return JsonResponse.create(queryResult) ;
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             if(e.getCause() instanceof ClassCastException){
-                ResponseUtils.writeErrorJson(response, new Exception("형식이 맞지 않습니다."));
+                return JsonResponse.error(new Exception("형식이 맞지 않습니다."));
             }else{
-                ResponseUtils.writeErrorJson(response, e);
+                return JsonResponse.error(e);
             }
         }
     }
