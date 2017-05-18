@@ -18,26 +18,31 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Node implements Map<String, Object>, Serializable{
     public static final String ID = "id";
     public static final String TID = "tid";
+    public static final String ANONYMOUS = "anonymous";
 
     @Id
     private String id ;
 
-    private String tid ;
-
     @Field
     @FieldBridge(impl = PropertiesFieldBridge.class)
     private Map<String, Object> properties ;
+
+    private NodeValue nodeValue ;
 
     public Node(){
         properties = new ConcurrentHashMap<>() ;
     }
 
     public Node(String id, String tid){
+        this(id, tid, ANONYMOUS) ;
+    }
+
+    public Node(String id, String tid, String userId){
         this.id = id ;
-        this.tid = tid ;
         properties = new ConcurrentHashMap<>() ;
         this.properties.put(ID, id) ;
         this.properties.put(TID, tid) ;
+        this.nodeValue = new NodeValue(id, tid, userId) ;
     }
 
     @Override
@@ -108,16 +113,16 @@ public class Node implements Map<String, Object>, Serializable{
 
     public void setId(String id) {
         this.id = id;
-        this.properties.put(ID, id) ;
+        this.nodeValue.setId(id) ;
     }
 
     public String getTid() {
-        return tid;
+        return nodeValue.getTid();
     }
 
     public void setTid(String tid) {
-        this.tid = tid;
         this.properties.put(TID, tid) ;
+        nodeValue.setTid(tid) ;
     }
 
     @Override
@@ -125,5 +130,11 @@ public class Node implements Map<String, Object>, Serializable{
         return this.properties.toString() ;
     }
 
+    public NodeValue getNodeValue() {
+        return nodeValue;
+    }
 
+    public void setNodeValue(NodeValue nodeValue) {
+        this.nodeValue = nodeValue;
+    }
 }

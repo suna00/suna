@@ -2,10 +2,7 @@ package net.ion.ice.core.infinispan;
 
 import net.ion.ice.core.infinispan.lucene.LuceneQueryUtils;
 import net.ion.ice.core.infinispan.lucene.QueryType;
-import net.ion.ice.core.node.Node;
-import net.ion.ice.core.node.NodeService;
-import net.ion.ice.core.node.NodeType;
-import net.ion.ice.core.node.PropertyType;
+import net.ion.ice.core.node.*;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.search.Sort;
 import org.apache.lucene.search.SortField;
@@ -39,14 +36,31 @@ public class InfinispanRepositoryService {
         return cacheManager.getCache(tid, 100000) ;
     }
 
+    public Cache<String, NodeValue> getNodeValueCache(){
+        return cacheManager.getCache("nodeValue", 100000) ;
+    }
+
     public Node getNode(String tid, String id) {
         Cache<String, Node> cache = getNodeCache(tid) ;
-        return cache.get(id) ;
+        Node node = cache.get(id) ;
+
+        Cache<String, NodeValue> nodeValueCache = getNodeValueCache() ;
+        node.setNodeValue(nodeValueCache.get(id)) ;
+
+        return node ;
     }
 
     public Collection<Node> getNodes(String tid) {
         return getNodeCache(tid).values() ;
     }
+
+    public void saveNode(Node node) {
+        Cache<String, NodeValue> nodeValueCache = getNodeValueCache() ;
+        Cache<String, Node> nodeCache = getNodeCache(node.getTid()) ;
+        nodeValueCache.put(node.getId(), node.getNodeValue()) ;
+        nodeCache.put(node.getId(), node) ;
+    }
+
 
     public List<Object> getQueryNodes(String tid, String search){
         Cache<String, Node> cache = getNodeCache(tid) ;

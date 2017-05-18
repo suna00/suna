@@ -1,5 +1,6 @@
 package net.ion.ice.core.node;
 
+import com.sun.tools.javac.util.List;
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
 import net.ion.ice.core.json.JsonUtils;
@@ -104,5 +105,9 @@ public class NodeService {
         tid.put("propertyTypeName", "Type Id") ;
         tid.put("valueType", "ID") ;
         propertyTypeCache.put("tid", tid) ;
+    }
+
+    public List<Node> getNodeList(String nodeType, Map<String, String[]> parameterMap) {
+
     }
 }
