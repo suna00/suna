@@ -66,21 +66,4 @@ public class InfinispanRepositoryServiceTest {
 //        StandardTokenizerFactory tokenizerFactory =
     }
 
-    @Test
-    public void query() throws SystemException, NotSupportedException, HeuristicRollbackException, HeuristicMixedException, RollbackException {
-        testQuery("key1_matching=value1") ;
-
-        testQuery("key1_matching=auto") ;
-//        testQuery("key1_matching=5") ;
-
-    }
-
-    private void testQuery(String search){
-        System.out.println("===" + search + "====");
-        List<Object> result = repositoryService.getQueryNodes("test", search) ;
-
-        for(Object node : result){
-            System.out.println(node);
-        }
-    }
 }

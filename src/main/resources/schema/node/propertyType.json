@@ -1,0 +1,143 @@
+[
+  {
+    "id" : "nodeType/tid",
+    "tid" : "nodeType",
+    "pid" : "tid",
+    "propertyTypeName" : "Type ID",
+    "valueType" : "STRING",
+    "idable" : true,
+    "indexable" : true,
+    "required" : true
+  },
+  {
+    "id" : "nodeType/repositoryType",
+    "tid" : "nodeType",
+    "pid" : "repositoryType",
+    "propertyTypeName" : "Repository Type",
+    "valueType" : "CODE",
+    "idable" : false,
+    "indexable" : true,
+    "required" : true,
+    "code" : [{"value" : "node", "label" : "Node"}, {"value" : "data", "label" : "Data"}, {"value" : "logic", "label" : "Logic"}, {"value" : "path", "label" : "Path"}]
+  },
+  {
+    "id" : "nodeType/typeName",
+    "tid" : "nodeType",
+    "pid" : "typeName",
+    "propertyTypeName" : "Type Name",
+    "valueType" : "STRING",
+    "idable" : false,
+    "indexable" : true,
+    "required" : true,
+    "labelable" : true
+  },
+  {
+    "id" : "nodeType/eviction",
+    "tid" : "nodeType",
+    "pid" : "eviction",
+    "propertyTypeName" : "Eviction Size",
+    "valueType" : "LONG",
+    "idable" : false,
+    "indexable" : false,
+    "required" : true,
+    "defaultValue" : 10000
+  },
+  {
+    "id" : "propertyType/tid",
+    "tid" : "propertyType",
+    "pid" : "tid",
+    "propertyTypeName" : "Type ID",
+    "valueType" : "STRING",
+    "idable" : true,
+    "indexable" : true,
+    "required" : true
+  },
+  {
+    "id" : "propertyType/pid",
+    "tid" : "propertyType",
+    "pid" : "pid",
+    "propertyTypeName" : "PropertyType ID",
+    "valueType" : "STRING",
+    "idable" : true,
+    "indexable" : true,
+    "required" : true
+  },
+  {
+    "id" : "propertyType/propertyTypeName",
+    "tid" : "propertyType",
+    "pid" : "propertyTypeName",
+    "propertyTypeName" : "Type Name",
+    "valueType" : "STRING",
+    "idable" : false,
+    "indexable" : true,
+    "required" : true,
+    "labelable" : true
+  },
+  {
+    "id" : "propertyType/valueType",
+    "tid" : "propertyType",
+    "pid" : "valueType",
+    "propertyTypeName" : "Value Type",
+    "valueType" : "CODE",
+    "idable" : false,
+    "indexable" : true,
+    "required" : true,
+    "code" : [{"value" : "STRING", "label" : "String"}, {"value" : "LONG", "label" : "Long"}, {"value" : "BOOLEAN", "label" : "Boolean"}, {"value" : "DATE", "label" : "Date"}]
+  },
+  {
+    "id" : "propertyType/idable",
+    "tid" : "propertyType",
+    "pid" : "idable",
+    "propertyTypeName" : "ID able",
+    "valueType" : "BOOLEAN",
+    "idable" : false,
+    "indexable" : false,
+    "required" : false,
+    "labelable" : false
+  },
+  {
+    "id" : "propertyType/indexable",
+    "tid" : "propertyType",
+    "pid" : "indexable",
+    "propertyTypeName" : "Index able",
+    "valueType" : "BOOLEAN",
+    "idable" : false,
+    "indexable" : false,
+    "required" : false,
+    "labelable" : false
+  },
+  {
+    "id" : "propertyType/required",
+    "tid" : "propertyType",
+    "pid" : "required",
+    "propertyTypeName" : "Required",
+    "valueType" : "BOOLEAN",
+    "idable" : false,
+    "indexable" : false,
+    "required" : false,
+    "labelable" : false
+  },
+  {
+    "id" : "propertyType/labelable",
+    "tid" : "propertyType",
+    "pid" : "labelable",
+    "propertyTypeName" : "Label able",
+    "valueType" : "BOOLEAN",
+    "idable" : false,
+    "indexable" : false,
+    "required" : false,
+    "labelable" : false
+  },
+  {
+    "id" : "propertyType/analyzer",
+    "tid" : "propertyType",
+    "pid" : "analyzer",
+    "propertyTypeName" : "Analyzer",
+    "valueType" : "CODE",
+    "idable" : false,
+    "indexable" : false,
+    "required" : false,
+    "labelable" : false,
+    "code" : [{"value" : "simple", "label" : "Simple Analyzer"}, {"value" : "standard", "label" : "Standard Analyzer"}, {"value" : "cjk", "label" : "CJK Analyzer"}, {"value" : "code", "label" : "Code Analyzer"}]
+  }
+]

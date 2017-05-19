@@ -1,0 +1,14 @@
+[
+  {
+    "id" : "nodeType",
+    "repositoryType" : "node",
+    "typeName" : "Node Type",
+    "eviction" : 1000
+  },
+  {
+    "id" : "propertyType",
+    "repositoryType" : "node",
+    "typeName" : "Property Type",
+    "eviction" : 10000
+  }
+]
