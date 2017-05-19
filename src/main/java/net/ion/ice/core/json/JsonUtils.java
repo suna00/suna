@@ -3,6 +3,7 @@ package net.ion.ice.core.json;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.core.io.Resource;
 
 import java.io.File;
 import java.io.IOException;
@@ -46,6 +47,9 @@ public class JsonUtils {
         return parsingJsonFileToList(jsonFile, "UTF-8") ;
     }
 
+    public static Collection<Map<String,Object>> parsingJsonResourceToList(Resource jsonFile) throws IOException {
+        return parsingJsonFileToList(jsonFile.getFile(), "UTF-8") ;
+    }
     public static void writeJsonFile(File file, Object data) throws IOException {
         objectMapper.writeValue(file, data);
     }

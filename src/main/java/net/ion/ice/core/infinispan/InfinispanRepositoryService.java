@@ -54,6 +54,7 @@ public class InfinispanRepositoryService {
         return getNodeCache(tid).values() ;
     }
 
+
     public void saveNode(Node node) {
         Cache<String, NodeValue> nodeValueCache = getNodeValueCache() ;
         Cache<String, Node> nodeCache = getNodeCache(node.getTid()) ;
@@ -79,8 +80,6 @@ public class InfinispanRepositoryService {
 
         return new QueryResult(list, cacheQuery.getResultSize()) ;
     }
-
-
 
 
 

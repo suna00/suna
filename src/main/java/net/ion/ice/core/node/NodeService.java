@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Map;
 
@@ -42,6 +43,21 @@ public class NodeService {
 
         return null ;
     }
+
+    public NodeType saveNodeType(String tid){
+        if(tid.equals("nodeType")){
+            return getNodeTypeNode() ;
+        }
+        Node nodeTypeNode = infinispanRepositoryService.getNode("nodeType", tid) ;
+
+        if(nodeTypeNode != null) {
+            NodeType _nodeType = (NodeType) nodeTypeNode;
+            _nodeType.setPropertyTypes(getNodeList("propertyType", "tid_matching=" + tid).getResultList());
+        }
+
+        return null ;
+    }
+
 
     public Node getPropertyType(String tid, String pid){
         Node propertyType = infinispanRepositoryService.getNode("propertyType", tid + "/" + pid) ;
@@ -175,50 +191,10 @@ public class NodeService {
         return null ;
     }
 
-    private void initNodeType(Cache<String, Node> nodeTypeCache) {
-        nodeType = new NodeType("nodeType", "nodeType") ;
-        nodeType.put("tid", "nodeType") ;
-        nodeType.put("repositoryType", "node") ;
-        nodeType.put("typeName", "Node Type") ;
+    private void initNodeType() throws IOException {
+        Collection<Map<String, Object>> nodeTypeList = JsonUtils.parsingJsonResourceToList(ApplicationContextManager.getResource("/schema/node/nodeType.json")) ;
 
-        nodeTypeCache.put("nodeType", nodeType) ;
 
-        Node propertyType = new Node("propertyType", "nodeType") ;
-        propertyType.put("tid", "propertyType") ;
-        propertyType.put("repositoryType", "node") ;
-        propertyType.put("typeName", "Property Type") ;
-
-        nodeTypeCache.put("propertyType", propertyType) ;
-
-        Cache<String, Node> propertyTypeCache = infinispanRepositoryService.getNodeCache("propertyType") ;
-
-        Node tid = new Node("nodeType/tid", "propertyType") ;
-        tid.put("tid", "nodeType") ;
-        tid.put("pid", "tid") ;
-        tid.put("propertyTypeName", "Type Id") ;
-        tid.put("valueType", "ID") ;
-        propertyTypeCache.put("nodeType/tid", tid) ;
-
-        Node repositoryType = new Node("nodeType/repositoryType", "propertyType") ;
-        repositoryType.put("tid", "nodeType") ;
-        repositoryType.put("pid", "repositoryType") ;
-        repositoryType.put("propertyTypeName", "Repository Type") ;
-        repositoryType.put("valueType", "CODE") ;
-        propertyTypeCache.put("nodeType/repositoryType", repositoryType) ;
-
-        Node typeName = new Node("nodeType/typeName", "propertyType") ;
-        typeName.put("tid", "nodeType") ;
-        typeName.put("pid", "typeName") ;
-        typeName.put("propertyTypeName", "Type Name") ;
-        typeName.put("valueType", "NAME") ;
-        propertyTypeCache.put("nodeType/typeName", typeName) ;
-
-        Node propertyTid = new Node("propertyType/tid", "propertyType") ;
-        tid.put("tid", "nodeType") ;
-        tid.put("pid", "tid") ;
-        tid.put("propertyTypeName", "Type Id") ;
-        tid.put("valueType", "ID") ;
-        propertyTypeCache.put("tid", tid) ;
     }
 
 
