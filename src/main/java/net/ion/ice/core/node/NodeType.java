@@ -8,6 +8,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Created by jaeho on 2017. 5. 15..
  */
 public class NodeType extends Node{
+    public static final String NODETYPE = "nodeType";
 
     private transient Map<String, Node> propertyTypes ;
 

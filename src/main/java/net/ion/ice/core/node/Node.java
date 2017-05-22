@@ -19,6 +19,7 @@ public class Node implements Map<String, Object>, Serializable{
     public static final String ID = "id";
     public static final String TID = "tid";
     public static final String ANONYMOUS = "anonymous";
+    public static final String SYSTEM = "system";
 
     @Id
     private String id ;
