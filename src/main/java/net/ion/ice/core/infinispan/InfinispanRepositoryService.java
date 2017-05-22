@@ -36,6 +36,15 @@ public class InfinispanRepositoryService {
         return cacheManager.getCache(tid, 100000) ;
     }
 
+    public Cache<String, NodeType> getNodeTypeCache(){
+        return cacheManager.getCache("nodeType", 1000) ;
+    }
+
+    public Cache<String, PropertyType> getPropertyTypeTypeCache(){
+        return cacheManager.getCache("propertyType", 10000) ;
+    }
+
+
     public Cache<String, NodeValue> getNodeValueCache(){
         return cacheManager.getCache("nodeValue", 100000) ;
     }

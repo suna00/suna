@@ -27,7 +27,7 @@ public class Node implements Map<String, Object>, Serializable{
     @FieldBridge(impl = PropertiesFieldBridge.class)
     private Map<String, Object> properties ;
 
-    private NodeValue nodeValue ;
+    private transient NodeValue nodeValue ;
 
     public Node(){
         properties = new ConcurrentHashMap<>() ;

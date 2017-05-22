@@ -30,55 +30,39 @@ public class NodeService {
 
     private NodeType nodeType ;
 
-    public NodeType getNodeType(String tid){
+    public NodeType getNodeType(String tid) {
         if(tid.equals("nodeType")){
-            return getNodeTypeNode() ;
-        }
-        Node nodeTypeNode = infinispanRepositoryService.getNode("nodeType", tid) ;
-
-        if(nodeTypeNode != null) {
-            NodeType _nodeType = (NodeType) nodeTypeNode;
-            _nodeType.setPropertyTypes(getNodeList("propertyType", "tid_matching=" + tid).getResultList());
-        }
-
-        return null ;
-    }
-
-    public NodeType saveNodeType(String tid){
-        if(tid.equals("nodeType")){
-            return getNodeTypeNode() ;
-        }
-        Node nodeTypeNode = infinispanRepositoryService.getNode("nodeType", tid) ;
-
-        if(nodeTypeNode != null) {
-            NodeType _nodeType = (NodeType) nodeTypeNode;
-            _nodeType.setPropertyTypes(getNodeList("propertyType", "tid_matching=" + tid).getResultList());
-        }
-
-        return null ;
-    }
-
-
-    public Node getPropertyType(String tid, String pid){
-        Node propertyType = infinispanRepositoryService.getNode("propertyType", tid + "/" + pid) ;
-        return propertyType ;
-    }
-
-    public NodeType getNodeTypeNode() {
-        if(nodeType == null){
-            Cache<String, Node> nodeTypeCache = infinispanRepositoryService.getNodeCache("nodeType") ;
-            if(nodeTypeCache == null || nodeTypeCache.size() == 0){
-                Resource configFilePath = ApplicationContextManager.getResource("nodeType.json") ;
-                if(configFilePath.exists()){
-                    try {
-                        Map<String, Object> configSrc = JsonUtils.parsingJsonFileToMap(configFilePath.getFile()) ;
-                    } catch (IOException e) {
-                    }
-                }
-                if(nodeType == null) {
-                    initNodeType(nodeTypeCache);
-                }
+            try {
+                return getDefaultNodeType() ;
+            } catch (IOException e) {
+                throw new RuntimeException("INIT ERROR") ;
             }
+        }
+
+        Cache<String, NodeType> nodeTypeCache = infinispanRepositoryService.getNodeTypeCache() ;
+        NodeType nodeType = nodeTypeCache.get(tid) ;
+        if(nodeType != null) {
+            Cache<String, NodeValue> nodeValueCache = infinispanRepositoryService.getNodeValueCache() ;
+            nodeType.setNodeValue(nodeValueCache.get(nodeType.getId())) ;
+            nodeType.setPropertyTypes(getNodeList("propertyType", "tid_matching=" + tid).getResultList());
+        }
+
+        return nodeType ;
+    }
+
+    public void saveNodeType(NodeType nodeType){
+        if(nodeType.getTid().equals("nodeType")){
+            this.nodeType = nodeType ;
+        }
+        Cache<String, NodeType> nodeTypeCache = infinispanRepositoryService.getNodeTypeCache() ;
+        nodeTypeCache.put(nodeType.getId(), nodeType) ;
+    }
+
+
+
+    public NodeType getDefaultNodeType() throws IOException {
+        if(nodeType == null){
+            initNodeType();
         }
         return nodeType;
     }
@@ -192,8 +176,9 @@ public class NodeService {
     }
 
     private void initNodeType() throws IOException {
-        Collection<Map<String, Object>> nodeTypeList = JsonUtils.parsingJsonResourceToList(ApplicationContextManager.getResource("/schema/node/nodeType.json")) ;
+        Collection<Map<String, Object>> nodeTypeDataList = JsonUtils.parsingJsonResourceToList(ApplicationContextManager.getResource("/schema/node/nodeType.json")) ;
 
+        List<NodeType> nodeTypeList = NodeUtils.makeNodeTypeList(nodeTypeDataList) ;
 
     }
 
