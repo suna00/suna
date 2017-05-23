@@ -26,4 +26,21 @@ public class NodeUtils {
 
         return nodeType ;
     }
+
+    public static List<PropertyType> makePropertyTypeList(Collection<Map<String, Object>> propertyTypeDataList) {
+
+    }
+
+
+    public static PropertyType makePropertyType(Map<String, Object> data) {
+        Object id = data.get("id");
+        if(id == null){
+            id = data.get("tid") + "/" + data.get("pid") ;
+        }
+
+        PropertyType propertyType =  new PropertyType(id, PropertyType.PROPERTYTYPE) ;
+        propertyType.putAll(data);
+
+        return propertyType ;
+    }
 }

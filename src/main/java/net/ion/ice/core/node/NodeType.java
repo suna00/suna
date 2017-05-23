@@ -1,5 +1,7 @@
 package net.ion.ice.core.node;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -10,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class NodeType extends Node{
     public static final String NODETYPE = "nodeType";
 
-    private transient Map<String, Node> propertyTypes ;
+    private transient Map<String, PropertyType> propertyTypes ;
 
     public NodeType(String id, String tid) {
         super(id, tid) ;
@@ -19,10 +21,10 @@ public class NodeType extends Node{
 
     public void setPropertyTypes(List<Object> propertyTypeList){
         if(propertyTypes == null){
-            propertyTypes = new ConcurrentHashMap<>() ;
+            propertyTypes = new LinkedHashMap<>() ;
         }
         for(Object _obj : propertyTypeList){
-            Node propertyType = (Node) _obj;
+            PropertyType propertyType = (PropertyType) _obj;
             propertyTypes.put(propertyType.get("pid").toString(), propertyType) ;
         }
     }
@@ -31,4 +33,13 @@ public class NodeType extends Node{
         return propertyTypes.get(pid) ;
     }
 
+    public List<String> getIdablePIds() {
+        List<String> ids = new ArrayList<>() ;
+        for(PropertyType pt : propertyTypes.values()){
+            if(pt.isIdable()){
+                ids.add(pt.getPid()) ;
+            }
+        }
+        return ids ;
+    }
 }

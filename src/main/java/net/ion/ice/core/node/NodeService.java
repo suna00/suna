@@ -174,7 +174,20 @@ public class NodeService {
         Collection<Map<String, Object>> nodeTypeDataList = JsonUtils.parsingJsonResourceToList(ApplicationContextManager.getResource("/schema/node/nodeType.json")) ;
 
         List<NodeType> nodeTypeList = NodeUtils.makeNodeTypeList(nodeTypeDataList) ;
+        for(NodeType nodeType : nodeTypeList){
+            saveNodeType(nodeType);
+        }
 
+        Collection<Map<String, Object>> propertyTypeDataList = JsonUtils.parsingJsonResourceToList(ApplicationContextManager.getResource("/schema/node/propertyType.json")) ;
+
+        List<PropertyType> propertyTypeList = NodeUtils.makePropertyTypeList(propertyTypeDataList) ;
+        for(PropertyType propertyType : propertyTypeList){
+            savePropertyType(propertyType);
+        }
+
+    }
+
+    private void savePropertyType(PropertyType propertyType) {
     }
 
 
