@@ -38,8 +38,10 @@ public class LuceneQueryUtils {
     public static CacheQuery makeQuery(QueryContext queryContext) throws IOException {
         Query query ;
         List<Query> innerQueries =  new ArrayList<>();
-        for(QueryTerm term :  queryContext.getQueryTerms()){
-                innerQueries.add(createLuceneQuery(term)) ;
+        if(queryContext.hasQueryTerms()) {
+            for (QueryTerm term : queryContext.getQueryTerms()) {
+                innerQueries.add(createLuceneQuery(term));
+            }
         }
         if(innerQueries.size() ==0){
             query = new MatchAllDocsQuery() ;

@@ -36,14 +36,14 @@ public class PropertiesFieldBridge implements FieldBridge {
     private void indexNotNullMap(String name, Object value, Document document, LuceneOptions luceneOptions) {
         Map<String, Object> properties = (Map<String, Object>) value;
         String tid = (String) properties.get("tid") ;
-        Node nodeType = nodeService.getNodeType(tid) ;
+        NodeType nodeType = nodeService.getNodeType(tid) ;
         if(nodeType == null){
             for (Map.Entry<String, Object> entry : properties.entrySet() ) {
                 indexEntry(entry, document, luceneOptions );
             }
         }else{
             for (Map.Entry<String, Object> entry : properties.entrySet() ) {
-                Node propertyType = nodeService.getPropertyType(tid, entry.getKey()) ;
+                PropertyType propertyType = nodeType.getPropertyType(entry.getKey()) ;
                 indexEntry(entry, document, luceneOptions, propertyType );
             }
         }

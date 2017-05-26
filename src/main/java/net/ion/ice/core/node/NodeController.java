@@ -1,7 +1,6 @@
 package net.ion.ice.core.node;
 
-import com.sun.tools.javac.util.List;
-import net.ion.ice.core.cluster.ClusterController;
+
 import net.ion.ice.core.response.JsonResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

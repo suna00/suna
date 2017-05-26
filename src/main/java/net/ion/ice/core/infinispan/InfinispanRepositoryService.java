@@ -36,21 +36,13 @@ public class InfinispanRepositoryService {
         return cacheManager.getCache(tid, 100000) ;
     }
 
-    public Cache<String, NodeType> getNodeTypeCache(){
-        return cacheManager.getCache("nodeType", 1000) ;
-    }
-
-    public Cache<String, PropertyType> getPropertyTypeTypeCache(){
-        return cacheManager.getCache("propertyType", 10000) ;
-    }
-
 
     public Cache<String, NodeValue> getNodeValueCache(){
         return cacheManager.getCache("nodeValue", 100000) ;
     }
 
     public Node getNode(String tid, String id) {
-        Cache<String, Node> cache = getNodeCache(tid) ;
+        Cache<String, Node> cache = getNodeCache(tid);
         Node node = cache.get(id) ;
 
         Cache<String, NodeValue> nodeValueCache = getNodeValueCache() ;
@@ -60,20 +52,20 @@ public class InfinispanRepositoryService {
     }
 
     public Collection<Node> getNodes(String tid) {
-        return getNodeCache(tid).values() ;
+        return (Collection<Node>) getNodeCache(tid).values();
     }
 
 
     public void saveNode(Node node) {
         Cache<String, NodeValue> nodeValueCache = getNodeValueCache() ;
-        Cache<String, Node> nodeCache = getNodeCache(node.getTid()) ;
-        nodeValueCache.put(node.getId(), node.getNodeValue()) ;
-        nodeCache.put(node.getId(), node) ;
+        Cache<String, Node> nodeCache = getNodeCache(node.getTid());
+        nodeValueCache.put(node.getTid() + "://" + node.getId(), node.getNodeValue()) ;
+        nodeCache.put(node.getId().toString(), node) ;
     }
 
 
     public QueryResult getQueryNodes(String tid, QueryContext queryContext){
-        Cache<String, Node> cache = getNodeCache(tid) ;
+        Cache<String, Node> cache = getNodeCache(tid);
 
         queryContext.setSearchManager(Search.getSearchManager(cache));
 

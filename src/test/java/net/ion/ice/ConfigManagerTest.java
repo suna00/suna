@@ -23,8 +23,8 @@ public class ConfigManagerTest {
         assertEquals(CoreConfig.getConfigValue("project"), "ice2-cm-test");
         assertEquals(CoreConfig.getConfigValue("env"), "development");
 
-        CoreConfig.setHostName("stg1");
-        CoreConfig.initConfigData();
+//        CoreConfig.setHostName("stg1");
+//        CoreConfig.initConfigData();
 
         assertEquals(CoreConfig.getConfigValue("env"), "staging");
         assertEquals(CoreConfig.getConfigValue("json-path"), "/res/stg");

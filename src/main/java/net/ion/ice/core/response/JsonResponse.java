@@ -2,13 +2,14 @@ package net.ion.ice.core.response;
 
 import net.ion.ice.core.node.QueryResult;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
 
 /**
  * Created by jaehocho on 2017. 2. 11..
  */
-public class JsonResponse {
+public class JsonResponse implements Serializable{
     protected String result ;
     protected String resultMessage ;
 
@@ -27,5 +28,17 @@ public class JsonResponse {
 
     public static JsonResponse error(Exception e) {
         return new JsonErrorResponse(e) ;
+    }
+
+    public String getResult(){
+        return result ;
+    }
+
+    public void setResult(String result){
+        this.result = result ;
+    }
+
+    public String getResultMessage(){
+        return resultMessage ;
     }
 }

@@ -9,13 +9,15 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Created by jaeho on 2017. 5. 15..
  */
-public class NodeType extends Node{
+public class NodeType {
     public static final String NODETYPE = "nodeType";
 
-    private transient Map<String, PropertyType> propertyTypes ;
+    private Node nodeTypeNode ;
+    private Map<String, PropertyType> propertyTypes ;
 
-    public NodeType(String id, String tid) {
-        super(id, tid) ;
+
+    public NodeType(Node nodeTypeNode) {
+        this.nodeTypeNode = nodeTypeNode ;
     }
 
 
@@ -29,7 +31,7 @@ public class NodeType extends Node{
         }
     }
 
-    public Node getPropertyType(String pid){
+    public PropertyType getPropertyType(String pid){
         return propertyTypes.get(pid) ;
     }
 
@@ -41,5 +43,13 @@ public class NodeType extends Node{
             }
         }
         return ids ;
+    }
+
+    public void addPropertyType(PropertyType propertyType) {
+        if(propertyTypes == null){
+            propertyTypes = new LinkedHashMap<>() ;
+        }
+
+        propertyTypes.put(propertyType.get("pid").toString(), propertyType) ;
     }
 }

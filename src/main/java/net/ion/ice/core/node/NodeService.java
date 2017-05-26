@@ -7,6 +7,8 @@ import net.ion.ice.core.infinispan.QueryTerm;
 import net.ion.ice.core.json.JsonUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.infinispan.Cache;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,38 +21,41 @@ import java.util.*;
  */
 @Service("nodeService")
 public class NodeService {
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private InfinispanRepositoryService infinispanRepositoryService ;
 
     private NodeType nodeType ;
+    private NodeType propertyType ;
 
     public NodeType getNodeType(String tid) {
         if(tid.equals("nodeType")){
             try {
                 return getDefaultNodeType() ;
             } catch (IOException e) {
+                logger.error("NODE TYPE INIT ERROR : ", e) ;
+                throw new RuntimeException("INIT ERROR") ;
+            }
+        }else if(tid.equals("propertyType")){
+            try {
+                return getDefaultPropertyType() ;
+            } catch (IOException e) {
                 throw new RuntimeException("INIT ERROR") ;
             }
         }
 
-        Cache<String, NodeType> nodeTypeCache = infinispanRepositoryService.getNodeTypeCache() ;
-        NodeType nodeType = nodeTypeCache.get(tid) ;
-        if(nodeType != null) {
-            Cache<String, NodeValue> nodeValueCache = infinispanRepositoryService.getNodeValueCache() ;
-            nodeType.setNodeValue(nodeValueCache.get(nodeType.getId())) ;
-            nodeType.setPropertyTypes(getNodeList("propertyType", "tid_matching=" + tid).getResultList());
-        }
+        Cache<String, Node> nodeCache = infinispanRepositoryService.getNodeCache("nodeType") ;
+        Node nodeTypeNode = nodeCache.get(tid) ;
+
+        Cache<String, NodeValue> nodeValueCache = infinispanRepositoryService.getNodeValueCache() ;
+        nodeTypeNode.setNodeValue(nodeValueCache.get(nodeTypeNode.getId())) ;
+
+        NodeType nodeType = new NodeType(nodeTypeNode) ;
+        nodeType.setPropertyTypes(getNodeList("propertyType", "tid_matching=" + tid).getResultList());
+
 
         return nodeType ;
-    }
-
-    public void saveNodeType(NodeType nodeType){
-        if(nodeType.getTid().equals("nodeType")){
-            this.nodeType = nodeType ;
-        }
-        Cache<String, NodeType> nodeTypeCache = infinispanRepositoryService.getNodeTypeCache() ;
-        nodeTypeCache.put(nodeType.getId(), nodeType) ;
     }
 
 
@@ -62,11 +67,17 @@ public class NodeService {
         return nodeType;
     }
 
+    public NodeType getDefaultPropertyType() throws IOException {
+        if(propertyType == null){
+            initNodeType();
+        }
+        return propertyType;
+    }
+
     public QueryResult getNodeList(String nodeType, String searchText) {
         QueryContext queryContext = makeQueryContextFromText(searchText, getNodeType(nodeType)) ;
         return infinispanRepositoryService.getQueryNodes(nodeType, queryContext) ;
     }
-
 
 
     public QueryResult getNodeList(String nodeType, Map<String, String[]> parameterMap) {
@@ -171,24 +182,21 @@ public class NodeService {
     }
 
     private void initNodeType() throws IOException {
-        Collection<Map<String, Object>> nodeTypeDataList = JsonUtils.parsingJsonResourceToList(ApplicationContextManager.getResource("/schema/node/nodeType.json")) ;
+        Collection<Map<String, Object>> nodeTypeDataList = JsonUtils.parsingJsonResourceToList(ApplicationContextManager.getResource("classpath:schema/node/nodeType.json")) ;
 
         List<NodeType> nodeTypeList = NodeUtils.makeNodeTypeList(nodeTypeDataList) ;
         for(NodeType nodeType : nodeTypeList){
             saveNodeType(nodeType);
         }
 
-        Collection<Map<String, Object>> propertyTypeDataList = JsonUtils.parsingJsonResourceToList(ApplicationContextManager.getResource("/schema/node/propertyType.json")) ;
+        Collection<Map<String, Object>> propertyTypeDataList = JsonUtils.parsingJsonResourceToList(ApplicationContextManager.getResource("classpath:schema/node/propertyType.json")) ;
 
         List<PropertyType> propertyTypeList = NodeUtils.makePropertyTypeList(propertyTypeDataList) ;
         for(PropertyType propertyType : propertyTypeList){
             savePropertyType(propertyType);
         }
-
     }
 
-    private void savePropertyType(PropertyType propertyType) {
-    }
 
 
 }

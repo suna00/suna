@@ -18,6 +18,9 @@ cluster:
     - 127.0.0.1
     - localhost
 
+infinispan:
+  cachePath: /resource/ice2/cache
+
 ---
 #-Dspring.profiles.active=dev
 spring:

@@ -34,14 +34,14 @@ public class InfinispanRepositoryServiceTest {
         node.put("key2", 1) ;
 
 //        nodes.getAdvancedCache().getTransactionManager().begin();
-        nodes.put(node.getId(), node) ;
+        nodes.put(node.getId().toString(), node) ;
 
 
         Node node2 = new Node("id2", "test") ;
         node2.put("key1", "value2") ;
         node2.put("key2", 2) ;
 
-        nodes.put(node2.getId(), node2) ;
+        nodes.put(node2.getId().toString(), node2) ;
 
 
 //        assertEquals(nodes.size(), 2) ;
@@ -50,7 +50,7 @@ public class InfinispanRepositoryServiceTest {
             Node anode = new Node("auto" + i, "test") ;
             anode.put("key1", "auto " + i) ;
             anode.put("key2", i) ;
-            nodes.put(anode.getId(), anode) ;
+            nodes.put(anode.getId().toString(), anode) ;
         }
 
 

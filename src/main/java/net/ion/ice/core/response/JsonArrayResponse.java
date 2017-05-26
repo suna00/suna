@@ -9,7 +9,7 @@ import java.util.Map;
  * Created by jaehocho on 2017. 2. 11..
  */
 public class JsonArrayResponse extends JsonResponse {
-    protected Integer totatCount ;
+    protected Integer totalCount ;
     protected Integer resultCount ;
 
     private Collection<?> items ;
@@ -17,7 +17,7 @@ public class JsonArrayResponse extends JsonResponse {
     public JsonArrayResponse(Collection<?> list) {
         this.result = "200" ;
         this.resultMessage = "SUCCESS" ;
-        this.totatCount = list.size() ;
+        this.totalCount = list.size() ;
         this.resultCount = list.size() ;
         this.items = list ;
     }
@@ -25,8 +25,16 @@ public class JsonArrayResponse extends JsonResponse {
     public JsonArrayResponse(QueryResult queryResult) {
         this.result = "200" ;
         this.resultMessage = "SUCCESS" ;
-        this.totatCount = queryResult.getTotalSize() ;
+        this.totalCount = queryResult.getTotalSize() ;
         this.resultCount = queryResult.getResultList().size() ;
         this.items = queryResult.getResultList() ;
+    }
+
+    public Integer getTotalCount(){
+        return totalCount ;
+    }
+
+    public Integer getResultCount(){
+        return resultCount ;
     }
 }

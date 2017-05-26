@@ -12,7 +12,7 @@ public class PropertyType extends Node {
     public static final String IDABLE = "idable";
     public static final String PID = "pid";
 
-    public PropertyType(Object id, String typeId) {
+    public PropertyType(String id, String typeId) {
         super(id, typeId);
     }
 

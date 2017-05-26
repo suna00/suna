@@ -36,24 +36,24 @@ public class Node implements Map<String, Object>, Serializable{
         properties = new ConcurrentHashMap<>() ;
     }
 
-    public Node(String id, String tid){
+    public Node(Object id, String tid){
         this(id, tid, ANONYMOUS) ;
     }
 
-    public Node(String id, String tid, String userId){
+    public Node(Object id, String tid, String userId){
         this.id = id ;
         properties = new ConcurrentHashMap<>() ;
         this.properties.put(ID, id) ;
         this.properties.put(TID, tid) ;
-        this.nodeValue = new NodeValue(id, tid, userId) ;
+        this.nodeValue = new NodeValue(id, tid, StringUtils.isEmpty(userId) ? ANONYMOUS : userId) ;
     }
 
     public Node(Map<String, Object> data){
         properties = new ConcurrentHashMap<>() ;
         String tid = (String) data.get(TID);
 
-        this.id = (String) data.get(ID);
-        if(this.id == null || StringUtils.isEmpty(this.id)){
+        this.id = data.get(ID);
+        if(this.id == null || StringUtils.isEmpty(this.id.toString())){
             throw new RuntimeException("ID is NULL") ;
         }
 
@@ -66,10 +66,10 @@ public class Node implements Map<String, Object>, Serializable{
 
     public Node(Map<String, Object> data, NodeType nodeType){
         properties = new ConcurrentHashMap<>() ;
-        String tid = nodeType.getId();
+        String tid = nodeType.getId().toString();
 
-        this.id = (String) data.get(ID);
-        if(this.id == null || StringUtils.isEmpty(this.id)){
+        this.id =  data.get(ID);
+        if(this.id == null || StringUtils.isEmpty(this.id.toString())){
             List<String> idablePids = nodeType.getIdablePIds() ;
             for(int i = 0 ; i < idablePids.size(); i++){
                 this.id = data.get(idablePids.get(i)) + (i < (idablePids.size() - 1) ? "/" : "") ;
@@ -146,7 +146,7 @@ public class Node implements Map<String, Object>, Serializable{
         return properties.entrySet();
     }
 
-    public String getId() {
+    public Object getId() {
         return id;
     }
 

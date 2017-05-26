@@ -17,7 +17,7 @@ import java.util.Date;
 public class NodeValue implements Serializable{
     @Id
     @DocumentId
-    private String id ;
+    private Object id ;
 
     @Field
     @Analyzer(impl = CodeAnalyzer.class)
@@ -50,7 +50,7 @@ public class NodeValue implements Serializable{
     @Analyzer(impl = CJKAnalyzer.class)
     private String content ;
 
-    public NodeValue(String id, String tid, String userId) {
+    public NodeValue(Object id, String tid, String userId) {
         this.id = id ;
         this.tid = tid ;
         this.owner = userId ;
@@ -68,7 +68,7 @@ public class NodeValue implements Serializable{
         this.tid = tid;
     }
 
-    public void setId(String id) {
+    public void setId(Object id) {
         this.id = id;
     }
 }

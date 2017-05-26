@@ -11,6 +11,23 @@ import java.util.Map;
  */
 public class NodeUtils {
 
+
+    public static List<Node> makeNodeList(Collection<Map<String, Object>> nodeDataList) {
+        List<Node> nodeList = new ArrayList<Node>();
+        for(Map<String, Object> data : nodeDataList){
+            nodeList.add(makeNode(data)) ;
+        }
+        return nodeList ;
+    }
+
+    public static Node makeNodeType(Map<String, Object> data) {
+        Node node =  new Node(data.get("id"), NodeType.NODETYPE) ;
+        nodeType.putAll(data);
+
+        return nodeType ;
+    }
+
+
     public static List<NodeType> makeNodeTypeList(Collection<Map<String, Object>> nodeTypeDataList) {
         List<NodeType> nodeTypeList = new ArrayList<NodeType>();
         for(Map<String, Object> data : nodeTypeDataList){
@@ -27,9 +44,6 @@ public class NodeUtils {
         return nodeType ;
     }
 
-    public static List<PropertyType> makePropertyTypeList(Collection<Map<String, Object>> propertyTypeDataList) {
-
-    }
 
 
     public static PropertyType makePropertyType(Map<String, Object> data) {
@@ -38,9 +52,17 @@ public class NodeUtils {
             id = data.get("tid") + "/" + data.get("pid") ;
         }
 
-        PropertyType propertyType =  new PropertyType(id, PropertyType.PROPERTYTYPE) ;
+        PropertyType propertyType =  new PropertyType((String) id, PropertyType.PROPERTYTYPE) ;
         propertyType.putAll(data);
 
         return propertyType ;
+    }
+
+    public static List<PropertyType> makePropertyTypeList(Collection<Map<String, Object>> propertyTypeDataList) {
+        List<PropertyType> propertyTypeList = new ArrayList<PropertyType>();
+        for(Map<String, Object> data : propertyTypeDataList){
+            propertyTypeList.add(makePropertyType(data)) ;
+        }
+        return propertyTypeList ;
     }
 }

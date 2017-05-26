@@ -13,11 +13,16 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'war'
 
 jar {
 	baseName = 'ice2-core'
-	version = '0.0.1-SNAPSHOT'
+	manifest {
+		attributes('Main-Class': 'net.ion.ice.Ice2Application')
+	}
 }
+
+version = '0.0.1-SNAPSHOT'
 
 sourceCompatibility = 1.8
 

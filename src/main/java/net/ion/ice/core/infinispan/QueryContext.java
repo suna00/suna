@@ -48,4 +48,8 @@ public class QueryContext{
     public boolean hasSorting(){
         return StringUtils.isNotBlank(sorting) ;
     }
+
+    public boolean hasQueryTerms() {
+        return queryTerms != null && queryTerms.size() > 0 ;
+    }
 }
