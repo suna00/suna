@@ -67,6 +67,5 @@ public class QueryTerm {
         WILDCARD,
         FUZZY;
     }
-    
 
 }

@@ -1,5 +1,7 @@
 package net.ion.ice.core.node;
 
+import sun.security.krb5.internal.crypto.EType;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -16,6 +18,7 @@ public class NodeType {
     private Map<String, PropertyType> propertyTypes ;
 
 
+
     public NodeType(Node nodeTypeNode) {
         this.nodeTypeNode = nodeTypeNode ;
     }
@@ -27,7 +30,7 @@ public class NodeType {
         }
         for(Object _obj : propertyTypeList){
             PropertyType propertyType = (PropertyType) _obj;
-            propertyTypes.put(propertyType.get("pid").toString(), propertyType) ;
+            propertyTypes.put(propertyType.getPid(), propertyType) ;
         }
     }
 
@@ -50,6 +53,10 @@ public class NodeType {
             propertyTypes = new LinkedHashMap<>() ;
         }
 
-        propertyTypes.put(propertyType.get("pid").toString(), propertyType) ;
+        propertyTypes.put(propertyType.getPid(), propertyType) ;
+    }
+
+    public String getTypeId() {
+        return nodeTypeNode.getId().toString();
     }
 }

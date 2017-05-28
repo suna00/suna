@@ -1,6 +1,7 @@
 package net.ion.ice.core.infinispan;
 
 import net.ion.ice.core.node.Node;
+import net.ion.ice.core.node.NodeType;
 import org.apache.commons.lang3.StringUtils;
 import org.infinispan.query.SearchManager;
 
@@ -33,7 +34,7 @@ public class QueryContext{
         return searchManager;
     }
 
-    public void setSorting(String sortingStr, Node nodeType) {
+    public void setSorting(String sortingStr, NodeType nodeType) {
         this.sorting = sorting;
     }
 

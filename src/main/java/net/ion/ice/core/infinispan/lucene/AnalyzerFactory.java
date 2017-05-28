@@ -1,5 +1,6 @@
 package net.ion.ice.core.infinispan.lucene;
 
+import net.ion.ice.core.node.PropertyType;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.cjk.CJKAnalyzer;
 import org.apache.lucene.analysis.core.SimpleAnalyzer;
@@ -13,43 +14,51 @@ import java.util.concurrent.ConcurrentHashMap;
  * Created by jaeho on 2017. 5. 16..
  */
 public class AnalyzerFactory {
-
     private static Map<String, Analyzer> analyzerMap = new ConcurrentHashMap<>() ;
 
     public static Analyzer getAnalyzer(String analyzer){
         if(!analyzerMap.containsKey(analyzer)){
+            return getAnalyzer(PropertyType.AnalyzerType.valueOf(analyzer)) ;
+        }
+
+        return analyzerMap.get(analyzer) ;
+    }
+
+    public static Analyzer getAnalyzer(PropertyType.AnalyzerType analyzerType){
+        if(!analyzerMap.containsKey(analyzerType.toString())){
             Analyzer inst = null ;
-            switch (analyzer){
-                case "simple" :{
+            switch (analyzerType){
+                case simple :{
                     inst = new SimpleAnalyzer() ;
                     break ;
                 }
-                case "code" :{
+                case code :{
                     inst = new CodeAnalyzer() ;
                     break ;
                 }
-                case "whitespace" :{
+                case whitespace :{
                     inst = new WhitespaceAnalyzer() ;
                     break ;
                 }
-                case "standard" :{
+                case standard :{
                     inst = new StandardAnalyzer() ;
                     break ;
                 }
-                case "cjk" :{
+                case cjk :{
                     inst = new CJKAnalyzer() ;
                     break ;
                 }
-                case "korean" :{
+                case korean :{
 //                    inst = new KoreanAnalyzer() ;
                     break ;
                 }
                 default :
                     inst = new SimpleAnalyzer() ;
             }
-            analyzerMap.put(analyzer, inst) ;
+            analyzerMap.put(analyzerType.toString(), inst) ;
         }
 
-        return analyzerMap.get(analyzer) ;
+        return analyzerMap.get(analyzerType.toString()) ;
     }
+
 }

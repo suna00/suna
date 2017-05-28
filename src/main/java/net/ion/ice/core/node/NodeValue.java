@@ -21,7 +21,7 @@ public class NodeValue implements Serializable{
 
     @Field
     @Analyzer(impl = CodeAnalyzer.class)
-    private String tid ;
+    private String typeId;
 
 
     @Field
@@ -50,9 +50,9 @@ public class NodeValue implements Serializable{
     @Analyzer(impl = CJKAnalyzer.class)
     private String content ;
 
-    public NodeValue(Object id, String tid, String userId) {
+    public NodeValue(Object id, String typeId, String userId) {
         this.id = id ;
-        this.tid = tid ;
+        this.typeId = typeId ;
         this.owner = userId ;
         this.modifier = userId ;
         this.created = new Date() ;
@@ -60,12 +60,12 @@ public class NodeValue implements Serializable{
         this.status = "created" ;
     }
 
-    public String getTid() {
-        return tid;
+    public String getTypeId() {
+        return typeId;
     }
 
-    public void setTid(String tid) {
-        this.tid = tid;
+    public void setTypeId(String typeId) {
+        this.typeId = typeId;
     }
 
     public void setId(Object id) {

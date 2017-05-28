@@ -19,7 +19,8 @@ import java.util.concurrent.ConcurrentHashMap;
 @Indexed
 public class Node implements Map<String, Object>, Serializable{
     public static final String ID = "id";
-    public static final String TID = "tid";
+    public static final String TYPEID = "typeId";
+    public static final String USERID = "userId";
     public static final String ANONYMOUS = "anonymous";
     public static final String SYSTEM = "system";
 
@@ -36,52 +37,38 @@ public class Node implements Map<String, Object>, Serializable{
         properties = new ConcurrentHashMap<>() ;
     }
 
-    public Node(Object id, String tid){
-        this(id, tid, ANONYMOUS) ;
+    public Node(Object id, String typeId){
+        this(id, typeId, ANONYMOUS) ;
     }
 
-    public Node(Object id, String tid, String userId){
+    public Node(Object id, String typeId, String userId){
         this.id = id ;
         properties = new ConcurrentHashMap<>() ;
         this.properties.put(ID, id) ;
-        this.properties.put(TID, tid) ;
-        this.nodeValue = new NodeValue(id, tid, StringUtils.isEmpty(userId) ? ANONYMOUS : userId) ;
+        this.nodeValue = new NodeValue(id, typeId, StringUtils.isEmpty(userId) ? ANONYMOUS : userId) ;
     }
 
     public Node(Map<String, Object> data){
         properties = new ConcurrentHashMap<>() ;
-        String tid = (String) data.get(TID);
+        String typeId = (String) data.get(TYPEID);
 
         this.id = data.get(ID);
         if(this.id == null || StringUtils.isEmpty(this.id.toString())){
-            throw new RuntimeException("ID is NULL") ;
+            List<String> idablePids = NodeUtils.getNodeType(typeId).getIdablePIds() ;
+            for(int i = 0 ; i < idablePids.size(); i++){
+                this.id = data.get(idablePids.get(i)) + (i < (idablePids.size() - 1) ? "/" : "") ;
+            }
+            if(this.id == null || StringUtils.isEmpty(this.id.toString())) {
+                throw new RuntimeException("ID is NULL");
+            }
         }
 
         this.properties.putAll(data);
 
         this.properties.put(ID, id) ;
-        this.properties.put(TID, tid);
-        this.nodeValue = new NodeValue(id, tid, data.get("userId") == null ? ANONYMOUS : data.get("userId").toString()) ;
+        this.nodeValue = new NodeValue(id, typeId, data.get("userId") == null ? ANONYMOUS : data.get("userId").toString()) ;
     }
 
-    public Node(Map<String, Object> data, NodeType nodeType){
-        properties = new ConcurrentHashMap<>() ;
-        String tid = nodeType.getId().toString();
-
-        this.id =  data.get(ID);
-        if(this.id == null || StringUtils.isEmpty(this.id.toString())){
-            List<String> idablePids = nodeType.getIdablePIds() ;
-            for(int i = 0 ; i < idablePids.size(); i++){
-                this.id = data.get(idablePids.get(i)) + (i < (idablePids.size() - 1) ? "/" : "") ;
-            }
-        }
-
-
-        this.properties.put(ID, id) ;
-        this.properties.put(TID, tid);
-        this.nodeValue = new NodeValue(id, tid, data.get("userId") == null ? ANONYMOUS : data.get("userId").toString()) ;
-
-    }
 
 
     @Override
@@ -155,13 +142,12 @@ public class Node implements Map<String, Object>, Serializable{
         this.nodeValue.setId(id) ;
     }
 
-    public String getTid() {
-        return nodeValue.getTid();
+    public String getTypeId() {
+        return nodeValue.getTypeId();
     }
 
-    public void setTid(String tid) {
-        this.properties.put(TID, tid) ;
-        nodeValue.setTid(tid) ;
+    public void setTypeId(String typeId) {
+        nodeValue.setTypeId(typeId) ;
     }
 
     @Override

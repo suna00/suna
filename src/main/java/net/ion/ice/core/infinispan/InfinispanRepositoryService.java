@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -41,31 +40,31 @@ public class InfinispanRepositoryService {
         return cacheManager.getCache("nodeValue", 100000) ;
     }
 
-    public Node getNode(String tid, String id) {
-        Cache<String, Node> cache = getNodeCache(tid);
+    public Node getNode(String typeId, String id) {
+        Cache<String, Node> cache = getNodeCache(typeId);
         Node node = cache.get(id) ;
 
         Cache<String, NodeValue> nodeValueCache = getNodeValueCache() ;
-        node.setNodeValue(nodeValueCache.get(id)) ;
+        node.setNodeValue(nodeValueCache.get(typeId + "://" +id)) ;
 
         return node ;
     }
 
-    public Collection<Node> getNodes(String tid) {
-        return (Collection<Node>) getNodeCache(tid).values();
+    public Collection<Node> getNodes(String typeId) {
+        return (Collection<Node>) getNodeCache(typeId).values();
     }
 
 
     public void saveNode(Node node) {
         Cache<String, NodeValue> nodeValueCache = getNodeValueCache() ;
-        Cache<String, Node> nodeCache = getNodeCache(node.getTid());
-        nodeValueCache.put(node.getTid() + "://" + node.getId(), node.getNodeValue()) ;
+        Cache<String, Node> nodeCache = getNodeCache(node.getTypeId());
+        nodeValueCache.put(node.getTypeId() + "://" + node.getId(), node.getNodeValue()) ;
         nodeCache.put(node.getId().toString(), node) ;
     }
 
 
-    public QueryResult getQueryNodes(String tid, QueryContext queryContext){
-        Cache<String, Node> cache = getNodeCache(tid);
+    public QueryResult getQueryNodes(String typeId, QueryContext queryContext){
+        Cache<String, Node> cache = getNodeCache(typeId);
 
         queryContext.setSearchManager(Search.getSearchManager(cache));
 

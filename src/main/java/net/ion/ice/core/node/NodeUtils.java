@@ -1,16 +1,26 @@
 package net.ion.ice.core.node;
 
-import java.util.List;
+import org.apache.commons.lang3.time.DateFormatUtils;
+import org.apache.commons.lang3.time.DateUtils;
+import org.thymeleaf.util.StringUtils;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Map;
+import java.text.ParseException;
+import java.util.*;
 
 /**
  * Created by jaehocho on 2017. 5. 17..
  */
 public class NodeUtils {
 
+    static NodeService nodeService ;
+
+    public static void setNodeService(NodeService nodeService) {
+        NodeUtils.nodeService = nodeService ;
+    }
+
+    public static NodeType getNodeType(String typeId){
+        return nodeService.getNodeType(typeId) ;
+    }
 
     public static List<Node> makeNodeList(Collection<Map<String, Object>> nodeDataList) {
         List<Node> nodeList = new ArrayList<Node>();
@@ -20,49 +30,79 @@ public class NodeUtils {
         return nodeList ;
     }
 
-    public static Node makeNodeType(Map<String, Object> data) {
+    public static Node makeNode(Map<String, Object> data) {
         Node node =  new Node(data.get("id"), NodeType.NODETYPE) ;
-        nodeType.putAll(data);
+        node.putAll(data);
 
-        return nodeType ;
+        return node ;
     }
 
 
-    public static List<NodeType> makeNodeTypeList(Collection<Map<String, Object>> nodeTypeDataList) {
+    public static List<NodeType> makeNodeTypeList(Collection<Node> nodeList) {
         List<NodeType> nodeTypeList = new ArrayList<NodeType>();
-        for(Map<String, Object> data : nodeTypeDataList){
-            nodeTypeList.add(makeNodeType(data)) ;
+        for(Node node : nodeList){
+            nodeTypeList.add(new NodeType(node)) ;
         }
         return nodeTypeList ;
     }
 
-    public static NodeType makeNodeType(Map<String, Object> data) {
-        String tid = data.get("tid") == null ? data.get("id").toString() : data.get("tid").toString() ;
-        NodeType nodeType =  new NodeType(tid, NodeType.NODETYPE) ;
-        nodeType.putAll(data);
 
-        return nodeType ;
-    }
-
-
-
-    public static PropertyType makePropertyType(Map<String, Object> data) {
-        Object id = data.get("id");
-        if(id == null){
-            id = data.get("tid") + "/" + data.get("pid") ;
-        }
-
-        PropertyType propertyType =  new PropertyType((String) id, PropertyType.PROPERTYTYPE) ;
-        propertyType.putAll(data);
-
-        return propertyType ;
-    }
-
-    public static List<PropertyType> makePropertyTypeList(Collection<Map<String, Object>> propertyTypeDataList) {
+    public static List<PropertyType> makePropertyTypeList(Collection<Node> nodeList) {
         List<PropertyType> propertyTypeList = new ArrayList<PropertyType>();
-        for(Map<String, Object> data : propertyTypeDataList){
-            propertyTypeList.add(makePropertyType(data)) ;
+        for(Node node : nodeList){
+            propertyTypeList.add(new PropertyType(node)) ;
         }
         return propertyTypeList ;
+    }
+
+    public static Long getLongValue(Object value){
+        if(value == null) return null ;
+
+        if(value instanceof Long){
+            return (Long) value;
+        }else if(StringUtils.isEmpty(value.toString())){
+            return 0L ;
+        }else{
+            return Long.valueOf(value.toString()) ;
+        }
+    }
+
+    public static Integer getIntValue(Object value){
+        if(value == null) return null ;
+
+        if(value instanceof Integer){
+            return (Integer) value;
+        }else if(StringUtils.isEmpty(value.toString())){
+            return 0 ;
+        }else{
+            return Integer.valueOf(value.toString()) ;
+        }
+    }
+
+    public static Double getDoubleValue(Object value){
+        if(value == null) return null ;
+
+        if(value instanceof Double){
+            return (Double) value;
+        }else if(StringUtils.isEmpty(value.toString())){
+            return 0D ;
+        }else{
+            return Double.valueOf(value.toString()) ;
+        }
+    }
+
+    public static Date getDateValue(Object value) {
+        if(value == null) return null ;
+
+        if(value instanceof Date){
+            return (Date) value;
+        }else{
+            try {
+                return DateUtils.parseDate(value.toString(),"yyyyMMddHHmmss", "yyyyMMddHHmmssSSS");
+            } catch (ParseException e) {
+                return null ;
+            }
+        }
+
     }
 }

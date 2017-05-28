@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -29,15 +30,27 @@ public class NodeService {
     private NodeType nodeType ;
     private NodeType propertyType ;
 
-    public NodeType getNodeType(String tid) {
-        if(tid.equals("nodeType")){
+    @PostConstruct
+    public void init(){
+        try {
+            initNodeType() ;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        NodeUtils.setNodeService(this) ;
+    }
+
+
+    public NodeType getNodeType(String typeId) {
+        if(typeId.equals("nodeType")){
             try {
                 return getDefaultNodeType() ;
             } catch (IOException e) {
                 logger.error("NODE TYPE INIT ERROR : ", e) ;
                 throw new RuntimeException("INIT ERROR") ;
             }
-        }else if(tid.equals("propertyType")){
+        }else if(typeId.equals("propertyType")){
             try {
                 return getDefaultPropertyType() ;
             } catch (IOException e) {
@@ -45,14 +58,10 @@ public class NodeService {
             }
         }
 
-        Cache<String, Node> nodeCache = infinispanRepositoryService.getNodeCache("nodeType") ;
-        Node nodeTypeNode = nodeCache.get(tid) ;
-
-        Cache<String, NodeValue> nodeValueCache = infinispanRepositoryService.getNodeValueCache() ;
-        nodeTypeNode.setNodeValue(nodeValueCache.get(nodeTypeNode.getId())) ;
+        Node nodeTypeNode = infinispanRepositoryService.getNode("nodeType", typeId) ;
 
         NodeType nodeType = new NodeType(nodeTypeNode) ;
-        nodeType.setPropertyTypes(getNodeList("propertyType", "tid_matching=" + tid).getResultList());
+        nodeType.setPropertyTypes(getNodeList("propertyType", "tid_matching=" + typeId).getResultList());
 
 
         return nodeType ;
@@ -184,19 +193,32 @@ public class NodeService {
     private void initNodeType() throws IOException {
         Collection<Map<String, Object>> nodeTypeDataList = JsonUtils.parsingJsonResourceToList(ApplicationContextManager.getResource("classpath:schema/node/nodeType.json")) ;
 
-        List<NodeType> nodeTypeList = NodeUtils.makeNodeTypeList(nodeTypeDataList) ;
-        for(NodeType nodeType : nodeTypeList){
-            saveNodeType(nodeType);
+        List<Node> nodeTypeList = NodeUtils.makeNodeList(nodeTypeDataList) ;
+        for(Node nodeType : nodeTypeList){
+            if(nodeType.getId().equals("nodeType")){
+                this.nodeType = new NodeType(nodeType) ;
+            }else if(nodeType.getId().equals("propertyType")){
+                this.propertyType = new NodeType(nodeType) ;
+            }
+            saveNode(nodeType);
         }
 
         Collection<Map<String, Object>> propertyTypeDataList = JsonUtils.parsingJsonResourceToList(ApplicationContextManager.getResource("classpath:schema/node/propertyType.json")) ;
 
-        List<PropertyType> propertyTypeList = NodeUtils.makePropertyTypeList(propertyTypeDataList) ;
-        for(PropertyType propertyType : propertyTypeList){
-            savePropertyType(propertyType);
+        List<Node> propertyTypeList = NodeUtils.makeNodeList(propertyTypeDataList) ;
+        for(Node propertyType : propertyTypeList){
+            if(propertyType.get("tid").equals("nodeType")){
+                this.nodeType.addPropertyType(new PropertyType(propertyType));
+            }else if(propertyType.get("tid").equals("propertyType")){
+                this.propertyType.addPropertyType(new PropertyType(propertyType));
+            }
+            saveNode(propertyType);
         }
     }
 
+    public void saveNode(Node node) {
+        infinispanRepositoryService.saveNode(node);
+    }
 
 
 }

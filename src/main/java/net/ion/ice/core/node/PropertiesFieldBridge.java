@@ -1,9 +1,11 @@
 package net.ion.ice.core.node;
 
 import net.ion.ice.ApplicationContextManager;
+import net.ion.ice.core.infinispan.lucene.AnalyzerFactory;
 import net.ion.ice.core.infinispan.lucene.AnalyzerField;
 import net.ion.ice.core.infinispan.lucene.AnalyzerFieldType;
 import net.ion.ice.core.infinispan.lucene.LuceneAnalyzerFactory;
+import org.apache.lucene.document.DateTools;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.FieldType;
@@ -13,17 +15,15 @@ import org.hibernate.search.bridge.FieldBridge;
 import org.hibernate.search.bridge.LuceneOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Date;
 import java.util.Map;
 
 /**
  * Created by jaeho on 2017. 3. 31..
  */
 public class PropertiesFieldBridge implements FieldBridge {
-    @Autowired
-    private NodeService nodeService ;
 
     public PropertiesFieldBridge(){
-        nodeService = (NodeService) ApplicationContextManager.getContext().getBean("nodeService");
         System.out.println("INIT FIELD");
     }
 
@@ -35,8 +35,8 @@ public class PropertiesFieldBridge implements FieldBridge {
     }
     private void indexNotNullMap(String name, Object value, Document document, LuceneOptions luceneOptions) {
         Map<String, Object> properties = (Map<String, Object>) value;
-        String tid = (String) properties.get("tid") ;
-        NodeType nodeType = nodeService.getNodeType(tid) ;
+        String typeId = (String) properties.get("typeId") ;
+        NodeType nodeType = NodeUtils.getNodeType(typeId) ;
         if(nodeType == null){
             for (Map.Entry<String, Object> entry : properties.entrySet() ) {
                 indexEntry(entry, document, luceneOptions );
@@ -50,26 +50,34 @@ public class PropertiesFieldBridge implements FieldBridge {
 
     }
 
-    private void indexEntry(Map.Entry<String, Object> entry, Document document, LuceneOptions luceneOptions, Node propertyType) {
+    private void indexEntry(Map.Entry<String, Object> entry, Document document, LuceneOptions luceneOptions, PropertyType propertyType) {
         if(propertyType == null) return ;
         String pid  = entry.getKey() ;
 
-        String indexType = (String) propertyType.get("indexType");
-        if(indexType == null){
-            return ;
-        }
+        if(!propertyType.indexing()) return ;
 
-        switch (indexType) {
-            case "noAnalyzer" :{
-                document.add(new org.apache.lucene.document.Field(pid, entry.getValue().toString(), noAnalyzer()));
+        PropertyType.ValueType valueType = propertyType.getValueType() ;
+        PropertyType.AnalyzerType analyzerType = propertyType.getAnalyzerType() ;
+
+        switch (valueType) {
+            case LONG :{
+                document.add(new org.apache.lucene.document.LongField(pid, NodeUtils.getLongValue(entry.getValue()), numericFieldType(valueType)));
                 break;
             }
-            case "long" :{
-                document.add(new org.apache.lucene.document.LongField(pid, (Long) entry.getValue(), numericFieldType()));
+            case INT :{
+                document.add(new org.apache.lucene.document.IntField(pid, NodeUtils.getIntValue(entry.getValue()), numericFieldType(valueType)));
                 break;
             }
-            case "simple" :{
-                Field field = new AnalyzerField(pid, entry.getValue().toString(), simpleAnalyzer()) ;
+            case DOUBLE :{
+                document.add(new org.apache.lucene.document.DoubleField(pid, NodeUtils.getDoubleValue(entry.getValue()), numericFieldType(valueType)));
+                break;
+            }
+            case DATE :{
+                Field field = new AnalyzerField(pid, DateTools.dateToString(NodeUtils.getDateValue(entry.getValue()), DateTools.Resolution.SECOND), fieldAnalyzer(PropertyType.AnalyzerType.code)) ;
+                document.add(field);
+            }
+            default:{
+                Field field = new AnalyzerField(pid, entry.getValue().toString(), fieldAnalyzer(analyzerType)) ;
                 document.add(field);
                 break;
             }
@@ -85,11 +93,16 @@ public class PropertiesFieldBridge implements FieldBridge {
         Object value = entry.getValue() ;
         if(value == null) return ;
         if(value instanceof Long){
-            document.add(new org.apache.lucene.document.LongField(pid, (Long) value, numericFieldType()));
+            document.add(new org.apache.lucene.document.LongField(pid, (Long) value, numericFieldType(PropertyType.ValueType.LONG)));
         }else if(value instanceof Integer){
-            document.add(new org.apache.lucene.document.IntField(pid, (Integer) value, numericFieldType()));
+            document.add(new org.apache.lucene.document.IntField(pid, (Integer) value, numericFieldType(PropertyType.ValueType.INT)));
+        }else if(value instanceof Double){
+            document.add(new org.apache.lucene.document.DoubleField(pid, (Double) value, numericFieldType(PropertyType.ValueType.DOUBLE)));
+        }else if(value instanceof Date){
+            Field field = new AnalyzerField(pid, DateTools.dateToString((Date) value, DateTools.Resolution.SECOND), fieldAnalyzer(PropertyType.AnalyzerType.code)) ;
+            document.add(field);
         }else{
-            Field field = new AnalyzerField(pid, entry.getValue().toString(), simpleAnalyzer()) ;
+            Field field = new AnalyzerField(pid, entry.getValue().toString(), fieldAnalyzer(PropertyType.AnalyzerType.code)) ;
             document.add(field);
         }
 
@@ -139,10 +152,10 @@ public class PropertiesFieldBridge implements FieldBridge {
         return fieldType;
     }
 
-    public static org.apache.lucene.document.FieldType numericFieldType() {
+    public static org.apache.lucene.document.FieldType numericFieldType(PropertyType.ValueType valueType) {
         org.apache.lucene.document.FieldType fieldType = new org.apache.lucene.document.FieldType();
         fieldType.setIndexOptions(IndexOptions.DOCS_AND_FREQS);
-        fieldType.setNumericType(FieldType.NumericType.INT);
+        fieldType.setNumericType(FieldType.NumericType.valueOf(valueType.toString()));
         fieldType.setDocValuesType(DocValuesType.NONE);
         fieldType.setTokenized(false);
         fieldType.setOmitNorms(false);
@@ -150,7 +163,7 @@ public class PropertiesFieldBridge implements FieldBridge {
         return fieldType;
     }
 
-    public static org.apache.lucene.document.FieldType simpleAnalyzer() {
+    public static org.apache.lucene.document.FieldType fieldAnalyzer(PropertyType.AnalyzerType analyzerType) {
         AnalyzerFieldType fieldType = new AnalyzerFieldType();
         fieldType.setIndexOptions(IndexOptions.DOCS_AND_FREQS);
         fieldType.setDocValuesType(DocValuesType.NONE);
@@ -158,7 +171,7 @@ public class PropertiesFieldBridge implements FieldBridge {
         fieldType.setTokenized(true);
         fieldType.setOmitNorms(false);
         fieldType.freeze();
-        fieldType.setAnalyzer(LuceneAnalyzerFactory.simpleAnalyzer);
+        fieldType.setAnalyzer(AnalyzerFactory.getAnalyzer(analyzerType));
         return fieldType;
     }
 
