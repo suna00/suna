@@ -2,10 +2,7 @@ package net.ion.ice.core.node;
 
 import sun.security.krb5.internal.crypto.EType;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -58,5 +55,9 @@ public class NodeType {
 
     public String getTypeId() {
         return nodeTypeNode.getId().toString();
+    }
+
+    public Collection<PropertyType> getPropertyTypes() {
+        return propertyTypes.values();
     }
 }

@@ -56,10 +56,12 @@ public class InfinispanRepositoryService {
 
 
     public void saveNode(Node node) {
-        Cache<String, NodeValue> nodeValueCache = getNodeValueCache() ;
         Cache<String, Node> nodeCache = getNodeCache(node.getTypeId());
-        nodeValueCache.put(node.getTypeId() + "://" + node.getId(), node.getNodeValue()) ;
         nodeCache.put(node.getId().toString(), node) ;
+
+        Cache<String, NodeValue> nodeValueCache = getNodeValueCache() ;
+        node.getNodeValue().setContent(node.getSearchValue()) ;
+        nodeValueCache.put(node.getTypeId() + "://" + node.getId(), node.getNodeValue()) ;
     }
 
 

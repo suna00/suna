@@ -1,6 +1,7 @@
 package net.ion.ice.core.infinispan;
 
 import net.ion.ice.core.infinispan.lucene.AnalyzerFactory;
+import net.ion.ice.core.infinispan.lucene.CodeAnalyzer;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.core.SimpleAnalyzer;
 
@@ -31,6 +32,14 @@ public class QueryTerm {
         this(queryKey, "matching", queryValue) ;
     }
 
+    public QueryTerm(String fieldId, Analyzer luceneAnalyzer, String method, String value) {
+        this.queryKey = queryKey ;
+
+        this.method = QueryMethod.valueOf(method.toUpperCase()) ;
+        this.queryValue = queryValue ;
+        this.analyzer = luceneAnalyzer ;
+    }
+
     public QueryMethod getMethod() {
         return method;
     }
@@ -54,7 +63,7 @@ public class QueryTerm {
 
     public Analyzer getAnalyzer() {
         if(this.analyzer == null){
-            return new SimpleAnalyzer() ;
+            return new CodeAnalyzer() ;
         }
         return analyzer;
     }

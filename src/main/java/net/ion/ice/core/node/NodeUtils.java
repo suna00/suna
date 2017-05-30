@@ -24,17 +24,18 @@ public class NodeUtils {
 
     public static List<Node> makeNodeList(Collection<Map<String, Object>> nodeDataList) {
         List<Node> nodeList = new ArrayList<Node>();
-        for(Map<String, Object> data : nodeDataList){
-            nodeList.add(makeNode(data)) ;
-        }
+        nodeDataList.forEach(data -> nodeList.add(new Node(data)));
+
+//        for(Map<String, Object> data : nodeDataList){
+//            nodeList.add(new Node(data)) ;
+//        }
         return nodeList ;
     }
 
-    public static Node makeNode(Map<String, Object> data) {
-        Node node =  new Node(data.get("id"), NodeType.NODETYPE) ;
-        node.putAll(data);
-
-        return node ;
+    public static List<Node> makeNodeList(Collection<Map<String, Object>> nodeDataList, String typeId) {
+        List<Node> nodeList = new ArrayList<Node>();
+        nodeDataList.forEach(data -> nodeList.add(new Node(data, typeId)));
+        return nodeList ;
     }
 
 
@@ -105,4 +106,5 @@ public class NodeUtils {
         }
 
     }
+
 }

@@ -45,12 +45,27 @@ public class Node implements Map<String, Object>, Serializable{
         this.id = id ;
         properties = new ConcurrentHashMap<>() ;
         this.properties.put(ID, id) ;
+        this.properties.put(TYPEID, typeId) ;
         this.nodeValue = new NodeValue(id, typeId, StringUtils.isEmpty(userId) ? ANONYMOUS : userId) ;
     }
 
+
+    public Node(Map<String, Object> data, String typeId){
+        construct(data, typeId);
+    }
+
+
     public Node(Map<String, Object> data){
-        properties = new ConcurrentHashMap<>() ;
         String typeId = (String) data.get(TYPEID);
+        if(typeId == null){
+            throw new RuntimeException("TYPE ID is NULL");
+
+        }
+        construct(data, typeId) ;
+    }
+
+    private void construct(Map<String, Object> data, String typeId) {
+        properties = new ConcurrentHashMap<>() ;
 
         this.id = data.get(ID);
         if(this.id == null || StringUtils.isEmpty(this.id.toString())){
@@ -66,10 +81,9 @@ public class Node implements Map<String, Object>, Serializable{
         this.properties.putAll(data);
 
         this.properties.put(ID, id) ;
+        this.properties.put(TYPEID, typeId) ;
         this.nodeValue = new NodeValue(id, typeId, data.get("userId") == null ? ANONYMOUS : data.get("userId").toString()) ;
     }
-
-
 
     @Override
     public boolean containsKey(Object key) {
@@ -179,5 +193,17 @@ public class Node implements Map<String, Object>, Serializable{
             return (String) stringValue;
         }
         return stringValue.toString() ;
+    }
+
+
+    public String getSearchValue(){
+        NodeType nodeType = NodeUtils.getNodeType(getTypeId()) ;
+        StringBuffer searchValue = new StringBuffer() ;
+        for(PropertyType pt : nodeType.getPropertyTypes()){
+            if(pt.isSeacheable()){
+                searchValue.append(getStringValue(pt.getPid())) ;
+            }
+        }
+        return searchValue.toString() ;
     }
 }

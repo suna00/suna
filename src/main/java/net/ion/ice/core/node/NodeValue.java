@@ -71,4 +71,8 @@ public class NodeValue implements Serializable{
     public void setId(Object id) {
         this.id = id;
     }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 }

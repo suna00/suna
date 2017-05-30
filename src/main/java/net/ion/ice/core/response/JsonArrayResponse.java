@@ -37,4 +37,9 @@ public class JsonArrayResponse extends JsonResponse {
     public Integer getResultCount(){
         return resultCount ;
     }
+
+
+    public Collection<?> getItems(){
+        return items ;
+    }
 }

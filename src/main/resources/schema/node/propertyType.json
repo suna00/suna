@@ -28,6 +28,7 @@
     "valueType" : "STRING",
     "idable" : false,
     "indexable" : true,
+    "analyzer" : "cjk",
     "required" : true,
     "labelable" : true
   },
@@ -50,6 +51,7 @@
     "valueType" : "STRING",
     "idable" : true,
     "indexable" : true,
+    "analyzer" : "code",
     "required" : true
   },
   {
@@ -70,6 +72,7 @@
     "valueType" : "STRING",
     "idable" : false,
     "indexable" : true,
+    "analyzer" : "standard",
     "required" : true,
     "labelable" : true
   },
@@ -81,8 +84,10 @@
     "valueType" : "CODE",
     "idable" : false,
     "indexable" : true,
+    "analyzer" : "code",
     "required" : true,
-    "code" : [{"value" : "STRING", "label" : "String"}, {"value" : "LONG", "label" : "Long"}, {"value" : "BOOLEAN", "label" : "Boolean"}, {"value" : "DATE", "label" : "Date"}]
+    "code" : [{"value" : "STRING", "label" : "String"}, {"value" : "INT", "label" : "Integer"}, {"value" : "LONG", "label" : "Long"}, {"value" : "DOUBLE", "label" : "double"},
+      {"value" : "BOOLEAN", "label" : "Boolean"}, {"value" : "DATE", "label" : "Date"}, {"value" : "TEXT", "label" : "Text"}]
   },
   {
     "id" : "propertyType/idable",
