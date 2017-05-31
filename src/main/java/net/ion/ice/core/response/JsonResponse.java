@@ -14,6 +14,7 @@ public class JsonResponse implements Serializable{
     protected String result ;
     protected String resultMessage ;
 
+    protected Node item ;
 
     public static JsonResponse create(Node node){
         return new JsonObjectResponse(node) ;
@@ -24,7 +25,11 @@ public class JsonResponse implements Serializable{
     }
 
     public static JsonResponse create(QueryResult queryResult){
-        return new JsonArrayResponse(queryResult);
+        if(queryResult.isPaging()){
+            return new JsonArrayPagingResponse(queryResult);
+        }else{
+            return new JsonArrayResponse(queryResult);
+        }
     }
 
     public static JsonResponse error(Exception e) {

@@ -25,58 +25,79 @@ public class NodeController {
     @Autowired
     private NodeService nodeService ;
 
-    @RequestMapping(value = "/node/{nodeType}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/node/{typeId}", method = RequestMethod.PUT)
     @ResponseBody
-    public Object saveRest(WebRequest request, @PathVariable String nodeType) throws IOException {
-        return save(request, nodeType);
+    public Object saveRest(WebRequest request, @PathVariable String typeId) throws IOException {
+        return save(request, typeId);
     }
 
-    @RequestMapping(value = "/node/{nodeType}/save.json", method = RequestMethod.POST)
+    @RequestMapping(value = "/node/{typeId}/save.json", method = RequestMethod.POST)
     @ResponseBody
-    public Object saveJson(WebRequest request, @PathVariable String nodeType) throws IOException {
-        return save(request, nodeType);
+    public Object saveJson(WebRequest request, @PathVariable String typeId) throws IOException {
+        return save(request, typeId);
     }
 
 
-    private Object save(WebRequest request, String nodeType) {
-        return JsonResponse.create(nodeService.saveNode(request.getParameterMap(), nodeType)) ;
+    private Object save(WebRequest request, String typeId) {
+        return JsonResponse.create(nodeService.saveNode(request.getParameterMap(), typeId)) ;
     }
 
 
-    @RequestMapping(value = "/node/{nodeType}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/node/{typeId}", method = RequestMethod.DELETE)
     @ResponseBody
-    public Object deleteRest(WebRequest request, @PathVariable String nodeType) throws IOException {
-        return delete(request, nodeType);
+    public Object deleteRest(WebRequest request, @PathVariable String typeId) throws IOException {
+        return delete(request, typeId);
     }
 
-    @RequestMapping(value = "/node/{nodeType}/delete.json", method = RequestMethod.POST)
+    @RequestMapping(value = "/node/{typeId}/delete.json", method = RequestMethod.POST)
     @ResponseBody
-    public Object deleteJson(WebRequest request, @PathVariable String nodeType) throws IOException {
-        return delete(request, nodeType);
+    public Object deleteJson(WebRequest request, @PathVariable String typeId) throws IOException {
+        return delete(request, typeId);
     }
 
 
-    private Object delete(WebRequest request, String nodeType) {
-        return JsonResponse.create(nodeService.deleteNode(request.getParameterMap(), nodeType)) ;
+    private Object delete(WebRequest request, String typeId) {
+        return JsonResponse.create(nodeService.deleteNode(request.getParameterMap(), typeId)) ;
     }
 
-
-    @RequestMapping(value = "/node/{nodeType}", method = RequestMethod.GET)
+    @RequestMapping(value = "/node/{typeId}/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Object listRest(WebRequest request, @PathVariable String nodeType) throws IOException {
-        return list(request, nodeType);
+    public Object readRest(WebRequest request, @PathVariable String typeId, @PathVariable String id) throws IOException {
+        return read(request, typeId, id);
     }
 
-    @RequestMapping(value = "/node/{nodeType}/list.json", method = RequestMethod.GET)
+    @RequestMapping(value = "/node/{typeId}/read.json", method = RequestMethod.GET)
     @ResponseBody
-    public Object listJson(WebRequest request, @PathVariable String nodeType) throws IOException {
-        return list(request, nodeType);
+    public Object readJson(WebRequest request, @PathVariable String typeId) throws IOException {
+        return read(request, typeId);
     }
 
 
-    private Object list(WebRequest request, @PathVariable String nodeType) {
+    private Object read(WebRequest request, String typeId, String id) {
+        return JsonResponse.create(nodeService.readNode(request.getParameterMap(), typeId, id)) ;
+    }
+
+    private Object read(WebRequest request, String typeId) {
+        return JsonResponse.create(nodeService.readNode(request.getParameterMap(), typeId)) ;
+    }
+
+
+    @RequestMapping(value = "/node/{typeId}", method = RequestMethod.GET)
+    @ResponseBody
+    public Object listRest(WebRequest request, @PathVariable String typeId) throws IOException {
+        return list(request, typeId);
+    }
+
+    @RequestMapping(value = "/node/{typeId}/list.json", method = RequestMethod.GET)
+    @ResponseBody
+    public Object listJson(WebRequest request, @PathVariable String typeId) throws IOException {
+        return list(request, typeId);
+    }
+
+
+    private Object list(WebRequest request, @PathVariable String typeId) {
         try {
-            QueryResult queryResult = nodeService.getNodeList(nodeType, request.getParameterMap()) ;
+            QueryResult queryResult = nodeService.getNodeList(typeId, request.getParameterMap()) ;
             return JsonResponse.create(queryResult) ;
         } catch (Exception e) {
             logger.error(e.getMessage(), e);

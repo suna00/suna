@@ -95,7 +95,7 @@ public class InfinispanRepositoryService {
             resultList.add(node) ;
         }
 
-        return new QueryResult(resultList, cacheQuery.getResultSize()) ;
+        return new QueryResult(resultList, cacheQuery.getResultSize(), queryContext) ;
     }
 
     public NodeValue getLastCacheNodeValue() {

@@ -61,6 +61,8 @@ public class LuceneQueryUtils {
             makeSorting(queryContext, cacheQuery);
         }
 
+        cacheQuery.maxResults(queryContext.getMaxResultSize()) ;
+
         return cacheQuery ;
     }
 

@@ -19,6 +19,11 @@ public class QueryContext{
     private List<QueryTerm> queryTerms ;
     private SearchManager searchManager;
     private String sorting;
+    private Integer pageSize ;
+    private Integer currentPage ;
+    private Integer resultSize ;
+
+    private boolean paging ;
 
     public QueryContext() {
     }
@@ -78,9 +83,21 @@ public class QueryContext{
     public static void makeQueryTerm(NodeType nodeType, QueryContext queryContext, java.util.List<QueryTerm> queryTerms, String paramName, String value) {
         value = value.equals("@sysdate") ? new SimpleDateFormat("yyyyMMdd HHmmss").format(new Date()) : value.equals("@sysday") ? new SimpleDateFormat("yyyyMMdd").format(new Date()) : value;
 
+        if(paramName.equals("page")){
+            queryContext.setCurrentPage(value) ;
+            return  ;
+        }else if(paramName.equals("pageSize")){
+            queryContext.setPageSize(value) ;
+            return ;
+        }else if(paramName.equals("count")){
+            queryContext.setResultSize(value) ;
+            return ;
+        }
+
         if(nodeType == null) {
             if (paramName.equals("sorting")) {
                 queryContext.setSorting(value);
+                return ;
             } else if (paramName.contains("_")) {
                 String fieldId = StringUtils.substringBeforeLast(paramName, "_");
                 queryTerms.add(new QueryTerm(StringUtils.substringBeforeLast(paramName, "_"), StringUtils.substringAfterLast(paramName, "_"), value));
@@ -90,6 +107,7 @@ public class QueryContext{
         }else{
             if (paramName.equals("sorting")) {
                 queryContext.setSorting(value, nodeType);
+                return ;
             } else if (paramName.contains("_")) {
                 String fieldId = StringUtils.substringBeforeLast(paramName, "_");
                 String method = StringUtils.substringAfterLast(paramName, "_") ;
@@ -152,5 +170,58 @@ public class QueryContext{
 
     public boolean hasQueryTerms() {
         return queryTerms != null && queryTerms.size() > 0 ;
+    }
+
+    public void setPageSize(String pageSize) {
+        this.pageSize = Integer.valueOf(pageSize) ;
+        this.paging = true ;
+    }
+
+    public void setCurrentPage(String page) {
+        this.currentPage = Integer.valueOf(page) ;
+        this.paging = true ;
+    }
+
+    public void setResultSize(String resultSize) {
+        this.resultSize = Integer.valueOf(resultSize) ;
+    }
+
+    public int getMaxResultSize() {
+        if(resultSize == null && currentPage == null && pageSize == null){
+            resultSize = 1000 ;
+            currentPage = 1 ;
+            pageSize = resultSize ;
+            return  resultSize ;
+        }else if(paging){
+            if(currentPage == null){
+                currentPage = 1 ;
+            }
+            if(pageSize == null){
+                pageSize = 10 ;
+            }
+            if(resultSize == null){
+                resultSize = pageSize ;
+            }
+            this.paging = true ;
+            return pageSize * currentPage ;
+        }else{
+            currentPage = 1 ;
+            pageSize = resultSize ;
+            return resultSize ;
+        }
+    }
+
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+
+    public Integer getCurrentPage() {
+        return currentPage;
+    }
+
+    public boolean isPaging() {
+        return paging;
     }
 }

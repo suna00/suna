@@ -193,4 +193,27 @@ public class NodeService {
         infinispanRepositoryService.deleteNode(node) ;
         return node ;
     }
+
+    public Node readNode(Map<String, String[]> parameterMap, String typeId, String id) {
+        return infinispanRepositoryService.getNode(typeId, id) ;
+    }
+
+    public Node readNode(Map<String, String[]> parameterMap, String typeId) {
+        String id = null ;
+        for(String paramName : parameterMap.keySet()){
+            if(paramName.equals("id")){
+                id = parameterMap.get(paramName)[0] ;
+            }
+        }
+
+        if(id == null){
+            List<String> idablePids = NodeUtils.getNodeType(typeId).getIdablePIds() ;
+            for(int i = 0 ; i < idablePids.size(); i++){
+                id = parameterMap.get(idablePids.get(i))[0] + (i < (idablePids.size() - 1) ? "/" : "") ;
+            }
+        }
+
+        return infinispanRepositoryService.getNode(typeId, id) ;
+
+    }
 }
