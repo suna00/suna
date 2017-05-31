@@ -75,4 +75,8 @@ public class NodeValue implements Serializable{
     public void setContent(String content) {
         this.content = content;
     }
+
+    public Date getChanged() {
+        return changed;
+    }
 }

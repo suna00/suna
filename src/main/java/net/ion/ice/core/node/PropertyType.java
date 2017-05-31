@@ -14,7 +14,7 @@ public class PropertyType {
     public enum AnalyzerType {simple, code, whitespace, standard, cjk, korean}
 
 
-    public static final String INDEXING = "indexing";
+    public static final String INDEXABLE = "indexable";
     public static final String ANALYZER = "analyzer";
     public static final String IDABLE = "idable";
     public static final String SEARCHABLE = "searchable";
@@ -29,8 +29,8 @@ public class PropertyType {
         this.propertyTypeNode = propertyType ;
     }
 
-    public boolean indexing() {
-        return propertyTypeNode.getBooleanValue(INDEXING) ;
+    public boolean isIndexable() {
+        return propertyTypeNode.getBooleanValue(INDEXABLE) ;
     }
 
     public String getAnalyzer() {
@@ -38,7 +38,11 @@ public class PropertyType {
     }
 
     public AnalyzerType getAnalyzerType() {
-        return AnalyzerType.valueOf(getAnalyzer()) ;
+        try {
+            return AnalyzerType.valueOf(getAnalyzer());
+        }catch(NullPointerException e){
+            return null ;
+        }
     }
 
     public Analyzer getLuceneAnalyzer(){

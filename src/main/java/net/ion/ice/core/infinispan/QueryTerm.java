@@ -33,10 +33,10 @@ public class QueryTerm {
     }
 
     public QueryTerm(String fieldId, Analyzer luceneAnalyzer, String method, String value) {
-        this.queryKey = queryKey ;
+        this.queryKey = fieldId ;
 
         this.method = QueryMethod.valueOf(method.toUpperCase()) ;
-        this.queryValue = queryValue ;
+        this.queryValue = value ;
         this.analyzer = luceneAnalyzer ;
     }
 

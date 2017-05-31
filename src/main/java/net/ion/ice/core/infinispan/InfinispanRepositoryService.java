@@ -83,7 +83,18 @@ public class InfinispanRepositoryService {
         return new QueryResult(list, cacheQuery.getResultSize()) ;
     }
 
+    public NodeValue getLastCacheNodeValue() {
+        Cache<String, NodeValue> nodeValueCache = getNodeValueCache() ;
+        SearchManager qf = Search.getSearchManager(nodeValueCache) ;
+        QueryBuilder queryBuilder = qf.buildQueryBuilderForClass(NodeValue.class).get();
 
+        CacheQuery cacheQuery = qf.getQuery(queryBuilder.all().createQuery());
+        cacheQuery.sort(new Sort(new SortField("changed", SortField.Type.LONG, true))) ;
+        cacheQuery.maxResults(1) ;
+
+        List result = cacheQuery.list() ;
+        return (NodeValue) result.get(0);
+    }
 
     public static CacheQuery makeQuery(SearchManager qf, QueryBuilder queryBuilder, Node nodeType, Cache<String, Node> cache, Map<String, String[]> params) {
         if(qf == null) {
@@ -226,4 +237,6 @@ public class InfinispanRepositoryService {
 
         return cacheQuery;
     }
+
+
 }

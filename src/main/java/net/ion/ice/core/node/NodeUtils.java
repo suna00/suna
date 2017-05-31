@@ -38,6 +38,20 @@ public class NodeUtils {
         return nodeList ;
     }
 
+    //노드 타입별 비교 및 노드 별 비교 로직 추가 필요
+    public static List<Node> makeNodeListFilterBy(Collection<Map<String, Object>> nodeDataList, String lastChanged) {
+        List<Node> nodeList = new ArrayList<Node>();
+        for(Map<String, Object> data : nodeDataList){
+            if(data.containsKey("changed")){
+                if(lastChanged.compareTo((String) data.get("changed")) < 0){
+                    nodeList.add(new Node(data)) ;
+                }
+            }else{
+                nodeList.add(new Node(data)) ;
+            }
+        }
+        return nodeList ;
+    }
 
     public static List<NodeType> makeNodeTypeList(Collection<Node> nodeList) {
         List<NodeType> nodeTypeList = new ArrayList<NodeType>();
@@ -106,5 +120,6 @@ public class NodeUtils {
         }
 
     }
+
 
 }

@@ -25,10 +25,30 @@ public class NodeController {
     @Autowired
     private NodeService nodeService ;
 
+    @RequestMapping(value = "/node/{nodeType}", method = RequestMethod.PUT)
+    @ResponseBody
+    public Object saveRest(WebRequest request, @PathVariable String nodeType) throws IOException {
+        return save(request, nodeType);
+    }
+
+    private Object save(WebRequest request, String nodeType) {
+        return JsonResponse.create(nodeService.saveNode(request.getParameterMap())) ;
+    }
 
     @RequestMapping(value = "/node/{nodeType}", method = RequestMethod.GET)
     @ResponseBody
-    public Object list(WebRequest request, @PathVariable String nodeType, HttpServletResponse response) throws IOException {
+    public Object listRest(WebRequest request, @PathVariable String nodeType) throws IOException {
+        return list(request, nodeType);
+    }
+
+    @RequestMapping(value = "/node/{nodeType}/list.json", method = RequestMethod.GET)
+    @ResponseBody
+    public Object listJson(WebRequest request, @PathVariable String nodeType) throws IOException {
+        return list(request, nodeType);
+    }
+
+
+    private Object list(WebRequest request, @PathVariable String nodeType) {
         try {
             QueryResult queryResult = nodeService.getNodeList(nodeType, request.getParameterMap()) ;
             return JsonResponse.create(queryResult) ;

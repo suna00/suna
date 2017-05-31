@@ -1,10 +1,8 @@
 package net.ion.ice.core.node;
 
-import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.infinispan.lucene.AnalyzerFactory;
 import net.ion.ice.core.infinispan.lucene.AnalyzerField;
 import net.ion.ice.core.infinispan.lucene.AnalyzerFieldType;
-import net.ion.ice.core.infinispan.lucene.LuceneAnalyzerFactory;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.DateTools;
 import org.apache.lucene.document.Document;
@@ -14,7 +12,6 @@ import org.apache.lucene.index.DocValuesType;
 import org.apache.lucene.index.IndexOptions;
 import org.hibernate.search.bridge.FieldBridge;
 import org.hibernate.search.bridge.LuceneOptions;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
 import java.util.Map;
@@ -55,7 +52,7 @@ public class PropertiesFieldBridge implements FieldBridge {
         if(propertyType == null) return ;
         String pid  = entry.getKey() ;
 
-        if(!propertyType.indexing()) return ;
+        if(!propertyType.isIndexable()) return ;
 
         PropertyType.ValueType valueType = propertyType.getValueType() ;
         PropertyType.AnalyzerType analyzerType = propertyType.getAnalyzerType() ;

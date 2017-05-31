@@ -6,7 +6,7 @@ import net.ion.ice.core.infinispan.QueryContext;
 import net.ion.ice.core.infinispan.QueryTerm;
 import net.ion.ice.core.json.JsonUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.infinispan.Cache;
+import org.apache.lucene.document.DateTools;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.stream.Stream;
 
 /**
  * Created by jaeho on 2017. 4. 3..
@@ -101,111 +100,17 @@ public class NodeService {
     }
 
     public QueryResult getNodeList(String nodeType, String searchText) {
-        QueryContext queryContext = makeQueryContextFromText(searchText, getNodeType(nodeType)) ;
+        QueryContext queryContext = QueryContext.makeQueryContextFromText(searchText, getNodeType(nodeType)) ;
         return infinispanRepositoryService.getQueryNodes(nodeType, queryContext) ;
     }
 
 
     public QueryResult getNodeList(String nodeType, Map<String, String[]> parameterMap) {
-        QueryContext queryContext = makeQueryContextFromParameter(parameterMap, getNodeType(nodeType)) ;
+        QueryContext queryContext = QueryContext.makeQueryContextFromParameter(parameterMap, getNodeType(nodeType)) ;
 
         return infinispanRepositoryService.getQueryNodes(nodeType, queryContext) ;
     }
 
-    private QueryContext makeQueryContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType) {
-        QueryContext queryContext = new QueryContext() ;
-        java.util.List<QueryTerm> queryTerms = new ArrayList<>();
-
-        if(parameterMap == null || parameterMap.size() == 0){
-            return queryContext ;
-        }
-
-        for (String paramName : parameterMap.keySet()) {
-
-            String[] values = parameterMap.get(paramName);
-            if(values== null || StringUtils.isEmpty(values[0])){
-                continue;
-            }
-
-            String value = StringUtils.join(values, ' ') ;
-
-            makeQueryTerm(nodeType, queryContext, queryTerms, paramName, value);
-
-        }
-        queryContext.setQueryTerms(queryTerms);
-        return queryContext ;
-    }
-
-
-    private QueryContext makeQueryContextFromText(String searchText, NodeType nodeType) {
-        QueryContext queryContext = new QueryContext() ;
-        java.util.List<QueryTerm> queryTerms = new ArrayList<>();
-
-        if(StringUtils.isEmpty(searchText)){
-            return queryContext ;
-        }
-
-        for (String param : StringUtils.split(searchText, '&')) {
-            if (StringUtils.isNotEmpty(param) && StringUtils.contains(param, "=")) {
-                String value = StringUtils.substringAfter(param, "=");
-                if(StringUtils.isEmpty(value)){
-                    continue;
-                }
-                String paramName = StringUtils.substringBefore(param, "=") ;
-
-                if(StringUtils.isEmpty(paramName)){
-                    continue ;
-                }
-
-                makeQueryTerm(nodeType, queryContext, queryTerms, paramName, value);
-            }
-        }
-        queryContext.setQueryTerms(queryTerms);
-        return queryContext ;
-    }
-
-    private void makeQueryTerm(NodeType nodeType, QueryContext queryContext, java.util.List<QueryTerm> queryTerms, String paramName, String value) {
-        value = value.equals("@sysdate") ? new SimpleDateFormat("yyyyMMdd HHmmss").format(new Date()) : value.equals("@sysday") ? new SimpleDateFormat("yyyyMMdd").format(new Date()) : value;
-
-        if(nodeType == null) {
-            if (paramName.equals("sorting")) {
-                queryContext.setSorting(value);
-            } else if (paramName.contains("_")) {
-                String fieldId = StringUtils.substringBeforeLast(paramName, "_");
-                queryTerms.add(new QueryTerm(StringUtils.substringBeforeLast(paramName, "_"), StringUtils.substringAfterLast(paramName, "_"), value));
-            } else {
-                queryTerms.add(new QueryTerm(paramName, value));
-            }
-        }else{
-            if (paramName.equals("sorting")) {
-                queryContext.setSorting(value, nodeType);
-            } else if (paramName.contains("_")) {
-                String fieldId = StringUtils.substringBeforeLast(paramName, "_");
-                String method = StringUtils.substringAfterLast(paramName, "_") ;
-                QueryTerm queryTerm = makePropertyQueryTerm(nodeType, queryTerms, fieldId, method, value) ;
-                if(queryTerm == null){
-                    queryTerm = makePropertyQueryTerm(nodeType, queryTerms, paramName, "matching", value) ;
-                }
-
-                if(queryTerm != null ){
-                    queryTerms.add(queryTerm) ;
-                }
-
-            } else {
-
-                queryTerms.add(new QueryTerm(paramName, value));
-            }
-
-        }
-    }
-
-    private QueryTerm makePropertyQueryTerm(NodeType nodeType, java.util.List<QueryTerm> queryTerms, String fieldId, String method, String value) {
-        PropertyType propertyType = (PropertyType) nodeType.getPropertyType(fieldId);
-        if(propertyType != null && propertyType.indexing()) {
-            return new QueryTerm(fieldId, propertyType.getLuceneAnalyzer(), method, value);
-        }
-        return null ;
-    }
 
     private void initNodeType(boolean preConstruct) throws IOException {
         Collection<Map<String, Object>> nodeTypeDataList = JsonUtils.parsingJsonResourceToList(ApplicationContextManager.getResource("classpath:schema/node/nodeType.json")) ;
@@ -239,19 +144,46 @@ public class NodeService {
         }
 
         if(!preConstruct) {
+
             Resource resource = ApplicationContextManager.getResource("classpath:schema/node") ;
             File initNodeDir =  resource.getFile() ;
 
-            Stream.of(initNodeDir.listFiles((File f) -> {
-                return f.isDirectory() ;
-            })).forEach(System.out::println);
+            NodeValue nodeValue = infinispanRepositoryService.getLastCacheNodeValue() ;
+            String lastChanged = DateTools.dateToString(nodeValue.getChanged(), DateTools.Resolution.SECOND);
+
+            logger.info("LAST CHANGED : " + lastChanged);
+            for(File dir : initNodeDir.listFiles((File f) -> { return f.isDirectory() ; })){
+                for(File f : dir.listFiles((File f) -> {return f.getName().endsWith(".json");})){
+                    String fileName = StringUtils.substringBefore(f.getName(), ".json");
+                    Collection<Map<String, Object>> nodeDataList = JsonUtils.parsingJsonFileToList(f) ;
+
+                    if(fileName.startsWith("20") && fileName.length() == 14 && lastChanged.compareTo(fileName) < 0){
+                        List<Node> nodeList = NodeUtils.makeNodeList(nodeDataList) ;
+                        nodeList.forEach(node -> saveNode(node));
+                    }else{
+                        List<Node> nodeList = NodeUtils.makeNodeListFilterBy(nodeDataList, lastChanged) ;
+                        nodeList.forEach(node -> saveNode(node));
+                    }
+                }
+            }
         }
 
     }
+
 
     public void saveNode(Node node) {
         infinispanRepositoryService.saveNode(node);
     }
 
+    public Node saveNode(Map<String, String[]> parameterMap, String typeId) {
+        NodeType nodeType = getNodeType(typeId) ;
+
+        ExecuteContext context = ExecuteContext.makeContextFormParameter(parameterMap) ;
+        context.setNodeType(nodeType) ;
+
+        Node node = context.getNode() ;
+        infinispanRepositoryService.saveNode(node);
+        return node ;
+    }
 
 }
