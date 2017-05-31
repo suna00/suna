@@ -1,13 +1,12 @@
 package net.ion.ice.core.node;
 
-import java.nio.file.attribute.UserDefinedFileAttributeView;
 import java.util.List;
 
 /**
  * Created by jaeho on 2017. 5. 18..
  */
 public class QueryResult {
-    private List<Object> resultList ;
+    private List<Node> resultList ;
 
     private Integer totalSize ;
 
@@ -20,7 +19,7 @@ public class QueryResult {
         this(nodes, nodes.size()) ;
     }
 
-    public List<Object> getResultList() {
+    public List<Node> getResultList() {
         return resultList;
     }
 

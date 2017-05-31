@@ -42,6 +42,25 @@ public class NodeController {
         return JsonResponse.create(nodeService.saveNode(request.getParameterMap(), nodeType)) ;
     }
 
+
+    @RequestMapping(value = "/node/{nodeType}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public Object deleteRest(WebRequest request, @PathVariable String nodeType) throws IOException {
+        return delete(request, nodeType);
+    }
+
+    @RequestMapping(value = "/node/{nodeType}/delete.json", method = RequestMethod.POST)
+    @ResponseBody
+    public Object deleteJson(WebRequest request, @PathVariable String nodeType) throws IOException {
+        return delete(request, nodeType);
+    }
+
+
+    private Object delete(WebRequest request, String nodeType) {
+        return JsonResponse.create(nodeService.deleteNode(request.getParameterMap(), nodeType)) ;
+    }
+
+
     @RequestMapping(value = "/node/{nodeType}", method = RequestMethod.GET)
     @ResponseBody
     public Object listRest(WebRequest request, @PathVariable String nodeType) throws IOException {

@@ -185,4 +185,12 @@ public class NodeService {
         return node ;
     }
 
+    public Node deleteNode(Map<String, String[]> parameterMap, String typeId) {
+        NodeType nodeType = getNodeType(typeId) ;
+
+        ExecuteContext context = ExecuteContext.makeContextFormParameter(parameterMap, nodeType) ;
+        Node node = context.getNode() ;
+        infinispanRepositoryService.deleteNode(node) ;
+        return node ;
+    }
 }

@@ -64,6 +64,13 @@ public class InfinispanRepositoryService {
         nodeValueCache.put(node.getTypeId() + "://" + node.getId(), node.getNodeValue()) ;
     }
 
+    public void deleteNode(Node node) {
+        Cache<String, Node> nodeCache = getNodeCache(node.getTypeId());
+        nodeCache.remove(node.getId().toString()) ;
+
+        Cache<String, NodeValue> nodeValueCache = getNodeValueCache() ;
+        nodeValueCache.remove(node.getTypeId() + "://" + node.getId()) ;
+    }
 
     public QueryResult getQueryNodes(String typeId, QueryContext queryContext){
         Cache<String, Node> cache = getNodeCache(typeId);
@@ -79,8 +86,16 @@ public class InfinispanRepositoryService {
 
         List<Object> list = cacheQuery.list();
 
+        List<Node> resultList = new ArrayList<Node>() ;
+        for(Object item : list){
+            Node node = (Node) item;
+            Cache<String, NodeValue> nodeValueCache = getNodeValueCache() ;
+            node.setNodeValue(nodeValueCache.get(typeId + "://" + node.getId())) ;
 
-        return new QueryResult(list, cacheQuery.getResultSize()) ;
+            resultList.add(node) ;
+        }
+
+        return new QueryResult(resultList, cacheQuery.getResultSize()) ;
     }
 
     public NodeValue getLastCacheNodeValue() {
@@ -237,6 +252,7 @@ public class InfinispanRepositoryService {
 
         return cacheQuery;
     }
+
 
 
 }

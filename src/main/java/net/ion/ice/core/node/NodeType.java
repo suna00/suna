@@ -21,12 +21,12 @@ public class NodeType {
     }
 
 
-    public void setPropertyTypes(List<Object> propertyTypeList){
+    public void setPropertyTypes(List<Node> propertyTypeList){
         if(propertyTypes == null){
             propertyTypes = new LinkedHashMap<>() ;
         }
-        for(Object _obj : propertyTypeList){
-            PropertyType propertyType = (PropertyType) _obj;
+        for(Node _node : propertyTypeList){
+            PropertyType propertyType = new PropertyType(_node);
             propertyTypes.put(propertyType.getPid(), propertyType) ;
         }
     }
