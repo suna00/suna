@@ -31,6 +31,13 @@ public class NodeController {
         return save(request, nodeType);
     }
 
+    @RequestMapping(value = "/node/{nodeType}/save.json", method = RequestMethod.POST)
+    @ResponseBody
+    public Object saveJson(WebRequest request, @PathVariable String nodeType) throws IOException {
+        return save(request, nodeType);
+    }
+
+
     private Object save(WebRequest request, String nodeType) {
         return JsonResponse.create(nodeService.saveNode(request.getParameterMap(), nodeType)) ;
     }
