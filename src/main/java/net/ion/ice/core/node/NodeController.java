@@ -32,7 +32,7 @@ public class NodeController {
     }
 
     private Object save(WebRequest request, String nodeType) {
-        return JsonResponse.create(nodeService.saveNode(request.getParameterMap())) ;
+        return JsonResponse.create(nodeService.saveNode(request.getParameterMap(), nodeType)) ;
     }
 
     @RequestMapping(value = "/node/{nodeType}", method = RequestMethod.GET)

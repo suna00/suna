@@ -32,8 +32,8 @@ public class PropertiesFieldBridge implements FieldBridge {
         }
     }
     private void indexNotNullMap(String name, Object value, Document document, LuceneOptions luceneOptions) {
-        Map<String, Object> properties = (Map<String, Object>) value;
-        String typeId = (String) properties.get("typeId") ;
+        Properties properties = (Properties) value;
+        String typeId = properties.getTypeId() ;
         NodeType nodeType = NodeUtils.getNodeType(typeId) ;
         if(nodeType == null){
             for (Map.Entry<String, Object> entry : properties.entrySet() ) {

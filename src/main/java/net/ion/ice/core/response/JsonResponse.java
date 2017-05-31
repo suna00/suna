@@ -1,5 +1,6 @@
 package net.ion.ice.core.response;
 
+import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.QueryResult;
 
 import java.io.Serializable;
@@ -14,8 +15,8 @@ public class JsonResponse implements Serializable{
     protected String resultMessage ;
 
 
-    public static JsonResponse create(Map<String, Object> date){
-        return new JsonObjectResponse() ;
+    public static JsonResponse create(Node node){
+        return new JsonObjectResponse(node) ;
     }
 
     public static JsonResponse create(Collection<Map<String, Object>> list){

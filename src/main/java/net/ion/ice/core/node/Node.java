@@ -29,12 +29,12 @@ public class Node implements Map<String, Object>, Serializable{
 
     @Field
     @FieldBridge(impl = PropertiesFieldBridge.class)
-    private Map<String, Object> properties ;
+    private Properties properties ;
 
     private transient NodeValue nodeValue ;
 
     public Node(){
-        properties = new ConcurrentHashMap<>() ;
+        properties = new Properties() ;
     }
 
     public Node(Object id, String typeId){
@@ -43,9 +43,9 @@ public class Node implements Map<String, Object>, Serializable{
 
     public Node(Object id, String typeId, String userId){
         this.id = id ;
-        properties = new ConcurrentHashMap<>() ;
-        this.properties.put(ID, id) ;
-        this.properties.put(TYPEID, typeId) ;
+        properties = new Properties() ;
+        this.properties.setId(id) ;
+        this.properties.setTypeId(typeId) ;
         this.nodeValue = new NodeValue(id, typeId, StringUtils.isEmpty(userId) ? ANONYMOUS : userId) ;
     }
 
@@ -65,7 +65,7 @@ public class Node implements Map<String, Object>, Serializable{
     }
 
     private void construct(Map<String, Object> data, String typeId) {
-        properties = new ConcurrentHashMap<>() ;
+        properties = new Properties() ;
 
         this.id = data.get(ID);
         if(this.id == null || StringUtils.isEmpty(this.id.toString())){
@@ -80,8 +80,8 @@ public class Node implements Map<String, Object>, Serializable{
 
         this.properties.putAll(data);
 
-        this.properties.put(ID, id) ;
-        this.properties.put(TYPEID, typeId) ;
+        this.properties.setId(id) ;
+        this.properties.setTypeId(typeId) ;
         this.nodeValue = new NodeValue(id, typeId, data.get("userId") == null ? ANONYMOUS : data.get("userId").toString()) ;
     }
 

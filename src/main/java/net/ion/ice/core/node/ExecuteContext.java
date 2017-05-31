@@ -37,7 +37,7 @@ public class ExecuteContext {
     }
 
     private void makeNode() {
-
+        this.node = new Node(data, nodeType.getTypeId()) ;
     }
 
     public void setData(Map<String,Object> data) {

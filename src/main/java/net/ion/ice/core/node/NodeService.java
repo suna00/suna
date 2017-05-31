@@ -178,8 +178,7 @@ public class NodeService {
     public Node saveNode(Map<String, String[]> parameterMap, String typeId) {
         NodeType nodeType = getNodeType(typeId) ;
 
-        ExecuteContext context = ExecuteContext.makeContextFormParameter(parameterMap) ;
-        context.setNodeType(nodeType) ;
+        ExecuteContext context = ExecuteContext.makeContextFormParameter(parameterMap, nodeType) ;
 
         Node node = context.getNode() ;
         infinispanRepositoryService.saveNode(node);
