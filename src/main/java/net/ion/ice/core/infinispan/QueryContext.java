@@ -1,11 +1,13 @@
 package net.ion.ice.core.infinispan;
 
+import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.PropertyType;
 import org.apache.commons.lang3.StringUtils;
 import org.infinispan.query.SearchManager;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,6 +18,7 @@ import java.util.Map;
  * Created by jaeho on 2017. 4. 26..
  */
 public class QueryContext{
+    private NodeType nodeType ;
     private List<QueryTerm> queryTerms ;
     private SearchManager searchManager;
     private String sorting;
@@ -25,11 +28,12 @@ public class QueryContext{
 
     private boolean paging ;
 
-    public QueryContext() {
+    public QueryContext(NodeType nodeType) {
+        this.nodeType = nodeType ;
     }
 
     public static QueryContext makeQueryContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType) {
-        QueryContext queryContext = new QueryContext() ;
+        QueryContext queryContext = new QueryContext(nodeType) ;
         java.util.List<QueryTerm> queryTerms = new ArrayList<>();
 
         if(parameterMap == null || parameterMap.size() == 0){
@@ -43,8 +47,7 @@ public class QueryContext{
                 continue;
             }
 
-            String value = StringUtils.join(values, ' ') ;
-
+            String value = StringUtils.join(values, ' ');
             makeQueryTerm(nodeType, queryContext, queryTerms, paramName, value);
 
         }
@@ -54,7 +57,7 @@ public class QueryContext{
 
 
     public static QueryContext makeQueryContextFromText(String searchText, NodeType nodeType) {
-        QueryContext queryContext = new QueryContext() ;
+        QueryContext queryContext = new QueryContext(nodeType) ;
         java.util.List<QueryTerm> queryTerms = new ArrayList<>();
 
         if(StringUtils.isEmpty(searchText)){
@@ -92,6 +95,12 @@ public class QueryContext{
         }else if(paramName.equals("count")){
             queryContext.setResultSize(value) ;
             return ;
+        }else if(paramName.equals("query")){
+            try {
+                Map<String, Object> query = JsonUtils.parsingJsonToMap(value) ;
+
+            } catch (IOException e) {
+            }
         }
 
         if(nodeType == null) {
@@ -223,5 +232,9 @@ public class QueryContext{
 
     public boolean isPaging() {
         return paging;
+    }
+
+    public NodeType getNodetype(){
+        return nodeType ;
     }
 }

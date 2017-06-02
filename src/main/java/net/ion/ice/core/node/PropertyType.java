@@ -10,7 +10,7 @@ public class PropertyType {
     public static final String PROPERTYTYPE = "propertyType";
 
 
-    public enum ValueType { STRING, CODE, DATE, LONG, INT, DOUBLE, BOOLEAN, TEXT}
+    public enum ValueType { STRING, CODE, DATE, LONG, INT, DOUBLE, BOOLEAN, REFERENCED, REFERENCE, TEXT}
     public enum AnalyzerType {simple, code, whitespace, standard, cjk, korean}
 
 
@@ -95,6 +95,15 @@ public class PropertyType {
 
     public boolean isRequired(){
         return propertyTypeNode.getBooleanValue(IDABLE) || propertyTypeNode.getBooleanValue(REQUIRED) ;
+    }
+
+    public boolean isReferenced() {
+        return getValueType() == ValueType.REFERENCED ;
+    }
+
+    public String getReferenceType() {
+        return propertyTypeNode.getStringValue("referenceType");
+
     }
 
 }

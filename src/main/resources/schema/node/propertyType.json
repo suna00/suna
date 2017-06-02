@@ -44,6 +44,15 @@
     "defaultValue" : 10000
   },
   {
+    "id" : "nodeType/propertyTypes",
+    "tid" : "nodeType",
+    "pid" : "propertyTypes",
+    "propertyTypeName" : "Property Type List",
+    "valueType" : "REFERENCED",
+    "referenceType" : "propertyType",
+    "referenceValue" : "tid"
+  },
+  {
     "id" : "propertyType/tid",
     "tid" : "propertyType",
     "pid" : "tid",
@@ -87,7 +96,8 @@
     "analyzer" : "code",
     "required" : true,
     "code" : [{"value" : "STRING", "label" : "String"}, {"value" : "INT", "label" : "Integer"}, {"value" : "LONG", "label" : "Long"}, {"value" : "DOUBLE", "label" : "double"},
-      {"value" : "BOOLEAN", "label" : "Boolean"}, {"value" : "DATE", "label" : "Date"}, {"value" : "TEXT", "label" : "Text"}]
+      {"value" : "BOOLEAN", "label" : "Boolean"}, {"value" : "DATE", "label" : "Date"}, {"value" : "TEXT", "label" : "Text"}, {"value" : "REFERENCE", "label" : "Reference"},
+      {"value" : "REFERENCED", "label" : "Referenced List"}]
   },
   {
     "id" : "propertyType/idable",
@@ -144,5 +154,27 @@
     "required" : false,
     "labelable" : false,
     "code" : [{"value" : "simple", "label" : "Simple Analyzer"}, {"value" : "standard", "label" : "Standard Analyzer"}, {"value" : "cjk", "label" : "CJK Analyzer"}, {"value" : "code", "label" : "Code Analyzer"}]
+  },
+  {
+    "id" : "propertyType/referenceType",
+    "tid" : "propertyType",
+    "pid" : "referenceType",
+    "propertyTypeName" : "Reference Type ID",
+    "valueType" : "REFERENCE",
+    "idable" : false,
+    "indexable" : true,
+    "analyzer" : "CODE",
+    "referenceType" : "nodeType"
+  },
+  {
+    "id" : "propertyType/referenceValue",
+    "tid" : "propertyType",
+    "pid" : "referenceValue",
+    "propertyTypeName" : "Reference Property ID",
+    "valueType" : "REFERENCE",
+    "indexable" : true,
+    "analyzer" : "CODE",
+    "referenceType" : "propertyType",
+    "parentValue" : "tid"
   }
 ]

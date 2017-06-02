@@ -60,4 +60,22 @@ public class NodeType {
     public Collection<PropertyType> getPropertyTypes() {
         return propertyTypes.values();
     }
+
+    public boolean hasReferenced() {
+        for(PropertyType pt : propertyTypes.values()){
+            if(pt.isReferenced()) return true ;
+        }
+        return false ;
+    }
+
+    public Collection<PropertyType> getPropertyTypes(PropertyType.ValueType valueType) {
+        List<PropertyType> results = new ArrayList<PropertyType>() ;
+
+        for(PropertyType pt : propertyTypes.values()){
+            if(pt.getValueType() == valueType){
+                results.add(pt) ;
+            }
+        }
+        return results ;
+    }
 }
