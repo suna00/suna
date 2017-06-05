@@ -47,6 +47,13 @@ public class InfinispanRepositoryService {
         Cache<String, NodeValue> nodeValueCache = getNodeValueCache() ;
         node.setNodeValue(nodeValueCache.get(typeId + "://" +id)) ;
 
+        NodeType nodeType = NodeUtils.getNodeType(typeId) ;
+
+        for(PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)){
+            QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(nodeType, pt, node) ;
+            node.put(pt.getPid(), getSubQueryNodes(pt.getReferenceType(), subQueryContext)) ;
+        }
+
         return node ;
     }
 
@@ -72,7 +79,7 @@ public class InfinispanRepositoryService {
         nodeValueCache.remove(node.getTypeId() + "://" + node.getId()) ;
     }
 
-    public QueryResult getQueryNodes(String typeId, QueryContext queryContext){
+    private List<Object> executeQuery(String typeId, QueryContext queryContext) {
         Cache<String, Node> cache = getNodeCache(typeId);
 
         queryContext.setSearchManager(Search.getSearchManager(cache));
@@ -85,6 +92,25 @@ public class InfinispanRepositoryService {
         }
 
         List<Object> list = cacheQuery.list();
+        queryContext.setResultSize(cacheQuery.getResultSize());
+        return list;
+    }
+
+
+    public QueryResult getQueryTreeNodes(String typeId, QueryContext queryContext) {
+        NodeType nodeType = queryContext.getNodetype() ;
+        for(PropertyType pt : nodeType.getPropertyTypes()){
+            if(pt.isTreeable()){
+                QueryContext subQueryContext = QueryContext.makeQueryContextForTree(nodeType, pt, "root") ;
+                subQueryContext.setTreeable(true);
+                return new QueryResult(getSubQueryNodes(pt.getReferenceType(), subQueryContext), subQueryContext) ;
+            }
+        }
+        return null ;
+    }
+
+    public QueryResult getQueryNodes(String typeId, QueryContext queryContext){
+        List<Object> list = executeQuery(typeId, queryContext);
 
         NodeType nodeType = queryContext.getNodetype() ;
 
@@ -105,22 +131,13 @@ public class InfinispanRepositoryService {
             resultList.add(node) ;
         }
 
-        return new QueryResult(resultList, cacheQuery.getResultSize(), queryContext) ;
+        return new QueryResult(resultList, queryContext) ;
     }
 
+
+
     public List<Node> getSubQueryNodes(String typeId, QueryContext queryContext){
-        Cache<String, Node> cache = getNodeCache(typeId);
-
-        queryContext.setSearchManager(Search.getSearchManager(cache));
-
-        CacheQuery cacheQuery = null;
-        try {
-            cacheQuery = LuceneQueryUtils.makeQuery(queryContext);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        List<Object> list = cacheQuery.list();
+        List<Object> list = executeQuery(typeId, queryContext);
 
         NodeType nodeType = queryContext.getNodetype() ;
 
@@ -131,13 +148,21 @@ public class InfinispanRepositoryService {
             Cache<String, NodeValue> nodeValueCache = getNodeValueCache() ;
             node.setNodeValue(nodeValueCache.get(typeId + "://" + node.getId())) ;
 
-//            if(hasReferenced){
-//                for(PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)){
-//                    QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(nodeType, pt, node) ;
-//                    node.put(pt.getPid(), getSubQueryNodes(pt.getReferenceType(), subQueryContext)) ;
-//                }
-//            }
-
+            if(queryContext.isIncludeReferenced()){
+                for(PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)){
+                    QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(nodeType, pt, node) ;
+                    node.put(pt.getPid(), getSubQueryNodes(pt.getReferenceType(), subQueryContext)) ;
+                }
+            }
+            if(queryContext.isTreeable()) {
+                for (PropertyType pt : nodeType.getPropertyTypes()) {
+                    if (pt.isTreeable()) {
+                        QueryContext subQueryContext = QueryContext.makeQueryContextForTree(nodeType, pt, node.getId().toString());
+                        subQueryContext.setTreeable(true);
+                        node.put("children", getSubQueryNodes(pt.getReferenceType(), subQueryContext));
+                    }
+                }
+            }
             resultList.add(node) ;
         }
 

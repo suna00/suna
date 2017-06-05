@@ -99,18 +99,21 @@ public class NodeService {
         return propertyType;
     }
 
-    public QueryResult getNodeList(String nodeType, String searchText) {
-        QueryContext queryContext = QueryContext.makeQueryContextFromText(searchText, getNodeType(nodeType)) ;
-        return infinispanRepositoryService.getQueryNodes(nodeType, queryContext) ;
+    public QueryResult getNodeList(String typeId, String searchText) {
+        QueryContext queryContext = QueryContext.makeQueryContextFromText(searchText, getNodeType(typeId)) ;
+        return infinispanRepositoryService.getQueryNodes(typeId, queryContext) ;
     }
 
 
-    public QueryResult getNodeList(String nodeType, Map<String, String[]> parameterMap) {
-        QueryContext queryContext = QueryContext.makeQueryContextFromParameter(parameterMap, getNodeType(nodeType)) ;
-
-        return infinispanRepositoryService.getQueryNodes(nodeType, queryContext) ;
+    public QueryResult getNodeList(String typeId, Map<String, String[]> parameterMap) {
+        QueryContext queryContext = QueryContext.makeQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
+        return infinispanRepositoryService.getQueryNodes(typeId, queryContext) ;
     }
 
+    public QueryResult getNodeTree(String typeId, Map<String, String[]> parameterMap) {
+        QueryContext queryContext = QueryContext.makeQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
+        return infinispanRepositoryService.getQueryTreeNodes(typeId, queryContext) ;
+    }
 
     private void initNodeType(boolean preConstruct) throws IOException {
         Collection<Map<String, Object>> nodeTypeDataList = JsonUtils.parsingJsonResourceToList(ApplicationContextManager.getResource("classpath:schema/node/nodeType.json")) ;
@@ -216,4 +219,6 @@ public class NodeService {
         return infinispanRepositoryService.getNode(typeId, id) ;
 
     }
+
+
 }

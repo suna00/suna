@@ -74,6 +74,10 @@ public class PropertiesFieldBridge implements FieldBridge {
                 Field field = new AnalyzerField(pid, DateTools.dateToString(NodeUtils.getDateValue(entry.getValue()), DateTools.Resolution.SECOND), fieldAnalyzer(AnalyzerFactory.getAnalyzer(PropertyType.AnalyzerType.code))) ;
                 document.add(field);
             }
+//            case CODE :{
+//                Field field = new AnalyzerField(pid, entry.getValue().to,  fieldAnalyzer(propertyType.getLuceneAnalyzer())) ;
+//                document.add(field);
+//            }
             default:{
                 Field field = new AnalyzerField(pid, entry.getValue().toString(), fieldAnalyzer(propertyType.getLuceneAnalyzer())) ;
                 document.add(field);

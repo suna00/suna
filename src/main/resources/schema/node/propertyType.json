@@ -1,5 +1,17 @@
 [
   {
+    "id" : "nodeType/parentId",
+    "tid" : "nodeType",
+    "pid" : "parentId",
+    "propertyTypeName" : "Parent Type ID",
+    "valueType" : "REFERENCE",
+    "idable" : false,
+    "indexable" : true,
+    "required" : true,
+    "treeable" : true,
+    "referenceType" : "nodeType"
+  },
+  {
     "id" : "nodeType/tid",
     "tid" : "nodeType",
     "pid" : "tid",

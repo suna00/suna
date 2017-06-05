@@ -1,5 +1,6 @@
 package net.ion.ice.core.node;
 
+import net.ion.ice.core.infinispan.QueryContext;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.thymeleaf.util.StringUtils;
@@ -122,4 +123,21 @@ public class NodeUtils {
     }
 
 
+    public static Object getValue(Object value, PropertyType pt) {
+        switch (pt.getValueType()){
+            case CODE :
+            {
+                return pt.getCode().get(value) ;
+            }
+            case REFERENCE: {
+                NodeUtils.getReferenceValue(value, pt) ;
+            }
+            default:
+                return value ;
+        }
+    }
+
+    public static Code getReferenceValue(Object value, PropertyType pt) {
+        return null ;
+    }
 }

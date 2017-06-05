@@ -1,13 +1,21 @@
 package net.ion.ice.core.node;
 
+import infinispan.com.mchange.lang.ObjectUtils;
 import net.ion.ice.core.infinispan.lucene.AnalyzerFactory;
 import org.apache.lucene.analysis.Analyzer;
+
+import java.util.BitSet;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by jaeho on 2017. 5. 15..
  */
 public class PropertyType {
     public static final String PROPERTYTYPE = "propertyType";
+    public static final String DEFAULT_VALUE = "defaultValue";
+
 
 
     public enum ValueType { STRING, CODE, DATE, LONG, INT, DOUBLE, BOOLEAN, REFERENCED, REFERENCE, TEXT}
@@ -20,10 +28,13 @@ public class PropertyType {
     public static final String SEARCHABLE = "searchable";
     public static final String LABELABLE = "labelable";
     public static final String REQUIRED = "required";
+    public static final String TREEABLE = "treeable";
 
     public static final String PID = "pid";
 
     private Node propertyTypeNode ;
+
+    private Map<Object, Code> codeMap ;
 
     public PropertyType(Node propertyType) {
         this.propertyTypeNode = propertyType ;
@@ -104,6 +115,30 @@ public class PropertyType {
     public String getReferenceType() {
         return propertyTypeNode.getStringValue("referenceType");
 
+    }
+
+    public boolean isTreeable() {
+        return propertyTypeNode.getBooleanValue(TREEABLE);
+    }
+
+    public boolean hasDefaultValue() {
+        return !propertyTypeNode.isNullValue(DEFAULT_VALUE) ;
+    }
+
+    public Object getDefaultValue() {
+        return propertyTypeNode.getValue(DEFAULT_VALUE) ;
+//        return propertyTypeNode.getValue(DEFAULT_VALUE, getValueType()) ;
+    }
+
+    public Map<Object, Code> getCode() {
+        if(codeMap == null) {
+            codeMap = new HashMap<>() ;
+            Collection<Map<String, Object>> codeValues = (Collection<Map<String, Object>>) propertyTypeNode.get("code");
+            for(Map<String, Object> codeValue : codeValues){
+                codeMap.put(codeValue.get("value"), new Code(codeValue)) ;
+            }
+        }
+        return codeMap ;
     }
 
 }

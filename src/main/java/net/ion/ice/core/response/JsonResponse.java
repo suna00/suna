@@ -25,8 +25,10 @@ public class JsonResponse implements Serializable{
     }
 
     public static JsonResponse create(QueryResult queryResult){
-        if(queryResult.isPaging()){
+        if(queryResult.isPaging()) {
             return new JsonArrayPagingResponse(queryResult);
+        }else if(queryResult.isTree()){
+            return new JsonTreeResponse(queryResult) ;
         }else{
             return new JsonArrayResponse(queryResult);
         }

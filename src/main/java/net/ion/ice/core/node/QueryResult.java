@@ -14,16 +14,15 @@ public class QueryResult {
     private Integer totalSize ;
 
     private QueryContext queryContext ;
+    private boolean tree;
 
-    public QueryResult(List nodes, Integer totalSize, QueryContext queryContext){
+    public QueryResult(List nodes, QueryContext queryContext){
         this.resultList = nodes ;
-        this.totalSize = totalSize ;
         this.queryContext = queryContext ;
+        this.totalSize = queryContext.getResultSize() ;
+        this.tree = queryContext.isTreeable() ;
     }
 
-    public QueryResult(List nodes){
-        this(nodes, nodes.size(), null) ;
-    }
 
     public List<Node> getResultList() {
         return resultList;
@@ -46,4 +45,7 @@ public class QueryResult {
         return queryContext.isPaging() ;
     }
 
+    public boolean isTree() {
+        return tree;
+    }
 }

@@ -25,9 +25,15 @@ public class QueryContext{
     private String sorting;
     private Integer pageSize ;
     private Integer currentPage ;
+    private Integer maxSize;
     private Integer resultSize ;
 
     private boolean paging ;
+
+    private boolean includeReference ;
+
+    private boolean treeable ;
+
 
     public QueryContext(NodeType nodeType) {
         this.nodeType = nodeType ;
@@ -94,7 +100,7 @@ public class QueryContext{
             queryContext.setPageSize(value) ;
             return ;
         }else if(paramName.equals("count")){
-            queryContext.setResultSize(value) ;
+            queryContext.setMaxSize(value) ;
             return ;
         }else if(paramName.equals("query")){
             try {
@@ -191,16 +197,16 @@ public class QueryContext{
         this.paging = true ;
     }
 
-    public void setResultSize(String resultSize) {
-        this.resultSize = Integer.valueOf(resultSize) ;
+    public void setMaxSize(String maxSize) {
+        this.maxSize = Integer.valueOf(maxSize) ;
     }
 
     public int getMaxResultSize() {
-        if(resultSize == null && currentPage == null && pageSize == null){
-            resultSize = 1000 ;
+        if(maxSize == null && currentPage == null && pageSize == null){
+            maxSize = 1000 ;
             currentPage = 1 ;
-            pageSize = resultSize ;
-            return  resultSize ;
+            pageSize = maxSize;
+            return maxSize;
         }else if(paging){
             if(currentPage == null){
                 currentPage = 1 ;
@@ -208,15 +214,15 @@ public class QueryContext{
             if(pageSize == null){
                 pageSize = 10 ;
             }
-            if(resultSize == null){
-                resultSize = pageSize ;
+            if(maxSize == null){
+                maxSize = pageSize ;
             }
             this.paging = true ;
             return pageSize * currentPage ;
         }else{
             currentPage = 1 ;
-            pageSize = resultSize ;
-            return resultSize ;
+            pageSize = maxSize;
+            return maxSize;
         }
     }
 
@@ -260,5 +266,63 @@ public class QueryContext{
         queryContext.setQueryTerms(queryTerms);
         return queryContext ;
 
+    }
+
+    public static QueryContext makeQueryContextForTree(NodeType nodeType, PropertyType pt, String value) {
+        QueryContext queryContext = new QueryContext(nodeType) ;
+        java.util.List<QueryTerm> queryTerms = new ArrayList<>();
+
+        makeQueryTerm(nodeType, queryContext, queryTerms, pt.getPid(), value);
+
+        queryContext.setQueryTerms(queryTerms);
+        return queryContext ;
+    }
+
+    public static QueryContext makeQueryContextForReferenceValue(NodeType nodeType, PropertyType pt, String value) {
+        QueryContext queryContext = new QueryContext(nodeType) ;
+        java.util.List<QueryTerm> queryTerms = new ArrayList<>();
+
+        String refTypeId = pt.getReferenceType() ;
+        NodeType refNodeType = NodeUtils.getNodeType(refTypeId) ;
+
+        if(refNodeType == null ){
+            throw new RuntimeException("REFERENCED NODE TYPE is Null : " + nodeType.getTypeId() + "." + pt.getPid() + " = " + refTypeId) ;
+        }
+
+        List<String> idPids = refNodeType.getIdablePIds() ;
+
+        if(idPids == null || idPids.size() == 0){
+            throw new RuntimeException("REFERENCED NODE TYPE has No ID : " + nodeType.getTypeId() + "." + pt.getPid() + " = " + refTypeId) ;
+        }
+
+        makeQueryTerm(refNodeType, queryContext, queryTerms, idPids.get(0), value);
+
+        queryContext.setQueryTerms(queryTerms);
+        return queryContext ;
+
+    }
+
+    public Integer getResultSize() {
+        return resultSize;
+    }
+
+    public void setResultSize(Integer resultSize) {
+        this.resultSize = resultSize;
+    }
+
+    public boolean isIncludeReferenced() {
+        return includeReference ;
+    }
+
+    public void setIncludeReference(boolean includeReference){
+        this.includeReference = includeReference ;
+    }
+
+    public boolean isTreeable(){
+        return treeable ;
+    }
+
+    public void setTreeable(boolean treeable){
+        this.treeable = treeable ;
     }
 }

@@ -1,12 +1,20 @@
 [
   {
+    "id" : "system",
+    "parentId" : "root",
+    "repositoryType" : "path",
+    "typeName" : "System Node Type"
+  },
+  {
     "id" : "nodeType",
+    "parentId" : "system",
     "repositoryType" : "node",
     "typeName" : "Node Type",
     "eviction" : 1000
   },
   {
     "id" : "propertyType",
+    "parentId" : "system",
     "repositoryType" : "node",
     "typeName" : "Property Type",
     "eviction" : 10000

@@ -79,7 +79,7 @@ public class Node implements Map<String, Object>, Serializable{
             }
         }
 
-        this.properties.putAll(data);
+        this.putAll(data);
 
         this.properties.setId(id) ;
         this.properties.setTypeId(typeId) ;
@@ -125,7 +125,20 @@ public class Node implements Map<String, Object>, Serializable{
 
     @Override
     public void putAll(Map<? extends String, ?> m) {
-        properties.putAll(m);
+        if(this.nodeValue != null && getTypeId() != null){
+            putAll(m, getTypeId()) ;
+        }else {
+            properties.putAll(m);
+        }
+    }
+
+    public void putAll(Map<? extends String, ?> m, String typeId) {
+        NodeType nodeType = NodeUtils.getNodeType(typeId) ;
+        if(nodeType != null){
+            properties.putAll(m, nodeType);
+        }else{
+            properties.putAll(m);
+        }
     }
 
     @Override
@@ -208,4 +221,23 @@ public class Node implements Map<String, Object>, Serializable{
         }
         return searchValue.toString() ;
     }
+
+    public boolean isNullValue(String pid) {
+        Object stringValue = get(pid) ;
+        if(stringValue == null) return true ;
+        return false ;
+    }
+
+    public Object getValue(String pid) {
+        return get(pid) ;
+    }
+
+//    public Object getValue(String pid, PropertyType.ValueType valueType) {
+//        Object value = get(pid) ;
+//
+//        switch(valueType){
+//            case INT :
+//
+//        }
+//    }
 }
