@@ -97,17 +97,51 @@ public class InfinispanRepositoryService {
 
             if(hasReferenced){
                 for(PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)){
-                    String refTypeId = pt.getReferenceType() ;
-                    QueryContext subQueryContext = QueryContext.makeQueryContextFromText("", NodeUtils.getNodeType(refTypeId)) ;
-//                    getQueryNodes(nodeType, subQueryContext)
+                    QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(nodeType, pt, node) ;
+                    node.put(pt.getPid(), getSubQueryNodes(pt.getReferenceType(), subQueryContext)) ;
                 }
             }
-
 
             resultList.add(node) ;
         }
 
         return new QueryResult(resultList, cacheQuery.getResultSize(), queryContext) ;
+    }
+
+    public List<Node> getSubQueryNodes(String typeId, QueryContext queryContext){
+        Cache<String, Node> cache = getNodeCache(typeId);
+
+        queryContext.setSearchManager(Search.getSearchManager(cache));
+
+        CacheQuery cacheQuery = null;
+        try {
+            cacheQuery = LuceneQueryUtils.makeQuery(queryContext);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        List<Object> list = cacheQuery.list();
+
+        NodeType nodeType = queryContext.getNodetype() ;
+
+        boolean hasReferenced = nodeType.hasReferenced() ;
+        List<Node> resultList = new ArrayList<Node>() ;
+        for(Object item : list){
+            Node node = (Node) item;
+            Cache<String, NodeValue> nodeValueCache = getNodeValueCache() ;
+            node.setNodeValue(nodeValueCache.get(typeId + "://" + node.getId())) ;
+
+//            if(hasReferenced){
+//                for(PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)){
+//                    QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(nodeType, pt, node) ;
+//                    node.put(pt.getPid(), getSubQueryNodes(pt.getReferenceType(), subQueryContext)) ;
+//                }
+//            }
+
+            resultList.add(node) ;
+        }
+
+        return resultList;
     }
 
     public NodeValue getLastCacheNodeValue() {

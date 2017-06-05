@@ -163,7 +163,7 @@
     "valueType" : "REFERENCE",
     "idable" : false,
     "indexable" : true,
-    "analyzer" : "CODE",
+    "analyzer" : "code",
     "referenceType" : "nodeType"
   },
   {
@@ -173,7 +173,7 @@
     "propertyTypeName" : "Reference Property ID",
     "valueType" : "REFERENCE",
     "indexable" : true,
-    "analyzer" : "CODE",
+    "analyzer" : "code",
     "referenceType" : "propertyType",
     "parentValue" : "tid"
   }

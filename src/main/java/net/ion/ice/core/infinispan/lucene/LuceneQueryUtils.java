@@ -59,6 +59,8 @@ public class LuceneQueryUtils {
 
         if(queryContext.hasSorting()) {
             makeSorting(queryContext, cacheQuery);
+        }else{
+
         }
 
         cacheQuery.maxResults(queryContext.getMaxResultSize()) ;

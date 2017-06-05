@@ -3,6 +3,7 @@ package net.ion.ice.core.infinispan;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
+import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
 import org.apache.commons.lang3.StringUtils;
 import org.infinispan.query.SearchManager;
@@ -130,8 +131,7 @@ public class QueryContext{
                 }
 
             } else {
-
-                queryTerms.add(new QueryTerm(paramName, value));
+                queryTerms.add( makePropertyQueryTerm(nodeType, queryTerms, paramName, "matching", value)) ;
             }
 
         }
@@ -236,5 +236,29 @@ public class QueryContext{
 
     public NodeType getNodetype(){
         return nodeType ;
+    }
+
+    public static QueryContext makeQueryContextForReferenced(NodeType nodeType, PropertyType pt, Node node) {
+        QueryContext queryContext = new QueryContext(nodeType) ;
+        java.util.List<QueryTerm> queryTerms = new ArrayList<>();
+
+        String refTypeId = pt.getReferenceType() ;
+        NodeType refNodeType = NodeUtils.getNodeType(refTypeId) ;
+
+        if(refNodeType == null ){
+            throw new RuntimeException("REFERENCED NODE TYPE is Null : " + nodeType.getTypeId() + "." + pt.getPid() + " = " + refTypeId) ;
+        }
+
+        List<String> idPids = refNodeType.getIdablePIds() ;
+
+        if(idPids == null || idPids.size() == 0){
+            throw new RuntimeException("REFERENCED NODE TYPE has No ID : " + nodeType.getTypeId() + "." + pt.getPid() + " = " + refTypeId) ;
+        }
+
+        makeQueryTerm(refNodeType, queryContext, queryTerms, idPids.get(0), node.getId().toString());
+
+        queryContext.setQueryTerms(queryTerms);
+        return queryContext ;
+
     }
 }

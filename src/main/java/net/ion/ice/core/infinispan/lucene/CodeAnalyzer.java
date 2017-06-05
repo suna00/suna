@@ -1,8 +1,8 @@
 package net.ion.ice.core.infinispan.lucene;
 
 import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
-import org.apache.lucene.analysis.core.WhitespaceTokenizer;
+import org.apache.lucene.analysis.Tokenizer;
+import org.apache.lucene.analysis.core.*;
 
 /**
  * Created by jaeho on 2017. 5. 16..
@@ -17,6 +17,7 @@ public class CodeAnalyzer extends Analyzer {
 
     @Override
     protected TokenStreamComponents createComponents(final String fieldName) {
-        return new TokenStreamComponents(new CodeTokenizer());
+        final Tokenizer source = new CodeTokenizer();
+        return new TokenStreamComponents(source, new LowerCaseFilter(source));
     }
 }

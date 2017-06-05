@@ -5,10 +5,7 @@ import org.hibernate.search.annotations.*;
 
 import javax.persistence.Id;
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -30,6 +27,10 @@ public class Node implements Map<String, Object>, Serializable{
     @Field
     @FieldBridge(impl = PropertiesFieldBridge.class)
     private Properties properties ;
+
+    @Field(analyze = Analyze.NO)
+    @DateBridge(resolution = Resolution.SECOND)
+    private transient Date changed ;
 
     private transient NodeValue nodeValue ;
 
@@ -174,6 +175,7 @@ public class Node implements Map<String, Object>, Serializable{
     }
 
     public void setNodeValue(NodeValue nodeValue) {
+        this.changed = nodeValue.getChanged() ;
         this.nodeValue = nodeValue;
     }
 
