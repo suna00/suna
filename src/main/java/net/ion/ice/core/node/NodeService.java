@@ -45,11 +45,11 @@ public class NodeService {
 
         NodeUtils.setNodeService(this) ;
 
-        try {
-            initNodeType(false);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            initNodeType(false);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
 

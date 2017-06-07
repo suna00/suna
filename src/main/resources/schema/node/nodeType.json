@@ -1,12 +1,14 @@
 [
   {
     "id" : "system",
+    "tid" : "system",
     "parentId" : "root",
     "repositoryType" : "path",
     "typeName" : "System Node Type"
   },
   {
     "id" : "nodeType",
+    "tid" : "nodeType",
     "parentId" : "system",
     "repositoryType" : "node",
     "typeName" : "Node Type",
@@ -14,6 +16,7 @@
   },
   {
     "id" : "propertyType",
+    "tid" : "propertyType",
     "parentId" : "system",
     "repositoryType" : "node",
     "typeName" : "Property Type",

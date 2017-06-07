@@ -9,7 +9,7 @@ import java.util.Set;
 /**
  * Created by jaeho on 2017. 5. 31..
  */
-public class Properties implements Map<String, Object>, Serializable {
+public class Properties implements Map<String, Object>, Serializable, Cloneable {
     private Map<String, Object> values ;
     private transient Object id;
     private transient String typeId ;
@@ -101,5 +101,13 @@ public class Properties implements Map<String, Object>, Serializable {
                 values.put(pt.getPid(), value) ;
             }
         }
+    }
+
+    public Properties clone(){
+        Properties cloneProperties =  new Properties() ;
+        cloneProperties.id = id ;
+        cloneProperties.typeId = typeId ;
+        cloneProperties.values.putAll(values);
+        return cloneProperties ;
     }
 }

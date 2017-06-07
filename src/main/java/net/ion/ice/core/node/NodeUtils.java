@@ -20,6 +20,7 @@ public class NodeUtils {
     }
 
     public static NodeType getNodeType(String typeId){
+        if(nodeService == null) return null ;
         return nodeService.getNodeType(typeId) ;
     }
 

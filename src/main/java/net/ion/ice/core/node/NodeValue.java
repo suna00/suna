@@ -14,7 +14,7 @@ import java.util.Date;
 
 @ProvidedId
 @Indexed
-public class NodeValue implements Serializable{
+public class NodeValue implements Serializable, Cloneable{
     @Id
     @DocumentId
     private Object id ;
@@ -51,14 +51,20 @@ public class NodeValue implements Serializable{
     private String content ;
 
     public NodeValue(Object id, String typeId, String userId) {
+        this(id, typeId, userId, userId, new Date(), new Date(), "created") ;
+    }
+
+    public NodeValue(Object id, String typeId, String owner, String modifier, Date created, Date changed, String status) {
         this.id = id ;
         this.typeId = typeId ;
-        this.owner = userId ;
-        this.modifier = userId ;
-        this.created = new Date() ;
-        this.changed = this.created ;
-        this.status = "created" ;
+        this.owner = owner ;
+        this.modifier = modifier ;
+        this.created = created ;
+        this.changed = changed ;
+        this.status = status ;
+
     }
+
 
     public String getTypeId() {
         return typeId;
@@ -78,5 +84,9 @@ public class NodeValue implements Serializable{
 
     public Date getChanged() {
         return changed;
+    }
+
+    public NodeValue clone(){
+        return new NodeValue(id, typeId, owner, modifier, created, changed, status) ;
     }
 }

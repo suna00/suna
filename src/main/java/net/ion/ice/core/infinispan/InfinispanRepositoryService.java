@@ -40,12 +40,22 @@ public class InfinispanRepositoryService {
         return cacheManager.getCache("nodeValue", 100000) ;
     }
 
+
+    private Node initNode(String typeId, Node srcNode) {
+        if(srcNode.getNodeValue() == null) {
+            Cache<String, NodeValue> nodeValueCache = getNodeValueCache();
+            srcNode.setNodeValue(nodeValueCache.get(typeId + "://" + srcNode.getId()));
+        }
+        Node node = srcNode.clone() ;
+
+        return node ;
+    }
+
     public Node getNode(String typeId, String id) {
         Cache<String, Node> cache = getNodeCache(typeId);
-        Node node = cache.get(id) ;
+        Node srcNode = cache.get(id) ;
 
-        Cache<String, NodeValue> nodeValueCache = getNodeValueCache() ;
-        node.setNodeValue(nodeValueCache.get(typeId + "://" +id)) ;
+        Node node = initNode(typeId, srcNode) ;
 
         NodeType nodeType = NodeUtils.getNodeType(typeId) ;
 
@@ -110,28 +120,8 @@ public class InfinispanRepositoryService {
     }
 
     public QueryResult getQueryNodes(String typeId, QueryContext queryContext){
-        List<Object> list = executeQuery(typeId, queryContext);
-
-        NodeType nodeType = queryContext.getNodetype() ;
-
-        boolean hasReferenced = nodeType.hasReferenced() ;
-        List<Node> resultList = new ArrayList<Node>() ;
-        for(Object item : list){
-            Node node = (Node) item;
-            Cache<String, NodeValue> nodeValueCache = getNodeValueCache() ;
-            node.setNodeValue(nodeValueCache.get(typeId + "://" + node.getId())) ;
-
-            if(hasReferenced){
-                for(PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)){
-                    QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(nodeType, pt, node) ;
-                    node.put(pt.getPid(), getSubQueryNodes(pt.getReferenceType(), subQueryContext)) ;
-                }
-            }
-
-            resultList.add(node) ;
-        }
-
-        return new QueryResult(resultList, queryContext) ;
+        queryContext.setIncludeReference(true);
+        return new QueryResult(getSubQueryNodes(typeId, queryContext), queryContext) ;
     }
 
 
@@ -145,8 +135,7 @@ public class InfinispanRepositoryService {
         List<Node> resultList = new ArrayList<Node>() ;
         for(Object item : list){
             Node node = (Node) item;
-            Cache<String, NodeValue> nodeValueCache = getNodeValueCache() ;
-            node.setNodeValue(nodeValueCache.get(typeId + "://" + node.getId())) ;
+            node = initNode(typeId, node);
 
             if(queryContext.isIncludeReferenced()){
                 for(PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)){
@@ -168,6 +157,7 @@ public class InfinispanRepositoryService {
 
         return resultList;
     }
+
 
     public NodeValue getLastCacheNodeValue() {
         Cache<String, NodeValue> nodeValueCache = getNodeValueCache() ;

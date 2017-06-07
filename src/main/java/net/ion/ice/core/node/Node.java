@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @ProvidedId
 @Indexed
-public class Node implements Map<String, Object>, Serializable{
+public class Node implements Map<String, Object>, Serializable, Cloneable{
     public static final String ID = "id";
     public static final String TYPEID = "typeId";
     public static final String USERID = "userId";
@@ -239,6 +239,23 @@ public class Node implements Map<String, Object>, Serializable{
             }
         }
         return getId().toString() ;
+    }
+
+    public Date getChanged(){
+        return changed ;
+    }
+
+    public Node clone(){
+        Node cloneNode = new Node() ;
+        cloneNode.properties = properties.clone() ;
+        cloneNode.nodeValue = nodeValue.clone() ;
+
+        cloneNode.id = getId();
+        cloneNode.changed = changed ;
+        cloneNode.properties.setId(id) ;
+        cloneNode.properties.setTypeId(getTypeId()) ;
+
+        return cloneNode ;
     }
 
 //    public Object getValue(String pid, PropertyType.ValueType valueType) {
