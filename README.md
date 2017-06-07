@@ -34,10 +34,17 @@ $ cd <my-project-name>
 
 
 ```bash
-$ java -jar application.jar --spring.profiles.active=dev
-$ java -jar application.jar --spring.profiles.active=dev-2
+$ java -jar application.war --spring.profiles.active=dev
+$ java -jar application.war --spring.profiles.active=dev-2
 $ npm run dev -s      # Compile and launch 
 ```
 실행한 이후에 http://localhost:8081/ 에서 동작을 확인합니다.
+
+### Local Test Run
+
+```bash
+$ java -jar build/libs/application.war --spring.profiles.active=dev-2
+```
+`-jar` 파라미터가 빌드 결과를 볼 수 있도록 합니다.
 
 ```
