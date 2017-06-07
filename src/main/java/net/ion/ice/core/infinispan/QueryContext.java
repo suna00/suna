@@ -286,13 +286,13 @@ public class QueryContext{
         NodeType refNodeType = NodeUtils.getNodeType(refTypeId) ;
 
         if(refNodeType == null ){
-            throw new RuntimeException("REFERENCED NODE TYPE is Null : " + nodeType.getTypeId() + "." + pt.getPid() + " = " + refTypeId) ;
+            throw new RuntimeException("REFERENCE NODE TYPE is Null : " + nodeType.getTypeId() + "." + pt.getPid() + " = " + refTypeId) ;
         }
 
         List<String> idPids = refNodeType.getIdablePIds() ;
 
         if(idPids == null || idPids.size() == 0){
-            throw new RuntimeException("REFERENCED NODE TYPE has No ID : " + nodeType.getTypeId() + "." + pt.getPid() + " = " + refTypeId) ;
+            throw new RuntimeException("REFERENCE NODE TYPE has No ID : " + nodeType.getTypeId() + "." + pt.getPid() + " = " + refTypeId) ;
         }
 
         makeQueryTerm(refNodeType, queryContext, queryTerms, idPids.get(0), value);

@@ -92,16 +92,12 @@ public class Properties implements Map<String, Object>, Serializable {
     }
 
     public void putAll(Map<? extends String, ?> m, NodeType nodeType) {
-
         for(PropertyType pt : nodeType.getPropertyTypes()){
             Object value = m.get(pt.getPid()) ;
             if(value == null && pt.hasDefaultValue()){
                 value = pt.getDefaultValue() ;
             }
-
-
             if(value != null){
-                NodeUtils.getValue(value, pt) ;
                 values.put(pt.getPid(), value) ;
             }
         }

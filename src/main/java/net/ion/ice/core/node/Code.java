@@ -20,6 +20,11 @@ public class Code implements Serializable{
         this.label = (String) codeValue.get("label");
     }
 
+    public Code(Node node, NodeType nodeType) {
+        this.value = node.getId() ;
+        this.label = node.getLabel(nodeType) ;
+    }
+
 
     public String getLabel() {
         return label;

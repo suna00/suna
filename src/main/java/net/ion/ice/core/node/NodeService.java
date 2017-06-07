@@ -115,6 +115,7 @@ public class NodeService {
         return infinispanRepositoryService.getQueryTreeNodes(typeId, queryContext) ;
     }
 
+
     private void initNodeType(boolean preConstruct) throws IOException {
         Collection<Map<String, Object>> nodeTypeDataList = JsonUtils.parsingJsonResourceToList(ApplicationContextManager.getResource("classpath:schema/node/nodeType.json")) ;
 
@@ -220,5 +221,7 @@ public class NodeService {
 
     }
 
-
+    public Node getNode(String typeId, String id) {
+        return infinispanRepositoryService.getNode(typeId, id) ;
+    }
 }

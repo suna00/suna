@@ -119,18 +119,28 @@ public class NodeUtils {
                 return null ;
             }
         }
-
     }
 
+    public static String getDateStringValue(Object value) {
+        if(value == null) return null ;
+
+        if(value instanceof Date){
+            return DateFormatUtils.format((Date) value, "yyyyMMddHHmmss");
+        }else{
+            return value.toString() ;
+        }
+    }
 
     public static Object getValue(Object value, PropertyType pt) {
         switch (pt.getValueType()){
-            case CODE :
-            {
+            case CODE : {
                 return pt.getCode().get(value) ;
             }
             case REFERENCE: {
-                NodeUtils.getReferenceValue(value, pt) ;
+                return NodeUtils.getReferenceValue(value, pt) ;
+            }
+            case DATE :{
+                return getDateStringValue(value) ;
             }
             default:
                 return value ;
@@ -138,6 +148,8 @@ public class NodeUtils {
     }
 
     public static Code getReferenceValue(Object value, PropertyType pt) {
-        return null ;
+        Node refNode = nodeService.getNode(pt.getReferenceType(), value.toString()) ;
+        NodeType nodeType = nodeService.getNodeType(pt.getReferenceType()) ;
+        return new Code(refNode, nodeType) ;
     }
 }

@@ -79,7 +79,7 @@ public class Node implements Map<String, Object>, Serializable{
             }
         }
 
-        this.putAll(data);
+        this.putAll(data, typeId);
 
         this.properties.setId(id) ;
         this.properties.setTypeId(typeId) ;
@@ -230,6 +230,15 @@ public class Node implements Map<String, Object>, Serializable{
 
     public Object getValue(String pid) {
         return get(pid) ;
+    }
+
+    public String getLabel(NodeType nodeType) {
+        for(PropertyType pt : nodeType.getPropertyTypes()){
+            if(pt.isLabelable()){
+                return getStringValue(pt.getPid()) ;
+            }
+        }
+        return getId().toString() ;
     }
 
 //    public Object getValue(String pid, PropertyType.ValueType valueType) {
