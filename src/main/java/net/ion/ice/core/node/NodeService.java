@@ -224,4 +224,9 @@ public class NodeService {
     public Node getNode(String typeId, String id) {
         return infinispanRepositoryService.getNode(typeId, id) ;
     }
+
+    public Node read(String typeId, String id) {
+        return infinispanRepositoryService.read(typeId, id) ;
+
+    }
 }

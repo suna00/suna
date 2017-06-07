@@ -1,5 +1,6 @@
 package net.ion.ice.core.node;
 
+import net.ion.ice.core.infinispan.NotFoundNodeException;
 import net.ion.ice.core.infinispan.QueryContext;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
@@ -144,13 +145,17 @@ public class NodeUtils {
                 return getDateStringValue(value) ;
             }
             default:
-                return value ;
+                return null ;
         }
     }
 
     public static Code getReferenceValue(Object value, PropertyType pt) {
-        Node refNode = nodeService.getNode(pt.getReferenceType(), value.toString()) ;
-        NodeType nodeType = nodeService.getNodeType(pt.getReferenceType()) ;
-        return new Code(refNode, nodeType) ;
+        try {
+            Node refNode = nodeService.read(pt.getReferenceType(), value.toString());
+            NodeType nodeType = nodeService.getNodeType(pt.getReferenceType());
+            return new Code(refNode, nodeType);
+        }catch(NotFoundNodeException e){
+            return new Code(value, value.toString()) ;
+        }
     }
 }

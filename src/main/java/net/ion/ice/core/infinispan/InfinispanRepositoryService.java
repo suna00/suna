@@ -51,9 +51,23 @@ public class InfinispanRepositoryService {
         return node ;
     }
 
+    public Node read(String typeId, String id) {
+        Cache<String, Node> cache = getNodeCache(typeId);
+        Node srcNode = cache.get(id) ;
+        if(srcNode == null){
+            throw new NotFoundNodeException(typeId, id) ;
+        }
+
+        return srcNode ;
+    }
+
+
     public Node getNode(String typeId, String id) {
         Cache<String, Node> cache = getNodeCache(typeId);
         Node srcNode = cache.get(id) ;
+        if(srcNode == null){
+            throw new NotFoundNodeException(typeId, id) ;
+        }
 
         Node node = initNode(typeId, srcNode) ;
 
@@ -313,7 +327,6 @@ public class InfinispanRepositoryService {
 
         return cacheQuery;
     }
-
 
 
 }
