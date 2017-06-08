@@ -89,4 +89,12 @@ public class NodeValue implements Serializable, Cloneable{
     public NodeValue clone(){
         return new NodeValue(id, typeId, owner, modifier, created, changed, status) ;
     }
+
+    public void setChanged(Date changed) {
+        this.changed = changed;
+    }
+
+    public void setModifier(String modifier) {
+        this.modifier = modifier;
+    }
 }

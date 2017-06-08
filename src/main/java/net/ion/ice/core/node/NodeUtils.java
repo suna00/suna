@@ -158,4 +158,12 @@ public class NodeUtils {
             return new Code(value, value.toString()) ;
         }
     }
+
+    public static boolean isDiff(Node srcNode, Node node) {
+
+//        for(String key : srcNode.keySet()){
+//
+//        }
+        return true ;
+    }
 }

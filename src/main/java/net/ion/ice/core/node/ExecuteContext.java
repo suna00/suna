@@ -13,7 +13,7 @@ public class ExecuteContext {
     private Node node;
     private NodeType nodeType;
 
-    public static ExecuteContext makeContextFormParameter(Map<String, String[]> parameterMap, NodeType nodeType) {
+    public static ExecuteContext makeContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType) {
         ExecuteContext ctx = new ExecuteContext();
 
         Map<String, Object> data = new HashMap<>();

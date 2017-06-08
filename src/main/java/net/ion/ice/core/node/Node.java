@@ -83,7 +83,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
         this.properties.setId(id) ;
         this.properties.setTypeId(typeId) ;
-        this.nodeValue = new NodeValue(id, typeId, data.get("userId") == null ? ANONYMOUS : data.get("userId").toString()) ;
+        this.nodeValue = new NodeValue(id, typeId, data.get(USERID) == null ? ANONYMOUS : data.get(USERID).toString()) ;
     }
 
     @Override
@@ -256,6 +256,12 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         cloneNode.properties.setTypeId(getTypeId()) ;
         cloneNode.properties.toDisplay();
         return cloneNode ;
+    }
+
+    public void setChanged(Date changed) {
+        this.changed = changed;
+        this.nodeValue.setModifier((String) get(USERID)) ;
+        this.nodeValue.setChanged(changed) ;
     }
 
 //    public Object getValue(String pid, PropertyType.ValueType valueType) {

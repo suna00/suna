@@ -2,8 +2,8 @@ package net.ion.ice.core.node;
 
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
+import net.ion.ice.core.infinispan.NotFoundNodeException;
 import net.ion.ice.core.infinispan.QueryContext;
-import net.ion.ice.core.infinispan.QueryTerm;
 import net.ion.ice.core.json.JsonUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.document.DateTools;
@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -176,30 +175,38 @@ public class NodeService {
 
 
     public void saveNode(Node node) {
-        infinispanRepositoryService.saveNode(node);
+        Node srcNode = null ;
+        try {
+            srcNode = infinispanRepositoryService.getNode(node.getTypeId(), node.getId().toString());
+        }catch (NotFoundNodeException e){
+            infinispanRepositoryService.createNode(node);
+        }
+        if(NodeUtils.isDiff(srcNode, node)) {
+            infinispanRepositoryService.updateNode(node);
+        }
     }
 
     public Node saveNode(Map<String, String[]> parameterMap, String typeId) {
         NodeType nodeType = getNodeType(typeId) ;
 
-        ExecuteContext context = ExecuteContext.makeContextFormParameter(parameterMap, nodeType) ;
+        ExecuteContext context = ExecuteContext.makeContextFromParameter(parameterMap, nodeType) ;
 
         Node node = context.getNode() ;
-        infinispanRepositoryService.saveNode(node);
+//        infinispanRepositoryService.saveNode(node);
         return node ;
     }
 
     public Node deleteNode(Map<String, String[]> parameterMap, String typeId) {
         NodeType nodeType = getNodeType(typeId) ;
 
-        ExecuteContext context = ExecuteContext.makeContextFormParameter(parameterMap, nodeType) ;
+        ExecuteContext context = ExecuteContext.makeContextFromParameter(parameterMap, nodeType) ;
         Node node = context.getNode() ;
         infinispanRepositoryService.deleteNode(node) ;
         return node ;
     }
 
     public Node readNode(Map<String, String[]> parameterMap, String typeId, String id) {
-        return infinispanRepositoryService.getNode(typeId, id) ;
+        return getNode(typeId, id) ;
     }
 
     public Node readNode(Map<String, String[]> parameterMap, String typeId) {
@@ -217,12 +224,20 @@ public class NodeService {
             }
         }
 
-        return infinispanRepositoryService.getNode(typeId, id) ;
+        return getNode(typeId, id) ;
 
     }
 
     public Node getNode(String typeId, String id) {
-        return infinispanRepositoryService.getNode(typeId, id) ;
+        Node node = infinispanRepositoryService.getNode(typeId, id) ;
+        NodeType nodeType = NodeUtils.getNodeType(typeId) ;
+
+        for(PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)){
+            QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(nodeType, pt, node) ;
+            node.put(pt.getPid(), infinispanRepositoryService.getSubQueryNodes(pt.getReferenceType(), subQueryContext)) ;
+        }
+
+        return node ;
     }
 
     public Node read(String typeId, String id) {

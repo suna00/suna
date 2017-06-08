@@ -63,21 +63,8 @@ public class InfinispanRepositoryService {
 
 
     public Node getNode(String typeId, String id) {
-        Cache<String, Node> cache = getNodeCache(typeId);
-        Node srcNode = cache.get(id) ;
-        if(srcNode == null){
-            throw new NotFoundNodeException(typeId, id) ;
-        }
-
+        Node srcNode = read(typeId, id) ;
         Node node = initNode(typeId, srcNode) ;
-
-        NodeType nodeType = NodeUtils.getNodeType(typeId) ;
-
-        for(PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)){
-            QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(nodeType, pt, node) ;
-            node.put(pt.getPid(), getSubQueryNodes(pt.getReferenceType(), subQueryContext)) ;
-        }
-
         return node ;
     }
 
@@ -86,14 +73,29 @@ public class InfinispanRepositoryService {
     }
 
 
-    public void saveNode(Node node) {
+
+    public void createNode(Node node) {
         Cache<String, Node> nodeCache = getNodeCache(node.getTypeId());
         nodeCache.put(node.getId().toString(), node) ;
 
         Cache<String, NodeValue> nodeValueCache = getNodeValueCache() ;
         node.getNodeValue().setContent(node.getSearchValue()) ;
         nodeValueCache.put(node.getTypeId() + "://" + node.getId(), node.getNodeValue()) ;
+
     }
+
+    public void updateNode(Node node) {
+        node.setChanged(new Date());
+
+        Cache<String, Node> nodeCache = getNodeCache(node.getTypeId());
+        nodeCache.put(node.getId().toString(), node) ;
+
+        Cache<String, NodeValue> nodeValueCache = getNodeValueCache() ;
+        node.getNodeValue().setContent(node.getSearchValue()) ;
+        nodeValueCache.put(node.getTypeId() + "://" + node.getId(), node.getNodeValue()) ;
+
+    }
+
 
     public void deleteNode(Node node) {
         Cache<String, Node> nodeCache = getNodeCache(node.getTypeId());
@@ -327,6 +329,7 @@ public class InfinispanRepositoryService {
 
         return cacheQuery;
     }
+
 
 
 }
