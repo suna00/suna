@@ -28,6 +28,8 @@ import java.util.List;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public static final String FORM_BASED_LOGIN_ENTRY_POINT = "/api/auth/login";
+    public static final String NODE_BASED_NODETYPE = "/node/**";
+
     public static final String TOKEN_BASED_AUTH_ENTRY_POINT = "/api/**";
     public static final String TOKEN_REFRESH_ENTRY_POINT = "/api/auth/token";
     
@@ -95,6 +97,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .and()
             .authorizeRequests()
                 .antMatchers(FORM_BASED_LOGIN_ENTRY_POINT).permitAll() // Login end-point
+                .antMatchers(NODE_BASED_NODETYPE).permitAll() // NODE end-point
                 .antMatchers(TOKEN_REFRESH_ENTRY_POINT).permitAll() // Token refresh end-point
         .and()
             .authorizeRequests()

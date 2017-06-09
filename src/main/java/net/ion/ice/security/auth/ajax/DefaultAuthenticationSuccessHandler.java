@@ -1,6 +1,7 @@
 package net.ion.ice.security.auth.ajax;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hazelcast.web.HazelcastHttpSession;
 import net.ion.ice.security.User.UserContext;
 import net.ion.ice.security.token.JwtToken;
 import net.ion.ice.security.token.JwtTokenFactory;
@@ -13,6 +14,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -48,5 +50,28 @@ public class DefaultAuthenticationSuccessHandler implements AuthenticationSucces
         response.setStatus(HttpStatus.OK.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         mapper.writeValue(response.getWriter(), tokenMap);
+
+//        clearAuthenticationAttributes(request);
+        AddAuthenticationAttributes(request, response, accessToken.getToken());
     }
+
+    protected void AddAuthenticationAttributes(HttpServletRequest request, HttpServletResponse response, String token) {
+        Cookie cookie = new Cookie("JWTTOKEN", token);
+        response.addCookie(cookie);
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.setAttribute("JWT-TOKEN", token);
+        }
+    }
+
+
+//    protected final void clearAuthenticationAttributes(HttpServletRequest request) {
+//        HttpSession session = request.getSession(false);
+//
+//        if (session == null) {
+//            return;
+//        }
+//
+//        session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
+//    }
 }
