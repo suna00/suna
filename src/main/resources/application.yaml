@@ -8,6 +8,14 @@ spring:
 server:
   port: 8080
 
+jwtConfig:
+  issuer: I-ON
+  secretKey: dkdldhs!@#$
+  headerPrefix: SDP
+  headString: X-Authorization
+  tokenExpirationTime: 15 #분
+  refreshTokenExpTime: 60 #분
+
 hazelcast:
   members:
     - 127.0.0.1
