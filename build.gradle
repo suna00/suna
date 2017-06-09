@@ -30,6 +30,7 @@ repositories {
 	mavenCentral()
 }
 
+
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-security')
@@ -46,9 +47,9 @@ dependencies {
 	compile('org.infinispan:infinispan-embedded:8.2.6.Final')
 	compile('org.infinispan:infinispan-query:8.2.6.Final')
 	compile('io.jsonwebtoken:jjwt:0.7.0')
+    compile('org.stagemonitor:stagemonitor-web-servlet:0.80.0.RC1')
 
 	compile('org.projectlombok:lombok:1.16.16')
-
 	runtime('org.springframework.boot:spring-boot-devtools')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
