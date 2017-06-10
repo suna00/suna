@@ -2,10 +2,7 @@ package net.ion.ice.core.node;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by jaeho on 2017. 5. 31..
@@ -17,7 +14,13 @@ public class ExecuteContext {
     private Node existNode ;
 
     private boolean exist ;
+    private boolean execute ;
+
+    private List<String> changedProperties ;
     private String id ;
+
+    private String userId ;
+    private Date time ;
 
     public static ExecuteContext makeContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType) {
         ExecuteContext ctx = new ExecuteContext();
@@ -43,12 +46,27 @@ public class ExecuteContext {
         return ctx ;
     }
 
+    public static ExecuteContext makeContextFromMap(Map<String, Object> data) {
+        ExecuteContext ctx = new ExecuteContext();
+
+        ctx.setData(data);
+
+
+//        ctx.setNodeType(nodeType);
+
+        ctx.init() ;
+
+        return ctx ;
+    }
+
+
     private void init() {
+        this.time = new Date() ;
         existNode = NodeUtils.getNodeService().getNode(nodeType.getTypeId(), id) ;
         exist = existNode != null ;
 
         if(exist){
-            List<String> changedProperties = new ArrayList<String>() ;
+            changedProperties = new ArrayList<>() ;
             this.node = existNode.clone() ;
             for(PropertyType pt : nodeType.getPropertyTypes()){
                 if(!data.containsKey(pt.getPid())){
@@ -70,16 +88,19 @@ public class ExecuteContext {
                     changedProperties.add(pt.getPid()) ;
                 }
             }
+            execute = changedProperties.size() > 0 ;
+            if(execute){
+                node.setUpdate(userId, time);
+            }
+
         }else {
             this.node = new Node(data, nodeType.getTypeId());
+            execute = true ;
         }
 
 
     }
 
-    private void makeNode() {
-        this.node = new Node(data, nodeType.getTypeId()) ;
-    }
 
     public void setData(Map<String,Object> data) {
         this.data = data;
@@ -110,4 +131,5 @@ public class ExecuteContext {
         }
         return id ;
     }
+
 }

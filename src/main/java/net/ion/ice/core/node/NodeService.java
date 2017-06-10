@@ -172,25 +172,17 @@ public class NodeService {
         Collection<Map<String, Object>> nodeDataList = JsonUtils.parsingJsonFileToList(f) ;
 
         if(fileName.startsWith("20") && fileName.length() == 14 && lastChanged.compareTo(fileName) < 0){
-            List<Node> nodeList = NodeUtils.makeNodeList(nodeDataList) ;
-            nodeList.forEach(node -> saveNode(node));
+            nodeDataList.forEach(data -> saveNode(data));
         }else{
-            List<Node> nodeList = NodeUtils.makeNodeListFilterBy(nodeDataList, lastChanged) ;
-            nodeList.forEach(node -> saveNode(node));
+            List<Map<String, Object>> dataList = NodeUtils.makeDataListFilterBy(nodeDataList, lastChanged) ;
+            dataList.forEach(data -> saveNode(data));
         }
     }
 
 
-    public void saveNode(Node node) {
-        Node srcNode = null ;
-        try {
-            srcNode = infinispanRepositoryService.getNode(node.getTypeId(), node.getId().toString());
-        }catch (NotFoundNodeException e){
-            infinispanRepositoryService.createNode(node);
-        }
-        if(NodeUtils.isDiff(srcNode, node)) {
-            infinispanRepositoryService.updateNode(node);
-        }
+    public void saveNode(Map<String, Object> data) {
+        ExecuteContext context = ExecuteContext.makeContextFromMap(data) ;
+
     }
 
     public Node saveNode(Map<String, String[]> parameterMap, String typeId) {

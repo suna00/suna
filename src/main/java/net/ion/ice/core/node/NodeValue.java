@@ -50,8 +50,8 @@ public class NodeValue implements Serializable, Cloneable{
     @Analyzer(impl = CJKAnalyzer.class)
     private String content ;
 
-    public NodeValue(Object id, String typeId, String userId) {
-        this(id, typeId, userId, userId, new Date(), new Date(), "created") ;
+    public NodeValue(Object id, String typeId, String userId, Date changed) {
+        this(id, typeId, userId, userId, changed, changed, "created") ;
     }
 
     public NodeValue(Object id, String typeId, String owner, String modifier, Date created, Date changed, String status) {
@@ -64,6 +64,7 @@ public class NodeValue implements Serializable, Cloneable{
         this.status = status ;
 
     }
+
 
 
     public String getTypeId() {

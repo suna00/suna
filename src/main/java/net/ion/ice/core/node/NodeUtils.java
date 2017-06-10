@@ -30,15 +30,6 @@ public class NodeUtils {
         return nodeService.getNodeType(typeId) ;
     }
 
-    public static List<Node> makeNodeList(Collection<Map<String, Object>> nodeDataList) {
-        List<Node> nodeList = new ArrayList<Node>();
-        nodeDataList.forEach(data -> nodeList.add(new Node(data)));
-
-//        for(Map<String, Object> data : nodeDataList){
-//            nodeList.add(new Node(data)) ;
-//        }
-        return nodeList ;
-    }
 
     public static List<Node> makeNodeList(Collection<Map<String, Object>> nodeDataList, String typeId) {
         List<Node> nodeList = new ArrayList<Node>();
@@ -47,18 +38,18 @@ public class NodeUtils {
     }
 
     //노드 타입별 비교 및 노드 별 비교 로직 추가 필요
-    public static List<Node> makeNodeListFilterBy(Collection<Map<String, Object>> nodeDataList, String lastChanged) {
-        List<Node> nodeList = new ArrayList<Node>();
+    public static List<Map<String, Object>> makeDataListFilterBy(Collection<Map<String, Object>> nodeDataList, String lastChanged) {
+        List<Map<String, Object>> dataList = new ArrayList<>();
         for(Map<String, Object> data : nodeDataList){
             if(data.containsKey("changed")){
                 if(lastChanged.compareTo((String) data.get("changed")) < 0){
-                    nodeList.add(new Node(data)) ;
+                    dataList.add(data) ;
                 }
             }else{
-                nodeList.add(new Node(data)) ;
+                dataList.add(data) ;
             }
         }
-        return nodeList ;
+        return dataList ;
     }
 
     public static List<NodeType> makeNodeTypeList(Collection<Node> nodeList) {
@@ -164,13 +155,7 @@ public class NodeUtils {
         }
     }
 
-    public static boolean isDiff(Node srcNode, Node node) {
 
-//        for(String key : srcNode.keySet()){
-//
-//        }
-        return true ;
-    }
 
     public static Object getStoreValue(Object value, PropertyType pt) {
         if(value instanceof Code) {

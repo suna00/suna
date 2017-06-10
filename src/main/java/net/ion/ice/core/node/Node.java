@@ -47,12 +47,17 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         properties = new Properties() ;
         this.properties.setId(id) ;
         this.properties.setTypeId(typeId) ;
-        this.nodeValue = new NodeValue(id, typeId, StringUtils.isEmpty(userId) ? ANONYMOUS : userId) ;
+        this.nodeValue = new NodeValue(id, typeId, StringUtils.isEmpty(userId) ? ANONYMOUS : userId, new Date()) ;
     }
 
 
     public Node(Map<String, Object> data, String typeId){
-        construct(data, typeId);
+        construct(data, typeId, data.get(USERID) == null ? ANONYMOUS : data.get(USERID).toString());
+    }
+
+
+    public Node(Map<String, Object> data, String typeId, String userId){
+        construct(data, typeId, userId);
     }
 
 
@@ -62,10 +67,10 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
             throw new RuntimeException("TYPE ID is NULL");
 
         }
-        construct(data, typeId) ;
+        construct(data, typeId, data.get(USERID) == null ? ANONYMOUS : data.get(USERID).toString() ) ;
     }
 
-    private void construct(Map<String, Object> data, String typeId) {
+    private void construct(Map<String, Object> data, String typeId, String userId) {
         properties = new Properties() ;
 
         this.id = data.get(ID);
@@ -83,7 +88,8 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
         this.properties.setId(id) ;
         this.properties.setTypeId(typeId) ;
-        this.nodeValue = new NodeValue(id, typeId, data.get(USERID) == null ? ANONYMOUS : data.get(USERID).toString()) ;
+        this.changed = new Date() ;
+        this.nodeValue = new NodeValue(id, typeId, userId, changed) ;
     }
 
     @Override
@@ -258,9 +264,9 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         return cloneNode ;
     }
 
-    public void setChanged(Date changed) {
+    public void setUpdate(String userId, Date changed) {
         this.changed = changed;
-        this.nodeValue.setModifier((String) get(USERID)) ;
+        this.nodeValue.setModifier(userId) ;
         this.nodeValue.setChanged(changed) ;
     }
 
