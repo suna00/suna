@@ -199,7 +199,7 @@ public class NodeService {
         ExecuteContext context = ExecuteContext.makeContextFromParameter(parameterMap, nodeType) ;
 
         Node node = context.getNode() ;
-//        infinispanRepositoryService.saveNode(node);
+        saveNode(node);
         return node ;
     }
 

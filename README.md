@@ -21,6 +21,16 @@ String Boot를 기반으로 API를 제공하는 Backend 시스템
 
 다음과 같이 설치 및 실행합니다 :
 
+### Install plugin
+
+* Lombok 
+1. IntelliJ > Preferences > Plugin > keyword in 'lombok' search and install and restart
+2. Preferences > Compiler > Annotation Processors > Enable annotaion processing checked
+
+                    
+
+
+
 ### Install from source
 
 First, clone the project:
@@ -48,3 +58,4 @@ $ java -jar build/libs/application.war --spring.profiles.active=dev-2
 `-jar` 파라미터가 빌드 결과를 볼 수 있도록 합니다.
 
 ```
+
