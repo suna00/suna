@@ -156,21 +156,28 @@ public class NodeService {
 
             logger.info("LAST CHANGED : " + lastChanged);
             for(File dir : initNodeDir.listFiles((File f) -> { return f.isDirectory() ; })){
-                for(File f : dir.listFiles((File f) -> {return f.getName().endsWith(".json");})){
-                    String fileName = StringUtils.substringBefore(f.getName(), ".json");
-                    Collection<Map<String, Object>> nodeDataList = JsonUtils.parsingJsonFileToList(f) ;
-
-                    if(fileName.startsWith("20") && fileName.length() == 14 && lastChanged.compareTo(fileName) < 0){
-                        List<Node> nodeList = NodeUtils.makeNodeList(nodeDataList) ;
-                        nodeList.forEach(node -> saveNode(node));
-                    }else{
-                        List<Node> nodeList = NodeUtils.makeNodeListFilterBy(nodeDataList, lastChanged) ;
-                        nodeList.forEach(node -> saveNode(node));
-                    }
+                for(File f : dir.listFiles((File f) -> {return f.getName().equals("nodeType.json");})){
+                    fileNodeSave(lastChanged, f);
+                }
+                for(File f : dir.listFiles((File f) -> {return f.getName().endsWith(".json") && !f.getName().equals("nodeType.json");})){
+                    fileNodeSave(lastChanged, f);
                 }
             }
         }
 
+    }
+
+    private void fileNodeSave(String lastChanged, File f) throws IOException {
+        String fileName = StringUtils.substringBefore(f.getName(), ".json");
+        Collection<Map<String, Object>> nodeDataList = JsonUtils.parsingJsonFileToList(f) ;
+
+        if(fileName.startsWith("20") && fileName.length() == 14 && lastChanged.compareTo(fileName) < 0){
+            List<Node> nodeList = NodeUtils.makeNodeList(nodeDataList) ;
+            nodeList.forEach(node -> saveNode(node));
+        }else{
+            List<Node> nodeList = NodeUtils.makeNodeListFilterBy(nodeDataList, lastChanged) ;
+            nodeList.forEach(node -> saveNode(node));
+        }
     }
 
 

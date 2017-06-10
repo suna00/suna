@@ -30,4 +30,12 @@ public class ApplicationContextManager implements ApplicationContextAware{
     public static HazelcastInstance getHazelcastIntance(){
         return context.getBean(HazelcastInstance.class) ;
     }
+
+    public static <T> T getBean(Class<T> clazz){
+        return context.getBean(clazz) ;
+    }
+
+    public static Object getBean(String name){
+        return context.getBean(name) ;
+    }
 }

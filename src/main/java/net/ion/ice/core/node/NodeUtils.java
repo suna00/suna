@@ -2,6 +2,7 @@ package net.ion.ice.core.node;
 
 import net.ion.ice.core.infinispan.NotFoundNodeException;
 import net.ion.ice.core.infinispan.QueryContext;
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.thymeleaf.util.StringUtils;
@@ -18,6 +19,10 @@ public class NodeUtils {
 
     public static void setNodeService(NodeService nodeService) {
         NodeUtils.nodeService = nodeService ;
+    }
+
+    public static NodeService getNodeService(){
+        return nodeService ;
     }
 
     public static NodeType getNodeType(String typeId){
@@ -133,7 +138,7 @@ public class NodeUtils {
         }
     }
 
-    public static Object getValue(Object value, PropertyType pt) {
+    public static Object getDisplayValue(Object value, PropertyType pt) {
         switch (pt.getValueType()){
             case CODE : {
                 return pt.getCode().get(value) ;
@@ -165,5 +170,57 @@ public class NodeUtils {
 //
 //        }
         return true ;
+    }
+
+    public static Object getStoreValue(Object value, PropertyType pt) {
+        if(value instanceof Code) {
+            return ((Code) value).getValue() ;
+        }
+        switch (pt.getValueType()){
+            case DATE :{
+                if(value instanceof String) {
+                    return getDateValue(value);
+                }else if(value instanceof Date){
+                    return value ;
+                }
+            }
+            case STRING:case TEXT:{
+                if(value instanceof String){
+                    return value ;
+                }else{
+                    return value.toString() ;
+                }
+            }
+            case LONG:{
+                if(value instanceof Long){
+                    return value ;
+                }else{
+                    return Long.valueOf(value.toString()) ;
+                }
+            }
+            case INT:{
+                if(value instanceof Integer){
+                    return value ;
+                }else{
+                    return Integer.valueOf(value.toString()) ;
+                }
+            }
+            case DOUBLE:{
+                if(value instanceof Double){
+                    return value ;
+                }else{
+                    return Double.valueOf(value.toString()) ;
+                }
+            }
+            case BOOLEAN:{
+                if(value instanceof Boolean){
+                    return value ;
+                }else{
+                    return BooleanUtils.toBoolean(value.toString()) ;
+                }
+            }
+            default:
+                return null ;
+        }
     }
 }
