@@ -1,5 +1,6 @@
 [
   {
+    "typeId" : "nodeType",
     "id" : "system",
     "tid" : "system",
     "parentId" : "root",

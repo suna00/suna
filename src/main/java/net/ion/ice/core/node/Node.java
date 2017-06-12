@@ -78,8 +78,9 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         this.id = data.get(ID);
         if(this.id == null || StringUtils.isEmpty(this.id.toString())){
             List<String> idablePids = NodeUtils.getNodeType(typeId).getIdablePIds() ;
+            id = "" ;
             for(int i = 0 ; i < idablePids.size(); i++){
-                this.id = data.get(idablePids.get(i)) + (i < (idablePids.size() - 1) ? ID_SEPERATOR : "") ;
+                this.id = (String)id + data.get(idablePids.get(i)) + (i < (idablePids.size() - 1) ? ID_SEPERATOR : "") ;
             }
             if(this.id == null || StringUtils.isEmpty(this.id.toString())) {
                 throw new RuntimeException("ID is NULL");

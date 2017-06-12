@@ -1,6 +1,6 @@
 [
   {
-    "id" : "nodeType/parentId",
+    "id" : "nodeType@parentId",
     "tid" : "nodeType",
     "pid" : "parentId",
     "propertyTypeName" : "Parent Type ID",
@@ -12,7 +12,7 @@
     "referenceType" : "nodeType"
   },
   {
-    "id" : "nodeType/tid",
+    "id" : "nodeType@tid",
     "tid" : "nodeType",
     "pid" : "tid",
     "propertyTypeName" : "Type ID",
@@ -22,7 +22,7 @@
     "required" : true
   },
   {
-    "id" : "nodeType/repositoryType",
+    "id" : "nodeType@repositoryType",
     "tid" : "nodeType",
     "pid" : "repositoryType",
     "propertyTypeName" : "Repository Type",
@@ -33,7 +33,7 @@
     "code" : [{"value" : "node", "label" : "Node"}, {"value" : "data", "label" : "Data"}, {"value" : "logic", "label" : "Logic"}, {"value" : "path", "label" : "Path"}]
   },
   {
-    "id" : "nodeType/typeName",
+    "id" : "nodeType@typeName",
     "tid" : "nodeType",
     "pid" : "typeName",
     "propertyTypeName" : "Type Name",
@@ -45,7 +45,7 @@
     "labelable" : true
   },
   {
-    "id" : "nodeType/eviction",
+    "id" : "nodeType@eviction",
     "tid" : "nodeType",
     "pid" : "eviction",
     "propertyTypeName" : "Eviction Size",
@@ -56,7 +56,7 @@
     "defaultValue" : 10000
   },
   {
-    "id" : "nodeType/propertyTypes",
+    "id" : "nodeType@propertyTypes",
     "tid" : "nodeType",
     "pid" : "propertyTypes",
     "propertyTypeName" : "Property Type List",
@@ -65,7 +65,7 @@
     "referenceValue" : "tid"
   },
   {
-    "id" : "propertyType/tid",
+    "id" : "propertyType@tid",
     "tid" : "propertyType",
     "pid" : "tid",
     "propertyTypeName" : "Type ID",
@@ -76,7 +76,7 @@
     "required" : true
   },
   {
-    "id" : "propertyType/pid",
+    "id" : "propertyType@pid",
     "tid" : "propertyType",
     "pid" : "pid",
     "propertyTypeName" : "PropertyType ID",
@@ -86,7 +86,7 @@
     "required" : true
   },
   {
-    "id" : "propertyType/propertyTypeName",
+    "id" : "propertyType@propertyTypeName",
     "tid" : "propertyType",
     "pid" : "propertyTypeName",
     "propertyTypeName" : "Type Name",
@@ -98,7 +98,7 @@
     "labelable" : true
   },
   {
-    "id" : "propertyType/valueType",
+    "id" : "propertyType@valueType",
     "tid" : "propertyType",
     "pid" : "valueType",
     "propertyTypeName" : "Value Type",
@@ -112,7 +112,7 @@
       {"value" : "REFERENCED", "label" : "Referenced List"}]
   },
   {
-    "id" : "propertyType/idable",
+    "id" : "propertyType@idable",
     "tid" : "propertyType",
     "pid" : "idable",
     "propertyTypeName" : "ID able",
@@ -123,7 +123,7 @@
     "labelable" : false
   },
   {
-    "id" : "propertyType/indexable",
+    "id" : "propertyType@indexable",
     "tid" : "propertyType",
     "pid" : "indexable",
     "propertyTypeName" : "Index able",
@@ -134,7 +134,7 @@
     "labelable" : false
   },
   {
-    "id" : "propertyType/required",
+    "id" : "propertyType@required",
     "tid" : "propertyType",
     "pid" : "required",
     "propertyTypeName" : "Required",
@@ -145,7 +145,7 @@
     "labelable" : false
   },
   {
-    "id" : "propertyType/labelable",
+    "id" : "propertyType@labelable",
     "tid" : "propertyType",
     "pid" : "labelable",
     "propertyTypeName" : "Label able",
@@ -156,7 +156,7 @@
     "labelable" : false
   },
   {
-    "id" : "propertyType/analyzer",
+    "id" : "propertyType@analyzer",
     "tid" : "propertyType",
     "pid" : "analyzer",
     "propertyTypeName" : "Analyzer",
@@ -168,7 +168,7 @@
     "code" : [{"value" : "simple", "label" : "Simple Analyzer"}, {"value" : "standard", "label" : "Standard Analyzer"}, {"value" : "cjk", "label" : "CJK Analyzer"}, {"value" : "code", "label" : "Code Analyzer"}]
   },
   {
-    "id" : "propertyType/referenceType",
+    "id" : "propertyType@referenceType",
     "tid" : "propertyType",
     "pid" : "referenceType",
     "propertyTypeName" : "Reference Type ID",
@@ -179,7 +179,7 @@
     "referenceType" : "nodeType"
   },
   {
-    "id" : "propertyType/referenceValue",
+    "id" : "propertyType@referenceValue",
     "tid" : "propertyType",
     "pid" : "referenceValue",
     "propertyTypeName" : "Reference Property ID",

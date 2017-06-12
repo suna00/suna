@@ -127,7 +127,7 @@ public class NodeService {
                     this.propertyType = new NodeType(nodeType);
                 }
             }else {
-                saveNode(nodeType);
+                saveFileNode(nodeType, "nodeType");
             }
         }
 
@@ -142,7 +142,7 @@ public class NodeService {
                     this.propertyType.addPropertyType(new PropertyType(propertyType));
                 }
             }else {
-                saveNode(propertyType);
+                saveFileNode(propertyType, "propertyType");
             }
         }
 
@@ -185,6 +185,11 @@ public class NodeService {
         return infinispanRepositoryService.execute(context);
     }
 
+    public Node saveFileNode(Map<String, Object> data, String typeId) {
+        ExecuteContext context = ExecuteContext.makeContextFromMap(data, typeId) ;
+        return infinispanRepositoryService.execute(context);
+    }
+
     public Node saveNode(Map<String, String[]> parameterMap, String typeId) {
         NodeType nodeType = getNodeType(typeId) ;
 
@@ -203,7 +208,7 @@ public class NodeService {
     }
 
     public Node readNode(Map<String, String[]> parameterMap, String typeId, String id) {
-        return getNode(typeId, id) ;
+        return readNode(typeId, id) ;
     }
 
     public Node readNode(Map<String, String[]> parameterMap, String typeId) {
@@ -216,16 +221,17 @@ public class NodeService {
 
         if(id == null){
             List<String> idablePids = NodeUtils.getNodeType(typeId).getIdablePIds() ;
+            id = "" ;
             for(int i = 0 ; i < idablePids.size(); i++){
-                id = parameterMap.get(idablePids.get(i))[0] + (i < (idablePids.size() - 1) ? Node.ID_SEPERATOR : "") ;
+                id = id + parameterMap.get(idablePids.get(i))[0] + (i < (idablePids.size() - 1) ? Node.ID_SEPERATOR : "") ;
             }
         }
 
-        return getNode(typeId, id) ;
+        return readNode(typeId, id) ;
 
     }
 
-    public Node getNode(String typeId, String id) {
+    public Node readNode(String typeId, String id) {
         Node node = infinispanRepositoryService.getNode(typeId, id) ;
         NodeType nodeType = NodeUtils.getNodeType(typeId) ;
 
@@ -234,6 +240,11 @@ public class NodeService {
             node.put(pt.getPid(), infinispanRepositoryService.getSubQueryNodes(pt.getReferenceType(), subQueryContext)) ;
         }
 
+        return node ;
+    }
+
+    public Node getNode(String typeId, String id) {
+        Node node = infinispanRepositoryService.getNode(typeId, id) ;
         return node ;
     }
 

@@ -64,9 +64,13 @@ public class InfinispanRepositoryService {
 
 
     public Node getNode(String typeId, String id) {
-        Node srcNode = read(typeId, id) ;
-        Node node = initNode(typeId, srcNode) ;
-        return node ;
+        try {
+            Node srcNode = read(typeId, id);
+            Node node = initNode(typeId, srcNode);
+            return node;
+        }catch(NotFoundNodeException e){
+            return null ;
+        }
     }
 
     public Collection<Node> getNodes(String typeId) {

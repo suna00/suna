@@ -60,10 +60,22 @@ public class ExecuteContext {
         return ctx ;
     }
 
+    public static ExecuteContext makeContextFromMap(Map<String, Object> data, String typeId) {
+        ExecuteContext ctx = new ExecuteContext();
+
+        ctx.setData(data);
+
+        NodeType nodeType = NodeUtils.getNodeType(typeId) ;
+        ctx.setNodeType(nodeType);
+
+        ctx.init() ;
+
+        return ctx ;
+    }
 
     private void init() {
         this.time = new Date() ;
-        existNode = NodeUtils.getNodeService().getNode(nodeType.getTypeId(), id) ;
+        existNode = NodeUtils.getNodeService().getNode(nodeType.getTypeId(), getId()) ;
         exist = existNode != null ;
 
         if(exist){
@@ -117,16 +129,15 @@ public class ExecuteContext {
 
     public String getId(){
         if(this.id == null){
-            for(String key : data.keySet()){
-                if(key.equals("id")){
-                    id = data.get(key).toString();
-                }
+            if(data.containsKey("id")){
+                id = data.get("id").toString();
             }
 
             if(id == null){
                 List<String> idablePids = nodeType.getIdablePIds() ;
+                id = "" ;
                 for(int i = 0 ; i < idablePids.size(); i++){
-                    id = data.get(idablePids.get(i)) + (i < (idablePids.size() - 1) ? "/" : "") ;
+                    id = id + data.get(idablePids.get(i)) + (i < (idablePids.size() - 1) ? Node.ID_SEPERATOR : "") ;
                 }
             }
         }
@@ -136,4 +147,5 @@ public class ExecuteContext {
     public boolean isExecute() {
         return execute;
     }
+
 }
