@@ -76,7 +76,7 @@ public class NodeService {
         Node nodeTypeNode = infinispanRepositoryService.getNode("nodeType", typeId) ;
 
         NodeType nodeType = new NodeType(nodeTypeNode) ;
-        nodeType.setPropertyTypes(getNodeList("propertyType", "tid_matching=" + typeId).getResultList());
+        nodeType.setPropertyTypes(getNodeList("propertyType", "tid_matching=" + typeId));
 
         nodeTypeCache.put(typeId, nodeType) ;
         return nodeType ;
@@ -98,9 +98,9 @@ public class NodeService {
         return propertyType;
     }
 
-    public QueryResult getNodeList(String typeId, String searchText) {
+    public List<Node> getNodeList(String typeId, String searchText) {
         QueryContext queryContext = QueryContext.makeQueryContextFromText(searchText, getNodeType(typeId)) ;
-        return infinispanRepositoryService.getQueryNodes(typeId, queryContext) ;
+        return infinispanRepositoryService.getSubQueryNodes(typeId, queryContext) ;
     }
 
 
@@ -181,8 +181,13 @@ public class NodeService {
 
 
     public Node saveNode(Map<String, Object> data) {
-        ExecuteContext context = ExecuteContext.makeContextFromMap(data) ;
-        return infinispanRepositoryService.execute(context);
+        try {
+            ExecuteContext context = ExecuteContext.makeContextFromMap(data);
+            return infinispanRepositoryService.execute(context);
+        }catch (Exception e){
+            logger.error(data.toString(), e);
+        }
+        return null ;
     }
 
     public Node saveFileNode(Map<String, Object> data, String typeId) {
@@ -234,6 +239,7 @@ public class NodeService {
     public Node readNode(String typeId, String id) {
         Node node = infinispanRepositoryService.getNode(typeId, id) ;
         NodeType nodeType = NodeUtils.getNodeType(typeId) ;
+        node.toDisplay();
 
         for(PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)){
             QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(nodeType, pt, node) ;

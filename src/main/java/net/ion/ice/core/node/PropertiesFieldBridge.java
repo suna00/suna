@@ -55,7 +55,6 @@ public class PropertiesFieldBridge implements FieldBridge {
         if(!propertyType.isIndexable()) return ;
 
         PropertyType.ValueType valueType = propertyType.getValueType() ;
-        PropertyType.AnalyzerType analyzerType = propertyType.getAnalyzerType() ;
 
         switch (valueType) {
             case LONG :{

@@ -265,7 +265,6 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         cloneNode.changed = changed ;
         cloneNode.properties.setId(id) ;
         cloneNode.properties.setTypeId(getTypeId()) ;
-        cloneNode.properties.toDisplay();
         return cloneNode ;
     }
 
@@ -273,6 +272,14 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         this.changed = changed;
         this.nodeValue.setModifier(userId) ;
         this.nodeValue.setChanged(changed) ;
+    }
+
+    public void toDisplay() {
+        this.properties.toDisplay();
+    }
+
+    public void toStore() {
+        properties.toStore();
     }
 
 //    public Object getValue(String pid, PropertyType.ValueType valueType) {

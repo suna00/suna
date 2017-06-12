@@ -119,11 +119,33 @@ public class Properties implements Map<String, Object>, Serializable, Cloneable 
         }
     }
 
+    public void toStore() {
+        NodeType nodeType = NodeUtils.getNodeType(typeId) ;
+        for(PropertyType pt : nodeType.getPropertyTypes()){
+            Object value = values.get(pt.getPid()) ;
+            if(value != null){
+                value = NodeUtils.getStoreValue(value, pt) ;
+                if(value != null) {
+                    values.put(pt.getPid(), value);
+                }else{
+                    values.remove(pt.getPid()) ;
+                }
+            }else{
+                values.remove(pt.getPid()) ;
+            }
+        }
+    }
+
     public Properties clone(){
         Properties cloneProperties =  new Properties() ;
         cloneProperties.id = id ;
         cloneProperties.typeId = typeId ;
         cloneProperties.values.putAll(values);
         return cloneProperties ;
+    }
+
+
+    public String toString(){
+        return this.values.toString() ;
     }
 }

@@ -52,7 +52,7 @@ public class ExecuteContext {
 
         ctx.setData(data);
 
-        NodeType nodeType = NodeUtils.getNodeType(data.get("typeId").toString()) ;
+        NodeType nodeType = NodeUtils.getNodeType(data.get(Node.TYPEID).toString()) ;
         ctx.setNodeType(nodeType);
 
         ctx.init() ;
@@ -86,7 +86,7 @@ public class ExecuteContext {
                     continue;
                 }
                 Object newValue = NodeUtils.getStoreValue(data.get(pt.getPid()), pt) ;
-                Object existValue = data.get(pt.getPid()) ;
+                Object existValue = existNode.get(pt.getPid()) ;
 
                 if(newValue == null && existValue == null){
                     continue;

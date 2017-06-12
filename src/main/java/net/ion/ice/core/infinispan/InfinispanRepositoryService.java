@@ -71,7 +71,7 @@ public class InfinispanRepositoryService {
             Node srcNode = read(typeId, id);
             Node node = initNode(typeId, srcNode);
             return node;
-        }catch(NotFoundNodeException e){
+        }catch(Exception e){
             return null ;
         }
     }
@@ -85,6 +85,7 @@ public class InfinispanRepositoryService {
         if(!context.isExecute()) return  node ;
         try {
             Cache<String, Node> nodeCache = getNodeCache(node.getTypeId());
+            node.toStore();
             nodeCache.put(node.getId().toString(), node);
 
             Cache<String, NodeValue> nodeValueCache = getNodeValueCache();
@@ -93,6 +94,7 @@ public class InfinispanRepositoryService {
         }catch(Exception e){
             logger.error(node.toString(), e);
         }
+        logger.debug("Node SAVE : " + node.toString());
         return node ;
     }
 
@@ -129,7 +131,11 @@ public class InfinispanRepositoryService {
             if(pt.isTreeable()){
                 QueryContext subQueryContext = QueryContext.makeQueryContextForTree(nodeType, pt, "root") ;
                 subQueryContext.setTreeable(true);
-                return new QueryResult(getSubQueryNodes(pt.getReferenceType(), subQueryContext), subQueryContext) ;
+                List<Node> result = getSubQueryNodes(pt.getReferenceType(), subQueryContext) ;
+                for(Node node : result){
+                    node.toDisplay();
+                }
+                return new QueryResult(result, subQueryContext) ;
             }
         }
         return null ;
@@ -137,7 +143,11 @@ public class InfinispanRepositoryService {
 
     public QueryResult getQueryNodes(String typeId, QueryContext queryContext){
         queryContext.setIncludeReference(true);
-        return new QueryResult(getSubQueryNodes(typeId, queryContext), queryContext) ;
+        List<Node> result = getSubQueryNodes(typeId, queryContext) ;
+        for(Node node : result){
+            node.toDisplay();
+        }
+        return new QueryResult(result, queryContext) ;
     }
 
 
@@ -151,7 +161,7 @@ public class InfinispanRepositoryService {
         List<Node> resultList = new ArrayList<Node>() ;
         for(Object item : list){
             Node node = (Node) item;
-            node = initNode(typeId, node);
+            node = initNode(typeId, node.clone());
 
             if(queryContext.isIncludeReferenced()){
                 for(PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)){

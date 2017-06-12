@@ -92,8 +92,14 @@ public class PropertyType {
     }
 
     public ValueType getValueType(){
-        String valueTypeStr = (String) propertyTypeNode.get("valueType");
-        return ValueType.valueOf(valueTypeStr) ;
+        try {
+            String valueTypeStr = (String) propertyTypeNode.get("valueType");
+            return ValueType.valueOf(valueTypeStr);
+        }catch(Exception e){
+            System.out.println("VALUE TYPE ERROR : " +  propertyTypeNode.get("valueType") ) ;
+            System.out.println("VALUE TYPE ERROR : " +  propertyTypeNode) ;
+        }
+        return null ;
     }
 
     public boolean isSeacheable() {

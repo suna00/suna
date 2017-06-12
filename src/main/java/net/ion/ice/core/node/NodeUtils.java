@@ -205,7 +205,7 @@ public class NodeUtils {
                 }
             }
             default:
-                return null ;
+                return value ;
         }
     }
 }
