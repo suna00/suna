@@ -12,6 +12,8 @@ import org.infinispan.Cache;
 import org.infinispan.query.CacheQuery;
 import org.infinispan.query.Search;
 import org.infinispan.query.SearchManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,7 @@ import java.util.*;
 
 @Service
 public class InfinispanRepositoryService {
+    private Logger logger = LoggerFactory.getLogger(InfinispanRepositoryService.class);
 
     public static final String NODEVALUE_SEPERATOR = "://";
     @Autowired
@@ -80,14 +83,16 @@ public class InfinispanRepositoryService {
     public Node execute(ExecuteContext context) {
         Node node = context.getNode() ;
         if(!context.isExecute()) return  node ;
+        try {
+            Cache<String, Node> nodeCache = getNodeCache(node.getTypeId());
+            nodeCache.put(node.getId().toString(), node);
 
-        Cache<String, Node> nodeCache = getNodeCache(node.getTypeId());
-        nodeCache.put(node.getId().toString(), node) ;
-
-        Cache<String, NodeValue> nodeValueCache = getNodeValueCache() ;
-        node.getNodeValue().setContent(node.getSearchValue()) ;
-        nodeValueCache.put(node.getTypeId() + NODEVALUE_SEPERATOR + node.getId(), node.getNodeValue()) ;
-
+            Cache<String, NodeValue> nodeValueCache = getNodeValueCache();
+            node.getNodeValue().setContent(node.getSearchValue());
+            nodeValueCache.put(node.getTypeId() + NODEVALUE_SEPERATOR + node.getId(), node.getNodeValue());
+        }catch(Exception e){
+            logger.error(node.toString(), e);
+        }
         return node ;
     }
 

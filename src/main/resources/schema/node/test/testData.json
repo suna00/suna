@@ -1,0 +1,8 @@
+[
+  {
+    "typeId" : "testCategory",
+    "categoryName" : "test1",
+    "parentCategory" : "root",
+    "categoryType" : "content"
+  }
+]

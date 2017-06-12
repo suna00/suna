@@ -197,8 +197,10 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     }
 
     public void setNodeValue(NodeValue nodeValue) {
-        this.changed = nodeValue.getChanged() ;
-        this.nodeValue = nodeValue;
+        if(nodeValue != null) {
+            this.changed = nodeValue.getChanged();
+            this.nodeValue = nodeValue;
+        }
     }
 
     public boolean getBooleanValue(String pid){

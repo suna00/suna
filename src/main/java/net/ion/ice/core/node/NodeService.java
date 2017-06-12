@@ -24,7 +24,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Service("nodeService")
 public class NodeService {
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    private Logger logger = LoggerFactory.getLogger(NodeService.class);
 
     @Autowired
     private InfinispanRepositoryService infinispanRepositoryService ;

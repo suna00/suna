@@ -23,6 +23,20 @@
   {
     "typeId" : "propertyType",
     "tid" : "testCategory",
+    "pid" : "parentCategory",
+    "propertyTypeName" : "Parent Category",
+    "valueType" : "STRING",
+    "idable" : false,
+    "indexable" : true,
+    "labelable" : false,
+    "required" : true,
+    "treeable" : true,
+    "referenceType" : "testCategory",
+    "analyzer" : "cjk"
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "testCategory",
     "pid" : "categoryName",
     "propertyTypeName" : "Category Name",
     "valueType" : "STRING",
@@ -31,17 +45,6 @@
     "labelable" : true,
     "required" : true,
     "analyzer" : "cjk"
-  },
-  {
-    "typeId" : "propertyType",
-    "tid" : "testCategory",
-    "pid" : "categoryType",
-    "propertyTypeName" : "Category Type",
-    "valueType" : "CODE",
-    "idable" : false,
-    "indexable" : true,
-    "required" : true,
-    "code" : [{"value" : "content", "label" : "Content"}, {"value" : "product", "label" : "Product"}, {"value" : "customer", "label" : "Customer"}]
   },
   {
     "typeId" : "propertyType",
