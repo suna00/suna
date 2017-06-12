@@ -16,6 +16,7 @@ public class ExecuteContext {
     private boolean exist ;
     private boolean execute ;
 
+
     private List<String> changedProperties ;
     private String id ;
 
@@ -51,8 +52,8 @@ public class ExecuteContext {
 
         ctx.setData(data);
 
-
-//        ctx.setNodeType(nodeType);
+        NodeType nodeType = NodeUtils.getNodeType(data.get("typeId").toString()) ;
+        ctx.setNodeType(nodeType);
 
         ctx.init() ;
 
@@ -132,4 +133,7 @@ public class ExecuteContext {
         return id ;
     }
 
+    public boolean isExecute() {
+        return execute;
+    }
 }

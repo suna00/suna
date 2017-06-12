@@ -21,6 +21,8 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     public static final String ANONYMOUS = "anonymous";
     public static final String SYSTEM = "system";
 
+    public static final String ID_SEPERATOR = "@";
+
     @Id
     private Object id ;
 
@@ -77,7 +79,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         if(this.id == null || StringUtils.isEmpty(this.id.toString())){
             List<String> idablePids = NodeUtils.getNodeType(typeId).getIdablePIds() ;
             for(int i = 0 ; i < idablePids.size(); i++){
-                this.id = data.get(idablePids.get(i)) + (i < (idablePids.size() - 1) ? "/" : "") ;
+                this.id = data.get(idablePids.get(i)) + (i < (idablePids.size() - 1) ? ID_SEPERATOR : "") ;
             }
             if(this.id == null || StringUtils.isEmpty(this.id.toString())) {
                 throw new RuntimeException("ID is NULL");

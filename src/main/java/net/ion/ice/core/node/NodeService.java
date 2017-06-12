@@ -180,9 +180,9 @@ public class NodeService {
     }
 
 
-    public void saveNode(Map<String, Object> data) {
+    public Node saveNode(Map<String, Object> data) {
         ExecuteContext context = ExecuteContext.makeContextFromMap(data) ;
-
+        return infinispanRepositoryService.execute(context);
     }
 
     public Node saveNode(Map<String, String[]> parameterMap, String typeId) {
@@ -190,9 +190,7 @@ public class NodeService {
 
         ExecuteContext context = ExecuteContext.makeContextFromParameter(parameterMap, nodeType) ;
 
-        Node node = context.getNode() ;
-        saveNode(node);
-        return node ;
+        return infinispanRepositoryService.execute(context);
     }
 
     public Node deleteNode(Map<String, String[]> parameterMap, String typeId) {
@@ -219,7 +217,7 @@ public class NodeService {
         if(id == null){
             List<String> idablePids = NodeUtils.getNodeType(typeId).getIdablePIds() ;
             for(int i = 0 ; i < idablePids.size(); i++){
-                id = parameterMap.get(idablePids.get(i))[0] + (i < (idablePids.size() - 1) ? "/" : "") ;
+                id = parameterMap.get(idablePids.get(i))[0] + (i < (idablePids.size() - 1) ? Node.ID_SEPERATOR : "") ;
             }
         }
 

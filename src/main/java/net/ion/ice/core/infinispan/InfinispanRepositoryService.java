@@ -25,6 +25,7 @@ import java.util.*;
 @Service
 public class InfinispanRepositoryService {
 
+    public static final String NODEVALUE_SEPERATOR = "://";
     @Autowired
     private InfinispanCacheManager cacheManager ;
 
@@ -44,7 +45,7 @@ public class InfinispanRepositoryService {
     private Node initNode(String typeId, Node srcNode) {
         if(srcNode.getNodeValue() == null) {
             Cache<String, NodeValue> nodeValueCache = getNodeValueCache();
-            srcNode.setNodeValue(nodeValueCache.get(typeId + "://" + srcNode.getId()));
+            srcNode.setNodeValue(nodeValueCache.get(typeId + NODEVALUE_SEPERATOR + srcNode.getId()));
         }
         Node node = srcNode.clone() ;
 
@@ -72,28 +73,18 @@ public class InfinispanRepositoryService {
         return (Collection<Node>) getNodeCache(typeId).values();
     }
 
-
-
-    public void createNode(Node node) {
-        Cache<String, Node> nodeCache = getNodeCache(node.getTypeId());
-        nodeCache.put(node.getId().toString(), node) ;
-
-        Cache<String, NodeValue> nodeValueCache = getNodeValueCache() ;
-        node.getNodeValue().setContent(node.getSearchValue()) ;
-        nodeValueCache.put(node.getTypeId() + "://" + node.getId(), node.getNodeValue()) ;
-
-    }
-
-    public void updateNode(Node node) {
-        node.setChanged(new Date());
+    public Node execute(ExecuteContext context) {
+        Node node = context.getNode() ;
+        if(!context.isExecute()) return  node ;
 
         Cache<String, Node> nodeCache = getNodeCache(node.getTypeId());
         nodeCache.put(node.getId().toString(), node) ;
 
         Cache<String, NodeValue> nodeValueCache = getNodeValueCache() ;
         node.getNodeValue().setContent(node.getSearchValue()) ;
-        nodeValueCache.put(node.getTypeId() + "://" + node.getId(), node.getNodeValue()) ;
+        nodeValueCache.put(node.getTypeId() + NODEVALUE_SEPERATOR + node.getId(), node.getNodeValue()) ;
 
+        return node ;
     }
 
 
@@ -102,7 +93,7 @@ public class InfinispanRepositoryService {
         nodeCache.remove(node.getId().toString()) ;
 
         Cache<String, NodeValue> nodeValueCache = getNodeValueCache() ;
-        nodeValueCache.remove(node.getTypeId() + "://" + node.getId()) ;
+        nodeValueCache.remove(node.getTypeId() + NODEVALUE_SEPERATOR + node.getId()) ;
     }
 
     private List<Object> executeQuery(String typeId, QueryContext queryContext) {
@@ -329,7 +320,6 @@ public class InfinispanRepositoryService {
 
         return cacheQuery;
     }
-
 
 
 }
