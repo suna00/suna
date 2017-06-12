@@ -1,3 +1,28 @@
+/*
+* gradle 파일 task 정리
+* gradle 의 태스크를 알고 쓰기 위한 주석입니다.
+* 알아두면 좋은 부분은 * 표기해 두었습니다.
+*
+* 기본 내장 task 목록
+* - init : gradle 프로젝트 초기화
+* - wrapper : gradlew(간편 빌드) 파일 생성
+* - tasks : 현재 프로젝트에 등록된 task 목록 출력. 예시 ) gradle tasks
+*
+* plugin 'java' 에서 제공되는 task 목록
+* - * assemble : 테스트를 생략하고 결과 (jar/war) 만 생성
+* - * build : check 태스크와 assemble 태스크를 실행
+* - buildDependents : 의존 프로젝트도 함께 빌드
+* - buildNeeded : buildDependents 와 차이를 모르겠음
+* - classes : compileJava, processResources  태스크를 실행
+* - * clean : 빌드 출력 결과 삭제. 파라미터로 태스크를 넣어서 해당 태스크 결과만 삭제 가능. 예시 ) gradle clean test
+* - jar : compileJava, processResources 태스크를 돌려서 결과 생성
+* - testClasses : classes 의 test 버전 (compileTestJava, processTestResources)
+* - javadoc : 프로덕션 코드의 javadoc 실행
+* - * compileJava : 프로덕션 코드 컴파일
+* - * processResources : 프로덕션 코드 리소스를 클래스패스에 복사
+*
+* */
+
 buildscript {
 	ext {
 		springBootVersion = '1.5.1.RELEASE'
@@ -10,10 +35,9 @@ buildscript {
 	}
 }
 
-apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
-apply plugin: 'war'
+apply plugin: 'war' // apply plugin: 'java' :: war 플러그인이 java 플러그인의 모든 부분을 포함함
 
 jar {
 	baseName = 'ice2-core'
@@ -30,7 +54,15 @@ repositories {
 	mavenCentral()
 }
 
-
+/*
+* 키워드
+* providedCompile : 컴파일 시에는 참조하고 war 안에는 포함이 되지 않음
+*
+* 방식
+* - groovy 문법 상 () 를 생략할 수 있음
+* - compile ("group:name:version") - OK
+* - compile "group:value:version" - OK
+* */
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-security')
