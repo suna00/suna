@@ -2,24 +2,16 @@ package net.ion.ice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
-import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
-import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.stagemonitor.core.Stagemonitor;
-import org.stagemonitor.web.servlet.spring.SpringBootWebPluginInitializer;
-
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 
 @SpringBootApplication
 @ComponentScan({ "net.ion.ice" })
@@ -29,7 +21,9 @@ public class Ice2Application {
 	public static final String USE_HAZELCAST = "true";
 
 	public static void main(String[] args) {
-//        Stagemonitor.init();
+	    System.setProperty("spring.devtools.restart.enabled","false");
+        System.setProperty("spring.devtools.livereload.enabled","true");
+        Stagemonitor.init();
 		ApplicationContext ctx =  SpringApplication.run(Ice2Application.class, args);
 	}
 
@@ -47,25 +41,9 @@ public class Ice2Application {
 		return new WebMvcConfigurerAdapter() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-//                registry.addMapping("/api/auth/login").allowedOrigins("http://localhost:3000").allowedMethods("*").allowedHeaders("*");
 				registry.addMapping("/**").allowedHeaders("*").allowedMethods("*");
 			}
 		};
 	}
-
-	@Component
-    public static class StagemonitorEnabler implements EmbeddedServletContainerCustomizer {
-        @Override
-        public void customize(ConfigurableEmbeddedServletContainer container) {
-            container.addInitializers(new ServletContextInitializer() {
-                @Override
-                public void onStartup(ServletContext servletContext) throws ServletException {
-//                    이건 어디서 난거
-//                    new WebPlugin().onStartup(null, servletContext);
-
-                }
-            });
-        }
-    }
 
 }
