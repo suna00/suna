@@ -188,5 +188,13 @@
     "analyzer" : "code",
     "referenceType" : "propertyType",
     "parentValue" : "tid"
+  },
+  {
+    "id" : "propertyType@idType",
+    "tid" : "propertyType",
+    "pid" : "idType",
+    "propertyTypeName" : "ID Type",
+    "valueType" : "CODE",
+    "code" : [{"value" : "autoIncrement", "label" : "Auto Increment ID"}, {"value" : "UUID", "label" : "UUID"}]
   }
 ]

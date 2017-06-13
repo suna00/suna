@@ -4,5 +4,42 @@
     "categoryName" : "test1",
     "parentCategory" : "root",
     "categoryType" : "content"
+  },
+  {
+    "typeId" : "testCategory",
+    "categoryName" : "drama",
+    "parentCategory" : "test1",
+    "categoryType" : "content"
+  },
+  {
+    "typeId" : "testCategory",
+    "categoryName" : "movie",
+    "parentCategory" : "test1",
+    "categoryType" : "content"
+  },
+  {
+    "typeId" : "testCategory",
+    "categoryName" : "fashion",
+    "parentCategory" : "test1",
+    "categoryType" : "product"
+  },
+  {
+    "typeId" : "testCategory",
+    "categoryName" : "hat",
+    "parentCategory" : "fashion",
+    "categoryType" : "product"
+  },
+  {
+    "typeId" : "testCategory",
+    "categoryName" : "pants",
+    "parentCategory" : "fashion",
+    "categoryType" : "product"
+  },
+  {
+    "typeId" : "testItem",
+    "category" : "drama",
+    "title" : "도깨비",
+    "body" : "공유나오는 도깨비",
+    "date" : "20170110"
   }
 ]

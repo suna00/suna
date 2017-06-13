@@ -87,7 +87,7 @@
     "idable" : true,
     "indexable" : true,
     "required" : true,
-    "autoIncrement" : true
+    "idType" : "autoIncrement"
   },
   {
     "typeId" : "propertyType",

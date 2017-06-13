@@ -2,6 +2,7 @@ package net.ion.ice.core.node;
 
 
 import net.ion.ice.core.response.JsonResponse;
+import org.apache.lucene.search.SortField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -135,4 +136,17 @@ public class NodeController {
             }
         }
     }
+
+
+    @RequestMapping(value = "/node/{typeId}/sequence", method = RequestMethod.GET)
+    @ResponseBody
+    public Object sequenceRest(WebRequest request, @PathVariable String typeId) throws IOException {
+        return sequence(request, typeId);
+    }
+
+    private Object sequence(WebRequest request, String typeId) {
+        return JsonResponse.createValueResponse(nodeService.getSortedValue(typeId, "id", SortField.Type.LONG, true)) ;
+    }
+
+
 }

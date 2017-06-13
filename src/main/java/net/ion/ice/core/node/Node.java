@@ -76,14 +76,32 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         properties = new Properties() ;
 
         this.id = data.get(ID);
-        if(this.id == null || StringUtils.isEmpty(this.id.toString())){
-            List<String> idablePids = NodeUtils.getNodeType(typeId).getIdablePIds() ;
-            id = "" ;
-            for(int i = 0 ; i < idablePids.size(); i++){
-                this.id = (String)id + data.get(idablePids.get(i)) + (i < (idablePids.size() - 1) ? ID_SEPERATOR : "") ;
-            }
-            if(this.id == null || StringUtils.isEmpty(this.id.toString())) {
-                throw new RuntimeException("ID is NULL");
+        if(isNullId()){
+            List<PropertyType> idablePts = NodeUtils.getNodeType(typeId).getIdablePropertyTypes() ;
+            if(idablePts.size() > 1) {
+                id = "";
+                for (int i = 0; i < idablePts.size(); i++) {
+                    Object _id = data.get(idablePts.get(i).getPid());
+                    if (_id == null || StringUtils.isEmpty(_id.toString())) {
+                        throw new RuntimeException("ID is NULL");
+                    }
+                    this.id = (String) id + _id + (i < (idablePts.size() - 1) ? ID_SEPERATOR : "");
+                }
+            }else{
+                PropertyType idPropertyType = idablePts.get(0) ;
+                this.id = data.get(idPropertyType.getPid()) ;
+                if(isNullId()){
+                    switch (idPropertyType.getIdType()){
+                        case UUID:{
+                            this.id = UUID.randomUUID() ;
+                            break ;
+                        }
+                        case autoIncrement:{
+                            this.id = NodeUtils.getSequenceValue(typeId) ;
+                            break ;
+                        }
+                    }
+                }
             }
         }
 
@@ -93,6 +111,10 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         this.properties.setTypeId(typeId) ;
         this.changed = new Date() ;
         this.nodeValue = new NodeValue(id, typeId, userId, changed) ;
+    }
+
+    private boolean isNullId() {
+        return this.id == null || StringUtils.isEmpty(this.id.toString());
     }
 
     @Override
@@ -143,7 +165,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
     public void putAll(Map<? extends String, ?> m, String typeId) {
         NodeType nodeType = NodeUtils.getNodeType(typeId) ;
-        if(nodeType != null){
+        if(nodeType != null && nodeType.isInit()){
             properties.putAll(m, nodeType);
         }else{
             properties.putAll(m);

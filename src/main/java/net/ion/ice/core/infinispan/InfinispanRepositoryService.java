@@ -198,6 +198,26 @@ public class InfinispanRepositoryService {
         return (NodeValue) result.get(0);
     }
 
+    public Object getSortedValue(String typeId, String field, SortField.Type sortType, boolean reverse) {
+        Cache<String, Node> nodeCache = getNodeCache(typeId) ;
+        SearchManager qf = Search.getSearchManager(nodeCache) ;
+        QueryBuilder queryBuilder = qf.buildQueryBuilderForClass(Node.class).get();
+
+        CacheQuery cacheQuery = qf.getQuery(queryBuilder.all().createQuery());
+        cacheQuery.sort(new Sort(new SortField(field, sortType, reverse))) ;
+        cacheQuery.maxResults(1) ;
+
+        List result = cacheQuery.list();
+        if(result == null || result.size() == 0) return null ;
+        Node node = (Node) result.get(0);
+        switch(field){
+            case "id" : return node.getId() ;
+            case "changed" : return node.getChanged() ;
+            default: return node.get(field) ;
+        }
+    }
+
+
     public static CacheQuery makeQuery(SearchManager qf, QueryBuilder queryBuilder, Node nodeType, Cache<String, Node> cache, Map<String, String[]> params) {
         if(qf == null) {
             qf = Search.getSearchManager(cache);
