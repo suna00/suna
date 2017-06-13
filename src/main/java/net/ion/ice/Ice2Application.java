@@ -26,7 +26,7 @@ public class Ice2Application {
 	public static final String USE_HAZELCAST = "true";
 
 	public static void main(String[] args) {
-//        Stagemonitor.init();
+        Stagemonitor.init();
 		ApplicationContext ctx =  SpringApplication.run(Ice2Application.class, args);
 	}
 
