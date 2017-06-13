@@ -158,6 +158,7 @@ public class NodeUtils {
 
 
     public static Object getStoreValue(Object value, PropertyType pt) {
+        if(value == null) return null ;
         if(value instanceof Code) {
             return ((Code) value).getValue() ;
         }
