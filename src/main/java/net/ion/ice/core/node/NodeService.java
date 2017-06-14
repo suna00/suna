@@ -245,4 +245,9 @@ public class NodeService {
     public Object getSortedValue(String typeId, String pid, SortField.Type sortType, boolean reverse) {
         return infinispanRepositoryService.getSortedValue(typeId, pid, sortType, reverse) ;
     }
+
+    public QueryResult getQueryResult(String query) {
+        QueryContext queryContext = QueryContext.makeQueryContextFromQuery(query) ;
+        return null;
+    }
 }

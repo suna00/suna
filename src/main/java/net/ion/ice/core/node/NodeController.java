@@ -7,10 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpServletResponse;
@@ -149,4 +146,23 @@ public class NodeController {
     }
 
 
+    @RequestMapping(value = "/node/query")
+    @ResponseBody
+    public Object queryeRest(WebRequest request, @RequestParam(value = "query") String query) throws IOException {
+        return query(request, query);
+    }
+
+    private Object query(WebRequest request, String query) {
+        try {
+            QueryResult queryResult = nodeService.getQueryResult(query) ;
+            return JsonResponse.create(queryResult) ;
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            if(e.getCause() instanceof ClassCastException){
+                return JsonResponse.error(new Exception("형식이 맞지 않습니다."));
+            }else{
+                return JsonResponse.error(e);
+            }
+        }
+    }
 }

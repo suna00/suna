@@ -325,4 +325,15 @@ public class QueryContext{
     public void setTreeable(boolean treeable){
         this.treeable = treeable ;
     }
+
+    public static QueryContext makeQueryContextFromQuery(String query) {
+        try {
+            Map<String, Object> queryData = JsonUtils.parsingJsonToMap(query) ;
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null ;
+    }
 }
