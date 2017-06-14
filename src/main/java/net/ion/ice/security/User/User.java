@@ -7,11 +7,11 @@ import lombok.Data;
  */
 @Data
 public class User {
-    private String username;
+    private String userId;
     private String password;
 
-    public User(String username, String password){
-        this.username = username;
+    public User(String userId, String password){
+        this.userId = userId;
         this.password = password;
     }
 

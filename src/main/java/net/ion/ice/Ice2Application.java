@@ -12,9 +12,6 @@ import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.stagemonitor.core.Stagemonitor;
 import org.stagemonitor.web.servlet.spring.SpringBootWebPluginInitializer;
 
@@ -29,7 +26,9 @@ public class Ice2Application {
 	public static final String USE_HAZELCAST = "true";
 
 	public static void main(String[] args) {
-//        Stagemonitor.init();
+	    System.setProperty("spring.devtools.restart.enabled","false");
+        System.setProperty("spring.devtools.livereload.enabled","true");
+        Stagemonitor.init();
 		ApplicationContext ctx =  SpringApplication.run(Ice2Application.class, args);
 	}
 
@@ -40,17 +39,6 @@ public class Ice2Application {
 		taskExecutor.setMaxPoolSize(10);
 		taskExecutor.setQueueCapacity(100);
 		return taskExecutor;
-	}
-
-	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurerAdapter() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-//                registry.addMapping("/api/auth/login").allowedOrigins("http://localhost:3000").allowedMethods("*").allowedHeaders("*");
-				registry.addMapping("/**").allowedHeaders("*").allowedMethods("*");
-			}
-		};
 	}
 
 	@Component

@@ -1,9 +1,11 @@
 package net.ion.ice.security.auth.ajax;
 
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -17,6 +19,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class LoginProcessingFilter extends AbstractAuthenticationProcessingFilter {
@@ -25,7 +28,9 @@ public class LoginProcessingFilter extends AbstractAuthenticationProcessingFilte
     private final AuthenticationSuccessHandler successHandler;
     private final AuthenticationFailureHandler failureHandler;
 
+    @Autowired
     private final ObjectMapper objectMapper;
+
 
     public LoginProcessingFilter(String defaultProcessUrl, AuthenticationSuccessHandler successHandler,
                                  AuthenticationFailureHandler failureHandler, ObjectMapper mapper) {
@@ -37,15 +42,13 @@ public class LoginProcessingFilter extends AbstractAuthenticationProcessingFilte
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
+        LoginRequest loginRequest = new LoginRequest(request);
 
-        LoginRequest loginRequest = objectMapper.readValue(request.getReader(), LoginRequest.class);
-
-        if (StringUtils.isBlank(loginRequest.getUsername()) || StringUtils.isBlank(loginRequest.getPassword())) {
-            throw new AuthenticationServiceException("Username or Password not provided");
+        if (StringUtils.isBlank(loginRequest.getUserId()) || StringUtils.isBlank(loginRequest.getPassword())) {
+            throw new AuthenticationServiceException("userId or Password not provided");
         }
 
-        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword());
-
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(loginRequest.getUserId(), loginRequest.getPassword());
         return this.getAuthenticationManager().authenticate(token);
     }
 
