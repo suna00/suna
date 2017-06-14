@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <property name="LOG_PATH" value="/resource/log/application"/>
+    <!--<property name="LOG_PATH" value="/Users/juneyoungoh/Desktop/docker_elk/logstash/logs"/>-->
 
     <!-- 콘솔 로그 출력 -->
     <appender name="TEXT_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
