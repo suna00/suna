@@ -25,7 +25,7 @@ public class DefaultAuthenticationProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         Assert.notNull(authentication, "No authentication data provided");
 
-        String username = (String) authentication.getPrincipal();
+        String userId = (String) authentication.getPrincipal();
         String password = (String) authentication.getCredentials();
 
 
@@ -39,7 +39,7 @@ public class DefaultAuthenticationProvider implements AuthenticationProvider {
 //                .map(authority -> new SimpleGrantedAuthority(authority.getRole().authority()))
 //                .collect(Collectors.toList());
         
-        UserContext userContext = UserContext.create(username, Collections.emptyList());
+        UserContext userContext = UserContext.create(userId, Collections.emptyList());
         
         return new UsernamePasswordAuthenticationToken(userContext, null, Collections.emptyList());
     }

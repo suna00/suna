@@ -1,23 +1,18 @@
 package net.ion.ice.security.auth.ajax;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
+
+@Data
 public class LoginRequest {
-    private String username;
+
+    private String userId;
     private String password;
 
-    @JsonCreator
-    public LoginRequest(@JsonProperty("username") String username, @JsonProperty("password") String password) {
-        this.username = username;
-        this.password = password;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
+    public LoginRequest(HttpServletRequest request) {
+        this.userId = request.getParameter("userId");
+        this.password = request.getParameter("password");
     }
 }
