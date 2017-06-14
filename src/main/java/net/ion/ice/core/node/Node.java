@@ -24,7 +24,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     public static final String ID_SEPERATOR = "@";
 
     @Id
-    private Object id ;
+    private String id ;
 
     @Field
     @FieldBridge(impl = PropertiesFieldBridge.class)
@@ -40,11 +40,11 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         properties = new Properties() ;
     }
 
-    public Node(Object id, String typeId){
+    public Node(String id, String typeId){
         this(id, typeId, ANONYMOUS) ;
     }
 
-    public Node(Object id, String typeId, String userId){
+    public Node(String id, String typeId, String userId){
         this.id = id ;
         properties = new Properties() ;
         this.properties.setId(id) ;
@@ -74,8 +74,10 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
     private void construct(Map<String, Object> data, String typeId, String userId) {
         properties = new Properties() ;
+        if(data.containsKey(ID)) {
+            this.id = data.get(ID).toString();
+        }
 
-        this.id = data.get(ID);
         if(isNullId()){
             List<PropertyType> idablePts = NodeUtils.getNodeType(typeId).getIdablePropertyTypes() ;
             if(idablePts.size() > 1) {
@@ -89,18 +91,22 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
                 }
             }else{
                 PropertyType idPropertyType = idablePts.get(0) ;
-                this.id = data.get(idPropertyType.getPid()) ;
+                this.id = data.containsKey(idPropertyType.getPid())  ? data.get(idPropertyType.getPid()).toString() : null;
                 if(isNullId()){
                     switch (idPropertyType.getIdType()){
                         case UUID:{
-                            this.id = UUID.randomUUID() ;
+                            this.id = UUID.randomUUID().toString() ;
+                            data.put(idPropertyType.getPid(), this.id) ;
                             break ;
                         }
                         case autoIncrement:{
-                            this.id = NodeUtils.getSequenceValue(typeId) ;
+                            Long seq = NodeUtils.getSequenceValue(typeId) ;
+                            this.id = seq.toString() ;
+                            data.put(idPropertyType.getPid(), seq) ;
                             break ;
                         }
                     }
+
                 }
             }
         }
@@ -192,7 +198,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         return properties.entrySet();
     }
 
-    public Object getId() {
+    public String getId() {
         return id;
     }
 

@@ -37,6 +37,7 @@
   },
   {
     "typeId" : "testItem",
+    "id" : 1,
     "category" : "drama",
     "title" : "도깨비",
     "body" : "공유나오는 도깨비",

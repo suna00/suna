@@ -20,7 +20,7 @@ public class PropertyType {
     public static final String REFERENCE_TYPE = "referenceType";
 
 
-    public enum ValueType { STRING, CODE, DATE, LONG, INT, DOUBLE, BOOLEAN, REFERENCED, REFERENCE, TEXT}
+    public enum ValueType { STRING, CODE, DATE, LONG, INT, DOUBLE, BOOLEAN, REFERENCED, REFERENCE, TEXT, ARRAY}
     public enum AnalyzerType {simple, code, whitespace, standard, cjk, korean}
     public enum IdType {autoIncrement, UUID}
 

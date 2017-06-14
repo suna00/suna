@@ -168,11 +168,11 @@ public class QueryContext{
     }
 
     public void setSorting(String sortingStr, NodeType nodeType) {
-        this.sorting = sorting;
+        this.sorting = sortingStr;
     }
 
     public void setSorting(String sortingStr) {
-        this.sorting = sorting;
+        this.sorting = sortingStr;
     }
 
     public String getSorting() {

@@ -17,7 +17,9 @@ import java.util.Date;
 public class NodeValue implements Serializable, Cloneable{
     @Id
     @DocumentId
-    private Object id ;
+    @Field
+    @Analyzer(impl = CodeAnalyzer.class)
+    private String id ;
 
     @Field
     @Analyzer(impl = CodeAnalyzer.class)
@@ -50,11 +52,11 @@ public class NodeValue implements Serializable, Cloneable{
     @Analyzer(impl = CJKAnalyzer.class)
     private String content ;
 
-    public NodeValue(Object id, String typeId, String userId, Date changed) {
+    public NodeValue(String id, String typeId, String userId, Date changed) {
         this(id, typeId, userId, userId, changed, changed, "created") ;
     }
 
-    public NodeValue(Object id, String typeId, String owner, String modifier, Date created, Date changed, String status) {
+    public NodeValue(String id, String typeId, String owner, String modifier, Date created, Date changed, String status) {
         this.id = id ;
         this.typeId = typeId ;
         this.owner = owner ;
@@ -75,7 +77,7 @@ public class NodeValue implements Serializable, Cloneable{
         this.typeId = typeId;
     }
 
-    public void setId(Object id) {
+    public void setId(String id) {
         this.id = id;
     }
 

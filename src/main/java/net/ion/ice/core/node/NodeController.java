@@ -145,7 +145,7 @@ public class NodeController {
     }
 
     private Object sequence(WebRequest request, String typeId) {
-        return JsonResponse.createValueResponse(nodeService.getSortedValue(typeId, "id", SortField.Type.LONG, true)) ;
+        return JsonResponse.createValueResponse(NodeUtils.getSequenceValue(typeId)) ;
     }
 
 

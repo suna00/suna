@@ -89,8 +89,6 @@ public class PropertiesFieldBridge implements FieldBridge {
 
     private void indexEntry(Map.Entry<String, Object> entry, Document document, LuceneOptions luceneOptions) {
         String pid  = entry.getKey() ;
-        if(pid.equals("id")) return  ;
-
         Object value = entry.getValue() ;
         if(value == null) return ;
         if(value instanceof Long){
@@ -142,16 +140,6 @@ public class PropertiesFieldBridge implements FieldBridge {
 //        luceneOptions.addFieldToDocument(entry.getKey().toString(), entry.getValue().toString(), document);
     }
 
-    public static org.apache.lucene.document.FieldType noAnalyzer() {
-        org.apache.lucene.document.FieldType fieldType = new org.apache.lucene.document.FieldType();
-        fieldType.setIndexOptions(IndexOptions.DOCS_AND_FREQS);
-        fieldType.setDocValuesType(DocValuesType.NONE);
-        fieldType.setStored(false);
-        fieldType.setTokenized(false);
-        fieldType.setOmitNorms(false);
-        fieldType.freeze();
-        return fieldType;
-    }
 
     public static org.apache.lucene.document.FieldType numericFieldType(PropertyType.ValueType valueType) {
         org.apache.lucene.document.FieldType fieldType = new org.apache.lucene.document.FieldType();

@@ -211,7 +211,6 @@ public class InfinispanRepositoryService {
         if(result == null || result.size() == 0) return null ;
         Node node = (Node) result.get(0);
         switch(field){
-            case "id" : return node.getId() ;
             case "changed" : return node.getChanged() ;
             default: return node.get(field) ;
         }

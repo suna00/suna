@@ -168,6 +168,13 @@
     "code" : [{"value" : "simple", "label" : "Simple Analyzer"}, {"value" : "standard", "label" : "Standard Analyzer"}, {"value" : "cjk", "label" : "CJK Analyzer"}, {"value" : "code", "label" : "Code Analyzer"}]
   },
   {
+    "id" : "propertyType@code",
+    "tid" : "propertyType",
+    "pid" : "code",
+    "propertyTypeName" : "Code List",
+    "valueType" : "ARRAY"
+  },
+  {
     "id" : "propertyType@referenceType",
     "tid" : "propertyType",
     "pid" : "referenceType",
