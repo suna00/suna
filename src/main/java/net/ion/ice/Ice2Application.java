@@ -12,6 +12,9 @@ import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.stagemonitor.core.Stagemonitor;
 import org.stagemonitor.web.servlet.spring.SpringBootWebPluginInitializer;
 
@@ -40,7 +43,16 @@ public class Ice2Application {
 		taskExecutor.setQueueCapacity(100);
 		return taskExecutor;
 	}
-
+	@Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurerAdapter() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+//                registry.addMapping("/api/auth/login").allowedOrigins("http://localhost:3000").allowedMethods("*").allowedHeaders("*");
+				registry.addMapping("/**").allowedHeaders("*").allowedMethods("*").allowCredentials(true);
+			}
+		};
+	}
 	@Component
     public static class StagemonitorEnabler implements EmbeddedServletContainerCustomizer {
         @Override
