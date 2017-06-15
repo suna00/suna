@@ -24,7 +24,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     public static final String ID_SEPERATOR = "@";
 
     @Id
-    private Object id ;
+    private String id ;
 
     @Field
     @FieldBridge(impl = PropertiesFieldBridge.class)
@@ -40,11 +40,11 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         properties = new Properties() ;
     }
 
-    public Node(Object id, String typeId){
+    public Node(String id, String typeId){
         this(id, typeId, ANONYMOUS) ;
     }
 
-    public Node(Object id, String typeId, String userId){
+    public Node(String id, String typeId, String userId){
         this.id = id ;
         properties = new Properties() ;
         this.properties.setId(id) ;
@@ -74,16 +74,40 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
     private void construct(Map<String, Object> data, String typeId, String userId) {
         properties = new Properties() ;
+        if(data.containsKey(ID)) {
+            this.id = data.get(ID).toString();
+        }
 
-        this.id = data.get(ID);
-        if(this.id == null || StringUtils.isEmpty(this.id.toString())){
-            List<String> idablePids = NodeUtils.getNodeType(typeId).getIdablePIds() ;
-            id = "" ;
-            for(int i = 0 ; i < idablePids.size(); i++){
-                this.id = (String)id + data.get(idablePids.get(i)) + (i < (idablePids.size() - 1) ? ID_SEPERATOR : "") ;
-            }
-            if(this.id == null || StringUtils.isEmpty(this.id.toString())) {
-                throw new RuntimeException("ID is NULL");
+        if(isNullId()){
+            List<PropertyType> idablePts = NodeUtils.getNodeType(typeId).getIdablePropertyTypes() ;
+            if(idablePts.size() > 1) {
+                id = "";
+                for (int i = 0; i < idablePts.size(); i++) {
+                    Object _id = data.get(idablePts.get(i).getPid());
+                    if (_id == null || StringUtils.isEmpty(_id.toString())) {
+                        throw new RuntimeException("ID is NULL");
+                    }
+                    this.id = (String) id + _id + (i < (idablePts.size() - 1) ? ID_SEPERATOR : "");
+                }
+            }else{
+                PropertyType idPropertyType = idablePts.get(0) ;
+                this.id = data.containsKey(idPropertyType.getPid())  ? data.get(idPropertyType.getPid()).toString() : null;
+                if(isNullId()){
+                    switch (idPropertyType.getIdType()){
+                        case UUID:{
+                            this.id = UUID.randomUUID().toString() ;
+                            data.put(idPropertyType.getPid(), this.id) ;
+                            break ;
+                        }
+                        case autoIncrement:{
+                            Long seq = NodeUtils.getSequenceValue(typeId) ;
+                            this.id = seq.toString() ;
+                            data.put(idPropertyType.getPid(), seq) ;
+                            break ;
+                        }
+                    }
+
+                }
             }
         }
 
@@ -93,6 +117,10 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         this.properties.setTypeId(typeId) ;
         this.changed = new Date() ;
         this.nodeValue = new NodeValue(id, typeId, userId, changed) ;
+    }
+
+    private boolean isNullId() {
+        return this.id == null || StringUtils.isEmpty(this.id.toString());
     }
 
     @Override
@@ -143,7 +171,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
     public void putAll(Map<? extends String, ?> m, String typeId) {
         NodeType nodeType = NodeUtils.getNodeType(typeId) ;
-        if(nodeType != null){
+        if(nodeType != null && nodeType.isInit()){
             properties.putAll(m, nodeType);
         }else{
             properties.putAll(m);
@@ -170,7 +198,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         return properties.entrySet();
     }
 
-    public Object getId() {
+    public String getId() {
         return id;
     }
 

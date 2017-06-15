@@ -42,6 +42,17 @@ public class NodeType {
         return ids ;
     }
 
+    public List<PropertyType> getIdablePropertyTypes() {
+        List<PropertyType> idPts = new ArrayList<>() ;
+        for(PropertyType pt : propertyTypes.values()){
+            if(pt.isIdable()){
+                idPts.add(pt) ;
+            }
+        }
+        return idPts ;
+    }
+
+
     public void addPropertyType(PropertyType propertyType) {
         if(propertyTypes == null){
             propertyTypes = new LinkedHashMap<>() ;
@@ -74,5 +85,9 @@ public class NodeType {
             }
         }
         return results ;
+    }
+
+    public boolean isInit(){
+        return this.propertyTypes != null && this.propertyTypes.size() > 0 ;
     }
 }

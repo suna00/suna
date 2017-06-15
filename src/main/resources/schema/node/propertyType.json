@@ -108,8 +108,9 @@
     "analyzer" : "code",
     "required" : true,
     "code" : [{"value" : "STRING", "label" : "String"}, {"value" : "INT", "label" : "Integer"}, {"value" : "LONG", "label" : "Long"}, {"value" : "DOUBLE", "label" : "double"},
-      {"value" : "BOOLEAN", "label" : "Boolean"}, {"value" : "DATE", "label" : "Date"}, {"value" : "TEXT", "label" : "Text"}, {"value" : "REFERENCE", "label" : "Reference"},
-      {"value" : "REFERENCED", "label" : "Referenced List"}]
+      {"value" : "BOOLEAN", "label" : "Boolean"}, {"value" : "DATE", "label" : "Date"}, {"value" : "TEXT", "label" : "Text"}, {"value" : "FILE", "label" : "File"},
+      {"value" : "REFERENCE", "label" : "Reference"},
+      {"value" : "REFERENCED", "label" : "Referenced List"}, {"value" : "ARRAY", "label" : "Data Array"}, {"value" : "OBJECT", "label" : "Data Object"}]
   },
   {
     "id" : "propertyType@idable",
@@ -168,6 +169,13 @@
     "code" : [{"value" : "simple", "label" : "Simple Analyzer"}, {"value" : "standard", "label" : "Standard Analyzer"}, {"value" : "cjk", "label" : "CJK Analyzer"}, {"value" : "code", "label" : "Code Analyzer"}]
   },
   {
+    "id" : "propertyType@code",
+    "tid" : "propertyType",
+    "pid" : "code",
+    "propertyTypeName" : "Code List",
+    "valueType" : "ARRAY"
+  },
+  {
     "id" : "propertyType@referenceType",
     "tid" : "propertyType",
     "pid" : "referenceType",
@@ -188,5 +196,13 @@
     "analyzer" : "code",
     "referenceType" : "propertyType",
     "parentValue" : "tid"
+  },
+  {
+    "id" : "propertyType@idType",
+    "tid" : "propertyType",
+    "pid" : "idType",
+    "propertyTypeName" : "ID Type",
+    "valueType" : "CODE",
+    "code" : [{"value" : "autoIncrement", "label" : "Auto Increment ID"}, {"value" : "UUID", "label" : "UUID"}]
   }
 ]

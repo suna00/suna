@@ -168,11 +168,11 @@ public class QueryContext{
     }
 
     public void setSorting(String sortingStr, NodeType nodeType) {
-        this.sorting = sorting;
+        this.sorting = sortingStr;
     }
 
     public void setSorting(String sortingStr) {
-        this.sorting = sorting;
+        this.sorting = sortingStr;
     }
 
     public String getSorting() {
@@ -324,5 +324,16 @@ public class QueryContext{
 
     public void setTreeable(boolean treeable){
         this.treeable = treeable ;
+    }
+
+    public static QueryContext makeQueryContextFromQuery(String query) {
+        try {
+            Map<String, Object> queryData = JsonUtils.parsingJsonToMap(query) ;
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null ;
     }
 }

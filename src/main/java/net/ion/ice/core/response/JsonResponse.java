@@ -14,7 +14,6 @@ public class JsonResponse implements Serializable{
     protected String result ;
     protected String resultMessage ;
 
-    protected Node item ;
 
     public static JsonResponse create(Node node){
         return new JsonObjectResponse(node) ;
@@ -48,5 +47,9 @@ public class JsonResponse implements Serializable{
 
     public String getResultMessage(){
         return resultMessage ;
+    }
+
+    public static JsonResponse createValueResponse(Object value) {
+        return new JsonValueResponse(value) ;
     }
 }

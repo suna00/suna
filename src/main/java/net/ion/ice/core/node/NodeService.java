@@ -7,6 +7,7 @@ import net.ion.ice.core.infinispan.QueryContext;
 import net.ion.ice.core.json.JsonUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.document.DateTools;
+import org.apache.lucene.search.SortField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +43,6 @@ public class NodeService {
             e.printStackTrace();
         }
 
-        NodeUtils.setNodeService(this) ;
-
         try {
             initNodeType(false);
         } catch (IOException e) {
@@ -58,20 +57,10 @@ public class NodeService {
         }
 
         if(typeId.equals("nodeType")){
-            try {
-                return getDefaultNodeType() ;
-            } catch (IOException e) {
-                logger.error("NODE TYPE INIT ERROR : ", e) ;
-                throw new RuntimeException("INIT ERROR") ;
-            }
+            return nodeType ;
         }else if(typeId.equals("propertyType")){
-            try {
-                return getDefaultPropertyType() ;
-            } catch (IOException e) {
-                throw new RuntimeException("INIT ERROR") ;
-            }
+            return propertyType ;
         }
-
 
         Node nodeTypeNode = infinispanRepositoryService.getNode("nodeType", typeId) ;
 
@@ -85,16 +74,10 @@ public class NodeService {
 
 
     public NodeType getDefaultNodeType() throws IOException {
-        if(nodeType == null){
-            initNodeType(true);
-        }
         return nodeType;
     }
 
     public NodeType getDefaultPropertyType() throws IOException {
-        if(propertyType == null){
-            initNodeType(true);
-        }
         return propertyType;
     }
 
@@ -257,5 +240,14 @@ public class NodeService {
     public Node read(String typeId, String id) {
         return infinispanRepositoryService.read(typeId, id) ;
 
+    }
+
+    public Object getSortedValue(String typeId, String pid, SortField.Type sortType, boolean reverse) {
+        return infinispanRepositoryService.getSortedValue(typeId, pid, sortType, reverse) ;
+    }
+
+    public QueryResult getQueryResult(String query) {
+        QueryContext queryContext = QueryContext.makeQueryContextFromQuery(query) ;
+        return null;
     }
 }

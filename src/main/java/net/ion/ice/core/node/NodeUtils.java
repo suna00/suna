@@ -1,14 +1,22 @@
 package net.ion.ice.core.node;
 
+import com.hazelcast.core.IAtomicLong;
+import net.ion.ice.ApplicationContextManager;
+import net.ion.ice.Ice2Application;
+import net.ion.ice.core.cluster.ClusterService;
 import net.ion.ice.core.infinispan.NotFoundNodeException;
 import net.ion.ice.core.infinispan.QueryContext;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
+import org.apache.lucene.search.SortField;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.thymeleaf.util.StringUtils;
 
 import java.text.ParseException;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * Created by jaehocho on 2017. 5. 17..
@@ -16,17 +24,15 @@ import java.util.*;
 public class NodeUtils {
 
     static NodeService nodeService ;
-
-    public static void setNodeService(NodeService nodeService) {
-        NodeUtils.nodeService = nodeService ;
-    }
-
     public static NodeService getNodeService(){
+        if(nodeService == null) {
+            nodeService =  ApplicationContextManager.getBean(NodeService.class);
+        }
         return nodeService ;
     }
 
     public static NodeType getNodeType(String typeId){
-        if(nodeService == null) return null ;
+        if(getNodeService() == null) return null ;
         return nodeService.getNodeType(typeId) ;
     }
 
@@ -147,6 +153,7 @@ public class NodeUtils {
 
     public static Code getReferenceValue(Object value, PropertyType pt) {
         try {
+            NodeService nodeService = getNodeService() ;
             Node refNode = nodeService.read(pt.getReferenceType(), value.toString());
             NodeType nodeType = nodeService.getNodeType(pt.getReferenceType());
             return new Code(refNode, nodeType);
@@ -208,5 +215,32 @@ public class NodeUtils {
             default:
                 return value ;
         }
+    }
+
+    static ClusterService clusterService ;
+
+    static ConcurrentMap<String, IAtomicLong> sequenceHolder = new ConcurrentHashMap<>() ;
+
+    public static Long getSequenceValue(String typeId) {
+        if(!sequenceHolder.containsKey(typeId)) {
+            Long max = (Long) getNodeService().getSortedValue(typeId, "id", SortField.Type.LONG, true);
+            IAtomicLong sequence = getClusterService().getSequence(typeId);
+            Long current = sequence.get() ;
+            if(max == null || max == 0){
+                sequence.set(100);
+            }else if (max > current) {
+                sequence.set(max + 10) ;
+            }
+            sequenceHolder.put(typeId, sequence) ;
+        }
+        IAtomicLong sequence = sequenceHolder.get(typeId) ;
+        return sequence.incrementAndGet() ;
+    }
+
+    public static ClusterService getClusterService(){
+        if(clusterService == null ) {
+            clusterService = ApplicationContextManager.getBean(ClusterService.class);
+        }
+        return clusterService ;
     }
 }

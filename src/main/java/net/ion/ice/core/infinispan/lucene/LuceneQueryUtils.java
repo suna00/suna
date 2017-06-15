@@ -73,16 +73,43 @@ public class LuceneQueryUtils {
         List<SortField> sorts = new ArrayList<SortField>();
         for (String sorting : sortings) {
             String sortField = StringUtils.substringBefore(sorting.trim(), " ").trim();
+            if(StringUtils.isEmpty(sortField)){
+                sortField = sorting ;
+            }
             String sortTypeStr = null;
             if (StringUtils.contains(sortField, "(")) {
-                sortTypeStr = StringUtils.substringBefore(sortField, "(").trim();
+                sortTypeStr = StringUtils.substringBefore(sortField, "(").trim().toUpperCase();
                 sortField = StringUtils.substringBetween(sortField, "(", ")");
+            }else{
+                sortTypeStr = queryContext.getNodetype().getPropertyType(sortField).getValueType().toString() ;
             }
-            String order = StringUtils.substringAfter(sorting.trim(), " ").trim();
+            String order = StringUtils.substringAfter(sorting, " ") ;
 
+            SortField.Type sortType = null ;
 
-            sorts.add(new SortField(order, sortTypeStr.equalsIgnoreCase("text") ? SortField.Type.STRING :
-                    sortTypeStr.equalsIgnoreCase("number") ? SortField.Type.LONG : (sortTypeStr.equalsIgnoreCase("double") ? SortField.Type.DOUBLE : SortField.Type.STRING), order.equalsIgnoreCase("desc") ? true : false));
+            switch (sortTypeStr){
+                case "STRING":case "TEXT":case "DATE":{
+                    sortType = SortField.Type.STRING ;
+                    break ;
+                }
+                case "LONG": {
+                    sortType = SortField.Type.LONG;
+                    break ;
+                }
+                case "INT" : {
+                    sortType = SortField.Type.INT ;
+                    break ;
+                }
+                case "DOUBLE" : {
+                    sortType = SortField.Type.DOUBLE ;
+                    break ;
+                }
+                default:
+                    sortType = SortField.Type.STRING ;
+                    break ;
+            }
+
+            sorts.add(new SortField(sortField, sortType, order.equalsIgnoreCase("desc") ? true : false));
         }
 
         Sort sort = new Sort(sorts.toArray(new SortField[sorts.size()]));
