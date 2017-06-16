@@ -1,6 +1,7 @@
 package net.ion.ice.security.auth.ajax;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import net.ion.ice.security.common.ErrorCode;
 import net.ion.ice.security.common.ErrorResponse;
 import net.ion.ice.security.common.JwtExpiredTokenException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,13 +35,13 @@ public class DefaultAuthenticationFailureHandler implements AuthenticationFailur
 		response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 		
 		if (e instanceof BadCredentialsException) {
-			mapper.writeValue(response.getWriter(), ErrorResponse.of("Invalid username or password", HttpStatus.UNAUTHORIZED, 100));
+			mapper.writeValue(response.getWriter(), ErrorResponse.of("Invalid username or password", HttpStatus.UNAUTHORIZED, ErrorCode.AUTHENTICATION));
 		} else if (e instanceof JwtExpiredTokenException) {
-			mapper.writeValue(response.getWriter(), ErrorResponse.of("Token has expired", HttpStatus.UNAUTHORIZED, 200));
+			mapper.writeValue(response.getWriter(), ErrorResponse.of("Token has expired", HttpStatus.UNAUTHORIZED, ErrorCode.JWT_TOKEN_EXPIRED));
 		} else if (e instanceof AuthenticationServiceException) {
-		    mapper.writeValue(response.getWriter(), ErrorResponse.of(e.getMessage(), HttpStatus.UNAUTHORIZED, 300));
+		    mapper.writeValue(response.getWriter(), ErrorResponse.of(e.getMessage(), HttpStatus.UNAUTHORIZED, ErrorCode.AUTHENTICATION));
 		}
 
-		mapper.writeValue(response.getWriter(), ErrorResponse.of("Authentication failed", HttpStatus.UNAUTHORIZED, 400));
+		mapper.writeValue(response.getWriter(), ErrorResponse.of("Authentication failed", HttpStatus.UNAUTHORIZED, ErrorCode.AUTHENTICATION));
 	}
 }

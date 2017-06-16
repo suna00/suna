@@ -10,16 +10,16 @@ public class ErrorResponse {
     private final HttpStatus status;
     private final String message;
     private final Date timestamp;
-    private final Integer code;
+    private final ErrorCode code;
 
-    protected ErrorResponse(final String message, HttpStatus status, Integer code) {
+    protected ErrorResponse(final String message, HttpStatus status, ErrorCode code) {
         this.message = message;
         this.status = status;
         this.timestamp = new Date();
         this.code = code;
     }
 
-    public static ErrorResponse of(final String message,  HttpStatus status, Integer code) {
+    public static ErrorResponse of(final String message,  HttpStatus status, ErrorCode code) {
         return new ErrorResponse(message, status, code);    }
 
 }
