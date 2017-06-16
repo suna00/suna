@@ -1,6 +1,6 @@
 package net.ion.ice.core.response;
 
-import net.ion.ice.core.node.QueryResult;
+import net.ion.ice.core.query.SimpleQueryResult;
 
 import java.util.Collection;
 
@@ -10,10 +10,10 @@ import java.util.Collection;
 public class JsonTreeResponse extends JsonResponse {
     protected Collection<?> items ;
 
-    public JsonTreeResponse(QueryResult queryResult) {
+    public JsonTreeResponse(SimpleQueryResult simpleQueryResult) {
         this.result = "200" ;
         this.resultMessage = "SUCCESS" ;
-        this.items = queryResult.getResultList() ;
+        this.items = simpleQueryResult.getResultList() ;
     }
     public Collection<?> getItems(){
         return items ;

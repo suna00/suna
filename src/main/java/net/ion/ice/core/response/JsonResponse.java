@@ -1,7 +1,7 @@
 package net.ion.ice.core.response;
 
 import net.ion.ice.core.node.Node;
-import net.ion.ice.core.node.QueryResult;
+import net.ion.ice.core.query.SimpleQueryResult;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -23,13 +23,13 @@ public class JsonResponse implements Serializable{
         return new JsonArrayResponse(list);
     }
 
-    public static JsonResponse create(QueryResult queryResult){
-        if(queryResult.isPaging()) {
-            return new JsonArrayPagingResponse(queryResult);
-        }else if(queryResult.isTree()){
-            return new JsonTreeResponse(queryResult) ;
+    public static JsonResponse create(SimpleQueryResult simpleQueryResult){
+        if(simpleQueryResult.isPaging()) {
+            return new JsonArrayPagingResponse(simpleQueryResult);
+        }else if(simpleQueryResult.isTree()){
+            return new JsonTreeResponse(simpleQueryResult) ;
         }else{
-            return new JsonArrayResponse(queryResult);
+            return new JsonArrayResponse(simpleQueryResult);
         }
     }
 

@@ -1,6 +1,6 @@
 package net.ion.ice.core.response;
 
-import net.ion.ice.core.node.QueryResult;
+import net.ion.ice.core.query.SimpleQueryResult;
 
 import java.util.Collection;
 
@@ -16,15 +16,15 @@ public class JsonArrayPagingResponse extends JsonResponse {
 
     protected Collection<?> items ;
 
-    public JsonArrayPagingResponse(QueryResult queryResult) {
+    public JsonArrayPagingResponse(SimpleQueryResult simpleQueryResult) {
         this.result = "200" ;
         this.resultMessage = "SUCCESS" ;
-        this.totalCount = queryResult.getTotalSize() ;
-        this.resultCount = queryResult.getResultList().size() ;
-        this.items = queryResult.getResultList() ;
-        this.pageSize = queryResult.getPageSize() ;
+        this.totalCount = simpleQueryResult.getTotalSize() ;
+        this.resultCount = simpleQueryResult.getResultList().size() ;
+        this.items = simpleQueryResult.getResultList() ;
+        this.pageSize = simpleQueryResult.getPageSize() ;
         this.pageCount = totalCount / getPageSize() + 1;
-        this.currentPage = queryResult.getCurrentPage() ;
+        this.currentPage = simpleQueryResult.getCurrentPage() ;
     }
 
     public Integer getPageSize() {
