@@ -3,6 +3,8 @@ package net.ion.ice.core.infinispan;
 import net.ion.ice.core.infinispan.lucene.LuceneQueryUtils;
 import net.ion.ice.core.infinispan.lucene.QueryType;
 import net.ion.ice.core.node.*;
+import net.ion.ice.core.query.QueryContext;
+import net.ion.ice.core.query.SimpleQueryResult;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.search.Sort;
 import org.apache.lucene.search.SortField;
@@ -125,7 +127,7 @@ public class InfinispanRepositoryService {
     }
 
 
-    public QueryResult getQueryTreeNodes(String typeId, QueryContext queryContext) {
+    public SimpleQueryResult getQueryTreeNodes(String typeId, QueryContext queryContext) {
         NodeType nodeType = queryContext.getNodetype() ;
         for(PropertyType pt : nodeType.getPropertyTypes()){
             if(pt.isTreeable()){
@@ -135,19 +137,19 @@ public class InfinispanRepositoryService {
                 for(Node node : result){
                     node.toDisplay();
                 }
-                return new QueryResult(result, subQueryContext) ;
+                return new SimpleQueryResult(result, subQueryContext) ;
             }
         }
         return null ;
     }
 
-    public QueryResult getQueryNodes(String typeId, QueryContext queryContext){
+    public SimpleQueryResult getQueryNodes(String typeId, QueryContext queryContext){
         queryContext.setIncludeReference(true);
         List<Node> result = getSubQueryNodes(typeId, queryContext) ;
         for(Node node : result){
             node.toDisplay();
         }
-        return new QueryResult(result, queryContext) ;
+        return new SimpleQueryResult(result, queryContext) ;
     }
 
 
@@ -184,6 +186,22 @@ public class InfinispanRepositoryService {
         return resultList;
     }
 
+    public List<Object> executeQuery(QueryContext queryContext){
+        Cache<String, Node> cache = getNodeCache(queryContext.getNodetype().getTypeId());
+
+        queryContext.setSearchManager(Search.getSearchManager(cache));
+
+        CacheQuery cacheQuery = null;
+        try {
+            cacheQuery = LuceneQueryUtils.makeQuery(queryContext);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        List<Object> list = cacheQuery.list();
+        queryContext.setResultSize(cacheQuery.getResultSize());
+        return list;
+    }
 
     public NodeValue getLastCacheNodeValue() {
         Cache<String, NodeValue> nodeValueCache = getNodeValueCache() ;

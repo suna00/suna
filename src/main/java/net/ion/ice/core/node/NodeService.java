@@ -2,9 +2,12 @@ package net.ion.ice.core.node;
 
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
-import net.ion.ice.core.infinispan.NotFoundNodeException;
-import net.ion.ice.core.infinispan.QueryContext;
+import net.ion.ice.core.query.QueryContext;
 import net.ion.ice.core.json.JsonUtils;
+import net.ion.ice.core.query.QueryResult;
+import net.ion.ice.core.query.SimpleQueryResult;
+import net.ion.ice.core.query.ResultField;
+import org.apache.avro.generic.GenericData;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.document.DateTools;
 import org.apache.lucene.search.SortField;
@@ -86,13 +89,16 @@ public class NodeService {
         return infinispanRepositoryService.getSubQueryNodes(typeId, queryContext) ;
     }
 
+    public List<Node> getNodeList(String typeId, QueryContext queryContext) {
+        return infinispanRepositoryService.getSubQueryNodes(typeId, queryContext) ;
+    }
 
-    public QueryResult getNodeList(String typeId, Map<String, String[]> parameterMap) {
+    public SimpleQueryResult getNodeList(String typeId, Map<String, String[]> parameterMap) {
         QueryContext queryContext = QueryContext.makeQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
         return infinispanRepositoryService.getQueryNodes(typeId, queryContext) ;
     }
 
-    public QueryResult getNodeTree(String typeId, Map<String, String[]> parameterMap) {
+    public SimpleQueryResult getNodeTree(String typeId, Map<String, String[]> parameterMap) {
         QueryContext queryContext = QueryContext.makeQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
         return infinispanRepositoryService.getQueryTreeNodes(typeId, queryContext) ;
     }
@@ -248,6 +254,36 @@ public class NodeService {
 
     public QueryResult getQueryResult(String query) {
         QueryContext queryContext = QueryContext.makeQueryContextFromQuery(query) ;
-        return null;
+        QueryResult queryResult = new QueryResult() ;
+        makeQueryResult(queryResult, queryContext, null);
+        return queryResult;
+    }
+
+    private QueryResult makeQueryResult(QueryResult queryResult, QueryContext queryContext, Object result) {
+        NodeType nodeType = queryContext.getNodetype() ;
+        Node node = null ;
+
+        if(result instanceof Node){
+            node = (Node) result;
+        }
+
+        for(ResultField resultField :  queryContext.getResultFields()){
+            if(resultField.getQueryContext() != null){
+                QueryContext subQueryContext = resultField.getQueryContext() ;
+                List<Object> resultList = infinispanRepositoryService.executeQuery(subQueryContext) ;
+                List<QueryResult> queryResults = new ArrayList<>(resultList.size()) ;
+                if(subQueryContext.getResultFields() != null){
+                    for(Object obj : resultList){
+                        queryResults.add(makeQueryResult(new QueryResult(), subQueryContext, obj)) ;
+                    }
+                }
+                queryResult.put(resultField.getFieldName(), queryResults) ;
+            }else if(node != null){
+                String fieldValue = resultField.getFieldValue() ;
+                fieldValue = fieldValue == null || StringUtils.isEmpty(fieldValue) ? resultField.getFieldName() : fieldValue ;
+                queryResult.put(resultField.getFieldName(), NodeUtils.getResultValue(node.get(fieldValue), nodeType.getPropertyType(fieldValue), node)) ;
+            }
+        }
+        return queryResult ;
     }
 }

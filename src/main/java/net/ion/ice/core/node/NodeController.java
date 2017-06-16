@@ -1,8 +1,9 @@
 package net.ion.ice.core.node;
 
 
+import net.ion.ice.core.query.QueryResult;
+import net.ion.ice.core.query.SimpleQueryResult;
 import net.ion.ice.core.response.JsonResponse;
-import org.apache.lucene.search.SortField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
@@ -95,8 +95,8 @@ public class NodeController {
 
     private Object list(WebRequest request, @PathVariable String typeId) {
         try {
-            QueryResult queryResult = nodeService.getNodeList(typeId, request.getParameterMap()) ;
-            return JsonResponse.create(queryResult) ;
+            SimpleQueryResult simpleQueryResult = nodeService.getNodeList(typeId, request.getParameterMap()) ;
+            return JsonResponse.create(simpleQueryResult) ;
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             if(e.getCause() instanceof ClassCastException){
@@ -122,8 +122,8 @@ public class NodeController {
 
     private Object tree(WebRequest request, @PathVariable String typeId) {
         try {
-            QueryResult queryResult = nodeService.getNodeTree(typeId, request.getParameterMap()) ;
-            return JsonResponse.create(queryResult) ;
+            SimpleQueryResult simpleQueryResult = nodeService.getNodeTree(typeId, request.getParameterMap()) ;
+            return JsonResponse.create(simpleQueryResult) ;
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             if(e.getCause() instanceof ClassCastException){
@@ -155,7 +155,7 @@ public class NodeController {
     private Object query(WebRequest request, String query) {
         try {
             QueryResult queryResult = nodeService.getQueryResult(query) ;
-            return JsonResponse.create(queryResult) ;
+            return queryResult ;
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             if(e.getCause() instanceof ClassCastException){
