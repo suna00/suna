@@ -201,6 +201,12 @@ public class NodeService {
         return node ;
     }
 
+    public Node deleteNode(String typeId, String id) {
+        Node node = infinispanRepositoryService.getNode(typeId, id) ;
+        infinispanRepositoryService.deleteNode(node) ;
+        return node ;
+    }
+
     public Node readNode(Map<String, String[]> parameterMap, String typeId, String id) {
         return readNode(typeId, id) ;
     }

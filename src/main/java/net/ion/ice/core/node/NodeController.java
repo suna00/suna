@@ -41,10 +41,10 @@ public class NodeController {
     }
 
 
-    @RequestMapping(value = "/node/{typeId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/node/{typeId}/{id}", method = RequestMethod.DELETE)
     @ResponseBody
-    public Object deleteRest(WebRequest request, @PathVariable String typeId) throws IOException {
-        return delete(request, typeId);
+    public Object deleteRest(WebRequest request, @PathVariable String typeId, @PathVariable String id) throws IOException {
+        return JsonResponse.create(nodeService.deleteNode(typeId, id)) ;
     }
 
     @RequestMapping(value = "/node/{typeId}/delete.json", method = RequestMethod.POST)
