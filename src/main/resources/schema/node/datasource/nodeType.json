@@ -1,0 +1,20 @@
+[
+  {
+  "tid" : "datasource",
+  "parentId" : "system",
+  "typeId" : "nodeType",
+  "repositoryType" : "node",
+  "typeName" : "Date Source"
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "datasource",
+    "pid" : "id",
+    "propertyTypeName" : "DS ID",
+    "valueType" : "STRING",
+    "idable" : true,
+    "indexable" : true,
+    "labelable" : false,
+    "required" : true
+  }
+]
