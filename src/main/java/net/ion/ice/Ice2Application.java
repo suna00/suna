@@ -53,19 +53,5 @@ public class Ice2Application {
 //			}
 //		};
 //	}
-	@Component
-    public static class StagemonitorEnabler implements EmbeddedServletContainerCustomizer {
-        @Override
-        public void customize(ConfigurableEmbeddedServletContainer container) {
-            container.addInitializers(new ServletContextInitializer() {
-                @Override
-                public void onStartup(ServletContext servletContext) throws ServletException {
-//                    이건 어디서 난거
-//                    new WebPlugin().onStartup(null, servletContext);
-
-                }
-            });
-        }
-    }
 
 }
