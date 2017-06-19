@@ -2,11 +2,15 @@ package net.ion.ice.core.node;
 
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
-import net.ion.ice.core.infinispan.NotFoundNodeException;
-import net.ion.ice.core.infinispan.QueryContext;
+import net.ion.ice.core.query.QueryContext;
 import net.ion.ice.core.json.JsonUtils;
+import net.ion.ice.core.query.QueryResult;
+import net.ion.ice.core.query.SimpleQueryResult;
+import net.ion.ice.core.query.ResultField;
+import org.apache.avro.generic.GenericData;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.document.DateTools;
+import org.apache.lucene.search.SortField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +46,6 @@ public class NodeService {
             e.printStackTrace();
         }
 
-        NodeUtils.setNodeService(this) ;
-
         try {
             initNodeType(false);
         } catch (IOException e) {
@@ -58,20 +60,10 @@ public class NodeService {
         }
 
         if(typeId.equals("nodeType")){
-            try {
-                return getDefaultNodeType() ;
-            } catch (IOException e) {
-                logger.error("NODE TYPE INIT ERROR : ", e) ;
-                throw new RuntimeException("INIT ERROR") ;
-            }
+            return nodeType ;
         }else if(typeId.equals("propertyType")){
-            try {
-                return getDefaultPropertyType() ;
-            } catch (IOException e) {
-                throw new RuntimeException("INIT ERROR") ;
-            }
+            return propertyType ;
         }
-
 
         Node nodeTypeNode = infinispanRepositoryService.getNode("nodeType", typeId) ;
 
@@ -85,16 +77,10 @@ public class NodeService {
 
 
     public NodeType getDefaultNodeType() throws IOException {
-        if(nodeType == null){
-            initNodeType(true);
-        }
         return nodeType;
     }
 
     public NodeType getDefaultPropertyType() throws IOException {
-        if(propertyType == null){
-            initNodeType(true);
-        }
         return propertyType;
     }
 
@@ -103,13 +89,16 @@ public class NodeService {
         return infinispanRepositoryService.getSubQueryNodes(typeId, queryContext) ;
     }
 
+    public List<Node> getNodeList(String typeId, QueryContext queryContext) {
+        return infinispanRepositoryService.getSubQueryNodes(typeId, queryContext) ;
+    }
 
-    public QueryResult getNodeList(String typeId, Map<String, String[]> parameterMap) {
+    public SimpleQueryResult getNodeList(String typeId, Map<String, String[]> parameterMap) {
         QueryContext queryContext = QueryContext.makeQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
         return infinispanRepositoryService.getQueryNodes(typeId, queryContext) ;
     }
 
-    public QueryResult getNodeTree(String typeId, Map<String, String[]> parameterMap) {
+    public SimpleQueryResult getNodeTree(String typeId, Map<String, String[]> parameterMap) {
         QueryContext queryContext = QueryContext.makeQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
         return infinispanRepositoryService.getQueryTreeNodes(typeId, queryContext) ;
     }
@@ -257,5 +246,44 @@ public class NodeService {
     public Node read(String typeId, String id) {
         return infinispanRepositoryService.read(typeId, id) ;
 
+    }
+
+    public Object getSortedValue(String typeId, String pid, SortField.Type sortType, boolean reverse) {
+        return infinispanRepositoryService.getSortedValue(typeId, pid, sortType, reverse) ;
+    }
+
+    public QueryResult getQueryResult(String query) {
+        QueryContext queryContext = QueryContext.makeQueryContextFromQuery(query) ;
+        QueryResult queryResult = new QueryResult() ;
+        makeQueryResult(queryResult, queryContext, null);
+        return queryResult;
+    }
+
+    private QueryResult makeQueryResult(QueryResult queryResult, QueryContext queryContext, Object result) {
+        NodeType nodeType = queryContext.getNodetype() ;
+        Node node = null ;
+
+        if(result instanceof Node){
+            node = (Node) result;
+        }
+
+        for(ResultField resultField :  queryContext.getResultFields()){
+            if(resultField.getQueryContext() != null){
+                QueryContext subQueryContext = resultField.getQueryContext() ;
+                List<Object> resultList = infinispanRepositoryService.executeQuery(subQueryContext) ;
+                List<QueryResult> queryResults = new ArrayList<>(resultList.size()) ;
+                if(subQueryContext.getResultFields() != null){
+                    for(Object obj : resultList){
+                        queryResults.add(makeQueryResult(new QueryResult(), subQueryContext, obj)) ;
+                    }
+                }
+                queryResult.put(resultField.getFieldName(), queryResults) ;
+            }else if(node != null){
+                String fieldValue = resultField.getFieldValue() ;
+                fieldValue = fieldValue == null || StringUtils.isEmpty(fieldValue) ? resultField.getFieldName() : fieldValue ;
+                queryResult.put(resultField.getFieldName(), NodeUtils.getResultValue(node.get(fieldValue), nodeType.getPropertyType(fieldValue), node)) ;
+            }
+        }
+        return queryResult ;
     }
 }

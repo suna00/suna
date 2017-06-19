@@ -2,11 +2,13 @@ package net.ion.ice.core.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.io.Resource;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -48,8 +50,26 @@ public class JsonUtils {
     }
 
     public static Collection<Map<String,Object>> parsingJsonResourceToList(Resource jsonFile) throws IOException {
-        return parsingJsonFileToList(jsonFile.getFile(), "UTF-8") ;
+        return parsingJsonStreamToList(jsonFile.getInputStream(), "UTF-8") ;
     }
+
+    public static Collection<Map<String,Object>> parsingJsonStreamToList(InputStream inputStream, String encoding) {
+        try {
+            String jsonString = IOUtils.toString(inputStream, encoding) ;
+            return parsingJsonToList(jsonString) ;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            if(inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                }
+            }
+        }
+        return null ;
+    }
+
     public static void writeJsonFile(File file, Object data) throws IOException {
         objectMapper.writeValue(file, data);
     }

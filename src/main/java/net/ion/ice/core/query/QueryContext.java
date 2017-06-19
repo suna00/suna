@@ -1,4 +1,4 @@
-package net.ion.ice.core.infinispan;
+package net.ion.ice.core.query;
 
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
@@ -19,24 +19,28 @@ import java.util.Map;
  * Created by jaeho on 2017. 4. 26..
  */
 public class QueryContext{
-    private NodeType nodeType ;
-    private List<QueryTerm> queryTerms ;
-    private SearchManager searchManager;
-    private String sorting;
-    private Integer pageSize ;
-    private Integer currentPage ;
-    private Integer maxSize;
-    private Integer resultSize ;
+    protected NodeType nodeType ;
+    protected List<QueryTerm> queryTerms ;
+    protected SearchManager searchManager;
+    protected String sorting;
+    protected Integer pageSize ;
+    protected Integer currentPage ;
+    protected Integer maxSize;
+    protected Integer resultSize ;
 
-    private boolean paging ;
+    protected boolean paging ;
 
-    private boolean includeReference ;
+    protected boolean includeReference ;
 
-    private boolean treeable ;
+    protected boolean treeable ;
 
+    protected List<ResultField> resultFields ;
 
     public QueryContext(NodeType nodeType) {
         this.nodeType = nodeType ;
+    }
+
+    public QueryContext() {
     }
 
     public static QueryContext makeQueryContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType) {
@@ -90,7 +94,7 @@ public class QueryContext{
         return queryContext ;
     }
 
-    public static void makeQueryTerm(NodeType nodeType, QueryContext queryContext, java.util.List<QueryTerm> queryTerms, String paramName, String value) {
+    public static void makeQueryTerm(NodeType nodeType, QueryContext queryContext, List<QueryTerm> queryTerms, String paramName, String value) {
         value = value.equals("@sysdate") ? new SimpleDateFormat("yyyyMMdd HHmmss").format(new Date()) : value.equals("@sysday") ? new SimpleDateFormat("yyyyMMdd").format(new Date()) : value;
 
         if(paramName.equals("page")){
@@ -127,9 +131,9 @@ public class QueryContext{
             } else if (paramName.contains("_")) {
                 String fieldId = StringUtils.substringBeforeLast(paramName, "_");
                 String method = StringUtils.substringAfterLast(paramName, "_") ;
-                QueryTerm queryTerm = makePropertyQueryTerm(nodeType, queryTerms, fieldId, method, value) ;
+                QueryTerm queryTerm = makePropertyQueryTerm(nodeType, fieldId, method, value) ;
                 if(queryTerm == null){
-                    queryTerm = makePropertyQueryTerm(nodeType, queryTerms, paramName, "matching", value) ;
+                    queryTerm = makePropertyQueryTerm(nodeType, paramName, "matching", value) ;
                 }
 
                 if(queryTerm != null ){
@@ -137,19 +141,12 @@ public class QueryContext{
                 }
 
             } else {
-                queryTerms.add( makePropertyQueryTerm(nodeType, queryTerms, paramName, "matching", value)) ;
+                queryTerms.add( makePropertyQueryTerm(nodeType, paramName, "matching", value)) ;
             }
 
         }
     }
 
-    public static QueryTerm makePropertyQueryTerm(NodeType nodeType, java.util.List<QueryTerm> queryTerms, String fieldId, String method, String value) {
-        PropertyType propertyType = (PropertyType) nodeType.getPropertyType(fieldId);
-        if(propertyType != null && propertyType.isIndexable()) {
-            return new QueryTerm(fieldId, propertyType.getLuceneAnalyzer(), method, value);
-        }
-        return null ;
-    }
 
     public void setQueryTerms(List<QueryTerm> queryTerms) {
         this.queryTerms = queryTerms;
@@ -168,11 +165,11 @@ public class QueryContext{
     }
 
     public void setSorting(String sortingStr, NodeType nodeType) {
-        this.sorting = sorting;
+        this.sorting = sortingStr;
     }
 
     public void setSorting(String sortingStr) {
-        this.sorting = sorting;
+        this.sorting = sortingStr;
     }
 
     public String getSorting() {
@@ -246,7 +243,7 @@ public class QueryContext{
 
     public static QueryContext makeQueryContextForReferenced(NodeType nodeType, PropertyType pt, Node node) {
         QueryContext queryContext = new QueryContext(nodeType) ;
-        java.util.List<QueryTerm> queryTerms = new ArrayList<>();
+        List<QueryTerm> queryTerms = new ArrayList<>();
 
         String refTypeId = pt.getReferenceType() ;
         NodeType refNodeType = NodeUtils.getNodeType(refTypeId) ;
@@ -257,11 +254,15 @@ public class QueryContext{
 
         List<String> idPids = refNodeType.getIdablePIds() ;
 
-        if(idPids == null || idPids.size() == 0){
-            throw new RuntimeException("REFERENCED NODE TYPE has No ID : " + nodeType.getTypeId() + "." + pt.getPid() + " = " + refTypeId) ;
+        if(idPids != null && idPids.size() > 1){
+            makeQueryTerm(refNodeType, queryContext, queryTerms, idPids.get(0), node.getId().toString());
         }
 
-        makeQueryTerm(refNodeType, queryContext, queryTerms, idPids.get(0), node.getId().toString());
+        for(PropertyType refPt : refNodeType.getPropertyTypes(PropertyType.ValueType.REFERENCE)){
+            if(nodeType.getTypeId().equals(refPt.getReferenceType())){
+                makeQueryTerm(refNodeType, queryContext, queryTerms, refPt.getPid(), node.getId().toString());
+            }
+        }
 
         queryContext.setQueryTerms(queryTerms);
         return queryContext ;
@@ -324,5 +325,96 @@ public class QueryContext{
 
     public void setTreeable(boolean treeable){
         this.treeable = treeable ;
+    }
+
+
+    public static QueryContext makeQueryContextFromQuery(String query) {
+        try {
+            Map<String, Object> queryData = JsonUtils.parsingJsonToMap(query) ;
+            QueryContext queryContext = new QueryContext() ;
+            for(String key : queryData.keySet()) {
+                queryContext.addResultField(new ResultField(key, makeQueryContextFromQueryData((Map<String, Object>) queryData.get(key))));
+            }
+            return queryContext ;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null ;
+    }
+
+    public static QueryContext makeQueryContextFromQueryData(Map<String, Object> queryData) {
+        QueryContext queryContext = null ;
+        if(queryData.containsKey("typeId")){
+            queryContext = new QueryContext(NodeUtils.getNodeType((String) queryData.get("typeId"))) ;
+        }else{
+            queryContext = new QueryContext() ;
+        }
+        for(String key : queryData.keySet()) {
+            if(key.equals("typeId")) continue ;
+
+            if (key.equals("q")) {
+                List<QueryTerm> queryTerms = makeNodeQueryTerms(queryData.get("q"), queryContext.getNodetype());
+                queryContext.setQueryTerms(queryTerms);
+            }else {
+                Object val = queryData.get(key) ;
+                if(val == null){
+                    queryContext.addResultField(new ResultField(key, key)) ;
+                }else if(val instanceof String){
+                    queryContext.addResultField(new ResultField(key, (String) val)) ;
+                }else if(val instanceof Map){
+                    queryContext.addResultField(new ResultField(key, makeQueryContextFromQueryData((Map<String, Object>) val))) ;
+                }
+            }
+        }
+        return queryContext ;
+    }
+
+    private void addResultField(ResultField resultField) {
+        if(this.resultFields == null){
+            this.resultFields = new ArrayList<>() ;
+        }
+        this.resultFields.add(resultField) ;
+    }
+
+    private static List<QueryTerm> makeNodeQueryTerms(Object q, NodeType nodeType) {
+
+        List<QueryTerm> queryTerms = new ArrayList<>();
+        if(q instanceof List){
+            for(Map<String, Object> _q : (List<Map<String, Object>>)q){
+                makeNodeQueryTerm(_q, nodeType, queryTerms) ;
+            }
+        }else if(q instanceof Map){
+            makeNodeQueryTerm((Map<String, Object>) q, nodeType, queryTerms) ;
+        }
+
+        return queryTerms ;
+    }
+
+    private static void makeNodeQueryTerm(Map<String, Object> q, NodeType nodeType, List<QueryTerm> queryTerms) {
+        if(q.size() == 1 && q.containsKey("method")){
+            QueryTerm queryTerm = makePropertyQueryTerm(nodeType, q.get("field").toString(), q.get("method").toString(), q.get("value").toString()) ;
+            if(queryTerm != null){
+                queryTerms.add(queryTerm) ;
+            }
+        }else{
+            for(String key : q.keySet()) {
+                QueryTerm queryTerm = makePropertyQueryTerm(nodeType, key, "matching", q.get(key).toString());
+                if(queryTerm != null){
+                    queryTerms.add(queryTerm) ;
+                }
+            }
+        }
+    }
+
+    public static QueryTerm makePropertyQueryTerm(NodeType nodeType, String fieldId, String method, String value) {
+        PropertyType propertyType = (PropertyType) nodeType.getPropertyType(fieldId);
+        if(propertyType != null && propertyType.isIndexable()) {
+            return new QueryTerm(fieldId, propertyType.getLuceneAnalyzer(), method, value);
+        }
+        return null ;
+    }
+
+    public List<ResultField> getResultFields() {
+        return resultFields;
     }
 }

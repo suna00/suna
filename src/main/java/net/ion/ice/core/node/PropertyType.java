@@ -15,11 +15,14 @@ import java.util.Map;
 public class PropertyType {
     public static final String PROPERTYTYPE = "propertyType";
     public static final String DEFAULT_VALUE = "defaultValue";
+    public static final String ID_TYPE = "idType";
+    public static final String VALUE_TYPE = "valueType";
+    public static final String REFERENCE_TYPE = "referenceType";
 
 
-
-    public enum ValueType { STRING, CODE, DATE, LONG, INT, DOUBLE, BOOLEAN, REFERENCED, REFERENCE, TEXT}
+    public enum ValueType { STRING, CODE, DATE, LONG, INT, DOUBLE, BOOLEAN, REFERENCED, REFERENCE, TEXT, ARRAY}
     public enum AnalyzerType {simple, code, whitespace, standard, cjk, korean}
+    public enum IdType {autoIncrement, UUID}
 
 
     public static final String INDEXABLE = "indexable";
@@ -87,16 +90,22 @@ public class PropertyType {
         return propertyTypeNode.getBooleanValue(IDABLE) ;
     }
 
+    public IdType getIdType() {
+        Object idType =  propertyTypeNode.get(ID_TYPE);
+        if(idType instanceof IdType) return (IdType) idType;
+        return IdType.valueOf((String) idType);
+    }
+
     public String getPid() {
         return propertyTypeNode.getStringValue(PID);
     }
 
     public ValueType getValueType(){
         try {
-            String valueTypeStr = (String) propertyTypeNode.get("valueType");
+            String valueTypeStr = (String) propertyTypeNode.get(VALUE_TYPE);
             return ValueType.valueOf(valueTypeStr);
         }catch(Exception e){
-            System.out.println("VALUE TYPE ERROR : " +  propertyTypeNode.get("valueType") ) ;
+            System.out.println("VALUE TYPE ERROR : " +  propertyTypeNode.get(VALUE_TYPE) ) ;
             System.out.println("VALUE TYPE ERROR : " +  propertyTypeNode) ;
         }
         return null ;
@@ -119,7 +128,7 @@ public class PropertyType {
     }
 
     public String getReferenceType() {
-        return propertyTypeNode.getStringValue("referenceType");
+        return propertyTypeNode.getStringValue(REFERENCE_TYPE);
 
     }
 

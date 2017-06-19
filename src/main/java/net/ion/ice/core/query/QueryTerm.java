@@ -1,4 +1,4 @@
-package net.ion.ice.core.infinispan;
+package net.ion.ice.core.query;
 
 import net.ion.ice.core.infinispan.lucene.AnalyzerFactory;
 import net.ion.ice.core.infinispan.lucene.CodeAnalyzer;

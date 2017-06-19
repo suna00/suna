@@ -2,13 +2,13 @@ package net.ion.ice.security.auth.ajax;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.ion.ice.security.User.UserContext;
+import net.ion.ice.security.common.CookieUtil;
 import net.ion.ice.security.token.JwtToken;
 import net.ion.ice.security.token.JwtTokenFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
@@ -24,11 +24,14 @@ import java.util.Map;
 public class DefaultAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
     private final ObjectMapper mapper;
     private final JwtTokenFactory tokenFactory;
+    private final CookieUtil cookieUtil;
+
 
     @Autowired
-    public DefaultAuthenticationSuccessHandler(final ObjectMapper mapper, final JwtTokenFactory tokenFactory) {
+    public DefaultAuthenticationSuccessHandler(final ObjectMapper mapper, final JwtTokenFactory tokenFactory, CookieUtil cookieUtil) {
         this.mapper = mapper;
         this.tokenFactory = tokenFactory;
+        this.cookieUtil = cookieUtil;
     }
 
     @Override
@@ -43,7 +46,11 @@ public class DefaultAuthenticationSuccessHandler implements AuthenticationSucces
         tokenMap.put("token", accessToken.getToken());
         tokenMap.put("refreshToken", refreshToken.getToken());
 
-        String session = request.getRequestedSessionId();
+        HttpSession session = request.getSession();
+        session.setAttribute("JWT-TOKEN", accessToken.getToken());
+
+        Integer maxAge = 60 * 60 * 1000; //60 minutes
+        cookieUtil.create(response, "JWT-TOKEN", accessToken.getToken(), true, maxAge, request.getServerName());
 
         response.setStatus(HttpStatus.OK.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);

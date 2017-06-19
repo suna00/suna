@@ -1,13 +1,14 @@
-package net.ion.ice.core.node;
+package net.ion.ice.core.query;
 
-import net.ion.ice.core.infinispan.QueryContext;
+import net.ion.ice.core.node.Node;
+import net.ion.ice.core.query.QueryContext;
 
 import java.util.List;
 
 /**
  * Created by jaeho on 2017. 5. 18..
  */
-public class QueryResult {
+public class SimpleQueryResult {
 
     private List<Node> resultList ;
 
@@ -16,7 +17,7 @@ public class QueryResult {
     private QueryContext queryContext ;
     private boolean tree;
 
-    public QueryResult(List nodes, QueryContext queryContext){
+    public SimpleQueryResult(List nodes, QueryContext queryContext){
         this.resultList = nodes ;
         this.queryContext = queryContext ;
         this.totalSize = queryContext.getResultSize() ;

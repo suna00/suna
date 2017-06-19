@@ -11,7 +11,7 @@ import java.util.Set;
  */
 public class Properties implements Map<String, Object>, Serializable, Cloneable {
     private Map<String, Object> values ;
-    private transient Object id;
+    private transient String id;
     private transient String typeId ;
 
     public Properties(){
@@ -79,7 +79,7 @@ public class Properties implements Map<String, Object>, Serializable, Cloneable 
         return values.entrySet();
     }
 
-    public void setId(Object id) {
+    public void setId(String id) {
         this.id = id;
     }
 
