@@ -52,9 +52,9 @@
         Logstash TCP Appender added 14JUN17
         ref : https://github.com/logstash/logstash-logback-encoder
     -->
-    <appender name="STASH" class="net.logstash.logback.appender.LogstashAccessTcpSocketAppender">
+    <appender name="STASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
         <destination>125.131.88.156:5000</destination>
-        <encoder class="net.logstash.logback.encoder.LogstashAccessEncoder" />
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
         <reconnectionDelay>1 second</reconnectionDelay>
     </appender>
 

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="STASHACCESS" class="net.logstash.logback.appender.LogstashAccessTcpSocketAppender">
+        <destination>125.131.88.156:5001</destination>
+        <encoder class="net.logstash.logback.encoder.LogstashAccessEncoder" />
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="STASHACCESS" />
+    </root>
+</configuration>
