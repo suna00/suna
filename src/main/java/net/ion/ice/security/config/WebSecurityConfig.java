@@ -1,6 +1,7 @@
 package net.ion.ice.security.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hazelcast.web.WebFilter;
 import net.ion.ice.security.RestAuthenticationEntryPoint;
 import net.ion.ice.security.auth.ajax.DefaultAuthenticationProvider;
 import net.ion.ice.security.auth.ajax.LoginProcessingFilter;
@@ -44,6 +45,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private DefaultAuthenticationProvider authenticationProvider;
     @Autowired
     private JwtAuthenticationProvider jwtAuthenticationProvider;
+    @Autowired
+    private WebFilter webFilter;
+
 
     @Autowired
     private TokenExtractor tokenExtractor;
@@ -103,6 +107,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(TOKEN_BASED_AUTH_ENTRY_POINT).authenticated() // Protected API End-points
                 .and()
+                .addFilterBefore(webFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(buildAjaxLoginProcessingFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(buildJwtTokenAuthenticationProcessingFilter(), UsernamePasswordAuthenticationFilter.class);
     }
