@@ -1,6 +1,7 @@
 package net.ion.ice.security.auth.ajax;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hazelcast.web.WebFilter;
 import net.ion.ice.security.User.UserContext;
 import net.ion.ice.security.common.CookieUtil;
 import net.ion.ice.security.token.JwtToken;
@@ -34,11 +35,11 @@ public class DefaultAuthenticationSuccessHandler implements AuthenticationSucces
         this.cookieUtil = cookieUtil;
     }
 
+
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
         UserContext userContext = (UserContext) authentication.getPrincipal();
-
         JwtToken accessToken = tokenFactory.createAccessJwtToken(userContext);
         JwtToken refreshToken = tokenFactory.createRefreshToken(userContext);
 
@@ -46,14 +47,21 @@ public class DefaultAuthenticationSuccessHandler implements AuthenticationSucces
         tokenMap.put("token", accessToken.getToken());
         tokenMap.put("refreshToken", refreshToken.getToken());
 
+
+//        HazelcastRequestWrapper hazelcastRequestWrapper = new HazelcastRequestWrapper(request, response);
+//        HttpSession session = hazelcastRequestWrapper.getSession();
+
         HttpSession session = request.getSession();
         session.setAttribute("JWT-TOKEN", accessToken.getToken());
 
-        Integer maxAge = 60 * 60 * 1000; //60 minutes
-        cookieUtil.create(response, "JWT-TOKEN", accessToken.getToken(), true, maxAge, request.getServerName());
+//        System.out.println("sessionID::::\t" +  ((HazelcastHttpSession) session).getOriginalSessionId());
+        System.out.println("original_sessionID::::\t" + session.getId());
 
+//        Integer maxAge = 60 * 60 * 1000; //60 minutes
+//        cookieUtil.create(response, "JWT-TOKEN", accessToken.getToken(), false, maxAge, request.getServerName());
         response.setStatus(HttpStatus.OK.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         mapper.writeValue(response.getWriter(), tokenMap);
     }
+
 }

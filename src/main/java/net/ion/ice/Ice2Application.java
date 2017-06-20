@@ -43,16 +43,6 @@ public class Ice2Application {
 		taskExecutor.setQueueCapacity(100);
 		return taskExecutor;
 	}
-//	@Bean
-//	public WebMvcConfigurer corsConfigurer() {
-//		return new WebMvcConfigurerAdapter() {
-//			@Override
-//			public void addCorsMappings(CorsRegistry registry) {
-////                registry.addMapping("/api/auth/login").allowedOrigins("http://localhost:3000").allowedMethods("*").allowedHeaders("*");
-//				registry.addMapping("/**").allowedHeaders("*").allowedMethods("*").allowCredentials(true).allowedOrigins("http://localhost:3000");
-//			}
-//		};
-//	}
 	@Component
     public static class StagemonitorEnabler implements EmbeddedServletContainerCustomizer {
         @Override

@@ -78,7 +78,7 @@ public class SessionConfiguration {
         replicatedMapConfig.setAsyncFillup(true);
 
         replicatedMapConfig.setInMemoryFormat( InMemoryFormat.BINARY );
-
+        config.setProperty("hazelcast.rest.enabled", "true");
 
         return config;
     }
