@@ -75,6 +75,8 @@ dependencies {
     compile('com.fasterxml.jackson.core:jackson-databind:2.8.6+')
 	compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.8.6+')
 	compile('com.hazelcast:hazelcast-all:3.8+')
+
+	compile ('ch.qos.logback:logback-access:1.2.3')
 	compile('net.logstash.logback:logstash-logback-encoder:4.8+')
 	compile('org.infinispan:infinispan-embedded:8.2.6.Final')
 	compile('org.infinispan:infinispan-query:8.2.6.Final')
