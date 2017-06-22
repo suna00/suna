@@ -1,0 +1,10 @@
+[
+  {
+    "typeId" : "datasource",
+    "id" : "testDb",
+    "dsName" : "Test DB (ION)",
+    "dbType" : "mysql",
+    "username" : "ice2",
+    "password" : "ice2"
+  }
+]

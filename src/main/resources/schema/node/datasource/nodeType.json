@@ -43,6 +43,17 @@
   {
     "typeId" : "propertyType",
     "tid" : "datasource",
+    "pid" : "jdbcUrl",
+    "propertyTypeName" : "JDBC URL",
+    "valueType" : "STRING",
+    "idable" : false,
+    "indexable" : false,
+    "labelable" : false,
+    "required" : true
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "datasource",
     "pid" : "username",
     "propertyTypeName" : "User Name",
     "valueType" : "STRING",

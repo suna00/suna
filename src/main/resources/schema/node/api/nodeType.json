@@ -1,5 +1,12 @@
 [
   {
+    "tid" : "apiCategory",
+    "parentId" : "system",
+    "typeId" : "nodeType",
+    "repositoryType" : "node",
+    "typeName" : "API Category Configuration"
+  },
+  {
   "tid" : "api",
   "parentId" : "system",
   "typeId" : "nodeType",
@@ -8,12 +15,80 @@
   },
   {
     "typeId" : "propertyType",
-    "tid" : "api",
+    "tid" : "apiCategory",
     "pid" : "id",
-    "propertyTypeName" : "DS ID",
+    "propertyTypeName" : "API Category ID",
     "valueType" : "STRING",
     "idable" : true,
     "indexable" : true,
+    "labelable" : false,
+    "required" : true
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "apiCategory",
+    "pid" : "categoryName",
+    "propertyTypeName" : "API Category Name",
+    "valueType" : "STRING",
+    "idable" : false,
+    "indexable" : true,
+    "labelable" : true,
+    "required" : true
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "api",
+    "pid" : "category",
+    "propertyTypeName" : "API Category",
+    "valueType" : "STRING",
+    "idable" : true,
+    "indexable" : true,
+    "labelable" : false,
+    "required" : true,
+    "referenceType" : "apiCategory"
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "api",
+    "pid" : "id",
+    "propertyTypeName" : "API ID",
+    "valueType" : "STRING",
+    "idable" : true,
+    "indexable" : true,
+    "labelable" : false,
+    "required" : true
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "api",
+    "pid" : "apiName",
+    "propertyTypeName" : "API Name",
+    "valueType" : "STRING",
+    "idable" : false,
+    "indexable" : true,
+    "labelable" : true,
+    "required" : true
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "api",
+    "pid" : "method",
+    "propertyTypeName" : "Method",
+    "valueType" : "CODE",
+    "idable" : false,
+    "indexable" : true,
+    "labelable" : false,
+    "required" : true,
+    "code" : [{"value" : "POST", "label" : "POST"}, {"value" : "GET", "label" : "GET"}, {"value" : "PUT", "label" : "PUT"}, {"value" : "DELETE", "label" : "DELETE"}, {"value" : "MULTIPART", "label" : "MULTIPART"}]
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "api",
+    "pid" : "apiConfig",
+    "propertyTypeName" : "API Configuration",
+    "valueType" : "JSON",
+    "idable" : false,
+    "indexable" : false,
     "labelable" : false,
     "required" : true
   }
