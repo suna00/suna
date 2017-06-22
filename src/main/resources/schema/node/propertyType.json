@@ -298,5 +298,21 @@
     "referenceType": "",
     "referenceValue": "",
     "code": [{"value": "autoIncrement", "label": "Auto Increment ID"}, {"value": "UUID", "label": "UUID"}]
+  },
+  {
+    "tid": "propertyType",
+    "id": "propertyType@validationTypes",
+    "pid": "validationTypes",
+    "propertyTypeName": "Validation",
+    "valueType": "OBJECT",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
   }
+
 ]

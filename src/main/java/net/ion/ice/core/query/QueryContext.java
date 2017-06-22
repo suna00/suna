@@ -256,11 +256,11 @@ public class QueryContext{
 
         if(idPids != null && idPids.size() > 1){
             makeQueryTerm(refNodeType, queryContext, queryTerms, idPids.get(0), node.getId().toString());
-        }
-
-        for(PropertyType refPt : refNodeType.getPropertyTypes(PropertyType.ValueType.REFERENCE)){
-            if(nodeType.getTypeId().equals(refPt.getReferenceType())){
-                makeQueryTerm(refNodeType, queryContext, queryTerms, refPt.getPid(), node.getId().toString());
+        }else {
+            for (PropertyType refPt : refNodeType.getPropertyTypes(PropertyType.ValueType.REFERENCE)) {
+                if (nodeType.getTypeId().equals(refPt.getReferenceType())) {
+                    makeQueryTerm(refNodeType, queryContext, queryTerms, refPt.getPid(), node.getId().toString());
+                }
             }
         }
 
