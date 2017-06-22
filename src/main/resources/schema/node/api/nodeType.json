@@ -1,0 +1,20 @@
+[
+  {
+  "tid" : "api",
+  "parentId" : "system",
+  "typeId" : "nodeType",
+  "repositoryType" : "node",
+  "typeName" : "API Configuration"
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "api",
+    "pid" : "id",
+    "propertyTypeName" : "DS ID",
+    "valueType" : "STRING",
+    "idable" : true,
+    "indexable" : true,
+    "labelable" : false,
+    "required" : true
+  }
+]
