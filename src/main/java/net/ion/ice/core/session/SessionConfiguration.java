@@ -14,6 +14,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 
 import java.io.File;
@@ -109,7 +110,6 @@ public class SessionConfiguration {
      */
     @Bean
     public WebFilter webFilter(HazelcastInstance hazelcastInstance) {
-
         Properties properties = new Properties();
         properties.put("instance-name", hazelcastInstance.getName());
         properties.put("sticky-session", "false");

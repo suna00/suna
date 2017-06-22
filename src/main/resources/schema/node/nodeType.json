@@ -1,26 +1,38 @@
 [
   {
+    "parentId" : "root",
     "typeId" : "nodeType",
     "id" : "system",
     "tid" : "system",
-    "parentId" : "root",
+    "typeName" : "System",
     "repositoryType" : "path",
-    "typeName" : "System Node Type"
+    "eviction" : 0
   },
   {
+    "parentId" : "system",
+    "typeId" : "nodeType",
     "id" : "nodeType",
     "tid" : "nodeType",
-    "parentId" : "system",
+    "typeName" : "NodeType",
     "repositoryType" : "node",
-    "typeName" : "Node Type",
     "eviction" : 1000
   },
   {
+    "parentId" : "system",
+    "typeId" : "nodeType",
     "id" : "propertyType",
     "tid" : "propertyType",
-    "parentId" : "system",
+    "typeName" : "PropertyType",
     "repositoryType" : "node",
-    "typeName" : "Property Type",
     "eviction" : 10000
+  },
+  {
+    "parentId" : "system",
+    "typeId" : "nodeType",
+    "id" : "dataSource",
+    "tid" : "dataSource",
+    "typeName" : "DataSource",
+    "repositoryType" : "node",
+    "eviction" : 10
   }
 ]

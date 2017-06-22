@@ -27,6 +27,16 @@ public class JwtAuthenticationToken extends AbstractAuthenticationToken {
     }
 
     @Override
+    public Collection<GrantedAuthority> getAuthorities() {
+        return super.getAuthorities();
+    }
+
+    @Override
+    public boolean isAuthenticated() {
+        return super.isAuthenticated();
+    }
+
+    @Override
     public void setAuthenticated(boolean authenticated) {
         if (authenticated) {
             throw new IllegalArgumentException(

@@ -1,12 +1,5 @@
 [
   {
-  "tid" : "datasource",
-  "parentId" : "system",
-  "typeId" : "nodeType",
-  "repositoryType" : "node",
-  "typeName" : "Date Source"
-  },
-  {
     "typeId" : "propertyType",
     "tid" : "datasource",
     "pid" : "id",
