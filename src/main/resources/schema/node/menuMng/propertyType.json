@@ -1,5 +1,6 @@
 [
   {
+    "typeId" : "propertyType",
     "tid": "adminGnbMenu",
     "id": "adminGnbMenu@backOffice",
     "pid": "backOffice",
@@ -13,9 +14,18 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
-    "code": [{"value": "cm", "label": "Content Manager"},{"value": "sm", "label": "Service Manager"}]
+    "code": [{"value": "cm", "label": "Content Manager"},{"value": "sm", "label": "Service Manager"}],
+    "validationTypes": {
+      "required": { "value": true, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
   },
   {
+    "typeId" : "propertyType",
     "tid": "adminGnbMenu",
     "id": "adminGnbMenu@id",
     "pid": "id",
@@ -31,6 +41,7 @@
     "referenceValue": ""
   },
   {
+    "typeId" : "propertyType",
     "tid": "adminGnbMenu",
     "id": "adminGnbMenu@name",
     "pid": "name",
@@ -46,6 +57,7 @@
     "referenceValue": ""
   },
   {
+    "typeId" : "propertyType",
     "tid": "adminGnbMenu",
     "id": "adminGnbMenu@order",
     "pid": "order",
@@ -62,6 +74,7 @@
     "defaultValue": 0
   },
   {
+    "typeId" : "propertyType",
     "tid": "adminGnbMenu",
     "id": "adminGnbMenu@active",
     "pid": "active",

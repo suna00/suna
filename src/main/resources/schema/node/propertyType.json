@@ -1,5 +1,6 @@
 [
   {
+    "typeId" : "propertyType",
     "tid": "nodeType",
     "id": "nodeType@parentId",
     "pid": "parentId",
@@ -15,6 +16,7 @@
     "referenceValue": ""
   },
   {
+    "typeId" : "propertyType",
     "tid": "nodeType",
     "id": "nodeType@tid",
     "pid": "tid",
@@ -30,6 +32,7 @@
     "referenceValue": ""
   },
   {
+    "typeId" : "propertyType",
     "tid": "nodeType",
     "id": "nodeType@repositoryType",
     "pid": "repositoryType",
@@ -46,6 +49,7 @@
     "code": [{"value": "node", "label": "Node"}, {"value": "data", "label": "Data"}, {"value": "logic", "label": "Logic"}, {"value": "path", "label": "Path"}]
   },
   {
+    "typeId" : "propertyType",
     "tid": "nodeType",
     "id": "nodeType@typeName",
     "pid": "typeName",
@@ -61,6 +65,7 @@
     "referenceValue": ""
   },
   {
+    "typeId" : "propertyType",
     "tid": "nodeType",
     "id": "nodeType@eviction",
     "pid": "eviction",
@@ -77,6 +82,7 @@
     "defaultValue": 10000
   },
   {
+    "typeId" : "propertyType",
     "tid": "nodeType",
     "id": "nodeType@propertyTypes",
     "pid": "propertyTypes",
