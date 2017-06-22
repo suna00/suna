@@ -50,9 +50,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private DefaultAuthenticationProvider authenticationProvider;
     @Autowired
     private JwtAuthenticationProvider jwtAuthenticationProvider;
-    @Autowired
-    private WebFilter webFilter;
-
 
     @Autowired
     private DefaultLogoutHandler defaultLogoutHandler;
