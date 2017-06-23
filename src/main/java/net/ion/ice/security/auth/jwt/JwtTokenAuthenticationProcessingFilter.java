@@ -33,27 +33,43 @@ public class JwtTokenAuthenticationProcessingFilter extends AbstractAuthenticati
         this.jwtConfig = jwtConfig;
     }
 
+    /*
+     * -->JwtAuthenticationProvider
+     */
     @Override
-    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
-            throws AuthenticationException, IOException, ServletException {
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
         String tokenPayload = request.getHeader(jwtConfig.getHeadString());
         RawAccessJwtToken token = new RawAccessJwtToken(tokenExtractor.extract(tokenPayload));
-        return getAuthenticationManager().authenticate(new JwtAuthenticationToken(token));
+        Object sessionToken;
+        try{
+            if(request.getSession().getAttribute("JWT-TOKEN").equals(token));
+            sessionToken = request.getSession().getAttribute("JWT-TOKEN");
+        } catch (NullPointerException ex) {
+            throw new NullPointerException("Token is not exist in session");
+        }
+        return getAuthenticationManager().authenticate(new JwtAuthenticationToken((RawAccessJwtToken) sessionToken));
     }
 
     @Override
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
-                                            Authentication authResult) throws IOException, ServletException {
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
         SecurityContext context = SecurityContextHolder.createEmptyContext();
         context.setAuthentication(authResult);
         SecurityContextHolder.setContext(context);
+
         chain.doFilter(request, response);
     }
 
     @Override
-    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
-                                              AuthenticationException failed) throws IOException, ServletException {
+    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
         SecurityContextHolder.clearContext();
         failureHandler.onAuthenticationFailure(request, response, failed);
+    }
+
+    public Object getSessionToken(HttpServletRequest request) throws AuthenticationException {
+        try {
+            return request.getSession().getAttribute("JWT-TOKEN");
+        } catch (NullPointerException ex) {
+            throw new NullPointerException("Token is not exist in session");
+        }
     }
 }

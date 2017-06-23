@@ -19,6 +19,9 @@ public class RawAccessJwtToken implements JwtToken {
     public Jws<Claims> parseClaims(String signingKey) {
         try {
             return Jwts.parser().setSigningKey(signingKey).parseClaimsJws(this.token);
+        } catch (NullPointerException ex) {
+            logger.error("Session JWT Token not Exist", ex);
+            throw new NullPointerException("Session JWT Token not Exist");
         } catch (UnsupportedJwtException | MalformedJwtException | IllegalArgumentException | SignatureException ex) {
             logger.error("Invalid JWT Token", ex);
             throw new BadCredentialsException("Invalid JWT token: ", ex);

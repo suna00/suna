@@ -23,6 +23,7 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
         this.jwtConfig = jwtConfig;
     }
 
+    // --> successfulAuthentication
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         RawAccessJwtToken rawAccessToken = (RawAccessJwtToken) authentication.getCredentials();

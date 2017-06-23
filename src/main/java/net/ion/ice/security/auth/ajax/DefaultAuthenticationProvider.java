@@ -21,6 +21,7 @@ public class DefaultAuthenticationProvider implements AuthenticationProvider {
         this.encoder = encoder;
     }
 
+
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         Assert.notNull(authentication, "No authentication data provided");
