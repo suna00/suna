@@ -31,9 +31,13 @@ public class EmbeddedTomcatConfig implements EmbeddedServletContainerCustomizer 
                 if(useLogbackValve) {
                     LogbackValve logbackValve = new LogbackValve();
                     LogstashAccessTcpSocketAppender logstashAccessAppender = new LogstashAccessTcpSocketAppender();
-                    logstashAccessAppender.addDestination("125.131.88.156:5000");
-                    logstashAccessAppender.setEncoder(new LogstashAccessEncoder());
+                    logstashAccessAppender.addDestination("125.131.88.156:5001");
+                    LogstashAccessEncoder lae = new LogstashAccessEncoder();
+                    lae.setWriteVersionAsString(true);
+                    logstashAccessAppender.setEncoder(lae);
                     logbackValve.addAppender(logstashAccessAppender);
+                    logbackValve.setAsyncSupported(true);
+
                     factory.addContextValves(logbackValve);
                 }
 
@@ -42,6 +46,21 @@ public class EmbeddedTomcatConfig implements EmbeddedServletContainerCustomizer 
                 accessLogValve.setPattern("common");
                 accessLogValve.setSuffix(".log");
                 factory.addContextValves(accessLogValve);
+
+
+                // debugging
+
+                logger.info("============================================================");
+                logger.info("==================== Context Valves ========================");
+                logger.info("============================================================");
+                factory.getContextValves().stream().forEach(v -> {
+                    logger.info("context valve :: " + v.getClass().getName());
+                });
+                logger.info("============================================================");
+                logger.info("============================================================");
+                logger.info("============================================================");
+
+
 
             } else {
                 logger.error("WARNING! this customizer does not support your configured container");
