@@ -58,7 +58,6 @@
         <reconnectionDelay>1 second</reconnectionDelay>
     </appender>
 
-
     <!-- INFO 레벨 이하 로그를 콘솔 및 파일로 출력 -->
     <root level="INFO">
         <appender-ref ref="TEXT_CONSOLE"/>
