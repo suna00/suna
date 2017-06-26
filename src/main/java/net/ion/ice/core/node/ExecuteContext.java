@@ -1,5 +1,7 @@
 package net.ion.ice.core.node;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import net.ion.ice.core.json.JsonUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
@@ -36,7 +38,11 @@ public class ExecuteContext {
                 value = values[0];
             }
 
-            data.put(paramName, value);
+            if (value != null && JsonUtils.isJson(value)) {
+                data.put(paramName, JsonUtils.parsingJsonToObject(value));
+            } else {
+                data.put(paramName, value);
+            }
         }
 
         ctx.setData(data);

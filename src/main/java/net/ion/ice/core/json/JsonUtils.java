@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 
 import java.io.File;
@@ -17,8 +19,31 @@ import java.util.Map;
  * Created by jaehocho on 2017. 2. 11..
  */
 public class JsonUtils {
+    private static Logger logger = LoggerFactory.getLogger(JsonUtils.class);
     private static ObjectMapper objectMapper = new ObjectMapper();
 
+    public static boolean isJson(String jsonString) {
+        try {
+            objectMapper.readTree(jsonString);
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
+    public static Object parsingJsonToObject(String jsonString) {
+        Object result = null;
+        try {
+            if (isList(jsonString)) {
+                result = parsingJsonToList(jsonString);
+            } else {
+                result = parsingJsonToMap(jsonString);
+            }
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+        return result;
+    }
 
     public static List<Map<String,Object>> parsingJsonToList(String jsonString) throws IOException {
         return objectMapper.readValue(jsonString, List.class);
