@@ -51,6 +51,7 @@ public class NodeService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        this.nodeTypeCache = new ConcurrentHashMap<>() ;
     }
 
 
@@ -148,7 +149,10 @@ public class NodeService {
                 for(File f : dir.listFiles((File f) -> {return f.getName().equals("nodeType.json");})){
                     fileNodeSave(lastChanged, f);
                 }
-                for(File f : dir.listFiles((File f) -> {return f.getName().endsWith(".json") && !f.getName().equals("nodeType.json");})){
+                for(File f : dir.listFiles((File f) -> {return f.getName().equals("propertyType.json");})){
+                    fileNodeSave(lastChanged, f);
+                }
+                for(File f : dir.listFiles((File f) -> {return f.getName().endsWith(".json") && !(f.getName().equals("nodeType.json") || f.getName().equals("propertyType.json"));})){
                     fileNodeSave(lastChanged, f);
                 }
             }

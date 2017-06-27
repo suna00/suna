@@ -1,0 +1,18 @@
+[
+  {
+    "typeId" : "adminGnbMenu",
+    "backOffice": "admin",
+    "id": "dashboard",
+    "name": "Dashboard",
+    "order": "10",
+    "active": "true"
+  },
+  {
+    "typeId" : "adminGnbMenu",
+    "backOffice": "admin",
+    "id": "configMng",
+    "name": "설정 관리",
+    "order": "100",
+    "active": "true"
+  }
+]

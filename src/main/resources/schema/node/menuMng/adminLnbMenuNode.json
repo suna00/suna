@@ -1,0 +1,20 @@
+[
+  {
+    "typeId" : "adminLnbMenu",
+    "backOffice": "admin",
+    "gnbId": "configMng",
+    "id": "groupCode",
+    "name": "그룹코드 관리",
+    "order": "10",
+    "active": "true"
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOffice": "admin",
+    "gnbId": "configMng",
+    "id": "code",
+    "name": "코드 관리",
+    "order": "20",
+    "active": "true"
+  }
+]
