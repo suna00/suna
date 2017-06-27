@@ -1,0 +1,29 @@
+[
+  {
+    "parentId" : "root",
+    "typeId" : "nodeType",
+    "id" : "configMng",
+    "tid" : "configMng",
+    "typeName" : "설정 관리",
+    "repositoryType" : "path",
+    "eviction" : 0
+  },
+  {
+    "parentId" : "configMng",
+    "typeId" : "nodeType",
+    "id" : "groupCode",
+    "tid" : "groupCode",
+    "typeName" : "그룹 코드",
+    "repositoryType" : "node",
+    "eviction" : 500
+  },
+  {
+    "parentId" : "configMng",
+    "typeId" : "nodeType",
+    "id" : "code",
+    "tid" : "code",
+    "typeName" : "코드",
+    "repositoryType" : "node",
+    "eviction" : 2000
+  }
+]

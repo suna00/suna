@@ -1,0 +1,11 @@
+[
+  {
+    "parentId" : "root",
+    "typeId" : "nodeType",
+    "id" : "userMng",
+    "tid" : "userMng",
+    "typeName" : "사용자 관리",
+    "repositoryType" : "path",
+    "eviction" : 0
+  }
+]
