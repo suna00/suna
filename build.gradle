@@ -74,6 +74,11 @@ dependencies {
 	compile('commons-io:commons-io:2.5+')
     compile('com.fasterxml.jackson.core:jackson-databind:2.8.6+')
 	compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.8.6+')
+
+    // yml parser
+    compile ('com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.8.9')
+
+
 	compile('com.hazelcast:hazelcast-all:3.8+')
 
 	compile ('ch.qos.logback:logback-access:1.2.3')
