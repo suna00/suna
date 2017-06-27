@@ -84,6 +84,22 @@
   {
     "typeId" : "propertyType",
     "tid": "nodeType",
+    "id": "nodeType@tableName",
+    "pid": "tableName",
+    "propertyTypeName": "Table Name",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "nodeType",
     "id": "nodeType@propertyTypes",
     "pid": "propertyTypes",
     "propertyTypeName": "Property Type List",
@@ -298,6 +314,21 @@
     "referenceType": "",
     "referenceValue": "",
     "code": [{"value": "autoIncrement", "label": "Auto Increment ID"}, {"value": "UUID", "label": "UUID"}]
+  },
+  {
+    "tid": "propertyType",
+    "id": "propertyType@max",
+    "pid": "max",
+    "propertyTypeName": "Max",
+    "valueType": "INT",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
   },
   {
     "tid": "propertyType",

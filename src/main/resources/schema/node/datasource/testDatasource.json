@@ -3,6 +3,7 @@
     "typeId" : "datasource",
     "id" : "testDb",
     "dsName" : "Test DB (ION)",
+    "jdbcUrl" : "jdbc:mysql://125.131.88.77:3306/webtoon2",
     "dbType" : "mysql",
     "username" : "ice2",
     "password" : "ice2"

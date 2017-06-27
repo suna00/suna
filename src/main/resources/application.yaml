@@ -5,6 +5,13 @@
 spring:
   profiles:
     active: dev
+  datasource:
+    dbcp2:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://125.131.88.77:3306/webtoon2
+      username: iceuser
+      password: iceuser
+
 server:
   port: 8080
 
@@ -15,6 +22,8 @@ jwtConfig:
   headString: X-Authorization
   tokenExpirationTime: 15 #분
   refreshTokenExpTime: 60 #분
+
+
 
 hazelcast:
   members:

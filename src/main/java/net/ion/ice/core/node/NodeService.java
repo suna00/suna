@@ -172,7 +172,13 @@ public class NodeService {
     public Node saveNode(Map<String, Object> data) {
         try {
             ExecuteContext context = ExecuteContext.makeContextFromMap(data);
-            return infinispanRepositoryService.execute(context);
+
+            Node saveNode =  infinispanRepositoryService.execute(context);
+
+            if(context.isExecute() && context.isSyncTable()){
+
+            }
+            return saveNode ;
         }catch (Exception e){
             logger.error(data.toString(), e);
         }

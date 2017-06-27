@@ -1,5 +1,7 @@
 package net.ion.ice.core.node;
 
+import org.stagemonitor.util.StringUtils;
+
 import java.util.*;
 
 /**
@@ -7,6 +9,7 @@ import java.util.*;
  */
 public class NodeType {
     public static final String NODETYPE = "nodeType";
+    public static final String TABLE_NAME = "tableName";
 
     private Node nodeTypeNode ;
     private Map<String, PropertyType> propertyTypes ;
@@ -89,5 +92,9 @@ public class NodeType {
 
     public boolean isInit(){
         return this.propertyTypes != null && this.propertyTypes.size() > 0 ;
+    }
+
+    public boolean hasTableName() {
+        return nodeTypeNode.get(TABLE_NAME) != null && StringUtils.isNotEmpty((String) nodeTypeNode.get(TABLE_NAME));
     }
 }

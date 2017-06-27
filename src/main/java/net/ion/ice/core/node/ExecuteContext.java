@@ -130,7 +130,7 @@ public class ExecuteContext {
     }
 
     public void setNodeType(NodeType nodeType) {
-        this.nodeType = nodeType;
+        this.nodeType = nodeType ;
     }
 
     public String getId(){
@@ -154,4 +154,7 @@ public class ExecuteContext {
         return execute;
     }
 
+    public boolean isSyncTable() {
+        return this.nodeType != null && this.nodeType.hasTableName();
+    }
 }
