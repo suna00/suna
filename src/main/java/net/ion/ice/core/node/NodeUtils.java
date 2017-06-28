@@ -3,12 +3,14 @@ package net.ion.ice.core.node;
 import com.hazelcast.core.IAtomicLong;
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.cluster.ClusterService;
+import net.ion.ice.core.file.FileService;
 import net.ion.ice.core.infinispan.NotFoundNodeException;
 import net.ion.ice.core.query.QueryContext;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.lucene.search.SortField;
+import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.util.StringUtils;
 
 import java.text.ParseException;
@@ -228,10 +230,29 @@ public class NodeUtils {
                     return BooleanUtils.toBoolean(value.toString()) ;
                 }
             }
+            case FILE:{
+                if(value instanceof MultipartFile){
+                    getFileService().saveMultipartFile(pt, (MultipartFile) value) ;
+                    return value ;
+                }else{
+                    return BooleanUtils.toBoolean(value.toString()) ;
+                }
+            }
             default:
                 return value ;
         }
     }
+
+
+    static FileService fileService ;
+
+    public static FileService getFileService(){
+        if(fileService == null ) {
+            fileService = ApplicationContextManager.getBean(FileService.class);
+        }
+        return fileService ;
+    }
+
 
     static ClusterService clusterService ;
 

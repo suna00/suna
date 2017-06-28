@@ -3,6 +3,8 @@ package net.ion.ice.core.node;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.ion.ice.core.json.JsonUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.*;
 
@@ -52,6 +54,20 @@ public class ExecuteContext {
 
         return ctx ;
     }
+
+    public static ExecuteContext makeContextFromParameter(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, NodeType nodeType) {
+        ExecuteContext ctx = makeContextFromParameter(parameterMap, nodeType) ;
+
+        for(String paramName : multiFileMap.keySet()){
+            List<MultipartFile> multipartFiles = multiFileMap.get(paramName) ;
+            if(multipartFiles != null && multipartFiles.size() > 0){
+                ctx.data.put(paramName, multipartFiles.get(0)) ;
+            }
+        }
+        return ctx ;
+    }
+
+
 
     public static ExecuteContext makeContextFromMap(Map<String, Object> data) {
         ExecuteContext ctx = new ExecuteContext();
@@ -157,4 +173,5 @@ public class ExecuteContext {
     public boolean isSyncTable() {
         return this.nodeType != null && this.nodeType.hasTableName();
     }
+
 }

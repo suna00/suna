@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
@@ -25,18 +28,21 @@ public class NodeController {
 
     @RequestMapping(value = "/node/{typeId}", method = RequestMethod.PUT)
     @ResponseBody
-    public Object saveRest(WebRequest request, @PathVariable String typeId) throws IOException {
+    public Object saveRest(HttpServletRequest request, @PathVariable String typeId) throws IOException {
         return save(request, typeId);
     }
 
     @RequestMapping(value = "/node/{typeId}/save.json", method = RequestMethod.POST)
     @ResponseBody
-    public Object saveJson(WebRequest request, @PathVariable String typeId) throws IOException {
+    public Object saveJson(HttpServletRequest request, @PathVariable String typeId) throws IOException {
         return save(request, typeId);
     }
 
 
-    private Object save(WebRequest request, String typeId) {
+    private Object save(HttpServletRequest request, String typeId) {
+        if(request instanceof MultipartHttpServletRequest) {
+            return JsonResponse.create(nodeService.saveNode(request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap(), typeId)) ;
+        }
         return JsonResponse.create(nodeService.saveNode(request.getParameterMap(), typeId)) ;
     }
 

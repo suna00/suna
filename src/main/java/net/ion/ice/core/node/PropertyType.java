@@ -18,9 +18,12 @@ public class PropertyType {
     public static final String ID_TYPE = "idType";
     public static final String VALUE_TYPE = "valueType";
     public static final String REFERENCE_TYPE = "referenceType";
+    public static final String FILE_HANDLER = "fileHandler";
 
 
-    public enum ValueType { STRING, CODE, DATE, LONG, INT, DOUBLE, BOOLEAN, REFERENCED, REFERENCE, TEXT, ARRAY, OBJECT, JSON}
+
+
+    public enum ValueType { STRING, CODE, DATE, LONG, INT, DOUBLE, BOOLEAN, REFERENCED, REFERENCE, TEXT, ARRAY, OBJECT, JSON, FILE}
     public enum AnalyzerType {simple, code, whitespace, standard, cjk, korean}
     public enum IdType {autoIncrement, UUID}
 
@@ -33,6 +36,7 @@ public class PropertyType {
     public static final String REQUIRED = "required";
     public static final String TREEABLE = "treeable";
 
+    public static final String TID = "tid";
     public static final String PID = "pid";
 
     private Node propertyTypeNode ;
@@ -96,6 +100,10 @@ public class PropertyType {
         return IdType.valueOf((String) idType);
     }
 
+    public String getTid() {
+        return propertyTypeNode.getStringValue(TID);
+    }
+
     public String getPid() {
         return propertyTypeNode.getStringValue(PID);
     }
@@ -156,4 +164,7 @@ public class PropertyType {
         return codeMap ;
     }
 
+    public String getFileHandler() {
+        return propertyTypeNode.getStringValue(FILE_HANDLER);
+    }
 }

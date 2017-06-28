@@ -44,6 +44,9 @@ logging:
       - logback-dev-2.xml
 
 
+file:
+  default:
+    path: /resource/ice2/files
 
 
 ---

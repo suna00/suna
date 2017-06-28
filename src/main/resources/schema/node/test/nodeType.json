@@ -134,5 +134,13 @@
     "propertyTypeName": "Date",
     "valueType": "DATE",
     "indexable": true
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "testItem",
+    "pid": "testFile",
+    "propertyTypeName": "Test File",
+    "valueType": "FILE",
+    "indexable": true
   }
 ]

@@ -2,6 +2,7 @@ package net.ion.ice.core.node;
 
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.data.bind.NodeBindingService;
+import net.ion.ice.core.file.FileService;
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
 import net.ion.ice.core.query.QueryContext;
 import net.ion.ice.core.json.JsonUtils;
@@ -17,6 +18,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
@@ -35,6 +38,9 @@ public class NodeService {
     private InfinispanRepositoryService infinispanRepositoryService ;
     @Autowired
     private NodeBindingService nodeBindingService;
+
+    @Autowired
+    private FileService fileService ;
 
     private NodeType nodeType ;
     private NodeType propertyType ;
@@ -205,6 +211,14 @@ public class NodeService {
         return infinispanRepositoryService.execute(context);
     }
 
+    public Node saveNode(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, String typeId) {
+        NodeType nodeType = getNodeType(typeId) ;
+
+        ExecuteContext context = ExecuteContext.makeContextFromParameter(parameterMap, multiFileMap, nodeType) ;
+
+        return infinispanRepositoryService.execute(context);
+    }
+
     public Node deleteNode(Map<String, String[]> parameterMap, String typeId) {
         NodeType nodeType = getNodeType(typeId) ;
 
@@ -305,4 +319,6 @@ public class NodeService {
         }
         return queryResult ;
     }
+
+
 }
