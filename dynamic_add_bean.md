@@ -82,7 +82,7 @@ public class NodeController {
 > ```
 
 #### 100. 참고
-- 경로 : `/src/main/sample/DatabaseConfig.java`
+- 경로 : `/dev_guides/source/DatabaseConfig.java`
 
 #### History
 - 2017.06.28 : 최초 작성
