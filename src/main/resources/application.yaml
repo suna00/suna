@@ -45,8 +45,12 @@ tomcat:
 
 logging:
   config:
-    - classpath:logback-dev-2.xml
-    - classpath:logback-access-dev-2.xml
+    classpath:
+      - logback-access-dev-2.xml
+      - logback-dev-2.xml
+
+
+
 
 ---
 #-Dspring.profiles.active=dev
