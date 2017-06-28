@@ -1,7 +1,9 @@
 package net.ion.ice;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
@@ -24,6 +26,7 @@ import javax.servlet.ServletException;
 @SpringBootApplication
 @ComponentScan({ "net.ion.ice" })
 @EnableAsync
+@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 public class Ice2Application {
 
 	public static final String USE_HAZELCAST = "true";

@@ -1,6 +1,7 @@
 package net.ion.ice.core.node;
 
 import net.ion.ice.ApplicationContextManager;
+import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
 import net.ion.ice.core.query.QueryContext;
 import net.ion.ice.core.json.JsonUtils;
@@ -32,6 +33,8 @@ public class NodeService {
 
     @Autowired
     private InfinispanRepositoryService infinispanRepositoryService ;
+    @Autowired
+    private NodeBindingService nodeBindingService;
 
     private NodeType nodeType ;
     private NodeType propertyType ;

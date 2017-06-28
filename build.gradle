@@ -94,9 +94,10 @@ dependencies {
 
     compile("org.springframework:spring-jdbc")
     compile("org.apache.commons:commons-dbcp2:2.1.1")
-    compile('com.oracle:ojdbc8:12.2.0.1')                   //oracle
-    compile('mysql:mysql-connector-java:5.1.42')            //mysql
-    compile('org.mariadb.jdbc:mariadb-java-client:2.0.2')   //maria
+    compile('com.oracle:ojdbc8:12.2.0.1')                       //oracle
+    compile('mysql:mysql-connector-java:5.1.42')                //mysql
+    compile('org.mariadb.jdbc:mariadb-java-client:2.0.2')       //maria
+    compile('com.microsoft.sqlserver:mssql-jdbc:6.1.0.jre8')    //msSql
 
     compile('org.stagemonitor:stagemonitor-web-servlet:0.80.0.RC1')
     compile('org.projectlombok:lombok:1.16.16')

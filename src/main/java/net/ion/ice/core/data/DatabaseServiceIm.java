@@ -6,15 +6,12 @@ import net.ion.ice.core.node.NodeService;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,32 +25,53 @@ public class DatabaseServiceIm implements DatabaseService {
     @Autowired
     private NodeService nodeService;
     @Autowired
-    private DatabaseConfiguration configuration;
+    private DatabaseVO configuration;
     @Autowired
     ObjectMapper mapper;
-    @Autowired
-    JdbcTemplate jdbcTemplate;
 
-    private Map<String, JdbcTemplate> dbJdbc;
+    static Map<String, JdbcTemplate> dataSourceTemplate = new HashMap<>();
 
-
-    @ConfigurationProperties(prefix = "spring.datasource")
-    @Bean
-    public DataSource initJDBC() {
-        return DataSourceBuilder
-                .create()
-                .build();
+    @PostConstruct
+    public void initJdbcDataSource() {
+        for(Node dataSourceNode : nodeService.getNodeList("datasource", "")){
+            setDatabaseConfiguration(dataSourceNode);
+            dataSourceTemplate.put(configuration.getDsId(), new JdbcTemplate(setDataSource(configuration)));
+        }
     }
 
-    @Override
-    public DataSource getDataSource(DatabaseConfiguration dataConfiguration) {
-        if (StringUtils.equalsIgnoreCase("mysql", dataConfiguration.getJdbcType())) {
+    public JdbcTemplate getJdbcTemplate(String dsId) {
+        String id = dsId;
+        JdbcTemplate jdbcTemplate;
+        if (dataSourceTemplate.containsKey(id)) {
+            jdbcTemplate = dataSourceTemplate.get(id);
+        } else {
+            Node dataSourceNode = nodeService.read("datasource", id);
+            setDatabaseConfiguration(dataSourceNode);
+            dataSourceTemplate.put(id, new JdbcTemplate(setDataSource(configuration)));
+            jdbcTemplate = dataSourceTemplate.get(id);
+        }
+        return jdbcTemplate;
+    }
+
+    public static DataSource setDataSource(DatabaseVO dataConfiguration) {
+
+        if (StringUtils.equalsIgnoreCase(dataConfiguration.getDbType(), "mysql")) {
             return mySqlDataSource(dataConfiguration);
-        } else if (StringUtils.equalsIgnoreCase("maria", dataConfiguration.getJdbcType())) {
+
+        } else if (StringUtils.equalsIgnoreCase(dataConfiguration.getDbType(), "mariadb")) {
             return mariaDataSource(dataConfiguration);
-        } else { // oracle
+
+        } else {
             return oracleDataSource(dataConfiguration);
         }
+    }
+
+    public void setDatabaseConfiguration(Node dataSourceNode) {
+        configuration.setDsId(dataSourceNode.getStringValue("id"));
+        configuration.setDbType(dataSourceNode.getStringValue("dbType"));
+        configuration.setUsername(dataSourceNode.getStringValue("username"));
+        configuration.setPassword(dataSourceNode.getStringValue("password"));
+        configuration.setJdbcUrl(dataSourceNode.getStringValue("jdbcUrl"));
     }
 
     @Override
@@ -61,16 +79,7 @@ public class DatabaseServiceIm implements DatabaseService {
         Map<String, Object> resultMap = new HashMap<>();
 
         try {
-            Node dataSourceNode = nodeService.read("datasource", dsId);
-
-            configuration.setDbType(dataSourceNode.getStringValue("dbType"));
-            configuration.setUsername(dataSourceNode.getStringValue("username"));
-            configuration.setPassword(dataSourceNode.getStringValue("password"));
-            configuration.setJdbcUrl(dataSourceNode.getStringValue("jdbcUrl"));
-
-            jdbcTemplate = new JdbcTemplate(getDataSource(configuration));
-
-            List<Map<String, Object>> results = jdbcTemplate.queryForList(query);
+            List<Map<String, Object>> results = getJdbcTemplate(dsId).queryForList(query);
 
             resultMap.put("items", results);
             resultMap.put("result", "200");
@@ -83,7 +92,7 @@ public class DatabaseServiceIm implements DatabaseService {
 
     }
 
-    public BasicDataSource oracleDataSource(DatabaseConfiguration dataConfiguration) {
+    public static DataSource oracleDataSource(DatabaseVO dataConfiguration) {
         BasicDataSource basicDataSource = new BasicDataSource();
         basicDataSource.setDriverClassName("oracle.jdbc.OracleDriver");
         basicDataSource.setUsername(dataConfiguration.getUsername());
@@ -106,7 +115,7 @@ public class DatabaseServiceIm implements DatabaseService {
         return basicDataSource;
     }
 
-    public BasicDataSource mySqlDataSource(DatabaseConfiguration dataConfiguration) {
+    public static DataSource mySqlDataSource(DatabaseVO dataConfiguration) {
         BasicDataSource basicDataSource = new BasicDataSource();
         basicDataSource.setDriverClassName("com.mysql.jdbc.Driver");
         basicDataSource.setUsername(dataConfiguration.getUsername());
@@ -128,7 +137,7 @@ public class DatabaseServiceIm implements DatabaseService {
         return basicDataSource;
     }
 
-    public BasicDataSource mariaDataSource(DatabaseConfiguration dataConfiguration) {
+    public static DataSource mariaDataSource(DatabaseVO dataConfiguration) {
         BasicDataSource basicDataSource = new BasicDataSource();
         basicDataSource.setDriverClassName("org.mariadb.jdbc.Driver");
         basicDataSource.setUsername(dataConfiguration.getUsername());

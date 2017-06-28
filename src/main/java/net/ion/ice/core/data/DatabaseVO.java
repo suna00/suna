@@ -12,20 +12,19 @@ import java.io.Serializable;
 
 @Data
 @Configuration
-public class DatabaseConfiguration implements Serializable {
+public class DatabaseVO implements Serializable {
     private static final long serialVersionUID = 5018763493730125750L;
 
-    private String serverId;
-    private String serverIp;
-    private String serverName;
+    private String dsId;
+//    private String serverIp;
+//    private String serverName;
 
     private String dbType;
     private String jdbcUrl;
     private String username;
     private String password;
 
-
-    public String getJdbcType() {
+    public String getDbType() {
         return StringUtils.defaultString(dbType, "oracle");
 
     }
