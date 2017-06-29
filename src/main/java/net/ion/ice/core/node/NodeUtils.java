@@ -4,6 +4,7 @@ import com.hazelcast.core.IAtomicLong;
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.cluster.ClusterService;
 import net.ion.ice.core.file.FileService;
+import net.ion.ice.core.file.FileValue;
 import net.ion.ice.core.infinispan.NotFoundNodeException;
 import net.ion.ice.core.query.QueryContext;
 import org.apache.commons.lang3.BooleanUtils;
@@ -231,9 +232,11 @@ public class NodeUtils {
                 }
             }
             case FILE:{
-                if(value instanceof MultipartFile){
-                    getFileService().saveMultipartFile(pt, (MultipartFile) value) ;
+                if(value instanceof FileValue){
                     return value ;
+                }else if(value instanceof MultipartFile){
+                    FileValue fileValue = getFileService().saveMultipartFile(pt, (MultipartFile) value) ;
+                    return fileValue ;
                 }else{
                     return BooleanUtils.toBoolean(value.toString()) ;
                 }

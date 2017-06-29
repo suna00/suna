@@ -5,6 +5,8 @@ package net.ion.ice.core.file;
  */
 
 import net.ion.ice.ApplicationContextManager;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
+import java.util.UUID;
 
 /**
  * A conditional configuration that potentially adds the bean definitions in
@@ -45,10 +49,15 @@ public class DefaultFileRepository implements FileRepository{
 
     @Override
     public String saveMutipartFile(String tid, String pid, MultipartFile multipartFile ) {
-        String savePath = tid + "/" ;
+        String savePath = tid + "/" + DateFormatUtils.format(new Date(), "yyyyMM/dd/") + UUID.randomUUID() + StringUtils.substringAfterLast(multipartFile.getName(), ".");
         File saveFile = new File(fileRoot, savePath) ;
-//        multipartFile.transferTo(saveFile);
+        try {
+            multipartFile.transferTo(saveFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("FILE SAVE ERROR : " + e.getMessage()) ;
+        }
 
-        return saveFile.getAbsolutePath();
+        return savePath ;
     }
 }

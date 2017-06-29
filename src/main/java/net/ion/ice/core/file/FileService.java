@@ -22,10 +22,10 @@ public class FileService {
     }
 
 
-    public void saveMultipartFile(PropertyType pt, MultipartFile multipartFile) {
+    public FileValue saveMultipartFile(PropertyType pt, MultipartFile multipartFile) {
         FileRepository repository = getFileRepository(pt.getFileHandler()) ;
         String saveFilePath = repository.saveMutipartFile(pt.getTid(), pt.getPid(), multipartFile) ;
-
+        return new FileValue(multipartFile, saveFilePath);
     }
 
     private FileRepository getFileRepository(String fileHandler) {
