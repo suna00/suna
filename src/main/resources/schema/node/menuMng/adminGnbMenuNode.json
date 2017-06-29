@@ -1,18 +1,56 @@
 [
   {
     "typeId" : "adminGnbMenu",
-    "backOffice": "admin",
+    "backOfficeId": "admin",
     "id": "dashboard",
-    "name": "Dashboard",
+    "title": "Dashboard",
     "order": "10",
+    "icon": "",
     "active": "true"
   },
   {
     "typeId" : "adminGnbMenu",
-    "backOffice": "admin",
+    "backOfficeId": "admin",
     "id": "configMng",
-    "name": "설정 관리",
+    "title": "설정 관리",
     "order": "100",
+    "icon": "",
+    "active": "true"
+  },
+  {
+    "typeId" : "adminGnbMenu",
+    "backOfficeId": "cm",
+    "id": "dashboard",
+    "title": "Dashboard",
+    "order": "10",
+    "icon": "",
+    "active": "true"
+  },
+  {
+    "typeId" : "adminGnbMenu",
+    "backOfficeId": "cm",
+    "id": "contentsMng",
+    "title": "콘텐츠 관리",
+    "order": "20",
+    "icon": "",
+    "active": "true"
+  },
+  {
+    "typeId" : "adminGnbMenu",
+    "backOfficeId": "sm",
+    "id": "dashboard",
+    "title": "Dashboard",
+    "order": "10",
+    "icon": "",
+    "active": "true"
+  },
+  {
+    "typeId" : "adminGnbMenu",
+    "backOfficeId": "sm",
+    "id": "productMng",
+    "title": "상품 관리",
+    "order": "20",
+    "icon": "",
     "active": "true"
   }
 ]

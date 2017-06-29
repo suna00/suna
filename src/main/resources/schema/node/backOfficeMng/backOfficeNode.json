@@ -1,0 +1,23 @@
+[
+  {
+    "typeId" : "backOffice",
+    "id": "admin",
+    "name": "Manager",
+    "order": "10",
+    "active": "true"
+  },
+  {
+    "typeId" : "backOffice",
+    "id": "cm",
+    "name": "Content Manager",
+    "order": "20",
+    "active": "true"
+  },
+  {
+    "typeId" : "backOffice",
+    "id": "sm",
+    "name": "Service Manager",
+    "order": "30",
+    "active": "true"
+  }
+]
