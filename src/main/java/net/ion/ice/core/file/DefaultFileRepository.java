@@ -5,6 +5,7 @@ package net.ion.ice.core.file;
  */
 
 import net.ion.ice.ApplicationContextManager;
+import net.ion.ice.core.node.PropertyType;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -48,8 +49,8 @@ public class DefaultFileRepository implements FileRepository{
     }
 
     @Override
-    public String saveMutipartFile(String tid, String pid, MultipartFile multipartFile ) {
-        String savePath = tid + "/" + DateFormatUtils.format(new Date(), "yyyyMM/dd/") + UUID.randomUUID() + StringUtils.substringAfterLast(multipartFile.getName(), ".");
+    public String saveMutipartFile(PropertyType pt, String id, MultipartFile multipartFile ) {
+        String savePath = pt.getTid() + "/" + DateFormatUtils.format(new Date(), "yyyyMM/dd/") + UUID.randomUUID() + StringUtils.substringAfterLast(multipartFile.getName(), ".");
         File saveFile = new File(fileRoot, savePath) ;
         try {
             multipartFile.transferTo(saveFile);

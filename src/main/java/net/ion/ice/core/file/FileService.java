@@ -1,6 +1,8 @@
 package net.ion.ice.core.file;
 
+import net.ion.ice.core.infinispan.InfinispanRepositoryService;
 import net.ion.ice.core.node.PropertyType;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.stagemonitor.util.StringUtils;
@@ -15,6 +17,9 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class FileService {
 
+    @Autowired
+    private InfinispanRepositoryService infinispanRepositoryService ;
+
     private Map<String, FileRepository> repositoryMap = new ConcurrentHashMap<>() ;
 
     public void registerRepository(String repositoryKey, FileRepository repository) {
@@ -22,10 +27,10 @@ public class FileService {
     }
 
 
-    public FileValue saveMultipartFile(PropertyType pt, MultipartFile multipartFile) {
+    public FileValue saveMultipartFile(PropertyType pt, String id, MultipartFile multipartFile) {
         FileRepository repository = getFileRepository(pt.getFileHandler()) ;
-        String saveFilePath = repository.saveMutipartFile(pt.getTid(), pt.getPid(), multipartFile) ;
-        return new FileValue(multipartFile, saveFilePath);
+        String saveFilePath = repository.saveMutipartFile(pt, id, multipartFile) ;
+        return new FileValue(pt, id, multipartFile, saveFilePath);
     }
 
     private FileRepository getFileRepository(String fileHandler) {

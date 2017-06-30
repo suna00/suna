@@ -147,6 +147,12 @@ public class NodeUtils {
             case DATE :{
                 return getDateStringValue(value) ;
             }
+            case FILE :{
+                if(value instanceof FileValue){
+                    return value.toString() ;
+                }
+                return null ;
+            }
             default:
                 return null ;
         }
@@ -183,7 +189,7 @@ public class NodeUtils {
         }
     }
 
-    public static Object getStoreValue(Object value, PropertyType pt) {
+    public static Object getStoreValue(Object value, PropertyType pt, String id) {
         if(value == null) return null ;
         if(value instanceof Code) {
             return ((Code) value).getValue() ;
@@ -235,10 +241,10 @@ public class NodeUtils {
                 if(value instanceof FileValue){
                     return value ;
                 }else if(value instanceof MultipartFile){
-                    FileValue fileValue = getFileService().saveMultipartFile(pt, (MultipartFile) value) ;
+                    FileValue fileValue = getFileService().saveMultipartFile(pt, id, (MultipartFile) value) ;
                     return fileValue ;
-                }else{
-                    return BooleanUtils.toBoolean(value.toString()) ;
+                }else if(value instanceof String){
+                    return null ;
                 }
             }
             default:
