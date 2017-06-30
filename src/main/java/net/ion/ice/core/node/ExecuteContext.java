@@ -1,6 +1,7 @@
 package net.ion.ice.core.node;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import net.ion.ice.core.file.FileValue;
 import net.ion.ice.core.json.JsonUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.MultiValueMap;
@@ -107,11 +108,16 @@ public class ExecuteContext {
                 if(!data.containsKey(pt.getPid())){
                     continue;
                 }
-                Object newValue = NodeUtils.getStoreValue(data.get(pt.getPid()), pt) ;
+                Object newValue = NodeUtils.getStoreValue(data.get(pt.getPid()), pt, node.getId()) ;
                 Object existValue = existNode.get(pt.getPid()) ;
 
-                if(newValue == null && existValue == null){
+                if(newValue == null && existValue == null) {
                     continue;
+                }else if(pt.isFile()){
+                    if(newValue != null && newValue instanceof FileValue){
+                        node.put(pt.getPid(), newValue) ;
+                        changedProperties.add(pt.getPid()) ;
+                    }
                 }else if(newValue == null && existValue != null){
                     node.remove(pt.getPid()) ;
                     changedProperties.add(pt.getPid()) ;

@@ -124,7 +124,7 @@ public class Properties implements Map<String, Object>, Serializable, Cloneable 
         for(PropertyType pt : nodeType.getPropertyTypes()){
             Object value = values.get(pt.getPid()) ;
             if(value != null){
-                value = NodeUtils.getStoreValue(value, pt) ;
+                value = NodeUtils.getStoreValue(value, pt, this.id) ;
                 if(value != null) {
                     values.put(pt.getPid(), value);
                 }else{
