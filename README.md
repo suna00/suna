@@ -57,5 +57,3 @@ $ java -jar build/libs/application.war --spring.profiles.active=dev-2
 ```
 `-jar` 파라미터가 빌드 결과를 볼 수 있도록 합니다.
 
-```
-
