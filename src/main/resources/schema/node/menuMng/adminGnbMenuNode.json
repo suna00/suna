@@ -11,6 +11,15 @@
   {
     "typeId" : "adminGnbMenu",
     "backOfficeId": "admin",
+    "id": "custom",
+    "title": "테스트 컴포넌트",
+    "order": "20",
+    "icon": "",
+    "active": "true"
+  },
+  {
+    "typeId" : "adminGnbMenu",
+    "backOfficeId": "admin",
     "id": "configMng",
     "title": "설정 관리",
     "order": "100",

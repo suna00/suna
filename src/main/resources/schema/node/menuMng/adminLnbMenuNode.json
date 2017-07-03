@@ -10,7 +10,26 @@
     "icon": "fa-dashboard",
     "active": "true",
     "index": "true",
-    "pages": []
+    "pages": [],
+    "customPages": []
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbId": "custom",
+    "parentId": "root",
+    "id": "defaultList",
+    "title": "DefaultList",
+    "order": "10",
+    "icon": "fa-square-o",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "DefaultList" },
+      { "pageName": "등록/수정", "pageUrl": "DefaultForm" },
+      { "pageName": "상세", "pageUrl": "DefaultView" }
+    ]
   },
   {
     "typeId" : "adminLnbMenu",
@@ -27,7 +46,8 @@
       { "pageName": "목록", "pageUrl": "list" },
       { "pageName": "등록/수정", "pageUrl": "form" },
       { "pageName": "상세", "pageUrl": "view" }
-    ]
+    ],
+    "customPages": []
   },
   {
     "typeId" : "adminLnbMenu",
@@ -44,7 +64,8 @@
       { "pageName": "목록", "pageUrl": "list" },
       { "pageName": "등록/수정", "pageUrl": "form" },
       { "pageName": "상세", "pageUrl": "view" }
-    ]
+    ],
+    "customPages": []
   },
   {
     "typeId" : "adminLnbMenu",
@@ -57,7 +78,8 @@
     "icon": "fa-tv",
     "active": "true",
     "index": "false",
-    "pages": []
+    "pages": [],
+    "customPages": []
   },
   {
     "typeId" : "adminLnbMenu",
@@ -74,7 +96,8 @@
       { "pageName": "목록", "pageUrl": "list" },
       { "pageName": "등록/수정", "pageUrl": "form" },
       { "pageName": "상세", "pageUrl": "view" }
-    ]
+    ],
+    "customPages": []
   },
   {
     "typeId" : "adminLnbMenu",
@@ -91,7 +114,8 @@
       { "pageName": "목록", "pageUrl": "list" },
       { "pageName": "등록/수정", "pageUrl": "form" },
       { "pageName": "상세", "pageUrl": "view" }
-    ]
+    ],
+    "customPages": []
   },
   {
     "typeId" : "adminLnbMenu",
@@ -108,6 +132,7 @@
       { "pageName": "목록", "pageUrl": "list" },
       { "pageName": "등록/수정", "pageUrl": "form" },
       { "pageName": "상세", "pageUrl": "view" }
-    ]
+    ],
+    "customPages": []
   }
 ]
