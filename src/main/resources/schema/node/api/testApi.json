@@ -1,0 +1,25 @@
+[
+  {
+    "typeId" : "apiCategory",
+    "id" : "testApi",
+    "categoryName" : "Test API"
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "defaultQuery",
+    "apiName" : "Default Query Test",
+    "method" : "GET",
+    "config" : {
+      "categories" : {
+        "typeId":"testCategory",
+        "q" : {"categoryType" : "content"},"categoryName" : "", "upperCategory" : "parentCategory",
+        "refCode1":{
+          "typeId":"testItem",
+          "q" : {"category":"drama"},
+          "category":"",
+          "itemTitle":"title"}
+      }
+    }
+  }
+]
