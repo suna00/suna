@@ -6,6 +6,7 @@ import net.ion.ice.core.cluster.ClusterService;
 import net.ion.ice.core.file.FileService;
 import net.ion.ice.core.file.FileValue;
 import net.ion.ice.core.infinispan.NotFoundNodeException;
+import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.query.QueryContext;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -14,6 +15,7 @@ import org.apache.lucene.search.SortField;
 import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.util.StringUtils;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -245,6 +247,23 @@ public class NodeUtils {
                     return fileValue ;
                 }else if(value instanceof String){
                     return null ;
+                }
+            }
+            case JSON:{
+                if(value instanceof Map){
+                    return value ;
+                }
+                if(value instanceof String){
+                    try {
+                        if(JsonUtils.isList((String) value)){
+                            return JsonUtils.parsingJsonToList((String) value) ;
+                        }else{
+                            return JsonUtils.parsingJsonToMap((String) value) ;
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        return value ;
+                    }
                 }
             }
             default:
