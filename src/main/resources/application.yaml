@@ -90,11 +90,8 @@ hazelcast:
   baseDir: /resource/ice2/data_2
 
 ---
-
-
 spring:
-  profiles:
-    active: cj-dev
+  profiles: cj-dev
 
 server:
   port: 8080
@@ -106,6 +103,7 @@ jwtConfig:
   headString: X-Authorization
   tokenExpirationTime: 15 #분
   refreshTokenExpTime: 60 #분
+
 
 
 hazelcast:
@@ -132,8 +130,8 @@ logging:
       - logback-access-dev-2.xml
       - logback-dev-2.xml
 
+
 file:
   default:
     path: /resource/ice2/files
-
 ---
