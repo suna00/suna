@@ -1,8 +1,10 @@
 package net.ion.ice.core.file;
 
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
+import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.PropertyType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.stagemonitor.util.StringUtils;
@@ -19,6 +21,10 @@ public class FileService {
 
     @Autowired
     private InfinispanRepositoryService infinispanRepositoryService ;
+
+    @Autowired
+    private NodeService nodeService ;
+
 
     private Map<String, FileRepository> repositoryMap = new ConcurrentHashMap<>() ;
 
@@ -39,5 +45,12 @@ public class FileService {
         }
 
         return repositoryMap.get(fileHandler) ;
+    }
+
+    public Resource loadAsResource(String tid, String pid, String path) {
+        PropertyType pt = nodeService.getNodeType(tid).getPropertyType(pid) ;
+
+        FileRepository repository = getFileRepository(pt.getFileHandler()) ;
+        return repository.loadAsResource(path) ;
     }
 }

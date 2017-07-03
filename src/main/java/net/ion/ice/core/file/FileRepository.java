@@ -1,6 +1,7 @@
 package net.ion.ice.core.file;
 
 import net.ion.ice.core.node.PropertyType;
+import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -11,4 +12,6 @@ import java.io.IOException;
 public interface FileRepository {
 
     String saveMutipartFile(PropertyType pt, String id, MultipartFile multipartFile);
+
+    Resource loadAsResource(String path);
 }

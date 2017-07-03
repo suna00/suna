@@ -97,7 +97,9 @@ public class InfinispanRepositoryService {
             logger.error(node.toString(), e);
         }
         logger.debug("Node SAVE : " + node.toString());
-        return node ;
+        Node result = node.clone() ;
+        result.toDisplay();
+        return result ;
     }
 
 
