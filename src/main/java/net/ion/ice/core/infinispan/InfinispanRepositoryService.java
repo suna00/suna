@@ -162,7 +162,7 @@ public class InfinispanRepositoryService {
 
         NodeType nodeType = queryContext.getNodetype() ;
 
-        boolean hasReferenced = nodeType.hasReferenced() ;
+//        boolean hasReferenced = nodeType.hasReferenced() ;
         List<Node> resultList = new ArrayList<Node>() ;
         for(Object item : list){
             Node node = (Node) item;
