@@ -2,8 +2,8 @@
   {
     "typeId" : "adminGnbMenu",
     "backOfficeId": "admin",
-    "id": "dashboard",
-    "title": "Dashboard",
+    "menuId": "dashboard",
+    "menuName": "Dashboard",
     "order": "10",
     "icon": "",
     "active": "true"
@@ -11,8 +11,8 @@
   {
     "typeId" : "adminGnbMenu",
     "backOfficeId": "admin",
-    "id": "custom",
-    "title": "테스트 컴포넌트",
+    "menuId": "custom",
+    "menuName": "테스트 컴포넌트",
     "order": "20",
     "icon": "",
     "active": "true"
@@ -20,8 +20,8 @@
   {
     "typeId" : "adminGnbMenu",
     "backOfficeId": "admin",
-    "id": "configMng",
-    "title": "설정 관리",
+    "menuId": "configMng",
+    "menuName": "설정 관리",
     "order": "100",
     "icon": "",
     "active": "true"
@@ -29,8 +29,8 @@
   {
     "typeId" : "adminGnbMenu",
     "backOfficeId": "cm",
-    "id": "dashboard",
-    "title": "Dashboard",
+    "menuId": "dashboard",
+    "menuName": "Dashboard",
     "order": "10",
     "icon": "",
     "active": "true"
@@ -38,8 +38,8 @@
   {
     "typeId" : "adminGnbMenu",
     "backOfficeId": "cm",
-    "id": "contentsMng",
-    "title": "콘텐츠 관리",
+    "menuId": "contentsMng",
+    "menuName": "콘텐츠 관리",
     "order": "20",
     "icon": "",
     "active": "true"
@@ -47,8 +47,8 @@
   {
     "typeId" : "adminGnbMenu",
     "backOfficeId": "sm",
-    "id": "dashboard",
-    "title": "Dashboard",
+    "menuId": "dashboard",
+    "menuName": "Dashboard",
     "order": "10",
     "icon": "",
     "active": "true"
@@ -56,8 +56,8 @@
   {
     "typeId" : "adminGnbMenu",
     "backOfficeId": "sm",
-    "id": "productMng",
-    "title": "상품 관리",
+    "menuId": "productMng",
+    "menuName": "상품 관리",
     "order": "20",
     "icon": "",
     "active": "true"
