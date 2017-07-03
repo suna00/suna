@@ -4,7 +4,7 @@
     "id" : "testDb",
     "dsName" : "Test DB (ION)",
     "jdbcUrl" : "jdbc:mysql://125.131.88.77:3306/webtoon2",
-    "dbType" : "mysql",
+    "dbType" : "mariadb",
     "username" : "ice2",
     "password" : "ice2"
   }

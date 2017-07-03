@@ -25,7 +25,7 @@ public class DatabaseServiceIm implements DatabaseService {
     @Autowired
     private NodeService nodeService;
     @Autowired
-    private DatabaseVO configuration;
+    private DatabaseConfiguration configuration;
     @Autowired
     ObjectMapper mapper;
 
@@ -35,25 +35,24 @@ public class DatabaseServiceIm implements DatabaseService {
     public void initJdbcDataSource() {
         for(Node dataSourceNode : nodeService.getNodeList("datasource", "")){
             setDatabaseConfiguration(dataSourceNode);
-            dataSourceTemplate.put(configuration.getDsId(), new JdbcTemplate(setDataSource(configuration)));
+            dataSourceTemplate.put((String) dataSourceNode.get("id"), new JdbcTemplate(setDataSource(configuration)));
         }
     }
 
     public JdbcTemplate getJdbcTemplate(String dsId) {
-        String id = dsId;
         JdbcTemplate jdbcTemplate;
-        if (dataSourceTemplate.containsKey(id)) {
-            jdbcTemplate = dataSourceTemplate.get(id);
+        if (dataSourceTemplate.containsKey(dsId)) {
+            jdbcTemplate = dataSourceTemplate.get(dsId);
         } else {
-            Node dataSourceNode = nodeService.read("datasource", id);
+            Node dataSourceNode = nodeService.read("datasource", dsId);
             setDatabaseConfiguration(dataSourceNode);
-            dataSourceTemplate.put(id, new JdbcTemplate(setDataSource(configuration)));
-            jdbcTemplate = dataSourceTemplate.get(id);
+            dataSourceTemplate.put(dsId, new JdbcTemplate(setDataSource(configuration)));
+            jdbcTemplate = dataSourceTemplate.get(dsId);
         }
         return jdbcTemplate;
     }
 
-    public static DataSource setDataSource(DatabaseVO dataConfiguration) {
+    public static DataSource setDataSource(DatabaseConfiguration dataConfiguration) {
 
         if (StringUtils.equalsIgnoreCase(dataConfiguration.getDbType(), "mysql")) {
             return mySqlDataSource(dataConfiguration);
@@ -92,7 +91,7 @@ public class DatabaseServiceIm implements DatabaseService {
 
     }
 
-    public static DataSource oracleDataSource(DatabaseVO dataConfiguration) {
+    public static DataSource oracleDataSource(DatabaseConfiguration dataConfiguration) {
         BasicDataSource basicDataSource = new BasicDataSource();
         basicDataSource.setDriverClassName("oracle.jdbc.OracleDriver");
         basicDataSource.setUsername(dataConfiguration.getUsername());
@@ -115,7 +114,7 @@ public class DatabaseServiceIm implements DatabaseService {
         return basicDataSource;
     }
 
-    public static DataSource mySqlDataSource(DatabaseVO dataConfiguration) {
+    public static DataSource mySqlDataSource(DatabaseConfiguration dataConfiguration) {
         BasicDataSource basicDataSource = new BasicDataSource();
         basicDataSource.setDriverClassName("com.mysql.jdbc.Driver");
         basicDataSource.setUsername(dataConfiguration.getUsername());
@@ -137,7 +136,7 @@ public class DatabaseServiceIm implements DatabaseService {
         return basicDataSource;
     }
 
-    public static DataSource mariaDataSource(DatabaseVO dataConfiguration) {
+    public static DataSource mariaDataSource(DatabaseConfiguration dataConfiguration) {
         BasicDataSource basicDataSource = new BasicDataSource();
         basicDataSource.setDriverClassName("org.mariadb.jdbc.Driver");
         basicDataSource.setUsername(dataConfiguration.getUsername());

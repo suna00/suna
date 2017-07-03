@@ -9,7 +9,6 @@ import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.SimpleQueryResult;
 import net.ion.ice.core.query.ResultField;
-import org.apache.avro.generic.GenericData;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.document.DateTools;
 import org.apache.lucene.search.SortField;
@@ -187,9 +186,8 @@ public class NodeService {
             ExecuteContext context = ExecuteContext.makeContextFromMap(data);
 
             Node saveNode =  infinispanRepositoryService.execute(context);
-
             if(context.isExecute() && context.isSyncTable()){
-
+//                nodeBindingService.save(data);
             }
             return saveNode ;
         }catch (Exception e){
@@ -207,6 +205,9 @@ public class NodeService {
         NodeType nodeType = getNodeType(typeId) ;
 
         ExecuteContext context = ExecuteContext.makeContextFromParameter(parameterMap, nodeType) ;
+        if(context.isExecute() && context.isSyncTable()){
+            nodeBindingService.save(parameterMap, typeId);
+        }
 
         return infinispanRepositoryService.execute(context);
     }
