@@ -34,6 +34,22 @@
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "admin",
+    "gnbId": "custom",
+    "parentId": "root",
+    "id": "defaultChart",
+    "title": "DefaultChart",
+    "order": "20",
+    "icon": "fa-square-o",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "상세", "pageUrl": "DefaultChart" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "admin",
     "gnbId": "configMng",
     "parentId": "root",
     "id": "groupCode",
