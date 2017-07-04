@@ -24,16 +24,15 @@ public class DatabaseConfiguration implements Serializable {
     private String password;
 
     public DatabaseConfiguration(Node dataSourceNode) {
-        dsId = dataSourceNode.getStringValue("id");
-        dbType = dataSourceNode.getStringValue("dbType");
-        username = dataSourceNode.getStringValue("username");
-        password = dataSourceNode.getStringValue("password");
-        jdbcUrl = dataSourceNode.getStringValue("jdbcUrl");
+        this.dsId = dataSourceNode.getStringValue("id");
+        this.dbType = dataSourceNode.getStringValue("dbType");
+        this.username = dataSourceNode.getStringValue("username");
+        this.password = dataSourceNode.getStringValue("password");
+        this.jdbcUrl = dataSourceNode.getStringValue("jdbcUrl");
     }
 
     public String getDbType() {
         return StringUtils.defaultString(dbType, "oracle");
-
     }
 
     public String getUsername() {

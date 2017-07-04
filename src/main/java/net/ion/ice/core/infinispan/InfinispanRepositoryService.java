@@ -32,39 +32,39 @@ public class InfinispanRepositoryService {
 
     public static final String NODEVALUE_SEPERATOR = "://";
     @Autowired
-    private InfinispanCacheManager cacheManager ;
+    private InfinispanCacheManager cacheManager;
 
     @Autowired
-    private NodeService nodeService ;
+    private NodeService nodeService;
 
-    public Cache<String, Node> getNodeCache(String tid){
-        return cacheManager.getCache(tid, 100000) ;
+    public Cache<String, Node> getNodeCache(String tid) {
+        return cacheManager.getCache(tid, 100000);
     }
 
 
-    public Cache<String, NodeValue> getNodeValueCache(){
-        return cacheManager.getCache("nodeValue", 100000) ;
+    public Cache<String, NodeValue> getNodeValueCache() {
+        return cacheManager.getCache("nodeValue", 100000);
     }
 
 
     private Node initNode(String typeId, Node srcNode) {
-        if(srcNode.getNodeValue() == null) {
+        if (srcNode.getNodeValue() == null) {
             Cache<String, NodeValue> nodeValueCache = getNodeValueCache();
             srcNode.setNodeValue(nodeValueCache.get(typeId + NODEVALUE_SEPERATOR + srcNode.getId()));
         }
-        Node node = srcNode.clone() ;
+        Node node = srcNode.clone();
 
-        return node ;
+        return node;
     }
 
     public Node read(String typeId, String id) {
         Cache<String, Node> cache = getNodeCache(typeId);
-        Node srcNode = cache.get(id) ;
-        if(srcNode == null){
-            throw new NotFoundNodeException(typeId, id) ;
+        Node srcNode = cache.get(id);
+        if (srcNode == null) {
+            throw new NotFoundNodeException(typeId, id);
         }
 
-        return srcNode ;
+        return srcNode;
     }
 
 
@@ -73,8 +73,8 @@ public class InfinispanRepositoryService {
             Node srcNode = read(typeId, id);
             Node node = initNode(typeId, srcNode);
             return node;
-        }catch(Exception e){
-            return null ;
+        } catch (Exception e) {
+            return null;
         }
     }
 
@@ -83,8 +83,8 @@ public class InfinispanRepositoryService {
     }
 
     public Node execute(ExecuteContext context) {
-        Node node = context.getNode() ;
-        if(!context.isExecute()) return  node ;
+        Node node = context.getNode();
+        if (!context.isExecute()) return node;
         try {
             Cache<String, Node> nodeCache = getNodeCache(node.getTypeId());
             node.toStore();
@@ -93,22 +93,22 @@ public class InfinispanRepositoryService {
             Cache<String, NodeValue> nodeValueCache = getNodeValueCache();
             node.getNodeValue().setContent(node.getSearchValue());
             nodeValueCache.put(node.getTypeId() + NODEVALUE_SEPERATOR + node.getId(), node.getNodeValue());
-        }catch(Exception e){
+        } catch (Exception e) {
             logger.error(node.toString(), e);
         }
         logger.debug("Node SAVE : " + node.toString());
-        Node result = node.clone() ;
+        Node result = node.clone();
         result.toDisplay();
-        return result ;
+        return result;
     }
 
 
     public void deleteNode(Node node) {
         Cache<String, Node> nodeCache = getNodeCache(node.getTypeId());
-        nodeCache.remove(node.getId().toString()) ;
+        nodeCache.remove(node.getId().toString());
 
-        Cache<String, NodeValue> nodeValueCache = getNodeValueCache() ;
-        nodeValueCache.remove(node.getTypeId() + NODEVALUE_SEPERATOR + node.getId()) ;
+        Cache<String, NodeValue> nodeValueCache = getNodeValueCache();
+        nodeValueCache.remove(node.getTypeId() + NODEVALUE_SEPERATOR + node.getId());
     }
 
     private List<Object> executeQuery(String typeId, QueryContext queryContext) {
@@ -130,51 +130,50 @@ public class InfinispanRepositoryService {
 
 
     public SimpleQueryResult getQueryTreeNodes(String typeId, QueryContext queryContext) {
-        NodeType nodeType = queryContext.getNodetype() ;
-        for(PropertyType pt : nodeType.getPropertyTypes()){
-            if(pt.isTreeable()){
-                QueryContext subQueryContext = QueryContext.makeQueryContextForTree(nodeType, pt, "root") ;
+        NodeType nodeType = queryContext.getNodetype();
+        for (PropertyType pt : nodeType.getPropertyTypes()) {
+            if (pt.isTreeable()) {
+                QueryContext subQueryContext = QueryContext.makeQueryContextForTree(nodeType, pt, "root");
                 subQueryContext.setTreeable(true);
-                if(queryContext.getQueryTerms() != null) subQueryContext.getQueryTerms().addAll(queryContext.getQueryTerms());
-                List<Node> result = getSubQueryNodes(pt.getReferenceType(), subQueryContext) ;
-                for(Node node : result){
+                if (queryContext.getQueryTerms() != null) subQueryContext.getQueryTerms().addAll(queryContext.getQueryTerms());
+                List<Node> result = getSubQueryNodes(pt.getReferenceType(), subQueryContext);
+                for (Node node : result) {
                     node.toDisplay();
                 }
-                return new SimpleQueryResult(result, subQueryContext) ;
+                return new SimpleQueryResult(result, subQueryContext);
             }
         }
-        return null ;
+        return null;
     }
 
-    public SimpleQueryResult getQueryNodes(String typeId, QueryContext queryContext){
+    public SimpleQueryResult getQueryNodes(String typeId, QueryContext queryContext) {
         queryContext.setIncludeReference(true);
-        List<Node> result = getSubQueryNodes(typeId, queryContext) ;
-        for(Node node : result){
+        List<Node> result = getSubQueryNodes(typeId, queryContext);
+        for (Node node : result) {
             node.toDisplay();
         }
-        return new SimpleQueryResult(result, queryContext) ;
+        return new SimpleQueryResult(result, queryContext);
     }
 
 
-
-    public List<Node> getSubQueryNodes(String typeId, QueryContext queryContext){
+    public List<Node> getSubQueryNodes(String typeId, QueryContext queryContext) {
         List<Object> list = executeQuery(typeId, queryContext);
 
-        NodeType nodeType = queryContext.getNodetype() ;
+        NodeType nodeType = queryContext.getNodetype();
 
-//        boolean hasReferenced = nodeType.hasReferenced() ;
-        List<Node> resultList = new ArrayList<Node>() ;
-        for(Object item : list){
+        boolean hasReferenced = nodeType.hasReferenced();
+        List<Node> resultList = new ArrayList<>();
+        for (Object item : list) {
             Node node = (Node) item;
             node = initNode(typeId, node.clone());
 
-            if(queryContext.isIncludeReferenced()){
-                for(PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)){
-                    QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(nodeType, pt, node) ;
-                    node.put(pt.getPid(), getSubQueryNodes(pt.getReferenceType(), subQueryContext)) ;
+            if (queryContext.isIncludeReferenced()) {
+                for (PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)) {
+                    QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(nodeType, pt, node);
+                    node.put(pt.getPid(), getSubQueryNodes(pt.getReferenceType(), subQueryContext));
                 }
             }
-            if(queryContext.isTreeable()) {
+            if (queryContext.isTreeable()) {
                 for (PropertyType pt : nodeType.getPropertyTypes()) {
                     if (pt.isTreeable()) {
                         QueryContext subQueryContext = QueryContext.makeQueryContextForTree(nodeType, pt, node.getId().toString());
@@ -183,13 +182,13 @@ public class InfinispanRepositoryService {
                     }
                 }
             }
-            resultList.add(node) ;
+            resultList.add(node);
         }
 
         return resultList;
     }
 
-    public List<Object> executeQuery(QueryContext queryContext){
+    public List<Object> executeQuery(QueryContext queryContext) {
         Cache<String, Node> cache = getNodeCache(queryContext.getNodetype().getTypeId());
 
         queryContext.setSearchManager(Search.getSearchManager(cache));
@@ -207,39 +206,41 @@ public class InfinispanRepositoryService {
     }
 
     public NodeValue getLastCacheNodeValue() {
-        Cache<String, NodeValue> nodeValueCache = getNodeValueCache() ;
-        SearchManager qf = Search.getSearchManager(nodeValueCache) ;
+        Cache<String, NodeValue> nodeValueCache = getNodeValueCache();
+        SearchManager qf = Search.getSearchManager(nodeValueCache);
         QueryBuilder queryBuilder = qf.buildQueryBuilderForClass(NodeValue.class).get();
 
         CacheQuery cacheQuery = qf.getQuery(queryBuilder.all().createQuery());
-        cacheQuery.sort(new Sort(new SortField("changed", SortField.Type.LONG, true))) ;
-        cacheQuery.maxResults(1) ;
+        cacheQuery.sort(new Sort(new SortField("changed", SortField.Type.LONG, true)));
+        cacheQuery.maxResults(1);
 
-        List result = cacheQuery.list() ;
+        List result = cacheQuery.list();
         return (NodeValue) result.get(0);
     }
 
     public Object getSortedValue(String typeId, String field, SortField.Type sortType, boolean reverse) {
-        Cache<String, Node> nodeCache = getNodeCache(typeId) ;
-        SearchManager qf = Search.getSearchManager(nodeCache) ;
+        Cache<String, Node> nodeCache = getNodeCache(typeId);
+        SearchManager qf = Search.getSearchManager(nodeCache);
         QueryBuilder queryBuilder = qf.buildQueryBuilderForClass(Node.class).get();
 
         CacheQuery cacheQuery = qf.getQuery(queryBuilder.all().createQuery());
-        cacheQuery.sort(new Sort(new SortField(field, sortType, reverse))) ;
-        cacheQuery.maxResults(1) ;
+        cacheQuery.sort(new Sort(new SortField(field, sortType, reverse)));
+        cacheQuery.maxResults(1);
 
         List result = cacheQuery.list();
-        if(result == null || result.size() == 0) return null ;
+        if (result == null || result.size() == 0) return null;
         Node node = (Node) result.get(0);
-        switch(field){
-            case "changed" : return node.getChanged() ;
-            default: return node.get(field) ;
+        switch (field) {
+            case "changed":
+                return node.getChanged();
+            default:
+                return node.get(field);
         }
     }
 
 
     public static CacheQuery makeQuery(SearchManager qf, QueryBuilder queryBuilder, Node nodeType, Cache<String, Node> cache, Map<String, String[]> params) {
-        if(qf == null) {
+        if (qf == null) {
             qf = Search.getSearchManager(cache);
             queryBuilder = qf.buildQueryBuilderForClass(Node.class).get();
         }
@@ -284,8 +285,8 @@ public class InfinispanRepositoryService {
             } else if (qop.equalsIgnoreCase("above")) {
                 innerQueryType = new QueryType(bop, queryBuilder.range().onField(indexKey).above(value).createQuery());
             } else if (qop.equalsIgnoreCase("fromto")) {
-                if(value.contains(",")){
-                    for(String fromto : StringUtils.split(value, ",")){
+                if (value.contains(",")) {
+                    for (String fromto : StringUtils.split(value, ",")) {
                         Object from = StringUtils.substringBefore(fromto, "~").trim();
                         Object to = StringUtils.substringAfter(fromto, "~").trim();
                         if (indexKey.startsWith("string")) {
@@ -294,7 +295,7 @@ public class InfinispanRepositoryService {
                             shouldInnerQueries.add(new QueryType(bop, queryBuilder.range().onField(indexKey).from(from).to(to).createQuery()));
                         }
                     }
-                }else{
+                } else {
                     Object from = StringUtils.substringBefore(value, "~").trim();
                     Object to = StringUtils.substringAfter(value, "~").trim();
                     if (indexKey.startsWith("string")) {
@@ -308,8 +309,8 @@ public class InfinispanRepositoryService {
             if (innerQueryType != null) {
                 if (bop.equals("not")) {
                     notInnerQueries.add(innerQueryType);
-                } else if (bop.equals("should")){
-                    shouldInnerQueries.add(innerQueryType) ;
+                } else if (bop.equals("should")) {
+                    shouldInnerQueries.add(innerQueryType);
                 } else {
                     innerQueries.add(innerQueryType);
                 }
@@ -346,7 +347,7 @@ public class InfinispanRepositoryService {
                 for (QueryType queryType : shouldInnerQueries) {
                     shouldSubQuery.should(queryType.getQuery());
                 }
-                baseQuery.must(shouldSubQuery.createQuery()) ;
+                baseQuery.must(shouldSubQuery.createQuery());
             } else if (shouldInnerQueries.size() == 1) {
                 baseQuery.should(shouldInnerQueries.get(0).getQuery());
             }
@@ -357,11 +358,11 @@ public class InfinispanRepositoryService {
             String[] sortings = StringUtils.split(params.get("sorting")[0], ",");
             List<SortField> sorts = new ArrayList<SortField>();
             for (String sorting : sortings) {
-                String sortField = StringUtils.substringBefore(sorting.trim(), " ").trim() ;
-                String sortTypeStr = null ;
-                if(StringUtils.contains(sortField, "(")){
-                    sortTypeStr = StringUtils.substringBefore(sortField, "(").trim() ;
-                    sortField = StringUtils.substringBetween(sortField, "(", ")") ;
+                String sortField = StringUtils.substringBefore(sorting.trim(), " ").trim();
+                String sortTypeStr = null;
+                if (StringUtils.contains(sortField, "(")) {
+                    sortTypeStr = StringUtils.substringBefore(sortField, "(").trim();
+                    sortField = StringUtils.substringBetween(sortField, "(", ")");
                 }
                 String order = StringUtils.substringAfter(sorting.trim(), " ").trim();
 

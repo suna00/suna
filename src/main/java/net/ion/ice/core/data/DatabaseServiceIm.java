@@ -31,13 +31,15 @@ public class DatabaseServiceIm implements DatabaseService {
 
     static Map<String, JdbcTemplate> dataSourceTemplate = new ConcurrentHashMap<>();
 
-    @PostConstruct
-    public void initJdbcDataSource() {
+//    일단 미사용
+//
+//    @PostConstruct
+//    public void initJdbcDataSource() {
 //        for(Node dataSourceNode : nodeService.getNodeList("datasource", "")){
 //            setDatabaseConfiguration(dataSourceNode);
 //            dataSourceTemplate.put((String) dataSourceNode.get("id"), new JdbcTemplate(setDataSource(configuration)));
 //        }
-    }
+//    }
 
     public JdbcTemplate getJdbcTemplate(String dsId) {
         if (!dataSourceTemplate.containsKey(dsId)) {
@@ -54,7 +56,7 @@ public class DatabaseServiceIm implements DatabaseService {
         if (StringUtils.equalsIgnoreCase(dataConfiguration.getDbType(), "mysql")) {
             return mySqlDataSource(dataConfiguration);
 
-        } else if (StringUtils.equalsIgnoreCase(dataConfiguration.getDbType(), "mariadb")) {
+        } else if (StringUtils.equalsIgnoreCase(dataConfiguration.getDbType(), "maria")) {
             return mariaDataSource(dataConfiguration);
 
         } else {
@@ -62,14 +64,11 @@ public class DatabaseServiceIm implements DatabaseService {
         }
     }
 
-    public void createDatabaseConfiguration(Node dataSourceNode) {
-
-    }
 
     @Override
     public void executeQuery(String dsId, String query, HttpServletResponse response) {
         Map<String, Object> resultMap = new HashMap<>();
-
+        ObjectMapper mapper = new ObjectMapper();
         try {
             List<Map<String, Object>> results = getJdbcTemplate(dsId).queryForList(query);
 

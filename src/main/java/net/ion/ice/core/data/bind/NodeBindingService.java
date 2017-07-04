@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Created by seonwoong on 2017. 6. 28..
  */
-@Service("nodeBindingService")
+@Service
 public class NodeBindingService {
     @Autowired
     private NodeService nodeService;
