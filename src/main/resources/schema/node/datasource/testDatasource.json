@@ -1,11 +1,21 @@
 [
   {
     "typeId" : "datasource",
-    "id" : "testDb",
-    "dsName" : "Test DB (ION)",
+    "id" : "mariaDb",
+    "dsName" : "Test DB (Maria)",
     "jdbcUrl" : "jdbc:mysql://125.131.88.77:3306/webtoon2",
     "dbType" : "maria",
     "username" : "ice2",
     "password" : "ice2"
+  },
+  {
+    "typeId" : "datasource",
+    "id" : "oracleDb",
+    "dsName" : "Test DB (Oracle)",
+    "jdbcUrl" : "jdbc:oracle:thin:@125.131.88.69:8200:ORCL",
+    "dbType" : "oracle",
+    "username" : "ice",
+    "password" : "ice1234"
   }
+
 ]

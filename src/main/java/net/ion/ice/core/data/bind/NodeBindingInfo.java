@@ -1,11 +1,12 @@
 package net.ion.ice.core.data.bind;
 
+import net.ion.ice.core.data.DBType;
 import net.ion.ice.core.data.table.Column;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.PropertyType;
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
@@ -28,15 +29,12 @@ public class NodeBindingInfo {
     private String deleteSql = "";
     private String retieveSql = "";
 
-    private String dsId = "";
-    private String tableName = "";
-
     private JdbcTemplate jdbcTemplate;
     private List<Column> columnList;
 
     private List<String> createPids = new ArrayList<>();
     private List<String> updatePids = new ArrayList<>();
-    private List<String> updateWherePids = new ArrayList<>();
+    private List<String> wherePids = new ArrayList<>();
 
     public NodeBindingInfo(NodeType nodeType, JdbcTemplate jdbcTemplate) {
         this.nodeType = nodeType;
@@ -44,10 +42,10 @@ public class NodeBindingInfo {
     }
 
     public void init() {
-        tableName = String.valueOf(nodeType.getTableName()).split("#")[1];
+        String tableName = String.valueOf(nodeType.getTableName()).split("#")[1];
+        String dbType = getDBType(jdbcTemplate);
 
-        columnList = getTableColumns(tableName, dsId);
-
+        columnList = getTableColumns(tableName);
         List<String> updateColumns = new LinkedList<>();
         List<String> whereIds = new LinkedList<>();
 
@@ -55,9 +53,6 @@ public class NodeBindingInfo {
         List<String> createSetKeys = new LinkedList<>();
 //        querySetProperties = new LinkedList<>();
 
-
-        deleteSql = String.format("delete from %s where NID=?", tableName);
-        retieveSql = String.format("select * from %s with(nolock) where NID=?", tableName);
 
         for (PropertyType propertyType : nodeType.getPropertyTypes()) {
             for (Column column : columnList) {
@@ -73,13 +68,20 @@ public class NodeBindingInfo {
                     }
                     if (propertyType.isIdable()) {
                         whereIds.add(String.format("%s = ?", propertyType.getPid()));
-                        updateWherePids.add(propertyType.getPid());
+                        wherePids.add(propertyType.getPid());
                         break;
                     }
                 }
             }
         }
 
+        if (dbType.equalsIgnoreCase("mysql")) {
+            retieveSql = String.format("select * from %s with(nolock) where %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
+        } else {
+            retieveSql = String.format("select * from %s where %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
+        }
+
+        deleteSql = String.format("delete from %s where %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
         updateSql = String.format("UPDATE %s SET %s WHERE %s"
                 , tableName
                 , StringUtils.join(updateColumns.toArray(), ", ")
@@ -91,7 +93,7 @@ public class NodeBindingInfo {
                 , StringUtils.join(createSetKeys.toArray(), ", "));
     }
 
-    public List<Column> getTableColumns(String tableName, String dsId) {
+    public List<Column> getTableColumns(String tableName) {
         List<Column> columnList = new ArrayList<>();
         DatabaseMetaData dbMetaData;
         try (Connection connection = jdbcTemplate.getDataSource().getConnection()) {
@@ -135,6 +137,18 @@ public class NodeBindingInfo {
         return queryCallBack;
     }
 
+//    public int retrieve(Map<String, String[]> parameterMap) {
+//        List<Object> parameters = updateParameters(parameterMap);
+//        int queryCallBack = jdbcTemplate.query(retieveSql);
+//        return queryCallBack;
+//    }
+
+    public int delete(Map<String, String[]> parameterMap) {
+        List<Object> parameters = updateParameters(parameterMap);
+        int queryCallBack = jdbcTemplate.update(deleteSql, parameters.toArray());
+        return queryCallBack;
+    }
+
     private List<Object> createParameters(Map<String, String[]> parameterMap) {
         List<Object> parameters = new ArrayList<>();
         for (String pid : createPids) {
@@ -145,12 +159,21 @@ public class NodeBindingInfo {
 
     private List<Object> updateParameters(Map<String, String[]> parameterMap) {
         List<Object> parameters = new ArrayList<>();
-        updatePids.addAll(updateWherePids);
+        updatePids.addAll(wherePids);
         for (String pid : updatePids) {
             parameters.add(parameterMap.get(pid)[0]);
         }
         return parameters;
     }
 
-
+    private String getDBType(JdbcTemplate jdbcTemplate) {
+        BasicDataSource basicDataSource = (BasicDataSource) jdbcTemplate.getDataSource();
+        if (basicDataSource.getDriverClassName().equals(DBType.ORACLE)) {
+            return "oracle";
+        } else if (basicDataSource.getDriverClassName().equals(DBType.MARIA)) {
+            return "maria";
+        } else {
+            return "mysql";
+        }
+    }
 }

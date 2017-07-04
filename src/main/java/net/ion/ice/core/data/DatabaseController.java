@@ -14,7 +14,6 @@ import java.io.IOException;
 /**
  * Created by jaeho on 2017. 6. 22..
  */
-@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
 @RestController
 public class DatabaseController {
 
@@ -23,16 +22,14 @@ public class DatabaseController {
     @Autowired
     private DatabaseService databaseService;
 
-    @RequestMapping(value = "/data/{dsId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/data/query/{dsId}", method = RequestMethod.GET)
     @ResponseBody
     public Object query(WebRequest request, HttpServletResponse response, @PathVariable String dsId, @RequestParam(value="query") String query) throws IOException {
         try{
             databaseService.executeQuery(dsId, query, response);
-
         }catch (Exception e){
-
+            e.printStackTrace();
         }
         return null;
     }
-
 }
