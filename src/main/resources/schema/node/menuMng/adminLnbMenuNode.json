@@ -27,7 +27,8 @@
     "pages": [],
     "customPages": [
       { "pageName": "목록", "pageUrl": "DefaultList" },
-      { "pageName": "등록/수정", "pageUrl": "DefaultForm" },
+      { "pageName": "등록", "pageUrl": "DefaultForm" },
+      { "pageName": "수정", "pageUrl": "DefaultUForm" },
       { "pageName": "상세", "pageUrl": "DefaultView" }
     ]
   },
@@ -45,6 +46,38 @@
     "pages": [],
     "customPages": [
       { "pageName": "상세", "pageUrl": "DefaultChart" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "custom",
+    "parentMenuId": "root",
+    "menuId": "editList",
+    "menuName": "EditList",
+    "order": "30",
+    "icon": "fa-square-o",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "EditList" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "custom",
+    "parentMenuId": "root",
+    "menuId": "treeAndList",
+    "menuName": "TreeAndList",
+    "order": "40",
+    "icon": "{}",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "TreeAndList" }
     ]
   },
   {
