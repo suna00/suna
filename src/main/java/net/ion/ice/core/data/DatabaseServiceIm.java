@@ -15,6 +15,7 @@ import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by seonwoong on 2017. 6. 22..
@@ -24,31 +25,27 @@ import java.util.Map;
 public class DatabaseServiceIm implements DatabaseService {
     @Autowired
     private NodeService nodeService;
-    @Autowired
-    private DatabaseConfiguration configuration;
+
     @Autowired
     ObjectMapper mapper;
 
-    static Map<String, JdbcTemplate> dataSourceTemplate = new HashMap<>();
+    static Map<String, JdbcTemplate> dataSourceTemplate = new ConcurrentHashMap<>();
 
     @PostConstruct
     public void initJdbcDataSource() {
-        for(Node dataSourceNode : nodeService.getNodeList("datasource", "")){
-            setDatabaseConfiguration(dataSourceNode);
-            dataSourceTemplate.put((String) dataSourceNode.get("id"), new JdbcTemplate(setDataSource(configuration)));
-        }
+//        for(Node dataSourceNode : nodeService.getNodeList("datasource", "")){
+//            setDatabaseConfiguration(dataSourceNode);
+//            dataSourceTemplate.put((String) dataSourceNode.get("id"), new JdbcTemplate(setDataSource(configuration)));
+//        }
     }
 
     public JdbcTemplate getJdbcTemplate(String dsId) {
-        JdbcTemplate jdbcTemplate;
-        if (dataSourceTemplate.containsKey(dsId)) {
-            jdbcTemplate = dataSourceTemplate.get(dsId);
-        } else {
+        if (!dataSourceTemplate.containsKey(dsId)) {
             Node dataSourceNode = nodeService.read("datasource", dsId);
-            setDatabaseConfiguration(dataSourceNode);
+            DatabaseConfiguration configuration =  new DatabaseConfiguration(dataSourceNode) ;
             dataSourceTemplate.put(dsId, new JdbcTemplate(setDataSource(configuration)));
-            jdbcTemplate = dataSourceTemplate.get(dsId);
         }
+        JdbcTemplate jdbcTemplate = dataSourceTemplate.get(dsId);
         return jdbcTemplate;
     }
 
@@ -65,12 +62,8 @@ public class DatabaseServiceIm implements DatabaseService {
         }
     }
 
-    public void setDatabaseConfiguration(Node dataSourceNode) {
-        configuration.setDsId(dataSourceNode.getStringValue("id"));
-        configuration.setDbType(dataSourceNode.getStringValue("dbType"));
-        configuration.setUsername(dataSourceNode.getStringValue("username"));
-        configuration.setPassword(dataSourceNode.getStringValue("password"));
-        configuration.setJdbcUrl(dataSourceNode.getStringValue("jdbcUrl"));
+    public void createDatabaseConfiguration(Node dataSourceNode) {
+
     }
 
     @Override
