@@ -27,7 +27,8 @@
     "pages": [],
     "customPages": [
       { "pageName": "목록", "pageUrl": "DefaultList" },
-      { "pageName": "등록/수정", "pageUrl": "DefaultForm" },
+      { "pageName": "등록", "pageUrl": "DefaultForm" },
+      { "pageName": "수정", "pageUrl": "DefaultUForm" },
       { "pageName": "상세", "pageUrl": "DefaultView" }
     ]
   },
