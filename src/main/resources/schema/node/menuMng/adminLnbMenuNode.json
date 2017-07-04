@@ -51,6 +51,38 @@
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "admin",
+    "gnbMenuId": "custom",
+    "parentMenuId": "root",
+    "menuId": "editList",
+    "menuName": "EditList",
+    "order": "30",
+    "icon": "fa-square-o",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "EditList" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "custom",
+    "parentMenuId": "root",
+    "menuId": "treeAndList",
+    "menuName": "TreeAndList",
+    "order": "40",
+    "icon": "{}",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "TreeAndList" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "admin",
     "gnbMenuId": "configMng",
     "parentMenuId": "root",
     "menuId": "groupCode",
