@@ -249,7 +249,7 @@ public class NodeUtils {
                     return null ;
                 }
             }
-            case JSON:{
+            case OBJECT:{
                 if(value instanceof Map){
                     return value ;
                 }

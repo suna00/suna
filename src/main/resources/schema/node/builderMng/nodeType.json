@@ -1,0 +1,20 @@
+[
+  {
+    "parentId" : "root",
+    "typeId" : "nodeType",
+    "id" : "builderMng",
+    "tid" : "builderMng",
+    "typeName" : "빌더 관리",
+    "repositoryType" : "path",
+    "eviction" : 0
+  },
+  {
+    "parentId" : "builderMng",
+    "typeId" : "nodeType",
+    "id" : "builderPage",
+    "tid" : "builderPage",
+    "typeName" : "빌더 페이지",
+    "repositoryType" : "node",
+    "eviction" : 500
+  }
+]

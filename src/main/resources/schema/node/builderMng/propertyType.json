@@ -1,0 +1,50 @@
+[
+  {
+    "typeId" : "propertyType",
+    "tid": "builderPage",
+    "id": "builderPage@id",
+    "pid": "id",
+    "propertyTypeName": "페이지 아이디",
+    "valueType": "STRING",
+    "required": true,
+    "idable": true,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": true, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "builderPage",
+    "id": "builderPage@content",
+    "pid": "content",
+    "propertyTypeName": "페이지 내용",
+    "valueType": "JSON",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
+  }
+]
