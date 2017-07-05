@@ -16,6 +16,8 @@ public class ApiContext {
     public static ApiContext createContext(Node apiNode, Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap) {
         ApiContext ctx = new ApiContext() ;
         ctx.apiNode = apiNode ;
+
+
         return ctx ;
     }
 }
