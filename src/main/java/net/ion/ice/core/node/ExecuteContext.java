@@ -41,11 +41,13 @@ public class ExecuteContext {
                 value = values[0];
             }
 
-            if (value != null && JsonUtils.isJson(value)) {
-                data.put(paramName, JsonUtils.parsingJsonToObject(value));
-            } else {
-                data.put(paramName, value);
-            }
+            data.put(paramName, value);
+
+//            if (value != null && JsonUtils.isJson(value)) {
+//                data.put(paramName, JsonUtils.parsingJsonToObject(value));
+//            } else {
+//                data.put(paramName, value);
+//            }
         }
         return data;
     }
