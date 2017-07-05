@@ -29,6 +29,7 @@ public class ApiService {
 
         if(apiMethod.equals("POST")){
             if(request instanceof MultipartHttpServletRequest) {
+                ApiContext context = ApiContext.createContext(apiNode, request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap()) ;
                 return JsonResponse.create(nodeService.saveNode(request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap(), "")) ;
             }
             return JsonResponse.create(nodeService.saveNode(request.getParameterMap(), "")) ;
