@@ -113,6 +113,10 @@ public class NodeService {
         return infinispanRepositoryService.getQueryTreeNodes(typeId, queryContext) ;
     }
 
+    public SimpleQueryResult getNodeCode(String typeId, Map<String, String[]> parameterMap) {
+        QueryContext queryContext = QueryContext.makeQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
+        return infinispanRepositoryService.getQueryCodeNodes(typeId, queryContext) ;
+    }
 
     private void initNodeType(boolean preConstruct) throws IOException {
         Collection<Map<String, Object>> nodeTypeDataList = JsonUtils.parsingJsonResourceToList(ApplicationContextManager.getResource("classpath:schema/node/nodeType.json")) ;

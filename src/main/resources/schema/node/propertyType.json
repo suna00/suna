@@ -81,7 +81,7 @@
     "valueType": "STRING",
     "required": true,
     "idable": false,
-    "labelable": false,
+    "labelable": true,
     "treeable": false,
     "indexable": true,
     "analyzer": "cjk",

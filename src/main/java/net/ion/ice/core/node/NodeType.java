@@ -55,6 +55,26 @@ public class NodeType {
         return idPts ;
     }
 
+    public List<String> getLabelablePIds() {
+        List<String> labels = new ArrayList<>() ;
+        for(PropertyType pt : propertyTypes.values()){
+            if(pt.isLabelable()){
+                labels.add(pt.getPid()) ;
+            }
+        }
+        return labels ;
+    }
+
+    public List<PropertyType> getLabelablePropertyTypes() {
+        List<PropertyType> labelPts = new ArrayList<>() ;
+        for(PropertyType pt : propertyTypes.values()){
+            if(pt.isLabelable()){
+                labelPts.add(pt) ;
+            }
+        }
+        return labelPts ;
+    }
+
 
     public void addPropertyType(PropertyType propertyType) {
         if(propertyTypes == null){

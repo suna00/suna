@@ -1,10 +1,7 @@
 package net.ion.ice.core.node;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by jaeho on 2017. 5. 31..
@@ -134,6 +131,16 @@ public class Properties implements Map<String, Object>, Serializable, Cloneable 
                 values.remove(pt.getPid()) ;
             }
         }
+    }
+
+    public void toCode() {
+        NodeType nodeType = NodeUtils.getNodeType(typeId) ;
+        List<String> labelablePids = nodeType.getLabelablePIds();
+        String value = this.id;
+        Object label = labelablePids.isEmpty() ? "" : values.get(labelablePids.get(0));
+        clear();
+        values.put("value", value);
+        values.put("label", label);
     }
 
     public Properties clone(){
