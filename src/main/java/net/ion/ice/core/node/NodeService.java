@@ -1,10 +1,11 @@
 package net.ion.ice.core.node;
 
 import net.ion.ice.ApplicationContextManager;
+import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.file.FileService;
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
-import net.ion.ice.core.query.QueryContext;
+import net.ion.ice.core.context.QueryContext;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.SimpleQueryResult;

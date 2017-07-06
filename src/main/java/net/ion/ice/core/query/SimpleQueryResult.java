@@ -1,7 +1,7 @@
 package net.ion.ice.core.query;
 
 import net.ion.ice.core.node.Node;
-import net.ion.ice.core.query.QueryContext;
+import net.ion.ice.core.context.QueryContext;
 
 import java.util.List;
 

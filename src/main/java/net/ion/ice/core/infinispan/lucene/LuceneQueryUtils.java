@@ -2,7 +2,7 @@ package net.ion.ice.core.infinispan.lucene;
 
 
 import net.ion.ice.IceRuntimeException;
-import net.ion.ice.core.query.QueryContext;
+import net.ion.ice.core.context.QueryContext;
 import net.ion.ice.core.query.QueryTerm;
 import net.ion.ice.core.node.Node;
 import org.apache.commons.lang3.StringUtils;

@@ -1,9 +1,10 @@
 package net.ion.ice.core.infinispan;
 
+import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.infinispan.lucene.LuceneQueryUtils;
 import net.ion.ice.core.infinispan.lucene.QueryType;
 import net.ion.ice.core.node.*;
-import net.ion.ice.core.query.QueryContext;
+import net.ion.ice.core.context.QueryContext;
 import net.ion.ice.core.query.SimpleQueryResult;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.search.Sort;

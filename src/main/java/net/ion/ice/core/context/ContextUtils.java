@@ -1,4 +1,4 @@
-package net.ion.ice.core.node;
+package net.ion.ice.core.context;
 
 import net.ion.ice.core.json.JsonUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -36,6 +36,8 @@ public class ContextUtils {
 
     public static Map<String, Object> makeContextData(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap){
         Map<String, Object> data = ContextUtils.makeContextData(parameterMap);
+        if(multiFileMap == null || multiFileMap.size() == 0)
+            return data ;
 
         for(String paramName : multiFileMap.keySet()){
             List<MultipartFile> multipartFiles = multiFileMap.get(paramName) ;

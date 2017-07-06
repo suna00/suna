@@ -1,5 +1,7 @@
 package net.ion.ice.core.query;
 
+import net.ion.ice.core.context.QueryContext;
+
 /**
  * Created by jaeho on 2017. 6. 15..
  */
