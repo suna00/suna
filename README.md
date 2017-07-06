@@ -27,33 +27,13 @@ String Boot를 기반으로 API를 제공하는 Backend 시스템
 1. IntelliJ > Preferences > Plugin > keyword in 'lombok' search and install and restart
 2. Preferences > Compiler > Annotation Processors > Enable annotaion processing checked
 
-                    
-
-
-
-### Install from source
-
-First, clone the project:
+### Running Server     
 
 ```bash
-$ git clone http://125.131.88.146/pm1200/ice2-core.git <my-project-name>
-$ cd <my-project-name>
+ - Intellij 우측 상단 Run/Debug Configuration 
+ - Edit Configurations
+ - Add New Configuration - > Select Spring Boot
+ - Configuration#Tab
+   -> Main Class : Ice2Application
+   -> Use classpath of module : ice2-core_main
 ```
-
-### Running Server
-
-
-```bash
-$ java -jar application.war --spring.profiles.active=dev
-$ java -jar application.war --spring.profiles.active=dev-2
-$ npm run dev -s      # Compile and launch 
-```
-실행한 이후에 http://localhost:8081/ 에서 동작을 확인합니다.
-
-### Local Test Run
-
-```bash
-$ java -jar build/libs/application.war --spring.profiles.active=dev-2
-```
-`-jar` 파라미터가 빌드 결과를 볼 수 있도록 합니다.
-
