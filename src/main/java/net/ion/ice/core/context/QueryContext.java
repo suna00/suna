@@ -1,10 +1,12 @@
-package net.ion.ice.core.query;
+package net.ion.ice.core.context;
 
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
+import net.ion.ice.core.query.QueryTerm;
+import net.ion.ice.core.query.ResultField;
 import org.apache.commons.lang3.StringUtils;
 import org.infinispan.query.SearchManager;
 
@@ -18,7 +20,7 @@ import java.util.Map;
 /**
  * Created by jaeho on 2017. 4. 26..
  */
-public class QueryContext{
+public class QueryContext implements Context{
     protected NodeType nodeType ;
     protected List<QueryTerm> queryTerms ;
     protected SearchManager searchManager;

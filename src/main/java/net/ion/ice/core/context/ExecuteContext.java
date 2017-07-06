@@ -1,9 +1,10 @@
-package net.ion.ice.core.node;
+package net.ion.ice.core.context;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import net.ion.ice.core.file.FileValue;
-import net.ion.ice.core.json.JsonUtils;
-import org.apache.commons.lang3.StringUtils;
+import net.ion.ice.core.node.Node;
+import net.ion.ice.core.node.NodeType;
+import net.ion.ice.core.node.NodeUtils;
+import net.ion.ice.core.node.PropertyType;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,7 +13,7 @@ import java.util.*;
 /**
  * Created by jaeho on 2017. 5. 31..
  */
-public class ExecuteContext {
+public class ExecuteContext implements Context{
     private Map<String, Object> data  ;
     private Node node;
     private NodeType nodeType;
