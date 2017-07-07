@@ -1,32 +1,18 @@
 package net.ion.ice;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
-import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
-import org.springframework.boot.web.servlet.ServletContextInitializer;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.stagemonitor.core.Stagemonitor;
-import org.stagemonitor.web.servlet.spring.SpringBootWebPluginInitializer;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-
-@SpringBootApplication
-@ComponentScan({ "net.ion.ice" })
+@SpringBootApplication(scanBasePackages = {"net.ion.ice"},exclude = {DataSourceAutoConfiguration.class})
 @EnableAsync
-@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 public class Ice2Application {
 
 	public static final String USE_HAZELCAST = "true";

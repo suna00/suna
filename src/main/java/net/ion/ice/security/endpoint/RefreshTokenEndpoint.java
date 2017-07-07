@@ -8,6 +8,7 @@ import net.ion.ice.security.token.JwtTokenFactory;
 import net.ion.ice.security.token.RawAccessJwtToken;
 import net.ion.ice.security.token.RefreshToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,8 +27,7 @@ public class RefreshTokenEndpoint {
     private JwtTokenFactory tokenFactory;
     @Autowired
     private JwtConfig jwtConfig;
-    @Autowired
-    private TokenExtractor tokenExtractor;
+    @Autowired @Qualifier("jwtHeaderTokenExtractor") private TokenExtractor tokenExtractor;
     
     @RequestMapping(value="/api/auth/token", method= RequestMethod.GET, produces={ MediaType.APPLICATION_JSON_VALUE })
     public @ResponseBody

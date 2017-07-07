@@ -1,17 +1,14 @@
 package net.ion.ice.core.data.bind;
 
+import net.ion.ice.core.data.DBUtils;
 import net.ion.ice.core.data.DatabaseService;
-import net.ion.ice.core.data.table.Column;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeType;
-import net.ion.ice.core.node.PropertyType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -33,8 +30,11 @@ public class NodeBindingService {
 
             String dsId = String.valueOf(nodeType.getTableName()).split("#")[0];
             JdbcTemplate jdbcTemplate = databaseService.getJdbcTemplate(dsId);
+            DBUtils dbUtils = new DBUtils(jdbcTemplate);
+            String DBType = dbUtils.getDBType();
 
-            NodeBindingInfo nodeBindingInfo = new NodeBindingInfo(nodeType, jdbcTemplate);
+
+            NodeBindingInfo nodeBindingInfo = new NodeBindingInfo(nodeType, jdbcTemplate, DBType);
             nodeBindingInfo.init();
 
             nodeBindingInfoMap.put(tid, nodeBindingInfo);
@@ -43,36 +43,26 @@ public class NodeBindingService {
         NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(tid);
         int callback = nodeBindingInfo.update(parameterMap);
         if (callback == 0) {
-            nodeBindingInfo.create(parameterMap);
+            nodeBindingInfo.insert(parameterMap);
         }
     }
 
-//    public void createTable(String tid, HttpServletResponse response){
-//        NodeType nodeType = nodeService.getNodeType(tid);
-//        List<Column> createColumsList = new LinkedList<>();
-//        for (PropertyType propertyType : nodeType.getPropertyTypes()) {
-//            String columnName = propertyType.getPid();
-//            Boolean isPk;
-//            String dataType;
-//            Integer dataLength;
-//            Boolean isNullable;
-//            Integer sqlType;
-//            String dataDefault;
-//
-//            String columnName = propertyType.getPid();
-//
-//            if(propertyType.isIdable()){
-//                isPk = true;
-//            }
-//
-//            if ()
-//            Column column = new Column();
-//
-//        }
-//        String dsId = String.valueOf(nodeType.getTableName()).split("#")[0];
-//        JdbcTemplate jdbcTemplate = databaseService.getJdbcTemplate(dsId);
-//
-//        NodeBindingInfo nodeBindingInfo = new NodeBindingInfo(nodeType, jdbcTemplate);
-//        nodeBindingInfo.init();
-//    }
+    public void createTable(String tid, HttpServletResponse response) {
+
+        if (!nodeBindingInfoMap.containsKey(tid)) {
+            NodeType nodeType = nodeService.getNodeType(tid);
+            String dsId = String.valueOf(nodeType.getTableName()).split("#")[0];
+            JdbcTemplate jdbcTemplate = databaseService.getJdbcTemplate(dsId);
+            DBUtils dbUtils = new DBUtils(jdbcTemplate);
+            String DBType = dbUtils.getDBType();
+
+
+            NodeBindingInfo nodeBindingInfo = new NodeBindingInfo(nodeType, jdbcTemplate, DBType);
+            nodeBindingInfo.init();
+
+            nodeBindingInfoMap.put(tid, nodeBindingInfo);
+        }
+        NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(tid);
+        nodeBindingInfo.create();
+    }
 }

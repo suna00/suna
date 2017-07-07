@@ -510,6 +510,22 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "propertyType",
+    "id": "propertyType@length",
+    "pid": "length",
+    "propertyTypeName": "Length",
+    "valueType": "INT",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
   }
 
 ]

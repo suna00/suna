@@ -34,6 +34,7 @@
     "required": true,
     "treeable": true,
     "referenceType": "testCategory",
+    "length": 100,
     "analyzer": "cjk"
   },
   {
@@ -46,6 +47,7 @@
     "indexable": true,
     "labelable": true,
     "required": true,
+    "length": 100,
     "analyzer": "cjk"
   },
   {

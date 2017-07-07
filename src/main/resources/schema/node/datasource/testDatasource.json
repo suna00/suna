@@ -14,8 +14,8 @@
     "dsName" : "Test DB (Oracle)",
     "jdbcUrl" : "jdbc:oracle:thin:@125.131.88.69:8200:ORCL",
     "dbType" : "oracle",
-    "username" : "ice",
-    "password" : "ice1234"
+    "username" : "ICE",
+    "password" : "ICE1234"
   }
 
 ]

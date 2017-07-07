@@ -82,7 +82,7 @@ public class DatabaseService {
 
     public static DataSource oracleDataSource(DatabaseConfiguration dataConfiguration) {
         BasicDataSource basicDataSource = new BasicDataSource();
-        basicDataSource.setDriverClassName(DBType.ORACLE.getDriverClass());
+        basicDataSource.setDriverClassName(DBTypes.oracle.getDriverClassName());
         basicDataSource.setUsername(dataConfiguration.getUsername());
         basicDataSource.setPassword(dataConfiguration.getPassword());
         basicDataSource.setUrl(dataConfiguration.getJdbcUrl());
@@ -105,7 +105,7 @@ public class DatabaseService {
 
     public static DataSource mySqlDataSource(DatabaseConfiguration dataConfiguration) {
         BasicDataSource basicDataSource = new BasicDataSource();
-        basicDataSource.setDriverClassName(DBType.MYSQL.getDriverClass());
+        basicDataSource.setDriverClassName(DBTypes.mysql.getDriverClassName());
         basicDataSource.setUsername(dataConfiguration.getUsername());
         basicDataSource.setPassword(dataConfiguration.getPassword());
         basicDataSource.setUrl(dataConfiguration.getJdbcUrl());
@@ -127,7 +127,7 @@ public class DatabaseService {
 
     public static DataSource mariaDataSource(DatabaseConfiguration dataConfiguration) {
         BasicDataSource basicDataSource = new BasicDataSource();
-        basicDataSource.setDriverClassName(DBType.MARIA.getDriverClass());
+        basicDataSource.setDriverClassName(DBTypes.maria.getDriverClassName());
         basicDataSource.setUsername(dataConfiguration.getUsername());
         basicDataSource.setPassword(dataConfiguration.getPassword());
         basicDataSource.setUrl(dataConfiguration.getJdbcUrl());

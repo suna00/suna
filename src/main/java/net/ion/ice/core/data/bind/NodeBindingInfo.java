@@ -1,10 +1,10 @@
 package net.ion.ice.core.data.bind;
 
-import net.ion.ice.core.data.DBType;
+import net.ion.ice.core.data.DBTypes;
 import net.ion.ice.core.data.table.Column;
+import net.ion.ice.core.data.table.TableMetaSettings;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.PropertyType;
-import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -24,58 +24,94 @@ import java.util.Map;
 public class NodeBindingInfo {
 
     private NodeType nodeType;
+
+    private String DBType = "";
+
     private String createSql = "";
+    private String insertSql = "";
     private String updateSql = "";
     private String deleteSql = "";
     private String retieveSql = "";
 
     private JdbcTemplate jdbcTemplate;
     private List<Column> columnList;
+    private List<Column> createColumnList;
 
-    private List<String> createPids = new ArrayList<>();
+    private List<String> insertPids = new ArrayList<>();
     private List<String> updatePids = new ArrayList<>();
     private List<String> wherePids = new ArrayList<>();
 
-    public NodeBindingInfo(NodeType nodeType, JdbcTemplate jdbcTemplate) {
+    private TableMetaSettings tableMetaSettings = new TableMetaSettings();
+
+
+    public NodeBindingInfo(NodeType nodeType, JdbcTemplate jdbcTemplate, String DBType) {
         this.nodeType = nodeType;
         this.jdbcTemplate = jdbcTemplate;
+        this.DBType = DBType;
     }
 
     public void init() {
         String tableName = String.valueOf(nodeType.getTableName()).split("#")[1];
-        String dbType = getDBType(jdbcTemplate);
+        columnList = getTableColumns(tableName, DBType);
+        createColumnList = new LinkedList<>();
 
-        columnList = getTableColumns(tableName);
+        List<String> createColumns = new LinkedList<>();
+        List<String> createPrimaryKeys = new LinkedList<>();
+
         List<String> updateColumns = new LinkedList<>();
         List<String> whereIds = new LinkedList<>();
 
-        List<String> createColumns = new LinkedList<>();
-        List<String> createSetKeys = new LinkedList<>();
+        List<String> insertColumns = new LinkedList<>();
+        List<String> insertSetKeys = new LinkedList<>();
 //        querySetProperties = new LinkedList<>();
 
 
         for (PropertyType propertyType : nodeType.getPropertyTypes()) {
-            for (Column column : columnList) {
-                if (propertyType.getPid().equalsIgnoreCase(column.getColumnName())) {
-                    createColumns.add(propertyType.getPid());
-                    createSetKeys.add("?");
-                    createPids.add(propertyType.getPid());
+            Column createColumn = new Column();
+            createColumn.setColumnName(propertyType.getPid());
+            if (DBType.equalsIgnoreCase(DBTypes.oracle.name())) {
+                createColumn.setDataType(tableMetaSettings.setOracleDataTypes(propertyType.getValueType()));
+            } else {
+                createColumn.setDataType(tableMetaSettings.setMysqlDataTypes(propertyType.getValueType()));
+            }
+            createColumn.setDefaultValue(propertyType.getDefaultValue());
+            createColumn.setDataLength(propertyType.getLength());
+            createColumn.setNullable(true);
+            createColumnList.add(createColumn);
 
-                    if (!propertyType.isIdable()) {
-                        updateColumns.add(String.format("%s = ?", propertyType.getPid()));
-                        updatePids.add(propertyType.getPid());
-                        break;
-                    }
-                    if (propertyType.isIdable()) {
-                        whereIds.add(String.format("%s = ?", propertyType.getPid()));
-                        wherePids.add(propertyType.getPid());
-                        break;
+            if (columnList.size() > 0) {
+                for (Column column : columnList) {
+                    if (propertyType.getPid().equalsIgnoreCase(column.getColumnName())) {
+                        insertColumns.add(column.getColumnName());
+                        insertSetKeys.add("?");
+                        insertPids.add(propertyType.getPid());
+
+                        if (!propertyType.isIdable()) {
+                            updateColumns.add(String.format("%s = ?", column.getColumnName()));
+                            updatePids.add(propertyType.getPid());
+                            break;
+                        }
+                        if (propertyType.isIdable()) {
+                            whereIds.add(String.format("%s = ?", propertyType.getPid()));
+                            wherePids.add(propertyType.getPid());
+                            break;
+                        }
                     }
                 }
             }
+
         }
 
-        if (dbType.equalsIgnoreCase("mysql")) {
+        if (createColumnList.size() > 0) {
+            for (Column column : createColumnList) {
+                if (column.getPk()) {
+                    createPrimaryKeys.add(String.format("%s", column.getColumnName()));
+                }
+                createColumns.add(String.format("%s %s(%s)", column.getColumnName(), column.getDataType(), column.getDataLength()));
+            }
+        }
+
+        if (DBType.equalsIgnoreCase("mysql")) {
             retieveSql = String.format("select * from %s with(nolock) where %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
         } else {
             retieveSql = String.format("select * from %s where %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
@@ -87,18 +123,26 @@ public class NodeBindingInfo {
                 , StringUtils.join(updateColumns.toArray(), ", ")
                 , StringUtils.join(whereIds.toArray(), " AND "));
 
-        createSql = String.format("INSERT INTO %s (%s) VALUES (%s)"
+        insertSql = String.format("INSERT INTO %s (%s) VALUES (%s)"
                 , tableName
-                , StringUtils.join(createColumns.toArray(), ", ")
-                , StringUtils.join(createSetKeys.toArray(), ", "));
+                , StringUtils.join(insertColumns.toArray(), ", ")
+                , StringUtils.join(insertSetKeys.toArray(), ", "));
+
+        createSql = String.format("CREATE TABLE %s (%s) CONSTRAINT %s (%s)", tableName, StringUtils.join(createColumns.toArray(), ", "), tableName.concat("_PK"), createPrimaryKeys.toArray());
+
     }
 
-    public List<Column> getTableColumns(String tableName) {
+    public List<Column> getTableColumns(String tableName, String dbType) {
         List<Column> columnList = new ArrayList<>();
         DatabaseMetaData dbMetaData;
         try (Connection connection = jdbcTemplate.getDataSource().getConnection()) {
             dbMetaData = connection.getMetaData();
             List<String> pkList = new ArrayList<>();
+
+            if (dbType.equals(DBTypes.oracle.name())) { //오라클은 대문자
+                tableName = tableName.toUpperCase();
+            }
+
             try (ResultSet rs = dbMetaData.getPrimaryKeys(null, null, tableName)) {
                 while (rs.next()) {
                     pkList.add(rs.getString("COLUMN_NAME"));
@@ -125,9 +169,31 @@ public class NodeBindingInfo {
         return columnList;
     }
 
-    public int create(Map<String, String[]> parameterMap) {
-        List<Object> parameters = createParameters(parameterMap);
-        int queryCallBack = jdbcTemplate.update(createSql, parameters.toArray());
+    public List<Column> getCreateColumns() {
+        List<Column> columnList = new LinkedList<>();
+        for (PropertyType propertyType : nodeType.getPropertyTypes()) {
+            Column column = new Column();
+            column.setColumnName(propertyType.getPid());
+            if (DBType.equalsIgnoreCase(DBTypes.oracle.name())) {
+                column.setDataType(tableMetaSettings.setOracleDataTypes(propertyType.getValueType()));
+            } else {
+                column.setDataType(tableMetaSettings.setMysqlDataTypes(propertyType.getValueType()));
+            }
+            column.setDefaultValue(propertyType.getDefaultValue());
+            column.setDataLength(propertyType.getLength());
+            column.setNullable(true);
+            columnList.add(column);
+        }
+        return columnList;
+    }
+
+    public void create() {
+        jdbcTemplate.execute(createSql);
+    }
+
+    public int insert(Map<String, String[]> parameterMap) {
+        List<Object> parameters = insertParameters(parameterMap);
+        int queryCallBack = jdbcTemplate.update(insertSql, parameters.toArray());
         return queryCallBack;
     }
 
@@ -149,9 +215,10 @@ public class NodeBindingInfo {
         return queryCallBack;
     }
 
-    private List<Object> createParameters(Map<String, String[]> parameterMap) {
+
+    private List<Object> insertParameters(Map<String, String[]> parameterMap) {
         List<Object> parameters = new ArrayList<>();
-        for (String pid : createPids) {
+        for (String pid : insertPids) {
             parameters.add(parameterMap.get(pid)[0]);
         }
         return parameters;
@@ -164,16 +231,5 @@ public class NodeBindingInfo {
             parameters.add(parameterMap.get(pid)[0]);
         }
         return parameters;
-    }
-
-    private String getDBType(JdbcTemplate jdbcTemplate) {
-        BasicDataSource basicDataSource = (BasicDataSource) jdbcTemplate.getDataSource();
-        if (basicDataSource.getDriverClassName().equals(DBType.ORACLE)) {
-            return "oracle";
-        } else if (basicDataSource.getDriverClassName().equals(DBType.MARIA)) {
-            return "maria";
-        } else {
-            return "mysql";
-        }
     }
 }

@@ -21,9 +21,10 @@ public class PropertyType {
     public static final String FILE_HANDLER = "fileHandler";
 
 
+    public enum ValueType {STRING, CODE, DATE, LONG, INT, DOUBLE, BOOLEAN, REFERENCED, REFERENCE, TEXT, ARRAY, OBJECT, JSON, FILE}
 
-    public enum ValueType { STRING, CODE, DATE, LONG, INT, DOUBLE, BOOLEAN, REFERENCED, REFERENCE, TEXT, ARRAY, OBJECT, JSON, FILE}
     public enum AnalyzerType {simple, code, whitespace, standard, cjk, korean}
+
     public enum IdType {autoIncrement, UUID}
 
 
@@ -34,20 +35,21 @@ public class PropertyType {
     public static final String LABELABLE = "labelable";
     public static final String REQUIRED = "required";
     public static final String TREEABLE = "treeable";
+    public static final String LENGTH = "length";
 
     public static final String TID = "tid";
     public static final String PID = "pid";
 
-    private Node propertyTypeNode ;
+    private Node propertyTypeNode;
 
-    private Map<Object, Code> codeMap ;
+    private Map<Object, Code> codeMap;
 
     public PropertyType(Node propertyType) {
-        this.propertyTypeNode = propertyType ;
+        this.propertyTypeNode = propertyType;
     }
 
     public boolean isIndexable() {
-        return propertyTypeNode.getBooleanValue(INDEXABLE) ;
+        return propertyTypeNode.getBooleanValue(INDEXABLE);
     }
 
     public String getAnalyzer() {
@@ -57,45 +59,45 @@ public class PropertyType {
     public AnalyzerType getAnalyzerType() {
         try {
             return AnalyzerType.valueOf(getAnalyzer());
-        }catch(NullPointerException e){
-            return null ;
+        } catch (NullPointerException e) {
+            return null;
         }
     }
 
-    public Analyzer getLuceneAnalyzer(){
-        AnalyzerType analyzerType = getAnalyzerType() ;
-        if(analyzerType == null){
-            if(isIdable()){
-                analyzerType = PropertyType.AnalyzerType.code ;
-            }else if(isLabelable()){
-                analyzerType =  PropertyType.AnalyzerType.cjk ;
-            }else{
+    public Analyzer getLuceneAnalyzer() {
+        AnalyzerType analyzerType = getAnalyzerType();
+        if (analyzerType == null) {
+            if (isIdable()) {
+                analyzerType = PropertyType.AnalyzerType.code;
+            } else if (isLabelable()) {
+                analyzerType = PropertyType.AnalyzerType.cjk;
+            } else {
                 switch (getValueType()) {
-                    case CODE:{
-                        analyzerType =  PropertyType.AnalyzerType.code ;
-                        break ;
+                    case CODE: {
+                        analyzerType = PropertyType.AnalyzerType.code;
+                        break;
                     }
-                    case TEXT:{
-                        analyzerType = PropertyType.AnalyzerType.standard ;
-                        break ;
+                    case TEXT: {
+                        analyzerType = PropertyType.AnalyzerType.standard;
+                        break;
                     }
-                    default :{
-                        analyzerType = PropertyType.AnalyzerType.simple ;
-                        break ;
+                    default: {
+                        analyzerType = PropertyType.AnalyzerType.simple;
+                        break;
                     }
                 }
             }
         }
-        return AnalyzerFactory.getAnalyzer(analyzerType) ;
+        return AnalyzerFactory.getAnalyzer(analyzerType);
     }
 
     public boolean isIdable() {
-        return propertyTypeNode.getBooleanValue(IDABLE) ;
+        return propertyTypeNode.getBooleanValue(IDABLE);
     }
 
     public IdType getIdType() {
-        Object idType =  propertyTypeNode.get(ID_TYPE);
-        if(idType instanceof IdType) return (IdType) idType;
+        Object idType = propertyTypeNode.get(ID_TYPE);
+        if (idType instanceof IdType) return (IdType) idType;
         return IdType.valueOf((String) idType);
     }
 
@@ -107,31 +109,31 @@ public class PropertyType {
         return propertyTypeNode.getStringValue(PID);
     }
 
-    public ValueType getValueType(){
+    public ValueType getValueType() {
         try {
             String valueTypeStr = (String) propertyTypeNode.get(VALUE_TYPE);
             return ValueType.valueOf(valueTypeStr);
-        }catch(Exception e){
-            System.out.println("VALUE TYPE ERROR : " +  propertyTypeNode.get(VALUE_TYPE) ) ;
-            System.out.println("VALUE TYPE ERROR : " +  propertyTypeNode) ;
+        } catch (Exception e) {
+            System.out.println("VALUE TYPE ERROR : " + propertyTypeNode.get(VALUE_TYPE));
+            System.out.println("VALUE TYPE ERROR : " + propertyTypeNode);
         }
-        return null ;
+        return null;
     }
 
     public boolean isSeacheable() {
-        return propertyTypeNode.getBooleanValue(SEARCHABLE) ;
+        return propertyTypeNode.getBooleanValue(SEARCHABLE);
     }
 
     public boolean isLabelable() {
-        return propertyTypeNode.getBooleanValue(LABELABLE) ;
+        return propertyTypeNode.getBooleanValue(LABELABLE);
     }
 
-    public boolean isRequired(){
-        return propertyTypeNode.getBooleanValue(IDABLE) || propertyTypeNode.getBooleanValue(REQUIRED) ;
+    public boolean isRequired() {
+        return propertyTypeNode.getBooleanValue(IDABLE) || propertyTypeNode.getBooleanValue(REQUIRED);
     }
 
     public boolean isReferenced() {
-        return getValueType() == ValueType.REFERENCED ;
+        return getValueType() == ValueType.REFERENCED;
     }
 
     public boolean isFile() {
@@ -149,26 +151,43 @@ public class PropertyType {
     }
 
     public boolean hasDefaultValue() {
-        return !propertyTypeNode.isNullValue(DEFAULT_VALUE) ;
+        return !propertyTypeNode.isNullValue(DEFAULT_VALUE);
     }
 
     public Object getDefaultValue() {
-        return propertyTypeNode.getValue(DEFAULT_VALUE) ;
+        return propertyTypeNode.getValue(DEFAULT_VALUE);
 //        return propertyTypeNode.getValue(DEFAULT_VALUE, getValueType()) ;
     }
 
     public Map<Object, Code> getCode() {
-        if(codeMap == null) {
-            codeMap = new HashMap<>() ;
+        if (codeMap == null) {
+            codeMap = new HashMap<>();
             Collection<Map<String, Object>> codeValues = (Collection<Map<String, Object>>) propertyTypeNode.get("code");
-            for(Map<String, Object> codeValue : codeValues){
-                codeMap.put(codeValue.get("value"), new Code(codeValue)) ;
+            for (Map<String, Object> codeValue : codeValues) {
+                codeMap.put(codeValue.get("value"), new Code(codeValue));
             }
         }
-        return codeMap ;
+        return codeMap;
     }
 
     public String getFileHandler() {
         return propertyTypeNode.getStringValue(FILE_HANDLER);
+    }
+
+    public Integer getLength() {
+        Integer length = (Integer) propertyTypeNode.getValue(LENGTH);
+        String valueTypeStr = (String) propertyTypeNode.get(VALUE_TYPE);
+
+        if (length == null) {
+            switch (ValueType.valueOf(valueTypeStr)) {
+                case STRING:
+                    return 1000;
+                case BOOLEAN:
+                    return 1;
+                default:
+                    return 0;
+            }
+        }
+        return (Integer) propertyTypeNode.getValue(LENGTH);
     }
 }

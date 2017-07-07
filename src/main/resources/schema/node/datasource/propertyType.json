@@ -8,7 +8,8 @@
     "idable" : true,
     "indexable" : true,
     "labelable" : false,
-    "required" : true
+    "required" : true,
+    "length": 100
   },
   {
     "typeId" : "propertyType",
@@ -19,7 +20,8 @@
     "idable" : false,
     "indexable" : true,
     "labelable" : true,
-    "required" : true
+    "required" : true,
+    "length": 100
   },
   {
     "typeId" : "propertyType",
@@ -42,7 +44,8 @@
     "idable" : false,
     "indexable" : false,
     "labelable" : false,
-    "required" : true
+    "required" : true,
+    "length": 100
   },
   {
     "typeId" : "propertyType",
@@ -53,7 +56,9 @@
     "idable" : false,
     "indexable" : false,
     "labelable" : false,
-    "required" : true
+    "required" : true,
+    "length": 100
+
   },
   {
     "typeId" : "propertyType",
@@ -64,6 +69,7 @@
     "idable" : false,
     "indexable" : false,
     "labelable" : false,
-    "required" : true
+    "required" : true,
+    "length": 100
   }
 ]
