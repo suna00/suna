@@ -189,6 +189,15 @@ public class InfinispanRepositoryService {
         return resultList;
     }
 
+    public SimpleQueryResult getQueryCodeNodes(String typeId, QueryContext queryContext) {
+        queryContext.setIncludeReference(true);
+        List<Node> result = getSubQueryNodes(typeId, queryContext);
+        for (Node node : result) {
+            node.toCode();
+        }
+        return new SimpleQueryResult(result, queryContext);
+    }
+
     public List<Object> executeQuery(QueryContext queryContext) {
         Cache<String, Node> cache = getNodeCache(queryContext.getNodetype().getTypeId());
 

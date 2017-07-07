@@ -30,9 +30,9 @@ public class ApiContext {
         for(String key : ctx.config.keySet()){
             Map<String, Object> ctxRootConfig = (Map<String, Object>) ctx.config.get(key);
 
-//            if(hasEvent(ctxRootConfig)){
-//
-//            }
+            if(ctxRootConfig.containsKey("event")){
+                ExecuteContext executeContext = ExecuteContext.makeContextFromConfig(ctxRootConfig, ctx.data) ;
+            }
 
         }
 

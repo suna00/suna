@@ -98,7 +98,6 @@ public class NodeController {
         return list(request, typeId);
     }
 
-
     private Object list(WebRequest request, @PathVariable String typeId) {
         try {
             SimpleQueryResult simpleQueryResult = nodeService.getNodeList(typeId, request.getParameterMap()) ;
@@ -125,7 +124,6 @@ public class NodeController {
         return tree(request, typeId);
     }
 
-
     private Object tree(WebRequest request, @PathVariable String typeId) {
         try {
             SimpleQueryResult simpleQueryResult = nodeService.getNodeTree(typeId, request.getParameterMap()) ;
@@ -140,6 +138,25 @@ public class NodeController {
         }
     }
 
+    @RequestMapping(value = "/node/{typeId}/code.json", method = RequestMethod.GET)
+    @ResponseBody
+    public Object codeJson(WebRequest request, @PathVariable String typeId) throws IOException {
+        return code(request, typeId);
+    }
+
+    private Object code(WebRequest request, @PathVariable String typeId) {
+        try {
+            SimpleQueryResult simpleQueryResult = nodeService.getNodeCode(typeId, request.getParameterMap()) ;
+            return JsonResponse.create(simpleQueryResult) ;
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            if(e.getCause() instanceof ClassCastException){
+                return JsonResponse.error(new Exception("형식이 맞지 않습니다."));
+            }else{
+                return JsonResponse.error(e);
+            }
+        }
+    }
 
     @RequestMapping(value = "/node/{typeId}/sequence", method = RequestMethod.GET)
     @ResponseBody
@@ -171,4 +188,20 @@ public class NodeController {
             }
         }
     }
+
+
+    @RequestMapping(value = "/node/{typeId}/event/{event}", method = RequestMethod.POST)
+    @ResponseBody
+    public Object eventJson(HttpServletRequest request, @PathVariable String typeId, @PathVariable String event) throws IOException {
+        return event(request, typeId, event);
+    }
+
+
+    private Object event(HttpServletRequest request, String typeId, String event) {
+        if(request instanceof MultipartHttpServletRequest) {
+            return JsonResponse.create(nodeService.event(request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap(), typeId, event)) ;
+        }
+        return JsonResponse.create(nodeService.event(request.getParameterMap(), null, typeId, event)) ;
+    }
+
 }

@@ -306,6 +306,10 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         this.properties.toDisplay();
     }
 
+    public void toCode() {
+        this.properties.toCode();
+    }
+
     public void toStore() {
         properties.toStore();
     }

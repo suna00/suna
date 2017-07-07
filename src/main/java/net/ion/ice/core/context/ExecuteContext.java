@@ -26,6 +26,8 @@ public class ExecuteContext implements Context{
     private List<String> changedProperties ;
     private String id ;
 
+    private String event ;
+
     private String userId ;
     private Date time ;
 
@@ -90,6 +92,8 @@ public class ExecuteContext implements Context{
         this.time = new Date() ;
         existNode = NodeUtils.getNodeService().getNode(nodeType.getTypeId(), getId()) ;
         exist = existNode != null ;
+
+        nodeType.getEvent(event) ;
 
         if(exist){
             changedProperties = new ArrayList<>() ;
@@ -170,4 +174,34 @@ public class ExecuteContext implements Context{
         return this.nodeType != null && this.nodeType.hasTableName();
     }
 
+    public static ExecuteContext makeContextFromConfig(Map<String, Object> config, Map<String, Object> data) {
+        ExecuteContext ctx = new ExecuteContext();
+
+        ctx.setData(data);
+
+        String typeId = (String) config.get("typeId");
+        NodeType nodeType = NodeUtils.getNodeType(typeId) ;
+
+
+
+        ctx.setNodeType(nodeType);
+
+        ctx.init() ;
+
+        return ctx ;
+    }
+
+    public static ExecuteContext makeEventContextFromParameter(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, NodeType nodeType, String event) {
+        ExecuteContext ctx = new ExecuteContext();
+
+        Map<String, Object> data = ContextUtils.makeContextData(parameterMap, multiFileMap);
+
+        ctx.setData(data);
+        ctx.setNodeType(nodeType);
+        ctx.event = event ;
+
+        ctx.init() ;
+
+        return ctx ;
+    }
 }
