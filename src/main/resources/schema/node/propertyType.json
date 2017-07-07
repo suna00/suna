@@ -497,6 +497,7 @@
     "referenceValue": ""
   },
   {
+    "typeId" : "propertyType",
     "tid": "propertyType",
     "id": "propertyType@validationTypes",
     "pid": "validationTypes",
@@ -511,5 +512,4 @@
     "referenceType": "",
     "referenceValue": ""
   }
-
 ]

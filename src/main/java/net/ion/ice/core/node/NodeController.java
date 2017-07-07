@@ -188,4 +188,20 @@ public class NodeController {
             }
         }
     }
+
+
+    @RequestMapping(value = "/node/{typeId}/event/{event}", method = RequestMethod.POST)
+    @ResponseBody
+    public Object eventJson(HttpServletRequest request, @PathVariable String typeId, @PathVariable String event) throws IOException {
+        return event(request, typeId, event);
+    }
+
+
+    private Object event(HttpServletRequest request, String typeId, String event) {
+        if(request instanceof MultipartHttpServletRequest) {
+            return JsonResponse.create(nodeService.event(request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap(), typeId, event)) ;
+        }
+        return JsonResponse.create(nodeService.event(request.getParameterMap(), null, typeId, event)) ;
+    }
+
 }

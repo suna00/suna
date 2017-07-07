@@ -11,14 +11,35 @@
     "apiName" : "Default Query Test",
     "method" : "GET",
     "config" : {
+      "createItem" : {
+        "typeId":"testItem",
+        "event" : "create",
+        "data" : {
+          "id": "{{:id}}",
+          "category": "{{:category}}",
+          "title": "{{:title}}"
+        }
+      },
       "categories" : {
         "typeId":"testCategory",
-        "q" : {"categoryType" : "content"},"categoryName" : "", "upperCategory" : "parentCategory",
-        "refCode1":{
-          "typeId":"testItem",
-          "q" : {"category":"drama"},
-          "category":"",
-          "itemTitle":"title"}
+        "query" : {"categoryType" : "{{:categoryType}}"},
+        "response" : {
+          "categoryName": "",
+          "upperCategory": "parentCategory",
+          "refCode1": {
+            "typeId": "testItem",
+            "q": {
+              "category": "drama"
+            },
+            "response" : {
+              "category": "",
+              "itemTitle": "title"
+            }
+          }
+        }
+      },
+      "items" : {
+        "typeId":"testCategory"
       }
     }
   }

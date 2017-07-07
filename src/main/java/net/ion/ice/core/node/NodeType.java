@@ -121,4 +121,8 @@ public class NodeType {
     public boolean hasTableName() {
         return nodeTypeNode.get(TABLE_NAME) != null && StringUtils.isNotEmpty((String) nodeTypeNode.get(TABLE_NAME));
     }
+
+    public Node getEvent(String event) {
+        return null ;
+    }
 }

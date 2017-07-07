@@ -327,4 +327,11 @@ public class NodeService {
     }
 
 
+    public Node event(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, String typeId, String event) {
+        NodeType nodeType = getNodeType(typeId) ;
+
+        ExecuteContext context = ExecuteContext.makeEventContextFromParameter(parameterMap, multiFileMap, nodeType, event) ;
+
+        return infinispanRepositoryService.execute(context);
+    }
 }
