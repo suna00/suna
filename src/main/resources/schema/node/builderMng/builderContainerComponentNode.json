@@ -1,0 +1,44 @@
+[
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClass": "IceGrid",
+    "componentClassName": "GRID",
+    "icon": "fa-object-ungroup"
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClass": "DefaultList",
+    "componentClassName": "DEFAULT LIST",
+    "icon": "fa-list"
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClass": "EditList",
+    "componentClassName": "EDIT LIST",
+    "icon": "fa-list"
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClass": "DefaultListSearch",
+    "componentClassName": "DEFAULT LIST SEARCH",
+    "icon": "fa-search"
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClass": "DefaultListFooter",
+    "componentClassName": "DEFAULT LIST FOOTER",
+    "icon": "fa-toggle-on"
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClass": "DefaultView",
+    "componentClassName": "DEFAULT VIEW",
+    "icon": "fa-square-o"
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClass": "DefaultForm",
+    "componentClassName": "DEFAULT FORM",
+    "icon": "fa-edit"
+  }
+]
