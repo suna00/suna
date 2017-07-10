@@ -83,6 +83,23 @@
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "admin",
+    "gnbMenuId": "custom",
+    "parentMenuId": "root",
+    "menuId": "defaultTabs",
+    "menuName": "defaultTabs",
+    "order": "30",
+    "icon": "fa-square-o",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "Tabs", "pageUrl": "TestTabs" },
+      { "pageName": "등록", "pageUrl": "DefaultForm" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "admin",
     "gnbMenuId": "configMng",
     "parentMenuId": "root",
     "menuId": "groupCode",
