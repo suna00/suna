@@ -16,6 +16,14 @@
     "dbType" : "oracle",
     "username" : "ICE",
     "password" : "ICE1234"
+  },
+  {
+    "typeId" : "datasource",
+    "id" : "msDb",
+    "dsName" : "Test DB (MS)",
+    "jdbcUrl" : "jdbc:sqlserver://125.131.88.94:1500;databaseName=IPS",
+    "dbType" : "msSql",
+    "username" : "icafe13",
+    "password" : "icafe1234!@"
   }
-
 ]

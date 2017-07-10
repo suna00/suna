@@ -68,8 +68,11 @@ public class DatabaseService {
 
     public static DataSource setDataSource(DatabaseConfiguration dataConfiguration) {
 
-        if (StringUtils.equalsIgnoreCase(dataConfiguration.getDbType(), "mysql")) {
+        if (StringUtils.equalsIgnoreCase(dataConfiguration.getDbType(), "mySql")) {
             return mySqlDataSource(dataConfiguration);
+
+        } else if (StringUtils.equalsIgnoreCase(dataConfiguration.getDbType(), "msSql")) {
+            return msSqlDataSource(dataConfiguration);
 
         } else if (StringUtils.equalsIgnoreCase(dataConfiguration.getDbType(), "maria")) {
             return mariaDataSource(dataConfiguration);
@@ -105,7 +108,7 @@ public class DatabaseService {
 
     public static DataSource mySqlDataSource(DatabaseConfiguration dataConfiguration) {
         BasicDataSource basicDataSource = new BasicDataSource();
-        basicDataSource.setDriverClassName(DBTypes.mysql.getDriverClassName());
+        basicDataSource.setDriverClassName(DBTypes.mySql.getDriverClassName());
         basicDataSource.setUsername(dataConfiguration.getUsername());
         basicDataSource.setPassword(dataConfiguration.getPassword());
         basicDataSource.setUrl(dataConfiguration.getJdbcUrl());
@@ -128,6 +131,28 @@ public class DatabaseService {
     public static DataSource mariaDataSource(DatabaseConfiguration dataConfiguration) {
         BasicDataSource basicDataSource = new BasicDataSource();
         basicDataSource.setDriverClassName(DBTypes.maria.getDriverClassName());
+        basicDataSource.setUsername(dataConfiguration.getUsername());
+        basicDataSource.setPassword(dataConfiguration.getPassword());
+        basicDataSource.setUrl(dataConfiguration.getJdbcUrl());
+        basicDataSource.setInitialSize(3);
+        basicDataSource.setMaxTotal(256);
+        basicDataSource.setDefaultAutoCommit(true);
+        basicDataSource.setRemoveAbandonedOnBorrow(true);
+        basicDataSource.setMaxWaitMillis(3000);
+        basicDataSource.setTestWhileIdle(true);
+        basicDataSource.setTestOnBorrow(false);
+        basicDataSource.setTestOnReturn(false);
+        basicDataSource.setNumTestsPerEvictionRun(3);
+        basicDataSource.setMinEvictableIdleTimeMillis(-1);
+        basicDataSource.setValidationQueryTimeout(7);
+        basicDataSource.setTestWhileIdle(true);
+        basicDataSource.setTimeBetweenEvictionRunsMillis(60000);
+        return basicDataSource;
+    }
+
+    public static DataSource msSqlDataSource(DatabaseConfiguration dataConfiguration) {
+        BasicDataSource basicDataSource = new BasicDataSource();
+        basicDataSource.setDriverClassName(DBTypes.msSql.getDriverClassName());
         basicDataSource.setUsername(dataConfiguration.getUsername());
         basicDataSource.setPassword(dataConfiguration.getPassword());
         basicDataSource.setUrl(dataConfiguration.getJdbcUrl());

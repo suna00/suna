@@ -2,7 +2,7 @@ package net.ion.ice.core.data.bind;
 
 import net.ion.ice.core.data.DBTypes;
 import net.ion.ice.core.data.table.Column;
-import net.ion.ice.core.data.table.TableMetaSettings;
+import net.ion.ice.core.data.table.TableMeta;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.PropertyType;
 import org.apache.commons.lang3.StringUtils;
@@ -25,34 +25,32 @@ public class NodeBindingInfo {
 
     private NodeType nodeType;
 
-    private String DBType = "";
-
     private String createSql = "";
+
     private String insertSql = "";
     private String updateSql = "";
     private String deleteSql = "";
     private String retieveSql = "";
-
     private JdbcTemplate jdbcTemplate;
+
     private List<Column> columnList;
     private List<Column> createColumnList;
-
     private List<String> insertPids = new ArrayList<>();
+
     private List<String> updatePids = new ArrayList<>();
     private List<String> wherePids = new ArrayList<>();
 
-    private TableMetaSettings tableMetaSettings = new TableMetaSettings();
+    private TableMeta tableMeta;
 
-
-    public NodeBindingInfo(NodeType nodeType, JdbcTemplate jdbcTemplate, String DBType) {
+    public NodeBindingInfo(NodeType nodeType, JdbcTemplate jdbcTemplate, TableMeta tableMeta) {
         this.nodeType = nodeType;
         this.jdbcTemplate = jdbcTemplate;
-        this.DBType = DBType;
+        this.tableMeta = tableMeta;
     }
 
     public void init() {
-        String tableName = String.valueOf(nodeType.getTableName()).split("#")[1];
-        columnList = getTableColumns(tableName, DBType);
+        columnList = getTableColumns(tableMeta);
+
         createColumnList = new LinkedList<>();
 
         List<String> createColumns = new LinkedList<>();
@@ -63,18 +61,11 @@ public class NodeBindingInfo {
 
         List<String> insertColumns = new LinkedList<>();
         List<String> insertSetKeys = new LinkedList<>();
-//        querySetProperties = new LinkedList<>();
-
 
         for (PropertyType propertyType : nodeType.getPropertyTypes()) {
             Column createColumn = new Column();
             createColumn.setColumnName(propertyType.getPid());
-
-            if (DBType.equalsIgnoreCase(DBTypes.oracle.name())) {
-                createColumn.setDataType(tableMetaSettings.setOracleDataTypes(propertyType.getValueType()));
-            } else {
-                createColumn.setDataType(tableMetaSettings.setMysqlDataTypes(propertyType.getValueType()));
-            }
+            createColumn.setDataType(tableMeta.getDBDataType(propertyType.getValueType()));
 
             if(propertyType.isIdable()){
                 createColumn.setPk(true);
@@ -117,46 +108,48 @@ public class NodeBindingInfo {
             }
         }
 
-        if (DBType.equalsIgnoreCase("mysql")) {
-            retieveSql = String.format("select * from %s with(nolock) where %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
+        if (tableMeta.getDBType().equalsIgnoreCase("mySql") || tableMeta.getDBType().equalsIgnoreCase("maria")) {
+            retieveSql = String.format("select * from %s with(nolock) where %s", tableMeta.getTableName(), StringUtils.join(whereIds.toArray(), " AND "));
         } else {
-            retieveSql = String.format("select * from %s where %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
+            retieveSql = String.format("select * from %s where %s", tableMeta.getTableName(), StringUtils.join(whereIds.toArray(), " AND "));
         }
 
-        deleteSql = String.format("delete from %s where %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
+        deleteSql = String.format("delete from %s where %s", tableMeta.getTableName(), StringUtils.join(whereIds.toArray(), " AND "));
         updateSql = String.format("UPDATE %s SET %s WHERE %s"
-                , tableName
+                , tableMeta.getTableName()
                 , StringUtils.join(updateColumns.toArray(), ", ")
                 , StringUtils.join(whereIds.toArray(), " AND "));
 
         insertSql = String.format("INSERT INTO %s (%s) VALUES (%s)"
-                , tableName
+                , tableMeta.getTableName()
                 , StringUtils.join(insertColumns.toArray(), ", ")
                 , StringUtils.join(insertSetKeys.toArray(), ", "));
 
         if(createPrimaryKeys.size() > 0){
             createSql = String.format("CREATE TABLE %s (%s, CONSTRAINT %s PRIMARY KEY (%s))"
-                    , tableName
+                    , tableMeta.getTableName()
                     , StringUtils.join(createColumns.toArray(), ", ")
-                    , "PK_".concat(tableName)
+                    , "PK_".concat(tableMeta.getTableName())
                     , StringUtils.join(createPrimaryKeys.toArray(), ", "));
         }else{
             createSql = String.format("CREATE TABLE %s (%s)"
-                    , tableName
+                    , tableMeta.getTableName()
                     , StringUtils.join(createColumns.toArray(), ", "));
         }
 
     }
 
-    public List<Column> getTableColumns(String tableName, String dbType) {
+    public List<Column> getTableColumns(TableMeta tableMeta) {
         List<Column> columnList = new ArrayList<>();
         DatabaseMetaData dbMetaData;
+
         try (Connection connection = jdbcTemplate.getDataSource().getConnection()) {
             dbMetaData = connection.getMetaData();
             List<String> pkList = new ArrayList<>();
+            String tableName = tableMeta.getTableName();
 
-            if (dbType.equals(DBTypes.oracle.name())) { //오라클은 대문자
-                tableName = tableName.toUpperCase();
+            if (tableMeta.getDBType().equals(DBTypes.oracle.name())) { //오라클은 대문자
+                tableName = tableMeta.getTableName().toUpperCase();
             }
 
             try (ResultSet rs = dbMetaData.getPrimaryKeys(null, null, tableName)) {

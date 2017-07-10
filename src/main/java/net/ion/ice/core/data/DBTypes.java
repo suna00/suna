@@ -6,7 +6,8 @@ package net.ion.ice.core.data;
 public enum DBTypes {
     oracle("oracle.jdbc.OracleDriver"),
     maria("org.mariadb.jdbc.Driver"),
-    mysql("com.mysql.jdbc.Driver");
+    mySql("com.mysql.jdbc.Driver"),
+    msSql("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
     private String driverClass;
 
