@@ -1,0 +1,11 @@
+[
+  {
+    "parentId" : "root",
+    "typeId" : "nodeType",
+    "id" : "customer",
+    "tid" : "customer",
+    "typeName" : "Customer",
+    "repositoryType" : "path",
+    "eviction" : 0
+  }
+]

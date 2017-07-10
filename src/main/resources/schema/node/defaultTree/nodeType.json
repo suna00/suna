@@ -1,0 +1,11 @@
+[
+  {
+    "parentId" : "root",
+    "typeId" : "nodeType",
+    "id" : "defaultTree",
+    "tid" : "defaultTree",
+    "typeName" : "기본 트리 관리",
+    "repositoryType" : "node",
+    "eviction" : 1000
+  }
+]

@@ -1,0 +1,11 @@
+[
+  {
+    "parentId" : "root",
+    "typeId" : "nodeType",
+    "id" : "product",
+    "tid" : "product",
+    "typeName" : "Product",
+    "repositoryType" : "path",
+    "eviction" : 0
+  }
+]

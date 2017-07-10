@@ -96,6 +96,10 @@ hazelcast:
 ---
 spring:
   profiles: cj-dev
+  http:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 20MB
 
 server:
   port: 8080

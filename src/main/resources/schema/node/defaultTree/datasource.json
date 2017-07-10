@@ -1,0 +1,38 @@
+[
+  {
+    "typeId" : "defaultTree",
+    "key" : "0",
+    "title" : "TEST Tree",
+    "parentId" : "root"
+  },
+  {
+    "typeId" : "defaultTree",
+    "key" : "1",
+    "title" : "TEST Tree 1",
+    "parentId" : "0"
+  },
+  {
+    "typeId" : "defaultTree",
+    "key" : "2",
+    "title" : "TEST Tree 2",
+    "parentId" : "0"
+  },
+  {
+    "typeId" : "defaultTree",
+    "key" : "3",
+    "title" : "TEST Tree 3",
+    "parentId" : "0"
+  },
+  {
+    "typeId" : "defaultTree",
+    "key" : "4",
+    "title" : "TEST Tree 4",
+    "parentId" : "0"
+  },
+  {
+    "typeId" : "defaultTree",
+    "key" : "5",
+    "title" : "TEST Tree 5",
+    "parentId" : "0"
+  }
+]

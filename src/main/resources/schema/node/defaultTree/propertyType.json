@@ -1,0 +1,47 @@
+[
+  {
+    "typeId" : "propertyType",
+    "tid" : "defaultTree",
+    "pid" : "key",
+    "propertyTypeName" : "tId",
+    "valueType" : "STRING",
+    "required": true,
+    "idable": true,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "defaultTree",
+    "pid" : "title",
+    "propertyTypeName" : "tName",
+    "valueType" : "STRING",
+    "required": true,
+    "idable": false,
+    "labelable": true,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "defaultTree",
+    "pid" : "parentId",
+    "propertyTypeName" : "parentId",
+    "valueType" : "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": true,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "defaultTree",
+    "referenceValue": ""
+  }
+]

@@ -30,7 +30,6 @@ public class NodeValue implements Serializable, Cloneable{
     @Analyzer(impl = CodeAnalyzer.class)
     private String owner ;
 
-
     @Field
     @Analyzer(impl = CodeAnalyzer.class)
     private String modifier ;
