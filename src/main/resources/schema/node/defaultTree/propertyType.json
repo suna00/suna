@@ -5,10 +5,14 @@
     "pid" : "key",
     "propertyTypeName" : "tId",
     "valueType" : "STRING",
-    "idable" : true,
-    "indexable" : true,
-    "labelable" : false,
-    "required" : true
+    "required": true,
+    "idable": true,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
@@ -16,10 +20,14 @@
     "pid" : "title",
     "propertyTypeName" : "tName",
     "valueType" : "STRING",
-    "idable" : false,
-    "indexable" : true,
-    "labelable" : true,
-    "required" : true
+    "required": true,
+    "idable": false,
+    "labelable": true,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
@@ -27,9 +35,13 @@
     "pid" : "parentId",
     "propertyTypeName" : "parentId",
     "valueType" : "STRING",
-    "idable" : false,
-    "indexable" : true,
-    "labelable" : true,
-    "required" : true
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": true,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "defaultTree",
+    "referenceValue": ""
   }
 ]

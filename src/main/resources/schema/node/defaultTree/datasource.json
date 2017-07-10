@@ -3,7 +3,7 @@
     "typeId" : "defaultTree",
     "key" : "0",
     "title" : "TEST Tree",
-    "parentId" : ""
+    "parentId" : "root"
   },
   {
     "typeId" : "defaultTree",
