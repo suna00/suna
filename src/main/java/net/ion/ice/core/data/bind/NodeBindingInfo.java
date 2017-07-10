@@ -69,11 +69,17 @@ public class NodeBindingInfo {
         for (PropertyType propertyType : nodeType.getPropertyTypes()) {
             Column createColumn = new Column();
             createColumn.setColumnName(propertyType.getPid());
+
             if (DBType.equalsIgnoreCase(DBTypes.oracle.name())) {
                 createColumn.setDataType(tableMetaSettings.setOracleDataTypes(propertyType.getValueType()));
             } else {
                 createColumn.setDataType(tableMetaSettings.setMysqlDataTypes(propertyType.getValueType()));
             }
+
+            if(propertyType.isIdable()){
+                createColumn.setPk(true);
+            }
+
             createColumn.setDefaultValue(propertyType.getDefaultValue());
             createColumn.setDataLength(propertyType.getLength());
             createColumn.setNullable(true);
@@ -128,7 +134,17 @@ public class NodeBindingInfo {
                 , StringUtils.join(insertColumns.toArray(), ", ")
                 , StringUtils.join(insertSetKeys.toArray(), ", "));
 
-        createSql = String.format("CREATE TABLE %s (%s) CONSTRAINT %s (%s)", tableName, StringUtils.join(createColumns.toArray(), ", "), tableName.concat("_PK"), createPrimaryKeys.toArray());
+        if(createPrimaryKeys.size() > 0){
+            createSql = String.format("CREATE TABLE %s (%s, CONSTRAINT %s PRIMARY KEY (%s))"
+                    , tableName
+                    , StringUtils.join(createColumns.toArray(), ", ")
+                    , "PK_".concat(tableName)
+                    , StringUtils.join(createPrimaryKeys.toArray(), ", "));
+        }else{
+            createSql = String.format("CREATE TABLE %s (%s)"
+                    , tableName
+                    , StringUtils.join(createColumns.toArray(), ", "));
+        }
 
     }
 
@@ -169,23 +185,23 @@ public class NodeBindingInfo {
         return columnList;
     }
 
-    public List<Column> getCreateColumns() {
-        List<Column> columnList = new LinkedList<>();
-        for (PropertyType propertyType : nodeType.getPropertyTypes()) {
-            Column column = new Column();
-            column.setColumnName(propertyType.getPid());
-            if (DBType.equalsIgnoreCase(DBTypes.oracle.name())) {
-                column.setDataType(tableMetaSettings.setOracleDataTypes(propertyType.getValueType()));
-            } else {
-                column.setDataType(tableMetaSettings.setMysqlDataTypes(propertyType.getValueType()));
-            }
-            column.setDefaultValue(propertyType.getDefaultValue());
-            column.setDataLength(propertyType.getLength());
-            column.setNullable(true);
-            columnList.add(column);
-        }
-        return columnList;
-    }
+//    public List<Column> getCreateColumns() {
+//        List<Column> columnList = new LinkedList<>();
+//        for (PropertyType propertyType : nodeType.getPropertyTypes()) {
+//            Column column = new Column();
+//            column.setColumnName(propertyType.getPid());
+//            if (DBType.equalsIgnoreCase(DBTypes.oracle.name())) {
+//                column.setDataType(tableMetaSettings.setOracleDataTypes(propertyType.getValueType()));
+//            } else {
+//                column.setDataType(tableMetaSettings.setMysqlDataTypes(propertyType.getValueType()));
+//            }
+//            column.setDefaultValue(propertyType.getDefaultValue());
+//            column.setDataLength(propertyType.getLength());
+//            column.setNullable(true);
+//            columnList.add(column);
+//        }
+//        return columnList;
+//    }
 
     public void create() {
         jdbcTemplate.execute(createSql);

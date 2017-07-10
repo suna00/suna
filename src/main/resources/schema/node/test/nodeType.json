@@ -12,7 +12,7 @@
     "typeId": "nodeType",
     "repositoryType": "node",
     "typeName": "TEST Category",
-    "tableName": "oracleDb#testCategory"
+    "tableName": "mariaDb#testCategory"
   },
   {
     "tid": "testItem",

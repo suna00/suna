@@ -1,5 +1,7 @@
 package net.ion.ice.core.data.table;
 
+import java.util.LinkedList;
+
 public class Column {
 
     private String columnName;
@@ -33,6 +35,9 @@ public class Column {
     }
 
     public Boolean getPk() {
+        if (isPk == null) {
+            isPk = false;
+        }
         return isPk;
     }
 

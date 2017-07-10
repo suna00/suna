@@ -185,7 +185,7 @@ public class PropertyType {
                 case BOOLEAN:
                     return 1;
                 default:
-                    return 0;
+                    return 500;
             }
         }
         return (Integer) propertyTypeNode.getValue(LENGTH);
