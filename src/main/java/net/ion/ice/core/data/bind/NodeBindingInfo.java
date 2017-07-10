@@ -212,11 +212,9 @@ public class NodeBindingInfo {
         return queryCallBack;
     }
 
-//    public int retrieve(Map<String, String[]> parameterMap) {
-//        List<Object> parameters = updateParameters(parameterMap);
-//        int queryCallBack = jdbcTemplate.query(retieveSql);
-//        return queryCallBack;
-//    }
+    public void retrieve(Map<String, String[]> parameterMap) {
+
+    }
 
     public int delete(Map<String, String[]> parameterMap) {
         List<Object> parameters = updateParameters(parameterMap);
