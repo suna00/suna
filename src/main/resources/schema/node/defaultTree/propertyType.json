@@ -1,0 +1,35 @@
+[
+  {
+    "typeId" : "propertyType",
+    "tid" : "defaultTree",
+    "pid" : "key",
+    "propertyTypeName" : "tId",
+    "valueType" : "STRING",
+    "idable" : true,
+    "indexable" : true,
+    "labelable" : false,
+    "required" : true
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "defaultTree",
+    "pid" : "title",
+    "propertyTypeName" : "tName",
+    "valueType" : "STRING",
+    "idable" : false,
+    "indexable" : true,
+    "labelable" : true,
+    "required" : true
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "defaultTree",
+    "pid" : "parentId",
+    "propertyTypeName" : "parentId",
+    "valueType" : "STRING",
+    "idable" : false,
+    "indexable" : true,
+    "labelable" : true,
+    "required" : true
+  }
+]

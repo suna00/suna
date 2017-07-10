@@ -37,15 +37,15 @@
     "backOfficeId": "admin",
     "gnbMenuId": "custom",
     "parentMenuId": "root",
-    "menuId": "defaultChart",
-    "menuName": "DefaultChart",
+    "menuId": "editList",
+    "menuName": "EditList",
     "order": "20",
     "icon": "fa-square-o",
     "active": "true",
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "상세", "pageUrl": "DefaultChart" }
+      { "pageName": "상세", "pageUrl": "EditList" }
     ]
   },
   {
@@ -53,15 +53,15 @@
     "backOfficeId": "admin",
     "gnbMenuId": "custom",
     "parentMenuId": "root",
-    "menuId": "editList",
-    "menuName": "EditList",
+    "menuId": "treeList",
+    "menuName": "TreeList",
     "order": "30",
     "icon": "fa-square-o",
     "active": "true",
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "EditList" }
+      { "pageName": "상세", "pageUrl": "TreeList" }
     ]
   },
   {
