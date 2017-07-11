@@ -32,7 +32,7 @@
     "indexable": true,
     "labelable": false,
     "required": true,
-    "treeable": true,
+    "treeable": false,
     "referenceType": "testCategory",
     "length": 100,
     "analyzer": "cjk"
@@ -50,6 +50,20 @@
     "length": 100,
     "analyzer": "cjk"
   },
+  {
+    "typeId": "propertyType",
+    "tid": "testCategory",
+    "pid": "categoryId",
+    "propertyTypeName": "Category ID",
+    "valueType": "STRING",
+    "idable": true,
+    "indexable": true,
+    "labelable": false,
+    "required": true,
+    "length": 100,
+    "analyzer": "cjk"
+  },
+
   {
     "typeId": "propertyType",
     "tid": "testCategory",
@@ -73,14 +87,6 @@
         "label": "Customer"
       }
     ]
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "testCategory",
-    "pid": "itemList",
-    "propertyTypeName": "Items",
-    "valueType": "REFERENCED",
-    "referenceType": "testItem"
   },
   {
     "typeId": "propertyType",

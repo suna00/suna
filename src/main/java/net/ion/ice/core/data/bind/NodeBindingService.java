@@ -1,15 +1,18 @@
 package net.ion.ice.core.data.bind;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import net.ion.ice.core.data.DBUtils;
 import net.ion.ice.core.data.DatabaseService;
-import net.ion.ice.core.data.table.TableMeta;
+import net.ion.ice.core.data.DBDataTypes;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -24,55 +27,54 @@ public class NodeBindingService {
     private DatabaseService databaseService;
 
     private Map<String, NodeBindingInfo> nodeBindingInfoMap = new ConcurrentHashMap<>();
-    private Map<String, TableMeta> tableMetaMap = new ConcurrentHashMap<>();
 
-    public void save(Map<String, String[]> parameterMap, String tid) {
-        if (!nodeBindingInfoMap.containsKey(tid)) {
-            NodeType nodeType = nodeService.getNodeType(tid);
-            String dsId = String.valueOf(nodeType.getTableName()).split("#")[0];
-            String tableName = String.valueOf(nodeType.getTableName()).split("#")[1];
-            JdbcTemplate jdbcTemplate = databaseService.getJdbcTemplate(dsId);
+    public void save(Map<String, String[]> parameterMap, String typeId) {
+        nodeBindProcess(typeId);
 
-            DBUtils dbUtils = new DBUtils(jdbcTemplate);
-            String DBType = dbUtils.getDBType();
-
-            TableMeta tableMeta = new TableMeta(tableName, DBType);
-
-            NodeBindingInfo nodeBindingInfo = new NodeBindingInfo(nodeType, jdbcTemplate, tableMeta);
-            nodeBindingInfo.init();
-
-            tableMetaMap.put(tid, tableMeta);
-            nodeBindingInfoMap.put(tid, nodeBindingInfo);
-        }
-
-        NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(tid);
+        NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(typeId);
         int callback = nodeBindingInfo.update(parameterMap);
         if (callback == 0) {
             nodeBindingInfo.insert(parameterMap);
         }
     }
 
-    public void createTable(String tid, HttpServletResponse response) {
+    public void createTable(String typeId, HttpServletResponse response) {
 
-        if (!nodeBindingInfoMap.containsKey(tid)) {
-            NodeType nodeType = nodeService.getNodeType(tid);
-            String dsId = String.valueOf(nodeType.getTableName()).split("#")[0];
-            String tableName = String.valueOf(nodeType.getTableName()).split("#")[1];
-            JdbcTemplate jdbcTemplate = databaseService.getJdbcTemplate(dsId);
-
-            DBUtils dbUtils = new DBUtils(jdbcTemplate);
-            String DBType = dbUtils.getDBType();
-
-            TableMeta tableMeta = new TableMeta(tableName, DBType);
-
-            NodeBindingInfo nodeBindingInfo = new NodeBindingInfo(nodeType, jdbcTemplate, tableMeta);
-            nodeBindingInfo.init();
-
-            tableMetaMap.put(tid, tableMeta);
-            nodeBindingInfoMap.put(tid, nodeBindingInfo);
-        }
-
-        NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(tid);
+        nodeBindProcess(typeId);
+        NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(typeId);
         nodeBindingInfo.create();
     }
+
+    public Map<String, Object> read(WebRequest request, String typeId, String id) throws JsonProcessingException {
+        nodeBindProcess(typeId);
+        NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(typeId);
+        return nodeBindingInfo.retrieve(id);
+    }
+
+    public List<Map<String, Object>> list(String tid) {
+        nodeBindProcess(tid);
+        NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(tid);
+        return nodeBindingInfo.list();
+    }
+
+
+    public void nodeBindProcess(String typeId){
+        NodeType nodeType = nodeService.getNodeType(typeId);
+
+        if (!nodeBindingInfoMap.containsKey(typeId)) {
+
+            String dsId = String.valueOf(nodeType.getTableName()).split("#")[0];
+            JdbcTemplate jdbcTemplate = databaseService.getJdbcTemplate(dsId);
+
+            String tableName = String.valueOf(nodeType.getTableName()).split("#")[1];
+
+            String DBType = new DBUtils(jdbcTemplate).getDBType();
+
+            NodeBindingInfo nodeBindingInfo = new NodeBindingInfo(nodeType, jdbcTemplate, tableName, DBType);
+            nodeBindingInfo.init();
+
+            nodeBindingInfoMap.put(typeId, nodeBindingInfo);
+        }
+    }
+
 }

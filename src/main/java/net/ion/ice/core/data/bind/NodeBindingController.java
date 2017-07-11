@@ -1,5 +1,10 @@
 package net.ion.ice.core.data.bind;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import net.ion.ice.core.data.ResponseUtils;
+import net.ion.ice.core.query.SimpleQueryResult;
+import net.ion.ice.core.response.JsonResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -20,11 +25,42 @@ public class NodeBindingController {
     @RequestMapping(value = "/data/create/{tid}", method = RequestMethod.GET)
     @ResponseBody
     public Object createTable(WebRequest request, HttpServletResponse response, @PathVariable String tid) throws IOException {
-        try{
+        try {
             nodeBindingService.createTable(tid, response);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
+
+    @RequestMapping(value = "/data/{typeId}/list.json", method = RequestMethod.GET)
+    @ResponseBody
+    public Object listJson(WebRequest request, @PathVariable String typeId) throws IOException {
+        return list(request, typeId);
+    }
+
+    private Object list(WebRequest request, @PathVariable String typeId) {
+        return ResponseUtils.response(nodeBindingService.list(typeId));
+    }
+
+    @RequestMapping(value = "/data/{typeId}/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Object readRest(WebRequest request, @PathVariable String typeId, @PathVariable String id) throws IOException {
+        return read(request, typeId, id);
+    }
+
+//    @RequestMapping(value = "/data/{typeId}/read.json", method = RequestMethod.GET)
+//    @ResponseBody
+//    public Object readJson(WebRequest request, @PathVariable String typeId) throws IOException {
+//        return read(request, typeId);
+//    }
+
+    private Object read(WebRequest request, String typeId, String id) throws JsonProcessingException {
+        return ResponseUtils.response(nodeBindingService.read(request, typeId, id));
+    }
+
+//    private Object read(WebRequest request, String typeId) {
+//        return JsonResponse.create(nodeService.readNode(request.getParameterMap(), typeId)) ;
+//    }
+
 }

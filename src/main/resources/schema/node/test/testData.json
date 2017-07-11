@@ -1,36 +1,42 @@
 [
   {
     "typeId" : "testCategory",
+    "categoryId": "id1",
     "categoryName" : "test1",
     "parentCategory" : "root",
     "categoryType" : "content"
   },
   {
     "typeId" : "testCategory",
+    "categoryId": "id2",
     "categoryName" : "drama",
     "parentCategory" : "test1",
     "categoryType" : "content"
   },
   {
     "typeId" : "testCategory",
+    "categoryId": "id3",
     "categoryName" : "movie",
     "parentCategory" : "test1",
     "categoryType" : "content"
   },
   {
     "typeId" : "testCategory",
+    "categoryId": "id4",
     "categoryName" : "fashion",
     "parentCategory" : "test1",
     "categoryType" : "product"
   },
   {
     "typeId" : "testCategory",
+    "categoryId": "id5",
     "categoryName" : "hat",
     "parentCategory" : "fashion",
     "categoryType" : "product"
   },
   {
     "typeId" : "testCategory",
+    "categoryId": "id6",
     "categoryName" : "pants",
     "parentCategory" : "fashion",
     "categoryType" : "product"
