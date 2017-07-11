@@ -10,6 +10,7 @@ import java.util.*;
 public class NodeType {
     public static final String NODETYPE = "nodeType";
     public static final String TABLE_NAME = "tableName";
+    public static final String REPOSITORY_TYPE = "repositoryType";
 
     private Node nodeTypeNode ;
     private Map<String, PropertyType> propertyTypes ;

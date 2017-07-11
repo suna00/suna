@@ -231,6 +231,20 @@ public class QueryContext implements Context{
     }
 
 
+    public Integer getStart(){
+        if(paging){
+            return (currentPage - 1) * pageSize ;
+        }
+        return 0 ;
+    }
+
+    public Integer getLast(Integer resultSize){
+        if(paging){
+            return resultSize ;
+        }
+        return resultSize ;
+    }
+
     public Integer getCurrentPage() {
         return currentPage;
     }
@@ -267,6 +281,7 @@ public class QueryContext implements Context{
         }
 
         queryContext.setQueryTerms(queryTerms);
+        queryContext.setIncludeReference(true);
         return queryContext ;
 
     }

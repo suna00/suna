@@ -1,0 +1,53 @@
+[
+  {
+    "typeId" : "event",
+    "tid": "nodeType",
+    "event" : "create",
+    "eventName" : "Create Node Type"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "nodeType@create",
+    "action" : "putInfinispan",
+    "actionType" : "service",
+    "actionBody" : "infinispanService.execute",
+    "order" : 1
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "nodeType@create",
+    "action" : "createDefaultEvent",
+    "actionType" : "service",
+    "actionBody" : "eventService.createNodeType",
+    "order" : 2
+  },
+  {
+    "typeId" : "event",
+    "tid": "nodeType",
+    "event" : "update",
+    "eventName" : "update Node Type"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "nodeType@update",
+    "action" : "putInfinispan",
+    "actionType" : "service",
+    "actionBody" : "infinispanService.execute",
+    "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "nodeType",
+    "event" : "delete",
+    "eventName" : "delete Node Type"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "nodeType@delete",
+    "action" : "removeInfinispan",
+    "actionType" : "service",
+    "actionBody" : "infinispanService.remove",
+    "order" : 1
+  }
+
+]

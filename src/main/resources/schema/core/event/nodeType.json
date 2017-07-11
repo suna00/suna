@@ -54,6 +54,36 @@
     "referenceValue": ""
   },
   {
+    "typeId" : "propertyType",
+    "tid": "event",
+    "pid": "eventActions",
+    "propertyTypeName": "Event Action List",
+    "valueType": "REFERENCED",
+    "required": true,
+    "idable": false,
+    "labelable": true,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": "",
+    "referenceType": "eventAction",
+    "referenceValue": "event"
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "event",
+    "pid": "eventListens",
+    "propertyTypeName": "Event Listener List",
+    "valueType": "REFERENCED",
+    "required": true,
+    "idable": false,
+    "labelable": true,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": "",
+    "referenceType": "eventListen",
+    "referenceValue": "event"
+  },
+  {
     "parentId" : "system",
     "typeId" : "nodeType",
     "tid" : "eventAction",

@@ -85,15 +85,6 @@ public class NodeService {
     }
 
 
-
-    public NodeType getDefaultNodeType() throws IOException {
-        return nodeType;
-    }
-
-    public NodeType getDefaultPropertyType() throws IOException {
-        return propertyType;
-    }
-
     public List<Node> getNodeList(String typeId, String searchText) {
         QueryContext queryContext = QueryContext.makeQueryContextFromText(searchText, getNodeType(typeId)) ;
         return infinispanRepositoryService.getSubQueryNodes(typeId, queryContext) ;
@@ -119,7 +110,7 @@ public class NodeService {
     }
 
     private void initNodeType(boolean preConstruct) throws IOException {
-        Collection<Map<String, Object>> nodeTypeDataList = JsonUtils.parsingJsonResourceToList(ApplicationContextManager.getResource("classpath:schema/node/nodeType.json")) ;
+        Collection<Map<String, Object>> nodeTypeDataList = JsonUtils.parsingJsonResourceToList(ApplicationContextManager.getResource("classpath:schema/core/nodeType.json")) ;
 
         List<Node> nodeTypeList = NodeUtils.makeNodeList(nodeTypeDataList, "nodeType") ;
         for(Node nodeType : nodeTypeList){
@@ -134,7 +125,7 @@ public class NodeService {
             }
         }
 
-        Collection<Map<String, Object>> propertyTypeDataList = JsonUtils.parsingJsonResourceToList(ApplicationContextManager.getResource("classpath:schema/node/propertyType.json")) ;
+        Collection<Map<String, Object>> propertyTypeDataList = JsonUtils.parsingJsonResourceToList(ApplicationContextManager.getResource("classpath:schema/core/propertyType.json")) ;
 
         List<Node> propertyTypeList = NodeUtils.makeNodeList(propertyTypeDataList, "propertyType") ;
         for(Node propertyType : propertyTypeList){
@@ -150,27 +141,31 @@ public class NodeService {
         }
 
         if(!preConstruct) {
-
-            Resource resource = ApplicationContextManager.getResource("classpath:schema/node") ;
-            File initNodeDir =  resource.getFile() ;
-
-            NodeValue nodeValue = infinispanRepositoryService.getLastCacheNodeValue() ;
-            String lastChanged = DateTools.dateToString(nodeValue.getChanged(), DateTools.Resolution.SECOND);
-
-            logger.info("LAST CHANGED : " + lastChanged);
-            for(File dir : initNodeDir.listFiles((File f) -> { return f.isDirectory() ; })){
-                for(File f : dir.listFiles((File f) -> {return f.getName().equals("nodeType.json");})){
-                    fileNodeSave(lastChanged, f);
-                }
-                for(File f : dir.listFiles((File f) -> {return f.getName().equals("propertyType.json");})){
-                    fileNodeSave(lastChanged, f);
-                }
-                for(File f : dir.listFiles((File f) -> {return f.getName().endsWith(".json") && !(f.getName().equals("nodeType.json") || f.getName().equals("propertyType.json"));})){
-                    fileNodeSave(lastChanged, f);
-                }
-            }
+            initSchema("classpath:schema/core");
+            initSchema("classpath:schema/node");
         }
 
+    }
+
+    private void initSchema(String resourcePath) throws IOException {
+        Resource resource = ApplicationContextManager.getResource(resourcePath) ;
+        File initNodeDir =  resource.getFile() ;
+
+        NodeValue nodeValue = infinispanRepositoryService.getLastCacheNodeValue() ;
+        String lastChanged = DateTools.dateToString(nodeValue.getChanged(), DateTools.Resolution.SECOND);
+
+        logger.info("LAST CHANGED : " + lastChanged);
+        for(File dir : initNodeDir.listFiles((File f) -> { return f.isDirectory() ; })){
+            for(File f : dir.listFiles((File f) -> {return f.getName().equals("nodeType.json");})){
+                fileNodeSave(lastChanged, f);
+            }
+            for(File f : dir.listFiles((File f) -> {return f.getName().equals("propertyType.json");})){
+                fileNodeSave(lastChanged, f);
+            }
+            for(File f : dir.listFiles((File f) -> {return f.getName().endsWith(".json") && !(f.getName().equals("nodeType.json") || f.getName().equals("propertyType.json"));})){
+                fileNodeSave(lastChanged, f);
+            }
+        }
     }
 
     private void fileNodeSave(String lastChanged, File f) throws IOException {
