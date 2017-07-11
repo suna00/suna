@@ -1,0 +1,10 @@
+[
+  {
+    "parentId" : "root",
+    "typeId" : "nodeType",
+    "tid" : "content",
+    "typeName" : "Content",
+    "repositoryType" : "path",
+    "eviction" : 0
+  }
+]
