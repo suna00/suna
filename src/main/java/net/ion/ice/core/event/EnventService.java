@@ -27,7 +27,8 @@ public class EnventService {
             createEvent.put("tid", node.getId()) ;
             createEvent.put("event", "create") ;
             createEvent.put("eventName", "Create " + node.get("typeName")) ;
-//            createEvent.put()
+
+
         }
 
     }
