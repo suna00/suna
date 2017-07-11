@@ -27,7 +27,7 @@ import java.util.*;
  * Created by jaeho on 2017. 3. 31..
  */
 
-@Service
+@Service("infinispanService")
 public class InfinispanRepositoryService {
     private Logger logger = LoggerFactory.getLogger(InfinispanRepositoryService.class);
 
@@ -103,6 +103,9 @@ public class InfinispanRepositoryService {
         return result;
     }
 
+    public void remove(ExecuteContext context) {
+        deleteNode(context.getNode()) ;
+    }
 
     public void deleteNode(Node node) {
         Cache<String, Node> nodeCache = getNodeCache(node.getTypeId());
@@ -125,6 +128,7 @@ public class InfinispanRepositoryService {
         }
 
         List<Object> list = cacheQuery.list();
+
         queryContext.setResultSize(cacheQuery.getResultSize());
         return list;
     }
@@ -160,7 +164,7 @@ public class InfinispanRepositoryService {
     public List<Node> getSubQueryNodes(String typeId, QueryContext queryContext) {
         List<Object> list = executeQuery(typeId, queryContext);
 
-        NodeType nodeType = queryContext.getNodetype();
+        NodeType nodeType = NodeUtils.getNodeType(typeId);
 
         boolean hasReferenced = nodeType.hasReferenced();
         List<Node> resultList = new ArrayList<>();
@@ -212,6 +216,11 @@ public class InfinispanRepositoryService {
 
         List<Object> list = cacheQuery.list();
         queryContext.setResultSize(cacheQuery.getResultSize());
+
+        if(queryContext.getStart() > 0) {
+            return list.subList(queryContext.getStart(), list.size()) ;
+        }
+
         return list;
     }
 

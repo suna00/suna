@@ -314,6 +314,10 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         properties.toStore();
     }
 
+    public Object getStoreValue(String pid) {
+        return NodeUtils.getStoreValue(getValue(pid), NodeUtils.getNodeType(getTypeId()).getPropertyType(pid), getId()) ;
+    }
+
 //    public Object getValue(String pid, PropertyType.ValueType valueType) {
 //        Object value = get(pid) ;
 //

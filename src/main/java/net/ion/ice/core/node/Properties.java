@@ -12,7 +12,7 @@ public class Properties implements Map<String, Object>, Serializable, Cloneable 
     private transient String typeId ;
 
     public Properties(){
-        this.values  = new HashMap<>() ;
+        this.values  = new LinkedHashMap<>() ;
     }
 
 
