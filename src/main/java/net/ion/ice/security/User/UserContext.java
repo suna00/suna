@@ -1,28 +1,29 @@
 package net.ion.ice.security.User;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.List;
 
 public class UserContext {
     private final String userId;
-    private final List<GrantedAuthority> authorities;
+    private final String name;
 
-    private UserContext(String userId, List<GrantedAuthority> authorities) {
+    private UserContext(String userId, String name) {
         this.userId = userId;
-        this.authorities = authorities;
+        this.name = name;
     }
-    
-    public static UserContext create(String userId, List<GrantedAuthority> authorities) {
-//        if (StringUtils.isBlank(userId)) throw new IllegalArgumentException("Username is blank: " + userId);
-        return new UserContext(userId, authorities);
+
+    public static UserContext create(String userId, String name) {
+        if (StringUtils.isBlank(userId)) throw new IllegalArgumentException("UserID is blank: " + userId);
+        return new UserContext(userId, name);
     }
 
     public String getUserId() {
         return userId;
     }
 
-    public List<GrantedAuthority> getAuthorities() {
-        return authorities;
+    public String getName() {
+        return name;
     }
 }

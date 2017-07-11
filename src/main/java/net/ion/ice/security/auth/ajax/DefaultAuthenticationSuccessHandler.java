@@ -52,7 +52,7 @@ public class DefaultAuthenticationSuccessHandler implements AuthenticationSucces
 //        HttpSession session = hazelcastRequestWrapper.getSession();
 
         HttpSession session = request.getSession();
-//        session.setAttribute("JWT-TOKEN", accessToken.getToken());
+        session.setAttribute("token", accessToken.getToken());
 
 //        System.out.println("sessionID::::\t" +  ((HazelcastHttpSession) session).getOriginalSessionId());
         System.out.println("original_sessionID::::\t" + session.getId());

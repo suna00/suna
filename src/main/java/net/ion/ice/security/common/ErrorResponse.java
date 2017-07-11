@@ -21,4 +21,20 @@ public class ErrorResponse {
     public static ErrorResponse of(final String message,  HttpStatus status, ErrorCode code) {
         return new ErrorResponse(message, status, code);    }
 
+    public HttpStatus getStatus() {
+        return status;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public ErrorCode getCode() {
+        return code;
+    }
+
 }

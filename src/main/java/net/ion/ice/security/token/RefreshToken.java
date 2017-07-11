@@ -30,7 +30,11 @@ public class RefreshToken implements JwtToken {
     public String getJti() {
         return claims.getBody().getId();
     }
-    
+
+    public String getName() {
+        return (String) claims.getBody().get("name");
+    }
+
     public String getSubject() {
         return claims.getBody().getSubject();
     }

@@ -5,6 +5,7 @@ import net.ion.ice.security.auth.jwt.extractor.TokenExtractor;
 import net.ion.ice.security.config.JwtConfig;
 import net.ion.ice.security.token.RawAccessJwtToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContext;
@@ -42,10 +43,10 @@ public class JwtTokenAuthenticationProcessingFilter extends AbstractAuthenticati
         RawAccessJwtToken token = new RawAccessJwtToken(tokenExtractor.extract(tokenPayload));
         Object sessionToken;
         try{
-            if(request.getSession().getAttribute("JWT-TOKEN").equals(token));
-            sessionToken = request.getSession().getAttribute("JWT-TOKEN");
+            if(request.getSession().getAttribute("token").equals(token));
+            sessionToken = token;
         } catch (NullPointerException ex) {
-            throw new NullPointerException("Token is not exist in session");
+            throw new AuthenticationServiceException("Token is not exist in session");
         }
         return getAuthenticationManager().authenticate(new JwtAuthenticationToken((RawAccessJwtToken) sessionToken));
     }
@@ -63,13 +64,5 @@ public class JwtTokenAuthenticationProcessingFilter extends AbstractAuthenticati
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
         SecurityContextHolder.clearContext();
         failureHandler.onAuthenticationFailure(request, response, failed);
-    }
-
-    public Object getSessionToken(HttpServletRequest request) throws AuthenticationException {
-        try {
-            return request.getSession().getAttribute("JWT-TOKEN");
-        } catch (NullPointerException ex) {
-            throw new NullPointerException("Token is not exist in session");
-        }
     }
 }

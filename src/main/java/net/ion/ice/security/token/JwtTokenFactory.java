@@ -30,20 +30,20 @@ public class JwtTokenFactory {
 //        if (userContext.getAuthorities() == null || userContext.getAuthorities().isEmpty())
 //            throw new IllegalArgumentException("User doesn't have any privileges");
 
-        Claims claims = Jwts.claims().setSubject(userContext.getUserId());
+        Claims claims = Jwts.claims();
+        claims.put("name", userContext.getName());
+        claims.setSubject(userContext.getUserId());
 //        claims.put("scopes", userContext.getAuthorities().stream().map(s -> s.toString()).collect(Collectors.toList()));
 
         LocalDateTime currentTime = LocalDateTime.now();
-        
+
         String token = Jwts.builder()
-          .setClaims(claims)
-          .setIssuer(jwtConfig.getIssuer())
-          .setIssuedAt(Date.from(currentTime.atZone(ZoneId.systemDefault()).toInstant()))
-          .setExpiration(Date.from(currentTime
-              .plusMinutes(jwtConfig.getTokenExpirationTime())
-              .atZone(ZoneId.systemDefault()).toInstant()))
-          .signWith(SignatureAlgorithm.HS512, jwtConfig.getSecretKey())
-        .compact();
+                .setClaims(claims)
+                .setIssuer(jwtConfig.getIssuer())
+                .setIssuedAt(Date.from(currentTime.atZone(ZoneId.systemDefault()).toInstant()))
+                .setExpiration(Date.from(currentTime.plusMinutes(jwtConfig.getTokenExpirationTime()).atZone(ZoneId.systemDefault()).toInstant()))
+                .signWith(SignatureAlgorithm.HS512, jwtConfig.getSecretKey())
+                .compact();
 
         return new AccessJwtToken(token, claims);
     }
@@ -57,17 +57,17 @@ public class JwtTokenFactory {
 
         Claims claims = Jwts.claims().setSubject(userContext.getUserId());
 //        claims.put("scopes", Arrays.asList(Scopes.REFRESH_TOKEN.authority()));
-        
+
         String token = Jwts.builder()
-          .setClaims(claims)
-          .setIssuer(jwtConfig.getIssuer())
-          .setId(UUID.randomUUID().toString())
-          .setIssuedAt(Date.from(currentTime.atZone(ZoneId.systemDefault()).toInstant()))
-          .setExpiration(Date.from(currentTime
-              .plusMinutes(jwtConfig.getRefreshTokenExpTime())
-              .atZone(ZoneId.systemDefault()).toInstant()))
-          .signWith(SignatureAlgorithm.HS512, jwtConfig.getSecretKey())
-        .compact();
+                .setClaims(claims)
+                .setIssuer(jwtConfig.getIssuer())
+                .setId(UUID.randomUUID().toString())
+                .setIssuedAt(Date.from(currentTime.atZone(ZoneId.systemDefault()).toInstant()))
+                .setExpiration(Date.from(currentTime
+                        .plusMinutes(jwtConfig.getRefreshTokenExpTime())
+                        .atZone(ZoneId.systemDefault()).toInstant()))
+                .signWith(SignatureAlgorithm.HS512, jwtConfig.getSecretKey())
+                .compact();
 
         return new AccessJwtToken(token, claims);
     }

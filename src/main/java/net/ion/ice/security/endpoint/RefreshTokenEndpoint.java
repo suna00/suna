@@ -38,6 +38,7 @@ public class RefreshTokenEndpoint {
         RefreshToken refreshToken = RefreshToken.create(rawToken, jwtConfig.getSecretKey()).orElseThrow(() -> new RuntimeException());
 
         String subject = refreshToken.getSubject();
+        String name = refreshToken.getName();
 //        User user = userService.getByUsername(subject).orElseThrow(() -> new UsernameNotFoundException("User not found: " + subject));
 
 //        if (user.getRoles() == null) throw new InsufficientAuthenticationException("User has no roles assigned");
@@ -45,7 +46,7 @@ public class RefreshTokenEndpoint {
 //                .map(authority -> new SimpleGrantedAuthority(authority.getRole().authority()))
 //                .collect(Collectors.toList());
 
-        UserContext userContext = UserContext.create(subject, Collections.emptyList());
+        UserContext userContext = UserContext.create(subject, name);
 
         return tokenFactory.createAccessJwtToken(userContext);
     }
