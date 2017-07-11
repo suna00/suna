@@ -1,10 +1,13 @@
 package net.ion.ice.core.data;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import net.ion.ice.core.data.bind.NodeBindingInfo;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -22,6 +25,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Service("dataService")
 public class DatabaseService {
+    private static Logger logger = LoggerFactory.getLogger(DatabaseService.class);
+
     @Autowired
     private NodeService nodeService;
 

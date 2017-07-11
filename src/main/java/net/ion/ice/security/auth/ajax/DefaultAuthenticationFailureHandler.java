@@ -33,9 +33,10 @@ public class DefaultAuthenticationFailureHandler implements AuthenticationFailur
 		
 		response.setStatus(HttpStatus.UNAUTHORIZED.value());
 		response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-		
+		response.setCharacterEncoding("UTF-8");
+
 		if (e instanceof BadCredentialsException) {
-			mapper.writeValue(response.getWriter(), ErrorResponse.of("Invalid username or password", HttpStatus.UNAUTHORIZED, ErrorCode.AUTHENTICATION));
+			mapper.writeValue(response.getWriter(), ErrorResponse.of(e.getMessage(), HttpStatus.UNAUTHORIZED, ErrorCode.AUTHENTICATION));
 		} else if (e instanceof JwtExpiredTokenException) {
 			mapper.writeValue(response.getWriter(), ErrorResponse.of("Token has expired", HttpStatus.UNAUTHORIZED, ErrorCode.JWT_TOKEN_EXPIRED));
 		} else if (e instanceof AuthenticationServiceException) {

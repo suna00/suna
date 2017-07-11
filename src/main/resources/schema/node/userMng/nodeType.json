@@ -1,11 +1,43 @@
 [
   {
-    "parentId" : "root",
-    "typeId" : "nodeType",
-    "id" : "userMng",
-    "tid" : "userMng",
-    "typeName" : "사용자 관리",
-    "repositoryType" : "path",
-    "eviction" : 0
+    "tid": "userMng",
+    "parentId": "root",
+    "typeId": "nodeType",
+    "repositoryType": "path",
+    "typeName": "사용자 관리"
+  },
+  {
+    "tid": "user",
+    "parentId": "userMng",
+    "typeId": "nodeType",
+    "repositoryType": "node",
+    "typeName": "User"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "user",
+    "pid": "userId",
+    "propertyTypeName": "아이디",
+    "valueType": "STRING",
+    "idable": true,
+    "indexable": true,
+    "labelable": false,
+    "required": true,
+    "treeable": false,
+    "length": 100,
+    "analyzer": "cjk"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "user",
+    "pid": "password",
+    "propertyTypeName": "비밀번호",
+    "valueType": "STRING",
+    "idable": false,
+    "indexable": true,
+    "labelable": false,
+    "required": true,
+    "length": 100,
+    "analyzer": "cjk"
   }
 ]

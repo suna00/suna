@@ -2,10 +2,12 @@ package net.ion.ice.core.data.bind;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import net.ion.ice.core.data.DBUtils;
+import net.ion.ice.core.data.DatabaseController;
 import net.ion.ice.core.data.DatabaseService;
-import net.ion.ice.core.data.DBDataTypes;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -21,11 +23,12 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Service
 public class NodeBindingService {
+    private static Logger logger = LoggerFactory.getLogger(NodeBindingService.class);
+
     @Autowired
     private NodeService nodeService;
     @Autowired
     private DatabaseService databaseService;
-
     private Map<String, NodeBindingInfo> nodeBindingInfoMap = new ConcurrentHashMap<>();
 
     public void save(Map<String, String[]> parameterMap, String typeId) {
@@ -58,7 +61,7 @@ public class NodeBindingService {
     }
 
 
-    public void nodeBindProcess(String typeId){
+    public void nodeBindProcess(String typeId) {
         NodeType nodeType = nodeService.getNodeType(typeId);
 
         if (!nodeBindingInfoMap.containsKey(typeId)) {

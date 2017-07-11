@@ -1,0 +1,17 @@
+[
+  {
+    "typeId": "user",
+    "userId": "system",
+    "password": "bbc5e661e106c6dcd8dc6dd186454c2fcba3c710fb4d8e71a60c93eaf077f073"
+  },
+  {
+    "typeId": "user",
+    "userId": "admin",
+    "password": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918"
+  },
+  {
+    "typeId": "user",
+    "userId": "guest",
+    "password": "84983c60f7daadc1cb8698621f802c0d9f9a3c3c295c810748fb048115c186ec"
+  }
+]

@@ -6,6 +6,8 @@ import net.ion.ice.core.data.table.Column;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.PropertyType;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.sql.Connection;
@@ -19,6 +21,7 @@ import java.util.*;
  */
 
 public class NodeBindingInfo {
+    private static Logger logger = LoggerFactory.getLogger(NodeBindingInfo.class);
 
     private NodeType nodeType;
 
