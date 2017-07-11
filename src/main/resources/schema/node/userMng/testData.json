@@ -2,16 +2,61 @@
   {
     "typeId": "user",
     "userId": "system",
-    "password": "bbc5e661e106c6dcd8dc6dd186454c2fcba3c710fb4d8e71a60c93eaf077f073"
+    "password": "bbc5e661e106c6dcd8dc6dd186454c2fcba3c710fb4d8e71a60c93eaf077f073",
+    "name": "아이온"
   },
   {
     "typeId": "user",
     "userId": "admin",
-    "password": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918"
+    "password": "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
+    "name": "관리자"
+  },
+  {
+    "typeId": "user",
+    "userId": "admin1",
+    "password": "25f43b1486ad95a1398e3eeb3d83bc4010015fcc9bedb35b432e00298d5021f7",
+    "name": "관리자1"
+  },
+  {
+    "typeId": "user",
+    "userId": "admin2",
+    "password": "1c142b2d01aa34e9a36bde480645a57fd69e14155dacfab5a3f9257b77fdc8d8",
+    "name": "관리자2"
+  },
+  {
+    "typeId": "user",
+    "userId": "user",
+    "password": "04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb",
+    "name": "사용자"
+  },
+  {
+    "typeId": "user",
+    "userId": "user1",
+    "password": "0a041b9462caa4a31bac3567e0b6e6fd9100787db2ab433d96f6d178cabfce90",
+    "name": "사용자1"
+  },
+  {
+    "typeId": "user",
+    "userId": "user2",
+    "password": "6025d18fe48abd45168528f18a82e265dd98d421a7084aa09f61b341703901a3",
+    "name": "사용자2"
   },
   {
     "typeId": "user",
     "userId": "guest",
-    "password": "84983c60f7daadc1cb8698621f802c0d9f9a3c3c295c810748fb048115c186ec"
+    "password": "84983c60f7daadc1cb8698621f802c0d9f9a3c3c295c810748fb048115c186ec",
+    "name": "손님"
+  },
+  {
+    "typeId": "user",
+    "userId": "guest1",
+    "password": "4676424d5f805a7579abd1236287be2abf24f39b8a622ef587edd7d91b8e2952",
+    "name": "손님1"
+  },
+  {
+    "typeId": "user",
+    "userId": "guest2",
+    "password": "5be6ba1446ed4bd41b656b740eccab74524602bc5f274e03677b6bab7d424dd5",
+    "name": "손님2"
   }
 ]

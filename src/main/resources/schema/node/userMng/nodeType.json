@@ -39,5 +39,31 @@
     "required": true,
     "length": 100,
     "analyzer": "cjk"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "user",
+    "pid": "name",
+    "propertyTypeName": "이름",
+    "valueType": "STRING",
+    "idable": false,
+    "indexable": false,
+    "labelable": false,
+    "required": true,
+    "length": 100,
+    "analyzer": "cjk"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "user",
+    "pid": "picture",
+    "propertyTypeName": "사진",
+    "valueType": "FILE",
+    "idable": false,
+    "indexable": false,
+    "labelable": false,
+    "required": false,
+    "length": 100,
+    "analyzer": "cjk"
   }
 ]
