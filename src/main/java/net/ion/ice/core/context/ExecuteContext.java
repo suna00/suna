@@ -1,5 +1,7 @@
 package net.ion.ice.core.context;
 
+import net.ion.ice.ApplicationContextManager;
+import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.file.FileValue;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
@@ -14,25 +16,21 @@ import java.util.*;
  * Created by jaeho on 2017. 5. 31..
  */
 public class ExecuteContext implements Context{
-    private Map<String, Object> data  ;
-    private Node node;
-    private NodeType nodeType;
-    private Node existNode ;
+    protected Map<String, Object> data  ;
+    protected Node node;
+    protected NodeType nodeType;
+    protected Node existNode ;
 
-    private boolean exist ;
-    private boolean execute ;
-
-
-    private List<String> changedProperties ;
-    private String id ;
-
-    private String event ;
-
-    private String userId ;
-    private Date time ;
+    protected boolean exist ;
+    protected boolean execute ;
 
 
+    protected List<String> changedProperties ;
+    protected String id ;
 
+    protected String userId ;
+    protected Date time ;
+    protected String event;
 
 
     public static ExecuteContext makeContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType) {
@@ -88,12 +86,25 @@ public class ExecuteContext implements Context{
         return ctx ;
     }
 
-    private void init() {
+    public static ExecuteContext makeContextFromMap(Map<String, Object> data, String typeId, String event) {
+        EventExecuteContext ctx = new EventExecuteContext();
+
+        ctx.setData(data);
+
+        NodeType nodeType = NodeUtils.getNodeType(typeId) ;
+        ctx.setNodeType(nodeType);
+
+        ctx.event = event ;
+        ctx.init() ;
+
+        return ctx ;
+
+    }
+
+    protected void init() {
         this.time = new Date() ;
         existNode = NodeUtils.getNodeService().getNode(nodeType.getTypeId(), getId()) ;
         exist = existNode != null ;
-
-        nodeType.getEvent(event) ;
 
         if(exist){
             changedProperties = new ArrayList<>() ;
@@ -182,8 +193,6 @@ public class ExecuteContext implements Context{
         String typeId = (String) config.get("typeId");
         NodeType nodeType = NodeUtils.getNodeType(typeId) ;
 
-
-
         ctx.setNodeType(nodeType);
 
         ctx.init() ;
@@ -192,7 +201,7 @@ public class ExecuteContext implements Context{
     }
 
     public static ExecuteContext makeEventContextFromParameter(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, NodeType nodeType, String event) {
-        ExecuteContext ctx = new ExecuteContext();
+        EventExecuteContext ctx = new EventExecuteContext();
 
         Map<String, Object> data = ContextUtils.makeContextData(parameterMap, multiFileMap);
 
@@ -203,5 +212,19 @@ public class ExecuteContext implements Context{
         ctx.init() ;
 
         return ctx ;
+    }
+
+
+    public void execute() {
+        EventService eventService = ApplicationContextManager.getBean(EventService.class) ;
+        eventService.execute(this) ;
+    }
+
+    public NodeType getNodeType() {
+        return nodeType;
+    }
+
+    public String getEvent() {
+        return event;
     }
 }

@@ -1,5 +1,6 @@
 package net.ion.ice.core.node;
 
+import net.ion.ice.core.event.Event;
 import org.stagemonitor.util.StringUtils;
 
 import java.util.*;
@@ -12,8 +13,12 @@ public class NodeType {
     public static final String TABLE_NAME = "tableName";
     public static final String REPOSITORY_TYPE = "repositoryType";
 
+    public static final String NODE = "node";
+    public static final String DATA = "data";
+
     private Node nodeTypeNode ;
     private Map<String, PropertyType> propertyTypes ;
+    private Map<String, Event> events ;
 
 
 
@@ -123,7 +128,21 @@ public class NodeType {
         return nodeTypeNode.get(TABLE_NAME) != null && StringUtils.isNotEmpty((String) nodeTypeNode.get(TABLE_NAME));
     }
 
-    public Node getEvent(String event) {
+    public void setEvents(List<Node> eventList){
+        if(events == null){
+            events = new HashMap<>() ;
+        }
+        for(Node _node : eventList){
+            Event event = new Event(_node);
+            event.setEventActions(NodeUtils.getNodeList("eventAction", "sorting=order&event_matching=" + event.getEvent()));
+            event.setEventListeners(NodeUtils.getNodeList("eventListener", "event_matching=" + event.getEvent()));
+
+
+            events.put(event.getEvent(), event) ;
+        }
+    }
+    public Event getEvent(String event) {
+
         return null ;
     }
 }

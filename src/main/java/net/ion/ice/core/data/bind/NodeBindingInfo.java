@@ -206,7 +206,7 @@ public class NodeBindingInfo {
     }
 
     public Map<String, Object> retrieve(String id) {
-        List<Object> parameters = retrieveParameters(id);
+        List<String> parameters = retrieveParameters(id);
         Map<String, Object> result = jdbcTemplate.queryForMap(retrieveSql, parameters.toArray());
         return result;
     }
@@ -239,7 +239,7 @@ public class NodeBindingInfo {
         return parameters;
     }
 
-    private List<Object> retrieveParameters(String id) {
+    private List<String> retrieveParameters(String id) {
         return Arrays.asList(id.split("@"));
     }
 }
