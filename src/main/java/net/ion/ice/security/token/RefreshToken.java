@@ -13,7 +13,7 @@ public class RefreshToken implements JwtToken {
     }
 
     public static Optional<RefreshToken> create(RawAccessJwtToken token, String signingKey) {
-        Jws<Claims> claims = token.parseClaims(signingKey);
+        Jws<Claims> claims = token.tokenParseClaims(signingKey);
 
         return Optional.of(new RefreshToken(claims));
     }

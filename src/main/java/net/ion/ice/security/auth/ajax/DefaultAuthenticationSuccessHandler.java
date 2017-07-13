@@ -40,25 +40,23 @@ public class DefaultAuthenticationSuccessHandler implements AuthenticationSucces
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
         UserContext userContext = (UserContext) authentication.getPrincipal();
+
         JwtToken accessToken = tokenFactory.createAccessJwtToken(userContext);
         JwtToken refreshToken = tokenFactory.createRefreshToken(userContext);
 
         Map<String, String> tokenMap = new HashMap<>();
-        tokenMap.put("token", accessToken.getToken());
+        tokenMap.put("accessToken", accessToken.getToken());
         tokenMap.put("refreshToken", refreshToken.getToken());
 
-
-//        HazelcastRequestWrapper hazelcastRequestWrapper = new HazelcastRequestWrapper(request, response);
-//        HttpSession session = hazelcastRequestWrapper.getSession();
-
         HttpSession session = request.getSession();
-        session.setAttribute("token", accessToken.getToken());
+        session.setAttribute("accessToken", accessToken.getToken());
 
-//        System.out.println("sessionID::::\t" +  ((HazelcastHttpSession) session).getOriginalSessionId());
-        System.out.println("original_sessionID::::\t" + session.getId());
+        System.out.println("sessionID::::\t" + session.getId());
+        int maxAge = 60 * 60 * 24; // 24 hour
 
-//        Integer maxAge = 60 * 60 * 1000; //60 minutes
-//        cookieUtil.create(response, "JWT-TOKEN", accessToken.getToken(), false, maxAge, request.getServerName());
+        cookieUtil.create(response, "accessToken", "SDP ".concat(accessToken.getToken()), false, false, -1, request.getServerName());
+        cookieUtil.create(response, "refreshToken", "SDP ".concat(refreshToken.getToken()), true, false, -1, request.getServerName());
+
         response.setStatus(HttpStatus.OK.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         mapper.writeValue(response.getWriter(), tokenMap);

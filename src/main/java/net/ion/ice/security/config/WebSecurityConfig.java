@@ -11,6 +11,8 @@ import net.ion.ice.security.auth.jwt.JwtAuthenticationProvider;
 import net.ion.ice.security.auth.jwt.JwtTokenAuthenticationProcessingFilter;
 import net.ion.ice.security.auth.jwt.SkipPathRequestMatcher;
 import net.ion.ice.security.auth.jwt.extractor.TokenExtractor;
+import net.ion.ice.security.common.CookieUtil;
+import net.ion.ice.security.token.JwtTokenFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -72,6 +74,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private WebFilter webFilter;
 
+    @Autowired
+    private CookieUtil cookieUtil;
+
     protected LoginProcessingFilter buildAjaxLoginProcessingFilter() throws Exception {
         LoginProcessingFilter filter = new LoginProcessingFilter(FORM_BASED_LOGIN_ENTRY_POINT, successHandler, failureHandler, objectMapper);
         filter.setAuthenticationManager(this.authenticationManager);
@@ -81,8 +86,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected JwtTokenAuthenticationProcessingFilter buildJwtTokenAuthenticationProcessingFilter() throws Exception {
         List<String> pathsToSkip = Arrays.asList(TOKEN_REFRESH_ENTRY_POINT, FORM_BASED_LOGIN_ENTRY_POINT, FORM_BASED_LOGOUT_ENTRY_POINT);
         SkipPathRequestMatcher matcher = new SkipPathRequestMatcher(pathsToSkip, TOKEN_BASED_AUTH_ENTRY_POINT);
-        JwtTokenAuthenticationProcessingFilter filter
-                = new JwtTokenAuthenticationProcessingFilter(failureHandler, tokenExtractor, matcher, jwtConfig);
+        JwtTokenAuthenticationProcessingFilter filter = new JwtTokenAuthenticationProcessingFilter(failureHandler, tokenExtractor, matcher, jwtConfig, cookieUtil);
         filter.setAuthenticationManager(this.authenticationManager);
         return filter;
     }

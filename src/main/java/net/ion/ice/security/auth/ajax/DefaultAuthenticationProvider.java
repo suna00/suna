@@ -32,7 +32,7 @@ public class DefaultAuthenticationProvider implements AuthenticationProvider {
             throw new BadCredentialsException("아이디/패스워드가 맞지 않습니다.");
         }
 
-        UserContext userContext = UserContext.create(userId, userNode.getStringValue("name"));
+        UserContext userContext = UserContext.create(userId);
 
         return new UsernamePasswordAuthenticationToken(userContext, password);
     }

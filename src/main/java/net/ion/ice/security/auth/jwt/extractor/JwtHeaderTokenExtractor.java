@@ -14,7 +14,7 @@ public class JwtHeaderTokenExtractor implements TokenExtractor {
     @Override
     public String extract(String header) {
         if (StringUtils.isBlank(header)) {
-            throw new AuthenticationServiceException("Authorization header cannot be blank!");
+            throw new AuthenticationServiceException("Authorization token cannot be blank!");
         }
 
         if (!header.substring(0, jwtConfig.getHeaderPrefix().concat(" ").length()).equalsIgnoreCase(jwtConfig.getHeaderPrefix().concat(" "))) {

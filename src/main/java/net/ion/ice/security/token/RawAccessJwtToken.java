@@ -16,7 +16,7 @@ public class RawAccessJwtToken implements JwtToken {
         this.token = token;
     }
 
-    public Jws<Claims> parseClaims(String signingKey) {
+    public Jws<Claims> tokenParseClaims(String signingKey) {
         try {
             return Jwts.parser().setSigningKey(signingKey).parseClaimsJws(this.token);
         } catch (NullPointerException ex) {

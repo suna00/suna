@@ -31,7 +31,6 @@ public class JwtTokenFactory {
 //            throw new IllegalArgumentException("User doesn't have any privileges");
 
         Claims claims = Jwts.claims();
-        claims.put("name", userContext.getName());
         claims.setSubject(userContext.getUserId());
 //        claims.put("scopes", userContext.getAuthorities().stream().map(s -> s.toString()).collect(Collectors.toList()));
 

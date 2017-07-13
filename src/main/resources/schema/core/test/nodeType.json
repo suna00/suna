@@ -10,7 +10,7 @@
     "tid": "testCategory",
     "parentId": "test",
     "typeId": "nodeType",
-    "repositoryType": "node",
+    "repositoryType": "data",
     "typeName": "TEST Category",
     "tableName": "mariaDb#testCategory"
   },

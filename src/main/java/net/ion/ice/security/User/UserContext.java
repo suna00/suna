@@ -7,23 +7,17 @@ import java.util.List;
 
 public class UserContext {
     private final String userId;
-    private final String name;
 
-    private UserContext(String userId, String name) {
+    private UserContext(String userId) {
         this.userId = userId;
-        this.name = name;
     }
 
-    public static UserContext create(String userId, String name) {
+    public static UserContext create(String userId) {
         if (StringUtils.isBlank(userId)) throw new IllegalArgumentException("UserID is blank: " + userId);
-        return new UserContext(userId, name);
+        return new UserContext(userId);
     }
-
     public String getUserId() {
         return userId;
     }
 
-    public String getName() {
-        return name;
-    }
 }

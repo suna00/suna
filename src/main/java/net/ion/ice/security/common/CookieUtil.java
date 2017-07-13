@@ -6,17 +6,21 @@ import org.springframework.web.util.WebUtils;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 
 /**
  * Created by seonwoong on 2017. 6. 14..
  */
 @Component
 public class CookieUtil {
-    public void create(HttpServletResponse response, String name, String value, Boolean secure, Integer maxAge, String domain) {
-        Cookie cookie = new Cookie(name, value);
+    public void create(HttpServletResponse response, String name, String value, Boolean httpOnly , Boolean secure, Integer maxAge, String domain) throws UnsupportedEncodingException {
+
+        Cookie cookie = new Cookie(name, URLEncoder.encode(value, "UTF-8"));
         cookie.setDomain(domain);
         cookie.setPath("/");
-        cookie.setHttpOnly(true);
+        cookie.setHttpOnly(httpOnly);
         cookie.setSecure(secure);
         cookie.setMaxAge(maxAge);
 
@@ -32,8 +36,8 @@ public class CookieUtil {
         response.addCookie(cookie);
     }
 
-    public String getValue(HttpServletRequest httpServletRequest, String name) {
+    public String getValue(HttpServletRequest httpServletRequest, String name) throws UnsupportedEncodingException {
         Cookie cookie = WebUtils.getCookie(httpServletRequest, name);
-        return cookie != null ? cookie.getValue() : null;
+        return cookie != null ? URLDecoder.decode(cookie.getValue(), "UTF-8") : null;
     }
 }
