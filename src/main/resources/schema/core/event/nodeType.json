@@ -71,7 +71,7 @@
   {
     "typeId" : "propertyType",
     "tid": "event",
-    "pid": "eventListens",
+    "pid": "eventListeners",
     "propertyTypeName": "Event Listener List",
     "valueType": "REFERENCED",
     "required": true,
@@ -80,7 +80,7 @@
     "treeable": false,
     "indexable": false,
     "analyzer": "",
-    "referenceType": "eventListen",
+    "referenceType": "eventListener",
     "referenceValue": "event"
   },
   {
@@ -185,14 +185,14 @@
   {
     "parentId" : "system",
     "typeId" : "nodeType",
-    "tid" : "eventListen",
+    "tid" : "eventListener",
     "typeName" : "Event Listener",
     "repositoryType" : "node",
     "eviction" : 1000
   },
   {
     "typeId" : "propertyType",
-    "tid": "eventListen",
+    "tid": "eventListener",
     "pid": "tid",
     "propertyTypeName": "Node Type",
     "valueType": "REFERENCE",
@@ -207,7 +207,7 @@
   },
   {
     "typeId" : "propertyType",
-    "tid": "eventListen",
+    "tid": "eventListener",
     "pid": "event",
     "propertyTypeName": "Event",
     "valueType": "REFERENCE",
@@ -222,7 +222,7 @@
   },
   {
     "typeId" : "propertyType",
-    "tid": "eventListen",
+    "tid": "eventListener",
     "pid": "actionType",
     "propertyTypeName": "Action Type",
     "valueType": "CODE",
@@ -238,7 +238,7 @@
   },
   {
     "typeId" : "propertyType",
-    "tid": "eventListen",
+    "tid": "eventListener",
     "pid": "datasource",
     "propertyTypeName": "Datasource",
     "valueType": "STRING",
@@ -253,7 +253,7 @@
   },
   {
     "typeId" : "propertyType",
-    "tid": "eventListen",
+    "tid": "eventListener",
     "pid": "actionBody",
     "propertyTypeName": "Action Body",
     "valueType": "STRING",

@@ -14,14 +14,6 @@
     "order" : 1
   },
   {
-    "typeId" : "eventAction",
-    "event": "nodeType@create",
-    "action" : "createDefaultEvent",
-    "actionType" : "service",
-    "actionBody" : "eventService.createNodeType",
-    "order" : 2
-  },
-  {
     "typeId" : "event",
     "tid": "nodeType",
     "event" : "update",
@@ -48,6 +40,12 @@
     "actionType" : "service",
     "actionBody" : "infinispanService.remove",
     "order" : 1
+  },
+  {
+    "typeId" : "eventListener",
+    "tid" : "event",
+    "event": "nodeType@create",
+    "actionType" : "service",
+    "actionBody" : "eventService.createNodeType"
   }
-
 ]

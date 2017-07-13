@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by jaehocho on 2016. 12. 1..
+ * Created by jaeho on 2017. 7. 13..
  */
-public class TemplateParam {
+public class SqlParam extends TemplateParam{
     private String templateStr ;
     private String paramStr ;
     private String methodStr ;
@@ -18,9 +18,9 @@ public class TemplateParam {
     private String valueStr ;
     private String arrayStr ;
 
-    public TemplateParam(String templateStr){
+    public SqlParam(String templateStr){
         this.templateStr = templateStr ;
-        this.paramStr = StringUtils.substringBetween(templateStr, "{{:", "}}").trim() ;
+        this.paramStr = StringUtils.substringBetween(templateStr, "@{", "}").trim() ;
         this.valueStr = paramStr ;
 
         if(paramStr.contains("(") && paramStr.contains(")")){
@@ -36,9 +36,6 @@ public class TemplateParam {
                 valueStr = methodParamStr ;
             }
         }
-    }
-
-    public TemplateParam() {
     }
 
     public String getTemplateStr() {
@@ -151,6 +148,4 @@ public class TemplateParam {
 //        }
 //        return null;
 //    }
-
-
 }

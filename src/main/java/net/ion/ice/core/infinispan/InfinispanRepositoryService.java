@@ -97,10 +97,7 @@ public class InfinispanRepositoryService {
         } catch (Exception e) {
             logger.error(node.toString(), e);
         }
-        logger.debug("Node SAVE : " + node.toString());
-        Node result = node.clone();
-        result.toDisplay();
-        return result;
+        return node.clone();
     }
 
     public void remove(ExecuteContext context) {

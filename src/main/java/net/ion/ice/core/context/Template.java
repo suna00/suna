@@ -15,20 +15,24 @@ import java.util.regex.Pattern;
  */
 public class Template {
     protected static final Pattern templateParamPattern = Pattern.compile("\\{\\{:(.*?)\\}\\}");
-//    protected static final Pattern templateArrayEscapePattern = Pattern.compile("\\{\\{\\[:(.|\\n)*?\\]\\}\\}");
     protected static final Pattern templateArrayStartPattern = Pattern.compile("\\{\\{\\[:(\\w+)(\\.)?(\\w+)\\]\\}\\}");
     protected static final Pattern templateArrayEndPattern = Pattern.compile("\\{\\{\\[\\\\(.*)\\]\\}\\}");
 
+    protected static final Pattern templateSqlParamPattern = Pattern.compile("\\@\\{((\\\\}|[^}])*)\\}");
 
     protected String templateStr ;
 
     protected List<TemplateArray> templateArrays ;
     protected List<TemplateParam> templateParams ;
+    protected List<SqlParam> sqlParams ;
+
 
     public Template(String templateStr){
         this.templateStr = templateStr ;
         this.templateArrays = new ArrayList<TemplateArray>();
         this.templateParams = new ArrayList<TemplateParam>();
+        this.sqlParams = new ArrayList<SqlParam>();
+
     }
 
 
@@ -46,6 +50,10 @@ public class Template {
             templateParams.add(new TemplateParam(templateParamMatcher.group(0)));
         }
 
+        Matcher sqlParamMatcher = templateSqlParamPattern.matcher(tempStr);
+        while (sqlParamMatcher.find()) {
+            sqlParams.add(new SqlParam(sqlParamMatcher.group(0)));
+        }
 //        System.out.println(templateParams);
     }
 
@@ -68,19 +76,6 @@ public class Template {
         return templateStr;
     }
 
-//    public String format(Node article) throws ParseException {
-//        String resultStr = templateStr ;
-//        for(TemplateArray templateArray : templateArrays){
-//            resultStr = StringUtils.replace(resultStr, templateArray.getReplaceStr(), templateArray.format(article)) ;
-//        }
-//
-//        for(TemplateParam templateParam : templateParams){
-//            resultStr = StringUtils.replace(resultStr, templateParam.getTemplateStr(), templateParam.format(article)) ;
-//        }
-//
-//        return resultStr ;
-//    }
-
 
     public String format(Map<String, Object> data) throws ParseException {
         String resultStr = templateStr ;
@@ -91,6 +86,11 @@ public class Template {
         for(TemplateParam templateParam : templateParams){
             resultStr = StringUtils.replace(resultStr, templateParam.getTemplateStr(), templateParam.format(data)) ;
         }
+
+        for(SqlParam sqlParam : sqlParams){
+            resultStr = StringUtils.replace(resultStr, sqlParam.getTemplateStr(), "?") ;
+        }
+
 
         return resultStr ;
     }

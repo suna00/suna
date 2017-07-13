@@ -46,6 +46,10 @@ public class NodeUtils {
         return nodeList ;
     }
 
+    public static List<Node> getNodeList(String typeId, String searchText){
+        return getNodeService().getNodeList(typeId, searchText);
+    }
+
     //노드 타입별 비교 및 노드 별 비교 로직 추가 필요
     public static List<Map<String, Object>> makeDataListFilterBy(Collection<Map<String, Object>> nodeDataList, String lastChanged) {
         List<Map<String, Object>> dataList = new ArrayList<>();

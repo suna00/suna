@@ -79,6 +79,7 @@ public class NodeService {
 
         NodeType nodeType = new NodeType(nodeTypeNode) ;
         nodeType.setPropertyTypes(getNodeList("propertyType", "tid_matching=" + typeId));
+        nodeType.setEvents(getNodeList("event", "tid_matching=" + typeId));
 
         nodeTypeCache.put(typeId, nodeType) ;
         return nodeType ;
@@ -201,6 +202,12 @@ public class NodeService {
         return infinispanRepositoryService.execute(context);
     }
 
+    public Node executeNode(Map<String, Object> data, String typeId, String event) {
+        ExecuteContext context = ExecuteContext.makeContextFromMap(data, typeId, event) ;
+        return infinispanRepositoryService.execute(context);
+    }
+
+
     public Node saveNode(Map<String, String[]> parameterMap, String typeId) {
         NodeType nodeType = getNodeType(typeId) ;
 
@@ -209,7 +216,9 @@ public class NodeService {
             nodeBindingService.save(parameterMap, typeId);
         }
 
-        return infinispanRepositoryService.execute(context);
+        Node node = infinispanRepositoryService.execute(context);
+        node.toDisplay();
+        return node;
     }
 
     public Node saveNode(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, String typeId) {
@@ -217,7 +226,9 @@ public class NodeService {
 
         ExecuteContext context = ExecuteContext.makeContextFromParameter(parameterMap, multiFileMap, nodeType) ;
 
-        return infinispanRepositoryService.execute(context);
+        Node node = infinispanRepositoryService.execute(context);
+        node.toDisplay();
+        return node;
     }
 
     public Node deleteNode(Map<String, String[]> parameterMap, String typeId) {
@@ -327,6 +338,8 @@ public class NodeService {
 
         ExecuteContext context = ExecuteContext.makeEventContextFromParameter(parameterMap, multiFileMap, nodeType, event) ;
 
-        return infinispanRepositoryService.execute(context);
+        context.execute();
+
+        return context.getNode() ;
     }
 }
