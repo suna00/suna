@@ -231,7 +231,7 @@ public class InfinispanRepositoryService {
         cacheQuery.maxResults(1);
 
         List result = cacheQuery.list();
-        return (NodeValue) result.get(0);
+        return result == null || result.size() == 0 ? null : (NodeValue) result.get(0);
     }
 
     public Object getSortedValue(String typeId, String field, SortField.Type sortType, boolean reverse) {

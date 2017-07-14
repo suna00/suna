@@ -34,5 +34,32 @@
     "typeName" : "DataSource",
     "repositoryType" : "node",
     "eviction" : 10
+  },
+  {
+    "parentId" : "system",
+    "typeId" : "nodeType",
+    "id" : "event",
+    "tid" : "event",
+    "typeName" : "Event",
+    "repositoryType" : "node",
+    "eviction" : 1000
+  },
+  {
+    "parentId" : "system",
+    "typeId" : "nodeType",
+    "id" : "eventAction",
+    "tid" : "eventAction",
+    "typeName" : "Event Action",
+    "repositoryType" : "node",
+    "eviction" : 1000
+  },
+  {
+    "parentId" : "system",
+    "typeId" : "nodeType",
+    "id" : "eventListener",
+    "tid" : "eventListener",
+    "typeName" : "Event Listener",
+    "repositoryType" : "node",
+    "eviction" : 1000
   }
 ]

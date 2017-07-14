@@ -42,21 +42,19 @@ public class NodeService {
     @Autowired
     private FileService fileService ;
 
-    private NodeType nodeType ;
-    private NodeType propertyType ;
-
     private Map<String, NodeType> nodeTypeCache = new ConcurrentHashMap<>() ;
+    private Map<String, NodeType> initNodeType = new ConcurrentHashMap<>() ;
 
     @PostConstruct
     public void init(){
         try {
-            initNodeType(true) ;
+            initNodeType() ;
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         try {
-            initNodeType(false);
+            initSchema();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -69,20 +67,24 @@ public class NodeService {
             return nodeTypeCache.get(typeId) ;
         }
 
-        if(typeId.equals("nodeType")){
-            return nodeType ;
-        }else if(typeId.equals("propertyType")){
-            return propertyType ;
+        if(initNodeType.containsKey(typeId)){
+            return initNodeType.get(typeId) ;
         }
 
-        Node nodeTypeNode = infinispanRepositoryService.getNode("nodeType", typeId) ;
+        logger.info(typeId);
+        try {
+            Node nodeTypeNode = infinispanRepositoryService.getNode("nodeType", typeId);
 
-        NodeType nodeType = new NodeType(nodeTypeNode) ;
-        nodeType.setPropertyTypes(getNodeList("propertyType", "tid_matching=" + typeId));
-        nodeType.setEvents(getNodeList("event", "tid_matching=" + typeId));
+            NodeType nodeType = new NodeType(nodeTypeNode);
+            nodeType.setPropertyTypes(getNodeList("propertyType", "tid_matching=" + typeId));
+            nodeType.setEvents(getNodeList("event", "tid_matching=" + typeId));
 
-        nodeTypeCache.put(typeId, nodeType) ;
-        return nodeType ;
+            nodeTypeCache.put(typeId, nodeType);
+            return nodeType;
+        }catch(Exception e){
+            logger.error("NOT FOUND nodeType : " + typeId + " - " + e.getMessage()) ;
+            throw new RuntimeException("ERROR") ;
+        }
     }
 
 
@@ -110,42 +112,27 @@ public class NodeService {
         return infinispanRepositoryService.getQueryCodeNodes(typeId, queryContext) ;
     }
 
-    private void initNodeType(boolean preConstruct) throws IOException {
+    private void initNodeType() throws IOException {
         Collection<Map<String, Object>> nodeTypeDataList = JsonUtils.parsingJsonResourceToList(ApplicationContextManager.getResource("classpath:schema/core/nodeType.json")) ;
 
         List<Node> nodeTypeList = NodeUtils.makeNodeList(nodeTypeDataList, "nodeType") ;
         for(Node nodeType : nodeTypeList){
-            if(preConstruct) {
-                if (nodeType.getId().equals("nodeType")) {
-                    this.nodeType = new NodeType(nodeType);
-                } else if (nodeType.getId().equals("propertyType")) {
-                    this.propertyType = new NodeType(nodeType);
-                }
-            }else {
-                saveFileNode(nodeType, "nodeType");
-            }
+            initNodeType.put(nodeType.getId(), new NodeType(nodeType)) ;
         }
 
         Collection<Map<String, Object>> propertyTypeDataList = JsonUtils.parsingJsonResourceToList(ApplicationContextManager.getResource("classpath:schema/core/propertyType.json")) ;
 
         List<Node> propertyTypeList = NodeUtils.makeNodeList(propertyTypeDataList, "propertyType") ;
         for(Node propertyType : propertyTypeList){
-            if(preConstruct) {
-                if (propertyType.get("tid").equals("nodeType")) {
-                    this.nodeType.addPropertyType(new PropertyType(propertyType));
-                } else if (propertyType.get("tid").equals("propertyType")) {
-                    this.propertyType.addPropertyType(new PropertyType(propertyType));
-                }
-            }else {
-                saveFileNode(propertyType, "propertyType");
-            }
+            NodeType nodeType = initNodeType.get(propertyType.get("tid")) ;
+            nodeType.addPropertyType(new PropertyType(propertyType));
         }
 
-        if(!preConstruct) {
-            initSchema("classpath:schema/core");
-            initSchema("classpath:schema/node");
-        }
+    }
 
+    private void initSchema() throws IOException {
+        initSchema("classpath:schema/core");
+        initSchema("classpath:schema/node");
     }
 
     private void initSchema(String resourcePath) throws IOException {
@@ -153,7 +140,7 @@ public class NodeService {
         File initNodeDir =  resource.getFile() ;
 
         NodeValue nodeValue = infinispanRepositoryService.getLastCacheNodeValue() ;
-        String lastChanged = DateTools.dateToString(nodeValue.getChanged(), DateTools.Resolution.SECOND);
+        String lastChanged = nodeValue == null ? "0" : DateTools.dateToString(nodeValue.getChanged(), DateTools.Resolution.SECOND);
 
         logger.info("LAST CHANGED : " + lastChanged);
         for(File dir : initNodeDir.listFiles((File f) -> { return f.isDirectory() ; })){

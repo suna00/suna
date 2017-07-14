@@ -43,4 +43,8 @@ public class Event {
     public List<EventAction> getEventActions() {
         return eventActions;
     }
+
+    public List<EventListener> getEventListeners() {
+        return eventListeners;
+    }
 }

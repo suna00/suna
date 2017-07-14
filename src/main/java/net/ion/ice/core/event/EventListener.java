@@ -8,8 +8,13 @@ import net.ion.ice.core.node.Node;
 public class EventListener {
     
     private Node eventListenerNode ;
-    
+    private Action action;
+
     public EventListener(Node node) {
         this.eventListenerNode = node ;    
+    }
+
+    public Action getAction() {
+        return action;
     }
 }

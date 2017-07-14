@@ -42,7 +42,7 @@ public class NodeUtils {
 
     public static List<Node> makeNodeList(Collection<Map<String, Object>> nodeDataList, String typeId) {
         List<Node> nodeList = new ArrayList<Node>();
-        nodeDataList.forEach(data -> nodeList.add(new Node(data, typeId)));
+        nodeDataList.forEach(data -> nodeList.add(new Node(data)));
         return nodeList ;
     }
 

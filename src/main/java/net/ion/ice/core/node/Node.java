@@ -64,12 +64,10 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
 
     public Node(Map<String, Object> data){
-        String typeId = (String) data.get(TYPEID);
-        if(typeId == null){
-            throw new RuntimeException("TYPE ID is NULL");
-
-        }
-        construct(data, typeId, data.get(USERID) == null ? ANONYMOUS : data.get(USERID).toString() ) ;
+        properties = new Properties() ;
+        this.id = data.get(ID).toString();
+        this.putAll(data);
+        this.properties.setId(id) ;
     }
 
     private void construct(Map<String, Object> data, String typeId, String userId) {

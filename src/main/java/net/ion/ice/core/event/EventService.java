@@ -30,6 +30,8 @@ public class EventService {
     @Autowired
     private NodeService nodeService ;
 
+    @Autowired
+    private EventBroker eventBroker ;
 
     public void createNodeType(ExecuteContext context){
         Node node = context.getNode() ;
@@ -72,6 +74,8 @@ public class EventService {
             action.execute(executeContext) ;
         }
 
-
+        for(EventListener listener : event.getEventListeners()){
+            eventBroker.putEvent(listener, executeContext);
+        }
     }
 }

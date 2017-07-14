@@ -27,7 +27,6 @@ public class ActionUpdate extends Action {
 
         if(this.parameters == null){
             this.parameters = new ArrayList<>() ;
-
         }
 
         this.jdbcTemplate.update(this.actionBody) ;
