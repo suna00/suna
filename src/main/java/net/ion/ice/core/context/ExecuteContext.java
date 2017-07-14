@@ -191,6 +191,14 @@ public class ExecuteContext implements Context{
         return this.nodeType != null && this.nodeType.hasTableName();
     }
 
+    public boolean isDataType(){
+        if(this.nodeType.getRepositoryType() == NodeType.DATA){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public static ExecuteContext makeContextFromConfig(Map<String, Object> config, Map<String, Object> data) {
         ExecuteContext ctx = new ExecuteContext();
 

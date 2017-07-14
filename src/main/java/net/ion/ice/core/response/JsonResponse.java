@@ -19,6 +19,9 @@ public class JsonResponse implements Serializable{
         return new JsonObjectResponse(node) ;
     }
 
+    public static JsonResponse create(Map<String, Object> map){
+        return new JsonMapResponse(map) ;
+    }
     public static JsonResponse create(Collection<Map<String, Object>> list){
         return new JsonArrayResponse(list);
     }

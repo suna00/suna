@@ -129,6 +129,10 @@ public class NodeType {
         return nodeTypeNode.get(TABLE_NAME) != null && StringUtils.isNotEmpty((String) nodeTypeNode.get(TABLE_NAME));
     }
 
+    public boolean isDataType() {
+        return nodeTypeNode.get(REPOSITORY_TYPE).equals(NodeType.DATA);
+    }
+
     public void setEvents(List<Node> eventList){
         if(events == null){
             events = new HashMap<>() ;
@@ -160,4 +164,9 @@ public class NodeType {
     public void addEventListener(EventListener eventListener) {
         getEvent(eventListener.getEvent()).addEventListener(eventListener) ;
     }
+
+    public String getRepositoryType(){
+        return (String) nodeTypeNode.get(REPOSITORY_TYPE);
+    }
+
 }

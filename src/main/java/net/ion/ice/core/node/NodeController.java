@@ -1,6 +1,7 @@
 package net.ion.ice.core.node;
 
-
+import com.fasterxml.jackson.core.JsonProcessingException;
+import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.SimpleQueryResult;
 import net.ion.ice.core.response.JsonResponse;
@@ -15,6 +16,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Map;
 
 /**
  * Created by jaehocho on 2017. 5. 17..
@@ -24,7 +27,9 @@ public class NodeController {
     private static Logger logger = LoggerFactory.getLogger(NodeController.class);
 
     @Autowired
-    private NodeService nodeService ;
+    private NodeService nodeService;
+    @Autowired
+    private NodeBindingService nodeBindingService;
 
     @RequestMapping(value = "/node/{typeId}", method = RequestMethod.PUT)
     @ResponseBody
@@ -76,12 +81,19 @@ public class NodeController {
         return read(request, typeId);
     }
 
-
-    private Object read(WebRequest request, String typeId, String id) {
+    private Object read(WebRequest request, String typeId, String id) throws JsonProcessingException {
+        NodeType nodeType = nodeService.getNodeType(typeId);
+        if(nodeType.isDataType()){
+            return JsonResponse.create(nodeBindingService.read(typeId, id));
+        }
         return JsonResponse.create(nodeService.readNode(request.getParameterMap(), typeId, id)) ;
     }
 
-    private Object read(WebRequest request, String typeId) {
+    private Object read(WebRequest request, String typeId) throws JsonProcessingException {
+        NodeType nodeType = nodeService.getNodeType(typeId);
+        if(nodeType.isDataType()){
+            return JsonResponse.create(nodeBindingService.read(request.getParameterMap(), typeId));
+        }
         return JsonResponse.create(nodeService.readNode(request.getParameterMap(), typeId)) ;
     }
 
