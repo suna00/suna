@@ -20,7 +20,7 @@ public class Ice2Application {
 	public static void main(String[] args) {
 //	    System.setProperty("spring.devtools.restart.enabled","false");
 //        System.setProperty("spring.devtools.livereload.enabled","true");
-        Stagemonitor.init();
+//        Stagemonitor.init();
 		ApplicationContext ctx =  SpringApplication.run(Ice2Application.class, args);
 	}
 
