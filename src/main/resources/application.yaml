@@ -115,19 +115,19 @@ jwtConfig:
 
 hazelcast:
   members:
-#    - 125.131.88.147
-#    - localhost
+    - 127.0.0.1
+    - localhost
 
 cluster:
   members:
-#    - 125.131.88.147
-#    - localhost
+    - 127.0.0.1
+    - localhost
 
 session:
   mode: client
   baseDir: /resource/ice2/client
   members:
-#    - 125.131.88.147
+    - 127.0.0.1
 
 infinispan:
   cachePath: /resource/ice2/cache
