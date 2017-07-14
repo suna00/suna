@@ -4,8 +4,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import net.ion.ice.core.data.DBUtils;
 import net.ion.ice.core.data.DatabaseController;
 import net.ion.ice.core.data.DatabaseService;
+import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeType;
+import net.ion.ice.core.node.NodeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,9 +50,32 @@ public class NodeBindingService {
         nodeBindingInfo.create();
     }
 
-    public Map<String, Object> read(WebRequest request, String typeId, String id) throws JsonProcessingException {
+    public Map<String, Object> read(String typeId, String id) throws JsonProcessingException {
         nodeBindProcess(typeId);
         NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(typeId);
+        return nodeBindingInfo.retrieve(id);
+    }
+
+    public Map<String, Object> read(Map<String, String[]> parameterMap, String typeId) throws JsonProcessingException {
+        nodeBindProcess(typeId);
+        NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(typeId);
+
+        String id = "";
+
+        for(String paramName : parameterMap.keySet()){
+            if(paramName.equals("id")){
+                id = parameterMap.get(paramName)[0];
+            }
+        }
+
+        if(id.isEmpty()){
+            List<String> idablePids = NodeUtils.getNodeType(typeId).getIdablePIds();
+            for(int i = 0 ; i < idablePids.size(); i++){
+                id = id + parameterMap.get(idablePids.get(i))[0] + (i < (idablePids.size() - 1) ? Node.ID_SEPERATOR : "") ;
+            }
+        }
+
+
         return nodeBindingInfo.retrieve(id);
     }
 

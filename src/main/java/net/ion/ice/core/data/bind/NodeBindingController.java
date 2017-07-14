@@ -47,22 +47,26 @@ public class NodeBindingController {
         return ResponseUtils.response(nodeBindingService.list(typeId));
     }
 
-    @RequestMapping(value = "/data/{typeId}/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public Object readRest(WebRequest request, @PathVariable String typeId, @PathVariable String id) throws IOException {
-        return read(request, typeId, id);
-    }
 
+    /**
+     * 이하 NodeController 로 이동
+     */
+//    @RequestMapping(value = "/data/{typeId}/{id}", method = RequestMethod.GET)
+//    @ResponseBody
+//    public Object readRest(WebRequest request, @PathVariable String typeId, @PathVariable String id) throws IOException {
+//        return read(request, typeId, id);
+//    }
+//
 //    @RequestMapping(value = "/data/{typeId}/read.json", method = RequestMethod.GET)
 //    @ResponseBody
 //    public Object readJson(WebRequest request, @PathVariable String typeId) throws IOException {
 //        return read(request, typeId);
 //    }
-
-    private Object read(WebRequest request, String typeId, String id) throws JsonProcessingException {
-        return ResponseUtils.response(nodeBindingService.read(request, typeId, id));
-    }
-
+//
+//    private Object read(WebRequest request, String typeId, String id) throws JsonProcessingException {
+//        return ResponseUtils.response(nodeBindingService.read(typeId, id));
+//    }
+//
 //    private Object read(WebRequest request, String typeId) {
 //        return JsonResponse.create(nodeService.readNode(request.getParameterMap(), typeId)) ;
 //    }

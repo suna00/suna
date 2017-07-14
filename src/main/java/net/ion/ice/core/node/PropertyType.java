@@ -143,7 +143,6 @@ public class PropertyType {
 
     public String getReferenceType() {
         return propertyTypeNode.getStringValue(REFERENCE_TYPE);
-
     }
 
     public boolean isTreeable() {

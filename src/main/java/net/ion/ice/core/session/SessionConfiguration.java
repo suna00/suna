@@ -113,6 +113,7 @@ public class SessionConfiguration {
         Properties properties = new Properties();
         properties.put("instance-name", hazelcastInstance.getName());
         properties.put("sticky-session", "false");
+        properties.put("cookie-http-only", "true");
 //        properties.put("use-client", "true");
 
         return new WebFilter(properties);

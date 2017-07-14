@@ -22,6 +22,7 @@ public class NodeType {
     private Map<String, Event> events ;
 
 
+
     public NodeType(Node nodeTypeNode) {
         this.nodeTypeNode = nodeTypeNode ;
     }
@@ -128,6 +129,10 @@ public class NodeType {
         return nodeTypeNode.get(TABLE_NAME) != null && StringUtils.isNotEmpty((String) nodeTypeNode.get(TABLE_NAME));
     }
 
+    public boolean isDataType() {
+        return nodeTypeNode.get(REPOSITORY_TYPE).equals(NodeType.DATA);
+    }
+
     public void setEvents(List<Node> eventList){
         if(events == null){
             events = new HashMap<>() ;
@@ -162,6 +167,11 @@ public class NodeType {
     public void addEventListener(EventListener eventListener) {
         getEvent(eventListener.getEvent()).addEventListener(eventListener) ;
     }
+
+    public String getRepositoryType(){
+        return (String) nodeTypeNode.get(REPOSITORY_TYPE);
+    }
+
 
     public boolean isNode() {
         return NodeType.NODE.equals(nodeTypeNode.getStringValue(NodeType.REPOSITORY_TYPE)) || NodeType.NODE.equals(nodeTypeNode.getStoreValue(NodeType.REPOSITORY_TYPE));

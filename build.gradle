@@ -44,6 +44,10 @@ jar {
     manifest {
         attributes('Main-Class': 'net.ion.ice.Ice2Application')
     }
+
+//    from {
+//        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+//    }
 }
 
 version = '0.0.1-SNAPSHOT'
@@ -72,6 +76,8 @@ repositories {
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-tomcat:1.5.4.RELEASE')
+
     compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.boot:spring-boot-configuration-processor')
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
