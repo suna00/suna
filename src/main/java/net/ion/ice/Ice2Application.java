@@ -3,7 +3,6 @@ package net.ion.ice;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.task.TaskExecutor;
@@ -19,7 +18,7 @@ public class Ice2Application {
 
 	public static void main(String[] args) {
 	    System.setProperty("spring.devtools.restart.enabled","false");
-//        System.setProperty("spring.devtools.livereload.enabled","true");
+        System.setProperty("spring.devtools.livereload.enabled","true");
         Stagemonitor.init();
 		ApplicationContext ctx =  SpringApplication.run(Ice2Application.class, args);
 	}
