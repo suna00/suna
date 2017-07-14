@@ -23,15 +23,15 @@ jwtConfig:
 
 
 
-hazelcast:
-  members:
-    - 127.0.0.1
-    - localhost
-
-cluster:
-  members:
-    - 127.0.0.1
-    - localhost
+#hazelcast:
+#  members:
+#    - 127.0.0.1
+#    - localhost
+#
+#cluster:
+#  members:
+#    - 127.0.0.1
+#    - localhost
 
 infinispan:
   cachePath: /resource/ice2/cache
