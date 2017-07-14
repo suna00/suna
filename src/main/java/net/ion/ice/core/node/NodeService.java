@@ -3,6 +3,8 @@ package net.ion.ice.core.node;
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.data.bind.NodeBindingService;
+import net.ion.ice.core.event.*;
+import net.ion.ice.core.event.EventListener;
 import net.ion.ice.core.file.FileService;
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
 import net.ion.ice.core.context.QueryContext;
@@ -71,13 +73,17 @@ public class NodeService {
             return initNodeType.get(typeId) ;
         }
 
-        logger.info(typeId);
         try {
             Node nodeTypeNode = infinispanRepositoryService.getNode("nodeType", typeId);
 
             NodeType nodeType = new NodeType(nodeTypeNode);
-            nodeType.setPropertyTypes(getNodeList("propertyType", "tid_matching=" + typeId));
-            nodeType.setEvents(getNodeList("event", "tid_matching=" + typeId));
+            if(!typeId.equals("propertyType")) {
+                nodeType.setPropertyTypes(getNodeList("propertyType", "tid_matching=" + typeId));
+            }
+
+            if(!typeId.equals("event")) {
+                nodeType.setEvents(getNodeList("event", "tid_matching=" + typeId));
+            }
 
             nodeTypeCache.put(typeId, nodeType);
             return nodeType;
@@ -128,10 +134,27 @@ public class NodeService {
             nodeType.addPropertyType(new PropertyType(propertyType));
         }
 
+        Collection<Map<String, Object>> eventDataList = JsonUtils.parsingJsonResourceToList(ApplicationContextManager.getResource("classpath:schema/core/event.json")) ;
+
+        List<Node> eventList = NodeUtils.makeNodeList(propertyTypeDataList, "event") ;
+        for(Node event : eventList){
+            if(event.get("typeId").equals("event")){
+                NodeType nodeType = initNodeType.get(event.get("tid")) ;
+                nodeType.addEvent(new Event(event));
+            }else if(event.get("typeId").equals("eventAction")){
+                NodeType nodeType = initNodeType.get(event.get("tid")) ;
+                nodeType.addEventAction(new EventAction(event));
+            }else if(event.get("typeId").equals("eventListen")){
+                NodeType nodeType = initNodeType.get(event.get("tid")) ;
+                nodeType.addEventListener(new EventListener(event));
+            }
+        }
+
     }
 
-    private void initSchema() throws IOException {
+    private void  initSchema() throws IOException {
         initSchema("classpath:schema/core");
+
         initSchema("classpath:schema/node");
     }
 
@@ -143,16 +166,29 @@ public class NodeService {
         String lastChanged = nodeValue == null ? "0" : DateTools.dateToString(nodeValue.getChanged(), DateTools.Resolution.SECOND);
 
         logger.info("LAST CHANGED : " + lastChanged);
-        for(File dir : initNodeDir.listFiles((File f) -> { return f.isDirectory() ; })){
-            for(File f : dir.listFiles((File f) -> {return f.getName().equals("nodeType.json");})){
-                fileNodeSave(lastChanged, f);
-            }
-            for(File f : dir.listFiles((File f) -> {return f.getName().equals("propertyType.json");})){
-                fileNodeSave(lastChanged, f);
-            }
-            for(File f : dir.listFiles((File f) -> {return f.getName().endsWith(".json") && !(f.getName().equals("nodeType.json") || f.getName().equals("propertyType.json"));})){
-                fileNodeSave(lastChanged, f);
-            }
+        saveSchema(initNodeDir, lastChanged);
+    }
+
+    private void saveSchema(File initNodeDir, String lastChanged) throws IOException {
+        for (File f : initNodeDir.listFiles((File f) -> {
+            return f.getName().equals("nodeType.json");
+        })) {
+            fileNodeSave(lastChanged, f);
+        }
+        for (File f : initNodeDir.listFiles((File f) -> {
+            return f.getName().equals("propertyType.json");
+        })) {
+            fileNodeSave(lastChanged, f);
+        }
+        for (File f : initNodeDir.listFiles((File f) -> {
+            return f.getName().endsWith(".json") && !(f.getName().equals("nodeType.json") || f.getName().equals("propertyType.json"));
+        })) {
+            fileNodeSave(lastChanged, f);
+        }
+        for (File dir : initNodeDir.listFiles((File f) -> {
+            return f.isDirectory();
+        })) {
+            saveSchema(dir, lastChanged);
         }
     }
 
@@ -172,11 +208,7 @@ public class NodeService {
     public Node saveNode(Map<String, Object> data) {
         try {
             ExecuteContext context = ExecuteContext.makeContextFromMap(data);
-
             Node saveNode =  infinispanRepositoryService.execute(context);
-            if(context.isExecute() && context.isSyncTable()){
-//                nodeBindingService.save(data);
-            }
             return saveNode ;
         }catch (Exception e){
             logger.error(data.toString(), e);
@@ -184,10 +216,6 @@ public class NodeService {
         return null ;
     }
 
-    public Node saveFileNode(Map<String, Object> data, String typeId) {
-        ExecuteContext context = ExecuteContext.makeContextFromMap(data, typeId) ;
-        return infinispanRepositoryService.execute(context);
-    }
 
     public Node executeNode(Map<String, Object> data, String typeId, String event) {
         ExecuteContext context = ExecuteContext.makeContextFromMap(data, typeId, event) ;
@@ -329,4 +357,5 @@ public class NodeService {
 
         return context.getNode() ;
     }
+
 }

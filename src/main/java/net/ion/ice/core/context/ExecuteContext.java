@@ -103,6 +103,12 @@ public class ExecuteContext implements Context{
 
     protected void init() {
         this.time = new Date() ;
+        if(nodeType == null){
+            this.node = new Node(data);
+            execute = true ;
+            return ;
+        }
+
         existNode = NodeUtils.getNodeService().getNode(nodeType.getTypeId(), getId()) ;
         exist = existNode != null ;
 

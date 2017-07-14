@@ -28,4 +28,9 @@ public class EventAction {
         }
         return action;
     }
+
+    public String getEvent() {
+        return StringUtils.substringAfterLast(eventActionNode.getStringValue(Event.EVENT), "@");
+    }
+
 }

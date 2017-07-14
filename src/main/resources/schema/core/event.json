@@ -47,5 +47,33 @@
     "event": "nodeType@create",
     "actionType" : "service",
     "actionBody" : "eventService.createNodeType"
+  },
+  {
+    "typeId" : "eventListener",
+    "tid" : "nodeType",
+    "event": "nodeType@allEvent",
+    "actionType" : "service",
+    "actionBody" : "nodeService.changeNodeType"
+  },
+  {
+    "typeId" : "eventListener",
+    "tid" : "nodeType",
+    "event": "event@allEvent",
+    "actionType" : "service",
+    "actionBody" : "nodeService.changeEvent"
+  },
+  {
+    "typeId" : "eventListener",
+    "tid" : "nodeType",
+    "event": "eventAction@allEvent",
+    "actionType" : "service",
+    "actionBody" : "nodeService.changeEventAction"
+  },
+  {
+    "typeId" : "eventListener",
+    "tid" : "nodeType",
+    "event": "eventListener@allEvent",
+    "actionType" : "service",
+    "actionBody" : "nodeService.changeEventListener"
   }
 ]

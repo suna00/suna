@@ -47,4 +47,19 @@ public class Event {
     public List<EventListener> getEventListeners() {
         return eventListeners;
     }
+
+    public void addEventAction(EventAction eventAction) {
+        if(eventActions == null){
+            eventActions = new ArrayList<>() ;
+        }
+        eventActions.add(eventAction) ;
+    }
+
+    public void addEventListener(EventListener eventListener) {
+        if(eventListeners == null){
+            eventListeners = new ArrayList<>() ;
+        }
+        eventListeners.add(eventListener) ;
+    }
+
 }

@@ -1,6 +1,7 @@
 package net.ion.ice.core.node;
 
-import net.ion.ice.core.event.Event;
+import net.ion.ice.core.event.*;
+import net.ion.ice.core.event.EventListener;
 import org.stagemonitor.util.StringUtils;
 
 import java.util.*;
@@ -142,7 +143,21 @@ public class NodeType {
         }
     }
     public Event getEvent(String event) {
+        return events.get(event) ;
+    }
 
-        return null ;
+    public void addEvent(Event event) {
+        if(events == null){
+            events = new HashMap<>() ;
+        }
+        events.put(event.getEvent(), event) ;
+    }
+
+    public void addEventAction(EventAction eventAction) {
+        getEvent(eventAction.getEvent()).addEventAction(eventAction) ;
+    }
+
+    public void addEventListener(EventListener eventListener) {
+        getEvent(eventListener.getEvent()).addEventListener(eventListener) ;
     }
 }

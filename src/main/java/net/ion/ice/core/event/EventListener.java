@@ -1,6 +1,7 @@
 package net.ion.ice.core.event;
 
 import net.ion.ice.core.node.Node;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Created by jaeho on 2017. 7. 12..
@@ -17,4 +18,9 @@ public class EventListener {
     public Action getAction() {
         return action;
     }
+
+    public String getEvent() {
+        return StringUtils.substringAfterLast(eventListenerNode.getStringValue(Event.EVENT), "@");
+    }
+
 }
