@@ -127,7 +127,7 @@ session:
   mode: client
   baseDir: /resource/ice2/client
   members:
-    - 127.0.0.1
+    - 125.131.88.147
 
 
 
