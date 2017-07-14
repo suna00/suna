@@ -18,7 +18,7 @@ public class Ice2Application {
 	public static final String USE_HAZELCAST = "true";
 
 	public static void main(String[] args) {
-	    System.setProperty("spring.devtools.restart.enabled","false");
+//	    System.setProperty("spring.devtools.restart.enabled","false");
 //        System.setProperty("spring.devtools.livereload.enabled","true");
         Stagemonitor.init();
 		ApplicationContext ctx =  SpringApplication.run(Ice2Application.class, args);
