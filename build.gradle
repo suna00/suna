@@ -44,6 +44,10 @@ jar {
     manifest {
         attributes('Main-Class': 'net.ion.ice.Ice2Application')
     }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
 
 version = '0.0.1-SNAPSHOT'
