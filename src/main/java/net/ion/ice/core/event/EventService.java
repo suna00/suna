@@ -1,6 +1,7 @@
 package net.ion.ice.core.event;
 
 import net.ion.ice.core.context.ExecuteContext;
+import net.ion.ice.core.infinispan.InfinispanRepositoryService;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeType;
@@ -31,17 +32,21 @@ public class EventService {
     private NodeService nodeService ;
 
     @Autowired
+    private InfinispanRepositoryService infinispznService ;
+
+
+    @Autowired
     private EventBroker eventBroker ;
 
     public void createNodeType(ExecuteContext context){
         Node node = context.getNode() ;
         if(NodeType.NODE.equals(node.getStringValue(NodeType.REPOSITORY_TYPE)) || NodeType.NODE.equals(node.getStoreValue(NodeType.REPOSITORY_TYPE))){
-            Node eventNode = createEvent(node, CREATE);
-            createEventAction(eventNode, CREATE) ;
-            eventNode = createEvent(node, UPDATE);
-            createEventAction(eventNode, UPDATE) ;
-            eventNode = createEvent(node, DELETE);
-            createEventAction(eventNode, DELETE) ;
+//            Node eventNode = createEvent(node, CREATE);
+//            createEventAction(eventNode, CREATE) ;
+//            eventNode = createEvent(node, UPDATE);
+//            createEventAction(eventNode, UPDATE) ;
+//            eventNode = createEvent(node, DELETE);
+//            createEventAction(eventNode, DELETE) ;
         }
     }
 
@@ -69,13 +74,25 @@ public class EventService {
         NodeType nodeType = executeContext.getNodeType() ;
         Event event = nodeType.getEvent(executeContext.getEvent()) ;
 
-        for(EventAction eventAction : event.getEventActions()){
-            Action action = eventAction.getAction() ;
-            action.execute(executeContext) ;
+        if(nodeType.isNode()) {
+            infinispznService.execute(executeContext) ;
         }
 
-        for(EventListener listener : event.getEventListeners()){
-            eventBroker.putEvent(listener, executeContext);
+        if(event == null){
+            return  ;
+        }
+
+        if(event.getEventActions() != null) {
+            for (EventAction eventAction : event.getEventActions()) {
+                Action action = eventAction.getAction();
+                action.execute(executeContext);
+            }
+        }
+
+        if(event.getEventListeners() != null) {
+            for (EventListener listener : event.getEventListeners()) {
+                eventBroker.putEvent(listener, executeContext);
+            }
         }
     }
 }

@@ -8,7 +8,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  * Created by jaeho on 2017. 7. 14..
  */
 public class EventQueue extends Thread{
-    private BlockingQueue<EventListener> queue = new LinkedBlockingQueue<>() ;
+    private BlockingQueue<EventPublish> queue = new LinkedBlockingQueue<>() ;
 
     public int size() {
         return queue.size() ;
@@ -17,12 +17,17 @@ public class EventQueue extends Thread{
     public void run(){
         while(true){
             try {
-                EventListener el = queue.take() ;
-                Action action = (Action) el.getAction();
-
+                EventPublish eventPublish = queue.take() ;
+                EventListener el =eventPublish.getEventListener() ;
+                Action action = el.getAction();
+                action.execute(eventPublish.getExecuteContext());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void putEventPublish(EventPublish eventPublish) throws InterruptedException {
+        queue.put(eventPublish);
     }
 }

@@ -231,6 +231,6 @@ public class ExecuteContext implements Context{
     }
 
     public String getEvent() {
-        return event;
+        return event == null ? (exist ? "update" : "create") : event ;
     }
 }

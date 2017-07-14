@@ -16,6 +16,9 @@ public class EventListener {
     }
 
     public Action getAction() {
+        if(action == null){
+            action = Action.create(eventListenerNode.getStringValue(Action.ACTION_TYPE), eventListenerNode.getStringValue(Action.DATASOURCE), eventListenerNode.getStringValue(Action.ACTION_BODY)) ;
+        }
         return action;
     }
 
@@ -23,4 +26,7 @@ public class EventListener {
         return StringUtils.substringAfterLast(eventListenerNode.getStringValue(Event.EVENT), "@");
     }
 
+    public String getTid() {
+        return StringUtils.substringBefore(eventListenerNode.getStringValue(Event.EVENT), "@");
+    }
 }

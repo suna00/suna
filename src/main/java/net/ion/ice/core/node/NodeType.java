@@ -22,7 +22,6 @@ public class NodeType {
     private Map<String, Event> events ;
 
 
-
     public NodeType(Node nodeTypeNode) {
         this.nodeTypeNode = nodeTypeNode ;
     }
@@ -143,6 +142,9 @@ public class NodeType {
         }
     }
     public Event getEvent(String event) {
+        if(events == null){
+            return null ;
+        }
         return events.get(event) ;
     }
 
@@ -159,5 +161,9 @@ public class NodeType {
 
     public void addEventListener(EventListener eventListener) {
         getEvent(eventListener.getEvent()).addEventListener(eventListener) ;
+    }
+
+    public boolean isNode() {
+        return NodeType.NODE.equals(nodeTypeNode.getStringValue(NodeType.REPOSITORY_TYPE)) || NodeType.NODE.equals(nodeTypeNode.getStoreValue(NodeType.REPOSITORY_TYPE));
     }
 }

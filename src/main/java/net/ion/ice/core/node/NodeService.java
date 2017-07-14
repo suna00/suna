@@ -136,17 +136,19 @@ public class NodeService {
 
         Collection<Map<String, Object>> eventDataList = JsonUtils.parsingJsonResourceToList(ApplicationContextManager.getResource("classpath:schema/core/event.json")) ;
 
-        List<Node> eventList = NodeUtils.makeNodeList(propertyTypeDataList, "event") ;
+        List<Node> eventList = NodeUtils.makeNodeList(eventDataList, "event") ;
         for(Node event : eventList){
             if(event.get("typeId").equals("event")){
                 NodeType nodeType = initNodeType.get(event.get("tid")) ;
                 nodeType.addEvent(new Event(event));
             }else if(event.get("typeId").equals("eventAction")){
-                NodeType nodeType = initNodeType.get(event.get("tid")) ;
-                nodeType.addEventAction(new EventAction(event));
-            }else if(event.get("typeId").equals("eventListen")){
-                NodeType nodeType = initNodeType.get(event.get("tid")) ;
-                nodeType.addEventListener(new EventListener(event));
+                EventAction eventAction = new EventAction(event) ;
+                NodeType nodeType = initNodeType.get(eventAction.getTid()) ;
+                nodeType.addEventAction(eventAction);
+            }else if(event.get("typeId").equals("eventListener")){
+                EventListener eventListener = new EventListener(event) ;
+                NodeType nodeType = initNodeType.get(eventListener.getTid()) ;
+                nodeType.addEventListener(eventListener);
             }
         }
 
@@ -208,7 +210,8 @@ public class NodeService {
     public Node saveNode(Map<String, Object> data) {
         try {
             ExecuteContext context = ExecuteContext.makeContextFromMap(data);
-            Node saveNode =  infinispanRepositoryService.execute(context);
+            context.execute(); ;
+            Node saveNode =  context.getNode();
             return saveNode ;
         }catch (Exception e){
             logger.error(data.toString(), e);
@@ -219,7 +222,10 @@ public class NodeService {
 
     public Node executeNode(Map<String, Object> data, String typeId, String event) {
         ExecuteContext context = ExecuteContext.makeContextFromMap(data, typeId, event) ;
-        return infinispanRepositoryService.execute(context);
+
+        context.execute();
+        Node node =  context.getNode();
+        return node ;
     }
 
 
@@ -227,11 +233,13 @@ public class NodeService {
         NodeType nodeType = getNodeType(typeId) ;
 
         ExecuteContext context = ExecuteContext.makeContextFromParameter(parameterMap, nodeType) ;
-        if(context.isExecute() && context.isSyncTable()){
-            nodeBindingService.save(parameterMap, typeId);
-        }
-
-        Node node = infinispanRepositoryService.execute(context);
+//        if(context.isExecute() && context.isSyncTable()){
+//            nodeBindingService.save(parameterMap, typeId);
+//        }
+//
+//        Node node = infinispanRepositoryService.execute(context);
+        context.execute();
+        Node node =  context.getNode();
         node.toDisplay();
         return node;
     }
@@ -240,8 +248,10 @@ public class NodeService {
         NodeType nodeType = getNodeType(typeId) ;
 
         ExecuteContext context = ExecuteContext.makeContextFromParameter(parameterMap, multiFileMap, nodeType) ;
-
-        Node node = infinispanRepositoryService.execute(context);
+//
+//        Node node = infinispanRepositoryService.execute(context);
+        context.execute();
+        Node node =  context.getNode();
         node.toDisplay();
         return node;
     }
@@ -356,6 +366,10 @@ public class NodeService {
         context.execute();
 
         return context.getNode() ;
+    }
+
+    public void changeNodeType(ExecuteContext context){
+
     }
 
 }

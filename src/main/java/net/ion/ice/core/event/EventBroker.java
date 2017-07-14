@@ -27,15 +27,25 @@ public class EventBroker {
     }
 
 
-    public void putEvent(EventListener el, ExecuteContext executeContext){
+    public void putEvent(EventListener eventListener, ExecuteContext executeContext){
+
+        EventPublish eventPublish = new EventPublish(eventListener, executeContext);
+
         int fqSize = queues.get(0).size() ;
         int sqSize = queues.get(1).size() ;
         int tqSize = queues.get(2).size() ;
 
+        try {
+            if(fqSize <= sqSize && fqSize <= tqSize){
+                queues.get(0).putEventPublish(eventPublish) ;
+            }else if(sqSize <= tqSize){
+                queues.get(1).putEventPublish(eventPublish) ;
+            }else{
+                queues.get(2).putEventPublish(eventPublish) ;
+            }
 
-
-        if(fqSize <= sqSize && fqSize <= tqSize){
-//            queues.get(0)
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

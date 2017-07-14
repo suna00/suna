@@ -1,79 +1,31 @@
 [
   {
     "typeId" : "event",
+    "id" : "nodeType@create",
     "tid": "nodeType",
     "event" : "create",
     "eventName" : "Create Node Type"
   },
   {
-    "typeId" : "eventAction",
-    "event": "nodeType@create",
-    "action" : "putInfinispan",
-    "actionType" : "service",
-    "actionBody" : "infinispanService.execute",
-    "order" : 1
-  },
-  {
     "typeId" : "event",
+    "id" : "nodeType@update",
     "tid": "nodeType",
     "event" : "update",
     "eventName" : "update Node Type"
   },
   {
-    "typeId" : "eventAction",
-    "event": "nodeType@update",
-    "action" : "putInfinispan",
-    "actionType" : "service",
-    "actionBody" : "infinispanService.execute",
-    "order" : 1
-  },
-  {
     "typeId" : "event",
+    "id" : "nodeType@delete",
     "tid": "nodeType",
     "event" : "delete",
     "eventName" : "delete Node Type"
   },
   {
-    "typeId" : "eventAction",
-    "event": "nodeType@delete",
-    "action" : "removeInfinispan",
-    "actionType" : "service",
-    "actionBody" : "infinispanService.remove",
-    "order" : 1
-  },
-  {
     "typeId" : "eventListener",
+    "id" : "event@nodeType@create",
     "tid" : "event",
     "event": "nodeType@create",
     "actionType" : "service",
     "actionBody" : "eventService.createNodeType"
-  },
-  {
-    "typeId" : "eventListener",
-    "tid" : "nodeType",
-    "event": "nodeType@allEvent",
-    "actionType" : "service",
-    "actionBody" : "nodeService.changeNodeType"
-  },
-  {
-    "typeId" : "eventListener",
-    "tid" : "nodeType",
-    "event": "event@allEvent",
-    "actionType" : "service",
-    "actionBody" : "nodeService.changeEvent"
-  },
-  {
-    "typeId" : "eventListener",
-    "tid" : "nodeType",
-    "event": "eventAction@allEvent",
-    "actionType" : "service",
-    "actionBody" : "nodeService.changeEventAction"
-  },
-  {
-    "typeId" : "eventListener",
-    "tid" : "nodeType",
-    "event": "eventListener@allEvent",
-    "actionType" : "service",
-    "actionBody" : "nodeService.changeEventListener"
   }
 ]
