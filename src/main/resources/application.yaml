@@ -115,12 +115,12 @@ jwtConfig:
 
 hazelcast:
   members:
-    - 127.0.0.1
+    - 125.131.88.147
     - localhost
 
 cluster:
   members:
-    - 127.0.0.1
+    - 125.131.88.147
     - localhost
 
 session:

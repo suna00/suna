@@ -105,22 +105,11 @@ public class SessionConfiguration {
      * Spring will assume dispatcher types of {@code FORWARD}, {@code INCLUDE}
      * and {@code REQUEST}, and a context pattern of "{@code /*}".
      *
-     * @param //hazelcastInstance Created by Spring
+     * @param hazelcastInstance Created by Spring
      * @return The web filter for Tomcat
      */
-//    @Bean
-//    public WebFilter webFilter(HazelcastInstance hazelcastInstance) {
-//        Properties properties = new Properties();
-//        properties.put("instance-name", hazelcastInstance.getName());
-//        properties.put("sticky-session", "false");
-//        properties.put("cookie-http-only", "true");
-////        properties.put("use-client", "true");
-//
-//        return new WebFilter(properties);
-//    }
     @Bean
-    public WebFilter webFilter() {
-        HazelcastInstance hazelcastInstance = hazelcastInstance();
+    public WebFilter webFilter(HazelcastInstance hazelcastInstance) {
         Properties properties = new Properties();
         properties.put("instance-name", hazelcastInstance.getName());
         properties.put("sticky-session", "false");
@@ -129,7 +118,6 @@ public class SessionConfiguration {
 
         return new WebFilter(properties);
     }
-
 
     public List<String> getMembers(){
         return members ;
