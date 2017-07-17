@@ -45,18 +45,18 @@ public class NodeBindingService {
         return null;
     }
 
-    public Node excute(ExecuteContext context){
+    public void excute(ExecuteContext context){
+
         Node node = context.getNode();
+        nodeBindProcess(node.getTypeId());
         NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(node.getTypeId());
         int callback = nodeBindingInfo.update(node);
         if (callback == 0) {
             nodeBindingInfo.insert(node);
         }
-        return node.clone();
     }
 
     public void createTable(String typeId, HttpServletResponse response) {
-
         nodeBindProcess(typeId);
         NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(typeId);
         nodeBindingInfo.create();

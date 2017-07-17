@@ -40,7 +40,7 @@ public class NodeBindingController {
         return null;
     }
 
-    @RequestMapping(value = "/node/{typeId}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/data/{typeId}", method = RequestMethod.PUT)
     @ResponseBody
     public Object saveRest(HttpServletRequest request, @PathVariable String typeId) throws IOException {
         return save(request, typeId);
