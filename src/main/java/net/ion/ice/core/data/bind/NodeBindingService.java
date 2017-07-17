@@ -1,6 +1,7 @@
 package net.ion.ice.core.data.bind;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.data.DBUtils;
 import net.ion.ice.core.data.DatabaseController;
 import net.ion.ice.core.data.DatabaseService;
@@ -33,7 +34,7 @@ public class NodeBindingService {
     private DatabaseService databaseService;
     private Map<String, NodeBindingInfo> nodeBindingInfoMap = new ConcurrentHashMap<>();
 
-    public void save(Map<String, String[]> parameterMap, String typeId) {
+    public Map<String, Object> save(Map<String, String[]> parameterMap, String typeId) {
         nodeBindProcess(typeId);
 
         NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(typeId);
@@ -41,6 +42,17 @@ public class NodeBindingService {
         if (callback == 0) {
             nodeBindingInfo.insert(parameterMap);
         }
+        return null;
+    }
+
+    public Node excute(ExecuteContext context){
+        Node node = context.getNode();
+        NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(node.getTypeId());
+        int callback = nodeBindingInfo.update(node);
+        if (callback == 0) {
+            nodeBindingInfo.insert(node);
+        }
+        return node.clone();
     }
 
     public void createTable(String typeId, HttpServletResponse response) {

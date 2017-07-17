@@ -3,6 +3,7 @@ package net.ion.ice.core.data.bind;
 import net.ion.ice.core.data.DBDataTypes;
 import net.ion.ice.core.data.DBTypes;
 import net.ion.ice.core.data.table.Column;
+import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.PropertyType;
 import org.apache.commons.lang3.StringUtils;
@@ -199,8 +200,21 @@ public class NodeBindingInfo {
         return queryCallBack;
     }
 
+    public int insert(Node node) {
+        List<Object> parameters = insertParameters(node);
+        int queryCallBack = jdbcTemplate.update(insertSql, parameters.toArray());
+        return queryCallBack;
+    }
+
     public int update(Map<String, String[]> parameterMap) {
         List<Object> parameters = updateParameters(parameterMap);
+        int queryCallBack = jdbcTemplate.update(updateSql, parameters.toArray());
+        return queryCallBack;
+    }
+
+
+    public int update(Node node) {
+        List<Object> parameters = updateParameters(node);
         int queryCallBack = jdbcTemplate.update(updateSql, parameters.toArray());
         return queryCallBack;
     }
@@ -216,12 +230,12 @@ public class NodeBindingInfo {
         return result;
     }
 
+
     public int delete(Map<String, String[]> parameterMap) {
         List<Object> parameters = updateParameters(parameterMap);
         int queryCallBack = jdbcTemplate.update(deleteSql, parameters.toArray());
         return queryCallBack;
     }
-
 
     private List<Object> insertParameters(Map<String, String[]> parameterMap) {
         List<Object> parameters = new ArrayList<>();
@@ -231,10 +245,27 @@ public class NodeBindingInfo {
         return parameters;
     }
 
+    private List<Object> insertParameters(Node Node) {
+        List<Object> parameters = new ArrayList<>();
+        for (String pid : insertPids) {
+            parameters.add(Node.getValue(pid));
+        }
+        return parameters;
+    }
+
     private List<Object> updateParameters(Map<String, String[]> parameterMap) {
         List<Object> parameters = new ArrayList<>();
         for (String pid : updatePids) {
             parameters.add(parameterMap.get(pid)[0]);
+        }
+        return parameters;
+    }
+
+
+    private List<Object> updateParameters(Node node) {
+        List<Object> parameters = new ArrayList<>();
+        for (String pid : updatePids) {
+            parameters.add(node.getValue(pid));
         }
         return parameters;
     }

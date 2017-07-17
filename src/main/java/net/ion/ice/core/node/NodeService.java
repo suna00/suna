@@ -210,7 +210,7 @@ public class NodeService {
     public Node saveNode(Map<String, Object> data) {
         try {
             ExecuteContext context = ExecuteContext.makeContextFromMap(data);
-            context.execute(); ;
+            context.execute();
             Node saveNode =  context.getNode();
             return saveNode ;
         }catch (Exception e){

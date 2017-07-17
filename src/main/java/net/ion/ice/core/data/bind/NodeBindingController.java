@@ -1,19 +1,22 @@
 package net.ion.ice.core.data.bind;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import net.ion.ice.core.data.ResponseUtils;
-import net.ion.ice.core.query.SimpleQueryResult;
 import net.ion.ice.core.response.JsonResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * Created by seonwoong on 2017. 7. 4..
@@ -35,6 +38,22 @@ public class NodeBindingController {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @RequestMapping(value = "/node/{typeId}", method = RequestMethod.PUT)
+    @ResponseBody
+    public Object saveRest(HttpServletRequest request, @PathVariable String typeId) throws IOException {
+        return save(request, typeId);
+    }
+
+    @RequestMapping(value = "/data/{typeId}/save.json", method = RequestMethod.POST)
+    @ResponseBody
+    public Object saveJon(HttpServletRequest request, @PathVariable String typeId){
+        return save(request, typeId);
+    }
+
+    public Object save(HttpServletRequest request, String typeId){
+        return nodeBindingService.save(request.getParameterMap(), typeId);
     }
 
     @RequestMapping(value = "/data/{typeId}/list.json", method = RequestMethod.GET)
