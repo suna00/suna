@@ -2,10 +2,14 @@ package net.ion.ice.core.event;
 
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.context.ExecuteContext;
+import net.ion.ice.core.context.Template;
+import net.ion.ice.core.context.Template;
 import net.ion.ice.core.context.TemplateParam;
 import net.ion.ice.core.data.DatabaseService;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.text.ParseException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +19,8 @@ import java.util.List;
 public class ActionUpdate extends Action {
 
     protected JdbcTemplate jdbcTemplate ;
-    protected List<TemplateParam> parameters ;
 
+    protected Template sqlTemplate  ;
 
     @Override
     public void execute(ExecuteContext executeContext) {
@@ -25,11 +29,16 @@ public class ActionUpdate extends Action {
             this.jdbcTemplate = dbService.getJdbcTemplate(datasource) ;
         }
 
-        if(this.parameters == null){
-            this.parameters = new ArrayList<>() ;
+        if(this.sqlTemplate == null){
+            this.sqlTemplate = new Template(this.actionBody) ;
+            this.sqlTemplate.parsing();
         }
 
-        this.jdbcTemplate.update(this.actionBody) ;
+        try {
+            this.jdbcTemplate.update(this.sqlTemplate.format(executeContext.getData()), this.sqlTemplate.getSqlParameterValues(executeContext.getData())) ;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public ActionUpdate(String datasource, String actionBody) {

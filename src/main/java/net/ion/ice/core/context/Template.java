@@ -57,6 +57,8 @@ public class Template {
 //        System.out.println(templateParams);
     }
 
+
+
     protected String parsingArray(String tempStr) {
         Matcher templateArrayEscapeMatcher = templateArrayStartPattern.matcher(tempStr);
         if (templateArrayEscapeMatcher.find()) {
@@ -125,5 +127,16 @@ public class Template {
                 return true ;
         }
         return false ;
+    }
+
+    public Object[] getSqlParameterValues(Map<String, Object> data) throws ParseException {
+        if(this.sqlParams == null || this.sqlParams.size() == 0){
+            return new Object[0] ;
+        }
+        List<Object> values = new ArrayList<Object> () ;
+        for(SqlParam param : this.sqlParams){
+            values.add(param.getValue(data)) ;
+        }
+        return values.toArray();
     }
 }

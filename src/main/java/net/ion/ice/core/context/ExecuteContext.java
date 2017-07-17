@@ -241,4 +241,8 @@ public class ExecuteContext implements Context{
     public String getEvent() {
         return event;
     }
+
+    public Map<String,Object> getData() {
+        return data;
+    }
 }
