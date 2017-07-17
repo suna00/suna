@@ -7,6 +7,7 @@ import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.stagemonitor.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -41,14 +42,17 @@ public class EventService {
 
     public void createNodeType(ExecuteContext context){
         Node node = context.getNode() ;
-        if(NodeType.NODE.equals(node.getStringValue(NodeType.REPOSITORY_TYPE)) || NodeType.NODE.equals(node.getStoreValue(NodeType.REPOSITORY_TYPE))){
-            Node eventNode = createEvent(node, CREATE);
-//            createEventAction(eventNode, CREATE) ;
-            eventNode = createEvent(node, UPDATE);
-//            createEventAction(eventNode, UPDATE) ;
-            eventNode = createEvent(node, DELETE);
-//            createEventAction(eventNode, DELETE) ;
-            eventNode = createEvent(node, ALL_EVENT);
+        if(NodeType.NODE.equals(node.getStringValue(NodeType.REPOSITORY_TYPE)) || NodeType.DATA.equals(node.getStoreValue(NodeType.REPOSITORY_TYPE))){
+            Node createEventNode = createEvent(node, CREATE);
+            Node updateEventNode = createEvent(node, UPDATE);
+            Node deleteEventNode = createEvent(node, DELETE);
+            Node allEventNode = createEvent(node, ALL_EVENT);
+
+            if(StringUtils.isNotEmpty(node.getStringValue("tableName"))){
+                createEventAction(createEventNode, CREATE);
+                createEventAction(updateEventNode, UPDATE);
+                createEventAction(deleteEventNode, DELETE);
+            }
         }
     }
 
@@ -64,9 +68,9 @@ public class EventService {
     private Node createEventAction(Node eventNode, String event) {
         Map<String, Object> eventActionData = new LinkedHashMap<>() ;
         eventActionData.put(EVENT, eventNode.getId()) ;
-        eventActionData.put("action", DELETE.equals(event) ? "removeInfinispan" : "putInfinispan") ;
+        eventActionData.put("action", DELETE.equals(event) ? "deleteDatabase" : "saveDatabase") ;
         eventActionData.put("actionType", "service") ;
-        eventActionData.put("actionBody", DELETE.equals(event) ? "infinispanService.remove" : "infinispanService.execute") ;
+        eventActionData.put("actionBody", DELETE.equals(event) ? "nodeBindingService.delete" : "nodeBindingService.save") ;
         eventActionData.put("order", 1) ;
 
         return nodeService.executeNode(eventActionData, EVENT_ACTION, CREATE) ;

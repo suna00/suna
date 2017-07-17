@@ -285,15 +285,30 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     public Node clone(){
         Node cloneNode = new Node() ;
         cloneNode.properties = properties.clone() ;
-        cloneNode.nodeValue = nodeValue.clone() ;
+        if(nodeValue != null) {
+            cloneNode.nodeValue = nodeValue.clone();
+            cloneNode.properties.setTypeId(getTypeId()) ;
+        }
 
         cloneNode.id = getId();
         cloneNode.changed = changed ;
         cloneNode.properties.setId(id) ;
-        cloneNode.properties.setTypeId(getTypeId()) ;
         return cloneNode ;
     }
 
+    public Node clone(String typeId){
+        Node cloneNode = new Node() ;
+        cloneNode.properties = properties.clone() ;
+        if(nodeValue != null) {
+            cloneNode.nodeValue = nodeValue.clone();
+        }
+
+        cloneNode.id = getId();
+        cloneNode.changed = changed ;
+        cloneNode.properties.setId(id) ;
+        cloneNode.properties.setTypeId(typeId) ;
+        return cloneNode ;
+    }
     public void setUpdate(String userId, Date changed) {
         this.changed = changed;
         this.nodeValue.setModifier(userId) ;

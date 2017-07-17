@@ -86,15 +86,22 @@ public class InfinispanRepositoryService {
     public Node execute(ExecuteContext context) {
         Node node = context.getNode();
         if (!context.isExecute()) return node;
+        Cache<String, Node> nodeCache = null ;
+        Cache<String, NodeValue> nodeValueCache = null ;
         try {
-            Cache<String, Node> nodeCache = getNodeCache(node.getTypeId());
+            nodeCache = getNodeCache(node.getTypeId());
             node.toStore();
             nodeCache.put(node.getId().toString(), node);
 
-            Cache<String, NodeValue> nodeValueCache = getNodeValueCache();
+            nodeValueCache = getNodeValueCache();
             node.getNodeValue().setContent(node.getSearchValue());
             nodeValueCache.put(node.getTypeId() + NODEVALUE_SEPERATOR + node.getId(), node.getNodeValue());
         } catch (Exception e) {
+            if(nodeCache != null){
+                nodeCache.remove(node.getId().toString()) ;
+            }
+
+            e.printStackTrace();
             logger.error(node.toString(), e);
         }
         return node.clone();

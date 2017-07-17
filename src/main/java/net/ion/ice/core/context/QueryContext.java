@@ -271,7 +271,11 @@ public class QueryContext implements Context{
         List<String> idPids = refNodeType.getIdablePIds() ;
 
         if(idPids != null && idPids.size() > 1){
-            makeQueryTerm(refNodeType, queryContext, queryTerms, idPids.get(0), node.getId().toString());
+            if(StringUtils.isNotEmpty(pt.getReferenceValue())){
+                makeQueryTerm(refNodeType, queryContext, queryTerms, pt.getReferenceValue(), node.getId().toString());
+            }else {
+                makeQueryTerm(refNodeType, queryContext, queryTerms, idPids.get(0), node.getId().toString());
+            }
         }else {
             for (PropertyType refPt : refNodeType.getPropertyTypes(PropertyType.ValueType.REFERENCE)) {
                 if (nodeType.getTypeId().equals(refPt.getReferenceType())) {

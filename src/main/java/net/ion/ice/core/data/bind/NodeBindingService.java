@@ -24,7 +24,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Created by seonwoong on 2017. 6. 28..
  */
-@Service
+@Service("nodeBindingService")
 public class NodeBindingService {
     private static Logger logger = LoggerFactory.getLogger(NodeBindingService.class);
 

@@ -88,6 +88,7 @@ public class NodeService {
             nodeTypeCache.put(typeId, nodeType);
             return nodeType;
         }catch(Exception e){
+            e.printStackTrace();
             logger.error("NOT FOUND nodeType : " + typeId + " - " + e.getMessage()) ;
             throw new RuntimeException("ERROR") ;
         }

@@ -18,6 +18,8 @@ public class PropertyType {
     public static final String ID_TYPE = "idType";
     public static final String VALUE_TYPE = "valueType";
     public static final String REFERENCE_TYPE = "referenceType";
+    public static final String REFERENCE_VALUE = "referenceValue";
+
     public static final String FILE_HANDLER = "fileHandler";
 
 
@@ -144,6 +146,11 @@ public class PropertyType {
     public String getReferenceType() {
         return propertyTypeNode.getStringValue(REFERENCE_TYPE);
     }
+
+    public String getReferenceValue() {
+        return propertyTypeNode.getStringValue(REFERENCE_VALUE);
+    }
+
 
     public boolean isTreeable() {
         return propertyTypeNode.getBooleanValue(TREEABLE);
