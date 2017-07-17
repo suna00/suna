@@ -5,7 +5,6 @@ import lombok.Data;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
-@Data
 public class LoginRequest {
 
     private String userId;
@@ -14,5 +13,21 @@ public class LoginRequest {
     public LoginRequest(HttpServletRequest request) {
         this.userId = request.getParameter("userId");
         this.password = request.getParameter("password");
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
