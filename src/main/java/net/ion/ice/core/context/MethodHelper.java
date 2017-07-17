@@ -18,6 +18,7 @@ public class MethodHelper {
 //    private static Logger logger = LogManager.getLogger();
 
     private static String[] patterns = new String[]{"yyyyMMdd", "yyyyMMddHHmmss", "yyyyMMdd HHmmss", "yyyy-MM-dd", "yyyy.MM.dd", "yyyy/MM/dd", "yyyyMMdd-HHmmss", "yyyy-MM-dd HH:mm", "yyyy-MM-dd HH:mm:ss", "yyyy.MM.dd HH:mm:ss", "yyyy/MM/dd HH:mm:ss", "yyyy-MM-dd HH:mm:ss.SSS", "yyyy-MM-dd'T'HH:mm:ss", "yyyy-MM-dd'T'HH:mm:ssZZ"} ;
+
     public static String execute(String methodStr, String[] methodParams, Object value, Map<String, Object> data) throws ParseException {
         switch (methodStr){
             case "dateFormat" :{
@@ -84,32 +85,14 @@ public class MethodHelper {
             }
             case "decode" :{
                 if(value == null || StringUtils.isEmpty(value.toString())) return "" ;
-                for(int i=1; i<methodParams.length; i++){
-                    String test = methodParams[i] ;
-                    i++ ;
-                    if(methodParams.length == i){
-                        return test ;
-                    }
-                    String val = methodParams[i] ;
-                    if(test.equals(value.toString())){
-                        return val ;
-                    }
-                }
+                String val = getDecodeValue(methodParams, value, data);
+                if (val != null) return val;
                 return value.toString() ;
             }
             case "decodeEmpty" :{
                 if(value == null || StringUtils.isEmpty(value.toString())) return "" ;
-                for(int i=1; i<methodParams.length; i++){
-                    String test = methodParams[i] ;
-                    i++ ;
-                    if(methodParams.length == i){
-                        return test ;
-                    }
-                    String val = methodParams[i] ;
-                    if(test.equals(value.toString())){
-                        return val ;
-                    }
-                }
+                String val = getDecodeValue(methodParams, value, data);
+                if (val != null) return val;
                 return "" ;
             }
             case "replaceMulti" :{
@@ -132,198 +115,6 @@ public class MethodHelper {
                     valueStr = StringUtils.replaceAll(valueStr, methodParams[i], "") ;
                 }
                 return valueStr ;
-            }
-            case "cts" :{
-                if(value == null || StringUtils.isEmpty(value.toString())) return "" + "　";
-                String result = StringEscapeUtils.unescapeXml(value.toString()) ;
-                result = StringUtils.replace(StringUtils.replace(result, "<tbody>", ""), "</tbody>", "") ;
-                result = StringUtils.replace(result, "class=\"medium-editor-table\"", "BORDER='1' BORDERCOLOR='#000000' STYLE='BORDER-COLLAPSE:COLLAPSE;'") ;
-                result = StringUtils.replace(result, "\n", "\r\n") ;
-                result = StringUtils.replace(result, "\r\r\n", "\r\n") ;
-                result = StringUtils.replace(result, "\r\n\n", "\r\n") ;
-                result = StringUtils.replace(result, "•", "·") ;
-                return StringUtils.replace(result, "․", "·" );
-            }
-            case "ctsBody" :{
-                if(value == null || StringUtils.isEmpty(value.toString())) return "";
-
-                String result = StringEscapeUtils.unescapeXml(value.toString()) ;
-                result = StringUtils.replace(StringUtils.replace(result, "<tbody>", ""), "</tbody>", "") ;
-                result = StringUtils.replace(result, "class=\"medium-editor-table\"", "BORDER='1' BORDERCOLOR='#000000' STYLE='BORDER-COLLAPSE:COLLAPSE;'") ;
-                result = StringUtils.replace(result, "\r\n", "\n") ;
-                result = StringUtils.replace(result, "•", "·") ;
-                result = StringUtils.replace(result, "<table", "\n<table") ;
-                result = StringUtils.replace(result, "</table>", "</table>\n") ;
-                result = StringUtils.replace(result, "<TABLE", "\n<TABLE") ;
-                result = StringUtils.replace(result, "</TABLE>", "</TABLE>\n") ;
-
-                result = StringUtils.replace(result, "“", "\"") ;
-                result = StringUtils.replace(result, "”", "\"") ;
-                result = StringUtils.replace(result, "‘", "'") ;
-                result = StringUtils.replace(result, "’", "'") ;
-                if(StringUtils.contains(result, "♤ 【제목】")) {
-                    result = StringUtils.strip(result) ;
-                    boolean replaceDooubleOdd = true;
-                    boolean replaceSingleOdd = true;
-                    while (StringUtils.contains(result, "\"")) {
-                        if (replaceDooubleOdd) {
-                            result = StringUtils.replaceOnce(result, "\"", "“");
-                        } else {
-                            result = StringUtils.replaceOnce(result, "\"", "”");
-                        }
-                        replaceDooubleOdd = !replaceDooubleOdd;
-                    }
-                    while (StringUtils.contains(result, "'")) {
-                        if (replaceSingleOdd) {
-                            result = StringUtils.replaceOnce(result, "'", "‘");
-                        } else {
-                            result = StringUtils.replaceOnce(result, "'", "’");
-                        }
-                        replaceSingleOdd = !replaceSingleOdd;
-                    }
-
-                }else {
-                    String r = "";
-                    String[] lines = StringUtils.split(result, "\n");
-
-
-                    boolean tableStart = false;
-                    boolean replaceDooubleOdd = true;
-                    boolean replaceSingleOdd = true;
-
-                    for (int i = 0; i < lines.length; i++) {
-                        String line = lines[i].trim();
-                        if (StringUtils.contains(line, "<table") || StringUtils.contains(line, "<TABLE")) {
-                            tableStart = true;
-                        }
-                        if (i > 0 && !tableStart) {
-                            line = "　" + line;
-                        }
-                        if (!tableStart) {
-                            while (StringUtils.contains(line, "\"")) {
-                                if (replaceDooubleOdd) {
-                                    line = StringUtils.replaceOnce(line, "\"", "“");
-                                } else {
-                                    line = StringUtils.replaceOnce(line, "\"", "”");
-                                }
-                                replaceDooubleOdd = !replaceDooubleOdd;
-                            }
-                            while (StringUtils.contains(line, "'")) {
-                                if (replaceSingleOdd) {
-                                    line = StringUtils.replaceOnce(line, "'", "‘");
-                                } else {
-                                    line = StringUtils.replaceOnce(line, "'", "’");
-                                }
-                                replaceSingleOdd = !replaceSingleOdd;
-                            }
-
-                        }
-                        r += line;
-                        if (tableStart && (StringUtils.contains(line, "</table>") || StringUtils.contains(line, "</TABLE>"))) {
-                            tableStart = false;
-                        }
-                        if (i < (lines.length - 1)) {
-                            r += "\n";
-                        }
-                    }
-                    result = r;
-                }
-                result = StringUtils.replace(result, "\n", "\r\n") ;
-                result = StringUtils.replace(result, "\r\r\n", "\r\n") ;
-                result = StringUtils.replace(result, "\r\n\n", "\r\n") ;
-                result = StringUtils.replace(result, "•", "·") ;
-                result = StringUtils.replace(result, "ㆍ", "·") ;
-                return StringUtils.replace(result, "․", "·" );
-            }
-            case "ctsPaperBody" :{
-                if(value == null || StringUtils.isEmpty(value.toString())) return "";
-
-                String result = StringEscapeUtils.unescapeXml(value.toString()) ;
-                result = StringUtils.replace(StringUtils.replace(result, "<tbody>", ""), "</tbody>", "") ;
-                result = StringUtils.replace(result, "class=\"medium-editor-table\"", "BORDER='1' BORDERCOLOR='#000000' STYLE='BORDER-COLLAPSE:COLLAPSE;'") ;
-                result = StringUtils.replace(result, "\r\n", "\n") ;
-                result = StringUtils.replace(result, "•", "·") ;
-                result = StringUtils.replace(result, "<table", "\n<table") ;
-                result = StringUtils.replace(result, "</table>", "</table>\n") ;
-                result = StringUtils.replace(result, "<TABLE", "\n<TABLE") ;
-                result = StringUtils.replace(result, "</TABLE>", "</TABLE>\n") ;
-
-                result = StringUtils.replace(result, "“", "\"") ;
-                result = StringUtils.replace(result, "”", "\"") ;
-                result = StringUtils.replace(result, "‘", "'") ;
-                result = StringUtils.replace(result, "’", "'") ;
-                if(StringUtils.contains(result, "♤ 【제목】")) {
-                    result = StringUtils.strip(result) ;
-                    boolean replaceDooubleOdd = true;
-                    boolean replaceSingleOdd = true;
-                    while (StringUtils.contains(result, "\"")) {
-                        if (replaceDooubleOdd) {
-                            result = StringUtils.replaceOnce(result, "\"", "“");
-                        } else {
-                            result = StringUtils.replaceOnce(result, "\"", "”");
-                        }
-                        replaceDooubleOdd = !replaceDooubleOdd;
-                    }
-                    while (StringUtils.contains(result, "'")) {
-                        if (replaceSingleOdd) {
-                            result = StringUtils.replaceOnce(result, "'", "‘");
-                        } else {
-                            result = StringUtils.replaceOnce(result, "'", "’");
-                        }
-                        replaceSingleOdd = !replaceSingleOdd;
-                    }
-
-                }else {
-                    String r = "";
-                    String[] lines = StringUtils.split(result, "\n");
-
-
-                    boolean tableStart = false;
-                    boolean replaceDooubleOdd = true;
-                    boolean replaceSingleOdd = true;
-
-                    for (int i = 0; i < lines.length; i++) {
-                        String line = lines[i].trim();
-                        if (StringUtils.contains(line, "<table") || StringUtils.contains(line, "<TABLE")) {
-                            tableStart = true;
-                        }
-                        if (i > 0 && !tableStart) {
-                            line = "　" + line;
-                        }
-                        if (!tableStart) {
-                            while (StringUtils.contains(line, "\"")) {
-                                if (replaceDooubleOdd) {
-                                    line = StringUtils.replaceOnce(line, "\"", "“");
-                                } else {
-                                    line = StringUtils.replaceOnce(line, "\"", "”");
-                                }
-                                replaceDooubleOdd = !replaceDooubleOdd;
-                            }
-                            while (StringUtils.contains(line, "'")) {
-                                if (replaceSingleOdd) {
-                                    line = StringUtils.replaceOnce(line, "'", "‘");
-                                } else {
-                                    line = StringUtils.replaceOnce(line, "'", "’");
-                                }
-                                replaceSingleOdd = !replaceSingleOdd;
-                            }
-
-                        }
-                        r += line;
-                        if (tableStart && (StringUtils.contains(line, "</table>") || StringUtils.contains(line, "</TABLE>"))) {
-                            tableStart = false;
-                        }
-                        if (i < (lines.length - 1)) {
-                            r += "\n";
-                        }
-                    }
-                    result = r;
-                }
-                result = StringUtils.replace(result, "\n", "\r\n") ;
-                result = StringUtils.replace(result, "\r\r\n", "\r\n") ;
-                result = StringUtils.replace(result, "\r\n\n", "\r\n") ;
-                result = StringUtils.replace(result, "·", "•") ;
-                return StringUtils.replace(result, "․" , "•");
             }
             case "unHtml":{
                 if(value == null || StringUtils.isEmpty(value.toString())) return "" ;
@@ -355,94 +146,19 @@ public class MethodHelper {
             }
             case "decodeVal" :{
                 if(value == null || StringUtils.isEmpty(value.toString())) return "" ;
-                for(int i=1; i<methodParams.length; i++){
-                    String test = methodParams[i] ;
-                    i++ ;
-                    if(methodParams.length == i){
-                        if(data != null && data.containsKey(test)){
-                            return data.get(test).toString() ;
-                        }
-                        return test;
-                    }
-                    String val = methodParams[i] ;
-                    if(test.equals(value.toString())){
-                        if(data != null && data.containsKey(val)){
-                            return data.get(val).toString() ;
-                        }
-                        return val ;
-                    }
-                }
+                String val = getDecodeValue(methodParams, value, data);
+                if (val != null) return val;
                 return value.toString() ;
             }
             case "decodeValEmpty" :{
                 if(value == null || StringUtils.isEmpty(value.toString())) return "" ;
-                for(int i=1; i<methodParams.length; i++){
-                    String test = methodParams[i] ;
-                    i++ ;
-                    if(methodParams.length == i){
-                        if(data != null && data.containsKey(test)){
-                            return data.get(test).toString() ;
-                        }
-                        return test;
-                    }
-                    String val = methodParams[i] ;
-                    if(test.equals(value.toString())){
-                        if(data != null && data.containsKey(val)){
-                            return data.get(val).toString() ;
-                        }
-                        return val ;
-                    }
-                }
+                String val = getDecodeValue(methodParams, value, data);
+                if (val != null) return val;
                 return "" ;
-            }
-            case "table" :{
-                if(value == null || StringUtils.isEmpty(value.toString())) return "" ;
-                String table = "<table class=\"ab_table\"><tbody>" ;
-                List<Map<String, Object>> trValues = (List<Map<String, Object>>) value;
-                for(Map<String, Object> trValue : trValues){
-                    if(trValue.containsKey("tdValues")){
-                        table += "<tr>" ;
-                        List<Map<String, Object>> tdValues = (List<Map<String, Object>>) trValue.get("tdValues");
-                        for(Map<String, Object> tdValue : tdValues){
-                            table = table + "<td>" + tdValue.get("td") + "</td>" ;
-                        }
-                        table += "</tr>" ;
-                    }
-                }
-                table += "</tbody></table>" ;
-                return table ;
-            }
-            case "tbody" :{
-                if(value == null || StringUtils.isEmpty(value.toString())) return "" ;
-                String table = "<tbody>" ;
-                List<Map<String, Object>> trValues = (List<Map<String, Object>>) value;
-                for(Map<String, Object> trValue : trValues){
-                    if(trValue.containsKey("tdValues")){
-                        table += "<tr>" ;
-                        List<Map<String, Object>> tdValues = (List<Map<String, Object>>) trValue.get("tdValues");
-                        for(Map<String, Object> tdValue : tdValues){
-                            table = table + "<td>" + tdValue.get("td") + "</td>" ;
-                        }
-                        table += "</tr>" ;
-                    }
-                }
-                table += "</tbody>" ;
-                return table ;
-            }
-            case "enter" :{
-                return "\r\n";
-            }
-            case "wcmTitle" :{
-                if(value == null || StringUtils.isEmpty(value.toString())) return "" ;
-                String result = value.toString() ;
-                result = StringUtils.replace(result, "[", "&#91;") ;
-                result = StringUtils.replace(result, "]", "&#93;") ;
-                result = StringUtils.replace(result, "→", "●") ;
-                return result;
             }
             default :
                 methodStr = StringUtils.capitalize(methodStr) ;
-                String methodClass = "net.ion.ice.contentadaptor.template.method." + methodStr ;
+                String methodClass = "net.ion.ice.core.context.method." + methodStr ;
                 try {
                     Class<? extends MethodExec> clazz = (Class<? extends MethodExec>) Class.forName(methodClass);
                     if(clazz != null) {
@@ -456,5 +172,26 @@ public class MethodHelper {
         }
         if(value == null) return "" ;
         return value.toString();
+    }
+
+    private static String getDecodeValue(String[] methodParams, Object value, Map<String, Object> data) {
+        for(int i=1; i<methodParams.length; i++){
+            String test = methodParams[i] ;
+            i++ ;
+            if(methodParams.length == i){
+                if(data != null && data.containsKey(test)){
+                    return data.get(test).toString() ;
+                }
+                return test;
+            }
+            String val = methodParams[i] ;
+            if(test.equals(value.toString())){
+                if(data != null && data.containsKey(val)){
+                    return data.get(val).toString() ;
+                }
+                return val ;
+            }
+        }
+        return null;
     }
 }
