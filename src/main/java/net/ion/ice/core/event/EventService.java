@@ -43,11 +43,12 @@ public class EventService {
         Node node = context.getNode() ;
         if(NodeType.NODE.equals(node.getStringValue(NodeType.REPOSITORY_TYPE)) || NodeType.NODE.equals(node.getStoreValue(NodeType.REPOSITORY_TYPE))){
             Node eventNode = createEvent(node, CREATE);
-            createEventAction(eventNode, CREATE) ;
+//            createEventAction(eventNode, CREATE) ;
             eventNode = createEvent(node, UPDATE);
-            createEventAction(eventNode, UPDATE) ;
+//            createEventAction(eventNode, UPDATE) ;
             eventNode = createEvent(node, DELETE);
-            createEventAction(eventNode, DELETE) ;
+//            createEventAction(eventNode, DELETE) ;
+            eventNode = createEvent(node, ALL_EVENT);
         }
     }
 
@@ -73,7 +74,15 @@ public class EventService {
 
     public void execute(ExecuteContext executeContext) {
         NodeType nodeType = executeContext.getNodeType() ;
+        if(nodeType.isNode()) {
+            infinispznService.execute(executeContext) ;
+        }
+
         Event event = nodeType.getEvent(executeContext.getEvent()) ;
+        if(event == null){
+            return  ;
+        }
+
         Event allEvent = nodeType.getEvent(ALL_EVENT) ;
 
         executeEventAction(executeContext, event);
@@ -102,10 +111,6 @@ public class EventService {
         for(EventAction eventAction : event.getEventActions()){
             Action action = eventAction.getAction() ;
             action.execute(executeContext) ;
-        }
-
-        for(EventListener listener : event.getEventListeners()){
-            eventBroker.putEvent(listener, executeContext);
         }
     }
 }

@@ -161,11 +161,15 @@ public class NodeType {
     }
 
     public void addEventAction(EventAction eventAction) {
-        getEvent(eventAction.getEvent()).addEventAction(eventAction) ;
+        if(eventAction != null && getEvent(eventAction.getEvent()) != null) {
+            getEvent(eventAction.getEvent()).addEventAction(eventAction);
+        }
     }
 
     public void addEventListener(EventListener eventListener) {
-        getEvent(eventListener.getEvent()).addEventListener(eventListener) ;
+        if(eventListener != null && getEvent(eventListener.getEvent()) != null) {
+            getEvent(eventListener.getEvent()).addEventListener(eventListener);
+        }
     }
 
     public String getRepositoryType(){

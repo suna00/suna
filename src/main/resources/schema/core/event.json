@@ -1,30 +1,35 @@
 [
   {
     "typeId" : "event",
+    "id" : "nodeType@create",
     "tid": "nodeType",
     "event" : "create",
     "eventName" : "Create Node Type"
   },
   {
     "typeId" : "event",
+    "id" : "nodeType@update",
     "tid": "nodeType",
     "event" : "update",
     "eventName" : "update Node Type"
   },
   {
     "typeId" : "event",
+    "id" : "nodeType@delete",
     "tid": "nodeType",
     "event" : "delete",
     "eventName" : "delete Node Type"
   },
   {
     "typeId" : "event",
+    "id" : "nodeType@allEvent",
     "tid": "nodeType",
     "event" : "allEvent",
     "eventName" : "allEvent Node Type"
   },
   {
     "typeId" : "eventListener",
+    "id" : "event@nodeType@create",
     "tid" : "event",
     "event": "nodeType@create",
     "actionType" : "service",
@@ -32,6 +37,7 @@
   },
   {
     "typeId" : "eventListener",
+    "id" : "nodeType@nodeType@allEvent",
     "tid" : "nodeType",
     "event": "nodeType@allEvent",
     "actionType" : "service",
@@ -39,6 +45,7 @@
   },
   {
     "typeId" : "eventListener",
+    "id" : "nodeType@event@allEvent",
     "tid" : "nodeType",
     "event": "event@allEvent",
     "actionType" : "service",
@@ -46,6 +53,7 @@
   },
   {
     "typeId" : "eventListener",
+    "id" : "nodeType@eventAction@allEvent",
     "tid" : "nodeType",
     "event": "eventAction@allEvent",
     "actionType" : "service",
@@ -53,6 +61,7 @@
   },
   {
     "typeId" : "eventListener",
+    "id" : "nodeType@eventListener@allEvent",
     "tid" : "nodeType",
     "event": "eventListener@allEvent",
     "actionType" : "service",
