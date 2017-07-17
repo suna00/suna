@@ -148,7 +148,11 @@ public class NodeUtils {
                 return pt.getCode().get(value) ;
             }
             case REFERENCE: {
-                return NodeUtils.getReferenceValue(value, pt) ;
+                if (value instanceof Code) {
+                    return value;
+                } else {
+                    return NodeUtils.getReferenceValue(value, pt) ;
+                }
             }
             case DATE :{
                 return getDateStringValue(value) ;
