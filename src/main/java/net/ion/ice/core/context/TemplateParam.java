@@ -48,7 +48,7 @@ public class TemplateParam {
 
 
 
-    public String format(Map<String, Object> data) throws ParseException {
+    public String format(Map<String, Object> data)  {
         Object value = JsonUtils.getValue(data, valueStr) ;
 
         if(StringUtils.isNotEmpty(methodStr)){
@@ -60,7 +60,7 @@ public class TemplateParam {
         return value.toString() ;
     }
 
-    public Object getValue(Map<String, Object> data) throws ParseException {
+    public Object getValue(Map<String, Object> data) {
         Object value = JsonUtils.getValue(data, valueStr) ;
 
         if(StringUtils.isNotEmpty(methodStr)){

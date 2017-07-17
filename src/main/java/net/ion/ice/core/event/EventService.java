@@ -22,6 +22,7 @@ public class EventService {
     public static final String CREATE = "create";
     public static final String UPDATE = "update";
     public static final String DELETE = "delete";
+    public static final String ALL_EVENT = "allEvent";
 
     public static final String EVENT = "event";
 
@@ -41,12 +42,12 @@ public class EventService {
     public void createNodeType(ExecuteContext context){
         Node node = context.getNode() ;
         if(NodeType.NODE.equals(node.getStringValue(NodeType.REPOSITORY_TYPE)) || NodeType.NODE.equals(node.getStoreValue(NodeType.REPOSITORY_TYPE))){
-//            Node eventNode = createEvent(node, CREATE);
-//            createEventAction(eventNode, CREATE) ;
-//            eventNode = createEvent(node, UPDATE);
-//            createEventAction(eventNode, UPDATE) ;
-//            eventNode = createEvent(node, DELETE);
-//            createEventAction(eventNode, DELETE) ;
+            Node eventNode = createEvent(node, CREATE);
+            createEventAction(eventNode, CREATE) ;
+            eventNode = createEvent(node, UPDATE);
+            createEventAction(eventNode, UPDATE) ;
+            eventNode = createEvent(node, DELETE);
+            createEventAction(eventNode, DELETE) ;
         }
     }
 
@@ -73,26 +74,38 @@ public class EventService {
     public void execute(ExecuteContext executeContext) {
         NodeType nodeType = executeContext.getNodeType() ;
         Event event = nodeType.getEvent(executeContext.getEvent()) ;
+        Event allEvent = nodeType.getEvent(ALL_EVENT) ;
 
-        if(nodeType.isNode()) {
-            infinispznService.execute(executeContext) ;
+        executeEventAction(executeContext, event);
+        executeEventAction(executeContext, allEvent);
+
+        executeEventListener(executeContext, event);
+        executeEventListener(executeContext, allEvent);
+
+    }
+
+    private void executeEventListener(ExecuteContext executeContext, Event event) {
+        if(event == null || event.getEventListeners() == null || event.getEventListeners().size() == 0){
+            return ;
         }
 
-        if(event == null){
-            return  ;
+        for(EventListener listener : event.getEventListeners()){
+            eventBroker.putEvent(listener, executeContext);
+        }
+    }
+
+    private void executeEventAction(ExecuteContext executeContext, Event event) {
+        if(event == null || event.getEventActions() == null || event.getEventActions().size() == 0){
+            return ;
         }
 
-        if(event.getEventActions() != null) {
-            for (EventAction eventAction : event.getEventActions()) {
-                Action action = eventAction.getAction();
-                action.execute(executeContext);
-            }
+        for(EventAction eventAction : event.getEventActions()){
+            Action action = eventAction.getAction() ;
+            action.execute(executeContext) ;
         }
 
-        if(event.getEventListeners() != null) {
-            for (EventListener listener : event.getEventListeners()) {
-                eventBroker.putEvent(listener, executeContext);
-            }
+        for(EventListener listener : event.getEventListeners()){
+            eventBroker.putEvent(listener, executeContext);
         }
     }
 }

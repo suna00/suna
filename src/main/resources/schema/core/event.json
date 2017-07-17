@@ -1,31 +1,61 @@
 [
   {
     "typeId" : "event",
-    "id" : "nodeType@create",
     "tid": "nodeType",
     "event" : "create",
     "eventName" : "Create Node Type"
   },
   {
     "typeId" : "event",
-    "id" : "nodeType@update",
     "tid": "nodeType",
     "event" : "update",
     "eventName" : "update Node Type"
   },
   {
     "typeId" : "event",
-    "id" : "nodeType@delete",
     "tid": "nodeType",
     "event" : "delete",
     "eventName" : "delete Node Type"
   },
   {
+    "typeId" : "event",
+    "tid": "nodeType",
+    "event" : "allEvent",
+    "eventName" : "allEvent Node Type"
+  },
+  {
     "typeId" : "eventListener",
-    "id" : "event@nodeType@create",
     "tid" : "event",
     "event": "nodeType@create",
     "actionType" : "service",
     "actionBody" : "eventService.createNodeType"
+  },
+  {
+    "typeId" : "eventListener",
+    "tid" : "nodeType",
+    "event": "nodeType@allEvent",
+    "actionType" : "service",
+    "actionBody" : "nodeService.changeNodeType"
+  },
+  {
+    "typeId" : "eventListener",
+    "tid" : "nodeType",
+    "event": "event@allEvent",
+    "actionType" : "service",
+    "actionBody" : "nodeService.changeEvent"
+  },
+  {
+    "typeId" : "eventListener",
+    "tid" : "nodeType",
+    "event": "eventAction@allEvent",
+    "actionType" : "service",
+    "actionBody" : "nodeService.changeEventAction"
+  },
+  {
+    "typeId" : "eventListener",
+    "tid" : "nodeType",
+    "event": "eventListener@allEvent",
+    "actionType" : "service",
+    "actionBody" : "nodeService.changeEventListener"
   }
 ]
