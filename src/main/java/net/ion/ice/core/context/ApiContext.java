@@ -20,24 +20,28 @@ public class ApiContext {
     private List<Context> contexts ;
 
 
-    public static ApiContext createContext(Node apiNode, Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap) {
+    public static ApiContext createContext(Node apiNode, Map<String, Object> config,  Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap) {
         ApiContext ctx = new ApiContext() ;
         ctx.apiNode = apiNode ;
         ctx.data = ContextUtils.makeContextData(parameterMap, multiFileMap) ;
 
-        ctx.config = (Map<String, Object>) apiNode.get("config");
+        ctx.config = config;
 
-        for(String key : ctx.config.keySet()){
-            Map<String, Object> ctxRootConfig = (Map<String, Object>) ctx.config.get(key);
+        ctx.init();
+        return ctx ;
+    }
+
+    private void init() {
+        for(String key : config.keySet()){
+            Map<String, Object> ctxRootConfig = (Map<String, Object>) config.get(key);
 
             if(ctxRootConfig.containsKey("event")){
-                ExecuteContext executeContext = ExecuteContext.makeContextFromConfig(ctxRootConfig, ctx.data) ;
+                ExecuteContext executeContext = ExecuteContext.makeContextFromConfig(ctxRootConfig, data) ;
+                contexts.add(executeContext) ;
+            }else if(ctxRootConfig.containsKey("query")){
+                QueryContext queryContext = QueryContext.makeContextFromConfig(ctxRootConfig, data) ;
             }
-
         }
-
-
-        return ctx ;
     }
 
 }

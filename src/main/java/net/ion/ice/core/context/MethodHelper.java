@@ -19,7 +19,7 @@ public class MethodHelper {
 
     private static String[] patterns = new String[]{"yyyyMMdd", "yyyyMMddHHmmss", "yyyyMMdd HHmmss", "yyyy-MM-dd", "yyyy.MM.dd", "yyyy/MM/dd", "yyyyMMdd-HHmmss", "yyyy-MM-dd HH:mm", "yyyy-MM-dd HH:mm:ss", "yyyy.MM.dd HH:mm:ss", "yyyy/MM/dd HH:mm:ss", "yyyy-MM-dd HH:mm:ss.SSS", "yyyy-MM-dd'T'HH:mm:ss", "yyyy-MM-dd'T'HH:mm:ssZZ"} ;
 
-    public static String execute(String methodStr, String[] methodParams, Object value, Map<String, Object> data) throws ParseException {
+    public static String execute(String methodStr, String[] methodParams, Object value, Map<String, Object> data) {
         switch (methodStr){
             case "dateFormat" :{
                 if(value == null || StringUtils.isEmpty(value.toString())) return "" ;
@@ -27,7 +27,11 @@ public class MethodHelper {
                 if(value instanceof Timestamp){
                     date = new Date(((Timestamp) value).getTime()) ;
                 }else {
-                    date = DateUtils.parseDate(value.toString(), patterns);
+                    try {
+                        date = DateUtils.parseDate(value.toString(), patterns);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                 }
                 if(date != null) {
                     return DateFormatUtils.format(date, methodParams[1]);

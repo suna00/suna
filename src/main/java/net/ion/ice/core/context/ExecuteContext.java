@@ -10,6 +10,7 @@ import net.ion.ice.core.node.PropertyType;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.text.ParseException;
 import java.util.*;
 
 /**
@@ -202,12 +203,22 @@ public class ExecuteContext implements Context{
     public static ExecuteContext makeContextFromConfig(Map<String, Object> config, Map<String, Object> data) {
         ExecuteContext ctx = new ExecuteContext();
 
-        ctx.setData(data);
 
-        String typeId = (String) config.get("typeId");
-        NodeType nodeType = NodeUtils.getNodeType(typeId) ;
-
+        NodeType nodeType = NodeUtils.getNodeType((String) ContextUtils.getValue(config.get("typeId"), data));
         ctx.setNodeType(nodeType);
+
+        ctx.event = (String) ContextUtils.getValue(config.get("event"), data);
+
+        if(config.containsKey("data")){
+            Map<String, Object> _data = new HashMap<>();
+            Map<String, Object> subData = (Map<String, Object>) config.get("data");
+            for(String key : subData.keySet()){
+                _data.put(key, ContextUtils.getValue(key, data)) ;
+            }
+            ctx.data = _data ;
+        }else{
+            ctx.data = data ;
+        }
 
         ctx.init() ;
 

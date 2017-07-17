@@ -22,13 +22,13 @@
       },
       "categories" : {
         "typeId":"testCategory",
-        "query" : {"categoryType" : "{{:categoryType}}"},
+        "query" : {"categoryType" : "{{:categoryType}}", "sorting" : "parentCategory"},
         "response" : {
           "categoryName": "",
           "upperCategory": "parentCategory",
           "refCode1": {
             "typeId": "testItem",
-            "q": {
+            "query": {
               "category": "drama"
             },
             "response" : {
@@ -39,7 +39,11 @@
         }
       },
       "items" : {
-        "typeId":"testCategory"
+        "typeId":"testItem",
+        "query" : [
+          {"field" : "category", "method" : "matching", "value" : "drama" },
+          {"sorting" : "id desc"}
+        ]
       }
     }
   }

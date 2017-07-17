@@ -43,7 +43,7 @@ public class TemplateArray extends Template {
 //        return resultStr ;
 //    }
 
-    public String format(Map<String, Object> data) throws ParseException {
+    public String format(Map<String, Object> data)  {
         List<Map<String, Object>> list = getArray(data, tag) ;
 
         String resultStr = "" ;

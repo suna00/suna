@@ -34,11 +34,8 @@ public class ActionUpdate extends Action {
             this.sqlTemplate.parsing();
         }
 
-        try {
-            this.jdbcTemplate.update(this.sqlTemplate.format(executeContext.getData()), this.sqlTemplate.getSqlParameterValues(executeContext.getData())) ;
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        this.jdbcTemplate.update(this.sqlTemplate.format(executeContext.getData()), this.sqlTemplate.getSqlParameterValues(executeContext.getData())) ;
+
     }
 
     public ActionUpdate(String datasource, String actionBody) {

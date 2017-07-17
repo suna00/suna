@@ -46,4 +46,13 @@ public class ContextUtils {
     }
 
 
+    public static Object getValue(Object configValue, Map<String, Object> data) {
+        if(configValue instanceof Template){
+            return ((Template)configValue).format(data) ;
+        }else if(configValue instanceof String){
+            return JsonUtils.getValue(data, (String) configValue) ;
+        }else{
+            return configValue ;
+        }
+    }
 }

@@ -79,7 +79,7 @@ public class Template {
     }
 
 
-    public String format(Map<String, Object> data) throws ParseException {
+    public String format(Map<String, Object> data) {
         String resultStr = templateStr ;
         for(TemplateArray templateArray : templateArrays){
             resultStr = StringUtils.replace(resultStr, templateArray.getReplaceStr(), templateArray.format(data)) ;
@@ -92,7 +92,6 @@ public class Template {
         for(SqlParam sqlParam : sqlParams){
             resultStr = StringUtils.replace(resultStr, sqlParam.getTemplateStr(), "?") ;
         }
-
 
         return resultStr ;
     }
@@ -129,7 +128,7 @@ public class Template {
         return false ;
     }
 
-    public Object[] getSqlParameterValues(Map<String, Object> data) throws ParseException {
+    public Object[] getSqlParameterValues(Map<String, Object> data)  {
         if(this.sqlParams == null || this.sqlParams.size() == 0){
             return new Object[0] ;
         }

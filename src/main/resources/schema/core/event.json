@@ -21,11 +21,50 @@
     "eventName" : "delete Node Type"
   },
   {
+    "typeId" : "event",
+    "id" : "nodeType@allEvent",
+    "tid": "nodeType",
+    "event" : "allEvent",
+    "eventName" : "allEvent Node Type"
+  },
+  {
     "typeId" : "eventListener",
     "id" : "event@nodeType@create",
     "tid" : "event",
     "event": "nodeType@create",
     "actionType" : "service",
     "actionBody" : "eventService.createNodeType"
+  },
+  {
+    "typeId" : "eventListener",
+    "id" : "nodeType@nodeType@allEvent",
+    "tid" : "nodeType",
+    "event": "nodeType@allEvent",
+    "actionType" : "service",
+    "actionBody" : "nodeService.changeNodeType"
+  },
+  {
+    "typeId" : "eventListener",
+    "id" : "nodeType@event@allEvent",
+    "tid" : "nodeType",
+    "event": "event@allEvent",
+    "actionType" : "service",
+    "actionBody" : "nodeService.changeEvent"
+  },
+  {
+    "typeId" : "eventListener",
+    "id" : "nodeType@eventAction@allEvent",
+    "tid" : "nodeType",
+    "event": "eventAction@allEvent",
+    "actionType" : "service",
+    "actionBody" : "nodeService.changeEventAction"
+  },
+  {
+    "typeId" : "eventListener",
+    "id" : "nodeType@eventListener@allEvent",
+    "tid" : "nodeType",
+    "event": "eventListener@allEvent",
+    "actionType" : "service",
+    "actionBody" : "nodeService.changeEventListener"
   }
 ]

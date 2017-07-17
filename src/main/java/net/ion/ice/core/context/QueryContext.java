@@ -372,6 +372,9 @@ public class QueryContext implements Context{
             if (key.equals("q")) {
                 List<QueryTerm> queryTerms = makeNodeQueryTerms(queryData.get("q"), queryContext.getNodetype());
                 queryContext.setQueryTerms(queryTerms);
+            }else if(key.equals("query")){
+                List<QueryTerm> queryTerms = makeNodeQueryTerms(queryData.get("query"), queryContext.getNodetype());
+                queryContext.setQueryTerms(queryTerms);
             }else {
                 Object val = queryData.get(key) ;
                 if(val == null){
@@ -408,7 +411,7 @@ public class QueryContext implements Context{
     }
 
     private static void makeNodeQueryTerm(Map<String, Object> q, NodeType nodeType, List<QueryTerm> queryTerms) {
-        if(q.size() == 1 && q.containsKey("method")){
+        if(q.containsKey("field") && q.containsKey("method")){
             QueryTerm queryTerm = makePropertyQueryTerm(nodeType, q.get("field").toString(), q.get("method").toString(), q.get("value").toString()) ;
             if(queryTerm != null){
                 queryTerms.add(queryTerm) ;
@@ -433,5 +436,37 @@ public class QueryContext implements Context{
 
     public List<ResultField> getResultFields() {
         return resultFields;
+    }
+
+    public static QueryContext makeContextFromConfig(Map<String, Object> config, Map<String, Object> data) {
+        QueryContext queryContext = null ;
+        if(config.containsKey("typeId")){
+            queryContext = new QueryContext(NodeUtils.getNodeType((String) ContextUtils.getValue(config.get("typeId"), data))) ;
+        }else{
+            queryContext = new QueryContext() ;
+        }
+
+
+//        for(String key : queryData.keySet()) {
+//            if(key.equals("typeId")) continue ;
+//
+//            if (key.equals("q")) {
+//                List<QueryTerm> queryTerms = makeNodeQueryTerms(queryData.get("q"), queryContext.getNodetype());
+//                queryContext.setQueryTerms(queryTerms);
+//            }else if(key.equals("query")){
+//                List<QueryTerm> queryTerms = makeNodeQueryTerms(queryData.get("query"), queryContext.getNodetype());
+//                queryContext.setQueryTerms(queryTerms);
+//            }else {
+//                Object val = queryData.get(key) ;
+//                if(val == null){
+//                    queryContext.addResultField(new ResultField(key, key)) ;
+//                }else if(val instanceof String){
+//                    queryContext.addResultField(new ResultField(key, (String) val)) ;
+//                }else if(val instanceof Map){
+//                    queryContext.addResultField(new ResultField(key, makeQueryContextFromQueryData((Map<String, Object>) val))) ;
+//                }
+//            }
+//        }
+        return queryContext ;
     }
 }

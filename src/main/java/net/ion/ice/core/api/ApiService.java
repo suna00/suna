@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import java.util.Map;
+
 /**
  * Created by jaeho on 2017. 7. 3..
  */
@@ -30,7 +32,7 @@ public class ApiService {
 
         if(apiMethod.equals("POST")){
             if(request instanceof MultipartHttpServletRequest) {
-                ApiContext context = ApiContext.createContext(apiNode, request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap()) ;
+                ApiContext context = ApiContext.createContext(apiNode, (Map<String, Object>) apiNode.get("config"), request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap()) ;
                 return JsonResponse.create(nodeService.saveNode(request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap(), "")) ;
             }
             return JsonResponse.create(nodeService.saveNode(request.getParameterMap(), "")) ;
