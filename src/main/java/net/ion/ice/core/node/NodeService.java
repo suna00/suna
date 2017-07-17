@@ -248,8 +248,6 @@ public class NodeService {
         NodeType nodeType = getNodeType(typeId) ;
 
         ExecuteContext context = ExecuteContext.makeContextFromParameter(parameterMap, multiFileMap, nodeType) ;
-//
-//        Node node = infinispanRepositoryService.execute(context);
         context.execute();
         Node node =  context.getNode();
         node.toDisplay();
