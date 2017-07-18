@@ -117,6 +117,7 @@ hazelcast:
   members:
     - 127.0.0.1
     - localhost
+    - 125.131.88.147
 
 cluster:
   members:
