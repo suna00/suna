@@ -45,7 +45,7 @@ public class NodeBindingService {
         return null;
     }
 
-    public void excute(ExecuteContext context){
+    public void execute(ExecuteContext context){
 
         Node node = context.getNode();
         nodeBindProcess(node.getTypeId());
