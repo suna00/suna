@@ -113,11 +113,11 @@ jwtConfig:
   refreshTokenExpTime: 60 #분
 
 
-hazelcast:
-  members:
-    - 127.0.0.1
-    - localhost
-    - 125.131.88.147
+#hazelcast:
+#  members:
+#    - 127.0.0.1
+#    - localhost
+#    - 125.131.88.147
 
 cluster:
   members:
