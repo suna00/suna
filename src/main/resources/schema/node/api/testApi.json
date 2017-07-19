@@ -22,15 +22,13 @@
       },
       "categories" : {
         "typeId":"testCategory",
-        "query" : {"categoryType" : "{{:categoryType}}", "sorting" : "parentCategory"},
+        "select" : {"sql" : "select * from testCategory where categoryType = @{categoryType}"},
         "response" : {
           "categoryName": "",
           "upperCategory": "parentCategory",
           "refCode1": {
             "typeId": "testItem",
-            "query": {
-              "category": "drama"
-            },
+            "query": {"category": "{{:categoryId}}", "sorting" : "parentCategory"},
             "response" : {
               "category": "",
               "itemTitle": "title"
@@ -44,6 +42,9 @@
           {"field" : "category", "method" : "matching", "value" : "drama" },
           {"sorting" : "id desc"}
         ]
+      },
+      "users" : {
+        "endpoint":"http://customer.api.com/api/test.json"
       }
     }
   }
