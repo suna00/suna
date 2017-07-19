@@ -10,7 +10,7 @@
     "tid": "testCategory",
     "parentId": "test",
     "typeId": "nodeType",
-    "repositoryType": "data",
+    "repositoryType": "node",
     "typeName": "TEST Category",
     "tableName": "mariaDb#testCategory"
   },
@@ -130,6 +130,7 @@
     "pid": "body",
     "propertyTypeName": "Body",
     "valueType": "TEXT",
+    "idable": false,
     "indexable": true,
     "required": false,
     "labelable": false,
@@ -141,6 +142,7 @@
     "pid": "date",
     "propertyTypeName": "Date",
     "valueType": "DATE",
+    "idable": false,
     "indexable": true
   },
   {
