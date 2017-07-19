@@ -2,10 +2,12 @@ package net.ion.ice.core.data.bind;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import net.ion.ice.core.data.ResponseUtils;
+import net.ion.ice.core.response.JsonErrorResponse;
 import net.ion.ice.core.response.JsonResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,10 +36,11 @@ public class NodeBindingController {
     public Object createTable(WebRequest request, HttpServletResponse response, @PathVariable String tid) throws IOException {
         try {
             nodeBindingService.createTable(tid, response);
+            return JsonResponse.create();
         } catch (Exception e) {
             e.printStackTrace();
+            return JsonErrorResponse.error(e);
         }
-        return null;
     }
 
     @RequestMapping(value = "/data/{typeId}", method = RequestMethod.PUT)
@@ -48,12 +51,18 @@ public class NodeBindingController {
 
     @RequestMapping(value = "/data/{typeId}/save.json", method = RequestMethod.POST)
     @ResponseBody
-    public Object saveJon(HttpServletRequest request, @PathVariable String typeId){
+    public Object saveJon(HttpServletRequest request, @PathVariable String typeId) {
         return save(request, typeId);
     }
 
-    public Object save(HttpServletRequest request, String typeId){
-        return nodeBindingService.save(request.getParameterMap(), typeId);
+    public Object save(HttpServletRequest request, String typeId) {
+        try {
+            nodeBindingService.save(request.getParameterMap(), typeId);
+            return JsonResponse.create();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return JsonErrorResponse.error(e);
+        }
     }
 
     @RequestMapping(value = "/data/{typeId}/list.json", method = RequestMethod.GET)
@@ -65,7 +74,6 @@ public class NodeBindingController {
     private Object list(WebRequest request, @PathVariable String typeId) {
         return ResponseUtils.response(nodeBindingService.list(typeId));
     }
-
 
     @RequestMapping(value = "/data/{typeId}/{id}", method = RequestMethod.GET)
     @ResponseBody
@@ -80,11 +88,19 @@ public class NodeBindingController {
     }
 
     private Object read(WebRequest request, String typeId, String id) throws JsonProcessingException {
-        return ResponseUtils.response(nodeBindingService.read(typeId, id));
+        try {
+            return JsonResponse.create(nodeBindingService.read(typeId, id));
+        } catch (EmptyResultDataAccessException e) {
+            return JsonErrorResponse.error(e);
+        }
     }
 
     private Object read(WebRequest request, String typeId) throws JsonProcessingException {
-        return JsonResponse.create(nodeBindingService.read(request.getParameterMap(), typeId)) ;
-    }
+        try {
 
+            return JsonResponse.create(nodeBindingService.read(request.getParameterMap(), typeId));
+        } catch (EmptyResultDataAccessException e) {
+            return JsonErrorResponse.error(e);
+        }
+    }
 }

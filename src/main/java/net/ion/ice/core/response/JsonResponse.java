@@ -12,9 +12,11 @@ import java.util.Map;
  */
 public class JsonResponse implements Serializable{
     protected String result ;
-    protected String resultMessage ;
+    protected String resultMessage;
 
-
+    public static JsonResponse create(){
+        return new JsonBasicResponse() ;
+    }
     public static JsonResponse create(Node node){
         return new JsonObjectResponse(node) ;
     }
@@ -22,6 +24,7 @@ public class JsonResponse implements Serializable{
     public static JsonResponse create(Map<String, Object> map){
         return new JsonMapResponse(map) ;
     }
+
     public static JsonResponse create(Collection<Map<String, Object>> list){
         return new JsonArrayResponse(list);
     }

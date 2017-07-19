@@ -5,18 +5,18 @@ import java.util.Map;
 /**
  * Created by seonwoong on 2017. 7. 14..
  */
-public class JsonMapResponse extends JsonResponse{
+public class JsonMapResponse extends JsonResponse {
 
     private Map<String, Object> item;
 
     public JsonMapResponse(Map<String, Object> map) {
-        super();
-        result = "200" ;
-        resultMessage = "SUCCESS" ;
+        result = "200";
+        resultMessage = "SUCCESS";
         this.item = map;
     }
 
     public Map<String, Object> getItem() {
+
         return item;
     }
 

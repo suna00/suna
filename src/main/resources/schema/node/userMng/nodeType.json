@@ -11,7 +11,7 @@
     "parentId": "userMng",
     "typeId": "nodeType",
     "repositoryType": "node",
-    "typeName": "User"
+    "typeName": "사용자"
   },
   {
     "typeId": "propertyType",
@@ -65,5 +65,19 @@
     "required": false,
     "length": 100,
     "analyzer": "cjk"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "user",
+    "pid": "authority",
+    "propertyTypeName": "권한",
+    "valueType": "REFERENCE",
+    "idable": false,
+    "indexable": false,
+    "labelable": false,
+    "required": false,
+    "length": 100,
+    "analyzer": "cjk"
   }
+
 ]

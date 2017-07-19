@@ -34,7 +34,7 @@ public class NodeBindingService {
     private DatabaseService databaseService;
     private Map<String, NodeBindingInfo> nodeBindingInfoMap = new ConcurrentHashMap<>();
 
-    public Map<String, Object> save(Map<String, String[]> parameterMap, String typeId) {
+    public void save(Map<String, String[]> parameterMap, String typeId) {
         nodeBindProcess(typeId);
 
         NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(typeId);
@@ -42,11 +42,9 @@ public class NodeBindingService {
         if (callback == 0) {
             nodeBindingInfo.insert(parameterMap);
         }
-        return null;
     }
 
     public void execute(ExecuteContext context){
-
         Node node = context.getNode();
         nodeBindProcess(node.getTypeId());
         NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(node.getTypeId());
