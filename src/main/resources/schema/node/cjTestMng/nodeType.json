@@ -1,0 +1,11 @@
+[
+  {
+    "parentId" : "root",
+    "typeId" : "nodeType",
+    "id" : "cjMng",
+    "tid" : "cjMng",
+    "typeName" : "CJ 관리",
+    "repositoryType" : "path",
+    "eviction" : 0
+  }
+]
