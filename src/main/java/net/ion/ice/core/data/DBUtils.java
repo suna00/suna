@@ -13,14 +13,17 @@ public class DBUtils {
     public DBUtils(JdbcTemplate jdbcTemplate) {
             this.jdbcTemplate = jdbcTemplate;
     }
+
     public String getDBType() {
         BasicDataSource basicDataSource = (BasicDataSource) jdbcTemplate.getDataSource();
         if (basicDataSource.getDriverClassName().equals(DBTypes.oracle.getDriverClassName())) {
             return "oracle";
         } else if (basicDataSource.getDriverClassName().equals(DBTypes.maria.getDriverClassName())) {
             return "maria";
+        } else if (basicDataSource.getDriverClassName().equals(DBTypes.msSql.getDriverClassName())) {
+            return "msSql";
         } else {
-            return "mysql";
+            return "mySql";
         }
     }
 }

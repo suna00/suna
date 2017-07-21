@@ -3,8 +3,7 @@ package net.ion.ice.core.data.bind;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.data.DBUtils;
-import net.ion.ice.core.data.DatabaseController;
-import net.ion.ice.core.data.DatabaseService;
+import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeType;
@@ -31,7 +30,7 @@ public class NodeBindingService {
     @Autowired
     private NodeService nodeService;
     @Autowired
-    private DatabaseService databaseService;
+    private DBService DBService;
     private Map<String, NodeBindingInfo> nodeBindingInfoMap = new ConcurrentHashMap<>();
 
     public void save(Map<String, String[]> parameterMap, String typeId) {
@@ -89,10 +88,32 @@ public class NodeBindingService {
         return nodeBindingInfo.retrieve(id);
     }
 
-    public List<Map<String, Object>> list(String tid) {
-        nodeBindProcess(tid);
-        NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(tid);
+    public List<Map<String, Object>> list(String typeId) {
+        nodeBindProcess(typeId);
+        NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(typeId);
         return nodeBindingInfo.list();
+    }
+
+    public List<Map<String, Object>> list(String typeId, WebRequest request) {
+        nodeBindProcess(typeId);
+        NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(typeId);
+
+        String sql = "";
+
+        return nodeBindingInfo.list(sql);
+    }
+
+    public void delete(Map<String, String[]> parameterMap, String typeId){
+        nodeBindProcess(typeId);
+        NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(typeId);
+        nodeBindingInfo.delete(parameterMap);
+    }
+
+    public void delete(ExecuteContext context){
+        Node node = context.getNode();
+        nodeBindProcess(node.getTypeId());
+        NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(node.getTypeId());
+        nodeBindingInfo.delete(node);
     }
 
 
@@ -102,14 +123,14 @@ public class NodeBindingService {
         if (!nodeBindingInfoMap.containsKey(typeId)) {
 
             String dsId = String.valueOf(nodeType.getTableName()).split("#")[0];
-            JdbcTemplate jdbcTemplate = databaseService.getJdbcTemplate(dsId);
+            JdbcTemplate jdbcTemplate = DBService.getJdbcTemplate(dsId);
 
             String tableName = String.valueOf(nodeType.getTableName()).split("#")[1];
 
             String DBType = new DBUtils(jdbcTemplate).getDBType();
 
             NodeBindingInfo nodeBindingInfo = new NodeBindingInfo(nodeType, jdbcTemplate, tableName, DBType);
-            nodeBindingInfo.init();
+            nodeBindingInfo.makeDefaultQuery();
 
             nodeBindingInfoMap.put(typeId, nodeBindingInfo);
         }

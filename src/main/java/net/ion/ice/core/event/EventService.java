@@ -70,7 +70,7 @@ public class EventService {
         eventActionData.put(EVENT, eventNode.getId()) ;
         eventActionData.put("action", DELETE.equals(event) ? "deleteDatabase" : "saveDatabase") ;
         eventActionData.put("actionType", "service") ;
-        eventActionData.put("actionBody", DELETE.equals(event) ? "nodeBindingService.delete" : "nodeBindingService.save") ;
+        eventActionData.put("actionBody", DELETE.equals(event) ? "nodeBindingService.delete" : "nodeBindingService.execute") ;
         eventActionData.put("order", 1) ;
 
         return nodeService.executeNode(eventActionData, EVENT_ACTION, CREATE) ;

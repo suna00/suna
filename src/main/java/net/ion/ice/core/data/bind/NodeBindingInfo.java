@@ -56,7 +56,7 @@ public class NodeBindingInfo {
         this.DBType = DBType;
     }
 
-    public void init() {
+    public void makeDefaultQuery() {
         columnList = getTableColumns(tableName, DBType);
         propertyTypes = nodeType.getPropertyTypes();
         List<String> createColumns = new LinkedList<>();
@@ -119,12 +119,20 @@ public class NodeBindingInfo {
         }
 
         if (DBType.equalsIgnoreCase("mySql")) {
-            retrieveSql = String.format("SELECT * FROM %s WITH(NOLOCK) WHERE %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
-            listSql = String.format("SELECT * FROM %s", tableName);
-        } else {
-            retrieveSql = String.format("SELECT * FROM %s WHERE %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
-            listSql = String.format("SELECT * FROM %s", tableName);
+            listSql = String.format("SELECT * FROM %s LIMIT 1000", tableName);
+            retrieveSql = String.format("SELECT * FROM %s WITH(nolock) WHERE %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
 
+        }else if(DBType.equalsIgnoreCase("msSql")){
+            listSql = String.format("SELECT TOP 100 * FROM %s", tableName);
+            retrieveSql = String.format("SELECT * FROM %s WHERE %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
+
+        }else if(DBType.equalsIgnoreCase("maria")){
+            listSql = String.format("SELECT * FROM %s LIMIT 1000", tableName);
+            retrieveSql = String.format("SELECT * FROM %s WHERE %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
+
+        } else {
+            listSql = String.format("SELECT * FROM %s WHERE ROWNUM <= 1000", tableName);
+            retrieveSql = String.format("SELECT * FROM %s WHERE %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
         }
 
         deleteSql = String.format("delete from %s where %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
@@ -212,7 +220,6 @@ public class NodeBindingInfo {
         return queryCallBack;
     }
 
-
     public int update(Node node) {
         List<Object> parameters = updateParameters(node);
         int queryCallBack = jdbcTemplate.update(updateSql, parameters.toArray());
@@ -230,9 +237,19 @@ public class NodeBindingInfo {
         return result;
     }
 
+    public List<Map<String, Object>> list(String listSql) {
+        List<Map<String, Object>> result = jdbcTemplate.queryForList(listSql);
+        return result;
+    }
 
     public int delete(Map<String, String[]> parameterMap) {
         List<Object> parameters = updateParameters(parameterMap);
+        int queryCallBack = jdbcTemplate.update(deleteSql, parameters.toArray());
+        return queryCallBack;
+    }
+
+    public int delete(Node node) {
+        List<Object> parameters = updateParameters(node);
         int queryCallBack = jdbcTemplate.update(deleteSql, parameters.toArray());
         return queryCallBack;
     }
@@ -260,7 +277,6 @@ public class NodeBindingInfo {
         }
         return parameters;
     }
-
 
     private List<Object> updateParameters(Node node) {
         List<Object> parameters = new ArrayList<>();

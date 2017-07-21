@@ -1,7 +1,6 @@
 package net.ion.ice.core.data;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.ion.ice.core.data.bind.NodeBindingInfo;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -23,9 +22,9 @@ import java.util.concurrent.ConcurrentHashMap;
  * Created by seonwoong on 2017. 6. 22..
  */
 
-@Service("dataService")
-public class DatabaseService {
-    private static Logger logger = LoggerFactory.getLogger(DatabaseService.class);
+@Service("DBService")
+public class DBService {
+    private static Logger logger = LoggerFactory.getLogger(DBService.class);
 
     @Autowired
     private NodeService nodeService;
@@ -45,7 +44,7 @@ public class DatabaseService {
     public JdbcTemplate getJdbcTemplate(String dsId) {
         if (!dataSourceTemplate.containsKey(dsId)) {
             Node dataSourceNode = nodeService.read("datasource", dsId);
-            DatabaseConfiguration configuration = new DatabaseConfiguration(dataSourceNode);
+            DBConfiguration configuration = new DBConfiguration(dataSourceNode);
             dataSourceTemplate.put(dsId, new JdbcTemplate(setDataSource(configuration)));
         }
         JdbcTemplate jdbcTemplate = dataSourceTemplate.get(dsId);
@@ -71,7 +70,7 @@ public class DatabaseService {
 
     }
 
-    public static DataSource setDataSource(DatabaseConfiguration dataConfiguration) {
+    public static DataSource setDataSource(DBConfiguration dataConfiguration) {
 
         if (StringUtils.equalsIgnoreCase(dataConfiguration.getDbType(), "mySql")) {
             return mySqlDataSource(dataConfiguration);
@@ -88,7 +87,7 @@ public class DatabaseService {
     }
 
 
-    public static DataSource oracleDataSource(DatabaseConfiguration dataConfiguration) {
+    public static DataSource oracleDataSource(DBConfiguration dataConfiguration) {
         BasicDataSource basicDataSource = new BasicDataSource();
         basicDataSource.setDriverClassName(DBTypes.oracle.getDriverClassName());
         basicDataSource.setUsername(dataConfiguration.getUsername());
@@ -111,7 +110,7 @@ public class DatabaseService {
         return basicDataSource;
     }
 
-    public static DataSource mySqlDataSource(DatabaseConfiguration dataConfiguration) {
+    public static DataSource mySqlDataSource(DBConfiguration dataConfiguration) {
         BasicDataSource basicDataSource = new BasicDataSource();
         basicDataSource.setDriverClassName(DBTypes.mySql.getDriverClassName());
         basicDataSource.setUsername(dataConfiguration.getUsername());
@@ -133,7 +132,7 @@ public class DatabaseService {
         return basicDataSource;
     }
 
-    public static DataSource mariaDataSource(DatabaseConfiguration dataConfiguration) {
+    public static DataSource mariaDataSource(DBConfiguration dataConfiguration) {
         BasicDataSource basicDataSource = new BasicDataSource();
         basicDataSource.setDriverClassName(DBTypes.maria.getDriverClassName());
         basicDataSource.setUsername(dataConfiguration.getUsername());
@@ -155,7 +154,7 @@ public class DatabaseService {
         return basicDataSource;
     }
 
-    public static DataSource msSqlDataSource(DatabaseConfiguration dataConfiguration) {
+    public static DataSource msSqlDataSource(DBConfiguration dataConfiguration) {
         BasicDataSource basicDataSource = new BasicDataSource();
         basicDataSource.setDriverClassName(DBTypes.msSql.getDriverClassName());
         basicDataSource.setUsername(dataConfiguration.getUsername());
