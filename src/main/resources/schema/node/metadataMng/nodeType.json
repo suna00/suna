@@ -1,0 +1,20 @@
+[
+  {
+    "parentId" : "root",
+    "typeId" : "nodeType",
+    "id" : "metadataMng",
+    "tid" : "metadataMng",
+    "typeName" : "메타데이터 관리",
+    "repositoryType" : "path",
+    "eviction" : 0
+  },
+  {
+    "parentId" : "metadataMng",
+    "typeId" : "nodeType",
+    "id" : "program",
+    "tid" : "program",
+    "typeName" : "프로그램",
+    "repositoryType" : "node",
+    "eviction" : 1000
+  }
+]
