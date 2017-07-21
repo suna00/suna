@@ -1,0 +1,11 @@
+[
+  {
+    "parentId" : "root",
+    "typeId" : "nodeType",
+    "id" : "customerMng",
+    "tid" : "customerMng",
+    "typeName" : "고객 관리",
+    "repositoryType" : "path",
+    "eviction" : 0
+  }
+]
