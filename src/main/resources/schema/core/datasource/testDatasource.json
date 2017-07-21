@@ -25,5 +25,14 @@
     "dbType" : "msSql",
     "username" : "icafe13",
     "password" : "icafe1234!@"
+  },
+  {
+    "typeId" : "datasource",
+    "id" : "cjDb",
+    "dsName" : "Test DB",
+    "jdbcUrl" : "jdbc:mysql://125.131.88.147:3306/ICE2",
+    "dbType" : "mySql",
+    "username" : "cjmwave",
+    "password" : "cjmwave0!@#"
   }
 ]

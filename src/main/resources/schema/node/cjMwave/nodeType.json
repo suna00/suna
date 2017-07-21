@@ -1,0 +1,10 @@
+[
+  {
+    "parentId" : "root",
+    "typeId" : "nodeType",
+    "tid" : "cjMwave",
+    "typeName" : "cjMwave",
+    "repositoryType" : "path",
+    "eviction" : 0
+  }
+]

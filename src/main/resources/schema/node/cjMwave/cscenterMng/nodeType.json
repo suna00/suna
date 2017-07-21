@@ -1,0 +1,38 @@
+[
+  {
+    "parentId" : "cjMwave",
+    "typeId" : "nodeType",
+    "id" : "cscenterMng",
+    "tid" : "cscenterMng",
+    "typeName" : "고객센터 관리",
+    "repositoryType" : "path",
+    "eviction" : 0
+  },
+  {
+    "parentId" : "cscenterMng",
+    "typeId" : "nodeType",
+    "id" : "cscenterNtf",
+    "tid" : "cscenterNtf",
+    "typeName" : "고객센터 공지사항",
+    "repositoryType" : "node",
+    "eviction" : 100
+  },
+  {
+    "parentId" : "cscenterMng",
+    "typeId" : "nodeType",
+    "id" : "cscenterQna",
+    "tid" : "cscenterQna",
+    "typeName" : "고객센터 QNA",
+    "repositoryType" : "node",
+    "eviction" : 100
+  },
+  {
+    "parentId" : "cscenterMng",
+    "typeId" : "nodeType",
+    "id" : "cscenterFaq",
+    "tid" : "cscenterFaq",
+    "typeName" : "고객센터 FAQ",
+    "repositoryType" : "node",
+    "eviction" : 100
+  }
+]

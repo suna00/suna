@@ -1,0 +1,17 @@
+[
+  {
+    "typeId" : "systemNtf",
+    "ntfSeq" : 0,
+    "ntfTgtCd" : "공지 대상코드 란이다",
+    "ntfTypeCd" : "공지 유형코드 란이다",
+    "pstngYn" : "게시여부 Y/N",
+    "pstngStDt" : "2017-07-21",
+    "pstngFnsDt" : "2017-07-29",
+    "ntfTitle" : "공지 제목 테스트",
+    "ntfSbst" : "공지 내용 테스트",
+    "regr" : "admin_1",
+    "regDt" : "20170720",
+    "amdr" : "admin_1",
+    "amdDt" : "20170720"
+  }
+]
