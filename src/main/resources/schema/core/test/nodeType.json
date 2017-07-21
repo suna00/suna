@@ -63,7 +63,19 @@
     "length": 100,
     "analyzer": "cjk"
   },
-
+  {
+    "typeId": "propertyType",
+    "tid": "testCategory",
+    "pid": "orderNo",
+    "propertyTypeName": "Order Number",
+    "valueType": "INT",
+    "idable": false,
+    "indexable": true,
+    "labelable": false,
+    "required": true,
+    "length": 100,
+    "analyzer": "cjk"
+  },
   {
     "typeId": "propertyType",
     "tid": "testCategory",

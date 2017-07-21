@@ -2,6 +2,8 @@ package net.ion.ice.core.data.bind;
 
 import net.ion.ice.core.data.DBDataTypes;
 import net.ion.ice.core.data.DBTypes;
+import net.ion.ice.core.data.context.DBQueryContext;
+import net.ion.ice.core.data.context.DBQueryTerm;
 import net.ion.ice.core.data.table.Column;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
@@ -35,16 +37,17 @@ public class NodeBindingInfo {
     private String deleteSql = "";
     private String retrieveSql = "";
     private String listSql = "";
+    private String listParamSql = "";
 
     private JdbcTemplate jdbcTemplate;
 
 
     private List<Column> columnList;
     private List<Column> createColumnList;
-    private List<String> insertPids = new LinkedList<>();
+    private List<String> insertPids = new ArrayList<>();
 
-    private List<String> updatePids = new LinkedList<>();
-    private List<String> wherePids = new LinkedList<>();
+    private List<String> updatePids = new ArrayList<>();
+    private List<String> wherePids = new ArrayList<>();
 
 
     private Collection<PropertyType> propertyTypes;
@@ -122,11 +125,11 @@ public class NodeBindingInfo {
             listSql = String.format("SELECT * FROM %s LIMIT 1000", tableName);
             retrieveSql = String.format("SELECT * FROM %s WITH(nolock) WHERE %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
 
-        }else if(DBType.equalsIgnoreCase("msSql")){
+        } else if (DBType.equalsIgnoreCase("msSql")) {
             listSql = String.format("SELECT TOP 100 * FROM %s", tableName);
             retrieveSql = String.format("SELECT * FROM %s WHERE %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
 
-        }else if(DBType.equalsIgnoreCase("maria")){
+        } else if (DBType.equalsIgnoreCase("maria")) {
             listSql = String.format("SELECT * FROM %s LIMIT 1000", tableName);
             retrieveSql = String.format("SELECT * FROM %s WHERE %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
 
@@ -237,8 +240,9 @@ public class NodeBindingInfo {
         return result;
     }
 
-    public List<Map<String, Object>> list(String listSql) {
-        List<Map<String, Object>> result = jdbcTemplate.queryForList(listSql);
+    public List<Map<String, Object>> list(DBQueryContext dbQueryContext) {
+        List<String> parameters = makeListQuery(dbQueryContext);
+        List<Map<String, Object>> result = jdbcTemplate.queryForList(listParamSql, parameters.toArray());
         return result;
     }
 
@@ -288,5 +292,27 @@ public class NodeBindingInfo {
 
     private List<String> retrieveParameters(String id) {
         return Arrays.asList(id.split("@"));
+    }
+
+    public List makeListQuery(DBQueryContext dbQueryContext) {
+        List<String> attachQuery = new ArrayList<>();
+        List<String> attachValue = new ArrayList<>();
+        if (!dbQueryContext.getDbQueryTermList().isEmpty()) {
+            for (DBQueryTerm dbQueryTerm : dbQueryContext.getDbQueryTermList()) {
+                String query = String.format("%s %s ?", dbQueryTerm.getKey(), dbQueryTerm.getMethodQuery());
+                String value = dbQueryTerm.getValue();
+                attachQuery.add(query);
+                attachValue.add(value);
+            }
+
+            listParamSql = String.format("SELECT * FROM %s WHERE %s", tableName, StringUtils.join(attachQuery.toArray(), " AND "));
+
+        } else {
+
+            listParamSql = String.format("SELECT * FROM %s WHERE %s", tableName, StringUtils.join(attachQuery.toArray(), " AND "));
+        }
+
+
+        return attachValue;
     }
 }

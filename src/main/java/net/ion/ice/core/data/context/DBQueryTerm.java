@@ -8,19 +8,40 @@ public class DBQueryTerm {
     private String value;
     private DBQueryMethod method;
 
-
-    public DBQueryTerm(String key, String value, String method) {
+    public DBQueryTerm(String key, String value) {
         this.key = key;
         this.value = value;
+    }
+
+    public DBQueryTerm(String key, String method, String value) {
+        this.key = key;
         this.method = DBQueryMethod.valueOf(method.toUpperCase());
+        this.value = value;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public DBQueryMethod getMethod() {
+        return method;
+    }
+
+    public String getMethodQuery() {
+        return method.getQueryString();
     }
 
     public enum DBQueryMethod {
         MATCHING("LIKE"),
-        ABOVE("<="),
-        BELOW(">="),
-        EXCESS("<"),
-        UNDER(">");
+        EQUALS("="),
+        ABOVE(">="),
+        BELOW("<="),
+        EXCESS(">"),
+        UNDER("<");
 
 
         private String queryString;

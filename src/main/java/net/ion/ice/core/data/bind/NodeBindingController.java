@@ -71,9 +71,9 @@ public class NodeBindingController {
         return list(request, typeId);
     }
 
-    private Object list(@PathVariable String typeId) {
-        return ResponseUtils.response(nodeBindingService.list(typeId));
-    }
+//    private Object list(@PathVariable String typeId) {
+//        return ResponseUtils.response(nodeBindingService.list(typeId));
+//    }
 
     private Object list(WebRequest request, @PathVariable String typeId) {
         return ResponseUtils.response(nodeBindingService.list(typeId, request));

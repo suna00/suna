@@ -4,42 +4,48 @@
     "categoryId": "id1",
     "categoryName" : "test1",
     "parentCategory" : "root",
-    "categoryType" : "content"
+    "categoryType" : "content",
+    "orderNo": 1
   },
   {
     "typeId" : "testCategory",
     "categoryId": "id2",
     "categoryName" : "drama",
     "parentCategory" : "test1",
-    "categoryType" : "content"
+    "categoryType" : "content",
+    "orderNo": 2
   },
   {
     "typeId" : "testCategory",
     "categoryId": "id3",
     "categoryName" : "movie",
     "parentCategory" : "test1",
-    "categoryType" : "content"
+    "categoryType" : "content",
+    "orderNo": 3
   },
   {
     "typeId" : "testCategory",
     "categoryId": "id4",
     "categoryName" : "fashion",
     "parentCategory" : "test1",
-    "categoryType" : "product"
+    "categoryType" : "product",
+    "orderNo": 4
   },
   {
     "typeId" : "testCategory",
     "categoryId": "id5",
     "categoryName" : "hat",
     "parentCategory" : "fashion",
-    "categoryType" : "product"
+    "categoryType" : "product",
+    "orderNo": 5
   },
   {
     "typeId" : "testCategory",
     "categoryId": "id6",
     "categoryName" : "pants",
     "parentCategory" : "fashion",
-    "categoryType" : "product"
+    "categoryType" : "product",
+    "orderNo": 6
   },
   {
     "typeId" : "testItem",
