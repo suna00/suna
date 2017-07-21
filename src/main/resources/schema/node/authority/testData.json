@@ -2,16 +2,16 @@
   {
     "typeId": "authority",
     "name": "일반",
-    "code": "user"
+    "id": "user"
   },
   {
     "typeId": "authority",
     "name": "관리자",
-    "code": "admin"
+    "id": "admin"
   },
   {
     "typeId": "authority",
     "name": "시스템",
-    "code": "system"
+    "id": "system"
   }
 ]

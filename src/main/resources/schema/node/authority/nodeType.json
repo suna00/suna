@@ -7,29 +7,21 @@
     "typeName": "권한"
   },
   {
-    "typeId": "propertyType",
+    "parentId": "authority",
+    "typeId": "nodeType",
+    "id": "authority",
     "tid": "authority",
-    "pid": "name",
-    "propertyTypeName": "권한명",
-    "valueType": "STRING",
-    "idable": true,
-    "indexable": true,
-    "labelable": false,
-    "required": true,
-    "length": 100,
-    "analyzer": "cjk"
+    "typeName": "권한",
+    "repositoryType": "node",
+    "eviction": 0
   },
   {
-    "typeId": "propertyType",
-    "tid": "authority",
-    "pid": "code",
-    "propertyTypeName": "권한코드",
-    "valueType": "STRING",
-    "idable": false,
-    "indexable": true,
-    "labelable": false,
-    "required": false,
-    "length": 100,
-    "analyzer": "cjk"
+    "parentId": "authority",
+    "typeId": "nodeType",
+    "id": "authorityMap",
+    "tid": "authorityMap",
+    "typeName": "권한 매핑",
+    "repositoryType": "data",
+    "eviction": 0
   }
 ]

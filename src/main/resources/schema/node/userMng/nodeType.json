@@ -7,77 +7,21 @@
     "typeName": "사용자 관리"
   },
   {
-    "tid": "user",
     "parentId": "userMng",
     "typeId": "nodeType",
+    "id": "userGroup",
+    "tid": "userGroup",
+    "typeName": "사용자 그룹",
     "repositoryType": "node",
-    "typeName": "사용자"
+    "eviction": 0
   },
   {
-    "typeId": "propertyType",
+    "parentId": "userMng",
+    "typeId": "nodeType",
+    "id": "user",
     "tid": "user",
-    "pid": "userId",
-    "propertyTypeName": "아이디",
-    "valueType": "STRING",
-    "idable": true,
-    "indexable": true,
-    "labelable": false,
-    "required": true,
-    "treeable": false,
-    "length": 100,
-    "analyzer": "cjk"
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "user",
-    "pid": "password",
-    "propertyTypeName": "비밀번호",
-    "valueType": "STRING",
-    "idable": false,
-    "indexable": true,
-    "labelable": false,
-    "required": true,
-    "length": 100,
-    "analyzer": "cjk"
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "user",
-    "pid": "name",
-    "propertyTypeName": "이름",
-    "valueType": "STRING",
-    "idable": false,
-    "indexable": false,
-    "labelable": false,
-    "required": true,
-    "length": 100,
-    "analyzer": "cjk"
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "user",
-    "pid": "picture",
-    "propertyTypeName": "사진",
-    "valueType": "FILE",
-    "idable": false,
-    "indexable": false,
-    "labelable": false,
-    "required": false,
-    "length": 100,
-    "analyzer": "cjk"
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "user",
-    "pid": "authority",
-    "propertyTypeName": "권한",
-    "valueType": "REFERENCE",
-    "idable": false,
-    "indexable": false,
-    "labelable": false,
-    "required": false,
-    "length": 100,
-    "analyzer": "cjk"
+    "typeName": "사용자/관리자",
+    "repositoryType": "node",
+    "eviction": 0
   }
-
 ]

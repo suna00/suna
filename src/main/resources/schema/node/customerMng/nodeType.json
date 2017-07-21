@@ -1,11 +1,110 @@
 [
   {
-    "parentId" : "root",
-    "typeId" : "nodeType",
-    "id" : "customerMng",
-    "tid" : "customerMng",
-    "typeName" : "고객 관리",
-    "repositoryType" : "path",
-    "eviction" : 0
+    "parentId": "root",
+    "typeId": "nodeType",
+    "id": "customerMng",
+    "tid": "customerMng",
+    "typeName": "고객 관리",
+    "repositoryType": "path",
+    "eviction": 0
+  },
+  {
+    "parentId": "customerMng",
+    "typeId": "nodeType",
+    "id": "blackConsumer",
+    "tid": "blackConsumer",
+    "typeName": "블랙컨슈머",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "customerMng",
+    "typeId": "nodeType",
+    "id": "saveAndUsedPointMap",
+    "tid": "saveAndUsedPointMap",
+    "typeName": "포인트 매핑",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "customerMng",
+    "typeId": "nodeType",
+    "id": "savePoint",
+    "tid": "savePoint",
+    "typeName": "포인트 적립",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "customerMng",
+    "typeId": "nodeType",
+    "id": "device",
+    "tid": "device",
+    "typeName": "디바이스",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "customerMng",
+    "typeId": "nodeType",
+    "id": "itemsOfInterest",
+    "tid": "itemsOfInterest",
+    "typeName": "관심상품",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "customerMng",
+    "typeId": "nodeType",
+    "id": "leaveMember",
+    "tid": "leaveMember",
+    "typeName": "탈퇴회원",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "customerMng",
+    "typeId": "nodeType",
+    "id": "loginHistory",
+    "tid": "loginHistory",
+    "typeName": "로그인 이력",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "customerMng",
+    "typeId": "nodeType",
+    "id": "member",
+    "tid": "member",
+    "typeName": "회원 ",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "customerMng",
+    "typeId": "nodeType",
+    "id": "mileage",
+    "tid": "mileage",
+    "typeName": "마일리지",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "customerMng",
+    "typeId": "nodeType",
+    "id": "myDeliveryAddress",
+    "tid": "myDeliveryAddress",
+    "typeName": "나의 배송지",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "customerMng",
+    "typeId": "nodeType",
+    "id": "usedPoint",
+    "tid": "usedPoint",
+    "typeName": "포인트 사용",
+    "repositoryType": "data",
+    "eviction": 0
   }
 ]
