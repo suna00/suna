@@ -1,1 +1,156 @@
-[]
+[
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentClass": "Numeric",
+    "componentClassName": "NUMBER",
+    "icon": "fa-square-o",
+    "order": 10
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentClass": "Money",
+    "componentClassName": "MONEY",
+    "icon": "fa-square-o",
+    "order": 20
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentClass": "Text",
+    "componentClassName": "TEXT",
+    "icon": "fa-square-o",
+    "order": 30
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentClass": "Textarea",
+    "componentClassName": "TEXT AREA",
+    "icon": "fa-square-o",
+    "order": 40
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentClass": "TextEditor",
+    "componentClassName": "TEXT EDITOR",
+    "icon": "fa-square-o",
+    "order": 50
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentClass": "Select",
+    "componentClassName": "SELECT",
+    "icon": "fa-square-o",
+    "order": 60
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentClass": "Select2",
+    "componentClassName": "SELECT2",
+    "icon": "fa-square-o",
+    "order": 70
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentClass": "SelectMultiple",
+    "componentClassName": "SELECT MULTIPLE",
+    "icon": "fa-square-o",
+    "order": 80
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentClass": "Select2Multiple",
+    "componentClassName": "SELECT2 MULTIPLE",
+    "icon": "fa-square-o",
+    "order": 90
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentClass": "DualListbox",
+    "componentClassName": "DUAL LIST BOX",
+    "icon": "fa-square-o",
+    "order": 100
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentClass": "Checkbox",
+    "componentClassName": "CHECKBOX",
+    "icon": "fa-square-o",
+    "order": 110
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentClass": "Radio",
+    "componentClassName": "RADIO",
+    "icon": "fa-square-o",
+    "order": 120
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentClass": "Switch",
+    "componentClassName": "SWITCH",
+    "icon": "fa-square-o",
+    "order": 130
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentClass": "Date",
+    "componentClassName": "DATE",
+    "icon": "fa-square-o",
+    "order": 140
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentClass": "DateTime",
+    "componentClassName": "DATE TIME",
+    "icon": "fa-square-o",
+    "order": 150
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentClass": "Image",
+    "componentClassName": "IMAGE",
+    "icon": "fa-square-o",
+    "order": 160
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentClass": "Rating",
+    "componentClassName": "RATING",
+    "icon": "fa-square-o",
+    "order": 170
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentClass": "Video",
+    "componentClassName": "VIDEO",
+    "icon": "fa-square-o",
+    "order": 180
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentClass": "Progress",
+    "componentClassName": "PROGRESS",
+    "icon": "fa-square-o",
+    "order": 190
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentClass": "JsonEditor",
+    "componentClassName": "JSON EDITOR",
+    "icon": "fa-square-o",
+    "order": 200
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentClass": "ObjectEditor",
+    "componentClassName": "OBJECT EDITOR",
+    "icon": "fa-square-o",
+    "order": 210
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentClass": "Sortable",
+    "componentClassName": "SORTABLE",
+    "icon": "fa-square-o",
+    "order": 220
+  }
+]
