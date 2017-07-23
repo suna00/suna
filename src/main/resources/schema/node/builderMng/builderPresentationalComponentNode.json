@@ -1,154 +1,161 @@
 [
   {
     "typeId" : "builderPresentationalComponent",
-    "componentClass": "Numeric",
+    "componentClass": "SpinButtonLink",
+    "componentClassName": "BUTTON LINK",
+    "icon": "fa-square-o",
+    "order": 1
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentClass": "SpinNumeric",
     "componentClassName": "NUMBER",
     "icon": "fa-square-o",
     "order": 10
   },
   {
     "typeId" : "builderPresentationalComponent",
-    "componentClass": "Money",
+    "componentClass": "SpinMoney",
     "componentClassName": "MONEY",
     "icon": "fa-square-o",
     "order": 20
   },
   {
     "typeId" : "builderPresentationalComponent",
-    "componentClass": "Text",
+    "componentClass": "SpinText",
     "componentClassName": "TEXT",
     "icon": "fa-square-o",
     "order": 30
   },
   {
     "typeId" : "builderPresentationalComponent",
-    "componentClass": "Textarea",
+    "componentClass": "SpinTextarea",
     "componentClassName": "TEXT AREA",
     "icon": "fa-square-o",
     "order": 40
   },
   {
     "typeId" : "builderPresentationalComponent",
-    "componentClass": "TextEditor",
+    "componentClass": "SpinTextEditor",
     "componentClassName": "TEXT EDITOR",
     "icon": "fa-square-o",
     "order": 50
   },
   {
     "typeId" : "builderPresentationalComponent",
-    "componentClass": "Select",
+    "componentClass": "SpinSelect",
     "componentClassName": "SELECT",
     "icon": "fa-square-o",
     "order": 60
   },
   {
     "typeId" : "builderPresentationalComponent",
-    "componentClass": "Select2",
+    "componentClass": "SpinSelect2",
     "componentClassName": "SELECT2",
     "icon": "fa-square-o",
     "order": 70
   },
   {
     "typeId" : "builderPresentationalComponent",
-    "componentClass": "SelectMultiple",
+    "componentClass": "SpinSelectMultiple",
     "componentClassName": "SELECT MULTIPLE",
     "icon": "fa-square-o",
     "order": 80
   },
   {
     "typeId" : "builderPresentationalComponent",
-    "componentClass": "Select2Multiple",
+    "componentClass": "SpinSelect2Multiple",
     "componentClassName": "SELECT2 MULTIPLE",
     "icon": "fa-square-o",
     "order": 90
   },
   {
     "typeId" : "builderPresentationalComponent",
-    "componentClass": "DualListbox",
+    "componentClass": "SpinDualListbox",
     "componentClassName": "DUAL LIST BOX",
     "icon": "fa-square-o",
     "order": 100
   },
   {
     "typeId" : "builderPresentationalComponent",
-    "componentClass": "Checkbox",
+    "componentClass": "SpinCheckbox",
     "componentClassName": "CHECKBOX",
     "icon": "fa-square-o",
     "order": 110
   },
   {
     "typeId" : "builderPresentationalComponent",
-    "componentClass": "Radio",
+    "componentClass": "SpinRadio",
     "componentClassName": "RADIO",
     "icon": "fa-square-o",
     "order": 120
   },
   {
     "typeId" : "builderPresentationalComponent",
-    "componentClass": "Switch",
+    "componentClass": "SpinSwitch",
     "componentClassName": "SWITCH",
     "icon": "fa-square-o",
     "order": 130
   },
   {
     "typeId" : "builderPresentationalComponent",
-    "componentClass": "Date",
+    "componentClass": "SpinDate",
     "componentClassName": "DATE",
     "icon": "fa-square-o",
     "order": 140
   },
   {
     "typeId" : "builderPresentationalComponent",
-    "componentClass": "DateTime",
+    "componentClass": "SpinDateTime",
     "componentClassName": "DATE TIME",
     "icon": "fa-square-o",
     "order": 150
   },
   {
     "typeId" : "builderPresentationalComponent",
-    "componentClass": "Image",
+    "componentClass": "SpinImage",
     "componentClassName": "IMAGE",
     "icon": "fa-square-o",
     "order": 160
   },
   {
     "typeId" : "builderPresentationalComponent",
-    "componentClass": "Rating",
+    "componentClass": "SpinRating",
     "componentClassName": "RATING",
     "icon": "fa-square-o",
     "order": 170
   },
   {
     "typeId" : "builderPresentationalComponent",
-    "componentClass": "Video",
+    "componentClass": "SpinVideo",
     "componentClassName": "VIDEO",
     "icon": "fa-square-o",
     "order": 180
   },
   {
     "typeId" : "builderPresentationalComponent",
-    "componentClass": "Progress",
+    "componentClass": "SpinProgress",
     "componentClassName": "PROGRESS",
     "icon": "fa-square-o",
     "order": 190
   },
   {
     "typeId" : "builderPresentationalComponent",
-    "componentClass": "JsonEditor",
+    "componentClass": "SpinJsonEditor",
     "componentClassName": "JSON EDITOR",
     "icon": "fa-square-o",
     "order": 200
   },
   {
     "typeId" : "builderPresentationalComponent",
-    "componentClass": "ObjectEditor",
+    "componentClass": "SpinObjectEditor",
     "componentClassName": "OBJECT EDITOR",
     "icon": "fa-square-o",
     "order": 210
   },
   {
     "typeId" : "builderPresentationalComponent",
-    "componentClass": "Sortable",
+    "componentClass": "SpinSortable",
     "componentClassName": "SORTABLE",
     "icon": "fa-square-o",
     "order": 220
