@@ -86,7 +86,7 @@ public class SessionConfiguration {
 
     @Bean
     public HazelcastInstance hazelcastInstance() {
-        return Hazelcast.newHazelcastInstance(config());
+        return Hazelcast.getOrCreateHazelcastInstance(config());
     }
 
     /**
