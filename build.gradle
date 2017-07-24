@@ -94,6 +94,8 @@ dependencies {
     compile('org.infinispan:infinispan-query:8.2.6.Final')
     compile('io.jsonwebtoken:jjwt:0.7.0')
 
+    compile('org.projectlombok:lombok:1.16.16')
+
     compile("org.springframework:spring-jdbc")
     compile("org.apache.commons:commons-dbcp2:2.1.1")
     compile('com.oracle:ojdbc8:12.2.0.1')                       //oracle
@@ -105,4 +107,5 @@ dependencies {
     compile('org.projectlombok:lombok:1.16.16')
     runtime('org.springframework.boot:spring-boot-devtools')
     testCompile('org.springframework.boot:spring-boot-starter-test')
+
 }
