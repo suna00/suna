@@ -4,9 +4,7 @@ import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.PropertyType;
 import org.apache.commons.lang3.StringUtils;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -48,7 +46,7 @@ public class DBQueryContext {
     }
 
     public static void makeDBQueryTerm(NodeType nodeType, DBQueryContext dbQueryContext, List<DBQueryTerm> dbQueryTermList, String paramName, String value) {
-        value = value.equals("@sysdate") ? new SimpleDateFormat("yyyyMMdd HHmmss").format(new Date()) : value.equals("@sysday") ? new SimpleDateFormat("yyyyMMdd").format(new Date()) : value;
+//        value = value.equals("@sysdate") ? new SimpleDateFormat("yyyyMMdd HHmmss").format(new Date()) : value.equals("@sysday") ? new SimpleDateFormat("yyyyMMdd").format(new Date()) : value;
 
         if (paramName.equals("page")) {
             dbQueryContext.setCurrentPage(value);
@@ -61,17 +59,18 @@ public class DBQueryContext {
             return;
         } else if (paramName.equals("sorting")) {
             dbQueryContext.setSorting(value);
+            return;
         }
         String propertyType = StringUtils.substringBeforeLast(paramName, "_");
         String method = StringUtils.substringAfterLast(paramName, "_");
 
         DBQueryTerm dbQueryTerm;
 
-        if(method.equals("")){
+        if (method.equals("")) {
             dbQueryTerm = makePropertyQueryTerm(nodeType, propertyType, "equals", value);
-        }else if(method.equals("matching")){
+        } else if (method.equals("matching")) {
             dbQueryTerm = makePropertyQueryTerm(nodeType, propertyType, method, "%".concat(value).concat("%"));
-        }else {
+        } else {
             dbQueryTerm = makePropertyQueryTerm(nodeType, propertyType, method, value);
         }
 
@@ -104,7 +103,7 @@ public class DBQueryContext {
     }
 
     public Integer getPageSize() {
-        return pageSize;
+        return pageSize == null ? 1000 : pageSize;
     }
 
     public void setCurrentPage(String page) {
@@ -113,7 +112,7 @@ public class DBQueryContext {
     }
 
     public Integer getCurrentPage() {
-        return currentPage;
+        return currentPage == null ? 1 : currentPage;
     }
 
     public void setMaxSize(String maxSize) {

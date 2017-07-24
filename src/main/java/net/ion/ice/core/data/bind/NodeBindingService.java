@@ -90,18 +90,18 @@ public class NodeBindingService {
         return nodeBindingInfo.retrieve(id);
     }
 
-//    public List<Map<String, Object>> list(String typeId) {
-//        nodeBindProcess(typeId);
-//        NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(typeId);
-//        return nodeBindingInfo.list();
-//    }
-
-    public List<Map<String, Object>> list(String typeId, WebRequest request) {
+    public Map<String, Object> list(String typeId) {
         nodeBindProcess(typeId);
         NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(typeId);
-        if (request.getParameterMap().isEmpty()) {
+        return nodeBindingInfo.list();
+    }
+
+    public Map<String, Object> list(String typeId, WebRequest request) {
+        nodeBindProcess(typeId);
+        NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(typeId);
+        if(request.getParameterMap().isEmpty()){
             return nodeBindingInfo.list();
-        } else {
+        }else{
             return nodeBindingInfo.list(DBQueryContext.makeDBQueryContextFromParameter(request.getParameterMap(), nodeService.getNodeType(typeId)));
         }
     }
