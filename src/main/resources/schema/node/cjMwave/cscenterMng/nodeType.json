@@ -1,15 +1,6 @@
 [
   {
-    "parentId" : "cjMwave",
-    "typeId" : "nodeType",
-    "id" : "cscenterMng",
-    "tid" : "cscenterMng",
-    "typeName" : "고객센터 관리",
-    "repositoryType" : "path",
-    "eviction" : 0
-  },
-  {
-    "parentId" : "cscenterMng",
+    "parentId" : "webServiceMng",
     "typeId" : "nodeType",
     "id" : "cscenterNtf",
     "tid" : "cscenterNtf",
@@ -18,7 +9,7 @@
     "eviction" : 100
   },
   {
-    "parentId" : "cscenterMng",
+    "parentId" : "webServiceMng",
     "typeId" : "nodeType",
     "id" : "cscenterQna",
     "tid" : "cscenterQna",
@@ -27,7 +18,7 @@
     "eviction" : 100
   },
   {
-    "parentId" : "cscenterMng",
+    "parentId" : "webServiceMng",
     "typeId" : "nodeType",
     "id" : "cscenterFaq",
     "tid" : "cscenterFaq",

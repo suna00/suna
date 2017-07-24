@@ -1,0 +1,11 @@
+[
+  {
+    "parentId" : "systemMng",
+    "typeId" : "nodeType",
+    "id" : "stpltMng",
+    "tid" : "stpltMng",
+    "typeName" : "약관 관리",
+    "repositoryType" : "node",
+    "eviction" : 100
+  }
+]

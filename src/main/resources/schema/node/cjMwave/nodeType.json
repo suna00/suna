@@ -6,5 +6,32 @@
     "typeName" : "cjMwave",
     "repositoryType" : "path",
     "eviction" : 0
+  },
+  {
+    "parentId" : "cjMwave",
+    "typeId" : "nodeType",
+    "id" : "systemMng",
+    "tid" : "systemMng",
+    "typeName" : "시스템 관리",
+    "repositoryType" : "path",
+    "eviction" : 0
+  },
+  {
+    "parentId" : "cjMwave",
+    "typeId" : "nodeType",
+    "id" : "webServiceMng",
+    "tid" : "webServiceMng",
+    "typeName" : "웹서비스 관리",
+    "repositoryType" : "path",
+    "eviction" : 0
+  },
+  {
+    "parentId" : "cjMwave",
+    "typeId" : "nodeType",
+    "id" :  "userMng",
+    "tid" : "userMng",
+    "typeName" : "사용자 관리",
+    "repositoryType" : "path",
+    "eviction" : 0
   }
 ]

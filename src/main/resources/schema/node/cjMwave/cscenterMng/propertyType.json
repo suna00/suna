@@ -1,11 +1,11 @@
 [
   {
     "typeId" : "propertyType",
-    "tid" : "systemNtf",
-    "id": "systemNtf@ntfSeq",
+    "tid" : "cscenterNtf",
+    "id": "cscenterNtf@ntfSeq",
     "pid" : "ntfSeq",
     "propertyTypeName" : "공지사항 일련번호",
-    "valueType" : "INT",
+    "valueType" : "LONG",
     "required": true,
     "idable": true,
     "labelable": false,
@@ -14,48 +14,96 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "idType": "autoIncrement"
+    "idType": "autoIncrement",
+    "validationTypes": {
+      "required": { "value": true, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
   },
   {
     "typeId" : "propertyType",
-    "tid" : "systemNtf",
-    "id": "systemNtf@ntfTgtCd",
+    "tid" : "cscenterNtf",
+    "id": "cscenterNtf@ntfTgtCd",
     "pid" : "ntfTgtCd",
     "propertyTypeName" : "공지 대상코드",
-    "valueType" : "STRING",
+    "valueType": "REFERENCE",
     "required": false,
     "idable": false,
-    "labelable": false,
+    "labelable": true,
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "",
-    "referenceValue": ""
+    "referenceType": "code",
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
   },
   {
     "typeId" : "propertyType",
-    "tid" : "systemNtf",
-    "id": "systemNtf@ntfTypeCd",
+    "tid" : "cscenterNtf",
+    "id": "cscenterNtf@ntfTypeCd",
     "pid" : "ntfTypeCd",
     "propertyTypeName" : "공지 유형코드",
-    "valueType" : "STRING",
+    "valueType": "REFERENCE",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "",
-    "referenceValue": ""
+    "referenceType": "code",
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
   },
   {
     "typeId" : "propertyType",
-    "tid" : "systemNtf",
-    "id": "systemNtf@showYn",
-    "pid" : "showYn",
-    "propertyTypeName" : "노출 여부",
-    "valueType": "CODE",
-    "required": true,
+    "tid" : "cscenterNtf",
+    "id": "cscenterNtf@svcCntryCd",
+    "pid" : "svcCntryCd",
+    "propertyTypeName" : "서비스 국가코드",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "code",
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "cscenterNtf",
+    "id": "cscenterNtf@svcTermlDivCdList",
+    "pid" : "svcTermlDivCdList",
+    "propertyTypeName" : "서비스단말 구분코드 리스트",
+    "valueType": "STRING",
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
@@ -63,12 +111,43 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "code": [{"value": "Y", "label": "노출"}, {"value": "N", "label": "비노출"}]
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
   },
   {
     "typeId" : "propertyType",
-    "tid" : "systemNtf",
-    "id": "systemNtf@pstngStDt",
+    "tid" : "cscenterNtf",
+    "id": "cscenterNtf@showYn",
+    "pid" : "showYn",
+    "propertyTypeName" : "노출 여부",
+    "valueType": "REFERENCE",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "code",
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "cscenterNtf",
+    "id": "cscenterNtf@pstngStDt",
     "pid" : "pstngStDt",
     "propertyTypeName" : "게시 시작 일시",
     "valueType" : "DATE",
@@ -79,12 +158,20 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": ""
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
   },
   {
     "typeId" : "propertyType",
-    "tid" : "systemNtf",
-    "id": "systemNtf@pstngFnsDt",
+    "tid" : "cscenterNtf",
+    "id": "cscenterNtf@pstngFnsDt",
     "pid" : "pstngFnsDt",
     "propertyTypeName" : "게시 종료 일시",
     "valueType" : "DATE",
@@ -95,12 +182,20 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": ""
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
   },
   {
     "typeId" : "propertyType",
-    "tid" : "systemNtf",
-    "id": "systemNtf@ntfTitle",
+    "tid" : "cscenterNtf",
+    "id": "cscenterNtf@ntfTitle",
     "pid" : "ntfTitle",
     "propertyTypeName" : "공지 제목",
     "valueType" : "STRING",
@@ -111,12 +206,20 @@
     "indexable": false,
     "analyzer": "cjk",
     "referenceType": "",
-    "referenceValue": ""
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
   },
   {
     "typeId" : "propertyType",
-    "tid" : "systemNtf",
-    "id": "systemNtf@ntfSbst",
+    "tid" : "cscenterNtf",
+    "id": "cscenterNtf@ntfSbst",
     "pid" : "ntfSbst",
     "propertyTypeName" : "공지 내용",
     "valueType" : "TEXT",
@@ -125,14 +228,22 @@
     "labelable": false,
     "treeable": false,
     "indexable": false,
-    "analyzer": null,
+    "analyzer": "cjk",
     "referenceType": "",
-    "referenceValue": ""
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
   },
   {
     "typeId" : "propertyType",
-    "tid" : "systemNtf",
-    "id": "systemNtf@regr",
+    "tid" : "cscenterNtf",
+    "id": "cscenterNtf@regr",
     "pid" : "regr",
     "propertyTypeName" : "등록자",
     "valueType" : "STRING",
@@ -143,12 +254,20 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": ""
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
   },
   {
     "typeId" : "propertyType",
-    "tid" : "systemNtf",
-    "id": "systemNtf@regDt",
+    "tid" : "cscenterNtf",
+    "id": "cscenterNtf@regDt",
     "pid" : "regDt",
     "propertyTypeName" : "등록일시",
     "valueType" : "DATE",
@@ -159,12 +278,20 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": ""
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
   },
   {
     "typeId" : "propertyType",
-    "tid" : "systemNtf",
-    "id": "systemNtf@amdr",
+    "tid" : "cscenterNtf",
+    "id": "cscenterNtf@amdr",
     "pid" : "amdr",
     "propertyTypeName" : "수정자",
     "valueType" : "STRING",
@@ -175,12 +302,20 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": ""
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
   },
   {
     "typeId" : "propertyType",
-    "tid" : "systemNtf",
-    "id": "systemNtf@amdDt",
+    "tid" : "cscenterNtf",
+    "id": "cscenterNtf@amdDt",
     "pid" : "amdDt",
     "propertyTypeName" : "수정일시",
     "valueType" : "DATE",
@@ -191,15 +326,23 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": ""
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
   },
   {
     "typeId" : "propertyType",
-    "tid" : "stpltMng",
-    "id": "stpltMng@stpltSeq",
-    "pid" : "stpltSeq",
-    "propertyTypeName" : "약관 일련번호",
-    "valueType" : "INT",
+    "tid" : "cscenterQna",
+    "id": "cscenterQna@qnaSeq",
+    "pid" : "qnaSeq",
+    "propertyTypeName" : "QNA 일련번호",
+    "valueType" : "LONG",
     "required": true,
     "idable": true,
     "labelable": false,
@@ -208,14 +351,94 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "idType": "autoIncrement"
+    "idType": "autoIncrement",
+    "validationTypes": {
+      "required": { "value": true, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
   },
   {
     "typeId" : "propertyType",
-    "tid" : "stpltMng",
-    "id": "stpltMng@stpltTypeCd",
-    "pid" : "stpltTypeCd",
-    "propertyTypeName" : "약관 유형코드",
+    "tid" : "cscenterQna",
+    "id": "cscenterQna@qnaTypeCd",
+    "pid" : "qnaTypeCd",
+    "propertyTypeName" : "QNA 유형코드",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "code",
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "cscenterQna",
+    "id": "cscenterQna@qnaTitle",
+    "pid" : "qnaTitle",
+    "propertyTypeName" : "QNA 제목",
+    "valueType" : "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": "cjk",
+    "referenceType": "",
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "cscenterQna",
+    "id": "cscenterQna@qnaSbst",
+    "pid" : "qnaSbst",
+    "propertyTypeName" : "QNA 내용",
+    "valueType" : "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": "cjk",
+    "referenceType": "",
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "cscenterQna",
+    "id": "cscenterQna@email",
+    "pid" : "email",
+    "propertyTypeName" : "이메일",
     "valueType" : "STRING",
     "required": false,
     "idable": false,
@@ -224,14 +447,22 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": ""
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
   },
   {
     "typeId" : "propertyType",
-    "tid" : "stpltMng",
-    "id": "stpltMng@accDivCd",
-    "pid" : "accDivCd",
-    "propertyTypeName" : "계정 구분코드",
+    "tid" : "cscenterQna",
+    "id": "cscenterQna@mbrSbscYn",
+    "pid" : "mbrSbscYn",
+    "propertyTypeName" : "회원가입여부",
     "valueType" : "STRING",
     "required": false,
     "idable": false,
@@ -240,46 +471,22 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": ""
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
   },
   {
     "typeId" : "propertyType",
-    "tid" : "stpltMng",
-    "id": "stpltMng@useYn",
-    "pid" : "useYn",
-    "propertyTypeName" : "사용 여부",
-    "valueType" : "STRING",
-    "required": true,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "",
-    "referenceValue": ""
-  },
-  {
-    "typeId" : "propertyType",
-    "tid" : "stpltMng",
-    "id": "stpltMng@stpltVer",
-    "pid" : "stpltVer",
-    "propertyTypeName" : "버전",
-    "valueType" : "STRING",
-    "required": true,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "",
-    "referenceValue": ""
-  },
-  {
-    "typeId" : "propertyType",
-    "tid" : "stpltMng",
-    "id": "stpltMng@stpltSbst",
-    "pid" : "stpltSbst",
-    "propertyTypeName" : "약관 내용",
+    "tid" : "cscenterQna",
+    "id": "cscenterQna@ansSbst",
+    "pid" : "ansSbst",
+    "propertyTypeName" : "답변 내용",
     "valueType" : "STRING",
     "required": false,
     "idable": false,
@@ -288,12 +495,44 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": ""
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
   },
   {
     "typeId" : "propertyType",
-    "tid" : "stpltMng",
-    "id": "stpltMng@regr",
+    "tid" : "cscenterQna",
+    "id": "cscenterQna@filePathList",
+    "pid" : "filePathList",
+    "propertyTypeName" : "파일경로리스트",
+    "valueType" : "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "cscenterQna",
+    "id": "cscenterQna@regr",
     "pid" : "regr",
     "propertyTypeName" : "등록자",
     "valueType" : "STRING",
@@ -304,12 +543,20 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": ""
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
   },
   {
     "typeId" : "propertyType",
-    "tid" : "stpltMng",
-    "id": "stpltMng@regDt",
+    "tid" : "cscenterQna",
+    "id": "cscenterQna@regDt",
     "pid" : "regDt",
     "propertyTypeName" : "등록일시",
     "valueType" : "DATE",
@@ -320,12 +567,20 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": ""
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
   },
   {
     "typeId" : "propertyType",
-    "tid" : "stpltMng",
-    "id": "stpltMng@amdr",
+    "tid" : "cscenterQna",
+    "id": "cscenterQna@amdr",
     "pid" : "amdr",
     "propertyTypeName" : "수정자",
     "valueType" : "STRING",
@@ -336,12 +591,20 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": ""
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
   },
   {
     "typeId" : "propertyType",
-    "tid" : "stpltMng",
-    "id": "stpltMng@amdDt",
+    "tid" : "cscenterQna",
+    "id": "cscenterQna@amdDt",
     "pid" : "amdDt",
     "propertyTypeName" : "수정일시",
     "valueType" : "DATE",
@@ -352,6 +615,232 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": ""
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "cscenterFaq",
+    "id": "cscenterFaq@faqSeq",
+    "pid" : "faqSeq",
+    "propertyTypeName" : "FAQ 일련번호",
+    "valueType" : "LONG",
+    "required": true,
+    "idable": true,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "idType": "autoIncrement",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "cscenterFaq",
+    "id": "cscenterFaq@faqTypeCd",
+    "pid" : "faqTypeCd",
+    "propertyTypeName" : "FAQ 유형코드",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": "cjk",
+    "referenceType": "groupCode",
+    "referenceValue": "faqType",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "cscenterFaq",
+    "id": "cscenterFaq@faqSortOdrg",
+    "pid" : "faqSortOdrg",
+    "propertyTypeName" : "FAQ 정렬순서",
+    "valueType" : "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "cscenterFaq",
+    "id": "cscenterFaq@faqTitle",
+    "pid" : "faqTitle",
+    "propertyTypeName" : "FAQ 제목",
+    "valueType" : "STRING",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": "cjk",
+    "referenceType": "",
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "cscenterFaq",
+    "id": "cscenterFaq@faqSbst",
+    "pid" : "faqSbst",
+    "propertyTypeName" : "FAQ 내용",
+    "valueType" : "TEXT",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": "cjk",
+    "referenceType": "",
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "cscenterFaq",
+    "id": "cscenterFaq@regr",
+    "pid" : "regr",
+    "propertyTypeName" : "등록자",
+    "valueType" : "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "cscenterFaq",
+    "id": "cscenterFaq@regDt",
+    "pid" : "regDt",
+    "propertyTypeName" : "등록일시",
+    "valueType" : "DATE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "cscenterFaq",
+    "id": "cscenterFaq@amdr",
+    "pid" : "amdr",
+    "propertyTypeName" : "수정자",
+    "valueType" : "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "cscenterFaq",
+    "id": "cscenterFaq@amdDt",
+    "pid" : "amdDt",
+    "propertyTypeName" : "수정일시",
+    "valueType" : "DATE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "validationTypes": {
+      "required": { "value": false, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "중복된 값 입니다." },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
+      "regularExpression": { "value": "", "description": "" }
+    }
   }
+
 ]

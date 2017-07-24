@@ -1,0 +1,12 @@
+[
+  {
+    "parentId" : "webServiceMng",
+    "typeId" : "nodeType",
+    "id" : "popupInfo",
+    "tid" : "popupInfo",
+    "typeName" : "팝업 정보",
+    "repositoryType" : "node",
+    "tableName": "cjDb#popupInfo",
+    "eviction" : 100
+  }
+]
