@@ -4,6 +4,7 @@ import com.hazelcast.core.HazelcastInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.io.Resource;
@@ -18,7 +19,15 @@ import java.io.IOException;
 public class ApplicationContextManager implements ApplicationContextAware{
     private Logger logger = LoggerFactory.getLogger(ApplicationContextManager.class);
 
-    public static ApplicationContext context ;
+    private static ApplicationContext context ;
+
+    @Autowired
+    private ApplicationContext ctx;
+
+    public ApplicationContextManager(){
+        logger.info("CONSTRUCT Application Context Aware");
+        context = this.ctx;
+    }
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {

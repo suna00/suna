@@ -23,11 +23,7 @@ public class Ice2Application {
 	    System.setProperty("spring.devtools.restart.enabled","false");
         System.setProperty("spring.devtools.livereload.enabled","true");
         Stagemonitor.init();
-		logger.info("BEFORE START");
 		ApplicationContext ctx =  SpringApplication.run(Ice2Application.class, args);
-		ApplicationContextManager.context = ctx ;
-		logger.info("AFTER START");
-
 	}
 
 	@Bean
