@@ -1,0 +1,12 @@
+[
+  {
+    "parentId" : "webServiceMng",
+    "typeId" : "nodeType",
+    "id" : "badgeInfo",
+    "tid" : "badgeInfo",
+    "typeName" : "뱃지 정보",
+    "repositoryType" : "node",
+    "tableName": "cjDb#badgeInfo",
+    "eviction" : 100
+  }
+]
