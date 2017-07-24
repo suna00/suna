@@ -117,8 +117,12 @@ hazelcast:
   members:
     - 125.131.88.147
 
+cluster:
+  members:
+    - 125.131.88.147
+
 session:
-  mode: client
+  mode: cluster
   baseDir: /resource/ice2/client
   members:
     - 125.131.88.147
