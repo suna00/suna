@@ -101,6 +101,8 @@ dependencies {
     compile('org.mariadb.jdbc:mariadb-java-client:2.0.2')       //maria
     compile('com.microsoft.sqlserver:mssql-jdbc:6.1.0.jre8')    //msSql
 
+    compileOnly('org.projectlombok:lombok')
+
     compile('org.stagemonitor:stagemonitor-web-servlet:0.80.0.RC1')
     compile('org.projectlombok:lombok:1.16.16')
     runtime('org.springframework.boot:spring-boot-devtools')
