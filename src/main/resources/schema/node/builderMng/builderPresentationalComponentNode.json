@@ -1,6 +1,7 @@
 [
   {
     "typeId" : "builderPresentationalComponent",
+    "componentClassType": "BUTTON",
     "componentClass": "SpinButtonLink",
     "componentClassName": "BUTTON LINK",
     "icon": "fa-square-o",
@@ -8,6 +9,7 @@
   },
   {
     "typeId" : "builderPresentationalComponent",
+    "componentClassType": "INPUT",
     "componentClass": "SpinNumeric",
     "componentClassName": "NUMBER",
     "icon": "fa-square-o",
@@ -15,6 +17,7 @@
   },
   {
     "typeId" : "builderPresentationalComponent",
+    "componentClassType": "INPUT",
     "componentClass": "SpinMoney",
     "componentClassName": "MONEY",
     "icon": "fa-square-o",
@@ -22,6 +25,7 @@
   },
   {
     "typeId" : "builderPresentationalComponent",
+    "componentClassType": "INPUT",
     "componentClass": "SpinText",
     "componentClassName": "TEXT",
     "icon": "fa-square-o",
@@ -29,6 +33,7 @@
   },
   {
     "typeId" : "builderPresentationalComponent",
+    "componentClassType": "INPUT",
     "componentClass": "SpinTextarea",
     "componentClassName": "TEXT AREA",
     "icon": "fa-square-o",
@@ -36,6 +41,7 @@
   },
   {
     "typeId" : "builderPresentationalComponent",
+    "componentClassType": "INPUT",
     "componentClass": "SpinTextEditor",
     "componentClassName": "TEXT EDITOR",
     "icon": "fa-square-o",
@@ -43,6 +49,7 @@
   },
   {
     "typeId" : "builderPresentationalComponent",
+    "componentClassType": "INPUT",
     "componentClass": "SpinSelect",
     "componentClassName": "SELECT",
     "icon": "fa-square-o",
@@ -50,6 +57,7 @@
   },
   {
     "typeId" : "builderPresentationalComponent",
+    "componentClassType": "INPUT",
     "componentClass": "SpinSelect2",
     "componentClassName": "SELECT2",
     "icon": "fa-square-o",
@@ -57,6 +65,7 @@
   },
   {
     "typeId" : "builderPresentationalComponent",
+    "componentClassType": "INPUT",
     "componentClass": "SpinSelectMultiple",
     "componentClassName": "SELECT MULTIPLE",
     "icon": "fa-square-o",
@@ -64,6 +73,7 @@
   },
   {
     "typeId" : "builderPresentationalComponent",
+    "componentClassType": "INPUT",
     "componentClass": "SpinSelect2Multiple",
     "componentClassName": "SELECT2 MULTIPLE",
     "icon": "fa-square-o",
@@ -71,6 +81,7 @@
   },
   {
     "typeId" : "builderPresentationalComponent",
+    "componentClassType": "INPUT",
     "componentClass": "SpinDualListbox",
     "componentClassName": "DUAL LIST BOX",
     "icon": "fa-square-o",
@@ -78,6 +89,7 @@
   },
   {
     "typeId" : "builderPresentationalComponent",
+    "componentClassType": "INPUT",
     "componentClass": "SpinCheckbox",
     "componentClassName": "CHECKBOX",
     "icon": "fa-square-o",
@@ -85,6 +97,7 @@
   },
   {
     "typeId" : "builderPresentationalComponent",
+    "componentClassType": "INPUT",
     "componentClass": "SpinRadio",
     "componentClassName": "RADIO",
     "icon": "fa-square-o",
@@ -92,6 +105,7 @@
   },
   {
     "typeId" : "builderPresentationalComponent",
+    "componentClassType": "INPUT",
     "componentClass": "SpinSwitch",
     "componentClassName": "SWITCH",
     "icon": "fa-square-o",
@@ -99,6 +113,7 @@
   },
   {
     "typeId" : "builderPresentationalComponent",
+    "componentClassType": "INPUT",
     "componentClass": "SpinDate",
     "componentClassName": "DATE",
     "icon": "fa-square-o",
@@ -106,6 +121,7 @@
   },
   {
     "typeId" : "builderPresentationalComponent",
+    "componentClassType": "INPUT",
     "componentClass": "SpinDateTime",
     "componentClassName": "DATE TIME",
     "icon": "fa-square-o",
@@ -113,6 +129,7 @@
   },
   {
     "typeId" : "builderPresentationalComponent",
+    "componentClassType": "INPUT",
     "componentClass": "SpinImage",
     "componentClassName": "IMAGE",
     "icon": "fa-square-o",
@@ -120,6 +137,7 @@
   },
   {
     "typeId" : "builderPresentationalComponent",
+    "componentClassType": "INPUT",
     "componentClass": "SpinRating",
     "componentClassName": "RATING",
     "icon": "fa-square-o",
@@ -127,6 +145,7 @@
   },
   {
     "typeId" : "builderPresentationalComponent",
+    "componentClassType": "INPUT",
     "componentClass": "SpinVideo",
     "componentClassName": "VIDEO",
     "icon": "fa-square-o",
@@ -134,6 +153,7 @@
   },
   {
     "typeId" : "builderPresentationalComponent",
+    "componentClassType": "INPUT",
     "componentClass": "SpinProgress",
     "componentClassName": "PROGRESS",
     "icon": "fa-square-o",
@@ -141,6 +161,7 @@
   },
   {
     "typeId" : "builderPresentationalComponent",
+    "componentClassType": "INPUT",
     "componentClass": "SpinJsonEditor",
     "componentClassName": "JSON EDITOR",
     "icon": "fa-square-o",
@@ -148,6 +169,7 @@
   },
   {
     "typeId" : "builderPresentationalComponent",
+    "componentClassType": "INPUT",
     "componentClass": "SpinObjectEditor",
     "componentClassName": "OBJECT EDITOR",
     "icon": "fa-square-o",
@@ -155,6 +177,7 @@
   },
   {
     "typeId" : "builderPresentationalComponent",
+    "componentClassType": "INPUT",
     "componentClass": "SpinSortable",
     "componentClassName": "SORTABLE",
     "icon": "fa-square-o",
