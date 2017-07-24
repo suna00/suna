@@ -7,6 +7,8 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+
 /**
  * Created by jaehocho on 2017. 2. 10..
  */
@@ -26,6 +28,12 @@ public class ApplicationContextManager implements ApplicationContextAware{
     public static Resource getResource(String location){
         return context.getResource(location) ;
     }
+
+
+    public static Resource[] getResources(String location) throws IOException {
+        return context.getResources(location) ;
+    }
+
 
     public static HazelcastInstance getHazelcastIntance(){
         return context.getBean(HazelcastInstance.class) ;

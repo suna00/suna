@@ -59,11 +59,6 @@ hazelcast:
     - 127.0.0.1
     - localhost
 
-session:
-  mode: cluster
-  baseDir: /resource/ice2/server
-  members:
-    - 127.0.0.1
 
 
 ---

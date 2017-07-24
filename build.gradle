@@ -70,20 +70,18 @@ repositories {
 * - compile "group:value:version" - OK
 * */
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-tomcat:1.5.4.RELEASE')
 
     compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.boot:spring-boot-configuration-processor')
-    compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     compile('org.apache.commons:commons-lang3:3.5+')
     compile('commons-net:commons-net:3.4+')
     compile('commons-io:commons-io:2.5+')
     compile('com.fasterxml.jackson.core:jackson-databind:2.8.6+')
 	compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.8.6+')
 
-	compile('com.hazelcast:hazelcast-all:3.8+')
+	compile('com.hazelcast:hazelcast-all:3.8.3')
 
     // yml parser
     compile ('com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.8.9')
