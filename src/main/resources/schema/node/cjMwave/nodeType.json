@@ -28,9 +28,9 @@
   {
     "parentId" : "cjMwave",
     "typeId" : "nodeType",
-    "id" :  "userMng",
-    "tid" : "userMng",
-    "typeName" : "사용자 관리",
+    "id" :  "mbrMng",
+    "tid" : "mbrMng",
+    "typeName" : "회원 관리",
     "repositoryType" : "path",
     "eviction" : 0
   }
