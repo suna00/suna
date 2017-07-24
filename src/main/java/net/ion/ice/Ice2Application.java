@@ -17,8 +17,6 @@ import org.stagemonitor.core.Stagemonitor;
 public class Ice2Application {
 	private static Logger logger = LoggerFactory.getLogger(Ice2Application.class);
 
-	public static final String USE_HAZELCAST = "true";
-
 	public static void main(String[] args) {
 	    System.setProperty("spring.devtools.restart.enabled","false");
         System.setProperty("spring.devtools.livereload.enabled","true");
