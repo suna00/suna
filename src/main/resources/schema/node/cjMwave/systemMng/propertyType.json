@@ -22,15 +22,16 @@
     "id": "systemNtf@ntfTgtCd",
     "pid" : "ntfTgtCd",
     "propertyTypeName" : "공지 대상코드",
-    "valueType" : "STRING",
+    "valueType": "CODE",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": false,
-    "analyzer": null,
+    "analyzer": "cjk",
     "referenceType": "",
-    "referenceValue": ""
+    "referenceValue": "",
+    "code": [{"value": "admin", "label": "내부 관리자"}, {"value": "totalUser", "label": "전체회원"}]
   },
   {
     "typeId" : "propertyType",
