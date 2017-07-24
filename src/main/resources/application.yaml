@@ -105,12 +105,6 @@ cluster:
   members:
     - 125.131.88.147
 
-session:
-  mode: cluster
-  baseDir: /resource/ice2/server
-  members:
-    - 125.131.88.147
-
 infinispan:
   cachePath: /resource/ice2/cache
 
