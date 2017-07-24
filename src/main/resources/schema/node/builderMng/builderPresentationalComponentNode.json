@@ -7,7 +7,7 @@
     "icon": "fa-square-o",
     "order": 1,
     "active": true,
-    "childrenComponentClass": ""
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -17,7 +17,7 @@
     "icon": "fa-square-o",
     "order": 10,
     "active": true,
-    "childrenComponentClass": ""
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -27,7 +27,7 @@
     "icon": "fa-square-o",
     "order": 20,
     "active": true,
-    "childrenComponentClass": ""
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -37,7 +37,7 @@
     "icon": "fa-square-o",
     "order": 30,
     "active": true,
-    "childrenComponentClass": ""
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -47,7 +47,7 @@
     "icon": "fa-square-o",
     "order": 40,
     "active": true,
-    "childrenComponentClass": ""
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -57,7 +57,7 @@
     "icon": "fa-square-o",
     "order": 50,
     "active": true,
-    "childrenComponentClass": ""
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -67,7 +67,7 @@
     "icon": "fa-square-o",
     "order": 60,
     "active": true,
-    "childrenComponentClass": ""
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -77,7 +77,7 @@
     "icon": "fa-square-o",
     "order": 70,
     "active": true,
-    "childrenComponentClass": ""
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -87,7 +87,7 @@
     "icon": "fa-square-o",
     "order": 80,
     "active": true,
-    "childrenComponentClass": ""
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -97,7 +97,7 @@
     "icon": "fa-square-o",
     "order": 90,
     "active": true,
-    "childrenComponentClass": ""
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -107,7 +107,7 @@
     "icon": "fa-square-o",
     "order": 100,
     "active": true,
-    "childrenComponentClass": ""
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -117,7 +117,7 @@
     "icon": "fa-square-o",
     "order": 110,
     "active": true,
-    "childrenComponentClass": ""
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -127,7 +127,7 @@
     "icon": "fa-square-o",
     "order": 120,
     "active": true,
-    "childrenComponentClass": ""
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -137,7 +137,7 @@
     "icon": "fa-square-o",
     "order": 130,
     "active": true,
-    "childrenComponentClass": ""
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -147,7 +147,7 @@
     "icon": "fa-square-o",
     "order": 140,
     "active": true,
-    "childrenComponentClass": ""
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -157,7 +157,7 @@
     "icon": "fa-square-o",
     "order": 150,
     "active": true,
-    "childrenComponentClass": ""
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -167,7 +167,7 @@
     "icon": "fa-square-o",
     "order": 160,
     "active": true,
-    "childrenComponentClass": ""
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -177,7 +177,7 @@
     "icon": "fa-square-o",
     "order": 170,
     "active": true,
-    "childrenComponentClass": ""
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -187,7 +187,7 @@
     "icon": "fa-square-o",
     "order": 180,
     "active": true,
-    "childrenComponentClass": ""
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -197,7 +197,7 @@
     "icon": "fa-square-o",
     "order": 190,
     "active": true,
-    "childrenComponentClass": ""
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -207,7 +207,7 @@
     "icon": "fa-square-o",
     "order": 200,
     "active": true,
-    "childrenComponentClass": ""
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -217,7 +217,7 @@
     "icon": "fa-square-o",
     "order": 210,
     "active": true,
-    "childrenComponentClass": ""
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -227,6 +227,6 @@
     "icon": "fa-square-o",
     "order": 220,
     "active": true,
-    "childrenComponentClass": ""
+    "componentChildren": ""
   }
 ]

@@ -196,8 +196,8 @@
   {
     "typeId" : "propertyType",
     "tid": "builderContainerComponent",
-    "id": "builderContainerComponent@childrenComponentClass",
-    "pid": "childrenComponentClass",
+    "id": "builderContainerComponent@componentChildren",
+    "pid": "componentChildren",
     "propertyTypeName": "Children ComponentClass",
     "valueType": "STRING",
     "required": false,
@@ -366,8 +366,8 @@
   {
     "typeId" : "propertyType",
     "tid": "builderPresentationalComponent",
-    "id": "builderPresentationalComponent@childrenComponentClass",
-    "pid": "childrenComponentClass",
+    "id": "builderPresentationalComponent@componentChildren",
+    "pid": "componentChildren",
     "propertyTypeName": "Children ComponentClass",
     "valueType": "STRING",
     "required": false,
