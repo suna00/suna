@@ -2,16 +2,17 @@ package net.ion.ice.core.node;
 
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.context.ExecuteContext;
+import net.ion.ice.core.context.QueryContext;
 import net.ion.ice.core.data.bind.NodeBindingService;
-import net.ion.ice.core.event.*;
+import net.ion.ice.core.event.Event;
+import net.ion.ice.core.event.EventAction;
 import net.ion.ice.core.event.EventListener;
 import net.ion.ice.core.file.FileService;
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
-import net.ion.ice.core.context.QueryContext;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.query.QueryResult;
-import net.ion.ice.core.query.SimpleQueryResult;
 import net.ion.ice.core.query.ResultField;
+import net.ion.ice.core.query.SimpleQueryResult;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.document.DateTools;
 import org.apache.lucene.search.SortField;
@@ -26,7 +27,10 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -38,8 +42,6 @@ public class NodeService {
 
     @Autowired
     private InfinispanRepositoryService infinispanRepositoryService ;
-    @Autowired
-    private NodeBindingService nodeBindingService;
 
     @Autowired
     private FileService fileService ;
@@ -159,6 +161,9 @@ public class NodeService {
         initSchema("classpath:schema/core");
 
         initSchema("classpath:schema/node");
+
+        initSchema("classpath:schema/test");
+
     }
 
     private void initSchema(String resourcePath) throws IOException {
@@ -323,38 +328,11 @@ public class NodeService {
 
     public QueryResult getQueryResult(String query) {
         QueryContext queryContext = QueryContext.makeQueryContextFromQuery(query) ;
-        QueryResult queryResult = new QueryResult() ;
-        makeQueryResult(queryResult, queryContext, null);
+        QueryResult queryResult = queryContext.makeQueryResult( null);
         return queryResult;
     }
 
-    private QueryResult makeQueryResult(QueryResult queryResult, QueryContext queryContext, Object result) {
-        NodeType nodeType = queryContext.getNodetype() ;
-        Node node = null ;
 
-        if(result instanceof Node){
-            node = (Node) result;
-        }
-
-        for(ResultField resultField :  queryContext.getResultFields()){
-            if(resultField.getQueryContext() != null){
-                QueryContext subQueryContext = resultField.getQueryContext() ;
-                List<Object> resultList = infinispanRepositoryService.executeQuery(subQueryContext) ;
-                List<QueryResult> queryResults = new ArrayList<>(resultList.size()) ;
-                if(subQueryContext.getResultFields() != null){
-                    for(Object obj : resultList){
-                        queryResults.add(makeQueryResult(new QueryResult(), subQueryContext, obj)) ;
-                    }
-                }
-                queryResult.put(resultField.getFieldName(), queryResults) ;
-            }else if(node != null){
-                String fieldValue = resultField.getFieldValue() ;
-                fieldValue = fieldValue == null || StringUtils.isEmpty(fieldValue) ? resultField.getFieldName() : fieldValue ;
-                queryResult.put(resultField.getFieldName(), NodeUtils.getResultValue(node.get(fieldValue), nodeType.getPropertyType(fieldValue), node)) ;
-            }
-        }
-        return queryResult ;
-    }
 
 
     public Node event(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, String typeId, String event) {
@@ -371,4 +349,7 @@ public class NodeService {
 
     }
 
+    public List<Object> executeQuery(QueryContext queryContext) {
+        return infinispanRepositoryService.executeQuery(queryContext) ;
+    }
 }

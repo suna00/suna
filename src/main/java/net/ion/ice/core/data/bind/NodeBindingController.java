@@ -71,9 +71,14 @@ public class NodeBindingController {
         return list(request, typeId);
     }
 
+//    private Object list(@PathVariable String typeId) {
+//        return ResponseUtils.response(nodeBindingService.list(typeId));
+//    }
+
     private Object list(WebRequest request, @PathVariable String typeId) {
-        return ResponseUtils.response(nodeBindingService.list(typeId));
+        return ResponseUtils.response(nodeBindingService.list(typeId, request));
     }
+
 
     @RequestMapping(value = "/data/{typeId}/{id}", method = RequestMethod.GET)
     @ResponseBody
@@ -84,6 +89,7 @@ public class NodeBindingController {
     @RequestMapping(value = "/data/{typeId}/read.json", method = RequestMethod.GET)
     @ResponseBody
     public Object readJson(WebRequest request, @PathVariable String typeId) throws IOException {
+
         return read(request, typeId);
     }
 

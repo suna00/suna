@@ -11,7 +11,7 @@ import java.io.Serializable;
  * Created by seonwoong on 2017. 6. 22..
  */
 
-public class DatabaseConfiguration implements Serializable {
+public class DBConfiguration implements Serializable {
     private static final long serialVersionUID = 5018763493730125750L;
 
     private String dsId;
@@ -23,7 +23,7 @@ public class DatabaseConfiguration implements Serializable {
     private String username;
     private String password;
 
-    public DatabaseConfiguration(Node dataSourceNode) {
+    public DBConfiguration(Node dataSourceNode) {
         this.dsId = dataSourceNode.getStringValue("id");
         this.dbType = dataSourceNode.getStringValue("dbType");
         this.username = dataSourceNode.getStringValue("username");

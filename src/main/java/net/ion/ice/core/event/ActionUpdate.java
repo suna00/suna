@@ -3,15 +3,8 @@ package net.ion.ice.core.event;
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.context.Template;
-import net.ion.ice.core.context.Template;
-import net.ion.ice.core.context.TemplateParam;
-import net.ion.ice.core.data.DatabaseService;
+import net.ion.ice.core.data.DBService;
 import org.springframework.jdbc.core.JdbcTemplate;
-
-import java.text.ParseException;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by jaeho on 2017. 7. 12..
@@ -25,7 +18,7 @@ public class ActionUpdate extends Action {
     @Override
     public void execute(ExecuteContext executeContext) {
         if(this.jdbcTemplate == null){
-            DatabaseService dbService = ApplicationContextManager.getBean(DatabaseService.class) ;
+            DBService dbService = ApplicationContextManager.getBean(DBService.class) ;
             this.jdbcTemplate = dbService.getJdbcTemplate(datasource) ;
         }
 
