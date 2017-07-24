@@ -51,10 +51,10 @@
   {
     "typeId" : "propertyType",
     "tid" : "systemNtf",
-    "id": "systemNtf@pstngYn",
-    "pid" : "pstngYn",
-    "propertyTypeName" : "게시 여부",
-    "valueType" : "STRING",
+    "id": "systemNtf@showYn",
+    "pid" : "showYn",
+    "propertyTypeName" : "노출 여부",
+    "valueType": "CODE",
     "required": true,
     "idable": false,
     "labelable": false,
@@ -62,7 +62,8 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": ""
+    "referenceValue": "",
+    "code": [{"value": "Y", "label": "노출"}, {"value": "N", "label": "비노출"}]
   },
   {
     "typeId" : "propertyType",
