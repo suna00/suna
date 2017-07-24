@@ -25,13 +25,13 @@
     "valueType": "CODE",
     "required": false,
     "idable": false,
-    "labelable": false,
+    "labelable": true,
     "treeable": false,
     "indexable": false,
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
-    "code": [{"value": "admin", "label": "내부 관리자"}, {"value": "totalUser", "label": "전체회원"}]
+    "code": [{"value": "adminUser", "label": "내부 관리자"}, {"value": "totalUser", "label": "전체회원"}]
   },
   {
     "typeId" : "propertyType",
@@ -39,31 +39,33 @@
     "id": "systemNtf@ntfTypeCd",
     "pid" : "ntfTypeCd",
     "propertyTypeName" : "공지 유형코드",
-    "valueType" : "STRING",
+    "valueType": "CODE",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": false,
-    "analyzer": null,
+    "analyzer": "cjk",
     "referenceType": "",
-    "referenceValue": ""
+    "referenceValue": "",
+    "code": [{"value": "emergency", "label": "긴급"}, {"value": "general", "label": "일반"}]
   },
   {
     "typeId" : "propertyType",
     "tid" : "systemNtf",
-    "id": "systemNtf@pstngYn",
-    "pid" : "pstngYn",
-    "propertyTypeName" : "게시 여부",
-    "valueType" : "STRING",
+    "id": "systemNtf@showYn",
+    "pid" : "showYn",
+    "propertyTypeName" : "노출 여부",
+    "valueType": "CODE",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": false,
-    "analyzer": null,
+    "analyzer": "cjk",
     "referenceType": "",
-    "referenceValue": ""
+    "referenceValue": "",
+    "code": [{"value": "Y", "label": "노출"}, {"value": "N", "label": "비노출"}]
   },
   {
     "typeId" : "propertyType",
@@ -125,7 +127,7 @@
     "labelable": false,
     "treeable": false,
     "indexable": false,
-    "analyzer": null,
+    "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": ""
   },
