@@ -54,7 +54,7 @@ public class SessionConfiguration {
     public Config config() {
 
         Config config = new Config();
-        config.setInstanceName("session-hazelcast") ;
+        config.setInstanceName("ice-session-hazelcast") ;
 
         JoinConfig joinConfig = config.getNetworkConfig().getJoin();
 
