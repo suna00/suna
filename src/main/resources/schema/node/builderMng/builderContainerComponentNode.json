@@ -1,6 +1,7 @@
 [
   {
     "typeId" : "builderContainerComponent",
+    "componentClassType": "",
     "componentClass": "IceGrid",
     "componentClassName": "GRID",
     "icon": "fa-object-ungroup",
@@ -8,6 +9,7 @@
   },
   {
     "typeId" : "builderContainerComponent",
+    "componentClassType": "",
     "componentClass": "DefaultList",
     "componentClassName": "DEFAULT LIST",
     "icon": "fa-list",
@@ -15,6 +17,7 @@
   },
   {
     "typeId" : "builderContainerComponent",
+    "componentClassType": "",
     "componentClass": "EditList",
     "componentClassName": "EDIT LIST",
     "icon": "fa-list",
@@ -22,6 +25,7 @@
   },
   {
     "typeId" : "builderContainerComponent",
+    "componentClassType": "",
     "componentClass": "DefaultListSearch",
     "componentClassName": "DEFAULT LIST SEARCH",
     "icon": "fa-search",
@@ -29,6 +33,7 @@
   },
   {
     "typeId" : "builderContainerComponent",
+    "componentClassType": "",
     "componentClass": "DefaultListFooter",
     "componentClassName": "DEFAULT LIST FOOTER",
     "icon": "fa-toggle-on",
@@ -36,6 +41,7 @@
   },
   {
     "typeId" : "builderContainerComponent",
+    "componentClassType": "",
     "componentClass": "DefaultView",
     "componentClassName": "DEFAULT VIEW",
     "icon": "fa-square-o",
@@ -43,6 +49,7 @@
   },
   {
     "typeId" : "builderContainerComponent",
+    "componentClassType": "",
     "componentClass": "DefaultForm",
     "componentClassName": "DEFAULT FORM",
     "icon": "fa-edit",

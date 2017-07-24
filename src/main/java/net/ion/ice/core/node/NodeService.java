@@ -158,48 +158,54 @@ public class NodeService {
     }
 
     private void  initSchema() throws IOException {
-        initSchema("classpath:schema/core");
-
-        initSchema("classpath:schema/node");
-    }
-
-    private void initSchema(String resourcePath) throws IOException {
-        Resource resource = ApplicationContextManager.getResource(resourcePath) ;
-        File initNodeDir =  resource.getFile() ;
 
         NodeValue nodeValue = infinispanRepositoryService.getLastCacheNodeValue() ;
         String lastChanged = nodeValue == null ? "0" : DateTools.dateToString(nodeValue.getChanged(), DateTools.Resolution.SECOND);
 
         logger.info("LAST CHANGED : " + lastChanged);
-        saveSchema(initNodeDir, lastChanged);
+
+
+        saveSchema("classpath:schema/core/*.json", lastChanged);
+        saveSchema("classpath:schema/core/*/*.json", lastChanged);
+        saveSchema("classpath:schema/node/*.json", lastChanged);
+        saveSchema("classpath:schema/node/**/*.json", lastChanged);
+        saveSchema("classpath:schema/test/*.json", lastChanged);
+        saveSchema("classpath:schema/test/**/*.json", lastChanged);
+
     }
 
-    private void saveSchema(File initNodeDir, String lastChanged) throws IOException {
-        for (File f : initNodeDir.listFiles((File f) -> {
-            return f.getName().equals("nodeType.json");
-        })) {
-            fileNodeSave(lastChanged, f);
+    private void saveSchema(String resourcePath, String lastChanged) throws IOException {
+
+        Resource[] resources = ApplicationContextManager.getResources(resourcePath);
+
+        for (Resource resource : resources) {
+            if (resource.getFilename().equals("nodeType.json")) {
+                fileNodeSave(lastChanged, resource);
+            }
         }
-        for (File f : initNodeDir.listFiles((File f) -> {
-            return f.getName().equals("propertyType.json");
-        })) {
-            fileNodeSave(lastChanged, f);
+
+        for (Resource resource : resources) {
+            if (resource.getFilename().equals("propertyType.json")) {
+                fileNodeSave(lastChanged, resource);
+            }
         }
-        for (File f : initNodeDir.listFiles((File f) -> {
-            return f.getName().endsWith(".json") && !(f.getName().equals("nodeType.json") || f.getName().equals("propertyType.json"));
-        })) {
-            fileNodeSave(lastChanged, f);
+
+        for (Resource resource : resources) {
+            if (resource.getFilename().equals("event.json")) {
+                fileNodeSave(lastChanged, resource);
+            }
         }
-        for (File dir : initNodeDir.listFiles((File f) -> {
-            return f.isDirectory();
-        })) {
-            saveSchema(dir, lastChanged);
+
+        for (Resource resource : resources) {
+            if (!(resource.getFilename().equals("nodeType.json") || resource.getFilename().equals("propertyType.json") || resource.getFilename().equals("event.json"))) {
+                fileNodeSave(lastChanged, resource);
+            }
         }
     }
 
-    private void fileNodeSave(String lastChanged, File f) throws IOException {
-        String fileName = StringUtils.substringBefore(f.getName(), ".json");
-        Collection<Map<String, Object>> nodeDataList = JsonUtils.parsingJsonFileToList(f) ;
+    private void fileNodeSave(String lastChanged, Resource resource) throws IOException {
+        String fileName = StringUtils.substringBefore(resource.getFilename(), ".json");
+        Collection<Map<String, Object>> nodeDataList = JsonUtils.parsingJsonResourceToList(resource) ;
 
         if(fileName.startsWith("20") && fileName.length() == 14 && lastChanged.compareTo(fileName) < 0){
             nodeDataList.forEach(data -> saveNode(data));
@@ -325,38 +331,11 @@ public class NodeService {
 
     public QueryResult getQueryResult(String query) {
         QueryContext queryContext = QueryContext.makeQueryContextFromQuery(query) ;
-        QueryResult queryResult = new QueryResult() ;
-        makeQueryResult(queryResult, queryContext, null);
+        QueryResult queryResult = queryContext.makeQueryResult( null);
         return queryResult;
     }
 
-    private QueryResult makeQueryResult(QueryResult queryResult, QueryContext queryContext, Object result) {
-        NodeType nodeType = queryContext.getNodetype() ;
-        Node node = null ;
 
-        if(result instanceof Node){
-            node = (Node) result;
-        }
-
-        for(ResultField resultField :  queryContext.getResultFields()){
-            if(resultField.getQueryContext() != null){
-                QueryContext subQueryContext = resultField.getQueryContext() ;
-                List<Object> resultList = infinispanRepositoryService.executeQuery(subQueryContext) ;
-                List<QueryResult> queryResults = new ArrayList<>(resultList.size()) ;
-                if(subQueryContext.getResultFields() != null){
-                    for(Object obj : resultList){
-                        queryResults.add(makeQueryResult(new QueryResult(), subQueryContext, obj)) ;
-                    }
-                }
-                queryResult.put(resultField.getFieldName(), queryResults) ;
-            }else if(node != null){
-                String fieldValue = resultField.getFieldValue() ;
-                fieldValue = fieldValue == null || StringUtils.isEmpty(fieldValue) ? resultField.getFieldName() : fieldValue ;
-                queryResult.put(resultField.getFieldName(), NodeUtils.getResultValue(node.get(fieldValue), nodeType.getPropertyType(fieldValue), node)) ;
-            }
-        }
-        return queryResult ;
-    }
 
 
     public Node event(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, String typeId, String event) {
@@ -373,4 +352,7 @@ public class NodeService {
 
     }
 
+    public List<Object> executeQuery(QueryContext queryContext) {
+        return infinispanRepositoryService.executeQuery(queryContext) ;
+    }
 }
