@@ -1,6 +1,8 @@
 package net.ion.ice;
 
 import com.hazelcast.core.HazelcastInstance;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -14,10 +16,13 @@ import java.io.IOException;
  */
 @Component
 public class ApplicationContextManager implements ApplicationContextAware{
-    private static ApplicationContext context ;
+    private Logger logger = LoggerFactory.getLogger(ApplicationContextManager.class);
+
+    public static ApplicationContext context ;
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        logger.info("INIT Application Context Aware");
         this.context = applicationContext ;
     }
 
