@@ -61,25 +61,25 @@ public class SessionConfiguration {
         joinConfig.getMulticastConfig().setEnabled(false);
         joinConfig.getTcpIpConfig().setEnabled(true).setMembers(members);
 
-        HotRestartPersistenceConfig hotRestartPersistenceConfig = null ;
-        if(StringUtils.isNotEmpty(baseDir)){
-            File _baseDir = new File(baseDir) ;
-            if(!_baseDir.exists()){
-                _baseDir.mkdirs() ;
-            }
-            hotRestartPersistenceConfig = new HotRestartPersistenceConfig();
-            hotRestartPersistenceConfig.setEnabled(true);
-            hotRestartPersistenceConfig.setBaseDir(_baseDir);
-            hotRestartPersistenceConfig.setValidationTimeoutSeconds(120);
-            hotRestartPersistenceConfig.setDataLoadTimeoutSeconds(900);
-            config.setHotRestartPersistenceConfig(hotRestartPersistenceConfig);
-        }
-
-        ReplicatedMapConfig replicatedMapConfig =  config.getReplicatedMapConfig( "config" );
-        replicatedMapConfig.setAsyncFillup(true);
-
-        replicatedMapConfig.setInMemoryFormat( InMemoryFormat.BINARY );
-        config.setProperty("hazelcast.rest.enabled", "true");
+//        HotRestartPersistenceConfig hotRestartPersistenceConfig = null ;
+//        if(StringUtils.isNotEmpty(baseDir)){
+//            File _baseDir = new File(baseDir) ;
+//            if(!_baseDir.exists()){
+//                _baseDir.mkdirs() ;
+//            }
+//            hotRestartPersistenceConfig = new HotRestartPersistenceConfig();
+//            hotRestartPersistenceConfig.setEnabled(true);
+//            hotRestartPersistenceConfig.setBaseDir(_baseDir);
+//            hotRestartPersistenceConfig.setValidationTimeoutSeconds(120);
+//            hotRestartPersistenceConfig.setDataLoadTimeoutSeconds(900);
+//            config.setHotRestartPersistenceConfig(hotRestartPersistenceConfig);
+//        }
+//
+//        ReplicatedMapConfig replicatedMapConfig =  config.getReplicatedMapConfig( "config" );
+//        replicatedMapConfig.setAsyncFillup(true);
+//
+//        replicatedMapConfig.setInMemoryFormat( InMemoryFormat.BINARY );
+//        config.setProperty("hazelcast.rest.enabled", "true");
 
         return config;
     }
@@ -126,7 +126,6 @@ public class SessionConfiguration {
     public void setBaseDir(String baseDir) {
         this.baseDir = baseDir;
     }
-
 
 }
 
