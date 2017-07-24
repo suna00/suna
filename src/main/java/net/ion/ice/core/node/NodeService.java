@@ -161,6 +161,9 @@ public class NodeService {
         initSchema("classpath:schema/core");
 
         initSchema("classpath:schema/node");
+
+        initSchema("classpath:schema/test");
+
     }
 
     private void initSchema(String resourcePath) throws IOException {
@@ -325,38 +328,11 @@ public class NodeService {
 
     public QueryResult getQueryResult(String query) {
         QueryContext queryContext = QueryContext.makeQueryContextFromQuery(query) ;
-        QueryResult queryResult = new QueryResult() ;
-        makeQueryResult(queryResult, queryContext, null);
+        QueryResult queryResult = queryContext.makeQueryResult( null);
         return queryResult;
     }
 
-    private QueryResult makeQueryResult(QueryResult queryResult, QueryContext queryContext, Object result) {
-        NodeType nodeType = queryContext.getNodetype() ;
-        Node node = null ;
 
-        if(result instanceof Node){
-            node = (Node) result;
-        }
-
-        for(ResultField resultField :  queryContext.getResultFields()){
-            if(resultField.getQueryContext() != null){
-                QueryContext subQueryContext = resultField.getQueryContext() ;
-                List<Object> resultList = infinispanRepositoryService.executeQuery(subQueryContext) ;
-                List<QueryResult> queryResults = new ArrayList<>(resultList.size()) ;
-                if(subQueryContext.getResultFields() != null){
-                    for(Object obj : resultList){
-                        queryResults.add(makeQueryResult(new QueryResult(), subQueryContext, obj)) ;
-                    }
-                }
-                queryResult.put(resultField.getFieldName(), queryResults) ;
-            }else if(node != null){
-                String fieldValue = resultField.getFieldValue() ;
-                fieldValue = fieldValue == null || StringUtils.isEmpty(fieldValue) ? resultField.getFieldName() : fieldValue ;
-                queryResult.put(resultField.getFieldName(), NodeUtils.getResultValue(node.get(fieldValue), nodeType.getPropertyType(fieldValue), node)) ;
-            }
-        }
-        return queryResult ;
-    }
 
 
     public Node event(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, String typeId, String event) {
@@ -373,4 +349,7 @@ public class NodeService {
 
     }
 
+    public List<Object> executeQuery(QueryContext queryContext) {
+        return infinispanRepositoryService.executeQuery(queryContext) ;
+    }
 }

@@ -5,6 +5,7 @@ import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
+import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.QueryTerm;
 import net.ion.ice.core.query.ResultField;
 import org.apache.commons.lang3.StringUtils;
@@ -472,5 +473,35 @@ public class QueryContext implements Context {
 //            }
 //        }
         return queryContext;
+    }
+
+    public QueryResult makeQueryResult(Object result) {
+        QueryResult queryResult = new QueryResult() ;
+        NodeType nodeType = getNodetype() ;
+        Node node = null ;
+
+        if(result instanceof Node){
+            node = (Node) result;
+        }
+
+
+        for(ResultField resultField :  getResultFields()){
+            if(resultField.getQueryContext() != null){
+                QueryContext subQueryContext = resultField.getQueryContext() ;
+                List<Object> resultList = NodeUtils.getNodeService().executeQuery(subQueryContext) ;
+                List<QueryResult> queryResults = new ArrayList<>(resultList.size()) ;
+                if(subQueryContext.getResultFields() != null){
+                    for(Object obj : resultList){
+                        queryResults.add(makeQueryResult(obj)) ;
+                    }
+                }
+                queryResult.put(resultField.getFieldName(), queryResults) ;
+            }else if(node != null){
+                String fieldValue = resultField.getFieldValue() ;
+                fieldValue = fieldValue == null || StringUtils.isEmpty(fieldValue) ? resultField.getFieldName() : fieldValue ;
+                queryResult.put(resultField.getFieldName(), NodeUtils.getResultValue(node.get(fieldValue), nodeType.getPropertyType(fieldValue), node)) ;
+            }
+        }
+        return queryResult ;
     }
 }
