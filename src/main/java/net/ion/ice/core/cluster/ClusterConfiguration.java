@@ -40,7 +40,7 @@ public class ClusterConfiguration {
     public Config config() {
 
         Config config = new Config();
-        config.setInstanceName("cluster-hazelcast") ;
+        config.setInstanceName("ice-cluster-hazelcast") ;
 
         JoinConfig joinConfig = config.getNetworkConfig().getJoin();
 

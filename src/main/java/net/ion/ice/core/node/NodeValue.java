@@ -6,7 +6,9 @@ import org.hibernate.search.annotations.*;
 
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by jaehocho on 2017. 5. 17..
@@ -15,6 +17,8 @@ import java.util.Date;
 @ProvidedId
 @Indexed
 public class NodeValue implements Serializable, Cloneable{
+    public static List<String> NODE_VALUE_KEYS = Arrays.asList(new String[] {"typeId", "owner", "modifier", "created", "changed", "status"}) ;
+
     @Id
     @DocumentId
     @Field
@@ -98,5 +102,29 @@ public class NodeValue implements Serializable, Cloneable{
 
     public void setModifier(String modifier) {
         this.modifier = modifier;
+    }
+
+    public boolean containsKey(String pid) {
+        return NODE_VALUE_KEYS.contains(pid) ;
+    }
+
+    public Object getValue(String pid){
+        switch (pid){
+            case "typeId":
+                return getTypeId() ;
+            case "owner" :
+                return owner ;
+            case "modifier" :
+                return modifier ;
+            case "created":
+                return created ;
+            case "changed":
+                return changed ;
+            case "status" :
+                return status ;
+            default:
+                return null ;
+        }
+
     }
 }
