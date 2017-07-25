@@ -51,7 +51,7 @@ public class SessionClientConfiguration {
     public ClientConfig config() {
 
         ClientConfig config = new ClientConfig();
-        config.setInstanceName("session-hazelcast") ;
+        config.setInstanceName("ice-session-hazelcast") ;
 //        ClientNetworkConfig clientConfig = config.getNetworkConfig();
 //        clientConfig.addAddress("localhost:5701");
 //        config.setNetworkConfig(clientConfig) ;

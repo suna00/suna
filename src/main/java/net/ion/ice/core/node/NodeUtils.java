@@ -8,12 +8,12 @@ import net.ion.ice.core.file.FileValue;
 import net.ion.ice.core.infinispan.NotFoundNodeException;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.context.QueryContext;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.lucene.search.SortField;
 import org.springframework.web.multipart.MultipartFile;
-import org.thymeleaf.util.StringUtils;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -125,7 +125,7 @@ public class NodeUtils {
             return (Date) value;
         }else{
             try {
-                return DateUtils.parseDate(value.toString(),"yyyyMMddHHmmss", "yyyyMMddHHmmssSSS");
+                return DateUtils.parseDate(value.toString(),"yyyyMMdd", "yyyy-MM-dd", "yyyy/MM/dd", "yyyyMMddHHmmss", "yyyy-MM-dd HH:mm:ss", "yyyy/MM/dd HH:mm:ss", "yyyyMMddHHmmssSSS");
             } catch (ParseException e) {
                 return null ;
             }

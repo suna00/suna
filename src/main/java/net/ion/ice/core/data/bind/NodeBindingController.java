@@ -79,7 +79,6 @@ public class NodeBindingController {
         return ResponseUtils.response(nodeBindingService.list(typeId, request));
     }
 
-
     @RequestMapping(value = "/data/{typeId}/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Object readRest(WebRequest request, @PathVariable String typeId, @PathVariable String id) throws IOException {

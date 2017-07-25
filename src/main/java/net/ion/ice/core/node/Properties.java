@@ -100,12 +100,15 @@ public class Properties implements Map<String, Object>, Serializable, Cloneable 
         }
     }
 
-    public void toDisplay() {
+    public void toDisplay(NodeValue nodeValue) {
         NodeType nodeType = NodeUtils.getNodeType(typeId) ;
         for(PropertyType pt : nodeType.getPropertyTypes()){
             Object value = values.get(pt.getPid()) ;
             if(value == null && pt.hasDefaultValue()){
                 value = pt.getDefaultValue() ;
+            }
+            if(value == null && nodeValue.containsKey(pt.getPid())){
+                value = nodeValue.getValue(pt.getPid()) ;
             }
             if(value != null){
                 value = NodeUtils.getDisplayValue(value, pt) ;
