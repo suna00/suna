@@ -60,7 +60,7 @@
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "code",
+    "referenceType": "codeMng",
     "referenceValue": "",
     "validationTypes": {
       "required": { "value": false, "description": "필수 값 입니다." },
@@ -108,7 +108,7 @@
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "code",
+    "referenceType": "codeMng",
     "referenceValue": "",
     "validationTypes": {
       "required": { "value": false, "description": "필수 값 입니다." },
