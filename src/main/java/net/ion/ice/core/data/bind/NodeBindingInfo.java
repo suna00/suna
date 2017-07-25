@@ -39,7 +39,6 @@ public class NodeBindingInfo {
     private String retrieveSql = "";
     private String listSql = "";
     private String listParamSql = "";
-    private String resultCountSql = "";
     private String totalCountSql = "";
 
 
@@ -147,8 +146,6 @@ public class NodeBindingInfo {
             retrieveSql = String.format("SELECT * FROM %s WHERE %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
         }
 
-        totalCountSql = String.format("SELECT COUNT(*) AS totalCount FROM %s", tableName);
-
         deleteSql = String.format("delete from %s where %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
         updateSql = String.format("UPDATE %s SET %s WHERE %s"
                 , tableName
@@ -255,14 +252,21 @@ public class NodeBindingInfo {
 
     public Map<String, Object> list(DBQueryContext dbQueryContext) {
         makeListQuery(dbQueryContext);
+
         Map<String, Object> result = new ConcurrentHashMap<>();
-        Map<String, Object> totalCount = jdbcTemplate.queryForMap(totalCountSql);
-        Map<String, Object> resultCount = jdbcTemplate.queryForMap(resultCountSql, resultCountValue.toArray());
+        Map<String, Object> totalCount;
+        if(resultCountValue == null || resultCountValue.isEmpty()){
+            totalCount = jdbcTemplate.queryForMap(totalCountSql);
+        }else{
+            totalCount = jdbcTemplate.queryForMap(totalCountSql, resultCountValue.toArray());
+        }
         List<Map<String, Object>> items = jdbcTemplate.queryForList(listParamSql, searchListValue.toArray());
-        result.putAll(totalCount);
-        result.putAll(resultCount);
-        double rc = ((Long) resultCount.get("resultCount")).doubleValue();
+        double rc = ((Long) totalCount.get("totalCount")).doubleValue();
+        result.put("pageSize", dbQueryContext.getPageSize());
         result.put("pageCount", (int) Math.ceil(rc / dbQueryContext.getPageSize()));
+        result.put("currentPage", dbQueryContext.getCurrentPage());
+        result.putAll(totalCount);
+        result.put("resultCount", items.size());
         result.put("items", items);
         return result;
     }
@@ -318,6 +322,11 @@ public class NodeBindingInfo {
     public void makeListQuery(DBQueryContext dbQueryContext) {
         searchListQuery = new ArrayList<>();
         searchListValue = new ArrayList<>();
+
+        int currentPage = dbQueryContext.getCurrentPage();
+        int pageSize = dbQueryContext.getPageSize();
+        String sorting = dbQueryContext.getSorting();
+
         if (!dbQueryContext.getDbQueryTermList().isEmpty()) {
             for (DBQueryTerm dbQueryTerm : dbQueryContext.getDbQueryTermList()) {
                 String query = String.format("%s %s ?", dbQueryTerm.getKey(), dbQueryTerm.getMethodQuery());
@@ -326,24 +335,22 @@ public class NodeBindingInfo {
                 searchListValue.add(value);
             }
 
-            int currentPage = dbQueryContext.getCurrentPage();
-            int pageSize = dbQueryContext.getPageSize();
-            String sorting = dbQueryContext.getSorting();
-
             listParamSql = String.format("SELECT * FROM %s WHERE %s", tableName, StringUtils.join(searchListQuery.toArray(), " AND "));
-            resultCountSql = String.format("SELECT COUNT(*) as resultCount FROM %s WHERE %s", tableName, StringUtils.join(searchListQuery.toArray(), " AND "));
+            totalCountSql = String.format("SELECT COUNT(*) as totalCount FROM %s WHERE %s", tableName, StringUtils.join(searchListQuery.toArray(), " AND "));
 
             resultCountValue = new ArrayList<>(searchListValue);
 
-            if (sorting != null) {
-                listParamSql = listParamSql.concat(String.format(" ORDER BY ").concat(sorting));
-            }
-            listParamSql = listParamSql.concat(String.format(" LIMIT ?").concat(String.format(" OFFSET ?")));
-            searchListValue.add(pageSize);
-            searchListValue.add(pageSize * (currentPage - 1));
-//        } else {
-//
-//            listParamSql = String.format("SELECT * FROM %s WHERE %s", tableName, StringUtils.join(searchListQuery.toArray(), " AND "));
+        } else {
+            listParamSql = String.format("SELECT * FROM %s", tableName);
+            totalCountSql = String.format("SELECT COUNT(*) as totalCount FROM %s", tableName);
         }
+
+        if (sorting != null) {
+            listParamSql = listParamSql.concat(String.format(" ORDER BY ").concat(sorting));
+        }
+
+        listParamSql = listParamSql.concat(String.format(" LIMIT ?").concat(String.format(" OFFSET ?")));
+        searchListValue.add(pageSize);
+        searchListValue.add(pageSize * (currentPage - 1));
     }
 }

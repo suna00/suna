@@ -103,12 +103,16 @@ public class DBQueryContext {
     }
 
     public Integer getPageSize() {
-        return pageSize == null ? 1000 : pageSize;
+        return pageSize == null ? 10 : pageSize;
     }
 
     public void setCurrentPage(String page) {
         this.currentPage = Integer.valueOf(page);
         this.paging = true;
+    }
+
+    public boolean isPaging(){
+        return this.paging;
     }
 
     public Integer getCurrentPage() {
