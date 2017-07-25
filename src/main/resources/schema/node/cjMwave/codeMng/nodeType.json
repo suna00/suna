@@ -6,6 +6,7 @@
     "tid" : "groupCodeMng",
     "typeName" : "그룹 코드 관리",
     "repositoryType" : "node",
+    "tableName": "cjDb#groupCodeMng",
     "eviction" : 500
   },
   {
@@ -15,6 +16,7 @@
     "tid" : "codeMng",
     "typeName" : "코드 관리",
     "repositoryType" : "node",
+    "tableName": "cjDb#codeMng",
     "eviction" : 2000
   }
 ]

@@ -6,6 +6,7 @@
     "tid" : "cscenterNtf",
     "typeName" : "고객센터 공지사항",
     "repositoryType" : "node",
+    "tableName": "cjDb#cscenterNtf",
     "eviction" : 100
   },
   {
@@ -15,6 +16,7 @@
     "tid" : "cscenterQna",
     "typeName" : "고객센터 QNA",
     "repositoryType" : "node",
+    "tableName": "cjDb#cscenterQna",
     "eviction" : 100
   },
   {
@@ -24,6 +26,7 @@
     "tid" : "cscenterFaq",
     "typeName" : "고객센터 FAQ",
     "repositoryType" : "node",
+    "tableName": "cjDb#cscenterFaq",
     "eviction" : 100
   }
 ]

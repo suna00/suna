@@ -6,6 +6,7 @@
     "tid" : "admrGroup",
     "typeName" : "운영자 그룹",
     "repositoryType" : "node",
+    "tableName": "cjDb#admrGroup",
     "eviction" : 100
   },
   {
@@ -15,6 +16,7 @@
     "tid" : "admrInfo",
     "typeName" : "운영자 정보",
     "repositoryType" : "node",
+    "tableName": "cjDb#admrInfo",
     "eviction" : 100
   }
 ]

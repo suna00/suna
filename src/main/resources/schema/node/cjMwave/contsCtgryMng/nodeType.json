@@ -6,6 +6,7 @@
     "tid" : "contsCtgryGroup",
     "typeName" : "콘텐츠 카테고리 그룹",
     "repositoryType" : "node",
+    "tableName": "cjDb#contsCtgryGroup",
     "eviction" : 100
   },
   {
@@ -15,6 +16,7 @@
     "tid" : "contsCtgry",
     "typeName" : "콘텐츠 카테고리",
     "repositoryType" : "node",
+    "tableName": "cjDb#contsCtgry",
     "eviction" : 100
   }
 ]

@@ -6,6 +6,7 @@
     "tid" : "stpltMng",
     "typeName" : "약관 관리",
     "repositoryType" : "node",
+    "tableName": "cjDb#stpltMng",
     "eviction" : 100
   }
 ]
