@@ -293,7 +293,7 @@
     "id": "contsCtgry@sortOdrg",
     "pid" : "sortOdrg",
     "propertyTypeName" : "정렬 순서",
-    "valueType" : "INT",
+    "valueType" : "LONG",
     "required": false,
     "idable": false,
     "labelable": false,

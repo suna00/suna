@@ -680,7 +680,7 @@
     "id": "cscenterFaq@faqSortOdrg",
     "pid" : "faqSortOdrg",
     "propertyTypeName" : "FAQ 정렬순서",
-    "valueType" : "STRING",
+    "valueType" : "LONG",
     "required": false,
     "idable": false,
     "labelable": false,
