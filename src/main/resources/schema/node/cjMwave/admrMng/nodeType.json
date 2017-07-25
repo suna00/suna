@@ -1,0 +1,20 @@
+[
+  {
+    "parentId" : "systemMng",
+    "typeId" : "nodeType",
+    "id" : "admrGroup",
+    "tid" : "admrGroup",
+    "typeName" : "운영자 그룹",
+    "repositoryType" : "node",
+    "eviction" : 100
+  },
+  {
+    "parentId" : "systemMng",
+    "typeId" : "nodeType",
+    "id" : "admrInfo",
+    "tid" : "admrInfo",
+    "typeName" : "운영자 정보",
+    "repositoryType" : "node",
+    "eviction" : 100
+  }
+]
