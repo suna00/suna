@@ -1,0 +1,34 @@
+[
+  {
+    "typeId" : "propertyType",
+    "tid": "song",
+    "id": "song@song_id",
+    "pid": "song_id",
+    "propertyTypeName": "곡 아이디",
+    "valueType": "STRING",
+    "required": true,
+    "idable": true,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "song",
+    "id": "song@song_nm",
+    "pid": "song_nm",
+    "propertyTypeName": "곡 명",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
+  }
+]
