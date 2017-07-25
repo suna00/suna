@@ -5,7 +5,9 @@
     "componentClass": "SpinButtonLink",
     "componentClassName": "BUTTON LINK",
     "icon": "fa-square-o",
-    "order": 1
+    "order": 1,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -13,7 +15,9 @@
     "componentClass": "SpinNumeric",
     "componentClassName": "NUMBER",
     "icon": "fa-square-o",
-    "order": 10
+    "order": 10,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -21,7 +25,9 @@
     "componentClass": "SpinMoney",
     "componentClassName": "MONEY",
     "icon": "fa-square-o",
-    "order": 20
+    "order": 20,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -29,7 +35,9 @@
     "componentClass": "SpinText",
     "componentClassName": "TEXT",
     "icon": "fa-square-o",
-    "order": 30
+    "order": 30,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -37,7 +45,9 @@
     "componentClass": "SpinTextarea",
     "componentClassName": "TEXT AREA",
     "icon": "fa-square-o",
-    "order": 40
+    "order": 40,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -45,7 +55,9 @@
     "componentClass": "SpinTextEditor",
     "componentClassName": "TEXT EDITOR",
     "icon": "fa-square-o",
-    "order": 50
+    "order": 50,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -53,7 +65,9 @@
     "componentClass": "SpinSelect",
     "componentClassName": "SELECT",
     "icon": "fa-square-o",
-    "order": 60
+    "order": 60,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -61,7 +75,9 @@
     "componentClass": "SpinSelect2",
     "componentClassName": "SELECT2",
     "icon": "fa-square-o",
-    "order": 70
+    "order": 70,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -69,7 +85,9 @@
     "componentClass": "SpinSelectMultiple",
     "componentClassName": "SELECT MULTIPLE",
     "icon": "fa-square-o",
-    "order": 80
+    "order": 80,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -77,7 +95,9 @@
     "componentClass": "SpinSelect2Multiple",
     "componentClassName": "SELECT2 MULTIPLE",
     "icon": "fa-square-o",
-    "order": 90
+    "order": 90,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -85,7 +105,9 @@
     "componentClass": "SpinDualListbox",
     "componentClassName": "DUAL LIST BOX",
     "icon": "fa-square-o",
-    "order": 100
+    "order": 100,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -93,7 +115,9 @@
     "componentClass": "SpinCheckbox",
     "componentClassName": "CHECKBOX",
     "icon": "fa-square-o",
-    "order": 110
+    "order": 110,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -101,7 +125,9 @@
     "componentClass": "SpinRadio",
     "componentClassName": "RADIO",
     "icon": "fa-square-o",
-    "order": 120
+    "order": 120,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -109,7 +135,9 @@
     "componentClass": "SpinSwitch",
     "componentClassName": "SWITCH",
     "icon": "fa-square-o",
-    "order": 130
+    "order": 130,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -117,7 +145,9 @@
     "componentClass": "SpinDate",
     "componentClassName": "DATE",
     "icon": "fa-square-o",
-    "order": 140
+    "order": 140,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -125,7 +155,9 @@
     "componentClass": "SpinDateTime",
     "componentClassName": "DATE TIME",
     "icon": "fa-square-o",
-    "order": 150
+    "order": 150,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -133,7 +165,9 @@
     "componentClass": "SpinImage",
     "componentClassName": "IMAGE",
     "icon": "fa-square-o",
-    "order": 160
+    "order": 160,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -141,7 +175,9 @@
     "componentClass": "SpinRating",
     "componentClassName": "RATING",
     "icon": "fa-square-o",
-    "order": 170
+    "order": 170,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -149,7 +185,9 @@
     "componentClass": "SpinVideo",
     "componentClassName": "VIDEO",
     "icon": "fa-square-o",
-    "order": 180
+    "order": 180,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -157,7 +195,9 @@
     "componentClass": "SpinProgress",
     "componentClassName": "PROGRESS",
     "icon": "fa-square-o",
-    "order": 190
+    "order": 190,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -165,7 +205,9 @@
     "componentClass": "SpinJsonEditor",
     "componentClassName": "JSON EDITOR",
     "icon": "fa-square-o",
-    "order": 200
+    "order": 200,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -173,7 +215,9 @@
     "componentClass": "SpinObjectEditor",
     "componentClassName": "OBJECT EDITOR",
     "icon": "fa-square-o",
-    "order": 210
+    "order": 210,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderPresentationalComponent",
@@ -181,6 +225,8 @@
     "componentClass": "SpinSortable",
     "componentClassName": "SORTABLE",
     "icon": "fa-square-o",
-    "order": 220
+    "order": 220,
+    "active": true,
+    "componentChildren": ""
   }
 ]
