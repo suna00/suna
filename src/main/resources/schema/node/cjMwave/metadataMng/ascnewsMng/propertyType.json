@@ -1,0 +1,50 @@
+[
+  {
+    "typeId" : "propertyType",
+    "tid": "news_asc_news",
+    "id": "news_asc_news@acs_news_id",
+    "pid": "acs_news_id",
+    "propertyTypeName": "연관뉴스아이디",
+    "valueType": "STRING",
+    "required": true,
+    "idable": true,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "news_asc_news",
+    "id": "news_asc_news@news_id",
+    "pid": "news_id",
+    "propertyTypeName": "뉴스 아이디",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "news_asc_news",
+    "id": "news_asc_news@show_odrg",
+    "pid": "show_odrg",
+    "propertyTypeName": "노출순서",
+    "valueType": "INT",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
+  }
+]
