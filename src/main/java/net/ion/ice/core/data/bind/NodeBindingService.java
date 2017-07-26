@@ -53,6 +53,7 @@ public class NodeBindingService {
         if (callback == 0) {
             nodeBindingInfo.insert(node);
         }
+        logger.info("Node Binding {} - {} :  " + (callback == 0 ? "insert" : "update"), node.getTypeId(), node.getId());
     }
 
     public void createTable(String typeId, HttpServletResponse response) {

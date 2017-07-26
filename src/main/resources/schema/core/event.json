@@ -28,6 +28,118 @@
     "eventName" : "allEvent Node Type"
   },
   {
+    "typeId" : "event",
+    "id" : "propertyType@create",
+    "tid": "propertyType",
+    "event" : "create",
+    "eventName" : "Create propertyType"
+  },
+  {
+    "typeId" : "event",
+    "id" : "propertyType@update",
+    "tid": "propertyType",
+    "event" : "update",
+    "eventName" : "update propertyType"
+  },
+  {
+    "typeId" : "event",
+    "id" : "propertyType@delete",
+    "tid": "propertyType",
+    "event" : "delete",
+    "eventName" : "delete propertyType"
+  },
+  {
+    "typeId" : "event",
+    "id" : "propertyType@allEvent",
+    "tid": "propertyType",
+    "event" : "allEvent",
+    "eventName" : "allEvent propertyType"
+  },
+  {
+    "typeId" : "event",
+    "id" : "event@create",
+    "tid": "event",
+    "event" : "create",
+    "eventName" : "Create event"
+  },
+  {
+    "typeId" : "event",
+    "id" : "event@update",
+    "tid": "event",
+    "event" : "update",
+    "eventName" : "update event"
+  },
+  {
+    "typeId" : "event",
+    "id" : "event@delete",
+    "tid": "event",
+    "event" : "delete",
+    "eventName" : "delete event"
+  },
+  {
+    "typeId" : "event",
+    "id" : "event@allEvent",
+    "tid": "event",
+    "event" : "allEvent",
+    "eventName" : "allEvent event"
+  },
+  {
+    "typeId" : "event",
+    "id" : "eventAction@create",
+    "tid": "eventAction",
+    "event" : "create",
+    "eventName" : "Create eventAction"
+  },
+  {
+    "typeId" : "event",
+    "id" : "eventAction@update",
+    "tid": "eventAction",
+    "event" : "update",
+    "eventName" : "update eventAction"
+  },
+  {
+    "typeId" : "event",
+    "id" : "eventAction@delete",
+    "tid": "eventAction",
+    "event" : "delete",
+    "eventName" : "delete eventAction"
+  },
+  {
+    "typeId" : "event",
+    "id" : "eventAction@allEvent",
+    "tid": "eventAction",
+    "event" : "allEvent",
+    "eventName" : "allEvent eventAction"
+  },
+  {
+    "typeId" : "event",
+    "id" : "eventListener@create",
+    "tid": "eventListener",
+    "event" : "create",
+    "eventName" : "Create eventListener"
+  },
+  {
+    "typeId" : "event",
+    "id" : "eventListener@update",
+    "tid": "eventListener",
+    "event" : "update",
+    "eventName" : "update eventListener"
+  },
+  {
+    "typeId" : "event",
+    "id" : "eventListener@delete",
+    "tid": "eventListener",
+    "event" : "delete",
+    "eventName" : "delete eventListener"
+  },
+  {
+    "typeId" : "event",
+    "id" : "eventListener@allEvent",
+    "tid": "eventListener",
+    "event" : "allEvent",
+    "eventName" : "allEvent eventListener"
+  },
+  {
     "typeId" : "eventListener",
     "id" : "event@nodeType@create",
     "tid" : "event",

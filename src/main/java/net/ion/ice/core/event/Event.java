@@ -62,4 +62,7 @@ public class Event {
         eventListeners.add(eventListener) ;
     }
 
+    public String getId() {
+        return eventNode.getId();
+    }
 }
