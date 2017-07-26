@@ -20,5 +20,16 @@
     "regDt" : "2017/07/26",
     "amdr" : "",
     "amdDt" : ""
+  },
+  {
+    "typeId" : "groupCodeMng",
+    "groupCodeId" : "stpltTypceCd",
+    "groupCodeNm" : "약관 유형코드",
+    "groupCodeDesc" : "시스템 이용약관 유형코드",
+    "useYn" : true,
+    "regr" : "admin",
+    "regDt" : "2017/07/26",
+    "amdr" : "",
+    "amdDt" : ""
   }
 ]
