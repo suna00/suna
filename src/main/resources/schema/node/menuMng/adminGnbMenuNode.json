@@ -70,5 +70,13 @@
     "order": "20",
     "icon": "",
     "active": "true"
+  },{
+    "typeId" : "adminGnbMenu",
+    "backOfficeId": "admin",
+    "menuId": "metadataMng",
+    "menuName": "메타데이터 관리",
+    "order": "20",
+    "icon": "",
+    "active": "true"
   }
 ]

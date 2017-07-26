@@ -2,8 +2,8 @@
   {
     "typeId" : "propertyType",
     "tid": "song",
-    "id": "song@song_id",
-    "pid": "song_id",
+    "id": "song@songId",
+    "pid": "songId",
     "propertyTypeName": "곡 아이디",
     "valueType": "STRING",
     "required": true,
@@ -18,8 +18,8 @@
   {
     "typeId" : "propertyType",
     "tid": "song",
-    "id": "song@song_nm",
-    "pid": "song_nm",
+    "id": "song@songNm",
+    "pid": "songNm",
     "propertyTypeName": "곡 명",
     "valueType": "STRING",
     "required": false,
