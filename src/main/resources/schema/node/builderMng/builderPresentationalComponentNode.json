@@ -11,6 +11,26 @@
   },
   {
     "typeId" : "builderPresentationalComponent",
+    "componentClassType": "BUTTON",
+    "componentClass": "SpinButtonBack",
+    "componentClassName": "BUTTON BACK",
+    "icon": "fa-square-o",
+    "order": 2,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentClassType": "BUTTON",
+    "componentClass": "SpinButtonSave",
+    "componentClassName": "BUTTON SAVE",
+    "icon": "fa-square-o",
+    "order": 3,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
     "componentClassType": "INPUT",
     "componentClass": "SpinNumeric",
     "componentClassName": "NUMBER",
