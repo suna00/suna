@@ -1,0 +1,31 @@
+[
+  {
+    "parentId" : "systemMng",
+    "typeId" : "nodeType",
+    "id" : "rgnMng",
+    "tid" : "rgnMng",
+    "typeName" : "지역 관리",
+    "repositoryType" : "path",
+    "eviction" : 0
+  },
+  {
+    "parentId" : "rgnMng",
+    "typeId" : "nodeType",
+    "id" : "cntryMng",
+    "tid" : "cntryMng",
+    "typeName" : "국가 관리",
+    "repositoryType" : "node",
+    "tableName": "cjDb#cntryMng",
+    "eviction" : 100
+  },
+  {
+    "parentId" : "rgnMng",
+    "typeId" : "nodeType",
+    "id" : "langMng",
+    "tid" : "langMng",
+    "typeName" : "언어 관리",
+    "repositoryType" : "node",
+    "tableName": "cjDb#langMng",
+    "eviction" : 100
+  }
+]

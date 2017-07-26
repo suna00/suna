@@ -2,6 +2,15 @@
   {
     "typeId" : "adminGnbMenu",
     "backOfficeId": "admin",
+    "menuId": "systemMng",
+    "menuName": "시스템 관리-CJ",
+    "order": "10",
+    "icon": "",
+    "active": "true"
+  },
+  {
+    "typeId" : "adminGnbMenu",
+    "backOfficeId": "admin",
     "menuId": "dashboard",
     "menuName": "Dashboard",
     "order": "10",
