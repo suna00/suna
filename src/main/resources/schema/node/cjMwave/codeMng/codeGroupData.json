@@ -1,0 +1,24 @@
+[
+  {
+    "typeId" : "groupCodeMng",
+    "groupCodeId" : "systemNtfTgtCd",
+    "groupCodeNm" : "시스템 공지사항 대상코드",
+    "groupCodeDesc" : "시스템 공지사항 공지 대상코드",
+    "useYn" : true,
+    "regr" : "admin",
+    "regDt" : "2017/07/26",
+    "amdr" : "",
+    "amdDt" : ""
+  },
+  {
+    "typeId" : "groupCodeMng",
+    "groupCodeId" : "systemNtfTypeCd",
+    "groupCodeNm" : "시스템 공지사항 유형코드",
+    "groupCodeDesc" : "시스템 공지사항 공지 유형코드",
+    "useYn" : true,
+    "regr" : "admin",
+    "regDt" : "2017/07/26",
+    "amdr" : "",
+    "amdDt" : ""
+  }
+]

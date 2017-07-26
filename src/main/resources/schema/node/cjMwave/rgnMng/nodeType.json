@@ -2,14 +2,14 @@
   {
     "parentId" : "systemMng",
     "typeId" : "nodeType",
-    "id" : "rgnMng",
-    "tid" : "rgnMng",
-    "typeName" : "지역 관리",
+    "id" : "rgnMngMenu",
+    "tid" : "rgnMngMenu",
+    "typeName" : "지역 관리 path",
     "repositoryType" : "path",
     "eviction" : 0
   },
   {
-    "parentId" : "rgnMng",
+    "parentId" : "rgnMngMenu",
     "typeId" : "nodeType",
     "id" : "cntryMng",
     "tid" : "cntryMng",
@@ -19,7 +19,7 @@
     "eviction" : 100
   },
   {
-    "parentId" : "rgnMng",
+    "parentId" : "rgnMngMenu",
     "typeId" : "nodeType",
     "id" : "langMng",
     "tid" : "langMng",

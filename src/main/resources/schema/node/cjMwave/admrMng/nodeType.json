@@ -2,6 +2,15 @@
   {
     "parentId" : "systemMng",
     "typeId" : "nodeType",
+    "id" : "admrMngMenu",
+    "tid" : "admrMngMenu",
+    "typeName" : "운영자 관리 path",
+    "repositoryType" : "path",
+    "eviction" : 0
+  },
+  {
+    "parentId" : "admrMngMenu",
+    "typeId" : "nodeType",
     "id" : "admrGroup",
     "tid" : "admrGroup",
     "typeName" : "운영자 그룹",
@@ -10,7 +19,7 @@
     "eviction" : 100
   },
   {
-    "parentId" : "systemMng",
+    "parentId" : "admrMngMenu",
     "typeId" : "nodeType",
     "id" : "admrInfo",
     "tid" : "admrInfo",

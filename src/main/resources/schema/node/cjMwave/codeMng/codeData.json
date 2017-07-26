@@ -1,0 +1,28 @@
+[
+  {
+    "typeId" : "codeMng",
+    "codeSeq" : 0,
+    "groupCodeId" : "systemNtfTgtCd",
+    "codeId" : "intnAdmr",
+    "codeNm" : "내부 관리자",
+    "sortOdrg" : 1,
+    "useYn" : true,
+    "regr" :  "admin",
+    "regDt" : "2017/07/26",
+    "amdr" : "",
+    "amdDt" : ""
+  },
+  {
+    "typeId" : "codeMng",
+    "codeSeq" : 1,
+    "groupCodeId" : "systemNtfTgtCd",
+    "codeId" : "totalAdmr",
+    "codeNm" : "전체 관리자",
+    "sortOdrg" : 2,
+    "useYn" : true,
+    "regr" :  "admin",
+    "regDt" : "2017/07/26",
+    "amdr" : "",
+    "amdDt" : ""
+  }
+]
