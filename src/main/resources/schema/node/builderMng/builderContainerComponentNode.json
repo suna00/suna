@@ -22,16 +22,6 @@
   {
     "typeId" : "builderContainerComponent",
     "componentClassType": "",
-    "componentClass": "EditList",
-    "componentClassName": "EDIT LIST",
-    "icon": "fa-list",
-    "order": 30,
-    "active": true,
-    "componentChildren": ""
-  },
-  {
-    "typeId" : "builderContainerComponent",
-    "componentClassType": "",
     "componentClass": "DefaultListSearch",
     "componentClassName": "DEFAULT LIST SEARCH",
     "icon": "fa-search",
