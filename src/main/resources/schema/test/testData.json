@@ -48,6 +48,14 @@
     "orderNo": 6
   },
   {
+    "typeId" : "testCategory",
+    "categoryId": "id7",
+    "categoryName" : "pants",
+    "parentCategory" : "fashion",
+    "categoryType" : "product",
+    "orderNo": 7
+  },
+  {
     "typeId" : "testItem",
     "id" : 1,
     "category" : "drama",

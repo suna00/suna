@@ -20,8 +20,6 @@ public class EventBroker {
         for(int i=0; i < 3; i++){
             EventQueue queue = new EventQueue() ;
             queue.start() ;
-//            queue.setDaemon(true);
-
             queues.add(queue) ;
         }
     }
