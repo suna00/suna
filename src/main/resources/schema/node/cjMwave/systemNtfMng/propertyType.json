@@ -38,7 +38,7 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "codeMng",
-    "referenceValue": "systemNtfTgtCd",
+    "referenceValue": "",
     "validationTypes": {
       "required": { "value": false, "description": "필수 값 입니다." },
       "duplicated": { "value": false, "description": "중복된 값 입니다." },
@@ -62,7 +62,7 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "codeMng",
-    "referenceValue": "systemNtfTypeCd",
+    "referenceValue": "",
     "validationTypes": {
       "required": { "value": false, "description": "필수 값 입니다." },
       "duplicated": { "value": false, "description": "중복된 값 입니다." },
