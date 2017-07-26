@@ -47,8 +47,8 @@
   {
     "parentId" : "metadataMng",
     "typeId" : "nodeType",
-    "id" : "news_song_mappg",
-    "tid" : "news_song_mappg",
+    "id" : "newsSongMappg",
+    "tid" : "newsSongMappg",
     "typeName" : "뉴스곡맵핑",
     "repositoryType" : "node",
     "eviction" : 1000
@@ -56,8 +56,8 @@
   {
     "parentId" : "metadataMng",
     "typeId" : "nodeType",
-    "id" : "music_video",
-    "tid" : "music_video",
+    "id" : "musicVideo",
+    "tid" : "musicVideo",
     "typeName" : "뮤직비디오",
     "repositoryType" : "node",
     "eviction" : 1000
@@ -65,8 +65,8 @@
   {
     "parentId" : "metadataMng",
     "typeId" : "nodeType",
-    "id" : "news_music_video_mappg",
-    "tid" : "news_music_video_mappg",
+    "id" : "newsMusicVideoMappg",
+    "tid" : "newsMusicVideoMappg",
     "typeName" : "뉴스 뮤직비디오 맵핑",
     "repositoryType" : "node",
     "eviction" : 1000
@@ -74,8 +74,8 @@
   {
     "parentId" : "metadataMng",
     "typeId" : "nodeType",
-    "id" : "program_video",
-    "tid" : "program_video",
+    "id" : "programVideo",
+    "tid" : "programVideo",
     "typeName" : "프로그램영상",
     "repositoryType" : "node",
     "eviction" : 1000
@@ -83,8 +83,8 @@
   {
     "parentId" : "metadataMng",
     "typeId" : "nodeType",
-    "id" : "news_program_video_mappg",
-    "tid" : "",
+    "id" : "newsProgramVideoMappg",
+    "tid" : "newsProgramVideoMappg",
     "typeName" : "뉴스 아티스트 맵핑",
     "repositoryType" : "node",
     "eviction" : 1000
@@ -92,10 +92,11 @@
   {
     "parentId" : "metadataMng",
     "typeId" : "nodeType",
-    "id" : "news_asc_news",
-    "tid" : "news_asc_news",
+    "id" : "newsAscNews",
+    "tid" : "newsAscNews",
     "typeName" : "뉴스_관련뉴스",
     "repositoryType" : "node",
+    "tableName" : "cjDb#newsAscNews",
     "eviction" : 1000
   },
   {
@@ -110,8 +111,17 @@
   {
     "parentId" : "metadataMng",
     "typeId" : "nodeType",
-    "id" : "news_artist_mappg",
-    "tid" : "news_artist_mappg",
+    "id" : "newsArtistMappg",
+    "tid" : "newsArtistMappg",
+    "typeName" : "뉴스 아티스트 맵핑",
+    "repositoryType" : "node",
+    "eviction" : 1000
+  },
+  {
+    "parentId" : "metadataMng",
+    "typeId" : "nodeType",
+    "id" : "newsArtistMappg",
+    "tid" : "newsArtistMappg",
     "typeName" : "뉴스 아티스트 맵핑",
     "repositoryType" : "node",
     "eviction" : 1000

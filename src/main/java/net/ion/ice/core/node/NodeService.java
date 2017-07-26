@@ -46,7 +46,7 @@ public class NodeService {
     @Autowired
     private FileService fileService ;
 
-    private Map<String, NodeType> nodeTypeCache = new ConcurrentHashMap<>() ;
+    private Map<String, NodeType> nodeTypeCache ;
     private Map<String, NodeType> initNodeType = new ConcurrentHashMap<>() ;
 
     @PostConstruct
@@ -67,7 +67,7 @@ public class NodeService {
 
 
     public NodeType getNodeType(String typeId) {
-        if(nodeTypeCache.containsKey(typeId)) {
+        if(nodeTypeCache != null && nodeTypeCache.containsKey(typeId)) {
             return nodeTypeCache.get(typeId) ;
         }
 
@@ -79,15 +79,25 @@ public class NodeService {
             Node nodeTypeNode = infinispanRepositoryService.getNode("nodeType", typeId);
 
             NodeType nodeType = new NodeType(nodeTypeNode);
-            if(!typeId.equals("propertyType")) {
+            if(typeId.equals("propertyType")) {
+                if(initNodeType.containsKey("propertyType")) {
+                    nodeType.setPropertyTypes(getNodeList("propertyType", "tid_matching=" + typeId));
+                }
+            }else{
                 nodeType.setPropertyTypes(getNodeList("propertyType", "tid_matching=" + typeId));
             }
 
-            if(!typeId.equals("event")) {
+            if(typeId.equals("event")) {
+                if(initNodeType.containsKey("event")) {
+                    nodeType.setEvents(getNodeList("event", "tid_matching=" + typeId));
+                }
+            }else{
                 nodeType.setEvents(getNodeList("event", "tid_matching=" + typeId));
             }
 
-            nodeTypeCache.put(typeId, nodeType);
+            if(nodeTypeCache != null) {
+                nodeTypeCache.put(typeId, nodeType);
+            }
             return nodeType;
         }catch(Exception e){
             e.printStackTrace();
@@ -173,32 +183,36 @@ public class NodeService {
         saveSchema("classpath:schema/test/**/*.json", lastChanged);
 
     }
-
     private void saveSchema(String resourcePath, String lastChanged) throws IOException {
+        saveSchema(resourcePath, lastChanged, true);
+        saveSchema(resourcePath, lastChanged, false);
+    }
 
+    private void saveSchema(String resourcePath, String lastChanged, boolean core) throws IOException {
         Resource[] resources = ApplicationContextManager.getResources(resourcePath);
-
-        for (Resource resource : resources) {
-            if (resource.getFilename().equals("nodeType.json")) {
-                fileNodeSave(lastChanged, resource);
+        if(core) {
+            for (Resource resource : resources) {
+                if (resource.getFilename().equals("nodeType.json")) {
+                    fileNodeSave(lastChanged, resource);
+                }
             }
-        }
 
-        for (Resource resource : resources) {
-            if (resource.getFilename().equals("propertyType.json")) {
-                fileNodeSave(lastChanged, resource);
+            for (Resource resource : resources) {
+                if (resource.getFilename().equals("propertyType.json")) {
+                    fileNodeSave(lastChanged, resource);
+                }
             }
-        }
 
-        for (Resource resource : resources) {
-            if (resource.getFilename().equals("event.json")) {
-                fileNodeSave(lastChanged, resource);
+            for (Resource resource : resources) {
+                if (resource.getFilename().equals("event.json")) {
+                    fileNodeSave(lastChanged, resource);
+                }
             }
-        }
-
-        for (Resource resource : resources) {
-            if (!(resource.getFilename().equals("nodeType.json") || resource.getFilename().equals("propertyType.json") || resource.getFilename().equals("event.json"))) {
-                fileNodeSave(lastChanged, resource);
+        }else {
+            for (Resource resource : resources) {
+                if (!(resource.getFilename().equals("nodeType.json") || resource.getFilename().equals("propertyType.json") || resource.getFilename().equals("event.json"))) {
+                    fileNodeSave(lastChanged, resource);
+                }
             }
         }
     }
@@ -348,11 +362,41 @@ public class NodeService {
         return context.getNode() ;
     }
 
-    public void changeNodeType(ExecuteContext context){
-
-    }
 
     public List<Object> executeQuery(QueryContext queryContext) {
         return infinispanRepositoryService.executeQuery(queryContext) ;
+    }
+
+    public void removeNodeTypeCache(String typeId){
+        if(this.nodeTypeCache != null){
+            this.nodeTypeCache.remove(typeId) ;
+        }
+    }
+
+    public void changeNodeType(ExecuteContext context){
+        removeNodeTypeCache(context.getNode().getId()) ;
+        logger.info("Change NodeType : " + context.getNode().getId());
+    }
+
+    public void changePropertyType(ExecuteContext context){
+        removeNodeTypeCache(context.getNode().getStringValue("tid")) ;
+        logger.info("Change PropertyType : " + context.getNode().getStringValue("tid"));
+    }
+
+    public void changeEvent(ExecuteContext context){
+        removeNodeTypeCache(context.getNode().getStringValue("tid")) ;
+        logger.info("Change Event : " + context.getNode().getStringValue("tid"));
+    }
+
+
+    public void changeEventAction(ExecuteContext context){
+        removeNodeTypeCache(StringUtils.substringBefore(context.getNode().getStringValue("event"), "@")) ;
+        logger.info("Change EventAction : " + StringUtils.substringBefore(context.getNode().getStringValue("event"), "@"));
+    }
+
+
+    public void changeEventListener(ExecuteContext context){
+        removeNodeTypeCache(StringUtils.substringBefore(context.getNode().getStringValue("event"), "@")) ;
+        logger.info("Change EventAction : " + StringUtils.substringBefore(context.getNode().getStringValue("event"), "@"));
     }
 }

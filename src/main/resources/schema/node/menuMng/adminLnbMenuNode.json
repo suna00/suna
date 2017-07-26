@@ -459,4 +459,150 @@
     ],
     "customPages": []
   }
+
+,
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "metadataMng",
+    "parentMenuId": "root",
+    "menuId": "artist",
+    "menuName": "아티스트",
+    "order": "10",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" },
+      { "pageName": "등록/수정", "pageUrl": "form" },
+      { "pageName": "상세", "pageUrl": "view" }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "metadataMng",
+    "parentMenuId": "root",
+    "menuId": "album",
+    "menuName": "앨범",
+    "order": "20",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" },
+      { "pageName": "등록/수정", "pageUrl": "form" },
+      { "pageName": "상세", "pageUrl": "view" }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "metadataMng",
+    "parentMenuId": "root",
+    "menuId": "song",
+    "menuName": "곡",
+    "order": "30",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" },
+      { "pageName": "등록/수정", "pageUrl": "form" },
+      { "pageName": "상세", "pageUrl": "view" }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "metadataMng",
+    "parentMenuId": "root",
+    "menuId": "musicVideo",
+    "menuName": "뮤직비디오",
+    "order": "40",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" },
+      { "pageName": "등록/수정", "pageUrl": "form" },
+      { "pageName": "상세", "pageUrl": "view" }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "metadataMng",
+    "parentMenuId": "root",
+    "menuId": "photo",
+    "menuName": "Photo",
+    "order": "60",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" },
+      { "pageName": "등록/수정", "pageUrl": "form" },
+      { "pageName": "상세", "pageUrl": "view" }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "metadataMng",
+    "parentMenuId": "root",
+    "menuId": "program",
+    "menuName": "프로그램",
+    "order": "60",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" },
+      { "pageName": "등록/수정", "pageUrl": "form" },
+      { "pageName": "상세", "pageUrl": "view" }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "metadataMng",
+    "parentMenuId": "root",
+    "menuId": "programVideo",
+    "menuName": "프로그램 영상",
+    "order": "70",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" },
+      { "pageName": "등록/수정", "pageUrl": "form" },
+      { "pageName": "상세", "pageUrl": "view" }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "metadataMng",
+    "parentMenuId": "root",
+    "menuId": "news",
+    "menuName": "뉴스",
+    "order": "80",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" },
+      { "pageName": "등록/수정", "pageUrl": "form" },
+      { "pageName": "상세", "pageUrl": "view" }
+    ],
+    "customPages": []
+  }
 ]

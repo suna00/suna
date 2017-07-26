@@ -77,10 +77,13 @@ public class EventService {
     }
 
     public void execute(ExecuteContext executeContext) {
+        if(!executeContext.isExecute()) return  ;
+
         NodeType nodeType = executeContext.getNodeType() ;
         if(nodeType.isNode()) {
             infinispznService.execute(executeContext) ;
         }
+
 
         Event event = nodeType.getEvent(executeContext.getEvent()) ;
         if(event == null){
