@@ -57,7 +57,7 @@
     "icon": "fa-square-o",
     "order": 60,
     "active": true,
-    "componentChildren": ""
+    "componentChildren": "DefaultFormFooter"
   },
   {
     "typeId" : "builderContainerComponent",
