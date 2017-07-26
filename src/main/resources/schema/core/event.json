@@ -45,6 +45,14 @@
   },
   {
     "typeId" : "eventListener",
+    "id" : "nodeType@propertyType@allEvent",
+    "tid" : "nodeType",
+    "event": "propertyType@allEvent",
+    "actionType" : "service",
+    "actionBody" : "nodeService.changePropertyType"
+  },
+  {
+    "typeId" : "eventListener",
     "id" : "nodeType@event@allEvent",
     "tid" : "nodeType",
     "event": "event@allEvent",

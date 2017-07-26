@@ -348,11 +348,28 @@ public class NodeService {
         return context.getNode() ;
     }
 
-    public void changeNodeType(ExecuteContext context){
-
-    }
 
     public List<Object> executeQuery(QueryContext queryContext) {
         return infinispanRepositoryService.executeQuery(queryContext) ;
+    }
+
+    public void changeNodeType(ExecuteContext context){
+        this.nodeTypeCache.remove(context.getNode().getId()) ;
+        logger.info("Change NodeType : " + context.getNode().getId());
+    }
+
+    public void changePropertyType(ExecuteContext context){
+        this.nodeTypeCache.remove(context.getNode().getStringValue("tid")) ;
+        logger.info("Change PropertyType : " + context.getNode().getStringValue("tid"));
+    }
+
+    public void changeEvent(ExecuteContext context){
+        this.nodeTypeCache.remove(context.getNode().getId()) ;
+    }
+    public void changeEventAction(ExecuteContext context){
+        this.nodeTypeCache.remove(context.getNode().getId()) ;
+    }
+    public void changeEventListener(ExecuteContext context){
+        this.nodeTypeCache.remove(context.getNode().getId()) ;
     }
 }
