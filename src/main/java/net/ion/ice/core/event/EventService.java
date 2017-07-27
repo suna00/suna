@@ -34,7 +34,7 @@ public class EventService {
     private NodeService nodeService ;
 
     @Autowired
-    private InfinispanRepositoryService infinispznService ;
+    private InfinispanRepositoryService infinispanService ;
 
 
     @Autowired
@@ -81,7 +81,7 @@ public class EventService {
 
         NodeType nodeType = executeContext.getNodeType() ;
         if(nodeType.isNode()) {
-            infinispznService.execute(executeContext) ;
+            infinispanService.execute(executeContext) ;
         }
 
 
