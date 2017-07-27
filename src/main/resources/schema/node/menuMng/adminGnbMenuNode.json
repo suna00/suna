@@ -4,7 +4,16 @@
     "backOfficeId": "admin",
     "menuId": "systemMng",
     "menuName": "시스템 관리-CJ",
-    "order": "10",
+    "order": "101",
+    "icon": "",
+    "active": "true"
+  },
+  {
+    "typeId" : "adminGnbMenu",
+    "backOfficeId": "admin",
+    "menuId": "metadataMng",
+    "menuName": "메타데이터 관리-CJ",
+    "order": "102",
     "icon": "",
     "active": "true"
   },
@@ -67,14 +76,6 @@
     "backOfficeId": "sm",
     "menuId": "productMng",
     "menuName": "상품 관리",
-    "order": "20",
-    "icon": "",
-    "active": "true"
-  },{
-    "typeId" : "adminGnbMenu",
-    "backOfficeId": "admin",
-    "menuId": "metadataMng",
-    "menuName": "메타데이터 관리",
     "order": "20",
     "icon": "",
     "active": "true"
