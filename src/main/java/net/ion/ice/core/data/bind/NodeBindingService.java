@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.data.DBUtils;
 import net.ion.ice.core.data.DBService;
+import net.ion.ice.core.data.context.DBQueryContext;
+import net.ion.ice.core.data.context.DBQueryTerm;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeType;
@@ -43,7 +45,7 @@ public class NodeBindingService {
         }
     }
 
-    public void execute(ExecuteContext context){
+    public void execute(ExecuteContext context) {
         Node node = context.getNode();
         nodeBindProcess(node.getTypeId());
         NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(node.getTypeId());
@@ -51,6 +53,7 @@ public class NodeBindingService {
         if (callback == 0) {
             nodeBindingInfo.insert(node);
         }
+        logger.info("Node Binding {} - {} :  " + (callback == 0 ? "insert" : "update"), node.getTypeId(), node.getId());
     }
 
     public void createTable(String typeId, HttpServletResponse response) {
@@ -71,16 +74,16 @@ public class NodeBindingService {
 
         String id = "";
 
-        for(String paramName : parameterMap.keySet()){
-            if(paramName.equals("id")){
+        for (String paramName : parameterMap.keySet()) {
+            if (paramName.equals("id")) {
                 id = parameterMap.get(paramName)[0];
             }
         }
 
-        if(id.isEmpty()){
+        if (id.isEmpty()) {
             List<String> idablePids = NodeUtils.getNodeType(typeId).getIdablePIds();
-            for(int i = 0 ; i < idablePids.size(); i++){
-                id = id + parameterMap.get(idablePids.get(i))[0] + (i < (idablePids.size() - 1) ? Node.ID_SEPERATOR : "") ;
+            for (int i = 0; i < idablePids.size(); i++) {
+                id = id + parameterMap.get(idablePids.get(i))[0] + (i < (idablePids.size() - 1) ? Node.ID_SEPERATOR : "");
             }
         }
 
@@ -88,28 +91,29 @@ public class NodeBindingService {
         return nodeBindingInfo.retrieve(id);
     }
 
-    public List<Map<String, Object>> list(String typeId) {
+    public Map<String, Object> list(String typeId) {
         nodeBindProcess(typeId);
         NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(typeId);
         return nodeBindingInfo.list();
     }
 
-    public List<Map<String, Object>> list(String typeId, WebRequest request) {
+    public Map<String, Object> list(String typeId, WebRequest request) {
         nodeBindProcess(typeId);
         NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(typeId);
-
-        String sql = "";
-
-        return nodeBindingInfo.list(sql);
+        if(request.getParameterMap().isEmpty()){
+            return nodeBindingInfo.list();
+        }else{
+            return nodeBindingInfo.list(DBQueryContext.makeDBQueryContextFromParameter(request.getParameterMap(), nodeService.getNodeType(typeId)));
+        }
     }
 
-    public void delete(Map<String, String[]> parameterMap, String typeId){
+    public void delete(Map<String, String[]> parameterMap, String typeId) {
         nodeBindProcess(typeId);
         NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(typeId);
         nodeBindingInfo.delete(parameterMap);
     }
 
-    public void delete(ExecuteContext context){
+    public void delete(ExecuteContext context) {
         Node node = context.getNode();
         nodeBindProcess(node.getTypeId());
         NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(node.getTypeId());
@@ -135,5 +139,4 @@ public class NodeBindingService {
             nodeBindingInfoMap.put(typeId, nodeBindingInfo);
         }
     }
-
 }

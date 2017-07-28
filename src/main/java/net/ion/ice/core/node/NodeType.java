@@ -139,8 +139,8 @@ public class NodeType {
         }
         for(Node _node : eventList){
             Event event = new Event(_node);
-            event.setEventActions(NodeUtils.getNodeList("eventAction", "sorting=order&event_matching=" + event.getEvent()));
-            event.setEventListeners(NodeUtils.getNodeList("eventListener", "event_matching=" + event.getEvent()));
+            event.setEventActions(NodeUtils.getNodeList("eventAction", "event_matching=" + event.getId()));
+            event.setEventListeners(NodeUtils.getNodeList("eventListener", "event_matching=" + event.getId()));
 
 
             events.put(event.getEvent(), event) ;

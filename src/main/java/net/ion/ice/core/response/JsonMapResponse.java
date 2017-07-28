@@ -16,7 +16,6 @@ public class JsonMapResponse extends JsonResponse {
     }
 
     public Map<String, Object> getItem() {
-
         return item;
     }
 

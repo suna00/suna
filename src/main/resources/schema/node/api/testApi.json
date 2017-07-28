@@ -12,9 +12,9 @@
     "method" : "GET",
     "config" : {
       "createItem" : {
-        "typeId":"testItem",
-        "event" : "create",
-        "data" : {
+        "typeId": "testItem",
+        "event": "create",
+        "data": {
           "id": "{{:id}}",
           "category": "{{:category}}",
           "title": "{{:title}}"
@@ -40,11 +40,12 @@
         "typeId":"testItem",
         "query" : [
           {"field" : "category", "method" : "matching", "value" : "drama" },
-          {"sorting" : "id desc"}
+          {"sorting" : "id desc"},
+          {"page" : "{{:itemsPage}}", "pageSize":20}
         ]
       },
       "users" : {
-        "endpoint":"http://customer.api.com/api/test.json"
+        "endpoint":"http://customer.api.com/api/test.json?id={{:testId}}"
       }
     }
   }

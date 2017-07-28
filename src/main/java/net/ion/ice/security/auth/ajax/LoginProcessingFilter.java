@@ -1,10 +1,8 @@
 package net.ion.ice.security.auth.ajax;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -26,16 +24,11 @@ public class LoginProcessingFilter extends AbstractAuthenticationProcessingFilte
     private final AuthenticationSuccessHandler successHandler;
     private final AuthenticationFailureHandler failureHandler;
 
-    @Autowired
-    private final ObjectMapper objectMapper;
-
-
     public LoginProcessingFilter(String defaultProcessUrl, AuthenticationSuccessHandler successHandler,
-                                 AuthenticationFailureHandler failureHandler, ObjectMapper mapper) {
+                                 AuthenticationFailureHandler failureHandler) {
         super(defaultProcessUrl);
         this.successHandler = successHandler;
         this.failureHandler = failureHandler;
-        this.objectMapper = mapper;
     }
 
     @Override

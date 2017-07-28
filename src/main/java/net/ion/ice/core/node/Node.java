@@ -32,6 +32,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
     @Field(analyze = Analyze.NO)
     @DateBridge(resolution = Resolution.SECOND)
+    @SortableField()
     private transient Date changed ;
 
     private transient NodeValue nodeValue ;
@@ -316,7 +317,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     }
 
     public void toDisplay() {
-        this.properties.toDisplay();
+        this.properties.toDisplay(this.nodeValue);
     }
 
     public void toCode() {

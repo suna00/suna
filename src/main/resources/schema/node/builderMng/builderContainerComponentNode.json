@@ -1,51 +1,72 @@
 [
   {
     "typeId" : "builderContainerComponent",
+    "componentClassType": "",
     "componentClass": "IceGrid",
     "componentClassName": "GRID",
     "icon": "fa-object-ungroup",
-    "order": 10
+    "order": 10,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderContainerComponent",
+    "componentClassType": "",
     "componentClass": "DefaultList",
     "componentClassName": "DEFAULT LIST",
     "icon": "fa-list",
-    "order": 20
+    "order": 20,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderContainerComponent",
-    "componentClass": "EditList",
-    "componentClassName": "EDIT LIST",
-    "icon": "fa-list",
-    "order": 30
-  },
-  {
-    "typeId" : "builderContainerComponent",
+    "componentClassType": "",
     "componentClass": "DefaultListSearch",
     "componentClassName": "DEFAULT LIST SEARCH",
     "icon": "fa-search",
-    "order": 40
+    "order": 40,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderContainerComponent",
+    "componentClassType": "",
     "componentClass": "DefaultListFooter",
     "componentClassName": "DEFAULT LIST FOOTER",
     "icon": "fa-toggle-on",
-    "order": 50
+    "order": 50,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderContainerComponent",
+    "componentClassType": "",
     "componentClass": "DefaultView",
     "componentClassName": "DEFAULT VIEW",
     "icon": "fa-square-o",
-    "order": 60
+    "order": 60,
+    "active": true,
+    "componentChildren": "DefaultFormFooter"
   },
   {
     "typeId" : "builderContainerComponent",
+    "componentClassType": "",
     "componentClass": "DefaultForm",
     "componentClassName": "DEFAULT FORM",
     "icon": "fa-edit",
-    "order": 70
+    "order": 70,
+    "active": true,
+    "componentChildren": "DefaultFormFooter"
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClassType": "",
+    "componentClass": "DefaultFormFooter",
+    "componentClassName": "DEFAULT FORM/VIEW FOOTER",
+    "icon": "fa-toggle-on",
+    "order": 80,
+    "active": false,
+    "componentChildren": ""
   }
 ]

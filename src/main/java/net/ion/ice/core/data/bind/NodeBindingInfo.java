@@ -2,6 +2,8 @@ package net.ion.ice.core.data.bind;
 
 import net.ion.ice.core.data.DBDataTypes;
 import net.ion.ice.core.data.DBTypes;
+import net.ion.ice.core.data.context.DBQueryContext;
+import net.ion.ice.core.data.context.DBQueryTerm;
 import net.ion.ice.core.data.table.Column;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
@@ -16,6 +18,7 @@ import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by seonwoong on 2017. 6. 28..
@@ -35,16 +38,24 @@ public class NodeBindingInfo {
     private String deleteSql = "";
     private String retrieveSql = "";
     private String listSql = "";
+    private String listParamSql = "";
+    private String totalCountSql = "";
+
+
+    private List<String> searchListQuery;
+    private List<Object> searchListValue;
+    private List<Object> resultCountValue;
+
 
     private JdbcTemplate jdbcTemplate;
 
 
     private List<Column> columnList;
     private List<Column> createColumnList;
-    private List<String> insertPids = new LinkedList<>();
+    private List<String> insertPids = new ArrayList<>();
 
-    private List<String> updatePids = new LinkedList<>();
-    private List<String> wherePids = new LinkedList<>();
+    private List<String> updatePids = new ArrayList<>();
+    private List<String> wherePids = new ArrayList<>();
 
 
     private Collection<PropertyType> propertyTypes;
@@ -122,11 +133,11 @@ public class NodeBindingInfo {
             listSql = String.format("SELECT * FROM %s LIMIT 1000", tableName);
             retrieveSql = String.format("SELECT * FROM %s WITH(nolock) WHERE %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
 
-        }else if(DBType.equalsIgnoreCase("msSql")){
-            listSql = String.format("SELECT TOP 100 * FROM %s", tableName);
+        } else if (DBType.equalsIgnoreCase("msSql")) {
+            listSql = String.format("SELECT TOP 1000 * FROM %s", tableName);
             retrieveSql = String.format("SELECT * FROM %s WHERE %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
 
-        }else if(DBType.equalsIgnoreCase("maria")){
+        } else if (DBType.equalsIgnoreCase("maria")) {
             listSql = String.format("SELECT * FROM %s LIMIT 1000", tableName);
             retrieveSql = String.format("SELECT * FROM %s WHERE %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
 
@@ -232,13 +243,31 @@ public class NodeBindingInfo {
         return result;
     }
 
-    public List<Map<String, Object>> list() {
-        List<Map<String, Object>> result = jdbcTemplate.queryForList(listSql);
+    public Map<String, Object> list() {
+        Map<String, Object> result = new ConcurrentHashMap<>();
+        List<Map<String, Object>> items = jdbcTemplate.queryForList(listSql);
+        result.put("items", items);
         return result;
     }
 
-    public List<Map<String, Object>> list(String listSql) {
-        List<Map<String, Object>> result = jdbcTemplate.queryForList(listSql);
+    public Map<String, Object> list(DBQueryContext dbQueryContext) {
+        makeListQuery(dbQueryContext);
+
+        Map<String, Object> result = new ConcurrentHashMap<>();
+        Map<String, Object> totalCount;
+        if(resultCountValue == null || resultCountValue.isEmpty()){
+            totalCount = jdbcTemplate.queryForMap(totalCountSql);
+        }else{
+            totalCount = jdbcTemplate.queryForMap(totalCountSql, resultCountValue.toArray());
+        }
+        List<Map<String, Object>> items = jdbcTemplate.queryForList(listParamSql, searchListValue.toArray());
+        double rc = ((Long) totalCount.get("totalCount")).doubleValue();
+        result.put("pageSize", dbQueryContext.getPageSize());
+        result.put("pageCount", (int) Math.ceil(rc / dbQueryContext.getPageSize()));
+        result.put("currentPage", dbQueryContext.getCurrentPage());
+        result.putAll(totalCount);
+        result.put("resultCount", items.size());
+        result.put("items", items);
         return result;
     }
 
@@ -288,5 +317,40 @@ public class NodeBindingInfo {
 
     private List<String> retrieveParameters(String id) {
         return Arrays.asList(id.split("@"));
+    }
+
+    public void makeListQuery(DBQueryContext dbQueryContext) {
+        searchListQuery = new ArrayList<>();
+        searchListValue = new ArrayList<>();
+
+        int currentPage = dbQueryContext.getCurrentPage();
+        int pageSize = dbQueryContext.getPageSize();
+        String sorting = dbQueryContext.getSorting();
+
+        if (!dbQueryContext.getDbQueryTermList().isEmpty()) {
+            for (DBQueryTerm dbQueryTerm : dbQueryContext.getDbQueryTermList()) {
+                String query = String.format("%s %s ?", dbQueryTerm.getKey(), dbQueryTerm.getMethodQuery());
+                String value = dbQueryTerm.getValue();
+                searchListQuery.add(query);
+                searchListValue.add(value);
+            }
+
+            listParamSql = String.format("SELECT * FROM %s WHERE %s", tableName, StringUtils.join(searchListQuery.toArray(), " AND "));
+            totalCountSql = String.format("SELECT COUNT(*) as totalCount FROM %s WHERE %s", tableName, StringUtils.join(searchListQuery.toArray(), " AND "));
+
+            resultCountValue = new ArrayList<>(searchListValue);
+
+        } else {
+            listParamSql = String.format("SELECT * FROM %s", tableName);
+            totalCountSql = String.format("SELECT COUNT(*) as totalCount FROM %s", tableName);
+        }
+
+        if (sorting != null) {
+            listParamSql = listParamSql.concat(String.format(" ORDER BY ").concat(sorting));
+        }
+
+        listParamSql = listParamSql.concat(String.format(" LIMIT ?").concat(String.format(" OFFSET ?")));
+        searchListValue.add(pageSize);
+        searchListValue.add(pageSize * (currentPage - 1));
     }
 }

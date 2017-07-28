@@ -132,8 +132,11 @@ public class InfinispanRepositoryService {
         }
 
         List<Object> list = cacheQuery.list();
-
         queryContext.setResultSize(cacheQuery.getResultSize());
+
+        if(queryContext.getStart() > 0) {
+            return list.subList(queryContext.getStart(), list.size()) ;
+        }
         return list;
     }
 
