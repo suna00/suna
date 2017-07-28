@@ -2,8 +2,7 @@
   {
     "parentId": "root",
     "typeId": "nodeType",
-    "id": "customer",
-    "tid": "customer",
+    "tid": "customerPath",
     "typeName": "고객",
     "repositoryType": "path",
     "eviction": 0

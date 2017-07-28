@@ -2,8 +2,7 @@
   {
     "parentId": "root",
     "typeId": "nodeType",
-    "id": "product",
-    "tid": "product",
+    "tid": "productPath",
     "typeName": "상품",
     "repositoryType": "path",
     "eviction": 0

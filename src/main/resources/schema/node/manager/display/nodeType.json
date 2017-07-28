@@ -2,7 +2,7 @@
   {
     "parentId": "root",
     "typeId": "nodeType",
-    "tid": "display",
+    "tid": "displayPath",
     "typeName": "전시",
     "repositoryType": "path",
     "eviction": 0

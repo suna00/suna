@@ -2,7 +2,7 @@
   {
     "parentId": "root",
     "typeId": "nodeType",
-    "tid": "backOffice",
+    "tid": "backOfficePath",
     "typeName": "BackOffice",
     "repositoryType": "path",
     "eviction": 0

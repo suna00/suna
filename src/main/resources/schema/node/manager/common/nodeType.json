@@ -2,7 +2,7 @@
   {
     "parentId": "root",
     "typeId": "nodeType",
-    "tid": "common",
+    "tid": "commonPath",
     "typeName": "공통",
     "repositoryType": "path",
     "eviction": 0

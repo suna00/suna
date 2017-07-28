@@ -2,7 +2,7 @@
   {
     "parentId": "root",
     "typeId": "nodeType",
-    "tid": "point",
+    "tid": "pointPath",
     "typeName": "포인트",
     "repositoryType": "path",
     "eviction": 0
