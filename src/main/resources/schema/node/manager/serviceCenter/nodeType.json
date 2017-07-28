@@ -1,0 +1,82 @@
+[
+  {
+    "parentId": "root",
+    "typeId": "nodeType",
+    "tid": "serviceCenter",
+    "typeName": "고객센터",
+    "repositoryType": "path",
+    "eviction": 0
+  },
+  {
+    "parentId": "serviceCenter",
+    "typeId": "nodeType",
+    "tid": "review",
+    "typeName": "상품평",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "serviceCenter",
+    "typeId": "nodeType",
+    "tid": "productAnswer",
+    "typeName": "QNA 답변",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "serviceCenter",
+    "typeId": "nodeType",
+    "tid": "productQuestion",
+    "typeName": "QNA 질문",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "serviceCenter",
+    "typeId": "nodeType",
+    "tid": "reportReview",
+    "typeName": "상품평 신고",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "serviceCenter",
+    "typeId": "nodeType",
+    "tid": "oneToOneQuestion",
+    "typeName": "1대1문의",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "serviceCenter",
+    "typeId": "nodeType",
+    "tid": "oneToOneAnswer",
+    "typeName": "1대1답변",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "serviceCenter",
+    "typeId": "nodeType",
+    "tid": "frequentlyAskedQuestion",
+    "typeName": "FAQ",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "serviceCenter",
+    "typeId": "nodeType",
+    "tid": "frequentlyUsedAnswer",
+    "typeName": "자주쓰는답변",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "serviceCenter",
+    "typeId": "nodeType",
+    "tid": "commonNotice",
+    "typeName": "공지사항",
+    "repositoryType": "node",
+    "eviction": 0
+  }
+]

@@ -1,0 +1,34 @@
+[
+  {
+    "parentId": "root",
+    "typeId": "nodeType",
+    "tid": "common",
+    "typeName": "공통",
+    "repositoryType": "path",
+    "eviction": 0
+  },
+  {
+    "parentId": "common",
+    "typeId": "nodeType",
+    "tid": "commonCode",
+    "typeName": "코드",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "common",
+    "typeId": "nodeType",
+    "tid": "commonMemo",
+    "typeName": "메모",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "common",
+    "typeId": "nodeType",
+    "tid": "commonResource",
+    "typeName": "리소스",
+    "repositoryType": "node",
+    "eviction": 0
+  }
+]

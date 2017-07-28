@@ -2,41 +2,40 @@
   {
     "parentId": "root",
     "typeId": "nodeType",
-    "id": "product",
-    "tid": "product",
-    "typeName": "상품",
+    "tid": "event",
+    "typeName": "이벤트",
     "repositoryType": "path",
     "eviction": 0
   },
   {
-    "parentId": "product",
+    "parentId": "event",
     "typeId": "nodeType",
-    "tid": "product",
-    "typeName": "상품",
+    "tid": "shopEvent",
+    "typeName": "이벤트",
     "repositoryType": "node",
     "eviction": 0
   },
   {
-    "parentId": "product",
+    "parentId": "event",
     "typeId": "nodeType",
-    "tid": "productByAffiliate",
-    "typeName": "제휴몰 상품",
+    "tid": "specialExhibition",
+    "typeName": "기획전",
     "repositoryType": "node",
     "eviction": 0
   },
   {
-    "parentId": "product",
+    "parentId": "event",
     "typeId": "nodeType",
-    "tid": "productOption",
-    "typeName": "상품 옵션",
+    "tid": "specialExhibitionHotKeyword",
+    "typeName": "기획전 핫키워드",
     "repositoryType": "node",
     "eviction": 0
   },
   {
-    "parentId": "product",
+    "parentId": "event",
     "typeId": "nodeType",
-    "tid": "productOptionItem",
-    "typeName": "상품 옵션 아이템",
+    "tid": "specialExhibitionAnker",
+    "typeName": "기획전 앵커",
     "repositoryType": "node",
     "eviction": 0
   }

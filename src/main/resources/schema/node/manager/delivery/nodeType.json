@@ -1,0 +1,42 @@
+[
+  {
+    "parentId": "root",
+    "typeId": "nodeType",
+    "tid": "delivery",
+    "typeName": "배송",
+    "repositoryType": "path",
+    "eviction": 0
+  },
+  {
+    "parentId": "delivery",
+    "typeId": "nodeType",
+    "tid": "delivery",
+    "typeName": "배송 정보",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "delivery",
+    "typeId": "nodeType",
+    "tid": "myDeliveryAddress",
+    "typeName": "나의 배송지",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "delivery",
+    "typeId": "nodeType",
+    "tid": "orderDeliveryPrice",
+    "typeName": "주문서 배송비",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "delivery",
+    "typeId": "nodeType",
+    "tid": "setDeliveryPrice",
+    "typeName": "배송비 설정",
+    "repositoryType": "node",
+    "eviction": 0
+  }
+]

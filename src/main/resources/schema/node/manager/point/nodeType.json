@@ -1,0 +1,50 @@
+[
+  {
+    "parentId": "root",
+    "typeId": "nodeType",
+    "tid": "point",
+    "typeName": "포인트",
+    "repositoryType": "path",
+    "eviction": 0
+  },
+  {
+    "parentId": "point",
+    "typeId": "nodeType",
+    "tid": "saveAndUsedPointMap",
+    "typeName": "포인트 매핑",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "point",
+    "typeId": "nodeType",
+    "tid": "savePoint",
+    "typeName": "포인트 적립",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "point",
+    "typeId": "nodeType",
+    "tid": "mileage",
+    "typeName": "마일리지",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "point",
+    "typeId": "nodeType",
+    "tid": "point",
+    "typeName": "제휴사 포인트",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "point",
+    "typeId": "nodeType",
+    "tid": "usedPoint",
+    "typeName": "포인트 사용",
+    "repositoryType": "data",
+    "eviction": 0
+  }
+]

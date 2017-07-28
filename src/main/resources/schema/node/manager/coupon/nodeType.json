@@ -1,0 +1,34 @@
+[
+  {
+    "parentId": "root",
+    "typeId": "nodeType",
+    "tid": "coupon",
+    "typeName": "쿠폰",
+    "repositoryType": "path",
+    "eviction": 0
+  },
+  {
+    "parentId": "coupon",
+    "typeId": "nodeType",
+    "tid": "coupon",
+    "typeName": "쿠폰",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "coupon",
+    "typeId": "nodeType",
+    "tid": "couponType",
+    "typeName": "쿠폰유형",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "coupon",
+    "typeId": "nodeType",
+    "tid": "productToCouponTypeMap",
+    "typeName": "상품 쿠폰유형 매핑",
+    "repositoryType": "data",
+    "eviction": 0
+  }
+]

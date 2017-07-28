@@ -1,0 +1,138 @@
+[
+  {
+    "parentId": "root",
+    "typeId": "nodeType",
+    "tid": "display",
+    "typeName": "전시",
+    "repositoryType": "path",
+    "eviction": 0
+  },
+  {
+    "parentId": "display",
+    "typeId": "nodeType",
+    "tid": "banner",
+    "typeName": "배너",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "display",
+    "typeId": "nodeType",
+    "tid": "bannerElement",
+    "typeName": "배너 구성",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "display",
+    "typeId": "nodeType",
+    "tid": "bannerMap",
+    "typeName": "배너 매핑",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "display",
+    "typeId": "nodeType",
+    "tid": "category",
+    "typeName": "카테고리",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "display",
+    "typeId": "nodeType",
+    "tid": "GNB",
+    "typeName": "GNB",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "display",
+    "typeId": "nodeType",
+    "tid": "popularSearches",
+    "typeName": "인기 검색어",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "display",
+    "typeId": "nodeType",
+    "tid": "popup",
+    "typeName": "팝업",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "display",
+    "typeId": "nodeType",
+    "tid": "productToCategoryMap",
+    "typeName": "카테고리 상품 매핑",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "display",
+    "typeId": "nodeType",
+    "tid": "productToThemeMap",
+    "typeName": "테마 상품 매핑",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "display",
+    "typeId": "nodeType",
+    "tid": "referenceProduct",
+    "typeName": "참조 상품",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "display",
+    "typeId": "nodeType",
+    "tid": "theme",
+    "typeName": "테마 (MD Pick/MD Best/BEST/추천)",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "display",
+    "typeId": "nodeType",
+    "tid": "searchFilterPolicy",
+    "typeName": "검색필터정책",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "display",
+    "typeId": "nodeType",
+    "tid": "searchFilterItem",
+    "typeName": "검색필터코드",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "display",
+    "typeId": "nodeType",
+    "tid": "searchWordHistory",
+    "typeName": "검색어 이력",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "display",
+    "typeId": "nodeType",
+    "tid": "newProductMap",
+    "typeName": "신상품 매핑",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "display",
+    "typeId": "nodeType",
+    "tid": "newProduct",
+    "typeName": "신상품",
+    "repositoryType": "node",
+    "eviction": 0
+  }
+]
