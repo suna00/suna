@@ -2,13 +2,13 @@
   {
     "parentId": "root",
     "typeId": "nodeType",
-    "tid": "contentPath",
-    "typeName": "컨텐츠",
+    "tid": "contentsPath",
+    "typeName": "컨텐츠 관리",
     "repositoryType": "path",
     "eviction": 0
   },
   {
-    "parentId": "contents",
+    "parentId": "contentsPath",
     "typeId": "nodeType",
     "tid": "contents",
     "typeName": "컨텐츠",
@@ -16,7 +16,7 @@
     "eviction": 0
   },
   {
-    "parentId": "contents",
+    "parentId": "contentsPath",
     "typeId": "nodeType",
     "tid": "contentsOption",
     "typeName": "컨텐츠 옵션",
@@ -24,7 +24,7 @@
     "eviction": 0
   },
   {
-    "parentId": "contents",
+    "parentId": "contentsPath",
     "typeId": "nodeType",
     "tid": "goods",
     "typeName": "제품",
@@ -32,7 +32,7 @@
     "eviction": 0
   },
   {
-    "parentId": "contents",
+    "parentId": "contentsPath",
     "typeId": "nodeType",
     "tid": "contentsOptionTypeFields",
     "typeName": "컨텐츠 옵션 타입의 필드 정의",
@@ -40,7 +40,7 @@
     "eviction": 0
   },
   {
-    "parentId": "contents",
+    "parentId": "contentsPath",
     "typeId": "nodeType",
     "tid": "contentsOptionType",
     "typeName": "컨텐츠 옵션 타입",

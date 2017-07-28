@@ -3,12 +3,12 @@
     "parentId": "root",
     "typeId": "nodeType",
     "tid": "productPath",
-    "typeName": "상품",
+    "typeName": "상품 관리",
     "repositoryType": "path",
     "eviction": 0
   },
   {
-    "parentId": "product",
+    "parentId": "productPath",
     "typeId": "nodeType",
     "tid": "product",
     "typeName": "상품",
@@ -16,7 +16,7 @@
     "eviction": 0
   },
   {
-    "parentId": "product",
+    "parentId": "productPath",
     "typeId": "nodeType",
     "tid": "productByAffiliate",
     "typeName": "제휴몰 상품",
@@ -24,7 +24,7 @@
     "eviction": 0
   },
   {
-    "parentId": "product",
+    "parentId": "productPath",
     "typeId": "nodeType",
     "tid": "productOption",
     "typeName": "상품 옵션",
@@ -32,7 +32,7 @@
     "eviction": 0
   },
   {
-    "parentId": "product",
+    "parentId": "productPath",
     "typeId": "nodeType",
     "tid": "productOptionItem",
     "typeName": "상품 옵션 아이템",

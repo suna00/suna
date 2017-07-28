@@ -3,12 +3,12 @@
     "parentId": "root",
     "typeId": "nodeType",
     "tid": "pointPath",
-    "typeName": "포인트",
+    "typeName": "포인트 관리",
     "repositoryType": "path",
     "eviction": 0
   },
   {
-    "parentId": "point",
+    "parentId": "pointPath",
     "typeId": "nodeType",
     "tid": "saveAndUsedPointMap",
     "typeName": "포인트 매핑",
@@ -16,7 +16,7 @@
     "eviction": 0
   },
   {
-    "parentId": "point",
+    "parentId": "pointPath",
     "typeId": "nodeType",
     "tid": "savePoint",
     "typeName": "포인트 적립",
@@ -24,7 +24,7 @@
     "eviction": 0
   },
   {
-    "parentId": "point",
+    "parentId": "pointPath",
     "typeId": "nodeType",
     "tid": "mileage",
     "typeName": "마일리지",
@@ -32,7 +32,7 @@
     "eviction": 0
   },
   {
-    "parentId": "point",
+    "parentId": "pointPath",
     "typeId": "nodeType",
     "tid": "point",
     "typeName": "제휴사 포인트",
@@ -40,7 +40,7 @@
     "eviction": 0
   },
   {
-    "parentId": "point",
+    "parentId": "pointPath",
     "typeId": "nodeType",
     "tid": "usedPoint",
     "typeName": "포인트 사용",

@@ -3,12 +3,12 @@
     "parentId": "root",
     "typeId": "nodeType",
     "tid": "eventPath",
-    "typeName": "이벤트",
+    "typeName": "이벤트 관리",
     "repositoryType": "path",
     "eviction": 0
   },
   {
-    "parentId": "event",
+    "parentId": "eventPath",
     "typeId": "nodeType",
     "tid": "shopEvent",
     "typeName": "이벤트",
@@ -16,7 +16,7 @@
     "eviction": 0
   },
   {
-    "parentId": "event",
+    "parentId": "eventPath",
     "typeId": "nodeType",
     "tid": "specialExhibition",
     "typeName": "기획전",
@@ -24,7 +24,7 @@
     "eviction": 0
   },
   {
-    "parentId": "event",
+    "parentId": "eventPath",
     "typeId": "nodeType",
     "tid": "specialExhibitionHotKeyword",
     "typeName": "기획전 핫키워드",
@@ -32,7 +32,7 @@
     "eviction": 0
   },
   {
-    "parentId": "event",
+    "parentId": "eventPath",
     "typeId": "nodeType",
     "tid": "specialExhibitionAnker",
     "typeName": "기획전 앵커",

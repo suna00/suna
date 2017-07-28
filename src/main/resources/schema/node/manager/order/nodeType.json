@@ -3,12 +3,12 @@
     "parentId": "root",
     "typeId": "nodeType",
     "tid": "orderPath",
-    "typeName": "주문",
+    "typeName": "주문 관리",
     "repositoryType": "path",
     "eviction": 0
   },
   {
-    "parentId": "order",
+    "parentId": "orderPath",
     "typeId": "nodeType",
     "tid": "cart",
     "typeName": "장바구니",
@@ -16,7 +16,7 @@
     "eviction": 0
   },
   {
-    "parentId": "order",
+    "parentId": "orderPath",
     "typeId": "nodeType",
     "tid": "cartProduct",
     "typeName": "장바구니 상품",
@@ -24,7 +24,7 @@
     "eviction": 0
   },
   {
-    "parentId": "order",
+    "parentId": "orderPath",
     "typeId": "nodeType",
     "tid": "cartProductItem",
     "typeName": "장바구니 상품 아이템",
@@ -32,7 +32,7 @@
     "eviction": 0
   },
   {
-    "parentId": "order",
+    "parentId": "orderPath",
     "typeId": "nodeType",
     "tid": "developmentFundHistory",
     "typeName": "발전기금 내역",
@@ -40,7 +40,7 @@
     "eviction": 0
   },
   {
-    "parentId": "order",
+    "parentId": "orderPath",
     "typeId": "nodeType",
     "tid": "purchaseOrder",
     "typeName": "주문서",
@@ -48,7 +48,7 @@
     "eviction": 0
   },
   {
-    "parentId": "order",
+    "parentId": "orderPath",
     "typeId": "nodeType",
     "tid": "orderProduct",
     "typeName": "주문서 상품",
@@ -56,7 +56,7 @@
     "eviction": 0
   },
   {
-    "parentId": "order",
+    "parentId": "orderPath",
     "typeId": "nodeType",
     "tid": "orderProductItem",
     "typeName": "주문서 상품 아이템",
@@ -64,7 +64,7 @@
     "eviction": 0
   },
   {
-    "parentId": "order",
+    "parentId": "orderPath",
     "typeId": "nodeType",
     "tid": "payment",
     "typeName": "결재",
@@ -72,7 +72,7 @@
     "eviction": 0
   },
   {
-    "parentId": "order",
+    "parentId": "orderPath",
     "typeId": "nodeType",
     "tid": "paymentHistory",
     "typeName": "결제 이력",
@@ -80,7 +80,7 @@
     "eviction": 0
   },
   {
-    "parentId": "order",
+    "parentId": "orderPath",
     "typeId": "nodeType",
     "tid": "requestChangeOfOrder",
     "typeName": "주문 변경 요청",

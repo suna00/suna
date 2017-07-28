@@ -3,12 +3,12 @@
     "parentId": "root",
     "typeId": "nodeType",
     "tid": "deliveryPath",
-    "typeName": "배송",
+    "typeName": "배송 관리",
     "repositoryType": "path",
     "eviction": 0
   },
   {
-    "parentId": "delivery",
+    "parentId": "deliveryPath",
     "typeId": "nodeType",
     "tid": "delivery",
     "typeName": "배송 정보",
@@ -16,7 +16,7 @@
     "eviction": 0
   },
   {
-    "parentId": "delivery",
+    "parentId": "deliveryPath",
     "typeId": "nodeType",
     "tid": "myDeliveryAddress",
     "typeName": "나의 배송지",
@@ -24,7 +24,7 @@
     "eviction": 0
   },
   {
-    "parentId": "delivery",
+    "parentId": "deliveryPath",
     "typeId": "nodeType",
     "tid": "orderDeliveryPrice",
     "typeName": "주문서 배송비",
@@ -32,7 +32,7 @@
     "eviction": 0
   },
   {
-    "parentId": "delivery",
+    "parentId": "deliveryPath",
     "typeId": "nodeType",
     "tid": "setDeliveryPrice",
     "typeName": "배송비 설정",

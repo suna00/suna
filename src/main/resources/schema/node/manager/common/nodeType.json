@@ -3,12 +3,12 @@
     "parentId": "root",
     "typeId": "nodeType",
     "tid": "commonPath",
-    "typeName": "공통",
+    "typeName": "공통 관리",
     "repositoryType": "path",
     "eviction": 0
   },
   {
-    "parentId": "common",
+    "parentId": "commonPath",
     "typeId": "nodeType",
     "tid": "commonCode",
     "typeName": "코드",
@@ -16,7 +16,7 @@
     "eviction": 0
   },
   {
-    "parentId": "common",
+    "parentId": "commonPath",
     "typeId": "nodeType",
     "tid": "commonMemo",
     "typeName": "메모",
@@ -24,7 +24,7 @@
     "eviction": 0
   },
   {
-    "parentId": "common",
+    "parentId": "commonPath",
     "typeId": "nodeType",
     "tid": "commonResource",
     "typeName": "리소스",
