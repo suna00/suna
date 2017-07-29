@@ -349,7 +349,11 @@ public class NodeService {
         return queryResult;
     }
 
-
+    public QueryResult getQueryResult(String typeId, Map<String, String[]> parameterMap) {
+        QueryContext queryContext = QueryContext.makeQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
+        QueryResult queryResult = queryContext.makeQueryResult( null);
+        return queryResult;
+    }
 
 
     public Node event(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, String typeId, String event) {
@@ -379,24 +383,39 @@ public class NodeService {
     }
 
     public void changePropertyType(ExecuteContext context){
-        removeNodeTypeCache(context.getNode().getStringValue("tid")) ;
-        logger.info("Change PropertyType : " + context.getNode().getStringValue("tid"));
+        Node node = context.getNode() ;
+        NodeType nodeType = getNodeType(node.getStringValue("tid")) ;
+        nodeType.addPropertyType(new PropertyType(node));
+        logger.info("Change PropertyType : " + node.getStringValue("tid"));
     }
 
     public void changeEvent(ExecuteContext context){
-        removeNodeTypeCache(context.getNode().getStringValue("tid")) ;
+        Node node = context.getNode() ;
+        NodeType nodeType = getNodeType(node.getStringValue("tid")) ;
+        nodeType.addEvent(new Event(node));
         logger.info("Change Event : " + context.getNode().getStringValue("tid"));
     }
 
 
     public void changeEventAction(ExecuteContext context){
-        removeNodeTypeCache(StringUtils.substringBefore(context.getNode().getStringValue("event"), "@")) ;
+        Node node = context.getNode() ;
+        NodeType nodeType = getNodeType(StringUtils.substringBefore(node.getStringValue("event"), "@")) ;
+
+        EventAction eventAction = new EventAction(node) ;
+        nodeType.addEventAction(eventAction);
+
         logger.info("Change EventAction : " + StringUtils.substringBefore(context.getNode().getStringValue("event"), "@"));
     }
 
 
     public void changeEventListener(ExecuteContext context){
-        removeNodeTypeCache(StringUtils.substringBefore(context.getNode().getStringValue("event"), "@")) ;
+        Node node = context.getNode() ;
+        NodeType nodeType = getNodeType(StringUtils.substringBefore(node.getStringValue("event"), "@")) ;
+
+        EventListener eventListener = new EventListener(node) ;
+        nodeType.addEventListener(eventListener);
+
         logger.info("Change EventAction : " + StringUtils.substringBefore(context.getNode().getStringValue("event"), "@"));
     }
+
 }
