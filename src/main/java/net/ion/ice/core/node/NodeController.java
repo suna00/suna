@@ -101,6 +101,8 @@ public class NodeController {
 
     private Object list(WebRequest request, @PathVariable String typeId) {
         try {
+//            QueryResult queryResult = nodeService.getQueryResult(typeId, request.getParameterMap()) ;
+//            return queryResult ;
             SimpleQueryResult simpleQueryResult = nodeService.getNodeList(typeId, request.getParameterMap()) ;
             return JsonResponse.create(simpleQueryResult) ;
         } catch (Exception e) {
