@@ -13,7 +13,8 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "idType": "autoIncrement"
   },
   {
     "typeId": "propertyType",
@@ -269,7 +270,8 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "idType": "autoIncrement"
   },
   {
     "typeId": "propertyType",
@@ -589,7 +591,8 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "idType": "autoIncrement"
   },
   {
     "typeId": "propertyType",
