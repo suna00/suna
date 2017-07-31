@@ -37,7 +37,7 @@
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "codeMng",
+    "referenceType": "code",
     "referenceValue": "",
     "validationTypes": {
       "required": { "value": false, "description": "필수 값 입니다." },
@@ -61,7 +61,7 @@
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "codeMng",
+    "referenceType": "code",
     "referenceValue": "",
     "validationTypes": {
       "required": { "value": false, "description": "필수 값 입니다." },
@@ -85,7 +85,7 @@
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "codeMng",
+    "referenceType": "code",
     "referenceValue": "",
     "validationTypes": {
       "required": { "value": false, "description": "필수 값 입니다." },
@@ -374,7 +374,7 @@
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "codeMng",
+    "referenceType": "code",
     "referenceValue": "",
     "validationTypes": {
       "required": { "value": false, "description": "필수 값 입니다." },
@@ -663,7 +663,7 @@
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "codeMng",
+    "referenceType": "code",
     "referenceValue": "",
     "validationTypes": {
       "required": { "value": false, "description": "필수 값 입니다." },
