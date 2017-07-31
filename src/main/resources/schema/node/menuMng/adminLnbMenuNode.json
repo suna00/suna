@@ -472,12 +472,12 @@
     "icon": "fa-tag",
     "active": "true",
     "index": "false",
-    "pages": [
-      { "pageName": "목록", "pageUrl": "list" },
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "cj/ArtistList" },
       { "pageName": "등록/수정", "pageUrl": "form" },
       { "pageName": "상세", "pageUrl": "view" }
-    ],
-    "customPages": []
+    ]
   },
   {
     "typeId" : "adminLnbMenu",
