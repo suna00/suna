@@ -36,4 +36,8 @@ public class EventAction {
     public String getTid() {
         return StringUtils.substringBeforeLast(eventActionNode.getStringValue(Event.EVENT), "@");
     }
+
+    public Object getId() {
+        return eventActionNode.getId();
+    }
 }
