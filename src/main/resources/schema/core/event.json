@@ -140,12 +140,31 @@
     "eventName" : "allEvent eventListener"
   },
   {
-    "typeId" : "eventListener",
-    "id" : "event@nodeType@create",
-    "tid" : "event",
+    "typeId" : "eventAction",
+    "id" : "nodeType@create@createDefaultEvent",
     "event": "nodeType@create",
+    "action" : "createDefaultEvent",
     "actionType" : "service",
-    "actionBody" : "eventService.createNodeType"
+    "actionBody" : "eventService.createNodeType",
+    "order" : 1
+  },
+  {
+    "typeId" : "eventAction",
+    "id" : "event@create@createEvent",
+    "event": "event@create",
+    "action": "createEvent",
+    "actionType" : "service",
+    "actionBody" : "nodeService.changeEvent",
+    "order" : 1
+  },
+  {
+    "typeId" : "eventAction",
+    "id" : "eventAction@create@createEventAction",
+    "event": "eventAction@create",
+    "action": "createEventAction",
+    "actionType" : "service",
+    "actionBody" : "nodeService.changeEventAction",
+    "order" : 1
   },
   {
     "typeId" : "eventListener",
@@ -162,22 +181,6 @@
     "event": "propertyType@allEvent",
     "actionType" : "service",
     "actionBody" : "nodeService.changePropertyType"
-  },
-  {
-    "typeId" : "eventListener",
-    "id" : "nodeType@event@allEvent",
-    "tid" : "nodeType",
-    "event": "event@allEvent",
-    "actionType" : "service",
-    "actionBody" : "nodeService.changeEvent"
-  },
-  {
-    "typeId" : "eventListener",
-    "id" : "nodeType@eventAction@allEvent",
-    "tid" : "nodeType",
-    "event": "eventAction@allEvent",
-    "actionType" : "service",
-    "actionBody" : "nodeService.changeEventAction"
   },
   {
     "typeId" : "eventListener",

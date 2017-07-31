@@ -29,4 +29,8 @@ public class EventListener {
     public String getTid() {
         return StringUtils.substringBefore(eventListenerNode.getStringValue(Event.EVENT), "@");
     }
+
+    public String getId() {
+        return eventListenerNode.getId();
+    }
 }

@@ -52,14 +52,34 @@ public class Event {
         if(eventActions == null){
             eventActions = new ArrayList<>() ;
         }
-        eventActions.add(eventAction) ;
+        boolean exist = false ;
+        for(EventAction action : eventActions){
+            if(action.getId().equals(eventAction.getId())){
+                action = eventAction ;
+                exist = true;
+                break ;
+            }
+        }
+        if(!exist) {
+            eventActions.add(eventAction);
+        }
     }
 
     public void addEventListener(EventListener eventListener) {
         if(eventListeners == null){
             eventListeners = new ArrayList<>() ;
         }
-        eventListeners.add(eventListener) ;
+        boolean exist = false ;
+        for(EventListener listener : eventListeners){
+            if(listener.getId().equals(eventListener.getId())){
+                listener = eventListener ;
+                exist = true;
+                break ;
+            }
+        }
+        if(!exist) {
+            eventListeners.add(eventListener);
+        }
     }
 
     public String getId() {
