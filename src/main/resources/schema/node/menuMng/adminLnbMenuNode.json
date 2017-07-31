@@ -46,44 +46,14 @@
     "icon": "fa-tag",
     "active": "true",
     "index": "false",
-    "pages": [],
-    "customPages": []
-  },
-  {
-    "typeId" : "adminLnbMenu",
-    "backOfficeId": "admin",
-    "gnbMenuId": "systemMng",
-    "parentMenuId": "admin@root@codeMng",
-    "menuId": "codeGroup",
-    "menuName": "코드그룹 관리",
-    "order": "10",
-    "icon": "",
-    "active": "true",
-    "index": "false",
     "pages": [
       { "pageName": "목록", "pageUrl": "list" },
-      { "pageName": "등록/수정", "pageUrl": "form" },
-      { "pageName": "상세", "pageUrl": "view" }
+      { "pageName": "등록", "pageUrl": "form" },
+      { "pageName": "수정", "pageUrl": "view" }
     ],
-    "customPages": []
-  },
-  {
-    "typeId" : "adminLnbMenu",
-    "backOfficeId": "admin",
-    "gnbMenuId": "systemMng",
-    "parentMenuId": "admin@root@codeMng",
-    "menuId": "code",
-    "menuName": "코드 관리",
-    "order": "20",
-    "icon": "",
-    "active": "true",
-    "index": "false",
-    "pages": [
-      { "pageName": "목록", "pageUrl": "list" },
-      { "pageName": "등록/수정", "pageUrl": "form" },
-      { "pageName": "상세", "pageUrl": "view" }
-    ],
-    "customPages": []
+    "customPages": [
+      { "pageName": "상세", "pageUrl": "cj/CodeView" }
+    ]
   },
   {
     "typeId" : "adminLnbMenu",
@@ -238,6 +208,22 @@
       { "pageName": "상세", "pageUrl": "view" }
     ],
     "customPages": []
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "systemMng",
+    "parentMenuId": "root",
+    "menuId": "cjSortTest",
+    "menuName": "소팅 테스트",
+    "order": "100",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "정렬리스트", "pageUrl": "SortList" }
+    ]
   },
   {
     "typeId" : "adminLnbMenu",
