@@ -376,6 +376,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "options": "{\"schema\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"pageName\":{\"type\":\"string\"},\"pageUrl\":{\"type\":\"string\"}},\"required\":[\"pageName\",\"pageUrl\"],\"collapsed\":true}}}",
     "validationTypes": {
       "required": { "value": false, "description": "필수 값 입니다." },
       "duplicated": { "value": false, "description": "중복된 값 입니다." },
@@ -400,6 +401,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "options": "{\"schema\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"pageName\":{\"type\":\"string\"},\"pageUrl\":{\"type\":\"string\"}},\"required\":[\"pageName\",\"pageUrl\"],\"collapsed\":true}}}",
     "validationTypes": {
       "required": { "value": false, "description": "필수 값 입니다." },
       "duplicated": { "value": false, "description": "중복된 값 입니다." },
