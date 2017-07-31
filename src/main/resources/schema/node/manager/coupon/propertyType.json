@@ -2,7 +2,7 @@
   {
     "typeId": "propertyType",
     "tid": "coupon",
-    "pid": "id",
+    "pid": "couponId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -60,7 +60,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "site",
-    "referenceValue": "id",
+    "referenceValue": "siteId",
     "defaultValue": ""
   },
   {
@@ -76,7 +76,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "couponType",
-    "referenceValue": "id",
+    "referenceValue": "couponTypeId",
     "defaultValue": ""
   },
   {
@@ -92,7 +92,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "product",
-    "referenceValue": "id",
+    "referenceValue": "productId",
     "defaultValue": ""
   },
   {
@@ -148,15 +148,15 @@
     "tid": "coupon",
     "pid": "useYn",
     "propertyTypeName": "사용여부",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -188,7 +188,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "purchaseOrder",
-    "referenceValue": "id",
+    "referenceValue": "purchaseOrderId",
     "defaultValue": ""
   },
   {
@@ -204,7 +204,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -236,7 +236,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -258,7 +258,7 @@
   {
     "typeId": "propertyType",
     "tid": "couponType",
-    "pid": "id",
+    "pid": "couponTypeId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -292,15 +292,15 @@
     "tid": "couponType",
     "pid": "type",
     "propertyTypeName": "타입",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -308,15 +308,15 @@
     "tid": "couponType",
     "pid": "useYn",
     "propertyTypeName": "사용여부",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -340,15 +340,15 @@
     "tid": "couponType",
     "pid": "unit",
     "propertyTypeName": "단위",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -388,15 +388,15 @@
     "tid": "couponType",
     "pid": "validePeriod",
     "propertyTypeName": "유효기간",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -436,15 +436,15 @@
     "tid": "couponType",
     "pid": "limitedNoYn",
     "propertyTypeName": "발행갯수제한여부",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -468,13 +468,13 @@
     "tid": "couponType",
     "pid": "useTargetCode",
     "propertyTypeName": "사용대상코드",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
-    "analyzer": "code",
+    "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
     "defaultValue": ""
@@ -492,7 +492,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "category",
-    "referenceValue": "id",
+    "referenceValue": "categoryId",
     "defaultValue": ""
   },
   {
@@ -508,7 +508,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "vendor",
-    "referenceValue": "id",
+    "referenceValue": "vendorId",
     "defaultValue": ""
   },
   {
@@ -524,7 +524,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -556,7 +556,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -578,15 +578,15 @@
   {
     "typeId": "propertyType",
     "tid": "productToCouponTypeMap",
-    "pid": "id",
+    "pid": "productToCouponTypeMapId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
     "idable": true,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
+    "indexable": false,
+    "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
     "defaultValue": ""
@@ -601,10 +601,10 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
+    "indexable": false,
+    "analyzer": null,
     "referenceType": "product",
-    "referenceValue": "id",
+    "referenceValue": "productId",
     "defaultValue": ""
   },
   {
@@ -617,10 +617,10 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
+    "indexable": false,
+    "analyzer": null,
     "referenceType": "couponType",
-    "referenceValue": "id",
+    "referenceValue": "couponTypeId",
     "defaultValue": ""
   },
   {
@@ -633,8 +633,8 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "simple",
+    "indexable": false,
+    "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
     "defaultValue": ""

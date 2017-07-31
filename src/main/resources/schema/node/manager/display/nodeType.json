@@ -42,7 +42,7 @@
   {
     "parentId": "displayPath",
     "typeId": "nodeType",
-    "tid": "GNB",
+    "tid": "gnb",
     "typeName": "GNB",
     "repositoryType": "node",
     "eviction": 0

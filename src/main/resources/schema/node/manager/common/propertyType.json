@@ -68,15 +68,15 @@
     "tid": "commonCode",
     "pid": "useYn",
     "propertyTypeName": "사용여부",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -92,7 +92,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -124,7 +124,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -146,7 +146,7 @@
   {
     "typeId": "propertyType",
     "tid": "commonMemo",
-    "pid": "id",
+    "pid": "commonMemoId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -236,7 +236,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -268,7 +268,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -290,7 +290,7 @@
   {
     "typeId": "propertyType",
     "tid": "commonResource",
-    "pid": "id",
+    "pid": "commonResourceId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -356,15 +356,15 @@
     "tid": "commonResource",
     "pid": "type",
     "propertyTypeName": "종류",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -420,15 +420,15 @@
     "tid": "commonResource",
     "pid": "MIMEType",
     "propertyTypeName": "MIME 타입",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -452,15 +452,15 @@
     "tid": "commonResource",
     "pid": "mediaFormat",
     "propertyTypeName": "미디어 형식",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -500,15 +500,15 @@
     "tid": "commonResource",
     "pid": "useYn",
     "propertyTypeName": "사용여부",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -524,7 +524,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -556,7 +556,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {

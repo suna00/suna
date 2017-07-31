@@ -26,6 +26,14 @@
   {
     "parentId": "contentsPath",
     "typeId": "nodeType",
+    "tid": "securities",
+    "typeName": "유가증권",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "contentsPath",
+    "typeId": "nodeType",
     "tid": "goods",
     "typeName": "제품",
     "repositoryType": "node",

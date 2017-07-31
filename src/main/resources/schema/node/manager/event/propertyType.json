@@ -2,7 +2,7 @@
   {
     "typeId": "propertyType",
     "tid": "shopEvent",
-    "pid": "id",
+    "pid": "shopEventId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -28,7 +28,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "affiliate",
-    "referenceValue": "id",
+    "referenceValue": "affiliateId",
     "defaultValue": ""
   },
   {
@@ -44,7 +44,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "site",
-    "referenceValue": "id",
+    "referenceValue": "siteId",
     "defaultValue": ""
   },
   {
@@ -156,7 +156,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -188,13 +188,13 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
     "typeId": "propertyType",
     "tid": "specialExhibition",
-    "pid": "id",
+    "pid": "specialExhibitionId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -220,7 +220,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "affiliate",
-    "referenceValue": "id",
+    "referenceValue": "affiliateId",
     "defaultValue": ""
   },
   {
@@ -236,7 +236,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "site",
-    "referenceValue": "id",
+    "referenceValue": "siteId",
     "defaultValue": ""
   },
   {
@@ -348,7 +348,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -380,13 +380,13 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
     "typeId": "propertyType",
     "tid": "specialExhibitionHotKeyword",
-    "pid": "id",
+    "pid": "specialExhibitionHotKeywordId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -412,7 +412,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "site",
-    "referenceValue": "id",
+    "referenceValue": "siteId",
     "defaultValue": ""
   },
   {
@@ -444,7 +444,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "specialExhibition",
-    "referenceValue": "id",
+    "referenceValue": "specialExhibitionId",
     "defaultValue": ""
   },
   {
@@ -468,15 +468,15 @@
     "tid": "specialExhibitionHotKeyword",
     "pid": "useYn",
     "propertyTypeName": "사용여부",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -508,7 +508,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -540,13 +540,13 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
     "typeId": "propertyType",
     "tid": "specialExhibitionAnker",
-    "pid": "id",
+    "pid": "specialExhibitionAnkerId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -572,7 +572,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "specialExhibition",
-    "referenceValue": "id",
+    "referenceValue": "specialExhibitionId",
     "defaultValue": ""
   },
   {
@@ -612,15 +612,15 @@
     "tid": "specialExhibitionAnker",
     "pid": "useYn",
     "propertyTypeName": "사용여부",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -652,7 +652,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -684,7 +684,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   }
 ]

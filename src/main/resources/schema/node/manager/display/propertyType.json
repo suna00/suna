@@ -2,7 +2,7 @@
   {
     "typeId": "propertyType",
     "tid": "banner",
-    "pid": "id",
+    "pid": "bannerId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -28,7 +28,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "site",
-    "referenceValue": "id",
+    "referenceValue": "siteId",
     "defaultValue": ""
   },
   {
@@ -76,7 +76,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "category",
-    "referenceValue": "id",
+    "referenceValue": "categoryId",
     "defaultValue": ""
   },
   {
@@ -84,31 +84,15 @@
     "tid": "banner",
     "pid": "type",
     "propertyTypeName": "타입",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
-    "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "banner",
-    "pid": "changeTime",
-    "propertyTypeName": "변경시간",
-    "valueType": "CODE",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -116,15 +100,15 @@
     "tid": "banner",
     "pid": "deviceType",
     "propertyTypeName": "디바이스",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -132,15 +116,15 @@
     "tid": "banner",
     "pid": "useYn",
     "propertyTypeName": "사용여부",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -156,7 +140,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -188,7 +172,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -210,7 +194,7 @@
   {
     "typeId": "propertyType",
     "tid": "bannerElement",
-    "pid": "id",
+    "pid": "bannerElementId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -236,7 +220,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "banner",
-    "referenceValue": "id",
+    "referenceValue": "bannerId",
     "defaultValue": ""
   },
   {
@@ -244,15 +228,15 @@
     "tid": "bannerElement",
     "pid": "type",
     "propertyTypeName": "타입",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -292,15 +276,15 @@
     "tid": "bannerElement",
     "pid": "fileType",
     "propertyTypeName": "파일타입",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -404,15 +388,15 @@
     "tid": "bannerElement",
     "pid": "randomYn",
     "propertyTypeName": "랜덤여부",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -420,15 +404,15 @@
     "tid": "bannerElement",
     "pid": "useYn",
     "propertyTypeName": "사용여부",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -444,7 +428,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -476,7 +460,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -498,7 +482,7 @@
   {
     "typeId": "propertyType",
     "tid": "bannerMap",
-    "pid": "id",
+    "pid": "bannerMapId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -524,7 +508,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "banner",
-    "referenceValue": "id",
+    "referenceValue": "bannerId",
     "defaultValue": ""
   },
   {
@@ -532,15 +516,15 @@
     "tid": "bannerMap",
     "pid": "type",
     "propertyTypeName": "타입",
-    "valueType": "INT",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
-    "analyzer": "simple",
-    "referenceType": "",
-    "referenceValue": "",
+    "analyzer": "code",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -572,7 +556,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -594,7 +578,7 @@
   {
     "typeId": "propertyType",
     "tid": "category",
-    "pid": "id",
+    "pid": "categoryId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -636,7 +620,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "category",
-    "referenceValue": "id",
+    "referenceValue": "categoryId",
     "defaultValue": ""
   },
   {
@@ -660,15 +644,15 @@
     "tid": "category",
     "pid": "type",
     "propertyTypeName": "타입",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -676,13 +660,13 @@
     "tid": "category",
     "pid": "level",
     "propertyTypeName": "레벨",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
-    "analyzer": "code",
+    "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
     "defaultValue": ""
@@ -708,15 +692,15 @@
     "tid": "category",
     "pid": "displayYn",
     "propertyTypeName": "전시여부",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -732,7 +716,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "affiliate",
-    "referenceValue": "id",
+    "referenceValue": "affiliateId",
     "defaultValue": ""
   },
   {
@@ -748,7 +732,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "site",
-    "referenceValue": "id",
+    "referenceValue": "siteId",
     "defaultValue": ""
   },
   {
@@ -764,7 +748,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -796,7 +780,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -817,8 +801,8 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "GNB",
-    "pid": "id",
+    "tid": "gnb",
+    "pid": "gnbId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -844,7 +828,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "affiliate",
-    "referenceValue": "id",
+    "referenceValue": "affiliateId",
     "defaultValue": ""
   },
   {
@@ -860,7 +844,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "site",
-    "referenceValue": "id",
+    "referenceValue": "siteId",
     "defaultValue": ""
   },
   {
@@ -916,15 +900,15 @@
     "tid": "GNB",
     "pid": "type",
     "propertyTypeName": "타입",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -932,13 +916,13 @@
     "tid": "GNB",
     "pid": "level",
     "propertyTypeName": "레벨",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
-    "analyzer": "code",
+    "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
     "defaultValue": ""
@@ -964,15 +948,15 @@
     "tid": "GNB",
     "pid": "displayYn",
     "propertyTypeName": "전시여부",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -1004,7 +988,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -1036,13 +1020,13 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
     "typeId": "propertyType",
     "tid": "popularSearches",
-    "pid": "id",
+    "pid": "popularSearchesId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -1068,7 +1052,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "site",
-    "referenceValue": "id",
+    "referenceValue": "siteId",
     "defaultValue": ""
   },
   {
@@ -1108,15 +1092,15 @@
     "tid": "popularSearches",
     "pid": "useYn",
     "propertyTypeName": "사용여부",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -1124,15 +1108,15 @@
     "tid": "popularSearches",
     "pid": "type",
     "propertyTypeName": "타입",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -1170,7 +1154,7 @@
   {
     "typeId": "propertyType",
     "tid": "popup",
-    "pid": "id",
+    "pid": "popupId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -1196,7 +1180,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "affiliate",
-    "referenceValue": "id",
+    "referenceValue": "affiliateId",
     "defaultValue": ""
   },
   {
@@ -1212,7 +1196,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "site",
-    "referenceValue": "id",
+    "referenceValue": "siteId",
     "defaultValue": ""
   },
   {
@@ -1236,15 +1220,15 @@
     "tid": "popup",
     "pid": "deviceType",
     "propertyTypeName": "디바이스",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -1332,15 +1316,15 @@
     "tid": "popup",
     "pid": "useYn",
     "propertyTypeName": "사용여부",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -1372,7 +1356,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -1404,7 +1388,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -1426,15 +1410,15 @@
   {
     "typeId": "propertyType",
     "tid": "productToCategoryMap",
-    "pid": "id",
+    "pid": "productToCategoryMapId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
     "idable": true,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
+    "indexable": false,
+    "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
     "defaultValue": ""
@@ -1449,8 +1433,8 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "cjk",
+    "indexable": false,
+    "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
     "defaultValue": ""
@@ -1465,10 +1449,10 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
+    "indexable": false,
+    "analyzer": null,
     "referenceType": "product",
-    "referenceValue": "id",
+    "referenceValue": "productId",
     "defaultValue": ""
   },
   {
@@ -1481,8 +1465,8 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "simple",
+    "indexable": false,
+    "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
     "defaultValue": ""
@@ -1490,15 +1474,15 @@
   {
     "typeId": "propertyType",
     "tid": "productToThemeMap",
-    "pid": "id",
+    "pid": "productToThemeMapId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
     "idable": true,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
+    "indexable": false,
+    "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
     "defaultValue": ""
@@ -1513,10 +1497,10 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
+    "indexable": false,
+    "analyzer": null,
     "referenceType": "theme",
-    "referenceValue": "id",
+    "referenceValue": "themeId",
     "defaultValue": ""
   },
   {
@@ -1529,10 +1513,10 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
+    "indexable": false,
+    "analyzer": null,
     "referenceType": "product",
-    "referenceValue": "id",
+    "referenceValue": "productId",
     "defaultValue": ""
   },
   {
@@ -1545,8 +1529,8 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "simple",
+    "indexable": false,
+    "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
     "defaultValue": ""
@@ -1556,15 +1540,15 @@
     "tid": "productToThemeMap",
     "pid": "useYn",
     "propertyTypeName": "사용여부",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -1572,15 +1556,15 @@
     "tid": "productToThemeMap",
     "pid": "fixedYn",
     "propertyTypeName": "고정여부",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -1593,8 +1577,8 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "simple",
+    "indexable": false,
+    "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
     "defaultValue": ""
@@ -1609,10 +1593,10 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
+    "indexable": false,
+    "analyzer": null,
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -1625,8 +1609,8 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "simple",
+    "indexable": false,
+    "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
     "defaultValue": ""
@@ -1641,16 +1625,16 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
+    "indexable": false,
+    "analyzer": null,
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
     "typeId": "propertyType",
     "tid": "referenceProduct",
-    "pid": "id",
+    "pid": "referenceProductId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -1676,7 +1660,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "product",
-    "referenceValue": "id",
+    "referenceValue": "productId",
     "defaultValue": ""
   },
   {
@@ -1692,7 +1676,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "product",
-    "referenceValue": "id",
+    "referenceValue": "productId",
     "defaultValue": ""
   },
   {
@@ -1700,15 +1684,15 @@
     "tid": "referenceProduct",
     "pid": "type",
     "propertyTypeName": "참조타입",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -1716,15 +1700,15 @@
     "tid": "referenceProduct",
     "pid": "useYn",
     "propertyTypeName": "사용여부",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -1778,7 +1762,7 @@
   {
     "typeId": "propertyType",
     "tid": "theme",
-    "pid": "id",
+    "pid": "themeId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -1812,15 +1796,15 @@
     "tid": "theme",
     "pid": "type",
     "propertyTypeName": "타입",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -1836,7 +1820,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "site",
-    "referenceValue": "id",
+    "referenceValue": "siteId",
     "defaultValue": ""
   },
   {
@@ -1852,7 +1836,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "category",
-    "referenceValue": "id",
+    "referenceValue": "categoryId",
     "defaultValue": ""
   },
   {
@@ -1860,15 +1844,15 @@
     "tid": "theme",
     "pid": "displayYn",
     "propertyTypeName": "전시여부",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -1900,7 +1884,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -1932,13 +1916,13 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
     "typeId": "propertyType",
     "tid": "searchFilterPolicy",
-    "pid": "id",
+    "pid": "searchFilterPolicyId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -1980,7 +1964,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "category",
-    "referenceValue": "id",
+    "referenceValue": "categoryId",
     "defaultValue": ""
   },
   {
@@ -2036,15 +2020,15 @@
     "tid": "searchFilterPolicy",
     "pid": "useYn",
     "propertyTypeName": "사용여부",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -2076,7 +2060,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -2108,13 +2092,13 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
     "typeId": "propertyType",
     "tid": "searchFilterItem",
-    "pid": "id",
+    "pid": "searchFilterItemId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -2156,7 +2140,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "searchFilterPolicy",
-    "referenceValue": "id",
+    "referenceValue": "searchFilterPolicyId",
     "defaultValue": ""
   },
   {
@@ -2188,7 +2172,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -2220,13 +2204,13 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
     "typeId": "propertyType",
     "tid": "searchWordHistory",
-    "pid": "id",
+    "pid": "searchWordHistoryId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -2252,7 +2236,7 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "site",
-    "referenceValue": "id",
+    "referenceValue": "siteId",
     "defaultValue": ""
   },
   {
@@ -2290,15 +2274,15 @@
   {
     "typeId": "propertyType",
     "tid": "newProductMap",
-    "pid": "id",
+    "pid": "newProductMapId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
     "idable": true,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
+    "indexable": false,
+    "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
     "defaultValue": ""
@@ -2313,10 +2297,10 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
+    "indexable": false,
+    "analyzer": null,
     "referenceType": "newProduct",
-    "referenceValue": "id",
+    "referenceValue": "newProductId",
     "defaultValue": ""
   },
   {
@@ -2329,10 +2313,10 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
+    "indexable": false,
+    "analyzer": null,
     "referenceType": "product",
-    "referenceValue": "id",
+    "referenceValue": "productId",
     "defaultValue": ""
   },
   {
@@ -2345,8 +2329,8 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "simple",
+    "indexable": false,
+    "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
     "defaultValue": ""
@@ -2356,15 +2340,15 @@
     "tid": "newProductMap",
     "pid": "useYn",
     "propertyTypeName": "사용여부",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -2372,15 +2356,15 @@
     "tid": "newProductMap",
     "pid": "fixedYn",
     "propertyTypeName": "고정여부",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -2393,8 +2377,8 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "simple",
+    "indexable": false,
+    "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
     "defaultValue": ""
@@ -2409,10 +2393,10 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
+    "indexable": false,
+    "analyzer": null,
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -2425,8 +2409,8 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "simple",
+    "indexable": false,
+    "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
     "defaultValue": ""
@@ -2441,16 +2425,16 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
+    "indexable": false,
+    "analyzer": null,
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
     "typeId": "propertyType",
     "tid": "newProduct",
-    "pid": "id",
+    "pid": "newProductId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -2482,22 +2466,6 @@
   {
     "typeId": "propertyType",
     "tid": "newProduct",
-    "pid": "type",
-    "propertyTypeName": "타입",
-    "valueType": "CODE",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
-    "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "newProduct",
     "pid": "siteId",
     "propertyTypeName": "사이트ID",
     "valueType": "INT",
@@ -2508,7 +2476,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "site",
-    "referenceValue": "id",
+    "referenceValue": "siteId",
     "defaultValue": ""
   },
   {
@@ -2548,15 +2516,15 @@
     "tid": "newProduct",
     "pid": "displayYn",
     "propertyTypeName": "전시여부",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -2588,7 +2556,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -2620,7 +2588,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   }
 ]

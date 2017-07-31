@@ -2,7 +2,7 @@
   {
     "typeId": "propertyType",
     "tid": "review",
-    "pid": "id",
+    "pid": "reviewId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -28,7 +28,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "product",
-    "referenceValue": "id",
+    "referenceValue": "productId",
     "defaultValue": ""
   },
   {
@@ -60,7 +60,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "site",
-    "referenceValue": "id",
+    "referenceValue": "siteId",
     "defaultValue": ""
   },
   {
@@ -76,7 +76,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "vendor",
-    "referenceValue": "id",
+    "referenceValue": "vendorId",
     "defaultValue": ""
   },
   {
@@ -116,15 +116,15 @@
     "tid": "review",
     "pid": "displayYn",
     "propertyTypeName": "전시여부",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -132,15 +132,15 @@
     "tid": "review",
     "pid": "bestYn",
     "propertyTypeName": "베스트여부",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -148,15 +148,15 @@
     "tid": "review",
     "pid": "score",
     "propertyTypeName": "별점",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -242,7 +242,7 @@
   {
     "typeId": "propertyType",
     "tid": "productAnswer",
-    "pid": "id",
+    "pid": "productAnswerId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -268,7 +268,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "productQuestion",
-    "referenceValue": "id",
+    "referenceValue": "productQuestionId",
     "defaultValue": ""
   },
   {
@@ -284,7 +284,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "vendor",
-    "referenceValue": "id",
+    "referenceValue": "vendorId",
     "defaultValue": ""
   },
   {
@@ -300,7 +300,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "product",
-    "referenceValue": "id",
+    "referenceValue": "productId",
     "defaultValue": ""
   },
   {
@@ -308,15 +308,15 @@
     "tid": "productAnswer",
     "pid": "status",
     "propertyTypeName": "상태",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -364,7 +364,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -396,7 +396,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -418,7 +418,7 @@
   {
     "typeId": "propertyType",
     "tid": "productQuestion",
-    "pid": "id",
+    "pid": "productQuestionId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -444,7 +444,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "vendor",
-    "referenceValue": "id",
+    "referenceValue": "vendorId",
     "defaultValue": ""
   },
   {
@@ -460,7 +460,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "site",
-    "referenceValue": "id",
+    "referenceValue": "siteId",
     "defaultValue": ""
   },
   {
@@ -476,7 +476,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "product",
-    "referenceValue": "id",
+    "referenceValue": "productId",
     "defaultValue": ""
   },
   {
@@ -500,15 +500,15 @@
     "tid": "productQuestion",
     "pid": "status",
     "propertyTypeName": "상태",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -548,15 +548,15 @@
     "tid": "productQuestion",
     "pid": "privateYn",
     "propertyTypeName": "비공개여부",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -594,7 +594,7 @@
   {
     "typeId": "propertyType",
     "tid": "reportReview",
-    "pid": "id",
+    "pid": "reportReviewId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -620,7 +620,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "review",
-    "referenceValue": "id",
+    "referenceValue": "reviewId",
     "defaultValue": ""
   },
   {
@@ -636,7 +636,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "product",
-    "referenceValue": "id",
+    "referenceValue": "productId",
     "defaultValue": ""
   },
   {
@@ -668,7 +668,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "site",
-    "referenceValue": "id",
+    "referenceValue": "siteId",
     "defaultValue": ""
   },
   {
@@ -684,7 +684,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "vendor",
-    "referenceValue": "id",
+    "referenceValue": "vendorId",
     "defaultValue": ""
   },
   {
@@ -722,7 +722,7 @@
   {
     "typeId": "propertyType",
     "tid": "oneToOneQuestion",
-    "pid": "id",
+    "pid": "oneToOneQuestionId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -748,7 +748,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "vendor",
-    "referenceValue": "id",
+    "referenceValue": "vendorId",
     "defaultValue": ""
   },
   {
@@ -764,7 +764,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "site",
-    "referenceValue": "id",
+    "referenceValue": "siteId",
     "defaultValue": ""
   },
   {
@@ -780,7 +780,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "product",
-    "referenceValue": "id",
+    "referenceValue": "productId",
     "defaultValue": ""
   },
   {
@@ -804,15 +804,15 @@
     "tid": "oneToOneQuestion",
     "pid": "status",
     "propertyTypeName": "상태",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -820,15 +820,15 @@
     "tid": "oneToOneQuestion",
     "pid": "type",
     "propertyTypeName": "문의유형",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -898,7 +898,7 @@
   {
     "typeId": "propertyType",
     "tid": "oneToOneAnswer",
-    "pid": "id",
+    "pid": "oneToOneAnswerId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -924,7 +924,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "oneToOneQuestion",
-    "referenceValue": "id",
+    "referenceValue": "oneToOneQuestionId",
     "defaultValue": ""
   },
   {
@@ -940,7 +940,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "vendor",
-    "referenceValue": "id",
+    "referenceValue": "vendorId",
     "defaultValue": ""
   },
   {
@@ -956,7 +956,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "product",
-    "referenceValue": "id",
+    "referenceValue": "productId",
     "defaultValue": ""
   },
   {
@@ -964,15 +964,15 @@
     "tid": "oneToOneAnswer",
     "pid": "status",
     "propertyTypeName": "상태",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -1036,7 +1036,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -1068,13 +1068,13 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
     "typeId": "propertyType",
     "tid": "frequentlyAskedQuestion",
-    "pid": "id",
+    "pid": "frequentlyAskedQuestionId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -1100,7 +1100,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "site",
-    "referenceValue": "id",
+    "referenceValue": "siteId",
     "defaultValue": ""
   },
   {
@@ -1108,15 +1108,15 @@
     "tid": "frequentlyAskedQuestion",
     "pid": "type1",
     "propertyTypeName": "타입1",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -1124,15 +1124,15 @@
     "tid": "frequentlyAskedQuestion",
     "pid": "type2",
     "propertyTypeName": "타입2",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -1170,17 +1170,17 @@
   {
     "typeId": "propertyType",
     "tid": "frequentlyAskedQuestion",
-    "pid": "target",
+    "pid": "displayTargetType",
     "propertyTypeName": "대상",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -1188,15 +1188,15 @@
     "tid": "frequentlyAskedQuestion",
     "pid": "useYn",
     "propertyTypeName": "사용여부",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -1244,7 +1244,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -1276,13 +1276,13 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
     "typeId": "propertyType",
     "tid": "frequentlyUsedAnswer",
-    "pid": "id",
+    "pid": "frequentlyUsedAnswerId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -1300,15 +1300,15 @@
     "tid": "frequentlyUsedAnswer",
     "pid": "type",
     "propertyTypeName": "타입",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -1356,7 +1356,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "vendor",
-    "referenceValue": "id",
+    "referenceValue": "vendorId",
     "defaultValue": ""
   },
   {
@@ -1388,7 +1388,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -1420,13 +1420,13 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
     "typeId": "propertyType",
     "tid": "commonNotice",
-    "pid": "id",
+    "pid": "commonNoticeId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -1452,7 +1452,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "affiliate",
-    "referenceValue": "id",
+    "referenceValue": "affiliateId",
     "defaultValue": ""
   },
   {
@@ -1468,7 +1468,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "site",
-    "referenceValue": "id",
+    "referenceValue": "siteId",
     "defaultValue": ""
   },
   {
@@ -1476,15 +1476,15 @@
     "tid": "commonNotice",
     "pid": "type",
     "propertyTypeName": "타입",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -1554,17 +1554,17 @@
   {
     "typeId": "propertyType",
     "tid": "commonNotice",
-    "pid": "target",
+    "pid": "displayTargetType",
     "propertyTypeName": "대상",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -1572,15 +1572,15 @@
     "tid": "commonNotice",
     "pid": "topFixedYn",
     "propertyTypeName": "리스트내 상위전시",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -1588,15 +1588,15 @@
     "tid": "commonNotice",
     "pid": "useYn",
     "propertyTypeName": "사용여부",
-    "valueType": "CODE",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
     "defaultValue": ""
   },
   {
@@ -1676,7 +1676,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   },
   {
@@ -1708,7 +1708,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "user",
-    "referenceValue": "id",
+    "referenceValue": "userId",
     "defaultValue": ""
   }
 ]

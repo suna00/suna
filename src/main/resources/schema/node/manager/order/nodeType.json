@@ -67,7 +67,7 @@
     "parentId": "orderPath",
     "typeId": "nodeType",
     "tid": "payment",
-    "typeName": "결재",
+    "typeName": "결제",
     "repositoryType": "data",
     "eviction": 0
   },
