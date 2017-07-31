@@ -200,7 +200,7 @@ public class NodeUtils {
     }
 
     public static Object getStoreValue(Object value, PropertyType pt, String id) {
-        if(value == null) return null ;
+        if(value == null || "".equals(value.toString().trim())) return null ;
         if(value instanceof Code) {
             return ((Code) value).getValue() ;
         }
