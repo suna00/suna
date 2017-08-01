@@ -60,8 +60,8 @@
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "usedPoint",
-    "referenceValue": "usedPointId",
+    "referenceType": "",
+    "referenceValue": "",
     "defaultValue": ""
   },
   {
