@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 
 /**
@@ -23,6 +24,13 @@ public class ApplicationContextManager implements ApplicationContextAware{
     private static ApplicationContext context ;
 
     @Autowired
+    private ApplicationContext ctx;
+
+    @PostConstruct
+    public void init() {
+        this.context = ctx;
+    }
+
     public ApplicationContextManager(ApplicationContext applicationContext) {
         this.context = applicationContext ;
     }
