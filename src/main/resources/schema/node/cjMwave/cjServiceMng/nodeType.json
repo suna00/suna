@@ -1,0 +1,22 @@
+[
+  {
+    "parentId" : "cjServiceMng",
+    "typeId" : "nodeType",
+    "id" : "stpltMng",
+    "tid" : "stpltMng",
+    "typeName" : "약관관리",
+    "repositoryType" : "node",
+    "eviction" : 0,
+    "tableName" : "cjDb#stpltMng"
+  }
+  ,{
+    "parentId" : "cjServiceMng",
+    "typeId" : "nodeType",
+    "id" : "snsAthnCdMng",
+    "tid" : "snsAthnCdMng",
+    "typeName" : "SNS인증코드관리",
+    "repositoryType" : "node",
+    "eviction" : 0,
+    "tableName" : "cjDb#snsAthnCdMng"
+  }
+]

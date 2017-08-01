@@ -102,15 +102,6 @@
   {
     "parentId" : "metadataMng",
     "typeId" : "nodeType",
-    "id" : "artist",
-    "tid" : "artist",
-    "typeName" : "아티스트",
-    "repositoryType" : "node",
-    "eviction" : 1000
-  },
-  {
-    "parentId" : "metadataMng",
-    "typeId" : "nodeType",
     "id" : "newsArtistMappg",
     "tid" : "newsArtistMappg",
     "typeName" : "뉴스 아티스트 맵핑",

@@ -1,12 +1,12 @@
 [
   {
-    "parentId" : "systemMng",
+    "parentId" : "cjBackOfficeMng",
     "typeId" : "nodeType",
     "id" : "systemNtf",
     "tid" : "systemNtf",
     "typeName" : "시스템 공지사항",
     "repositoryType" : "node",
-    "tableName": "cjDb#systemNtf",
-    "eviction" : 100
+    "eviction" : 0,
+    "tableName" : "cjDb#systemNtf"
   }
 ]
