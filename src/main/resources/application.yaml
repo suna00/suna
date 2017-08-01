@@ -45,7 +45,7 @@ file:
   default:
     path: /resource/ice2/files
 
-
+---
 # YTN 개발 서버
 spring:
   profiles:
