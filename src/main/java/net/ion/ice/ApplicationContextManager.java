@@ -22,7 +22,10 @@ public class ApplicationContextManager implements ApplicationContextAware{
 
     private static ApplicationContext context ;
 
-    private ApplicationContextManager() {}
+    @Autowired
+    public ApplicationContextManager(ApplicationContext applicationContext) {
+        this.context = applicationContext ;
+    }
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
