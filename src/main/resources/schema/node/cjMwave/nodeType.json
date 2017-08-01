@@ -10,36 +10,36 @@
   {
     "parentId" : "cjMwave",
     "typeId" : "nodeType",
-    "id" : "systemMng",
-    "tid" : "systemMng",
-    "typeName" : "시스템 관리",
+    "id" : "cjBackOfficeMng",
+    "tid" : "cjBackOfficeMng",
+    "typeName" : "CJ 백오피스 관리",
     "repositoryType" : "path",
     "eviction" : 0
   },
   {
     "parentId" : "cjMwave",
     "typeId" : "nodeType",
-    "id" : "webServiceMng",
-    "tid" : "webServiceMng",
-    "typeName" : "웹서비스 관리",
+    "id" : "cjConfigeMng",
+    "tid" : "cjConfigeMng",
+    "typeName" : "CJ 설정 관리",
     "repositoryType" : "path",
     "eviction" : 0
   },
   {
     "parentId" : "cjMwave",
     "typeId" : "nodeType",
-    "id" :  "mbrMng",
-    "tid" : "mbrMng",
-    "typeName" : "회원 관리",
+    "id" : "cjContentMng",
+    "tid" : "cjContentMng",
+    "typeName" : "CJ 콘텐츠 관리",
     "repositoryType" : "path",
     "eviction" : 0
   },
   {
     "parentId" : "cjMwave",
     "typeId" : "nodeType",
-    "id" :  "metadataMng",
-    "tid" : "metadataMng",
-    "typeName" : "메타데이터 관리",
+    "id" : "cjServiceMng",
+    "tid" : "cjServiceMng",
+    "typeName" : "CJ 서비스 관리",
     "repositoryType" : "path",
     "eviction" : 0
   }

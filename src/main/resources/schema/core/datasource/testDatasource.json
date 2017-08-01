@@ -30,7 +30,7 @@
     "typeId" : "datasource",
     "id" : "cjDb",
     "dsName" : "Test DB",
-    "jdbcUrl" : "jdbc:mysql://125.131.88.147:3306/ICE2",
+    "jdbcUrl" : "jdbc:mysql://125.131.88.147:3306/ICE2?useSSL=false",
     "dbType" : "mySql",
     "username" : "cjmwave",
     "password" : "cjmwave0!@#"
