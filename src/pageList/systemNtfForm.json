@@ -1,0 +1,154 @@
+[
+  {
+    "componentType": "container",
+    "componentTemplateType": "",
+    "componentClassType": "",
+    "componentClass": "IceGrid",
+    "componentChildren": [
+      {
+        "componentType": "container",
+        "componentTemplateType": "",
+        "componentClassType": "",
+        "componentClass": "DefaultForm",
+        "componentChildren": [
+          {
+            "componentType": "container",
+            "componentClassType": "",
+            "componentClass": "DefaultFormFooter",
+            "componentChildren": [
+              {
+                "componentType": "presentational",
+                "componentTemplateType": "Spin",
+                "componentClassType": "BUTTON",
+                "componentClass": "ButtonSave",
+                "componentChildren": [],
+                "componentKey": "ddad4a01a166",
+                "areaMode": true,
+                "componentProps": {
+                  "reqUrl": "/node/systemNtf/save.json",
+                  "callbackLink": "/admin/systemMng/systemNtf/list",
+                  "buttonName": "저장",
+                  "buttonIcon": "",
+                  "outline": "true",
+                  "bsStyle": "primary",
+                  "customColor": "",
+                  "bsSize": "small",
+                  "key": 0,
+                  "componentKey": "ddad4a01a166",
+                  "parentComponentKey": "d89d488e21e3"
+                }
+              },
+              {
+                "componentType": "presentational",
+                "componentTemplateType": "Spin",
+                "componentClassType": "BUTTON",
+                "componentClass": "ButtonBack",
+                "componentChildren": [],
+                "componentKey": "dbc60f05b51c",
+                "areaMode": true,
+                "componentProps": {
+                  "buttonName": "리스트",
+                  "buttonIcon": "",
+                  "outline": "true",
+                  "bsStyle": "default",
+                  "customColor": "",
+                  "bsSize": "small",
+                  "disabled": "",
+                  "key": 1,
+                  "componentKey": "dbc60f05b51c",
+                  "parentComponentKey": "d89d488e21e3"
+                }
+              }
+            ],
+            "componentKey": "d89d488e21e3",
+            "areaMode": true
+          }
+        ],
+        "componentKey": "ecc3a391003e",
+        "areaMode": true,
+        "componentProps": {
+          "nodeTypeId": "systemNtf",
+          "reqUrl": "/node/systemNtf/read.json",
+          "defaultParams": "",
+          "panelProps": {
+            "colMd": "12",
+            "title": ""
+          },
+          "formTypes": {
+            "isHorizontal": "true",
+            "colSize": "6",
+            "horizontalColLabelSize": "4",
+            "dataTypes": "systemNtf@ntfTgtCd,systemNtf@ntfTypeCd,systemNtf@showYn,systemNtf@pstngStDt,systemNtf@pstngFnsDt,systemNtf@ntfTitle,systemNtf@ntfSbst"
+          },
+          "key": 0,
+          "componentKey": "ecc3a391003e",
+          "parentComponentKey": "9233bf3f6f00",
+          "dataTypes": [
+            {
+              "componentClass": "Select2",
+              "dataType": "text",
+              "label": "공지 대상코드",
+              "id": "ntfTgtCd",
+              "isView": false,
+              "options": {
+                "reqUrl": "/node/code/code.json"
+              }
+            },
+            {
+              "componentClass": "Select2",
+              "dataType": "text",
+              "label": "공지 유형코드",
+              "id": "ntfTypeCd",
+              "isView": false,
+              "options": {
+                "reqUrl": "/node/code/code.json"
+              }
+            },
+            {
+              "componentClass": "Switch",
+              "dataType": "text",
+              "label": "노출 여부",
+              "id": "showYn",
+              "isView": false,
+              "options": {}
+            },
+            {
+              "componentClass": "Date",
+              "dataType": "text",
+              "label": "게시 시작 일시",
+              "id": "pstngStDt",
+              "isView": false,
+              "options": {}
+            },
+            {
+              "componentClass": "Date",
+              "dataType": "text",
+              "label": "게시 종료 일시",
+              "id": "pstngFnsDt",
+              "isView": false,
+              "options": {}
+            },
+            {
+              "componentClass": "Text",
+              "dataType": "text",
+              "label": "공지 제목",
+              "id": "ntfTitle",
+              "isView": false,
+              "options": {}
+            },
+            {
+              "componentClass": "Textarea",
+              "dataType": "text",
+              "label": "공지 내용",
+              "id": "ntfSbst",
+              "isView": false,
+              "options": {}
+            }
+          ]
+        }
+      }
+    ],
+    "componentKey": "9233bf3f6f00",
+    "areaMode": true
+  }
+]

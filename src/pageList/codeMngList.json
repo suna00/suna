@@ -1,0 +1,104 @@
+[
+  {
+    "componentType": "container",
+    "componentTemplateType": "",
+    "componentClassType": "",
+    "componentClass": "IceGrid",
+    "componentChildren": [
+      {
+        "componentType": "container",
+        "componentTemplateType": "",
+        "componentClassType": "",
+        "componentClass": "DefaultList",
+        "componentChildren": [
+          {
+            "componentType": "container",
+            "componentTemplateType": "",
+            "componentClassType": "",
+            "componentClass": "DefaultListFooter",
+            "componentChildren": [
+              {
+                "componentType": "presentational",
+                "componentTemplateType": "Spin",
+                "componentClassType": "BUTTON",
+                "componentClass": "ButtonLink",
+                "componentChildren": [],
+                "componentKey": "4e2a028fa660",
+                "areaMode": true,
+                "componentProps": {
+                  "reqUrl": "/admin/systemMng/codeMng/form",
+                  "buttonName": "등록",
+                  "buttonIcon": "",
+                  "outline": "true",
+                  "bsStyle": "primary",
+                  "customColor": "",
+                  "bsSize": "small",
+                  "disabled": "",
+                  "key": 0,
+                  "componentKey": "4e2a028fa660",
+                  "parentComponentKey": "a599b83e9f8a"
+                }
+              }
+            ],
+            "componentKey": "a599b83e9f8a",
+            "areaMode": true,
+            "componentProps": {
+              "key": "DefaultListFooter",
+              "componentKey": "a599b83e9f8a",
+              "parentComponentKey": "93007e09581a"
+            }
+          }
+        ],
+        "componentKey": "93007e09581a",
+        "areaMode": true,
+        "componentProps": {
+          "nodeTypeId": "groupCode",
+          "reqUrl": "/node/groupCode/list.json",
+          "defaultParams": "page=1",
+          "panelProps": {
+            "colMd": "12",
+            "title": "코드 관리 리스트"
+          },
+          "tableTypes": {
+            "bordered": "true",
+            "condensed": "true",
+            "hover": "true",
+            "responsive": "true",
+            "striped": "true",
+            "dataTypes": "groupCode@id,groupCode@name,groupCode@active"
+          },
+          "key": 0,
+          "componentKey": "93007e09581a",
+          "parentComponentKey": "531fc9b8638d",
+          "dataTypes": {
+            "id": {
+              "label": "그룹코드 아이디",
+              "idAble": "true",
+              "options": {
+                "componentClass": "Text"
+              }
+            },
+            "name": {
+              "label": "그룹코드 명",
+              "idAble": "false",
+              "options": {
+                "componentClass": "Text"
+              },
+              "viewLink": "true",
+              "viewPath": "/admin/systemMng/codeMng/cj/CodeView?id={{id}}"
+            },
+            "active": {
+              "label": "활성 여부",
+              "idAble": "false",
+              "options": {
+                "componentClass": "Switch"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "componentKey": "531fc9b8638d",
+    "areaMode": true
+  }
+]

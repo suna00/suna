@@ -1,0 +1,139 @@
+[
+  {
+    "componentType": "container",
+    "componentTemplateType": "",
+    "componentClassType": "",
+    "componentClass": "IceGrid",
+    "componentChildren": [
+      {
+        "componentType": "container",
+        "componentTemplateType": "",
+        "componentClassType": "",
+        "componentClass": "DefaultList",
+        "componentChildren": [
+          {
+            "componentType": "container",
+            "componentTemplateType": "",
+            "componentClassType": "",
+            "componentClass": "DefaultListFooter",
+            "componentChildren": [
+              {
+                "componentType": "presentational",
+                "componentTemplateType": "Spin",
+                "componentClassType": "BUTTON",
+                "componentClass": "ButtonLink",
+                "componentChildren": [],
+                "componentKey": "87bbdb204eac",
+                "areaMode": true,
+                "componentProps": {
+                  "reqUrl": "/admin/systemMng/systemNtf/form",
+                  "buttonName": "등록",
+                  "buttonIcon": "",
+                  "outline": "true",
+                  "bsStyle": "primary",
+                  "customColor": "",
+                  "bsSize": "small",
+                  "disabled": "",
+                  "key": 0,
+                  "componentKey": "87bbdb204eac",
+                  "parentComponentKey": "d1ba0234c6c4"
+                }
+              }
+            ],
+            "componentKey": "d1ba0234c6c4",
+            "areaMode": true,
+            "componentProps": {
+              "key": "DefaultListFooter",
+              "componentKey": "d1ba0234c6c4",
+              "parentComponentKey": "e8b39c718301"
+            }
+          }
+        ],
+        "componentKey": "e8b39c718301",
+        "areaMode": true,
+        "componentProps": {
+          "nodeTypeId": "systemNtf",
+          "reqUrl": "/node/systemNtf/list.json",
+          "defaultParams": "page=1",
+          "panelProps": {
+            "colMd": "12",
+            "title": ""
+          },
+          "tableTypes": {
+            "bordered": "true",
+            "condensed": "true",
+            "hover": "true",
+            "responsive": "true",
+            "striped": "true",
+            "dataTypes": "systemNtf@ntfSeq,systemNtf@ntfTgtCd,systemNtf@ntfTypeCd,systemNtf@ntfTitle,systemNtf@showYn,systemNtf@pstngStDt,systemNtf@pstngFnsDt,systemNtf@created"
+          },
+          "key": 0,
+          "componentKey": "e8b39c718301",
+          "parentComponentKey": "1bd7fd1a83bc",
+          "dataTypes": {
+            "ntfSeq": {
+              "label": "공지사항 일련번호",
+              "idAble": "true",
+              "options": {
+                "componentClass": "Numeric"
+              }
+            },
+            "ntfTgtCd": {
+              "label": "공지 대상코드",
+              "idAble": "false",
+              "options": {
+                "componentClass": "Select2"
+              }
+            },
+            "ntfTypeCd": {
+              "label": "공지 유형코드",
+              "idAble": "false",
+              "options": {
+                "componentClass": "Select2"
+              }
+            },
+            "ntfTitle": {
+              "label": "공지 제목",
+              "idAble": "false",
+              "options": {
+                "componentClass": "Text"
+              },
+              "viewLink": "true",
+              "viewPath": "/admin/systemMng/systemNtf/view?id={{ntfSeq}}"
+            },
+            "showYn": {
+              "label": "노출 여부",
+              "idAble": "false",
+              "options": {
+                "componentClass": "Switch"
+              }
+            },
+            "pstngStDt": {
+              "label": "게시 시작 일시",
+              "idAble": "false",
+              "options": {
+                "componentClass": "Date"
+              }
+            },
+            "pstngFnsDt": {
+              "label": "게시 종료 일시",
+              "idAble": "false",
+              "options": {
+                "componentClass": "Date"
+              }
+            },
+            "created": {
+              "label": "등록일시",
+              "idAble": "false",
+              "options": {
+                "componentClass": "Date"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "componentKey": "1bd7fd1a83bc",
+    "areaMode": true
+  }
+]
