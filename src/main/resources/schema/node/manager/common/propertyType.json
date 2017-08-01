@@ -13,8 +13,7 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
-    "defaultValue": "",
-    "idType": "autoIncrement"
+    "defaultValue": ""
   },
   {
     "typeId": "propertyType",

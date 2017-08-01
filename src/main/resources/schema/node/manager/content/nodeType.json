@@ -54,5 +54,13 @@
     "typeName": "컨텐츠 옵션 타입",
     "repositoryType": "node",
     "eviction": 0
+  },
+  {
+    "parentId": "contentsPath",
+    "typeId": "nodeType",
+    "tid": "paymentTypeByContents",
+    "typeName": "컨텐츠별 결제 수단",
+    "repositoryType": "node",
+    "eviction": 0
   }
 ]
