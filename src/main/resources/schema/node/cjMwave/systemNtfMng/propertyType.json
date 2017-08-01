@@ -5,7 +5,7 @@
     "id": "systemNtf@ntfSeq",
     "pid" : "ntfSeq",
     "propertyTypeName" : "공지사항 일련번호",
-    "valueType" : "LONG",
+    "valueType": "LONG",
     "required": true,
     "idable": true,
     "labelable": false,
