@@ -13,6 +13,7 @@
     "tid": "saveAndUsedPointMap",
     "typeName": "포인트 매핑",
     "repositoryType": "data",
+    "tableName": "saveAndUsedPointMap",
     "eviction": 0
   },
   {
@@ -21,6 +22,7 @@
     "tid": "savePoint",
     "typeName": "포인트 적립",
     "repositoryType": "data",
+    "tableName": "savePoint",
     "eviction": 0
   },
   {
@@ -29,6 +31,7 @@
     "tid": "mileage",
     "typeName": "마일리지",
     "repositoryType": "data",
+    "tableName": "mileage",
     "eviction": 0
   },
   {
@@ -37,6 +40,7 @@
     "tid": "point",
     "typeName": "제휴사 포인트",
     "repositoryType": "data",
+    "tableName": "point",
     "eviction": 0
   },
   {
@@ -45,6 +49,7 @@
     "tid": "usedPoint",
     "typeName": "포인트 사용",
     "repositoryType": "data",
+    "tableName": "usedPoint",
     "eviction": 0
   }
 ]

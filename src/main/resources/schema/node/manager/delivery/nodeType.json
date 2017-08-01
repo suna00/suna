@@ -13,6 +13,7 @@
     "tid": "delivery",
     "typeName": "배송 정보",
     "repositoryType": "data",
+    "tableName": "delivery",
     "eviction": 0
   },
   {
@@ -29,6 +30,7 @@
     "tid": "orderDeliveryPrice",
     "typeName": "주문서 배송비",
     "repositoryType": "data",
+    "tableName": "orderDeliveryPrice",
     "eviction": 0
   },
   {

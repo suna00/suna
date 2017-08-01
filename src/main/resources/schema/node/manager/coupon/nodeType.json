@@ -29,6 +29,7 @@
     "tid": "productToCouponTypeMap",
     "typeName": "상품 쿠폰유형 매핑",
     "repositoryType": "data",
+    "tableName": "productToCouponTypeMap",
     "eviction": 0
   }
 ]

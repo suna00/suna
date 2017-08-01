@@ -69,6 +69,7 @@
     "tid": "productToCategoryMap",
     "typeName": "카테고리 상품 매핑",
     "repositoryType": "data",
+    "tableName": "productToCategoryMap",
     "eviction": 0
   },
   {
@@ -77,6 +78,7 @@
     "tid": "productToThemeMap",
     "typeName": "테마 상품 매핑",
     "repositoryType": "data",
+    "tableName": "productToThemeMap",
     "eviction": 0
   },
   {
@@ -117,6 +119,7 @@
     "tid": "searchWordHistory",
     "typeName": "검색어 이력",
     "repositoryType": "data",
+    "tableName": "searchWordHistory",
     "eviction": 0
   },
   {
@@ -125,6 +128,7 @@
     "tid": "newProductMap",
     "typeName": "신상품 매핑",
     "repositoryType": "data",
+    "tableName": "newProductMap",
     "eviction": 0
   },
   {

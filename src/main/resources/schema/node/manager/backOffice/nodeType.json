@@ -37,6 +37,7 @@
     "tid": "collectRank",
     "typeName": "랭킹 수집",
     "repositoryType": "data",
+    "tableName": "collectRank",
     "eviction": 0
   },
   {
@@ -45,6 +46,7 @@
     "tid": "emailSendingHistory",
     "typeName": "이메일 발송내역",
     "repositoryType": "data",
+    "tableName": "emailSendingHistory",
     "eviction": 0
   },
   {
@@ -133,6 +135,7 @@
     "tid": "smsSendingHistory",
     "typeName": "SMS 발송내역",
     "repositoryType": "data",
+    "tableName": "smsSendingHistory",
     "eviction": 0
   },
   {
@@ -181,6 +184,7 @@
     "tid": "SMSAuthenticationHistory",
     "typeName": "SMS 인증 이력",
     "repositoryType": "data",
+    "tableName": "SMSAuthenticationHistory",
     "eviction": 0
   },
   {
@@ -189,6 +193,7 @@
     "tid": "productApprovalHistory",
     "typeName": "상품 승인 이력",
     "repositoryType": "data",
+    "tableName": "productApprovalHistory",
     "eviction": 0
   },
   {
@@ -197,6 +202,7 @@
     "tid": "productBulkRegistration",
     "typeName": "상품일괄등록 내역",
     "repositoryType": "data",
+    "tableName": "productBulkRegistration",
     "eviction": 0
   },
   {
@@ -205,6 +211,7 @@
     "tid": "productBulkRegistrationFailed",
     "typeName": "상품일괄등록 실패케이스",
     "repositoryType": "data",
+    "tableName": "productBulkRegistrationFailed",
     "eviction": 0
   },
   {

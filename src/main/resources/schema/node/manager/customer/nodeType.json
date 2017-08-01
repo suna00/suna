@@ -37,6 +37,7 @@
     "tid": "loginHistory",
     "typeName": "로그인 이력",
     "repositoryType": "data",
+    "tableName": "loginHistory",
     "eviction": 0
   },
   {
