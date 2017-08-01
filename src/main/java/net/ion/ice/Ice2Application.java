@@ -22,8 +22,6 @@ public class Ice2Application {
         System.setProperty("spring.devtools.livereload.enabled","true");
         Stagemonitor.init();
 		ApplicationContext ctx =  SpringApplication.run(Ice2Application.class, args);
-		ApplicationContextManager am = new ApplicationContextManager();
-		am.setApplicationContext(ctx);
 	}
 
 	@Bean
