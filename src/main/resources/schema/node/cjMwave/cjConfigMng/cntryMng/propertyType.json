@@ -77,7 +77,7 @@
     "pid" : "useYn",
     "id" : "cntryMng@useYn",
     "propertyTypeName": "사용여부",
-    "valueType" : "STRING",
+    "valueType" : "BOOLEAN",
     "required" : true,
     "idable" : false,
     "labelable" : false,
