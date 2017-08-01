@@ -20,17 +20,9 @@ import java.io.IOException;
 public class ApplicationContextManager implements ApplicationContextAware{
     private Logger logger = LoggerFactory.getLogger(ApplicationContextManager.class);
 
-    @Autowired
     private static ApplicationContext context ;
 
     @Autowired
-    private ApplicationContext ctx;
-
-    public ApplicationContextManager(){
-        logger.info("CONSTRUCT Application Context Aware");
-        context = this.ctx;
-    }
-
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         logger.info("INIT Application Context Aware");
