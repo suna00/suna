@@ -23,6 +23,13 @@ public class ApplicationContextManager implements ApplicationContextAware{
     private static ApplicationContext context ;
 
     @Autowired
+    private ApplicationContext ctx;
+
+    public ApplicationContextManager(){
+        logger.info("CONSTRUCT Application Context Aware");
+        context = this.ctx;
+    }
+
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         logger.info("INIT Application Context Aware");
