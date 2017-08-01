@@ -41,6 +41,7 @@ public class ApplicationContextManager implements ApplicationContextAware{
     }
 
     public static Resource getResource(String location){
+        if (context == null) return null;
         return context.getResource(location) ;
     }
 
