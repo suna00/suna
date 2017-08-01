@@ -118,7 +118,8 @@
     "index": "false",
     "pages": [
       { "pageName": "목록", "pageUrl": "list" },
-      { "pageName": "등록/수정", "pageUrl": "form" },
+      { "pageName": "등록", "pageUrl": "form" },
+      { "pageName": "수정", "pageUrl": "uform" },
       { "pageName": "상세", "pageUrl": "view" }
     ],
     "customPages": []
@@ -208,22 +209,6 @@
       { "pageName": "상세", "pageUrl": "view" }
     ],
     "customPages": []
-  },
-  {
-    "typeId" : "adminLnbMenu",
-    "backOfficeId": "admin",
-    "gnbMenuId": "systemMng",
-    "parentMenuId": "root",
-    "menuId": "cjSortTest",
-    "menuName": "소팅 테스트",
-    "order": "100",
-    "icon": "fa-tag",
-    "active": "true",
-    "index": "false",
-    "pages": [],
-    "customPages": [
-      { "pageName": "정렬리스트", "pageUrl": "SortList" }
-    ]
   },
   {
     "typeId" : "adminLnbMenu",
