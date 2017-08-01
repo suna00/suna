@@ -41,8 +41,6 @@ public class ApplicationContextManager implements ApplicationContextAware{
     }
 
     public static Resource getResource(String location){
-        System.out.println("getResource context");
-        System.out.println(context);
         return context.getResource(location) ;
     }
 
