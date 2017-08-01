@@ -115,6 +115,8 @@ public class Properties implements Map<String, Object>, Serializable, Cloneable 
                 if(value != null) {
                     values.put(pt.getPid(), value);
                 }
+            }else{
+                values.put(pt.getPid(), null) ;
             }
         }
     }

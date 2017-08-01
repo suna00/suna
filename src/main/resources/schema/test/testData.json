@@ -5,7 +5,7 @@
     "categoryName" : "test1",
     "parentCategory" : "root",
     "categoryType" : "content",
-    "orderNo": 1
+    "orderNo": ""
   },
   {
     "typeId" : "testCategory",
