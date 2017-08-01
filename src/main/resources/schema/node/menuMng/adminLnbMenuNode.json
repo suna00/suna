@@ -103,7 +103,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "cj/langList" }
+      { "pageName": "목록", "pageUrl": "cj/LangList" }
     ]
   },
   {
