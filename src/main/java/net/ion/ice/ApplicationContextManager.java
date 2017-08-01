@@ -20,6 +20,7 @@ import java.io.IOException;
 public class ApplicationContextManager implements ApplicationContextAware{
     private Logger logger = LoggerFactory.getLogger(ApplicationContextManager.class);
 
+    @Autowired
     private static ApplicationContext context ;
 
     @Autowired
