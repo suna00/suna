@@ -70,9 +70,7 @@
     "active": "true",
     "index": "false",
     "pages": [],
-    "customPages": [
-      { "pageName": "목록", "pageUrl": "cj/CodeView" }
-    ]
+    "customPages": []
   },
   {
     "typeId" : "adminLnbMenu",
@@ -103,12 +101,10 @@
     "icon": "",
     "active": "true",
     "index": "false",
-    "pages": [
-      { "pageName": "목록", "pageUrl": "list" },
-      { "pageName": "등록/수정", "pageUrl": "form" },
-      { "pageName": "상세", "pageUrl": "view" }
-    ],
-    "customPages": []
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "cj/langList" }
+    ]
   },
   {
     "typeId" : "adminLnbMenu",
