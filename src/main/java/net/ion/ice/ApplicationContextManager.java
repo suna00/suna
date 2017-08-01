@@ -16,19 +16,13 @@ import java.io.IOException;
 /**
  * Created by jaehocho on 2017. 2. 10..
  */
-@Configuration
+@Component
 public class ApplicationContextManager implements ApplicationContextAware{
     private Logger logger = LoggerFactory.getLogger(ApplicationContextManager.class);
 
     private static ApplicationContext context ;
 
-    @Autowired
-    private ApplicationContext ctx;
-
-    public ApplicationContextManager(){
-        logger.info("CONSTRUCT Application Context Aware");
-        context = this.ctx;
-    }
+    private ApplicationContextManager() {}
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
