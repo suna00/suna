@@ -55,7 +55,7 @@
     "pid" : "cntryImgPath",
     "id" : "cntryMng@cntryImgPath",
     "propertyTypeName": "국가이미지경로",
-    "valueType" : "STRING",
+    "valueType" : "FILE",
     "required" : false,
     "idable" : false,
     "labelable" : false,
