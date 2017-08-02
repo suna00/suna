@@ -15,7 +15,8 @@
     "referenceType" : "",
     "referenceValue" : "",
     "defaultValue" : "",
-    "validationTypes": {"required" : { "value" : true, "description" : "필수 값 입니다." },
+    "validationTypes": {
+      "required" : { "value" : true, "description" : "필수 값 입니다." },
       "duplicated" : { "value" : true, "description" : "중복된 값 입니다." },
       "min" : { "value" : 0, "description" : "최소 값 입니다." },
       "max" : { "value" : 0, "description" : "최대 값 입니다." },
@@ -39,7 +40,8 @@
     "referenceType" : "",
     "referenceValue" : "",
     "defaultValue" : "",
-    "validationTypes": {"required" : { "value" : true, "description" : "필수 값 입니다." },
+    "validationTypes": {
+      "required" : { "value" : true, "description" : "필수 값 입니다." },
       "duplicated" : { "value" : false, "description" : "중복된 값 입니다." },
       "min" : { "value" : 0, "description" : "최소 값 입니다." },
       "max" : { "value" : 0, "description" : "최대 값 입니다." },
@@ -63,7 +65,8 @@
     "referenceType" : "",
     "referenceValue" : "",
     "defaultValue" : "",
-    "validationTypes": {"required" : { "value" : false, "description" : "필수 값 입니다." },
+    "validationTypes": {
+      "required" : { "value" : false, "description" : "필수 값 입니다." },
       "duplicated" : { "value" : false, "description" : "중복된 값 입니다." },
       "min" : { "value" : 0, "description" : "최소 값 입니다." },
       "max" : { "value" : 0, "description" : "최대 값 입니다." },
@@ -87,7 +90,8 @@
     "referenceType" : "",
     "referenceValue" : "",
     "defaultValue" : "",
-    "validationTypes": {"required" : { "value" : false, "description" : "필수 값 입니다." },
+    "validationTypes": {
+      "required" : { "value" : false, "description" : "필수 값 입니다." },
       "duplicated" : { "value" : false, "description" : "중복된 값 입니다." },
       "min" : { "value" : 0, "description" : "최소 값 입니다." },
       "max" : { "value" : 0, "description" : "최대 값 입니다." },
@@ -111,7 +115,8 @@
     "referenceType" : "code",
     "referenceValue" : "",
     "defaultValue" : "",
-    "validationTypes": {"required" : { "value" : false, "description" : "필수 값 입니다." },
+    "validationTypes": {
+      "required" : { "value" : false, "description" : "필수 값 입니다." },
       "duplicated" : { "value" : false, "description" : "중복된 값 입니다." },
       "min" : { "value" : 0, "description" : "최소 값 입니다." },
       "max" : { "value" : 0, "description" : "최대 값 입니다." },
@@ -135,7 +140,8 @@
     "referenceType" : "code",
     "referenceValue" : "",
     "defaultValue" : "",
-    "validationTypes": {"required" : { "value" : false, "description" : "필수 값 입니다." },
+    "validationTypes": {
+      "required" : { "value" : false, "description" : "필수 값 입니다." },
       "duplicated" : { "value" : false, "description" : "중복된 값 입니다." },
       "min" : { "value" : 0, "description" : "최소 값 입니다." },
       "max" : { "value" : 0, "description" : "최대 값 입니다." },
@@ -159,7 +165,8 @@
     "referenceType" : "REFERENCE",
     "referenceValue" : "",
     "defaultValue" : "",
-    "validationTypes": {"required" : { "value" : false, "description" : "필수 값 입니다." },
+    "validationTypes": {
+      "required" : { "value" : false, "description" : "필수 값 입니다." },
       "duplicated" : { "value" : false, "description" : "중복된 값 입니다." },
       "min" : { "value" : 0, "description" : "최소 값 입니다." },
       "max" : { "value" : 0, "description" : "최대 값 입니다." },
@@ -183,7 +190,8 @@
     "referenceType" : "",
     "referenceValue" : "",
     "defaultValue" : "",
-    "validationTypes": {"required" : { "value" : false, "description" : "필수 값 입니다." },
+    "validationTypes": {
+      "required" : { "value" : false, "description" : "필수 값 입니다." },
       "duplicated" : { "value" : false, "description" : "중복된 값 입니다." },
       "min" : { "value" : 0, "description" : "최소 값 입니다." },
       "max" : { "value" : 0, "description" : "최대 값 입니다." },
@@ -207,7 +215,8 @@
     "referenceType" : "",
     "referenceValue" : "",
     "defaultValue" : "",
-    "validationTypes": {"required" : { "value" : false, "description" : "필수 값 입니다." },
+    "validationTypes": {
+      "required" : { "value" : false, "description" : "필수 값 입니다." },
       "duplicated" : { "value" : false, "description" : "중복된 값 입니다." },
       "min" : { "value" : 0, "description" : "최소 값 입니다." },
       "max" : { "value" : 0, "description" : "최대 값 입니다." },
@@ -231,7 +240,8 @@
     "referenceType" : "",
     "referenceValue" : "",
     "defaultValue" : "",
-    "validationTypes": {"required" : { "value" : false, "description" : "필수 값 입니다." },
+    "validationTypes": {
+      "required" : { "value" : false, "description" : "필수 값 입니다." },
       "duplicated" : { "value" : false, "description" : "중복된 값 입니다." },
       "min" : { "value" : 0, "description" : "최소 값 입니다." },
       "max" : { "value" : 0, "description" : "최대 값 입니다." },
@@ -255,7 +265,8 @@
     "referenceType" : "",
     "referenceValue" : "",
     "defaultValue" : "",
-    "validationTypes": {"required" : { "value" : false, "description" : "필수 값 입니다." },
+    "validationTypes": {
+      "required" : { "value" : false, "description" : "필수 값 입니다." },
       "duplicated" : { "value" : false, "description" : "중복된 값 입니다." },
       "min" : { "value" : 0, "description" : "최소 값 입니다." },
       "max" : { "value" : 0, "description" : "최대 값 입니다." },
@@ -279,7 +290,8 @@
     "referenceType" : "",
     "referenceValue" : "",
     "defaultValue" : "",
-    "validationTypes": {"required" : { "value" : false, "description" : "필수 값 입니다." },
+    "validationTypes": {
+      "required" : { "value" : false, "description" : "필수 값 입니다." },
       "duplicated" : { "value" : false, "description" : "중복된 값 입니다." },
       "min" : { "value" : 0, "description" : "최소 값 입니다." },
       "max" : { "value" : 0, "description" : "최대 값 입니다." },
@@ -303,7 +315,8 @@
     "referenceType" : "",
     "referenceValue" : "",
     "defaultValue" : "",
-    "validationTypes": {"required" : { "value" : false, "description" : "필수 값 입니다." },
+    "validationTypes": {
+      "required" : { "value" : false, "description" : "필수 값 입니다." },
       "duplicated" : { "value" : false, "description" : "중복된 값 입니다." },
       "min" : { "value" : 0, "description" : "최소 값 입니다." },
       "max" : { "value" : 0, "description" : "최대 값 입니다." },
@@ -327,7 +340,8 @@
     "referenceType" : "",
     "referenceValue" : "",
     "defaultValue" : "",
-    "validationTypes": {"required" : { "value" : false, "description" : "필수 값 입니다." },
+    "validationTypes": {
+      "required" : { "value" : false, "description" : "필수 값 입니다." },
       "duplicated" : { "value" : false, "description" : "중복된 값 입니다." },
       "min" : { "value" : 0, "description" : "최소 값 입니다." },
       "max" : { "value" : 0, "description" : "최대 값 입니다." },
@@ -351,7 +365,8 @@
     "referenceType" : "",
     "referenceValue" : "",
     "defaultValue" : "",
-    "validationTypes": {"required" : { "value" : false, "description" : "필수 값 입니다." },
+    "validationTypes": {
+      "required" : { "value" : false, "description" : "필수 값 입니다." },
       "duplicated" : { "value" : false, "description" : "중복된 값 입니다." },
       "min" : { "value" : 0, "description" : "최소 값 입니다." },
       "max" : { "value" : 0, "description" : "최대 값 입니다." },
@@ -375,7 +390,8 @@
     "referenceType" : "",
     "referenceValue" : "",
     "defaultValue" : "",
-    "validationTypes": {"required" : { "value" : false, "description" : "필수 값 입니다." },
+    "validationTypes": {
+      "required" : { "value" : false, "description" : "필수 값 입니다." },
       "duplicated" : { "value" : false, "description" : "중복된 값 입니다." },
       "min" : { "value" : 0, "description" : "최소 값 입니다." },
       "max" : { "value" : 0, "description" : "최대 값 입니다." },
@@ -399,7 +415,8 @@
     "referenceType" : "",
     "referenceValue" : "",
     "defaultValue" : "",
-    "validationTypes": {"required" : { "value" : false, "description" : "필수 값 입니다." },
+    "validationTypes": {
+      "required" : { "value" : false, "description" : "필수 값 입니다." },
       "duplicated" : { "value" : false, "description" : "중복된 값 입니다." },
       "min" : { "value" : 0, "description" : "최소 값 입니다." },
       "max" : { "value" : 0, "description" : "최대 값 입니다." },
@@ -423,7 +440,8 @@
     "referenceType" : "",
     "referenceValue" : "",
     "defaultValue" : "",
-    "validationTypes": {"required" : { "value" : false, "description" : "필수 값 입니다." },
+    "validationTypes": {
+      "required" : { "value" : false, "description" : "필수 값 입니다." },
       "duplicated" : { "value" : false, "description" : "중복된 값 입니다." },
       "min" : { "value" : 0, "description" : "최소 값 입니다." },
       "max" : { "value" : 0, "description" : "최대 값 입니다." },
@@ -447,7 +465,8 @@
     "referenceType" : "",
     "referenceValue" : "",
     "defaultValue" : "",
-    "validationTypes": {"required" : { "value" : false, "description" : "필수 값 입니다." },
+    "validationTypes": {
+      "required" : { "value" : false, "description" : "필수 값 입니다." },
       "duplicated" : { "value" : false, "description" : "중복된 값 입니다." },
       "min" : { "value" : 0, "description" : "최소 값 입니다." },
       "max" : { "value" : 0, "description" : "최대 값 입니다." },
@@ -471,7 +490,8 @@
     "referenceType" : "",
     "referenceValue" : "",
     "defaultValue" : "",
-    "validationTypes": {"required" : { "value" : false, "description" : "필수 값 입니다." },
+    "validationTypes": {
+      "required" : { "value" : false, "description" : "필수 값 입니다." },
       "duplicated" : { "value" : false, "description" : "중복된 값 입니다." },
       "min" : { "value" : 0, "description" : "최소 값 입니다." },
       "max" : { "value" : 0, "description" : "최대 값 입니다." },
