@@ -13,7 +13,7 @@
     "tid": "delivery",
     "typeName": "배송 정보",
     "repositoryType": "data",
-    "tableName": "delivery",
+    "tableName": "ytnDevDb#delivery",
     "eviction": 0
   },
   {
@@ -30,7 +30,7 @@
     "tid": "orderDeliveryPrice",
     "typeName": "주문서 배송비",
     "repositoryType": "data",
-    "tableName": "orderDeliveryPrice",
+    "tableName": "ytnDevDb#orderDeliveryPrice",
     "eviction": 0
   },
   {

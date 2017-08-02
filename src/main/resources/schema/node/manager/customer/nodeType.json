@@ -37,7 +37,7 @@
     "tid": "loginHistory",
     "typeName": "로그인 이력",
     "repositoryType": "data",
-    "tableName": "loginHistory",
+    "tableName": "ytnDevDb#loginHistory",
     "eviction": 0
   },
   {

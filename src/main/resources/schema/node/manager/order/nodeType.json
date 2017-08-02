@@ -13,7 +13,7 @@
     "tid": "cart",
     "typeName": "장바구니",
     "repositoryType": "data",
-    "tableName": "cart",
+    "tableName": "ytnDevDb#cart",
     "eviction": 0
   },
   {
@@ -22,7 +22,7 @@
     "tid": "cartProduct",
     "typeName": "장바구니 상품",
     "repositoryType": "data",
-    "tableName": "cartProduct",
+    "tableName": "ytnDevDb#cartProduct",
     "eviction": 0
   },
   {
@@ -31,7 +31,7 @@
     "tid": "cartProductItem",
     "typeName": "장바구니 상품 아이템",
     "repositoryType": "data",
-    "tableName": "cartProductItem",
+    "tableName": "ytnDevDb#cartProductItem",
     "eviction": 0
   },
   {
@@ -40,7 +40,7 @@
     "tid": "developmentFundHistory",
     "typeName": "발전기금 내역",
     "repositoryType": "data",
-    "tableName": "developmentFundHistory",
+    "tableName": "ytnDevDb#developmentFundHistory",
     "eviction": 0
   },
   {
@@ -49,7 +49,7 @@
     "tid": "purchaseOrder",
     "typeName": "주문서",
     "repositoryType": "data",
-    "tableName": "purchaseOrder",
+    "tableName": "ytnDevDb#purchaseOrder",
     "eviction": 0
   },
   {
@@ -58,7 +58,7 @@
     "tid": "orderProduct",
     "typeName": "주문서 상품",
     "repositoryType": "data",
-    "tableName": "orderProduct",
+    "tableName": "ytnDevDb#orderProduct",
     "eviction": 0
   },
   {
@@ -67,7 +67,7 @@
     "tid": "orderProductItem",
     "typeName": "주문서 상품 아이템",
     "repositoryType": "data",
-    "tableName": "orderProductItem",
+    "tableName": "ytnDevDb#orderProductItem",
     "eviction": 0
   },
   {
@@ -76,7 +76,7 @@
     "tid": "payment",
     "typeName": "결제",
     "repositoryType": "data",
-    "tableName": "payment",
+    "tableName": "ytnDevDb#payment",
     "eviction": 0
   },
   {
@@ -85,7 +85,7 @@
     "tid": "paymentHistory",
     "typeName": "결제 이력",
     "repositoryType": "data",
-    "tableName": "paymentHistory",
+    "tableName": "ytnDevDb#paymentHistory",
     "eviction": 0
   },
   {
@@ -94,7 +94,7 @@
     "tid": "requestChangeOfOrder",
     "typeName": "주문 변경 요청",
     "repositoryType": "data",
-    "tableName": "requestChangeOfOrder",
+    "tableName": "ytnDevDb#requestChangeOfOrder",
     "eviction": 0
   }
 ]
