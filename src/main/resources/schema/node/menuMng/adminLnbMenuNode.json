@@ -101,10 +101,13 @@
     "icon": "",
     "active": "true",
     "index": "false",
-    "pages": [],
-    "customPages": [
-      { "pageName": "목록", "pageUrl": "cj/LangList" }
-    ]
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" },
+      { "pageName": "등록", "pageUrl": "form" },
+      { "pageName": "수정", "pageUrl": "uform" },
+      { "pageName": "상세", "pageUrl": "view" }
+    ],
+    "customPages": []
   },
   {
     "typeId" : "adminLnbMenu",

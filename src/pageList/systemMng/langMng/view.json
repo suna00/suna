@@ -13,7 +13,7 @@
         "componentChildren": [
           {
             "componentType": "container",
-            "componentClassType": "",
+            "componentClassType": null,
             "componentClass": "DefaultFormFooter",
             "componentChildren": [
               {
@@ -22,20 +22,20 @@
                 "componentClassType": "BUTTON",
                 "componentClass": "ButtonLink",
                 "componentChildren": [],
-                "componentKey": "497f2e22e4a4",
+                "componentKey": "db54adc39cc7",
                 "areaMode": true,
                 "componentProps": {
-                  "reqUrl": "/admin/systemMng/systemNtf/form?id={{ntfSeq}}",
+                  "reqUrl": "/admin/systemMng/lagnMng/uform?id={{langSeq}}",
                   "buttonName": "수정",
                   "buttonIcon": "",
                   "outline": "",
-                  "bsStyle": "default",
+                  "bsStyle": "primary",
                   "customColor": "",
                   "bsSize": "small",
                   "disabled": "",
                   "key": 0,
-                  "componentKey": "497f2e22e4a4",
-                  "parentComponentKey": "367ac4aa1231"
+                  "componentKey": "db54adc39cc7",
+                  "parentComponentKey": "e9be3c3b5503"
                 }
               },
               {
@@ -44,11 +44,11 @@
                 "componentClassType": "BUTTON",
                 "componentClass": "ButtonDelete",
                 "componentChildren": [],
-                "componentKey": "ec79f124457b",
+                "componentKey": "8036c9767be9",
                 "areaMode": true,
                 "componentProps": {
-                  "reqUrl": "/node/{{nodeType}}/delete.json",
-                  "callbackLink": "",
+                  "reqUrl": "/node/langMng/delete.json",
+                  "callbackLink": "/admin/systemMng/lagnMng/list",
                   "buttonName": "삭제",
                   "buttonIcon": "",
                   "outline": "",
@@ -62,8 +62,8 @@
                     "cancelButtonText": "취소"
                   },
                   "key": 1,
-                  "componentKey": "ec79f124457b",
-                  "parentComponentKey": "367ac4aa1231"
+                  "componentKey": "8036c9767be9",
+                  "parentComponentKey": "e9be3c3b5503"
                 }
               },
               {
@@ -72,7 +72,7 @@
                 "componentClassType": "BUTTON",
                 "componentClass": "ButtonBack",
                 "componentChildren": [],
-                "componentKey": "75bae5589ea1",
+                "componentKey": "c4fb93fd7ff4",
                 "areaMode": true,
                 "componentProps": {
                   "buttonName": "리스트",
@@ -83,58 +83,56 @@
                   "bsSize": "small",
                   "disabled": "",
                   "key": 2,
-                  "componentKey": "75bae5589ea1",
-                  "parentComponentKey": "367ac4aa1231"
+                  "componentKey": "c4fb93fd7ff4",
+                  "parentComponentKey": "e9be3c3b5503"
                 }
               }
             ],
-            "componentKey": "367ac4aa1231",
+            "componentKey": "e9be3c3b5503",
             "areaMode": true
           }
         ],
-        "componentKey": "79b0078cb9d6",
+        "componentKey": "839bdeb97bcd",
         "areaMode": true,
         "componentProps": {
-          "nodeTypeId": "systemNtf",
-          "reqUrl": "/node/systemNtf/read.json",
+          "nodeTypeId": "langMng",
+          "reqUrl": "/node/langMng/read.json",
           "defaultParams": "",
           "panelProps": {
             "colMd": "12",
-            "title": ""
+            "title": "언어 상세"
           },
           "formTypes": {
             "isHorizontal": "true",
             "colSize": "6",
             "horizontalColLabelSize": "4",
-            "dataTypes": "systemNtf@ntfSeq,systemNtf@ntfTgtCd,systemNtf@ntfTypeCd,systemNtf@showYn,systemNtf@pstngStDt,systemNtf@pstngFnsDt,systemNtf@ntfTitle,systemNtf@ntfSbst,systemNtf@owner,systemNtf@created,systemNtf@modifier,systemNtf@changed"
+            "dataTypes": "langMng@langSeq,langMng@langNm,langMng@sttusCd,langMng@useYn,langMng@owner,langMng@created,langMng@modifier,langMng@changed"
           },
           "key": 0,
-          "componentKey": "79b0078cb9d6",
-          "parentComponentKey": "5fbc09e44e6d",
+          "componentKey": "839bdeb97bcd",
+          "parentComponentKey": "7d058544e9ea",
           "dataTypes": [
             {
               "componentClass": "Numeric",
               "dataType": "id",
-              "label": "공지사항 일련번호",
-              "id": "ntfSeq",
+              "label": "언어일련번호",
+              "id": "langSeq",
+              "isView": true,
+              "options": {}
+            },
+            {
+              "componentClass": "Text",
+              "dataType": "text",
+              "label": "언어명",
+              "id": "langNm",
               "isView": true,
               "options": {}
             },
             {
               "componentClass": "Select2",
               "dataType": "text",
-              "label": "공지 대상코드",
-              "id": "ntfTgtCd",
-              "isView": true,
-              "options": {
-                "reqUrl": "/node/code/code.json"
-              }
-            },
-            {
-              "componentClass": "Select2",
-              "dataType": "text",
-              "label": "공지 유형코드",
-              "id": "ntfTypeCd",
+              "label": "상태코드",
+              "id": "sttusCd",
               "isView": true,
               "options": {
                 "reqUrl": "/node/code/code.json"
@@ -143,40 +141,8 @@
             {
               "componentClass": "Switch",
               "dataType": "text",
-              "label": "노출 여부",
-              "id": "showYn",
-              "isView": true,
-              "options": {}
-            },
-            {
-              "componentClass": "Date",
-              "dataType": "text",
-              "label": "게시 시작 일시",
-              "id": "pstngStDt",
-              "isView": true,
-              "options": {}
-            },
-            {
-              "componentClass": "Date",
-              "dataType": "text",
-              "label": "게시 종료 일시",
-              "id": "pstngFnsDt",
-              "isView": true,
-              "options": {}
-            },
-            {
-              "componentClass": "Text",
-              "dataType": "text",
-              "label": "공지 제목",
-              "id": "ntfTitle",
-              "isView": true,
-              "options": {}
-            },
-            {
-              "componentClass": "Textarea",
-              "dataType": "text",
-              "label": "공지 내용",
-              "id": "ntfSbst",
+              "label": "사용여부",
+              "id": "useYn",
               "isView": true,
               "options": {}
             },
@@ -216,7 +182,7 @@
         }
       }
     ],
-    "componentKey": "5fbc09e44e6d",
+    "componentKey": "7d058544e9ea",
     "areaMode": true
   }
 ]

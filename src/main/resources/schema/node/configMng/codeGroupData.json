@@ -1,0 +1,30 @@
+[
+  {
+    "typeId" : "groupCode",
+    "id" : "systemNtfTgtCd",
+    "name" : "시스템 공지사항 대상코드",
+    "active" : true,
+    "desc" : "전체/내부"
+  },
+  {
+    "typeId" : "groupCode",
+    "id" : "systemNtfTypeCd",
+    "name" : "시스템 공지사항 유형코드",
+    "active" : true,
+    "desc" : "긴급/일반"
+  },
+  {
+    "typeId" : "groupCode",
+    "id" : "stpltTypceCd",
+    "name" : "약관 유형코드",
+    "active" : true,
+    "desc" : "이용약관/청소년보호 등"
+  },
+  {
+    "typeId" : "groupCode",
+    "id" : "langSttusCd",
+    "name" : "언어 상태코드",
+    "active" : true,
+    "desc" : "언어관리에 고정/선택 상태코드"
+  }
+]

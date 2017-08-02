@@ -155,7 +155,7 @@
     "tid" : "systemNtf",
     "pid" : "pstngStDt",
     "id" : "systemNtf@pstngStDt",
-    "propertyTypeName": "게시 종료 일시",
+    "propertyTypeName": "게시 시작 일시",
     "valueType" : "DATE",
     "required" : false,
     "idable" : false,
