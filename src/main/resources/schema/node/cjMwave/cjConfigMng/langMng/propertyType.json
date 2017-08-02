@@ -53,6 +53,56 @@
   ,{
     "typeId" : "propertyType",
     "tid" : "langMng",
+    "pid" : "sttusCd",
+    "id" : "langMng@sttusCd",
+    "propertyTypeName": "상태코드",
+    "valueType" : "REFERENCE",
+    "required" : true,
+    "idable" : false,
+    "labelable" : false,
+    "treeable" : false,
+    "indexable" :true,
+    "analyzer" : "code",
+    "referenceType" : "code",
+    "referenceValue" : "",
+    "defaultValue" : "",
+    "validationTypes": {
+      "required" : { "value" : true, "description" : "필수 값 입니다." },
+      "duplicated" : { "value" : false, "description" : "중복된 값 입니다." },
+      "min" : { "value" : 0, "description" : "최소 값 입니다." },
+      "max" : { "value" : 0, "description" : "최대 값 입니다." },
+      "extention" : { "value" : "", "description" : "확장자를 허용하지 않습니다." },
+      "regularExpression" : { "value" : "", "description" : "" }
+    }
+  }
+  ,{
+    "typeId" : "propertyType",
+    "tid" : "langMng",
+    "pid" : "useYn",
+    "id" : "langMng@useYn",
+    "propertyTypeName": "사용여부",
+    "valueType" : "REFERENCE",
+    "required" : true,
+    "idable" : false,
+    "labelable" : false,
+    "treeable" : false,
+    "indexable" :true,
+    "analyzer" : "code",
+    "referenceType" : "code",
+    "referenceValue" : "",
+    "defaultValue" : "",
+    "validationTypes": {
+      "required" : { "value" : true, "description" : "필수 값 입니다." },
+      "duplicated" : { "value" : false, "description" : "중복된 값 입니다." },
+      "min" : { "value" : 0, "description" : "최소 값 입니다." },
+      "max" : { "value" : 0, "description" : "최대 값 입니다." },
+      "extention" : { "value" : "", "description" : "확장자를 허용하지 않습니다." },
+      "regularExpression" : { "value" : "", "description" : "" }
+    }
+  }
+  ,{
+    "typeId" : "propertyType",
+    "tid" : "langMng",
     "pid" : "owner",
     "id" : "langMng@owner",
     "propertyTypeName": "등록자",
