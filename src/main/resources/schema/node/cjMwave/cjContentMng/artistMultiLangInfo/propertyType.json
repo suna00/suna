@@ -77,9 +77,9 @@
   ,{
     "typeId" : "propertyType",
     "tid" : "artistMultiLangInfo",
-    "pid" : "review",
-    "id" : "artistMultiLangInfo@review",
-    "propertyTypeName": "리뷰",
+    "pid" : "artistDesc",
+    "id" : "artistMultiLangInfo@artistDesc",
+    "propertyTypeName": "아티스트 설명",
     "valueType" : "TEXT",
     "required" : false,
     "idable" : false,

@@ -227,9 +227,9 @@
   ,{
     "typeId" : "propertyType",
     "tid" : "artist",
-    "pid" : "review",
-    "id" : "artist@review",
-    "propertyTypeName": "리뷰",
+    "pid" : "artistDesc",
+    "id" : "artist@artistDesc",
+    "propertyTypeName": "아티스트 설명",
     "valueType" : "TEXT",
     "required" : false,
     "idable" : false,
