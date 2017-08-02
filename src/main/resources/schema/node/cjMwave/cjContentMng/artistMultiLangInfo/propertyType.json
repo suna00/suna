@@ -125,6 +125,31 @@
     }
   }
   ,{
+  "typeId" : "propertyType",
+  "tid" : "artistMultiLangInfo",
+  "pid" : "findKywrd",
+  "id" : "artistMultiLangInfo@findKywrd",
+  "propertyTypeName": "검색키워드",
+  "valueType" : "TEXT",
+  "required" : false,
+  "idable" : false,
+  "labelable" : false,
+  "treeable" : false,
+  "indexable" :true,
+  "analyzer" : "cjk",
+  "referenceType" : "",
+  "referenceValue" : "",
+  "defaultValue" : "",
+  "validationTypes": {
+    "required" : { "value" : false, "description" : "필수 값 입니다." },
+    "duplicated" : { "value" : false, "description" : "중복된 값 입니다." },
+    "min" : { "value" : 0, "description" : "최소 값 입니다." },
+    "max" : { "value" : 0, "description" : "최대 값 입니다." },
+    "extention" : { "value" : "", "description" : "확장자를 허용하지 않습니다." },
+    "regularExpression" : { "value" : "", "description" : "" }
+    }
+  }
+  ,{
     "typeId" : "propertyType",
     "tid" : "artistMultiLangInfo",
     "pid" : "owner",

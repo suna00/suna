@@ -162,7 +162,7 @@
     "treeable" : false,
     "indexable" :true,
     "analyzer" : "code",
-    "referenceType" : "REFERENCE",
+    "referenceType" : "code",
     "referenceValue" : "",
     "defaultValue" : "",
     "validationTypes": {
@@ -327,8 +327,8 @@
   ,{
     "typeId" : "propertyType",
     "tid" : "artist",
-    "pid" : "relArtistId",
-    "id" : "artist@relArtistId",
+    "pid" : "relArtistIds",
+    "id" : "artist@relArtistIds",
     "propertyTypeName": "연관 아티스트 아이디",
     "valueType" : "TEXT",
     "required" : false,
