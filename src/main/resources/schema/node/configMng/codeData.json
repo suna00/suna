@@ -19,7 +19,7 @@
     "typeId" : "code",
     "groupCodeId" : "systemNtfTypeCd",
     "id" : "ntfEmg",
-    "name" : "내부 관리자",
+    "name" : "긴급",
     "order" : 1,
     "active" : true
   },
