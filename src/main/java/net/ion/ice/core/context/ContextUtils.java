@@ -21,8 +21,12 @@ public class ContextUtils {
             String[] values = parameterMap.get(paramName);
             String value = null;
 
-            if (values != null && values.length > 0 && StringUtils.isNotEmpty(values[0])) {
+            if (values == null || StringUtils.isEmpty(values[0])) {
+                continue;
+            }else if ( values.length == 1 ) {
                 value = values[0];
+            }else {
+                value = StringUtils.join(values, ' ');
             }
 
             data.put(paramName, value);
@@ -54,5 +58,14 @@ public class ContextUtils {
         }else{
             return configValue ;
         }
+    }
+
+    public static String getParameterValue(String paramName, Map<String, String[]> parameterMap){
+        String[] values = parameterMap.get(paramName);
+        if (values == null || StringUtils.isEmpty(values[0])) {
+            return null ;
+        }
+
+        return StringUtils.join(values, ' ');
     }
 }
