@@ -35,7 +35,7 @@
     "backOfficeId": "adm",
     "gnbMenuId": "adminAccountMng",
     "parentMenuId": "root",
-    "menuId": "account",
+    "menuId": "groupAuthority",
     "menuName": "그룹권한관리",
     "order": "20",
     "icon": "fa-users",
