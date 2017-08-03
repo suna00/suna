@@ -35,7 +35,7 @@
     "treeable": false,
     "referenceType": "testCategory",
     "length": 100,
-    "analyzer": "cjk"
+    "analyzer": "code"
   },
   {
     "typeId": "propertyType",
@@ -43,7 +43,7 @@
     "pid": "categoryName",
     "propertyTypeName": "Category Name",
     "valueType": "STRING",
-    "idable": true,
+    "idable": false,
     "indexable": true,
     "labelable": true,
     "required": true,
@@ -61,7 +61,7 @@
     "labelable": false,
     "required": true,
     "length": 100,
-    "analyzer": "cjk"
+    "analyzer": "code"
   },
   {
     "typeId": "propertyType",

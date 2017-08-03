@@ -345,13 +345,13 @@ public class NodeService {
 
     public QueryResult getQueryResult(String query) {
         QueryContext queryContext = QueryContext.makeQueryContextFromQuery(query) ;
-        QueryResult queryResult = queryContext.makeQueryResult( null);
+        QueryResult queryResult = queryContext.makeQueryResult( null, null);
         return queryResult;
     }
 
     public QueryResult getQueryResult(String typeId, Map<String, String[]> parameterMap) {
         QueryContext queryContext = QueryContext.makeQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
-        QueryResult queryResult = queryContext.makeQueryResult( null);
+        QueryResult queryResult = queryContext.makeQueryResult( null, null);
         return queryResult;
     }
 

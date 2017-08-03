@@ -5,6 +5,7 @@ import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.cluster.ClusterService;
 import net.ion.ice.core.file.FileService;
 import net.ion.ice.core.file.FileValue;
+import net.ion.ice.core.infinispan.InfinispanRepositoryService;
 import net.ion.ice.core.infinispan.NotFoundNodeException;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.context.QueryContext;
@@ -13,6 +14,7 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.lucene.search.SortField;
+import org.infinispan.Cache;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -20,6 +22,8 @@ import java.text.ParseException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+
+import static net.ion.ice.core.infinispan.InfinispanRepositoryService.NODEVALUE_SEPERATOR;
 
 /**
  * Created by jaehocho on 2017. 5. 17..
@@ -37,6 +41,16 @@ public class NodeUtils {
     public static NodeType getNodeType(String typeId){
         if(getNodeService() == null) return null ;
         return nodeService.getNodeType(typeId) ;
+    }
+
+
+    static InfinispanRepositoryService infinispanService ;
+
+    public static InfinispanRepositoryService getInfinispanService(){
+        if(infinispanService == null) {
+            infinispanService =  ApplicationContextManager.getBean(InfinispanRepositoryService.class);
+        }
+        return infinispanService ;
     }
 
 
@@ -316,4 +330,22 @@ public class NodeUtils {
         }
         return clusterService ;
     }
+
+
+    public static List<Node> initNodeList(String typeId, List<Object> list) {
+        Cache<String, NodeValue> nodeValueCache = getInfinispanService().getNodeValueCache();
+
+        List<Node> nodeList = new ArrayList<>() ;
+
+        for(Object item : list) {
+            Node srcNode = (Node) item;
+            if (srcNode.getNodeValue() == null) {
+                srcNode.setNodeValue(nodeValueCache.get(typeId + InfinispanRepositoryService.NODEVALUE_SEPERATOR + srcNode.getId()));
+            }
+            nodeList.add(srcNode.clone().toDisplay()) ;
+        }
+
+        return nodeList;
+    }
+
 }
