@@ -450,8 +450,8 @@
     "pages": [],
     "customPages": [
       { "pageName": "목록", "pageUrl": "cj/ArtistList" },
-      { "pageName": "등록/수정", "pageUrl": "form" },
-      { "pageName": "상세", "pageUrl": "view" }
+      { "pageName": "등록/수정", "pageUrl": "cj/ArtistForm" },
+      { "pageName": "상세", "pageUrl": "cj/ArtistView" }
     ]
   },
   {
