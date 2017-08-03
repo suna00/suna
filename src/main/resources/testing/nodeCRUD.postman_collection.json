@@ -57,7 +57,7 @@
 			},
 			"response": [
 				{
-					"id": "f7559b7d-5a2d-4df4-a836-7034ca32ae1f",
+					"id": "c145aaac-825c-4ead-803e-cef058d099af",
 					"name": "saveCategory",
 					"originalRequest": {
 						"url": "http://{{host}}/node/testCategory?",

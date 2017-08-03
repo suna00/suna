@@ -316,16 +316,19 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         this.nodeValue.setChanged(changed) ;
     }
 
-    public void toDisplay() {
+    public Node toDisplay() {
         this.properties.toDisplay(this.nodeValue);
+        return this ;
     }
 
-    public void toCode() {
+    public Node toCode() {
         this.properties.toCode();
+        return this ;
     }
 
-    public void toStore() {
+    public Node toStore() {
         properties.toStore();
+        return this ;
     }
 
     public Object getStoreValue(String pid) {

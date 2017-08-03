@@ -48,7 +48,7 @@ public class InfinispanRepositoryService {
     }
 
 
-    private Node initNode(String typeId, Node srcNode) {
+    public Node initNode(String typeId, Node srcNode) {
         if (srcNode.getNodeValue() == null) {
             Cache<String, NodeValue> nodeValueCache = getNodeValueCache();
             srcNode.setNodeValue(nodeValueCache.get(typeId + NODEVALUE_SEPERATOR + srcNode.getId()));
@@ -57,6 +57,7 @@ public class InfinispanRepositoryService {
 
         return node;
     }
+
 
     public Node read(String typeId, String id) {
         Cache<String, Node> cache = getNodeCache(typeId);
