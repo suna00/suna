@@ -1,22 +1,22 @@
 [
   {
     "typeId" : "backOffice",
-    "id": "admin",
-    "name": "Manager",
+    "id": "adm",
+    "name": "통합 관리자",
     "order": "10",
     "active": "true"
   },
   {
     "typeId" : "backOffice",
-    "id": "cm",
-    "name": "Content Manager",
+    "id": "aff",
+    "name": "제휴사",
     "order": "20",
     "active": "true"
   },
   {
     "typeId" : "backOffice",
-    "id": "sm",
-    "name": "Service Manager",
+    "id": "ven",
+    "name": "벤더",
     "order": "30",
     "active": "true"
   }

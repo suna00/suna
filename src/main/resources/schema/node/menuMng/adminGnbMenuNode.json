@@ -1,64 +1,127 @@
 [
   {
     "typeId" : "adminGnbMenu",
-    "backOfficeId": "admin",
+    "backOfficeId": "adm",
     "menuId": "dashboard",
     "menuName": "Dashboard",
     "order": "10",
     "icon": "",
-    "active": "true"
+    "active": "false"
   },
   {
     "typeId" : "adminGnbMenu",
-    "backOfficeId": "admin",
-    "menuId": "custom",
-    "menuName": "테스트 컴포넌트",
+    "backOfficeId": "adm",
+    "menuId": "productMng",
+    "menuName": "상품",
     "order": "20",
     "icon": "",
     "active": "true"
   },
   {
     "typeId" : "adminGnbMenu",
-    "backOfficeId": "admin",
-    "menuId": "configMng",
-    "menuName": "설정 관리",
+    "backOfficeId": "adm",
+    "menuId": "displayMng",
+    "menuName": "전시",
+    "order": "30",
+    "icon": "",
+    "active": "true"
+  },
+  {
+    "typeId" : "adminGnbMenu",
+    "backOfficeId": "adm",
+    "menuId": "menuMng",
+    "menuName": "메뉴",
+    "order": "40",
+    "icon": "",
+    "active": "true"
+  },
+  {
+    "typeId" : "adminGnbMenu",
+    "backOfficeId": "adm",
+    "menuId": "marketingMng",
+    "menuName": "마케팅",
+    "order": "50",
+    "icon": "",
+    "active": "true"
+  },
+  {
+    "typeId" : "adminGnbMenu",
+    "backOfficeId": "adm",
+    "menuId": "orderPaymentMng",
+    "menuName": "주문/결재",
+    "order": "60",
+    "icon": "",
+    "active": "true"
+  },
+  {
+    "typeId" : "adminGnbMenu",
+    "backOfficeId": "adm",
+    "menuId": "settlementMng",
+    "menuName": "정산",
+    "order": "70",
+    "icon": "",
+    "active": "true"
+  },
+  {
+    "typeId" : "adminGnbMenu",
+    "backOfficeId": "adm",
+    "menuId": "affiliateMng",
+    "menuName": "제휴사",
+    "order": "80",
+    "icon": "",
+    "active": "true"
+  },
+  {
+    "typeId" : "adminGnbMenu",
+    "backOfficeId": "adm",
+    "menuId": "venderMng",
+    "menuName": "벤더",
+    "order": "90",
+    "icon": "",
+    "active": "true"
+  },
+  {
+    "typeId" : "adminGnbMenu",
+    "backOfficeId": "adm",
+    "menuId": "noticeMng",
+    "menuName": "알림",
     "order": "100",
     "icon": "",
     "active": "true"
   },
   {
     "typeId" : "adminGnbMenu",
-    "backOfficeId": "cm",
-    "menuId": "dashboard",
-    "menuName": "Dashboard",
-    "order": "10",
+    "backOfficeId": "adm",
+    "menuId": "policyMng",
+    "menuName": "정책",
+    "order": "110",
     "icon": "",
     "active": "true"
   },
   {
     "typeId" : "adminGnbMenu",
-    "backOfficeId": "cm",
-    "menuId": "contentsMng",
-    "menuName": "콘텐츠 관리",
-    "order": "20",
+    "backOfficeId": "adm",
+    "menuId": "analysisStatistics",
+    "menuName": "분석/통계",
+    "order": "120",
     "icon": "",
     "active": "true"
   },
   {
     "typeId" : "adminGnbMenu",
-    "backOfficeId": "sm",
-    "menuId": "dashboard",
-    "menuName": "Dashboard",
-    "order": "10",
+    "backOfficeId": "adm",
+    "menuId": "serviceCenterMng",
+    "menuName": "고객센터",
+    "order": "130",
     "icon": "",
     "active": "true"
   },
   {
     "typeId" : "adminGnbMenu",
-    "backOfficeId": "sm",
-    "menuId": "productMng",
-    "menuName": "상품 관리",
-    "order": "20",
+    "backOfficeId": "adm",
+    "menuId": "adminAccountMng",
+    "menuName": "관리자계정",
+    "order": "140",
     "icon": "",
     "active": "true"
   }

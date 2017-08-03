@@ -1,7 +1,7 @@
 [
   {
     "typeId" : "adminLnbMenu",
-    "backOfficeId": "admin",
+    "backOfficeId": "adm",
     "gnbMenuId": "dashboard",
     "parentMenuId": "root",
     "menuId": "dashboard",
@@ -15,207 +15,35 @@
   },
   {
     "typeId" : "adminLnbMenu",
-    "backOfficeId": "admin",
-    "gnbMenuId": "custom",
+    "backOfficeId": "adm",
+    "gnbMenuId": "adminAccountMng",
     "parentMenuId": "root",
-    "menuId": "defaultList",
-    "menuName": "DefaultList",
+    "menuId": "account",
+    "menuName": "계정관리",
     "order": "10",
-    "icon": "fa-square-o",
+    "icon": "fa-user",
     "active": "true",
     "index": "false",
-    "pages": [],
-    "customPages": [
-      { "pageName": "목록", "pageUrl": "DefaultList" },
-      { "pageName": "등록", "pageUrl": "DefaultForm" },
-      { "pageName": "수정", "pageUrl": "DefaultUForm" },
-      { "pageName": "상세", "pageUrl": "DefaultView" }
-    ]
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" },
+      { "pageName": "등록/수정", "pageUrl": "form" }
+    ],
+    "customPages": []
   },
   {
     "typeId" : "adminLnbMenu",
-    "backOfficeId": "admin",
-    "gnbMenuId": "custom",
+    "backOfficeId": "adm",
+    "gnbMenuId": "adminAccountMng",
     "parentMenuId": "root",
-    "menuId": "editList",
-    "menuName": "EditList",
+    "menuId": "account",
+    "menuName": "그룹권한관리",
     "order": "20",
-    "icon": "fa-square-o",
-    "active": "true",
-    "index": "false",
-    "pages": [],
-    "customPages": [
-      { "pageName": "상세", "pageUrl": "EditList" }
-    ]
-  },
-  {
-    "typeId" : "adminLnbMenu",
-    "backOfficeId": "admin",
-    "gnbMenuId": "custom",
-    "parentMenuId": "root",
-    "menuId": "treeList",
-    "menuName": "TreeList",
-    "order": "30",
-    "icon": "fa-square-o",
-    "active": "true",
-    "index": "false",
-    "pages": [],
-    "customPages": [
-      { "pageName": "상세", "pageUrl": "TreeList" }
-    ]
-  },
-  {
-    "typeId" : "adminLnbMenu",
-    "backOfficeId": "admin",
-    "gnbMenuId": "custom",
-    "parentMenuId": "root",
-    "menuId": "treeAndList",
-    "menuName": "TreeAndList",
-    "order": "40",
-    "icon": "fa-square-o",
-    "active": "true",
-    "index": "false",
-    "pages": [],
-    "customPages": [
-      { "pageName": "목록", "pageUrl": "TreeAndList" }
-    ]
-  },
-  {
-    "typeId" : "adminLnbMenu",
-    "backOfficeId": "admin",
-    "gnbMenuId": "custom",
-    "parentMenuId": "root",
-    "menuId": "defaultTabs",
-    "menuName": "defaultTabs",
-    "order": "30",
-    "icon": "fa-square-o",
-    "active": "true",
-    "index": "false",
-    "pages": [],
-    "customPages": [
-      { "pageName": "Tabs", "pageUrl": "TestTabs" },
-      { "pageName": "등록", "pageUrl": "DefaultForm" }
-    ]
-  },
-  {
-    "typeId" : "adminLnbMenu",
-    "backOfficeId": "admin",
-    "gnbMenuId": "custom",
-    "parentMenuId": "root",
-    "menuId": "defaultTabs2",
-    "menuName": "defaultTabs2",
-    "order": "40",
-    "icon": "fa-square-o",
-    "active": "true",
-    "index": "false",
-    "pages": [],
-    "customPages": [
-      { "pageName": "Tabs", "pageUrl": "TestTabs2" },
-      { "pageName": "등록", "pageUrl": "DefaultForm" },
-      { "pageName": "상세", "pageUrl": "DefaultTabView" }
-    ]
-  },
-  {
-    "typeId" : "adminLnbMenu",
-    "backOfficeId": "admin",
-    "gnbMenuId": "configMng",
-    "parentMenuId": "root",
-    "menuId": "groupCode",
-    "menuName": "그룹코드 관리",
-    "order": "10",
-    "icon": "fa-tag",
+    "icon": "fa-users",
     "active": "true",
     "index": "false",
     "pages": [
       { "pageName": "목록", "pageUrl": "list" },
-      { "pageName": "등록/수정", "pageUrl": "form" },
-      { "pageName": "상세", "pageUrl": "view" }
-    ],
-    "customPages": []
-  },
-  {
-    "typeId" : "adminLnbMenu",
-    "backOfficeId": "admin",
-    "gnbMenuId": "configMng",
-    "parentMenuId": "root",
-    "menuId": "code",
-    "menuName": "코드 관리",
-    "order": "20",
-    "icon": "fa-tags",
-    "active": "true",
-    "index": "false",
-    "pages": [
-      { "pageName": "목록", "pageUrl": "list" },
-      { "pageName": "등록/수정", "pageUrl": "form" },
-      { "pageName": "상세", "pageUrl": "view" }
-    ],
-    "customPages": []
-  },
-  {
-    "typeId" : "adminLnbMenu",
-    "backOfficeId": "cm",
-    "gnbMenuId": "contentsMng",
-    "parentMenuId": "root",
-    "menuId": "broadcast",
-    "menuName": "방송",
-    "order": "10",
-    "icon": "fa-tv",
-    "active": "true",
-    "index": "false",
-    "pages": [],
-    "customPages": []
-  },
-  {
-    "typeId" : "adminLnbMenu",
-    "backOfficeId": "cm",
-    "gnbMenuId": "contentsMng",
-    "parentMenuId": "cm@root@broadcast",
-    "menuId": "contentsSeries",
-    "menuName": "시리즈",
-    "order": "10",
-    "icon": "",
-    "active": "true",
-    "index": "false",
-    "pages": [
-      { "pageName": "목록", "pageUrl": "list" },
-      { "pageName": "등록/수정", "pageUrl": "form" },
-      { "pageName": "상세", "pageUrl": "view" }
-    ],
-    "customPages": []
-  },
-  {
-    "typeId" : "adminLnbMenu",
-    "backOfficeId": "cm",
-    "gnbMenuId": "contentsMng",
-    "parentMenuId": "cm@root@broadcast",
-    "menuId": "contentsSeriesShort",
-    "menuName": "시리즈 단편",
-    "order": "20",
-    "icon": "",
-    "active": "true",
-    "index": "false",
-    "pages": [
-      { "pageName": "목록", "pageUrl": "list" },
-      { "pageName": "등록/수정", "pageUrl": "form" },
-      { "pageName": "상세", "pageUrl": "view" }
-    ],
-    "customPages": []
-  },
-  {
-    "typeId" : "adminLnbMenu",
-    "backOfficeId": "cm",
-    "gnbMenuId": "contentsMng",
-    "parentMenuId": "cm@root@broadcast",
-    "menuId": "contentsShort",
-    "menuName": "단편",
-    "order": "30",
-    "icon": "",
-    "active": "true",
-    "index": "false",
-    "pages": [
-      { "pageName": "목록", "pageUrl": "list" },
-      { "pageName": "등록/수정", "pageUrl": "form" },
-      { "pageName": "상세", "pageUrl": "view" }
+      { "pageName": "등록/수정", "pageUrl": "form" }
     ],
     "customPages": []
   }
