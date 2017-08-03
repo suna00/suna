@@ -469,7 +469,7 @@
   {
     "typeId": "propertyType",
     "tid": "specialExhibitionHotKeyword",
-    "pid": "useYn",
+    "pid": "status",
     "propertyTypeName": "사용여부",
     "valueType": "STRING",
     "required": true,
@@ -614,7 +614,7 @@
   {
     "typeId": "propertyType",
     "tid": "specialExhibitionAnker",
-    "pid": "useYn",
+    "pid": "status",
     "propertyTypeName": "사용여부",
     "valueType": "STRING",
     "required": true,

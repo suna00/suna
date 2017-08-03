@@ -115,7 +115,7 @@
   {
     "typeId": "propertyType",
     "tid": "review",
-    "pid": "displayYn",
+    "pid": "status",
     "propertyTypeName": "전시여부",
     "valueType": "STRING",
     "required": true,
@@ -1193,7 +1193,7 @@
   {
     "typeId": "propertyType",
     "tid": "frequentlyAskedQuestion",
-    "pid": "useYn",
+    "pid": "status",
     "propertyTypeName": "사용여부",
     "valueType": "STRING",
     "required": false,
@@ -1595,7 +1595,7 @@
   {
     "typeId": "propertyType",
     "tid": "commonNotice",
-    "pid": "useYn",
+    "pid": "status",
     "propertyTypeName": "사용여부",
     "valueType": "STRING",
     "required": false,

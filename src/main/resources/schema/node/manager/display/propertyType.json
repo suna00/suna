@@ -115,7 +115,7 @@
   {
     "typeId": "propertyType",
     "tid": "banner",
-    "pid": "useYn",
+    "pid": "status",
     "propertyTypeName": "사용여부",
     "valueType": "STRING",
     "required": true,
@@ -404,7 +404,7 @@
   {
     "typeId": "propertyType",
     "tid": "bannerElement",
-    "pid": "useYn",
+    "pid": "status",
     "propertyTypeName": "사용여부",
     "valueType": "STRING",
     "required": true,
@@ -694,7 +694,7 @@
   {
     "typeId": "propertyType",
     "tid": "category",
-    "pid": "displayYn",
+    "pid": "status",
     "propertyTypeName": "전시여부",
     "valueType": "STRING",
     "required": true,
@@ -951,7 +951,7 @@
   {
     "typeId": "propertyType",
     "tid": "GNB",
-    "pid": "displayYn",
+    "pid": "status",
     "propertyTypeName": "전시여부",
     "valueType": "STRING",
     "required": true,
@@ -1096,7 +1096,7 @@
   {
     "typeId": "propertyType",
     "tid": "popularSearches",
-    "pid": "useYn",
+    "pid": "status",
     "propertyTypeName": "사용여부",
     "valueType": "STRING",
     "required": true,
@@ -1321,7 +1321,7 @@
   {
     "typeId": "propertyType",
     "tid": "popup",
-    "pid": "useYn",
+    "pid": "status",
     "propertyTypeName": "사용여부",
     "valueType": "STRING",
     "required": true,
@@ -1547,7 +1547,7 @@
   {
     "typeId": "propertyType",
     "tid": "productToThemeMap",
-    "pid": "useYn",
+    "pid": "status",
     "propertyTypeName": "사용여부",
     "valueType": "STRING",
     "required": true,
@@ -1708,7 +1708,7 @@
   {
     "typeId": "propertyType",
     "tid": "referenceProduct",
-    "pid": "useYn",
+    "pid": "status",
     "propertyTypeName": "사용여부",
     "valueType": "STRING",
     "required": true,
@@ -1853,7 +1853,7 @@
   {
     "typeId": "propertyType",
     "tid": "theme",
-    "pid": "displayYn",
+    "pid": "status",
     "propertyTypeName": "전시여부",
     "valueType": "STRING",
     "required": true,
@@ -2030,7 +2030,7 @@
   {
     "typeId": "propertyType",
     "tid": "searchFilterPolicy",
-    "pid": "useYn",
+    "pid": "status",
     "propertyTypeName": "사용여부",
     "valueType": "STRING",
     "required": false,
@@ -2353,7 +2353,7 @@
   {
     "typeId": "propertyType",
     "tid": "newProductMap",
-    "pid": "useYn",
+    "pid": "status",
     "propertyTypeName": "사용여부",
     "valueType": "STRING",
     "required": true,
@@ -2530,7 +2530,7 @@
   {
     "typeId": "propertyType",
     "tid": "newProduct",
-    "pid": "displayYn",
+    "pid": "status",
     "propertyTypeName": "전시여부",
     "valueType": "STRING",
     "required": true,

@@ -705,12 +705,12 @@
           "description": "사이트타입 (varchar) "
         },
         {
-          "key": "useYn",
+          "key": "status",
           "value": "",
           "description": "사용여부 (varchar) "
         },
         {
-          "key": "adminUseYn",
+          "key": "adminStatus",
           "value": "",
           "description": "관리자 사용여부 (varchar) "
         },
@@ -910,7 +910,7 @@
           "description": "제휴몰 페이지 URL (varchar) "
         },
         {
-          "key": "useYn",
+          "key": "status",
           "value": "",
           "description": "사용여부 (varchar) "
         },
@@ -1325,7 +1325,7 @@
           "description": "설명 (text) "
         },
         {
-          "key": "useYn",
+          "key": "status",
           "value": "",
           "description": "사용여부 (varchar) "
         }
@@ -1645,7 +1645,7 @@
           "description": "디바이스 (varchar) Not null"
         },
         {
-          "key": "useYn",
+          "key": "status",
           "value": "",
           "description": "사용여부 (varchar) Not null"
         },
@@ -1855,7 +1855,7 @@
           "description": "랜덤여부 (varchar) Not null"
         },
         {
-          "key": "useYn",
+          "key": "status",
           "value": "",
           "description": "사용여부 (varchar) Not null"
         },
@@ -2325,7 +2325,7 @@
           "description": "로고 이미지 (varchar) "
         },
         {
-          "key": "useYn",
+          "key": "status",
           "value": "",
           "description": "사용여부 (varchar) "
         },
@@ -2995,7 +2995,7 @@
           "description": "정렬 순서 (bigint) Not null"
         },
         {
-          "key": "displayYn",
+          "key": "status",
           "value": "",
           "description": "전시여부 (varchar) Not null"
         },
@@ -3335,7 +3335,7 @@
           "description": "설명 (text) "
         },
         {
-          "key": "useYn",
+          "key": "status",
           "value": "",
           "description": "사용여부 (varchar) "
         },
@@ -3695,7 +3695,7 @@
           "description": "리스트내 상위전시 (varchar) "
         },
         {
-          "key": "useYn",
+          "key": "status",
           "value": "",
           "description": "사용여부 (varchar) "
         },
@@ -3920,7 +3920,7 @@
           "description": "정렬 순서 (bigint) Not null"
         },
         {
-          "key": "useYn",
+          "key": "status",
           "value": "",
           "description": "사용여부 (varchar) Not null"
         },
@@ -4072,7 +4072,7 @@
         {
           "key": "name",
           "value": "",
-          "description": "이름 (varchar) Not null"
+          "description": "1111 (varchar) Not null"
         },
         {
           "key": "type",
@@ -4725,7 +4725,7 @@
           "description": "사용가능종료일 (datetime) Not null"
         },
         {
-          "key": "useYn",
+          "key": "status",
           "value": "",
           "description": "사용여부 (varchar) Not null"
         },
@@ -4895,7 +4895,7 @@
           "description": "타입 (varchar) "
         },
         {
-          "key": "useYn",
+          "key": "status",
           "value": "",
           "description": "사용여부 (varchar) Not null"
         },
@@ -5115,7 +5115,7 @@
           "description": "상위ID (bigint) "
         },
         {
-          "key": "useYn",
+          "key": "status",
           "value": "",
           "description": "사용여부 (varchar) "
         },
@@ -5505,7 +5505,7 @@
           "description": "배송조회URL (varchar) Not null"
         },
         {
-          "key": "useYn",
+          "key": "status",
           "value": "",
           "description": "사용여부 (varchar) Not null"
         },
@@ -5845,7 +5845,7 @@
           "description": "OS (varchar) Not null"
         },
         {
-          "key": "useYn",
+          "key": "status",
           "value": "",
           "description": "사용여부 (varchar) Not null"
         },
@@ -6525,7 +6525,7 @@
           "description": "대상 (varchar) "
         },
         {
-          "key": "useYn",
+          "key": "status",
           "value": "",
           "description": "사용여부 (varchar) "
         },
@@ -6885,7 +6885,7 @@
           "description": "정렬 순서 (bigint) Not null"
         },
         {
-          "key": "displayYn",
+          "key": "status",
           "value": "",
           "description": "전시여부 (varchar) Not null"
         },
@@ -8535,7 +8535,7 @@
           "description": "정렬 순서 (bigint) Not null"
         },
         {
-          "key": "displayYn",
+          "key": "status",
           "value": "",
           "description": "전시여부 (varchar) Not null"
         },
@@ -9255,7 +9255,7 @@
           "description": "월 (varchar) "
         },
         {
-          "key": "displayYn",
+          "key": "status",
           "value": "",
           "description": "전시여부 (varchar) Not null"
         },
@@ -9420,7 +9420,7 @@
           "description": "정렬 순서 (bigint) Not null"
         },
         {
-          "key": "useYn",
+          "key": "status",
           "value": "",
           "description": "사용여부 (varchar) Not null"
         },
@@ -11760,7 +11760,7 @@
           "description": "정렬 순서 (bigint) Not null"
         },
         {
-          "key": "useYn",
+          "key": "status",
           "value": "",
           "description": "사용여부 (varchar) Not null"
         },
@@ -11950,7 +11950,7 @@
           "description": "링크 URL (varchar) "
         },
         {
-          "key": "useYn",
+          "key": "status",
           "value": "",
           "description": "사용여부 (varchar) Not null"
         },
@@ -12175,7 +12175,7 @@
           "description": "승인상태 (varchar) "
         },
         {
-          "key": "displayStatus",
+          "key": "status",
           "value": "",
           "description": "전시상태 (varchar) Not null"
         },
@@ -13195,7 +13195,7 @@
           "description": "승인상태 (varchar) "
         },
         {
-          "key": "displayStatus",
+          "key": "status",
           "value": "",
           "description": "전시상태 (varchar) Not null"
         },
@@ -13515,7 +13515,7 @@
           "description": "필수여부 (varchar) Not null"
         },
         {
-          "key": "useYn",
+          "key": "status",
           "value": "",
           "description": "사용여부 (varchar) Not null"
         }
@@ -13680,7 +13680,7 @@
           "description": "재고수량 (bigint) Not null"
         },
         {
-          "key": "useYn",
+          "key": "status",
           "value": "",
           "description": "사용여부 (varchar) Not null"
         }
@@ -14280,7 +14280,7 @@
           "description": "정렬 순서 (bigint) Not null"
         },
         {
-          "key": "useYn",
+          "key": "status",
           "value": "",
           "description": "사용여부 (varchar) Not null"
         },
@@ -14640,7 +14640,7 @@
           "description": "참조타입 (varchar) Not null"
         },
         {
-          "key": "useYn",
+          "key": "status",
           "value": "",
           "description": "사용여부 (varchar) Not null"
         },
@@ -15410,7 +15410,7 @@
           "description": "내용 (text) Not null"
         },
         {
-          "key": "displayYn",
+          "key": "status",
           "value": "",
           "description": "전시여부 (varchar) Not null"
         },
@@ -16095,7 +16095,7 @@
           "description": "정렬 순서 (bigint) "
         },
         {
-          "key": "useYn",
+          "key": "status",
           "value": "",
           "description": "사용여부 (varchar) "
         },
@@ -16990,7 +16990,7 @@
           "description": "로고이미지 (varchar) "
         },
         {
-          "key": "useYn",
+          "key": "status",
           "value": "",
           "description": "사용여부 (varchar) "
         },
@@ -17870,7 +17870,7 @@
           "description": "정렬 순서 (bigint) Not null"
         },
         {
-          "key": "useYn",
+          "key": "status",
           "value": "",
           "description": "사용여부 (varchar) Not null"
         },
@@ -18040,7 +18040,7 @@
           "description": "정렬 순서 (bigint) Not null"
         },
         {
-          "key": "useYn",
+          "key": "status",
           "value": "",
           "description": "사용여부 (varchar) Not null"
         },
@@ -18570,7 +18570,7 @@
           "description": "카테고리ID (bigint) "
         },
         {
-          "key": "displayYn",
+          "key": "status",
           "value": "",
           "description": "전시여부 (varchar) Not null"
         },
@@ -18935,7 +18935,7 @@
           "description": "설명 (text) "
         },
         {
-          "key": "useYn",
+          "key": "status",
           "value": "",
           "description": "사용여부 (varchar) Not null"
         },
@@ -19275,7 +19275,7 @@
           "description": "이름 (varchar) "
         },
         {
-          "key": "useYn",
+          "key": "status",
           "value": "",
           "description": "사용여부 (varchar) "
         },
@@ -19540,7 +19540,7 @@
           "description": "내용 (text) "
         },
         {
-          "key": "displayYn",
+          "key": "status",
           "value": "",
           "description": "전시여부 (varchar) "
         },

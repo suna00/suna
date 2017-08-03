@@ -66,7 +66,7 @@
   {
     "typeId": "propertyType",
     "tid": "commonCode",
-    "pid": "useYn",
+    "pid": "status",
     "propertyTypeName": "사용여부",
     "valueType": "STRING",
     "required": false,
@@ -500,7 +500,7 @@
   {
     "typeId": "propertyType",
     "tid": "commonResource",
-    "pid": "useYn",
+    "pid": "status",
     "propertyTypeName": "사용여부",
     "valueType": "STRING",
     "required": true,

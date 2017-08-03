@@ -228,7 +228,7 @@
   {
     "typeId": "propertyType",
     "tid": "device",
-    "pid": "useYn",
+    "pid": "status",
     "propertyTypeName": "사용여부",
     "valueType": "STRING",
     "required": true,

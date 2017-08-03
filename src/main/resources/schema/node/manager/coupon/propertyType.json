@@ -147,7 +147,7 @@
   {
     "typeId": "propertyType",
     "tid": "coupon",
-    "pid": "useYn",
+    "pid": "status",
     "propertyTypeName": "사용여부",
     "valueType": "STRING",
     "required": true,
@@ -308,7 +308,7 @@
   {
     "typeId": "propertyType",
     "tid": "couponType",
-    "pid": "useYn",
+    "pid": "status",
     "propertyTypeName": "사용여부",
     "valueType": "STRING",
     "required": true,

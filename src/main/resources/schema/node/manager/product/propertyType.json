@@ -243,7 +243,7 @@
   {
     "typeId": "propertyType",
     "tid": "product",
-    "pid": "displayStatus",
+    "pid": "status",
     "propertyTypeName": "전시상태",
     "valueType": "STRING",
     "required": true,
@@ -1092,7 +1092,7 @@
   {
     "typeId": "propertyType",
     "tid": "productByAffiliate",
-    "pid": "displayStatus",
+    "pid": "status",
     "propertyTypeName": "전시상태",
     "valueType": "STRING",
     "required": true,
@@ -1733,7 +1733,7 @@
   {
     "typeId": "propertyType",
     "tid": "productOption",
-    "pid": "useYn",
+    "pid": "status",
     "propertyTypeName": "사용여부",
     "valueType": "STRING",
     "required": true,
@@ -1878,7 +1878,7 @@
   {
     "typeId": "propertyType",
     "tid": "productOptionItem",
-    "pid": "useYn",
+    "pid": "status",
     "propertyTypeName": "사용여부",
     "valueType": "STRING",
     "required": true,

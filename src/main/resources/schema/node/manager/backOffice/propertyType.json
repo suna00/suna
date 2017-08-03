@@ -67,7 +67,7 @@
   {
     "typeId": "propertyType",
     "tid": "affiliateMall",
-    "pid": "useYn",
+    "pid": "status",
     "propertyTypeName": "사용여부",
     "valueType": "STRING",
     "required": false,
@@ -372,7 +372,7 @@
   {
     "typeId": "propertyType",
     "tid": "affiliate",
-    "pid": "useYn",
+    "pid": "status",
     "propertyTypeName": "사용여부",
     "valueType": "STRING",
     "required": false,
@@ -388,7 +388,7 @@
   {
     "typeId": "propertyType",
     "tid": "affiliate",
-    "pid": "adminUseYn",
+    "pid": "adminStatus",
     "propertyTypeName": "관리자 사용여부",
     "valueType": "STRING",
     "required": false,
@@ -629,7 +629,7 @@
   {
     "typeId": "propertyType",
     "tid": "brand",
-    "pid": "useYn",
+    "pid": "status",
     "propertyTypeName": "사용여부",
     "valueType": "STRING",
     "required": false,
@@ -1563,7 +1563,7 @@
   {
     "typeId": "propertyType",
     "tid": "menu",
-    "pid": "displayYn",
+    "pid": "status",
     "propertyTypeName": "전시여부",
     "valueType": "STRING",
     "required": true,
@@ -2304,7 +2304,7 @@
   {
     "typeId": "propertyType",
     "tid": "deliveryEnterprise",
-    "pid": "useYn",
+    "pid": "status",
     "propertyTypeName": "사용여부",
     "valueType": "STRING",
     "required": true,
@@ -2481,7 +2481,7 @@
   {
     "typeId": "propertyType",
     "tid": "site",
-    "pid": "useYn",
+    "pid": "status",
     "propertyTypeName": "사용여부",
     "valueType": "STRING",
     "required": false,
@@ -3398,7 +3398,7 @@
   {
     "typeId": "propertyType",
     "tid": "vendor",
-    "pid": "useYn",
+    "pid": "status",
     "propertyTypeName": "사용여부",
     "valueType": "STRING",
     "required": false,
@@ -3863,7 +3863,7 @@
   {
     "typeId": "propertyType",
     "tid": "vendorNotice",
-    "pid": "displayYn",
+    "pid": "status",
     "propertyTypeName": "전시여부",
     "valueType": "STRING",
     "required": false,
@@ -4492,7 +4492,7 @@
   {
     "typeId": "propertyType",
     "tid": "defineProductOptionByVendor",
-    "pid": "useYn",
+    "pid": "status",
     "propertyTypeName": "사용여부",
     "valueType": "STRING",
     "required": false,
