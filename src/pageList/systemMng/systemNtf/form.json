@@ -79,7 +79,7 @@
             "isHorizontal": "true",
             "colSize": "6",
             "horizontalColLabelSize": "4",
-            "dataTypes": "systemNtf@ntfTgtCd,systemNtf@ntfTypeCd,systemNtf@pstngStDt,systemNtf@pstngFnsDt,systemNtf@showYn,systemNtf@ntfTitle,systemNtf@ntfSbst"
+            "dataTypes": "systemNtf@ntfTgtCd,systemNtf@ntfTypeCd,systemNtf@pstngStDt,systemNtf@pstngFnsDt,systemNtf@ntfTitle,systemNtf@ntfSbst"
           },
           "key": 0,
           "componentKey": "8740b55e6dd0",
@@ -90,74 +90,36 @@
               "dataType": "text",
               "label": "공지 대상코드",
               "id": "ntfTgtCd",
-              "isView": "false",
+              "isView": false,
               "options": {
                 "reqUrl": "/node/code/code.json"
-              },
-              "colSize": "10",
-              "horizontalColLabelSize": "2",
-              "placeholder": "",
-              "helpBlockValue": "",
-              "isDisabled": "false",
-              "isReadOnly": "false"
+              }
             },
             {
               "componentClass": "Select2",
               "dataType": "text",
               "label": "공지 유형코드",
               "id": "ntfTypeCd",
-              "isView": "false",
+              "isView": false,
               "options": {
                 "reqUrl": "/node/code/code.json"
-              },
-              "colSize": "10",
-              "horizontalColLabelSize": "2",
-              "placeholder": "",
-              "helpBlockValue": "",
-              "isDisabled": "false",
-              "isReadOnly": "false"
+              }
             },
             {
               "componentClass": "Date",
               "dataType": "text",
               "label": "게시 시작 일시",
               "id": "pstngStDt",
-              "isView": "false",
-              "options": {},
-              "colSize": "5",
-              "horizontalColLabelSize": "4",
-              "placeholder": "",
-              "helpBlockValue": "",
-              "isDisabled": "false",
-              "isReadOnly": "false"
+              "isView": false,
+              "options": {}
             },
             {
               "componentClass": "Date",
               "dataType": "text",
               "label": "게시 종료 일시",
               "id": "pstngFnsDt",
-              "isView": "false",
-              "options": {},
-              "colSize": "4",
-              "horizontalColLabelSize": "",
-              "placeholder": "",
-              "helpBlockValue": "",
-              "isDisabled": "false",
-              "isReadOnly": "false"
-            },
-            {
-              "componentClass": "Switch",
-              "dataType": "text",
-              "label": "노출 여부",
-              "id": "showYn",
-              "isView": "false",
-              "options": {},
-              "colSize": "2",
-              "horizontalColLabelSize": "",
-              "placeholder": "",
-              "helpBlockValue": "",
-              "isDisabled": "false",
-              "isReadOnly": "false"
+              "isView": false,
+              "options": {}
             },
             {
               "componentClass": "Text",
@@ -166,7 +128,7 @@
               "id": "ntfTitle",
               "isView": "false",
               "options": {},
-              "colSize": "10",
+              "colSize": "12",
               "horizontalColLabelSize": "2",
               "placeholder": "",
               "helpBlockValue": "",
@@ -180,7 +142,7 @@
               "id": "ntfSbst",
               "isView": "false",
               "options": {},
-              "colSize": "10",
+              "colSize": "12",
               "horizontalColLabelSize": "2",
               "placeholder": "",
               "helpBlockValue": "",

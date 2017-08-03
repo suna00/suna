@@ -79,7 +79,7 @@
             "isHorizontal": "true",
             "colSize": "6",
             "horizontalColLabelSize": "4",
-            "dataTypes": "systemNtf@ntfSeq,systemNtf@ntfTgtCd,systemNtf@ntfTypeCd,systemNtf@ntfTitle,systemNtf@ntfSbst,systemNtf@showYn,systemNtf@pstngFnsDt,systemNtf@pstngStDt"
+            "dataTypes": "systemNtf@ntfSeq,systemNtf@ntfTgtCd,systemNtf@ntfTypeCd,systemNtf@pstngStDt,systemNtf@pstngFnsDt,systemNtf@ntfTitle,systemNtf@ntfSbst"
           },
           "key": 0,
           "componentKey": "0d7fdea77233",
@@ -88,12 +88,28 @@
             {
               "componentClass": "Numeric",
               "dataType": "id",
-              "label": "공지사항 일련번호",
+              "label": "일련번호",
               "id": "ntfSeq",
-              "isView": "true",
+              "isView": "false",
               "options": {},
-              "colSize": "",
-              "horizontalColLabelSize": "",
+              "colSize": "4",
+              "horizontalColLabelSize": "3",
+              "placeholder": "",
+              "helpBlockValue": "",
+              "isDisabled": "false",
+              "isReadOnly": "true"
+            },
+            {
+              "componentClass": "Select2",
+              "dataType": "text",
+              "label": "공지 대상코드",
+              "id": "ntfTgtCd",
+              "isView": "false",
+              "options": {
+                "reqUrl": "/node/code/code.json"
+              },
+              "colSize": "4",
+              "horizontalColLabelSize": "3",
               "placeholder": "",
               "helpBlockValue": "",
               "isDisabled": "false",
@@ -102,62 +118,74 @@
             {
               "componentClass": "Select2",
               "dataType": "text",
-              "label": "공지 대상코드",
-              "id": "ntfTgtCd",
-              "isView": false,
-              "options": {
-                "reqUrl": "/node/code/code.json"
-              }
-            },
-            {
-              "componentClass": "Select2",
-              "dataType": "text",
               "label": "공지 유형코드",
               "id": "ntfTypeCd",
-              "isView": false,
+              "isView": "false",
               "options": {
                 "reqUrl": "/node/code/code.json"
-              }
-            },
-            {
-              "componentClass": "Text",
-              "dataType": "text",
-              "label": "공지 제목",
-              "id": "ntfTitle",
-              "isView": false,
-              "options": {}
-            },
-            {
-              "componentClass": "Textarea",
-              "dataType": "text",
-              "label": "공지 내용",
-              "id": "ntfSbst",
-              "isView": false,
-              "options": {}
-            },
-            {
-              "componentClass": "Switch",
-              "dataType": "text",
-              "label": "노출 여부",
-              "id": "showYn",
-              "isView": false,
-              "options": {}
-            },
-            {
-              "componentClass": "Date",
-              "dataType": "text",
-              "label": "게시 종료 일시",
-              "id": "pstngFnsDt",
-              "isView": false,
-              "options": {}
+              },
+              "colSize": "4",
+              "horizontalColLabelSize": "3",
+              "placeholder": "",
+              "helpBlockValue": "",
+              "isDisabled": "false",
+              "isReadOnly": "false"
             },
             {
               "componentClass": "Date",
               "dataType": "text",
               "label": "게시 시작 일시",
               "id": "pstngStDt",
-              "isView": false,
-              "options": {}
+              "isView": "false",
+              "options": {},
+              "colSize": "5",
+              "horizontalColLabelSize": "4",
+              "placeholder": "",
+              "helpBlockValue": "",
+              "isDisabled": "false",
+              "isReadOnly": "false"
+            },
+            {
+              "componentClass": "Date",
+              "dataType": "text",
+              "label": "게시 종료 일시",
+              "id": "pstngFnsDt",
+              "isView": "false",
+              "options": {},
+              "colSize": "5",
+              "horizontalColLabelSize": "4",
+              "placeholder": "",
+              "helpBlockValue": "",
+              "isDisabled": "false",
+              "isReadOnly": "false"
+            },
+            {
+              "componentClass": "Text",
+              "dataType": "text",
+              "label": "공지 제목",
+              "id": "ntfTitle",
+              "isView": "false",
+              "options": {},
+              "colSize": "10",
+              "horizontalColLabelSize": "2",
+              "placeholder": "",
+              "helpBlockValue": "",
+              "isDisabled": "false",
+              "isReadOnly": "false"
+            },
+            {
+              "componentClass": "Textarea",
+              "dataType": "text",
+              "label": "공지 내용",
+              "id": "ntfSbst",
+              "isView": "false",
+              "options": {},
+              "colSize": "10",
+              "horizontalColLabelSize": "2",
+              "placeholder": "",
+              "helpBlockValue": "",
+              "isDisabled": "false",
+              "isReadOnly": "false"
             }
           ]
         }

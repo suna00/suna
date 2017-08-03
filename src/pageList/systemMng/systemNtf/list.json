@@ -1,0 +1,132 @@
+[
+  {
+    "componentType": "container",
+    "componentTemplateType": "",
+    "componentClassType": "",
+    "componentClass": "IceGrid",
+    "componentChildren": [
+      {
+        "componentType": "container",
+        "componentTemplateType": "",
+        "componentClassType": "",
+        "componentClass": "DefaultList",
+        "componentChildren": [
+          {
+            "componentType": "container",
+            "componentTemplateType": "",
+            "componentClassType": "",
+            "componentClass": "DefaultListFooter",
+            "componentChildren": [
+              {
+                "componentType": "presentational",
+                "componentTemplateType": "Spin",
+                "componentClassType": "BUTTON",
+                "componentClass": "ButtonLink",
+                "componentChildren": [],
+                "componentKey": "de8b49a9156e",
+                "areaMode": true,
+                "componentProps": {
+                  "reqUrl": "/admin/systemMng/systemNtf/form",
+                  "buttonName": "등록",
+                  "buttonIcon": "",
+                  "outline": "",
+                  "bsStyle": "default",
+                  "customColor": "",
+                  "bsSize": "small",
+                  "disabled": "",
+                  "key": 0,
+                  "componentKey": "de8b49a9156e",
+                  "parentComponentKey": "fb4a59214ef2"
+                }
+              }
+            ],
+            "componentKey": "fb4a59214ef2",
+            "areaMode": true,
+            "componentProps": {
+              "key": "DefaultListFooter",
+              "componentKey": "fb4a59214ef2",
+              "parentComponentKey": "9c673f37ab02"
+            }
+          }
+        ],
+        "componentKey": "9c673f37ab02",
+        "areaMode": true,
+        "componentProps": {
+          "nodeTypeId": "systemNtf",
+          "reqUrl": "/node/systemNtf/list.json",
+          "defaultParams": "page=1",
+          "panelProps": {
+            "colMd": "12",
+            "title": "공지사항 관리 리스트"
+          },
+          "tableTypes": {
+            "bordered": "true",
+            "condensed": "true",
+            "hover": "true",
+            "responsive": "true",
+            "striped": "true",
+            "dataTypes": "systemNtf@ntfSeq,systemNtf@ntfTgtCd,systemNtf@ntfTypeCd,systemNtf@ntfTitle,systemNtf@pstngFnsDt,systemNtf@created,systemNtf@pstngStDt"
+          },
+          "key": 0,
+          "componentKey": "9c673f37ab02",
+          "parentComponentKey": "0b6c965e8e70",
+          "dataTypes": {
+            "ntfSeq": {
+              "label": "공지사항 일련번호",
+              "idAble": "true",
+              "options": {
+                "componentClass": "Numeric"
+              }
+            },
+            "ntfTgtCd": {
+              "label": "공지 대상코드",
+              "idAble": "false",
+              "options": {
+                "componentClass": "Select2"
+              }
+            },
+            "ntfTypeCd": {
+              "label": "공지 유형코드",
+              "idAble": "false",
+              "options": {
+                "componentClass": "Select2"
+              }
+            },
+            "ntfTitle": {
+              "label": "공지 제목",
+              "idAble": "false",
+              "options": {
+                "componentClass": "Text"
+              },
+              "viewLink": "true",
+              "viewPath": "/admin/systemMng/systemNtf/view?id={{ntfSeq}}"
+            },
+            "pstngFnsDt": {
+              "label": "게시 종료 일시",
+              "idAble": "false",
+              "options": {
+                "componentClass": "Date"
+              }
+            },
+            "created": {
+              "label": "등록일시",
+              "idAble": "false",
+              "options": {
+                "componentClass": "Date"
+              }
+            },
+            "pstngStDt": {
+              "label": "게시 시작 일시",
+              "idAble": "false",
+              "options": {
+                "componentClass": "Date"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "componentKey": "0b6c965e8e70",
+    "areaMode": true
+  }
+]

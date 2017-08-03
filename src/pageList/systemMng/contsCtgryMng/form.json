@@ -22,11 +22,11 @@
                 "componentClassType": "BUTTON",
                 "componentClass": "ButtonSave",
                 "componentChildren": [],
-                "componentKey": "8c07d06d082c",
+                "componentKey": "cd33fbea1948",
                 "areaMode": true,
                 "componentProps": {
-                  "reqUrl": "/node/langMng/save.json",
-                  "callbackLink": "/admin/systemMng/langMng/list",
+                  "reqUrl": "/node/contsCtgryGroup/save.json",
+                  "callbackLink": "/admin/systemMng/contsCtgryMng/cj/CtgryForm?id={{contsCtgryGroupId}}",
                   "buttonName": "저장",
                   "buttonIcon": "",
                   "outline": "",
@@ -34,8 +34,8 @@
                   "customColor": "",
                   "bsSize": "small",
                   "key": 0,
-                  "componentKey": "8c07d06d082c",
-                  "parentComponentKey": "3646f5cfaba8"
+                  "componentKey": "cd33fbea1948",
+                  "parentComponentKey": "ee26ad2a9a06"
                 }
               },
               {
@@ -44,7 +44,7 @@
                 "componentClassType": "BUTTON",
                 "componentClass": "ButtonBack",
                 "componentChildren": [],
-                "componentKey": "c066f49f8ad6",
+                "componentKey": "b3fe46c7d978",
                 "areaMode": true,
                 "componentProps": {
                   "buttonName": "리스트",
@@ -55,66 +55,82 @@
                   "bsSize": "small",
                   "disabled": "",
                   "key": 1,
-                  "componentKey": "c066f49f8ad6",
-                  "parentComponentKey": "3646f5cfaba8"
+                  "componentKey": "b3fe46c7d978",
+                  "parentComponentKey": "ee26ad2a9a06"
                 }
               }
             ],
-            "componentKey": "3646f5cfaba8",
+            "componentKey": "ee26ad2a9a06",
             "areaMode": true
           }
         ],
-        "componentKey": "0acd21637534",
+        "componentKey": "8656dc4dc2d2",
         "areaMode": true,
         "componentProps": {
-          "nodeTypeId": "langMng",
-          "reqUrl": "/node/langMng/read.json",
+          "nodeTypeId": "contsCtgryGroup",
+          "reqUrl": "/node/contsCtgryGroup/read.json",
           "defaultParams": "",
           "panelProps": {
             "colMd": "12",
-            "title": "언어 등록"
+            "title": "콘텐츠 카테고리 그룹 등록"
           },
           "formTypes": {
             "isHorizontal": "true",
-            "colSize": "9",
-            "horizontalColLabelSize": "3",
-            "dataTypes": "langMng@langNm,langMng@sttusCd,langMng@useYn"
+            "colSize": "6",
+            "horizontalColLabelSize": "4",
+            "dataTypes": "contsCtgryGroup@contsCtgryGroupId,contsCtgryGroup@contsCtgryGroupNm,contsCtgryGroup@contsCtgryGroupDesc"
           },
           "key": 0,
-          "componentKey": "0acd21637534",
-          "parentComponentKey": "05e22ecfb131",
+          "componentKey": "8656dc4dc2d2",
+          "parentComponentKey": "46839e00e269",
           "dataTypes": [
             {
               "componentClass": "Text",
-              "dataType": "text",
-              "label": "언어명",
-              "id": "langNm",
-              "isView": false,
-              "options": {}
+              "dataType": "id",
+              "label": "콘텐츠 카테고리 그룹 아이디",
+              "id": "contsCtgryGroupId",
+              "isView": "false",
+              "options": {},
+              "colSize": "10",
+              "horizontalColLabelSize": "2",
+              "placeholder": "",
+              "helpBlockValue": "",
+              "isDisabled": "false",
+              "isReadOnly": "false"
             },
             {
-              "componentClass": "Select2",
+              "componentClass": "Text",
               "dataType": "text",
-              "label": "상태코드",
-              "id": "sttusCd",
-              "isView": false,
-              "options": {
-                "reqUrl": "/node/code/code.json"
-              }
+              "label": "콘텐츠 카테고리 그룹 명",
+              "id": "contsCtgryGroupNm",
+              "isView": "false",
+              "options": {},
+              "colSize": "10",
+              "horizontalColLabelSize": "2",
+              "placeholder": "",
+              "helpBlockValue": "",
+              "isDisabled": "false",
+              "isReadOnly": "false"
             },
             {
-              "componentClass": "Switch",
+              "componentClass": "Text",
               "dataType": "text",
-              "label": "사용여부",
-              "id": "useYn",
-              "isView": false,
-              "options": {}
+              "label": "콘텐츠 카테고리 그룹 설명",
+              "id": "contsCtgryGroupDesc",
+              "isView": "false",
+              "options": {},
+              "colSize": "10",
+              "horizontalColLabelSize": "2",
+              "placeholder": "",
+              "helpBlockValue": "",
+              "isDisabled": "false",
+              "isReadOnly": "false"
             }
           ]
         }
       }
     ],
-    "componentKey": "05e22ecfb131",
+    "componentKey": "46839e00e269",
     "areaMode": true
   }
 ]

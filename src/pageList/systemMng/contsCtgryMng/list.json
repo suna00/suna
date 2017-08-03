@@ -23,10 +23,10 @@
                 "componentClassType": "BUTTON",
                 "componentClass": "ButtonLink",
                 "componentChildren": [],
-                "componentKey": "93482ca72730",
+                "componentKey": "77c48ccc32ea",
                 "areaMode": true,
                 "componentProps": {
-                  "reqUrl": "/admin/systemMng/langMng/form",
+                  "reqUrl": "/admin/systemMng/contsCtgryMng/form",
                   "buttonName": "등록",
                   "buttonIcon": "",
                   "outline": "",
@@ -35,29 +35,29 @@
                   "bsSize": "small",
                   "disabled": "",
                   "key": 0,
-                  "componentKey": "93482ca72730",
-                  "parentComponentKey": "371353de783a"
+                  "componentKey": "77c48ccc32ea",
+                  "parentComponentKey": "d5fef32755dc"
                 }
               }
             ],
-            "componentKey": "371353de783a",
+            "componentKey": "d5fef32755dc",
             "areaMode": true,
             "componentProps": {
               "key": "DefaultListFooter",
-              "componentKey": "371353de783a",
-              "parentComponentKey": "498b1d03f0d3"
+              "componentKey": "d5fef32755dc",
+              "parentComponentKey": "fbdf39a241fd"
             }
           }
         ],
-        "componentKey": "498b1d03f0d3",
+        "componentKey": "fbdf39a241fd",
         "areaMode": true,
         "componentProps": {
-          "nodeTypeId": "langMng",
-          "reqUrl": "/node/langMng/list.json",
-          "defaultParams": "",
+          "nodeTypeId": "contsCtgryGroup",
+          "reqUrl": "/node/contsCtgryGroup/list.json",
+          "defaultParams": "page=1",
           "panelProps": {
             "colMd": "12",
-            "title": "언어 관리 리스트"
+            "title": "콘텐츠 카테고리 관리 리스트"
           },
           "tableTypes": {
             "bordered": "true",
@@ -65,42 +65,37 @@
             "hover": "true",
             "responsive": "true",
             "striped": "true",
-            "dataTypes": "langMng@langSeq,langMng@sttusCd,langMng@langNm,langMng@useYn,langMng@created"
+            "dataTypes": "contsCtgryGroup@contsCtgryGroupId,contsCtgryGroup@contsCtgryGroupNm,contsCtgryGroup@created,contsCtgryGroup@changed"
           },
           "key": 0,
-          "componentKey": "498b1d03f0d3",
-          "parentComponentKey": "653b68b52f16",
+          "componentKey": "fbdf39a241fd",
+          "parentComponentKey": "cc413b84e254",
           "dataTypes": {
-            "langSeq": {
-              "label": "언어일련번호",
+            "contsCtgryGroupId": {
+              "label": "콘텐츠 카테고리 그룹 아이디",
               "idAble": "true",
-              "options": {
-                "componentClass": "Numeric"
-              }
-            },
-            "sttusCd": {
-              "label": "상태코드",
-              "idAble": "false",
-              "options": {
-                "componentClass": "Select2"
-              }
-            },
-            "langNm": {
-              "label": "언어명",
-              "idAble": "false",
               "options": {
                 "componentClass": "Text"
               }
             },
-            "useYn": {
-              "label": "사용여부",
+            "contsCtgryGroupNm": {
+              "label": "콘텐츠 카테고리 그룹 명",
               "idAble": "false",
               "options": {
-                "componentClass": "Switch"
-              }
+                "componentClass": "Text"
+              },
+              "viewLink": "true",
+              "viewPath": "/admin/systemMng/contsCtgryMng/cj/CtgryForm?id={{contsCtgryGroupId}}"
             },
             "created": {
               "label": "등록일시",
+              "idAble": "false",
+              "options": {
+                "componentClass": "Date"
+              }
+            },
+            "changed": {
+              "label": "수정일시",
               "idAble": "false",
               "options": {
                 "componentClass": "Date"
@@ -110,7 +105,7 @@
         }
       }
     ],
-    "componentKey": "653b68b52f16",
+    "componentKey": "cc413b84e254",
     "areaMode": true
   }
 ]

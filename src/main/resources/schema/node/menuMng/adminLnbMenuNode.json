@@ -85,8 +85,8 @@
     "index": "false",
     "pages": [
       { "pageName": "목록", "pageUrl": "list" },
-      { "pageName": "등록/수정", "pageUrl": "form" },
-      { "pageName": "상세", "pageUrl": "view" }
+      { "pageName": "등록", "pageUrl": "form" },
+      { "pageName": "수정", "pageUrl": "uform" }
     ],
     "customPages": []
   },
@@ -95,7 +95,7 @@
     "backOfficeId": "admin",
     "gnbMenuId": "systemMng",
     "parentMenuId": "admin@root@rgnMng",
-    "menuId": "lagnMng",
+    "menuId": "langMng",
     "menuName": "언어관리",
     "order": "20",
     "icon": "",
@@ -141,10 +141,12 @@
     "index": "false",
     "pages": [
       { "pageName": "목록", "pageUrl": "list" },
-      { "pageName": "등록/수정", "pageUrl": "form" },
-      { "pageName": "상세", "pageUrl": "view" }
+      { "pageName": "등록", "pageUrl": "form" },
+      { "pageName": "수정", "pageUrl": "uform" }
     ],
-    "customPages": []
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "cj/CtgryForm" }
+    ]
   },
   {
     "typeId" : "adminLnbMenu",

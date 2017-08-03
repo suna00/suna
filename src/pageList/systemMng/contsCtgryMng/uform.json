@@ -22,11 +22,11 @@
                 "componentClassType": "BUTTON",
                 "componentClass": "ButtonSave",
                 "componentChildren": [],
-                "componentKey": "3435dd61b7b9",
+                "componentKey": "398b10441083",
                 "areaMode": true,
                 "componentProps": {
-                  "reqUrl": "/node/langMng/save.json",
-                  "callbackLink": "/admin/systemMng/langMng/view?id={{langSeq}}",
+                  "reqUrl": "/node/contsCtgryGroup/save.json",
+                  "callbackLink": "/admin/systemMng/contsCtgryMng/cj/CtgryForm?id={{contsCtgryGroupId}}",
                   "buttonName": "저장",
                   "buttonIcon": "",
                   "outline": "",
@@ -34,8 +34,8 @@
                   "customColor": "",
                   "bsSize": "small",
                   "key": 0,
-                  "componentKey": "3435dd61b7b9",
-                  "parentComponentKey": "55a2f03c19f5"
+                  "componentKey": "398b10441083",
+                  "parentComponentKey": "19363ebe500d"
                 }
               },
               {
@@ -44,11 +44,11 @@
                 "componentClassType": "BUTTON",
                 "componentClass": "ButtonLink",
                 "componentChildren": [],
-                "componentKey": "660c9c149235",
+                "componentKey": "be3fffedcfbe",
                 "areaMode": true,
                 "componentProps": {
-                  "reqUrl": "/admin/systemMng/langMng/list",
-                  "buttonName": "취소",
+                  "reqUrl": "/admin/systemMng/contsCtgryMng/list",
+                  "buttonName": "리스트",
                   "buttonIcon": "",
                   "outline": "",
                   "bsStyle": "default",
@@ -56,72 +56,82 @@
                   "bsSize": "small",
                   "disabled": "",
                   "key": 1,
-                  "componentKey": "660c9c149235",
-                  "parentComponentKey": "55a2f03c19f5"
+                  "componentKey": "be3fffedcfbe",
+                  "parentComponentKey": "19363ebe500d"
                 }
               }
             ],
-            "componentKey": "55a2f03c19f5",
+            "componentKey": "19363ebe500d",
             "areaMode": true
           }
         ],
-        "componentKey": "4cf2293af482",
+        "componentKey": "f2e58a5d159a",
         "areaMode": true,
         "componentProps": {
-          "nodeTypeId": "langMng",
-          "reqUrl": "/node/langMng/read.json",
+          "nodeTypeId": "contsCtgryGroup",
+          "reqUrl": "/node/contsCtgryGroup/read.json",
           "defaultParams": "",
           "panelProps": {
             "colMd": "12",
-            "title": "언어 수정"
+            "title": "콘텐츠 카테고리 그룹 수정"
           },
           "formTypes": {
             "isHorizontal": "true",
-            "colSize": "9",
-            "horizontalColLabelSize": "3",
-            "dataTypes": "langMng@langNm,langMng@sttusCd,langMng@useYn"
+            "colSize": "6",
+            "horizontalColLabelSize": "4",
+            "dataTypes": "contsCtgryGroup@contsCtgryGroupId,contsCtgryGroup@contsCtgryGroupNm,contsCtgryGroup@contsCtgryGroupDesc"
           },
           "key": 0,
-          "componentKey": "4cf2293af482",
-          "parentComponentKey": "dcae8c404b61",
+          "componentKey": "f2e58a5d159a",
+          "parentComponentKey": "a0af3c655190",
           "dataTypes": [
             {
               "componentClass": "Text",
-              "dataType": "text",
-              "label": "언어명",
-              "id": "langNm",
+              "dataType": "id",
+              "label": "콘텐츠 카테고리 그룹 아이디",
+              "id": "contsCtgryGroupId",
               "isView": "true",
               "options": {},
-              "colSize": "",
-              "horizontalColLabelSize": "",
+              "colSize": "10",
+              "horizontalColLabelSize": "3",
               "placeholder": "",
               "helpBlockValue": "",
               "isDisabled": "false",
               "isReadOnly": "false"
             },
             {
-              "componentClass": "Select2",
+              "componentClass": "Text",
               "dataType": "text",
-              "label": "상태코드",
-              "id": "sttusCd",
-              "isView": false,
-              "options": {
-                "reqUrl": "/node/code/code.json"
-              }
+              "label": "콘텐츠 카테고리 그룹 명",
+              "id": "contsCtgryGroupNm",
+              "isView": "false",
+              "options": {},
+              "colSize": "10",
+              "horizontalColLabelSize": "3",
+              "placeholder": "",
+              "helpBlockValue": "",
+              "isDisabled": "false",
+              "isReadOnly": "false"
             },
             {
-              "componentClass": "Switch",
+              "componentClass": "Text",
               "dataType": "text",
-              "label": "사용여부",
-              "id": "useYn",
-              "isView": false,
-              "options": {}
+              "label": "콘텐츠 카테고리 그룹 설명",
+              "id": "contsCtgryGroupDesc",
+              "isView": "false",
+              "options": {},
+              "colSize": "10",
+              "horizontalColLabelSize": "3",
+              "placeholder": "",
+              "helpBlockValue": "",
+              "isDisabled": "false",
+              "isReadOnly": "false"
             }
           ]
         }
       }
     ],
-    "componentKey": "dcae8c404b61",
+    "componentKey": "a0af3c655190",
     "areaMode": true
   }
 ]

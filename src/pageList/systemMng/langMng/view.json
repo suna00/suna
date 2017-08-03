@@ -25,7 +25,7 @@
                 "componentKey": "db54adc39cc7",
                 "areaMode": true,
                 "componentProps": {
-                  "reqUrl": "/admin/systemMng/lagnMng/uform?id={{langSeq}}",
+                  "reqUrl": "/admin/systemMng/langMng/uform?id={{langSeq}}",
                   "buttonName": "수정",
                   "buttonIcon": "",
                   "outline": "",
@@ -48,7 +48,7 @@
                 "areaMode": true,
                 "componentProps": {
                   "reqUrl": "/node/langMng/delete.json",
-                  "callbackLink": "/admin/systemMng/lagnMng/list",
+                  "callbackLink": "/admin/systemMng/langMng/list",
                   "buttonName": "삭제",
                   "buttonIcon": "",
                   "outline": "",
@@ -70,11 +70,12 @@
                 "componentType": "presentational",
                 "componentTemplateType": "Spin",
                 "componentClassType": "BUTTON",
-                "componentClass": "ButtonBack",
+                "componentClass": "ButtonLink",
                 "componentChildren": [],
-                "componentKey": "c4fb93fd7ff4",
+                "componentKey": "791bcd0dc93d",
                 "areaMode": true,
                 "componentProps": {
+                  "reqUrl": "/admin/systemMng/langMng/list",
                   "buttonName": "리스트",
                   "buttonIcon": "",
                   "outline": "",
@@ -83,7 +84,7 @@
                   "bsSize": "small",
                   "disabled": "",
                   "key": 2,
-                  "componentKey": "c4fb93fd7ff4",
+                  "componentKey": "791bcd0dc93d",
                   "parentComponentKey": "e9be3c3b5503"
                 }
               }
