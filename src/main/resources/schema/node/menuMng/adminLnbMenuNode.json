@@ -35,7 +35,6 @@
       { "pageName": "수정", "pageUrl": "uform" }
     ],
     "customPages": [
-      { "pageName": "상세", "pageUrl": "cj/AdmrView" }
     ]
   },
   {
@@ -145,7 +144,7 @@
       { "pageName": "수정", "pageUrl": "uform" }
     ],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "cj/CtgryForm" }
+      { "pageName": "상세", "pageUrl": "cj/CtgryForm" }
     ]
   },
   {
