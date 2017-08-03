@@ -12,6 +12,7 @@
     "typeId": "nodeType",
     "tid": "product",
     "typeName": "상품",
+    "tableName": "ytnDevDb#product",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -20,6 +21,7 @@
     "typeId": "nodeType",
     "tid": "productByAffiliate",
     "typeName": "제휴몰 상품",
+    "tableName": "ytnDevDb#productByAffiliate",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -28,6 +30,7 @@
     "typeId": "nodeType",
     "tid": "productOption",
     "typeName": "상품 옵션",
+    "tableName": "ytnDevDb#productOption",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -36,6 +39,7 @@
     "typeId": "nodeType",
     "tid": "productOptionItem",
     "typeName": "상품 옵션 아이템",
+    "tableName": "ytnDevDb#productOptionItem",
     "repositoryType": "node",
     "eviction": 0
   }

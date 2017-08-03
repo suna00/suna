@@ -12,6 +12,7 @@
     "typeId": "nodeType",
     "tid": "review",
     "typeName": "상품평",
+    "tableName": "ytnDevDb#review",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -20,6 +21,7 @@
     "typeId": "nodeType",
     "tid": "productAnswer",
     "typeName": "QNA 답변",
+    "tableName": "ytnDevDb#productAnswer",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -28,6 +30,7 @@
     "typeId": "nodeType",
     "tid": "productQuestion",
     "typeName": "QNA 질문",
+    "tableName": "ytnDevDb#productQuestion",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -36,6 +39,7 @@
     "typeId": "nodeType",
     "tid": "reportReview",
     "typeName": "상품평 신고",
+    "tableName": "ytnDevDb#reportReview",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -44,6 +48,7 @@
     "typeId": "nodeType",
     "tid": "oneToOneQuestion",
     "typeName": "1대1문의",
+    "tableName": "ytnDevDb#oneToOneQuestion",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -52,6 +57,7 @@
     "typeId": "nodeType",
     "tid": "oneToOneAnswer",
     "typeName": "1대1답변",
+    "tableName": "ytnDevDb#oneToOneAnswer",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -60,6 +66,7 @@
     "typeId": "nodeType",
     "tid": "frequentlyAskedQuestion",
     "typeName": "FAQ",
+    "tableName": "ytnDevDb#frequentlyAskedQuestion",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -68,6 +75,7 @@
     "typeId": "nodeType",
     "tid": "frequentlyUsedAnswer",
     "typeName": "자주쓰는답변",
+    "tableName": "ytnDevDb#frequentlyUsedAnswer",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -76,6 +84,7 @@
     "typeId": "nodeType",
     "tid": "commonNotice",
     "typeName": "공지사항",
+    "tableName": "ytnDevDb#commonNotice",
     "repositoryType": "node",
     "eviction": 0
   }

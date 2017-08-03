@@ -12,6 +12,7 @@
     "typeId": "nodeType",
     "tid": "contents",
     "typeName": "컨텐츠",
+    "tableName": "ytnDevDb#contents",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -20,6 +21,7 @@
     "typeId": "nodeType",
     "tid": "contentsOption",
     "typeName": "컨텐츠 옵션",
+    "tableName": "ytnDevDb#contentsOption",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -28,6 +30,7 @@
     "typeId": "nodeType",
     "tid": "securities",
     "typeName": "유가증권",
+    "tableName": "ytnDevDb#securities",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -36,6 +39,7 @@
     "typeId": "nodeType",
     "tid": "goods",
     "typeName": "제품",
+    "tableName": "ytnDevDb#goods",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -44,6 +48,7 @@
     "typeId": "nodeType",
     "tid": "contentsOptionTypeFields",
     "typeName": "컨텐츠 옵션 타입의 필드 정의",
+    "tableName": "ytnDevDb#contentsOptionTypeFields",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -52,6 +57,7 @@
     "typeId": "nodeType",
     "tid": "contentsOptionType",
     "typeName": "컨텐츠 옵션 타입",
+    "tableName": "ytnDevDb#contentsOptionType",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -60,6 +66,7 @@
     "typeId": "nodeType",
     "tid": "paymentTypeByContents",
     "typeName": "컨텐츠별 결제 수단",
+    "tableName": "ytnDevDb#paymentTypeByContents",
     "repositoryType": "node",
     "eviction": 0
   }

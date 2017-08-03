@@ -12,6 +12,7 @@
     "typeId": "nodeType",
     "tid": "coupon",
     "typeName": "쿠폰",
+    "tableName": "ytnDevDb#coupon",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -20,6 +21,7 @@
     "typeId": "nodeType",
     "tid": "couponType",
     "typeName": "쿠폰유형",
+    "tableName": "ytnDevDb#couponType",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -28,8 +30,8 @@
     "typeId": "nodeType",
     "tid": "productToCouponTypeMap",
     "typeName": "상품 쿠폰유형 매핑",
-    "repositoryType": "data",
     "tableName": "ytnDevDb#productToCouponTypeMap",
+    "repositoryType": "data",
     "eviction": 0
   }
 ]
