@@ -45,6 +45,8 @@
       { "pageName": "목록", "pageUrl": "list" },
       { "pageName": "등록/수정", "pageUrl": "form" }
     ],
-    "customPages": []
+    "customPages": [
+      { "pageName": "테스트", "pageUrl": "ytn/GroupAuthorityRoute" }
+    ]
   }
 ]
