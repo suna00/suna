@@ -12,6 +12,7 @@
     "typeId": "nodeType",
     "tid": "commonCode",
     "typeName": "코드",
+    "tableName": "ytnDevDb#commonCode",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -20,6 +21,7 @@
     "typeId": "nodeType",
     "tid": "commonMemo",
     "typeName": "메모",
+    "tableName": "ytnDevDb#commonMemo",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -28,6 +30,7 @@
     "typeId": "nodeType",
     "tid": "commonResource",
     "typeName": "리소스",
+    "tableName": "ytnDevDb#commonResource",
     "repositoryType": "node",
     "eviction": 0
   }

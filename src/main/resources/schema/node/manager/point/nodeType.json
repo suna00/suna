@@ -12,8 +12,8 @@
     "typeId": "nodeType",
     "tid": "saveAndUsedPointMap",
     "typeName": "포인트 매핑",
-    "repositoryType": "data",
     "tableName": "ytnDevDb#saveAndUsedPointMap",
+    "repositoryType": "data",
     "eviction": 0
   },
   {
@@ -21,8 +21,8 @@
     "typeId": "nodeType",
     "tid": "savePoint",
     "typeName": "포인트 적립",
-    "repositoryType": "data",
     "tableName": "ytnDevDb#savePoint",
+    "repositoryType": "data",
     "eviction": 0
   },
   {
@@ -30,8 +30,8 @@
     "typeId": "nodeType",
     "tid": "mileage",
     "typeName": "마일리지",
-    "repositoryType": "data",
     "tableName": "ytnDevDb#mileage",
+    "repositoryType": "data",
     "eviction": 0
   },
   {
@@ -39,8 +39,8 @@
     "typeId": "nodeType",
     "tid": "point",
     "typeName": "제휴사 포인트",
-    "repositoryType": "data",
     "tableName": "ytnDevDb#point",
+    "repositoryType": "data",
     "eviction": 0
   },
   {
@@ -48,8 +48,8 @@
     "typeId": "nodeType",
     "tid": "usedPoint",
     "typeName": "포인트 사용",
-    "repositoryType": "data",
     "tableName": "ytnDevDb#usedPoint",
+    "repositoryType": "data",
     "eviction": 0
   }
 ]

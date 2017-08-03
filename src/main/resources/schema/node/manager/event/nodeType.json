@@ -12,6 +12,7 @@
     "typeId": "nodeType",
     "tid": "shopEvent",
     "typeName": "이벤트",
+    "tableName": "ytnDevDb#shopEvent",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -20,6 +21,7 @@
     "typeId": "nodeType",
     "tid": "specialExhibition",
     "typeName": "기획전",
+    "tableName": "ytnDevDb#specialExhibition",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -28,6 +30,7 @@
     "typeId": "nodeType",
     "tid": "specialExhibitionHotKeyword",
     "typeName": "기획전 핫키워드",
+    "tableName": "ytnDevDb#specialExhibitionHotKeyword",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -36,6 +39,7 @@
     "typeId": "nodeType",
     "tid": "specialExhibitionAnker",
     "typeName": "기획전 앵커",
+    "tableName": "ytnDevDb#specialExhibitionAnker",
     "repositoryType": "node",
     "eviction": 0
   }

@@ -12,6 +12,7 @@
     "typeId": "nodeType",
     "tid": "banner",
     "typeName": "배너",
+    "tableName": "ytnDevDb#banner",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -20,6 +21,7 @@
     "typeId": "nodeType",
     "tid": "bannerElement",
     "typeName": "배너 구성",
+    "tableName": "ytnDevDb#bannerElement",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -28,6 +30,7 @@
     "typeId": "nodeType",
     "tid": "bannerMap",
     "typeName": "배너 매핑",
+    "tableName": "ytnDevDb#bannerMap",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -36,6 +39,7 @@
     "typeId": "nodeType",
     "tid": "category",
     "typeName": "카테고리",
+    "tableName": "ytnDevDb#category",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -44,6 +48,7 @@
     "typeId": "nodeType",
     "tid": "gnb",
     "typeName": "GNB",
+    "tableName": "ytnDevDb#gnb",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -52,6 +57,7 @@
     "typeId": "nodeType",
     "tid": "popularSearches",
     "typeName": "인기 검색어",
+    "tableName": "ytnDevDb#popularSearches",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -60,6 +66,7 @@
     "typeId": "nodeType",
     "tid": "popup",
     "typeName": "팝업",
+    "tableName": "ytnDevDb#popup",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -68,8 +75,8 @@
     "typeId": "nodeType",
     "tid": "productToCategoryMap",
     "typeName": "카테고리 상품 매핑",
-    "repositoryType": "data",
     "tableName": "ytnDevDb#productToCategoryMap",
+    "repositoryType": "data",
     "eviction": 0
   },
   {
@@ -77,8 +84,8 @@
     "typeId": "nodeType",
     "tid": "productToThemeMap",
     "typeName": "테마 상품 매핑",
-    "repositoryType": "data",
     "tableName": "ytnDevDb#productToThemeMap",
+    "repositoryType": "data",
     "eviction": 0
   },
   {
@@ -86,6 +93,7 @@
     "typeId": "nodeType",
     "tid": "referenceProduct",
     "typeName": "참조 상품",
+    "tableName": "ytnDevDb#referenceProduct",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -94,6 +102,7 @@
     "typeId": "nodeType",
     "tid": "theme",
     "typeName": "테마 (MD Pick/MD Best/BEST/추천)",
+    "tableName": "ytnDevDb#theme",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -102,6 +111,7 @@
     "typeId": "nodeType",
     "tid": "searchFilterPolicy",
     "typeName": "검색필터정책",
+    "tableName": "ytnDevDb#searchFilterPolicy",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -110,6 +120,7 @@
     "typeId": "nodeType",
     "tid": "searchFilterItem",
     "typeName": "검색필터코드",
+    "tableName": "ytnDevDb#searchFilterItem",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -118,8 +129,8 @@
     "typeId": "nodeType",
     "tid": "searchWordHistory",
     "typeName": "검색어 이력",
-    "repositoryType": "data",
     "tableName": "ytnDevDb#searchWordHistory",
+    "repositoryType": "data",
     "eviction": 0
   },
   {
@@ -127,8 +138,8 @@
     "typeId": "nodeType",
     "tid": "newProductMap",
     "typeName": "신상품 매핑",
-    "repositoryType": "data",
     "tableName": "ytnDevDb#newProductMap",
+    "repositoryType": "data",
     "eviction": 0
   },
   {
@@ -136,6 +147,7 @@
     "typeId": "nodeType",
     "tid": "newProduct",
     "typeName": "신상품",
+    "tableName": "ytnDevDb#newProduct",
     "repositoryType": "node",
     "eviction": 0
   }

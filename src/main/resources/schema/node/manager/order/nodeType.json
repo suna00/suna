@@ -12,8 +12,8 @@
     "typeId": "nodeType",
     "tid": "cart",
     "typeName": "장바구니",
-    "repositoryType": "data",
     "tableName": "ytnDevDb#cart",
+    "repositoryType": "data",
     "eviction": 0
   },
   {
@@ -21,8 +21,8 @@
     "typeId": "nodeType",
     "tid": "cartProduct",
     "typeName": "장바구니 상품",
-    "repositoryType": "data",
     "tableName": "ytnDevDb#cartProduct",
+    "repositoryType": "data",
     "eviction": 0
   },
   {
@@ -30,8 +30,8 @@
     "typeId": "nodeType",
     "tid": "cartProductItem",
     "typeName": "장바구니 상품 아이템",
-    "repositoryType": "data",
     "tableName": "ytnDevDb#cartProductItem",
+    "repositoryType": "data",
     "eviction": 0
   },
   {
@@ -39,8 +39,8 @@
     "typeId": "nodeType",
     "tid": "developmentFundHistory",
     "typeName": "발전기금 내역",
-    "repositoryType": "data",
     "tableName": "ytnDevDb#developmentFundHistory",
+    "repositoryType": "data",
     "eviction": 0
   },
   {
@@ -48,8 +48,8 @@
     "typeId": "nodeType",
     "tid": "purchaseOrder",
     "typeName": "주문서",
-    "repositoryType": "data",
     "tableName": "ytnDevDb#purchaseOrder",
+    "repositoryType": "data",
     "eviction": 0
   },
   {
@@ -57,8 +57,8 @@
     "typeId": "nodeType",
     "tid": "orderProduct",
     "typeName": "주문서 상품",
-    "repositoryType": "data",
     "tableName": "ytnDevDb#orderProduct",
+    "repositoryType": "data",
     "eviction": 0
   },
   {
@@ -66,8 +66,8 @@
     "typeId": "nodeType",
     "tid": "orderProductItem",
     "typeName": "주문서 상품 아이템",
-    "repositoryType": "data",
     "tableName": "ytnDevDb#orderProductItem",
+    "repositoryType": "data",
     "eviction": 0
   },
   {
@@ -75,8 +75,8 @@
     "typeId": "nodeType",
     "tid": "payment",
     "typeName": "결제",
-    "repositoryType": "data",
     "tableName": "ytnDevDb#payment",
+    "repositoryType": "data",
     "eviction": 0
   },
   {
@@ -84,8 +84,8 @@
     "typeId": "nodeType",
     "tid": "paymentHistory",
     "typeName": "결제 이력",
-    "repositoryType": "data",
     "tableName": "ytnDevDb#paymentHistory",
+    "repositoryType": "data",
     "eviction": 0
   },
   {
@@ -93,8 +93,8 @@
     "typeId": "nodeType",
     "tid": "requestChangeOfOrder",
     "typeName": "주문 변경 요청",
-    "repositoryType": "data",
     "tableName": "ytnDevDb#requestChangeOfOrder",
+    "repositoryType": "data",
     "eviction": 0
   }
 ]

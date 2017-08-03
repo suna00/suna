@@ -12,8 +12,8 @@
     "typeId": "nodeType",
     "tid": "delivery",
     "typeName": "배송 정보",
-    "repositoryType": "data",
     "tableName": "ytnDevDb#delivery",
+    "repositoryType": "data",
     "eviction": 0
   },
   {
@@ -21,6 +21,7 @@
     "typeId": "nodeType",
     "tid": "myDeliveryAddress",
     "typeName": "나의 배송지",
+    "tableName": "ytnDevDb#myDeliveryAddress",
     "repositoryType": "node",
     "eviction": 0
   },
@@ -29,8 +30,8 @@
     "typeId": "nodeType",
     "tid": "orderDeliveryPrice",
     "typeName": "주문서 배송비",
-    "repositoryType": "data",
     "tableName": "ytnDevDb#orderDeliveryPrice",
+    "repositoryType": "data",
     "eviction": 0
   },
   {
@@ -38,6 +39,7 @@
     "typeId": "nodeType",
     "tid": "setDeliveryPrice",
     "typeName": "배송비 설정",
+    "tableName": "ytnDevDb#setDeliveryPrice",
     "repositoryType": "node",
     "eviction": 0
   }
