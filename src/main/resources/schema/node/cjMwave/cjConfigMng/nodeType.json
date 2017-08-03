@@ -1,22 +1,32 @@
 [
   {
-    "parentId" : "cjConfigMng",
-    "typeId" : "nodeType",
-    "id" : "cntryMng",
-    "tid" : "cntryMng",
-    "typeName" : "국가관리",
-    "repositoryType" : "node",
-    "eviction" : 0,
-    "tableName" : "cjDb#cntryMng"
-  }
-  ,{
-    "parentId" : "cjConfigMng",
-    "typeId" : "nodeType",
-    "id" : "langMng",
-    "tid" : "langMng",
-    "typeName" : "언어관리",
-    "repositoryType" : "node",
-    "eviction" : 0,
-    "tableName" : "cjDb#langMng"
+    "parentId": "cjConfigMng",
+    "typeId": "nodeType",
+    "id": "cntryMng",
+    "tid": "cntryMng",
+    "typeName": "국가관리",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#cntryMng"
+  },
+  {
+    "parentId": "cjConfigMng",
+    "typeId": "nodeType",
+    "id": "langMng",
+    "tid": "langMng",
+    "typeName": "언어관리",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#langMng"
+  },
+  {
+    "parentId": "cjConfigMng",
+    "typeId": "nodeType",
+    "id": "comnUrlInfo",
+    "tid": "comnUrlInfo",
+    "typeName": "공통 URL 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#comnUrlInfo"
   }
 ]
