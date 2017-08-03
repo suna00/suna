@@ -19,8 +19,8 @@
   {
     "parentId" : "cjMwave",
     "typeId" : "nodeType",
-    "id" : "cjConfigeMng",
-    "tid" : "cjConfigeMng",
+    "id" : "cjConfigMng",
+    "tid" : "cjConfigMng",
     "typeName" : "CJ 설정 관리",
     "repositoryType" : "path",
     "eviction" : 0
