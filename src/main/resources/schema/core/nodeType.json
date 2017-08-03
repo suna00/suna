@@ -6,6 +6,7 @@
     "tid" : "system",
     "typeName" : "System",
     "repositoryType" : "path",
+    "tableName": "",
     "eviction" : 0
   },
   {
@@ -15,6 +16,7 @@
     "tid" : "nodeType",
     "typeName" : "NodeType",
     "repositoryType" : "node",
+    "tableName": "",
     "eviction" : 1000
   },
   {
@@ -24,6 +26,7 @@
     "tid" : "propertyType",
     "typeName" : "PropertyType",
     "repositoryType" : "node",
+    "tableName": "",
     "eviction" : 10000
   },
   {
@@ -33,6 +36,7 @@
     "tid" : "dataSource",
     "typeName" : "DataSource",
     "repositoryType" : "node",
+    "tableName": "",
     "eviction" : 10
   },
   {
@@ -42,6 +46,7 @@
     "tid" : "event",
     "typeName" : "Event",
     "repositoryType" : "node",
+    "tableName": "",
     "eviction" : 1000
   },
   {
@@ -51,6 +56,7 @@
     "tid" : "eventAction",
     "typeName" : "Event Action",
     "repositoryType" : "node",
+    "tableName": "",
     "eviction" : 1000
   },
   {
@@ -60,6 +66,7 @@
     "tid" : "eventListener",
     "typeName" : "Event Listener",
     "repositoryType" : "node",
+    "tableName": "",
     "eviction" : 1000
   }
 ]
