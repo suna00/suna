@@ -47,6 +47,7 @@
     "indexable": true,
     "labelable": true,
     "required": true,
+    "i18n" : true,
     "length": 100,
     "analyzer": "cjk"
   },
@@ -74,7 +75,7 @@
     "labelable": false,
     "required": true,
     "length": 100,
-    "analyzer": "cjk"
+    "analyzer": "code"
   },
   {
     "typeId": "propertyType",
@@ -99,6 +100,36 @@
         "label": "Customer"
       }
     ]
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "testCategory",
+    "pid": "created",
+    "propertyTypeName": "Created",
+    "valueType": "DATE",
+    "idable": false,
+    "indexable": false,
+    "required": false
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "testCategory",
+    "pid": "owner",
+    "propertyTypeName": "Owner",
+    "valueType": "STRING",
+    "idable": false,
+    "indexable": false,
+    "required": false
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "testCategory",
+    "pid": "changed",
+    "propertyTypeName": "Changed",
+    "valueType": "DATE",
+    "idable": false,
+    "indexable": false,
+    "required": false
   },
   {
     "typeId": "propertyType",

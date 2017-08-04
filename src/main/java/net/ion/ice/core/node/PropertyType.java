@@ -39,6 +39,9 @@ public class PropertyType {
     public static final String TREEABLE = "treeable";
     public static final String LENGTH = "length";
 
+    public static final String I18N = "i18n";
+
+
     public static final String TID = "tid";
     public static final String PID = "pid";
 
@@ -62,36 +65,41 @@ public class PropertyType {
         try {
             return AnalyzerType.valueOf(getAnalyzer());
         } catch (NullPointerException e) {
-            return null;
-        }
-    }
-
-    public Analyzer getLuceneAnalyzer() {
-        AnalyzerType analyzerType = getAnalyzerType();
-        if (analyzerType == null) {
             if (isIdable()) {
-                analyzerType = PropertyType.AnalyzerType.code;
+                return PropertyType.AnalyzerType.code;
             } else if (isLabelable()) {
-                analyzerType = PropertyType.AnalyzerType.cjk;
+                return PropertyType.AnalyzerType.cjk;
             } else {
                 switch (getValueType()) {
                     case CODE: {
-                        analyzerType = PropertyType.AnalyzerType.code;
-                        break;
+                        return PropertyType.AnalyzerType.code;
                     }
                     case TEXT: {
-                        analyzerType = PropertyType.AnalyzerType.standard;
-                        break;
+                        return PropertyType.AnalyzerType.standard;
                     }
                     default: {
-                        analyzerType = PropertyType.AnalyzerType.simple;
-                        break;
+                        return PropertyType.AnalyzerType.simple;
                     }
                 }
             }
         }
+    }
+
+
+    public Analyzer getLuceneAnalyzer() {
+        AnalyzerType analyzerType = getAnalyzerType();
+
         return AnalyzerFactory.getAnalyzer(analyzerType);
     }
+
+    public boolean isSorted(){
+        switch (getAnalyzerType()){
+            case code: case simple:
+                return true ;
+        }
+        return false ;
+    }
+
 
     public boolean isIdable() {
         return propertyTypeNode.getBooleanValue(IDABLE);
@@ -197,4 +205,9 @@ public class PropertyType {
         }
         return (Integer) propertyTypeNode.getValue(LENGTH);
     }
+
+    public boolean isI18n() {
+        return propertyTypeNode.getBooleanValue(I18N);
+    }
+
 }

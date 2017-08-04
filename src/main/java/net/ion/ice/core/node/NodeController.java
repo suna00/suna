@@ -31,21 +31,39 @@ public class NodeController {
     @RequestMapping(value = "/node/{typeId}", method = RequestMethod.PUT)
     @ResponseBody
     public Object saveRest(HttpServletRequest request, @PathVariable String typeId) throws IOException {
-        return save(request, typeId);
+        return execute(request, typeId, "save");
     }
 
     @RequestMapping(value = "/node/{typeId}/save.json", method = RequestMethod.POST)
     @ResponseBody
     public Object saveJson(HttpServletRequest request, @PathVariable String typeId) throws IOException {
-        return save(request, typeId);
+        return execute(request, typeId, "save");
+    }
+
+    @RequestMapping(value = "/node/{typeId}/create.json", method = RequestMethod.POST)
+    @ResponseBody
+    public Object createJson(HttpServletRequest request, @PathVariable String typeId) throws IOException {
+        return execute(request, typeId, "create");
+    }
+
+    @RequestMapping(value = "/node/{typeId}/update.json", method = RequestMethod.POST)
+    @ResponseBody
+    public Object updateJson(HttpServletRequest request, @PathVariable String typeId) throws IOException {
+        return execute(request, typeId, "update");
+    }
+
+    @RequestMapping(value = "/node/{typeId}/{event}.json", method = RequestMethod.POST)
+    @ResponseBody
+    public Object updateJson(HttpServletRequest request, @PathVariable String typeId, @PathVariable String event) throws IOException {
+        return execute(request, typeId, event);
     }
 
 
-    private Object save(HttpServletRequest request, String typeId) {
+    private Object execute(HttpServletRequest request, String typeId, String event) {
         if(request instanceof MultipartHttpServletRequest) {
-            return JsonResponse.create(nodeService.saveNode(request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap(), typeId)) ;
+            return JsonResponse.create(nodeService.executeNode(request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap(), typeId, event)) ;
         }
-        return JsonResponse.create(nodeService.saveNode(request.getParameterMap(), typeId)) ;
+        return JsonResponse.create(nodeService.executeNode(request.getParameterMap(), null, typeId, event)) ;
     }
 
 

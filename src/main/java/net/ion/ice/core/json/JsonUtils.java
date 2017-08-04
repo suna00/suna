@@ -1,5 +1,6 @@
 package net.ion.ice.core.json;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -147,5 +148,14 @@ public class JsonUtils {
             return val ;
         }
         return null ;
+    }
+
+    public static String toJsonString(Map<String, Object> jsonData){
+        try {
+            return objectMapper.writeValueAsString(jsonData) ;
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return null ;
+        }
     }
 }

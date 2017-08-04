@@ -335,6 +335,10 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         return NodeUtils.getStoreValue(getValue(pid), NodeUtils.getNodeType(getTypeId()).getPropertyType(pid), getId()) ;
     }
 
+    public Object getBindingValue(String pid) {
+        return NodeUtils.getBindingValue(getValue(pid), NodeUtils.getNodeType(getTypeId()).getPropertyType(pid), getId()) ;
+    }
+
 //    public Object getValue(String pid, PropertyType.ValueType valueType) {
 //        Object value = get(pid) ;
 //

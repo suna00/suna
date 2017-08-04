@@ -1,6 +1,7 @@
 package net.ion.ice.core.context;
 
 import net.ion.ice.ApplicationContextManager;
+import net.ion.ice.IceRuntimeException;
 import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.file.FileValue;
 import net.ion.ice.core.node.Node;
@@ -34,12 +35,15 @@ public class ExecuteContext implements Context{
     protected String event;
 
 
-    public static ExecuteContext makeContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType) {
+    public static ExecuteContext makeContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType, String event) {
         ExecuteContext ctx = new ExecuteContext();
 
         Map<String, Object> data = ContextUtils.makeContextData(parameterMap);
 
         ctx.setData(data);
+        if(event != null) {
+            ctx.event = event;
+        }
         ctx.setNodeType(nodeType);
 
         ctx.init() ;
@@ -47,12 +51,16 @@ public class ExecuteContext implements Context{
         return ctx ;
     }
 
-    public static ExecuteContext makeContextFromParameter(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, NodeType nodeType) {
+    public static ExecuteContext makeContextFromParameter(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, NodeType nodeType, String event) {
         ExecuteContext ctx = new ExecuteContext();
 
         Map<String, Object> data = ContextUtils.makeContextData(parameterMap, multiFileMap);
 
         ctx.setData(data);
+
+        if(event != null) {
+            ctx.event = event;
+        }
         ctx.setNodeType(nodeType);
 
         ctx.init() ;
@@ -114,6 +122,10 @@ public class ExecuteContext implements Context{
         exist = existNode != null ;
 
         if(exist){
+            if(event != null && event.equals("create")){
+                throw new IceRuntimeException("Exist Node Error : " + getId()) ;
+            }
+
             changedProperties = new ArrayList<>() ;
             this.node = existNode.clone() ;
             for(PropertyType pt : nodeType.getPropertyTypes()){
@@ -147,6 +159,9 @@ public class ExecuteContext implements Context{
             }
 
         }else {
+            if(event != null && !event.equals("create")){
+                throw new IceRuntimeException("Not Exist Node Error : " + getId()) ;
+            }
             this.node = new Node(data, nodeType.getTypeId());
             execute = true ;
         }
@@ -256,4 +271,5 @@ public class ExecuteContext implements Context{
     public Map<String,Object> getData() {
         return data;
     }
+
 }
