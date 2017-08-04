@@ -70,11 +70,12 @@
                 "componentType": "presentational",
                 "componentTemplateType": "Spin",
                 "componentClassType": "BUTTON",
-                "componentClass": "ButtonBack",
+                "componentClass": "ButtonLink",
                 "componentChildren": [],
-                "componentKey": "2a6dcd6d53fd",
+                "componentKey": "392a27d91416",
                 "areaMode": true,
                 "componentProps": {
+                  "reqUrl": "/admin/systemMng/systemNtf/list",
                   "buttonName": "리스트",
                   "buttonIcon": "",
                   "outline": "",
@@ -83,7 +84,7 @@
                   "bsSize": "small",
                   "disabled": "",
                   "key": 2,
-                  "componentKey": "2a6dcd6d53fd",
+                  "componentKey": "392a27d91416",
                   "parentComponentKey": "040ef2498089"
                 }
               }
@@ -106,7 +107,7 @@
             "isHorizontal": "true",
             "colSize": "6",
             "horizontalColLabelSize": "4",
-            "dataTypes": "systemNtf@ntfSeq,systemNtf@showYn,systemNtf@ntfTgtCd,systemNtf@ntfTypeCd,systemNtf@ntfTitle,systemNtf@ntfSbst,systemNtf@pstngStDt,systemNtf@pstngFnsDt,systemNtf@owner,systemNtf@created,systemNtf@modifier,systemNtf@changed"
+            "dataTypes": "systemNtf@ntfSeq,systemNtf@ntfTgtCd,systemNtf@ntfTypeCd,systemNtf@pstngFnsDt,systemNtf@pstngStDt,systemNtf@ntfTitle,systemNtf@ntfSbst"
           },
           "key": 0,
           "componentKey": "56ee6965f1fa",
@@ -115,18 +116,14 @@
             {
               "componentClass": "Numeric",
               "dataType": "id",
-              "label": "공지사항 일련번호",
+              "label": "일련번호",
               "id": "ntfSeq",
               "isView": true,
-              "options": {}
-            },
-            {
-              "componentClass": "Switch",
-              "dataType": "text",
-              "label": "노출 여부",
-              "id": "showYn",
-              "isView": true,
-              "options": {}
+              "options": {},
+              "colSize": "4",
+              "horizontalColLabelSize": "3",
+              "placeholder": "",
+              "helpBlockValue": ""
             },
             {
               "componentClass": "Select2",
@@ -136,7 +133,11 @@
               "isView": true,
               "options": {
                 "reqUrl": "/node/code/code.json"
-              }
+              },
+              "colSize": "4",
+              "horizontalColLabelSize": "3",
+              "placeholder": "",
+              "helpBlockValue": ""
             },
             {
               "componentClass": "Select2",
@@ -146,7 +147,27 @@
               "isView": true,
               "options": {
                 "reqUrl": "/node/code/code.json"
-              }
+              },
+              "colSize": "4",
+              "horizontalColLabelSize": "3",
+              "placeholder": "",
+              "helpBlockValue": ""
+            },
+            {
+              "componentClass": "Date",
+              "dataType": "text",
+              "label": "게시 종료 일시",
+              "id": "pstngFnsDt",
+              "isView": true,
+              "options": {}
+            },
+            {
+              "componentClass": "Date",
+              "dataType": "text",
+              "label": "게시 시작 일시",
+              "id": "pstngStDt",
+              "isView": true,
+              "options": {}
             },
             {
               "componentClass": "Text",
@@ -171,54 +192,6 @@
               "horizontalColLabelSize": "2",
               "placeholder": "",
               "helpBlockValue": ""
-            },
-            {
-              "componentClass": "Date",
-              "dataType": "text",
-              "label": "게시 시작 일시",
-              "id": "pstngStDt",
-              "isView": true,
-              "options": {}
-            },
-            {
-              "componentClass": "Date",
-              "dataType": "text",
-              "label": "게시 종료 일시",
-              "id": "pstngFnsDt",
-              "isView": true,
-              "options": {}
-            },
-            {
-              "componentClass": "Text",
-              "dataType": "text",
-              "label": "등록자",
-              "id": "owner",
-              "isView": true,
-              "options": {}
-            },
-            {
-              "componentClass": "Date",
-              "dataType": "text",
-              "label": "등록일시",
-              "id": "created",
-              "isView": true,
-              "options": {}
-            },
-            {
-              "componentClass": "Text",
-              "dataType": "text",
-              "label": "수정자",
-              "id": "modifier",
-              "isView": true,
-              "options": {}
-            },
-            {
-              "componentClass": "Date",
-              "dataType": "text",
-              "label": "수정일시",
-              "id": "changed",
-              "isView": true,
-              "options": {}
             }
           ]
         }

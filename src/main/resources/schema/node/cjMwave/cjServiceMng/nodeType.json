@@ -1,22 +1,202 @@
 [
   {
-    "parentId" : "cjServiceMng",
-    "typeId" : "nodeType",
-    "id" : "stpltMng",
-    "tid" : "stpltMng",
-    "typeName" : "약관관리",
-    "repositoryType" : "node",
-    "eviction" : 0,
-    "tableName" : "cjDb#stpltMng"
-  }
-  ,{
-    "parentId" : "cjServiceMng",
-    "typeId" : "nodeType",
-    "id" : "snsAthnCdMng",
-    "tid" : "snsAthnCdMng",
-    "typeName" : "SNS인증코드관리",
-    "repositoryType" : "node",
-    "eviction" : 0,
-    "tableName" : "cjDb#snsAthnCdMng"
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "stpltMng",
+    "tid": "stpltMng",
+    "typeName": "약관관리",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#stpltMng"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "snsAthnCdMng",
+    "tid": "snsAthnCdMng",
+    "typeName": "SNS인증코드관리",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#snsAthnCdMng"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "mbrInfo",
+    "tid": "mbrInfo",
+    "typeName": "회원정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#mbrInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "mbrDvcInfo",
+    "tid": "mbrDvcInfo",
+    "typeName": "회원 디바이스 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#mbrDvcInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "blacklistHst",
+    "tid": "blacklistHst",
+    "typeName": "블랙리스트 이력",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#blacklistHst"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "mbrSttusHst",
+    "tid": "mbrSttusHst",
+    "typeName": "회원 상태 이력",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#mbrSttusHst"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "mbrConnLog",
+    "tid": "mbrConnLog",
+    "typeName": "회원 접속 로그",
+    "repositoryType": "data",
+    "eviction": 0,
+    "tableName": "cjDb#mbrConnLog"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "mbrDclaHst",
+    "tid": "mbrDclaHst",
+    "typeName": "회원 신고 이력",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#mbrDclaHst"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "nonMbrInfo",
+    "tid": "nonMbrInfo",
+    "typeName": "비회원정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#nonMbrInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "nonMbrConnLog",
+    "tid": "nonMbrConnLog",
+    "typeName": "비회원 접속 로그",
+    "repositoryType": "data",
+    "eviction": 0,
+    "tableName": "cjDb#nonMbrConnLog"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "blacklistDclaSetupMng",
+    "tid": "blacklistDclaSetupMng",
+    "typeName": "블랙리스트 신고 설정관리",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#blacklistDclaSetupMng"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "ntfBbs",
+    "tid": "ntfBbs",
+    "typeName": "공지사항 게시판",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#ntfBbs"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "ntfBbsMultiLangInfo",
+    "tid": "ntfBbsMultiLangInfo",
+    "typeName": "공지사항 게시판 다국어 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#ntfBbsMultiLangInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "ntfBbsMultiLangInfo",
+    "tid": "ntfBbsMultiLangInfo",
+    "typeName": "공지사항 게시판 다국어 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#ntfBbsMultiLangInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "qna",
+    "tid": "qna",
+    "typeName": "1:1문의하기(QNA)",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#qna"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "qna",
+    "tid": "qna",
+    "typeName": "1:1문의하기(QNA)",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#qna"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "faq",
+    "tid": "faq",
+    "typeName": "FAQ",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#faq"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "svcMenuGroupInfo",
+    "tid": "svcMenuGroupInfo",
+    "typeName": "서비스 메뉴 그룹 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#svcMenuGroupInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "svcMenuInfo",
+    "tid": "svcMenuInfo",
+    "typeName": "서비스 메뉴 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#svcMenuInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "rcmdFindKywrdInfo",
+    "tid": "rcmdFindKywrdInfo",
+    "typeName": "추천 검색 키워드",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#rcmdFindKywrdInfo"
   }
 ]
