@@ -12,8 +12,8 @@
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "ntfBbs",
+    "referenceValue": "ntfBbsSeq",
     "idType": "autoIncrement",
     "defaultValue": "",
     "validationTypes": {

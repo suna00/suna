@@ -5,15 +5,15 @@
     "pid": "clipId",
     "id": "pgmClipMultiLangInfo@clipId",
     "propertyTypeName": "클립 아이디",
-    "valueType": "STRING",
+    "valueType": "REFERENCE",
     "required": true,
     "idable": true,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "pgmClip",
+    "referenceValue": "clipId",
     "defaultValue": "",
     "validationTypes": {
       "required": {
