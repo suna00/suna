@@ -208,5 +208,15 @@
     "repositoryType": "node",
     "eviction": 0,
     "tableName": "cjDb#news"
+  },
+  {
+    "parentId": "cjContentMng",
+    "typeId": "nodeType",
+    "id": "groupPhotoAdvm",
+    "tid": "groupPhotoAdvm",
+    "typeName": "그룹 사진 광고",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#groupPhotoAdvm"
   }
 ]

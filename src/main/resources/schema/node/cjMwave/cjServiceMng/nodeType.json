@@ -72,16 +72,6 @@
   {
     "parentId": "cjServiceMng",
     "typeId": "nodeType",
-    "id": "mbrDclaHst",
-    "tid": "mbrDclaHst",
-    "typeName": "회원 신고 이력",
-    "repositoryType": "node",
-    "eviction": 0,
-    "tableName": "cjDb#mbrDclaHst"
-  },
-  {
-    "parentId": "cjServiceMng",
-    "typeId": "nodeType",
     "id": "nonMbrInfo",
     "tid": "nonMbrInfo",
     "typeName": "비회원정보",
@@ -198,5 +188,175 @@
     "repositoryType": "node",
     "eviction": 0,
     "tableName": "cjDb#rcmdFindKywrdInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "mamaAwardSctnInfo",
+    "tid": "mamaAwardSctnInfo",
+    "typeName": "MAMA 수상 부문 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#mamaAwardSctnInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "mamaSctnWinner",
+    "tid": "mamaSctnWinner",
+    "typeName": "MAMA 부문별 수상자",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#mamaSctnWinner"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "mcdLineupInfo",
+    "tid": "mcdLineupInfo",
+    "typeName": "MCD 라인업 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#mcdLineupInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "mcdLineupArtist",
+    "tid": "mcdLineupArtist",
+    "typeName": "MCD 라인업 아티스트",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#mcdLineupArtist"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "voteBasInfo",
+    "tid": "voteBasInfo",
+    "typeName": "투표 기본 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#voteBasInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "votePredRstrtnInfo",
+    "tid": "votePredRstrtnInfo",
+    "typeName": "투표 기간 제한 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#votePredRstrtnInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "voteItemInfo",
+    "tid": "voteItemInfo",
+    "typeName": "투표 항목 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#voteItemInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "sersVoteItemInfo",
+    "tid": "sersVoteItemInfo",
+    "typeName": "시리즈 투표 항목 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#sersVoteItemInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "banrBasInfo",
+    "tid": "banrBasInfo",
+    "typeName": "배너 기본 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#banrBasInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "banrItemInfo",
+    "tid": "banrItemInfo",
+    "typeName": "배너 항목 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#banrItemInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "popupInfo",
+    "tid": "popupInfo",
+    "typeName": "팝업 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#popupInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "popupMultiLangInfo",
+    "tid": "popupMultiLangInfo",
+    "typeName": "팝업 다국어 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#popupMultiLangInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "badgeInfo",
+    "tid": "badgeInfo",
+    "typeName": "뱃지 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#badgeInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "votePrtcptHst",
+    "tid": "votePrtcptHst",
+    "typeName": "투표 참여 이력",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#votePrtcptHst"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "replInfo",
+    "tid": "replInfo",
+    "typeName": "댓글 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#replInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "replDclaHst",
+    "tid": "replDclaHst",
+    "typeName": "댓글 신고 이력",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#replDclaHst"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "replLikeInfo",
+    "tid": "replLikeInfo",
+    "typeName": "댓글 좋아요 정보",
+    "repositoryType": "",
+    "eviction": 0,
+    "tableName": "cjDb#replLikeInfo"
   }
 ]
