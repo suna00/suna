@@ -11,6 +11,8 @@
     "typeId" : "testCategory",
     "categoryId": "drama",
     "categoryName" : "drama",
+    "categoryName_kr" : "드라마",
+    "categoryName_en" : "Drama",
     "parentCategory" : "test1",
     "categoryType" : "content",
     "orderNo": 2

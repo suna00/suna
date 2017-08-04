@@ -229,6 +229,8 @@ public class NodeUtils {
             case STRING:case TEXT:{
                 if(value instanceof String){
                     return value ;
+                }else if(pt.isI18n() && value instanceof Map){
+                    return value ;
                 }else{
                     return value.toString() ;
                 }
@@ -293,6 +295,38 @@ public class NodeUtils {
         }
     }
 
+
+    public static Object getBindingValue(Object value, PropertyType pt, String id) {
+        if(value == null || "".equals(value.toString().trim())) return null ;
+        if(value instanceof Code) {
+            return ((Code) value).getValue() ;
+        }
+        if(pt.isI18n() && value instanceof Map) {
+            return ((Map) value).get("en");
+        }
+        switch (pt.getValueType()){
+            case FILE:{
+                if(value instanceof FileValue){
+                    return ((FileValue) value).getStorePath() ;
+                }else if(value instanceof MultipartFile){
+                    FileValue fileValue = getFileService().saveMultipartFile(pt, id, (MultipartFile) value) ;
+                    return fileValue.getStorePath() ;
+                }else if(value instanceof String){
+                    return value ;
+                }
+            }
+            case OBJECT:{
+                if(value instanceof Map){
+                    return JsonUtils.toJsonString((Map<String, Object>) value) ;
+                }
+                if(value instanceof String){
+                    return value ;
+                }
+            }
+            default:
+                return getStoreValue(value, pt, id) ;
+        }
+    }
 
     static FileService fileService ;
 
