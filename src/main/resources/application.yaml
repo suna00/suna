@@ -46,6 +46,9 @@ file:
     path: /resource/ice2/files
 
 
+i18n:
+  default: en
+
 ---
 #-Dspring.profiles.active=dev
 spring:
