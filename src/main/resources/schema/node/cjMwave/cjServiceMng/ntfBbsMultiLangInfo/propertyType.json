@@ -22,7 +22,7 @@
         "description": "필수 값 입니다."
       },
       "duplicated": {
-        "value": true,
+        "value": false,
         "description": "중복된 값 입니다."
       },
       "min": {
