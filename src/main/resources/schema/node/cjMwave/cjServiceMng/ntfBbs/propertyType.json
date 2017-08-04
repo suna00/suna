@@ -175,17 +175,60 @@
   {
     "typeId": "propertyType",
     "tid": "ntfBbs",
-    "pid": "showCtgryId",
-    "id": "ntfBbs@showCtgryId",
-    "propertyTypeName": "노출 카테고리 아이디",
-    "valueType": "STRING",
+    "pid": "ctgCd1",
+    "id": "ntfBbs@ctgCd1",
+    "propertyTypeName": "분류 코드1",
+    "valueType": "REFERENCE",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
-    "analyzer": "cjk",
-    "referenceType": "",
+    "analyzer": "code",
+    "referenceType": "code",
+    "referenceValue": "",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "ntfBbs",
+    "pid": "ctgCd2",
+    "id": "ntfBbs@ctgCd2",
+    "propertyTypeName": "분류 코드2",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "code",
     "referenceValue": "",
     "defaultValue": "",
     "validationTypes": {
