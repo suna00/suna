@@ -496,7 +496,7 @@
     "id": "propertyTypeValidation@id",
     "pid": "id",
     "propertyTypeName": "Id",
-    "valueType": "INT",
+    "valueType": "STRING",
     "required": true,
     "idable": true,
     "labelable": false,
@@ -505,7 +505,7 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
-    "idType": "autoIncrement"
+    "idType": "UUID"
   },
   {
     "typeId" : "propertyType",
