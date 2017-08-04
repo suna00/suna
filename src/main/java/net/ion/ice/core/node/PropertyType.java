@@ -99,6 +99,7 @@ public class PropertyType {
 
     public IdType getIdType() {
         Object idType = propertyTypeNode.get(ID_TYPE);
+
         if (idType instanceof IdType) return (IdType) idType;
         return IdType.valueOf((String) idType);
     }
