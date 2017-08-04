@@ -45,7 +45,7 @@ public class AnalyzerFactory {
                     break ;
                 }
                 case cjk :{
-                    inst = new CJKAnalyzer() ;
+                    inst = new NoStopCJKAnalyzer() ;
                     break ;
                 }
                 case korean :{
