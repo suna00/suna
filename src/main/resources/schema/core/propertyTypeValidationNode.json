@@ -130,7 +130,7 @@
     }
   },
   {
-    "typeId" : "propertyType",
+    "typeId" : "propertyTypeValidation",
     "propertyTypeId": "backOffice@id",
     "validation": {
       "country": "KR",
@@ -143,7 +143,7 @@
     }
   },
   {
-    "typeId" : "propertyType",
+    "typeId" : "propertyTypeValidation",
     "propertyTypeId": "backOffice@name",
     "validation": {
       "country": "KR",
