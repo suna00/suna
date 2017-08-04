@@ -3,7 +3,7 @@
     "typeId" : "propertyTypeValidation",
     "propertyTypeId": "user@userId",
     "validation": {
-      "country": "KR",
+      "language": "ko",
       "required": { "value": true, "description": "필수 값 입니다." },
       "duplicated": { "value": true, "description": "이미 등록된 아이디 입니다." },
       "min": { "value": 4, "description": "최소 값 입니다." },
@@ -16,7 +16,7 @@
     "typeId" : "propertyTypeValidation",
     "propertyTypeId": "user@password",
     "validation": {
-      "country": "KR",
+      "language": "ko",
       "required": { "value": true, "description": "필수 값 입니다." },
       "duplicated": { "value": false, "description": "" },
       "min": { "value": 4, "description": "최소 값 입니다." },
@@ -29,7 +29,7 @@
     "typeId" : "propertyTypeValidation",
     "propertyTypeId": "user@name",
     "validation": {
-      "country": "KR",
+      "language": "ko",
       "required": { "value": true, "description": "필수 값 입니다." },
       "duplicated": { "value": false, "description": "" },
       "min": { "value": 0, "description": "" },
