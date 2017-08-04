@@ -13,15 +13,7 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
@@ -37,15 +29,7 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
@@ -61,15 +45,7 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": false, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
@@ -85,15 +61,7 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "groupCode",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
@@ -109,15 +77,7 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
@@ -133,15 +93,7 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
@@ -158,15 +110,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "defaultValue": 0,
-    "validationTypes": {
-      "required": { "value": false, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "defaultValue": 0
   },
   {
     "typeId" : "propertyType",
@@ -182,14 +126,6 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": false, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   }
 ]
