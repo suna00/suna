@@ -387,7 +387,7 @@
   {
     "typeId": "propertyType",
     "tid": "product",
-    "pid": "PRText",
+    "pid": "mdComment",
     "propertyTypeName": "홍보문구",
     "valueType": "TEXT",
     "required": false,
@@ -1220,7 +1220,7 @@
   {
     "typeId": "propertyType",
     "tid": "productByAffiliate",
-    "pid": "PRText",
+    "pid": "mdComment",
     "propertyTypeName": "홍보문구",
     "valueType": "TEXT",
     "required": false,
