@@ -300,7 +300,6 @@
       }
     }
   },
-  ,
   {
     "typeId": "propertyType",
     "tid": "svcMenuInfo",
@@ -343,7 +342,7 @@
         "description": ""
       }
     }
-  }
+  },
   {
     "typeId": "propertyType",
     "tid": "svcMenuInfo",
