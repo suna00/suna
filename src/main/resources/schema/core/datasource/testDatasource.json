@@ -3,7 +3,7 @@
     "typeId" : "datasource",
     "id" : "mariaDb",
     "dsName" : "Test DB (Maria)",
-    "jdbcUrl" : "jdbc:mysql://125.131.88.77:3306/webtoon2",
+    "jdbcUrl" : "jdbc:mysql://125.131.88.77:3306/ice2",
     "dbType" : "maria",
     "username" : "ice2",
     "password" : "ice2"
