@@ -132,7 +132,7 @@ public class ExecuteContext implements Context{
                 if(!data.containsKey(pt.getPid())){
                     continue;
                 }
-                Object newValue = NodeUtils.getStoreValue(data.get(pt.getPid()), pt, node.getId()) ;
+                Object newValue = NodeUtils.getStoreValue(data, pt, node.getId()) ;
                 Object existValue = existNode.get(pt.getPid()) ;
 
                 if(newValue == null && existValue == null) {

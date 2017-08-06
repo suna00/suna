@@ -148,38 +148,10 @@ public class Properties implements Map<String, Object>, Serializable, Cloneable 
     public void toStore() {
         NodeType nodeType = NodeUtils.getNodeType(typeId) ;
         for(PropertyType pt : nodeType.getPropertyTypes()){
-            Object value = values.get(pt.getPid()) ;
+            Object value = NodeUtils.getStoreValue(values, pt, this.id) ;
 
-            if(pt.isI18n()){
-                String i18nPrefix = pt.getPid() + "_" ;
-                Map<String, Object> i18nData = new HashMap<>() ;
-                value = NodeUtils.getStoreValue(value, pt, this.id) ;
-                if(value instanceof String){
-                    i18nData.put("en", value) ;
-                }else if(value instanceof Map){
-                    i18nData = (Map<String, Object>) value;
-                }
-
-                List<String> removePids = new ArrayList<>();
-                for(String fieldName : values.keySet()){
-                    if(fieldName.startsWith(i18nPrefix)){
-                        i18nData.put(StringUtils.substringAfter(fieldName, i18nPrefix), values.get(fieldName)) ;
-                        removePids.add(fieldName) ;
-                    }
-                }
-                for(String fieldName : removePids) {
-                    values.remove(fieldName);
-                }
-                values.put(pt.getPid(), i18nData) ;
-                continue;
-            }
             if(value != null){
-                value = NodeUtils.getStoreValue(value, pt, this.id) ;
-                if(value != null) {
-                    values.put(pt.getPid(), value);
-                }else{
-                    values.remove(pt.getPid()) ;
-                }
+                values.put(pt.getPid(), value);
             }else{
                 values.remove(pt.getPid()) ;
             }

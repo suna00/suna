@@ -50,9 +50,30 @@
     "orderNo": 6
   },
   {
+    "typeId" : "testMenu",
+    "menuId": "menu1",
+    "menuName" : "Menu 1"
+  },
+  {
+    "typeId" : "testMenu",
+    "menuId": "menu2",
+    "menuName" : "Menu 2"
+  },
+  {
+    "typeId" : "testMenu",
+    "menuId": "menu3",
+    "menuName" : "Menu 3"
+  },
+  {
+    "typeId" : "testMenu",
+    "menuId": "menu4",
+    "menuName" : "Menu 4"
+  },
+  {
     "typeId" : "testItem",
     "id" : 1,
     "category" : "drama",
+    "menus" : "menu1,menu2",
     "title" : "도깨비",
     "body" : "공유나오는 도깨비",
     "date" : "20170110"
@@ -61,6 +82,7 @@
     "typeId" : "testItem",
     "id" : 2,
     "category" : "drama",
+    "menus" : "menu2",
     "title" : "태양의 후예",
     "body" : "송중기 나오네",
     "date" : "20161101"
@@ -69,6 +91,7 @@
     "typeId" : "testItem",
     "id" : 11,
     "category" : "hat",
+    "menus" : "menu3, menu4",
     "title" : "NY 모자",
     "body" : "MLB 모자",
     "date" : "20150501"

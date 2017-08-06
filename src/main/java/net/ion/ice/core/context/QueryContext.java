@@ -298,18 +298,17 @@ public class QueryContext implements Context {
             throw new RuntimeException("REFERENCED NODE TYPE is Null : " + nodeType.getTypeId() + "." + pt.getPid() + " = " + refTypeId);
         }
 
-        List<String> idPids = refNodeType.getIdablePIds();
-
-        if (idPids != null && idPids.size() > 1) {
-            if (StringUtils.isNotEmpty(pt.getReferenceValue())) {
-                makeQueryTerm(refNodeType, queryContext, queryTerms, pt.getReferenceValue(), node.getId().toString());
-            } else {
+        if (StringUtils.isNotEmpty(pt.getReferenceValue())) {
+            makeQueryTerm(refNodeType, queryContext, queryTerms, pt.getReferenceValue(), node.getId().toString());
+        }else {
+            List<String> idPids = refNodeType.getIdablePIds();
+            if (idPids != null && idPids.size() > 1) {
                 makeQueryTerm(refNodeType, queryContext, queryTerms, idPids.get(0), node.getId().toString());
-            }
-        } else {
-            for (PropertyType refPt : refNodeType.getPropertyTypes(PropertyType.ValueType.REFERENCE)) {
-                if (nodeType.getTypeId().equals(refPt.getReferenceType())) {
-                    makeQueryTerm(refNodeType, queryContext, queryTerms, refPt.getPid(), node.getId().toString());
+            } else {
+                for (PropertyType refPt : refNodeType.getReferencePropertyTypes()) {
+                    if (nodeType.getTypeId().equals(refPt.getReferenceType())) {
+                        makeQueryTerm(refNodeType, queryContext, queryTerms, refPt.getPid(), node.getId().toString());
+                    }
                 }
             }
         }
