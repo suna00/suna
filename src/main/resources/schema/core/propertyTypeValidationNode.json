@@ -1,10 +1,9 @@
 [
   {
     "typeId" : "propertyTypeValidation",
-    "id" : 1,
     "propertyTypeId": "nodeType@parentId",
     "validation": {
-      "country": "KR",
+      "language": "ko",
       "required": { "value": true, "description": "필수 값 입니다." },
       "duplicated": { "value": false, "description": "중복된 값 입니다." },
       "min": { "value": 0, "description": "최소 값 입니다." },
@@ -15,10 +14,9 @@
   },
   {
     "typeId" : "propertyTypeValidation",
-    "id" : 2,
     "propertyTypeId": "nodeType@tid",
     "validation": {
-      "country": "KR",
+      "language": "ko",
       "required": { "value": true, "description": "필수 값 입니다." },
       "duplicated": { "value": false, "description": "중복된 값 입니다." },
       "min": { "value": 0, "description": "최소 값 입니다." },
@@ -29,10 +27,9 @@
   },
   {
     "typeId" : "propertyTypeValidation",
-    "id" : 3,
     "propertyTypeId": "nodeType@repositoryType",
     "validation": {
-      "country": "KR",
+      "language": "ko",
       "required": { "value": true, "description": "필수 값 입니다." },
       "duplicated": { "value": false, "description": "중복된 값 입니다." },
       "min": { "value": 0, "description": "최소 값 입니다." },
@@ -43,10 +40,9 @@
   },
   {
     "typeId" : "propertyTypeValidation",
-    "id" : 4,
     "propertyTypeId": "nodeType@typeName",
     "validation": {
-      "country": "KR",
+      "language": "ko",
       "required": { "value": true, "description": "필수 값 입니다." },
       "duplicated": { "value": false, "description": "중복된 값 입니다." },
       "min": { "value": 0, "description": "최소 값 입니다." },
@@ -57,10 +53,9 @@
   },
   {
     "typeId" : "propertyTypeValidation",
-    "id" : 5,
     "propertyTypeId": "nodeType@eviction",
     "validation": {
-      "country": "KR",
+      "language": "ko",
       "required": { "value": true, "description": "필수 값 입니다." },
       "duplicated": { "value": false, "description": "중복된 값 입니다." },
       "min": { "value": 0, "description": "최소 값 입니다." },
@@ -71,10 +66,9 @@
   },
   {
     "typeId" : "propertyTypeValidation",
-    "id" : 6,
     "propertyTypeId": "propertyType@tid",
     "validation": {
-      "country": "KR",
+      "language": "ko",
       "required": { "value": true, "description": "필수 값 입니다." },
       "duplicated": { "value": false, "description": "중복된 값 입니다." },
       "min": { "value": 0, "description": "최소 값 입니다." },
@@ -85,10 +79,9 @@
   },
   {
     "typeId" : "propertyTypeValidation",
-    "id" : 7,
     "propertyTypeId": "propertyType@pid",
     "validation": {
-      "country": "KR",
+      "language": "ko",
       "required": { "value": true, "description": "필수 값 입니다." },
       "duplicated": { "value": false, "description": "중복된 값 입니다." },
       "min": { "value": 0, "description": "최소 값 입니다." },
@@ -99,10 +92,9 @@
   },
   {
     "typeId" : "propertyTypeValidation",
-    "id" : 8,
     "propertyTypeId": "propertyType@propertyTypeName",
     "validation": {
-      "country": "KR",
+      "language": "ko",
       "required": { "value": true, "description": "필수 값 입니다." },
       "duplicated": { "value": false, "description": "중복된 값 입니다." },
       "min": { "value": 0, "description": "최소 값 입니다." },
@@ -113,10 +105,9 @@
   },
   {
     "typeId" : "propertyTypeValidation",
-    "id" : 9,
     "propertyTypeId": "propertyType@valueType",
     "validation": {
-      "country": "KR",
+      "language": "ko",
       "required": { "value": true, "description": "필수 값 입니다." },
       "duplicated": { "value": false, "description": "중복된 값 입니다." },
       "min": { "value": 0, "description": "최소 값 입니다." },
@@ -127,10 +118,9 @@
   },
   {
     "typeId" : "propertyTypeValidation",
-    "id" : 10,
     "propertyTypeId": "propertyType@defaultValue",
     "validation": {
-      "country": "KR",
+      "language": "ko",
       "required": { "value": true, "description": "필수 값 입니다." },
       "duplicated": { "value": false, "description": "중복된 값 입니다." },
       "min": { "value": 0, "description": "최소 값 입니다." },
@@ -141,10 +131,9 @@
   },
   {
     "typeId" : "propertyTypeValidation",
-    "id" : 11,
     "propertyTypeId": "backOffice@id",
     "validation": {
-      "country": "KR",
+      "language": "ko",
       "required": { "value": true, "description": "필수 값 입니다." },
       "duplicated": { "value": false, "description": "중복된 값 입니다." },
       "min": { "value": 0, "description": "최소 값 입니다." },
@@ -155,10 +144,9 @@
   },
   {
     "typeId" : "propertyTypeValidation",
-    "id" : 12,
     "propertyTypeId": "backOffice@name",
     "validation": {
-      "country": "KR",
+      "language": "ko",
       "required": { "value": true, "description": "필수 값 입니다." },
       "duplicated": { "value": false, "description": "중복된 값 입니다." },
       "min": { "value": 0, "description": "최소 값 입니다." },
