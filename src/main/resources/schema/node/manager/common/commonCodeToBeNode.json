@@ -1,0 +1,56 @@
+[
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root",
+    "code": "userStatus",
+    "name": "계정관리 상태",
+    "description": "",
+    "sortOrder": "1",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "userStatus",
+    "code": "active",
+    "name": "사용중",
+    "description": "",
+    "sortOrder": "1",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "userStatus",
+    "code": "inactive",
+    "name": "정지",
+    "description": "",
+    "sortOrder": "2",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root",
+    "code": "userSMSStatus",
+    "name": "계정관리 로그인 SMS 인증",
+    "description": "",
+    "sortOrder": "1",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "userSMSStatus",
+    "code": "active",
+    "name": "사용",
+    "description": "",
+    "sortOrder": "1",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "userSMSStatus",
+    "code": "inactive",
+    "name": "미사용",
+    "description": "",
+    "sortOrder": "2",
+    "status": "y"
+  }
+]

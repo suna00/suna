@@ -235,9 +235,9 @@
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "commonCode",
+    "referenceType": "commonCodeToBe",
     "referenceValue": "code",
-    "defaultValue": ""
+    "defaultValue": "active"
   },
   {
     "typeId": "propertyType",
@@ -251,9 +251,9 @@
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "commonCode",
+    "referenceType": "commonCodeToBe",
     "referenceValue": "code",
-    "defaultValue": ""
+    "defaultValue": "active"
   },
   {
     "typeId": "propertyType",
