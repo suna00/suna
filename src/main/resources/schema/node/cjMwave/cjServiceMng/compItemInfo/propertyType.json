@@ -1,11 +1,11 @@
 [
   {
     "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "mbrId",
-    "id": "mbrInfo@mbrId",
-    "propertyTypeName": "회원 아이디",
-    "valueType": "STRING",
+    "tid": "compItemInfo",
+    "pid": "compItemSeq",
+    "id": "compItemInfo@compItemSeq",
+    "propertyTypeName": "컴포넌트 항목 일련번호",
+    "valueType": "INT",
     "required": true,
     "idable": true,
     "labelable": false,
@@ -14,6 +14,50 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
+    "idType": "autoIncrement",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": true,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": true,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "compItemInfo",
+    "pid": "mainSeq",
+    "id": "compItemInfo@mainSeq",
+    "propertyTypeName": "메인 일련번호",
+    "valueType": "INT",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "mainBasInfo",
+    "referenceValue": "mainSeq",
     "defaultValue": "",
     "validationTypes": {
       "required": {
@@ -44,53 +88,10 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "aliasNm",
-    "id": "mbrInfo@aliasNm",
-    "propertyTypeName": "닉네임명",
-    "valueType": "STRING",
-    "required": false,
-    "idable": false,
-    "labelable": true,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "cjk",
-    "referenceType": "",
-    "referenceValue": "",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "divCd",
-    "id": "mbrInfo@divCd",
-    "propertyTypeName": "구분 코드",
+    "tid": "compItemInfo",
+    "pid": "itemDivCd",
+    "id": "compItemInfo@itemDivCd",
+    "propertyTypeName": "항목 구분 코드",
     "valueType": "REFERENCE",
     "required": true,
     "idable": false,
@@ -130,397 +131,10 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "sttusCd",
-    "id": "mbrInfo@sttusCd",
-    "propertyTypeName": "상태 코드",
-    "valueType": "REFERENCE",
-    "required": true,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
-    "referenceType": "code",
-    "referenceValue": "",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": true,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "sbscShapCd",
-    "id": "mbrInfo@sbscShapCd",
-    "propertyTypeName": "가입 형태 코드",
-    "valueType": "REFERENCE",
-    "required": true,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
-    "referenceType": "code",
-    "referenceValue": "",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": true,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "sbscDt",
-    "id": "mbrInfo@sbscDt",
-    "propertyTypeName": "가입 일시",
-    "valueType": "STRING",
-    "required": true,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "cjk",
-    "referenceType": "",
-    "referenceValue": "",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": true,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "snsTypeCd",
-    "id": "mbrInfo@snsTypeCd",
-    "propertyTypeName": "SNS 유형코드",
-    "valueType": "REFERENCE",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "code",
-    "referenceValue": "",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "snsId",
-    "id": "mbrInfo@snsId",
-    "propertyTypeName": "SNS 아이디",
-    "valueType": "STRING",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "cjk",
-    "referenceType": "",
-    "referenceValue": "",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "snsKey",
-    "id": "mbrInfo@snsKey",
-    "propertyTypeName": "SNS KEY",
-    "valueType": "STRING",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "",
-    "referenceValue": "",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "cntryCd",
-    "id": "mbrInfo@cntryCd",
-    "propertyTypeName": "국가 코드",
-    "valueType": "REFERENCE",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
-    "referenceType": "code",
-    "referenceValue": "",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "sexCd",
-    "id": "mbrInfo@sexCd",
-    "propertyTypeName": "성별 코드",
-    "valueType": "REFERENCE",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
-    "referenceType": "code",
-    "referenceValue": "",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "bthday",
-    "id": "mbrInfo@bthday",
-    "propertyTypeName": "생년월일",
-    "valueType": "STRING",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "cjk",
-    "referenceType": "",
-    "referenceValue": "",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "age",
-    "id": "mbrInfo@age",
-    "propertyTypeName": "나이",
+    "tid": "compItemInfo",
+    "pid": "itemId",
+    "id": "compItemInfo@itemId",
+    "propertyTypeName": "항목 아이디",
     "valueType": "INT",
     "required": false,
     "idable": false,
@@ -560,54 +174,183 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "thumImgPath",
-    "id": "mbrInfo@thumImgPath",
-    "propertyTypeName": "썸네일 이미지 경로",
-    "valueType": "FILE",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "",
-    "referenceValue": "",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "email",
-    "id": "mbrInfo@email",
-    "propertyTypeName": "이메일",
+    "tid": "compItemInfo",
+    "pid": "itemNm",
+    "id": "compItemInfo@itemNm",
+    "propertyTypeName": "항목명",
     "valueType": "STRING",
+    "required": true,
+    "idable": false,
+    "labelable": true,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": true,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "compItemInfo",
+    "pid": "typeCd",
+    "id": "compItemInfo@typeCd",
+    "propertyTypeName": "유형 코드",
+    "valueType": "REFERENCE",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "code",
+    "referenceValue": "",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": true,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "compItemInfo",
+    "pid": "ifTgtCd",
+    "id": "compItemInfo@ifTgtCd",
+    "propertyTypeName": "연동 대상 코드",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "code",
+    "referenceValue": "",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "compItemInfo",
+    "pid": "sortBaseCd",
+    "id": "compItemInfo@sortBaseCd",
+    "propertyTypeName": "정렬 기준 코드",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "code",
+    "referenceValue": "",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "compItemInfo",
+    "pid": "showDataCnt",
+    "id": "compItemInfo@showDataCnt",
+    "propertyTypeName": "노출 데이터 개수",
+    "valueType": "INT",
     "required": false,
     "idable": false,
     "labelable": false,
@@ -646,268 +389,10 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "mblNo",
-    "id": "mbrInfo@mblNo",
-    "propertyTypeName": "휴대폰 번호",
-    "valueType": "STRING",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "",
-    "referenceValue": "",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "telNo",
-    "id": "mbrInfo@telNo",
-    "propertyTypeName": "전화번호",
-    "valueType": "STRING",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "",
-    "referenceValue": "",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "homeZipCode",
-    "id": "mbrInfo@homeZipCode",
-    "propertyTypeName": "자택 우편번호",
-    "valueType": "STRING",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "",
-    "referenceValue": "",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "homeAdr1",
-    "id": "mbrInfo@homeAdr1",
-    "propertyTypeName": "자택 주소1",
-    "valueType": "STRING",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "",
-    "referenceValue": "",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "homeAdr2",
-    "id": "mbrInfo@homeAdr2",
-    "propertyTypeName": "자택 주소2",
-    "valueType": "STRING",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "",
-    "referenceValue": "",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "intrstCdList",
-    "id": "mbrInfo@intrstCdList",
-    "propertyTypeName": "관심사 코드 리스트",
-    "valueType": "TEXT",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "",
-    "referenceValue": "",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "emailRcvYn",
-    "id": "mbrInfo@emailRcvYn",
-    "propertyTypeName": "메일 수신 여부",
+    "tid": "compItemInfo",
+    "pid": "showYn",
+    "id": "compItemInfo@showYn",
+    "propertyTypeName": "노출 여부",
     "valueType": "BOOLEAN",
     "required": true,
     "idable": false,
@@ -947,98 +432,12 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "smsRcvYn",
-    "id": "mbrInfo@smsRcvYn",
-    "propertyTypeName": "SMS 수신 여부",
-    "valueType": "BOOLEAN",
-    "required": true,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "cjk",
-    "referenceType": "",
-    "referenceValue": "",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": true,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "blacklistYn",
-    "id": "mbrInfo@blacklistYn",
-    "propertyTypeName": "블랙리스트 여부",
-    "valueType": "BOOLEAN",
-    "required": true,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "cjk",
-    "referenceType": "",
-    "referenceValue": "",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": true,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "dormTrtDate",
-    "id": "mbrInfo@dormTrtDate",
-    "propertyTypeName": "휴면 처리 일자",
-    "valueType": "DATE",
-    "required": true,
+    "tid": "compItemInfo",
+    "pid": "sortOdrg",
+    "id": "compItemInfo@sortOdrg",
+    "propertyTypeName": "정렬순서",
+    "valueType": "INT",
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
@@ -1049,6 +448,49 @@
     "defaultValue": "",
     "validationTypes": {
       "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "compItemInfo",
+    "pid": "showCntryCdList",
+    "id": "compItemInfo@showCntryCdList",
+    "propertyTypeName": "노출국가 코드리스트",
+    "valueType": "TEXT",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "cjk",
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
         "value": true,
         "description": "필수 값 입니다."
       },
@@ -1076,19 +518,19 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "refdBlacklistHstList",
-    "id": "mbrInfo@refdBlacklistHstList",
-    "propertyTypeName": "블랙리스트 이력 목록",
-    "valueType": "REFERENCED",
+    "tid": "compItemInfo",
+    "pid": "cnctContsDivCd",
+    "id": "compItemInfo@cnctContsDivCd",
+    "propertyTypeName": "연결 콘텐츠 구분 코드",
+    "valueType": "REFERENCE",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "blacklistHst",
-    "referenceValue": "mbrId",
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "",
+    "referenceValue": "",
     "defaultValue": "",
     "validationTypes": {
       "required": {
@@ -1119,19 +561,19 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "refdSttusHstList",
-    "id": "mbrInfo@refdSttusHstList",
-    "propertyTypeName": "상태 이력 목록",
-    "valueType": "REFERENCED",
+    "tid": "compItemInfo",
+    "pid": "cnctContsNm",
+    "id": "compItemInfo@cnctContsNm",
+    "propertyTypeName": "연결 콘텐츠명",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
-    "labelable": false,
+    "labelable": true,
     "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "mbrSttusHst",
-    "referenceValue": "mbrId",
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "",
+    "referenceValue": "",
     "defaultValue": "",
     "validationTypes": {
       "required": {
@@ -1162,19 +604,19 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "refdConnLogList",
-    "id": "mbrInfo@refdConnLogList",
-    "propertyTypeName": "접속 로그 목록",
-    "valueType": "REFERENCED",
+    "tid": "compItemInfo",
+    "pid": "cnctContsIfTgtCd",
+    "id": "compItemInfo@cnctContsIfTgtCd",
+    "propertyTypeName": "연결 콘텐츠 연동 대상 코드",
+    "valueType": "REFERENCE",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "mbrConnLog",
-    "referenceValue": "mbrId",
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "",
+    "referenceValue": "",
     "defaultValue": "",
     "validationTypes": {
       "required": {
@@ -1205,19 +647,19 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "refdDclaHstList",
-    "id": "mbrInfo@refdDclaHstList",
-    "propertyTypeName": "신고 목록",
-    "valueType": "REFERENCED",
+    "tid": "compItemInfo",
+    "pid": "cnctContsSortBaseCd",
+    "id": "compItemInfo@cnctContsSortBaseCd",
+    "propertyTypeName": "연결 콘텐츠 정렬 기준 코드",
+    "valueType": "REFERENCE",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "mbrDclaHst",
-    "referenceValue": "tgtMbrId",
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "mainItemInfo",
+    "referenceValue": "mainItemSeq",
     "defaultValue": "",
     "validationTypes": {
       "required": {
@@ -1248,19 +690,19 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "refdDvcList",
-    "id": "mbrInfo@refdDvcList",
-    "propertyTypeName": "디바이스 목록",
-    "valueType": "REFERENCED",
+    "tid": "compItemInfo",
+    "pid": "cnctContsTypeCd",
+    "id": "compItemInfo@cnctContsTypeCd",
+    "propertyTypeName": "연결 콘텐츠 유형 코드",
+    "valueType": "REFERENCE",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "mbrDvcInfo",
-    "referenceValue": "mbrId",
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "",
+    "referenceValue": "",
     "defaultValue": "",
     "validationTypes": {
       "required": {
@@ -1291,19 +733,19 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "refdVotePrtcpList",
-    "id": "mbrInfo@refdVotePrtcpList",
-    "propertyTypeName": "투표 참여 목록",
-    "valueType": "REFERENCED",
+    "tid": "compItemInfo",
+    "pid": "cnctContsLeftYn",
+    "id": "compItemInfo@cnctContsLeftYn",
+    "propertyTypeName": "연결 콘텐츠 좌측 여부",
+    "valueType": "BOOLEAN",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "votePrtcptHst",
-    "referenceValue": "prtcpMbrId",
+    "indexable": true,
+    "analyzer": "cjk",
+    "referenceType": "",
+    "referenceValue": "",
     "defaultValue": "",
     "validationTypes": {
       "required": {
@@ -1334,19 +776,19 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "refdRepList",
-    "id": "mbrInfo@refdRepList",
-    "propertyTypeName": "댓글 목록",
-    "valueType": "REFERENCED",
+    "tid": "compItemInfo",
+    "pid": "cnctContsshowCntryCdList",
+    "id": "compItemInfo@cnctContsshowCntryCdList",
+    "propertyTypeName": "연결 콘텐츠 노출국가 코드리스트",
+    "valueType": "TEXT",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "replInfo",
-    "referenceValue": "mkerId",
+    "indexable": true,
+    "analyzer": "cjk",
+    "referenceType": "",
+    "referenceValue": "",
     "defaultValue": "",
     "validationTypes": {
       "required": {
@@ -1377,19 +819,19 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "refdGlblChatList",
-    "id": "mbrInfo@refdGlblChatList",
-    "propertyTypeName": "채팅 목록",
-    "valueType": "REFERENCED",
+    "tid": "compItemInfo",
+    "pid": "cnctContsId",
+    "id": "compItemInfo@cnctContsId",
+    "propertyTypeName": "연결 콘텐츠 아이디",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "glblChatInfo",
-    "referenceValue": "prtcpMbrId",
+    "indexable": true,
+    "analyzer": "cjk",
+    "referenceType": "",
+    "referenceValue": "",
     "defaultValue": "",
     "validationTypes": {
       "required": {
@@ -1420,10 +862,10 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "mbrInfo",
-    "pid": "refdQnaList",
-    "id": "mbrInfo@refdQnaList",
-    "propertyTypeName": "1:1문의하기 목록",
+    "tid": "compItemInfo",
+    "pid": "refdAtribList",
+    "id": "compItemInfo@refdAtribList",
+    "propertyTypeName": "속성 목록",
     "valueType": "REFERENCED",
     "required": false,
     "idable": false,
@@ -1431,8 +873,8 @@
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "qna",
-    "referenceValue": "qnarId",
+    "referenceType": "compAtribInfo",
+    "referenceValue": "compItemSeq",
     "defaultValue": "",
     "validationTypes": {
       "required": {
@@ -1463,9 +905,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "mbrInfo",
+    "tid": "compItemInfo",
     "pid": "owner",
-    "id": "mbrInfo@owner",
+    "id": "compItemInfo@owner",
     "propertyTypeName": "등록자",
     "valueType": "STRING",
     "required": false,
@@ -1506,9 +948,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "mbrInfo",
+    "tid": "compItemInfo",
     "pid": "created",
-    "id": "mbrInfo@created",
+    "id": "compItemInfo@created",
     "propertyTypeName": "등록일시",
     "valueType": "DATE",
     "required": false,
@@ -1549,9 +991,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "mbrInfo",
+    "tid": "compItemInfo",
     "pid": "modifier",
-    "id": "mbrInfo@modifier",
+    "id": "compItemInfo@modifier",
     "propertyTypeName": "수정자",
     "valueType": "STRING",
     "required": false,
@@ -1592,9 +1034,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "mbrInfo",
+    "tid": "compItemInfo",
     "pid": "changed",
-    "id": "mbrInfo@changed",
+    "id": "compItemInfo@changed",
     "propertyTypeName": "수정일시",
     "valueType": "DATE",
     "required": false,

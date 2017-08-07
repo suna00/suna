@@ -358,5 +358,65 @@
     "repositoryType": "",
     "eviction": 0,
     "tableName": "cjDb#replLikeInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "mainBasInfo",
+    "tid": "mainBasInfo",
+    "typeName": "메인 기본 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#mainBasInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "compItemInfo",
+    "tid": "compItemInfo",
+    "typeName": "컴포넌트 항목 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#compItemInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "compAtribInfo",
+    "tid": "compAtribInfo",
+    "typeName": "컴포넌트 속성 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#compAtribInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "voteBestSptrBasInfo",
+    "tid": "voteBestSptrBasInfo",
+    "typeName": "투표 BEST SUPPORTERS 기본 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#voteBestSptrBasInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "sptrInfo",
+    "tid": "sptrInfo",
+    "typeName": "SUPPORTERS 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#sptrInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "glblChatInfo",
+    "tid": "glblChatInfo",
+    "typeName": "Global Chat 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#glblChatInfo"
   }
 ]
