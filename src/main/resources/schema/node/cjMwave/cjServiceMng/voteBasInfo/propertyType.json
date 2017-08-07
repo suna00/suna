@@ -1164,6 +1164,49 @@
   {
     "typeId": "propertyType",
     "tid": "voteBasInfo",
+    "pid": "mwmcUnearnedWinYn",
+    "id": "voteBasInfo@mwmcUnearnedWinYn",
+    "propertyTypeName": "MWave MusicChart 부전승 여부",
+    "valueType": "BOOLEAN",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "voteBasInfo",
     "pid": "owner",
     "id": "voteBasInfo@owner",
     "propertyTypeName": "등록자",
