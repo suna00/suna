@@ -244,7 +244,7 @@
     "tid": "user",
     "pid": "loginSMSAuthentication",
     "propertyTypeName": "로그인 SMS 인증",
-    "valueType": "STRING",
+    "valueType": "REFERENCE",
     "required": false,
     "idable": false,
     "labelable": false,
