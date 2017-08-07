@@ -682,7 +682,7 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable":,
+    "indexable": false,
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
