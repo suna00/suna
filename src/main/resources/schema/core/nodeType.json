@@ -29,6 +29,15 @@
   {
     "parentId" : "system",
     "typeId" : "nodeType",
+    "id" : "propertyTypeValidation",
+    "tid" : "propertyTypeValidation",
+    "typeName" : "PropertyType Validation",
+    "repositoryType" : "node",
+    "eviction" : 30000
+  },
+  {
+    "parentId" : "system",
+    "typeId" : "nodeType",
     "id" : "dataSource",
     "tid" : "dataSource",
     "typeName" : "DataSource",

@@ -15,6 +15,14 @@
     "tableName": "mariaDb#testCategory"
   },
   {
+    "tid": "testMenu",
+    "parentId": "test",
+    "typeId": "nodeType",
+    "repositoryType": "node",
+    "typeName": "TEST Menu",
+    "eviction": 1000
+  },
+  {
     "tid": "testItem",
     "parentId": "test",
     "typeId": "nodeType",
@@ -47,6 +55,7 @@
     "indexable": true,
     "labelable": true,
     "required": true,
+    "i18n" : true,
     "length": 100,
     "analyzer": "cjk"
   },
@@ -74,7 +83,7 @@
     "labelable": false,
     "required": true,
     "length": 100,
-    "analyzer": "cjk"
+    "analyzer": "code"
   },
   {
     "typeId": "propertyType",
@@ -102,6 +111,87 @@
   },
   {
     "typeId": "propertyType",
+    "tid": "testCategory",
+    "pid": "created",
+    "propertyTypeName": "Created",
+    "valueType": "DATE",
+    "idable": false,
+    "indexable": false,
+    "required": false
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "testCategory",
+    "pid": "owner",
+    "propertyTypeName": "Owner",
+    "valueType": "STRING",
+    "idable": false,
+    "indexable": false,
+    "required": false
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "testCategory",
+    "pid": "changed",
+    "propertyTypeName": "Changed",
+    "valueType": "DATE",
+    "idable": false,
+    "indexable": false,
+    "required": false
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "testCategory",
+    "pid": "items",
+    "propertyTypeName": "Items",
+    "valueType": "REFERENCED",
+    "idable": false,
+    "indexable": false,
+    "required": false,
+    "referenceType" : "testItem",
+    "referenceValue" : "category"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "testMenu",
+    "pid": "menuId",
+    "propertyTypeName": "Menu ID",
+    "valueType": "STRING",
+    "idable": true,
+    "indexable": true,
+    "labelable": false,
+    "required": true,
+    "length": 100,
+    "analyzer": "code"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "testMenu",
+    "pid": "menuName",
+    "propertyTypeName": "Menu Name",
+    "valueType": "STRING",
+    "idable": false,
+    "indexable": true,
+    "labelable": true,
+    "required": true,
+    "i18n" : false,
+    "length": 100,
+    "analyzer": "cjk"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "testMenu",
+    "pid": "items",
+    "propertyTypeName": "Items",
+    "valueType": "REFERENCED",
+    "idable": false,
+    "indexable": false,
+    "length": 100,
+    "referenceType" : "testItem",
+    "referenceValue" : "menus"
+  },
+  {
+    "typeId": "propertyType",
     "tid": "testItem",
     "pid": "category",
     "propertyTypeName": "Category",
@@ -123,6 +213,19 @@
     "indexable": true,
     "required": true,
     "idType": "autoIncrement"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "testItem",
+    "pid": "menus",
+    "propertyTypeName": "Menus",
+    "valueType": "REFERENCES",
+    "idable": false,
+    "indexable": true,
+    "labelable": false,
+    "required": true,
+    "analyzer": "code",
+    "referenceType": "testMenu"
   },
   {
     "typeId": "propertyType",

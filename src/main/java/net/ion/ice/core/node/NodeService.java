@@ -177,9 +177,9 @@ public class NodeService {
 
         saveSchema("classpath:schema/core/*.json", lastChanged);
         saveSchema("classpath:schema/core/*/*.json", lastChanged);
-        saveSchema("classpath:schema/node/*.json", lastChanged);
+//        saveSchema("classpath:schema/node/*.json", lastChanged);
         saveSchema("classpath:schema/node/**/*.json", lastChanged);
-        saveSchema("classpath:schema/test/*.json", lastChanged);
+//        saveSchema("classpath:schema/test/*.json", lastChanged);
         saveSchema("classpath:schema/test/**/*.json", lastChanged);
 
     }
@@ -252,25 +252,10 @@ public class NodeService {
     }
 
 
-    public Node saveNode(Map<String, String[]> parameterMap, String typeId) {
+    public Node executeNode(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, String typeId, String event) {
         NodeType nodeType = getNodeType(typeId) ;
 
-        ExecuteContext context = ExecuteContext.makeContextFromParameter(parameterMap, nodeType) ;
-//        if(context.isExecute() && context.isSyncTable()){
-//            nodeBindingService.save(parameterMap, typeId);
-//        }
-//
-//        Node node = infinispanRepositoryService.execute(context);
-        context.execute();
-        Node node =  context.getNode();
-        node.toDisplay();
-        return node;
-    }
-
-    public Node saveNode(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, String typeId) {
-        NodeType nodeType = getNodeType(typeId) ;
-
-        ExecuteContext context = ExecuteContext.makeContextFromParameter(parameterMap, multiFileMap, nodeType) ;
+        ExecuteContext context = ExecuteContext.makeContextFromParameter(parameterMap, multiFileMap, nodeType, event) ;
         context.execute();
         Node node =  context.getNode();
         node.toDisplay();
@@ -280,7 +265,7 @@ public class NodeService {
     public Node deleteNode(Map<String, String[]> parameterMap, String typeId) {
         NodeType nodeType = getNodeType(typeId) ;
 
-        ExecuteContext context = ExecuteContext.makeContextFromParameter(parameterMap, nodeType) ;
+        ExecuteContext context = ExecuteContext.makeContextFromParameter(parameterMap, nodeType, "delete") ;
         Node node = context.getNode() ;
         infinispanRepositoryService.deleteNode(node) ;
         return node ;

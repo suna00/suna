@@ -294,7 +294,7 @@ public class NodeBindingInfo {
     private List<Object> insertParameters(Node Node) {
         List<Object> parameters = new ArrayList<>();
         for (String pid : insertPids) {
-            parameters.add(Node.getValue(pid));
+            parameters.add(Node.getBindingValue(pid));
         }
         return parameters;
     }
@@ -310,7 +310,7 @@ public class NodeBindingInfo {
     private List<Object> updateParameters(Node node) {
         List<Object> parameters = new ArrayList<>();
         for (String pid : updatePids) {
-            parameters.add(node.getValue(pid));
+            parameters.add(node.getBindingValue(pid));
         }
         return parameters;
     }

@@ -9,6 +9,7 @@ import net.ion.ice.core.infinispan.InfinispanRepositoryService;
 import net.ion.ice.core.infinispan.NotFoundNodeException;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.context.QueryContext;
+import org.apache.avro.generic.GenericData;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -168,6 +169,19 @@ public class NodeUtils {
                     return NodeUtils.getReferenceValue(value, pt) ;
                 }
             }
+            case REFERENCES: {
+                if (value instanceof List) {
+                    return value;
+                } else {
+                    List<Code> refValues = new ArrayList<>() ;
+                    if(value != null && StringUtils.isNotEmpty(value.toString())){
+                        for(String refVal : StringUtils.split(value.toString(), ",")){
+                            refValues.add(NodeUtils.getReferenceValue(refVal, pt)) ;
+                        }
+                    }
+                    return refValues ;
+                }
+            }
             case DATE :{
                 return getDateStringValue(value) ;
             }
@@ -201,6 +215,15 @@ public class NodeUtils {
             case REFERENCE: {
                 return NodeUtils.getReferenceValue(value, pt) ;
             }
+            case REFERENCES: {
+                List<Code> refValues = new ArrayList<>() ;
+                if(value != null && StringUtils.isNotEmpty(value.toString())){
+                    for(String refVal : StringUtils.split(value.toString(), ",")){
+                        refValues.add(NodeUtils.getReferenceValue(refVal, pt)) ;
+                    }
+                }
+                return refValues ;
+            }
             case DATE :{
                 return getDateStringValue(value) ;
             }
@@ -228,6 +251,8 @@ public class NodeUtils {
             }
             case STRING:case TEXT:{
                 if(value instanceof String){
+                    return value ;
+                }else if(pt.isI18n() && value instanceof Map){
                     return value ;
                 }else{
                     return value.toString() ;
@@ -259,6 +284,38 @@ public class NodeUtils {
                     return value ;
                 }else{
                     return BooleanUtils.toBoolean(value.toString()) ;
+                }
+            }
+            case CODE: case REFERENCE: {
+                if(value instanceof Code){
+                    return ((Code) value).getValue() ;
+                }else if(value instanceof Map){
+                    return ((Map) value).get("value") ;
+                }else{
+                    return value ;
+                }
+            }
+            case REFERENCES:{
+                if(value instanceof List){
+                    String refsValues = "" ;
+                    for(Object val : (List)value){
+                        if(val instanceof Code){
+                            refsValues += ((Code) val).getValue() + "," ;
+                        }else if(value instanceof Map){
+                            refsValues += ((Map) val).get("value") + "," ;
+                        }else{
+                            refsValues += val.toString().trim() + "," ;
+                        }
+                    }
+                    if(refsValues.endsWith(",")) return StringUtils.substringBeforeLast(refsValues, ",") ;
+                    else return refsValues ;
+                }else{
+                    String refsValues = "" ;
+                    for(Object val : StringUtils.split(value.toString(), ",")){
+                        refsValues += val.toString().trim() + "," ;
+                    }
+                    if(refsValues.endsWith(",")) return StringUtils.substringBeforeLast(refsValues, ",") ;
+                    else return refsValues ;
                 }
             }
             case FILE:{
@@ -293,6 +350,38 @@ public class NodeUtils {
         }
     }
 
+
+    public static Object getBindingValue(Object value, PropertyType pt, String id) {
+        if(value == null || "".equals(value.toString().trim())) return null ;
+        if(value instanceof Code) {
+            return ((Code) value).getValue() ;
+        }
+        if(pt.isI18n() && value instanceof Map) {
+            return ((Map) value).get("en");
+        }
+        switch (pt.getValueType()){
+            case FILE:{
+                if(value instanceof FileValue){
+                    return ((FileValue) value).getStorePath() ;
+                }else if(value instanceof MultipartFile){
+                    FileValue fileValue = getFileService().saveMultipartFile(pt, id, (MultipartFile) value) ;
+                    return fileValue.getStorePath() ;
+                }else if(value instanceof String){
+                    return value ;
+                }
+            }
+            case OBJECT:{
+                if(value instanceof Map){
+                    return JsonUtils.toJsonString((Map<String, Object>) value) ;
+                }
+                if(value instanceof String){
+                    return value ;
+                }
+            }
+            default:
+                return getStoreValue(value, pt, id) ;
+        }
+    }
 
     static FileService fileService ;
 
@@ -348,4 +437,32 @@ public class NodeUtils {
         return nodeList;
     }
 
+    public static Object getStoreValue(Map<String, Object> data, PropertyType pt, String id) {
+        if(data == null) return null;
+        Object value = data.get(pt.getPid()) ;
+
+        if(pt.isI18n()){
+            String i18nPrefix = pt.getPid() + "_" ;
+            Map<String, Object> i18nData = new HashMap<>() ;
+            value = NodeUtils.getStoreValue(value, pt, id) ;
+            if(value instanceof String){
+                i18nData.put("en", value) ;
+            }else if(value instanceof Map){
+                i18nData = (Map<String, Object>) value;
+            }
+
+            List<String> removePids = new ArrayList<>();
+            for(String fieldName : data.keySet()){
+                if(fieldName.startsWith(i18nPrefix)){
+                    i18nData.put(org.apache.commons.lang.StringUtils.substringAfter(fieldName, i18nPrefix), data.get(fieldName)) ;
+                    removePids.add(fieldName) ;
+                }
+            }
+            for(String fieldName : removePids) {
+                data.remove(fieldName);
+            }
+            return i18nData ;
+        }
+        return  NodeUtils.getStoreValue(value, pt, id) ;
+    }
 }

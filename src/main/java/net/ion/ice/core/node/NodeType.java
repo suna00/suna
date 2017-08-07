@@ -180,4 +180,16 @@ public class NodeType {
     public boolean isNode() {
         return NodeType.NODE.equals(nodeTypeNode.getStringValue(NodeType.REPOSITORY_TYPE)) || NodeType.NODE.equals(nodeTypeNode.getStoreValue(NodeType.REPOSITORY_TYPE));
     }
+
+    public Collection<PropertyType> getReferencePropertyTypes() {
+        List<PropertyType> results = new ArrayList<PropertyType>() ;
+
+        for(PropertyType pt : propertyTypes.values()){
+            if(pt.getValueType() == PropertyType.ValueType.REFERENCE || pt.getValueType() == PropertyType.ValueType.REFERENCES){
+                results.add(pt) ;
+            }
+        }
+        return results ;
+    }
+
 }
