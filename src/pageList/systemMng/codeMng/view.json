@@ -91,9 +91,9 @@
               "label": "그룹코드 아이디",
               "id": "id",
               "isView": "true",
-              "options": {},
-              "colSize": "",
-              "horizontalColLabelSize": "",
+              "options": "",
+              "colSize": "12",
+              "horizontalColLabelSize": "3",
               "placeholder": "",
               "helpBlockValue": "",
               "isDisabled": "false",
@@ -104,24 +104,42 @@
               "dataType": "text",
               "label": "그룹코드 명",
               "id": "name",
-              "isView": false,
-              "options": {}
+              "isView": "false",
+              "options": "",
+              "colSize": "12",
+              "horizontalColLabelSize": "3",
+              "placeholder": "",
+              "helpBlockValue": "",
+              "isDisabled": "false",
+              "isReadOnly": "false"
             },
             {
               "componentClass": "Switch",
               "dataType": "text",
               "label": "활성 여부",
               "id": "active",
-              "isView": false,
-              "options": {}
+              "isView": "false",
+              "options": "",
+              "colSize": "12",
+              "horizontalColLabelSize": "3",
+              "placeholder": "",
+              "helpBlockValue": "",
+              "isDisabled": "false",
+              "isReadOnly": "false"
             },
             {
               "componentClass": "Text",
               "dataType": "text",
               "label": "그룹코드 설명",
               "id": "desc",
-              "isView": false,
-              "options": {}
+              "isView": "false",
+              "options": "",
+              "colSize": "12",
+              "horizontalColLabelSize": "3",
+              "placeholder": "",
+              "helpBlockValue": "",
+              "isDisabled": "false",
+              "isReadOnly": "false"
             }
           ]
         }

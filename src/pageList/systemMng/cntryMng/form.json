@@ -1,0 +1,205 @@
+[
+  {
+    "componentType": "container",
+    "componentTemplateType": "",
+    "componentClassType": "",
+    "componentClass": "IceGrid",
+    "componentChildren": [
+      {
+        "componentType": "container",
+        "componentTemplateType": "",
+        "componentClassType": "",
+        "componentClass": "DefaultForm",
+        "componentChildren": [
+          {
+            "componentType": "container",
+            "componentClassType": null,
+            "componentClass": "DefaultFormFooter",
+            "componentChildren": [
+              {
+                "componentType": "presentational",
+                "componentTemplateType": "Spin",
+                "componentClassType": "BUTTON",
+                "componentClass": "ButtonSave",
+                "componentChildren": [],
+                "componentKey": "3898d22f6dd0",
+                "areaMode": true,
+                "componentProps": {
+                  "reqUrl": "/node/cntryMng/save.json",
+                  "callbackLink": "/admin/systemMng/cntryMng/list",
+                  "buttonName": "저장",
+                  "buttonIcon": "",
+                  "outline": "true",
+                  "bsStyle": "primary",
+                  "customColor": "",
+                  "bsSize": "small",
+                  "key": 0,
+                  "componentKey": "3898d22f6dd0",
+                  "parentComponentKey": "9b0a26fd6d85"
+                }
+              },
+              {
+                "componentType": "presentational",
+                "componentTemplateType": "Spin",
+                "componentClassType": "BUTTON",
+                "componentClass": "ButtonBack",
+                "componentChildren": [],
+                "componentKey": "70b539ffcbdf",
+                "areaMode": true,
+                "componentProps": {
+                  "buttonName": "리스트",
+                  "buttonIcon": "",
+                  "outline": "",
+                  "bsStyle": "default",
+                  "customColor": "",
+                  "bsSize": "small",
+                  "disabled": "",
+                  "key": 1,
+                  "componentKey": "70b539ffcbdf",
+                  "parentComponentKey": "9b0a26fd6d85"
+                }
+              }
+            ],
+            "componentKey": "9b0a26fd6d85",
+            "areaMode": true
+          }
+        ],
+        "componentKey": "536e3f03c0ab",
+        "areaMode": true,
+        "componentProps": {
+          "nodeTypeId": "cntryMng",
+          "reqUrl": "/node/cntryMng/read.json",
+          "defaultParams": "",
+          "panelProps": {
+            "colMd": "12",
+            "title": "국가 등록"
+          },
+          "formTypes": {
+            "isHorizontal": "true",
+            "colSize": "6",
+            "horizontalColLabelSize": "4",
+            "dataTypes": "cntryMng@cntryId,cntryMng@cntryNm,cntryMng@cntryImgPath,cntryMng@useYn"
+          },
+          "key": 0,
+          "componentKey": "536e3f03c0ab",
+          "parentComponentKey": "998daac1d466",
+          "dataTypes": [
+            {
+              "componentClass": "Text",
+              "dataType": "id",
+              "label": "국가아이디",
+              "id": "cntryId",
+              "isView": false,
+              "options": {},
+              "validationTypes": []
+            },
+            {
+              "componentClass": "Text",
+              "dataType": "text",
+              "label": "국가명",
+              "id": "cntryNm",
+              "isView": false,
+              "options": {},
+              "validationTypes": {
+                "required": {
+                  "value": true,
+                  "description": "필수 값 입니다."
+                },
+                "duplicated": {
+                  "value": false,
+                  "description": "중복된 값 입니다."
+                },
+                "min": {
+                  "value": 0,
+                  "description": "최소 값 입니다."
+                },
+                "max": {
+                  "value": 0,
+                  "description": "최대 값 입니다."
+                },
+                "extention": {
+                  "value": "",
+                  "description": "확장자를 허용하지 않습니다."
+                },
+                "regularExpression": {
+                  "value": "",
+                  "description": ""
+                }
+              }
+            },
+            {
+              "componentClass": "Text",
+              "dataType": "text",
+              "label": "국가이미지경로",
+              "id": "cntryImgPath",
+              "isView": false,
+              "options": {},
+              "validationTypes": {
+                "required": {
+                  "value": false,
+                  "description": "필수 값 입니다."
+                },
+                "duplicated": {
+                  "value": false,
+                  "description": "중복된 값 입니다."
+                },
+                "min": {
+                  "value": 0,
+                  "description": "최소 값 입니다."
+                },
+                "max": {
+                  "value": 0,
+                  "description": "최대 값 입니다."
+                },
+                "extention": {
+                  "value": "",
+                  "description": "확장자를 허용하지 않습니다."
+                },
+                "regularExpression": {
+                  "value": "",
+                  "description": ""
+                }
+              }
+            },
+            {
+              "componentClass": "Switch",
+              "dataType": "text",
+              "label": "사용여부",
+              "id": "useYn",
+              "isView": false,
+              "options": {},
+              "validationTypes": {
+                "required": {
+                  "value": true,
+                  "description": "필수 값 입니다."
+                },
+                "duplicated": {
+                  "value": false,
+                  "description": "중복된 값 입니다."
+                },
+                "min": {
+                  "value": 0,
+                  "description": "최소 값 입니다."
+                },
+                "max": {
+                  "value": 0,
+                  "description": "최대 값 입니다."
+                },
+                "extention": {
+                  "value": "",
+                  "description": "확장자를 허용하지 않습니다."
+                },
+                "regularExpression": {
+                  "value": "",
+                  "description": ""
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "componentKey": "998daac1d466",
+    "areaMode": true
+  }
+]
