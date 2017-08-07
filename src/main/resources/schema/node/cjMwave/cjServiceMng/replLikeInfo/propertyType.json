@@ -1,195 +1,67 @@
 [
   {
     "typeId": "propertyType",
-    "tid": "groupPhotoMultiLangInfo",
-    "pid": "groupPhotoId",
-    "id": "groupPhotoMultiLangInfo@groupPhotoId",
-    "propertyTypeName": "그룹 사진 아이디",
-    "valueType": "REFERENCE",
+    "tid": "replLikeInfo",
+    "pid": "replLikeSeq",
+    "id": "replLikeInfo@replLikeSeq",
+    "propertyTypeName": "댓글 좋아요 일련번호",
+    "valueType": "INT",
     "required": true,
     "idable": true,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
-    "referenceType": "groupPhoto",
-    "referenceValue": "groupPhotoId",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": true,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "groupPhotoMultiLangInfo",
-    "pid": "langCd",
-    "id": "groupPhotoMultiLangInfo@langCd",
-    "propertyTypeName": "언어코드",
-    "valueType": "REFERENCE",
-    "required": true,
-    "idable": true,
-    "labelable": false,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
-    "referenceType": "code",
-    "referenceValue": "",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": true,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "groupPhotoMultiLangInfo",
-    "pid": "groupPhotoNm",
-    "id": "groupPhotoMultiLangInfo@groupPhotoNm",
-    "propertyTypeName": "그룹 사진명",
-    "valueType": "STRING",
-    "required": true,
-    "idable": false,
-    "labelable": true,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "cjk",
-    "referenceType": "",
-    "referenceValue": "",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": true,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "groupPhotoMultiLangInfo",
-    "pid": "subName",
-    "id": "groupPhotoMultiLangInfo@subName",
-    "propertyTypeName": "부제명",
-    "valueType": "STRING",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "groupPhotoMultiLangInfo",
-    "pid": "groupPhotoDesc",
-    "id": "groupPhotoMultiLangInfo@groupPhotoDesc",
-    "propertyTypeName": "그룹 사진 설명",
-    "valueType": "TEXT",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
+    "indexable":true,
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "idType": "autoIncrement",
     "defaultValue": "",
     "validationTypes": {
       "required": {
-        "value": false,
+        "value": true,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": true,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "replLikeInfo",
+    "pid": "replSeq",
+    "id": "replLikeInfo@replSeq",
+    "propertyTypeName": "댓글 일련번호",
+    "valueType": "INT",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "replInfo",
+    "referenceValue": "replSeq",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": true,
         "description": "필수 값 입니다."
       },
       "duplicated": {
@@ -216,9 +88,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "groupPhotoMultiLangInfo",
+    "tid": "replLikeInfo",
     "pid": "owner",
-    "id": "groupPhotoMultiLangInfo@owner",
+    "id": "replLikeInfo@owner",
     "propertyTypeName": "등록자",
     "valueType": "STRING",
     "required": false,
@@ -259,9 +131,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "groupPhotoMultiLangInfo",
+    "tid": "replLikeInfo",
     "pid": "created",
-    "id": "groupPhotoMultiLangInfo@created",
+    "id": "replLikeInfo@created",
     "propertyTypeName": "등록일시",
     "valueType": "DATE",
     "required": false,
@@ -302,9 +174,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "groupPhotoMultiLangInfo",
+    "tid": "replLikeInfo",
     "pid": "modifier",
-    "id": "groupPhotoMultiLangInfo@modifier",
+    "id": "replLikeInfo@modifier",
     "propertyTypeName": "수정자",
     "valueType": "STRING",
     "required": false,
@@ -345,9 +217,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "groupPhotoMultiLangInfo",
+    "tid": "replLikeInfo",
     "pid": "changed",
-    "id": "groupPhotoMultiLangInfo@changed",
+    "id": "replLikeInfo@changed",
     "propertyTypeName": "수정일시",
     "valueType": "DATE",
     "required": false,

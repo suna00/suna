@@ -1,105 +1,20 @@
 [
   {
     "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
-    "pid": "songId",
-    "id": "songMultiLangInfo@songId",
-    "propertyTypeName": "곡아이디",
-    "valueType": "REFERENCE",
+    "tid": "votePredRstrtnInfo",
+    "pid": "predRstrtnSeq",
+    "id": "votePredRstrtnInfo@predRstrtnSeq",
+    "propertyTypeName": "기간 제한 일련번호",
+    "valueType": "INT",
     "required": true,
     "idable": true,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "song",
-    "referenceValue": "songId",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": true,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
-    "pid": "langCd",
-    "id": "songMultiLangInfo@langCd",
-    "propertyTypeName": "언어코드",
-    "valueType": "REFERENCE",
-    "required": true,
-    "idable": true,
-    "labelable": false,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
-    "referenceType": "code",
-    "referenceValue": "",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": true,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
-    "pid": "songNm",
-    "id": "songMultiLangInfo@songNm",
-    "propertyTypeName": "곡명",
-    "valueType": "STRING",
-    "required": true,
-    "idable": false,
-    "labelable": true,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "idType": "autoIncrement",
     "defaultValue": "",
     "validationTypes": {
       "required": {
@@ -107,7 +22,7 @@
         "description": "필수 값 입니다."
       },
       "duplicated": {
-        "value": false,
+        "value": true,
         "description": "중복된 값 입니다."
       },
       "min": {
@@ -130,23 +45,23 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
-    "pid": "subName",
-    "id": "songMultiLangInfo@subName",
-    "propertyTypeName": "부제명",
-    "valueType": "STRING",
-    "required": false,
+    "tid": "votePredRstrtnInfo",
+    "pid": "voteSeq",
+    "id": "votePredRstrtnInfo@voteSeq",
+    "propertyTypeName": "투표 일련번호",
+    "valueType": "INT",
+    "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "voteBasInfo",
+    "referenceValue": "voteSeq",
     "defaultValue": "",
     "validationTypes": {
       "required": {
-        "value": false,
+        "value": true,
         "description": "필수 값 입니다."
       },
       "duplicated": {
@@ -173,12 +88,12 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
-    "pid": "songDesc",
-    "id": "songMultiLangInfo@songDesc",
-    "propertyTypeName": "곡설명",
-    "valueType": "TEXT",
-    "required": false,
+    "tid": "votePredRstrtnInfo",
+    "pid": "rstrtnStDate",
+    "id": "votePredRstrtnInfo@rstrtnStDate",
+    "propertyTypeName": "제한 시작 일자",
+    "valueType": "DATE",
+    "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
@@ -189,7 +104,7 @@
     "defaultValue": "",
     "validationTypes": {
       "required": {
-        "value": false,
+        "value": true,
         "description": "필수 값 입니다."
       },
       "duplicated": {
@@ -216,12 +131,12 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
-    "pid": "wrds",
-    "id": "songMultiLangInfo@wrds",
-    "propertyTypeName": "가사",
-    "valueType": "TEXT",
-    "required": false,
+    "tid": "votePredRstrtnInfo",
+    "pid": "rstrtnFnsDate",
+    "id": "votePredRstrtnInfo@rstrtnFnsDate",
+    "propertyTypeName": "제한 종료 일자",
+    "valueType": "DATE",
+    "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
@@ -232,7 +147,7 @@
     "defaultValue": "",
     "validationTypes": {
       "required": {
-        "value": false,
+        "value": true,
         "description": "필수 값 입니다."
       },
       "duplicated": {
@@ -259,23 +174,23 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
-    "pid": "findKywrd",
-    "id": "songMultiLangInfo@findKywrd",
-    "propertyTypeName": "검색 키워드",
-    "valueType": "TEXT",
-    "required": false,
+    "tid": "votePredRstrtnInfo",
+    "pid": "rstrtnCnt",
+    "id": "votePredRstrtnInfo@rstrtnCnt",
+    "propertyTypeName": "제한 개수",
+    "valueType": "INT",
+    "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "cjk",
+    "indexable": false,
+    "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
     "defaultValue": "",
     "validationTypes": {
       "required": {
-        "value": false,
+        "value": true,
         "description": "필수 값 입니다."
       },
       "duplicated": {
@@ -302,9 +217,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
+    "tid": "votePredRstrtnInfo",
     "pid": "owner",
-    "id": "songMultiLangInfo@owner",
+    "id": "votePredRstrtnInfo@owner",
     "propertyTypeName": "등록자",
     "valueType": "STRING",
     "required": false,
@@ -345,9 +260,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
+    "tid": "votePredRstrtnInfo",
     "pid": "created",
-    "id": "songMultiLangInfo@created",
+    "id": "votePredRstrtnInfo@created",
     "propertyTypeName": "등록일시",
     "valueType": "DATE",
     "required": false,
@@ -388,9 +303,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
+    "tid": "votePredRstrtnInfo",
     "pid": "modifier",
-    "id": "songMultiLangInfo@modifier",
+    "id": "votePredRstrtnInfo@modifier",
     "propertyTypeName": "수정자",
     "valueType": "STRING",
     "required": false,
@@ -431,9 +346,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
+    "tid": "votePredRstrtnInfo",
     "pid": "changed",
-    "id": "songMultiLangInfo@changed",
+    "id": "votePredRstrtnInfo@changed",
     "propertyTypeName": "수정일시",
     "valueType": "DATE",
     "required": false,

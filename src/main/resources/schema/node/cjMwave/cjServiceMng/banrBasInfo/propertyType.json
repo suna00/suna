@@ -1,62 +1,20 @@
 [
   {
     "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
-    "pid": "songId",
-    "id": "songMultiLangInfo@songId",
-    "propertyTypeName": "곡아이디",
-    "valueType": "REFERENCE",
+    "tid": "banrBasInfo",
+    "pid": "banrSeq",
+    "id": "banrBasInfo@banrSeq",
+    "propertyTypeName": "배너 일련번호",
+    "valueType": "INT",
     "required": true,
     "idable": true,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "song",
-    "referenceValue": "songId",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": true,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
-    "pid": "langCd",
-    "id": "songMultiLangInfo@langCd",
-    "propertyTypeName": "언어코드",
-    "valueType": "REFERENCE",
-    "required": true,
-    "idable": true,
-    "labelable": false,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
-    "referenceType": "code",
+    "referenceType": "",
     "referenceValue": "",
+    "idType": "autoIncrement",
     "defaultValue": "",
     "validationTypes": {
       "required": {
@@ -64,7 +22,7 @@
         "description": "필수 값 입니다."
       },
       "duplicated": {
-        "value": false,
+        "value": true,
         "description": "중복된 값 입니다."
       },
       "min": {
@@ -87,10 +45,10 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
-    "pid": "songNm",
-    "id": "songMultiLangInfo@songNm",
-    "propertyTypeName": "곡명",
+    "tid": "banrBasInfo",
+    "pid": "banrNm",
+    "id": "banrBasInfo@banrNm",
+    "propertyTypeName": "배너명",
     "valueType": "STRING",
     "required": true,
     "idable": false,
@@ -130,23 +88,23 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
-    "pid": "subName",
-    "id": "songMultiLangInfo@subName",
-    "propertyTypeName": "부제명",
-    "valueType": "STRING",
-    "required": false,
+    "tid": "banrBasInfo",
+    "pid": "banrTypeCd",
+    "id": "banrBasInfo@banrTypeCd",
+    "propertyTypeName": "배너 유형 코드",
+    "valueType": "REFERENCE",
+    "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
+    "referenceType": "code",
     "referenceValue": "",
     "defaultValue": "",
     "validationTypes": {
       "required": {
-        "value": false,
+        "value": true,
         "description": "필수 값 입니다."
       },
       "duplicated": {
@@ -173,23 +131,23 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
-    "pid": "songDesc",
-    "id": "songMultiLangInfo@songDesc",
-    "propertyTypeName": "곡설명",
-    "valueType": "TEXT",
-    "required": false,
+    "tid": "banrBasInfo",
+    "pid": "banrLowTypeCd",
+    "id": "banrBasInfo@banrLowTypeCd",
+    "propertyTypeName": "배너 하위 유형 코드",
+    "valueType": "REFERENCE",
+    "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "",
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "code",
     "referenceValue": "",
     "defaultValue": "",
     "validationTypes": {
       "required": {
-        "value": false,
+        "value": true,
         "description": "필수 값 입니다."
       },
       "duplicated": {
@@ -216,23 +174,23 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
-    "pid": "wrds",
-    "id": "songMultiLangInfo@wrds",
-    "propertyTypeName": "가사",
-    "valueType": "TEXT",
-    "required": false,
+    "tid": "banrBasInfo",
+    "pid": "svcMenuDivCd",
+    "id": "banrBasInfo@svcMenuDivCd",
+    "propertyTypeName": "서비스 메뉴 구분 코드",
+    "valueType": "REFERENCE",
+    "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "",
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "code",
     "referenceValue": "",
     "defaultValue": "",
     "validationTypes": {
       "required": {
-        "value": false,
+        "value": true,
         "description": "필수 값 입니다."
       },
       "duplicated": {
@@ -259,12 +217,141 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
-    "pid": "findKywrd",
-    "id": "songMultiLangInfo@findKywrd",
-    "propertyTypeName": "검색 키워드",
-    "valueType": "TEXT",
-    "required": false,
+    "tid": "banrBasInfo",
+    "pid": "showStDt",
+    "id": "banrBasInfo@showStDt",
+    "propertyTypeName": "노출 시작일시",
+    "valueType": "DATE",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "simple",
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": true,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "banrBasInfo",
+    "pid": "showFnsDt",
+    "id": "banrBasInfo@showFnsDt",
+    "propertyTypeName": "노출 종료일시",
+    "valueType": "DATE",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "simple",
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": true,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "banrBasInfo",
+    "pid": "svcTermlDivCd",
+    "id": "banrBasInfo@svcTermlDivCd",
+    "propertyTypeName": "서비스 단말 구분 코드",
+    "valueType": "REFERENCE",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "code",
+    "referenceValue": "",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": true,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "banrBasInfo",
+    "pid": "showYn",
+    "id": "banrBasInfo@showYn",
+    "propertyTypeName": "노출 여부",
+    "valueType": "BOOLEAN",
+    "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
@@ -275,6 +362,92 @@
     "defaultValue": "",
     "validationTypes": {
       "required": {
+        "value": true,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "banrBasInfo",
+    "pid": "showCntryCdList",
+    "id": "banrBasInfo@showCntryCdList",
+    "propertyTypeName": "노출국가 코드리스트",
+    "valueType": "TEXT",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "cjk",
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": true,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "banrBasInfo",
+    "pid": "liveBanrDivCd",
+    "id": "banrBasInfo@liveBanrDivCd",
+    "propertyTypeName": "LIVE 배너 구분 코드",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "code",
+    "referenceValue": "",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
         "value": false,
         "description": "필수 값 입니다."
       },
@@ -302,9 +475,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
+    "tid": "banrBasInfo",
     "pid": "owner",
-    "id": "songMultiLangInfo@owner",
+    "id": "banrBasInfo@owner",
     "propertyTypeName": "등록자",
     "valueType": "STRING",
     "required": false,
@@ -345,9 +518,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
+    "tid": "banrBasInfo",
     "pid": "created",
-    "id": "songMultiLangInfo@created",
+    "id": "banrBasInfo@created",
     "propertyTypeName": "등록일시",
     "valueType": "DATE",
     "required": false,
@@ -388,9 +561,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
+    "tid": "banrBasInfo",
     "pid": "modifier",
-    "id": "songMultiLangInfo@modifier",
+    "id": "banrBasInfo@modifier",
     "propertyTypeName": "수정자",
     "valueType": "STRING",
     "required": false,
@@ -431,9 +604,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
+    "tid": "banrBasInfo",
     "pid": "changed",
-    "id": "songMultiLangInfo@changed",
+    "id": "banrBasInfo@changed",
     "propertyTypeName": "수정일시",
     "valueType": "DATE",
     "required": false,

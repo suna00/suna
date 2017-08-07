@@ -1,19 +1,20 @@
 [
   {
     "typeId": "propertyType",
-    "tid": "pgmClipMultiLangInfo",
-    "pid": "clipId",
-    "id": "pgmClipMultiLangInfo@clipId",
-    "propertyTypeName": "클립 아이디",
-    "valueType": "REFERENCE",
+    "tid": "banrItemInfo",
+    "pid": "banrItemSeq",
+    "id": "banrItemInfo@banrItemSeq",
+    "propertyTypeName": "배너 항목 일련번호",
+    "valueType": "INT",
     "required": true,
     "idable": true,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "pgmClip",
-    "referenceValue": "clipId",
+    "referenceType": "",
+    "referenceValue": "",
+    "idType": "autoIncrement",
     "defaultValue": "",
     "validationTypes": {
       "required": {
@@ -44,9 +45,52 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "pgmClipMultiLangInfo",
+    "tid": "banrItemInfo",
+    "pid": "banrSeq",
+    "id": "banrItemInfo@banrSeq",
+    "propertyTypeName": "배너 일련번호",
+    "valueType": "INT",
+    "required": false,
+    "idable": true,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "banrBasInfo",
+    "referenceValue": "banrSeq",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "banrItemInfo",
     "pid": "langCd",
-    "id": "pgmClipMultiLangInfo@langCd",
+    "id": "banrItemInfo@langCd",
     "propertyTypeName": "언어코드",
     "valueType": "REFERENCE",
     "required": true,
@@ -87,14 +131,14 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "pgmClipMultiLangInfo",
-    "pid": "clipNm",
-    "id": "pgmClipMultiLangInfo@clipNm",
-    "propertyTypeName": "클립명",
+    "tid": "banrItemInfo",
+    "pid": "banrItemTitle",
+    "id": "banrItemInfo@banrItemTitle",
+    "propertyTypeName": "배너 항목명",
     "valueType": "STRING",
     "required": true,
     "idable": false,
-    "labelable": true,
+    "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "cjk",
@@ -130,58 +174,15 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "pgmClipMultiLangInfo",
+    "tid": "banrItemInfo",
     "pid": "subName",
-    "id": "pgmClipMultiLangInfo@subName",
+    "id": "banrItemInfo@subName",
     "propertyTypeName": "부제명",
     "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "pgmClipMultiLangInfo",
-    "pid": "clipDesc",
-    "id": "pgmClipMultiLangInfo@clipDesc",
-    "propertyTypeName": "클립 설명",
-    "valueType": "TEXT",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
@@ -216,12 +217,12 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "pgmClipMultiLangInfo",
-    "pid": "repImgPath",
-    "id": "pgmClipMultiLangInfo@repImgPath",
-    "propertyTypeName": "대표 이미지 경로",
+    "tid": "banrItemInfo",
+    "pid": "imgPath",
+    "id": "banrItemInfo@imgPath",
+    "propertyTypeName": "이미지 경로",
     "valueType": "FILE",
-    "required": false,
+    "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
@@ -232,7 +233,7 @@
     "defaultValue": "",
     "validationTypes": {
       "required": {
-        "value": false,
+        "value": true,
         "description": "필수 값 입니다."
       },
       "duplicated": {
@@ -259,23 +260,23 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "pgmClipMultiLangInfo",
-    "pid": "clipFilePath",
-    "id": "pgmClipMultiLangInfo@clipFilePath",
-    "propertyTypeName": "CLIP 파일 경로",
-    "valueType": "FILE",
-    "required": false,
+    "tid": "banrItemInfo",
+    "pid": "linkDivCd",
+    "id": "banrItemInfo@linkDivCd",
+    "propertyTypeName": "링크 구분 코드",
+    "valueType": "REFERENCE",
+    "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "",
+    "referenceType": "code",
     "referenceValue": "",
     "defaultValue": "",
     "validationTypes": {
       "required": {
-        "value": false,
+        "value": true,
         "description": "필수 값 입니다."
       },
       "duplicated": {
@@ -302,12 +303,12 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "pgmClipMultiLangInfo",
-    "pid": "clipThumImgPath",
-    "id": "pgmClipMultiLangInfo@clipThumImgPath",
-    "propertyTypeName": "CLIP 썸네일 이미지 경로",
-    "valueType": "FILE",
-    "required": false,
+    "tid": "banrItemInfo",
+    "pid": "linkUrl",
+    "id": "banrItemInfo@linkUrl",
+    "propertyTypeName": "링크 URL",
+    "valueType": "STRING",
+    "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
@@ -318,7 +319,7 @@
     "defaultValue": "",
     "validationTypes": {
       "required": {
-        "value": false,
+        "value": true,
         "description": "필수 값 입니다."
       },
       "duplicated": {
@@ -345,53 +346,10 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "pgmClipMultiLangInfo",
-    "pid": "clipCcapFilePath",
-    "id": "pgmClipMultiLangInfo@clipCcapFilePath",
-    "propertyTypeName": "CLIP 자막 파일 경로",
-    "valueType": "FILE",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "",
-    "referenceValue": "",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "pgmClipMultiLangInfo",
-    "pid": "catmName",
-    "id": "pgmClipMultiLangInfo@catmName",
-    "propertyTypeName": "출연자명",
+    "tid": "banrItemInfo",
+    "pid": "socialLinkCds",
+    "id": "banrItemInfo@socialLinkCds",
+    "propertyTypeName": "소셜 링크 코드",
     "valueType": "STRING",
     "required": false,
     "idable": false,
@@ -431,17 +389,60 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "pgmClipMultiLangInfo",
-    "pid": "findKywrd",
-    "id": "pgmClipMultiLangInfo@findKywrd",
-    "propertyTypeName": "검색 키워드",
-    "valueType": "TEXT",
-    "required": false,
+    "tid": "banrItemInfo",
+    "pid": "sortOdrg",
+    "id": "banrItemInfo@sortOdrg",
+    "propertyTypeName": "정렬순서",
+    "valueType": "INT",
+    "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
-    "analyzer": "cjk",
+    "analyzer": "simple",
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": true,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "banrItemInfo",
+    "pid": "videFilePath",
+    "id": "banrItemInfo@videFilePath",
+    "propertyTypeName": "영상 파일 경로",
+    "valueType": "FILE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
     "defaultValue": "",
@@ -474,9 +475,224 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "pgmClipMultiLangInfo",
+    "tid": "banrItemInfo",
+    "pid": "videThumPath",
+    "id": "banrItemInfo@videThumPath",
+    "propertyTypeName": "영상 썸네일 경로",
+    "valueType": "FILE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "banrItemInfo",
+    "pid": "videStopThumPath",
+    "id": "banrItemInfo@videStopThumPath",
+    "propertyTypeName": "영상 정지 썸네일 경로",
+    "valueType": "FILE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "banrItemInfo",
+    "pid": "extrVideUrl",
+    "id": "banrItemInfo@extrVideUrl",
+    "propertyTypeName": "외부 영상 URL",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "banrItemInfo",
+    "pid": "videInstPlayYn",
+    "id": "banrItemInfo@videInstPlayYn",
+    "propertyTypeName": "영상 바로 재생 여부",
+    "valueType": "BOOLEAN",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "banrItemInfo",
+    "pid": "advmScrpt",
+    "id": "banrItemInfo@advmScrpt",
+    "propertyTypeName": "광고 스크립트",
+    "valueType": "TEXT",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "banrItemInfo",
     "pid": "owner",
-    "id": "pgmClipMultiLangInfo@owner",
+    "id": "banrItemInfo@owner",
     "propertyTypeName": "등록자",
     "valueType": "STRING",
     "required": false,
@@ -517,9 +733,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "pgmClipMultiLangInfo",
+    "tid": "banrItemInfo",
     "pid": "created",
-    "id": "pgmClipMultiLangInfo@created",
+    "id": "banrItemInfo@created",
     "propertyTypeName": "등록일시",
     "valueType": "DATE",
     "required": false,
@@ -560,9 +776,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "pgmClipMultiLangInfo",
+    "tid": "banrItemInfo",
     "pid": "modifier",
-    "id": "pgmClipMultiLangInfo@modifier",
+    "id": "banrItemInfo@modifier",
     "propertyTypeName": "수정자",
     "valueType": "STRING",
     "required": false,
@@ -603,9 +819,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "pgmClipMultiLangInfo",
+    "tid": "banrItemInfo",
     "pid": "changed",
-    "id": "pgmClipMultiLangInfo@changed",
+    "id": "banrItemInfo@changed",
     "propertyTypeName": "수정일시",
     "valueType": "DATE",
     "required": false,

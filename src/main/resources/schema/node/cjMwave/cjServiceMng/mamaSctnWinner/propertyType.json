@@ -1,62 +1,63 @@
 [
   {
     "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
-    "pid": "songId",
-    "id": "songMultiLangInfo@songId",
-    "propertyTypeName": "곡아이디",
-    "valueType": "REFERENCE",
+    "tid": "mamaSctnWinner",
+    "pid": "sctnWinnerSeq",
+    "id": "mamaSctnWinner@sctnWinnerSeq",
+    "propertyTypeName": "부문별 수상자 일련번호",
+    "valueType": "INT",
     "required": true,
     "idable": true,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "song",
-    "referenceValue": "songId",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": true,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
-    "pid": "langCd",
-    "id": "songMultiLangInfo@langCd",
-    "propertyTypeName": "언어코드",
-    "valueType": "REFERENCE",
-    "required": true,
-    "idable": true,
-    "labelable": false,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
-    "referenceType": "code",
+    "referenceType": "",
     "referenceValue": "",
+    "idType": "autoIncrement",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": true,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": true,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "mamaSctnWinner",
+    "pid": "awardSctnSeq",
+    "id": "mamaSctnWinner@awardSctnSeq",
+    "propertyTypeName": "수상 부문 일련번호",
+    "valueType": "INT",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "mamaAwardSctnInfo",
+    "referenceValue": "awardSctnSeq",
     "defaultValue": "",
     "validationTypes": {
       "required": {
@@ -87,10 +88,10 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
-    "pid": "songNm",
-    "id": "songMultiLangInfo@songNm",
-    "propertyTypeName": "곡명",
+    "tid": "mamaSctnWinner",
+    "pid": "dtlSctnNm",
+    "id": "mamaSctnWinner@dtlSctnNm",
+    "propertyTypeName": "상세 부문명",
     "valueType": "STRING",
     "required": true,
     "idable": false,
@@ -130,58 +131,273 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
-    "pid": "subName",
-    "id": "songMultiLangInfo@subName",
-    "propertyTypeName": "부제명",
+    "tid": "mamaSctnWinner",
+    "pid": "winnerId",
+    "id": "mamaSctnWinner@winnerId",
+    "propertyTypeName": "수상자 아이디",
+    "valueType": "REFERENCE",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "artist",
+    "referenceValue": "artistId",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": true,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "mamaSctnWinner",
+    "pid": "winnerName",
+    "id": "mamaSctnWinner@winnerName",
+    "propertyTypeName": "수상자 이름",
+    "valueType": "STRING",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": true,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "mamaSctnWinner",
+    "pid": "winnerSongId",
+    "id": "mamaSctnWinner@winnerSongId",
+    "propertyTypeName": "수상 곡 아이디",
+    "valueType": "REFERENCE",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "song",
+    "referenceValue": "songId",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": true,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "mamaSctnWinner",
+    "pid": "winnerSongName",
+    "id": "mamaSctnWinner@winnerSongName",
+    "propertyTypeName": "수상 곡명",
+    "valueType": "STRING",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": true,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "mamaSctnWinner",
+    "pid": "winnerThumImgPath",
+    "id": "mamaSctnWinner@winnerThumImgPath",
+    "propertyTypeName": "수상자 썸네일 경로",
+    "valueType": "FILE",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": true,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "mamaSctnWinner",
+    "pid": "sortOdrg",
+    "id": "mamaSctnWinner@sortOdrg",
+    "propertyTypeName": "정렬 순서",
+    "valueType": "INT",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "simple",
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": true,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "mamaSctnWinner",
+    "pid": "linkUrl",
+    "id": "mamaSctnWinner@linkUrl",
+    "propertyTypeName": "링크 URL",
     "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
-    "pid": "songDesc",
-    "id": "songMultiLangInfo@songDesc",
-    "propertyTypeName": "곡설명",
-    "valueType": "TEXT",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
@@ -216,95 +432,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
-    "pid": "wrds",
-    "id": "songMultiLangInfo@wrds",
-    "propertyTypeName": "가사",
-    "valueType": "TEXT",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "",
-    "referenceValue": "",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
-    "pid": "findKywrd",
-    "id": "songMultiLangInfo@findKywrd",
-    "propertyTypeName": "검색 키워드",
-    "valueType": "TEXT",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "cjk",
-    "referenceType": "",
-    "referenceValue": "",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
+    "tid": "mamaSctnWinner",
     "pid": "owner",
-    "id": "songMultiLangInfo@owner",
+    "id": "mamaSctnWinner@owner",
     "propertyTypeName": "등록자",
     "valueType": "STRING",
     "required": false,
@@ -345,9 +475,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
+    "tid": "mamaSctnWinner",
     "pid": "created",
-    "id": "songMultiLangInfo@created",
+    "id": "mamaSctnWinner@created",
     "propertyTypeName": "등록일시",
     "valueType": "DATE",
     "required": false,
@@ -388,9 +518,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
+    "tid": "mamaSctnWinner",
     "pid": "modifier",
-    "id": "songMultiLangInfo@modifier",
+    "id": "mamaSctnWinner@modifier",
     "propertyTypeName": "수정자",
     "valueType": "STRING",
     "required": false,
@@ -431,9 +561,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "songMultiLangInfo",
+    "tid": "mamaSctnWinner",
     "pid": "changed",
-    "id": "songMultiLangInfo@changed",
+    "id": "mamaSctnWinner@changed",
     "propertyTypeName": "수정일시",
     "valueType": "DATE",
     "required": false,

@@ -5,15 +5,15 @@
     "pid": "musicVideoId",
     "id": "musicVideoMultiLangInfo@musicVideoId",
     "propertyTypeName": "뮤직비디오 아이디",
-    "valueType": "STRING",
+    "valueType": "REFERENCE",
     "required": true,
     "idable": true,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "musicVideo",
+    "referenceValue": "musicVideoId",
     "defaultValue": "",
     "validationTypes": {
       "required": {
@@ -64,7 +64,7 @@
         "description": "필수 값 입니다."
       },
       "duplicated": {
-        "value": true,
+        "value": false,
         "description": "중복된 값 입니다."
       },
       "min": {
