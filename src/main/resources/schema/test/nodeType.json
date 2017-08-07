@@ -12,7 +12,7 @@
     "typeId": "nodeType",
     "repositoryType": "node",
     "typeName": "TEST Category",
-    "tableName": "mariaDb#testCategory"
+    "tableName": ""
   },
   {
     "tid": "testMenu",
