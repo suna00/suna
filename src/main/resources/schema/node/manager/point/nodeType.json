@@ -28,15 +28,6 @@
   {
     "parentId": "pointPath",
     "typeId": "nodeType",
-    "tid": "mileage",
-    "typeName": "마일리지",
-    "tableName": "ytnDevDb#mileage",
-    "repositoryType": "data",
-    "eviction": 0
-  },
-  {
-    "parentId": "pointPath",
-    "typeId": "nodeType",
     "tid": "point",
     "typeName": "제휴사 포인트",
     "tableName": "ytnDevDb#point",
@@ -49,6 +40,33 @@
     "tid": "usedPoint",
     "typeName": "포인트 사용",
     "tableName": "ytnDevDb#usedPoint",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "pointPath",
+    "typeId": "nodeType",
+    "tid": "mileageMap",
+    "typeName": "마일리지 매핑",
+    "tableName": "ytnDevDb#mileageMap",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "pointPath",
+    "typeId": "nodeType",
+    "tid": "saveMileage",
+    "typeName": "마일리지 적립",
+    "tableName": "ytnDevDb#saveMileage",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "pointPath",
+    "typeId": "nodeType",
+    "tid": "usedMileage",
+    "typeName": "마일리지 사용",
+    "tableName": "ytnDevDb#usedMileage",
     "repositoryType": "data",
     "eviction": 0
   }

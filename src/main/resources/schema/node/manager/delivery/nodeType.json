@@ -33,14 +33,5 @@
     "tableName": "ytnDevDb#orderDeliveryPrice",
     "repositoryType": "data",
     "eviction": 0
-  },
-  {
-    "parentId": "deliveryPath",
-    "typeId": "nodeType",
-    "tid": "setDeliveryPrice",
-    "typeName": "배송비 설정",
-    "tableName": "ytnDevDb#setDeliveryPrice",
-    "repositoryType": "node",
-    "eviction": 0
   }
 ]

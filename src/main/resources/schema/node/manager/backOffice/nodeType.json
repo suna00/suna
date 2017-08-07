@@ -244,6 +244,15 @@
   {
     "parentId": "backOfficePath",
     "typeId": "nodeType",
+    "tid": "searchWordHistory",
+    "typeName": "검색어 이력",
+    "tableName": "ytnDevDb#searchWordHistory",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
     "tid": "affliateRequest",
     "typeName": "제휴 신청서",
     "tableName": "ytnDevDb#affliateRequest",

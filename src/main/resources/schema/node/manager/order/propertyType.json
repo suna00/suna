@@ -37,7 +37,7 @@
     "tid": "cart",
     "pid": "siteId",
     "propertyTypeName": "사이트ID",
-    "valueType": "INT",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
@@ -131,7 +131,7 @@
   {
     "typeId": "propertyType",
     "tid": "cart",
-    "pid": "modified",
+    "pid": "changed",
     "propertyTypeName": "수정일",
     "valueType": "DATE",
     "required": false,
@@ -276,7 +276,7 @@
   {
     "typeId": "propertyType",
     "tid": "cartProduct",
-    "pid": "modified",
+    "pid": "changed",
     "propertyTypeName": "수정일",
     "valueType": "DATE",
     "required": true,
@@ -405,7 +405,7 @@
   {
     "typeId": "propertyType",
     "tid": "cartProductItem",
-    "pid": "modified",
+    "pid": "changed",
     "propertyTypeName": "수정일",
     "valueType": "DATE",
     "required": true,
@@ -472,7 +472,7 @@
     "tid": "developmentFundHistory",
     "pid": "siteId",
     "propertyTypeName": "사이트ID",
-    "valueType": "INT",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
@@ -601,7 +601,7 @@
     "tid": "purchaseOrder",
     "pid": "siteId",
     "propertyTypeName": "사이트ID",
-    "valueType": "INT",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
@@ -775,7 +775,7 @@
   {
     "typeId": "propertyType",
     "tid": "purchaseOrder",
-    "pid": "modified",
+    "pid": "changed",
     "propertyTypeName": "수정일(주문변경일)",
     "valueType": "DATE",
     "required": false,
@@ -1048,7 +1048,7 @@
   {
     "typeId": "propertyType",
     "tid": "orderProduct",
-    "pid": "modified",
+    "pid": "changed",
     "propertyTypeName": "수정일(주문변경일)",
     "valueType": "DATE",
     "required": false,
@@ -1177,7 +1177,7 @@
   {
     "typeId": "propertyType",
     "tid": "orderProductItem",
-    "pid": "modified",
+    "pid": "changed",
     "propertyTypeName": "수정일(주문변경일)",
     "valueType": "DATE",
     "required": false,
@@ -1498,7 +1498,7 @@
   {
     "typeId": "propertyType",
     "tid": "payment",
-    "pid": "modified",
+    "pid": "changed",
     "propertyTypeName": "수정일",
     "valueType": "DATE",
     "required": false,
@@ -1934,7 +1934,7 @@
     "tid": "requestChangeOfOrder",
     "pid": "siteId",
     "propertyTypeName": "사이트ID",
-    "valueType": "INT",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
@@ -2300,7 +2300,7 @@
   {
     "typeId": "propertyType",
     "tid": "requestChangeOfOrder",
-    "pid": "modified",
+    "pid": "changed",
     "propertyTypeName": "수정일",
     "valueType": "DATE",
     "required": false,
@@ -2311,6 +2311,22 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "searchFilterItem",
+    "pid": "productId",
+    "propertyTypeName": "상품ID",
+    "valueType": "INT",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "product",
+    "referenceValue": "productId",
     "defaultValue": ""
   }
 ]

@@ -42,5 +42,23 @@
     "tableName": "ytnDevDb#productOptionItem",
     "repositoryType": "node",
     "eviction": 0
+  },
+  {
+    "parentId": "productPath",
+    "typeId": "nodeType",
+    "tid": "searchFilterPolicy",
+    "typeName": "검색필터정책",
+    "tableName": "ytnDevDb#searchFilterPolicy",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "productPath",
+    "typeId": "nodeType",
+    "tid": "searchFilterItem",
+    "typeName": "검색필터코드",
+    "tableName": "ytnDevDb#searchFilterItem",
+    "repositoryType": "node",
+    "eviction": 0
   }
 ]
