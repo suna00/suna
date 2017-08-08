@@ -1,24 +1,6 @@
 [
   {
-    "typeId" : "adminGnbMenu",
-    "backOfficeId": "admin",
-    "menuId": "systemMng",
-    "menuName": "시스템 관리-CJ",
-    "order": "101",
-    "icon": "",
-    "active": "true"
-  },
-  {
-    "typeId" : "adminGnbMenu",
-    "backOfficeId": "admin",
-    "menuId": "metadataMng",
-    "menuName": "메타데이터 관리-CJ",
-    "order": "102",
-    "icon": "",
-    "active": "true"
-  },
-  {
-    "typeId" : "adminGnbMenu",
+    "typeId": "adminGnbMenu",
     "backOfficeId": "admin",
     "menuId": "dashboard",
     "menuName": "Dashboard",
@@ -27,56 +9,65 @@
     "active": "true"
   },
   {
-    "typeId" : "adminGnbMenu",
+    "typeId": "adminGnbMenu",
+    "backOfficeId": "admin",
+    "menuId": "metadataMng",
+    "menuName": "메타데이터 관리",
+    "order": "20",
+    "icon": "",
+    "active": "true"
+  },
+  {
+    "typeId": "adminGnbMenu",
+    "backOfficeId": "admin",
+    "menuId": "webSvcMng",
+    "menuName": "웹서비스 관리",
+    "order": "30",
+    "icon": "",
+    "active": "true"
+  },
+  {
+    "typeId": "adminGnbMenu",
+    "backOfficeId": "admin",
+    "menuId": "mbrMng",
+    "menuName": "회원 관리",
+    "order": "40",
+    "icon": "",
+    "active": "true"
+  },
+  {
+    "typeId": "adminGnbMenu",
+    "backOfficeId": "admin",
+    "menuId": "statMng",
+    "menuName": "통계 관리",
+    "order": "50",
+    "icon": "",
+    "active": "true"
+  },
+  {
+    "typeId": "adminGnbMenu",
+    "backOfficeId": "admin",
+    "menuId": "systemMng",
+    "menuName": "시스템 관리",
+    "order": "60",
+    "icon": "",
+    "active": "true"
+  },
+  {
+    "typeId": "adminGnbMenu",
     "backOfficeId": "admin",
     "menuId": "custom",
     "menuName": "테스트 컴포넌트",
-    "order": "20",
+    "order": "200",
     "icon": "",
     "active": "true"
   },
   {
-    "typeId" : "adminGnbMenu",
+    "typeId": "adminGnbMenu",
     "backOfficeId": "admin",
     "menuId": "configMng",
     "menuName": "설정 관리",
-    "order": "100",
-    "icon": "",
-    "active": "true"
-  },
-  {
-    "typeId" : "adminGnbMenu",
-    "backOfficeId": "cm",
-    "menuId": "dashboard",
-    "menuName": "Dashboard",
-    "order": "10",
-    "icon": "",
-    "active": "true"
-  },
-  {
-    "typeId" : "adminGnbMenu",
-    "backOfficeId": "cm",
-    "menuId": "contentsMng",
-    "menuName": "콘텐츠 관리",
-    "order": "20",
-    "icon": "",
-    "active": "true"
-  },
-  {
-    "typeId" : "adminGnbMenu",
-    "backOfficeId": "sm",
-    "menuId": "dashboard",
-    "menuName": "Dashboard",
-    "order": "10",
-    "icon": "",
-    "active": "true"
-  },
-  {
-    "typeId" : "adminGnbMenu",
-    "backOfficeId": "sm",
-    "menuId": "productMng",
-    "menuName": "상품 관리",
-    "order": "20",
+    "order": "201",
     "icon": "",
     "active": "true"
   }

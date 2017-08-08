@@ -132,9 +132,9 @@
   {
     "typeId": "propertyType",
     "tid": "mainBasInfo",
-    "pid": "svcMenuDivCd",
-    "id": "mainBasInfo@svcMenuDivCd",
-    "propertyTypeName": "서비스 메뉴 구분 코드",
+    "pid": "svcDvcDivCd",
+    "id": "mainBasInfo@svcDvcDivCd",
+    "propertyTypeName": "서비스 단말 구분 코드",
     "valueType": "REFERENCE",
     "required": true,
     "idable": false,
