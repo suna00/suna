@@ -267,7 +267,11 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     }
 
     public Object getValue(String pid) {
-        return get(pid) ;
+        Object value = get(pid)  ;
+        if(value == null && nodeValue.containsKey(pid)){
+            value = nodeValue.getValue(pid) ;
+        }
+        return value ;
     }
 
     public String getLabel(NodeType nodeType) {

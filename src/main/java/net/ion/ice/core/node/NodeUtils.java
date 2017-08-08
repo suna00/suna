@@ -378,6 +378,9 @@ public class NodeUtils {
                     return value ;
                 }
             }
+            case DATE :{
+                return getDateStringValue(value) ;
+            }
             default:
                 return getStoreValue(value, pt, id) ;
         }
