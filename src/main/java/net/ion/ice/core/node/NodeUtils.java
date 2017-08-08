@@ -133,16 +133,14 @@ public class NodeUtils {
         }
     }
 
-    public static Long getDateValue(Object value) {
+    public static Date getDateValue(Object value) {
         if(value == null) return null ;
 
-        if (value instanceof Date){
-            return Long.valueOf(((Date) value).getTime());
-        } else if(value instanceof Long) {
-            return (Long) value;
-        } else {
+        if(value instanceof Date){
+            return (Date) value;
+        }else{
             try {
-                return Long.valueOf(DateUtils.parseDate(value.toString(),"yyyyMMdd", "yyyy-MM-dd", "yyyy/MM/dd", "yyyyMMddHHmmss", "yyyy-MM-dd HH:mm:ss", "yyyy/MM/dd HH:mm:ss", "yyyyMMddHHmmssSSS").getTime());
+                return DateUtils.parseDate(value.toString(),"yyyyMMdd", "yyyy-MM-dd", "yyyy/MM/dd", "yyyyMMddHHmmss", "yyyy-MM-dd HH:mm:ss", "yyyy/MM/dd HH:mm:ss", "yyyyMMddHHmmssSSS");
             } catch (ParseException e) {
                 return null ;
             }
@@ -248,8 +246,6 @@ public class NodeUtils {
                 if(value instanceof String) {
                     return getDateValue(value);
                 }else if(value instanceof Date){
-                    return Long.valueOf(((Date) value).getTime()) ;
-                }else if(value instanceof Long) {
                     return value ;
                 }
             }
