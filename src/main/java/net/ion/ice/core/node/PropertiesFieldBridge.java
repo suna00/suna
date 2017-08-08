@@ -70,8 +70,9 @@ public class PropertiesFieldBridge implements FieldBridge {
                 break;
             }
             case DATE :{
-                Field field = new AnalyzerField(pid, DateTools.dateToString(NodeUtils.getDateValue(entry.getValue()), DateTools.Resolution.SECOND), sortedFieldAnalyzer(AnalyzerFactory.getAnalyzer(PropertyType.AnalyzerType.code))) ;
-                document.add(field);
+//                Field field = new AnalyzerField(pid,  DateTools.dateToString(NodeUtils.getDateValue(entry.getValue()), DateTools.Resolution.SECOND), sortedFieldAnalyzer(AnalyzerFactory.getAnalyzer(PropertyType.AnalyzerType.code))) ;
+//                document.add(field);
+                document.add(new org.apache.lucene.document.LongField(pid, NodeUtils.getDateValue(entry.getValue()), numericFieldType(valueType)));
             }
 //            case CODE :{
 //                Field field = new AnalyzerField(pid, entry.getValue().to,  fieldAnalyzer(propertyType.getLuceneAnalyzer())) ;
