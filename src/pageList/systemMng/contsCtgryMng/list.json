@@ -30,7 +30,7 @@
                   "buttonName": "등록",
                   "buttonIcon": "",
                   "outline": "",
-                  "bsStyle": "default",
+                  "bsStyle": "primary",
                   "customColor": "",
                   "bsSize": "small",
                   "disabled": "",
@@ -76,7 +76,8 @@
               "idAble": "true",
               "options": {
                 "componentClass": "Text"
-              }
+              },
+              "validationTypes": []
             },
             "contsCtgryGroupNm": {
               "label": "콘텐츠 카테고리 그룹 명",
@@ -84,6 +85,7 @@
               "options": {
                 "componentClass": "Text"
               },
+              "validationTypes": [],
               "viewLink": "true",
               "viewPath": "/admin/systemMng/contsCtgryMng/cj/CtgryForm?id={{contsCtgryGroupId}}"
             },
@@ -92,14 +94,16 @@
               "idAble": "false",
               "options": {
                 "componentClass": "Date"
-              }
+              },
+              "validationTypes": []
             },
             "changed": {
               "label": "수정일시",
               "idAble": "false",
               "options": {
                 "componentClass": "Date"
-              }
+              },
+              "validationTypes": []
             }
           }
         }

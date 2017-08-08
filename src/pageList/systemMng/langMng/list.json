@@ -30,7 +30,7 @@
                   "buttonName": "등록",
                   "buttonIcon": "",
                   "outline": "",
-                  "bsStyle": "default",
+                  "bsStyle": "primary",
                   "customColor": "",
                   "bsSize": "small",
                   "disabled": "",

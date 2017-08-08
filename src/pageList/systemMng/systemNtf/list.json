@@ -30,7 +30,7 @@
                   "buttonName": "등록",
                   "buttonIcon": "",
                   "outline": "",
-                  "bsStyle": "default",
+                  "bsStyle": "primary",
                   "customColor": "",
                   "bsSize": "small",
                   "disabled": "",
@@ -46,6 +46,35 @@
               "key": "DefaultListFooter",
               "componentKey": "fb4a59214ef2",
               "parentComponentKey": "9c673f37ab02"
+            }
+          },
+          {
+            "componentType": "container",
+            "componentTemplateType": "",
+            "componentClassType": "",
+            "componentClass": "DefaultListSearch",
+            "componentChildren": [],
+            "componentKey": "5207f1f25a4a",
+            "areaMode": true,
+            "componentProps": {
+              "key": "DefaultListSearch",
+              "componentKey": "5207f1f25a4a",
+              "parentComponentKey": "9c673f37ab02",
+              "searchTypes": [],
+              "searchKeys": {
+                "componentClass": "Select",
+                "label": "",
+                "id": "searchKeys",
+                "isView": false,
+                "options": {
+                  "datas": [
+                    {
+                      "label": "전체",
+                      "value": ""
+                    }
+                  ]
+                }
+              }
             }
           }
         ],
@@ -76,21 +105,24 @@
               "idAble": "true",
               "options": {
                 "componentClass": "Numeric"
-              }
+              },
+              "validationTypes": []
             },
             "ntfTgtCd": {
               "label": "공지 대상코드",
               "idAble": "false",
               "options": {
                 "componentClass": "Select2"
-              }
+              },
+              "validationTypes": []
             },
             "ntfTypeCd": {
               "label": "공지 유형코드",
               "idAble": "false",
               "options": {
                 "componentClass": "Select2"
-              }
+              },
+              "validationTypes": []
             },
             "ntfTitle": {
               "label": "공지 제목",
@@ -98,6 +130,7 @@
               "options": {
                 "componentClass": "Text"
               },
+              "validationTypes": [],
               "viewLink": "true",
               "viewPath": "/admin/systemMng/systemNtf/view?id={{ntfSeq}}"
             },
@@ -106,21 +139,24 @@
               "idAble": "false",
               "options": {
                 "componentClass": "Date"
-              }
+              },
+              "validationTypes": []
             },
             "created": {
               "label": "등록일시",
               "idAble": "false",
               "options": {
                 "componentClass": "Date"
-              }
+              },
+              "validationTypes": []
             },
             "pstngStDt": {
               "label": "게시 시작 일시",
               "idAble": "false",
               "options": {
                 "componentClass": "Date"
-              }
+              },
+              "validationTypes": []
             }
           }
         }

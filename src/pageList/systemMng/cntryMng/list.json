@@ -30,7 +30,7 @@
                   "buttonName": "등록",
                   "buttonIcon": "",
                   "outline": "",
-                  "bsStyle": "default",
+                  "bsStyle": "primary",
                   "customColor": "",
                   "bsSize": "small",
                   "disabled": "",
@@ -66,44 +66,27 @@
             "responsive": "true",
             "striped": "true",
             "hasEmptyTh": "false",
-            "dataTypes": "cntryMng@cntryNm,cntryMng@cntryImgPath,cntryMng@useYn,cntryMng@created"
+            "dataTypes": "cntryMng@sortOdrg,cntryMng@cntryNm,cntryMng@cntryImgPath,cntryMng@useYn,cntryMng@created"
           },
           "key": 0,
           "componentKey": "566b61bc076a",
           "parentComponentKey": "f14873494281",
           "dataTypes": {
+            "sortOdrg": {
+              "label": "정렬 순서",
+              "idAble": "false",
+              "options": {
+                "componentClass": "Numeric"
+              },
+              "validationTypes": []
+            },
             "cntryNm": {
               "label": "국가명",
               "idAble": "false",
               "options": {
                 "componentClass": "Text"
               },
-              "validationTypes": {
-                "required": {
-                  "value": true,
-                  "description": "필수 값 입니다."
-                },
-                "duplicated": {
-                  "value": false,
-                  "description": "중복된 값 입니다."
-                },
-                "min": {
-                  "value": 0,
-                  "description": "최소 값 입니다."
-                },
-                "max": {
-                  "value": 0,
-                  "description": "최대 값 입니다."
-                },
-                "extention": {
-                  "value": "",
-                  "description": "확장자를 허용하지 않습니다."
-                },
-                "regularExpression": {
-                  "value": "",
-                  "description": ""
-                }
-              },
+              "validationTypes": [],
               "viewLink": "true",
               "viewPath": "/admin/systemMng/cntryMng/view?id={{cntryId}}"
             },
@@ -113,32 +96,7 @@
               "options": {
                 "componentClass": "Text"
               },
-              "validationTypes": {
-                "required": {
-                  "value": false,
-                  "description": "필수 값 입니다."
-                },
-                "duplicated": {
-                  "value": false,
-                  "description": "중복된 값 입니다."
-                },
-                "min": {
-                  "value": 0,
-                  "description": "최소 값 입니다."
-                },
-                "max": {
-                  "value": 0,
-                  "description": "최대 값 입니다."
-                },
-                "extention": {
-                  "value": "",
-                  "description": "확장자를 허용하지 않습니다."
-                },
-                "regularExpression": {
-                  "value": "",
-                  "description": ""
-                }
-              }
+              "validationTypes": []
             },
             "useYn": {
               "label": "사용여부",
@@ -146,32 +104,7 @@
               "options": {
                 "componentClass": "Switch"
               },
-              "validationTypes": {
-                "required": {
-                  "value": true,
-                  "description": "필수 값 입니다."
-                },
-                "duplicated": {
-                  "value": false,
-                  "description": "중복된 값 입니다."
-                },
-                "min": {
-                  "value": 0,
-                  "description": "최소 값 입니다."
-                },
-                "max": {
-                  "value": 0,
-                  "description": "최대 값 입니다."
-                },
-                "extention": {
-                  "value": "",
-                  "description": "확장자를 허용하지 않습니다."
-                },
-                "regularExpression": {
-                  "value": "",
-                  "description": ""
-                }
-              }
+              "validationTypes": []
             },
             "created": {
               "label": "등록일시",
@@ -179,32 +112,7 @@
               "options": {
                 "componentClass": "Date"
               },
-              "validationTypes": {
-                "required": {
-                  "value": false,
-                  "description": "필수 값 입니다."
-                },
-                "duplicated": {
-                  "value": false,
-                  "description": "중복된 값 입니다."
-                },
-                "min": {
-                  "value": 0,
-                  "description": "최소 값 입니다."
-                },
-                "max": {
-                  "value": 0,
-                  "description": "최대 값 입니다."
-                },
-                "extention": {
-                  "value": "",
-                  "description": "확장자를 허용하지 않습니다."
-                },
-                "regularExpression": {
-                  "value": "",
-                  "description": ""
-                }
-              }
+              "validationTypes": []
             }
           }
         }

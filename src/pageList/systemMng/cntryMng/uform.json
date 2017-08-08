@@ -79,7 +79,7 @@
             "isHorizontal": "true",
             "colSize": "6",
             "horizontalColLabelSize": "4",
-            "dataTypes": "cntryMng@cntryId,cntryMng@cntryNm,cntryMng@cntryImgPath,cntryMng@useYn"
+            "dataTypes": "cntryMng@cntryId,cntryMng@cntryNm,cntryMng@cntryImgPath,cntryMng@sortOdrg,cntryMng@useYn"
           },
           "key": 0,
           "componentKey": "1e0dfbc7a59a",
@@ -90,8 +90,9 @@
               "dataType": "id",
               "label": "국가아이디",
               "id": "cntryId",
+              "defaultValue": "",
               "isView": "true",
-              "options": "",
+              "options": {},
               "validationTypes": {
                 "required": {
                   "value": true,
@@ -130,6 +131,7 @@
               "dataType": "text",
               "label": "국가명",
               "id": "cntryNm",
+              "defaultValue": "",
               "isView": false,
               "options": {},
               "validationTypes": {
@@ -164,7 +166,8 @@
               "dataType": "text",
               "label": "국가이미지경로",
               "id": "cntryImgPath",
-              "isView": false,
+              "defaultValue": "",
+              "isView": "false",
               "options": {},
               "validationTypes": {
                 "required": {
@@ -191,13 +194,30 @@
                   "value": "",
                   "description": ""
                 }
-              }
+              },
+              "colSize": "12",
+              "horizontalColLabelSize": "2",
+              "placeholder": "",
+              "helpBlockValue": "",
+              "isDisabled": "false",
+              "isReadOnly": "false"
+            },
+            {
+              "componentClass": "Numeric",
+              "dataType": "text",
+              "label": "정렬 순서",
+              "id": "sortOdrg",
+              "defaultValue": "",
+              "isView": false,
+              "options": {},
+              "validationTypes": []
             },
             {
               "componentClass": "Switch",
               "dataType": "text",
               "label": "사용여부",
               "id": "useYn",
+              "defaultValue": "",
               "isView": false,
               "options": {},
               "validationTypes": {
