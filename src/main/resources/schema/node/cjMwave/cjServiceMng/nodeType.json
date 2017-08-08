@@ -418,5 +418,55 @@
     "repositoryType": "node",
     "eviction": 0,
     "tableName": "cjDb#glblChatInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "banrLineupInfo",
+    "tid": "banrLineupInfo",
+    "typeName": "배너 라인업 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#banrLineupInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "banrLineupItem",
+    "tid": "banrLineupItem",
+    "typeName": "배너 라인업 항목",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#banrLineupItem"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "banrLineupadvmShowInfo",
+    "tid": "banrLineupadvmShowInfo",
+    "typeName": "배너 라인업 광고 노출 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#banrLineupadvmShowInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "glblChatChInfo",
+    "tid": "glblChatChInfo",
+    "typeName": "Global Chat 채널 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#glblChatChInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "faqCtgryInfo",
+    "tid": "faqCtgryInfo",
+    "typeName": "FAQ카테고리 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#faqCtgryInfo"
   }
 ]
