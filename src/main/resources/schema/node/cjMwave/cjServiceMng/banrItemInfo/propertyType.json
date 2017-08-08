@@ -648,9 +648,52 @@
   {
     "typeId": "propertyType",
     "tid": "banrItemInfo",
-    "pid": "advmScrpt",
-    "id": "banrItemInfo@advmScrpt",
-    "propertyTypeName": "광고 스크립트",
+    "pid": "advmUrl",
+    "id": "banrItemInfo@advmUrl",
+    "propertyTypeName": "광고 URL",
+    "valueType": "TEXT",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "banrItemInfo",
+    "pid": "advmRightUrl",
+    "id": "banrItemInfo@advmRightUrl",
+    "propertyTypeName": "광고 우측 URL",
     "valueType": "TEXT",
     "required": false,
     "idable": false,

@@ -1,10 +1,10 @@
 [
   {
     "typeId": "propertyType",
-    "tid": "glblChatInfo",
-    "pid": "glblChatSeq",
-    "id": "glblChatInfo@glblChatSeq",
-    "propertyTypeName": "Global Chat 일련번호",
+    "tid": "faqCtgryInfo",
+    "pid": "faqCtgrySeq",
+    "id": "faqCtgryInfo@faqCtgrySeq",
+    "propertyTypeName": "FAQ 카테고리 일련번호",
     "valueType": "INT",
     "required": true,
     "idable": true,
@@ -45,103 +45,17 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "glblChatInfo",
-    "pid": "glblChatChSeq",
-    "id": "glblChatInfo@glblChatChSeq",
-    "propertyTypeName": "Global Chat 채널 일련번호",
-    "valueType": "REFERENCE",
+    "tid": "faqCtgryInfo",
+    "pid": "faqCtgryNm",
+    "id": "faqCtgryInfo@faqCtgryNm",
+    "propertyTypeName": "FAQ 카테고리명",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
-    "labelable": false,
+    "labelable": true,
     "treeable": false,
     "indexable": true,
-    "analyzer": "code",
-    "referenceType": "glblChatChInfo",
-    "referenceValue": "glblChatChSeq",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": true,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "glblChatInfo",
-    "pid": "prtcpMbrId",
-    "id": "glblChatInfo@prtcpMbrId",
-    "propertyTypeName": "참여 회원 아이디",
-    "valueType": "REFERENCE",
-    "required": true,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
-    "referenceType": "mbrInfo",
-    "referenceValue": "mbrId",
-    "defaultValue": "",
-    "validationTypes": {
-      "required": {
-        "value": true,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "glblChatInfo",
-    "pid": "chatOriginSbst",
-    "id": "glblChatInfo@chatOriginSbst",
-    "propertyTypeName": "채팅 원문 내용",
-    "valueType": "TEXT",
-    "required": true,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
+    "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
     "defaultValue": "",
@@ -174,17 +88,17 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "glblChatInfo",
-    "pid": "chatTranSbst",
-    "id": "glblChatInfo@chatTranSbst",
-    "propertyTypeName": "채팅 번역 내용 ",
-    "valueType": "TEXT",
+    "tid": "faqCtgryInfo",
+    "pid": "showOdrg",
+    "id": "faqCtgryInfo@showOdrg",
+    "propertyTypeName": "노출 순서",
+    "valueType": "INT",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": false,
-    "analyzer": null,
+    "indexable": true,
+    "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
     "defaultValue": "",
@@ -217,9 +131,138 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "glblChatInfo",
+    "tid": "faqCtgryInfo",
+    "pid": "showYn",
+    "id": "faqCtgryInfo@showYn",
+    "propertyTypeName": "노출 여부",
+    "valueType": "BOOLEAN",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "cjk",
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": true,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "faqCtgryInfo",
+    "pid": "descSbst",
+    "id": "faqCtgryInfo@descSbst",
+    "propertyTypeName": "설명 내용",
+    "valueType": "TEXT",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "faqCtgryInfo",
+    "pid": "thumImgPath",
+    "id": "faqCtgryInfo@thumImgPath",
+    "propertyTypeName": "썸네일 이미지 경로",
+    "valueType": "FILE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "faqCtgryInfo",
     "pid": "owner",
-    "id": "glblChatInfo@owner",
+    "id": "faqCtgryInfo@owner",
     "propertyTypeName": "등록자",
     "valueType": "STRING",
     "required": false,
@@ -260,9 +303,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "glblChatInfo",
+    "tid": "faqCtgryInfo",
     "pid": "created",
-    "id": "glblChatInfo@created",
+    "id": "faqCtgryInfo@created",
     "propertyTypeName": "등록일시",
     "valueType": "DATE",
     "required": false,
@@ -303,9 +346,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "glblChatInfo",
+    "tid": "faqCtgryInfo",
     "pid": "modifier",
-    "id": "glblChatInfo@modifier",
+    "id": "faqCtgryInfo@modifier",
     "propertyTypeName": "수정자",
     "valueType": "STRING",
     "required": false,
@@ -346,9 +389,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "glblChatInfo",
+    "tid": "faqCtgryInfo",
     "pid": "changed",
-    "id": "glblChatInfo@changed",
+    "id": "faqCtgryInfo@changed",
     "propertyTypeName": "수정일시",
     "valueType": "DATE",
     "required": false,

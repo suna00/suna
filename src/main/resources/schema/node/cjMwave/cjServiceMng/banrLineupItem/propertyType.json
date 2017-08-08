@@ -1,10 +1,10 @@
 [
   {
     "typeId": "propertyType",
-    "tid": "glblChatInfo",
-    "pid": "glblChatSeq",
-    "id": "glblChatInfo@glblChatSeq",
-    "propertyTypeName": "Global Chat 일련번호",
+    "tid": "banrLineupItem",
+    "pid": "banrLineupItemSeq",
+    "id": "banrLineupItem@banrLineupItemSeq",
+    "propertyTypeName": "배너 라인업 항목 일련번호",
     "valueType": "INT",
     "required": true,
     "idable": true,
@@ -12,8 +12,8 @@
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "banrLineupInfo",
+    "referenceValue": "banrLineupSeq",
     "idType": "autoIncrement",
     "defaultValue": "",
     "validationTypes": {
@@ -45,10 +45,10 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "glblChatInfo",
-    "pid": "glblChatChSeq",
-    "id": "glblChatInfo@glblChatChSeq",
-    "propertyTypeName": "Global Chat 채널 일련번호",
+    "tid": "banrLineupItem",
+    "pid": "banrLineupSeq",
+    "id": "banrLineupItem@banrLineupSeq",
+    "propertyTypeName": "배너 라인업 일련번호",
     "valueType": "REFERENCE",
     "required": true,
     "idable": false,
@@ -56,8 +56,8 @@
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "glblChatChInfo",
-    "referenceValue": "glblChatChSeq",
+    "referenceType": "code",
+    "referenceValue": "",
     "defaultValue": "",
     "validationTypes": {
       "required": {
@@ -88,19 +88,19 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "glblChatInfo",
-    "pid": "prtcpMbrId",
-    "id": "glblChatInfo@prtcpMbrId",
-    "propertyTypeName": "참여 회원 아이디",
-    "valueType": "REFERENCE",
+    "tid": "banrLineupItem",
+    "pid": "contsId",
+    "id": "banrLineupItem@contsId",
+    "propertyTypeName": "콘텐츠 아이디",
+    "valueType": "STRING",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
-    "analyzer": "code",
-    "referenceType": "mbrInfo",
-    "referenceValue": "mbrId",
+    "analyzer": "cjk",
+    "referenceType": "",
+    "referenceValue": "",
     "defaultValue": "",
     "validationTypes": {
       "required": {
@@ -131,11 +131,54 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "glblChatInfo",
-    "pid": "chatOriginSbst",
-    "id": "glblChatInfo@chatOriginSbst",
-    "propertyTypeName": "채팅 원문 내용",
-    "valueType": "TEXT",
+    "tid": "banrLineupItem",
+    "pid": "contsNm",
+    "id": "banrLineupItem@contsNm",
+    "propertyTypeName": "콘텐츠 명",
+    "valueType": "STRING",
+    "required": true,
+    "idable": false,
+    "labelable": true,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": true,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "banrLineupItem",
+    "pid": "thumImgPath",
+    "id": "banrLineupItem@thumImgPath",
+    "propertyTypeName": "썸네일 이미지 경로",
+    "valueType": "FILE",
     "required": true,
     "idable": false,
     "labelable": false,
@@ -174,11 +217,11 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "glblChatInfo",
-    "pid": "chatTranSbst",
-    "id": "glblChatInfo@chatTranSbst",
-    "propertyTypeName": "채팅 번역 내용 ",
-    "valueType": "TEXT",
+    "tid": "banrLineupItem",
+    "pid": "videFilePath",
+    "id": "banrLineupItem@videFilePath",
+    "propertyTypeName": "영상 파일 경로",
+    "valueType": "FILE",
     "required": true,
     "idable": false,
     "labelable": false,
@@ -217,9 +260,52 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "glblChatInfo",
+    "tid": "banrLineupItem",
+    "pid": "sortOdrg",
+    "id": "banrLineupItem@sortOdrg",
+    "propertyTypeName": "정렬 순서",
+    "valueType": "INT",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "simple",
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": "",
+    "validationTypes": {
+      "required": {
+        "value": true,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "banrLineupItem",
     "pid": "owner",
-    "id": "glblChatInfo@owner",
+    "id": "banrLineupItem@owner",
     "propertyTypeName": "등록자",
     "valueType": "STRING",
     "required": false,
@@ -260,9 +346,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "glblChatInfo",
+    "tid": "banrLineupItem",
     "pid": "created",
-    "id": "glblChatInfo@created",
+    "id": "banrLineupItem@created",
     "propertyTypeName": "등록일시",
     "valueType": "DATE",
     "required": false,
@@ -303,9 +389,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "glblChatInfo",
+    "tid": "banrLineupItem",
     "pid": "modifier",
-    "id": "glblChatInfo@modifier",
+    "id": "banrLineupItem@modifier",
     "propertyTypeName": "수정자",
     "valueType": "STRING",
     "required": false,
@@ -346,9 +432,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "glblChatInfo",
+    "tid": "banrLineupItem",
     "pid": "changed",
-    "id": "glblChatInfo@changed",
+    "id": "banrLineupItem@changed",
     "propertyTypeName": "수정일시",
     "valueType": "DATE",
     "required": false,
