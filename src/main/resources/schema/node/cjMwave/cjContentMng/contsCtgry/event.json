@@ -1,0 +1,10 @@
+[
+  {
+    "typeId" : "eventAction",
+    "event": "contsCtgry@create",
+    "action" : "sortEvent",
+    "actionType" : "service",
+    "actionBody" : "treeService.sortEvent",
+    "order" : 1
+  }
+]
