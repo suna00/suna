@@ -70,5 +70,69 @@
     "name" : "선택",
     "order" : 2,
     "active" : true
+  },
+  {
+    "typeId" : "code",
+    "groupCodeId" : "mainDiv",
+    "id" : "main",
+    "name" : "메인",
+    "order" : 1,
+    "active" : true
+  },
+  {
+    "typeId" : "code",
+    "groupCodeId" : "mainDiv",
+    "id" : "subMain",
+    "name" : "서브메인",
+    "order" : 2,
+    "active" : true
+  },
+  {
+    "typeId" : "code",
+    "groupCodeId" : "svcLo",
+    "id" : "mwave",
+    "name" : "MWave",
+    "order" : 1,
+    "active" : true
+  },
+  {
+    "typeId" : "code",
+    "groupCodeId" : "svcLo",
+    "id" : "mama",
+    "name" : "MAMA",
+    "order" : 2,
+    "active" : true
+  },
+  {
+    "typeId" : "code",
+    "groupCodeId" : "svcLo",
+    "id" : "kcon",
+    "name" : "KCON",
+    "order" : 3,
+    "active" : true
+  },
+  {
+    "typeId" : "code",
+    "groupCodeId" : "svcDvcDiv",
+    "id" : "pcweb",
+    "name" : "PC Web",
+    "order" : 1,
+    "active" : true
+  },
+  {
+    "typeId" : "code",
+    "groupCodeId" : "svcDvcDiv",
+    "id" : "moweb",
+    "name" : "MO Web",
+    "order" : 2,
+    "active" : true
+  },
+  {
+    "typeId" : "code",
+    "groupCodeId" : "svcDvcDiv",
+    "id" : "moapp",
+    "name" : "MO APP",
+    "order" : 3,
+    "active" : true
   }
 ]

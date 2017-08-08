@@ -26,5 +26,26 @@
     "name" : "언어 상태코드",
     "active" : true,
     "desc" : "언어관리에 고정/선택 상태코드"
+  },
+  {
+    "typeId" : "groupCode",
+    "id" : "mainDiv",
+    "name" : "메인 구분",
+    "active" : true,
+    "desc" : "메인, 서브메인을 구분하기 위한 코드"
+  },
+  {
+    "typeId" : "groupCode",
+    "id" : "svcLo",
+    "name" : "서비스 위치",
+    "active" : true,
+    "desc" : "서비스 노출 위치"
+  },
+  {
+    "typeId" : "groupCode",
+    "id" : "svcDvcDiv",
+    "name" : "서비스 단말 구분",
+    "active" : true,
+    "desc" : "서비스 단말 구분"
   }
 ]
