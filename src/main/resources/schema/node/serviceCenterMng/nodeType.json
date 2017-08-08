@@ -2,13 +2,13 @@
   {
     "parentId": "root",
     "typeId": "nodeType",
-    "tid": "serviceCenterPath",
+    "tid": "serviceCenterMng",
     "typeName": "고객센터 관리",
     "repositoryType": "path",
     "eviction": 0
   },
   {
-    "parentId": "serviceCenterPath",
+    "parentId": "serviceCenterMng",
     "typeId": "nodeType",
     "tid": "review",
     "typeName": "상품평",
@@ -17,7 +17,7 @@
     "eviction": 0
   },
   {
-    "parentId": "serviceCenterPath",
+    "parentId": "serviceCenterMng",
     "typeId": "nodeType",
     "tid": "productAnswer",
     "typeName": "QNA 답변",
@@ -26,7 +26,7 @@
     "eviction": 0
   },
   {
-    "parentId": "serviceCenterPath",
+    "parentId": "serviceCenterMng",
     "typeId": "nodeType",
     "tid": "productQuestion",
     "typeName": "QNA 질문",
@@ -35,7 +35,7 @@
     "eviction": 0
   },
   {
-    "parentId": "serviceCenterPath",
+    "parentId": "serviceCenterMng",
     "typeId": "nodeType",
     "tid": "reportReview",
     "typeName": "상품평 신고",
@@ -44,7 +44,7 @@
     "eviction": 0
   },
   {
-    "parentId": "serviceCenterPath",
+    "parentId": "serviceCenterMng",
     "typeId": "nodeType",
     "tid": "oneToOneQuestion",
     "typeName": "1대1문의",
@@ -53,7 +53,7 @@
     "eviction": 0
   },
   {
-    "parentId": "serviceCenterPath",
+    "parentId": "serviceCenterMng",
     "typeId": "nodeType",
     "tid": "oneToOneAnswer",
     "typeName": "1대1답변",
@@ -62,7 +62,7 @@
     "eviction": 0
   },
   {
-    "parentId": "serviceCenterPath",
+    "parentId": "serviceCenterMng",
     "typeId": "nodeType",
     "tid": "frequentlyAskedQuestion",
     "typeName": "FAQ",
@@ -71,7 +71,7 @@
     "eviction": 0
   },
   {
-    "parentId": "serviceCenterPath",
+    "parentId": "serviceCenterMng",
     "typeId": "nodeType",
     "tid": "frequentlyUsedAnswer",
     "typeName": "자주쓰는답변",
@@ -80,7 +80,7 @@
     "eviction": 0
   },
   {
-    "parentId": "serviceCenterPath",
+    "parentId": "serviceCenterMng",
     "typeId": "nodeType",
     "tid": "commonNotice",
     "typeName": "공지사항",

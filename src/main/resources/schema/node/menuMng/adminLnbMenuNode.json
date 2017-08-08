@@ -16,6 +16,108 @@
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "adm",
+    "gnbMenuId": "serviceCenterMng",
+    "parentMenuId": "root",
+    "menuId": "question",
+    "menuName": "1:1문의",
+    "order": "10",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "ytn/QuestionList" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "serviceCenterMng",
+    "parentMenuId": "root",
+    "menuId": "qna",
+    "menuName": "상품 Q&A",
+    "order": "20",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "ytn/QNAList" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "serviceCenterMng",
+    "parentMenuId": "root",
+    "menuId": "review",
+    "menuName": "이용후기",
+    "order": "30",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "ytn/ReviewList" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "serviceCenterMng",
+    "parentMenuId": "root",
+    "menuId": "faq",
+    "menuName": "FAQ",
+    "order": "40",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" },
+      { "pageName": "등록", "pageUrl": "createForm" },
+      { "pageName": "수정", "pageUrl": "updateForm" }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "serviceCenterMng",
+    "parentMenuId": "root",
+    "menuId": "notice",
+    "menuName": "공지사항",
+    "order": "50",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" },
+      { "pageName": "등록", "pageUrl": "createForm" },
+      { "pageName": "수정", "pageUrl": "updateForm" }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "serviceCenterMng",
+    "parentMenuId": "root",
+    "menuId": "answer",
+    "menuName": "자주쓰는 답변",
+    "order": "60",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" },
+      { "pageName": "등록", "pageUrl": "createForm" },
+      { "pageName": "수정", "pageUrl": "updateForm" }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
     "gnbMenuId": "adminAccountMng",
     "parentMenuId": "root",
     "menuId": "account",
@@ -26,7 +128,8 @@
     "index": "false",
     "pages": [
       { "pageName": "목록", "pageUrl": "list" },
-      { "pageName": "등록/수정", "pageUrl": "form" }
+      { "pageName": "등록", "pageUrl": "createForm" },
+      { "pageName": "수정", "pageUrl": "updateForm" }
     ],
     "customPages": []
   },
