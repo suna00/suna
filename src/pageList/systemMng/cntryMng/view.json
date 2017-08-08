@@ -29,7 +29,7 @@
                   "buttonName": "수정",
                   "buttonIcon": "",
                   "outline": "",
-                  "bsStyle": "default",
+                  "bsStyle": "primary",
                   "customColor": "",
                   "bsSize": "small",
                   "disabled": "",

@@ -25,11 +25,11 @@
                 "componentKey": "8570e53cf4e1",
                 "areaMode": true,
                 "componentProps": {
-                  "reqUrl": "/admin/systemMng/systemNtf/uform?id={{systemNtf}}",
+                  "reqUrl": "/admin/systemMng/systemNtf/uform?id={{ntfSeq}}",
                   "buttonName": "수정",
                   "buttonIcon": "",
                   "outline": "",
-                  "bsStyle": "default",
+                  "bsStyle": "primary",
                   "customColor": "",
                   "bsSize": "small",
                   "disabled": "",
