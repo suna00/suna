@@ -88,11 +88,11 @@ public class LuceneQueryUtils {
             SortField.Type sortType = null ;
 
             switch (sortTypeStr){
-                case "STRING":case "TEXT":{
+                case "STRING":case "TEXT":case "DATE":{
                     sortType = SortField.Type.STRING ;
                     break ;
                 }
-                case "LONG":case "DATE": {
+                case "LONG": {
                     sortType = SortField.Type.LONG;
                     break ;
                 }
