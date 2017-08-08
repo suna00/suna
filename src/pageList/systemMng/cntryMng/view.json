@@ -107,7 +107,7 @@
             "isHorizontal": "true",
             "colSize": "6",
             "horizontalColLabelSize": "4",
-            "dataTypes": "cntryMng@cntryId,cntryMng@cntryNm,cntryMng@cntryImgPath,cntryMng@useYn,cntryMng@owner,cntryMng@created,cntryMng@modifier,cntryMng@changed"
+            "dataTypes": "cntryMng@cntryId,cntryMng@cntryNm,cntryMng@cntryImgPath,cntryMng@sortOdrg,cntryMng@useYn,cntryMng@owner,cntryMng@created,cntryMng@modifier,cntryMng@changed"
           },
           "key": 0,
           "componentKey": "c865e2ea9abb",
@@ -118,6 +118,7 @@
               "dataType": "id",
               "label": "국가아이디",
               "id": "cntryId",
+              "defaultValue": "",
               "isView": true,
               "options": {},
               "validationTypes": {
@@ -152,6 +153,7 @@
               "dataType": "text",
               "label": "국가명",
               "id": "cntryNm",
+              "defaultValue": "",
               "isView": true,
               "options": {},
               "validationTypes": {
@@ -186,6 +188,7 @@
               "dataType": "text",
               "label": "국가이미지경로",
               "id": "cntryImgPath",
+              "defaultValue": "",
               "isView": true,
               "options": {},
               "validationTypes": {
@@ -213,13 +216,28 @@
                   "value": "",
                   "description": ""
                 }
-              }
+              },
+              "colSize": "12",
+              "horizontalColLabelSize": "2",
+              "placeholder": "",
+              "helpBlockValue": ""
+            },
+            {
+              "componentClass": "Numeric",
+              "dataType": "text",
+              "label": "정렬 순서",
+              "id": "sortOdrg",
+              "defaultValue": "",
+              "isView": true,
+              "options": {},
+              "validationTypes": []
             },
             {
               "componentClass": "Switch",
               "dataType": "text",
               "label": "사용여부",
               "id": "useYn",
+              "defaultValue": "",
               "isView": true,
               "options": {},
               "validationTypes": {
@@ -254,6 +272,7 @@
               "dataType": "text",
               "label": "등록자",
               "id": "owner",
+              "defaultValue": "",
               "isView": true,
               "options": {},
               "validationTypes": {
@@ -288,6 +307,7 @@
               "dataType": "text",
               "label": "등록일시",
               "id": "created",
+              "defaultValue": "",
               "isView": true,
               "options": {},
               "validationTypes": {
@@ -322,6 +342,7 @@
               "dataType": "text",
               "label": "수정자",
               "id": "modifier",
+              "defaultValue": "",
               "isView": true,
               "options": {},
               "validationTypes": {
@@ -356,6 +377,7 @@
               "dataType": "text",
               "label": "수정일시",
               "id": "changed",
+              "defaultValue": "",
               "isView": true,
               "options": {},
               "validationTypes": {

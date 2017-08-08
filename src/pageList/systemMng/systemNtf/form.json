@@ -90,44 +90,66 @@
               "dataType": "text",
               "label": "공지 대상코드",
               "id": "ntfTgtCd",
-              "isView": false,
+              "defaultValue": "",
+              "isView": "false",
               "options": {
-                "reqUrl": "/node/code/code.json"
-              }
+                "reqUrl": "/node/code/code.json?groupCodeId=systemNtfTgtCd"
+              },
+              "validationTypes": [],
+              "colSize": "",
+              "horizontalColLabelSize": "",
+              "placeholder": "",
+              "helpBlockValue": "",
+              "isDisabled": "false",
+              "isReadOnly": "false"
             },
             {
               "componentClass": "Select2",
               "dataType": "text",
               "label": "공지 유형코드",
               "id": "ntfTypeCd",
-              "isView": false,
+              "defaultValue": "",
+              "isView": "false",
               "options": {
-                "reqUrl": "/node/code/code.json"
-              }
+                "reqUrl": "/node/code/code.json?groupCodeId=systemNtfTypeCd"
+              },
+              "validationTypes": [],
+              "colSize": "",
+              "horizontalColLabelSize": "",
+              "placeholder": "",
+              "helpBlockValue": "",
+              "isDisabled": "false",
+              "isReadOnly": "false"
             },
             {
               "componentClass": "Date",
               "dataType": "text",
               "label": "게시 시작 일시",
               "id": "pstngStDt",
+              "defaultValue": "",
               "isView": false,
-              "options": {}
+              "options": {},
+              "validationTypes": []
             },
             {
               "componentClass": "Date",
               "dataType": "text",
               "label": "게시 종료 일시",
               "id": "pstngFnsDt",
+              "defaultValue": "",
               "isView": false,
-              "options": {}
+              "options": {},
+              "validationTypes": []
             },
             {
               "componentClass": "Text",
               "dataType": "text",
               "label": "공지 제목",
               "id": "ntfTitle",
+              "defaultValue": "",
               "isView": "false",
               "options": {},
+              "validationTypes": [],
               "colSize": "12",
               "horizontalColLabelSize": "2",
               "placeholder": "",
@@ -140,8 +162,10 @@
               "dataType": "text",
               "label": "공지 내용",
               "id": "ntfSbst",
+              "defaultValue": "",
               "isView": "false",
               "options": {},
+              "validationTypes": [],
               "colSize": "12",
               "horizontalColLabelSize": "2",
               "placeholder": "",

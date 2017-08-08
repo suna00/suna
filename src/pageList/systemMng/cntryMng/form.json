@@ -78,7 +78,7 @@
             "isHorizontal": "true",
             "colSize": "6",
             "horizontalColLabelSize": "4",
-            "dataTypes": "cntryMng@cntryId,cntryMng@cntryNm,cntryMng@cntryImgPath,cntryMng@useYn"
+            "dataTypes": "cntryMng@cntryNm,cntryMng@cntryImgPath,cntryMng@sortOdrg,cntryMng@useYn"
           },
           "key": 0,
           "componentKey": "536e3f03c0ab",
@@ -86,18 +86,10 @@
           "dataTypes": [
             {
               "componentClass": "Text",
-              "dataType": "id",
-              "label": "국가아이디",
-              "id": "cntryId",
-              "isView": false,
-              "options": {},
-              "validationTypes": []
-            },
-            {
-              "componentClass": "Text",
               "dataType": "text",
               "label": "국가명",
               "id": "cntryNm",
+              "defaultValue": "",
               "isView": false,
               "options": {},
               "validationTypes": {
@@ -132,6 +124,7 @@
               "dataType": "text",
               "label": "국가이미지경로",
               "id": "cntryImgPath",
+              "defaultValue": "",
               "isView": false,
               "options": {},
               "validationTypes": {
@@ -162,11 +155,22 @@
               }
             },
             {
+              "componentClass": "Numeric",
+              "dataType": "text",
+              "label": "정렬 순서",
+              "id": "sortOdrg",
+              "defaultValue": "",
+              "isView": false,
+              "options": {},
+              "validationTypes": []
+            },
+            {
               "componentClass": "Switch",
               "dataType": "text",
               "label": "사용여부",
               "id": "useYn",
-              "isView": false,
+              "defaultValue": "true",
+              "isView": "false",
               "options": {},
               "validationTypes": {
                 "required": {
@@ -193,7 +197,13 @@
                   "value": "",
                   "description": ""
                 }
-              }
+              },
+              "colSize": "",
+              "horizontalColLabelSize": "",
+              "placeholder": "",
+              "helpBlockValue": "",
+              "isDisabled": "false",
+              "isReadOnly": "false"
             }
           ]
         }

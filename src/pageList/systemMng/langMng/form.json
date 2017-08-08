@@ -89,26 +89,50 @@
               "dataType": "text",
               "label": "언어명",
               "id": "langNm",
-              "isView": false,
-              "options": {}
+              "defaultValue": "",
+              "isView": "false",
+              "options": {},
+              "validationTypes": [],
+              "colSize": "12",
+              "horizontalColLabelSize": "2",
+              "placeholder": "",
+              "helpBlockValue": "",
+              "isDisabled": "false",
+              "isReadOnly": "false"
             },
             {
               "componentClass": "Select2",
               "dataType": "text",
               "label": "상태코드",
               "id": "sttusCd",
-              "isView": false,
+              "defaultValue": "",
+              "isView": "false",
               "options": {
-                "reqUrl": "/node/code/code.json"
-              }
+                "reqUrl": "/node/code/code.json?groupCodeId=langSttusCd"
+              },
+              "validationTypes": [],
+              "colSize": "6",
+              "horizontalColLabelSize": "4",
+              "placeholder": "",
+              "helpBlockValue": "",
+              "isDisabled": "false",
+              "isReadOnly": "false"
             },
             {
               "componentClass": "Switch",
               "dataType": "text",
               "label": "사용여부",
               "id": "useYn",
-              "isView": false,
-              "options": {}
+              "defaultValue": "true",
+              "isView": "false",
+              "options": {},
+              "validationTypes": [],
+              "colSize": "6",
+              "horizontalColLabelSize": "4",
+              "placeholder": "",
+              "helpBlockValue": "",
+              "isDisabled": "false",
+              "isReadOnly": "false"
             }
           ]
         }
