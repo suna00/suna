@@ -32,7 +32,7 @@
     "id" : "builderPage",
     "tid" : "builderPage",
     "typeName" : "빌더 페이지",
-    "repositoryType" : "data",
+    "repositoryType" : "node",
     "eviction" : 500,
     "tableName": "ytnDevDb#builderPage"
   }
