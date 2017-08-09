@@ -468,5 +468,15 @@
     "repositoryType": "node",
     "eviction": 0,
     "tableName": "cjDb#faqCtgryInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "onairIInfo",
+    "tid": "onairIInfo",
+    "typeName": "On-Air 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#onairIInfo"
   }
 ]
