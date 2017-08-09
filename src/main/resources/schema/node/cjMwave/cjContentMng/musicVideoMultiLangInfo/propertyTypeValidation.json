@@ -1,0 +1,418 @@
+[
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation@musicVideoMultiLangInfo@musicVideoId",
+    "propertyTypeId": "musicVideoMultiLangInfo@musicVideoId",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": true,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation@musicVideoMultiLangInfo@langCd",
+    "propertyTypeId": "musicVideoMultiLangInfo@langCd",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": true,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation@musicVideoMultiLangInfo@musicVideoNm",
+    "propertyTypeId": "musicVideoMultiLangInfo@musicVideoNm",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": true,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation@musicVideoMultiLangInfo@subName",
+    "propertyTypeId": "musicVideoMultiLangInfo@subName",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation@musicVideoMultiLangInfo@musicVideoDesc",
+    "propertyTypeId": "musicVideoMultiLangInfo@musicVideoDesc",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation@musicVideoMultiLangInfo@imgPath",
+    "propertyTypeId": "musicVideoMultiLangInfo@imgPath",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation@musicVideoMultiLangInfo@youtubeUrl",
+    "propertyTypeId": "musicVideoMultiLangInfo@youtubeUrl",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation@musicVideoMultiLangInfo@todouUrl",
+    "propertyTypeId": "musicVideoMultiLangInfo@todouUrl",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation@musicVideoMultiLangInfo@findKywrd",
+    "propertyTypeId": "musicVideoMultiLangInfo@findKywrd",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation@musicVideoMultiLangInfo@owner",
+    "propertyTypeId": "musicVideoMultiLangInfo@owner",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation@musicVideoMultiLangInfo@created",
+    "propertyTypeId": "musicVideoMultiLangInfo@created",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation@musicVideoMultiLangInfo@modifier",
+    "propertyTypeId": "musicVideoMultiLangInfo@modifier",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation@musicVideoMultiLangInfo@changed",
+    "propertyTypeId": "musicVideoMultiLangInfo@changed",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  }
+]

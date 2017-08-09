@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 
 /**
@@ -41,6 +42,8 @@ public class ApplicationContextManager implements ApplicationContextAware{
     }
 
     public static Resource getResource(String location){
+        System.out.println("================ location :: " + location);
+        System.out.println("================ context :: " + String.valueOf(context));
         return context.getResource(location) ;
     }
 
