@@ -80,7 +80,7 @@ public class EventService {
         if(!executeContext.isExecute()) return  ;
 
         NodeType nodeType = executeContext.getNodeType() ;
-        if(nodeType.isNode()) {
+        if(nodeType.isNode() && executeContext.getNode() != null) {
             infinispanService.execute(executeContext) ;
         }
 

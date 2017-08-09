@@ -1,6 +1,7 @@
 [
   {
     "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation@nodeType@parentId",
     "propertyTypeId": "nodeType@parentId",
     "validation": {
       "language": "ko",
@@ -14,6 +15,7 @@
   },
   {
     "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation@nodeType@tid",
     "propertyTypeId": "nodeType@tid",
     "validation": {
       "language": "ko",
@@ -27,6 +29,7 @@
   },
   {
     "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation@nodeType@repositoryType",
     "propertyTypeId": "nodeType@repositoryType",
     "validation": {
       "language": "ko",
@@ -40,6 +43,7 @@
   },
   {
     "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation@nodeType@typeName",
     "propertyTypeId": "nodeType@typeName",
     "validation": {
       "language": "ko",
@@ -53,6 +57,7 @@
   },
   {
     "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation@nodeType@eviction",
     "propertyTypeId": "nodeType@eviction",
     "validation": {
       "language": "ko",
@@ -66,6 +71,7 @@
   },
   {
     "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation@propertyType@tid",
     "propertyTypeId": "propertyType@tid",
     "validation": {
       "language": "ko",
@@ -79,6 +85,7 @@
   },
   {
     "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation@propertyType@pid",
     "propertyTypeId": "propertyType@pid",
     "validation": {
       "language": "ko",
@@ -92,6 +99,7 @@
   },
   {
     "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation@propertyType@propertyTypeName",
     "propertyTypeId": "propertyType@propertyTypeName",
     "validation": {
       "language": "ko",
@@ -105,6 +113,7 @@
   },
   {
     "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation@propertyType@valueType",
     "propertyTypeId": "propertyType@valueType",
     "validation": {
       "language": "ko",
@@ -118,6 +127,7 @@
   },
   {
     "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation@propertyType@defaultValue",
     "propertyTypeId": "propertyType@defaultValue",
     "validation": {
       "language": "ko",
@@ -131,6 +141,7 @@
   },
   {
     "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation@backOffice@id",
     "propertyTypeId": "backOffice@id",
     "validation": {
       "language": "ko",
@@ -144,6 +155,7 @@
   },
   {
     "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation@backOffice@name",
     "propertyTypeId": "backOffice@name",
     "validation": {
       "language": "ko",
