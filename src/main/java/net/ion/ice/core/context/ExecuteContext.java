@@ -8,6 +8,7 @@ import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -265,7 +266,7 @@ public class ExecuteContext implements Context{
     }
 
     public String getEvent() {
-        return event == null ? (exist ? "update" : "create") : event ;
+        return event == null ? (exist ? "update" : "create") : (StringUtils.equals(event, "save") ? (exist ? "update" : "create") : event ) ;
     }
 
     public Map<String,Object> getData() {
