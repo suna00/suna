@@ -22,6 +22,26 @@
   {
     "typeId" : "builderContainerComponent",
     "componentClassType": "",
+    "componentClass": "BootstrapListOne",
+    "componentClassName": "BOOTSTRAP LIST 1",
+    "icon": "fa-list",
+    "order": 21,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClassType": "",
+    "componentClass": "BootstrapListTwo",
+    "componentClassName": "BOOTSTRAP LIST 2",
+    "icon": "fa-list",
+    "order": 22,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClassType": "",
     "componentClass": "DefaultListSearch",
     "componentClassName": "DEFAULT LIST SEARCH",
     "icon": "fa-search",
@@ -67,6 +87,86 @@
     "icon": "fa-toggle-on",
     "order": 80,
     "active": false,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClassType": "",
+    "componentClass": "BasicColumnChart",
+    "componentClassName": "BASIC COLUMN CHART",
+    "icon": "fa-bar-chart",
+    "order": 90,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClassType": "",
+    "componentClass": "PieWidthLegendChart",
+    "componentClassName": "PIE WIDTH LEGEND CHART",
+    "icon": "fa-bar-chart",
+    "order": 91,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClassType": "",
+    "componentClass": "BasicColumnAltChart",
+    "componentClassName": "BASIC COLUMN ALT CHART",
+    "icon": "fa-bar-chart",
+    "order": 92,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClassType": "",
+    "componentClass": "StackedColumnChart",
+    "componentClassName": "STACKED COLUMN CHART",
+    "icon": "fa-bar-chart",
+    "order": 93,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClassType": "",
+    "componentClass": "PolarChart",
+    "componentClassName": "POLAR CHART",
+    "icon": "fa-bar-chart",
+    "order": 94,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClassType": "",
+    "componentClass": "BasicBarChart",
+    "componentClassName": "BASIC BAR CHART",
+    "icon": "fa-bar-chart",
+    "order": 95,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClassType": "",
+    "componentClass": "StackedAreaChart",
+    "componentClassName": "STACKED AREA CHART",
+    "icon": "fa-bar-chart",
+    "order": 96,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClassType": "",
+    "componentClass": "SpiderwebChart",
+    "componentClassName": "SPIDERWEB CHART",
+    "icon": "fa-bar-chart",
+    "order": 97,
+    "active": true,
     "componentChildren": ""
   }
 ]
