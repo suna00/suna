@@ -17,6 +17,7 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -255,9 +256,9 @@ public class NodeBindingInfo {
 
         Map<String, Object> result = new ConcurrentHashMap<>();
         Map<String, Object> totalCount;
-        if(resultCountValue == null || resultCountValue.isEmpty()){
+        if (resultCountValue == null || resultCountValue.isEmpty()) {
             totalCount = jdbcTemplate.queryForMap(totalCountSql);
-        }else{
+        } else {
             totalCount = jdbcTemplate.queryForMap(totalCountSql, resultCountValue.toArray());
         }
         List<Map<String, Object>> items = jdbcTemplate.queryForList(listParamSql, searchListValue.toArray());
@@ -291,10 +292,10 @@ public class NodeBindingInfo {
         return parameters;
     }
 
-    private List<Object> insertParameters(Node Node) {
+    private List<Object> insertParameters(Node node) {
         List<Object> parameters = new ArrayList<>();
         for (String pid : insertPids) {
-            parameters.add(Node.getBindingValue(pid));
+            parameters.add(extractNodeValue(node, pid));
         }
         return parameters;
     }
@@ -309,10 +310,28 @@ public class NodeBindingInfo {
 
     private List<Object> updateParameters(Node node) {
         List<Object> parameters = new ArrayList<>();
+
         for (String pid : updatePids) {
-            parameters.add(node.getBindingValue(pid));
+            parameters.add(extractNodeValue(node, pid));
         }
         return parameters;
+    }
+
+    public Object extractNodeValue(Node node, String pid) {
+        Object value;
+
+        if (pid.equals("owner")) {
+            value = node.getStringValue("owner");
+        } else if (pid.equals("created")) {
+            value = node.getBindingValue("created");
+        } else if (pid.equals("modifier")) {
+            value = node.getStringValue("modifier");
+        } else if (pid.equals("changed")) {
+            value = node.getBindingValue("changed");
+        } else {
+            value = node.getStringValue(pid);
+        }
+        return value;
     }
 
     private List<String> retrieveParameters(String id) {
