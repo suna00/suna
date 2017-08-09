@@ -95,7 +95,9 @@
       { "pageName": "등록", "pageUrl": "createForm" },
       { "pageName": "수정", "pageUrl": "updateForm" }
     ],
-    "customPages": []
+    "customPages": [
+      { "pageName": "테스트", "pageUrl": "ytn/FilesTest" }
+    ]
   },
   {
     "typeId" : "adminLnbMenu",
