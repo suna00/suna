@@ -80,10 +80,21 @@
     "typeId" : "builderPresentationalComponent",
     "componentTemplateType": "Spin",
     "componentClassType": "INPUT",
+    "componentClass": "TextMask",
+    "componentClassName": "TEXT MASK",
+    "icon": "fa-square-o",
+    "order": 31,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentTemplateType": "Spin",
+    "componentClassType": "INPUT",
     "componentClass": "Password",
     "componentClassName": "PASSWORD",
     "icon": "fa-square-o",
-    "order": 31,
+    "order": 32,
     "active": true,
     "componentChildren": ""
   },
