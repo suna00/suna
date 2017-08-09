@@ -1,0 +1,37 @@
+[
+  {
+    "typeId" : "langMng",
+    "langSeq" : 1,
+    "langNm" : "한국",
+    "sttusCd" : "langFix",
+    "useYn" : true
+  },
+  {
+    "typeId" : "langMng",
+    "langSeq" : 2,
+    "langNm" : "영어",
+    "sttusCd" : "langFix",
+    "useYn" : true
+  },
+  {
+    "typeId" : "langMng",
+    "langSeq" : 3,
+    "langNm" : "중국-간체",
+    "sttusCd" : "langFix",
+    "useYn" : true
+  },
+  {
+    "typeId" : "langMng",
+    "langSeq" : 4,
+    "langNm" : "중국-번체",
+    "sttusCd" : "langFix",
+    "useYn" : true
+  },
+  {
+    "typeId" : "langMng",
+    "langSeq" : 5,
+    "langNm" : "일문",
+    "sttusCd" : "langFix",
+    "useYn" : true
+  }
+]
