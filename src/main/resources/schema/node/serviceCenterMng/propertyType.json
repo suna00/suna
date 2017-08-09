@@ -1122,7 +1122,7 @@
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "commonCodeToBe",
+    "referenceType": "commonCode",
     "referenceValue": "code",
     "defaultValue": ""
   },
@@ -1138,7 +1138,7 @@
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "commonCodeToBe",
+    "referenceType": "commonCode",
     "referenceValue": "code",
     "defaultValue": ""
   },
@@ -1202,7 +1202,7 @@
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "commonCodeToBe",
+    "referenceType": "commonCode",
     "referenceValue": "code",
     "defaultValue": ""
   },
