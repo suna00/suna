@@ -20,9 +20,9 @@
   {
     "typeId": "propertyType",
     "tid": "sptrInfo",
-    "pid": "bestSptrSeq",
-    "id": "sptrInfo@bestSptrSeq",
-    "propertyTypeName": "BEST SUPPORTERS 일련번호",
+    "pid": "pwnrBasSeq",
+    "id": "sptrInfo@pwnrBasSeq",
+    "propertyTypeName": "당첨 기본 일련번호",
     "valueType": "INT",
     "required": true,
     "idable": false,
@@ -30,8 +30,8 @@
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "voteBestSptrBasInfo",
-    "referenceValue": "bestSptrSeq",
+    "referenceType": "votePwnrBasInfo",
+    "referenceValue": "pwnrBasSeq",
     "defaultValue": ""
   },
   {

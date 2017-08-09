@@ -392,12 +392,12 @@
   {
     "parentId": "cjServiceMng",
     "typeId": "nodeType",
-    "id": "voteBestSptrBasInfo",
-    "tid": "voteBestSptrBasInfo",
-    "typeName": "투표 BEST SUPPORTERS 기본 정보",
+    "id": "votePwnrBasInfo",
+    "tid": "votePwnrBasInfo",
+    "typeName": "투표 당첨 기본 정보",
     "repositoryType": "node",
     "eviction": 0,
-    "tableName": "cjDb#voteBestSptrBasInfo"
+    "tableName": "cjDb#votePwnrBasInfo"
   },
   {
     "parentId": "cjServiceMng",
