@@ -1,7 +1,14 @@
 [
   {
+    "typeId" : "event",
+    "id" : "eventAction@treeSort",
+    "tid": "eventAction",
+    "event" : "treeSort",
+    "eventName" : "treeSort eventAction"
+  },
+  {
     "typeId" : "eventAction",
-    "event": "contsCtgry@create",
+    "event": "contsCtgry@treeSort",
     "action" : "sortEvent",
     "actionType" : "service",
     "actionBody" : "treeService.sortEvent",

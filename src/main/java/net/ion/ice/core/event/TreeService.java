@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.stagemonitor.util.StringUtils;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -39,12 +40,15 @@ public class TreeService {
     private EventBroker eventBroker ;
 
     public void sortEvent(ExecuteContext context){
-        Node node = context.getNode() ;
-        changeEvent(node, "change");
+
+        Map<String, Object> _data = new HashMap<>();
+        _data = context.getData();
+
+        //Node node = context.getNode() ;
+        //changeEvent(node, "change");
     }
 
     private String changeEvent(Node node, String event) {
-
         Node newNode = node;
         return "SUCCESS";
     }
