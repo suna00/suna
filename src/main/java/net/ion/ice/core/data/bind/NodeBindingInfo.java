@@ -321,15 +321,15 @@ public class NodeBindingInfo {
         Object value;
 
         if (pid.equals("owner")) {
-            value = node.getStringValue("owner");
+            value = node.getStoreValue("owner");
         } else if (pid.equals("created")) {
             value = node.getBindingValue("created");
         } else if (pid.equals("modifier")) {
-            value = node.getStringValue("modifier");
+            value = node.getStoreValue("modifier");
         } else if (pid.equals("changed")) {
             value = node.getBindingValue("changed");
         } else {
-            value = node.getStringValue(pid);
+            value = node.getValue(pid);
         }
         return value;
     }
