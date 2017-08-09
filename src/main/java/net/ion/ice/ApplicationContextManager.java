@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 
 /**
@@ -29,6 +30,13 @@ public class ApplicationContextManager implements ApplicationContextAware{
         logger.info("CONSTRUCT Application Context Aware");
         context = this.ctx;
     }
+
+    @PostConstruct
+    private void init(){
+        /* 왜 war 에서는 getResources 에서 context 가 null 일까요? */
+        if(context == null) context = this.ctx;
+    }
+
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
