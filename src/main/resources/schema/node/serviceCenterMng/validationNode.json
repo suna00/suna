@@ -1,0 +1,54 @@
+[
+  {
+    "typeId" : "propertyTypeValidation",
+    "propertyTypeId": "frequentlyAskedQuestion@type1",
+    "validation": {
+      "language": "ko",
+      "required": { "value": true, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "" },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "" },
+      "regularExpression": { "value": "", "description": "" }
+    }
+  },
+  {
+    "typeId" : "propertyTypeValidation",
+    "propertyTypeId": "frequentlyAskedQuestion@type2",
+    "validation": {
+      "language": "ko",
+      "required": { "value": true, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "" },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "" },
+      "regularExpression": { "value": "", "description": "" }
+    }
+  },
+  {
+    "typeId" : "propertyTypeValidation",
+    "propertyTypeId": "frequentlyAskedQuestion@title",
+    "validation": {
+      "language": "ko",
+      "required": { "value": true, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "" },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "" },
+      "regularExpression": { "value": "", "description": "" }
+    }
+  },
+  {
+    "typeId" : "propertyTypeValidation",
+    "propertyTypeId": "frequentlyAskedQuestion@contents",
+    "validation": {
+      "language": "ko",
+      "required": { "value": true, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "" },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "" },
+      "regularExpression": { "value": "", "description": "" }
+    }
+  }
+]

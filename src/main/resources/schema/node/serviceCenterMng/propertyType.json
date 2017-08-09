@@ -1147,7 +1147,7 @@
     "tid": "frequentlyAskedQuestion",
     "pid": "title",
     "propertyTypeName": "제목",
-    "valueType": "TEXT",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
@@ -1188,7 +1188,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "defaultValue": ""
+    "defaultValue": "root@displayTargetType@common"
   },
   {
     "typeId": "propertyType",
@@ -1204,7 +1204,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "defaultValue": ""
+    "defaultValue": "root@displayStatus@y"
   },
   {
     "typeId": "propertyType",
@@ -1220,7 +1220,7 @@
     "analyzer": "code",
     "referenceType": "commonCodeToBe",
     "referenceValue": "code",
-    "defaultValue": ""
+    "defaultValue": "root@faqTopStatus@inactive"
   },
   {
     "typeId": "propertyType",

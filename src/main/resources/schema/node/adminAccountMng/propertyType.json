@@ -237,7 +237,7 @@
     "analyzer": "code",
     "referenceType": "commonCodeToBe",
     "referenceValue": "code",
-    "defaultValue": "active"
+    "defaultValue": "root@userStatus@active"
   },
   {
     "typeId": "propertyType",
@@ -253,7 +253,7 @@
     "analyzer": "code",
     "referenceType": "commonCodeToBe",
     "referenceValue": "code",
-    "defaultValue": "active"
+    "defaultValue": "root@userSMSStatus@active"
   },
   {
     "typeId": "propertyType",
