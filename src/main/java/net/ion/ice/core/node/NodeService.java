@@ -46,6 +46,9 @@ public class NodeService {
     @Autowired
     private FileService fileService ;
 
+    @Autowired
+    private ApplicationContextManager applicationContextManager;
+
     private Map<String, NodeType> nodeTypeCache ;
     private Map<String, NodeType> initNodeType = new ConcurrentHashMap<>() ;
 
@@ -132,14 +135,14 @@ public class NodeService {
     }
 
     private void initNodeType() throws IOException {
-        Collection<Map<String, Object>> nodeTypeDataList = JsonUtils.parsingJsonResourceToList(ApplicationContextManager.getResource("classpath:schema/core/nodeType.json")) ;
+        Collection<Map<String, Object>> nodeTypeDataList = JsonUtils.parsingJsonResourceToList(applicationContextManager.getResource("classpath:schema/core/nodeType.json")) ;
 
         List<Node> nodeTypeList = NodeUtils.makeNodeList(nodeTypeDataList, "nodeType") ;
         for(Node nodeType : nodeTypeList){
             initNodeType.put(nodeType.getId(), new NodeType(nodeType)) ;
         }
 
-        Collection<Map<String, Object>> propertyTypeDataList = JsonUtils.parsingJsonResourceToList(ApplicationContextManager.getResource("classpath:schema/core/propertyType.json")) ;
+        Collection<Map<String, Object>> propertyTypeDataList = JsonUtils.parsingJsonResourceToList(applicationContextManager.getResource("classpath:schema/core/propertyType.json")) ;
 
         List<Node> propertyTypeList = NodeUtils.makeNodeList(propertyTypeDataList, "propertyType") ;
         for(Node propertyType : propertyTypeList){
@@ -147,7 +150,7 @@ public class NodeService {
             nodeType.addPropertyType(new PropertyType(propertyType));
         }
 
-        Collection<Map<String, Object>> eventDataList = JsonUtils.parsingJsonResourceToList(ApplicationContextManager.getResource("classpath:schema/core/event.json")) ;
+        Collection<Map<String, Object>> eventDataList = JsonUtils.parsingJsonResourceToList(applicationContextManager.getResource("classpath:schema/core/event.json")) ;
 
         List<Node> eventList = NodeUtils.makeNodeList(eventDataList, "event") ;
         for(Node event : eventList){

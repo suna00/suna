@@ -31,13 +31,6 @@ public class ApplicationContextManager implements ApplicationContextAware{
         context = this.ctx;
     }
 
-    @PostConstruct
-    private void init(){
-        /* 왜 war 에서는 getResources 에서 context 가 null 일까요? */
-        if(context == null) context = this.ctx;
-    }
-
-
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         logger.info("INIT Application Context Aware");
