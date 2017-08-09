@@ -68,7 +68,7 @@
     "typeName": "FAQ",
     "tableName": "ytnDevDb#frequentlyAskedQuestion",
     "repositoryType": "node",
-    "eviction": 0
+    "eviction": 100
   },
   {
     "parentId": "serviceCenterMng",
@@ -86,6 +86,6 @@
     "typeName": "공지사항",
     "tableName": "ytnDevDb#commonNotice",
     "repositoryType": "node",
-    "eviction": 0
+    "eviction": 2000
   }
 ]
