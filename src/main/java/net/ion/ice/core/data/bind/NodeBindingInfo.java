@@ -321,13 +321,13 @@ public class NodeBindingInfo {
         Object value;
 
         if (pid.equals("owner")) {
-            value = node.getNodeValue().getOwner();
+            value = node.getStringValue("owner");
         } else if (pid.equals("created")) {
-            value = new SimpleDateFormat("yyyyMMdd HHmmss").format(node.getNodeValue().getCreated());
+            value = node.getBindingValue("created");
         } else if (pid.equals("modifier")) {
-            value = node.getNodeValue().getModifier() == null ? "": node.getNodeValue().getModifier();
+            value = node.getStringValue("modifier");
         } else if (pid.equals("changed")) {
-            value = new SimpleDateFormat("yyyyMMdd HHmmss").format(node.getNodeValue().getChanged());
+            value = node.getBindingValue("changed");
         } else {
             value = node.getStringValue(pid);
         }
