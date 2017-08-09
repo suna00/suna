@@ -70,7 +70,17 @@ public class NodeValue implements Serializable, Cloneable{
 
     }
 
+    public String getOwner() {
+        return owner;
+    }
 
+    public String getModifier() {
+        return modifier;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
 
     public String getTypeId() {
         return typeId;
