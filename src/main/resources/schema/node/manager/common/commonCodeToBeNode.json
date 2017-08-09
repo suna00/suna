@@ -10,20 +10,20 @@
   },
   {
     "typeId": "commonCodeToBe",
-    "upperCode": "userStatus",
+    "upperCode": "root@userStatus",
     "code": "active",
     "name": "사용중",
     "description": "",
-    "sortOrder": "1",
+    "sortOrder": "10",
     "status": "y"
   },
   {
     "typeId": "commonCodeToBe",
-    "upperCode": "userStatus",
+    "upperCode": "root@userStatus",
     "code": "inactive",
     "name": "정지",
     "description": "",
-    "sortOrder": "2",
+    "sortOrder": "20",
     "status": "y"
   },
   {
@@ -37,20 +37,260 @@
   },
   {
     "typeId": "commonCodeToBe",
-    "upperCode": "userSMSStatus",
+    "upperCode": "root@userSMSStatus",
     "code": "active",
     "name": "사용",
+    "description": "",
+    "sortOrder": "10",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root@userSMSStatus",
+    "code": "inactive",
+    "name": "미사용",
+    "description": "",
+    "sortOrder": "20",
+    "status": "y"
+  },
+
+
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root",
+    "code": "faqType",
+    "name": "FAQ 구분",
     "description": "",
     "sortOrder": "1",
     "status": "y"
   },
   {
     "typeId": "commonCodeToBe",
-    "upperCode": "userSMSStatus",
-    "code": "inactive",
-    "name": "미사용",
+    "upperCode": "root@faqType",
+    "code": "10",
+    "name": "주문/배송/결제",
     "description": "",
-    "sortOrder": "2",
+    "sortOrder": "10",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root@faqType@10",
+    "code": "10",
+    "name": "배송",
+    "description": "",
+    "sortOrder": "10",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root@faqType@10",
+    "code": "20",
+    "name": "결제",
+    "description": "",
+    "sortOrder": "20",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root@faqType@10",
+    "code": "30",
+    "name": "주문",
+    "description": "",
+    "sortOrder": "30",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root@faqType@10",
+    "code": "40",
+    "name": "현금영수증",
+    "description": "",
+    "sortOrder": "40",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root@faqType",
+    "code": "20",
+    "name": "취소/반품/교환/환불",
+    "description": "",
+    "sortOrder": "20",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root@faqType@20",
+    "code": "10",
+    "name": "취소",
+    "description": "",
+    "sortOrder": "10",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root@faqType@20",
+    "code": "20",
+    "name": "교환/반품",
+    "description": "",
+    "sortOrder": "20",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root@faqType@20",
+    "code": "40",
+    "name": "환불",
+    "description": "",
+    "sortOrder": "30",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root@faqType",
+    "code": "30",
+    "name": "회원 혜택",
+    "description": "",
+    "sortOrder": "30",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root@faqType@30",
+    "code": "10",
+    "name": "Y포인트",
+    "description": "",
+    "sortOrder": "10",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root@faqType@30",
+    "code": "20",
+    "name": "쿠폰",
+    "description": "",
+    "sortOrder": "20",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root@faqType@30",
+    "code": "30",
+    "name": "회원등급",
+    "description": "",
+    "sortOrder": "30",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root@faqType",
+    "code": "40",
+    "name": "모바일 이용안내",
+    "description": "",
+    "sortOrder": "40",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root@faqType@40",
+    "code": "10",
+    "name": "모바일 웹",
+    "description": "",
+    "sortOrder": "10",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root@faqType@40",
+    "code": "20",
+    "name": "모바일 앱",
+    "description": "",
+    "sortOrder": "20",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root@faqType",
+    "code": "50",
+    "name": "",
+    "description": "기타",
+    "sortOrder": "50",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root@faqType@50",
+    "code": "10",
+    "name": "상품",
+    "description": "",
+    "sortOrder": "10",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root@faqType@50",
+    "code": "20",
+    "name": "사이트 이용",
+    "description": "",
+    "sortOrder": "20",
+    "status": "y"
+  },
+
+
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root",
+    "code": "faqStatus",
+    "name": "노출 여부",
+    "description": "",
+    "sortOrder": "1",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root@faqStatus",
+    "code": "active",
+    "name": "노출",
+    "description": "",
+    "sortOrder": "10",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root@faqStatus",
+    "code": "inactive",
+    "name": "비노출",
+    "description": "",
+    "sortOrder": "20",
+    "status": "y"
+  },
+
+
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root",
+    "code": "faqTopStatus",
+    "name": "자주 찾는 질문 top5",
+    "description": "",
+    "sortOrder": "1",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root@faqTopStatus",
+    "code": "inactive",
+    "name": "미설정",
+    "description": "",
+    "sortOrder": "10",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root@faqTopStatus",
+    "code": "active",
+    "name": "설정",
+    "description": "",
+    "sortOrder": "20",
     "status": "y"
   }
 ]

@@ -37,5 +37,18 @@
       "extention": { "value": "", "description": "" },
       "regularExpression": { "value": "", "description": "" }
     }
+  },
+  {
+    "typeId" : "propertyTypeValidation",
+    "propertyTypeId": "user@authorityGroupId",
+    "validation": {
+      "language": "ko",
+      "required": { "value": true, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "" },
+      "min": { "value": 0, "description": "" },
+      "max": { "value": 0, "description": "" },
+      "extention": { "value": "", "description": "" },
+      "regularExpression": { "value": "", "description": "" }
+    }
   }
 ]
