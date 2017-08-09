@@ -26,7 +26,7 @@
 buildscript {
     ext {
         springBootVersion = '1.5.1.RELEASE'
-        springBootStarterVersion = '1.5.4.RELEASE'
+        springBootStarterVersion = '1.5.6.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -75,9 +75,10 @@ repositories {
 * - compile "group:value:version" - OK
 * */
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter-web:${springBootStarterVersion}')
-    compile('org.springframework.boot:spring-boot-starter-tomcat:${springBootStarterVersion}')
-    compile('org.springframework.boot:spring-boot-starter-security:${springBootStarterVersion}')
+
+    compile("org.springframework.boot:spring-boot-starter-web:${springBootStarterVersion}")
+    compile("org.springframework.boot:spring-boot-starter-tomcat:${springBootStarterVersion}")
+    compile("org.springframework.boot:spring-boot-starter-security:${springBootStarterVersion}")
     compile('org.springframework.boot:spring-boot-configuration-processor')
     compile('org.apache.commons:commons-lang3:3.5+')
     compile('commons-net:commons-net:3.4+')
@@ -106,6 +107,5 @@ dependencies {
     compile('org.stagemonitor:stagemonitor-web-servlet:0.80.0.RC1')
     compile('org.projectlombok:lombok:1.16.16')
     runtime('org.springframework.boot:spring-boot-devtools')
-    testCompile('org.springframework.boot:spring-boot-starter-test:${springBootStarterVersion}')
-
+    testCompile("org.springframework.boot:spring-boot-starter-test:${springBootStarterVersion}")
 }
