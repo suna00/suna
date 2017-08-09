@@ -25,7 +25,6 @@ import java.io.IOException;
 public class JwtTokenAuthenticationProcessingFilter extends AbstractAuthenticationProcessingFilter {
     private final AuthenticationFailureHandler failureHandler;
     private final TokenExtractor tokenExtractor;
-    private final JwtConfig jwtConfig;
     private final CookieUtil cookieUtil;
 
     @Autowired
@@ -35,7 +34,6 @@ public class JwtTokenAuthenticationProcessingFilter extends AbstractAuthenticati
 
         this.failureHandler = failureHandler;
         this.tokenExtractor = tokenExtractor;
-        this.jwtConfig = jwtConfig;
         this.cookieUtil = cookieUtil;
     }
 
@@ -47,12 +45,8 @@ public class JwtTokenAuthenticationProcessingFilter extends AbstractAuthenticati
 //        String tokenPayload = request.getHeader(jwtConfig.getHeadString());
         String tokenPayload = cookieUtil.getValue(request, "accessToken");
         RawAccessJwtToken token = new RawAccessJwtToken(tokenExtractor.extract(tokenPayload));
-        Object sessionToken = null;
         try {
-            if (request.getSession().getAttribute("accessToken").equals(token.getToken())) {
-                sessionToken = token;
-            }
-            return getAuthenticationManager().authenticate(new JwtAuthenticationToken((RawAccessJwtToken) sessionToken));
+            return getAuthenticationManager().authenticate(new JwtAuthenticationToken(token));
         } catch (NullPointerException ex) {
             throw new AuthenticationServiceException("Token is not exist in session");
         }
