@@ -23,7 +23,7 @@ public class PropertyType {
     public static final String FILE_HANDLER = "fileHandler";
 
 
-    public enum ValueType {STRING, CODE, DATE, LONG, INT, DOUBLE, BOOLEAN, REFERENCED, REFERENCE, REFERENCES, TEXT, ARRAY, OBJECT, JSON, FILE}
+    public enum ValueType {STRING, CODE, DATE, LONG, INT, DOUBLE, BOOLEAN, REFERENCED, REFERENCE, REFERENCES, TEXT, ARRAY, OBJECT, JSON, FILE, FILES}
 
     public enum AnalyzerType {simple, code, whitespace, standard, cjk, korean}
 
