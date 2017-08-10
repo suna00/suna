@@ -1565,7 +1565,7 @@
     "tid": "commonNotice",
     "pid": "files",
     "propertyTypeName": "파일",
-    "valueType": "FILES",
+    "valueType": "FILE",
     "required": false,
     "idable": false,
     "labelable": false,
