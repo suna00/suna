@@ -1,10 +1,12 @@
 package net.ion.ice.core.event;
 
 import net.ion.ice.core.context.ExecuteContext;
+import net.ion.ice.core.context.QueryContext;
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeType;
+import net.ion.ice.core.query.SimpleQueryResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.stagemonitor.util.StringUtils;
@@ -26,13 +28,14 @@ public class TreeService {
 
     public static final String EVENT_ACTION = "eventAction";
 
+    public static final String TYPEID = "contsCtgry";
+
 
     @Autowired
     private NodeService nodeService ;
 
     @Autowired
     private InfinispanRepositoryService infinispanService ;
-
 
     @Autowired
     private EventBroker eventBroker ;
@@ -45,16 +48,15 @@ public class TreeService {
         String dropKey = _data.get("dropKey").toString();
         String dropGap = _data.get("dropGap").toString();
 
-        Node dragNode = nodeService.read("contsCtgry", dragKey);
-        Node gropNode = nodeService.read("contsCtgry", dropKey);
+        Node dragNode = nodeService.read(TYPEID, dragKey);
+        Node gropNode = nodeService.read(TYPEID, dropKey);
 
         int dropOrder = Integer.parseInt(gropNode.getValue("sortOdrg").toString());
 
         String upperId = ( dropGap.equals("true") ) ? gropNode.getValue("upperContsCtgryId").toString() : gropNode.getId().toString();
-        List<Node> upNodeList = nodeService.getNodeList("contsCtgry", "upperContsCtgryId_matching="+upperId);
+        List<Node> upNodeList = nodeService.getNodeList(TYPEID, "upperContsCtgryId_matching="+upperId);
 
         if(upNodeList.size()>0){
-            dragNode.put("upperContsCtgryId",upperId);
 
             if(dropGap.equals("false")){
                 Collections.sort(upNodeList,new CompareSeqDesc());  //int로 내림차순
@@ -77,8 +79,10 @@ public class TreeService {
             }
 
             //새 upNodeList for문 돌면서 전부 인덱스값으로 sortOdrg 계속 put한다
+            dragNode.put("upperContsCtgryId",upperId);
             for(int j=1; j<=upNodeList.size(); j++){
-                upNodeList.get(j).put("sortOdrg",j);
+                Node newNode = upNodeList.get(j);
+                newNode.put("sortOdrg",j);
             }
 
         }else if(dropGap.equals("false") && upNodeList.size() <=0){
@@ -86,13 +90,19 @@ public class TreeService {
             dragNode.put("sortOdrg",1);
         }
 
-        changeEvent(dragNode);
+        List<String> paramkList = new ArrayList<String>();
+        paramkList.add(dragNode.getValue("contsCtgryGroupId").toString());
+        String[] paramArr = new String[paramkList.size()];
+        paramArr = paramkList.toArray(paramArr);
+        Map<String, String[]> parameterMap = new HashMap<>();
+        parameterMap.put("contsCtgryGroupId_matching",paramArr);
+
+        getNodeTree(TYPEID,parameterMap);
 
     }
 
-    private Node changeEvent(Node node) {
-        Node dragNode = node;
-        return dragNode;
+    public SimpleQueryResult getNodeTree(String typeId, Map<String, String[]> parameterMap) {
+        return nodeService.getNodeTree(typeId, parameterMap) ;
     }
 
 

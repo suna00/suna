@@ -104,6 +104,23 @@
   ,{
     "typeId" : "propertyType",
     "tid" : "contsCtgry",
+    "pid" : "useYn",
+    "id" : "contsCtgry@useYn",
+    "propertyTypeName": "사용여부",
+    "valueType" : "BOOLEAN",
+    "required" : true,
+    "idable" : false,
+    "labelable" : false,
+    "treeable" : false,
+    "indexable" :true,
+    "analyzer" : "cjk",
+    "referenceType" : "",
+    "referenceValue" : "",
+    "defaultValue" : ""
+  }
+  ,{
+    "typeId" : "propertyType",
+    "tid" : "contsCtgry",
     "pid" : "owner",
     "id" : "contsCtgry@owner",
     "propertyTypeName": "등록자",
