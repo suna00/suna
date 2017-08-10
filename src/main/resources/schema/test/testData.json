@@ -81,11 +81,12 @@
   {
     "typeId" : "testItem",
     "id" : 2,
+    "baseItem" : 1,
     "category" : "drama",
     "menus" : "menu2",
     "title" : "태양의 후예",
     "body" : "송중기 나오네",
-    "date" : "20161101"
+    "date" : "20161102"
   },
   {
     "typeId" : "testItem",
