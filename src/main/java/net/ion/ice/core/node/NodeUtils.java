@@ -188,7 +188,7 @@ public class NodeUtils {
             }
             case FILE: {
                 if (value instanceof FileValue) {
-                    return value.toString();
+                    return value;
                 }
                 return null;
             }
