@@ -164,6 +164,9 @@ public class ExecuteContext implements Context{
 
         }else {
             if(event != null && !event.equals("create") && !event.equals("update")) {
+                try {
+                    this.node = new Node(data, nodeType.getTypeId());
+                }catch (Exception e){}
                 execute = true;
                 return;
             }else if(event != null && !event.equals("create") && !event.equals("save")){
