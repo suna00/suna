@@ -77,7 +77,7 @@
     "id": "code@groupCodeId",
     "pid": "groupCodeId",
     "propertyTypeName": "그룹코드 아이디",
-    "valueType": "STRING",
+    "valueType": "REFERENCE",
     "required": true,
     "idable": true,
     "labelable": false,
@@ -85,7 +85,7 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "groupCode",
-    "referenceValue": ""
+    "referenceValue": "id"
   },
   {
     "typeId" : "propertyType",

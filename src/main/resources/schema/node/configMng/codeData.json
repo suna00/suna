@@ -74,7 +74,7 @@
   {
     "typeId" : "code",
     "groupCodeId" : "mainDiv",
-    "id" : "main",
+    "id" : "1",
     "name" : "메인",
     "order" : 1,
     "active" : true
@@ -82,7 +82,7 @@
   {
     "typeId" : "code",
     "groupCodeId" : "mainDiv",
-    "id" : "subMain",
+    "id" : "2",
     "name" : "서브메인",
     "order" : 2,
     "active" : true
@@ -90,15 +90,15 @@
   {
     "typeId" : "code",
     "groupCodeId" : "svcLo",
-    "id" : "mwave",
-    "name" : "MWave",
+    "id" : "1",
+    "name" : "KCON",
     "order" : 1,
     "active" : true
   },
   {
     "typeId" : "code",
     "groupCodeId" : "svcLo",
-    "id" : "mama",
+    "id" : "2",
     "name" : "MAMA",
     "order" : 2,
     "active" : true
@@ -106,15 +106,63 @@
   {
     "typeId" : "code",
     "groupCodeId" : "svcLo",
-    "id" : "kcon",
-    "name" : "KCON",
+    "id" : "3",
+    "name" : "M COUNTDOWN",
     "order" : 3,
     "active" : true
   },
   {
     "typeId" : "code",
+    "groupCodeId" : "svcLo",
+    "id" : "4",
+    "name" : "VOTE & Rank",
+    "order" : 4,
+    "active" : true
+  },
+  {
+    "typeId" : "code",
+    "groupCodeId" : "svcLo",
+    "id" : "5",
+    "name" : "Meet&Greet",
+    "order" : 5,
+    "active" : true
+  },
+  {
+    "typeId" : "code",
+    "groupCodeId" : "svcLo",
+    "id" : "6",
+    "name" : "K-Stars",
+    "order" : 6,
+    "active" : true
+  },
+  {
+    "typeId" : "code",
+    "groupCodeId" : "svcLo",
+    "id" : "7",
+    "name" : "Store",
+    "order" : 7,
+    "active" : true
+  },
+  {
+    "typeId" : "code",
+    "groupCodeId" : "svcLo",
+    "id" : "8",
+    "name" : "News",
+    "order" : 8,
+    "active" : true
+  },
+  {
+    "typeId" : "code",
+    "groupCodeId" : "svcLo",
+    "id" : "9",
+    "name" : "TV",
+    "order" : 9,
+    "active" : true
+  },
+  {
+    "typeId" : "code",
     "groupCodeId" : "svcDvcDiv",
-    "id" : "pcweb",
+    "id" : "1",
     "name" : "PC Web",
     "order" : 1,
     "active" : true
@@ -122,7 +170,7 @@
   {
     "typeId" : "code",
     "groupCodeId" : "svcDvcDiv",
-    "id" : "moweb",
+    "id" : "2",
     "name" : "MO Web",
     "order" : 2,
     "active" : true
@@ -130,9 +178,129 @@
   {
     "typeId" : "code",
     "groupCodeId" : "svcDvcDiv",
-    "id" : "moapp",
+    "id" : "3",
     "name" : "MO APP",
     "order" : 3,
     "active" : true
+  },
+  {
+    "typeId" : "code",
+    "groupCodeId" : "svcDvcDiv",
+    "id" : "4",
+    "name" : "PC&MO Web",
+    "order" : 4,
+    "active" : true
+  },
+  {
+    "typeId" : "code",
+    "groupCodeId" : "typeCd",
+    "id" : "1",
+    "name" : "TYPE1",
+    "order" : 1,
+    "active" : true
+  },
+  {
+    "typeId" : "code",
+    "groupCodeId" : "typeCd",
+    "id" : "2",
+    "name" : "TYPE2",
+    "order" : 2,
+    "active" : true
+  },
+  {
+    "typeId" : "code",
+    "groupCodeId" : "typeCd",
+    "id" : "3",
+    "name" : "TYPE3",
+    "order" : 3,
+    "active" : true
+  },
+  {
+    "typeId" : "code",
+    "groupCodeId" : "typeCd",
+    "id" : "4",
+    "name" : "TYPE4",
+    "order" : 4,
+    "active" : true
+  },
+  {
+    "typeId" : "code",
+    "groupCodeId" : "typeCd",
+    "id" : "5",
+    "name" : "TYPE5",
+    "order" : 5,
+    "active" : true
+  },
+  {
+    "typeId" : "code",
+    "groupCodeId" : "itemDivCd",
+    "id" : "1",
+    "name" : "TYPE5",
+    "order" : 1,
+    "active" : true
+  },
+  {
+    "typeId" : "code",
+    "groupCodeId" : "itemDivCd",
+    "id" : "2",
+    "name" : "TYPE5",
+    "order" : 2,
+    "active" : true
+  },
+  {
+    "typeId" : "code",
+    "groupCodeId" : "itemDivCd",
+    "id" : "3",
+    "name" : "TYPE5",
+    "order" : 3,
+    "active" : true
+  },
+  {
+    "typeId" : "code",
+    "groupCodeId" : "itemDivCd",
+    "id" : "4",
+    "name" : "TYPE5",
+    "order" : 4,
+    "active" : true
+  },
+  {
+    "typeId" : "code",
+    "groupCodeId" : "itemDivCd",
+    "id" : "5",
+    "name" : "TYPE5",
+    "order" : 5,
+    "active" : true
+  },
+  {
+    "typeId" : "code",
+    "groupCodeId" : "itemDivCd",
+    "id" : "6",
+    "name" : "TYPE5",
+    "order" : 6,
+    "active" : true
+  },
+  {
+    "typeId" : "code",
+    "groupCodeId" : "itemDivCd",
+    "id" : "7",
+    "name" : "TYPE5",
+    "order" : 7,
+    "active" : true
+  },
+  {
+    "typeId" : "code",
+    "groupCodeId" : "itemDivCd",
+    "id" : "8",
+    "name" : "TYPE5",
+    "order" : 8,
+    "active" : true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "itemDivCd",
+    "id": "5",
+    "name": "TYPE5",
+    "order": 5,
+    "active": true
   }
 ]

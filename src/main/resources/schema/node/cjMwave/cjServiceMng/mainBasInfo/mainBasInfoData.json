@@ -3,9 +3,9 @@
     "typeId": "mainBasInfo",
     "mainSeq": 100,
     "mainNm": "테스트 메인 정보",
-    "mainDivCd": "main",
-    "svcDvcDivCd": "pcweb",
+    "mainDivCd": "mainDiv@1",
+    "svcDvcDivCd": "svcDvcDiv@1",
     "showYn": true,
-    "showLoCd": "MWave"
+    "showLoCd": "svcLo@1"
   }
 ]

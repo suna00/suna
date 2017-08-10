@@ -6,11 +6,11 @@
     "itemDivCd": "",
     "itemId": "VOD1234",
     "itemNm": "HOT CLIP",
-    "typeCd": "type2",
+    "typeCd": "typeCd@1",
     "showDataCnt": 4,
     "showYn": true,
     "sortOdrg":1,
-    "showCntryCdList": "KO,US"
+    "showCntryCdList": "KOR,USA"
   },
   {
     "typeId": "compItemInfo",
@@ -19,11 +19,11 @@
     "itemDivCd": "",
     "itemId": "VOD1234",
     "itemNm": "HOT CLIP",
-    "typeCd": "type2",
+    "typeCd": "typeCd@2",
     "showDataCnt": 4,
     "showYn": true,
     "sortOdrg":1,
-    "showCntryCdList": "KO,US",
+    "showCntryCdList": "KOR,USA",
     "cnctContsDivCd": "",
     "cnctContsNm":"연결콘텐츠",
     "cnctContsIfTgtCd": "",
