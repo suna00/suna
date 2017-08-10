@@ -2,8 +2,8 @@
   {
     "typeId" : "propertyType",
     "tid": "groupCode",
-    "id": "groupCode@id",
-    "pid": "id",
+    "id": "groupCode@groupCodeId",
+    "pid": "groupCodeId",
     "propertyTypeName": "그룹코드 아이디",
     "valueType": "STRING",
     "required": true,
@@ -85,13 +85,13 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "groupCode",
-    "referenceValue": "id"
+    "referenceValue": "groupCodeId"
   },
   {
     "typeId" : "propertyType",
     "tid": "code",
-    "id": "code@id",
-    "pid": "id",
+    "id": "code@codeId",
+    "pid": "codeId",
     "propertyTypeName": "코드 아이디",
     "valueType": "STRING",
     "required": true,
