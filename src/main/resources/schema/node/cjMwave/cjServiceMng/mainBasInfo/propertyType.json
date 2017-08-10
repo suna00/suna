@@ -48,7 +48,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "code",
-    "referenceValue": "",
+    "referenceValue": "id",
     "defaultValue": ""
   },
   {
