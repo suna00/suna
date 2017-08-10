@@ -23,7 +23,7 @@
     "pid": "compItemSeq",
     "id": "compAtribInfo@compItemSeq",
     "propertyTypeName": "컴포넌트 항목 일련번호",
-    "valueType": "INT",
+    "valueType": "REFERENCE",
     "required": true,
     "idable": false,
     "labelable": false,

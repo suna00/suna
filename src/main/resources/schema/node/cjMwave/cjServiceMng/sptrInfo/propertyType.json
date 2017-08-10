@@ -23,7 +23,7 @@
     "pid": "pwnrBasSeq",
     "id": "sptrInfo@pwnrBasSeq",
     "propertyTypeName": "당첨 기본 일련번호",
-    "valueType": "INT",
+    "valueType": "REFERENCE",
     "required": true,
     "idable": false,
     "labelable": false,

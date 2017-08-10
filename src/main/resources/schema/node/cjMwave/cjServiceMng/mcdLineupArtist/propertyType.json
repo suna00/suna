@@ -5,7 +5,7 @@
     "pid": "lineupInfoSeq",
     "id": "mcdLineupArtist@lineupInfoSeq",
     "propertyTypeName": "라인업 정보 일련번호",
-    "valueType": "INT",
+    "valueType": "REFERENCE",
     "required": true,
     "idable": true,
     "labelable": false,

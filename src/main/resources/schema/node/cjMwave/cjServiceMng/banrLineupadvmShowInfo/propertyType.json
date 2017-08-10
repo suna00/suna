@@ -23,7 +23,7 @@
     "pid": "banrLineupSeq",
     "id": "banrLineupadvmShowInfo@banrLineupSeq",
     "propertyTypeName": "배너 라인업 일련번호",
-    "valueType": "INT",
+    "valueType": "REFERENCE",
     "required": true,
     "idable": false,
     "labelable": false,

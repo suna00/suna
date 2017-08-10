@@ -1,0 +1,36 @@
+[
+  {
+    "typeId": "compItemInfo",
+    "compItemSeq": 200,
+    "mainSeq": 100,
+    "itemDivCd": "",
+    "itemId": "VOD1234",
+    "itemNm": "HOT CLIP",
+    "typeCd": "type2",
+    "showDataCnt": 4,
+    "showYn": true,
+    "sortOdrg":1,
+    "showCntryCdList": "KO,US"
+  },
+  {
+    "typeId": "compItemInfo",
+    "compItemSeq": 300,
+    "mainSeq": 100,
+    "itemDivCd": "",
+    "itemId": "VOD1234",
+    "itemNm": "HOT CLIP",
+    "typeCd": "type2",
+    "showDataCnt": 4,
+    "showYn": true,
+    "sortOdrg":1,
+    "showCntryCdList": "KO,US",
+    "cnctContsDivCd": "",
+    "cnctContsNm":"연결콘텐츠",
+    "cnctContsIfTgtCd": "",
+    "cnctContsSortBaseCd": "",
+    "cnctContTypeCd": "",
+    "cnctContsLeftYn":false,
+    "cnctContsShowCntryCdList":"",
+    "cnctContsId": ""
+  }
+]

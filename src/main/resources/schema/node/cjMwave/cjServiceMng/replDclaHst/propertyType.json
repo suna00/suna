@@ -23,7 +23,7 @@
     "pid": "replSeq",
     "id": "replDclaHst@replSeq",
     "propertyTypeName": "댓글 일련번호",
-    "valueType": "INT",
+    "valueType": "REFERENCE",
     "required": true,
     "idable": false,
     "labelable": false,
