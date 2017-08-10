@@ -32,6 +32,14 @@ public class ApiController {
     public Object post(WebRequest request, @PathVariable String category, @PathVariable String api) throws IOException {
         return api(request, category, api, "POST");
     }
+
+
+    @RequestMapping(value = "/testApi/{category}/{api}", method = RequestMethod.GET)
+    @ResponseBody
+    public Object testGet(WebRequest request, @PathVariable String category, @PathVariable String api) throws IOException {
+        return api(request, category, api, "GET");
+    }
+
 //
 //    @RequestMapping(value = "/api/{category}/{api}", method = RequestMethod.PUT)
 //    @ResponseBody
