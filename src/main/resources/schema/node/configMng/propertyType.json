@@ -61,15 +61,75 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": false, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
+  }
+  ,{
+    "typeId" : "propertyType",
+    "tid" : "groupCode",
+    "pid" : "owner",
+    "id" : "groupCode@owner",
+    "propertyTypeName": "등록자",
+    "valueType" : "STRING",
+    "required" : false,
+    "idable" : false,
+    "labelable" : false,
+    "treeable" : false,
+    "indexable" :false,
+    "analyzer" : null,
+    "referenceType" : "",
+    "referenceValue" : "",
+    "defaultValue" : ""
+  }
+  ,{
+    "typeId" : "propertyType",
+    "tid" : "groupCode",
+    "pid" : "created",
+    "id" : "groupCode@created",
+    "propertyTypeName": "등록일시",
+    "valueType" : "DATE",
+    "required" : false,
+    "idable" : false,
+    "labelable" : false,
+    "treeable" : false,
+    "indexable" :false,
+    "analyzer" : null,
+    "referenceType" : "",
+    "referenceValue" : "",
+    "defaultValue" : ""
+  }
+  ,{
+    "typeId" : "propertyType",
+    "tid" : "groupCode",
+    "pid" : "modifier",
+    "id" : "groupCode@modifier",
+    "propertyTypeName": "수정자",
+    "valueType" : "STRING",
+    "required" : false,
+    "idable" : false,
+    "labelable" : false,
+    "treeable" : false,
+    "indexable" :false,
+    "analyzer" : null,
+    "referenceType" : "",
+    "referenceValue" : "",
+    "defaultValue" : ""
+  }
+  ,{
+    "typeId" : "propertyType",
+    "tid" : "groupCode",
+    "pid" : "changed",
+    "id" : "groupCode@changed",
+    "propertyTypeName": "수정일시",
+    "valueType" : "DATE",
+    "required" : false,
+    "idable" : false,
+    "labelable" : false,
+    "treeable" : false,
+    "indexable" :false,
+    "analyzer" : null,
+    "referenceType" : "",
+    "referenceValue" : "",
+    "defaultValue" : ""
   },
   {
     "typeId" : "propertyType",
@@ -151,5 +211,73 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "code",
+    "pid" : "owner",
+    "id" : "code@owner",
+    "propertyTypeName": "등록자",
+    "valueType" : "STRING",
+    "required" : false,
+    "idable" : false,
+    "labelable" : false,
+    "treeable" : false,
+    "indexable" :false,
+    "analyzer" : null,
+    "referenceType" : "",
+    "referenceValue" : "",
+    "defaultValue" : ""
+  }
+  ,{
+    "typeId" : "propertyType",
+    "tid" : "code",
+    "pid" : "created",
+    "id" : "code@created",
+    "propertyTypeName": "등록일시",
+    "valueType" : "DATE",
+    "required" : false,
+    "idable" : false,
+    "labelable" : false,
+    "treeable" : false,
+    "indexable" :false,
+    "analyzer" : null,
+    "referenceType" : "",
+    "referenceValue" : "",
+    "defaultValue" : ""
+  }
+  ,{
+    "typeId" : "propertyType",
+    "tid" : "code",
+    "pid" : "modifier",
+    "id" : "code@modifier",
+    "propertyTypeName": "수정자",
+    "valueType" : "STRING",
+    "required" : false,
+    "idable" : false,
+    "labelable" : false,
+    "treeable" : false,
+    "indexable" :false,
+    "analyzer" : null,
+    "referenceType" : "",
+    "referenceValue" : "",
+    "defaultValue" : ""
+  }
+  ,{
+    "typeId" : "propertyType",
+    "tid" : "code",
+    "pid" : "changed",
+    "id" : "code@changed",
+    "propertyTypeName": "수정일시",
+    "valueType" : "DATE",
+    "required" : false,
+    "idable" : false,
+    "labelable" : false,
+    "treeable" : false,
+    "indexable" :false,
+    "analyzer" : null,
+    "referenceType" : "",
+    "referenceValue" : "",
+    "defaultValue" : ""
   }
 ]
