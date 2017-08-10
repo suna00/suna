@@ -147,7 +147,7 @@
   {
     "typeId": "propertyType",
     "tid": "coupon",
-    "pid": "status",
+    "pid": "couponStatus",
     "propertyTypeName": "사용여부",
     "valueType": "REFERENCE",
     "required": true,
@@ -292,7 +292,7 @@
   {
     "typeId": "propertyType",
     "tid": "couponType",
-    "pid": "type",
+    "pid": "couponType",
     "propertyTypeName": "타입",
     "valueType": "REFERENCE",
     "required": false,
@@ -308,7 +308,7 @@
   {
     "typeId": "propertyType",
     "tid": "couponType",
-    "pid": "status",
+    "pid": "couponTypeStatus",
     "propertyTypeName": "사용여부",
     "valueType": "REFERENCE",
     "required": true,

@@ -115,7 +115,7 @@
   {
     "typeId": "propertyType",
     "tid": "review",
-    "pid": "status",
+    "pid": "reviewStatus",
     "propertyTypeName": "전시여부",
     "valueType": "REFERENCE",
     "required": true,
@@ -308,7 +308,7 @@
   {
     "typeId": "propertyType",
     "tid": "productAnswer",
-    "pid": "status",
+    "pid": "productAnswerStatus",
     "propertyTypeName": "상태",
     "valueType": "REFERENCE",
     "required": false,
@@ -501,7 +501,7 @@
   {
     "typeId": "propertyType",
     "tid": "productQuestion",
-    "pid": "status",
+    "pid": "productQuestionStatus",
     "propertyTypeName": "상태",
     "valueType": "REFERENCE",
     "required": false,
@@ -807,7 +807,7 @@
   {
     "typeId": "propertyType",
     "tid": "oneToOneQuestion",
-    "pid": "status",
+    "pid": "oneToOneQuestionStatus",
     "propertyTypeName": "상태",
     "valueType": "REFERENCE",
     "required": false,
@@ -823,7 +823,7 @@
   {
     "typeId": "propertyType",
     "tid": "oneToOneQuestion",
-    "pid": "type",
+    "pid": "faqType1",
     "propertyTypeName": "문의유형",
     "valueType": "REFERENCE",
     "required": false,
@@ -968,7 +968,7 @@
   {
     "typeId": "propertyType",
     "tid": "oneToOneAnswer",
-    "pid": "status",
+    "pid": "oneToOneAnswerStatus",
     "propertyTypeName": "상태",
     "valueType": "REFERENCE",
     "required": false,
@@ -1113,7 +1113,7 @@
   {
     "typeId": "propertyType",
     "tid": "frequentlyAskedQuestion",
-    "pid": "type1",
+    "pid": "faqType1",
     "propertyTypeName": "구분1",
     "valueType": "REFERENCE",
     "required": false,
@@ -1129,7 +1129,7 @@
   {
     "typeId": "propertyType",
     "tid": "frequentlyAskedQuestion",
-    "pid": "type2",
+    "pid": "faqType2",
     "propertyTypeName": "구분2",
     "valueType": "REFERENCE",
     "required": false,
@@ -1193,7 +1193,7 @@
   {
     "typeId": "propertyType",
     "tid": "frequentlyAskedQuestion",
-    "pid": "status",
+    "pid": "frequentlyAskedQuestionStatus",
     "propertyTypeName": "노출 여부",
     "valueType": "REFERENCE",
     "required": false,
@@ -1338,7 +1338,7 @@
   {
     "typeId": "propertyType",
     "tid": "frequentlyUsedAnswer",
-    "pid": "type",
+    "pid": "frequentlyUsedAnswerType",
     "propertyTypeName": "타입",
     "valueType": "REFERENCE",
     "required": false,
@@ -1515,7 +1515,7 @@
   {
     "typeId": "propertyType",
     "tid": "commonNotice",
-    "pid": "type",
+    "pid": "commonNoticeType",
     "propertyTypeName": "타입",
     "valueType": "REFERENCE",
     "required": false,
@@ -1611,7 +1611,7 @@
   {
     "typeId": "propertyType",
     "tid": "commonNotice",
-    "pid": "status",
+    "pid": "commonNoticeStatus",
     "propertyTypeName": "사용여부",
     "valueType": "REFERENCE",
     "required": false,

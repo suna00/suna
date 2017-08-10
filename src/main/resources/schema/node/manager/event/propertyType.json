@@ -469,7 +469,7 @@
   {
     "typeId": "propertyType",
     "tid": "specialExhibitionHotKeyword",
-    "pid": "status",
+    "pid": "hotKeywordStatus",
     "propertyTypeName": "사용여부",
     "valueType": "REFERENCE",
     "required": true,
@@ -614,7 +614,7 @@
   {
     "typeId": "propertyType",
     "tid": "specialExhibitionAnker",
-    "pid": "status",
+    "pid": "ankerStatus",
     "propertyTypeName": "사용여부",
     "valueType": "REFERENCE",
     "required": true,

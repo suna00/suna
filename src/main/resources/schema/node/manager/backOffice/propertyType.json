@@ -67,7 +67,7 @@
   {
     "typeId": "propertyType",
     "tid": "affiliateMall",
-    "pid": "status",
+    "pid": "affiliateMallStatus",
     "propertyTypeName": "사용여부",
     "valueType": "REFERENCE",
     "required": false,
@@ -372,7 +372,7 @@
   {
     "typeId": "propertyType",
     "tid": "affiliate",
-    "pid": "status",
+    "pid": "affiliateStatus",
     "propertyTypeName": "사용여부",
     "valueType": "REFERENCE",
     "required": false,
@@ -629,7 +629,7 @@
   {
     "typeId": "propertyType",
     "tid": "brand",
-    "pid": "status",
+    "pid": "brandStatus",
     "propertyTypeName": "사용여부",
     "valueType": "REFERENCE",
     "required": false,
@@ -726,7 +726,7 @@
   {
     "typeId": "propertyType",
     "tid": "collectRank",
-    "pid": "type",
+    "pid": "collectRankType",
     "propertyTypeName": "수집조건",
     "valueType": "REFERENCE",
     "required": false,
@@ -1515,7 +1515,7 @@
   {
     "typeId": "propertyType",
     "tid": "menu",
-    "pid": "type",
+    "pid": "menuType",
     "propertyTypeName": "타입",
     "valueType": "REFERENCE",
     "required": true,
@@ -1563,7 +1563,7 @@
   {
     "typeId": "propertyType",
     "tid": "menu",
-    "pid": "status",
+    "pid": "menuStatus",
     "propertyTypeName": "전시여부",
     "valueType": "REFERENCE",
     "required": true,
@@ -1740,7 +1740,7 @@
   {
     "typeId": "propertyType",
     "tid": "operatingScore",
-    "pid": "type",
+    "pid": "operatingScoreType",
     "propertyTypeName": "타입",
     "valueType": "REFERENCE",
     "required": false,
@@ -1982,7 +1982,7 @@
   {
     "typeId": "propertyType",
     "tid": "interestFreeInstallment",
-    "pid": "type",
+    "pid": "interestFreeInstallmentType",
     "propertyTypeName": "타입",
     "valueType": "REFERENCE",
     "required": false,
@@ -2159,7 +2159,7 @@
   {
     "typeId": "propertyType",
     "tid": "addBenefit",
-    "pid": "type",
+    "pid": "addBenefitType",
     "propertyTypeName": "타입",
     "valueType": "REFERENCE",
     "required": false,
@@ -2304,7 +2304,7 @@
   {
     "typeId": "propertyType",
     "tid": "deliveryEnterprise",
-    "pid": "status",
+    "pid": "deliveryEnterpriseStatus",
     "propertyTypeName": "사용여부",
     "valueType": "REFERENCE",
     "required": true,
@@ -2480,7 +2480,7 @@
   {
     "typeId": "propertyType",
     "tid": "site",
-    "pid": "status",
+    "pid": "siteStatus",
     "propertyTypeName": "사용여부",
     "valueType": "REFERENCE",
     "required": false,
@@ -2625,7 +2625,7 @@
   {
     "typeId": "propertyType",
     "tid": "smsSendingHistory",
-    "pid": "type",
+    "pid": "smsType",
     "propertyTypeName": "타입",
     "valueType": "REFERENCE",
     "required": false,
@@ -2818,7 +2818,7 @@
   {
     "typeId": "propertyType",
     "tid": "smsTemplate",
-    "pid": "type",
+    "pid": "smsType",
     "propertyTypeName": "타입",
     "valueType": "REFERENCE",
     "required": false,
@@ -3252,7 +3252,7 @@
   {
     "typeId": "propertyType",
     "tid": "terms",
-    "pid": "type",
+    "pid": "termsType",
     "propertyTypeName": "타입",
     "valueType": "REFERENCE",
     "required": false,
@@ -3397,7 +3397,7 @@
   {
     "typeId": "propertyType",
     "tid": "vendor",
-    "pid": "status",
+    "pid": "vendorStatus",
     "propertyTypeName": "사용여부",
     "valueType": "REFERENCE",
     "required": false,
@@ -3862,7 +3862,7 @@
   {
     "typeId": "propertyType",
     "tid": "vendorNotice",
-    "pid": "status",
+    "pid": "vendorNoticeStatus",
     "propertyTypeName": "전시여부",
     "valueType": "REFERENCE",
     "required": false,
@@ -4007,7 +4007,7 @@
   {
     "typeId": "propertyType",
     "tid": "SMSAuthenticationHistory",
-    "pid": "type",
+    "pid": "SMSAuthenticationHistoryType",
     "propertyTypeName": "타입",
     "valueType": "REFERENCE",
     "required": false,
@@ -4152,7 +4152,7 @@
   {
     "typeId": "propertyType",
     "tid": "productApprovalHistory",
-    "pid": "status",
+    "pid": "productApprovalHistoryStatus",
     "propertyTypeName": "상태",
     "valueType": "REFERENCE",
     "required": false,
@@ -4441,8 +4441,8 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "defineProductOptionByVendor",
-    "pid": "defineProductOptionByVendorId",
+    "tid": "productOptionByVendor",
+    "pid": "productOptionByVendorId",
     "propertyTypeName": "ID",
     "valueType": "INT",
     "required": true,
@@ -4458,7 +4458,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "defineProductOptionByVendor",
+    "tid": "productOptionByVendor",
     "pid": "name",
     "propertyTypeName": "이름",
     "valueType": "STRING",
@@ -4474,7 +4474,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "defineProductOptionByVendor",
+    "tid": "productOptionByVendor",
     "pid": "upperId",
     "propertyTypeName": "상위ID",
     "valueType": "REFERENCE",
@@ -4484,14 +4484,14 @@
     "treeable": true,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "defineProductOptionByVendor",
-    "referenceValue": "defineProductOptionByVendorId",
+    "referenceType": "productOptionByVendor",
+    "referenceValue": "productOptionByVendorId",
     "defaultValue": ""
   },
   {
     "typeId": "propertyType",
-    "tid": "defineProductOptionByVendor",
-    "pid": "status",
+    "tid": "productOptionByVendor",
+    "pid": "productOptionByVendorStatus",
     "propertyTypeName": "사용여부",
     "valueType": "REFERENCE",
     "required": false,
@@ -4506,7 +4506,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "defineProductOptionByVendor",
+    "tid": "productOptionByVendor",
     "pid": "sortOrder",
     "propertyTypeName": "정렬 순서",
     "valueType": "INT",
@@ -4522,7 +4522,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "defineProductOptionByVendor",
+    "tid": "productOptionByVendor",
     "pid": "description",
     "propertyTypeName": "설명",
     "valueType": "TEXT",
@@ -4538,7 +4538,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "defineProductOptionByVendor",
+    "tid": "productOptionByVendor",
     "pid": "created",
     "propertyTypeName": "등록일",
     "valueType": "DATE",
@@ -4554,7 +4554,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "defineProductOptionByVendor",
+    "tid": "productOptionByVendor",
     "pid": "owner",
     "propertyTypeName": "등록자",
     "valueType": "REFERENCE",
@@ -4570,7 +4570,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "defineProductOptionByVendor",
+    "tid": "productOptionByVendor",
     "pid": "changed",
     "propertyTypeName": "수정일",
     "valueType": "DATE",
@@ -4586,7 +4586,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "defineProductOptionByVendor",
+    "tid": "productOptionByVendor",
     "pid": "modifier",
     "propertyTypeName": "수정자",
     "valueType": "REFERENCE",
@@ -4797,7 +4797,7 @@
   {
     "typeId": "propertyType",
     "tid": "affliateRequest",
-    "pid": "type",
+    "pid": "affliateRequestType",
     "propertyTypeName": "분류",
     "valueType": "REFERENCE",
     "required": true,
@@ -5054,7 +5054,7 @@
   {
     "typeId": "propertyType",
     "tid": "newStoreRequest",
-    "pid": "type",
+    "pid": "newStoreRequestType",
     "propertyTypeName": "분류",
     "valueType": "REFERENCE",
     "required": true,

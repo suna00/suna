@@ -405,7 +405,7 @@
   {
     "typeId": "propertyType",
     "tid": "point",
-    "pid": "type",
+    "pid": "affiliatePointType",
     "propertyTypeName": "타입",
     "valueType": "REFERENCE",
     "required": true,
@@ -630,7 +630,7 @@
   {
     "typeId": "propertyType",
     "tid": "usedPoint",
-    "pid": "type",
+    "pid": "usedPointType",
     "propertyTypeName": "타입",
     "valueType": "REFERENCE",
     "required": true,
@@ -1161,7 +1161,7 @@
   {
     "typeId": "propertyType",
     "tid": "usedMileage",
-    "pid": "type",
+    "pid": "usedPointType",
     "propertyTypeName": "타입",
     "valueType": "REFERENCE",
     "required": true,

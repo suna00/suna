@@ -228,7 +228,7 @@
   {
     "typeId": "propertyType",
     "tid": "device",
-    "pid": "status",
+    "pid": "deviceStatus",
     "propertyTypeName": "사용여부",
     "valueType": "REFERENCE",
     "required": true,
@@ -503,7 +503,7 @@
   {
     "typeId": "propertyType",
     "tid": "member",
-    "pid": "status",
+    "pid": "memberStatus",
     "propertyTypeName": "상태",
     "valueType": "REFERENCE",
     "required": false,
@@ -1466,7 +1466,7 @@
   {
     "typeId": "propertyType",
     "tid": "leaveMember",
-    "pid": "status",
+    "pid": "leaveMemberStatus",
     "propertyTypeName": "상태",
     "valueType": "REFERENCE",
     "required": false,

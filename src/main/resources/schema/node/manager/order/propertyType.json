@@ -1643,7 +1643,7 @@
   {
     "typeId": "propertyType",
     "tid": "paymentHistory",
-    "pid": "type",
+    "pid": "paymentHistoryType",
     "propertyTypeName": "타입",
     "valueType": "REFERENCE",
     "required": false,
