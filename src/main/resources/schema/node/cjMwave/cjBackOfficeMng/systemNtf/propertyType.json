@@ -139,6 +139,23 @@
   ,{
     "typeId" : "propertyType",
     "tid" : "systemNtf",
+    "pid" : "systemNtfCtgry",
+    "id" : "systemNtf@systemNtfCtgry",
+    "propertyTypeName": "공지사항 카테고리",
+    "valueType" : "REFERENCE",
+    "required" : true,
+    "idable" : false,
+    "labelable" : false,
+    "treeable" : false,
+    "indexable" :false,
+    "analyzer" : null,
+    "referenceType" : "contsCtgry",
+    "referenceValue" : "contsCtgryId",
+    "defaultValue" : ""
+  }
+  ,{
+    "typeId" : "propertyType",
+    "tid" : "systemNtf",
     "pid" : "owner",
     "id" : "systemNtf@owner",
     "propertyTypeName": "등록자",
