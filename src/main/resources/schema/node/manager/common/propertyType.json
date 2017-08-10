@@ -28,7 +28,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "commonCode",
-    "referenceValue": "code",
+    "referenceValue": "",
     "defaultValue": ""
   },
   {
