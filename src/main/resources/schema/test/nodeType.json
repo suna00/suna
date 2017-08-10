@@ -217,6 +217,17 @@
   {
     "typeId": "propertyType",
     "tid": "testItem",
+    "pid": "baseItem",
+    "propertyTypeName": "Base Item ID",
+    "valueType": "REFERENCE",
+    "idable": false,
+    "indexable": true,
+    "required": false,
+    "referenceType": "testItem"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "testItem",
     "pid": "menus",
     "propertyTypeName": "Menus",
     "valueType": "REFERENCES",

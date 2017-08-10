@@ -209,24 +209,37 @@ public class NodeUtils {
     }
 
     public static Object getResultValue(Object value, PropertyType pt, Node node) {
-        switch (pt.getValueType()) {
-            case CODE: {
-                return pt.getCode().get(value);
+        switch (pt.getValueType()){
+            case CODE : {
+                if(value ==  null) return null ;
+                if(value instanceof Code) {
+                    return value ;
+                }
+                return pt.getCode().get(value) ;
             }
             case REFERENCE: {
-                return NodeUtils.getReferenceValue(value, pt);
+                if(value ==  null) return null ;
+                if(value instanceof Code) {
+                    return value ;
+                }
+                return NodeUtils.getReferenceValue(value, pt) ;
             }
             case REFERENCES: {
-                List<Code> refValues = new ArrayList<>();
-                if (value != null && StringUtils.isNotEmpty(value.toString())) {
-                    for (String refVal : StringUtils.split(value.toString(), ",")) {
-                        refValues.add(NodeUtils.getReferenceValue(refVal, pt));
+                if(value ==  null) return null ;
+                if(value instanceof List) {
+                    return value ;
+                }
+                List<Code> refValues = new ArrayList<>() ;
+                if(value != null && StringUtils.isNotEmpty(value.toString())){
+                    for(String refVal : StringUtils.split(value.toString(), ",")){
+                        refValues.add(NodeUtils.getReferenceValue(refVal, pt)) ;
                     }
                 }
                 return refValues;
             }
-            case DATE: {
-                return getDateStringValue(value);
+            case DATE :{
+                if(value ==  null) return null ;
+                return getDateStringValue(value) ;
             }
             case REFERENCED: {
                 QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(getNodeType(node.getTypeId()), pt, node);

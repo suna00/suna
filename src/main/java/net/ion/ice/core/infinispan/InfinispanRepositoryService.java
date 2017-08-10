@@ -149,6 +149,7 @@ public class InfinispanRepositoryService {
                 QueryContext subQueryContext = QueryContext.makeQueryContextForTree(nodeType, pt, "root");
                 subQueryContext.setTreeable(true);
                 if (queryContext.getQueryTerms() != null) subQueryContext.getQueryTerms().addAll(queryContext.getQueryTerms());
+                if(queryContext.getSorting() != null )subQueryContext.setSorting(queryContext.getSorting());
                 List<Node> result = getSubQueryNodes(pt.getReferenceType(), subQueryContext);
                 for (Node node : result) {
                     node.toDisplay();

@@ -48,5 +48,33 @@
         "endpoint":"http://customer.api.com/api/test.json?id={{:testId}}"
       }
     }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "mergeSample",
+    "apiName" : "Merge Sample",
+    "method" : "GET",
+    "config" : {
+      "items" : {
+        "typeId": "testItem",
+        "queryType": "merge",
+        "query" : [
+          {"field" : "category", "method" : "matching", "value" : "drama" },
+          {"sorting" : "id desc"},
+          {"page" : "{{:page}}", "pageSize":20}
+        ],
+        "response" : {
+          "merge" : "baseItem",
+          "fields" : {
+            "id": "",
+            "category": null,
+            "title": "",
+            "body": "",
+            "baseItem": ""
+          }
+        }
+      }
+    }
   }
 ]
