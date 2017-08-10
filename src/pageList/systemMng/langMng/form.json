@@ -22,7 +22,7 @@
                 "componentClassType": "BUTTON",
                 "componentClass": "ButtonSave",
                 "componentChildren": [],
-                "componentKey": "8c07d06d082c",
+                "componentKey": "7609e472317b",
                 "areaMode": true,
                 "componentProps": {
                   "reqUrl": "/node/langMng/save.json",
@@ -34,8 +34,8 @@
                   "customColor": "",
                   "bsSize": "small",
                   "key": 0,
-                  "componentKey": "8c07d06d082c",
-                  "parentComponentKey": "3646f5cfaba8"
+                  "componentKey": "7609e472317b",
+                  "parentComponentKey": "6710a7b80e04"
                 }
               },
               {
@@ -44,7 +44,7 @@
                 "componentClassType": "BUTTON",
                 "componentClass": "ButtonBack",
                 "componentChildren": [],
-                "componentKey": "c066f49f8ad6",
+                "componentKey": "24267cd1da48",
                 "areaMode": true,
                 "componentProps": {
                   "buttonName": "리스트",
@@ -55,16 +55,16 @@
                   "bsSize": "small",
                   "disabled": "",
                   "key": 1,
-                  "componentKey": "c066f49f8ad6",
-                  "parentComponentKey": "3646f5cfaba8"
+                  "componentKey": "24267cd1da48",
+                  "parentComponentKey": "6710a7b80e04"
                 }
               }
             ],
-            "componentKey": "3646f5cfaba8",
+            "componentKey": "6710a7b80e04",
             "areaMode": true
           }
         ],
-        "componentKey": "0acd21637534",
+        "componentKey": "a711e1a40bed",
         "areaMode": true,
         "componentProps": {
           "nodeTypeId": "langMng",
@@ -76,13 +76,13 @@
           },
           "formTypes": {
             "isHorizontal": "true",
-            "colSize": "9",
-            "horizontalColLabelSize": "3",
+            "colSize": "12",
+            "horizontalColLabelSize": "2",
             "dataTypes": "langMng@langNm,langMng@sttusCd,langMng@useYn"
           },
           "key": 0,
-          "componentKey": "0acd21637534",
-          "parentComponentKey": "05e22ecfb131",
+          "componentKey": "a711e1a40bed",
+          "parentComponentKey": "39968fb9966a",
           "dataTypes": [
             {
               "componentClass": "Text",
@@ -92,7 +92,42 @@
               "defaultValue": "",
               "isView": "false",
               "options": {},
-              "validationTypes": [],
+              "validationTypes": [
+                {
+                  "id": "propertyTypeValidation@langMng@langNm",
+                  "propertyTypeId": {
+                    "value": "langMng@langNm",
+                    "label": "언어명"
+                  },
+                  "validation": {
+                    "language": "ko",
+                    "required": {
+                      "value": true,
+                      "description": "필수 값 입니다."
+                    },
+                    "duplicated": {
+                      "value": false,
+                      "description": "중복된 값 입니다."
+                    },
+                    "min": {
+                      "value": 0,
+                      "description": "최소 값 입니다."
+                    },
+                    "max": {
+                      "value": 0,
+                      "description": "최대 값 입니다."
+                    },
+                    "extention": {
+                      "value": "",
+                      "description": "확장자를 허용하지 않습니다."
+                    },
+                    "regularExpression": {
+                      "value": "",
+                      "description": ""
+                    }
+                  }
+                }
+              ],
               "colSize": "12",
               "horizontalColLabelSize": "2",
               "placeholder": "",
@@ -110,9 +145,44 @@
               "options": {
                 "reqUrl": "/node/code/code.json?groupCodeId=langSttusCd"
               },
-              "validationTypes": [],
-              "colSize": "6",
-              "horizontalColLabelSize": "4",
+              "validationTypes": [
+                {
+                  "id": "propertyTypeValidation@langMng@sttusCd",
+                  "propertyTypeId": {
+                    "value": "langMng@sttusCd",
+                    "label": "상태코드"
+                  },
+                  "validation": {
+                    "language": "ko",
+                    "required": {
+                      "value": true,
+                      "description": "필수 값 입니다."
+                    },
+                    "duplicated": {
+                      "value": false,
+                      "description": "중복된 값 입니다."
+                    },
+                    "min": {
+                      "value": 0,
+                      "description": "최소 값 입니다."
+                    },
+                    "max": {
+                      "value": 0,
+                      "description": "최대 값 입니다."
+                    },
+                    "extention": {
+                      "value": "",
+                      "description": "확장자를 허용하지 않습니다."
+                    },
+                    "regularExpression": {
+                      "value": "",
+                      "description": ""
+                    }
+                  }
+                }
+              ],
+              "colSize": "8",
+              "horizontalColLabelSize": "3",
               "placeholder": "",
               "helpBlockValue": "",
               "isDisabled": "false",
@@ -123,12 +193,47 @@
               "dataType": "text",
               "label": "사용여부",
               "id": "useYn",
-              "defaultValue": "true",
+              "defaultValue": "",
               "isView": "false",
               "options": {},
-              "validationTypes": [],
-              "colSize": "6",
-              "horizontalColLabelSize": "4",
+              "validationTypes": [
+                {
+                  "id": "propertyTypeValidation@langMng@useYn",
+                  "propertyTypeId": {
+                    "value": "langMng@useYn",
+                    "label": "사용여부"
+                  },
+                  "validation": {
+                    "language": "ko",
+                    "required": {
+                      "value": true,
+                      "description": "필수 값 입니다."
+                    },
+                    "duplicated": {
+                      "value": false,
+                      "description": "중복된 값 입니다."
+                    },
+                    "min": {
+                      "value": 0,
+                      "description": "최소 값 입니다."
+                    },
+                    "max": {
+                      "value": 0,
+                      "description": "최대 값 입니다."
+                    },
+                    "extention": {
+                      "value": "",
+                      "description": "확장자를 허용하지 않습니다."
+                    },
+                    "regularExpression": {
+                      "value": "",
+                      "description": ""
+                    }
+                  }
+                }
+              ],
+              "colSize": "4",
+              "horizontalColLabelSize": "3",
               "placeholder": "",
               "helpBlockValue": "",
               "isDisabled": "false",
@@ -138,7 +243,7 @@
         }
       }
     ],
-    "componentKey": "05e22ecfb131",
+    "componentKey": "39968fb9966a",
     "areaMode": true
   }
 ]
