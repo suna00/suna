@@ -309,8 +309,8 @@
   {
     "typeId": "propertyType",
     "tid": "compItemInfo",
-    "pid": "cnctContsshowCntryCdList",
-    "id": "compItemInfo@cnctContsshowCntryCdList",
+    "pid": "cnctContsShowCntryCdList",
+    "id": "compItemInfo@cnctContsShowCntryCdList",
     "propertyTypeName": "연결 콘텐츠 노출국가 코드리스트",
     "valueType": "TEXT",
     "required": false,
