@@ -1058,7 +1058,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "productByAffiliateId",
     "propertyTypeName": "ID",
     "valueType": "INT",
@@ -1075,7 +1075,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "upperId",
     "propertyTypeName": "상위상품ID",
     "valueType": "INT",
@@ -1091,7 +1091,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "name",
     "propertyTypeName": "이름",
     "valueType": "STRING",
@@ -1107,7 +1107,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "type",
     "propertyTypeName": "상품타입",
     "valueType": "STRING",
@@ -1123,7 +1123,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "productManageType",
     "propertyTypeName": "상품관리타입",
     "valueType": "STRING",
@@ -1139,7 +1139,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "siteType",
     "propertyTypeName": "사이트타입",
     "valueType": "STRING",
@@ -1155,7 +1155,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "thumbnailImageUrl",
     "propertyTypeName": "썸네일 이미지URL",
     "valueType": "STRING",
@@ -1171,7 +1171,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "affiliateMallId",
     "propertyTypeName": "제휴몰ID",
     "valueType": "INT",
@@ -1187,7 +1187,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "siteId",
     "propertyTypeName": "사이트ID",
     "valueType": "STRING",
@@ -1203,7 +1203,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "specialExhibitionId",
     "propertyTypeName": "기획전ID",
     "valueType": "INT",
@@ -1219,7 +1219,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "specialExhibitionAnkerId",
     "propertyTypeName": "기획전앵커ID",
     "valueType": "INT",
@@ -1235,7 +1235,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "approverId",
     "propertyTypeName": "승인자ID",
     "valueType": "STRING",
@@ -1251,7 +1251,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "approvalDate",
     "propertyTypeName": "승인일",
     "valueType": "DATE",
@@ -1267,7 +1267,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "approvalStatus",
     "propertyTypeName": "승인상태",
     "valueType": "STRING",
@@ -1283,7 +1283,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "status",
     "propertyTypeName": "전시상태",
     "valueType": "STRING",
@@ -1299,7 +1299,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "deleteStatus",
     "propertyTypeName": "삭제상태",
     "valueType": "STRING",
@@ -1315,7 +1315,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "saleStatus",
     "propertyTypeName": "판매상태",
     "valueType": "STRING",
@@ -1331,7 +1331,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "startDate",
     "propertyTypeName": "판매시작일",
     "valueType": "DATE",
@@ -1347,7 +1347,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "endDate",
     "propertyTypeName": "판매종료일",
     "valueType": "DATE",
@@ -1363,7 +1363,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "stockQuantity",
     "propertyTypeName": "재고수량",
     "valueType": "INT",
@@ -1379,7 +1379,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "keyword",
     "propertyTypeName": "키워드",
     "valueType": "STRING",
@@ -1395,7 +1395,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "description",
     "propertyTypeName": "설명",
     "valueType": "TEXT",
@@ -1411,7 +1411,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "PRText",
     "propertyTypeName": "홍보문구",
     "valueType": "TEXT",
@@ -1427,7 +1427,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "PRIcon",
     "propertyTypeName": "홍보아이콘",
     "valueType": "STRING",
@@ -1443,7 +1443,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "supplyPrice",
     "propertyTypeName": "공급가",
     "valueType": "DOUBLE",
@@ -1459,7 +1459,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "salePrice",
     "propertyTypeName": "판매가(할인가)",
     "valueType": "DOUBLE",
@@ -1475,7 +1475,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "consumerPrice",
     "propertyTypeName": "소비자가(정상가)",
     "valueType": "DOUBLE",
@@ -1491,7 +1491,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "employeePrice",
     "propertyTypeName": "임직원가",
     "valueType": "DOUBLE",
@@ -1507,7 +1507,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "discountRate",
     "propertyTypeName": "할인율",
     "valueType": "DOUBLE",
@@ -1523,7 +1523,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "lowestPriceKey",
     "propertyTypeName": "최저가 매핑키",
     "valueType": "STRING",
@@ -1539,7 +1539,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "noExchangeReturnYn",
     "propertyTypeName": "교환반품불가여부",
     "valueType": "STRING",
@@ -1555,7 +1555,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "carryForwardYn",
     "propertyTypeName": "이월여부",
     "valueType": "STRING",
@@ -1571,7 +1571,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "minoresPurchaseYn",
     "propertyTypeName": "미성년자 구매가능",
     "valueType": "STRING",
@@ -1587,7 +1587,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "soarPopularityYn",
     "propertyTypeName": "인기급등여부",
     "valueType": "STRING",
@@ -1603,7 +1603,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "hitProductYn",
     "propertyTypeName": "히트상품여부",
     "valueType": "STRING",
@@ -1619,7 +1619,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "mdRecommendYn",
     "propertyTypeName": "MD추천여부",
     "valueType": "STRING",
@@ -1635,7 +1635,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "restockYn",
     "propertyTypeName": "재입고상품여부",
     "valueType": "STRING",
@@ -1651,7 +1651,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "bestProductYn",
     "propertyTypeName": "베스트상품여부",
     "valueType": "STRING",
@@ -1667,7 +1667,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "newProductYn",
     "propertyTypeName": "신상품여부",
     "valueType": "STRING",
@@ -1683,7 +1683,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "saleYn",
     "propertyTypeName": "세일여부",
     "valueType": "STRING",
@@ -1699,7 +1699,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "maxOrderQuantity",
     "propertyTypeName": "최대주문가능수량",
     "valueType": "INT",
@@ -1715,7 +1715,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "purchaseCount",
     "propertyTypeName": "구매건수",
     "valueType": "INT",
@@ -1731,7 +1731,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "viewCount",
     "propertyTypeName": "조회수",
     "valueType": "INT",
@@ -1747,7 +1747,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "reviewCount",
     "propertyTypeName": "상품평수",
     "valueType": "INT",
@@ -1763,7 +1763,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "reviewAverageScore",
     "propertyTypeName": "상품평 평균 점수",
     "valueType": "DOUBLE",
@@ -1779,7 +1779,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "deliveryMethod",
     "propertyTypeName": "배송수단",
     "valueType": "STRING",
@@ -1795,7 +1795,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "deliveryPriceType",
     "propertyTypeName": "배송비타입",
     "valueType": "STRING",
@@ -1811,7 +1811,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "deliveryPrice",
     "propertyTypeName": "배송비",
     "valueType": "DOUBLE",
@@ -1827,7 +1827,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "freeDeliveryCondition",
     "propertyTypeName": "무료배송조건",
     "valueType": "STRING",
@@ -1843,7 +1843,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "bundleDeliveryYn",
     "propertyTypeName": "묶음배송가능여부",
     "valueType": "STRING",
@@ -1859,7 +1859,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "cashOnDeliveryYn",
     "propertyTypeName": "착불배송여부",
     "valueType": "STRING",
@@ -1875,7 +1875,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "reservationYn",
     "propertyTypeName": "예약배송여부",
     "valueType": "STRING",
@@ -1891,7 +1891,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "scheduledDeliveryDate",
     "propertyTypeName": "배송예정일",
     "valueType": "STRING",
@@ -1907,7 +1907,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "deliveryPosibleArea",
     "propertyTypeName": "배송가능지역",
     "valueType": "STRING",
@@ -1923,7 +1923,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "exchangeDeliveryPrice",
     "propertyTypeName": "교환 배송비",
     "valueType": "DOUBLE",
@@ -1939,7 +1939,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "hopeDeliveryPossiblePeriod",
     "propertyTypeName": "희망배송 가능기간",
     "valueType": "STRING",
@@ -1955,7 +1955,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "owner",
     "propertyTypeName": "등록자",
     "valueType": "STRING",
@@ -1971,7 +1971,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "created",
     "propertyTypeName": "등록일",
     "valueType": "DATE",
@@ -1987,7 +1987,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "modifier",
     "propertyTypeName": "수정자",
     "valueType": "STRING",
@@ -2003,7 +2003,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "pid": "changed",
     "propertyTypeName": "수정일",
     "valueType": "DATE",
@@ -2563,6 +2563,22 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "searchFilterItem",
+    "pid": "productId",
+    "propertyTypeName": "상품ID",
+    "valueType": "INT",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "product",
+    "referenceValue": "productId",
     "defaultValue": ""
   },
   {

@@ -1517,7 +1517,7 @@
     "tid": "commonNotice",
     "pid": "type",
     "propertyTypeName": "타입",
-    "valueType": "REFERENCE",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,

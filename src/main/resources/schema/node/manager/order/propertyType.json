@@ -2312,21 +2312,5 @@
     "referenceType": "",
     "referenceValue": "",
     "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "searchFilterItem",
-    "pid": "productId",
-    "propertyTypeName": "상품ID",
-    "valueType": "INT",
-    "required": true,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "product",
-    "referenceValue": "productId",
-    "defaultValue": ""
   }
 ]

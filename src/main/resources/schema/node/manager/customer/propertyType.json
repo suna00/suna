@@ -455,22 +455,6 @@
   {
     "typeId": "propertyType",
     "tid": "member",
-    "pid": "vendorId",
-    "propertyTypeName": "벤더ID",
-    "valueType": "INT",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
-    "referenceType": "vendor",
-    "referenceValue": "vendorId",
-    "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "member",
     "pid": "id",
     "propertyTypeName": "ID",
     "valueType": "STRING",
@@ -1273,22 +1257,6 @@
   {
     "typeId": "propertyType",
     "tid": "requestToleaveMember",
-    "pid": "vendorId",
-    "propertyTypeName": "벤더ID",
-    "valueType": "INT",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
-    "referenceType": "vendor",
-    "referenceValue": "vendorId",
-    "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "requestToleaveMember",
     "pid": "id",
     "propertyTypeName": "ID",
     "valueType": "STRING",
@@ -1445,22 +1413,6 @@
     "analyzer": "code",
     "referenceType": "affiliate",
     "referenceValue": "affiliateId",
-    "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "leaveMember",
-    "pid": "vendorId",
-    "propertyTypeName": "벤더ID",
-    "valueType": "INT",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
-    "referenceType": "vendor",
-    "referenceValue": "vendorId",
     "defaultValue": ""
   },
   {

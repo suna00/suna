@@ -19,9 +19,9 @@
   {
     "parentId": "productPath",
     "typeId": "nodeType",
-    "tid": "productByAffiliate",
+    "tid": "productByAffiliateMall",
     "typeName": "제휴몰 상품",
-    "tableName": "ytnDevDb#productByAffiliate",
+    "tableName": "ytnDevDb#productByAffiliateMall",
     "repositoryType": "node",
     "eviction": 0
   },

@@ -2177,7 +2177,7 @@
     "tid": "theme",
     "pid": "siteId",
     "propertyTypeName": "사이트ID",
-    "valueType": "INT",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
