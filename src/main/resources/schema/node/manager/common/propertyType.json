@@ -22,7 +22,7 @@
     "propertyTypeName": "상위CODE",
     "valueType": "STRING",
     "required": false,
-    "idable": false,
+    "idable": true,
     "labelable": false,
     "treeable": true,
     "indexable": true,
