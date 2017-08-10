@@ -168,8 +168,6 @@ public class ExecuteContext implements Context{
                 return;
             }else if(event != null && !event.equals("create") && !event.equals("save")){
                 throw new IceRuntimeException("Not Exist Node Error : " + getId()) ;
-            }else if(event == null || event.equals("create")){
-                throw new IceRuntimeException("Node Init Error : " + data) ;
             }
 
             this.node = new Node(data, nodeType.getTypeId());
