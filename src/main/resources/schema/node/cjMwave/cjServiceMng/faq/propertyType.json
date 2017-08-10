@@ -23,7 +23,7 @@
     "pid": "faqCtgrySeq",
     "id": "faq@faqCtgrySeq",
     "propertyTypeName": "FAQ 카테고리 일련번호",
-    "valueType": "INT",
+    "valueType": "REFERENCE",
     "required": true,
     "idable": false,
     "labelable": false,

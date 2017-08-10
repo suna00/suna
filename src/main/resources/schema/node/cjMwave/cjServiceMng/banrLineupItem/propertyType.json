@@ -5,7 +5,7 @@
     "pid": "banrLineupItemSeq",
     "id": "banrLineupItem@banrLineupItemSeq",
     "propertyTypeName": "배너 라인업 항목 일련번호",
-    "valueType": "INT",
+    "valueType": "REFERENCE",
     "required": true,
     "idable": true,
     "labelable": false,

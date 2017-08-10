@@ -23,7 +23,7 @@
     "pid": "voteSeq",
     "id": "votePredRstrtnInfo@voteSeq",
     "propertyTypeName": "투표 일련번호",
-    "valueType": "INT",
+    "valueType": "REFERENCE",
     "required": true,
     "idable": false,
     "labelable": false,
