@@ -11,9 +11,10 @@
     "labelable": false,
     "treeable": false,
     "indexable": true,
-    "analyzer": null,
+    "analyzer" : "code",
     "referenceType": "",
-    "referenceValue": ""
+    "referenceValue": "",
+    "defaultValue" : ""
   },
   {
     "typeId" : "propertyType",
@@ -26,10 +27,11 @@
     "idable": false,
     "labelable": true,
     "treeable": false,
-    "indexable": true,
-    "analyzer": null,
+    "indexable" :true,
+    "analyzer" : "cjk",
     "referenceType": "",
-    "referenceValue": ""
+    "referenceValue": "",
+    "defaultValue" : ""
   },
   {
     "typeId" : "propertyType",
@@ -42,10 +44,11 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": false,
-    "analyzer": null,
+    "indexable" :true,
+    "analyzer" : "cjk",
     "referenceType": "",
-    "referenceValue": ""
+    "referenceValue": "",
+    "defaultValue" : ""
   },
   {
     "typeId" : "propertyType",
@@ -58,10 +61,11 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
+    "indexable": false,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": ""
+    "referenceValue": "",
+    "defaultValue" : ""
   }
   ,{
     "typeId" : "propertyType",
@@ -143,9 +147,10 @@
     "labelable": false,
     "treeable": false,
     "indexable": true,
-    "analyzer": null,
+    "analyzer" : "code",
     "referenceType": "groupCode",
-    "referenceValue": "groupCodeId"
+    "referenceValue": "groupCodeId",
+    "defaultValue" : ""
   },
   {
     "typeId" : "propertyType",
@@ -159,9 +164,10 @@
     "labelable": false,
     "treeable": false,
     "indexable": true,
-    "analyzer": null,
+    "analyzer" : "code",
     "referenceType": "",
-    "referenceValue": ""
+    "referenceValue": "",
+    "defaultValue" : ""
   },
   {
     "typeId" : "propertyType",
@@ -175,9 +181,10 @@
     "labelable": true,
     "treeable": false,
     "indexable": true,
-    "analyzer": null,
+    "analyzer" : "cjk",
     "referenceType": "",
-    "referenceValue": ""
+    "referenceValue": "",
+    "defaultValue" : ""
   },
   {
     "typeId" : "propertyType",
@@ -190,8 +197,8 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": false,
-    "analyzer": null,
+    "indexable" :true,
+    "analyzer" : "simple",
     "referenceType": "",
     "referenceValue": "",
     "defaultValue": 0
@@ -207,10 +214,11 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": false,
-    "analyzer": null,
+    "indexable" :true,
+    "analyzer" : "cjk",
     "referenceType": "",
-    "referenceValue": ""
+    "referenceValue": "",
+    "defaultValue": ""
   },
   {
     "typeId" : "propertyType",
