@@ -110,5 +110,34 @@
     "description": "",
     "sortOrder": "20",
     "status": "y"
+  },
+
+
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root",
+    "code": "commonNoticeTopStatus",
+    "name": "리스트내 상위노출",
+    "description": "",
+    "sortOrder": "1",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root@commonNoticeTopStatus",
+    "code": "20",
+    "name": "일반",
+    "description": "",
+    "sortOrder": "10",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root@commonNoticeTopStatus",
+    "code": "10",
+    "name": "상위",
+    "description": "",
+    "sortOrder": "20",
+    "status": "y"
   }
 ]

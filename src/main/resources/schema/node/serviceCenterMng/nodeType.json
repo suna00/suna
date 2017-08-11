@@ -77,7 +77,7 @@
     "typeName": "자주쓰는답변",
     "tableName": "ytnDevDb#frequentlyUsedAnswer",
     "repositoryType": "node",
-    "eviction": 0
+    "eviction": 100
   },
   {
     "parentId": "serviceCenterMng",

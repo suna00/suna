@@ -1356,7 +1356,7 @@
     "tid": "frequentlyUsedAnswer",
     "pid": "title",
     "propertyTypeName": "제목",
-    "valueType": "TEXT",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
