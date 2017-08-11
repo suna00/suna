@@ -128,7 +128,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
     @Override
     public boolean containsKey(Object key) {
-        return properties.containsKey(key);
+        return properties.containsKey(key) || NodeValue.containsKey(key.toString());
     }
 
     @Override
@@ -138,11 +138,23 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
     @Override
     public Object get(Object key) {
-        return properties.get(key);
+        Object value = null ;
+        if(nodeValue != null && nodeValue.containsKey(key.toString())){
+            value = nodeValue.getValue(key.toString()) ;
+        }else{
+            value = properties.get(key)  ;
+        }
+        return value ;
     }
 
     @Override
     public Object put(String key, Object value) {
+        if(nodeValue != null && NodeValue.containsKey(key)){
+            if(properties.containsKey(key)){
+                properties.remove(key) ;
+            }
+            return nodeValue.putValue(key, value) ;
+        }
         return properties.put(key, value);
     }
 
@@ -335,7 +347,17 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     }
 
     public Node toStore() {
-        properties.toStore();
+        NodeType nodeType = NodeUtils.getNodeType(getTypeId()) ;
+        for(PropertyType pt : nodeType.getPropertyTypes()){
+            Object value = NodeUtils.getStoreValue(this, pt, this.id) ;
+
+            if(value != null){
+                put(pt.getPid(), value);
+            }else{
+                remove(pt.getPid()) ;
+            }
+        }
+//        properties.toStore();
         return this ;
     }
 
