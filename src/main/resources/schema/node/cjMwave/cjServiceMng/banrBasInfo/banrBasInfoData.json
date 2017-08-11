@@ -1,0 +1,62 @@
+[
+  {
+    "typeId": "banrBasInfo",
+    "banrSeq": 100,
+    "banrNm": "라이브 컨벤션 배너 TYPE1",
+    "banrTypeCd": "banrTypeCd@1",
+    "banrLowTypeCd": "typeCd@1",
+    "svcMenuDivCd": "banrSvcMenuTypeCd@1",
+    "showStDt": "20170801",
+    "showFnsDt": "20171130",
+    "svcTermDivCd": "svcDvcDiv@1",
+    "showYn": true,
+    "showLoCd": "",
+    "showCntryCdList": "KOR,USA",
+    "livBanrDivCd": ""
+  },
+  {
+    "typeId": "banrBasInfo",
+    "banrSeq": 101,
+    "banrNm": "라이브 컨벤션 배너 TYPE2",
+    "banrTypeCd": "banrTypeCd@1",
+    "banrLowTypeCd": "typeCd@2",
+    "svcMenuDivCd": "banrSvcMenuTypeCd@1",
+    "showStDt": "20170801",
+    "showFnsDt": "20171130",
+    "svcTermDivCd": "svcDvcDiv@1",
+    "showYn": true,
+    "showLoCd": "",
+    "showCntryCdList": "KOR,USA",
+    "livBanrDivCd": ""
+  },
+  {
+    "typeId": "banrBasInfo",
+    "banrSeq": 102,
+    "banrNm": "라이브 배너 TYPE1",
+    "banrTypeCd": "banrTypeCd@2",
+    "banrLowTypeCd": "typeCd@1",
+    "svcMenuDivCd": "banrSvcMenuTypeCd@1",
+    "showStDt": "20170801",
+    "showFnsDt": "20171130",
+    "svcTermDivCd": "svcDvcDiv@1",
+    "showYn": true,
+    "showLoCd": "",
+    "showCntryCdList": "KOR,USA",
+    "livBanrDivCd": "livBanrDivCd@1"
+  },
+  {
+    "typeId": "banrBasInfo",
+    "banrSeq": 103,
+    "banrNm": "라이브 배너 TYPE2",
+    "banrTypeCd": "banrTypeCd@2",
+    "banrLowTypeCd": "typeCd@2",
+    "svcMenuDivCd": "banrSvcMenuTypeCd@1",
+    "showStDt": "20170801",
+    "showFnsDt": "20171130",
+    "svcTermDivCd": "svcDvcDiv@1",
+    "showYn": true,
+    "showLoCd": "",
+    "showCntryCdList": "KOR,USA",
+    "livBanrDivCd": "livBanrDivCd@2"
+  }
+]

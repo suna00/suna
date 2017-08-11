@@ -1,0 +1,46 @@
+[
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 100,
+    "compItemSeq": 101,
+    "cnctItemYn": false,
+    "contsId": "voteItemInfo::100",
+    "atribNm": "BIGBANG",
+    "imgPath": "http://cmsimg.global.mnet.com/compAtribInfo/456/6789.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 101,
+    "compItemSeq": 101,
+    "cnctItemYn": false,
+    "contsId": "voteItemInfo::100",
+    "atribNm": "EXO",
+    "imgPath": "http://cmsimg.global.mnet.com/compAtribInfo/456/6789.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 102,
+    "compItemSeq": 101,
+    "cnctItemYn": false,
+    "contsId": "voteItemInfo::100",
+    "atribNm": "TWICE",
+    "imgPath": "http://cmsimg.global.mnet.com/compAtribInfo/456/6789.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 103,
+    "compItemSeq": 101,
+    "cnctItemYn": false,
+    "contsId": "voteItemInfo::100",
+    "atribNm": "2PM",
+    "imgPath": "http://cmsimg.global.mnet.com/compAtribInfo/456/6789.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  }
+]

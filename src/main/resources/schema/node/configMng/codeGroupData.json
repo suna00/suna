@@ -72,8 +72,85 @@
   {
     "typeId" : "groupCode",
     "groupCodeId" : "sortBaseCd",
-    "name" : "컴포넌트에서 사용되는 정렬 기준 코드",
+    "name" : "유형 구분 코드",
     "active" : true,
-    "desc" : "유형 구분 코드"
+    "desc" : "컴포넌트에서 사용되는 정렬 기준 코드"
+  },
+  {
+    "typeId" : "groupCode",
+    "groupCodeId" : "banrTypeCd",
+    "name" : "배너 구분 코드",
+    "active" : true,
+    "desc" : "배너 종류를 구분하는 코드"
+  },
+  {
+    "typeId" : "groupCode",
+    "groupCodeId" : "banrSvcMenuTypeCd",
+    "name" : "서비스 메뉴 코드",
+    "active" : true,
+    "desc" : "배너에서 사용되는 서비스 메뉴 코드"
+  },
+  {
+    "typeId" : "groupCode",
+    "groupCodeId" : "livBanrDivCd",
+    "name" : "라이브배너 유형 코드",
+    "active" : true,
+    "desc" : "라이브배너에서 사용되는 유형 코드"
+  },
+  {
+    "typeId" : "groupCode",
+    "groupCodeId" : "socialLinkCd",
+    "name" : "소셜 링크 코드",
+    "active" : true,
+    "desc" : "배너에서 사용되는 소셜 링크 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "linkDivCd",
+    "name": "링크 구분 코드",
+    "active": true,
+    "desc": "배너에서 사용되는 링크 구분 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "cnctContsDivCd",
+    "name": "연결 콘텐츠 구분 코드",
+    "active": true,
+    "desc": "컴포넌트에서 사용되는 연결 콘텐츠 구분 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "ifTgtCd",
+    "name": "연동 대상 코드",
+    "active": true,
+    "desc": "컴포넌트에서 사용되는 연동 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "voteFormlCd",
+    "name": "투표 방식 코드",
+    "active": true,
+    "desc": "투표 방식 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "tgtDivCd",
+    "name": "투표 대상 구분 코드",
+    "active": true,
+    "desc": "투표 대상 구분 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "selScopeCd",
+    "name": "투표 선택지 구분 코드",
+    "active": true,
+    "desc": "투표 선택지 구분 코드, 투표 방식에 따라서 달라질 듯"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "alignFormlCd",
+    "name": "판배열 코드",
+    "active": true,
+    "desc": "토너먼트 투표인 경우에 판배열 구분"
   }
 ]

@@ -235,7 +235,7 @@
     "typeId" : "code",
     "groupCodeId" : "itemDivCd",
     "codeId" : "1",
-    "name" : "TYPE5",
+    "name" : "Live Convention Banner",
     "order" : 1,
     "active" : true
   },
@@ -243,7 +243,7 @@
     "typeId" : "code",
     "groupCodeId" : "itemDivCd",
     "codeId" : "2",
-    "name" : "TYPE5",
+    "name" : "Live Banner",
     "order" : 2,
     "active" : true
   },
@@ -251,7 +251,7 @@
     "typeId" : "code",
     "groupCodeId" : "itemDivCd",
     "codeId" : "3",
-    "name" : "TYPE5",
+    "name" : "Music Chart",
     "order" : 3,
     "active" : true
   },
@@ -259,7 +259,7 @@
     "typeId" : "code",
     "groupCodeId" : "itemDivCd",
     "codeId" : "4",
-    "name" : "TYPE5",
+    "name" : "Live Vote",
     "order" : 4,
     "active" : true
   },
@@ -267,7 +267,7 @@
     "typeId" : "code",
     "groupCodeId" : "itemDivCd",
     "codeId" : "5",
-    "name" : "TYPE5",
+    "name" : "NEWS Hub",
     "order" : 5,
     "active" : true
   },
@@ -275,7 +275,7 @@
     "typeId" : "code",
     "groupCodeId" : "itemDivCd",
     "codeId" : "6",
-    "name" : "TYPE5",
+    "name" : "NEWS",
     "order" : 6,
     "active" : true
   },
@@ -283,7 +283,7 @@
     "typeId" : "code",
     "groupCodeId" : "itemDivCd",
     "codeId" : "7",
-    "name" : "TYPE5",
+    "name" : "Photo",
     "order" : 7,
     "active" : true
   },
@@ -291,16 +291,360 @@
     "typeId" : "code",
     "groupCodeId" : "itemDivCd",
     "codeId" : "8",
-    "name" : "TYPE5",
+    "name" : "VOD",
     "order" : 8,
     "active" : true
   },
   {
     "typeId": "code",
     "groupCodeId": "itemDivCd",
+    "codeId": "9",
+    "name": "MD",
+    "order": 9,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "itemDivCd",
+    "codeId": "10",
+    "name": "Meet&Greet",
+    "order": 10,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "itemDivCd",
+    "codeId": "11",
+    "name": "Global Chat",
+    "order": 11,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "itemDivCd",
+    "codeId": "12",
+    "name": "K-STAR",
+    "order": 12,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "itemDivCd",
+    "codeId": "13",
+    "name": "Program",
+    "order": 13,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "banrTypeCd",
+    "codeId": "1",
+    "name": "Live Convention",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "banrTypeCd",
+    "codeId": "2",
+    "name": "Live Bannner",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "banrTypeCd",
+    "codeId": "3",
+    "name": "BG Banner",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "banrTypeCd",
+    "codeId": "4",
+    "name": "Anchor",
+    "order": 4,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "banrTypeCd",
     "codeId": "5",
-    "name": "TYPE5",
+    "name": "Top Banner",
     "order": 5,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "banrSvcMenuTypeCd",
+    "codeId": "1",
+    "name": "메인",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "banrSvcMenuTypeCd",
+    "codeId": "2",
+    "name": "서브메인",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "banrSvcMenuTypeCd",
+    "codeId": "3",
+    "name": "서브페이지",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "livBanrDivCd",
+    "codeId": "1",
+    "name": "House",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "livBanrDivCd",
+    "codeId": "2",
+    "name": "AD",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "socialLinkCd",
+    "codeId": "1",
+    "name": "Facebook",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "socialLinkCd",
+    "codeId": "2",
+    "name": "Twitter",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "socialLinkCd",
+    "codeId": "3",
+    "name": "Kakao",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "socialLinkCd",
+    "codeId": "4",
+    "name": "Weibo",
+    "order": 4,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "socialLinkCd",
+    "codeId": "5",
+    "name": "Instargram",
+    "order": 5,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "socialLinkCd",
+    "codeId": "6",
+    "name": "Google+",
+    "order": 6,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "socialLinkCd",
+    "codeId": "7",
+    "name": "Naver",
+    "order": 7,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "socialLinkCd",
+    "codeId": "8",
+    "name": "tumblr",
+    "order": 8,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "socialLinkCd",
+    "codeId": "9",
+    "name": "Line",
+    "order": 9,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "linkDivCd",
+    "codeId": "1",
+    "name": "새창",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cnctContsDivCd",
+    "codeId": "1",
+    "name": "Live Banner",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cnctContsDivCd",
+    "codeId": "2",
+    "name": "Live Vote",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cnctContsDivCd",
+    "codeId": "3",
+    "name": "News",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cnctContsDivCd",
+    "codeId": "4",
+    "name": "Photo",
+    "order": 4,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cnctContsDivCd",
+    "codeId": "5",
+    "name": "Vod",
+    "order": 5,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cnctContsDivCd",
+    "codeId": "6",
+    "name": "MD",
+    "order": 6,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cnctContsDivCd",
+    "codeId": "7",
+    "name": "Meet&Greet",
+    "order": 7,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cnctContsDivCd",
+    "codeId": "8",
+    "name": "Global Chat",
+    "order": 8,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "ifTgtCd",
+    "codeId": "1",
+    "name": "MWAVE MUSIC CHART",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "ifTgtCd",
+    "codeId": "2",
+    "name": "STAR TOURNAMENT",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "ifTgtCd",
+    "codeId": "3",
+    "name": "K-Stars TOURMENT",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "ifTgtCd",
+    "codeId": "4",
+    "name": "K-POP POLL",
+    "order": 4,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "tgtDivCd",
+    "codeId": "1",
+    "name": "Atrist",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "selScopeCd",
+    "codeId": "1",
+    "name": "전체 Atrist",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "selScopeCd",
+    "codeId": "2",
+    "name": "전체 여성",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "selScopeCd",
+    "codeId": "3",
+    "name": "전체 남성",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "selScopeCd",
+    "codeId": "4",
+    "name": "운영자 선택",
+    "order": 4,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "alignFormlCd",
+    "codeId": "1",
+    "name": "인기",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "alignFormlCd",
+    "codeId": "2",
+    "name": "랜덤",
+    "order": 2,
     "active": true
   }
 ]
