@@ -207,6 +207,23 @@
   {
     "typeId": "propertyType",
     "tid": "banrBasInfo",
+    "pid": "refdBanrItemList",
+    "id": "banrBasInfo@refdBanrItemList",
+    "propertyTypeName": "배너 항목 리스트",
+    "valueType": "REFERENCED",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "banrItemInfo",
+    "referenceValue": "banrSeq",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "banrBasInfo",
     "pid": "owner",
     "id": "banrBasInfo@owner",
     "propertyTypeName": "등록자",
