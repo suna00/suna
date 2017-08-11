@@ -726,6 +726,22 @@
   {
     "typeId": "propertyType",
     "tid": "category",
+    "pid": "children",
+    "propertyTypeName": "하위 카테고리",
+    "valueType": "REFERENCED",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": true,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "category",
+    "referenceValue": "upperId",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "category",
     "pid": "affiliateId",
     "propertyTypeName": "제휴사ID",
     "valueType": "REFERENCE",
