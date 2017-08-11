@@ -86,7 +86,11 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
                     if (_id == null || StringUtils.isEmpty(_id.toString())) {
                         throw new RuntimeException("ID is NULL");
                     }
-                    this.id = (String) id + _id + (i < (idablePts.size() - 1) ? ID_SEPERATOR : "");
+                    if (StringUtils.contains(_id.toString(), "@")) {
+                        this.id = _id.toString() + ID_SEPERATOR + StringUtils.removeEnd(id, "@") ;
+                    } else {
+                        this.id = id + _id + (i < (idablePts.size() - 1) ? ID_SEPERATOR : "");
+                    }
                 }
             }else{
                 PropertyType idPropertyType = idablePts.get(0) ;
