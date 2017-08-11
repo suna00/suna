@@ -1,0 +1,20 @@
+[
+  {
+    "typeId" : "artistMultiLangInfo",
+    "artistId" : "1",
+    "langCd" : "1",
+    "artistNm" : "1",
+    "artistDesc" : "1",
+    "atvyName" : "1",
+    "findKywrd" : "1"
+  },
+  {
+    "typeId" : "artistMultiLangInfo",
+    "artistId" : "1",
+    "langCd" : "2",
+    "artistNm" : "2",
+    "artistDesc" : "2",
+    "atvyName" : "2",
+    "findKywrd" : "2"
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "typeId" : "artist",
+    "artistId" : "1",
+    "artistNm" : "Different Heaven",
+    "cretDt" : "",
+    "bpnac" : "",
+    "sex" : "",
+    "typeCd" : "",
+    "genreCd" : "",
+    "debutDt" : "",
+    "debutAlbum" : "Different Heaven",
+    "artistDesc" : "Different Heaven",
+    "atvyName" : "Different Heaven",
+    "imgPath" : "",
+    "findKywrd" : "Different Heaven",
+    "relArtistIds" : "",
+    "showCntryCdList" : "",
+    "showYn" : true,
+    "mnetIfTrtYn" : true
+  }
+]
