@@ -80,7 +80,7 @@
       },
       {
         "pageName": "수정",
-        "pageUrl": "view"
+        "pageUrl": "uform"
       }
     ],
     "customPages": [
