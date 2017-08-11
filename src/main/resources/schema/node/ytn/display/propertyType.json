@@ -727,7 +727,7 @@
     "typeId": "propertyType",
     "tid": "category",
     "pid": "children",
-    "propertyTypeName": "하위 카테고리",
+    "propertyTypeName": "하위",
     "valueType": "REFERENCED",
     "required": false,
     "idable": false,

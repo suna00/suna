@@ -161,6 +161,22 @@
   },
   {
     "typeId": "propertyType",
+    "tid": "commonCode",
+    "pid": "children",
+    "propertyTypeName": "하위",
+    "valueType": "REFERENCED",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "commonCode",
+    "referenceValue": "upperCode",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
     "tid": "commonMemo",
     "pid": "commonMemoId",
     "propertyTypeName": "ID",
