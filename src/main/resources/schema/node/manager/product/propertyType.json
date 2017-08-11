@@ -278,7 +278,7 @@
     "pid": "deleteStatus",
     "propertyTypeName": "삭제상태",
     "valueType": "REFERENCE",
-    "required": true,
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
