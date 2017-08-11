@@ -5,7 +5,7 @@
     "pid": "popupSeq",
     "id": "popupMultiLangInfo@popupSeq",
     "propertyTypeName": "팝업 일련번호",
-    "valueType": "INT",
+    "valueType": "REFERENCE",
     "required": true,
     "idable": true,
     "labelable": false,

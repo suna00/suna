@@ -366,8 +366,7 @@
     "tid": "mainBasInfo",
     "typeName": "메인 기본 정보",
     "repositoryType": "node",
-    "eviction": 0,
-    "tableName": "cjDb#mainBasInfo"
+    "eviction": 0
   },
   {
     "parentId": "cjServiceMng",
@@ -376,8 +375,7 @@
     "tid": "compItemInfo",
     "typeName": "컴포넌트 항목 정보",
     "repositoryType": "node",
-    "eviction": 0,
-    "tableName": "cjDb#compItemInfo"
+    "eviction": 0
   },
   {
     "parentId": "cjServiceMng",
@@ -386,8 +384,7 @@
     "tid": "compAtribInfo",
     "typeName": "컴포넌트 속성 정보",
     "repositoryType": "node",
-    "eviction": 0,
-    "tableName": "cjDb#compAtribInfo"
+    "eviction": 0
   },
   {
     "parentId": "cjServiceMng",

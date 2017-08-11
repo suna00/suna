@@ -23,7 +23,7 @@
     "pid": "banrSeq",
     "id": "banrItemInfo@banrSeq",
     "propertyTypeName": "배너 일련번호",
-    "valueType": "INT",
+    "valueType": "REFERENCE",
     "required": false,
     "idable": true,
     "labelable": false,

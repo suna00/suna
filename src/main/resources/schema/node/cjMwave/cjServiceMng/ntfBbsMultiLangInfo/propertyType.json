@@ -5,7 +5,7 @@
     "pid": "ntfBbsSeq",
     "id": "ntfBbsMultiLangInfo@ntfBbsSeq",
     "propertyTypeName": "공지사항 일련번호",
-    "valueType": "INT",
+    "valueType": "REFERENCE",
     "required": true,
     "idable": true,
     "labelable": false,

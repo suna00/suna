@@ -23,7 +23,7 @@
     "pid": "awardSctnSeq",
     "id": "mamaSctnWinner@awardSctnSeq",
     "propertyTypeName": "수상 부문 일련번호",
-    "valueType": "INT",
+    "valueType": "REFERENCE",
     "required": true,
     "idable": false,
     "labelable": false,

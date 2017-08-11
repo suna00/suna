@@ -137,6 +137,40 @@
     "defaultValue" : ""
   }
   ,{
+    "typeId": "propertyType",
+    "tid": "systemNtf",
+    "pid": "ctgCd1",
+    "id": "systemNtf@ctgCd1",
+    "propertyTypeName": "분류 코드1",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "code",
+    "referenceValue": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "systemNtf",
+    "pid": "ctgCd2",
+    "id": "systemNtf@ctgCd2",
+    "propertyTypeName": "분류 코드2",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "code",
+    "referenceValue": "",
+    "defaultValue": ""
+  }
+  ,{
     "typeId" : "propertyType",
     "tid" : "systemNtf",
     "pid" : "owner",

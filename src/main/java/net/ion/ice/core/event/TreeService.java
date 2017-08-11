@@ -78,26 +78,52 @@ public class TreeService {
                 upNodeList.add(idx,dragNode);   //내가 중간에 들어가고 나머지가 뒤로 밀리는게 맞겠지??
             }
 
-            //새 upNodeList for문 돌면서 전부 인덱스값으로 sortOdrg 계속 put한다
-            dragNode.put("upperContsCtgryId",upperId);
-            for(int j=1; j<=upNodeList.size(); j++){
-                Node newNode = upNodeList.get(j);
-                newNode.put("sortOdrg",j);
+            //새 upNodeList for문 돌면서 전부 인덱스값으로 sortOdrg 계속 put한다.
+            List<Node> newNodeList = upNodeList;
+            for(int j=1; j<=newNodeList.size(); j++){
+                Node newNode = newNodeList.get(j);
+
+                Map<String, Object> data = new HashMap<>();
+                data.put("contsCtgryId",newNode.getId());
+                data.put("upperContsCtgryId",upperId);
+                data.put("sortOdrg",j);
+
+                /*nodeService.executeNode(data,TYPEID,"update");*/
+
+                /*ExecuteContext contx = ExecuteContext.makeContextFromMap(data,TYPEID);
+                contx.execute();*/
+
+                ExecuteContext contx = ExecuteContext.makeContextFromMap(data, TYPEID) ;
+                infinispanService.execute(contx);
+
             }
 
         }else if(dropGap.equals("false") && upNodeList.size() <=0){
-            dragNode.put("upperContsCtgryId",upperId);
-            dragNode.put("sortOdrg",1);
+            /*dragNode.put("upperContsCtgryId",upperId);
+            dragNode.put("sortOdrg",1);*/
+            Map<String, Object> data = new HashMap<>();
+            data.put("contsCtgryId",dragNode.getId());
+            data.put("upperContsCtgryId",upperId);
+            data.put("sortOdrg",1);
+
+            ExecuteContext contx = ExecuteContext.makeContextFromMap(data, TYPEID) ;
+            infinispanService.execute(contx);
+
+            //nodeService.executeNode(data,TYPEID,"update");
+
+           /* ExecuteContext contx = ExecuteContext.makeContextFromMap(data,TYPEID);
+            contx.execute();*/
+
         }
 
-        List<String> paramkList = new ArrayList<String>();
+        /*List<String> paramkList = new ArrayList<String>();
         paramkList.add(dragNode.getValue("contsCtgryGroupId").toString());
         String[] paramArr = new String[paramkList.size()];
         paramArr = paramkList.toArray(paramArr);
         Map<String, String[]> parameterMap = new HashMap<>();
         parameterMap.put("contsCtgryGroupId_matching",paramArr);
 
-        getNodeTree(TYPEID,parameterMap);
+        getNodeTree(TYPEID,parameterMap);*/
 
     }
 

@@ -1,12 +1,13 @@
 package net.ion.ice.core.query;
 
+import net.ion.ice.core.context.Context;
 import net.ion.ice.core.context.QueryContext;
 
 /**
  * Created by jaeho on 2017. 6. 15..
  */
 public class ResultField {
-    private QueryContext queryContext ;
+    private Context context ;
     private String fieldName;
     private String fieldValue ;
 
@@ -16,9 +17,9 @@ public class ResultField {
     }
 
 
-    public ResultField(String fieldName, QueryContext queryContext) {
+    public ResultField(String fieldName, Context context) {
         this.fieldName = fieldName ;
-        this.queryContext = queryContext ;
+        this.context = context ;
     }
 
     public String getFieldName() {
@@ -26,9 +27,13 @@ public class ResultField {
     }
 
 
-    public QueryContext getQueryContext() {
-        return queryContext;
+    public Context getQueryContext() {
+        return context;
     }
+    public Context getContext() {
+        return context;
+    }
+
 
     public String getFieldValue() {
         return fieldValue;
