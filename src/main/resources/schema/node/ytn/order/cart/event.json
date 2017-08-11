@@ -1,0 +1,10 @@
+[
+  {
+    "typeId": "eventAction",
+    "event": "cart@create",
+    "action": "create",
+    "actionType": "service",
+    "actionBody": "cartService.create",
+    "order": 1
+  }
+]
