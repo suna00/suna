@@ -83,7 +83,7 @@
   {
     "typeId": "propertyType",
     "tid": "banner",
-    "pid": "type",
+    "pid": "bannerType",
     "propertyTypeName": "타입",
     "valueType": "REFERENCE",
     "required": true,
@@ -115,7 +115,7 @@
   {
     "typeId": "propertyType",
     "tid": "banner",
-    "pid": "status",
+    "pid": "bannerStatus",
     "propertyTypeName": "사용여부",
     "valueType": "REFERENCE",
     "required": true,
@@ -244,7 +244,7 @@
   {
     "typeId": "propertyType",
     "tid": "bannerElement",
-    "pid": "type",
+    "pid": "bannerElementType",
     "propertyTypeName": "타입",
     "valueType": "REFERENCE",
     "required": true,
@@ -420,7 +420,7 @@
   {
     "typeId": "propertyType",
     "tid": "bannerElement",
-    "pid": "status",
+    "pid": "bannerElementStatus",
     "propertyTypeName": "사용여부",
     "valueType": "REFERENCE",
     "required": true,
@@ -533,7 +533,7 @@
   {
     "typeId": "propertyType",
     "tid": "bannerMap",
-    "pid": "type",
+    "pid": "bannerMapType",
     "propertyTypeName": "타입",
     "valueType": "REFERENCE",
     "required": true,
@@ -662,7 +662,7 @@
   {
     "typeId": "propertyType",
     "tid": "category",
-    "pid": "type",
+    "pid": "categoryType",
     "propertyTypeName": "타입",
     "valueType": "REFERENCE",
     "required": true,
@@ -710,7 +710,7 @@
   {
     "typeId": "propertyType",
     "tid": "category",
-    "pid": "status",
+    "pid": "categoryStatus",
     "propertyTypeName": "전시여부",
     "valueType": "REFERENCE",
     "required": true,
@@ -935,7 +935,7 @@
   {
     "typeId": "propertyType",
     "tid": "gnb",
-    "pid": "type",
+    "pid": "GNBType",
     "propertyTypeName": "타입",
     "valueType": "REFERENCE",
     "required": true,
@@ -983,7 +983,7 @@
   {
     "typeId": "propertyType",
     "tid": "gnb",
-    "pid": "status",
+    "pid": "gnbStatus",
     "propertyTypeName": "전시여부",
     "valueType": "REFERENCE",
     "required": true,
@@ -1128,7 +1128,7 @@
   {
     "typeId": "propertyType",
     "tid": "popularSearches",
-    "pid": "status",
+    "pid": "popularSearchesStatus",
     "propertyTypeName": "사용여부",
     "valueType": "REFERENCE",
     "required": true,
@@ -1144,7 +1144,7 @@
   {
     "typeId": "propertyType",
     "tid": "popularSearches",
-    "pid": "type",
+    "pid": "popularSearchesType",
     "propertyTypeName": "타입",
     "valueType": "REFERENCE",
     "required": true,
@@ -1353,7 +1353,7 @@
   {
     "typeId": "propertyType",
     "tid": "popup",
-    "pid": "status",
+    "pid": "popupStatus",
     "propertyTypeName": "사용여부",
     "valueType": "REFERENCE",
     "required": true,
@@ -1563,7 +1563,7 @@
   {
     "typeId": "propertyType",
     "tid": "referenceProduct",
-    "pid": "type",
+    "pid": "referenceProductType",
     "propertyTypeName": "참조타입",
     "valueType": "REFERENCE",
     "required": true,
@@ -1579,7 +1579,7 @@
   {
     "typeId": "propertyType",
     "tid": "referenceProduct",
-    "pid": "status",
+    "pid": "referenceProductStatus",
     "propertyTypeName": "사용여부",
     "valueType": "REFERENCE",
     "required": true,
@@ -1708,7 +1708,7 @@
   {
     "typeId": "propertyType",
     "tid": "newProductMap",
-    "pid": "status",
+    "pid": "newProductMapStatus",
     "propertyTypeName": "사용여부",
     "valueType": "REFERENCE",
     "required": true,
@@ -1885,7 +1885,7 @@
   {
     "typeId": "propertyType",
     "tid": "newProduct",
-    "pid": "status",
+    "pid": "newProductStatus",
     "propertyTypeName": "전시여부",
     "valueType": "REFERENCE",
     "required": true,
@@ -2030,7 +2030,7 @@
   {
     "typeId": "propertyType",
     "tid": "productToThemeMap",
-    "pid": "status",
+    "pid": "productToThemeMapStatus",
     "propertyTypeName": "사용여부",
     "valueType": "REFERENCE",
     "required": true,
@@ -2159,7 +2159,7 @@
   {
     "typeId": "propertyType",
     "tid": "theme",
-    "pid": "type",
+    "pid": "themeType",
     "propertyTypeName": "타입",
     "valueType": "REFERENCE",
     "required": false,
@@ -2207,7 +2207,7 @@
   {
     "typeId": "propertyType",
     "tid": "theme",
-    "pid": "status",
+    "pid": "themeStatus",
     "propertyTypeName": "전시여부",
     "valueType": "REFERENCE",
     "required": true,

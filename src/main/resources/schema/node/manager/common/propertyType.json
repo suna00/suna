@@ -82,7 +82,7 @@
   {
     "typeId": "propertyType",
     "tid": "commonCode",
-    "pid": "status",
+    "pid": "commonCodeStatus",
     "propertyTypeName": "사용여부",
     "valueType": "REFERENCE",
     "required": false,
@@ -372,7 +372,7 @@
   {
     "typeId": "propertyType",
     "tid": "commonResource",
-    "pid": "type",
+    "pid": "commonResourceType",
     "propertyTypeName": "종류",
     "valueType": "REFERENCE",
     "required": true,
@@ -532,7 +532,7 @@
   {
     "typeId": "propertyType",
     "tid": "commonResource",
-    "pid": "status",
+    "pid": "commonResourceStatus",
     "propertyTypeName": "사용여부",
     "valueType": "REFERENCE",
     "required": true,

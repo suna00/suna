@@ -54,7 +54,8 @@ public class ContextUtils {
         if(configValue instanceof Template){
             return ((Template)configValue).format(data) ;
         }else if(configValue instanceof String){
-            return JsonUtils.getValue(data, (String) configValue) ;
+//            return JsonUtils.getValue(data, (String) configValue) ;
+            return configValue ;
         }else{
             return configValue ;
         }

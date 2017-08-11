@@ -33,10 +33,13 @@ public class ApiService {
         if(apiMethod.equals("POST")){
             if(request instanceof MultipartHttpServletRequest) {
                 ApiContext context = ApiContext.createContext(apiNode, (Map<String, Object>) apiNode.get("config"), request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap()) ;
-                return JsonResponse.create(nodeService.executeNode(request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap(),  null,"")) ;
+                return context.makeApiResult() ;
             }
-            return JsonResponse.create(nodeService.executeNode(request.getParameterMap(), null, null, "")) ;
+            ApiContext context = ApiContext.createContext(apiNode, (Map<String, Object>) apiNode.get("config"), request.getParameterMap(), null) ;
+            return context.makeApiResult() ;
         }
-        return null ;
+
+        ApiContext context = ApiContext.createContext(apiNode, (Map<String, Object>) apiNode.get("config"), request.getParameterMap(), null) ;
+        return context.makeApiResult() ;
     }
 }

@@ -35,8 +35,8 @@
   {
     "typeId": "propertyType",
     "tid": "contents",
-    "pid": "type",
-    "propertyTypeName": "타입",
+    "pid": "contentsType",
+    "propertyTypeName": "컨텐츠 타입",
     "valueType": "REFERENCE",
     "required": true,
     "idable": false,
@@ -743,7 +743,7 @@
   {
     "typeId": "propertyType",
     "tid": "contentsOptionTypeFields",
-    "pid": "type",
+    "pid": "contentsOptionTypeFieldsType",
     "propertyTypeName": "타입",
     "valueType": "REFERENCE",
     "required": true,

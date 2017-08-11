@@ -51,7 +51,7 @@
   {
     "typeId": "propertyType",
     "tid": "product",
-    "pid": "type",
+    "pid": "productType",
     "propertyTypeName": "상품타입",
     "valueType": "REFERENCE",
     "required": true,
@@ -259,7 +259,7 @@
   {
     "typeId": "propertyType",
     "tid": "product",
-    "pid": "status",
+    "pid": "productStatus",
     "propertyTypeName": "전시상태",
     "valueType": "REFERENCE",
     "required": true,
@@ -310,7 +310,7 @@
     "pid": "startDate",
     "propertyTypeName": "판매시작일",
     "valueType": "DATE",
-    "required": true,
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
@@ -326,7 +326,7 @@
     "pid": "endDate",
     "propertyTypeName": "판매종료일",
     "valueType": "DATE",
-    "required": true,
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
@@ -342,7 +342,7 @@
     "pid": "stockQuantity",
     "propertyTypeName": "재고수량",
     "valueType": "INT",
-    "required": true,
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
@@ -1108,7 +1108,7 @@
   {
     "typeId": "propertyType",
     "tid": "productByAffiliateMall",
-    "pid": "type",
+    "pid": "productType",
     "propertyTypeName": "상품타입",
     "valueType": "REFERENCE",
     "required": true,
@@ -1284,7 +1284,7 @@
   {
     "typeId": "propertyType",
     "tid": "productByAffiliateMall",
-    "pid": "status",
+    "pid": "productStatus",
     "propertyTypeName": "전시상태",
     "valueType": "REFERENCE",
     "required": true,
@@ -2053,7 +2053,7 @@
   {
     "typeId": "propertyType",
     "tid": "productOption",
-    "pid": "type",
+    "pid": "productOptionType",
     "propertyTypeName": "타입",
     "valueType": "REFERENCE",
     "required": false,
@@ -2101,7 +2101,7 @@
   {
     "typeId": "propertyType",
     "tid": "productOption",
-    "pid": "status",
+    "pid": "productOptionStatus",
     "propertyTypeName": "사용여부",
     "valueType": "REFERENCE",
     "required": true,
@@ -2310,7 +2310,7 @@
   {
     "typeId": "propertyType",
     "tid": "productOptionItem",
-    "pid": "status",
+    "pid": "productOptionItemStatus",
     "propertyTypeName": "사용여부",
     "valueType": "REFERENCE",
     "required": true,
@@ -2455,7 +2455,7 @@
   {
     "typeId": "propertyType",
     "tid": "searchFilterPolicy",
-    "pid": "status",
+    "pid": "searchFilterPolicyStatus",
     "propertyTypeName": "사용여부",
     "valueType": "REFERENCE",
     "required": false,
