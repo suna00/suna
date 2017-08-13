@@ -1,6 +1,7 @@
 [
   {
     "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation@frequentlyAskedQuestion@type1",
     "propertyTypeId": "frequentlyAskedQuestion@type1",
     "validation": {
       "language": "ko",
@@ -14,6 +15,7 @@
   },
   {
     "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation@frequentlyAskedQuestion@type2",
     "propertyTypeId": "frequentlyAskedQuestion@type2",
     "validation": {
       "language": "ko",
@@ -27,6 +29,7 @@
   },
   {
     "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation@frequentlyAskedQuestion@title",
     "propertyTypeId": "frequentlyAskedQuestion@title",
     "validation": {
       "language": "ko",
@@ -40,6 +43,7 @@
   },
   {
     "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation@frequentlyAskedQuestion@contents",
     "propertyTypeId": "frequentlyAskedQuestion@contents",
     "validation": {
       "language": "ko",
@@ -55,6 +59,7 @@
 
   {
     "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation@commonNotice@commonNoticeType",
     "propertyTypeId": "commonNotice@commonNoticeType",
     "validation": {
       "language": "ko",
@@ -68,6 +73,7 @@
   },
   {
     "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation@commonNotice@title",
     "propertyTypeId": "commonNotice@title",
     "validation": {
       "language": "ko",
@@ -81,6 +87,7 @@
   },
   {
     "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation@commonNotice@contents",
     "propertyTypeId": "commonNotice@contents",
     "validation": {
       "language": "ko",
@@ -94,6 +101,7 @@
   },
   {
     "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation@commonNotice@files",
     "propertyTypeId": "commonNotice@files",
     "validation": {
       "language": "ko",
@@ -109,6 +117,7 @@
 
   {
     "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation@frequentlyUsedAnswer@frequentlyUsedAnswerType",
     "propertyTypeId": "frequentlyUsedAnswer@frequentlyUsedAnswerType",
     "validation": {
       "language": "ko",
@@ -122,6 +131,7 @@
   },
   {
     "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation@frequentlyUsedAnswer@title",
     "propertyTypeId": "frequentlyUsedAnswer@title",
     "validation": {
       "language": "ko",
@@ -135,6 +145,7 @@
   },
   {
     "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation@frequentlyUsedAnswer@contents",
     "propertyTypeId": "frequentlyUsedAnswer@contents",
     "validation": {
       "language": "ko",

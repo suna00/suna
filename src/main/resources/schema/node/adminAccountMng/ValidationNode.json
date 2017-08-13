@@ -1,6 +1,7 @@
 [
   {
     "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation@user@userId",
     "propertyTypeId": "user@userId",
     "validation": {
       "language": "ko",
@@ -14,6 +15,7 @@
   },
   {
     "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation@user@password",
     "propertyTypeId": "user@password",
     "validation": {
       "language": "ko",
@@ -27,6 +29,7 @@
   },
   {
     "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation@user@name",
     "propertyTypeId": "user@name",
     "validation": {
       "language": "ko",
@@ -40,6 +43,7 @@
   },
   {
     "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation@user@authorityGroupId",
     "propertyTypeId": "user@authorityGroupId",
     "validation": {
       "language": "ko",
