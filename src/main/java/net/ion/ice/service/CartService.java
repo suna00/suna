@@ -19,7 +19,7 @@ public class CartService {
     @Autowired
     private NodeService nodeService ;
 
-    public void create(ExecuteContext context){
+    public void addCart(ExecuteContext context){
         Map<String, Object> data = context.getData();
 
         nodeService.executeNode(data, context.getNode().getTypeId(), CREATE) ;    // goods, securities

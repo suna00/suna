@@ -4084,5 +4084,32 @@
     "description": "",
     "sortOrder": "2",
     "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "topFixedYn",
+    "upperCode": "root",
+    "name": "고정유무",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "y",
+    "upperCode": "root@topFixedYn",
+    "name": "고정",
+    "description": "고정",
+    "sortOrder": "1",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "n",
+    "upperCode": "root@topFixedYn",
+    "name": "비고정",
+    "description": "비고정",
+    "sortOrder": "2",
+    "commonCodeStatus": "root@useYn@y"
   }
 ]

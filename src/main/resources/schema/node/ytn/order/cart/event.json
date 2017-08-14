@@ -1,10 +1,17 @@
 [
   {
+    "typeId" : "event",
+    "id" : "cart@addCart",
+    "tid": "cart",
+    "event" : "addCart",
+    "eventName" : "Add Cart"
+  },
+  {
     "typeId": "eventAction",
-    "event": "cart@create",
-    "action": "create",
+    "event": "cart@addCart",
+    "action": "addCart",
     "actionType": "service",
-    "actionBody": "cartService.create",
+    "actionBody": "cartService.addCart",
     "order": 1
   }
 ]

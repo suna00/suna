@@ -209,37 +209,37 @@ public class NodeUtils {
     }
 
     public static Object getResultValue(Object value, PropertyType pt, Node node) {
-        switch (pt.getValueType()){
-            case CODE : {
-                if(value ==  null) return null ;
-                if(value instanceof Code) {
-                    return value ;
+        switch (pt.getValueType()) {
+            case CODE: {
+                if (value == null) return null;
+                if (value instanceof Code) {
+                    return value;
                 }
-                return pt.getCode().get(value) ;
+                return pt.getCode().get(value);
             }
             case REFERENCE: {
-                if(value ==  null) return null ;
-                if(value instanceof Code) {
-                    return value ;
+                if (value == null) return null;
+                if (value instanceof Code) {
+                    return value;
                 }
-                return NodeUtils.getReferenceValue(value, pt) ;
+                return NodeUtils.getReferenceValue(value, pt);
             }
             case REFERENCES: {
-                if(value ==  null) return null ;
-                if(value instanceof List) {
-                    return value ;
+                if (value == null) return null;
+                if (value instanceof List) {
+                    return value;
                 }
-                List<Code> refValues = new ArrayList<>() ;
-                if(value != null && StringUtils.isNotEmpty(value.toString())){
-                    for(String refVal : StringUtils.split(value.toString(), ",")){
-                        refValues.add(NodeUtils.getReferenceValue(refVal, pt)) ;
+                List<Code> refValues = new ArrayList<>();
+                if (value != null && StringUtils.isNotEmpty(value.toString())) {
+                    for (String refVal : StringUtils.split(value.toString(), ",")) {
+                        refValues.add(NodeUtils.getReferenceValue(refVal, pt));
                     }
                 }
                 return refValues;
             }
-            case DATE :{
-                if(value ==  null) return null ;
-                return getDateStringValue(value) ;
+            case DATE: {
+                if (value == null) return null;
+                return getDateStringValue(value);
             }
             case REFERENCED: {
                 QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(getNodeType(node.getTypeId()), pt, node);
@@ -427,12 +427,15 @@ public class NodeUtils {
             }
 
             String id = idablePts.get(0).getPid();
-            switch (idablePts.get(0).getValueType()){
+            switch (idablePts.get(0).getValueType()) {
                 case INT:
                     max = Long.parseLong(String.valueOf(getNodeService().getSortedValue(typeId, id, SortField.Type.INT, true)));
                     break;
                 case LONG:
                     max = (Long) getNodeService().getSortedValue(typeId, id, SortField.Type.LONG, true);
+                    break;
+                default:
+                    max = (Long) getNodeService().getSortedValue(typeId, id, SortField.Type.STRING, true);
                     break;
             }
             IAtomicLong sequence = getClusterService().getSequence(typeId);
