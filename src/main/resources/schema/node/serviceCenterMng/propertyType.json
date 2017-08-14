@@ -1627,6 +1627,22 @@
   {
     "typeId": "propertyType",
     "tid": "commonNotice",
+    "pid": "periodStatus",
+    "propertyTypeName": "노출 기간설정",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": "false"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "commonNotice",
     "pid": "displayStartDate",
     "propertyTypeName": "노출 시작일",
     "valueType": "DATE",
