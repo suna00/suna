@@ -47,15 +47,15 @@
         "pageUrl": "list"
       },
       {
-        "pageName": "등록",
-        "pageUrl": "form"
-      },
-      {
         "pageName": "수정",
         "pageUrl": "uform"
       }
     ],
     "customPages": [
+      {
+        "pageName": "등록",
+        "pageUrl": "cj/AdmrGroupForm"
+      }
     ]
   },
   {

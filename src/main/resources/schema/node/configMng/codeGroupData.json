@@ -152,5 +152,19 @@
     "name": "판배열 코드",
     "active": true,
     "desc": "토너먼트 투표인 경우에 판배열 구분"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "systemNtfCtgCd1",
+    "name": "시스템 공지사항 분류 코드1",
+    "active": true,
+    "desc": "시스템 공지사항 분류코드1"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "systemNtfCtgCd2",
+    "name": "시스템 공지사항 분류 코드2",
+    "active": true,
+    "desc": "시스템 공지사항 분류코드2"
   }
 ]
