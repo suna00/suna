@@ -104,7 +104,7 @@ public class NodeValue implements Serializable, Cloneable{
         this.modifier = modifier;
     }
 
-    public boolean containsKey(String pid) {
+    public static boolean containsKey(String pid) {
         return NODE_VALUE_KEYS.contains(pid) ;
     }
 
@@ -126,5 +126,30 @@ public class NodeValue implements Serializable, Cloneable{
                 return null ;
         }
 
+    }
+
+    public Object putValue(String key, Object value) {
+        switch (key){
+            case "typeId":
+                setTypeId(value.toString());
+                return getTypeId() ;
+            case "owner" :
+                owner = (String) value;
+                return owner ;
+            case "modifier" :
+                modifier = (String) value;
+                return modifier ;
+            case "created":
+                created = (Date) value;
+                return created ;
+            case "changed":
+                changed = (Date) value;
+                return changed ;
+            case "status" :
+                status = (String) value;
+                return status ;
+            default:
+                return null ;
+        }
     }
 }
