@@ -357,7 +357,7 @@
     "typeId": "propertyType",
     "tid": "myDeliveryAddress",
     "pid": "siteId",
-    "propertyTypeName": "사이트ID",
+    "propertyTypeName": "사이트",
     "valueType": "REFERENCE",
     "required": false,
     "idable": false,

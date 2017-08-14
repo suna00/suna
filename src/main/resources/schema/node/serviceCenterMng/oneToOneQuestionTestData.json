@@ -1,0 +1,58 @@
+[
+  {
+    "typeId": "oneToOneQuestion",
+    "oneToOneQuestionId": "1",
+    "faqType1": "root@faqType@faq101",
+    "siteType": "root@siteType@company",
+    "title": "배송 언제되요.",
+    "contents": "배송 언제되요.",
+    "productDetail": "배송 언제되요. \n [주문번호:123456] [ 삼성전자 ] 삼성 무풍냉방에어컨 Q9500 (58.5㎡ + 18.7㎡) \n 옵션1: 화이트  /  옵션2 : 500G ",
+    "affiliateName": "와이티엔",
+    "memberId": "ytn@ytn.co.kr",
+    "memberName": "김연석",
+    "memberGender": "남",
+    "oneToOneQuestionStatus": "root@QNAStatus@ready"
+  },
+  {
+    "typeId": "oneToOneQuestion",
+    "oneToOneQuestionId": "2",
+    "faqType1": "root@faqType@faq102",
+    "siteType": "root@siteType@university",
+    "title": "환불 요청합니다.",
+    "contents": "환불 요청합니다.",
+    "productDetail": "배송 언제되요. \n [주문번호:123456] [ 삼성전자 ] 삼성 무풍냉방에어컨 Q9500 (58.5㎡ + 18.7㎡) \n 옵션1: 화이트  /  옵션2 : 500G ",
+    "affiliateName": "와이티엔",
+    "memberId": "ytn@ytn.co.kr",
+    "memberName": "김연석",
+    "memberGender": "남",
+    "oneToOneQuestionStatus": "root@QNAStatus@ready"
+  },
+  {
+    "typeId": "oneToOneQuestion",
+    "oneToOneQuestionId": "3",
+    "faqType1": "root@faqType@faq103",
+    "siteType": "root@siteType@nomember",
+    "title": "환불 요청합니다.",
+    "contents": "환불 요청합니다.",
+    "productDetail": "배송 언제되요. \n [주문번호:123456] [ 삼성전자 ] 삼성 무풍냉방에어컨 Q9500 (58.5㎡ + 18.7㎡) \n 옵션1: 화이트  /  옵션2 : 500G ",
+    "affiliateName": "와이티엔",
+    "memberId": "ytn@ytn.co.kr",
+    "memberName": "김연석",
+    "memberGender": "남",
+    "oneToOneQuestionStatus": "root@QNAStatus@completed"
+  },
+  {
+    "typeId": "oneToOneQuestion",
+    "oneToOneQuestionId": "4",
+    "faqType1": "root@faqType@faq104",
+    "siteType": "root@siteType@university",
+    "title": "환불 요청합니다.",
+    "contents": "환불 요청합니다.",
+    "productDetail": "배송 언제되요. \n [주문번호:123456] [ 삼성전자 ] 삼성 무풍냉방에어컨 Q9500 (58.5㎡ + 18.7㎡) \n 옵션1: 화이트  /  옵션2 : 500G ",
+    "affiliateName": "와이티엔",
+    "memberId": "ytn@ytn.co.kr",
+    "memberName": "김연석",
+    "memberGender": "남",
+    "oneToOneQuestionStatus": "root@QNAStatus@completed"
+  }
+]
