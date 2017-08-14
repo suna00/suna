@@ -10,7 +10,7 @@
     "affiliateName": "와이티엔",
     "memberId": "ytn@ytn.co.kr",
     "memberName": "김연석",
-    "memberGender": "남",
+    "memberGender": "root@genderType@man",
     "oneToOneQuestionStatus": "root@QNAStatus@ready"
   },
   {
@@ -24,21 +24,21 @@
     "affiliateName": "와이티엔",
     "memberId": "ytn@ytn.co.kr",
     "memberName": "김연석",
-    "memberGender": "남",
+    "memberGender": "root@genderType@man",
     "oneToOneQuestionStatus": "root@QNAStatus@ready"
   },
   {
     "typeId": "oneToOneQuestion",
     "oneToOneQuestionId": "3",
     "faqType1": "root@faqType@faq103",
-    "siteType": "root@siteType@nomember",
+    "siteType": "root@siteType@university",
     "title": "환불 요청합니다.",
     "contents": "환불 요청합니다.",
     "productDetail": "배송 언제되요. \n [주문번호:123456] [ 삼성전자 ] 삼성 무풍냉방에어컨 Q9500 (58.5㎡ + 18.7㎡) \n 옵션1: 화이트  /  옵션2 : 500G ",
     "affiliateName": "와이티엔",
     "memberId": "ytn@ytn.co.kr",
     "memberName": "김연석",
-    "memberGender": "남",
+    "memberGender": "root@genderType@man",
     "oneToOneQuestionStatus": "root@QNAStatus@completed"
   },
   {
@@ -52,7 +52,7 @@
     "affiliateName": "와이티엔",
     "memberId": "ytn@ytn.co.kr",
     "memberName": "김연석",
-    "memberGender": "남",
+    "memberGender": "root@genderType@man",
     "oneToOneQuestionStatus": "root@QNAStatus@completed"
   }
 ]
