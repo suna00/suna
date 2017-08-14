@@ -10,7 +10,7 @@
     "files": "",
     "displayTargetType": "root@displayTargetType@common",
     "topFixedYn": "root@topFixedYn@y",
-    "status": "root@status@y",
+    "commonNoticeStatus": "root@status@y",
     "displayStartDate": "20170813000000",
     "displayEndDate": "20170813000000",
     "viewCount": "0"
@@ -26,7 +26,7 @@
     "files": "",
     "displayTargetType": "root@displayTargetType@common",
     "topFixedYn": "root@topFixedYn@y",
-    "status": "root@status@y",
+    "commonNoticeStatus": "root@status@y",
     "displayStartDate": "20170813000000",
     "displayEndDate": "20170911000000",
     "viewCount": "16"
@@ -42,7 +42,7 @@
     "files": "",
     "displayTargetType": "root@displayTargetType@common",
     "topFixedYn": "root@topFixedYn@n",
-    "status": "root@status@y",
+    "commonNoticeStatus": "root@status@y",
     "displayStartDate": "20170813000000",
     "displayEndDate": "20170928000000",
     "viewCount": "77"
@@ -58,7 +58,7 @@
     "files": "",
     "displayTargetType": "root@displayTargetType@common",
     "topFixedYn": "root@topFixedYn@n",
-    "status": "root@status@y",
+    "commonNoticeStatus": "root@status@y",
     "displayStartDate": "20170813000000",
     "displayEndDate": "20170929000000",
     "viewCount": "0"
@@ -74,7 +74,7 @@
     "files": "",
     "displayTargetType": "root@displayTargetType@common",
     "topFixedYn": "root@topFixedYn@n",
-    "status": "root@status@y",
+    "commonNoticeStatus": "root@status@y",
     "displayStartDate": "20170813000000",
     "displayEndDate": "20171023000000",
     "viewCount": "15"
@@ -90,7 +90,7 @@
     "files": "",
     "displayTargetType": "root@displayTargetType@common",
     "topFixedYn": "root@topFixedYn@n",
-    "status": "root@status@y",
+    "commonNoticeStatus": "root@status@y",
     "displayStartDate": "20170813000000",
     "displayEndDate": "20170823000000",
     "viewCount": "21"
@@ -106,7 +106,7 @@
     "files": "",
     "displayTargetType": "root@displayTargetType@common",
     "topFixedYn": "root@topFixedYn@n",
-    "status": "root@status@y",
+    "commonNoticeStatus": "root@status@y",
     "displayStartDate": "20170813000000",
     "displayEndDate": "20170915000000",
     "viewCount": "15"
@@ -122,7 +122,7 @@
     "files": "",
     "displayTargetType": "root@displayTargetType@common",
     "topFixedYn": "root@topFixedYn@n",
-    "status": "root@status@y",
+    "commonNoticeStatus": "root@status@y",
     "displayStartDate": "20170813000000",
     "displayEndDate": "20170913000000",
     "viewCount": "55"
@@ -138,7 +138,7 @@
     "files": "",
     "displayTargetType": "root@displayTargetType@common",
     "topFixedYn": "root@topFixedYn@n",
-    "status": "root@status@y",
+    "commonNoticeStatus": "root@status@y",
     "displayStartDate": "20170813000000",
     "displayEndDate": "20170920000000",
     "viewCount": "4"
@@ -154,7 +154,7 @@
     "files": "",
     "displayTargetType": "root@displayTargetType@common",
     "topFixedYn": "root@topFixedYn@n",
-    "status": "root@status@y",
+    "commonNoticeStatus": "root@status@y",
     "displayStartDate": "20170813000000",
     "displayEndDate": "20170923000000",
     "viewCount": "3"
@@ -170,7 +170,7 @@
     "files": "",
     "displayTargetType": "root@displayTargetType@common",
     "topFixedYn": "root@topFixedYn@n",
-    "status": "root@status@y",
+    "commonNoticeStatus": "root@status@y",
     "displayStartDate": "20170813000000",
     "displayEndDate": "20170815000000",
     "viewCount": "2"
@@ -186,7 +186,7 @@
     "files": "",
     "displayTargetType": "root@displayTargetType@common",
     "topFixedYn": "root@topFixedYn@n",
-    "status": "root@status@y",
+    "commonNoticeStatus": "root@status@y",
     "displayStartDate": "20170823000000",
     "displayEndDate": "20170825000000",
     "viewCount": "1"
