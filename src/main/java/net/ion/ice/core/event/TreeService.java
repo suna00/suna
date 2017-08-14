@@ -4,6 +4,7 @@ import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.context.QueryContext;
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
 import net.ion.ice.core.node.Node;
+import net.ion.ice.core.node.Code;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.query.SimpleQueryResult;
@@ -49,12 +50,12 @@ public class TreeService {
         String dropGap = _data.get("dropGap").toString();
 
         Node dragNode = nodeService.read(TYPEID, dragKey);
-        Node gropNode = nodeService.read(TYPEID, dropKey);
+        Node dropNode = nodeService.read(TYPEID, dropKey);
 
-        int dropOrder = Integer.parseInt(gropNode.getValue("sortOdrg").toString());
+        Code dropUpCode = (Code) dropNode.getValue("upperContsCtgryId");
+        String dropUpId = ( dropGap.equals("true") ) ? dropUpCode.getValue().toString() : dropNode.getId().toString();
 
-        String upperId = ( dropGap.equals("true") ) ? gropNode.getValue("upperContsCtgryId").toString() : gropNode.getId().toString();
-        List<Node> upNodeList = nodeService.getNodeList(TYPEID, "upperContsCtgryId_matching="+upperId);
+        List<Node> upNodeList = nodeService.getNodeList(TYPEID, "upperContsCtgryId_matching="+dropUpId);
 
         if(upNodeList.size()>0){
 
@@ -62,11 +63,16 @@ public class TreeService {
                 Collections.sort(upNodeList,new CompareSeqDesc());  //int로 내림차순
                 upNodeList.add(dragNode);
             }else{
-                if(upperId.equals(dragNode.getValue("upperContsCtgryId").toString())){
+
+                Code dragUpCode = (Code) dragNode.getValue("upperContsCtgryId");
+                String dragUpId = dragUpCode.getValue().toString();
+
+                if(dropUpId.equals(dragUpId)){
                     upNodeList.remove(dragNode);
                 }
                 Collections.sort(upNodeList,new CompareSeqAsc()); //int로 오름차순
                 int idx = 0;
+                int dropOrder = Integer.parseInt(dropNode.getValue("sortOdrg").toString());
                 for(int i=0; i<upNodeList.size(); i++){
                     Node node = upNodeList.get(i);
                     int nodeOrder = Integer.parseInt(node.getValue("sortOdrg").toString());
@@ -83,51 +89,21 @@ public class TreeService {
             for(int j=1; j<=newNodeList.size(); j++){
                 Node newNode = newNodeList.get(j);
 
-                Map<String, Object> data = new HashMap<>();
-                data.put("contsCtgryId",newNode.getId());
-                data.put("contsCtgryGroupId",newNode.getValue("contsCtgryGroupId"));
-                data.put("upperContsCtgryId",upperId);
-                data.put("sortOdrg",j);
-
-                nodeService.executeNode(data,TYPEID,UPDATE);
-
-                /*ExecuteContext contx = ExecuteContext.makeContextFromMap(data,TYPEID);
-                contx.execute();*/
-
-                /*ExecuteContext contx = ExecuteContext.makeContextFromMap(data, TYPEID) ;
-                infinispanService.execute(contx);*/
-
+                Map<String, String[]> maps = new HashMap<>();
+                maps.put("contsCtgryId",new String[]{newNode.getId()});
+                maps.put("upperContsCtgryId",new String[]{dropUpId});
+                maps.put("sortOdrg",new String[]{ String.valueOf(j)} );
+                nodeService.executeNode(maps,null,TYPEID,"save");
             }
 
         }else if(dropGap.equals("false") && upNodeList.size() <=0){
-            /*dragNode.put("upperContsCtgryId",upperId);
-            dragNode.put("sortOdrg",1);*/
-            Map<String, Object> data = new HashMap<>();
-            data.put("contsCtgryId",dragNode.getId());
-            data.put("contsCtgryGroupId",dragNode.getValue("contsCtgryGroupId"));
-            data.put("upperContsCtgryId",upperId);
-            data.put("sortOdrg",1);
 
-            nodeService.executeNode(data,TYPEID,UPDATE);
-
-            /*ExecuteContext contx = ExecuteContext.makeContextFromMap(data, TYPEID) ;
-            infinispanService.execute(contx);*/
-
-            //nodeService.executeNode(data,TYPEID,"update");
-
-            /*ExecuteContext contx = ExecuteContext.makeContextFromMap(data,TYPEID);
-            contx.execute();*/
-
+            Map<String, String[]> maps = new HashMap<>();
+            maps.put("contsCtgryId",new String[]{dragNode.getId()});
+            maps.put("upperContsCtgryId",new String[]{dropUpId});
+            maps.put("sortOdrg",new String[]{ String.valueOf(1)} );
+            nodeService.executeNode(maps,null,TYPEID,"save");
         }
-
-        List<String> paramkList = new ArrayList<String>();
-        paramkList.add(dragNode.getValue("contsCtgryGroupId").toString());
-        String[] paramArr = new String[paramkList.size()];
-        paramArr = paramkList.toArray(paramArr);
-        Map<String, String[]> parameterMap = new HashMap<>();
-        parameterMap.put("contsCtgryGroupId_matching",paramArr);
-
-        getNodeTree(TYPEID,parameterMap);
 
     }
 
