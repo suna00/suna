@@ -56,7 +56,7 @@
     "parentId": "contentsPath",
     "typeId": "nodeType",
     "tid": "contentsOptionType",
-    "typeName": "컨텐츠 옵션 타입",
+    "typeName": "컨텐츠 옵션 타입(상품정보 고시)",
     "tableName": "ytnDevDb#contentsOptionType",
     "repositoryType": "node",
     "eviction": 0
