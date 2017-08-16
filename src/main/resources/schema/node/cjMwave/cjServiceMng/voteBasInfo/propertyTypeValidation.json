@@ -65,8 +65,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@voteBasInfo@vodeNm",
-    "propertyTypeId": "voteBasInfo@vodeNm",
+    "id": "propertyTypeValidation@voteBasInfo@voteNm",
+    "propertyTypeId": "voteBasInfo@voteNm",
     "validation": {
       "language": "ko",
       "required": {

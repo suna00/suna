@@ -37,8 +37,8 @@
   {
     "typeId": "propertyType",
     "tid": "voteBasInfo",
-    "pid": "vodeNm",
-    "id": "voteBasInfo@vodeNm",
+    "pid": "voteNm",
+    "id": "voteBasInfo@voteNm",
     "propertyTypeName": "투표명",
     "valueType": "STRING",
     "required": true,
