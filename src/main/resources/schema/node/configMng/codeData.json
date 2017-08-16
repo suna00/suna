@@ -646,5 +646,37 @@
     "name": "랜덤",
     "order": 2,
     "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "voteFormlCd",
+    "codeId": "tournamentS",
+    "name": "TOURNAMENT_1:1",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "voteFormlCd",
+    "codeId": "tournamentR",
+    "name": "TOURNAMENT_REAL",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "voteFormlCd",
+    "codeId": "voteSelect",
+    "name": "VOTE_SELECT",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "voteFormlCd",
+    "codeId": "voteSeries",
+    "name": " VOTE_SERIES",
+    "order": 4,
+    "active": true
   }
 ]
