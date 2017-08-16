@@ -289,8 +289,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@admrInfo@admrSttusCd",
-    "propertyTypeId": "admrInfo@admrSttusCd",
+    "id": "propertyTypeValidation@admrInfo@admrSttusYn",
+    "propertyTypeId": "admrInfo@admrSttusYn",
     "validation": {
       "language": "ko",
       "required": {

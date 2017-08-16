@@ -155,19 +155,19 @@
   {
     "typeId" : "propertyType",
     "tid" : "admrInfo",
-    "id": "admrInfo@admrSttusCd",
-    "pid" : "admrSttusCd",
-    "propertyTypeName" : "운영자 상태코드",
-    "valueType": "REFERENCE",
-    "required": true,
+    "id": "admrInfo@admrSttusYn",
+    "pid" : "admrSttusYn",
+    "propertyTypeName" : "운영자 상태",
+    "valueType": "BOOLEAN",
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
-    "referenceType": "code",
+    "indexable" :true,
+    "analyzer" : "cjk",
+    "referenceType": "",
     "referenceValue": "",
-    "defaultValue": ""
+    "defaultValue" : ""
   },
   {
     "typeId" : "propertyType",
