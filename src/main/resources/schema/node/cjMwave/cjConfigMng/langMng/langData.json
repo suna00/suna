@@ -1,35 +1,35 @@
 [
   {
     "typeId" : "langMng",
-    "langSeq" : 1,
+    "langId" : "korean",
     "langNm" : "한국",
     "sttusCd" : "langFix",
     "useYn" : true
   },
   {
     "typeId" : "langMng",
-    "langSeq" : 2,
+    "langId" : "english",
     "langNm" : "영어",
     "sttusCd" : "langFix",
     "useYn" : true
   },
   {
     "typeId" : "langMng",
-    "langSeq" : 3,
+    "langId" : "chineseS",
     "langNm" : "중국-간체",
     "sttusCd" : "langFix",
     "useYn" : true
   },
   {
     "typeId" : "langMng",
-    "langSeq" : 4,
+    "langId" : "chineseT",
     "langNm" : "중국-번체",
     "sttusCd" : "langFix",
     "useYn" : true
   },
   {
     "typeId" : "langMng",
-    "langSeq" : 5,
+    "langId" : "japanese",
     "langNm" : "일문",
     "sttusCd" : "langFix",
     "useYn" : true

@@ -1,8 +1,8 @@
 [
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@langMng@langSeq",
-    "propertyTypeId": "langMng@langSeq",
+    "id": "propertyTypeValidation@langMng@langId",
+    "propertyTypeId": "langMng@langId",
     "validation": {
       "language": "ko",
       "required": {
