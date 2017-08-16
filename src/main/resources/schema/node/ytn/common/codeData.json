@@ -694,6 +694,87 @@
   },
   {
     "typeId": "commonCode",
+    "code": "couponTypeStatus",
+    "upperCode": "root",
+    "name": "쿠폰 사용여부",
+    "description": "",
+    "sortOrder": "78",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "counditionalAuto",
+    "upperCode": "root",
+    "name": "조건부자동",
+    "description": "",
+    "sortOrder": "79",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "benefitsType",
+    "upperCode": "root",
+    "name": "혜택타입",
+    "description": "",
+    "sortOrder": "80",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "membershipLevel",
+    "upperCode": "root",
+    "name": "회원 등급",
+    "description": "",
+    "sortOrder": "81",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "interestType",
+    "upperCode": "root",
+    "name": "이자 타입",
+    "description": "",
+    "sortOrder": "82",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "cardType",
+    "upperCode": "root",
+    "name": "카드사",
+    "description": "",
+    "sortOrder": "83",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "addBenefitPaymentType",
+    "upperCode": "root",
+    "name": "추가혜택 결제수단",
+    "description": "",
+    "sortOrder": "84",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "discountType",
+    "upperCode": "root",
+    "name": "할인유형",
+    "description": "",
+    "sortOrder": "85",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "specialExhibitionStatus",
+    "upperCode": "root",
+    "name": "기획전 진행상태",
+    "description": "",
+    "sortOrder": "86",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
     "code": "general",
     "upperCode": "root@addBenefitType",
     "name": "일반",
@@ -3063,7 +3144,7 @@
     "typeId": "commonCode",
     "code": "order001",
     "upperCode": "root@orderStatus",
-    "name": "주문접수",
+    "name": "주문완료",
     "description": "",
     "sortOrder": "1",
     "commonCodeStatus": "root@useYn@y"
@@ -3700,6 +3781,15 @@
   },
   {
     "typeId": "commonCode",
+    "code": "nomember",
+    "upperCode": "root@siteType",
+    "name": "비회원",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
     "code": "admin",
     "upperCode": "root@SMSAuthenticationHistoryType",
     "name": "어드민",
@@ -4083,6 +4173,231 @@
     "name": "현금영수증카드번호",
     "description": "",
     "sortOrder": "2",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "y",
+    "upperCode": "root@couponTypeStatus",
+    "name": "발급중",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "n",
+    "upperCode": "root@couponTypeStatus",
+    "name": "발급중단",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "auto001",
+    "upperCode": "root@counditionalAuto",
+    "name": "회원가입",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "auto002",
+    "upperCode": "root@counditionalAuto",
+    "name": "회원 후기 작성",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "auto003",
+    "upperCode": "root@counditionalAuto",
+    "name": "로그인 이벤트",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "auto004",
+    "upperCode": "root@counditionalAuto",
+    "name": "첫구매",
+    "description": "",
+    "sortOrder": "4",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "auto005",
+    "upperCode": "root@counditionalAuto",
+    "name": "구매수량 충족",
+    "description": "",
+    "sortOrder": "5",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "auto006",
+    "upperCode": "root@counditionalAuto",
+    "name": "룰렛 이벤트",
+    "description": "",
+    "sortOrder": "6",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "discountRate",
+    "upperCode": "root@benefitsType",
+    "name": "할인율",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "discountPrice",
+    "upperCode": "root@benefitsType",
+    "name": "할인금액",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "freeDelivery",
+    "upperCode": "root@benefitsType",
+    "name": "배송비무료",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "general",
+    "upperCode": "root@membershipLevel",
+    "name": "일반회원",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "vip",
+    "upperCode": "root@membershipLevel",
+    "name": "VIP회원",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "ad",
+    "upperCode": "root@membershipLevel",
+    "name": "홍보위원",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "no",
+    "upperCode": "root@interestType",
+    "name": "무이자",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "part",
+    "upperCode": "root@interestType",
+    "name": "부분무이자",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "charge",
+    "upperCode": "root@discountType",
+    "name": "청구할인",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "priority",
+    "upperCode": "root@discountType",
+    "name": "선할인",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "ready",
+    "upperCode": "root@specialExhibitionStatus",
+    "name": "대기",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "pending",
+    "upperCode": "root@specialExhibitionStatus",
+    "name": "진행",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "expire",
+    "upperCode": "root@specialExhibitionStatus",
+    "name": "만료",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "use",
+    "upperCode": "root@specialExhibitionStatus",
+    "name": "사용",
+    "description": "",
+    "sortOrder": "4",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "stop",
+    "upperCode": "root@specialExhibitionStatus",
+    "name": "중지",
+    "description": "",
+    "sortOrder": "5",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "",
+    "upperCode": "root@cardType",
+    "name": "",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "",
+    "upperCode": "root@addBenefitPaymentType",
+    "name": "",
+    "description": "",
+    "sortOrder": "1",
     "commonCodeStatus": "root@useYn@y"
   }
 ]
