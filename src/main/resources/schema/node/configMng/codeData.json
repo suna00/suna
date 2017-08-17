@@ -675,8 +675,24 @@
     "typeId": "code",
     "groupCodeId": "voteFormlCd",
     "codeId": "voteSeries",
-    "name": " VOTE_SERIES",
+    "name": "VOTE_SERIES",
     "order": 4,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "rstrtnPredDivCd",
+    "codeId": "day",
+    "name": "일자별",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "rstrtnPredDivCd",
+    "codeId": "term",
+    "name": "기간별",
+    "order": 2,
     "active": true
   }
 ]

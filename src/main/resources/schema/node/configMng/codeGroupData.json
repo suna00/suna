@@ -155,6 +155,13 @@
   },
   {
     "typeId": "groupCode",
+    "groupCodeId": "rstrtnPredDivCd",
+    "name": "제한 기간 구분 코드",
+    "active": true,
+    "desc": "투표 제한 기간 일자별,기간별 구분코드"
+  },
+  {
+    "typeId": "groupCode",
     "groupCodeId": "systemNtfCtgCd1",
     "name": "시스템 공지사항 분류 코드1",
     "active": true,
