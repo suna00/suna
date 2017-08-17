@@ -594,7 +594,12 @@
         "pageUrl": "view"
       }
     ],
-    "customPages": []
+    "customPages": [
+      {
+        "pageName": "등록",
+        "pageUrl": "cj/VtSelForm"
+      }
+    ]
   },
   {
     "typeId": "adminLnbMenu",
@@ -625,7 +630,12 @@
         "pageUrl": "view"
       }
     ],
-    "customPages": []
+    "customPages": [
+      {
+        "pageName": "등록",
+        "pageUrl": "cj/VtSersForm"
+      }
+    ]
   },
   {
     "typeId": "adminLnbMenu",
