@@ -47,8 +47,8 @@
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "code",
-    "referenceValue": "",
+    "referenceType": "langMng",
+    "referenceValue": "langId",
     "defaultValue": ""
   },
   {

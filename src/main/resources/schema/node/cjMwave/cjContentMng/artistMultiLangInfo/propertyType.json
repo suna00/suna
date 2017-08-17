@@ -30,7 +30,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "langMng",
-    "referenceValue": "langSeq",
+    "referenceValue": "langId",
     "defaultValue": ""
   },
   {

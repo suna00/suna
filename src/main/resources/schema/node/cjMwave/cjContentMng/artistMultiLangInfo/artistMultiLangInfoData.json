@@ -2,7 +2,7 @@
   {
     "typeId" : "artistMultiLangInfo",
     "artistId" : "1",
-    "langCd" : "1",
+    "langCd" : "ENG",
     "artistNm" : "1",
     "artistDesc" : "1",
     "atvyName" : "1",
@@ -11,7 +11,7 @@
   {
     "typeId" : "artistMultiLangInfo",
     "artistId" : "1",
-    "langCd" : "2",
+    "langCd" : "KOR",
     "artistNm" : "2",
     "artistDesc" : "2",
     "atvyName" : "2",

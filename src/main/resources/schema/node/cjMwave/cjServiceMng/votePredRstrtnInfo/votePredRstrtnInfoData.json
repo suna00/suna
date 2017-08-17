@@ -1,0 +1,10 @@
+[
+  {
+    "typeId": "votePredRstrtnInfo",
+    "predRstrtnSeq": 100,
+    "voteSeq": 100,
+    "rstrtnStDate": "20170815",
+    "rstrtnFnsDate": "20170822",
+    "rstrtnCnt": 1
+  }
+]
