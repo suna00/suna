@@ -190,5 +190,21 @@
     "displayStartDate": "20170823000000",
     "displayEndDate": "20170825000000",
     "viewCount": "1"
+  },
+  {
+    "typeId": "commonNotice",
+    "commonNoticeId": "13",
+    "affiliateId": "",
+    "siteId": "",
+    "commonNoticeType": "root@commonNoticeType@general",
+    "title": "공지사항13",
+    "contents": "공지사항13공지사항13공지사항13 내용입니다",
+    "files": "",
+    "displayTargetType": "root@displayTargetType@common",
+    "topFixedYn": "root@trueFalse@false",
+    "commonNoticeStatus": "root@useYn@n",
+    "displayStartDate": "20170818000000",
+    "displayEndDate": "20170829000000",
+    "viewCount": "1"
   }
 ]
