@@ -21,7 +21,6 @@ public class SessionTestController {
      * @param httpSession The current session
      * @return The view to render, in MVC terms.
      */
-    @RequestMapping(value = "/")
     public String index(HttpSession httpSession) {
 
         Integer hits = (Integer) httpSession.getAttribute("hits");

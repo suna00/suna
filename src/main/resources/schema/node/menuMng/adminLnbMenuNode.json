@@ -156,6 +156,42 @@
     "backOfficeId": "admin",
     "gnbMenuId": "configMng",
     "parentMenuId": "root",
+    "menuId": "gnbMng",
+    "menuName": "GNB 관리",
+    "order": "1",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" },
+      { "pageName": "등록/수정", "pageUrl": "form" },
+      { "pageName": "상세", "pageUrl": "view" }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "configMng",
+    "parentMenuId": "root",
+    "menuId": "lnbMng",
+    "menuName": "LNB 관리",
+    "order": "2",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" },
+      { "pageName": "등록/수정", "pageUrl": "form" },
+      { "pageName": "상세", "pageUrl": "view" }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "configMng",
+    "parentMenuId": "root",
     "menuId": "groupCode",
     "menuName": "그룹코드 관리",
     "order": "10",
