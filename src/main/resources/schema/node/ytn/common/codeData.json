@@ -4384,20 +4384,29 @@
   },
   {
     "typeId": "commonCode",
-    "code": "",
-    "upperCode": "root@cardType",
-    "name": "",
+    "code": "general",
+    "upperCode": "root@affilieateType",
+    "name": "일반",
     "description": "",
     "sortOrder": "1",
     "commonCodeStatus": "root@useYn@y"
   },
   {
     "typeId": "commonCode",
-    "code": "",
-    "upperCode": "root@addBenefitPaymentType",
-    "name": "",
+    "code": "nomember",
+    "upperCode": "root@affilieateType",
+    "name": "비회원",
     "description": "",
-    "sortOrder": "1",
+    "sortOrder": "2",
+    "commonCodeStatus": "root@useYn@y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "affiliateStoreMall",
+    "upperCode": "root@affilieateType",
+    "name": "제휴입점",
+    "description": "",
+    "sortOrder": "3",
     "commonCodeStatus": "root@useYn@y"
   }
 ]
