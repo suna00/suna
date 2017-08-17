@@ -650,7 +650,7 @@
   {
     "typeId": "code",
     "groupCodeId": "voteFormlCd",
-    "codeId": "tournamentS",
+    "codeId": "1",
     "name": "TOURNAMENT_1:1",
     "order": 1,
     "active": true
@@ -658,24 +658,24 @@
   {
     "typeId": "code",
     "groupCodeId": "voteFormlCd",
-    "codeId": "tournamentR",
-    "name": "TOURNAMENT_REAL",
+    "codeId": "2",
+    "name": "VOTE_SELECT",
     "order": 2,
     "active": true
   },
   {
     "typeId": "code",
     "groupCodeId": "voteFormlCd",
-    "codeId": "voteSelect",
-    "name": "VOTE_SELECT",
+    "codeId": "3",
+    "name": "VOTE_SERIES",
     "order": 3,
     "active": true
   },
   {
     "typeId": "code",
     "groupCodeId": "voteFormlCd",
-    "codeId": "voteSeries",
-    "name": "VOTE_SERIES",
+    "codeId": "4",
+    "name": "TOURNAMENT_REAL",
     "order": 4,
     "active": true
   },
