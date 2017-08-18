@@ -99,6 +99,22 @@
   {
     "typeId": "propertyType",
     "tid": "delivery",
+    "pid": "buyerName",
+    "propertyTypeName": "주문자명",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "delivery",
     "pid": "cellphone",
     "propertyTypeName": "휴대폰",
     "valueType": "STRING",
@@ -259,8 +275,8 @@
   {
     "typeId": "propertyType",
     "tid": "delivery",
-    "pid": "invoiceNo",
-    "propertyTypeName": "송장번호",
+    "pid": "trackingNo",
+    "propertyTypeName": "운송장번호",
     "valueType": "STRING",
     "required": false,
     "idable": false,

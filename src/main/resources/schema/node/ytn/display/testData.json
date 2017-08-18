@@ -8,7 +8,7 @@
     "categoryType": "",
     "level": "A",
     "sortOrder": "1",
-    "categoryStatus": "root@displayStatus@n",
+    "categoryStatus": "root@displayStatus@y",
     "affiliateId": "",
     "siteId": ""
   },
@@ -3079,5 +3079,23 @@
     "categoryStatus": "root@displayStatus@y",
     "affiliateId": "",
     "siteId": ""
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": "1",
+    "categoryId": "1,10,108",
+    "productId": "1"
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": "2",
+    "categoryId": "1,10,57,234",
+    "productId": "1"
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": "3",
+    "categoryId": "1,10,108",
+    "productId": "1"
   }
 ]

@@ -46,6 +46,15 @@
   {
     "parentId": "orderPath",
     "typeId": "nodeType",
+    "tid": "monthlyDevelopmentFund",
+    "typeName": "월별 발전기금",
+    "tableName": "ytnDevDb#monthlyDevelopmentFund",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
     "tid": "purchaseOrder",
     "typeName": "주문서",
     "tableName": "ytnDevDb#purchaseOrder",
