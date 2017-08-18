@@ -88,23 +88,6 @@
   ,{
     "typeId" : "propertyType",
     "tid" : "systemNtf",
-    "pid" : "showYn",
-    "id" : "systemNtf@showYn",
-    "propertyTypeName": "노출 여부",
-    "valueType" : "BOOLEAN",
-    "required" : true,
-    "idable" : false,
-    "labelable" : false,
-    "treeable" : false,
-    "indexable" :true,
-    "analyzer" : "cjk",
-    "referenceType" : "",
-    "referenceValue" : "",
-    "defaultValue" : ""
-  }
-  ,{
-    "typeId" : "propertyType",
-    "tid" : "systemNtf",
     "pid" : "pstngStDt",
     "id" : "systemNtf@pstngStDt",
     "propertyTypeName": "게시 시작 일시",
