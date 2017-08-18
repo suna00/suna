@@ -388,8 +388,23 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "propertyType",
-    "referenceValue": "",
-    "parentValue": "tid"
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "propertyType",
+    "id": "propertyType@referenceFilter",
+    "pid": "referenceFilter",
+    "propertyTypeName": "Reference Property Filter",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": "",
+    "referenceType": "",
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
