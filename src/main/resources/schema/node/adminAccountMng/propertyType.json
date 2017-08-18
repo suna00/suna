@@ -414,5 +414,55 @@
     "referenceType": "user",
     "referenceValue": "userId",
     "defaultValue": ""
+  },
+
+
+  {
+    "typeId": "propertyType",
+    "tid": "groupAuthority",
+    "pid": "groupAuthorityId",
+    "propertyTypeName": "권한 아이디",
+    "valueType": "STRING",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "groupAuthority",
+    "pid": "groupAuthorityName",
+    "propertyTypeName": "권한 명",
+    "valueType": "STRING",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "groupAuthority",
+    "pid": "status",
+    "propertyTypeName": "상태",
+    "valueType": "REFERENCE",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "commonCodeToBe",
+    "referenceValue": "",
+    "defaultValue": ""
   }
 ]

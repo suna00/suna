@@ -3781,15 +3781,6 @@
   },
   {
     "typeId": "commonCode",
-    "code": "nomember",
-    "upperCode": "root@siteType",
-    "name": "비회원",
-    "description": "",
-    "sortOrder": "3",
-    "commonCodeStatus": "root@useYn@y"
-  },
-  {
-    "typeId": "commonCode",
     "code": "admin",
     "upperCode": "root@SMSAuthenticationHistoryType",
     "name": "어드민",
@@ -3900,7 +3891,7 @@
     "typeId": "commonCode",
     "code": "term001",
     "upperCode": "root@termsType",
-    "name": "이용약관",
+    "name": "일반",
     "description": "",
     "sortOrder": "1",
     "commonCodeStatus": "root@useYn@y"
@@ -3909,27 +3900,9 @@
     "typeId": "commonCode",
     "code": "term002",
     "upperCode": "root@termsType",
-    "name": "전자금융거래이용약관",
+    "name": "회원가입",
     "description": "",
     "sortOrder": "2",
-    "commonCodeStatus": "root@useYn@y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "term003",
-    "upperCode": "root@termsType",
-    "name": "개인정보수집및이용안내",
-    "description": "",
-    "sortOrder": "3",
-    "commonCodeStatus": "root@useYn@y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "term004",
-    "upperCode": "root@termsType",
-    "name": "마케팅수신동의",
-    "description": "",
-    "sortOrder": "4",
     "commonCodeStatus": "root@useYn@y"
   },
   {

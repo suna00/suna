@@ -28,5 +28,15 @@
     "repositoryType": "node",
     "tableName": "",
     "eviction" : 1000
+  },
+  {
+    "typeId": "nodeType",
+    "parentId": "adminAccountMng",
+    "id" : "groupAuthority",
+    "tid": "groupAuthority",
+    "typeName": "그룹 권한",
+    "repositoryType": "node",
+    "tableName": "",
+    "eviction" : 200
   }
 ]
