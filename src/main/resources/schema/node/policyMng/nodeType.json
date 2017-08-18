@@ -1,0 +1,29 @@
+[
+  {
+    "parentId": "commonPath",
+    "typeId": "nodeType",
+    "tid": "commonCode",
+    "typeName": "코드",
+    "tableName": "ytnDevDb#commonCode",
+    "repositoryType": "node",
+    "eviction": 2000
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "terms",
+    "typeName": "약관 관리",
+    "tableName": "ytnDevDb#terms",
+    "repositoryType": "node",
+    "eviction": 200
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "termsHistory",
+    "typeName": "약관 이력",
+    "tableName": "ytnDevDb#termsHistory",
+    "repositoryType": "node",
+    "eviction": 2000
+  }
+]

@@ -154,24 +154,6 @@
   {
     "parentId": "backOfficePath",
     "typeId": "nodeType",
-    "tid": "terms",
-    "typeName": "약관 관리",
-    "tableName": "ytnDevDb#terms",
-    "repositoryType": "node",
-    "eviction": 0
-  },
-  {
-    "parentId": "backOfficePath",
-    "typeId": "nodeType",
-    "tid": "termsHistory",
-    "typeName": "약관 이력",
-    "tableName": "ytnDevDb#termsHistory",
-    "repositoryType": "node",
-    "eviction": 0
-  },
-  {
-    "parentId": "backOfficePath",
-    "typeId": "nodeType",
     "tid": "vendor",
     "typeName": "밴더사",
     "tableName": "ytnDevDb#vendor",
