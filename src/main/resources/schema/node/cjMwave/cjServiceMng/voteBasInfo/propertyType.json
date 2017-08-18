@@ -496,6 +496,23 @@
   {
     "typeId": "propertyType",
     "tid": "voteBasInfo",
+    "pid": "findKywrd",
+    "id": "voteBasInfo@findKywrd",
+    "propertyTypeName": "검색 키워드",
+    "valueType": "TEXT",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "cjk",
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "voteBasInfo",
     "pid": "refdItemList",
     "id": "voteBasInfo@refdItemList",
     "propertyTypeName": "항목정보 목록",

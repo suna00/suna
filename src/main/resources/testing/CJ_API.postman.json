@@ -8611,6 +8611,11 @@
           "key": "mwmcUnearnedWinYn",
           "value": "",
           "description": "MWave MusicChart 부전승 여부 (boolean) "
+        },
+        {
+          "key": "findKywrd",
+          "value": "",
+          "description": "검색 키워드 (longtext) "
         }
       ],
       "queryParams": [],
