@@ -25,5 +25,32 @@
     "tableName": "ytnDevDb#termsHistory",
     "repositoryType": "node",
     "eviction": 2000
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "returnExchangePolicy",
+    "typeName": "반품/교환 정책",
+    "tableName": "ytnDevDb#returnExchangePolicy",
+    "repositoryType": "node",
+    "eviction": 10
+  },
+  {
+    "parentId": "contentsPath",
+    "typeId": "nodeType",
+    "tid": "contentsOptionType",
+    "typeName": "컨텐츠 옵션 타입(상품정보 고시)",
+    "tableName": "ytnDevDb#contentsOptionType",
+    "repositoryType": "node",
+    "eviction": 200
+  },
+  {
+    "parentId": "contentsPath",
+    "typeId": "nodeType",
+    "tid": "contentsOptionTypeFields",
+    "typeName": "컨텐츠 옵션 타입의 필드 정의",
+    "tableName": "ytnDevDb#contentsOptionTypeFields",
+    "repositoryType": "node",
+    "eviction": 2000
   }
 ]
