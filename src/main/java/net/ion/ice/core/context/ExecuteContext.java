@@ -119,7 +119,10 @@ public class ExecuteContext implements Context{
             return ;
         }
 
-        existNode = NodeUtils.getNodeService().getNode(nodeType.getTypeId(), getId()) ;
+        try {
+            existNode = NodeUtils.getNodeService().getNode(nodeType.getTypeId(), getId());
+        }catch(Exception e){
+        }
         exist = existNode != null ;
 
         if(exist){
@@ -160,9 +163,16 @@ public class ExecuteContext implements Context{
             }
 
         }else {
-            if(event != null && !event.equals("create") && !event.equals("save")){
+            if(event != null && !event.equals("create") && !event.equals("update")) {
+                try {
+                    this.node = new Node(data, nodeType.getTypeId());
+                }catch (Exception e){}
+                execute = true;
+                return;
+            }else if(event != null && !event.equals("create") && !event.equals("save")){
                 throw new IceRuntimeException("Not Exist Node Error : " + getId()) ;
             }
+
             this.node = new Node(data, nodeType.getTypeId());
             execute = true ;
         }

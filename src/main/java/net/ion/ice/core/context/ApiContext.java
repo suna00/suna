@@ -1,9 +1,16 @@
 package net.ion.ice.core.context;
 
 import net.ion.ice.core.node.Node;
+import net.ion.ice.core.node.NodeType;
+import net.ion.ice.core.node.NodeUtils;
+import net.ion.ice.core.node.PropertyType;
+import net.ion.ice.core.query.QueryResult;
+import net.ion.ice.core.query.ResultField;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -17,8 +24,7 @@ public class ApiContext {
 
     private Map<String, Object> config  ;
 
-    private List<Context> contexts ;
-
+    private List<ResultField> resultFieldList ;
 
     public static ApiContext createContext(Node apiNode, Map<String, Object> config,  Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap) {
         ApiContext ctx = new ApiContext() ;
@@ -32,16 +38,31 @@ public class ApiContext {
     }
 
     private void init() {
+        resultFieldList = new ArrayList<>() ;
         for(String key : config.keySet()){
             Map<String, Object> ctxRootConfig = (Map<String, Object>) config.get(key);
 
             if(ctxRootConfig.containsKey("event")){
                 ExecuteContext executeContext = ExecuteContext.makeContextFromConfig(ctxRootConfig, data) ;
-                contexts.add(executeContext) ;
+                resultFieldList.add(new ResultField(key, executeContext)) ;
             }else if(ctxRootConfig.containsKey("query")){
-                QueryContext queryContext = QueryContext.makeContextFromConfig(ctxRootConfig, data) ;
+                ApiQueryContext queryContext = ApiQueryContext.makeContextFromConfig(ctxRootConfig, data) ;
+                resultFieldList.add(new ResultField(key, queryContext)) ;
             }
         }
     }
 
+
+    public Object makeApiResult() {
+        QueryResult queryResult = new QueryResult() ;
+
+        for(ResultField field : resultFieldList){
+            Context context = field.getContext() ;
+            if(context instanceof ApiQueryContext){
+                queryResult.put(field.getFieldName(), ((ApiQueryContext) context).makeApiQueryResult(null, null)) ;
+            }
+        }
+
+        return queryResult ;
+    }
 }

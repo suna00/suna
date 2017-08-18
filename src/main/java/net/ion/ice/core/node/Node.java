@@ -33,7 +33,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     @Field(analyze = Analyze.NO)
     @DateBridge(resolution = Resolution.SECOND)
     @SortableField()
-    private transient Date changed ;
+    private Date changed ;
 
     private transient NodeValue nodeValue ;
 
@@ -86,7 +86,11 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
                     if (_id == null || StringUtils.isEmpty(_id.toString())) {
                         throw new RuntimeException("ID is NULL");
                     }
-                    this.id = (String) id + _id + (i < (idablePts.size() - 1) ? ID_SEPERATOR : "");
+                    if (StringUtils.contains(_id.toString(), "@")) {
+                        this.id = _id.toString() + ID_SEPERATOR + StringUtils.removeEnd(id, "@") ;
+                    } else {
+                        this.id = id + _id + (i < (idablePts.size() - 1) ? ID_SEPERATOR : "");
+                    }
                 }
             }else{
                 PropertyType idPropertyType = idablePts.get(0) ;
@@ -124,7 +128,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
     @Override
     public boolean containsKey(Object key) {
-        return properties.containsKey(key);
+        return properties.containsKey(key) || NodeValue.containsKey(key.toString());
     }
 
     @Override
@@ -134,11 +138,23 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
     @Override
     public Object get(Object key) {
-        return properties.get(key);
+        Object value = null ;
+        if(nodeValue != null && nodeValue.containsKey(key.toString())){
+            value = nodeValue.getValue(key.toString()) ;
+        }else{
+            value = properties.get(key)  ;
+        }
+        return value ;
     }
 
     @Override
     public Object put(String key, Object value) {
+        if(nodeValue != null && NodeValue.containsKey(key)){
+            if(properties.containsKey(key)){
+                properties.remove(key) ;
+            }
+            return nodeValue.putValue(key, value) ;
+        }
         return properties.put(key, value);
     }
 
@@ -331,7 +347,17 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     }
 
     public Node toStore() {
-        properties.toStore();
+        NodeType nodeType = NodeUtils.getNodeType(getTypeId()) ;
+        for(PropertyType pt : nodeType.getPropertyTypes()){
+            Object value = NodeUtils.getStoreValue(this, pt, this.id) ;
+
+            if(value != null){
+                put(pt.getPid(), value);
+            }else{
+                remove(pt.getPid()) ;
+            }
+        }
+//        properties.toStore();
         return this ;
     }
 
