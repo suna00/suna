@@ -10,24 +10,6 @@
   {
     "parentId": "backOfficePath",
     "typeId": "nodeType",
-    "tid": "affiliateMall",
-    "typeName": "제휴몰",
-    "tableName": "ytnDevDb#affiliateMall",
-    "repositoryType": "node",
-    "eviction": 0
-  },
-  {
-    "parentId": "backOfficePath",
-    "typeId": "nodeType",
-    "tid": "affiliate",
-    "typeName": "제휴사",
-    "tableName": "ytnDevDb#affiliate",
-    "repositoryType": "node",
-    "eviction": 0
-  },
-  {
-    "parentId": "backOfficePath",
-    "typeId": "nodeType",
     "tid": "brand",
     "typeName": "브랜드",
     "tableName": "ytnDevDb#brand",
