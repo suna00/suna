@@ -98,7 +98,7 @@
     "backOfficeId": "adm",
     "gnbMenuId": "affiliateMng",
     "parentMenuId": "root",
-    "menuId": "",
+    "menuId": "affiliateMemberUpload",
     "menuName": "회원정보 엑셀등록",
     "order": "60",
     "icon": "fa-list",
