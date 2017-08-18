@@ -1,12 +1,12 @@
 [
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@mbrInfo@mbrId",
-    "propertyTypeId": "mbrInfo@mbrId",
+    "id": "propertyTypeValidation@mbrInfo@mbrSeq",
+    "propertyTypeId": "mbrInfo@mbrSeq",
     "validation": {
       "language": "ko",
       "required": {
-        "value": true,
+        "value": false,
         "description": "필수 값 입니다."
       },
       "duplicated": {
