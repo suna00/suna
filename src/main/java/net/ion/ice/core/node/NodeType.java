@@ -119,7 +119,11 @@ public class NodeType {
     public Object getNodeTypeNode(String nodeTypeNodeId) {
         return nodeTypeNode.get(nodeTypeNodeId);
     }
-    public Object getTableName() { return nodeTypeNode.get(TABLE_NAME); }
+    /**
+     * mySql에서 테이블명이 소문자로 되어야만 인식되어 소문자로 변환 하였으나,
+     * oracle에서 안되면 DB 타입에 따라 바꾸도록 수정해야되므로 연락주세요.
+     */
+    public Object getTableName() { return nodeTypeNode.get(TABLE_NAME.toLowerCase()); }
 
     public boolean isInit(){
         return this.propertyTypes != null && this.propertyTypes.size() > 0 ;
