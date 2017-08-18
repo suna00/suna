@@ -10,15 +10,6 @@
   {
     "parentId": "commonPath",
     "typeId": "nodeType",
-    "tid": "commonCode",
-    "typeName": "코드",
-    "tableName": "ytnDevDb#commonCode",
-    "repositoryType": "node",
-    "eviction": 0
-  },
-  {
-    "parentId": "commonPath",
-    "typeId": "nodeType",
     "tid": "commonCodeToBe",
     "typeName": "코드 TO-BE",
     "tableName": "",
