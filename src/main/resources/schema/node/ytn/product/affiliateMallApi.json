@@ -12,7 +12,7 @@
     "method" : "GET",
     "config" : {
       "items" : {
-        "endpoint":"http://localhost:8080/node/productByAffiliateMall/list.json"
+        "endpoint":"http://localhost:8080/node/product/list.json?sorting=productId"
       }
     }
   }

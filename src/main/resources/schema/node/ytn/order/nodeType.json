@@ -100,9 +100,18 @@
   {
     "parentId": "orderPath",
     "typeId": "nodeType",
-    "tid": "requestChangeOfOrder",
-    "typeName": "주문 변경 요청",
-    "tableName": "ytnDevDb#requestChangeOfOrder",
+    "tid": "orderChange",
+    "typeName": "주문 변경",
+    "tableName": "ytnDevDb#orderChange",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "orderChangeProduct",
+    "typeName": "주문 변경 상품",
+    "tableName": "ytnDevDb#orderChangeProduct",
     "repositoryType": "data",
     "eviction": 0
   }
