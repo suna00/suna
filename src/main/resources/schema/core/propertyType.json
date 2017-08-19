@@ -393,9 +393,9 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType>referenceFilter",
-    "pid": "referenceFilter",
-    "propertyTypeName": "Reference Property Filter",
+    "id": "propertyType>codeFilter",
+    "pid": "codeFilter",
+    "propertyTypeName": "Code Property Filter",
     "valueType": "STRING",
     "required": false,
     "idable": false,

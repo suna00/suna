@@ -86,6 +86,11 @@ public class InfinispanRepositoryService {
     public Node execute(ExecuteContext context) {
         Node node = context.getNode();
         if (!context.isExecute()) return node;
+        if(context.getEvent().equals("delete")){
+            deleteNode(node);
+            return node ;
+        }
+
         Cache<String, Node> nodeCache = null ;
         Cache<String, NodeValue> nodeValueCache = null ;
         try {
@@ -224,6 +229,7 @@ public class InfinispanRepositoryService {
 
         List<Object> list = cacheQuery.list();
         queryContext.setResultSize(cacheQuery.getResultSize());
+        queryContext.setQueryListSize(list.size()) ;
 
         if(queryContext.getStart() > 0) {
             return list.subList(queryContext.getStart(), list.size()) ;

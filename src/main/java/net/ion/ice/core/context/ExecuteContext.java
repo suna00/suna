@@ -285,4 +285,29 @@ public class ExecuteContext implements Context{
         return data;
     }
 
+    public ExecuteContext makeRollbackContext() {
+        EventExecuteContext ctx = new EventExecuteContext();
+        ctx.nodeType = nodeType ;
+        switch (getEvent()){
+            case "create" :
+                ctx.event = "delete" ;
+                ctx.node = node ;
+                ctx.execute = true ;
+                break;
+            case "update" :
+                ctx.event = "update" ;
+                ctx.node = existNode ;
+                ctx.execute = true ;
+                break ;
+            case "delete" :
+                ctx.event = "create" ;
+                ctx.node = node ;
+                ctx.execute = true ;
+                break ;
+            default:
+                break ;
+        }
+        ctx.data = data ;
+        return ctx ;
+    }
 }
