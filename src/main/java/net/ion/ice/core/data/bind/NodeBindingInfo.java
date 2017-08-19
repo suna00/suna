@@ -322,7 +322,7 @@ public class NodeBindingInfo {
     }
 
     private List<String> retrieveParameters(String id) {
-        return Arrays.asList(id.split("@"));
+        return Arrays.asList(id.split(Node.ID_SEPERATOR));
     }
 
     public void makeListQuery(DBQueryContext dbQueryContext) {

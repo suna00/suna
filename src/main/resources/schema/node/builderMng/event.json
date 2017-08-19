@@ -1,21 +1,21 @@
 [
   {
     "typeId" : "event",
-    "id" : "builderPage@create",
+    "id" : "builderPage>create",
     "tid": "builderPage",
     "event" : "create",
     "eventName" : "Create BuilderPage"
   },
   {
     "typeId" : "event",
-    "id" : "builderPage@update",
+    "id" : "builderPage>update",
     "tid": "builderPage",
     "event" : "update",
     "eventName" : "update BuilderPage"
   },
   {
     "typeId" : "event",
-    "id" : "builderPage@delete",
+    "id" : "builderPage>delete",
     "tid": "builderPage",
     "event" : "delete",
     "eventName" : "delete BuilderPage"

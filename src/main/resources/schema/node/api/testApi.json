@@ -55,6 +55,9 @@
     "apiId" : "mergeSample",
     "apiName" : "Merge Sample",
     "method" : "GET",
+    "parameter" : [
+      {"paramName" : "page", "required" : true}
+    ],
     "config" : {
       "items" : {
         "typeId": "testItem",

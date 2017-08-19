@@ -25,7 +25,7 @@ import java.util.UUID;
 
 /**
  * A conditional configuration that potentially adds the bean definitions in
- * this class to the Spring application context, depending on whether the
+ * this class to the Spring application context, depending on whether theㅁㅁ
  * {@code @ConditionalOnExpression} is true or not.
  *
  */

@@ -97,11 +97,11 @@ public class NodeController {
     }
 
     private Object read(WebRequest request, String typeId, String id) throws JsonProcessingException {
-        return JsonResponse.create(nodeService.readNode(request.getParameterMap(), typeId, id)) ;
+        return nodeService.readNode(request.getParameterMap(), typeId, id) ;
     }
 
     private Object read(WebRequest request, String typeId) throws JsonProcessingException {
-        return JsonResponse.create(nodeService.readNode(request.getParameterMap(), typeId)) ;
+        return nodeService.readNode(request.getParameterMap(), typeId) ;
     }
 
 

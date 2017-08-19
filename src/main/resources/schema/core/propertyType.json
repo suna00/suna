@@ -2,7 +2,7 @@
   {
     "typeId" : "propertyType",
     "tid": "nodeType",
-    "id": "nodeType@parentId",
+    "id": "nodeType>parentId",
     "pid": "parentId",
     "propertyTypeName": "Parent NodeType ID",
     "valueType": "REFERENCE",
@@ -18,7 +18,7 @@
   {
     "typeId" : "propertyType",
     "tid": "nodeType",
-    "id": "nodeType@tid",
+    "id": "nodeType>tid",
     "pid": "tid",
     "propertyTypeName": "NodeType ID",
     "valueType": "STRING",
@@ -34,7 +34,7 @@
   {
     "typeId" : "propertyType",
     "tid": "nodeType",
-    "id": "nodeType@repositoryType",
+    "id": "nodeType>repositoryType",
     "pid": "repositoryType",
     "propertyTypeName": "Repository Type",
     "valueType": "CODE",
@@ -51,7 +51,7 @@
   {
     "typeId" : "propertyType",
     "tid": "nodeType",
-    "id": "nodeType@typeName",
+    "id": "nodeType>typeName",
     "pid": "typeName",
     "propertyTypeName": "NodeType Name",
     "valueType": "STRING",
@@ -67,7 +67,7 @@
   {
     "typeId" : "propertyType",
     "tid": "nodeType",
-    "id": "nodeType@eviction",
+    "id": "nodeType>eviction",
     "pid": "eviction",
     "propertyTypeName": "Eviction Size",
     "valueType": "LONG",
@@ -84,7 +84,7 @@
   {
     "typeId" : "propertyType",
     "tid": "nodeType",
-    "id": "nodeType@i18n",
+    "id": "nodeType>i18n",
     "pid": "i18n",
     "propertyTypeName": "I18N",
     "valueType": "BOOLEAN",
@@ -100,7 +100,7 @@
   {
     "typeId" : "propertyType",
     "tid": "nodeType",
-    "id": "nodeType@tableName",
+    "id": "nodeType>tableName",
     "pid": "tableName",
     "propertyTypeName": "Table Name",
     "valueType": "STRING",
@@ -116,7 +116,7 @@
   {
     "typeId" : "propertyType",
     "tid": "nodeType",
-    "id": "nodeType@propertyTypes",
+    "id": "nodeType>propertyTypes",
     "pid": "propertyTypes",
     "propertyTypeName": "Property Type List",
     "valueType": "REFERENCED",
@@ -132,7 +132,7 @@
   {
     "typeId" : "propertyType",
     "tid": "nodeType",
-    "id": "nodeType@events",
+    "id": "nodeType>events",
     "pid": "events",
     "propertyTypeName": "Event List",
     "valueType": "REFERENCED",
@@ -148,7 +148,7 @@
   {
     "typeId" : "propertyType",
     "tid": "nodeType",
-    "id": "nodeType@eventListeners",
+    "id": "nodeType>eventListeners",
     "pid": "eventListeners",
     "propertyTypeName": "Event Listeners List",
     "valueType": "REFERENCED",
@@ -164,7 +164,7 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@tid",
+    "id": "propertyType>tid",
     "pid": "tid",
     "propertyTypeName": "NodeType ID",
     "valueType": "STRING",
@@ -180,7 +180,7 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@pid",
+    "id": "propertyType>pid",
     "pid": "pid",
     "propertyTypeName": "PropertyType ID",
     "valueType": "STRING",
@@ -196,7 +196,7 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@propertyTypeName",
+    "id": "propertyType>propertyTypeName",
     "pid": "propertyTypeName",
     "propertyTypeName": "PropertyType Name",
     "valueType": "STRING",
@@ -212,7 +212,7 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@valueType",
+    "id": "propertyType>valueType",
     "pid": "valueType",
     "propertyTypeName": "Value Type",
     "valueType": "CODE",
@@ -232,7 +232,7 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@defaultValue",
+    "id": "propertyType>defaultValue",
     "pid": "defaultValue",
     "propertyTypeName": "Default Value",
     "valueType": "STRING",
@@ -248,7 +248,7 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@required",
+    "id": "propertyType>required",
     "pid": "required",
     "propertyTypeName": "Required",
     "valueType": "BOOLEAN",
@@ -264,7 +264,7 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@idable",
+    "id": "propertyType>idable",
     "pid": "idable",
     "propertyTypeName": "ID Able",
     "valueType": "BOOLEAN",
@@ -280,7 +280,7 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@labelable",
+    "id": "propertyType>labelable",
     "pid": "labelable",
     "propertyTypeName": "Label Able",
     "valueType": "BOOLEAN",
@@ -296,7 +296,7 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@treeable",
+    "id": "propertyType>treeable",
     "pid": "treeable",
     "propertyTypeName": "Tree Able",
     "valueType": "BOOLEAN",
@@ -312,7 +312,7 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@i18n",
+    "id": "propertyType>i18n",
     "pid": "i18n",
     "propertyTypeName": "I18N",
     "valueType": "BOOLEAN",
@@ -328,7 +328,7 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@indexable",
+    "id": "propertyType>indexable",
     "pid": "indexable",
     "propertyTypeName": "Index Able",
     "valueType": "BOOLEAN",
@@ -344,7 +344,7 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@analyzer",
+    "id": "propertyType>analyzer",
     "pid": "analyzer",
     "propertyTypeName": "Analyzer",
     "valueType": "CODE",
@@ -361,7 +361,7 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@referenceType",
+    "id": "propertyType>referenceType",
     "pid": "referenceType",
     "propertyTypeName": "ReferenceType ID",
     "valueType": "REFERENCE",
@@ -377,7 +377,7 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@referenceValue",
+    "id": "propertyType>referenceValue",
     "pid": "referenceValue",
     "propertyTypeName": "Reference Property ID",
     "valueType": "REFERENCE",
@@ -393,7 +393,7 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@referenceFilter",
+    "id": "propertyType>referenceFilter",
     "pid": "referenceFilter",
     "propertyTypeName": "Reference Property Filter",
     "valueType": "STRING",
@@ -409,7 +409,7 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@options",
+    "id": "propertyType>options",
     "pid": "options",
     "propertyTypeName": "Options",
     "valueType": "JSON",
@@ -427,7 +427,7 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@code",
+    "id": "propertyType>code",
     "pid": "code",
     "propertyTypeName": "Code List",
     "valueType": "ARRAY",
@@ -443,7 +443,7 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@idType",
+    "id": "propertyType>idType",
     "pid": "idType",
     "propertyTypeName": "ID Type",
     "valueType": "CODE",
@@ -460,7 +460,7 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@max",
+    "id": "propertyType>max",
     "pid": "max",
     "propertyTypeName": "Max",
     "valueType": "INT",
@@ -476,7 +476,7 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@validationTypes",
+    "id": "propertyType>validationTypes",
     "pid": "validationTypes",
     "propertyTypeName": "Validation",
     "valueType": "REFERENCED",
@@ -492,7 +492,7 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@length",
+    "id": "propertyType>length",
     "pid": "length",
     "propertyTypeName": "Length",
     "valueType": "INT",
@@ -508,7 +508,7 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyTypeValidation",
-    "id": "propertyTypeValidation@id",
+    "id": "propertyTypeValidation>id",
     "pid": "id",
     "propertyTypeName": "Id",
     "valueType": "STRING",
@@ -525,7 +525,7 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyTypeValidation",
-    "id": "propertyTypeValidation@propertyTypeId",
+    "id": "propertyTypeValidation>propertyTypeId",
     "pid": "propertyTypeId",
     "propertyTypeName": "PropertyTypeId",
     "valueType": "REFERENCE",
@@ -541,7 +541,7 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyTypeValidation",
-    "id": "propertyTypeValidation@validation",
+    "id": "propertyTypeValidation>validation",
     "pid": "validation",
     "propertyTypeName": "Validation",
     "valueType": "OBJECT",
@@ -556,7 +556,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "event@tid",
+    "id": "event>tid",
     "tid": "event",
     "pid": "tid",
     "propertyTypeName": "NodeType ID",
@@ -572,7 +572,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "event@event",
+    "id": "event>event",
     "tid": "event",
     "pid": "event",
     "propertyTypeName": "Event",
@@ -588,7 +588,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "event@eventName",
+    "id": "event>eventName",
     "tid": "event",
     "pid": "eventName",
     "propertyTypeName": "Event Name",
@@ -604,7 +604,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "event@eventActions",
+    "id": "event>eventActions",
     "tid": "event",
     "pid": "eventActions",
     "propertyTypeName": "Event Action List",
@@ -620,7 +620,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "event@eventListeners",
+    "id": "event>eventListeners",
     "tid": "event",
     "pid": "eventListeners",
     "propertyTypeName": "Event Listener List",
@@ -636,7 +636,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "eventAction@event",
+    "id": "eventAction>event",
     "tid": "eventAction",
     "pid": "event",
     "propertyTypeName": "Event",
@@ -652,7 +652,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "eventAction@action",
+    "id": "eventAction>action",
     "tid": "eventAction",
     "pid": "action",
     "propertyTypeName": "Action",
@@ -668,7 +668,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "eventAction@actionType",
+    "id": "eventAction>actionType",
     "tid": "eventAction",
     "pid": "actionType",
     "propertyTypeName": "Action Type",
@@ -685,7 +685,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "eventAction@datasource",
+    "id": "eventAction>datasource",
     "tid": "eventAction",
     "pid": "datasource",
     "propertyTypeName": "Datasource",
@@ -701,7 +701,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "eventAction@actionBody",
+    "id": "eventAction>actionBody",
     "tid": "eventAction",
     "pid": "actionBody",
     "propertyTypeName": "Action Body",
@@ -717,7 +717,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "eventAction@order",
+    "id": "eventAction>order",
     "tid": "eventAction",
     "pid": "order",
     "propertyTypeName": "Action Order",
@@ -733,7 +733,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "eventListener@tid",
+    "id": "eventListener>tid",
     "tid": "eventListener",
     "pid": "tid",
     "propertyTypeName": "Node Type",
@@ -749,7 +749,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "eventListener@event",
+    "id": "eventListener>event",
     "tid": "eventListener",
     "pid": "event",
     "propertyTypeName": "Event",
@@ -765,7 +765,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "eventListener@actionType",
+    "id": "eventListener>actionType",
     "tid": "eventListener",
     "pid": "actionType",
     "propertyTypeName": "Action Type",
@@ -782,7 +782,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "eventListener@datasource",
+    "id": "eventListener>datasource",
     "tid": "eventListener",
     "pid": "datasource",
     "propertyTypeName": "Datasource",
@@ -798,7 +798,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "eventListener@actionBody",
+    "id": "eventListener>actionBody",
     "tid": "eventListener",
     "pid": "actionBody",
     "propertyTypeName": "Action Body",

@@ -1268,7 +1268,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "defaultValue": "root@displayTargetType@common"
+    "defaultValue": "root>displayTargetType>common"
   },
   {
     "typeId": "propertyType",
@@ -1284,7 +1284,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "defaultValue": "root@displayStatus@y"
+    "defaultValue": "root>displayStatus>y"
   },
   {
     "typeId": "propertyType",
@@ -1300,7 +1300,7 @@
     "analyzer": "code",
     "referenceType": "commonCodeToBe",
     "referenceValue": "code",
-    "defaultValue": "root@faqTopStatus@inactive"
+    "defaultValue": "root>faqTopStatus>inactive"
   },
   {
     "typeId": "propertyType",
