@@ -3,6 +3,7 @@ package net.ion.ice.core.node;
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.context.QueryContext;
+import net.ion.ice.core.context.ReadContext;
 import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.event.Event;
 import net.ion.ice.core.event.EventAction;
@@ -277,41 +278,19 @@ public class NodeService {
         return node ;
     }
 
-    public Node readNode(Map<String, String[]> parameterMap, String typeId, String id) {
-        return readNode(typeId, id) ;
+    public Object readNode(Map<String, String[]> parameterMap, String typeId, String id) {
+        NodeType nodeType = getNodeType(typeId) ;
+
+        ReadContext readContext = ReadContext.makeContextFormParameter(parameterMap, nodeType, id) ;
+        return readContext.makeResult() ;
+//        return readNode(typeId, id) ;
     }
 
-    public Node readNode(Map<String, String[]> parameterMap, String typeId) {
-        String id = null ;
-        for(String paramName : parameterMap.keySet()){
-            if(paramName.equals("id")){
-                id = parameterMap.get(paramName)[0] ;
-            }
-        }
+    public Object readNode(Map<String, String[]> parameterMap, String typeId) {
+        NodeType nodeType = getNodeType(typeId) ;
 
-        if(id == null){
-            List<String> idablePids = NodeUtils.getNodeType(typeId).getIdablePIds() ;
-            id = "" ;
-            for(int i = 0 ; i < idablePids.size(); i++){
-                id = id + parameterMap.get(idablePids.get(i))[0] + (i < (idablePids.size() - 1) ? Node.ID_SEPERATOR : "") ;
-            }
-        }
-
-        return readNode(typeId, id) ;
-
-    }
-
-    public Node readNode(String typeId, String id) {
-        Node node = infinispanRepositoryService.getNode(typeId, id) ;
-        NodeType nodeType = NodeUtils.getNodeType(typeId) ;
-        node.toDisplay();
-
-        for(PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)){
-            QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(nodeType, pt, node) ;
-            node.put(pt.getPid(), infinispanRepositoryService.getSubQueryNodes(pt.getReferenceType(), subQueryContext)) ;
-        }
-
-        return node ;
+        ReadContext readContext = ReadContext.makeContextFormParameter(parameterMap, nodeType, null) ;
+        return readContext.makeResult() ;
     }
 
     public Node getNode(String typeId, String id) {
@@ -384,23 +363,23 @@ public class NodeService {
 
     public void changeEventAction(ExecuteContext context){
         Node node = context.getNode() ;
-        NodeType nodeType = getNodeType(StringUtils.substringBefore(node.getStringValue("event"), "@")) ;
+        NodeType nodeType = getNodeType(StringUtils.substringBefore(node.getStringValue("event"), Node.ID_SEPERATOR)) ;
 
         EventAction eventAction = new EventAction(node) ;
         nodeType.addEventAction(eventAction);
 
-        logger.info("Change EventAction : " + StringUtils.substringBefore(context.getNode().getStringValue("event"), "@"));
+        logger.info("Change EventAction : " + StringUtils.substringBefore(context.getNode().getStringValue("event"), Node.ID_SEPERATOR));
     }
 
 
     public void changeEventListener(ExecuteContext context){
         Node node = context.getNode() ;
-        NodeType nodeType = getNodeType(StringUtils.substringBefore(node.getStringValue("event"), "@")) ;
+        NodeType nodeType = getNodeType(StringUtils.substringBefore(node.getStringValue("event"), Node.ID_SEPERATOR)) ;
 
         EventListener eventListener = new EventListener(node) ;
         nodeType.addEventListener(eventListener);
 
-        logger.info("Change EventAction : " + StringUtils.substringBefore(context.getNode().getStringValue("event"), "@"));
+        logger.info("Change EventAction : " + StringUtils.substringBefore(context.getNode().getStringValue("event"), Node.ID_SEPERATOR));
     }
 
 }

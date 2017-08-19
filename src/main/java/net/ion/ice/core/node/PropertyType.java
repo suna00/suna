@@ -19,8 +19,12 @@ public class PropertyType {
     public static final String VALUE_TYPE = "valueType";
     public static final String REFERENCE_TYPE = "referenceType";
     public static final String REFERENCE_VALUE = "referenceValue";
+    public static final String REFERENCE_VIEW = "referenceView";
+    public static final String REFERENCE_FILTER = "referenceFilter";
 
     public static final String FILE_HANDLER = "fileHandler";
+
+
 
 
     public enum ValueType {STRING, CODE, DATE, LONG, INT, DOUBLE, BOOLEAN, REFERENCED, REFERENCE, REFERENCES, TEXT, ARRAY, OBJECT, JSON, FILE, FILES}
@@ -160,6 +164,9 @@ public class PropertyType {
         return propertyTypeNode.getStringValue(REFERENCE_VALUE);
     }
 
+    public String getReferenceFilter() {
+        return propertyTypeNode.getStringValue(REFERENCE_FILTER);
+    }
 
     public boolean isTreeable() {
         return propertyTypeNode.getBooleanValue(TREEABLE);
@@ -209,5 +216,7 @@ public class PropertyType {
     public boolean isI18n() {
         return propertyTypeNode.getBooleanValue(I18N);
     }
-
+    public boolean isReferenceView() {
+        return propertyTypeNode.getBooleanValue(REFERENCE_VIEW);
+    }
 }

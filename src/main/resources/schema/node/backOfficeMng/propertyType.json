@@ -2,7 +2,7 @@
   {
     "typeId" : "propertyType",
     "tid": "backOffice",
-    "id": "backOffice@id",
+    "id": "backOffice>id",
     "pid": "id",
     "propertyTypeName": "백오피스 아이디",
     "valueType": "STRING",
@@ -18,7 +18,7 @@
   {
     "typeId" : "propertyType",
     "tid": "backOffice",
-    "id": "backOffice@name",
+    "id": "backOffice>name",
     "pid": "name",
     "propertyTypeName": "백오피스 명",
     "valueType": "STRING",
@@ -34,7 +34,7 @@
   {
     "typeId" : "propertyType",
     "tid": "backOffice",
-    "id": "backOffice@order",
+    "id": "backOffice>order",
     "pid": "order",
     "propertyTypeName": "노출 순서",
     "valueType": "LONG",
@@ -51,7 +51,7 @@
   {
     "typeId" : "propertyType",
     "tid": "backOffice",
-    "id": "backOffice@active",
+    "id": "backOffice>active",
     "pid": "active",
     "propertyTypeName": "활성 여부",
     "valueType": "BOOLEAN",

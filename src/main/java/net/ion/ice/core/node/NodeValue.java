@@ -17,6 +17,9 @@ import java.util.List;
 @ProvidedId
 @Indexed
 public class NodeValue implements Serializable, Cloneable{
+
+    public static final String NODEVALUE_SEPERATOR = "::";
+
     public static List<String> NODE_VALUE_KEYS = Arrays.asList(new String[] {"typeId", "owner", "modifier", "created", "changed", "status"}) ;
 
     @Id
