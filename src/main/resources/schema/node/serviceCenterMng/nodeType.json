@@ -57,7 +57,7 @@
     "typeId": "nodeType",
     "tid": "oneToOneQuestionView",
     "typeName": "1대1문의(VIEW)",
-    "tableName": "ytnDevDb#adminOneToOneList",
+    "tableName": "ytnDevDb#oneToOneQuestionView",
     "repositoryType": "data",
     "eviction": 0
   },
