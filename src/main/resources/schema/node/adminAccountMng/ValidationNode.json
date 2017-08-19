@@ -1,8 +1,8 @@
 [
   {
     "typeId" : "propertyTypeValidation",
-    "id": "propertyTypeValidation@user@userId",
-    "propertyTypeId": "user@userId",
+    "id": "propertyTypeValidation>user>userId",
+    "propertyTypeId": "user>userId",
     "validation": {
       "language": "ko",
       "required": { "value": true, "description": "필수 값 입니다." },
@@ -15,8 +15,8 @@
   },
   {
     "typeId" : "propertyTypeValidation",
-    "id": "propertyTypeValidation@user@password",
-    "propertyTypeId": "user@password",
+    "id": "propertyTypeValidation>user>password",
+    "propertyTypeId": "user>password",
     "validation": {
       "language": "ko",
       "required": { "value": true, "description": "필수 값 입니다." },
@@ -29,8 +29,8 @@
   },
   {
     "typeId" : "propertyTypeValidation",
-    "id": "propertyTypeValidation@user@name",
-    "propertyTypeId": "user@name",
+    "id": "propertyTypeValidation>user>name",
+    "propertyTypeId": "user>name",
     "validation": {
       "language": "ko",
       "required": { "value": true, "description": "필수 값 입니다." },
@@ -43,8 +43,8 @@
   },
   {
     "typeId" : "propertyTypeValidation",
-    "id": "propertyTypeValidation@user@authorityGroupId",
-    "propertyTypeId": "user@authorityGroupId",
+    "id": "propertyTypeValidation>user>authorityGroupId",
+    "propertyTypeId": "user>authorityGroupId",
     "validation": {
       "language": "ko",
       "required": { "value": true, "description": "필수 값 입니다." },
@@ -57,7 +57,7 @@
   },
   {
     "typeId" : "propertyTypeValidation",
-    "propertyTypeId": "groupAuthority@groupAuthorityId",
+    "propertyTypeId": "groupAuthority>groupAuthorityId",
     "validation": {
       "language": "ko",
       "required": { "value": true, "description": "필수 값 입니다." },
@@ -70,7 +70,7 @@
   },
   {
     "typeId" : "propertyTypeValidation",
-    "propertyTypeId": "groupAuthority@groupAuthorityName",
+    "propertyTypeId": "groupAuthority>groupAuthorityName",
     "validation": {
       "language": "ko",
       "required": { "value": true, "description": "필수 값 입니다." },
