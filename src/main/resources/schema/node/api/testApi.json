@@ -10,6 +10,9 @@
     "apiId" : "defaultQuery",
     "apiName" : "Default Query Test",
     "method" : "GET",
+    "parameter" : [
+      {"paramName" : "page", "required" : true}
+    ],
     "config" : {
       "createItem" : {
         "typeId": "testItem",

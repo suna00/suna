@@ -1,5 +1,6 @@
 package net.ion.ice.core.event;
 
+import net.ion.ice.IceRuntimeException;
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
 import net.ion.ice.core.node.Node;
@@ -80,6 +81,8 @@ public class EventService {
         if(!executeContext.isExecute()) return  ;
 
         NodeType nodeType = executeContext.getNodeType() ;
+
+
         if(nodeType.isNode() && executeContext.getNode() != null) {
             infinispanService.execute(executeContext) ;
         }
@@ -92,8 +95,13 @@ public class EventService {
 
         Event allEvent = nodeType.getEvent(ALL_EVENT) ;
 
-        executeEventAction(executeContext, event);
-        executeEventAction(executeContext, allEvent);
+        try {
+            executeEventAction(executeContext, event);
+            executeEventAction(executeContext, allEvent);
+        }catch(IceRuntimeException e){
+            infinispanService.execute(executeContext.makeRollbackContext()) ;
+            throw e ;
+        }
 
         executeEventListener(executeContext, event);
         executeEventListener(executeContext, allEvent);

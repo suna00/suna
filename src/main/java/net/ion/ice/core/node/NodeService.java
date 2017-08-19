@@ -1,9 +1,7 @@
 package net.ion.ice.core.node;
 
 import net.ion.ice.ApplicationContextManager;
-import net.ion.ice.core.context.ExecuteContext;
-import net.ion.ice.core.context.QueryContext;
-import net.ion.ice.core.context.ReadContext;
+import net.ion.ice.core.context.*;
 import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.event.Event;
 import net.ion.ice.core.event.EventAction;
@@ -125,11 +123,6 @@ public class NodeService {
     public SimpleQueryResult getNodeTree(String typeId, Map<String, String[]> parameterMap) {
         QueryContext queryContext = QueryContext.makeQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
         return infinispanRepositoryService.getQueryTreeNodes(typeId, queryContext) ;
-    }
-
-    public SimpleQueryResult getNodeCode(String typeId, Map<String, String[]> parameterMap) {
-        QueryContext queryContext = QueryContext.makeQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
-        return infinispanRepositoryService.getQueryCodeNodes(typeId, queryContext) ;
     }
 
     private void initNodeType() throws IOException {
@@ -319,6 +312,17 @@ public class NodeService {
         return queryResult;
     }
 
+    public QueryResult getReferenceQueryResult(String typeId, Map<String, String[]> parameterMap) {
+        ReferenceQueryContext queryContext = ReferenceQueryContext.makeQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
+        QueryResult queryResult = queryContext.makeQueryResult( null, null);
+        return queryResult;
+    }
+
+    public QueryResult getCodeQueryResult(String typeId, Map<String, String[]> parameterMap) {
+        ReferenceQueryContext queryContext = ReferenceQueryContext.makeQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
+        QueryResult queryResult = queryContext.makeQueryResult( null, null);
+        return queryResult;
+    }
 
     public Node event(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, String typeId, String event) {
         NodeType nodeType = getNodeType(typeId) ;

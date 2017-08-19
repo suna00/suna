@@ -353,12 +353,12 @@ public class NodeUtils {
                     return ((Reference) value).getRefId();
                 } else if (value instanceof Map) {
                     if(((Map) value).containsKey("refId")){
-                        return ((Map) value).get("refId");
+                        return getRefereceStoreValue(((Map) value).get("refId"), pt);
                     }else {
-                        return ((Map) value).get("value");
+                        return getRefereceStoreValue(((Map) value).get("value"), pt);
                     }
                 } else {
-                    return value;
+                    return getRefereceStoreValue(value, pt);
                 }
             }
             case REFERENCES: {
@@ -369,12 +369,12 @@ public class NodeUtils {
                             refsValues += ((Reference) val).getRefId() + ",";
                         } else if (value instanceof Map) {
                             if(((Map) value).containsKey("refId")){
-                                refsValues += ((Map) val).get("refId") + ",";
+                                refsValues += getRefereceStoreValue(((Map) val).get("refId"), pt)  + ",";
                             }else {
-                                refsValues += ((Map) val).get("value") + ",";
+                                refsValues += getRefereceStoreValue(((Map) val).get("value"), pt) + ",";
                             }
                         } else {
-                            refsValues += val.toString().trim() + ",";
+                            refsValues += getRefereceStoreValue(val.toString().trim(), pt) + ",";
                         }
                     }
                     if (refsValues.endsWith(",")) return StringUtils.substringBeforeLast(refsValues, ",");
@@ -420,6 +420,20 @@ public class NodeUtils {
         }
     }
 
+    public static Object getRefereceStoreValue(Object value, PropertyType pt) {
+        if(value == null) return null ;
+        String codeFitler = pt.getCodeFilter() ;
+        if(StringUtils.isEmpty(codeFitler)){
+            return value ;
+        }
+
+        if(StringUtils.contains(value.toString(),  Node.ID_SEPERATOR)){
+            return value ;
+        }else {
+            return codeFitler + Node.ID_SEPERATOR + value ;
+        }
+    }
+
 
     public static Object getBindingValue(Object value, PropertyType pt, String id) {
         if (value == null || "".equals(value.toString().trim())) return null;
@@ -427,7 +441,11 @@ public class NodeUtils {
             return ((Code) value).getValue();
         }
         if(value instanceof Reference){
-            return ((Reference) value).getValue() ;
+            if(StringUtils.isEmpty(pt.getCodeFilter())) {
+                return ((Reference) value).getRefId();
+            }else{
+                return ((Reference) value).getValue();
+            }
         }
         if (pt.isI18n() && value instanceof Map) {
             return ((Map) value).get("en");
@@ -453,6 +471,13 @@ public class NodeUtils {
             }
             case DATE: {
                 return getDateStringValue(value);
+            }
+            case REFERENCE:{
+                if(StringUtils.isEmpty(pt.getCodeFilter())) {
+                    return value ;
+                }else{
+                    return StringUtils.substringAfterLast(value.toString(), Node.ID_SEPERATOR);
+                }
             }
             default:
                 return getStoreValue(value, pt, id);

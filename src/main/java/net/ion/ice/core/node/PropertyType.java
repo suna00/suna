@@ -20,7 +20,7 @@ public class PropertyType {
     public static final String REFERENCE_TYPE = "referenceType";
     public static final String REFERENCE_VALUE = "referenceValue";
     public static final String REFERENCE_VIEW = "referenceView";
-    public static final String REFERENCE_FILTER = "referenceFilter";
+    public static final String CODE_FILTER = "codeFilter";
 
     public static final String FILE_HANDLER = "fileHandler";
 
@@ -164,8 +164,8 @@ public class PropertyType {
         return propertyTypeNode.getStringValue(REFERENCE_VALUE);
     }
 
-    public String getReferenceFilter() {
-        return propertyTypeNode.getStringValue(REFERENCE_FILTER);
+    public String getCodeFilter() {
+        return propertyTypeNode.getStringValue(CODE_FILTER);
     }
 
     public boolean isTreeable() {

@@ -167,8 +167,10 @@ public class NodeController {
 
     private Object code(WebRequest request, @PathVariable String typeId) {
         try {
-            SimpleQueryResult simpleQueryResult = nodeService.getNodeCode(typeId, request.getParameterMap()) ;
-            return JsonResponse.create(simpleQueryResult) ;
+            QueryResult queryResult = nodeService.getReferenceQueryResult(typeId, request.getParameterMap()) ;
+            return queryResult ;
+//            SimpleQueryResult simpleQueryResult = nodeService.getNodeCode(typeId, request.getParameterMap()) ;
+//            return JsonResponse.create(simpleQueryResult) ;
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             if(e.getCause() instanceof ClassCastException){

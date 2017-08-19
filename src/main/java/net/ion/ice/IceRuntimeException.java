@@ -10,4 +10,7 @@ public class IceRuntimeException extends NestedRuntimeException {
         super(msg);
     }
 
+    public IceRuntimeException(String msg, Exception e) {
+        super(msg, e);
+    }
 }

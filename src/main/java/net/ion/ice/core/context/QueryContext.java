@@ -39,11 +39,18 @@ public class QueryContext extends ReadContext {
 
     public static QueryContext makeQueryContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType) {
         QueryContext queryContext = new QueryContext(nodeType);
+
+        makeContextFromParameter(parameterMap, nodeType, queryContext) ;
+
+        return queryContext;
+    }
+
+    protected static void makeContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType, QueryContext queryContext) {
         List<QueryTerm> queryTerms = new ArrayList<>();
 
         if (parameterMap == null || parameterMap.size() == 0) {
             queryContext.setIncludeReference(true);
-            return queryContext;
+            return ;
         }
 
         Map<String, Object> data = ContextUtils.makeContextData(parameterMap);
@@ -63,11 +70,7 @@ public class QueryContext extends ReadContext {
         if(queryContext.resultFields == null || queryContext.resultFields.size() == 0 ){
             queryContext.setIncludeReference(true);
         }
-
-        return queryContext;
     }
-
-
 
 
     public static QueryContext makeQueryContextFromText(String searchText, NodeType nodeType) {
@@ -521,5 +524,6 @@ public class QueryContext extends ReadContext {
         queryResult.put(fieldName, list) ;
         return queryResult ;
     }
+
 
 }
