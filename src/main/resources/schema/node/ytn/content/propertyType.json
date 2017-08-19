@@ -13,6 +13,7 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": "",
     "idType": "autoIncrement"
   },
@@ -30,6 +31,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -46,6 +48,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "contentsType",
     "defaultValue": ""
   },
   {
@@ -62,6 +65,7 @@
     "analyzer": "code",
     "referenceType": "contentsOptionType",
     "referenceValue": "contentsOptionTypeId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -78,6 +82,7 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": "",
     "idType": "autoIncrement"
   },
@@ -95,6 +100,7 @@
     "analyzer": "code",
     "referenceType": "contents",
     "referenceValue": "contentsId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -111,6 +117,7 @@
     "analyzer": "code",
     "referenceType": "contentsOptionType",
     "referenceValue": "contentsOptionTypeId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -127,6 +134,7 @@
     "analyzer": "code",
     "referenceType": "contentsOptionTypeFields",
     "referenceValue": "contentsOptionTypeFieldsId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -143,6 +151,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -159,6 +168,7 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": "",
     "idType": "autoIncrement"
   },
@@ -176,6 +186,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -192,6 +203,7 @@
     "analyzer": "code",
     "referenceType": "contents",
     "referenceValue": "contentsId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -208,6 +220,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -224,6 +237,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -240,6 +254,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -256,6 +271,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -272,6 +288,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -288,6 +305,7 @@
     "analyzer": "code",
     "referenceType": "brand",
     "referenceValue": "brandId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -304,6 +322,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -320,6 +339,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -336,6 +356,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -352,6 +373,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -368,6 +390,7 @@
     "analyzer": "code",
     "referenceType": "vendor",
     "referenceValue": "vendorId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -384,6 +407,7 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": "",
     "idType": "autoIncrement"
   },
@@ -401,6 +425,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -417,6 +442,7 @@
     "analyzer": "code",
     "referenceType": "contents",
     "referenceValue": "contentsId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -433,6 +459,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -449,6 +476,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -465,6 +493,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -481,6 +510,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -497,6 +527,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -513,6 +544,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -529,6 +561,7 @@
     "analyzer": "code",
     "referenceType": "brand",
     "referenceValue": "brandId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -545,6 +578,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -561,6 +595,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -577,6 +612,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -593,6 +629,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -609,6 +646,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "mainColorCode",
     "defaultValue": ""
   },
   {
@@ -625,6 +663,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "seasonType",
     "defaultValue": ""
   },
   {
@@ -641,6 +680,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -657,6 +697,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -673,6 +714,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -689,6 +731,349 @@
     "analyzer": "code",
     "referenceType": "vendor",
     "referenceValue": "vendorId",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "contentsOptionTypeFields",
+    "pid": "contentsOptionTypeFieldsId",
+    "propertyTypeName": "ID",
+    "valueType": "INT",
+    "required": true,
+    "idable": true,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": "",
+    "idType": "autoIncrement"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "contentsOptionTypeFields",
+    "pid": "contentsOptionTypeId",
+    "propertyTypeName": "컨텐츠 옵션 타입ID",
+    "valueType": "REFERENCE",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "contentsOptionType",
+    "referenceValue": "contentsOptionTypeId",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "contentsOptionTypeFields",
+    "pid": "name",
+    "propertyTypeName": "이름",
+    "valueType": "STRING",
+    "required": true,
+    "idable": false,
+    "labelable": true,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "cjk",
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "contentsOptionTypeFields",
+    "pid": "contentsOptionTypeFieldsType",
+    "propertyTypeName": "타입",
+    "valueType": "REFERENCE",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
+    "codeFilter": "contentsOptionTypeFieldsType",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "contentsOptionTypeFields",
+    "pid": "widget",
+    "propertyTypeName": "위젯",
+    "valueType": "REFERENCE",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
+    "codeFilter": "widget",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "contentsOptionTypeFields",
+    "pid": "required",
+    "propertyTypeName": "필수여부",
+    "valueType": "REFERENCE",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
+    "codeFilter": "trueFalse",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "contentsOptionTypeFields",
+    "pid": "sortOrder",
+    "propertyTypeName": "정렬 순서",
+    "valueType": "INT",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "simple",
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "contentsOptionTypeFields",
+    "pid": "defaultValue",
+    "propertyTypeName": "기본값",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "contentsOptionTypeFields",
+    "pid": "owner",
+    "propertyTypeName": "등록자",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "user",
+    "referenceValue": "userId",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "contentsOptionTypeFields",
+    "pid": "created",
+    "propertyTypeName": "등록일",
+    "valueType": "DATE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "simple",
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "contentsOptionTypeFields",
+    "pid": "modifier",
+    "propertyTypeName": "수정자",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "user",
+    "referenceValue": "userId",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "contentsOptionTypeFields",
+    "pid": "changed",
+    "propertyTypeName": "수정일",
+    "valueType": "DATE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "simple",
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "contentsOptionType",
+    "pid": "contentsOptionTypeId",
+    "propertyTypeName": "ID",
+    "valueType": "INT",
+    "required": true,
+    "idable": true,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": "",
+    "idType": "autoIncrement"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "contentsOptionType",
+    "pid": "name",
+    "propertyTypeName": "이름",
+    "valueType": "STRING",
+    "required": true,
+    "idable": false,
+    "labelable": true,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "cjk",
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "contentsOptionType",
+    "pid": "contentsOptionTypeStatus",
+    "propertyTypeName": "사용여부",
+    "valueType": "REFERENCE",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
+    "codeFilter": "useYn",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "contentsOptionType",
+    "pid": "description",
+    "propertyTypeName": "설명",
+    "valueType": "TEXT",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "cjk",
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "contentsOptionType",
+    "pid": "owner",
+    "propertyTypeName": "등록자",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "user",
+    "referenceValue": "userId",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "contentsOptionType",
+    "pid": "created",
+    "propertyTypeName": "등록일",
+    "valueType": "DATE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "simple",
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "contentsOptionType",
+    "pid": "modifier",
+    "propertyTypeName": "수정자",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "user",
+    "referenceValue": "userId",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "contentsOptionType",
+    "pid": "changed",
+    "propertyTypeName": "수정일",
+    "valueType": "DATE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "simple",
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -705,6 +1090,7 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": "",
     "idType": "autoIncrement"
   },
@@ -722,6 +1108,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "contentsType",
     "defaultValue": ""
   },
   {
@@ -738,6 +1125,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "paymentType",
     "defaultValue": ""
   }
 ]

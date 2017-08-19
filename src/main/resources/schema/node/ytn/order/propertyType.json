@@ -13,6 +13,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": "",
     "idType": "autoIncrement"
   },
@@ -30,6 +31,7 @@
     "analyzer": null,
     "referenceType": "member",
     "referenceValue": "memberNo",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -46,6 +48,7 @@
     "analyzer": null,
     "referenceType": "site",
     "referenceValue": "siteId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -62,6 +65,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -78,6 +82,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -94,6 +99,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -110,6 +116,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -126,6 +133,7 @@
     "analyzer": null,
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "trueFalse",
     "defaultValue": ""
   },
   {
@@ -142,6 +150,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -158,6 +167,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -174,6 +184,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": "",
     "idType": "autoIncrement"
   },
@@ -191,6 +202,7 @@
     "analyzer": null,
     "referenceType": "cart",
     "referenceValue": "cartId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -207,6 +219,7 @@
     "analyzer": null,
     "referenceType": "product",
     "referenceValue": "productId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -223,6 +236,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -239,6 +253,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -255,6 +270,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -271,6 +287,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -287,6 +304,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -303,6 +321,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -319,6 +338,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": "",
     "idType": "autoIncrement"
   },
@@ -336,6 +356,7 @@
     "analyzer": null,
     "referenceType": "cart",
     "referenceValue": "cartId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -352,6 +373,7 @@
     "analyzer": null,
     "referenceType": "cartProduct",
     "referenceValue": "cartProductId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -368,6 +390,7 @@
     "analyzer": null,
     "referenceType": "product",
     "referenceValue": "productId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -384,6 +407,7 @@
     "analyzer": null,
     "referenceType": "productOptionItem",
     "referenceValue": "productOptionItemId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -400,6 +424,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -416,6 +441,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -432,6 +458,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -448,6 +475,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": "",
     "idType": "autoIncrement"
   },
@@ -465,6 +493,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -481,6 +510,7 @@
     "analyzer": null,
     "referenceType": "affiliate",
     "referenceValue": "affiliateId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -497,6 +527,7 @@
     "analyzer": null,
     "referenceType": "site",
     "referenceValue": "siteId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -513,6 +544,7 @@
     "analyzer": null,
     "referenceType": "purchaseOrder",
     "referenceValue": "purchaseOrderId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -529,6 +561,7 @@
     "analyzer": null,
     "referenceType": "orderProduct",
     "referenceValue": "orderProductId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -545,6 +578,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -561,6 +595,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -577,6 +612,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -593,6 +629,7 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": "",
     "idType": "autoIncrement"
   },
@@ -610,6 +647,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -626,6 +664,7 @@
     "analyzer": "code",
     "referenceType": "affiliate",
     "referenceValue": "affiliateId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -642,6 +681,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -658,6 +698,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -674,6 +715,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -690,6 +732,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -706,6 +749,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "trueFalse",
     "defaultValue": ""
   },
   {
@@ -722,6 +766,7 @@
     "analyzer": "code",
     "referenceType": "user",
     "referenceValue": "userId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -738,6 +783,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -754,6 +800,7 @@
     "analyzer": "code",
     "referenceType": "user",
     "referenceValue": "userId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -770,6 +817,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -786,6 +834,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": "",
     "idType": "autoIncrement"
   },
@@ -803,6 +852,7 @@
     "analyzer": null,
     "referenceType": "member",
     "referenceValue": "memberNo",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -819,6 +869,7 @@
     "analyzer": null,
     "referenceType": "site",
     "referenceValue": "siteId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -835,6 +886,7 @@
     "analyzer": null,
     "referenceType": "cart",
     "referenceValue": "cartId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -851,6 +903,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "siteType",
     "defaultValue": ""
   },
   {
@@ -867,6 +920,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -883,6 +937,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -899,6 +954,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -915,6 +971,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -931,6 +988,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -947,6 +1005,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -963,6 +1022,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -979,6 +1039,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -995,6 +1056,7 @@
     "analyzer": null,
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "agreeYn",
     "defaultValue": ""
   },
   {
@@ -1011,6 +1073,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "deviceType",
     "defaultValue": ""
   },
   {
@@ -1027,6 +1090,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1043,6 +1107,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1059,6 +1124,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": "",
     "idType": "autoIncrement"
   },
@@ -1076,6 +1142,7 @@
     "analyzer": null,
     "referenceType": "purchaseOrder",
     "referenceValue": "purchaseOrderId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1092,6 +1159,7 @@
     "analyzer": null,
     "referenceType": "product",
     "referenceValue": "productId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1108,6 +1176,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1124,6 +1193,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1140,6 +1210,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1156,6 +1227,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1172,6 +1244,7 @@
     "analyzer": null,
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "orderStatus",
     "defaultValue": ""
   },
   {
@@ -1188,6 +1261,7 @@
     "analyzer": null,
     "referenceType": "coupon",
     "referenceValue": "couponId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1204,6 +1278,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1220,6 +1295,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1236,6 +1312,7 @@
     "analyzer": null,
     "referenceType": "orderDeliveryPrice",
     "referenceValue": "orderDeliveryPriceId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1252,6 +1329,7 @@
     "analyzer": null,
     "referenceType": "vendor",
     "referenceValue": "vendorId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1268,6 +1346,7 @@
     "analyzer": null,
     "referenceType": "delivery",
     "referenceValue": "deliveryId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1284,6 +1363,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1300,6 +1380,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1316,6 +1397,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1332,6 +1414,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": "",
     "idType": "autoIncrement"
   },
@@ -1349,6 +1432,7 @@
     "analyzer": null,
     "referenceType": "purchaseOrder",
     "referenceValue": "purchaseOrderId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1365,6 +1449,7 @@
     "analyzer": null,
     "referenceType": "orderProduct",
     "referenceValue": "orderProductId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1381,6 +1466,7 @@
     "analyzer": null,
     "referenceType": "product",
     "referenceValue": "productId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1397,6 +1483,7 @@
     "analyzer": null,
     "referenceType": "productOptionItem",
     "referenceValue": "productOptionItemId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1413,6 +1500,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1429,6 +1517,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1445,6 +1534,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1461,6 +1551,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": "",
     "idType": "autoIncrement"
   },
@@ -1478,13 +1569,14 @@
     "analyzer": null,
     "referenceType": "purchaseOrder",
     "referenceValue": "purchaseOrderId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
     "typeId": "propertyType",
     "tid": "payment",
     "pid": "orderProductId",
-    "propertyTypeName": "주문서상품",
+    "propertyTypeName": "주문서상품(필요?)",
     "valueType": "REFERENCE",
     "required": false,
     "idable": false,
@@ -1494,6 +1586,7 @@
     "analyzer": null,
     "referenceType": "orderProduct",
     "referenceValue": "orderProductId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1510,6 +1603,7 @@
     "analyzer": null,
     "referenceType": "member",
     "referenceValue": "memberNo",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1526,6 +1620,7 @@
     "analyzer": null,
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "paymentStatus",
     "defaultValue": ""
   },
   {
@@ -1542,6 +1637,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1558,6 +1654,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1574,6 +1671,7 @@
     "analyzer": null,
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "paymentType",
     "defaultValue": ""
   },
   {
@@ -1590,6 +1688,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1606,6 +1705,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1622,6 +1722,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1638,6 +1739,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1654,6 +1756,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1670,6 +1773,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1686,6 +1790,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1702,6 +1807,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1718,6 +1824,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1734,6 +1841,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1750,6 +1858,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1766,6 +1875,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1782,6 +1892,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": "",
     "idType": "autoIncrement"
   },
@@ -1799,6 +1910,7 @@
     "analyzer": null,
     "referenceType": "payment",
     "referenceValue": "paymentId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1815,6 +1927,7 @@
     "analyzer": null,
     "referenceType": "purchaseOrder",
     "referenceValue": "purchaseOrderId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1831,6 +1944,7 @@
     "analyzer": null,
     "referenceType": "orderProduct",
     "referenceValue": "orderProductId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1847,6 +1961,7 @@
     "analyzer": null,
     "referenceType": "requestChangeOfOrder",
     "referenceValue": "requestChangeOfOrderId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1863,6 +1978,7 @@
     "analyzer": null,
     "referenceType": "member",
     "referenceValue": "memberNo",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1879,6 +1995,7 @@
     "analyzer": null,
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "paymentRefundStatus",
     "defaultValue": ""
   },
   {
@@ -1895,6 +2012,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1911,6 +2029,7 @@
     "analyzer": null,
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "paymentHistoryType",
     "defaultValue": ""
   },
   {
@@ -1927,6 +2046,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1943,6 +2063,7 @@
     "analyzer": null,
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "paymentType",
     "defaultValue": ""
   },
   {
@@ -1959,6 +2080,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1975,6 +2097,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1991,6 +2114,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2007,6 +2131,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2023,6 +2148,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2039,6 +2165,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2055,6 +2182,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2071,6 +2199,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2087,6 +2216,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2103,6 +2233,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2119,6 +2250,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2135,6 +2267,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": "",
     "idType": "autoIncrement"
   },
@@ -2152,6 +2285,7 @@
     "analyzer": null,
     "referenceType": "purchaseOrder",
     "referenceValue": "purchaseOrderId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2168,6 +2302,7 @@
     "analyzer": null,
     "referenceType": "orderProduct",
     "referenceValue": "orderProductId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2184,6 +2319,7 @@
     "analyzer": null,
     "referenceType": "member",
     "referenceValue": "memberNo",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2200,6 +2336,7 @@
     "analyzer": null,
     "referenceType": "site",
     "referenceValue": "siteId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2216,6 +2353,7 @@
     "analyzer": null,
     "referenceType": "vendor",
     "referenceValue": "vendorId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2232,6 +2370,7 @@
     "analyzer": null,
     "referenceType": "orderDeliveryPrice",
     "referenceValue": "orderDeliveryPriceId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2248,6 +2387,7 @@
     "analyzer": null,
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "changeType",
     "defaultValue": ""
   },
   {
@@ -2264,6 +2404,7 @@
     "analyzer": null,
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "changeReasonType",
     "defaultValue": ""
   },
   {
@@ -2280,6 +2421,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2296,6 +2438,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2312,6 +2455,7 @@
     "analyzer": null,
     "referenceType": "deliveryEnterprise",
     "referenceValue": "deliveryEnterpriseId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2328,6 +2472,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2344,6 +2489,7 @@
     "analyzer": null,
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "recallType",
     "defaultValue": ""
   },
   {
@@ -2360,6 +2506,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2376,6 +2523,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2392,6 +2540,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2408,6 +2557,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2424,6 +2574,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2440,6 +2591,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2456,6 +2608,7 @@
     "analyzer": null,
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "trueFalse",
     "defaultValue": ""
   },
   {
@@ -2472,6 +2625,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2488,6 +2642,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2504,6 +2659,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2520,6 +2676,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2536,6 +2693,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2552,6 +2710,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -2568,6 +2727,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   }
 ]

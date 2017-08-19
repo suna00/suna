@@ -13,6 +13,7 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": "",
     "idType": "autoIncrement"
   },
@@ -30,6 +31,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -46,6 +48,7 @@
     "analyzer": "code",
     "referenceType": "member",
     "referenceValue": "memberNo",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -62,6 +65,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "siteType",
     "defaultValue": ""
   },
   {
@@ -78,6 +82,7 @@
     "analyzer": "code",
     "referenceType": "site",
     "referenceValue": "siteId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -94,6 +99,7 @@
     "analyzer": "code",
     "referenceType": "affiliate",
     "referenceValue": "affiliateId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -110,6 +116,7 @@
     "analyzer": "code",
     "referenceType": "couponType",
     "referenceValue": "couponTypeId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -126,6 +133,7 @@
     "analyzer": "code",
     "referenceType": "product",
     "referenceValue": "productId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -142,6 +150,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -158,6 +167,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -174,6 +184,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -190,6 +201,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "useYn",
     "defaultValue": ""
   },
   {
@@ -206,6 +218,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -222,6 +235,7 @@
     "analyzer": "code",
     "referenceType": "purchaseOrder",
     "referenceValue": "purchaseOrderId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -238,6 +252,7 @@
     "analyzer": "code",
     "referenceType": "user",
     "referenceValue": "userId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -254,6 +269,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -270,6 +286,7 @@
     "analyzer": "code",
     "referenceType": "user",
     "referenceValue": "userId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -286,6 +303,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -302,6 +320,7 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": "",
     "idType": "autoIncrement"
   },
@@ -319,6 +338,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -335,6 +355,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "siteType",
     "defaultValue": ""
   },
   {
@@ -351,6 +372,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "couponTypeStatus",
     "defaultValue": ""
   },
   {
@@ -367,6 +389,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "couponType",
     "defaultValue": ""
   },
   {
@@ -383,6 +406,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "counditionalAuto",
     "defaultValue": ""
   },
   {
@@ -399,6 +423,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "benefitsType",
     "defaultValue": ""
   },
   {
@@ -415,6 +440,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -431,6 +457,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "couponTypeUnit",
     "defaultValue": ""
   },
   {
@@ -447,6 +474,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -463,6 +491,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -479,6 +508,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "couponValidePeriod",
     "defaultValue": ""
   },
   {
@@ -495,6 +525,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -511,6 +542,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -527,6 +559,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -543,6 +576,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -559,6 +593,7 @@
     "analyzer": "code",
     "referenceType": "user",
     "referenceValue": "userId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -575,6 +610,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -591,6 +627,7 @@
     "analyzer": "code",
     "referenceType": "user",
     "referenceValue": "userId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -607,6 +644,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -623,6 +661,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": "",
     "idType": "autoIncrement"
   },
@@ -630,7 +669,7 @@
     "typeId": "propertyType",
     "tid": "productToCouponTypeMap",
     "pid": "productId",
-    "propertyTypeName": "상품ID",
+    "propertyTypeName": "상품",
     "valueType": "REFERENCE",
     "required": false,
     "idable": false,
@@ -640,6 +679,7 @@
     "analyzer": null,
     "referenceType": "product",
     "referenceValue": "productId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -656,6 +696,7 @@
     "analyzer": null,
     "referenceType": "couponType",
     "referenceValue": "couponTypeId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -672,6 +713,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   }
 ]

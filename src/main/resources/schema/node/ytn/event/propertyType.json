@@ -13,6 +13,7 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": "",
     "idType": "autoIncrement"
   },
@@ -30,6 +31,7 @@
     "analyzer": "code",
     "referenceType": "affiliate",
     "referenceValue": "affiliateId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -46,6 +48,7 @@
     "analyzer": "code",
     "referenceType": "site",
     "referenceValue": "siteId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -62,6 +65,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "siteType",
     "defaultValue": ""
   },
   {
@@ -78,6 +82,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "deviceType",
     "defaultValue": ""
   },
   {
@@ -94,6 +99,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -110,6 +116,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -118,7 +125,7 @@
     "pid": "endDate",
     "propertyTypeName": "종료일",
     "valueType": "DATE",
-    "required": true,
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
@@ -126,6 +133,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -142,6 +150,7 @@
     "analyzer": null,
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "useYn",
     "defaultValue": ""
   },
   {
@@ -158,6 +167,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -174,6 +184,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -190,6 +201,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -206,6 +218,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -222,6 +235,7 @@
     "analyzer": "code",
     "referenceType": "user",
     "referenceValue": "userId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -238,6 +252,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -254,6 +269,7 @@
     "analyzer": "code",
     "referenceType": "user",
     "referenceValue": "userId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -270,6 +286,7 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": "",
     "idType": "autoIncrement"
   },
@@ -287,6 +304,7 @@
     "analyzer": "code",
     "referenceType": "affiliate",
     "referenceValue": "affiliateId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -303,6 +321,7 @@
     "analyzer": "code",
     "referenceType": "site",
     "referenceValue": "siteId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -319,6 +338,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -335,6 +355,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "siteType",
     "defaultValue": ""
   },
   {
@@ -351,6 +372,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "deviceType",
     "defaultValue": ""
   },
   {
@@ -367,6 +389,7 @@
     "analyzer": "code",
     "referenceType": "category",
     "referenceValue": "categoryId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -383,6 +406,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -399,6 +423,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -415,6 +440,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "trueFalse",
     "defaultValue": ""
   },
   {
@@ -431,6 +457,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "trueFalse",
     "defaultValue": ""
   },
   {
@@ -447,6 +474,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "specialExhibitionStatus",
     "defaultValue": ""
   },
   {
@@ -463,6 +491,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -479,6 +508,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -495,6 +525,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -511,6 +542,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -527,6 +559,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -543,6 +576,7 @@
     "analyzer": "code",
     "referenceType": "user",
     "referenceValue": "userId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -559,6 +593,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -575,6 +610,7 @@
     "analyzer": "code",
     "referenceType": "user",
     "referenceValue": "userId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -591,6 +627,7 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": "",
     "idType": "autoIncrement"
   },
@@ -608,6 +645,7 @@
     "analyzer": "code",
     "referenceType": "site",
     "referenceValue": "siteId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -624,6 +662,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -640,6 +679,7 @@
     "analyzer": "code",
     "referenceType": "specialExhibition",
     "referenceValue": "specialExhibitionId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -656,6 +696,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -672,6 +713,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "useYn",
     "defaultValue": ""
   },
   {
@@ -688,6 +730,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -704,6 +747,7 @@
     "analyzer": "code",
     "referenceType": "user",
     "referenceValue": "userId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -720,6 +764,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -736,6 +781,7 @@
     "analyzer": "code",
     "referenceType": "user",
     "referenceValue": "userId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -752,6 +798,7 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": "",
     "idType": "autoIncrement"
   },
@@ -769,6 +816,7 @@
     "analyzer": "code",
     "referenceType": "specialExhibition",
     "referenceValue": "specialExhibitionId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -785,6 +833,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -801,6 +850,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -817,6 +867,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "useYn",
     "defaultValue": ""
   },
   {
@@ -833,6 +884,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -849,6 +901,7 @@
     "analyzer": "code",
     "referenceType": "user",
     "referenceValue": "userId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -865,6 +918,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -881,6 +935,7 @@
     "analyzer": "code",
     "referenceType": "user",
     "referenceValue": "userId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -897,6 +952,7 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": "",
     "idType": "autoIncrement"
   },
@@ -914,6 +970,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -930,6 +987,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -946,6 +1004,7 @@
     "analyzer": "code",
     "referenceType": "specialExhibition",
     "referenceValue": "specialExhibitionId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -962,6 +1021,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "deviceType",
     "defaultValue": ""
   },
   {
@@ -978,6 +1038,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "useYn",
     "defaultValue": ""
   },
   {
@@ -994,6 +1055,7 @@
     "analyzer": "code",
     "referenceType": "user",
     "referenceValue": "userId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1010,6 +1072,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1026,6 +1089,7 @@
     "analyzer": "code",
     "referenceType": "user",
     "referenceValue": "userId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1042,6 +1106,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1058,6 +1123,7 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": "",
     "idType": "autoIncrement"
   },
@@ -1075,6 +1141,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1091,6 +1158,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1107,6 +1175,7 @@
     "analyzer": "code",
     "referenceType": "shopEvent",
     "referenceValue": "shopEventId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1123,6 +1192,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "deviceType",
     "defaultValue": ""
   },
   {
@@ -1139,6 +1209,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "useYn",
     "defaultValue": ""
   },
   {
@@ -1155,6 +1226,7 @@
     "analyzer": "code",
     "referenceType": "user",
     "referenceValue": "userId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1171,6 +1243,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1187,6 +1260,7 @@
     "analyzer": "code",
     "referenceType": "user",
     "referenceValue": "userId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -1203,6 +1277,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   }
 ]
