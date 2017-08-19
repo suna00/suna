@@ -42,5 +42,23 @@
     "tableName": "ytnDevDb#specialExhibitionAnker",
     "repositoryType": "node",
     "eviction": 0
+  },
+  {
+    "parentId": "eventPath",
+    "typeId": "nodeType",
+    "tid": "specialExhibitionMainBanner",
+    "typeName": "기획전메인 배너",
+    "tableName": "ytnDevDb#specialExhibitionMainBanner",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "eventPath",
+    "typeId": "nodeType",
+    "tid": "shopEventMainBanner",
+    "typeName": "이벤트 메인 배너",
+    "tableName": "ytnDevDb#shopEventMainBanner",
+    "repositoryType": "node",
+    "eviction": 0
   }
 ]
