@@ -5,6 +5,7 @@ import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.QueryTerm;
+import net.ion.ice.core.query.QueryUtils;
 import net.ion.ice.core.query.ResultField;
 import org.stagemonitor.util.StringUtils;
 
@@ -46,10 +47,10 @@ public class ApiQueryContext extends QueryContext{
             if(key.equals("typeId")) continue ;
 
             if (key.equals("q")) {
-                List<QueryTerm> queryTerms = QueryContext.makeNodeQueryTerms(config.get("q"), queryContext.nodeType);
+                List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(config.get("q"), queryContext.nodeType);
                 queryContext.setQueryTerms(queryTerms);
             }else if(key.equals("query")){
-                List<QueryTerm> queryTerms = QueryContext.makeNodeQueryTerms(config.get("query"), queryContext.nodeType);
+                List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(config.get("query"), queryContext.nodeType);
                 queryContext.setQueryTerms(queryTerms);
             }else if(key.equals("response")){
                 Map<String, Object> response = (Map<String, Object>) config.get(key);
