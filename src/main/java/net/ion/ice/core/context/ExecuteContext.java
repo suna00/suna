@@ -158,8 +158,10 @@ public class ExecuteContext implements Context{
                 }
             }
             execute = changedProperties.size() > 0 ;
-            if(execute){
+            if(execute) {
                 node.setUpdate(userId, time);
+            }else if(event != null && !event.equals("update")){
+                execute = true;
             }
 
         }else {

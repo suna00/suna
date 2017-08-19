@@ -21,7 +21,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     public static final String ANONYMOUS = "anonymous";
     public static final String SYSTEM = "system";
 
-    public static final String ID_SEPERATOR = "@";
+    public static final String ID_SEPERATOR = ">";
 
     @Id
     private String id ;
@@ -86,8 +86,8 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
                     if (_id == null || StringUtils.isEmpty(_id.toString())) {
                         throw new RuntimeException("ID is NULL");
                     }
-                    if (StringUtils.contains(_id.toString(), "@")) {
-                        this.id = _id.toString() + ID_SEPERATOR + StringUtils.removeEnd(id, "@") ;
+                    if (StringUtils.contains(_id.toString(), Node.ID_SEPERATOR)) {
+                        this.id = _id.toString() + ID_SEPERATOR + StringUtils.removeEnd(id, Node.ID_SEPERATOR) ;
                     } else {
                         this.id = id + _id + (i < (idablePts.size() - 1) ? ID_SEPERATOR : "");
                     }
@@ -341,6 +341,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         return this ;
     }
 
+
     public Node toCode() {
         this.properties.toCode();
         return this ;
@@ -368,6 +369,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     public Object getBindingValue(String pid) {
         return NodeUtils.getBindingValue(getValue(pid), NodeUtils.getNodeType(getTypeId()).getPropertyType(pid), getId()) ;
     }
+
 
 //    public Object getValue(String pid, PropertyType.ValueType valueType) {
 //        Object value = get(pid) ;

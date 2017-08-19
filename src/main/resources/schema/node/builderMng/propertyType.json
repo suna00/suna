@@ -2,7 +2,7 @@
   {
     "typeId" : "propertyType",
     "tid": "builderPage",
-    "id": "builderPage@id",
+    "id": "builderPage>id",
     "pid": "id",
     "propertyTypeName": "페이지 아이디",
     "valueType": "STRING",
@@ -18,7 +18,7 @@
   {
     "typeId" : "propertyType",
     "tid": "builderPage",
-    "id": "builderPage@content",
+    "id": "builderPage>content",
     "pid": "content",
     "propertyTypeName": "페이지 내용",
     "valueType": "JSON",
@@ -34,7 +34,7 @@
   {
     "typeId" : "propertyType",
     "tid": "builderContainerComponent",
-    "id": "builderContainerComponent@componentClassType",
+    "id": "builderContainerComponent>componentClassType",
     "pid": "componentClassType",
     "propertyTypeName": "Component Class Type",
     "valueType": "STRING",
@@ -50,7 +50,7 @@
   {
     "typeId" : "propertyType",
     "tid": "builderContainerComponent",
-    "id": "builderContainerComponent@componentClass",
+    "id": "builderContainerComponent>componentClass",
     "pid": "componentClass",
     "propertyTypeName": "Component Class",
     "valueType": "STRING",
@@ -66,7 +66,7 @@
   {
     "typeId" : "propertyType",
     "tid": "builderContainerComponent",
-    "id": "builderContainerComponent@componentClassName",
+    "id": "builderContainerComponent>componentClassName",
     "pid": "componentClassName",
     "propertyTypeName": "Component Class Name",
     "valueType": "STRING",
@@ -82,7 +82,7 @@
   {
     "typeId" : "propertyType",
     "tid": "builderContainerComponent",
-    "id": "builderContainerComponent@icon",
+    "id": "builderContainerComponent>icon",
     "pid": "icon",
     "propertyTypeName": "ICON",
     "valueType": "STRING",
@@ -98,7 +98,7 @@
   {
     "typeId" : "propertyType",
     "tid": "builderContainerComponent",
-    "id": "builderContainerComponent@order",
+    "id": "builderContainerComponent>order",
     "pid": "order",
     "propertyTypeName": "Order",
     "valueType": "LONG",
@@ -115,7 +115,7 @@
   {
     "typeId" : "propertyType",
     "tid": "builderContainerComponent",
-    "id": "builderContainerComponent@active",
+    "id": "builderContainerComponent>active",
     "pid": "active",
     "propertyTypeName": "Active",
     "valueType": "BOOLEAN",
@@ -132,7 +132,7 @@
   {
     "typeId" : "propertyType",
     "tid": "builderContainerComponent",
-    "id": "builderContainerComponent@componentChildren",
+    "id": "builderContainerComponent>componentChildren",
     "pid": "componentChildren",
     "propertyTypeName": "Children ComponentClass",
     "valueType": "STRING",
@@ -148,7 +148,7 @@
   {
     "typeId" : "propertyType",
     "tid": "builderPresentationalComponent",
-    "id": "builderPresentationalComponent@componentTemplateType",
+    "id": "builderPresentationalComponent>componentTemplateType",
     "pid": "componentTemplateType",
     "propertyTypeName": "Component Template Type",
     "valueType": "STRING",
@@ -165,7 +165,7 @@
   {
     "typeId" : "propertyType",
     "tid": "builderPresentationalComponent",
-    "id": "builderPresentationalComponent@componentClassType",
+    "id": "builderPresentationalComponent>componentClassType",
     "pid": "componentClassType",
     "propertyTypeName": "Component Class Type",
     "valueType": "STRING",
@@ -181,7 +181,7 @@
   {
     "typeId" : "propertyType",
     "tid": "builderPresentationalComponent",
-    "id": "builderPresentationalComponent@componentClass",
+    "id": "builderPresentationalComponent>componentClass",
     "pid": "componentClass",
     "propertyTypeName": "Component Class",
     "valueType": "STRING",
@@ -197,7 +197,7 @@
   {
     "typeId" : "propertyType",
     "tid": "builderPresentationalComponent",
-    "id": "builderPresentationalComponent@componentClassName",
+    "id": "builderPresentationalComponent>componentClassName",
     "pid": "componentClassName",
     "propertyTypeName": "Component Class Name",
     "valueType": "STRING",
@@ -213,7 +213,7 @@
   {
     "typeId" : "propertyType",
     "tid": "builderPresentationalComponent",
-    "id": "builderPresentationalComponent@icon",
+    "id": "builderPresentationalComponent>icon",
     "pid": "icon",
     "propertyTypeName": "ICON",
     "valueType": "STRING",
@@ -229,7 +229,7 @@
   {
     "typeId" : "propertyType",
     "tid": "builderPresentationalComponent",
-    "id": "builderPresentationalComponent@order",
+    "id": "builderPresentationalComponent>order",
     "pid": "order",
     "propertyTypeName": "Order",
     "valueType": "LONG",
@@ -246,7 +246,7 @@
   {
     "typeId" : "propertyType",
     "tid": "builderPresentationalComponent",
-    "id": "builderPresentationalComponent@active",
+    "id": "builderPresentationalComponent>active",
     "pid": "active",
     "propertyTypeName": "Active",
     "valueType": "BOOLEAN",
@@ -263,7 +263,7 @@
   {
     "typeId" : "propertyType",
     "tid": "builderPresentationalComponent",
-    "id": "builderPresentationalComponent@componentChildren",
+    "id": "builderPresentationalComponent>componentChildren",
     "pid": "componentChildren",
     "propertyTypeName": "Children ComponentClass",
     "valueType": "STRING",

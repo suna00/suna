@@ -16,8 +16,7 @@ import java.util.*;
 /**
  * Created by jaeho on 2017. 4. 26..
  */
-public class QueryContext implements Context {
-    protected NodeType nodeType;
+public class QueryContext extends ReadContext {
     protected List<QueryTerm> queryTerms;
     protected SearchManager searchManager;
     protected String sorting;
@@ -28,11 +27,8 @@ public class QueryContext implements Context {
 
     protected boolean paging;
 
-    protected boolean includeReference;
-
     protected boolean treeable;
 
-    protected List<ResultField> resultFields;
 
     public QueryContext(NodeType nodeType) {
         this.nodeType = nodeType;
@@ -59,9 +55,9 @@ public class QueryContext implements Context {
         queryContext.setQueryTerms(queryTerms);
 
         if(data.containsKey("fields")){
-            makeResultField(queryContext, data, "fields");
+            makeResultField(queryContext, (String) data.get("fields"));
         }else if(data.containsKey("pids")){
-            makeResultField(queryContext, data, "pids");
+            makeResultField(queryContext, (String) data.get("pids"));
         }
 
         if(queryContext.resultFields == null || queryContext.resultFields.size() == 0 ){
@@ -71,27 +67,7 @@ public class QueryContext implements Context {
         return queryContext;
     }
 
-    private static void makeResultField(QueryContext queryContext, Map<String, Object> data, String parameterName) {
-        String fields = (String) data.get(parameterName);
-        if(StringUtils.contains(fields,",")) {
-            addResultFields(queryContext, fields, ",");
-        }else if(StringUtils.contains(fields," ")){
-            addResultFields(queryContext, fields, " ");
-        }else{
-            if(StringUtils.isNotEmpty(fields)) {
-                queryContext.addResultField(new ResultField(fields, fields));
-            }
-        }
-    }
 
-    private static void addResultFields(QueryContext queryContext, String fields, String s) {
-        for (String field : StringUtils.split(fields, s)) {
-            field = StringUtils.trim(field) ;
-            if(StringUtils.isNotEmpty(field)) {
-                queryContext.addResultField(new ResultField(field, field));
-            }
-        }
-    }
 
 
     public static QueryContext makeQueryContextFromText(String searchText, NodeType nodeType) {
@@ -282,9 +258,6 @@ public class QueryContext implements Context {
         return paging;
     }
 
-    public NodeType getNodetype() {
-        return nodeType;
-    }
 
     public static QueryContext makeQueryContextForReferenced(NodeType nodeType, PropertyType pt, Node node) {
         String refTypeId = pt.getReferenceType();
@@ -361,13 +334,6 @@ public class QueryContext implements Context {
         this.resultSize = resultSize;
     }
 
-    public boolean isIncludeReferenced() {
-        return includeReference;
-    }
-
-    public void setIncludeReference(boolean includeReference) {
-        this.includeReference = includeReference;
-    }
 
     public boolean isTreeable() {
         return treeable;
@@ -422,15 +388,9 @@ public class QueryContext implements Context {
         return queryContext;
     }
 
-    protected void addResultField(ResultField resultField) {
-        if (this.resultFields == null) {
-            this.resultFields = new ArrayList<>();
-        }
-        this.resultFields.add(resultField);
-    }
+
 
     public static List<QueryTerm> makeNodeQueryTerms(Object q, NodeType nodeType) {
-
         List<QueryTerm> queryTerms = new ArrayList<>();
         if (q instanceof List) {
             for (Map<String, Object> _q : (List<Map<String, Object>>) q) {
@@ -466,11 +426,6 @@ public class QueryContext implements Context {
         }
         return null;
     }
-
-    public List<ResultField> getResultFields() {
-        return resultFields;
-    }
-
 
 
     public QueryResult makeQueryResult(Object result, String fieldName) {
@@ -519,7 +474,7 @@ public class QueryContext implements Context {
                 } else {
                     String fieldValue = resultField.getFieldValue();
                     fieldValue = fieldValue == null || StringUtils.isEmpty(fieldValue) ? resultField.getFieldName() : fieldValue;
-                    subQueryResult.put(resultField.getFieldName(), NodeUtils.getResultValue(resultNode.get(fieldValue), nodeType.getPropertyType(fieldValue), resultNode));
+                    subQueryResult.put(resultField.getFieldName(), NodeUtils.getResultValue(this, nodeType.getPropertyType(fieldValue), resultNode));
                 }
             }
             subList.add(subQueryResult) ;
