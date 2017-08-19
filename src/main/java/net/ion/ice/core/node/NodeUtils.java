@@ -14,6 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
+import org.apache.lucene.document.DateTools;
 import org.apache.lucene.search.SortField;
 import org.infinispan.Cache;
 import org.springframework.web.multipart.MultipartFile;
@@ -156,7 +157,12 @@ public class NodeUtils {
         if (value instanceof Date) {
             return DateFormatUtils.format((Date) value, "yyyyMMddHHmmss");
         } else {
-            return value.toString();
+            try {
+                return DateFormatUtils.format(DateTools.stringToDate(value.toString()), "yyyyMMddHHmmss");
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return value.toString() ;
         }
     }
 
@@ -295,11 +301,7 @@ public class NodeUtils {
         }
         switch (pt.getValueType()) {
             case DATE: {
-                if (value instanceof String) {
-                    return getDateValue(value);
-                } else if (value instanceof Date) {
-                    return value;
-                }
+                return DateTools.dateToString(NodeUtils.getDateValue(value), DateTools.Resolution.SECOND) ;
             }
             case STRING:
             case TEXT: {

@@ -26,8 +26,10 @@ public class QueryContext extends ReadContext {
     protected Integer resultSize;
 
     protected boolean paging;
+    protected boolean limit;
 
     protected boolean treeable;
+    private int queryListSize;
 
 
     public QueryContext(NodeType nodeType) {
@@ -103,8 +105,8 @@ public class QueryContext extends ReadContext {
     public static void makeQueryTerm(NodeType nodeType, QueryContext queryContext, List<QueryTerm> queryTerms, String paramName, String value) {
         value = value.equals("@sysdate") ? new SimpleDateFormat("yyyyMMdd HHmmss").format(new Date()) : value.equals("@sysday") ? new SimpleDateFormat("yyyyMMdd").format(new Date()) : value;
 
-        if(paramName.equals("fields") || paramName.equals("pids") ||paramName.equals("response")){
-            return ;
+        if (paramName.equals("fields") || paramName.equals("pids") || paramName.equals("response")) {
+            return;
         }
 
         if (paramName.equals("page")) {
@@ -113,8 +115,8 @@ public class QueryContext extends ReadContext {
         } else if (paramName.equals("pageSize")) {
             queryContext.setPageSize(value);
             return;
-        } else if (paramName.equals("count")) {
-            queryContext.setMaxSize(value);
+        } else if (paramName.equals("count") || paramName.equals("limit")) {
+            queryContext.setLimit(value);
             return;
         } else if (paramName.equals("query")) {
             try {
@@ -151,7 +153,10 @@ public class QueryContext extends ReadContext {
                 }
 
             } else {
-                queryTerms.add(makePropertyQueryTerm(nodeType, paramName, "matching", value));
+                QueryTerm queryTerm = makePropertyQueryTerm(nodeType, paramName, "matching", value);
+                if (queryTerm != null) {
+                    queryTerms.add(queryTerm);
+                }
             }
 
         }
@@ -202,6 +207,14 @@ public class QueryContext extends ReadContext {
     public void setCurrentPage(String page) {
         this.currentPage = Integer.valueOf(page);
         this.paging = true;
+    }
+    public void setLimit(String limit) {
+        this.limit = true ;
+        setMaxSize(limit) ;
+    }
+
+    public void setQueryListSize(int queryListSize) {
+        this.queryListSize = queryListSize;
     }
 
     public void setMaxSize(String maxSize) {
@@ -520,10 +533,14 @@ public class QueryContext extends ReadContext {
             queryResult.put("pageSize", getPageSize());
             queryResult.put("pageCount", getResultSize() / getPageSize() + 1);
             queryResult.put("currentPage", getCurrentPage());
+        }else if(limit){
+            queryResult.put("more", resultSize > queryListSize);
+            queryResult.put("moreCount", resultSize - queryListSize);
         }
         queryResult.put(fieldName, list) ;
         return queryResult ;
     }
+
 
 
 }
