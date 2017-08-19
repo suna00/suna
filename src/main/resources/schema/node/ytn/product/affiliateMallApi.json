@@ -1,0 +1,19 @@
+[
+  {
+    "typeId" : "commonApi",
+    "id" : "affiliateMall",
+    "categoryName" : "Test API"
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "affiliateMall",
+    "apiId" : "productList",
+    "apiName" : "affiliateMall Product List",
+    "method" : "GET",
+    "config" : {
+      "items" : {
+        "endpoint":"http://localhost:8080/node/productByAffiliateMall/list.json"
+      }
+    }
+  }
+]
