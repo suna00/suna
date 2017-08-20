@@ -1,13 +1,15 @@
 package net.ion.ice.core.data.bind;
 
+import net.ion.ice.core.context.DataQueryContext;
 import net.ion.ice.core.data.DBDataTypes;
 import net.ion.ice.core.data.DBTypes;
-import net.ion.ice.core.data.context.DBQueryContext;
-import net.ion.ice.core.data.context.DBQueryTerm;
+import net.ion.ice.core.context.DBQueryContext;
+import net.ion.ice.core.context.DBQueryTerm;
 import net.ion.ice.core.data.table.Column;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.PropertyType;
+import net.ion.ice.core.query.QueryTerm;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -243,17 +245,12 @@ public class NodeBindingInfo {
         return result;
     }
 
-    public Map<String, Object> list() {
-        Map<String, Object> result = new ConcurrentHashMap<>();
-        List<Map<String, Object>> items = jdbcTemplate.queryForList(listSql);
-        result.put("items", items);
-        return result;
+    public List<Map<String, Object>> list() {
+        return jdbcTemplate.queryForList(listSql);
     }
 
-    public Map<String, Object> list(DBQueryContext dbQueryContext) {
-        makeListQuery(dbQueryContext);
-
-        Map<String, Object> result = new ConcurrentHashMap<>();
+    public List<Map<String, Object>> list(DataQueryContext dataQueryContext) {
+        makeListQuery(dataQueryContext);
         Map<String, Object> totalCount;
         if (resultCountValue == null || resultCountValue.isEmpty()) {
             totalCount = jdbcTemplate.queryForMap(totalCountSql);
@@ -261,14 +258,9 @@ public class NodeBindingInfo {
             totalCount = jdbcTemplate.queryForMap(totalCountSql, resultCountValue.toArray());
         }
         List<Map<String, Object>> items = jdbcTemplate.queryForList(listParamSql, searchListValue.toArray());
-        double rc = ((Long) totalCount.get("totalCount")).doubleValue();
-        result.put("pageSize", dbQueryContext.getPageSize());
-        result.put("pageCount", (int) Math.ceil(rc / dbQueryContext.getPageSize()));
-        result.put("currentPage", dbQueryContext.getCurrentPage());
-        result.putAll(totalCount);
-        result.put("resultCount", items.size());
-        result.put("items", items);
-        return result;
+        dataQueryContext.setResultSize(((Long) totalCount.get("totalCount")).intValue());
+        dataQueryContext.setQueryListSize(items.size()) ;
+        return items;
     }
 
     public int delete(Map<String, String[]> parameterMap) {
@@ -324,18 +316,16 @@ public class NodeBindingInfo {
         return Arrays.asList(id.split(Node.ID_SEPERATOR));
     }
 
-    public void makeListQuery(DBQueryContext dbQueryContext) {
+    public void makeListQuery(DataQueryContext dbQueryContext) {
         searchListQuery = new ArrayList<>();
         searchListValue = new ArrayList<>();
 
-        int currentPage = dbQueryContext.getCurrentPage();
-        int pageSize = dbQueryContext.getPageSize();
         String sorting = dbQueryContext.getSorting();
 
-        if (!dbQueryContext.getDbQueryTermList().isEmpty()) {
-            for (DBQueryTerm dbQueryTerm : dbQueryContext.getDbQueryTermList()) {
-                String query = String.format("%s %s ?", dbQueryTerm.getKey(), dbQueryTerm.getMethodQuery());
-                String value = dbQueryTerm.getValue();
+        if (dbQueryContext.getQueryTerms() != null &&!dbQueryContext.getQueryTerms().isEmpty()) {
+            for (QueryTerm queryTerm : dbQueryContext.getQueryTerms()) {
+                String query = String.format("%s %s ?", queryTerm.getQueryKey(), queryTerm.getMethodQuery());
+                String value = queryTerm.getQueryValue();
                 searchListQuery.add(query);
                 searchListValue.add(value);
             }
@@ -355,7 +345,7 @@ public class NodeBindingInfo {
         }
 
         listParamSql = listParamSql.concat(String.format(" LIMIT ?").concat(String.format(" OFFSET ?")));
-        searchListValue.add(pageSize);
-        searchListValue.add(pageSize * (currentPage - 1));
+        searchListValue.add(dbQueryContext.getLimit());
+        searchListValue.add(dbQueryContext.getOffset());
     }
 }

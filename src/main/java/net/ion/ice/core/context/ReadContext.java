@@ -5,6 +5,8 @@ import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
 import net.ion.ice.core.query.QueryResult;
+import net.ion.ice.core.query.QueryTerm;
+import net.ion.ice.core.query.QueryUtils;
 import net.ion.ice.core.query.ResultField;
 import org.apache.commons.lang3.StringUtils;
 
@@ -17,6 +19,9 @@ import java.util.Map;
  */
 public class ReadContext implements Context {
     protected NodeType nodeType;
+    protected Map<String, Object> data;
+
+
     protected Boolean includeReference;
     protected Boolean referenceView ;
     protected List<String> referenceViewFields ;
@@ -70,11 +75,60 @@ public class ReadContext implements Context {
         return resultFields;
     }
 
+    protected static void makeContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType, ReadContext context) {
+        if (parameterMap == null || parameterMap.size() == 0) {
+            context.setIncludeReference(true);
+            return ;
+        }
 
-    public static ReadContext makeContextFormParameter(Map<String, String[]> parameterMap, NodeType nodeType, String id) {
-        ReadContext ctx = new ReadContext();
-        ctx.nodeType = nodeType ;
 
+        Map<String, Object> data = ContextUtils.makeContextData(parameterMap);
+        context.data = data ;
+
+        if(data.containsKey("fields")){
+            makeResultField(context, (String) data.get("fields"));
+        }else if(data.containsKey("pids")){
+            makeResultField(context, (String) data.get("pids"));
+        }
+
+        if(context.resultFields == null || context.resultFields.size() == 0 ){
+            context.setIncludeReference(true);
+        }
+
+        String referenceView = (String) data.get("referenceView");
+        if(StringUtils.isEmpty(referenceView)){
+            context.referenceView = null ;
+        }else if ("true".equals(referenceView)) {
+            context.referenceView = true ;
+        }else if ("false".equals(referenceView)) {
+            context.referenceView = false;
+        }else{
+            context.referenceViewFields = new ArrayList<>() ;
+            for(String f : StringUtils.split(referenceView, ",")){
+                if(StringUtils.isNotEmpty(f.trim())){
+                    context.referenceViewFields.add(f.trim()) ;
+                }
+            }
+            if(context.referenceViewFields.size() > 0){
+                context.referenceView = true ;
+            }else{
+                context.referenceView = false ;
+            }
+        }
+    }
+
+    public static ReadContext createContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType, String id) {
+        ReadContext context = new ReadContext();
+        context.nodeType = nodeType ;
+
+        context.id = getId(parameterMap, nodeType, id);
+
+        makeContextFromParameter(parameterMap, nodeType, context) ;
+
+        return context ;
+    }
+
+    protected static String getId(Map<String, String[]> parameterMap, NodeType nodeType, String id) {
         if(StringUtils.isEmpty(id)){
             if(parameterMap.containsKey("id")){
                 id = parameterMap.get("id")[0] ;
@@ -86,51 +140,23 @@ public class ReadContext implements Context {
                 }
             }
         }
-
-        ctx.id = id ;
-
-        if(parameterMap.containsKey("fields")){
-            makeResultField(ctx, parameterMap.get("fields")[0]);
-        }else if(parameterMap.containsKey("pids")){
-            makeResultField(ctx, parameterMap.get("pids")[0]);
-        }
-
-        if(ctx.resultFields == null || ctx.resultFields.size() == 0 ){
-            ctx.setIncludeReference(true);
-        }
-
-        String referenceView = ContextUtils.getParameterValue("referenceView", parameterMap) ;
-
-        if(StringUtils.isEmpty(referenceView)){
-            ctx.referenceView = null ;
-        }else if ("true".equals(referenceView)) {
-            ctx.referenceView = true ;
-        }else if ("false".equals(referenceView)) {
-            ctx.referenceView = false;
-        }else{
-            ctx.referenceViewFields = new ArrayList<>() ;
-            for(String f : StringUtils.split(referenceView, ",")){
-                if(StringUtils.isNotEmpty(f.trim())){
-                    ctx.referenceViewFields.add(f.trim()) ;
-                }
-            }
-            if(ctx.referenceViewFields.size() > 0){
-                ctx.referenceView = true ;
-            }else{
-                ctx.referenceView = false ;
-            }
-        }
-
-        return ctx ;
+        return id;
     }
 
-    public Node read() {
-
-        return null ;
-    }
 
     public QueryResult makeResult() {
         Node node = NodeUtils.getNode(nodeType.getTypeId(), id) ;
+        QueryResult itemResult = makeResult(node);
+
+        QueryResult queryResult = new QueryResult() ;
+        queryResult.put("result", "200") ;
+        queryResult.put("resultMessage", "SUCCESS") ;
+        queryResult.put("item", itemResult) ;
+
+        return queryResult ;
+    }
+
+    protected QueryResult makeResult(Node node) {
         QueryResult itemResult = new QueryResult() ;
 
         if(this.resultFields == null){
@@ -145,12 +171,7 @@ public class ReadContext implements Context {
                 }
             }
         }
-        QueryResult queryResult = new QueryResult() ;
-        queryResult.put("result", "200") ;
-        queryResult.put("resultMessage", "SUCCESS") ;
-        queryResult.put("item", itemResult) ;
-
-        return queryResult ;
+        return itemResult;
     }
 
     public boolean isReferenceView(String pid) {

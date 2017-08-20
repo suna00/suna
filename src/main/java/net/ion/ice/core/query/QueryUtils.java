@@ -1,5 +1,7 @@
 package net.ion.ice.core.query;
 
+import net.ion.ice.core.context.DBQueryTerm;
+import net.ion.ice.core.context.DataQueryContext;
 import net.ion.ice.core.context.QueryContext;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.NodeType;
@@ -46,9 +48,9 @@ public class QueryUtils {
                 return;
             } else if (paramName.contains("_")) {
                 String fieldId = StringUtils.substringBeforeLast(paramName, "_");
-                queryTerms.add(new QueryTerm(fieldId, StringUtils.substringAfterLast(paramName, "_"), value));
+                queryTerms.add(new QueryTerm(queryContext.getQueryTermType(), fieldId, StringUtils.substringAfterLast(paramName, "_"), value));
             } else {
-                queryTerms.add(new QueryTerm(paramName, value));
+                queryTerms.add(new QueryTerm(queryContext.getQueryTermType(), paramName,  value));
             }
         } else {
             if (paramName.equals("sorting")) {
@@ -57,9 +59,9 @@ public class QueryUtils {
             } else if (paramName.contains("_")) {
                 String fieldId = StringUtils.substringBeforeLast(paramName, "_");
                 String method = StringUtils.substringAfterLast(paramName, "_");
-                QueryTerm queryTerm = QueryUtils.makePropertyQueryTerm(nodeType, fieldId, method, value);
+                QueryTerm queryTerm = QueryUtils.makePropertyQueryTerm(queryContext.getQueryTermType(), nodeType, fieldId, method, value);
                 if (queryTerm == null) {
-                    queryTerm = QueryUtils.makePropertyQueryTerm(nodeType, paramName, "matching", value);
+                    queryTerm = QueryUtils.makePropertyQueryTerm(queryContext.getQueryTermType(), nodeType, paramName, null, value);
                 }
 
                 if (queryTerm != null) {
@@ -67,12 +69,20 @@ public class QueryUtils {
                 }
 
             } else {
-                QueryTerm queryTerm = QueryUtils.makePropertyQueryTerm(nodeType, paramName, "matching", value);
+                QueryTerm queryTerm = QueryUtils.makePropertyQueryTerm(queryContext.getQueryTermType(), nodeType, paramName, null, value);
                 if (queryTerm != null) {
                     queryTerms.add(queryTerm);
                 }
             }
 
+        }
+    }
+
+    public static QueryTerm makePropertyQueryTerm(QueryTerm.QueryTermType queryTermType, NodeType nodeType, String fieldId, String method, String value) {
+        if(queryTermType == QueryTerm.QueryTermType.DATA){
+            return makeDataQueryTerm(nodeType, fieldId, method, value) ;
+        }else{
+            return makePropertyQueryTerm(nodeType, fieldId, method, value) ;
         }
     }
 
@@ -117,4 +127,11 @@ public class QueryUtils {
         return null;
     }
 
+    public static QueryTerm makeDataQueryTerm(NodeType nodeType, String fieldId, String method, String value) {
+        PropertyType propertyType = (PropertyType) nodeType.getPropertyType(fieldId);
+        if (propertyType != null) {
+            return new QueryTerm(QueryTerm.QueryTermType.DATA, fieldId, method, value);
+        }
+        return null;
+    }
 }

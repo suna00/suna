@@ -143,10 +143,10 @@ public class NodeValue implements Serializable, Cloneable{
                 modifier = (String) value;
                 return modifier ;
             case "created":
-                created = (Date) value;
+                created = NodeUtils.getDateValue(value) ;
                 return created ;
             case "changed":
-                changed = (Date) value;
+                changed = NodeUtils.getDateValue(value) ;
                 return changed ;
             case "status" :
                 status = (String) value;
