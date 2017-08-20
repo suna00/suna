@@ -97,11 +97,11 @@ public class NodeController {
     }
 
     private Object read(WebRequest request, String typeId, String id) throws JsonProcessingException {
-        return JsonResponse.create(nodeService.readNode(request.getParameterMap(), typeId, id)) ;
+        return nodeService.readNode(request.getParameterMap(), typeId, id) ;
     }
 
     private Object read(WebRequest request, String typeId) throws JsonProcessingException {
-        return JsonResponse.create(nodeService.readNode(request.getParameterMap(), typeId)) ;
+        return nodeService.readNode(request.getParameterMap(), typeId) ;
     }
 
 
@@ -167,8 +167,10 @@ public class NodeController {
 
     private Object code(WebRequest request, @PathVariable String typeId) {
         try {
-            SimpleQueryResult simpleQueryResult = nodeService.getNodeCode(typeId, request.getParameterMap()) ;
-            return JsonResponse.create(simpleQueryResult) ;
+            QueryResult queryResult = nodeService.getReferenceQueryResult(typeId, request.getParameterMap()) ;
+            return queryResult ;
+//            SimpleQueryResult simpleQueryResult = nodeService.getNodeCode(typeId, request.getParameterMap()) ;
+//            return JsonResponse.create(simpleQueryResult) ;
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             if(e.getCause() instanceof ClassCastException){

@@ -1,15 +1,14 @@
 package net.ion.ice.core.data.bind;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import net.ion.ice.core.context.ExecuteContext;
+import net.ion.ice.core.context.*;
 import net.ion.ice.core.data.DBUtils;
 import net.ion.ice.core.data.DBService;
-import net.ion.ice.core.data.context.DBQueryContext;
-import net.ion.ice.core.data.context.DBQueryTerm;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
+import net.ion.ice.core.query.QueryResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,49 +61,47 @@ public class NodeBindingService {
         nodeBindingInfo.create();
     }
 
-    public Map<String, Object> read(String typeId, String id) throws JsonProcessingException {
+    public QueryResult read(Map<String, String[]> parameterMap, String typeId, String id) throws JsonProcessingException {
+        NodeType nodeType = NodeUtils.getNodeType(typeId) ;
+
         nodeBindProcess(typeId);
         NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(typeId);
-        return nodeBindingInfo.retrieve(id);
+
+        DataReadContext readContext = DataReadContext.createContextFromParameter(nodeBindingInfo, parameterMap, nodeType, id) ;
+        return readContext.makeResult() ;
     }
 
-    public Map<String, Object> read(Map<String, String[]> parameterMap, String typeId) throws JsonProcessingException {
+    public QueryResult read(Map<String, String[]> parameterMap, String typeId) throws JsonProcessingException {
+        NodeType nodeType = NodeUtils.getNodeType(typeId) ;
+
         nodeBindProcess(typeId);
         NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(typeId);
 
-        String id = "";
 
-        for (String paramName : parameterMap.keySet()) {
-            if (paramName.equals("id")) {
-                id = parameterMap.get(paramName)[0];
-            }
-        }
-
-        if (id.isEmpty()) {
-            List<String> idablePids = NodeUtils.getNodeType(typeId).getIdablePIds();
-            for (int i = 0; i < idablePids.size(); i++) {
-                id = id + parameterMap.get(idablePids.get(i))[0] + (i < (idablePids.size() - 1) ? Node.ID_SEPERATOR : "");
-            }
-        }
-
-
-        return nodeBindingInfo.retrieve(id);
+        DataReadContext readContext = DataReadContext.createContextFromParameter(nodeBindingInfo, parameterMap, nodeType, null) ;
+        return readContext.makeResult() ;
     }
 
     public Map<String, Object> list(String typeId) {
+        NodeType nodeType = NodeUtils.getNodeType(typeId) ;
+
         nodeBindProcess(typeId);
         NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(typeId);
-        return nodeBindingInfo.list();
+
+        DataQueryContext queryContext = DataQueryContext.createQueryContextFromParameter(nodeBindingInfo, null, nodeType) ;
+        QueryResult queryResult = queryContext.makeQueryResult( null, null);
+        return queryResult;
     }
 
     public Map<String, Object> list(String typeId, WebRequest request) {
+        NodeType nodeType = NodeUtils.getNodeType(typeId) ;
+
         nodeBindProcess(typeId);
         NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(typeId);
-        if(request.getParameterMap().isEmpty()){
-            return nodeBindingInfo.list();
-        }else{
-            return nodeBindingInfo.list(DBQueryContext.makeDBQueryContextFromParameter(request.getParameterMap(), nodeService.getNodeType(typeId)));
-        }
+
+        DataQueryContext queryContext = DataQueryContext.createQueryContextFromParameter(nodeBindingInfo, request.getParameterMap(), nodeType) ;
+        QueryResult queryResult = queryContext.makeQueryResult( null, null);
+        return queryResult;
     }
 
     public void delete(Map<String, String[]> parameterMap, String typeId) {
@@ -123,8 +120,11 @@ public class NodeBindingService {
 
     public void nodeBindProcess(String typeId) {
         NodeType nodeType = nodeService.getNodeType(typeId);
+        nodeBindProcess(nodeType);
+    }
 
-        if (!nodeBindingInfoMap.containsKey(typeId)) {
+    public void nodeBindProcess(NodeType nodeType) {
+        if (!nodeBindingInfoMap.containsKey(nodeType.getTypeId())) {
 
             String dsId = String.valueOf(nodeType.getTableName()).split("#")[0];
             JdbcTemplate jdbcTemplate = DBService.getJdbcTemplate(dsId);
@@ -136,7 +136,8 @@ public class NodeBindingService {
             NodeBindingInfo nodeBindingInfo = new NodeBindingInfo(nodeType, jdbcTemplate, tableName, DBType);
             nodeBindingInfo.makeDefaultQuery();
 
-            nodeBindingInfoMap.put(typeId, nodeBindingInfo);
+            nodeBindingInfoMap.put(nodeType.getTypeId(), nodeBindingInfo);
         }
     }
+
 }

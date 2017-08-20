@@ -31,6 +31,14 @@
     "eviction": 1000
   },
   {
+    "tid": "testComment",
+    "parentId": "test",
+    "typeId": "nodeType",
+    "repositoryType": "data",
+    "typeName": "TEST Comment",
+    "tableName": "mariaDb#testComment"
+  },
+  {
     "typeId": "propertyType",
     "tid": "testCategory",
     "pid": "parentCategory",
@@ -278,5 +286,38 @@
     "propertyTypeName": "Test File",
     "valueType": "FILE",
     "indexable": true
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "testComment",
+    "pid": "commentId",
+    "propertyTypeName": "Comment ID",
+    "valueType": "INT",
+    "idable": true
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "testComment",
+    "pid": "itemId",
+    "propertyTypeName": "Item",
+    "valueType": "REFERENCE",
+    "idable": false,
+    "referenceType": "testItem"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "testComment",
+    "pid": "userId",
+    "propertyTypeName": "User",
+    "valueType": "STRING",
+    "idable": false
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "testComment",
+    "pid": "comment",
+    "propertyTypeName": "Comment",
+    "valueType": "TEXT",
+    "idable": false
   }
 ]

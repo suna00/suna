@@ -36,7 +36,7 @@ public class ExecuteContext implements Context{
     protected String event;
 
 
-    public static ExecuteContext makeContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType, String event) {
+    public static ExecuteContext createContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType, String event) {
         ExecuteContext ctx = new ExecuteContext();
 
         Map<String, Object> data = ContextUtils.makeContextData(parameterMap);
@@ -158,8 +158,10 @@ public class ExecuteContext implements Context{
                 }
             }
             execute = changedProperties.size() > 0 ;
-            if(execute){
+            if(execute) {
                 node.setUpdate(userId, time);
+            }else if(event != null && !event.equals("update")){
+                execute = true;
             }
 
         }else {
@@ -283,4 +285,29 @@ public class ExecuteContext implements Context{
         return data;
     }
 
+    public ExecuteContext makeRollbackContext() {
+        EventExecuteContext ctx = new EventExecuteContext();
+        ctx.nodeType = nodeType ;
+        switch (getEvent()){
+            case "create" :
+                ctx.event = "delete" ;
+                ctx.node = node ;
+                ctx.execute = true ;
+                break;
+            case "update" :
+                ctx.event = "update" ;
+                ctx.node = existNode ;
+                ctx.execute = true ;
+                break ;
+            case "delete" :
+                ctx.event = "create" ;
+                ctx.node = node ;
+                ctx.execute = true ;
+                break ;
+            default:
+                break ;
+        }
+        ctx.data = data ;
+        return ctx ;
+    }
 }
