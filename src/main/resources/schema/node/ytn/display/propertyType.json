@@ -765,6 +765,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "displayStatus",
     "defaultValue": ""
   },
   {
