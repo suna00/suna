@@ -1,6 +1,6 @@
 [
   {
-    "tid": "authority",
+    "tid": "role",
     "parentId": "userMng",
     "typeId": "nodeType",
     "repositoryType": "node",
@@ -8,7 +8,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "authority",
+    "tid": "role",
     "pid": "name",
     "propertyTypeName": "권한명",
     "valueType": "STRING",
@@ -17,11 +17,11 @@
     "labelable": false,
     "required": true,
     "length": 100,
-    "analyzer": "cjk"
+    "analyzer": "simple"
   },
   {
     "typeId": "propertyType",
-    "tid": "authority",
+    "tid": "role",
     "pid": "code",
     "propertyTypeName": "권한코드",
     "valueType": "STRING",
@@ -30,6 +30,6 @@
     "labelable": false,
     "required": false,
     "length": 100,
-    "analyzer": "cjk"
+    "analyzer": "code"
   }
 ]

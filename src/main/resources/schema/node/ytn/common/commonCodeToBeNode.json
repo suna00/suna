@@ -10,7 +10,7 @@
   },
   {
     "typeId": "commonCodeToBe",
-    "upperCode": "root@userStatus",
+    "upperCode": "root>userStatus",
     "code": "active",
     "name": "사용중",
     "description": "",
@@ -19,7 +19,7 @@
   },
   {
     "typeId": "commonCodeToBe",
-    "upperCode": "root@userStatus",
+    "upperCode": "root>userStatus",
     "code": "inactive",
     "name": "정지",
     "description": "",
@@ -37,7 +37,7 @@
   },
   {
     "typeId": "commonCodeToBe",
-    "upperCode": "root@userSMSStatus",
+    "upperCode": "root>userSMSStatus",
     "code": "active",
     "name": "사용",
     "description": "",
@@ -46,7 +46,7 @@
   },
   {
     "typeId": "commonCodeToBe",
-    "upperCode": "root@userSMSStatus",
+    "upperCode": "root>userSMSStatus",
     "code": "inactive",
     "name": "미사용",
     "description": "",
@@ -66,7 +66,7 @@
   },
   {
     "typeId": "commonCodeToBe",
-    "upperCode": "root@faqStatus",
+    "upperCode": "root>faqStatus",
     "code": "active",
     "name": "노출",
     "description": "",
@@ -75,7 +75,7 @@
   },
   {
     "typeId": "commonCodeToBe",
-    "upperCode": "root@faqStatus",
+    "upperCode": "root>faqStatus",
     "code": "inactive",
     "name": "비노출",
     "description": "",
@@ -95,7 +95,7 @@
   },
   {
     "typeId": "commonCodeToBe",
-    "upperCode": "root@faqTopStatus",
+    "upperCode": "root>faqTopStatus",
     "code": "inactive",
     "name": "미설정",
     "description": "",
@@ -104,7 +104,7 @@
   },
   {
     "typeId": "commonCodeToBe",
-    "upperCode": "root@faqTopStatus",
+    "upperCode": "root>faqTopStatus",
     "code": "active",
     "name": "설정",
     "description": "",
@@ -124,7 +124,7 @@
   },
   {
     "typeId": "commonCodeToBe",
-    "upperCode": "root@commonNoticeTopStatus",
+    "upperCode": "root>commonNoticeTopStatus",
     "code": "20",
     "name": "일반",
     "description": "",
@@ -133,7 +133,7 @@
   },
   {
     "typeId": "commonCodeToBe",
-    "upperCode": "root@commonNoticeTopStatus",
+    "upperCode": "root>commonNoticeTopStatus",
     "code": "10",
     "name": "상위",
     "description": "",

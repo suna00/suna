@@ -55,6 +55,15 @@
   {
     "parentId": "serviceCenterMng",
     "typeId": "nodeType",
+    "tid": "oneToOneQuestionView",
+    "typeName": "1대1문의(VIEW)",
+    "tableName": "ytnDevDb#oneToOneQuestionView",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "serviceCenterMng",
+    "typeId": "nodeType",
     "tid": "oneToOneAnswer",
     "typeName": "1대1답변",
     "tableName": "ytnDevDb#oneToOneAnswer",

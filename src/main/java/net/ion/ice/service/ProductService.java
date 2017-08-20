@@ -24,7 +24,7 @@ public class ProductService {
     public void create(ExecuteContext context){
         Map<String, Object> data = context.getData();
 
-        nodeService.executeNode(data, data.get("contentsType").toString(), CREATE) ;    // goods, securities
+//        nodeService.executeNode(data, data.get("contentsType").toString(), CREATE) ;    // goods, securities
         nodeService.executeNode(data, "product", CREATE) ;
 
         try {
