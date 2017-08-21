@@ -58,7 +58,6 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         construct(data, typeId, data.get(USERID) == null ? ANONYMOUS : data.get(USERID).toString());
     }
 
-
     public Node(Map<String, Object> data, String typeId, String userId){
         construct(data, typeId, userId);
     }
@@ -70,6 +69,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         this.putAll(data);
         this.properties.setId(id) ;
     }
+
 
     private void construct(Map<String, Object> data, String typeId, String userId) {
         properties = new Properties() ;
