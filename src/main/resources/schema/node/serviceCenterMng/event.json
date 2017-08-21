@@ -103,5 +103,26 @@
     "tid": "commonNotice",
     "event" : "delete",
     "eventName" : "delete CommonNotice"
+  },
+  {
+    "typeId" : "event",
+    "id" : "frequentlyUsedAnswer>create",
+    "tid": "frequentlyUsedAnswer",
+    "event" : "create",
+    "eventName" : "Create FrequentlyUsedAnswer"
+  },
+  {
+    "typeId" : "event",
+    "id" : "frequentlyUsedAnswer>update",
+    "tid": "frequentlyUsedAnswer",
+    "event" : "update",
+    "eventName" : "update FrequentlyUsedAnswer"
+  },
+  {
+    "typeId" : "event",
+    "id" : "frequentlyUsedAnswer>delete",
+    "tid": "frequentlyUsedAnswer",
+    "event" : "delete",
+    "eventName" : "delete FrequentlyUsedAnswer"
   }
 ]
