@@ -1729,7 +1729,7 @@
     "valueType": "STRING",
     "required": false,
     "idable": false,
-    "labelable": false,
+    "labelable": true,
     "treeable": false,
     "indexable": false,
     "analyzer": null,
