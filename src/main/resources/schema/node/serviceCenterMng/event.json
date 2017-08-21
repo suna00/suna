@@ -22,6 +22,27 @@
   },
   {
     "typeId" : "event",
+    "id" : "oneToOneAnswer>create",
+    "tid": "oneToOneAnswer",
+    "event" : "create",
+    "eventName" : "Create OneToOneAnswer"
+  },
+  {
+    "typeId" : "event",
+    "id" : "oneToOneAnswer>update",
+    "tid": "oneToOneAnswer",
+    "event" : "update",
+    "eventName" : "update OneToOneAnswer"
+  },
+  {
+    "typeId" : "event",
+    "id" : "oneToOneAnswer>delete",
+    "tid": "oneToOneAnswer",
+    "event" : "delete",
+    "eventName" : "delete OneToOneAnswer"
+  },
+  {
+    "typeId" : "event",
     "id" : "productQuestion>create",
     "tid": "productQuestion",
     "event" : "create",
@@ -40,5 +61,47 @@
     "tid": "productQuestion",
     "event" : "delete",
     "eventName" : "delete ProductQuestion"
+  },
+  {
+    "typeId" : "event",
+    "id" : "productAnswer>create",
+    "tid": "productAnswer",
+    "event" : "create",
+    "eventName" : "Create ProductAnswer"
+  },
+  {
+    "typeId" : "event",
+    "id" : "productAnswer>update",
+    "tid": "productAnswer",
+    "event" : "update",
+    "eventName" : "update ProductAnswer"
+  },
+  {
+    "typeId" : "event",
+    "id" : "productAnswer>delete",
+    "tid": "productAnswer",
+    "event" : "delete",
+    "eventName" : "delete CommonNotice"
+  },
+  {
+    "typeId" : "event",
+    "id" : "commonNotice>create",
+    "tid": "commonNotice",
+    "event" : "create",
+    "eventName" : "Create CommonNotice"
+  },
+  {
+    "typeId" : "event",
+    "id" : "commonNotice>update",
+    "tid": "commonNotice",
+    "event" : "update",
+    "eventName" : "update CommonNotice"
+  },
+  {
+    "typeId" : "event",
+    "id" : "commonNotice>delete",
+    "tid": "commonNotice",
+    "event" : "delete",
+    "eventName" : "delete CommonNotice"
   }
 ]

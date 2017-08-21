@@ -23,7 +23,7 @@
     "typeName": "QNA 답변",
     "tableName": "ytnDevDb#productAnswer",
     "repositoryType": "node",
-    "eviction": 0
+    "eviction": 200000
   },
   {
     "parentId": "serviceCenterMng",
@@ -68,7 +68,7 @@
     "typeName": "1대1답변",
     "tableName": "ytnDevDb#oneToOneAnswer",
     "repositoryType": "node",
-    "eviction": 0
+    "eviction": 200000
   },
   {
     "parentId": "serviceCenterMng",
