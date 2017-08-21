@@ -47,7 +47,8 @@
     "title": "증빙서류 발급",
     "contents": "주문/배송/결제 > 증빙서류 발급",
     "displayTargetType": "common",
-    "frequentlyAskedQuestionStatus": "y"
+    "frequentlyAskedQuestionStatus": "y",
+    "topStatus": "inactive"
   },
   {
     "typeId": "frequentlyAskedQuestion",
@@ -58,7 +59,8 @@
     "title": "취소",
     "contents": "취소/반품/교환/환불 > 취소",
     "displayTargetType": "common",
-    "frequentlyAskedQuestionStatus": "y"
+    "frequentlyAskedQuestionStatus": "y",
+    "topStatus": "inactive"
   },
   {
     "typeId": "frequentlyAskedQuestion",
@@ -95,7 +97,8 @@
     "title": "마일리지",
     "contents": "회원혜택 > 마일리지",
     "displayTargetType": "common",
-    "frequentlyAskedQuestionStatus": "y"
+    "frequentlyAskedQuestionStatus": "y",
+    "topStatus": "inactive"
   },
   {
     "typeId": "frequentlyAskedQuestion",
@@ -106,7 +109,8 @@
     "title": "마일리지",
     "contents": "회원혜택 > 쿠폰",
     "displayTargetType": "common",
-    "frequentlyAskedQuestionStatus": "y"
+    "frequentlyAskedQuestionStatus": "y",
+    "topStatus": "inactive"
   },
   {
     "typeId": "frequentlyAskedQuestion",
@@ -117,7 +121,8 @@
     "title": "쿠폰",
     "contents": "회원혜택 > 등급",
     "displayTargetType": "common",
-    "frequentlyAskedQuestionStatus": "y"
+    "frequentlyAskedQuestionStatus": "y",
+    "topStatus": "inactive"
   },
   {
     "typeId": "frequentlyAskedQuestion",
@@ -128,6 +133,7 @@
     "title": "모바일",
     "contents": "모바일 이용안내 > 모바일",
     "displayTargetType": "common",
-    "frequentlyAskedQuestionStatus": "y"
+    "frequentlyAskedQuestionStatus": "y",
+    "topStatus": "inactive"
   }
 ]
