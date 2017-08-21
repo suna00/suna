@@ -1,5 +1,6 @@
 package net.ion.ice.core.context;
 
+import net.ion.ice.core.data.bind.NodeBindingInfo;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.*;
 import net.ion.ice.core.query.QueryResult;
@@ -10,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.infinispan.Cache;
 import org.infinispan.query.SearchManager;
 
+import javax.management.Query;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -19,7 +21,8 @@ import java.util.*;
  */
 public class QueryContext extends ReadContext {
     protected List<QueryTerm> queryTerms;
-    protected List<DBQueryTerm> dbQueryTermList;
+    protected List<QueryContext> joinQueryContexts ;
+    protected String joinField ;
 
     protected SearchManager searchManager;
     protected String sorting;
@@ -35,6 +38,10 @@ public class QueryContext extends ReadContext {
     protected int queryListSize;
 
     protected QueryTerm.QueryTermType queryTermType ;
+
+    protected NodeBindingInfo nodeBindingInfo ;
+
+
 
     public QueryContext(NodeType nodeType) {
         this.nodeType = nodeType;
@@ -344,16 +351,20 @@ public class QueryContext extends ReadContext {
         return queryContext;
     }
 
-
-
-
-
     public QueryResult makeQueryResult(Object result, String fieldName) {
-        List<Object> resultList = NodeUtils.getNodeService().executeQuery(this) ;
-        List<Node> resultNodeList = NodeUtils.initNodeList(nodeType.getTypeId(), resultList) ;
+        if(this.queryTermType == QueryTerm.QueryTermType.DATA) {
+            List<Map<String, Object>> resultList = nodeBindingInfo.list(this);
+            List<Node> resultNodeList = NodeUtils.initDataNodeList(nodeType.getTypeId(), resultList);
 
-        return makeQueryResult(result, fieldName, resultNodeList);
+            return makeQueryResult(result, fieldName, resultNodeList);
+        }else{
+            List<Object> resultList = NodeUtils.getNodeService().executeQuery(this) ;
+            List<Node> resultNodeList = NodeUtils.initNodeList(nodeType.getTypeId(), resultList) ;
+
+            return makeQueryResult(result, fieldName, resultNodeList);
+        }
     }
+
 
     protected QueryResult makeQueryResult(Object result, String fieldName, List<Node> resultNodeList) {
         NodeType nodeType = getNodetype() ;
@@ -456,5 +467,34 @@ public class QueryContext extends ReadContext {
 
     public QueryTerm.QueryTermType getQueryTermType() {
         return queryTermType;
+    }
+
+    public void addJoinQuery(QueryContext joinQueryContext) {
+        if(joinQueryContext.getQueryTerms()!= null && joinQueryContext.getQueryTerms().size() > 0){
+            if(this.joinQueryContexts == null){
+                this.joinQueryContexts = new ArrayList<>();
+            }
+            this.joinQueryContexts.add(joinQueryContext) ;
+        }
+    }
+
+    public List<QueryContext> getJoinQueryContexts(){
+        return joinQueryContexts ;
+    }
+
+    public void setJoinField(String joinField) {
+        this.joinField = joinField;
+    }
+
+    public String getJoinField() {
+        return joinField;
+    }
+
+    public Integer getLimit() {
+        return getMaxResultSize();
+    }
+
+    public Integer getOffset() {
+        return getStart();
     }
 }

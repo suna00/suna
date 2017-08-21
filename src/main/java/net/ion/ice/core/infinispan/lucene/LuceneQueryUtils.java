@@ -3,6 +3,7 @@ package net.ion.ice.core.infinispan.lucene;
 
 import net.ion.ice.IceRuntimeException;
 import net.ion.ice.core.context.QueryContext;
+import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.query.QueryTerm;
 import net.ion.ice.core.node.Node;
 import org.apache.commons.lang3.StringUtils;
@@ -21,10 +22,14 @@ import org.hibernate.search.bridge.spi.ConversionContext;
 import org.hibernate.search.engine.spi.DocumentBuilderIndexedEntity;
 import org.hibernate.search.exception.AssertionFailure;
 import org.hibernate.search.exception.SearchException;
+import org.hibernate.search.query.dsl.BooleanJunction;
 import org.hibernate.search.query.dsl.impl.FieldContext;
 import org.hibernate.search.query.dsl.impl.QueryBuildingContext;
 import org.hibernate.search.query.dsl.impl.RangeQueryContext;
+import org.infinispan.Cache;
 import org.infinispan.query.CacheQuery;
+import org.springframework.boot.autoconfigure.cache.CacheType;
+import org.springframework.cache.CacheManager;
 
 
 import java.io.IOException;
@@ -45,6 +50,37 @@ public class LuceneQueryUtils {
     public static CacheQuery makeQuery(QueryContext queryContext) throws IOException {
         Query query ;
         List<Query> innerQueries =  new ArrayList<>();
+        List<QueryType> notInnerQueries = new ArrayList<QueryType>();
+        List<QueryType> shouldInnerQueries = new ArrayList<QueryType>();
+
+
+        if(queryContext.getJoinQueryContexts() != null && queryContext.getJoinQueryContexts().size() >0){
+            for(QueryContext joinQueryContext : queryContext.getJoinQueryContexts()){
+                List<Object> joinQueryResult = NodeUtils.getNodeService().executeQuery(joinQueryContext) ;
+                String joinField = joinQueryContext.getJoinField();
+
+                List<String> joinValues = new ArrayList<>();
+
+                for(Object joinObj : joinQueryResult){
+                    String joinVal = ((Node) joinObj).getStringValue(joinField) ;
+                    if(!joinValues.contains(joinVal)){
+                        joinValues.add(joinVal) ;
+                    }
+                }
+                if(joinValues.size() > 1) {
+                    BooleanQuery.Builder booleanQueryBuilder = new BooleanQuery.Builder();
+                    for (String joinVal : joinValues) {
+                        Query termQuery = new TermQuery(new Term("id", joinVal));
+                        booleanQueryBuilder.add(termQuery, BooleanClause.Occur.SHOULD);
+                    }
+                    innerQueries.add(booleanQueryBuilder.build());
+                }else{
+                    innerQueries.add(new TermQuery(new Term("id", joinValues.get(0)))) ;
+                }
+            }
+        }
+
+
         if(queryContext.hasQueryTerms()) {
             for (QueryTerm term : queryContext.getQueryTerms()) {
                 innerQueries.add(createLuceneQuery(term));
@@ -122,6 +158,7 @@ public class LuceneQueryUtils {
         Sort sort = new Sort(sorts.toArray(new SortField[sorts.size()]));
         cacheQuery.sort(sort);
     }
+
 
     private static Query createLuceneQuery(QueryTerm term) throws IOException {
         Query query;

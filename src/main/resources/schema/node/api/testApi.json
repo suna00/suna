@@ -110,7 +110,24 @@
         {"field" : "categoryType", "method" : "matching", "value" : "{{:categoryType}}" },
         {"sorting" : "changed desc"},
         {"page" : "{{:page}}", "pageSize":2},
-        {"includeReferenced" : false}
+        {"includeReferenced" : true}
+      ]
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "hasChildCategory",
+    "apiName" : "haChild Query Sample",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "testCategory",
+      "query" : [
+        {"field" : "categoryType", "method" : "matching", "value" : "{{:categoryType}}" },
+        {"field" : "items", "method" : "hasReferenced", "value" : "menus_matching={{:menu}}"},
+        {"includeReferenced" : true}
       ]
     }
   }

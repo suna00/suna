@@ -17,8 +17,6 @@ import java.util.Map;
  * Created by jaehocho on 2017. 8. 9..
  */
 public class ApiQueryContext extends QueryContext{
-    protected Map<String, Object> data  ;
-
     protected Map<String, Object> config  ;
     protected String responseType;
     protected String mergeField;

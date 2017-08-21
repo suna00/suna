@@ -43,7 +43,9 @@ public class ReadContext implements Context {
     public void setIncludeReferenced(boolean includeReference) {
         this.includeReferenced = includeReference;
     }
-
+    public void setIncludeReferenced(String value) {
+        this.includeReferenced = Boolean.parseBoolean(value) ;
+    }
 
     protected static void makeResultField(ReadContext context, String fields) {
         if(StringUtils.contains(fields,",")) {
@@ -198,4 +200,10 @@ public class ReadContext implements Context {
     public void setLevel(Integer level){
         this.level = level ;
     }
+
+    public Map<String,Object> getData() {
+        return data;
+    }
+
+
 }
