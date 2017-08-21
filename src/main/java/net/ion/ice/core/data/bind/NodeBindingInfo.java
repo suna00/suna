@@ -1,6 +1,7 @@
 package net.ion.ice.core.data.bind;
 
 import net.ion.ice.core.context.DataQueryContext;
+import net.ion.ice.core.context.QueryContext;
 import net.ion.ice.core.data.DBDataTypes;
 import net.ion.ice.core.data.DBTypes;
 import net.ion.ice.core.context.DBQueryContext;
@@ -250,8 +251,8 @@ public class NodeBindingInfo {
         return jdbcTemplate.queryForList(listSql);
     }
 
-    public List<Map<String, Object>> list(DataQueryContext dataQueryContext) {
-        makeListQuery(dataQueryContext);
+    public List<Map<String, Object>> list(QueryContext queryContext) {
+        makeListQuery(queryContext);
         Map<String, Object> totalCount;
         if (resultCountValue == null || resultCountValue.isEmpty()) {
             totalCount = jdbcTemplate.queryForMap(totalCountSql);
@@ -259,8 +260,8 @@ public class NodeBindingInfo {
             totalCount = jdbcTemplate.queryForMap(totalCountSql, resultCountValue.toArray());
         }
         List<Map<String, Object>> items = jdbcTemplate.queryForList(listParamSql, searchListValue.toArray());
-        dataQueryContext.setResultSize(((Long) totalCount.get("totalCount")).intValue());
-        dataQueryContext.setQueryListSize(items.size()) ;
+        queryContext.setResultSize(((Long) totalCount.get("totalCount")).intValue());
+        queryContext.setQueryListSize(items.size()) ;
         return items;
     }
 
@@ -326,14 +327,14 @@ public class NodeBindingInfo {
         return Arrays.asList(id.split(Node.ID_SEPERATOR));
     }
 
-    public void makeListQuery(DataQueryContext dbQueryContext) {
+    public void makeListQuery(QueryContext queryContext) {
         searchListQuery = new ArrayList<>();
         searchListValue = new ArrayList<>();
 
-        String sorting = dbQueryContext.getSorting();
+        String sorting = queryContext.getSorting();
 
-        if (dbQueryContext.getQueryTerms() != null &&!dbQueryContext.getQueryTerms().isEmpty()) {
-            for (QueryTerm queryTerm : dbQueryContext.getQueryTerms()) {
+        if (queryContext.getQueryTerms() != null &&!queryContext.getQueryTerms().isEmpty()) {
+            for (QueryTerm queryTerm : queryContext.getQueryTerms()) {
                 String query = String.format("%s %s ?", queryTerm.getQueryKey(), queryTerm.getMethodQuery());
                 String value = queryTerm.getQueryValue();
                 searchListQuery.add(query);
@@ -355,7 +356,7 @@ public class NodeBindingInfo {
         }
 
         listParamSql = listParamSql.concat(String.format(" LIMIT ?").concat(String.format(" OFFSET ?")));
-        searchListValue.add(dbQueryContext.getLimit());
-        searchListValue.add(dbQueryContext.getOffset());
+        searchListValue.add(queryContext.getLimit());
+        searchListValue.add(queryContext.getOffset());
     }
 }
