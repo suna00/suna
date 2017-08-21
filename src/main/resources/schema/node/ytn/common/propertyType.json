@@ -23,7 +23,7 @@
     "propertyTypeName": "상위CODE",
     "valueType": "REFERENCE",
     "required": false,
-    "idable": false,
+    "idable": true,
     "labelable": false,
     "treeable": true,
     "indexable": true,
