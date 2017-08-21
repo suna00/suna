@@ -173,5 +173,12 @@
     "name": "시스템 공지사항 분류 코드2",
     "active": true,
     "desc": "시스템 공지사항 분류코드2"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "contsCtgryCd",
+    "name": "콘텐츠 카테고리 코드",
+    "active": true,
+    "desc": "콘텐츠 카테고리 코드"
   }
 ]

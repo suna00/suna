@@ -694,5 +694,37 @@
     "name": "기간별",
     "order": 2,
     "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contsCtgryCd",
+    "codeId": "news",
+    "name": "News",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contsCtgryCd",
+    "codeId": "magazine",
+    "name": "Magazine",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contsCtgryCd",
+    "codeId": "video",
+    "name": "Video",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contsCtgryCd",
+    "codeId": "photo",
+    "name": "Photo",
+    "order": 4,
+    "active": true
   }
 ]
