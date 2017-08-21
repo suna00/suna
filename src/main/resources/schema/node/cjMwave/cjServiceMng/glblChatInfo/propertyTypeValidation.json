@@ -1,8 +1,8 @@
 [
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@glblChatInfo@glblChatSeq",
-    "propertyTypeId": "glblChatInfo@glblChatSeq",
+    "id": "propertyTypeValidation>glblChatInfo>glblChatSeq",
+    "propertyTypeId": "glblChatInfo>glblChatSeq",
     "validation": {
       "language": "ko",
       "required": {
@@ -33,8 +33,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@glblChatInfo@glblChatChSeq",
-    "propertyTypeId": "glblChatInfo@glblChatChSeq",
+    "id": "propertyTypeValidation>glblChatInfo>glblChatChSeq",
+    "propertyTypeId": "glblChatInfo>glblChatChSeq",
     "validation": {
       "language": "ko",
       "required": {
@@ -65,8 +65,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@glblChatInfo@prtcpMbrId",
-    "propertyTypeId": "glblChatInfo@prtcpMbrId",
+    "id": "propertyTypeValidation>glblChatInfo>prtcpMbrId",
+    "propertyTypeId": "glblChatInfo>prtcpMbrId",
     "validation": {
       "language": "ko",
       "required": {
@@ -97,8 +97,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@glblChatInfo@chatOriginSbst",
-    "propertyTypeId": "glblChatInfo@chatOriginSbst",
+    "id": "propertyTypeValidation>glblChatInfo>chatOriginSbst",
+    "propertyTypeId": "glblChatInfo>chatOriginSbst",
     "validation": {
       "language": "ko",
       "required": {
@@ -129,8 +129,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@glblChatInfo@chatTranSbst",
-    "propertyTypeId": "glblChatInfo@chatTranSbst",
+    "id": "propertyTypeValidation>glblChatInfo>chatTranSbst",
+    "propertyTypeId": "glblChatInfo>chatTranSbst",
     "validation": {
       "language": "ko",
       "required": {
@@ -161,8 +161,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@glblChatInfo@owner",
-    "propertyTypeId": "glblChatInfo@owner",
+    "id": "propertyTypeValidation>glblChatInfo>owner",
+    "propertyTypeId": "glblChatInfo>owner",
     "validation": {
       "language": "ko",
       "required": {
@@ -193,8 +193,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@glblChatInfo@created",
-    "propertyTypeId": "glblChatInfo@created",
+    "id": "propertyTypeValidation>glblChatInfo>created",
+    "propertyTypeId": "glblChatInfo>created",
     "validation": {
       "language": "ko",
       "required": {
@@ -225,8 +225,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@glblChatInfo@modifier",
-    "propertyTypeId": "glblChatInfo@modifier",
+    "id": "propertyTypeValidation>glblChatInfo>modifier",
+    "propertyTypeId": "glblChatInfo>modifier",
     "validation": {
       "language": "ko",
       "required": {
@@ -257,8 +257,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@glblChatInfo@changed",
-    "propertyTypeId": "glblChatInfo@changed",
+    "id": "propertyTypeValidation>glblChatInfo>changed",
+    "propertyTypeId": "glblChatInfo>changed",
     "validation": {
       "language": "ko",
       "required": {

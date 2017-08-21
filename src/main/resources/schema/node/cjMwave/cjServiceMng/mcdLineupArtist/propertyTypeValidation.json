@@ -1,8 +1,8 @@
 [
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@mcdLineupArtist@lineupInfoSeq",
-    "propertyTypeId": "mcdLineupArtist@lineupInfoSeq",
+    "id": "propertyTypeValidation>mcdLineupArtist>lineupInfoSeq",
+    "propertyTypeId": "mcdLineupArtist>lineupInfoSeq",
     "validation": {
       "language": "ko",
       "required": {
@@ -33,8 +33,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@mcdLineupArtist@langCd",
-    "propertyTypeId": "mcdLineupArtist@langCd",
+    "id": "propertyTypeValidation>mcdLineupArtist>langCd",
+    "propertyTypeId": "mcdLineupArtist>langCd",
     "validation": {
       "language": "ko",
       "required": {
@@ -65,8 +65,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@mcdLineupArtist@artistId",
-    "propertyTypeId": "mcdLineupArtist@artistId",
+    "id": "propertyTypeValidation>mcdLineupArtist>artistId",
+    "propertyTypeId": "mcdLineupArtist>artistId",
     "validation": {
       "language": "ko",
       "required": {
@@ -97,8 +97,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@mcdLineupArtist@artistName",
-    "propertyTypeId": "mcdLineupArtist@artistName",
+    "id": "propertyTypeValidation>mcdLineupArtist>artistName",
+    "propertyTypeId": "mcdLineupArtist>artistName",
     "validation": {
       "language": "ko",
       "required": {
@@ -129,8 +129,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@mcdLineupArtist@thumImgPath",
-    "propertyTypeId": "mcdLineupArtist@thumImgPath",
+    "id": "propertyTypeValidation>mcdLineupArtist>thumImgPath",
+    "propertyTypeId": "mcdLineupArtist>thumImgPath",
     "validation": {
       "language": "ko",
       "required": {
@@ -161,8 +161,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@mcdLineupArtist@sortOdrg",
-    "propertyTypeId": "mcdLineupArtist@sortOdrg",
+    "id": "propertyTypeValidation>mcdLineupArtist>sortOdrg",
+    "propertyTypeId": "mcdLineupArtist>sortOdrg",
     "validation": {
       "language": "ko",
       "required": {
@@ -193,8 +193,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@mcdLineupArtist@owner",
-    "propertyTypeId": "mcdLineupArtist@owner",
+    "id": "propertyTypeValidation>mcdLineupArtist>owner",
+    "propertyTypeId": "mcdLineupArtist>owner",
     "validation": {
       "language": "ko",
       "required": {
@@ -225,8 +225,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@mcdLineupArtist@created",
-    "propertyTypeId": "mcdLineupArtist@created",
+    "id": "propertyTypeValidation>mcdLineupArtist>created",
+    "propertyTypeId": "mcdLineupArtist>created",
     "validation": {
       "language": "ko",
       "required": {
@@ -257,8 +257,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@mcdLineupArtist@modifier",
-    "propertyTypeId": "mcdLineupArtist@modifier",
+    "id": "propertyTypeValidation>mcdLineupArtist>modifier",
+    "propertyTypeId": "mcdLineupArtist>modifier",
     "validation": {
       "language": "ko",
       "required": {
@@ -289,8 +289,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@mcdLineupArtist@changed",
-    "propertyTypeId": "mcdLineupArtist@changed",
+    "id": "propertyTypeValidation>mcdLineupArtist>changed",
+    "propertyTypeId": "mcdLineupArtist>changed",
     "validation": {
       "language": "ko",
       "required": {

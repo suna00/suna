@@ -1,8 +1,8 @@
 [
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@glblChatChInfo@glblChatChSeq",
-    "propertyTypeId": "glblChatChInfo@glblChatChSeq",
+    "id": "propertyTypeValidation>glblChatChInfo>glblChatChSeq",
+    "propertyTypeId": "glblChatChInfo>glblChatChSeq",
     "validation": {
       "language": "ko",
       "required": {
@@ -33,8 +33,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@glblChatChInfo@chDivCd",
-    "propertyTypeId": "glblChatChInfo@chDivCd",
+    "id": "propertyTypeValidation>glblChatChInfo>chDivCd",
+    "propertyTypeId": "glblChatChInfo>chDivCd",
     "validation": {
       "language": "ko",
       "required": {
@@ -65,8 +65,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@glblChatChInfo@chNm",
-    "propertyTypeId": "glblChatChInfo@chNm",
+    "id": "propertyTypeValidation>glblChatChInfo>chNm",
+    "propertyTypeId": "glblChatChInfo>chNm",
     "validation": {
       "language": "ko",
       "required": {
@@ -97,8 +97,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@glblChatChInfo@owner",
-    "propertyTypeId": "glblChatChInfo@owner",
+    "id": "propertyTypeValidation>glblChatChInfo>owner",
+    "propertyTypeId": "glblChatChInfo>owner",
     "validation": {
       "language": "ko",
       "required": {
@@ -129,8 +129,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@glblChatChInfo@created",
-    "propertyTypeId": "glblChatChInfo@created",
+    "id": "propertyTypeValidation>glblChatChInfo>created",
+    "propertyTypeId": "glblChatChInfo>created",
     "validation": {
       "language": "ko",
       "required": {
@@ -161,8 +161,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@glblChatChInfo@modifier",
-    "propertyTypeId": "glblChatChInfo@modifier",
+    "id": "propertyTypeValidation>glblChatChInfo>modifier",
+    "propertyTypeId": "glblChatChInfo>modifier",
     "validation": {
       "language": "ko",
       "required": {
@@ -193,8 +193,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@glblChatChInfo@changed",
-    "propertyTypeId": "glblChatChInfo@changed",
+    "id": "propertyTypeValidation>glblChatChInfo>changed",
+    "propertyTypeId": "glblChatChInfo>changed",
     "validation": {
       "language": "ko",
       "required": {

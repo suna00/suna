@@ -1,8 +1,8 @@
 [
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@langMng@langId",
-    "propertyTypeId": "langMng@langId",
+    "id": "propertyTypeValidation>langMng>langId",
+    "propertyTypeId": "langMng>langId",
     "validation": {
       "language": "ko",
       "required": {
@@ -33,8 +33,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@langMng@langNm",
-    "propertyTypeId": "langMng@langNm",
+    "id": "propertyTypeValidation>langMng>langNm",
+    "propertyTypeId": "langMng>langNm",
     "validation": {
       "language": "ko",
       "required": {
@@ -65,8 +65,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@langMng@sttusCd",
-    "propertyTypeId": "langMng@sttusCd",
+    "id": "propertyTypeValidation>langMng>sttusCd",
+    "propertyTypeId": "langMng>sttusCd",
     "validation": {
       "language": "ko",
       "required": {
@@ -97,8 +97,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@langMng@useYn",
-    "propertyTypeId": "langMng@useYn",
+    "id": "propertyTypeValidation>langMng>useYn",
+    "propertyTypeId": "langMng>useYn",
     "validation": {
       "language": "ko",
       "required": {
@@ -129,8 +129,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@langMng@owner",
-    "propertyTypeId": "langMng@owner",
+    "id": "propertyTypeValidation>langMng>owner",
+    "propertyTypeId": "langMng>owner",
     "validation": {
       "language": "ko",
       "required": {
@@ -161,8 +161,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@langMng@created",
-    "propertyTypeId": "langMng@created",
+    "id": "propertyTypeValidation>langMng>created",
+    "propertyTypeId": "langMng>created",
     "validation": {
       "language": "ko",
       "required": {
@@ -193,8 +193,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@langMng@modifier",
-    "propertyTypeId": "langMng@modifier",
+    "id": "propertyTypeValidation>langMng>modifier",
+    "propertyTypeId": "langMng>modifier",
     "validation": {
       "language": "ko",
       "required": {
@@ -225,8 +225,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@langMng@changed",
-    "propertyTypeId": "langMng@changed",
+    "id": "propertyTypeValidation>langMng>changed",
+    "propertyTypeId": "langMng>changed",
     "validation": {
       "language": "ko",
       "required": {

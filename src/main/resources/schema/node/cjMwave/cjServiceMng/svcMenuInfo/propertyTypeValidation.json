@@ -1,8 +1,8 @@
 [
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@svcMenuInfo@svcMenuId",
-    "propertyTypeId": "svcMenuInfo@svcMenuId",
+    "id": "propertyTypeValidation>svcMenuInfo>svcMenuId",
+    "propertyTypeId": "svcMenuInfo>svcMenuId",
     "validation": {
       "language": "ko",
       "required": {
@@ -33,8 +33,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@svcMenuInfo@svcMenuGroupSeq",
-    "propertyTypeId": "svcMenuInfo@svcMenuGroupSeq",
+    "id": "propertyTypeValidation>svcMenuInfo>svcMenuGroupSeq",
+    "propertyTypeId": "svcMenuInfo>svcMenuGroupSeq",
     "validation": {
       "language": "ko",
       "required": {
@@ -65,8 +65,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@svcMenuInfo@upperSvcMenuId",
-    "propertyTypeId": "svcMenuInfo@upperSvcMenuId",
+    "id": "propertyTypeValidation>svcMenuInfo>upperSvcMenuId",
+    "propertyTypeId": "svcMenuInfo>upperSvcMenuId",
     "validation": {
       "language": "ko",
       "required": {
@@ -97,40 +97,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@svcMenuInfo@svcMenuNm",
-    "propertyTypeId": "svcMenuInfo@svcMenuNm",
-    "validation": {
-      "language": "ko",
-      "required": {
-        "value": true,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@svcMenuInfo@sortOdrg",
-    "propertyTypeId": "svcMenuInfo@sortOdrg",
+    "id": "propertyTypeValidation>svcMenuInfo>svcMenuNm",
+    "propertyTypeId": "svcMenuInfo>svcMenuNm",
     "validation": {
       "language": "ko",
       "required": {
@@ -161,104 +129,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@svcMenuInfo@bgColorCode",
-    "propertyTypeId": "svcMenuInfo@bgColorCode",
-    "validation": {
-      "language": "ko",
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@svcMenuInfo@svcMenuUrl",
-    "propertyTypeId": "svcMenuInfo@svcMenuUrl",
-    "validation": {
-      "language": "ko",
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@svcMenuInfo@showLoCd",
-    "propertyTypeId": "svcMenuInfo@showLoCd",
-    "validation": {
-      "language": "ko",
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@svcMenuInfo@useYn",
-    "propertyTypeId": "svcMenuInfo@useYn",
+    "id": "propertyTypeValidation>svcMenuInfo>sortOdrg",
+    "propertyTypeId": "svcMenuInfo>sortOdrg",
     "validation": {
       "language": "ko",
       "required": {
@@ -289,8 +161,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@svcMenuInfo@owner",
-    "propertyTypeId": "svcMenuInfo@owner",
+    "id": "propertyTypeValidation>svcMenuInfo>bgColorCode",
+    "propertyTypeId": "svcMenuInfo>bgColorCode",
     "validation": {
       "language": "ko",
       "required": {
@@ -321,8 +193,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@svcMenuInfo@created",
-    "propertyTypeId": "svcMenuInfo@created",
+    "id": "propertyTypeValidation>svcMenuInfo>svcMenuUrl",
+    "propertyTypeId": "svcMenuInfo>svcMenuUrl",
     "validation": {
       "language": "ko",
       "required": {
@@ -353,8 +225,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@svcMenuInfo@modifier",
-    "propertyTypeId": "svcMenuInfo@modifier",
+    "id": "propertyTypeValidation>svcMenuInfo>showLoCd",
+    "propertyTypeId": "svcMenuInfo>showLoCd",
     "validation": {
       "language": "ko",
       "required": {
@@ -385,8 +257,136 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@svcMenuInfo@changed",
-    "propertyTypeId": "svcMenuInfo@changed",
+    "id": "propertyTypeValidation>svcMenuInfo>useYn",
+    "propertyTypeId": "svcMenuInfo>useYn",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": true,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation>svcMenuInfo>owner",
+    "propertyTypeId": "svcMenuInfo>owner",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation>svcMenuInfo>created",
+    "propertyTypeId": "svcMenuInfo>created",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation>svcMenuInfo>modifier",
+    "propertyTypeId": "svcMenuInfo>modifier",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation>svcMenuInfo>changed",
+    "propertyTypeId": "svcMenuInfo>changed",
     "validation": {
       "language": "ko",
       "required": {

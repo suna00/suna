@@ -1,8 +1,8 @@
 [
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@groupCode@groupCodeId",
-    "propertyTypeId": "groupCode@groupCodeId",
+    "id": "propertyTypeValidation>groupCode>groupCodeId",
+    "propertyTypeId": "groupCode>groupCodeId",
     "validation": {
       "language": "ko",
       "required": {
@@ -33,8 +33,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@groupCode@name",
-    "propertyTypeId": "groupCode@name",
+    "id": "propertyTypeValidation>groupCode>name",
+    "propertyTypeId": "groupCode>name",
     "validation": {
       "language": "ko",
       "required": {
@@ -65,8 +65,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@groupCode@groupCodeNm",
-    "propertyTypeId": "groupCode@groupCodeNm",
+    "id": "propertyTypeValidation>groupCode>groupCodeNm",
+    "propertyTypeId": "groupCode>groupCodeNm",
     "validation": {
       "language": "ko",
       "required": {
@@ -97,8 +97,8 @@
   },
   {
     "typeId" : "propertyTypeValidation",
-    "id" : "propertyTypeValidation@groupCode@active",
-    "propertyTypeId" : "groupCode@active",
+    "id" : "propertyTypeValidation>groupCode>active",
+    "propertyTypeId" : "groupCode>active",
     "validation": {
       "language": "ko",
       "required" : {
@@ -125,8 +125,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@groupCode@desc",
-    "propertyTypeId": "groupCode@desc",
+    "id": "propertyTypeValidation>groupCode>desc",
+    "propertyTypeId": "groupCode>desc",
     "validation": {
       "language": "ko",
       "required": {
@@ -157,8 +157,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@groupCode@owner",
-    "propertyTypeId": "groupCode@owner",
+    "id": "propertyTypeValidation>groupCode>owner",
+    "propertyTypeId": "groupCode>owner",
     "validation": {
       "language": "ko",
       "required": {
@@ -189,8 +189,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@groupCode@created",
-    "propertyTypeId": "groupCode@created",
+    "id": "propertyTypeValidation>groupCode>created",
+    "propertyTypeId": "groupCode>created",
     "validation": {
       "language": "ko",
       "required": {
@@ -221,8 +221,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@groupCode@modifier",
-    "propertyTypeId": "groupCode@modifier",
+    "id": "propertyTypeValidation>groupCode>modifier",
+    "propertyTypeId": "groupCode>modifier",
     "validation": {
       "language": "ko",
       "required": {
@@ -253,8 +253,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@groupCode@changed",
-    "propertyTypeId": "groupCode@changed",
+    "id": "propertyTypeValidation>groupCode>changed",
+    "propertyTypeId": "groupCode>changed",
     "validation": {
       "language": "ko",
       "required": {

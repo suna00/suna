@@ -1,8 +1,8 @@
 [
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@ntfBbs@ntfBbsSeq",
-    "propertyTypeId": "ntfBbs@ntfBbsSeq",
+    "id": "propertyTypeValidation>ntfBbs>ntfBbsSeq",
+    "propertyTypeId": "ntfBbs>ntfBbsSeq",
     "validation": {
       "language": "ko",
       "required": {
@@ -33,8 +33,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@ntfBbs@ntfBbsNm",
-    "propertyTypeId": "ntfBbs@ntfBbsNm",
+    "id": "propertyTypeValidation>ntfBbs>ntfBbsNm",
+    "propertyTypeId": "ntfBbs>ntfBbsNm",
     "validation": {
       "language": "ko",
       "required": {
@@ -65,8 +65,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@ntfBbs@ntfBbsTgtCd",
-    "propertyTypeId": "ntfBbs@ntfBbsTgtCd",
+    "id": "propertyTypeValidation>ntfBbs>ntfBbsTgtCd",
+    "propertyTypeId": "ntfBbs>ntfBbsTgtCd",
     "validation": {
       "language": "ko",
       "required": {
@@ -97,8 +97,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@ntfBbs@ntfBbsTypeCd",
-    "propertyTypeId": "ntfBbs@ntfBbsTypeCd",
+    "id": "propertyTypeValidation>ntfBbs>ntfBbsTypeCd",
+    "propertyTypeId": "ntfBbs>ntfBbsTypeCd",
     "validation": {
       "language": "ko",
       "required": {
@@ -129,8 +129,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@ntfBbs@ctgCd1",
-    "propertyTypeId": "ntfBbs@ctgCd1",
+    "id": "propertyTypeValidation>ntfBbs>ctgCd1",
+    "propertyTypeId": "ntfBbs>ctgCd1",
     "validation": {
       "language": "ko",
       "required": {
@@ -161,8 +161,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@ntfBbs@ctgCd2",
-    "propertyTypeId": "ntfBbs@ctgCd2",
+    "id": "propertyTypeValidation>ntfBbs>ctgCd2",
+    "propertyTypeId": "ntfBbs>ctgCd2",
     "validation": {
       "language": "ko",
       "required": {
@@ -193,104 +193,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@ntfBbs@showDvcCd",
-    "propertyTypeId": "ntfBbs@showDvcCd",
-    "validation": {
-      "language": "ko",
-      "required": {
-        "value": true,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@ntfBbs@pstngStDt",
-    "propertyTypeId": "ntfBbs@pstngStDt",
-    "validation": {
-      "language": "ko",
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@ntfBbs@pstngFnsDt",
-    "propertyTypeId": "ntfBbs@pstngFnsDt",
-    "validation": {
-      "language": "ko",
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@ntfBbs@showYn",
-    "propertyTypeId": "ntfBbs@showYn",
+    "id": "propertyTypeValidation>ntfBbs>showDvcCd",
+    "propertyTypeId": "ntfBbs>showDvcCd",
     "validation": {
       "language": "ko",
       "required": {
@@ -321,8 +225,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@ntfBbs@ntfSbst",
-    "propertyTypeId": "ntfBbs@ntfSbst",
+    "id": "propertyTypeValidation>ntfBbs>pstngStDt",
+    "propertyTypeId": "ntfBbs>pstngStDt",
     "validation": {
       "language": "ko",
       "required": {
@@ -353,8 +257,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@ntfBbs@owner",
-    "propertyTypeId": "ntfBbs@owner",
+    "id": "propertyTypeValidation>ntfBbs>pstngFnsDt",
+    "propertyTypeId": "ntfBbs>pstngFnsDt",
     "validation": {
       "language": "ko",
       "required": {
@@ -385,8 +289,40 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@ntfBbs@created",
-    "propertyTypeId": "ntfBbs@created",
+    "id": "propertyTypeValidation>ntfBbs>showYn",
+    "propertyTypeId": "ntfBbs>showYn",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": true,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation>ntfBbs>ntfSbst",
+    "propertyTypeId": "ntfBbs>ntfSbst",
     "validation": {
       "language": "ko",
       "required": {
@@ -417,8 +353,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@ntfBbs@modifier",
-    "propertyTypeId": "ntfBbs@modifier",
+    "id": "propertyTypeValidation>ntfBbs>owner",
+    "propertyTypeId": "ntfBbs>owner",
     "validation": {
       "language": "ko",
       "required": {
@@ -449,8 +385,72 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@ntfBbs@changed",
-    "propertyTypeId": "ntfBbs@changed",
+    "id": "propertyTypeValidation>ntfBbs>created",
+    "propertyTypeId": "ntfBbs>created",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation>ntfBbs>modifier",
+    "propertyTypeId": "ntfBbs>modifier",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation>ntfBbs>changed",
+    "propertyTypeId": "ntfBbs>changed",
     "validation": {
       "language": "ko",
       "required": {

@@ -1,8 +1,8 @@
 [
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@musicVideo@musicVideoId",
-    "propertyTypeId": "musicVideo@musicVideoId",
+    "id": "propertyTypeValidation>musicVideo>musicVideoId",
+    "propertyTypeId": "musicVideo>musicVideoId",
     "validation": {
       "language": "ko",
       "required": {
@@ -33,8 +33,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@musicVideo@musicVideoNm",
-    "propertyTypeId": "musicVideo@musicVideoNm",
+    "id": "propertyTypeValidation>musicVideo>musicVideoNm",
+    "propertyTypeId": "musicVideo>musicVideoNm",
     "validation": {
       "language": "ko",
       "required": {
@@ -65,8 +65,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@musicVideo@subName",
-    "propertyTypeId": "musicVideo@subName",
+    "id": "propertyTypeValidation>musicVideo>subName",
+    "propertyTypeId": "musicVideo>subName",
     "validation": {
       "language": "ko",
       "required": {
@@ -97,168 +97,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@musicVideo@genreCd",
-    "propertyTypeId": "musicVideo@genreCd",
-    "validation": {
-      "language": "ko",
-      "required": {
-        "value": true,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@musicVideo@musicVideoDesc",
-    "propertyTypeId": "musicVideo@musicVideoDesc",
-    "validation": {
-      "language": "ko",
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@musicVideo@imgPath",
-    "propertyTypeId": "musicVideo@imgPath",
-    "validation": {
-      "language": "ko",
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@musicVideo@findKywrd",
-    "propertyTypeId": "musicVideo@findKywrd",
-    "validation": {
-      "language": "ko",
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@musicVideo@comotDt",
-    "propertyTypeId": "musicVideo@comotDt",
-    "validation": {
-      "language": "ko",
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@musicVideo@artistId",
-    "propertyTypeId": "musicVideo@artistId",
+    "id": "propertyTypeValidation>musicVideo>genreCd",
+    "propertyTypeId": "musicVideo>genreCd",
     "validation": {
       "language": "ko",
       "required": {
@@ -289,8 +129,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@musicVideo@youtubeUrl",
-    "propertyTypeId": "musicVideo@youtubeUrl",
+    "id": "propertyTypeValidation>musicVideo>musicVideoDesc",
+    "propertyTypeId": "musicVideo>musicVideoDesc",
     "validation": {
       "language": "ko",
       "required": {
@@ -321,8 +161,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@musicVideo@todouUrl",
-    "propertyTypeId": "musicVideo@todouUrl",
+    "id": "propertyTypeValidation>musicVideo>imgPath",
+    "propertyTypeId": "musicVideo>imgPath",
     "validation": {
       "language": "ko",
       "required": {
@@ -353,8 +193,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@musicVideo@playTime",
-    "propertyTypeId": "musicVideo@playTime",
+    "id": "propertyTypeValidation>musicVideo>findKywrd",
+    "propertyTypeId": "musicVideo>findKywrd",
     "validation": {
       "language": "ko",
       "required": {
@@ -385,8 +225,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@musicVideo@showCntryCdList",
-    "propertyTypeId": "musicVideo@showCntryCdList",
+    "id": "propertyTypeValidation>musicVideo>comotDt",
+    "propertyTypeId": "musicVideo>comotDt",
     "validation": {
       "language": "ko",
       "required": {
@@ -417,8 +257,40 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@musicVideo@mnetIfTrtYn",
-    "propertyTypeId": "musicVideo@mnetIfTrtYn",
+    "id": "propertyTypeValidation>musicVideo>artistId",
+    "propertyTypeId": "musicVideo>artistId",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": true,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation>musicVideo>youtubeUrl",
+    "propertyTypeId": "musicVideo>youtubeUrl",
     "validation": {
       "language": "ko",
       "required": {
@@ -449,8 +321,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@musicVideo@relSongIds",
-    "propertyTypeId": "musicVideo@relSongIds",
+    "id": "propertyTypeValidation>musicVideo>todouUrl",
+    "propertyTypeId": "musicVideo>todouUrl",
     "validation": {
       "language": "ko",
       "required": {
@@ -481,8 +353,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@musicVideo@relArtistIds",
-    "propertyTypeId": "musicVideo@relArtistIds",
+    "id": "propertyTypeValidation>musicVideo>playTime",
+    "propertyTypeId": "musicVideo>playTime",
     "validation": {
       "language": "ko",
       "required": {
@@ -513,8 +385,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@musicVideo@owner",
-    "propertyTypeId": "musicVideo@owner",
+    "id": "propertyTypeValidation>musicVideo>showCntryCdList",
+    "propertyTypeId": "musicVideo>showCntryCdList",
     "validation": {
       "language": "ko",
       "required": {
@@ -545,8 +417,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@musicVideo@created",
-    "propertyTypeId": "musicVideo@created",
+    "id": "propertyTypeValidation>musicVideo>mnetIfTrtYn",
+    "propertyTypeId": "musicVideo>mnetIfTrtYn",
     "validation": {
       "language": "ko",
       "required": {
@@ -577,8 +449,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@musicVideo@modifier",
-    "propertyTypeId": "musicVideo@modifier",
+    "id": "propertyTypeValidation>musicVideo>relSongIds",
+    "propertyTypeId": "musicVideo>relSongIds",
     "validation": {
       "language": "ko",
       "required": {
@@ -609,8 +481,136 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@musicVideo@changed",
-    "propertyTypeId": "musicVideo@changed",
+    "id": "propertyTypeValidation>musicVideo>relArtistIds",
+    "propertyTypeId": "musicVideo>relArtistIds",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation>musicVideo>owner",
+    "propertyTypeId": "musicVideo>owner",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation>musicVideo>created",
+    "propertyTypeId": "musicVideo>created",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation>musicVideo>modifier",
+    "propertyTypeId": "musicVideo>modifier",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation>musicVideo>changed",
+    "propertyTypeId": "musicVideo>changed",
     "validation": {
       "language": "ko",
       "required": {

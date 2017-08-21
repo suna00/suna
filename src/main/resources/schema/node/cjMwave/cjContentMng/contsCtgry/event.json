@@ -1,22 +1,22 @@
 [
   {
     "typeId" : "event",
-    "id" : "contsCtgry@treeSort",
+    "id" : "contsCtgry>treeSort",
     "tid": "contsCtgry",
     "event" : "treeSort",
     "eventName" : "treeSort Node Type"
   },
   {
     "typeId" : "event",
-    "id" : "eventAction@treeSort",
+    "id" : "eventAction>treeSort",
     "tid": "eventAction",
     "event" : "treeSort",
     "eventName" : "treeSort eventAction"
   },
   {
     "typeId" : "eventAction",
-    "id" : "contsCtgry@treeSort@sortEvent",
-    "event": "contsCtgry@treeSort",
+    "id" : "contsCtgry>treeSort>sortEvent",
+    "event": "contsCtgry>treeSort",
     "action" : "sortEvent",
     "actionType" : "service",
     "actionBody" : "treeService.sortEvent",

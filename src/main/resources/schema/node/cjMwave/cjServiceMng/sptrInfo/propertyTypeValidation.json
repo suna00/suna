@@ -1,8 +1,8 @@
 [
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@sptrInfo@sptrSeq",
-    "propertyTypeId": "sptrInfo@sptrSeq",
+    "id": "propertyTypeValidation>sptrInfo>sptrSeq",
+    "propertyTypeId": "sptrInfo>sptrSeq",
     "validation": {
       "language": "ko",
       "required": {
@@ -33,8 +33,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@sptrInfo@pwnrBasSeq",
-    "propertyTypeId": "sptrInfo@pwnrBasSeq",
+    "id": "propertyTypeValidation>sptrInfo>pwnrBasSeq",
+    "propertyTypeId": "sptrInfo>pwnrBasSeq",
     "validation": {
       "language": "ko",
       "required": {
@@ -65,8 +65,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@sptrInfo@mbrId",
-    "propertyTypeId": "sptrInfo@mbrId",
+    "id": "propertyTypeValidation>sptrInfo>mbrId",
+    "propertyTypeId": "sptrInfo>mbrId",
     "validation": {
       "language": "ko",
       "required": {
@@ -97,8 +97,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@sptrInfo@prtcptDate",
-    "propertyTypeId": "sptrInfo@prtcptDate",
+    "id": "propertyTypeValidation>sptrInfo>prtcptDate",
+    "propertyTypeId": "sptrInfo>prtcptDate",
     "validation": {
       "language": "ko",
       "required": {
@@ -129,8 +129,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@sptrInfo@sortOdrg",
-    "propertyTypeId": "sptrInfo@sortOdrg",
+    "id": "propertyTypeValidation>sptrInfo>sortOdrg",
+    "propertyTypeId": "sptrInfo>sortOdrg",
     "validation": {
       "language": "ko",
       "required": {
@@ -161,8 +161,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@sptrInfo@owner",
-    "propertyTypeId": "sptrInfo@owner",
+    "id": "propertyTypeValidation>sptrInfo>owner",
+    "propertyTypeId": "sptrInfo>owner",
     "validation": {
       "language": "ko",
       "required": {
@@ -193,8 +193,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@sptrInfo@created",
-    "propertyTypeId": "sptrInfo@created",
+    "id": "propertyTypeValidation>sptrInfo>created",
+    "propertyTypeId": "sptrInfo>created",
     "validation": {
       "language": "ko",
       "required": {
@@ -225,8 +225,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@sptrInfo@modifier",
-    "propertyTypeId": "sptrInfo@modifier",
+    "id": "propertyTypeValidation>sptrInfo>modifier",
+    "propertyTypeId": "sptrInfo>modifier",
     "validation": {
       "language": "ko",
       "required": {
@@ -257,8 +257,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@sptrInfo@changed",
-    "propertyTypeId": "sptrInfo@changed",
+    "id": "propertyTypeValidation>sptrInfo>changed",
+    "propertyTypeId": "sptrInfo>changed",
     "validation": {
       "language": "ko",
       "required": {

@@ -1,8 +1,8 @@
 [
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@admrGroup@admrGroupId",
-    "propertyTypeId": "admrGroup@admrGroupId",
+    "id": "propertyTypeValidation>admrGroup>admrGroupId",
+    "propertyTypeId": "admrGroup>admrGroupId",
     "validation": {
       "language": "ko",
       "required": {
@@ -33,8 +33,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@admrGroup@admrGroupNm",
-    "propertyTypeId": "admrGroup@admrGroupNm",
+    "id": "propertyTypeValidation>admrGroup>admrGroupNm",
+    "propertyTypeId": "admrGroup>admrGroupNm",
     "validation": {
       "language": "ko",
       "required": {
@@ -65,8 +65,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@admrGroup@admrGroupDesc",
-    "propertyTypeId": "admrGroup@admrGroupDesc",
+    "id": "propertyTypeValidation>admrGroup>admrGroupDesc",
+    "propertyTypeId": "admrGroup>admrGroupDesc",
     "validation": {
       "language": "ko",
       "required": {
@@ -97,8 +97,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@admrGroup@owner",
-    "propertyTypeId": "admrGroup@owner",
+    "id": "propertyTypeValidation>admrGroup>owner",
+    "propertyTypeId": "admrGroup>owner",
     "validation": {
       "language": "ko",
       "required": {
@@ -129,8 +129,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@admrGroup@created",
-    "propertyTypeId": "admrGroup@created",
+    "id": "propertyTypeValidation>admrGroup>created",
+    "propertyTypeId": "admrGroup>created",
     "validation": {
       "language": "ko",
       "required": {
@@ -161,8 +161,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@admrGroup@modifier",
-    "propertyTypeId": "admrGroup@modifier",
+    "id": "propertyTypeValidation>admrGroup>modifier",
+    "propertyTypeId": "admrGroup>modifier",
     "validation": {
       "language": "ko",
       "required": {
@@ -193,8 +193,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@admrGroup@changed",
-    "propertyTypeId": "admrGroup@changed",
+    "id": "propertyTypeValidation>admrGroup>changed",
+    "propertyTypeId": "admrGroup>changed",
     "validation": {
       "language": "ko",
       "required": {
@@ -225,40 +225,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@admrInfo@admrId",
-    "propertyTypeId": "admrInfo@admrId",
-    "validation": {
-      "language": "ko",
-      "required": {
-        "value": true,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": true,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@admrInfo@admrPwd",
-    "propertyTypeId": "admrInfo@admrPwd",
+    "id": "propertyTypeValidation>admrInfo>admrId",
+    "propertyTypeId": "admrInfo>admrId",
     "validation": {
       "language": "ko",
       "required": {
@@ -266,7 +234,7 @@
         "description": "필수 값 입니다."
       },
       "duplicated": {
-        "value": false,
+        "value": true,
         "description": "중복된 값 입니다."
       },
       "min": {
@@ -289,8 +257,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@admrInfo@admrSttusYn",
-    "propertyTypeId": "admrInfo@admrSttusYn",
+    "id": "propertyTypeValidation>admrInfo>admrPwd",
+    "propertyTypeId": "admrInfo>admrPwd",
     "validation": {
       "language": "ko",
       "required": {
@@ -321,8 +289,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@admrInfo@admrNm",
-    "propertyTypeId": "admrInfo@admrNm",
+    "id": "propertyTypeValidation>admrInfo>admrSttusYn",
+    "propertyTypeId": "admrInfo>admrSttusYn",
     "validation": {
       "language": "ko",
       "required": {
@@ -353,8 +321,40 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@admrInfo@empNo",
-    "propertyTypeId": "admrInfo@empNo",
+    "id": "propertyTypeValidation>admrInfo>admrNm",
+    "propertyTypeId": "admrInfo>admrNm",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": true,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation>admrInfo>empNo",
+    "propertyTypeId": "admrInfo>empNo",
     "validation": {
       "language": "ko",
       "required": {
@@ -385,8 +385,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@admrInfo@dept",
-    "propertyTypeId": "admrInfo@dept",
+    "id": "propertyTypeValidation>admrInfo>dept",
+    "propertyTypeId": "admrInfo>dept",
     "validation": {
       "language": "ko",
       "required": {
@@ -417,8 +417,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@admrInfo@email",
-    "propertyTypeId": "admrInfo@email",
+    "id": "propertyTypeValidation>admrInfo>email",
+    "propertyTypeId": "admrInfo>email",
     "validation": {
       "language": "ko",
       "required": {
@@ -449,8 +449,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@admrInfo@phone",
-    "propertyTypeId": "admrInfo@phone",
+    "id": "propertyTypeValidation>admrInfo>phone",
+    "propertyTypeId": "admrInfo>phone",
     "validation": {
       "language": "ko",
       "required": {
@@ -481,8 +481,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@admrInfo@tkcgWrkjob",
-    "propertyTypeId": "admrInfo@tkcgWrkjob",
+    "id": "propertyTypeValidation>admrInfo>tkcgWrkjob",
+    "propertyTypeId": "admrInfo>tkcgWrkjob",
     "validation": {
       "language": "ko",
       "required": {
@@ -513,8 +513,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@admrInfo@owner",
-    "propertyTypeId": "admrInfo@owner",
+    "id": "propertyTypeValidation>admrInfo>owner",
+    "propertyTypeId": "admrInfo>owner",
     "validation": {
       "language": "ko",
       "required": {
@@ -545,8 +545,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@admrInfo@created",
-    "propertyTypeId": "admrInfo@created",
+    "id": "propertyTypeValidation>admrInfo>created",
+    "propertyTypeId": "admrInfo>created",
     "validation": {
       "language": "ko",
       "required": {
@@ -577,8 +577,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@admrInfo@modifier",
-    "propertyTypeId": "admrInfo@modifier",
+    "id": "propertyTypeValidation>admrInfo>modifier",
+    "propertyTypeId": "admrInfo>modifier",
     "validation": {
       "language": "ko",
       "required": {
@@ -609,8 +609,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@admrInfo@changed",
-    "propertyTypeId": "admrInfo@changed",
+    "id": "propertyTypeValidation>admrInfo>changed",
+    "propertyTypeId": "admrInfo>changed",
     "validation": {
       "language": "ko",
       "required": {

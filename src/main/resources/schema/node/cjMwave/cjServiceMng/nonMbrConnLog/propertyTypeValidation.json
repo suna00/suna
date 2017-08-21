@@ -1,8 +1,8 @@
 [
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@nonMbrConnLog@nonMbrConnLogSeq",
-    "propertyTypeId": "nonMbrConnLog@nonMbrConnLogSeq",
+    "id": "propertyTypeValidation>nonMbrConnLog>nonMbrConnLogSeq",
+    "propertyTypeId": "nonMbrConnLog>nonMbrConnLogSeq",
     "validation": {
       "language": "ko",
       "required": {
@@ -33,8 +33,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@nonMbrConnLog@nonMbrSeq",
-    "propertyTypeId": "nonMbrConnLog@nonMbrSeq",
+    "id": "propertyTypeValidation>nonMbrConnLog>nonMbrSeq",
+    "propertyTypeId": "nonMbrConnLog>nonMbrSeq",
     "validation": {
       "language": "ko",
       "required": {
@@ -65,8 +65,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@nonMbrConnLog@connTypeCd",
-    "propertyTypeId": "nonMbrConnLog@connTypeCd",
+    "id": "propertyTypeValidation>nonMbrConnLog>connTypeCd",
+    "propertyTypeId": "nonMbrConnLog>connTypeCd",
     "validation": {
       "language": "ko",
       "required": {
@@ -97,8 +97,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@nonMbrConnLog@connDt",
-    "propertyTypeId": "nonMbrConnLog@connDt",
+    "id": "propertyTypeValidation>nonMbrConnLog>connDt",
+    "propertyTypeId": "nonMbrConnLog>connDt",
     "validation": {
       "language": "ko",
       "required": {
@@ -129,8 +129,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@nonMbrConnLog@ipAdr",
-    "propertyTypeId": "nonMbrConnLog@ipAdr",
+    "id": "propertyTypeValidation>nonMbrConnLog>ipAdr",
+    "propertyTypeId": "nonMbrConnLog>ipAdr",
     "validation": {
       "language": "ko",
       "required": {
@@ -161,72 +161,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@nonMbrConnLog@dvcId",
-    "propertyTypeId": "nonMbrConnLog@dvcId",
-    "validation": {
-      "language": "ko",
-      "required": {
-        "value": true,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@nonMbrConnLog@dvcName",
-    "propertyTypeId": "nonMbrConnLog@dvcName",
-    "validation": {
-      "language": "ko",
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@nonMbrConnLog@dvcOsCd",
-    "propertyTypeId": "nonMbrConnLog@dvcOsCd",
+    "id": "propertyTypeValidation>nonMbrConnLog>dvcId",
+    "propertyTypeId": "nonMbrConnLog>dvcId",
     "validation": {
       "language": "ko",
       "required": {
@@ -257,8 +193,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@nonMbrConnLog@dvcOsVer",
-    "propertyTypeId": "nonMbrConnLog@dvcOsVer",
+    "id": "propertyTypeValidation>nonMbrConnLog>dvcName",
+    "propertyTypeId": "nonMbrConnLog>dvcName",
     "validation": {
       "language": "ko",
       "required": {
@@ -289,8 +225,40 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@nonMbrConnLog@owner",
-    "propertyTypeId": "nonMbrConnLog@owner",
+    "id": "propertyTypeValidation>nonMbrConnLog>dvcOsCd",
+    "propertyTypeId": "nonMbrConnLog>dvcOsCd",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": true,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation>nonMbrConnLog>dvcOsVer",
+    "propertyTypeId": "nonMbrConnLog>dvcOsVer",
     "validation": {
       "language": "ko",
       "required": {
@@ -321,8 +289,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@nonMbrConnLog@created",
-    "propertyTypeId": "nonMbrConnLog@created",
+    "id": "propertyTypeValidation>nonMbrConnLog>owner",
+    "propertyTypeId": "nonMbrConnLog>owner",
     "validation": {
       "language": "ko",
       "required": {
@@ -353,8 +321,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@nonMbrConnLog@modifier",
-    "propertyTypeId": "nonMbrConnLog@modifier",
+    "id": "propertyTypeValidation>nonMbrConnLog>created",
+    "propertyTypeId": "nonMbrConnLog>created",
     "validation": {
       "language": "ko",
       "required": {
@@ -385,8 +353,40 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@nonMbrConnLog@changed",
-    "propertyTypeId": "nonMbrConnLog@changed",
+    "id": "propertyTypeValidation>nonMbrConnLog>modifier",
+    "propertyTypeId": "nonMbrConnLog>modifier",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation>nonMbrConnLog>changed",
+    "propertyTypeId": "nonMbrConnLog>changed",
     "validation": {
       "language": "ko",
       "required": {

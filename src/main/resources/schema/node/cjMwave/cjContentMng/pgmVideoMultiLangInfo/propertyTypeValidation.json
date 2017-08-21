@@ -1,8 +1,8 @@
 [
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@pgmVideoMultiLangInfo@vodId",
-    "propertyTypeId": "pgmVideoMultiLangInfo@vodId",
+    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>vodId",
+    "propertyTypeId": "pgmVideoMultiLangInfo>vodId",
     "validation": {
       "language": "ko",
       "required": {
@@ -33,8 +33,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@pgmVideoMultiLangInfo@langCd",
-    "propertyTypeId": "pgmVideoMultiLangInfo@langCd",
+    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>langCd",
+    "propertyTypeId": "pgmVideoMultiLangInfo>langCd",
     "validation": {
       "language": "ko",
       "required": {
@@ -65,8 +65,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@pgmVideoMultiLangInfo@vodNm",
-    "propertyTypeId": "pgmVideoMultiLangInfo@vodNm",
+    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>vodNm",
+    "propertyTypeId": "pgmVideoMultiLangInfo>vodNm",
     "validation": {
       "language": "ko",
       "required": {
@@ -97,8 +97,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@pgmVideoMultiLangInfo@subName",
-    "propertyTypeId": "pgmVideoMultiLangInfo@subName",
+    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>subName",
+    "propertyTypeId": "pgmVideoMultiLangInfo>subName",
     "validation": {
       "language": "ko",
       "required": {
@@ -129,8 +129,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@pgmVideoMultiLangInfo@repImgPath",
-    "propertyTypeId": "pgmVideoMultiLangInfo@repImgPath",
+    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>repImgPath",
+    "propertyTypeId": "pgmVideoMultiLangInfo>repImgPath",
     "validation": {
       "language": "ko",
       "required": {
@@ -161,8 +161,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@pgmVideoMultiLangInfo@vodDesc",
-    "propertyTypeId": "pgmVideoMultiLangInfo@vodDesc",
+    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>vodDesc",
+    "propertyTypeId": "pgmVideoMultiLangInfo>vodDesc",
     "validation": {
       "language": "ko",
       "required": {
@@ -193,8 +193,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@pgmVideoMultiLangInfo@vodFilePath",
-    "propertyTypeId": "pgmVideoMultiLangInfo@vodFilePath",
+    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>vodFilePath",
+    "propertyTypeId": "pgmVideoMultiLangInfo>vodFilePath",
     "validation": {
       "language": "ko",
       "required": {
@@ -225,8 +225,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@pgmVideoMultiLangInfo@vodThumImgPath",
-    "propertyTypeId": "pgmVideoMultiLangInfo@vodThumImgPath",
+    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>vodThumImgPath",
+    "propertyTypeId": "pgmVideoMultiLangInfo>vodThumImgPath",
     "validation": {
       "language": "ko",
       "required": {
@@ -257,8 +257,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@pgmVideoMultiLangInfo@vodCcapFilePath",
-    "propertyTypeId": "pgmVideoMultiLangInfo@vodCcapFilePath",
+    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>vodCcapFilePath",
+    "propertyTypeId": "pgmVideoMultiLangInfo>vodCcapFilePath",
     "validation": {
       "language": "ko",
       "required": {
@@ -289,8 +289,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@pgmVideoMultiLangInfo@catmName",
-    "propertyTypeId": "pgmVideoMultiLangInfo@catmName",
+    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>catmName",
+    "propertyTypeId": "pgmVideoMultiLangInfo>catmName",
     "validation": {
       "language": "ko",
       "required": {
@@ -321,8 +321,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@pgmVideoMultiLangInfo@findKywrd",
-    "propertyTypeId": "pgmVideoMultiLangInfo@findKywrd",
+    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>findKywrd",
+    "propertyTypeId": "pgmVideoMultiLangInfo>findKywrd",
     "validation": {
       "language": "ko",
       "required": {
@@ -353,8 +353,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@pgmVideoMultiLangInfo@owner",
-    "propertyTypeId": "pgmVideoMultiLangInfo@owner",
+    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>owner",
+    "propertyTypeId": "pgmVideoMultiLangInfo>owner",
     "validation": {
       "language": "ko",
       "required": {
@@ -385,8 +385,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@pgmVideoMultiLangInfo@created",
-    "propertyTypeId": "pgmVideoMultiLangInfo@created",
+    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>created",
+    "propertyTypeId": "pgmVideoMultiLangInfo>created",
     "validation": {
       "language": "ko",
       "required": {
@@ -417,8 +417,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@pgmVideoMultiLangInfo@modifier",
-    "propertyTypeId": "pgmVideoMultiLangInfo@modifier",
+    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>modifier",
+    "propertyTypeId": "pgmVideoMultiLangInfo>modifier",
     "validation": {
       "language": "ko",
       "required": {
@@ -449,8 +449,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@pgmVideoMultiLangInfo@changed",
-    "propertyTypeId": "pgmVideoMultiLangInfo@changed",
+    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>changed",
+    "propertyTypeId": "pgmVideoMultiLangInfo>changed",
     "validation": {
       "language": "ko",
       "required": {

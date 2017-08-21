@@ -1,8 +1,8 @@
 [
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@compAtribInfo@compAtribSeq",
-    "propertyTypeId": "compAtribInfo@compAtribSeq",
+    "id": "propertyTypeValidation>compAtribInfo>compAtribSeq",
+    "propertyTypeId": "compAtribInfo>compAtribSeq",
     "validation": {
       "language": "ko",
       "required": {
@@ -33,8 +33,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@compAtribInfo@compItemSeq",
-    "propertyTypeId": "compAtribInfo@compItemSeq",
+    "id": "propertyTypeValidation>compAtribInfo>compItemSeq",
+    "propertyTypeId": "compAtribInfo>compItemSeq",
     "validation": {
       "language": "ko",
       "required": {
@@ -65,8 +65,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@compAtribInfo@cnctItemYn",
-    "propertyTypeId": "compAtribInfo@cnctItemYn",
+    "id": "propertyTypeValidation>compAtribInfo>cnctItemYn",
+    "propertyTypeId": "compAtribInfo>cnctItemYn",
     "validation": {
       "language": "ko",
       "required": {
@@ -97,8 +97,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@compAtribInfo@contsId",
-    "propertyTypeId": "compAtribInfo@contsId",
+    "id": "propertyTypeValidation>compAtribInfo>contsId",
+    "propertyTypeId": "compAtribInfo>contsId",
     "validation": {
       "language": "ko",
       "required": {
@@ -129,8 +129,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@compAtribInfo@atribNm",
-    "propertyTypeId": "compAtribInfo@atribNm",
+    "id": "propertyTypeValidation>compAtribInfo>atribNm",
+    "propertyTypeId": "compAtribInfo>atribNm",
     "validation": {
       "language": "ko",
       "required": {
@@ -161,8 +161,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@compAtribInfo@imgPath",
-    "propertyTypeId": "compAtribInfo@imgPath",
+    "id": "propertyTypeValidation>compAtribInfo>imgPath",
+    "propertyTypeId": "compAtribInfo>imgPath",
     "validation": {
       "language": "ko",
       "required": {
@@ -193,8 +193,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@compAtribInfo@videFilePath",
-    "propertyTypeId": "compAtribInfo@videFilePath",
+    "id": "propertyTypeValidation>compAtribInfo>videFilePath",
+    "propertyTypeId": "compAtribInfo>videFilePath",
     "validation": {
       "language": "ko",
       "required": {
@@ -225,8 +225,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@compAtribInfo@newsHubKywrd",
-    "propertyTypeId": "compAtribInfo@newsHubKywrd",
+    "id": "propertyTypeValidation>compAtribInfo>newsHubKywrd",
+    "propertyTypeId": "compAtribInfo>newsHubKywrd",
     "validation": {
       "language": "ko",
       "required": {
@@ -257,8 +257,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@compAtribInfo@owner",
-    "propertyTypeId": "compAtribInfo@owner",
+    "id": "propertyTypeValidation>compAtribInfo>owner",
+    "propertyTypeId": "compAtribInfo>owner",
     "validation": {
       "language": "ko",
       "required": {
@@ -289,8 +289,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@compAtribInfo@created",
-    "propertyTypeId": "compAtribInfo@created",
+    "id": "propertyTypeValidation>compAtribInfo>created",
+    "propertyTypeId": "compAtribInfo>created",
     "validation": {
       "language": "ko",
       "required": {
@@ -321,8 +321,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@compAtribInfo@modifier",
-    "propertyTypeId": "compAtribInfo@modifier",
+    "id": "propertyTypeValidation>compAtribInfo>modifier",
+    "propertyTypeId": "compAtribInfo>modifier",
     "validation": {
       "language": "ko",
       "required": {
@@ -353,8 +353,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation@compAtribInfo@changed",
-    "propertyTypeId": "compAtribInfo@changed",
+    "id": "propertyTypeValidation>compAtribInfo>changed",
+    "propertyTypeId": "compAtribInfo>changed",
     "validation": {
       "language": "ko",
       "required": {

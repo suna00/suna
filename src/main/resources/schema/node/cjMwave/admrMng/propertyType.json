@@ -2,7 +2,7 @@
   {
     "typeId" : "propertyType",
     "tid" : "admrGroup",
-    "id": "admrGroup@admrGroupId",
+    "id": "admrGroup>admrGroupId",
     "pid" : "admrGroupId",
     "propertyTypeName" : "운영자 그룹아이디",
     "valueType" : "STRING",
@@ -19,7 +19,7 @@
   {
     "typeId" : "propertyType",
     "tid" : "admrGroup",
-    "id": "admrGroup@admrGroupNm",
+    "id": "admrGroup>admrGroupNm",
     "pid" : "admrGroupNm",
     "propertyTypeName" : "운영자 그룹명",
     "valueType" : "STRING",
@@ -36,7 +36,7 @@
   {
     "typeId" : "propertyType",
     "tid" : "admrGroup",
-    "id": "admrGroup@admrGroupDesc",
+    "id": "admrGroup>admrGroupDesc",
     "pid" : "admrGroupDesc",
     "propertyTypeName" : "운영자 그룹설명",
     "valueType" : "STRING",
@@ -53,7 +53,7 @@
   {
     "typeId" : "propertyType",
     "tid" : "admrGroup",
-    "id": "admrGroup@owner",
+    "id": "admrGroup>owner",
     "pid" : "owner",
     "propertyTypeName" : "등록자",
     "valueType" : "STRING",
@@ -70,7 +70,7 @@
   {
     "typeId" : "propertyType",
     "tid" : "admrGroup",
-    "id": "admrGroup@created",
+    "id": "admrGroup>created",
     "pid" : "created",
     "propertyTypeName" : "등록일시",
     "valueType" : "DATE",
@@ -87,7 +87,7 @@
   {
     "typeId" : "propertyType",
     "tid" : "admrGroup",
-    "id": "admrGroup@modifier",
+    "id": "admrGroup>modifier",
     "pid" : "modifier",
     "propertyTypeName" : "수정자",
     "valueType" : "STRING",
@@ -104,7 +104,7 @@
   {
     "typeId" : "propertyType",
     "tid" : "admrGroup",
-    "id": "admrGroup@changed",
+    "id": "admrGroup>changed",
     "pid" : "changed",
     "propertyTypeName" : "수정일시",
     "valueType" : "DATE",
@@ -121,7 +121,7 @@
   {
     "typeId" : "propertyType",
     "tid" : "admrInfo",
-    "id": "admrInfo@admrId",
+    "id": "admrInfo>admrId",
     "pid" : "admrId",
     "propertyTypeName" : "운영자 아이디",
     "valueType" : "STRING",
@@ -138,7 +138,7 @@
   {
     "typeId" : "propertyType",
     "tid" : "admrInfo",
-    "id": "admrInfo@admrPwd",
+    "id": "admrInfo>admrPwd",
     "pid" : "admrPwd",
     "propertyTypeName" : "운영자 비밀번호",
     "valueType" : "STRING",
@@ -155,7 +155,7 @@
   {
     "typeId" : "propertyType",
     "tid" : "admrInfo",
-    "id": "admrInfo@admrSttusYn",
+    "id": "admrInfo>admrSttusYn",
     "pid" : "admrSttusYn",
     "propertyTypeName" : "운영자 상태",
     "valueType": "BOOLEAN",
@@ -172,7 +172,7 @@
   {
     "typeId" : "propertyType",
     "tid" : "admrInfo",
-    "id": "admrInfo@admrNm",
+    "id": "admrInfo>admrNm",
     "pid" : "admrNm",
     "propertyTypeName" : "담당자명",
     "valueType" : "STRING",
@@ -189,7 +189,7 @@
   {
     "typeId" : "propertyType",
     "tid" : "admrInfo",
-    "id": "admrInfo@empNo",
+    "id": "admrInfo>empNo",
     "pid" : "empNo",
     "propertyTypeName" : "사원번호",
     "valueType" : "STRING",
@@ -206,7 +206,7 @@
   {
     "typeId" : "propertyType",
     "tid" : "admrInfo",
-    "id": "admrInfo@dept",
+    "id": "admrInfo>dept",
     "pid" : "dept",
     "propertyTypeName" : "소속부서",
     "valueType" : "STRING",
@@ -223,7 +223,7 @@
   {
     "typeId" : "propertyType",
     "tid" : "admrInfo",
-    "id": "admrInfo@email",
+    "id": "admrInfo>email",
     "pid" : "email",
     "propertyTypeName" : "이메일",
     "valueType" : "STRING",
@@ -240,7 +240,7 @@
   {
     "typeId" : "propertyType",
     "tid" : "admrInfo",
-    "id": "admrInfo@phone",
+    "id": "admrInfo>phone",
     "pid" : "phone",
     "propertyTypeName" : "연락처",
     "valueType" : "STRING",
@@ -257,7 +257,7 @@
   {
     "typeId" : "propertyType",
     "tid" : "admrInfo",
-    "id": "admrInfo@tkcgWrkjob",
+    "id": "admrInfo>tkcgWrkjob",
     "pid" : "tkcgWrkjob",
     "propertyTypeName" : "담당업무",
     "valueType" : "STRING",
@@ -274,7 +274,7 @@
   {
     "typeId" : "propertyType",
     "tid" : "admrInfo",
-    "id": "admrInfo@owner",
+    "id": "admrInfo>owner",
     "pid" : "owner",
     "propertyTypeName" : "등록자",
     "valueType" : "STRING",
@@ -291,7 +291,7 @@
   {
     "typeId" : "propertyType",
     "tid" : "admrInfo",
-    "id": "admrInfo@created",
+    "id": "admrInfo>created",
     "pid" : "created",
     "propertyTypeName" : "등록일시",
     "valueType" : "DATE",
@@ -308,7 +308,7 @@
   {
     "typeId" : "propertyType",
     "tid" : "admrInfo",
-    "id": "admrInfo@modifier",
+    "id": "admrInfo>modifier",
     "pid" : "modifier",
     "propertyTypeName" : "수정자",
     "valueType" : "STRING",
@@ -325,7 +325,7 @@
   {
     "typeId" : "propertyType",
     "tid" : "admrInfo",
-    "id": "admrInfo@changed",
+    "id": "admrInfo>changed",
     "pid" : "changed",
     "propertyTypeName" : "수정일시",
     "valueType" : "DATE",
