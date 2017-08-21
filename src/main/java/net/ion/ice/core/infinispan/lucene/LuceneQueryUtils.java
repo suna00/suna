@@ -57,12 +57,13 @@ public class LuceneQueryUtils {
         if(queryContext.getJoinQueryContexts() != null && queryContext.getJoinQueryContexts().size() >0){
             for(QueryContext joinQueryContext : queryContext.getJoinQueryContexts()){
                 List<Object> joinQueryResult = NodeUtils.getNodeService().executeQuery(joinQueryContext) ;
-                String joinField = joinQueryContext.getJoinField();
+                String targetJoinField = joinQueryContext.getTargetJoinField();
+                String sourceJoinField = joinQueryContext.getSourceJoinField();
 
                 List<String> joinValues = new ArrayList<>();
 
                 for(Object joinObj : joinQueryResult){
-                    String joinVal = ((Node) joinObj).getStringValue(joinField) ;
+                    String joinVal = ((Node) joinObj).getStringValue(targetJoinField) ;
                     if(!joinValues.contains(joinVal)){
                         joinValues.add(joinVal) ;
                     }
@@ -70,12 +71,12 @@ public class LuceneQueryUtils {
                 if(joinValues.size() > 1) {
                     BooleanQuery.Builder booleanQueryBuilder = new BooleanQuery.Builder();
                     for (String joinVal : joinValues) {
-                        Query termQuery = new TermQuery(new Term("id", joinVal));
+                        Query termQuery = new TermQuery(new Term(sourceJoinField, joinVal));
                         booleanQueryBuilder.add(termQuery, BooleanClause.Occur.SHOULD);
                     }
                     innerQueries.add(booleanQueryBuilder.build());
                 }else{
-                    innerQueries.add(new TermQuery(new Term("id", joinValues.get(0)))) ;
+                    innerQueries.add(new TermQuery(new Term(sourceJoinField, joinValues.get(0)))) ;
                 }
             }
         }
@@ -371,12 +372,13 @@ public class LuceneQueryUtils {
 //        }
 //    }
 
+
     private static Query createTermQuery(QueryTerm termContext, String term) {
         Query query;
         final String fieldName = termContext.getQueryKey();
         switch ( termContext.getMethod() ) {
             case MATCHING:
-                query = new TermQuery( new Term( fieldName, term ) );
+                query = new TermQuery( createTerm(termContext, fieldName,  term));
                 break;
             case WILDCARD:
                 query = new WildcardQuery(new Term(fieldName, term)) ;
@@ -393,6 +395,28 @@ public class LuceneQueryUtils {
                 throw new AssertionFailure( "Unknown approximation: " + termContext.getMethod() );
         }
         return query;
+    }
+
+    private static Term createTerm(QueryTerm termContext, String fieldName, String term) {
+        switch (termContext.getValueType()){
+            case INT: {
+                BytesRefBuilder brb = new BytesRefBuilder();
+                NumericUtils.intToPrefixCoded(new Integer(term), 0, brb);
+                return new Term(fieldName, brb.get());
+            }
+            case LONG: {
+                BytesRefBuilder brb = new BytesRefBuilder();
+                NumericUtils.longToPrefixCoded(new Long(term), 0, brb);
+                return new Term(fieldName, brb.get());
+            }
+            case DOUBLE: {
+                BytesRefBuilder brb = new BytesRefBuilder();
+                NumericUtils.longToPrefixCoded(new Long(term), 0, brb);
+                return new Term(fieldName, brb.get());
+            }
+            default:
+                return new Term(fieldName, term);
+        }
     }
 
 
