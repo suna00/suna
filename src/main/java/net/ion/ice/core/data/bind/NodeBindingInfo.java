@@ -272,7 +272,7 @@ public class NodeBindingInfo {
     }
 
     public int delete(Node node) {
-        List<Object> parameters = updateParameters(node);
+        List<Object> parameters = deleteParameters(node);
         int queryCallBack = jdbcTemplate.update(deleteSql, parameters.toArray());
         return queryCallBack;
     }
@@ -305,6 +305,15 @@ public class NodeBindingInfo {
         List<Object> parameters = new ArrayList<>();
 
         for (String pid : updatePids) {
+            parameters.add(extractNodeValue(node, pid));
+        }
+        return parameters;
+    }
+
+    private List<Object> deleteParameters(Node node) {
+        List<Object> parameters = new ArrayList<>();
+
+        for (String pid : wherePids) {
             parameters.add(extractNodeValue(node, pid));
         }
         return parameters;
