@@ -3,6 +3,7 @@
   "name": "BackOffice",
   "description": "",
   "order": [],
+
   "folders": [
     {
       "name": "basic",
