@@ -56,8 +56,9 @@ public class ContextUtils {
             return ((Template)configValue).format(data) ;
         }else if(configValue instanceof String){
             if(StringUtils.contains((String) configValue, "{{:") && StringUtils.contains((String) configValue, "}}")){
-                TemplateParam templateParam = new TemplateParam((String) configValue) ;
-                return templateParam.format(data) ;
+                Template template = new Template((String) configValue) ;
+                template.parsing();
+                return template.format(data) ;
             }else{
                 return configValue ;
             }
