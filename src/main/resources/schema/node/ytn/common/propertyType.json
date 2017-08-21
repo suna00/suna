@@ -13,7 +13,6 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -30,7 +29,6 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
-    "codeFilter": "",
     "defaultValue": ""
   },
   {

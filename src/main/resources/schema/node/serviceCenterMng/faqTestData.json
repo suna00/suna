@@ -8,7 +8,9 @@
     "title": "배송",
     "contents": "주문/배송/결제 > 배송",
     "displayTargetType": "common",
-    "frequentlyAskedQuestionStatus": "y"
+    "frequentlyAskedQuestionStatus": "y",
+    "topStatus": "active",
+    "topNumber": "1"
   },
   {
     "typeId": "frequentlyAskedQuestion",
@@ -19,7 +21,9 @@
     "title": "결제",
     "contents": "주문/배송/결제 > 결제",
     "displayTargetType": "common",
-    "frequentlyAskedQuestionStatus": "y"
+    "frequentlyAskedQuestionStatus": "y",
+    "topStatus": "active",
+    "topNumber": "2"
   },
   {
     "typeId": "frequentlyAskedQuestion",
@@ -30,7 +34,9 @@
     "title": "주문",
     "contents": "주문/배송/결제 > 주문",
     "displayTargetType": "common",
-    "frequentlyAskedQuestionStatus": "y"
+    "frequentlyAskedQuestionStatus": "y",
+    "topStatus": "active",
+    "topNumber": "3"
   },
   {
     "typeId": "frequentlyAskedQuestion",
@@ -63,7 +69,9 @@
     "title": "교환/반품",
     "contents": "취소/반품/교환/환불 > 교환/반품",
     "displayTargetType": "common",
-    "frequentlyAskedQuestionStatus": "y"
+    "frequentlyAskedQuestionStatus": "y",
+    "topStatus": "active",
+    "topNumber": "1"
   },
   {
     "typeId": "frequentlyAskedQuestion",
@@ -75,6 +83,8 @@
     "contents": "취소/반품/교환/환불 > 환불",
     "displayTargetType": "common",
     "frequentlyAskedQuestionStatus": "y"
+    "topStatus": "active",
+    "topNumber": "2"
   },
   {
     "typeId": "frequentlyAskedQuestion",
