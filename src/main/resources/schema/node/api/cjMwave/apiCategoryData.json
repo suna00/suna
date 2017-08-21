@@ -1,0 +1,12 @@
+[
+  {
+    "typeId" : "apiCategory",
+    "id" : "vote",
+    "categoryName" : "Vote API"
+  },
+  {
+    "typeId" : "apiCategory",
+    "id" : "comp",
+    "categoryName" : "Component API"
+  }
+]

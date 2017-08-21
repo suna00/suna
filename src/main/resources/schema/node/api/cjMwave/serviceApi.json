@@ -1,0 +1,66 @@
+[
+  {
+    "typeId" : "apiConfig",
+    "category" : "comp",
+    "apiId" : "IfCom001",
+    "apiName" : "서비스 컴포넌트 상세조회",
+    "method" : "GET",
+    "config" : {
+      "item" : {
+        "typeId":"mainBasInfo",
+        "query" : [
+          {"field" : "mainDivCd", "method" : "matching", "value" : "{{:divCd}}" },
+          {"field" : "showLoCd", "method" : "matching", "value" : "{{:showLoCd}}" },
+          {"field" : "showYn", "method" : "matching", "value" : "true" },
+          {"sorting" : "mainSeq desc"},
+          {"limit" : "1"}
+        ],
+        "response" : {
+          "mainSeq": "",
+          "mainNm": "",
+          "refdCompItemList":""
+        }
+      }
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "comp",
+    "apiId" : "IfCom002",
+    "apiName" : "서비스 메뉴 상세조회",
+    "method" : "GET",
+    "parameter" : [
+      {"paramName" : "cntryCd", "required" : true},
+      {"paramName" : "svcTermlDivCd", "required" : true}
+    ],
+    "config" : {
+      "groupMenuId" : {
+        "typeId":"svcMenuGroupInfo",
+        "query" : [
+          {"field" : "showCntryCdList", "method" : "matching", "value" : "{{:cntryCd}}" },
+          {"field" : "svcDvcDivCd", "method" : "matching", "value" : "{{:svcTermlDivCd}}" },
+          {"field" : "showYn", "method" : "matching", "value" : "true" },
+          {"sorting" : "svcMenuGroupId desc"}
+        ]
+      },
+      "items" : {
+        "typeId":"svcMenuInfo",
+        "query" : [
+          {"field" : "svcMenuGroupId", "method" : "matching", "value" : "{{:svcMenuGroupId}}" },
+          {"field" : "useYn", "method" : "matching", "value" : "true" },
+          {"sorting" : "sortOdrg asc"}
+        ]
+      },
+      "anchor" : {
+        "typeId":"banrBasInfo",
+        "query" : [
+          {"field" : "svcTermlDivCd", "method" : "matching", "value" : "{{:svcTermlDivCd}}" },
+          {"field" : "showLoCd", "method" : "matching", "value" : "{{:cntryCd}}" },
+          {"field" : "banrTypeCd", "method" : "matching", "value" : "4" },
+          {"field" : "showYn", "method" : "matching", "value" : "true" },
+          {"sorting" : "banrSeq desc"}
+        ]
+      }
+    }
+  }
+]
