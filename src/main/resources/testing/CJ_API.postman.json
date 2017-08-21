@@ -10816,6 +10816,11 @@
           "description": "항목명 (varchar) "
         },
         {
+          "key": "subName",
+          "value": "",
+          "description": "부제명 (varchar) "
+        },
+        {
           "key": "typeCd",
           "value": "",
           "description": "유형 코드 (varchar) "

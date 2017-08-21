@@ -88,6 +88,23 @@
   {
     "typeId": "propertyType",
     "tid": "compItemInfo",
+    "pid": "subName",
+    "id": "compItemInfo@subName",
+    "propertyTypeName": "부제명",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "compItemInfo",
     "pid": "typeCd",
     "id": "compItemInfo@typeCd",
     "propertyTypeName": "유형 코드",
