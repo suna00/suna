@@ -10,7 +10,7 @@
     "apiId" : "defaultQuery",
     "apiName" : "Default Query Test",
     "method" : "GET",
-    "parameter" : [
+    "parameters" : [
       {"paramName" : "page", "required" : true}
     ],
     "config" : {
@@ -53,26 +53,38 @@
     }
   },
   {
-    "typeId" : "apiConfig",
-    "category" : "testApi",
-    "apiId" : "mergeSample",
-    "apiName" : "Merge Sample",
-    "method" : "GET",
-    "parameter" : [
-      {"paramName" : "page", "required" : true}
+    "typeId": "apiConfig",
+    "category": "testApi",
+    "apiId": "mergeSample",
+    "apiName": "Merge Sample",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": true
+      }
     ],
-    "config" : {
-      "items" : {
+    "config": {
+      "items": {
         "typeId": "testItem",
         "queryType": "merge",
-        "query" : [
-          {"field" : "category", "method" : "matching", "value" : "drama" },
-          {"sorting" : "id desc"},
-          {"page" : "{{:page}}", "pageSize":20}
+        "query": [
+          {
+            "field": "category",
+            "method": "matching",
+            "value": "drama"
+          },
+          {
+            "sorting": "id desc"
+          },
+          {
+            "page": "{{:page}}",
+            "pageSize": 20
+          }
         ],
-        "response" : {
-          "merge" : "baseItem",
-          "fields" : {
+        "response": {
+          "merge": "baseItem",
+          "fields": {
             "id": "",
             "category": null,
             "title": "",
@@ -81,6 +93,25 @@
           }
         }
       }
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "simpleCategory",
+    "apiName" : "Simple Category Sample",
+    "method" : "GET",
+    "parameters" : [
+      {"paramName" : "page", "required" : true}
+    ],
+    "config" : {
+      "typeId": "testCategory",
+      "query" : [
+        {"field" : "categoryType", "method" : "matching", "value" : "{{:categoryType}}" },
+        {"sorting" : "changed desc"},
+        {"page" : "{{:page}}", "pageSize":2},
+        {"includeReferenced" : false}
+      ]
     }
   }
 ]
