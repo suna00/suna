@@ -3641,6 +3641,23 @@
   {
     "typeId": "propertyType",
     "tid": "terms",
+    "pid": "sortOrder",
+    "propertyTypeName": "정렬 순서",
+    "valueType": "INT",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "terms",
     "pid": "title",
     "propertyTypeName": "약관명",
     "valueType": "STRING",
@@ -3824,6 +3841,23 @@
     "referenceType": "commonCode",
     "referenceValue": "code",
     "codeFilter": "trueFalse",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "termsHistory",
+    "pid": "sortOrder",
+    "propertyTypeName": "정렬 순서",
+    "valueType": "INT",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
