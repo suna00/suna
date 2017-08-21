@@ -1,5 +1,33 @@
 [
   {
+    "typeId": "shopEventMainBanner",
+    "sortOrder": "1",
+    "shopEventId" : "1",
+    "deviceType" : "pc",
+    "bannerElementStatus" : "y"
+  },
+  {
+    "typeId": "shopEventMainBanner",
+    "sortOrder": "2",
+    "shopEventId" : "2",
+    "deviceType" : "pc",
+    "bannerElementStatus" : "y"
+  },
+  {
+    "typeId": "shopEventMainBanner",
+    "sortOrder": "3",
+    "shopEventId" : "3",
+    "deviceType" : "pc",
+    "bannerElementStatus" : "y"
+  },
+  {
+    "typeId": "shopEventMainBanner",
+    "sortOrder": "4",
+    "shopEventId" : "4",
+    "deviceType" : "pc",
+    "bannerElementStatus" : "y"
+  },
+  {
     "typeId": "shopEvent",
     "shopEventId": "1",
     "affiliateId": "",
