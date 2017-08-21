@@ -3,6 +3,7 @@ package net.ion.ice.core.node;
 import com.hazelcast.core.IAtomicLong;
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.cluster.ClusterService;
+import net.ion.ice.core.context.DataQueryContext;
 import net.ion.ice.core.context.ReadContext;
 import net.ion.ice.core.file.FileService;
 import net.ion.ice.core.file.FileValue;
@@ -257,12 +258,20 @@ public class NodeUtils {
                     if (value instanceof ReferenceView) {
                         return value;
                     }
-                    return NodeUtils.getReferenceValueView(context, value, pt);
+                    if (context instanceof DataQueryContext) {
+                        return NodeUtils.getReferenceValueView(context, pt.getCodeFilter()+Node.ID_SEPERATOR+value, pt);
+                    } else {
+                        return NodeUtils.getReferenceValueView(context, value, pt);
+                    }
                 } else {
                     if (value instanceof Reference) {
                         return value;
                     }
-                    return NodeUtils.getReferenceValue(value, pt);
+                    if (context instanceof DataQueryContext) {
+                        return NodeUtils.getReferenceValue(pt.getCodeFilter()+Node.ID_SEPERATOR+value, pt);
+                    } else {
+                        return NodeUtils.getReferenceValue(value, pt);
+                    }
                 }
             }
             case REFERENCES: {
@@ -274,9 +283,17 @@ public class NodeUtils {
                 if (value != null && StringUtils.isNotEmpty(value.toString())) {
                     for (String refVal : StringUtils.split(value.toString(), ",")) {
                         if (context.isReferenceView(pt.getPid())) {
-                            refValues.add(NodeUtils.getReferenceValueView(context, refVal, pt));
+                            if (context instanceof DataQueryContext) {
+                                refValues.add(NodeUtils.getReferenceValueView(context, pt.getCodeFilter()+Node.ID_SEPERATOR+refVal, pt));
+                            } else {
+                                refValues.add(NodeUtils.getReferenceValueView(context, refVal, pt));
+                            }
                         } else {
-                            refValues.add(NodeUtils.getReferenceValue(refVal, pt));
+                            if (context instanceof DataQueryContext) {
+                                refValues.add(NodeUtils.getReferenceValue(pt.getCodeFilter()+Node.ID_SEPERATOR+refVal, pt));
+                            } else {
+                                refValues.add(NodeUtils.getReferenceValue(refVal, pt));
+                            }
                         }
                     }
                 }
