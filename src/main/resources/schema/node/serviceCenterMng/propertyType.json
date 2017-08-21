@@ -2145,5 +2145,21 @@
     "referenceValue": "userId",
     "codeFilter": "",
     "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "productQuestion",
+    "pid": "referencedProductAnswer",
+    "propertyTypeName": "referenced상품옵션아이템",
+    "valueType": "REFERENCED",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "productAnswer",
+    "referenceValue": "productQuestionId",
+    "defaultValue": ""
   }
 ]
