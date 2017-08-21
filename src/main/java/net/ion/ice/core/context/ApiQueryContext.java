@@ -47,10 +47,10 @@ public class ApiQueryContext extends QueryContext{
             if(key.equals("typeId")) continue ;
 
             if (key.equals("q")) {
-                List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(config.get("q"), queryContext.nodeType);
+                List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(queryContext, config.get("q"), queryContext.nodeType);
                 queryContext.setQueryTerms(queryTerms);
             }else if(key.equals("query")){
-                List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(config.get("query"), queryContext.nodeType);
+                List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(queryContext, config.get("query"), queryContext.nodeType);
                 queryContext.setQueryTerms(queryTerms);
             }else if(key.equals("response")){
                 Map<String, Object> response = (Map<String, Object>) config.get(key);
@@ -83,36 +83,10 @@ public class ApiQueryContext extends QueryContext{
     }
 
     public Object makeApiQueryResult(Object result, String fieldName) {
-        NodeType nodeType = getNodetype() ;
-        Node node = null ;
-
-        if(result instanceof Node){
-            node = (Node) result;
-        }
-
         List<Object> resultList = NodeUtils.getNodeService().executeQuery(this) ;
         List<Node> resultNodeList = NodeUtils.initNodeList(nodeType.getTypeId(), resultList) ;
 
-
-        if(this.resultFields == null){
-            makeDefaultResult(nodeType, resultNodeList);
-            if(node != null){
-                node.put(fieldName, resultNodeList) ;
-                return null ;
-            }else if(result != null && result instanceof QueryResult){
-                return makePaging((QueryResult) result, fieldName, resultNodeList);
-            }else {
-                return resultNodeList ;
-            }
-        }
-
-        List<QueryResult> subList = makeResultList(nodeType, resultNodeList);
-        if(result != null && result instanceof QueryResult){
-            ((QueryResult) result).put(fieldName, subList) ;
-            return result;
-        }
-        return subList ;
-//        return makePaging(fieldName, subList);
+        return makeQueryResult(result, fieldName, resultNodeList);
     }
 
 }

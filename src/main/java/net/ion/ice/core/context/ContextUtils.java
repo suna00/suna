@@ -16,6 +16,7 @@ public class ContextUtils {
 
     public static Map<String, Object> makeContextData(Map<String, String[]> parameterMap) {
         Map<String, Object> data = new HashMap<>();
+        if(parameterMap == null) return data ;
         for (String paramName : parameterMap.keySet()) {
 
             String[] values = parameterMap.get(paramName);
@@ -54,8 +55,13 @@ public class ContextUtils {
         if(configValue instanceof Template){
             return ((Template)configValue).format(data) ;
         }else if(configValue instanceof String){
+            if(StringUtils.contains((String) configValue, "{{:") && StringUtils.contains((String) configValue, "}}")){
+                TemplateParam templateParam = new TemplateParam((String) configValue) ;
+                return templateParam.format(data) ;
+            }else{
+                return configValue ;
+            }
 //            return JsonUtils.getValue(data, (String) configValue) ;
-            return configValue ;
         }else{
             return configValue ;
         }

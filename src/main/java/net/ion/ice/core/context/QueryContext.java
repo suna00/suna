@@ -38,6 +38,11 @@ public class QueryContext extends ReadContext {
 
     public QueryContext(NodeType nodeType) {
         this.nodeType = nodeType;
+        if(this.nodeType.getRepositoryType().equals("node")){
+            this.queryTermType = QueryTerm.QueryTermType.NODE ;
+        }else if(this.nodeType.getRepositoryType().equals("data")){
+            this.queryTermType = QueryTerm.QueryTermType.DATA ;
+        }
     }
 
     public QueryContext() {
@@ -68,6 +73,8 @@ public class QueryContext extends ReadContext {
 
     public static QueryContext createQueryContextFromText(String searchText, NodeType nodeType) {
         QueryContext queryContext = new QueryContext(nodeType);
+        queryContext.setIncludeReferenced(false );
+
         java.util.List<QueryTerm> queryTerms = new ArrayList<>();
 
         if (StringUtils.isEmpty(searchText)) {
@@ -236,7 +243,7 @@ public class QueryContext extends ReadContext {
         }
 
         queryContext.setQueryTerms(queryTerms);
-        queryContext.setIncludeReference(true);
+        queryContext.setIncludeReferenced(true);
         return queryContext;
 
     }
@@ -245,7 +252,7 @@ public class QueryContext extends ReadContext {
         QueryContext queryContext = new QueryContext(nodeType);
         java.util.List<QueryTerm> queryTerms = new ArrayList<>();
 
-        QueryUtils.makeQueryTerm(nodeType, queryContext, queryTerms, pt.getPid(), value);
+        QueryUtils.makeQueryTerm(nodeType, queryContext, queryTerms, pt.getPid()+"_matching", value);
 
         queryContext.setQueryTerms(queryTerms);
         return queryContext;
@@ -318,10 +325,10 @@ public class QueryContext extends ReadContext {
             if (key.equals("typeId")) continue;
 
             if (key.equals("q")) {
-                List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(queryData.get("q"), queryContext.getNodetype());
+                List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(queryContext, queryData.get("q"), queryContext.getNodetype());
                 queryContext.setQueryTerms(queryTerms);
             } else if (key.equals("query")) {
-                List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(queryData.get("query"), queryContext.getNodetype());
+                List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(queryContext, queryData.get("query"), queryContext.getNodetype());
                 queryContext.setQueryTerms(queryTerms);
             } else {
                 Object val = queryData.get(key);
@@ -408,12 +415,6 @@ public class QueryContext extends ReadContext {
             QueryResult itemResult = new QueryResult() ;
             for(PropertyType pt : nodeType.getPropertyTypes()){
                 itemResult.put(pt.getPid(), NodeUtils.getResultValue(this, pt, resultNode));
-            }
-            if (isIncludeReferenced()) {
-                for (PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)) {
-                    QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(nodeType, pt, resultNode);
-                    subQueryContext.makeQueryResult(itemResult, pt.getPid());
-                }
             }
             if (isTreeable()) {
                 for (PropertyType pt : nodeType.getPropertyTypes()) {

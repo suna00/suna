@@ -78,36 +78,38 @@ public class QueryUtils {
         }
     }
 
-    public static QueryTerm makePropertyQueryTerm(QueryTerm.QueryTermType queryTermType, NodeType nodeType, String fieldId, String method, String value) {
-        if(queryTermType == QueryTerm.QueryTermType.DATA){
-            return makeDataQueryTerm(nodeType, fieldId, method, value) ;
-        }else{
-            return makePropertyQueryTerm(nodeType, fieldId, method, value) ;
-        }
-    }
 
-    public static List<QueryTerm> makeNodeQueryTerms(Object q, NodeType nodeType) {
+
+    public static List<QueryTerm> makeNodeQueryTerms(QueryContext context, Object q, NodeType nodeType) {
         List<QueryTerm> queryTerms = new ArrayList<>();
         if (q instanceof List) {
             for (Map<String, Object> _q : (List<Map<String, Object>>) q) {
-                makeNodeQueryTerm(_q, nodeType, queryTerms);
+                makeNodeQueryTerm(context, _q, nodeType, queryTerms);
             }
         } else if (q instanceof Map) {
-            makeNodeQueryTerm((Map<String, Object>) q, nodeType, queryTerms);
+            makeNodeQueryTerm(context, (Map<String, Object>) q, nodeType, queryTerms);
         }
 
         return queryTerms;
     }
 
-    public static void makeNodeQueryTerm(Map<String, Object> q, NodeType nodeType, List<QueryTerm> queryTerms) {
+    public static QueryTerm makePropertyQueryTerm(QueryTerm.QueryTermType queryTermType, NodeType nodeType, String fieldId, String method, String value) {
+        if(queryTermType == QueryTerm.QueryTermType.DATA){
+            return makeDataQueryTerm(nodeType, fieldId, method, value) ;
+        }else{
+            return makeNodeQueryTerm(nodeType, fieldId, method, value) ;
+        }
+    }
+
+    public static void makeNodeQueryTerm(QueryContext context, Map<String, Object> q, NodeType nodeType, List<QueryTerm> queryTerms) {
         if (q.containsKey("field") && q.containsKey("method")) {
-            QueryTerm queryTerm = makePropertyQueryTerm(nodeType, q.get("field").toString(), q.get("method").toString(), q.get("value").toString());
+            QueryTerm queryTerm = makePropertyQueryTerm(context.getQueryTermType(), nodeType, q.get("field").toString(), q.get("method").toString(), q.get("value").toString());
             if (queryTerm != null) {
                 queryTerms.add(queryTerm);
             }
         } else {
             for (String key : q.keySet()) {
-                QueryTerm queryTerm = makePropertyQueryTerm(nodeType, key, "matching", q.get(key).toString());
+                QueryTerm queryTerm = makePropertyQueryTerm(context.getQueryTermType(), nodeType, key, null, q.get(key).toString());
                 if (queryTerm != null) {
                     queryTerms.add(queryTerm);
                 }
@@ -115,7 +117,7 @@ public class QueryUtils {
         }
     }
 
-    public static QueryTerm makePropertyQueryTerm(NodeType nodeType, String fieldId, String method, String value) {
+    public static QueryTerm makeNodeQueryTerm(NodeType nodeType, String fieldId, String method, String value) {
         PropertyType propertyType = (PropertyType) nodeType.getPropertyType(fieldId);
         if (propertyType != null && propertyType.isIndexable()) {
             try {
