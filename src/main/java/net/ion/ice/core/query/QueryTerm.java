@@ -53,7 +53,9 @@ public class QueryTerm {
 
     public QueryTerm(String fieldId, Analyzer luceneAnalyzer, String method, Object value) {
         this.queryKey = fieldId ;
-
+        if(method == null){
+            method = "matching" ;
+        }
         this.method = QueryMethod.valueOf(method.toUpperCase()) ;
         this.queryValue = value ;
         this.analyzer = luceneAnalyzer ;

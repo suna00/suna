@@ -293,8 +293,12 @@ public class NodeUtils {
                 return null;
             }
             case REFERENCED: {
-                QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(getNodeType(node.getTypeId()), pt, node);
-                return getNodeService().getNodeList(pt.getReferenceType(), subQueryContext);
+                if(context != null && context.isIncludeReferenced() && context.getLevel() < 3) {
+                    QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(getNodeType(node.getTypeId()), pt, node);
+                    subQueryContext.setLevel(context.getLevel() + 1) ;
+                    return getNodeService().getDisplayNodeList(pt.getReferenceType(), subQueryContext);
+                }
+                return null ;
             }
             default:
                 return value;

@@ -78,6 +78,21 @@ public class QueryUtils {
         }
     }
 
+
+
+    public static List<QueryTerm> makeNodeQueryTerms(QueryContext context, Object q, NodeType nodeType) {
+        List<QueryTerm> queryTerms = new ArrayList<>();
+        if (q instanceof List) {
+            for (Map<String, Object> _q : (List<Map<String, Object>>) q) {
+                makeNodeQueryTerm(context, _q, nodeType, queryTerms);
+            }
+        } else if (q instanceof Map) {
+            makeNodeQueryTerm(context, (Map<String, Object>) q, nodeType, queryTerms);
+        }
+
+        return queryTerms;
+    }
+
     public static QueryTerm makePropertyQueryTerm(QueryTerm.QueryTermType queryTermType, NodeType nodeType, String fieldId, String method, String value) {
         if(queryTermType == QueryTerm.QueryTermType.DATA){
             return makeDataQueryTerm(nodeType, fieldId, method, value) ;
@@ -86,28 +101,15 @@ public class QueryUtils {
         }
     }
 
-    public static List<QueryTerm> makeNodeQueryTerms(QueryTerm.QueryTermType queryTermType, Object q, NodeType nodeType) {
-        List<QueryTerm> queryTerms = new ArrayList<>();
-        if (q instanceof List) {
-            for (Map<String, Object> _q : (List<Map<String, Object>>) q) {
-                makeNodeQueryTerm(queryTermType, _q, nodeType, queryTerms);
-            }
-        } else if (q instanceof Map) {
-            makeNodeQueryTerm(queryTermType, (Map<String, Object>) q, nodeType, queryTerms);
-        }
-
-        return queryTerms;
-    }
-
-    public static void makeNodeQueryTerm(QueryTerm.QueryTermType queryTermType, Map<String, Object> q, NodeType nodeType, List<QueryTerm> queryTerms) {
+    public static void makeNodeQueryTerm(QueryContext context, Map<String, Object> q, NodeType nodeType, List<QueryTerm> queryTerms) {
         if (q.containsKey("field") && q.containsKey("method")) {
-            QueryTerm queryTerm = makePropertyQueryTerm(queryTermType, nodeType, q.get("field").toString(), q.get("method").toString(), q.get("value").toString());
+            QueryTerm queryTerm = makePropertyQueryTerm(context.getQueryTermType(), nodeType, q.get("field").toString(), q.get("method").toString(), q.get("value").toString());
             if (queryTerm != null) {
                 queryTerms.add(queryTerm);
             }
         } else {
             for (String key : q.keySet()) {
-                QueryTerm queryTerm = makePropertyQueryTerm(queryTermType, nodeType, key, null, q.get(key).toString());
+                QueryTerm queryTerm = makePropertyQueryTerm(context.getQueryTermType(), nodeType, key, null, q.get(key).toString());
                 if (queryTerm != null) {
                     queryTerms.add(queryTerm);
                 }
