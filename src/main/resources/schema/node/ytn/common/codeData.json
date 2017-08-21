@@ -785,7 +785,7 @@
   {
     "typeId": "commonCode",
     "code": "general",
-    "upperCode": "root>addBenefitType",
+    "upperCode": "addBenefitType",
     "name": "일반",
     "description": "",
     "sortOrder": "1",
@@ -794,7 +794,7 @@
   {
     "typeId": "commonCode",
     "code": "in",
-    "upperCode": "root>affiliatePointType",
+    "upperCode": "affiliatePointType",
     "name": "증액",
     "description": "",
     "sortOrder": "1",
@@ -803,7 +803,7 @@
   {
     "typeId": "commonCode",
     "code": "out",
-    "upperCode": "root>affiliatePointType",
+    "upperCode": "affiliatePointType",
     "name": "감액",
     "description": "",
     "sortOrder": "2",
@@ -812,7 +812,7 @@
   {
     "typeId": "commonCode",
     "code": "div",
-    "upperCode": "root>affiliatePointType",
+    "upperCode": "affiliatePointType",
     "name": "분배",
     "description": "",
     "sortOrder": "3",
@@ -821,7 +821,7 @@
   {
     "typeId": "commonCode",
     "code": "getback",
-    "upperCode": "root>affiliatePointType",
+    "upperCode": "affiliatePointType",
     "name": "회수",
     "description": "",
     "sortOrder": "4",
@@ -830,7 +830,7 @@
   {
     "typeId": "commonCode",
     "code": "affliate",
-    "upperCode": "root>affliateRequestType",
+    "upperCode": "affliateRequestType",
     "name": "제휴사",
     "description": "",
     "sortOrder": "1",
@@ -839,7 +839,7 @@
   {
     "typeId": "commonCode",
     "code": "affliateMall",
-    "upperCode": "root>affliateRequestType",
+    "upperCode": "affliateRequestType",
     "name": "제휴몰",
     "description": "",
     "sortOrder": "2",
@@ -848,7 +848,7 @@
   {
     "typeId": "commonCode",
     "code": "true",
-    "upperCode": "root>agreeYn",
+    "upperCode": "agreeYn",
     "name": "동의함",
     "description": "",
     "sortOrder": "1",
@@ -857,7 +857,7 @@
   {
     "typeId": "commonCode",
     "code": "false",
-    "upperCode": "root>agreeYn",
+    "upperCode": "agreeYn",
     "name": "동의하지않음",
     "description": "",
     "sortOrder": "2",
@@ -866,7 +866,7 @@
   {
     "typeId": "commonCode",
     "code": "request",
-    "upperCode": "root>approvalStatus",
+    "upperCode": "approvalStatus",
     "name": "요청",
     "description": "",
     "sortOrder": "1",
@@ -875,7 +875,7 @@
   {
     "typeId": "commonCode",
     "code": "approve",
-    "upperCode": "root>approvalStatus",
+    "upperCode": "approvalStatus",
     "name": "승인",
     "description": "",
     "sortOrder": "2",
@@ -884,7 +884,7 @@
   {
     "typeId": "commonCode",
     "code": "reject",
-    "upperCode": "root>approvalStatus",
+    "upperCode": "approvalStatus",
     "name": "반려",
     "description": "",
     "sortOrder": "3",
@@ -893,7 +893,7 @@
   {
     "typeId": "commonCode",
     "code": "user",
-    "upperCode": "root>authorityMapType",
+    "upperCode": "authorityMapType",
     "name": "사용자",
     "description": "",
     "sortOrder": "1",
@@ -902,7 +902,7 @@
   {
     "typeId": "commonCode",
     "code": "menu",
-    "upperCode": "root>authorityMapType",
+    "upperCode": "authorityMapType",
     "name": "메뉴",
     "description": "",
     "sortOrder": "2",
@@ -911,7 +911,7 @@
   {
     "typeId": "commonCode",
     "code": "function",
-    "upperCode": "root>authorityMapType",
+    "upperCode": "authorityMapType",
     "name": "기능",
     "description": "",
     "sortOrder": "3",
@@ -920,7 +920,7 @@
   {
     "typeId": "commonCode",
     "code": "fix",
-    "upperCode": "root>bannerElementType",
+    "upperCode": "bannerElementType",
     "name": "고정",
     "description": "",
     "sortOrder": "1",
@@ -929,7 +929,7 @@
   {
     "typeId": "commonCode",
     "code": "slide",
-    "upperCode": "root>bannerElementType",
+    "upperCode": "bannerElementType",
     "name": "슬라이드",
     "description": "",
     "sortOrder": "2",
@@ -938,7 +938,7 @@
   {
     "typeId": "commonCode",
     "code": "category",
-    "upperCode": "root>bannerMapType",
+    "upperCode": "bannerMapType",
     "name": "카테고리",
     "description": "",
     "sortOrder": "1",
@@ -947,7 +947,7 @@
   {
     "typeId": "commonCode",
     "code": "product",
-    "upperCode": "root>bannerMapType",
+    "upperCode": "bannerMapType",
     "name": "상품",
     "description": "",
     "sortOrder": "2",
@@ -956,7 +956,7 @@
   {
     "typeId": "commonCode",
     "code": "fix",
-    "upperCode": "root>bannerType",
+    "upperCode": "bannerType",
     "name": "고정",
     "description": "",
     "sortOrder": "1",
@@ -965,7 +965,7 @@
   {
     "typeId": "commonCode",
     "code": "slide",
-    "upperCode": "root>bannerType",
+    "upperCode": "bannerType",
     "name": "슬라이드",
     "description": "",
     "sortOrder": "2",
@@ -974,7 +974,7 @@
   {
     "typeId": "commonCode",
     "code": "display",
-    "upperCode": "root>categoryType",
+    "upperCode": "categoryType",
     "name": "상품전시",
     "description": "",
     "sortOrder": "1",
@@ -983,7 +983,7 @@
   {
     "typeId": "commonCode",
     "code": "special",
-    "upperCode": "root>categoryType",
+    "upperCode": "categoryType",
     "name": "기획전",
     "description": "",
     "sortOrder": "2",
@@ -992,7 +992,7 @@
   {
     "typeId": "commonCode",
     "code": "event",
-    "upperCode": "root>categoryType",
+    "upperCode": "categoryType",
     "name": "이벤트",
     "description": "",
     "sortOrder": "3",
@@ -1001,7 +1001,7 @@
   {
     "typeId": "commonCode",
     "code": "cancel",
-    "upperCode": "root>changeReasonType",
+    "upperCode": "changeReasonType",
     "name": "취소",
     "description": "",
     "sortOrder": "1",
@@ -1010,7 +1010,7 @@
   {
     "typeId": "commonCode",
     "code": "returnExchange",
-    "upperCode": "root>changeReasonType",
+    "upperCode": "changeReasonType",
     "name": "반품/교환",
     "description": "",
     "sortOrder": "2",
@@ -1019,7 +1019,7 @@
   {
     "typeId": "commonCode",
     "code": "cr001",
-    "upperCode": "root>changeReasonType>cancel",
+    "upperCode": "cancel",
     "name": "단순변심",
     "description": "",
     "sortOrder": "1",
@@ -1028,7 +1028,7 @@
   {
     "typeId": "commonCode",
     "code": "cr002",
-    "upperCode": "root>changeReasonType>cancel",
+    "upperCode": "cancel",
     "name": "재주문",
     "description": "",
     "sortOrder": "2",
@@ -1037,7 +1037,7 @@
   {
     "typeId": "commonCode",
     "code": "cr003",
-    "upperCode": "root>changeReasonType>cancel",
+    "upperCode": "cancel",
     "name": "품절",
     "description": "",
     "sortOrder": "3",
@@ -1046,7 +1046,7 @@
   {
     "typeId": "commonCode",
     "code": "cr004",
-    "upperCode": "root>changeReasonType>returnExchange",
+    "upperCode": "returnExchange",
     "name": "단순변심",
     "description": "",
     "sortOrder": "1",
@@ -1055,7 +1055,7 @@
   {
     "typeId": "commonCode",
     "code": "cr005",
-    "upperCode": "root>changeReasonType>returnExchange",
+    "upperCode": "returnExchange",
     "name": "제품하자",
     "description": "",
     "sortOrder": "2",
@@ -1064,7 +1064,7 @@
   {
     "typeId": "commonCode",
     "code": "cr006",
-    "upperCode": "root>changeReasonType>returnExchange",
+    "upperCode": "returnExchange",
     "name": "부품하자",
     "description": "",
     "sortOrder": "3",
@@ -1073,7 +1073,7 @@
   {
     "typeId": "commonCode",
     "code": "cr007",
-    "upperCode": "root>changeReasonType>returnExchange",
+    "upperCode": "returnExchange",
     "name": "오배송",
     "description": "",
     "sortOrder": "4",
@@ -1082,7 +1082,7 @@
   {
     "typeId": "commonCode",
     "code": "cr008",
-    "upperCode": "root>changeReasonType>returnExchange",
+    "upperCode": "returnExchange",
     "name": "재주문",
     "description": "",
     "sortOrder": "5",
@@ -1091,7 +1091,7 @@
   {
     "typeId": "commonCode",
     "code": "cancel",
-    "upperCode": "root>changeType",
+    "upperCode": "changeType",
     "name": "취소",
     "description": "",
     "sortOrder": "1",
@@ -1100,7 +1100,7 @@
   {
     "typeId": "commonCode",
     "code": "exchange",
-    "upperCode": "root>changeType",
+    "upperCode": "changeType",
     "name": "교환",
     "description": "",
     "sortOrder": "2",
@@ -1109,7 +1109,7 @@
   {
     "typeId": "commonCode",
     "code": "return",
-    "upperCode": "root>changeType",
+    "upperCode": "changeType",
     "name": "반품",
     "description": "",
     "sortOrder": "3",
@@ -1118,7 +1118,7 @@
   {
     "typeId": "commonCode",
     "code": "1m",
-    "upperCode": "root>collectRankPeriod",
+    "upperCode": "collectRankPeriod",
     "name": "1달",
     "description": "",
     "sortOrder": "1",
@@ -1127,7 +1127,7 @@
   {
     "typeId": "commonCode",
     "code": "6m",
-    "upperCode": "root>collectRankPeriod",
+    "upperCode": "collectRankPeriod",
     "name": "6달",
     "description": "",
     "sortOrder": "2",
@@ -1136,7 +1136,7 @@
   {
     "typeId": "commonCode",
     "code": "1y",
-    "upperCode": "root>collectRankPeriod",
+    "upperCode": "collectRankPeriod",
     "name": "1년",
     "description": "",
     "sortOrder": "3",
@@ -1145,7 +1145,7 @@
   {
     "typeId": "commonCode",
     "code": "viewBest",
-    "upperCode": "root>collectRankType",
+    "upperCode": "collectRankType",
     "name": "조회베스트",
     "description": "",
     "sortOrder": "1",
@@ -1154,7 +1154,7 @@
   {
     "typeId": "commonCode",
     "code": "saleBest",
-    "upperCode": "root>collectRankType",
+    "upperCode": "collectRankType",
     "name": "판매베스트",
     "description": "",
     "sortOrder": "2",
@@ -1163,7 +1163,7 @@
   {
     "typeId": "commonCode",
     "code": "wishBest",
-    "upperCode": "root>collectRankType",
+    "upperCode": "collectRankType",
     "name": "관심베스트",
     "description": "",
     "sortOrder": "3",
@@ -1172,7 +1172,7 @@
   {
     "typeId": "commonCode",
     "code": "new",
-    "upperCode": "root>collectRankType",
+    "upperCode": "collectRankType",
     "name": "신상품",
     "description": "",
     "sortOrder": "4",
@@ -1181,7 +1181,7 @@
   {
     "typeId": "commonCode",
     "code": "general",
-    "upperCode": "root>commonNoticeType",
+    "upperCode": "commonNoticeType",
     "name": "일반",
     "description": "",
     "sortOrder": "1",
@@ -1190,7 +1190,7 @@
   {
     "typeId": "commonCode",
     "code": "event",
-    "upperCode": "root>commonNoticeType",
+    "upperCode": "commonNoticeType",
     "name": "이벤트",
     "description": "",
     "sortOrder": "2",
@@ -1199,7 +1199,7 @@
   {
     "typeId": "commonCode",
     "code": "image",
-    "upperCode": "root>commonResourceType",
+    "upperCode": "commonResourceType",
     "name": "IMAGE",
     "description": "",
     "sortOrder": "1",
@@ -1208,7 +1208,7 @@
   {
     "typeId": "commonCode",
     "code": "vod",
-    "upperCode": "root>commonResourceType",
+    "upperCode": "commonResourceType",
     "name": "VOD",
     "description": "",
     "sortOrder": "2",
@@ -1217,7 +1217,7 @@
   {
     "typeId": "commonCode",
     "code": "doc",
-    "upperCode": "root>commonResourceType",
+    "upperCode": "commonResourceType",
     "name": "DOC",
     "description": "",
     "sortOrder": "3",
@@ -1226,7 +1226,7 @@
   {
     "typeId": "commonCode",
     "code": "pdf",
-    "upperCode": "root>commonResourceType",
+    "upperCode": "commonResourceType",
     "name": "PDF",
     "description": "",
     "sortOrder": "4",
@@ -1235,7 +1235,7 @@
   {
     "typeId": "commonCode",
     "code": "number",
-    "upperCode": "root>contentsOptionTypeFieldsType",
+    "upperCode": "contentsOptionTypeFieldsType",
     "name": "NUMBER",
     "description": "",
     "sortOrder": "1",
@@ -1244,7 +1244,7 @@
   {
     "typeId": "commonCode",
     "code": "text",
-    "upperCode": "root>contentsOptionTypeFieldsType",
+    "upperCode": "contentsOptionTypeFieldsType",
     "name": "TEXT",
     "description": "",
     "sortOrder": "2",
@@ -1253,7 +1253,7 @@
   {
     "typeId": "commonCode",
     "code": "varchar",
-    "upperCode": "root>contentsOptionTypeFieldsType",
+    "upperCode": "contentsOptionTypeFieldsType",
     "name": "VARCHAR",
     "description": "",
     "sortOrder": "3",
@@ -1262,7 +1262,7 @@
   {
     "typeId": "commonCode",
     "code": "datetime",
-    "upperCode": "root>contentsOptionTypeFieldsType",
+    "upperCode": "contentsOptionTypeFieldsType",
     "name": "DATETIME",
     "description": "",
     "sortOrder": "4",
@@ -1271,7 +1271,7 @@
   {
     "typeId": "commonCode",
     "code": "goods",
-    "upperCode": "root>contentsType",
+    "upperCode": "contentsType",
     "name": "제품",
     "description": "",
     "sortOrder": "1",
@@ -1280,7 +1280,7 @@
   {
     "typeId": "commonCode",
     "code": "securities",
-    "upperCode": "root>contentsType",
+    "upperCode": "contentsType",
     "name": "유가증권",
     "description": "",
     "sortOrder": "2",
@@ -1289,7 +1289,7 @@
   {
     "typeId": "commonCode",
     "code": "product",
-    "upperCode": "root>couponType",
+    "upperCode": "couponType",
     "name": "상품",
     "description": "",
     "sortOrder": "1",
@@ -1298,7 +1298,7 @@
   {
     "typeId": "commonCode",
     "code": "category",
-    "upperCode": "root>couponType",
+    "upperCode": "couponType",
     "name": "카테고리",
     "description": "",
     "sortOrder": "2",
@@ -1307,7 +1307,7 @@
   {
     "typeId": "commonCode",
     "code": "event",
-    "upperCode": "root>couponType",
+    "upperCode": "couponType",
     "name": "이벤트",
     "description": "",
     "sortOrder": "3",
@@ -1316,7 +1316,7 @@
   {
     "typeId": "commonCode",
     "code": "percent",
-    "upperCode": "root>couponTypeUnit",
+    "upperCode": "couponTypeUnit",
     "name": "%",
     "description": "",
     "sortOrder": "1",
@@ -1325,7 +1325,7 @@
   {
     "typeId": "commonCode",
     "code": "won",
-    "upperCode": "root>couponTypeUnit",
+    "upperCode": "couponTypeUnit",
     "name": "원",
     "description": "",
     "sortOrder": "2",
@@ -1334,7 +1334,7 @@
   {
     "typeId": "commonCode",
     "code": "1d",
-    "upperCode": "root>couponValidePeriod",
+    "upperCode": "couponValidePeriod",
     "name": "1일",
     "description": "",
     "sortOrder": "1",
@@ -1343,7 +1343,7 @@
   {
     "typeId": "commonCode",
     "code": "3d",
-    "upperCode": "root>couponValidePeriod",
+    "upperCode": "couponValidePeriod",
     "name": "3일",
     "description": "",
     "sortOrder": "2",
@@ -1352,7 +1352,7 @@
   {
     "typeId": "commonCode",
     "code": "7d",
-    "upperCode": "root>couponValidePeriod",
+    "upperCode": "couponValidePeriod",
     "name": "7일",
     "description": "",
     "sortOrder": "3",
@@ -1361,7 +1361,7 @@
   {
     "typeId": "commonCode",
     "code": "1m",
-    "upperCode": "root>couponValidePeriod",
+    "upperCode": "couponValidePeriod",
     "name": "1달",
     "description": "",
     "sortOrder": "4",
@@ -1370,7 +1370,7 @@
   {
     "typeId": "commonCode",
     "code": "request",
-    "upperCode": "root>deleteStatus",
+    "upperCode": "deleteStatus",
     "name": "삭제요청",
     "description": "",
     "sortOrder": "1",
@@ -1379,7 +1379,7 @@
   {
     "typeId": "commonCode",
     "code": "approve",
-    "upperCode": "root>deleteStatus",
+    "upperCode": "deleteStatus",
     "name": "삭제승인",
     "description": "",
     "sortOrder": "2",
@@ -1388,7 +1388,7 @@
   {
     "typeId": "commonCode",
     "code": "reject",
-    "upperCode": "root>deleteStatus",
+    "upperCode": "deleteStatus",
     "name": "삭제반려",
     "description": "",
     "sortOrder": "3",
@@ -1397,7 +1397,7 @@
   {
     "typeId": "commonCode",
     "code": "sms",
-    "upperCode": "root>deliveryMethod",
+    "upperCode": "deliveryMethod",
     "name": "문자발송",
     "description": "",
     "sortOrder": "1",
@@ -1406,7 +1406,7 @@
   {
     "typeId": "commonCode",
     "code": "lg",
-    "upperCode": "root>deliveryMethod",
+    "upperCode": "deliveryMethod",
     "name": "LG배송",
     "description": "",
     "sortOrder": "2",
@@ -1415,7 +1415,7 @@
   {
     "typeId": "commonCode",
     "code": "samsung",
-    "upperCode": "root>deliveryMethod",
+    "upperCode": "deliveryMethod",
     "name": "삼성배송",
     "description": "",
     "sortOrder": "3",
@@ -1424,7 +1424,7 @@
   {
     "typeId": "commonCode",
     "code": "delivery",
-    "upperCode": "root>deliveryMethod",
+    "upperCode": "deliveryMethod",
     "name": "업체택배",
     "description": "",
     "sortOrder": "4",
@@ -1433,7 +1433,7 @@
   {
     "typeId": "commonCode",
     "code": "free",
-    "upperCode": "root>deliveryPriceType",
+    "upperCode": "deliveryPriceType",
     "name": "무료배송비",
     "description": "",
     "sortOrder": "1",
@@ -1442,7 +1442,7 @@
   {
     "typeId": "commonCode",
     "code": "conditional",
-    "upperCode": "root>deliveryPriceType",
+    "upperCode": "deliveryPriceType",
     "name": "조건부무료배송",
     "description": "",
     "sortOrder": "2",
@@ -1451,7 +1451,7 @@
   {
     "typeId": "commonCode",
     "code": "fix",
-    "upperCode": "root>deliveryPriceType",
+    "upperCode": "deliveryPriceType",
     "name": "고정배송비",
     "description": "",
     "sortOrder": "3",
@@ -1460,7 +1460,7 @@
   {
     "typeId": "commonCode",
     "code": "ready",
-    "upperCode": "root>deliveryStatus",
+    "upperCode": "deliveryStatus",
     "name": "상품준비중",
     "description": "",
     "sortOrder": "1",
@@ -1469,7 +1469,7 @@
   {
     "typeId": "commonCode",
     "code": "shipping",
-    "upperCode": "root>deliveryStatus",
+    "upperCode": "deliveryStatus",
     "name": "배송중",
     "description": "",
     "sortOrder": "2",
@@ -1478,7 +1478,7 @@
   {
     "typeId": "commonCode",
     "code": "completed",
-    "upperCode": "root>deliveryStatus",
+    "upperCode": "deliveryStatus",
     "name": "배송완료",
     "description": "",
     "sortOrder": "3",
@@ -1487,7 +1487,7 @@
   {
     "typeId": "commonCode",
     "code": "general",
-    "upperCode": "root>deliveryType",
+    "upperCode": "deliveryType",
     "name": "일반배송",
     "description": "",
     "sortOrder": "1",
@@ -1496,7 +1496,7 @@
   {
     "typeId": "commonCode",
     "code": "exchange",
-    "upperCode": "root>deliveryType",
+    "upperCode": "deliveryType",
     "name": "교환배송",
     "description": "",
     "sortOrder": "2",
@@ -1505,7 +1505,7 @@
   {
     "typeId": "commonCode",
     "code": "return",
-    "upperCode": "root>deliveryType",
+    "upperCode": "deliveryType",
     "name": "반품배송",
     "description": "",
     "sortOrder": "3",
@@ -1514,7 +1514,7 @@
   {
     "typeId": "commonCode",
     "code": "pc",
-    "upperCode": "root>deviceType",
+    "upperCode": "deviceType",
     "name": "PC",
     "description": "",
     "sortOrder": "1",
@@ -1523,7 +1523,7 @@
   {
     "typeId": "commonCode",
     "code": "mobile",
-    "upperCode": "root>deviceType",
+    "upperCode": "deviceType",
     "name": "Mobile",
     "description": "",
     "sortOrder": "2",
@@ -1532,7 +1532,7 @@
   {
     "typeId": "commonCode",
     "code": "y",
-    "upperCode": "root>displayStatus",
+    "upperCode": "displayStatus",
     "name": "노출",
     "description": "",
     "sortOrder": "1",
@@ -1541,7 +1541,7 @@
   {
     "typeId": "commonCode",
     "code": "n",
-    "upperCode": "root>displayStatus",
+    "upperCode": "displayStatus",
     "name": "비노출",
     "description": "",
     "sortOrder": "2",
@@ -1550,7 +1550,7 @@
   {
     "typeId": "commonCode",
     "code": "common",
-    "upperCode": "root>displayTargetType",
+    "upperCode": "displayTargetType",
     "name": "공통",
     "description": "",
     "sortOrder": "1",
@@ -1559,7 +1559,7 @@
   {
     "typeId": "commonCode",
     "code": "company",
-    "upperCode": "root>displayTargetType",
+    "upperCode": "displayTargetType",
     "name": "기업몰",
     "description": "",
     "sortOrder": "2",
@@ -1568,7 +1568,7 @@
   {
     "typeId": "commonCode",
     "code": "university",
-    "upperCode": "root>displayTargetType",
+    "upperCode": "displayTargetType",
     "name": "대학몰",
     "description": "",
     "sortOrder": "3",
@@ -1577,7 +1577,7 @@
   {
     "typeId": "commonCode",
     "code": "faq101",
-    "upperCode": "root>faqType",
+    "upperCode": "faqType",
     "name": "주문/배송/결제",
     "description": "",
     "sortOrder": "1",
@@ -1586,7 +1586,7 @@
   {
     "typeId": "commonCode",
     "code": "faq102",
-    "upperCode": "root>faqType",
+    "upperCode": "faqType",
     "name": "취소/반품/교환/환불",
     "description": "",
     "sortOrder": "2",
@@ -1595,7 +1595,7 @@
   {
     "typeId": "commonCode",
     "code": "faq103",
-    "upperCode": "root>faqType",
+    "upperCode": "faqType",
     "name": "회원혜택",
     "description": "",
     "sortOrder": "3",
@@ -1604,7 +1604,7 @@
   {
     "typeId": "commonCode",
     "code": "faq104",
-    "upperCode": "root>faqType",
+    "upperCode": "faqType",
     "name": "모바일 이용안내",
     "description": "",
     "sortOrder": "4",
@@ -1613,7 +1613,7 @@
   {
     "typeId": "commonCode",
     "code": "faq201",
-    "upperCode": "root>faqType>faq101",
+    "upperCode": "faq101",
     "name": "배송",
     "description": "",
     "sortOrder": "1",
@@ -1622,7 +1622,7 @@
   {
     "typeId": "commonCode",
     "code": "faq202",
-    "upperCode": "root>faqType>faq101",
+    "upperCode": "faq101",
     "name": "결제",
     "description": "",
     "sortOrder": "2",
@@ -1631,7 +1631,7 @@
   {
     "typeId": "commonCode",
     "code": "faq203",
-    "upperCode": "root>faqType>faq101",
+    "upperCode": "faq101",
     "name": "주문",
     "description": "",
     "sortOrder": "3",
@@ -1640,7 +1640,7 @@
   {
     "typeId": "commonCode",
     "code": "faq204",
-    "upperCode": "root>faqType>faq101",
+    "upperCode": "faq101",
     "name": "증빙서류 발급",
     "description": "",
     "sortOrder": "4",
@@ -1649,7 +1649,7 @@
   {
     "typeId": "commonCode",
     "code": "faq205",
-    "upperCode": "root>faqType>faq102",
+    "upperCode": "faq102",
     "name": "취소",
     "description": "",
     "sortOrder": "1",
@@ -1658,7 +1658,7 @@
   {
     "typeId": "commonCode",
     "code": "faq206",
-    "upperCode": "root>faqType>faq102",
+    "upperCode": "faq102",
     "name": "교환/반품",
     "description": "",
     "sortOrder": "2",
@@ -1667,7 +1667,7 @@
   {
     "typeId": "commonCode",
     "code": "faq207",
-    "upperCode": "root>faqType>faq102",
+    "upperCode": "faq102",
     "name": "환불",
     "description": "",
     "sortOrder": "3",
@@ -1676,7 +1676,7 @@
   {
     "typeId": "commonCode",
     "code": "faq208",
-    "upperCode": "root>faqType>faq103",
+    "upperCode": "faq103",
     "name": "마일리지",
     "description": "",
     "sortOrder": "1",
@@ -1685,7 +1685,7 @@
   {
     "typeId": "commonCode",
     "code": "faq209",
-    "upperCode": "root>faqType>faq103",
+    "upperCode": "faq103",
     "name": "쿠폰",
     "description": "",
     "sortOrder": "2",
@@ -1694,7 +1694,7 @@
   {
     "typeId": "commonCode",
     "code": "faq210",
-    "upperCode": "root>faqType>faq103",
+    "upperCode": "faq103",
     "name": "등급",
     "description": "",
     "sortOrder": "3",
@@ -1703,7 +1703,7 @@
   {
     "typeId": "commonCode",
     "code": "faq211",
-    "upperCode": "root>faqType>faq104",
+    "upperCode": "faq104",
     "name": "모바일웹",
     "description": "",
     "sortOrder": "1",
@@ -1712,7 +1712,7 @@
   {
     "typeId": "commonCode",
     "code": "image",
-    "upperCode": "root>fileType",
+    "upperCode": "fileType",
     "name": "IMAGE",
     "description": "",
     "sortOrder": "1",
@@ -1721,7 +1721,7 @@
   {
     "typeId": "commonCode",
     "code": "vod",
-    "upperCode": "root>fileType",
+    "upperCode": "fileType",
     "name": "VOD",
     "description": "",
     "sortOrder": "2",
@@ -1730,7 +1730,7 @@
   {
     "typeId": "commonCode",
     "code": "qna",
-    "upperCode": "root>frequentlyUsedAnswerType",
+    "upperCode": "frequentlyUsedAnswerType",
     "name": "QNA",
     "description": "",
     "sortOrder": "1",
@@ -1739,7 +1739,7 @@
   {
     "typeId": "commonCode",
     "code": "1n1",
-    "upperCode": "root>frequentlyUsedAnswerType",
+    "upperCode": "frequentlyUsedAnswerType",
     "name": "1대1",
     "description": "",
     "sortOrder": "2",
@@ -1748,7 +1748,7 @@
   {
     "typeId": "commonCode",
     "code": "man",
-    "upperCode": "root>genderType",
+    "upperCode": "genderType",
     "name": "남자",
     "description": "",
     "sortOrder": "1",
@@ -1757,7 +1757,7 @@
   {
     "typeId": "commonCode",
     "code": "woman",
-    "upperCode": "root>genderType",
+    "upperCode": "genderType",
     "name": "여자",
     "description": "",
     "sortOrder": "2",
@@ -1766,7 +1766,7 @@
   {
     "typeId": "commonCode",
     "code": "main",
-    "upperCode": "root>GNBType",
+    "upperCode": "GNBType",
     "name": "메인",
     "description": "",
     "sortOrder": "1",
@@ -1775,7 +1775,7 @@
   {
     "typeId": "commonCode",
     "code": "in",
-    "upperCode": "root>inAndOut",
+    "upperCode": "inAndOut",
     "name": "충전",
     "description": "",
     "sortOrder": "1",
@@ -1784,7 +1784,7 @@
   {
     "typeId": "commonCode",
     "code": "out",
-    "upperCode": "root>inAndOut",
+    "upperCode": "inAndOut",
     "name": "차감",
     "description": "",
     "sortOrder": "2",
@@ -1793,7 +1793,7 @@
   {
     "typeId": "commonCode",
     "code": "route001",
-    "upperCode": "root>inflowRoute",
+    "upperCode": "inflowRoute",
     "name": "기업-메일인증",
     "description": "",
     "sortOrder": "1",
@@ -1802,7 +1802,7 @@
   {
     "typeId": "commonCode",
     "code": "route002",
-    "upperCode": "root>inflowRoute",
+    "upperCode": "inflowRoute",
     "name": "대학-인트로회원가입",
     "description": "",
     "sortOrder": "2",
@@ -1811,7 +1811,7 @@
   {
     "typeId": "commonCode",
     "code": "route003",
-    "upperCode": "root>inflowRoute",
+    "upperCode": "inflowRoute",
     "name": "대학-대학몰 가입링크",
     "description": "",
     "sortOrder": "3",
@@ -1820,7 +1820,7 @@
   {
     "typeId": "commonCode",
     "code": "route004",
-    "upperCode": "root>inflowRoute",
+    "upperCode": "inflowRoute",
     "name": "비협약대학생",
     "description": "",
     "sortOrder": "4",
@@ -1829,7 +1829,7 @@
   {
     "typeId": "commonCode",
     "code": "route005",
-    "upperCode": "root>inflowRoute",
+    "upperCode": "inflowRoute",
     "name": "고객센터",
     "description": "",
     "sortOrder": "5",
@@ -1838,7 +1838,7 @@
   {
     "typeId": "commonCode",
     "code": "all",
-    "upperCode": "root>interestFreeInstallmentType",
+    "upperCode": "interestFreeInstallmentType",
     "name": "무이자",
     "description": "",
     "sortOrder": "1",
@@ -1847,7 +1847,7 @@
   {
     "typeId": "commonCode",
     "code": "part",
-    "upperCode": "root>interestFreeInstallmentType",
+    "upperCode": "interestFreeInstallmentType",
     "name": "부분무이자",
     "description": "",
     "sortOrder": "2",
@@ -1856,7 +1856,7 @@
   {
     "typeId": "commonCode",
     "code": "leave001",
-    "upperCode": "root>leaveType",
+    "upperCode": "leaveType",
     "name": "휴면지속자동탈퇴",
     "description": "",
     "sortOrder": "1",
@@ -1865,7 +1865,7 @@
   {
     "typeId": "commonCode",
     "code": "leave002",
-    "upperCode": "root>leaveType",
+    "upperCode": "leaveType",
     "name": "회원탈퇴신청",
     "description": "",
     "sortOrder": "2",
@@ -1874,7 +1874,7 @@
   {
     "typeId": "commonCode",
     "code": "parent",
-    "upperCode": "root>linkTarget",
+    "upperCode": "linkTarget",
     "name": "parent",
     "description": "",
     "sortOrder": "1",
@@ -1883,7 +1883,7 @@
   {
     "typeId": "commonCode",
     "code": "blank",
-    "upperCode": "root>linkTarget",
+    "upperCode": "linkTarget",
     "name": "blank",
     "description": "",
     "sortOrder": "2",
@@ -1892,7 +1892,7 @@
   {
     "typeId": "commonCode",
     "code": "white",
-    "upperCode": "root>mainColorCode",
+    "upperCode": "mainColorCode",
     "name": "흰색",
     "description": "",
     "sortOrder": "1",
@@ -1901,7 +1901,7 @@
   {
     "typeId": "commonCode",
     "code": "black",
-    "upperCode": "root>mainColorCode",
+    "upperCode": "mainColorCode",
     "name": "검은색",
     "description": "",
     "sortOrder": "2",
@@ -1910,7 +1910,7 @@
   {
     "typeId": "commonCode",
     "code": "red",
-    "upperCode": "root>mainColorCode",
+    "upperCode": "mainColorCode",
     "name": "빨간색",
     "description": "",
     "sortOrder": "3",
@@ -1919,7 +1919,7 @@
   {
     "typeId": "commonCode",
     "code": "orange",
-    "upperCode": "root>mainColorCode",
+    "upperCode": "mainColorCode",
     "name": "주황색",
     "description": "",
     "sortOrder": "4",
@@ -1928,7 +1928,7 @@
   {
     "typeId": "commonCode",
     "code": "yellow",
-    "upperCode": "root>mainColorCode",
+    "upperCode": "mainColorCode",
     "name": "노란색",
     "description": "",
     "sortOrder": "5",
@@ -1937,7 +1937,7 @@
   {
     "typeId": "commonCode",
     "code": "green",
-    "upperCode": "root>mainColorCode",
+    "upperCode": "mainColorCode",
     "name": "초록색",
     "description": "",
     "sortOrder": "6",
@@ -1946,7 +1946,7 @@
   {
     "typeId": "commonCode",
     "code": "blue",
-    "upperCode": "root>mainColorCode",
+    "upperCode": "mainColorCode",
     "name": "파란색",
     "description": "",
     "sortOrder": "7",
@@ -1955,7 +1955,7 @@
   {
     "typeId": "commonCode",
     "code": "indigo",
-    "upperCode": "root>mainColorCode",
+    "upperCode": "mainColorCode",
     "name": "남색",
     "description": "",
     "sortOrder": "8",
@@ -1964,7 +1964,7 @@
   {
     "typeId": "commonCode",
     "code": "purple",
-    "upperCode": "root>mainColorCode",
+    "upperCode": "mainColorCode",
     "name": "보라색",
     "description": "",
     "sortOrder": "9",
@@ -1973,7 +1973,7 @@
   {
     "typeId": "commonCode",
     "code": "aac",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "AAC 오디오",
     "description": "",
     "sortOrder": "1",
@@ -1982,7 +1982,7 @@
   {
     "typeId": "commonCode",
     "code": "m4a",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "AAC 오디오",
     "description": "",
     "sortOrder": "2",
@@ -1991,7 +1991,7 @@
   {
     "typeId": "commonCode",
     "code": "pls",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "오디오 재생 목록",
     "description": "",
     "sortOrder": "3",
@@ -2000,7 +2000,7 @@
   {
     "typeId": "commonCode",
     "code": "xpl",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "오디오 재생 목록",
     "description": "",
     "sortOrder": "4",
@@ -2009,7 +2009,7 @@
   {
     "typeId": "commonCode",
     "code": "avi",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "AVI 비디오",
     "description": "",
     "sortOrder": "5",
@@ -2018,7 +2018,7 @@
   {
     "typeId": "commonCode",
     "code": "cda",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "CD 오디오",
     "description": "",
     "sortOrder": "6",
@@ -2027,7 +2027,7 @@
   {
     "typeId": "commonCode",
     "code": "ivr",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "IVR",
     "description": "",
     "sortOrder": "7",
@@ -2036,7 +2036,7 @@
   {
     "typeId": "commonCode",
     "code": "mp3",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "MP3 오디오",
     "description": "",
     "sortOrder": "8",
@@ -2045,7 +2045,7 @@
   {
     "typeId": "commonCode",
     "code": "mpa",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "MPA 미디어",
     "description": "",
     "sortOrder": "9",
@@ -2054,7 +2054,7 @@
   {
     "typeId": "commonCode",
     "code": "mpg",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "MPEG 비디오",
     "description": "",
     "sortOrder": "10",
@@ -2063,7 +2063,7 @@
   {
     "typeId": "commonCode",
     "code": "mpeg",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "MPEG 비디오",
     "description": "",
     "sortOrder": "11",
@@ -2072,7 +2072,7 @@
   {
     "typeId": "commonCode",
     "code": "mpv",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "MPEG 비디오",
     "description": "",
     "sortOrder": "12",
@@ -2081,7 +2081,7 @@
   {
     "typeId": "commonCode",
     "code": "mps",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "MPEG 미디어",
     "description": "",
     "sortOrder": "13",
@@ -2090,7 +2090,7 @@
   {
     "typeId": "commonCode",
     "code": "m2v",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "MPEG 미디어",
     "description": "",
     "sortOrder": "14",
@@ -2099,7 +2099,7 @@
   {
     "typeId": "commonCode",
     "code": "m1v",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "MPEG 미디어",
     "description": "",
     "sortOrder": "15",
@@ -2108,7 +2108,7 @@
   {
     "typeId": "commonCode",
     "code": "mpe",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "MPEG 미디어",
     "description": "",
     "sortOrder": "16",
@@ -2117,7 +2117,7 @@
   {
     "typeId": "commonCode",
     "code": "ra",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "RealAudio",
     "description": "",
     "sortOrder": "17",
@@ -2126,7 +2126,7 @@
   {
     "typeId": "commonCode",
     "code": "rv",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "RealVideo",
     "description": "",
     "sortOrder": "18",
@@ -2135,7 +2135,7 @@
   {
     "typeId": "commonCode",
     "code": "wave",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "WAV",
     "description": "",
     "sortOrder": "19",
@@ -2144,7 +2144,7 @@
   {
     "typeId": "commonCode",
     "code": "wav",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "WAV",
     "description": "",
     "sortOrder": "20",
@@ -2153,7 +2153,7 @@
   {
     "typeId": "commonCode",
     "code": "ssm",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "스트리밍 미디어 메타파일",
     "description": "",
     "sortOrder": "21",
@@ -2162,7 +2162,7 @@
   {
     "typeId": "commonCode",
     "code": "mp4",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "MPEG-4 파일",
     "description": "",
     "sortOrder": "22",
@@ -2171,7 +2171,7 @@
   {
     "typeId": "commonCode",
     "code": "m4e",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "MPEG-4 파일",
     "description": "",
     "sortOrder": "23",
@@ -2180,7 +2180,7 @@
   {
     "typeId": "commonCode",
     "code": "m4v",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "MPEG-4 파일",
     "description": "",
     "sortOrder": "24",
@@ -2189,7 +2189,7 @@
   {
     "typeId": "commonCode",
     "code": "wma",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "Windows Media Audio",
     "description": "",
     "sortOrder": "25",
@@ -2198,7 +2198,7 @@
   {
     "typeId": "commonCode",
     "code": "wmv",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "Windows Media 비디오",
     "description": "",
     "sortOrder": "26",
@@ -2207,7 +2207,7 @@
   {
     "typeId": "commonCode",
     "code": "wax",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "Windows Media 오디오 바로 가기",
     "description": "",
     "sortOrder": "27",
@@ -2216,7 +2216,7 @@
   {
     "typeId": "commonCode",
     "code": "asx",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "Windows Media Audio 파일",
     "description": "",
     "sortOrder": "28",
@@ -2225,7 +2225,7 @@
   {
     "typeId": "commonCode",
     "code": "asf",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "Windows Media Audio 파일",
     "description": "",
     "sortOrder": "29",
@@ -2234,7 +2234,7 @@
   {
     "typeId": "commonCode",
     "code": "wm",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "Windows Media 오디오/비디오 파일",
     "description": "",
     "sortOrder": "30",
@@ -2243,7 +2243,7 @@
   {
     "typeId": "commonCode",
     "code": "wmx",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "Windows Media 오디오/비디오 바로 가기",
     "description": "",
     "sortOrder": "31",
@@ -2252,7 +2252,7 @@
   {
     "typeId": "commonCode",
     "code": "mov",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "QuickTime Movie",
     "description": "",
     "sortOrder": "32",
@@ -2261,7 +2261,7 @@
   {
     "typeId": "commonCode",
     "code": "qt",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "QuickTime Movie",
     "description": "",
     "sortOrder": "33",
@@ -2270,7 +2270,7 @@
   {
     "typeId": "commonCode",
     "code": "au",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "AU 오디오",
     "description": "",
     "sortOrder": "34",
@@ -2279,7 +2279,7 @@
   {
     "typeId": "commonCode",
     "code": "aif",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "AIFF 오디오",
     "description": "",
     "sortOrder": "35",
@@ -2288,7 +2288,7 @@
   {
     "typeId": "commonCode",
     "code": "aiff",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "AIFF 오디오",
     "description": "",
     "sortOrder": "36",
@@ -2297,7 +2297,7 @@
   {
     "typeId": "commonCode",
     "code": "acp",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "SD용 ACC",
     "description": "",
     "sortOrder": "37",
@@ -2306,7 +2306,7 @@
   {
     "typeId": "commonCode",
     "code": "3gp",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "3GPP 컨텐트",
     "description": "",
     "sortOrder": "38",
@@ -2315,7 +2315,7 @@
   {
     "typeId": "commonCode",
     "code": "3g2",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "3GPP2 컨텐트",
     "description": "",
     "sortOrder": "39",
@@ -2324,7 +2324,7 @@
   {
     "typeId": "commonCode",
     "code": "divx",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "DIVX 비디오",
     "description": "",
     "sortOrder": "40",
@@ -2333,7 +2333,7 @@
   {
     "typeId": "commonCode",
     "code": "dvd",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "DVD",
     "description": "",
     "sortOrder": "41",
@@ -2342,7 +2342,7 @@
   {
     "typeId": "commonCode",
     "code": "amr",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "AMR 협대역 컨텐트",
     "description": "",
     "sortOrder": "42",
@@ -2351,7 +2351,7 @@
   {
     "typeId": "commonCode",
     "code": "awb",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "AMR 광대역 컨텐트",
     "description": "",
     "sortOrder": "43",
@@ -2360,7 +2360,7 @@
   {
     "typeId": "commonCode",
     "code": "qcp",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "Qualcomm PureVoice 및 Enhanced",
     "description": "",
     "sortOrder": "44",
@@ -2369,7 +2369,7 @@
   {
     "typeId": "commonCode",
     "code": "EVRC",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "Qualcomm Enhanced Variable Rate",
     "description": "",
     "sortOrder": "45",
@@ -2378,7 +2378,7 @@
   {
     "typeId": "commonCode",
     "code": "EVR",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "Qualcomm Enhanced Variable Rate",
     "description": "",
     "sortOrder": "46",
@@ -2387,7 +2387,7 @@
   {
     "typeId": "commonCode",
     "code": "flv",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "Flash 비디오",
     "description": "",
     "sortOrder": "47",
@@ -2396,7 +2396,7 @@
   {
     "typeId": "commonCode",
     "code": "vob",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "VOB",
     "description": "",
     "sortOrder": "48",
@@ -2405,7 +2405,7 @@
   {
     "typeId": "commonCode",
     "code": "mp2",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "MP2 오디오",
     "description": "",
     "sortOrder": "49",
@@ -2414,7 +2414,7 @@
   {
     "typeId": "commonCode",
     "code": "mp1",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "MP1 오디오",
     "description": "",
     "sortOrder": "50",
@@ -2423,7 +2423,7 @@
   {
     "typeId": "commonCode",
     "code": "mpga",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "MPEG 오디오",
     "description": "",
     "sortOrder": "51",
@@ -2432,7 +2432,7 @@
   {
     "typeId": "commonCode",
     "code": "mid",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "MIDI 오디오",
     "description": "",
     "sortOrder": "52",
@@ -2441,7 +2441,7 @@
   {
     "typeId": "commonCode",
     "code": "midi",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "MIDI 오디오",
     "description": "",
     "sortOrder": "53",
@@ -2450,7 +2450,7 @@
   {
     "typeId": "commonCode",
     "code": "rmi",
-    "upperCode": "root>mediaFormat",
+    "upperCode": "mediaFormat",
     "name": "MIDI 오디오",
     "description": "",
     "sortOrder": "54",
@@ -2459,7 +2459,7 @@
   {
     "typeId": "commonCode",
     "code": "join",
-    "upperCode": "root>memberStatus",
+    "upperCode": "memberStatus",
     "name": "가입",
     "description": "",
     "sortOrder": "1",
@@ -2468,7 +2468,7 @@
   {
     "typeId": "commonCode",
     "code": "sleep",
-    "upperCode": "root>memberStatus",
+    "upperCode": "memberStatus",
     "name": "휴면",
     "description": "",
     "sortOrder": "2",
@@ -2477,7 +2477,7 @@
   {
     "typeId": "commonCode",
     "code": "leaveRequest",
-    "upperCode": "root>memberStatus",
+    "upperCode": "memberStatus",
     "name": "탈퇴신청",
     "description": "",
     "sortOrder": "3",
@@ -2486,7 +2486,7 @@
   {
     "typeId": "commonCode",
     "code": "leave",
-    "upperCode": "root>memberStatus",
+    "upperCode": "memberStatus",
     "name": "탈퇴",
     "description": "",
     "sortOrder": "4",
@@ -2495,7 +2495,7 @@
   {
     "typeId": "commonCode",
     "code": "general",
-    "upperCode": "root>menuType",
+    "upperCode": "menuType",
     "name": "일반",
     "description": "",
     "sortOrder": "1",
@@ -2504,7 +2504,7 @@
   {
     "typeId": "commonCode",
     "code": "aac",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "audio/aac",
     "description": "",
     "sortOrder": "1",
@@ -2513,7 +2513,7 @@
   {
     "typeId": "commonCode",
     "code": "abw",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/x-abiword",
     "description": "",
     "sortOrder": "2",
@@ -2522,7 +2522,7 @@
   {
     "typeId": "commonCode",
     "code": "arc",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/octet-stream",
     "description": "",
     "sortOrder": "3",
@@ -2531,7 +2531,7 @@
   {
     "typeId": "commonCode",
     "code": "avi",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "video/x-msvideo",
     "description": "",
     "sortOrder": "4",
@@ -2540,7 +2540,7 @@
   {
     "typeId": "commonCode",
     "code": "azw",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/vnd.amazon.ebook",
     "description": "",
     "sortOrder": "5",
@@ -2549,7 +2549,7 @@
   {
     "typeId": "commonCode",
     "code": "bin",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/octet-stream",
     "description": "",
     "sortOrder": "6",
@@ -2558,7 +2558,7 @@
   {
     "typeId": "commonCode",
     "code": "bz",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/x-bzip",
     "description": "",
     "sortOrder": "7",
@@ -2567,7 +2567,7 @@
   {
     "typeId": "commonCode",
     "code": "bz2",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/x-bzip2",
     "description": "",
     "sortOrder": "8",
@@ -2576,7 +2576,7 @@
   {
     "typeId": "commonCode",
     "code": "csh",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/x-csh",
     "description": "",
     "sortOrder": "9",
@@ -2585,7 +2585,7 @@
   {
     "typeId": "commonCode",
     "code": "css",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "text/css",
     "description": "",
     "sortOrder": "10",
@@ -2594,7 +2594,7 @@
   {
     "typeId": "commonCode",
     "code": "csv",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "text/csv",
     "description": "",
     "sortOrder": "11",
@@ -2603,7 +2603,7 @@
   {
     "typeId": "commonCode",
     "code": "doc",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/msword",
     "description": "",
     "sortOrder": "12",
@@ -2612,7 +2612,7 @@
   {
     "typeId": "commonCode",
     "code": "epub",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/epub+zip",
     "description": "",
     "sortOrder": "13",
@@ -2621,7 +2621,7 @@
   {
     "typeId": "commonCode",
     "code": "gif",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "image/gif",
     "description": "",
     "sortOrder": "14",
@@ -2630,7 +2630,7 @@
   {
     "typeId": "commonCode",
     "code": "htm",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "text/html",
     "description": "",
     "sortOrder": "15",
@@ -2639,7 +2639,7 @@
   {
     "typeId": "commonCode",
     "code": "html",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "text/html",
     "description": "",
     "sortOrder": "16",
@@ -2648,7 +2648,7 @@
   {
     "typeId": "commonCode",
     "code": "ico",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "image/x-icon",
     "description": "",
     "sortOrder": "17",
@@ -2657,7 +2657,7 @@
   {
     "typeId": "commonCode",
     "code": "ics",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "text/calendar",
     "description": "",
     "sortOrder": "18",
@@ -2666,7 +2666,7 @@
   {
     "typeId": "commonCode",
     "code": "jar",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/java-archive",
     "description": "",
     "sortOrder": "19",
@@ -2675,7 +2675,7 @@
   {
     "typeId": "commonCode",
     "code": "jpeg",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "image/jpeg",
     "description": "",
     "sortOrder": "20",
@@ -2684,7 +2684,7 @@
   {
     "typeId": "commonCode",
     "code": "jpg",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "image/jpeg",
     "description": "",
     "sortOrder": "21",
@@ -2693,7 +2693,7 @@
   {
     "typeId": "commonCode",
     "code": "js",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/js",
     "description": "",
     "sortOrder": "22",
@@ -2702,7 +2702,7 @@
   {
     "typeId": "commonCode",
     "code": "json",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/json",
     "description": "",
     "sortOrder": "23",
@@ -2711,7 +2711,7 @@
   {
     "typeId": "commonCode",
     "code": "mid",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "audio/midi",
     "description": "",
     "sortOrder": "24",
@@ -2720,7 +2720,7 @@
   {
     "typeId": "commonCode",
     "code": "midi",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "audio/midi",
     "description": "",
     "sortOrder": "25",
@@ -2729,7 +2729,7 @@
   {
     "typeId": "commonCode",
     "code": "mpeg",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "video/mpeg",
     "description": "",
     "sortOrder": "26",
@@ -2738,7 +2738,7 @@
   {
     "typeId": "commonCode",
     "code": "mpkg",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/vnd.apple.installer+xml",
     "description": "",
     "sortOrder": "27",
@@ -2747,7 +2747,7 @@
   {
     "typeId": "commonCode",
     "code": "odp",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/vnd.oasis.opendocument.presentation",
     "description": "",
     "sortOrder": "28",
@@ -2756,7 +2756,7 @@
   {
     "typeId": "commonCode",
     "code": "ods",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/vnd.oasis.opendocument.spreadsheet",
     "description": "",
     "sortOrder": "29",
@@ -2765,7 +2765,7 @@
   {
     "typeId": "commonCode",
     "code": "odt",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/vnd.oasis.opendocument.text",
     "description": "",
     "sortOrder": "30",
@@ -2774,7 +2774,7 @@
   {
     "typeId": "commonCode",
     "code": "oga",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "audio/ogg",
     "description": "",
     "sortOrder": "31",
@@ -2783,7 +2783,7 @@
   {
     "typeId": "commonCode",
     "code": "ogv",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "video/ogg",
     "description": "",
     "sortOrder": "32",
@@ -2792,7 +2792,7 @@
   {
     "typeId": "commonCode",
     "code": "ogx",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/ogg",
     "description": "",
     "sortOrder": "33",
@@ -2801,7 +2801,7 @@
   {
     "typeId": "commonCode",
     "code": "pdf",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/pdf",
     "description": "",
     "sortOrder": "34",
@@ -2810,7 +2810,7 @@
   {
     "typeId": "commonCode",
     "code": "ppt",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/vnd.ms-powerpoint",
     "description": "",
     "sortOrder": "35",
@@ -2819,7 +2819,7 @@
   {
     "typeId": "commonCode",
     "code": "rar",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/x-rar-compressed",
     "description": "",
     "sortOrder": "36",
@@ -2828,7 +2828,7 @@
   {
     "typeId": "commonCode",
     "code": "rtf",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/rtf",
     "description": "",
     "sortOrder": "37",
@@ -2837,7 +2837,7 @@
   {
     "typeId": "commonCode",
     "code": "sh",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/x-sh",
     "description": "",
     "sortOrder": "38",
@@ -2846,7 +2846,7 @@
   {
     "typeId": "commonCode",
     "code": "svg",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "image/svg+xml",
     "description": "",
     "sortOrder": "39",
@@ -2855,7 +2855,7 @@
   {
     "typeId": "commonCode",
     "code": "swf",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/x-shockwave-flash",
     "description": "",
     "sortOrder": "40",
@@ -2864,7 +2864,7 @@
   {
     "typeId": "commonCode",
     "code": "tar",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/x-tar",
     "description": "",
     "sortOrder": "41",
@@ -2873,7 +2873,7 @@
   {
     "typeId": "commonCode",
     "code": "tif",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "image/tiff",
     "description": "",
     "sortOrder": "42",
@@ -2882,7 +2882,7 @@
   {
     "typeId": "commonCode",
     "code": "tiff",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "image/tiff",
     "description": "",
     "sortOrder": "43",
@@ -2891,7 +2891,7 @@
   {
     "typeId": "commonCode",
     "code": "ttf",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/x-font-ttf",
     "description": "",
     "sortOrder": "44",
@@ -2900,7 +2900,7 @@
   {
     "typeId": "commonCode",
     "code": "vsd",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/vnd.visio",
     "description": "",
     "sortOrder": "45",
@@ -2909,7 +2909,7 @@
   {
     "typeId": "commonCode",
     "code": "wav",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "audio/x-wav",
     "description": "",
     "sortOrder": "46",
@@ -2918,7 +2918,7 @@
   {
     "typeId": "commonCode",
     "code": "weba",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "audio/webm",
     "description": "",
     "sortOrder": "47",
@@ -2927,7 +2927,7 @@
   {
     "typeId": "commonCode",
     "code": "webm",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "video/webm",
     "description": "",
     "sortOrder": "48",
@@ -2936,7 +2936,7 @@
   {
     "typeId": "commonCode",
     "code": "webp",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "image/webp",
     "description": "",
     "sortOrder": "49",
@@ -2945,7 +2945,7 @@
   {
     "typeId": "commonCode",
     "code": "woff",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/x-font-woff",
     "description": "",
     "sortOrder": "50",
@@ -2954,7 +2954,7 @@
   {
     "typeId": "commonCode",
     "code": "xhtml",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/xhtml+xml",
     "description": "",
     "sortOrder": "51",
@@ -2963,7 +2963,7 @@
   {
     "typeId": "commonCode",
     "code": "xls",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/vnd.ms-excel",
     "description": "",
     "sortOrder": "52",
@@ -2972,7 +2972,7 @@
   {
     "typeId": "commonCode",
     "code": "xml",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/xml",
     "description": "",
     "sortOrder": "53",
@@ -2981,7 +2981,7 @@
   {
     "typeId": "commonCode",
     "code": "xul",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/vnd.mozilla.xul+xml",
     "description": "",
     "sortOrder": "54",
@@ -2990,7 +2990,7 @@
   {
     "typeId": "commonCode",
     "code": "zip",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/zip",
     "description": "",
     "sortOrder": "55",
@@ -2999,7 +2999,7 @@
   {
     "typeId": "commonCode",
     "code": "3gp",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "video/3gpp",
     "description": "",
     "sortOrder": "56",
@@ -3008,7 +3008,7 @@
   {
     "typeId": "commonCode",
     "code": "3g2",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "video/3gpp2",
     "description": "",
     "sortOrder": "57",
@@ -3017,7 +3017,7 @@
   {
     "typeId": "commonCode",
     "code": "7z",
-    "upperCode": "root>mimeType",
+    "upperCode": "mimeType",
     "name": "application/x-7z-compressed",
     "description": "",
     "sortOrder": "58",
@@ -3026,7 +3026,7 @@
   {
     "typeId": "commonCode",
     "code": "newstore001",
-    "upperCode": "root>newStoreRequestType",
+    "upperCode": "newStoreRequestType",
     "name": "디지털가전",
     "description": "",
     "sortOrder": "1",
@@ -3035,7 +3035,7 @@
   {
     "typeId": "commonCode",
     "code": "newstore002",
-    "upperCode": "root>newStoreRequestType",
+    "upperCode": "newStoreRequestType",
     "name": "의류잡화",
     "description": "",
     "sortOrder": "2",
@@ -3044,7 +3044,7 @@
   {
     "typeId": "commonCode",
     "code": "newstore003",
-    "upperCode": "root>newStoreRequestType",
+    "upperCode": "newStoreRequestType",
     "name": "뷰티",
     "description": "",
     "sortOrder": "3",
@@ -3053,7 +3053,7 @@
   {
     "typeId": "commonCode",
     "code": "newstore004",
-    "upperCode": "root>newStoreRequestType",
+    "upperCode": "newStoreRequestType",
     "name": "스포츠레저",
     "description": "",
     "sortOrder": "4",
@@ -3062,7 +3062,7 @@
   {
     "typeId": "commonCode",
     "code": "newstore005",
-    "upperCode": "root>newStoreRequestType",
+    "upperCode": "newStoreRequestType",
     "name": "E쿠폰문구악기",
     "description": "",
     "sortOrder": "5",
@@ -3071,7 +3071,7 @@
   {
     "typeId": "commonCode",
     "code": "newstore006",
-    "upperCode": "root>newStoreRequestType",
+    "upperCode": "newStoreRequestType",
     "name": "식품",
     "description": "",
     "sortOrder": "6",
@@ -3080,7 +3080,7 @@
   {
     "typeId": "commonCode",
     "code": "newstore007",
-    "upperCode": "root>newStoreRequestType",
+    "upperCode": "newStoreRequestType",
     "name": "주방생활육아",
     "description": "",
     "sortOrder": "7",
@@ -3089,7 +3089,7 @@
   {
     "typeId": "commonCode",
     "code": "newstore008",
-    "upperCode": "root>newStoreRequestType",
+    "upperCode": "newStoreRequestType",
     "name": "가구홈데코",
     "description": "",
     "sortOrder": "8",
@@ -3098,7 +3098,7 @@
   {
     "typeId": "commonCode",
     "code": "newstore009",
-    "upperCode": "root>newStoreRequestType",
+    "upperCode": "newStoreRequestType",
     "name": "골프",
     "description": "",
     "sortOrder": "9",
@@ -3107,7 +3107,7 @@
   {
     "typeId": "commonCode",
     "code": "in",
-    "upperCode": "root>operatingScoreInAndOut",
+    "upperCode": "operatingScoreInAndOut",
     "name": "상점",
     "description": "",
     "sortOrder": "1",
@@ -3116,7 +3116,7 @@
   {
     "typeId": "commonCode",
     "code": "out",
-    "upperCode": "root>operatingScoreInAndOut",
+    "upperCode": "operatingScoreInAndOut",
     "name": "벌점",
     "description": "",
     "sortOrder": "2",
@@ -3125,7 +3125,7 @@
   {
     "typeId": "commonCode",
     "code": "score001",
-    "upperCode": "root>operatingScoreType",
+    "upperCode": "operatingScoreType",
     "name": "QNA답변",
     "description": "",
     "sortOrder": "1",
@@ -3134,7 +3134,7 @@
   {
     "typeId": "commonCode",
     "code": "score002",
-    "upperCode": "root>operatingScoreType",
+    "upperCode": "operatingScoreType",
     "name": "배송",
     "description": "",
     "sortOrder": "2",
@@ -3143,7 +3143,7 @@
   {
     "typeId": "commonCode",
     "code": "score003",
-    "upperCode": "root>operatingScoreType",
+    "upperCode": "operatingScoreType",
     "name": "제품하자",
     "description": "",
     "sortOrder": "3",
@@ -3152,7 +3152,7 @@
   {
     "typeId": "commonCode",
     "code": "order001",
-    "upperCode": "root>orderStatus",
+    "upperCode": "orderStatus",
     "name": "주문완료",
     "description": "",
     "sortOrder": "1",
@@ -3161,7 +3161,7 @@
   {
     "typeId": "commonCode",
     "code": "order002",
-    "upperCode": "root>orderStatus",
+    "upperCode": "orderStatus",
     "name": "입금대기",
     "description": "",
     "sortOrder": "2",
@@ -3170,7 +3170,7 @@
   {
     "typeId": "commonCode",
     "code": "order003",
-    "upperCode": "root>orderStatus",
+    "upperCode": "orderStatus",
     "name": "결제완료",
     "description": "",
     "sortOrder": "3",
@@ -3179,7 +3179,7 @@
   {
     "typeId": "commonCode",
     "code": "order004",
-    "upperCode": "root>orderStatus",
+    "upperCode": "orderStatus",
     "name": "상품준비중",
     "description": "",
     "sortOrder": "4",
@@ -3188,7 +3188,7 @@
   {
     "typeId": "commonCode",
     "code": "order005",
-    "upperCode": "root>orderStatus",
+    "upperCode": "orderStatus",
     "name": "배송중",
     "description": "",
     "sortOrder": "5",
@@ -3197,7 +3197,7 @@
   {
     "typeId": "commonCode",
     "code": "order006",
-    "upperCode": "root>orderStatus",
+    "upperCode": "orderStatus",
     "name": "배송완료",
     "description": "",
     "sortOrder": "6",
@@ -3206,7 +3206,7 @@
   {
     "typeId": "commonCode",
     "code": "order007",
-    "upperCode": "root>orderStatus",
+    "upperCode": "orderStatus",
     "name": "구매확정",
     "description": "",
     "sortOrder": "7",
@@ -3215,7 +3215,7 @@
   {
     "typeId": "commonCode",
     "code": "order008",
-    "upperCode": "root>orderStatus",
+    "upperCode": "orderStatus",
     "name": "취소신청",
     "description": "",
     "sortOrder": "8",
@@ -3224,7 +3224,7 @@
   {
     "typeId": "commonCode",
     "code": "order009",
-    "upperCode": "root>orderStatus",
+    "upperCode": "orderStatus",
     "name": "취소완료",
     "description": "",
     "sortOrder": "9",
@@ -3233,7 +3233,7 @@
   {
     "typeId": "commonCode",
     "code": "order010",
-    "upperCode": "root>orderStatus",
+    "upperCode": "orderStatus",
     "name": "교환요청",
     "description": "",
     "sortOrder": "10",
@@ -3242,7 +3242,7 @@
   {
     "typeId": "commonCode",
     "code": "order011",
-    "upperCode": "root>orderStatus",
+    "upperCode": "orderStatus",
     "name": "교환접수",
     "description": "",
     "sortOrder": "11",
@@ -3251,7 +3251,7 @@
   {
     "typeId": "commonCode",
     "code": "order012",
-    "upperCode": "root>orderStatus",
+    "upperCode": "orderStatus",
     "name": "교환회수중",
     "description": "",
     "sortOrder": "12",
@@ -3260,7 +3260,7 @@
   {
     "typeId": "commonCode",
     "code": "order013",
-    "upperCode": "root>orderStatus",
+    "upperCode": "orderStatus",
     "name": "교환회수완료",
     "description": "",
     "sortOrder": "13",
@@ -3269,7 +3269,7 @@
   {
     "typeId": "commonCode",
     "code": "order014",
-    "upperCode": "root>orderStatus",
+    "upperCode": "orderStatus",
     "name": "교환상품 준비중",
     "description": "",
     "sortOrder": "14",
@@ -3278,7 +3278,7 @@
   {
     "typeId": "commonCode",
     "code": "order015",
-    "upperCode": "root>orderStatus",
+    "upperCode": "orderStatus",
     "name": "교환배송중",
     "description": "",
     "sortOrder": "15",
@@ -3287,7 +3287,7 @@
   {
     "typeId": "commonCode",
     "code": "order016",
-    "upperCode": "root>orderStatus",
+    "upperCode": "orderStatus",
     "name": "교환배송완료",
     "description": "",
     "sortOrder": "16",
@@ -3296,7 +3296,7 @@
   {
     "typeId": "commonCode",
     "code": "order017",
-    "upperCode": "root>orderStatus",
+    "upperCode": "orderStatus",
     "name": "반품요청",
     "description": "",
     "sortOrder": "17",
@@ -3305,7 +3305,7 @@
   {
     "typeId": "commonCode",
     "code": "order018",
-    "upperCode": "root>orderStatus",
+    "upperCode": "orderStatus",
     "name": "반품접수",
     "description": "",
     "sortOrder": "18",
@@ -3314,7 +3314,7 @@
   {
     "typeId": "commonCode",
     "code": "order019",
-    "upperCode": "root>orderStatus",
+    "upperCode": "orderStatus",
     "name": "반품회수중",
     "description": "",
     "sortOrder": "19",
@@ -3323,7 +3323,7 @@
   {
     "typeId": "commonCode",
     "code": "order020",
-    "upperCode": "root>orderStatus",
+    "upperCode": "orderStatus",
     "name": "반품회수완료",
     "description": "",
     "sortOrder": "20",
@@ -3332,7 +3332,7 @@
   {
     "typeId": "commonCode",
     "code": "order021",
-    "upperCode": "root>orderStatus",
+    "upperCode": "orderStatus",
     "name": "반품완료",
     "description": "",
     "sortOrder": "21",
@@ -3341,7 +3341,7 @@
   {
     "typeId": "commonCode",
     "code": "payType001",
-    "upperCode": "root>paymentType",
+    "upperCode": "paymentType",
     "name": "신용카드",
     "description": "",
     "sortOrder": "1",
@@ -3350,7 +3350,7 @@
   {
     "typeId": "commonCode",
     "code": "payType002",
-    "upperCode": "root>paymentType",
+    "upperCode": "paymentType",
     "name": "법인신용카드",
     "description": "",
     "sortOrder": "2",
@@ -3359,7 +3359,7 @@
   {
     "typeId": "commonCode",
     "code": "payType003",
-    "upperCode": "root>paymentType",
+    "upperCode": "paymentType",
     "name": "실시간계좌이체",
     "description": "",
     "sortOrder": "3",
@@ -3368,7 +3368,7 @@
   {
     "typeId": "commonCode",
     "code": "payType004",
-    "upperCode": "root>paymentType",
+    "upperCode": "paymentType",
     "name": "무통장입금",
     "description": "",
     "sortOrder": "4",
@@ -3377,7 +3377,7 @@
   {
     "typeId": "commonCode",
     "code": "payType005",
-    "upperCode": "root>paymentType",
+    "upperCode": "paymentType",
     "name": "가상계좌",
     "description": "",
     "sortOrder": "5",
@@ -3386,7 +3386,7 @@
   {
     "typeId": "commonCode",
     "code": "payType006",
-    "upperCode": "root>paymentType",
+    "upperCode": "paymentType",
     "name": "간편결제",
     "description": "",
     "sortOrder": "6",
@@ -3395,7 +3395,7 @@
   {
     "typeId": "commonCode",
     "code": "payType007",
-    "upperCode": "root>paymentType",
+    "upperCode": "paymentType",
     "name": "복지포인트",
     "description": "",
     "sortOrder": "7",
@@ -3404,7 +3404,7 @@
   {
     "typeId": "commonCode",
     "code": "payType008",
-    "upperCode": "root>paymentType",
+    "upperCode": "paymentType",
     "name": "마일리지",
     "description": "",
     "sortOrder": "8",
@@ -3413,7 +3413,7 @@
   {
     "typeId": "commonCode",
     "code": "admin",
-    "upperCode": "root>pointType",
+    "upperCode": "pointType",
     "name": "Admin",
     "description": "",
     "sortOrder": "1",
@@ -3422,7 +3422,7 @@
   {
     "typeId": "commonCode",
     "code": "purchase",
-    "upperCode": "root>pointType",
+    "upperCode": "pointType",
     "name": "구매",
     "description": "",
     "sortOrder": "2",
@@ -3431,7 +3431,7 @@
   {
     "typeId": "commonCode",
     "code": "event",
-    "upperCode": "root>pointType",
+    "upperCode": "pointType",
     "name": "이벤트",
     "description": "",
     "sortOrder": "3",
@@ -3440,7 +3440,7 @@
   {
     "typeId": "commonCode",
     "code": "serviceCenter",
-    "upperCode": "root>pointType",
+    "upperCode": "pointType",
     "name": "고객센터",
     "description": "",
     "sortOrder": "4",
@@ -3449,7 +3449,7 @@
   {
     "typeId": "commonCode",
     "code": "batch",
-    "upperCode": "root>popularSearchesType",
+    "upperCode": "popularSearchesType",
     "name": "배치",
     "description": "",
     "sortOrder": "1",
@@ -3458,7 +3458,7 @@
   {
     "typeId": "commonCode",
     "code": "custom",
-    "upperCode": "root>popularSearchesType",
+    "upperCode": "popularSearchesType",
     "name": "커스텀",
     "description": "",
     "sortOrder": "2",
@@ -3467,7 +3467,7 @@
   {
     "typeId": "commonCode",
     "code": "vendor",
-    "upperCode": "root>productInflowRoute",
+    "upperCode": "productInflowRoute",
     "name": "벤더",
     "description": "",
     "sortOrder": "1",
@@ -3476,7 +3476,7 @@
   {
     "typeId": "commonCode",
     "code": "shoplinker",
-    "upperCode": "root>productInflowRoute",
+    "upperCode": "productInflowRoute",
     "name": "샵링커",
     "description": "",
     "sortOrder": "2",
@@ -3485,7 +3485,7 @@
   {
     "typeId": "commonCode",
     "code": "sabangnet",
-    "upperCode": "root>productInflowRoute",
+    "upperCode": "productInflowRoute",
     "name": "사방넷",
     "description": "",
     "sortOrder": "3",
@@ -3494,7 +3494,7 @@
   {
     "typeId": "commonCode",
     "code": "affliateMall",
-    "upperCode": "root>productInflowRoute",
+    "upperCode": "productInflowRoute",
     "name": "제휴몰",
     "description": "",
     "sortOrder": "4",
@@ -3503,7 +3503,7 @@
   {
     "typeId": "commonCode",
     "code": "PDM001",
-    "upperCode": "root>productManageType",
+    "upperCode": "productManageType",
     "name": "위탁",
     "description": "",
     "sortOrder": "1",
@@ -3512,7 +3512,7 @@
   {
     "typeId": "commonCode",
     "code": "PDM002",
-    "upperCode": "root>productManageType",
+    "upperCode": "productManageType",
     "name": "제조",
     "description": "",
     "sortOrder": "2",
@@ -3521,7 +3521,7 @@
   {
     "typeId": "commonCode",
     "code": "PDM003",
-    "upperCode": "root>productManageType",
+    "upperCode": "productManageType",
     "name": "사입",
     "description": "",
     "sortOrder": "3",
@@ -3530,7 +3530,7 @@
   {
     "typeId": "commonCode",
     "code": "PDM004",
-    "upperCode": "root>productManageType",
+    "upperCode": "productManageType",
     "name": "직영",
     "description": "",
     "sortOrder": "4",
@@ -3539,7 +3539,7 @@
   {
     "typeId": "commonCode",
     "code": "PDM005",
-    "upperCode": "root>productManageType",
+    "upperCode": "productManageType",
     "name": "자료없음",
     "description": "",
     "sortOrder": "5",
@@ -3548,7 +3548,7 @@
   {
     "typeId": "commonCode",
     "code": "mix",
-    "upperCode": "root>productOptionType",
+    "upperCode": "productOptionType",
     "name": "조합",
     "description": "",
     "sortOrder": "1",
@@ -3557,7 +3557,7 @@
   {
     "typeId": "commonCode",
     "code": "single",
-    "upperCode": "root>productOptionType",
+    "upperCode": "productOptionType",
     "name": "독립",
     "description": "",
     "sortOrder": "2",
@@ -3566,7 +3566,7 @@
   {
     "typeId": "commonCode",
     "code": "add",
-    "upperCode": "root>productOptionType",
+    "upperCode": "productOptionType",
     "name": "추가",
     "description": "",
     "sortOrder": "3",
@@ -3575,7 +3575,7 @@
   {
     "typeId": "commonCode",
     "code": "base",
-    "upperCode": "root>productType",
+    "upperCode": "productType",
     "name": "BASE",
     "description": "",
     "sortOrder": "1",
@@ -3584,7 +3584,7 @@
   {
     "typeId": "commonCode",
     "code": "site",
-    "upperCode": "root>productType",
+    "upperCode": "productType",
     "name": "사이트",
     "description": "",
     "sortOrder": "2",
@@ -3593,7 +3593,7 @@
   {
     "typeId": "commonCode",
     "code": "special",
-    "upperCode": "root>productType",
+    "upperCode": "productType",
     "name": "기획전",
     "description": "",
     "sortOrder": "3",
@@ -3602,7 +3602,7 @@
   {
     "typeId": "commonCode",
     "code": "ready",
-    "upperCode": "root>QNAStatus",
+    "upperCode": "QNAStatus",
     "name": "답변대기",
     "description": "",
     "sortOrder": "1",
@@ -3610,8 +3610,8 @@
   },
   {
     "typeId": "commonCode",
-    "code": "popularSearchesType",
-    "upperCode": "root>QNAStatus",
+    "code": "completed",
+    "upperCode": "QNAStatus",
     "name": "답변완료",
     "description": "",
     "sortOrder": "2",
@@ -3620,7 +3620,7 @@
   {
     "typeId": "commonCode",
     "code": "request",
-    "upperCode": "root>recallType",
+    "upperCode": "recallType",
     "name": "방문 회수요청",
     "description": "",
     "sortOrder": "1",
@@ -3629,7 +3629,7 @@
   {
     "typeId": "commonCode",
     "code": "directly",
-    "upperCode": "root>recallType",
+    "upperCode": "recallType",
     "name": "고객 직접발송",
     "description": "",
     "sortOrder": "2",
@@ -3638,7 +3638,7 @@
   {
     "typeId": "commonCode",
     "code": "already",
-    "upperCode": "root>recallType",
+    "upperCode": "recallType",
     "name": "고객 발송완료",
     "description": "",
     "sortOrder": "3",
@@ -3647,7 +3647,7 @@
   {
     "typeId": "commonCode",
     "code": "relation",
-    "upperCode": "root>referenceProductType",
+    "upperCode": "referenceProductType",
     "name": "연관상품",
     "description": "",
     "sortOrder": "1",
@@ -3656,7 +3656,7 @@
   {
     "typeId": "commonCode",
     "code": "sale",
-    "upperCode": "root>saleStatus",
+    "upperCode": "saleStatus",
     "name": "판매중",
     "description": "",
     "sortOrder": "1",
@@ -3665,7 +3665,7 @@
   {
     "typeId": "commonCode",
     "code": "stop",
-    "upperCode": "root>saleStatus",
+    "upperCode": "saleStatus",
     "name": "판매중지",
     "description": "",
     "sortOrder": "2",
@@ -3674,7 +3674,7 @@
   {
     "typeId": "commonCode",
     "code": "end",
-    "upperCode": "root>saleStatus",
+    "upperCode": "saleStatus",
     "name": "판매종료",
     "description": "",
     "sortOrder": "3",
@@ -3683,7 +3683,7 @@
   {
     "typeId": "commonCode",
     "code": "5",
-    "upperCode": "root>scoreCode",
+    "upperCode": "scoreCode",
     "name": "매우만족",
     "description": "",
     "sortOrder": "1",
@@ -3692,7 +3692,7 @@
   {
     "typeId": "commonCode",
     "code": "4",
-    "upperCode": "root>scoreCode",
+    "upperCode": "scoreCode",
     "name": "만족",
     "description": "",
     "sortOrder": "2",
@@ -3701,7 +3701,7 @@
   {
     "typeId": "commonCode",
     "code": "3",
-    "upperCode": "root>scoreCode",
+    "upperCode": "scoreCode",
     "name": "보통",
     "description": "",
     "sortOrder": "3",
@@ -3710,7 +3710,7 @@
   {
     "typeId": "commonCode",
     "code": "2",
-    "upperCode": "root>scoreCode",
+    "upperCode": "scoreCode",
     "name": "불만족",
     "description": "",
     "sortOrder": "4",
@@ -3719,7 +3719,7 @@
   {
     "typeId": "commonCode",
     "code": "1",
-    "upperCode": "root>scoreCode",
+    "upperCode": "scoreCode",
     "name": "매우불만족",
     "description": "",
     "sortOrder": "5",
@@ -3728,7 +3728,7 @@
   {
     "typeId": "commonCode",
     "code": "fourSeasons",
-    "upperCode": "root>seasonType",
+    "upperCode": "seasonType",
     "name": "사계절",
     "description": "",
     "sortOrder": "1",
@@ -3737,7 +3737,7 @@
   {
     "typeId": "commonCode",
     "code": "spring",
-    "upperCode": "root>seasonType",
+    "upperCode": "seasonType",
     "name": "봄",
     "description": "",
     "sortOrder": "2",
@@ -3746,7 +3746,7 @@
   {
     "typeId": "commonCode",
     "code": "summer",
-    "upperCode": "root>seasonType",
+    "upperCode": "seasonType",
     "name": "여름",
     "description": "",
     "sortOrder": "3",
@@ -3755,7 +3755,7 @@
   {
     "typeId": "commonCode",
     "code": "fall",
-    "upperCode": "root>seasonType",
+    "upperCode": "seasonType",
     "name": "가을",
     "description": "",
     "sortOrder": "4",
@@ -3764,7 +3764,7 @@
   {
     "typeId": "commonCode",
     "code": "winter",
-    "upperCode": "root>seasonType",
+    "upperCode": "seasonType",
     "name": "겨울",
     "description": "",
     "sortOrder": "5",
@@ -3773,7 +3773,7 @@
   {
     "typeId": "commonCode",
     "code": "company",
-    "upperCode": "root>siteType",
+    "upperCode": "siteType",
     "name": "기업",
     "description": "",
     "sortOrder": "1",
@@ -3782,7 +3782,7 @@
   {
     "typeId": "commonCode",
     "code": "university",
-    "upperCode": "root>siteType",
+    "upperCode": "siteType",
     "name": "대학",
     "description": "",
     "sortOrder": "2",
@@ -3791,7 +3791,7 @@
   {
     "typeId": "commonCode",
     "code": "admin",
-    "upperCode": "root>SMSAuthenticationHistoryType",
+    "upperCode": "SMSAuthenticationHistoryType",
     "name": "어드민",
     "description": "",
     "sortOrder": "1",
@@ -3800,7 +3800,7 @@
   {
     "typeId": "commonCode",
     "code": "password",
-    "upperCode": "root>SMSAuthenticationHistoryType",
+    "upperCode": "SMSAuthenticationHistoryType",
     "name": "비밀번호",
     "description": "",
     "sortOrder": "2",
@@ -3809,7 +3809,7 @@
   {
     "typeId": "commonCode",
     "code": "id",
-    "upperCode": "root>SMSAuthenticationHistoryType",
+    "upperCode": "SMSAuthenticationHistoryType",
     "name": "아이디",
     "description": "",
     "sortOrder": "3",
@@ -3818,7 +3818,7 @@
   {
     "typeId": "commonCode",
     "code": "sms",
-    "upperCode": "root>smsType",
+    "upperCode": "smsType",
     "name": "SMS",
     "description": "",
     "sortOrder": "1",
@@ -3827,7 +3827,7 @@
   {
     "typeId": "commonCode",
     "code": "lms",
-    "upperCode": "root>smsType",
+    "upperCode": "smsType",
     "name": "LMS",
     "description": "",
     "sortOrder": "2",
@@ -3836,7 +3836,7 @@
   {
     "typeId": "commonCode",
     "code": "mms",
-    "upperCode": "root>smsType",
+    "upperCode": "smsType",
     "name": "MMS",
     "description": "",
     "sortOrder": "3",
@@ -3845,7 +3845,7 @@
   {
     "typeId": "commonCode",
     "code": "facebook",
-    "upperCode": "root>snsType",
+    "upperCode": "snsType",
     "name": "페이스북",
     "description": "",
     "sortOrder": "1",
@@ -3854,7 +3854,7 @@
   {
     "typeId": "commonCode",
     "code": "cacaotalk",
-    "upperCode": "root>snsType",
+    "upperCode": "snsType",
     "name": "카카오톡",
     "description": "",
     "sortOrder": "2",
@@ -3863,7 +3863,7 @@
   {
     "typeId": "commonCode",
     "code": "naver",
-    "upperCode": "root>snsType",
+    "upperCode": "snsType",
     "name": "네이버",
     "description": "",
     "sortOrder": "3",
@@ -3872,7 +3872,7 @@
   {
     "typeId": "commonCode",
     "code": "tax",
-    "upperCode": "root>taxType",
+    "upperCode": "taxType",
     "name": "과세상품",
     "description": "",
     "sortOrder": "1",
@@ -3881,7 +3881,7 @@
   {
     "typeId": "commonCode",
     "code": "notax",
-    "upperCode": "root>taxType",
+    "upperCode": "taxType",
     "name": "비과세상품",
     "description": "",
     "sortOrder": "2",
@@ -3890,7 +3890,7 @@
   {
     "typeId": "commonCode",
     "code": "taxonline",
-    "upperCode": "root>taxType",
+    "upperCode": "taxType",
     "name": "비과세온라인상품",
     "description": "",
     "sortOrder": "3",
@@ -3899,7 +3899,7 @@
   {
     "typeId": "commonCode",
     "code": "term001",
-    "upperCode": "root>termsType",
+    "upperCode": "termsType",
     "name": "이용약관",
     "description": "",
     "sortOrder": "1",
@@ -3908,7 +3908,7 @@
   {
     "typeId": "commonCode",
     "code": "term002",
-    "upperCode": "root>termsType",
+    "upperCode": "termsType",
     "name": "전자금융거래이용약관",
     "description": "",
     "sortOrder": "2",
@@ -3917,7 +3917,7 @@
   {
     "typeId": "commonCode",
     "code": "term003",
-    "upperCode": "root>termsType",
+    "upperCode": "termsType",
     "name": "개인정보수집및이용안내",
     "description": "",
     "sortOrder": "3",
@@ -3926,7 +3926,7 @@
   {
     "typeId": "commonCode",
     "code": "term004",
-    "upperCode": "root>termsType",
+    "upperCode": "termsType",
     "name": "마케팅수신동의",
     "description": "",
     "sortOrder": "4",
@@ -3935,7 +3935,7 @@
   {
     "typeId": "commonCode",
     "code": "mdpick",
-    "upperCode": "root>themeType",
+    "upperCode": "themeType",
     "name": "MD Pick",
     "description": "",
     "sortOrder": "1",
@@ -3944,7 +3944,7 @@
   {
     "typeId": "commonCode",
     "code": "mdbest",
-    "upperCode": "root>themeType",
+    "upperCode": "themeType",
     "name": "MD Best",
     "description": "",
     "sortOrder": "2",
@@ -3953,7 +3953,7 @@
   {
     "typeId": "commonCode",
     "code": "best",
-    "upperCode": "root>themeType",
+    "upperCode": "themeType",
     "name": "BEST",
     "description": "",
     "sortOrder": "3",
@@ -3962,7 +3962,7 @@
   {
     "typeId": "commonCode",
     "code": "recommend",
-    "upperCode": "root>themeType",
+    "upperCode": "themeType",
     "name": "추천",
     "description": "",
     "sortOrder": "4",
@@ -3971,7 +3971,7 @@
   {
     "typeId": "commonCode",
     "code": "true",
-    "upperCode": "root>trueFalse",
+    "upperCode": "trueFalse",
     "name": "TRUE",
     "description": "",
     "sortOrder": "1",
@@ -3980,7 +3980,7 @@
   {
     "typeId": "commonCode",
     "code": "false",
-    "upperCode": "root>trueFalse",
+    "upperCode": "trueFalse",
     "name": "FALSE",
     "description": "",
     "sortOrder": "2",
@@ -3989,7 +3989,7 @@
   {
     "typeId": "commonCode",
     "code": "purchase",
-    "upperCode": "root>usedPointType",
+    "upperCode": "usedPointType",
     "name": "구매",
     "description": "",
     "sortOrder": "1",
@@ -3998,7 +3998,7 @@
   {
     "typeId": "commonCode",
     "code": "out",
-    "upperCode": "root>usedPointType",
+    "upperCode": "usedPointType",
     "name": "감액",
     "description": "",
     "sortOrder": "2",
@@ -4007,7 +4007,7 @@
   {
     "typeId": "commonCode",
     "code": "getback",
-    "upperCode": "root>usedPointType",
+    "upperCode": "usedPointType",
     "name": "회수",
     "description": "",
     "sortOrder": "3",
@@ -4016,7 +4016,7 @@
   {
     "typeId": "commonCode",
     "code": "fade",
-    "upperCode": "root>usedPointType",
+    "upperCode": "usedPointType",
     "name": "소멸",
     "description": "",
     "sortOrder": "4",
@@ -4025,7 +4025,7 @@
   {
     "typeId": "commonCode",
     "code": "y",
-    "upperCode": "root>useYn",
+    "upperCode": "useYn",
     "name": "사용",
     "description": "",
     "sortOrder": "1",
@@ -4034,7 +4034,7 @@
   {
     "typeId": "commonCode",
     "code": "n",
-    "upperCode": "root>useYn",
+    "upperCode": "useYn",
     "name": "미사용",
     "description": "",
     "sortOrder": "2",
@@ -4043,7 +4043,7 @@
   {
     "typeId": "commonCode",
     "code": "textbox",
-    "upperCode": "root>widget",
+    "upperCode": "widget",
     "name": "textbox",
     "description": "",
     "sortOrder": "1",
@@ -4052,7 +4052,7 @@
   {
     "typeId": "commonCode",
     "code": "spinerbox",
-    "upperCode": "root>widget",
+    "upperCode": "widget",
     "name": "spinerbox",
     "description": "",
     "sortOrder": "2",
@@ -4061,7 +4061,7 @@
   {
     "typeId": "commonCode",
     "code": "selectbox",
-    "upperCode": "root>widget",
+    "upperCode": "widget",
     "name": "selectbox",
     "description": "",
     "sortOrder": "3",
@@ -4070,7 +4070,7 @@
   {
     "typeId": "commonCode",
     "code": "datebox",
-    "upperCode": "root>widget",
+    "upperCode": "widget",
     "name": "datebox",
     "description": "",
     "sortOrder": "4",
@@ -4079,7 +4079,7 @@
   {
     "typeId": "commonCode",
     "code": "textarea",
-    "upperCode": "root>widget",
+    "upperCode": "widget",
     "name": "textarea",
     "description": "",
     "sortOrder": "5",
@@ -4088,7 +4088,7 @@
   {
     "typeId": "commonCode",
     "code": "msg001",
-    "upperCode": "root>deliveryMessage",
+    "upperCode": "deliveryMessage",
     "name": "관리실(경비실)에 맡겨주세요.",
     "description": "",
     "sortOrder": "1",
@@ -4097,7 +4097,7 @@
   {
     "typeId": "commonCode",
     "code": "msg002",
-    "upperCode": "root>deliveryMessage",
+    "upperCode": "deliveryMessage",
     "name": "배송 전 연락주세요.",
     "description": "",
     "sortOrder": "2",
@@ -4106,7 +4106,7 @@
   {
     "typeId": "commonCode",
     "code": "msg003",
-    "upperCode": "root>deliveryMessage",
+    "upperCode": "deliveryMessage",
     "name": "부재 시 문앞에 놔주세요.",
     "description": "",
     "sortOrder": "3",
@@ -4115,7 +4115,7 @@
   {
     "typeId": "commonCode",
     "code": "msg004",
-    "upperCode": "root>deliveryMessage",
+    "upperCode": "deliveryMessage",
     "name": "아이가 있으니 초인종 누르지 마세요.",
     "description": "",
     "sortOrder": "4",
@@ -4124,7 +4124,7 @@
   {
     "typeId": "commonCode",
     "code": "personal",
-    "upperCode": "root>requestCashReceipt",
+    "upperCode": "requestCashReceipt",
     "name": "개인 소득공제용",
     "description": "",
     "sortOrder": "1",
@@ -4133,7 +4133,7 @@
   {
     "typeId": "commonCode",
     "code": "business",
-    "upperCode": "root>requestCashReceipt",
+    "upperCode": "requestCashReceipt",
     "name": "사업자 지출증빙용",
     "description": "",
     "sortOrder": "2",
@@ -4142,7 +4142,7 @@
   {
     "typeId": "commonCode",
     "code": "cell",
-    "upperCode": "root>requestCashReceipt>personal",
+    "upperCode": "personal",
     "name": "휴대폰번호",
     "description": "",
     "sortOrder": "1",
@@ -4151,7 +4151,7 @@
   {
     "typeId": "commonCode",
     "code": "card",
-    "upperCode": "root>requestCashReceipt>personal",
+    "upperCode": "personal",
     "name": "현금영수증카드번호",
     "description": "",
     "sortOrder": "2",
@@ -4160,7 +4160,7 @@
   {
     "typeId": "commonCode",
     "code": "cell",
-    "upperCode": "root>requestCashReceipt>business",
+    "upperCode": "business",
     "name": "사업자등록번호",
     "description": "",
     "sortOrder": "1",
@@ -4169,7 +4169,7 @@
   {
     "typeId": "commonCode",
     "code": "card",
-    "upperCode": "root>requestCashReceipt>business",
+    "upperCode": "business",
     "name": "현금영수증카드번호",
     "description": "",
     "sortOrder": "2",
@@ -4178,7 +4178,7 @@
   {
     "typeId": "commonCode",
     "code": "y",
-    "upperCode": "root>couponTypeStatus",
+    "upperCode": "couponTypeStatus",
     "name": "발급중",
     "description": "",
     "sortOrder": "1",
@@ -4187,7 +4187,7 @@
   {
     "typeId": "commonCode",
     "code": "n",
-    "upperCode": "root>couponTypeStatus",
+    "upperCode": "couponTypeStatus",
     "name": "발급중단",
     "description": "",
     "sortOrder": "2",
@@ -4196,7 +4196,7 @@
   {
     "typeId": "commonCode",
     "code": "auto001",
-    "upperCode": "root>counditionalAuto",
+    "upperCode": "counditionalAuto",
     "name": "회원가입",
     "description": "",
     "sortOrder": "1",
@@ -4205,7 +4205,7 @@
   {
     "typeId": "commonCode",
     "code": "auto002",
-    "upperCode": "root>counditionalAuto",
+    "upperCode": "counditionalAuto",
     "name": "회원 후기 작성",
     "description": "",
     "sortOrder": "2",
@@ -4214,7 +4214,7 @@
   {
     "typeId": "commonCode",
     "code": "auto003",
-    "upperCode": "root>counditionalAuto",
+    "upperCode": "counditionalAuto",
     "name": "로그인 이벤트",
     "description": "",
     "sortOrder": "3",
@@ -4223,7 +4223,7 @@
   {
     "typeId": "commonCode",
     "code": "auto004",
-    "upperCode": "root>counditionalAuto",
+    "upperCode": "counditionalAuto",
     "name": "첫구매",
     "description": "",
     "sortOrder": "4",
@@ -4232,7 +4232,7 @@
   {
     "typeId": "commonCode",
     "code": "auto005",
-    "upperCode": "root>counditionalAuto",
+    "upperCode": "counditionalAuto",
     "name": "구매수량 충족",
     "description": "",
     "sortOrder": "5",
@@ -4241,7 +4241,7 @@
   {
     "typeId": "commonCode",
     "code": "auto006",
-    "upperCode": "root>counditionalAuto",
+    "upperCode": "counditionalAuto",
     "name": "룰렛 이벤트",
     "description": "",
     "sortOrder": "6",
@@ -4250,7 +4250,7 @@
   {
     "typeId": "commonCode",
     "code": "discountRate",
-    "upperCode": "root>benefitsType",
+    "upperCode": "benefitsType",
     "name": "할인율",
     "description": "",
     "sortOrder": "1",
@@ -4259,7 +4259,7 @@
   {
     "typeId": "commonCode",
     "code": "discountPrice",
-    "upperCode": "root>benefitsType",
+    "upperCode": "benefitsType",
     "name": "할인금액",
     "description": "",
     "sortOrder": "2",
@@ -4268,7 +4268,7 @@
   {
     "typeId": "commonCode",
     "code": "freeDelivery",
-    "upperCode": "root>benefitsType",
+    "upperCode": "benefitsType",
     "name": "배송비무료",
     "description": "",
     "sortOrder": "3",
@@ -4277,7 +4277,7 @@
   {
     "typeId": "commonCode",
     "code": "general",
-    "upperCode": "root>membershipLevel",
+    "upperCode": "membershipLevel",
     "name": "일반회원",
     "description": "",
     "sortOrder": "1",
@@ -4286,7 +4286,7 @@
   {
     "typeId": "commonCode",
     "code": "vip",
-    "upperCode": "root>membershipLevel",
+    "upperCode": "membershipLevel",
     "name": "VIP회원",
     "description": "",
     "sortOrder": "2",
@@ -4295,7 +4295,7 @@
   {
     "typeId": "commonCode",
     "code": "ad",
-    "upperCode": "root>membershipLevel",
+    "upperCode": "membershipLevel",
     "name": "홍보위원",
     "description": "",
     "sortOrder": "3",
@@ -4304,7 +4304,7 @@
   {
     "typeId": "commonCode",
     "code": "no",
-    "upperCode": "root>interestType",
+    "upperCode": "interestType",
     "name": "무이자",
     "description": "",
     "sortOrder": "1",
@@ -4313,7 +4313,7 @@
   {
     "typeId": "commonCode",
     "code": "part",
-    "upperCode": "root>interestType",
+    "upperCode": "interestType",
     "name": "부분무이자",
     "description": "",
     "sortOrder": "2",
@@ -4322,7 +4322,7 @@
   {
     "typeId": "commonCode",
     "code": "charge",
-    "upperCode": "root>discountType",
+    "upperCode": "discountType",
     "name": "청구할인",
     "description": "",
     "sortOrder": "1",
@@ -4331,7 +4331,7 @@
   {
     "typeId": "commonCode",
     "code": "priority",
-    "upperCode": "root>discountType",
+    "upperCode": "discountType",
     "name": "선할인",
     "description": "",
     "sortOrder": "2",
@@ -4340,7 +4340,7 @@
   {
     "typeId": "commonCode",
     "code": "ready",
-    "upperCode": "root>specialExhibitionStatus",
+    "upperCode": "specialExhibitionStatus",
     "name": "대기",
     "description": "",
     "sortOrder": "1",
@@ -4349,7 +4349,7 @@
   {
     "typeId": "commonCode",
     "code": "pending",
-    "upperCode": "root>specialExhibitionStatus",
+    "upperCode": "specialExhibitionStatus",
     "name": "진행",
     "description": "",
     "sortOrder": "2",
@@ -4358,7 +4358,7 @@
   {
     "typeId": "commonCode",
     "code": "expire",
-    "upperCode": "root>specialExhibitionStatus",
+    "upperCode": "specialExhibitionStatus",
     "name": "만료",
     "description": "",
     "sortOrder": "3",
@@ -4367,7 +4367,7 @@
   {
     "typeId": "commonCode",
     "code": "use",
-    "upperCode": "root>specialExhibitionStatus",
+    "upperCode": "specialExhibitionStatus",
     "name": "사용",
     "description": "",
     "sortOrder": "4",
@@ -4376,7 +4376,7 @@
   {
     "typeId": "commonCode",
     "code": "stop",
-    "upperCode": "root>specialExhibitionStatus",
+    "upperCode": "specialExhibitionStatus",
     "name": "중지",
     "description": "",
     "sortOrder": "5",
@@ -4385,7 +4385,7 @@
   {
     "typeId": "commonCode",
     "code": "general",
-    "upperCode": "root>affilieateType",
+    "upperCode": "affilieateType",
     "name": "일반",
     "description": "",
     "sortOrder": "1",
@@ -4394,7 +4394,7 @@
   {
     "typeId": "commonCode",
     "code": "nomember",
-    "upperCode": "root>affilieateType",
+    "upperCode": "affilieateType",
     "name": "비회원",
     "description": "",
     "sortOrder": "2",
@@ -4403,7 +4403,7 @@
   {
     "typeId": "commonCode",
     "code": "affiliateStoreMall",
-    "upperCode": "root>affilieateType",
+    "upperCode": "affilieateType",
     "name": "제휴입점",
     "description": "",
     "sortOrder": "3",
