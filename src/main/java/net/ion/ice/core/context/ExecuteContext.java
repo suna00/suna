@@ -36,7 +36,7 @@ public class ExecuteContext implements Context{
     protected String event;
 
 
-    public static ExecuteContext makeContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType, String event) {
+    public static ExecuteContext createContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType, String event) {
         ExecuteContext ctx = new ExecuteContext();
 
         Map<String, Object> data = ContextUtils.makeContextData(parameterMap);

@@ -1,4 +1,4 @@
-package net.ion.ice.core.data.context;
+package net.ion.ice.core.context;
 
 /**
  * Created by seonwoong on 2017. 7. 20..

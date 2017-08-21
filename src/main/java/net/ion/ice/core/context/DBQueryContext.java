@@ -1,4 +1,4 @@
-package net.ion.ice.core.data.context;
+package net.ion.ice.core.context;
 
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.PropertyType;

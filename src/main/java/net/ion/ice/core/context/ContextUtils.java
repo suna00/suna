@@ -26,7 +26,7 @@ public class ContextUtils {
             }else if ( values.length == 1 ) {
                 value = values[0];
             }else {
-                value = StringUtils.join(values, ' ');
+                value = StringUtils.join(values, ',');
             }
 
             data.put(paramName, value);
