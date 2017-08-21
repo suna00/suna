@@ -195,6 +195,52 @@ file:
 
 
 ---
+# YTN 개발 서버
+spring:
+  profiles:
+    active: ytn-dev
+  http:
+    multipart:
+      max-request-size: 20MB
+      max-file-size: 1024MB
+
+server:
+  port: 8080
+
+jwtConfig:
+  issuer: I-ON
+  secretKey: dkdldhs!@#$
+  headerPrefix: SDP
+  headString: X-Authorization
+  tokenExpirationTime: 15 #분
+  refreshTokenExpTime: 60 #분
+
+cluster:
+  members:
+    - 127.0.0.1
+    - localhost
+    - 125.131.88.206
+
+infinispan:
+  cachePath: /resource/ice2/cache
+
+tomcat:
+  access-log-enabled: true
+  access-log-pattern: "%h %l %u %t \"%r\" %s %b %D"
+  basedir: tomcat
+
+logging:
+  config:
+    classpath:
+      - logback-access-dev-2.xml
+      - logback-dev-2.xml
+
+file:
+  default:
+    path: /resource/ice2/files
+
+---
+# 교보 개발 서버
 spring:
   profiles: kybo-dev
   http:

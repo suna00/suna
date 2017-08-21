@@ -14,9 +14,16 @@ import org.apache.lucene.search.*;
 import org.apache.lucene.util.BytesRef;
 import org.apache.lucene.util.BytesRefBuilder;
 import org.apache.lucene.util.NumericUtils;
+import org.hibernate.search.analyzer.impl.AnalyzerReference;
+import org.hibernate.search.analyzer.impl.RemoteAnalyzerProvider;
 import org.hibernate.search.bridge.impl.JavaTimeBridgeProvider;
+import org.hibernate.search.bridge.spi.ConversionContext;
+import org.hibernate.search.engine.spi.DocumentBuilderIndexedEntity;
 import org.hibernate.search.exception.AssertionFailure;
 import org.hibernate.search.exception.SearchException;
+import org.hibernate.search.query.dsl.impl.FieldContext;
+import org.hibernate.search.query.dsl.impl.QueryBuildingContext;
+import org.hibernate.search.query.dsl.impl.RangeQueryContext;
 import org.infinispan.query.CacheQuery;
 
 
@@ -141,6 +148,38 @@ public class LuceneQueryUtils {
         return query;
     }
 
+    private static Query createKeywordRangeQuery(String fieldName, RangeQueryContext rangeContext, QueryBuildingContext queryContext, ConversionContext conversionContext, FieldContext fieldContext) {
+        final AnalyzerReference analyzerReference = queryContext.getQueryAnalyzerReference();
+
+        final DocumentBuilderIndexedEntity documentBuilder = queryContext.getDocumentBuilder();
+
+        final String fromString = rangeContext.hasFrom() ?
+                fieldContext.objectToString( documentBuilder, rangeContext.getFrom(), conversionContext ) :
+                null;
+        final String toString = rangeContext.hasTo() ?
+                fieldContext.objectToString( documentBuilder, rangeContext.getTo(), conversionContext ) :
+                null;
+
+        String lowerTerm = null ;
+        String upperTerm;
+        if ( queryContext.getFactory().getIndexBinding( queryContext.getEntityType() ).getIndexManagers()[0] instanceof RemoteAnalyzerProvider) {
+            lowerTerm = fromString == null ? null : fromString;
+            upperTerm = toString == null ? null : toString;
+        }
+        else {
+//            final Analyzer queryAnalyzer = analyzerReference.unwrap( LuceneAnalyzerReference.class ).getAnalyzer();
+//
+//            lowerTerm = fromString == null ?
+//                    null :
+//                    Helper.getAnalyzedTerm( fieldName, fromString, "from", queryAnalyzer, fieldContext );
+//
+//            upperTerm = toString == null ?
+//                    null :
+//                    Helper.getAnalyzedTerm( fieldName, toString, "to", queryAnalyzer, fieldContext );
+        }
+
+        return TermRangeQuery.newStringRange( fieldName, lowerTerm, null, !rangeContext.isExcludeFrom(), !rangeContext.isExcludeTo() );
+    }
 
     public static Query equalsQuery(String key, String value, boolean isNumeric) {
         TermQuery termQuery = new TermQuery(isNumeric ? new Term(key, getBytesRefNumericValue(value)) : new Term(key, value));

@@ -17,7 +17,7 @@
     "labelable": false,
     "required": true,
     "length": 100,
-    "analyzer": "cjk"
+    "analyzer": "simple"
   },
   {
     "typeId": "propertyType",
@@ -30,6 +30,6 @@
     "labelable": false,
     "required": false,
     "length": 100,
-    "analyzer": "cjk"
+    "analyzer": "code"
   }
 ]

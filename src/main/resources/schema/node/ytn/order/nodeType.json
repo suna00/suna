@@ -1,0 +1,118 @@
+[
+  {
+    "parentId": "root",
+    "typeId": "nodeType",
+    "tid": "orderPath",
+    "typeName": "주문 관리",
+    "repositoryType": "path",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "cart",
+    "typeName": "장바구니",
+    "tableName": "ytnDevDb#cart",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "cartProduct",
+    "typeName": "장바구니 상품",
+    "tableName": "ytnDevDb#cartProduct",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "cartProductItem",
+    "typeName": "장바구니 상품 아이템",
+    "tableName": "ytnDevDb#cartProductItem",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "developmentFundHistory",
+    "typeName": "발전기금 내역",
+    "tableName": "ytnDevDb#developmentFundHistory",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "monthlyDevelopmentFund",
+    "typeName": "월별 발전기금",
+    "tableName": "ytnDevDb#monthlyDevelopmentFund",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "purchaseOrder",
+    "typeName": "주문서",
+    "tableName": "ytnDevDb#purchaseOrder",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "orderProduct",
+    "typeName": "주문서 상품",
+    "tableName": "ytnDevDb#orderProduct",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "orderProductItem",
+    "typeName": "주문서 상품 아이템",
+    "tableName": "ytnDevDb#orderProductItem",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "payment",
+    "typeName": "결제",
+    "tableName": "ytnDevDb#payment",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "paymentHistory",
+    "typeName": "결제 이력",
+    "tableName": "ytnDevDb#paymentHistory",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "orderChange",
+    "typeName": "주문 변경",
+    "tableName": "ytnDevDb#orderChange",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "orderChangeProduct",
+    "typeName": "주문 변경 상품",
+    "tableName": "ytnDevDb#orderChangeProduct",
+    "repositoryType": "data",
+    "eviction": 0
+  }
+]

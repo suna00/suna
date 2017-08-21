@@ -31,7 +31,6 @@ import java.util.*;
 public class InfinispanRepositoryService {
     private Logger logger = LoggerFactory.getLogger(InfinispanRepositoryService.class);
 
-    public static final String NODEVALUE_SEPERATOR = "://";
     @Autowired
     private InfinispanCacheManager cacheManager;
 
@@ -51,7 +50,7 @@ public class InfinispanRepositoryService {
     public Node initNode(String typeId, Node srcNode) {
         if (srcNode.getNodeValue() == null) {
             Cache<String, NodeValue> nodeValueCache = getNodeValueCache();
-            srcNode.setNodeValue(nodeValueCache.get(typeId + NODEVALUE_SEPERATOR + srcNode.getId()));
+            srcNode.setNodeValue(nodeValueCache.get(typeId + NodeValue.NODEVALUE_SEPERATOR + srcNode.getId()));
         }
         Node node = srcNode.clone();
 
@@ -87,6 +86,11 @@ public class InfinispanRepositoryService {
     public Node execute(ExecuteContext context) {
         Node node = context.getNode();
         if (!context.isExecute()) return node;
+        if(context.getEvent().equals("delete")){
+            deleteNode(node);
+            return node ;
+        }
+
         Cache<String, Node> nodeCache = null ;
         Cache<String, NodeValue> nodeValueCache = null ;
         try {
@@ -96,7 +100,7 @@ public class InfinispanRepositoryService {
 
             nodeValueCache = getNodeValueCache();
             node.getNodeValue().setContent(node.getSearchValue());
-            nodeValueCache.put(node.getTypeId() + NODEVALUE_SEPERATOR + node.getId(), node.getNodeValue());
+            nodeValueCache.put(node.getTypeId() + NodeValue.NODEVALUE_SEPERATOR + node.getId(), node.getNodeValue());
         } catch (Exception e) {
             if(nodeCache != null){
                 nodeCache.remove(node.getId().toString()) ;
@@ -117,7 +121,7 @@ public class InfinispanRepositoryService {
         nodeCache.remove(node.getId().toString());
 
         Cache<String, NodeValue> nodeValueCache = getNodeValueCache();
-        nodeValueCache.remove(node.getTypeId() + NODEVALUE_SEPERATOR + node.getId());
+        nodeValueCache.remove(node.getTypeId() + NodeValue.NODEVALUE_SEPERATOR + node.getId());
     }
 
     private List<Object> executeQuery(String typeId, QueryContext queryContext) {
@@ -134,6 +138,7 @@ public class InfinispanRepositoryService {
 
         List<Object> list = cacheQuery.list();
         queryContext.setResultSize(cacheQuery.getResultSize());
+        queryContext.setQueryListSize(list.size()) ;
 
         if(queryContext.getStart() > 0) {
             return list.subList(queryContext.getStart(), list.size()) ;
@@ -203,7 +208,7 @@ public class InfinispanRepositoryService {
     }
 
     public SimpleQueryResult getQueryCodeNodes(String typeId, QueryContext queryContext) {
-        queryContext.setIncludeReference(true);
+        queryContext.setIncludeReference(false);
         List<Node> result = getSubQueryNodes(typeId, queryContext);
         for (Node node : result) {
             node.toCode();
@@ -225,6 +230,7 @@ public class InfinispanRepositoryService {
 
         List<Object> list = cacheQuery.list();
         queryContext.setResultSize(cacheQuery.getResultSize());
+        queryContext.setQueryListSize(list.size()) ;
 
         if(queryContext.getStart() > 0) {
             return list.subList(queryContext.getStart(), list.size()) ;

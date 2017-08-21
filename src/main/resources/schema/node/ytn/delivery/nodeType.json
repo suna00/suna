@@ -1,0 +1,37 @@
+[
+  {
+    "parentId": "root",
+    "typeId": "nodeType",
+    "tid": "deliveryPath",
+    "typeName": "배송 관리",
+    "repositoryType": "path",
+    "eviction": 0
+  },
+  {
+    "parentId": "deliveryPath",
+    "typeId": "nodeType",
+    "tid": "delivery",
+    "typeName": "배송 정보",
+    "tableName": "ytnDevDb#delivery",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "deliveryPath",
+    "typeId": "nodeType",
+    "tid": "myDeliveryAddress",
+    "typeName": "나의 배송지",
+    "tableName": "ytnDevDb#myDeliveryAddress",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "deliveryPath",
+    "typeId": "nodeType",
+    "tid": "orderDeliveryPrice",
+    "typeName": "주문서 배송비",
+    "tableName": "ytnDevDb#orderDeliveryPrice",
+    "repositoryType": "data",
+    "eviction": 0
+  }
+]

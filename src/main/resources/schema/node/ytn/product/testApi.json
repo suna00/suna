@@ -1,0 +1,51 @@
+[
+  {
+    "typeId" : "commonApi",
+    "id" : "product",
+    "categoryName" : "Test API"
+  },
+  {
+    "typeId" : "commonApi",
+    "id" : "queryTest",
+    "categoryName" : "Test API"
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "product",
+    "apiId" : "mergeList",
+    "apiName" : "Product List",
+    "method" : "GET",
+    "config" : {
+      "items" : {
+        "typeId": "product",
+        "queryType": "merge",
+        "query" : [
+          {"sorting" : "productId desc"},
+          {"page" : "{{:page}}", "pageSize":20}
+        ],
+        "response" : {
+          "merge" : "baseItem",
+          "fields" : {
+            "id": "",
+            "category": null,
+            "title": "",
+            "body": "",
+            "baseItem": ""
+          }
+        }
+      }
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "queryTest",
+    "apiId" : "joinList",
+    "apiName" : "List",
+    "method" : "GET",
+    "config" : {
+      "items" : {
+        "select" : {"sql" : "select * from commoncode"}
+      }
+    }
+  }
+]
