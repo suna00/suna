@@ -21,8 +21,9 @@ public class ReadContext implements Context {
     protected NodeType nodeType;
     protected Map<String, Object> data;
 
+    protected Integer level ;
 
-    protected Boolean includeReference;
+    protected Boolean includeReferenced;
     protected Boolean referenceView ;
     protected List<String> referenceViewFields ;
 
@@ -36,11 +37,11 @@ public class ReadContext implements Context {
     }
 
     public boolean isIncludeReferenced() {
-        return includeReference != null && includeReference;
+        return includeReferenced != null && includeReferenced;
     }
 
-    public void setIncludeReference(boolean includeReference) {
-        this.includeReference = includeReference;
+    public void setIncludeReferenced(boolean includeReference) {
+        this.includeReferenced = includeReference;
     }
 
 
@@ -77,7 +78,7 @@ public class ReadContext implements Context {
 
     protected static void makeContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType, ReadContext context) {
         if (parameterMap == null || parameterMap.size() == 0) {
-            context.setIncludeReference(true);
+            context.setIncludeReferenced(true);
             return ;
         }
 
@@ -92,7 +93,7 @@ public class ReadContext implements Context {
         }
 
         if(context.resultFields == null || context.resultFields.size() == 0 ){
-            context.setIncludeReference(true);
+            context.setIncludeReferenced(true);
         }
 
         String referenceView = (String) data.get("referenceView");
@@ -175,15 +176,26 @@ public class ReadContext implements Context {
     }
 
     public boolean isReferenceView(String pid) {
-        if(referenceView == null){
-            return false ;
+        if (referenceView == null) {
+            return false;
         }
-        if(referenceView && referenceViewFields == null){
-            return true ;
-        }else if(referenceView && referenceViewFields.contains(pid)){
-            return true ;
+        if (referenceView && referenceViewFields == null) {
+            return true;
+        } else if (referenceView && referenceViewFields.contains(pid)) {
+            return true;
         }
 
-        return false ;
+        return false;
+    }
+
+    public Integer getLevel() {
+        if(level  == null){
+            return 0 ;
+        }
+        return level;
+    }
+
+    public void setLevel(Integer level){
+        this.level = level ;
     }
 }

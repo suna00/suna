@@ -1,7 +1,9 @@
 package net.ion.ice.core.query;
 
+import net.ion.ice.core.context.TemplateParam;
 import net.ion.ice.core.infinispan.lucene.AnalyzerFactory;
 import net.ion.ice.core.infinispan.lucene.CodeAnalyzer;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.core.SimpleAnalyzer;
 
@@ -19,6 +21,8 @@ public class QueryTerm {
 
     private QueryMethod method ;
     private Analyzer analyzer;
+
+    private TemplateParam templateParam ;
 
     public QueryTerm(QueryTermType queryTermType, String queryKey, String analyzer, String method, Object queryValue) {
         this.queryTermType = queryTermType ;
@@ -49,7 +53,9 @@ public class QueryTerm {
 
     public QueryTerm(String fieldId, Analyzer luceneAnalyzer, String method, Object value) {
         this.queryKey = fieldId ;
-
+        if(method == null){
+            method = "matching" ;
+        }
         this.method = QueryMethod.valueOf(method.toUpperCase()) ;
         this.queryValue = value ;
         this.analyzer = luceneAnalyzer ;

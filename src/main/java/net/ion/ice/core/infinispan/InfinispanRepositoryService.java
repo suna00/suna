@@ -166,7 +166,7 @@ public class InfinispanRepositoryService {
     }
 
     public SimpleQueryResult getQueryNodes(String typeId, QueryContext queryContext) {
-        queryContext.setIncludeReference(true);
+        queryContext.setIncludeReferenced(true);
         List<Node> result = getSubQueryNodes(typeId, queryContext);
         for (Node node : result) {
             node.toDisplay();
@@ -179,28 +179,26 @@ public class InfinispanRepositoryService {
         List<Object> list = executeQuery(typeId, queryContext);
 
         NodeType nodeType = NodeUtils.getNodeType(typeId);
-
-        boolean hasReferenced = nodeType.hasReferenced();
         List<Node> resultList = new ArrayList<>();
         for (Object item : list) {
             Node node = (Node) item;
-            node = initNode(typeId, node.clone());
+            node = initNode(typeId, node);
 
-            if (queryContext.isIncludeReferenced()) {
-                for (PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)) {
-                    QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(nodeType, pt, node);
-                    node.put(pt.getPid(), getSubQueryNodes(pt.getReferenceType(), subQueryContext));
-                }
-            }
-            if (queryContext.isTreeable()) {
-                for (PropertyType pt : nodeType.getPropertyTypes()) {
-                    if (pt.isTreeable()) {
-                        QueryContext subQueryContext = QueryContext.makeQueryContextForTree(nodeType, pt, node.getId().toString());
-                        subQueryContext.setTreeable(true);
-                        node.put("children", getSubQueryNodes(pt.getReferenceType(), subQueryContext));
-                    }
-                }
-            }
+//            if (queryContext.isIncludeReferenced()) {
+//                for (PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)) {
+//                    QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(nodeType, pt, node);
+//                    node.put(pt.getPid(), getSubQueryNodes(pt.getReferenceType(), subQueryContext));
+//                }
+//            }
+//            if (queryContext.isTreeable()) {
+//                for (PropertyType pt : nodeType.getPropertyTypes()) {
+//                    if (pt.isTreeable()) {
+//                        QueryContext subQueryContext = QueryContext.makeQueryContextForTree(nodeType, pt, node.getId().toString());
+//                        subQueryContext.setTreeable(true);
+//                        node.put("children", getSubQueryNodes(pt.getReferenceType(), subQueryContext));
+//                    }
+//                }
+//            }
             resultList.add(node);
         }
 
@@ -208,7 +206,7 @@ public class InfinispanRepositoryService {
     }
 
     public SimpleQueryResult getQueryCodeNodes(String typeId, QueryContext queryContext) {
-        queryContext.setIncludeReference(false);
+        queryContext.setIncludeReferenced(false);
         List<Node> result = getSubQueryNodes(typeId, queryContext);
         for (Node node : result) {
             node.toCode();

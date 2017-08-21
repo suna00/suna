@@ -117,6 +117,25 @@ public class NodeService {
     public List<Node> getNodeList(String typeId, QueryContext queryContext) {
         return infinispanRepositoryService.getSubQueryNodes(typeId, queryContext) ;
     }
+    public List<Node> getDisplayNodeList(String typeId, QueryContext queryContext) {
+        NodeType nodeType = getNodeType(typeId) ;
+        List<Node> nodeList = infinispanRepositoryService.getSubQueryNodes(typeId, queryContext) ;
+        for(Node node : nodeList){
+            node.toDisplay(queryContext) ;
+            if (queryContext.isTreeable()) {
+                for (PropertyType pt : nodeType.getPropertyTypes()) {
+                    if (pt.isTreeable()) {
+                        QueryContext subQueryContext = QueryContext.makeQueryContextForTree(nodeType, pt, node.getId().toString());
+                        subQueryContext.setTreeable(true);
+                        node.put("children", getDisplayNodeList(pt.getReferenceType(), subQueryContext));
+                    }
+                }
+            }
+        }
+        return nodeList ;
+    }
+
+
 
     public SimpleQueryResult getNodeList(String typeId, Map<String, String[]> parameterMap) {
         QueryContext queryContext = QueryContext.createQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
@@ -262,15 +281,23 @@ public class NodeService {
     public Node deleteNode(Map<String, String[]> parameterMap, String typeId) {
         NodeType nodeType = getNodeType(typeId) ;
 
-        ExecuteContext context = ExecuteContext.createContextFromParameter(parameterMap, nodeType, "delete") ;
+        ExecuteContext context = ExecuteContext.createContextFromParameter(parameterMap, nodeType, "delete", null) ;
+        context.execute();
+
         Node node = context.getNode() ;
-        infinispanRepositoryService.deleteNode(node) ;
         return node ;
     }
 
     public Node deleteNode(String typeId, String id) {
-        Node node = infinispanRepositoryService.getNode(typeId, id) ;
-        infinispanRepositoryService.deleteNode(node) ;
+        NodeType nodeType = getNodeType(typeId) ;
+
+        ExecuteContext context = ExecuteContext.createContextFromParameter(null, nodeType, "delete", id) ;
+        context.execute();
+
+        Node node = context.getNode() ;
+
+//        Node node = infinispanRepositoryService.getNode(typeId, id) ;
+//        infinispanRepositoryService.deleteNode(node) ;
         return node ;
     }
 
