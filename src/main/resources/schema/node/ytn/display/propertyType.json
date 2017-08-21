@@ -638,7 +638,7 @@
     "propertyTypeName": "상위카테고리ID",
     "valueType": "REFERENCE",
     "required": false,
-    "idable": true,
+    "idable": false,
     "labelable": false,
     "treeable": true,
     "indexable": true,
