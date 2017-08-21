@@ -19,8 +19,8 @@
   {
     "typeId": "propertyType",
     "tid": "svcMenuInfo",
-    "pid": "svcMenuGroupId",
-    "id": "svcMenuInfo@svcMenuGroupId",
+    "pid": "svcMenuGroupSeq",
+    "id": "svcMenuInfo@svcMenuGroupSeq",
     "propertyTypeName": "서비스 메뉴 그룹 아이디",
     "valueType": "REFERENCE",
     "required": true,
@@ -30,7 +30,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "svcMenuGroupInfo",
-    "referenceValue": "svcMenuGroupId",
+    "referenceValue": "svcMenuGroupSeq",
     "defaultValue": ""
   },
   {

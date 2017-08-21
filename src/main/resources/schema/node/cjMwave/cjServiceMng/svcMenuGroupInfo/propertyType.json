@@ -2,10 +2,10 @@
   {
     "typeId": "propertyType",
     "tid": "svcMenuGroupInfo",
-    "pid": "svcMenuGroupId",
-    "id": "svcMenuGroupInfo@svcMenuGroupId",
-    "propertyTypeName": "서비스 메뉴 그룹 아이디",
-    "valueType": "STRING",
+    "pid": "svcMenuGroupSeq",
+    "id": "svcMenuGroupInfo@svcMenuGroupSeq",
+    "propertyTypeName": "서비스 메뉴 그룹 일련번호",
+    "valueType": "INT",
     "required": true,
     "idable": true,
     "labelable": false,
@@ -14,6 +14,7 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
+    "idType": "autoIncrement",
     "defaultValue": ""
   },
   {
@@ -116,6 +117,23 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "svcMenuGroupInfo",
+    "pid": "refdMenuList",
+    "id": "svcMenuGroupInfo@refdMenuList",
+    "propertyTypeName": "서비스 메뉴 목록",
+    "valueType": "REFERENCED",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "svcMenuInfo",
+    "referenceValue": "svcMenuGroupId",
     "defaultValue": ""
   },
   {

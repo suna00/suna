@@ -7181,7 +7181,7 @@
     {
       "id": "e285921a-ea05-81d5-c08f-57cfbb1b0040",
       "method": "GET",
-      "url": "{{protocol}}://{{hostname}}:{{port}}/node/svcMenuGroupInfo/read.json?svcMenuGroupId=1",
+      "url": "{{protocol}}://{{hostname}}:{{port}}/node/svcMenuGroupInfo/read.json?svcMenuGroupSeq=1",
       "name": "서비스 메뉴 그룹 정보 svcMenuGroupInfo/read.json",
       "dataMode": "params",
       "headers": "",
@@ -7189,7 +7189,7 @@
       "data": null,
       "queryParams": [
         {
-          "key": "svcMenuGroupId",
+          "key": "svcMenuGroupSeq",
           "value": "1",
           "equals": true,
           "description": "",
@@ -7227,9 +7227,9 @@
       ],
       "data": [
         {
-          "key": "svcMenuGroupId",
+          "key": "svcMenuGroupSeq",
           "value": "",
-          "description": "서비스 메뉴 그룹 아이디 (varchar) Not null"
+          "description": "서비스 메뉴 그룹 일련번호 (bigint) Not null"
         },
         {
           "key": "svcMenuGroupNm",
@@ -7280,7 +7280,7 @@
     {
       "id": "e285921a-ea05-81d5-c08f-57cfbb1d0040",
       "method": "GET",
-      "url": "{{protocol}}://{{hostname}}:{{port}}/node/svcMenuGroupInfo/delete.json?svcMenuGroupId=1",
+      "url": "{{protocol}}://{{hostname}}:{{port}}/node/svcMenuGroupInfo/delete.json?svcMenuGroupSeq=1",
       "name": "서비스 메뉴 그룹 정보 svcMenuGroupInfo/delete.json",
       "dataMode": "params",
       "headers": "",
@@ -7288,7 +7288,7 @@
       "data": null,
       "queryParams": [
         {
-          "key": "svcMenuGroupId",
+          "key": "svcMenuGroupSeq",
           "value": "1",
           "equals": true,
           "description": "",
@@ -7388,9 +7388,9 @@
           "description": "서비스 메뉴 아이디 (varchar) Not null"
         },
         {
-          "key": "svcMenuGroupId",
+          "key": "svcMenuGroupSeq",
           "value": "",
-          "description": "서비스 메뉴 그룹 아이디 (varchar) "
+          "description": "서비스 메뉴 그룹 일련번호 (bigint) "
         },
         {
           "key": "upperSvcMenuId",
