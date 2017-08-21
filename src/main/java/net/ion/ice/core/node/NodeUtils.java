@@ -178,7 +178,7 @@ public class NodeUtils {
                     if (value instanceof ReferenceView) {
                         return value;
                     }
-                    return NodeUtils.getReferenceValueView(value, pt);
+                    return NodeUtils.getReferenceValueView(null, value, pt);
                 }else {
                     if (value instanceof Reference) {
                         return value;
@@ -194,7 +194,7 @@ public class NodeUtils {
                     if (value != null && StringUtils.isNotEmpty(value.toString())) {
                         for (String refVal : StringUtils.split(value.toString(), ",")) {
                             if(pt.isReferenceView()) {
-                                refValues.add(NodeUtils.getReferenceValueView(refVal, pt));
+                                refValues.add(NodeUtils.getReferenceValueView(null, refVal, pt));
                             }else{
                                 refValues.add(NodeUtils.getReferenceValue(refVal, pt));
                             }
@@ -212,17 +212,18 @@ public class NodeUtils {
                 }
                 return null;
             }
+
             default:
                 return null;
         }
     }
 
-    public static ReferenceView getReferenceValueView(Object value, PropertyType pt) {
+    public static ReferenceView getReferenceValueView(ReadContext context, Object value, PropertyType pt) {
         try {
             NodeService nodeService = getNodeService();
             Node refNode = nodeService.getNode(pt.getReferenceType(), value.toString());
             NodeType nodeType = nodeService.getNodeType(pt.getReferenceType());
-            return new ReferenceView(refNode, nodeType);
+            return new ReferenceView(refNode.toDisplay(context), nodeType);
         } catch (NotFoundNodeException e) {
             return new ReferenceView(value.toString(), value.toString());
         }
@@ -255,7 +256,7 @@ public class NodeUtils {
                     if (value instanceof ReferenceView) {
                         return value;
                     }
-                    return NodeUtils.getReferenceValueView(value, pt);
+                    return NodeUtils.getReferenceValueView(context, value, pt);
                 }else {
                     if (value instanceof Reference) {
                         return value;
@@ -272,7 +273,7 @@ public class NodeUtils {
                 if(value != null && StringUtils.isNotEmpty(value.toString())){
                     for(String refVal : StringUtils.split(value.toString(), ",")){
                         if(context.isReferenceView(pt.getPid())) {
-                            refValues.add(NodeUtils.getReferenceValueView(refVal, pt));
+                            refValues.add(NodeUtils.getReferenceValueView(context, refVal, pt));
                         }else{
                             refValues.add(NodeUtils.getReferenceValue(refVal, pt));
                         }
@@ -283,6 +284,13 @@ public class NodeUtils {
             case DATE :{
                 if(value ==  null) return null ;
                 return getDateStringValue(value) ;
+            }
+            case FILE: {
+                if(value ==  null) return null ;
+                if (value instanceof FileValue) {
+                    return value;
+                }
+                return null;
             }
             case REFERENCED: {
                 QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(getNodeType(node.getTypeId()), pt, node);

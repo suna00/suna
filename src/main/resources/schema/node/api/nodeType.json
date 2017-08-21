@@ -91,6 +91,17 @@
   {
     "typeId" : "propertyType",
     "tid" : "apiConfig",
+    "pid" : "parameters",
+    "propertyTypeName" : "Parameter Configuration",
+    "valueType" : "JSON",
+    "idable" : false,
+    "indexable" : false,
+    "labelable" : false,
+    "required" : false
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "apiConfig",
     "pid" : "config",
     "propertyTypeName" : "API Configuration",
     "valueType" : "JSON",

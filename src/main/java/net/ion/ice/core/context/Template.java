@@ -29,9 +29,9 @@ public class Template {
 
     public Template(String templateStr){
         this.templateStr = templateStr ;
-        this.templateArrays = new ArrayList<TemplateArray>();
-        this.templateParams = new ArrayList<TemplateParam>();
-        this.sqlParams = new ArrayList<SqlParam>();
+        this.templateArrays = new ArrayList<>();
+        this.templateParams = new ArrayList<>();
+        this.sqlParams = new ArrayList<>();
 
     }
 

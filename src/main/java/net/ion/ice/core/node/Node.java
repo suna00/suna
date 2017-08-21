@@ -1,5 +1,7 @@
 package net.ion.ice.core.node;
 
+import net.ion.ice.core.context.QueryContext;
+import net.ion.ice.core.context.ReadContext;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.search.annotations.*;
 
@@ -283,11 +285,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     }
 
     public Object getValue(String pid) {
-        Object value = get(pid)  ;
-        if(value == null && nodeValue.containsKey(pid)){
-            value = nodeValue.getValue(pid) ;
-        }
-        return value ;
+        return  get(pid)  ;
     }
 
     public String getLabel(NodeType nodeType) {
@@ -337,7 +335,32 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     }
 
     public Node toDisplay() {
-        this.properties.toDisplay(this.nodeValue);
+        NodeType nodeType = NodeUtils.getNodeType(getTypeId()) ;
+        for(PropertyType pt : nodeType.getPropertyTypes()){
+            Object value = get(pt.getPid()) ;
+//            if(value == null && pt.hasDefaultValue()){
+//                value = pt.getDefaultValue() ;
+//            }
+            if(value != null || pt.isReferenced()){
+                value = NodeUtils.getDisplayValue(value, pt) ;
+                if(value != null) {
+                    put(pt.getPid(), value);
+                }
+            }else{
+                put(pt.getPid(), null) ;
+            }
+        }
+        return this ;
+    }
+
+    public Node toDisplay(ReadContext context) {
+        if(context == null){
+            return toDisplay() ;
+        }
+        NodeType nodeType = NodeUtils.getNodeType(getTypeId()) ;
+        for(PropertyType pt : nodeType.getPropertyTypes()){
+            put(pt.getPid(), NodeUtils.getResultValue(context, pt, this)) ;
+        }
         return this ;
     }
 

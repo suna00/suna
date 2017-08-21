@@ -1127,5 +1127,37 @@
     "referenceValue": "code",
     "codeFilter": "paymentType",
     "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "contents",
+    "pid": "referencedGoods",
+    "propertyTypeName": "referenced제품",
+    "valueType": "REFERENCED",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "goods",
+    "referenceValue": "contentsId",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "contents",
+    "pid": "referencedSecurities",
+    "propertyTypeName": "referenced유가증권",
+    "valueType": "REFERENCED",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "securities",
+    "referenceValue": "contentsId",
+    "defaultValue": ""
   }
 ]

@@ -38,6 +38,11 @@ public class QueryContext extends ReadContext {
 
     public QueryContext(NodeType nodeType) {
         this.nodeType = nodeType;
+        if(this.nodeType.getRepositoryType().equals("node")){
+            this.queryTermType = QueryTerm.QueryTermType.NODE ;
+        }else if(this.nodeType.getRepositoryType().equals("data")){
+            this.queryTermType = QueryTerm.QueryTermType.DATA ;
+        }
     }
 
     public QueryContext() {
@@ -318,10 +323,10 @@ public class QueryContext extends ReadContext {
             if (key.equals("typeId")) continue;
 
             if (key.equals("q")) {
-                List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(queryData.get("q"), queryContext.getNodetype());
+                List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(queryContext.queryTermType, queryData.get("q"), queryContext.getNodetype());
                 queryContext.setQueryTerms(queryTerms);
             } else if (key.equals("query")) {
-                List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(queryData.get("query"), queryContext.getNodetype());
+                List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(queryContext.queryTermType, queryData.get("query"), queryContext.getNodetype());
                 queryContext.setQueryTerms(queryTerms);
             } else {
                 Object val = queryData.get(key);

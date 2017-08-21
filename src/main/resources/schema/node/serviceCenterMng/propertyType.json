@@ -176,7 +176,7 @@
     "pid": "created",
     "propertyTypeName": "등록일",
     "valueType": "DATE",
-    "required": true,
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
