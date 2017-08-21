@@ -33,6 +33,17 @@ public class ApiController {
         return api(request, category, api, "POST");
     }
 
+    @RequestMapping(value = "/api/{category}/{api}.json", method = RequestMethod.GET)
+    @ResponseBody
+    public Object getJson(WebRequest request, @PathVariable String category, @PathVariable String api) throws IOException {
+        return api(request, category, api, "GET");
+    }
+
+    @RequestMapping(value = "/api/{category}/{api}.json", method = RequestMethod.POST)
+    @ResponseBody
+    public Object postJson(WebRequest request, @PathVariable String category, @PathVariable String api) throws IOException {
+        return api(request, category, api, "POST");
+    }
 
     @RequestMapping(value = "/testApi/{category}/{api}", method = RequestMethod.GET)
     @ResponseBody
@@ -66,6 +77,7 @@ public class ApiController {
         try {
             return apiService.execute(request, category, api, method) ;
         } catch (Exception e) {
+            e.printStackTrace();
             if(e.getCause() instanceof ClassCastException){
                 return JsonResponse.error(new Exception("형식이 맞지 않습니다."));
             }else{

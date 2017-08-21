@@ -2,6 +2,7 @@ package net.ion.ice.core.node;
 
 import net.ion.ice.core.context.QueryContext;
 import net.ion.ice.core.context.ReadContext;
+import net.ion.ice.core.infinispan.lucene.CodeAnalyzer;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.search.annotations.*;
 
@@ -26,16 +27,14 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     public static final String ID_SEPERATOR = ">";
 
     @Id
+    @DocumentId
+    @Field
+    @Analyzer(impl = CodeAnalyzer.class)
     private String id ;
 
     @Field
     @FieldBridge(impl = PropertiesFieldBridge.class)
     private Properties properties ;
-
-    @Field(analyze = Analyze.NO)
-    @DateBridge(resolution = Resolution.SECOND)
-    @SortableField()
-    private Date changed ;
 
     private transient NodeValue nodeValue ;
 
@@ -120,8 +119,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
         this.properties.setId(id) ;
         this.properties.setTypeId(typeId) ;
-        this.changed = new Date() ;
-        this.nodeValue = new NodeValue(id, typeId, userId, changed) ;
+        this.nodeValue = new NodeValue(id, typeId, userId, new Date()) ;
     }
 
     private boolean isNullId() {
@@ -140,11 +138,9 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
     @Override
     public Object get(Object key) {
-        Object value = null ;
-        if(nodeValue != null && nodeValue.containsKey(key.toString())){
+        Object value = properties.get(key)  ;
+        if(value == null && nodeValue != null && nodeValue.containsKey(key.toString())){
             value = nodeValue.getValue(key.toString()) ;
-        }else{
-            value = properties.get(key)  ;
         }
         return value ;
     }
@@ -152,10 +148,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     @Override
     public Object put(String key, Object value) {
         if(nodeValue != null && NodeValue.containsKey(key)){
-            if(properties.containsKey(key)){
-                properties.remove(key) ;
-            }
-            return nodeValue.putValue(key, value) ;
+            nodeValue.putValue(key, value) ;
         }
         return properties.put(key, value);
     }
@@ -243,7 +236,6 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
     public void setNodeValue(NodeValue nodeValue) {
         if(nodeValue != null) {
-            this.changed = nodeValue.getChanged();
             this.nodeValue = nodeValue;
         }
     }
@@ -298,7 +290,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     }
 
     public Date getChanged(){
-        return changed ;
+        return nodeValue.getChanged() ;
     }
 
     public Node clone(){
@@ -310,7 +302,6 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         }
 
         cloneNode.id = getId();
-        cloneNode.changed = changed ;
         cloneNode.properties.setId(id) ;
         return cloneNode ;
     }
@@ -323,13 +314,11 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         }
 
         cloneNode.id = getId();
-        cloneNode.changed = changed ;
         cloneNode.properties.setId(id) ;
         cloneNode.properties.setTypeId(typeId) ;
         return cloneNode ;
     }
     public void setUpdate(String userId, Date changed) {
-        this.changed = changed;
         this.nodeValue.setModifier(userId) ;
         this.nodeValue.setChanged(changed) ;
     }

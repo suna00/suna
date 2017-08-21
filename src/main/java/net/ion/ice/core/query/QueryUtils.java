@@ -1,10 +1,13 @@
 package net.ion.ice.core.query;
 
+import net.ion.ice.core.context.ContextUtils;
 import net.ion.ice.core.context.DBQueryTerm;
 import net.ion.ice.core.context.DataQueryContext;
 import net.ion.ice.core.context.QueryContext;
+import net.ion.ice.core.infinispan.lucene.AnalyzerFactory;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.NodeType;
+import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
 import org.apache.commons.lang3.StringUtils;
 
@@ -19,6 +22,8 @@ public class QueryUtils {
 
 
     public static void makeQueryTerm(NodeType nodeType, QueryContext queryContext, List<QueryTerm> queryTerms, String paramName, String value) {
+        if(StringUtils.isEmpty(value)) return ;
+
         value = value.equals("@sysdate") ? new SimpleDateFormat("yyyyMMdd HHmmss").format(new Date()) : value.equals("@sysday") ? new SimpleDateFormat("yyyyMMdd").format(new Date()) : value;
 
         if (paramName.equals("fields") || paramName.equals("pids") || paramName.equals("response")) {
@@ -40,6 +45,8 @@ public class QueryUtils {
 
             } catch (IOException e) {
             }
+        } else if(paramName.equals("includeReferenced")){
+            queryContext.setIncludeReferenced(value);
         }
 
         if (nodeType == null) {
@@ -79,7 +86,6 @@ public class QueryUtils {
     }
 
 
-
     public static List<QueryTerm> makeNodeQueryTerms(QueryContext context, Object q, NodeType nodeType) {
         List<QueryTerm> queryTerms = new ArrayList<>();
         if (q instanceof List) {
@@ -94,6 +100,7 @@ public class QueryUtils {
     }
 
     public static QueryTerm makePropertyQueryTerm(QueryTerm.QueryTermType queryTermType, NodeType nodeType, String fieldId, String method, String value) {
+        if(StringUtils.isEmpty(value)) return null ;
         if(queryTermType == QueryTerm.QueryTermType.DATA){
             return makeDataQueryTerm(nodeType, fieldId, method, value) ;
         }else{
@@ -103,21 +110,34 @@ public class QueryUtils {
 
     public static void makeNodeQueryTerm(QueryContext context, Map<String, Object> q, NodeType nodeType, List<QueryTerm> queryTerms) {
         if (q.containsKey("field") && q.containsKey("method")) {
-            QueryTerm queryTerm = makePropertyQueryTerm(context.getQueryTermType(), nodeType, q.get("field").toString(), q.get("method").toString(), q.get("value").toString());
-            if (queryTerm != null) {
-                queryTerms.add(queryTerm);
-            }
-        } else {
-            for (String key : q.keySet()) {
-                QueryTerm queryTerm = makePropertyQueryTerm(context.getQueryTermType(), nodeType, key, null, q.get(key).toString());
+            String field = q.get("field").toString() ;
+            String method = q.get("method").toString() ;
+            String queryValue = (String) ContextUtils.getValue(q.get("value"), context.getData()) ;
+
+            if(method.equals("hasReferenced")){
+                NodeType refNodeType = NodeUtils.getNodeType(nodeType.getPropertyType(field).getReferenceType()) ;
+                QueryContext joinQueryContext = QueryContext.createQueryContextFromText(queryValue, refNodeType) ;
+                if(joinQueryContext != null) {
+                    joinQueryContext.setJoinField(nodeType.getPropertyType(field).getReferenceValue()) ;
+                    context.addJoinQuery(joinQueryContext);
+                }
+            }else {
+                QueryTerm queryTerm = makePropertyQueryTerm(context.getQueryTermType(), nodeType, q.get("field").toString(), method, queryValue);
                 if (queryTerm != null) {
                     queryTerms.add(queryTerm);
                 }
+            }
+        } else {
+            for (String key : q.keySet()) {
+                makeQueryTerm(nodeType, context, queryTerms, key, (String) ContextUtils.getValue(q.get(key).toString(), context.getData()));
             }
         }
     }
 
     public static QueryTerm makeNodeQueryTerm(NodeType nodeType, String fieldId, String method, String value) {
+        if(fieldId.equals("id")){
+            return new QueryTerm(fieldId, AnalyzerFactory.getAnalyzer("code"), method, value);
+        }
         PropertyType propertyType = (PropertyType) nodeType.getPropertyType(fieldId);
         if (propertyType != null && propertyType.isIndexable()) {
             try {

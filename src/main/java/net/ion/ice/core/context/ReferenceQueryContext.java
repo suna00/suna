@@ -53,6 +53,7 @@ public class ReferenceQueryContext extends QueryContext{
             code.put("refId", node.getId()) ;
             code.put("value", StringUtils.substringAfterLast(node.getId(), Node.ID_SEPERATOR));
             code.put("label", label) ;
+            subList.add(code) ;
         }
         return makePaging(fieldName, subList);
     }
