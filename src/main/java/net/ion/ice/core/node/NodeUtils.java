@@ -156,6 +156,8 @@ public class NodeUtils {
 
         if (value instanceof Date) {
             return DateFormatUtils.format((Date) value, "yyyyMMddHHmmss");
+        }else if(value instanceof String && ((String) value).length() == 14){
+            return (String) value;
         } else {
             try {
                 return DateFormatUtils.format(DateTools.stringToDate(value.toString()), "yyyyMMddHHmmss");
@@ -549,7 +551,7 @@ public class NodeUtils {
             if (srcNode.getNodeValue() == null) {
                 srcNode.setNodeValue(nodeValueCache.get(typeId + NodeValue.NODEVALUE_SEPERATOR + srcNode.getId()));
             }
-            nodeList.add(srcNode.clone().toDisplay());
+            nodeList.add(srcNode.clone());
         }
 
         return nodeList;
@@ -582,5 +584,13 @@ public class NodeUtils {
             return i18nData;
         }
         return NodeUtils.getStoreValue(value, pt, id);
+    }
+
+    public static List<Node> initDataNodeList(String typeId, List<Map<String, Object>> resultList) {
+        List<Node> nodeList = new ArrayList<>(resultList.size()) ;
+        for(Map<String, Object> data : resultList){
+            nodeList.add(new Node(data, typeId)) ;
+        }
+        return nodeList ;
     }
 }

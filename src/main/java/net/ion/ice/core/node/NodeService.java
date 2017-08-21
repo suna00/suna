@@ -107,7 +107,7 @@ public class NodeService {
 
 
     public List<Node> getNodeList(String typeId, String searchText) {
-        QueryContext queryContext = QueryContext.makeQueryContextFromText(searchText, getNodeType(typeId)) ;
+        QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, getNodeType(typeId)) ;
         return infinispanRepositoryService.getSubQueryNodes(typeId, queryContext) ;
     }
 
@@ -116,12 +116,12 @@ public class NodeService {
     }
 
     public SimpleQueryResult getNodeList(String typeId, Map<String, String[]> parameterMap) {
-        QueryContext queryContext = QueryContext.makeQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
+        QueryContext queryContext = QueryContext.createQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
         return infinispanRepositoryService.getQueryNodes(typeId, queryContext) ;
     }
 
     public SimpleQueryResult getNodeTree(String typeId, Map<String, String[]> parameterMap) {
-        QueryContext queryContext = QueryContext.makeQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
+        QueryContext queryContext = QueryContext.createQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
         return infinispanRepositoryService.getQueryTreeNodes(typeId, queryContext) ;
     }
 
@@ -259,7 +259,7 @@ public class NodeService {
     public Node deleteNode(Map<String, String[]> parameterMap, String typeId) {
         NodeType nodeType = getNodeType(typeId) ;
 
-        ExecuteContext context = ExecuteContext.makeContextFromParameter(parameterMap, nodeType, "delete") ;
+        ExecuteContext context = ExecuteContext.createContextFromParameter(parameterMap, nodeType, "delete") ;
         Node node = context.getNode() ;
         infinispanRepositoryService.deleteNode(node) ;
         return node ;
@@ -274,7 +274,7 @@ public class NodeService {
     public Object readNode(Map<String, String[]> parameterMap, String typeId, String id) {
         NodeType nodeType = getNodeType(typeId) ;
 
-        ReadContext readContext = ReadContext.makeContextFormParameter(parameterMap, nodeType, id) ;
+        ReadContext readContext = ReadContext.createContextFromParameter(parameterMap, nodeType, id) ;
         return readContext.makeResult() ;
 //        return readNode(typeId, id) ;
     }
@@ -282,7 +282,7 @@ public class NodeService {
     public Object readNode(Map<String, String[]> parameterMap, String typeId) {
         NodeType nodeType = getNodeType(typeId) ;
 
-        ReadContext readContext = ReadContext.makeContextFormParameter(parameterMap, nodeType, null) ;
+        ReadContext readContext = ReadContext.createContextFromParameter(parameterMap, nodeType, null) ;
         return readContext.makeResult() ;
     }
 
@@ -307,19 +307,19 @@ public class NodeService {
     }
 
     public QueryResult getQueryResult(String typeId, Map<String, String[]> parameterMap) {
-        QueryContext queryContext = QueryContext.makeQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
+        QueryContext queryContext = QueryContext.createQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
         QueryResult queryResult = queryContext.makeQueryResult( null, null);
         return queryResult;
     }
 
     public QueryResult getReferenceQueryResult(String typeId, Map<String, String[]> parameterMap) {
-        ReferenceQueryContext queryContext = ReferenceQueryContext.makeQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
+        ReferenceQueryContext queryContext = ReferenceQueryContext.createQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
         QueryResult queryResult = queryContext.makeQueryResult( null, null);
         return queryResult;
     }
 
     public QueryResult getCodeQueryResult(String typeId, Map<String, String[]> parameterMap) {
-        ReferenceQueryContext queryContext = ReferenceQueryContext.makeQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
+        ReferenceQueryContext queryContext = ReferenceQueryContext.createQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
         QueryResult queryResult = queryContext.makeQueryResult( null, null);
         return queryResult;
     }

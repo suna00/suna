@@ -17,6 +17,9 @@ public class AnalyzerFactory {
     private static Map<String, Analyzer> analyzerMap = new ConcurrentHashMap<>() ;
 
     public static Analyzer getAnalyzer(String analyzer){
+        if(analyzer == null){
+            analyzer = "simple" ;
+        }
         if(!analyzerMap.containsKey(analyzer)){
             return getAnalyzer(PropertyType.AnalyzerType.valueOf(analyzer)) ;
         }

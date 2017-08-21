@@ -19,7 +19,7 @@ public class ReferenceQueryContext extends QueryContext{
         super(nodeType);
     }
 
-    public static ReferenceQueryContext makeQueryContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType) {
+    public static ReferenceQueryContext createQueryContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType) {
         ReferenceQueryContext queryContext = new ReferenceQueryContext(nodeType);
 
         makeContextFromParameter(parameterMap, nodeType, queryContext) ;
