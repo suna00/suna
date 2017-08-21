@@ -82,7 +82,7 @@
     "title": "환불",
     "contents": "취소/반품/교환/환불 > 환불",
     "displayTargetType": "common",
-    "frequentlyAskedQuestionStatus": "y"
+    "frequentlyAskedQuestionStatus": "y",
     "topStatus": "active",
     "topNumber": "2"
   },
