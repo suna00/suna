@@ -27,6 +27,7 @@ buildscript {
     ext {
         springBootVersion = '1.5.1.RELEASE'
         springBootStarterVersion = '1.5.6.RELEASE'
+
 //        infinispanVersion = '9.0.3.Final'
         infinispanVersion = '8.2.6.Final'
     }
