@@ -12,7 +12,6 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.text.ParseException;
 import java.util.*;
 
 /**
@@ -36,12 +35,15 @@ public class ExecuteContext implements Context{
     protected String event;
 
 
-    public static ExecuteContext createContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType, String event) {
+    public static ExecuteContext createContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType, String event, String id) {
         ExecuteContext ctx = new ExecuteContext();
 
         Map<String, Object> data = ContextUtils.makeContextData(parameterMap);
 
         ctx.setData(data);
+        if(id != null){
+            ctx.id = id ;
+        }
         if(event != null) {
             ctx.event = event;
         }

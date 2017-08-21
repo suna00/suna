@@ -278,15 +278,23 @@ public class NodeService {
     public Node deleteNode(Map<String, String[]> parameterMap, String typeId) {
         NodeType nodeType = getNodeType(typeId) ;
 
-        ExecuteContext context = ExecuteContext.createContextFromParameter(parameterMap, nodeType, "delete") ;
+        ExecuteContext context = ExecuteContext.createContextFromParameter(parameterMap, nodeType, "delete", null) ;
+        context.execute();
+
         Node node = context.getNode() ;
-        infinispanRepositoryService.deleteNode(node) ;
         return node ;
     }
 
     public Node deleteNode(String typeId, String id) {
-        Node node = infinispanRepositoryService.getNode(typeId, id) ;
-        infinispanRepositoryService.deleteNode(node) ;
+        NodeType nodeType = getNodeType(typeId) ;
+
+        ExecuteContext context = ExecuteContext.createContextFromParameter(null, nodeType, "delete", id) ;
+        context.execute();
+
+        Node node = context.getNode() ;
+
+//        Node node = infinispanRepositoryService.getNode(typeId, id) ;
+//        infinispanRepositoryService.deleteNode(node) ;
         return node ;
     }
 

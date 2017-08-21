@@ -47,10 +47,10 @@ public class ApiQueryContext extends QueryContext{
             if(key.equals("typeId")) continue ;
 
             if (key.equals("q")) {
-                List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(queryContext.queryTermType, config.get("q"), queryContext.nodeType);
+                List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(queryContext, config.get("q"), queryContext.nodeType);
                 queryContext.setQueryTerms(queryTerms);
             }else if(key.equals("query")){
-                List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(queryContext.queryTermType, config.get("query"), queryContext.nodeType);
+                List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(queryContext, config.get("query"), queryContext.nodeType);
                 queryContext.setQueryTerms(queryTerms);
             }else if(key.equals("response")){
                 Map<String, Object> response = (Map<String, Object>) config.get(key);
