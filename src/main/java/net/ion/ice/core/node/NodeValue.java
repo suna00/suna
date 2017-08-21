@@ -147,10 +147,18 @@ public class NodeValue implements Serializable, Cloneable{
                 setTypeId(value.toString());
                 return getTypeId() ;
             case "owner" :
-                owner = (String) value;
+                if (value instanceof Code) {
+                    owner = ((Code) value).getValue().toString();
+                } else {
+                    owner = (String) value;
+                }
                 return owner ;
             case "modifier" :
-                modifier = (String) value;
+                if (value instanceof Code) {
+                    modifier = ((Code) value).getValue().toString();
+                } else {
+                    modifier = (String) value;
+                }
                 return modifier ;
             case "created":
                 created = NodeUtils.getDateValue(value) ;

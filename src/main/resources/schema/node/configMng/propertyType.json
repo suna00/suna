@@ -2,8 +2,8 @@
   {
     "typeId" : "propertyType",
     "tid": "groupCode",
-    "id": "groupCode>id",
-    "pid": "id",
+    "id": "groupCode>groupCodeId",
+    "pid": "groupCodeId",
     "propertyTypeName": "그룹코드 아이디",
     "valueType": "STRING",
     "required": true,
