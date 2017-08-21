@@ -26,7 +26,7 @@ public class ContextUtils {
             }else if ( values.length == 1 ) {
                 value = values[0];
             }else {
-                value = StringUtils.join(values, ' ');
+                value = StringUtils.join(values, ',');
             }
 
             data.put(paramName, value);
@@ -62,11 +62,16 @@ public class ContextUtils {
     }
 
     public static String getParameterValue(String paramName, Map<String, String[]> parameterMap){
+        if(!parameterMap.containsKey(paramName)){
+            return null ;
+        }
         String[] values = parameterMap.get(paramName);
         if (values == null || StringUtils.isEmpty(values[0])) {
             return null ;
         }
-
-        return StringUtils.join(values, ' ');
+        if(values.length > 1) {
+            return StringUtils.join(values, ',');
+        }
+        return values[0] ;
     }
 }

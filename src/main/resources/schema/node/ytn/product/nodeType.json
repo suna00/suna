@@ -1,0 +1,73 @@
+[
+  {
+    "parentId": "root",
+    "typeId": "nodeType",
+    "tid": "productPath",
+    "typeName": "상품 관리",
+    "repositoryType": "path",
+    "eviction": 0
+  },
+  {
+    "parentId": "productPath",
+    "typeId": "nodeType",
+    "tid": "product",
+    "typeName": "상품",
+    "tableName": "ytnDevDb#product",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "productPath",
+    "typeId": "nodeType",
+    "tid": "productByAffiliateMall",
+    "typeName": "제휴몰 상품",
+    "tableName": "ytnDevDb#productByAffiliateMall",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "productPath",
+    "typeId": "nodeType",
+    "tid": "productOption",
+    "typeName": "상품 옵션",
+    "tableName": "ytnDevDb#productOption",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "productPath",
+    "typeId": "nodeType",
+    "tid": "productOptionCode",
+    "typeName": "상품 옵션 코드",
+    "tableName": "ytnDevDb#productOptionCode",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "productPath",
+    "typeId": "nodeType",
+    "tid": "productOptionItem",
+    "typeName": "상품 옵션 아이템",
+    "tableName": "ytnDevDb#productOptionItem",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "productPath",
+    "typeId": "nodeType",
+    "tid": "searchFilterPolicy",
+    "typeName": "검색필터정책",
+    "tableName": "ytnDevDb#searchFilterPolicy",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "productPath",
+    "typeId": "nodeType",
+    "tid": "searchFilterItem",
+    "typeName": "검색필터코드",
+    "tableName": "ytnDevDb#searchFilterItem",
+    "repositoryType": "node",
+    "eviction": 0
+  }
+]

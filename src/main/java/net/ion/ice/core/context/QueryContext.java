@@ -4,6 +4,7 @@ import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.*;
 import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.QueryTerm;
+import net.ion.ice.core.query.QueryUtils;
 import net.ion.ice.core.query.ResultField;
 import org.apache.commons.lang3.StringUtils;
 import org.infinispan.Cache;
@@ -16,9 +17,10 @@ import java.util.*;
 /**
  * Created by jaeho on 2017. 4. 26..
  */
-public class QueryContext implements Context {
-    protected NodeType nodeType;
+public class QueryContext extends ReadContext {
     protected List<QueryTerm> queryTerms;
+    protected List<DBQueryTerm> dbQueryTermList;
+
     protected SearchManager searchManager;
     protected String sorting;
     protected Integer pageSize;
@@ -27,12 +29,12 @@ public class QueryContext implements Context {
     protected Integer resultSize;
 
     protected boolean paging;
-
-    protected boolean includeReference;
+    protected boolean limit;
 
     protected boolean treeable;
+    protected int queryListSize;
 
-    protected List<ResultField> resultFields;
+    protected QueryTerm.QueryTermType queryTermType ;
 
     public QueryContext(NodeType nodeType) {
         this.nodeType = nodeType;
@@ -41,60 +43,30 @@ public class QueryContext implements Context {
     public QueryContext() {
     }
 
-    public static QueryContext makeQueryContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType) {
+    public static QueryContext createQueryContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType) {
         QueryContext queryContext = new QueryContext(nodeType);
-        List<QueryTerm> queryTerms = new ArrayList<>();
+        ReadContext.makeContextFromParameter(parameterMap, nodeType, queryContext);
 
-        if (parameterMap == null || parameterMap.size() == 0) {
-            queryContext.setIncludeReference(true);
-            return queryContext;
-        }
-
-        Map<String, Object> data = ContextUtils.makeContextData(parameterMap);
-
-        for (String key : data.keySet()) {
-            makeQueryTerm(nodeType, queryContext, queryTerms, key, (String) data.get(key));
-        }
-
-        queryContext.setQueryTerms(queryTerms);
-
-        if(data.containsKey("fields")){
-            makeResultField(queryContext, data, "fields");
-        }else if(data.containsKey("pids")){
-            makeResultField(queryContext, data, "pids");
-        }
-
-        if(queryContext.resultFields == null || queryContext.resultFields.size() == 0 ){
-            queryContext.setIncludeReference(true);
-        }
+        queryContext.queryTermType = QueryTerm.QueryTermType.NODE ;
+        makeQueryTerm(nodeType, queryContext) ;
 
         return queryContext;
     }
 
-    private static void makeResultField(QueryContext queryContext, Map<String, Object> data, String parameterName) {
-        String fields = (String) data.get(parameterName);
-        if(StringUtils.contains(fields,",")) {
-            addResultFields(queryContext, fields, ",");
-        }else if(StringUtils.contains(fields," ")){
-            addResultFields(queryContext, fields, " ");
-        }else{
-            if(StringUtils.isNotEmpty(fields)) {
-                queryContext.addResultField(new ResultField(fields, fields));
-            }
-        }
-    }
+    protected static void makeQueryTerm(NodeType nodeType, QueryContext context) {
+        if(context.data == null) return  ;
 
-    private static void addResultFields(QueryContext queryContext, String fields, String s) {
-        for (String field : StringUtils.split(fields, s)) {
-            field = StringUtils.trim(field) ;
-            if(StringUtils.isNotEmpty(field)) {
-                queryContext.addResultField(new ResultField(field, field));
-            }
+        List<QueryTerm> queryTerms = new ArrayList<>();
+
+        for (String key : context.data.keySet()) {
+            QueryUtils.makeQueryTerm(nodeType, context, queryTerms, key, (String) context.data.get(key));
         }
+
+        context.setQueryTerms(queryTerms);
     }
 
 
-    public static QueryContext makeQueryContextFromText(String searchText, NodeType nodeType) {
+    public static QueryContext createQueryContextFromText(String searchText, NodeType nodeType) {
         QueryContext queryContext = new QueryContext(nodeType);
         java.util.List<QueryTerm> queryTerms = new ArrayList<>();
 
@@ -114,69 +86,14 @@ public class QueryContext implements Context {
                     continue;
                 }
 
-                makeQueryTerm(nodeType, queryContext, queryTerms, paramName, value);
+                QueryUtils.makeQueryTerm(nodeType, queryContext, queryTerms, paramName, value);
             }
         }
         queryContext.setQueryTerms(queryTerms);
         return queryContext;
     }
 
-    public static void makeQueryTerm(NodeType nodeType, QueryContext queryContext, List<QueryTerm> queryTerms, String paramName, String value) {
-        value = value.equals("@sysdate") ? new SimpleDateFormat("yyyyMMdd HHmmss").format(new Date()) : value.equals("@sysday") ? new SimpleDateFormat("yyyyMMdd").format(new Date()) : value;
 
-        if(paramName.equals("fields") || paramName.equals("pids") ||paramName.equals("response")){
-            return ;
-        }
-
-        if (paramName.equals("page")) {
-            queryContext.setCurrentPage(value);
-            return;
-        } else if (paramName.equals("pageSize")) {
-            queryContext.setPageSize(value);
-            return;
-        } else if (paramName.equals("count")) {
-            queryContext.setMaxSize(value);
-            return;
-        } else if (paramName.equals("query")) {
-            try {
-                Map<String, Object> query = JsonUtils.parsingJsonToMap(value);
-
-            } catch (IOException e) {
-            }
-        }
-
-        if (nodeType == null) {
-            if (paramName.equals("sorting")) {
-                queryContext.setSorting(value);
-                return;
-            } else if (paramName.contains("_")) {
-                String fieldId = StringUtils.substringBeforeLast(paramName, "_");
-                queryTerms.add(new QueryTerm(fieldId, StringUtils.substringAfterLast(paramName, "_"), value));
-            } else {
-                queryTerms.add(new QueryTerm(paramName, value));
-            }
-        } else {
-            if (paramName.equals("sorting")) {
-                queryContext.setSorting(value, nodeType);
-                return;
-            } else if (paramName.contains("_")) {
-                String fieldId = StringUtils.substringBeforeLast(paramName, "_");
-                String method = StringUtils.substringAfterLast(paramName, "_");
-                QueryTerm queryTerm = makePropertyQueryTerm(nodeType, fieldId, method, value);
-                if (queryTerm == null) {
-                    queryTerm = makePropertyQueryTerm(nodeType, paramName, "matching", value);
-                }
-
-                if (queryTerm != null) {
-                    queryTerms.add(queryTerm);
-                }
-
-            } else {
-                queryTerms.add(makePropertyQueryTerm(nodeType, paramName, "matching", value));
-            }
-
-        }
-    }
 
 
     public void setQueryTerms(List<QueryTerm> queryTerms) {
@@ -224,6 +141,14 @@ public class QueryContext implements Context {
         this.currentPage = Integer.valueOf(page);
         this.paging = true;
     }
+    public void setLimit(String limit) {
+        this.limit = true ;
+        setMaxSize(limit) ;
+    }
+
+    public void setQueryListSize(int queryListSize) {
+        this.queryListSize = queryListSize;
+    }
 
     public void setMaxSize(String maxSize) {
         this.maxSize = Integer.valueOf(maxSize);
@@ -231,7 +156,7 @@ public class QueryContext implements Context {
 
     public int getMaxResultSize() {
         if (maxSize == null && currentPage == null && pageSize == null) {
-            maxSize = 1000;
+            maxSize = 100;
             currentPage = 1;
             pageSize = maxSize;
             return maxSize;
@@ -282,9 +207,6 @@ public class QueryContext implements Context {
         return paging;
     }
 
-    public NodeType getNodetype() {
-        return nodeType;
-    }
 
     public static QueryContext makeQueryContextForReferenced(NodeType nodeType, PropertyType pt, Node node) {
         String refTypeId = pt.getReferenceType();
@@ -299,15 +221,15 @@ public class QueryContext implements Context {
         }
 
         if (StringUtils.isNotEmpty(pt.getReferenceValue())) {
-            makeQueryTerm(refNodeType, queryContext, queryTerms, pt.getReferenceValue(), node.getId().toString());
+            QueryUtils.makeQueryTerm(refNodeType, queryContext, queryTerms, pt.getReferenceValue(), node.getId().toString());
         }else {
             List<String> idPids = refNodeType.getIdablePIds();
             if (idPids != null && idPids.size() > 1) {
-                makeQueryTerm(refNodeType, queryContext, queryTerms, idPids.get(0), node.getId().toString());
+                QueryUtils.makeQueryTerm(refNodeType, queryContext, queryTerms, idPids.get(0), node.getId().toString());
             } else {
                 for (PropertyType refPt : refNodeType.getReferencePropertyTypes()) {
                     if (nodeType.getTypeId().equals(refPt.getReferenceType())) {
-                        makeQueryTerm(refNodeType, queryContext, queryTerms, refPt.getPid(), node.getId().toString());
+                        QueryUtils.makeQueryTerm(refNodeType, queryContext, queryTerms, refPt.getPid(), node.getId().toString());
                     }
                 }
             }
@@ -323,7 +245,7 @@ public class QueryContext implements Context {
         QueryContext queryContext = new QueryContext(nodeType);
         java.util.List<QueryTerm> queryTerms = new ArrayList<>();
 
-        makeQueryTerm(nodeType, queryContext, queryTerms, pt.getPid(), value);
+        QueryUtils.makeQueryTerm(nodeType, queryContext, queryTerms, pt.getPid(), value);
 
         queryContext.setQueryTerms(queryTerms);
         return queryContext;
@@ -346,7 +268,7 @@ public class QueryContext implements Context {
             throw new RuntimeException("REFERENCE NODE TYPE has No ID : " + nodeType.getTypeId() + "." + pt.getPid() + " = " + refTypeId);
         }
 
-        makeQueryTerm(refNodeType, queryContext, queryTerms, idPids.get(0), value);
+        QueryUtils.makeQueryTerm(refNodeType, queryContext, queryTerms, idPids.get(0), value);
 
         queryContext.setQueryTerms(queryTerms);
         return queryContext;
@@ -361,13 +283,6 @@ public class QueryContext implements Context {
         this.resultSize = resultSize;
     }
 
-    public boolean isIncludeReferenced() {
-        return includeReference;
-    }
-
-    public void setIncludeReference(boolean includeReference) {
-        this.includeReference = includeReference;
-    }
 
     public boolean isTreeable() {
         return treeable;
@@ -403,10 +318,10 @@ public class QueryContext implements Context {
             if (key.equals("typeId")) continue;
 
             if (key.equals("q")) {
-                List<QueryTerm> queryTerms = makeNodeQueryTerms(queryData.get("q"), queryContext.getNodetype());
+                List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(queryData.get("q"), queryContext.getNodetype());
                 queryContext.setQueryTerms(queryTerms);
             } else if (key.equals("query")) {
-                List<QueryTerm> queryTerms = makeNodeQueryTerms(queryData.get("query"), queryContext.getNodetype());
+                List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(queryData.get("query"), queryContext.getNodetype());
                 queryContext.setQueryTerms(queryTerms);
             } else {
                 Object val = queryData.get(key);
@@ -422,58 +337,18 @@ public class QueryContext implements Context {
         return queryContext;
     }
 
-    protected void addResultField(ResultField resultField) {
-        if (this.resultFields == null) {
-            this.resultFields = new ArrayList<>();
-        }
-        this.resultFields.add(resultField);
-    }
 
-    public static List<QueryTerm> makeNodeQueryTerms(Object q, NodeType nodeType) {
-
-        List<QueryTerm> queryTerms = new ArrayList<>();
-        if (q instanceof List) {
-            for (Map<String, Object> _q : (List<Map<String, Object>>) q) {
-                makeNodeQueryTerm(_q, nodeType, queryTerms);
-            }
-        } else if (q instanceof Map) {
-            makeNodeQueryTerm((Map<String, Object>) q, nodeType, queryTerms);
-        }
-
-        return queryTerms;
-    }
-
-    public static void makeNodeQueryTerm(Map<String, Object> q, NodeType nodeType, List<QueryTerm> queryTerms) {
-        if (q.containsKey("field") && q.containsKey("method")) {
-            QueryTerm queryTerm = makePropertyQueryTerm(nodeType, q.get("field").toString(), q.get("method").toString(), q.get("value").toString());
-            if (queryTerm != null) {
-                queryTerms.add(queryTerm);
-            }
-        } else {
-            for (String key : q.keySet()) {
-                QueryTerm queryTerm = makePropertyQueryTerm(nodeType, key, "matching", q.get(key).toString());
-                if (queryTerm != null) {
-                    queryTerms.add(queryTerm);
-                }
-            }
-        }
-    }
-
-    public static QueryTerm makePropertyQueryTerm(NodeType nodeType, String fieldId, String method, String value) {
-        PropertyType propertyType = (PropertyType) nodeType.getPropertyType(fieldId);
-        if (propertyType != null && propertyType.isIndexable()) {
-            return new QueryTerm(fieldId, propertyType.getLuceneAnalyzer(), method, value);
-        }
-        return null;
-    }
-
-    public List<ResultField> getResultFields() {
-        return resultFields;
-    }
 
 
 
     public QueryResult makeQueryResult(Object result, String fieldName) {
+        List<Object> resultList = NodeUtils.getNodeService().executeQuery(this) ;
+        List<Node> resultNodeList = NodeUtils.initNodeList(nodeType.getTypeId(), resultList) ;
+
+        return makeQueryResult(result, fieldName, resultNodeList);
+    }
+
+    protected QueryResult makeQueryResult(Object result, String fieldName, List<Node> resultNodeList) {
         NodeType nodeType = getNodetype() ;
         Node node = null ;
 
@@ -485,17 +360,16 @@ public class QueryContext implements Context {
             fieldName = "items" ;
         }
 
-        List<Object> resultList = NodeUtils.getNodeService().executeQuery(this) ;
-        List<Node> resultNodeList = NodeUtils.initNodeList(nodeType.getTypeId(), resultList) ;
-
-
         if(this.resultFields == null){
-            makeDefaultResult(nodeType, resultNodeList);
-            if(node != null){
-                node.put(fieldName, resultNodeList) ;
+            List<QueryResult> subList = makeDefaultResult(nodeType, resultNodeList);
+            if(node != null) {
+                node.put(fieldName, subList);
+                return null;
+            }if(result != null && result instanceof QueryResult){
+                ((QueryResult) result).put(fieldName, subList) ;
                 return null ;
             }else {
-                return makePaging(fieldName, resultNodeList);
+                return makePaging(fieldName, subList);
             }
         }
 
@@ -519,7 +393,7 @@ public class QueryContext implements Context {
                 } else {
                     String fieldValue = resultField.getFieldValue();
                     fieldValue = fieldValue == null || StringUtils.isEmpty(fieldValue) ? resultField.getFieldName() : fieldValue;
-                    subQueryResult.put(resultField.getFieldName(), NodeUtils.getResultValue(resultNode.get(fieldValue), nodeType.getPropertyType(fieldValue), resultNode));
+                    subQueryResult.put(resultField.getFieldName(), NodeUtils.getResultValue(this, nodeType.getPropertyType(fieldValue), resultNode));
                 }
             }
             subList.add(subQueryResult) ;
@@ -527,12 +401,18 @@ public class QueryContext implements Context {
         return subList;
     }
 
-    protected void makeDefaultResult(NodeType nodeType, List<Node> resultNodeList) {
+    protected List<QueryResult> makeDefaultResult(NodeType nodeType, List<Node> resultNodeList) {
+        List<QueryResult> subList =  new ArrayList<>(resultNodeList.size()) ;
+
         for(Node resultNode : resultNodeList) {
+            QueryResult itemResult = new QueryResult() ;
+            for(PropertyType pt : nodeType.getPropertyTypes()){
+                itemResult.put(pt.getPid(), NodeUtils.getResultValue(this, pt, resultNode));
+            }
             if (isIncludeReferenced()) {
                 for (PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)) {
                     QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(nodeType, pt, resultNode);
-                    subQueryContext.makeQueryResult(resultNode, pt.getPid());
+                    subQueryContext.makeQueryResult(itemResult, pt.getPid());
                 }
             }
             if (isTreeable()) {
@@ -540,11 +420,13 @@ public class QueryContext implements Context {
                     if (pt.isTreeable()) {
                         QueryContext subQueryContext = QueryContext.makeQueryContextForTree(nodeType, pt, resultNode.getId().toString());
                         subQueryContext.setTreeable(true);
-                        subQueryContext.makeQueryResult(resultNode, "children");
+                        subQueryContext.makeQueryResult(itemResult, "children");
                     }
                 }
             }
+            subList.add(itemResult) ;
         }
+        return subList ;
     }
 
     protected QueryResult makePaging(String fieldName, List<?> list) {
@@ -562,9 +444,16 @@ public class QueryContext implements Context {
             queryResult.put("pageSize", getPageSize());
             queryResult.put("pageCount", getResultSize() / getPageSize() + 1);
             queryResult.put("currentPage", getCurrentPage());
+        }else if(limit){
+            queryResult.put("more", resultSize > queryListSize);
+            queryResult.put("moreCount", resultSize - queryListSize);
         }
         queryResult.put(fieldName, list) ;
         return queryResult ;
     }
 
+
+    public QueryTerm.QueryTermType getQueryTermType() {
+        return queryTermType;
+    }
 }

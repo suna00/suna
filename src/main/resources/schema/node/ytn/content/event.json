@@ -1,0 +1,10 @@
+[
+  {
+    "typeId": "eventAction",
+    "event": "contents>create",
+    "action": "create",
+    "actionType": "service",
+    "actionBody": "productService.create",
+    "order": 1
+  }
+]

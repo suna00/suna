@@ -1,0 +1,35 @@
+[
+  {
+    "tid": "role",
+    "parentId": "userMng",
+    "typeId": "nodeType",
+    "repositoryType": "node",
+    "typeName": "권한"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "role",
+    "pid": "name",
+    "propertyTypeName": "권한명",
+    "valueType": "STRING",
+    "idable": true,
+    "indexable": true,
+    "labelable": false,
+    "required": true,
+    "length": 100,
+    "analyzer": "simple"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "role",
+    "pid": "code",
+    "propertyTypeName": "권한코드",
+    "valueType": "STRING",
+    "idable": false,
+    "indexable": true,
+    "labelable": false,
+    "required": false,
+    "length": 100,
+    "analyzer": "code"
+  }
+]

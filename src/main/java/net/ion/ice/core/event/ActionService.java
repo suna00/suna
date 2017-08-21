@@ -1,6 +1,7 @@
 package net.ion.ice.core.event;
 
 import net.ion.ice.ApplicationContextManager;
+import net.ion.ice.IceRuntimeException;
 import net.ion.ice.core.context.Context;
 import net.ion.ice.core.context.ExecuteContext;
 import org.apache.commons.lang3.StringUtils;
@@ -34,13 +35,13 @@ public class ActionService extends Action {
                 }
             }
         }
-
+        if(method == null){
+            throw new IceRuntimeException("Not Found ACTION Service : " + serviceName+ "." + methodName) ;
+        }
         try {
             method.invoke(service, executeContext) ;
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            throw new IceRuntimeException("ACTION execute Exception : " + e.getMessage(), e) ;
         }
     }
 

@@ -19,9 +19,9 @@ public class Ice2Application extends SpringBootServletInitializer {
 	private static Logger logger = LoggerFactory.getLogger(Ice2Application.class);
 
 	public static void main(String[] args) {
-	    System.setProperty("spring.devtools.restart.enabled","false");
-        System.setProperty("spring.devtools.livereload.enabled","true");
-        Stagemonitor.init();
+//	    System.setProperty("spring.devtools.restart.enabled","false");
+//        System.setProperty("spring.devtools.livereload.enabled","true");
+//        Stagemonitor.init();
 		ApplicationContext ctx =  SpringApplication.run(Ice2Application.class, args);
 	}
 

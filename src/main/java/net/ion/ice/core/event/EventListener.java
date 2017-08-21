@@ -23,11 +23,11 @@ public class EventListener {
     }
 
     public String getEvent() {
-        return StringUtils.substringAfterLast(eventListenerNode.getStringValue(Event.EVENT), "@");
+        return StringUtils.substringAfterLast(eventListenerNode.getStringValue(Event.EVENT), Node.ID_SEPERATOR);
     }
 
     public String getTid() {
-        return StringUtils.substringBefore(eventListenerNode.getStringValue(Event.EVENT), "@");
+        return StringUtils.substringBefore(eventListenerNode.getStringValue(Event.EVENT), Node.ID_SEPERATOR);
     }
 
     public String getId() {

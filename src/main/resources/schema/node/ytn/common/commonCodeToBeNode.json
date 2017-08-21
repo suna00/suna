@@ -1,0 +1,143 @@
+[
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root",
+    "code": "userStatus",
+    "name": "계정관리 상태",
+    "description": "",
+    "sortOrder": "1",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root>userStatus",
+    "code": "active",
+    "name": "사용중",
+    "description": "",
+    "sortOrder": "10",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root>userStatus",
+    "code": "inactive",
+    "name": "정지",
+    "description": "",
+    "sortOrder": "20",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root",
+    "code": "userSMSStatus",
+    "name": "계정관리 로그인 SMS 인증",
+    "description": "",
+    "sortOrder": "1",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root>userSMSStatus",
+    "code": "active",
+    "name": "사용",
+    "description": "",
+    "sortOrder": "10",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root>userSMSStatus",
+    "code": "inactive",
+    "name": "미사용",
+    "description": "",
+    "sortOrder": "20",
+    "status": "y"
+  },
+
+
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root",
+    "code": "faqStatus",
+    "name": "노출 여부",
+    "description": "",
+    "sortOrder": "1",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root>faqStatus",
+    "code": "active",
+    "name": "노출",
+    "description": "",
+    "sortOrder": "10",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root>faqStatus",
+    "code": "inactive",
+    "name": "비노출",
+    "description": "",
+    "sortOrder": "20",
+    "status": "y"
+  },
+
+
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root",
+    "code": "faqTopStatus",
+    "name": "자주 찾는 질문 top5",
+    "description": "",
+    "sortOrder": "1",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root>faqTopStatus",
+    "code": "inactive",
+    "name": "미설정",
+    "description": "",
+    "sortOrder": "10",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root>faqTopStatus",
+    "code": "active",
+    "name": "설정",
+    "description": "",
+    "sortOrder": "20",
+    "status": "y"
+  },
+
+
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root",
+    "code": "commonNoticeTopStatus",
+    "name": "리스트내 상위노출",
+    "description": "",
+    "sortOrder": "1",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root>commonNoticeTopStatus",
+    "code": "20",
+    "name": "일반",
+    "description": "",
+    "sortOrder": "10",
+    "status": "y"
+  },
+  {
+    "typeId": "commonCodeToBe",
+    "upperCode": "root>commonNoticeTopStatus",
+    "code": "10",
+    "name": "상위",
+    "description": "",
+    "sortOrder": "20",
+    "status": "y"
+  }
+]

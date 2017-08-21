@@ -17,7 +17,7 @@ import java.io.IOException;
 /**
  * Created by jaehocho on 2017. 2. 10..
  */
-@Configuration
+@Component
 public class ApplicationContextManager implements ApplicationContextAware{
     private Logger logger = LoggerFactory.getLogger(ApplicationContextManager.class);
 
@@ -26,9 +26,13 @@ public class ApplicationContextManager implements ApplicationContextAware{
     @Autowired
     private ApplicationContext ctx;
 
-    public ApplicationContextManager(){
-        logger.info("CONSTRUCT Application Context Aware");
-        context = this.ctx;
+    @PostConstruct
+    public void init() {
+        this.context = ctx;
+    }
+
+    public ApplicationContextManager(ApplicationContext applicationContext) {
+        this.context = applicationContext ;
     }
 
     @Override
