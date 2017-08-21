@@ -124,7 +124,7 @@
     "pid": "catmName",
     "id": "pgmMultiLangInfo>catmName",
     "propertyTypeName": "출연자명",
-    "valueType": "STRING",
+    "valueType": "TEXT",
     "required": false,
     "idable": false,
     "labelable": false,

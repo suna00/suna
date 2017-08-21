@@ -3708,12 +3708,12 @@
         {
           "key": "catmName",
           "value": "",
-          "description": "출연자명 (varchar) "
+          "description": "출연자명 (longtext) "
         },
         {
           "key": "catmOriginName",
           "value": "",
-          "description": "출연자본명 (varchar) "
+          "description": "출연자본명 (longtext) "
         },
         {
           "key": "catmCdSbst",
@@ -3921,7 +3921,7 @@
         {
           "key": "catmName",
           "value": "",
-          "description": "출연자명 (varchar) "
+          "description": "출연자명 (longtext) "
         },
         {
           "key": "findKywrd",
@@ -6611,7 +6611,7 @@
         {
           "key": "ntfSbst",
           "value": "",
-          "description": "공지 내용 (logtext) "
+          "description": "공지 내용 (longtext) "
         }
       ],
       "queryParams": [],
@@ -6759,7 +6759,7 @@
         {
           "key": "ntfSbst",
           "value": "",
-          "description": "공지 내용 (logtext) "
+          "description": "공지 내용 (longtext) "
         }
       ],
       "queryParams": [],

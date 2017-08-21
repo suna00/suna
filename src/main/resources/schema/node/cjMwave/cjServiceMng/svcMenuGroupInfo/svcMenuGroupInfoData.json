@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "typeId": "svcMenuGroupInfo",
+    "svcMenuGroupSeq": 100,
+    "svcMenuGroupNm": "2017년 MWAVE 메뉴",
+    "svcDvcDivCd": "svcDvcDiv>1",
+    "showYn": true,
+    "pstngStDt": "20170801",
+    "pstngFnsDt": "20171031",
+    "showCntryCdList": "KOR,USA"
+  }
+]

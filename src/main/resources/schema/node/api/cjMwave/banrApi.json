@@ -16,12 +16,7 @@
           {"field" : "showYn", "method" : "matching", "value" : "true" },
           {"sorting" : "banrSeq desc"},
           {"limit" : "1"}
-        ],
-        "response" : {
-          "mainSeq": "",
-          "mainNm": "",
-          "refdCompItemList":""
-        }
+        ]
       }
     }
   }
