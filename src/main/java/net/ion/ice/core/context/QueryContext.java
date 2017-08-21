@@ -245,7 +245,7 @@ public class QueryContext extends ReadContext {
         QueryContext queryContext = new QueryContext(nodeType);
         java.util.List<QueryTerm> queryTerms = new ArrayList<>();
 
-        QueryUtils.makeQueryTerm(nodeType, queryContext, queryTerms, pt.getPid(), value);
+        QueryUtils.makeQueryTerm(nodeType, queryContext, queryTerms, pt.getPid()+"_matching", value);
 
         queryContext.setQueryTerms(queryTerms);
         return queryContext;
