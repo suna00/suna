@@ -1,6 +1,7 @@
 [
   {
     "typeId": "shopEventMainBanner",
+    "shopEventMainBannerId": "1",
     "sortOrder": "1",
     "shopEventId" : "1",
     "deviceType" : "pc",
@@ -8,6 +9,7 @@
   },
   {
     "typeId": "shopEventMainBanner",
+    "shopEventMainBannerId": "2",
     "sortOrder": "2",
     "shopEventId" : "2",
     "deviceType" : "pc",
@@ -15,6 +17,7 @@
   },
   {
     "typeId": "shopEventMainBanner",
+    "shopEventMainBannerId": "3",
     "sortOrder": "3",
     "shopEventId" : "3",
     "deviceType" : "pc",
@@ -22,6 +25,7 @@
   },
   {
     "typeId": "shopEventMainBanner",
+    "shopEventMainBannerId": "4",
     "sortOrder": "4",
     "shopEventId" : "4",
     "deviceType" : "pc",
