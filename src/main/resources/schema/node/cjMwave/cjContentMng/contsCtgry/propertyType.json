@@ -106,7 +106,7 @@
     "tid" : "contsCtgry",
     "pid" : "useYn",
     "id" : "contsCtgry@useYn",
-    "propertyTypeName": "사용여부",
+    "propertyTypeName": "노출여부",
     "valueType" : "BOOLEAN",
     "required" : true,
     "idable" : false,
