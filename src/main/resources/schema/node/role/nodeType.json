@@ -1,6 +1,6 @@
 [
   {
-    "tid": "authority",
+    "tid": "role",
     "parentId": "userMng",
     "typeId": "nodeType",
     "repositoryType": "node",
@@ -8,7 +8,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "authority",
+    "tid": "role",
     "pid": "name",
     "propertyTypeName": "권한명",
     "valueType": "STRING",
@@ -21,7 +21,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "authority",
+    "tid": "role",
     "pid": "code",
     "propertyTypeName": "권한코드",
     "valueType": "STRING",
