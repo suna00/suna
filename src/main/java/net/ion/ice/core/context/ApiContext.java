@@ -39,17 +39,25 @@ public class ApiContext {
 
     private void init() {
         resultFieldList = new ArrayList<>() ;
-        for(String key : config.keySet()){
-            Map<String, Object> ctxRootConfig = (Map<String, Object>) config.get(key);
-
-            if(ctxRootConfig.containsKey("event")){
-                ExecuteContext executeContext = ExecuteContext.makeContextFromConfig(ctxRootConfig, data) ;
-                resultFieldList.add(new ResultField(key, executeContext)) ;
-            }else if(ctxRootConfig.containsKey("query")){
-                ApiQueryContext queryContext = ApiQueryContext.makeContextFromConfig(ctxRootConfig, data) ;
-                resultFieldList.add(new ResultField(key, queryContext)) ;
+        if(config.containsKey("typeId") || config.containsKey("apiType")){
+            resultFieldList.add(makeSubContext("root", config));
+        }else {
+            for (String key : config.keySet()) {
+                Map<String, Object> ctxRootConfig = (Map<String, Object>) config.get(key);
+                resultFieldList.add(makeSubContext(key, ctxRootConfig));
             }
         }
+    }
+
+    private ResultField makeSubContext(String key, Map<String, Object> ctxRootConfig) {
+        if(ctxRootConfig.containsKey("event")){
+            ExecuteContext executeContext = ExecuteContext.makeContextFromConfig(ctxRootConfig, data) ;
+            return new ResultField(key, executeContext) ;
+        }else if(ctxRootConfig.containsKey("query")){
+            ApiQueryContext queryContext = ApiQueryContext.makeContextFromConfig(ctxRootConfig, data) ;
+            return new ResultField(key, queryContext) ;
+        }
+        return null ;
     }
 
 
@@ -59,7 +67,11 @@ public class ApiContext {
         for(ResultField field : resultFieldList){
             Context context = field.getContext() ;
             if(context instanceof ApiQueryContext){
-                queryResult.put(field.getFieldName(), ((ApiQueryContext) context).makeApiQueryResult(null, null)) ;
+                if("root".equals(field.getFieldName())){
+                    queryResult = (QueryResult) ((ApiQueryContext) context).makeApiQueryResult(null, null);
+                }else {
+                    queryResult.put(field.getFieldName(), ((ApiQueryContext) context).makeApiQueryResult(null, null));
+                }
             }
         }
 

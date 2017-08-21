@@ -1,0 +1,44 @@
+[
+  {
+    "typeId" : "event",
+    "id" : "oneToOneQuestion>create",
+    "tid": "oneToOneQuestion",
+    "event" : "create",
+    "eventName" : "Create OneToOneQuestion"
+  },
+  {
+    "typeId" : "event",
+    "id" : "oneToOneQuestion>update",
+    "tid": "oneToOneQuestion",
+    "event" : "update",
+    "eventName" : "update OneToOneQuestion"
+  },
+  {
+    "typeId" : "event",
+    "id" : "oneToOneQuestion>delete",
+    "tid": "oneToOneQuestion",
+    "event" : "delete",
+    "eventName" : "delete OneToOneQuestion"
+  },
+  {
+    "typeId" : "event",
+    "id" : "productQuestion>create",
+    "tid": "productQuestion",
+    "event" : "create",
+    "eventName" : "Create ProductQuestion"
+  },
+  {
+    "typeId" : "event",
+    "id" : "productQuestion>update",
+    "tid": "productQuestion",
+    "event" : "update",
+    "eventName" : "update ProductQuestion"
+  },
+  {
+    "typeId" : "event",
+    "id" : "productQuestion>delete",
+    "tid": "productQuestion",
+    "event" : "delete",
+    "eventName" : "delete ProductQuestion"
+  }
+]

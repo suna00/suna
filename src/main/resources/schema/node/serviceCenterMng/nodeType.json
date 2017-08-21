@@ -32,7 +32,7 @@
     "typeName": "QNA 질문",
     "tableName": "ytnDevDb#productQuestion",
     "repositoryType": "node",
-    "eviction": 0
+    "eviction": 100000
   },
   {
     "parentId": "serviceCenterMng",
@@ -50,7 +50,7 @@
     "typeName": "1대1문의",
     "tableName": "ytnDevDb#oneToOneQuestion",
     "repositoryType": "node",
-    "eviction": 0
+    "eviction": 100000
   },
   {
     "parentId": "serviceCenterMng",
