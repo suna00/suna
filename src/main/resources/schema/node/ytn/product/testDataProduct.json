@@ -534,5 +534,24 @@
     },
     "created": "20170820203456",
     "changed": "20170821053544"
+  },
+  {
+    "typeId": "interestProduct",
+    "interestProductId": 1,
+    "productId": {
+      "value": "3",
+      "label": "product 003 콜라콜",
+      "refId": "3"
+    },
+    "memberNo": {
+      "value": "77777",
+      "label": "77777",
+      "refId": "77777"
+    },
+    "siteId": {
+      "value": "ion",
+      "label": "아이온커뮤니케이션즈",
+      "refId": "ion"
+    }
   }
 ]
