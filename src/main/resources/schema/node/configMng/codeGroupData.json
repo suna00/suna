@@ -92,7 +92,7 @@
   },
   {
     "typeId" : "groupCode",
-    "groupCodeId" : "livBanrDivCd",
+    "groupCodeId" : "liveBanrDivCd",
     "name" : "라이브배너 유형 코드",
     "active" : true,
     "desc" : "라이브배너에서 사용되는 유형 코드"
