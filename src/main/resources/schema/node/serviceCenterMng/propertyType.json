@@ -933,7 +933,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "codeFilter": "faqType1",
+    "codeFilter": "faqType",
     "defaultValue": ""
   },
   {
@@ -1121,7 +1121,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "codeFilter": "faqType1",
+    "codeFilter": "faqType",
     "defaultValue": ""
   },
   {
@@ -1480,7 +1480,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "codeFilter": "faqType1",
+    "codeFilter": "faqType",
     "defaultValue": ""
   },
   {
@@ -1718,7 +1718,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "codeFilter": "faqType1",
+    "codeFilter": "faqType",
     "defaultValue": ""
   },
   {
