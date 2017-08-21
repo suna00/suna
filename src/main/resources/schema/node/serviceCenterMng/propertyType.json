@@ -1707,8 +1707,8 @@
   {
     "typeId": "propertyType",
     "tid": "frequentlyUsedAnswer",
-    "pid": "frequentlyUsedAnswerType",
-    "propertyTypeName": "타입",
+    "pid": "faqType1",
+    "propertyTypeName": "구분1",
     "valueType": "REFERENCE",
     "required": false,
     "idable": false,
@@ -1718,7 +1718,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "codeFilter": "frequentlyUsedAnswerType",
+    "codeFilter": "faqType1",
     "defaultValue": ""
   },
   {
