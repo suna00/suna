@@ -73,6 +73,8 @@ public class QueryContext extends ReadContext {
 
     public static QueryContext createQueryContextFromText(String searchText, NodeType nodeType) {
         QueryContext queryContext = new QueryContext(nodeType);
+        queryContext.setIncludeReferenced(false );
+
         java.util.List<QueryTerm> queryTerms = new ArrayList<>();
 
         if (StringUtils.isEmpty(searchText)) {
@@ -241,7 +243,7 @@ public class QueryContext extends ReadContext {
         }
 
         queryContext.setQueryTerms(queryTerms);
-        queryContext.setIncludeReference(true);
+        queryContext.setIncludeReferenced(true);
         return queryContext;
 
     }
@@ -413,12 +415,6 @@ public class QueryContext extends ReadContext {
             QueryResult itemResult = new QueryResult() ;
             for(PropertyType pt : nodeType.getPropertyTypes()){
                 itemResult.put(pt.getPid(), NodeUtils.getResultValue(this, pt, resultNode));
-            }
-            if (isIncludeReferenced()) {
-                for (PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)) {
-                    QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(nodeType, pt, resultNode);
-                    subQueryContext.makeQueryResult(itemResult, pt.getPid());
-                }
             }
             if (isTreeable()) {
                 for (PropertyType pt : nodeType.getPropertyTypes()) {

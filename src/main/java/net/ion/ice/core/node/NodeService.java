@@ -114,6 +114,25 @@ public class NodeService {
     public List<Node> getNodeList(String typeId, QueryContext queryContext) {
         return infinispanRepositoryService.getSubQueryNodes(typeId, queryContext) ;
     }
+    public List<Node> getDisplayNodeList(String typeId, QueryContext queryContext) {
+        NodeType nodeType = getNodeType(typeId) ;
+        List<Node> nodeList = infinispanRepositoryService.getSubQueryNodes(typeId, queryContext) ;
+        for(Node node : nodeList){
+            node.toDisplay(queryContext) ;
+            if (queryContext.isTreeable()) {
+                for (PropertyType pt : nodeType.getPropertyTypes()) {
+                    if (pt.isTreeable()) {
+                        QueryContext subQueryContext = QueryContext.makeQueryContextForTree(nodeType, pt, node.getId().toString());
+                        subQueryContext.setTreeable(true);
+                        node.put("children", getDisplayNodeList(pt.getReferenceType(), subQueryContext));
+                    }
+                }
+            }
+        }
+        return nodeList ;
+    }
+
+
 
     public SimpleQueryResult getNodeList(String typeId, Map<String, String[]> parameterMap) {
         QueryContext queryContext = QueryContext.createQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
