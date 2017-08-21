@@ -990,9 +990,9 @@
   {
     "typeId": "propertyType",
     "tid": "oneToOneQuestion",
-    "pid": "files",
+    "pid": "file",
     "propertyTypeName": "첨부파일",
-    "valueType": "FILES",
+    "valueType": "FILE",
     "required": false,
     "idable": false,
     "labelable": false,
