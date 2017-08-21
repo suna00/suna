@@ -93,7 +93,7 @@
     "id": "voteBasInfo>thumImgPath",
     "propertyTypeName": "썸네일 경로",
     "valueType": "FILE",
-    "required": true,
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
