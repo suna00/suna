@@ -56,6 +56,7 @@ public class YMLHelper {
                 target.put(keyAppendix + key, value);
                 if(vClassName.endsWith("List")) {
                     target.put(keyAppendix + key, String.valueOf(value));
+                    load((List)value, target, keyAppendix + key);
                 } else if(vClassName.endsWith("Map")) {
                     load((Map)value, target, keyAppendix + key);
                 }

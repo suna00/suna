@@ -1,0 +1,12 @@
+# 파일명 - boot profile 명 매칭
+schedulers:
+
+  - schedule-id: schedulerA
+    execute-class: net.ion.ice.service.TestSchedulerService
+    execute-method: doA
+    cron-expression: 10000
+
+  - schedule-id: schedulerB
+    execute-class: net.ion.ice.service.TestSchedulerService
+    execute-method: doB
+    cron-expression: 60000
