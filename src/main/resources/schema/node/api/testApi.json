@@ -134,17 +134,39 @@
   {
     "typeId" : "apiConfig",
     "category" : "testApi",
-    "apiId" : "filterReferenceItem",
-    "apiName" : "filterReference Query Sample",
+    "apiId" : "referenceJoinItem",
+    "apiName" : "referenceJoin Query Sample",
     "method" : "GET",
     "parameters" : [
     ],
     "config" : {
       "typeId": "testItem",
       "query" : [
-        {"field" : "category", "method" : "filterReference", "value" : "categoryType_matching={{:categoryType}}" },
+        {"field" : "category", "method" : "referenceJoin", "value" : "categoryType_matching={{:categoryType}}" },
         {"includeReferenced" : true, "referenceView" : "category"}
       ]
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "responseTest",
+    "apiName" : "Default response Sample",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "testItem",
+      "query" : [
+        {"field" : "category", "method" : "match", "value" : "{{:category}}" }
+      ],
+      "response" :{
+        "id" :"",
+        "menus" : "",
+        "menuList" : {"field" : "menus", "referenceView" : true, "includeReferenced" : false},
+        "itemTitle" : "title",
+        "itemDesc" : "body"
+      }
     }
   }
 ]

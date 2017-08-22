@@ -1,6 +1,33 @@
 [
   {
     "typeId" : "datasource",
+    "id" : "mariaDb",
+    "dsName" : "Test DB (Maria)",
+    "jdbcUrl" : "jdbc:mysql://125.131.88.77:3306/ice2",
+    "dbType" : "maria",
+    "username" : "ice2",
+    "password" : "ice2"
+  },
+  {
+    "typeId" : "datasource",
+    "id" : "oracleDb",
+    "dsName" : "Test DB (Oracle)",
+    "jdbcUrl" : "jdbc:oracle:thin:@125.131.88.69:8200:ORCL",
+    "dbType" : "oracle",
+    "username" : "ICE",
+    "password" : "ICE1234"
+  },
+  {
+    "typeId" : "datasource",
+    "id" : "msDb",
+    "dsName" : "Test DB (MS)",
+    "jdbcUrl" : "jdbc:sqlserver://125.131.88.94:1500;databaseName=IPS",
+    "dbType" : "msSql",
+    "username" : "icafe13",
+    "password" : "icafe1234!@"
+  },
+  {
+    "typeId" : "datasource",
     "id" : "ytnDevDb",
     "dsName" : "YTN Dev DB",
     "jdbcUrl" : "jdbc:mysql://125.131.88.147:3306/ytn",

@@ -47,6 +47,30 @@ public class QueryUtils {
             }
         } else if(paramName.equals("includeReferenced")){
             queryContext.setIncludeReferenced(value);
+            return ;
+        } else if(paramName.equals("referenceView")){
+            String referenceView = value;
+            if(StringUtils.isEmpty(referenceView)){
+                queryContext.setReferenceView(null);
+            }else if ("true".equals(referenceView)) {
+                queryContext.setReferenceView(true);
+            }else if ("false".equals(referenceView)) {
+                queryContext.setReferenceView(false);
+            }else{
+                List<String> referenceViewFields = new ArrayList<>() ;
+                for(String f : StringUtils.split(referenceView, ",")){
+                    if(StringUtils.isNotEmpty(f.trim())){
+                        referenceViewFields.add(f.trim()) ;
+                    }
+                }
+                if(referenceViewFields.size() > 0){
+                    queryContext.setReferenceViewFields(referenceViewFields) ;
+                    queryContext.setReferenceView(true);
+                }else{
+                    queryContext.setReferenceView(false);
+                }
+            }
+            return ;
         }
 
         if (nodeType == null) {
@@ -122,7 +146,7 @@ public class QueryUtils {
                     joinQueryContext.setSourceJoinField("id");
                     context.addJoinQuery(joinQueryContext);
                 }
-            }else if(method.equals("filterReference")){
+            }else if(method.equals("referenceJoin")){
                 NodeType refNodeType = NodeUtils.getNodeType(nodeType.getPropertyType(field).getReferenceType());
                 QueryContext joinQueryContext = QueryContext.createQueryContextFromText(queryValue, refNodeType);
                 if (joinQueryContext != null) {

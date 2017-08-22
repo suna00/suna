@@ -1,5 +1,6 @@
 package net.ion.ice.core.context;
 
+import net.ion.ice.core.data.bind.NodeBindingInfo;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
@@ -24,6 +25,8 @@ public class ReadContext implements Context {
     protected Integer level ;
 
     protected Boolean includeReferenced;
+    protected List<String> includeReferencedFields ;
+
     protected Boolean referenceView ;
     protected List<String> referenceViewFields ;
 
@@ -31,6 +34,10 @@ public class ReadContext implements Context {
     protected List<ResultField> resultFields;
 
     protected String id ;
+
+    protected QueryTerm.QueryTermType queryTermType ;
+
+    protected NodeBindingInfo nodeBindingInfo ;
 
     public NodeType getNodetype() {
         return nodeType;
@@ -98,6 +105,10 @@ public class ReadContext implements Context {
             context.setIncludeReferenced(true);
         }
 
+        makeReferenceView(context, data);
+    }
+
+    protected static void makeReferenceView(ReadContext context, Map<String, Object> data) {
         String referenceView = (String) data.get("referenceView");
         if(StringUtils.isEmpty(referenceView)){
             context.referenceView = null ;
@@ -173,8 +184,23 @@ public class ReadContext implements Context {
                     subQueryContext.makeQueryResult(itemResult, pt.getPid());
                 }
             }
+        }else{
+            makeItemQueryResult(node, itemResult);
         }
         return itemResult;
+    }
+
+    protected void makeItemQueryResult(Node node, QueryResult itemResult) {
+        for (ResultField resultField : getResultFields()) {
+            if (resultField.getContext() != null) {
+                QueryContext subQueryContext = (QueryContext) resultField.getContext();
+                subQueryContext.makeQueryResult(itemResult, resultField.getFieldName());
+            } else {
+                String fieldValue = resultField.getFieldValue();
+                fieldValue = fieldValue == null || StringUtils.isEmpty(fieldValue) ? resultField.getFieldName() : fieldValue;
+                itemResult.put(resultField.getFieldName(), NodeUtils.getResultValue(resultField.getFieldContext() != null ? resultField.getFieldContext() : this, nodeType.getPropertyType(fieldValue), node));
+            }
+        }
     }
 
     public boolean isReferenceView(String pid) {
@@ -206,4 +232,15 @@ public class ReadContext implements Context {
     }
 
 
+    public void setReferenceView(Boolean referenceView) {
+        this.referenceView = referenceView;
+    }
+
+    public void setReferenceViewFields(List<String> referenceViewFields) {
+        this.referenceViewFields = referenceViewFields;
+    }
+
+    public void setIncludeReferencedFields(List<String> includeReferencedFields) {
+        this.includeReferencedFields = includeReferencedFields;
+    }
 }

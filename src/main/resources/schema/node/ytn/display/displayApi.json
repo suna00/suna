@@ -1,0 +1,39 @@
+[
+  {
+    "typeId" : "apiCategory",
+    "id" : "displayApi",
+    "categoryName" : "Display API"
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "displayApi",
+    "apiId": "themeMapList",
+    "apiName": "테마 상품 리스트",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "theme",
+      "query": [
+        {
+          "field": "themeStatus",
+          "method": "matching",
+          "value": "y"
+        },
+        {
+          "field": "themeType",
+          "method": "matching",
+          "value": "{{:themeType}}"
+        },
+        {
+          "field": "items",
+          "method": "hasReferenced",
+          "value": "menus_matching={{:menu}}"
+        },
+        {
+          "includeReferenced": true
+        }
+      ]
+    }
+  }
+]

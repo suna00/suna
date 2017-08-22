@@ -38,9 +38,7 @@ public class QueryContext extends ReadContext {
     protected boolean treeable;
     protected int queryListSize;
 
-    protected QueryTerm.QueryTermType queryTermType ;
 
-    protected NodeBindingInfo nodeBindingInfo ;
 
 
 
@@ -352,18 +350,26 @@ public class QueryContext extends ReadContext {
         return queryContext;
     }
 
-    public QueryResult makeQueryResult(Object result, String fieldName) {
+    public List<Node> getQueryList() {
         if(this.queryTermType == QueryTerm.QueryTermType.DATA) {
+            if(nodeBindingInfo == null){
+                nodeBindingInfo = NodeUtils.getNodeBindingInfo(nodeType.getTypeId()) ;
+            }
             List<Map<String, Object>> resultList = nodeBindingInfo.list(this);
             List<Node> resultNodeList = NodeUtils.initDataNodeList(nodeType.getTypeId(), resultList);
 
-            return makeQueryResult(result, fieldName, resultNodeList);
+            return resultNodeList ;
         }else{
             List<Object> resultList = NodeUtils.getNodeService().executeQuery(this) ;
             List<Node> resultNodeList = NodeUtils.initNodeList(nodeType.getTypeId(), resultList) ;
 
-            return makeQueryResult(result, fieldName, resultNodeList);
+            return resultNodeList ;
         }
+    }
+
+    public QueryResult makeQueryResult(Object result, String fieldName) {
+        List<Node> resultNodeList = getQueryList() ;
+        return makeQueryResult(result, fieldName, resultNodeList);
     }
 
 
@@ -405,16 +411,7 @@ public class QueryContext extends ReadContext {
 
         for(Node resultNode : resultNodeList) {
             QueryResult subQueryResult = new QueryResult() ;
-            for (ResultField resultField : getResultFields()) {
-                if (resultField.getContext() != null) {
-                    QueryContext subQueryContext = (QueryContext) resultField.getContext();
-                    subQueryContext.makeQueryResult(subQueryResult, resultField.getFieldName());
-                } else {
-                    String fieldValue = resultField.getFieldValue();
-                    fieldValue = fieldValue == null || StringUtils.isEmpty(fieldValue) ? resultField.getFieldName() : fieldValue;
-                    subQueryResult.put(resultField.getFieldName(), NodeUtils.getResultValue(this, nodeType.getPropertyType(fieldValue), resultNode));
-                }
-            }
+            makeItemQueryResult(resultNode, subQueryResult);
             subList.add(subQueryResult) ;
         }
         return subList;
