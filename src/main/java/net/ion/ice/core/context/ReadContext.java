@@ -24,6 +24,8 @@ public class ReadContext implements Context {
     protected Integer level ;
 
     protected Boolean includeReferenced;
+    protected List<String> includeReferencedFields ;
+
     protected Boolean referenceView ;
     protected List<String> referenceViewFields ;
 
@@ -98,6 +100,10 @@ public class ReadContext implements Context {
             context.setIncludeReferenced(true);
         }
 
+        makeReferenceView(context, data);
+    }
+
+    protected static void makeReferenceView(ReadContext context, Map<String, Object> data) {
         String referenceView = (String) data.get("referenceView");
         if(StringUtils.isEmpty(referenceView)){
             context.referenceView = null ;
@@ -206,4 +212,15 @@ public class ReadContext implements Context {
     }
 
 
+    public void setReferenceView(Boolean referenceView) {
+        this.referenceView = referenceView;
+    }
+
+    public void setReferenceViewFields(List<String> referenceViewFields) {
+        this.referenceViewFields = referenceViewFields;
+    }
+
+    public void setIncludeReferencedFields(List<String> includeReferencedFields) {
+        this.includeReferencedFields = includeReferencedFields;
+    }
 }
