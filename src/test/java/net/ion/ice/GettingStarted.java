@@ -6,6 +6,8 @@ import com.hazelcast.config.Config;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.core.IMap;
+import org.apache.commons.lang3.StringUtils;
+import org.junit.Test;
 
 import java.util.Map;
 import java.util.Queue;
@@ -14,6 +16,8 @@ import java.util.Queue;
  * Created by jjong on 2017. 6. 5..
  */
 public class GettingStarted {
+
+
     public static void main(String[] args){
         ClientConfig clientConfig = new ClientConfig();
         HazelcastInstance client = HazelcastClient.newHazelcastClient( clientConfig );
