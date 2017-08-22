@@ -1,0 +1,63 @@
+[
+  {
+    "typeId" : "apiCategory",
+    "id" : "specialExhibitionApi",
+    "categoryName" : "이벤트 API"
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "specialExhibitionApi",
+    "apiId" : "list",
+    "apiName" : "기획전 리스트",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "specialExhibition",
+      "query" : [
+        {"field" : "startDate", "method" : "below", "value" : "{{:toDay}}" },
+        {"field" : "endDate", "method" : "above", "value" : "{{:toDay}}" },
+        {"field" : "categoryId", "method" : "matching", "value" : "{{:categoryId}}" },
+        {"field" : "siteType", "method" : "matching", "value" : "{{:siteType}}" },
+        {"field" : "specialExhibitionStatus", "method" : "matching", "value" : "use" },
+        {"includeReferenced" : false}
+      ]
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "specialExhibitionApi",
+    "apiId" : "view",
+    "apiName" : "기획전 조회",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "specialExhibition",
+      "query" : [
+        {"field" : "startDate", "method" : "below", "value" : "{{:toDay}}" },
+        {"field" : "endDate", "method" : "above", "value" : "{{:toDay}}" },
+        {"field" : "siteType", "method" : "matching", "value" : "{{:siteType}}" },
+        {"field" : "specialExhibitionStatus", "method" : "matching", "value" : "use" },
+        {"field" : "referencedSpecialExhibitionAnker", "method" : "hasReferenced", "value" : "ankerStatus_matching=y"},
+        {"includeReferenced" : true}
+      ]
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "newProduct",
+    "apiId" : "list",
+    "apiName" : "신상품 리스트",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "newProductMap",
+      "query" : [
+        {"field" : "newProductId", "method" : "referenceJoin", "value" : "siteType_matching={{:siteType}}&year_matching={{:year}}&month_matching={{:month}}" },
+        {"includeReferenced" : true, "referenceView" : "newProductId,productId"}
+      ]
+    }
+  }
+]

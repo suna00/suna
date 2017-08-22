@@ -784,11 +784,20 @@
   },
   {
     "typeId": "commonCode",
-    "code": "general",
+    "code": "all",
     "upperCode": "addBenefitType",
-    "name": "일반",
+    "name": "전체",
     "description": "",
-    "sortOrder": "1",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "special",
+    "upperCode": "addBenefitType",
+    "name": "기획전",
+    "description": "",
+    "sortOrder": "2",
     "commonCodeStatus": "y"
   },
   {
@@ -3900,7 +3909,7 @@
     "typeId": "commonCode",
     "code": "term001",
     "upperCode": "termsType",
-    "name": "이용약관",
+    "name": "일반",
     "description": "",
     "sortOrder": "1",
     "commonCodeStatus": "y"
@@ -3909,27 +3918,9 @@
     "typeId": "commonCode",
     "code": "term002",
     "upperCode": "termsType",
-    "name": "전자금융거래이용약관",
+    "name": "회원가입",
     "description": "",
     "sortOrder": "2",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "term003",
-    "upperCode": "termsType",
-    "name": "개인정보수집및이용안내",
-    "description": "",
-    "sortOrder": "3",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "term004",
-    "upperCode": "termsType",
-    "name": "마케팅수신동의",
-    "description": "",
-    "sortOrder": "4",
     "commonCodeStatus": "y"
   },
   {
@@ -3952,11 +3943,29 @@
   },
   {
     "typeId": "commonCode",
-    "code": "best",
+    "code": "best1d",
     "upperCode": "themeType",
-    "name": "BEST",
+    "name": "1일 BEST",
     "description": "",
     "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "best7d",
+    "upperCode": "themeType",
+    "name": "일주일 BEST",
+    "description": "",
+    "sortOrder": "4",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "best1m",
+    "upperCode": "themeType",
+    "name": "한달 BEST",
+    "description": "",
+    "sortOrder": "5",
     "commonCodeStatus": "y"
   },
   {
@@ -4407,6 +4416,168 @@
     "name": "제휴입점",
     "description": "",
     "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "card001",
+    "upperCode": "cardType",
+    "name": "롯데카드",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "card002",
+    "upperCode": "cardType",
+    "name": "비씨카드",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "card003",
+    "upperCode": "cardType",
+    "name": "삼성카드",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "card004",
+    "upperCode": "cardType",
+    "name": "신한카드",
+    "description": "",
+    "sortOrder": "4",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "card005",
+    "upperCode": "cardType",
+    "name": "우리카드",
+    "description": "",
+    "sortOrder": "5",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "card006",
+    "upperCode": "cardType",
+    "name": "하나카드",
+    "description": "",
+    "sortOrder": "6",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "card007",
+    "upperCode": "cardType",
+    "name": "현대카드",
+    "description": "",
+    "sortOrder": "7",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "card008",
+    "upperCode": "cardType",
+    "name": "KB국민카드",
+    "description": "",
+    "sortOrder": "8",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "abp001",
+    "upperCode": "addBenefitPaymentType",
+    "name": "롯데카드",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "abp002",
+    "upperCode": "addBenefitPaymentType",
+    "name": "비씨카드",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "abp003",
+    "upperCode": "addBenefitPaymentType",
+    "name": "삼성카드",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "abp004",
+    "upperCode": "addBenefitPaymentType",
+    "name": "신한카드",
+    "description": "",
+    "sortOrder": "4",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "abp005",
+    "upperCode": "addBenefitPaymentType",
+    "name": "우리카드",
+    "description": "",
+    "sortOrder": "5",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "abp006",
+    "upperCode": "addBenefitPaymentType",
+    "name": "하나카드",
+    "description": "",
+    "sortOrder": "6",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "abp007",
+    "upperCode": "addBenefitPaymentType",
+    "name": "현대카드",
+    "description": "",
+    "sortOrder": "7",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "abp008",
+    "upperCode": "addBenefitPaymentType",
+    "name": "KB국민카드",
+    "description": "",
+    "sortOrder": "8",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "abp009",
+    "upperCode": "addBenefitPaymentType",
+    "name": "PAYCO",
+    "description": "",
+    "sortOrder": "9",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "abp010",
+    "upperCode": "addBenefitPaymentType",
+    "name": "Npay",
+    "description": "",
+    "sortOrder": "10",
     "commonCodeStatus": "y"
   }
 ]

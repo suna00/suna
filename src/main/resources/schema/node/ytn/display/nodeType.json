@@ -94,7 +94,7 @@
     "tid": "newProductMap",
     "typeName": "신상품 매핑",
     "tableName": "ytnDevDb#newProductMap",
-    "repositoryType": "data",
+    "repositoryType": "node",
     "eviction": 0
   },
   {
@@ -111,8 +111,8 @@
     "typeId": "nodeType",
     "tid": "productToThemeMap",
     "typeName": "테마 상품 매핑",
-    "tableName": "ytnDevDb#productToThemeMap",
-    "repositoryType": "data",
+    "tableName": "ytnDevDb#producttothememap",
+    "repositoryType": "node",
     "eviction": 0
   },
   {

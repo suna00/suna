@@ -5,6 +5,8 @@ import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.cluster.ClusterService;
 import net.ion.ice.core.context.DataQueryContext;
 import net.ion.ice.core.context.ReadContext;
+import net.ion.ice.core.data.bind.NodeBindingInfo;
+import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.file.FileService;
 import net.ion.ice.core.file.FileValue;
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
@@ -48,7 +50,18 @@ public class NodeUtils {
 
     public static Node getNode(String typeId, String id) {
         if (getNodeService() == null) return null;
-        return nodeService.getNode(typeId, id);
+        return getNode(getNodeType(typeId), id);
+    }
+
+    public static Node getNode(NodeType nodeType, String id) {
+        if(nodeType.getRepositoryType().equals("data")){
+            if (getNodeBindingService() == null) return null ;
+            Map<String, Object> resultData =  getNodeBindingService().getNodeBindingInfo(nodeType.getTypeId()).retrieve(id) ;
+            return new Node(resultData, nodeType.getTypeId());
+        }else {
+            if (getNodeService() == null) return null;
+            return nodeService.getNode(nodeType.getTypeId(), id);
+        }
     }
 
     static InfinispanRepositoryService infinispanService;
@@ -223,10 +236,10 @@ public class NodeUtils {
     public static ReferenceView getReferenceValueView(ReadContext context, Object value, PropertyType pt) {
         try {
             NodeService nodeService = getNodeService();
-            Node refNode = nodeService.getNode(pt.getReferenceType(), value.toString());
+            Node refNode = getNode(pt.getReferenceType(), value.toString());
             NodeType nodeType = nodeService.getNodeType(pt.getReferenceType());
             return new ReferenceView(refNode.toDisplay(context), nodeType);
-        } catch (NotFoundNodeException e) {
+        } catch (Exception e) {
             return new ReferenceView(value.toString(), value.toString());
         }
     }
@@ -234,10 +247,10 @@ public class NodeUtils {
     public static Reference getReferenceValue(Object value, PropertyType pt) {
         try {
             NodeService nodeService = getNodeService();
-            Node refNode = nodeService.read(pt.getReferenceType(), value.toString());
+            Node refNode = getNode(pt.getReferenceType(), value.toString());
             NodeType nodeType = nodeService.getNodeType(pt.getReferenceType());
             return new Reference(refNode, nodeType);
-        } catch (NotFoundNodeException e) {
+        } catch (Exception e) {
             return new Reference(value.toString(), value.toString());
         }
     }
@@ -562,6 +575,18 @@ public class NodeUtils {
         return clusterService;
     }
 
+
+    static NodeBindingService nodeBindingService;
+    public static NodeBindingService getNodeBindingService() {
+        if (nodeBindingService == null) {
+            nodeBindingService = ApplicationContextManager.getBean(NodeBindingService.class);
+        }
+        return nodeBindingService;
+    }
+
+    public static NodeBindingInfo getNodeBindingInfo(String typeId){
+        return getNodeBindingService().getNodeBindingInfo(typeId) ;
+    }
 
     public static List<Node> initNodeList(String typeId, List<Object> list) {
         Cache<String, NodeValue> nodeValueCache = getInfinispanService().getNodeValueCache();

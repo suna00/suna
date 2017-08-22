@@ -4,7 +4,7 @@
     "shopEventId": "1",
     "affiliateId": "",
     "siteId": "",
-    "siteType": "company",
+    "displayTargetType": "company",
     "deviceType": "pc",
     "name": "캐리비안베이 X YGOON 페스티발",
     "startDate": "20170801000000",
@@ -19,7 +19,7 @@
     "shopEventId": "2",
     "affiliateId": "",
     "siteId": "",
-    "siteType": "university",
+    "displayTargetType": "university",
     "deviceType": "pc",
     "name": "캐리비안베이 X YGOON 페스티발",
     "startDate": "20170801000000",
@@ -34,7 +34,7 @@
     "shopEventId": "3",
     "affiliateId": "",
     "siteId": "",
-    "siteType": "company",
+    "displayTargetType": "company",
     "deviceType": "pc",
     "name": "캐리비안베이 X YGOON 페스티발",
     "startDate": "20170810000000",
@@ -49,7 +49,7 @@
     "shopEventId": "4",
     "affiliateId": "",
     "siteId": "",
-    "siteType": "university",
+    "displayTargetType": "university",
     "deviceType": "pc",
     "name": "캐리비안베이 X YGOON 페스티발",
     "startDate": "20170810000000",
@@ -64,7 +64,7 @@
     "shopEventId": "5",
     "affiliateId": "",
     "siteId": "",
-    "siteType": "company",
+    "displayTargetType": "company",
     "deviceType": "pc",
     "name": "캐리비안베이 X YGOON 페스티발",
     "startDate": "20170815000000",
@@ -79,7 +79,7 @@
     "shopEventId": "6",
     "affiliateId": "",
     "siteId": "",
-    "siteType": "university",
+    "displayTargetType": "university",
     "deviceType": "pc",
     "name": "캐리비안베이 X YGOON 페스티발",
     "startDate": "20170815000000",
@@ -94,7 +94,7 @@
     "shopEventId": "7",
     "affiliateId": "",
     "siteId": "",
-    "siteType": "company",
+    "displayTargetType": "company",
     "deviceType": "pc",
     "name": "캐리비안베이 X YGOON 페스티발",
     "startDate": "20170901000000",
@@ -109,7 +109,7 @@
     "shopEventId": "8",
     "affiliateId": "",
     "siteId": "",
-    "siteType": "university",
+    "displayTargetType": "university",
     "deviceType": "pc",
     "name": "캐리비안베이 X YGOON 페스티발",
     "startDate": "20170901000000",
@@ -124,7 +124,7 @@
     "shopEventId": "9",
     "affiliateId": "",
     "siteId": "",
-    "siteType": "company",
+    "displayTargetType": "company",
     "deviceType": "pc",
     "name": "캐리비안베이 X YGOON 페스티발",
     "startDate": "20170801000000",
@@ -139,7 +139,7 @@
     "shopEventId": "10",
     "affiliateId": "",
     "siteId": "",
-    "siteType": "university",
+    "displayTargetType": "university",
     "deviceType": "pc",
     "name": "캐리비안베이 X YGOON 페스티발",
     "startDate": "20170801000000",
@@ -154,7 +154,7 @@
     "shopEventId": "11",
     "affiliateId": "",
     "siteId": "",
-    "siteType": "company",
+    "displayTargetType": "company",
     "deviceType": "pc",
     "name": "캐리비안베이 X YGOON 페스티발",
     "startDate": "20170810000000",
@@ -169,7 +169,7 @@
     "shopEventId": "12",
     "affiliateId": "",
     "siteId": "",
-    "siteType": "university",
+    "displayTargetType": "university",
     "deviceType": "pc",
     "name": "캐리비안베이 X YGOON 페스티발",
     "startDate": "20170810000000",
@@ -184,7 +184,7 @@
     "shopEventId": "13",
     "affiliateId": "",
     "siteId": "",
-    "siteType": "company",
+    "displayTargetType": "company",
     "deviceType": "pc",
     "name": "캐리비안베이 X YGOON 페스티발",
     "startDate": "20170815000000",
@@ -199,7 +199,7 @@
     "shopEventId": "14",
     "affiliateId": "",
     "siteId": "",
-    "siteType": "university",
+    "displayTargetType": "university",
     "deviceType": "pc",
     "name": "캐리비안베이 X YGOON 페스티발",
     "startDate": "20170815000000",
@@ -214,7 +214,7 @@
     "shopEventId": "15",
     "affiliateId": "",
     "siteId": "",
-    "siteType": "company",
+    "displayTargetType": "company",
     "deviceType": "pc",
     "name": "캐리비안베이 X YGOON 페스티발",
     "startDate": "20170901000000",
@@ -229,7 +229,7 @@
     "shopEventId": "16",
     "affiliateId": "",
     "siteId": "",
-    "siteType": "university",
+    "displayTargetType": "university",
     "deviceType": "pc",
     "name": "캐리비안베이 X YGOON 페스티발",
     "startDate": "20170901000000",
@@ -244,7 +244,7 @@
     "shopEventId": "17",
     "affiliateId": "",
     "siteId": "",
-    "siteType": "company",
+    "displayTargetType": "company",
     "deviceType": "pc",
     "name": "캐리비안베이 X YGOON 페스티발",
     "startDate": "20170801000000",
@@ -259,7 +259,7 @@
     "shopEventId": "18",
     "affiliateId": "",
     "siteId": "",
-    "siteType": "university",
+    "displayTargetType": "university",
     "deviceType": "pc",
     "name": "캐리비안베이 X YGOON 페스티발",
     "startDate": "20170801000000",
@@ -274,7 +274,7 @@
     "shopEventId": "19",
     "affiliateId": "",
     "siteId": "",
-    "siteType": "company",
+    "displayTargetType": "company",
     "deviceType": "pc",
     "name": "캐리비안베이 X YGOON 페스티발",
     "startDate": "20170810000000",
@@ -289,7 +289,7 @@
     "shopEventId": "20",
     "affiliateId": "",
     "siteId": "",
-    "siteType": "university",
+    "displayTargetType": "university",
     "deviceType": "pc",
     "name": "캐리비안베이 X YGOON 페스티발",
     "startDate": "20170810000000",
@@ -304,7 +304,7 @@
     "shopEventId": "21",
     "affiliateId": "",
     "siteId": "",
-    "siteType": "company",
+    "displayTargetType": "company",
     "deviceType": "pc",
     "name": "캐리비안베이 X YGOON 페스티발",
     "startDate": "20170815000000",
@@ -319,7 +319,7 @@
     "shopEventId": "22",
     "affiliateId": "",
     "siteId": "",
-    "siteType": "university",
+    "displayTargetType": "university",
     "deviceType": "pc",
     "name": "캐리비안베이 X YGOON 페스티발",
     "startDate": "20170815000000",
@@ -334,7 +334,7 @@
     "shopEventId": "23",
     "affiliateId": "",
     "siteId": "",
-    "siteType": "company",
+    "displayTargetType": "company",
     "deviceType": "pc",
     "name": "캐리비안베이 X YGOON 페스티발",
     "startDate": "20170901000000",
@@ -349,7 +349,7 @@
     "shopEventId": "24",
     "affiliateId": "",
     "siteId": "",
-    "siteType": "university",
+    "displayTargetType": "university",
     "deviceType": "pc",
     "name": "캐리비안베이 X YGOON 페스티발",
     "startDate": "20170901000000",
@@ -390,5 +390,226 @@
     "shopEventId" : "4",
     "deviceType" : "pc",
     "bannerElementStatus" : "y"
+  },
+  {
+    "typeId": "specialExhibition",
+    "specialExhibitionId": 1,
+    "affiliateId": {
+      "value": "1",
+      "label": "1",
+      "refId": "1"
+    },
+    "name": "기획전 테스트",
+    "displayTargetType": {
+      "value": "company",
+      "label": "기업",
+      "refId": "displayTargetType>company"
+    },
+    "startDate": "20170731150000",
+    "endDate": "20170830150000",
+    "timeSaleYn": {
+      "value": "n",
+      "label": "trueFalse>n",
+      "refId": "trueFalse>n"
+    },
+    "addBenefitYn": {
+      "value": "y",
+      "label": "trueFalse>y",
+      "refId": "trueFalse>y"
+    },
+    "specialExhibitionStatus": {
+      "value": "pending",
+      "label": "진행",
+      "refId": "specialExhibitionStatus>pending"
+    },
+    "mainImage": "test",
+    "thumbnailImage": "test",
+    "keyword": "test,special,기획전",
+    "contents": "기획전 테스트",
+    "created": "20170822074552",
+    "owner": {
+      "value": "anonymous",
+      "label": "anonymous",
+      "refId": "anonymous"
+    },
+    "changed": "20170822074552",
+    "modifier": {
+      "value": "anonymous",
+      "label": "anonymous",
+      "refId": "anonymous"
+    },
+    "siteId": null,
+    "deviceType": null,
+    "categoryId": null
+  },
+  {
+    "typeId": "specialExhibitionAnker",
+    "specialExhibitionAnkerId": 1,
+    "specialExhibitionId": {
+      "value": "1",
+      "label": "기획전 테스트",
+      "refId": "1"
+    },
+    "name": "바지",
+    "sortOrder": 1,
+    "ankerStatus": {
+      "value": "y",
+      "label": "사용",
+      "refId": "useYn>y"
+    },
+    "created": "20170822074648",
+    "owner": {
+      "value": "anonymous",
+      "label": "anonymous",
+      "refId": "anonymous"
+    },
+    "changed": "20170822074648",
+    "modifier": {
+      "value": "anonymous",
+      "label": "anonymous",
+      "refId": "anonymous"
+    }
+  },
+  {
+    "typeId": "specialExhibitionAnker",
+    "specialExhibitionAnkerId": 2,
+    "specialExhibitionId": {
+      "value": "1",
+      "label": "기획전 테스트",
+      "refId": "1"
+    },
+    "name": "티셔츠",
+    "sortOrder": 2,
+    "ankerStatus": {
+      "value": "y",
+      "label": "사용",
+      "refId": "useYn>y"
+    },
+    "created": "20170822074657",
+    "owner": {
+      "value": "anonymous",
+      "label": "anonymous",
+      "refId": "anonymous"
+    },
+    "changed": "20170822074657",
+    "modifier": {
+      "value": "anonymous",
+      "label": "anonymous",
+      "refId": "anonymous"
+    }
+  },
+  {
+    "typeId": "specialExhibitionAnker",
+    "specialExhibitionAnkerId": 3,
+    "specialExhibitionId": {
+      "value": "1",
+      "label": "기획전 테스트",
+      "refId": "1"
+    },
+    "name": "치마",
+    "sortOrder": 3,
+    "ankerStatus": {
+      "value": "y",
+      "label": "사용",
+      "refId": "useYn>y"
+    },
+    "created": "20170822074718",
+    "owner": {
+      "value": "anonymous",
+      "label": "anonymous",
+      "refId": "anonymous"
+    },
+    "changed": "20170822074718",
+    "modifier": {
+      "value": "anonymous",
+      "label": "anonymous",
+      "refId": "anonymous"
+    }
+  },{
+  "typeId": "specialExhibitionHotKeyword",
+  "specialExhibitionHotKeywordId": 1,
+  "siteId": null,
+  "name": "핫키워드1",
+  "specialExhibitionId": {
+    "value": "1",
+    "label": "기획전 테스트",
+    "refId": "1"
+  },
+  "sortOrder": 1,
+  "hotKeywordStatus": {
+    "value": "y",
+    "label": "사용",
+    "refId": "useYn>y"
+  },
+  "created": "20170822082014",
+  "owner": {
+    "value": "anonymous",
+    "label": "anonymous",
+    "refId": "anonymous"
+  },
+  "changed": "20170822082014",
+  "modifier": {
+    "value": "anonymous",
+    "label": "anonymous",
+    "refId": "anonymous"
+  }
+},
+  {
+    "typeId": "specialExhibitionHotKeyword",
+    "specialExhibitionHotKeywordId": 2,
+    "siteId": null,
+    "name": "핫키워드2",
+    "specialExhibitionId": {
+      "value": "1",
+      "label": "기획전 테스트",
+      "refId": "1"
+    },
+    "sortOrder": 2,
+    "hotKeywordStatus": {
+      "value": "y",
+      "label": "사용",
+      "refId": "useYn>y"
+    },
+    "created": "20170822082020",
+    "owner": {
+      "value": "anonymous",
+      "label": "anonymous",
+      "refId": "anonymous"
+    },
+    "changed": "20170822082020",
+    "modifier": {
+      "value": "anonymous",
+      "label": "anonymous",
+      "refId": "anonymous"
+    }
+  },
+  {
+    "typeId": "specialExhibitionHotKeyword",
+    "specialExhibitionHotKeywordId": 3,
+    "siteId": null,
+    "name": "핫키워드3",
+    "specialExhibitionId": {
+      "value": "1",
+      "label": "기획전 테스트",
+      "refId": "1"
+    },
+    "sortOrder": 3,
+    "hotKeywordStatus": {
+      "value": "y",
+      "label": "사용",
+      "refId": "useYn>y"
+    },
+    "created": "20170822082024",
+    "owner": {
+      "value": "anonymous",
+      "label": "anonymous",
+      "refId": "anonymous"
+    },
+    "changed": "20170822082024",
+    "modifier": {
+      "value": "anonymous",
+      "label": "anonymous",
+      "refId": "anonymous"
+    }
   }
 ]
