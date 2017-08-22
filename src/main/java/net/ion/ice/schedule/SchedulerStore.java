@@ -24,8 +24,8 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class SchedulerStore {
     private Logger logger = Logger.getLogger(SchedulerStore.class);
-    ConcurrentHashMap<String, Timer> schedulerMap = new ConcurrentHashMap<>();
-    HashMap<String, Object> scheduleExtraInfoMap = new HashMap<String, Object>();
+    private ConcurrentHashMap<String, Timer> schedulerMap = new ConcurrentHashMap<>();
+    private HashMap<String, Object> scheduleExtraInfoMap = new HashMap<String, Object>();
 
     @Autowired
     ApplicationContextManager contextManager;
@@ -43,7 +43,6 @@ public class SchedulerStore {
         return schedulerMap.get(schedulerId);
     }
     public Object getInfo (String schedulerId) { return scheduleExtraInfoMap.get(schedulerId); }
-
     public void addTask(String schedulerId, Timer task) {
         schedulerMap.put(schedulerId, task);
     }
