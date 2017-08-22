@@ -1,0 +1,30 @@
+[
+  {
+    "typeId": "mbrInfo",
+    "mbrSeq": 101,
+    "aliasNm": "wjdfks",
+    "divCd": null,
+    "sttusCd": null,
+    "sbscShapCd": "sbscShapCd>2",
+    "sbscDt": null,
+    "snsTypeCd": "snsTypeCd>2",
+    "snsId": "wjdfks94",
+    "snsKey": "4223",
+    "cntryCd": "mbrCntryCd>1",
+    "sexCd": "sexCd>2",
+    "bthday": "34529",
+    "age": 24,
+    "thumImgPath": "",
+    "email": "wjdfks334@naver.com",
+    "mblNo": "01023209210",
+    "telNo": "02342192",
+    "homeZipCode": "16329",
+    "homeAdr1": "K",
+    "homeAdr2": "Y",
+    "intrstCdList": "test",
+    "emailRcvYn": null,
+    "smsRcvYn": null,
+    "blacklistYn": null,
+    "dormTrtDate": null
+  }
+]
