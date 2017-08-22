@@ -12,10 +12,10 @@
     "debutAlbum" : "My Heart",
     "artistDesc" : "As a 21-year-old music producer and DJ from Spain, NCS has earned a reputation for collaborating with EH! DE, My Heart [1], Pentakill. It is characterized by an addictive beat, although it varies from person to person.",
     "atvyName" : "Different Heaven",
-    "imgPath" : "",
+    "imgPath" : null,
     "findKywrd" : "Different Heaven",
-    "relArtistIds" : "",
-    "showCntryCdList" : "",
+    "relArtistIds" : "artist_00002",
+    "showCntryCdList" : "KOR,USA,CHN",
     "showYn" : true,
     "mnetIfTrtYn" : true
   },
@@ -35,7 +35,7 @@
     "imgPath": null,
     "findKywrd": "Zedd",
     "relArtistIds": null,
-    "showCntryCdList": null,
+    "showCntryCdList": "KOR,USA,JPN",
     "showYn": true,
     "mnetIfTrtYn": true
   }
