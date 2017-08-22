@@ -3,10 +3,10 @@
     "typeId": "mbrInfo",
     "mbrSeq": 101,
     "aliasNm": "wjdfks",
-    "divCd": null,
-    "sttusCd": null,
+    "divCd": "mbrDivCd>1" ,
+    "sttusCd": "mbrSttusCd>1",
     "sbscShapCd": "sbscShapCd>2",
-    "sbscDt": null,
+    "sbscDt": "20171006",
     "snsTypeCd": "snsTypeCd>2",
     "snsId": "wjdfks94",
     "snsKey": "4223",
@@ -22,9 +22,9 @@
     "homeAdr1": "K",
     "homeAdr2": "Y",
     "intrstCdList": "test",
-    "emailRcvYn": null,
-    "smsRcvYn": null,
-    "blacklistYn": null,
-    "dormTrtDate": null
+    "emailRcvYn": "",
+    "smsRcvYn": "",
+    "blacklistYn": "",
+    "dormTrtDate": ""
   }
 ]

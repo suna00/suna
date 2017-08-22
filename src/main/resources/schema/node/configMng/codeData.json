@@ -894,6 +894,93 @@
     "name": "댄스",
     "order": 2,
     "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "mbrDivCd",
+    "codeId": "1",
+    "name": "준회원",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "mbrDivCd",
+    "codeId": "2",
+    "name": "정회원",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "mbrSttusCd",
+    "codeId": "1",
+    "name": "일반",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "mbrSttusCd",
+    "codeId": "2",
+    "name": "휴먼",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "mbrSttusCd",
+    "codeId": "3",
+    "name": "탈퇴",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "osCd",
+    "codeId": "1",
+    "name": "tmp1",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "osCd",
+    "codeId": "2",
+    "name": "tmp2",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "sbscShapCd",
+    "codeId": "1",
+    "name": "tmp1",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "sbscShapCd",
+    "codeId": "2",
+    "name": "tmp2",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "snsTypeCd",
+    "codeId": "1",
+    "name": "tmp1",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "snsTypeCd",
+    "codeId": "2",
+    "name": "tmp2",
+    "order": 2,
+    "active": true
   }
-
 ]

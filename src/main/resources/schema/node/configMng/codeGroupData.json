@@ -243,5 +243,40 @@
     "name": "장르",
     "active": true,
     "desc": "artistGenre"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "mbrDivCd",
+    "name": "회원 정보 구분 코드",
+    "active": true,
+    "desc": "mbrDivCd"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "mbrSttusCd",
+    "name": "회원 정보 상테 코드",
+    "active": true,
+    "desc": "mbrSttusCd"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "osCd",
+    "name": "운영체제 코드",
+    "active": true,
+    "desc": "osCd"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "sbscShapCd",
+    "name": "가입 형태 코드",
+    "active": true,
+    "desc": "sbscShapCd"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "snsTypeCd",
+    "name": "SNS 유형코드",
+    "active": true,
+    "desc": "snsTypeCd"
   }
 ]
