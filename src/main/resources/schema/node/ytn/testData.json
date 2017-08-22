@@ -401,6 +401,124 @@
     "hopeDeliveryPossiblePeriod": null
   },
   {
+    "typeId": "product",
+    "productId": 4,
+    "upperId": {
+      "value": "3",
+      "label": "product 003 콜라콜",
+      "refId": "3"
+    },
+    "name": "코카콜라 기획전",
+    "productType": {
+      "value": "special",
+      "label": "기획전",
+      "refId": "productType>special"
+    },
+    "siteType": {
+      "value": "company",
+      "label": "기업",
+      "refId": "siteType>company"
+    },
+    "contentsType": {
+      "value": "goods",
+      "label": "제품",
+      "refId": "contentsType>goods"
+    },
+    "contentsId": {
+      "value": "1",
+      "label": "1",
+      "refId": "1"
+    },
+    "specialExhibitionId": {
+      "value": "1",
+      "label": "기획전 테스트",
+      "refId": "1"
+    },
+    "specialExhibitionAnkerId": {
+      "value": "1",
+      "label": "바지",
+      "refId": "1"
+    },
+    "vendorId": {
+      "value": "1",
+      "label": "밴더임",
+      "refId": "1"
+    },
+    "productStatus": {
+      "value": "y",
+      "label": "노출",
+      "refId": "displayStatus>y"
+    },
+    "saleStatus": {
+      "value": "sale",
+      "label": "판매중",
+      "refId": "saleStatus>sale"
+    },
+    "startDate": "20161231150000",
+    "endDate": "20171230150000",
+    "stockQuantity": 999,
+    "keyword": "코카,콜라,기획",
+    "supplyPrice": 500,
+    "salePrice": 990,
+    "consumerPrice": 1200,
+    "discountRate": 66,
+    "deliveryPrice": 2500,
+    "owner": {
+      "value": "anonymous",
+      "label": "anonymous",
+      "refId": "anonymous"
+    },
+    "created": "20170822080025",
+    "modifier": {
+      "value": "anonymous",
+      "label": "anonymous",
+      "refId": "anonymous"
+    },
+    "changed": "20170822080025",
+    "productManageType": null,
+    "taxType": null,
+    "siteId": null,
+    "approverId": null,
+    "approvalDate": null,
+    "approvalStatus": null,
+    "deleteStatus": null,
+    "description": null,
+    "mdComment": null,
+    "PRIcon": null,
+    "employeePrice": null,
+    "lowestPriceKey": null,
+    "noExchangeReturnYn": null,
+    "carryForwardYn": null,
+    "minoresPurchaseYn": null,
+    "soarPopularityYn": null,
+    "hitProductYn": null,
+    "mdRecommendYn": null,
+    "restockYn": null,
+    "bestProductYn": null,
+    "newProductYn": null,
+    "saleYn": null,
+    "minOrderQuantity": null,
+    "maxOrderQuantity": null,
+    "purchaseCount": null,
+    "viewCount": null,
+    "reviewCount": null,
+    "reviewAverageScore": null,
+    "timeSaleStartDate": null,
+    "timeSaleEndDate": null,
+    "timeSalePrice": null,
+    "deliveryMethod": null,
+    "deliveryPriceType": null,
+    "freeDeliveryCondition": null,
+    "bundleDeliveryYn": null,
+    "cashOnDeliveryYn": null,
+    "reservationYn": null,
+    "scheduledDeliveryDate": null,
+    "deliveryPosibleArea": null,
+    "exchangeDeliveryPrice": null,
+    "returnDeliveryPrice": null,
+    "hopeDeliveryPossiblePeriod": null
+  },
+  {
     "typeId": "productOption",
     "productOptionId": 101,
     "productId": "3",
@@ -1392,5 +1510,133 @@
       "label": "trueFalse>n",
       "refId": "trueFalse>n"
     }
+  },
+  {
+    "typeId": "addBenefit",
+    "addBenefitId": 1,
+    "year": 2017,
+    "month": 8,
+    "addBenefitType": {
+      "value": "special",
+      "label": "기획전",
+      "refId": "addBenefitType>special"
+    },
+    "addBenefitStatus": {
+      "value": "y",
+      "label": "사용",
+      "refId": "useYn>y"
+    },
+    "addBenefitPaymentType": {
+      "value": "abp009",
+      "label": "PAYCO",
+      "refId": "addBenefitPaymentType>abp009"
+    },
+    "discountType": {
+      "value": "priority",
+      "label": "선할인",
+      "refId": "discountType>priority"
+    },
+    "sortOrder": 1,
+    "description": "5,000원 할인"
+  },
+  {
+    "typeId": "addBenefit",
+    "addBenefitId": 2,
+    "year": 2017,
+    "month": 8,
+    "addBenefitType": {
+      "value": "special",
+      "label": "기획전",
+      "refId": "addBenefitType>special"
+    },
+    "addBenefitStatus": {
+      "value": "y",
+      "label": "사용",
+      "refId": "useYn>y"
+    },
+    "addBenefitPaymentType": {
+      "value": "abp007",
+      "label": "현대카드",
+      "refId": "addBenefitPaymentType>abp007"
+    },
+    "discountType": {
+      "value": "charge",
+      "label": "청구할인",
+      "refId": "discountType>charge"
+    },
+    "sortOrder": 2,
+    "description": "할인 5% / 최대 50,000원"
+  },
+  {
+    "typeId": "interestFreeInstallment",
+    "interestFreeInstallmentId": 1,
+    "year": 2017,
+    "month": 8,
+    "interestType": {
+      "value": "no",
+      "label": "무이자",
+      "refId": "interestType>no"
+    },
+    "interestStatus": {
+      "value": "y",
+      "label": "사용",
+      "refId": "useYn>y"
+    },
+    "cardType": {
+      "value": "card001",
+      "label": "롯데카드",
+      "refId": "cardType>card001"
+    },
+    "maximumMonth": 12,
+    "sortOrder": 1,
+    "description": "2,3,4,5,6,12개월(5만원 이상 결제 시)"
+  },
+  {
+    "typeId": "interestFreeInstallment",
+    "interestFreeInstallmentId": 2,
+    "year": 2017,
+    "month": 8,
+    "interestType": {
+      "value": "no",
+      "label": "무이자",
+      "refId": "interestType>no"
+    },
+    "interestStatus": {
+      "value": "y",
+      "label": "사용",
+      "refId": "useYn>y"
+    },
+    "cardType": {
+      "value": "card002",
+      "label": "비씨카드",
+      "refId": "cardType>card002"
+    },
+    "maximumMonth": 6,
+    "sortOrder": 2,
+    "description": "6개월(5만원 이상 결제 시)"
+  },
+  {
+    "typeId": "interestFreeInstallment",
+    "interestFreeInstallmentId": 3,
+    "year": 2017,
+    "month": 8,
+    "interestType": {
+      "value": "part",
+      "label": "부분무이자",
+      "refId": "interestType>part"
+    },
+    "interestStatus": {
+      "value": "y",
+      "label": "사용",
+      "refId": "useYn>y"
+    },
+    "cardType": {
+      "value": "card003",
+      "label": "삼성카드",
+      "refId": "cardType>card003"
+    },
+    "maximumMonth": null,
+    "sortOrder": 1,
+    "description": "6개월(5만원 이상 결제 시)"
   }
 ]
