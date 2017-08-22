@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# https://www.shellcheck.net/
+
 export JAVA_HOME=java
 export APP_HOME=.
 export APP_NAME=ice2-core
