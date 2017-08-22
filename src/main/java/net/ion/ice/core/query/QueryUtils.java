@@ -190,6 +190,7 @@ public class QueryUtils {
         return null;
     }
 
+
     public static QueryTerm makeDataQueryTerm(NodeType nodeType, String fieldId, String method, String value) {
         PropertyType propertyType = (PropertyType) nodeType.getPropertyType(fieldId);
         if (propertyType != null) {
