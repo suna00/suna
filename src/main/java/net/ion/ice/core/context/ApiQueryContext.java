@@ -72,7 +72,7 @@ public class ApiQueryContext extends QueryContext{
                         if(((Map) fieldValue).containsKey("query") || ((Map) fieldValue).containsKey("select")) {
                             queryContext.addResultField(new ResultField(fieldName, makeContextFromConfig((Map<String, Object>) fieldValue, data)));
                         }else{
-
+                            queryContext.addResultField(new ResultField(fieldName, (Map<String, Object>) fieldValue));
                         }
                     }
                 }

@@ -289,6 +289,18 @@
   },
   {
     "typeId": "propertyType",
+    "tid": "testItem",
+    "pid": "comments",
+    "propertyTypeName": "Comment List",
+    "valueType": "REFERENCED",
+    "idable": false,
+    "indexable": false,
+    "length": 100,
+    "referenceType" : "testComment",
+    "referenceValue" : "itemId"
+  },
+  {
+    "typeId": "propertyType",
     "tid": "testComment",
     "pid": "commentId",
     "propertyTypeName": "Comment ID",
