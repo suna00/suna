@@ -51,16 +51,16 @@ i18n:
 
 ---
 #-Dspring.profiles.active=dev
-#spring:
-#  profiles: dev
-#logging:
-#  config: classpath:logback-dev.xml
-#
-#hazelcast:
-#  baseDir: /resource/ice2/data_1
-#  members:
-#    - 127.0.0.1
-#    - localhost
+spring:
+  profiles: dev
+logging:
+  config: classpath:logback-dev.xml
+
+hazelcast:
+  baseDir: /resource/ice2/data_1
+  members:
+    - 127.0.0.1
+    - localhost
 
 
 
