@@ -190,6 +190,23 @@
   {
     "typeId": "propertyType",
     "tid": "ntfBbs",
+    "pid": "retvNum",
+    "id": "ntfBbs>retvNum",
+    "propertyTypeName": "조회수",
+    "valueType": "INT",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "ntfBbs",
     "pid": "owner",
     "id": "ntfBbs>owner",
     "propertyTypeName": "등록자",

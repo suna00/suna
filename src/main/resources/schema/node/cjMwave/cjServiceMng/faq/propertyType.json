@@ -122,6 +122,23 @@
   {
     "typeId": "propertyType",
     "tid": "faq",
+    "pid": "retvNum",
+    "id": "faq>retvNum",
+    "propertyTypeName": "조회수",
+    "valueType": "INT",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "faq",
     "pid": "owner",
     "id": "faq>owner",
     "propertyTypeName": "등록자",
