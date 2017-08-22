@@ -237,7 +237,7 @@ logging:
 
 file:
   default:
-    path: c:/resource/ice2/files
+    path: c:/resource/cj_ice2/files
 
 
 ---
