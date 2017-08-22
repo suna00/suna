@@ -88,84 +88,84 @@
     "active": true
   },
   {
-    "typeId" : "code",
-    "groupCodeId" : "svcLo",
-    "codeId" : "1",
-    "name" : "KCON",
-    "order" : 1,
-    "active" : true
+    "typeId": "code",
+    "groupCodeId": "svcLo",
+    "codeId": "1",
+    "name": "KCON",
+    "order": 1,
+    "active": true
   },
   {
-    "typeId" : "code",
-    "groupCodeId" : "svcLo",
-    "codeId" : "2",
-    "name" : "MWAVE",
-    "order" : 2,
-    "active" : true
+    "typeId": "code",
+    "groupCodeId": "svcLo",
+    "codeId": "2",
+    "name": "MWAVE",
+    "order": 2,
+    "active": true
   },
   {
-    "typeId" : "code",
-    "groupCodeId" : "svcLo",
-    "codeId" : "3",
-    "name" : "MAMA",
-    "order" : 3,
-    "active" : true
+    "typeId": "code",
+    "groupCodeId": "svcLo",
+    "codeId": "3",
+    "name": "MAMA",
+    "order": 3,
+    "active": true
   },
   {
-    "typeId" : "code",
-    "groupCodeId" : "svcLo",
-    "codeId" : "4",
-    "name" : "M COUNTDOWN",
-    "order" : 4,
-    "active" : true
+    "typeId": "code",
+    "groupCodeId": "svcLo",
+    "codeId": "4",
+    "name": "M COUNTDOWN",
+    "order": 4,
+    "active": true
   },
   {
-    "typeId" : "code",
-    "groupCodeId" : "svcLo",
-    "codeId" : "5",
-    "name" : "VOTE & Rank",
-    "order" : 5,
-    "active" : true
+    "typeId": "code",
+    "groupCodeId": "svcLo",
+    "codeId": "5",
+    "name": "VOTE & Rank",
+    "order": 5,
+    "active": true
   },
   {
-    "typeId" : "code",
-    "groupCodeId" : "svcLo",
-    "codeId" : "6",
-    "name" : "Meet&Greet",
-    "order" : 6,
-    "active" : true
+    "typeId": "code",
+    "groupCodeId": "svcLo",
+    "codeId": "6",
+    "name": "Meet&Greet",
+    "order": 6,
+    "active": true
   },
   {
-    "typeId" : "code",
-    "groupCodeId" : "svcLo",
-    "codeId" : "7",
-    "name" : "K-Stars",
-    "order" : 7,
-    "active" : true
+    "typeId": "code",
+    "groupCodeId": "svcLo",
+    "codeId": "7",
+    "name": "K-Stars",
+    "order": 7,
+    "active": true
   },
   {
-    "typeId" : "code",
-    "groupCodeId" : "svcLo",
-    "codeId" : "8",
-    "name" : "Store",
-    "order" : 8,
-    "active" : true
+    "typeId": "code",
+    "groupCodeId": "svcLo",
+    "codeId": "8",
+    "name": "Store",
+    "order": 8,
+    "active": true
   },
   {
-    "typeId" : "code",
-    "groupCodeId" : "svcLo",
-    "codeId" : "9",
-    "name" : "News",
-    "order" : 9,
-    "active" : true
+    "typeId": "code",
+    "groupCodeId": "svcLo",
+    "codeId": "9",
+    "name": "News",
+    "order": 9,
+    "active": true
   },
   {
-    "typeId" : "code",
-    "groupCodeId" : "svcLo",
-    "codeId" : "10",
-    "name" : "TV",
-    "order" : 10,
-    "active" : true
+    "typeId": "code",
+    "groupCodeId": "svcLo",
+    "codeId": "10",
+    "name": "TV",
+    "order": 10,
+    "active": true
   },
   {
     "typeId": "code",
@@ -777,22 +777,6 @@
   },
   {
     "typeId": "code",
-    "groupCodeId": "sbscShapCd",
-    "codeId": "1",
-    "name": "sbscShapCdTmp1",
-    "order": 1,
-    "active": true
-  },
-  {
-    "typeId": "code",
-    "groupCodeId": "sbscShapCd",
-    "codeId": "2",
-    "name": "sbscShapCdTmp2",
-    "order": 2,
-    "active": true
-  },
-  {
-    "typeId": "code",
     "groupCodeId": "snsTypeCd",
     "codeId": "1",
     "name": "snsTypeCd1",
@@ -931,7 +915,7 @@
     "typeId": "code",
     "groupCodeId": "sbscShapCd",
     "codeId": "1",
-    "name": "tmp1",
+    "name": "PC WEB",
     "order": 1,
     "active": true
   },
@@ -939,15 +923,23 @@
     "typeId": "code",
     "groupCodeId": "sbscShapCd",
     "codeId": "2",
-    "name": "tmp2",
+    "name": "Mobile Web",
     "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "sbscShapCd",
+    "codeId": "3",
+    "name": "Mobile APP",
+    "order": 3,
     "active": true
   },
   {
     "typeId": "code",
     "groupCodeId": "snsTypeCd",
     "codeId": "1",
-    "name": "tmp1",
+    "name": "Facebook",
     "order": 1,
     "active": true
   },
@@ -955,8 +947,64 @@
     "typeId": "code",
     "groupCodeId": "snsTypeCd",
     "codeId": "2",
-    "name": "tmp2",
+    "name": "Twitter",
     "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "snsTypeCd",
+    "codeId": "3",
+    "name": "kakao",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "snsTypeCd",
+    "codeId": "4",
+    "name": "Weibo",
+    "order": 4,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "snsTypeCd",
+    "codeId": "5",
+    "name": "Instragram",
+    "order": 5,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "snsTypeCd",
+    "codeId": "6",
+    "name": "Google+",
+    "order": 6,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "snsTypeCd",
+    "codeId": "7",
+    "name": "Naver",
+    "order": 7,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "snsTypeCd",
+    "codeId": "8",
+    "name": "tumblr",
+    "order": 8,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "snsTypeCd",
+    "codeId": "9",
+    "name": "Line",
+    "order": 9,
     "active": true
   },
   {
