@@ -63,7 +63,6 @@ hazelcast:
     - localhost
 
 
-
 ---
 #-Dspring.profiles.active=dev-2
 spring:
