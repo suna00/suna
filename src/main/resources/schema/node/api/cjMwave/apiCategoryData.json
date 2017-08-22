@@ -8,5 +8,10 @@
     "typeId" : "apiCategory",
     "id" : "comp",
     "categoryName" : "Component API"
+  },
+  {
+    "typeId" : "apiCategory",
+    "id" : "ban",
+    "categoryName" : "Banner API"
   }
 ]

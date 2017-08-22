@@ -176,15 +176,15 @@
     "pid": "showCntryCdList",
     "id": "banrBasInfo>showCntryCdList",
     "propertyTypeName": "노출국가 코드리스트",
-    "valueType": "TEXT",
+    "valueType": "REFERENCES",
     "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "cjk",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "cntryMng",
+    "referenceValue": "cntryId",
     "defaultValue": ""
   },
   {

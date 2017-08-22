@@ -9420,7 +9420,7 @@
         {
           "key": "socialLinkCds",
           "value": "",
-          "description": "소셜 링크 코드 (varchar) "
+          "description": "소셜 링크 코드 (longtext) "
         },
         {
           "key": "sortOdrg",

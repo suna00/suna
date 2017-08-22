@@ -10,9 +10,9 @@
     "showFnsDt": "20171130",
     "svcTermlDivCd": "svcDvcDiv>1",
     "showYn": true,
-    "showLoCd": null,
+    "showLoCd": "",
     "showCntryCdList": "KOR,USA",
-    "liveBanrDivCd": null
+    "liveBanrDivCd": ""
   },
   {
     "typeId": "banrBasInfo",
@@ -25,9 +25,9 @@
     "showFnsDt": "20171130",
     "svcTermlDivCd": "svcDvcDiv>1",
     "showYn": true,
-    "showLoCd": null,
+    "showLoCd": "",
     "showCntryCdList": "KOR,USA",
-    "liveBanrDivCd": null
+    "liveBanrDivCd": ""
   },
   {
     "typeId": "banrBasInfo",
@@ -40,7 +40,7 @@
     "showFnsDt": "20171130",
     "svcTermlDivCd": "svcDvcDiv>1",
     "showYn": true,
-    "showLoCd": null,
+    "showLoCd": "",
     "showCntryCdList": "KOR,USA",
     "liveBanrDivCd": "liveBanrDivCd>1"
   },
@@ -55,7 +55,7 @@
     "showFnsDt": "20171130",
     "svcTermlDivCd": "svcDvcDiv>1",
     "showYn": true,
-    "showLoCd": null,
+    "showLoCd": "",
     "showCntryCdList": "KOR,USA",
     "liveBanrDivCd": "liveBanrDivCd>2"
   }
