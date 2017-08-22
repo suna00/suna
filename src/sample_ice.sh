@@ -7,6 +7,7 @@ export WAR_FILE=ice2-core-0.0.1-SNAPSHOT.war
 #export PROFILE=cjCms
 export PROFILE=cj-dev
 export APP_PORT=8080
+export WORK_DIR=/home/$USER/projects/cj/core
 
 echo "Service [$APP_NAME] - [$1]"
 
@@ -18,19 +19,18 @@ echo "    APP_PORT=$APP_PORT"
 echo "    PROFILE=$PROFILE"
 
 function start {
-    if pkill -0 -f $WAR_FILE > /dev/null 2>&1
+    if pkill -0 -f $WORK_DIR/$WAR_FILE > /dev/null 2>&1
     then
         echo "Service [$APP_NAME] is already running. Ignoring startup request."
         exit 1
     fi
     echo "Starting application..."
-    nohup $JAVA_HOME -jar $WAR_FILE \
-        -Dspring.profiles.active=$PROFILE   \
-        < /dev/null > $APP_HOME/ice.log 2>&1 &
+    nohup $JAVA_HOME -jar -Dspring.profiles.active=$PROFILE $WORK_DIR/$WAR_FILE \
+        < /dev/null > $WORK_DIR/ice.log 2>&1 &
 }
 
 function stop {
-    if ! pkill -0 -f $WAR_FILE > /dev/null 2>&1
+    if ! pkill -0 -f $WORK_DIR/$WAR_FILE > /dev/null 2>&1
     then
         echo "Service [$APP_NAME] is not running. Ignoring shutdown request."
         exit 1
@@ -42,13 +42,13 @@ function stop {
 
     # Wait until the server process has shut down
     attempts=0
-    while pkill -0 -f $WAR_FILE > /dev/null 2>&1
+    while pkill -0 -f $WORK_DIR/$WAR_FILE > /dev/null 2>&1
     do
         attempts=$[$attempts + 1]
         if [ $attempts -gt 5 ]
         then
             # We have waited too long. Kill it.
-            pkill -f $WAR_FILE > /dev/null 2>&1
+            pkill -f $WORK_DIR/$WAR_FILE > /dev/null 2>&1
         fi
         sleep 1s
     done
