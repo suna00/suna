@@ -88,76 +88,84 @@
     "active": true
   },
   {
-    "typeId": "code",
-    "groupCodeId": "svcLo",
-    "codeId": "1",
-    "name": "KCON",
-    "order": 1,
-    "active": true
+    "typeId" : "code",
+    "groupCodeId" : "svcLo",
+    "codeId" : "1",
+    "name" : "KCON",
+    "order" : 1,
+    "active" : true
   },
   {
-    "typeId": "code",
-    "groupCodeId": "svcLo",
-    "codeId": "2",
-    "name": "MAMA",
-    "order": 2,
-    "active": true
+    "typeId" : "code",
+    "groupCodeId" : "svcLo",
+    "codeId" : "2",
+    "name" : "MWAVE",
+    "order" : 2,
+    "active" : true
   },
   {
-    "typeId": "code",
-    "groupCodeId": "svcLo",
-    "codeId": "3",
-    "name": "M COUNTDOWN",
-    "order": 3,
-    "active": true
+    "typeId" : "code",
+    "groupCodeId" : "svcLo",
+    "codeId" : "3",
+    "name" : "MAMA",
+    "order" : 3,
+    "active" : true
   },
   {
-    "typeId": "code",
-    "groupCodeId": "svcLo",
-    "codeId": "4",
-    "name": "VOTE & Rank",
-    "order": 4,
-    "active": true
+    "typeId" : "code",
+    "groupCodeId" : "svcLo",
+    "codeId" : "4",
+    "name" : "M COUNTDOWN",
+    "order" : 4,
+    "active" : true
   },
   {
-    "typeId": "code",
-    "groupCodeId": "svcLo",
-    "codeId": "5",
-    "name": "Meet&Greet",
-    "order": 5,
-    "active": true
+    "typeId" : "code",
+    "groupCodeId" : "svcLo",
+    "codeId" : "5",
+    "name" : "VOTE & Rank",
+    "order" : 5,
+    "active" : true
   },
   {
-    "typeId": "code",
-    "groupCodeId": "svcLo",
-    "codeId": "6",
-    "name": "K-Stars",
-    "order": 6,
-    "active": true
+    "typeId" : "code",
+    "groupCodeId" : "svcLo",
+    "codeId" : "6",
+    "name" : "Meet&Greet",
+    "order" : 6,
+    "active" : true
   },
   {
-    "typeId": "code",
-    "groupCodeId": "svcLo",
-    "codeId": "7",
-    "name": "Store",
-    "order": 7,
-    "active": true
+    "typeId" : "code",
+    "groupCodeId" : "svcLo",
+    "codeId" : "7",
+    "name" : "K-Stars",
+    "order" : 7,
+    "active" : true
   },
   {
-    "typeId": "code",
-    "groupCodeId": "svcLo",
-    "codeId": "8",
-    "name": "News",
-    "order": 8,
-    "active": true
+    "typeId" : "code",
+    "groupCodeId" : "svcLo",
+    "codeId" : "8",
+    "name" : "Store",
+    "order" : 8,
+    "active" : true
   },
   {
-    "typeId": "code",
-    "groupCodeId": "svcLo",
-    "codeId": "9",
-    "name": "TV",
-    "order": 9,
-    "active": true
+    "typeId" : "code",
+    "groupCodeId" : "svcLo",
+    "codeId" : "9",
+    "name" : "News",
+    "order" : 9,
+    "active" : true
+  },
+  {
+    "typeId" : "code",
+    "groupCodeId" : "svcLo",
+    "codeId" : "10",
+    "name" : "TV",
+    "order" : 10,
+    "active" : true
   },
   {
     "typeId": "code",
@@ -817,38 +825,6 @@
   },
   {
     "typeId": "code",
-    "groupCodeId": "contsCtgryCd",
-    "codeId": "news",
-    "name": "News",
-    "order": 1,
-    "active": true
-  },
-  {
-    "typeId": "code",
-    "groupCodeId": "contsCtgryCd",
-    "codeId": "magazine",
-    "name": "Magazine",
-    "order": 2,
-    "active": true
-  },
-  {
-    "typeId": "code",
-    "groupCodeId": "contsCtgryCd",
-    "codeId": "video",
-    "name": "Video",
-    "order": 3,
-    "active": true
-  },
-  {
-    "typeId": "code",
-    "groupCodeId": "contsCtgryCd",
-    "codeId": "photo",
-    "name": "Photo",
-    "order": 4,
-    "active": true
-  },
-  {
-    "typeId": "code",
     "groupCodeId": "sex",
     "codeId": "male",
     "name": "남자",
@@ -981,6 +957,70 @@
     "codeId": "2",
     "name": "tmp2",
     "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contsMetaDivCd",
+    "codeId": "1",
+    "name": "아티스트",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contsMetaDivCd",
+    "codeId": "2",
+    "name": "곡",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contsMetaDivCd",
+    "codeId": "3",
+    "name": "앨범",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contsMetaDivCd",
+    "codeId": "4",
+    "name": "뮤직비디오",
+    "order": 4,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contsMetaDivCd",
+    "codeId": "5",
+    "name": "영상클립",
+    "order": 5,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contsMetaDivCd",
+    "codeId": "6",
+    "name": "포토번들",
+    "order": 6,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contsMetaDivCd",
+    "codeId": "7",
+    "name": "포토",
+    "order": 7,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contsMetaDivCd",
+    "codeId": "8",
+    "name": "뉴스",
+    "order": 8,
     "active": true
   }
 ]
