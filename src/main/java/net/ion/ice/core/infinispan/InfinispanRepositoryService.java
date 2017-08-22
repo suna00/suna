@@ -190,15 +190,15 @@ public class InfinispanRepositoryService {
 //                    node.put(pt.getPid(), getSubQueryNodes(pt.getReferenceType(), subQueryContext));
 //                }
 //            }
-//            if (queryContext.isTreeable()) {
-//                for (PropertyType pt : nodeType.getPropertyTypes()) {
-//                    if (pt.isTreeable()) {
-//                        QueryContext subQueryContext = QueryContext.makeQueryContextForTree(nodeType, pt, node.getId().toString());
-//                        subQueryContext.setTreeable(true);
-//                        node.put("children", getSubQueryNodes(pt.getReferenceType(), subQueryContext));
-//                    }
-//                }
-//            }
+            if (queryContext.isTreeable()) {
+                for (PropertyType pt : nodeType.getPropertyTypes()) {
+                    if (pt.isTreeable()) {
+                        QueryContext subQueryContext = QueryContext.makeQueryContextForTree(nodeType, pt, node.getId().toString());
+                        subQueryContext.setTreeable(true);
+                        node.put("children", getSubQueryNodes(pt.getReferenceType(), subQueryContext));
+                    }
+                }
+            }
             resultList.add(node);
         }
 
