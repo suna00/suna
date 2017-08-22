@@ -530,7 +530,7 @@
     "customPages": [
       {
         "pageName": "등록",
-        "pageUrl": "cj/TrnmtForm"
+        "pageUrl": "cj/vt/TrnmtForm"
       }
     ]
   },
@@ -578,14 +578,6 @@
     "index": "false",
     "pages": [
       {
-        "pageName": "목록",
-        "pageUrl": "list"
-      },
-      {
-        "pageName": "등록",
-        "pageUrl": "form"
-      },
-      {
         "pageName": "수정",
         "pageUrl": "uform"
       },
@@ -596,8 +588,12 @@
     ],
     "customPages": [
       {
+        "pageName": "목록",
+        "pageUrl": "cj/vt/SelList"
+      },
+      {
         "pageName": "등록",
-        "pageUrl": "cj/VtSelForm"
+        "pageUrl": "cj/vt/SelForm"
       }
     ]
   },
@@ -633,7 +629,7 @@
     "customPages": [
       {
         "pageName": "등록",
-        "pageUrl": "cj/VtSersForm"
+        "pageUrl": "cj/vt/SersForm"
       }
     ]
   },
