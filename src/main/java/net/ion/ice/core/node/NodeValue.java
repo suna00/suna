@@ -20,7 +20,7 @@ public class NodeValue implements Serializable, Cloneable{
 
     public static final String NODEVALUE_SEPERATOR = "::";
 
-    public static List<String> NODE_VALUE_KEYS = Arrays.asList(new String[] {"typeId", "owner", "modifier", "created", "changed", "status"}) ;
+    public static List<String> NODE_VALUE_KEYS = Arrays.asList(new String[] {"id", "typeId", "owner", "modifier", "created", "changed", "status"}) ;
 
     @Id
     @DocumentId
@@ -123,6 +123,8 @@ public class NodeValue implements Serializable, Cloneable{
 
     public Object getValue(String pid){
         switch (pid){
+            case "id":
+                return id ;
             case "typeId":
                 return getTypeId() ;
             case "owner" :
@@ -143,6 +145,9 @@ public class NodeValue implements Serializable, Cloneable{
 
     public Object putValue(String key, Object value) {
         switch (key){
+            case "id":
+                this.id = value.toString();
+                return id ;
             case "typeId":
                 setTypeId(value.toString());
                 return getTypeId() ;
