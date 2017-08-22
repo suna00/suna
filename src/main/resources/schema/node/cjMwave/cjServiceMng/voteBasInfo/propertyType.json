@@ -32,7 +32,8 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "codeFilter": "voteFormlCd"
   },
   {
     "typeId": "propertyType",
@@ -153,7 +154,8 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "codeFilter": ""
   },
   {
     "typeId": "propertyType",
@@ -221,7 +223,8 @@
     "analyzer": null,
     "referenceType": "code",
     "referenceValue": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "codeFilter": "tgtDivCd"
   },
   {
     "typeId": "propertyType",
@@ -323,7 +326,8 @@
     "analyzer": null,
     "referenceType": "code",
     "referenceValue": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "codeFilter": "rstrtnPredDivCd"
   },
   {
     "typeId": "propertyType",

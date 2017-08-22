@@ -31,7 +31,8 @@
     "analyzer" : "code",
     "referenceType" : "code",
     "referenceValue" : "",
-    "defaultValue" : ""
+    "defaultValue" : "",
+    "codeFilter": "contsMetaDivCd"
   }
   ,{
     "typeId" : "propertyType",
