@@ -554,7 +554,13 @@ public class NodeUtils {
             }
 
             String id = idablePts.get(0).getPid();
-            max = (Long) getNodeService().getSortedValue(typeId, id, SortField.Type.LONG, true);
+
+            try {
+                max = (Long) getNodeService().getSortedValue(typeId, id, SortField.Type.LONG, true);
+            }catch (NumberFormatException e) {
+                max = Long.parseLong(String.valueOf(getNodeService().getSortedValue(typeId, id, SortField.Type.INT, true)));
+            }
+
             IAtomicLong sequence = getClusterService().getSequence(typeId);
             Long current = sequence.get();
             if (max == null || max == 0) {
