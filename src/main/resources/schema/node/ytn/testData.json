@@ -944,6 +944,82 @@
     "changed": "20170821130137"
   },
   {
+    "typeId": "theme",
+    "themeId": 1,
+    "name": "MDBEST",
+    "themeType": {
+      "value": "mdbest",
+      "label": "MD Best",
+      "refId": "themeType>mdbest"
+    },
+    "siteType": null,
+    "themeStatus": {
+      "value": "y",
+      "label": "노출",
+      "refId": "displayStatus>y"
+    }
+  },
+  {
+    "typeId": "theme",
+    "themeId": 2,
+    "name": "BEST 오늘 ",
+    "themeType": {
+      "value": "best1d",
+      "label": "themeType>best1d",
+      "refId": "themeType>best1d"
+    },
+    "siteType": {
+      "value": "company",
+      "label": "기업",
+      "refId": "siteType>company"
+    },
+    "themeStatus": {
+      "value": "y",
+      "label": "노출",
+      "refId": "displayStatus>y"
+    }
+  },
+  {
+    "typeId": "theme",
+    "themeId": 3,
+    "name": "BEST 일주",
+    "themeType": {
+      "value": "best7d",
+      "label": "themeType>best7d",
+      "refId": "themeType>best7d"
+    },
+    "siteType": {
+      "value": "company",
+      "label": "기업",
+      "refId": "siteType>company"
+    },
+    "themeStatus": {
+      "value": "y",
+      "label": "노출",
+      "refId": "displayStatus>y"
+    }
+  },
+  {
+    "typeId": "theme",
+    "themeId": 4,
+    "name": "BEST 한달",
+    "themeType": {
+      "value": "best1m",
+      "label": "themeType>best1m",
+      "refId": "themeType>best1m"
+    },
+    "siteType": {
+      "value": "company",
+      "label": "기업",
+      "refId": "siteType>company"
+    },
+    "themeStatus": {
+      "value": "y",
+      "label": "노출",
+      "refId": "displayStatus>y"
+    }
+  },
+  {
     "typeId": "productToThemeMap",
     "productToThemeMapId": 1,
     "themeId": "1",
