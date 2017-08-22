@@ -3900,7 +3900,7 @@
     "typeId": "commonCode",
     "code": "term001",
     "upperCode": "termsType",
-    "name": "이용약관",
+    "name": "일반",
     "description": "",
     "sortOrder": "1",
     "commonCodeStatus": "y"
@@ -3909,27 +3909,9 @@
     "typeId": "commonCode",
     "code": "term002",
     "upperCode": "termsType",
-    "name": "전자금융거래이용약관",
+    "name": "회원가입",
     "description": "",
     "sortOrder": "2",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "term003",
-    "upperCode": "termsType",
-    "name": "개인정보수집및이용안내",
-    "description": "",
-    "sortOrder": "3",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "term004",
-    "upperCode": "termsType",
-    "name": "마케팅수신동의",
-    "description": "",
-    "sortOrder": "4",
     "commonCodeStatus": "y"
   },
   {
