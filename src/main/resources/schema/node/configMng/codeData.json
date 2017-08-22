@@ -401,7 +401,7 @@
   },
   {
     "typeId": "code",
-    "groupCodeId": "livBanrDivCd",
+    "groupCodeId": "liveBanrDivCd",
     "codeId": "1",
     "name": "House",
     "order": 1,
@@ -409,7 +409,7 @@
   },
   {
     "typeId": "code",
-    "groupCodeId": "livBanrDivCd",
+    "groupCodeId": "liveBanrDivCd",
     "codeId": "2",
     "name": "AD",
     "order": 2,

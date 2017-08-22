@@ -8,11 +8,11 @@
     "svcMenuDivCd": "banrSvcMenuTypeCd>1",
     "showStDt": "20170801",
     "showFnsDt": "20171130",
-    "svcTermDivCd": "svcDvcDiv>1",
+    "svcTermlDivCd": "svcDvcDiv>1",
     "showYn": true,
-    "showLoCd": "",
+    "showLoCd": null,
     "showCntryCdList": "KOR,USA",
-    "livBanrDivCd": ""
+    "liveBanrDivCd": null
   },
   {
     "typeId": "banrBasInfo",
@@ -23,11 +23,11 @@
     "svcMenuDivCd": "banrSvcMenuTypeCd>1",
     "showStDt": "20170801",
     "showFnsDt": "20171130",
-    "svcTermDivCd": "svcDvcDiv>1",
+    "svcTermlDivCd": "svcDvcDiv>1",
     "showYn": true,
-    "showLoCd": "",
+    "showLoCd": null,
     "showCntryCdList": "KOR,USA",
-    "livBanrDivCd": ""
+    "liveBanrDivCd": null
   },
   {
     "typeId": "banrBasInfo",
@@ -38,11 +38,11 @@
     "svcMenuDivCd": "banrSvcMenuTypeCd>1",
     "showStDt": "20170801",
     "showFnsDt": "20171130",
-    "svcTermDivCd": "svcDvcDiv>1",
+    "svcTermlDivCd": "svcDvcDiv>1",
     "showYn": true,
-    "showLoCd": "",
+    "showLoCd": null,
     "showCntryCdList": "KOR,USA",
-    "livBanrDivCd": "livBanrDivCd>1"
+    "liveBanrDivCd": "liveBanrDivCd>1"
   },
   {
     "typeId": "banrBasInfo",
@@ -53,10 +53,10 @@
     "svcMenuDivCd": "banrSvcMenuTypeCd>1",
     "showStDt": "20170801",
     "showFnsDt": "20171130",
-    "svcTermDivCd": "svcDvcDiv>1",
+    "svcTermlDivCd": "svcDvcDiv>1",
     "showYn": true,
-    "showLoCd": "",
+    "showLoCd": null,
     "showCntryCdList": "KOR,USA",
-    "livBanrDivCd": "livBanrDivCd>2"
+    "liveBanrDivCd": "liveBanrDivCd>2"
   }
 ]

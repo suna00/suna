@@ -289,8 +289,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>mainBasInfo>showLoCd",
-    "propertyTypeId": "mainBasInfo>showLoCd",
+    "id": "propertyTypeValidation>banrBasInfo>showLoCd",
+    "propertyTypeId": "banrBasInfo>showLoCd",
     "validation": {
       "language": "ko",
       "required": {
