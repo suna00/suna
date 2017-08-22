@@ -1,0 +1,265 @@
+[
+  {
+    "typeId": "apiConfig",
+    "category": "svcBbs",
+    "apiId": "IfNtb001",
+    "apiName": "고객 공지사항 목록 조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "svcTermlDivCd",
+        "required": true
+      },
+      {
+        "paramName": "ntfLargeCtgCd",
+        "required": false
+      },
+      {
+        "paramName": "searchKeyword",
+        "required": false
+      }
+    ],
+    "config": {
+      "typeId": "ntfBbs",
+      "query": [
+        {
+          "field": "showDvcCd",
+          "method": "matching",
+          "value": "{{:svcTermlDivCd}}"
+        },
+        {
+          "field": "ctgCd1",
+          "method": "matching",
+          "value": "{{:ntfLargeCtgCd}}"
+        },
+        {
+          "field": "showYn",
+          "method": "matching",
+          "value": "true"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "svcBbs",
+    "apiId": "IfNtb002",
+    "apiName": "고객 공지사항 상세 조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "ntfBbsSeq",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "ntfBbs",
+      "query": [
+        {
+          "field": "ntfBbsSeq",
+          "method": "matching",
+          "value": "{{:ntfBbsSeq}}"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "svcBbs",
+    "apiId": "IfQna001",
+    "apiName": "Q&A 등록",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      },
+      {
+        "paramName": "qnaNm",
+        "required": true
+      },
+      {
+        "paramName": "qnaFildCd",
+        "required": true
+      },
+      {
+        "paramName": "qstnrEmail",
+        "required": false
+      },
+      {
+        "paramName": "qstnSbst",
+        "required": true
+      },
+      {
+        "paramName": "qstnAtcFile",
+        "required": false
+      }
+    ],
+    "config": {
+      "createItem": {
+        "typeId": "qna",
+        "event": "create",
+        "data": {
+          "snsKey": "{{:snsKey}}",
+          "snsTypeCd": "{{:snsTypeCd}}",
+          "qnaNm": "{{:qnaNm}}",
+          "qnaFild": "{{:qnaFildCd}}",
+          "qstnrEmail": "{{:qstnrEmail}}",
+          "qstnSbst": "{{:qstnSbst}}",
+          "qstnAtcFilePath": "{{:qstnAtcFile}}"
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "svcBbs",
+    "apiId": "IfFaq001",
+    "apiName": "FAQ 카테고리 목록 조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "config": {
+      "typeId": "faqCtgryInfo",
+      "query": [
+        {
+          "field": "showYn",
+          "method": "matching",
+          "value": "true"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "svcBbs",
+    "apiId": "IfFaq002",
+    "apiName": "FAQ 목록 조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "faqCtgrySeq",
+        "required": false
+      },
+      {
+        "paramName": "searchKeyword",
+        "required": false
+      }
+    ],
+    "config": {
+      "typeId": "faq",
+      "query": [
+        {
+          "field": "faqCtgrySeq",
+          "method": "matching",
+          "value": "{{:faqCtgrySeq}}"
+        },
+        {
+          "field": "showYn",
+          "method": "matching",
+          "value": "true"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "svcBbs",
+    "apiId": "IfFqa003",
+    "apiName": "FAQ 조회수 Up",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "faqSeq",
+        "required": true
+      }
+    ],
+    "config": {
+      "createItem": {
+        "typeId": "faq",
+        "event": "update",
+        "data": {
+          "faqSeq": "{{:faqSeq}}",
+          "retvNum": "{{:retvNum}}"
+        }
+      }
+    }
+  }
+]

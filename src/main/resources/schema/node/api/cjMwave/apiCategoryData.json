@@ -1,17 +1,27 @@
 [
   {
-    "typeId" : "apiCategory",
-    "id" : "vote",
-    "categoryName" : "Vote API"
+    "typeId": "apiCategory",
+    "id": "vote",
+    "categoryName": "Vote API"
   },
   {
-    "typeId" : "apiCategory",
-    "id" : "comp",
-    "categoryName" : "Component API"
+    "typeId": "apiCategory",
+    "id": "comp",
+    "categoryName": "Component API"
   },
   {
-    "typeId" : "apiCategory",
-    "id" : "ban",
-    "categoryName" : "Banner API"
+    "typeId": "apiCategory",
+    "id": "ban",
+    "categoryName": "Banner API"
+  },
+  {
+    "typeId": "apiCategory",
+    "id": "system",
+    "categoryName": "System common API"
+  },
+  {
+    "typeId": "apiCategory",
+    "id": "svcBbs",
+    "categoryName": "Service Bbs API"
   }
 ]

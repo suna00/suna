@@ -1,0 +1,159 @@
+[
+  {
+    "typeId": "apiConfig",
+    "category": "system",
+    "apiId": "IfSys001",
+    "apiName": "국가 코드 목록 조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "config": {
+      "typeId": "cntryMng",
+      "query": [
+        {
+          "field": "useYn",
+          "method": "matching",
+          "value": "true"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "system",
+    "apiId": "IfSys002",
+    "apiName": "코드 목록 조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "groupCodeId",
+        "required": false
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "config": {
+      "typeId": "code",
+      "query": [
+        {
+          "field": "groupCodeId",
+          "method": "matching",
+          "value": "{{:groupCodeId}}"
+        },
+        {
+          "field": "active",
+          "method": "matching",
+          "value": "true"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        }
+      ],
+      "response": {
+        "codeId": "",
+        "name": ""
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "system",
+    "apiId": "IfSys003",
+    "apiName": "콘텐츠카테고리 목록 조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "contsMetaDivCd",
+        "required": true
+      },
+      {
+        "paramName": "upperContsCtgryId",
+        "required": false
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "config": {
+      "typeId": "contsCtgry",
+      "query": [
+        {
+          "field": "contsMetaDivCd",
+          "method": "matching",
+          "value": "{{:contsMetaDivCd}}"
+        },
+        {
+          "field": "upperContsCtgryId",
+          "method": "matching",
+          "value": "{{:upperContsCtgryId}}"
+        },
+        {
+          "field": "useYn",
+          "method": "matching",
+          "value": "true"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        }
+      ]
+    }
+  }
+]

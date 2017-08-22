@@ -2,6 +2,25 @@
   {
     "typeId" : "apiConfig",
     "category" : "vote",
+    "apiId" : "If",
+    "apiName" : "Vote List",
+    "method" : "GET",
+    "config" : {
+      "items" : {
+        "typeId":"voteBasInfo",
+        "query" : [
+          {"field" : "voteFormlCd", "method" : "matching", "value" : "{{:voteFormlCd}}" },
+          {"field" : "findKywrd", "method" : "matching", "value" : "{{:searchKeyword}}" },
+          {"field" : "showYn", "method" : "matching", "value" : "true" },
+          {"sorting" : "voteSeq desc"},
+          {"page" : "{{:page}}", "pageSize":"{:pageSize}}"}
+        ]
+      }
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "vote",
     "apiId" : "voteList",
     "apiName" : "Vote List",
     "method" : "GET",
