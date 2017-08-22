@@ -81,7 +81,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "code",
-    "referenceValue": "",
+    "referenceValue": "codeId",
     "defaultValue": ""
   },
   {
@@ -98,7 +98,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "code",
-    "referenceValue": "",
+    "referenceValue": "codeId",
     "defaultValue": ""
   },
   {
@@ -115,7 +115,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "code",
-    "referenceValue": "",
+    "referenceValue": "codeId",
     "defaultValue": ""
   },
   {
@@ -226,15 +226,15 @@
     "pid": "relArtistIds",
     "id": "artist>relArtistIds",
     "propertyTypeName": "연관 아티스트 아이디",
-    "valueType": "TEXT",
+    "valueType": "REFERENCES",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
-    "analyzer": "cjk",
-    "referenceType": "",
-    "referenceValue": "",
+    "analyzer": "code",
+    "referenceType": "artist",
+    "referenceValue": "artistId",
     "defaultValue": ""
   },
   {

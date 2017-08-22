@@ -180,5 +180,26 @@
     "name": "콘텐츠 카테고리 코드",
     "active": true,
     "desc": "콘텐츠 카테고리 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "sex",
+    "name": "성별",
+    "active": true,
+    "desc": "성별"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "artistType",
+    "name": "아티스트 타입",
+    "active": true,
+    "desc": "아티스트 타입"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "artistGenre",
+    "name": "장르",
+    "active": true,
+    "desc": "artistGenre"
   }
 ]
