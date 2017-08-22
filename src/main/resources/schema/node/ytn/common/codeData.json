@@ -784,11 +784,20 @@
   },
   {
     "typeId": "commonCode",
-    "code": "general",
+    "code": "all",
     "upperCode": "addBenefitType",
-    "name": "일반",
+    "name": "전체",
     "description": "",
-    "sortOrder": "1",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "special",
+    "upperCode": "addBenefitType",
+    "name": "기획전",
+    "description": "",
+    "sortOrder": "2",
     "commonCodeStatus": "y"
   },
   {
@@ -3935,7 +3944,7 @@
   {
     "typeId": "commonCode",
     "code": "best1d",
-    "upperCode": "root>themeType",
+    "upperCode": "themeType",
     "name": "1일 BEST",
     "description": "",
     "sortOrder": "3",
@@ -3944,7 +3953,7 @@
   {
     "typeId": "commonCode",
     "code": "best7d",
-    "upperCode": "root>themeType",
+    "upperCode": "themeType",
     "name": "일주일 BEST",
     "description": "",
     "sortOrder": "4",
@@ -3953,7 +3962,7 @@
   {
     "typeId": "commonCode",
     "code": "best1m",
-    "upperCode": "root>themeType",
+    "upperCode": "themeType",
     "name": "한달 BEST",
     "description": "",
     "sortOrder": "5",
