@@ -726,5 +726,54 @@
     "name": "Photo",
     "order": 4,
     "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "sex",
+    "codeId": "male",
+    "name": "남자",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "sex",
+    "codeId": "female",
+    "name": "여자",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "artistType",
+    "codeId": "solo",
+    "name": "솔로",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "artistType",
+    "codeId": "group",
+    "name": "그룹",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "artistGenre",
+    "codeId": "ballad",
+    "name": "발라드",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "artistGenre",
+    "codeId": "dance",
+    "name": "댄스",
+    "order": 2,
+    "active": true
   }
+
 ]

@@ -14,6 +14,7 @@ public abstract class ManagedTimerTask extends TimerTask {
     @Override
     public void run() {
         this.running = true;
+        this.lastExecution = new Date();
     }
 
     @Override
