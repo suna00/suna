@@ -239,7 +239,7 @@ public class NodeUtils {
             Node refNode = getNode(pt.getReferenceType(), value.toString());
             NodeType nodeType = nodeService.getNodeType(pt.getReferenceType());
             return new ReferenceView(refNode.toDisplay(context), nodeType);
-        } catch (NotFoundNodeException e) {
+        } catch (Exception e) {
             return new ReferenceView(value.toString(), value.toString());
         }
     }
@@ -250,7 +250,7 @@ public class NodeUtils {
             Node refNode = getNode(pt.getReferenceType(), value.toString());
             NodeType nodeType = nodeService.getNodeType(pt.getReferenceType());
             return new Reference(refNode, nodeType);
-        } catch (NotFoundNodeException e) {
+        } catch (Exception e) {
             return new Reference(value.toString(), value.toString());
         }
     }
