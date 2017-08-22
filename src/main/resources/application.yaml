@@ -51,16 +51,16 @@ i18n:
 
 ---
 #-Dspring.profiles.active=dev
-spring:
-  profiles: dev
-logging:
-  config: classpath:logback-dev.xml
-
-hazelcast:
-  baseDir: /resource/ice2/data_1
-  members:
-    - 127.0.0.1
-    - localhost
+#spring:
+#  profiles: dev
+#logging:
+#  config: classpath:logback-dev.xml
+#
+#hazelcast:
+#  baseDir: /resource/ice2/data_1
+#  members:
+#    - 127.0.0.1
+#    - localhost
 
 
 
@@ -107,6 +107,8 @@ jwtConfig:
 cluster:
   members:
     - 125.131.88.147
+    - 127.0.0.1
+    - localhost
 
 infinispan:
   cachePath: /resource/ice2/cache
@@ -126,6 +128,10 @@ logging:
 file:
   default:
     path: /resource/ice2/files
+
+
+i18n:
+  default: en
 ---
 
 #-Dspring.profiles.active=cjCms
