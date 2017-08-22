@@ -5,7 +5,7 @@
   "order": [],
   "folders": [
     {
-      "name": "배너(IfBan)",
+      "name": "배너",
       "description": "",
       "collectionId": "6c2dde51-d82e-0547-3891-cc7543294fc7",
       "order": [
@@ -16,7 +16,7 @@
       "id": "033658b7-b3ff-2736-7f06-3d456ac736c2"
     },
     {
-      "name": "컴포넌트(IfCom)",
+      "name": "컴포넌트",
       "description": "",
       "collectionId": "6c2dde51-d82e-0547-3891-cc7543294fc7",
       "order": [],
