@@ -117,8 +117,8 @@
   {
     "typeId" : "apiConfig",
     "category" : "testApi",
-    "apiId" : "hasChildCategory",
-    "apiName" : "haChild Query Sample",
+    "apiId" : "hasReferencedCategory",
+    "apiName" : "hasReferenced Query Sample",
     "method" : "GET",
     "parameters" : [
     ],
@@ -129,6 +129,25 @@
         {"field" : "items", "method" : "hasReferenced", "value" : "menus_matching={{:menu}}"},
         {"includeReferenced" : true}
       ]
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "referenceJoinItem",
+    "apiName" : "referenceJoin Query Sample",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "testItem",
+      "query" : [
+        {"field" : "category", "method" : "referenceJoin", "value" : "categoryType_matching={{:categoryType}}" },
+        {"includeReferenced" : true, "referenceView" : "category"}
+      ],
+      "response" :{
+
+      }
     }
   }
 ]

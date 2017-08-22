@@ -5,6 +5,7 @@ import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
 import net.ion.ice.core.query.QueryResult;
+import net.ion.ice.core.query.QueryTerm;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -21,13 +22,15 @@ public class ReferenceQueryContext extends QueryContext{
 
     public static ReferenceQueryContext createQueryContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType) {
         ReferenceQueryContext queryContext = new ReferenceQueryContext(nodeType);
-
         makeContextFromParameter(parameterMap, nodeType, queryContext) ;
 
         if(parameterMap.containsKey("tid") && parameterMap.containsKey("pid")){
             NodeType refNt = NodeUtils.getNodeType(parameterMap.get("tid")[0]) ;
             queryContext.refPt = refNt.getPropertyType(parameterMap.get("pid")[0]) ;
         }
+
+        queryContext.queryTermType = QueryTerm.QueryTermType.NODE ;
+        makeQueryTerm(nodeType, queryContext) ;
 
         return queryContext;
     }

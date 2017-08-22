@@ -3,6 +3,7 @@ package net.ion.ice.core.node;
 import com.hazelcast.core.IAtomicLong;
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.cluster.ClusterService;
+import net.ion.ice.core.context.DataQueryContext;
 import net.ion.ice.core.context.ReadContext;
 import net.ion.ice.core.file.FileService;
 import net.ion.ice.core.file.FileValue;
@@ -49,6 +50,7 @@ public class NodeUtils {
         if (getNodeService() == null) return null;
         return nodeService.getNode(typeId, id);
     }
+
     static InfinispanRepositoryService infinispanService;
 
     public static InfinispanRepositoryService getInfinispanService() {
@@ -156,7 +158,7 @@ public class NodeUtils {
 
         if (value instanceof Date) {
             return DateFormatUtils.format((Date) value, "yyyyMMddHHmmss");
-        }else if(value instanceof String && ((String) value).length() == 14){
+        } else if (value instanceof String && ((String) value).length() == 14) {
             return (String) value;
         } else {
             try {
@@ -164,7 +166,7 @@ public class NodeUtils {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            return value.toString() ;
+            return value.toString();
         }
     }
 
@@ -174,12 +176,12 @@ public class NodeUtils {
                 return pt.getCode().get(value);
             }
             case REFERENCE: {
-                if(pt.isReferenceView()){
+                if (pt.isReferenceView()) {
                     if (value instanceof ReferenceView) {
                         return value;
                     }
                     return NodeUtils.getReferenceValueView(null, value, pt);
-                }else {
+                } else {
                     if (value instanceof Reference) {
                         return value;
                     }
@@ -193,9 +195,9 @@ public class NodeUtils {
                     List<Reference> refValues = new ArrayList<>();
                     if (value != null && StringUtils.isNotEmpty(value.toString())) {
                         for (String refVal : StringUtils.split(value.toString(), ",")) {
-                            if(pt.isReferenceView()) {
+                            if (pt.isReferenceView()) {
                                 refValues.add(NodeUtils.getReferenceValueView(null, refVal, pt));
-                            }else{
+                            } else {
                                 refValues.add(NodeUtils.getReferenceValue(refVal, pt));
                             }
                         }
@@ -241,70 +243,85 @@ public class NodeUtils {
     }
 
     public static Object getResultValue(ReadContext context, PropertyType pt, Node node) {
-        Object value = node.get(pt.getPid()) ;
-        switch (pt.getValueType()){
-            case CODE : {
-                if(value ==  null) return null ;
-                if(value instanceof Code) {
-                    return value ;
+        Object value = node.get(pt.getPid());
+        switch (pt.getValueType()) {
+            case CODE: {
+                if (value == null) return null;
+                if (value instanceof Code) {
+                    return value;
                 }
-                return pt.getCode().get(value) ;
+                return pt.getCode().get(value);
             }
             case REFERENCE: {
-                if(value ==  null) return null ;
-                if(context.isReferenceView(pt.getPid())){
+                if (value == null) return null;
+                if (context.isReferenceView(pt.getPid())) {
                     if (value instanceof ReferenceView) {
                         return value;
                     }
-                    return NodeUtils.getReferenceValueView(context, value, pt);
-                }else {
+                    if (context instanceof DataQueryContext) {
+                        return NodeUtils.getReferenceValueView(context, pt.getCodeFilter()+Node.ID_SEPERATOR+value, pt);
+                    } else {
+                        return NodeUtils.getReferenceValueView(context, value, pt);
+                    }
+                } else {
                     if (value instanceof Reference) {
                         return value;
                     }
-                    return NodeUtils.getReferenceValue(value, pt);
+                    if (context instanceof DataQueryContext) {
+                        return NodeUtils.getReferenceValue(pt.getCodeFilter()+Node.ID_SEPERATOR+value, pt);
+                    } else {
+                        return NodeUtils.getReferenceValue(value, pt);
+                    }
                 }
             }
             case REFERENCES: {
-                if(value ==  null) return null ;
-                if(value instanceof List) {
-                    return value ;
+                if (value == null) return null;
+                if (value instanceof List) {
+                    return value;
                 }
-                List<Reference> refValues = new ArrayList<>() ;
-                if(value != null && StringUtils.isNotEmpty(value.toString())){
-                    for(String refVal : StringUtils.split(value.toString(), ",")){
-                        if(context.isReferenceView(pt.getPid())) {
-                            refValues.add(NodeUtils.getReferenceValueView(context, refVal, pt));
-                        }else{
-                            refValues.add(NodeUtils.getReferenceValue(refVal, pt));
+                List<Reference> refValues = new ArrayList<>();
+                if (value != null && StringUtils.isNotEmpty(value.toString())) {
+                    for (String refVal : StringUtils.split(value.toString(), ",")) {
+                        if (context.isReferenceView(pt.getPid())) {
+                            if (context instanceof DataQueryContext) {
+                                refValues.add(NodeUtils.getReferenceValueView(context, pt.getCodeFilter()+Node.ID_SEPERATOR+refVal, pt));
+                            } else {
+                                refValues.add(NodeUtils.getReferenceValueView(context, refVal, pt));
+                            }
+                        } else {
+                            if (context instanceof DataQueryContext) {
+                                refValues.add(NodeUtils.getReferenceValue(pt.getCodeFilter()+Node.ID_SEPERATOR+refVal, pt));
+                            } else {
+                                refValues.add(NodeUtils.getReferenceValue(refVal, pt));
+                            }
                         }
                     }
                 }
                 return refValues;
             }
-            case DATE :{
-                if(value ==  null) return null ;
-                return getDateStringValue(value) ;
+            case DATE: {
+                if (value == null) return null;
+                return getDateStringValue(value);
             }
             case FILE: {
-                if(value ==  null) return null ;
+                if (value == null) return null;
                 if (value instanceof FileValue) {
                     return value;
                 }
                 return null;
             }
             case REFERENCED: {
-                if(context != null && context.isIncludeReferenced() && context.getLevel() < 3) {
+                if (context != null && context.isIncludeReferenced() && context.getLevel() < 3) {
                     QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(getNodeType(node.getTypeId()), pt, node);
-                    subQueryContext.setLevel(context.getLevel() + 1) ;
+                    subQueryContext.setLevel(context.getLevel() + 1);
                     return getNodeService().getDisplayNodeList(pt.getReferenceType(), subQueryContext);
                 }
-                return null ;
+                return null;
             }
             default:
                 return value;
         }
     }
-
 
 
     public static Object getStoreValue(Object value, PropertyType pt, String id) {
@@ -315,7 +332,7 @@ public class NodeUtils {
         }
         switch (pt.getValueType()) {
             case DATE: {
-                return DateTools.dateToString(NodeUtils.getDateValue(value), DateTools.Resolution.SECOND) ;
+                return DateTools.dateToString(NodeUtils.getDateValue(value), DateTools.Resolution.SECOND);
             }
             case STRING:
             case TEXT: {
@@ -368,9 +385,9 @@ public class NodeUtils {
                 if (value instanceof Reference) {
                     return ((Reference) value).getRefId();
                 } else if (value instanceof Map) {
-                    if(((Map) value).containsKey("refId")){
+                    if (((Map) value).containsKey("refId")) {
                         return getRefereceStoreValue(((Map) value).get("refId"), pt);
-                    }else {
+                    } else {
                         return getRefereceStoreValue(((Map) value).get("value"), pt);
                     }
                 } else {
@@ -384,9 +401,9 @@ public class NodeUtils {
                         if (val instanceof Reference) {
                             refsValues += ((Reference) val).getRefId() + ",";
                         } else if (value instanceof Map) {
-                            if(((Map) value).containsKey("refId")){
-                                refsValues += getRefereceStoreValue(((Map) val).get("refId"), pt)  + ",";
-                            }else {
+                            if (((Map) value).containsKey("refId")) {
+                                refsValues += getRefereceStoreValue(((Map) val).get("refId"), pt) + ",";
+                            } else {
                                 refsValues += getRefereceStoreValue(((Map) val).get("value"), pt) + ",";
                             }
                         } else {
@@ -437,16 +454,16 @@ public class NodeUtils {
     }
 
     public static Object getRefereceStoreValue(Object value, PropertyType pt) {
-        if(value == null) return null ;
-        String codeFitler = pt.getCodeFilter() ;
-        if(StringUtils.isEmpty(codeFitler)){
-            return value ;
+        if (value == null) return null;
+        String codeFitler = pt.getCodeFilter();
+        if (StringUtils.isEmpty(codeFitler)) {
+            return value;
         }
 
-        if(StringUtils.contains(value.toString(),  Node.ID_SEPERATOR)){
-            return value ;
-        }else {
-            return codeFitler + Node.ID_SEPERATOR + value ;
+        if (StringUtils.contains(value.toString(), Node.ID_SEPERATOR)) {
+            return value;
+        } else {
+            return codeFitler + Node.ID_SEPERATOR + value;
         }
     }
 
@@ -456,10 +473,10 @@ public class NodeUtils {
         if (value instanceof Code) {
             return ((Code) value).getValue();
         }
-        if(value instanceof Reference){
-            if(StringUtils.isEmpty(pt.getCodeFilter())) {
+        if (value instanceof Reference) {
+            if (StringUtils.isEmpty(pt.getCodeFilter())) {
                 return ((Reference) value).getRefId();
-            }else{
+            } else {
                 return ((Reference) value).getValue();
             }
         }
@@ -488,10 +505,10 @@ public class NodeUtils {
             case DATE: {
                 return getDateStringValue(value);
             }
-            case REFERENCE:{
-                if(StringUtils.isEmpty(pt.getCodeFilter())) {
-                    return value ;
-                }else{
+            case REFERENCE: {
+                if (StringUtils.isEmpty(pt.getCodeFilter())) {
+                    return value;
+                } else {
                     return StringUtils.substringAfterLast(value.toString(), Node.ID_SEPERATOR);
                 }
             }
@@ -524,14 +541,7 @@ public class NodeUtils {
             }
 
             String id = idablePts.get(0).getPid();
-            switch (idablePts.get(0).getValueType()){
-                case INT:
-                    max = Long.parseLong(String.valueOf(getNodeService().getSortedValue(typeId, id, SortField.Type.INT, true)));
-                    break;
-                case LONG:
-                    max = (Long) getNodeService().getSortedValue(typeId, id, SortField.Type.LONG, true);
-                    break;
-            }
+            max = (Long) getNodeService().getSortedValue(typeId, id, SortField.Type.LONG, true);
             IAtomicLong sequence = getClusterService().getSequence(typeId);
             Long current = sequence.get();
             if (max == null || max == 0) {
@@ -599,10 +609,10 @@ public class NodeUtils {
     }
 
     public static List<Node> initDataNodeList(String typeId, List<Map<String, Object>> resultList) {
-        List<Node> nodeList = new ArrayList<>(resultList.size()) ;
-        for(Map<String, Object> data : resultList){
-            nodeList.add(new Node(data, typeId)) ;
+        List<Node> nodeList = new ArrayList<>(resultList.size());
+        for (Map<String, Object> data : resultList) {
+            nodeList.add(new Node(data, typeId));
         }
-        return nodeList ;
+        return nodeList;
     }
 }

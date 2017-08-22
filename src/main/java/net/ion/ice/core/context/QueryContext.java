@@ -22,8 +22,9 @@ import java.util.*;
 public class QueryContext extends ReadContext {
     protected List<QueryTerm> queryTerms;
     protected List<QueryContext> joinQueryContexts ;
-    protected String joinField ;
-
+    protected String targetJoinField ;
+    protected String sourceJoinField ;
+    
     protected SearchManager searchManager;
     protected String sorting;
     protected Integer pageSize;
@@ -481,14 +482,7 @@ public class QueryContext extends ReadContext {
     public List<QueryContext> getJoinQueryContexts(){
         return joinQueryContexts ;
     }
-
-    public void setJoinField(String joinField) {
-        this.joinField = joinField;
-    }
-
-    public String getJoinField() {
-        return joinField;
-    }
+    
 
     public Integer getLimit() {
         return getMaxResultSize();
@@ -496,5 +490,21 @@ public class QueryContext extends ReadContext {
 
     public Integer getOffset() {
         return getStart();
+    }
+
+    public void setTargetJoinField(String targetJoinField) {
+        this.targetJoinField = targetJoinField;
+    }
+
+    public void setSourceJoinField(String sourceJoinField) {
+        this.sourceJoinField = sourceJoinField;
+    }
+
+    public String getTargetJoinField() {
+        return targetJoinField;
+    }
+
+    public String getSourceJoinField() {
+        return sourceJoinField;
     }
 }
