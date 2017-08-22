@@ -256,15 +256,15 @@
     "customPages": [
       {
         "pageName": "목록",
-        "pageUrl": "cj/ArtistList"
+        "pageUrl": "cj/content/ArtistList"
       },
       {
         "pageName": "등록/수정",
-        "pageUrl": "cj/ArtistForm"
+        "pageUrl": "cj/content/ArtistForm"
       },
       {
         "pageName": "상세",
-        "pageUrl": "cj/ArtistView"
+        "pageUrl": "cj/content/ArtistView"
       }
     ]
   },
@@ -279,21 +279,21 @@
     "icon": "fa-tag",
     "active": "true",
     "index": "false",
-    "pages": [
+    "pages": [],
+    "customPages": [
       {
         "pageName": "목록",
-        "pageUrl": "list"
+        "pageUrl": "cj/content/AlbumList"
       },
       {
         "pageName": "등록/수정",
-        "pageUrl": "form"
+        "pageUrl": "cj/content/AlbumForm"
       },
       {
         "pageName": "상세",
-        "pageUrl": "view"
+        "pageUrl": "cj/content/AlbumView"
       }
-    ],
-    "customPages": []
+    ]
   },
   {
     "typeId": "adminLnbMenu",
