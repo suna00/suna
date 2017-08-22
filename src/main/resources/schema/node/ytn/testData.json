@@ -942,5 +942,91 @@
     "phone": null,
     "created": "20170821130137",
     "changed": "20170821130137"
+  },
+  {
+    "typeId": "productToThemeMap",
+    "productToThemeMapId": 1,
+    "themeId": "1",
+    "productId": "3",
+    "categoryId": "1",
+    "sortOrder": 1,
+    "productToThemeMapStatus": "y",
+    "fixedYn": "n"
+  },
+  {
+    "typeId": "productToThemeMap",
+    "productToThemeMapId": 2,
+    "themeId": "1",
+    "productId": "3",
+    "categoryId": "1",
+    "sortOrder": 2,
+    "productToThemeMapStatus": "y",
+    "fixedYn": "n"
+  },
+  {
+    "typeId": "productToThemeMap",
+    "productToThemeMapId": 3,
+    "themeId": "1",
+    "productId": "3",
+    "categoryId": "1",
+    "sortOrder": 3,
+    "productToThemeMapStatus": "y",
+    "fixedYn": "n"
+  },
+  {
+    "typeId": "productToThemeMap",
+    "productToThemeMapId": 4,
+    "themeId": "1",
+    "productId": "3",
+    "categoryId": "1",
+    "sortOrder": 4,
+    "productToThemeMapStatus": "y",
+    "fixedYn": "n"
+  },
+  {
+    "typeId": "productToThemeMap",
+    "productToThemeMapId": 5,
+    "themeId": "1",
+    "productId": "3",
+    "categoryId": "1",
+    "sortOrder": 5,
+    "productToThemeMapStatus": "y",
+    "fixedYn": "n"
+  },
+  {
+    "productToThemeMapId": 6,
+    "themeId": "1",
+    "productId": "2",
+    "categoryId": "2",
+    "sortOrder": 1,
+    "productToThemeMapStatus": "y",
+    "fixedYn": "n"
+  },
+  {
+    "productToThemeMapId": 7,
+    "themeId": "1",
+    "productId": "2",
+    "categoryId": "2",
+    "sortOrder": 2,
+    "productToThemeMapStatus": "y",
+    "fixedYn": "n"
+  },
+  {
+    "productToThemeMapId": 8,
+    "themeId": "1",
+    "productId": "2",
+    "categoryId": "2",
+    "sortOrder": 3,
+    "productToThemeMapStatus": "y",
+    "fixedYn": "n"
+  },
+  {
+    "productToThemeMapId": 9,
+    "themeId": "1",
+    "productId": "2",
+    "categoryId": "3",
+    "sortOrder": 1,
+    "productToThemeMapStatus": "y",
+    "fixedYn": "n"
   }
 ]

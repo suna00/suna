@@ -3952,11 +3952,29 @@
   },
   {
     "typeId": "commonCode",
-    "code": "best",
-    "upperCode": "themeType",
-    "name": "BEST",
+    "code": "best1d",
+    "upperCode": "root>themeType",
+    "name": "1일 BEST",
     "description": "",
     "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "best7d",
+    "upperCode": "root>themeType",
+    "name": "일주일 BEST",
+    "description": "",
+    "sortOrder": "4",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "best1m",
+    "upperCode": "root>themeType",
+    "name": "한달 BEST",
+    "description": "",
+    "sortOrder": "5",
     "commonCodeStatus": "y"
   },
   {

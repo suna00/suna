@@ -54,7 +54,7 @@ public class ReferenceQueryContext extends QueryContext{
             Object label = labelablePids.isEmpty() ? "" : node.get(labelablePids.get(0));
 
             code.put("refId", node.getId()) ;
-            code.put("value", StringUtils.substringAfterLast(node.getId(), Node.ID_SEPERATOR));
+            code.put("value", StringUtils.contains(node.getId(), Node.ID_SEPERATOR) ? StringUtils.substringAfterLast(node.getId(), Node.ID_SEPERATOR) : node.getId());
             code.put("label", label) ;
             subList.add(code) ;
         }
