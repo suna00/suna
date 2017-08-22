@@ -33,8 +33,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>contsCtgry>contsCtgryGroupId",
-    "propertyTypeId": "contsCtgry>contsCtgryGroupId",
+    "id": "propertyTypeValidation>contsCtgry>contsMetaDivCd",
+    "propertyTypeId": "contsCtgry>contsMetaDivCd",
     "validation": {
       "language": "ko",
       "required": {

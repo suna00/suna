@@ -524,9 +524,9 @@
           "description": "콘텐츠 카테고리 아이디 (varchar) Not null"
         },
         {
-          "key": "contsCtgryGroupId",
+          "key": "contsMetaDivCd",
           "value": "",
-          "description": "콘텐츠 카테고리 그룹 아이디 (varchar) "
+          "description": "콘텐츠 메타 구분 코드 (varchar) "
         },
         {
           "key": "upperContsCtgryId",

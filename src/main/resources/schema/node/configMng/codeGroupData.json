@@ -176,10 +176,10 @@
   },
   {
     "typeId": "groupCode",
-    "groupCodeId": "contsCtgryCd",
-    "name": "콘텐츠 카테고리 코드",
+    "groupCodeId": "contsMetaDivCd",
+    "name": "콘텐츠 메타 구분 코드",
     "active": true,
-    "desc": "콘텐츠 카테고리 코드"
+    "desc": "콘텐츠 메타 구분 코드"
   },
   {
     "typeId": "groupCode",
