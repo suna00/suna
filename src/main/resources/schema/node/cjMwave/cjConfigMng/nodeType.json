@@ -6,8 +6,7 @@
     "tid": "cntryMng",
     "typeName": "국가관리",
     "repositoryType": "node",
-    "eviction": 0,
-    "tableName": "cjDb#cntryMng"
+    "eviction": 500
   },
   {
     "parentId": "cjConfigMng",
@@ -16,8 +15,7 @@
     "tid": "langMng",
     "typeName": "언어관리",
     "repositoryType": "node",
-    "eviction": 0,
-    "tableName": "cjDb#langMng"
+    "eviction": 500
   },
   {
     "parentId": "cjConfigMng",
@@ -26,7 +24,6 @@
     "tid": "comnUrlInfo",
     "typeName": "공통 URL 정보",
     "repositoryType": "node",
-    "eviction": 0,
-    "tableName": "cjDb#comnUrlInfo"
+    "eviction": 500
   }
 ]

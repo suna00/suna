@@ -1,108 +1,108 @@
 [
   {
-    "typeId" : "groupCode",
-    "groupCodeId" : "systemNtfTgtCd",
-    "name" : "시스템 공지사항 대상코드",
-    "active" : true,
-    "desc" : "전체/내부"
+    "typeId": "groupCode",
+    "groupCodeId": "systemNtfTgtCd",
+    "name": "시스템 공지사항 대상코드",
+    "active": true,
+    "desc": "전체/내부"
   },
   {
-    "typeId" : "groupCode",
-    "groupCodeId" : "systemNtfTypeCd",
-    "name" : "시스템 공지사항 유형코드",
-    "active" : true,
-    "desc" : "긴급/일반"
+    "typeId": "groupCode",
+    "groupCodeId": "systemNtfTypeCd",
+    "name": "시스템 공지사항 유형코드",
+    "active": true,
+    "desc": "긴급/일반"
   },
   {
-    "typeId" : "groupCode",
-    "groupCodeId" : "stpltTypceCd",
-    "name" : "약관 유형코드",
-    "active" : true,
-    "desc" : "이용약관/청소년보호 등"
+    "typeId": "groupCode",
+    "groupCodeId": "stpltTypceCd",
+    "name": "약관 유형코드",
+    "active": true,
+    "desc": "이용약관/청소년보호 등"
   },
   {
-    "typeId" : "groupCode",
-    "groupCodeId" : "langSttusCd",
-    "name" : "언어 상태코드",
-    "active" : true,
-    "desc" : "언어관리에 고정/선택 상태코드"
+    "typeId": "groupCode",
+    "groupCodeId": "langSttusCd",
+    "name": "언어 상태코드",
+    "active": true,
+    "desc": "언어관리에 고정/선택 상태코드"
   },
   {
-    "typeId" : "groupCode",
-    "groupCodeId" : "mainDiv",
-    "name" : "메인 구분",
-    "active" : true,
-    "desc" : "메인, 서브메인을 구분하기 위한 코드"
+    "typeId": "groupCode",
+    "groupCodeId": "mainDiv",
+    "name": "메인 구분",
+    "active": true,
+    "desc": "메인, 서브메인을 구분하기 위한 코드"
   },
   {
-    "typeId" : "groupCode",
-    "groupCodeId" : "svcLo",
-    "name" : "서비스 위치",
-    "active" : true,
-    "desc" : "서비스 노출 위치"
+    "typeId": "groupCode",
+    "groupCodeId": "svcLo",
+    "name": "서비스 위치",
+    "active": true,
+    "desc": "서비스 노출 위치"
   },
   {
-    "typeId" : "groupCode",
-    "groupCodeId" : "svcDvcDiv",
-    "name" : "서비스 단말 구분",
-    "active" : true,
-    "desc" : "서비스 단말 구분"
+    "typeId": "groupCode",
+    "groupCodeId": "svcDvcDiv",
+    "name": "서비스 단말 구분",
+    "active": true,
+    "desc": "서비스 단말 구분"
   },
   {
-    "typeId" : "groupCode",
-    "groupCodeId" : "typeCd",
-    "name" : "유형 코드",
-    "active" : true,
-    "desc" : "유형 구분 코드"
+    "typeId": "groupCode",
+    "groupCodeId": "typeCd",
+    "name": "유형 코드",
+    "active": true,
+    "desc": "유형 구분 코드"
   },
   {
-    "typeId" : "groupCode",
-    "groupCodeId" : "itemDivCd",
-    "name" : "항목 구분 코드",
-    "active" : true,
-    "desc" : "컴포넌트의 항목 구분 코드"
+    "typeId": "groupCode",
+    "groupCodeId": "itemDivCd",
+    "name": "항목 구분 코드",
+    "active": true,
+    "desc": "컴포넌트의 항목 구분 코드"
   },
   {
-    "typeId" : "groupCode",
-    "groupCodeId" : "ifTgtCd",
-    "name" : "연동 대상 코드",
-    "active" : true,
-    "desc" : "컴포넌트에서 사용되는 연동 대상 구분 코드"
+    "typeId": "groupCode",
+    "groupCodeId": "ifTgtCd",
+    "name": "연동 대상 코드",
+    "active": true,
+    "desc": "컴포넌트에서 사용되는 연동 대상 구분 코드"
   },
   {
-    "typeId" : "groupCode",
-    "groupCodeId" : "sortBaseCd",
-    "name" : "유형 구분 코드",
-    "active" : true,
-    "desc" : "컴포넌트에서 사용되는 정렬 기준 코드"
+    "typeId": "groupCode",
+    "groupCodeId": "sortBaseCd",
+    "name": "유형 구분 코드",
+    "active": true,
+    "desc": "컴포넌트에서 사용되는 정렬 기준 코드"
   },
   {
-    "typeId" : "groupCode",
-    "groupCodeId" : "banrTypeCd",
-    "name" : "배너 구분 코드",
-    "active" : true,
-    "desc" : "배너 종류를 구분하는 코드"
+    "typeId": "groupCode",
+    "groupCodeId": "banrTypeCd",
+    "name": "배너 구분 코드",
+    "active": true,
+    "desc": "배너 종류를 구분하는 코드"
   },
   {
-    "typeId" : "groupCode",
-    "groupCodeId" : "banrSvcMenuTypeCd",
-    "name" : "서비스 메뉴 코드",
-    "active" : true,
-    "desc" : "배너에서 사용되는 서비스 메뉴 코드"
+    "typeId": "groupCode",
+    "groupCodeId": "banrSvcMenuTypeCd",
+    "name": "서비스 메뉴 코드",
+    "active": true,
+    "desc": "배너에서 사용되는 서비스 메뉴 코드"
   },
   {
-    "typeId" : "groupCode",
-    "groupCodeId" : "liveBanrDivCd",
-    "name" : "라이브배너 유형 코드",
-    "active" : true,
-    "desc" : "라이브배너에서 사용되는 유형 코드"
+    "typeId": "groupCode",
+    "groupCodeId": "livBanrDivCd",
+    "name": "라이브배너 유형 코드",
+    "active": true,
+    "desc": "라이브배너에서 사용되는 유형 코드"
   },
   {
-    "typeId" : "groupCode",
-    "groupCodeId" : "socialLinkCd",
-    "name" : "소셜 링크 코드",
-    "active" : true,
-    "desc" : "배너에서 사용되는 소셜 링크 코드"
+    "typeId": "groupCode",
+    "groupCodeId": "socialLinkCd",
+    "name": "소셜 링크 코드",
+    "active": true,
+    "desc": "배너에서 사용되는 소셜 링크 코드"
   },
   {
     "typeId": "groupCode",
@@ -180,6 +180,48 @@
     "name": "콘텐츠 메타 구분 코드",
     "active": true,
     "desc": "콘텐츠 메타 구분 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "mbrDivCd",
+    "name": "회원 정보 구분 코드",
+    "active": true,
+    "desc": "회원 정보 구분 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "mbrSttusCd",
+    "name": "회원 정보 상태 코드",
+    "active": true,
+    "desc": "회원 정보 상태 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "sexCd",
+    "name": "성별 코드",
+    "active": true,
+    "desc": "성별 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "osCd",
+    "name": "운영체제 코드",
+    "active": true,
+    "desc": "운영체제 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "sbscShapCd",
+    "name": "가입형태 코드",
+    "active": true,
+    "desc": "가입형태 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "snsTypeCd",
+    "name": "SNS 유형코드",
+    "active": true,
+    "desc": "SNS 유형코드"
   },
   {
     "typeId": "groupCode",
