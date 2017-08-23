@@ -578,6 +578,10 @@
     "index": "false",
     "pages": [
       {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
         "pageName": "수정",
         "pageUrl": "uform"
       },
@@ -587,10 +591,6 @@
       }
     ],
     "customPages": [
-      {
-        "pageName": "목록",
-        "pageUrl": "cj/vt/SelList"
-      },
       {
         "pageName": "등록",
         "pageUrl": "cj/vt/SelForm"
