@@ -3925,6 +3925,15 @@
   },
   {
     "typeId": "commonCode",
+    "code": "pageType",
+    "upperCode": "root",
+    "name": "페이지타입",
+    "description": "",
+    "sortOrder": "90",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
     "code": "mdpick",
     "upperCode": "themeType",
     "name": "MD Pick",
@@ -3970,11 +3979,56 @@
   },
   {
     "typeId": "commonCode",
+    "code": "newArrivals",
+    "upperCode": "themeType",
+    "name": "NEW ARRIVALS",
+    "description": "",
+    "sortOrder": "6",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "bestItem",
+    "upperCode": "themeType",
+    "name": "BEST ITEM",
+    "description": "",
+    "sortOrder": "7",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "bestPrice",
+    "upperCode": "themeType",
+    "name": "BEST PRICE",
+    "description": "",
+    "sortOrder": "8",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
     "code": "recommend",
     "upperCode": "themeType",
     "name": "추천",
     "description": "",
-    "sortOrder": "4",
+    "sortOrder": "9",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "",
+    "upperCode": "pageType",
+    "name": "",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "",
+    "upperCode": "pageType",
+    "name": "",
+    "description": "",
+    "sortOrder": "2",
     "commonCodeStatus": "y"
   },
   {
