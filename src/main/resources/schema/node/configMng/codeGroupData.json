@@ -211,20 +211,6 @@
   },
   {
     "typeId": "groupCode",
-    "groupCodeId": "sbscShapCd",
-    "name": "가입형태 코드",
-    "active": true,
-    "desc": "가입형태 코드"
-  },
-  {
-    "typeId": "groupCode",
-    "groupCodeId": "snsTypeCd",
-    "name": "SNS 유형코드",
-    "active": true,
-    "desc": "SNS 유형코드"
-  },
-  {
-    "typeId": "groupCode",
     "groupCodeId": "sex",
     "name": "성별",
     "active": true,
