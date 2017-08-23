@@ -77,7 +77,7 @@
     "id": "voteBasInfo>voteCtgry",
     "propertyTypeName": "투표 카테고리",
     "valueType": "REFERENCE",
-    "required": true,
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,

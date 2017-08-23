@@ -1070,5 +1070,13 @@
     "name": "뉴스",
     "order": 8,
     "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contsMetaDivCd",
+    "codeId": "9",
+    "name": "vote",
+    "order": 9,
+    "active": true
   }
 ]
