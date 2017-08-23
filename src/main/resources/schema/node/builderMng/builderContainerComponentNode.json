@@ -62,6 +62,16 @@
   {
     "typeId" : "builderContainerComponent",
     "componentClassType": "TABLES",
+    "componentClass": "DefaultTab",
+    "componentClassName": "DEFAULT TAB",
+    "icon": "fa-columns",
+    "order": 25,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClassType": "TABLES",
     "componentClass": "DefaultView",
     "componentClassName": "DEFAULT VIEW",
     "icon": "fa-square-o",
