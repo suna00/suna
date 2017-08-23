@@ -119,7 +119,7 @@ public class NodeService {
     }
     public List<Node> getDisplayNodeList(String typeId, QueryContext queryContext) {
         NodeType nodeType = getNodeType(typeId) ;
-        List<Node> nodeList = infinispanRepositoryService.getSubQueryNodes(typeId, queryContext) ;
+        List<Node> nodeList = queryContext.getQueryList() ;
         for(Node node : nodeList){
             node.toDisplay(queryContext) ;
             if (queryContext.isTreeable()) {

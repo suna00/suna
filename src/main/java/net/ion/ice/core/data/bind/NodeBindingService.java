@@ -35,9 +35,8 @@ public class NodeBindingService {
     private Map<String, NodeBindingInfo> nodeBindingInfoMap = new ConcurrentHashMap<>();
 
     public void save(Map<String, String[]> parameterMap, String typeId) {
-        nodeBindProcess(typeId);
+        NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(typeId);
 
-        NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(typeId);
         int callback = nodeBindingInfo.update(parameterMap);
         if (callback == 0) {
             nodeBindingInfo.insert(parameterMap);
@@ -46,8 +45,8 @@ public class NodeBindingService {
 
     public void execute(ExecuteContext context) {
         Node node = context.getNode();
-        nodeBindProcess(node.getTypeId());
-        NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(node.getTypeId());
+        NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(node.getTypeId());
+
         int callback = nodeBindingInfo.update(node);
         if (callback == 0) {
             nodeBindingInfo.insert(node);
@@ -64,8 +63,7 @@ public class NodeBindingService {
     public QueryResult read(Map<String, String[]> parameterMap, String typeId, String id) throws JsonProcessingException {
         NodeType nodeType = NodeUtils.getNodeType(typeId) ;
 
-        nodeBindProcess(typeId);
-        NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(typeId);
+        NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(typeId);
 
         DataReadContext readContext = DataReadContext.createContextFromParameter(nodeBindingInfo, parameterMap, nodeType, id) ;
         return readContext.makeResult() ;
@@ -74,19 +72,22 @@ public class NodeBindingService {
     public QueryResult read(Map<String, String[]> parameterMap, String typeId) throws JsonProcessingException {
         NodeType nodeType = NodeUtils.getNodeType(typeId) ;
 
-        nodeBindProcess(typeId);
-        NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(typeId);
-
+        NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(typeId);
 
         DataReadContext readContext = DataReadContext.createContextFromParameter(nodeBindingInfo, parameterMap, nodeType, null) ;
         return readContext.makeResult() ;
     }
 
+
+    public NodeBindingInfo getNodeBindingInfo(String typeId){
+        nodeBindProcess(typeId);
+        return nodeBindingInfoMap.get(typeId);
+    }
+
     public Map<String, Object> list(String typeId) {
         NodeType nodeType = NodeUtils.getNodeType(typeId) ;
 
-        nodeBindProcess(typeId);
-        NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(typeId);
+        NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(typeId);
 
         DataQueryContext queryContext = DataQueryContext.createQueryContextFromParameter(nodeBindingInfo, null, nodeType) ;
         QueryResult queryResult = queryContext.makeQueryResult( null, null);
@@ -96,8 +97,7 @@ public class NodeBindingService {
     public Map<String, Object> list(String typeId, WebRequest request) {
         NodeType nodeType = NodeUtils.getNodeType(typeId) ;
 
-        nodeBindProcess(typeId);
-        NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(typeId);
+        NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(typeId);
 
         DataQueryContext queryContext = DataQueryContext.createQueryContextFromParameter(nodeBindingInfo, request.getParameterMap(), nodeType) ;
         QueryResult queryResult = queryContext.makeQueryResult( null, null);
@@ -105,15 +105,13 @@ public class NodeBindingService {
     }
 
     public void delete(Map<String, String[]> parameterMap, String typeId) {
-        nodeBindProcess(typeId);
-        NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(typeId);
+        NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(typeId);
         nodeBindingInfo.delete(parameterMap);
     }
 
     public void delete(ExecuteContext context) {
         Node node = context.getNode();
-        nodeBindProcess(node.getTypeId());
-        NodeBindingInfo nodeBindingInfo = nodeBindingInfoMap.get(node.getTypeId());
+        NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(node.getTypeId());
         nodeBindingInfo.delete(node);
     }
 

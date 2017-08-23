@@ -1,5 +1,15 @@
 [
   {
+    "parentId" : "",
+    "typeId" : "nodeType",
+    "id" : "root",
+    "tid" : "root",
+    "typeName" : "ROOT",
+    "repositoryType" : "path",
+    "tableName": "",
+    "eviction" : 0
+  },
+  {
     "parentId" : "root",
     "typeId" : "nodeType",
     "id" : "system",
