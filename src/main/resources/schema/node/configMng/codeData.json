@@ -777,22 +777,6 @@
   },
   {
     "typeId": "code",
-    "groupCodeId": "snsTypeCd",
-    "codeId": "1",
-    "name": "snsTypeCd1",
-    "order": 1,
-    "active": true
-  },
-  {
-    "typeId": "code",
-    "groupCodeId": "snsTypeCd",
-    "codeId": "2",
-    "name": "snsTypeCd2",
-    "order": 2,
-    "active": true
-  },
-  {
-    "typeId": "code",
     "groupCodeId": "mbrCntryCd",
     "codeId": "1",
     "name": "mbrCntryCd1",
