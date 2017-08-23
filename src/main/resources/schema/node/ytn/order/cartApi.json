@@ -1,0 +1,25 @@
+[
+  {
+    "typeId" : "apiCategory",
+    "id" : "cartApi",
+    "categoryName" : "장바구니 API"
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "cartApi",
+    "apiId" : "view",
+    "apiName" : "장바구니 조회(Test)",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "cart",
+      "query" : [
+        {"field" : "sessionId", "method" : "matching", "value" : "{{:sid}}" },
+        {"field" : "cartId", "method" : "matching", "value" : "{{:cartId}}" },
+        {"field" : "referencedCartProduct", "method" : "hasReferenced", "value" : ""},
+        {"includeReferenced" : true}
+      ]
+    }
+  }
+]
