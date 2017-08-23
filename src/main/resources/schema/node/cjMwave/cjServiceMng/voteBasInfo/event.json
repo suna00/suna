@@ -1,0 +1,25 @@
+[
+  {
+    "typeId" : "event",
+    "id" : "voteBasInfo>selCreate",
+    "tid": "voteBasInfo",
+    "event" : "selCreate",
+    "eventName" : "selCreate Node Type"
+  },
+  {
+    "typeId" : "event",
+    "id" : "eventAction>selCreate",
+    "tid": "eventAction",
+    "event" : "selCreate",
+    "eventName" : "selCreate eventAction"
+  },
+  {
+    "typeId" : "eventAction",
+    "id" : "voteBasInfo>selCreate>selCreateEvent",
+    "event": "voteBasInfo>selCreate",
+    "action" : "selCreateEvent",
+    "actionType" : "service",
+    "actionBody" : "voteService.selCreateEvent",
+    "order" : 1
+  }
+]
