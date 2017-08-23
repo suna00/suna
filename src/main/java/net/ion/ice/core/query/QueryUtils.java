@@ -174,13 +174,22 @@ public class QueryUtils {
         PropertyType propertyType = (PropertyType) nodeType.getPropertyType(fieldId);
         if (propertyType != null && propertyType.isIndexable()) {
             try {
-                return new QueryTerm(fieldId, propertyType.getLuceneAnalyzer(), method, value, propertyType.getValueType());
+                if(StringUtils.isNotEmpty(propertyType.getCodeFilter())){
+                    if(StringUtils.contains(value, ">")) {
+                        return new QueryTerm(fieldId, propertyType.getLuceneAnalyzer(), method, value, propertyType.getValueType());
+                    }else{
+                        return new QueryTerm(fieldId, propertyType.getLuceneAnalyzer(), method, propertyType.getCodeFilter() + ">" + value, propertyType.getValueType());
+                    }
+                }else {
+                    return new QueryTerm(fieldId, propertyType.getLuceneAnalyzer(), method, value, propertyType.getValueType());
+                }
             }catch (Exception e){
                 return  null ;
             }
         }
         return null;
     }
+
 
     public static QueryTerm makeDataQueryTerm(NodeType nodeType, String fieldId, String method, String value) {
         PropertyType propertyType = (PropertyType) nodeType.getPropertyType(fieldId);
