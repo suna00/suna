@@ -123,5 +123,14 @@
     "tableName": "ytnDevDb#theme",
     "repositoryType": "node",
     "eviction": 0
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "categoryBanner",
+    "typeName": "카테고리 배너",
+    "tableName": "ytnDevDb#categoryBanner",
+    "repositoryType": "node",
+    "eviction": 0
   }
 ]
