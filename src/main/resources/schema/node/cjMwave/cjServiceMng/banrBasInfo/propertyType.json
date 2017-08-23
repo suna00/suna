@@ -15,6 +15,7 @@
     "referenceType": "",
     "referenceValue": "",
     "idType": "autoIncrement",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -32,6 +33,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -49,6 +51,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "banrTypeCd",
     "defaultValue": ""
   },
   {
@@ -66,6 +69,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "typeCd",
     "defaultValue": ""
   },
   {
@@ -83,6 +87,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "banrSvcMenuTypeCd",
     "defaultValue": ""
   },
   {
@@ -100,6 +105,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -117,6 +123,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -134,6 +141,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "svcDvcDiv",
     "defaultValue": ""
   },
   {
@@ -151,13 +159,14 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
     "typeId": "propertyType",
-    "tid": "mainBasInfo",
+    "tid": "banrBasInfo",
     "pid": "showLoCd",
-    "id": "mainBasInfo>showLoCd",
+    "id": "banrBasInfo>showLoCd",
     "propertyTypeName": "노출 위치 코드",
     "valueType": "REFERENCE",
     "required": false,
@@ -168,6 +177,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "svcLo",
     "defaultValue": ""
   },
   {
@@ -182,9 +192,10 @@
     "labelable": false,
     "treeable": false,
     "indexable": true,
-    "analyzer": "cjk",
+    "analyzer": "code",
     "referenceType": "cntryMng",
     "referenceValue": "cntryId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -202,6 +213,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "liveBanrDivCd",
     "defaultValue": ""
   },
   {
@@ -219,6 +231,7 @@
     "analyzer": "code",
     "referenceType": "banrItemInfo",
     "referenceValue": "banrSeq",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -236,6 +249,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -253,6 +267,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -270,6 +285,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -287,6 +303,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   }
 ]
