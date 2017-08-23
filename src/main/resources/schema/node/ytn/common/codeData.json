@@ -4592,7 +4592,7 @@
   {
     "typeId": "commonCode",
     "code": "image",
-    "upperCode": "root>categoryBannerType",
+    "upperCode": "categoryBannerType",
     "name": "이미지",
     "description": "",
     "sortOrder": "1",
@@ -4601,7 +4601,7 @@
   {
     "typeId": "commonCode",
     "code": "linkvod",
-    "upperCode": "root>categoryBannerType",
+    "upperCode": "categoryBannerType",
     "name": "동영상(링크형)",
     "description": "",
     "sortOrder": "2",
@@ -4610,7 +4610,7 @@
   {
     "typeId": "commonCode",
     "code": "playvod",
-    "upperCode": "root>categoryBannerType",
+    "upperCode": "categoryBannerType",
     "name": "동영상(플레이형)",
     "description": "",
     "sortOrder": "3",
