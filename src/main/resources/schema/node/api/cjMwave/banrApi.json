@@ -5,6 +5,40 @@
     "apiId": "IfBan001",
     "apiName": "배너 상세조회",
     "method": "GET",
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "banrSeq",
+        "required": false
+      },
+      {
+        "paramName": "svcTermlDivCd",
+        "required": true
+      },
+      {
+        "paramName": "banrTypeCd",
+        "required": true
+      },
+      {
+        "paramName": "showLoCd",
+        "required": false
+      }
+    ],
     "config": {
       "typeId": "banrBasInfo",
       "query": [
@@ -34,7 +68,11 @@
           "value": "true"
         },
         {
-          "sorting": "banrSeq desc"
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
         },
         {
           "limit": "1"

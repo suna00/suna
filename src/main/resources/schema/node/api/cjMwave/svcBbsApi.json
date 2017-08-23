@@ -86,6 +86,21 @@
           "field": "ntfBbsSeq",
           "method": "matching",
           "value": "{{:ntfBbsSeq}}"
+        },
+        {
+          "field": "showDvcCd",
+          "method": "matching",
+          "value": "{{:svcTermlDivCd}}"
+        },
+        {
+          "field": "ctgCd1",
+          "method": "matching",
+          "value": "{{:ntfLargeCtgCd}}"
+        },
+        {
+          "field": "showYn",
+          "method": "matching",
+          "value": "true"
         }
       ]
     }
@@ -181,7 +196,14 @@
           "page": "{{:page}}",
           "pageSize": "{{:pageSize}}"
         }
-      ]
+      ],
+      "response": {
+        "faqCtgrySeq": "",
+        "faqCtgryNm": "",
+        "showOdrg": "",
+        "descSbst": "",
+        "thumImgPath": "thumImgUrl"
+      }
     }
   },
   {
@@ -236,7 +258,15 @@
           "page": "{{:page}}",
           "pageSize": "{{:pageSize}}"
         }
-      ]
+      ],
+      "response": {
+        "faqSeq": "",
+        "faqCtgrySeq": "",
+        "qstnSbst": "",
+        "ansrSbst": "",
+        "sortOdrg": "",
+        "retvNum": "hitNum"
+      }
     }
   },
   {

@@ -1,70 +1,363 @@
 {
-  "id": "6c2dde51-d82e-0547-3891-cc7543294fc7",
+  "id": "f375d35e-761e-cee5-883c-24c80202db5e",
   "name": "CJMWaveCMS",
   "description": "",
   "order": [],
   "folders": [
     {
-      "name": "배너",
+      "name": "01.컴포넌트",
       "description": "",
-      "collectionId": "6c2dde51-d82e-0547-3891-cc7543294fc7",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
       "order": [
-        "2044a23b-ece4-a7ca-50b0-38ce4db74def"
+        "a3b782c0-add1-77b4-6792-b325a4cc0a6a"
       ],
       "owner": "2433871",
       "folders_order": [],
-      "id": "033658b7-b3ff-2736-7f06-3d456ac736c2"
+      "id": "badda442-9eb8-dbe0-84c2-1cfb79067a3e"
     },
     {
-      "name": "컴포넌트",
+      "name": "02.배너",
       "description": "",
-      "collectionId": "6c2dde51-d82e-0547-3891-cc7543294fc7",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "order": [
+        "41a14465-cb51-7647-05f6-139a2e569d4e"
+      ],
+      "owner": "2433871",
+      "folders_order": [],
+      "id": "7769b502-da1b-4691-d276-b95a535930c1"
+    },
+    {
+      "name": "03.투표",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
       "order": [],
       "owner": "2433871",
       "folders_order": [],
-      "id": "52f8e9e9-c01a-dc7d-0364-298d99fa48b2"
+      "id": "d711146d-f26c-242f-3e41-9296fd3a5a4e"
+    },
+    {
+      "name": "04.이벤트",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "order": [],
+      "owner": "2433871",
+      "folders_order": [],
+      "id": "b1727a29-2c82-cf5e-28b0-f94b8d6dbbff"
+    },
+    {
+      "name": "05.팝업",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "order": [],
+      "owner": "2433871",
+      "folders_order": [],
+      "id": "2dc23414-29d4-e83c-b923-cfff842c6df7"
+    },
+    {
+      "name": "06.MCD라인업",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "order": [],
+      "owner": "2433871",
+      "folders_order": [],
+      "id": "715c8c93-15b8-531a-11cc-6ed36cd2e81d"
+    },
+    {
+      "name": "07.회원",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "order": [],
+      "owner": "2433871",
+      "folders_order": [],
+      "id": "86050fbe-2ab5-43b7-54ab-0375fcd48501"
+    },
+    {
+      "name": "08.공지사항/Q&A/FAQ",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "order": [
+        "c95e9141-84e6-51d4-55c9-d9f3da4f11d1",
+        "a21d0798-7a2f-cdfd-1e1c-4f8874e1a710",
+        "761c471f-9866-c23b-8cf6-62acc898eb29",
+        "5a1c517e-ee58-72ea-81cc-ab263f042ce3",
+        "972c87ea-3185-d59e-afde-d3f3fa745867",
+        "9927805a-4741-69fb-11d6-41fbdeced04d"
+      ],
+      "owner": "2433871",
+      "folders_order": [],
+      "id": "f6372b66-a110-e4b0-38c2-09f2a055c0c6"
+    },
+    {
+      "name": "09.회원컨텐츠(MyPage)",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "order": [],
+      "owner": "2433871",
+      "folders_order": [],
+      "id": "8c9117fb-8345-0381-1e6b-8cbc8938bcee"
+    },
+    {
+      "name": "10.컨텐츠메타정보",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "order": [],
+      "owner": "2433871",
+      "folders_order": [],
+      "id": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902"
+    },
+    {
+      "name": "11.온라인방송(onAir)",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "order": [],
+      "owner": "2433871",
+      "folders_order": [],
+      "id": "19f32b0a-fdf9-d161-022e-8b92f2af649c"
+    },
+    {
+      "name": "12.푸쉬메세지",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "order": [],
+      "owner": "2433871",
+      "folders_order": [],
+      "id": "7be3d1d4-bcd8-5199-22cd-01ecc17d621d"
+    },
+    {
+      "name": "99.시스템",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "order": [
+        "eb17267a-6073-4a17-9a8a-9dfc47f64b7f",
+        "acd388cb-62f8-023f-031f-88dd3a30e412",
+        "69d1c0d7-a1c3-5c09-0332-1ce214503590"
+      ],
+      "owner": "2433871",
+      "folders_order": [],
+      "id": "3036b5f8-1b9b-50ca-c58b-10e44707688e"
     }
   ],
   "folders_order": [
-    "52f8e9e9-c01a-dc7d-0364-298d99fa48b2",
-    "033658b7-b3ff-2736-7f06-3d456ac736c2"
+    "badda442-9eb8-dbe0-84c2-1cfb79067a3e",
+    "7769b502-da1b-4691-d276-b95a535930c1",
+    "d711146d-f26c-242f-3e41-9296fd3a5a4e",
+    "b1727a29-2c82-cf5e-28b0-f94b8d6dbbff",
+    "2dc23414-29d4-e83c-b923-cfff842c6df7",
+    "715c8c93-15b8-531a-11cc-6ed36cd2e81d",
+    "86050fbe-2ab5-43b7-54ab-0375fcd48501",
+    "f6372b66-a110-e4b0-38c2-09f2a055c0c6",
+    "8c9117fb-8345-0381-1e6b-8cbc8938bcee",
+    "bab6b5e3-78b0-d242-4d1c-d19ba20d7902",
+    "19f32b0a-fdf9-d161-022e-8b92f2af649c",
+    "7be3d1d4-bcd8-5199-22cd-01ecc17d621d",
+    "3036b5f8-1b9b-50ca-c58b-10e44707688e"
   ],
   "timestamp": 1503377797967,
   "owner": "2433871",
   "public": false,
   "requests": [
     {
-      "id": "2044a23b-ece4-a7ca-50b0-38ce4db74def",
+      "id": "41a14465-cb51-7647-05f6-139a2e569d4e",
       "headers": "",
       "headerData": [],
-      "url": "{{protocol}}://{{hostname}}:{{port}}/api/ban/IfBan001",
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/ban/IfBan001?banrSeq=100&svcTermlDivCd=&banrTypeCd=&showLoCd=",
       "queryParams": [
         {
           "key": "banrSeq",
-          "value": "",
-          "equals": false,
-          "description": "",
-          "enabled": false
+          "value": "100",
+          "equals": true,
+          "description": "배너일련번호(int)",
+          "enabled": true
         },
         {
           "key": "svcTermlDivCd",
           "value": "",
-          "equals": false,
-          "description": "",
+          "equals": true,
+          "description": "서비스단말구분코드(String)  NotNull",
           "enabled": true
         },
         {
           "key": "banrTypeCd",
           "value": "",
-          "equals": false,
-          "description": "",
+          "equals": true,
+          "description": "배너유형코드(String)  NotNull",
           "enabled": true
         },
         {
           "key": "showLoCd",
           "value": "",
+          "equals": true,
+          "description": "서비스위치코드(String)",
+          "enabled": true
+        }
+      ],
+      "preRequestScript": null,
+      "pathVariables": {},
+      "pathVariableData": [],
+      "method": "GET",
+      "data": null,
+      "dataMode": "params",
+      "version": 2,
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "time": 1503481501490,
+      "name": "배너상세조회(IF_BAN_001)",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "responses": []
+    },
+    {
+      "id": "5a1c517e-ee58-72ea-81cc-ab263f042ce3",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/svcBbs/IfFaq001",
+      "queryParams": [],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "GET",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": null,
+      "dataMode": "params",
+      "name": "FAQ 카테고리 목록조회(IF_FAQ_001)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1503470247517,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "f6372b66-a110-e4b0-38c2-09f2a055c0c6"
+    },
+    {
+      "id": "69d1c0d7-a1c3-5c09-0332-1ce214503590",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/system/IfSys003?contsMetaDivCd=1&upperContsCtgryId=1",
+      "queryParams": [
+        {
+          "key": "contsMetaDivCd",
+          "value": "1",
+          "equals": true,
+          "description": "콘텐츠 메타 구분 코드(String)  NotNull",
+          "enabled": true
+        },
+        {
+          "key": "upperContsCtgryId",
+          "value": "1",
+          "equals": true,
+          "description": "상위 콘텐츠 카테고리 아이디(String)",
+          "enabled": true
+        }
+      ],
+      "preRequestScript": null,
+      "pathVariables": {},
+      "pathVariableData": [],
+      "method": "GET",
+      "data": null,
+      "dataMode": "params",
+      "version": 2,
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "time": 1503481666596,
+      "name": "콘텐츠 카테고리 목록 조회(IF_SYS_003)",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "responses": []
+    },
+    {
+      "id": "761c471f-9866-c23b-8cf6-62acc898eb29",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/svcBbs/IfQna001",
+      "queryParams": [],
+      "preRequestScript": null,
+      "pathVariables": {},
+      "pathVariableData": [],
+      "method": "POST",
+      "data": [
+        {
+          "key": "snsKey",
+          "value": "test",
+          "description": "SNS토큰키(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "snsTypeCd",
+          "value": "1",
+          "description": "SNS 유형코드(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "qnaNm",
+          "value": "1",
+          "description": "질문 제목(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "qnaFildCd",
+          "value": "1",
+          "description": "질문 분야(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "qstnrEmail",
+          "value": "",
+          "description": "질문자 이메일(String)",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "qstnSbst",
+          "value": "11",
+          "description": "질문 내용(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "qstnAtcFile",
+          "value": "",
+          "description": "질문  첨부 파일(File)",
+          "type": "file",
+          "enabled": true
+        }
+      ],
+      "dataMode": "params",
+      "version": 2,
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "time": 1503481541506,
+      "name": "Q&A 질문 등록(IF_QNA_001)",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "responses": []
+    },
+    {
+      "id": "972c87ea-3185-d59e-afde-d3f3fa745867",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/svcBbs/IfFaq002?faqCtgrySeq&searchKeyword",
+      "queryParams": [
+        {
+          "key": "faqCtgrySeq",
+          "value": "",
           "equals": false,
-          "description": "",
+          "description": "FAQ 카테고리 일련번호(String)",
+          "enabled": true
+        },
+        {
+          "key": "searchKeyword",
+          "value": "",
+          "equals": false,
+          "description": "검색키워드(String)",
           "enabled": true
         }
       ],
@@ -72,19 +365,246 @@
       "pathVariableData": [],
       "preRequestScript": null,
       "method": "GET",
-      "collectionId": "6c2dde51-d82e-0547-3891-cc7543294fc7",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
       "data": null,
       "dataMode": "params",
-      "name": "배너상세조회(IF_BAN_001)",
+      "name": "FAQ 목록조회(IF_FAQ_002)",
       "description": "",
       "descriptionFormat": "html",
-      "time": 1503378122395,
+      "time": 1503470773720,
       "version": 2,
       "responses": [],
       "tests": null,
       "currentHelper": "normal",
       "helperAttributes": {},
-      "folder": "033658b7-b3ff-2736-7f06-3d456ac736c2"
+      "folder": "f6372b66-a110-e4b0-38c2-09f2a055c0c6"
+    },
+    {
+      "id": "9927805a-4741-69fb-11d6-41fbdeced04d",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/svcBbs/IfFaq003?faqSeq=100",
+      "queryParams": [
+        {
+          "key": "faqSeq",
+          "value": "100",
+          "equals": true,
+          "description": "FAQ일련번호(int) NotNull",
+          "enabled": true
+        },
+        {
+          "key": "",
+          "value": "",
+          "equals": false,
+          "description": "",
+          "enabled": false
+        }
+      ],
+      "preRequestScript": null,
+      "pathVariables": {},
+      "pathVariableData": [],
+      "method": "GET",
+      "data": null,
+      "dataMode": "params",
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "time": 1503481561166,
+      "name": "FAQ 조회수 Up(IF_FAQ_003)",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "responses": []
+    },
+    {
+      "id": "a21d0798-7a2f-cdfd-1e1c-4f8874e1a710",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/svcBbs/IfNtb002?ntfBbsSeq=1&svcTermlDivCd=1&ntfLargeCtgCd=1&searchKeyword",
+      "queryParams": [
+        {
+          "key": "ntfBbsSeq",
+          "value": "1",
+          "equals": true,
+          "description": "공지일련번호(String) NotNull",
+          "enabled": true
+        },
+        {
+          "key": "svcTermlDivCd",
+          "value": "1",
+          "equals": true,
+          "description": "서비스단말구분코드(String) NotNull",
+          "enabled": true
+        },
+        {
+          "key": "ntfLargeCtgCd",
+          "value": "1",
+          "equals": true,
+          "description": "공지대분류코드(String)",
+          "enabled": true
+        },
+        {
+          "key": "searchKeyword",
+          "value": "",
+          "equals": false,
+          "description": "검색키워드(String)",
+          "enabled": true
+        }
+      ],
+      "preRequestScript": null,
+      "pathVariables": {},
+      "pathVariableData": [],
+      "method": "GET",
+      "data": null,
+      "dataMode": "params",
+      "version": 2,
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "time": 1503481524258,
+      "name": "고객 공지사항 상세조회(IF_NTB_002)",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "responses": []
+    },
+    {
+      "id": "a3b782c0-add1-77b4-6792-b325a4cc0a6a",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/comp/IfCom001?showLoCd=1&mainDivCd=1",
+      "queryParams": [
+        {
+          "key": "showLoCd",
+          "value": "1",
+          "equals": true,
+          "description": "서비스위치코드(String) NotNull",
+          "enabled": true
+        },
+        {
+          "key": "mainDivCd",
+          "value": "1",
+          "equals": true,
+          "description": "메인 구분 코드(String) NotNull",
+          "enabled": true
+        }
+      ],
+      "preRequestScript": null,
+      "pathVariables": {},
+      "pathVariableData": [],
+      "method": "GET",
+      "data": null,
+      "dataMode": "params",
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "time": 1503481489650,
+      "name": "서비스 컴포넌트 상세조회(IfCom001)(작업중)",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "responses": []
+    },
+    {
+      "id": "acd388cb-62f8-023f-031f-88dd3a30e412",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/system/IfSys002?groupCodeId=socialLinkCd",
+      "queryParams": [
+        {
+          "key": "groupCodeId",
+          "value": "socialLinkCd",
+          "equals": true,
+          "description": "그룹코드아이디(String) NotNull",
+          "enabled": true
+        }
+      ],
+      "preRequestScript": null,
+      "pathVariables": {},
+      "pathVariableData": [],
+      "method": "GET",
+      "data": null,
+      "dataMode": "params",
+      "version": 2,
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "time": 1503481658168,
+      "name": "코드 목록조회(IF_SYS_002)",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "responses": []
+    },
+    {
+      "id": "c95e9141-84e6-51d4-55c9-d9f3da4f11d1",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/svcBbs/IfNtb001?svcTermlDivCd=1&ntfLargeCtgCd=1&searchKeyword",
+      "queryParams": [
+        {
+          "key": "svcTermlDivCd",
+          "value": "1",
+          "equals": true,
+          "description": "서비스단말구분코드(String) NotNull",
+          "enabled": true
+        },
+        {
+          "key": "ntfLargeCtgCd",
+          "value": "1",
+          "equals": true,
+          "description": "공지대분류코드(String)",
+          "enabled": true
+        },
+        {
+          "key": "searchKeyword",
+          "value": "",
+          "equals": false,
+          "description": "검색키워드(String)",
+          "enabled": true
+        }
+      ],
+      "preRequestScript": null,
+      "pathVariables": {},
+      "pathVariableData": [],
+      "method": "GET",
+      "data": null,
+      "dataMode": "params",
+      "version": 2,
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "time": 1503481512294,
+      "name": "고객 공지사항 목록조회(IF_fNTB_001)",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "responses": []
+    },
+    {
+      "id": "eb17267a-6073-4a17-9a8a-9dfc47f64b7f",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/system/IfSys001?useYn=true",
+      "queryParams": [
+        {
+          "key": "useYn",
+          "value": "true",
+          "equals": true,
+          "description": "사용여부(Boolean)",
+          "enabled": true
+        }
+      ],
+      "preRequestScript": null,
+      "pathVariables": {},
+      "pathVariableData": [],
+      "method": "GET",
+      "data": null,
+      "dataMode": "params",
+      "version": 2,
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "time": 1503481608191,
+      "name": "국가코드 목록조회(IF_SYS_001)",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "responses": []
     }
   ]
 }

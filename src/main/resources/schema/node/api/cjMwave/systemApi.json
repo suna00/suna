@@ -21,6 +21,10 @@
       {
         "paramName": "langCd",
         "required": false
+      },
+      {
+        "paramName": "useYn",
+        "required": false
       }
     ],
     "config": {
@@ -29,7 +33,7 @@
         {
           "field": "useYn",
           "method": "matching",
-          "value": "true"
+          "value": "{{:useYn}}"
         },
         {
           "sorting": "{{:sorting}}"
@@ -38,7 +42,13 @@
           "page": "{{:page}}",
           "pageSize": "{{:pageSize}}"
         }
-      ]
+      ],
+      "response": {
+        "cntryCd": "",
+        "cntryNm": "",
+        "imgUrl": "",
+        "sortOdrg": ""
+      }
     }
   },
   {
@@ -153,7 +163,15 @@
           "page": "{{:page}}",
           "pageSize": "{{:pageSize}}"
         }
-      ]
+      ],
+      "response": {
+        "contsCtgryId": "",
+        "contsMetaDivCd": "",
+        "upperContsCtgryId": "",
+        "contsCtgryNm": "",
+        "sortOdrg": "",
+        "contsCtgrydesc": ""
+      }
     }
   }
 ]
