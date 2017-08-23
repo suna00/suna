@@ -135,11 +135,11 @@ public class NodeBindingInfo {
 
         if (DBType.equalsIgnoreCase("mySql")) {
             listSql = String.format("SELECT * FROM %s LIMIT 1000", tableName);
-            retrieveSql = String.format("SELECT * FROM %s WITH(nolock) WHERE %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
+            retrieveSql = String.format("SELECT * FROM %s WHERE %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
 
         } else if (DBType.equalsIgnoreCase("msSql")) {
             listSql = String.format("SELECT TOP 1000 * FROM %s", tableName);
-            retrieveSql = String.format("SELECT * FROM %s WHERE %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
+            retrieveSql = String.format("SELECT * FROM %s WITH(nolock) WHERE %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
 
         } else if (DBType.equalsIgnoreCase("maria")) {
             listSql = String.format("SELECT * FROM %s LIMIT 1000", tableName);
