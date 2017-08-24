@@ -1497,7 +1497,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "codeFilter": "faqType2",
+    "codeFilter": "faqType",
     "defaultValue": ""
   },
   {
@@ -1580,7 +1580,7 @@
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "commonCodeToBe",
+    "referenceType": "commonCode",
     "referenceValue": "code",
     "codeFilter": "faqTopStatus",
     "defaultValue": "inactive"

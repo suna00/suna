@@ -504,7 +504,7 @@
     "treeable": true,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "commonCode",
+    "referenceType": "commonCodeToBe",
     "referenceValue": "code",
     "defaultValue": ""
   },

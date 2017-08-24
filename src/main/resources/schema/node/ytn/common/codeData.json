@@ -784,6 +784,51 @@
   },
   {
     "typeId": "commonCode",
+    "code": "userStatus",
+    "upperCode": "root",
+    "name": "계정관리 상태",
+    "description": "",
+    "sortOrder": "89",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "userSMSStatus",
+    "upperCode": "root",
+    "name": "계정관리 로그인 SMS 인증",
+    "description": "",
+    "sortOrder": "90",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "faqStatus",
+    "upperCode": "root",
+    "name": "노출 여부",
+    "description": "",
+    "sortOrder": "91",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "faqTopStatus",
+    "upperCode": "root",
+    "name": "자주 찾는 질문 top5",
+    "description": "",
+    "sortOrder": "92",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "commonNoticeTopStatus",
+    "upperCode": "root",
+    "name": "리스트내 상위노출",
+    "description": "",
+    "sortOrder": "93",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
     "code": "all",
     "upperCode": "addBenefitType",
     "name": "전체",
@@ -4668,6 +4713,96 @@
     "name": "동영상(플레이형)",
     "description": "",
     "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "active",
+    "upperCode": "userStatus",
+    "name": "사용중",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "inactive",
+    "upperCode": "userStatus",
+    "name": "정지",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "active",
+    "upperCode": "userSMSStatus",
+    "name": "사용",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "inactive",
+    "upperCode": "userSMSStatus",
+    "name": "미사용",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "active",
+    "upperCode": "faqStatus",
+    "name": "노출",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "inactive",
+    "upperCode": "faqStatus",
+    "name": "비노출",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "inactive",
+    "upperCode": "faqTopStatus",
+    "name": "미설정",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "active",
+    "upperCode": "faqTopStatus",
+    "name": "설정",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "20",
+    "upperCode": "commonNoticeTopStatus",
+    "name": "일반",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "10",
+    "upperCode": "commonNoticeTopStatus",
+    "name": "상위",
+    "description": "",
+    "sortOrder": "2",
     "commonCodeStatus": "y"
   }
 ]
