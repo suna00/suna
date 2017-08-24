@@ -366,7 +366,6 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
                 remove(pt.getPid()) ;
             }
         }
-//        properties.toStore();
         return this ;
     }
 
