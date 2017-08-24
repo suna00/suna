@@ -264,5 +264,110 @@
     "name": "SNS 유형코드",
     "active": true,
     "desc": "snsTypeCd"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "intrstCd",
+    "name": "관심사 코드",
+    "active": true,
+    "desc": "관심사 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "cntryCd",
+    "name": "국가 코드",
+    "active": true,
+    "desc": "국가 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "langCd",
+    "name": "언어 코드",
+    "active": true,
+    "desc": "언어 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "refdCompItemDivCd",
+    "name": "컴포넌트 항목구분 코드",
+    "active": true,
+    "desc": "컴포넌트 항목구분 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "albumTypeCd",
+    "name": "앨범종류 코드",
+    "active": true,
+    "desc": "앨범종류 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "albumGenreCd",
+    "name": "앨범장르 코드",
+    "active": true,
+    "desc": "앨범장르 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "songTypeCd",
+    "name": "곡종류 코드",
+    "active": true,
+    "desc": "곡종류 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "songGenreCd",
+    "name": "곡장르 코드",
+    "active": true,
+    "desc": "곡장르 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "musicVideoGenreCd",
+    "name": "뮤직비디오장르 코드",
+    "active": true,
+    "desc": "뮤직비디오장르 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "artistGenreCd",
+    "name": "아티스트 장르 코드",
+    "active": true,
+    "desc": "아티스트 장르 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "artistSexCd",
+    "name": "아티스트 성별 코드",
+    "active": true,
+    "desc": "아티스트 성별 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "dclaDivCd",
+    "name": "신고 구분 코드",
+    "active": true,
+    "desc": "신고 구분 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "qnaFildCd",
+    "name": "Q&A 질문분야코드",
+    "active": true,
+    "desc": "Q&A 질문분야코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "onairSvcTypeCd",
+    "name": "On-Air서비스타입코드",
+    "active": true,
+    "desc": "On-Air서비스타입코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "sortBaseCd",
+    "name": "정렬기준",
+    "active": true,
+    "desc": "정렬기준"
   }
 ]

@@ -1102,5 +1102,925 @@
     "name": "vote",
     "order": 9,
     "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "intrstCd",
+    "codeId": 1,
+    "name": "뷰티",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "intrstCd",
+    "codeId": 2,
+    "name": "여성패션",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "intrstCd",
+    "codeId": 3,
+    "name": "푸드&레시피",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "intrstCd",
+    "codeId": 4,
+    "name": "아트&디자인",
+    "order": 4,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "intrstCd",
+    "codeId": 5,
+    "name": "피플",
+    "order": 5,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "intrstCd",
+    "codeId": 6,
+    "name": "상품",
+    "order": 6,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "intrstCd",
+    "codeId": 7,
+    "name": "동물",
+    "order": 7,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "refdCompItemDivCd",
+    "codeId": 1,
+    "name": "Live convention",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "refdCompItemDivCd",
+    "codeId": 2,
+    "name": "Live Banner",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "refdCompItemDivCd",
+    "codeId": 3,
+    "name": "Music Chart",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "refdCompItemDivCd",
+    "codeId": 4,
+    "name": "Live Vote",
+    "order": 4,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "refdCompItemDivCd",
+    "codeId": 5,
+    "name": "NEWS Hub",
+    "order": 5,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "refdCompItemDivCd",
+    "codeId": 6,
+    "name": "NEWS",
+    "order": 6,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "refdCompItemDivCd",
+    "codeId": 7,
+    "name": "포토",
+    "order": 7,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "refdCompItemDivCd",
+    "codeId": 8,
+    "name": "VOD",
+    "order": 8,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "refdCompItemDivCd",
+    "codeId": 9,
+    "name": "MD(상품)",
+    "order": 9,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "refdCompItemDivCd",
+    "codeId": 10,
+    "name": "Mnet&Greet",
+    "order": 10,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "refdCompItemDivCd",
+    "codeId": 11,
+    "name": "Global Chat",
+    "order": 11,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "refdCompItemDivCd",
+    "codeId": 12,
+    "name": "K-STAR",
+    "order": 12,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "refdCompItemDivCd",
+    "codeId": 13,
+    "name": "Program",
+    "order": 13,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "albumTypeCd",
+    "codeId": 1001,
+    "name": "부틀렉",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "albumTypeCd",
+    "codeId": 1002,
+    "name": "데모",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "albumTypeCd",
+    "codeId": 1003,
+    "name": "싱글",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "albumTypeCd",
+    "codeId": 1004,
+    "name": "미니앨범(EP)",
+    "order": 4,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "albumTypeCd",
+    "codeId": 1005,
+    "name": "베스트",
+    "order": 5,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "albumTypeCd",
+    "codeId": 1006,
+    "name": "트리뷰트",
+    "order": 6,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "albumTypeCd",
+    "codeId": 1007,
+    "name": "옴니버스",
+    "order": 7,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "albumTypeCd",
+    "codeId": 1009,
+    "name": "리믹스",
+    "order": 8,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "albumTypeCd",
+    "codeId": 1010,
+    "name": "리메이크",
+    "order": 9,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "albumTypeCd",
+    "codeId": 1011,
+    "name": "컴필레이션",
+    "order": 10,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "albumTypeCd",
+    "codeId": 1012,
+    "name": "디지털싱글",
+    "order": 11,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "albumTypeCd",
+    "codeId": 1013,
+    "name": "라이브",
+    "order": 12,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "albumTypeCd",
+    "codeId": 1014,
+    "name": "스페셜에디션",
+    "order": 13,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "albumTypeCd",
+    "codeId": 1015,
+    "name": "디럭스에디션",
+    "order": 14,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "albumTypeCd",
+    "codeId": 1016,
+    "name": "리패키지",
+    "order": 15,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "albumTypeCd",
+    "codeId": 1017,
+    "name": "인디즈",
+    "order": 16,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "albumTypeCd",
+    "codeId": 1026,
+    "name": "정규 재발매(리마스터)",
+    "order": 17,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "albumTypeCd",
+    "codeId": 1027,
+    "name": "정규",
+    "order": 18,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "albumGenreCd",
+    "codeId": 3701,
+    "name": "가요",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "albumGenreCd",
+    "codeId": 3702,
+    "name": "POP",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "albumGenreCd",
+    "codeId": 3703,
+    "name": "JPOP",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "albumGenreCd",
+    "codeId": 3704,
+    "name": "중음",
+    "order": 4,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "albumGenreCd",
+    "codeId": 3705,
+    "name": "기타",
+    "order": 5,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "songTypeCd",
+    "codeId": 1501,
+    "name": "보컬",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "songTypeCd",
+    "codeId": 1502,
+    "name": "연주곡",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "songTypeCd",
+    "codeId": 1503,
+    "name": "반주곡",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "songTypeCd",
+    "codeId": 1504,
+    "name": "나레이션",
+    "order": 4,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "songGenreCd",
+    "codeId": 1401,
+    "name": "대중음악",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "songGenreCd",
+    "codeId": 1402,
+    "name": "클래식",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "songGenreCd",
+    "codeId": 1403,
+    "name": "국악",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "songGenreCd",
+    "codeId": 1404,
+    "name": "OST",
+    "order": 4,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "songGenreCd",
+    "codeId": 1405,
+    "name": "종교음악",
+    "order": 5,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "songGenreCd",
+    "codeId": 1406,
+    "name": "광고음악",
+    "order": 6,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "musicVideoGenreCd",
+    "codeId": 4201,
+    "name": "가요",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "musicVideoGenreCd",
+    "codeId": 4202,
+    "name": "팝",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "musicVideoGenreCd",
+    "codeId": 4203,
+    "name": "OST",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "musicVideoGenreCd",
+    "codeId": 4204,
+    "name": "J-POP",
+    "order": 4,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "artistGenreCd",
+    "codeId": 201,
+    "name": "대중음악",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "artistGenreCd",
+    "codeId": 202,
+    "name": "클래식",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "artistGenreCd",
+    "codeId": 203,
+    "name": "국악",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "artistGenreCd",
+    "codeId": 204,
+    "name": "기타",
+    "order": 4,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "artistSexCd",
+    "codeId": 301,
+    "name": "남성",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "artistSexCd",
+    "codeId": 302,
+    "name": "여성",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "artistSexCd",
+    "codeId": 303,
+    "name": "혼성",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "dclaDivCd",
+    "codeId": 1,
+    "name": "Type1",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "dclaDivCd",
+    "codeId": 2,
+    "name": "Type2",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "dclaDivCd",
+    "codeId": 3,
+    "name": "Type3",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "qnaFildCd",
+    "codeId": 1,
+    "name": "ask",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "qnaFildCd",
+    "codeId": 2,
+    "name": "suggest",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "qnaFildCd",
+    "codeId": 3,
+    "name": "technical difficulties",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "onairSvcTypeCd",
+    "codeId": 1,
+    "name": "Type1",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "onairSvcTypeCd",
+    "codeId": 2,
+    "name": "Type2",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "onairSvcTypeCd",
+    "codeId": 3,
+    "name": "Type3",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "sortBaseCd",
+    "codeId": 1,
+    "name": "인기순",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "sortBaseCd",
+    "codeId": 2,
+    "name": "최신순",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "sortBaseCd",
+    "codeId": 3,
+    "name": "추천순",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "CHN",
+    "name": "China",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "GBR",
+    "name": "England",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "HKG",
+    "name": "Hongkong",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "IDN",
+    "name": "Indonesia",
+    "order": 4,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "IND",
+    "name": "India",
+    "order": 5,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "ITA",
+    "name": "Italy",
+    "order": 6,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "JPN",
+    "name": "Japan",
+    "order": 7,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "KOR",
+    "name": "Korea",
+    "order": 8,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "MEX",
+    "name": "Mexico",
+    "order": 9,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "MYS",
+    "name": "Malaysia",
+    "order": 10,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "NOR",
+    "name": "Norway",
+    "order": 11,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "NLD",
+    "name": "Netherlands",
+    "order": 12,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "NPL",
+    "name": "Nepal",
+    "order": 13,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "NZL",
+    "name": "New Zealand",
+    "order": 14,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "PHL",
+    "name": "Philippines",
+    "order": 15,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "POL",
+    "name": "Poland",
+    "order": 16,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "PRT",
+    "name": "Portugal",
+    "order": 17,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "PRY",
+    "name": "Paraguay",
+    "order": 18,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "RUS",
+    "name": "Russia",
+    "order": 19,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "SEN",
+    "name": "Senegal",
+    "order": 20,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "SGP",
+    "name": "Singapore",
+    "order": 21,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "SWE",
+    "name": "Sweden",
+    "order": 22,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "SYR",
+    "name": "Syria",
+    "order": 23,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "TGO",
+    "name": "Togo",
+    "order": 24,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "TUN",
+    "name": "Tunisia",
+    "order": 25,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "TUR",
+    "name": "Turkey",
+    "order": 26,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "TWN",
+    "name": "Taiwan",
+    "order": 27,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "URY",
+    "name": "Uruguay",
+    "order": 28,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "USA",
+    "name": "USA",
+    "order": 29,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "UZB",
+    "name": "Uzbekistan",
+    "order": 30,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "VEN",
+    "name": "Venezuela",
+    "order": 31,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "VNM",
+    "name": "Vietnam",
+    "order": 32,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cntryCd",
+    "codeId": "ZAF",
+    "name": "Republic of South Africa",
+    "order": 33,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "langCd",
+    "codeId": "ko",
+    "name": "한국어",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "langCd",
+    "codeId": "en",
+    "name": "영어",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "langCd",
+    "codeId": "zh-cn",
+    "name": "중국어(간체)",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "langCd",
+    "codeId": "zh-tw",
+    "name": "중국어(번체)",
+    "order": 4,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "langCd",
+    "codeId": "jp",
+    "name": "일어",
+    "order": 5,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "langCd",
+    "codeId": "es",
+    "name": "스페인어",
+    "order": 6,
+    "active": true
   }
 ]
