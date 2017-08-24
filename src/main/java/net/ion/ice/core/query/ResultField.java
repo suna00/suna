@@ -17,6 +17,8 @@ public class ResultField {
 
     private FieldContext fieldContext ;
 
+    private Object staticValue ;
+
     public ResultField(String fieldName, String fieldValue){
         this.fieldName = fieldName ;
         this.fieldValue=fieldValue ;
@@ -30,14 +32,18 @@ public class ResultField {
 
     public ResultField(String fieldName, Map<String, Object> fieldOption) {
         this.fieldName = fieldName ;
-        if(fieldOption.containsKey("field")){
-            this.fieldValue = (String) fieldOption.get("field");
-        }else{
-            this.fieldValue = fieldName ;
-        }
+        if(fieldOption.containsKey("value")){
+            this.staticValue = fieldOption.get("value") ;
+        }else {
+            if (fieldOption.containsKey("field")) {
+                this.fieldValue = (String) fieldOption.get("field");
+            } else {
+                this.fieldValue = fieldName;
+            }
 
-        this.fieldOption = fieldOption ;
-        this.fieldContext = FieldContext.createContextFromOption(fieldOption) ;
+            this.fieldOption = fieldOption;
+            this.fieldContext = FieldContext.createContextFromOption(fieldOption);
+        }
     }
 
     public String getFieldName() {
@@ -63,5 +69,13 @@ public class ResultField {
 
     public FieldContext getFieldContext(){
         return fieldContext ;
+    }
+
+    public boolean isStaticValue(){
+        return this.staticValue != null ;
+    }
+
+    public Object getStaticValue(){
+        return staticValue ;
     }
 }
