@@ -41,7 +41,7 @@ public class TokenEndpoint {
 //        System.out.println("sessionID::::\t" + session.getId());
 //        int maxAge = 60 * 60 * 24; // 24 hour
 
-        cookieUtil.create(response, "accessToken", "SDP ".concat(accessToken.getToken()), true, false, -1, request.getServerName());
+        cookieUtil.create(response, "accessToken", "SDP ".concat(accessToken.getToken()), false, false, -1, request.getServerName());
 //        cookieUtil.create(response, "refreshToken", "SDP ".concat(refreshToken.getToken()), true, false, -1, request.getServerName());
 
         ResponseUtils.response(tokenMap);
