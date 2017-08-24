@@ -23,5 +23,25 @@
     "typeId": "apiCategory",
     "id": "svcBbs",
     "categoryName": "Service Bbs API"
+  },
+  {
+    "typeId": "apiCategory",
+    "id": "svcEvent",
+    "categoryName": "Service EVENT API"
+  },
+  {
+    "typeId": "apiCategory",
+    "id": "popup",
+    "categoryName": "POPUP API"
+  },
+  {
+    "typeId": "apiCategory",
+    "id": "contsMeta",
+    "categoryName": "Contents Meta API"
+  },
+  {
+    "typeId": "apiCategory",
+    "id": "onair",
+    "categoryName": "ON-AIR API"
   }
 ]

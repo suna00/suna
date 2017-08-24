@@ -1,0 +1,594 @@
+[
+  {
+    "typeId": "apiConfig",
+    "category": "contsMeta",
+    "apiId": "IfAbm001",
+    "apiName": "앨범 목록조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "artistId",
+        "required": false
+      },
+      {
+        "paramName": "albumTypeCd",
+        "required": false
+      },
+      {
+        "paramName": "albumGenreCd",
+        "required": false
+      },
+      {
+        "paramName": "searchKeyword",
+        "required": false
+      }
+    ],
+    "config": {
+      "typeId": "album",
+      "query": [
+        {
+          "field": "artistId",
+          "method": "matching",
+          "value": "{{:artistId}}"
+        },
+        {
+          "field": "albumTypeCd",
+          "method": "matching",
+          "value": "{{:albumTypeCd}}"
+        },
+        {
+          "field": "albumGenreCd",
+          "method": "matching",
+          "value": "{{:albumGenreCd}}"
+        },
+        {
+          "field": "findKywrd",
+          "method": "matching",
+          "value": "{{:searchKeyword}}"
+        },
+        {
+          "field": "showYn",
+          "method": "matching",
+          "value": "true"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "contsMeta",
+    "apiId": "IfAbm002",
+    "apiName": "앨범 상세조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "albumId",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "album",
+      "query": [
+        {
+          "field": "albumId",
+          "method": "matching",
+          "value": "{{:albumId}}"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "contsMeta",
+    "apiId": "IfSong001",
+    "apiName": "곡 목록조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "artistId",
+        "required": false
+      },
+      {
+        "paramName": "albumId",
+        "required": false
+      },
+      {
+        "paramName": "searchKeyword",
+        "required": false
+      }
+    ],
+    "config": {
+      "typeId": "song",
+      "query": [
+        {
+          "field": "artistId",
+          "method": "matching",
+          "value": "{{:artistId}}"
+        },
+        {
+          "field": "albumId",
+          "method": "matching",
+          "value": "{{:albumId}}"
+        },
+        {
+          "field": "findKywrd",
+          "method": "matching",
+          "value": "{{:searchKeyword}}"
+        },
+        {
+          "field": "showYn",
+          "method": "matching",
+          "value": "true"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "contsMeta",
+    "apiId": "IfSong002",
+    "apiName": "앨범 수록곡 목록조회(미정)",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "album",
+      "query": [
+        {
+          "field": "albumId",
+          "method": "matching",
+          "value": "{{:albumId}}"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "contsMeta",
+    "apiId": "IfArt001",
+    "apiName": "아티스트 목록조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "typeCd",
+        "required": false
+      },
+      {
+        "paramName": "genreCd",
+        "required": false
+      },
+      {
+        "paramName": "searchKeyword",
+        "required": false
+      }
+    ],
+    "config": {
+      "typeId": "artist",
+      "query": [
+        {
+          "field": "typeCd",
+          "method": "matching",
+          "value": "{{:typeCd}}"
+        },
+        {
+          "field": "genreCd",
+          "method": "matching",
+          "value": "{{:genreCd}}"
+        },
+        {
+          "field": "findKywrd",
+          "method": "matching",
+          "value": "{{:searchKeyword}}"
+        },
+        {
+          "field": "showYn",
+          "method": "matching",
+          "value": "true"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "contsMeta",
+    "apiId": "IfArt002",
+    "apiName": "아티스트 상세조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "artistId",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "artist",
+      "query": [
+        {
+          "field": "artistId",
+          "method": "matching",
+          "value": "{{:artistId}}"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "contsMeta",
+    "apiId": "IfMv001",
+    "apiName": "뮤직비디오 목록조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "artistId",
+        "required": false
+      },
+      {
+        "paramName": "searchKeyword",
+        "required": false
+      }
+    ],
+    "config": {
+      "typeId": "musicVideo",
+      "query": [
+        {
+          "field": "artistId",
+          "method": "matching",
+          "value": "{{:artistId}}"
+        },
+        {
+          "field": "findKywrd",
+          "method": "matching",
+          "value": "{{:searchKeyword}}"
+        },
+        {
+          "field": "showYn",
+          "method": "matching",
+          "value": "true"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "contsMeta",
+    "apiId": "IfNews001",
+    "apiName": "뉴스 목록조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "contsMetaCtgryId",
+        "required": false
+      },
+      {
+        "paramName": "artistId",
+        "required": false
+      },
+      {
+        "paramName": "searchKeyword",
+        "required": false
+      }
+    ],
+    "config": {
+      "typeId": "news",
+      "query": [
+        {
+          "field": "contsMetaCtgryId",
+          "method": "matching",
+          "value": "{{:contsMetaCtgryId}}"
+        },
+        {
+          "field": "artistId",
+          "method": "matching",
+          "value": "{{:artistId}}"
+        },
+        {
+          "field": "findKywrd",
+          "method": "matching",
+          "value": "{{:searchKeyword}}"
+        },
+        {
+          "field": "showYn",
+          "method": "matching",
+          "value": "true"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "contsMeta",
+    "apiId": "IfNews002",
+    "apiName": "뉴스 상세조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "newsId",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "news",
+      "query": [
+        {
+          "field": "newsId",
+          "method": "matching",
+          "value": "{{:newsId}}"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "contsMeta",
+    "apiId": "IfPtb001",
+    "apiName": "번들(그룹) 포토 목록조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "ctrgyId",
+        "required": false
+      }
+    ],
+    "config": {
+      "typeId": "groupPhoto",
+      "query": [
+        {
+          "field": "ctrgyId",
+          "method": "matching",
+          "value": "{{:ctrgyId}}"
+        },
+        {
+          "field": "showYn",
+          "method": "matching",
+          "value": "true"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "contsMeta",
+    "apiId": "IfPtb002",
+    "apiName": "번들(그룹) 포토 상세조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "groupPhotoId",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "groupPhoto",
+      "query": [
+        {
+          "field": "groupPhotoId",
+          "method": "matching",
+          "value": "{{:groupPhotoId}}"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "contsMeta",
+    "apiId": "IfPho002",
+    "apiName": "싱글 포토 목록조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "ctgryId",
+        "required": false
+      },
+      {
+        "paramName": "artistId",
+        "required": false
+      },
+      {
+        "paramName": "searchKeyword",
+        "required": false
+      }
+    ],
+    "config": {
+      "typeId": "singlePhoto",
+      "query": [
+        {
+          "field": "ctgryId",
+          "method": "matching",
+          "value": "{{:ctgryId}}"
+        },
+        {
+          "field": "artistId",
+          "method": "matching",
+          "value": "{{:artistId}}"
+        },
+        {
+          "field": "searchKeyword",
+          "method": "matching",
+          "value": "{{:searchKeyword}}"
+        },
+        {
+          "field": "showYn",
+          "method": "matching",
+          "value": "true"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        }
+      ]
+    }
+  }
+]

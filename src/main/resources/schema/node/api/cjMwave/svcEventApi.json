@@ -1,0 +1,97 @@
+[
+  {
+    "typeId": "apiConfig",
+    "category": "svcEvent",
+    "apiId": "IfEvt001",
+    "apiName": "MAMA 수상자 조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "awardYear",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "mamaAwardSctnInfo",
+      "query": [
+        {
+          "field": "awardYear",
+          "method": "matching",
+          "value": "{{:awardYear}}"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        },
+        {
+          "includeReferenced": true
+        }
+
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "svcEvent",
+    "apiId": "IfEvt002",
+    "apiName": "당첨자 정보 전송",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "config": {
+      "typeId": "mamaAwardSctnInfo",
+      "query": [
+        {
+          "field": "awardYear",
+          "method": "matching",
+          "value": "{{:awardYear}}"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        },
+        {
+          "includeReferenced": true
+        }
+      ]
+    }
+  }
+]

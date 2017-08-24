@@ -1,0 +1,52 @@
+[
+  {
+    "typeId": "apiConfig",
+    "category": "onair",
+    "apiId": "IfLive001",
+    "apiName": "온라인 방송 상세조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "showLoCd",
+        "required": true
+      },
+      {
+        "paramName": "svcTypeCd",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "onairInfo",
+      "query": [
+        {
+          "field": "showLoCd",
+          "method": "matching",
+          "value": "{{:showLoCd}}"
+        },{
+          "field": "svcTypeCd",
+          "method": "matching",
+          "value": "{{:svcTypeCd}}"
+        },
+        {
+          "field": "showYn",
+          "method": "matching",
+          "value": "true"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "limit": "1"
+        }
+      ]
+    }
+  }
+]

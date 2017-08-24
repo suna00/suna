@@ -1,0 +1,63 @@
+[
+  {
+    "typeId": "apiConfig",
+    "category": "popup",
+    "apiId": "IfPop001",
+    "apiName": "팝업 목록조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "svcTermlDivCd",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "popupInfo",
+      "query": [
+        {
+          "field": "svcTermlDivCd",
+          "method": "matching",
+          "value": "{{:svcTermlDivCd}}"
+        },
+        {
+          "field": "showYn",
+          "method": "matching",
+          "value": "true"
+        },
+        {
+          "field": "showStDt",
+          "method": "below",
+          "value": "20170801"
+        },
+        {
+          "field": "showFnsDt",
+          "method": "above",
+          "value": "20171201"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        }
+      ]
+    }
+  }
+]
