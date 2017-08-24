@@ -32,36 +32,37 @@
       }
     ],
     "config": {
-      "item": {
-        "typeId": "mainBasInfo",
-        "query": [
-          {
-            "field": "mainDivCd",
-            "method": "matching",
-            "value": "{{:divCd}}"
-          },
-          {
-            "field": "showLoCd",
-            "method": "matching",
-            "value": "{{:showLoCd}}"
-          },
-          {
-            "field": "showYn",
-            "method": "matching",
-            "value": "true"
-          },
-          {
-            "sorting": "mainSeq desc"
-          },
-          {
-            "limit": "1"
-          }
-        ],
-        "response": {
-          "mainSeq": "",
-          "mainNm": "",
-          "refdCompItemList": ""
+      "typeId": "mainBasInfo",
+      "query": [
+        {
+          "field": "mainDivCd",
+          "method": "matching",
+          "value": "{{:divCd}}"
+        },
+        {
+          "field": "showLoCd",
+          "method": "matching",
+          "value": "{{:showLoCd}}"
+        },
+        {
+          "field": "showYn",
+          "method": "matching",
+          "value": "true"
+        },
+        {
+          "sorting": "mainSeq desc"
+        },
+        {
+          "limit": "1"
+        },
+        {
+          "includeReferenced": true
         }
+      ],
+      "response": {
+        "mainSeq": "",
+        "mainNm": "",
+        "refdCompItemList": ""
       }
     }
   },
@@ -116,15 +117,15 @@
           "value": "true"
         },
         {
-          "sorting": ""
-        },
-        {
           "limit": "1"
         },
         {
           "includeReferenced": true
         }
       ],
+      "response": {
+        "refdMenuList": ""
+      },
       "anchor": {
         "typeId": "banrBasInfo",
         "query": [
@@ -150,6 +151,9 @@
           },
           {
             "sorting": "banrSeq desc"
+          },
+          {
+            "includeReferenced": true
           }
         ]
       }

@@ -61,7 +61,7 @@
     "id": "banrBasInfo>banrLowTypeCd",
     "propertyTypeName": "배너 하위 유형 코드",
     "valueType": "REFERENCE",
-    "required": true,
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,

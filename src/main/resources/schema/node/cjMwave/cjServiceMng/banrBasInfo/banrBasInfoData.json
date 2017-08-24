@@ -58,5 +58,20 @@
     "showLoCd": "",
     "showCntryCdList": "KOR,USA",
     "liveBanrDivCd": "2"
+  },
+  {
+    "typeId": "banrBasInfo",
+    "banrSeq": 104,
+    "banrNm": "Anchor banner",
+    "banrTypeCd": "4",
+    "banrLowTypeCd": "",
+    "svcMenuDivCd": "1",
+    "showStDt": "20170801",
+    "showFnsDt": "20171130",
+    "svcTermlDivCd": "1",
+    "showYn": true,
+    "showLoCd": "",
+    "showCntryCdList": "KOR,USA",
+    "liveBanrDivCd": ""
   }
 ]

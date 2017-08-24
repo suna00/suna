@@ -24,7 +24,7 @@
     "id": "svcMenuInfo>svcMenuGroupSeq",
     "propertyTypeName": "서비스 메뉴 그룹 일련번호",
     "valueType": "REFERENCE",
-    "required": true,
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
