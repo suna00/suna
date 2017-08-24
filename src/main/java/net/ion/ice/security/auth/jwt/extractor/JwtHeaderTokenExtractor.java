@@ -12,19 +12,19 @@ public class JwtHeaderTokenExtractor implements TokenExtractor {
     private JwtConfig jwtConfig;
 
     @Override
-    public String extract(String header) {
-        if (StringUtils.isBlank(header)) {
+    public String extract(String token) {
+        if (StringUtils.isBlank(token)) {
             throw new AuthenticationServiceException("Authorization token cannot be blank!");
         }
 
-        if (!header.substring(0, jwtConfig.getHeaderPrefix().concat(" ").length()).equalsIgnoreCase(jwtConfig.getHeaderPrefix().concat(" "))) {
+        if (!token.substring(0, jwtConfig.getHeaderPrefix().concat(" ").length()).equalsIgnoreCase(jwtConfig.getHeaderPrefix().concat(" "))) {
             throw new AuthenticationServiceException("different prefix header.");
         }
 
-        if (header.length() < jwtConfig.getHeaderPrefix().concat(" ").length()) {
+        if (token.length() < jwtConfig.getHeaderPrefix().concat(" ").length()) {
             throw new AuthenticationServiceException("Invalid authorization header size.");
         }
 
-        return header.substring(jwtConfig.getHeaderPrefix().concat(" ").length(), header.length());
+        return token.substring(jwtConfig.getHeaderPrefix().concat(" ").length(), token.length());
     }
 }
