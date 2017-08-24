@@ -306,21 +306,21 @@
     "icon": "fa-tag",
     "active": "true",
     "index": "false",
-    "pages": [
+    "pages": [],
+    "customPages": [
       {
         "pageName": "목록",
-        "pageUrl": "list"
+        "pageUrl": "cj/content/SongList"
       },
       {
         "pageName": "등록/수정",
-        "pageUrl": "form"
+        "pageUrl": "cj/content/SongForm"
       },
       {
         "pageName": "상세",
-        "pageUrl": "view"
+        "pageUrl": "cj/content/SongView"
       }
-    ],
-    "customPages": []
+    ]
   },
   {
     "typeId": "adminLnbMenu",

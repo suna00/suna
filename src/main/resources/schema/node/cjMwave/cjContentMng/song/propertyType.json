@@ -14,6 +14,7 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -31,6 +32,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -48,6 +50,7 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -65,6 +68,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -82,6 +86,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -99,6 +104,7 @@
     "analyzer": "code",
     "referenceType": "artist",
     "referenceValue": "artistId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -116,6 +122,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -133,6 +140,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -150,6 +158,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -167,6 +176,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -184,6 +194,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -192,15 +203,16 @@
     "pid": "showCntryCdList",
     "id": "song>showCntryCdList",
     "propertyTypeName": "노출국가 코드리스트",
-    "valueType": "TEXT",
+    "valueType": "REFERENCES",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
-    "analyzer": "cjk",
-    "referenceType": "",
-    "referenceValue": "",
+    "analyzer": "code",
+    "referenceType": "cntryMng",
+    "referenceValue": "cntryId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -209,6 +221,24 @@
     "pid": "relSongIds",
     "id": "song>relSongIds",
     "propertyTypeName": "연관 곡 아이디",
+    "valueType": "REFERENCES",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "song",
+    "referenceValue": "songId",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "song",
+    "pid": "relSongUrls",
+    "id": "song>relSongUrls",
+    "propertyTypeName": "연관 곡 URL",
     "valueType": "TEXT",
     "required": false,
     "idable": false,
@@ -218,6 +248,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -226,15 +257,16 @@
     "pid": "relMusicVideoIds",
     "id": "song>relMusicVideoIds",
     "propertyTypeName": "연관 뮤직비디오 아이디",
-    "valueType": "TEXT",
+    "valueType": "REFERENCES",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
-    "analyzer": "cjk",
-    "referenceType": "",
-    "referenceValue": "",
+    "analyzer": "code",
+    "referenceType": "musicVideo",
+    "referenceValue": "musicVideoId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -252,6 +284,25 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "song",
+    "pid": "showYn",
+    "id": "song>showYn",
+    "propertyTypeName": "노출 여부",
+    "valueType": "BOOLEAN",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "cjk",
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -269,6 +320,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -286,6 +338,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -303,6 +356,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -320,6 +374,25 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "song",
+    "pid": "refdMultiLanginfo",
+    "id": "song>refdMultiLanginfo",
+    "propertyTypeName": "곡 다국어 리스트",
+    "valueType": "REFERENCED",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "songMultiLangInfo",
+    "referenceValue": "songId",
+    "codeFilter": "",
     "defaultValue": ""
   }
 ]

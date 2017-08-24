@@ -1,0 +1,21 @@
+[
+  {
+    "typeId": "song",
+    "songId": "song_00001",
+    "songNm": "My Heart",
+    "subName": "My Heart",
+    "songDesc": "It is a collaboration with EH! DE and is the fourth song of Orbit Or Beat.",
+    "distSubName": "My Heart",
+    "artistId": "artist_00001",
+    "albumName": "album_00001",
+    "playTime": "04:27",
+    "wrds": "I spent the last two weeks just screaming, I spent the last two weeks just screaming. Trying to work you out is killing, Ever since my heart's been missing ",
+    "imgPath": "",
+    "findKywrd": "different,heaven,my,heart",
+    "showCntryCdList": "KOR,USA,CHN",
+    "relSongIds": "",
+    "relMusicVideoIds": "",
+    "mnetIfTrtYn": true,
+    "showYn": true
+  }
+]
