@@ -2512,6 +2512,22 @@
   },
   {
     "typeId": "propertyType",
+    "tid": "theme",
+    "pid": "referencedProductMap",
+    "propertyTypeName": "하위",
+    "valueType": "REFERENCED",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": true,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "productToThemeMap",
+    "referenceValue": "themeId",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
     "tid": "categoryBanner",
     "pid": "categoryBannerId",
     "propertyTypeName": "ID",

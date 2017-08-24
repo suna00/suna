@@ -315,7 +315,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         return cloneNode ;
     }
     public void setUpdate(String userId, Date changed) {
-        this.nodeValue.setModifier(userId) ;
+        this.nodeValue.setModifier(StringUtils.isEmpty(userId) ? ANONYMOUS : userId) ;
         this.nodeValue.setChanged(changed) ;
     }
 
@@ -366,7 +366,6 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
                 remove(pt.getPid()) ;
             }
         }
-//        properties.toStore();
         return this ;
     }
 

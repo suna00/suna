@@ -3,11 +3,11 @@ package net.ion.ice.core.file;
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.PropertyType;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import org.stagemonitor.util.StringUtils;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -39,6 +39,8 @@ public class FileService {
         return new FileValue(pt, id, multipartFile, saveFilePath);
     }
 
+
+
     private FileRepository getFileRepository(String fileHandler) {
         if(StringUtils.isEmpty(fileHandler)){
             fileHandler = "default" ;
@@ -52,5 +54,15 @@ public class FileService {
 
         FileRepository repository = getFileRepository(pt.getFileHandler()) ;
         return repository.loadAsResource(path) ;
+    }
+
+    public FileValue getFileInfo(PropertyType pt, String id, String value) {
+        FileRepository repository = getFileRepository(pt.getFileHandler()) ;
+
+        if(StringUtils.contains((String) value, "classpath:")){
+            FileValue fileValue = repository.getClasspathFileInfo(pt, id, value) ;
+            return fileValue ;
+        }
+        return null ;
     }
 }
