@@ -157,7 +157,7 @@ public class InfinispanRepositoryService {
                 if(queryContext.getSorting() != null )subQueryContext.setSorting(queryContext.getSorting());
                 List<Node> result = getSubQueryNodes(pt.getReferenceType(), subQueryContext);
                 for (Node node : result) {
-                    node.toDisplay();
+                    node.toDisplay(subQueryContext);
                 }
                 return new SimpleQueryResult(result, subQueryContext);
             }
@@ -195,6 +195,8 @@ public class InfinispanRepositoryService {
                     if (pt.isTreeable()) {
                         QueryContext subQueryContext = QueryContext.makeQueryContextForTree(nodeType, pt, node.getId().toString());
                         subQueryContext.setTreeable(true);
+                        if (queryContext.getQueryTerms() != null) subQueryContext.getQueryTerms().addAll(queryContext.getQueryTerms());
+                        if(queryContext.getSorting() != null )subQueryContext.setSorting(queryContext.getSorting());
                         node.put("children", getSubQueryNodes(pt.getReferenceType(), subQueryContext));
                     }
                 }

@@ -1,0 +1,26 @@
+[
+  {
+    "typeId" : "apiCategory",
+    "id" : "productApi",
+    "categoryName" : "상품 API"
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "productApi",
+    "apiId" : "list",
+    "apiName" : "상품 리스트",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "product",
+      "query" : [
+        {"field" : "salePrice", "method" : "fromto", "value" : "{{:salePrice}}" },
+        {"sorting" : "{{:sorting}}"},
+        {"field" : "name", "method" : "matching_should", "value" : "{{:searchValue}}" },
+        {"field" : "category", "method" : "referenceJoin", "value" : "categoryType_matching={{:categoryType}}" },
+        {"includeReferenced" : false, "referenceView" : "contentsId"}
+      ]
+    }
+  }
+]

@@ -440,7 +440,58 @@
     },
     "siteId": null,
     "deviceType": null,
-    "categoryId": null
+    "categoryId": "1"
+  },
+  {
+    "typeId": "specialExhibition",
+    "specialExhibitionId": 2,
+    "affiliateId": {
+      "value": "1",
+      "label": "1",
+      "refId": "1"
+    },
+    "name": "기획전 테스트222",
+    "displayTargetType": {
+      "value": "company",
+      "label": "기업",
+      "refId": "displayTargetType>company"
+    },
+    "startDate": "20170731150000",
+    "endDate": "20170830150000",
+    "timeSaleYn": {
+      "value": "n",
+      "label": "trueFalse>n",
+      "refId": "trueFalse>n"
+    },
+    "addBenefitYn": {
+      "value": "y",
+      "label": "trueFalse>y",
+      "refId": "trueFalse>y"
+    },
+    "specialExhibitionStatus": {
+      "value": "pending",
+      "label": "진행",
+      "refId": "specialExhibitionStatus>pending"
+    },
+    "mainImage": "test",
+    "thumbnailImage": "test",
+    "keyword": "test,special,기획전",
+    "contents": "기획전 테스트",
+    "created": "20170822074552",
+    "owner": {
+      "value": "anonymous",
+      "label": "anonymous",
+      "refId": "anonymous"
+    },
+    "changed": "20170822074552",
+    "modifier": {
+      "value": "anonymous",
+      "label": "anonymous",
+      "refId": "anonymous"
+    },
+    "siteId": null,
+    "deviceType": null,
+    "categoryId": "2"
   },
   {
     "typeId": "specialExhibitionAnker",
@@ -611,5 +662,23 @@
       "label": "anonymous",
       "refId": "anonymous"
     }
+  },
+  {
+    "typeId": "specialExhibitionMainBanner",
+    "specialExhibitionMainBannerId": "1",
+    "sortOrder": "1",
+    "specialExhibitionId" : "1",
+    "deviceType" : "pc",
+    "bannerElementStatus" : "y",
+    "bannerElementType" : "slide"
+  },
+  {
+    "typeId": "specialExhibitionMainBanner",
+    "specialExhibitionMainBannerId": "2",
+    "sortOrder": "2",
+    "specialExhibitionId" : "2",
+    "deviceType" : "pc",
+    "bannerElementStatus" : "y",
+    "bannerElementType" : "fix"
   }
 ]

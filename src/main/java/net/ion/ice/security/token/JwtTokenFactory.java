@@ -23,6 +23,23 @@ public class JwtTokenFactory {
         this.jwtConfig = jwtConfig;
     }
 
+    public AccessJwtToken createInitJwtToken() {
+        Claims claims = Jwts.claims();
+        claims.setSubject("Anonymous");
+
+        LocalDateTime currentTime = LocalDateTime.now();
+
+        String token = Jwts.builder()
+                .setClaims(claims)
+                .setIssuer(jwtConfig.getIssuer())
+                .setIssuedAt(Date.from(currentTime.atZone(ZoneId.systemDefault()).toInstant()))
+                .setExpiration(Date.from(currentTime.plusMinutes(jwtConfig.getTokenExpirationTime()).atZone(ZoneId.systemDefault()).toInstant()))
+                .signWith(SignatureAlgorithm.HS512, jwtConfig.getSecretKey())
+                .compact();
+
+        return new AccessJwtToken(token, claims);
+    }
+
     public AccessJwtToken createAccessJwtToken(UserContext userContext) {
         if (StringUtils.isBlank(userContext.getUserId()))
             throw new IllegalArgumentException("Cannot create JWT Token without userId");
