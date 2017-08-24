@@ -1,8 +1,10 @@
 package net.ion.ice.core.file;
 
 import net.ion.ice.core.node.PropertyType;
+import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 /**
@@ -19,6 +21,16 @@ public class FileValue implements Serializable{
         this.fileName = multipartFile.getOriginalFilename() ;
         this.contentType = multipartFile.getContentType() ;
         this.fileSize = multipartFile.getSize() ;
+    }
+
+    public FileValue(Resource res, String path) {
+        this.storePath = path ;
+        this.fileName = res.getFilename() ;
+        try {
+            this.fileSize = res.contentLength() ;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getContentType() {
