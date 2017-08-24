@@ -9,7 +9,8 @@
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
       "order": [
-        "a3b782c0-add1-77b4-6792-b325a4cc0a6a"
+        "a3b782c0-add1-77b4-6792-b325a4cc0a6a",
+        "bcf6e693-bb49-ef17-4f0b-e144ce3c0450"
       ],
       "owner": "2433871",
       "folders_order": [],
@@ -39,7 +40,10 @@
       "name": "04.이벤트",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
-      "order": [],
+      "order": [
+        "87879231-b273-37e9-1942-d5c129a6e705",
+        "229a214f-a78c-9079-ad75-8e32a94a9c22"
+      ],
       "owner": "2433871",
       "folders_order": [],
       "id": "b1727a29-2c82-cf5e-28b0-f94b8d6dbbff"
@@ -48,7 +52,9 @@
       "name": "05.팝업",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
-      "order": [],
+      "order": [
+        "293e8385-407e-35c4-b7f4-b4acdea0dbe8"
+      ],
       "owner": "2433871",
       "folders_order": [],
       "id": "2dc23414-29d4-e83c-b923-cfff842c6df7"
@@ -100,7 +106,20 @@
       "name": "10.컨텐츠메타정보",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
-      "order": [],
+      "order": [
+        "e0bfd31a-a844-245f-4bd5-307a14e08e52",
+        "575de5a0-d313-5f4f-f9e8-101054f5494d",
+        "6486071e-bedf-4bb2-56a1-596d1df68046",
+        "a64f3cfe-1089-6546-eb52-2069a4bc8c3e",
+        "1f147671-d8a5-8223-768b-3b69011df4f2",
+        "b015118f-1855-148a-d532-1ad19264cdd4",
+        "79312b63-f12e-a268-dc90-55a6ddbde6be",
+        "6ff6d693-7ec3-d213-d18a-1dd751373736",
+        "09e5c6c6-b7c0-60b5-eb45-5214570f6f77",
+        "c9fdb91f-ea9d-a969-50c5-6bd07f2378ef",
+        "810cea7b-1e3d-5c7f-6a1b-87698ead0c7b",
+        "38973aa4-96b4-646d-5c97-49a164f726b4"
+      ],
       "owner": "2433871",
       "folders_order": [],
       "id": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902"
@@ -109,7 +128,9 @@
       "name": "11.온라인방송(onAir)",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
-      "order": [],
+      "order": [
+        "bb186fe9-31a9-bc41-c9eb-da0961dd8bd2"
+      ],
       "owner": "2433871",
       "folders_order": [],
       "id": "19f32b0a-fdf9-d161-022e-8b92f2af649c"
@@ -156,6 +177,191 @@
   "owner": "2433871",
   "public": false,
   "requests": [
+    {
+      "id": "09e5c6c6-b7c0-60b5-eb45-5214570f6f77",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/contsMeta/IfNews002?newsId=100",
+      "queryParams": [
+        {
+          "key": "newsId",
+          "value": "100",
+          "equals": true,
+          "description": "뉴스아이디(String) NotNull",
+          "enabled": true
+        }
+      ],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "GET",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": null,
+      "dataMode": "params",
+      "name": "뉴스 상세조회(IF_NEWS_002)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1503566983996,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902"
+    },
+    {
+      "id": "1f147671-d8a5-8223-768b-3b69011df4f2",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/contsMeta/IfArt001?typeCd=1&genreCd&searchKeyword",
+      "queryParams": [
+        {
+          "key": "typeCd",
+          "value": "1",
+          "equals": true,
+          "description": "아티스트 타입코드(String)",
+          "enabled": true
+        },
+        {
+          "key": "genreCd",
+          "value": "",
+          "equals": false,
+          "description": "아티스트 장르코드(String)",
+          "enabled": true
+        },
+        {
+          "key": "searchKeyword",
+          "value": "",
+          "equals": false,
+          "description": "검색키워드(String)",
+          "enabled": true
+        }
+      ],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "GET",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": null,
+      "dataMode": "params",
+      "name": "아티스트 목록조회(IF_ART_001)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1503566665533,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902"
+    },
+    {
+      "id": "229a214f-a78c-9079-ad75-8e32a94a9c22",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/svcEvent/IfEvt002",
+      "queryParams": [],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "GET",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": null,
+      "dataMode": "params",
+      "name": "당첨자 정보 전송(IF_EVT_002)(개발중)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1503556266813,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "b1727a29-2c82-cf5e-28b0-f94b8d6dbbff",
+      "isFromCollection": true,
+      "collectionRequestId": "229a214f-a78c-9079-ad75-8e32a94a9c22",
+      "folderId": "b1727a29-2c82-cf5e-28b0-f94b8d6dbbff"
+    },
+    {
+      "id": "293e8385-407e-35c4-b7f4-b4acdea0dbe8",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/popup/IfPop001?svcTermlDivCd=1",
+      "queryParams": [
+        {
+          "key": "svcTermlDivCd",
+          "value": "1",
+          "equals": true,
+          "description": "서비스단말구분코드(String) NotNull",
+          "enabled": true
+        }
+      ],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "GET",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": null,
+      "dataMode": "params",
+      "name": "팝업 목록 조회(IF_POP_001)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1503556396391,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "2dc23414-29d4-e83c-b923-cfff842c6df7",
+      "isFromCollection": true,
+      "collectionRequestId": "293e8385-407e-35c4-b7f4-b4acdea0dbe8"
+    },
+    {
+      "id": "38973aa4-96b4-646d-5c97-49a164f726b4",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/contsMeta/IfPho001?artistId=100&ctgryId&searchKeyword",
+      "queryParams": [
+        {
+          "key": "artistId",
+          "value": "100",
+          "equals": true,
+          "description": "아티스트 아이디(String)",
+          "enabled": true
+        },
+        {
+          "key": "ctgryId",
+          "value": "",
+          "equals": false,
+          "description": "카테고리 아이디(String)",
+          "enabled": true
+        },
+        {
+          "key": "searchKeyword",
+          "value": "",
+          "equals": false,
+          "description": "검색키워드(String)",
+          "enabled": true
+        }
+      ],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "GET",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": null,
+      "dataMode": "params",
+      "name": "싱글 포토 목록조회(IF_PHO_002)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1503567326116,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902"
+    },
     {
       "id": "41a14465-cb51-7647-05f6-139a2e569d4e",
       "headers": "",
@@ -208,6 +414,38 @@
       "responses": []
     },
     {
+      "id": "575de5a0-d313-5f4f-f9e8-101054f5494d",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/contsMeta/IfAbm002?albumId=100",
+      "queryParams": [
+        {
+          "key": "albumId",
+          "value": "100",
+          "equals": true,
+          "description": "앨범아이디(String)NotNull",
+          "enabled": true
+        }
+      ],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "GET",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": null,
+      "dataMode": "params",
+      "name": "앨범 상세조회(IF_ABM_002)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1503566359609,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902"
+    },
+    {
       "id": "5a1c517e-ee58-72ea-81cc-ab263f042ce3",
       "headers": "",
       "headerData": [],
@@ -230,6 +468,52 @@
       "currentHelper": "normal",
       "helperAttributes": {},
       "folder": "f6372b66-a110-e4b0-38c2-09f2a055c0c6"
+    },
+    {
+      "id": "6486071e-bedf-4bb2-56a1-596d1df68046",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/contsMeta/IfSong001?artistId=100&albumId&searchKeyword",
+      "queryParams": [
+        {
+          "key": "artistId",
+          "value": "100",
+          "equals": true,
+          "description": "아티스트 아이디(String)",
+          "enabled": true
+        },
+        {
+          "key": "albumId",
+          "value": "",
+          "equals": false,
+          "description": "앨범 아이디(String)",
+          "enabled": true
+        },
+        {
+          "key": "searchKeyword",
+          "value": "",
+          "equals": false,
+          "description": "검색키워드(String)",
+          "enabled": true
+        }
+      ],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "GET",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": null,
+      "dataMode": "params",
+      "name": "곡 목록조회(IF_SONG_001)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1503566519695,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902"
     },
     {
       "id": "69d1c0d7-a1c3-5c09-0332-1ce214503590",
@@ -267,6 +551,52 @@
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
       "responses": []
+    },
+    {
+      "id": "6ff6d693-7ec3-d213-d18a-1dd751373736",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/contsMeta/IfNews001?contsMetaCtgryId=100&artistId&searchKeyword",
+      "queryParams": [
+        {
+          "key": "contsMetaCtgryId",
+          "value": "100",
+          "equals": true,
+          "description": "콘텐츠메타카테고리아이디(String)",
+          "enabled": true
+        },
+        {
+          "key": "artistId",
+          "value": "",
+          "equals": false,
+          "description": "아티스트 아이디(String)",
+          "enabled": true
+        },
+        {
+          "key": "searchKeyword",
+          "value": "",
+          "equals": false,
+          "description": "검색키워드(String)",
+          "enabled": true
+        }
+      ],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "GET",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": null,
+      "dataMode": "params",
+      "name": "뉴스 목록 조회(IF_NEWS_001)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1503566927947,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902"
     },
     {
       "id": "761c471f-9866-c23b-8cf6-62acc898eb29",
@@ -339,6 +669,108 @@
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
       "responses": []
+    },
+    {
+      "id": "79312b63-f12e-a268-dc90-55a6ddbde6be",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/contsMeta/IfMv001?artistId=100&searchKeyword",
+      "queryParams": [
+        {
+          "key": "artistId",
+          "value": "100",
+          "equals": true,
+          "description": "아티스트 아이디(String)",
+          "enabled": true
+        },
+        {
+          "key": "searchKeyword",
+          "value": "",
+          "equals": false,
+          "description": "검색키워드(String)",
+          "enabled": true
+        }
+      ],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "GET",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": null,
+      "dataMode": "params",
+      "name": "뮤직비디오 목록조회(IF_MV_001)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1503566829667,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902"
+    },
+    {
+      "id": "810cea7b-1e3d-5c7f-6a1b-87698ead0c7b",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/contsMeta/IfPtb002?groupPhotoId=100",
+      "queryParams": [
+        {
+          "key": "groupPhotoId",
+          "value": "100",
+          "equals": true,
+          "description": "그룹사진아이디(String) NotNull",
+          "enabled": true
+        }
+      ],
+      "preRequestScript": null,
+      "pathVariables": {},
+      "pathVariableData": [],
+      "method": "GET",
+      "data": null,
+      "dataMode": "params",
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "time": 1503567145146,
+      "name": "번들(그룹) 포토 상세조회(IF_PTB_002)",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "responses": []
+    },
+    {
+      "id": "87879231-b273-37e9-1942-d5c129a6e705",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/svcEvent/IfEvt001?awardYear=2017",
+      "queryParams": [
+        {
+          "key": "awardYear",
+          "value": "2017",
+          "equals": true,
+          "description": "수상년도(String) NotNull",
+          "enabled": true
+        }
+      ],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "GET",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": null,
+      "dataMode": "params",
+      "name": "MAMA 수상자 조회(IF_EVT_001)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1503556181972,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "b1727a29-2c82-cf5e-28b0-f94b8d6dbbff",
+      "isFromCollection": true,
+      "collectionRequestId": "87879231-b273-37e9-1942-d5c129a6e705"
     },
     {
       "id": "972c87ea-3185-d59e-afde-d3f3fa745867",
@@ -496,11 +928,35 @@
       "tests": null,
       "currentHelper": "normal",
       "helperAttributes": {},
-      "time": 1503481489650,
+      "time": 1503551157886,
       "name": "서비스 컴포넌트 상세조회(IfCom001)(작업중)",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
       "responses": []
+    },
+    {
+      "id": "a64f3cfe-1089-6546-eb52-2069a4bc8c3e",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/contsMeta/IfSong002",
+      "queryParams": [],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "GET",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": null,
+      "dataMode": "params",
+      "name": "앨범 수록곡 목록조회(미정)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1503566569652,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902"
     },
     {
       "id": "acd388cb-62f8-023f-031f-88dd3a30e412",
@@ -531,6 +987,116 @@
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
       "responses": []
+    },
+    {
+      "id": "b015118f-1855-148a-d532-1ad19264cdd4",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/contsMeta/IfArt002?artistId=100",
+      "queryParams": [
+        {
+          "key": "artistId",
+          "value": "100",
+          "equals": true,
+          "description": "아티스트 상세조회(IF_ART_002) NotNull",
+          "enabled": true
+        }
+      ],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "GET",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": null,
+      "dataMode": "params",
+      "name": "아티스트 상세조회(IF_ART_002)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1503566763739,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902"
+    },
+    {
+      "id": "bb186fe9-31a9-bc41-c9eb-da0961dd8bd2",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/onair/IfLive001?showLoCd=100&svcTypeCd",
+      "queryParams": [
+        {
+          "key": "showLoCd",
+          "value": "100",
+          "equals": true,
+          "description": "서비스위치코드(String) NotNull",
+          "enabled": true
+        },
+        {
+          "key": "svcTypeCd",
+          "value": "",
+          "equals": false,
+          "description": "OnAir서비스타입코드(String) NotNull",
+          "enabled": true
+        }
+      ],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "GET",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": null,
+      "dataMode": "params",
+      "name": "온라인 방송정보 상세조회(IF_LIVE_001)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1503567854061,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "19f32b0a-fdf9-d161-022e-8b92f2af649c"
+    },
+    {
+      "id": "bcf6e693-bb49-ef17-4f0b-e144ce3c0450",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/comp/IfCom002?cntryCd=USA&svcTermlDivCd=1",
+      "queryParams": [
+        {
+          "key": "cntryCd",
+          "value": "USA",
+          "equals": true,
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "svcTermlDivCd",
+          "value": "1",
+          "equals": true,
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "GET",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": null,
+      "dataMode": "params",
+      "name": "서비스 메뉴 상세조회(IF_COM_002)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1503551069912,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "badda442-9eb8-dbe0-84c2-1cfb79067a3e"
     },
     {
       "id": "c95e9141-84e6-51d4-55c9-d9f3da4f11d1",
@@ -575,6 +1141,91 @@
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
       "responses": []
+    },
+    {
+      "id": "c9fdb91f-ea9d-a969-50c5-6bd07f2378ef",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/contsMeta/IfPtb001?ctrgyId=100",
+      "queryParams": [
+        {
+          "key": "ctrgyId",
+          "value": "100",
+          "equals": true,
+          "description": "카테고리 아이디(String) NotNull",
+          "enabled": true
+        }
+      ],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "GET",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": null,
+      "dataMode": "params",
+      "name": "번들(그룹) 포토 목록조회(IF_PTB_001)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1503567051241,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902"
+    },
+    {
+      "id": "e0bfd31a-a844-245f-4bd5-307a14e08e52",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/contsMeta/IfAbm001?artistId=100&albumTypeCd&albumGenreCd&searchKeyword",
+      "queryParams": [
+        {
+          "key": "artistId",
+          "value": "100",
+          "equals": true,
+          "description": "아티스트 아이디(String) ",
+          "enabled": true
+        },
+        {
+          "key": "albumTypeCd",
+          "value": "",
+          "equals": false,
+          "description": "앨범종류코드(String)",
+          "enabled": true
+        },
+        {
+          "key": "albumGenreCd",
+          "value": "",
+          "equals": false,
+          "description": "앨범장르코드(String)",
+          "enabled": true
+        },
+        {
+          "key": "searchKeyword",
+          "value": "",
+          "equals": false,
+          "description": "검색키워드(String)",
+          "enabled": true
+        }
+      ],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "GET",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": null,
+      "dataMode": "params",
+      "name": "앨범 목록조회(IF_ABM_001)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1503566253068,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902"
     },
     {
       "id": "eb17267a-6073-4a17-9a8a-9dfc47f64b7f",
