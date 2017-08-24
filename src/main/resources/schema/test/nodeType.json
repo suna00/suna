@@ -150,6 +150,18 @@
   {
     "typeId": "propertyType",
     "tid": "testCategory",
+    "pid": "children",
+    "propertyTypeName": "Children",
+    "valueType": "REFERENCED",
+    "idable": false,
+    "indexable": false,
+    "required": false,
+    "referenceType" : "testCategory",
+    "referenceValue" : "parentCategory"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "testCategory",
     "pid": "items",
     "propertyTypeName": "Items",
     "valueType": "REFERENCED",
