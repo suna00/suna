@@ -30,7 +30,7 @@ public class RefreshTokenEndpoint {
     private CookieUtil cookieUtil;
     @Autowired @Qualifier("jwtHeaderTokenExtractor") private TokenExtractor tokenExtractor;
     
-    @RequestMapping(value="/api/auth/token", method= RequestMethod.GET, produces={ MediaType.APPLICATION_JSON_VALUE })
+    @RequestMapping(value="/api/auth/refreshToken", method= RequestMethod.GET, produces={ MediaType.APPLICATION_JSON_VALUE })
     public @ResponseBody
     JwtToken refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String tokenPayload = cookieUtil.getValue(request, "refreshToken");
