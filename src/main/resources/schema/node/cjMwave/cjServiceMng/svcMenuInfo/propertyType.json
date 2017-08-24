@@ -140,7 +140,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
-    "codeFilter": "showLoCd",
+    "codeFilter": "svcLo",
     "defaultValue": ""
   },
   {

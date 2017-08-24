@@ -140,7 +140,7 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "svcMenuInfo",
-    "referenceValue": "svcMenuGroupId",
+    "referenceValue": "svcMenuGroupSeq",
     "codeFilter": "",
     "defaultValue": ""
   },

@@ -5,6 +5,32 @@
     "apiId": "IfCom001",
     "apiName": "서비스 컴포넌트 상세조회",
     "method": "GET",
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "divCd",
+        "required": false
+      },
+      {
+        "paramName": "showLoCd",
+        "required": false
+      }
+    ],
     "config": {
       "item": {
         "typeId": "mainBasInfo",
@@ -45,7 +71,23 @@
     "apiId": "IfCom002",
     "apiName": "서비스 메뉴 상세조회",
     "method": "GET",
-    "parameter": [
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
       {
         "paramName": "cntryCd",
         "required": true
@@ -56,47 +98,33 @@
       }
     ],
     "config": {
-      "groupMenuId": {
-        "typeId": "svcMenuGroupInfo",
-        "query": [
-          {
-            "field": "showCntryCdList",
-            "method": "matching",
-            "value": "{{:cntryCd}}"
-          },
-          {
-            "field": "svcDvcDivCd",
-            "method": "matching",
-            "value": "{{:svcTermlDivCd}}"
-          },
-          {
-            "field": "showYn",
-            "method": "matching",
-            "value": "true"
-          },
-          {
-            "sorting": "svcMenuGroupId desc"
-          }
-        ]
-      },
-      "items": {
-        "typeId": "svcMenuInfo",
-        "query": [
-          {
-            "field": "svcMenuGroupId",
-            "method": "matching",
-            "value": "{{:svcMenuGroupId}}"
-          },
-          {
-            "field": "useYn",
-            "method": "matching",
-            "value": "true"
-          },
-          {
-            "sorting": "sortOdrg asc"
-          }
-        ]
-      },
+      "typeId": "svcMenuGroupInfo",
+      "query": [
+        {
+          "field": "showCntryCdList",
+          "method": "matching",
+          "value": "{{:cntryCd}}"
+        },
+        {
+          "field": "svcDvcDivCd",
+          "method": "matching",
+          "value": "{{:svcTermlDivCd}}"
+        },
+        {
+          "field": "showYn",
+          "method": "matching",
+          "value": "true"
+        },
+        {
+          "sorting": ""
+        },
+        {
+          "limit": "1"
+        },
+        {
+          "includeReferenced": true
+        }
+      ],
       "anchor": {
         "typeId": "banrBasInfo",
         "query": [
@@ -106,7 +134,7 @@
             "value": "{{:svcTermlDivCd}}"
           },
           {
-            "field": "showLoCd",
+            "field": "showCntryCdList",
             "method": "matching",
             "value": "{{:cntryCd}}"
           },
