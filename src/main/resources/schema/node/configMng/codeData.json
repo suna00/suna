@@ -609,6 +609,22 @@
   },
   {
     "typeId": "code",
+    "groupCodeId": "tgtDivCd",
+    "codeId": "2",
+    "name": "Song",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "tgtDivCd",
+    "codeId": "3",
+    "name": "etc",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
     "groupCodeId": "selScopeCd",
     "codeId": "1",
     "name": "전체 Atrist",
@@ -635,8 +651,32 @@
     "typeId": "code",
     "groupCodeId": "selScopeCd",
     "codeId": "4",
-    "name": "운영자 선택",
+    "name": "Music Video",
     "order": 4,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "selScopeCd",
+    "codeId": "4",
+    "name": "VOD",
+    "order": 4,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "selScopeCd",
+    "codeId": "5",
+    "name": "Clip",
+    "order": 5,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "selScopeCd",
+    "codeId": "6",
+    "name": "Photo",
+    "order": 6,
     "active": true
   },
   {
