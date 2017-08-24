@@ -139,6 +139,23 @@
   {
     "typeId": "propertyType",
     "tid": "review",
+    "pid": "photoYn",
+    "propertyTypeName": "포토구매평여부",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
+    "codeFilter": "trueFalse",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "review",
     "pid": "bestYn",
     "propertyTypeName": "베스트여부",
     "valueType": "REFERENCE",

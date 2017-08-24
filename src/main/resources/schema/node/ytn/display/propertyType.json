@@ -2513,7 +2513,7 @@
   {
     "typeId": "propertyType",
     "tid": "theme",
-    "pid": "referencedProductMap",
+    "pid": "referencedProductToThemeMap",
     "propertyTypeName": "하위",
     "valueType": "REFERENCED",
     "required": false,
