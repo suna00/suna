@@ -1,0 +1,22 @@
+[
+  {
+    "typeId": "album",
+    "albumId": "album_00001",
+    "albumNm": "My Heart",
+    "artistId": "artist_00001",
+    "comotDt": "20170821150000",
+    "comotCntry": "Sapin",
+    "typeCd": "solo",
+    "genreCd": "dance",
+    "dstrbCrcrt": "Sony",
+    "subName": "My Heart",
+    "sersName": "My Heart",
+    "albumDesc": "It is a collaboration with EH! DE and is the fourth song of Orbit Or Beat.",
+    "imgPath": "",
+    "findKywrd": "Different Heaven,My Heart",
+    "showCntryCdList": "KOR,USA,CHN",
+    "relAlbumIds": "",
+    "mnetIfTrtYn": true,
+    "showYn": true
+  }
+]

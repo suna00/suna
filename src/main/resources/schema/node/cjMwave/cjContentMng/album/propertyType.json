@@ -1,19 +1,19 @@
 [
   {
     "typeId": "propertyType",
-    "tid": "albumMultiLangInfo",
+    "tid": "album",
     "pid": "albumId",
-    "id": "albumMultiLangInfo>albumId",
+    "id": "album>albumId",
     "propertyTypeName": "앨범아이디",
-    "valueType": "REFERENCE",
+    "valueType": "STRING",
     "required": true,
     "idable": true,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "album",
-    "referenceValue": "albumId",
+    "referenceType": "",
+    "referenceValue": "",
     "defaultValue": ""
   },
   {
@@ -98,7 +98,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "code",
-    "referenceValue": "",
+    "referenceValue": "codeId",
     "defaultValue": ""
   },
   {
@@ -115,7 +115,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "code",
-    "referenceValue": "",
+    "referenceValue": "codeId",
     "defaultValue": ""
   },
   {
@@ -226,15 +226,15 @@
     "pid": "showCntryCdList",
     "id": "album>showCntryCdList",
     "propertyTypeName": "노출국가 코드 리스트",
-    "valueType": "TEXT",
+    "valueType": "REFERENCES",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
-    "analyzer": "cjk",
-    "referenceType": "",
-    "referenceValue": "",
+    "analyzer": "code",
+    "referenceType": "cntryMng",
+    "referenceValue": "cntryId",
     "defaultValue": ""
   },
   {
@@ -260,6 +260,23 @@
     "pid": "mnetIfTrtYn",
     "id": "album>mnetIfTrtYn",
     "propertyTypeName": "mnet 인터페이스 처리 여부",
+    "valueType": "BOOLEAN",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "cjk",
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "album",
+    "pid": "showYn",
+    "id": "album>showYn",
+    "propertyTypeName": "노출 여부",
     "valueType": "BOOLEAN",
     "required": false,
     "idable": false,
@@ -337,6 +354,23 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "album",
+    "pid": "refdMultiLanginfo",
+    "id": "album>refdMultiLanginfo",
+    "propertyTypeName": "앨범 다국어 리스트",
+    "valueType": "REFERENCED",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "albumMultiLangInfo",
+    "referenceValue": "albumId",
     "defaultValue": ""
   }
 ]
