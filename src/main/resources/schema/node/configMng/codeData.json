@@ -921,22 +921,6 @@
   },
   {
     "typeId": "code",
-    "groupCodeId": "osCd",
-    "codeId": "1",
-    "name": "tmp1",
-    "order": 1,
-    "active": true
-  },
-  {
-    "typeId": "code",
-    "groupCodeId": "osCd",
-    "codeId": "2",
-    "name": "tmp2",
-    "order": 2,
-    "active": true
-  },
-  {
-    "typeId": "code",
     "groupCodeId": "sbscShapCd",
     "codeId": "1",
     "name": "PC WEB",
@@ -2021,6 +2005,22 @@
     "codeId": "es",
     "name": "스페인어",
     "order": 6,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "apvSttusCd",
+    "codeId": "1",
+    "name": "Type1",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "apvSttusCd",
+    "codeId": "2",
+    "name": "Type2",
+    "order": 2,
     "active": true
   }
 ]

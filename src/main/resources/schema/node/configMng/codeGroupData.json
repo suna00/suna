@@ -246,13 +246,6 @@
   },
   {
     "typeId": "groupCode",
-    "groupCodeId": "osCd",
-    "name": "운영체제 코드",
-    "active": true,
-    "desc": "osCd"
-  },
-  {
-    "typeId": "groupCode",
     "groupCodeId": "sbscShapCd",
     "name": "가입 형태 코드",
     "active": true,
@@ -369,5 +362,12 @@
     "name": "정렬기준",
     "active": true,
     "desc": "정렬기준"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "apvSttusCd",
+    "name": "승인 상태 코드",
+    "active": true,
+    "desc": "뉴스 승인상태 코드"
   }
 ]
