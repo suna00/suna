@@ -139,5 +139,4 @@ public class NodeBindingService {
             nodeBindingInfoMap.put(nodeType.getTypeId(), nodeBindingInfo);
         }
     }
-
 }
