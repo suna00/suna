@@ -4894,5 +4894,41 @@
     "description": "",
     "sortOrder": "3",
     "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "emailAuthenticationType",
+    "upperCode": "root",
+    "name": "email 인증 타입",
+    "description": "",
+    "sortOrder": "90",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "join",
+    "upperCode": "emailAuthenticationType",
+    "name": "가입",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "password",
+    "upperCode": "emailAuthenticationType",
+    "name": "비밀번호",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "id",
+    "upperCode": "emailAuthenticationType",
+    "name": "아이디",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
   }
 ]
