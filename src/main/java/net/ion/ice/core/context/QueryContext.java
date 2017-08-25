@@ -375,22 +375,16 @@ public class QueryContext extends ReadContext {
 
     protected QueryResult makeQueryResult(Object result, String fieldName, List<Node> resultNodeList) {
         NodeType nodeType = getNodetype() ;
-        Node node = null ;
 
-        if(result instanceof Node){
-            node = (Node) result;
-        }
 
-        if(node == null){
+        if(fieldName == null){
             fieldName = "items" ;
         }
 
         if(this.resultFields == null){
             List<QueryResult> subList = makeDefaultResult(nodeType, resultNodeList);
-            if(node != null) {
-                node.put(fieldName, subList);
-                return null;
-            }if(result != null && result instanceof QueryResult){
+
+            if(result != null && result instanceof Map){
                 ((QueryResult) result).put(fieldName, subList) ;
                 return null ;
             }else {
@@ -399,7 +393,7 @@ public class QueryContext extends ReadContext {
         }
 
         List<QueryResult> subList = makeResultList(nodeType, resultNodeList);
-        if(result != null && result instanceof QueryResult){
+        if(result != null && result instanceof Map){
             ((QueryResult) result).put(fieldName, subList) ;
             return (QueryResult) result;
         }

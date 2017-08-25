@@ -951,278 +951,6 @@
     "changed": "20170821053544"
   },
   {
-    "typeId": "terms",
-    "termsId": 1,
-    "title": "제1조(목적)",
-    "contents": "제1조(목적)1111",
-    "created": "20170821031754",
-    "owner": {
-      "value": "anonymous",
-      "label": "anonymous",
-      "refId": "anonymous"
-    },
-    "changed": "20170821031754",
-    "modifier": {
-      "value": "anonymous",
-      "label": "anonymous",
-      "refId": "anonymous"
-    },
-    "siteType": {
-      "value": "company",
-      "label": "siteType>company",
-      "refId": "siteType>company"
-    },
-    "termsType": {
-      "value": "term001",
-      "label": "termsType>term001",
-      "refId": "termsType>term001"
-    },
-    "required": {
-      "value": "y",
-      "label": "trueFalse>y",
-      "refId": "trueFalse>y"
-    },
-    "sortOrder": 1
-  },
-  {
-    "typeId": "terms",
-    "termsId": 2,
-    "title": "제2조(정의)",
-    "contents": "22222",
-    "created": "20170821031754",
-    "owner": {
-      "value": "anonymous",
-      "label": "anonymous",
-      "refId": "anonymous"
-    },
-    "changed": "20170821031754",
-    "modifier": {
-      "value": "anonymous",
-      "label": "anonymous",
-      "refId": "anonymous"
-    },
-    "siteType": {
-      "value": "company",
-      "label": "siteType>company",
-      "refId": "siteType>company"
-    },
-    "termsType": {
-      "value": "term001",
-      "label": "termsType>term001",
-      "refId": "termsType>term001"
-    },
-    "required": {
-      "value": "y",
-      "label": "trueFalse>y",
-      "refId": "trueFalse>y"
-    },
-    "sortOrder": 2
-  },
-  {
-    "typeId": "terms",
-    "termsId": 3,
-    "title": "제3조(약관등의 명시와 설명 및 개정)",
-    "contents": "...",
-    "created": "20170821122125",
-    "owner": {
-      "value": "anonymous",
-      "label": "anonymous",
-      "refId": "anonymous"
-    },
-    "changed": "20170821122125",
-    "modifier": {
-      "value": "anonymous",
-      "label": "anonymous",
-      "refId": "anonymous"
-    },
-    "siteType": {
-      "value": "company",
-      "label": "siteType>company",
-      "refId": "siteType>company"
-    },
-    "termsType": {
-      "value": "term001",
-      "label": "termsType>term001",
-      "refId": "termsType>term001"
-    },
-    "required": {
-      "value": "y",
-      "label": "trueFalse>y",
-      "refId": "trueFalse>y"
-    },
-    "sortOrder": 3
-  },
-  {
-    "typeId": "terms",
-    "termsId": 4,
-    "title": "제4조(서비스의 제공 및 변경)",
-    "contents": "...",
-    "created": "20170821122138",
-    "owner": {
-      "value": "anonymous",
-      "label": "anonymous",
-      "refId": "anonymous"
-    },
-    "changed": "20170821122138",
-    "modifier": {
-      "value": "anonymous",
-      "label": "anonymous",
-      "refId": "anonymous"
-    },
-    "siteType": {
-      "value": "company",
-      "label": "siteType>company",
-      "refId": "siteType>company"
-    },
-    "termsType": {
-      "value": "term001",
-      "label": "termsType>term001",
-      "refId": "termsType>term001"
-    },
-    "required": {
-      "value": "y",
-      "label": "trueFalse>y",
-      "refId": "trueFalse>y"
-    },
-    "sortOrder": 4
-  },
-  {
-    "typeId": "terms",
-    "termsId": 5,
-    "title": "제5조(서비스의 중단)",
-    "contents": "...",
-    "created": "20170821122151",
-    "owner": {
-      "value": "anonymous",
-      "label": "anonymous",
-      "refId": "anonymous"
-    },
-    "changed": "20170821122151",
-    "modifier": {
-      "value": "anonymous",
-      "label": "anonymous",
-      "refId": "anonymous"
-    },
-    "siteType": {
-      "value": "company",
-      "label": "siteType>company",
-      "refId": "siteType>company"
-    },
-    "termsType": {
-      "value": "term001",
-      "label": "termsType>term001",
-      "refId": "termsType>term001"
-    },
-    "required": {
-      "value": "y",
-      "label": "trueFalse>y",
-      "refId": "trueFalse>y"
-    },
-    "sortOrder": 5
-  },
-  {
-    "typeId": "terms",
-    "termsId": 6,
-    "title": "제6조(회원가입)",
-    "contents": "...",
-    "created": "20170821122204",
-    "owner": {
-      "value": "anonymous",
-      "label": "anonymous",
-      "refId": "anonymous"
-    },
-    "changed": "20170821122204",
-    "modifier": {
-      "value": "anonymous",
-      "label": "anonymous",
-      "refId": "anonymous"
-    },
-    "siteType": {
-      "value": "company",
-      "label": "siteType>company",
-      "refId": "siteType>company"
-    },
-    "termsType": {
-      "value": "term001",
-      "label": "termsType>term001",
-      "refId": "termsType>term001"
-    },
-    "required": {
-      "value": "y",
-      "label": "trueFalse>y",
-      "refId": "trueFalse>y"
-    },
-    "sortOrder": 6
-  },
-  {
-    "typeId": "terms",
-    "termsId": 7,
-    "title": "제7조(회원 탈퇴 및 자격 상실 등)",
-    "contents": "...",
-    "created": "20170821122219",
-    "owner": {
-      "value": "anonymous",
-      "label": "anonymous",
-      "refId": "anonymous"
-    },
-    "changed": "20170821122219",
-    "modifier": {
-      "value": "anonymous",
-      "label": "anonymous",
-      "refId": "anonymous"
-    },
-    "siteType": {
-      "value": "company",
-      "label": "siteType>company",
-      "refId": "siteType>company"
-    },
-    "termsType": {
-      "value": "term001",
-      "label": "termsType>term001",
-      "refId": "termsType>term001"
-    },
-    "required": {
-      "value": "y",
-      "label": "trueFalse>y",
-      "refId": "trueFalse>y"
-    },
-    "sortOrder": 7
-  },
-  {
-    "typeId": "terms",
-    "termsId": 8,
-    "title": "제1조(목)",
-    "contents": "...",
-    "siteType": {
-      "value": "university",
-      "label": "siteType>university",
-      "refId": "siteType>university"
-    },
-    "termsType": {
-      "value": "term001",
-      "label": "termsType>term001",
-      "refId": "termsType>term001"
-    },
-    "required": {
-      "value": "y",
-      "label": "trueFalse>y",
-      "refId": "trueFalse>y"
-    },
-    "sortOrder": 1,
-    "created": "20170821122428",
-    "owner": {
-      "value": "anonymous",
-      "label": "anonymous",
-      "refId": "anonymous"
-    },
-    "changed": "20170821122428",
-    "modifier": {
-      "value": "anonymous",
-      "label": "anonymous",
-      "refId": "anonymous"
-    }
-  },
-  {
     "typeId": "myRefundAccount",
     "myRefundAccountId": 1,
     "memberNo": "77777",
@@ -1706,7 +1434,7 @@
   {
     "typeId": "theme",
     "themeId": 1,
-    "pageType": null,
+    "pageType": "best",
     "themeType": {
       "value": "mdbest",
       "label": "MD Best",
@@ -1740,7 +1468,7 @@
   {
     "typeId": "theme",
     "themeId": 2,
-    "pageType": null,
+    "pageType": "best",
     "themeType": {
       "value": "best1d",
       "label": "1일 BEST",
@@ -1774,7 +1502,7 @@
   {
     "typeId": "theme",
     "themeId": 3,
-    "pageType": null,
+    "pageType": "best",
     "themeType": {
       "value": "best7d",
       "label": "일주일 BEST",
@@ -1808,7 +1536,7 @@
   {
     "typeId": "theme",
     "themeId": 4,
-    "pageType": null,
+    "pageType": "best",
     "themeType": {
       "value": "best1m",
       "label": "한달 BEST",
