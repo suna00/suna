@@ -2022,5 +2022,37 @@
     "name": "Type2",
     "order": 2,
     "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "trtSttusCd",
+    "codeId": "1",
+    "name": "처리중",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "trtSttusCd",
+    "codeId": "2",
+    "name": "처리 완료",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "connTypeCd",
+    "codeId": "1",
+    "name": "Type1",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "connTypeCd",
+    "codeId": "2",
+    "name": "Type2",
+    "order": 2,
+    "active": true
   }
 ]

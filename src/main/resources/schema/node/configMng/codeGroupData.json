@@ -369,5 +369,19 @@
     "name": "승인 상태 코드",
     "active": true,
     "desc": "뉴스 승인상태 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "trtSttusCd",
+    "name": "처리상태 코드",
+    "active": true,
+    "desc": "Q&A 처리상태 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "connTypeCd",
+    "name": "처리상태 코드",
+    "active": true,
+    "desc": "회원 로그 접속 유형 코드"
   }
 ]
