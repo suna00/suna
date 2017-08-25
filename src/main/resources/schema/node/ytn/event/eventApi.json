@@ -33,16 +33,18 @@
     "parameters" : [
     ],
     "config" : {
-      "typeId": "specialExhibition",
+      "typeId": "specialExhibitionAnker",
       "query" : [
-        {"field" : "startDate", "method" : "below", "value" : "{{:toDay}}" },
-        {"field" : "endDate", "method" : "above", "value" : "{{:toDay}}" },
-        {"field" : "siteType", "method" : "matching", "value" : "{{:siteType}}" },
-        {"field" : "specialExhibitionStatus", "method" : "matching", "value" : "use" },
-        {"field" : "referencedSpecialExhibitionAnker", "method" : "hasReferenced", "value" : "ankerStatus_matching=y"},
-        {"includeReferenced" : true}
+        {"field" : "specialExhibitionId", "method" : "matching", "value" : "{{:specialExhibitionId}}" },
+        {"includeReferenced" : true, "referenceView" : "specialExhibitionId"},
+        {"field" : "specialExhibitionId", "method" : "referenceJoin", "value" : "specialExhibitionStatus_matching=use&startDate_below={{:toDay}}&endDate_above={{:toDay}}&categoryId_matching={{:categoryId}}&siteType_matching={{:siteType}}" }
       ]
     }
+  },
+  {
+    "typeId" : "apiCategory",
+    "id" : "newProduct",
+    "categoryName" : "신상품 API"
   },
   {
     "typeId" : "apiConfig",
@@ -55,8 +57,12 @@
     "config" : {
       "typeId": "newProductMap",
       "query" : [
-        {"field" : "newProductId", "method" : "referenceJoin", "value" : "siteType_matching={{:siteType}}&year_matching={{:year}}&month_matching={{:month}}" },
-        {"includeReferenced" : true, "referenceView" : "newProductId,productId"}
+        {"field" : "newProductMapStatus", "method" : "matching", "value" : "y" },
+        {"field" : "categoryIds", "method" : "matching", "value" : "{{:categoryId}}" },
+        {"field" : "newProductId", "method" : "referenceJoin", "value" : "newProductStatus_matching=y&siteType_matching={{:siteType}}&year_matching={{:year}}&month_matching={{:month}}" },
+        {"field" : "productId", "method" : "referenceJoin", "value" : "name_matching={{:searchValue}}" },
+        {"includeReferenced" : false, "referenceView" : "newProductId,productId"},
+        {"sorting" : "{{:sorting}}"}
       ]
     }
   }
