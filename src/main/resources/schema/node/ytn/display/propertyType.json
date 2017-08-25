@@ -2445,6 +2445,23 @@
   {
     "typeId": "propertyType",
     "tid": "theme",
+    "pid": "sortOrder",
+    "propertyTypeName": "정렬 순서",
+    "valueType": "INT",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "simple",
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "theme",
     "pid": "created",
     "propertyTypeName": "등록일",
     "valueType": "DATE",

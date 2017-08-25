@@ -4105,6 +4105,24 @@
   },
   {
     "typeId": "commonCode",
+    "code": "mdpick",
+    "upperCode": "themeType",
+    "name": "MD Pick",
+    "description": "",
+    "sortOrder": "14",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "hotitem",
+    "upperCode": "themeType",
+    "name": "HOT ITEM",
+    "description": "",
+    "sortOrder": "15",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
     "code": "true",
     "upperCode": "trueFalse",
     "name": "TRUE",
