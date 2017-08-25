@@ -6,6 +6,7 @@
     "upperContsCtgryId": "1",
     "contsCtgryNm": "호러",
     "sortOdrg": 1,
-    "contsCtgrydesc": "호러"
+    "contsCtgrydesc": "호러",
+    "useYn": true
   }
 ]

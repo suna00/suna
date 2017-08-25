@@ -100,56 +100,49 @@
       }
     ],
     "config": {
-      "items": {
-        "typeId": "voteBasInfo",
-        "query": [
-          {
-            "field": "voteSeq",
-            "method": "matching",
-            "value": "{{:voteSeq}}"
-          },
-          {
-            "field": "voteYear",
-            "method": "matching",
-            "value": "{{:voteYear}}"
-          },
-          {
-            "field": "showLoCd",
-            "method": "matching",
-            "value": "{{:showLoCd}}"
-          },
-          {
-            "field": "voteFormlCd",
-            "method": "matching",
-            "value": "{{:voteFormlCd}}"
-          },
-          {
-            "field": "bradTelcsDt",
-            "method": "matching",
-            "value": "{{:bradTelcsDt}}"
-          },
-          {
-            "field": "showYn",
-            "method": "matching",
-            "value": "true"
-          },
-          {
-            "sorting": "voteSeq desc"
-          },
-          {
-            "limit": "1"
-          },
-          {
-            "includeReferenced": true
-          }
-        ]
-      }
+      "typeId": "voteBasInfo",
+      "query": [
+        {
+          "field": "voteSeq",
+          "method": "matching",
+          "value": "{{:voteSeq}}"
+        },
+        {
+          "field": "voteYear",
+          "method": "matching",
+          "value": "{{:voteYear}}"
+        },
+        {
+          "field": "showLoCd",
+          "method": "matching",
+          "value": "{{:showLoCd}}"
+        },
+        {
+          "field": "voteFormlCd",
+          "method": "matching",
+          "value": "{{:voteFormlCd}}"
+        },
+        {
+          "field": "showYn",
+          "method": "matching",
+          "value": "true"
+        },
+        {
+          "sorting": "voteSeq desc"
+        },
+        {
+          "limit": "1"
+        },
+        {
+          "includeReferenced": true
+        }
+      ]
     }
   },
   {
     "typeId": "apiConfig",
     "category": "vote",
-    "apiId": "IfMwv002",
+    "apiId": "IfMwv003",
     "apiName": "MWAVE 투표하기",
     "method": "POST",
     "parameters": [
