@@ -64,6 +64,9 @@
         {
           "page": "{{:page}}",
           "pageSize": "{{:pageSize}}"
+        },
+        {
+          "includeReferenced": true
         }
       ]
     }
@@ -131,7 +134,7 @@
             "value": "true"
           },
           {
-            "sorting": "{{:sorting}}"
+            "sorting": "voteSeq desc"
           },
           {
             "limit": "1"
@@ -140,6 +143,42 @@
             "includeReferenced": true
           }
         ]
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv002",
+    "apiName": "MWAVE 투표하기",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "voteSeq",
+        "required": true
+      },
+      {
+        "paramName": "voteQueiSeq",
+        "required": true
+      },
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      }
+    ],
+    "config": {
+      "createItem": {
+        "typeId": "votePrtcptHst",
+        "event": "create",
+        "data": {
+          "voteSeq": "{{:voteSeq}}",
+          "voteQueiSeq": "{{:voteQueiSeq}}",
+          "prtcpMbrId": "{{:snsKey}}>{{:snsTypeCd}}"
+        }
       }
     }
   }

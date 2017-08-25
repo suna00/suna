@@ -65,7 +65,7 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "mbrInfo",
-    "referenceValue": "mbrId",
+    "referenceValue": "",
     "defaultValue": ""
   },
   {

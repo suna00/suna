@@ -31,7 +31,11 @@
       "name": "03.투표",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
-      "order": [],
+      "order": [
+        "831b2df8-bb07-94ab-2690-01400eb0ba42",
+        "808f67a9-b026-6260-1bac-3227ac6ecaec",
+        "b9fe56d7-79c8-6a35-6ea0-f2385ab8dc99"
+      ],
       "owner": "2433871",
       "folders_order": [],
       "id": "d711146d-f26c-242f-3e41-9296fd3a5a4e"
@@ -710,6 +714,59 @@
       "folder": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902"
     },
     {
+      "id": "808f67a9-b026-6260-1bac-3227ac6ecaec",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/vote/IfMwv002?voteSeq=&voteYear=2017&showLoCd&voteFormlCd",
+      "queryParams": [
+        {
+          "key": "voteSeq",
+          "value": "",
+          "equals": true,
+          "description": "투표일련번호(String)",
+          "enabled": true
+        },
+        {
+          "key": "voteYear",
+          "value": "2017",
+          "equals": true,
+          "description": "투표년도(String)",
+          "enabled": true
+        },
+        {
+          "key": "showLoCd",
+          "value": "",
+          "equals": false,
+          "description": "노출위치구분코드(String)",
+          "enabled": true
+        },
+        {
+          "key": "voteFormlCd",
+          "value": "",
+          "equals": false,
+          "description": "투표방식코드(String)",
+          "enabled": true
+        }
+      ],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "GET",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": null,
+      "dataMode": "params",
+      "name": "MWAVE 투표 상세조회(IF_MWV_002)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1503639579570,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "d711146d-f26c-242f-3e41-9296fd3a5a4e"
+    },
+    {
       "id": "810cea7b-1e3d-5c7f-6a1b-87698ead0c7b",
       "headers": "",
       "headerData": [],
@@ -734,6 +791,49 @@
       "helperAttributes": {},
       "time": 1503567145146,
       "name": "번들(그룹) 포토 상세조회(IF_PTB_002)",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "responses": []
+    },
+    {
+      "id": "831b2df8-bb07-94ab-2690-01400eb0ba42",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/vote/IfMwv001?voteFormlCd=3&showLoCd=3&searchKeyword",
+      "queryParams": [
+        {
+          "key": "voteFormlCd",
+          "value": "3",
+          "equals": true,
+          "description": "투표방식코드(String)",
+          "enabled": true
+        },
+        {
+          "key": "showLoCd",
+          "value": "3",
+          "equals": true,
+          "description": "노출위치구분코드(String)",
+          "enabled": true
+        },
+        {
+          "key": "searchKeyword",
+          "value": "",
+          "equals": false,
+          "description": "검색키워드(String)",
+          "enabled": true
+        }
+      ],
+      "preRequestScript": null,
+      "pathVariables": {},
+      "pathVariableData": [],
+      "method": "GET",
+      "data": null,
+      "dataMode": "params",
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "time": 1503638510810,
+      "name": "MWAVE 투표 목록조회(IF_MWV_001)",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
       "responses": []
@@ -1021,6 +1121,56 @@
       "folder": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902"
     },
     {
+      "id": "b9fe56d7-79c8-6a35-6ea0-f2385ab8dc99",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/vote/IfMwv003?",
+      "queryParams": [],
+      "preRequestScript": null,
+      "pathVariables": {},
+      "pathVariableData": [],
+      "method": "POST",
+      "data": [
+        {
+          "key": "voteSeq",
+          "value": "100",
+          "description": "투표일련번호(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "voteQueiSeq",
+          "value": "100",
+          "description": "투표문항번호(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "snsKey",
+          "value": "1",
+          "description": "sns 토큰키(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "snsTypeCd",
+          "value": "1",
+          "description": "sns 유형코드(String) NotNull",
+          "type": "text",
+          "enabled": true
+        }
+      ],
+      "dataMode": "params",
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "time": 1503641021180,
+      "name": "MWAVE 투표하기(IF_MWV_003)",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "responses": []
+    },
+    {
       "id": "bb186fe9-31a9-bc41-c9eb-da0961dd8bd2",
       "headers": "",
       "headerData": [],
@@ -1251,7 +1401,7 @@
       "tests": null,
       "currentHelper": "normal",
       "helperAttributes": {},
-      "time": 1503481608191,
+      "time": 1503641097536,
       "name": "국가코드 목록조회(IF_SYS_001)",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",

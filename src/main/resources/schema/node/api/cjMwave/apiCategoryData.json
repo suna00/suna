@@ -43,5 +43,10 @@
     "typeId": "apiCategory",
     "id": "onair",
     "categoryName": "ON-AIR API"
+  },
+  {
+    "typeId": "apiCategory",
+    "id": "mcdlineup",
+    "categoryName": "MCD LINEUP API"
   }
 ]

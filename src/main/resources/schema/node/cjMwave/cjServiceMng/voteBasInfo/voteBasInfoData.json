@@ -29,7 +29,8 @@
     "userVoteApdUseCnt": 0,
     "rankRftRstrtnYn": false,
     "rankWvalu": 0,
-    "mwmcUnearnedWinYn": false
+    "mwmcUnearnedWinYn": false,
+    "findKywrd":"TEST,TEST2"
   },
   {
     "typeId": "voteBasInfo",
