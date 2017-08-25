@@ -13,18 +13,21 @@ import java.util.Map;
 public class ClusterService {
 
     @Autowired
-    private ClusterConfiguration clusterConfiguration ;
+    private ClusterConfiguration clusterConfiguration;
 
 
-    public IAtomicLong getSequence(String sequenceName){
-       IAtomicLong sequence = clusterConfiguration.getIAtomicLong(sequenceName) ;
-       return sequence ;
+    public IAtomicLong getSequence(String sequenceName) {
+        IAtomicLong sequence = clusterConfiguration.getIAtomicLong(sequenceName);
+        return sequence;
     }
 
-    public Map<String, Object> getSession(String userToken) {
-        Map<String, Map<String, Object>> sessionMap =  clusterConfiguration.getSesssionMap() ;
-        return sessionMap.get(userToken) ;
-    }
-
-
+//    public Map<String, Object> getSession(String userToken) {
+//        Map<String, Map<String, Object>> sessionMap = clusterConfiguration.getSesssionMap();
+//        return sessionMap.get(userToken);
+//    }
+//
+//    public void putSession(String userToken, Map<String, Object> data) {
+//        Map<String, Map<String, Object>> sessionMap = clusterConfiguration.getSesssionMap();
+//        sessionMap.put(userToken, data);
+//    }
 }

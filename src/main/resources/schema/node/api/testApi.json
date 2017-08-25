@@ -25,7 +25,7 @@
       },
       "categories" : {
         "typeId":"testCategory",
-        "select" : {"sql" : "select * from testCategory where categoryType = @{categoryType}"},
+        "select" : {"sql" : "select * from testCategory where categoryType = @{categoryType}", "ds": "mariaDb"},
         "response" : {
           "categoryName": "",
           "upperCategory": "parentCategory",

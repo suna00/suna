@@ -1,7 +1,10 @@
 package net.ion.ice.security.endpoint;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import net.ion.ice.core.cluster.ClusterService;
 import net.ion.ice.core.data.ResponseUtils;
+import net.ion.ice.core.response.JsonResponse;
+import net.ion.ice.core.session.SessionService;
 import net.ion.ice.security.common.CookieUtil;
 import net.ion.ice.security.token.JwtToken;
 import net.ion.ice.security.token.JwtTokenFactory;
@@ -22,6 +25,8 @@ import java.util.Map;
 @RestController
 public class TokenEndpoint {
     @Autowired
+    SessionService sessionService;
+    @Autowired
     private JwtTokenFactory tokenFactory;
     @Autowired
     private CookieUtil cookieUtil;
@@ -30,22 +35,25 @@ public class TokenEndpoint {
 
     @RequestMapping(value = "/api/auth/token", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public @ResponseBody
-    Map<String, Object> jwtToken(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        Map<String, Object> tokenMap = new HashMap<>();
-        JwtToken accessToken = tokenFactory.createInitJwtToken();
-//        JwtToken refreshToken = tokenFactory.createRefreshToken();
-        tokenMap.put("accessToken", accessToken.getToken());
-//        tokenMap.put("refreshToken", refreshToken.getToken());
-//        HttpSession session = request.getSession();
-//        session.setAttribute("accessToken", accessToken.getToken());
-//        System.out.println("sessionID::::\t" + session.getId());
-//        int maxAge = 60 * 60 * 24; // 24 hour
+    Object jwtToken(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        Map<String, Object> data = new HashMap<>();
 
-        cookieUtil.create(response, "accessToken", "SDP ".concat(accessToken.getToken()), false, false, -1, request.getServerName());
+        String token = cookieUtil.getValue(request, "iceJWT");
+
+        if (token == null) {
+            JwtToken accessToken = tokenFactory.createInitJwtToken();
+//        JwtToken refreshToken = tokenFactory.createRefreshToken();
+            token = accessToken.getToken();
+            data.put("iceJWT", accessToken.getToken());
+//        data.put("refreshToken", refreshToken.getToken());
+//        int maxAge = 60 * 60 * 24; // 24 hour
+//            clusterService.putSession(accessToken.getToken());
+            cookieUtil.create(response, "iceJWT", "SDP ".concat(accessToken.getToken()), false, false, -1, request.getServerName());
+            sessionService.putSession(token);
+        }
 //        cookieUtil.create(response, "refreshToken", "SDP ".concat(refreshToken.getToken()), true, false, -1, request.getServerName());
 
-        ResponseUtils.response(tokenMap);
 
-        return ResponseUtils.response(tokenMap);
+        return JsonResponse.create(data);
     }
 }
