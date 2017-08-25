@@ -16,7 +16,7 @@
     "typeName" : "그룹 코드",
     "repositoryType" : "node",
     "eviction" : 500,
-    "i18n": true
+    "i18n": false
   },
   {
     "parentId" : "configMng",
@@ -26,6 +26,6 @@
     "typeName" : "코드",
     "repositoryType" : "node",
     "eviction" : 2000,
-    "i18n": true
+    "i18n": false
   }
 ]
