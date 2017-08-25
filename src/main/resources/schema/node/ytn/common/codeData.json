@@ -586,7 +586,7 @@
   },
   {
     "typeId": "commonCode",
-    "code": "SMSAuthenticationHistoryType",
+    "code": "SMSAuthenticationType",
     "upperCode": "root",
     "name": "SMS 인증 이력 타입",
     "description": "",
@@ -3854,7 +3854,7 @@
   {
     "typeId": "commonCode",
     "code": "admin",
-    "upperCode": "SMSAuthenticationHistoryType",
+    "upperCode": "SMSAuthenticationType",
     "name": "어드민",
     "description": "",
     "sortOrder": "1",
@@ -3863,7 +3863,7 @@
   {
     "typeId": "commonCode",
     "code": "password",
-    "upperCode": "SMSAuthenticationHistoryType",
+    "upperCode": "SMSAuthenticationType",
     "name": "비밀번호",
     "description": "",
     "sortOrder": "2",
@@ -3872,7 +3872,7 @@
   {
     "typeId": "commonCode",
     "code": "id",
-    "upperCode": "SMSAuthenticationHistoryType",
+    "upperCode": "SMSAuthenticationType",
     "name": "아이디",
     "description": "",
     "sortOrder": "3",
