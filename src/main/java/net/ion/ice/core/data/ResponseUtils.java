@@ -10,12 +10,12 @@ import java.util.Map;
  */
 public class ResponseUtils {
 
-    public static Map<String, Object> response(Map<String, Object> items) {
+    public static Map<String, Object> response(Map<String, Object> item) {
         Map<String, Object> result = new LinkedHashMap<>();
 
         result.put("result", "200");
         result.put("resultMessage", "SUCCESS");
-        result.putAll(items);
+        result.put("item", item);
         return result;
     }
 

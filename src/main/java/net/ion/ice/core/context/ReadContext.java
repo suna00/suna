@@ -12,6 +12,7 @@ import net.ion.ice.core.query.ResultField;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -157,6 +158,9 @@ public class ReadContext implements Context {
         return id;
     }
 
+    public QueryResult makeQueryResult(Object result, String fieldName) {
+        return makeResult() ;
+    }
 
     public QueryResult makeResult() {
         Node node = NodeUtils.getNode(nodeType.getTypeId(), id) ;
@@ -193,8 +197,13 @@ public class ReadContext implements Context {
     protected void makeItemQueryResult(Node node, QueryResult itemResult) {
         for (ResultField resultField : getResultFields()) {
             if (resultField.getContext() != null) {
-                QueryContext subQueryContext = (QueryContext) resultField.getContext();
+                ReadContext subQueryContext = (ReadContext) resultField.getContext();
+                if(node != null){
+                    subQueryContext.setNodeData(node) ;
+                }
                 subQueryContext.makeQueryResult(itemResult, resultField.getFieldName());
+            } else if(resultField.isStaticValue()){
+                itemResult.put(resultField.getFieldName(), resultField.getStaticValue());
             } else {
                 String fieldValue = resultField.getFieldValue();
                 fieldValue = fieldValue == null || StringUtils.isEmpty(fieldValue) ? resultField.getFieldName() : fieldValue;
@@ -242,5 +251,13 @@ public class ReadContext implements Context {
 
     public void setIncludeReferencedFields(List<String> includeReferencedFields) {
         this.includeReferencedFields = includeReferencedFields;
+    }
+
+    public void setNodeData(Node nodeData) {
+        Map<String, Object> _data = new HashMap<>() ;
+        _data.putAll(data);
+        _data.putAll(nodeData);
+
+        this.data = _data ;
     }
 }

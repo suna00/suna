@@ -14,4 +14,6 @@ public interface FileRepository {
     String saveMutipartFile(PropertyType pt, String id, MultipartFile multipartFile);
 
     Resource loadAsResource(String path);
+
+    FileValue getClasspathFileInfo(PropertyType pt, String id, String value);
 }

@@ -56,6 +56,9 @@ public class ApiContext {
         }else if(ctxRootConfig.containsKey("query")){
             ApiQueryContext queryContext = ApiQueryContext.makeContextFromConfig(ctxRootConfig, data) ;
             return new ResultField(key, queryContext) ;
+        }else if(ctxRootConfig.containsKey("select")){
+            ApiSelectContext selectContext = ApiSelectContext.makeContextFromConfig(ctxRootConfig, data) ;
+            return new ResultField(key, selectContext) ;
         }
         return null ;
     }
@@ -66,11 +69,11 @@ public class ApiContext {
 
         for(ResultField field : resultFieldList){
             Context context = field.getContext() ;
-            if(context instanceof ApiQueryContext){
+            if(context instanceof ReadContext){
                 if("root".equals(field.getFieldName())){
-                    queryResult = (QueryResult) ((ApiQueryContext) context).makeApiQueryResult(null, null);
+                    queryResult = (QueryResult) ((ReadContext) context).makeQueryResult(null, null);
                 }else {
-                    queryResult.put(field.getFieldName(), ((ApiQueryContext) context).makeApiQueryResult(null, null));
+                    queryResult.put(field.getFieldName(), ((ReadContext) context).makeQueryResult(null, null));
                 }
             }
         }

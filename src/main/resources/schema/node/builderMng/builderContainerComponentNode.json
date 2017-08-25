@@ -61,7 +61,7 @@
   },
   {
     "typeId" : "builderContainerComponent",
-    "componentClassType": "TABLES",
+    "componentClassType": "FORMS",
     "componentClass": "DefaultView",
     "componentClassName": "DEFAULT VIEW",
     "icon": "fa-square-o",

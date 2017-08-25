@@ -3,9 +3,9 @@ package net.ion.ice.core.infinispan.lucene;
 
 import net.ion.ice.IceRuntimeException;
 import net.ion.ice.core.context.QueryContext;
+import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.query.QueryTerm;
-import net.ion.ice.core.node.Node;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
@@ -22,15 +22,10 @@ import org.hibernate.search.bridge.spi.ConversionContext;
 import org.hibernate.search.engine.spi.DocumentBuilderIndexedEntity;
 import org.hibernate.search.exception.AssertionFailure;
 import org.hibernate.search.exception.SearchException;
-import org.hibernate.search.query.dsl.BooleanJunction;
 import org.hibernate.search.query.dsl.impl.FieldContext;
 import org.hibernate.search.query.dsl.impl.QueryBuildingContext;
 import org.hibernate.search.query.dsl.impl.RangeQueryContext;
-import org.infinispan.Cache;
 import org.infinispan.query.CacheQuery;
-import org.springframework.boot.autoconfigure.cache.CacheType;
-import org.springframework.cache.CacheManager;
-
 
 import java.io.IOException;
 import java.io.Reader;

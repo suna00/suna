@@ -441,6 +441,7 @@ public class NodeUtils {
                     FileValue fileValue = getFileService().saveMultipartFile(pt, id, (MultipartFile) value);
                     return fileValue;
                 } else if (value instanceof String) {
+                    FileValue fileValue = getFileService().getFileInfo(pt, id, (String) value); ;
                     return null;
                 }
             }
