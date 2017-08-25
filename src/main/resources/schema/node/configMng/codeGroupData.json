@@ -15,7 +15,7 @@
   },
   {
     "typeId": "groupCode",
-    "groupCodeId": "stpltTypceCd",
+    "groupCodeId": "stpltTypeCd",
     "name": "약관 유형코드",
     "active": true,
     "desc": "이용약관/청소년보호 등"
@@ -383,5 +383,33 @@
     "name": "처리상태 코드",
     "active": true,
     "desc": "회원 로그 접속 유형 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "setupTypeCd",
+    "name": "설정 구분 코드",
+    "active": true,
+    "desc": "시스템 설정 구분 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "bradGenreCd",
+    "name": "방송 장르 코드",
+    "active": true,
+    "desc": "방송 장르 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "vuingPosblCd",
+    "name": "시청 가능 코드",
+    "active": true,
+    "desc": "시청 가능 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "bradTypeCd",
+    "name": "방송 타입 코드",
+    "active": true,
+    "desc": "방송 타입 코드"
   }
 ]

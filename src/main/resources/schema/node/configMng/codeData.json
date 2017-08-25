@@ -33,7 +33,7 @@
   },
   {
     "typeId": "code",
-    "groupCodeId": "stpltTypceCd",
+    "groupCodeId": "stpltTypeCd",
     "codeId": "stpltUse",
     "name": "이용 약관",
     "order": 1,
@@ -41,7 +41,7 @@
   },
   {
     "typeId": "code",
-    "groupCodeId": "stpltTypceCd",
+    "groupCodeId": "stpltTypeCd",
     "codeId": "stpltInfo",
     "name": "개인정보 처리방침",
     "order": 2,
@@ -49,7 +49,7 @@
   },
   {
     "typeId": "code",
-    "groupCodeId": "stpltTypceCd",
+    "groupCodeId": "stpltTypeCd",
     "codeId": "stpltPrtct",
     "name": "청소년 보호",
     "order": 3,
@@ -2053,6 +2053,150 @@
     "codeId": "2",
     "name": "Type2",
     "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "systemNtfCtgCd1",
+    "codeId": 1,
+    "name": "Type1",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "systemNtfCtgCd1",
+    "codeId": 2,
+    "name": "Type2",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "systemNtfCtgCd1",
+    "codeId": 3,
+    "name": "Type3",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "systemNtfCtgCd2",
+    "codeId": 1,
+    "name": "Type1",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "systemNtfCtgCd2",
+    "codeId": 2,
+    "name": "Type2",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "systemNtfCtgCd2",
+    "codeId": 3,
+    "name": "Type3",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "setupTypeCd",
+    "codeId": 1,
+    "name": "Type1",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "setupTypeCd",
+    "codeId": 2,
+    "name": "Type2",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "setupTypeCd",
+    "codeId": 3,
+    "name": "Type3",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "bradGenreCd",
+    "codeId": 1,
+    "name": "Type1",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "bradGenreCd",
+    "codeId": 2,
+    "name": "Type2",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "bradGenreCd",
+    "codeId": 3,
+    "name": "Type3",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "vuingPosblCd",
+    "codeId": 1,
+    "name": "Type1",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "vuingPosblCd",
+    "codeId": 2,
+    "name": "Type2",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "vuingPosblCd",
+    "codeId": 3,
+    "name": "Type3",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "bradTypeCd",
+    "codeId": 1,
+    "name": "Type1",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "bradTypeCd",
+    "codeId": 2,
+    "name": "Type2",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "bradTypeCd",
+    "codeId": 3,
+    "name": "Type3",
+    "order": 3,
     "active": true
   }
 ]
