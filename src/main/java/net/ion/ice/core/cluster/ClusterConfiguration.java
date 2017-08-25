@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Configuration;
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -29,6 +30,7 @@ import java.util.Set;
 public class ClusterConfiguration {
     private List<String> members = new ArrayList<>();
     private HazelcastInstance hazelcast  ;
+
 
     @PostConstruct
     public void init(){
@@ -65,6 +67,10 @@ public class ClusterConfiguration {
 
     public IAtomicLong getIAtomicLong(String name) {
         return hazelcast.getAtomicLong(name) ;
+    }
+
+    public Map<String, Map<String, Object>> getSesssionMap() {
+        return hazelcast.getReplicatedMap("ice_session");
     }
 }
 
