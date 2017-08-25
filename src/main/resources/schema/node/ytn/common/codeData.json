@@ -586,7 +586,7 @@
   },
   {
     "typeId": "commonCode",
-    "code": "SMSAuthenticationHistoryType",
+    "code": "SMSAuthenticationType",
     "upperCode": "root",
     "name": "SMS 인증 이력 타입",
     "description": "",
@@ -3854,7 +3854,7 @@
   {
     "typeId": "commonCode",
     "code": "admin",
-    "upperCode": "SMSAuthenticationHistoryType",
+    "upperCode": "SMSAuthenticationType",
     "name": "어드민",
     "description": "",
     "sortOrder": "1",
@@ -3863,7 +3863,7 @@
   {
     "typeId": "commonCode",
     "code": "password",
-    "upperCode": "SMSAuthenticationHistoryType",
+    "upperCode": "SMSAuthenticationType",
     "name": "비밀번호",
     "description": "",
     "sortOrder": "2",
@@ -3872,7 +3872,7 @@
   {
     "typeId": "commonCode",
     "code": "id",
-    "upperCode": "SMSAuthenticationHistoryType",
+    "upperCode": "SMSAuthenticationType",
     "name": "아이디",
     "description": "",
     "sortOrder": "3",
@@ -3963,7 +3963,7 @@
     "typeId": "commonCode",
     "code": "term001",
     "upperCode": "termsType",
-    "name": "일반",
+    "name": "이용약관(필수)",
     "description": "",
     "sortOrder": "1",
     "commonCodeStatus": "y"
@@ -3972,9 +3972,27 @@
     "typeId": "commonCode",
     "code": "term002",
     "upperCode": "termsType",
-    "name": "회원가입",
+    "name": "개인정보 수집 및 이용안내(필수)",
     "description": "",
     "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "term003",
+    "upperCode": "termsType",
+    "name": "개인정보 수집 및 이용안내(선택)",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "term004",
+    "upperCode": "termsType",
+    "name": "할인쿠폰, 이벤트 등 마케팅 활용 동의(선택)",
+    "description": "",
+    "sortOrder": "4",
     "commonCodeStatus": "y"
   },
   {
@@ -4891,6 +4909,42 @@
     "code": "main",
     "upperCode": "pageType",
     "name": "메인페이지",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "emailAuthenticationType",
+    "upperCode": "root",
+    "name": "email 인증 타입",
+    "description": "",
+    "sortOrder": "90",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "join",
+    "upperCode": "emailAuthenticationType",
+    "name": "가입",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "password",
+    "upperCode": "emailAuthenticationType",
+    "name": "비밀번호",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "id",
+    "upperCode": "emailAuthenticationType",
+    "name": "아이디",
     "description": "",
     "sortOrder": "3",
     "commonCodeStatus": "y"

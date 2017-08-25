@@ -417,11 +417,7 @@
       "label": "trueFalse>y",
       "refId": "trueFalse>y"
     },
-    "specialExhibitionStatus": {
-      "value": "pending",
-      "label": "진행",
-      "refId": "specialExhibitionStatus>pending"
-    },
+    "specialExhibitionStatus": "use",
     "mainImage": "test",
     "thumbnailImage": "test",
     "keyword": "test,special,기획전",
@@ -468,11 +464,7 @@
       "label": "trueFalse>y",
       "refId": "trueFalse>y"
     },
-    "specialExhibitionStatus": {
-      "value": "pending",
-      "label": "진행",
-      "refId": "specialExhibitionStatus>pending"
-    },
+    "specialExhibitionStatus": "use",
     "mainImage": "test",
     "thumbnailImage": "test",
     "keyword": "test,special,기획전",
