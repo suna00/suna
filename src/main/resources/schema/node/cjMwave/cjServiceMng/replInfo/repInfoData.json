@@ -1,10 +1,10 @@
 [
   {
     "typeId": "replInfo",
-    "댓글 일련번호": 542154,
-    "콘텐츠 메타 구분 코드": "1",
-    "콘텐츠 메타 아이디": "54324",
-    "작성자 아이디": "sfghdfg",
-    "댓글 내용": "사진 좋아요"
+    "replSeq": 542154,
+    "contsMetaDivCd": "1",
+    "contsMetaId": "54324",
+    "mkerId": "sfghdfg",
+    "replSbst": "사진 좋아요"
   }
 ]

@@ -2198,5 +2198,101 @@
     "name": "Type3",
     "order": 3,
     "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "awardSctnCd",
+    "codeId": 1,
+    "name": "Type1",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "awardSctnCd",
+    "codeId": 2,
+    "name": "Type2",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "awardSctnCd",
+    "codeId": 3,
+    "name": "Type3",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "bradChCd",
+    "codeId": 1,
+    "name": "Type1",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "bradChCd",
+    "codeId": 2,
+    "name": "Type2",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "bradChCd",
+    "codeId": 3,
+    "name": "Type3",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cicMethCd",
+    "codeId": 1,
+    "name": "Type1",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cicMethCd",
+    "codeId": 2,
+    "name": "Type2",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cicMethCd",
+    "codeId": 3,
+    "name": "Type3",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "badgeCtgryCd",
+    "codeId": 1,
+    "name": "Type1",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "badgeCtgryCd",
+    "codeId": 2,
+    "name": "Type2",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "badgeCtgryCd",
+    "codeId": 3,
+    "name": "Type3",
+    "order": 3,
+    "active": true
   }
 ]

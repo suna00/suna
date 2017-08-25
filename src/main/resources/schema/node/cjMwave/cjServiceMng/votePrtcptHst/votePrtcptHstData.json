@@ -1,0 +1,18 @@
+[
+  {
+    "typeId": "votePrtcptHst",
+    "votePrtcpHstSeq": 101,
+    "voteSeq": 5451,
+    "voteItemSeq": 1131,
+    "prtcpMbrId": "xcvds132",
+    "connIpAdr": "124.155.172.0"
+  },
+  {
+    "typeId": "votePrtcptHst",
+    "votePrtcpHstSeq": 102,
+    "voteSeq": 5124,
+    "voteItemSeq": 11322,
+    "prtcpMbrId": "htvrw253",
+    "connIpAdr": "124.155.172.0"
+  }
+]

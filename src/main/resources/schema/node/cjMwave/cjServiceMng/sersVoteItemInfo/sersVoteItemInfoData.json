@@ -1,0 +1,20 @@
+[
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 100,
+    "itemDivCd": "1",
+    "voteSeq": 100,
+    "sersItemVoteSeq": 100,
+    "banrSeq": 100,
+    "sortOdrg": 1
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 101,
+    "itemDivCd": "2",
+    "voteSeq": 101,
+    "sersItemVoteSeq": 101,
+    "banrSeq": 101,
+    "sortOdrg": 2
+  }
+]

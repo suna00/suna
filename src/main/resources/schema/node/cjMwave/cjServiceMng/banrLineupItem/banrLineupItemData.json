@@ -1,0 +1,22 @@
+[
+  {
+    "typeId": "banrLineupItem",
+    "banrLineupItemSeq": 200,
+    "banrLineupSeq": "500",
+    "contsId": "mwave",
+    "contsNm": "Don't Wanna Cry",
+    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_album02.jpg",
+    "videFilePath": "https://www.youtube.com/watch?v=lgLWRFW1hF8",
+    "sortOdrg": 1
+  },
+  {
+    "typeId": "banrLineupItem",
+    "banrLineupItemSeq": 201,
+    "banrLineupSeq": "501",
+    "contsId": "mcd",
+    "contsNm": "Ending Scene",
+    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "videFilePath": "https://www.youtube.com/watch?v=rg-McAaRneQ",
+    "sortOdrg": 2
+  }
+]

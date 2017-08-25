@@ -411,5 +411,33 @@
     "name": "방송 타입 코드",
     "active": true,
     "desc": "방송 타입 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "awardSctnCd",
+    "name": "수상 부문 코드",
+    "active": true,
+    "desc": "수상 부문 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "bradChCd",
+    "name": "방송 채널 코드",
+    "active": true,
+    "desc": "방송 채널 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "cicMethCd",
+    "name": "선정 방법 코드",
+    "active": true,
+    "desc": "선정 방법 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "badgeCtgryCd",
+    "name": "뱃지 카테고리 코드",
+    "active": true,
+    "desc": "뱃지 카테고리 코드"
   }
 ]

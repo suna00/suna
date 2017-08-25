@@ -1,0 +1,18 @@
+[
+  {
+    "typeId": "popupMultiLangInfo",
+    "popupSeq": 100,
+    "langCd": "KOR",
+    "popupNm": "2017년 MWAVE 이벤트",
+    "popupSbst": "2017년 MWAVE 이벤트",
+    "linkDivCd": "1"
+  },
+  {
+    "typeId": "popupMultiLangInfo",
+    "popupSeq": 101,
+    "langCd": "KOR",
+    "popupNm": "2018년 MWAVE 이벤트",
+    "popupSbst": "2018년 MWAVE 이벤트",
+    "linkDivCd": "1"
+  }
+]

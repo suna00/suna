@@ -1,0 +1,20 @@
+[
+  {
+    "typeId": "mcdLineupArtist",
+    "lineupInfoSeq": 54214,
+    "langCd": "KOR",
+    "artistId": "23234",
+    "artistName": "혁오",
+    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_album03.jpg",
+    "sortOdrg": 1
+  },
+  {
+    "typeId": "mcdLineupArtist",
+    "lineupInfoSeq": 54215,
+    "langCd": "KOR",
+    "artistId": "23123",
+    "artistName": "O.O.O",
+    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_album04.jpg",
+    "sortOdrg": 2
+  }
+]

@@ -1,0 +1,19 @@
+[
+  {
+    "typeId": "mbrDvcInfo",
+    "mbrDvcSeq": "100",
+    "mbrId": "wjdfks",
+    "dvcId": "wkdfls",
+    "dvcNm": "ux-8300",
+    "osCd": "1",
+    "osVer": "v.01"
+  },
+  {
+    "typeId": "mbrDvcInfo",
+    "mbrId": "fkdkf",
+    "dvcId": "fkdkf",
+    "dvcNm": "ux-8300",
+    "osCd": "2",
+    "osVer": "v.03"
+  }
+]

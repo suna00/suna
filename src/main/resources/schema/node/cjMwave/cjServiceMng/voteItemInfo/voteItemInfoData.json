@@ -1,0 +1,24 @@
+[
+  {
+    "typeId": "voteItemInfo",
+    "voteItemSeq": 100,
+    "voteSeq": 100,
+    "langCd": "ENG",
+    "contsMetaId": "5454",
+    "itemNm": "빅스",
+    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_album05.jpg",
+    "videFilePath": "",
+    "sortOdrg": 1
+  },
+  {
+    "typeId": "voteItemInfo",
+    "voteItemSeq": 101,
+    "voteSeq": 101,
+    "langCd": "KOR",
+    "contsMetaId": "2224",
+    "itemNm": "빅스",
+    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_album02.jpg",
+    "videFilePath": "",
+    "sortOdrg": 2
+  }
+]

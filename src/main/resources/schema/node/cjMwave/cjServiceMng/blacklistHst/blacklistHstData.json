@@ -1,0 +1,18 @@
+[
+  {
+    "typeId": "blacklistHst",
+    "blacklistHstSeq": 100,
+    "mbrId": "sdfsd12",
+    "dclaDivCd": "1",
+    "dclaSbst": "비속어 사용",
+    "trtSttusCd": "1"
+  },
+  {
+    "typeId": "blacklistHst",
+    "blacklistHstSeq": 101,
+    "mbrId": "dfd23",
+    "dclaDivCd": "1",
+    "dclaSbst": "비속어 사용",
+    "trtSttusCd": "2"
+  }
+]

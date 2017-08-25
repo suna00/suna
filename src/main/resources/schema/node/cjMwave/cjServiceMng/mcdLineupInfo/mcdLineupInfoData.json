@@ -1,0 +1,20 @@
+[
+  {
+    "typeId": "mcdLineupInfo",
+    "lineupInfoSeq": 54214,
+    "lineupNm": "42978",
+    "bradYear": "2017",
+    "bradStDate": "20170831000000",
+    "bradFnsDate": "20170831235959",
+    "showYn": 1
+  },
+  {
+    "typeId": "mcdLineupInfo",
+    "lineupInfoSeq": 54215,
+    "lineupNm": "42988",
+    "bradYear": "2017",
+    "bradStDate": "20170910000000",
+    "bradFnsDate": "20170910235959",
+    "showYn": 1
+  }
+]

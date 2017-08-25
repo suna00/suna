@@ -83,6 +83,7 @@
     "analyzer": null,
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "linkDivCd",
     "defaultValue": ""
   },
   {

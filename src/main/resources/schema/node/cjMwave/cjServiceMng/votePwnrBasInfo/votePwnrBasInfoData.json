@@ -1,0 +1,22 @@
+[
+  {
+    "typeId": "votePwnrBasInfo",
+    "pwnrBasSeq": 1001,
+    "voteSeq": 5151,
+    "cicMethCd": "1",
+    "cicNopsCnt": 30,
+    "ptDate": "20170808080000",
+    "url": "http://10.184.57.248:8080/pub/menu_list/guide/html/menu/menu_main.html",
+    "refdSptrList": ""
+  },
+  {
+    "typeId": "votePwnrBasInfo",
+    "pwnrBasSeq": 1002,
+    "voteSeq": 5152,
+    "cicMethCd": "2",
+    "cicNopsCnt": 5,
+    "ptDate": "20170822180000",
+    "url": "http://10.184.57.248:8080/pub/menu_list/guide/html/menu/menu_main.html",
+    "refdSptrList": ""
+  }
+]

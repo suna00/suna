@@ -1,0 +1,30 @@
+[
+  {
+    "typeId": "onairIInfo",
+    "onairSeq": 54515,
+    "showNm": "2017년 MAMA 페스티벌",
+    "bradChCd": "1",
+    "svcLoCd": "1",
+    "svcTypeCd": "1",
+    "bradStDate": "20170505170000",
+    "bradFnsDate": "20170505170000",
+    "bradStTime": "17:00",
+    "bradFnsTime": "17:50",
+    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_album03.jpg",
+    "url": ""
+  },
+  {
+    "typeId": "onairIInfo",
+    "onairSeq": 55155,
+    "showNm": "2018년 MAMA 페스티벌",
+    "bradChCd": "1",
+    "svcLoCd": "2",
+    "svcTypeCd": "2",
+    "bradStDate": "20180506170000",
+    "bradFnsDate": "20180506170000",
+    "bradStTime": "17:00",
+    "bradFnsTime": "17:50",
+    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_album04.jpg",
+    "url": ""
+  }
+]

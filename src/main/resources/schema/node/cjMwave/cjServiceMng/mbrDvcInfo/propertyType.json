@@ -99,6 +99,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "osCd",
     "defaultValue": ""
   },
   {

@@ -49,6 +49,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "dclaDivCd",
     "defaultValue": ""
   },
   {
@@ -83,6 +84,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "trtSttusCd",
     "defaultValue": ""
   },
   {

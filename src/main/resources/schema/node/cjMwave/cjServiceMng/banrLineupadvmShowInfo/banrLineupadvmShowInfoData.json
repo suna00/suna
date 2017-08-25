@@ -1,0 +1,14 @@
+[
+  {
+    "typeId": "banrLineupadvmShowInfo",
+    "banrLineupadvmShowSeq": 800,
+    "banrLineupSeq": 900,
+    "showOdrg": 1
+  },
+  {
+    "typeId": "banrLineupadvmShowInfo",
+    "banrLineupadvmShowSeq": 801,
+    "banrLineupSeq": 901,
+    "showOdrg": 2
+  }
+]

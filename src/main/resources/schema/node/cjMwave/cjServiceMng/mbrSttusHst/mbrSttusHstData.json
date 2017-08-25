@@ -1,0 +1,16 @@
+[
+  {
+    "typeId": "mbrSttusHst",
+    "mbrSttusHstSeq": 100,
+    "mbrId": "popoye123",
+    "sttusCd": "1",
+    "sttusChgSbst": "비밀번호 변경"
+  },
+  {
+    "typeId": "mbrSttusHst",
+    "mbrSttusHstSeq": 101,
+    "mbrId": "olive234",
+    "sttusCd": "2",
+    "sttusChgSbst": "휴면 계정으로 전환"
+  }
+]

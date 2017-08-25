@@ -1,0 +1,18 @@
+[
+  {
+    "typeId": "banrLineupInfo",
+    "banrLineupSeq": 1001,
+    "banrItemSeq": 2030,
+    "contsDivCd": "1",
+    "showYear": "2010",
+    "advmUrl": ""
+  },
+  {
+    "typeId": "banrLineupInfo",
+    "banrLineupSeq": 1002,
+    "banrItemSeq": 2031,
+    "contsDivCd": "2",
+    "showYear": "2011",
+    "advmUrl": ""
+  }
+]

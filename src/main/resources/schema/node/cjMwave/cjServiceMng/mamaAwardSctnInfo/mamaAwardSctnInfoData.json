@@ -1,0 +1,18 @@
+[
+  {
+    "typeId": "mamaAwardSctnInfo",
+    "awardSctnSeq": 700,
+    "awardYear": "2017",
+    "awardSctnCd": "1",
+    "awardSctnDesc": "호텔스 컴바인 올해의 노래",
+    "refdWinnerList": "혁오, 아이유"
+  },
+  {
+    "typeId": "mamaAwardSctnInfo",
+    "awardSctnSeq": 701,
+    "awardYear": "2017",
+    "awardSctnCd": "2",
+    "awardSctnDesc": "베스트 아시안 스타일",
+    "refdWinnerList": "EXO, TWICE"
+  }
+]

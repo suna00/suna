@@ -1,0 +1,22 @@
+[
+  {
+    "typeId": "snsAthnCdMng",
+    "athnSeq": 100,
+    "srvrDivCd": "1515d515fq",
+    "snsTypeCd": "1",
+    "snsTypeNm": "Facebook",
+    "appId": "qweqw1",
+    "athnCd1": "",
+    "athnCd2": ""
+  },
+  {
+    "typeId": "snsAthnCdMng",
+    "athnSeq": 101,
+    "srvrDivCd": "1954d165ed",
+    "snsTypeCd": "2",
+    "snsTypeNm": "Twitter",
+    "appId": "asdwq2",
+    "athnCd1": "",
+    "athnCd2": ""
+  }
+]
