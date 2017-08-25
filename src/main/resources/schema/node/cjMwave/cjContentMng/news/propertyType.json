@@ -150,6 +150,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "apvSttusCd",
     "defaultValue": ""
   },
   {

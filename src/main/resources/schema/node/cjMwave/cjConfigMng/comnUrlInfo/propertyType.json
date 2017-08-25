@@ -49,6 +49,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "typeCd",
     "defaultValue": ""
   },
   {

@@ -218,6 +218,7 @@
     "analyzer": null,
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "bradTypeCd",
     "defaultValue": ""
   },
   {

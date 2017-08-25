@@ -1,0 +1,26 @@
+[
+  {
+    "typeId": "pgmMultiLangInfo",
+    "pgmId": "5595",
+    "langCd": "KOR",
+    "pgmNm": "M COUNTDOWN",
+    "pgmDomain": "",
+    "pgmDesc": "",
+    "repImgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
+    "thumbnailImgPath": "http://10.184.57.248:8080/pub/images/component/img_new_tab01.jpg",
+    "catmName": "",
+    "findKywrd": "MCount, Down"
+  },
+  {
+    "typeId": "pgmMultiLangInfo",
+    "pgmId": "5151",
+    "langCd": "KOR",
+    "pgmNm": "Wanna One",
+    "pgmDomain": "",
+    "pgmDesc": "",
+    "repImgPath": "http://10.184.57.248:8080/pub/images/component/img_album05.jpg",
+    "thumbnailImgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
+    "catmName": "",
+    "findKywrd": "Wanna, one"
+  }
+]

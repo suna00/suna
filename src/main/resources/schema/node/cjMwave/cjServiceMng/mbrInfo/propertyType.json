@@ -49,6 +49,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "mbrDivCd",
     "defaultValue": ""
   },
   {
@@ -66,6 +67,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "mbrSttusCd",
     "defaultValue": ""
   },
   {
@@ -117,6 +119,7 @@
     "analyzer": null,
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "snsTypeCd",
     "defaultValue": ""
   },
   {
@@ -168,6 +171,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "cntryCd",
     "defaultValue": ""
   },
   {
@@ -185,6 +189,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "sexCd",
     "defaultValue": ""
   },
   {

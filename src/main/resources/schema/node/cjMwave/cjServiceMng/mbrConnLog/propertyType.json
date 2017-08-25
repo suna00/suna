@@ -49,6 +49,7 @@
     "analyzer": null,
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "connTypeCd",
     "defaultValue": ""
   },
   {
@@ -134,6 +135,7 @@
     "analyzer": null,
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "osCd",
     "defaultValue": ""
   },
   {

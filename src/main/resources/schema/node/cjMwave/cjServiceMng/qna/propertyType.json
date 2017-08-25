@@ -49,6 +49,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "qnaFildCd",
     "defaultValue": ""
   },
   {
@@ -151,6 +152,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "trtSttusCd",
     "defaultValue": ""
   },
   {

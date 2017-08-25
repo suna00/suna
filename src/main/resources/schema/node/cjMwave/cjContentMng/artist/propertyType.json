@@ -82,6 +82,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "codeId",
+    "codeFilter": "artistSexCd",
     "defaultValue": ""
   },
   {
@@ -99,6 +100,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "codeId",
+    "codeFilter": "albumTypeCd",
     "defaultValue": ""
   },
   {
@@ -116,6 +118,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "codeId",
+    "codeFilter": "artistGenreCd",
     "defaultValue": ""
   },
   {

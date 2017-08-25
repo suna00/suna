@@ -1,44 +1,44 @@
 [
   {
-    "typeId" : "langMng",
-    "langId" : "ENG",
-    "langNm" : "영어",
-    "sttusCd" : "langSttusCd>langFix",
-    "useYn" : true
+    "typeId": "langMng",
+    "langId": "ENG",
+    "langNm": "영어",
+    "sttusCd": "langFix",
+    "useYn": 1
   },
   {
-    "typeId" : "langMng",
-    "langId" : "KOR",
-    "langNm" : "한국어",
-    "sttusCd" : "langSttusCd>langFix",
-    "useYn" : true
+    "typeId": "langMng",
+    "langId": "KOR",
+    "langNm": "한국어",
+    "sttusCd": "langFix",
+    "useYn": 1
   },
   {
-    "typeId" : "langMng",
-    "langId" : "ZHO-CN",
-    "langNm" : "중국(간체)",
-    "sttusCd" : "langSttusCd>langFix",
-    "useYn" : true
+    "typeId": "langMng",
+    "langId": "ZHO-CN",
+    "langNm": "중국(간체)",
+    "sttusCd": "langFix",
+    "useYn": 1
   },
   {
-    "typeId" : "langMng",
-    "langId" : "ZHO-TW",
-    "langNm" : "중국(번체)",
-    "sttusCd" : "langSttusCd>langFix",
-    "useYn" : true
+    "typeId": "langMng",
+    "langId": "ZHO-TW",
+    "langNm": "중국(번체)",
+    "sttusCd": "langFix",
+    "useYn": 1
   },
   {
-    "typeId" : "langMng",
-    "langId" : "JPN",
-    "langNm" : "일어",
-    "sttusCd" : "langSttusCd>langFix",
-    "useYn" : true
+    "typeId": "langMng",
+    "langId": "JPN",
+    "langNm": "일어",
+    "sttusCd": "langFix",
+    "useYn": 1
   },
   {
-    "typeId" : "langMng",
-    "langId" : "SPA",
-    "langNm" : "스페인어",
-    "sttusCd" : "langSttusCd>langSel",
-    "useYn" : true
+    "typeId": "langMng",
+    "langId": "SPA",
+    "langNm": "스페인어",
+    "sttusCd": "langFix",
+    "useYn": 1
   }
 ]

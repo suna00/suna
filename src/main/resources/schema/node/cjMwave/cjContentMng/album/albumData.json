@@ -6,8 +6,8 @@
     "artistId": "artist_00001",
     "comotDt": "20170821150000",
     "comotCntry": "Sapin",
-    "typeCd": "solo",
-    "genreCd": "dance",
+    "typeCd": "1001",
+    "genreCd": "3701",
     "dstrbCrcrt": "Sony",
     "subName": "My Heart",
     "sersName": "My Heart",
@@ -16,7 +16,6 @@
     "findKywrd": "Different Heaven,My Heart",
     "showCntryCdList": "KOR,USA,CHN",
     "relAlbumIds": "",
-    "mnetIfTrtYn": true,
-    "showYn": true
+    "mnetIfTrtYn": 1
   }
 ]

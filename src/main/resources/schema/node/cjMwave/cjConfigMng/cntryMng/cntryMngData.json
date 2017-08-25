@@ -1,30 +1,34 @@
 [
   {
     "typeId": "cntryMng",
-    "cntryId": "KOR",
-    "cntryNm": "대한민국",
-    "useYn": true,
-    "sortOdrg": 1
+    "국가아이디": "KOR",
+    "국가명": "대한민국",
+    "국가이미지경로": "",
+    "사용여부": 1,
+    "정렬 순서": 1
   },
   {
     "typeId": "cntryMng",
-    "cntryId": "USA",
-    "cntryNm": "미국",
-    "useYn": true,
-    "sortOdrg": 2
+    "국가아이디": "USA",
+    "국가명": "미국",
+    "국가이미지경로": "",
+    "사용여부": 1,
+    "정렬 순서": 2
   },
   {
     "typeId": "cntryMng",
-    "cntryId": "CHN",
-    "cntryNm": "중국",
-    "useYn": true,
-    "sortOdrg": 3
+    "국가아이디": "CHN",
+    "국가명": "중국",
+    "국가이미지경로": "",
+    "사용여부": 1,
+    "정렬 순서": 3
   },
   {
     "typeId": "cntryMng",
-    "cntryId": "JPN",
-    "cntryNm": "일본",
-    "useYn": true,
-    "sortOdrg": 4
+    "국가아이디": "JPN",
+    "국가명": "일본",
+    "국가이미지경로": "",
+    "사용여부": 1,
+    "정렬 순서": 4
   }
 ]

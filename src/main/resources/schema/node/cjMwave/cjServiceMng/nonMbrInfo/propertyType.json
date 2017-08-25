@@ -66,6 +66,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "osCd",
     "defaultValue": ""
   },
   {
@@ -100,6 +101,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "cntryCd",
     "defaultValue": ""
   },
   {

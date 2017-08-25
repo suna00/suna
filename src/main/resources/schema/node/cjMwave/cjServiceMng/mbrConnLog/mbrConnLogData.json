@@ -1,0 +1,14 @@
+[
+  {
+    "typeId": "mbrConnLog",
+    "mbrConnLogSeq": 542154,
+    "mbrId": "dgdfgfdfg",
+    "connTypeCd": "1",
+    "connDt": "20170506180000",
+    "ipAdr": "152.142.254.1",
+    "dvcId": "15424",
+    "dvcName": "ux8300",
+    "dvcOsCd": "1",
+    "dvcOsVer": "1.4"
+  }
+]

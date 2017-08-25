@@ -1,0 +1,14 @@
+[
+  {
+    "typeId": "nonMbrConnLog",
+    "nonMbrConnLogSeq": 515343,
+    "nonMbrSeq": "3543354",
+    "connTypeCd": "1",
+    "connDt": "20170808180000",
+    "ipAdr": "144.144.154.0",
+    "dvcId": "5445",
+    "dvcName": "ux9390",
+    "dvcOsCd": "1",
+    "dvcOsVer": "1.5"
+  }
+]

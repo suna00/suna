@@ -1,0 +1,30 @@
+[
+  {
+    "typeId": "pgmVideoMultiLangInfo",
+    "vodId": "9595",
+    "langCd": "KOR",
+    "vodNm": "SIGNAL",
+    "subName": "SIGNAL",
+    "repImgPath": "http://10.184.57.248:8080/pub/images/component/img_album03.jpg",
+    "vodDesc": "",
+    "vodFilePath": "",
+    "vodThumImgPath": "http://10.184.57.248:8080/pub/images/component/img_new_tab01.jpg",
+    "vodCcapFilePath": "",
+    "catmName": "TWICE",
+    "findKywrd": "TWICE"
+  },
+  {
+    "typeId": "pgmVideoMultiLangInfo",
+    "vodId": "5156",
+    "langCd": "KOR",
+    "vodNm": "REALLY REALLY",
+    "subName": "REALLY REALLY",
+    "repImgPath": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "vodDesc": "",
+    "vodFilePath": "",
+    "vodThumImgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
+    "vodCcapFilePath": "",
+    "catmName": "Roy Kim",
+    "findKywrd": "Roy Kim"
+  }
+]

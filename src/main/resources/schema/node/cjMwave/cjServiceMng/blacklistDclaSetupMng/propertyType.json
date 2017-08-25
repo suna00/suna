@@ -66,6 +66,7 @@
     "analyzer": null,
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "setupTypeCd",
     "defaultValue": ""
   },
   {

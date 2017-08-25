@@ -32,6 +32,7 @@
     "analyzer" : "code",
     "referenceType" : "code",
     "referenceValue" : "",
+    "codeFilter": "stpltTypeCd",
     "defaultValue" : ""
   }
   ,{
@@ -117,6 +118,7 @@
     "analyzer" : "code",
     "referenceType" : "code",
     "referenceValue" : "",
+    "codeFilter": "langCd",
     "defaultValue" : ""
   }
   ,{

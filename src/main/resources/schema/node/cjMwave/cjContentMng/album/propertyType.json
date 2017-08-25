@@ -99,6 +99,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "codeId",
+    "codeFilter": "albumTypeCd",
     "defaultValue": ""
   },
   {
@@ -116,6 +117,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "codeId",
+    "codeFilter": "albumGenreCd",
     "defaultValue": ""
   },
   {

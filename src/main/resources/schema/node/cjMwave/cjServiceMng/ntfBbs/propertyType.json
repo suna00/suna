@@ -49,6 +49,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
+    "codeFIlter": "systemNtfTgtCd",
     "defaultValue": ""
   },
   {
@@ -66,6 +67,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "systemNtfTypeCd",
     "defaultValue": ""
   },
   {
@@ -83,6 +85,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "systemNtfCtgCd1",
     "defaultValue": ""
   },
   {
@@ -100,6 +103,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "systemNtfCtgCd2",
     "defaultValue": ""
   },
   {
@@ -117,6 +121,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "svcDvcDiv",
     "defaultValue": ""
   },
   {

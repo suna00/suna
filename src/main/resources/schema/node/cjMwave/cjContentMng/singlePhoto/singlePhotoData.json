@@ -1,0 +1,32 @@
+[
+  {
+    "typeId": "singlePhoto",
+    "singlePhotoId": "454245",
+    "singlePhotoNm": "BIGBANG_01",
+    "subName": "BIGBANG",
+    "singlePhotoDesc": "BIGBANG",
+    "originImgPath": "http://10.184.57.248:8080/pub/images/component/img_album02.jpg",
+    "thumbnailImgPath": "http://10.184.57.248:8080/pub/menu_list/guide/html/menu/menu_main.html",
+    "dtlThumbnailImgPath": "http://10.184.57.248:8080/pub/images/component/img_new_tab01.jpg",
+    "ctgryId": "51542",
+    "relPgmIds": "",
+    "relArtistIds": "",
+    "relSongIds": "",
+    "mnetIfTrtYn": 1
+  },
+  {
+    "typeId": "singlePhoto",
+    "singlePhotoId": "51515",
+    "singlePhotoNm": "WannaONE_01",
+    "subName": "Wanna One",
+    "singlePhotoDesc": "Wanna One",
+    "originImgPath": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "thumbnailImgPath": "http://10.184.57.248:8080/pub/images/component/img_album04.jpg",
+    "dtlThumbnailImgPath": "http://10.184.57.248:8080/pub/images/component/img_album05.jpg",
+    "ctgryId": "24512",
+    "relPgmIds": "",
+    "relArtistIds": "",
+    "relSongIds": "",
+    "mnetIfTrtYn": 1
+  }
+]

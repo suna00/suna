@@ -65,6 +65,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "musicVideoGenreCd",
     "defaultValue": ""
   },
   {

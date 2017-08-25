@@ -82,6 +82,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "bradGenreCd",
     "defaultValue": ""
   },
   {
@@ -99,6 +100,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
+    "codeFilter": "vuingPosblCd",
     "defaultValue": ""
   },
   {

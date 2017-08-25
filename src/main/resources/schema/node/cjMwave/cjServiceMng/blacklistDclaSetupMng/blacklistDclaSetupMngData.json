@@ -1,0 +1,9 @@
+[
+  {
+    "typeId": "blacklistDclaSetupMng",
+    "dclaSetupSeq": 5154551,
+    "setupBaseDayNum": 15,
+    "setupBaseCnt": 15,
+    "setupTypeCd": "1"
+  }
+]
