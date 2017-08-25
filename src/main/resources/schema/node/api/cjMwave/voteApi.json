@@ -1,65 +1,145 @@
 [
   {
-    "typeId" : "apiConfig",
-    "category" : "vote",
-    "apiId" : "If",
-    "apiName" : "Vote List",
-    "method" : "GET",
-    "config" : {
-      "items" : {
-        "typeId":"voteBasInfo",
-        "query" : [
-          {"field" : "voteFormlCd", "method" : "matching", "value" : "{{:voteFormlCd}}" },
-          {"field" : "findKywrd", "method" : "matching", "value" : "{{:searchKeyword}}" },
-          {"field" : "showYn", "method" : "matching", "value" : "true" },
-          {"sorting" : "voteSeq desc"},
-          {"page" : "{{:page}}", "pageSize":"{:pageSize}}"}
-        ]
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv001",
+    "apiName": "MWAVE 투표 목록조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "voteFormlCd",
+        "required": false
+      },
+      {
+        "paramName": "showLoCd",
+        "required": false
+      },
+      {
+        "paramName": "searchKeyword",
+        "required": false
       }
-    }
-  },
-  {
-    "typeId" : "apiConfig",
-    "category" : "vote",
-    "apiId" : "voteList",
-    "apiName" : "Vote List",
-    "method" : "GET",
-    "config" : {
-      "items" : {
-        "typeId":"voteBasInfo",
-        "query" : [
-          {"field" : "voteFormlCd", "method" : "matching", "value" : "{{:voteFormlCd}}" },
-          {"field" : "findKywrd", "method" : "matching", "value" : "{{:searchKeyword}}" },
-          {"field" : "showYn", "method" : "matching", "value" : "true" },
-          {"sorting" : "voteSeq desc"},
-          {"page" : "{{:page}}", "pageSize":"{:pageSize}}"}
-        ]
-      }
-    }
-  },
-  {
-    "typeId" : "apiConfig",
-    "category" : "vote",
-    "apiId" : "voteView",
-    "apiName" : "Vote View",
-    "method" : "GET",
-    "config" : {
-      "items" : {
-        "typeId":"voteBasInfo",
-        "query" : [
-          {"field" : "voteSeq", "method" : "matching", "value" : "{{:voteSeq}}" },
-          {"field" : "voteYear", "method" : "matching", "value" : "{{:voteYear}}" },
-          {"field" : "showLoCd", "method" : "matching", "value" : "{{:showLoCd}}" },
-          {"field" : "voteFormlCd", "method" : "matching", "value" : "{{:voteFormlCd}}" },
-          {"field" : "bradTelcsDt", "method" : "matching", "value" : "{{:bradTelcsDt}}" },
-          {"field" : "showYn", "method" : "matching", "value" : "true" },
-          {"sorting" : "voteSeq desc"},
-          {"limit" : "1"}
-        ],
-        "response" : {
-          "category": "",
-          "itemTitle": "title"
+    ],
+    "config": {
+      "typeId": "voteBasInfo",
+      "query": [
+        {
+          "field": "voteFormlCd",
+          "method": "matching",
+          "value": "{{:voteFormlCd}}"
+        },
+        {
+          "field": "showLoCd",
+          "method": "matching",
+          "value": "{{:showLoCd}}"
+        },
+        {
+          "field": "findKywrd",
+          "method": "matching",
+          "value": "{{:searchKeyword}}"
+        },
+        {
+          "field": "showYn",
+          "method": "matching",
+          "value": "true"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
         }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv002",
+    "apiName": "MWAVE 투표 상세조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "voteSeq",
+        "required": false
+      },
+      {
+        "paramName": "voteYear",
+        "required": false
+      },
+      {
+        "paramName": "showLoCd",
+        "required": false
+      },
+      {
+        "paramName": "voteFormlCd",
+        "required": false
+      }
+    ],
+    "config": {
+      "items": {
+        "typeId": "voteBasInfo",
+        "query": [
+          {
+            "field": "voteSeq",
+            "method": "matching",
+            "value": "{{:voteSeq}}"
+          },
+          {
+            "field": "voteYear",
+            "method": "matching",
+            "value": "{{:voteYear}}"
+          },
+          {
+            "field": "showLoCd",
+            "method": "matching",
+            "value": "{{:showLoCd}}"
+          },
+          {
+            "field": "voteFormlCd",
+            "method": "matching",
+            "value": "{{:voteFormlCd}}"
+          },
+          {
+            "field": "bradTelcsDt",
+            "method": "matching",
+            "value": "{{:bradTelcsDt}}"
+          },
+          {
+            "field": "showYn",
+            "method": "matching",
+            "value": "true"
+          },
+          {
+            "sorting": "{{:sorting}}"
+          },
+          {
+            "limit": "1"
+          },
+          {
+            "includeReferenced": true
+          }
+        ]
       }
     }
   }
