@@ -30,7 +30,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "i18n": true
+    "i18n": false
   },
   {
     "typeId" : "propertyType",
@@ -95,7 +95,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "i18n": true
+    "i18n": false
   },
   {
     "typeId" : "propertyType",
