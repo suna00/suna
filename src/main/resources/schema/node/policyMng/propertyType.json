@@ -225,7 +225,7 @@
     "referenceType": "commonCode",
     "referenceValue": "code",
     "codeFilter": "termsType",
-    "defaultValue": ""
+    "defaultValue": "term001"
   },
   {
     "typeId": "propertyType",
@@ -242,7 +242,7 @@
     "referenceType": "commonCode",
     "referenceValue": "code",
     "codeFilter": "requiredStatus",
-    "defaultValue": ""
+    "defaultValue": "y"
   },
   {
     "typeId": "propertyType",

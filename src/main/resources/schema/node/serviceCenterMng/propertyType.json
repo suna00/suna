@@ -1514,7 +1514,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "codeFilter": "faqType",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
