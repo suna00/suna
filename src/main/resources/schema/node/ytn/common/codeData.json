@@ -586,7 +586,7 @@
   },
   {
     "typeId": "commonCode",
-    "code": "SMSAuthenticationHistoryType",
+    "code": "SMSAuthenticationType",
     "upperCode": "root",
     "name": "SMS 인증 이력 타입",
     "description": "",
@@ -3854,7 +3854,7 @@
   {
     "typeId": "commonCode",
     "code": "admin",
-    "upperCode": "SMSAuthenticationHistoryType",
+    "upperCode": "SMSAuthenticationType",
     "name": "어드민",
     "description": "",
     "sortOrder": "1",
@@ -3863,7 +3863,7 @@
   {
     "typeId": "commonCode",
     "code": "password",
-    "upperCode": "SMSAuthenticationHistoryType",
+    "upperCode": "SMSAuthenticationType",
     "name": "비밀번호",
     "description": "",
     "sortOrder": "2",
@@ -3872,7 +3872,7 @@
   {
     "typeId": "commonCode",
     "code": "id",
-    "upperCode": "SMSAuthenticationHistoryType",
+    "upperCode": "SMSAuthenticationType",
     "name": "아이디",
     "description": "",
     "sortOrder": "3",
@@ -4069,20 +4069,56 @@
   },
   {
     "typeId": "commonCode",
-    "code": "",
-    "upperCode": "pageType",
-    "name": "",
+    "code": "topsale",
+    "upperCode": "themeType",
+    "name": "TOP RANKING 판매",
     "description": "",
-    "sortOrder": "1",
+    "sortOrder": "10",
     "commonCodeStatus": "y"
   },
   {
     "typeId": "commonCode",
-    "code": "",
-    "upperCode": "pageType",
-    "name": "",
+    "code": "topview",
+    "upperCode": "themeType",
+    "name": "TOP RANKING 조회",
     "description": "",
-    "sortOrder": "2",
+    "sortOrder": "11",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "topcart",
+    "upperCode": "themeType",
+    "name": "TOP RANKING 장바구니",
+    "description": "",
+    "sortOrder": "12",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "topinterest",
+    "upperCode": "themeType",
+    "name": "TOP RANKING 위시리스트",
+    "description": "",
+    "sortOrder": "13",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "mdpick",
+    "upperCode": "themeType",
+    "name": "MD Pick",
+    "description": "",
+    "sortOrder": "14",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "hotitem",
+    "upperCode": "themeType",
+    "name": "HOT ITEM",
+    "description": "",
+    "sortOrder": "15",
     "commonCodeStatus": "y"
   },
   {
@@ -4830,6 +4866,33 @@
     "name": "선택",
     "description": "",
     "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "categoryMain",
+    "upperCode": "pageType",
+    "name": "1Depth 카테고리 메인",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "best",
+    "upperCode": "pageType",
+    "name": "베스트 페이지",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "main",
+    "upperCode": "pageType",
+    "name": "메인페이지",
+    "description": "",
+    "sortOrder": "3",
     "commonCodeStatus": "y"
   }
 ]
