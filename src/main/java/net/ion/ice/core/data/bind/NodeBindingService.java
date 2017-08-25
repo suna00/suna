@@ -125,6 +125,8 @@ public class NodeBindingService {
         if (!nodeBindingInfoMap.containsKey(nodeType.getTypeId())) {
 
             String dsId = String.valueOf(nodeType.getTableName()).split("#")[0];
+            logger.info("====== 0825 ========================   DBService :: " + DBService);
+            logger.info("====== 0825 ========================   dsId :: " + dsId);
             JdbcTemplate jdbcTemplate = DBService.getJdbcTemplate(dsId);
 
             String tableName = String.valueOf(nodeType.getTableName()).split("#")[1];

@@ -173,6 +173,8 @@ public class NodeBindingInfo {
                     , StringUtils.join(createColumns.toArray(), ", "));
         }
 
+
+        logger.info("================================== :: " + this.createSql);
     }
 
     public List<Column> getTableColumns(String tableName, String DBType) {
