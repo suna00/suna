@@ -48,5 +48,10 @@
     "typeId": "apiCategory",
     "id": "mcdlineup",
     "categoryName": "MCD LINEUP API"
+  },
+  {
+    "typeId": "apiCategory",
+    "id": "member",
+    "categoryName": "MEMBER API"
   }
 ]

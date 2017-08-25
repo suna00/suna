@@ -1,7 +1,6 @@
 [
   {
     "typeId": "mbrInfo",
-    "mbrSeq": 100,
     "aliasNm": "park",
     "divCd": "1",
     "sttusCd": "1",
@@ -38,7 +37,6 @@
   },
   {
     "typeId": "mbrInfo",
-    "mbrSeq": 101,
     "aliasNm": "wjdfks",
     "divCd": "2",
     "sttusCd": "2",

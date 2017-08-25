@@ -67,7 +67,9 @@
       "name": "06.MCD라인업",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
-      "order": [],
+      "order": [
+        "ce80d173-fa48-a5e0-1314-0db7d1ce51eb"
+      ],
       "owner": "2433871",
       "folders_order": [],
       "id": "715c8c93-15b8-531a-11cc-6ed36cd2e81d"
@@ -76,7 +78,13 @@
       "name": "07.회원",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
-      "order": [],
+      "order": [
+        "8adc84e8-50f2-79e0-50e4-c19a2295a241",
+        "200bba46-28b5-b105-4e73-ac67681d50b9",
+        "6454a6b3-edef-1ff9-a1ed-c6820a298409",
+        "1ec93cac-36ad-1451-50dc-bb64535a5484",
+        "fa221eff-22c1-8aed-03bb-bf9452d991f6"
+      ],
       "owner": "2433871",
       "folders_order": [],
       "id": "86050fbe-2ab5-43b7-54ab-0375fcd48501"
@@ -149,6 +157,15 @@
       "id": "7be3d1d4-bcd8-5199-22cd-01ecc17d621d"
     },
     {
+      "name": "13.PIP",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "order": [],
+      "owner": "2433871",
+      "folders_order": [],
+      "id": "538cac7d-9229-6c46-610e-f67359ce283e"
+    },
+    {
       "name": "99.시스템",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
@@ -175,7 +192,8 @@
     "bab6b5e3-78b0-d242-4d1c-d19ba20d7902",
     "19f32b0a-fdf9-d161-022e-8b92f2af649c",
     "7be3d1d4-bcd8-5199-22cd-01ecc17d621d",
-    "3036b5f8-1b9b-50ca-c58b-10e44707688e"
+    "3036b5f8-1b9b-50ca-c58b-10e44707688e",
+    "538cac7d-9229-6c46-610e-f67359ce283e"
   ],
   "timestamp": 1503377797967,
   "owner": "2433871",
@@ -212,6 +230,45 @@
       "currentHelper": "normal",
       "helperAttributes": {},
       "folder": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902"
+    },
+    {
+      "id": "1ec93cac-36ad-1451-50dc-bb64535a5484",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/member/IfUser004?snsKey&snsTypeCd",
+      "queryParams": [
+        {
+          "key": "snsKey",
+          "value": "",
+          "equals": false,
+          "description": "SNS 토큰키(String) NotNull",
+          "enabled": true
+        },
+        {
+          "key": "snsTypeCd",
+          "value": "",
+          "equals": false,
+          "description": "SNS 유형코드(String) NotNull",
+          "enabled": true
+        }
+      ],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "GET",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": null,
+      "dataMode": "params",
+      "name": "회원ID 인증/정보 조회(IF_USER_004)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1503655299490,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "86050fbe-2ab5-43b7-54ab-0375fcd48501"
     },
     {
       "id": "1f147671-d8a5-8223-768b-3b69011df4f2",
@@ -258,6 +315,92 @@
       "currentHelper": "normal",
       "helperAttributes": {},
       "folder": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902"
+    },
+    {
+      "id": "200bba46-28b5-b105-4e73-ac67681d50b9",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/member/IfUser002",
+      "queryParams": [],
+      "preRequestScript": null,
+      "pathVariables": {},
+      "pathVariableData": [],
+      "method": "POST",
+      "data": [
+        {
+          "key": "snsKey",
+          "value": "1",
+          "description": "SNS토큰키(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "snsTypeCd",
+          "value": "1",
+          "description": "SNS유형코드(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "aliasNm",
+          "value": "",
+          "description": "닉네임명(String)",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "cntryCd",
+          "value": "KOR",
+          "description": "국가코드(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "sexCd",
+          "value": "1",
+          "description": "성별코드(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "mbrImg",
+          "value": "",
+          "description": "회원이미지파일(file) ",
+          "type": "file",
+          "enabled": true
+        },
+        {
+          "key": "bthYm",
+          "value": "",
+          "description": "생년월(String)",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "intrstCdList",
+          "value": "",
+          "description": "관심사 코드 리스트(String)",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "infoOttpAgreeYn",
+          "value": "false",
+          "description": "정보공개동의여부(String) NotNull",
+          "type": "text",
+          "enabled": true
+        }
+      ],
+      "dataMode": "params",
+      "version": 2,
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "time": 1503655114855,
+      "name": "정회원 전환(IF_USER_002)",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "responses": []
     },
     {
       "id": "229a214f-a78c-9079-ad75-8e32a94a9c22",
@@ -472,6 +615,42 @@
       "currentHelper": "normal",
       "helperAttributes": {},
       "folder": "f6372b66-a110-e4b0-38c2-09f2a055c0c6"
+    },
+    {
+      "id": "6454a6b3-edef-1ff9-a1ed-c6820a298409",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/member/IfUser003",
+      "queryParams": [],
+      "preRequestScript": null,
+      "pathVariables": {},
+      "pathVariableData": [],
+      "method": "POST",
+      "data": [
+        {
+          "key": "snsKey",
+          "value": "",
+          "description": "SNS토큰키(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "snsTypeCd",
+          "value": "",
+          "description": "SNS 유형코드(String) NotNull",
+          "type": "text",
+          "enabled": true
+        }
+      ],
+      "dataMode": "params",
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "time": 1503655225236,
+      "name": "회원탈퇴(IF_USER_003)",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "responses": []
     },
     {
       "id": "6486071e-bedf-4bb2-56a1-596d1df68046",
@@ -871,6 +1050,63 @@
       "folder": "b1727a29-2c82-cf5e-28b0-f94b8d6dbbff",
       "isFromCollection": true,
       "collectionRequestId": "87879231-b273-37e9-1942-d5c129a6e705"
+    },
+    {
+      "id": "8adc84e8-50f2-79e0-50e4-c19a2295a241",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/member/IfUser001",
+      "queryParams": [],
+      "preRequestScript": null,
+      "pathVariables": {},
+      "pathVariableData": [],
+      "method": "POST",
+      "data": [
+        {
+          "key": "snsKey",
+          "value": "",
+          "description": "SNS토큰키(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "snsTypeCd",
+          "value": "",
+          "description": "SNS유형코드(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "aliasNm",
+          "value": "",
+          "description": "닉네임명(String)",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "pushMsgRcYn",
+          "value": "",
+          "description": "푸쉬 메시지 수신여부(String)",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "sbscShapCd",
+          "value": "",
+          "description": "가입형태코드(String) NotNull",
+          "type": "text",
+          "enabled": true
+        }
+      ],
+      "dataMode": "params",
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "time": 1503654839406,
+      "name": "준회원 가입(IF_USER_001)",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "responses": []
     },
     {
       "id": "972c87ea-3185-d59e-afde-d3f3fa745867",
@@ -1325,6 +1561,38 @@
       "folder": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902"
     },
     {
+      "id": "ce80d173-fa48-a5e0-1314-0db7d1ce51eb",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/mcdlineup/IfMcl001?bradDate=20170801",
+      "queryParams": [
+        {
+          "key": "bradDate",
+          "value": "20170801",
+          "equals": true,
+          "description": "방송일자(String) ",
+          "enabled": true
+        }
+      ],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "GET",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": null,
+      "dataMode": "params",
+      "name": "MCD 라인업(출연자) 상세조회(IF_MCL_001)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1503651721430,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "715c8c93-15b8-531a-11cc-6ed36cd2e81d"
+    },
+    {
       "id": "e0bfd31a-a844-245f-4bd5-307a14e08e52",
       "headers": "",
       "headerData": [],
@@ -1406,6 +1674,52 @@
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
       "responses": []
+    },
+    {
+      "id": "fa221eff-22c1-8aed-03bb-bf9452d991f6",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/member/IfUser004",
+      "queryParams": [],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "POST",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": [
+        {
+          "key": "snsKey",
+          "value": "",
+          "description": "SNS 토큰키(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "snsTypeCd",
+          "value": "",
+          "description": "SNS 유형코드(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "mbrImg",
+          "value": "",
+          "description": "회원이미지파일(File) NotNull",
+          "type": "file",
+          "enabled": true
+        }
+      ],
+      "dataMode": "params",
+      "name": "회원 프로필 이미지 업로드(IF_USER_100)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1503655418573,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "86050fbe-2ab5-43b7-54ab-0375fcd48501"
     }
   ]
 }

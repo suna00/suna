@@ -1,1 +1,55 @@
-[]
+[
+  {
+    "typeId": "apiConfig",
+    "category": "mcdlineup",
+    "apiId": "IfMcl001",
+    "apiName": "MCD 라인업(출연자) 상세조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "bradDate",
+        "required": false
+      }
+    ],
+    "config": {
+      "typeId": "mcdLineupInfo",
+      "query": [
+        {
+          "field": "bradDate",
+          "method": "matching",
+          "value": "{{:bradDate}}"
+        },
+        {
+          "field": "showYn",
+          "method": "matching",
+          "value": "true"
+        },
+        {
+          "sorting": "lineupInfoSeq desc"
+        },
+        {
+          "limit": "1"
+        },
+        {
+          "includeReferenced": true
+        }
+      ]
+    }
+  }
+]

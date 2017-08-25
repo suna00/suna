@@ -1,0 +1,200 @@
+[
+  {
+    "typeId": "apiConfig",
+    "category": "member",
+    "apiId": "IfUser001",
+    "apiName": "준회원 가입",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      },
+      {
+        "paramName": "aliasNm",
+        "required": false
+      },
+      {
+        "paramName": "pushMsgRcYn",
+        "required": false
+      },
+      {
+        "paramName": "sbscShapCd",
+        "required": false
+      }
+    ],
+    "config": {
+      "createItem": {
+        "typeId": "mbrInfo",
+        "event": "create",
+        "data": {
+          "snsKey": "{{:snsKey}}",
+          "snsTypeCd": "{{:snsTypeCd}}",
+          "aliasNm": "{{:aliasNm}}",
+          "pushMsgRcYn": "{{:pushMsgRcYn}}",
+          "sbscShapCd": "{{:sbscShapCd}}",
+          "divCd": "2"
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "member",
+    "apiId": "IfUser002",
+    "apiName": "정회원 전환",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      },
+      {
+        "paramName": "aliasNm",
+        "required": false
+      },
+      {
+        "paramName": "cntryCd",
+        "required": true
+      },
+      {
+        "paramName": "sexCd",
+        "required": true
+      },
+      {
+        "paramName": "mbrImg",
+        "required": false
+      },
+      {
+        "paramName": "bthYm",
+        "required": false
+      },
+      {
+        "paramName": "intrstCdList",
+        "required": false
+      },
+      {
+        "paramName": "infoOttpAgreeYn",
+        "required": true
+      }
+    ],
+    "config": {
+      "createItem": {
+        "typeId": "mbrInfo",
+        "event": "update",
+        "data": {
+          "snsKey": "{{:snsKey}}",
+          "snsTypeCd": "{{:snsTypeCd}}",
+          "aliasNm": "{{:aliasNm}}",
+          "cntryCd": "{{:cntryCd}}",
+          "sexCd": "{{:sexCd}}",
+          "thumImgPath": "{{:mbrImg}}",
+          "bthYm": "{{:bthYm}}",
+          "intrstCdList": "{{:intrstCdList}}",
+          "infoOttpAgreeYn": "{{:infoOttpAgreeYn}}",
+          "divCd": "1"
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "member",
+    "apiId": "IfUser003",
+    "apiName": "회원 탈퇴",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      }
+    ],
+    "config": {
+      "createItem": {
+        "typeId": "mbrInfo",
+        "event": "update",
+        "data": {
+          "snsKey": "{{:snsKey}}",
+          "snsTypeCd": "{{:snsTypeCd}}",
+          "sttusCd": ""
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "member",
+    "apiId":"IfUser003",
+    "apiName": "회원 ID 인증정보 조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "mbrInfo",
+      "query": [
+        {
+          "field": "snsKey",
+          "method": "matching",
+          "value": "{{:snsKey}}"
+        },
+        {
+          "field": "snsTypeCd",
+          "method": "matching",
+          "value": "{{:snsTypeCd}}"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "member",
+    "apiId":"IfUser100",
+    "apiName": "회원 프로필 이미지 업로드",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      },
+      {
+        "paramName": "mbrImg",
+        "required": true
+      }
+    ],
+    "config": {
+      "createItem": {
+        "typeId": "mbrInfo",
+        "event": "update",
+        "data": {
+          "snsKey": "{{:snsKey}}",
+          "snsTypeCd": "{{:snsTypeCd}}",
+          "thumImgPath": "{{:mbrImg}}"
+        }
+      }
+    }
+  }
+]
