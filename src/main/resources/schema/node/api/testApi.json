@@ -31,7 +31,7 @@
           "upperCategory": "parentCategory",
           "refCode1": {
             "typeId": "testItem",
-            "query": {"category": "{{:categoryId}}", "sorting" : "parentCategory"},
+            "query": {"category": "{{:default(categoryId, drama)}}", "sorting" : "parentCategory"},
             "response" : {
               "category": "",
               "itemTitle": "title"
