@@ -429,7 +429,10 @@
     "codeId": "1",
     "name": "Facebook",
     "order": 1,
-    "active": true
+    "active": true,
+    "name_ko":"페이스북",
+    "name_en":"Facebook",
+    "name_cn":"페북"
   },
   {
     "typeId": "code",

@@ -44,9 +44,9 @@
         }
       ],
       "response": {
-        "cntryCd": "",
+        "cntryId": "",
         "cntryNm": "",
-        "imgUrl": "",
+        "cntryImgPath": "",
         "sortOdrg": ""
       }
     }

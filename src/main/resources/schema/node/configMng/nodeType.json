@@ -15,7 +15,8 @@
     "tid" : "groupCode",
     "typeName" : "그룹 코드",
     "repositoryType" : "node",
-    "eviction" : 500
+    "eviction" : 500,
+    "i18n": true
   },
   {
     "parentId" : "configMng",
@@ -24,6 +25,7 @@
     "tid" : "code",
     "typeName" : "코드",
     "repositoryType" : "node",
-    "eviction" : 2000
+    "eviction" : 2000,
+    "i18n": true
   }
 ]

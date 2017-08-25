@@ -29,7 +29,8 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": ""
+    "referenceValue": "",
+    "i18n": true
   },
   {
     "typeId" : "propertyType",
@@ -93,7 +94,8 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": ""
+    "referenceValue": "",
+    "i18n": true
   },
   {
     "typeId" : "propertyType",
