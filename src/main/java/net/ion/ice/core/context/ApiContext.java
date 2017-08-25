@@ -30,7 +30,7 @@ public class ApiContext {
         ApiContext ctx = new ApiContext() ;
         ctx.apiNode = apiNode ;
         ctx.data = ContextUtils.makeContextData(parameterMap, multiFileMap) ;
-
+        
         ctx.config = config;
 
         ctx.init();
