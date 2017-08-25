@@ -94,6 +94,11 @@ $ > service mysqld [start / stop / restart ]
 
 ### 3. API 구성
 
+`code deploy`, `code commit` 으로 구성
+- `code commit` : gitlab 이나 github 같은 원격 소스 저장소
+- `code deploy` : jenkins 같은 빌드배포 도구
+
+
 ##### A. 패키지 관리자 최신화
 ##### B. `jdk` 설치
 ##### C. `gradle` 설치

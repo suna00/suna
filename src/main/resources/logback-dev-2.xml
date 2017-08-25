@@ -53,7 +53,7 @@
         ref : https://github.com/logstash/logstash-logback-encoder
     -->
     <appender name="STASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-        <destination>125.131.88.156:5000</destination>
+        <destination>125.131.88.156:5044</destination>
         <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
         <reconnectionDelay>1 second</reconnectionDelay>
     </appender>
