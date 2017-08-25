@@ -829,6 +829,15 @@
   },
   {
     "typeId": "commonCode",
+    "code": "requiredStatus",
+    "upperCode": "root",
+    "name": "필수여부",
+    "description": "",
+    "sortOrder": "94",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
     "code": "all",
     "upperCode": "addBenefitType",
     "name": "전체",
@@ -4801,6 +4810,24 @@
     "code": "10",
     "upperCode": "commonNoticeTopStatus",
     "name": "상위",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "y",
+    "upperCode": "requiredStatus",
+    "name": "필수",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "n",
+    "upperCode": "requiredStatus",
+    "name": "선택",
     "description": "",
     "sortOrder": "2",
     "commonCodeStatus": "y"
