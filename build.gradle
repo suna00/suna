@@ -116,4 +116,5 @@ dependencies {
     compile('org.projectlombok:lombok:1.16.16')
     runtime('org.springframework.boot:spring-boot-devtools')
     testCompile("org.springframework.boot:spring-boot-starter-test:${springBootStarterVersion}")
+    testCompile("com.microsoft.sqlserver:mssql-jdbc:6.2.1.jre8")
 }
