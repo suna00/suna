@@ -90,10 +90,10 @@
 				"0d3d9647-0a37-8de8-7e09-580e4e78f54d",
 				"4e324d74-8369-ee95-94ea-685c21991324",
 				"58636a9b-84d1-429f-5ec7-0ee6dc5a391c",
-				"4dda6db9-bac3-443a-0015-5c88a668131e",
 				"6d3e3231-ad4a-9506-56a8-8cdbdce35669",
 				"54831897-48c2-6124-27e5-363d6f6f91b5",
 				"3da32506-9523-2596-64e7-952fe3bdab72",
+				"8da0eff9-1e44-d76e-eec3-92948949f4e9",
 				"33858549-ae39-f6f4-2c37-0844819fa23c",
 				"3515f52f-3c2f-1b9f-2e88-4e9e799b0a24",
 				"cd0cf538-1c0b-313a-570b-bcf89fc584a1",
@@ -271,7 +271,11 @@
 				"dcd01a70-bf41-fc41-e02f-2244ed6350fa",
 				"40bd4ec7-955c-b42b-3017-04d683b7ca82",
 				"859c190b-5921-e6e6-752a-6842f95eba77",
-				"52512e73-6ce1-547c-e189-a164724dc847"
+				"52512e73-6ce1-547c-e189-a164724dc847",
+				"edec6498-0edf-07cc-430b-953f16d72567",
+				"e92d040c-056c-903b-5b96-def7c16b723f",
+				"90bd5719-9e9f-6c93-af7e-d164ecc7f480",
+				"14fe09f1-1231-36a1-b47a-2b9be79cf3cf"
 			],
 			"owner": "297192",
 			"folders_order": [],
@@ -899,29 +903,33 @@
 		},
 		{
 			"id": "0f575180-a5e2-5edf-15b3-d6dd63a9351a",
-			"method": "GET",
-			"url": "",
-			"name": "장바구니 리스트_마케팅 배너",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/beltBanner/list.json?beltBannerLocation=cart",
+			"queryParams": [
+				{
+					"key": "beltBannerLocation",
+					"value": "cart",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "fbef8ed5-d63e-081d-e1ac-6c54a38292d6",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "fbef8ed5-d63e-081d-e1ac-6c54a38292d6"
+			"helperAttributes": {},
+			"time": 1503755154486,
+			"name": "장바구니 리스트_마케팅 배너",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "10c85e57-fc98-3128-1722-4006e754fcf2",
@@ -1128,6 +1136,35 @@
 			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
 			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
 			"folderId": "a2bd1d31-b61c-5a0a-76b1-a6b448614574"
+		},
+		{
+			"id": "14fe09f1-1231-36a1-b47a-2b9be79cf3cf",
+			"headers": "",
+			"headerData": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/beltBanner/list.json?beltBannerLocation=main",
+			"queryParams": [
+				{
+					"key": "beltBannerLocation",
+					"value": "main",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1503755323552,
+			"name": "인트로,메인_메인_마케팅 배너",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "15ff29c0-8d82-0fe0-bcfa-cef11a9a0650",
@@ -1470,28 +1507,40 @@
 		},
 		{
 			"id": "21d71f57-5e60-180d-2d35-44fea00ac1ef",
-			"method": "GET",
-			"url": "",
-			"name": "2,3depth 카테고리 상품 리스트_Marketing banner(상단배너)",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/beltBanner/list.json?beltBannerLocation=category&categoryId=1",
+			"queryParams": [
+				{
+					"key": "beltBannerLocation",
+					"value": "category",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "categoryId",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"folder": "4a9aa611-5655-4a87-24b4-d0ec1f2a8a4c",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715"
+			"time": 1503755812390,
+			"name": "2,3depth 카테고리 상품 리스트_Marketing banner(상단배너)",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "227656b5-fbf2-eb61-8c03-b1d3983e1b55",
@@ -2401,28 +2450,40 @@
 		},
 		{
 			"id": "3eb17f98-20fa-e209-37e3-fac63a251544",
-			"method": "GET",
-			"url": "",
-			"name": "2,3depth 카테고리 상품 리스트_Marketing banner(하단배너)",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/beltBanner/list.json?beltBannerLocation=category&categoryId=1",
+			"queryParams": [
+				{
+					"key": "beltBannerLocation",
+					"value": "category",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "categoryId",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"folder": "4a9aa611-5655-4a87-24b4-d0ec1f2a8a4c",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715"
+			"time": 1503755814750,
+			"name": "2,3depth 카테고리 상품 리스트_Marketing banner(하단배너)",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "3f0be5a7-abd3-e893-c2bd-12c26956dedf",
@@ -2529,28 +2590,47 @@
 		},
 		{
 			"id": "410aa0cb-340d-072c-9ff1-c4ee197504f7",
-			"method": "GET",
-			"url": "",
-			"name": "고객센터 메인_사이드 마케팅 배너",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/singleBanner/list.json?singleBannerLocation_matching=serviceCenterMain&sorting=sortOrder&bannerStatus_mstching=y",
+			"queryParams": [
+				{
+					"key": "singleBannerLocation_matching",
+					"value": "serviceCenterMain",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "sorting",
+					"value": "sortOrder",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "bannerStatus_mstching",
+					"value": "y",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "6374d12f-e712-82ab-d2f0-372ec34e474c",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715"
+			"helperAttributes": {},
+			"time": 1503753759044,
+			"name": "고객센터 메인_사이드 마케팅 배너",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "41290f91-e38c-8448-a087-79e29e21cedb",
@@ -2757,31 +2837,6 @@
 			"currentHelper": "normal",
 			"helperAttributes": {},
 			"folder": "4a9aa611-5655-4a87-24b4-d0ec1f2a8a4c",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715"
-		},
-		{
-			"id": "4dda6db9-bac3-443a-0015-5c88a668131e",
-			"method": "GET",
-			"url": "",
-			"name": "기획전 상세_배너(슬라이드/3단고정) ",
-			"dataMode": "params",
-			"headers": "",
-			"headerData": [],
-			"data": null,
-			"queryParams": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
-			"version": 2,
-			"responses": [],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "51dd7bb4-93d7-90e5-126f-b9e402dc65c7",
 			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715"
 		},
 		{
@@ -3014,29 +3069,61 @@
 		},
 		{
 			"id": "542c1f97-a721-91b9-6a82-eec845003520",
-			"method": "GET",
-			"url": "",
-			"name": "상품상세_공지배너",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/productNoticeBanner/list.json?bannerStatus_matching=y&startDate_above=2017-08-22&endDate_below=2017-08-22&coverage_matching_should=all&categoryId_matching_should=1",
+			"queryParams": [
+				{
+					"key": "bannerStatus_matching",
+					"value": "y",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "startDate_above",
+					"value": "2017-08-22",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "endDate_below",
+					"value": "2017-08-22",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "coverage_matching_should",
+					"value": "all",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "categoryId_matching_should",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "f02e2e01-cfbb-9a41-5999-de51ecb964b6",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "f02e2e01-cfbb-9a41-5999-de51ecb964b6"
+			"helperAttributes": {},
+			"time": 1503754546862,
+			"name": "상품상세_공지배너",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "54831897-48c2-6124-27e5-363d6f6f91b5",
@@ -3611,55 +3698,91 @@
 		},
 		{
 			"id": "6991bc8a-3506-7913-440c-0b518cee2cbc",
-			"method": "GET",
-			"url": "",
-			"name": "메인_사이드 배너",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/singleBanner/list.json?singleBannerLocation_matching=leftSide&sorting=sortOrder&bannerStatus_mstching=y",
+			"queryParams": [
+				{
+					"key": "singleBannerLocation_matching",
+					"value": "leftSide",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "sorting",
+					"value": "sortOrder",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "bannerStatus_mstching",
+					"value": "y",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "5b8f3a9d-151a-1511-f678-95e2fcac0927",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "5b8f3a9d-151a-1511-f678-95e2fcac0927"
+			"helperAttributes": {},
+			"time": 1503753678415,
+			"name": "메인_사이드 배너",
+			"description": "(좌)leftSide / (우)rightSide",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "6af9984d-59f0-697a-c41a-3db11d5f309b",
-			"method": "GET",
-			"url": "",
-			"name": "주문 배송 메인_마케팅 배너",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/singleBanner/list.json?singleBannerLocation_matching=mypageMain&sorting=sortOrder&bannerStatus_mstching=y",
+			"queryParams": [
+				{
+					"key": "singleBannerLocation_matching",
+					"value": "mypageMain",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "sorting",
+					"value": "sortOrder",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "bannerStatus_mstching",
+					"value": "y",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "a2bd1d31-b61c-5a0a-76b1-a6b448614574"
+			"helperAttributes": {},
+			"time": 1503755200085,
+			"name": "주문 배송 메인_마케팅 배너",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "6b09cde0-73fc-a042-6599-7c0bc36fde7d",
@@ -3689,29 +3812,47 @@
 		},
 		{
 			"id": "6c2a76c6-27de-64eb-c641-7d364a44230f",
-			"method": "GET",
-			"url": "",
-			"name": "메인_팝업 추가 배너",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/singleBanner/list.json?singleBannerLocation_matching=popup&sorting=sortOrder&bannerStatus_mstching=y",
+			"queryParams": [
+				{
+					"key": "singleBannerLocation_matching",
+					"value": "popup",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "sorting",
+					"value": "sortOrder",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "bannerStatus_mstching",
+					"value": "y",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "5b8f3a9d-151a-1511-f678-95e2fcac0927",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "5b8f3a9d-151a-1511-f678-95e2fcac0927"
+			"helperAttributes": {},
+			"time": 1503753861818,
+			"name": "메인_팝업 추가 배너",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "6c4b52c7-172b-4983-d758-ace5c5c5c474",
@@ -4620,6 +4761,49 @@
 			"folderId": "455b9779-e444-61db-278a-0f642a5d2c37"
 		},
 		{
+			"id": "8da0eff9-1e44-d76e-eec3-92948949f4e9",
+			"headers": "",
+			"headerData": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/specialExhibitionApi/list.json?toDay=2017-08-22&categoryId=1&displayTargetType_not_matching=company",
+			"queryParams": [
+				{
+					"key": "toDay",
+					"value": "2017-08-22",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "categoryId",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "displayTargetType_not_matching",
+					"value": "company",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1503754242977,
+			"name": "기획전 메인_배너(슬라이드/3단고정)",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
+		},
+		{
 			"id": "8ed69dd2-9698-fbd3-2bcc-07f75e596f1a",
 			"method": "GET",
 			"url": "",
@@ -4670,6 +4854,50 @@
 			"folder": "f02e2e01-cfbb-9a41-5999-de51ecb964b6",
 			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
 			"folderId": "f02e2e01-cfbb-9a41-5999-de51ecb964b6"
+		},
+		{
+			"id": "90bd5719-9e9f-6c93-af7e-d164ecc7f480",
+			"headers": "",
+			"headerData": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/mainBanner/list.json?mainBannerLocation_matching=main&bannerStatus_matching=y&sorting=sortOrder",
+			"queryParams": [
+				{
+					"key": "mainBannerLocation_matching",
+					"value": "main",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "bannerStatus_matching",
+					"value": "y",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "sorting",
+					"value": "sortOrder",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1503753985259,
+			"name": "인트로,메인_메인_Key banner (슬라이드) 배너",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "937d3857-6bac-1169-afc4-6a75084a1229",
@@ -4751,29 +4979,33 @@
 		},
 		{
 			"id": "982afb6f-8849-9e1b-7159-7c36e59af9a3",
-			"method": "GET",
-			"url": "",
-			"name": "상품상세_마케팅 배너",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/beltBanner/list.json?beltBannerLocation=productDetail",
+			"queryParams": [
+				{
+					"key": "beltBannerLocation",
+					"value": "productDetail",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "f02e2e01-cfbb-9a41-5999-de51ecb964b6",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "f02e2e01-cfbb-9a41-5999-de51ecb964b6"
+			"helperAttributes": {},
+			"time": 1503755428236,
+			"name": "상품상세_마케팅 배너",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "984e7fb0-68ef-c97c-980b-472adba56932",
@@ -5214,28 +5446,54 @@
 		},
 		{
 			"id": "a957c6c0-fdfe-ead6-534a-eb29356453fd",
-			"method": "GET",
-			"url": "",
-			"name": "1depth 카테고리 메인_Key banner (슬라이드) 배너",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/mainBanner/list.json?mainBannerLocation_matching=categoryMain&bannerStatus_matching=y&sorting=sortOrder&categoryId=1",
+			"queryParams": [
+				{
+					"key": "mainBannerLocation_matching",
+					"value": "categoryMain",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "bannerStatus_matching",
+					"value": "y",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "sorting",
+					"value": "sortOrder",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "categoryId",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "4a9aa611-5655-4a87-24b4-d0ec1f2a8a4c",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715"
+			"helperAttributes": {},
+			"time": 1503754012770,
+			"name": "1depth 카테고리 메인_Key banner (슬라이드) 배너",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "a9da9ea3-b6ee-9df5-6db1-61c66b43c0c2",
@@ -5941,29 +6199,33 @@
 		},
 		{
 			"id": "c49393f1-e2b2-eec5-e4be-c8375f8a5b71",
-			"method": "GET",
-			"url": "",
-			"name": "인트로_마케팅 배너",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/beltBanner/list.json?beltBannerLocation=intro",
+			"queryParams": [
+				{
+					"key": "beltBannerLocation",
+					"value": "intro",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "5b8f3a9d-151a-1511-f678-95e2fcac0927",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "5b8f3a9d-151a-1511-f678-95e2fcac0927"
+			"helperAttributes": {},
+			"time": 1503755280777,
+			"name": "인트로_마케팅 배너",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "c514fd00-bb32-98d6-ff5b-855e2e497519",
@@ -6844,6 +7106,50 @@
 			"folderId": "a2bd1d31-b61c-5a0a-76b1-a6b448614574"
 		},
 		{
+			"id": "e92d040c-056c-903b-5b96-def7c16b723f",
+			"headers": "",
+			"headerData": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/singleBanner/list.json?singleBannerLocation_matching=nextToSearch&sorting=sortOrder&bannerStatus_mstching=y",
+			"queryParams": [
+				{
+					"key": "singleBannerLocation_matching",
+					"value": "nextToSearch",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "sorting",
+					"value": "sortOrder",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "bannerStatus_mstching",
+					"value": "y",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1503753623051,
+			"name": "인트로,메인_메인_검색 사이드 배너",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
+		},
+		{
 			"id": "eaf7e769-6c3e-7f4a-7343-18b40f34d146",
 			"method": "GET",
 			"url": "",
@@ -6920,6 +7226,43 @@
 			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
 			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
 			"folderId": "a2bd1d31-b61c-5a0a-76b1-a6b448614574"
+		},
+		{
+			"id": "edec6498-0edf-07cc-430b-953f16d72567",
+			"headers": "",
+			"headerData": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/category/list.json?level_matching=A&sorting=sortOrder",
+			"queryParams": [
+				{
+					"key": "level_matching",
+					"value": "A",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "sorting",
+					"value": "sortOrder",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1503753878424,
+			"name": "인트로,메인_메인_카테고리 메뉴 배너",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "ee33a6f2-85ec-3c5a-af99-360b0fe9718e",
@@ -7309,28 +7652,40 @@
 		},
 		{
 			"id": "f772ec14-752c-01d6-2867-89d60a62035e",
-			"method": "GET",
-			"url": "",
-			"name": "1depth 카테고리 메인_Marketing banner 배너",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/beltBanner/list.json?beltBannerLocation=category&categoryId=1",
+			"queryParams": [
+				{
+					"key": "beltBannerLocation",
+					"value": "category",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "categoryId",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"folder": "4a9aa611-5655-4a87-24b4-d0ec1f2a8a4c",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715"
+			"time": 1503755719793,
+			"name": "1depth 카테고리 메인_Marketing banner 배너",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "f85df55a-4646-7bd0-f573-134e74fba22d",
