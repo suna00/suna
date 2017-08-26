@@ -25,7 +25,7 @@
 
 buildscript {
     ext {
-        springBootVersion = '1.5.1.RELEASE'
+        springBootVersion = '1.5.6.RELEASE'
         springBootStarterVersion = '1.5.6.RELEASE'
 
         /*
@@ -57,13 +57,14 @@ jar {
 }
 
 bootRepackage {
-    withJarTask jar
+    excludeDevtools = true
     mainClass = 'net.ion.ice.Ice2Application'
 }
 
 war {
     baseName = 'ice2-core'
     version = "${coreVersion}"
+//    enabled = false
     manifest {
         attributes('Main-Class': 'net.ion.ice.Ice2Application')
     }
