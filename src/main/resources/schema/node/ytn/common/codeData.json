@@ -838,6 +838,15 @@
   },
   {
     "typeId": "commonCode",
+    "code": "privateStatus",
+    "upperCode": "root",
+    "name": "비공개여부",
+    "description": "",
+    "sortOrder": "95",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
     "code": "all",
     "upperCode": "addBenefitType",
     "name": "전체",
@@ -5269,6 +5278,24 @@
     "code": "temp3",
     "upperCode": "specialExhibitionMainBannerType",
     "name": "3단",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "y",
+    "upperCode": "privateStatus",
+    "name": "비공개",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "n",
+    "upperCode": "privateStatus",
+    "name": "공개",
     "description": "",
     "sortOrder": "2",
     "commonCodeStatus": "y"
