@@ -76,7 +76,7 @@ public class NodeBindingController {
 //    }
 
     private Object list(WebRequest request, @PathVariable String typeId) {
-        return ResponseUtils.response(nodeBindingService.list(typeId, request));
+        return nodeBindingService.list(typeId, request);
     }
 
     @RequestMapping(value = "/data/{typeId}/{id}", method = RequestMethod.GET)
