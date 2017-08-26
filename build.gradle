@@ -57,7 +57,7 @@ jar {
 }
 
 bootRepackage {
-    //excludeDevtools = false
+    excludeDevtools = false
     mainClass = 'net.ion.ice.Ice2Application'
 }
 
