@@ -1,6 +1,5 @@
 package net.ion.ice.security.common;
 
-import org.springframework.stereotype.Component;
 import org.springframework.web.util.WebUtils;
 
 import javax.servlet.http.Cookie;
@@ -13,9 +12,8 @@ import java.net.URLEncoder;
 /**
  * Created by seonwoong on 2017. 6. 14..
  */
-@Component
 public class CookieUtil {
-    public void create(HttpServletResponse response, String name, String value, Boolean httpOnly , Boolean secure, Integer maxAge, String domain) throws UnsupportedEncodingException {
+    public static void create(HttpServletResponse response, String name, String value, Boolean httpOnly , Boolean secure, Integer maxAge, String domain) throws UnsupportedEncodingException {
 
         Cookie cookie = new Cookie(name, URLEncoder.encode(value, "UTF-8"));
         cookie.setDomain(domain);
@@ -27,7 +25,7 @@ public class CookieUtil {
         response.addCookie(cookie);
     }
 
-    public void clear(HttpServletResponse response, String name) {
+    public static void clear(HttpServletResponse response, String name) {
         Cookie cookie = new Cookie(name, null);
         cookie.setPath("/");
         cookie.setHttpOnly(true);
@@ -36,7 +34,7 @@ public class CookieUtil {
         response.addCookie(cookie);
     }
 
-    public String getValue(HttpServletRequest httpServletRequest, String name) throws UnsupportedEncodingException {
+    public static String getValue(HttpServletRequest httpServletRequest, String name) throws UnsupportedEncodingException {
         Cookie cookie = WebUtils.getCookie(httpServletRequest, name);
         return cookie != null ? URLDecoder.decode(cookie.getValue(), "UTF-8") : null;
     }
