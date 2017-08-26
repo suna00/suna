@@ -236,9 +236,17 @@ public class NodeUtils {
     public static ReferenceView getReferenceValueView(ReadContext context, Object value, PropertyType pt) {
         try {
             NodeService nodeService = getNodeService();
-            Node refNode = getNode(pt.getReferenceType(), value.toString());
-            NodeType nodeType = nodeService.getNodeType(pt.getReferenceType());
+
+            String referenceType = pt.getReferenceType() ;
+            String refId = value.toString() ;
+            if(StringUtils.contains(refId, "::")){
+                referenceType = StringUtils.substringBefore(refId, "::") ;
+                refId = StringUtils.substringAfter(refId, "::") ;
+            }
+            Node refNode = getNode(referenceType, refId);
+            NodeType nodeType = nodeService.getNodeType(referenceType);
             return new ReferenceView(refNode.toDisplay(context), nodeType);
+
         } catch (Exception e) {
             return new ReferenceView(value.toString(), value.toString());
         }
@@ -247,8 +255,16 @@ public class NodeUtils {
     public static Reference getReferenceValue(Object value, PropertyType pt) {
         try {
             NodeService nodeService = getNodeService();
-            Node refNode = getNode(pt.getReferenceType(), value.toString());
-            NodeType nodeType = nodeService.getNodeType(pt.getReferenceType());
+            String referenceType = pt.getReferenceType() ;
+            String refId = value.toString() ;
+
+            if(StringUtils.contains(refId, "::")){
+                referenceType = StringUtils.substringBefore(refId, "::") ;
+                refId = StringUtils.substringAfter(refId, "::") ;
+            }
+
+            Node refNode = getNode(referenceType, refId);
+            NodeType nodeType = nodeService.getNodeType(referenceType);
             return new Reference(refNode, nodeType);
         } catch (Exception e) {
             return new Reference(value.toString(), value.toString());
