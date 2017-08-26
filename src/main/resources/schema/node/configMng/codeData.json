@@ -658,16 +658,8 @@
   {
     "typeId": "code",
     "groupCodeId": "selScopeCd",
-    "codeId": "4",
-    "name": "VOD",
-    "order": 4,
-    "active": true
-  },
-  {
-    "typeId": "code",
-    "groupCodeId": "selScopeCd",
     "codeId": "5",
-    "name": "Clip",
+    "name": "VOD",
     "order": 5,
     "active": true
   },
@@ -675,8 +667,16 @@
     "typeId": "code",
     "groupCodeId": "selScopeCd",
     "codeId": "6",
-    "name": "Photo",
+    "name": "Clip",
     "order": 6,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "selScopeCd",
+    "codeId": "7",
+    "name": "Photo",
+    "order": 7,
     "active": true
   },
   {
