@@ -5005,6 +5005,15 @@
   },
   {
     "typeId": "commonCode",
+    "code": "specialExhibitionMainBannerType",
+    "upperCode": "root",
+    "name": "기획전메인배너타입",
+    "description": "",
+    "sortOrder": "98",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
     "code": "main",
     "upperCode": "mainBannerLocation",
     "name": "메인",
@@ -5077,11 +5086,20 @@
   },
   {
     "typeId": "commonCode",
+    "code": "intro",
+    "upperCode": "beltBannerLocation",
+    "name": "인트로",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
     "code": "main",
     "upperCode": "beltBannerLocation",
     "name": "쇼핑몰메인",
     "description": "",
-    "sortOrder": "1",
+    "sortOrder": "2",
     "commonCodeStatus": "y"
   },
   {
@@ -5090,7 +5108,16 @@
     "upperCode": "beltBannerLocation",
     "name": "상품카테고리",
     "description": "",
-    "sortOrder": "2",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "productDetail",
+    "upperCode": "beltBannerLocation",
+    "name": "상품상세",
+    "description": "",
+    "sortOrder": "4",
     "commonCodeStatus": "y"
   },
   {
@@ -5099,7 +5126,7 @@
     "upperCode": "beltBannerLocation",
     "name": "기획전",
     "description": "",
-    "sortOrder": "3",
+    "sortOrder": "5",
     "commonCodeStatus": "y"
   },
   {
@@ -5108,7 +5135,16 @@
     "upperCode": "beltBannerLocation",
     "name": "이벤트",
     "description": "",
-    "sortOrder": "4",
+    "sortOrder": "6",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "cart",
+    "upperCode": "beltBannerLocation",
+    "name": "장바구니",
+    "description": "",
+    "sortOrder": "7",
     "commonCodeStatus": "y"
   },
   {
@@ -5199,6 +5235,42 @@
     "name": "로그인",
     "description": "",
     "sortOrder": "5",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "mypageMain",
+    "upperCode": "singleBannerLocation",
+    "name": "마이페이지메인",
+    "description": "",
+    "sortOrder": "6",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "serviceCenterMain",
+    "upperCode": "singleBannerLocation",
+    "name": "고객센터메인",
+    "description": "",
+    "sortOrder": "7",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "slide",
+    "upperCode": "specialExhibitionMainBannerType",
+    "name": "슬라이드",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "temp3",
+    "upperCode": "specialExhibitionMainBannerType",
+    "name": "3단",
+    "description": "",
+    "sortOrder": "2",
     "commonCodeStatus": "y"
   }
 ]
