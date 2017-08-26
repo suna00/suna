@@ -61,9 +61,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private TokenExtractor tokenExtractor;
 
     @Autowired
-    private JwtConfig jwtConfig;
-
-    @Autowired
     private AuthenticationManager authenticationManager;
 
 //    @Autowired

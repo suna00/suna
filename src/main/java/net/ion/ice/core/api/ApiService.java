@@ -6,7 +6,7 @@ import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.session.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +26,7 @@ public class ApiService {
     @Autowired
     private SessionService sessionService;
 
-    public Object execute(WebRequest request, String category, String api, String method) {
+    public Object execute(NativeWebRequest request, String category, String api, String method) {
         Node apiNode = nodeService.getNode("apiConfig", category + Node.ID_SEPERATOR + api) ;
 
         String apiMethod = (String) apiNode.get("method");

@@ -26,7 +26,7 @@ public class DefaultAuthenticationSuccessHandler implements AuthenticationSucces
 
 
     @Autowired
-    public DefaultAuthenticationSuccessHandler(final ObjectMapper objectMapper, final JwtTokenFactory tokenFactory, CookieUtil cookieUtil) {
+    public DefaultAuthenticationSuccessHandler(final ObjectMapper objectMapper, final JwtTokenFactory tokenFactory) {
         this.objectMapper = objectMapper;
         this.tokenFactory = tokenFactory;
     }
@@ -50,8 +50,8 @@ public class DefaultAuthenticationSuccessHandler implements AuthenticationSucces
 //        System.out.println("sessionID::::\t" + session.getId());
 //        int maxAge = 60 * 60 * 24; // 24 hour
 
-        CookieUtil.create(response, "iceJWT", "SDP ".concat(accessToken.getToken()), false, false, -1, request.getServerName());
-        CookieUtil.create(response, "iceRefreshJWT", "SDP ".concat(refreshToken.getToken()), true, false, -1, request.getServerName());
+        CookieUtil.create(response, "accessToken", "SDP ".concat(accessToken.getToken()), false, false, -1, request.getServerName());
+        CookieUtil.create(response, "refreshToken", "SDP ".concat(refreshToken.getToken()), true, false, -1, request.getServerName());
 
         response.setStatus(HttpStatus.OK.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
