@@ -288,7 +288,7 @@ public class NodeUtils {
                         return value;
                     }
                     if (context instanceof DataQueryContext) {
-                        return NodeUtils.getReferenceValueView(context, pt.getCodeFilter()+Node.ID_SEPERATOR+value, pt);
+                        return NodeUtils.getReferenceValueView(context, StringUtils.isEmpty(pt.getCodeFilter()) ? value : pt.getCodeFilter()+Node.ID_SEPERATOR+value, pt);
                     } else {
                         return NodeUtils.getReferenceValueView(context, value, pt);
                     }
@@ -297,7 +297,7 @@ public class NodeUtils {
                         return value;
                     }
                     if (context instanceof DataQueryContext) {
-                        return NodeUtils.getReferenceValue(pt.getCodeFilter()+Node.ID_SEPERATOR+value, pt);
+                        return NodeUtils.getReferenceValue(StringUtils.isEmpty(pt.getCodeFilter()) ? value : pt.getCodeFilter()+Node.ID_SEPERATOR+value, pt);
                     } else {
                         return NodeUtils.getReferenceValue(value, pt);
                     }
@@ -313,13 +313,13 @@ public class NodeUtils {
                     for (String refVal : StringUtils.split(value.toString(), ",")) {
                         if (context.isReferenceView(pt.getPid())) {
                             if (context instanceof DataQueryContext) {
-                                refValues.add(NodeUtils.getReferenceValueView(context, pt.getCodeFilter()+Node.ID_SEPERATOR+refVal, pt));
+                                refValues.add(NodeUtils.getReferenceValueView(context, StringUtils.isEmpty(pt.getCodeFilter()) ? value : pt.getCodeFilter()+Node.ID_SEPERATOR+refVal, pt));
                             } else {
                                 refValues.add(NodeUtils.getReferenceValueView(context, refVal, pt));
                             }
                         } else {
                             if (context instanceof DataQueryContext) {
-                                refValues.add(NodeUtils.getReferenceValue(pt.getCodeFilter()+Node.ID_SEPERATOR+refVal, pt));
+                                refValues.add(NodeUtils.getReferenceValue(StringUtils.isEmpty(pt.getCodeFilter()) ? value : pt.getCodeFilter()+Node.ID_SEPERATOR+refVal, pt));
                             } else {
                                 refValues.add(NodeUtils.getReferenceValue(refVal, pt));
                             }
