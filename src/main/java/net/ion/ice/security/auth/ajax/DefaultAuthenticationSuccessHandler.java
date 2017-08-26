@@ -26,7 +26,7 @@ public class DefaultAuthenticationSuccessHandler implements AuthenticationSucces
 
 
     @Autowired
-    public DefaultAuthenticationSuccessHandler(final ObjectMapper objectMapper, final JwtTokenFactory tokenFactory, CookieUtil cookieUtil) {
+    public DefaultAuthenticationSuccessHandler(final ObjectMapper objectMapper, final JwtTokenFactory tokenFactory) {
         this.objectMapper = objectMapper;
         this.tokenFactory = tokenFactory;
     }
