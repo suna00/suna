@@ -374,7 +374,7 @@ public class LuceneQueryUtils {
                 query = new TermQuery( createTerm(termContext, fieldName,  term));
                 break;
             case WILDCARD:
-                query = new WildcardQuery(new Term(fieldName, term)) ;
+                query = new WildcardQuery(new Term(fieldName, "*"+term+"*")) ;
                 break;
 //            case FUZZY:
 //                int maxEditDistance = getMaxEditDistance( term );
