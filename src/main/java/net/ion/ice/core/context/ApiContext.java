@@ -1,12 +1,8 @@
 package net.ion.ice.core.context;
 
 import net.ion.ice.core.node.Node;
-import net.ion.ice.core.node.NodeType;
-import net.ion.ice.core.node.NodeUtils;
-import net.ion.ice.core.node.PropertyType;
 import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.ResultField;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 

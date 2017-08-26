@@ -9,7 +9,6 @@ import net.ion.ice.security.auth.jwt.JwtAuthenticationProvider;
 import net.ion.ice.security.auth.jwt.JwtTokenAuthenticationProcessingFilter;
 import net.ion.ice.security.auth.jwt.SkipPathRequestMatcher;
 import net.ion.ice.security.auth.jwt.extractor.TokenExtractor;
-import net.ion.ice.security.common.CookieUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
