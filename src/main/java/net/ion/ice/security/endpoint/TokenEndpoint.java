@@ -1,13 +1,8 @@
 package net.ion.ice.security.endpoint;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.ion.ice.core.cluster.ClusterService;
-import net.ion.ice.core.data.ResponseUtils;
 import net.ion.ice.core.response.JsonResponse;
 import net.ion.ice.core.session.SessionService;
-import net.ion.ice.security.common.CookieUtil;
-import net.ion.ice.security.token.JwtToken;
-import net.ion.ice.security.token.JwtTokenFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,33 +22,22 @@ public class TokenEndpoint {
     @Autowired
     SessionService sessionService;
     @Autowired
-    private JwtTokenFactory tokenFactory;
-    @Autowired
-    private CookieUtil cookieUtil;
-    @Autowired
     ObjectMapper objectMapper;
 
-    @RequestMapping(value = "/api/auth/token", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/auth/token", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public @ResponseBody
     Object jwtToken(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        Map<String, Object> data = new HashMap<>();
+        Map<String, Object> item = new HashMap<>();
+        String token;
+        if (sessionService.getSession(request)== null) {
+            token = sessionService.putSession(request, response);
 
-        String token = cookieUtil.getValue(request, "iceJWT");
-
-        if (token == null) {
-            JwtToken accessToken = tokenFactory.createInitJwtToken();
-//        JwtToken refreshToken = tokenFactory.createRefreshToken();
-            token = accessToken.getToken();
-            data.put("iceJWT", accessToken.getToken());
-//        data.put("refreshToken", refreshToken.getToken());
-//        int maxAge = 60 * 60 * 24; // 24 hour
-//            clusterService.putSession(accessToken.getToken());
-            cookieUtil.create(response, "iceJWT", "SDP ".concat(accessToken.getToken()), false, false, -1, request.getServerName());
-            sessionService.putSession(token);
+        } else {
+            token = sessionService.getSessionKey(request);
         }
-//        cookieUtil.create(response, "refreshToken", "SDP ".concat(refreshToken.getToken()), true, false, -1, request.getServerName());
 
+        item.put("iceJWT", token);
 
-        return JsonResponse.create(data);
+        return JsonResponse.create(item);
     }
 }

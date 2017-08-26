@@ -1,13 +1,11 @@
 package net.ion.ice.security.auth.ajax;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hazelcast.web.WebFilter;
 import net.ion.ice.security.User.UserContext;
 import net.ion.ice.security.common.CookieUtil;
 import net.ion.ice.security.token.JwtToken;
 import net.ion.ice.security.token.JwtTokenFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
@@ -17,7 +15,6 @@ import org.springframework.stereotype.Component;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,14 +23,12 @@ import java.util.Map;
 public class DefaultAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
     private final ObjectMapper objectMapper;
     private final JwtTokenFactory tokenFactory;
-    private final CookieUtil cookieUtil;
 
 
     @Autowired
     public DefaultAuthenticationSuccessHandler(final ObjectMapper objectMapper, final JwtTokenFactory tokenFactory, CookieUtil cookieUtil) {
         this.objectMapper = objectMapper;
         this.tokenFactory = tokenFactory;
-        this.cookieUtil = cookieUtil;
     }
 
 
@@ -55,8 +50,8 @@ public class DefaultAuthenticationSuccessHandler implements AuthenticationSucces
 //        System.out.println("sessionID::::\t" + session.getId());
 //        int maxAge = 60 * 60 * 24; // 24 hour
 
-        cookieUtil.create(response, "accessToken", "SDP ".concat(accessToken.getToken()), false, false, -1, request.getServerName());
-        cookieUtil.create(response, "refreshToken", "SDP ".concat(refreshToken.getToken()), true, false, -1, request.getServerName());
+        CookieUtil.create(response, "accessToken", "SDP ".concat(accessToken.getToken()), false, false, -1, request.getServerName());
+        CookieUtil.create(response, "refreshToken", "SDP ".concat(refreshToken.getToken()), true, false, -1, request.getServerName());
 
         response.setStatus(HttpStatus.OK.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
