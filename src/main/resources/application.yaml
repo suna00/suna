@@ -24,7 +24,6 @@ jwtConfig:
 cluster:
   members:
     - 127.0.0.1
-    - localhost
 
 infinispan:
   cachePath: /resource/ice2/cache
@@ -60,7 +59,6 @@ hazelcast:
   baseDir: /resource/ice2/data_1
   members:
     - 127.0.0.1
-    - localhost
 
 
 
@@ -197,8 +195,7 @@ file:
 ---
 # YTN 개발 서버
 spring:
-  profiles:
-    active: ytn-dev
+  profiles: ytn-dev
   http:
     multipart:
       max-request-size: 20MB

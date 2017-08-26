@@ -44,10 +44,8 @@ public class RefreshTokenEndpoint {
 //                .collect(Collectors.toList());
 
         UserContext userContext = UserContext.create(subject);
-        HttpSession  session = request.getSession();
         AccessJwtToken accessToken = tokenFactory.createAccessJwtToken(userContext);
-        session.setAttribute("accessToken", accessToken.getToken());
-        CookieUtil.create(response, "accessToken", "SDP ".concat(accessToken.getToken()), false, false, -1, request.getServerName());
+        CookieUtil.create(response, "iceJWT", "SDP ".concat(accessToken.getToken()), false, false, -1, request.getServerName());
 
         return accessToken;
     }

@@ -25,13 +25,14 @@
 
 buildscript {
     ext {
-        springBootVersion = '1.5.1.RELEASE'
+        springBootVersion = '1.5.6.RELEASE'
     }
     repositories {
         mavenCentral()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.springframework:springloaded:1.2.4.RELEASE")
     }
 }
 
@@ -64,6 +65,7 @@ repositories {
 
 }
 
+
 /*
 * 키워드
 * providedCompile : 컴파일 시에는 참조하고 war 안에는 포함이 되지 않음
@@ -85,15 +87,17 @@ dependencies {
     compile('com.fasterxml.jackson.core:jackson-databind:2.8.6+')
 	compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.8.6+')
 
-	compile('com.hazelcast:hazelcast-all:3.8.3')
+	compile('com.hazelcast:hazelcast-all:3.8.4')
 
     // yml parser
     compile ('com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.8.9')
 
     compile('ch.qos.logback:logback-access:1.2.3')
     compile('net.logstash.logback:logstash-logback-encoder:4.8+')
-    compile('org.infinispan:infinispan-embedded:8.2.6.Final')
-    compile('org.infinispan:infinispan-query:8.2.6.Final')
+//    compile('org.infinispan:infinispan-embedded:9.1.0.Final'){
+//        exclude module: "jboss-logging"
+//    }
+    compile('org.infinispan:infinispan-query:9.1.0.Final')
     compile('io.jsonwebtoken:jjwt:0.7.0')
 
     compile("org.springframework:spring-jdbc")
