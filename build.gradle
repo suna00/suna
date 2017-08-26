@@ -28,8 +28,14 @@ buildscript {
         springBootVersion = '1.5.1.RELEASE'
         springBootStarterVersion = '1.5.6.RELEASE'
 
+        /*
+        infinispan 9 부터 캐시 인덱싱 방식이
+        hibernate && Lucene 에서 자체처리/엘라스틱 방식으로 변경되어 업데이트 불가함
+        hibernate 도 5.5 에서 5.6 으로 major 변경이 있어 판올림 불가
+        * */
 //        infinispanVersion = '9.0.3.Final'
         infinispanVersion = '8.2.6.Final'
+        coreVersion = '0.0.1-SNAPSHOT'
     }
     repositories {
         mavenCentral()
@@ -54,8 +60,15 @@ bootRepackage {
     mainClass = 'net.ion.ice.Ice2Application'
 }
 
-version = '0.0.1-SNAPSHOT'
+//war {
+//    baseName = 'ice2-core'
+//    version = "${coreVersion}"
+//    manifest {
+//        attributes('Main-Class': 'net.ion.ice.Ice2Application')
+//    }
+//}
 
+version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
