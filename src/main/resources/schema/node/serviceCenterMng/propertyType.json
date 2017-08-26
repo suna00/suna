@@ -1229,6 +1229,23 @@
   {
     "typeId": "propertyType",
     "tid": "oneToOneQuestionView",
+    "pid": "memberName",
+    "propertyTypeName": "이름",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "oneToOneQuestionView",
     "pid": "memberGender",
     "propertyTypeName": "성별",
     "valueType": "REFERENCE",
