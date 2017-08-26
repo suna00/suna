@@ -96,7 +96,7 @@ server:
 jwtConfig:
   issuer: I-ON
   secretKey: dkdldhs!@#$
-  headerPrefix: SDP
+  tokenPrefix: SDP
   headString: X-Authorization
   tokenExpirationTime: 15 #분
   refreshTokenExpTime: 60 #분
@@ -161,7 +161,7 @@ server:
 jwtConfig:
   issuer: I-ON
   secretKey: dkdldhs!@#$
-  headerPrefix: SDP
+  tokenPrefix: SDP
   headString: X-Authorization
   tokenExpirationTime: 15 #분
   refreshTokenExpTime: 60 #분
@@ -207,7 +207,7 @@ server:
 jwtConfig:
   issuer: I-ON
   secretKey: dkdldhs!@#$
-  headerPrefix: SDP
+  tokenPrefix: SDP
   headString: X-Authorization
   tokenExpirationTime: 15 #분
   refreshTokenExpTime: 60 #분
@@ -251,7 +251,7 @@ server:
 jwtConfig:
   issuer: I-ON
   secretKey: dkdldhs!@#$
-  headerPrefix: SDP
+  tokenPrefix: SDP
   headString: X-Authorization
   tokenExpirationTime: 15 #분
   refreshTokenExpTime: 60 #분
