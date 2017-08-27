@@ -18,6 +18,7 @@ import java.util.Collections;
 @Component
 public class DefaultAuthenticationProvider implements AuthenticationProvider {
 
+    @Autowired
     private NodeService nodeService;
 
     @Override
@@ -42,9 +43,9 @@ public class DefaultAuthenticationProvider implements AuthenticationProvider {
         return (UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication));
     }
 
-    @Bean
-    NodeService nodeService(){
-        this.nodeService = new NodeService();
-        return nodeService;
-    }
+//    @Bean
+//    NodeService nodeService(){
+//        this.nodeService = new NodeService();
+//        return nodeService;
+//    }
 }
