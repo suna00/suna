@@ -137,3 +137,13 @@ dependencies {
     testCompile("org.springframework.boot:spring-boot-starter-test:${springBootStarterVersion}")
     testCompile("com.microsoft.sqlserver:mssql-jdbc:6.2.1.jre8")
 }
+
+
+
+allprojects {
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:deprecation" //<< "-Xlint:unchecked"
+        }
+    }
+}
