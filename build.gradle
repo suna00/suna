@@ -89,6 +89,13 @@ repositories {
 
 }
 
+dependencyManagement {
+    resolutionStrategy {
+        cacheChangingModulesFor 0, 'seconds'
+    }
+}
+
+
 /*
 * 키워드
 * providedCompile : 컴파일 시에는 참조하고 war 안에는 포함이 되지 않음
@@ -133,6 +140,7 @@ dependencies {
 
     compile("org.stagemonitor:stagemonitor-web-servlet:0.80.0.RC1")
     compile("org.projectlombok:lombok:1.16.16")
+
     runtime("org.springframework.boot:spring-boot-devtools")
     testCompile("org.springframework.boot:spring-boot-starter-test:${springBootStarterVersion}")
     testCompile("com.microsoft.sqlserver:mssql-jdbc:6.2.1.jre8")
