@@ -8,7 +8,7 @@
 * - wrapper : gradlew(간편 빌드) 파일 생성
 * - tasks : 현재 프로젝트에 등록된 task 목록 출력. 예시 ) gradle tasks
 *
-* plugin 'java' 에서 제공되는 task 목록
+* plugin "java" 에서 제공되는 task 목록
 * - * assemble : 테스트를 생략하고 결과 (jar/war) 만 생성
 * - * build : check 태스크와 assemble 태스크를 실행
 * - buildDependents : 의존 프로젝트도 함께 빌드
@@ -25,17 +25,17 @@
 
 buildscript {
     ext {
-        springBootVersion = '1.5.6.RELEASE'
-        springBootStarterVersion = '1.5.6.RELEASE'
+        springBootVersion = "1.5.6.RELEASE"
+        springBootStarterVersion = "1.5.6.RELEASE"
 
         /*
         infinispan 9 부터 캐시 인덱싱 방식이
         hibernate && Lucene 에서 자체처리/엘라스틱 방식으로 변경되어 업데이트 불가함
         hibernate 도 5.5 에서 5.6 으로 major 변경이 있어 판올림 불가
         * */
-//        infinispanVersion = '9.0.3.Final'
-        infinispanVersion = '8.2.6.Final'
-        coreVersion = '0.0.1-SNAPSHOT'
+//        infinispanVersion = "9.0.3.Final"
+        infinispanVersion = "8.2.6.Final"
+        coreVersion = "0.0.1-SNAPSHOT"
     }
     repositories {
         jcenter()
@@ -50,41 +50,41 @@ buildscript {
 }
 
 
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'war' // apply plugin: 'java' :: war 플러그인이 java 플러그인의 모든 부분을 포함함
+apply plugin: "eclipse"
+apply plugin: "idea"
+apply plugin: "org.springframework.boot"
+apply plugin: "war" // apply plugin: "java" :: war 플러그인이 java 플러그인의 모든 부분을 포함함
 
 jar {
-    baseName = 'ice2-core'
+    baseName = "ice2-core"
     manifest {
-        attributes('Main-Class': 'net.ion.ice.Ice2Application')
+        attributes("Main-Class": "net.ion.ice.Ice2Application")
     }
 }
 
 bootRepackage {
     excludeDevtools = false
-    mainClass = 'net.ion.ice.Ice2Application'
+    mainClass = "net.ion.ice.Ice2Application"
 }
 
 war {
-    baseName = 'ice2-core'
+    baseName = "ice2-core"
     version = "${coreVersion}"
 //    enabled = false
     manifest {
-        attributes('Main-Class': 'net.ion.ice.Ice2Application')
+        attributes("Main-Class": "net.ion.ice.Ice2Application")
     }
 }
 
-version = '0.0.1-SNAPSHOT'
+version = "0.0.1-SNAPSHOT"
 sourceCompatibility = 1.8
 
 repositories {
 
 //	mavenCentral()
     maven {
-        url 'http://dcsf-dev01.i-on.net/nexus/content/groups/public/'
-        name 'sdp.i-on.net'
+        url "http://dcsf-dev01.i-on.net/nexus/content/groups/public/"
+        name "sdp.i-on.net"
     }
 
 }
@@ -103,37 +103,37 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web:${springBootStarterVersion}")
     compile("org.springframework.boot:spring-boot-starter-tomcat:${springBootStarterVersion}")
     compile("org.springframework.boot:spring-boot-starter-security:${springBootStarterVersion}")
-    compile('org.springframework.boot:spring-boot-configuration-processor')
-    compile('org.apache.commons:commons-lang3:3.5+')
-    compile('commons-net:commons-net:3.4+')
-    compile('commons-io:commons-io:2.5+')
-    compile('com.fasterxml.jackson.core:jackson-databind:2.8.6+')
-	compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.8.6+')
+    compile("org.springframework.boot:spring-boot-configuration-processor")
+    compile("org.apache.commons:commons-lang3:3.5+")
+    compile("commons-net:commons-net:3.4+")
+    compile("commons-io:commons-io:2.5+")
+    compile("com.fasterxml.jackson.core:jackson-databind:2.8.6+")
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.8.6+")
 
-	compile('com.hazelcast:hazelcast-all:3.8.3')
+    compile("com.hazelcast:hazelcast-all:3.8.3")
 
     // yml parser
-    compile ('com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.8.9')
+    compile ("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.8.9")
 
-    compile('ch.qos.logback:logback-access:1.2.3')
-    compile('net.logstash.logback:logstash-logback-encoder:4.8+')
+    compile("ch.qos.logback:logback-access:1.2.3")
+    compile("net.logstash.logback:logstash-logback-encoder:4.8+")
 
     compile ("org.eclipse.persistence:javax.persistence:2.1.1")
 
     compile("org.infinispan:infinispan-embedded:${infinispanVersion}")
     compile("org.infinispan:infinispan-query:${infinispanVersion}")
-    compile('io.jsonwebtoken:jjwt:0.7.0')
+    compile("io.jsonwebtoken:jjwt:0.7.0")
 
     compile("org.springframework:spring-jdbc")
     compile("org.apache.commons:commons-dbcp2:2.1.1")
-    compile('com.oracle:ojdbc8:12.2.0.1')                       //oracle
-    compile('mysql:mysql-connector-java:5.1.42')                //mysql
-    compile('org.mariadb.jdbc:mariadb-java-client:2.0.2')       //maria
-    compile('com.microsoft.sqlserver:mssql-jdbc:6.1.0.jre8')    //msSql
+    compile("com.oracle:ojdbc8:12.2.0.1")                       //oracle
+    compile("mysql:mysql-connector-java:5.1.42")                //mysql
+    compile("org.mariadb.jdbc:mariadb-java-client:2.0.2")       //maria
+    compile("com.microsoft.sqlserver:mssql-jdbc:6.1.0.jre8")    //msSql
 
-    compile('org.stagemonitor:stagemonitor-web-servlet:0.80.0.RC1')
-    compile('org.projectlombok:lombok:1.16.16')
-    runtime('org.springframework.boot:spring-boot-devtools')
+    compile("org.stagemonitor:stagemonitor-web-servlet:0.80.0.RC1")
+    compile("org.projectlombok:lombok:1.16.16")
+    runtime("org.springframework.boot:spring-boot-devtools")
     testCompile("org.springframework.boot:spring-boot-starter-test:${springBootStarterVersion}")
     testCompile("com.microsoft.sqlserver:mssql-jdbc:6.2.1.jre8")
 }
