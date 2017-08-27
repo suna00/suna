@@ -3,14 +3,12 @@ package net.ion.ice.cjmwave.vote;
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.event.EventBroker;
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
-import net.ion.ice.core.node.Code;
-import net.ion.ice.core.node.Node;
+import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.NodeService;
-import net.ion.ice.core.query.SimpleQueryResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Map;
 
 /**
  * Created by jaeho on 2017. 7. 11..
@@ -44,6 +42,10 @@ public class VoteService {
         Map<String, Object> _data = context.getData();
 
         //여기다 이제 투표기본정보, 제한, 항목 노드에 각각 저장을 .....
+
+        Object voteInfo = JsonUtils.parsingJsonToObject(_data.get("voteInfo").toString());
+        Object termRstrtnInfo = JsonUtils.parsingJsonToObject(_data.get("termRstrtnInfo").toString());
+        Object voteItems = JsonUtils.parsingJsonToObject(_data.get("voteItems").toString());
 
     }
 
