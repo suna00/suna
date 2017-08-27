@@ -38,14 +38,20 @@ buildscript {
         coreVersion = '0.0.1-SNAPSHOT'
     }
     repositories {
-        mavenCentral()
+        jcenter()
+//        mavenCentral()
+
+//        jcenter 가  mavenRepository 보다 빠른 이유에 대해서는 아래 URL 을 참조하세요
+//        https://blog.bintray.com/2015/02/09/android-studio-migration-from-maven-central-to-jcenter/
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }
 
+
 apply plugin: 'eclipse'
+apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'war' // apply plugin: 'java' :: war 플러그인이 java 플러그인의 모든 부분을 포함함
 
@@ -111,8 +117,6 @@ dependencies {
 
     compile('ch.qos.logback:logback-access:1.2.3')
     compile('net.logstash.logback:logstash-logback-encoder:4.8+')
-//    compile('org.infinispan:infinispan-embedded:8.2.6.Final')
-//    compile('org.infinispan:infinispan-query:8.2.6.Final')
 
     compile ("org.eclipse.persistence:javax.persistence:2.1.1")
 
