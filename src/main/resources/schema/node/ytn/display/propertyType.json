@@ -904,6 +904,23 @@
   },
   {
     "typeId": "propertyType",
+    "tid": "category",
+    "pid": "siteType",
+    "propertyTypeName": "사이트타입",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
+    "codeFilter": "siteType",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
     "tid": "gnb",
     "pid": "gnbId",
     "propertyTypeName": "ID",
@@ -1156,6 +1173,23 @@
     "referenceType": "user",
     "referenceValue": "userId",
     "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "gnb",
+    "pid": "siteType",
+    "propertyTypeName": "사이트타입",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
+    "codeFilter": "siteType",
     "defaultValue": ""
   },
   {

@@ -28,6 +28,7 @@
     "siteStatus": "y"
   },
   {
+    "typeId": "affiliate",
     "affiliateId": 1,
     "name": "아이온커뮤니케이션즈",
     "siteId": "ion",
@@ -46,6 +47,7 @@
     "area": null
   },
   {
+    "typeId": "affiliate",
     "affiliateId": 2,
     "name": "서울대학교",
     "siteId": "university",
@@ -64,6 +66,7 @@
     "area": null
   },
   {
+    "typeId": "affiliate",
     "affiliateId": 3,
     "name": "연세대학교",
     "siteId": "university",
@@ -82,6 +85,7 @@
     "area": null
   },
   {
+    "typeId": "affiliate",
     "affiliateId": 4,
     "name": "고려대학교",
     "siteId": "university",
@@ -102,28 +106,29 @@
   {
     "typeId": "member",
     "memberNo": 77777,
-    "id": "jlee84@i-on.net",
-    "password": "77777",
-    "memberStatus": "join",
+    "siteId": {
+      "value": "ion",
+      "label": "아이온커뮤니케이션즈",
+      "refId": "ion"
+    },
+    "affiliateId": {
+      "value": "1",
+      "label": "아이온커뮤니케이션즈",
+      "refId": "1"
+    },
+    "userId": "jlee84@i-on.net",
+    "password": "1234",
+    "siteType": {
+      "value": "company",
+      "label": "기업",
+      "refId": "siteType>company"
+    },
+    "memberStatus": {
+      "value": "join",
+      "label": "가입",
+      "refId": "memberStatus>join"
+    },
     "name": "이정아",
-    "gender": "woman",
-    "company": "아이온 커뮤니케이션",
-    "phone": "02-3430-1205",
-    "cellphone": "010-0000-0000",
-    "postCode": "135-080",
-    "address": "서울특별시 강남구 테헤란로 10길 15 (역삼동)",
-    "email": "jlee84@i-on.net",
-    "termsOfUseAgreeYn": "y",
-    "receiveMarketingEmailAgreeYn": "y",
-    "receiveMarketingSMSAgreeYn": "y",
-    "joinDate": "20170731150000",
-    "lastLoginDate": "20170731150000",
-    "acceptTermsYn": "y",
-    "numberOfRecommendations": 0,
-    "membershipLevel": "general",
-    "siteId": "ion",
-    "affiliateId": 1,
-    "siteType": null,
     "universityName": null,
     "major": null,
     "studentId": null,
@@ -131,15 +136,101 @@
     "lastName": null,
     "nickName": null,
     "profileImage": null,
+    "gender": {
+      "value": "woman",
+      "label": "여자",
+      "refId": "genderType>woman"
+    },
     "birthday": null,
+    "company": null,
     "department": null,
-    "detailedAddress": null,
+    "phone": null,
+    "cellphone": "010-1111-2222",
+    "postCode": "135-080",
+    "address": "서울특별시 강남구 테헤란로 10길 15 (역삼동)",
+    "detailedAddress": "5",
+    "email": "jlee84@i-on.net",
     "fax": null,
+    "termsOfUseAgreeYn": null,
+    "receiveMarketingEmailAgreeYn": null,
+    "receiveMarketingSMSAgreeYn": null,
     "inflowRoute": null,
+    "joinDate": null,
+    "lastLoginDate": null,
     "dormancyExtensionDate": null,
+    "acceptTermsYn": null,
     "recommendedPerson": null,
+    "numberOfRecommendations": null,
     "failedCount": null,
     "lastFailedDate": null,
+    "membershipLevel": "vip",
+    "barcode": null,
+    "snsLinkYn": null,
+    "snsType": null,
+    "snsId": null,
+    "snsProfileLink": null
+  },
+  {
+    "typeId": "member",
+    "memberNo": 88888,
+    "siteId": {
+      "value": "ion",
+      "label": "아이온커뮤니케이션즈",
+      "refId": "ion"
+    },
+    "affiliateId": {
+      "value": "1",
+      "label": "아이온커뮤니케이션즈",
+      "refId": "1"
+    },
+    "userId": "swyoon@i-on.net",
+    "password": "1234",
+    "siteType": {
+      "value": "company",
+      "label": "기업",
+      "refId": "siteType>company"
+    },
+    "memberStatus": {
+      "value": "join",
+      "label": "가입",
+      "refId": "memberStatus>join"
+    },
+    "name": "윤선웅",
+    "universityName": null,
+    "major": null,
+    "studentId": null,
+    "firstName": null,
+    "lastName": null,
+    "nickName": null,
+    "profileImage": null,
+    "gender": {
+      "value": "man",
+      "label": "남자",
+      "refId": "genderType>man"
+    },
+    "birthday": null,
+    "company": null,
+    "department": null,
+    "phone": null,
+    "cellphone": "010-1111-2222",
+    "postCode": "135-080",
+    "address": "서울특별시 강남구 테헤란로 10길 15 (역삼동)",
+    "detailedAddress": "5",
+    "email": "swyoon@i-on.net",
+    "fax": null,
+    "termsOfUseAgreeYn": null,
+    "receiveMarketingEmailAgreeYn": null,
+    "receiveMarketingSMSAgreeYn": null,
+    "inflowRoute": null,
+    "joinDate": null,
+    "lastLoginDate": null,
+    "dormancyExtensionDate": null,
+    "acceptTermsYn": null,
+    "recommendedPerson": null,
+    "numberOfRecommendations": null,
+    "failedCount": null,
+    "lastFailedDate": null,
+    "membershipLevel": "general",
     "barcode": null,
     "snsLinkYn": null,
     "snsType": null,

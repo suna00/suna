@@ -1846,6 +1846,15 @@
   },
   {
     "typeId": "commonCode",
+    "code": "service",
+    "upperCode": "GNBType",
+    "name": "제휴서비스",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
     "code": "in",
     "upperCode": "inAndOut",
     "name": "충전",
