@@ -18,9 +18,9 @@
     "cnctLnkUrl": "",
     "findKywrd": "TEEN TOP",
     "refClipIds": "",
-    "showYn": 1,
+    "showYn": true,
     "showCntryCdList": "KOR",
-    "mnetIfTrtYn": 1
+    "mnetIfTrtYn": true
   },
   {
     "typeId": "pgmClip",
@@ -41,8 +41,8 @@
     "cnctLnkUrl": "",
     "findKywrd": "GOT7",
     "refClipIds": "",
-    "showYn": 1,
+    "showYn": true,
     "showCntryCdList": "CHN",
-    "mnetIfTrtYn": 1
+    "mnetIfTrtYn": true
   }
 ]

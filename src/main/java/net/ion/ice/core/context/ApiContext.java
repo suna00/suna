@@ -26,11 +26,11 @@ public class ApiContext {
 
     private List<ResultField> resultFieldList ;
 
-    public static ApiContext createContext(Node apiNode, Map<String, Object> config,  Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap) {
+    public static ApiContext createContext(Node apiNode, Map<String, Object> config,  Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, Map<String, Object> session) {
         ApiContext ctx = new ApiContext() ;
         ctx.apiNode = apiNode ;
         ctx.data = ContextUtils.makeContextData(parameterMap, multiFileMap) ;
-
+        ctx.data.put("session", session);
         ctx.config = config;
 
         ctx.init();

@@ -31,7 +31,7 @@
           "upperCategory": "parentCategory",
           "refCode1": {
             "typeId": "testItem",
-            "query": {"category": "{{:categoryId}}", "sorting" : "parentCategory"},
+            "query": {"category": "{{:default(categoryId, drama)}}", "sorting" : "parentCategory"},
             "response" : {
               "category": "",
               "itemTitle": "title"
@@ -49,49 +49,6 @@
       },
       "users" : {
         "endpoint":"http://customer.api.com/api/test.json?id={{:testId}}"
-      }
-    }
-  },
-  {
-    "typeId": "apiConfig",
-    "category": "testApi",
-    "apiId": "mergeSample",
-    "apiName": "Merge Sample",
-    "method": "GET",
-    "parameters": [
-      {
-        "paramName": "page",
-        "required": true
-      }
-    ],
-    "config": {
-      "items": {
-        "typeId": "testItem",
-        "queryType": "merge",
-        "query": [
-          {
-            "field": "category",
-            "method": "matching",
-            "value": "drama"
-          },
-          {
-            "sorting": "id desc"
-          },
-          {
-            "page": "{{:page}}",
-            "pageSize": 20
-          }
-        ],
-        "response": {
-          "merge": "baseItem",
-          "fields": {
-            "id": "",
-            "category": null,
-            "title": "",
-            "body": "",
-            "baseItem": ""
-          }
-        }
       }
     }
   },
@@ -237,6 +194,34 @@
       "typeId": "testItem",
       "query" : [
         {"includeReferenced" : false, "page": "{{:page}}"}
+      ],
+      "response" :{
+        "id" :"",
+        "category" : "",
+        "title" : "",
+        "body" : "",
+        "commentList" : {
+          "select" : {
+            "ds" : "mariaDb",
+            "resultType" : "list",
+            "sql" : "select * from testComment where itemId = @{id}"
+          }
+        }
+      }
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "mergeSample",
+    "apiName" : "Merge Aggregation Sample",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "testItem",
+      "query" : [
+        {"includeReferenced" : false, "page": "{{:page}}", "merge" : "baseItem" }
       ],
       "response" :{
         "id" :"",

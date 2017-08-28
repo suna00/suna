@@ -1,10 +1,8 @@
 package net.ion.ice.core.node;
 
-import infinispan.com.mchange.lang.ObjectUtils;
 import net.ion.ice.core.infinispan.lucene.AnalyzerFactory;
 import org.apache.lucene.analysis.Analyzer;
 
-import java.util.BitSet;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
