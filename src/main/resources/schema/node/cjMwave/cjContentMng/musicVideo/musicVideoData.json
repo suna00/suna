@@ -14,7 +14,7 @@
     "todouUrl": "",
     "playTime": "0.45",
     "showCntryCdList": "KOR, USA",
-    "mnetIfTrtYn": 1,
+    "mnetIfTrtYn": true,
     "relSongIds": "",
     "relArtistIds": ""
   }

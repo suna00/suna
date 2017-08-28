@@ -1,14 +1,14 @@
 [
   {
     "typeId": "glblChatChInfo",
-    "Global Chat 채널 일련번호": 5151,
-    "채널 구분 코드": "1",
-    "채널명": "MCD"
+    "glblChatChSeq": 5151,
+    "chDivCd": "1",
+    "chNm": "MCD"
   },
   {
     "typeId": "glblChatChInfo",
-    "Global Chat 채널 일련번호": 5152,
-    "채널 구분 코드": "2",
-    "채널명": "MWave"
+    "glblChatChSeq": 5152,
+    "chDivCd": "2",
+    "chNm": "MWave"
   }
 ]

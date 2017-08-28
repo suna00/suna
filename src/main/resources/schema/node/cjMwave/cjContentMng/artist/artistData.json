@@ -16,8 +16,8 @@
     "findKywrd": "Different Heaven",
     "relArtistIds": "artist_00002",
     "showCntryCdList": "KOR,USA,CHN",
-    "showYn": 1,
-    "mnetIfTrtYn": 1,
+    "showYn": true,
+    "mnetIfTrtYn": true,
     "refdArtistMultiLanginfo": ""
   },
   {
@@ -37,8 +37,8 @@
     "findKywrd": "Zedd",
     "relArtistIds": "",
     "showCntryCdList": "KOR,USA,JPN",
-    "showYn": 1,
-    "mnetIfTrtYn": 1,
+    "showYn": true,
+    "mnetIfTrtYn": true,
     "refdArtistMultiLanginfo": ""
   }
 ]

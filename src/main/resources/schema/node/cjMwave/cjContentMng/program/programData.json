@@ -27,10 +27,10 @@
     "catmSbst": "",
     "prdcSbst": "",
     "ctgryId": "5151",
-    "showYn": 1,
+    "showYn": true,
     "showCntryCdList": "KOR",
     "relPgmIds": "",
-    "mnetIfTrtYn": 1
+    "mnetIfTrtYn": true
   },
   {
     "typeId": "program",
@@ -60,9 +60,9 @@
     "catmSbst": "",
     "prdcSbst": "",
     "ctgryId": "51515",
-    "showYn": 1,
+    "showYn": true,
     "showCntryCdList": "CHN",
     "relPgmIds": "",
-    "mnetIfTrtYn": 1
+    "mnetIfTrtYn": true
   }
 ]

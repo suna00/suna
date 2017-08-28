@@ -1,4 +1,4 @@
-package net.ion.ice.schedule;
+package net.ion.ice.schedule.timertask;
 
 import java.util.Date;
 import java.util.TimerTask;

@@ -8,8 +8,8 @@
     "svcTypeCd": "1",
     "bradStDate": "20170505170000",
     "bradFnsDate": "20170505170000",
-    "bradStTime": "0.708333333333333",
-    "bradFnsTime": "0.743055555555556",
+    "bradStTime": "17:00",
+    "bradFnsTime": "18:00",
     "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_album03.jpg",
     "url": "http://10.184.57.248:8080/pub/menu_list/guide/html/menu/menu_main.html"
   },
@@ -22,8 +22,8 @@
     "svcTypeCd": "2",
     "bradStDate": "20180506170000",
     "bradFnsDate": "20180506170000",
-    "bradStTime": "0.708333333333333",
-    "bradFnsTime": "0.743055555555556",
+    "bradStTime": "17:00",
+    "bradFnsTime": "18:00",
     "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_album04.jpg",
     "url": "http://10.184.57.248:8080/pub/menu_list/guide/html/menu/menu_main.html"
   }

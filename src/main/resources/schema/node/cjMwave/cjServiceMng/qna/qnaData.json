@@ -7,7 +7,7 @@
     "qnarId": "fgdfg",
     "qstnrName": "홍길동",
     "qstnrEmail": "gildong@naver.com",
-    "qstnrMbrYn": 1,
+    "qstnrMbrYn": true,
     "qstnSbst": "앨범 듣기가 안되요",
     "trtSttusCd": "1",
     "qstnAtcFilePath": "",

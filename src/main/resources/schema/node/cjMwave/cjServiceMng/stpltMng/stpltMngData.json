@@ -6,7 +6,7 @@
     "accDivCd": "1",
     "stpltVer": "2.3",
     "stpltSbst": "개인정보처리방침은 다음과 같은 중요한 의미를 가지고 있습니다.",
-    "useYn": 1,
+    "useYn": true,
     "langDivCd": "ko"
   }
 ]

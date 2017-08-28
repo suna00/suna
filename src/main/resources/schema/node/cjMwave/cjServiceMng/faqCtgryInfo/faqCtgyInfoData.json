@@ -4,7 +4,7 @@
     "faqCtgrySeq": 515425,
     "faqCtgryNm": "ASK",
     "showOdrg": 1,
-    "showYn": 1,
+    "showYn": true,
     "descSbst": "What is the Mwave",
     "thumImgPath": "",
     "glblChatSeq": 1,
