@@ -34,7 +34,7 @@ public class ApiService {
         String apiMethod = (String) apiNode.get("method");
         Map<String, Object> session = null;
         try {
-            session = sessionService.getSession((HttpServletRequest) request);
+            session = sessionService.getSession(request.getNativeRequest(HttpServletRequest.class));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
