@@ -1,0 +1,33 @@
+[
+  {
+    "typeId" : "apiCategory",
+    "id" : "purchaseOrder",
+    "categoryName" : "주문서 API"
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "purchaseOrder",
+    "apiId" : "read",
+    "apiName" : "주문서 조회",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "item" : {
+        "select" : {
+          "ds" : "ytnDevDb",
+          "resultType" : "read",
+          "sql" : "select cart.* , (totalProductPrice + totalDeliveryPrice - totalDiscountPrice) as totalOrderPrice from ( select a.cartId, a.memberNo, a.siteId, a.sessionId, (select ifnull(sum(orderPrice),0) from cartProduct where cartId = a.cartId) as totalProductPrice , (select ifnull(sum(deliveryPrice),0) from cartdeliveryprice where cartId = a.cartId) as totalDeliveryPrice , 0 as totalDiscountPrice from cart a where cartId = {{:cartId}} or sessionId = '{{:sessionId}}') cart"
+        }
+      },
+      "referencedCartProduct" : {
+        "typeId" : "cartProduct",
+        "query" : [
+          {"sorting" : "cartDeliveryPriceId desc,created desc"},
+          {"field" : "cartId", "method" : "matching", "value" : "{{:cartId}}"},
+          {"includeReferenced" : true, "referenceView": "productId"}
+        ]
+      }
+    }
+  }
+]

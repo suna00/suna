@@ -4996,9 +4996,9 @@
   },
   {
     "typeId": "commonCode",
-    "code": "bannerTemplate",
+    "code": "beltBannerTemplate",
     "upperCode": "root",
-    "name": "배너템플릿독립배너 위치",
+    "name": "띠배너 템플릿",
     "description": "",
     "sortOrder": "96",
     "commonCodeStatus": "y"
@@ -5007,7 +5007,7 @@
     "typeId": "commonCode",
     "code": "singleBannerLocation",
     "upperCode": "root",
-    "name": "위치",
+    "name": "독립배너 위치",
     "description": "",
     "sortOrder": "97",
     "commonCodeStatus": "y"
@@ -5019,6 +5019,33 @@
     "name": "기획전메인배너타입",
     "description": "",
     "sortOrder": "98",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "displayBannerLocation",
+    "upperCode": "root",
+    "name": "전시배너 위치",
+    "description": "",
+    "sortOrder": "99",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "createType",
+    "upperCode": "root",
+    "name": "등록방식",
+    "description": "",
+    "sortOrder": "100",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "displayBannerTemplate",
+    "upperCode": "root",
+    "name": "전시배너 템플릿",
+    "description": "",
+    "sortOrder": "101",
     "commonCodeStatus": "y"
   },
   {
@@ -5159,7 +5186,7 @@
   {
     "typeId": "commonCode",
     "code": "temp1",
-    "upperCode": "bannerTemplate",
+    "upperCode": "beltBannerTemplate",
     "name": "1단",
     "description": "",
     "sortOrder": "1",
@@ -5168,7 +5195,7 @@
   {
     "typeId": "commonCode",
     "code": "temp2",
-    "upperCode": "bannerTemplate",
+    "upperCode": "beltBannerTemplate",
     "name": "2단",
     "description": "",
     "sortOrder": "2",
@@ -5177,7 +5204,7 @@
   {
     "typeId": "commonCode",
     "code": "temp3",
-    "upperCode": "bannerTemplate",
+    "upperCode": "beltBannerTemplate",
     "name": "3단",
     "description": "",
     "sortOrder": "3",
@@ -5186,7 +5213,7 @@
   {
     "typeId": "commonCode",
     "code": "tempVOD",
-    "upperCode": "bannerTemplate",
+    "upperCode": "beltBannerTemplate",
     "name": "영상",
     "description": "",
     "sortOrder": "4",
@@ -5195,7 +5222,7 @@
   {
     "typeId": "commonCode",
     "code": "tempHTML",
-    "upperCode": "bannerTemplate",
+    "upperCode": "beltBannerTemplate",
     "name": "HTML",
     "description": "",
     "sortOrder": "5",
@@ -5296,6 +5323,69 @@
     "code": "n",
     "upperCode": "privateStatus",
     "name": "공개",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "main",
+    "upperCode": "displayBannerLocation",
+    "name": "메인",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "html",
+    "upperCode": "createType",
+    "name": "HTML",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "templet",
+    "upperCode": "createType",
+    "name": "템플릿",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "temp5a",
+    "upperCode": "displayBannerTemplate",
+    "name": "유형5A",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "temp5b",
+    "upperCode": "displayBannerTemplate",
+    "name": "유형5B",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "temp5c",
+    "upperCode": "displayBannerTemplate",
+    "name": "유형5C",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "temp6a",
+    "upperCode": "displayBannerTemplate",
+    "name": "유형6A",
     "description": "",
     "sortOrder": "2",
     "commonCodeStatus": "y"
