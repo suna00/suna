@@ -40,8 +40,6 @@ public class QueryContext extends ReadContext {
 
 
 
-
-
     public QueryContext(NodeType nodeType) {
         this.nodeType = nodeType;
         if(this.nodeType.getRepositoryType().equals("node")){
@@ -61,6 +59,8 @@ public class QueryContext extends ReadContext {
         queryContext.queryTermType = QueryTerm.QueryTermType.NODE ;
         makeQueryTerm(nodeType, queryContext) ;
 
+        makeSearchFields(queryContext, queryContext.data) ;
+
         return queryContext;
     }
 
@@ -72,6 +72,7 @@ public class QueryContext extends ReadContext {
         for (String key : context.data.keySet()) {
             QueryUtils.makeQueryTerm(nodeType, context, queryTerms, key, (String) context.data.get(key));
         }
+
 
         context.setQueryTerms(queryTerms);
     }
@@ -498,4 +499,13 @@ public class QueryContext extends ReadContext {
     public String getSourceJoinField() {
         return sourceJoinField;
     }
+
+    protected void addQueryTerm(QueryTerm queryTerm) {
+        if(queryTerm == null) return ;
+        if (this.queryTerms == null) {
+            this.queryTerms = new ArrayList<>();
+        }
+        this.queryTerms.add(queryTerm);
+    }
+
 }

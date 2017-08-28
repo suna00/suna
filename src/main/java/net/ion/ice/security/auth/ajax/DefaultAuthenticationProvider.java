@@ -29,7 +29,7 @@ public class DefaultAuthenticationProvider implements AuthenticationProvider {
         String password = (String) authentication.getCredentials();
         Node userNode = nodeService.getNode("user", userId);
 
-        if(!userNode.get("password").equals(password)){
+        if (!userNode.get("password").equals(password)) {
             throw new BadCredentialsException("아이디/패스워드가 맞지 않습니다.");
         }
 
@@ -42,10 +42,4 @@ public class DefaultAuthenticationProvider implements AuthenticationProvider {
     public boolean supports(Class<?> authentication) {
         return (UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication));
     }
-
-//    @Bean
-//    NodeService nodeService(){
-//        this.nodeService = new NodeService();
-//        return nodeService;
-//    }
 }
