@@ -11,12 +11,14 @@ import java.io.Serializable;
  * Created by jaeho on 2017. 6. 29..
  */
 public class FileValue implements Serializable{
+    private String handler ;
     private String contentType;
     private String storePath  ;
     private String fileName  ;
     private Long fileSize ;
 
     public FileValue(PropertyType pt, String id, MultipartFile multipartFile, String saveFilePath) {
+        this.handler = pt.getFileHandler() ;
         this.storePath = saveFilePath ;
         this.fileName = multipartFile.getOriginalFilename() ;
         this.contentType = multipartFile.getContentType() ;

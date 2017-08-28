@@ -59,7 +59,7 @@ public class QueryContext extends ReadContext {
         queryContext.queryTermType = QueryTerm.QueryTermType.NODE ;
         makeQueryTerm(nodeType, queryContext) ;
 
-        makeSearchFields(queryContext, queryContext.data) ;
+        queryContext.makeSearchFields() ;
 
         return queryContext;
     }
@@ -107,8 +107,56 @@ public class QueryContext extends ReadContext {
         return queryContext;
     }
 
+    public void makeSearchFields(Map<String, Object> _config) {
+        if(_config == null) return ;
+        String searchFieldsStr = (String) _config.get("searchFields");
+        if(org.apache.commons.lang3.StringUtils.isEmpty(searchFieldsStr)) {
+            return ;
+        }
 
+        String searchValue = (String) _config.get("searchValue");
+        if(org.apache.commons.lang3.StringUtils.isEmpty(searchValue)) {
+            return ;
+        }
+        makeSearchFields(searchFieldsStr, searchValue);
+    }
 
+    public void makeSearchFields() {
+        if(data == null) return ;
+        String searchFieldsStr = (String) data.get("searchFields");
+        if(StringUtils.isEmpty(searchFieldsStr)) {
+            return ;
+        }
+
+        String searchValue = (String) data.get("searchValue");
+        if(StringUtils.isEmpty(searchValue)) {
+            return ;
+        }
+        makeSearchFields(searchFieldsStr, searchValue);
+    }
+
+    protected void makeSearchFields(String searchFieldsStr, String searchValue) {
+        if(StringUtils.isEmpty(searchFieldsStr)) {
+            return ;
+        }
+
+        if(StringUtils.isEmpty(searchValue)) {
+            return ;
+        }
+
+        this.searchFields = new ArrayList<>() ;
+
+        for(String searchField : StringUtils.split(searchFieldsStr, ",")){
+            searchField = searchField.trim() ;
+            if(StringUtils.isNotEmpty(searchField)) {
+                this.searchFields.add(searchField) ;
+                QueryTerm queryTerm = QueryUtils.makePropertyQueryTerm(this.getQueryTermType(), this.nodeType, searchField, "matchingShould", searchValue);
+                this.addQueryTerm(queryTerm);
+            }
+        }
+
+        this.searchValue = searchValue ;
+    }
 
     public void setQueryTerms(List<QueryTerm> queryTerms) {
         this.queryTerms = queryTerms;
