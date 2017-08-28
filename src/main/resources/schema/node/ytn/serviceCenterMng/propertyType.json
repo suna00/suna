@@ -1826,7 +1826,7 @@
     "tid": "review",
     "pid": "files",
     "propertyTypeName": "첨부파일",
-    "valueType": "REFERENCED",
+    "valueType": "FILES",
     "required": false,
     "idable": false,
     "labelable": false,
