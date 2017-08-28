@@ -25,14 +25,5 @@
     "dbType" : "msSql",
     "username" : "icafe13",
     "password" : "icafe1234!@"
-  },
-  {
-    "typeId" : "datasource",
-    "id" : "ytnDevDb",
-    "dsName" : "YTN Dev DB",
-    "jdbcUrl" : "jdbc:mysql://125.131.88.147:3306/ytn",
-    "dbType" : "mySql",
-    "username" : "iceuser",
-    "password" : "iceuser"
   }
 ]

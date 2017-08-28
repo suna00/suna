@@ -41,6 +41,11 @@ public class ApiQueryContext extends QueryContext{
         queryContext.config = config ;
         queryContext.data = data ;
 
+        makeIncludeReferenced(queryContext, config);
+        makeReferenceView(queryContext, config);
+        makeSearchFields(queryContext, config) ;
+
+
         for(String key : config.keySet()) {
             if(key.equals("typeId")) continue ;
 
