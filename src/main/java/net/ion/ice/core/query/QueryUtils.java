@@ -1,9 +1,6 @@
 package net.ion.ice.core.query;
 
-import net.ion.ice.core.context.ContextUtils;
-import net.ion.ice.core.context.DBQueryTerm;
-import net.ion.ice.core.context.DataQueryContext;
-import net.ion.ice.core.context.QueryContext;
+import net.ion.ice.core.context.*;
 import net.ion.ice.core.infinispan.lucene.AnalyzerFactory;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.NodeType;
@@ -26,7 +23,7 @@ public class QueryUtils {
 
         value = value.equals("@sysdate") ? new SimpleDateFormat("yyyyMMdd HHmmss").format(new Date()) : value.equals("@sysday") ? new SimpleDateFormat("yyyyMMdd").format(new Date()) : value;
 
-        if (paramName.equals("fields") || paramName.equals("pids") || paramName.equals("response") || paramName.equals("includeReferenced") || paramName.equals("referenceView")|| paramName.equals("searchFields") || paramName.equals("searchValue")) {
+        if (paramName.equals("fields") || paramName.equals("pids") || paramName.equals("response") || paramName.equals("searchFields") || paramName.equals("searchValue")) {
             return;
         }
 
@@ -45,6 +42,12 @@ public class QueryUtils {
 
             } catch (IOException e) {
             }
+            return ;
+        } else if(paramName.equals("includeReferenced")){
+            queryContext.makeIncludeReferenced(value);
+            return ;
+        } else if(paramName.equals("referenceView")){
+            queryContext.makeReferenceView(value);
             return ;
         }
 
@@ -90,9 +93,12 @@ public class QueryUtils {
         if (q instanceof List) {
             for (Map<String, Object> _q : (List<Map<String, Object>>) q) {
                 makeNodeQueryTerm(context, _q, nodeType, queryTerms);
+                context.makeSearchFields( _q);
+
             }
         } else if (q instanceof Map) {
             makeNodeQueryTerm(context, (Map<String, Object>) q, nodeType, queryTerms);
+            context.makeSearchFields((Map<String, Object>) q);
         }
 
         return queryTerms;
