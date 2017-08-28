@@ -23,18 +23,20 @@
 *
 * */
 
+
+allprojects {
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:deprecation" //<< "-Xlint:unchecked"
+        }
+    }
+}
+
 buildscript {
     ext {
         springBootVersion = "1.5.6.RELEASE"
         springBootStarterVersion = "1.5.6.RELEASE"
-
-        /*
-        infinispan 9 부터 캐시 인덱싱 방식이
-        hibernate && Lucene 에서 자체처리/엘라스틱 방식으로 변경되어 업데이트 불가함
-        hibernate 도 5.5 에서 5.6 으로 major 변경이 있어 판올림 불가
-        * */
-//        infinispanVersion = "9.0.3.Final"
-        infinispanVersion = "8.2.6.Final"
+        infinispanVersion = "9.1.0.Final"
         coreVersion = "0.0.1-SNAPSHOT"
     }
     repositories {
@@ -91,7 +93,7 @@ repositories {
 
 dependencyManagement {
     resolutionStrategy {
-        cacheChangingModulesFor 0, 'seconds'
+        cacheChangingModulesFor 0, "seconds"
     }
 }
 
@@ -117,18 +119,15 @@ dependencies {
     compile("com.fasterxml.jackson.core:jackson-databind:2.8.6+")
     compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.8.6+")
 
-	compile("com.hazelcast:hazelcast-all:3.8.4")
+    compile("com.hazelcast:hazelcast-all:3.8.4")
 
     // yml parser
     compile ("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.8.9")
 
-    compile('ch.qos.logback:logback-access:1.2.3')
-    compile('net.logstash.logback:logstash-logback-encoder:4.8+')
-//    compile('org.infinispan:infinispan-embedded:9.1.0.Final'){
-//        exclude module: "jboss-logging"
-//    }
-    compile('org.infinispan:infinispan-query:9.1.0.Final')
-    compile('io.jsonwebtoken:jjwt:0.7.0')
+    compile("ch.qos.logback:logback-access:1.2.3")
+    compile("net.logstash.logback:logstash-logback-encoder:4.8+")
+    compile("org.infinispan:infinispan-query:${infinispanVersion}")
+    compile("io.jsonwebtoken:jjwt:0.7.0")
 
     compile("org.springframework:spring-jdbc")
     compile("org.apache.commons:commons-dbcp2:2.1.1")
@@ -143,14 +142,4 @@ dependencies {
     runtime("org.springframework.boot:spring-boot-devtools")
     testCompile("org.springframework.boot:spring-boot-starter-test:${springBootStarterVersion}")
     testCompile("com.microsoft.sqlserver:mssql-jdbc:6.2.1.jre8")
-}
-
-
-
-allprojects {
-    gradle.projectsEvaluated {
-        tasks.withType(JavaCompile) {
-            options.compilerArgs << "-Xlint:deprecation" //<< "-Xlint:unchecked"
-        }
-    }
 }
