@@ -177,5 +177,23 @@
     "tableName": "ytnDevDb#singleBanner",
     "repositoryType": "node",
     "eviction": 0
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "displayBanner",
+    "typeName": "전시 배너",
+    "tableName": "ytnDevDb#displayBanner",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "displayBannerElement",
+    "typeName": "전시 배너 구성",
+    "tableName": "ytnDevDb#displayBannerElement",
+    "repositoryType": "node",
+    "eviction": 0
   }
 ]
