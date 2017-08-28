@@ -14,6 +14,7 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -31,6 +32,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -48,6 +50,7 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -83,13 +86,14 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
     "typeId": "propertyType",
     "tid": "musicVideo",
-    "pid": "findKywrd",
-    "id": "musicVideo>findKywrd",
+    "pid": "imgPath",
+    "id": "musicVideo>imgPath",
     "propertyTypeName": "이미지경로",
     "valueType": "FILE",
     "required": false,
@@ -100,13 +104,14 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
     "typeId": "propertyType",
     "tid": "musicVideo",
-    "pid": "findKywrdcomotDt",
-    "id": "musicVideo>findKywrdcomotDt",
+    "pid": "findKywrd",
+    "id": "musicVideo>findKywrd",
     "propertyTypeName": "검색 키워드",
     "valueType": "TEXT",
     "required": false,
@@ -117,13 +122,14 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
     "typeId": "propertyType",
     "tid": "musicVideo",
-    "pid": "comotDtartistId",
-    "id": "musicVideo>comotDtartistId",
+    "pid": "comotDt",
+    "id": "musicVideo>comotDt",
     "propertyTypeName": "출시일",
     "valueType": "DATE",
     "required": false,
@@ -134,13 +140,14 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
     "typeId": "propertyType",
     "tid": "musicVideo",
-    "pid": "artistIdyoutubeUrl",
-    "id": "musicVideo>artistIdyoutubeUrl",
+    "pid": "artistId",
+    "id": "musicVideo>artistId",
     "propertyTypeName": "아티스트 아이디",
     "valueType": "REFERENCE",
     "required": true,
@@ -151,13 +158,14 @@
     "analyzer": "code",
     "referenceType": "artist",
     "referenceValue": "artistId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
     "typeId": "propertyType",
     "tid": "musicVideo",
-    "pid": "youtubeUrltodouUrl",
-    "id": "musicVideo>youtubeUrltodouUrl",
+    "pid": "youtubeUrl",
+    "id": "musicVideo>youtubeUrl",
     "propertyTypeName": "유투브 URL",
     "valueType": "STRING",
     "required": false,
@@ -168,13 +176,14 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
     "typeId": "propertyType",
     "tid": "musicVideo",
-    "pid": "todouUrlplayTime",
-    "id": "musicVideo>todouUrlplayTime",
+    "pid": "todouUrl",
+    "id": "musicVideo>todouUrl",
     "propertyTypeName": "Todou URL",
     "valueType": "STRING",
     "required": false,
@@ -185,13 +194,14 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
     "typeId": "propertyType",
     "tid": "musicVideo",
-    "pid": "playTimeshowCntryCdList",
-    "id": "musicVideo>playTimeshowCntryCdList",
+    "pid": "playTime",
+    "id": "musicVideo>playTime",
     "propertyTypeName": "재생 시간",
     "valueType": "STRING",
     "required": false,
@@ -202,30 +212,32 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
     "typeId": "propertyType",
     "tid": "musicVideo",
-    "pid": "showCntryCdListmnetIfTrtYn",
-    "id": "musicVideo>showCntryCdListmnetIfTrtYn",
+    "pid": "showCntryCdList",
+    "id": "musicVideo>showCntryCdList",
     "propertyTypeName": "노출국가 코드리스트",
-    "valueType": "TEXT",
+    "valueType": "REFERENCES",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
-    "analyzer": "cjk",
-    "referenceType": "",
-    "referenceValue": "",
+    "analyzer": "code",
+    "referenceType": "cntryMng",
+    "referenceValue": "cntryId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
     "typeId": "propertyType",
     "tid": "musicVideo",
-    "pid": "mnetIfTrtYnrelSongIds",
-    "id": "musicVideo>mnetIfTrtYnrelSongIds",
+    "pid": "mnetIfTrtYn",
+    "id": "musicVideo>mnetIfTrtYn",
     "propertyTypeName": "mnet 인터페이스 처리 여부",
     "valueType": "BOOLEAN",
     "required": false,
@@ -236,6 +248,25 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "musicVideo",
+    "pid": "showYn",
+    "id": "musicVideo>showYn",
+    "propertyTypeName": "노출여부",
+    "valueType": "BOOLEAN",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "cjk",
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -244,15 +275,16 @@
     "pid": "relSongIds",
     "id": "musicVideo>relSongIds",
     "propertyTypeName": "연관 곡 아이디",
-    "valueType": "TEXT",
+    "valueType": "REFERENCES",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
-    "analyzer": "cjk",
-    "referenceType": "",
-    "referenceValue": "",
+    "analyzer": "code",
+    "referenceType": "song",
+    "referenceValue": "songId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -261,15 +293,16 @@
     "pid": "relArtistIds",
     "id": "musicVideo>relArtistIds",
     "propertyTypeName": "연관 아티스트 아이디",
-    "valueType": "TEXT",
+    "valueType": "REFERENCES",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
-    "analyzer": "cjk",
-    "referenceType": "",
-    "referenceValue": "",
+    "analyzer": "code",
+    "referenceType": "artist",
+    "referenceValue": "artistId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -287,6 +320,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -304,6 +338,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -321,6 +356,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -338,6 +374,25 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "musicVideo",
+    "pid": "refdMultiLanginfo",
+    "id": "musicVideo>refdMultiLanginfo",
+    "propertyTypeName": "뮤직비디오 다국어 리스트",
+    "valueType": "REFERENCED",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "musicVideoMultiLangInfo",
+    "referenceValue": "musicVideoId",
+    "codeFilter": "",
     "defaultValue": ""
   }
 ]
