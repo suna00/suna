@@ -959,6 +959,23 @@
   {
     "typeId": "propertyType",
     "tid": "specialExhibitionMainBanner",
+    "pid": "specialExhibitionMainBannerType",
+    "propertyTypeName": "기획전메인배너 타입",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
+    "codeFilter": "specialExhibitionMainBannerType",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "specialExhibitionMainBanner",
     "pid": "sortOrder",
     "propertyTypeName": "정렬 순서",
     "valueType": "INT",

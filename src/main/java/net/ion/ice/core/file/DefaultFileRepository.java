@@ -75,4 +75,10 @@ public class DefaultFileRepository implements FileRepository{
         File file = new File(fileRoot, path) ;
         return new FileSystemResource(file);
     }
+
+    @Override
+    public FileValue getClasspathFileInfo(PropertyType pt, String id, String value) {
+        Resource res = ApplicationContextManager.getResource(value) ;
+        return new FileValue(res, value) ;
+    }
 }

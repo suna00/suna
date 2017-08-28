@@ -41,6 +41,11 @@ public class ApiQueryContext extends QueryContext{
         queryContext.config = config ;
         queryContext.data = data ;
 
+        makeIncludeReferenced(queryContext, config);
+        makeReferenceView(queryContext, config);
+        makeSearchFields(queryContext, config) ;
+
+
         for(String key : config.keySet()) {
             if(key.equals("typeId")) continue ;
 
@@ -69,8 +74,10 @@ public class ApiQueryContext extends QueryContext{
                             queryContext.addResultField(new ResultField(fieldName, (String) fieldValue));
                         }
                     } else if (fieldValue instanceof Map) {
-                        if(((Map) fieldValue).containsKey("query") || ((Map) fieldValue).containsKey("select")) {
+                        if(((Map) fieldValue).containsKey("query")) {
                             queryContext.addResultField(new ResultField(fieldName, makeContextFromConfig((Map<String, Object>) fieldValue, data)));
+                        }else if(((Map) fieldValue).containsKey("select")){
+                            queryContext.addResultField(new ResultField(fieldName, ApiSelectContext.makeContextFromConfig((Map<String, Object>) fieldValue, data)));
                         }else{
                             queryContext.addResultField(new ResultField(fieldName, (Map<String, Object>) fieldValue));
                         }
@@ -81,11 +88,5 @@ public class ApiQueryContext extends QueryContext{
         return queryContext;
     }
 
-    public Object makeApiQueryResult(Object result, String fieldName) {
-        List<Object> resultList = NodeUtils.getNodeService().executeQuery(this) ;
-        List<Node> resultNodeList = NodeUtils.initNodeList(nodeType.getTypeId(), resultList) ;
-
-        return makeQueryResult(result, fieldName, resultNodeList);
-    }
 
 }

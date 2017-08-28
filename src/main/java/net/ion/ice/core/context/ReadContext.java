@@ -12,6 +12,7 @@ import net.ion.ice.core.query.ResultField;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +30,10 @@ public class ReadContext implements Context {
 
     protected Boolean referenceView ;
     protected List<String> referenceViewFields ;
+
+
+    protected List<String> searchFields ;
+    protected String searchValue ;
 
 
     protected List<ResultField> resultFields;
@@ -105,7 +110,35 @@ public class ReadContext implements Context {
             context.setIncludeReferenced(true);
         }
 
+        makeIncludeReferenced(context, data);
         makeReferenceView(context, data);
+//        makeSearchFields(context, data) ;
+    }
+
+    protected static void makeSearchFields(QueryContext context, Map<String, Object> data) {
+        if(data == null) return ;
+        String searchFieldsStr = (String) data.get("searchFields");
+        if(StringUtils.isEmpty(searchFieldsStr)) {
+            return ;
+        }
+
+        String searchValue = (String) data.get("searchValue");
+        if(StringUtils.isEmpty(searchValue)) {
+            return ;
+        }
+
+        context.searchFields = new ArrayList<>() ;
+
+        for(String searchField : StringUtils.split(searchFieldsStr, ",")){
+            searchField = searchField.trim() ;
+            if(StringUtils.isNotEmpty(searchField)) {
+                context.searchFields.add(searchField) ;
+                QueryTerm queryTerm = QueryUtils.makePropertyQueryTerm(context.getQueryTermType(), context.nodeType, searchField, "matchingShould", searchValue);
+                context.addQueryTerm(queryTerm);
+            }
+        }
+
+        context.searchValue = searchValue ;
     }
 
     protected static void makeReferenceView(ReadContext context, Map<String, Object> data) {
@@ -130,6 +163,30 @@ public class ReadContext implements Context {
             }
         }
     }
+
+    protected static void makeIncludeReferenced(ReadContext context, Map<String, Object> data) {
+        String includeReferenced = (String) data.get("includeReferenced");
+        if(StringUtils.isEmpty(includeReferenced)){
+            context.includeReferenced = null ;
+        }else if ("true".equals(includeReferenced)) {
+            context.includeReferenced = true ;
+        }else if ("false".equals(includeReferenced)) {
+            context.includeReferenced = false;
+        }else{
+            context.includeReferencedFields = new ArrayList<>() ;
+            for(String f : StringUtils.split(includeReferenced, ",")){
+                if(StringUtils.isNotEmpty(f.trim())){
+                    context.includeReferencedFields.add(f.trim()) ;
+                }
+            }
+            if(context.includeReferencedFields.size() > 0){
+                context.includeReferenced = true ;
+            }else{
+                context.includeReferenced = false ;
+            }
+        }
+    }
+
 
     public static ReadContext createContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType, String id) {
         ReadContext context = new ReadContext();
@@ -157,6 +214,9 @@ public class ReadContext implements Context {
         return id;
     }
 
+    public QueryResult makeQueryResult(Object result, String fieldName) {
+        return makeResult() ;
+    }
 
     public QueryResult makeResult() {
         Node node = NodeUtils.getNode(nodeType.getTypeId(), id) ;
@@ -193,8 +253,13 @@ public class ReadContext implements Context {
     protected void makeItemQueryResult(Node node, QueryResult itemResult) {
         for (ResultField resultField : getResultFields()) {
             if (resultField.getContext() != null) {
-                QueryContext subQueryContext = (QueryContext) resultField.getContext();
+                ReadContext subQueryContext = (ReadContext) resultField.getContext();
+                if(node != null){
+                    subQueryContext.setNodeData(node) ;
+                }
                 subQueryContext.makeQueryResult(itemResult, resultField.getFieldName());
+            } else if(resultField.isStaticValue()){
+                itemResult.put(resultField.getFieldName(), resultField.getStaticValue());
             } else {
                 String fieldValue = resultField.getFieldValue();
                 fieldValue = fieldValue == null || StringUtils.isEmpty(fieldValue) ? resultField.getFieldName() : fieldValue;
@@ -210,6 +275,19 @@ public class ReadContext implements Context {
         if (referenceView && referenceViewFields == null) {
             return true;
         } else if (referenceView && referenceViewFields.contains(pid)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean isIncludeReferenced(String pid) {
+        if (includeReferenced == null) {
+            return true;
+        }
+        if (includeReferenced && includeReferencedFields == null) {
+            return true;
+        } else if (includeReferenced && includeReferencedFields.contains(pid)) {
             return true;
         }
 
@@ -242,5 +320,13 @@ public class ReadContext implements Context {
 
     public void setIncludeReferencedFields(List<String> includeReferencedFields) {
         this.includeReferencedFields = includeReferencedFields;
+    }
+
+    public void setNodeData(Node nodeData) {
+        Map<String, Object> _data = new HashMap<>() ;
+        _data.putAll(data);
+        _data.putAll(nodeData);
+
+        this.data = _data ;
     }
 }

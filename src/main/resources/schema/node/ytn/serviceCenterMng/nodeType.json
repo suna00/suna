@@ -19,20 +19,29 @@
   {
     "parentId": "serviceCenterMng",
     "typeId": "nodeType",
-    "tid": "productAnswer",
-    "typeName": "QNA 답변",
-    "tableName": "ytnDevDb#productAnswer",
-    "repositoryType": "node",
-    "eviction": 200000
-  },
-  {
-    "parentId": "serviceCenterMng",
-    "typeId": "nodeType",
     "tid": "productQuestion",
     "typeName": "QNA 질문",
     "tableName": "ytnDevDb#productQuestion",
     "repositoryType": "node",
     "eviction": 100000
+  },
+  {
+    "parentId": "serviceCenterMng",
+    "typeId": "nodeType",
+    "tid": "productQuestionView",
+    "typeName": "QNA 질문(VIEW)",
+    "tableName": "ytnDevDb#productQuestionView",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "serviceCenterMng",
+    "typeId": "nodeType",
+    "tid": "productAnswer",
+    "typeName": "QNA 답변",
+    "tableName": "ytnDevDb#productAnswer",
+    "repositoryType": "node",
+    "eviction": 200000
   },
   {
     "parentId": "serviceCenterMng",

@@ -1,7 +1,5 @@
 package net.ion.ice.security.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hazelcast.web.WebFilter;
 import net.ion.ice.security.RestAuthenticationEntryPoint;
 import net.ion.ice.security.auth.ajax.DefaultAuthenticationProvider;
 import net.ion.ice.security.auth.ajax.DefaultLogoutHandler;
@@ -11,8 +9,6 @@ import net.ion.ice.security.auth.jwt.JwtAuthenticationProvider;
 import net.ion.ice.security.auth.jwt.JwtTokenAuthenticationProcessingFilter;
 import net.ion.ice.security.auth.jwt.SkipPathRequestMatcher;
 import net.ion.ice.security.auth.jwt.extractor.TokenExtractor;
-import net.ion.ice.security.common.CookieUtil;
-import net.ion.ice.security.token.JwtTokenFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -41,7 +37,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public static final String FORM_BASED_LOGOUT_ENTRY_POINT = "/logout";
 //    public static final String TOKEN_BASED_AUTH_ENTRY_POINT = "/api/**";
     public static final String TOKEN_BASED_AUTH_ENTRY_POINT = "/certification/**";
-    public static final String TOKEN_REFRESH_ENTRY_POINT = "/api/auth/token";
+    public static final String TOKEN_ENTRY_POINT = "/api/auth/token";
+    public static final String TOKEN_REFRESH_ENTRY_POINT = "/api/auth/refreshToken";
 
     @Autowired
     private RestAuthenticationEntryPoint authenticationEntryPoint;
@@ -64,16 +61,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private TokenExtractor tokenExtractor;
 
     @Autowired
-    private JwtConfig jwtConfig;
-
-    @Autowired
     private AuthenticationManager authenticationManager;
 
 //    @Autowired
 //    private WebFilter webFilter;
-
-    @Autowired
-    private CookieUtil cookieUtil;
 
     protected LoginProcessingFilter buildAjaxLoginProcessingFilter() throws Exception {
         LoginProcessingFilter filter = new LoginProcessingFilter(FORM_BASED_LOGIN_ENTRY_POINT, successHandler, failureHandler);
@@ -82,9 +73,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     protected JwtTokenAuthenticationProcessingFilter buildJwtTokenAuthenticationProcessingFilter() throws Exception {
-        List<String> pathsToSkip = Arrays.asList(TOKEN_REFRESH_ENTRY_POINT, FORM_BASED_LOGIN_ENTRY_POINT, FORM_BASED_LOGOUT_ENTRY_POINT);
+        List<String> pathsToSkip = Arrays.asList(TOKEN_ENTRY_POINT,TOKEN_REFRESH_ENTRY_POINT, FORM_BASED_LOGIN_ENTRY_POINT, FORM_BASED_LOGOUT_ENTRY_POINT);
         SkipPathRequestMatcher matcher = new SkipPathRequestMatcher(pathsToSkip, TOKEN_BASED_AUTH_ENTRY_POINT);
-        JwtTokenAuthenticationProcessingFilter filter = new JwtTokenAuthenticationProcessingFilter(failureHandler, tokenExtractor, matcher, jwtConfig, cookieUtil);
+        JwtTokenAuthenticationProcessingFilter filter = new JwtTokenAuthenticationProcessingFilter(failureHandler, tokenExtractor, matcher);
         filter.setAuthenticationManager(this.authenticationManager);
         return filter;
     }
@@ -114,6 +105,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(FORM_BASED_LOGIN_ENTRY_POINT).permitAll()  // Login end-point
+                .antMatchers(TOKEN_ENTRY_POINT).permitAll()     // Token refresh end-point
                 .antMatchers(TOKEN_REFRESH_ENTRY_POINT).permitAll()     // Token refresh end-point
                 .antMatchers(FORM_BASED_LOGOUT_ENTRY_POINT).permitAll() // Logout end-point
                 .and()

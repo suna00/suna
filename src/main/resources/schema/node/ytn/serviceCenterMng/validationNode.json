@@ -1,8 +1,8 @@
 [
   {
     "typeId" : "propertyTypeValidation",
-    "id": "propertyTypeValidation>frequentlyAskedQuestion>type1",
-    "propertyTypeId": "frequentlyAskedQuestion>type1",
+    "id": "propertyTypeValidation>frequentlyAskedQuestion>faqType1",
+    "propertyTypeId": "frequentlyAskedQuestion>faqType1",
     "validation": {
       "language": "ko",
       "required": { "value": true, "description": "필수 값 입니다." },
@@ -15,8 +15,8 @@
   },
   {
     "typeId" : "propertyTypeValidation",
-    "id": "propertyTypeValidation>frequentlyAskedQuestion>type2",
-    "propertyTypeId": "frequentlyAskedQuestion>type2",
+    "id": "propertyTypeValidation>frequentlyAskedQuestion>faqType2",
+    "propertyTypeId": "frequentlyAskedQuestion>faqType2",
     "validation": {
       "language": "ko",
       "required": { "value": true, "description": "필수 값 입니다." },
@@ -117,8 +117,8 @@
 
   {
     "typeId" : "propertyTypeValidation",
-    "id": "propertyTypeValidation>frequentlyUsedAnswer>frequentlyUsedAnswerType",
-    "propertyTypeId": "frequentlyUsedAnswer>frequentlyUsedAnswerType",
+    "id": "propertyTypeValidation>frequentlyUsedAnswer>faqType1",
+    "propertyTypeId": "frequentlyUsedAnswer>faqType1",
     "validation": {
       "language": "ko",
       "required": { "value": true, "description": "필수 값 입니다." },

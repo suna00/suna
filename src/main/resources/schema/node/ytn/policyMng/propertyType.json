@@ -13,7 +13,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "",
-    "defaultValue": ""
+    "defaultValue": "root"
   },
   {
     "typeId": "propertyType",
@@ -93,6 +93,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "useYn",
     "defaultValue": ""
   },
   {
@@ -206,6 +207,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
+    "codeFilter": "siteType",
     "defaultValue": ""
   },
   {
@@ -222,7 +224,8 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "defaultValue": ""
+    "codeFilter": "termsType",
+    "defaultValue": "term001"
   },
   {
     "typeId": "propertyType",
@@ -238,7 +241,8 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "defaultValue": ""
+    "codeFilter": "requiredStatus",
+    "defaultValue": "y"
   },
   {
     "typeId": "propertyType",

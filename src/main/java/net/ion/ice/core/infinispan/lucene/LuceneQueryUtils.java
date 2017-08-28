@@ -3,9 +3,9 @@ package net.ion.ice.core.infinispan.lucene;
 
 import net.ion.ice.IceRuntimeException;
 import net.ion.ice.core.context.QueryContext;
+import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.query.QueryTerm;
-import net.ion.ice.core.node.Node;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
@@ -15,22 +15,15 @@ import org.apache.lucene.search.*;
 import org.apache.lucene.util.BytesRef;
 import org.apache.lucene.util.BytesRefBuilder;
 import org.apache.lucene.util.NumericUtils;
-import org.hibernate.search.analyzer.impl.AnalyzerReference;
-import org.hibernate.search.analyzer.impl.RemoteAnalyzerProvider;
-import org.hibernate.search.bridge.impl.JavaTimeBridgeProvider;
+import org.hibernate.search.analyzer.spi.AnalyzerReference;
 import org.hibernate.search.bridge.spi.ConversionContext;
 import org.hibernate.search.engine.spi.DocumentBuilderIndexedEntity;
 import org.hibernate.search.exception.AssertionFailure;
 import org.hibernate.search.exception.SearchException;
-import org.hibernate.search.query.dsl.BooleanJunction;
 import org.hibernate.search.query.dsl.impl.FieldContext;
 import org.hibernate.search.query.dsl.impl.QueryBuildingContext;
 import org.hibernate.search.query.dsl.impl.RangeQueryContext;
-import org.infinispan.Cache;
 import org.infinispan.query.CacheQuery;
-import org.springframework.boot.autoconfigure.cache.CacheType;
-import org.springframework.cache.CacheManager;
-
 
 import java.io.IOException;
 import java.io.Reader;
@@ -50,8 +43,7 @@ public class LuceneQueryUtils {
     public static CacheQuery makeQuery(QueryContext queryContext) throws IOException {
         Query query ;
         List<Query> innerQueries =  new ArrayList<>();
-        List<QueryType> notInnerQueries = new ArrayList<QueryType>();
-        List<QueryType> shouldInnerQueries = new ArrayList<QueryType>();
+        List<Query> shouldInnerQueries = new ArrayList<>();
 
 
         if(queryContext.getJoinQueryContexts() != null && queryContext.getJoinQueryContexts().size() >0){
@@ -84,17 +76,34 @@ public class LuceneQueryUtils {
 
         if(queryContext.hasQueryTerms()) {
             for (QueryTerm term : queryContext.getQueryTerms()) {
-                innerQueries.add(createLuceneQuery(term));
+                if(term.isShould()){
+                    shouldInnerQueries.add(createLuceneQuery(term)) ;
+                }else {
+                    innerQueries.add(createLuceneQuery(term));
+                }
             }
         }
-        if(innerQueries.size() ==0){
+        if(innerQueries.size() == 0 && shouldInnerQueries.size() == 0){
             query = new MatchAllDocsQuery() ;
-        }else  if(innerQueries.size() == 1){
+        }else  if(innerQueries.size() == 1 && shouldInnerQueries.size() == 0){
             query = innerQueries.get(0) ;
+        }else  if(innerQueries.size() == 0 && shouldInnerQueries.size() == 1){
+            query = shouldInnerQueries.get(0) ;
         }else{
             BooleanQuery.Builder booleanQueryBuilder = new BooleanQuery.Builder();
+
             for(Query innerQuery : innerQueries){
                 booleanQueryBuilder.add(innerQuery, BooleanClause.Occur.MUST) ;
+            }
+
+            if(shouldInnerQueries.size() == 1){
+                booleanQueryBuilder.add(shouldInnerQueries.get(0), BooleanClause.Occur.MUST) ;
+            }else if(shouldInnerQueries.size() > 1){
+                BooleanQuery.Builder shouldBooleanQueryBuilder = new BooleanQuery.Builder();
+                for (Query shouldQuery : shouldInnerQueries) {
+                    shouldBooleanQueryBuilder.add(shouldQuery, BooleanClause.Occur.SHOULD);
+                }
+                booleanQueryBuilder.add(shouldBooleanQueryBuilder.build(), BooleanClause.Occur.MUST) ;
             }
             query = booleanQueryBuilder.build();
         }
@@ -200,11 +209,11 @@ public class LuceneQueryUtils {
 
         String lowerTerm = null ;
         String upperTerm;
-        if ( queryContext.getFactory().getIndexBinding( queryContext.getEntityType() ).getIndexManagers()[0] instanceof RemoteAnalyzerProvider) {
-            lowerTerm = fromString == null ? null : fromString;
-            upperTerm = toString == null ? null : toString;
-        }
-        else {
+//        if ( queryContext.getFactory().getIndexBinding( queryContext.getEntityType() ).getIndexManagers()[0] instanceof RemoteAnalyzerProvider) {
+//            lowerTerm = fromString == null ? null : fromString;
+//            upperTerm = toString == null ? null : toString;
+//        }
+//        else {
 //            final Analyzer queryAnalyzer = analyzerReference.unwrap( LuceneAnalyzerReference.class ).getAnalyzer();
 //
 //            lowerTerm = fromString == null ?
@@ -214,7 +223,7 @@ public class LuceneQueryUtils {
 //            upperTerm = toString == null ?
 //                    null :
 //                    Helper.getAnalyzedTerm( fieldName, toString, "to", queryAnalyzer, fieldContext );
-        }
+//        }
 
         return TermRangeQuery.newStringRange( fieldName, lowerTerm, null, !rangeContext.isExcludeFrom(), !rangeContext.isExcludeTo() );
     }
@@ -381,7 +390,7 @@ public class LuceneQueryUtils {
                 query = new TermQuery( createTerm(termContext, fieldName,  term));
                 break;
             case WILDCARD:
-                query = new WildcardQuery(new Term(fieldName, term)) ;
+                query = new WildcardQuery(new Term(fieldName, "*"+term+"*")) ;
                 break;
 //            case FUZZY:
 //                int maxEditDistance = getMaxEditDistance( term );
@@ -464,23 +473,23 @@ public class LuceneQueryUtils {
             Long toValue = to != null ? ((Calendar) to).getTime().getTime() : null;
             return NumericRangeQuery.newLongRange( fieldName, fromValue, toValue, includeLower, includeUpper );
         }
-        if ( JavaTimeBridgeProvider.isActive() ) {
-            if ( java.time.Duration.class.isAssignableFrom( numericClass ) ) {
-                Long fromValue = from != null ? ( (java.time.Duration) from ).toNanos() : null;
-                Long toValue = to != null ? ( (java.time.Duration) to ).toNanos() : null;
-                return NumericRangeQuery.newLongRange( fieldName, fromValue, toValue, includeLower, includeUpper );
-            }
-            if ( java.time.Year.class.isAssignableFrom( numericClass ) ) {
-                Integer fromValue = from != null ? ( (java.time.Year) from ).getValue() : null;
-                Integer toValue = to != null ? ( (java.time.Year) to ).getValue() : null;
-                return NumericRangeQuery.newIntRange( fieldName, fromValue, toValue, includeLower, includeUpper );
-            }
-            if ( java.time.Instant.class.isAssignableFrom( numericClass ) ) {
-                Long fromValue = from != null ? ( (java.time.Instant) from ).toEpochMilli() : null;
-                Long toValue = to != null ? ( (java.time.Instant) to ).toEpochMilli() : null;
-                return NumericRangeQuery.newLongRange( fieldName, fromValue, toValue, includeLower, includeUpper );
-            }
-        }
+//        if ( JavaTimeBridgeProvider.isActive() ) {
+//            if ( java.time.Duration.class.isAssignableFrom( numericClass ) ) {
+//                Long fromValue = from != null ? ( (java.time.Duration) from ).toNanos() : null;
+//                Long toValue = to != null ? ( (java.time.Duration) to ).toNanos() : null;
+//                return NumericRangeQuery.newLongRange( fieldName, fromValue, toValue, includeLower, includeUpper );
+//            }
+//            if ( java.time.Year.class.isAssignableFrom( numericClass ) ) {
+//                Integer fromValue = from != null ? ( (java.time.Year) from ).getValue() : null;
+//                Integer toValue = to != null ? ( (java.time.Year) to ).getValue() : null;
+//                return NumericRangeQuery.newIntRange( fieldName, fromValue, toValue, includeLower, includeUpper );
+//            }
+//            if ( java.time.Instant.class.isAssignableFrom( numericClass ) ) {
+//                Long fromValue = from != null ? ( (java.time.Instant) from ).toEpochMilli() : null;
+//                Long toValue = to != null ? ( (java.time.Instant) to ).toEpochMilli() : null;
+//                return NumericRangeQuery.newLongRange( fieldName, fromValue, toValue, includeLower, includeUpper );
+//            }
+//        }
 
 //        throw log.numericRangeQueryWithNonNumericToAndFromValues( fieldName );
         return null;

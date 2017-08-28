@@ -4,7 +4,6 @@ import net.ion.ice.core.infinispan.lucene.CodeAnalyzer;
 import org.apache.lucene.analysis.cjk.CJKAnalyzer;
 import org.hibernate.search.annotations.*;
 
-import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Date;
@@ -22,7 +21,6 @@ public class NodeValue implements Serializable, Cloneable{
 
     public static List<String> NODE_VALUE_KEYS = Arrays.asList(new String[] {"id", "typeId", "owner", "modifier", "created", "changed", "status"}) ;
 
-    @Id
     @DocumentId
     @Field
     @Analyzer(impl = CodeAnalyzer.class)

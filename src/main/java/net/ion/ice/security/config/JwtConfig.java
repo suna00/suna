@@ -1,6 +1,5 @@
 package net.ion.ice.security.config;
 
-import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,7 +13,7 @@ public class JwtConfig {
 
     private String issuer;
     private String secretKey;
-    private String headerPrefix;
+    private String tokenPrefix;
     private String headString;
     private Integer tokenExpirationTime;
     private Integer refreshTokenExpTime;
@@ -35,12 +34,12 @@ public class JwtConfig {
         this.secretKey = secretKey;
     }
 
-    public String getHeaderPrefix() {
-        return headerPrefix;
+    public String getTokenPrefix() {
+        return tokenPrefix;
     }
 
-    public void setHeaderPrefix(String headerPrefix) {
-        this.headerPrefix = headerPrefix;
+    public void setTokenPrefix(String tokenPrefix) {
+        this.tokenPrefix = tokenPrefix;
     }
 
     public String getHeadString() {

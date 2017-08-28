@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.context.request.WebRequest;
 
 import java.io.IOException;
@@ -23,31 +24,31 @@ public class ApiController {
 
     @RequestMapping(value = "/api/{category}/{api}", method = RequestMethod.GET)
     @ResponseBody
-    public Object get(WebRequest request, @PathVariable String category, @PathVariable String api) throws IOException {
+    public Object get(NativeWebRequest request, @PathVariable String category, @PathVariable String api) throws IOException {
         return api(request, category, api, "GET");
     }
 
     @RequestMapping(value = "/api/{category}/{api}", method = RequestMethod.POST)
     @ResponseBody
-    public Object post(WebRequest request, @PathVariable String category, @PathVariable String api) throws IOException {
+    public Object post(NativeWebRequest request, @PathVariable String category, @PathVariable String api) throws IOException {
         return api(request, category, api, "POST");
     }
 
     @RequestMapping(value = "/api/{category}/{api}.json", method = RequestMethod.GET)
     @ResponseBody
-    public Object getJson(WebRequest request, @PathVariable String category, @PathVariable String api) throws IOException {
+    public Object getJson(NativeWebRequest request, @PathVariable String category, @PathVariable String api) throws IOException {
         return api(request, category, api, "GET");
     }
 
     @RequestMapping(value = "/api/{category}/{api}.json", method = RequestMethod.POST)
     @ResponseBody
-    public Object postJson(WebRequest request, @PathVariable String category, @PathVariable String api) throws IOException {
+    public Object postJson(NativeWebRequest request, @PathVariable String category, @PathVariable String api) throws IOException {
         return api(request, category, api, "POST");
     }
 
     @RequestMapping(value = "/testApi/{category}/{api}", method = RequestMethod.GET)
     @ResponseBody
-    public Object testGet(WebRequest request, @PathVariable String category, @PathVariable String api) throws IOException {
+    public Object testGet(NativeWebRequest request, @PathVariable String category, @PathVariable String api) throws IOException {
         return api(request, category, api, "GET");
     }
 
@@ -73,7 +74,7 @@ public class ApiController {
 
 
 
-    private Object api(WebRequest request, String category, String api, String method) {
+    private Object api(NativeWebRequest request, String category, String api, String method) {
         try {
             return apiService.execute(request, category, api, method) ;
         } catch (Exception e) {
