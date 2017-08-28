@@ -1024,7 +1024,7 @@
     "typeId": "propertyType",
     "tid": "productQuestionView",
     "pid": "titleDetail",
-    "propertyTypeName": "제목",
+    "propertyTypeName": "제목/상품",
     "valueType": "STRING",
     "required": false,
     "idable": false,
