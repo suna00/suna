@@ -23,8 +23,8 @@
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
+    "referenceType": "program",
+    "referenceValue": "pgmId",
     "defaultValue": ""
   },
   {
