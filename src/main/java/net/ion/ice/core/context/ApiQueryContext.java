@@ -7,7 +7,7 @@ import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.QueryTerm;
 import net.ion.ice.core.query.QueryUtils;
 import net.ion.ice.core.query.ResultField;
-import org.stagemonitor.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +30,8 @@ public class ApiQueryContext extends QueryContext{
         super();
     }
 
+
+
     public static ApiQueryContext makeContextFromConfig(Map<String, Object> config, Map<String, Object> data) {
         ApiQueryContext queryContext = null;
         if (config.containsKey("typeId")) {
@@ -41,17 +43,13 @@ public class ApiQueryContext extends QueryContext{
         queryContext.config = config ;
         queryContext.data = data ;
 
-        makeIncludeReferenced(queryContext, config);
-        makeReferenceView(queryContext, config);
-        makeSearchFields(queryContext, config) ;
-
-
         for(String key : config.keySet()) {
             if(key.equals("typeId")) continue ;
 
             if (key.equals("q")) {
                 List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(queryContext, config.get("q"), queryContext.nodeType);
                 queryContext.setQueryTerms(queryTerms);
+                queryContext.makeSearchFields((Map<String, Object>) config.get("q"));
             }else if(key.equals("query")){
                 List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(queryContext, config.get("query"), queryContext.nodeType);
                 queryContext.setQueryTerms(queryTerms);
