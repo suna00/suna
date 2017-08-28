@@ -6,7 +6,7 @@
     "bradYear": "2017",
     "bradStDate": "20170831000000",
     "bradFnsDate": "20170831235959",
-    "showYn": 1
+    "showYn": true
   },
   {
     "typeId": "mcdLineupInfo",
@@ -15,6 +15,6 @@
     "bradYear": "2017",
     "bradStDate": "20170910000000",
     "bradFnsDate": "20170910235959",
-    "showYn": 1
+    "showYn": true
   }
 ]

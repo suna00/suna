@@ -19,9 +19,9 @@
     "catmName": "TWICE",
     "findKywrd": "TWICE",
     "refVodIds": "",
-    "showYn": 1,
+    "showYn": true,
     "showCntryCdList": "KOR",
-    "mnetIfTrtYn": 1
+    "mnetIfTrtYn": true
   },
   {
     "typeId": "pgmVideo",
@@ -43,8 +43,8 @@
     "catmName": "Roy Kim",
     "findKywrd": "Roy Kim",
     "refVodIds": "",
-    "showYn": 1,
+    "showYn": true,
     "showCntryCdList": "CHN",
-    "mnetIfTrtYn": 1
+    "mnetIfTrtYn": true
   }
 ]

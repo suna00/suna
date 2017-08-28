@@ -5,7 +5,7 @@
     "badgeNm": "Mwave",
     "badgeDtl": "Mwave",
     "badgeCtgryCd": "1",
-    "useYn": 1,
+    "useYn": true,
     "svcTermlDivCd": "1",
     "imgPath": "http://10.184.57.248:8080/pub/menu_list/guide/html/menu/menu_main.html"
   }

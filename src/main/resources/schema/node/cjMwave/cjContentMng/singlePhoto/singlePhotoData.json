@@ -12,7 +12,7 @@
     "relPgmIds": "",
     "relArtistIds": "",
     "relSongIds": "",
-    "mnetIfTrtYn": 1
+    "mnetIfTrtYn": true
   },
   {
     "typeId": "singlePhoto",
@@ -27,6 +27,6 @@
     "relPgmIds": "",
     "relArtistIds": "",
     "relSongIds": "",
-    "mnetIfTrtYn": 1
+    "mnetIfTrtYn": true
   }
 ]

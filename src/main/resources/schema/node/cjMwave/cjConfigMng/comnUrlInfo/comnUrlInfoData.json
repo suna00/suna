@@ -5,6 +5,6 @@
     "comnUrlNm": "https://www.naver.com/policy/privacy.html#a1",
     "typeCd": "1",
     "svcUrl": "https://www.naver.com/policy/privacy.html#a1",
-    "useYn": 1
+    "useYn": true
   }
 ]
