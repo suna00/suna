@@ -32,6 +32,10 @@ public class ReadContext implements Context {
     protected List<String> referenceViewFields ;
 
 
+    protected List<String> searchFields ;
+    protected String searchValue ;
+
+
     protected List<ResultField> resultFields;
 
     protected String id ;
@@ -106,7 +110,35 @@ public class ReadContext implements Context {
             context.setIncludeReferenced(true);
         }
 
+        makeIncludeReferenced(context, data);
         makeReferenceView(context, data);
+//        makeSearchFields(context, data) ;
+    }
+
+    protected static void makeSearchFields(QueryContext context, Map<String, Object> data) {
+        if(data == null) return ;
+        String searchFieldsStr = (String) data.get("searchFields");
+        if(StringUtils.isEmpty(searchFieldsStr)) {
+            return ;
+        }
+
+        String searchValue = (String) data.get("searchValue");
+        if(StringUtils.isEmpty(searchValue)) {
+            return ;
+        }
+
+        context.searchFields = new ArrayList<>() ;
+
+        for(String searchField : StringUtils.split(searchFieldsStr, ",")){
+            searchField = searchField.trim() ;
+            if(StringUtils.isNotEmpty(searchField)) {
+                context.searchFields.add(searchField) ;
+                QueryTerm queryTerm = QueryUtils.makePropertyQueryTerm(context.getQueryTermType(), context.nodeType, searchField, "matchingShould", searchValue);
+                context.addQueryTerm(queryTerm);
+            }
+        }
+
+        context.searchValue = searchValue ;
     }
 
     protected static void makeReferenceView(ReadContext context, Map<String, Object> data) {
@@ -131,6 +163,30 @@ public class ReadContext implements Context {
             }
         }
     }
+
+    protected static void makeIncludeReferenced(ReadContext context, Map<String, Object> data) {
+        String includeReferenced = (String) data.get("includeReferenced");
+        if(StringUtils.isEmpty(includeReferenced)){
+            context.includeReferenced = null ;
+        }else if ("true".equals(includeReferenced)) {
+            context.includeReferenced = true ;
+        }else if ("false".equals(includeReferenced)) {
+            context.includeReferenced = false;
+        }else{
+            context.includeReferencedFields = new ArrayList<>() ;
+            for(String f : StringUtils.split(includeReferenced, ",")){
+                if(StringUtils.isNotEmpty(f.trim())){
+                    context.includeReferencedFields.add(f.trim()) ;
+                }
+            }
+            if(context.includeReferencedFields.size() > 0){
+                context.includeReferenced = true ;
+            }else{
+                context.includeReferenced = false ;
+            }
+        }
+    }
+
 
     public static ReadContext createContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType, String id) {
         ReadContext context = new ReadContext();
@@ -219,6 +275,19 @@ public class ReadContext implements Context {
         if (referenceView && referenceViewFields == null) {
             return true;
         } else if (referenceView && referenceViewFields.contains(pid)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean isIncludeReferenced(String pid) {
+        if (includeReferenced == null) {
+            return true;
+        }
+        if (includeReferenced && includeReferencedFields == null) {
+            return true;
+        } else if (includeReferenced && includeReferencedFields.contains(pid)) {
             return true;
         }
 

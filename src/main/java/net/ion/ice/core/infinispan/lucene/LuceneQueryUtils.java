@@ -43,8 +43,7 @@ public class LuceneQueryUtils {
     public static CacheQuery makeQuery(QueryContext queryContext) throws IOException {
         Query query ;
         List<Query> innerQueries =  new ArrayList<>();
-        List<QueryType> notInnerQueries = new ArrayList<QueryType>();
-        List<QueryType> shouldInnerQueries = new ArrayList<QueryType>();
+        List<Query> shouldInnerQueries = new ArrayList<>();
 
 
         if(queryContext.getJoinQueryContexts() != null && queryContext.getJoinQueryContexts().size() >0){
@@ -77,17 +76,34 @@ public class LuceneQueryUtils {
 
         if(queryContext.hasQueryTerms()) {
             for (QueryTerm term : queryContext.getQueryTerms()) {
-                innerQueries.add(createLuceneQuery(term));
+                if(term.isShould()){
+                    shouldInnerQueries.add(createLuceneQuery(term)) ;
+                }else {
+                    innerQueries.add(createLuceneQuery(term));
+                }
             }
         }
-        if(innerQueries.size() ==0){
+        if(innerQueries.size() == 0 && shouldInnerQueries.size() == 0){
             query = new MatchAllDocsQuery() ;
-        }else  if(innerQueries.size() == 1){
+        }else  if(innerQueries.size() == 1 && shouldInnerQueries.size() == 0){
             query = innerQueries.get(0) ;
+        }else  if(innerQueries.size() == 0 && shouldInnerQueries.size() == 1){
+            query = shouldInnerQueries.get(0) ;
         }else{
             BooleanQuery.Builder booleanQueryBuilder = new BooleanQuery.Builder();
+
             for(Query innerQuery : innerQueries){
                 booleanQueryBuilder.add(innerQuery, BooleanClause.Occur.MUST) ;
+            }
+
+            if(shouldInnerQueries.size() == 1){
+                booleanQueryBuilder.add(shouldInnerQueries.get(0), BooleanClause.Occur.MUST) ;
+            }else if(shouldInnerQueries.size() > 1){
+                BooleanQuery.Builder shouldBooleanQueryBuilder = new BooleanQuery.Builder();
+                for (Query shouldQuery : shouldInnerQueries) {
+                    shouldBooleanQueryBuilder.add(shouldQuery, BooleanClause.Occur.SHOULD);
+                }
+                booleanQueryBuilder.add(shouldBooleanQueryBuilder.build(), BooleanClause.Occur.MUST) ;
             }
             query = booleanQueryBuilder.build();
         }

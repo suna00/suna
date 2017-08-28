@@ -1598,6 +1598,17 @@
     "themeStatus": "y"
   },
   {
+    "typeId": "theme",
+    "themeId": 23,
+    "pageType": "best",
+    "themeType": "mdbest",
+    "siteType": "company",
+    "name": "MDBEST",
+    "categoryId": 2,
+    "sortOrder": 2,
+    "themeStatus": "y"
+  },
+  {
     "typeId": "productToThemeMap",
     "productToThemeMapId": 1,
     "themeId": 1,
