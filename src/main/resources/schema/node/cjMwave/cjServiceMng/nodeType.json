@@ -478,5 +478,25 @@
     "repositoryType": "node",
     "eviction": 0,
     "tableName": "cjDb#onairIInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "contsLikeInfo",
+    "tid": "contsLikeInfo",
+    "typeName": "콘텐츠 좋아요 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#contsLikeInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "evPwnrInfo",
+    "tid": "evPwnrInfo",
+    "typeName": "이벤트 당첨자 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#evPwnrInfo"
   }
 ]

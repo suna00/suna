@@ -321,8 +321,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>mbrInfo>bthday",
-    "propertyTypeId": "mbrInfo>bthday",
+    "id": "propertyTypeValidation>mbrInfo>bthYm",
+    "propertyTypeId": "mbrInfo>bthYm",
     "validation": {
       "language": "ko",
       "required": {
@@ -641,8 +641,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>mbrInfo>emailRcvYn",
-    "propertyTypeId": "mbrInfo>emailRcvYn",
+    "id": "propertyTypeValidation>mbrInfo>infoOttpAgreeYn",
+    "propertyTypeId": "mbrInfo>infoOttpAgreeYn",
     "validation": {
       "language": "ko",
       "required": {
@@ -673,8 +673,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>mbrInfo>smsRcvYn",
-    "propertyTypeId": "mbrInfo>smsRcvYn",
+    "id": "propertyTypeValidation>mbrInfo>pushMsgRcvYn",
+    "propertyTypeId": "mbrInfo>pushMsgRcvYn",
     "validation": {
       "language": "ko",
       "required": {
