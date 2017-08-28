@@ -1,30 +1,22 @@
 [
   {
     "typeId": "pgmVideoMultiLangInfo",
-    "vodId": "9595",
+    "contentId": "15151",
     "langCd": "KOR",
-    "vodNm": "SIGNAL",
-    "subName": "SIGNAL",
-    "repImgPath": "http://10.184.57.248:8080/pub/images/component/img_album03.jpg",
-    "vodDesc": "",
-    "vodFilePath": "",
-    "vodThumImgPath": "http://10.184.57.248:8080/pub/images/component/img_new_tab01.jpg",
-    "vodCcapFilePath": "",
-    "catmName": "TWICE",
-    "findKywrd": "TWICE"
+    "title": "Mini Fan Meeting with TEEN TOP",
+    "contentTitle": "Mini Fan Meeting with TEEN TOP",
+    "synopsis": "Mini Fan Meeting with TEEN TOP",
+    "prsnName": "TEEN TOP",
+    "searchKeyword": "TEENTOP, Meeting, Fan"
   },
   {
     "typeId": "pgmVideoMultiLangInfo",
-    "vodId": "5156",
+    "contentId": "12124",
     "langCd": "KOR",
-    "vodNm": "REALLY REALLY",
-    "subName": "REALLY REALLY",
-    "repImgPath": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
-    "vodDesc": "",
-    "vodFilePath": "",
-    "vodThumImgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
-    "vodCcapFilePath": "",
-    "catmName": "Roy Kim",
-    "findKywrd": "Roy Kim"
+    "title": "Mini Fan Meeting with GOT7",
+    "contentTitle": "Mini Fan Meeting with GOT7",
+    "synopsis": "Mini Fan Meeting with GOT7",
+    "prsnName": "GOT7",
+    "searchKeyword": "GOT7, Meeting, Fan"
   }
 ]

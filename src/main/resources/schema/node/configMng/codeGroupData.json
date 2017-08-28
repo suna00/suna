@@ -439,5 +439,26 @@
     "name": "뱃지 카테고리 코드",
     "active": true,
     "desc": "뱃지 카테고리 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "contentTypeCd",
+    "name": "콘텐츠 타입 코드",
+    "active": true,
+    "desc": "콘텐츠 타입 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "itemTypeCd",
+    "name": "미디어 종류 코드",
+    "active": true,
+    "desc": "미디어 종류 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "cliptypeCd",
+    "name": "클립 종류 코드",
+    "active": true,
+    "desc": "클립 종류 코드"
   }
 ]

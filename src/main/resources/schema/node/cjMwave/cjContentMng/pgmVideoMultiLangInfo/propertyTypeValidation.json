@@ -1,8 +1,8 @@
 [
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>vodId",
-    "propertyTypeId": "pgmVideoMultiLangInfo>vodId",
+    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>contentId",
+    "propertyTypeId": "pgmVideoMultiLangInfo>contentId",
     "validation": {
       "language": "ko",
       "required": {
@@ -65,8 +65,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>vodNm",
-    "propertyTypeId": "pgmVideoMultiLangInfo>vodNm",
+    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>title",
+    "propertyTypeId": "pgmVideoMultiLangInfo>title",
     "validation": {
       "language": "ko",
       "required": {
@@ -97,8 +97,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>subName",
-    "propertyTypeId": "pgmVideoMultiLangInfo>subName",
+    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>contentTitle",
+    "propertyTypeId": "pgmVideoMultiLangInfo>contentTitle",
     "validation": {
       "language": "ko",
       "required": {
@@ -129,8 +129,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>repImgPath",
-    "propertyTypeId": "pgmVideoMultiLangInfo>repImgPath",
+    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>synopsis",
+    "propertyTypeId": "pgmVideoMultiLangInfo>synopsis",
     "validation": {
       "language": "ko",
       "required": {
@@ -161,8 +161,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>vodDesc",
-    "propertyTypeId": "pgmVideoMultiLangInfo>vodDesc",
+    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>prsnName",
+    "propertyTypeId": "pgmVideoMultiLangInfo>prsnName",
     "validation": {
       "language": "ko",
       "required": {
@@ -193,136 +193,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>vodFilePath",
-    "propertyTypeId": "pgmVideoMultiLangInfo>vodFilePath",
-    "validation": {
-      "language": "ko",
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>vodThumImgPath",
-    "propertyTypeId": "pgmVideoMultiLangInfo>vodThumImgPath",
-    "validation": {
-      "language": "ko",
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>vodCcapFilePath",
-    "propertyTypeId": "pgmVideoMultiLangInfo>vodCcapFilePath",
-    "validation": {
-      "language": "ko",
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>catmName",
-    "propertyTypeId": "pgmVideoMultiLangInfo>catmName",
-    "validation": {
-      "language": "ko",
-      "required": {
-        "value": false,
-        "description": "필수 값 입니다."
-      },
-      "duplicated": {
-        "value": false,
-        "description": "중복된 값 입니다."
-      },
-      "min": {
-        "value": 0,
-        "description": "최소 값 입니다."
-      },
-      "max": {
-        "value": 0,
-        "description": "최대 값 입니다."
-      },
-      "extention": {
-        "value": "",
-        "description": "확장자를 허용하지 않습니다."
-      },
-      "regularExpression": {
-        "value": "",
-        "description": ""
-      }
-    }
-  },
-  {
-    "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>findKywrd",
-    "propertyTypeId": "pgmVideoMultiLangInfo>findKywrd",
+    "id": "propertyTypeValidation>pgmVideoMultiLangInfo>searchKeyword",
+    "propertyTypeId": "pgmVideoMultiLangInfo>searchKeyword",
     "validation": {
       "language": "ko",
       "required": {
