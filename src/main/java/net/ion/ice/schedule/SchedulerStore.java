@@ -1,6 +1,7 @@
 package net.ion.ice.schedule;
 
 import net.ion.ice.ApplicationContextManager;
+import net.ion.ice.schedule.timertask.TimerTaskFactory;
 import net.ion.ice.utils.YMLHelper;
 import org.apache.log4j.Logger;
 
@@ -63,6 +64,8 @@ public class SchedulerStore {
     public void init () {
         try{
             Resource r = contextManager.getResource("classpath:schedule/" + profiles + ".yml");
+            if(r == null) return;
+
             File yml = r.getFile();
 
             YMLHelper.loadYML(yml.getCanonicalPath(), yml.getName());
