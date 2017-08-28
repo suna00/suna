@@ -2294,5 +2294,109 @@
     "name": "Type3",
     "order": 3,
     "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contentTypeCd",
+    "codeId": "C001",
+    "name": "다시보기",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contentTypeCd",
+    "codeId": "C002",
+    "name": "티져",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contentTypeCd",
+    "codeId": "C003",
+    "name": "예고",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contentTypeCd",
+    "codeId": "C004",
+    "name": "구간클립",
+    "order": 4,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contentTypeCd",
+    "codeId": "C005",
+    "name": "메이킹",
+    "order": 5,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contentTypeCd",
+    "codeId": "C006",
+    "name": "미공개",
+    "order": 6,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "itemTypeCd",
+    "codeId": 31,
+    "name": "일반화질",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "itemTypeCd",
+    "codeId": 32,
+    "name": "일반화질",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "itemTypeCd",
+    "codeId": 33,
+    "name": "고화질",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "itemTypeCd",
+    "codeId": 34,
+    "name": "HD",
+    "order": 4,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "itemTypeCd",
+    "codeId": 35,
+    "name": "FullHD",
+    "order": 5,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cliptypeCd",
+    "codeId": 1,
+    "name": "VOD",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "cliptypeCd",
+    "codeId": 2,
+    "name": "CLIP",
+    "order": 2,
+    "active": true
   }
 ]

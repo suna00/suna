@@ -110,79 +110,66 @@ public class ReadContext implements Context {
             context.setIncludeReferenced(true);
         }
 
-        makeIncludeReferenced(context, data);
-        makeReferenceView(context, data);
+
 //        makeSearchFields(context, data) ;
     }
 
-    protected static void makeSearchFields(QueryContext context, Map<String, Object> data) {
+
+
+    public void makeReferenceView() {
         if(data == null) return ;
-        String searchFieldsStr = (String) data.get("searchFields");
-        if(StringUtils.isEmpty(searchFieldsStr)) {
-            return ;
-        }
-
-        String searchValue = (String) data.get("searchValue");
-        if(StringUtils.isEmpty(searchValue)) {
-            return ;
-        }
-
-        context.searchFields = new ArrayList<>() ;
-
-        for(String searchField : StringUtils.split(searchFieldsStr, ",")){
-            searchField = searchField.trim() ;
-            if(StringUtils.isNotEmpty(searchField)) {
-                context.searchFields.add(searchField) ;
-                QueryTerm queryTerm = QueryUtils.makePropertyQueryTerm(context.getQueryTermType(), context.nodeType, searchField, "matchingShould", searchValue);
-                context.addQueryTerm(queryTerm);
-            }
-        }
-
-        context.searchValue = searchValue ;
+        String referenceView = (String) data.get("referenceView");
+        makeReferenceView(referenceView);
     }
 
-    protected static void makeReferenceView(ReadContext context, Map<String, Object> data) {
-        String referenceView = (String) data.get("referenceView");
+    public void makeReferenceView(String referenceView) {
         if(StringUtils.isEmpty(referenceView)){
-            context.referenceView = null ;
+            this.referenceView = null ;
         }else if ("true".equals(referenceView)) {
-            context.referenceView = true ;
+            this.referenceView = true ;
         }else if ("false".equals(referenceView)) {
-            context.referenceView = false;
+            this.referenceView = false;
         }else{
-            context.referenceViewFields = new ArrayList<>() ;
+            this.referenceViewFields = new ArrayList<>() ;
             for(String f : StringUtils.split(referenceView, ",")){
                 if(StringUtils.isNotEmpty(f.trim())){
-                    context.referenceViewFields.add(f.trim()) ;
+                    this.referenceViewFields.add(f.trim()) ;
                 }
             }
-            if(context.referenceViewFields.size() > 0){
-                context.referenceView = true ;
+            if(this.referenceViewFields.size() > 0){
+                this.referenceView = true ;
             }else{
-                context.referenceView = false ;
+                this.referenceView = false ;
             }
         }
     }
 
-    protected static void makeIncludeReferenced(ReadContext context, Map<String, Object> data) {
+    public void makeIncludeReferenced() {
+        if(data == null) return ;
+
         String includeReferenced = (String) data.get("includeReferenced");
+        makeIncludeReferenced(includeReferenced);
+    }
+
+
+    public void makeIncludeReferenced(String includeReferenced) {
         if(StringUtils.isEmpty(includeReferenced)){
-            context.includeReferenced = null ;
+            this.includeReferenced = null ;
         }else if ("true".equals(includeReferenced)) {
-            context.includeReferenced = true ;
+            this.includeReferenced = true ;
         }else if ("false".equals(includeReferenced)) {
-            context.includeReferenced = false;
+            this.includeReferenced = false;
         }else{
-            context.includeReferencedFields = new ArrayList<>() ;
+            this.includeReferencedFields = new ArrayList<>() ;
             for(String f : StringUtils.split(includeReferenced, ",")){
                 if(StringUtils.isNotEmpty(f.trim())){
-                    context.includeReferencedFields.add(f.trim()) ;
+                    this.includeReferencedFields.add(f.trim()) ;
                 }
             }
-            if(context.includeReferencedFields.size() > 0){
-                context.includeReferenced = true ;
+            if(this.includeReferencedFields.size() > 0){
+                this.includeReferenced = true ;
             }else{
-                context.includeReferenced = false ;
+                this.includeReferenced = false ;
             }
         }
     }
@@ -195,6 +182,9 @@ public class ReadContext implements Context {
         context.id = getId(parameterMap, nodeType, id);
 
         makeContextFromParameter(parameterMap, nodeType, context) ;
+
+        context.makeIncludeReferenced();
+        context.makeReferenceView();
 
         return context ;
     }

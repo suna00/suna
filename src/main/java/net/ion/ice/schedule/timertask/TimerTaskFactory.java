@@ -91,7 +91,6 @@ public class TimerTaskFactory {
 
         try{
             String values[] = StringUtils.split(cronExpression, ',');
-            timer.schedule(task, new Date(), Long.parseLong(cronExpression));
             Calendar current = Calendar.getInstance();
 
             switch (values.length) {
