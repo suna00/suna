@@ -28,6 +28,9 @@ public class QueryTerm {
 
     private PropertyType.ValueType valueType ;
 
+    private Boolean not ;
+
+    private Boolean should ;
 
     public QueryTerm(QueryTermType queryTermType, String queryKey, String analyzer, String method, Object queryValue, PropertyType.ValueType valueType) {
         this.queryTermType = queryTermType ;
@@ -40,6 +43,35 @@ public class QueryTerm {
                 method = "matching" ;
             }
         }
+
+        method = method.toUpperCase() ;
+
+        if(method.startsWith("NOT")){
+            this.not = true;
+            method = StringUtils.substringAfter(method, "NOT");
+        }
+
+        if(method.endsWith("SHOULD")){
+            this.should = true ;
+            method = StringUtils.substringBefore(method, "SHOULD");
+        }
+
+        if(method.endsWith("OR")){
+            this.should = true ;
+            method = StringUtils.substringBefore(method, "OR");
+        }
+
+        if(method.endsWith("AND")){
+            this.should = false ;
+            method = StringUtils.substringBefore(method, "AND");
+        }
+
+        if(method.endsWith("MUST")){
+            this.should = false ;
+            method = StringUtils.substringBefore(method, "MUST");
+        }
+
+
         this.method = QueryMethod.valueOf(method.toUpperCase()) ;
         this.queryValue = queryValue;
 
@@ -81,6 +113,35 @@ public class QueryTerm {
         if(method == null){
             method = "matching" ;
         }
+
+        method = method.toUpperCase() ;
+
+        if(method.startsWith("NOT")){
+            this.not = true;
+            method = StringUtils.substringAfter(method, "NOT");
+        }
+
+        if(method.endsWith("SHOULD")){
+            this.should = true ;
+            method = StringUtils.substringBefore(method, "SHOULD");
+        }
+
+        if(method.endsWith("OR")){
+            this.should = true ;
+            method = StringUtils.substringBefore(method, "OR");
+        }
+
+        if(method.endsWith("AND")){
+            this.should = false ;
+            method = StringUtils.substringBefore(method, "AND");
+        }
+
+        if(method.endsWith("MUST")){
+            this.should = false ;
+            method = StringUtils.substringBefore(method, "MUST");
+        }
+
+
         this.method = QueryMethod.valueOf(method.toUpperCase()) ;
         this.queryValue = value ;
         this.analyzer = luceneAnalyzer ;
@@ -89,7 +150,14 @@ public class QueryTerm {
     }
 
 
+    public boolean isNot(){
+        return not != null && not ;
+    }
 
+
+    public boolean isShould(){
+        return should !=null && should ;
+    }
 
     public QueryMethod getMethod() {
         return method;
@@ -140,7 +208,9 @@ public class QueryTerm {
         ABOVE(">="),
         BELOW("<="),
         EXCESS(">"),
-        UNDER("<");
+        UNDER("<"),
+        NOTMATCHING(""),
+        NOTEQUALS("");
 
 
         private String queryString;
