@@ -3972,7 +3972,7 @@
     "typeId": "commonCode",
     "code": "term001",
     "upperCode": "termsType",
-    "name": "이용약관(필수)",
+    "name": "이용약관",
     "description": "",
     "sortOrder": "1",
     "commonCodeStatus": "y"
@@ -3981,7 +3981,7 @@
     "typeId": "commonCode",
     "code": "term002",
     "upperCode": "termsType",
-    "name": "개인정보 수집 및 이용안내(필수)",
+    "name": "개인정보 수집 및 이용안내",
     "description": "",
     "sortOrder": "2",
     "commonCodeStatus": "y"
@@ -3990,7 +3990,7 @@
     "typeId": "commonCode",
     "code": "term003",
     "upperCode": "termsType",
-    "name": "개인정보 수집 및 이용안내(선택)",
+    "name": "변경예정",
     "description": "",
     "sortOrder": "3",
     "commonCodeStatus": "y"
@@ -3999,7 +3999,7 @@
     "typeId": "commonCode",
     "code": "term004",
     "upperCode": "termsType",
-    "name": "할인쿠폰, 이벤트 등 마케팅 활용 동의(선택)",
+    "name": "할인쿠폰, 이벤트 등 마케팅 활용 동의",
     "description": "",
     "sortOrder": "4",
     "commonCodeStatus": "y"
