@@ -26,7 +26,7 @@ public class QueryUtils {
 
         value = value.equals("@sysdate") ? new SimpleDateFormat("yyyyMMdd HHmmss").format(new Date()) : value.equals("@sysday") ? new SimpleDateFormat("yyyyMMdd").format(new Date()) : value;
 
-        if (paramName.equals("fields") || paramName.equals("pids") || paramName.equals("response")) {
+        if (paramName.equals("fields") || paramName.equals("pids") || paramName.equals("response") || paramName.equals("includeReferenced") || paramName.equals("referenceView")|| paramName.equals("searchFields") || paramName.equals("searchValue")) {
             return;
         }
 
@@ -44,31 +44,6 @@ public class QueryUtils {
                 Map<String, Object> query = JsonUtils.parsingJsonToMap(value);
 
             } catch (IOException e) {
-            }
-        } else if(paramName.equals("includeReferenced")){
-            queryContext.setIncludeReferenced(value);
-            return ;
-        } else if(paramName.equals("referenceView")){
-            String referenceView = value;
-            if(StringUtils.isEmpty(referenceView)){
-                queryContext.setReferenceView(null);
-            }else if ("true".equals(referenceView)) {
-                queryContext.setReferenceView(true);
-            }else if ("false".equals(referenceView)) {
-                queryContext.setReferenceView(false);
-            }else{
-                List<String> referenceViewFields = new ArrayList<>() ;
-                for(String f : StringUtils.split(referenceView, ",")){
-                    if(StringUtils.isNotEmpty(f.trim())){
-                        referenceViewFields.add(f.trim()) ;
-                    }
-                }
-                if(referenceViewFields.size() > 0){
-                    queryContext.setReferenceViewFields(referenceViewFields) ;
-                    queryContext.setReferenceView(true);
-                }else{
-                    queryContext.setReferenceView(false);
-                }
             }
             return ;
         }

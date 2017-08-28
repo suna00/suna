@@ -132,5 +132,50 @@
     "tableName": "ytnDevDb#categoryBanner",
     "repositoryType": "node",
     "eviction": 0
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "mainBanner",
+    "typeName": "메인 배너",
+    "tableName": "ytnDevDb#mainBanner",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "productNoticeBanner",
+    "typeName": "상품 공지 배너",
+    "tableName": "ytnDevDb#productNoticeBanner",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "beltBanner",
+    "typeName": "띠 배너",
+    "tableName": "ytnDevDb#beltBanner",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "beltBannerElement",
+    "typeName": "띠 배너 구성",
+    "tableName": "ytnDevDb#beltBannerElement",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "singleBanner",
+    "typeName": "독립 배너",
+    "tableName": "ytnDevDb#singleBanner",
+    "repositoryType": "node",
+    "eviction": 0
   }
 ]

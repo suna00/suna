@@ -838,6 +838,15 @@
   },
   {
     "typeId": "commonCode",
+    "code": "privateStatus",
+    "upperCode": "root",
+    "name": "비공개여부",
+    "description": "",
+    "sortOrder": "95",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
     "code": "all",
     "upperCode": "addBenefitType",
     "name": "전체",
@@ -4947,6 +4956,348 @@
     "name": "아이디",
     "description": "",
     "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "mainBannerLocation",
+    "upperCode": "root",
+    "name": "메인 배너 위치",
+    "description": "",
+    "sortOrder": "92",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "linkContentsType",
+    "upperCode": "root",
+    "name": "링크유형",
+    "description": "",
+    "sortOrder": "93",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "productNoticeBannerStatus",
+    "upperCode": "root",
+    "name": "상품공지배너 적용범위",
+    "description": "",
+    "sortOrder": "94",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "beltBannerLocation",
+    "upperCode": "root",
+    "name": "띠배너 위치",
+    "description": "",
+    "sortOrder": "95",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "bannerTemplate",
+    "upperCode": "root",
+    "name": "배너템플릿독립배너 위치",
+    "description": "",
+    "sortOrder": "96",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "singleBannerLocation",
+    "upperCode": "root",
+    "name": "위치",
+    "description": "",
+    "sortOrder": "97",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "specialExhibitionMainBannerType",
+    "upperCode": "root",
+    "name": "기획전메인배너타입",
+    "description": "",
+    "sortOrder": "98",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "main",
+    "upperCode": "mainBannerLocation",
+    "name": "메인",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "categoryMain",
+    "upperCode": "mainBannerLocation",
+    "name": "카테고리메인",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "specialExhibition",
+    "upperCode": "linkContentsType",
+    "name": "기획전",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "shopEvent",
+    "upperCode": "linkContentsType",
+    "name": "이벤트",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "product",
+    "upperCode": "linkContentsType",
+    "name": "상품",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "no",
+    "upperCode": "productNoticeBannerStatus",
+    "name": "미적용",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "all",
+    "upperCode": "productNoticeBannerStatus",
+    "name": "전체적용",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "category",
+    "upperCode": "productNoticeBannerStatus",
+    "name": "카테고리적용",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "intro",
+    "upperCode": "beltBannerLocation",
+    "name": "인트로",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "main",
+    "upperCode": "beltBannerLocation",
+    "name": "쇼핑몰메인",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "category",
+    "upperCode": "beltBannerLocation",
+    "name": "상품카테고리",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "productDetail",
+    "upperCode": "beltBannerLocation",
+    "name": "상품상세",
+    "description": "",
+    "sortOrder": "4",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "specialExhibition",
+    "upperCode": "beltBannerLocation",
+    "name": "기획전",
+    "description": "",
+    "sortOrder": "5",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "shopEvent",
+    "upperCode": "beltBannerLocation",
+    "name": "이벤트",
+    "description": "",
+    "sortOrder": "6",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "cart",
+    "upperCode": "beltBannerLocation",
+    "name": "장바구니",
+    "description": "",
+    "sortOrder": "7",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "temp1",
+    "upperCode": "bannerTemplate",
+    "name": "1단",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "temp2",
+    "upperCode": "bannerTemplate",
+    "name": "2단",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "temp3",
+    "upperCode": "bannerTemplate",
+    "name": "3단",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "tempVOD",
+    "upperCode": "bannerTemplate",
+    "name": "영상",
+    "description": "",
+    "sortOrder": "4",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "tempHTML",
+    "upperCode": "bannerTemplate",
+    "name": "HTML",
+    "description": "",
+    "sortOrder": "5",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "nextToSearch",
+    "upperCode": "singleBannerLocation",
+    "name": "검색옆",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "popup",
+    "upperCode": "singleBannerLocation",
+    "name": "팝업배너",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "leftSide",
+    "upperCode": "singleBannerLocation",
+    "name": "사이드(좌)",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "rightSide",
+    "upperCode": "singleBannerLocation",
+    "name": "사이드(우)",
+    "description": "",
+    "sortOrder": "4",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "login",
+    "upperCode": "singleBannerLocation",
+    "name": "로그인",
+    "description": "",
+    "sortOrder": "5",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "mypageMain",
+    "upperCode": "singleBannerLocation",
+    "name": "마이페이지메인",
+    "description": "",
+    "sortOrder": "6",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "serviceCenterMain",
+    "upperCode": "singleBannerLocation",
+    "name": "고객센터메인",
+    "description": "",
+    "sortOrder": "7",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "slide",
+    "upperCode": "specialExhibitionMainBannerType",
+    "name": "슬라이드",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "temp3",
+    "upperCode": "specialExhibitionMainBannerType",
+    "name": "3단",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "y",
+    "upperCode": "privateStatus",
+    "name": "비공개",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "n",
+    "upperCode": "privateStatus",
+    "name": "공개",
+    "description": "",
+    "sortOrder": "2",
     "commonCodeStatus": "y"
   }
 ]

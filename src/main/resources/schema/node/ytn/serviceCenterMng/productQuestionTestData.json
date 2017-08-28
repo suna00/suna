@@ -1,0 +1,30 @@
+[
+  {
+    "typeId": "productQuestion",
+    "productQuestionId": 1,
+    "vendorId": "1",
+    "siteId": "ion",
+    "productId": "1",
+    "memberNo": "77777",
+    "productQuestionStatus": "ready",
+    "title": "사이즈 변경 가능한가요?",
+    "contents": "냉무",
+    "privateYn": "y",
+    "created": "20170821053435",
+    "changed": "20170821053435"
+  },
+  {
+    "typeId": "productQuestion",
+    "productQuestionId": 2,
+    "vendorId": "1",
+    "siteId": "ion",
+    "productId": "1",
+    "memberNo": "77777",
+    "productQuestionStatus": "completed",
+    "title": "앞에 질문 철회합니다.",
+    "contents": "냉무",
+    "privateYn": "n",
+    "created": "20170820203456",
+    "changed": "20170821053544"
+  }
+]
