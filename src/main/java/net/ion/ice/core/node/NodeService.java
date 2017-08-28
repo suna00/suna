@@ -45,6 +45,9 @@ public class NodeService {
     @Autowired
     private FileService fileService ;
 
+    @Autowired
+    private ApplicationContextManager applicationContextManager;
+
     private Map<String, NodeType> nodeTypeCache ;
     private Map<String, NodeType> initNodeType = new ConcurrentHashMap<>() ;
 
