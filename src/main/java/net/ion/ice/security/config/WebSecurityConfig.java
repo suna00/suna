@@ -69,9 +69,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //    @Autowired
 //    private WebFilter webFilter;
 
-    @Autowired
-    private CookieUtil cookieUtil;
-
     protected LoginProcessingFilter buildAjaxLoginProcessingFilter() throws Exception {
         LoginProcessingFilter filter = new LoginProcessingFilter(FORM_BASED_LOGIN_ENTRY_POINT, successHandler, failureHandler);
         filter.setAuthenticationManager(this.authenticationManager);
@@ -81,7 +78,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected JwtTokenAuthenticationProcessingFilter buildJwtTokenAuthenticationProcessingFilter() throws Exception {
         List<String> pathsToSkip = Arrays.asList(TOKEN_REFRESH_ENTRY_POINT, FORM_BASED_LOGIN_ENTRY_POINT, FORM_BASED_LOGOUT_ENTRY_POINT);
         SkipPathRequestMatcher matcher = new SkipPathRequestMatcher(pathsToSkip, TOKEN_BASED_AUTH_ENTRY_POINT);
-        JwtTokenAuthenticationProcessingFilter filter = new JwtTokenAuthenticationProcessingFilter(failureHandler, tokenExtractor, matcher, jwtConfig, cookieUtil);
+        JwtTokenAuthenticationProcessingFilter filter = new JwtTokenAuthenticationProcessingFilter(failureHandler, tokenExtractor, matcher);
         filter.setAuthenticationManager(this.authenticationManager);
         return filter;
     }

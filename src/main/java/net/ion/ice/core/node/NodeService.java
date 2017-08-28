@@ -190,7 +190,6 @@ public class NodeService {
 
         logger.info("LAST CHANGED : " + lastChanged);
 
-
         saveSchema("classpath:schema/core/*.json", lastChanged);
         saveSchema("classpath:schema/core/*/*.json", lastChanged);
 //        saveSchema("classpath:schema/node/*.json", lastChanged);

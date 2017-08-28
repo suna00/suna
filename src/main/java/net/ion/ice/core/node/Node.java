@@ -6,7 +6,6 @@ import net.ion.ice.core.infinispan.lucene.CodeAnalyzer;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.search.annotations.*;
 
-import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -26,7 +25,6 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
     public static final String ID_SEPERATOR = ">";
 
-    @Id
     @DocumentId
     @Field
     @Analyzer(impl = CodeAnalyzer.class)

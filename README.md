@@ -170,3 +170,8 @@ String Boot를 기반으로 API를 제공하는 Backend 시스템
         * 이용자별, 소속그룹별, 컨텐츠 유형별 이용 통계
         * 시간대별, 일별, 주별, 월별 통계
 * 로그 분석
+
+### 스키마 리로드
+     개발 중 스키마 json을 변경하고, 직시 적용하기 위해서 /node/helper/reloadSchema.json?filePath= 호출 가능
+     ex) http://localhost:8080/node/helper/reloadSchema.json?filePath=/Users/jaeho/IdeaProjects/ice2-core/src/main/resources/schema/node
+     
