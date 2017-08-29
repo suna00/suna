@@ -16,6 +16,7 @@
     "findKywrd": "Different Heaven,My Heart",
     "showCntryCdList": "KOR,USA,CHN",
     "relAlbumIds": "",
-    "mnetIfTrtYn": true
+    "mnetIfTrtYn": true,
+    "showYn": true
   }
 ]
