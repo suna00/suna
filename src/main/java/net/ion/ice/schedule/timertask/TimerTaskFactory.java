@@ -53,7 +53,7 @@ public class TimerTaskFactory {
 
     private TimerTask instantiateTimerTask (Map<String, Object> taskInfo) {
 
-        // 생성해서 돌리기 전에 대상 클래스가 Bean 인지 아닌지 확인할 필요가 있을까...
+        // 생성해서 돌리기 전에 대상 클래스가 Bean 인지 아닌지 확인할 필요가 있을까..
         TimerTask t = null;
         try{
             Class clz = Class.forName(String.valueOf(taskInfo.get("execute-class")));
