@@ -6,7 +6,8 @@
     "upperContsCtgryId": "",
     "contsCtgryNm": "국내",
     "sortOdrg": 1,
-    "contsCtgrydesc": ""
+    "contsCtgrydesc": "",
+    "useYn": true
   },
   {
     "typeId": "contsCtgry",
@@ -15,7 +16,8 @@
     "upperContsCtgryId": "",
     "contsCtgryNm": "해외",
     "sortOdrg": 2,
-    "contsCtgrydesc": ""
+    "contsCtgrydesc": "",
+    "useYn": true
   },
   {
     "typeId": "contsCtgry",
@@ -24,7 +26,8 @@
     "upperContsCtgryId": "100",
     "contsCtgryNm": "남자",
     "sortOdrg": 1,
-    "contsCtgrydesc": ""
+    "contsCtgrydesc": "",
+    "useYn": true
   },
   {
     "typeId": "contsCtgry",
@@ -33,7 +36,8 @@
     "upperContsCtgryId": "100",
     "contsCtgryNm": "여자",
     "sortOdrg": 2,
-    "contsCtgrydesc": ""
+    "contsCtgrydesc": "",
+    "useYn": true
   },
   {
     "typeId": "contsCtgry",
@@ -42,7 +46,8 @@
     "upperContsCtgryId": "100",
     "contsCtgryNm": "남성그룹",
     "sortOdrg": 3,
-    "contsCtgrydesc": ""
+    "contsCtgrydesc": "",
+    "useYn": true
   },
   {
     "typeId": "contsCtgry",
@@ -51,7 +56,8 @@
     "upperContsCtgryId": "100",
     "contsCtgryNm": "여성그룹",
     "sortOdrg": 4,
-    "contsCtgrydesc": ""
+    "contsCtgrydesc": "",
+    "useYn": true
   },
   {
     "typeId": "contsCtgry",
@@ -60,6 +66,7 @@
     "upperContsCtgryId": "100",
     "contsCtgryNm": "혼성그룹",
     "sortOdrg": 5,
-    "contsCtgrydesc": ""
+    "contsCtgrydesc": "",
+    "useYn": true
   }
 ]
