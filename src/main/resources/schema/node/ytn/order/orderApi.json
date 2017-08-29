@@ -17,14 +17,14 @@
         "select" : {
           "ds" : "ytnDevDb",
           "resultType" : "read",
-          "sql" : "select cart.* , (totalProductPrice + totalDeliveryPrice - totalDiscountPrice) as totalOrderPrice from ( select a.cartId, a.memberNo, a.siteId, a.sessionId, (select ifnull(sum(orderPrice),0) from cartProduct where cartId = a.cartId) as totalProductPrice , (select ifnull(sum(deliveryPrice),0) from cartdeliveryprice where cartId = a.cartId) as totalDeliveryPrice , 0 as totalDiscountPrice from cart a where cartId = {{:cartId}} or sessionId = '{{:sessionId}}') cart"
+          "sql" : "SELECT odr.*, (totalProductPrice + totalDeliveryPrice - totalDiscountPrice) AS totalOrderPrice FROM (SELECT a.purchaseOrderId, a.memberNo, a.siteId, a.sessionId, (SELECT ifnull(sum(orderPrice), 0) FROM orderproduct WHERE purchaseOrderId = a.purchaseOrderId) AS totalProductPrice, (SELECT ifnull(sum(deliveryPrice), 0) FROM orderdeliveryprice WHERE purchaseOrderId = a.purchaseOrderId) AS totalDeliveryPrice, 0 AS totalDiscountPrice FROM purchaseorder a WHERE purchaseOrderId = 1 OR sessionId = '{{:sessionId}}') odr"
         }
       },
-      "referencedCartProduct" : {
-        "typeId" : "cartProduct",
+      "referencedOrderProduct" : {
+        "typeId" : "orderProduct",
         "query" : [
-          {"sorting" : "cartDeliveryPriceId desc,created desc"},
-          {"field" : "cartId", "method" : "matching", "value" : "{{:cartId}}"},
+          {"sorting" : "orderDeliveryPriceId desc,created desc"},
+          {"field" : "orderId", "method" : "matching", "value" : "{{:orderId}}"},
           {"includeReferenced" : true, "referenceView": "productId"}
         ]
       }

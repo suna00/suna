@@ -38,7 +38,7 @@ public class DefaultAuthenticationSuccessHandler implements AuthenticationSucces
         UserContext userContext = (UserContext) authentication.getPrincipal();
 
         JwtToken accessToken = tokenFactory.createAccessJwtToken(userContext);
-        JwtToken refreshToken = tokenFactory.createRefreshToken(userContext);
+        JwtToken refreshToken = tokenFactory.createRefreshToken();
 
         Map<String, String> tokenMap = new HashMap<>();
         tokenMap.put("iceJWT", accessToken.getToken());
