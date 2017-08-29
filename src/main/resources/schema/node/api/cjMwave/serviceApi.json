@@ -62,7 +62,10 @@
       "response": {
         "mainSeq": "",
         "mainNm": "",
-        "refdCompItemList": ""
+        "refdCompItemList": {
+          "referenceView": true,
+          "includeReferenced": false
+        }
       }
     }
   },
@@ -99,32 +102,18 @@
       }
     ],
     "config": {
-      "typeId": "svcMenuGroupInfo",
-      "query": [
-        {
-          "field": "showCntryCdList",
-          "method": "matching",
-          "value": "{{:cntryCd}}"
-        },
-        {
-          "field": "svcDvcDivCd",
-          "method": "matching",
-          "value": "{{:svcTermlDivCd}}"
-        },
-        {
-          "field": "showYn",
-          "method": "matching",
-          "value": "true"
-        },
-        {
-          "limit": "1"
-        },
-        {
-          "includeReferenced": true
-        }
-      ],
-      "response": {
-        "refdMenuList": ""
+      "root": {
+        "typeId": "svcMenuInfo",
+        "query": [
+          {
+            "field": "svcMenuGroupSeq",
+            "method": "referenceJoin",
+            "value": "showCntryCdList_matching={{:cntryCd}}&svcDvcDivCd_matching={{:svcTermlDivCd}}&showYn_matching=true&limit=1"
+          },
+          {
+            "includeReferenced": true
+          }
+        ]
       },
       "anchor": {
         "typeId": "banrBasInfo",
