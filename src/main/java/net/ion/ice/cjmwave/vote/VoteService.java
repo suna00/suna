@@ -4,6 +4,7 @@ import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.event.EventBroker;
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
 import net.ion.ice.core.json.JsonUtils;
+import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,14 +47,29 @@ public class VoteService {
 
         Map<String, Object> voteInfo = JsonUtils.parsingJsonToMap(_data.get("voteInfo").toString());
         List<Map<String,Object>> termRstrtnArray = JsonUtils.parsingJsonToList(_data.get("termRstrtnArray").toString());
-        //Map<String, Object> voteItems = JsonUtils.parsingJsonToMap(_data.get("voteItems").toString());
+        List<Map<String,Object>> voteItemArray = JsonUtils.parsingJsonToList(_data.get("voteItemArray").toString());
 
 
         //여기다 이제 투표기본정보, 제한, 항목 노드에 각각 저장을 .....
 
-        //1. 투표기본정보 저장
-        nodeService.executeNode(voteInfo, "voteBasInfo", "save");
+        //1. 투표기본정보 저장- 파일저장있음
+        Node voteBasInfo = nodeService.executeNode(voteInfo, "voteBasInfo", "save");
 
+        //2. 저장된 투표기본정보 seq를 가지고 기간제한정보 array 저장
+        if(termRstrtnArray.size() > 0){
+            for(Map termRstrtnInfo : termRstrtnArray){
+                termRstrtnInfo.put("voteSeq",voteBasInfo.getId());
+                nodeService.executeNode(termRstrtnInfo, "votePredRstrtnInfo", "save");
+            }
+        }
+
+        //3. 저장된 투표기본정보 seq를 가지고 투표항목 array 저장 - 각각 파일저장있음
+        if(voteItemArray.size() > 0){
+            for(Map voteItemInfo : voteItemArray){
+                voteItemInfo.put("voteSeq",voteBasInfo.getId());
+                nodeService.executeNode(voteItemInfo, "voteItemInfo", "save");
+            }
+        }
 
 
     }
