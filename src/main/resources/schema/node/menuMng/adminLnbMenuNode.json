@@ -974,5 +974,148 @@
       }
     ],
     "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "root",
+    "menuId": "svcCenterMng",
+    "menuName": "고객센터",
+    "order": "100",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "admin>root>svcCenterMng",
+    "menuId": "noticeMng",
+    "menuName": "공지사항 관리",
+    "order": "10",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "수정",
+        "pageUrl": "uform"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
+    ],
+    "customPages": [
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "admin>root>svcCenterMng",
+    "menuId": "qnaMng",
+    "menuName": "1:1 문의하기 관리",
+    "order": "10",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "수정",
+        "pageUrl": "uform"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
+    ],
+    "customPages": [
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "admin>root>svcCenterMng",
+    "menuId": "faqMng",
+    "menuName": "FAQ 관리",
+    "order": "20",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "수정",
+        "pageUrl": "uform"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
+    ],
+    "customPages": [
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "admin>root>svcCenterMng",
+    "menuId": "faqCtgMng",
+    "menuName": "FAQ 카테고리 관리",
+    "order": "30",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "수정",
+        "pageUrl": "uform"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
+    ],
+    "customPages": [
+    ]
   }
 ]
