@@ -57,6 +57,8 @@ public class ApiSelectContext extends ReadContext{
                 return null ;
             }else{
                 QueryResult queryResult = new QueryResult() ;
+                queryResult.put("result", "200");
+                queryResult.put("resultMessage", "SUCCESS");
                 queryResult.put(fieldName == null ? "items" : fieldName, resultList) ;
                 return queryResult ;
             }
@@ -67,7 +69,9 @@ public class ApiSelectContext extends ReadContext{
                 return null ;
             }else{
                 QueryResult queryResult = new QueryResult() ;
-                queryResult.putAll(resultMap); ;
+                queryResult.put("result", "200");
+                queryResult.put("resultMessage", "SUCCESS");
+                queryResult.putAll(resultMap);
                 return queryResult ;
             }
         }
