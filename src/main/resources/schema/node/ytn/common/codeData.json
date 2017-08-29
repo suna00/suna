@@ -586,7 +586,7 @@
   },
   {
     "typeId": "commonCode",
-    "code": "SMSAuthenticationType",
+    "code": "SMSCertificationType",
     "upperCode": "root",
     "name": "SMS 인증 이력 타입",
     "description": "",
@@ -3872,7 +3872,7 @@
   {
     "typeId": "commonCode",
     "code": "admin",
-    "upperCode": "SMSAuthenticationType",
+    "upperCode": "SMSCertificationType",
     "name": "어드민",
     "description": "",
     "sortOrder": "1",
@@ -3881,7 +3881,7 @@
   {
     "typeId": "commonCode",
     "code": "password",
-    "upperCode": "SMSAuthenticationType",
+    "upperCode": "SMSCertificationType",
     "name": "비밀번호",
     "description": "",
     "sortOrder": "2",
@@ -3890,7 +3890,7 @@
   {
     "typeId": "commonCode",
     "code": "id",
-    "upperCode": "SMSAuthenticationType",
+    "upperCode": "SMSCertificationType",
     "name": "아이디",
     "description": "",
     "sortOrder": "3",
@@ -4933,7 +4933,7 @@
   },
   {
     "typeId": "commonCode",
-    "code": "emailAuthenticationType",
+    "code": "emailCertificationType",
     "upperCode": "root",
     "name": "email 인증 타입",
     "description": "",
@@ -4943,7 +4943,7 @@
   {
     "typeId": "commonCode",
     "code": "join",
-    "upperCode": "emailAuthenticationType",
+    "upperCode": "emailCertificationType",
     "name": "가입",
     "description": "",
     "sortOrder": "1",
@@ -4952,7 +4952,7 @@
   {
     "typeId": "commonCode",
     "code": "password",
-    "upperCode": "emailAuthenticationType",
+    "upperCode": "emailCertificationType",
     "name": "비밀번호",
     "description": "",
     "sortOrder": "2",
@@ -4961,7 +4961,7 @@
   {
     "typeId": "commonCode",
     "code": "id",
-    "upperCode": "emailAuthenticationType",
+    "upperCode": "emailCertificationType",
     "name": "아이디",
     "description": "",
     "sortOrder": "3",
