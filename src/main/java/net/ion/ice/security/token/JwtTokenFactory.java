@@ -64,14 +64,15 @@ public class JwtTokenFactory {
         return new AccessJwtToken(token, claims);
     }
 
-    public JwtToken createRefreshToken(UserContext userContext) {
-        if (StringUtils.isBlank(userContext.getUserId())) {
-            throw new IllegalArgumentException("Cannot create JWT Token without userId");
-        }
+    public JwtToken createRefreshToken() {
+//        if (StringUtils.isBlank(userContext.getUserId())) {
+//            throw new IllegalArgumentException("Cannot create JWT Token without userId");
+//        }
 
         LocalDateTime currentTime = LocalDateTime.now();
 
-        Claims claims = Jwts.claims().setSubject(userContext.getUserId());
+//        Claims claims = Jwts.claims().setSubject(userContext.getUserId());
+        Claims claims = Jwts.claims().setSubject("Anonymous");
 //        claims.put("scopes", Arrays.asList(Scopes.REFRESH_TOKEN.authority()));
 
         String token = Jwts.builder()
