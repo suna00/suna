@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -58,8 +59,12 @@ public class VoteService {
         //2. 저장된 투표기본정보 seq를 가지고 기간제한정보 array 저장
         if(termRstrtnArray.size() > 0){
             for(Map termRstrtnInfo : termRstrtnArray){
-                termRstrtnInfo.put("voteSeq",voteBasInfo.getId());
-                nodeService.executeNode(termRstrtnInfo, "votePredRstrtnInfo", "save");
+                Map newTermRstrtnInfo = new HashMap();
+                newTermRstrtnInfo.put("voteSeq",voteBasInfo.getId());
+                newTermRstrtnInfo.put("rstrtnStDate",termRstrtnInfo.get("st"));
+                newTermRstrtnInfo.put("rstrtnFnsDate",termRstrtnInfo.get("dt"));
+                newTermRstrtnInfo.put("rstrtnCnt",termRstrtnInfo.get("cnt"));
+                nodeService.executeNode(newTermRstrtnInfo, "votePredRstrtnInfo", "save");
             }
         }
 
