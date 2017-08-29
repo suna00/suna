@@ -68,7 +68,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
-    "codeFilter": "",
+    "codeFilter": "cliptypeCd",
     "defaultValue": ""
   },
   {
@@ -248,7 +248,7 @@
     "analyzer": null,
     "referenceType": "code",
     "referenceValue": "",
-    "codeFilter": "",
+    "codeFilter": "itemTypeCd",
     "defaultValue": ""
   },
   {
@@ -266,7 +266,7 @@
     "analyzer": null,
     "referenceType": "code",
     "referenceValue": "",
-    "codeFilter": "",
+    "codeFilter": "contentTypeCd",
     "defaultValue": ""
   },
   {
@@ -294,7 +294,7 @@
     "id": "pgmVideo>contentImg",
     "propertyTypeName": "클립영상 대표 이미지 URL",
     "valueType": "STRING",
-    "required": true,
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
