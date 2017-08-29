@@ -1,20 +1,47 @@
 [
   {
-    "typeId" : "artistMultiLangInfo",
-    "artistId" : "artist_00001",
-    "langCd" : "KOR",
-    "artistNm" : "Different Heaven",
-    "artistDesc" : "스페인 태생의 21세 음악 프로듀서및 DJ로서 NCS에서 EH!DE와 합작한 My Heart[1], Pentakill로 유명세를 탔다. 개개인에 따른 차이가 있지만 중독성 있는 비트가 특징.",
-    "atvyName" : "Different Heaven",
-    "findKywrd" : "Different Heaven"
+    "typeId": "artistMultiLangInfo",
+    "artistId": "artist_00001",
+    "langCd": "ko",
+    "artistNm": "트와이스",
+    "artistDesc": "트와이스(TWICE)는 대한민국의 9인조 걸 그룹으로, JYP 엔터테인먼트 소속이다. 2015년 5월 5일부터 7월 7일까지 진행된 서바이벌 프로그램 Mnet 《SIXTEEN》을 통해 9명의 최종 멤버들이 선발되었으며,[1] 2015년 10월 19일 타이틀곡 \"OOH-AHH하게\" 뮤직비디오와 음원을 공개하고, 20일 첫 번째 EP 앨범 《THE STORY BEGINS》 발매와 동시에 데뷔 쇼케이스로 데뷔하였다.",
+    "atvyName": "트와이스",
+    "findKywrd": "트와이스,걸그룹,인기그룹,한국그룹"
   },
   {
-    "typeId" : "artistMultiLangInfo",
-    "artistId" : "artist_00002",
-    "langCd" : "KOR",
-    "artistNm" : "Zedd",
-    "artistDesc" : "DJ 겸 프로듀서. 러시아(구소련)에서 태어나 독일에서 자란 러시아계 독일인이다. 일렉트로 하우스, 프로그레시브 하우스 등 다양한 장르의 하우스 음악을 작곡하며 프로듀스한다. 두 부모가 음악가인 음악가 집안에서 태어났다. 4살 때 부터 피아노와 드럼을 배웠으며 2002년에는 독일에서 밴드 생활도 했다는 모양. 그러던 후에 프랑스의 일렉트로 하우스 듀오인 저스티스에 관심을 갖게 되어 2009년부터 일렉트로닉 음악을 프로듀스하게 된다. 상당한 저스티스 덕후로 저스티스는 그의 우상이기도 하다. 트위터 등에서 빠심이 담긴 트윗이나 사진 등을 종종 찾아 볼 수 있을 정도(...) 젓티너무조와 힛ㅋ 4살 때부터 배우고 또 밴드 생활을 거쳐서 뛰어난 피아노 연주 능력을 가지고 있고, 프로듀싱 능력 뿐만 아니라 모든 곡을 직접 작사, 작곡하는 뛰어난 송라이터이기도 하다.",
-    "atvyName" : "Zedd",
-    "findKywrd" : "Zedd"
+    "typeId": "artistMultiLangInfo",
+    "artistId": "artist_00002",
+    "langCd": "en",
+    "artistNm": "coldplay",
+    "artistDesc": "Coldplay are a British rock band formed in 1996 by lead vocalist and keyboardist Chris Martin and lead guitarist Jonny Buckland at University College London (UCL)",
+    "atvyName": "coldplay",
+    "findKywrd": "coldplay,london,england,alternativerock"
+  },
+  {
+    "typeId": "artistMultiLangInfo",
+    "artistId": "artist_00003",
+    "langCd": "zh-cn",
+    "artistNm": "10cm",
+    "artistDesc": "10厘米（韩语：십센치）是一位韩国独立艺术家，以前是二重奏。乐队有两名男性成员Kwon Jung-yeol和Yoon Cheol-jong。乐队的名称，10厘米，表示两个核心成员的身高差异。",
+    "atvyName": "10cm",
+    "findKywrd": "10cm,kwonjungyeol,yooncheoljong,band,indigroup"
+  },
+  {
+    "typeId": "artistMultiLangInfo",
+    "artistId": "artist_00014",
+    "langCd": "zh-tw",
+    "artistNm": "Big Bang",
+    "artistDesc": "大爆炸（韓語：빅뱅）是由YG Entertainment組建的韓國男孩樂隊。由集團成員G-Dragon，T.O.P，Taeyang，Daesung，Seungri組成，2006年8月19日正式亮相",
+    "atvyName": "Big Bang",
+    "findKywrd": "bigbang,ygentertainment,group,artist,kpop"
+  },
+  {
+    "typeId": "artistMultiLangInfo",
+    "artistId": "artist_00032",
+    "langCd": "jp",
+    "artistNm": "SUNMI",
+    "artistDesc": "1992年5月2日に生まれた李サンミ（Lee Sun-mi）[1]は、韓国の歌手ソンミまたはミミによく知られている。彼女は韓国の女の子グループWonder Girlsの一員として最もよく知られていました。",
+    "atvyName": "SUNMI",
+    "findKywrd": "sunmi,fullmoon,leesunmi"
   }
 ]

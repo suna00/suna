@@ -1,14 +1,62 @@
 [
   {
     "typeId": "musicVideoMultiLangInfo",
-    "musicVideoId": "15151",
-    "langCd": "KOR",
-    "musicVideoNm": "Let me love you",
-    "subName": "Let me love you",
-    "musicVideoDesc": "Let me love you",
-    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_album04.jpg",
-    "youtubeUrl": "https://www.youtube.com/watch?v=euCqAq6BRa4",
-    "todouUrl": "",
-    "findKywrd": "Ko Ko Bop, Exo"
+    "musicVideoId": "6042",
+    "langCd": "ko",
+    "musicVideoNm": "[티저] BLACK6IX Coming Soon",
+    "subName": "[티저] BLACK6IX Coming Soon",
+    "musicVideoDesc": "Artist : BLACK6IX(블랙식스) ",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
+    "youtubeUrl": "https://www.youtube.com/watch?v=yvrye-Gq7YA",
+    "todouUrl": "https://video.tudou.com/v/XMjY5NDA2MDY3Ng==.html?spm=a2h0k.8191414.0.0&from=s1.8-1-1.2",
+    "findKywrd": "블랙식스,mwave,티저영상"
+  },
+  {
+    "typeId": "musicVideoMultiLangInfo",
+    "musicVideoId": "2434",
+    "langCd": "en",
+    "musicVideoNm": "[티저] HONEYMOON (Trailer 1)",
+    "subName": "[티저] HONEYMOON (Trailer 1)",
+    "musicVideoDesc": "HONEYMOON (Trailer 1) ",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_album05.jpg",
+    "youtubeUrl": "https://www.youtube.com/watch?v=gF-Cs-2-SHA",
+    "todouUrl": "https://video.tudou.com/v/XMjkyMDQ2NDY3Mg==.html?spm=a2h0k.8191414.0.0&from=s1.8-1-1.2",
+    "findKywrd": "honeymoon,bap,trailter"
+  },
+  {
+    "typeId": "musicVideoMultiLangInfo",
+    "musicVideoId": "1104",
+    "langCd": "zh-cn",
+    "musicVideoNm": "梦幻时钟",
+    "subName": "梦幻时钟",
+    "musicVideoDesc": "接下来！ 2017年8月31日",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
+    "youtubeUrl": "https://www.youtube.com/watch?v=6dY6pfaGxQs",
+    "todouUrl": "https://video.tudou.com/v/XMjY5NDA2MDY3Ng==.html?spm=a2h0k.8191414.0.0&from=s1.8-1-1.2",
+    "findKywrd": "kbridge,dreamoclock,teaser"
+  },
+  {
+    "typeId": "musicVideoMultiLangInfo",
+    "musicVideoId": "3952",
+    "langCd": "zh-tw",
+    "musicVideoNm": "ZINZA (Feat. YDG, Suan)",
+    "subName": "ZINZA (Feat. YDG, Suan)",
+    "musicVideoDesc": "ZINZA (Feat. YDG, Suan)",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/thumb_video_01.jpg",
+    "youtubeUrl": "https://www.youtube.com/watch?v=5brCDkmMAYU",
+    "todouUrl": "http://new.tudou.com/index/404",
+    "findKywrd": "zinza,ydg,suran,showmethemoney"
+  },
+  {
+    "typeId": "musicVideoMultiLangInfo",
+    "musicVideoId": "4342",
+    "langCd": "jp",
+    "musicVideoNm": "ZINZA（Feat。YDG、Suan）",
+    "subName": "ZINZA（Feat。YDG、Suan）",
+    "musicVideoDesc": "ZINZA（Feat。YDG、Suan）",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_album05.jpg",
+    "youtubeUrl": "https://www.youtube.com/watch?v=5brCDkmMAYU",
+    "todouUrl": "http://new.tudou.com/index/404",
+    "findKywrd": "zinza、ydg、suran、showmethemoney"
   }
 ]

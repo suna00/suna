@@ -110,7 +110,7 @@
     "id": "badgeInfo>imgPath",
     "propertyTypeName": "이미지 경로",
     "valueType": "FILE",
-    "required": true,
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,

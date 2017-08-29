@@ -2,11 +2,51 @@
   {
     "typeId": "albumMultiLangInfo",
     "albumId": "album_00001",
-    "langCd": "KOR",
-    "albumNm": "My Heart",
+    "langCd": "ko",
+    "albumNm": "THE STORY BEGINS",
     "subName": "My Heart",
-    "sersName": "My Heart",
-    "albumDesc": "It is a collaboration with EH! DE and is the fourth song of Orbit Or Beat.",
-    "findKywrd": "Different Heaven,My Heart"
+    "sersName": "1. My Heart",
+    "albumDesc": "The Story Begins는 한국 소녀 그룹 Twice의 데뷔 장편 데뷔작입니다. 이 앨범은 JYP Entertainment에서 2015 년 10 월 20 일 디지털 방식으로 물리적으로 출시되었으며 KT Music에서 배포했습니다. 앨범에는 Black Eyed Pilseung이 작곡 한 여러 곡의 장르가 혼합 된 \"Ooh-Ahh Like\"라는 단서를 포함한 여섯 곡이수록되어있다.",
+    "findKywrd": "트와이스,새앨범,K팝,댄스,발라드"
+  },
+  {
+    "typeId": "albumMultiLangInfo",
+    "albumId": "album_00002",
+    "langCd": "en",
+    "albumNm": "Parachutes",
+    "subName": "Parachutes",
+    "sersName": "1. Parachutes",
+    "albumDesc": "The album was produced by the band and British record producer Ken Nelson, except for one track, \"High Speed\", which was produced by Chris Allison. Parachutes has spawned the hit singles \"Shiver\", \"Yellow\", \"Trouble\", and \"Don't Panic\".",
+    "findKywrd": "coldplay,parlophone,parachutes,postbritpop"
+  },
+  {
+    "typeId": "albumMultiLangInfo",
+    "albumId": "album_00003",
+    "langCd": "zh-cn",
+    "albumNm": "10 cm The First EP",
+    "subName": "10 cm The First EP",
+    "sersName": "1. 10 cm The First EP",
+    "albumDesc": "该专辑由乐队和英国唱片制作人Ken Nelson制作，除了由Chris Allison制作的一首曲目“High Speed”。降落伞产生了单打“颤抖”，“黄色”，“麻烦”和“不要惊慌”。",
+    "findKywrd": "10CM，kwonjungyeol，yooncheoljong，樂隊，indigroup。"
+  },
+  {
+    "typeId": "albumMultiLangInfo",
+    "albumId": "album_00014",
+    "langCd": "zh-tw",
+    "albumNm": "Big Bang",
+    "subName": "Big Bang",
+    "sersName": "1.Big Bang",
+    "albumDesc": "該專輯由樂隊和英國唱片製作人Ken Nelson製作，除了由Chris Allison製作的一首曲目“High Speed”。降落傘產生了單打“顫抖”，“黃色”，“麻煩”和“不要驚慌”。",
+    "findKywrd": "bigbang,ygentertainment,group,artist,kpop"
+  },
+  {
+    "typeId": "albumMultiLangInfo",
+    "albumId": "album_00045",
+    "langCd": "jp",
+    "albumNm": "Big Bang",
+    "subName": "Big Bang",
+    "sersName": "1.Big Bang",
+    "albumDesc": "この記事は韓国のグループBig Bangのシングルに関するものです。アリゾナのバンドThe Formatのシングルについては、The First Singleを参照してください。 「Bigbang」や「We Belong Together」（「First Single」とも呼ばれる）は、韓国のヒップホップ・ボーイズ・バンドのBig Bangによる最初のシングルです。それはYG Entertainmentレーベルからリリースされ、8か月間チャートに残っていました。",
+    "findKywrd": "ビッグバン、ygエンターテインメント、グループ、アーティスト、kpop"
   }
 ]

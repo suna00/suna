@@ -74,7 +74,7 @@
     "id": "mcdLineupArtist>thumImgPath",
     "propertyTypeName": "썸네일 이미지 경로",
     "valueType": "FILE",
-    "required": true,
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
