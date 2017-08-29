@@ -99,8 +99,8 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "code",
-    "referenceValue": "codeId",
-    "codeFilter": "albumTypeCd",
+    "referenceValue": "",
+    "codeFilter": "artistType",
     "defaultValue": ""
   },
   {
