@@ -4,7 +4,7 @@ import net.ion.ice.core.cluster.ClusterConfiguration;
 import net.ion.ice.security.auth.jwt.extractor.TokenExtractor;
 import net.ion.ice.security.common.CookieUtil;
 import net.ion.ice.security.config.JwtConfig;
-import net.ion.ice.security.token.JwtTokenFactory;
+import net.ion.ice.security.token.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,21 +32,39 @@ public class SessionService {
         return sessionMap;
     }
 
-    public String putSession(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+    public void putSession(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
         Map<String, Map<String, Object>> sessionMap = clusterConfiguration.getSesssionMap();
-        String sessionKey = "";
 
         if (getSession(request) == null) {
-            sessionKey = tokenFactory.createInitJwtToken().getToken();
+            String sessionKey = tokenFactory.createInitJwtToken().getToken();
+            String refreshSessionKey = tokenFactory.createRefreshToken().getToken();
+
             Map<String, Object> data = new HashMap<>();
             sessionMap.put(sessionKey, data);
             CookieUtil.create(response, "iceJWT", jwtConfig.getTokenPrefix().concat(" ").concat(sessionKey), false, false, -1, request.getServerName());
+            CookieUtil.create(response, "iceRefreshJWT", jwtConfig.getTokenPrefix().concat(" ").concat(refreshSessionKey), true, false, -1, request.getServerName());
         }
-        String jwt = jwtConfig.getTokenPrefix().concat(" ").concat(sessionKey);
-
-        return jwt;
     }
 
+    public void removeSession(HttpServletRequest request) throws UnsupportedEncodingException {
+        Map<String, Object> sessionMap = clusterConfiguration.getSesssionMap().get(getSessionKey(request));
+        sessionMap.put(getSessionKey(request), null);
+    }
+
+    public void refreshSession(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+        Map<String, Map<String, Object>> sessionMap = clusterConfiguration.getSesssionMap();
+        if (getSession(request) != null) {
+            String iceRefreshJWTPlayload = CookieUtil.getValue(request, "iceRefreshJWT");
+            RawAccessJwtToken rawToken = new RawAccessJwtToken(tokenExtractor.extract(iceRefreshJWTPlayload));
+            RefreshToken.create(rawToken, jwtConfig.getSecretKey()).orElseThrow(() -> new RuntimeException());
+            String sessionKey = tokenFactory.createInitJwtToken().getToken();
+            sessionMap.put(sessionKey, getSession(request));
+            removeSession(request);
+            CookieUtil.create(response, "iceJWT", jwtConfig.getTokenPrefix().concat(" ").concat(sessionKey), false, false, -1, request.getServerName());
+        }else{
+            putSession(request, response);
+        }
+    }
     public String getSessionKey(HttpServletRequest request) throws UnsupportedEncodingException {
         String jwt = "";
         String playLoad = CookieUtil.getValue(request, "iceJWT");
@@ -69,8 +87,9 @@ public class SessionService {
         return sessionMap.get(jwt).get(valueKey);
     }
 
-    public Object getSessionValue(String sessionKey, String valueKey) {
-        Map<String, Map<String, Object>> sessionMap = clusterConfiguration.getSesssionMap();
-        return sessionMap.get(sessionKey).get(valueKey);
+    public void setSessionValue(HttpServletRequest request, String key, String[] strings) throws UnsupportedEncodingException {
+        Map<String, Object> sessionMap = getSession(request);
+        sessionMap.put(key, strings[0]);
     }
+
 }
