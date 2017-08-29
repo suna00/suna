@@ -351,6 +351,8 @@ public class NodeBindingInfo {
         } else {
             listParamSql = String.format("SELECT * FROM %s", tableName);
             totalCountSql = String.format("SELECT COUNT(*) as totalCount FROM %s", tableName);
+
+            resultCountValue = new ArrayList<>();
         }
 
         if (sorting != null) {
