@@ -1,12 +1,72 @@
 [
   {
     "typeId": "contsCtgry",
-    "contsCtgryId": "12",
+    "contsCtgryId": "100",
     "contsMetaDivCd": "1",
-    "upperContsCtgryId": "1",
-    "contsCtgryNm": "호러",
+    "upperContsCtgryId": "",
+    "contsCtgryNm": "국내",
     "sortOdrg": 1,
-    "contsCtgrydesc": "호러",
+    "contsCtgrydesc": "",
+    "useYn": true
+  },
+  {
+    "typeId": "contsCtgry",
+    "contsCtgryId": "101",
+    "contsMetaDivCd": "1",
+    "upperContsCtgryId": "",
+    "contsCtgryNm": "해외",
+    "sortOdrg": 2,
+    "contsCtgrydesc": "",
+    "useYn": true
+  },
+  {
+    "typeId": "contsCtgry",
+    "contsCtgryId": "102",
+    "contsMetaDivCd": "",
+    "upperContsCtgryId": "100",
+    "contsCtgryNm": "남자",
+    "sortOdrg": 1,
+    "contsCtgrydesc": "",
+    "useYn": true
+  },
+  {
+    "typeId": "contsCtgry",
+    "contsCtgryId": "103",
+    "contsMetaDivCd": "",
+    "upperContsCtgryId": "100",
+    "contsCtgryNm": "여자",
+    "sortOdrg": 2,
+    "contsCtgrydesc": "",
+    "useYn": true
+  },
+  {
+    "typeId": "contsCtgry",
+    "contsCtgryId": "104",
+    "contsMetaDivCd": "",
+    "upperContsCtgryId": "100",
+    "contsCtgryNm": "남성그룹",
+    "sortOdrg": 3,
+    "contsCtgrydesc": "",
+    "useYn": true
+  },
+  {
+    "typeId": "contsCtgry",
+    "contsCtgryId": "105",
+    "contsMetaDivCd": "",
+    "upperContsCtgryId": "100",
+    "contsCtgryNm": "여성그룹",
+    "sortOdrg": 4,
+    "contsCtgrydesc": "",
+    "useYn": true
+  },
+  {
+    "typeId": "contsCtgry",
+    "contsCtgryId": "106",
+    "contsMetaDivCd": "",
+    "upperContsCtgryId": "100",
+    "contsCtgryNm": "혼성그룹",
+    "sortOdrg": 5,
+    "contsCtgrydesc": "",
     "useYn": true
   }
 ]

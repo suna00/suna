@@ -259,12 +259,12 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "artist",
+    "tid": "album",
     "pid": "showYn",
-    "id": "artist>showYn",
+    "id": "album>showYn",
     "propertyTypeName": "노출 여부",
     "valueType": "BOOLEAN",
-    "required": false,
+    "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
@@ -272,6 +272,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {

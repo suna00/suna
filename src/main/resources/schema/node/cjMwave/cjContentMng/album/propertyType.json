@@ -280,7 +280,7 @@
     "id": "album>showYn",
     "propertyTypeName": "노출 여부",
     "valueType": "BOOLEAN",
-    "required": false,
+    "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,

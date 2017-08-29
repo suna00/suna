@@ -1089,6 +1089,14 @@
   },
   {
     "typeId": "code",
+    "groupCodeId": "contsMetaDivCd",
+    "codeId": "10",
+    "name": "프로그램",
+    "order": 10,
+    "active": true
+  },
+  {
+    "typeId": "code",
     "groupCodeId": "intrstCd",
     "codeId": 1,
     "name": "뷰티",
