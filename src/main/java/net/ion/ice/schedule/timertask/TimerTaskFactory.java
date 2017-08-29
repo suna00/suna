@@ -1,5 +1,6 @@
 package net.ion.ice.schedule.timertask;
 
+import net.ion.ice.schedule.utils.TimeExpressionParser;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import java.lang.reflect.Method;
@@ -90,41 +91,26 @@ public class TimerTaskFactory {
     private void executeTimerWithCronExpression(Timer timer, TimerTask task, String cronExpression, String name) {
 
         try{
-            String values[] = StringUtils.split(cronExpression, ',');
-            Calendar current = Calendar.getInstance();
 
-            switch (values.length) {
+            Map<String, Object> parsedMap = TimeExpressionParser.parseForTimerTask(cronExpression);
+            int condition = (int) parsedMap.get("case");
+            long delay = (long) parsedMap.get("delay");
+            long period = (long) parsedMap.get("period");
+            Date firstTime = (Date) parsedMap.get("firstTime");
+            switch (condition) {
                 case 1: {
-                    Integer delay = new Integer(values[0].trim());
                     timer.schedule(task, new Date(), delay) ;
                     break;
                 }
                 case 2: {
-                    Integer delay = new Integer(values[0].trim());
-                    Integer period = new Integer(values[1].trim());
                     timer.schedule(task, delay, period);
                     break;
                 }
                 case 3: {
-                    Calendar firstTime = Calendar.getInstance();
-                    firstTime.set(Calendar.HOUR_OF_DAY, new Integer(values[0].trim()));
-                    firstTime.set(Calendar.MINUTE, new Integer(values[1].trim()));
-                    if (firstTime.before(current)) {
-                        firstTime.add(Calendar.DAY_OF_MONTH, 1);
-                    }
-                    Integer period = new Integer(values[2].trim());
                     timer.schedule(task, firstTime.getTime(), period);
                     break;
                 }
                 case 4: {
-                    Calendar firstTime = Calendar.getInstance();
-                    firstTime.set(Calendar.DAY_OF_WEEK, new Integer(values[0].trim()));
-                    firstTime.set(Calendar.HOUR_OF_DAY, new Integer(values[1].trim()));
-                    firstTime.set(Calendar.MINUTE, new Integer(values[2].trim()));
-                    if (firstTime.before(current)) {
-                        firstTime.add(Calendar.WEEK_OF_MONTH, 1);
-                    }
-                    Integer period = new Integer(values[3].trim());
                     timer.schedule(task, firstTime.getTime(), period);
                     break;
                 }
