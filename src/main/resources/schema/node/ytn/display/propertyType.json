@@ -2768,6 +2768,23 @@
   {
     "typeId": "propertyType",
     "tid": "mainBanner",
+    "pid": "name",
+    "propertyTypeName": "이름",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": true,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "cjk",
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "mainBanner",
     "pid": "mainBannerLocation",
     "propertyTypeName": "배너 위치",
     "valueType": "REFERENCE",
