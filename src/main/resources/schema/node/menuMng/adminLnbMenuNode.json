@@ -584,16 +584,21 @@
       {
         "pageName": "수정",
         "pageUrl": "uform"
-      },
-      {
-        "pageName": "상세",
-        "pageUrl": "view"
       }
+
     ],
     "customPages": [
       {
         "pageName": "등록",
         "pageUrl": "cj/vt/SelForm"
+      },
+      {
+        "pageName": "수정",
+        "pageUrl": "cj/vt/SelUpdt"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "cj/vt/SelView"
       }
     ]
   },
