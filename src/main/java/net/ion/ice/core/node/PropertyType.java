@@ -2,6 +2,7 @@ package net.ion.ice.core.node;
 
 import net.ion.ice.core.infinispan.lucene.AnalyzerFactory;
 import org.apache.lucene.analysis.Analyzer;
+import org.stagemonitor.util.StringUtils;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -191,7 +192,11 @@ public class PropertyType {
     }
 
     public String getFileHandler() {
-        return propertyTypeNode.getStringValue(FILE_HANDLER);
+        String handler = propertyTypeNode.getStringValue(FILE_HANDLER);
+        if(StringUtils.isEmpty(handler)){
+            return "default" ;
+        }
+        return handler ;
     }
 
     public Integer getLength() {
