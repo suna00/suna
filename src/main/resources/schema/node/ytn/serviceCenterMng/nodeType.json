@@ -73,6 +73,15 @@
   {
     "parentId": "serviceCenterMng",
     "typeId": "nodeType",
+    "tid": "reviewView",
+    "typeName": "상품평(VIEW)",
+    "tableName": "ytnDevDb#reviewView",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "serviceCenterMng",
+    "typeId": "nodeType",
     "tid": "reportReview",
     "typeName": "상품평 신고",
     "tableName": "ytnDevDb#reportReview",
