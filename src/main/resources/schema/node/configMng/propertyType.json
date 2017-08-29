@@ -50,6 +50,23 @@
   },
   {
     "typeId" : "propertyType",
+    "tid": "groupCode",
+    "id": "groupCode>desc",
+    "pid": "desc",
+    "propertyTypeName": "그룹코드 설명",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue" : ""
+  },
+  {
+    "typeId" : "propertyType",
     "tid": "code",
     "id": "code>groupCodeId",
     "pid": "groupCodeId",
