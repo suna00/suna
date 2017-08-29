@@ -9,6 +9,7 @@
     "idable": true,
     "labelable": false,
     "treeable": true,
+    "ignoreHierarchyValue": true,
     "indexable": true,
     "analyzer": "code",
     "referenceType": "commonCode",
