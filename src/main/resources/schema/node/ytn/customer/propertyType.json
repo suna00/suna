@@ -483,7 +483,7 @@
   {
     "typeId": "propertyType",
     "tid": "member",
-    "pid": "id",
+    "pid": "userId",
     "propertyTypeName": "ID",
     "valueType": "STRING",
     "required": true,
@@ -1403,7 +1403,7 @@
   {
     "typeId": "propertyType",
     "tid": "requestToleaveMember",
-    "pid": "id",
+    "pid": "userId",
     "propertyTypeName": "ID",
     "valueType": "STRING",
     "required": false,
@@ -1574,7 +1574,7 @@
   {
     "typeId": "propertyType",
     "tid": "leaveMember",
-    "pid": "id",
+    "pid": "userId",
     "propertyTypeName": "ID",
     "valueType": "STRING",
     "required": true,
