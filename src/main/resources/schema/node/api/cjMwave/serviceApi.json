@@ -32,40 +32,37 @@
       }
     ],
     "config": {
-      "typeId": "mainBasInfo",
+      "typeId": "compItemInfo",
       "query": [
         {
-          "field": "mainDivCd",
-          "method": "matching",
-          "value": "{{:divCd}}"
+          "field": "mainSeq",
+          "method": "referenceJoin",
+          "value": "mainDivCd_matching={{:divCd}}&showLoCd_matching={{:showLoCd}}&showYn_matching=true&limit=1&sorting=mainSeq"
         },
         {
-          "field": "showLoCd",
-          "method": "matching",
-          "value": "{{:showLoCd}}"
-        },
-        {
-          "field": "showYn",
-          "method": "matching",
-          "value": "true"
-        },
-        {
-          "sorting": "mainSeq desc"
-        },
-        {
-          "limit": "1"
-        },
-        {
-          "includeReferenced": true
+          "referenceView": "itemId,cnctContsId","includeReferenced": true
         }
       ],
       "response": {
-        "mainSeq": "",
-        "mainNm": "",
-        "refdCompItemList": {
-          "referenceView": true,
-          "includeReferenced": false
-        }
+        "compItemSeq": "",
+        "itemDivCd": "",
+        "itemNm": "",
+        "subName": "",
+        "itemId": "",
+        "typeCd": "",
+        "ifTgtCd": "",
+        "sortBaseCd": "",
+        "sortOdrg": "",
+        "showCntryCdList": "",
+        "refdAtribList": "",
+        "cnctContsDivCd": "",
+        "cnctContsNm": "",
+        "cnctContsIfTgtCd": "",
+        "cnctContsSortBaseCd": "",
+        "cnctContsTypeCd": "",
+        "cnctContsLeftYn": "",
+        "cnctContsShowCntryCdList": "",
+        "cnctContsId": ""
       }
     }
   },
