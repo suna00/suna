@@ -258,7 +258,7 @@
     "id": "musicVideo>showYn",
     "propertyTypeName": "노출여부",
     "valueType": "BOOLEAN",
-    "required": false,
+    "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,

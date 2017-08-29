@@ -4,23 +4,76 @@
     "pgmId": "5595",
     "langCd": "KOR",
     "pgmNm": "M COUNTDOWN",
-    "pgmDomain": "",
-    "pgmDesc": "",
+    "pgmDesc": "Live braodcast every tuesday at 17:00 pm KST(Korea Standard Time) ",
     "repImgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
     "thumbnailImgPath": "http://10.184.57.248:8080/pub/images/component/img_new_tab01.jpg",
-    "catmName": "",
-    "findKywrd": "MCount, Down"
+    "catmName": "PRODUCE 101",
+    "tag": "MCount, Down"
   },
   {
     "typeId": "pgmMultiLangInfo",
     "pgmId": "5151",
-    "langCd": "KOR",
+    "langCd": "CHN",
     "pgmNm": "Wanna One",
-    "pgmDomain": "",
-    "pgmDesc": "",
+    "pgmDesc": "Every Wednesday, Come enjoy the energy of the live broadcast in person",
     "repImgPath": "http://10.184.57.248:8080/pub/images/component/img_album05.jpg",
     "thumbnailImgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
-    "catmName": "",
-    "findKywrd": "Wanna, one"
+    "catmName": "Seongmin Choi, BOYFRIEND, Bob Girls, Lee JiMin, GOT7, MAMAMOO, K.will, AOA, TaeYang, BEAST",
+    "tag": "Wanna, one"
+  },
+  {
+    "typeId": "pgmMultiLangInfo",
+    "pgmId": "5252",
+    "langCd": "HKG",
+    "pgmNm": "SHOW ME THE MONEY",
+    "pgmDesc": "Live braodcast every monday at 18:00 pm KST(Korea Standard Time) ",
+    "repImgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
+    "thumbnailImgPath": "http://10.184.57.248:8080/pub/images/component/img_new_tab01.jpg",
+    "catmName": "Kim WooBin, Peach Girl, Koyote (KYT)",
+    "tag": "SHOW, ME, THE, MONEY"
+  },
+  {
+    "typeId": "pgmMultiLangInfo",
+    "pgmId": "5353",
+    "langCd": "JPN",
+    "pgmNm": "PRODUCE 101",
+    "pgmDesc": "Every Saturday, Come enjoy the energy of the live broadcast in person",
+    "repImgPath": "http://10.184.57.248:8080/pub/images/component/thumb_video_01.jpg",
+    "thumbnailImgPath": "http://10.184.57.248:8080/pub/images/component/thumb_shop_01.jpg",
+    "catmName": "Noh JiHoon, Lip service, GP Basic, GOT7, ROSE MOTEL",
+    "tag": "PRODUCE, 101"
+  },
+  {
+    "typeId": "pgmMultiLangInfo",
+    "pgmId": "5454",
+    "langCd": "KOR",
+    "pgmNm": "COUNT DOWN 101",
+    "pgmDesc": "If you enjoy in sunday, Turn on the Count Down",
+    "repImgPath": "http://10.184.57.248:8080/pub/images/component/img_new_tab01.jpg",
+    "thumbnailImgPath": "http://10.184.57.248:8080/pub/images/component/img_globalchat01.jpg",
+    "catmName": "ToppDogg, Kye BumJoo, Dal★shabet, SPICA, Hong DaeKwang",
+    "tag": "COUNT, DOWN, 101"
+  },
+  {
+    "typeId": "pgmMultiLangInfo",
+    "pgmId": "5890",
+    "langCd": "MEX",
+    "pgmNm": "M GIGS",
+    "pgmDesc": "What about MGIGS?",
+    "repImgPath": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "thumbnailImgPath": "http://10.184.57.248:8080/pub/images/news/img_photoList01.jpg",
+    "catmName": "SoYou, Junggigo, AOA, Girl`s Day",
+    "tag": "M, GIGS"
+  },
+  {
+    "typeId": "pgmMultiLangInfo",
+    "pgmId": "5960",
+    "langCd": "MYS",
+    "pgmNm": "MIXTAPE",
+    "pgmDesc": "This program is the best program of the year",
+    "repImgPath": "http://10.184.57.248:8080/pub/images/component/img_album01.jpg",
+    "thumbnailImgPath": "http://10.184.57.248:8080/pub/images/news/img_photoList02.jpg",
+    "catmName": "Kim WooBin, Peach Girl, Koyote (KYT)",
+    "tag": "MIX,TAPE,MIXTAPE"
   }
 ]
