@@ -87,5 +87,25 @@
     "repositoryType" : "node",
     "tableName": "",
     "eviction" : 1000
+  },
+  {
+    "parentId" : "system",
+    "typeId" : "nodeType",
+    "id" : "eventAction",
+    "tid" : "eventAction",
+    "typeName" : "Event Action",
+    "repositoryType" : "node",
+    "tableName": "",
+    "eviction" : 1000
+  },
+  {
+    "parentId" : "system",
+    "typeId" : "nodeType",
+    "id" : "fileStore",
+    "tid" : "fileStore",
+    "typeName" : "File Store",
+    "repositoryType" : "node",
+    "tableName": "",
+    "eviction" : 100000
   }
 ]
