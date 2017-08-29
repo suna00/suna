@@ -126,7 +126,7 @@
     "id": "mamaSctnWinner>winnerThumImgPath",
     "propertyTypeName": "수상자 썸네일 경로",
     "valueType": "FILE",
-    "required": true,
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,

@@ -123,7 +123,7 @@
         "menuList" : {"field" : "menus", "referenceView" : true, "includeReferenced" : false},
         "itemTitle" : "title",
         "itemDesc" : "body",
-        "staticValue" : {"value" : "고정 값"}
+        "staticValue" : {"value" : "{{:title}} 고정 값"}
       }
     }
   },
@@ -193,7 +193,7 @@
     "config" : {
       "typeId": "testItem",
       "query" : [
-        {"includeReferenced" : false, "page": "{{:page}}"}
+        {"includeReferenced" : false, "page": "{{:default(page, 1)}}"}
       ],
       "response" :{
         "id" :"",
