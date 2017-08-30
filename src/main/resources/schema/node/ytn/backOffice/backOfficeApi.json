@@ -52,7 +52,7 @@
           "sql" : "select smsCertificationId, certCode as lastCertCode from smscertification where cellphone = @{cellphone} order by smsCertificationId desc limit 1 "
         }
       },
-      "createHistory" : {
+      "updateHistory" : {
         "typeId": "smsCertification",
         "event": "update",
         "if" : "{{:equals(lastCertCode, certCode)}}",
