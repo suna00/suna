@@ -258,7 +258,7 @@
       "updateCart" : {
         "typeId": "cart",
         "event": "update",
-        "if" : {"field" : "quantity", "method" : "above", "value" : "0"},
+        "if" : "{{:aboveInt(quantity, 0)}}",
         "data": {
           "id": "{{:id}}",
           "category": "{{:category}}",
