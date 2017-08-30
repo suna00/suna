@@ -3898,6 +3898,15 @@
   },
   {
     "typeId": "commonCode",
+    "code": "sleepMember",
+    "upperCode": "smsCertificationType",
+    "name": "휴면회원해제",
+    "description": "",
+    "sortOrder": "4",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
     "code": "sms",
     "upperCode": "smsType",
     "name": "SMS",
