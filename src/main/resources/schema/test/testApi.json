@@ -17,6 +17,7 @@
       "createItem" : {
         "typeId": "testItem",
         "event": "create",
+        "if" : "",
         "data": {
           "id": "{{:id}}",
           "category": "{{:category}}",

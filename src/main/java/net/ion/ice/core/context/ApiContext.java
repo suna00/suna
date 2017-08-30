@@ -6,6 +6,7 @@ import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
 import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.ResultField;
+import net.ion.ice.core.response.JsonResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
@@ -74,6 +75,15 @@ public class ApiContext {
                     queryResult = (QueryResult) ((ReadContext) context).makeQueryResult(null, null);
                 }else {
                     queryResult.put(field.getFieldName(), ((ReadContext) context).makeQueryResult(null, null));
+                }
+            }else if(context instanceof ExecuteContext){
+                ((ExecuteContext) context).execute();
+                Node node = ((ExecuteContext) context).getNode() ;
+                node.toDisplay();
+                if("root".equals(field.getFieldName())){
+                    queryResult.setResult("200").setResultMessage("SUCCESS").setItem(node) ;
+                }else {
+                    queryResult.setResult("200").setResultMessage("SUCCESS").put(field.getFieldName(), node) ;
                 }
             }
         }
