@@ -163,9 +163,39 @@ public class MethodHelper {
             case "aboveInt" :{
                 if(value == null || StringUtils.isEmpty(value.toString())) return "false" ;
                 int val = Integer.parseInt(value.toString()) ;
-
-                return "" ;
+                int p = Integer.parseInt(methodParams[1]) ;
+                return (val >= p) ? "true" : "false";
             }
+            case "belowInt" :{
+                if(value == null || StringUtils.isEmpty(value.toString())) return "false" ;
+                int val = Integer.parseInt(value.toString()) ;
+                int p = Integer.parseInt(methodParams[1]) ;
+                return (val <= p) ? "true" : "false";
+            }
+            case "excessInt" :{
+                if(value == null || StringUtils.isEmpty(value.toString())) return "false" ;
+                int val = Integer.parseInt(value.toString()) ;
+                int p = Integer.parseInt(methodParams[1]) ;
+                return (val > p) ? "true" : "false";
+            }
+            case "underInt" :{
+                if(value == null || StringUtils.isEmpty(value.toString())) return "false" ;
+                int val = Integer.parseInt(value.toString()) ;
+                int p = Integer.parseInt(methodParams[1]) ;
+                return (val < p) ? "true" : "false";
+            }
+            case "equalsVal" :{
+                if(value == null || StringUtils.isEmpty(value.toString())) return "false" ;
+                return (methodParams[0].equalsIgnoreCase(value.toString())) ? "true" : "false";
+            }
+            case "equals" :{
+                Object p = data.get(methodParams[1]) ;
+                if(value == null && p == null) return "true" ;
+                if(value == null) return "false" ;
+                if(p == null) return "false" ;
+                return (value.toString().equals(p.toString())) ? "true" : "false";
+            }
+
             default :
                 methodStr = StringUtils.capitalize(methodStr) ;
                 String methodClass = "net.ion.ice.core.context.method." + methodStr ;
