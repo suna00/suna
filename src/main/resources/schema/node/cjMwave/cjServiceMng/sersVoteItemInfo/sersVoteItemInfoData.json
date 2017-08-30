@@ -2,8 +2,8 @@
   {
     "typeId": "sersVoteItemInfo",
     "sersVoteItemSeq": 100,
-    "itemDivCd": "1",
-    "voteSeq": 100,
+    "itemDivCd": "4",
+    "voteSeq": 54503490399,
     "sersItemVoteSeq": 100,
     "banrSeq": 100,
     "sortOdrg": 1
@@ -11,10 +11,10 @@
   {
     "typeId": "sersVoteItemInfo",
     "sersVoteItemSeq": 101,
-    "itemDivCd": "2",
-    "voteSeq": 101,
+    "itemDivCd": "4",
+    "voteSeq": 24341421311,
     "sersItemVoteSeq": 101,
     "banrSeq": 101,
-    "sortOdrg": 2
+    "sortOdrg": 1
   }
 ]

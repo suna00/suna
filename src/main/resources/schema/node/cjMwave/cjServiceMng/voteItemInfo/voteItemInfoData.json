@@ -2,23 +2,56 @@
   {
     "typeId": "voteItemInfo",
     "voteItemSeq": 100,
-    "voteSeq": 100,
-    "langCd": "ENG",
+    "voteSeq": 7895889568,
+    "langCd": "ko",
     "contsMetaId": "5454",
     "itemNm": "빅스",
-    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_album05.jpg",
-    "videFilePath": "",
+    "thumImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "sortOdrg": 1
   },
   {
     "typeId": "voteItemInfo",
     "voteItemSeq": 101,
-    "voteSeq": 101,
-    "langCd": "KOR",
+    "voteSeq": 7895889568,
+    "langCd": "en",
     "contsMetaId": "2224",
-    "itemNm": "빅스",
-    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_album02.jpg",
-    "videFilePath": "",
+    "itemNm": "VIXX",
+    "thumImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
+    "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "sortOdrg": 2
+  },
+  {
+    "typeId": "voteItemInfo",
+    "voteItemSeq": 102,
+    "voteSeq": 7895889568,
+    "langCd": "zh-cn",
+    "contsMetaId": "2425",
+    "itemNm": "VIXX",
+    "thumImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
+    "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
+    "sortOdrg": 3
+  },
+  {
+    "typeId": "voteItemInfo",
+    "voteItemSeq": 103,
+    "voteSeq": 7895889568,
+    "langCd": "zh-tw",
+    "contsMetaId": "2415",
+    "itemNm": "VIXX",
+    "thumImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "sortOdrg": 4
+  },
+  {
+    "typeId": "voteItemInfo",
+    "voteItemSeq": 104,
+    "voteSeq": 7895889568,
+    "langCd": "jp",
+    "contsMetaId": "1241",
+    "itemNm": "VIXX",
+    "thumImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "sortOdrg": 5
   }
 ]
