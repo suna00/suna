@@ -51,6 +51,7 @@ public class NodeBindingService {
         if (callback == 0) {
             nodeBindingInfo.insert(node);
         }
+        context.setResult(node);
         logger.info("Node Binding {} - {} :  " + (callback == 0 ? "insert" : "update"), node.getTypeId(), node.getId());
     }
 

@@ -10,6 +10,7 @@ import java.util.List;
  */
 public class Event {
     public static final String EVENT = "event";
+    public static final String NONE_EXECUTE = "noneExecute";
 
     private Node eventNode;
     private List<EventAction> eventActions;
@@ -84,5 +85,9 @@ public class Event {
 
     public String getId() {
         return eventNode.getId();
+    }
+
+    public boolean isNoneExecute(){
+        return eventNode.getBooleanValue(NONE_EXECUTE) ;
     }
 }

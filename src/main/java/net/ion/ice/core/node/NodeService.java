@@ -261,7 +261,7 @@ public class NodeService {
         ExecuteContext context = ExecuteContext.makeContextFromMap(data, typeId, event) ;
 
         context.execute();
-        Node node =  context.getNode();
+        Node node = (Node) context.getResult();
         return node ;
     }
 
@@ -271,7 +271,7 @@ public class NodeService {
 
         ExecuteContext context = ExecuteContext.makeContextFromParameter(parameterMap, multiFileMap, nodeType, event) ;
         context.execute();
-        Node node =  context.getNode();
+        Node node = (Node) context.getResult();
         node.toDisplay();
         return node;
     }
@@ -282,7 +282,7 @@ public class NodeService {
         ExecuteContext context = ExecuteContext.createContextFromParameter(parameterMap, nodeType, "delete", null) ;
         context.execute();
 
-        Node node = context.getNode() ;
+        Node node = (Node) context.getResult();
         return node ;
     }
 

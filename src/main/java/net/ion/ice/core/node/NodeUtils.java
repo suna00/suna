@@ -644,7 +644,7 @@ public class NodeUtils {
             List<String> removePids = new ArrayList<>();
             for (String fieldName : data.keySet()) {
                 if (fieldName.startsWith(i18nPrefix)) {
-                    i18nData.put(org.apache.commons.lang.StringUtils.substringAfter(fieldName, i18nPrefix), data.get(fieldName));
+                    i18nData.put(StringUtils.substringAfter(fieldName, i18nPrefix), data.get(fieldName));
                     removePids.add(fieldName);
                 }
             }
