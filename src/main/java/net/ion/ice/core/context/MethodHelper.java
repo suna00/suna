@@ -141,7 +141,7 @@ public class MethodHelper {
                 }
             }
             case "default":{
-                if(value == null) return methodParams[1] ;
+                if(value == null || StringUtils.isEmpty(value.toString())) return methodParams[1] ;
                 if(StringUtils.isEmpty(value.toString())){
                     return methodParams[1] ;
                 }else{
