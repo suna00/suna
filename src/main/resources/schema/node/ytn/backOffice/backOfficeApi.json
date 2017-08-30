@@ -13,10 +13,53 @@
     "parameters": [
     ],
     "config": {
-      "typeId": "smsCertification",
-      "event": "req",
-      "data": {
+      "getCertNumber": {
+        "select" : {
+          "ds" : "ytnDevDb",
+          "resultType" : "read",
+          "sql" : "select FLOOR(1000 + (RAND()*8999)) as certCode "
+        }
+      },
+      "createHistory" : {
+        "typeId": "smsCertification",
+        "event": "save",
+        "data": {
+          "name": "{{:name}}",
+          "smsCertificationType": "{{:smsCertificationType}}",
+          "adminId": "{{:adminId}}",
+          "memberNo": "{{:memberNo}}",
+          "cellphone": "{{:cellphone}}",
+          "certCode": "{{:certCode}}"
+        }
+      },
+      "sendSMS" : {
+        "typeId": "smsCertification",
+        "event": "send",
+        "data": {
+          "cellphone": "{{:cellphone}}",
+          "certCode": "{{:certCode}}"
+        }
       }
+
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "smsCertification",
+    "apiId": "req2",
+    "apiName": "인증키(숫자4자리 난수발생) 해서 이걸 cellphone이랑 인증정보 저장하고 sms send 하고 싶다.",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "getCertNumber": {
+        "select" : {
+          "ds" : "ytnDevDb",
+          "resultType" : "read",
+          "sql" : "insert into smscertification (name,smsCertificationType,adminId,memberNo,cellphone,certCode,certRequestDate) select 'SMS인증코드요청', '{{:type}}', '{{:adminId}}',{{:memberNo}},'{{:cellphone}}', (select FLOOR(1000 + (RAND()*8999))), now() "
+        }
+      }
+
     }
   }
 ]
