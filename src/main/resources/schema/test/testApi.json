@@ -238,6 +238,34 @@
         }
       }
     }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "eventSample",
+    "apiName" : "Event Sample",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "checkQuantity" : {
+        "typeId" : "productOptionItem",
+        "id" : "{{:prodId}}",
+        "response" : {
+          "quantity" : ""
+        }
+      },
+      "updateCart" : {
+        "typeId": "cart",
+        "event": "update",
+        "if" : {"field" : "quantity", "method" : "above", "value" : "0"},
+        "data": {
+          "id": "{{:id}}",
+          "category": "{{:category}}",
+          "title": "{{:title}}"
+        }
+      }
+    }
   }
 
 ]
