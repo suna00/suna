@@ -1,0 +1,22 @@
+[
+  {
+    "typeId": "apiCategory",
+    "id": "smsCertification",
+    "categoryName": "Test API"
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "smsCertification",
+    "apiId": "req",
+    "apiName": "인증키(숫자4자리 난수발생) 해서 이걸 cellphone이랑 인증정보 저장하고 sms send 하고 싶다.",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "smsCertification",
+      "event": "req",
+      "data": {
+      }
+    }
+  }
+]
