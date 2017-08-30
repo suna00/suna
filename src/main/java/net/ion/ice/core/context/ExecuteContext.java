@@ -8,6 +8,7 @@ import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
+import net.ion.ice.core.query.QueryTerm;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,6 +32,8 @@ public class ExecuteContext extends ReadContext{
     protected String userId ;
     protected Date time ;
     protected String event;
+
+    protected String ifTest ;
 
 
     public static ExecuteContext createContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType, String event, String id) {
@@ -256,6 +259,10 @@ public class ExecuteContext extends ReadContext{
             ContextUtils.makeApiResponse((Map<String, Object>) config.get("response"), data, ctx);
         }
 
+        if(config.containsKey("if")){
+            ctx.ifTest =  ContextUtils.getValue(config.get("if"), ctx.data).toString();
+        }
+
         ctx.init() ;
 
         return ctx ;
@@ -276,9 +283,13 @@ public class ExecuteContext extends ReadContext{
     }
 
 
-    public void execute() {
+    public boolean execute() {
+        if(this.ifTest != null && !(this.ifTest.equalsIgnoreCase("true"))){
+            return false ;
+        }
         EventService eventService = ApplicationContextManager.getBean(EventService.class) ;
         eventService.execute(this) ;
+        return true ;
     }
 
     public NodeType getNodeType() {

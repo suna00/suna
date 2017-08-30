@@ -160,6 +160,12 @@ public class MethodHelper {
                 if (val != null) return val;
                 return "" ;
             }
+            case "aboveInt" :{
+                if(value == null || StringUtils.isEmpty(value.toString())) return "false" ;
+                int val = Integer.parseInt(value.toString()) ;
+
+                return "" ;
+            }
             default :
                 methodStr = StringUtils.capitalize(methodStr) ;
                 String methodClass = "net.ion.ice.core.context.method." + methodStr ;
