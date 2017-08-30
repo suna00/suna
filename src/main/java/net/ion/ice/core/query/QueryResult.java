@@ -9,6 +9,7 @@ import java.util.Set;
  * Created by jaeho on 2017. 6. 15..
  */
 public class QueryResult implements Map<String, Object> {
+
     private Map<String, Object> result ;
 
     public QueryResult(){
