@@ -307,6 +307,10 @@ public class QueryContext extends ReadContext {
         QueryContext queryContext = new QueryContext(nodeType);
         java.util.List<QueryTerm> queryTerms = new ArrayList<>();
 
+        if (StringUtils.contains(value, Node.ID_SEPERATOR) && pt.isIgnoreHierarchyValue()) {
+            value = StringUtils.substringAfterLast(value, Node.ID_SEPERATOR);
+        }
+
         QueryUtils.makeQueryTerm(nodeType, queryContext, queryTerms, pt.getPid()+"_matching", value);
 
         queryContext.setQueryTerms(queryTerms);
