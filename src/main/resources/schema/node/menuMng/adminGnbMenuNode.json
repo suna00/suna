@@ -124,5 +124,70 @@
     "order": "140",
     "icon": "",
     "active": "true"
+  },
+
+
+  {
+    "typeId" : "adminGnbMenu",
+    "backOfficeId": "ven",
+    "menuId": "dashboard",
+    "menuName": "Dashboard",
+    "order": "10",
+    "icon": "",
+    "active": "false"
+  },
+  {
+    "typeId" : "adminGnbMenu",
+    "backOfficeId": "ven",
+    "menuId": "productMng",
+    "menuName": "상품",
+    "order": "20",
+    "icon": "",
+    "active": "true"
+  },
+  {
+    "typeId" : "adminGnbMenu",
+    "backOfficeId": "ven",
+    "menuId": "orderPaymentMng",
+    "menuName": "주문/결재",
+    "order": "30",
+    "icon": "",
+    "active": "true"
+  },
+  {
+    "typeId" : "adminGnbMenu",
+    "backOfficeId": "ven",
+    "menuId": "claimMng",
+    "menuName": "클레임",
+    "order": "40",
+    "icon": "",
+    "active": "true"
+  },
+  {
+    "typeId" : "adminGnbMenu",
+    "backOfficeId": "ven",
+    "menuId": "noticeMng",
+    "menuName": "벤더 공지사항",
+    "order": "50",
+    "icon": "",
+    "active": "true"
+  },
+  {
+    "typeId" : "adminGnbMenu",
+    "backOfficeId": "ven",
+    "menuId": "analysisStatistics",
+    "menuName": "분석/통계",
+    "order": "60",
+    "icon": "",
+    "active": "true"
+  },
+  {
+    "typeId" : "adminGnbMenu",
+    "backOfficeId": "ven",
+    "menuId": "vendorMng",
+    "menuName": "분석/통계",
+    "order": "70",
+    "icon": "",
+    "active": "true"
   }
 ]

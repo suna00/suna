@@ -2,6 +2,8 @@
   {
     "typeId": "review",
     "reviewId": 1,
+    "orderId": "1",
+    "orderProductId": "3",
     "productId": "3",
     "memberNo": "77777",
     "siteId": "1",
@@ -17,6 +19,8 @@
   {
     "typeId": "review",
     "reviewId": 2,
+    "orderId": "1",
+    "orderProductId": "1",
     "productId": "1",
     "memberNo": "77777",
     "siteId": "1",
@@ -32,6 +36,8 @@
   {
     "typeId": "review",
     "reviewId": 3,
+    "orderId": "1",
+    "orderProductId": "3",
     "productId": "3",
     "memberNo": "77777",
     "siteId": "1",
@@ -47,6 +53,8 @@
   {
     "typeId": "review",
     "reviewId": 4,
+    "orderId": "1",
+    "orderProductId": "3",
     "productId": "3",
     "memberNo": "77777",
     "siteId": "1",
@@ -62,6 +70,8 @@
   {
     "typeId": "review",
     "reviewId": 5,
+    "orderId": "1",
+    "orderProductId": "3",
     "productId": "3",
     "memberNo": "77777",
     "siteId": "1",

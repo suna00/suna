@@ -2849,6 +2849,22 @@
   },
   {
     "typeId": "propertyType",
+    "tid": "purchaseOrder",
+    "pid": "referencedOrderProduct",
+    "propertyTypeName": "referenced주문서상품",
+    "valueType": "REFERENCED",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "orderProduct",
+    "referenceValue": "orderId",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
     "tid": "orderProduct",
     "pid": "orderProductId",
     "propertyTypeName": "ID",
@@ -3203,6 +3219,22 @@
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "orderProduct",
+    "pid": "referencedOrderProductItem",
+    "propertyTypeName": "referenced주문서상품아이템",
+    "valueType": "REFERENCED",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "orderProductItem",
+    "referenceValue": "orderProductId",
     "defaultValue": ""
   },
   {
