@@ -262,7 +262,7 @@ public class ExecuteContext extends ReadContext{
         }
 
         if(config.containsKey("if")){
-            ctx.ifTest =  ContextUtils.getValue(config.get("if"), ctx.data).toString();
+            ctx.ifTest =  ContextUtils.getValue(config.get("if"), data).toString();
         }
 
         ctx.init() ;
