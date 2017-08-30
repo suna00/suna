@@ -577,11 +577,6 @@
           "value": "{{:searchKeyword}}"
         },
         {
-          "field": "showYn",
-          "method": "matching",
-          "value": "true"
-        },
-        {
           "sorting": "{{:sorting}}"
         },
         {

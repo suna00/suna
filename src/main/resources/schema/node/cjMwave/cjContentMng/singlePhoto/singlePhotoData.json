@@ -12,8 +12,7 @@
     "relPgmIds": "5960",
     "relArtistIds": "artist_00001",
     "relSongIds": "song_00001",
-    "mnetIfTrtYn": true,
-    "": "true"
+    "mnetIfTrtYn": true
   },
   {
     "typeId": "singlePhoto",
@@ -28,8 +27,7 @@
     "relPgmIds": "5595",
     "relArtistIds": "artist_00002",
     "relSongIds": "song_00002",
-    "mnetIfTrtYn": true,
-    "": "true"
+    "mnetIfTrtYn": true
   },
   {
     "typeId": "singlePhoto",
@@ -44,8 +42,7 @@
     "relPgmIds": "5151",
     "relArtistIds": "artist_00003",
     "relSongIds": "song_00003",
-    "mnetIfTrtYn": true,
-    "": "true"
+    "mnetIfTrtYn": true
   },
   {
     "typeId": "singlePhoto",
@@ -60,8 +57,7 @@
     "relPgmIds": "5252",
     "relArtistIds": "artist_00014",
     "relSongIds": "song_00014",
-    "mnetIfTrtYn": true,
-    "": "true"
+    "mnetIfTrtYn": true
   },
   {
     "typeId": "singlePhoto",
@@ -76,7 +72,6 @@
     "relPgmIds": "5353",
     "relArtistIds": "artist_00021",
     "relSongIds": "song_00021",
-    "mnetIfTrtYn": true,
-    "": "true"
+    "mnetIfTrtYn": true
   }
 ]

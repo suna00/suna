@@ -16,7 +16,8 @@
     "findKywrd": "twice,newalbum,kpop,dance,ballad",
     "showCntryCdList": "KOR,USA,CHN",
     "relAlbumIds": "album_00002",
-    "mnetIfTrtYn": true
+    "mnetIfTrtYn": true,
+    "showYn": true
   },
   {
     "typeId": "album",
@@ -35,7 +36,8 @@
     "findKywrd": "coldplay,parlophone,parachutes,postbritpop",
     "showCntryCdList": "KOR,USA,GBR",
     "relAlbumIds": "album_00003",
-    "mnetIfTrtYn": true
+    "mnetIfTrtYn": true,
+    "showYn": true
   },
   {
     "typeId": "album",
@@ -54,7 +56,8 @@
     "findKywrd": "10cm,kwonjungyeol,yooncheoljong,band,indigroup",
     "showCntryCdList": "KOR,USA,CHN,JPN",
     "relAlbumIds": "album_00014",
-    "mnetIfTrtYn": true
+    "mnetIfTrtYn": true,
+    "showYn": true
   },
   {
     "typeId": "album",
@@ -73,6 +76,7 @@
     "findKywrd": "bigbang,ygentertainment,group,artist,kpop",
     "showCntryCdList": "KOR,USA,CHN,JPN",
     "relAlbumIds": "album_00001",
-    "mnetIfTrtYn": false
+    "mnetIfTrtYn": false,
+    "showYn": true
   }
 ]

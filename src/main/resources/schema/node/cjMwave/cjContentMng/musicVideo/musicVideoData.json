@@ -16,7 +16,8 @@
     "showCntryCdList": "KOR, USA",
     "mnetIfTrtYn": true,
     "relSongIds": "song_00001",
-    "relArtistIds": "artist_00003"
+    "relArtistIds": "artist_00003",
+    "showYn": true
   },
   {
     "typeId": "musicVideo",
@@ -35,7 +36,8 @@
     "showCntryCdList": "KOR, USA",
     "mnetIfTrtYn": true,
     "relSongIds": "song_00003",
-    "relArtistIds": "artist_00014"
+    "relArtistIds": "artist_00014",
+    "showYn": true
   },
   {
     "typeId": "musicVideo",
@@ -54,7 +56,8 @@
     "showCntryCdList": "KOR, USA",
     "mnetIfTrtYn": true,
     "relSongIds": "song_00014",
-    "relArtistIds": "artist_00012"
+    "relArtistIds": "artist_00012",
+    "showYn": true
   },
   {
     "typeId": "musicVideo",
@@ -73,6 +76,7 @@
     "showCntryCdList": "KOR, USA",
     "mnetIfTrtYn": true,
     "relSongIds": "song_00023",
-    "relArtistIds": "artist_00028"
+    "relArtistIds": "artist_00028",
+    "showYn": true
   }
 ]
