@@ -48,7 +48,7 @@ public class ApiContext {
 
                 return executeContext.makeResult() ;
             }else{
-
+                return new QueryResult().setResult("0").setResultMessage("None Executed") ;
             }
 
         }else if(ctxRootConfig.containsKey("query")){
