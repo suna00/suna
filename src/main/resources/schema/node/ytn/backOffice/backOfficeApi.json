@@ -8,7 +8,7 @@
     "typeId": "apiConfig",
     "category": "smsCertification",
     "apiId": "req",
-    "apiName": "인증키(숫자4자리 난수발생) 해서 이걸 cellphone이랑 인증정보 저장하고 sms send 하고 싶다.",
+    "apiName": "인증코드(숫자4자리 난수발생)  sms send 넣기 ",
     "method": "GET",
     "parameters": [
     ],
@@ -25,13 +25,40 @@
         "event": "create",
         "data": {
           "smsCertificationId": "{{:smsCertificationId}}",
-          "name": "test",
-          "smsCertificationType": "{{:type}}",
+          "name": "SMS 인증요청",
+          "smsCertificationType": "{{:smsCertificationType}}",
           "adminId": "{{:adminId}}",
           "memberNo": "{{:memberNo}}",
-          "cellphone": "{{:phone}}",
+          "cellphone": "{{:cellphone}}",
           "certCode": "{{:certCode}}",
           "certRequestDate": "{{:now}}"
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "smsCertification",
+    "apiId": "cert",
+    "apiName": "인증코드 유효체크 ",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "getCertNumber": {
+        "select" : {
+          "ds" : "ytnDevDb",
+          "resultType" : "read",
+          "sql" : "select smsCertificationId, certCode as lastCertCode from smscertification where cellphone = @{cellphone} order by smsCertificationId desc limit 1 "
+        }
+      },
+      "createHistory" : {
+        "typeId": "smsCertification",
+        "event": "update",
+        "if" : "{{:equals(lastCertCode, certCode)}}",
+        "data": {
+          "smsCertificationId": "{{:smsCertificationId}}",
+          "certSuccessDate": "{{:now}}"
         }
       }
     }
