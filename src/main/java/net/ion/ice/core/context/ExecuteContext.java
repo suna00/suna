@@ -17,10 +17,9 @@ import java.util.*;
 /**
  * Created by jaeho on 2017. 5. 31..
  */
-public class ExecuteContext implements Context{
-    protected Map<String, Object> data  ;
+public class ExecuteContext extends ReadContext{
+
     protected Node node;
-    protected NodeType nodeType;
     protected Node existNode ;
 
     protected boolean exist ;
@@ -28,7 +27,6 @@ public class ExecuteContext implements Context{
 
 
     protected List<String> changedProperties ;
-    protected String id ;
 
     protected String userId ;
     protected Date time ;
@@ -122,7 +120,7 @@ public class ExecuteContext implements Context{
         }
 
         try {
-            existNode = NodeUtils.getNodeService().getNode(nodeType.getTypeId(), getId());
+            existNode = NodeUtils.getNode(nodeType.getTypeId(), getId());
         }catch(Exception e){
         }
         exist = existNode != null ;
@@ -155,6 +153,9 @@ public class ExecuteContext implements Context{
                     node.put(pt.getPid(), newValue) ;
                     changedProperties.add(pt.getPid()) ;
                 }else if(!newValue.equals(existValue)){
+                    if(pt.isI18n()){
+                        ((Map<String, Object>) existValue).putAll((Map<? extends String, ?>) newValue);
+                    }
                     node.put(pt.getPid(), newValue) ;
                     changedProperties.add(pt.getPid()) ;
                 }
@@ -249,6 +250,10 @@ public class ExecuteContext implements Context{
             ctx.data = _data ;
         }else{
             ctx.data = data ;
+        }
+
+        if(config.containsKey("response")){
+            ContextUtils.makeApiResponse((Map<String, Object>) config.get("response"), data, ctx);
         }
 
         ctx.init() ;

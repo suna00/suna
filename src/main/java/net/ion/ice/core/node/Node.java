@@ -252,6 +252,11 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         return stringValue.toString() ;
     }
 
+    public Integer getIntValue(String pid) {
+        Object value = get(pid) ;
+        if(value == null) return 0 ;
+        return NodeUtils.getIntValue(value) ;
+    }
 
     public String getSearchValue(){
         NodeType nodeType = NodeUtils.getNodeType(getTypeId()) ;
@@ -373,6 +378,22 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
     public Object getBindingValue(String pid) {
         return NodeUtils.getBindingValue(getValue(pid), NodeUtils.getNodeType(getTypeId()).getPropertyType(pid), getId()) ;
+    }
+
+    public Node getReferenceNode(String pid) {
+        if(get(pid) == null) return null ;
+
+        NodeType nodeType = NodeUtils.getNodeType(getTypeId()) ;
+        PropertyType pt = nodeType.getPropertyType(pid) ;
+        String referenceType = pt.getReferenceType() ;
+        String refId = get(pid).toString() ;
+
+        if(StringUtils.contains(refId, "::")){
+            referenceType = StringUtils.substringBefore(refId, "::") ;
+            refId = StringUtils.substringAfter(refId, "::") ;
+        }
+
+        return NodeUtils.getNode(referenceType, refId);
     }
 
 

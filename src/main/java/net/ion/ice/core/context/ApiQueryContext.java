@@ -54,33 +54,7 @@ public class ApiQueryContext extends QueryContext{
                 List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(queryContext, config.get("query"), queryContext.nodeType);
                 queryContext.setQueryTerms(queryTerms);
             }else if(key.equals("response")){
-                Map<String, Object> response = (Map<String, Object>) config.get(key);
-
-//                if(response.containsKey("merge")){
-//                    queryContext.responseType = "merge" ;
-//                    queryContext.mergeField = (String) response.get("merge");
-//                }
-
-                for(String fieldName : response.keySet()) {
-                    Object fieldValue = response.get(fieldName) ;
-                    if (fieldValue == null) {
-                        queryContext.addResultField(new ResultField(fieldName, fieldName));
-                    } else if (fieldValue instanceof String) {
-                        if(StringUtils.isEmpty((String) fieldValue)){
-                            queryContext.addResultField(new ResultField(fieldName, fieldName));
-                        }else {
-                            queryContext.addResultField(new ResultField(fieldName, (String) fieldValue));
-                        }
-                    } else if (fieldValue instanceof Map) {
-                        if(((Map) fieldValue).containsKey("query")) {
-                            queryContext.addResultField(new ResultField(fieldName, makeContextFromConfig((Map<String, Object>) fieldValue, data)));
-                        }else if(((Map) fieldValue).containsKey("select")){
-                            queryContext.addResultField(new ResultField(fieldName, ApiSelectContext.makeContextFromConfig((Map<String, Object>) fieldValue, data)));
-                        }else{
-                            queryContext.addResultField(new ResultField(fieldName, (Map<String, Object>) fieldValue));
-                        }
-                    }
-                }
+                ContextUtils.makeApiResponse((Map<String, Object>) config.get(key), data, queryContext);
             }
         }
         return queryContext;

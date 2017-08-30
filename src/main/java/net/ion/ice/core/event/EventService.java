@@ -82,15 +82,15 @@ public class EventService {
 
         NodeType nodeType = executeContext.getNodeType() ;
 
+        Event event = nodeType.getEvent(executeContext.getEvent()) ;
 
-        if(nodeType.isNode() && executeContext.getNode() != null) {
+        if((event == null || !event.isNoneExecute()) && nodeType.isNode() && executeContext.getNode() != null) {
             infinispanService.execute(executeContext) ;
+            executeContext.setResult(executeContext.getNode());
         }
 
-
-        Event event = nodeType.getEvent(executeContext.getEvent()) ;
-        if(event == null){
-            return  ;
+        if(event == null) {
+            return ;
         }
 
         Event allEvent = nodeType.getEvent(ALL_EVENT) ;
