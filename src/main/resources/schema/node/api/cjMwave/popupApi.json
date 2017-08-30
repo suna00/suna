@@ -41,16 +41,6 @@
           "value": "true"
         },
         {
-          "field": "showStDt",
-          "method": "below",
-          "value": "20170801"
-        },
-        {
-          "field": "showFnsDt",
-          "method": "above",
-          "value": "20171201"
-        },
-        {
           "sorting": "{{:sorting}}"
         },
         {

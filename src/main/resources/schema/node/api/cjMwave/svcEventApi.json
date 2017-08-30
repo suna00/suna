@@ -46,7 +46,23 @@
           "includeReferenced": true
         }
 
-      ]
+      ],
+      "response":{
+        "awardSctnSeq":"",
+        "awardYear":"",
+        "awardSctnCd":"",
+        "awardSctnDesc":"",
+        "refdWinnerList":{
+          "typeId": "mamaSctnWinner",
+          "query": [
+            {
+              "field": "awardSctnSeq",
+              "method": "referenceJoin",
+              "value": "awardSctnSeq_matching={{:awardSctnSeq}}&sorting=sortOdrg"
+            }
+            ]
+        }
+      }
     }
   },
   {

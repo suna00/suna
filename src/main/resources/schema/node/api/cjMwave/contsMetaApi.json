@@ -95,13 +95,29 @@
     ],
     "config": {
       "typeId": "album",
-      "query": [
-        {
-          "field": "albumId",
-          "method": "matching",
-          "value": "{{:albumId}}"
-        }
-      ]
+      "id": "{{:albumId}}",
+      "response": {
+        "albumId": "",
+        "albumNm": "",
+        "artistId": "",
+        "comotDt": "",
+        "comotCntry": "",
+        "typeCd": "",
+        "genreCd": "",
+        "dstrbCrcrt": "",
+        "subName": "",
+        "sersName": "",
+        "albumDesc": "",
+        "imgPath": "",
+        "findKywrd": "",
+        "showCntryCdList": "",
+        "relAlbumIds": "",
+        "seoTitle": {
+          "value": " | Mwave"
+        },
+        "seoDesc":"albumDesc",
+        "seoKywrd":"findKywrd"
+      }
     }
   },
   {
@@ -279,13 +295,7 @@
     ],
     "config": {
       "typeId": "artist",
-      "query": [
-        {
-          "field": "artistId",
-          "method": "matching",
-          "value": "{{:artistId}}"
-        }
-      ]
+      "id": "{{:artistId}}"
     }
   },
   {
@@ -435,13 +445,7 @@
     ],
     "config": {
       "typeId": "news",
-      "query": [
-        {
-          "field": "newsId",
-          "method": "matching",
-          "value": "{{:newsId}}"
-        }
-      ]
+      "id": "{{:newsId}}"
     }
   },
   {
@@ -513,13 +517,7 @@
     ],
     "config": {
       "typeId": "groupPhoto",
-      "query": [
-        {
-          "field": "groupPhotoId",
-          "method": "matching",
-          "value": "{{:groupPhotoId}}"
-        }
-      ]
+      "id": "{{:groupPhotoId}}"
     }
   },
   {

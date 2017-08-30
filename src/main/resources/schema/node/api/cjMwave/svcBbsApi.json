@@ -102,7 +102,30 @@
           "method": "matching",
           "value": "true"
         }
-      ]
+      ],
+      "response": {
+        "ntfBbsSeq": "",
+        "ntfBbsNm": "",
+        "ntfBbsTgtCd": "",
+        "ntfBbsTypeCd": "",
+        "ctgCd1": "",
+        "ctgCd2": "",
+        "showDvcCd": "",
+        "pstngStDt": "",
+        "pstngFnsDt": "",
+        "ntfSbst": "",
+        "retvNum": "",
+        "preItem": {
+          "typeId": "ntfBbs",
+          "query": [
+            {
+              "field": "ntfBbsSeq",
+              "method": "matching",
+              "value": "{{:ntfBbsSeq}}"
+            }
+          ]
+        }
+      }
     }
   },
   {
