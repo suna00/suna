@@ -620,6 +620,22 @@
   },
   {
     "typeId" : "propertyType",
+    "id": "event>noneExecute",
+    "tid": "event",
+    "pid": "noneExecute",
+    "propertyTypeName": "None Execute Event",
+    "valueType": "BOOLEAN",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": "",
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
     "id": "event>eventActions",
     "tid": "event",
     "pid": "eventActions",

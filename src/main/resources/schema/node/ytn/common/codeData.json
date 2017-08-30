@@ -586,7 +586,7 @@
   },
   {
     "typeId": "commonCode",
-    "code": "SMSCertificationType",
+    "code": "smsCertificationType",
     "upperCode": "root",
     "name": "SMS 인증 이력 타입",
     "description": "",
@@ -3872,7 +3872,7 @@
   {
     "typeId": "commonCode",
     "code": "admin",
-    "upperCode": "SMSCertificationType",
+    "upperCode": "smsCertificationType",
     "name": "어드민",
     "description": "",
     "sortOrder": "1",
@@ -3881,7 +3881,7 @@
   {
     "typeId": "commonCode",
     "code": "password",
-    "upperCode": "SMSCertificationType",
+    "upperCode": "smsCertificationType",
     "name": "비밀번호",
     "description": "",
     "sortOrder": "2",
@@ -3890,10 +3890,19 @@
   {
     "typeId": "commonCode",
     "code": "id",
-    "upperCode": "SMSCertificationType",
+    "upperCode": "smsCertificationType",
     "name": "아이디",
     "description": "",
     "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "sleepMember",
+    "upperCode": "smsCertificationType",
+    "name": "휴면회원해제",
+    "description": "",
+    "sortOrder": "4",
     "commonCodeStatus": "y"
   },
   {
