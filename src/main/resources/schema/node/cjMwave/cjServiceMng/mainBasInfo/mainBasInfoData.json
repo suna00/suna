@@ -2,10 +2,41 @@
   {
     "typeId": "mainBasInfo",
     "mainSeq": 100,
-    "mainNm": "테스트 메인 정보",
+    "mainNm": "테스트 메인 정보1",
     "mainDivCd": "1",
     "svcDvcDivCd": "1",
     "showYn": true,
-    "showLoCd": "1"
+    "showLoCd": "1",
+    "refdCompItemList": ""
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 101,
+    "mainNm": "테스트 메인 정보2",
+    "mainDivCd": "2",
+    "svcDvcDivCd": "2",
+    "showYn": true,
+    "showLoCd": "2",
+    "refdCompItemList": ""
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 102,
+    "mainNm": "테스트 메인 정보3",
+    "mainDivCd": "1",
+    "svcDvcDivCd": "3",
+    "showYn": true,
+    "showLoCd": "1",
+    "refdCompItemList": ""
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 103,
+    "mainNm": "테스트 메인 정보4",
+    "mainDivCd": "2",
+    "svcDvcDivCd": "4",
+    "showYn": true,
+    "showLoCd": "2",
+    "refdCompItemList": ""
   }
 ]

@@ -8,5 +8,35 @@
     "useYn": true,
     "svcTermlDivCd": "1",
     "imgPath": "http://10.184.57.248:8080/pub/menu_list/guide/html/menu/menu_main.html"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 1516,
+    "badgeNm": "Mwave",
+    "badgeDtl": "Mwave",
+    "badgeCtgryCd": "2",
+    "useYn": true,
+    "svcTermlDivCd": "2",
+    "imgPath": "http://10.184.57.248:8080/pub/menu_list/guide/html/menu/menu_main.html"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 1517,
+    "badgeNm": "Mwave",
+    "badgeDtl": "Mwave",
+    "badgeCtgryCd": "1",
+    "useYn": true,
+    "svcTermlDivCd": "3",
+    "imgPath": "http://10.184.57.248:8080/pub/menu_list/guide/html/menu/menu_main.html"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 1518,
+    "badgeNm": "Mwave",
+    "badgeDtl": "Mwave",
+    "badgeCtgryCd": "2",
+    "useYn": true,
+    "svcTermlDivCd": "4",
+    "imgPath": "http://10.184.57.248:8080/pub/menu_list/guide/html/menu/menu_main.html"
   }
 ]

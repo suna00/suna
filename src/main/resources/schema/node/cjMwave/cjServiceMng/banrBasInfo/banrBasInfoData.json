@@ -12,7 +12,8 @@
     "showYn": true,
     "showLoCd": "",
     "showCntryCdList": "KOR,USA",
-    "liveBanrDivCd": ""
+    "liveBanrDivCd": "",
+    "refdBanrItemList": ""
   },
   {
     "typeId": "banrBasInfo",
@@ -23,11 +24,12 @@
     "svcMenuDivCd": "1",
     "showStDt": "20170801",
     "showFnsDt": "20171130",
-    "svcTermlDivCd": "1",
+    "svcTermlDivCd": "2",
     "showYn": true,
     "showLoCd": "",
     "showCntryCdList": "KOR,USA",
-    "liveBanrDivCd": ""
+    "liveBanrDivCd": "",
+    "refdBanrItemList": ""
   },
   {
     "typeId": "banrBasInfo",
@@ -38,11 +40,12 @@
     "svcMenuDivCd": "1",
     "showStDt": "20170801",
     "showFnsDt": "20171130",
-    "svcTermlDivCd": "1",
+    "svcTermlDivCd": "3",
     "showYn": true,
     "showLoCd": "",
     "showCntryCdList": "KOR,USA",
-    "liveBanrDivCd": "1"
+    "liveBanrDivCd": "1",
+    "refdBanrItemList": ""
   },
   {
     "typeId": "banrBasInfo",
@@ -53,11 +56,12 @@
     "svcMenuDivCd": "1",
     "showStDt": "20170801",
     "showFnsDt": "20171130",
-    "svcTermlDivCd": "1",
+    "svcTermlDivCd": "4",
     "showYn": true,
     "showLoCd": "",
     "showCntryCdList": "KOR,USA",
-    "liveBanrDivCd": "2"
+    "liveBanrDivCd": "2",
+    "refdBanrItemList": ""
   },
   {
     "typeId": "banrBasInfo",
@@ -72,6 +76,7 @@
     "showYn": true,
     "showLoCd": "",
     "showCntryCdList": "KOR,USA",
-    "liveBanrDivCd": ""
+    "liveBanrDivCd": "",
+    "refdBanrItemList": ""
   }
 ]
