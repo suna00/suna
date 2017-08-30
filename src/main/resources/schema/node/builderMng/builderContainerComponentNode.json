@@ -82,6 +82,16 @@
   {
     "typeId" : "builderContainerComponent",
     "componentClassType": "FORMS",
+    "componentClass": "NestableForm",
+    "componentClassName": "NESTABLE FORM",
+    "icon": "fa-indent",
+    "order": 33,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClassType": "FORMS",
     "componentClass": "DefaultFormFooter",
     "componentClassName": "DEFAULT FORM/VIEW FOOTER",
     "icon": "fa-toggle-on",
