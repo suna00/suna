@@ -44,6 +44,8 @@ public class ReadContext implements Context {
 
     protected NodeBindingInfo nodeBindingInfo ;
 
+    protected Object result ;
+
     public NodeType getNodetype() {
         return nodeType;
     }
@@ -95,8 +97,6 @@ public class ReadContext implements Context {
             context.setIncludeReferenced(true);
             return ;
         }
-
-
         Map<String, Object> data = ContextUtils.makeContextData(parameterMap);
         context.data = data ;
 
@@ -105,12 +105,9 @@ public class ReadContext implements Context {
         }else if(data.containsKey("pids")){
             makeResultField(context, (String) data.get("pids"));
         }
-
         if(context.resultFields == null || context.resultFields.size() == 0 ){
             context.setIncludeReferenced(true);
         }
-
-
 //        makeSearchFields(context, data) ;
     }
 
@@ -210,6 +207,7 @@ public class ReadContext implements Context {
 
     public QueryResult makeResult() {
         Node node = NodeUtils.getNode(nodeType.getTypeId(), id) ;
+        this.result = node ;
         QueryResult itemResult = makeResult(node);
 
         QueryResult queryResult = new QueryResult() ;
@@ -318,5 +316,13 @@ public class ReadContext implements Context {
         _data.putAll(nodeData);
 
         this.data = _data ;
+    }
+
+    public Object getResult() {
+        return result;
+    }
+
+    public void setResult(Node result) {
+        this.result = result;
     }
 }

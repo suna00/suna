@@ -422,6 +422,8 @@ public class QueryContext extends ReadContext {
 
     public QueryResult makeQueryResult(Object result, String fieldName) {
         List<Node> resultNodeList = getQueryList() ;
+        this.result = resultNodeList ;
+
         return makeQueryResult(result, fieldName, resultNodeList);
     }
 

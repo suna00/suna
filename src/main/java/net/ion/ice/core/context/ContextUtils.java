@@ -1,6 +1,7 @@
 package net.ion.ice.core.context;
 
 import net.ion.ice.core.json.JsonUtils;
+import net.ion.ice.core.query.ResultField;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
@@ -80,5 +81,34 @@ public class ContextUtils {
             return StringUtils.join(values, ',');
         }
         return values[0] ;
+    }
+
+    public static void makeApiResponse(Map<String, Object> response, Map<String, Object> data, ReadContext readContext) {
+
+//                if(response.containsKey("merge")){
+//                    queryContext.responseType = "merge" ;
+//                    queryContext.mergeField = (String) response.get("merge");
+//                }
+
+        for(String fieldName : response.keySet()) {
+            Object fieldValue = response.get(fieldName) ;
+            if (fieldValue == null) {
+                readContext.addResultField(new ResultField(fieldName, fieldName));
+            } else if (fieldValue instanceof String) {
+                if(StringUtils.isEmpty((String) fieldValue)){
+                    readContext.addResultField(new ResultField(fieldName, fieldName));
+                }else {
+                    readContext.addResultField(new ResultField(fieldName, (String) fieldValue));
+                }
+            } else if (fieldValue instanceof Map) {
+                if(((Map) fieldValue).containsKey("query")) {
+                    readContext.addResultField(new ResultField(fieldName, ApiQueryContext.makeContextFromConfig((Map<String, Object>) fieldValue, data)));
+                }else if(((Map) fieldValue).containsKey("select")){
+                    readContext.addResultField(new ResultField(fieldName, ApiSelectContext.makeContextFromConfig((Map<String, Object>) fieldValue, data)));
+                }else{
+                    readContext.addResultField(new ResultField(fieldName, (Map<String, Object>) fieldValue));
+                }
+            }
+        }
     }
 }

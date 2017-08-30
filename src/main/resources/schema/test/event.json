@@ -1,0 +1,26 @@
+[
+  {
+    "typeId" : "event",
+    "tid": "testItem",
+    "event" : "view",
+    "noneExecute" : true,
+    "eventName" : "컨텐츠 조회"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "testItem>view",
+    "action" : "viewsUpdate",
+    "actionName" : "컨텐츠 조회수 업데이트",
+    "actionType" : "service",
+    "actionBody" : "testService.itemViewsUpdate",
+    "order" : 1
+  },
+  {
+    "typeId" : "eventListener",
+    "tid" : "testCategory",
+    "event": "testItem>view",
+    "listenerName" : "컨텐츠 조회시 카테고리 조회수 업데이트",
+    "actionType" : "service",
+    "actionBody" : "testService.categoryViewsUpdate"
+  }
+]
