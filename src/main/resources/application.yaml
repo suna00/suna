@@ -49,6 +49,9 @@ file:
 i18n:
   default: en
 
+migration:
+  targetDbId: mssql
+  className: MysqlSync
 ---
 #-Dspring.profiles.active=dev
 spring:
