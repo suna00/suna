@@ -53,5 +53,27 @@
     "thumImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "sortOdrg": 5
+  },
+  {
+    "typeId": "voteItemInfo",
+    "voteItemSeq": 110,
+    "voteSeq": 334545,
+    "langCd": "jp",
+    "contsMetaId": "1241",
+    "itemNm": "VIXX",
+    "thumImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "sortOdrg": 1
+  },
+  {
+    "typeId": "voteItemInfo",
+    "voteItemSeq": 111,
+    "voteSeq": 334545,
+    "langCd": "jp",
+    "contsMetaId": "1241",
+    "itemNm": "WANNAONE",
+    "thumImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "sortOdrg": 2
   }
 ]

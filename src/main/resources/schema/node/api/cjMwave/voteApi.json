@@ -169,7 +169,7 @@
         "event": "create",
         "data": {
           "voteSeq": "{{:voteSeq}}",
-          "voteQueiSeq": "{{:voteQueiSeq}}",
+          "voteItemSeq": "{{:voteQueiSeq}}",
           "prtcpMbrId": "{{:snsKey}}>{{:snsTypeCd}}"
         }
       }

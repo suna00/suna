@@ -267,13 +267,6 @@
   },
   {
     "typeId": "groupCode",
-    "groupCodeId": "refdCompItemDivCd",
-    "name": "컴포넌트 항목구분 코드",
-    "active": true,
-    "desc": "컴포넌트 항목구분 코드"
-  },
-  {
-    "typeId": "groupCode",
     "groupCodeId": "albumTypeCd",
     "name": "앨범종류 코드",
     "active": true,

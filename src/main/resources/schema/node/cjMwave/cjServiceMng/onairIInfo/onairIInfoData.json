@@ -1,6 +1,6 @@
 [
   {
-    "typeId": "onairIInfo",
+    "typeId": "onairInfo",
     "onairSeq": 54515,
     "showNm": "2017년 MAMA 페스티벌",
     "bradChCd": "1",
@@ -14,7 +14,7 @@
     "url": "http://10.184.57.248:8080/pub/menu_list/guide/html/menu/menu_main.html"
   },
   {
-    "typeId": "onairIInfo",
+    "typeId": "onairInfo",
     "onairSeq": 55155,
     "showNm": "2018년 MAMA 페스티벌",
     "bradChCd": "1",

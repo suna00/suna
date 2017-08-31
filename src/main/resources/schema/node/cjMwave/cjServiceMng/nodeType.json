@@ -462,12 +462,12 @@
   {
     "parentId": "cjServiceMng",
     "typeId": "nodeType",
-    "id": "onairIInfo",
-    "tid": "onairIInfo",
+    "id": "onairInfo",
+    "tid": "onairInfo",
     "typeName": "On-Air 정보",
     "repositoryType": "node",
     "eviction": 0,
-    "tableName": "cjDb#onairIInfo"
+    "tableName": "cjDb#onairInfo"
   },
   {
     "parentId": "cjServiceMng",

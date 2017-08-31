@@ -1,8 +1,8 @@
 [
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>onairIInfo>onairSeq",
-    "propertyTypeId": "onairIInfo>onairSeq",
+    "id": "propertyTypeValidation>onairInfo>onairSeq",
+    "propertyTypeId": "onairInfo>onairSeq",
     "validation": {
       "language": "ko",
       "required": {
@@ -33,8 +33,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>onairIInfo>showNm",
-    "propertyTypeId": "onairIInfo>showNm",
+    "id": "propertyTypeValidation>onairInfo>showNm",
+    "propertyTypeId": "onairInfo>showNm",
     "validation": {
       "language": "ko",
       "required": {
@@ -65,8 +65,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>onairIInfo>bradChCd",
-    "propertyTypeId": "onairIInfo>bradChCd",
+    "id": "propertyTypeValidation>onairInfo>bradChCd",
+    "propertyTypeId": "onairInfo>bradChCd",
     "validation": {
       "language": "ko",
       "required": {
@@ -97,8 +97,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>onairIInfo>svcLoCd",
-    "propertyTypeId": "onairIInfo>svcLoCd",
+    "id": "propertyTypeValidation>onairInfo>svcLoCd",
+    "propertyTypeId": "onairInfo>svcLoCd",
     "validation": {
       "language": "ko",
       "required": {
@@ -129,8 +129,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>onairIInfo>svcTypeCd",
-    "propertyTypeId": "onairIInfo>svcTypeCd",
+    "id": "propertyTypeValidation>onairInfo>svcTypeCd",
+    "propertyTypeId": "onairInfo>svcTypeCd",
     "validation": {
       "language": "ko",
       "required": {
@@ -161,8 +161,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>onairIInfo>bradStDate",
-    "propertyTypeId": "onairIInfo>bradStDate",
+    "id": "propertyTypeValidation>onairInfo>bradStDate",
+    "propertyTypeId": "onairInfo>bradStDate",
     "validation": {
       "language": "ko",
       "required": {
@@ -193,8 +193,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>onairIInfo>bradFnsDate",
-    "propertyTypeId": "onairIInfo>bradFnsDate",
+    "id": "propertyTypeValidation>onairInfo>bradFnsDate",
+    "propertyTypeId": "onairInfo>bradFnsDate",
     "validation": {
       "language": "ko",
       "required": {
@@ -225,8 +225,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>onairIInfo>bradStTime",
-    "propertyTypeId": "onairIInfo>bradStTime",
+    "id": "propertyTypeValidation>onairInfo>bradStTime",
+    "propertyTypeId": "onairInfo>bradStTime",
     "validation": {
       "language": "ko",
       "required": {
@@ -257,8 +257,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>onairIInfo>bradFnsTime",
-    "propertyTypeId": "onairIInfo>bradFnsTime",
+    "id": "propertyTypeValidation>onairInfo>bradFnsTime",
+    "propertyTypeId": "onairInfo>bradFnsTime",
     "validation": {
       "language": "ko",
       "required": {
@@ -289,8 +289,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>onairIInfo>thumImgPath",
-    "propertyTypeId": "onairIInfo>thumImgPath",
+    "id": "propertyTypeValidation>onairInfo>thumImgPath",
+    "propertyTypeId": "onairInfo>thumImgPath",
     "validation": {
       "language": "ko",
       "required": {
@@ -321,8 +321,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>onairIInfo>url",
-    "propertyTypeId": "onairIInfo>url",
+    "id": "propertyTypeValidation>onairInfo>url",
+    "propertyTypeId": "onairInfo>url",
     "validation": {
       "language": "ko",
       "required": {
@@ -353,8 +353,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>onairIInfo>owner",
-    "propertyTypeId": "onairIInfo>owner",
+    "id": "propertyTypeValidation>onairInfo>owner",
+    "propertyTypeId": "onairInfo>owner",
     "validation": {
       "language": "ko",
       "required": {
@@ -385,8 +385,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>onairIInfo>created",
-    "propertyTypeId": "onairIInfo>created",
+    "id": "propertyTypeValidation>onairInfo>created",
+    "propertyTypeId": "onairInfo>created",
     "validation": {
       "language": "ko",
       "required": {
@@ -417,8 +417,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>onairIInfo>modifier",
-    "propertyTypeId": "onairIInfo>modifier",
+    "id": "propertyTypeValidation>onairInfo>modifier",
+    "propertyTypeId": "onairInfo>modifier",
     "validation": {
       "language": "ko",
       "required": {
@@ -449,8 +449,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>onairIInfo>changed",
-    "propertyTypeId": "onairIInfo>changed",
+    "id": "propertyTypeValidation>onairInfo>changed",
+    "propertyTypeId": "onairInfo>changed",
     "validation": {
       "language": "ko",
       "required": {

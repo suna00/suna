@@ -1,0 +1,250 @@
+[
+  {
+    "typeId": "apiConfig",
+    "category": "mypage",
+    "apiId": "IfUlc001",
+    "apiName": "My Like(찜) 콘텐츠 목록 조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "contsMetaDivCd",
+        "required": true
+      },
+      {
+        "paramName": "contsMetaId",
+        "required": true
+      },
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "contsLikeInfo",
+      "query": [
+        {
+          "field": "contsMetaDivCd",
+          "method": "matching",
+          "value": "{{:contsMetaDivCd}}"
+        },
+        {
+          "field": "contsMetaId",
+          "method": "matching",
+          "value": "{{:contsMetaId}}"
+        },
+        {
+          "field": "mbrId",
+          "method": "matching",
+          "value": "{{:snsTypeCd}}>{{:snsKey}}"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "mypage",
+    "apiId": "IfUlc002",
+    "apiName": "My 투표 내역 조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "votePrtcptHst",
+      "query": [
+        {
+          "field": "prtcpMbrId",
+          "method": "matching",
+          "value": "{{:snsTypeCd}}>{{:snsKey}}"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "mypage",
+    "apiId": "IfUlc003",
+    "apiName": "My 댓글 내역 조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "replInfo",
+      "query": [
+        {
+          "field": "mkerId",
+          "method": "matching",
+          "value": "{{:snsTypeCd}}>{{:snsKey}}"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "mypage",
+    "apiId": "IfUlc004",
+    "apiName": "My Q&A 내역 조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "qna",
+      "query": [
+        {
+          "field": "qnarId",
+          "method": "matching",
+          "value": "{{:snsTypeCd}}>{{:snsKey}}"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "mypage",
+    "apiId": "IfUlc00",
+    "apiName": "My Q&A 삭제",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      },
+      {
+        "paramName": "qnaSeq",
+        "required": true
+      }
+    ],
+    "config": {
+      "createItem": {
+        "typeId": "qna",
+        "event": "delete",
+        "data": {
+          "qnaSeq":"{{:qnaSeq}}"
+        }
+      }
+    }
+  }
+]

@@ -37,7 +37,12 @@
   {
     "typeId": "apiCategory",
     "id": "contsMeta",
-    "categoryName": "Contents Meta API"
+    "categoryName": "Contents Meta API",
+    "dateFormat" : "yyyy-MM-dd HH:mm:ss",
+    "fileUrl" : "http://localhost:8080/",
+    "response" :{
+      "time" : "now"
+    }
   },
   {
     "typeId": "apiCategory",
@@ -53,5 +58,10 @@
     "typeId": "apiCategory",
     "id": "member",
     "categoryName": "MEMBER API"
+  },
+  {
+    "typeId": "apiCategory",
+    "id": "mypage",
+    "categoryName": "MYPAGE API"
   }
 ]

@@ -48,7 +48,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "mbrInfo",
-    "referenceValue": "mbrId",
+    "referenceValue": "",
     "defaultValue": ""
   },
   {

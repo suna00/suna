@@ -123,7 +123,31 @@
               "method": "matching",
               "value": "{{:ntfBbsSeq}}"
             }
-          ]
+          ],
+          "response": {
+            "ntfBbsSeq": "",
+            "ctgCd1": "",
+            "ctgCd2": "",
+            "ntfBbsNm": "",
+            "created": ""
+          }
+        },
+        "nextItem": {
+          "typeId": "ntfBbs",
+          "query": [
+            {
+              "field": "ntfBbsSeq",
+              "method": "matching",
+              "value": "{{:ntfBbsSeq}}"
+            }
+          ],
+          "response": {
+            "ntfBbsSeq": "",
+            "ctgCd1": "",
+            "ctgCd2": "",
+            "ntfBbsNm": "",
+            "created": ""
+          }
         }
       }
     }
@@ -169,13 +193,15 @@
         "typeId": "qna",
         "event": "create",
         "data": {
-          "snsKey": "{{:snsKey}}",
-          "snsTypeCd": "{{:snsTypeCd}}",
+          "qnarId": "{{:snsTypeCd}}>{{:snsKey}}",
+          "qstnrName": "name",
+          "qstnrMbrYn": "true",
           "qnaNm": "{{:qnaNm}}",
           "qnaFild": "{{:qnaFildCd}}",
           "qstnrEmail": "{{:qstnrEmail}}",
           "qstnSbst": "{{:qstnSbst}}",
-          "qstnAtcFilePath": "{{:qstnAtcFile}}"
+          "qstnAtcFilePath": "{{:qstnAtcFile}}",
+          "trtSttusCd": "1"
         }
       }
     }
@@ -225,7 +251,7 @@
         "faqCtgryNm": "",
         "showOdrg": "",
         "descSbst": "",
-        "thumImgPath": "thumImgUrl"
+        "thumImgUrl": "thumImgPath"
       }
     }
   },
@@ -288,7 +314,7 @@
         "qstnSbst": "",
         "ansrSbst": "",
         "sortOdrg": "",
-        "retvNum": "hitNum"
+        "hitNum": "retvNum"
       }
     }
   },
@@ -310,7 +336,7 @@
         "event": "update",
         "data": {
           "faqSeq": "{{:faqSeq}}",
-          "retvNum": "{{:retvNum}}"
+          "retvNum": "1"
         }
       }
     }

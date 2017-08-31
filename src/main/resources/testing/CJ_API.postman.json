@@ -12276,8 +12276,8 @@
     {
       "id": "e285921a-ea05-81d5-c08f-57cfbb1a0072",
       "method": "GET",
-      "url": "{{protocol}}://{{hostname}}:{{port}}/node/onairIInfo/list.json",
-      "name": "On-Air 정보 onairIInfo/list.json",
+      "url": "{{protocol}}://{{hostname}}:{{port}}/node/onairInfo/list.json",
+      "name": "On-Air 정보 onairInfo/list.json",
       "dataMode": "params",
       "headers": "",
       "headerData": [],
@@ -12300,8 +12300,8 @@
     {
       "id": "e285921a-ea05-81d5-c08f-57cfbb1b0072",
       "method": "GET",
-      "url": "{{protocol}}://{{hostname}}:{{port}}/node/onairIInfo/read.json?onairSeq=1",
-      "name": "On-Air 정보 onairIInfo/read.json",
+      "url": "{{protocol}}://{{hostname}}:{{port}}/node/onairInfo/read.json?onairSeq=1",
+      "name": "On-Air 정보 onairInfo/read.json",
       "dataMode": "params",
       "headers": "",
       "headerData": [],
@@ -12332,8 +12332,8 @@
     {
       "id": "e285921a-ea05-81d5-c08f-57cfbb1c0072",
       "method": "POST",
-      "url": "{{protocol}}://{{hostname}}:{{port}}/node/onairIInfo/save.json",
-      "name": "On-Air 정보 onairIInfo/save.json",
+      "url": "{{protocol}}://{{hostname}}:{{port}}/node/onairInfo/save.json",
+      "name": "On-Air 정보 onairInfo/save.json",
       "dataMode": "urlencoded",
       "headers": "Content-Type: application/x-www-form-urlencoded",
       "headerData": [
@@ -12419,8 +12419,8 @@
     {
       "id": "e285921a-ea05-81d5-c08f-57cfbb1d0072",
       "method": "GET",
-      "url": "{{protocol}}://{{hostname}}:{{port}}/node/onairIInfo/delete.json?onairSeq=1",
-      "name": "On-Air 정보 onairIInfo/delete.json",
+      "url": "{{protocol}}://{{hostname}}:{{port}}/node/onairInfo/delete.json?onairSeq=1",
+      "name": "On-Air 정보 onairInfo/delete.json",
       "dataMode": "params",
       "headers": "",
       "headerData": [],
