@@ -2,8 +2,9 @@
   {
     "typeId": "ntfBbs",
     "ntfBbsSeq": 100,
-    "langCd": "KOR",
     "ntfBbsNm": "2017년 MAMA 대잔치 D-100 이벤트 공지",
+    "ntfBbsNm_ENG": "2017 MAMA Announcement D-100 Event Notice",
+    "ntfBbsNm_JPG": "2017年MAMAジャングルに再D-100のイベントのお知らせ",
     "ntfBbsTgtCd": "ntfIntn",
     "ntfBbsTypeCd": "ntfEmg",
     "ctgCd1": "1",
@@ -18,8 +19,9 @@
   {
     "typeId": "ntfBbs",
     "ntfBbsSeq": 101,
-    "langCd": "KOR",
     "ntfBbsNm": "2017년 MAMA 대잔치 D-100 이벤트 공지",
+    "ntfBbsNm_ENG": "2017 MAMA Announcement D-100 Event Notice",
+    "ntfBbsNm_JPG": "2017年MAMAジャングルに再D-100のイベントのお知らせ",
     "ntfBbsTgtCd": "ntfIntn",
     "ntfBbsTypeCd": "ntfEmg",
     "ctgCd1": "1",
@@ -34,8 +36,9 @@
   {
     "typeId": "ntfBbs",
     "ntfBbsSeq": 102,
-    "langCd": "KOR",
     "ntfBbsNm": "2017년 MAMA 대잔치 D-100 이벤트 공지",
+    "ntfBbsNm_ENG": "2017 MAMA Announcement D-100 Event Notice",
+    "ntfBbsNm_JPG": "2017年MAMAジャングルに再D-100のイベントのお知らせ",
     "ntfBbsTgtCd": "ntfIntn",
     "ntfBbsTypeCd": "ntfEmg",
     "ctgCd1": "1",
@@ -50,8 +53,9 @@
   {
     "typeId": "ntfBbs",
     "ntfBbsSeq": 103,
-    "langCd": "KOR",
     "ntfBbsNm": "2017년 MAMA 대잔치 D-100 이벤트 공지",
+    "ntfBbsNm_ENG": "2017 MAMA Announcement D-100 Event Notice",
+    "ntfBbsNm_JPG": "2017年MAMAジャングルに再D-100のイベントのお知らせ",
     "ntfBbsTgtCd": "ntfIntn",
     "ntfBbsTypeCd": "ntfEmg",
     "ctgCd1": "1",
