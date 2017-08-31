@@ -458,9 +458,13 @@ public class QueryContext extends ReadContext {
     protected List<QueryResult> makeResultList(NodeType nodeType, List<Node> resultNodeList) {
         List<QueryResult> subList =  new ArrayList<>(resultNodeList.size()) ;
 
+        Map<String, Object> contextData = new HashMap<>() ;
+        contextData.putAll(data);
+
         for(Node resultNode : resultNodeList) {
+            contextData.putAll(resultNode);
             QueryResult subQueryResult = new QueryResult() ;
-            makeItemQueryResult(resultNode, subQueryResult);
+            makeItemQueryResult(resultNode, subQueryResult, contextData);
             subList.add(subQueryResult) ;
         }
         return subList;

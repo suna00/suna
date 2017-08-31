@@ -6,10 +6,8 @@ import net.ion.ice.core.query.ResultField;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by jaehocho on 2017. 7. 4..
@@ -28,6 +26,10 @@ public class ApiContext {
         ctx.apiNode = apiNode ;
         ctx.data = ContextUtils.makeContextData(parameterMap, multiFileMap) ;
         ctx.data.put("session", session);
+        ctx.data.put("now", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())) ;
+        ctx.data.put("sysdate", new Date()) ;
+
+
         ctx.config = config;
 
         return ctx ;
