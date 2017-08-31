@@ -45,14 +45,13 @@
         {
           "includeReferenced": true
         }
-
       ],
-      "response":{
-        "awardSctnSeq":"",
-        "awardYear":"",
-        "awardSctnCd":"",
-        "awardSctnDesc":"",
-        "refdWinnerList":{
+      "response": {
+        "awardSctnSeq": "",
+        "awardYear": "",
+        "awardSctnCd": "",
+        "awardSctnDesc": "",
+        "refdWinnerList": {
           "typeId": "mamaSctnWinner",
           "query": [
             {
@@ -60,7 +59,7 @@
               "method": "referenceJoin",
               "value": "awardSctnSeq_matching={{:awardSctnSeq}}&sorting=sortOdrg"
             }
-            ]
+          ]
         }
       }
     }
@@ -70,44 +69,91 @@
     "category": "svcEvent",
     "apiId": "IfEvt002",
     "apiName": "당첨자 정보 전송",
-    "method": "GET",
+    "method": "POST",
     "parameters": [
       {
-        "paramName": "page",
+        "paramName": "voteSeq",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      },
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "mbrFirstName",
         "required": false
       },
       {
-        "paramName": "pageSize",
+        "paramName": "mbrLastName",
         "required": false
       },
       {
-        "paramName": "sorting",
+        "paramName": "email",
         "required": false
       },
       {
-        "paramName": "langCd",
+        "paramName": "mblNo",
+        "required": false
+      },
+      {
+        "paramName": "homeAdr",
+        "required": false
+      },
+      {
+        "paramName": "memo",
+        "required": false
+      },
+      {
+        "paramName": "indvInfoAgreeYn",
+        "required": false
+      },
+      {
+        "paramName": "selItemAgreeYn",
         "required": false
       }
     ],
     "config": {
-      "typeId": "mamaAwardSctnInfo",
-      "query": [
-        {
-          "field": "awardYear",
-          "method": "matching",
-          "value": "{{:awardYear}}"
-        },
-        {
-          "sorting": "{{:sorting}}"
-        },
-        {
-          "page": "{{:page}}",
-          "pageSize": "{{:pageSize}}"
-        },
-        {
-          "includeReferenced": true
+      "getVotePwnrSeq": {
+        "typeId": "votePwnrInfo",
+        "query": [
+          {
+            "field": "pwnrBasSeq",
+            "method": "referenceJoin",
+            "value": "voteSeq_matching={{:voteSeq}}&limit=1"
+          },
+          {
+            "field": "mbrId",
+            "method": "matching",
+            "value": "{{:snsTypeCd}}>{{:snsKey}}"
+          },
+          {
+            "sorting": "votePwnrSeq desc",
+            "limit": 1
+          }
+        ],
+        "response": {
+          "votePwnrSeq": ""
         }
-      ]
+      },
+      "updateInfo": {
+        "typeId": "votePwnrInfo",
+        "event": "update",
+        "data": {
+          "votePwnrSeq": "{{:votePwnrSeq}}",
+          "mbrFirstName": "{{:mbrFirstName}}",
+          "mbrLastName": "{{:mbrLastName}}",
+          "email": "{{:email}}",
+          "mblNo": "{{:mblNo}}",
+          "homeAdr": "{{:homeAdr}}",
+          "memo": "{{:memo}}",
+          "indvInfoAgreeYn": "{{:indvInfoAgreeYn}}",
+          "selItemAgreeYn": "{{:selItemAgreeYn}}"
+        }
+      }
     }
   }
 ]

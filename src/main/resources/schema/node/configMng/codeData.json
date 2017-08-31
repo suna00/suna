@@ -649,38 +649,6 @@
   },
   {
     "typeId": "code",
-    "groupCodeId": "selScopeCd",
-    "codeId": "4",
-    "name": "Music Video",
-    "order": 4,
-    "active": true
-  },
-  {
-    "typeId": "code",
-    "groupCodeId": "selScopeCd",
-    "codeId": "5",
-    "name": "VOD",
-    "order": 5,
-    "active": true
-  },
-  {
-    "typeId": "code",
-    "groupCodeId": "selScopeCd",
-    "codeId": "6",
-    "name": "Clip",
-    "order": 6,
-    "active": true
-  },
-  {
-    "typeId": "code",
-    "groupCodeId": "selScopeCd",
-    "codeId": "7",
-    "name": "Photo",
-    "order": 7,
-    "active": true
-  },
-  {
-    "typeId": "code",
     "groupCodeId": "alignFormlCd",
     "codeId": "1",
     "name": "인기",
