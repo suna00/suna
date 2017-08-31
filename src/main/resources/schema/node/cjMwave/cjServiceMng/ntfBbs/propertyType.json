@@ -19,9 +19,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "ntfBbsMultiLangInfo",
+    "tid": "ntfBbs",
     "pid": "langCd",
-    "id": "ntfBbsMultiLangInfo>langCd",
+    "id": "ntfBbs>langCd",
     "propertyTypeName": "언어코드",
     "valueType": "REFERENCE",
     "required": true,
