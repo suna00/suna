@@ -402,16 +402,6 @@
   {
     "parentId": "cjServiceMng",
     "typeId": "nodeType",
-    "id": "sptrInfo",
-    "tid": "sptrInfo",
-    "typeName": "SUPPORTERS 정보",
-    "repositoryType": "node",
-    "eviction": 0,
-    "tableName": "cjDb#sptrInfo"
-  },
-  {
-    "parentId": "cjServiceMng",
-    "typeId": "nodeType",
     "id": "glblChatInfo",
     "tid": "glblChatInfo",
     "typeName": "Global Chat 정보",
@@ -492,11 +482,11 @@
   {
     "parentId": "cjServiceMng",
     "typeId": "nodeType",
-    "id": "evPwnrInfo",
-    "tid": "evPwnrInfo",
-    "typeName": "이벤트 당첨자 정보",
+    "id": "votePwnrInfo",
+    "tid": "votePwnrInfo",
+    "typeName": "투표 당첨자 정보",
     "repositoryType": "node",
     "eviction": 0,
-    "tableName": "cjDb#evPwnrInfo"
+    "tableName": "cjDb#votePwnrInfo"
   }
 ]
