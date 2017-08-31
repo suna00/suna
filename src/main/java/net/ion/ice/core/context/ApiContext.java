@@ -7,6 +7,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,51 +30,78 @@ public class ApiContext {
         ctx.data.put("session", session);
         ctx.config = config;
 
-        ctx.init();
         return ctx ;
     }
 
-    private void init() {
-        resultFieldList = new ArrayList<>() ;
-        if(config.containsKey("typeId") || config.containsKey("apiType")){
-            resultFieldList.add(makeSubContext("root", config));
-        }else {
-            for (String key : config.keySet()) {
-                Map<String, Object> ctxRootConfig = (Map<String, Object>) config.get(key);
-                resultFieldList.add(makeSubContext(key, ctxRootConfig));
-            }
-        }
-    }
 
-    private ResultField makeSubContext(String key, Map<String, Object> ctxRootConfig) {
+    private Map<String, Object> makeSubApiReuslt(Map<String, Object> ctxRootConfig) {
         if(ctxRootConfig.containsKey("event")){
             ExecuteContext executeContext = ExecuteContext.makeContextFromConfig(ctxRootConfig, data) ;
-            return new ResultField(key, executeContext) ;
+            if(executeContext.execute()) {
+                Node node = executeContext.getNode();
+                addResultData(node.clone());
+
+                return executeContext.makeResult() ;
+            }else{
+                return new QueryResult().setResult("0").setResultMessage("None Executed") ;
+            }
+
         }else if(ctxRootConfig.containsKey("query")){
             ApiQueryContext queryContext = ApiQueryContext.makeContextFromConfig(ctxRootConfig, data) ;
-            return new ResultField(key, queryContext) ;
+            QueryResult queryResult = queryContext.makeQueryResult(null, null) ;
+
+            addResultData(queryContext.getResult());
+
+            return queryResult ;
         }else if(ctxRootConfig.containsKey("select")){
             ApiSelectContext selectContext = ApiSelectContext.makeContextFromConfig(ctxRootConfig, data) ;
-            return new ResultField(key, selectContext) ;
+            QueryResult queryResult =  selectContext.makeQueryResult(null, null) ;
+            addResultData(selectContext.getResult());
+
+            return queryResult ;
+        }else if(ctxRootConfig.containsKey("id")){
+            ApiReadContext readContext = ApiReadContext.makeContextFromConfig(ctxRootConfig, data) ;
+            Node node = readContext.getNode() ;
+            addResultData(node.clone());
+
+            return readContext.makeResult() ;
         }
         return null ;
     }
 
 
     public Object makeApiResult() {
-        QueryResult queryResult = new QueryResult() ;
 
-        for(ResultField field : resultFieldList){
-            Context context = field.getContext() ;
-            if(context instanceof ReadContext){
-                if("root".equals(field.getFieldName())){
-                    queryResult = (QueryResult) ((ReadContext) context).makeQueryResult(null, null);
-                }else {
-                    queryResult.put(field.getFieldName(), ((ReadContext) context).makeQueryResult(null, null));
+        if(config.containsKey("typeId") || config.containsKey("apiType")){
+            return makeSubApiReuslt(config);
+        }else {
+            QueryResult queryResult = new QueryResult() ;
+            for (String key : config.keySet()) {
+                Map<String, Object> ctxRootConfig = (Map<String, Object>) config.get(key);
+                if("root".equals(key)) {
+                    queryResult.putAll(makeSubApiReuslt(ctxRootConfig)) ;
+                }else{
+                    queryResult.put(key, makeSubApiReuslt(ctxRootConfig)) ;
                 }
             }
+            return queryResult ;
+        }
+    }
+
+    public void addResultData(Object result) {
+
+        Map<String, Object> _data = new HashMap<>() ;
+        _data.putAll(data);
+
+        if(result instanceof List){
+            List resultList = (List) result;
+            if(resultList.size() > 0) {
+                _data.putAll((Map<? extends String, ?>) resultList.get(resultList.size() - 1));
+            }
+        }else{
+            _data.putAll((Map<? extends String, ?>) result);
         }
 
-        return queryResult ;
+        this.data = _data ;
     }
 }

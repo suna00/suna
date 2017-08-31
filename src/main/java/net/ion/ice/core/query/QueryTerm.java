@@ -210,7 +210,8 @@ public class QueryTerm {
         EXCESS(">"),
         UNDER("<"),
         NOTMATCHING(""),
-        NOTEQUALS("");
+        NOTEQUALS("<>"),
+        FROMTO("");
 
 
         private String queryString;
@@ -225,7 +226,8 @@ public class QueryTerm {
     }
     public enum QueryTermType {
         DATA,
-        NODE
+        NODE,
+        IF
     }
 
 }

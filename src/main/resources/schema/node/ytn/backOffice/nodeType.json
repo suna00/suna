@@ -172,9 +172,9 @@
   {
     "parentId": "backOfficePath",
     "typeId": "nodeType",
-    "tid": "smsCertificationHistory",
+    "tid": "smsCertification",
     "typeName": "SMS 인증 이력",
-    "tableName": "ytnDevDb#smsCertificationHistory",
+    "tableName": "ytnDevDb#smsCertification",
     "repositoryType": "data",
     "eviction": 0
   },

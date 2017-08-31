@@ -1664,6 +1664,94 @@
     "themeStatus": "y"
   },
   {
+    "typeId": "theme",
+    "themeId": 24,
+    "pageType": "categoryMain",
+    "themeType": "bestItem",
+    "siteType": "company",
+    "name": "카테고리3",
+    "categoryId": 1,
+    "sortOrder": 3,
+    "themeStatus": "y"
+  },
+  {
+    "typeId": "theme",
+    "themeId": 25,
+    "pageType": "categoryMain",
+    "themeType": "bestItem",
+    "siteType": "company",
+    "name": "카테고리4",
+    "categoryId": 1,
+    "sortOrder": 4,
+    "themeStatus": "y"
+  },
+  {
+    "typeId": "theme",
+    "themeId": 26,
+    "pageType": "categoryMain",
+    "themeType": "bestItem",
+    "siteType": "company",
+    "name": "카테고리5",
+    "categoryId": 1,
+    "sortOrder": 5,
+    "themeStatus": "y"
+  },
+  {
+    "typeId": "theme",
+    "themeId": 27,
+    "pageType": "categoryMain",
+    "themeType": "bestItem",
+    "siteType": "company",
+    "name": "카테고리6",
+    "categoryId": 1,
+    "sortOrder": 6,
+    "themeStatus": "y"
+  },
+  {
+    "typeId": "theme",
+    "themeId": 28,
+    "pageType": "categoryMain",
+    "themeType": "bestItem",
+    "siteType": "company",
+    "name": "카테고리7",
+    "categoryId": 1,
+    "sortOrder": 7,
+    "themeStatus": "y"
+  },
+  {
+    "typeId": "theme",
+    "themeId": 29,
+    "pageType": "categoryMain",
+    "themeType": "bestItem",
+    "siteType": "company",
+    "name": "카테고리8",
+    "categoryId": 1,
+    "sortOrder": 8,
+    "themeStatus": "y"
+  },
+  {
+    "typeId": "theme",
+    "themeId": 30,
+    "pageType": "categoryMain",
+    "themeType": "bestItem",
+    "siteType": "company",
+    "name": "카테고리9",
+    "categoryId": 1,
+    "sortOrder": 9,
+    "themeStatus": "y"
+  },
+  {
+    "typeId": "theme",
+    "themeId": 31,
+    "pageType": "categoryMain",
+    "themeType": "bestItem",
+    "siteType": "company",
+    "name": "카테고리10",
+    "categoryId": 1,
+    "sortOrder": 10,
+    "themeStatus": "y"
+  },
+  {
     "typeId": "productToThemeMap",
     "productToThemeMapId": 1,
     "themeId": 1,
@@ -2121,7 +2209,125 @@
     "sortOrder": 4,
     "productToThemeMapStatus": "y",
     "fixedYn": "n"
-  },{
+  },
+  {
+    "typeId": "productToThemeMap",
+    "productToThemeMapId": 51,
+    "themeId": 13,
+    "productId": 3,
+    "sortOrder": 4,
+    "productToThemeMapStatus": "y",
+    "fixedYn": "n"
+  },
+  {
+    "typeId": "productToThemeMap",
+    "productToThemeMapId": 52,
+    "themeId": 13,
+    "productId": 3,
+    "sortOrder": 5,
+    "productToThemeMapStatus": "y",
+    "fixedYn": "n"
+  },
+  {
+    "typeId": "productToThemeMap",
+    "productToThemeMapId": 53,
+    "themeId": 13,
+    "productId": 3,
+    "sortOrder": 6,
+    "productToThemeMapStatus": "y",
+    "fixedYn": "n"
+  },
+  {
+    "typeId": "productToThemeMap",
+    "productToThemeMapId": 54,
+    "themeId": 13,
+    "productId": 3,
+    "sortOrder": 7,
+    "productToThemeMapStatus": "y",
+    "fixedYn": "n"
+  },
+  {
+    "typeId": "productToThemeMap",
+    "productToThemeMapId": 55,
+    "themeId": 13,
+    "productId": 3,
+    "sortOrder": 8,
+    "productToThemeMapStatus": "y",
+    "fixedYn": "n"
+  },
+  {
+    "typeId": "productToThemeMap",
+    "productToThemeMapId": 56,
+    "themeId": 13,
+    "productId": 3,
+    "sortOrder": 9,
+    "productToThemeMapStatus": "y",
+    "fixedYn": "n"
+  },
+  {
+    "typeId": "productToThemeMap",
+    "productToThemeMapId": 57,
+    "themeId": 13,
+    "productId": 3,
+    "sortOrder": 10,
+    "productToThemeMapStatus": "y",
+    "fixedYn": "n"
+  },
+  {
+    "typeId": "productToThemeMap",
+    "productToThemeMapId": 58,
+    "themeId": 13,
+    "productId": 3,
+    "sortOrder": 11,
+    "productToThemeMapStatus": "y",
+    "fixedYn": "n"
+  },
+  {
+    "typeId": "productToThemeMap",
+    "productToThemeMapId": 59,
+    "themeId": 13,
+    "productId": 3,
+    "sortOrder": 12,
+    "productToThemeMapStatus": "y",
+    "fixedYn": "n"
+  },
+  {
+    "typeId": "productToThemeMap",
+    "productToThemeMapId": 60,
+    "themeId": 9,
+    "productId": 3,
+    "sortOrder": 1,
+    "productToThemeMapStatus": "y",
+    "fixedYn": "n"
+  },
+  {
+    "typeId": "productToThemeMap",
+    "productToThemeMapId": 61,
+    "themeId": 9,
+    "productId": 3,
+    "sortOrder": 2,
+    "productToThemeMapStatus": "y",
+    "fixedYn": "n"
+  },
+  {
+    "typeId": "productToThemeMap",
+    "productToThemeMapId": 62,
+    "themeId": 9,
+    "productId": 3,
+    "sortOrder": 3,
+    "productToThemeMapStatus": "y",
+    "fixedYn": "n"
+  },
+  {
+    "typeId": "productToThemeMap",
+    "productToThemeMapId": 63,
+    "themeId": 24,
+    "productId": 3,
+    "sortOrder": 1,
+    "productToThemeMapStatus": "y",
+    "fixedYn": "n"
+  },
+  {
   "typeId": "gnb",
   "gnbId": 1,
   "affiliateId": "",

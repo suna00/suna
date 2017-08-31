@@ -8,19 +8,20 @@ import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
+import net.ion.ice.core.query.QueryTerm;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
  * Created by jaeho on 2017. 5. 31..
  */
-public class ExecuteContext implements Context{
-    protected Map<String, Object> data  ;
+public class ExecuteContext extends ReadContext{
+
     protected Node node;
-    protected NodeType nodeType;
     protected Node existNode ;
 
     protected boolean exist ;
@@ -28,11 +29,12 @@ public class ExecuteContext implements Context{
 
 
     protected List<String> changedProperties ;
-    protected String id ;
 
     protected String userId ;
     protected Date time ;
     protected String event;
+
+    protected String ifTest ;
 
 
     public static ExecuteContext createContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType, String event, String id) {
@@ -122,7 +124,7 @@ public class ExecuteContext implements Context{
         }
 
         try {
-            existNode = NodeUtils.getNodeService().getNode(nodeType.getTypeId(), getId());
+            existNode = NodeUtils.getNode(nodeType.getTypeId(), getId());
         }catch(Exception e){
         }
         exist = existNode != null ;
@@ -155,6 +157,9 @@ public class ExecuteContext implements Context{
                     node.put(pt.getPid(), newValue) ;
                     changedProperties.add(pt.getPid()) ;
                 }else if(!newValue.equals(existValue)){
+                    if(pt.isI18n()){
+                        ((Map<String, Object>) existValue).putAll((Map<? extends String, ?>) newValue);
+                    }
                     node.put(pt.getPid(), newValue) ;
                     changedProperties.add(pt.getPid()) ;
                 }
@@ -240,15 +245,24 @@ public class ExecuteContext implements Context{
 
         ctx.event = (String) ContextUtils.getValue(config.get("event"), data);
 
+        data.put("now", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())) ;
         if(config.containsKey("data")){
             Map<String, Object> _data = new HashMap<>();
             Map<String, Object> subData = (Map<String, Object>) config.get("data");
             for(String key : subData.keySet()){
-                _data.put(key, ContextUtils.getValue(key, data)) ;
+                _data.put(key, ContextUtils.getValue(subData.get(key), data)) ;
             }
             ctx.data = _data ;
         }else{
             ctx.data = data ;
+        }
+
+        if(config.containsKey("response")){
+            ContextUtils.makeApiResponse((Map<String, Object>) config.get("response"), data, ctx);
+        }
+
+        if(config.containsKey("if")){
+            ctx.ifTest =  ContextUtils.getValue(config.get("if"), data).toString();
         }
 
         ctx.init() ;
@@ -271,9 +285,13 @@ public class ExecuteContext implements Context{
     }
 
 
-    public void execute() {
+    public boolean execute() {
+        if(this.ifTest != null && !(this.ifTest.equalsIgnoreCase("true"))){
+            return false ;
+        }
         EventService eventService = ApplicationContextManager.getBean(EventService.class) ;
         eventService.execute(this) ;
+        return true ;
     }
 
     public NodeType getNodeType() {
