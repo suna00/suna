@@ -5728,7 +5728,7 @@
     "pid": "emailCertificationId",
     "propertyTypeName": "ID",
     "valueType": "INT",
-    "required": true,
+    "required": false,
     "idable": true,
     "labelable": false,
     "treeable": false,
@@ -5738,7 +5738,7 @@
     "referenceValue": "",
     "codeFilter": "",
     "defaultValue": "",
-    "idType": "autoIncrement"
+    "idType": ""
   },
   {
     "typeId": "propertyType",
@@ -5830,7 +5830,7 @@
     "tid": "emailCertification",
     "pid": "certCode",
     "propertyTypeName": "인증코드",
-    "valueType": "INT",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
