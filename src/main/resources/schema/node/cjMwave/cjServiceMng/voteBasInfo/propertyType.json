@@ -259,7 +259,8 @@
     "analyzer": null,
     "referenceType": "code",
     "referenceValue": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "codeFilter": "selScopeCd"
   },
   {
     "typeId": "propertyType",
@@ -276,7 +277,8 @@
     "analyzer": null,
     "referenceType": "code",
     "referenceValue": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "codeFilter": "alignFormlCd"
   },
   {
     "typeId": "propertyType",
