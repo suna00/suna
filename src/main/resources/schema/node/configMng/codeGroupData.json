@@ -267,20 +267,6 @@
   },
   {
     "typeId": "groupCode",
-    "groupCodeId": "cntryCd",
-    "name": "국가 코드",
-    "active": true,
-    "desc": "국가 코드"
-  },
-  {
-    "typeId": "groupCode",
-    "groupCodeId": "langCd",
-    "name": "언어 코드",
-    "active": true,
-    "desc": "언어 코드"
-  },
-  {
-    "typeId": "groupCode",
     "groupCodeId": "refdCompItemDivCd",
     "name": "컴포넌트 항목구분 코드",
     "active": true,
