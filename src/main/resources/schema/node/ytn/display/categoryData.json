@@ -3097,5 +3097,32 @@
     "productToCategoryMapId": "3",
     "categoryId": "1,10,108",
     "productId": "1"
+  },
+  {
+    "typeId": "popularSearches",
+    "popularSearchesId": 1,
+    "siteId": "ion",
+    "name": "노트북",
+    "sortOrder": 1,
+    "popularSearchesStatus": "y",
+    "popularSearchesType":"batch"
+  },
+  {
+    "typeId": "popularSearches",
+    "popularSearchesId": 2,
+    "siteId": "ion",
+    "name": "에어컨",
+    "sortOrder": 1,
+    "popularSearchesStatus": "y",
+    "popularSearchesType":"batch"
+  },
+  {
+    "typeId": "popularSearches",
+    "popularSearchesId": 3,
+    "siteId": "ion",
+    "name": "여성샌들",
+    "sortOrder": 1,
+    "popularSearchesStatus": "y",
+    "popularSearchesType":"batch"
   }
 ]
