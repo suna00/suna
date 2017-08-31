@@ -13,14 +13,14 @@
     "parameters": [
     ],
     "config": {
-      "getCertNumber": {
+      "getCertCode": {
         "select" : {
           "ds" : "ytnDevDb",
           "resultType" : "read",
           "sql" : "select FLOOR(1000 + (RAND()*8999)) as certCode "
         }
       },
-      "createHistory" : {
+      "createCertification" : {
         "typeId": "smsCertification",
         "event": "create",
         "data": {
@@ -31,6 +31,7 @@
           "memberNo": "{{:memberNo}}",
           "cellphone": "{{:cellphone}}",
           "certCode": "{{:certCode}}",
+          "certStatus": "request",
           "certRequestDate": "{{:now}}"
         }
       }
@@ -45,20 +46,21 @@
     "parameters": [
     ],
     "config": {
-      "getCertNumber": {
+      "item": {
         "select" : {
           "ds" : "ytnDevDb",
           "resultType" : "read",
-          "sql" : "select smsCertificationId, certCode as lastCertCode from smscertification where cellphone = @{cellphone} order by smsCertificationId desc limit 1 "
+          "sql" : "select a.smsCertificationId, a.lastCertCode, a.certStatus, a.certRequestDate, a.certExpireDate, (certStatus = 'request' and certExpireDate > now() and lastCertCode = @{certCode}) as available from ( select smsCertificationId , certCode as lastCertCode , certStatus , certRequestDate , date_add(certRequestDate, interval +3 MINUTE) as certExpireDate from smscertification where cellphone = @{cellphone} order by smsCertificationId desc limit 1 ) a "
         }
       },
-      "updateHistory" : {
+      "successCertification" : {
         "typeId": "smsCertification",
         "event": "update",
-        "if" : "{{:equals(lastCertCode, certCode)}}",
+        "if" : "{{:aboveInt(available, 1)}}",
         "data": {
           "smsCertificationId": "{{:smsCertificationId}}",
-          "certSuccessDate": "{{:now}}"
+          "certSuccessDate": "{{:now}}",
+          "certStatus": "success"
         }
       }
     }
