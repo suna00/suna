@@ -1,28 +1,49 @@
 [
   {
     "parentId" : "root",
-    "typeId" : "dbSyncProcess",
+    "typeId" : "nodeType",
     "tid" : "dbSyncProcess",
     "typeName" : "DB 동기화 작업 메타",
     "repositoryType" : "node",
-    "eviction" : 0
+    "eviction" : 500
   }
 
   , {
     "parentId" : "root",
-    "typeId" : "dbSyncMapper",
+    "typeId" : "nodeType",
     "tid" : "dbSyncMapper",
     "typeName" : "DB 동기화 프로퍼티 맵핑",
     "repositoryType" : "node",
-    "eviction" : 0
+    "eviction" : 500
   }
 
   , {
     "parentId" : "root",
-    "typeId" : "dbSyncHistory",
+    "typeId" : "nodeType",
     "tid" : "dbSyncHistory",
     "typeName" : "DB 동기화 개별 작업 내역",
     "repositoryType" : "node",
-    "eviction" : 0
+    "eviction" : 500
+  }
+
+
+
+  , {
+    "parentId" : "root",
+    "typeId" : "nodeType",
+    "tid" : "dbTest01",
+    "typeName" : "DB 삽입 테스트 노드 01",
+    "repositoryType" : "node",
+    "eviction" : 500
+  }
+
+
+  , {
+    "parentId" : "root",
+    "typeId" : "nodeType",
+    "tid" : "dbTest02",
+    "typeName" : "DB 삽입 테스트 노드 02",
+    "repositoryType" : "node",
+    "eviction" : 500
   }
 ]
