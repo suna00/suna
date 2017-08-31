@@ -13,6 +13,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -244,11 +245,12 @@ public class ExecuteContext extends ReadContext{
 
         ctx.event = (String) ContextUtils.getValue(config.get("event"), data);
 
+        data.put("now", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())) ;
         if(config.containsKey("data")){
             Map<String, Object> _data = new HashMap<>();
             Map<String, Object> subData = (Map<String, Object>) config.get("data");
             for(String key : subData.keySet()){
-                _data.put(key, ContextUtils.getValue(key, data)) ;
+                _data.put(key, ContextUtils.getValue(subData.get(key), data)) ;
             }
             ctx.data = _data ;
         }else{
@@ -260,7 +262,7 @@ public class ExecuteContext extends ReadContext{
         }
 
         if(config.containsKey("if")){
-            ctx.ifTest =  ContextUtils.getValue(config.get("if"), ctx.data).toString();
+            ctx.ifTest =  ContextUtils.getValue(config.get("if"), data).toString();
         }
 
         ctx.init() ;
