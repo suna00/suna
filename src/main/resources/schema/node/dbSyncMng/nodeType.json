@@ -1,0 +1,28 @@
+[
+  {
+    "parentId" : "root",
+    "typeId" : "dbSyncProcess",
+    "tid" : "dbSyncProcess",
+    "typeName" : "DB 동기화 작업 메타",
+    "repositoryType" : "node",
+    "eviction" : 0
+  }
+
+  , {
+    "parentId" : "root",
+    "typeId" : "dbSyncMapper",
+    "tid" : "dbSyncMapper",
+    "typeName" : "DB 동기화 프로퍼티 맵핑",
+    "repositoryType" : "node",
+    "eviction" : 0
+  }
+
+  , {
+    "parentId" : "root",
+    "typeId" : "dbSyncHistory",
+    "tid" : "dbSyncHistory",
+    "typeName" : "DB 동기화 개별 작업 내역",
+    "repositoryType" : "node",
+    "eviction" : 0
+  }
+]

@@ -1,0 +1,51 @@
+[
+  {
+    "typeId" : "propertyType",
+    "tid": "dbSyncMapper",
+    "id": "dbSyncMapper>mapperId",
+    "pid": "mapperId",
+    "propertyTypeName": "맵퍼 아이디",
+    "valueType": "STRING",
+    "required": true,
+    "idable": true,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "dbSyncMapper",
+    "id": "dbSyncMapper>propertyId",
+    "pid": "propertyId",
+    "propertyTypeName": "대상 프로퍼티 아이디",
+    "valueType": "STRING",
+    "required": true,
+    "idable": false,
+    "labelable": true,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "dbSyncMapper",
+    "id": "dbSyncMapper>columnName",
+    "pid": "columnName",
+    "propertyTypeName": "대상 컬럼 명",
+    "valueType": "STRING",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": 0
+  }
+]
