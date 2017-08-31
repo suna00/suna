@@ -64,12 +64,12 @@
     "referenceType": "",
     "referenceValue": ""
   },
-  { //skip-stop
+  {
     "typeId" : "propertyType",
     "tid": "dbSyncProcess",
     "id": "dbSyncProcess>onFail",
     "pid": "onFail",
-    "propertyTypeName": "실패 전략",
+    "propertyTypeName": "실패 전략(skip/stop)",
     "valueType": "STRING",
     "required": true,
     "idable": false,

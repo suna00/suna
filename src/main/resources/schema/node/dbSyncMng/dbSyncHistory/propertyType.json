@@ -36,7 +36,7 @@
     "tid": "dbSyncHistory",
     "id": "dbSyncHistory>status",
     "pid": "status",
-    "propertyTypeName": "작업 결과",  // success / fail
+    "propertyTypeName": "작업 결과(success/fail)",
     "valueType": "STRING",
     "required": true,
     "idable": false,
