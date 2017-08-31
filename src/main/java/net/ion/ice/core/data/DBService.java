@@ -43,16 +43,8 @@ public class DBService {
 
     public JdbcTemplate getJdbcTemplate(String dsId) {
 
-        logger.info("get JdbcTemplate 0825 =========== dsId [ " + dsId + " ] has :: "
-                + dataSourceTemplate.containsKey(dsId));
-
-        logger.info("nodeService 0825 =========== " + nodeService);
-
         if (!dataSourceTemplate.containsKey(dsId)) {
-
             Node dataSourceNode = nodeService.read("datasource", dsId);
-
-            logger.info("dataSource Node =========== " + String.valueOf(dataSourceNode));
             DBConfiguration configuration = new DBConfiguration(dataSourceNode);
             dataSourceTemplate.put(dsId, new JdbcTemplate(setDataSource(configuration)));
         }
