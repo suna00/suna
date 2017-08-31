@@ -2,7 +2,12 @@
   {
     "typeId" : "apiCategory",
     "id" : "testApi",
-    "categoryName" : "Test API"
+    "categoryName" : "Test API",
+    "dateFormat" : "yyyy-MM-dd HH:mm:ss",
+    "fileUrl" : "http://localhost:8080/",
+    "response" :{
+      "time" : "now"
+    }
   },
   {
     "typeId" : "apiConfig",

@@ -1,0 +1,18 @@
+[
+  {
+    "typeId": "votePwnrInfo",
+    "votePwnrSeq": 100,
+    "pwnrBasSeq": 1001,
+    "mbrId": "1>park100",
+    "prtcptDate": "20170808080000",
+    "sortOdrg": 1
+  },
+  {
+    "typeId": "votePwnrInfo",
+    "votePwnrSeq": 101,
+    "pwnrBasSeq": 1001,
+    "mbrId": "2>wjdfks94",
+    "prtcptDate": "20170808180000",
+    "sortOdrg": 2
+  }
+]

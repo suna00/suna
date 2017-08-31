@@ -1002,24 +1002,24 @@
     "active": "true",
     "index": "false",
     "pages": [
+    ],
+    "customPages": [
       {
         "pageName": "목록",
-        "pageUrl": "list"
+        "pageUrl": "cj/cc/noti/NotiList"
       },
       {
         "pageName": "등록",
-        "pageUrl": "form"
+        "pageUrl": "cj/cc/noti/NotiForm"
       },
       {
         "pageName": "수정",
-        "pageUrl": "uform"
+        "pageUrl": "cj/cc/noti/NotiUform"
       },
       {
         "pageName": "상세",
-        "pageUrl": "view"
+        "pageUrl": "cj/cc/noti/NotiView"
       }
-    ],
-    "customPages": [
     ]
   },
   {

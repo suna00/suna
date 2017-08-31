@@ -1,0 +1,23 @@
+[
+  {
+    "typeId" : "dbSyncMapper"
+    , "mapperId" : "testMapper01"
+    , "executeId" : "test0001"
+    , "propertyId" : "current"
+    , "columnName" : "current"
+  }
+  , {
+    "typeId" : "dbSyncMapper"
+    , "mapperId" : "testMapper02"
+    , "executeId" : "test0002"
+    , "propertyId" : "langId"
+    , "columnName" : "langId"
+  }
+  , {
+    "typeId" : "dbSyncMapper"
+    , "mapperId" : "testMapper03"
+    , "executeId" : "test0002"
+    , "propertyId" : "cnt"
+    , "columnName" : "cnt"
+  }
+]
