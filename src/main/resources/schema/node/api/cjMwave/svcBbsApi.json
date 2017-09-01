@@ -194,8 +194,6 @@
         "event": "create",
         "data": {
           "qnarId": "{{:snsTypeCd}}>{{:snsKey}}",
-          "qstnrName": "name",
-          "qstnrMbrYn": "true",
           "qnaNm": "{{:qnaNm}}",
           "qnaFild": "{{:qnaFildCd}}",
           "qstnrEmail": "{{:qstnrEmail}}",

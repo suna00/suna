@@ -1120,6 +1120,7 @@
     "active": true
   },
   {
+    "typeId": "code",
     "groupCodeId": "intrstCd",
     "codeId": 8,
     "name": "건강",
@@ -1127,6 +1128,7 @@
     "active": "true"
   },
   {
+    "typeId": "code",
     "groupCodeId": "intrstCd",
     "codeId": 9,
     "name": "여행&장소",
@@ -1134,6 +1136,7 @@
     "active": "true"
   },
   {
+    "typeId": "code",
     "groupCodeId": "intrstCd",
     "codeId": 10,
     "name": "결혼&이벤트",
@@ -1141,6 +1144,7 @@
     "active": "true"
   },
   {
+    "typeId": "code",
     "groupCodeId": "intrstCd",
     "codeId": 11,
     "name": "키즈",
@@ -1148,6 +1152,7 @@
     "active": "true"
   },
   {
+    "typeId": "code",
     "groupCodeId": "intrstCd",
     "codeId": 12,
     "name": "인테리어/가구DIY/공예",
@@ -1155,6 +1160,7 @@
     "active": "true"
   },
   {
+    "typeId": "code",
     "groupCodeId": "intrstCd",
     "codeId": 13,
     "name": "영화",
@@ -1162,6 +1168,7 @@
     "active": "true"
   },
   {
+    "typeId": "code",
     "groupCodeId": "intrstCd",
     "codeId": 14,
     "name": "음악",
@@ -1169,6 +1176,7 @@
     "active": "true"
   },
   {
+    "typeId": "code",
     "groupCodeId": "intrstCd",
     "codeId": 15,
     "name": "K-POP",
@@ -1176,6 +1184,7 @@
     "active": "true"
   },
   {
+    "typeId": "code",
     "groupCodeId": "intrstCd",
     "codeId": 16,
     "name": "TV",
@@ -1183,6 +1192,7 @@
     "active": "true"
   },
   {
+    "typeId": "code",
     "groupCodeId": "intrstCd",
     "codeId": 17,
     "name": "공연/문화",
@@ -1190,6 +1200,7 @@
     "active": "true"
   },
   {
+    "typeId": "code",
     "groupCodeId": "intrstCd",
     "codeId": 18,
     "name": "남성패션",
@@ -1197,6 +1208,7 @@
     "active": "true"
   },
   {
+    "typeId": "code",
     "groupCodeId": "intrstCd",
     "codeId": 19,
     "name": "아웃도어/캠핑",
@@ -1204,6 +1216,7 @@
     "active": "true"
   },
   {
+    "typeId": "code",
     "groupCodeId": "intrstCd",
     "codeId": 20,
     "name": "자동차",
@@ -1211,6 +1224,7 @@
     "active": "true"
   },
   {
+    "typeId": "code",
     "groupCodeId": "intrstCd",
     "codeId": 21,
     "name": "스포츠",
@@ -1218,6 +1232,7 @@
     "active": "true"
   },
   {
+    "typeId": "code",
     "groupCodeId": "intrstCd",
     "codeId": 22,
     "name": "게임",
@@ -1225,6 +1240,7 @@
     "active": "true"
   },
   {
+    "typeId": "code",
     "groupCodeId": "intrstCd",
     "codeId": 23,
     "name": "건축",
@@ -1232,6 +1248,7 @@
     "active": "true"
   },
   {
+    "typeId": "code",
     "groupCodeId": "intrstCd",
     "codeId": 24,
     "name": "연예뉴스",
@@ -1239,6 +1256,7 @@
     "active": "true"
   },
   {
+    "typeId": "code",
     "groupCodeId": "intrstCd",
     "codeId": 25,
     "name": "IT&컴퓨터",
@@ -1246,6 +1264,7 @@
     "active": "true"
   },
   {
+    "typeId": "code",
     "groupCodeId": "intrstCd",
     "codeId": 26,
     "name": "일상",
@@ -1253,6 +1272,7 @@
     "active": "true"
   },
   {
+    "typeId": "code",
     "groupCodeId": "intrstCd",
     "codeId": 27,
     "name": "유머",
