@@ -1,0 +1,47 @@
+[
+  {
+    "typeId" : "apiConfig",
+    "category" : "vote",
+    "apiId" : "voteList",
+    "apiName" : "Vote List",
+    "method" : "GET",
+    "config" : {
+      "items" : {
+        "typeId":"voteBasInfo",
+        "query" : [
+          {"field" : "voteFormlCd", "method" : "matching", "value" : "{{:voteFormlCd}}" },
+          {"field" : "findKywrd", "method" : "matching", "value" : "{{:searchKeyword}}" },
+          {"field" : "showYn", "method" : "matching", "value" : "true" },
+          {"sorting" : "voteSeq desc"},
+          {"page" : "{{:page}}", "pageSize":"{:pageSize}}"}
+        ]
+      }
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "vote",
+    "apiId" : "voteView",
+    "apiName" : "Vote View",
+    "method" : "GET",
+    "config" : {
+      "items" : {
+        "typeId":"voteBasInfo",
+        "query" : [
+          {"field" : "voteSeq", "method" : "matching", "value" : "{{:voteSeq}}" },
+          {"field" : "voteYear", "method" : "matching", "value" : "{{:voteYear}}" },
+          {"field" : "showLoCd", "method" : "matching", "value" : "{{:showLoCd}}" },
+          {"field" : "voteFormlCd", "method" : "matching", "value" : "{{:voteFormlCd}}" },
+          {"field" : "bradTelcsDt", "method" : "matching", "value" : "{{:bradTelcsDt}}" },
+          {"field" : "showYn", "method" : "matching", "value" : "true" },
+          {"sorting" : "voteSeq desc"},
+          {"limit" : "1"}
+        ],
+        "response" : {
+          "category": "",
+          "itemTitle": "title"
+        }
+      }
+    }
+  }
+]

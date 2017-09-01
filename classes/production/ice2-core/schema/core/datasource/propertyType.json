@@ -1,0 +1,75 @@
+[
+  {
+    "typeId" : "propertyType",
+    "tid" : "datasource",
+    "pid" : "id",
+    "propertyTypeName" : "DS ID",
+    "valueType" : "STRING",
+    "idable" : true,
+    "indexable" : true,
+    "labelable" : false,
+    "required" : true,
+    "length": 100
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "datasource",
+    "pid" : "dsName",
+    "propertyTypeName" : "DS Name",
+    "valueType" : "STRING",
+    "idable" : false,
+    "indexable" : true,
+    "labelable" : true,
+    "required" : true,
+    "length": 100
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "datasource",
+    "pid" : "dbType",
+    "propertyTypeName" : "DB Type",
+    "valueType" : "CODE",
+    "idable" : false,
+    "indexable" : true,
+    "labelable" : false,
+    "required" : true,
+    "code" : [{"value" : "oracle", "label" : "Oracle"}, {"value" : "mysql", "label" : "MySQL"}, {"value" : "maria", "label" : "Maria"}, {"value" : "mssql", "label" : "MS-SQL"}]
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "datasource",
+    "pid" : "jdbcUrl",
+    "propertyTypeName" : "JDBC URL",
+    "valueType" : "STRING",
+    "idable" : false,
+    "indexable" : false,
+    "labelable" : false,
+    "required" : true,
+    "length": 100
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "datasource",
+    "pid" : "username",
+    "propertyTypeName" : "User Name",
+    "valueType" : "STRING",
+    "idable" : false,
+    "indexable" : false,
+    "labelable" : false,
+    "required" : true,
+    "length": 100
+
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "datasource",
+    "pid" : "password",
+    "propertyTypeName" : "Password",
+    "valueType" : "STRING",
+    "idable" : false,
+    "indexable" : false,
+    "labelable" : false,
+    "required" : true,
+    "length": 100
+  }
+]

@@ -1,0 +1,973 @@
+[
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "dashboard",
+    "parentMenuId": "root",
+    "menuId": "dashboard",
+    "menuName": "Dashboard",
+    "order": "10",
+    "icon": "fa-dashboard",
+    "active": "true",
+    "index": "true",
+    "pages": [],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "custom",
+    "parentMenuId": "root",
+    "menuId": "defaultList",
+    "menuName": "DefaultList",
+    "order": "10",
+    "icon": "fa-square-o",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "DefaultList"
+      },
+      {
+        "pageName": "등록",
+        "pageUrl": "DefaultForm"
+      },
+      {
+        "pageName": "수정",
+        "pageUrl": "DefaultUForm"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "DefaultView"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "custom",
+    "parentMenuId": "root",
+    "menuId": "editList",
+    "menuName": "EditList",
+    "order": "20",
+    "icon": "fa-square-o",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      {
+        "pageName": "상세",
+        "pageUrl": "EditList"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "custom",
+    "parentMenuId": "root",
+    "menuId": "treeList",
+    "menuName": "TreeList",
+    "order": "30",
+    "icon": "fa-square-o",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      {
+        "pageName": "상세",
+        "pageUrl": "TreeList"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "custom",
+    "parentMenuId": "root",
+    "menuId": "treeAndList",
+    "menuName": "TreeAndList",
+    "order": "40",
+    "icon": "fa-square-o",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "TreeAndList"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "custom",
+    "parentMenuId": "root",
+    "menuId": "defaultTabs",
+    "menuName": "defaultTabs",
+    "order": "30",
+    "icon": "fa-square-o",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      {
+        "pageName": "Tabs",
+        "pageUrl": "TestTabs"
+      },
+      {
+        "pageName": "등록",
+        "pageUrl": "DefaultForm"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "custom",
+    "parentMenuId": "root",
+    "menuId": "defaultTabs2",
+    "menuName": "defaultTabs2",
+    "order": "40",
+    "icon": "fa-square-o",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      {
+        "pageName": "Tabs",
+        "pageUrl": "TestTabs2"
+      },
+      {
+        "pageName": "등록",
+        "pageUrl": "DefaultForm"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "DefaultTabView"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "configMng",
+    "parentMenuId": "root",
+    "menuId": "gnbMng",
+    "menuName": "GNB 관리",
+    "order": "1",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" },
+      { "pageName": "등록/수정", "pageUrl": "form" },
+      { "pageName": "상세", "pageUrl": "view" }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "configMng",
+    "parentMenuId": "root",
+    "menuId": "lnbMng",
+    "menuName": "LNB 관리",
+    "order": "2",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" },
+      { "pageName": "등록/수정", "pageUrl": "form" },
+      { "pageName": "상세", "pageUrl": "view" }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "configMng",
+    "parentMenuId": "root",
+    "menuId": "groupCode",
+    "menuName": "그룹코드 관리",
+    "order": "10",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "configMng",
+    "parentMenuId": "root",
+    "menuId": "code",
+    "menuName": "코드 관리",
+    "order": "20",
+    "icon": "fa-tags",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "metadataMng",
+    "parentMenuId": "root",
+    "menuId": "artist",
+    "menuName": "아티스트",
+    "order": "10",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "cj/ArtistList"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "cj/ArtistForm"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "cj/ArtistView"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "metadataMng",
+    "parentMenuId": "root",
+    "menuId": "album",
+    "menuName": "앨범",
+    "order": "20",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "metadataMng",
+    "parentMenuId": "root",
+    "menuId": "song",
+    "menuName": "곡",
+    "order": "30",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "metadataMng",
+    "parentMenuId": "root",
+    "menuId": "musicVideo",
+    "menuName": "뮤직비디오",
+    "order": "40",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "metadataMng",
+    "parentMenuId": "root",
+    "menuId": "photo",
+    "menuName": "Photo",
+    "order": "60",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "metadataMng",
+    "parentMenuId": "root",
+    "menuId": "program",
+    "menuName": "프로그램",
+    "order": "60",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "metadataMng",
+    "parentMenuId": "root",
+    "menuId": "programVideo",
+    "menuName": "프로그램 영상",
+    "order": "70",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "metadataMng",
+    "parentMenuId": "root",
+    "menuId": "news",
+    "menuName": "뉴스",
+    "order": "80",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "root",
+    "menuId": "mainBasInfo",
+    "menuName": "메인/서브메인 관리",
+    "order": "10",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "root",
+    "menuId": "voteMng",
+    "menuName": "VOTE 관리",
+    "order": "30",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "admin>root>voteMng",
+    "menuId": "tourmetSingle",
+    "menuName": "TOURNAMENT_1:1",
+    "order": "10",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "수정",
+        "pageUrl": "uform"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
+    ],
+    "customPages": [
+      {
+        "pageName": "등록",
+        "pageUrl": "cj/vt/TrnmtForm"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "admin>root>voteMng",
+    "menuId": "tourmetReal",
+    "menuName": "TOURNAMENT_REAL",
+    "order": "20",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "수정",
+        "pageUrl": "uform"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "admin>root>voteMng",
+    "menuId": "voteSelect",
+    "menuName": "VOTE_SELECT",
+    "order": "30",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "수정",
+        "pageUrl": "uform"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
+    ],
+    "customPages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "cj/vt/SelList"
+      },
+      {
+        "pageName": "등록",
+        "pageUrl": "cj/vt/SelForm"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "admin>root>voteMng",
+    "menuId": "voteSeries",
+    "menuName": "VOTE_SERIES",
+    "order": "40",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "수정",
+        "pageUrl": "uform"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
+    ],
+    "customPages": [
+      {
+        "pageName": "등록",
+        "pageUrl": "cj/vt/SersForm"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "systemMng",
+    "parentMenuId": "root",
+    "menuId": "admrMng",
+    "menuName": "운영자 정보 관리",
+    "order": "10",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "수정",
+        "pageUrl": "uform"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "systemMng",
+    "parentMenuId": "root",
+    "menuId": "admrGroupMng",
+    "menuName": "운영자 그룹관리",
+    "order": "20",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "수정",
+        "pageUrl": "uform"
+      }
+    ],
+    "customPages": [
+      {
+        "pageName": "등록",
+        "pageUrl": "cj/AdmrGroupForm"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "systemMng",
+    "parentMenuId": "root",
+    "menuId": "codeMng",
+    "menuName": "코드관리",
+    "order": "30",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "수정",
+        "pageUrl": "uform"
+      }
+    ],
+    "customPages": [
+      {
+        "pageName": "상세",
+        "pageUrl": "cj/CodeView"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "systemMng",
+    "parentMenuId": "root",
+    "menuId": "rgnMng",
+    "menuName": "지역관리",
+    "order": "40",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "systemMng",
+    "parentMenuId": "admin>root>rgnMng",
+    "menuId": "cntryMng",
+    "menuName": "국가관리",
+    "order": "10",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "수정",
+        "pageUrl": "uform"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "systemMng",
+    "parentMenuId": "admin>root>rgnMng",
+    "menuId": "langMng",
+    "menuName": "언어관리",
+    "order": "20",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "수정",
+        "pageUrl": "uform"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "systemMng",
+    "parentMenuId": "root",
+    "menuId": "systemNtf",
+    "menuName": "공지사항",
+    "order": "50",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "수정",
+        "pageUrl": "uform"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "systemMng",
+    "parentMenuId": "root",
+    "menuId": "contsCtgryMng",
+    "menuName": "콘텐츠 카테고리 관리",
+    "order": "60",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "수정",
+        "pageUrl": "uform"
+      }
+    ],
+    "customPages": [
+      {
+        "pageName": "상세",
+        "pageUrl": "cj/CtgryForm"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "systemMng",
+    "parentMenuId": "root",
+    "menuId": "generalMng",
+    "menuName": "일반설정관리",
+    "order": "70",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "systemMng",
+    "parentMenuId": "admin>root>generalMng",
+    "menuId": "useStplt",
+    "menuName": "이용약관",
+    "order": "10",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "수정",
+        "pageUrl": "uform"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "systemMng",
+    "parentMenuId": "admin>root>generalMng",
+    "menuId": "indvInfo",
+    "menuName": "개인정보 처리방침",
+    "order": "20",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "수정",
+        "pageUrl": "uform"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "systemMng",
+    "parentMenuId": "admin>root>generalMng",
+    "menuId": "tngrPrtct",
+    "menuName": "청소년 보호정책",
+    "order": "30",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "수정",
+        "pageUrl": "uform"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
+    ],
+    "customPages": []
+  }
+]

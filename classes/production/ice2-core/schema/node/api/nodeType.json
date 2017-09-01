@@ -1,0 +1,113 @@
+[
+  {
+    "tid" : "api",
+    "parentId" : "root",
+    "typeId" : "nodeType",
+    "repositoryType" : "path",
+    "typeName" : "API"
+  },
+  {
+    "tid" : "apiCategory",
+    "parentId" : "api",
+    "typeId" : "nodeType",
+    "repositoryType" : "node",
+    "typeName" : "API Category Configuration"
+  },
+  {
+  "tid" : "apiConfig",
+  "parentId" : "api",
+  "typeId" : "nodeType",
+  "repositoryType" : "node",
+  "typeName" : "API Configuration"
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "apiCategory",
+    "pid" : "id",
+    "propertyTypeName" : "API Category ID",
+    "valueType" : "STRING",
+    "idable" : true,
+    "indexable" : true,
+    "labelable" : false,
+    "required" : true
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "apiCategory",
+    "pid" : "categoryName",
+    "propertyTypeName" : "API Category Name",
+    "valueType" : "STRING",
+    "idable" : false,
+    "indexable" : true,
+    "labelable" : true,
+    "required" : true
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "apiConfig",
+    "pid" : "category",
+    "propertyTypeName" : "API Category",
+    "valueType" : "STRING",
+    "idable" : true,
+    "indexable" : true,
+    "labelable" : false,
+    "required" : true,
+    "referenceType" : "apiCategory"
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "apiConfig",
+    "pid" : "apiId",
+    "propertyTypeName" : "API ID",
+    "valueType" : "STRING",
+    "idable" : true,
+    "indexable" : true,
+    "labelable" : false,
+    "required" : true
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "apiConfig",
+    "pid" : "apiName",
+    "propertyTypeName" : "API Name",
+    "valueType" : "STRING",
+    "idable" : false,
+    "indexable" : true,
+    "labelable" : true,
+    "required" : true
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "apiConfig",
+    "pid" : "method",
+    "propertyTypeName" : "Method",
+    "valueType" : "CODE",
+    "idable" : false,
+    "indexable" : true,
+    "labelable" : false,
+    "required" : true,
+    "code" : [{"value" : "POST", "label" : "POST"}, {"value" : "GET", "label" : "GET"}, {"value" : "PUT", "label" : "PUT"}, {"value" : "DELETE", "label" : "DELETE"}, {"value" : "PATCH", "label" : "PATCH"}]
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "apiConfig",
+    "pid" : "parameters",
+    "propertyTypeName" : "Parameter Configuration",
+    "valueType" : "JSON",
+    "idable" : false,
+    "indexable" : false,
+    "labelable" : false,
+    "required" : false
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "apiConfig",
+    "pid" : "config",
+    "propertyTypeName" : "API Configuration",
+    "valueType" : "JSON",
+    "idable" : false,
+    "indexable" : false,
+    "labelable" : false,
+    "required" : true
+  }
+]

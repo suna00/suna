@@ -259,9 +259,9 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "album",
+    "tid": "artist",
     "pid": "showYn",
-    "id": "album>showYn",
+    "id": "artist>showYn",
     "propertyTypeName": "노출 여부",
     "valueType": "BOOLEAN",
     "required": true,
@@ -358,23 +358,6 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "artist",
-    "pid": "refdMultiLanginfo",
-    "id": "artist>refdMultiLanginfo",
-    "propertyTypeName": "아티스트 다국어 리스트",
-    "valueType": "REFERENCED",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "artistMultiLangInfo",
-    "referenceValue": "artistId",
     "defaultValue": ""
   }
 ]

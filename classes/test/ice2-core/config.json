@@ -1,0 +1,23 @@
+{
+  "project" : "ice2-cm-test",
+  "version" : "1.0.0",
+  "resource-path" : "/resource/ice2/res",
+  "json-path" : "/resource/ice2/json",
+  "configuration":{
+    "mode" : "LOCAL",
+    "path" : "/resource/ice2/config"
+  },
+  "profiles": [
+    {
+      "env":"development",
+      "hostName" : "dev",
+      "json-path" : "/res/"
+    },
+    {
+      "env":"staging",
+      "hostName" : ["stg1", "stg2"],
+      "json-path" : "/res/stg"
+    },
+    {"env":"prduction"}
+  ]
+}

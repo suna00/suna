@@ -1,0 +1,292 @@
+# Override the default Tomcat port of 8080 to "0", meaning
+# pick any available port.
+# This is necessary to be able to run multiple copies of the
+# application on the same machine.
+spring:
+  profiles:
+    active: dev
+  http:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 20MB
+
+server:
+  port: 8080
+
+jwtConfig:
+  issuer: I-ON
+  secretKey: dkdldhs!@#$
+  headerPrefix: SDP
+  headString: X-Authorization
+  tokenExpirationTime: 15 #분
+  refreshTokenExpTime: 60 #분
+
+cluster:
+  members:
+    - 127.0.0.1
+    - localhost
+
+infinispan:
+  cachePath: /resource/ice2/cache
+
+tomcat:
+  access-log-enabled: true
+  access-log-pattern: "%h %l %u %t \"%r\" %s %b %D"
+  basedir: tomcat
+
+logging:
+  config:
+    classpath:
+      - logback-access-dev-2.xml
+      - logback-dev-2.xml
+
+
+file:
+  default:
+    path: /resource/ice2/files
+
+
+i18n:
+  default: en
+
+---
+#-Dspring.profiles.active=dev
+#spring:
+#  profiles: dev
+#logging:
+#  config: classpath:logback-dev.xml
+#
+#hazelcast:
+#  baseDir: /resource/ice2/data_1
+#  members:
+#    - 127.0.0.1
+#    - localhost
+
+
+
+---
+#-Dspring.profiles.active=dev-2
+spring:
+  profiles: dev-2
+server:
+  port: 8090
+
+logging:
+  config: classpath:logback-dev-2.xml
+
+session:
+  mode: client
+  baseDir: /resource/ice2/client
+  members:
+    - 127.0.0.1
+
+
+hazelcast:
+  baseDir: /resource/ice2/data_2
+
+---
+spring:
+  profiles: cj-dev
+  http:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 20MB
+
+server:
+  port: 8080
+
+jwtConfig:
+  issuer: I-ON
+  secretKey: dkdldhs!@#$
+  headerPrefix: SDP
+  headString: X-Authorization
+  tokenExpirationTime: 15 #분
+  refreshTokenExpTime: 60 #분
+
+
+cluster:
+  members:
+    - 125.131.88.147
+    - 127.0.0.1
+    - localhost
+
+infinispan:
+  cachePath: /resource/ice2/cache
+
+tomcat:
+  access-log-enabled: true
+  access-log-pattern: "%h %l %u %t \"%r\" %s %b %D"
+  basedir: tomcat
+
+logging:
+  config:
+    classpath:
+      - logback-access-dev-2.xml
+      - logback-dev-2.xml
+
+
+file:
+  default:
+    path: /resource/ice2/files
+
+
+i18n:
+  default: en
+---
+
+#-Dspring.profiles.active=cjCms
+spring:
+  profiles: cjCms
+logging:
+  config: classpath:logback-dev.xml
+
+cluster:
+  baseDir: /resource/ice2/data_1
+  members:
+    - 127.0.0.1
+    - localhost
+    - 125.131.88.147
+
+
+session:
+  mode: cluster
+  baseDir: /resource/ice2/server
+  members:
+    - 127.0.0.1
+    - 125.131.88.147
+
+---
+spring:
+  profiles: cj-local
+  http:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 20MB
+
+server:
+  port: 8080
+
+jwtConfig:
+  issuer: I-ON
+  secretKey: dkdldhs!@#$
+  headerPrefix: SDP
+  headString: X-Authorization
+  tokenExpirationTime: 15 #분
+  refreshTokenExpTime: 60 #분
+
+
+cluster:
+  members:
+    - 127.0.0.1
+    - localhost
+
+infinispan:
+  cachePath: /resource/cj_ice2/cache
+
+tomcat:
+  access-log-enabled: true
+  access-log-pattern: "%h %l %u %t \"%r\" %s %b %D"
+  basedir: tomcat
+
+logging:
+  config:
+    classpath:
+      - logback-access-dev-2.xml
+      - logback-dev-2.xml
+
+
+file:
+  default:
+    path: /resource/cj_ice2/files
+
+
+---
+
+spring:
+  profiles: cj-local-win
+  http:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 20MB
+
+server:
+  port: 8080
+
+jwtConfig:
+  issuer: I-ON
+  secretKey: dkdldhs!@#$
+  headerPrefix: SDP
+  headString: X-Authorization
+  tokenExpirationTime: 15 #분
+  refreshTokenExpTime: 60 #분
+
+
+cluster:
+  members:
+    - 127.0.0.1
+    - localhost
+
+infinispan:
+  cachePath: /resource/cj_ice2/cache
+
+tomcat:
+  access-log-enabled: true
+  access-log-pattern: "%h %l %u %t \"%r\" %s %b %D"
+  basedir: tomcat
+
+logging:
+  config:
+    classpath:
+      - logback-access-dev-2.xml
+      - logback-dev-2.xml
+
+
+file:
+  default:
+    path: c:/resource/cj_ice2/files
+
+
+---
+
+spring:
+  profiles: kybo-dev
+  http:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 20MB
+
+server:
+  port: 8088
+
+jwtConfig:
+  issuer: I-ON
+  secretKey: dkdldhs!@#$
+  headerPrefix: SDP
+  headString: X-Authorization
+  tokenExpirationTime: 15 #분
+  refreshTokenExpTime: 60 #분
+
+
+cluster:
+  members:
+    - 127.0.0.1
+    - localhost
+
+infinispan:
+  cachePath: /resource/ice2/cache
+
+tomcat:
+  access-log-enabled: true
+  access-log-pattern: "%h %l %u %t \"%r\" %s %b %D"
+  basedir: tomcat
+
+logging:
+  config:
+    classpath:
+      - logback-access-dev-2.xml
+      - logback-dev-2.xml
+
+
+file:
+  default:
+    path: /resource/ice2/files

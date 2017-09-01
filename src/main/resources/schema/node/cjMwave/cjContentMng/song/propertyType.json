@@ -376,23 +376,5 @@
     "referenceValue": "",
     "codeFilter": "",
     "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "song",
-    "pid": "refdMultiLanginfo",
-    "id": "song>refdMultiLanginfo",
-    "propertyTypeName": "곡 다국어 리스트",
-    "valueType": "REFERENCED",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "songMultiLangInfo",
-    "referenceValue": "songId",
-    "codeFilter": "",
-    "defaultValue": ""
   }
 ]

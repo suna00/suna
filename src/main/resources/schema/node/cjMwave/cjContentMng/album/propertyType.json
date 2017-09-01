@@ -245,15 +245,16 @@
     "pid": "relAlbumIds",
     "id": "album>relAlbumIds",
     "propertyTypeName": "연관 앨범 아이디",
-    "valueType": "TEXT",
+    "valueType": "REFERENCES",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
-    "analyzer": "cjk",
-    "referenceType": "",
-    "referenceValue": "",
+    "analyzer": "code",
+    "referenceType": "album",
+    "referenceValue": "albumId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -356,23 +357,6 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "album",
-    "pid": "refdMultiLanginfo",
-    "id": "album>refdMultiLanginfo",
-    "propertyTypeName": "앨범 다국어 리스트",
-    "valueType": "REFERENCED",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "albumMultiLangInfo",
-    "referenceValue": "albumId",
     "defaultValue": ""
   }
 ]

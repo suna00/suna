@@ -167,6 +167,7 @@
     "typeName": "프로그램 VOD 영상",
     "repositoryType": "node",
     "eviction": 0,
+    "i18n": true,
     "tableName": "cjDb#pgmVideo"
   },
   {

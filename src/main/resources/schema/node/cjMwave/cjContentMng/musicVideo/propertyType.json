@@ -376,23 +376,5 @@
     "referenceValue": "",
     "codeFilter": "",
     "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "musicVideo",
-    "pid": "refdMultiLanginfo",
-    "id": "musicVideo>refdMultiLanginfo",
-    "propertyTypeName": "뮤직비디오 다국어 리스트",
-    "valueType": "REFERENCED",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "musicVideoMultiLangInfo",
-    "referenceValue": "musicVideoId",
-    "codeFilter": "",
-    "defaultValue": ""
   }
 ]

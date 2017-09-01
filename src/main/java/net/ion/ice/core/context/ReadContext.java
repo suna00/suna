@@ -46,6 +46,10 @@ public class ReadContext implements Context {
     protected Object result ;
 
     protected String dateFormat ;
+    protected Map<String, Object> fileUrlFormat ;
+    protected List<ResultField> commonResultFields;
+
+
 
     public NodeType getNodetype() {
         return nodeType;
@@ -327,5 +331,13 @@ public class ReadContext implements Context {
 
     public void setResult(Node result) {
         this.result = result;
+    }
+
+    public String getDateFormat() {
+        return dateFormat;
+    }
+
+    public Map<String, Object> getFileUrlFormat() {
+        return fileUrlFormat;
     }
 }

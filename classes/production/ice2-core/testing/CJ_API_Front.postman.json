@@ -1,0 +1,90 @@
+{
+  "id": "6c2dde51-d82e-0547-3891-cc7543294fc7",
+  "name": "CJMWaveCMS",
+  "description": "",
+  "order": [],
+  "folders": [
+    {
+      "name": "배너",
+      "description": "",
+      "collectionId": "6c2dde51-d82e-0547-3891-cc7543294fc7",
+      "order": [
+        "2044a23b-ece4-a7ca-50b0-38ce4db74def"
+      ],
+      "owner": "2433871",
+      "folders_order": [],
+      "id": "033658b7-b3ff-2736-7f06-3d456ac736c2"
+    },
+    {
+      "name": "컴포넌트",
+      "description": "",
+      "collectionId": "6c2dde51-d82e-0547-3891-cc7543294fc7",
+      "order": [],
+      "owner": "2433871",
+      "folders_order": [],
+      "id": "52f8e9e9-c01a-dc7d-0364-298d99fa48b2"
+    }
+  ],
+  "folders_order": [
+    "52f8e9e9-c01a-dc7d-0364-298d99fa48b2",
+    "033658b7-b3ff-2736-7f06-3d456ac736c2"
+  ],
+  "timestamp": 1503377797967,
+  "owner": "2433871",
+  "public": false,
+  "requests": [
+    {
+      "id": "2044a23b-ece4-a7ca-50b0-38ce4db74def",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/ban/IfBan001",
+      "queryParams": [
+        {
+          "key": "banrSeq",
+          "value": "",
+          "equals": false,
+          "description": "",
+          "enabled": false
+        },
+        {
+          "key": "svcTermlDivCd",
+          "value": "",
+          "equals": false,
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "banrTypeCd",
+          "value": "",
+          "equals": false,
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "showLoCd",
+          "value": "",
+          "equals": false,
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "GET",
+      "collectionId": "6c2dde51-d82e-0547-3891-cc7543294fc7",
+      "data": null,
+      "dataMode": "params",
+      "name": "배너상세조회(IF_BAN_001)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1503378122395,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "033658b7-b3ff-2736-7f06-3d456ac736c2"
+    }
+  ]
+}

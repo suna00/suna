@@ -1,0 +1,172 @@
+[
+  {
+    "typeId" : "apiCategory",
+    "id" : "testApi",
+    "categoryName" : "Test API"
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "defaultQuery",
+    "apiName" : "Default Query Test",
+    "method" : "GET",
+    "parameters" : [
+      {"paramName" : "page", "required" : true}
+    ],
+    "config" : {
+      "createItem" : {
+        "typeId": "testItem",
+        "event": "create",
+        "data": {
+          "id": "{{:id}}",
+          "category": "{{:category}}",
+          "title": "{{:title}}"
+        }
+      },
+      "categories" : {
+        "typeId":"testCategory",
+        "select" : {"sql" : "select * from testCategory where categoryType = @{categoryType}"},
+        "response" : {
+          "categoryName": "",
+          "upperCategory": "parentCategory",
+          "refCode1": {
+            "typeId": "testItem",
+            "query": {"category": "{{:categoryId}}", "sorting" : "parentCategory"},
+            "response" : {
+              "category": "",
+              "itemTitle": "title"
+            }
+          }
+        }
+      },
+      "items" : {
+        "typeId":"testItem",
+        "query" : [
+          {"field" : "category", "method" : "matching", "value" : "drama" },
+          {"sorting" : "id desc"},
+          {"page" : "{{:itemsPage}}", "pageSize":20}
+        ]
+      },
+      "users" : {
+        "endpoint":"http://customer.api.com/api/test.json?id={{:testId}}"
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "testApi",
+    "apiId": "mergeSample",
+    "apiName": "Merge Sample",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": true
+      }
+    ],
+    "config": {
+      "items": {
+        "typeId": "testItem",
+        "queryType": "merge",
+        "query": [
+          {
+            "field": "category",
+            "method": "matching",
+            "value": "drama"
+          },
+          {
+            "sorting": "id desc"
+          },
+          {
+            "page": "{{:page}}",
+            "pageSize": 20
+          }
+        ],
+        "response": {
+          "merge": "baseItem",
+          "fields": {
+            "id": "",
+            "category": null,
+            "title": "",
+            "body": "",
+            "baseItem": ""
+          }
+        }
+      }
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "simpleCategory",
+    "apiName" : "Simple Category Sample",
+    "method" : "GET",
+    "parameters" : [
+      {"paramName" : "page", "required" : true}
+    ],
+    "config" : {
+      "typeId": "testCategory",
+      "query" : [
+        {"field" : "categoryType", "method" : "matching", "value" : "{{:categoryType}}" },
+        {"sorting" : "changed desc"},
+        {"page" : "{{:page}}", "pageSize":2},
+        {"includeReferenced" : true}
+      ]
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "hasReferencedCategory",
+    "apiName" : "hasReferenced Query Sample",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "testCategory",
+      "query" : [
+        {"field" : "categoryType", "method" : "matching", "value" : "{{:categoryType}}" },
+        {"field" : "items", "method" : "hasReferenced", "value" : "menus_matching={{:menu}}"},
+        {"includeReferenced" : true}
+      ]
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "referenceJoinItem",
+    "apiName" : "referenceJoin Query Sample",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "testItem",
+      "query" : [
+        {"field" : "category", "method" : "referenceJoin", "value" : "categoryType_matching={{:categoryType}}" },
+        {"includeReferenced" : true, "referenceView" : "category"}
+      ]
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "responseTest",
+    "apiName" : "Default response Sample",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "testItem",
+      "query" : [
+        {"field" : "category", "method" : "match", "value" : "{{:category}}" }
+      ],
+      "response" :{
+        "id" :"",
+        "menus" : "",
+        "menuList" : {"field" : "menus", "referenceView" : true, "includeReferenced" : false},
+        "itemTitle" : "title",
+        "itemDesc" : "body"
+      }
+    }
+  }
+]

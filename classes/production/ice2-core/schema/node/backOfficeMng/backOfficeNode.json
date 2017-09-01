@@ -1,0 +1,9 @@
+[
+  {
+    "typeId" : "backOffice",
+    "id": "admin",
+    "name": "Admin",
+    "order": "10",
+    "active": "true"
+  }
+]
