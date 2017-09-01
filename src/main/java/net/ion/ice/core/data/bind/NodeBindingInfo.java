@@ -169,7 +169,7 @@ public class NodeBindingInfo {
                     , StringUtils.join(createColumns.toArray(), ", "));
         }
         updateSequenceSql = String.format("UPDATE datasequence SET sequence = sequence + 1 WHERE nodeType = '%s'", nodeType.getTypeId());
-        insertSequenceSql = String.format("INSERT INTO datasequence (nodeType, sequence) VALUES ('%s', 0)", nodeType.getTypeId());
+        insertSequenceSql = String.format("INSERT INTO datasequence (nodeType, sequence) VALUES ('%s', 1)", nodeType.getTypeId());
         retrieveSequenceSql = String.format("SELECT sequence FROM datasequence WHERE nodeType = '%s'", nodeType.getTypeId());
     }
 
