@@ -1,0 +1,26 @@
+[
+
+{
+  "categories" : {
+    "typeId":"testCategory",
+    "q" : {"categoryType" : "content"},"categoryName" : "", "upperCategory" : "parentCategory",
+    "refCode1":{
+      "typeId":"testItem",
+      "q" : {"category":"drama"},
+      "category":"",
+      "itemTitle":"title"}
+  }
+},
+
+{
+  "categories" : {
+    "typeId":"testCategory",
+    "q" : {"categoryType" : "content"},"categoryName" : "", "upperCategory" : "parentCategory",
+    "refCode1":{
+      "typeId":"testItem",
+      "q" : {"category":"drama"},
+      "category":"",
+      "itemTitle":"title"}
+  }
+}
+]

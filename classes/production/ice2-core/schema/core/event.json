@@ -1,0 +1,193 @@
+[
+  {
+    "typeId" : "event",
+    "id" : "nodeType>create",
+    "tid": "nodeType",
+    "event" : "create",
+    "eventName" : "Create Node Type"
+  },
+  {
+    "typeId" : "event",
+    "id" : "nodeType>update",
+    "tid": "nodeType",
+    "event" : "update",
+    "eventName" : "update Node Type"
+  },
+  {
+    "typeId" : "event",
+    "id" : "nodeType>delete",
+    "tid": "nodeType",
+    "event" : "delete",
+    "eventName" : "delete Node Type"
+  },
+  {
+    "typeId" : "event",
+    "id" : "nodeType>allEvent",
+    "tid": "nodeType",
+    "event" : "allEvent",
+    "eventName" : "allEvent Node Type"
+  },
+  {
+    "typeId" : "event",
+    "id" : "propertyType>create",
+    "tid": "propertyType",
+    "event" : "create",
+    "eventName" : "Create propertyType"
+  },
+  {
+    "typeId" : "event",
+    "id" : "propertyType>update",
+    "tid": "propertyType",
+    "event" : "update",
+    "eventName" : "update propertyType"
+  },
+  {
+    "typeId" : "event",
+    "id" : "propertyType>delete",
+    "tid": "propertyType",
+    "event" : "delete",
+    "eventName" : "delete propertyType"
+  },
+  {
+    "typeId" : "event",
+    "id" : "propertyType>allEvent",
+    "tid": "propertyType",
+    "event" : "allEvent",
+    "eventName" : "allEvent propertyType"
+  },
+  {
+    "typeId" : "event",
+    "id" : "event>create",
+    "tid": "event",
+    "event" : "create",
+    "eventName" : "Create event"
+  },
+  {
+    "typeId" : "event",
+    "id" : "event>update",
+    "tid": "event",
+    "event" : "update",
+    "eventName" : "update event"
+  },
+  {
+    "typeId" : "event",
+    "id" : "event>delete",
+    "tid": "event",
+    "event" : "delete",
+    "eventName" : "delete event"
+  },
+  {
+    "typeId" : "event",
+    "id" : "event>allEvent",
+    "tid": "event",
+    "event" : "allEvent",
+    "eventName" : "allEvent event"
+  },
+  {
+    "typeId" : "event",
+    "id" : "eventAction>create",
+    "tid": "eventAction",
+    "event" : "create",
+    "eventName" : "Create eventAction"
+  },
+  {
+    "typeId" : "event",
+    "id" : "eventAction>update",
+    "tid": "eventAction",
+    "event" : "update",
+    "eventName" : "update eventAction"
+  },
+  {
+    "typeId" : "event",
+    "id" : "eventAction>delete",
+    "tid": "eventAction",
+    "event" : "delete",
+    "eventName" : "delete eventAction"
+  },
+  {
+    "typeId" : "event",
+    "id" : "eventAction>allEvent",
+    "tid": "eventAction",
+    "event" : "allEvent",
+    "eventName" : "allEvent eventAction"
+  },
+  {
+    "typeId" : "event",
+    "id" : "eventListener>create",
+    "tid": "eventListener",
+    "event" : "create",
+    "eventName" : "Create eventListener"
+  },
+  {
+    "typeId" : "event",
+    "id" : "eventListener>update",
+    "tid": "eventListener",
+    "event" : "update",
+    "eventName" : "update eventListener"
+  },
+  {
+    "typeId" : "event",
+    "id" : "eventListener>delete",
+    "tid": "eventListener",
+    "event" : "delete",
+    "eventName" : "delete eventListener"
+  },
+  {
+    "typeId" : "event",
+    "id" : "eventListener>allEvent",
+    "tid": "eventListener",
+    "event" : "allEvent",
+    "eventName" : "allEvent eventListener"
+  },
+  {
+    "typeId" : "eventAction",
+    "id" : "nodeType>create>createDefaultEvent",
+    "event": "nodeType>create",
+    "action" : "createDefaultEvent",
+    "actionType" : "service",
+    "actionBody" : "eventService.createNodeType",
+    "order" : 1
+  },
+  {
+    "typeId" : "eventAction",
+    "id" : "event>create>createEvent",
+    "event": "event>create",
+    "action": "createEvent",
+    "actionType" : "service",
+    "actionBody" : "nodeService.changeEvent",
+    "order" : 1
+  },
+  {
+    "typeId" : "eventAction",
+    "id" : "eventAction>create>createEventAction",
+    "event": "eventAction>create",
+    "action": "createEventAction",
+    "actionType" : "service",
+    "actionBody" : "nodeService.changeEventAction",
+    "order" : 1
+  },
+  {
+    "typeId" : "eventListener",
+    "id" : "nodeType>nodeType>allEvent",
+    "tid" : "nodeType",
+    "event": "nodeType>allEvent",
+    "actionType" : "service",
+    "actionBody" : "nodeService.changeNodeType"
+  },
+  {
+    "typeId" : "eventListener",
+    "id" : "nodeType>propertyType>allEvent",
+    "tid" : "nodeType",
+    "event": "propertyType>allEvent",
+    "actionType" : "service",
+    "actionBody" : "nodeService.changePropertyType"
+  },
+  {
+    "typeId" : "eventListener",
+    "id" : "nodeType>eventListener>allEvent",
+    "tid" : "nodeType",
+    "event": "eventListener>allEvent",
+    "actionType" : "service",
+    "actionBody" : "nodeService.changeEventListener"
+  }
+]

@@ -1,0 +1,49 @@
+[
+  {
+    "typeId": "apiConfig",
+    "category": "ban",
+    "apiId": "IfBan001",
+    "apiName": "배너 상세조회",
+    "method": "GET",
+    "config": {
+      "typeId": "banrBasInfo",
+      "query": [
+        {
+          "field": "banrSeq",
+          "method": "matching",
+          "value": "{{:banrSeq}}"
+        },
+        {
+          "field": "svcTermlDivCd",
+          "method": "matching",
+          "value": "{{:svcTermlDivCd}}"
+        },
+        {
+          "field": "banrTypeCd",
+          "method": "matching",
+          "value": "{{:banrTypeCd}}"
+        },
+        {
+          "field": "showLoCd",
+          "method": "matching",
+          "value": "{{:showLoCd}}"
+        },
+        {
+          "field": "showYn",
+          "method": "matching",
+          "value": "true"
+        },
+        {
+          "sorting": "banrSeq desc"
+        },
+        {
+          "limit": "1"
+        },
+        {
+          "includeReferenced": true
+        }
+
+      ]
+    }
+  }
+]

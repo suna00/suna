@@ -1,0 +1,42 @@
+[
+  {
+    "typeId": "nodeType",
+    "parentId": "root",
+    "id" : "adminAccountMng",
+    "tid": "adminAccountMng",
+    "typeName": "관리자 계정 관리",
+    "repositoryType": "path",
+    "tableName": "",
+    "eviction" : 0
+  },
+  {
+    "typeId": "nodeType",
+    "parentId": "adminAccountMng",
+    "id" : "userGroup",
+    "tid": "userGroup",
+    "typeName": "관리자 그룹",
+    "repositoryType": "node",
+    "tableName": "",
+    "eviction" : 50
+  },
+  {
+    "typeId": "nodeType",
+    "parentId": "adminAccountMng",
+    "id" : "user",
+    "tid": "user",
+    "typeName": "관리자",
+    "repositoryType": "node",
+    "tableName": "",
+    "eviction" : 1000
+  },
+  {
+    "typeId": "nodeType",
+    "parentId": "adminAccountMng",
+    "id" : "groupAuthority",
+    "tid": "groupAuthority",
+    "typeName": "그룹 권한",
+    "repositoryType": "node",
+    "tableName": "",
+    "eviction" : 200
+  }
+]

@@ -1,0 +1,31 @@
+[
+  {
+    "parentId" : "systemMng",
+    "typeId" : "nodeType",
+    "id" : "admrMngMenu",
+    "tid" : "admrMngMenu",
+    "typeName" : "운영자 관리 path",
+    "repositoryType" : "path",
+    "eviction" : 0
+  },
+  {
+    "parentId" : "admrMngMenu",
+    "typeId" : "nodeType",
+    "id" : "admrGroup",
+    "tid" : "admrGroup",
+    "typeName" : "운영자 그룹",
+    "repositoryType" : "node",
+    "tableName": "cjDb#admrGroup",
+    "eviction" : 100
+  },
+  {
+    "parentId" : "admrMngMenu",
+    "typeId" : "nodeType",
+    "id" : "admrInfo",
+    "tid" : "admrInfo",
+    "typeName" : "운영자 정보",
+    "repositoryType" : "node",
+    "tableName": "cjDb#admrInfo",
+    "eviction" : 100
+  }
+]

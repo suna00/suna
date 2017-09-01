@@ -1,0 +1,11 @@
+[
+  {
+    "parentId" : "root",
+    "typeId" : "nodeType",
+    "id" : "contentsMng",
+    "tid" : "contentsMng",
+    "typeName" : "콘텐츠 관리",
+    "repositoryType" : "path",
+    "eviction" : 0
+  }
+]

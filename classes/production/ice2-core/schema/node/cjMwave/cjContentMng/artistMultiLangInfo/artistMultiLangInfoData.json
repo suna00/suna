@@ -1,0 +1,20 @@
+[
+  {
+    "typeId" : "artistMultiLangInfo",
+    "artistId" : "artist_00001",
+    "langCd" : "KOR",
+    "artistNm" : "Different Heaven",
+    "artistDesc" : "스페인 태생의 21세 음악 프로듀서및 DJ로서 NCS에서 EH!DE와 합작한 My Heart[1], Pentakill로 유명세를 탔다. 개개인에 따른 차이가 있지만 중독성 있는 비트가 특징.",
+    "atvyName" : "Different Heaven",
+    "findKywrd" : "Different Heaven"
+  },
+  {
+    "typeId" : "artistMultiLangInfo",
+    "artistId" : "artist_00002",
+    "langCd" : "KOR",
+    "artistNm" : "Zedd",
+    "artistDesc" : "DJ 겸 프로듀서. 러시아(구소련)에서 태어나 독일에서 자란 러시아계 독일인이다. 일렉트로 하우스, 프로그레시브 하우스 등 다양한 장르의 하우스 음악을 작곡하며 프로듀스한다. 두 부모가 음악가인 음악가 집안에서 태어났다. 4살 때 부터 피아노와 드럼을 배웠으며 2002년에는 독일에서 밴드 생활도 했다는 모양. 그러던 후에 프랑스의 일렉트로 하우스 듀오인 저스티스에 관심을 갖게 되어 2009년부터 일렉트로닉 음악을 프로듀스하게 된다. 상당한 저스티스 덕후로 저스티스는 그의 우상이기도 하다. 트위터 등에서 빠심이 담긴 트윗이나 사진 등을 종종 찾아 볼 수 있을 정도(...) 젓티너무조와 힛ㅋ 4살 때부터 배우고 또 밴드 생활을 거쳐서 뛰어난 피아노 연주 능력을 가지고 있고, 프로듀싱 능력 뿐만 아니라 모든 곡을 직접 작사, 작곡하는 뛰어난 송라이터이기도 하다.",
+    "atvyName" : "Zedd",
+    "findKywrd" : "Zedd"
+  }
+]
