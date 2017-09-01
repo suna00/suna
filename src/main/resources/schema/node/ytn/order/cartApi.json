@@ -29,5 +29,34 @@
         ]
       }
     }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "cart",
+    "apiId" : "addCart",
+    "apiName" : "장바구니 담기",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "item" : {
+        "select" : {
+          "ds" : "ytnDevDb",
+          "resultType" : "read",
+          "sql" : "select max(cartId) as searchCartId from cart where memberNo = @{memberNo} or sessionId = @{sessionId}"
+        }
+      },
+      "successADD" : {
+        "typeId": "cart",
+        "event": "create",
+        "if" : "{{:equals(searchCartId, null)}}",
+        "data": {
+          "memberNo": "{{:memberNo}}",
+          "siteId": "{{:siteId}}",
+          "sessionId": "{{:sessionId}}",
+          "buyNowYn": "{{:buyNowYn}}"
+        }
+      }
+    }
   }
 ]
