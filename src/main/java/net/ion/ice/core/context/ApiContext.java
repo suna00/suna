@@ -40,9 +40,9 @@ public class ApiContext {
         }
 
 
-        ctx.config = new HashMap<>() ;
-        ctx.config.putAll(apiCategory);
-        ctx.config.putAll(config) ;
+//        ctx.config = new HashMap<>() ;
+//        ctx.config.putAll(apiCategory);
+        ctx.config = config ;
 
         return ctx ;
     }
@@ -111,12 +111,12 @@ public class ApiContext {
     }
 
     private void setApiResultFormat(ReadContext queryContext) {
-        if(config.containsKey(DATE_FORMAT) && config.get(DATE_FORMAT) != null){
-            queryContext.dateFormat = (String) config.get(DATE_FORMAT);
+        if(apiCategory.containsKey(DATE_FORMAT) && apiCategory.get(DATE_FORMAT) != null){
+            queryContext.dateFormat = (String) apiCategory.get(DATE_FORMAT);
         }
 
-        if(config.containsKey(FILE_URL_FORMAT) && config.get(FILE_URL_FORMAT) != null && ((Map<String, Object>) config.get(FILE_URL_FORMAT)).size() > 0){
-            queryContext.fileUrlFormat = (Map<String, Object>) config.get(FILE_URL_FORMAT);
+        if(apiCategory.containsKey(FILE_URL_FORMAT) && apiCategory.get(FILE_URL_FORMAT) != null && ((Map<String, Object>) apiCategory.get(FILE_URL_FORMAT)).size() > 0){
+            queryContext.fileUrlFormat = (Map<String, Object>) apiCategory.get(FILE_URL_FORMAT);
         }
     }
 
