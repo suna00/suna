@@ -81,28 +81,7 @@
     ],
     "config": {
       "typeId": "ntfBbs",
-      "query": [
-        {
-          "field": "ntfBbsSeq",
-          "method": "matching",
-          "value": "{{:ntfBbsSeq}}"
-        },
-        {
-          "field": "showDvcCd",
-          "method": "matching",
-          "value": "{{:svcTermlDivCd}}"
-        },
-        {
-          "field": "ctgCd1",
-          "method": "matching",
-          "value": "{{:ntfLargeCtgCd}}"
-        },
-        {
-          "field": "showYn",
-          "method": "matching",
-          "value": "true"
-        }
-      ],
+      "id":"{{:ntfBbsSeq}}",
       "response": {
         "ntfBbsSeq": "",
         "ntfBbsNm": "",

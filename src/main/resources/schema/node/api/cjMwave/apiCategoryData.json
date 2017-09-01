@@ -2,66 +2,409 @@
   {
     "typeId": "apiCategory",
     "id": "vote",
-    "categoryName": "Vote API"
+    "categoryName": "Vote API",
+    "dateFormat": "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat": {
+      "default": "http://localhost:8080/"
+    },
+    "commonParameters": [
+      {
+        "paramName": "apiKey",
+        "required": true
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "commonResponse": {
+      "sysDt": "{{:sysdate}}"
+    }
   },
   {
     "typeId": "apiCategory",
     "id": "comp",
-    "categoryName": "Component API"
+    "categoryName": "Component API",
+    "dateFormat": "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat": {
+      "default": "http://localhost:8080/"
+    },
+    "commonParameters": [
+      {
+        "paramName": "apiKey",
+        "required": true
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "commonResponse": {
+      "sysDt": "{{:sysdate}}"
+    }
   },
   {
     "typeId": "apiCategory",
     "id": "ban",
-    "categoryName": "Banner API"
+    "categoryName": "Banner API",
+    "dateFormat": "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat": {
+      "default": "http://localhost:8080/"
+    },
+    "commonParameters": [
+      {
+        "paramName": "apiKey",
+        "required": true
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "commonResponse": {
+      "sysDt": "{{:sysdate}}"
+    }
   },
   {
     "typeId": "apiCategory",
     "id": "system",
-    "categoryName": "System common API"
+    "categoryName": "System common API",
+    "dateFormat": "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat": {
+      "default": "http://localhost:8080/"
+    },
+    "commonParameters": [
+      {
+        "paramName": "apiKey",
+        "required": true
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "commonResponse": {
+      "sysDt": "{{:sysdate}}"
+    }
   },
   {
     "typeId": "apiCategory",
     "id": "svcBbs",
-    "categoryName": "Service Bbs API"
+    "categoryName": "Service Bbs API",
+    "dateFormat": "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat": {
+      "default": "http://localhost:8080/"
+    },
+    "commonParameters": [
+      {
+        "paramName": "apiKey",
+        "required": true
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "commonResponse": {
+      "sysDt": "{{:sysdate}}"
+    }
   },
   {
     "typeId": "apiCategory",
     "id": "svcEvent",
-    "categoryName": "Service EVENT API"
+    "categoryName": "Service EVENT API",
+    "dateFormat": "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat": {
+      "default": "http://localhost:8080/"
+    },
+    "commonParameters": [
+      {
+        "paramName": "apiKey",
+        "required": true
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "commonResponse": {
+      "sysDt": "{{:sysdate}}"
+    }
   },
   {
     "typeId": "apiCategory",
     "id": "popup",
-    "categoryName": "POPUP API"
+    "categoryName": "POPUP API",
+    "dateFormat": "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat": {
+      "default": "http://localhost:8080/"
+    },
+    "commonParameters": [
+      {
+        "paramName": "apiKey",
+        "required": true
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "commonResponse": {
+      "sysDt": "{{:sysdate}}"
+    }
   },
   {
     "typeId": "apiCategory",
     "id": "contsMeta",
     "categoryName": "Contents Meta API",
-    "dateFormat" : "yyyy-MM-dd HH:mm:ss",
-    "fileUrl" : "http://localhost:8080/",
-    "response" :{
-      "time" : "now"
+    "dateFormat": "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat": {
+      "default": "http://localhost:8080/"
+    },
+    "commonParameters": [
+      {
+        "paramName": "apiKey",
+        "required": true
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "commonResponse": {
+      "sysDt": "{{:sysdate}}"
     }
   },
   {
     "typeId": "apiCategory",
     "id": "onair",
-    "categoryName": "ON-AIR API"
+    "categoryName": "ON-AIR API",
+    "dateFormat": "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat": {
+      "default": "http://localhost:8080/"
+    },
+    "commonParameters": [
+      {
+        "paramName": "apiKey",
+        "required": true
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "commonResponse": {
+      "sysDt": "{{:sysdate}}"
+    }
   },
   {
     "typeId": "apiCategory",
     "id": "mcdlineup",
-    "categoryName": "MCD LINEUP API"
+    "categoryName": "MCD LINEUP API",
+    "dateFormat": "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat": {
+      "default": "http://localhost:8080/"
+    },
+    "commonParameters": [
+      {
+        "paramName": "apiKey",
+        "required": true
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "commonResponse": {
+      "sysDt": "{{:sysdate}}"
+    }
   },
   {
     "typeId": "apiCategory",
     "id": "member",
-    "categoryName": "MEMBER API"
+    "categoryName": "MEMBER API",
+    "dateFormat": "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat": {
+      "default": "http://localhost:8080/"
+    },
+    "commonParameters": [
+      {
+        "paramName": "apiKey",
+        "required": true
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "commonResponse": {
+      "sysDt": "{{:sysdate}}"
+    }
   },
   {
     "typeId": "apiCategory",
     "id": "mypage",
-    "categoryName": "MYPAGE API"
+    "categoryName": "MYPAGE API",
+    "dateFormat": "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat": {
+      "default": "http://localhost:8080/"
+    },
+    "commonParameters": [
+      {
+        "paramName": "apiKey",
+        "required": true
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "commonResponse": {
+      "sysDt": "{{:sysdate}}"
+    }
   }
 ]

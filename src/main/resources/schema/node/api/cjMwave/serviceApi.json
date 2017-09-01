@@ -64,7 +64,7 @@
               "value": "compItemSeq_matching={{:compItemSeq}}&cnctItemYn_matching=false"
             },
             {
-              "includeReferenced": true
+              "referenceView": "contsId","includeReferenced": true
             }
           ],
           "response": {

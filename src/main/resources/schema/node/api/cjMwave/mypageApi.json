@@ -113,6 +113,8 @@
         {
           "page": "{{:page}}",
           "pageSize": "{{:pageSize}}"
+        },{
+          "referenceView":"voteSeq"
         }
       ]
     }
