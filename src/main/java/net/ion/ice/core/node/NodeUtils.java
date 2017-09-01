@@ -165,16 +165,20 @@ public class NodeUtils {
         }
     }
 
-    public static String getDateStringValue(Object value) {
+    public static String getDateStringValue(Object value, String dateFormat) {
         if (value == null) return null;
 
+        if(StringUtils.isEmpty(dateFormat)){
+            dateFormat = "yyyyMMddHHmmss" ;
+        }
+
         if (value instanceof Date) {
-            return DateFormatUtils.format((Date) value, "yyyyMMddHHmmss");
-        } else if (value instanceof String && ((String) value).length() == 14) {
+            return DateFormatUtils.format((Date) value, dateFormat);
+        } else if (value instanceof String && ((String) value).length() == 14 && dateFormat.equals("yyyyMMddHHmmss")) {
             return (String) value;
         } else {
             try {
-                return DateFormatUtils.format(DateTools.stringToDate(value.toString()), "yyyyMMddHHmmss");
+                return DateFormatUtils.format(DateTools.stringToDate(value.toString()), dateFormat);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -218,7 +222,7 @@ public class NodeUtils {
                 }
             }
             case DATE: {
-                return getDateStringValue(value);
+                return getDateStringValue(value, null);
             }
             case FILE: {
                 if (value instanceof FileValue) {
@@ -329,10 +333,16 @@ public class NodeUtils {
             }
             case DATE: {
                 if (value == null) return null;
-                return getDateStringValue(value);
+                return getDateStringValue(value, context.getDateFormat());
             }
             case FILE: {
                 if (value == null) return null;
+                if(context.getFileUrlFormat() != null && context.getFileUrlFormat().containsKey(pt.getFileHandler())){
+                    String fileUrlFormat = (String) context.getFileUrlFormat().get(pt.getFileHandler());
+                    if (value instanceof FileValue) {
+                        return fileUrlFormat + ((FileValue) value).getStorePath();
+                    }
+                }
                 if (value instanceof FileValue) {
                     return value;
                 }
@@ -532,13 +542,15 @@ public class NodeUtils {
                 }
             }
             case DATE: {
-                return getDateStringValue(value);
+                return getDateStringValue(value, null);
             }
             case REFERENCE: {
                 if (StringUtils.isEmpty(pt.getCodeFilter())) {
                     return value;
-                } else {
+                } else if(StringUtils.contains(value.toString(), Node.ID_SEPERATOR)){
                     return StringUtils.substringAfterLast(value.toString(), Node.ID_SEPERATOR);
+                } else {
+                    return value ;
                 }
             }
             default:

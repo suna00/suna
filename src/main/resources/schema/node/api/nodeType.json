@@ -44,6 +44,50 @@
   },
   {
     "typeId" : "propertyType",
+    "tid" : "apiCategory",
+    "pid" : "dateFormat",
+    "propertyTypeName" : "Date Format",
+    "valueType" : "STRING",
+    "idable" : false,
+    "indexable" : false,
+    "labelable" : false,
+    "required" : false
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "apiCategory",
+    "pid" : "fileUrlFormat",
+    "propertyTypeName" : "File Url Format",
+    "valueType" : "JSON",
+    "idable" : false,
+    "indexable" : false,
+    "labelable" : false,
+    "required" : false
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "apiCategory",
+    "pid" : "commonParameters",
+    "propertyTypeName" : "Common Parameter Configuration",
+    "valueType" : "JSON",
+    "idable" : false,
+    "indexable" : false,
+    "labelable" : false,
+    "required" : false
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "apiCategory",
+    "pid" : "commonResponse",
+    "propertyTypeName" : "Common Response Configuration",
+    "valueType" : "JSON",
+    "idable" : false,
+    "indexable" : false,
+    "labelable" : false,
+    "required" : false
+  },
+  {
+    "typeId" : "propertyType",
     "tid" : "apiConfig",
     "pid" : "category",
     "propertyTypeName" : "API Category",
