@@ -97,6 +97,11 @@ public class DBSyncController {
     * 개별 쿼리 결과를 node.pid 에 맞춰줌
     * */
     private Map<String, Object> mapData (String targetNodeType, Map<String, Object> singleQueryResult, Map<String, String> mapperStore) {
+        if(mapperStore == null || mapperStore.isEmpty()) {
+            singleQueryResult.put("typeId", targetNodeType);
+            return singleQueryResult;
+        }
+
         Map<String, Object> combined = new HashMap<String, Object>();
         mapperStore.forEach((k, v) -> {
             combined.put(k, singleQueryResult.get(v));
