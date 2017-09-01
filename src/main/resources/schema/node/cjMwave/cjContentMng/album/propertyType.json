@@ -31,7 +31,8 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "i18n": true
   },
   {
     "typeId": "propertyType",
@@ -152,7 +153,8 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "i18n": true
   },
   {
     "typeId": "propertyType",
@@ -169,7 +171,8 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "i18n": true
   },
   {
     "typeId": "propertyType",
@@ -186,7 +189,8 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "i18n": true
   },
   {
     "typeId": "propertyType",
@@ -220,7 +224,8 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "i18n": true
   },
   {
     "typeId": "propertyType",
