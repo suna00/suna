@@ -245,7 +245,6 @@ public class ExecuteContext extends ReadContext{
 
         ctx.event = (String) ContextUtils.getValue(config.get("event"), data);
 
-        data.put("now", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())) ;
         if(config.containsKey("data")){
             Map<String, Object> _data = new HashMap<>();
             Map<String, Object> subData = (Map<String, Object>) config.get("data");

@@ -27,6 +27,8 @@ public class ApiService {
     private SessionService sessionService;
 
     public Object execute(NativeWebRequest request, String category, String api, String method) {
+        Node apiCategory  = nodeService.getNode("apiCategory", category) ;
+
         Node apiNode = nodeService.getNode("apiConfig", category + Node.ID_SEPERATOR + api) ;
 
         String apiMethod = (String) apiNode.get("method");
@@ -43,14 +45,14 @@ public class ApiService {
 
         if(apiMethod.equals("POST")){
             if(request instanceof MultipartHttpServletRequest) {
-                ApiContext context = ApiContext.createContext(apiNode, (Map<String, Object>) apiNode.get("config"), request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap(), session) ;
+                ApiContext context = ApiContext.createContext(apiCategory, apiNode, (Map<String, Object>) apiNode.get("config"), request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap(), session) ;
                 return context.makeApiResult() ;
             }
-            ApiContext context = ApiContext.createContext(apiNode, (Map<String, Object>) apiNode.get("config"), request.getParameterMap(), null, session) ;
+            ApiContext context = ApiContext.createContext(apiCategory, apiNode, (Map<String, Object>) apiNode.get("config"), request.getParameterMap(), null, session) ;
             return context.makeApiResult() ;
         }
 
-        ApiContext context = ApiContext.createContext(apiNode, (Map<String, Object>) apiNode.get("config"), request.getParameterMap(), null, session) ;
+        ApiContext context = ApiContext.createContext(apiCategory, apiNode, (Map<String, Object>) apiNode.get("config"), request.getParameterMap(), null, session) ;
         return context.makeApiResult() ;
     }
 }
