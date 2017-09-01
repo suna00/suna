@@ -408,7 +408,7 @@
     "backOfficeId": "admin",
     "gnbMenuId": "metadataMng",
     "parentMenuId": "root",
-    "menuId": "programVideo",
+    "menuId": "pgmVideo",
     "menuName": "프로그램 영상",
     "order": "70",
     "icon": "fa-tag",

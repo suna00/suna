@@ -486,7 +486,7 @@
     "validation": {
       "language": "ko",
       "required": {
-        "value": false,
+        "value": true,
         "description": "필수 값 입니다."
       },
       "duplicated": {
