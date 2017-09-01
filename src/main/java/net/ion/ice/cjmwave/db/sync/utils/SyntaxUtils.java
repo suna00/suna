@@ -27,7 +27,7 @@ public class SyntaxUtils {
     *   이렇게 return 하면 jdbcTemplate 사용시
     *   template.queryForList(String.valueOf(map.get("query")), map.get("params")) 로 사용 가능
     * */
-    public Map<String, Object> parse (String query, HttpServletRequest request){
+    public static Map<String, Object> parse (String query, HttpServletRequest request){
         Map<String, Object> rtn = new HashMap<>();
         /*
         * pseudo - 절차
@@ -61,7 +61,7 @@ public class SyntaxUtils {
         return rtn;
     }
 
-    private Map<String, Object> extractParams (String originalStr) {
+    private static Map<String, Object> extractParams (String originalStr) {
 
         Map<String, Object> queryAndParams = new HashMap<>();
 

@@ -1,5 +1,6 @@
 package net.ion.ice.cjmwave.db.sync;
 
+import net.ion.ice.cjmwave.db.sync.utils.SyntaxUtils;
 import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
@@ -56,8 +57,13 @@ public class DBSyncController {
             String targetDs = String.valueOf(itemMap.get("targetDs"));
 
             // 쿼리
+//            Map<String, Object> jdbcParam = SyntaxUtils.parse(query, request);
+//            String jdbcQuery = String.valueOf(jdbcParam.get("query"));
+//            Object[] params = (Object[]) jdbcParam.get("params");
+
             JdbcTemplate template = dbService.getJdbcTemplate(targetDs);
             List<Map<String, Object>> queryRs = template.queryForList(query);
+//            List<Map<String, Object>> queryRs = template.queryForList(jdbcQuery, jdbcParam);
 
             // mapper 정보 추출
             List<Node> mapperInfoList = NodeUtils.getNodeList(MAPPER_TID, "executeId_matching=" + executeId);
