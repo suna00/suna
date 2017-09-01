@@ -25,8 +25,23 @@
         "query" : [
           {"sorting" : "cartDeliveryPriceId desc,created desc"},
           {"field" : "cartId", "method" : "matching", "value" : "{{:cartId}}"},
-          {"includeReferenced" : true, "referenceView": "productId"}
-        ]
+          {"includeReferenced" : true, "referenceView": "baseOptionItemId, cartDeliveryPriceId"}
+        ],
+        "response" : {
+          "cartProductId": "",
+          "baseOptionItemId": "",
+          "quantity": "",
+          "vendorId": "",
+          "cartDeliveryPriceId": "",
+          "referencedCartProductItem": "",
+          "calculateItem": {
+            "select": {
+              "ds": "ytnDevDb",
+              "resultType": "read",
+              "sql": "select x.* , ((productPrice * quantity) + totalAddOptionPrice) as orderPrice from ( select a.cartProductId, a.cartId, a.productId, a.quantity, a.baseOptionItemId , b.name as baseOptionItemName , ifnull(b.addPrice,0) as baseAddPrice , ifnull(c.salePrice,0) as salePrice , (ifnull(b.addPrice,0) + ifnull(c.salePrice,0)) as productPrice , ifnull((select sum(ifnull(addOptionPrice,0) * quantity) from cartproductitem  where cartProductId = a.cartProductId),0) as totalAddOptionPrice from cartproduct a, productoptionitem b, product c where b.productOptionItemId = a.baseOptionItemId and c.productId = b.productId and a.cartProductId = @{cartProductId} ) x"
+            }
+          }
+        }
       }
     }
   },
