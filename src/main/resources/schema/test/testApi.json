@@ -4,9 +4,14 @@
     "id" : "testApi",
     "categoryName" : "Test API",
     "dateFormat" : "yyyy-MM-dd HH:mm:ss",
-    "fileUrl" : "http://localhost:8080/",
-    "response" :{
-      "time" : "now"
+    "fileUrlFormat" : {
+      "default":"http://localhost:8080/"
+    },
+    "commonParameters" : [
+      {"paramName" : "apiKey", "required" : true}
+    ],
+    "commonResponse" :{
+      "time" : "{{:sysdate}}"
     }
   },
   {
