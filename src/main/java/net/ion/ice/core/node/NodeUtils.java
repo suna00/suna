@@ -547,8 +547,10 @@ public class NodeUtils {
             case REFERENCE: {
                 if (StringUtils.isEmpty(pt.getCodeFilter())) {
                     return value;
-                } else {
+                } else if(StringUtils.contains(value.toString(), Node.ID_SEPERATOR)){
                     return StringUtils.substringAfterLast(value.toString(), Node.ID_SEPERATOR);
+                } else {
+                    return value ;
                 }
             }
             default:
