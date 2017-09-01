@@ -4,41 +4,47 @@
     "langId": "ENG",
     "langNm": "영어",
     "sttusCd": "langFix",
-    "useYn": true
+    "useYn": true,
+    "sortOdrg": 1
   },
   {
     "typeId": "langMng",
     "langId": "KOR",
     "langNm": "한국어",
     "sttusCd": "langFix",
-    "useYn": true
+    "useYn": true,
+    "sortOdrg": 2
   },
   {
     "typeId": "langMng",
     "langId": "ZHO-CN",
     "langNm": "중국(간체)",
     "sttusCd": "langFix",
-    "useYn": true
+    "useYn": true,
+    "sortOdrg": 3
   },
   {
     "typeId": "langMng",
     "langId": "ZHO-TW",
     "langNm": "중국(번체)",
     "sttusCd": "langFix",
-    "useYn": true
+    "useYn": true,
+    "sortOdrg": 4
   },
   {
     "typeId": "langMng",
     "langId": "JPN",
     "langNm": "일어",
     "sttusCd": "langFix",
-    "useYn": true
+    "useYn": true,
+    "sortOdrg": 5
   },
   {
     "typeId": "langMng",
     "langId": "SPA",
     "langNm": "스페인어",
     "sttusCd": "langSel",
-    "useYn": true
+    "useYn": true,
+    "sortOdrg": 6
   }
 ]
