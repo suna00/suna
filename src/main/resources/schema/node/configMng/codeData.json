@@ -1120,6 +1120,146 @@
     "active": true
   },
   {
+    "groupCodeId": "intrstCd",
+    "codeId": 8,
+    "name": "건강",
+    "order": 8,
+    "active": "true"
+  },
+  {
+    "groupCodeId": "intrstCd",
+    "codeId": 9,
+    "name": "여행&장소",
+    "order": 9,
+    "active": "true"
+  },
+  {
+    "groupCodeId": "intrstCd",
+    "codeId": 10,
+    "name": "결혼&이벤트",
+    "order": 10,
+    "active": "true"
+  },
+  {
+    "groupCodeId": "intrstCd",
+    "codeId": 11,
+    "name": "키즈",
+    "order": 11,
+    "active": "true"
+  },
+  {
+    "groupCodeId": "intrstCd",
+    "codeId": 12,
+    "name": "인테리어/가구DIY/공예",
+    "order": 12,
+    "active": "true"
+  },
+  {
+    "groupCodeId": "intrstCd",
+    "codeId": 13,
+    "name": "영화",
+    "order": 13,
+    "active": "true"
+  },
+  {
+    "groupCodeId": "intrstCd",
+    "codeId": 14,
+    "name": "음악",
+    "order": 14,
+    "active": "true"
+  },
+  {
+    "groupCodeId": "intrstCd",
+    "codeId": 15,
+    "name": "K-POP",
+    "order": 15,
+    "active": "true"
+  },
+  {
+    "groupCodeId": "intrstCd",
+    "codeId": 16,
+    "name": "TV",
+    "order": 16,
+    "active": "true"
+  },
+  {
+    "groupCodeId": "intrstCd",
+    "codeId": 17,
+    "name": "공연/문화",
+    "order": 17,
+    "active": "true"
+  },
+  {
+    "groupCodeId": "intrstCd",
+    "codeId": 18,
+    "name": "남성패션",
+    "order": 18,
+    "active": "true"
+  },
+  {
+    "groupCodeId": "intrstCd",
+    "codeId": 19,
+    "name": "아웃도어/캠핑",
+    "order": 19,
+    "active": "true"
+  },
+  {
+    "groupCodeId": "intrstCd",
+    "codeId": 20,
+    "name": "자동차",
+    "order": 20,
+    "active": "true"
+  },
+  {
+    "groupCodeId": "intrstCd",
+    "codeId": 21,
+    "name": "스포츠",
+    "order": 21,
+    "active": "true"
+  },
+  {
+    "groupCodeId": "intrstCd",
+    "codeId": 22,
+    "name": "게임",
+    "order": 22,
+    "active": "true"
+  },
+  {
+    "groupCodeId": "intrstCd",
+    "codeId": 23,
+    "name": "건축",
+    "order": 23,
+    "active": "true"
+  },
+  {
+    "groupCodeId": "intrstCd",
+    "codeId": 24,
+    "name": "연예뉴스",
+    "order": 24,
+    "active": "true"
+  },
+  {
+    "groupCodeId": "intrstCd",
+    "codeId": 25,
+    "name": "IT&컴퓨터",
+    "order": 25,
+    "active": "true"
+  },
+  {
+    "groupCodeId": "intrstCd",
+    "codeId": 26,
+    "name": "일상",
+    "order": 26,
+    "active": "true"
+  },
+  {
+    "groupCodeId": "intrstCd",
+    "codeId": 27,
+    "name": "유머",
+    "order": 27,
+    "active": "true"
+  },
+  {
     "typeId": "code",
     "groupCodeId": "albumTypeCd",
     "codeId": 1001,
