@@ -1,8 +1,10 @@
 package net.ion.ice.core.context;
 
 import net.ion.ice.core.node.Node;
+import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.ResultField;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,7 +15,10 @@ import java.util.*;
  * Created by jaehocho on 2017. 7. 4..
  */
 public class ApiContext {
-
+    public static final String COMMON_RESPONSE = "commonResponse";
+    public static final String DATE_FORMAT = "dateFormat";
+    public static final String FILE_URL_FORMAT = "fileUrlFormat";
+    private Node apiCategory;
     private Node apiNode;
     private Map<String, Object> data  ;
 
@@ -21,7 +26,7 @@ public class ApiContext {
 
     private List<ResultField> resultFieldList ;
 
-    public static ApiContext createContext(Node apiNode, Map<String, Object> config,  Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, Map<String, Object> session) {
+    public static ApiContext createContext(Node apiCategory, Node apiNode, Map<String, Object> config, Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, Map<String, Object> session) {
         ApiContext ctx = new ApiContext() ;
         ctx.apiNode = apiNode ;
         ctx.data = ContextUtils.makeContextData(parameterMap, multiFileMap) ;
@@ -30,11 +35,39 @@ public class ApiContext {
         ctx.data.put("sysdate", new Date()) ;
 
 
-        ctx.config = config;
+        if(apiCategory.containsKey(COMMON_RESPONSE) && apiCategory.get(COMMON_RESPONSE) != null && ((Map<String, Object>) apiCategory.get(COMMON_RESPONSE)).size() > 0) {
+            ctx.makeCommonResponse((Map<String, Object>) apiCategory.get(COMMON_RESPONSE)) ;
+        }
+
+
+        ctx.config = new HashMap<>() ;
+        ctx.config.putAll(apiCategory);
+        ctx.config.putAll(config) ;
 
         return ctx ;
     }
 
+    private void makeCommonResponse(Map<String, Object> response){
+        resultFieldList = new ArrayList<>() ;
+        for(String fieldName : response.keySet()) {
+            Object fieldValue = response.get(fieldName);
+            if (fieldValue == null) {
+                resultFieldList.add(new ResultField(fieldName, fieldName));
+            } else if (fieldValue instanceof String) {
+                if (StringUtils.isEmpty((String) fieldValue)) {
+                    resultFieldList.add(new ResultField(fieldName, fieldName));
+                } else {
+                    resultFieldList.add(new ResultField(fieldName, (String) fieldValue));
+                }
+            } else if (fieldValue instanceof Map) {
+                if (((Map) fieldValue).containsKey("select")) {
+                    resultFieldList.add(new ResultField(fieldName, ApiSelectContext.makeContextFromConfig((Map<String, Object>) fieldValue, data)));
+                } else {
+                    resultFieldList.add(new ResultField(fieldName, (Map<String, Object>) fieldValue));
+                }
+            }
+        }
+    }
 
     private Map<String, Object> makeSubApiReuslt(Map<String, Object> ctxRootConfig) {
         if(ctxRootConfig.containsKey("event")){
@@ -50,6 +83,8 @@ public class ApiContext {
 
         }else if(ctxRootConfig.containsKey("query")){
             ApiQueryContext queryContext = ApiQueryContext.makeContextFromConfig(ctxRootConfig, data) ;
+            setApiResultFormat(queryContext);
+
             QueryResult queryResult = queryContext.makeQueryResult(null, null) ;
 
             addResultData(queryContext.getResult());
@@ -57,12 +92,16 @@ public class ApiContext {
             return queryResult ;
         }else if(ctxRootConfig.containsKey("select")){
             ApiSelectContext selectContext = ApiSelectContext.makeContextFromConfig(ctxRootConfig, data) ;
+            setApiResultFormat(selectContext);
+
             QueryResult queryResult =  selectContext.makeQueryResult(null, null) ;
             addResultData(selectContext.getResult());
 
             return queryResult ;
         }else if(ctxRootConfig.containsKey("id")){
             ApiReadContext readContext = ApiReadContext.makeContextFromConfig(ctxRootConfig, data) ;
+            setApiResultFormat(readContext);
+
             Node node = readContext.getNode() ;
             addResultData(node.clone());
 
@@ -71,13 +110,34 @@ public class ApiContext {
         return null ;
     }
 
+    private void setApiResultFormat(ReadContext queryContext) {
+        if(config.containsKey(DATE_FORMAT) && config.get(DATE_FORMAT) != null){
+            queryContext.dateFormat = (String) config.get(DATE_FORMAT);
+        }
+
+        if(config.containsKey(FILE_URL_FORMAT) && config.get(FILE_URL_FORMAT) != null && ((Map<String, Object>) config.get(FILE_URL_FORMAT)).size() > 0){
+            queryContext.fileUrlFormat = (Map<String, Object>) config.get(FILE_URL_FORMAT);
+        }
+    }
+
 
     public Object makeApiResult() {
-
         if(config.containsKey("typeId") || config.containsKey("apiType")){
-            return makeSubApiReuslt(config);
+            if(this.resultFieldList != null && this.resultFieldList.size() > 0){
+                QueryResult queryResult = getCommonResult();
+                queryResult.putAll(makeSubApiReuslt(config));
+                return queryResult ;
+            }else{
+                return makeSubApiReuslt(config);
+            }
         }else {
-            QueryResult queryResult = new QueryResult() ;
+            QueryResult queryResult  ;
+            if(this.resultFieldList != null && this.resultFieldList.size() > 0){
+                queryResult = getCommonResult();
+            }else{
+                queryResult = new QueryResult() ;
+            }
+
             for (String key : config.keySet()) {
                 Map<String, Object> ctxRootConfig = (Map<String, Object>) config.get(key);
                 if("root".equals(key)) {
@@ -89,6 +149,19 @@ public class ApiContext {
             return queryResult ;
         }
     }
+
+    private QueryResult getCommonResult() {
+        QueryResult queryResult = new QueryResult() ;
+        for (ResultField resultField : resultFieldList) {
+            if(resultField.isStaticValue()){
+                queryResult.put(resultField.getFieldName(), ContextUtils.getValue(resultField.getStaticValue(), data));
+            } else {
+                queryResult.put(resultField.getFieldName(), ContextUtils.getValue(resultField.getFieldValue(), data));
+            }
+        }
+        return queryResult ;
+    }
+
 
     public void addResultData(Object result) {
 
