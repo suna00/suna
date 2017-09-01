@@ -28,6 +28,7 @@ public class ApiContext {
 
     public static ApiContext createContext(Node apiCategory, Node apiNode, Map<String, Object> config, Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, Map<String, Object> session) {
         ApiContext ctx = new ApiContext() ;
+        ctx.apiCategory = apiCategory ;
         ctx.apiNode = apiNode ;
         ctx.data = ContextUtils.makeContextData(parameterMap, multiFileMap) ;
         ctx.data.put("session", session);
