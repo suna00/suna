@@ -1,11 +1,8 @@
 package net.ion.ice.core.data.bind;
 
-import net.ion.ice.core.context.DataQueryContext;
 import net.ion.ice.core.context.QueryContext;
 import net.ion.ice.core.data.DBDataTypes;
 import net.ion.ice.core.data.DBTypes;
-import net.ion.ice.core.context.DBQueryContext;
-import net.ion.ice.core.context.DBQueryTerm;
 import net.ion.ice.core.data.table.Column;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
@@ -20,9 +17,7 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by seonwoong on 2017. 6. 28..
@@ -44,6 +39,9 @@ public class NodeBindingInfo {
     private String listSql = "";
     private String listParamSql = "";
     private String totalCountSql = "";
+    private String insertSequenceSql = "";
+    private String updateSequenceSql = "";
+    private String retrieveSequenceSql = "";
 
 
     private List<String> searchListQuery;
@@ -56,10 +54,10 @@ public class NodeBindingInfo {
 
     private List<Column> columnList;
     private List<Column> createColumnList;
-    private List<String> insertPids = new ArrayList<>();
+    private List<PropertyType> insertPids = new ArrayList<>();
 
-    private List<String> updatePids = new ArrayList<>();
-    private List<String> wherePids = new ArrayList<>();
+    private List<PropertyType> updatePids = new ArrayList<>();
+    private List<PropertyType> wherePids = new ArrayList<>();
 
 
     private Collection<PropertyType> propertyTypes;
@@ -104,16 +102,16 @@ public class NodeBindingInfo {
                     if (propertyType.getPid().equalsIgnoreCase(column.getColumnName())) {
                         insertColumns.add(column.getColumnName());
                         insertSetKeys.add("?");
-                        insertPids.add(propertyType.getPid());
+                        insertPids.add(propertyType);
 
                         if (!propertyType.isIdable()) {
                             updateColumns.add(String.format("%s = ?", column.getColumnName()));
-                            updatePids.add(propertyType.getPid());
+                            updatePids.add(propertyType);
                             break;
                         }
                         if (propertyType.isIdable()) {
                             whereIds.add(String.format("%s = ?", propertyType.getPid()));
-                            wherePids.add(propertyType.getPid());
+                            wherePids.add(propertyType);
                             break;
                         }
                     }
@@ -121,8 +119,6 @@ public class NodeBindingInfo {
             }
 
         }
-
-        updatePids.addAll(wherePids);
 
         if (createColumnList.size() > 0) {
             for (Column column : createColumnList) {
@@ -172,7 +168,9 @@ public class NodeBindingInfo {
                     , tableName
                     , StringUtils.join(createColumns.toArray(), ", "));
         }
-
+        updateSequenceSql = String.format("UPDATE datasequence SET sequence = sequence + 1 WHERE nodeType = '%s'", nodeType.getTypeId());
+        insertSequenceSql = String.format("INSERT INTO datasequence (nodeType, sequence) VALUES ('%s', 0)", nodeType.getTypeId());
+        retrieveSequenceSql = String.format("SELECT sequence FROM datasequence WHERE nodeType = '%s'", nodeType.getTypeId());
     }
 
     public List<Column> getTableColumns(String tableName, String DBType) {
@@ -247,6 +245,17 @@ public class NodeBindingInfo {
         return result;
     }
 
+    public Long retrieveSequence() {
+        int callback = jdbcTemplate.update(updateSequenceSql);
+        if (callback == 0) {
+            jdbcTemplate.update(insertSequenceSql);
+        }
+        Long sequence = jdbcTemplate.queryForObject(retrieveSequenceSql, Long.class);
+
+        return sequence;
+    }
+
+
     public List<Map<String, Object>> list() {
         return jdbcTemplate.queryForList(listSql);
     }
@@ -261,7 +270,7 @@ public class NodeBindingInfo {
         }
         List<Map<String, Object>> items = jdbcTemplate.queryForList(listParamSql, searchListValue.toArray());
         queryContext.setResultSize(((Long) totalCount.get("totalCount")).intValue());
-        queryContext.setQueryListSize(items.size()) ;
+        queryContext.setQueryListSize(items.size());
         return items;
     }
 
@@ -279,24 +288,32 @@ public class NodeBindingInfo {
 
     private List<Object> insertParameters(Map<String, String[]> parameterMap) {
         List<Object> parameters = new ArrayList<>();
-        for (String pid : insertPids) {
-            parameters.add(parameterMap.get(pid)[0]);
+        for (PropertyType pid : insertPids) {
+            parameters.add(parameterMap.get(pid.getPid())[0]);
         }
         return parameters;
     }
 
     private List<Object> insertParameters(Node node) {
         List<Object> parameters = new ArrayList<>();
-        for (String pid : insertPids) {
-            parameters.add(extractNodeValue(node, pid));
+        for (PropertyType pid : insertPids) {
+            parameters.add(extractNodeValue(node, pid.getPid()));
         }
         return parameters;
     }
 
     private List<Object> updateParameters(Map<String, String[]> parameterMap) {
         List<Object> parameters = new ArrayList<>();
-        for (String pid : updatePids) {
-            parameters.add(parameterMap.get(pid)[0]);
+        for (PropertyType pid : updatePids) {
+            parameters.add(parameterMap.get(pid.getPid())[0]);
+        }
+
+        for (PropertyType pid : wherePids) {
+            if(pid.getIdType().equals(PropertyType.IdType.autoIncrement)){
+
+            }
+            parameters.add(parameterMap.get(pid.getPid())[0]);
+
         }
         return parameters;
     }
@@ -304,8 +321,12 @@ public class NodeBindingInfo {
     private List<Object> updateParameters(Node node) {
         List<Object> parameters = new ArrayList<>();
 
-        for (String pid : updatePids) {
-            parameters.add(extractNodeValue(node, pid));
+        for (PropertyType pid : updatePids) {
+            parameters.add(extractNodeValue(node, pid.getPid()));
+        }
+
+        for (PropertyType pid : wherePids) {
+            parameters.add(extractNodeValue(node, pid.getPid()));
         }
         return parameters;
     }
@@ -313,8 +334,8 @@ public class NodeBindingInfo {
     private List<Object> deleteParameters(Node node) {
         List<Object> parameters = new ArrayList<>();
 
-        for (String pid : wherePids) {
-            parameters.add(extractNodeValue(node, pid));
+        for (PropertyType pid : wherePids) {
+            parameters.add(extractNodeValue(node, pid.getPid()));
         }
         return parameters;
     }
@@ -333,7 +354,7 @@ public class NodeBindingInfo {
 
         String sorting = queryContext.getSorting();
 
-        if (queryContext.getQueryTerms() != null &&!queryContext.getQueryTerms().isEmpty()) {
+        if (queryContext.getQueryTerms() != null && !queryContext.getQueryTerms().isEmpty()) {
             for (QueryTerm queryTerm : queryContext.getQueryTerms()) {
                 String query = String.format("%s %s ?", queryTerm.getQueryKey(), queryTerm.getMethodQuery());
                 String value = queryTerm.getQueryValue();

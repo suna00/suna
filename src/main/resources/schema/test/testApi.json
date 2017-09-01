@@ -2,7 +2,17 @@
   {
     "typeId" : "apiCategory",
     "id" : "testApi",
-    "categoryName" : "Test API"
+    "categoryName" : "Test API",
+    "dateFormat" : "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat" : {
+      "default":"http://localhost:8080/"
+    },
+    "commonParameters" : [
+      {"paramName" : "apiKey", "required" : true}
+    ],
+    "commonResponse" :{
+      "time" : "{{:sysdate}}"
+    }
   },
   {
     "typeId" : "apiConfig",
