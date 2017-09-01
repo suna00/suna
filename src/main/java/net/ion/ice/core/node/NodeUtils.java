@@ -4,17 +4,16 @@ import com.hazelcast.core.IAtomicLong;
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.cluster.ClusterService;
 import net.ion.ice.core.context.DataQueryContext;
+import net.ion.ice.core.context.QueryContext;
 import net.ion.ice.core.context.ReadContext;
 import net.ion.ice.core.data.bind.NodeBindingInfo;
 import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.file.FileService;
 import net.ion.ice.core.file.FileValue;
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
-import net.ion.ice.core.infinispan.NotFoundNodeException;
 import net.ion.ice.core.json.JsonUtils;
-import net.ion.ice.core.context.QueryContext;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.BooleanUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.lucene.document.DateTools;
@@ -562,33 +561,41 @@ public class NodeUtils {
     static ConcurrentMap<String, IAtomicLong> sequenceHolder = new ConcurrentHashMap<>();
 
     public static Long getSequenceValue(String typeId) {
-        if (!sequenceHolder.containsKey(typeId)) {
-            List<PropertyType> idablePts = NodeUtils.getNodeType(typeId).getIdablePropertyTypes();
-            Long max = null;
+        if (NodeUtils.getNodeType(typeId).isNode()) {
+            if (!sequenceHolder.containsKey(typeId)) {
+                List<PropertyType> idablePts = NodeUtils.getNodeType(typeId).getIdablePropertyTypes();
+                Long max = null;
 
-            if (idablePts.size() == 0 || idablePts.isEmpty()) {
-                throw new RuntimeException("ID is NULL");
+                if (idablePts.size() == 0 || idablePts.isEmpty()) {
+                    throw new RuntimeException("ID is NULL");
+                }
+
+                String id = idablePts.get(0).getPid();
+
+                try {
+                    max = (Long) getNodeService().getSortedValue(typeId, id, SortField.Type.LONG, true);
+                } catch (NumberFormatException e) {
+                    max = Long.parseLong(String.valueOf(getNodeService().getSortedValue(typeId, id, SortField.Type.INT, true)));
+                }
+
+                IAtomicLong sequence = getClusterService().getSequence(typeId);
+                Long current = sequence.get();
+                if (max == null || max == 0) {
+                    sequence.set(100);
+                } else if (max > current) {
+                    sequence.set(max + 10);
+                }
+                sequenceHolder.put(typeId, sequence);
             }
+            IAtomicLong sequence = sequenceHolder.get(typeId);
+            return sequence.incrementAndGet();
+        } else {
 
-            String id = idablePts.get(0).getPid();
+            NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(typeId);
+            Long sequence = nodeBindingInfo.retrieveSequence();
 
-            try {
-                max = (Long) getNodeService().getSortedValue(typeId, id, SortField.Type.LONG, true);
-            }catch (NumberFormatException e) {
-                max = Long.parseLong(String.valueOf(getNodeService().getSortedValue(typeId, id, SortField.Type.INT, true)));
-            }
-
-            IAtomicLong sequence = getClusterService().getSequence(typeId);
-            Long current = sequence.get();
-            if (max == null || max == 0) {
-                sequence.set(100);
-            } else if (max > current) {
-                sequence.set(max + 10);
-            }
-            sequenceHolder.put(typeId, sequence);
+            return (Long) sequence;
         }
-        IAtomicLong sequence = sequenceHolder.get(typeId);
-        return sequence.incrementAndGet();
     }
 
     public static ClusterService getClusterService() {

@@ -7,7 +7,6 @@ import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
 import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.QueryTerm;
-import net.ion.ice.core.query.QueryUtils;
 import net.ion.ice.core.query.ResultField;
 import org.apache.commons.lang3.StringUtils;
 
@@ -45,6 +44,8 @@ public class ReadContext implements Context {
     protected NodeBindingInfo nodeBindingInfo ;
 
     protected Object result ;
+
+    protected String dateFormat ;
 
     public NodeType getNodetype() {
         return nodeType;
@@ -233,12 +234,14 @@ public class ReadContext implements Context {
                 }
             }
         }else{
-            makeItemQueryResult(node, itemResult);
+            this.setNodeData(node);
+            makeItemQueryResult(node, itemResult, this.data);
         }
         return itemResult;
     }
 
-    protected void makeItemQueryResult(Node node, QueryResult itemResult) {
+    protected void makeItemQueryResult(Node node, QueryResult itemResult, Map<String, Object> contextData) {
+
         for (ResultField resultField : getResultFields()) {
             if (resultField.getContext() != null) {
                 ReadContext subQueryContext = (ReadContext) resultField.getContext();
@@ -247,7 +250,7 @@ public class ReadContext implements Context {
                 }
                 subQueryContext.makeQueryResult(itemResult, resultField.getFieldName());
             } else if(resultField.isStaticValue()){
-                itemResult.put(resultField.getFieldName(), resultField.getStaticValue());
+                itemResult.put(resultField.getFieldName(), ContextUtils.getValue(resultField.getStaticValue(), contextData));
             } else {
                 String fieldValue = resultField.getFieldValue();
                 fieldValue = fieldValue == null || StringUtils.isEmpty(fieldValue) ? resultField.getFieldName() : fieldValue;
