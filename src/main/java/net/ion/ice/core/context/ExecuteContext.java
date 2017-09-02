@@ -172,12 +172,9 @@ public class ExecuteContext extends ReadContext{
 
         }else {
             if(event != null && !event.equals("create") && !event.equals("update")) {
-                try {
-                    this.node = new Node(data, nodeType.getTypeId());
-                }catch (Exception e){}
                 execute = true;
                 return;
-            }else if(event != null && !event.equals("create") && !event.equals("save")){
+            }else if(event != null && event.equals("update")){
                 throw new IceRuntimeException("Not Exist Node Error : " + getId()) ;
             }
             try {
