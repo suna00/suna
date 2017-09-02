@@ -165,6 +165,10 @@ public class NodeUtils {
         }
     }
 
+    public static Long getDateLongValue(Object value){
+        return DateTools.round(NodeUtils.getDateValue(value), DateTools.Resolution.SECOND).getTime() ;
+    }
+
     public static String getDateStringValue(Object value, String dateFormat) {
         if (value == null) return null;
 
@@ -631,18 +635,12 @@ public class NodeUtils {
     }
 
     public static List<Node> initNodeList(String typeId, List<Object> list) {
-        Cache<String, NodeValue> nodeValueCache = getInfinispanService().getNodeValueCache();
-
         List<Node> nodeList = new ArrayList<>();
 
         for (Object item : list) {
             Node srcNode = (Node) item;
-            if (srcNode.getNodeValue() == null) {
-                srcNode.setNodeValue(nodeValueCache.get(typeId + NodeValue.NODEVALUE_SEPERATOR + srcNode.getId()));
-            }
             nodeList.add(srcNode.clone());
         }
-
         return nodeList;
     }
 

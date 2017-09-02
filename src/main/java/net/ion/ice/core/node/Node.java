@@ -22,8 +22,12 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     public static final String USERID = "userId";
     public static final String ANONYMOUS = "anonymous";
     public static final String SYSTEM = "system";
-
+    public static final String TYPE_SEPERATOR = "::";
     public static final String ID_SEPERATOR = ">";
+
+    public static List<String> NODE_VALUE_KEYS = Arrays.asList(new String[] {"id", "typeId", "owner", "modifier", "created", "changed", "status"}) ;
+
+
 
     @DocumentId
     @Field
@@ -31,10 +35,31 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     private String id ;
 
     @Field
+    @Analyzer(impl = CodeAnalyzer.class)
+    private String typeId;
+
+    @Field
+    @Analyzer(impl = CodeAnalyzer.class)
+    private String owner ;
+
+    @Field
+    @Analyzer(impl = CodeAnalyzer.class)
+    private String modifier ;
+
+
+    @Field(analyze = Analyze.NO)
+    @DateBridge(resolution = Resolution.SECOND)
+    private Date created ;
+
+    @Field(analyze = Analyze.NO)
+    @DateBridge(resolution = Resolution.SECOND)
+    private Date changed ;
+
+
+    @Field
     @FieldBridge(impl = PropertiesFieldBridge.class)
     private Properties properties ;
 
-    private transient NodeValue nodeValue ;
 
     public Node(){
         properties = new Properties() ;
@@ -45,11 +70,18 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     }
 
     public Node(String id, String typeId, String userId){
+        userId = StringUtils.isEmpty(userId) ? ANONYMOUS : userId ;
+
         this.id = id ;
+        this.typeId = typeId ;
+        this.created = new Date() ;
+        this.changed = created ;
+        this.owner = userId ;
+        this.modifier = userId ;
+
         properties = new Properties() ;
         this.properties.setId(id) ;
         this.properties.setTypeId(typeId) ;
-        this.nodeValue = new NodeValue(id, typeId, StringUtils.isEmpty(userId) ? ANONYMOUS : userId, new Date()) ;
     }
 
 
@@ -71,6 +103,12 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
 
     private void construct(Map<String, Object> data, String typeId, String userId) {
+        this.typeId = typeId ;
+        this.owner = userId ;
+        this.modifier = userId ;
+        this.created = new Date() ;
+        this.changed = created ;
+
         properties = new Properties() ;
         if(data.containsKey(ID)) {
             this.id = data.get(ID).toString();
@@ -110,10 +148,8 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         }
 
         this.putAll(data, typeId);
-
         this.properties.setId(id) ;
         this.properties.setTypeId(typeId) ;
-        this.nodeValue = new NodeValue(id, typeId, userId, new Date()) ;
     }
 
     private boolean isNullId() {
@@ -122,7 +158,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
     @Override
     public boolean containsKey(Object key) {
-        return properties.containsKey(key) || NodeValue.containsKey(key.toString());
+        return properties.containsKey(key) || NODE_VALUE_KEYS.contains(key.toString());
     }
 
     @Override
@@ -133,16 +169,60 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     @Override
     public Object get(Object key) {
         Object value = properties.get(key)  ;
-        if(value == null && nodeValue != null && nodeValue.containsKey(key.toString())){
-            value = nodeValue.getValue(key.toString()) ;
+        if(value == null && NODE_VALUE_KEYS.contains(key.toString())){
+            switch (key.toString()){
+                case "id":
+                    return id ;
+                case "typeId":
+                    return getTypeId() ;
+                case "owner" :
+                    return owner ;
+                case "modifier" :
+                    return modifier ;
+                case "created":
+                    return created ;
+                case "changed":
+                    return changed ;
+                default:
+                    return null ;
+            }
         }
         return value ;
     }
 
     @Override
     public Object put(String key, Object value) {
-        if(nodeValue != null && NodeValue.containsKey(key)){
-            nodeValue.putValue(key, value) ;
+        if(NODE_VALUE_KEYS.contains(key)){
+            switch (key){
+                case "id":
+                    this.id = value.toString();
+                    return id ;
+                case "typeId":
+                    setTypeId(value.toString());
+                    return getTypeId() ;
+                case "owner" :
+                    if (value instanceof Code) {
+                        owner = ((Code) value).getValue().toString();
+                    } else {
+                        owner = (String) value;
+                    }
+                    return owner ;
+                case "modifier" :
+                    if (value instanceof Code) {
+                        modifier = ((Code) value).getValue().toString();
+                    } else {
+                        modifier = (String) value;
+                    }
+                    return modifier ;
+                case "created":
+                    created = NodeUtils.getDateValue(value) ;
+                    return created ;
+                case "changed":
+                    changed = NodeUtils.getDateValue(value) ;
+                    return changed ;
+                default:
+                    return null ;
+            }
         }
         return properties.put(key, value);
     }
@@ -166,7 +246,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
     @Override
     public void putAll(Map<? extends String, ?> m) {
-        if(this.nodeValue != null && getTypeId() != null){
+        if(getTypeId() != null){
             putAll(m, getTypeId()) ;
         }else {
             properties.putAll(m);
@@ -208,15 +288,14 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
     public void setId(String id) {
         this.id = id;
-        this.nodeValue.setId(id) ;
     }
 
     public String getTypeId() {
-        return nodeValue.getTypeId();
+        return typeId;
     }
 
     public void setTypeId(String typeId) {
-        nodeValue.setTypeId(typeId) ;
+        this.typeId = typeId ;
     }
 
     @Override
@@ -224,15 +303,6 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         return this.properties.toString() ;
     }
 
-    public NodeValue getNodeValue() {
-        return nodeValue;
-    }
-
-    public void setNodeValue(NodeValue nodeValue) {
-        if(nodeValue != null) {
-            this.nodeValue = nodeValue;
-        }
-    }
 
     public boolean getBooleanValue(String pid){
         Object booleanValue = get(pid) ;
@@ -289,18 +359,19 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     }
 
     public Date getChanged(){
-        return nodeValue.getChanged() ;
+        return changed ;
     }
 
     public Node clone(){
         Node cloneNode = new Node() ;
         cloneNode.properties = properties.clone() ;
-        if(nodeValue != null) {
-            cloneNode.nodeValue = nodeValue.clone();
-            cloneNode.properties.setTypeId(getTypeId()) ;
-        }
 
-        cloneNode.id = getId();
+        cloneNode.id = id;
+        cloneNode.typeId = typeId ;
+        cloneNode.owner = owner ;
+        cloneNode.modifier = modifier ;
+        cloneNode.created = created ;
+        cloneNode.changed = changed ;
         cloneNode.properties.setId(id) ;
         return cloneNode ;
     }
@@ -308,18 +379,21 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     public Node clone(String typeId){
         Node cloneNode = new Node() ;
         cloneNode.properties = properties.clone() ;
-        if(nodeValue != null) {
-            cloneNode.nodeValue = nodeValue.clone();
-        }
 
         cloneNode.id = getId();
+        cloneNode.typeId = typeId ;
+        cloneNode.owner = owner ;
+        cloneNode.modifier = modifier ;
+        cloneNode.created = created ;
+        cloneNode.changed = changed ;
+
         cloneNode.properties.setId(id) ;
         cloneNode.properties.setTypeId(typeId) ;
         return cloneNode ;
     }
     public void setUpdate(String userId, Date changed) {
-        this.nodeValue.setModifier(StringUtils.isEmpty(userId) ? ANONYMOUS : userId) ;
-        this.nodeValue.setChanged(changed) ;
+        this.modifier = StringUtils.isEmpty(userId) ? ANONYMOUS : userId ;
+        this.changed = changed ;
     }
 
     public Node toDisplay() {
