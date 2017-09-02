@@ -212,7 +212,7 @@
     "propertyTypeName": "장바구니ID",
     "valueType": "REFERENCE",
     "required": true,
-    "idable": true,
+    "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,

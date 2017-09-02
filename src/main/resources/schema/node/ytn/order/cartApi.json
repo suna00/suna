@@ -17,7 +17,8 @@
         "select" : {
           "ds" : "ytnDevDb",
           "resultType" : "read",
-          "sql" : "select cart.* , (totalProductPrice + totalDeliveryPrice - totalDiscountPrice) as totalOrderPrice from ( select a.cartId, a.memberNo, a.siteId, a.sessionId, (select ifnull(sum(orderPrice),0) from cartProduct where cartId = a.cartId) as totalProductPrice , (select ifnull(sum(deliveryPrice),0) from cartdeliveryprice where cartId = a.cartId) as totalDeliveryPrice , 0 as totalDiscountPrice from cart a where cartId = {{:cartId}} or sessionId = '{{:sessionId}}') cart"
+          "description": "장바구니 전체 계산",
+          "sql" : "SELECT o.* , (totalProductPrice + totalDeliveryPrice - totalDiscountPrice) as totalOrderPrice from ( select t.cartId, (t.totalBaseOptionPrice + t.totalAddOptionPrice) as totalProductPrice, (SELECT ifnull(sum(deliveryPrice), 0) FROM cartdeliveryprice WHERE cartId = t.cartId) AS totalDeliveryPrice, 0 AS totalDiscountPrice from ( SELECT cp.cartId, sum((ifnull(pi.addPrice, 0) + ifnull(p.salePrice, 0)) * cp.quantity) AS totalBaseOptionPrice, (SELECT sum(pi.addPrice * ci.quantity) FROM cartproductitem ci, productoptionitem pi WHERE cartId = cp.cartId AND ci.addOptionItemId = pi.productOptionItemId)              AS totalAddOptionPrice FROM cartproduct cp, productoptionitem pi, product p WHERE cartId = @{cartId} AND cp.baseOptionItemId = pi.productOptionItemId AND p.productId = pi.productId ) t ) o"
         }
       },
       "referencedCartProduct" : {
@@ -38,7 +39,8 @@
             "select": {
               "ds": "ytnDevDb",
               "resultType": "read",
-              "sql": "select x.* , ((productPrice * quantity) + totalAddOptionPrice) as orderPrice from ( select a.cartProductId, a.cartId, a.productId, a.quantity, a.baseOptionItemId , b.name as baseOptionItemName , ifnull(b.addPrice,0) as baseAddPrice , ifnull(c.salePrice,0) as salePrice , (ifnull(b.addPrice,0) + ifnull(c.salePrice,0)) as productPrice , ifnull((select sum(ifnull(addOptionPrice,0) * quantity) from cartproductitem  where cartProductId = a.cartProductId),0) as totalAddOptionPrice from cartproduct a, productoptionitem b, product c where b.productOptionItemId = a.baseOptionItemId and c.productId = b.productId and a.cartProductId = @{cartProductId} ) x"
+              "description": "장바구니상품 레벨 계산",
+              "sql": "SELECT x.*, ((productPrice * quantity) + totalAddOptionPrice) AS orderPrice FROM (SELECT cp.cartProductId, cp.cartId, cp.productId, cp.quantity, cp.baseOptionItemId, pi.name                                                            AS baseOptionItemName, ifnull(pi.addPrice, 0)                                             AS baseAddPrice, ifnull(p.salePrice, 0)                                             AS salePrice, (ifnull(pi.addPrice, 0) + ifnull(p.salePrice, 0))                  AS productPrice, ifnull((SELECT sum(pi.addPrice * ci.quantity) FROM cartproductitem ci, productoptionitem pi WHERE cartId = cp.cartId and ci.cartProductId = cp.cartProductId AND ci.addOptionItemId = pi.productOptionItemId), 0) AS totalAddOptionPrice FROM cartproduct cp, productoptionitem pi, product p WHERE pi.productOptionItemId = cp.baseOptionItemId AND p.productId = pi.productId AND cp.cartProductId = @{cartProductId}) x "
             }
           }
         }
@@ -48,8 +50,8 @@
   {
     "typeId" : "apiConfig",
     "category" : "cart",
-    "apiId" : "addCart",
-    "apiName" : "장바구니 담기",
+    "apiId" : "changeQuantity",
+    "apiName" : "장바구니 수량 변경",
     "method" : "GET",
     "parameters" : [
     ],
@@ -58,20 +60,20 @@
         "select" : {
           "ds" : "ytnDevDb",
           "resultType" : "read",
-          "sql" : "select max(cartId) as searchCartId from cart where memberNo = @{memberNo} or sessionId = @{sessionId}"
+          "sql" : "select (stockQuantity >= @{quantity}) as isValid from productOptionItem where productOptionItemId = @{productOptionItemId} "
         }
       },
-      "successADD" : {
-        "typeId": "cart",
-        "event": "create",
-        "if" : "{{:equals(searchCartId, null)}}",
+      "success" : {
+        "typeId": "cartProduct",
+        "event": "update",
+        "if" : "{{:excessInt(isValid, 0)}}",
         "data": {
-          "memberNo": "{{:memberNo}}",
-          "siteId": "{{:siteId}}",
-          "sessionId": "{{:sessionId}}",
-          "buyNowYn": "{{:buyNowYn}}"
+          "cartProductId": "{{:cartProductId}}",
+          "quantity":"{{:quantity}}",
+          "changed":"{{:now}}"
         }
       }
     }
   }
+
 ]
