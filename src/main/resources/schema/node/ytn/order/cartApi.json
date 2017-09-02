@@ -1,36 +1,37 @@
 [
   {
-    "typeId" : "apiCategory",
-    "id" : "cart",
-    "categoryName" : "장바구니 API"
+    "typeId": "apiCategory",
+    "id": "cart",
+    "categoryName": "장바구니 API"
   },
   {
-    "typeId" : "apiConfig",
-    "category" : "cart",
-    "apiId" : "read",
-    "apiName" : "장바구니 조회",
-    "method" : "GET",
-    "parameters" : [
+    "typeId": "apiConfig",
+    "category": "cart",
+    "apiId": "read",
+    "apiName": "장바구니 조회",
+    "method": "GET",
+    "parameters": [
     ],
-    "config" : {
-      "item" : {
-        "select" : {
-          "ds" : "ytnDevDb",
-          "resultType" : "read",
+    "config": {
+      "item": {
+        "select": {
+          "ds": "ytnDevDb",
+          "resultType": "read",
           "description": "장바구니 전체 계산",
-          "sql" : "SELECT o.* , (totalProductPrice + totalDeliveryPrice - totalDiscountPrice) as totalOrderPrice from ( select t.cartId, (t.totalBaseOptionPrice + t.totalAddOptionPrice) as totalProductPrice, (SELECT ifnull(sum(deliveryPrice), 0) FROM cartdeliveryprice WHERE cartId = t.cartId) AS totalDeliveryPrice, 0 AS totalDiscountPrice from ( SELECT cp.cartId, sum((ifnull(pi.addPrice, 0) + ifnull(p.salePrice, 0)) * cp.quantity) AS totalBaseOptionPrice, (SELECT sum(pi.addPrice * ci.quantity) FROM cartproductitem ci, productoptionitem pi WHERE cartId = cp.cartId AND ci.addOptionItemId = pi.productOptionItemId)              AS totalAddOptionPrice FROM cartproduct cp, productoptionitem pi, product p WHERE cartId = @{cartId} AND cp.baseOptionItemId = pi.productOptionItemId AND p.productId = pi.productId ) t ) o"
+          "sql": "SELECT o.* , (totalProductPrice + totalDeliveryPrice - totalDiscountPrice) as totalOrderPrice from ( select t.cartId, (t.totalBaseOptionPrice + t.totalAddOptionPrice) as totalProductPrice, (SELECT ifnull(sum(deliveryPrice), 0) FROM cartdeliveryprice WHERE cartId = t.cartId) AS totalDeliveryPrice, 0 AS totalDiscountPrice from ( SELECT cp.cartId, sum((ifnull(pi.addPrice, 0) + ifnull(p.salePrice, 0)) * cp.quantity) AS totalBaseOptionPrice, (SELECT sum(pi.addPrice * ci.quantity) FROM cartproductitem ci, productoptionitem pi WHERE cartId = cp.cartId AND ci.addOptionItemId = pi.productOptionItemId)              AS totalAddOptionPrice FROM cartproduct cp, productoptionitem pi, product p WHERE cartId = @{cartId} AND cp.baseOptionItemId = pi.productOptionItemId AND p.productId = pi.productId ) t ) o"
         }
       },
-      "referencedCartProduct" : {
-        "typeId" : "cartProduct",
-        "query" : [
-          {"sorting" : "cartDeliveryPriceId desc,created desc"},
-          {"field" : "cartId", "method" : "matching", "value" : "{{:cartId}}"},
-          {"includeReferenced" : true, "referenceView": "baseOptionItemId, cartDeliveryPriceId"}
+      "referencedCartProduct": {
+        "typeId": "cartProduct",
+        "query": [
+          { "sorting": "cartDeliveryPriceId desc,created desc" },
+          { "field": "cartId", "method": "matching", "value": "{{:cartId}}" },
+          { "includeReferenced": true, "referenceView": "productId, cartDeliveryPriceId" }
         ],
-        "response" : {
+        "response": {
           "cartProductId": "",
           "baseOptionItemId": "",
+          "productId": "",
           "quantity": "",
           "vendorId": "",
           "cartDeliveryPriceId": "",
@@ -48,32 +49,31 @@
     }
   },
   {
-    "typeId" : "apiConfig",
-    "category" : "cart",
-    "apiId" : "changeQuantity",
-    "apiName" : "장바구니 수량 변경",
-    "method" : "GET",
-    "parameters" : [
+    "typeId": "apiConfig",
+    "category": "cart",
+    "apiId": "changeQuantity",
+    "apiName": "장바구니 수량 변경",
+    "method": "GET",
+    "parameters": [
     ],
-    "config" : {
-      "item" : {
-        "select" : {
-          "ds" : "ytnDevDb",
-          "resultType" : "read",
-          "sql" : "select (stockQuantity >= @{quantity}) as isValid from productOptionItem where productOptionItemId = @{productOptionItemId} "
+    "config": {
+      "item": {
+        "select": {
+          "ds": "ytnDevDb",
+          "resultType": "read",
+          "sql": "select (stockQuantity >= @{quantity}) as isValid from productOptionItem where productOptionItemId = @{productOptionItemId} "
         }
       },
-      "success" : {
+      "success": {
         "typeId": "cartProduct",
         "event": "update",
-        "if" : "{{:excessInt(isValid, 0)}}",
+        "if": "{{:excessInt(isValid, 0)}}",
         "data": {
           "cartProductId": "{{:cartProductId}}",
-          "quantity":"{{:quantity}}",
-          "changed":"{{:now}}"
+          "quantity": "{{:quantity}}",
+          "changed": "{{:now}}"
         }
       }
     }
   }
-
 ]
