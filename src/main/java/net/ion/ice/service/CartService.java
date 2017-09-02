@@ -49,10 +49,7 @@ public class CartService {
     }
 
     private void mergeList(Map<String, Object> data, Object cartId, String tid) throws IOException {
-        NodeType nodeType = NodeUtils.getNodeType(tid);
-        QueryContext queryContext = QueryContext.createQueryContextFromText("cartId_matching="+cartId, nodeType);
-        List<Map<String, Object>> referenced = getNodeBindingService().getNodeBindingInfo(nodeType.getTypeId()).list(queryContext);
-
+        List<Map<String, Object>> referenced = getList(tid, "cartId_matching="+cartId);
         List<Map<String, Object>> maps = JsonUtils.parsingJsonToList(data.get(tid).toString());
 
         boolean exist = false;
@@ -70,6 +67,13 @@ public class CartService {
             }
         }
 
+    }
+
+//    "nodeType=data" getList
+    private List<Map<String, Object>> getList(String tid, String searchText) {
+        NodeType nodeType = NodeUtils.getNodeType(tid);
+        QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, nodeType);
+        return getNodeBindingService().getNodeBindingInfo(nodeType.getTypeId()).list(queryContext);
     }
 
     private void newCart(Map<String, Object> data) throws IOException {
@@ -97,6 +101,10 @@ public class CartService {
             list.add(node);
         }
         return list;
+    }
+
+    public void setDeliveryPrice(){
+
     }
 
     public void update(ExecuteContext context){
