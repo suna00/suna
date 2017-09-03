@@ -45,6 +45,9 @@ public class NodeService {
     private FileService fileService ;
 
     @Autowired
+    private I18nConfiguration i18nConfiguration ;
+
+    @Autowired
     private ApplicationContextManager applicationContextManager;
 
     private Map<String, NodeType> nodeTypeCache ;
@@ -67,6 +70,9 @@ public class NodeService {
         this.nodeTypeCache = new ConcurrentHashMap<>() ;
     }
 
+    public String getDefaultLocale(){
+        return i18nConfiguration.getDefaults() ;
+    }
 
     public NodeType getNodeType(String typeId) {
         if(nodeTypeCache != null && nodeTypeCache.containsKey(typeId)) {

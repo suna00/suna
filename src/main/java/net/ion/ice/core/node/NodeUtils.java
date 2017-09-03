@@ -361,6 +361,13 @@ public class NodeUtils {
                 return null;
             }
             default:
+                if(pt.isI18n() && context.hasLocale() && value instanceof Map){
+                    if(((Map) value).containsKey(context.getLocale())){
+                        return ((Map) value).get(context.getLocale()) ;
+                    }else{
+                        return ((Map) value).get(getNodeService().getDefaultLocale()) ;
+                    }
+                }
                 return value;
         }
     }
@@ -524,7 +531,7 @@ public class NodeUtils {
             }
         }
         if (pt.isI18n() && value instanceof Map) {
-            return ((Map) value).get("en");
+            return ((Map) value).get(getNodeService().getDefaultLocale());
         }
         switch (pt.getValueType()) {
             case FILE: {
@@ -653,7 +660,7 @@ public class NodeUtils {
             Map<String, Object> i18nData = new HashMap<>();
             value = NodeUtils.getStoreValue(value, pt, id);
             if (value instanceof String) {
-                i18nData.put("en", value);
+                i18nData.put(getNodeService().getDefaultLocale(), value);
             } else if (value instanceof Map) {
                 i18nData = (Map<String, Object>) value;
             }
