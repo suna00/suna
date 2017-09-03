@@ -205,7 +205,7 @@ public class NodeUtils {
                     if (value instanceof Reference) {
                         return value;
                     }
-                    return NodeUtils.getReferenceValue(value, pt);
+                    return NodeUtils.getReferenceValue(null, value, pt);
                 }
             }
             case REFERENCES: {
@@ -218,7 +218,7 @@ public class NodeUtils {
                             if (pt.isReferenceView()) {
                                 refValues.add(NodeUtils.getReferenceValueView(null, refVal, pt));
                             } else {
-                                refValues.add(NodeUtils.getReferenceValue(refVal, pt));
+                                refValues.add(NodeUtils.getReferenceValue(null, refVal, pt));
                             }
                         }
                     }
@@ -252,14 +252,14 @@ public class NodeUtils {
             }
             Node refNode = getNode(referenceType, refId);
             NodeType nodeType = nodeService.getNodeType(referenceType);
-            return new ReferenceView(refNode.toDisplay(context), nodeType);
+            return new ReferenceView(refNode.toDisplay(context), nodeType, context);
 
         } catch (Exception e) {
             return new ReferenceView(value.toString(), value.toString());
         }
     }
 
-    public static Reference getReferenceValue(Object value, PropertyType pt) {
+    public static Reference getReferenceValue(ReadContext context, Object value, PropertyType pt) {
         try {
             NodeService nodeService = getNodeService();
             String referenceType = pt.getReferenceType() ;
@@ -272,7 +272,7 @@ public class NodeUtils {
 
             Node refNode = getNode(referenceType, refId);
             NodeType nodeType = nodeService.getNodeType(referenceType);
-            return new Reference(refNode, nodeType);
+            return new Reference(refNode, nodeType, context);
         } catch (Exception e) {
             return new Reference(value.toString(), value.toString());
         }
@@ -292,7 +292,7 @@ public class NodeUtils {
                 if (value == null) return null;
                 if (context.isReferenceView(pt.getPid())) {
                     if (value instanceof ReferenceView) {
-                        return value;
+                        return NodeUtils.getReferenceValueView(context, ((ReferenceView) value).getRefId(), pt);
                     }
                     if (context instanceof DataQueryContext) {
                         return NodeUtils.getReferenceValueView(context, StringUtils.isEmpty(pt.getCodeFilter()) ? value : pt.getCodeFilter()+Node.ID_SEPERATOR+value, pt);
@@ -304,9 +304,9 @@ public class NodeUtils {
                         return value;
                     }
                     if (context instanceof DataQueryContext) {
-                        return NodeUtils.getReferenceValue(StringUtils.isEmpty(pt.getCodeFilter()) ? value : pt.getCodeFilter()+Node.ID_SEPERATOR+value, pt);
+                        return NodeUtils.getReferenceValue(context, StringUtils.isEmpty(pt.getCodeFilter()) ? value : pt.getCodeFilter()+Node.ID_SEPERATOR+value, pt);
                     } else {
-                        return NodeUtils.getReferenceValue(value, pt);
+                        return NodeUtils.getReferenceValue(context, value, pt);
                     }
                 }
             }
@@ -326,9 +326,9 @@ public class NodeUtils {
                             }
                         } else {
                             if (context instanceof DataQueryContext) {
-                                refValues.add(NodeUtils.getReferenceValue(StringUtils.isEmpty(pt.getCodeFilter()) ? value : pt.getCodeFilter()+Node.ID_SEPERATOR+refVal, pt));
+                                refValues.add(NodeUtils.getReferenceValue(context, StringUtils.isEmpty(pt.getCodeFilter()) ? value : pt.getCodeFilter()+Node.ID_SEPERATOR+refVal, pt));
                             } else {
-                                refValues.add(NodeUtils.getReferenceValue(refVal, pt));
+                                refValues.add(NodeUtils.getReferenceValue(context, refVal, pt));
                             }
                         }
                     }

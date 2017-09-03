@@ -358,6 +358,34 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         return getId().toString() ;
     }
 
+    public String getLabel(NodeType nodeType, ReadContext context) {
+        if(context == null) return getLabel(nodeType) ;
+        for(PropertyType pt : nodeType.getPropertyTypes()){
+            if(pt.isLabelable()){
+                if(pt.isI18n() && context.hasLocale()){
+                    return getStringValue(pt.getPid(), context.getLocale()) ;
+                }
+                return getStringValue(pt.getPid()) ;
+            }
+        }
+        return getId().toString() ;
+    }
+
+    private String getStringValue(String pid, String locale) {
+        Object value = get(pid) ;
+        if(value == null) return "" ;
+        if(value instanceof String){
+            return (String) value;
+        }else if(value instanceof Map){
+            if(((Map) value).containsKey(locale)){
+                return ((Map) value).get(locale).toString();
+            }else{
+                return (String) ((Map) value).get(NodeUtils.getNodeService().getDefaultLocale());
+            }
+        }
+        return value.toString() ;
+    }
+
     public Date getChanged(){
         return changed ;
     }
@@ -469,6 +497,8 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
         return NodeUtils.getNode(referenceType, refId);
     }
+
+
 
 
 //    public Object getValue(String pid, PropertyType.ValueType valueType) {
