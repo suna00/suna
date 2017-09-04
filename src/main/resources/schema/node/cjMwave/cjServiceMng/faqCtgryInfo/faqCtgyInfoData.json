@@ -2,15 +2,55 @@
   {
     "typeId": "faqCtgryInfo",
     "faqCtgrySeq": 515425,
-    "faqCtgryNm": "ASK",
+    "faqCtgryNm": "Enjoying Mwave Site",
     "showOdrg": 1,
     "showYn": true,
-    "descSbst": "What is the Mwave",
-    "thumImgPath": "",
-    "glblChatSeq": 1,
-    "glblChatChSeq": "",
-    "prtcpMbrId": "",
-    "chatOriginSbst": "",
-    "chatTranSbst": ""
+    "descSbst": "Learn the basics to help you make the most of Mwave site",
+    "thumImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg"
+  },
+  {
+    "typeId": "faqCtgryInfo",
+    "faqCtgrySeq": 515426,
+    "faqCtgryNm": "My Account",
+    "showOdrg": 2,
+    "showYn": true,
+    "descSbst": "Manage your profile and account settings",
+    "thumImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg"
+  },
+  {
+    "typeId": "faqCtgryInfo",
+    "faqCtgrySeq": 515427,
+    "faqCtgryNm": "Vote & Rank",
+    "showOdrg": 3,
+    "showYn": true,
+    "descSbst": "Introduce Vote & Rank programand learn the basics to help youparticipate in.",
+    "thumImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg"
+  },
+  {
+    "typeId": "faqCtgryInfo",
+    "faqCtgrySeq": 515428,
+    "faqCtgryNm": "SHOP",
+    "showOdrg": 4,
+    "showYn": true,
+    "descSbst": "Learn the basics to help you make the most of MD SHOP",
+    "thumImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg"
+  },
+  {
+    "typeId": "faqCtgryInfo",
+    "faqCtgrySeq": 515429,
+    "faqCtgryNm": "Technical Problems",
+    "showOdrg": 5,
+    "showYn": true,
+    "descSbst": "Help your Technical Problems on Mwave web site",
+    "thumImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg"
+  },
+  {
+    "typeId": "faqCtgryInfo",
+    "faqCtgrySeq": 515430,
+    "faqCtgryNm": "Policies and reporting",
+    "showOdrg": 6,
+    "showYn": true,
+    "descSbst": "Understand the Mwave Rules and report Violations",
+    "thumImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg"
   }
 ]
