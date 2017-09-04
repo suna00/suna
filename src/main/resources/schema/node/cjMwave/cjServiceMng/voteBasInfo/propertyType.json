@@ -556,6 +556,23 @@
   {
     "typeId": "propertyType",
     "tid": "voteBasInfo",
+    "pid": "refdSeriesItemList",
+    "id": "voteBasInfo>refdSeriesItemList",
+    "propertyTypeName": "시리즈 항목정보 목록",
+    "valueType": "REFERENCED",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "sersVoteItemInfo",
+    "referenceValue": "voteSeq",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "voteBasInfo",
     "pid": "owner",
     "id": "voteBasInfo>owner",
     "propertyTypeName": "등록자",

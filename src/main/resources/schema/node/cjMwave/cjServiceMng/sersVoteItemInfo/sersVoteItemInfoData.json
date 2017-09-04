@@ -3,18 +3,18 @@
     "typeId": "sersVoteItemInfo",
     "sersVoteItemSeq": 100,
     "itemDivCd": "4",
-    "voteSeq": 54503490399,
-    "sersItemVoteSeq": 100,
-    "banrSeq": 100,
+    "voteSeq": 567876,
+    "sersItemVoteSeq": 234235,
+    "banrSeq": null,
     "sortOdrg": 1
   },
   {
     "typeId": "sersVoteItemInfo",
     "sersVoteItemSeq": 101,
     "itemDivCd": "4",
-    "voteSeq": 24341421311,
-    "sersItemVoteSeq": 101,
-    "banrSeq": 101,
+    "voteSeq": 567876,
+    "sersItemVoteSeq": 334545,
+    "banrSeq": null,
     "sortOdrg": 1
   }
 ]

@@ -134,9 +134,72 @@
           "limit": "1"
         },
         {
-          "includeReferenced": true
+          "referenceView": "sersItemVoteSeq","includeReferenced": true
         }
-      ]
+      ],
+      "response": {
+        "voteSeq": "",
+        "voteFormlCd": "",
+        "voteNm": "",
+        "voteDesc": "",
+        "voteCtgry": "",
+        "thumImgPath": "",
+        "voteStDt": "",
+        "voteFnsDt": "",
+        "showLoCd": "",
+        "showYn": "",
+        "showCntryCdList": "",
+        "porseNumShowYn": "",
+        "bradTelcsDt": "",
+        "tgtDivCd": "",
+        "selScopeCd": "",
+        "alignFormlCd": "",
+        "selItemCnt": "",
+        "ansSelTmsCnt": "",
+        "cpturAplyYn": "",
+        "rstrtnPredDivCd": "",
+        "rstrtnDayCnt": "",
+        "rstrtnVoteCnt": "",
+        "rstrtnPvCnt": "",
+        "accumRstrtnAlwdYn": "",
+        "userVoteRstrtnYn": "",
+        "userVoteApdUseCnt": "",
+        "rankRftRstrtnYn": "",
+        "rankWvalu": "",
+        "mwmcUnearnedWinYn": "",
+        "refdPredRstrtnList": "",
+        "findKywrd": "",
+        "refdItemList": {
+          "typeId": "voteItemInfo",
+          "query": [
+            {
+              "field": "voteSeq",
+              "method": "referenceJoin",
+              "value": "voteSeq_matching={{:voteSeq}}"
+            },
+            {
+              "referenceView": false
+            }
+          ]
+        },
+        "refdSeriesItemList": {
+          "typeId": "sersVoteItemInfo",
+          "query": [
+            {
+              "field": "voteSeq",
+              "method": "referenceJoin",
+              "value": "voteSeq_matching={{:voteSeq}}"
+            },
+            {
+              "referenceView": "sersItemVoteSeq"
+            }
+          ]
+        },
+        "owner": "",
+        "created": "",
+        "modifier": "",
+        "changed": ""
+      }
     }
   },
   {
@@ -170,7 +233,7 @@
         "data": {
           "voteSeq": "{{:voteSeq}}",
           "voteItemSeq": "{{:voteQueiSeq}}",
-          "prtcpMbrId": "{{:snsKey}}>{{:snsTypeCd}}"
+          "prtcpMbrId": "{{:snsTypeCd}}>{{:snsKey}}"
         }
       }
     }

@@ -495,6 +495,8 @@
         {
           "page": "{{:page}}",
           "pageSize": "{{:pageSize}}"
+        },{
+          "referenceView": "compontSinglePhotoIds"
         }
       ]
     }
