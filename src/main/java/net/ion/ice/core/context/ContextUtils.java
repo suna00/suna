@@ -1,11 +1,14 @@
 package net.ion.ice.core.context;
 
 import net.ion.ice.core.json.JsonUtils;
+import net.ion.ice.core.node.NodeType;
+import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.query.ResultField;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +22,15 @@ public class ContextUtils {
         Map<String, Object> data = new HashMap<>();
         if(parameterMap == null) return data ;
         for (String paramName : parameterMap.keySet()) {
+
+            if(paramName.contains(".")){
+                String subTypeId = StringUtils.substringBefore(paramName, ".") ;
+                NodeType subNodeType = NodeUtils.getNodeType(subTypeId) ;
+                if(subNodeType != null){
+                    List<Map<String, Object>> subData = new ArrayList<>() ;
+
+                }
+            }
 
             String[] values = parameterMap.get(paramName);
             String value = null;

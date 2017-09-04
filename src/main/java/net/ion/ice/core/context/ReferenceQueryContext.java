@@ -50,12 +50,10 @@ public class ReferenceQueryContext extends QueryContext{
         for(Object obj : resultList){
             Node node = (Node) obj;
             QueryResult code = new QueryResult() ;
-            List<String> labelablePids = nodeType.getLabelablePIds();
-            Object label = labelablePids.isEmpty() ? "" : node.get(labelablePids.get(0));
 
             code.put("refId", node.getId()) ;
             code.put("value", StringUtils.contains(node.getId(), Node.ID_SEPERATOR) ? StringUtils.substringAfterLast(node.getId(), Node.ID_SEPERATOR) : node.getId());
-            code.put("label", label) ;
+            code.put("label", node.getLabel(nodeType, this)) ;
             subList.add(code) ;
         }
         return makePaging(fieldName, subList);
