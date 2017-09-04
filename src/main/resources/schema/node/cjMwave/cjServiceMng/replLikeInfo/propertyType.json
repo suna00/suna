@@ -37,6 +37,23 @@
   {
     "typeId": "propertyType",
     "tid": "replLikeInfo",
+    "pid": "mbrId",
+    "id": "replLikeInfo>mbrId",
+    "propertyTypeName": "회원 아이디",
+    "valueType": "REFERENCE",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "mbrInfo",
+    "referenceValue": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "replLikeInfo",
     "pid": "owner",
     "id": "replLikeInfo>owner",
     "propertyTypeName": "등록자",

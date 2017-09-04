@@ -237,5 +237,65 @@
         }
       }
     }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv004",
+    "apiName": "투표 당첨자 조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "voteSeq",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "votePwnrInfo",
+      "query": [
+        {
+          "field": "pwnrBasSeq",
+          "method": "referenceJoin",
+          "value": "voteSeq_matching={{:voteSeq}}&limit=1"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        }
+      ],
+      "response":{
+        "voteSeq": {
+          "value":"{{:voteSeq}}"
+        },
+        "votePwnrSeq":"",
+        "mbrId":"",
+        "mbrFirstName":"",
+        "mbrLastName":"",
+        "email":"",
+        "mblNo":"",
+        "homeAdr":"",
+        "memo":"",
+        "prtcpDate":"created"
+      }
+    }
   }
 ]

@@ -2142,5 +2142,85 @@
     "name": "CLIP",
     "order": 2,
     "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contsMetaDivTid",
+    "codeId": "1",
+    "name": "artist",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contsMetaDivTid",
+    "codeId": "2",
+    "name": "song",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contsMetaDivTid",
+    "codeId": "3",
+    "name": "album",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contsMetaDivTid",
+    "codeId": "4",
+    "name": "musicVideo",
+    "order": 4,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contsMetaDivCd",
+    "codeId": "5",
+    "name": "pgmVideo",
+    "order": 5,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contsMetaDivTid",
+    "codeId": "6",
+    "name": "groupPhoto",
+    "order": 6,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contsMetaDivTid",
+    "codeId": "7",
+    "name": "singlePhoto",
+    "order": 7,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contsMetaDivTid",
+    "codeId": "8",
+    "name": "news",
+    "order": 8,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contsMetaDivTid",
+    "codeId": "9",
+    "name": "voteBasInfo",
+    "order": 9,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contsMetaDivTid",
+    "codeId": "10",
+    "name": "program",
+    "order": 10,
+    "active": true
   }
 ]

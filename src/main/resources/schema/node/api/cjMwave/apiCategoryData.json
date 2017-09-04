@@ -406,5 +406,39 @@
     "commonResponse": {
       "sysDt": "{{:sysdate}}"
     }
+  },
+  {
+    "typeId": "apiCategory",
+    "id": "mbrContsAtvy",
+    "categoryName": "MEMBER CONTENTS ACTIVITY API",
+    "dateFormat": "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat": {
+      "default": "http://localhost:8080/"
+    },
+    "commonParameters": [
+      {
+        "paramName": "apiKey",
+        "required": true
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "commonResponse": {
+      "sysDt": "{{:sysdate}}"
+    }
   }
 ]

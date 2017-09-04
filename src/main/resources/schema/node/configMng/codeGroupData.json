@@ -439,5 +439,12 @@
     "name": "클립 종류 코드",
     "active": true,
     "desc": "클립 종류 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "contsMetaDivTid",
+    "name": "콘텐츠 메타 구분 TID",
+    "active": true,
+    "desc": "콘텐츠 메타 구분 코드값에 대한 TID정보(내부용)"
   }
 ]
