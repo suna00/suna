@@ -176,18 +176,16 @@
       }
     ],
     "config": {
-      "createItem": {
-        "typeId": "qna",
-        "event": "create",
-        "data": {
-          "qnarId": "{{:snsTypeCd}}>{{:snsKey}}",
-          "qnaNm": "{{:qnaNm}}",
-          "qnaFild": "{{:qnaFildCd}}",
-          "qstnrEmail": "{{:qstnrEmail}}",
-          "qstnSbst": "{{:qstnSbst}}",
-          "qstnAtcFilePath": "{{:qstnAtcFile}}",
-          "trtSttusCd": "1"
-        }
+      "typeId": "qna",
+      "event": "create",
+      "data": {
+        "qnarId": "{{:snsTypeCd}}>{{:snsKey}}",
+        "qnaNm": "{{:qnaNm}}",
+        "qnaFild": "{{:qnaFildCd}}",
+        "qstnrEmail": "{{:qstnrEmail}}",
+        "qstnSbst": "{{:qstnSbst}}",
+        "qstnAtcFilePath": "{{:qstnAtcFile}}",
+        "trtSttusCd": "1"
       }
     }
   },

@@ -42,7 +42,7 @@
           "name": ""
         }
       },
-      "createItem": {
+      "root": {
         "typeId": "contsLikeInfo",
         "event": "save",
         "data": {
@@ -74,12 +74,10 @@
       }
     ],
     "config": {
-      "deleteItem": {
-        "typeId": "contsLikeInfo",
-        "event": "delete",
-        "data": {
-          "likeSeq": "{{:likeSeq}}"
-        }
+      "typeId": "contsLikeInfo",
+      "event": "delete",
+      "data": {
+        "likeSeq": "{{:likeSeq}}"
       }
     }
   },
@@ -104,13 +102,111 @@
       }
     ],
     "config": {
-      "createItem": {
-        "typeId": "replLikeInfo",
-        "event": "save",
-        "data": {
-          "replSeq": "{{:contsReplSeq}}",
-          "mbrId": "{{:snsTypeCd}}>{{:snsKey}}"
-        }
+      "typeId": "replLikeInfo",
+      "event": "save",
+      "data": {
+        "replSeq": "{{:contsReplSeq}}",
+        "mbrId": "{{:snsTypeCd}}>{{:snsKey}}"
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "mbrContsAtvy",
+    "apiId": "IfCmt003",
+    "apiName": "댓글 수정",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "contsReplSeq",
+        "required": true
+      },
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      },
+      {
+        "paramName": "replSbst",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "replInfo",
+      "event": "save",
+      "data": {
+        "replSeq": "{{:contsReplSeq}}",
+        "replSbst": "{{:replSbst}}"
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "mbrContsAtvy",
+    "apiId": "IfCmt004",
+    "apiName": "댓글 삭제",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "contsReplSeq",
+        "required": true
+      },
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "replInfo",
+      "event": "delete",
+      "data": {
+        "replSeq": "{{:contsReplSeq}}"
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "mbrContsAtvy",
+    "apiId": "IfCmt100",
+    "apiName": "댓글 신고하기",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "contsReplSeq",
+        "required": true
+      },
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      },
+      {
+        "paramName": "dclaDivCd",
+        "required": true
+      },
+      {
+        "paramName": "dclaSbst",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "replDclaHst",
+      "event": "save",
+      "data": {
+        "replSeq": "{{:contsReplSeq}}",
+        "dclaDivCd": "{{:dclaDivCd}}",
+        "dclaSbst": "{{:dclaSbst}}",
+        "dclarId": "{{:snsTypeCd}}>{{:snsKey}}"
       }
     }
   }
