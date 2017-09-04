@@ -208,6 +208,7 @@ public class QueryContext extends ReadContext {
         setMaxSize(limit) ;
     }
 
+
     public void setQueryListSize(int queryListSize) {
         this.queryListSize = queryListSize;
     }

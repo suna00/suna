@@ -111,7 +111,7 @@
       "typeId": "testItem",
       "query" : [
         {"field" : "category", "method" : "referenceJoin", "value" : "categoryType_matching={{:categoryType}}" },
-        {"includeReferenced" : true, "referenceView" : "category"}
+        {"includeReferenced" : false, "referenceView" : "category"}
       ]
     }
   },

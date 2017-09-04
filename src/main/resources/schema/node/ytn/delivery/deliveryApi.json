@@ -1,0 +1,41 @@
+[
+  {
+    "typeId": "apiCategory",
+    "id": "myDeliveryAddress",
+    "categoryName": "나의 배송지"
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "myDeliveryAddress",
+    "apiId": "setBasic",
+    "apiName": "기본배송지 설정 (성공 후 result 는 정상인데 table 에 갱신 안됨) ",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "asis": {
+        "select" : {
+          "ds" : "ytnDevDb",
+          "resultType" : "read",
+          "sql" : "select max(myDeliveryAddressId) as asisId from myDeliveryAddress where memberNo = @{memberNo} and defaultYn='y' "
+        }
+      },
+      "asisSetN" : {
+        "typeId": "myDeliveryAddress",
+        "event": "update",
+        "data": {
+          "myDeliveryAddressId": "{{:asisId}}",
+          "defaultYn": "n"
+        }
+      },
+      "tobeSetY" : {
+        "typeId": "myDeliveryAddress",
+        "event": "update",
+        "data": {
+          "myDeliveryAddressId": "{{:myDeliveryAddressId}}",
+          "defaultYn": "y"
+        }
+      }
+    }
+  }
+]
