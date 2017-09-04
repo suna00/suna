@@ -31,8 +31,13 @@
       "typeId": "mcdLineupInfo",
       "query": [
         {
-          "field": "bradDate",
-          "method": "matching",
+          "field": "bradStDate",
+          "method": "below",
+          "value": "{{:bradDate}}"
+        },
+        {
+          "field": "bradFnsDate",
+          "method": "above",
           "value": "{{:bradDate}}"
         },
         {

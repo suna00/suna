@@ -495,7 +495,8 @@
         {
           "page": "{{:page}}",
           "pageSize": "{{:pageSize}}"
-        },{
+        },
+        {
           "referenceView": "compontSinglePhotoIds"
         }
       ]
@@ -519,7 +520,12 @@
     ],
     "config": {
       "typeId": "groupPhoto",
-      "id": "{{:groupPhotoId}}"
+      "id": "{{:groupPhotoId}}",
+      "query": [
+        {
+          "referenceView": "compontSinglePhotoIds"
+        }
+      ]
     }
   },
   {
