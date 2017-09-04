@@ -281,7 +281,7 @@
     "indexable": true,
     "required": true,
     "labelable": true,
-    "analyzer": "cjk"
+    "analyzer": "simple"
   },
   {
     "typeId": "propertyType",
