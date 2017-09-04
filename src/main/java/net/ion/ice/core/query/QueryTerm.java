@@ -209,8 +209,6 @@ public class QueryTerm {
         BELOW("<="),
         EXCESS(">"),
         UNDER("<"),
-        NOTMATCHING(""),
-        NOTEQUALS("<>"),
         FROMTO("");
 
 

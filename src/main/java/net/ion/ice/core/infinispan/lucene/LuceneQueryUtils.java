@@ -5,11 +5,13 @@ import net.ion.ice.IceRuntimeException;
 import net.ion.ice.core.context.QueryContext;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeUtils;
+import net.ion.ice.core.node.PropertyType;
 import net.ion.ice.core.query.QueryTerm;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
+import org.apache.lucene.document.DateTools;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.search.*;
 import org.apache.lucene.util.BytesRef;
@@ -20,6 +22,7 @@ import org.hibernate.search.bridge.spi.ConversionContext;
 import org.hibernate.search.engine.spi.DocumentBuilderIndexedEntity;
 import org.hibernate.search.exception.AssertionFailure;
 import org.hibernate.search.exception.SearchException;
+import org.hibernate.search.query.dsl.BooleanJunction;
 import org.hibernate.search.query.dsl.impl.FieldContext;
 import org.hibernate.search.query.dsl.impl.QueryBuildingContext;
 import org.hibernate.search.query.dsl.impl.RangeQueryContext;
@@ -44,6 +47,7 @@ public class LuceneQueryUtils {
         Query query ;
         List<Query> innerQueries =  new ArrayList<>();
         List<Query> shouldInnerQueries = new ArrayList<>();
+        List<Query> notInnerQueries = new ArrayList<>();
 
 
         if(queryContext.getJoinQueryContexts() != null && queryContext.getJoinQueryContexts().size() >0){
@@ -67,7 +71,7 @@ public class LuceneQueryUtils {
                         booleanQueryBuilder.add(termQuery, BooleanClause.Occur.SHOULD);
                     }
                     innerQueries.add(booleanQueryBuilder.build());
-                }else{
+                }else if(joinValues.size() == 1){
                     innerQueries.add(new TermQuery(new Term(sourceJoinField, joinValues.get(0)))) ;
                 }
             }
@@ -76,24 +80,43 @@ public class LuceneQueryUtils {
 
         if(queryContext.hasQueryTerms()) {
             for (QueryTerm term : queryContext.getQueryTerms()) {
-                if(term.isShould()){
+                if(term.isNot()){
+                    notInnerQueries.add(createLuceneQuery(term)) ;
+                }else if(term.isShould()){
                     shouldInnerQueries.add(createLuceneQuery(term)) ;
                 }else {
                     innerQueries.add(createLuceneQuery(term));
                 }
             }
         }
-        if(innerQueries.size() == 0 && shouldInnerQueries.size() == 0){
+
+        if(innerQueries.size() == 0 && shouldInnerQueries.size() == 0 && notInnerQueries.size() == 0){
             query = new MatchAllDocsQuery() ;
-        }else  if(innerQueries.size() == 1 && shouldInnerQueries.size() == 0){
+        }else  if(innerQueries.size() == 1 && shouldInnerQueries.size() == 0 && notInnerQueries.size() == 0){
             query = innerQueries.get(0) ;
-        }else  if(innerQueries.size() == 0 && shouldInnerQueries.size() == 1){
+        }else  if(innerQueries.size() == 0 && shouldInnerQueries.size() == 1 && notInnerQueries.size() == 0){
             query = shouldInnerQueries.get(0) ;
+        }else  if(innerQueries.size() == 0 && shouldInnerQueries.size() == 0 && notInnerQueries.size() == 1){
+            BooleanQuery.Builder booleanQueryBuilder = new BooleanQuery.Builder();
+            booleanQueryBuilder.add(new MatchAllDocsQuery(), BooleanClause.Occur.MUST) ;
+            booleanQueryBuilder.add(notInnerQueries.get(0), BooleanClause.Occur.MUST_NOT) ;
+            query = booleanQueryBuilder.build() ;
         }else{
             BooleanQuery.Builder booleanQueryBuilder = new BooleanQuery.Builder();
 
             for(Query innerQuery : innerQueries){
                 booleanQueryBuilder.add(innerQuery, BooleanClause.Occur.MUST) ;
+            }
+
+            if (notInnerQueries.size() == 1) {
+                booleanQueryBuilder.add(notInnerQueries.get(0), BooleanClause.Occur.MUST_NOT);
+            } else if (notInnerQueries.size() > 1) {
+                BooleanQuery.Builder notBooleanQueryBuilder = new BooleanQuery.Builder();
+                for (Query notQuery : notInnerQueries) {
+                    notBooleanQueryBuilder.add(notQuery, BooleanClause.Occur.SHOULD);
+                }
+                booleanQueryBuilder.add(notBooleanQueryBuilder.build(), BooleanClause.Occur.MUST_NOT) ;
+
             }
 
             if(shouldInnerQueries.size() == 1){
@@ -134,18 +157,23 @@ public class LuceneQueryUtils {
                 sortTypeStr = StringUtils.substringBefore(sortField, "(").trim().toUpperCase();
                 sortField = StringUtils.substringBetween(sortField, "(", ")");
             }else{
-                sortTypeStr = queryContext.getNodetype().getPropertyType(sortField).getValueType().toString() ;
+                PropertyType pt = queryContext.getNodetype().getPropertyType(sortField) ;
+                if(pt != null) {
+                    sortTypeStr = pt.getValueType().toString();
+                }else if(sortField.equals("created") || sortField.equals("changed")){
+                    sortTypeStr = "DATE";
+                }
             }
             String order = StringUtils.substringAfter(sorting, " ") ;
 
             SortField.Type sortType = null ;
 
             switch (sortTypeStr){
-                case "STRING":case "TEXT":case "DATE":{
+                case "STRING":case "TEXT":{
                     sortType = SortField.Type.STRING ;
                     break ;
                 }
-                case "LONG": {
+                case "LONG": case "DATE": {
                     sortType = SortField.Type.LONG;
                     break ;
                 }
@@ -171,6 +199,54 @@ public class LuceneQueryUtils {
 
 
     private static Query createLuceneQuery(QueryTerm term) throws IOException {
+
+        switch (term.getMethod()) {
+            case MATCHING: case WILDCARD:{
+                return createKeywordTermQuery(term);
+            }
+            case EQUALS:{
+                return createTermQuery(term, term.getQueryValue());
+            }
+            case ABOVE:{
+                return createRangeQuery(term, term.getQueryValue(), null, true, true);
+            }
+            case BELOW:{
+                return createRangeQuery(term, null, term.getQueryValue(), true, true);
+            }
+            case EXCESS:{
+                return createRangeQuery(term, term.getQueryValue(), null, false, false);
+            }
+            case UNDER:{
+                return createRangeQuery(term, null, term.getQueryValue(), false, false);
+            }
+            case FROMTO:{
+                return createRangeQuery(term, StringUtils.substringBefore(term.getQueryValue(), "~"), StringUtils.substringAfter(term.getQueryValue(), "~"), true, true);
+            }
+        }
+        return createKeywordTermQuery(term);
+    }
+
+    private static Query createRangeQuery(QueryTerm term, String min, String max, boolean minInclusive, boolean maxInclusive) {
+        switch(term.getValueType()) {
+            case DATE: {
+                return NumericRangeQuery.newLongRange(term.getQueryKey(), min != null ? NodeUtils.getDateLongValue(min) : null, max != null ? NodeUtils.getDateLongValue(max) : null, minInclusive, maxInclusive);
+            }
+            case LONG: {
+                return NumericRangeQuery.newLongRange(term.getQueryKey(), min != null ? new Long(min): null, max != null ? new Long(max) : null, minInclusive, maxInclusive);
+            }
+            case INT: {
+                return NumericRangeQuery.newIntRange(term.getQueryKey(), min != null ? new Integer(min): null, max != null ? new Integer(max) : null, minInclusive, maxInclusive);
+            }
+            case DOUBLE: {
+                return NumericRangeQuery.newDoubleRange(term.getQueryKey(), min != null ? new Double(min): null, max != null ? new Double(max) : null, minInclusive, maxInclusive);
+            }
+            default: {
+                return TermRangeQuery.newStringRange(term.getQueryKey(), min, max, minInclusive, maxInclusive);
+            }
+        }
+    }
+
+    private static Query createKeywordTermQuery(QueryTerm term) throws IOException {
         Query query;
         List<String> terms = getAllTermsFromText(
                 term.getQueryKey(),
@@ -390,7 +466,11 @@ public class LuceneQueryUtils {
                 query = new TermQuery( createTerm(termContext, fieldName,  term));
                 break;
             case WILDCARD:
-                query = new WildcardQuery(new Term(fieldName, "*"+term+"*")) ;
+                if(StringUtils.contains(term, "*") || StringUtils.contains(term, "?")){
+                    query = new WildcardQuery(new Term(fieldName, "*"+term+"*")) ;
+                }else {
+                    query = new WildcardQuery(new Term(fieldName, term));
+                }
                 break;
 //            case FUZZY:
 //                int maxEditDistance = getMaxEditDistance( term );
@@ -400,6 +480,9 @@ public class LuceneQueryUtils {
 //                        termContext.getPrefixLength()
 //                );
 //                break;
+            case EQUALS:
+                query = new TermQuery( createTerm(termContext, fieldName,  term));
+                break ;
             default:
                 throw new AssertionFailure( "Unknown approximation: " + termContext.getMethod() );
         }
@@ -420,79 +503,15 @@ public class LuceneQueryUtils {
             }
             case DOUBLE: {
                 BytesRefBuilder brb = new BytesRefBuilder();
-                NumericUtils.longToPrefixCoded(new Long(term), 0, brb);
+                NumericUtils.longToPrefixCoded(NumericUtils.doubleToSortableLong(new Double(term)), 0, brb);
                 return new Term(fieldName, brb.get());
+            }
+            case DATE :{
+
             }
             default:
                 return new Term(fieldName, term);
         }
-    }
-
-
-    public static Query createNumericRangeQuery(String fieldName, Object from, Object to,
-                                                boolean includeLower, boolean includeUpper) {
-
-        Class<?> numericClass;
-
-        if ( from != null ) {
-            numericClass = from.getClass();
-        }
-        else if ( to != null ) {
-            numericClass = to.getClass();
-        }
-        else {
-            throw new IceRuntimeException("Invalid Query");
-
-        }
-
-        if ( Double.class.isAssignableFrom( numericClass ) ) {
-            return NumericRangeQuery.newDoubleRange( fieldName, (Double) from, (Double) to, includeLower, includeUpper );
-        }
-        if ( Byte.class.isAssignableFrom( numericClass ) ) {
-            return NumericRangeQuery.newIntRange( fieldName, ( (Byte) from ).intValue(), ( (Byte) to ).intValue(), includeLower, includeUpper );
-        }
-        if ( Short.class.isAssignableFrom( numericClass ) ) {
-            return NumericRangeQuery.newIntRange( fieldName, ( (Short) from ).intValue(), ( (Short) to ).intValue(), includeLower, includeUpper );
-        }
-        if ( Long.class.isAssignableFrom( numericClass ) ) {
-            return NumericRangeQuery.newLongRange( fieldName, (Long) from, (Long) to, includeLower, includeUpper );
-        }
-        if ( Integer.class.isAssignableFrom( numericClass ) ) {
-            return NumericRangeQuery.newIntRange( fieldName, (Integer) from, (Integer) to, includeLower, includeUpper );
-        }
-        if ( Float.class.isAssignableFrom( numericClass ) ) {
-            return NumericRangeQuery.newFloatRange( fieldName, (Float) from, (Float) to, includeLower, includeUpper );
-        }
-        if ( Date.class.isAssignableFrom( numericClass ) ) {
-            Long fromValue = from != null ? ((Date) from).getTime() : null;
-            Long toValue = to != null ? ((Date) to).getTime() : null;
-            return NumericRangeQuery.newLongRange( fieldName, fromValue, toValue, includeLower, includeUpper );
-        }
-        if ( Calendar.class.isAssignableFrom( numericClass ) ) {
-            Long fromValue = from != null ? ((Calendar) from).getTime().getTime() : null;
-            Long toValue = to != null ? ((Calendar) to).getTime().getTime() : null;
-            return NumericRangeQuery.newLongRange( fieldName, fromValue, toValue, includeLower, includeUpper );
-        }
-//        if ( JavaTimeBridgeProvider.isActive() ) {
-//            if ( java.time.Duration.class.isAssignableFrom( numericClass ) ) {
-//                Long fromValue = from != null ? ( (java.time.Duration) from ).toNanos() : null;
-//                Long toValue = to != null ? ( (java.time.Duration) to ).toNanos() : null;
-//                return NumericRangeQuery.newLongRange( fieldName, fromValue, toValue, includeLower, includeUpper );
-//            }
-//            if ( java.time.Year.class.isAssignableFrom( numericClass ) ) {
-//                Integer fromValue = from != null ? ( (java.time.Year) from ).getValue() : null;
-//                Integer toValue = to != null ? ( (java.time.Year) to ).getValue() : null;
-//                return NumericRangeQuery.newIntRange( fieldName, fromValue, toValue, includeLower, includeUpper );
-//            }
-//            if ( java.time.Instant.class.isAssignableFrom( numericClass ) ) {
-//                Long fromValue = from != null ? ( (java.time.Instant) from ).toEpochMilli() : null;
-//                Long toValue = to != null ? ( (java.time.Instant) to ).toEpochMilli() : null;
-//                return NumericRangeQuery.newLongRange( fieldName, fromValue, toValue, includeLower, includeUpper );
-//            }
-//        }
-
-//        throw log.numericRangeQueryWithNonNumericToAndFromValues( fieldName );
-        return null;
     }
 
     static List<String> getAllTermsFromText(String fieldName, String localText, Analyzer analyzer) throws IOException {

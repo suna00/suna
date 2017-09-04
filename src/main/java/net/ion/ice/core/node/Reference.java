@@ -1,5 +1,6 @@
 package net.ion.ice.core.node;
 
+import net.ion.ice.core.context.ReadContext;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -15,8 +16,8 @@ public class Reference extends Code {
         this.label = label ;
     }
 
-    public Reference(Node node, NodeType nodeType) {
-        this(node.getId(), node.getLabel(nodeType)) ;
+    public Reference(Node node, NodeType nodeType, ReadContext context) {
+        this(node.getId(), node.getLabel(nodeType, context)) ;
     }
 
 
