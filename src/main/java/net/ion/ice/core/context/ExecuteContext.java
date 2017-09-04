@@ -171,7 +171,7 @@ public class ExecuteContext extends ReadContext{
             }
 
         }else {
-            if(event != null && !event.equals("create") && !event.equals("update")) {
+            if(event != null && !event.equals("create") && !event.equals("update") && !event.equals("save")) {
                 execute = true;
                 return;
             }else if(event != null && event.equals("update")){
