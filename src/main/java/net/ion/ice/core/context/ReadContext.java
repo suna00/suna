@@ -50,7 +50,6 @@ public class ReadContext implements Context {
     protected List<ResultField> commonResultFields;
 
 
-
     public NodeType getNodetype() {
         return nodeType;
     }
@@ -339,5 +338,13 @@ public class ReadContext implements Context {
 
     public Map<String, Object> getFileUrlFormat() {
         return fileUrlFormat;
+    }
+
+    public boolean hasLocale() {
+        return this.data != null && this.data.containsKey("locale") && StringUtils.isNotEmpty((String) data.get("locale")) ;
+    }
+
+    public String getLocale() {
+        return (String) data.get("locale");
     }
 }

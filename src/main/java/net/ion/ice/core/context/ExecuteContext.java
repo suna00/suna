@@ -122,7 +122,6 @@ public class ExecuteContext extends ReadContext{
             execute = true ;
             return ;
         }
-
         try {
             existNode = NodeUtils.getNode(nodeType.getTypeId(), getId());
         }catch(Exception e){
@@ -173,12 +172,9 @@ public class ExecuteContext extends ReadContext{
 
         }else {
             if(event != null && !event.equals("create") && !event.equals("update")) {
-                try {
-                    this.node = new Node(data, nodeType.getTypeId());
-                }catch (Exception e){}
                 execute = true;
                 return;
-            }else if(event != null && !event.equals("create") && !event.equals("save")){
+            }else if(event != null && event.equals("update")){
                 throw new IceRuntimeException("Not Exist Node Error : " + getId()) ;
             }
             try {
@@ -205,15 +201,20 @@ public class ExecuteContext extends ReadContext{
 
     public String getId(){
         if(this.id == null){
+            List<String> idPids = nodeType.getIdablePIds() ;
             if(data.containsKey("id")){
-                id = data.get("id").toString();
+                String _id = data.get("id").toString() ;
+                if(_id.contains(">")) {
+                    id = data.get("id").toString();
+                }else if(idPids.size() == 1){
+                    id = data.get("id").toString();
+                }
             }
 
             if(id == null){
-                List<String> idablePids = nodeType.getIdablePIds() ;
                 id = "" ;
-                for(int i = 0 ; i < idablePids.size(); i++){
-                    id = id + data.get(idablePids.get(i)) + (i < (idablePids.size() - 1) ? Node.ID_SEPERATOR : "") ;
+                for(int i = 0 ; i < idPids.size(); i++){
+                    id = id + data.get(idPids.get(i)) + (i < (idPids.size() - 1) ? Node.ID_SEPERATOR : "") ;
                 }
             }
         }

@@ -123,5 +123,41 @@
     "tableName": "ytnDevDb#orderChangeProduct",
     "repositoryType": "data",
     "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "tempOrder",
+    "typeName": "임시 주문서",
+    "tableName": "ytnDevDb#tempOrder",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "tempOrderProduct",
+    "typeName": "임시 주문 상품",
+    "tableName": "ytnDevDb#tempOrderProduct",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "tempOrderProductItem",
+    "typeName": "임시 주문 상품 아이템",
+    "tableName": "ytnDevDb#tempOrderProductItem",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "deliveryPath",
+    "typeId": "nodeType",
+    "tid": "tempOrderDeliveryPrice",
+    "typeName": "임시 주문 배송비",
+    "tableName": "ytnDevDb#tempOrderDeliveryPrice",
+    "repositoryType": "data",
+    "eviction": 0
   }
 ]
