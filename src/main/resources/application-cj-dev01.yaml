@@ -25,7 +25,7 @@ cluster:
     - localhost
 
 infinispan:
-  cachePath: /resource/ice2/cache
+  cachePath: /home/enmadminuser/ion/cms/resource/ice2/cache
 
 tomcat:
   access-log-enabled: true
@@ -41,7 +41,7 @@ logging:
 
 file:
   default:
-    path: /resource/ice2/files
+    path: /home/enmadminuser/ion/cms/resource/ice2/files
 
 
 i18n:
