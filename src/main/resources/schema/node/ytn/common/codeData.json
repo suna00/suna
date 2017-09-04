@@ -1360,6 +1360,15 @@
   },
   {
     "typeId": "commonCode",
+    "code": "cellphone",
+    "upperCode": "contentsType",
+    "name": "휴대폰개통",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
     "code": "product",
     "upperCode": "couponType",
     "name": "상품",
