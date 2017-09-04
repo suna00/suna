@@ -86,7 +86,9 @@ public class EventService {
 
         if((event == null || !event.isNoneExecute()) && nodeType.isNode() && executeContext.getNode() != null) {
             infinispanService.execute(executeContext) ;
-            executeContext.setResult(executeContext.getNode());
+            if(executeContext.getResult() == null) {
+                executeContext.setResult(executeContext.getNode());
+            }
         }
 
         if(event == null) {

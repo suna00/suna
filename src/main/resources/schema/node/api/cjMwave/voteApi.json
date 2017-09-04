@@ -134,9 +134,72 @@
           "limit": "1"
         },
         {
-          "includeReferenced": true
+          "referenceView": "sersItemVoteSeq","includeReferenced": true
         }
-      ]
+      ],
+      "response": {
+        "voteSeq": "",
+        "voteFormlCd": "",
+        "voteNm": "",
+        "voteDesc": "",
+        "voteCtgry": "",
+        "thumImgPath": "",
+        "voteStDt": "",
+        "voteFnsDt": "",
+        "showLoCd": "",
+        "showYn": "",
+        "showCntryCdList": "",
+        "porseNumShowYn": "",
+        "bradTelcsDt": "",
+        "tgtDivCd": "",
+        "selScopeCd": "",
+        "alignFormlCd": "",
+        "selItemCnt": "",
+        "ansSelTmsCnt": "",
+        "cpturAplyYn": "",
+        "rstrtnPredDivCd": "",
+        "rstrtnDayCnt": "",
+        "rstrtnVoteCnt": "",
+        "rstrtnPvCnt": "",
+        "accumRstrtnAlwdYn": "",
+        "userVoteRstrtnYn": "",
+        "userVoteApdUseCnt": "",
+        "rankRftRstrtnYn": "",
+        "rankWvalu": "",
+        "mwmcUnearnedWinYn": "",
+        "refdPredRstrtnList": "",
+        "findKywrd": "",
+        "refdItemList": {
+          "typeId": "voteItemInfo",
+          "query": [
+            {
+              "field": "voteSeq",
+              "method": "referenceJoin",
+              "value": "voteSeq_matching={{:voteSeq}}"
+            },
+            {
+              "referenceView": false
+            }
+          ]
+        },
+        "refdSeriesItemList": {
+          "typeId": "sersVoteItemInfo",
+          "query": [
+            {
+              "field": "voteSeq",
+              "method": "referenceJoin",
+              "value": "voteSeq_matching={{:voteSeq}}"
+            },
+            {
+              "referenceView": "sersItemVoteSeq"
+            }
+          ]
+        },
+        "owner": "",
+        "created": "",
+        "modifier": "",
+        "changed": ""
+      }
     }
   },
   {
@@ -166,12 +229,72 @@
     "config": {
       "createItem": {
         "typeId": "votePrtcptHst",
-        "event": "create",
+        "event": "save",
         "data": {
           "voteSeq": "{{:voteSeq}}",
           "voteItemSeq": "{{:voteQueiSeq}}",
-          "prtcpMbrId": "{{:snsKey}}>{{:snsTypeCd}}"
+          "prtcpMbrId": "{{:snsTypeCd}}>{{:snsKey}}"
         }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv004",
+    "apiName": "투표 당첨자 조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "voteSeq",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "votePwnrInfo",
+      "query": [
+        {
+          "field": "pwnrBasSeq",
+          "method": "referenceJoin",
+          "value": "voteSeq_matching={{:voteSeq}}&limit=1"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        }
+      ],
+      "response":{
+        "voteSeq": {
+          "value":"{{:voteSeq}}"
+        },
+        "votePwnrSeq":"",
+        "mbrId":"",
+        "mbrFirstName":"",
+        "mbrLastName":"",
+        "email":"",
+        "mblNo":"",
+        "homeAdr":"",
+        "memo":"",
+        "prtcpDate":"created"
       }
     }
   }

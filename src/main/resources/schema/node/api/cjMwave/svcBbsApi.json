@@ -81,7 +81,7 @@
     ],
     "config": {
       "typeId": "ntfBbs",
-      "id":"{{:ntfBbsSeq}}",
+      "id": "{{:ntfBbsSeq}}",
       "response": {
         "ntfBbsSeq": "",
         "ntfBbsNm": "",
@@ -99,8 +99,12 @@
           "query": [
             {
               "field": "ntfBbsSeq",
-              "method": "matching",
+              "method": "under",
               "value": "{{:ntfBbsSeq}}"
+            },
+            {
+              "sorting": "ntfBbsSeq desc",
+              "limit": "1"
             }
           ],
           "response": {
@@ -116,8 +120,12 @@
           "query": [
             {
               "field": "ntfBbsSeq",
-              "method": "matching",
+              "method": "excess",
               "value": "{{:ntfBbsSeq}}"
+            },
+            {
+              "sorting": "ntfBbsSeq asc",
+              "limit": "1"
             }
           ],
           "response": {

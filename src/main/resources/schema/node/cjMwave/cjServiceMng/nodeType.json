@@ -355,7 +355,7 @@
     "id": "replLikeInfo",
     "tid": "replLikeInfo",
     "typeName": "댓글 좋아요 정보",
-    "repositoryType": "",
+    "repositoryType": "node",
     "eviction": 0,
     "tableName": "cjDb#replLikeInfo"
   },

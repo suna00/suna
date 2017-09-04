@@ -997,12 +997,12 @@
     "active": "true",
     "index": "false",
     "pages": [
-    ],
-    "customPages": [
       {
         "pageName": "목록",
-        "pageUrl": "cj/cc/noti/NotiList"
-      },
+        "pageUrl": "list"
+      }
+    ],
+    "customPages": [
       {
         "pageName": "등록",
         "pageUrl": "cj/cc/noti/NotiForm"

@@ -44,8 +44,8 @@
     "idable": true,
     "labelable": false,
     "treeable": false,
-    "indexable": false,
-    "analyzer": null,
+    "indexable": true,
+    "analyzer": "code",
     "referenceType": "artist",
     "referenceValue": "artistId",
     "defaultValue": ""

@@ -2,11 +2,13 @@
   {
     "typeId": "replLikeInfo",
     "replLikeSeq": 15151,
-    "replSeq": 5422
+    "replSeq": 5422,
+    "mbrId": "1>park100"
   },
   {
     "typeId": "replLikeInfo",
     "replLikeSeq": 15142,
-    "replSeq": 5422
+    "replSeq": 5422,
+    "mbrId": "1>park100"
   }
 ]

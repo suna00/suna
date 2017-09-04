@@ -133,6 +133,7 @@ public class InfinispanRepositoryService {
                 }
                 subQueryContext.setTreeable(true);
                 subQueryContext.setLimit(queryContext.getLimit().toString());
+                subQueryContext.setSorting(queryContext.getSorting());
                 List<Node> result = getSubQueryNodes(pt.getReferenceType(), subQueryContext);
                 for (Node node : result) {
                     node.toDisplay(subQueryContext);

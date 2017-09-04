@@ -1,0 +1,117 @@
+[
+  {
+    "typeId": "apiConfig",
+    "category": "mbrContsAtvy",
+    "apiId": "IfLike002",
+    "apiName": "콘텐츠 LIKE(찜) 등록",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "contsMetaDivCd",
+        "required": true
+      },
+      {
+        "paramName": "contsMetaId",
+        "required": true
+      },
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      }
+    ],
+    "config": {
+      "getContsMetaDivTid": {
+        "typeId": "code",
+        "query": [
+          {
+            "field": "groupCodeId",
+            "method": "matching",
+            "value": "contsMetaDivTid"
+          },
+          {
+            "field": "codeId",
+            "method": "matching",
+            "value": "{{:contsMetaDivCd}}"
+          }
+        ],
+        "response": {
+          "name": ""
+        }
+      },
+      "createItem": {
+        "typeId": "contsLikeInfo",
+        "event": "save",
+        "data": {
+          "contsMetaDivCd": "{{:contsMetaDivCd}}",
+          "contsMetaId": "{{:name}}::{{:contsMetaId}}",
+          "mbrId": "{{:snsTypeCd}}>{{:snsKey}}"
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "mbrContsAtvy",
+    "apiId": "IfLike003",
+    "apiName": "콘텐츠 LIKE(찜) 취소",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "likeSeq",
+        "required": true
+      },
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      }
+    ],
+    "config": {
+      "deleteItem": {
+        "typeId": "contsLikeInfo",
+        "event": "delete",
+        "data": {
+          "likeSeq": "{{:likeSeq}}"
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "mbrContsAtvy",
+    "apiId": "IfLike004",
+    "apiName": "댓글 LIKE(찜) 등록",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "contsReplSeq",
+        "required": true
+      },
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      }
+    ],
+    "config": {
+      "createItem": {
+        "typeId": "replLikeInfo",
+        "event": "save",
+        "data": {
+          "replSeq": "{{:contsReplSeq}}",
+          "mbrId": "{{:snsTypeCd}}>{{:snsKey}}"
+        }
+      }
+    }
+  }
+]
