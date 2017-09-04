@@ -293,3 +293,53 @@ logging:
 file:
   default:
     path: /resource/ice2/files
+
+---
+spring:
+  profiles: cj-dev01
+  http:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 20MB
+
+server:
+  port: 8080
+
+jwtConfig:
+  issuer: I-ON
+  secretKey: dkdldhs!@#$
+  tokenPrefix: SDP
+  headString: X-Authorization
+  tokenExpirationTime: 15 #분
+  refreshTokenExpTime: 60 #분
+
+
+cluster:
+  members:
+    - 172.17.118.241
+    - 127.0.0.1
+    - localhost
+
+infinispan:
+  cachePath: /resource/ice2/cache
+
+tomcat:
+  access-log-enabled: true
+  access-log-pattern: "%h %l %u %t \"%r\" %s %b %D"
+  basedir: tomcat
+
+logging:
+  config:
+    classpath:
+      - logback-access-dev-2.xml
+      - logback-dev-2.xml
+
+
+file:
+  default:
+    path: /resource/ice2/files
+
+
+i18n:
+  default: en
+---
