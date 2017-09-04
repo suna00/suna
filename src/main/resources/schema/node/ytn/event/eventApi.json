@@ -28,7 +28,7 @@
     "typeId" : "apiConfig",
     "category" : "specialExhibitionApi",
     "apiId" : "view",
-    "apiName" : "기획전 조회",
+    "apiName" : "기획전 조회_날짜조회필요",
     "method" : "GET",
     "parameters" : [
     ],
@@ -37,7 +37,7 @@
       "query" : [
         {"field" : "specialExhibitionId", "method" : "matching", "value" : "{{:specialExhibitionId}}" },
         {"includeReferenced" : true, "referenceView" : "specialExhibitionId"},
-        {"field" : "specialExhibitionId", "method" : "referenceJoin", "value" : "specialExhibitionStatus_matching=use&startDate_below={{:toDay}}&endDate_above={{:toDay}}&categoryId_matching={{:categoryId}}&siteType_matching={{:siteType}}" }
+        {"field" : "specialExhibitionId", "method" : "referenceJoin", "value" : "specialExhibitionStatus_matching=use&categoryId_matching={{:categoryId}}&siteType_matching={{:siteType}}" }
       ]
     }
   },

@@ -172,9 +172,9 @@
   {
     "parentId": "backOfficePath",
     "typeId": "nodeType",
-    "tid": "SMSAuthenticationHistory",
+    "tid": "smsCertification",
     "typeName": "SMS 인증 이력",
-    "tableName": "ytnDevDb#SMSAuthenticationHistory",
+    "tableName": "ytnDevDb#smsCertification",
     "repositoryType": "data",
     "eviction": 0
   },
@@ -244,9 +244,9 @@
   {
     "parentId": "backOfficePath",
     "typeId": "nodeType",
-    "tid": "emailAuthentication",
+    "tid": "emailCertification",
     "typeName": "이메일 인증",
-    "tableName": "ytnDevDb#emailAuthentication",
+    "tableName": "ytnDevDb#emailCertification",
     "repositoryType": "data",
     "eviction": 0
   }

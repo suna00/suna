@@ -46,7 +46,7 @@ file:
 
 
 i18n:
-  default: en
+  defaults: en
 
 ---
 #-Dspring.profiles.active=dev

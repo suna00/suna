@@ -40,6 +40,7 @@ public class PropertyType {
     public static final String LABELABLE = "labelable";
     public static final String REQUIRED = "required";
     public static final String TREEABLE = "treeable";
+    public static final String IGNORE_HIERARCHY_VALUE = "ignoreHierarchyValue";
     public static final String LENGTH = "length";
 
     public static final String I18N = "i18n";
@@ -97,7 +98,7 @@ public class PropertyType {
 
     public boolean isSorted(){
         switch (getAnalyzerType()){
-            case code: case simple:
+            case simple:
                 return true ;
         }
         return false ;
@@ -169,6 +170,10 @@ public class PropertyType {
 
     public boolean isTreeable() {
         return propertyTypeNode.getBooleanValue(TREEABLE);
+    }
+
+    public boolean isIgnoreHierarchyValue() {
+        return propertyTypeNode.getBooleanValue(IGNORE_HIERARCHY_VALUE);
     }
 
     public boolean hasDefaultValue() {

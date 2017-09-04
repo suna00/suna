@@ -45,13 +45,17 @@ public class NodeService {
     private FileService fileService ;
 
     @Autowired
+    private I18nConfiguration i18nConfiguration ;
+
+    @Autowired
     private ApplicationContextManager applicationContextManager;
 
     private Map<String, NodeType> nodeTypeCache ;
-    private Map<String, NodeType> initNodeType = new ConcurrentHashMap<>() ;
+    private Map<String, NodeType> initNodeType  ;
 
     @PostConstruct
     public void init(){
+        initNodeType = new ConcurrentHashMap<>() ;
         try {
             initNodeType() ;
         } catch (IOException e) {
@@ -66,6 +70,9 @@ public class NodeService {
         this.nodeTypeCache = new ConcurrentHashMap<>() ;
     }
 
+    public String getDefaultLocale(){
+        return i18nConfiguration.getDefaults() ;
+    }
 
     public NodeType getNodeType(String typeId) {
         if(nodeTypeCache != null && nodeTypeCache.containsKey(typeId)) {
@@ -184,63 +191,54 @@ public class NodeService {
 
     private void  initSchema() throws IOException {
 
-        NodeValue nodeValue = infinispanRepositoryService.getLastCacheNodeValue() ;
-        String lastChanged = nodeValue == null ? "0" : DateTools.dateToString(nodeValue.getChanged(), DateTools.Resolution.SECOND);
-
-        logger.info("LAST CHANGED : " + lastChanged);
-
-        saveSchema("classpath:schema/core/*.json", lastChanged);
-        saveSchema("classpath:schema/core/*/*.json", lastChanged);
+        saveSchema("classpath:schema/core/*.json");
+        saveSchema("classpath:schema/core/*/*.json");
 //        saveSchema("classpath:schema/node/*.json", lastChanged);
-        saveSchema("classpath:schema/node/**/*.json", lastChanged);
+        saveSchema("classpath:schema/node/**/*.json");
 //        saveSchema("classpath:schema/test/*.json", lastChanged);
-        saveSchema("classpath:schema/test/**/*.json", lastChanged);
+        saveSchema("classpath:schema/test/**/*.json");
 
     }
-    private void saveSchema(String resourcePath, String lastChanged) throws IOException {
-        saveSchema(resourcePath, lastChanged, true);
-        saveSchema(resourcePath, lastChanged, false);
+    private void saveSchema(String resourcePath) throws IOException {
+        saveSchema(resourcePath, true);
+        saveSchema(resourcePath, false);
     }
 
-    private void saveSchema(String resourcePath, String lastChanged, boolean core) throws IOException {
+    private void saveSchema(String resourcePath, boolean core) throws IOException {
         Resource[] resources = applicationContextManager.getResources(resourcePath);
         if(core) {
             for (Resource resource : resources) {
                 if (resource.getFilename().equals("nodeType.json")) {
-                    fileNodeSave(lastChanged, resource);
+                    fileNodeSave(resource);
                 }
             }
 
             for (Resource resource : resources) {
                 if (resource.getFilename().equals("propertyType.json")) {
-                    fileNodeSave(lastChanged, resource);
+                    fileNodeSave(resource);
                 }
             }
 
             for (Resource resource : resources) {
                 if (resource.getFilename().equals("event.json")) {
-                    fileNodeSave(lastChanged, resource);
+                    fileNodeSave(resource);
                 }
             }
         }else {
             for (Resource resource : resources) {
                 if (!(resource.getFilename().equals("nodeType.json") || resource.getFilename().equals("propertyType.json") || resource.getFilename().equals("event.json"))) {
-                    fileNodeSave(lastChanged, resource);
+                    fileNodeSave(resource);
                 }
             }
         }
     }
 
-    private void fileNodeSave(String lastChanged, Resource resource) throws IOException {
+    private void fileNodeSave(Resource resource) throws IOException {
         String fileName = StringUtils.substringBefore(resource.getFilename(), ".json");
         Collection<Map<String, Object>> nodeDataList = JsonUtils.parsingJsonResourceToList(resource) ;
 
-        if(fileName.startsWith("20") && fileName.length() == 14 && lastChanged.compareTo(fileName) < 0){
-            nodeDataList.forEach(data -> saveNode(data));
-        }else{
-            List<Map<String, Object>> dataList = NodeUtils.makeDataListFilterBy(nodeDataList, lastChanged) ;
-            dataList.forEach(data -> saveNode(data));
-        }
+//        List<Map<String, Object>> dataList = NodeUtils.makeDataListFilterBy(nodeDataList, lastChanged) ;
+        nodeDataList.forEach(data -> saveNode(data));
     }
 
 
@@ -261,7 +259,7 @@ public class NodeService {
         ExecuteContext context = ExecuteContext.makeContextFromMap(data, typeId, event) ;
 
         context.execute();
-        Node node =  context.getNode();
+        Node node = (Node) context.getResult();
         return node ;
     }
 
@@ -271,7 +269,7 @@ public class NodeService {
 
         ExecuteContext context = ExecuteContext.makeContextFromParameter(parameterMap, multiFileMap, nodeType, event) ;
         context.execute();
-        Node node =  context.getNode();
+        Node node = (Node) context.getResult();
         node.toDisplay();
         return node;
     }
@@ -282,7 +280,7 @@ public class NodeService {
         ExecuteContext context = ExecuteContext.createContextFromParameter(parameterMap, nodeType, "delete", null) ;
         context.execute();
 
-        Node node = context.getNode() ;
+        Node node = (Node) context.getResult();
         return node ;
     }
 

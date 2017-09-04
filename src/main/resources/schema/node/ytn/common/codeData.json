@@ -586,7 +586,7 @@
   },
   {
     "typeId": "commonCode",
-    "code": "SMSAuthenticationType",
+    "code": "smsCertificationType",
     "upperCode": "root",
     "name": "SMS 인증 이력 타입",
     "description": "",
@@ -3872,7 +3872,7 @@
   {
     "typeId": "commonCode",
     "code": "admin",
-    "upperCode": "SMSAuthenticationType",
+    "upperCode": "smsCertificationType",
     "name": "어드민",
     "description": "",
     "sortOrder": "1",
@@ -3881,7 +3881,7 @@
   {
     "typeId": "commonCode",
     "code": "password",
-    "upperCode": "SMSAuthenticationType",
+    "upperCode": "smsCertificationType",
     "name": "비밀번호",
     "description": "",
     "sortOrder": "2",
@@ -3890,10 +3890,19 @@
   {
     "typeId": "commonCode",
     "code": "id",
-    "upperCode": "SMSAuthenticationType",
+    "upperCode": "smsCertificationType",
     "name": "아이디",
     "description": "",
     "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "sleepMember",
+    "upperCode": "smsCertificationType",
+    "name": "휴면회원해제",
+    "description": "",
+    "sortOrder": "4",
     "commonCodeStatus": "y"
   },
   {
@@ -4933,7 +4942,7 @@
   },
   {
     "typeId": "commonCode",
-    "code": "emailAuthenticationType",
+    "code": "emailCertificationType",
     "upperCode": "root",
     "name": "email 인증 타입",
     "description": "",
@@ -4943,7 +4952,7 @@
   {
     "typeId": "commonCode",
     "code": "join",
-    "upperCode": "emailAuthenticationType",
+    "upperCode": "emailCertificationType",
     "name": "가입",
     "description": "",
     "sortOrder": "1",
@@ -4952,7 +4961,7 @@
   {
     "typeId": "commonCode",
     "code": "password",
-    "upperCode": "emailAuthenticationType",
+    "upperCode": "emailCertificationType",
     "name": "비밀번호",
     "description": "",
     "sortOrder": "2",
@@ -4961,7 +4970,7 @@
   {
     "typeId": "commonCode",
     "code": "id",
-    "upperCode": "emailAuthenticationType",
+    "upperCode": "emailCertificationType",
     "name": "아이디",
     "description": "",
     "sortOrder": "3",
@@ -5342,7 +5351,7 @@
     "upperCode": "displayBannerLocation",
     "name": "메인",
     "description": "",
-    "sortOrder": "2",
+    "sortOrder": "1",
     "commonCodeStatus": "y"
   },
   {
@@ -5351,7 +5360,7 @@
     "upperCode": "createType",
     "name": "HTML",
     "description": "",
-    "sortOrder": "2",
+    "sortOrder": "1",
     "commonCodeStatus": "y"
   },
   {
@@ -5369,7 +5378,7 @@
     "upperCode": "displayBannerTemplate",
     "name": "유형5A",
     "description": "",
-    "sortOrder": "2",
+    "sortOrder": "1",
     "commonCodeStatus": "y"
   },
   {
@@ -5387,7 +5396,7 @@
     "upperCode": "displayBannerTemplate",
     "name": "유형5C",
     "description": "",
-    "sortOrder": "2",
+    "sortOrder": "3",
     "commonCodeStatus": "y"
   },
   {
@@ -5396,7 +5405,43 @@
     "upperCode": "displayBannerTemplate",
     "name": "유형6A",
     "description": "",
+    "sortOrder": "4",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "certStatus",
+    "upperCode": "root",
+    "name": "인증사태",
+    "description": "",
+    "sortOrder": "102",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "request",
+    "upperCode": "certStatus",
+    "name": "인증요청",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "success",
+    "upperCode": "certStatus",
+    "name": "인증성공",
+    "description": "",
     "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "expire",
+    "upperCode": "certStatus",
+    "name": "만료",
+    "description": "",
+    "sortOrder": "3",
     "commonCodeStatus": "y"
   }
 ]

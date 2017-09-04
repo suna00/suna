@@ -208,6 +208,7 @@ public class QueryContext extends ReadContext {
         setMaxSize(limit) ;
     }
 
+
     public void setQueryListSize(int queryListSize) {
         this.queryListSize = queryListSize;
     }
@@ -306,6 +307,10 @@ public class QueryContext extends ReadContext {
     public static QueryContext makeQueryContextForTree(NodeType nodeType, PropertyType pt, String value) {
         QueryContext queryContext = new QueryContext(nodeType);
         java.util.List<QueryTerm> queryTerms = new ArrayList<>();
+
+        if (StringUtils.contains(value, Node.ID_SEPERATOR) && pt.isIgnoreHierarchyValue()) {
+            value = StringUtils.substringAfterLast(value, Node.ID_SEPERATOR);
+        }
 
         QueryUtils.makeQueryTerm(nodeType, queryContext, queryTerms, pt.getPid()+"_matching", value);
 
@@ -418,6 +423,8 @@ public class QueryContext extends ReadContext {
 
     public QueryResult makeQueryResult(Object result, String fieldName) {
         List<Node> resultNodeList = getQueryList() ;
+        this.result = resultNodeList ;
+
         return makeQueryResult(result, fieldName, resultNodeList);
     }
 
@@ -452,9 +459,13 @@ public class QueryContext extends ReadContext {
     protected List<QueryResult> makeResultList(NodeType nodeType, List<Node> resultNodeList) {
         List<QueryResult> subList =  new ArrayList<>(resultNodeList.size()) ;
 
+        Map<String, Object> contextData = new HashMap<>() ;
+        contextData.putAll(data);
+
         for(Node resultNode : resultNodeList) {
+            contextData.putAll(resultNode);
             QueryResult subQueryResult = new QueryResult() ;
-            makeItemQueryResult(resultNode, subQueryResult);
+            makeItemQueryResult(resultNode, subQueryResult, contextData);
             subList.add(subQueryResult) ;
         }
         return subList;

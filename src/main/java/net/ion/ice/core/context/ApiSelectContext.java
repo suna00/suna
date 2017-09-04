@@ -52,22 +52,30 @@ public class ApiSelectContext extends ReadContext{
     public QueryResult makeQueryResult(Object result, String fieldName) {
         if(resultType.equals("list")){
             List<Map<String, Object>> resultList = this.jdbcTemplate.queryForList(this.sqlTemplate.format(data), this.sqlTemplate.getSqlParameterValues(data)) ;
+            this.result = resultList ;
+
             if(result != null && result instanceof Map){
                 ((Map) result).put(fieldName == null ? "items" : fieldName, resultList) ;
                 return null ;
             }else{
                 QueryResult queryResult = new QueryResult() ;
+                queryResult.put("result", "200");
+                queryResult.put("resultMessage", "SUCCESS");
                 queryResult.put(fieldName == null ? "items" : fieldName, resultList) ;
                 return queryResult ;
             }
         }else{
             Map<String, Object> resultMap = this.jdbcTemplate.queryForMap(this.sqlTemplate.format(data), this.sqlTemplate.getSqlParameterValues(data)) ;
+            this.result = resultMap ;
+
             if(result != null && result instanceof Map){
                 ((Map) result).put(fieldName == null ? "item" : fieldName, resultMap) ;
                 return null ;
             }else{
                 QueryResult queryResult = new QueryResult() ;
-                queryResult.putAll(resultMap); ;
+                queryResult.put("result", "200");
+                queryResult.put("resultMessage", "SUCCESS");
+                queryResult.putAll(resultMap);
                 return queryResult ;
             }
         }

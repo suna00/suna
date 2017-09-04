@@ -120,6 +120,19 @@
   {
     "typeId": "propertyType",
     "tid": "testCategory",
+    "pid": "itemViews",
+    "propertyTypeName": "Sub Item Views",
+    "valueType": "INT",
+    "idable": false,
+    "indexable": true,
+    "labelable": false,
+    "required": true,
+    "length": 100,
+    "analyzer": "code"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "testCategory",
     "pid": "created",
     "propertyTypeName": "Created",
     "valueType": "DATE",
@@ -268,7 +281,7 @@
     "indexable": true,
     "required": true,
     "labelable": true,
-    "analyzer": "cjk"
+    "analyzer": "simple"
   },
   {
     "typeId": "propertyType",
@@ -298,6 +311,19 @@
     "propertyTypeName": "Test File",
     "valueType": "FILE",
     "indexable": true
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "testItem",
+    "pid": "views",
+    "propertyTypeName": "Item Views",
+    "valueType": "INT",
+    "idable": false,
+    "indexable": true,
+    "labelable": false,
+    "required": true,
+    "length": 100,
+    "analyzer": "code"
   },
   {
     "typeId": "propertyType",

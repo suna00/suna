@@ -2,7 +2,17 @@
   {
     "typeId" : "apiCategory",
     "id" : "testApi",
-    "categoryName" : "Test API"
+    "categoryName" : "Test API",
+    "dateFormat" : "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat" : {
+      "default":"http://localhost:8080/"
+    },
+    "commonParameters" : [
+      {"paramName" : "apiKey", "required" : true}
+    ],
+    "commonResponse" :{
+      "time" : "{{:sysdate}}"
+    }
   },
   {
     "typeId" : "apiConfig",
@@ -17,6 +27,7 @@
       "createItem" : {
         "typeId": "testItem",
         "event": "create",
+        "if" : "",
         "data": {
           "id": "{{:id}}",
           "category": "{{:category}}",
@@ -100,7 +111,7 @@
       "typeId": "testItem",
       "query" : [
         {"field" : "category", "method" : "referenceJoin", "value" : "categoryType_matching={{:categoryType}}" },
-        {"includeReferenced" : true, "referenceView" : "category"}
+        {"includeReferenced" : false, "referenceView" : "category"}
       ]
     }
   },
@@ -234,6 +245,34 @@
             "resultType" : "list",
             "sql" : "select * from testComment where itemId = @{id}"
           }
+        }
+      }
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "eventSample",
+    "apiName" : "Event Sample",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "checkQuantity" : {
+        "typeId" : "productOptionItem",
+        "id" : "{{:prodId}}",
+        "response" : {
+          "quantity" : ""
+        }
+      },
+      "updateCart" : {
+        "typeId": "cart",
+        "event": "update",
+        "if" : "{{:aboveInt(quantity, 0)}}",
+        "data": {
+          "id": "{{:id}}",
+          "category": "{{:category}}",
+          "title": "{{:title}}"
         }
       }
     }

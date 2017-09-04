@@ -8,19 +8,20 @@ import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
+import net.ion.ice.core.query.QueryTerm;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
  * Created by jaeho on 2017. 5. 31..
  */
-public class ExecuteContext implements Context{
-    protected Map<String, Object> data  ;
+public class ExecuteContext extends ReadContext{
+
     protected Node node;
-    protected NodeType nodeType;
     protected Node existNode ;
 
     protected boolean exist ;
@@ -28,11 +29,12 @@ public class ExecuteContext implements Context{
 
 
     protected List<String> changedProperties ;
-    protected String id ;
 
     protected String userId ;
     protected Date time ;
     protected String event;
+
+    protected String ifTest ;
 
 
     public static ExecuteContext createContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType, String event, String id) {
@@ -120,9 +122,8 @@ public class ExecuteContext implements Context{
             execute = true ;
             return ;
         }
-
         try {
-            existNode = NodeUtils.getNodeService().getNode(nodeType.getTypeId(), getId());
+            existNode = NodeUtils.getNode(nodeType.getTypeId(), getId());
         }catch(Exception e){
         }
         exist = existNode != null ;
@@ -155,6 +156,9 @@ public class ExecuteContext implements Context{
                     node.put(pt.getPid(), newValue) ;
                     changedProperties.add(pt.getPid()) ;
                 }else if(!newValue.equals(existValue)){
+                    if(pt.isI18n()){
+                        ((Map<String, Object>) existValue).putAll((Map<? extends String, ?>) newValue);
+                    }
                     node.put(pt.getPid(), newValue) ;
                     changedProperties.add(pt.getPid()) ;
                 }
@@ -168,12 +172,9 @@ public class ExecuteContext implements Context{
 
         }else {
             if(event != null && !event.equals("create") && !event.equals("update")) {
-                try {
-                    this.node = new Node(data, nodeType.getTypeId());
-                }catch (Exception e){}
                 execute = true;
                 return;
-            }else if(event != null && !event.equals("create") && !event.equals("save")){
+            }else if(event != null && event.equals("update")){
                 throw new IceRuntimeException("Not Exist Node Error : " + getId()) ;
             }
             try {
@@ -200,15 +201,20 @@ public class ExecuteContext implements Context{
 
     public String getId(){
         if(this.id == null){
+            List<String> idPids = nodeType.getIdablePIds() ;
             if(data.containsKey("id")){
-                id = data.get("id").toString();
+                String _id = data.get("id").toString() ;
+                if(_id.contains(">")) {
+                    id = data.get("id").toString();
+                }else if(idPids.size() == 1){
+                    id = data.get("id").toString();
+                }
             }
 
             if(id == null){
-                List<String> idablePids = nodeType.getIdablePIds() ;
                 id = "" ;
-                for(int i = 0 ; i < idablePids.size(); i++){
-                    id = id + data.get(idablePids.get(i)) + (i < (idablePids.size() - 1) ? Node.ID_SEPERATOR : "") ;
+                for(int i = 0 ; i < idPids.size(); i++){
+                    id = id + data.get(idPids.get(i)) + (i < (idPids.size() - 1) ? Node.ID_SEPERATOR : "") ;
                 }
             }
         }
@@ -244,11 +250,19 @@ public class ExecuteContext implements Context{
             Map<String, Object> _data = new HashMap<>();
             Map<String, Object> subData = (Map<String, Object>) config.get("data");
             for(String key : subData.keySet()){
-                _data.put(key, ContextUtils.getValue(key, data)) ;
+                _data.put(key, ContextUtils.getValue(subData.get(key), data)) ;
             }
             ctx.data = _data ;
         }else{
             ctx.data = data ;
+        }
+
+        if(config.containsKey("response")){
+            ContextUtils.makeApiResponse((Map<String, Object>) config.get("response"), data, ctx);
+        }
+
+        if(config.containsKey("if")){
+            ctx.ifTest =  ContextUtils.getValue(config.get("if"), data).toString();
         }
 
         ctx.init() ;
@@ -271,9 +285,13 @@ public class ExecuteContext implements Context{
     }
 
 
-    public void execute() {
+    public boolean execute() {
+        if(this.ifTest != null && !(this.ifTest.equalsIgnoreCase("true"))){
+            return false ;
+        }
         EventService eventService = ApplicationContextManager.getBean(EventService.class) ;
         eventService.execute(this) ;
+        return true ;
     }
 
     public NodeType getNodeType() {

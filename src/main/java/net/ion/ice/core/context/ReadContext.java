@@ -7,7 +7,6 @@ import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
 import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.QueryTerm;
-import net.ion.ice.core.query.QueryUtils;
 import net.ion.ice.core.query.ResultField;
 import org.apache.commons.lang3.StringUtils;
 
@@ -43,6 +42,13 @@ public class ReadContext implements Context {
     protected QueryTerm.QueryTermType queryTermType ;
 
     protected NodeBindingInfo nodeBindingInfo ;
+
+    protected Object result ;
+
+    protected String dateFormat ;
+    protected Map<String, Object> fileUrlFormat ;
+    protected List<ResultField> commonResultFields;
+
 
     public NodeType getNodetype() {
         return nodeType;
@@ -95,8 +101,6 @@ public class ReadContext implements Context {
             context.setIncludeReferenced(true);
             return ;
         }
-
-
         Map<String, Object> data = ContextUtils.makeContextData(parameterMap);
         context.data = data ;
 
@@ -105,12 +109,9 @@ public class ReadContext implements Context {
         }else if(data.containsKey("pids")){
             makeResultField(context, (String) data.get("pids"));
         }
-
         if(context.resultFields == null || context.resultFields.size() == 0 ){
             context.setIncludeReferenced(true);
         }
-
-
 //        makeSearchFields(context, data) ;
     }
 
@@ -210,6 +211,7 @@ public class ReadContext implements Context {
 
     public QueryResult makeResult() {
         Node node = NodeUtils.getNode(nodeType.getTypeId(), id) ;
+        this.result = node ;
         QueryResult itemResult = makeResult(node);
 
         QueryResult queryResult = new QueryResult() ;
@@ -235,12 +237,14 @@ public class ReadContext implements Context {
                 }
             }
         }else{
-            makeItemQueryResult(node, itemResult);
+            this.setNodeData(node);
+            makeItemQueryResult(node, itemResult, this.data);
         }
         return itemResult;
     }
 
-    protected void makeItemQueryResult(Node node, QueryResult itemResult) {
+    protected void makeItemQueryResult(Node node, QueryResult itemResult, Map<String, Object> contextData) {
+
         for (ResultField resultField : getResultFields()) {
             if (resultField.getContext() != null) {
                 ReadContext subQueryContext = (ReadContext) resultField.getContext();
@@ -249,7 +253,7 @@ public class ReadContext implements Context {
                 }
                 subQueryContext.makeQueryResult(itemResult, resultField.getFieldName());
             } else if(resultField.isStaticValue()){
-                itemResult.put(resultField.getFieldName(), resultField.getStaticValue());
+                itemResult.put(resultField.getFieldName(), ContextUtils.getValue(resultField.getStaticValue(), contextData));
             } else {
                 String fieldValue = resultField.getFieldValue();
                 fieldValue = fieldValue == null || StringUtils.isEmpty(fieldValue) ? resultField.getFieldName() : fieldValue;
@@ -318,5 +322,29 @@ public class ReadContext implements Context {
         _data.putAll(nodeData);
 
         this.data = _data ;
+    }
+
+    public Object getResult() {
+        return result;
+    }
+
+    public void setResult(Node result) {
+        this.result = result;
+    }
+
+    public String getDateFormat() {
+        return dateFormat;
+    }
+
+    public Map<String, Object> getFileUrlFormat() {
+        return fileUrlFormat;
+    }
+
+    public boolean hasLocale() {
+        return this.data != null && this.data.containsKey("locale") && StringUtils.isNotEmpty((String) data.get("locale")) ;
+    }
+
+    public String getLocale() {
+        return (String) data.get("locale");
     }
 }
