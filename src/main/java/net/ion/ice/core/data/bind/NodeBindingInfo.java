@@ -382,4 +382,8 @@ public class NodeBindingInfo {
         searchListValue.add(queryContext.getLimit());
         searchListValue.add(queryContext.getOffset());
     }
+
+    public JdbcTemplate getJdbcTemplate() {
+        return jdbcTemplate;
+    }
 }

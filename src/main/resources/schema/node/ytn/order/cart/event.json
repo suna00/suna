@@ -1,17 +1,18 @@
 [
   {
     "typeId" : "event",
-    "id" : "cart>addCart",
     "tid": "cart",
-    "event" : "addCart",
-    "eventName" : "Add Cart"
+    "event" : "add",
+    "noneExecute" : true,
+    "eventName" : "장바구니 담기"
   },
   {
-    "typeId": "eventAction",
-    "event": "cart>addCart",
-    "action": "addCart",
-    "actionType": "service",
-    "actionBody": "cartService.addCart",
-    "order": 1
+    "typeId" : "eventAction",
+    "event": "cart>add",
+    "action" : "addCart",
+    "actionName" : "장바구니 담기",
+    "actionType" : "service",
+    "actionBody" : "cartService.addCart",
+    "order" : 1
   }
 ]
