@@ -1,14 +1,37 @@
 [
   {
     "typeId" : "apiCategory",
-    "id" : "productApi",
+    "id" : "product",
     "categoryName" : "상품 API"
   },
   {
     "typeId" : "apiConfig",
-    "category" : "productApi",
+    "category" : "product",
     "apiId" : "list",
-    "apiName" : "상품 리스트",
+    "apiName" : "상품 리스트 (네이버 최저가 붙여야하는데 header 세팅까지하고 로컬캐시 처리 필요 )",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "product",
+      "query" : [
+        {"includeReferenced" : false, "referenceView" : "contentsId"}
+      ],
+      "response": {
+        "productId": "",
+        "name": "",
+        "lowestPriceKey":"",
+        "naver" : {
+          "endpoint":"http://localhost:8080/node/cart/read.json?cartId=0"
+        }
+      }
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "product",
+    "apiId" : "listbackup",
+    "apiName" : "상품 리스트(backup) fromto, should 등 검색조건 걸려야함",
     "method" : "GET",
     "parameters" : [
     ],
