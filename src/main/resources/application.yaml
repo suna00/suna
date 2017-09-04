@@ -47,7 +47,7 @@ file:
 
 
 i18n:
-  default: en
+  defaults: en
 
 migration:
   targetDbId: mssql

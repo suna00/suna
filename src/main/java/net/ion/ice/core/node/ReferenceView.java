@@ -1,5 +1,6 @@
 package net.ion.ice.core.node;
 
+import net.ion.ice.core.context.ReadContext;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -8,8 +9,8 @@ import org.apache.commons.lang3.StringUtils;
 public class ReferenceView extends Reference{
     protected Object item ;
 
-    public ReferenceView(Node node, NodeType nodeType) {
-        super(node, nodeType);
+    public ReferenceView(Node node, NodeType nodeType, ReadContext context) {
+        super(node, nodeType, context);
         this.item = node ;
     }
 
