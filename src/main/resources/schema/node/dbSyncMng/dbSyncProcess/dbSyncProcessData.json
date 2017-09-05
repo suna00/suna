@@ -16,4 +16,14 @@
     , "query": "SELECT langId, count(*) as cnt FROM langMng GROUP By langId"
     , "onFail": "stop"
   }
+
+
+  , {
+    "typeId": "dbSyncProcess"
+    , "executeId": "test0003"
+    , "targetDs": "cjDb"
+    , "targetNodeType": "badgeInfo"
+    , "query": "SELECT * FROM badgeInfo WHERE badgeSeq > @{seq}"
+    , "onFail": "stop"
+  }
 ]

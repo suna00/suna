@@ -39,7 +39,6 @@ public class SyntaxUtils {
         * */
         String patternedQuery = query;
         List<Object> temp = new ArrayList<>();
-        Object[] params = {};
 
         // 하나라도 대상이 있을 때만 파싱하기
         if(query.contains(OPENER)) {
@@ -52,7 +51,7 @@ public class SyntaxUtils {
             // @{} 문자열 전부 ? 로 치환
             List<String> replaceToQuestionMark = (List<String>) parsed.get("replaces");
             for(String target : replaceToQuestionMark) {
-                patternedQuery = patternedQuery.replaceAll(target, "?");
+                patternedQuery = patternedQuery.replace(target, "?");
             }
         }
 
@@ -77,7 +76,7 @@ public class SyntaxUtils {
         while(oMatcher.find()) {
             if(cMatcher.find()) {
                 parsed.add(originalStr.substring(oMatcher.start() + 2, cMatcher.start()));
-                String toChange = originalStr.substring(oMatcher.start(), cMatcher.start());
+                String toChange = originalStr.substring(oMatcher.start(), cMatcher.start() + 1);
                 willReplaced.add(toChange);
             }
         }
