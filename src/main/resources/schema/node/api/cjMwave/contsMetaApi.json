@@ -520,12 +520,16 @@
     ],
     "config": {
       "typeId": "groupPhoto",
-      "id": "{{:groupPhotoId}}",
-      "query": [
+
+      "query":[
         {
-          "referenceView": "compontSinglePhotoIds"
-        }
+          "field": "groupPhotoId",
+          "method": "matching",
+          "value": "{{:groupPhotoId}}"
+        },
+        {"referenceView": "compontSinglePhotoIds"}
       ]
+
     }
   },
   {
@@ -590,6 +594,23 @@
           "pageSize": "{{:pageSize}}"
         }
       ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "contsMeta",
+    "apiId": "IfSeo001",
+    "apiName": "SEO 메타 상세조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "pageId",
+        "required": false
+      }
+    ],
+    "config": {
+      "typeId": "seoMetaInfo",
+      "id": "{{:pageId}}"
     }
   }
 ]

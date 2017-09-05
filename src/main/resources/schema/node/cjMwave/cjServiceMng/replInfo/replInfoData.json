@@ -3,7 +3,7 @@
     "typeId": "replInfo",
     "replSeq": 5422,
     "contsMetaDivCd": "1",
-    "contsMetaId": "artist_00001",
+    "contsMetaId": "artist::artist_00001",
     "mkerId": "1>park100",
     "replSbst": "사진 좋아요"
   }
