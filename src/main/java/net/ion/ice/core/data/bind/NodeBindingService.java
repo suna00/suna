@@ -32,6 +32,7 @@ public class NodeBindingService {
     private NodeService nodeService;
     @Autowired
     private DBService DBService;
+
     private Map<String, NodeBindingInfo> nodeBindingInfoMap = new ConcurrentHashMap<>();
 
     public void save(Map<String, String[]> parameterMap, String typeId) {
@@ -145,6 +146,11 @@ public class NodeBindingService {
         nodeBindingInfo.delete(node);
     }
 
+    public Long sequence(String typeId) {
+        NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(typeId);
+        return nodeBindingInfo.retrieveSequence();
+    }
+
 
     public void nodeBindProcess(String typeId) {
         NodeType nodeType = nodeService.getNodeType(typeId);
@@ -154,10 +160,11 @@ public class NodeBindingService {
     public void nodeBindProcess(NodeType nodeType) {
         if (!nodeBindingInfoMap.containsKey(nodeType.getTypeId())) {
 
-            String dsId = String.valueOf(nodeType.getTableName()).split("#")[0];
+            String dsId = nodeType.getDsId();
+            String tableName = nodeType.getTableName();
+
             JdbcTemplate jdbcTemplate = DBService.getJdbcTemplate(dsId);
 
-            String tableName = String.valueOf(nodeType.getTableName()).split("#")[1];
 
             String DBType = new DBUtils(jdbcTemplate).getDBType();
 

@@ -34,7 +34,7 @@ public class ApiReadContext extends ReadContext{
             if(key.equals("id")){
                 readContext.id = (String) ContextUtils.getValue(config.get(key), data) ;
             }else if(key.equals("response")){
-                ContextUtils.makeApiResponse((Map<String, Object>) config.get(key), data, readContext);
+                ContextUtils.makeApiResponse((Map<String, Object>) config.get(key), readContext);
             }
         }
         return readContext;

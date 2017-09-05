@@ -1,8 +1,6 @@
 package net.ion.ice.core.query;
 
-import net.ion.ice.core.context.Context;
-import net.ion.ice.core.context.FieldContext;
-import net.ion.ice.core.context.QueryContext;
+import net.ion.ice.core.context.*;
 
 import java.util.Map;
 
@@ -19,6 +17,8 @@ public class ResultField {
 
     private Object staticValue ;
 
+    private ResultType resultType ;
+
     public ResultField(String fieldName, String fieldValue){
         this.fieldName = fieldName ;
         this.fieldValue=fieldValue ;
@@ -32,9 +32,18 @@ public class ResultField {
 
     public ResultField(String fieldName, Map<String, Object> fieldOption) {
         this.fieldName = fieldName ;
-        if(fieldOption.containsKey("value")){
+        if(fieldOption.containsKey("query")) {
+            resultType = ResultType.QUERY ;
+            this.fieldOption = fieldOption ;
+        }else if(fieldOption.containsKey("select")){
+            resultType = ResultType.SELECT ;
+            this.fieldOption = fieldOption ;
+        }else if(fieldOption.containsKey("value")){
+            resultType = ResultType.VALUE ;
             this.staticValue = fieldOption.get("value") ;
         }else {
+            resultType = ResultType.OPTION ;
+
             if (fieldOption.containsKey("field")) {
                 this.fieldValue = (String) fieldOption.get("field");
             } else {
@@ -77,5 +86,17 @@ public class ResultField {
 
     public Object getStaticValue(){
         return staticValue ;
+    }
+
+    public ResultType getResultType() {
+        return resultType;
+    }
+
+    public enum ResultType {
+        QUERY,
+        SELECT,
+        EVENT,
+        VALUE,
+        OPTION
     }
 }
