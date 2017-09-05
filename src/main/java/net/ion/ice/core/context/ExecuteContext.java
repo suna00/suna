@@ -258,7 +258,7 @@ public class ExecuteContext extends ReadContext{
         }
 
         if(config.containsKey("response")){
-            ContextUtils.makeApiResponse((Map<String, Object>) config.get("response"), data, ctx);
+            ContextUtils.makeApiResponse((Map<String, Object>) config.get("response"), ctx);
         }
 
         if(config.containsKey("if")){

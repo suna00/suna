@@ -46,6 +46,17 @@
   {
     "typeId" : "builderPresentationalComponent",
     "componentTemplateType": "Spin",
+    "componentClassType": "BUTTON",
+    "componentClass": "ButtonModal",
+    "componentClassName": "BUTTON MODAL",
+    "icon": "fa-square-o",
+    "order": 5,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentTemplateType": "Spin",
     "componentClassType": "INPUT",
     "componentClass": "Numeric",
     "componentClassName": "NUMBER",
