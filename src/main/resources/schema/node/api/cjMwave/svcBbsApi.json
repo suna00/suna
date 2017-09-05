@@ -176,18 +176,16 @@
       }
     ],
     "config": {
-      "createItem": {
-        "typeId": "qna",
-        "event": "create",
-        "data": {
-          "qnarId": "{{:snsTypeCd}}>{{:snsKey}}",
-          "qnaNm": "{{:qnaNm}}",
-          "qnaFild": "{{:qnaFildCd}}",
-          "qstnrEmail": "{{:qstnrEmail}}",
-          "qstnSbst": "{{:qstnSbst}}",
-          "qstnAtcFilePath": "{{:qstnAtcFile}}",
-          "trtSttusCd": "1"
-        }
+      "typeId": "qna",
+      "event": "create",
+      "data": {
+        "qnarId": "{{:snsTypeCd}}>{{:snsKey}}",
+        "qnaNm": "{{:qnaNm}}",
+        "qnaFild": "{{:qnaFildCd}}",
+        "qstnrEmail": "{{:qstnrEmail}}",
+        "qstnSbst": "{{:qstnSbst}}",
+        "qstnAtcFilePath": "{{:qstnAtcFile}}",
+        "trtSttusCd": "1"
       }
     }
   },
@@ -306,7 +304,7 @@
   {
     "typeId": "apiConfig",
     "category": "svcBbs",
-    "apiId": "IfFqa003",
+    "apiId": "IfFaq003",
     "apiName": "FAQ 조회수 Up",
     "method": "POST",
     "parameters": [
@@ -316,13 +314,10 @@
       }
     ],
     "config": {
-      "createItem": {
-        "typeId": "faq",
-        "event": "update",
-        "data": {
-          "faqSeq": "{{:faqSeq}}",
-          "retvNum": "1"
-        }
+      "typeId": "faq",
+      "event": "retvNum",
+      "data": {
+        "faqSeq": "{{:faqSeq}}"
       }
     }
   }

@@ -113,8 +113,9 @@
         {
           "page": "{{:page}}",
           "pageSize": "{{:pageSize}}"
-        },{
-          "referenceView":"voteSeq"
+        },
+        {
+          "referenceView": "voteSeq"
         }
       ]
     }
@@ -222,7 +223,7 @@
   {
     "typeId": "apiConfig",
     "category": "mypage",
-    "apiId": "IfUlc00",
+    "apiId": "IfUlc005",
     "apiName": "My Q&A 삭제",
     "method": "POST",
     "parameters": [
@@ -240,12 +241,10 @@
       }
     ],
     "config": {
-      "createItem": {
-        "typeId": "qna",
-        "event": "delete",
-        "data": {
-          "qnaSeq":"{{:qnaSeq}}"
-        }
+      "typeId": "qna",
+      "event": "delete",
+      "data": {
+        "qnaSeq": "{{:qnaSeq}}"
       }
     }
   }

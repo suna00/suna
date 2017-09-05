@@ -360,21 +360,60 @@
     "icon": "fa-tag",
     "active": "true",
     "index": "false",
-    "pages": [
+    "pages": [],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "metadataMng",
+    "parentMenuId": "admin>root>photo",
+    "menuId": "singlePhoto",
+    "menuName": "Single Photo",
+    "order": "10",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
       {
         "pageName": "목록",
-        "pageUrl": "list"
+        "pageUrl": "cj/content/SinglePhotoList"
       },
       {
         "pageName": "등록/수정",
-        "pageUrl": "form"
+        "pageUrl": "cj/content/SinglePhotoForm"
       },
       {
         "pageName": "상세",
-        "pageUrl": "view"
-      }
-    ],
-    "customPages": []
+        "pageUrl": "cj/content/SinglePhotoView"
+      }]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "metadataMng",
+    "parentMenuId": "admin>root>photo",
+    "menuId": "groupPhoto",
+    "menuName": "Bundle Photo",
+    "order": "20",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "cj/content/GroupPhotoList"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "cj/content/GroupPhotoForm"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "cj/content/GroupPhotoView"
+      }]
   },
   {
     "typeId": "adminLnbMenu",
@@ -1060,25 +1099,24 @@
     "icon": "",
     "active": "true",
     "index": "false",
-    "pages": [
+    "pages": [],
+    "customPages": [
       {
         "pageName": "목록",
-        "pageUrl": "list"
+        "pageUrl": "cj/cc/faq/FaqList"
       },
       {
         "pageName": "등록",
-        "pageUrl": "form"
+        "pageUrl": "cj/cc/faq/FaqForm"
       },
       {
         "pageName": "수정",
-        "pageUrl": "uform"
+        "pageUrl": "cj/cc/faq/FaqUform"
       },
       {
         "pageName": "상세",
-        "pageUrl": "view"
+        "pageUrl": "cj/cc/faq/FaqView"
       }
-    ],
-    "customPages": [
     ]
   },
   {

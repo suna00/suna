@@ -488,5 +488,15 @@
     "repositoryType": "node",
     "eviction": 0,
     "tableName": "cjDb#votePwnrInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "seoMetaInfo",
+    "tid": "seoMetaInfo",
+    "typeName": "SEO 메타 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#seoMetaInfo"
   }
 ]

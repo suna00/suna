@@ -37,23 +37,6 @@
   {
     "typeId": "propertyType",
     "tid": "faq",
-    "pid": "faqNm",
-    "id": "faq>faqNm",
-    "propertyTypeName": "FAQ 제목",
-    "valueType": "STRING",
-    "required": true,
-    "idable": false,
-    "labelable": true,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "cjk",
-    "referenceType": "",
-    "referenceValue": "",
-    "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "faq",
     "pid": "qstnSbst",
     "id": "faq>qstnSbst",
     "propertyTypeName": "질문 내용",

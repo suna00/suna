@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "typeId" : "event",
+    "tid": "faq",
+    "event" : "retvNum",
+    "eventName" : "retvNum Event"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "faq>retvNum",
+    "action" : "retvNumUpdEvent",
+    "actionType" : "service",
+    "actionBody" : "faqService.retvNumUpdate",
+    "order" : 1
+  }
+]

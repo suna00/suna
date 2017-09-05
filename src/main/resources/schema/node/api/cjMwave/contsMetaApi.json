@@ -472,7 +472,7 @@
         "required": false
       },
       {
-        "paramName": "ctrgyId",
+        "paramName": "ctgryId",
         "required": false
       }
     ],
@@ -480,9 +480,9 @@
       "typeId": "groupPhoto",
       "query": [
         {
-          "field": "ctrgyId",
+          "field": "ctgryId",
           "method": "matching",
-          "value": "{{:ctrgyId}}"
+          "value": "{{:ctgryId}}"
         },
         {
           "field": "showYn",
@@ -520,12 +520,16 @@
     ],
     "config": {
       "typeId": "groupPhoto",
-      "id": "{{:groupPhotoId}}",
-      "query": [
+
+      "query":[
         {
-          "referenceView": "compontSinglePhotoIds"
-        }
+          "field": "groupPhotoId",
+          "method": "matching",
+          "value": "{{:groupPhotoId}}"
+        },
+        {"referenceView": "compontSinglePhotoIds"}
       ]
+
     }
   },
   {
@@ -590,6 +594,23 @@
           "pageSize": "{{:pageSize}}"
         }
       ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "contsMeta",
+    "apiId": "IfSeo001",
+    "apiName": "SEO 메타 상세조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "pageId",
+        "required": false
+      }
+    ],
+    "config": {
+      "typeId": "seoMetaInfo",
+      "id": "{{:pageId}}"
     }
   }
 ]

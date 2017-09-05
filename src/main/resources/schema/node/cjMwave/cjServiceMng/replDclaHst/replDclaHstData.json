@@ -4,13 +4,15 @@
     "dclaHstSeq": 1542,
     "replSeq": 42515,
     "dclaSbst": "",
-    "dclarId": "fkdfgjdf"
+    "dclarId": "불량 댓글",
+    "dclaDivCd": "1"
   },
   {
     "typeId": "replDclaHst",
-    "dclaHstSeq": 1542,
+    "dclaHstSeq": 1543,
     "replSeq": 5425,
-    "dclaSbst": "",
-    "dclarId": "gsdf34"
+    "dclaSbst": "신고합니다",
+    "dclarId": "1>park100",
+    "dclaDivCd": "2"
   }
 ]

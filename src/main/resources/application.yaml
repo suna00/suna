@@ -202,7 +202,8 @@ file:
   default:
     path: /resource/cj_ice2/files
 
-
+i18n:
+  default: ENG
 ---
 
 spring:

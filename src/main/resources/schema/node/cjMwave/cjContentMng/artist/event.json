@@ -1,0 +1,16 @@
+[
+  {
+    "typeId" : "event",
+    "tid": "artist",
+    "event" : "getArtistSeq",
+    "eventName" : "Get Artist Sequence"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "artist>getArtistSeq",
+    "action" : "getArtistSeq",
+    "actionType" : "service",
+    "actionBody" : "artistService.getArtistSeq",
+    "order" : 1
+  }
+]
