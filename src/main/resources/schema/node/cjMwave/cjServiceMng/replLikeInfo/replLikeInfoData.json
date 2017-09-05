@@ -1,22 +1,32 @@
 [
   {
     "typeId": "replLikeInfo",
-    "replLikeSeq": 5422
+    "replSeq": 5422,
+    "mbrId": "sdfsdf",
+    "replLikeSeq": 15151
   },
   {
     "typeId": "replLikeInfo",
-    "replLikeSeq": 5402
+    "replSeq": 5423,
+    "mbrId": "revdcd",
+    "replLikeSeq": 15152
   },
   {
     "typeId": "replLikeInfo",
-    "replLikeSeq": 5321
+    "replSeq": 5424,
+    "mbrId": "cvxfsdf",
+    "replLikeSeq": 15153
   },
   {
     "typeId": "replLikeInfo",
-    "replLikeSeq": 5216
+    "replSeq": 5425,
+    "mbrId": "qweqwe",
+    "replLikeSeq": 15154
   },
   {
     "typeId": "replLikeInfo",
-    "replLikeSeq": 5678
+    "replSeq": 5426,
+    "mbrId": "jsndjf",
+    "replLikeSeq": 15155
   }
 ]

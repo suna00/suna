@@ -1099,25 +1099,24 @@
     "icon": "",
     "active": "true",
     "index": "false",
-    "pages": [
+    "pages": [],
+    "customPages": [
       {
         "pageName": "목록",
-        "pageUrl": "list"
+        "pageUrl": "cj/cc/faq/FaqList"
       },
       {
         "pageName": "등록",
-        "pageUrl": "form"
+        "pageUrl": "cj/cc/faq/FaqForm"
       },
       {
         "pageName": "수정",
-        "pageUrl": "uform"
+        "pageUrl": "cj/cc/faq/FaqUform"
       },
       {
         "pageName": "상세",
-        "pageUrl": "view"
+        "pageUrl": "cj/cc/faq/FaqView"
       }
-    ],
-    "customPages": [
     ]
   },
   {
