@@ -51,7 +51,7 @@ public class ApiQueryContext extends QueryContext{
                 queryContext.setQueryTerms(queryTerms);
 //                queryContext.makeSearchFields((Map<String, Object>) config.get("query"));
             }else if(key.equals("response")){
-                ContextUtils.makeApiResponse((Map<String, Object>) config.get(key), data, queryContext);
+                ContextUtils.makeApiResponse((Map<String, Object>) config.get(key), queryContext);
             }
         }
         return queryContext;
