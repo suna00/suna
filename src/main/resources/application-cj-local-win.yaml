@@ -1,6 +1,5 @@
 spring:
-  profiles:
-    active: cj-dev01
+  profiles: cj-local-win
   http:
     multipart:
       max-request-size: 10MB
@@ -12,7 +11,7 @@ server:
 jwtConfig:
   issuer: I-ON
   secretKey: dkdldhs!@#$
-  tokenPrefix: SDP
+  headerPrefix: SDP
   headString: X-Authorization
   tokenExpirationTime: 15 #분
   refreshTokenExpTime: 60 #분
@@ -20,12 +19,11 @@ jwtConfig:
 
 cluster:
   members:
-    - 172.17.118.241
     - 127.0.0.1
     - localhost
 
 infinispan:
-  cachePath: /home/enmadminuser/ion/cms/resource/ice2/cache
+  cachePath: /resource/cj_ice2/cache
 
 tomcat:
   access-log-enabled: true
@@ -41,11 +39,7 @@ logging:
 
 file:
   default:
-    path: /home/enmadminuser/ion/cms/resource/ice2/files
-
-
-i18n:
-  default: en
+    path: c:/resource/cj_ice2/files
 
 
 cjapi:

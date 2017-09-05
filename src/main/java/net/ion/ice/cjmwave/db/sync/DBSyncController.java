@@ -115,5 +115,4 @@ public class DBSyncController {
         combined.put("typeId", targetNodeType);
         return combined;
     }
-
 }
