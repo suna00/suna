@@ -1,14 +1,22 @@
 [
   {
     "typeId": "replLikeInfo",
-    "replLikeSeq": 15151,
-    "replSeq": 5422,
-    "mbrId": "1>park100"
+    "replLikeSeq": 5422
   },
   {
     "typeId": "replLikeInfo",
-    "replLikeSeq": 15142,
-    "replSeq": 5422,
-    "mbrId": "1>park100"
+    "replLikeSeq": 5402
+  },
+  {
+    "typeId": "replLikeInfo",
+    "replLikeSeq": 5321
+  },
+  {
+    "typeId": "replLikeInfo",
+    "replLikeSeq": 5216
+  },
+  {
+    "typeId": "replLikeInfo",
+    "replLikeSeq": 5678
   }
 ]
