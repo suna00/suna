@@ -267,18 +267,22 @@ public class ReadContext implements Context {
                     case QUERY: {
                         ApiQueryContext apiQueryContext = ApiQueryContext.makeContextFromConfig(resultField.getFieldOption(), _data);
                         apiQueryContext.makeQueryResult(itemResult, resultField.getFieldName());
+                        break ;
                     }
                     case SELECT: {
                         ApiSelectContext apiQueryContext = ApiSelectContext.makeContextFromConfig(resultField.getFieldOption(), _data);
                         apiQueryContext.makeQueryResult(itemResult, resultField.getFieldName());
+                        break ;
                     }
                     case VALUE: {
                         itemResult.put(resultField.getFieldName(), ContextUtils.getValue(resultField.getStaticValue(), _data));
+                        break ;
                     }
                     case OPTION: {
                         String fieldValue = resultField.getFieldValue();
                         fieldValue = fieldValue == null || StringUtils.isEmpty(fieldValue) ? resultField.getFieldName() : fieldValue;
                         itemResult.put(resultField.getFieldName(), NodeUtils.getResultValue(resultField.getFieldContext(), nodeType.getPropertyType(fieldValue), node));
+                        break ;
                     }
                 }
             } else {
