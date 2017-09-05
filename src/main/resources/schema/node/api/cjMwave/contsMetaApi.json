@@ -482,7 +482,7 @@
         {
           "field": "ctgryId",
           "method": "matching",
-          "value": "{{:ctrgyId}}"
+          "value": "{{:ctgryId}}"
         },
         {
           "field": "showYn",
