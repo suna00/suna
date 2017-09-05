@@ -505,7 +505,7 @@
   },
   {
     "typeId": "commonCode",
-    "code": "productOptionType",
+    "code": "baseOptionType",
     "upperCode": "root",
     "name": "상품 옵션 타입",
     "description": "",
@@ -1354,6 +1354,15 @@
     "code": "securities",
     "upperCode": "contentsType",
     "name": "유가증권",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "cellphone",
+    "upperCode": "contentsType",
+    "name": "휴대폰개통",
     "description": "",
     "sortOrder": "2",
     "commonCodeStatus": "y"
@@ -3629,7 +3638,7 @@
   {
     "typeId": "commonCode",
     "code": "mix",
-    "upperCode": "productOptionType",
+    "upperCode": "baseOptionType",
     "name": "조합",
     "description": "",
     "sortOrder": "1",
@@ -3638,7 +3647,7 @@
   {
     "typeId": "commonCode",
     "code": "single",
-    "upperCode": "productOptionType",
+    "upperCode": "baseOptionType",
     "name": "독립",
     "description": "",
     "sortOrder": "2",
@@ -3647,7 +3656,7 @@
   {
     "typeId": "commonCode",
     "code": "add",
-    "upperCode": "productOptionType",
+    "upperCode": "baseOptionType",
     "name": "추가",
     "description": "",
     "sortOrder": "3",
@@ -4150,20 +4159,11 @@
   },
   {
     "typeId": "commonCode",
-    "code": "mdpick",
-    "upperCode": "themeType",
-    "name": "MD Pick",
-    "description": "",
-    "sortOrder": "14",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
     "code": "hotitem",
     "upperCode": "themeType",
     "name": "HOT ITEM",
     "description": "",
-    "sortOrder": "15",
+    "sortOrder": "14",
     "commonCodeStatus": "y"
   },
   {
@@ -5442,6 +5442,69 @@
     "name": "만료",
     "description": "",
     "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "baseOptionType",
+    "upperCode": "root",
+    "name": "기본옵션타입",
+    "description": "",
+    "sortOrder": "103",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "addOptionType",
+    "upperCode": "root",
+    "name": "추가옵션타입",
+    "description": "",
+    "sortOrder": "103",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "n",
+    "upperCode": "baseOptionType",
+    "name": "사용안함",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "mix",
+    "upperCode": "baseOptionType",
+    "name": "조합옵션",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "single",
+    "upperCode": "baseOptionType",
+    "name": "독립옵션",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "n",
+    "upperCode": "addOptionType",
+    "name": "사용안함",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "y",
+    "upperCode": "addOptionType",
+    "name": "사용함",
+    "description": "",
+    "sortOrder": "2",
     "commonCodeStatus": "y"
   }
 ]

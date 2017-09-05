@@ -126,7 +126,9 @@
 				"110cbca8-443f-00e1-2870-9089d77b271a",
 				"3316dc2e-5c79-e411-2a8e-940f94f79adb",
 				"36860e78-9d58-8b90-5237-e2b532cdb761",
-				"9f99267d-00f8-221e-6bbd-25a0052e4450"
+				"9f99267d-00f8-221e-6bbd-25a0052e4450",
+				"22af60ed-0cef-87d9-0993-6c8e27dd5345",
+				"7b57e55e-19d4-a8bc-4746-2810f8afa522"
 			],
 			"owner": "297192",
 			"folders_order": [],
@@ -929,7 +931,8 @@
 			"name": "장바구니 리스트_마케팅 배너",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"responses": []
+			"responses": [],
+			"folder": "fbef8ed5-d63e-081d-e1ac-6c54a38292d6"
 		},
 		{
 			"id": "10c85e57-fc98-3128-1722-4006e754fcf2",
@@ -959,29 +962,69 @@
 		},
 		{
 			"id": "110cbca8-443f-00e1-2870-9089d77b271a",
-			"method": "GET",
-			"url": "",
-			"name": "휴면회원 해제_이메일 인증 전송",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/emailCertification/req.json?emailCertificationType=sleepMember&certStatus=request&adminId=&memberNo=77777&email=jlee84@i-on.net&emailCertificationId=1",
+			"queryParams": [
+				{
+					"key": "emailCertificationType",
+					"value": "sleepMember",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "certStatus",
+					"value": "request",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "adminId",
+					"value": "",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "memberNo",
+					"value": "77777",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "jlee84@i-on.net",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "emailCertificationId",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "1f9762fe-ff01-eb83-ae35-875730583de3",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "1f9762fe-ff01-eb83-ae35-875730583de3"
+			"helperAttributes": {},
+			"time": 1504165161629,
+			"name": "휴면회원 해제_이메일 인증 전송",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": [],
+			"folder": "1f9762fe-ff01-eb83-ae35-875730583de3"
 		},
 		{
 			"id": "124a8b3e-760f-2589-a5a4-61de56b1d949",
@@ -1164,7 +1207,8 @@
 			"name": "인트로,메인_메인_마케팅 배너",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"responses": []
+			"responses": [],
+			"folder": "5b8f3a9d-151a-1511-f678-95e2fcac0927"
 		},
 		{
 			"id": "15ff29c0-8d82-0fe0-bcfa-cef11a9a0650",
@@ -1299,29 +1343,41 @@
 		},
 		{
 			"id": "19c4cecd-72d8-3a44-faf8-d54b9d46908f",
-			"method": "GET",
-			"url": "",
-			"name": "비밀번호 찾기_이메일 인증 확인",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/emailCertification/cert.json?email=jlee84@i-on.net&certCode=eWdvb24hQCNTSE9QIDIwMTctMDgtMzEgMDc6NTE6NTY=",
+			"queryParams": [
+				{
+					"key": "email",
+					"value": "jlee84@i-on.net",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "certCode",
+					"value": "eWdvb24hQCNTSE9QIDIwMTctMDgtMzEgMDc6NTE6NTY=",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "1f9762fe-ff01-eb83-ae35-875730583de3",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "1f9762fe-ff01-eb83-ae35-875730583de3"
+			"helperAttributes": {},
+			"time": 1504254114737,
+			"name": "비밀번호 찾기_이메일 인증 확인",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": [],
+			"folder": "1f9762fe-ff01-eb83-ae35-875730583de3"
 		},
 		{
 			"id": "1aaacbad-d86c-8968-de0c-6799c06ec11e",
@@ -1540,7 +1596,8 @@
 			"name": "2,3depth 카테고리 상품 리스트_Marketing banner(상단배너)",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"responses": []
+			"responses": [],
+			"folder": "4a9aa611-5655-4a87-24b4-d0ec1f2a8a4c"
 		},
 		{
 			"id": "227656b5-fbf2-eb61-8c03-b1d3983e1b55",
@@ -1567,6 +1624,73 @@
 			"folder": "6be70e1c-6a28-958c-a290-87a9c64bd206",
 			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
 			"folderId": "6be70e1c-6a28-958c-a290-87a9c64bd206"
+		},
+		{
+			"id": "22af60ed-0cef-87d9-0993-6c8e27dd5345",
+			"headers": "",
+			"headerData": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/emailCertification/req.json?emailCertificationType=id&certStatus=request&adminId=&memberNo=77777&email=jlee84@i-on.net&emailCertificationId=1",
+			"queryParams": [
+				{
+					"key": "emailCertificationType",
+					"value": "id",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "certStatus",
+					"value": "request",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "adminId",
+					"value": "",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "memberNo",
+					"value": "77777",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "jlee84@i-on.net",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "emailCertificationId",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"data": null,
+			"dataMode": "params",
+			"name": "아이디 찾기_이메일 인증 전송",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1504162803046,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"folder": "1f9762fe-ff01-eb83-ae35-875730583de3"
 		},
 		{
 			"id": "246a63cb-6362-c1c2-e451-8af83f211fb9",
@@ -2060,29 +2184,69 @@
 		},
 		{
 			"id": "36860e78-9d58-8b90-5237-e2b532cdb761",
-			"method": "GET",
-			"url": "",
-			"name": "휴면회원 해제_SMS 인증번호 전송",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/smsCertification/req.json?smsCertificationType=sleepMember&certStatus=request&adminId=&memberNo=77777&cellphone=000-1111-7777&smsCertificationId=3",
+			"queryParams": [
+				{
+					"key": "smsCertificationType",
+					"value": "sleepMember",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "certStatus",
+					"value": "request",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "adminId",
+					"value": "",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "memberNo",
+					"value": "77777",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "cellphone",
+					"value": "000-1111-7777",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "smsCertificationId",
+					"value": "3",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "1f9762fe-ff01-eb83-ae35-875730583de3",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "1f9762fe-ff01-eb83-ae35-875730583de3"
+			"helperAttributes": {},
+			"time": 1504254110936,
+			"name": "휴면회원 해제_SMS 인증번호 전송",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": [],
+			"folder": "1f9762fe-ff01-eb83-ae35-875730583de3"
 		},
 		{
 			"id": "36e48b79-7326-7bfb-a4cd-41957a293763",
@@ -2398,55 +2562,98 @@
 		},
 		{
 			"id": "3e7730f5-3c18-eda2-ad9a-78bde4064f46",
-			"method": "GET",
-			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/cart/read.json?cartId=1",
-			"name": "장바구니 리스트_장바구니 상품 리스트",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/cart/read.json?cartId=50",
+			"queryParams": [
+				{
+					"key": "cartId",
+					"value": "50",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "fbef8ed5-d63e-081d-e1ac-6c54a38292d6",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "fbef8ed5-d63e-081d-e1ac-6c54a38292d6"
+			"helperAttributes": {},
+			"time": 1504490591185,
+			"name": "장바구니 리스트_장바구니 상품 리스트",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "3e7e0499-3172-32a2-5845-ceb0d1ae4b5d",
-			"method": "GET",
-			"url": "",
-			"name": "상품상세_장바구니담기",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/cart/event/add",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "POST",
+			"data": [
+				{
+					"key": "cartId",
+					"value": "50",
+					"description": "장바구니 아이디가 없으면 create, 있으면 update",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "memberNo",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "siteId",
+					"value": "ion",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "sessionId",
+					"value": "ssssss1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "cartProduct",
+					"value": "[\n\t{\n\t\t\"productId\":3,\n\t\t\"baseOptionItemId\":10002,\n\t\t\"quantity\":2,\n\t\t\"cartProductItem\": [\n\t\t\t{\n\t\t\t\t\"productId\":3,\n\t\t\t\t\"addOptionItemId\":10005,\n\t\t\t\t\"quantity\":1\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"productId\":3,\n\t\t\t\t\"addOptionItemId\":10006,\n\t\t\t\t\"quantity\":2\n\t\t\t}\n\t\t]\n\t},\n\t{\n\t\t\"productId\":3,\n\t\t\"baseOptionItemId\":10001,\n\t\t\"quantity\":1\n\t}\n]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": false
+				}
+			],
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "f02e2e01-cfbb-9a41-5999-de51ecb964b6",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "f02e2e01-cfbb-9a41-5999-de51ecb964b6"
+			"helperAttributes": {},
+			"time": 1504490584193,
+			"name": "상품상세_장바구니담기",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "3eb17f98-20fa-e209-37e3-fac63a251544",
@@ -2483,7 +2690,8 @@
 			"name": "2,3depth 카테고리 상품 리스트_Marketing banner(하단배너)",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"responses": []
+			"responses": [],
+			"folder": "4a9aa611-5655-4a87-24b4-d0ec1f2a8a4c"
 		},
 		{
 			"id": "3f0be5a7-abd3-e893-c2bd-12c26956dedf",
@@ -2630,7 +2838,8 @@
 			"name": "고객센터 메인_사이드 마케팅 배너",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"responses": []
+			"responses": [],
+			"folder": "6374d12f-e712-82ab-d2f0-372ec34e474c"
 		},
 		{
 			"id": "41290f91-e38c-8448-a087-79e29e21cedb",
@@ -3123,7 +3332,8 @@
 			"name": "상품상세_공지배너",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"responses": []
+			"responses": [],
+			"folder": "f02e2e01-cfbb-9a41-5999-de51ecb964b6"
 		},
 		{
 			"id": "54831897-48c2-6124-27e5-363d6f6f91b5",
@@ -3738,7 +3948,8 @@
 			"name": "메인_사이드 배너",
 			"description": "(좌)leftSide / (우)rightSide",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"responses": []
+			"responses": [],
+			"folder": "5b8f3a9d-151a-1511-f678-95e2fcac0927"
 		},
 		{
 			"id": "6af9984d-59f0-697a-c41a-3db11d5f309b",
@@ -3782,7 +3993,8 @@
 			"name": "주문 배송 메인_마케팅 배너",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"responses": []
+			"responses": [],
+			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574"
 		},
 		{
 			"id": "6b09cde0-73fc-a042-6599-7c0bc36fde7d",
@@ -3852,33 +4064,39 @@
 			"name": "메인_팝업 추가 배너",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"responses": []
+			"responses": [],
+			"folder": "5b8f3a9d-151a-1511-f678-95e2fcac0927"
 		},
 		{
 			"id": "6c4b52c7-172b-4983-d758-ace5c5c5c474",
-			"method": "GET",
-			"url": "",
-			"name": "주문/결제(회원)_결제예정 상품 리스트",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/purchaseOrder/read.json?cartId=1",
+			"queryParams": [
+				{
+					"key": "cartId",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "fbef8ed5-d63e-081d-e1ac-6c54a38292d6",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "fbef8ed5-d63e-081d-e1ac-6c54a38292d6"
+			"helperAttributes": {},
+			"time": 1504010013631,
+			"name": "주문/결제(회원)_결제예정 상품 리스트",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": [],
+			"folder": "fbef8ed5-d63e-081d-e1ac-6c54a38292d6"
 		},
 		{
 			"id": "6c6535c6-fc3a-5e9a-bc5f-fdd96556be60",
@@ -4297,29 +4515,34 @@
 		},
 		{
 			"id": "794ca9bd-9fb1-23ed-97ea-86f362910fbc",
-			"method": "GET",
-			"url": "",
-			"name": "메인_배너 및 기획전 영역",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/displayBanner/list.json?displayBannerLocation=main",
+			"queryParams": [
+				{
+					"key": "displayBannerLocation",
+					"value": "main",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "5b8f3a9d-151a-1511-f678-95e2fcac0927",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "5b8f3a9d-151a-1511-f678-95e2fcac0927"
+			"helperAttributes": {},
+			"time": 1503887727108,
+			"name": "메인_배너 및 기획전 영역",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": [],
+			"folder": "5b8f3a9d-151a-1511-f678-95e2fcac0927"
 		},
 		{
 			"id": "7b36fcf5-e51e-63e9-be06-1bee1097c671",
@@ -4346,6 +4569,28 @@
 			"folder": "40301d98-c60b-98fe-ae06-12bc7479f971",
 			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
 			"folderId": "40301d98-c60b-98fe-ae06-12bc7479f971"
+		},
+		{
+			"id": "7b57e55e-19d4-a8bc-4746-2810f8afa522",
+			"headers": "",
+			"headerData": [],
+			"url": "",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1504162825496,
+			"name": "아이디 찾기_이메일 인증 확인",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": [],
+			"folder": "1f9762fe-ff01-eb83-ae35-875730583de3"
 		},
 		{
 			"id": "7bad7cc4-1ef5-fc6c-de97-706adc4ab824",
@@ -4427,29 +4672,48 @@
 		},
 		{
 			"id": "82c4e093-9508-0fb1-79dd-ed38769934a4",
-			"method": "GET",
-			"url": "",
-			"name": "장바구니 리스트_수량 적용",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/cart/changeQuantity.json?productOptionItemId=10002&cartProductId=11000&quantity=4",
+			"queryParams": [
+				{
+					"key": "productOptionItemId",
+					"value": "10002",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "cartProductId",
+					"value": "11000",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "quantity",
+					"value": "4",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "fbef8ed5-d63e-081d-e1ac-6c54a38292d6",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "fbef8ed5-d63e-081d-e1ac-6c54a38292d6"
+			"helperAttributes": {},
+			"time": 1504349179447,
+			"name": "장바구니 리스트_수량 적용",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": [],
+			"folder": "fbef8ed5-d63e-081d-e1ac-6c54a38292d6"
 		},
 		{
 			"id": "82e799e9-10bb-6f2e-85e0-aa00562d66a9",
@@ -4632,29 +4896,41 @@
 		},
 		{
 			"id": "874faa81-8ede-b5ab-675b-3e4672dc8967",
-			"method": "GET",
-			"url": "",
-			"name": "아이디 찾기_SMS 인증번호 확인",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/smsCertification/cert.json?cellphone=000-1111-7777&certCode=8102",
+			"queryParams": [
+				{
+					"key": "cellphone",
+					"value": "000-1111-7777",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "certCode",
+					"value": "8102",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "1f9762fe-ff01-eb83-ae35-875730583de3",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "1f9762fe-ff01-eb83-ae35-875730583de3"
+			"helperAttributes": {},
+			"time": 1504162106636,
+			"name": "아이디 찾기_SMS 인증번호 확인",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": [],
+			"folder": "1f9762fe-ff01-eb83-ae35-875730583de3"
 		},
 		{
 			"id": "89206913-8b8f-05f5-e082-a0e4f32ab9b1",
@@ -4801,7 +5077,8 @@
 			"name": "기획전 메인_배너(슬라이드/3단고정)",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"responses": []
+			"responses": [],
+			"folder": "51dd7bb4-93d7-90e5-126f-b9e402dc65c7"
 		},
 		{
 			"id": "8ed69dd2-9698-fbd3-2bcc-07f75e596f1a",
@@ -4897,7 +5174,8 @@
 			"name": "인트로,메인_메인_Key banner (슬라이드) 배너",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"responses": []
+			"responses": [],
+			"folder": "5b8f3a9d-151a-1511-f678-95e2fcac0927"
 		},
 		{
 			"id": "937d3857-6bac-1169-afc4-6a75084a1229",
@@ -5005,7 +5283,8 @@
 			"name": "상품상세_마케팅 배너",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"responses": []
+			"responses": [],
+			"folder": "f02e2e01-cfbb-9a41-5999-de51ecb964b6"
 		},
 		{
 			"id": "984e7fb0-68ef-c97c-980b-472adba56932",
@@ -5113,55 +5392,128 @@
 		},
 		{
 			"id": "99f1b62e-0f20-5198-23e5-b179aa29d079",
-			"method": "GET",
-			"url": "",
-			"name": "기업회원가입_이메일 인증 전송",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/emailCertification/req.json?emailCertificationType=join&certStatus=request&adminId=&memberNo=77777&email=jlee84@i-on.net&emailCertificationId=1",
+			"queryParams": [
+				{
+					"key": "emailCertificationType",
+					"value": "join",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "certStatus",
+					"value": "request",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "adminId",
+					"value": "",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "memberNo",
+					"value": "77777",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "jlee84@i-on.net",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "emailCertificationId",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "6be70e1c-6a28-958c-a290-87a9c64bd206",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "6be70e1c-6a28-958c-a290-87a9c64bd206"
+			"helperAttributes": {},
+			"time": 1504162904622,
+			"name": "기업회원가입_이메일 인증 전송",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": [],
+			"folder": "6be70e1c-6a28-958c-a290-87a9c64bd206"
 		},
 		{
 			"id": "9c90bd91-cbcc-6ee8-f395-6a3ce4bb39e1",
-			"method": "GET",
-			"url": "",
-			"name": "아이디 찾기_SMS 인증번호 전송",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/smsCertification/req.json?smsCertificationType=password&certStatus=request&adminId=&memberNo=77777&cellphone=000-1111-7777",
+			"queryParams": [
+				{
+					"key": "smsCertificationType",
+					"value": "password",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "certStatus",
+					"value": "request",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "adminId",
+					"value": "",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "memberNo",
+					"value": "77777",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "cellphone",
+					"value": "000-1111-7777",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "1f9762fe-ff01-eb83-ae35-875730583de3",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "1f9762fe-ff01-eb83-ae35-875730583de3"
+			"helperAttributes": {},
+			"time": 1504162077782,
+			"name": "아이디 찾기_SMS 인증번호 전송",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": [],
+			"folder": "1f9762fe-ff01-eb83-ae35-875730583de3"
 		},
 		{
 			"id": "9d42ce97-1f37-cba5-693b-8dd5b754d9ac",
@@ -5217,28 +5569,69 @@
 		},
 		{
 			"id": "9f99267d-00f8-221e-6bbd-25a0052e4450",
-			"method": "GET",
-			"url": "",
-			"name": "휴면회원 해제_SMS 인증번호 확인",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/smsCertification/cert.json?cellphone=000-1111-7777&certCode=14261",
+			"queryParams": [
+				{
+					"key": "smsCertificationType",
+					"value": "sleepMember",
+					"equals": true,
+					"description": "",
+					"enabled": false
+				},
+				{
+					"key": "adminId",
+					"value": "",
+					"equals": false,
+					"description": "",
+					"enabled": false
+				},
+				{
+					"key": "memberNo",
+					"value": "77777",
+					"equals": true,
+					"description": "",
+					"enabled": false
+				},
+				{
+					"key": "cellphone",
+					"value": "000-1111-7777",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "smsCertificationId",
+					"value": "4",
+					"equals": true,
+					"description": "",
+					"enabled": false
+				},
+				{
+					"key": "certCode",
+					"value": "14261",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "1f9762fe-ff01-eb83-ae35-875730583de3",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715"
+			"helperAttributes": {},
+			"time": 1504254112512,
+			"name": "휴면회원 해제_SMS 인증번호 확인",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": [],
+			"folder": "1f9762fe-ff01-eb83-ae35-875730583de3"
 		},
 		{
 			"id": "a35f1b6d-471c-cf4c-694f-b07afc236332",
@@ -5493,7 +5886,8 @@
 			"name": "1depth 카테고리 메인_Key banner (슬라이드) 배너",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"responses": []
+			"responses": [],
+			"folder": "4a9aa611-5655-4a87-24b4-d0ec1f2a8a4c"
 		},
 		{
 			"id": "a9da9ea3-b6ee-9df5-6db1-61c66b43c0c2",
@@ -5549,29 +5943,62 @@
 		},
 		{
 			"id": "ac468834-5dc4-9307-71e0-8ca38dc84176",
-			"method": "GET",
-			"url": "",
-			"name": "비밀번호 찾기_SMS 인증번호 전송",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/smsCertification/req.json?smsCertificationType=id&certStatus=request&adminId=&memberNo=77777&cellphone=000-1111-7777",
+			"queryParams": [
+				{
+					"key": "smsCertificationType",
+					"value": "id",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "certStatus",
+					"value": "request",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "adminId",
+					"value": "",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "memberNo",
+					"value": "77777",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "cellphone",
+					"value": "000-1111-7777",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "1f9762fe-ff01-eb83-ae35-875730583de3",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "1f9762fe-ff01-eb83-ae35-875730583de3"
+			"helperAttributes": {},
+			"time": 1504162090252,
+			"name": "비밀번호 찾기_SMS 인증번호 전송",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": [],
+			"folder": "1f9762fe-ff01-eb83-ae35-875730583de3"
 		},
 		{
 			"id": "accd8bd9-1a64-6cb8-1fb8-5cdc13a27eb6",
@@ -6147,29 +6574,69 @@
 		},
 		{
 			"id": "c3db15b3-25ea-cb48-2455-d4fcc05e609d",
-			"method": "GET",
-			"url": "",
-			"name": "비밀번호 찾기_이메일 인증 전송",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/emailCertification/req.json?emailCertificationType=password&certStatus=request&adminId=&memberNo=77777&email=jlee84@i-on.net&emailCertificationId=1",
+			"queryParams": [
+				{
+					"key": "emailCertificationType",
+					"value": "password",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "certStatus",
+					"value": "request",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "adminId",
+					"value": "",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "memberNo",
+					"value": "77777",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "jlee84@i-on.net",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "emailCertificationId",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "1f9762fe-ff01-eb83-ae35-875730583de3",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "1f9762fe-ff01-eb83-ae35-875730583de3"
+			"helperAttributes": {},
+			"time": 1504162763739,
+			"name": "비밀번호 찾기_이메일 인증 전송",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": [],
+			"folder": "1f9762fe-ff01-eb83-ae35-875730583de3"
 		},
 		{
 			"id": "c4501d13-8725-29cb-b7ef-d522095a19f3",
@@ -6225,7 +6692,8 @@
 			"name": "인트로_마케팅 배너",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"responses": []
+			"responses": [],
+			"folder": "5b8f3a9d-151a-1511-f678-95e2fcac0927"
 		},
 		{
 			"id": "c514fd00-bb32-98d6-ff5b-855e2e497519",
@@ -6254,29 +6722,48 @@
 		},
 		{
 			"id": "c51bc2b6-33c9-46c7-900d-bacc2a1731ee",
-			"method": "GET",
-			"url": "",
-			"name": "메인_특화메뉴",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/gnb/list.json?sorting=sortOrder&gnbStatus_matching=y&gnbType_matching=service",
+			"queryParams": [
+				{
+					"key": "sorting",
+					"value": "sortOrder",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "gnbStatus_matching",
+					"value": "y",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "gnbType_matching",
+					"value": "service",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "5b8f3a9d-151a-1511-f678-95e2fcac0927",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "5b8f3a9d-151a-1511-f678-95e2fcac0927"
+			"helperAttributes": {},
+			"time": 1503918782644,
+			"name": "메인_특화메뉴",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": [],
+			"folder": "5b8f3a9d-151a-1511-f678-95e2fcac0927"
 		},
 		{
 			"id": "c747581f-25f5-7e53-0f78-5da5612879d9",
@@ -6357,55 +6844,79 @@
 		},
 		{
 			"id": "cbf17572-5454-9e3d-fd40-33d23f42a0c1",
-			"method": "GET",
-			"url": "",
-			"name": "배송지 관리_기본배송지 설정",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/myDeliveryAddress/setBasic.json?memberNo=77777&myDeliveryAddressId=2",
+			"queryParams": [
+				{
+					"key": "memberNo",
+					"value": "77777",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "myDeliveryAddressId",
+					"value": "2",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "455b9779-e444-61db-278a-0f642a5d2c37",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "455b9779-e444-61db-278a-0f642a5d2c37"
+			"helperAttributes": {},
+			"time": 1504271251226,
+			"name": "배송지 관리_기본배송지 설정",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": [],
+			"folder": "455b9779-e444-61db-278a-0f642a5d2c37"
 		},
 		{
 			"id": "ccffe0b8-fd24-7055-b25e-d5ad705e86a6",
-			"method": "GET",
-			"url": "",
-			"name": "비밀번호 찾기_SMS 인증번호 확인",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/smsCertification/cert.json?cellphone=000-1111-7777&certCode=8102",
+			"queryParams": [
+				{
+					"key": "cellphone",
+					"value": "000-1111-7777",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "certCode",
+					"value": "8102",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "1f9762fe-ff01-eb83-ae35-875730583de3",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "1f9762fe-ff01-eb83-ae35-875730583de3"
+			"helperAttributes": {},
+			"time": 1504162112203,
+			"name": "비밀번호 찾기_SMS 인증번호 확인",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": [],
+			"folder": "1f9762fe-ff01-eb83-ae35-875730583de3"
 		},
 		{
 			"id": "cd0cf538-1c0b-313a-570b-bcf89fc584a1",
@@ -6485,29 +6996,26 @@
 		},
 		{
 			"id": "d1ea980a-aedb-283f-058c-265a0e9db974",
-			"method": "GET",
-			"url": "",
-			"name": "상품입수_사방넷",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/product/event/sabangnet",
+			"folder": "467858e2-4ec2-340d-c14e-b6edb945d8cc",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "POST",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "467858e2-4ec2-340d-c14e-b6edb945d8cc",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "467858e2-4ec2-340d-c14e-b6edb945d8cc"
+			"helperAttributes": {},
+			"time": 1504508978004,
+			"name": "상품입수_사방넷",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "d2cb89c9-2ea5-c293-fe6f-4adc3d3c6a4e",
@@ -6719,29 +7227,69 @@
 		},
 		{
 			"id": "de63b4be-eee7-eca5-247c-7d7291466c89",
-			"method": "GET",
-			"url": "",
-			"name": "대학회원 이메일 인증_이메일 인증 전송",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/emailCertification/req.json?emailCertificationType=join&certStatus=request&adminId=&memberNo=77777&email=jlee84@i-on.net&emailCertificationId=1",
+			"queryParams": [
+				{
+					"key": "emailCertificationType",
+					"value": "join",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "certStatus",
+					"value": "request",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "adminId",
+					"value": "",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "memberNo",
+					"value": "77777",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "email",
+					"value": "jlee84@i-on.net",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "emailCertificationId",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "6be70e1c-6a28-958c-a290-87a9c64bd206",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "6be70e1c-6a28-958c-a290-87a9c64bd206"
+			"helperAttributes": {},
+			"time": 1504162909693,
+			"name": "대학회원 이메일 인증_이메일 인증 전송",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": [],
+			"folder": "6be70e1c-6a28-958c-a290-87a9c64bd206"
 		},
 		{
 			"id": "de6aa1d2-2ae0-857e-97e3-b1e67b33122a",
@@ -6875,29 +7423,48 @@
 		},
 		{
 			"id": "e475fc46-86ed-70c9-5ab9-cb57362d77a3",
-			"method": "GET",
-			"url": "",
-			"name": "메인_GNB",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/gnb/list.json?sorting=sortOrder&gnbStatus_matching=y&gnbType_matching=main",
+			"queryParams": [
+				{
+					"key": "sorting",
+					"value": "sortOrder",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "gnbStatus_matching",
+					"value": "y",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "gnbType_matching",
+					"value": "main",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "5b8f3a9d-151a-1511-f678-95e2fcac0927",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "5b8f3a9d-151a-1511-f678-95e2fcac0927"
+			"helperAttributes": {},
+			"time": 1503918789804,
+			"name": "메인_GNB",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": [],
+			"folder": "5b8f3a9d-151a-1511-f678-95e2fcac0927"
 		},
 		{
 			"id": "e4e9b651-f40c-3292-6b7a-1467d7a8cff5",
@@ -7030,28 +7597,62 @@
 		},
 		{
 			"id": "e8229f45-770a-3db2-bd6a-98b19f1b9f3b",
-			"method": "GET",
-			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/theme/list.json?pageType=categoryMain&themeType=newArrivals&siteType=company&categoryId=1",
-			"name": "1depth 카테고리 메인_New arrival",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/theme/list.json?pageType=categoryMain&themeType=newArrivals&siteType=company&categoryId=1&name=가전",
+			"queryParams": [
+				{
+					"key": "pageType",
+					"value": "categoryMain",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "themeType",
+					"value": "newArrivals",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "siteType",
+					"value": "company",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "categoryId",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "name",
+					"value": "가전",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"folder": "4a9aa611-5655-4a87-24b4-d0ec1f2a8a4c",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715"
+			"time": 1504251589905,
+			"name": "1depth 카테고리 메인_New arrival",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": [],
+			"folder": "4a9aa611-5655-4a87-24b4-d0ec1f2a8a4c"
 		},
 		{
 			"id": "e82c1394-0c30-9b03-06b3-121829e387d4",
@@ -7147,7 +7748,8 @@
 			"name": "인트로,메인_메인_검색 사이드 배너",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"responses": []
+			"responses": [],
+			"folder": "5b8f3a9d-151a-1511-f678-95e2fcac0927"
 		},
 		{
 			"id": "eaf7e769-6c3e-7f4a-7343-18b40f34d146",
@@ -7262,7 +7864,8 @@
 			"name": "인트로,메인_메인_카테고리 메뉴 배너",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"responses": []
+			"responses": [],
+			"folder": "5b8f3a9d-151a-1511-f678-95e2fcac0927"
 		},
 		{
 			"id": "ee33a6f2-85ec-3c5a-af99-360b0fe9718e",
@@ -7685,7 +8288,8 @@
 			"name": "1depth 카테고리 메인_Marketing banner 배너",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"responses": []
+			"responses": [],
+			"folder": "4a9aa611-5655-4a87-24b4-d0ec1f2a8a4c"
 		},
 		{
 			"id": "f85df55a-4646-7bd0-f573-134e74fba22d",

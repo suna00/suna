@@ -98,7 +98,7 @@ public class PropertyType {
 
     public boolean isSorted(){
         switch (getAnalyzerType()){
-            case code: case simple:
+            case simple:
                 return true ;
         }
         return false ;

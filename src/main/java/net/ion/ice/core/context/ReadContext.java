@@ -50,7 +50,6 @@ public class ReadContext implements Context {
     protected List<ResultField> commonResultFields;
 
 
-
     public NodeType getNodetype() {
         return nodeType;
     }
@@ -212,13 +211,18 @@ public class ReadContext implements Context {
 
     public QueryResult makeResult() {
         Node node = NodeUtils.getNode(nodeType.getTypeId(), id) ;
-        this.result = node ;
-        QueryResult itemResult = makeResult(node);
+        if(node == null){
+            this.result = data ;
+        }else{
+            this.result = node ;
+        }
 
         QueryResult queryResult = new QueryResult() ;
         queryResult.put("result", "200") ;
         queryResult.put("resultMessage", "SUCCESS") ;
-        queryResult.put("item", itemResult) ;
+        if(node != null) {
+            queryResult.put("item", makeResult(node));
+        }
 
         return queryResult ;
     }
@@ -339,5 +343,13 @@ public class ReadContext implements Context {
 
     public Map<String, Object> getFileUrlFormat() {
         return fileUrlFormat;
+    }
+
+    public boolean hasLocale() {
+        return this.data != null && this.data.containsKey("locale") && StringUtils.isNotEmpty((String) data.get("locale")) ;
+    }
+
+    public String getLocale() {
+        return (String) data.get("locale");
     }
 }
