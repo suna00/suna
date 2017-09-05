@@ -16,6 +16,7 @@ import java.util.Map;
 
 /**
  * Created by juneyoungoh on 2017. 9. 5..
+ * 파라미터 어떤식으로 끊어낼건지 고민이 필요함
  */
 @Controller
 @RequestMapping("pip")
@@ -33,8 +34,6 @@ public class PipApiController {
         Map<String, Object> rtn = new HashMap<>();
         ObjectMapper mapper = new ObjectMapper();
         List rsList = null;
-
-        logger.info("======================" + apiType);
 
         try{
             switch (apiType) {

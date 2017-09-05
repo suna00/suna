@@ -39,7 +39,6 @@ public class JSONNetworkUtils {
         reader.close();
         logger.info("------------------------------- " + sb.toString());
         rsList = mapper.readValue(sb.toString(), List.class);
-
         return rsList;
     }
 };
