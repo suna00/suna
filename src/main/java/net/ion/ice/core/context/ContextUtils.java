@@ -95,7 +95,7 @@ public class ContextUtils {
         return values[0] ;
     }
 
-    public static void makeApiResponse(Map<String, Object> response, Map<String, Object> data, ReadContext readContext) {
+    public static void makeApiResponse(Map<String, Object> response, ReadContext readContext) {
 
 //                if(response.containsKey("merge")){
 //                    queryContext.responseType = "merge" ;
@@ -113,13 +113,7 @@ public class ContextUtils {
                     readContext.addResultField(new ResultField(fieldName, (String) fieldValue));
                 }
             } else if (fieldValue instanceof Map) {
-                if(((Map) fieldValue).containsKey("query")) {
-                    readContext.addResultField(new ResultField(fieldName, ApiQueryContext.makeContextFromConfig((Map<String, Object>) fieldValue, data)));
-                }else if(((Map) fieldValue).containsKey("select")){
-                    readContext.addResultField(new ResultField(fieldName, ApiSelectContext.makeContextFromConfig((Map<String, Object>) fieldValue, data)));
-                }else{
-                    readContext.addResultField(new ResultField(fieldName, (Map<String, Object>) fieldValue));
-                }
+                readContext.addResultField(new ResultField(fieldName, (Map<String, Object>) fieldValue));
             }
         }
     }
