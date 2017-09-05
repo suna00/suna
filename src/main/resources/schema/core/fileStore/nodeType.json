@@ -1,0 +1,12 @@
+[
+  {
+    "parentId" : "system",
+    "typeId" : "nodeType",
+    "id" : "fileStore",
+    "tid" : "fileStore",
+    "typeName" : "File Store",
+    "repositoryType" : "node",
+    "tableName": "",
+    "eviction" : 100000
+  }
+]
