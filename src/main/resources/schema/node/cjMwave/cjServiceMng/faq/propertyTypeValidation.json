@@ -65,8 +65,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>faq>faqNm",
-    "propertyTypeId": "faq>faqNm",
+    "id": "propertyTypeValidation>faq>qstnSbst",
+    "propertyTypeId": "faq>qstnSbst",
     "validation": {
       "language": "ko",
       "required": {
