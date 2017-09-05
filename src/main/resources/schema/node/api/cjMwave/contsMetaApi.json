@@ -472,7 +472,7 @@
         "required": false
       },
       {
-        "paramName": "ctrgyId",
+        "paramName": "ctgryId",
         "required": false
       }
     ],
@@ -480,7 +480,7 @@
       "typeId": "groupPhoto",
       "query": [
         {
-          "field": "ctrgyId",
+          "field": "ctgryId",
           "method": "matching",
           "value": "{{:ctrgyId}}"
         },
