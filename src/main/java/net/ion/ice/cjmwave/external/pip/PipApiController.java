@@ -1,10 +1,8 @@
-package net.ion.ice.cjmwave.external.test;
+package net.ion.ice.cjmwave.external.pip;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.ion.ice.cjmwave.external.UrlCallService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,27 +15,17 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by juneyoungoh on 2017. 9. 4..
+ * Created by juneyoungoh on 2017. 9. 5..
  */
 @Controller
 @RequestMapping("pip")
-public class UrlTestController {
+public class PipApiController {
 
-    private Logger logger = Logger.getLogger(UrlTestController.class);
+    private Logger logger = Logger.getLogger(PipApiService.class);
 
     @Autowired
-    UrlCallService urlCallService;
+    PipApiService pipApiService;
 
-    @Value("${cjapi.pip.programurl}")
-    String programApiUrl;
-
-    @Value("${cjapi.pip.clipmediaurl}")
-    String clipMediaApiUrl;
-
-
-    /*
-    * program / clipmedia
-    * */
     @RequestMapping(value = "call/{apiType}", produces = {"application/json"})
     public @ResponseBody String call (@PathVariable String apiType, HttpServletRequest request) throws Exception {
 
@@ -51,12 +39,10 @@ public class UrlTestController {
         try{
             switch (apiType) {
                 case "program" :
-                    rsList = urlCallService.fetchJSON(programApiUrl, "programid=AA_B120173546");
+                    rsList = pipApiService.fetchProgram ("programid=AA_B120173546");
                     break;
                 case "clipmedia" :
-                    //AA_B120173546
-                    String media_url = clipMediaApiUrl + "?platform=mnetjapan&type=recent";
-                    rsList = urlCallService.fetchJSON(media_url, "programid=AA_B120173546&contentid=AA_25532");
+                    rsList = pipApiService.fetchClipMedia("platform=mnetjapan&type=recent&programid=AA_B120173546&contentid=AA_25532");
                     break;
                 default:
                     rsList = new ArrayList();
@@ -74,4 +60,4 @@ public class UrlTestController {
         rtn.put("api_result", rsList);
         return mapper.writeValueAsString(rtn);
     }
-};
+}
