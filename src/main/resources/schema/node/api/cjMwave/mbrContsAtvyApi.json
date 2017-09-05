@@ -151,41 +151,84 @@
       }
     ],
     "config": {
-      "typeId": "replInfo",
-      "query": [
-        {
-          "field": "mkerId",
-          "method": "matching",
-          "value": "{{:snsTypeCd}}>{{:snsKey}}"
-        },
-        {
-          "field": "contsMetaDivCd",
-          "method": "matching",
-          "value": "{{:contsMetaDivCd}}"
-        },
-        {
-          "field": "contsMetaId",
-          "method": "matching",
-          "value": "{{:contsMetaId}}"
-        },
-        {
-          "sorting": "{{:sorting}}"
-        },
-        {
-          "page": "{{:page}}",
-          "pageSize": "{{:pageSize}}"
-        },
-        {
-          "referenceView":"mkerId"
+      "getContsMetaDivTid": {
+        "typeId": "code",
+        "query": [
+          {
+            "field": "groupCodeId",
+            "method": "matching",
+            "value": "contsMetaDivTid"
+          },
+          {
+            "field": "codeId",
+            "method": "matching",
+            "value": "{{:contsMetaDivCd}}"
+          }
+        ],
+        "response": {
+          "name": ""
         }
-      ],
-      "response":{
-        "contsMetaDivCd":"",
-        "contsMetaId":"",
-        "contsReplSeq":"replSeq",
-        "replSbst":"",
-        "mkerId":"",
-        "created":""
+      },
+      "root": {
+        "typeId": "replInfo",
+        "query": [
+          {
+            "field": "mkerId",
+            "method": "matching",
+            "value": "{{:snsTypeCd}}>{{:snsKey}}"
+          },
+          {
+            "field": "contsMetaDivCd",
+            "method": "matching",
+            "value": "{{:contsMetaDivCd}}"
+          },
+          {
+            "field": "contsMetaId",
+            "method": "matching",
+            "value": "{{:name}}::{{:contsMetaId}}"
+          },
+          {
+            "sorting": "{{:sorting}}"
+          },
+          {
+            "page": "{{:page}}",
+            "pageSize": "{{:pageSize}}"
+          },
+          {
+            "referenceView": "mkerId"
+          }
+        ],
+        "response": {
+          "contsMetaDivCd": "",
+          "contsMetaId": "",
+          "contsReplSeq": "replSeq",
+          "replSbst": "",
+          "mkerId": "",
+          "replLikeNum":{
+            "typeId": "replLikeInfo",
+            "query": [
+              {
+                "field": "replSeq",
+                "method": "referenceJoin",
+                "value": "replSeq_matching={{:replSeq}}"
+              }
+            ]
+          },
+          "myLikeYn":{
+            "typeId": "replLikeInfo",
+            "query": [
+              {
+                "field": "replSeq",
+                "method": "referenceJoin",
+                "value": "replSeq_matching={{:replSeq}}&mbrId_matching={{:mkerId}}"
+              }
+            ],
+            "response":{
+              "myLikeYnStr":"{{:aboveInt(replLikeSeq,0)}}"
+            }
+          },
+          "created": ""
+        }
       }
     }
   },

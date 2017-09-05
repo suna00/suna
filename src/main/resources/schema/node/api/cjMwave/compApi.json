@@ -61,7 +61,12 @@
             {
               "field": "compItemSeq",
               "method": "referenceJoin",
-              "value": "compItemSeq_matching={{:compItemSeq}}&cnctItemYn_matching=false"
+              "value": "compItemSeq_matching={{:compItemSeq}}"
+            },
+            {
+              "field":"cnctItemYn",
+              "method": "matching",
+              "value": "false"
             },
             {
               "referenceView": "contsId","includeReferenced": true
@@ -122,10 +127,15 @@
             {
               "field": "compItemSeq",
               "method": "referenceJoin",
-              "value": "compItemSeq_matching={{:compItemSeq}}&cnctItemYn_matching=true"
+              "value": "compItemSeq_matching={{:compItemSeq}}"
             },
             {
-              "includeReferenced": true
+              "field":"cnctItemYn",
+              "method": "matching",
+              "value": "true"
+            },
+            {
+              "referenceView": "contsId","includeReferenced": true
             }
           ],
           "response": {
