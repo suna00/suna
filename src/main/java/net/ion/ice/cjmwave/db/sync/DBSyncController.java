@@ -1,14 +1,8 @@
 package net.ion.ice.cjmwave.db.sync;
 
-import net.ion.ice.cjmwave.db.sync.utils.SyntaxUtils;
-import net.ion.ice.core.data.DBService;
-import net.ion.ice.core.node.Node;
-import net.ion.ice.core.node.NodeService;
-import net.ion.ice.core.node.NodeUtils;
 import net.minidev.json.JSONObject;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,12 +10,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
  * Created by juneyoungoh on 2017. 9. 1..
+ * 0905
+ * 디비 접속해서 노드 생성하는 부분은 서비스로 추출되어야 한다.
+ * 그래야 스케쥴러에서 서비스를 Autowired 해서 사용가능함
  */
 @Controller
 @RequestMapping(value = { "dbSync" })
@@ -35,10 +31,7 @@ public class DBSyncController {
 
 
     @Autowired
-    NodeService nodeService;
-
-    @Autowired
-    DBService dbService;
+    DBSyncService dbSyncService;
 
     @RequestMapping(value = { "/execute/{executeId}" }, produces = {"application/json"})
     public @ResponseBody String execute (@PathVariable String executeId, HttpServletRequest request) throws Exception {
@@ -46,39 +39,9 @@ public class DBSyncController {
         logger.info("Start executing database Sync process with Id [ " + executeId + " ]");
         JSONObject rtn = new JSONObject();
         String result = "500", result_msg = "ERROR", cause = "";
-
+        List<Map> altered = new ArrayList<>();
         try{
-            //dbSyncProcess Node 에서 가져오기
-            Object dbSyncMetaInfo = nodeService.readNode(null, PROCESS_TID, executeId);
-            if(dbSyncMetaInfo == null) throw new Exception("[ " + executeId + " ] does not exists");
-            Map itemMap = (Map) ((Map) dbSyncMetaInfo).get("item");
-            String query = String.valueOf(itemMap.get("query"));
-            String targetNodeType = String.valueOf(itemMap.get("targetNodeType"));
-            String targetDs = String.valueOf(itemMap.get("targetDs"));
-
-            // 쿼리
-//            Map<String, Object> jdbcParam = SyntaxUtils.parse(query, request);
-//            String jdbcQuery = String.valueOf(jdbcParam.get("query"));
-//            Object[] params = (Object[]) jdbcParam.get("params");
-
-            JdbcTemplate template = dbService.getJdbcTemplate(targetDs);
-            List<Map<String, Object>> queryRs = template.queryForList(query);
-//            List<Map<String, Object>> queryRs = template.queryForList(jdbcQuery, jdbcParam);
-
-            // mapper 정보 추출
-            List<Node> mapperInfoList = NodeUtils.getNodeList(MAPPER_TID, "executeId_matching=" + executeId);
-            Map<String, String> mapperStore = extractPropertyColumnMap(mapperInfoList);
-
-
-            List<Map> altered = new ArrayList<>();
-            for(Map qMap : queryRs) {
-                // mapping 정보에 맞게 변경
-                Map<String, Object> fit = mapData(targetNodeType, qMap, mapperStore);
-                nodeService.saveNode(fit);
-                altered.add(fit);
-            }
-
-            rtn.put("items", queryRs);
+            altered = dbSyncService.executeJob(executeId, request);
             result = "200";
             result_msg = "SUCCESS";
         } catch (Exception e) {
@@ -86,33 +49,19 @@ public class DBSyncController {
             cause = e.getMessage();
         }
         rtn.put("result", result);
+        rtn.put("items", altered);
         rtn.put("result_msg", result_msg);
         rtn.put("cause", cause);
         return rtn.toString();
     }
 
-    private Map<String, String> extractPropertyColumnMap(List<Node> mappers) {
-        Map<String, String> mapperMap = new HashMap<>();
-        for(Node mapper : mappers) {
-            mapperMap.put(String.valueOf(mapper.get("propertyId")), String.valueOf(mapper.get("columnName")));
-        }
-        return mapperMap;
-    }
-
     /*
-    * 개별 쿼리 결과를 node.pid 에 맞춰줌
+    * 실패 로그를 테이블로 쌓았다고 가정한다
+    * 사용자가 실패로그 목록을 Excel 로 받았다고 가정
+    * 해당 실패 목록을 재시도 요청할 수 있는 수동 인터페이스
     * */
-    private Map<String, Object> mapData (String targetNodeType, Map<String, Object> singleQueryResult, Map<String, String> mapperStore) {
-        if(mapperStore == null || mapperStore.isEmpty()) {
-            singleQueryResult.put("typeId", targetNodeType);
-            return singleQueryResult;
-        }
-
-        Map<String, Object> combined = new HashMap<String, Object>();
-        mapperStore.forEach((k, v) -> {
-            combined.put(k, singleQueryResult.get(v));
-        });
-        combined.put("typeId", targetNodeType);
-        return combined;
+    @RequestMapping(value = {"/execute/File"}, produces = { "application/json" })
+    public @ResponseBody String executeFile(HttpServletRequest request) {
+        return null;
     }
 }
