@@ -211,13 +211,18 @@ public class ReadContext implements Context {
 
     public QueryResult makeResult() {
         Node node = NodeUtils.getNode(nodeType.getTypeId(), id) ;
-        this.result = node ;
-        QueryResult itemResult = makeResult(node);
+        if(node == null){
+            this.result = data ;
+        }else{
+            this.result = node ;
+        }
 
         QueryResult queryResult = new QueryResult() ;
         queryResult.put("result", "200") ;
         queryResult.put("resultMessage", "SUCCESS") ;
-        queryResult.put("item", itemResult) ;
+        if(node != null) {
+            queryResult.put("item", makeResult(node));
+        }
 
         return queryResult ;
     }
