@@ -42,6 +42,26 @@
   {
     "typeId": "datasource",
     "datasourceId": "cjDb",
+    "profiles": "cj-local",
+    "dsName": "Test DB",
+    "jdbcUrl": "jdbc:mysql://125.131.88.156:3306/ice2?useSSL=false",
+    "dbType": "mySql",
+    "username": "cjmwave",
+    "password": "cjmwave0!@#"
+  },
+  {
+    "typeId": "datasource",
+    "datasourceId": "cjDb",
+    "profiles": "cj-local-win",
+    "dsName": "Test DB",
+    "jdbcUrl": "jdbc:mysql://125.131.88.156:3306/ice2?useSSL=false",
+    "dbType": "mySql",
+    "username": "cjmwave",
+    "password": "cjmwave0!@#"
+  },
+  {
+    "typeId": "datasource",
+    "datasourceId": "cjDb",
     "profiles": "cj-dev",
     "dsName": "Test DB",
     "jdbcUrl": "jdbc:mysql://125.131.88.156:3306/ice2?useSSL=false",
