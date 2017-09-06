@@ -47,10 +47,21 @@
     "typeId" : "builderPresentationalComponent",
     "componentTemplateType": "Spin",
     "componentClassType": "BUTTON",
-    "componentClass": "ButtonModal",
-    "componentClassName": "BUTTON MODAL",
+    "componentClass": "ButtonModalForm",
+    "componentClassName": "BUTTON MODAL FORM",
     "icon": "fa-square-o",
     "order": 5,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentTemplateType": "Spin",
+    "componentClassType": "BUTTON",
+    "componentClass": "ButtonModalList",
+    "componentClassName": "BUTTON MODAL LIST",
+    "icon": "fa-square-o",
+    "order": 6,
     "active": true,
     "componentChildren": ""
   },
