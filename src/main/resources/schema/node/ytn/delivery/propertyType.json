@@ -581,6 +581,23 @@
   },
   {
     "typeId": "propertyType",
+    "tid": "myDeliveryAddress",
+    "pid": "recipient",
+    "propertyTypeName": "수령인",
+    "valueType": "STRING",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "cjk",
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
     "tid": "orderDeliveryPrice",
     "pid": "orderDeliveryPriceId",
     "propertyTypeName": "ID",

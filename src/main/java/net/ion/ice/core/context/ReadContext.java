@@ -211,13 +211,18 @@ public class ReadContext implements Context {
 
     public QueryResult makeResult() {
         Node node = NodeUtils.getNode(nodeType.getTypeId(), id) ;
-        this.result = node ;
-        QueryResult itemResult = makeResult(node);
+        if(node == null){
+            this.result = data ;
+        }else{
+            this.result = node ;
+        }
 
         QueryResult queryResult = new QueryResult() ;
         queryResult.put("result", "200") ;
         queryResult.put("resultMessage", "SUCCESS") ;
-        queryResult.put("item", itemResult) ;
+        if(node != null) {
+            queryResult.put("item", makeResult(node));
+        }
 
         return queryResult ;
     }
@@ -248,12 +253,34 @@ public class ReadContext implements Context {
         for (ResultField resultField : getResultFields()) {
             if (resultField.getContext() != null) {
                 ReadContext subQueryContext = (ReadContext) resultField.getContext();
-                if(node != null){
-                    subQueryContext.setNodeData(node) ;
+                if (node != null) {
+                    subQueryContext.setNodeData(node);
                 }
                 subQueryContext.makeQueryResult(itemResult, resultField.getFieldName());
             } else if(resultField.isStaticValue()){
                 itemResult.put(resultField.getFieldName(), ContextUtils.getValue(resultField.getStaticValue(), contextData));
+            }else if(resultField.getResultType() != null){
+                Map<String, Object> _data = new HashMap<>();
+                _data.putAll(contextData);
+                _data.putAll(node);
+                switch (resultField.getResultType()) {
+                    case QUERY: {
+                        ApiQueryContext apiQueryContext = ApiQueryContext.makeContextFromConfig(resultField.getFieldOption(), _data);
+                        apiQueryContext.makeQueryResult(itemResult, resultField.getFieldName());
+                    }
+                    case SELECT: {
+                        ApiSelectContext apiQueryContext = ApiSelectContext.makeContextFromConfig(resultField.getFieldOption(), _data);
+                        apiQueryContext.makeQueryResult(itemResult, resultField.getFieldName());
+                    }
+                    case VALUE: {
+                        itemResult.put(resultField.getFieldName(), ContextUtils.getValue(resultField.getStaticValue(), _data));
+                    }
+                    case OPTION: {
+                        String fieldValue = resultField.getFieldValue();
+                        fieldValue = fieldValue == null || StringUtils.isEmpty(fieldValue) ? resultField.getFieldName() : fieldValue;
+                        itemResult.put(resultField.getFieldName(), NodeUtils.getResultValue(resultField.getFieldContext(), nodeType.getPropertyType(fieldValue), node));
+                    }
+                }
             } else {
                 String fieldValue = resultField.getFieldValue();
                 fieldValue = fieldValue == null || StringUtils.isEmpty(fieldValue) ? resultField.getFieldName() : fieldValue;

@@ -2,7 +2,7 @@
   {
     "typeId" : "propertyType",
     "tid" : "datasource",
-    "pid" : "id",
+    "pid" : "datasourceId",
     "propertyTypeName" : "DS ID",
     "valueType" : "STRING",
     "idable" : true,
@@ -10,6 +10,17 @@
     "labelable" : false,
     "required" : true,
     "length": 100
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "datasource",
+    "pid": "profiles",
+    "propertyTypeName": "Profiles",
+    "valueType": "STRING",
+    "idable": true,
+    "indexable": true,
+    "labelable": false,
+    "required": true
   },
   {
     "typeId" : "propertyType",
