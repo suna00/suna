@@ -52,7 +52,7 @@
     "icon": "fa-square-o",
     "order": 5,
     "active": true,
-    "componentChildren": ""
+    "componentChildren": "DefaultFormFooter"
   },
   {
     "typeId" : "builderPresentationalComponent",
