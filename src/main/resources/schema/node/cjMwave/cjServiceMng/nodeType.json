@@ -498,5 +498,15 @@
     "repositoryType": "node",
     "eviction": 0,
     "tableName": "cjDb#seoMetaInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "contsRetvInfo",
+    "tid": "contsRetvInfo",
+    "typeName": "콘텐츠 조회 정보",
+    "repositoryType": "data",
+    "eviction": 0,
+    "tableName": "cjDb#contsRetvInfo"
   }
 ]

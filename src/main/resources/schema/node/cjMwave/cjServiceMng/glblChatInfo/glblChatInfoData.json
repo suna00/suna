@@ -2,17 +2,41 @@
   {
     "typeId": "glblChatInfo",
     "glblChatSeq": 12312,
-    "glblChatChSeq": 5151,
-    "prtcpMbrId": "fdgdf12",
-    "chatOriginSbst": "What is the MWave",
-    "chatTranSbst": "MWave는 무엇입니까"
+    "glblChatChSeq": "5151",
+    "prtcpMbrId": "2>4223",
+    "chatOriginSbst": "MWave는 무엇입니까",
+    "chatTranSbst": "What is the MWave?"
   },
   {
     "typeId": "glblChatInfo",
     "glblChatSeq": 12313,
-    "glblChatChSeq": 5152,
-    "prtcpMbrId": "dfsd34",
-    "chatOriginSbst": "What is the MCD",
-    "chatTranSbst": "MCD는 무엇입니까"
+    "glblChatChSeq": "5151",
+    "prtcpMbrId": "3>1232",
+    "chatOriginSbst": "MWaveはいつ開始か？",
+    "chatTranSbst": "When does MWave start?"
+  },
+  {
+    "typeId": "glblChatInfo",
+    "glblChatSeq": 12314,
+    "glblChatChSeq": "5151",
+    "prtcpMbrId": "1>2593",
+    "chatOriginSbst": "MWave什么时候开始？",
+    "chatTranSbst": "When does MWave start?"
+  },
+  {
+    "typeId": "glblChatInfo",
+    "glblChatSeq": 12315,
+    "glblChatChSeq": "5152",
+    "prtcpMbrId": "4>5934",
+    "chatOriginSbst": "MCD는 무엇입니까",
+    "chatTranSbst": "What is the MCD?"
+  },
+  {
+    "typeId": "glblChatInfo",
+    "glblChatSeq": 12316,
+    "glblChatChSeq": "5153",
+    "prtcpMbrId": "3>1232",
+    "chatOriginSbst": "MAMAはいつ開始か？",
+    "chatTranSbst": "When does MAMA start?"
   }
 ]

@@ -178,7 +178,7 @@
               "value": "voteSeq_matching={{:voteSeq}}"
             },
             {
-              "referenceView": false
+              "referenceView": "contsMetaId"
             }
           ]
         },

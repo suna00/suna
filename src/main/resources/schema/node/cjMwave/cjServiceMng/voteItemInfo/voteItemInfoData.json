@@ -2,9 +2,9 @@
   {
     "typeId": "voteItemInfo",
     "voteItemSeq": 100,
-    "voteSeq": 7895889568,
+    "voteSeq": 78958895,
     "langCd": "ko",
-    "contsMetaId": "artist::artist_00001",
+    "contsMetaId": "5454",
     "itemNm": "빅스",
     "thumImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
@@ -13,7 +13,7 @@
   {
     "typeId": "voteItemInfo",
     "voteItemSeq": 101,
-    "voteSeq": 7895889568,
+    "voteSeq": 78958895,
     "langCd": "en",
     "contsMetaId": "2224",
     "itemNm": "VIXX",
@@ -24,7 +24,7 @@
   {
     "typeId": "voteItemInfo",
     "voteItemSeq": 102,
-    "voteSeq": 7895889568,
+    "voteSeq": 78958895,
     "langCd": "zh-cn",
     "contsMetaId": "2425",
     "itemNm": "VIXX",
@@ -35,7 +35,7 @@
   {
     "typeId": "voteItemInfo",
     "voteItemSeq": 103,
-    "voteSeq": 7895889568,
+    "voteSeq": 78958895,
     "langCd": "zh-tw",
     "contsMetaId": "2415",
     "itemNm": "VIXX",
@@ -46,7 +46,7 @@
   {
     "typeId": "voteItemInfo",
     "voteItemSeq": 104,
-    "voteSeq": 7895889568,
+    "voteSeq": 78958895,
     "langCd": "jp",
     "contsMetaId": "1241",
     "itemNm": "VIXX",
@@ -56,24 +56,46 @@
   },
   {
     "typeId": "voteItemInfo",
-    "voteItemSeq": 110,
-    "voteSeq": 334545,
-    "langCd": "jp",
-    "contsMetaId": "1241",
-    "itemNm": "VIXX",
+    "voteItemSeq": 105,
+    "voteSeq": 45034903,
+    "langCd": "ko",
+    "contsMetaId": "artist::artist_00001",
+    "itemNm": "EXO",
     "thumImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
-    "sortOdrg": 1
+    "sortOdrg": 6
   },
   {
     "typeId": "voteItemInfo",
-    "voteItemSeq": 111,
-    "voteSeq": 334545,
-    "langCd": "jp",
-    "contsMetaId": "1241",
-    "itemNm": "WANNAONE",
+    "voteItemSeq": 106,
+    "voteSeq": 45034903,
+    "langCd": "ko",
+    "contsMetaId": "artist::artist_00002",
+    "itemNm": "BTS",
     "thumImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
-    "sortOdrg": 2
+    "sortOdrg": 7
+  },
+  {
+    "typeId": "voteItemInfo",
+    "voteItemSeq": 107,
+    "voteSeq": 45034903,
+    "langCd": "ko",
+    "contsMetaId": "artist::artist_00014",
+    "itemNm": "빅뱅",
+    "thumImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "sortOdrg": 8
+  },
+  {
+    "typeId": "voteItemInfo",
+    "voteItemSeq": 108,
+    "voteSeq": 45034903,
+    "langCd": "ko",
+    "contsMetaId": "artist::artist_00003",
+    "itemNm": "워너원",
+    "thumImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "sortOdrg": 9
   }
 ]
