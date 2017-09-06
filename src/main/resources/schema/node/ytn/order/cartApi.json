@@ -35,7 +35,13 @@
           "quantity": "",
           "vendorId": "",
           "cartDeliveryPriceId": "",
-          "referencedCartProductItem": "",
+          "referencedCartProductItem1": {
+            "typeId": "cartProductItem",
+            "query": [
+              { "field": "cartProductId", "method": "matching", "value": "{{:cartProductId}}" },
+              { "includeReferenced": true, "referenceView": "addOptionItemId" }
+            ]
+          },
           "calculateItem": {
             "select": {
               "ds": "ytnDevDb",
