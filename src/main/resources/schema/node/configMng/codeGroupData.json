@@ -148,6 +148,13 @@
   },
   {
     "typeId": "groupCode",
+    "groupCodeId": "sersVoteItemDivCd",
+    "name": "투표 시리즈 항목 구분 코드",
+    "active": true,
+    "desc": "라이브배너/투표샐랙트 인지 구분"
+  },
+  {
+    "typeId": "groupCode",
     "groupCodeId": "alignFormlCd",
     "name": "판배열 코드",
     "active": true,
