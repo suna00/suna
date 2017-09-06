@@ -125,9 +125,7 @@
       { "pageName": "등록", "pageUrl": "createForm" },
       { "pageName": "수정", "pageUrl": "updateForm" }
     ],
-    "customPages": [
-      { "pageName": "상세", "pageUrl": "ytn/CodeView" }
-    ]
+    "customPages": []
   },
   {
     "typeId" : "adminLnbMenu",
