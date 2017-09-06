@@ -74,8 +74,12 @@ public class ApiContext {
         if(ctxRootConfig.containsKey("event")){
             ExecuteContext executeContext = ExecuteContext.makeContextFromConfig(ctxRootConfig, data) ;
             if(executeContext.execute()) {
-                Node node = executeContext.getNode();
-                addResultData(node.clone());
+                if(executeContext.getResult() != null){
+                    addResultData(executeContext.getResult()) ;
+                }else if(executeContext.getNode() != null) {
+                    Node node = executeContext.getNode();
+                    addResultData(node.clone());
+                }
 
                 return executeContext.makeResult() ;
             }else{
@@ -174,7 +178,7 @@ public class ApiContext {
             if(resultList.size() > 0) {
                 _data.putAll((Map<? extends String, ?>) resultList.get(resultList.size() - 1));
             }
-        }else{
+        }else if(result instanceof Map){
             _data.putAll((Map<? extends String, ?>) result);
         }
 
