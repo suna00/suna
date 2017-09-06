@@ -119,7 +119,13 @@ public class NodeType {
 	public Object getNodeTypeNode(String nodeTypeNodeId) {
 		return nodeTypeNode.get(nodeTypeNodeId);
 	}
-	public Object getTableName() { return nodeTypeNode.get(TABLE_NAME); }
+	public String getTableName() {
+		return String.valueOf(nodeTypeNode.get(TABLE_NAME)).split("#")[1];
+	}
+
+	public String getDsId() {
+		return String.valueOf(nodeTypeNode.get(TABLE_NAME)).split("#")[0];
+	}
 
 	public boolean isInit(){
 		return this.propertyTypes != null && this.propertyTypes.size() > 0 ;

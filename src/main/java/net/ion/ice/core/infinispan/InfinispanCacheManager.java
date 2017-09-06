@@ -30,7 +30,6 @@ public class InfinispanCacheManager {
 
     private String cachePath ;
 
-
     private synchronized <K,V> Cache<K,V> cacheInit(String cacheType, long size) {
         manager.defineConfiguration(cacheType, new ConfigurationBuilder()
 //                .invocationBatching().enable() //마이그 실행시 주석 제거
