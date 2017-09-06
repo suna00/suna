@@ -199,7 +199,8 @@
     "isFullVod": true,
     "isUse": true,
     "showCntryCdList": "KOR",
-    "mnetIfTrtYn": true
+    "mnetIfTrtYn": true,
+    "rcmdContsYn":false
   },
   {
     "typeId": "pgmVideo",
@@ -227,7 +228,8 @@
     "isFullVod": true,
     "isUse": true,
     "showCntryCdList": "KOR",
-    "mnetIfTrtYn": true
+    "mnetIfTrtYn": true,
+    "rcmdContsYn":false
   },
   {
     "typeId": "pgmVideo",
@@ -255,6 +257,7 @@
     "isFullVod": true,
     "isUse": true,
     "showCntryCdList": "KOR",
-    "mnetIfTrtYn": true
+    "mnetIfTrtYn": true,
+    "rcmdContsYn":true
   }
 ]

@@ -115,8 +115,8 @@
         "seoTitle": {
           "value": " | Mwave"
         },
-        "seoDesc":"albumDesc",
-        "seoKywrd":"findKywrd"
+        "seoDesc": "albumDesc",
+        "seoKywrd": "findKywrd"
       }
     }
   },
@@ -361,6 +361,23 @@
   {
     "typeId": "apiConfig",
     "category": "contsMeta",
+    "apiId": "IfMv002",
+    "apiName": "뮤직비디오 상세조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "musicVideoId",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "musicVideo",
+      "id": "{{:musicVideoId}}"
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "contsMeta",
     "apiId": "IfNews001",
     "apiName": "뉴스 목록조회",
     "method": "GET",
@@ -520,16 +537,16 @@
     ],
     "config": {
       "typeId": "groupPhoto",
-
-      "query":[
+      "query": [
         {
           "field": "groupPhotoId",
           "method": "matching",
           "value": "{{:groupPhotoId}}"
         },
-        {"referenceView": "compontSinglePhotoIds"}
+        {
+          "referenceView": "compontSinglePhotoIds"
+        }
       ]
-
     }
   },
   {
@@ -594,6 +611,96 @@
           "pageSize": "{{:pageSize}}"
         }
       ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "contsMeta",
+    "apiId": "IfVod001",
+    "apiName": "프로그램 영상(PIP 클립/VOD) 목록조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "contsMetaCtgryId",
+        "required": false
+      },
+      {
+        "paramName": "artistId",
+        "required": false
+      },
+      {
+        "paramName": "rcmdContsYn",
+        "required": false
+      },
+      {
+        "paramName": "searchKeyword",
+        "required": false
+      }
+    ],
+    "config": {
+      "typeId": "pgmVideo",
+      "query": [
+        {
+          "field": "ctgryId",
+          "method": "matching",
+          "value": "{{:contsMetaCtgryId}}"
+        },
+        {
+          "field": "prsnNo",
+          "method": "matching",
+          "value": "{{:artistId}}"
+        },
+        {
+          "field": "rcmdContsYn",
+          "method": "matching",
+          "value": "{{:rcmdContsYn}}"
+        },
+        {
+          "field": "searchKeyword",
+          "method": "matching",
+          "value": "{{:searchKeyword}}"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "contsMeta",
+    "apiId": "IfVod002",
+    "apiName": "프로그램 영상(PIP 클립/VOD) 상세조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "contentId",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "pgmVideo",
+      "id": "{{:contentId}}"
     }
   },
   {
