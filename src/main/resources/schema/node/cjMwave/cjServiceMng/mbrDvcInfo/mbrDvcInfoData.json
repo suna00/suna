@@ -1,19 +1,43 @@
 [
   {
     "typeId": "mbrDvcInfo",
-    "mbrDvcSeq": "100",
-    "mbrId": "wjdfks",
+    "mbrDvcSeq": "199230",
+    "mbrId": "1>1324",
     "dvcId": "wkdfls",
-    "dvcNm": "ux-8300",
+    "dvcNm": "ux9390",
     "osCd": "1",
     "osVer": "v.01"
   },
   {
     "typeId": "mbrDvcInfo",
-    "mbrId": "fkdkf",
+    "mbrId": "2>4223",
     "dvcId": "fkdkf",
-    "dvcNm": "ux-8300",
-    "osCd": "2",
+    "dvcNm": "gx8300",
+    "osCd": "1",
     "osVer": "v.03"
+  },
+  {
+    "typeId": "mbrDvcInfo",
+    "mbrId": "3>1232",
+    "dvcId": "dfsf",
+    "dvcNm": "iphone8",
+    "osCd": "2",
+    "osVer": "v.08"
+  },
+  {
+    "typeId": "mbrDvcInfo",
+    "mbrId": "4>5934",
+    "dvcId": "dfsdfa",
+    "dvcNm": "gx-1",
+    "osCd": "1",
+    "osVer": "v.07"
+  },
+  {
+    "typeId": "mbrDvcInfo",
+    "mbrId": "1>2593",
+    "dvcId": "sfdfksk",
+    "dvcNm": "iphone8",
+    "osCd": "2",
+    "osVer": "v.08"
   }
 ]

@@ -3,12 +3,48 @@
     "typeId": "nonMbrInfo",
     "nonMbrSeq": 5425,
     "dvcId": "5456",
-    "dvcName": "ux8300",
+    "dvcName": "ux9390",
     "dvcOsCd": "1",
-    "dvcOsVer": "0.8",
+    "dvcOsVer": "1.5",
     "connCntryCd": "CHN",
     "downlDt": "20161008180000",
     "pushKey": "dsfgerger342df",
-    "firstConnDt": "20161008180000"
+    "firstConnDt": "20170908180000"
+  },
+  {
+    "typeId": "nonMbrInfo",
+    "nonMbrSeq": 5020,
+    "dvcId": "5294",
+    "dvcName": "gx8300",
+    "dvcOsCd": "1",
+    "dvcOsVer": "1.4",
+    "connCntryCd": "JPN",
+    "downlDt": "20170901180000",
+    "pushKey": "gjwsdrger322df",
+    "firstConnDt": "20170905110000"
+  },
+  {
+    "typeId": "nonMbrInfo",
+    "nonMbrSeq": 5293,
+    "dvcId": "5201",
+    "dvcName": "iphone8",
+    "dvcOsCd": "2",
+    "dvcOsVer": "10.3.3",
+    "connCntryCd": "KOR",
+    "downlDt": "20171001110000",
+    "pushKey": "kdkwkerger342df",
+    "firstConnDt": "20171001110000"
+  },
+  {
+    "typeId": "nonMbrInfo",
+    "nonMbrSeq": 5201,
+    "dvcId": "5102",
+    "dvcName": "gx-1",
+    "dvcOsCd": "1",
+    "dvcOsVer": "1.5",
+    "connCntryCd": "CHN",
+    "downlDt": "20170203100000",
+    "pushKey": "dkfkwkfrger342df",
+    "firstConnDt": "20170901180000"
   }
 ]

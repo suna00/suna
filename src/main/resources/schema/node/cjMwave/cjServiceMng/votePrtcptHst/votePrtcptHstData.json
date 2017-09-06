@@ -3,72 +3,63 @@
     "typeId": "votePrtcptHst",
     "votePrtcpHstSeq": 101,
     "voteSeq": 7895889568,
-    "voteItemSeq": 100,
-    "prtcpMbrId": "xcvds132",
-    "connIpAdr": "124.155.172.0"
+    "voteItemSeq": 10,
+    "prtcpMbrId": "1>1324"
   },
   {
     "typeId": "votePrtcptHst",
     "votePrtcpHstSeq": 102,
     "voteSeq": 7895889568,
-    "voteItemSeq": 101,
-    "prtcpMbrId": "htvrw253",
-    "connIpAdr": "124.155.172.1"
+    "voteItemSeq": 11,
+    "prtcpMbrId": "2>4223"
   },
   {
     "typeId": "votePrtcptHst",
     "votePrtcpHstSeq": 103,
     "voteSeq": 7895889568,
-    "voteItemSeq": 102,
-    "prtcpMbrId": "gjwndus0510",
-    "connIpAdr": "187.155.172.0"
+    "voteItemSeq": 12,
+    "prtcpMbrId": "3>1232"
   },
   {
     "typeId": "votePrtcptHst",
     "votePrtcpHstSeq": 104,
     "voteSeq": 7895889568,
-    "voteItemSeq": 103,
-    "prtcpMbrId": "wkdjf01920",
-    "connIpAdr": "124.140.161.1"
+    "voteItemSeq": 13,
+    "prtcpMbrId": "4>5934"
   },
   {
     "typeId": "votePrtcptHst",
     "votePrtcpHstSeq": 105,
     "voteSeq": 7895889568,
-    "voteItemSeq": 104,
-    "prtcpMbrId": "dkfkwj102",
-    "connIpAdr": "110.140.161.1"
+    "voteItemSeq": 14,
+    "prtcpMbrId": "5>1412"
   },
   {
     "typeId": "votePrtcptHst",
     "votePrtcpHstSeq": 101,
     "voteSeq": 54503490399,
-    "voteItemSeq": 100,
-    "prtcpMbrId": "xcvds132",
-    "connIpAdr": "124.155.172.0"
+    "voteItemSeq": 15,
+    "prtcpMbrId": "2>4223"
   },
   {
     "typeId": "votePrtcptHst",
     "votePrtcpHstSeq": 102,
     "voteSeq": 54503490399,
-    "voteItemSeq": 101,
-    "prtcpMbrId": "htvrw253",
-    "connIpAdr": "124.155.172.1"
+    "voteItemSeq": 21,
+    "prtcpMbrId": "4>5934"
   },
   {
     "typeId": "votePrtcptHst",
     "votePrtcpHstSeq": 103,
     "voteSeq": 54503490399,
-    "voteItemSeq": 102,
-    "prtcpMbrId": "gjwndus0510",
-    "connIpAdr": "187.155.172.0"
+    "voteItemSeq": 23,
+    "prtcpMbrId": "1>2593"
   },
   {
     "typeId": "votePrtcptHst",
     "votePrtcpHstSeq": 104,
     "voteSeq": 54503490399,
-    "voteItemSeq": 103,
-    "prtcpMbrId": "wkdjf01920",
-    "connIpAdr": "124.140.161.1"
+    "voteItemSeq": 24,
+    "prtcpMbrId": "3>1232"
   }
 ]

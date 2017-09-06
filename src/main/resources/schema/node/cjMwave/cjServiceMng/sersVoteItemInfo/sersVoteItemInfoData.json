@@ -1,20 +1,65 @@
 [
   {
     "typeId": "sersVoteItemInfo",
-    "sersVoteItemSeq": 100,
+    "sersVoteItemSeq": 81283901238,
     "itemDivCd": "4",
-    "voteSeq": 567876,
-    "sersItemVoteSeq": 234235,
-    "banrSeq": null,
+    "voteSeq": 29394194924,
+    "sersItemVoteSeq": 7895889568,
+    "banrSeq": "",
     "sortOdrg": 1
   },
   {
     "typeId": "sersVoteItemInfo",
-    "sersVoteItemSeq": 101,
+    "sersVoteItemSeq": 81283901241,
+    "itemDivCd": "2",
+    "voteSeq": 54503490399,
+    "sersItemVoteSeq": "",
+    "banrSeq": 101,
+    "sortOdrg": 2
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 81283901242,
     "itemDivCd": "4",
-    "voteSeq": 567876,
-    "sersItemVoteSeq": 334545,
-    "banrSeq": null,
+    "voteSeq": 54503490399,
+    "sersItemVoteSeq": 29394194921,
+    "banrSeq": "",
+    "sortOdrg": 3
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 81283901243,
+    "itemDivCd": "5",
+    "voteSeq": 54503490399,
+    "sersItemVoteSeq": 54503490399,
+    "banrSeq": "",
+    "sortOdrg": 1
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 81283901244,
+    "itemDivCd": "3",
+    "voteSeq": 24341421311,
+    "sersItemVoteSeq": 2414923941,
+    "banrSeq": "",
+    "sortOdrg": 3
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 81283901245,
+    "itemDivCd": "2",
+    "voteSeq": 24341421311,
+    "sersItemVoteSeq": 7895889568,
+    "banrSeq": "",
+    "sortOdrg": 2
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 81283901246,
+    "itemDivCd": "4",
+    "voteSeq": 24341421311,
+    "sersItemVoteSeq": 2414923941,
+    "banrSeq": "",
     "sortOdrg": 1
   }
 ]

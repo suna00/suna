@@ -10,5 +10,17 @@
     "glblChatChSeq": 5152,
     "chDivCd": "2",
     "chNm": "MWave"
+  },
+  {
+    "typeId": "glblChatChInfo",
+    "glblChatChSeq": 5153,
+    "chDivCd": "3",
+    "chNm": "MAMA"
+  },
+  {
+    "typeId": "glblChatChInfo",
+    "glblChatChSeq": 5154,
+    "chDivCd": "4",
+    "chNm": "KCON"
   }
 ]
