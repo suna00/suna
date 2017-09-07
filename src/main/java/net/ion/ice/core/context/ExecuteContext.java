@@ -179,6 +179,7 @@ public class ExecuteContext extends ReadContext{
             }
             try {
                 this.node = new Node(data, nodeType.getTypeId());
+                this.id = this.node.getId() ;
                 execute = true;
             }catch(Exception e){
                 execute =false ;

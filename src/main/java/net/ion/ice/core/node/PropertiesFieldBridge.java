@@ -186,9 +186,9 @@ public class PropertiesFieldBridge implements FieldBridge {
     public static org.apache.lucene.document.FieldType sortedFieldAnalyzer() {
         AnalyzerFieldType fieldType = new AnalyzerFieldType();
         fieldType.setIndexOptions(IndexOptions.DOCS_AND_FREQS);
-        fieldType.setDocValuesType(DocValuesType.NONE);
+        fieldType.setDocValuesType(DocValuesType.SORTED);
         fieldType.setStored(false);
-        fieldType.setTokenized(false);
+        fieldType.setTokenized(true);
         fieldType.setOmitNorms(false);
         fieldType.freeze();
         fieldType.setAnalyzer(AnalyzerFactory.getAnalyzer(PropertyType.AnalyzerType.simple));
