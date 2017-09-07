@@ -2,29 +2,29 @@
   {
     "typeId": "contsLikeInfo",
     "likeSeq": 1101,
-    "contsMetaDivCd": "2",
-    "contsMetaId": "55454555",
+    "contsMetaDivCd": "1",
+    "contsMetaId": "artist::artist_00001",
     "mbrId": "1>1324"
   },
   {
     "typeId": "contsLikeInfo",
     "likeSeq": 1102,
-    "contsMetaDivCd": "2",
-    "contsMetaId": "55454555",
+    "contsMetaDivCd": "1",
+    "contsMetaId": "artist::artist_00002",
     "mbrId": "2>4223"
   },
   {
     "typeId": "contsLikeInfo",
     "likeSeq": 1103,
-    "contsMetaDivCd": "2",
-    "contsMetaId": "55454555",
+    "contsMetaDivCd": "1",
+    "contsMetaId": "artist::artist_00003",
     "mbrId": "3>1232"
   },
   {
     "typeId": "contsLikeInfo",
     "likeSeq": 1104,
-    "contsMetaDivCd": "2",
-    "contsMetaId": "55454555",
+    "contsMetaDivCd": "1",
+    "contsMetaId": "artist::artist_00014",
     "mbrId": "4>5934"
   },
   {

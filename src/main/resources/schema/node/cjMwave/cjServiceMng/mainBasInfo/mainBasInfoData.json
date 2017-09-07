@@ -2,41 +2,64 @@
   {
     "typeId": "mainBasInfo",
     "mainSeq": 100,
-    "mainNm": "테스트 메인 정보1",
+    "mainNm": "메인 정보1",
     "mainDivCd": "1",
     "svcDvcDivCd": "1",
     "showYn": true,
-    "showLoCd": "1",
-    "refdCompItemList": ""
+    "showLoCd": "1"
   },
   {
     "typeId": "mainBasInfo",
     "mainSeq": 101,
-    "mainNm": "테스트 메인 정보2",
+    "mainNm": "메인 정보2",
     "mainDivCd": "2",
     "svcDvcDivCd": "2",
-    "showYn": true,
-    "showLoCd": "2",
-    "refdCompItemList": ""
+    "showYn": false,
+    "showLoCd": "2"
   },
   {
     "typeId": "mainBasInfo",
     "mainSeq": 102,
-    "mainNm": "테스트 메인 정보3",
+    "mainNm": "메인 정보3",
     "mainDivCd": "1",
     "svcDvcDivCd": "3",
-    "showYn": true,
-    "showLoCd": "1",
-    "refdCompItemList": ""
+    "showYn": false,
+    "showLoCd": "1"
   },
   {
     "typeId": "mainBasInfo",
     "mainSeq": 103,
-    "mainNm": "테스트 메인 정보4",
+    "mainNm": "메인 정보4",
     "mainDivCd": "2",
     "svcDvcDivCd": "4",
+    "showYn": false,
+    "showLoCd": "2"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 104,
+    "mainNm": "서브메인1",
+    "mainDivCd": "1",
+    "svcDvcDivCd": "1",
     "showYn": true,
-    "showLoCd": "2",
-    "refdCompItemList": ""
+    "showLoCd": "2"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 105,
+    "mainNm": "서브메인2",
+    "mainDivCd": "2",
+    "svcDvcDivCd": "2",
+    "showYn": true,
+    "showLoCd": "3"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 106,
+    "mainNm": "서브메인3",
+    "mainDivCd": "1",
+    "svcDvcDivCd": "3",
+    "showYn": true,
+    "showLoCd": "4"
   }
 ]
