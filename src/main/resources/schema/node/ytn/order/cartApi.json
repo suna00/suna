@@ -26,7 +26,7 @@
         "query": [
           { "sorting": "cartDeliveryPriceId desc,created desc" },
           { "field": "cartId", "method": "matching", "value": "{{:cartId}}" },
-          { "includeReferenced": true, "referenceView": "productId, cartDeliveryPriceId" }
+          { "includeReferenced": true, "referenceView": "productId, cartDeliveryPriceId, addOptionItemId" }
         ],
         "response": {
           "cartProductId": "",
@@ -35,7 +35,13 @@
           "quantity": "",
           "vendorId": "",
           "cartDeliveryPriceId": "",
-          "referencedCartProductItem": "",
+          "referencedCartProductItem": {
+            "typeId": "cartProductItem",
+            "query": [
+              { "field": "cartProductId", "method": "matching", "value": "{{:cartProductId}}" },
+              { "includeReferenced": true, "referenceView": "addOptionItemId" }
+            ]
+          },
           "calculateItem": {
             "select": {
               "ds": "ytnDevDb",
