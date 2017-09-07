@@ -137,7 +137,7 @@
     "youtubeLinkUrl": "",
     "instagramImgPath": "",
     "instagramLinkUrl": "",
-    "sortOdrg": "",
+    "sortOdrg": 5,
     "videFilePath": "",
     "videThumPath": "",
     "videStopThumPath": "",
