@@ -17,7 +17,7 @@
         "select" : {
           "ds" : "ytnDevDb",
           "resultType" : "read",
-          "sql" : "select max(myDeliveryAddressId) as asisId from myDeliveryAddress where memberNo = @{memberNo} and defaultYn='y' "
+          "sql" : "select min(myDeliveryAddressId) as asisId from myDeliveryAddress where memberNo = @{memberNo} and defaultYn='y' "
         }
       },
       "asisSetN" : {

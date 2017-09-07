@@ -13,6 +13,41 @@
     "pages": [],
     "customPages": []
   },
+
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "root",
+    "menuId": "productList",
+    "menuName": "상품목록",
+    "order": "10",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "ytn/product/List" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "root",
+    "menuId": "productForm",
+    "menuName": "상품등록/수정",
+    "order": "20",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "ytn/product/CreateForm" },
+      { "pageName": "등록", "pageUrl": "ytn/product/UpdateForm" }
+    ]
+  },
+
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "adm",
