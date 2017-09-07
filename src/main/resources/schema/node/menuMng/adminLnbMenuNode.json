@@ -27,7 +27,9 @@
     "pages": [
       { "pageName": "목록", "pageUrl": "list" }
     ],
-    "customPages": []
+    "customPages": [
+      { "pageName": "수정", "pageUrl": "ytn/AffComUpdateForm" }
+    ]
   },
   {
     "typeId" : "adminLnbMenu",
@@ -43,7 +45,9 @@
     "pages": [
       { "pageName": "목록", "pageUrl": "list" }
     ],
-    "customPages": []
+    "customPages": [
+      { "pageName": "수정", "pageUrl": "ytn/AffComMemberUpdateForm" }
+    ]
   },
   {
     "typeId" : "adminLnbMenu",
@@ -59,7 +63,9 @@
     "pages": [
       { "pageName": "목록", "pageUrl": "list" }
     ],
-    "customPages": []
+    "customPages": [
+      { "pageName": "수정", "pageUrl": "ytn/AffUniUpdateForm" }
+    ]
   },
   {
     "typeId" : "adminLnbMenu",
@@ -75,7 +81,9 @@
     "pages": [
       { "pageName": "목록", "pageUrl": "list" }
     ],
-    "customPages": []
+    "customPages": [
+      { "pageName": "수정", "pageUrl": "ytn/AffUniMemberUpdateForm" }
+    ]
   },
   {
     "typeId" : "adminLnbMenu",
