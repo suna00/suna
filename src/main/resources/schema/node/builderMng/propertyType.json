@@ -142,7 +142,7 @@
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "builderContainerComponent",
+    "referenceType": "",
     "referenceValue": ""
   },
   {
@@ -273,7 +273,7 @@
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "builderPresentationalComponent",
+    "referenceType": "",
     "referenceValue": ""
   }
 ]
