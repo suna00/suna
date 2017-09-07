@@ -719,5 +719,22 @@
       "typeId": "seoMetaInfo",
       "id": "{{:pageId}}"
     }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "contsMeta",
+    "apiId": "IfPip001",
+    "apiName": "영상미디어정보 조회",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "contentId",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "seoMetaInfo",
+      "event": "getUrl"
+    }
   }
 ]

@@ -335,7 +335,7 @@
     "id": "replInfo",
     "tid": "replInfo",
     "typeName": "댓글 정보",
-    "repositoryType": "node",
+    "repositoryType": "data",
     "eviction": 0,
     "tableName": "cjDb#replInfo"
   },
@@ -345,7 +345,7 @@
     "id": "replDclaHst",
     "tid": "replDclaHst",
     "typeName": "댓글 신고 이력",
-    "repositoryType": "node",
+    "repositoryType": "data",
     "eviction": 0,
     "tableName": "cjDb#replDclaHst"
   },
@@ -355,7 +355,7 @@
     "id": "replLikeInfo",
     "tid": "replLikeInfo",
     "typeName": "댓글 좋아요 정보",
-    "repositoryType": "node",
+    "repositoryType": "data",
     "eviction": 0,
     "tableName": "cjDb#replLikeInfo"
   },

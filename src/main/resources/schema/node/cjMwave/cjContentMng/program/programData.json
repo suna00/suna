@@ -145,5 +145,25 @@
     "thumbnailImgPath": "http://10.184.57.248:8080/pub/images/news/img_photoList02.jpg",
     "showCntryCdList": "VNM",
     "refdMultiLanginfo": ""
+  },
+  {
+    "typeId": "program",
+    "pgmId": "SD_B120143824",
+    "pgmNm": "오늘뭐먹지?",
+    "pgmDesc": "쉽게 쉽게 받아먹자! 국내최초 딜리버라이어티 <오늘뭐먹지? 딜리버리>",
+    "chId": "",
+    "ctgryId": "",
+    "bradStDate": "20140922180000",
+    "bradFnsDate": "",
+    "catmName": "민경훈,성시경,신동엽",
+    "tag": "MIX,TAPE,MIXTAPE",
+    "bradType": "1",
+    "relPgmIds": "",
+    "showYn": true,
+    "mnetIfTrtYn": true,
+    "relArtistIds": "",
+    "repImgPath": "/IMAGE/PROGRAM/B120143824/77437922.jpg",
+    "thumbnailImgPath": "/IMAGE/PROGRAM/B120143824/43627231.jpg",
+    "showCntryCdList": "USA"
   }
 ]

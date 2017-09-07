@@ -13,6 +13,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import net.ion.ice.IceRuntimeException;
 
+/**
+ * Created by leehh on 2017. 9. 7.
+ */
+
 @Service("faqService")
 public class FaqService {
     @Autowired

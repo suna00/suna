@@ -1,16 +1,26 @@
 [
   {
-    "typeId" : "event",
+    "typeId": "event",
     "tid": "faq",
-    "event" : "retvNum",
-    "eventName" : "retvNum Event"
+    "event": "view",
+    "noneExecute": true,
+    "eventName": "retvNum Event"
   },
   {
-    "typeId" : "eventAction",
-    "event": "faq>retvNum",
-    "action" : "retvNumUpdEvent",
-    "actionType" : "service",
-    "actionBody" : "faqService.retvNumUpdate",
-    "order" : 1
+    "typeId": "eventAction",
+    "event": "faq>view",
+    "action": "retvNumUpdEvent",
+    "actionName": "FAQ 조회수 업데이트",
+    "actionType": "service",
+    "actionBody": "faqService.retvNumUpdate",
+    "order": 1
+  },
+  {
+    "typeId": "eventListener",
+    "tid": "contsRetvInfo",
+    "event": "faq>view",
+    "listenerName": "FAQ 조회시 콘텐츠 조회 create",
+    "actionType": "service",
+    "actionBody": "contsRetvService.insert"
   }
 ]

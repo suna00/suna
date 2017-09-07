@@ -60,7 +60,23 @@
           "page": "{{:page}}",
           "pageSize": "{{:pageSize}}"
         }
-      ]
+      ],
+      "response":{
+        "ntfBbsSeq":"",
+        "ntfBbsNm":"",
+        "ntfBbsTgtCd":"",
+        "ntfBbsTypeCd":"",
+        "ntfLargeCtgCd":"ctgCd1",
+        "ntfMidCtgCd":"ctgCd2",
+        "svcTermlDivCd":"showDvcCd",
+        "pstngStDt":"",
+        "pstngFnsDt":"",
+        "showYn":"",
+        "ntfSbst":"",
+        "hitNum":"retvNum",
+        "owner":"",
+        "created":""
+      }
     }
   },
   {

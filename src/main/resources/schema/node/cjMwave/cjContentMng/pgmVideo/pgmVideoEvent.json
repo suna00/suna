@@ -1,0 +1,17 @@
+[
+  {
+    "typeId": "event",
+    "tid": "pgmVideo",
+    "event": "getUrl",
+    "eventName": "CDN URL Event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "pgmVideo>getUrl",
+    "action": "getUrlEvent",
+    "actionName": "PIP CDN URL 변환",
+    "actionType": "service",
+    "actionBody": "videoService.getVideoCdnUrl",
+    "order": 1
+  }
+]
