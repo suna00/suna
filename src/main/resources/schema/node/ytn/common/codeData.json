@@ -1522,20 +1522,29 @@
   },
   {
     "typeId": "commonCode",
-    "code": "conditional",
+    "code": "charge",
     "upperCode": "deliveryPriceType",
-    "name": "조건부무료배송",
+    "name": "유료배송비",
     "description": "",
     "sortOrder": "2",
     "commonCodeStatus": "y"
   },
   {
     "typeId": "commonCode",
-    "code": "fix",
+    "code": "conditional",
     "upperCode": "deliveryPriceType",
-    "name": "고정배송비",
+    "name": "조건부무료배송",
     "description": "",
     "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "quantity",
+    "upperCode": "deliveryPriceType",
+    "name": "수량별배송비",
+    "description": "",
+    "sortOrder": "4",
     "commonCodeStatus": "y"
   },
   {
