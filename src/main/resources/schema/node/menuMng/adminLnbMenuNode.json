@@ -27,7 +27,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "ytn/Product/List" }
+      { "pageName": "목록", "pageUrl": "ytn/product/List" }
     ]
   },
   {
@@ -43,8 +43,8 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "ytn/Product/CreateForm" },
-      { "pageName": "등록", "pageUrl": "ytn/Product/UpdateForm" }
+      { "pageName": "등록", "pageUrl": "ytn/product/CreateForm" },
+      { "pageName": "등록", "pageUrl": "ytn/product/UpdateForm" }
     ]
   },
 
