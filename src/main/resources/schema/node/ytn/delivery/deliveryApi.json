@@ -25,15 +25,17 @@
         "event": "update",
         "data": {
           "myDeliveryAddressId": "{{:asisId}}",
-          "defaultYn": "n"
+          "defaultYn": "n",
+          "changed": ""
         }
       },
       "tobeSetY" : {
         "typeId": "myDeliveryAddress",
         "event": "update",
         "data": {
-          "myDeliveryAddressId": "{{:myDeliveryAddressId}}",
-          "defaultYn": "y"
+          "myDeliveryAddressId": "{{:tobeId}}",
+          "defaultYn": "y",
+          "changed": ""
         }
       }
     }
