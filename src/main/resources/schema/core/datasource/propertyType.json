@@ -82,5 +82,29 @@
     "labelable" : false,
     "required" : true,
     "length": 100
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "dataSequence",
+    "pid" : "nodeType",
+    "propertyTypeName" : "노드타입",
+    "valueType" : "STRING",
+    "idable" : true,
+    "indexable" : true,
+    "labelable" : false,
+    "required" : true,
+    "length": 100
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "dataSequence",
+    "pid" : "sequence",
+    "propertyTypeName" : "노드타입",
+    "valueType" : "STRING",
+    "idable" : false,
+    "indexable" : false,
+    "labelable" : false,
+    "required" : true,
+    "length": 10000
   }
 ]

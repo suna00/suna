@@ -18,7 +18,6 @@ import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.lucene.document.DateTools;
 import org.apache.lucene.search.SortField;
-import org.infinispan.Cache;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;

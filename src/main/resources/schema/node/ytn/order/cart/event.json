@@ -14,5 +14,21 @@
     "actionType" : "service",
     "actionBody" : "cartService.addCart",
     "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "tempOrder",
+    "event" : "add",
+    "noneExecute": true,
+    "eventName" : "임시 주문서 생성"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "tempOrder>add",
+    "action" : "addTempOrder",
+    "actionName" : "임시 주문서 저장",
+    "actionType" : "service",
+    "actionBody" : "orderService.addTempOrder",
+    "order" : 1
   }
 ]

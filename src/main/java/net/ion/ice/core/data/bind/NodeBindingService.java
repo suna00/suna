@@ -73,7 +73,7 @@ public class NodeBindingService {
         }
     }
 
-    public void execute(ExecuteContext context) {
+    public Node execute(ExecuteContext context) {
         Node node = context.getNode();
         NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(node.getTypeId());
 
@@ -83,6 +83,7 @@ public class NodeBindingService {
         }
         context.setResult(node);
         logger.info("Node Binding {} - {} :  " + (callback == 0 ? "insert" : "update"), node.getTypeId(), node.getId());
+        return node;
     }
 
     public void createTable(String typeId, HttpServletResponse response) {
