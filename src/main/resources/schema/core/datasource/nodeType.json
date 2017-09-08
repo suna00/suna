@@ -5,5 +5,13 @@
     "typeId" : "nodeType",
     "repositoryType" : "node",
     "typeName" : "Datasource"
+  },
+  {
+    "tid" : "dataSequence",
+    "parentId" : "system",
+    "typeId" : "nodeType",
+    "repositoryType" : "node",
+    "tableName": "ytnDevDb#datasequence",
+    "typeName" : "Data Sequence"
   }
 ]

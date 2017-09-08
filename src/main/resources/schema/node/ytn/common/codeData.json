@@ -5464,15 +5464,6 @@
   },
   {
     "typeId": "commonCode",
-    "code": "addOptionType",
-    "upperCode": "root",
-    "name": "추가옵션타입",
-    "description": "",
-    "sortOrder": "103",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
     "code": "n",
     "upperCode": "baseOptionType",
     "name": "사용안함",
@@ -5500,6 +5491,15 @@
   },
   {
     "typeId": "commonCode",
+    "code": "addOptionType",
+    "upperCode": "root",
+    "name": "추가옵션타입",
+    "description": "",
+    "sortOrder": "103",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
     "code": "n",
     "upperCode": "addOptionType",
     "name": "사용안함",
@@ -5514,6 +5514,42 @@
     "name": "사용함",
     "description": "",
     "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "productOptionType",
+    "upperCode": "root",
+    "name": "상품 옵션 타입",
+    "description": "",
+    "sortOrder": "57",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "mix",
+    "upperCode": "productOptionType",
+    "name": "조합",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "single",
+    "upperCode": "productOptionType",
+    "name": "독립",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "add",
+    "upperCode": "productOptionType",
+    "name": "추가",
+    "description": "",
+    "sortOrder": "3",
     "commonCodeStatus": "y"
   }
 ]

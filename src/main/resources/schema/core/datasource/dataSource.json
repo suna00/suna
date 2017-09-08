@@ -1,32 +1,32 @@
 [
   {
-    "typeId" : "datasource",
-    "datasourceId" : "mariaDb",
+    "typeId": "datasource",
+    "datasourceId": "mariaDb",
     "profiles": "dev",
-    "dsName" : "Test DB (Maria)",
-    "jdbcUrl" : "jdbc:mysql://125.131.88.77:3306/ice2",
-    "dbType" : "maria",
-    "username" : "ice2",
-    "password" : "ice2"
+    "dsName": "Test DB (Maria)",
+    "jdbcUrl": "jdbc:mysql://125.131.88.77:3306/ice2",
+    "dbType": "maria",
+    "username": "ice2",
+    "password": "ice2"
   },
   {
-    "typeId" : "datasource",
-    "datasourceId" : "oracleDb",
+    "typeId": "datasource",
+    "datasourceId": "oracleDb",
     "profiles": "dev",
-    "dsName" : "Test DB (Oracle)",
-    "jdbcUrl" : "jdbc:oracle:thin:@125.131.88.69:8200:ORCL",
-    "dbType" : "oracle",
-    "username" : "ICE",
-    "password" : "ICE1234"
+    "dsName": "Test DB (Oracle)",
+    "jdbcUrl": "jdbc:oracle:thin:@125.131.88.69:8200:ORCL",
+    "dbType": "oracle",
+    "username": "ICE",
+    "password": "ICE1234"
   },
   {
-    "typeId" : "datasource",
-    "datasourceId" : "msDb",
+    "typeId": "datasource",
+    "datasourceId": "msDb",
     "profiles": "dev",
-    "dsName" : "Test DB (MS)",
-    "jdbcUrl" : "jdbc:sqlserver://125.131.88.94:1500;databaseName=IPS",
-    "dbType" : "msSql",
-    "username" : "icafe13",
-    "password" : "icafe1234!@"
+    "dsName": "Test DB (MS)",
+    "jdbcUrl": "jdbc:sqlserver://125.131.88.94:1500;databaseName=IPS",
+    "dbType": "msSql",
+    "username": "icafe13",
+    "password": "icafe1234!@"
   }
 ]
