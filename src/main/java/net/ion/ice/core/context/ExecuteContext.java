@@ -21,7 +21,6 @@ import java.util.*;
  */
 public class ExecuteContext extends ReadContext{
 
-    protected Node node;
     protected Node existNode ;
 
     protected boolean exist ;
@@ -166,7 +165,7 @@ public class ExecuteContext extends ReadContext{
             execute = changedProperties.size() > 0 ;
             if(execute) {
                 node.setUpdate(userId, time);
-            }else if(event != null && !event.equals("update")){
+            }else if(event != null && !event.equals("update") ){
                 execute = true;
             }
 
@@ -331,5 +330,16 @@ public class ExecuteContext extends ReadContext{
         }
         ctx.data = data ;
         return ctx ;
+    }
+
+    public Object getResult(){
+        if(result != null){
+            return result ;
+        }else if(this.node != null){
+            this.result = node ;
+            return node ;
+        }else{
+            return NodeUtils.getNode(nodeType.getTypeId(), id) ;
+        }
     }
 }
