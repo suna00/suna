@@ -129,8 +129,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>ntfBbs>ctgCd1",
-    "propertyTypeId": "ntfBbs>ctgCd1",
+    "id": "propertyTypeValidation>ntfBbs>ntfLargeCtgCd",
+    "propertyTypeId": "ntfBbs>ntfLargeCtgCd",
     "validation": {
       "language": "ko",
       "required": {
@@ -161,8 +161,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>ntfBbs>ctgCd2",
-    "propertyTypeId": "ntfBbs>ctgCd2",
+    "id": "propertyTypeValidation>ntfBbs>ntfMidCtgCd",
+    "propertyTypeId": "ntfBbs>ntfMidCtgCd",
     "validation": {
       "language": "ko",
       "required": {
@@ -193,8 +193,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>ntfBbs>showDvcCd",
-    "propertyTypeId": "ntfBbs>showDvcCd",
+    "id": "propertyTypeValidation>ntfBbs>svcTermlDivCd",
+    "propertyTypeId": "ntfBbs>svcTermlDivCd",
     "validation": {
       "language": "ko",
       "required": {
