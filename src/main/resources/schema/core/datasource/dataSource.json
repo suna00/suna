@@ -78,5 +78,15 @@
     "dbType": "mySql",
     "username": "cjmwave",
     "password": "cjmwave0!@#"
+  },
+  {
+    "typeId": "datasource",
+    "datasourceId": "cjDb",
+    "profiles": "aws-was",
+    "dsName": "Test DB",
+    "jdbcUrl": "jdbc:mysql://10.17.118.242:3306/ice2?useSSL=false",
+    "dbType": "mySql",
+    "username": "cjmwave",
+    "password": "cjmwave0!@#"
   }
 ]
