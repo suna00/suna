@@ -2,7 +2,8 @@
   {
     "typeId": "cntryMng",
     "cntryId": "KOR",
-    "cntryNm": "대한민국",
+    "cntryNm_kor": "대한민국",
+    "cntryNm_eng": "Korea",
     "cntryImgPath": "",
     "useYn": true,
     "sortOdrg": 1
@@ -10,7 +11,8 @@
   {
     "typeId": "cntryMng",
     "cntryId": "USA",
-    "cntryNm": "미국",
+    "cntryNm_kor": "미국",
+    "cntryNm_eng": "United States",
     "cntryImgPath": "",
     "useYn": true,
     "sortOdrg": 2
@@ -18,7 +20,8 @@
   {
     "typeId": "cntryMng",
     "cntryId": "CHN",
-    "cntryNm": "중국",
+    "cntryNm_kor": "중국",
+    "cntryNm_eng": "China",
     "cntryImgPath": "",
     "useYn": true,
     "sortOdrg": 3
@@ -26,7 +29,8 @@
   {
     "typeId": "cntryMng",
     "cntryId": "JPN",
-    "cntryNm": "일본",
+    "cntryNm_kor": "일본",
+    "cntryNm_eng": "Japan",
     "cntryImgPath": "",
     "useYn": true,
     "sortOdrg": 4

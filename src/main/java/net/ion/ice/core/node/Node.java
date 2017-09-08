@@ -401,6 +401,8 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         cloneNode.created = created ;
         cloneNode.changed = changed ;
         cloneNode.properties.setId(id) ;
+        cloneNode.properties.setTypeId(this.typeId);
+
         return cloneNode ;
     }
 

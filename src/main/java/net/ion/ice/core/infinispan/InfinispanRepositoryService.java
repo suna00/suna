@@ -145,10 +145,10 @@ public class InfinispanRepositoryService {
     }
 
     public SimpleQueryResult getQueryNodes(String typeId, QueryContext queryContext) {
-        queryContext.setIncludeReferenced(true);
+//        queryContext.setIncludeReferenced(true);
         List<Node> result = getSubQueryNodes(typeId, queryContext);
         for (Node node : result) {
-            node.toDisplay();
+            node.toDisplay(queryContext);
         }
         return new SimpleQueryResult(result, queryContext);
     }
