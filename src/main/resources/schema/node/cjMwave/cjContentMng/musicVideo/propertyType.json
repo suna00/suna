@@ -95,10 +95,10 @@
   {
     "typeId": "propertyType",
     "tid": "musicVideo",
-    "pid": "imgPath",
-    "id": "musicVideo>imgPath",
+    "pid": "imgUrl",
+    "id": "musicVideo>imgUrl",
     "propertyTypeName": "이미지경로",
-    "valueType": "FILE",
+    "valueType": "TEXT",
     "required": false,
     "idable": false,
     "labelable": false,

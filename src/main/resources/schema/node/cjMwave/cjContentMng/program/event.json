@@ -1,13 +1,13 @@
 [
   {
     "typeId" : "event",
-    "tid": "artist",
+    "tid": "program",
     "event" : "saveMetadata",
     "eventName" : "Save metadata"
   },
   {
     "typeId" : "eventAction",
-    "event": "artist>saveMetadata",
+    "event": "program>saveMetadata",
     "action" : "saveMetadata",
     "actionType" : "service",
     "actionBody" : "metadataService.saveMetadata",

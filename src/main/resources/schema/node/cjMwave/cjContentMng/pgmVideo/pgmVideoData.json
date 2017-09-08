@@ -23,7 +23,7 @@
     "itemTypeId": "31",
     "contentType": "C001",
     "broadDate": "20170506180000",
-    "contentImg": "http://10.184.57.248:8080/pub/images/component/img_album05.jpg",
+    "contentImgUrl": "http://10.184.57.248:8080/pub/images/component/img_album05.jpg",
     "playTime": 500,
     "targetAge": 15,
     "price": "1500",
@@ -31,7 +31,10 @@
     "isFullVod": true,
     "isUse": true,
     "showCntryCdList": "KOR",
-    "mnetIfTrtYn": true
+    "mnetIfTrtYn": true,
+    "ctgryId": "115",
+    "rcmdContsYn": true
+
   },
   {
     "typeId": "pgmVideo",
@@ -51,7 +54,7 @@
     "itemTypeId": "31",
     "contentType": "C002",
     "broadDate": "20170506180000",
-    "contentImg": "http://10.184.57.248:8080/pub/images/component/img_album02.jpg",
+    "contentImgUrl": "http://10.184.57.248:8080/pub/images/component/img_album02.jpg",
     "playTime": 500,
     "targetAge": 15,
     "price": "1800",
@@ -59,7 +62,9 @@
     "isFullVod": true,
     "isUse": true,
     "showCntryCdList": "KOR",
-    "mnetIfTrtYn": true
+    "mnetIfTrtYn": true,
+    "ctgryId": "115",
+    "rcmdContsYn": true
   },
   {
     "typeId": "pgmVideo",
@@ -79,7 +84,7 @@
     "itemTypeId": "33",
     "contentType": "C003",
     "broadDate": "20170812180000",
-    "contentImg": "http://10.184.57.248:8080/pub/images/component/img_album01.jpg",
+    "contentImgUrl": "http://10.184.57.248:8080/pub/images/component/img_album01.jpg",
     "playTime": 500,
     "targetAge": 15,
     "price": "1500",
@@ -87,7 +92,9 @@
     "isFullVod": true,
     "isUse": true,
     "showCntryCdList": "KOR",
-    "mnetIfTrtYn": true
+    "mnetIfTrtYn": true,
+    "ctgryId": "115",
+    "rcmdContsYn": true
   },
   {
     "typeId": "pgmVideo",
@@ -107,7 +114,7 @@
     "itemTypeId": "34",
     "contentType": "C004",
     "broadDate": "20170906180000",
-    "contentImg": "http://10.184.57.248:8080/pub/images/component/img_album03.jpg",
+    "contentImgUrl": "http://10.184.57.248:8080/pub/images/component/img_album03.jpg",
     "playTime": 500,
     "targetAge": 12,
     "price": "1800",
@@ -115,7 +122,9 @@
     "isFullVod": true,
     "isUse": true,
     "showCntryCdList": "KOR",
-    "mnetIfTrtYn": true
+    "mnetIfTrtYn": true,
+    "ctgryId": "115",
+    "rcmdContsYn": true
   },
   {
     "typeId": "pgmVideo",
@@ -135,7 +144,7 @@
     "itemTypeId": "35",
     "contentType": "C005",
     "broadDate": "20170213180000",
-    "contentImg": "http://10.184.57.248:8080/pub/images/component/img_album05.jpg",
+    "contentImgUrl": "http://10.184.57.248:8080/pub/images/component/img_album05.jpg",
     "playTime": 500,
     "targetAge": 12,
     "price": "1500",
@@ -143,7 +152,9 @@
     "isFullVod": true,
     "isUse": true,
     "showCntryCdList": "KOR",
-    "mnetIfTrtYn": true
+    "mnetIfTrtYn": true,
+    "ctgryId": "115",
+    "rcmdContsYn": true
   },
   {
     "typeId": "pgmVideo",
@@ -163,7 +174,7 @@
     "itemTypeId": "31",
     "contentType": "C006",
     "broadDate": "20170206180000",
-    "contentImg": "http://10.184.57.248:8080/pub/images/component/img_album04.jpg",
+    "contentImgUrl": "http://10.184.57.248:8080/pub/images/component/img_album04.jpg",
     "playTime": 500,
     "targetAge": 15,
     "price": "1800",
@@ -171,7 +182,9 @@
     "isFullVod": true,
     "isUse": true,
     "showCntryCdList": "KOR",
-    "mnetIfTrtYn": true
+    "mnetIfTrtYn": true,
+    "ctgryId": "115",
+    "rcmdContsYn": true
   },
   {
     "typeId": "pgmVideo",
@@ -191,7 +204,7 @@
     "itemTypeId": "32",
     "contentType": "C001",
     "broadDate": "20170123180000",
-    "contentImg": "http://10.184.57.248:8080/pub/images/component/img_album01.jpg",
+    "contentImgUrl": "http://10.184.57.248:8080/pub/images/component/img_album01.jpg",
     "playTime": 500,
     "targetAge": 19,
     "price": "2100",
@@ -200,7 +213,8 @@
     "isUse": true,
     "showCntryCdList": "KOR",
     "mnetIfTrtYn": true,
-    "rcmdContsYn":false
+    "rcmdContsYn":false,
+    "ctgryId": "115"
   },
   {
     "typeId": "pgmVideo",
@@ -220,7 +234,7 @@
     "itemTypeId": "33",
     "contentType": "C002",
     "broadDate": "20170801180000",
-    "contentImg": "http://10.184.57.248:8080/pub/images/component/img_album01.jpg",
+    "contentImgUrl": "http://10.184.57.248:8080/pub/images/component/img_album01.jpg",
     "playTime": 500,
     "targetAge": 19,
     "price": "2400",
@@ -229,7 +243,8 @@
     "isUse": true,
     "showCntryCdList": "KOR",
     "mnetIfTrtYn": true,
-    "rcmdContsYn":false
+    "rcmdContsYn":false,
+    "ctgryId": ""
   },
   {
     "typeId": "pgmVideo",
@@ -249,7 +264,7 @@
     "itemTypeId": "33",
     "contentType": "C003",
     "broadDate": "20170101180000",
-    "contentImg": "http://10.184.57.248:8080/pub/images/component/img_album04.jpg",
+    "contentImgUrl": "http://10.184.57.248:8080/pub/images/component/img_album04.jpg",
     "playTime": 500,
     "targetAge": 19,
     "price": "2400",
@@ -258,12 +273,14 @@
     "isUse": true,
     "showCntryCdList": "KOR",
     "mnetIfTrtYn": true,
-    "rcmdContsYn":true
+    "rcmdContsYn":true,
+    "ctgryId": ""
   },
   {
     "typeId": "pgmVideo",
     "contentId": "SD_11871",
     "programId": "SD_B120143824",
+    "artistId": "artist_00001",
     "title": "",
     "clipType": "1",
     "contentTitle": "에그인헬",
@@ -278,7 +295,7 @@
     "itemTypeId": "31,33,34,35",
     "contentType": "C001",
     "broadDate": "20160229120000",
-    "contentImg": "/VOD/SD/B120143824/B120143824_EPI0131_01_B.jpg",
+    "contentImgUrl": "/VOD/SD/B120143824/B120143824_EPI0131_01_B.jpg",
     "playTime": 1947,
     "targetAge": 15,
     "price": "1650",
@@ -287,6 +304,7 @@
     "isUse": true,
     "showCntryCdList": "KOR",
     "mnetIfTrtYn": true,
-    "rcmdContsYn":true
+    "rcmdContsYn":true,
+    "contsMetaCtgryId": ""
   }
 ]
