@@ -375,9 +375,7 @@ public class NodeUtils {
     public static Object getStoreValue(Object value, PropertyType pt, String id) {
         if (value == null || StringUtils.equals(StringUtils.trim(value.toString()), "null") || StringUtils.isEmpty(StringUtils.trim(value.toString())))
             return null;
-        if (value instanceof Code) {
-            return ((Code) value).getValue();
-        }
+
         switch (pt.getValueType()) {
             case DATE: {
                 return DateTools.dateToString(NodeUtils.getDateValue(value), DateTools.Resolution.SECOND);

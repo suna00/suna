@@ -188,7 +188,7 @@ public class PropertiesFieldBridge implements FieldBridge {
         fieldType.setIndexOptions(IndexOptions.DOCS_AND_FREQS);
         fieldType.setDocValuesType(DocValuesType.NONE);
         fieldType.setStored(false);
-        fieldType.setTokenized(false);
+        fieldType.setTokenized(true);
         fieldType.setOmitNorms(false);
         fieldType.freeze();
         fieldType.setAnalyzer(AnalyzerFactory.getAnalyzer(PropertyType.AnalyzerType.simple));

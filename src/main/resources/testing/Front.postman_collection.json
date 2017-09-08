@@ -2565,6 +2565,7 @@
 			"headers": "",
 			"headerData": [],
 			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/cart/read.json?cartId=50",
+			"folder": "fbef8ed5-d63e-081d-e1ac-6c54a38292d6",
 			"queryParams": [
 				{
 					"key": "cartId",
@@ -2595,6 +2596,7 @@
 			"headers": "",
 			"headerData": [],
 			"url": "{{protocol}}://{{hostname}}:{{port}}/node/cart/event/add",
+			"folder": "f02e2e01-cfbb-9a41-5999-de51ecb964b6",
 			"queryParams": [],
 			"preRequestScript": null,
 			"pathVariables": {},
@@ -2606,7 +2608,7 @@
 					"value": "50",
 					"description": "장바구니 아이디가 없으면 create, 있으면 update",
 					"type": "text",
-					"enabled": true
+					"enabled": false
 				},
 				{
 					"key": "memberNo",
@@ -2624,7 +2626,7 @@
 				},
 				{
 					"key": "sessionId",
-					"value": "ssssss1",
+					"value": "ssssss12",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -2649,7 +2651,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1504490584193,
+			"time": 1504587112214,
 			"name": "상품상세_장바구니담기",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",

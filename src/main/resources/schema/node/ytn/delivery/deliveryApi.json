@@ -17,7 +17,7 @@
         "select" : {
           "ds" : "ytnDevDb",
           "resultType" : "read",
-          "sql" : "select max(myDeliveryAddressId) as asisId from myDeliveryAddress where memberNo = @{memberNo} and defaultYn='y' "
+          "sql" : "select min(myDeliveryAddressId) as asisId from myDeliveryAddress where memberNo = @{memberNo} and defaultYn='y' "
         }
       },
       "asisSetN" : {
@@ -25,15 +25,17 @@
         "event": "update",
         "data": {
           "myDeliveryAddressId": "{{:asisId}}",
-          "defaultYn": "n"
+          "defaultYn": "n",
+          "changed": ""
         }
       },
       "tobeSetY" : {
         "typeId": "myDeliveryAddress",
         "event": "update",
         "data": {
-          "myDeliveryAddressId": "{{:myDeliveryAddressId}}",
-          "defaultYn": "y"
+          "myDeliveryAddressId": "{{:tobeId}}",
+          "defaultYn": "y",
+          "changed": ""
         }
       }
     }

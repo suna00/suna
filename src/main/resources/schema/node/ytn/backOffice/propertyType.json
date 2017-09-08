@@ -4121,7 +4121,7 @@
     "pid": "limitedProductCount",
     "propertyTypeName": "입점상품수 제한",
     "valueType": "INT",
-    "required": true,
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,

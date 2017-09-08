@@ -247,6 +247,8 @@ public class LuceneQueryUtils {
     }
 
     private static Query createKeywordTermQuery(QueryTerm term) throws IOException {
+
+
         Query query;
         List<String> terms = getAllTermsFromText(
                 term.getQueryKey(),
