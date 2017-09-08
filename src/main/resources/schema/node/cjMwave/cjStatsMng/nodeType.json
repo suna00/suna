@@ -1,0 +1,102 @@
+[
+  {
+    "parentId": "cjStatsMng",
+    "typeId": "nodeType",
+    "id": "wlyVoteStatsByArtist",
+    "tid": "wlyVoteStatsByArtist",
+    "typeName": "아티스트별 주간 투표 현황",
+    "repositoryType": "data",
+    "eviction": 0,
+    "tableName": "cjDb#wlyVoteStatsByArtist"
+  },
+  {
+    "parentId": "cjStatsMng",
+    "typeId": "nodeType",
+    "id": "cntryVoteStatsByArtist",
+    "tid": "cntryVoteStatsByArtist",
+    "typeName": "아티스트별 국가 투표 현황",
+    "repositoryType": "data",
+    "eviction": 0,
+    "tableName": "cjDb#cntryVoteStatsByArtist"
+  },
+  {
+    "parentId": "cjStatsMng",
+    "typeId": "nodeType",
+    "id": "voteMbrStatsByArtist",
+    "tid": "voteMbrStatsByArtist",
+    "typeName": "아티스트별 투표회원 현황",
+    "repositoryType": "data",
+    "eviction": 0,
+    "tableName": "cjDb#voteMbrStatsByArtist"
+  },
+  {
+    "parentId": "cjStatsMng",
+    "typeId": "nodeType",
+    "id": "artistVoteStatsByCntry",
+    "tid": "artistVoteStatsByCntry",
+    "typeName": "국가별 아티스트 투표현황",
+    "repositoryType": "data",
+    "eviction": 0,
+    "tableName": "cjDb#artistVoteStatsByCntry"
+  },
+  {
+    "parentId": "cjStatsMng",
+    "typeId": "nodeType",
+    "id": "artistVoteStatsBySex",
+    "tid": "artistVoteStatsBySex",
+    "typeName": "성별 아티스트 투표현황",
+    "repositoryType": "data",
+    "eviction": 0,
+    "tableName": "cjDb#artistVoteStatsBySex"
+  },
+  {
+    "parentId": "cjStatsMng",
+    "typeId": "nodeType",
+    "id": "artistVoteStatsByType",
+    "tid": "artistVoteStatsByType",
+    "typeName": "타입별 아티스트 투표현황",
+    "repositoryType": "data",
+    "eviction": 0,
+    "tableName": "cjDb#artistVoteStatsByType"
+  },
+  {
+    "parentId": "cjStatsMng",
+    "typeId": "nodeType",
+    "id": "cntryVoteStats",
+    "tid": "cntryVoteStats",
+    "typeName": "전체 국가 투표 현황",
+    "repositoryType": "data",
+    "eviction": 0,
+    "tableName": "cjDb#cntryVoteStats"
+  },
+  {
+    "parentId": "cjStatsMng",
+    "typeId": "nodeType",
+    "id": "artistVoteStatsByWly",
+    "tid": "artistVoteStatsByWly",
+    "typeName": "주간 아티스트 투표현황",
+    "repositoryType": "data",
+    "eviction": 0,
+    "tableName": "cjDb#artistVoteStatsByWly"
+  },
+  {
+    "parentId": "cjStatsMng",
+    "typeId": "nodeType",
+    "id": "artistVoteStatsByMly",
+    "tid": "artistVoteStatsByMly",
+    "typeName": "월간 아티스트 투표현황",
+    "repositoryType": "data",
+    "eviction": 0,
+    "tableName": "cjDb#artistVoteStatsByMly"
+  },
+  {
+    "parentId": "cjStatsMng",
+    "typeId": "nodeType",
+    "id": "artistVoteStatsByYear",
+    "tid": "artistVoteStatsByYear",
+    "typeName": "년간 아티스트 투표현황",
+    "repositoryType": "data",
+    "eviction": 0,
+    "tableName": "cjDb#artistVoteStatsByYear"
+  }
+]

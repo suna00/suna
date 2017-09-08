@@ -42,5 +42,14 @@
     "typeName" : "CJ 서비스 관리",
     "repositoryType" : "path",
     "eviction" : 0
+  },
+  {
+    "parentId" : "cjMwave",
+    "typeId" : "nodeType",
+    "id" : "cjStatsMng",
+    "tid" : "cjStatsMng",
+    "typeName" : "CJ 통계 관리",
+    "repositoryType" : "path",
+    "eviction" : 0
   }
 ]
