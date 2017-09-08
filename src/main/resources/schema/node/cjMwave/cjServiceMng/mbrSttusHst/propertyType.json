@@ -39,7 +39,7 @@
     "tid": "mbrSttusHst",
     "pid": "mbrSttusCd",
     "id": "mbrSttusHst>mbrSttusCd",
-    "propertyTypeName": "상태 코드",
+    "propertyTypeName": "회원 상태코드",
     "valueType": "REFERENCE",
     "required": true,
     "idable": false,
