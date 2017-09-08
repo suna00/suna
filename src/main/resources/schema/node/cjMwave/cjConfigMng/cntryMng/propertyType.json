@@ -31,7 +31,8 @@
     "analyzer" : "cjk",
     "referenceType" : "",
     "referenceValue" : "",
-    "defaultValue" : ""
+    "defaultValue" : "",
+    "i18n" : true
   }
   ,{
     "typeId" : "propertyType",
