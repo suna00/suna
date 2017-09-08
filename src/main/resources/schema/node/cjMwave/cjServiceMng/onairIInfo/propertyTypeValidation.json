@@ -97,8 +97,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>onairInfo>svcLoCd",
-    "propertyTypeId": "onairInfo>svcLoCd",
+    "id": "propertyTypeValidation>onairInfo>showLoCd",
+    "propertyTypeId": "onairInfo>showLoCd",
     "validation": {
       "language": "ko",
       "required": {

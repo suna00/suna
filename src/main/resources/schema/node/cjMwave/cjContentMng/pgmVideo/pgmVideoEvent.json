@@ -3,6 +3,7 @@
     "typeId": "event",
     "tid": "pgmVideo",
     "event": "getUrl",
+    "noneExecute" : true,
     "eventName": "CDN URL Event"
   },
   {

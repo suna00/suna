@@ -12361,7 +12361,7 @@
           "description": "방송 채널 코드 (varchar) "
         },
         {
-          "key": "svcLoCd",
+          "key": "showLoCd",
           "value": "",
           "description": "서비스 위치 코드 (varchar) "
         },

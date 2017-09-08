@@ -177,7 +177,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
-    "codeFilter": "svcLo",
+    "codeFilter": "showLo",
     "defaultValue": ""
   },
   {

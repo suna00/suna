@@ -89,7 +89,7 @@
   },
   {
     "typeId": "code",
-    "groupCodeId": "svcLo",
+    "groupCodeId": "showLo",
     "codeId": "1",
     "name": "KCON",
     "order": 1,
@@ -97,7 +97,7 @@
   },
   {
     "typeId": "code",
-    "groupCodeId": "svcLo",
+    "groupCodeId": "showLo",
     "codeId": "2",
     "name": "MWAVE",
     "order": 2,
@@ -105,7 +105,7 @@
   },
   {
     "typeId": "code",
-    "groupCodeId": "svcLo",
+    "groupCodeId": "showLo",
     "codeId": "3",
     "name": "MAMA",
     "order": 3,
@@ -113,7 +113,7 @@
   },
   {
     "typeId": "code",
-    "groupCodeId": "svcLo",
+    "groupCodeId": "showLo",
     "codeId": "4",
     "name": "M COUNTDOWN",
     "order": 4,
@@ -121,7 +121,7 @@
   },
   {
     "typeId": "code",
-    "groupCodeId": "svcLo",
+    "groupCodeId": "showLo",
     "codeId": "5",
     "name": "VOTE & Rank",
     "order": 5,
@@ -129,7 +129,7 @@
   },
   {
     "typeId": "code",
-    "groupCodeId": "svcLo",
+    "groupCodeId": "showLo",
     "codeId": "6",
     "name": "Meet&Greet",
     "order": 6,
@@ -137,7 +137,7 @@
   },
   {
     "typeId": "code",
-    "groupCodeId": "svcLo",
+    "groupCodeId": "showLo",
     "codeId": "7",
     "name": "K-Stars",
     "order": 7,
@@ -145,7 +145,7 @@
   },
   {
     "typeId": "code",
-    "groupCodeId": "svcLo",
+    "groupCodeId": "showLo",
     "codeId": "8",
     "name": "Store",
     "order": 8,
@@ -153,7 +153,7 @@
   },
   {
     "typeId": "code",
-    "groupCodeId": "svcLo",
+    "groupCodeId": "showLo",
     "codeId": "9",
     "name": "News",
     "order": 9,
@@ -161,7 +161,7 @@
   },
   {
     "typeId": "code",
-    "groupCodeId": "svcLo",
+    "groupCodeId": "showLo",
     "codeId": "10",
     "name": "TV",
     "order": 10,

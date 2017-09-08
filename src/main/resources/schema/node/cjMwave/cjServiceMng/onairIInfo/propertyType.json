@@ -54,8 +54,8 @@
   {
     "typeId": "propertyType",
     "tid": "onairInfo",
-    "pid": "svcLoCd",
-    "id": "onairInfo>svcLoCd",
+    "pid": "showLoCd",
+    "id": "onairInfo>showLoCd",
     "propertyTypeName": "서비스 위치 코드",
     "valueType": "REFERENCE",
     "required": true,

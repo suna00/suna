@@ -36,7 +36,7 @@
   },
   {
     "typeId": "groupCode",
-    "groupCodeId": "svcLo",
+    "groupCodeId": "showLo",
     "name": "서비스 위치",
     "active": true,
     "desc": "서비스 노출 위치"
