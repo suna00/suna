@@ -308,16 +308,89 @@
     "parameters": [
       {
         "paramName": "artistId",
-        "required": true
+        "required": false
+      },
+      {
+        "perdStDate": "perdStDate",
+        "required": false
+      },
+      {
+        "perdFnsDate": "perdFnsDate",
+        "required": false
       }
     ],
     "config": {
       "typeId": "wlyVoteStatsByArtist",
-      "select": {
-        "ds": "cjDb",
-        "resultType": "list",
-        "sql": "select * from wlyVoteStatsByArtist where artistId = @{artistId}"
+      "query": [
+        {
+          "field": "artistId",
+          "method": "matching",
+          "value": "{{:artistId}}"
+        },
+        {
+          "field": "perdStDate",
+          "method": "matching",
+          "value": "{{:perdStDate}}"
+        },
+        {
+          "field": "perdFnsDate",
+          "method": "matching",
+          "value": "{{:perdFnsDate}}"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "referenceView": "artistId"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv105",
+    "apiName": "아티스트별 국가 투표 현황",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "artistId",
+        "required": false
+      },
+      {
+        "perdStDate": "perdStDate",
+        "required": false
+      },
+      {
+        "perdFnsDate": "perdFnsDate",
+        "required": false
       }
+    ],
+    "config": {
+      "typeId": "cntryVoteStatsByArtist",
+      "query": [
+        {
+          "field": "artistId",
+          "method": "matching",
+          "value": "{{:artistId}}"
+        },
+        {
+          "field": "perdStDate",
+          "method": "matching",
+          "value": "{{:perdStDate}}"
+        },
+        {
+          "field": "perdFnsDate",
+          "method": "matching",
+          "value": "{{:perdFnsDate}}"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "referenceView": "cntryCd,artistId"
+        }
+      ]
     }
   }
 ]

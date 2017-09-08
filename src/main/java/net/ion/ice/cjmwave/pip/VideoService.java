@@ -4,9 +4,8 @@ import com.skb.auth.local.SkbURI;
 import net.ion.ice.IceRuntimeException;
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.node.Node;
-import net.ion.ice.core.node.NodeService;
+import net.ion.ice.core.node.NodeUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.net.URISyntaxException;
@@ -21,25 +20,23 @@ public class VideoService {
     private String[] authKey = {"smccjenm"};
     private String[] cdnDomainUrl = {"pip-vodhls-mwave.cjenm.skcdn.com","pip-cliphls-mwave.cjenm.skcdn.com"};
 
-    @Autowired
-    private NodeService nodeService;
-
-    public String getVideoCdnUrl(ExecuteContext context){
-        String retrunUrl = "";
+    public void getVideoCdnUrl(ExecuteContext context){
+        Map<String, Object> returnResult = null;
         String cdmDomainUrlStr = "";
         Map<String, Object> data = context.getData();
+        String contentId = data.get("contentId").toString();
 
-        if (data == null || StringUtils.isEmpty(data.get("contentId").toString())) {
+        if (data == null || StringUtils.isEmpty(contentId)) {
             throw new IceRuntimeException("contentId Parameter is Null") ;
         }
-        String contentIdStr = data.get("contentId").toString();
-        Node node = nodeService.getNode("pgmVideo", contentIdStr);
+
+        Node node = NodeUtils.getNode("pgmVideo", contentId);
         if (node == null) {
-            throw new IceRuntimeException("Node is Null : contentId="+contentIdStr) ;
+            throw new IceRuntimeException("Node is Null : contentId="+contentId) ;
         }
 
-        String clipType = node.get("clipType").toString();
-        String mediaUrl = node.get("mediaUrl").toString();
+        String clipType = node.getStringValue("clipType");
+        String mediaUrl = node.getStringValue("mediaUrl");
         if("1".equals(clipType)){
             cdmDomainUrlStr = cdnDomainUrl[0];
         }else if("2".equals(clipType)){
@@ -51,14 +48,14 @@ public class VideoService {
         SkbURI uri = new SkbURI.Builder().sharedKey(authKey[0]).mediaUrl(mediaUrl).build();
 
         try {
-            retrunUrl = cdmDomainUrlStr+uri.getURI();
-            System.out.println("##PIP CDN URL : "+retrunUrl);
+            returnResult.put("mediaUrl",cdmDomainUrlStr+uri.getURI());
+            System.out.println("##PIP CDN URL : "+cdmDomainUrlStr+uri.getURI());
         }catch (IllegalArgumentException iae){
             iae.printStackTrace();
         }catch (URISyntaxException use){
             use.printStackTrace();
         }
 
-        return retrunUrl;
+        context.setResult(returnResult);
     }
 }

@@ -3,7 +3,7 @@
     "typeId": "event",
     "tid": "faq",
     "event": "view",
-    "noneExecute": true,
+    "noneExecute" : true,
     "eventName": "retvNum Event"
   },
   {

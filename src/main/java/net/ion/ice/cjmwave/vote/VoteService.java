@@ -54,7 +54,7 @@ public class VoteService {
         //여기다 이제 투표기본정보, 제한, 항목 노드에 각각 저장을 .....
 
         //1. 투표기본정보 저장- 파일저장있음
-        Node voteBasInfo = nodeService.executeNode(voteInfo, "voteBasInfo", "save");
+        Node voteBasInfo = (Node)nodeService.executeNode(voteInfo, "voteBasInfo", "save");
 
         //2. 저장된 투표기본정보 seq를 가지고 기간제한정보 array 저장
         if(termRstrtnArray.size() > 0){
