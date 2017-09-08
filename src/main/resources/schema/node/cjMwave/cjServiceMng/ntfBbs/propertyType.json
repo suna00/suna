@@ -50,7 +50,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
-    "codeFIlter": "systemNtfTgtCd",
+    "codeFIlter": "ntfBbsTgtCd",
     "defaultValue": ""
   },
   {
@@ -74,9 +74,9 @@
   {
     "typeId": "propertyType",
     "tid": "ntfBbs",
-    "pid": "ctgCd1",
-    "id": "ntfBbs>ctgCd1",
-    "propertyTypeName": "분류 코드1",
+    "pid": "ntfLargeCtgCd",
+    "id": "ntfBbs>ntfLargeCtgCd",
+    "propertyTypeName": "공지 대분류 코드",
     "valueType": "REFERENCE",
     "required": false,
     "idable": false,
@@ -92,9 +92,9 @@
   {
     "typeId": "propertyType",
     "tid": "ntfBbs",
-    "pid": "ctgCd2",
-    "id": "ntfBbs>ctgCd2",
-    "propertyTypeName": "분류 코드2",
+    "pid": "ntfMidCtgCd",
+    "id": "ntfBbs>ntfMidCtgCd",
+    "propertyTypeName": "공지 중분류 코드",
     "valueType": "REFERENCE",
     "required": false,
     "idable": false,
@@ -110,8 +110,8 @@
   {
     "typeId": "propertyType",
     "tid": "ntfBbs",
-    "pid": "showDvcCd",
-    "id": "ntfBbs>showDvcCd",
+    "pid": "svcTermlDivCd",
+    "id": "ntfBbs>svcTermlDivCd",
     "propertyTypeName": "노출 단말 코드",
     "valueType": "REFERENCE",
     "required": true,

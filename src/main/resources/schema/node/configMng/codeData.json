@@ -2206,5 +2206,29 @@
     "name": "Live Banner",
     "order": 2,
     "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "ntfBbsTgtCd",
+    "codeId": "1",
+    "name": "전체",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "ntfBbsTgtCd",
+    "codeId": "2",
+    "name": "준회원",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "ntfBbsTgtCd",
+    "codeId": "3",
+    "name": "정회원",
+    "order": 3,
+    "active": true
   }
 ]
