@@ -37,8 +37,8 @@
   {
     "typeId": "propertyType",
     "tid": "mbrSttusHst",
-    "pid": "sttusCd",
-    "id": "mbrSttusHst>sttusCd",
+    "pid": "mbrSttusCd",
+    "id": "mbrSttusHst>mbrSttusCd",
     "propertyTypeName": "상태 코드",
     "valueType": "REFERENCE",
     "required": true,

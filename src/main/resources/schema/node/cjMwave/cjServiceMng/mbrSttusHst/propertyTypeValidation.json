@@ -65,8 +65,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>mbrSttusHst>sttusCd",
-    "propertyTypeId": "mbrSttusHst>sttusCd",
+    "id": "propertyTypeValidation>mbrSttusHst>mbrSttusCd",
+    "propertyTypeId": "mbrSttusHst>mbrSttusCd",
     "validation": {
       "language": "ko",
       "required": {

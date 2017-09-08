@@ -3,42 +3,42 @@
     "typeId": "mbrSttusHst",
     "mbrSttusHstSeq": 193123,
     "mbrId": "5>1412",
-    "sttusCd": "1",
+    "mbrSttusCd": "1",
     "sttusChgSbst": "비밀번호 변경"
   },
   {
     "typeId": "mbrSttusHst",
     "mbrSttusHstSeq": 130123,
     "mbrId": "3>1232",
-    "sttusCd": "2",
+    "mbrSttusCd": "2",
     "sttusChgSbst": "휴면 계정으로 전환"
   },
   {
     "typeId": "mbrSttusHst",
     "mbrSttusHstSeq": 123914,
     "mbrId": "1>1234",
-    "sttusCd": "3",
+    "mbrSttusCd": "3",
     "sttusChgSbst": "탈퇴함"
   },
   {
     "typeId": "mbrSttusHst",
     "mbrSttusHstSeq": 193125,
     "mbrId": "4>5934",
-    "sttusCd": "1",
+    "mbrSttusCd": "1",
     "sttusChgSbst": "비밀번호 변경"
   },
   {
     "typeId": "mbrSttusHst",
     "mbrSttusHstSeq": 130125,
     "mbrId": "3>5678",
-    "sttusCd": "2",
+    "mbrSttusCd": "2",
     "sttusChgSbst": "휴면 계정으로 전환"
   },
   {
     "typeId": "mbrSttusHst",
     "mbrSttusHstSeq": 123918,
     "mbrId": "3>5678",
-    "sttusCd": "3",
+    "mbrSttusCd": "3",
     "sttusChgSbst": "탈퇴함"
   }
 ]
