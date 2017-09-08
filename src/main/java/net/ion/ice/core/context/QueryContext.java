@@ -80,7 +80,7 @@ public class QueryContext extends ReadContext {
 
     public static QueryContext createQueryContextFromText(String searchText, NodeType nodeType) {
         QueryContext queryContext = new QueryContext(nodeType);
-        queryContext.setIncludeReferenced(false );
+//        queryContext.setIncludeReferenced(false);
 
         java.util.List<QueryTerm> queryTerms = new ArrayList<>();
 
