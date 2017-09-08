@@ -161,8 +161,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>voteItemInfo>thumImgPath",
-    "propertyTypeId": "voteItemInfo>thumImgPath",
+    "id": "propertyTypeValidation>voteItemInfo>imgUrl",
+    "propertyTypeId": "voteItemInfo>imgUrl",
     "validation": {
       "language": "ko",
       "required": {
@@ -193,8 +193,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>voteItemInfo>videFilePath",
-    "propertyTypeId": "voteItemInfo>videFilePath",
+    "id": "propertyTypeValidation>voteItemInfo>vdoUrl",
+    "propertyTypeId": "voteItemInfo>vdoUrl",
     "validation": {
       "language": "ko",
       "required": {
