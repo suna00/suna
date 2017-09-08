@@ -6,6 +6,7 @@
     "tid": "cntryMng",
     "typeName": "국가관리",
     "repositoryType": "node",
+    "i18n" : true,
     "eviction": 500
   },
   {
