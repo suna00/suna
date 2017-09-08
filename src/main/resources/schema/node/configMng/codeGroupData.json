@@ -239,20 +239,6 @@
   },
   {
     "typeId": "groupCode",
-    "groupCodeId": "mbrDivCd",
-    "name": "회원 정보 구분 코드",
-    "active": true,
-    "desc": "mbrDivCd"
-  },
-  {
-    "typeId": "groupCode",
-    "groupCodeId": "mbrSttusCd",
-    "name": "회원 정보 상테 코드",
-    "active": true,
-    "desc": "mbrSttusCd"
-  },
-  {
-    "typeId": "groupCode",
     "groupCodeId": "sbscShapCd",
     "name": "가입 형태 코드",
     "active": true,
