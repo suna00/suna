@@ -319,7 +319,7 @@
     "tid": "voteBasInfo",
     "pid": "cpturAplyYn",
     "id": "voteBasInfo>cpturAplyYn",
-    "propertyTypeName": "캡쳐 적용 여부",
+    "propertyTypeName": "캡챠 적용 여부",
     "valueType": "BOOLEAN",
     "required": false,
     "idable": false,
