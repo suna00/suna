@@ -193,8 +193,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>voteBasInfo>voteStDt",
-    "propertyTypeId": "voteBasInfo>voteStDt",
+    "id": "propertyTypeValidation>voteBasInfo>pstngStDt",
+    "propertyTypeId": "voteBasInfo>pstngStDt",
     "validation": {
       "language": "ko",
       "required": {
@@ -225,8 +225,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>voteBasInfo>voteFnsDt",
-    "propertyTypeId": "voteBasInfo>voteFnsDt",
+    "id": "propertyTypeValidation>voteBasInfo>pstngFnsDt",
+    "propertyTypeId": "voteBasInfo>pstngFnsDt",
     "validation": {
       "language": "ko",
       "required": {
