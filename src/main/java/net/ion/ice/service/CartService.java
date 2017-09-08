@@ -77,7 +77,7 @@ public class CartService {
     }
 
     private void newCart(Map<String, Object> data) throws IOException {
-        Node node = nodeService.executeNode(data, "cart", CREATE) ;
+        Node node = (Node) nodeService.executeNode(data, "cart", CREATE);
         data.put("cartId", node.getId());
 
         createList(data);
@@ -89,7 +89,7 @@ public class CartService {
         List<Node> list = new ArrayList<>();
         for(Map<String, Object> map : JsonUtils.parsingJsonToList(data.get("cartProduct").toString())){
             map.putAll(data);
-            Node node = nodeService.executeNode(map, "cartProduct", CREATE) ;
+            Node node = (Node) nodeService.executeNode(map, "cartProduct", CREATE);
             map.put("cartProductId", node.getId());
 
             if(map.get("cartProductItem") != null){
