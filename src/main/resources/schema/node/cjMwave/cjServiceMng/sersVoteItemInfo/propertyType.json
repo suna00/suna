@@ -29,10 +29,11 @@
     "labelable": false,
     "treeable": false,
     "indexable": true,
-    "analyzer": "code",
+    "analyzer": null,
     "referenceType": "code",
     "referenceValue": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "codeFilter": "sersVoteItemDivCd"
   },
   {
     "typeId": "propertyType",
