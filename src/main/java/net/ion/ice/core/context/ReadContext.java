@@ -267,6 +267,8 @@ public class ReadContext implements Context {
                     subQueryContext.setNodeData(node);
                 }
                 subQueryContext.makeQueryResult(itemResult, resultField.getFieldName());
+            } else if(resultField.isStaticValue()){
+                itemResult.put(resultField.getFieldName(), ContextUtils.getValue(resultField.getStaticValue(), contextData));
             }else if(resultField.getResultType() != null){
                 Map<String, Object> _data = new HashMap<>();
                 _data.putAll(contextData);
