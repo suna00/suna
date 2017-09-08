@@ -63,6 +63,9 @@
         {
           "page": "{{:page}}",
           "pageSize": "{{:pageSize}}"
+        },
+        {
+          "referenceView": "contsMetaId"
         }
       ]
     }
