@@ -27,7 +27,7 @@
       "typeId": "onairInfo",
       "query": [
         {
-          "field": "svcLoCd",
+          "field": "showLoCd",
           "method": "matching",
           "value": "{{:showLoCd}}"
         },{

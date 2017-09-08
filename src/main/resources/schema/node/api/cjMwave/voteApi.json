@@ -134,7 +134,8 @@
           "limit": "1"
         },
         {
-          "referenceView": "sersItemVoteSeq","includeReferenced": true
+          "referenceView": "sersItemVoteSeq",
+          "includeReferenced": true
         }
       ],
       "response": {
@@ -282,19 +283,40 @@
           "pageSize": "{{:pageSize}}"
         }
       ],
-      "response":{
+      "response": {
         "voteSeq": {
-          "value":"{{:voteSeq}}"
+          "value": "{{:voteSeq}}"
         },
-        "votePwnrSeq":"",
-        "mbrId":"",
-        "mbrFirstName":"",
-        "mbrLastName":"",
-        "email":"",
-        "mblNo":"",
-        "homeAdr":"",
-        "memo":"",
-        "prtcpDate":"created"
+        "votePwnrSeq": "",
+        "mbrId": "",
+        "mbrFirstName": "",
+        "mbrLastName": "",
+        "email": "",
+        "mblNo": "",
+        "homeAdr": "",
+        "memo": "",
+        "prtcpDate": "created"
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv104",
+    "apiName": "아티스트별 주간 투표 현황",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "artistId",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "wlyVoteStatsByArtist",
+      "select": {
+        "ds": "cjDb",
+        "resultType": "list",
+        "sql": "select * from wlyVoteStatsByArtist where artistId = @{artistId}"
       }
     }
   }

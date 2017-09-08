@@ -203,35 +203,35 @@
           "mkerId": {
             "select": {
               "ds" : "cjDb",
-              "resultType": "",
+              "resultType": "value",
               "sql": "select concat(snsTypeCd,'>',snsKey) as mkerId, aliasNm,thumImgPath from mbrInfo where snsTypeCd = @{snsTypeCd} and snsKey = @{snsKey}"
             }
           },
           "replLikeNum": {
             "select": {
               "ds" : "cjDb",
-              "resultType": "",
+              "resultType": "value",
               "sql": "select count(*) replLikeNum from replLikeInfo where replSeq = @{replSeq}"
             }
           },
           "myLikeYn": {
             "select": {
               "ds" : "cjDb",
-              "resultType": "",
+              "resultType": "value",
               "sql": "select if(count(*)>0,'Y','N') myLikeYn from replLikeInfo where replSeq = @{replSeq} and mbrId = @{mkerId}"
             }
           },
           "dclaNum": {
             "select": {
               "ds" : "cjDb",
-              "resultType": "",
+              "resultType": "value",
               "sql": "select count(*) dclaNum from replDclaHst where replSeq = @{replSeq}"
             }
           },
           "myDclaYn": {
             "select": {
               "ds" : "cjDb",
-              "resultType": "",
+              "resultType": "value",
               "sql": "select if(count(*)>0,'Y','N') myDclaYn from replDclaHst where replSeq = @{replSeq} and dclarId = @{mkerId}"
             }
           },
