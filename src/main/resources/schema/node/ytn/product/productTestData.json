@@ -63,7 +63,9 @@
     "deliveryPosibleArea": null,
     "exchangeDeliveryPrice": null,
     "returnDeliveryPrice": null,
-    "hopeDeliveryPossiblePeriod": null
+    "hopeDeliveryPossiblePeriod": null,
+    "baseOptionType": "n",
+    "addOptionType": "n"
   },
   {
     "typeId": "product",
@@ -129,7 +131,9 @@
     "deliveryPosibleArea": null,
     "exchangeDeliveryPrice": null,
     "returnDeliveryPrice": null,
-    "hopeDeliveryPossiblePeriod": null
+    "hopeDeliveryPossiblePeriod": null,
+    "baseOptionType": "n",
+    "addOptionType": "n"
   },
   {
     "typeId": "product",
@@ -195,7 +199,9 @@
     "deliveryPosibleArea": null,
     "exchangeDeliveryPrice": null,
     "returnDeliveryPrice": null,
-    "hopeDeliveryPossiblePeriod": null
+    "hopeDeliveryPossiblePeriod": null,
+    "baseOptionType": "n",
+    "addOptionType": "n"
   },
   {
     "typeId": "product",
@@ -261,7 +267,9 @@
     "deliveryPosibleArea": null,
     "exchangeDeliveryPrice": null,
     "returnDeliveryPrice": null,
-    "hopeDeliveryPossiblePeriod": null
+    "hopeDeliveryPossiblePeriod": null,
+    "baseOptionType": "n",
+    "addOptionType": "n"
   },
   {
     "typeId": "product",
@@ -327,7 +335,9 @@
     "deliveryPosibleArea": null,
     "exchangeDeliveryPrice": null,
     "returnDeliveryPrice": null,
-    "hopeDeliveryPossiblePeriod": null
+    "hopeDeliveryPossiblePeriod": null,
+    "baseOptionType": "n",
+    "addOptionType": "n"
   },
   {
     "typeId": "product",
@@ -393,7 +403,9 @@
     "deliveryPosibleArea": null,
     "exchangeDeliveryPrice": null,
     "returnDeliveryPrice": null,
-    "hopeDeliveryPossiblePeriod": null
+    "hopeDeliveryPossiblePeriod": null,
+    "baseOptionType": "n",
+    "addOptionType": "n"
   },
   {
     "typeId": "product",
@@ -459,7 +471,9 @@
     "deliveryPosibleArea": null,
     "exchangeDeliveryPrice": null,
     "returnDeliveryPrice": null,
-    "hopeDeliveryPossiblePeriod": null
+    "hopeDeliveryPossiblePeriod": null,
+    "baseOptionType": "n",
+    "addOptionType": "n"
   },
   {
     "typeId": "product",
@@ -525,7 +539,9 @@
     "deliveryPosibleArea": null,
     "exchangeDeliveryPrice": null,
     "returnDeliveryPrice": null,
-    "hopeDeliveryPossiblePeriod": null
+    "hopeDeliveryPossiblePeriod": null,
+    "baseOptionType": "n",
+    "addOptionType": "n"
   },
   {
     "typeId": "product",
@@ -591,7 +607,9 @@
     "deliveryPosibleArea": null,
     "exchangeDeliveryPrice": null,
     "returnDeliveryPrice": null,
-    "hopeDeliveryPossiblePeriod": null
+    "hopeDeliveryPossiblePeriod": null,
+    "baseOptionType": "n",
+    "addOptionType": "n"
   },
   {
     "typeId": "product",
@@ -657,7 +675,9 @@
     "deliveryPosibleArea": null,
     "exchangeDeliveryPrice": null,
     "returnDeliveryPrice": null,
-    "hopeDeliveryPossiblePeriod": null
+    "hopeDeliveryPossiblePeriod": null,
+    "baseOptionType": "n",
+    "addOptionType": "n"
   },
   {
     "typeId": "product",
@@ -775,6 +795,8 @@
     "deliveryPosibleArea": null,
     "exchangeDeliveryPrice": null,
     "returnDeliveryPrice": null,
-    "hopeDeliveryPossiblePeriod": null
+    "hopeDeliveryPossiblePeriod": null,
+    "baseOptionType": "n",
+    "addOptionType": "n"
   }
 ]
