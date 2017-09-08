@@ -104,8 +104,8 @@
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "program",
-    "referenceValue": "pgmId",
+    "referenceType": "pgmVideo",
+    "referenceValue": "contentId",
     "codeFilter": "",
     "defaultValue": ""
   },
@@ -294,8 +294,8 @@
   {
     "typeId": "propertyType",
     "tid": "pgmVideo",
-    "pid": "contentImg",
-    "id": "pgmVideo>contentImg",
+    "pid": "contentImgUrl",
+    "id": "pgmVideo>contentImgUrl",
     "propertyTypeName": "클립영상 대표 이미지 URL",
     "valueType": "STRING",
     "required": false,

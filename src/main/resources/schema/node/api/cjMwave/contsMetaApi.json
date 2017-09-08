@@ -295,7 +295,35 @@
     ],
     "config": {
       "typeId": "artist",
-      "id": "{{:artistId}}"
+      "id": "{{:artistId}}",
+      "response": {
+        "artistId": "",
+        "artistNm": "",
+        "cretDt": "",
+        "bpnac": "",
+        "sex": "",
+        "typeCd": "",
+        "genreCd": "",
+        "debutDt": "",
+        "debutAlbum": "",
+        "artistDesc": "",
+        "atvyNm": "",
+        "imgUrl": "",
+        "findKywrd": "",
+        "relArtistIds": "",
+        "showCntryCdList": "",
+        "showYn": "",
+        "mnetIfTrtYn": "",
+        "owner": "",
+        "created": "",
+        "modifier": "",
+        "changed": "",
+        "seoTitle": {
+          "value": " | Mwave"
+        },
+        "seoDesc": "musicVideoDesc",
+        "seoKywrd": "findKywrd"
+      }
     }
   },
   {
@@ -372,7 +400,33 @@
     ],
     "config": {
       "typeId": "musicVideo",
-      "id": "{{:musicVideoId}}"
+      "id": "{{:musicVideoId}}",
+      "response": {
+        "musicVideoId": "",
+        "musicVideoNm": "",
+        "subName": "",
+        "genreCd": "",
+        "musicVideoDesc": "",
+        "imgUrl": "",
+        "findKywrd": "",
+        "comotDt": "",
+        "artistId": "",
+        "youtubeUrl": "",
+        "todouUrl": "",
+        "playTime": "",
+        "showCntryCdList": "",
+        "mnetIfTrtYn": "",
+        "showYn": "",
+        "relSongIds": "",
+        "relArtistIds": "",
+        "rcmdContsYnv": "",
+        "relAlbumIds": "",
+        "seoTitle": {
+          "value": " | Mwave"
+        },
+        "seoDesc": "musicVideoDesc",
+        "seoKywrd": "findKywrd"
+      }
     }
   },
   {

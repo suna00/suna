@@ -1,13 +1,13 @@
 [
   {
     "typeId" : "event",
-    "tid": "artist",
+    "tid": "singlePhoto",
     "event" : "saveMetadata",
     "eventName" : "Save metadata"
   },
   {
     "typeId" : "eventAction",
-    "event": "artist>saveMetadata",
+    "event": "singlePhoto>saveMetadata",
     "action" : "saveMetadata",
     "actionType" : "service",
     "actionBody" : "metadataService.saveMetadata",
