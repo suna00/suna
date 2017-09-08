@@ -63,7 +63,7 @@ public class EventService {
         eventData.put(EVENT, event) ;
         eventData.put("eventName", event + " " + node.get("typeName")) ;
 
-        return nodeService.executeNode(eventData, EVENT, CREATE) ;
+        return nodeService.createNode(eventData, EVENT) ;
     }
 
     private Node createEventAction(Node eventNode, String event) {
@@ -74,7 +74,7 @@ public class EventService {
         eventActionData.put("actionBody", DELETE.equals(event) ? "nodeBindingService.delete" : "nodeBindingService.execute") ;
         eventActionData.put("order", 1) ;
 
-        return nodeService.executeNode(eventActionData, EVENT_ACTION, CREATE) ;
+        return nodeService.createNode(eventActionData, EVENT_ACTION) ;
     }
 
     public void execute(ExecuteContext executeContext) {

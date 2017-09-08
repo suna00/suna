@@ -61,16 +61,16 @@ public class NodeController {
 
     private Object execute(HttpServletRequest request, String typeId, String event) {
         if(request instanceof MultipartHttpServletRequest) {
-            return JsonResponse.create(nodeService.executeNode(request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap(), typeId, event)) ;
+            return nodeService.executeNode(request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap(), typeId, event) ;
         }
-        return JsonResponse.create(nodeService.executeNode(request.getParameterMap(), null, typeId, event)) ;
+        return nodeService.executeNode(request.getParameterMap(), null, typeId, event) ;
     }
 
 
     @RequestMapping(value = "/node/{typeId}/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public Object deleteRest(WebRequest request, @PathVariable String typeId, @PathVariable String id) throws IOException {
-        return JsonResponse.create(nodeService.deleteNode(typeId, id)) ;
+        return nodeService.deleteNode(typeId, id) ;
     }
 
     @RequestMapping(value = "/node/{typeId}/delete.json", method = RequestMethod.POST)
@@ -81,7 +81,7 @@ public class NodeController {
 
 
     private Object delete(WebRequest request, String typeId) {
-        return JsonResponse.create(nodeService.deleteNode(request.getParameterMap(), typeId)) ;
+        return nodeService.deleteNode(request.getParameterMap(), typeId) ;
     }
 
     @RequestMapping(value = "/node/{typeId}/{id}", method = RequestMethod.GET)
