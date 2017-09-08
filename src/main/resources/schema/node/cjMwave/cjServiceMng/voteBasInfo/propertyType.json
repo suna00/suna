@@ -108,7 +108,7 @@
   {
     "typeId": "propertyType",
     "tid": "voteBasInfo",
-    "pid": "voteStDt",
+    "pid": "pstngStDt",
     "id": "voteBasInfo>pstngStDt",
     "propertyTypeName": "게시시작일시",
     "valueType": "DATE",
@@ -125,7 +125,7 @@
   {
     "typeId": "propertyType",
     "tid": "voteBasInfo",
-    "pid": "voteFnsDt",
+    "pid": "pstngFnsDt",
     "id": "voteBasInfo>pstngFnsDt",
     "propertyTypeName": "게시종료일시",
     "valueType": "DATE",
