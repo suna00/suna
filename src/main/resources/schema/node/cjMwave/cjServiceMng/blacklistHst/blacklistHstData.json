@@ -2,7 +2,7 @@
   {
     "typeId": "blacklistHst",
     "blacklistHstSeq": 10302,
-    "mbrId": "1>2111",
+    "mbrId": "5>1412",
     "dclaDivCd": "1",
     "dclaSbst": "욕설/비속어 사용",
     "trtSttusCd": "1"
@@ -10,7 +10,7 @@
   {
     "typeId": "blacklistHst",
     "blacklistHstSeq": 10303,
-    "mbrId": "2>4444",
+    "mbrId": "1>2593",
     "dclaDivCd": "2",
     "dclaSbst": "아청법",
     "trtSttusCd": "2"
@@ -18,7 +18,7 @@
   {
     "typeId": "blacklistHst",
     "blacklistHstSeq": 10305,
-    "mbrId": "3>6666",
+    "mbrId": "2>1234",
     "dclaDivCd": "2",
     "dclaSbst": "아청법",
     "trtSttusCd": "2"
@@ -26,7 +26,7 @@
   {
     "typeId": "blacklistHst",
     "blacklistHstSeq": 10308,
-    "mbrId": "4>5555",
+    "mbrId": "3>5678",
     "dclaDivCd": "1",
     "dclaSbst": "욕설/비속어 사용",
     "trtSttusCd": "2"
@@ -34,7 +34,7 @@
   {
     "typeId": "blacklistHst",
     "blacklistHstSeq": 10311,
-    "mbrId": "5>2222",
+    "mbrId": "5>1412",
     "dclaDivCd": "3",
     "dclaSbst": "광고",
     "trtSttusCd": "1"
