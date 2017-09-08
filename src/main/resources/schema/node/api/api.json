@@ -1,0 +1,41 @@
+[
+  {
+    "typeId" : "apiCategory",
+    "id" : "node",
+    "categoryName" : "Node API Relay"
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "node",
+    "apiId" : "list",
+    "apiName" : "Default list API",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "items" : {
+        "typeId":"{{:typeId}}",
+        "query" : [
+          {"parameters" : "all"}
+        ]
+      }
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "node",
+    "apiId" : "read",
+    "apiName" : "Default read API",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "items" : {
+        "typeId":"{{:typeId}}",
+        "query" : [
+          {"parameters" : "all"}
+        ]
+      }
+    }
+  }
+]

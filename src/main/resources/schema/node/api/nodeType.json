@@ -88,6 +88,19 @@
   },
   {
     "typeId" : "propertyType",
+    "tid" : "apiCategory",
+    "pid" : "apiList",
+    "propertyTypeName" : "API LIST",
+    "valueType" : "REFERENCED",
+    "idable" : false,
+    "indexable" : false,
+    "labelable" : false,
+    "required" : false,
+    "referenceType" : "apiConfig",
+    "referenceValue" : "category"
+  },
+  {
+    "typeId" : "propertyType",
     "tid" : "apiConfig",
     "pid" : "category",
     "propertyTypeName" : "API Category",
