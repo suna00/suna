@@ -69,7 +69,7 @@ public class OrderService {
 
     private void createTempOrder(Map<String, Object> data) throws IOException {
         Map<String, Object> tempOrder = new HashMap<>();
-        Node tempOrderNode = nodeService.executeNode(tempOrder, "tempOrder", CREATE);
+        Node tempOrderNode = (Node) nodeService.executeNode(tempOrder, "tempOrder", CREATE);
         Map<String, Object> referencedCartProduct = null;
         try {
             referencedCartProduct = JsonUtils.parsingJsonToMap((String) data.get("referencedCartProduct"));
@@ -95,7 +95,7 @@ public class OrderService {
             tempOrderProductData.put("vendorId", calc.get("vendorId"));
             tempOrderProductData.put("tempOrderDeliveryPriceId", product.get("tempOrderDeliveryPriceId"));
 
-            Node tempOrderProductNode = nodeService.executeNode(tempOrderProductData, "tempOrderProduct", CREATE);
+            Node tempOrderProductNode = (Node) nodeService.executeNode(tempOrderProductData, "tempOrderProduct", CREATE);
 
             List<Map<String, Object>> referencedCartProductItem = (List<Map<String, Object>>) product.get("referencedCartProductItem");
             for (Map<String, Object> tempOrderProductItem : referencedCartProductItem) {
@@ -120,7 +120,7 @@ public class OrderService {
     }
 
     private void newTempOrder(Map<String, Object> data) throws IOException {
-        Node node = nodeService.executeNode(data, "cart", CREATE);
+        Node node = (Node) nodeService.executeNode(data, "cart", CREATE);
         data.put("cartId", node.getId());
     }
 
