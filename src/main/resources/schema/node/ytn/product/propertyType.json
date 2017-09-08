@@ -139,8 +139,8 @@
   {
     "typeId": "propertyType",
     "tid": "product",
-    "pid": "contentsId",
-    "propertyTypeName": "contentsID",
+    "pid": "productAttributeCategoryId",
+    "propertyTypeName": "상품고시 분류ID",
     "valueType": "REFERENCE",
     "required": false,
     "idable": false,
@@ -148,8 +148,8 @@
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "contents",
-    "referenceValue": "contentsId",
+    "referenceType": "productAttributeCategory",
+    "referenceValue": "productAttributeCategoryId",
     "codeFilter": "",
     "defaultValue": ""
   },
