@@ -25,7 +25,7 @@
     "infoOttpAgreeYn": true,
     "pushMsgRcvYn": true,
     "blacklistYn": false,
-    "dormTrtDate": "20170822180000",
+    "dormTrtDate": "",
     "rtrmmbDate": ""
   },
   {
@@ -54,7 +54,7 @@
     "infoOttpAgreeYn": true,
     "pushMsgRcvYn": true,
     "blacklistYn": false,
-    "dormTrtDate": "",
+    "dormTrtDate": "20170822180000",
     "rtrmmbDate": ""
   },
   {
@@ -83,7 +83,7 @@
     "infoOttpAgreeYn": true,
     "pushMsgRcvYn": true,
     "blacklistYn": true,
-    "dormTrtDate": "20170924180000",
+    "dormTrtDate": "",
     "rtrmmbDate": ""
   },
   {
@@ -92,7 +92,7 @@
     "snsKey": "5934",
     "aliasNm": "yunseokchoi",
     "mbrDivCd": "2",
-    "mbrSttusCd": "3",
+    "mbrSttusCd": "1",
     "sbscShapCd": "3",
     "sbscDt": "42977",
     "snsId": "Kevin",
@@ -126,7 +126,7 @@
     "sbscDt": "42961",
     "snsId": "mary",
     "cntryCd": "JPN",
-    "sexCd": "3",
+    "sexCd": "2",
     "bthYear": "1999",
     "imgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "email": "",
@@ -141,7 +141,7 @@
     "infoOttpAgreeYn": true,
     "pushMsgRcvYn": true,
     "blacklistYn": false,
-    "dormTrtDate": "",
+    "dormTrtDate": "20170924180000",
     "rtrmmbDate": ""
   },
   {
@@ -228,7 +228,7 @@
     "infoOttpAgreeYn": true,
     "pushMsgRcvYn": true,
     "blacklistYn": false,
-    "dormTrtDate": "20170831180000",
+    "dormTrtDate": "",
     "rtrmmbDate": ""
   },
   {
@@ -404,5 +404,63 @@
     "blacklistYn": false,
     "dormTrtDate": "",
     "rtrmmbDate": ""
+  },
+  {
+    "typeId": "mbrInfo",
+    "snsTypeCd": "1",
+    "snsKey": "djskf38923",
+    "aliasNm": "Super8",
+    "mbrDivCd": "2",
+    "mbrSttusCd": "3",
+    "sbscShapCd": "1",
+    "sbscDt": "42865",
+    "snsId": "Super8",
+    "cntryCd": "JPN",
+    "sexCd": "2",
+    "bthYear": "1989",
+    "imgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "email": "super8@gmail.com",
+    "emailRcvYn": true,
+    "smsRcvYn": true,
+    "mblNo": "01025882588",
+    "telNo": "01025882588",
+    "homeAdr1": "9334B Somerville. El Paso Texas United States",
+    "homeAdr2": "adr2",
+    "homeZipCode": "38483384",
+    "intrstCdList": "Beauty, Song",
+    "infoOttpAgreeYn": true,
+    "pushMsgRcvYn": true,
+    "blacklistYn": false,
+    "dormTrtDate": "",
+    "rtrmmbDate": "201708080200"
+  },
+  {
+    "typeId": "mbrInfo",
+    "snsTypeCd": "1",
+    "snsKey": "sjkdf0398gl",
+    "aliasNm": "Super9",
+    "mbrDivCd": "2",
+    "mbrSttusCd": "3",
+    "sbscShapCd": "1",
+    "sbscDt": "42865",
+    "snsId": "Super9",
+    "cntryCd": "JPN",
+    "sexCd": "2",
+    "bthYear": "1989",
+    "imgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "email": "super9@gmail.com",
+    "emailRcvYn": true,
+    "smsRcvYn": true,
+    "mblNo": "01025882588",
+    "telNo": "01025882588",
+    "homeAdr1": "9334B Somerville. El Paso Texas United States",
+    "homeAdr2": "adr2",
+    "homeZipCode": "38483384",
+    "intrstCdList": "Beauty, Song",
+    "infoOttpAgreeYn": true,
+    "pushMsgRcvYn": true,
+    "blacklistYn": false,
+    "dormTrtDate": "",
+    "rtrmmbDate": "201708080200"
   }
 ]
