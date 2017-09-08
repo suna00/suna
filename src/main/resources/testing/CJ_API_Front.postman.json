@@ -34,7 +34,8 @@
       "order": [
         "831b2df8-bb07-94ab-2690-01400eb0ba42",
         "808f67a9-b026-6260-1bac-3227ac6ecaec",
-        "b9fe56d7-79c8-6a35-6ea0-f2385ab8dc99"
+        "b9fe56d7-79c8-6a35-6ea0-f2385ab8dc99",
+        "57d0282d-d559-f980-82b0-07c280bd1749"
       ],
       "owner": "2433871",
       "folders_order": [],
@@ -133,11 +134,14 @@
         "1f147671-d8a5-8223-768b-3b69011df4f2",
         "b015118f-1855-148a-d532-1ad19264cdd4",
         "79312b63-f12e-a268-dc90-55a6ddbde6be",
+        "38f14d0e-7fba-7430-4a14-08263ead03e0",
         "6ff6d693-7ec3-d213-d18a-1dd751373736",
         "09e5c6c6-b7c0-60b5-eb45-5214570f6f77",
         "c9fdb91f-ea9d-a969-50c5-6bd07f2378ef",
         "810cea7b-1e3d-5c7f-6a1b-87698ead0c7b",
-        "38973aa4-96b4-646d-5c97-49a164f726b4"
+        "38973aa4-96b4-646d-5c97-49a164f726b4",
+        "38c383e8-79c8-cd80-9c62-4e1156c877e7",
+        "1ab5ea8e-ec76-e719-540e-43e65c50574b"
       ],
       "owner": "2433871",
       "folders_order": [],
@@ -167,10 +171,41 @@
       "name": "13.PIP",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
-      "order": [],
+      "order": [
+        "3ec22929-bad2-fa99-2ba8-7f40f1baff11"
+      ],
       "owner": "2433871",
       "folders_order": [],
       "id": "538cac7d-9229-6c46-610e-f67359ce283e"
+    },
+    {
+      "name": "14.회원 콘텐츠 활동",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "order": [
+        "6fccaa16-8d91-a857-e663-8a5328bb3cc7",
+        "67e88772-4e43-1931-f613-4a068fca471a",
+        "b95589e1-2823-7680-62ff-9e390a43d925",
+        "118c82b5-c787-2f04-820c-6d3f45f11796",
+        "e5f6668c-5d18-b035-8140-9134717c87a9",
+        "6f8a55b8-296c-8994-d171-7535d217f8ad",
+        "a0be9c37-38c4-66d5-c407-80acef4f0fc7",
+        "fce04673-815b-46c7-cf63-69c2b6c113fd"
+      ],
+      "owner": "2433871",
+      "folders_order": [],
+      "id": "bcd5ea6c-f32b-610d-fce1-d294bd90d5eb"
+    },
+    {
+      "name": "15.SEO",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "order": [
+        "fc02a38d-5c08-e3c4-a58f-b3327e1cb3d2"
+      ],
+      "owner": "2433871",
+      "folders_order": [],
+      "id": "efbfbe7f-bae0-a271-736c-77079f2c94a8"
     },
     {
       "name": "99.시스템",
@@ -199,8 +234,10 @@
     "bab6b5e3-78b0-d242-4d1c-d19ba20d7902",
     "19f32b0a-fdf9-d161-022e-8b92f2af649c",
     "7be3d1d4-bcd8-5199-22cd-01ecc17d621d",
-    "3036b5f8-1b9b-50ca-c58b-10e44707688e",
-    "538cac7d-9229-6c46-610e-f67359ce283e"
+    "538cac7d-9229-6c46-610e-f67359ce283e",
+    "bcd5ea6c-f32b-610d-fce1-d294bd90d5eb",
+    "efbfbe7f-bae0-a271-736c-77079f2c94a8",
+    "3036b5f8-1b9b-50ca-c58b-10e44707688e"
   ],
   "timestamp": 1503377797967,
   "owner": "2433871",
@@ -231,6 +268,91 @@
       "description": "",
       "descriptionFormat": "html",
       "time": 1503566983996,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902"
+    },
+    {
+      "id": "118c82b5-c787-2f04-820c-6d3f45f11796",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/mbrContsAtvy/IfCmt003",
+      "queryParams": [],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "POST",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": [
+        {
+          "key": "contsReplSeq",
+          "value": "5422",
+          "description": "댓글 일련번호(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "snsKey",
+          "value": "park100",
+          "description": "SNS 토큰키(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "snsTypeCd",
+          "value": "1",
+          "description": "SNS 유형 코드(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "replSbst",
+          "value": "test",
+          "description": "댓글내용(String) NotNull",
+          "type": "text",
+          "enabled": true
+        }
+      ],
+      "dataMode": "params",
+      "name": "댓글 수정(IF_CMT_003)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1504532862941,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "bcd5ea6c-f32b-610d-fce1-d294bd90d5eb"
+    },
+    {
+      "id": "1ab5ea8e-ec76-e719-540e-43e65c50574b",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/contsMeta/IfVod002?contentId=15151",
+      "queryParams": [
+        {
+          "key": "contentId",
+          "value": "15151",
+          "equals": true,
+          "description": "콘텐츠 아이디(String) NotNull",
+          "enabled": true
+        }
+      ],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "GET",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": null,
+      "dataMode": "params",
+      "name": "프로그램 영상(PIP 클립/VOD) 상세조회(IF_VOD_002)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1504682564485,
       "version": 2,
       "responses": [],
       "tests": null,
@@ -407,7 +529,8 @@
       "name": "정회원 전환(IF_USER_002)",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
-      "responses": []
+      "responses": [],
+      "folder": "86050fbe-2ab5-43b7-54ab-0375fcd48501"
     },
     {
       "id": "229a214f-a78c-9079-ad75-8e32a94a9c22",
@@ -502,12 +625,14 @@
       "version": 2,
       "tests": null,
       "currentHelper": "normal",
-      "helperAttributes": {},
+      "helperAttributes": "{}",
       "time": 1504160061250,
-      "name": "당첨자 정보 전송(IF_EVT_002)(개발중)",
+      "name": "당첨자 정보 전송(IF_EVT_002)",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
-      "responses": []
+      "responses": [],
+      "folder": "b1727a29-2c82-cf5e-28b0-f94b8d6dbbff",
+      "timestamp": null
     },
     {
       "id": "27f78a37-cf4a-175b-9b1d-8b25fee0c1bd",
@@ -624,7 +749,125 @@
       "name": "싱글 포토 목록조회(IF_PHO_002)",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
-      "responses": []
+      "responses": [],
+      "folder": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902"
+    },
+    {
+      "id": "38c383e8-79c8-cd80-9c62-4e1156c877e7",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/contsMeta/IfVod001?contsMetaCtgryId&artistId=100&rcmdContsYn=&searchKeyword",
+      "queryParams": [
+        {
+          "key": "contsMetaCtgryId",
+          "value": "",
+          "equals": false,
+          "description": "콘텐츠 메타 카테고리 아이디(String)",
+          "enabled": true
+        },
+        {
+          "key": "artistId",
+          "value": "100",
+          "equals": true,
+          "description": "아티스트  아이디(String)",
+          "enabled": true
+        },
+        {
+          "key": "rcmdContsYn",
+          "value": "",
+          "equals": true,
+          "description": "추천 콘텐츠 여부(String)",
+          "enabled": true
+        },
+        {
+          "key": "searchKeyword",
+          "value": "",
+          "equals": false,
+          "description": "검색키워드(String)",
+          "enabled": true
+        }
+      ],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "GET",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": null,
+      "dataMode": "params",
+      "name": "프로그램 영상(PIP 클립/VOD) 목록조회(IF_VOD_001)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1504682436904,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902"
+    },
+    {
+      "id": "38f14d0e-7fba-7430-4a14-08263ead03e0",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/contsMeta/IfMv002?musicVideoId=1104",
+      "folder": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902",
+      "queryParams": [
+        {
+          "key": "musicVideoId",
+          "value": "1104",
+          "equals": true,
+          "description": "뮤직비디오 아이디(String) NotNull",
+          "enabled": true
+        }
+      ],
+      "preRequestScript": null,
+      "pathVariables": {},
+      "pathVariableData": [],
+      "method": "GET",
+      "data": null,
+      "dataMode": "params",
+      "version": 2,
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": "{}",
+      "time": 1504682845172,
+      "name": "뮤직비디오 상세조회(IF_MV_002)",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "responses": [],
+      "timestamp": null
+    },
+    {
+      "id": "3ec22929-bad2-fa99-2ba8-7f40f1baff11",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/contsMeta/IfPip001",
+      "queryParams": [],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "POST",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": [
+        {
+          "key": "contentId",
+          "value": "SD_11871",
+          "description": "PIP 콘텐츠 아이디(String) NotNull",
+          "type": "text",
+          "enabled": true
+        }
+      ],
+      "dataMode": "params",
+      "name": "영상미디어정보 조회(IF_PIP_001)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1504762116912,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "538cac7d-9229-6c46-610e-f67359ce283e"
     },
     {
       "id": "41a14465-cb51-7647-05f6-139a2e569d4e",
@@ -675,7 +918,8 @@
       "name": "배너상세조회(IF_BAN_001)",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
-      "responses": []
+      "responses": [],
+      "folder": "7769b502-da1b-4691-d276-b95a535930c1"
     },
     {
       "id": "48217d1e-4acc-3d7e-b8af-5261984e275c",
@@ -712,7 +956,8 @@
       "name": "My Q&A 내역조회(IF_ULC_004)",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
-      "responses": []
+      "responses": [],
+      "folder": "8c9117fb-8345-0381-1e6b-8cbc8938bcee"
     },
     {
       "id": "562f7272-9de3-fed5-2456-e3935c30f782",
@@ -756,7 +1001,8 @@
       "name": "My Q&A 삭제(IF_ULC_005)",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
-      "responses": []
+      "responses": [],
+      "folder": "8c9117fb-8345-0381-1e6b-8cbc8938bcee"
     },
     {
       "id": "575de5a0-d313-5f4f-f9e8-101054f5494d",
@@ -781,12 +1027,48 @@
       "version": 2,
       "tests": null,
       "currentHelper": "normal",
-      "helperAttributes": {},
+      "helperAttributes": "{}",
       "time": 1504099528526,
       "name": "앨범 상세조회(IF_ABM_002)",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
-      "responses": []
+      "responses": [],
+      "isFromCollection": true,
+      "collectionRequestId": "575de5a0-d313-5f4f-f9e8-101054f5494d",
+      "folder": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902",
+      "timestamp": null
+    },
+    {
+      "id": "57d0282d-d559-f980-82b0-07c280bd1749",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/vote/IfMwv004?voteSeq=1001",
+      "queryParams": [
+        {
+          "key": "voteSeq",
+          "value": "1001",
+          "equals": true,
+          "description": "투표일련번호(String) NotNull",
+          "enabled": true
+        }
+      ],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "GET",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": null,
+      "dataMode": "params",
+      "name": "투표 당첨자 조회(IF_MWV_004)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1504525083708,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "d711146d-f26c-242f-3e41-9296fd3a5a4e"
     },
     {
       "id": "5a1c517e-ee58-72ea-81cc-ab263f042ce3",
@@ -846,7 +1128,8 @@
       "name": "회원탈퇴(IF_USER_003)",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
-      "responses": []
+      "responses": [],
+      "folder": "86050fbe-2ab5-43b7-54ab-0375fcd48501"
     },
     {
       "id": "6486071e-bedf-4bb2-56a1-596d1df68046",
@@ -895,6 +1178,51 @@
       "folder": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902"
     },
     {
+      "id": "67e88772-4e43-1931-f613-4a068fca471a",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/mbrContsAtvy/IfLike003",
+      "folder": "bcd5ea6c-f32b-610d-fce1-d294bd90d5eb",
+      "queryParams": [],
+      "preRequestScript": null,
+      "pathVariables": {},
+      "pathVariableData": [],
+      "method": "POST",
+      "data": [
+        {
+          "key": "likeSeq",
+          "value": "102",
+          "description": "일련번호(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "snsKey",
+          "value": "park100",
+          "description": "SNS 토큰키(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "snsTypeCd",
+          "value": "1",
+          "description": "SNS 유형 코드(String) NotNull",
+          "type": "text",
+          "enabled": true
+        }
+      ],
+      "dataMode": "params",
+      "version": 2,
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "time": 1504532429305,
+      "name": "콘텐츠 LIKE(찜) 취소(IF_LIKE_003)",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "responses": []
+    },
+    {
       "id": "69d1c0d7-a1c3-5c09-0332-1ce214503590",
       "headers": "",
       "headerData": [],
@@ -929,7 +1257,121 @@
       "name": "콘텐츠 카테고리 목록 조회(IF_SYS_003)",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
-      "responses": []
+      "responses": [],
+      "folder": "3036b5f8-1b9b-50ca-c58b-10e44707688e"
+    },
+    {
+      "id": "6f8a55b8-296c-8994-d171-7535d217f8ad",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/mbrContsAtvy/IfCmt100",
+      "queryParams": [],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "POST",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": [
+        {
+          "key": "contsReplSeq",
+          "value": "5422",
+          "description": "댓글 일련번호(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "snsKey",
+          "value": "park100",
+          "description": "SNS 토큰키(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "snsTypeCd",
+          "value": "1",
+          "description": "SNS 유형 코드(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "dclaDivCd",
+          "value": "1",
+          "description": "신고 구분 코드(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "dclaSbst",
+          "value": "댓글내용이 이상합니다.",
+          "description": "신고 내용(String) NotNull",
+          "type": "text",
+          "enabled": true
+        }
+      ],
+      "dataMode": "params",
+      "name": "댓글 신고하기(IF_CMT_100)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1504533338786,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "bcd5ea6c-f32b-610d-fce1-d294bd90d5eb"
+    },
+    {
+      "id": "6fccaa16-8d91-a857-e663-8a5328bb3cc7",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/mbrContsAtvy/IfLike002",
+      "queryParams": [],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "POST",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": [
+        {
+          "key": "contsMetaDivCd",
+          "value": "1",
+          "description": "콘텐츠 메타 구분 코드(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "contsMetaId",
+          "value": "artist_00001",
+          "description": "콘텐츠 메타 아이디(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "snsKey",
+          "value": "park100",
+          "description": "SNS 토큰키(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "snsTypeCd",
+          "value": "1",
+          "description": "SNS 유형 코드(String) NotNull",
+          "type": "text",
+          "enabled": true
+        }
+      ],
+      "dataMode": "params",
+      "name": "콘텐츠 LIKE(찜) 등록(IF_LIKE_002)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1504526717532,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "bcd5ea6c-f32b-610d-fce1-d294bd90d5eb"
     },
     {
       "id": "6ff6d693-7ec3-d213-d18a-1dd751373736",
@@ -1012,7 +1454,7 @@
         }
       ],
       "dataMode": "params",
-      "name": "회원탈퇴(IF_USER_005)",
+      "name": "휴면 회원 해제(IF_USER_005)",
       "description": "",
       "descriptionFormat": "html",
       "time": 1504180738879,
@@ -1088,22 +1530,27 @@
       "version": 2,
       "tests": null,
       "currentHelper": "normal",
-      "helperAttributes": {},
+      "helperAttributes": "{}",
       "time": 1504183115266,
       "name": "Q&A 질문 등록(IF_QNA_001)",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
-      "responses": []
+      "responses": [],
+      "isFromCollection": true,
+      "collectionRequestId": "761c471f-9866-c23b-8cf6-62acc898eb29",
+      "folder": "f6372b66-a110-e4b0-38c2-09f2a055c0c6",
+      "timestamp": null
     },
     {
       "id": "79312b63-f12e-a268-dc90-55a6ddbde6be",
       "headers": "",
       "headerData": [],
-      "url": "{{protocol}}://{{hostname}}:{{port}}/api/contsMeta/IfMv001?artistId=100&searchKeyword",
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/contsMeta/IfMv001?artistId=artist_00003&searchKeyword",
+      "folder": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902",
       "queryParams": [
         {
           "key": "artistId",
-          "value": "100",
+          "value": "artist_00003",
           "equals": true,
           "description": "아티스트 아이디(String)",
           "enabled": true
@@ -1116,23 +1563,22 @@
           "enabled": true
         }
       ],
+      "preRequestScript": null,
       "pathVariables": {},
       "pathVariableData": [],
-      "preRequestScript": null,
       "method": "GET",
-      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
       "data": null,
       "dataMode": "params",
-      "name": "뮤직비디오 목록조회(IF_MV_001)",
-      "description": "",
-      "descriptionFormat": "html",
-      "time": 1503566829667,
       "version": 2,
-      "responses": [],
       "tests": null,
       "currentHelper": "normal",
-      "helperAttributes": {},
-      "folder": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902"
+      "helperAttributes": "{}",
+      "time": 1504682829059,
+      "name": "뮤직비디오 목록조회(IF_MV_001)",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "responses": [],
+      "timestamp": null
     },
     {
       "id": "7d36f4d3-b57b-8e16-1344-8699ae1ea044",
@@ -1177,7 +1623,8 @@
       "id": "808f67a9-b026-6260-1bac-3227ac6ecaec",
       "headers": "",
       "headerData": [],
-      "url": "{{protocol}}://{{hostname}}:{{port}}/api/vote/IfMwv002?voteSeq=&voteYear=2017&showLoCd&voteFormlCd",
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/vote/IfMwv002?voteSeq=&voteYear=&showLoCd=4&voteFormlCd=2",
+      "folder": "d711146d-f26c-242f-3e41-9296fd3a5a4e",
       "queryParams": [
         {
           "key": "voteSeq",
@@ -1188,53 +1635,52 @@
         },
         {
           "key": "voteYear",
-          "value": "2017",
+          "value": "",
           "equals": true,
           "description": "투표년도(String)",
           "enabled": true
         },
         {
           "key": "showLoCd",
-          "value": "",
-          "equals": false,
+          "value": "4",
+          "equals": true,
           "description": "노출위치구분코드(String)",
           "enabled": true
         },
         {
           "key": "voteFormlCd",
-          "value": "",
-          "equals": false,
+          "value": "2",
+          "equals": true,
           "description": "투표방식코드(String)",
           "enabled": true
         }
       ],
+      "preRequestScript": null,
       "pathVariables": {},
       "pathVariableData": [],
-      "preRequestScript": null,
       "method": "GET",
-      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
       "data": null,
       "dataMode": "params",
-      "name": "MWAVE 투표 상세조회(IF_MWV_002)",
-      "description": "",
-      "descriptionFormat": "html",
-      "time": 1503639579570,
       "version": 2,
-      "responses": [],
       "tests": null,
       "currentHelper": "normal",
       "helperAttributes": {},
-      "folder": "d711146d-f26c-242f-3e41-9296fd3a5a4e"
+      "time": 1504697602152,
+      "name": "MWAVE 투표 상세조회(IF_MWV_002)",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "responses": []
     },
     {
       "id": "810cea7b-1e3d-5c7f-6a1b-87698ead0c7b",
       "headers": "",
       "headerData": [],
-      "url": "{{protocol}}://{{hostname}}:{{port}}/api/contsMeta/IfPtb002?groupPhotoId=100",
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/contsMeta/IfPtb002?groupPhotoId=554245",
+      "folder": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902",
       "queryParams": [
         {
           "key": "groupPhotoId",
-          "value": "100",
+          "value": "554245",
           "equals": true,
           "description": "그룹사진아이디(String) NotNull",
           "enabled": true
@@ -1249,7 +1695,7 @@
       "tests": null,
       "currentHelper": "normal",
       "helperAttributes": {},
-      "time": 1503567145146,
+      "time": 1504506137795,
       "name": "번들(그룹) 포토 상세조회(IF_PTB_002)",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
@@ -1291,12 +1737,16 @@
       "dataMode": "params",
       "tests": null,
       "currentHelper": "normal",
-      "helperAttributes": {},
+      "helperAttributes": "{}",
       "time": 1503638510810,
       "name": "MWAVE 투표 목록조회(IF_MWV_001)",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
-      "responses": []
+      "responses": [],
+      "isFromCollection": true,
+      "collectionRequestId": "831b2df8-bb07-94ab-2690-01400eb0ba42",
+      "folder": "d711146d-f26c-242f-3e41-9296fd3a5a4e",
+      "timestamp": null
     },
     {
       "id": "87879231-b273-37e9-1942-d5c129a6e705",
@@ -1394,7 +1844,8 @@
       "name": "준회원 가입(IF_USER_001)",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
-      "responses": []
+      "responses": [],
+      "folder": "86050fbe-2ab5-43b7-54ab-0375fcd48501"
     },
     {
       "id": "972c87ea-3185-d59e-afde-d3f3fa745867",
@@ -1439,37 +1890,32 @@
       "id": "9927805a-4741-69fb-11d6-41fbdeced04d",
       "headers": "",
       "headerData": [],
-      "url": "{{protocol}}://{{hostname}}:{{port}}/api/svcBbs/IfFaq003?faqSeq=100",
-      "queryParams": [
-        {
-          "key": "faqSeq",
-          "value": "100",
-          "equals": true,
-          "description": "FAQ일련번호(int) NotNull",
-          "enabled": true
-        },
-        {
-          "key": "",
-          "value": "",
-          "equals": false,
-          "description": "",
-          "enabled": false
-        }
-      ],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/svcBbs/IfFaq003",
+      "folder": "f6372b66-a110-e4b0-38c2-09f2a055c0c6",
+      "queryParams": [],
       "preRequestScript": null,
       "pathVariables": {},
       "pathVariableData": [],
-      "method": "GET",
-      "data": null,
+      "method": "POST",
+      "data": [
+        {
+          "key": "faqSeq",
+          "value": "2434241",
+          "description": "FAQ일련번호(int) NotNull",
+          "type": "text",
+          "enabled": true
+        }
+      ],
       "dataMode": "params",
       "tests": null,
       "currentHelper": "normal",
-      "helperAttributes": {},
-      "time": 1503481561166,
+      "helperAttributes": "{}",
+      "time": 1504594110570,
       "name": "FAQ 조회수 Up(IF_FAQ_003)",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
-      "responses": []
+      "responses": [],
+      "timestamp": null
     },
     {
       "id": "992ff93c-f61d-805c-98c5-b87bf075b08a",
@@ -1560,6 +2006,58 @@
       "folder": "86050fbe-2ab5-43b7-54ab-0375fcd48501"
     },
     {
+      "id": "a0be9c37-38c4-66d5-c407-80acef4f0fc7",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/mbrContsAtvy/IfCmt001?snsKey=park100&snsTypeCd=1&contsMetaDivCd=1&contsMetaId=artist_00001",
+      "folder": "bcd5ea6c-f32b-610d-fce1-d294bd90d5eb",
+      "queryParams": [
+        {
+          "key": "snsKey",
+          "value": "park100",
+          "equals": true,
+          "description": "SNS 토큰키(String) NotNull",
+          "enabled": true
+        },
+        {
+          "key": "snsTypeCd",
+          "value": "1",
+          "equals": true,
+          "description": "SNS 유형코드(String) NotNull",
+          "enabled": true
+        },
+        {
+          "key": "contsMetaDivCd",
+          "value": "1",
+          "equals": true,
+          "description": "콘텐츠 메타 구분 코드(String) NotNull",
+          "enabled": true
+        },
+        {
+          "key": "contsMetaId",
+          "value": "artist_00001",
+          "equals": true,
+          "description": "콘텐츠 메타 아이디(String) NotNull",
+          "enabled": true
+        }
+      ],
+      "preRequestScript": null,
+      "pathVariables": {},
+      "pathVariableData": [],
+      "method": "GET",
+      "data": null,
+      "dataMode": "params",
+      "version": 2,
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "time": 1504787015404,
+      "name": "콘텐츠별 댓글 목록조회(IF_CMT_001)",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "responses": []
+    },
+    {
       "id": "a21d0798-7a2f-cdfd-1e1c-4f8874e1a710",
       "headers": "",
       "headerData": [],
@@ -1603,12 +2101,14 @@
       "version": 2,
       "tests": null,
       "currentHelper": "normal",
-      "helperAttributes": {},
+      "helperAttributes": "{}",
       "time": 1504181548532,
       "name": "고객 공지사항 상세조회(IF_NTB_002)",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
-      "responses": []
+      "responses": [],
+      "folder": "f6372b66-a110-e4b0-38c2-09f2a055c0c6",
+      "timestamp": null
     },
     {
       "id": "a3b782c0-add1-77b4-6792-b325a4cc0a6a",
@@ -1644,7 +2144,8 @@
       "name": "서비스 컴포넌트 상세조회(IfCom001)(작업중)",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
-      "responses": []
+      "responses": [],
+      "folder": "badda442-9eb8-dbe0-84c2-1cfb79067a3e"
     },
     {
       "id": "a64f3cfe-1089-6546-eb52-2069a4bc8c3e",
@@ -1698,7 +2199,8 @@
       "name": "코드 목록조회(IF_SYS_002)",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
-      "responses": []
+      "responses": [],
+      "folder": "3036b5f8-1b9b-50ca-c58b-10e44707688e"
     },
     {
       "id": "b015118f-1855-148a-d532-1ad19264cdd4",
@@ -1728,7 +2230,8 @@
       "name": "아티스트 상세조회(IF_ART_002)",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
-      "responses": []
+      "responses": [],
+      "folder": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902"
     },
     {
       "id": "b89e60a9-5f78-22c8-7d92-16658aee3868",
@@ -1784,10 +2287,56 @@
       "folder": "8c9117fb-8345-0381-1e6b-8cbc8938bcee"
     },
     {
+      "id": "b95589e1-2823-7680-62ff-9e390a43d925",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/mbrContsAtvy/IfLike004",
+      "folder": "bcd5ea6c-f32b-610d-fce1-d294bd90d5eb",
+      "queryParams": [],
+      "preRequestScript": null,
+      "pathVariables": {},
+      "pathVariableData": [],
+      "method": "POST",
+      "data": [
+        {
+          "key": "contsReplSeq",
+          "value": "5422",
+          "description": "댓글 일련번호(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "snsKey",
+          "value": "park100",
+          "description": "SNS 토큰키(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "snsTypeCd",
+          "value": "1",
+          "description": "SNS 유형 코드(String) NotNull",
+          "type": "text",
+          "enabled": true
+        }
+      ],
+      "dataMode": "params",
+      "version": 2,
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "time": 1504532801733,
+      "name": "댓글 LIKE(찜) 등록(IF_LIKE_004)",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "responses": []
+    },
+    {
       "id": "b9fe56d7-79c8-6a35-6ea0-f2385ab8dc99",
       "headers": "",
       "headerData": [],
       "url": "{{protocol}}://{{hostname}}:{{port}}/api/vote/IfMwv003?",
+      "folder": "d711146d-f26c-242f-3e41-9296fd3a5a4e",
       "queryParams": [],
       "preRequestScript": null,
       "pathVariables": {},
@@ -1810,14 +2359,14 @@
         },
         {
           "key": "snsKey",
-          "value": "1",
+          "value": "park100",
           "description": "sns 토큰키(String) NotNull",
           "type": "text",
           "enabled": true
         },
         {
           "key": "snsTypeCd",
-          "value": "park100",
+          "value": "1",
           "description": "sns 유형코드(String) NotNull",
           "type": "text",
           "enabled": true
@@ -1827,7 +2376,7 @@
       "tests": null,
       "currentHelper": "normal",
       "helperAttributes": {},
-      "time": 1504162142943,
+      "time": 1504531456201,
       "name": "MWAVE 투표하기(IF_MWV_003)",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
@@ -1863,12 +2412,14 @@
       "version": 2,
       "tests": null,
       "currentHelper": "normal",
-      "helperAttributes": {},
+      "helperAttributes": "{}",
       "time": 1504185412347,
       "name": "온라인 방송정보 상세조회(IF_LIVE_001)",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
-      "responses": []
+      "responses": [],
+      "folder": "19f32b0a-fdf9-d161-022e-8b92f2af649c",
+      "timestamp": null
     },
     {
       "id": "bcf6e693-bb49-ef17-4f0b-e144ce3c0450",
@@ -1946,76 +2497,76 @@
       "version": 2,
       "tests": null,
       "currentHelper": "normal",
-      "helperAttributes": {},
+      "helperAttributes": "{}",
       "time": 1504181553723,
       "name": "고객 공지사항 목록조회(IF_fNTB_001)",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
-      "responses": []
+      "responses": [],
+      "folder": "f6372b66-a110-e4b0-38c2-09f2a055c0c6",
+      "timestamp": null
     },
     {
       "id": "c9fdb91f-ea9d-a969-50c5-6bd07f2378ef",
       "headers": "",
       "headerData": [],
-      "url": "{{protocol}}://{{hostname}}:{{port}}/api/contsMeta/IfPtb001?ctrgyId=100",
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/contsMeta/IfPtb001?ctgryId=5151",
+      "folder": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902",
       "queryParams": [
         {
-          "key": "ctrgyId",
-          "value": "100",
+          "key": "ctgryId",
+          "value": "5151",
           "equals": true,
           "description": "카테고리 아이디(String) NotNull",
           "enabled": true
         }
       ],
+      "preRequestScript": null,
       "pathVariables": {},
       "pathVariableData": [],
-      "preRequestScript": null,
       "method": "GET",
-      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
       "data": null,
       "dataMode": "params",
-      "name": "번들(그룹) 포토 목록조회(IF_PTB_001)",
-      "description": "",
-      "descriptionFormat": "html",
-      "time": 1503567051241,
       "version": 2,
-      "responses": [],
       "tests": null,
       "currentHelper": "normal",
       "helperAttributes": {},
-      "folder": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902"
+      "time": 1504597017924,
+      "name": "번들(그룹) 포토 목록조회(IF_PTB_001)",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "responses": []
     },
     {
       "id": "ce80d173-fa48-a5e0-1314-0db7d1ce51eb",
       "headers": "",
       "headerData": [],
-      "url": "{{protocol}}://{{hostname}}:{{port}}/api/mcdlineup/IfMcl001?bradDate=20170801",
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/mcdlineup/IfMcl001?bradDate=20170901",
+      "folder": "715c8c93-15b8-531a-11cc-6ed36cd2e81d",
       "queryParams": [
         {
           "key": "bradDate",
-          "value": "20170801",
+          "value": "20170901",
           "equals": true,
           "description": "방송일자(String) ",
           "enabled": true
         }
       ],
+      "preRequestScript": null,
       "pathVariables": {},
       "pathVariableData": [],
-      "preRequestScript": null,
       "method": "GET",
-      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
       "data": null,
       "dataMode": "params",
-      "name": "MCD 라인업(출연자) 상세조회(IF_MCL_001)",
-      "description": "",
-      "descriptionFormat": "html",
-      "time": 1503651721430,
       "version": 2,
-      "responses": [],
       "tests": null,
       "currentHelper": "normal",
       "helperAttributes": {},
-      "folder": "715c8c93-15b8-531a-11cc-6ed36cd2e81d"
+      "time": 1504505023370,
+      "name": "MCD 라인업(출연자) 상세조회(IF_MCL_001)",
+      "description": "",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "responses": []
     },
     {
       "id": "e0bfd31a-a844-245f-4bd5-307a14e08e52",
@@ -2071,6 +2622,52 @@
       "folder": "bab6b5e3-78b0-d242-4d1c-d19ba20d7902"
     },
     {
+      "id": "e5f6668c-5d18-b035-8140-9134717c87a9",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/mbrContsAtvy/IfCmt004",
+      "queryParams": [],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "POST",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": [
+        {
+          "key": "contsReplSeq",
+          "value": "5422",
+          "description": "댓글 일련번호(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "snsKey",
+          "value": "park100",
+          "description": "SNS 토큰키(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "snsTypeCd",
+          "value": "1",
+          "description": "SNS 유형 코드(String) NotNull",
+          "type": "text",
+          "enabled": true
+        }
+      ],
+      "dataMode": "params",
+      "name": "댓글 삭제(IF_CMT_004)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1504533019343,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "bcd5ea6c-f32b-610d-fce1-d294bd90d5eb"
+    },
+    {
       "id": "eb17267a-6073-4a17-9a8a-9dfc47f64b7f",
       "headers": "",
       "headerData": [],
@@ -2098,7 +2695,100 @@
       "name": "국가코드 목록조회(IF_SYS_001)",
       "description": "",
       "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
-      "responses": []
+      "responses": [],
+      "folder": "3036b5f8-1b9b-50ca-c58b-10e44707688e"
+    },
+    {
+      "id": "fc02a38d-5c08-e3c4-a58f-b3327e1cb3d2",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/contsMeta/IfSeo001?pageId=mamaHome",
+      "queryParams": [
+        {
+          "key": "pageId",
+          "value": "mamaHome",
+          "equals": true,
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "GET",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": null,
+      "dataMode": "params",
+      "name": "SEO 메타 상세조회(IF_SEO_001)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1504590814242,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "efbfbe7f-bae0-a271-736c-77079f2c94a8"
+    },
+    {
+      "id": "fce04673-815b-46c7-cf63-69c2b6c113fd",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/mbrContsAtvy/IfCmt002",
+      "queryParams": [],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "POST",
+      "collectionId": "f375d35e-761e-cee5-883c-24c80202db5e",
+      "data": [
+        {
+          "key": "contsMetaDivCd",
+          "value": "1",
+          "description": "콘텐츠 메타 구분 코드(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "contsMetaId",
+          "value": "artist_00001",
+          "description": "콘텐츠 메타 아이디(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "snsKey",
+          "value": "park100",
+          "description": "SNS 토큰키(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "snsTypeCd",
+          "value": "1",
+          "description": "SNS 유형 코드(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "replSbst",
+          "value": "아티스트 댓글입니다.",
+          "description": "댓글 내용(String) NotNull",
+          "type": "text",
+          "enabled": true
+        }
+      ],
+      "dataMode": "params",
+      "name": "콘텐츠 댓글 등록(IF_CMT_002)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1504591490403,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "bcd5ea6c-f32b-610d-fce1-d294bd90d5eb"
     }
   ]
 }
