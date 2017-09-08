@@ -1,6 +1,5 @@
 spring:
-  profiles:
-    active: test
+  profiles: test
   http:
     multipart:
       max-request-size: 10MB
@@ -43,4 +42,4 @@ file:
 
 
 i18n:
-  default: en
+  defaults: eng
