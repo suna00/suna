@@ -57,24 +57,23 @@ public class QueryContext extends ReadContext {
         ReadContext.makeContextFromParameter(parameterMap, nodeType, queryContext);
 
         queryContext.queryTermType = QueryTerm.QueryTermType.NODE ;
-        makeQueryTerm(nodeType, queryContext) ;
+        queryContext.makeQueryTerm(nodeType) ;
 
         queryContext.makeSearchFields() ;
 
         return queryContext;
     }
 
-    protected static void makeQueryTerm(NodeType nodeType, QueryContext context) {
-        if(context.data == null) return  ;
+    public void makeQueryTerm(NodeType nodeType) {
+        if(data == null) return  ;
 
         List<QueryTerm> queryTerms = new ArrayList<>();
 
-        for (String key : context.data.keySet()) {
-            QueryUtils.makeQueryTerm(nodeType, context, queryTerms, key, (String) context.data.get(key));
+        for (String key : data.keySet()) {
+            QueryUtils.makeQueryTerm(nodeType, this, queryTerms, key, data.get(key));
         }
 
-
-        context.setQueryTerms(queryTerms);
+        setQueryTerms(queryTerms);
     }
 
 
@@ -159,7 +158,11 @@ public class QueryContext extends ReadContext {
     }
 
     public void setQueryTerms(List<QueryTerm> queryTerms) {
-        this.queryTerms = queryTerms;
+        if(this.queryTerms == null) {
+            this.queryTerms = queryTerms;
+        }else{
+            this.queryTerms.addAll(queryTerms) ;
+        }
     }
 
     public List<QueryTerm> getQueryTerms() {

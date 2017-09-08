@@ -34,6 +34,19 @@ public class ApiController {
         return api(request, category, api, "POST");
     }
 
+
+    @RequestMapping(value = "/api/node/{typeId}/{api}", method = RequestMethod.GET)
+    @ResponseBody
+    public Object getNode(NativeWebRequest request, @PathVariable String typeId, @PathVariable String api) throws IOException {
+        return nodeApi(request, typeId, api, "GET");
+    }
+
+    @RequestMapping(value = "/api/node/{typeId}/{api}", method = RequestMethod.POST)
+    @ResponseBody
+    public Object eventNode(NativeWebRequest request, @PathVariable String typeId, @PathVariable String api) throws IOException {
+        return nodeApi(request, typeId, api, "POST");
+    }
+
     @RequestMapping(value = "/api/{category}/{api}.json", method = RequestMethod.GET)
     @ResponseBody
     public Object getJson(NativeWebRequest request, @PathVariable String category, @PathVariable String api) throws IOException {
@@ -45,6 +58,21 @@ public class ApiController {
     public Object postJson(NativeWebRequest request, @PathVariable String category, @PathVariable String api) throws IOException {
         return api(request, category, api, "POST");
     }
+
+
+    @RequestMapping(value = "/api/node/{typeId}/{api}.json", method = RequestMethod.GET)
+    @ResponseBody
+    public Object getNodeJson(NativeWebRequest request, @PathVariable String typeId, @PathVariable String api) throws IOException {
+        return nodeApi(request, typeId, api, "GET");
+    }
+
+    @RequestMapping(value = "/api/node/{typeId}/{api}.json", method = RequestMethod.POST)
+    @ResponseBody
+    public Object eventNodeJson(NativeWebRequest request, @PathVariable String typeId, @PathVariable String api) throws IOException {
+        return nodeApi(request, typeId, api, "POST");
+    }
+
+
 
     @RequestMapping(value = "/testApi/{category}/{api}", method = RequestMethod.GET)
     @ResponseBody
@@ -72,7 +100,18 @@ public class ApiController {
 //    }
 
 
-
+    private Object nodeApi(NativeWebRequest request, String typeId, String api, String method) {
+        try {
+            return apiService.execute(request, "node", api, method, typeId) ;
+        } catch (Exception e) {
+            e.printStackTrace();
+            if(e.getCause() instanceof ClassCastException){
+                return JsonResponse.error(new Exception("형식이 맞지 않습니다."));
+            }else{
+                return JsonResponse.error(e);
+            }
+        }
+    }
 
     private Object api(NativeWebRequest request, String category, String api, String method) {
         try {
