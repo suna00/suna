@@ -5,8 +5,8 @@
     "voteSeq": 78958895,
     "pwnrBasNm": "Vote Best Supporters",
     "cicMethCd": "1",
-    "cicNopsCnt": 30,
-    "ptDate": "20170808080000",
+    "cicNopsCnt": 2,
+    "ptDate": "20171208080000",
     "url": "http://mwave.interest.me/en/index.m"
   },
   {
@@ -15,8 +15,8 @@
     "voteSeq": 45034903,
     "pwnrBasNm": "2017 Vote Best Supporters",
     "cicMethCd": "2",
-    "cicNopsCnt": 5,
-    "ptDate": "20170822180000",
+    "cicNopsCnt": 1,
+    "ptDate": "20171222180000",
     "url": "http://mwave.interest.me/en/index.m"
   },
   {
@@ -25,8 +25,8 @@
     "voteSeq": 394194921,
     "pwnrBasNm": "ABC Vote Best Supporters",
     "cicMethCd": "3",
-    "cicNopsCnt": 10,
-    "ptDate": "20170812180000",
+    "cicNopsCnt": 2,
+    "ptDate": "20171212180000",
     "url": "http://mwave.interest.me/en/index.m"
   },
   {
@@ -35,8 +35,8 @@
     "voteSeq": 3490391,
     "pwnrBasNm": "2018 Vote Best Supporters",
     "cicMethCd": "1",
-    "cicNopsCnt": 20,
-    "ptDate": "20170905180000",
+    "cicNopsCnt": 1,
+    "ptDate": "20171205180000",
     "url": "http://mwave.interest.me/en/index.m"
   }
 ]
