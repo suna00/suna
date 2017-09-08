@@ -372,10 +372,14 @@ public class ReadContext implements Context {
     }
 
     public boolean hasLocale() {
-        return this.data != null && this.data.containsKey("locale") && StringUtils.isNotEmpty((String) data.get("locale")) ;
+        return this.data != null && ((this.data.containsKey("locale") && StringUtils.isNotEmpty((String) data.get("locale"))) || (this.data.containsKey("langCd") && StringUtils.isNotEmpty((String) data.get("langCd")))) ;
     }
 
     public String getLocale() {
-        return (String) data.get("locale");
+        String locale = (String) data.get("locale");
+        if(StringUtils.isEmpty(locale) && this.data.containsKey("langCd")){
+            return (String) data.get("langCd");
+        }
+        return locale ;
     }
 }
