@@ -135,7 +135,7 @@
     "id": "qna",
     "tid": "qna",
     "typeName": "1:1문의하기(QNA)",
-    "repositoryType": "node",
+    "repositoryType": "data",
     "eviction": 0,
     "tableName": "cjDb#qna"
   },
@@ -145,7 +145,7 @@
     "id": "qna",
     "tid": "qna",
     "typeName": "1:1문의하기(QNA)",
-    "repositoryType": "node",
+    "repositoryType": "data",
     "eviction": 0,
     "tableName": "cjDb#qna"
   },
@@ -325,7 +325,7 @@
     "id": "votePrtcptHst",
     "tid": "votePrtcptHst",
     "typeName": "투표 참여 이력",
-    "repositoryType": "node",
+    "repositoryType": "data",
     "eviction": 0,
     "tableName": "cjDb#votePrtcptHst"
   },
@@ -475,7 +475,7 @@
     "id": "contsLikeInfo",
     "tid": "contsLikeInfo",
     "typeName": "콘텐츠 좋아요 정보",
-    "repositoryType": "node",
+    "repositoryType": "data",
     "eviction": 0,
     "tableName": "cjDb#contsLikeInfo"
   },
