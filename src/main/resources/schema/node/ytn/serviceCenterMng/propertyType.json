@@ -237,6 +237,22 @@
   },
   {
     "typeId": "propertyType",
+    "tid": "oneToOneQuestion",
+    "pid": "referencedOneToOneAnswer",
+    "propertyTypeName": "referenced일대일답변",
+    "valueType": "REFERENCED",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "oneToOneAnswer",
+    "referenceValue": "oneToOneQuestionId",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
     "tid": "oneToOneQuestionView",
     "pid": "oneToOneQuestionId",
     "propertyTypeName": "ID",
