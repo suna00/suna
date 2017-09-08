@@ -1,6 +1,5 @@
 spring:
-  profiles:
-    active: cj-local
+  profiles: cj-local
   http:
     multipart:
       max-request-size: 10MB
@@ -43,7 +42,7 @@ file:
     path: /resource/cj_ice2/files
 
 i18n:
-  default: ENG
+  defaults: eng
 
 cjapi:
   pip:

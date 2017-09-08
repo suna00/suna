@@ -1,6 +1,5 @@
 spring:
-  profiles:
-    active: cj-dev01
+  profiles: cj-dev01
   http:
     multipart:
       max-request-size: 10MB
@@ -45,7 +44,7 @@ file:
 
 
 i18n:
-  default: en
+  defaults: eng
 
 
 cjapi:

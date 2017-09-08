@@ -1,16 +1,16 @@
 [
   {
     "typeId" : "event",
-    "tid": "artist",
-    "event" : "getArtistSeq",
-    "eventName" : "Get Artist Sequence"
+    "tid": "album",
+    "event" : "saveMetadata",
+    "eventName" : "Save metadata"
   },
   {
     "typeId" : "eventAction",
-    "event": "artist>getArtistSeq",
-    "action" : "getArtistSeq",
+    "event": "album>saveMetadata",
+    "action" : "saveMetadata",
     "actionType" : "service",
-    "actionBody" : "artistService.getArtistSeq",
+    "actionBody" : "metadataService.saveMetadata",
     "order" : 1
   }
 ]
