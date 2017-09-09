@@ -149,7 +149,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "productAttributeCategory",
-    "referenceValue": "productAttributeCategoryId",
+    "referenceValue": "",
     "codeFilter": "",
     "defaultValue": ""
   },
@@ -3194,10 +3194,10 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": false,
-    "analyzer": null,
+    "indexable": true,
+    "analyzer": "code",
     "referenceType": "productAttributeCategory",
-    "referenceValue": "productAttributeCategoryId",
+    "referenceValue": "",
     "codeFilter": "",
     "defaultValue": ""
   },
