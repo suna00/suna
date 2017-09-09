@@ -39,12 +39,12 @@
       "typeId": "ntfBbs",
       "query": [
         {
-          "field": "showDvcCd",
+          "field": "svcTermlDivCd",
           "method": "matching",
           "value": "{{:svcTermlDivCd}}"
         },
         {
-          "field": "ctgCd1",
+          "field": "ntfLargeCtgCd",
           "method": "matching",
           "value": "{{:ntfLargeCtgCd}}"
         },
@@ -66,9 +66,9 @@
         "ntfBbsNm":"",
         "ntfBbsTgtCd":"",
         "ntfBbsTypeCd":"",
-        "ntfLargeCtgCd":"ctgCd1",
-        "ntfMidCtgCd":"ctgCd2",
-        "svcTermlDivCd":"showDvcCd",
+        "ntfLargeCtgCd":"",
+        "ntfMidCtgCd":"",
+        "svcTermlDivCd":"",
         "pstngStDt":"",
         "pstngFnsDt":"",
         "showYn":"",
@@ -103,13 +103,13 @@
         "ntfBbsNm": "",
         "ntfBbsTgtCd": "",
         "ntfBbsTypeCd": "",
-        "ctgCd1": "",
-        "ctgCd2": "",
-        "showDvcCd": "",
+        "ntfLargeCtgCd": "",
+        "ntfMidCtgCd": "",
+        "svcTermlDivCd": "",
         "pstngStDt": "",
         "pstngFnsDt": "",
         "ntfSbst": "",
-        "retvNum": "",
+        "hitNum": "retvNum",
         "preItem": {
           "typeId": "ntfBbs",
           "query": [
@@ -125,8 +125,8 @@
           ],
           "response": {
             "ntfBbsSeq": "",
-            "ctgCd1": "",
-            "ctgCd2": "",
+            "ntfLargeCtgCd": "",
+            "ntfMidCtgCd": "",
             "ntfBbsNm": "",
             "created": ""
           }
@@ -146,8 +146,8 @@
           ],
           "response": {
             "ntfBbsSeq": "",
-            "ctgCd1": "",
-            "ctgCd2": "",
+            "ntfLargeCtgCd": "",
+            "ntfMidCtgCd": "",
             "ntfBbsNm": "",
             "created": ""
           }
@@ -197,7 +197,7 @@
       "data": {
         "qnarId": "{{:snsTypeCd}}>{{:snsKey}}",
         "qnaNm": "{{:qnaNm}}",
-        "qnaFild": "{{:qnaFildCd}}",
+        "qnaFildCd": "{{:qnaFildCd}}",
         "qstnrEmail": "{{:qstnrEmail}}",
         "qstnSbst": "{{:qstnSbst}}",
         "qstnAtcFilePath": "{{:qstnAtcFile}}",
