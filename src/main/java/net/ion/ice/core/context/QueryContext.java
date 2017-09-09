@@ -20,6 +20,8 @@ import java.util.*;
  * Created by jaeho on 2017. 4. 26..
  */
 public class QueryContext extends ReadContext {
+    private static final Integer DEFAULT_PAGESIZE = 10;
+
     protected List<QueryTerm> queryTerms;
     protected List<QueryContext> joinQueryContexts ;
     protected String targetJoinField ;
@@ -198,12 +200,20 @@ public class QueryContext extends ReadContext {
     }
 
     public void setPageSize(String pageSize) {
-        this.pageSize = Integer.valueOf(pageSize);
+        try {
+            this.pageSize = Integer.valueOf(pageSize);
+        }catch (NumberFormatException e){
+            this.pageSize = DEFAULT_PAGESIZE ;
+        }
         this.paging = true;
     }
 
     public void setCurrentPage(String page) {
-        this.currentPage = Integer.valueOf(page);
+        try {
+            this.currentPage = Integer.valueOf(page);
+        }catch (NumberFormatException e){
+            this.currentPage = 1 ;
+        }
         this.paging = true;
     }
     public void setLimit(String limit) {

@@ -261,7 +261,11 @@ public class ReadContext implements Context {
     protected void makeItemQueryResult(Node node, QueryResult itemResult, Map<String, Object> contextData) {
 
         for (ResultField resultField : getResultFields()) {
-            if (resultField.getContext() != null) {
+            if(resultField.getFieldName().equals("_all_")){
+                for(PropertyType pt : nodeType.getPropertyTypes()){
+                    itemResult.put(pt.getPid(), NodeUtils.getResultValue(this, pt, node));
+                }
+            }else if (resultField.getContext() != null) {
                 ReadContext subQueryContext = (ReadContext) resultField.getContext();
                 if (node != null) {
                     subQueryContext.setNodeData(node);
