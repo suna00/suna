@@ -373,7 +373,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "code",
-    "referenceValue": "codeId",
+    "referenceValue": "",
     "codeFilter": "intrstCd",
     "defaultValue": ""
   },
