@@ -15,6 +15,7 @@
     "referenceType": "",
     "referenceValue": "",
     "idType": "autoIncrement",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -32,14 +33,15 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
     "typeId": "propertyType",
     "tid": "popupInfo",
-    "pid": "showStDt",
-    "id": "popupInfo>showStDt",
-    "propertyTypeName": "노출 시작일시",
+    "pid": "pstngStDt",
+    "id": "popupInfo>pstngStDt",
+    "propertyTypeName": "게시 시작일시",
     "valueType": "DATE",
     "required": true,
     "idable": false,
@@ -49,14 +51,15 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
     "typeId": "propertyType",
     "tid": "popupInfo",
-    "pid": "showFnsDt",
-    "id": "popupInfo>showFnsDt",
-    "propertyTypeName": "노출 종료일시",
+    "pid": "pstngFnsDt",
+    "id": "popupInfo>pstngFnsDt",
+    "propertyTypeName": "게시 종료일시",
     "valueType": "DATE",
     "required": true,
     "idable": false,
@@ -66,6 +69,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -101,6 +105,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -118,14 +123,15 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
     "typeId": "propertyType",
     "tid": "popupInfo",
-    "pid": "showPrefRank",
-    "id": "popupInfo>showPrefRank",
-    "propertyTypeName": "노출 우선 순위",
+    "pid": "sortOdrg",
+    "id": "popupInfo>sortOdrg",
+    "propertyTypeName": "노출순서",
     "valueType": "INT",
     "required": true,
     "idable": false,
@@ -135,58 +141,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "popupInfo",
-    "pid": "popupSbst",
-    "id": "popupInfo>popupSbst",
-    "propertyTypeName": "팝업 내용",
-    "valueType": "TEXT",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "",
-    "referenceValue": "",
-    "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "popupInfo",
-    "pid": "linkDivCd",
-    "id": "popupInfo>linkDivCd",
-    "propertyTypeName": "링크 구분 코드",
-    "valueType": "REFERENCE",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "code",
-    "referenceValue": "",
-    "codeFilter": "linkDivCd",
-    "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "popupInfo",
-    "pid": "linkUrl",
-    "id": "popupInfo>linkUrl",
-    "propertyTypeName": "링크 URL",
-    "valueType": "STRING",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "",
-    "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -204,6 +159,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -221,6 +177,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -238,6 +195,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -255,6 +213,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   }
 ]

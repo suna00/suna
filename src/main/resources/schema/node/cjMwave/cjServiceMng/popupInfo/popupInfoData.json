@@ -3,56 +3,44 @@
     "typeId": "popupInfo",
     "popupSeq": 100,
     "popupNm": "2017년 MWAVE 이벤트",
-    "showStDt": "20170101000000",
-    "showFnsDt": "20171231000000",
+    "pstngStDt": "20170101000000",
+    "pstngFnsDt": "20170131000000",
     "svcTermlDivCd": "1",
     "showYn": true,
     "showStopDayNum": 12,
-    "showPrefRank": 1,
-    "popupSbst": "2017년 MWAVE 이벤트",
-    "linkDivCd": "1",
-    "linkUrl": ""
+    "sortOdrg": 1
   },
   {
     "typeId": "popupInfo",
     "popupSeq": 101,
     "popupNm": "2018년 MWAVE 이벤트",
-    "showStDt": "20180101000000",
-    "showFnsDt": "20180131000000",
+    "pstngStDt": "20180101000000",
+    "pstngFnsDt": "20180131000000",
     "svcTermlDivCd": "2",
     "showYn": true,
     "showStopDayNum": 13,
-    "showPrefRank": 2,
-    "popupSbst": "2018년 MWAVE 이벤트",
-    "linkDivCd": "1",
-    "linkUrl": ""
+    "sortOdrg": 2
   },
   {
     "typeId": "popupInfo",
     "popupSeq": 102,
     "popupNm": "2018년 MWAVE 이벤트",
-    "showStDt": "20180101000000",
-    "showFnsDt": "20180131000000",
+    "pstngStDt": "20180101000000",
+    "pstngFnsDt": "20180131000000",
     "svcTermlDivCd": "3",
     "showYn": true,
     "showStopDayNum": 32,
-    "showPrefRank": 3,
-    "popupSbst": "2018년 MWAVE 이벤트",
-    "linkDivCd": "2",
-    "linkUrl": ""
+    "sortOdrg": 3
   },
   {
     "typeId": "popupInfo",
     "popupSeq": 103,
     "popupNm": "2018년 MWAVE 이벤트",
-    "showStDt": "20180101000000",
-    "showFnsDt": "20180131000000",
+    "pstngStDt": "20180101000000",
+    "pstngFnsDt": "20180131000000",
     "svcTermlDivCd": "4",
     "showYn": true,
     "showStopDayNum": 4,
-    "showPrefRank": 4,
-    "popupSbst": "2018년 MWAVE 이벤트",
-    "linkDivCd": "2",
-    "linkUrl": ""
+    "sortOdrg": 4
   }
 ]

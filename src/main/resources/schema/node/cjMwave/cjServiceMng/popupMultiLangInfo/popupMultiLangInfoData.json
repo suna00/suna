@@ -2,17 +2,41 @@
   {
     "typeId": "popupMultiLangInfo",
     "popupSeq": 100,
-    "langCd": "kor",
-    "popupNm": "2017년 MWAVE 이벤트",
+    "langCd": "eng",
+    "popupTitle": "2017년 MWAVE 이벤트",
     "popupSbst": "2017년 MWAVE 이벤트",
-    "linkDivCd": "1"
+    "linkDivCd": "2",
+    "linkUrl": "/mama/menu/sample",
+    "ImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg"
   },
   {
     "typeId": "popupMultiLangInfo",
     "popupSeq": 101,
-    "langCd": "kor",
-    "popupNm": "2018년 MWAVE 이벤트",
+    "langCd": "eng",
+    "popupTitle": "2018년 MWAVE 이벤트",
     "popupSbst": "2018년 MWAVE 이벤트",
-    "linkDivCd": "1"
+    "linkDivCd": "2",
+    "linkUrl": "/mama/menu/sample",
+    "ImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg"
+  },
+  {
+    "typeId": "popupMultiLangInfo",
+    "popupSeq": 102,
+    "langCd": "eng",
+    "popupTitle": "2018년 MWAVE 이벤트",
+    "popupSbst": "2018년 MWAVE 이벤트",
+    "linkDivCd": "2",
+    "linkUrl": "/mama/menu/sample",
+    "ImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg"
+  },
+  {
+    "typeId": "popupMultiLangInfo",
+    "popupSeq": 103,
+    "langCd": "eng",
+    "popupTitle": "2018년 MWAVE 이벤트",
+    "popupSbst": "2018년 MWAVE 이벤트",
+    "linkDivCd": "2",
+    "linkUrl": "/mama/menu/sample",
+    "ImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg"
   }
 ]

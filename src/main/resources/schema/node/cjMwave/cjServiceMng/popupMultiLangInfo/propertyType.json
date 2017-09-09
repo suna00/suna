@@ -15,6 +15,7 @@
     "referenceType": "popupInfo",
     "referenceValue": "popupSeq",
     "idType": "autoIncrement",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -32,23 +33,25 @@
     "analyzer": "code",
     "referenceType": "langMng",
     "referenceValue": "langId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
     "typeId": "propertyType",
     "tid": "popupMultiLangInfo",
-    "pid": "popupNm",
-    "id": "popupMultiLangInfo>popupNm",
-    "propertyTypeName": "팝업명",
+    "pid": "popupTitle",
+    "id": "popupMultiLangInfo>popupTitle",
+    "propertyTypeName": "팝업 제목",
     "valueType": "STRING",
     "required": true,
     "idable": false,
-    "labelable": true,
+    "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -66,6 +69,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -89,6 +93,42 @@
   {
     "typeId": "propertyType",
     "tid": "popupMultiLangInfo",
+    "pid": "linkUrl",
+    "id": "popupMultiLangInfo>linkUrl",
+    "propertyTypeName": "링크 URL",
+    "valueType": "STRING",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "popupMultiLangInfo",
+    "pid": "ImgUrl",
+    "id": "popupMultiLangInfo>ImgUrl",
+    "propertyTypeName": "이미지 URL",
+    "valueType": "STRING",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "popupMultiLangInfo",
     "pid": "owner",
     "id": "popupMultiLangInfo>owner",
     "propertyTypeName": "등록자",
@@ -101,6 +141,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -118,6 +159,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -135,6 +177,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -152,6 +195,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   }
 ]

@@ -505,6 +505,14 @@
   },
   {
     "typeId": "code",
+    "groupCodeId": "linkDivCd",
+    "codeId": "2",
+    "name": "현재창",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
     "groupCodeId": "cnctContsDivCd",
     "codeId": "1",
     "name": "Live Banner",
