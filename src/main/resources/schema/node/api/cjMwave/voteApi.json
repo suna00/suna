@@ -139,39 +139,7 @@
         }
       ],
       "response": {
-        "voteSeq": "",
-        "voteFormlCd": "",
-        "voteNm": "",
-        "voteDesc": "",
-        "voteCtgry": "",
-        "thumImgUrl": "",
-        "pstngStDt": "",
-        "pstngFnsDt": "",
-        "showLoCd": "",
-        "showYn": "",
-        "showCntryCdList": "",
-        "porseNumShowYn": "",
-        "bradTelcsDt": "",
-        "tgtDivCd": "",
-        "selScopeCd": "",
-        "alignFormlCd": "",
-        "selItemCnt": "",
-        "ansSelTmsCnt": "",
-        "cpturAplyYn": "",
-        "rstrtnPredDivCd": "",
-        "rstrtnDayCnt": "",
-        "rstrtnVoteCnt": "",
-        "rstrtnPvCnt": "",
-        "accumRstrtnAlwdYn": "",
-        "userVoteRstrtnYn": "",
-        "userVoteApdUseCnt": "",
-        "rankRftRstrtnYn": "",
-        "rankWvalu": "",
-        "dayEventVoteRstrtnCnt": "",
-        "contnuEventVoteRstrtnCnt": "",
-        "mwmcUnearnedWinYn": "",
-        "refdPredRstrtnList": "",
-        "findKywrd": "",
+        "_all_" :"",
         "refdItemList": {
           "typeId": "voteItemInfo",
           "query": [
@@ -197,11 +165,7 @@
               "referenceView": "sersItemVoteSeq"
             }
           ]
-        },
-        "owner": "",
-        "created": "",
-        "modifier": "",
-        "changed": ""
+        }
       }
     }
   },
