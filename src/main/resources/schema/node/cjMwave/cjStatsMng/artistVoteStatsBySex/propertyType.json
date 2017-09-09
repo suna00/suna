@@ -43,7 +43,7 @@
     "propertyTypeName": "아티스트 아이디",
     "valueType": "REFERENCE",
     "required": false,
-    "idable": true,
+    "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": false,
@@ -69,6 +69,24 @@
     "referenceType": "code",
     "referenceValue": "codeId",
     "codeFilter": "artistSexCd",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "artistVoteStatsBySex",
+    "pid": "rankNum",
+    "id": "artistVoteStatsBySex>rankNum",
+    "propertyTypeName": "순위",
+    "valueType": "INT",
+    "required": true,
+    "idable": true,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
