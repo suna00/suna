@@ -79,7 +79,7 @@
     "id": "banrBasInfo>svcMenuDivCd",
     "propertyTypeName": "서비스 메뉴 구분 코드",
     "valueType": "REFERENCE",
-    "required": true,
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
