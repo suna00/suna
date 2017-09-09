@@ -261,7 +261,11 @@ public class ReadContext implements Context {
     protected void makeItemQueryResult(Node node, QueryResult itemResult, Map<String, Object> contextData) {
 
         for (ResultField resultField : getResultFields()) {
-            if (resultField.getContext() != null) {
+            if(resultField.getFieldName().equals("_all_")){
+                for(PropertyType pt : nodeType.getPropertyTypes()){
+                    itemResult.put(pt.getPid(), NodeUtils.getResultValue(this, pt, node));
+                }
+            }else if (resultField.getContext() != null) {
                 ReadContext subQueryContext = (ReadContext) resultField.getContext();
                 if (node != null) {
                     subQueryContext.setNodeData(node);
@@ -276,11 +280,15 @@ public class ReadContext implements Context {
                 switch (resultField.getResultType()) {
                     case QUERY: {
                         ApiQueryContext apiQueryContext = ApiQueryContext.makeContextFromConfig(resultField.getFieldOption(), _data);
+                        apiQueryContext.dateFormat = this.dateFormat ;
+                        apiQueryContext.fileUrlFormat = this.fileUrlFormat ;
                         apiQueryContext.makeQueryResult(itemResult, resultField.getFieldName());
                         break ;
                     }
                     case SELECT: {
                         ApiSelectContext apiQueryContext = ApiSelectContext.makeContextFromConfig(resultField.getFieldOption(), _data);
+                        apiQueryContext.dateFormat = this.dateFormat ;
+                        apiQueryContext.fileUrlFormat = this.fileUrlFormat ;
                         apiQueryContext.makeQueryResult(itemResult, resultField.getFieldName());
                         break ;
                     }
@@ -291,7 +299,11 @@ public class ReadContext implements Context {
                     case OPTION: {
                         String fieldValue = resultField.getFieldValue();
                         fieldValue = fieldValue == null || StringUtils.isEmpty(fieldValue) ? resultField.getFieldName() : fieldValue;
-                        itemResult.put(resultField.getFieldName(), NodeUtils.getResultValue(resultField.getFieldContext(), nodeType.getPropertyType(fieldValue), node));
+
+                        FieldContext fieldContext = resultField.getFieldContext() ;
+                        fieldContext.dateFormat = this.dateFormat ;
+                        fieldContext.fileUrlFormat = this.fileUrlFormat ;
+                        itemResult.put(resultField.getFieldName(), NodeUtils.getResultValue(fieldContext, nodeType.getPropertyType(fieldValue), node));
                         break ;
                     }
                 }
