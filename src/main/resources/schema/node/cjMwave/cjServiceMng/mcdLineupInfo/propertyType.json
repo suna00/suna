@@ -123,8 +123,8 @@
   {
     "typeId": "propertyType",
     "tid": "mcdLineupInfo",
-    "pid": "refdArtistList",
-    "id": "mcdLineupInfo>refdArtistList",
+    "pid": "refdLineupList",
+    "id": "mcdLineupInfo>refdLineupList",
     "propertyTypeName": "아티스트 목록",
     "valueType": "REFERENCED",
     "required": false,

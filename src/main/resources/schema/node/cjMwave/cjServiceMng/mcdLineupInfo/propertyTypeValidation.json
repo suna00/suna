@@ -225,8 +225,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>mcdLineupInfo>refdArtistList",
-    "propertyTypeId": "mcdLineupInfo>refdArtistList",
+    "id": "propertyTypeValidation>mcdLineupInfo>refdLineupList",
+    "propertyTypeId": "mcdLineupInfo>refdLineupList",
     "validation": {
       "language": "ko",
       "required": {
