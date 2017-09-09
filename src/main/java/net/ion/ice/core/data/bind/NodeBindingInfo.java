@@ -352,7 +352,6 @@ public class NodeBindingInfo {
         searchListQuery = new ArrayList<>();
         searchListValue = new ArrayList<>();
 
-        String sorting = queryContext.getSorting();
 
         if (queryContext.getQueryTerms() != null && !queryContext.getQueryTerms().isEmpty()) {
             for (QueryTerm queryTerm : queryContext.getQueryTerms()) {
@@ -374,8 +373,8 @@ public class NodeBindingInfo {
             resultCountValue = new ArrayList<>();
         }
 
-        if (sorting != null) {
-            listParamSql = listParamSql.concat(String.format(" ORDER BY ").concat(sorting));
+        if (queryContext.hasSorting()) {
+            listParamSql = listParamSql.concat(String.format(" ORDER BY ").concat(queryContext.getSorting()));
         }
 
         listParamSql = listParamSql.concat(String.format(" LIMIT ?").concat(String.format(" OFFSET ?")));
