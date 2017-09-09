@@ -129,8 +129,7 @@
         {"field" : "category", "method" : "match", "value" : "{{:category}}" }
       ],
       "response" :{
-        "id" :"",
-        "menus" : "",
+        "_all_" :"",
         "menuList" : {"field" : "menus", "referenceView" : true, "includeReferenced" : false},
         "itemTitle" : "title",
         "itemDesc" : "body",
