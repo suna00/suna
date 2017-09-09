@@ -6,6 +6,7 @@
     "bradYear": "2017",
     "bradStDate": "20170831000000",
     "bradFnsDate": "20170831235959",
+    "lineupNum": 5,
     "showYn": true
   },
   {
@@ -15,6 +16,7 @@
     "bradYear": "2017",
     "bradStDate": "20170910000000",
     "bradFnsDate": "20170910235959",
+    "lineupNum": 3,
     "showYn": true
   },
   {
@@ -24,6 +26,7 @@
     "bradYear": "2017",
     "bradStDate": "20170927000000",
     "bradFnsDate": "20170927235959",
+    "lineupNum": 5,
     "showYn": true
   },
   {
@@ -33,6 +36,7 @@
     "bradYear": "2017",
     "bradStDate": "20170801000000",
     "bradFnsDate": "20170801235959",
+    "lineupNum": 6,
     "showYn": true
   },
   {
@@ -42,6 +46,7 @@
     "bradYear": "2017",
     "bradStDate": "20170606000000",
     "bradFnsDate": "20170606235959",
+    "lineupNum": 4,
     "showYn": true
   }
 ]

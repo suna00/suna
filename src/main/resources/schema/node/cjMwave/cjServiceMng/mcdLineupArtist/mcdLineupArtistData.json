@@ -10,7 +10,7 @@
   },
   {
     "typeId": "mcdLineupArtist",
-    "lineupInfoSeq": 54215,
+    "lineupInfoSeq": 54214,
     "langCd": "eng",
     "artistId": "artist_00002",
     "artistName": "coldplay",
@@ -19,7 +19,7 @@
   },
   {
     "typeId": "mcdLineupArtist",
-    "lineupInfoSeq": 50302,
+    "lineupInfoSeq": 54214,
     "langCd": "eng",
     "artistId": "artist_00003",
     "artistName": "10cm",
@@ -28,20 +28,182 @@
   },
   {
     "typeId": "mcdLineupArtist",
-    "lineupInfoSeq": 53241,
+    "lineupInfoSeq": 54214,
     "langCd": "eng",
     "artistId": "artist_00014",
     "artistName": "Big Bang",
     "thumImgUrl": "http://10.184.57.248:8080/pub/images/component/thumb_video_01.jpg",
+    "sortOdrg": 4
+  },
+  {
+    "typeId": "mcdLineupArtist",
+    "lineupInfoSeq": 54214,
+    "langCd": "eng",
+    "artistId": "artist_00015",
+    "artistName": "Zedd",
+    "thumImgUrl": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "sortOdrg": 5
+  },
+  {
+    "typeId": "mcdLineupArtist",
+    "lineupInfoSeq": 54215,
+    "langCd": "eng",
+    "artistId": "artist_00001",
+    "artistName": "트와이스",
+    "thumImgUrl": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "sortOdrg": 1
+  },
+  {
+    "typeId": "mcdLineupArtist",
+    "lineupInfoSeq": 54215,
+    "langCd": "eng",
+    "artistId": "artist_00015",
+    "artistName": "Zedd",
+    "thumImgUrl": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "sortOdrg": 2
+  },
+  {
+    "typeId": "mcdLineupArtist",
+    "lineupInfoSeq": 54215,
+    "langCd": "eng",
+    "artistId": "artist_00003",
+    "artistName": "10cm",
+    "thumImgUrl": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "sortOdrg": 3
+  },
+  {
+    "typeId": "mcdLineupArtist",
+    "lineupInfoSeq": 50302,
+    "langCd": "eng",
+    "artistId": "artist_00032",
+    "artistName": "SUNMI",
+    "thumImgUrl": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "sortOdrg": 1
+  },
+  {
+    "typeId": "mcdLineupArtist",
+    "lineupInfoSeq": 50302,
+    "langCd": "eng",
+    "artistId": "artist_00002",
+    "artistName": "coldplay",
+    "thumImgUrl": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "sortOdrg": 2
+  },
+  {
+    "typeId": "mcdLineupArtist",
+    "lineupInfoSeq": 50302,
+    "langCd": "eng",
+    "artistId": "artist_00014",
+    "artistName": "Big Bang",
+    "thumImgUrl": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "sortOdrg": 3
+  },
+  {
+    "typeId": "mcdLineupArtist",
+    "lineupInfoSeq": 50302,
+    "langCd": "eng",
+    "artistId": "artist_00003",
+    "artistName": "10cm",
+    "thumImgUrl": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "sortOdrg": 4
+  },
+  {
+    "typeId": "mcdLineupArtist",
+    "lineupInfoSeq": 50302,
+    "langCd": "eng",
+    "artistId": "artist_00001",
+    "artistName": "트와이스",
+    "thumImgUrl": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "sortOdrg": 5
+  },
+  {
+    "typeId": "mcdLineupArtist",
+    "lineupInfoSeq": 53241,
+    "langCd": "eng",
+    "artistId": "artist_00032",
+    "artistName": "SUNMI",
+    "thumImgUrl": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "sortOdrg": 1
+  },
+  {
+    "typeId": "mcdLineupArtist",
+    "lineupInfoSeq": 53241,
+    "langCd": "eng",
+    "artistId": "artist_00014",
+    "artistName": "Big Bang",
+    "thumImgUrl": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "sortOdrg": 2
+  },
+  {
+    "typeId": "mcdLineupArtist",
+    "lineupInfoSeq": 53241,
+    "langCd": "eng",
+    "artistId": "artist_00001",
+    "artistName": "트와이스",
+    "thumImgUrl": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "sortOdrg": 3
+  },
+  {
+    "typeId": "mcdLineupArtist",
+    "lineupInfoSeq": 53241,
+    "langCd": "eng",
+    "artistId": "artist_00003",
+    "artistName": "10cm",
+    "thumImgUrl": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "sortOdrg": 4
+  },
+  {
+    "typeId": "mcdLineupArtist",
+    "lineupInfoSeq": 53241,
+    "langCd": "eng",
+    "artistId": "artist_00002",
+    "artistName": "coldplay",
+    "thumImgUrl": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "sortOdrg": 5
+  },
+  {
+    "typeId": "mcdLineupArtist",
+    "lineupInfoSeq": 53241,
+    "langCd": "eng",
+    "artistId": "artist_00015",
+    "artistName": "Zedd",
+    "thumImgUrl": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "sortOdrg": 6
+  },
+  {
+    "typeId": "mcdLineupArtist",
+    "lineupInfoSeq": 52041,
+    "langCd": "eng",
+    "artistId": "artist_00003",
+    "artistName": "10cm",
+    "thumImgUrl": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "sortOdrg": 7
+  },
+  {
+    "typeId": "mcdLineupArtist",
+    "lineupInfoSeq": 52041,
+    "langCd": "eng",
+    "artistId": "artist_00001",
+    "artistName": "트와이스",
+    "thumImgUrl": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "sortOdrg": 1
+  },
+  {
+    "typeId": "mcdLineupArtist",
+    "lineupInfoSeq": 52041,
+    "langCd": "eng",
+    "artistId": "artist_00002",
+    "artistName": "coldplay",
+    "thumImgUrl": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
     "sortOdrg": 2
   },
   {
     "typeId": "mcdLineupArtist",
     "lineupInfoSeq": 52041,
     "langCd": "eng",
-    "artistId": "artist_00032",
-    "artistName": "SUNMI",
+    "artistId": "artist_00014",
+    "artistName": "Big Bang",
     "thumImgUrl": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
-    "sortOdrg": 1
+    "sortOdrg": 3
   }
 ]
