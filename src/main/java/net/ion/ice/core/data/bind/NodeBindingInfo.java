@@ -254,14 +254,14 @@ public class NodeBindingInfo {
     }
 
     public List<Map<String, Object>> list(QueryContext queryContext) {
-        makeListQuery(queryContext);
+        DBQuery dbQuery = new DBQuery(tableName, queryContext);
         Map<String, Object> totalCount;
-        if (resultCountValue == null || resultCountValue.isEmpty()) {
-            totalCount = jdbcTemplate.queryForMap(totalCountSql);
+        if (dbQuery.getResultCountValue() == null || dbQuery.getResultCountValue().isEmpty()) {
+            totalCount = jdbcTemplate.queryForMap(dbQuery.getTotalCountSql());
         } else {
-            totalCount = jdbcTemplate.queryForMap(totalCountSql, resultCountValue.toArray());
+            totalCount = jdbcTemplate.queryForMap(dbQuery.getTotalCountSql(), dbQuery.getResultCountValue().toArray());
         }
-        List<Map<String, Object>> items = jdbcTemplate.queryForList(listParamSql, searchListValue.toArray());
+        List<Map<String, Object>> items = jdbcTemplate.queryForList(dbQuery.getListParamSql(), dbQuery.getSearchListValue().toArray());
         queryContext.setResultSize(((Long) totalCount.get("totalCount")).intValue());
         queryContext.setQueryListSize(items.size());
         return items;

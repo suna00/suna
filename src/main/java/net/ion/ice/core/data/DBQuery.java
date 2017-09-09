@@ -21,8 +21,6 @@ public class DBQuery {
         searchListQuery = new ArrayList<>();
         searchListValue = new ArrayList<>();
 
-        String sorting = queryContext.getSorting();
-
         if (queryContext.getQueryTerms() != null && !queryContext.getQueryTerms().isEmpty()) {
             for (QueryTerm queryTerm : queryContext.getQueryTerms()) {
                 String query = String.format("%s %s ?", queryTerm.getQueryKey(), queryTerm.getMethodQuery());
@@ -43,8 +41,8 @@ public class DBQuery {
             resultCountValue = new ArrayList<>();
         }
 
-        if (sorting != null) {
-            listParamSql = listParamSql.concat(String.format(" ORDER BY ").concat(sorting));
+        if (queryContext.hasSorting()) {
+            listParamSql = listParamSql.concat(String.format(" ORDER BY ").concat(queryContext.getSorting()));
         }
 
         listParamSql = listParamSql.concat(String.format(" LIMIT ?").concat(String.format(" OFFSET ?")));
