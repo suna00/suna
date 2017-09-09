@@ -42,8 +42,8 @@
           "pushMsgRcYn": "{{:pushMsgRcYn}}",
           "sbscShapCd": "{{:sbscShapCd}}",
           "infoOttpAgreeYn": "{{:infoOttpAgreeYn}}",
-          "divCd": "1",
-          "sttusCd": "1",
+          "mbrDivCd": "1",
+          "mbrSttusCd": "1",
           "sbscDt": "20170831"
         }
       }
@@ -107,8 +107,8 @@
           "bthYm": "{{:bthYm}}",
           "intrstCdList": "{{:intrstCdList}}",
           "infoOttpAgreeYn": "{{:infoOttpAgreeYn}}",
-          "divCd": "2",
-          "sttusCd": "1"
+          "mbrDivCd": "2",
+          "mbrSttusCd": "1"
         }
       }
     }
@@ -136,7 +136,7 @@
         "data": {
           "snsKey": "{{:snsKey}}",
           "snsTypeCd": "{{:snsTypeCd}}",
-          "sttusCd": "3"
+          "mbrSttusCd": "3"
         }
       }
     }
@@ -190,7 +190,7 @@
           "snsKey": "{{:snsKey}}",
           "snsTypeCd": "{{:snsTypeCd}}",
           "infoOttpAgreeYn": "{{:infoOttpAgreeYn}}",
-          "sttusCd": "2"
+          "mbrSttusCd": "2"
         }
       }
     }

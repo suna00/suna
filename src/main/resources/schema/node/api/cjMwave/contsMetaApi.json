@@ -779,7 +779,7 @@
     "category": "contsMeta",
     "apiId": "IfPip001",
     "apiName": "영상미디어정보 조회",
-    "method": "POST",
+    "method": "GET",
     "parameters": [
       {
         "paramName": "contentId",
@@ -787,7 +787,7 @@
       }
     ],
     "config": {
-      "typeId": "seoMetaInfo",
+      "typeId": "pgmVideo",
       "event": "getUrl"
     }
   }

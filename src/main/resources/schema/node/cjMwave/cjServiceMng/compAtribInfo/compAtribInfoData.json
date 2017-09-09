@@ -1,32 +1,10 @@
 [
   {
     "typeId": "compAtribInfo",
-    "compAtribSeq": 100,
-    "compItemSeq": 101,
-    "cnctItemYn": false,
-    "contsId": "banrBasInfo::100",
-    "atribNm": "라이브컨벤션 배너 Type1 항목1",
-    "imgPath": "http://cmsimg.global.mnet.com/banritem/123/12345.jpg",
-    "videFilePath": "",
-    "newsHubKywrd": ""
-  },
-  {
-    "typeId": "compAtribInfo",
-    "compAtribSeq": 101,
-    "compItemSeq": 101,
-    "cnctItemYn": false,
-    "contsId": "banrBasInfo::101",
-    "atribNm": "라이브컨벤션 배너 Type1 항목2",
-    "imgPath": "http://cmsimg.global.mnet.com/banritem/456/6789.jpg",
-    "videFilePath": "",
-    "newsHubKywrd": ""
-  },
-  {
-    "typeId": "compAtribInfo",
     "compAtribSeq": 102,
     "compItemSeq": 103,
     "cnctItemYn": false,
-    "contsId": "voteItemInfo::105",
+    "contsId": "voteItemInfo::130",
     "atribNm": "EXO",
     "imgPath": "http://cmsimg.global.mnet.com/compAtribInfo/456/6789.jpg",
     "videFilePath": "",
@@ -37,53 +15,9 @@
     "compAtribSeq": 103,
     "compItemSeq": 103,
     "cnctItemYn": false,
-    "contsId": "voteItemInfo::106",
+    "contsId": "voteItemInfo::135",
     "atribNm": "BTS",
     "imgPath": "http://cmsimg.global.mnet.com/compAtribInfo/456/6789.jpg",
-    "videFilePath": "",
-    "newsHubKywrd": ""
-  },
-  {
-    "typeId": "compAtribInfo",
-    "compAtribSeq": 104,
-    "compItemSeq": 103,
-    "cnctItemYn": false,
-    "contsId": "voteItemInfo::107",
-    "atribNm": "빅뱅",
-    "imgPath": "http://cmsimg.global.mnet.com/compAtribInfo/456/6789.jpg",
-    "videFilePath": "",
-    "newsHubKywrd": ""
-  },
-  {
-    "typeId": "compAtribInfo",
-    "compAtribSeq": 105,
-    "compItemSeq": 103,
-    "cnctItemYn": false,
-    "contsId": "voteItemInfo::108",
-    "atribNm": "워너원",
-    "imgPath": "http://cmsimg.global.mnet.com/compAtribInfo/456/6789.jpg",
-    "videFilePath": "",
-    "newsHubKywrd": ""
-  },
-  {
-    "typeId": "compAtribInfo",
-    "compAtribSeq": 106,
-    "compItemSeq": 103,
-    "cnctItemYn": false,
-    "contsId": "voteItemInfo::109",
-    "atribNm": "갓세븐",
-    "imgPath": "http://cmsimg.global.mnet.com/compAtribInfo/456/6789.jpg",
-    "videFilePath": "",
-    "newsHubKywrd": ""
-  },
-  {
-    "typeId": "compAtribInfo",
-    "compAtribSeq": 107,
-    "compItemSeq": 104,
-    "cnctItemYn": false,
-    "contsId": "banrBasInfo::103",
-    "atribNm": "라이브배너 Type1 항목",
-    "imgPath": "http://cmsimg.global.mnet.com/banritem/123/12345.jpg",
     "videFilePath": "",
     "newsHubKywrd": ""
   },

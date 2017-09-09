@@ -131,7 +131,7 @@
     "tid": "compItemInfo",
     "pid": "ifTgtCd",
     "id": "compItemInfo>ifTgtCd",
-    "propertyTypeName": "연동 대상 코드(삭제예정?)",
+    "propertyTypeName": "연동 대상 코드",
     "valueType": "REFERENCE",
     "required": false,
     "idable": false,
@@ -142,24 +142,6 @@
     "referenceType": "code",
     "referenceValue": "",
     "codeFilter": "ifTgtCd",
-    "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "compItemInfo",
-    "pid": "showDataCnt",
-    "id": "compItemInfo>showDataCnt",
-    "propertyTypeName": "노출 데이터 개수",
-    "valueType": "INT",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "",
-    "referenceValue": "",
-    "codeFilter": "",
     "defaultValue": ""
   },
   {

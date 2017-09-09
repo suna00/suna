@@ -45,16 +45,7 @@
         }
       ],
       "response": {
-        "compItemSeq": "",
-        "itemDivCd": "",
-        "itemNm": "",
-        "subName": "",
-        "itemId": "",
-        "typeCd": "",
-        "ifTgtCd": "",
-        "sortOdrg": "",
-        "showCntryCdList": "",
-        "bgOptnYn": "",
+        "_all_": "",
         "refdAtribList": {
           "typeId": "compAtribInfo",
           "query": [
@@ -73,14 +64,7 @@
             }
           ],
           "response": {
-            "compAtribSeq": "",
-            "compItemSeq": "",
-            "cnctItemYn": "",
-            "contsId": "",
-            "atribNm": "",
-            "imgPath": "",
-            "videFilePath": "",
-            "newsHubKywrd": "",
+            "_all_": "",
             "newsHubNewsList": {
               "typeId": "news",
               "query": [
@@ -113,14 +97,6 @@
             }
           }
         },
-        "cnctContsDivCd": "",
-        "cnctContsNm": "",
-        "cnctContsIfTgtCd": "",
-        "cnctContsTypeCd": "",
-        "cnctContsLeftYn": "",
-        "cnctContsShowCntryCdList": "",
-        "cnctContsId": "",
-        "cnctBgOptnYn": "",
         "cnctRefdAtribList": {
           "typeId": "compAtribInfo",
           "query": [
@@ -139,14 +115,7 @@
             }
           ],
           "response": {
-            "compAtribSeq": "",
-            "compItemSeq": "",
-            "cnctItemYn": "",
-            "contsId": "",
-            "atribNm": "",
-            "imgPath": "",
-            "videFilePath": "",
-            "newsHubKywrd": "",
+            "_all_": "",
             "newsHubNewsList": {
               "typeId": "news",
               "query": [
