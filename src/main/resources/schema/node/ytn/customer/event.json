@@ -14,5 +14,21 @@
     "actionType" : "service",
     "actionBody" : "mypageService.removeOutOfStockProduct",
     "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "member",
+    "event" : "pwAuth",
+    "noneExecute" : true,
+    "eventName" : "비밀번호 인증"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "member>pwAuth",
+    "action" : "pwAuth",
+    "actionName" : "비밀번호 인증",
+    "actionType" : "service",
+    "actionBody" : "mypageService.passwordAuthentication",
+    "order" : 1
   }
 ]

@@ -8,7 +8,7 @@
     "typeId": "apiConfig",
     "category": "mypage",
     "apiId": "writableReview",
-    "apiName": "작성가능한 리뷰 ",
+    "apiName": "작성가능한 리뷰 (select response 붙일예정)",
     "method": "GET",
     "parameters": [
     ],
@@ -25,26 +25,17 @@
   {
     "typeId" : "apiConfig",
     "category" : "mypage",
-    "apiId" : "writableReview2",
-    "apiName" : "작성가능한 리뷰2",
+    "apiId" : "recentlyViewedProduct",
+    "apiName" : "최근 본 상품",
     "method" : "GET",
     "parameters" : [
     ],
     "config" : {
-      "typeId": "orderProduct",
+      "typeId": "product",
       "query" : [
-        {"includeReferenced" : false, "page": "{{:page}}"}
-      ],
-      "response" :{
-
-        "commentList" : {
-          "select" : {
-            "ds" : "ytnDevDb",
-            "resultType" : "list",
-            "sql" : "select * from testComment where itemId = @{id}"
-          }
-        }
-      }
+        {"field" : "productId", "method" : "matching", "value" : "{{:productIds}}" },
+        {"includeReferenced" : false, "referenceView" : "orderId"}
+      ]
     }
   }
 ]
