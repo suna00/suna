@@ -139,7 +139,7 @@
         }
       ],
       "response": {
-        "_all_" :"",
+        "_all_": "",
         "refdItemList": {
           "typeId": "voteItemInfo",
           "query": [
@@ -357,6 +357,337 @@
           "referenceView": "cntryCd,artistId"
         }
       ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv106",
+    "apiName": "아티스트별 투표회원 현황",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "artistId",
+        "required": false
+      },
+      {
+        "perdStDate": "perdStDate",
+        "required": false
+      },
+      {
+        "perdFnsDate": "perdFnsDate",
+        "required": false
+      }
+    ],
+    "config": {
+      "typeId": "voteMbrStatsByArtist",
+      "query": [
+        {
+          "field": "artistId",
+          "method": "matching",
+          "value": "{{:artistId}}"
+        },
+        {
+          "field": "perdStDate",
+          "method": "matching",
+          "value": "{{:perdStDate}}"
+        },
+        {
+          "field": "perdFnsDate",
+          "method": "matching",
+          "value": "{{:perdFnsDate}}"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "referenceView": "artistId,mbrId"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv200",
+    "apiName": "주별 아티스트 투표현황",
+    "method": "GET",
+    "parameters": [
+      {
+        "perdStDate": "perdStDate",
+        "required": true
+      },
+      {
+        "perdFnsDate": "perdFnsDate",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "artistVoteStatsByWly",
+      "query": [
+        {
+          "field": "perdStDate",
+          "method": "matching",
+          "value": "{{:perdStDate}}"
+        },
+        {
+          "field": "perdFnsDate",
+          "method": "matching",
+          "value": "{{:perdFnsDate}}"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "referenceView": "artistId"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv201",
+    "apiName": "월별 아티스트 투표현황",
+    "method": "GET",
+    "parameters": [
+      {
+        "perdStDate": "perdYm",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "artistVoteStatsByMly",
+      "query": [
+        {
+          "field": "perdYm",
+          "method": "matching",
+          "value": "{{:perdYm}}"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "referenceView": "artistId"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv202",
+    "apiName": "년별 아티스트 투표현황",
+    "method": "GET",
+    "parameters": [
+      {
+        "perdStDate": "perdYear",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "artistVoteStatsByYear",
+      "query": [
+        {
+          "field": "perdYear",
+          "method": "matching",
+          "value": "{{:perdYear}}"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "referenceView": "artistId"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv203",
+    "apiName": "국가별 아티스트 투표현황",
+    "method": "GET",
+    "parameters": [
+      {
+        "perdStDate": "cntryCd",
+        "required": true
+      },
+      {
+        "perdStDate": "perdStDate",
+        "required": false
+      },
+      {
+        "perdFnsDate": "perdFnsDate",
+        "required": false
+      }
+    ],
+    "config": {
+      "typeId": "artistVoteStatsByCntry",
+      "query": [
+        {
+          "field": "cntryCd",
+          "method": "matching",
+          "value": "{{:cntryCd}}"
+        },
+        {
+          "field": "perdStDate",
+          "method": "matching",
+          "value": "{{:perdStDate}}"
+        },
+        {
+          "field": "perdFnsDate",
+          "method": "matching",
+          "value": "{{:perdFnsDate}}"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "referenceView": "cntryCd,artistId"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv204",
+    "apiName": "성별 아티스트 투표현황",
+    "method": "GET",
+    "parameters": [
+      {
+        "perdStDate": "sexCd",
+        "required": true
+      },
+      {
+        "perdStDate": "perdStDate",
+        "required": false
+      },
+      {
+        "perdFnsDate": "perdFnsDate",
+        "required": false
+      }
+    ],
+    "config": {
+      "typeId": "artistVoteStatsBySex",
+      "query": [
+        {
+          "field": "sexCd",
+          "method": "matching",
+          "value": "{{:sexCd}}"
+        },
+        {
+          "field": "perdStDate",
+          "method": "matching",
+          "value": "{{:perdStDate}}"
+        },
+        {
+          "field": "perdFnsDate",
+          "method": "matching",
+          "value": "{{:perdFnsDate}}"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "referenceView": "artistId"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv205",
+    "apiName": "타입별 아티스트 투표현황",
+    "method": "GET",
+    "parameters": [
+      {
+        "perdStDate": "typeCd",
+        "required": true
+      },
+      {
+        "perdStDate": "perdStDate",
+        "required": false
+      },
+      {
+        "perdFnsDate": "perdFnsDate",
+        "required": false
+      }
+    ],
+    "config": {
+      "typeId": "artistVoteStatsByType",
+      "query": [
+        {
+          "field": "typeCd",
+          "method": "matching",
+          "value": "{{:typeCd}}"
+        },
+        {
+          "field": "perdStDate",
+          "method": "matching",
+          "value": "{{:perdStDate}}"
+        },
+        {
+          "field": "perdFnsDate",
+          "method": "matching",
+          "value": "{{:perdFnsDate}}"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "referenceView": "artistId"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv206",
+    "apiName": "전체 국가 투표현황",
+    "method": "GET",
+    "parameters": [
+      {
+        "perdStDate": "perdStDate",
+        "required": true
+      },
+      {
+        "perdFnsDate": "perdFnsDate",
+        "required": true
+      }
+    ],
+    "config": {
+      "root": {
+        "typeId": "cntryVoteStats",
+        "query": [
+          {
+            "field": "perdStDate",
+            "method": "matching",
+            "value": "{{:perdStDate}}"
+          },
+          {
+            "field": "perdFnsDate",
+            "method": "matching",
+            "value": "{{:perdFnsDate}}"
+          },
+          {
+            "sorting": "{{:sorting}}"
+          },
+          {
+            "referenceView": "cntryCd"
+          }
+        ]
+      },
+      "getTotalVoteNum": {
+        "select": {
+          "ds": "cjDb",
+          "resultType": "value",
+          "sql": "select sum(voteNum) as totalVoteNum from cntryVoteStats where perdStDate = @{perdStDate} and perdFnsDate = @{perdFnsDate}"
+        }
+      }
     }
   }
 ]
