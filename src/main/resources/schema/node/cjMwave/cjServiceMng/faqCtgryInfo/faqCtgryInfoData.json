@@ -32,7 +32,7 @@
     "faqCtgryNm": "SHOP",
     "showOdrg": 4,
     "showYn": true,
-    "descSbst": "\"Learn the basics to help you make the most of MD SHOP\"",
+    "descSbst": "Learn the basics to help you make the most of MD SHOP",
     "thumImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg"
   },
   {
@@ -41,7 +41,7 @@
     "faqCtgryNm": "Technical Problems",
     "showOdrg": 5,
     "showYn": true,
-    "descSbst": "\"Help your Technical Problems on Mwave web site\"",
+    "descSbst": "Help your Technical Problems on Mwave web site",
     "thumImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg"
   },
   {
@@ -50,7 +50,7 @@
     "faqCtgryNm": "Policies and reporting",
     "showOdrg": 6,
     "showYn": true,
-    "descSbst": "\"Understand the Mwave Rules and report Violations\"",
+    "descSbst": "Understand the Mwave Rules and report Violations",
     "thumImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg"
   }
 ]
