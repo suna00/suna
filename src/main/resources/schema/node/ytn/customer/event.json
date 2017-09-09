@@ -1,0 +1,18 @@
+[
+  {
+    "typeId" : "event",
+    "tid": "interestProduct",
+    "event" : "removeOutOfStock",
+    "noneExecute" : true,
+    "eventName" : "품절상품 삭제"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "interestProduct>removeOutOfStock",
+    "action" : "removeOutOfStock",
+    "actionName" : "품절상품 삭제",
+    "actionType" : "service",
+    "actionBody" : "mypageService.removeOutOfStockProduct",
+    "order" : 1
+  }
+]
