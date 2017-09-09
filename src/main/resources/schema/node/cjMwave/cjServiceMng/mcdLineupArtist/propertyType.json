@@ -70,10 +70,10 @@
   {
     "typeId": "propertyType",
     "tid": "mcdLineupArtist",
-    "pid": "thumImgPath",
-    "id": "mcdLineupArtist>thumImgPath",
+    "pid": "thumImgUrl",
+    "id": "mcdLineupArtist>thumImgUrl",
     "propertyTypeName": "썸네일 이미지 경로",
-    "valueType": "FILE",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,

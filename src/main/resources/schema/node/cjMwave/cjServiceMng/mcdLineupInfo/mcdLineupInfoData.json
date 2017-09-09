@@ -2,7 +2,7 @@
   {
     "typeId": "mcdLineupInfo",
     "lineupInfoSeq": 54214,
-    "lineupNm": "42978",
+    "lineupNm": "라인업 명 test",
     "bradYear": "2017",
     "bradStDate": "20170831000000",
     "bradFnsDate": "20170831235959",
@@ -11,16 +11,16 @@
   {
     "typeId": "mcdLineupInfo",
     "lineupInfoSeq": 54215,
-    "lineupNm": "42988",
+    "lineupNm": "라인업 명 test",
     "bradYear": "2017",
-    "bradStDate": "20170901000000",
+    "bradStDate": "20170910000000",
     "bradFnsDate": "20170910235959",
     "showYn": true
   },
   {
     "typeId": "mcdLineupInfo",
     "lineupInfoSeq": 50302,
-    "lineupNm": "43005",
+    "lineupNm": "라인업 명 test",
     "bradYear": "2017",
     "bradStDate": "20170927000000",
     "bradFnsDate": "20170927235959",
@@ -29,7 +29,7 @@
   {
     "typeId": "mcdLineupInfo",
     "lineupInfoSeq": 53241,
-    "lineupNm": "42948",
+    "lineupNm": "라인업 명 test",
     "bradYear": "2017",
     "bradStDate": "20170801000000",
     "bradFnsDate": "20170801235959",
@@ -38,7 +38,7 @@
   {
     "typeId": "mcdLineupInfo",
     "lineupInfoSeq": 52041,
-    "lineupNm": "42892",
+    "lineupNm": "라인업 명 test",
     "bradYear": "2017",
     "bradStDate": "20170606000000",
     "bradFnsDate": "20170606235959",

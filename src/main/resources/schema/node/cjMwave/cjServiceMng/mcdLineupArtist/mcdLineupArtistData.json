@@ -2,46 +2,46 @@
   {
     "typeId": "mcdLineupArtist",
     "lineupInfoSeq": 54214,
-    "langCd": "ko",
+    "langCd": "eng",
     "artistId": "artist_00001",
     "artistName": "트와이스",
-    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
+    "thumImgUrl": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
     "sortOdrg": 1
   },
   {
     "typeId": "mcdLineupArtist",
     "lineupInfoSeq": 54215,
-    "langCd": "en",
+    "langCd": "eng",
     "artistId": "artist_00002",
     "artistName": "coldplay",
-    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_album05.jpg",
+    "thumImgUrl": "http://10.184.57.248:8080/pub/images/component/img_album05.jpg",
     "sortOdrg": 2
   },
   {
     "typeId": "mcdLineupArtist",
     "lineupInfoSeq": 50302,
-    "langCd": "zh-cn",
+    "langCd": "eng",
     "artistId": "artist_00003",
     "artistName": "10cm",
-    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
+    "thumImgUrl": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
     "sortOdrg": 3
   },
   {
     "typeId": "mcdLineupArtist",
     "lineupInfoSeq": 53241,
-    "langCd": "zh-tw",
+    "langCd": "eng",
     "artistId": "artist_00014",
     "artistName": "Big Bang",
-    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/thumb_video_01.jpg",
+    "thumImgUrl": "http://10.184.57.248:8080/pub/images/component/thumb_video_01.jpg",
     "sortOdrg": 2
   },
   {
     "typeId": "mcdLineupArtist",
     "lineupInfoSeq": 52041,
-    "langCd": "jp",
+    "langCd": "eng",
     "artistId": "artist_00032",
     "artistName": "SUNMI",
-    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "thumImgUrl": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
     "sortOdrg": 1
   }
 ]

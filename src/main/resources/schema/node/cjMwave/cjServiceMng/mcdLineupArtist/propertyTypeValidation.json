@@ -129,8 +129,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>mcdLineupArtist>thumImgPath",
-    "propertyTypeId": "mcdLineupArtist>thumImgPath",
+    "id": "propertyTypeValidation>mcdLineupArtist>thumImgUrl",
+    "propertyTypeId": "mcdLineupArtist>thumImgUrl",
     "validation": {
       "language": "ko",
       "required": {
