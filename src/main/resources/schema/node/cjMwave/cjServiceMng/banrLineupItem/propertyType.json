@@ -5,16 +5,17 @@
     "pid": "banrLineupItemSeq",
     "id": "banrLineupItem>banrLineupItemSeq",
     "propertyTypeName": "배너 라인업 항목 일련번호",
-    "valueType": "REFERENCE",
+    "valueType": "INT",
     "required": true,
     "idable": true,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "banrLineupInfo",
-    "referenceValue": "banrLineupSeq",
+    "referenceType": "",
+    "referenceValue": "",
     "idType": "autoIncrement",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -30,8 +31,9 @@
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "code",
-    "referenceValue": "",
+    "referenceType": "banrLineupInfo",
+    "referenceValue": "banrLineupSeq",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -49,6 +51,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -66,6 +69,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -83,6 +87,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -100,6 +105,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -117,6 +123,7 @@
     "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -134,6 +141,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -151,6 +159,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -168,6 +177,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -185,6 +195,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   }
 ]

@@ -15,6 +15,7 @@
     "referenceType": "",
     "referenceValue": "",
     "idType": "autoIncrement",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -32,6 +33,7 @@
     "analyzer": "code",
     "referenceType": "banrItemInfo",
     "referenceValue": "banrItemSeq",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -55,18 +57,19 @@
   {
     "typeId": "propertyType",
     "tid": "banrLineupInfo",
-    "pid": "showYear",
-    "id": "banrLineupInfo>eventDate",
-    "propertyTypeName": "행사일자",
+    "pid": "showDateTabNm",
+    "id": "banrLineupInfo>showDateTabNm",
+    "propertyTypeName": "노출일탭명",
     "valueType": "STRING",
     "required": true,
     "idable": false,
-    "labelable": false,
+    "labelable": true,
     "treeable": false,
     "indexable": true,
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -75,7 +78,7 @@
     "pid": "advmUrl",
     "id": "banrLineupInfo>advmUrl",
     "propertyTypeName": "광고 URL",
-    "valueType": "STRING",
+    "valueType": "TEXT",
     "required": false,
     "idable": false,
     "labelable": false,
@@ -84,6 +87,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -98,9 +102,45 @@
     "labelable": false,
     "treeable": false,
     "indexable": true,
-    "analyzer": null,
+    "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "banrLineupInfo",
+    "pid": "refdBanrLineupItemList",
+    "id": "banrLineupInfo>refdBanrLineupItemList",
+    "propertyTypeName": "배너 라인업 항목 리스트",
+    "valueType": "REFERENCED",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "banrLineupItem",
+    "referenceValue": "banrLineupSeq",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "banrLineupInfo",
+    "pid": "refdBanrLineupadvmShowList",
+    "id": "banrLineupInfo>refdBanrLineupadvmShowList",
+    "propertyTypeName": "배너 라인업 광고 노출정보 리스트",
+    "valueType": "REFERENCED",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "banrLineupadvmShowInfo",
+    "referenceValue": "banrLineupSeq",
     "codeFilter": "",
     "defaultValue": ""
   },
@@ -119,6 +159,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -136,6 +177,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -153,6 +195,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -170,6 +213,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   }
 ]

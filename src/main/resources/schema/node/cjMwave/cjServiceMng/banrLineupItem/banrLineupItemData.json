@@ -1,22 +1,182 @@
 [
   {
     "typeId": "banrLineupItem",
-    "banrLineupItemSeq": 200,
-    "banrLineupSeq": "500",
-    "contsId": "mwave",
-    "contsNm": "Don't Wanna Cry",
+    "banrLineupItemSeq": 201,
+    "banrLineupSeq": "133",
+    "contsId": "artist_00001",
+    "contsNm": "TWICE",
     "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_album02.jpg",
     "videFilePath": "https://www.youtube.com/watch?v=lgLWRFW1hF8",
     "sortOdrg": 1
   },
   {
     "typeId": "banrLineupItem",
-    "banrLineupItemSeq": 201,
-    "banrLineupSeq": "501",
-    "contsId": "mcd",
-    "contsNm": "Ending Scene",
+    "banrLineupItemSeq": 202,
+    "banrLineupSeq": "133",
+    "contsId": "artist_00002",
+    "contsNm": "Coldplay",
     "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
     "videFilePath": "https://www.youtube.com/watch?v=rg-McAaRneQ",
     "sortOdrg": 2
+  },
+  {
+    "typeId": "banrLineupItem",
+    "banrLineupItemSeq": 203,
+    "banrLineupSeq": "134",
+    "contsId": "song_00001",
+    "contsNm": "Like Ooh-Ahh",
+    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_album02.jpg",
+    "videFilePath": "https://www.youtube.com/watch?v=lgLWRFW1hF8",
+    "sortOdrg": 1
+  },
+  {
+    "typeId": "banrLineupItem",
+    "banrLineupItemSeq": 204,
+    "banrLineupSeq": "134",
+    "contsId": "song_00003",
+    "contsNm": "Don't Panic",
+    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "videFilePath": "https://www.youtube.com/watch?v=rg-McAaRneQ",
+    "sortOdrg": 2
+  },
+  {
+    "typeId": "banrLineupItem",
+    "banrLineupItemSeq": 205,
+    "banrLineupSeq": "135",
+    "contsId": "artist_00001",
+    "contsNm": "TWICE",
+    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_album02.jpg",
+    "videFilePath": "https://www.youtube.com/watch?v=lgLWRFW1hF8",
+    "sortOdrg": 1
+  },
+  {
+    "typeId": "banrLineupItem",
+    "banrLineupItemSeq": 206,
+    "banrLineupSeq": "135",
+    "contsId": "artist_00002",
+    "contsNm": "Coldplay",
+    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "videFilePath": "https://www.youtube.com/watch?v=rg-McAaRneQ",
+    "sortOdrg": 2
+  },
+  {
+    "typeId": "banrLineupItem",
+    "banrLineupItemSeq": 207,
+    "banrLineupSeq": "136",
+    "contsId": "song_00001",
+    "contsNm": "Like Ooh-Ahh",
+    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_album02.jpg",
+    "videFilePath": "https://www.youtube.com/watch?v=lgLWRFW1hF8",
+    "sortOdrg": 1
+  },
+  {
+    "typeId": "banrLineupItem",
+    "banrLineupItemSeq": 208,
+    "banrLineupSeq": "136",
+    "contsId": "song_00003",
+    "contsNm": "Don't Panic",
+    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "videFilePath": "https://www.youtube.com/watch?v=rg-McAaRneQ",
+    "sortOdrg": 2
+  },
+  {
+    "typeId": "banrLineupItem",
+    "banrLineupItemSeq": 209,
+    "banrLineupSeq": "137",
+    "contsId": "artist_00001",
+    "contsNm": "TWICE",
+    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_album02.jpg",
+    "videFilePath": "https://www.youtube.com/watch?v=lgLWRFW1hF8",
+    "sortOdrg": 1
+  },
+  {
+    "typeId": "banrLineupItem",
+    "banrLineupItemSeq": 210,
+    "banrLineupSeq": "137",
+    "contsId": "artist_00002",
+    "contsNm": "Coldplay",
+    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "videFilePath": "https://www.youtube.com/watch?v=rg-McAaRneQ",
+    "sortOdrg": 2
+  },
+  {
+    "typeId": "banrLineupItem",
+    "banrLineupItemSeq": 211,
+    "banrLineupSeq": "138",
+    "contsId": "song_00001",
+    "contsNm": "Like Ooh-Ahh",
+    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_album02.jpg",
+    "videFilePath": "https://www.youtube.com/watch?v=lgLWRFW1hF8",
+    "sortOdrg": 1
+  },
+  {
+    "typeId": "banrLineupItem",
+    "banrLineupItemSeq": 212,
+    "banrLineupSeq": "138",
+    "contsId": "song_00003",
+    "contsNm": "Don't Panic",
+    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "videFilePath": "https://www.youtube.com/watch?v=rg-McAaRneQ",
+    "sortOdrg": 2
+  },
+  {
+    "typeId": "banrLineupItem",
+    "banrLineupItemSeq": 213,
+    "banrLineupSeq": "139",
+    "contsId": "454245",
+    "contsNm": "BIGBANG_01",
+    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "videFilePath": "https://www.youtube.com/watch?v=rg-McAaRneQ",
+    "sortOdrg": 1
+  },
+  {
+    "typeId": "banrLineupItem",
+    "banrLineupItemSeq": 214,
+    "banrLineupSeq": "139",
+    "contsId": "123124",
+    "contsNm": "WannaONE_01",
+    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "videFilePath": "https://www.youtube.com/watch?v=rg-McAaRneQ",
+    "sortOdrg": 3
+  },
+  {
+    "typeId": "banrLineupItem",
+    "banrLineupItemSeq": 215,
+    "banrLineupSeq": "140",
+    "contsId": "454245",
+    "contsNm": "BIGBANG_01",
+    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "videFilePath": "https://www.youtube.com/watch?v=rg-McAaRneQ",
+    "sortOdrg": 1
+  },
+  {
+    "typeId": "banrLineupItem",
+    "banrLineupItemSeq": 216,
+    "banrLineupSeq": "140",
+    "contsId": "123124",
+    "contsNm": "WannaONE_01",
+    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "videFilePath": "https://www.youtube.com/watch?v=rg-McAaRneQ",
+    "sortOdrg": 3
+  },
+  {
+    "typeId": "banrLineupItem",
+    "banrLineupItemSeq": 217,
+    "banrLineupSeq": "141",
+    "contsId": "454245",
+    "contsNm": "BIGBANG_01",
+    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "videFilePath": "https://www.youtube.com/watch?v=rg-McAaRneQ",
+    "sortOdrg": 1
+  },
+  {
+    "typeId": "banrLineupItem",
+    "banrLineupItemSeq": 218,
+    "banrLineupSeq": "141",
+    "contsId": "123124",
+    "contsNm": "WannaONE_01",
+    "thumImgPath": "http://10.184.57.248:8080/pub/images/component/img_tournament03.jpg",
+    "videFilePath": "https://www.youtube.com/watch?v=rg-McAaRneQ",
+    "sortOdrg": 3
   }
 ]

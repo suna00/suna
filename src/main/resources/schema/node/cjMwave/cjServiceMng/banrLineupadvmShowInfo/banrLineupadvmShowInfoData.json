@@ -1,14 +1,38 @@
 [
   {
     "typeId": "banrLineupadvmShowInfo",
-    "banrLineupadvmShowSeq": 800,
-    "banrLineupSeq": 900,
-    "showOdrg": 1
+    "banrLineupadvmShowSeq": 401,
+    "banrLineupSeq": 139,
+    "showOdrg": 2
   },
   {
     "typeId": "banrLineupadvmShowInfo",
-    "banrLineupadvmShowSeq": 801,
-    "banrLineupSeq": 901,
+    "banrLineupadvmShowSeq": 402,
+    "banrLineupSeq": 139,
+    "showOdrg": 4
+  },
+  {
+    "typeId": "banrLineupadvmShowInfo",
+    "banrLineupadvmShowSeq": 403,
+    "banrLineupSeq": 140,
     "showOdrg": 2
+  },
+  {
+    "typeId": "banrLineupadvmShowInfo",
+    "banrLineupadvmShowSeq": 404,
+    "banrLineupSeq": 140,
+    "showOdrg": 4
+  },
+  {
+    "typeId": "banrLineupadvmShowInfo",
+    "banrLineupadvmShowSeq": 405,
+    "banrLineupSeq": 141,
+    "showOdrg": 2
+  },
+  {
+    "typeId": "banrLineupadvmShowInfo",
+    "banrLineupadvmShowSeq": 406,
+    "banrLineupSeq": 141,
+    "showOdrg": 4
   }
 ]
