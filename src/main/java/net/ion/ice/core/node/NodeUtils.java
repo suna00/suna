@@ -462,7 +462,7 @@ public class NodeUtils {
                 } else {
                     String refsValues = "";
                     for (Object val : StringUtils.split(value.toString(), ",")) {
-                        refsValues += val.toString().trim() + ",";
+                        refsValues += getRefereceStoreValue(val.toString().trim(), pt) + ",";
                     }
                     if (refsValues.endsWith(",")) return StringUtils.substringBeforeLast(refsValues, ",");
                     else return refsValues;
@@ -658,7 +658,7 @@ public class NodeUtils {
             Map<String, Object> i18nData = new HashMap<>();
             value = NodeUtils.getStoreValue(value, pt, id);
             if (value instanceof String) {
-                i18nData.put(getNodeService().getDefaultLocale(), value);
+                i18nData.put(getDefaultLocale(), value);
             } else if (value instanceof Map) {
                 i18nData = (Map<String, Object>) value;
             }
@@ -673,7 +673,11 @@ public class NodeUtils {
             for (String fieldName : removePids) {
                 data.remove(fieldName);
             }
-            return i18nData;
+            if(i18nData.size() > 0) {
+                return i18nData;
+            }else{
+                return null ;
+            }
         }
         return NodeUtils.getStoreValue(value, pt, id);
     }
@@ -684,5 +688,9 @@ public class NodeUtils {
             nodeList.add(new Node(data, typeId));
         }
         return nodeList;
+    }
+
+    public static String getDefaultLocale(){
+        return getNodeService().getDefaultLocale() ;
     }
 }
