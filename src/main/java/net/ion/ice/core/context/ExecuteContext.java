@@ -135,10 +135,14 @@ public class ExecuteContext extends ReadContext{
             changedProperties = new ArrayList<>() ;
             this.node = existNode.clone() ;
             for(PropertyType pt : nodeType.getPropertyTypes()){
-                if(!data.containsKey(pt.getPid())){
+                if(!data.containsKey(pt.getPid()) && !pt.isI18n()){
                     continue;
                 }
                 Object newValue = NodeUtils.getStoreValue(data, pt, node.getId()) ;
+                if(pt.isI18n() && newValue == null){
+                    continue;
+                }
+
                 Object existValue = existNode.get(pt.getPid()) ;
 
                 if(newValue == null && existValue == null) {

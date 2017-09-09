@@ -184,7 +184,9 @@ public class QueryContext extends ReadContext {
     }
 
     public void setSorting(String sortingStr) {
-        this.sorting = sortingStr;
+        if(StringUtils.isNotEmpty(sortingStr)) {
+            this.sorting = sortingStr;
+        }
     }
 
     public String getSorting() {

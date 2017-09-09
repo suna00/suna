@@ -96,8 +96,15 @@ public class PropertiesFieldBridge implements FieldBridge {
 
     private Field getKeywordField(PropertyType propertyType, String key, String value){
         if(propertyType.isSorted()) {
-            return new AnalyzerField(key, value, sortedFieldAnalyzer()) ;
+//            if(value != null) {
+//                return new AnalyzerField(key, value.toLowerCase(), sortedFieldAnalyzer());
+//            }else{
+                return new AnalyzerField(key, value, sortedFieldAnalyzer());
+//            }
         }else{
+            if(propertyType.isSortable() && !propertyType.isNumeric()) {
+                return new AnalyzerField(key + "_sort", value, sortedFieldAnalyzer());
+            }
             return new AnalyzerField(key, value, fieldAnalyzer(propertyType.getLuceneAnalyzer()));
         }
 
@@ -188,10 +195,10 @@ public class PropertiesFieldBridge implements FieldBridge {
         fieldType.setIndexOptions(IndexOptions.DOCS_AND_FREQS);
         fieldType.setDocValuesType(DocValuesType.NONE);
         fieldType.setStored(false);
-        fieldType.setTokenized(true);
+        fieldType.setTokenized(false);
         fieldType.setOmitNorms(false);
         fieldType.freeze();
-        fieldType.setAnalyzer(AnalyzerFactory.getAnalyzer(PropertyType.AnalyzerType.simple));
+//        fieldType.setAnalyzer(AnalyzerFactory.getAnalyzer(PropertyType.AnalyzerType.simple));
         return fieldType;
     }
 

@@ -7,22 +7,6 @@
     "method": "GET",
     "parameters": [
       {
-        "paramName": "page",
-        "required": false
-      },
-      {
-        "paramName": "pageSize",
-        "required": false
-      },
-      {
-        "paramName": "sorting",
-        "required": false
-      },
-      {
-        "paramName": "langCd",
-        "required": false
-      },
-      {
         "paramName": "contsMetaDivCd",
         "required": true
       },
