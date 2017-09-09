@@ -9,23 +9,20 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.ws.rs.DELETE;
 import java.io.IOException;
 import java.util.*;
 
 @Service("productService")
 public class ProductService {
     public static final String UPDATE = "update";
+    public static final String DELETE = "delete";
     public static final String SAVE = "save";
     private Logger logger = Logger.getLogger(ProductService.class);
 
     @Autowired
     private NodeService nodeService ;
 
-    /**
-     * Make.
-     *
-     * @param context the context
-     */
     public void make(ExecuteContext context) {
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
 
@@ -35,6 +32,7 @@ public class ProductService {
             List<Node> addOptions = productOptions(data, "addOption");
             productOptionItems(data, baseOptions, "baseOption");
             productOptionItems(data, addOptions, "addOption");
+            productAttribute(data);
 
         } catch (Exception e){
 
@@ -42,14 +40,6 @@ public class ProductService {
     }
 
 
-    /**
-     * Product options list.
-     *
-     * @param data the data
-     * @param type the type
-     * @return the list
-     * @throws IOException the io exception
-     */
     public List<Node> productOptions(Map<String, Object> data, String type) throws IOException {
         List<Node> list = new ArrayList<>();
         List<Map<String, Object>> maps = JsonUtils.parsingJsonToList(data.get(type).toString());
@@ -150,4 +140,24 @@ public class ProductService {
         return list;
     }
 
+    private List<Node> productAttribute(Map<String, Object> data) throws IOException {
+        List<Node> list = new ArrayList<>();
+        if(data.get("productAttributeCategoryId") == null || data.get("productAttribute") == null) return list;
+
+        List<Map<String, Object>> maps = JsonUtils.parsingJsonToList(data.get("productAttribute").toString());
+        for(Map<String, Object> map : maps){
+            map = setMap(data, map);
+
+            Node node = (Node) nodeService.executeNode(map, "productAttribute", SAVE);
+            list.add(node);
+        }
+
+//        List<Node> nodes = NodeUtils.getNodeList("productAttribute", "productId_matching="+data.get("productId")+"&productAttributeCategoryId_notMatching="+data.get("productAttributeCategoryId").toString());
+//        for(Node node : nodes){
+//            nodeService.executeNode(node, "productAttribute", DELETE);
+//        }
+
+
+        return list;
+    }
 }

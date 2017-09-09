@@ -30,7 +30,7 @@ public class DataQueryContext extends QueryContext{
         ReadContext.makeContextFromParameter(parameterMap, nodeType, queryContext);
         queryContext.queryTermType = QueryTerm.QueryTermType.DATA ;
 
-        makeQueryTerm(nodeType, queryContext) ;
+        queryContext.makeQueryTerm(nodeType) ;
 
         return queryContext;
     }

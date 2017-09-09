@@ -1892,24 +1892,24 @@
     "fixedYn": "n"
   },
   {
-  "typeId": "gnb",
-  "gnbId": 1,
-  "affiliateId": "",
-  "siteId": "",
-  "siteType": "",
-  "name": "신상품",
-  "upperId": 0,
-  "url": "",
-  "GNBType": "main",
-  "gnbStatus": "y",
-  "level": "A",
-  "sortOrder": 1,
-  "description": "",
-  "created": "20170828111531",
-  "owner": "anonymous",
-  "changed": "20170828111531",
-  "modifier": "anonymous"
-},
+    "typeId": "gnb",
+    "gnbId": 1,
+    "affiliateId": "",
+    "siteId": "",
+    "siteType": "",
+    "name": "신상품",
+    "upperId": 0,
+    "url": "",
+    "GNBType": "main",
+    "gnbStatus": "y",
+    "level": "A",
+    "sortOrder": 1,
+    "description": "",
+    "created": "20170828111531",
+    "owner": "anonymous",
+    "changed": "20170828111531",
+    "modifier": "anonymous"
+  },
   {
     "typeId": "gnb",
     "gnbId": 2,
@@ -2080,5 +2080,90 @@
     "owner": "anonymous",
     "changed": "20170828111531",
     "modifier": "anonymous"
+  },
+  {
+    "typeId": "productAttributeCategory",
+    "productAttributeCategoryId": 11,
+    "name": "의류",
+    "productAttributeCategoryStatus": "y",
+    "description": "test"
+  },
+  {
+    "typeId": "productAttributeCategoryItem",
+    "productAttributeCategoryItemId": 101,
+    "productAttributeCategoryId": 11,
+    "name": "제품소재",
+    "sortOrder": 1
+  },
+  {
+    "typeId": "productAttributeCategoryItem",
+    "productAttributeCategoryItemId": 102,
+    "productAttributeCategoryId": 11,
+    "name": "색상",
+    "sortOrder": 2
+  },
+  {
+    "typeId": "productAttributeCategoryItem",
+    "productAttributeCategoryItemId": 103,
+    "productAttributeCategoryId": 11,
+    "name": "세탁방법 및 취급시 주의사항",
+    "sortOrder": 3
+  },
+
+  {
+    "typeId": "productAttributeCategory",
+    "productAttributeCategoryId": 12,
+    "name": "가전",
+    "productAttributeCategoryStatus": "y",
+    "description": "test"
+  },
+  {
+    "typeId": "productAttributeCategoryItem",
+    "productAttributeCategoryItemId": 104,
+    "productAttributeCategoryId": 12,
+    "name": "CPU",
+    "sortOrder": 1
+  },
+  {
+    "typeId": "productAttributeCategoryItem",
+    "productAttributeCategoryItemId": 105,
+    "productAttributeCategoryId": 12,
+    "name": "RAN",
+    "sortOrder": 2
+  },
+  {
+    "typeId": "productAttributeCategoryItem",
+    "productAttributeCategoryItemId": 106,
+    "productAttributeCategoryId": 12,
+    "name": "OS",
+    "sortOrder": 3
+  },
+
+  {
+    "typeId": "productAttribute",
+    "productAttributeId": 101,
+    "productId": 3,
+    "productAttributeCategoryId": 11,
+    "productAttributeCategoryItemId": 101,
+    "name": "제품소재",
+    "value": "나이"
+  },
+  {
+    "typeId": "productAttribute",
+    "productAttributeId": 102,
+    "productId": 3,
+    "productAttributeCategoryId": 11,
+    "productAttributeCategoryItemId": 102,
+    "name": "색상",
+    "value": "빨강 "
+  },
+  {
+    "typeId": "productAttribute",
+    "productAttributeId": 103,
+    "productId": 3,
+    "productAttributeCategoryId": 11,
+    "productAttributeCategoryItemId": 103,
+    "name": "세탁방법 및 취급시 주의사항",
+    "value": "절대 손빨래 안대안대. 드라이크리닝 온니 "
   }
 ]

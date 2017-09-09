@@ -276,6 +276,37 @@
         }
       }
     }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "referencedMergeSample",
+    "apiName" : "Referenced Merge Sample",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "testCategory",
+      "query" : [
+        {"includeReferenced" : false, "page": "{{:page}}"}
+      ],
+      "response" :{
+        "categoryName": "",
+        "categoryType" : "",
+        "itemSize" : {"size" : "items"},
+        "merge" : {
+          "typeId" : "testItem",
+          "resultType" : "merge",
+          "query" : [
+            {"field" : "category", "method" : "matching", "value" : "{{:categoryId}}"},
+            {"includeReferenced" : false, "limit" : 1}
+          ],
+          "response" :{
+
+          }
+        }
+      }
+    }
   }
 
 ]

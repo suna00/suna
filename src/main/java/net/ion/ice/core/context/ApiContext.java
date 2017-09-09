@@ -26,7 +26,7 @@ public class ApiContext {
 
     private List<ResultField> resultFieldList ;
 
-    public static ApiContext createContext(Node apiCategory, Node apiNode, Map<String, Object> config, Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, Map<String, Object> session) {
+    public static ApiContext createContext(Node apiCategory, Node apiNode, String typeId, Map<String, Object> config, Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, Map<String, Object> session) {
         ApiContext ctx = new ApiContext() ;
         ctx.apiCategory = apiCategory ;
         ctx.apiNode = apiNode ;
@@ -34,6 +34,9 @@ public class ApiContext {
         ctx.data.put("session", session);
         ctx.data.put("now", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())) ;
         ctx.data.put("sysdate", new Date()) ;
+        if(typeId != null) {
+            ctx.data.put("typeId", typeId);
+        }
 
 
         if(apiCategory.containsKey(COMMON_RESPONSE) && apiCategory.get(COMMON_RESPONSE) != null && ((Map<String, Object>) apiCategory.get(COMMON_RESPONSE)).size() > 0) {
