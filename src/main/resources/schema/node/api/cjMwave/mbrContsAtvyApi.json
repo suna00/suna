@@ -2,6 +2,53 @@
   {
     "typeId": "apiConfig",
     "category": "mbrContsAtvy",
+    "apiId": "IfLike001",
+    "apiName": "콘텐츠별 LIKE(찜) 집계 현황",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "contsMetaDivCd",
+        "required": true
+      },
+      {
+        "paramName": "contsMetaId",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "code",
+      "query": [
+        {
+          "field": "groupCodeId",
+          "method": "matching",
+          "value": "contsMetaDivTid"
+        },
+        {
+          "field": "codeId",
+          "method": "matching",
+          "value": "{{:contsMetaDivCd}}"
+        }
+      ],
+      "response": {
+        "contsMetaDivCd": {
+          "value": "{{:contsMetaDivCd}}"
+        },
+        "contsMetaId": {
+          "value": "{{:contsMetaId}}"
+        },
+        "getposreNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*) as posreNum from contsLikeInfo where contsMetaDivCd = @{contsMetaDivCd} and contsMetaId = concat(@{name},'::',@{contsMetaId})"
+          }
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "mbrContsAtvy",
     "apiId": "IfLike002",
     "apiName": "콘텐츠 LIKE(찜) 등록",
     "method": "POST",
@@ -179,7 +226,7 @@
             "pageSize": "{{:pageSize}}"
           },
           {
-            "referenceView":"contsMetaId"
+            "referenceView": "contsMetaId"
           }
         ],
         "response": {
@@ -187,37 +234,31 @@
           "contsMetaId": "",
           "contsReplSeq": "replSeq",
           "replSbst": "",
-          "mkerId": {
-            "select": {
-              "ds" : "cjDb",
-              "resultType": "value",
-              "sql": "select concat(snsTypeCd,'>',snsKey) as mkerId, aliasNm,thumImgPath from mbrInfo where snsTypeCd = @{snsTypeCd} and snsKey = @{snsKey}"
-            }
-          },
+          "mkerId":"",
           "replLikeNum": {
             "select": {
-              "ds" : "cjDb",
+              "ds": "cjDb",
               "resultType": "value",
               "sql": "select count(*) replLikeNum from replLikeInfo where replSeq = @{replSeq}"
             }
           },
           "myLikeYn": {
             "select": {
-              "ds" : "cjDb",
+              "ds": "cjDb",
               "resultType": "value",
               "sql": "select if(count(*)>0,'Y','N') myLikeYn from replLikeInfo where replSeq = @{replSeq} and mbrId = @{mkerId}"
             }
           },
           "dclaNum": {
             "select": {
-              "ds" : "cjDb",
+              "ds": "cjDb",
               "resultType": "value",
               "sql": "select count(*) dclaNum from replDclaHst where replSeq = @{replSeq}"
             }
           },
           "myDclaYn": {
             "select": {
-              "ds" : "cjDb",
+              "ds": "cjDb",
               "resultType": "value",
               "sql": "select if(count(*)>0,'Y','N') myDclaYn from replDclaHst where replSeq = @{replSeq} and dclarId = @{mkerId}"
             }
