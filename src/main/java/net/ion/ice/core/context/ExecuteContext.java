@@ -21,7 +21,6 @@ import java.util.*;
  */
 public class ExecuteContext extends ReadContext{
 
-    protected Node node;
     protected Node existNode ;
 
     protected boolean exist ;
@@ -136,10 +135,14 @@ public class ExecuteContext extends ReadContext{
             changedProperties = new ArrayList<>() ;
             this.node = existNode.clone() ;
             for(PropertyType pt : nodeType.getPropertyTypes()){
-                if(!data.containsKey(pt.getPid())){
+                if(!data.containsKey(pt.getPid()) && !pt.isI18n()){
                     continue;
                 }
                 Object newValue = NodeUtils.getStoreValue(data, pt, node.getId()) ;
+                if(pt.isI18n() && newValue == null){
+                    continue;
+                }
+
                 Object existValue = existNode.get(pt.getPid()) ;
 
                 if(newValue == null && existValue == null) {
@@ -157,7 +160,7 @@ public class ExecuteContext extends ReadContext{
                     changedProperties.add(pt.getPid()) ;
                 }else if(!newValue.equals(existValue)){
                     if(pt.isI18n()){
-                        ((Map<String, Object>) existValue).putAll((Map<? extends String, ?>) newValue);
+                        ((Map<String, Object>) newValue).putAll((Map<? extends String, ?>) existValue);
                     }
                     node.put(pt.getPid(), newValue) ;
                     changedProperties.add(pt.getPid()) ;
@@ -166,7 +169,7 @@ public class ExecuteContext extends ReadContext{
             execute = changedProperties.size() > 0 ;
             if(execute) {
                 node.setUpdate(userId, time);
-            }else if(event != null && !event.equals("update")){
+            }else if(event != null && !event.equals("update") ){
                 execute = true;
             }
 
@@ -179,6 +182,7 @@ public class ExecuteContext extends ReadContext{
             }
             try {
                 this.node = new Node(data, nodeType.getTypeId());
+                this.id = this.node.getId() ;
                 execute = true;
             }catch(Exception e){
                 execute =false ;
@@ -330,5 +334,16 @@ public class ExecuteContext extends ReadContext{
         }
         ctx.data = data ;
         return ctx ;
+    }
+
+    public Object getResult(){
+        if(result != null){
+            return result ;
+        }else if(this.node != null){
+            this.result = node ;
+            return node ;
+        }else{
+            return NodeUtils.getNode(nodeType.getTypeId(), id) ;
+        }
     }
 }

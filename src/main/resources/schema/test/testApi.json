@@ -129,8 +129,7 @@
         {"field" : "category", "method" : "match", "value" : "{{:category}}" }
       ],
       "response" :{
-        "id" :"",
-        "menus" : "",
+        "_all_" :"",
         "menuList" : {"field" : "menus", "referenceView" : true, "includeReferenced" : false},
         "itemTitle" : "title",
         "itemDesc" : "body",
@@ -273,6 +272,37 @@
           "id": "{{:id}}",
           "category": "{{:category}}",
           "title": "{{:title}}"
+        }
+      }
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "referencedMergeSample",
+    "apiName" : "Referenced Merge Sample",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "testCategory",
+      "query" : [
+        {"includeReferenced" : false, "page": "{{:page}}"}
+      ],
+      "response" :{
+        "categoryName": "",
+        "categoryType" : "",
+        "itemSize" : {"size" : "items"},
+        "merge" : {
+          "typeId" : "testItem",
+          "resultType" : "merge",
+          "query" : [
+            {"field" : "category", "method" : "matching", "value" : "{{:categoryId}}"},
+            {"includeReferenced" : false, "limit" : 1}
+          ],
+          "response" :{
+
+          }
         }
       }
     }

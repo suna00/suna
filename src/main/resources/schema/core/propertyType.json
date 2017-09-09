@@ -360,6 +360,22 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
+    "id": "propertyType>sortable",
+    "pid": "sortable",
+    "propertyTypeName": "Sorting Able",
+    "valueType": "BOOLEAN",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "propertyType",
     "id": "propertyType>analyzer",
     "pid": "analyzer",
     "propertyTypeName": "Analyzer",

@@ -44,6 +44,7 @@ public class ReadContext implements Context {
     protected NodeBindingInfo nodeBindingInfo ;
 
     protected Object result ;
+    protected Node node;
 
     protected String dateFormat ;
     protected Map<String, Object> fileUrlFormat ;
@@ -98,7 +99,7 @@ public class ReadContext implements Context {
 
     protected static void makeContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType, ReadContext context) {
         if (parameterMap == null || parameterMap.size() == 0) {
-            context.setIncludeReferenced(true);
+//            context.setIncludeReferenced(true);
             return ;
         }
         Map<String, Object> data = ContextUtils.makeContextData(parameterMap);
@@ -109,9 +110,9 @@ public class ReadContext implements Context {
         }else if(data.containsKey("pids")){
             makeResultField(context, (String) data.get("pids"));
         }
-        if(context.resultFields == null || context.resultFields.size() == 0 ){
-            context.setIncludeReferenced(true);
-        }
+//        if(context.resultFields == null || context.resultFields.size() == 0 ){
+//            context.setIncludeReferenced(true);
+//        }
 //        makeSearchFields(context, data) ;
     }
 
@@ -210,22 +211,31 @@ public class ReadContext implements Context {
     }
 
     public QueryResult makeResult() {
-        Node node = NodeUtils.getNode(nodeType.getTypeId(), id) ;
-        if(node == null){
-            this.result = data ;
-        }else{
-            this.result = node ;
-        }
-
         QueryResult queryResult = new QueryResult() ;
         queryResult.put("result", "200") ;
         queryResult.put("resultMessage", "SUCCESS") ;
-        if(node != null) {
+        if(result != null){
+            if(result instanceof Node){
+                queryResult.put("item", makeResult((Node) result));
+            }else if(result instanceof Map){
+                queryResult.putAll((Map<? extends String, ?>) result);
+            }else{
+                queryResult.put("response", result.toString()) ;
+            }
+        }else if(this.node != null){
+            this.result = node ;
             queryResult.put("item", makeResult(node));
+        }else{
+            Node node = NodeUtils.getNode(nodeType.getTypeId(), id) ;
+            if(node != null) {
+                queryResult.put("item", makeResult(node));
+            }
         }
 
         return queryResult ;
     }
+
+
 
     protected QueryResult makeResult(Node node) {
         QueryResult itemResult = new QueryResult() ;
@@ -251,7 +261,11 @@ public class ReadContext implements Context {
     protected void makeItemQueryResult(Node node, QueryResult itemResult, Map<String, Object> contextData) {
 
         for (ResultField resultField : getResultFields()) {
-            if (resultField.getContext() != null) {
+            if(resultField.getFieldName().equals("_all_")){
+                for(PropertyType pt : nodeType.getPropertyTypes()){
+                    itemResult.put(pt.getPid(), NodeUtils.getResultValue(this, pt, node));
+                }
+            }else if (resultField.getContext() != null) {
                 ReadContext subQueryContext = (ReadContext) resultField.getContext();
                 if (node != null) {
                     subQueryContext.setNodeData(node);
@@ -266,11 +280,15 @@ public class ReadContext implements Context {
                 switch (resultField.getResultType()) {
                     case QUERY: {
                         ApiQueryContext apiQueryContext = ApiQueryContext.makeContextFromConfig(resultField.getFieldOption(), _data);
+                        apiQueryContext.dateFormat = this.dateFormat ;
+                        apiQueryContext.fileUrlFormat = this.fileUrlFormat ;
                         apiQueryContext.makeQueryResult(itemResult, resultField.getFieldName());
                         break ;
                     }
                     case SELECT: {
                         ApiSelectContext apiQueryContext = ApiSelectContext.makeContextFromConfig(resultField.getFieldOption(), _data);
+                        apiQueryContext.dateFormat = this.dateFormat ;
+                        apiQueryContext.fileUrlFormat = this.fileUrlFormat ;
                         apiQueryContext.makeQueryResult(itemResult, resultField.getFieldName());
                         break ;
                     }
@@ -281,7 +299,11 @@ public class ReadContext implements Context {
                     case OPTION: {
                         String fieldValue = resultField.getFieldValue();
                         fieldValue = fieldValue == null || StringUtils.isEmpty(fieldValue) ? resultField.getFieldName() : fieldValue;
-                        itemResult.put(resultField.getFieldName(), NodeUtils.getResultValue(resultField.getFieldContext(), nodeType.getPropertyType(fieldValue), node));
+
+                        FieldContext fieldContext = resultField.getFieldContext() ;
+                        fieldContext.dateFormat = this.dateFormat ;
+                        fieldContext.fileUrlFormat = this.fileUrlFormat ;
+                        itemResult.put(resultField.getFieldName(), NodeUtils.getResultValue(fieldContext, nodeType.getPropertyType(fieldValue), node));
                         break ;
                     }
                 }
@@ -359,7 +381,7 @@ public class ReadContext implements Context {
         return result;
     }
 
-    public void setResult(Node result) {
+    public void setResult(Object result) {
         this.result = result;
     }
 
@@ -372,10 +394,14 @@ public class ReadContext implements Context {
     }
 
     public boolean hasLocale() {
-        return this.data != null && this.data.containsKey("locale") && StringUtils.isNotEmpty((String) data.get("locale")) ;
+        return this.data != null && ((this.data.containsKey("locale") && StringUtils.isNotEmpty((String) data.get("locale"))) || (this.data.containsKey("langCd") && StringUtils.isNotEmpty((String) data.get("langCd")))) ;
     }
 
     public String getLocale() {
-        return (String) data.get("locale");
+        String locale = (String) data.get("locale");
+        if(StringUtils.isEmpty(locale) && this.data.containsKey("langCd")){
+            return (String) data.get("langCd");
+        }
+        return locale ;
     }
 }

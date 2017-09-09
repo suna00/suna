@@ -30,7 +30,7 @@ public class ReferenceQueryContext extends QueryContext{
         }
 
         queryContext.queryTermType = QueryTerm.QueryTermType.NODE ;
-        makeQueryTerm(nodeType, queryContext) ;
+        queryContext.makeQueryTerm(nodeType) ;
 
         return queryContext;
     }
