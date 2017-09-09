@@ -4,7 +4,7 @@
     "typeId" : "nodeType",
     "id" : "configMng",
     "tid" : "configMng",
-    "typeName" : "설정 관리",
+    "typeName" : "Configuration",
     "repositoryType" : "path",
     "eviction" : 0
   },

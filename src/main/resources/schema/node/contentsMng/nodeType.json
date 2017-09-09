@@ -4,7 +4,7 @@
     "typeId" : "nodeType",
     "id" : "contentsMng",
     "tid" : "contentsMng",
-    "typeName" : "콘텐츠 관리",
+    "typeName" : "Contents",
     "repositoryType" : "path",
     "eviction" : 0
   }

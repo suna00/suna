@@ -11,8 +11,17 @@
   {
     "typeId" : "adminGnbMenu",
     "backOfficeId": "adm",
-    "menuId": "productMng",
-    "menuName": "상품",
+    "menuId": "assetMng",
+    "menuName": "Assets",
+    "order": "15",
+    "icon": "",
+    "active": "true"
+  },
+  {
+    "typeId" : "adminGnbMenu",
+    "backOfficeId": "adm",
+    "menuId": "contentMng",
+    "menuName": "Contents",
     "order": "20",
     "icon": "",
     "active": "true"
@@ -21,7 +30,7 @@
     "typeId" : "adminGnbMenu",
     "backOfficeId": "adm",
     "menuId": "displayMng",
-    "menuName": "전시",
+    "menuName": "Display",
     "order": "30",
     "icon": "",
     "active": "true"
@@ -30,7 +39,7 @@
     "typeId" : "adminGnbMenu",
     "backOfficeId": "adm",
     "menuId": "menuMng",
-    "menuName": "메뉴",
+    "menuName": "Menu",
     "order": "40",
     "icon": "",
     "active": "true"
@@ -39,7 +48,7 @@
     "typeId" : "adminGnbMenu",
     "backOfficeId": "adm",
     "menuId": "marketingMng",
-    "menuName": "마케팅",
+    "menuName": "Marketing",
     "order": "50",
     "icon": "",
     "active": "true"
@@ -48,25 +57,16 @@
     "typeId" : "adminGnbMenu",
     "backOfficeId": "adm",
     "menuId": "orderPaymentMng",
-    "menuName": "주문/결재",
+    "menuName": "Order/Payment",
     "order": "60",
     "icon": "",
     "active": "true"
   },
-  {
-    "typeId" : "adminGnbMenu",
-    "backOfficeId": "adm",
-    "menuId": "settlementMng",
-    "menuName": "정산",
-    "order": "70",
-    "icon": "",
-    "active": "true"
-  },
-  {
+    {
     "typeId" : "adminGnbMenu",
     "backOfficeId": "adm",
     "menuId": "affiliateMng",
-    "menuName": "제휴사",
+    "menuName": "Partner",
     "order": "80",
     "icon": "",
     "active": "true"
@@ -74,17 +74,8 @@
   {
     "typeId" : "adminGnbMenu",
     "backOfficeId": "adm",
-    "menuId": "venderMng",
-    "menuName": "벤더",
-    "order": "90",
-    "icon": "",
-    "active": "true"
-  },
-  {
-    "typeId" : "adminGnbMenu",
-    "backOfficeId": "adm",
     "menuId": "noticeMng",
-    "menuName": "알림",
+    "menuName": "Notice",
     "order": "100",
     "icon": "",
     "active": "true"
@@ -93,7 +84,7 @@
     "typeId" : "adminGnbMenu",
     "backOfficeId": "adm",
     "menuId": "policyMng",
-    "menuName": "정책",
+    "menuName": "Policy",
     "order": "110",
     "icon": "",
     "active": "true"
@@ -102,7 +93,7 @@
     "typeId" : "adminGnbMenu",
     "backOfficeId": "adm",
     "menuId": "analysisStatistics",
-    "menuName": "분석/통계",
+    "menuName": "Analysis/Statistics",
     "order": "120",
     "icon": "",
     "active": "true"
@@ -111,7 +102,7 @@
     "typeId" : "adminGnbMenu",
     "backOfficeId": "adm",
     "menuId": "serviceCenterMng",
-    "menuName": "고객센터",
+    "menuName": "Customer",
     "order": "130",
     "icon": "",
     "active": "true"
@@ -119,8 +110,8 @@
   {
     "typeId" : "adminGnbMenu",
     "backOfficeId": "adm",
-    "menuId": "adminAccountMng",
-    "menuName": "관리자계정",
+    "menuId": "configMng",
+    "menuName": "Configuration",
     "order": "140",
     "icon": "",
     "active": "true"
