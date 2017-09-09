@@ -104,7 +104,9 @@ public class ContextUtils {
 
         for(String fieldName : response.keySet()) {
             Object fieldValue = response.get(fieldName) ;
-            if (fieldValue == null) {
+            if(fieldName.equals("_all_")){
+                readContext.addResultField(new ResultField(fieldName, fieldName));
+            } else if (fieldValue == null) {
                 readContext.addResultField(new ResultField(fieldName, fieldName));
             } else if (fieldValue instanceof String) {
                 if(StringUtils.isEmpty((String) fieldValue)){
