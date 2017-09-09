@@ -87,12 +87,20 @@
     "method": "GET",
     "parameters": [
       {
-        "paramName": "langCd",
+        "paramName": "searchKeyword",
         "required": false
       },
       {
         "paramName": "ntfBbsSeq",
         "required": true
+      },
+      {
+        "paramName": "svcTermlDivCd",
+        "required": false
+      },
+      {
+        "paramName": "ntfLargeCtgCd",
+        "required": false
       }
     ],
     "config": {
@@ -110,6 +118,8 @@
         "pstngFnsDt": "",
         "ntfSbst": "",
         "hitNum": "retvNum",
+        "owner":"",
+        "created":"",
         "preItem": {
           "typeId": "ntfBbs",
           "query": [
