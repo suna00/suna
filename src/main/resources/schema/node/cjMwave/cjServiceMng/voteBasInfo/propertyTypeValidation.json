@@ -161,8 +161,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>voteBasInfo>thumImgPath",
-    "propertyTypeId": "voteBasInfo>thumImgPath",
+    "id": "propertyTypeValidation>voteBasInfo>thumImgUrl",
+    "propertyTypeId": "voteBasInfo>thumImgUrl",
     "validation": {
       "language": "ko",
       "required": {
