@@ -370,10 +370,10 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": false,
-    "analyzer": null,
+    "indexable": true,
+    "analyzer": "code",
     "referenceType": "code",
-    "referenceValue": "",
+    "referenceValue": "codeId",
     "codeFilter": "intrstCd",
     "defaultValue": ""
   },
