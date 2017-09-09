@@ -2,7 +2,7 @@
   {
     "typeId": "replInfo",
     "replSeq": 1,
-    "contsMetaDivCd": "2",
+    "contsMetaDivCd": "1",
     "contsMetaId": "artist::artist_00001",
     "mkerId": "1>park100",
     "replSbst": "사진 좋아요"
@@ -10,7 +10,7 @@
   {
     "typeId": "replInfo",
     "replSeq": 2,
-    "contsMetaDivCd": "2",
+    "contsMetaDivCd": "1",
     "contsMetaId": "artist::artist_00001",
     "mkerId": "1>park100",
     "replSbst": "이쁘네요~"
@@ -18,7 +18,7 @@
   {
     "typeId": "replInfo",
     "replSeq": 3,
-    "contsMetaDivCd": "2",
+    "contsMetaDivCd": "1",
     "contsMetaId": "artist::artist_00001",
     "mkerId": "1>park100",
     "replSbst": "나도 보고싶다."
@@ -26,7 +26,7 @@
   {
     "typeId": "replInfo",
     "replSeq": 4,
-    "contsMetaDivCd": "2",
+    "contsMetaDivCd": "1",
     "contsMetaId": "artist::artist_00001",
     "mkerId": "1>park100",
     "replSbst": "사진 쥑이네요"
@@ -34,7 +34,7 @@
   {
     "typeId": "replInfo",
     "replSeq": 5,
-    "contsMetaDivCd": "2",
+    "contsMetaDivCd": "1",
     "contsMetaId": "artist::artist_00001",
     "mkerId": "1>park100",
     "replSbst": "여기 아저씨도 있는 듯.."
@@ -42,7 +42,7 @@
   {
     "typeId": "replInfo",
     "replSeq": 5216,
-    "contsMetaDivCd": "3",
+    "contsMetaDivCd": "1",
     "contsMetaId": "artist::artist_00001",
     "mkerId": "1>park100",
     "replSbst": "오빠 넘 멋져요~~~!!"
@@ -58,7 +58,7 @@
   {
     "typeId": "replInfo",
     "replSeq": 5024,
-    "contsMetaDivCd": "4",
+    "contsMetaDivCd": "1",
     "contsMetaId": "artist::artist_00001",
     "mkerId": "3>1232",
     "replSbst": "우원재 짱!!!"
@@ -66,7 +66,7 @@
   {
     "typeId": "replInfo",
     "replSeq": 5142,
-    "contsMetaDivCd": "4",
+    "contsMetaDivCd": "1",
     "contsMetaId": "artist::artist_00001",
     "mkerId": "4>5934",
     "replSbst": "쇼미더머니 1위는 행쥬우~~~~"
@@ -74,7 +74,7 @@
   {
     "typeId": "replInfo",
     "replSeq": 5143,
-    "contsMetaDivCd": "4",
+    "contsMetaDivCd": "1",
     "contsMetaId": "artist::artist_00001",
     "mkerId": "5>1412",
     "replSbst": "예얍~ "
