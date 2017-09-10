@@ -97,21 +97,7 @@
       "typeId": "album",
       "id": "{{:albumId}}",
       "response": {
-        "albumId": "",
-        "albumNm": "",
-        "artistId": "",
-        "comotDt": "",
-        "comotCntry": "",
-        "typeCd": "",
-        "genreCd": "",
-        "dstrbCrcrt": "",
-        "subName": "",
-        "sersName": "",
-        "albumDesc": "",
-        "imgPath": "",
-        "findKywrd": "",
-        "showCntryCdList": "",
-        "relAlbumIds": "",
+        "_all_" :"",
         "seoTitle": {
           "value": "{{:albumNm}} | Mwave"
         },
