@@ -34,7 +34,7 @@
     "config": {
       "createMember": {
         "typeId": "mbrInfo",
-        "event": "create",
+        "event": "save",
         "data": {
           "snsKey": "{{:snsKey}}",
           "snsTypeCd": "{{:snsTypeCd}}",
@@ -44,7 +44,7 @@
           "infoOttpAgreeYn": "{{:infoOttpAgreeYn}}",
           "mbrDivCd": "1",
           "mbrSttusCd": "1",
-          "sbscDt": "20170831"
+          "sbscDt": "{{:sysdate}}"
         }
       }
     }
@@ -81,7 +81,7 @@
         "required": false
       },
       {
-        "paramName": "bthYm",
+        "paramName": "bthYear",
         "required": false
       },
       {
@@ -90,6 +90,14 @@
       },
       {
         "paramName": "infoOttpAgreeYn",
+        "required": true
+      },
+      {
+        "paramName": "email",
+        "required": false
+      },
+      {
+        "paramName": "emailRcvYn",
         "required": true
       }
     ],
@@ -104,9 +112,11 @@
           "cntryCd": "{{:cntryCd}}",
           "sexCd": "{{:sexCd}}",
           "thumImgPath": "{{:mbrImg}}",
-          "bthYm": "{{:bthYm}}",
+          "bthYear": "{{:bthYear}}",
           "intrstCdList": "{{:intrstCdList}}",
           "infoOttpAgreeYn": "{{:infoOttpAgreeYn}}",
+          "email": "{{:email}}",
+          "emailRcvYn": "{{:emailRcvYn}}",
           "mbrDivCd": "2",
           "mbrSttusCd": "1"
         }
