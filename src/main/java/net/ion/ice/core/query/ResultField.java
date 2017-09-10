@@ -110,7 +110,7 @@ public class ResultField {
         NESTED,
         LIST,
         READ,
-        SIZE
+        NONE, SIZE
     }
 
     public enum ExecuteType {
