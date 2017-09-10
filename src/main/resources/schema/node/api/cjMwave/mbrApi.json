@@ -44,6 +44,9 @@
         "mbrDivCd": "1",
         "mbrSttusCd": "1",
         "sbscDt": "{{:now}}"
+      },
+      "response": {
+        "sbscDt": ""
       }
     }
   },
@@ -100,24 +103,25 @@
       }
     ],
     "config": {
-      "updateMember": {
-        "typeId": "mbrInfo",
-        "event": "update",
-        "data": {
-          "snsKey": "{{:snsKey}}",
-          "snsTypeCd": "{{:snsTypeCd}}",
-          "aliasNm": "{{:aliasNm}}",
-          "cntryCd": "{{:cntryCd}}",
-          "sexCd": "{{:sexCd}}",
-          "thumImgPath": "{{:imgUrl}}",
-          "bthYear": "{{:bthYear}}",
-          "intrstCdList": "{{:intrstCdList}}",
-          "infoOttpAgreeYn": "{{:infoOttpAgreeYn}}",
-          "email": "{{:email}}",
-          "emailRcvYn": "{{:emailRcvYn}}",
-          "mbrDivCd": "2",
-          "mbrSttusCd": "1"
-        }
+      "typeId": "mbrInfo",
+      "event": "update",
+      "data": {
+        "snsKey": "{{:snsKey}}",
+        "snsTypeCd": "{{:snsTypeCd}}",
+        "aliasNm": "{{:aliasNm}}",
+        "cntryCd": "{{:cntryCd}}",
+        "sexCd": "{{:sexCd}}",
+        "thumImgPath": "{{:imgUrl}}",
+        "bthYear": "{{:bthYear}}",
+        "intrstCdList": "{{:intrstCdList}}",
+        "infoOttpAgreeYn": "{{:infoOttpAgreeYn}}",
+        "email": "{{:email}}",
+        "emailRcvYn": "{{:emailRcvYn}}",
+        "mbrDivCd": "2",
+        "mbrSttusCd": "1"
+      },
+      "response": {
+        "changed": ""
       }
     }
   },
@@ -138,15 +142,16 @@
       }
     ],
     "config": {
-      "updateMember": {
-        "typeId": "mbrInfo",
-        "event": "update",
-        "data": {
-          "snsKey": "{{:snsKey}}",
-          "snsTypeCd": "{{:snsTypeCd}}",
-          "rtrmmbDate":"{{:now}}",
-          "mbrSttusCd": "3"
-        }
+      "typeId": "mbrInfo",
+      "event": "update",
+      "data": {
+        "snsKey": "{{:snsKey}}",
+        "snsTypeCd": "{{:snsTypeCd}}",
+        "rtrmmbDate": "{{:now}}",
+        "mbrSttusCd": "3"
+      },
+      "response": {
+        "rtrmmbDate": ""
       }
     }
   },
@@ -192,15 +197,16 @@
       }
     ],
     "config": {
-      "updateMember": {
-        "typeId": "mbrInfo",
-        "event": "update",
-        "data": {
-          "snsKey": "{{:snsKey}}",
-          "snsTypeCd": "{{:snsTypeCd}}",
-          "infoOttpAgreeYn": "{{:infoOttpAgreeYn}}",
-          "mbrSttusCd": "1"
-        }
+      "typeId": "mbrInfo",
+      "event": "update",
+      "data": {
+        "snsKey": "{{:snsKey}}",
+        "snsTypeCd": "{{:snsTypeCd}}",
+        "infoOttpAgreeYn": "{{:infoOttpAgreeYn}}",
+        "mbrSttusCd": "1"
+      },
+      "response": {
+        "changed": ""
       }
     }
   },
@@ -249,10 +255,8 @@
       }
     ],
     "config": {
-      "updateMember": {
-        "typeId": "mbrInfo",
-        "event": "update"
-      }
+      "typeId": "mbrInfo",
+      "event": "update"
     }
   }
 ]

@@ -145,7 +145,7 @@
         {
           "field": "mkerId",
           "method": "matching",
-          "value": "{{:snsTypeCd}}>{{:snsKey}}"
+          "value": "{{:makeIdValue(>,snsTypeCd,snsKey)}}"
         },
         {
           "sorting": "{{:sorting}}"
@@ -198,7 +198,7 @@
         {
           "field": "qnarId",
           "method": "matching",
-          "value": "{{:snsTypeCd}}>{{:snsKey}}"
+          "value": "{{:makeIdValue(>,snsTypeCd,snsKey)}}"
         },
         {
           "sorting": "{{:sorting}}"

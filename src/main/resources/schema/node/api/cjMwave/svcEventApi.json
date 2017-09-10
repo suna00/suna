@@ -143,7 +143,10 @@
       "root": {
         "typeId": "votePwnrInfo",
         "event": "update",
-        "if": "{{:aboveInt(votePwnrSeq,0)}}"
+        "if": "{{:aboveInt(votePwnrSeq,0)}}",
+        "response": {
+          "changed": ""
+        }
       }
     }
   }

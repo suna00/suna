@@ -7,22 +7,6 @@
     "method": "GET",
     "parameters": [
       {
-        "paramName": "page",
-        "required": false
-      },
-      {
-        "paramName": "pageSize",
-        "required": false
-      },
-      {
-        "paramName": "sorting",
-        "required": false
-      },
-      {
-        "paramName": "langCd",
-        "required": false
-      },
-      {
         "paramName": "bradDate",
         "required": false
       }
@@ -31,13 +15,8 @@
       "typeId": "mcdLineupInfo",
       "query": [
         {
-          "field": "bradStDate",
-          "method": "below",
-          "value": "{{:bradDate}}"
-        },
-        {
-          "field": "bradFnsDate",
-          "method": "above",
+          "field": "bradDate",
+          "method": "matching",
           "value": "{{:bradDate}}"
         },
         {
@@ -54,7 +33,14 @@
         {
           "includeReferenced": true
         }
-      ]
+      ],
+      "response":{
+        "_all_": "",
+        "lineupNum":{
+          "resultType": "size",
+          "field": "refdLineupList"
+        }
+      }
     }
   }
 ]

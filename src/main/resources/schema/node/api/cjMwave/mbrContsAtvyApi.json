@@ -7,6 +7,22 @@
     "method": "GET",
     "parameters": [
       {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
         "paramName": "contsMetaDivCd",
         "required": true
       },
@@ -73,6 +89,7 @@
     "config": {
       "getContsMetaDivTid": {
         "typeId": "code",
+        "resultType": "none",
         "query": [
           {
             "field": "groupCodeId",
@@ -94,8 +111,11 @@
         "event": "save",
         "data": {
           "contsMetaDivCd": "{{:contsMetaDivCd}}",
-          "contsMetaId": "{{:name}}::{{:contsMetaId}}",
-          "mbrId": "{{:snsTypeCd}}>{{:snsKey}}"
+          "contsMetaId": "{{:makeIdValue(::,name,contsMetaId)}}",
+          "mbrId": "{{:makeIdValue(>,snsTypeCd,snsKey)}}"
+        },
+        "response": {
+          "likeSeq": ""
         }
       }
     }
@@ -125,6 +145,9 @@
       "event": "delete",
       "data": {
         "likeSeq": "{{:likeSeq}}"
+      },
+      "response": {
+        "likeSeq": ""
       }
     }
   },
@@ -153,7 +176,10 @@
       "event": "save",
       "data": {
         "replSeq": "{{:contsReplSeq}}",
-        "mbrId": "{{:snsTypeCd}}>{{:snsKey}}"
+        "mbrId": "{{:makeIdValue(>,snsTypeCd,snsKey)}}"
+      },
+      "response": {
+        "replLikeSeq": ""
       }
     }
   },
@@ -164,6 +190,22 @@
     "apiName": "콘텐츠별 댓글 목록조회",
     "method": "GET",
     "parameters": [
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
       {
         "paramName": "snsKey",
         "required": false
@@ -184,6 +226,7 @@
     "config": {
       "getContsMetaDivTid": {
         "typeId": "code",
+        "resultType": "none",
         "query": [
           {
             "field": "groupCodeId",
@@ -232,9 +275,9 @@
         "response": {
           "contsMetaDivCd": "",
           "contsMetaId": "",
-          "contsReplSeq": "replSeq",
+          "replSeq": "",
           "replSbst": "",
-          "mkerId":"",
+          "mkerId": "",
           "replLikeNum": {
             "select": {
               "ds": "cjDb",
@@ -261,6 +304,19 @@
               "ds": "cjDb",
               "resultType": "value",
               "sql": "select if(count(*)>0,'Y','N') myDclaYn from replDclaHst where replSeq = @{replSeq} and dclarId = @{makeIdValue(>,snsTypeCd,snsKey)}"
+            }
+          },
+          "dclaMaxNum": {
+            "typeId": "blacklistDclaSetupMng",
+            "resultType": "merge",
+            "query": [
+              {
+                "sorting": "dclaSetupSeq desc",
+                "limit": "1"
+              }
+            ],
+            "response": {
+              "dclaMaxNum": "setupBaseCnt"
             }
           },
           "created": ""
