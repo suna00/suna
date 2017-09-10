@@ -58,7 +58,6 @@ public class QueryContext extends ReadContext {
         QueryContext queryContext = new QueryContext(nodeType);
         ReadContext.makeContextFromParameter(parameterMap, nodeType, queryContext);
 
-        queryContext.queryTermType = QueryTerm.QueryTermType.NODE ;
         queryContext.makeQueryTerm(nodeType) ;
 
         queryContext.makeSearchFields() ;
