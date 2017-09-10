@@ -57,7 +57,10 @@
             {
               "field": "awardSctnSeq",
               "method": "referenceJoin",
-              "value": "awardSctnSeq_matching={{:awardSctnSeq}}&sorting=sortOdrg"
+              "value": "awardSctnSeq_matching={{:awardSctnSeq}}"
+            },
+            {
+              "sorting":"sortOdrg"
             }
           ]
         }
