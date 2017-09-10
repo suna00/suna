@@ -11,7 +11,9 @@
     "relPgmIds": "1231231",
     "relArtistIds": "artist_00001",
     "relSongIds": "song_00001",
-    "mnetIfTrtYn": true
+    "mnetIfTrtYn": true,
+    "rcmdContsYn": true
+
   },
   {
     "typeId": "groupPhoto",
@@ -25,6 +27,7 @@
     "relPgmIds": "23123",
     "relArtistIds": "artist_00002",
     "relSongIds": "song_00002",
-    "mnetIfTrtYn": true
+    "mnetIfTrtYn": true,
+    "rcmdContsYn": true
   }
 ]

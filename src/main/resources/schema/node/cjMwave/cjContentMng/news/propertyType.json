@@ -14,6 +14,7 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -31,6 +32,7 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -48,6 +50,7 @@
     "analyzer": "code",
     "referenceType": "contsCtgry",
     "referenceValue": "contsCtgryId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -56,7 +59,7 @@
     "pid": "authrName",
     "id": "news>authrName",
     "propertyTypeName": "저자명",
-    "valueType": "STRING",
+    "valueType": "TEXT",
     "required": false,
     "idable": false,
     "labelable": false,
@@ -65,6 +68,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -82,6 +86,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -90,6 +95,24 @@
     "pid": "mscomName",
     "id": "news>mscomName",
     "propertyTypeName": "언론사명",
+    "valueType": "TEXT",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "news",
+    "pid": "thumImgUrl",
+    "id": "news>thumImgUrl",
+    "propertyTypeName": "썸네일 이미지 경로",
     "valueType": "STRING",
     "required": false,
     "idable": false,
@@ -99,23 +122,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "news",
-    "pid": "thumImgPath",
-    "id": "news>thumImgPath",
-    "propertyTypeName": "썸네일 이미지 경로",
-    "valueType": "FILE",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "",
-    "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -133,6 +140,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -150,7 +158,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
-    "codeFilter": "apvSttusCd",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -159,7 +167,7 @@
     "pid": "artclOriginUrl",
     "id": "news>artclOriginUrl",
     "propertyTypeName": "기사 원본 URL",
-    "valueType": "STRING",
+    "valueType": "TEXT",
     "required": false,
     "idable": false,
     "labelable": false,
@@ -168,6 +176,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -176,7 +185,7 @@
     "pid": "refNewsIds",
     "id": "news>refNewsIds",
     "propertyTypeName": "연관 뉴스 아이디",
-    "valueType": "REFERENCE",
+    "valueType": "REFERENCES",
     "required": false,
     "idable": false,
     "labelable": false,
@@ -185,6 +194,7 @@
     "analyzer": "code",
     "referenceType": "news",
     "referenceValue": "newsId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -193,7 +203,7 @@
     "pid": "relArtistIds",
     "id": "news>relArtistIds",
     "propertyTypeName": "연관 아티스트 아이디",
-    "valueType": "REFERENCE",
+    "valueType": "REFERENCES",
     "required": false,
     "idable": false,
     "labelable": false,
@@ -202,6 +212,7 @@
     "analyzer": "code",
     "referenceType": "artist",
     "referenceValue": "artistId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -210,7 +221,7 @@
     "pid": "relSongIds",
     "id": "news>relSongIds",
     "propertyTypeName": "연관 곡 아이디",
-    "valueType": "REFERENCE",
+    "valueType": "REFERENCES",
     "required": false,
     "idable": false,
     "labelable": false,
@@ -219,6 +230,7 @@
     "analyzer": "code",
     "referenceType": "song",
     "referenceValue": "songId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -227,7 +239,7 @@
     "pid": "refVodIds",
     "id": "news>refVodIds",
     "propertyTypeName": "연관 VOD 아이디",
-    "valueType": "REFERENCE",
+    "valueType": "REFERENCES",
     "required": false,
     "idable": false,
     "labelable": false,
@@ -236,6 +248,7 @@
     "analyzer": "code",
     "referenceType": "pgmVideo",
     "referenceValue": "contentId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -244,15 +257,16 @@
     "pid": "refClipIds",
     "id": "news>refClipIds",
     "propertyTypeName": "연관 CLIP 아이디",
-    "valueType": "TEXT",
+    "valueType": "REFERENCES",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
-    "analyzer": "cjk",
-    "referenceType": "",
-    "referenceValue": "",
+    "analyzer": "code",
+    "referenceType": "pgmVideo",
+    "referenceValue": "contentId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -267,9 +281,10 @@
     "labelable": false,
     "treeable": false,
     "indexable": true,
-    "analyzer": "code",
+    "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -287,6 +302,24 @@
     "analyzer": "code",
     "referenceType": "langMng",
     "referenceValue": "langId",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "news",
+    "pid": "hitNum",
+    "id": "news>hitNum",
+    "propertyTypeName": "조회수",
+    "valueType": "INT",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "simple",
+    "referenceType": "",
+    "referenceValue": "",
     "codeFilter": "",
     "defaultValue": ""
   },
@@ -311,16 +344,34 @@
   {
     "typeId": "propertyType",
     "tid": "news",
-    "pid": "seoUrl",
-    "id": "news>seoUrl",
-    "propertyTypeName": "SEO url",
-    "valueType": "STRING",
+    "pid": "replNum",
+    "id": "news>replNum",
+    "propertyTypeName": "댓글수",
+    "valueType": "INT",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": false,
-    "analyzer": null,
+    "indexable": true,
+    "analyzer": "simple",
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "news",
+    "pid": "likeNum",
+    "id": "news>likeNum",
+    "propertyTypeName": "Like 횟수",
+    "valueType": "INT",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",
@@ -359,6 +410,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -376,6 +428,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -393,6 +446,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
@@ -410,6 +464,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   }
 ]

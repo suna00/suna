@@ -99,7 +99,7 @@
       "response": {
         "_all_" :"",
         "seoTitle": {
-          "value": "{{:albumNm}} | Mwave"
+          "value": "Mwave"
         },
         "seoDesc": "albumDesc",
         "seoKywrd": "findKywrd"
@@ -283,31 +283,11 @@
       "typeId": "artist",
       "id": "{{:artistId}}",
       "response": {
-        "artistId": "",
-        "artistNm": "",
-        "cretDt": "",
-        "bpnac": "",
-        "sex": "",
-        "typeCd": "",
-        "genreCd": "",
-        "debutDt": "",
-        "debutAlbum": "",
-        "artistDesc": "",
-        "atvyNm": "",
-        "imgUrl": "",
-        "findKywrd": "",
-        "relArtistIds": "",
-        "showCntryCdList": "",
-        "showYn": "",
-        "mnetIfTrtYn": "",
-        "owner": "",
-        "created": "",
-        "modifier": "",
-        "changed": "",
+        "_all_" :"",
         "seoTitle": {
-          "value": " | Mwave"
+          "value": "Mwave"
         },
-        "seoDesc": "musicVideoDesc",
+        "seoDesc": "artistDesc",
         "seoKywrd": "findKywrd"
       }
     }
@@ -388,25 +368,7 @@
       "typeId": "musicVideo",
       "id": "{{:musicVideoId}}",
       "response": {
-        "musicVideoId": "",
-        "musicVideoNm": "",
-        "subName": "",
-        "genreCd": "",
-        "musicVideoDesc": "",
-        "imgUrl": "",
-        "findKywrd": "",
-        "comotDt": "",
-        "artistId": "",
-        "youtubeUrl": "",
-        "todouUrl": "",
-        "playTime": "",
-        "showCntryCdList": "",
-        "mnetIfTrtYn": "",
-        "showYn": "",
-        "relSongIds": "",
-        "relArtistIds": "",
-        "rcmdContsYnv": "",
-        "relAlbumIds": "",
+        "_all_" :"",
         "seoTitle": {
           "value": " | Mwave"
         },
@@ -502,7 +464,16 @@
     ],
     "config": {
       "typeId": "news",
-      "id": "{{:newsId}}"
+      "id": "{{:newsId}}",
+      "response": {
+        "_all_" :"",
+        "seoTitle": {
+          "value": " | Mwave"
+        },
+        "seoDesc": "newsDesc",
+        "seoKywrd": "findKywrd",
+        "seoUrl": "artclOriginUrl"
+      }
     }
   },
   {
