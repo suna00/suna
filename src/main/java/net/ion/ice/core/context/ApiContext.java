@@ -93,7 +93,7 @@ public class ApiContext {
             ApiQueryContext queryContext = ApiQueryContext.makeContextFromConfig(ctxRootConfig, data) ;
             setApiResultFormat(queryContext);
 
-            QueryResult queryResult = queryContext.makeQueryResult(null, null) ;
+            QueryResult queryResult = queryContext.makeQueryResult() ;
 
             addResultData(queryContext.getResult());
 
