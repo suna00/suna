@@ -423,14 +423,9 @@
           "typeId": "musicVideo",
           "query": [
             {
-              "field": "artistId",
+              "field": "ctgryId",
               "method": "matching",
-              "value": "{{:artistId}}"
-            },
-            {
-              "field": "findKywrd",
-              "method": "matching",
-              "value": "{{:searchKeyword}}"
+              "value": "{{:ctgryId}}"
             },
             {
               "field": "showYn",
@@ -438,11 +433,55 @@
               "value": "true"
             },
             {
-              "sorting": "{{:sorting}}"
+              "sorting": "created desc",
+              "limit" : "15"
+            }
+          ]
+        },
+        "rcmdNewsList": {
+          "typeId": "news",
+          "query": [
+            {
+              "field": "relArtistIds",
+              "method": "matching",
+              "value": "{{:relArtistIds}}"
             },
             {
-              "page": "{{:page}}",
-              "pageSize": "{{:pageSize}}"
+              "field": "showYn",
+              "method": "matching",
+              "value": "true"
+            },
+            {
+              "sorting": "created desc",
+              "limit" : "2"
+            }
+          ]
+        },
+        "rcmdVideoList": {
+          "typeId": "videItgInfo",
+          "query": [
+            {
+              "field": "artistId",
+              "method": "matching",
+              "value": "{{:relArtistIds}}"
+            },
+            {
+              "sorting": "created desc",
+              "limit" : "2"
+            }
+          ]
+        },
+        "rcmdSPhotoList": {
+          "typeId": "singlePhoto",
+          "query": [
+            {
+              "field": "relArtistIds",
+              "method": "matching",
+              "value": "{{:relArtistIds}}"
+            },
+            {
+              "sorting": "created desc",
+              "limit" : "2"
             }
           ]
         }
@@ -568,7 +607,109 @@
         },
         "seoDesc": "newsDesc",
         "seoKywrd": "findKywrd",
-        "seoUrl": "seoUrl"
+        "seoUrl": "seoUrl",
+        "nextItem": {
+          "typeId": "news",
+          "query": [
+            {
+              "field": "newsId",
+              "method": "under",
+              "value": "{{:newsId}}"
+            },
+            {
+              "sorting": "newsId desc",
+              "limit": "1"
+            }
+          ],
+          "response": {
+            "newsId": "",
+            "newsNm": ""
+          }
+        },
+        "preItem": {
+          "typeId": "news",
+          "query": [
+            {
+              "field": "newsId",
+              "method": "excess",
+              "value": "{{:newsId}}"
+            },
+            {
+              "sorting": "newsId asc",
+              "limit": "1"
+            }
+          ],
+          "response": {
+            "newsId": "",
+            "newsNm": ""
+          }
+        },
+        "refNewsList": {
+          "typeId": "news",
+          "query": [
+            {
+              "field": "ctgryId",
+              "method": "matching",
+              "value": "{{:ctgryId}}"
+            },
+            {
+              "field": "showYn",
+              "method": "matching",
+              "value": "true"
+            },
+            {
+              "sorting": "created desc",
+              "limit" : "15"
+            }
+          ]
+        },
+        "rcmdNewsList": {
+          "typeId": "news",
+          "query": [
+            {
+              "field": "relArtistIds",
+              "method": "matching",
+              "value": "{{:relArtistIds}}"
+            },
+            {
+              "field": "showYn",
+              "method": "matching",
+              "value": "true"
+            },
+            {
+              "sorting": "created desc",
+              "limit" : "2"
+            }
+          ]
+        },
+        "rcmdVideoList": {
+          "typeId": "videItgInfo",
+          "query": [
+            {
+              "field": "artistId",
+              "method": "matching",
+              "value": "{{:relArtistIds}}"
+            },
+            {
+              "sorting": "created desc",
+              "limit" : "2"
+            }
+          ]
+        },
+        "rcmdSPhotoList": {
+          "typeId": "singlePhoto",
+          "query": [
+            {
+              "field": "relArtistIds",
+              "method": "matching",
+              "value": "{{:relArtistIds}}"
+            },
+            {
+              "sorting": "created desc",
+              "limit" : "2"
+            }
+          ]
+        }
       }
     }
   },
@@ -704,6 +845,72 @@
             "resultType": "value",
             "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('groupPhoto','::',@{groupPhotoId})"
           }
+        },
+        "refSinglePhotoList": {
+          "typeId": "singlePhoto",
+          "query": [
+            {
+              "field": "ctgryId",
+              "method": "matching",
+              "value": "{{:ctgryId}}"
+            },
+            {
+              "field": "showYn",
+              "method": "matching",
+              "value": "true"
+            },
+            {
+              "sorting": "created desc",
+              "limit" : "15"
+            }
+          ]
+        },
+        "rcmdNewsList": {
+          "typeId": "news",
+          "query": [
+            {
+              "field": "relArtistIds",
+              "method": "matching",
+              "value": "{{:relArtistIds}}"
+            },
+            {
+              "field": "showYn",
+              "method": "matching",
+              "value": "true"
+            },
+            {
+              "sorting": "created desc",
+              "limit" : "2"
+            }
+          ]
+        },
+        "rcmdVideoList": {
+          "typeId": "videItgInfo",
+          "query": [
+            {
+              "field": "artistId",
+              "method": "matching",
+              "value": "{{:relArtistIds}}"
+            },
+            {
+              "sorting": "created desc",
+              "limit" : "2"
+            }
+          ]
+        },
+        "rcmdSPhotoList": {
+          "typeId": "singlePhoto",
+          "query": [
+            {
+              "field": "relArtistIds",
+              "method": "matching",
+              "value": "{{:relArtistIds}}"
+            },
+            {
+              "sorting": "created desc",
+              "limit" : "2"
+            }
+          ]
         }
       }
     }
@@ -715,22 +922,6 @@
     "apiName": "싱글 포토 목록조회",
     "method": "GET",
     "parameters": [
-      {
-        "paramName": "page",
-        "required": false
-      },
-      {
-        "paramName": "pageSize",
-        "required": false
-      },
-      {
-        "paramName": "sorting",
-        "required": false
-      },
-      {
-        "paramName": "langCd",
-        "required": false
-      },
       {
         "paramName": "ctgryId",
         "required": false

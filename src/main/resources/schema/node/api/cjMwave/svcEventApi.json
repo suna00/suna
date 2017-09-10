@@ -119,6 +119,7 @@
     "config": {
       "getVotePwnrSeq": {
         "typeId": "votePwnrInfo",
+        "resultType": "none",
         "query": [
           {
             "field": "pwnrBasSeq",

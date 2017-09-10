@@ -48,7 +48,8 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "code",
-    "referenceValue": "",
+    "referenceValue": "codeId",
+    "codeFilter": "bradChCd",
     "defaultValue": ""
   },
   {
@@ -65,7 +66,8 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "code",
-    "referenceValue": "",
+    "referenceValue": "codeId",
+    "codeFilter": "showLo",
     "defaultValue": ""
   },
   {
@@ -82,7 +84,8 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "code",
-    "referenceValue": "",
+    "referenceValue": "codeId",
+    "codeFilter": "onairSvcTypeCd",
     "defaultValue": ""
   },
   {

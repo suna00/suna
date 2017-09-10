@@ -125,7 +125,7 @@
         "hitNum": "retvNum",
         "owner":"",
         "created":"",
-        "preItem": {
+        "nextItem": {
           "typeId": "ntfBbs",
           "query": [
             {
@@ -146,7 +146,7 @@
             "created": ""
           }
         },
-        "nextItem": {
+        "preItem": {
           "typeId": "ntfBbs",
           "query": [
             {
