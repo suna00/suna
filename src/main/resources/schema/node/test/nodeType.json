@@ -1,0 +1,37 @@
+[
+  {
+    "tid": "dataTest",
+    "parentId": "test",
+    "typeId": "nodeType",
+    "tableName": "mariaDb#test",
+    "repositoryType": "data",
+    "typeName": "테스트"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "dataTest",
+    "pid": "id",
+    "propertyTypeName": "Key",
+    "valueType": "LONG",
+    "idable": true,
+    "indexable": true,
+    "labelable": false,
+    "required": true,
+    "length": 100,
+    "analyzer": "simple",
+    "idType": "autoIncrement"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "dataTest",
+    "pid": "value",
+    "propertyTypeName": "Value",
+    "valueType": "STRING",
+    "idable": false,
+    "indexable": true,
+    "labelable": false,
+    "required": false,
+    "length": 100,
+    "analyzer": "code"
+  }
+]
