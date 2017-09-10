@@ -113,7 +113,7 @@
     "pid": "sbscDt",
     "id": "mbrInfo>sbscDt",
     "propertyTypeName": "가입 일시",
-    "valueType": "STRING",
+    "valueType": "DATE",
     "required": true,
     "idable": false,
     "labelable": false,
@@ -373,7 +373,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "code",
-    "referenceValue": "",
+    "referenceValue": "codeId",
     "codeFilter": "intrstCd",
     "defaultValue": ""
   },

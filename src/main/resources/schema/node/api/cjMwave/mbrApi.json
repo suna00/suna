@@ -19,7 +19,7 @@
         "required": false
       },
       {
-        "paramName": "pushMsgRcYn",
+        "paramName": "pushMsgRcvYn",
         "required": false
       },
       {
@@ -32,20 +32,18 @@
       }
     ],
     "config": {
-      "createMember": {
-        "typeId": "mbrInfo",
-        "event": "save",
-        "data": {
-          "snsKey": "{{:snsKey}}",
-          "snsTypeCd": "{{:snsTypeCd}}",
-          "aliasNm": "{{:aliasNm}}",
-          "pushMsgRcYn": "{{:pushMsgRcYn}}",
-          "sbscShapCd": "{{:sbscShapCd}}",
-          "infoOttpAgreeYn": "{{:infoOttpAgreeYn}}",
-          "mbrDivCd": "1",
-          "mbrSttusCd": "1",
-          "sbscDt": "{{:sysdate}}"
-        }
+      "typeId": "mbrInfo",
+      "event": "save",
+      "data": {
+        "snsKey": "{{:snsKey}}",
+        "snsTypeCd": "{{:snsTypeCd}}",
+        "aliasNm": "{{:aliasNm}}",
+        "pushMsgRcvYn": "{{:pushMsgRcvYn}}",
+        "sbscShapCd": "{{:sbscShapCd}}",
+        "infoOttpAgreeYn": "{{:infoOttpAgreeYn}}",
+        "mbrDivCd": "1",
+        "mbrSttusCd": "1",
+        "sbscDt": "{{:now}}"
       }
     }
   },
@@ -77,7 +75,7 @@
         "required": true
       },
       {
-        "paramName": "mbrImg",
+        "paramName": "imgUrl",
         "required": false
       },
       {
@@ -111,7 +109,7 @@
           "aliasNm": "{{:aliasNm}}",
           "cntryCd": "{{:cntryCd}}",
           "sexCd": "{{:sexCd}}",
-          "thumImgPath": "{{:mbrImg}}",
+          "thumImgPath": "{{:imgUrl}}",
           "bthYear": "{{:bthYear}}",
           "intrstCdList": "{{:intrstCdList}}",
           "infoOttpAgreeYn": "{{:infoOttpAgreeYn}}",
@@ -146,6 +144,7 @@
         "data": {
           "snsKey": "{{:snsKey}}",
           "snsTypeCd": "{{:snsTypeCd}}",
+          "rtrmmbDate":"{{:now}}",
           "mbrSttusCd": "3"
         }
       }
@@ -169,7 +168,7 @@
     ],
     "config": {
       "typeId": "mbrInfo",
-      "id": "{{:snsTypeCd}}>{{:snsKey}}"
+      "id": "{{:makeIdValue(>,snsTypeCd,snsKey)}}"
     }
   },
   {
@@ -200,7 +199,7 @@
           "snsKey": "{{:snsKey}}",
           "snsTypeCd": "{{:snsTypeCd}}",
           "infoOttpAgreeYn": "{{:infoOttpAgreeYn}}",
-          "mbrSttusCd": "2"
+          "mbrSttusCd": "1"
         }
       }
     }
@@ -233,11 +232,11 @@
         "required": true
       },
       {
-        "paramName": "mbrImg",
+        "paramName": "imgUrl",
         "required": false
       },
       {
-        "paramName": "bthYm",
+        "paramName": "bthYear",
         "required": false
       },
       {
@@ -259,8 +258,8 @@
           "aliasNm": "{{:aliasNm}}",
           "cntryCd": "{{:cntryCd}}",
           "sexCd": "{{:sexCd}}",
-          "thumImgPath": "{{:mbrImg}}",
-          "bthYm": "{{:bthYm}}",
+          "imgUrl": "{{:imgUrl}}",
+          "bthYear": "{{:bthYear}}",
           "intrstCdList": "{{:intrstCdList}}",
           "infoOttpAgreeYn": "{{:infoOttpAgreeYn}}"
         }
