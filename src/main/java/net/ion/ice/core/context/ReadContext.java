@@ -186,6 +186,7 @@ public class ReadContext implements Context {
         makeContextFromParameter(parameterMap, nodeType, context) ;
 
         context.makeIncludeReferenced();
+        if(context.includeReferenced == null) context.includeReferenced = true ;
         context.makeReferenceView();
 
         return context ;
