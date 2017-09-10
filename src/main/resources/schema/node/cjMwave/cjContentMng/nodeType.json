@@ -119,5 +119,15 @@
     "repositoryType": "node",
     "eviction": 0,
     "tableName": "cjDb#groupPhotoAdvm"
+  },
+  {
+    "parentId": "cjContentMng",
+    "typeId": "nodeType",
+    "id": "videItgInfo",
+    "tid": "videItgInfo",
+    "typeName": "영상(통합) 정보",
+    "repositoryType": "data",
+    "eviction": 0,
+    "tableName": "cjDb#videItgInfo"
   }
 ]

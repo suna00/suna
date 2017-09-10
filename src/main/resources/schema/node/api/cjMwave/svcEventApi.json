@@ -139,21 +139,10 @@
           "votePwnrSeq": ""
         }
       },
-      "updateInfo": {
+      "root": {
         "typeId": "votePwnrInfo",
         "event": "update",
-        "if": "{{:aboveInt(votePwnrSeq,0)}}",
-        "data": {
-          "votePwnrSeq": "{{:votePwnrSeq}}",
-          "mbrFirstName": "{{:mbrFirstName}}",
-          "mbrLastName": "{{:mbrLastName}}",
-          "email": "{{:email}}",
-          "mblNo": "{{:mblNo}}",
-          "homeAdr": "{{:homeAdr}}",
-          "memo": "{{:memo}}",
-          "indvInfoAgreeYn": "{{:indvInfoAgreeYn}}",
-          "selItemAgreeYn": "{{:selItemAgreeYn}}"
-        }
+        "if": "{{:aboveInt(votePwnrSeq,0)}}"
       }
     }
   }

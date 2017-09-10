@@ -97,9 +97,9 @@
       "typeId": "album",
       "id": "{{:albumId}}",
       "response": {
-        "_all_" :"",
+        "_all_": "",
         "seoTitle": {
-          "value": "Mwave"
+          "value": "{{:mergeValue(albumNm, | Mwave)}}"
         },
         "seoDesc": "albumDesc",
         "seoKywrd": "findKywrd"
@@ -283,7 +283,7 @@
       "typeId": "artist",
       "id": "{{:artistId}}",
       "response": {
-        "_all_" :"",
+        "_all_": "",
         "seoTitle": {
           "value": "Mwave"
         },
@@ -349,7 +349,31 @@
           "page": "{{:page}}",
           "pageSize": "{{:pageSize}}"
         }
-      ]
+      ],
+      "response": {
+        "_all_": "",
+        "hitNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*) as hitNum from contsRetvInfo where tid = 'musicVideo' and contsId = @{musicVideoId}"
+          }
+        },
+        "replNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*)as replNum from replInfo where contsMetaId = concat('musicVideo','::',@{musicVideoId})"
+          }
+        },
+        "likeNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('musicVideo','::',@{musicVideoId})"
+          }
+        }
+      }
     }
   },
   {
@@ -368,12 +392,33 @@
       "typeId": "musicVideo",
       "id": "{{:musicVideoId}}",
       "response": {
-        "_all_" :"",
+        "_all_": "",
         "seoTitle": {
           "value": " | Mwave"
         },
         "seoDesc": "musicVideoDesc",
-        "seoKywrd": "findKywrd"
+        "seoKywrd": "findKywrd",
+        "hitNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*) as hitNum from contsRetvInfo where tid = 'musicVideo' and contsId = @{musicVideoId}"
+          }
+        },
+        "replNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*)as replNum from replInfo where contsMetaId = concat('musicVideo','::',@{musicVideoId})"
+          }
+        },
+        "likeNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('musicVideo','::',@{musicVideoId})"
+          }
+        }
       }
     }
   },
@@ -443,7 +488,31 @@
           "page": "{{:page}}",
           "pageSize": "{{:pageSize}}"
         }
-      ]
+      ],
+      "response": {
+        "_all_": "",
+        "hitNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*) as hitNum from contsRetvInfo where tid = 'news' and contsId = @{newsId}"
+          }
+        },
+        "replNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*)as replNum from replInfo where contsMetaId = concat('news','::',@{newsId})"
+          }
+        },
+        "likeNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('news','::',@{newsId})"
+          }
+        }
+      }
     }
   },
   {
@@ -466,13 +535,13 @@
       "typeId": "news",
       "id": "{{:newsId}}",
       "response": {
-        "_all_" :"",
+        "_all_": "",
         "seoTitle": {
           "value": " | Mwave"
         },
         "seoDesc": "newsDesc",
         "seoKywrd": "findKywrd",
-        "seoUrl": "artclOriginUrl"
+        "seoUrl": "seoUrl"
       }
     }
   },
@@ -527,7 +596,35 @@
         {
           "referenceView": "compontSinglePhotoIds"
         }
-      ]
+      ],
+      "response": {
+        "_all_": "",
+        "singlePhotoNm": {
+          "resultType": "size",
+          "field": "compontSinglePhotoIds"
+        },
+        "hitNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*) as hitNum from contsRetvInfo where tid = 'groupPhoto' and contsId = @{groupPhotoId}"
+          }
+        },
+        "replNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*)as replNum from replInfo where contsMetaId = concat('groupPhoto','::',@{groupPhotoId})"
+          }
+        },
+        "likeNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('groupPhoto','::',@{groupPhotoId})"
+          }
+        }
+      }
     }
   },
   {
@@ -548,16 +645,40 @@
     ],
     "config": {
       "typeId": "groupPhoto",
+      "id": "{{:groupPhotoId}}",
       "query": [
-        {
-          "field": "groupPhotoId",
-          "method": "matching",
-          "value": "{{:groupPhotoId}}"
-        },
         {
           "referenceView": "compontSinglePhotoIds"
         }
-      ]
+      ],
+      "response": {
+        "_all_": "",
+        "singlePhotoNm": {
+          "resultType": "size",
+          "field": "compontSinglePhotoIds"
+        },
+        "hitNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*) as hitNum from contsRetvInfo where tid = 'groupPhoto' and contsId = @{groupPhotoId}"
+          }
+        },
+        "replNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*)as replNum from replInfo where contsMetaId = concat('groupPhoto','::',@{groupPhotoId})"
+          }
+        },
+        "likeNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('groupPhoto','::',@{groupPhotoId})"
+          }
+        }
+      }
     }
   },
   {
@@ -621,7 +742,31 @@
           "page": "{{:page}}",
           "pageSize": "{{:pageSize}}"
         }
-      ]
+      ],
+      "response":{
+        "_all_": "",
+        "hitNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*) as hitNum from contsRetvInfo where tid = 'singlePhoto' and contsId = @{singlePhotoId}"
+          }
+        },
+        "replNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*)as replNum from replInfo where contsMetaId = concat('singlePhoto','::',@{singlePhotoId})"
+          }
+        },
+        "likeNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('singlePhoto','::',@{singlePhotoId})"
+          }
+        }
+      }
     }
   },
   {
@@ -712,6 +857,77 @@
     "config": {
       "typeId": "pgmVideo",
       "id": "{{:contentId}}"
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "contsMeta",
+    "apiId": "IfVideo001",
+    "apiName": "Video 목록조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "contsMetaCtgryId",
+        "required": false
+      },
+      {
+        "paramName": "artistId",
+        "required": false
+      },
+      {
+        "paramName": "rcmdContsYn",
+        "required": false
+      },
+      {
+        "paramName": "searchKeyword",
+        "required": false
+      }
+    ],
+    "config": {
+      "typeId": "videItgInfo",
+      "query": [
+        {
+          "field": "contsMetaCtgryId",
+          "method": "matching",
+          "value": "{{:contsMetaCtgryId}}"
+        },
+        {
+          "field": "artistId",
+          "method": "matching",
+          "value": "{{:artistId}}"
+        },
+        {
+          "field": "rcmdContsYn",
+          "method": "matching",
+          "value": "{{:rcmdContsYn}}"
+        },
+        {
+          "field": "searchKeyword",
+          "method": "matching",
+          "value": "{{:searchKeyword}}"
+        },
+        {
+          "referenceView": "videoId"
+        }
+      ],
+      "response": {
+        "videoId": "",
+        "videoDivCd": "",
+        "hitNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*) as hitNum from contsRetvInfo where concat(tid,'::',contsId) = @{videoId}"
+          }
+        },
+        "replNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*)as replNum from replInfo where contsMetaId = @{videoId}"
+          }
+        }
+      }
     }
   },
   {

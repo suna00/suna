@@ -251,18 +251,7 @@
     "config": {
       "updateMember": {
         "typeId": "mbrInfo",
-        "event": "update",
-        "data": {
-          "snsKey": "{{:snsKey}}",
-          "snsTypeCd": "{{:snsTypeCd}}",
-          "aliasNm": "{{:aliasNm}}",
-          "cntryCd": "{{:cntryCd}}",
-          "sexCd": "{{:sexCd}}",
-          "imgUrl": "{{:imgUrl}}",
-          "bthYear": "{{:bthYear}}",
-          "intrstCdList": "{{:intrstCdList}}",
-          "infoOttpAgreeYn": "{{:infoOttpAgreeYn}}"
-        }
+        "event": "update"
       }
     }
   }
