@@ -207,7 +207,21 @@
           "page": "{{:page}}",
           "pageSize": "{{:pageSize}}"
         }
-      ]
+      ],
+      "response": {
+        "qnaSeq":"",
+        "qnaNm":"",
+        "qnaFildCd":"",
+        "qnarId":"",
+        "qstnSbst":"",
+        "trtSttusCd":"",
+        "qstnAtcFileUrl":"qstnAtcFilePath",
+        "qstnAtcFileNm":"",
+        "ansrName":"",
+        "ansrSbst":"",
+        "created":"",
+        "changed":""
+      }
     }
   },
   {
