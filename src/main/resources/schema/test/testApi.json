@@ -292,17 +292,14 @@
       "response" :{
         "categoryName": "",
         "categoryType" : "",
-        "itemSize" : {"size" : "items"},
+        "itemSize" : {"resultType" : "size", "field" : "items"},
         "merge" : {
           "typeId" : "testItem",
           "resultType" : "merge",
           "query" : [
             {"field" : "category", "method" : "matching", "value" : "{{:categoryId}}"},
             {"includeReferenced" : false, "limit" : 1}
-          ],
-          "response" :{
-
-          }
+          ]
         }
       }
     }

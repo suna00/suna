@@ -5,14 +5,16 @@
     "singlePhotoNm": "BIGBANG_01",
     "subName": "BIGBANG",
     "singlePhotoDesc": "BIGBANG",
-    "originImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
-    "thumbnailImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
-    "dtlThumbnailImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "originImgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "thumbnailImgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "dtlThumbnailImgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "ctgryId": "51542",
     "relPgmIds": "5960",
     "relArtistIds": "artist_00001",
     "relSongIds": "song_00001",
-    "mnetIfTrtYn": true
+    "mnetIfTrtYn": true,
+    "hitNum": "0",
+    "replNum": "0"
   },
   {
     "typeId": "singlePhoto",
@@ -20,14 +22,16 @@
     "singlePhotoNm": "WannaONE_01",
     "subName": "Wanna One",
     "singlePhotoDesc": "Wanna One",
-    "originImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "thumbnailImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "dtlThumbnailImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
+    "originImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
+    "thumbnailImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
+    "dtlThumbnailImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "ctgryId": "24512",
     "relPgmIds": "5595",
     "relArtistIds": "artist_00002",
     "relSongIds": "song_00002",
-    "mnetIfTrtYn": true
+    "mnetIfTrtYn": true,
+    "hitNum": "0",
+    "replNum": "0"
   },
   {
     "typeId": "singlePhoto",
@@ -35,14 +39,16 @@
     "singlePhotoNm": "TWICE_01",
     "subName": "TWICE",
     "singlePhotoDesc": "TWICE",
-    "originImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "thumbnailImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "dtlThumbnailImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
+    "originImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
+    "thumbnailImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
+    "dtlThumbnailImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "ctgryId": "29341",
     "relPgmIds": "5151",
     "relArtistIds": "artist_00003",
     "relSongIds": "song_00003",
-    "mnetIfTrtYn": true
+    "mnetIfTrtYn": true,
+    "hitNum": "0",
+    "replNum": "0"
   },
   {
     "typeId": "singlePhoto",
@@ -50,14 +56,16 @@
     "singlePhotoNm": "Coldplay_01",
     "subName": "Coldplay",
     "singlePhotoDesc": "Coldplay",
-    "originImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
-    "thumbnailImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
-    "dtlThumbnailImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "originImgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "thumbnailImgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "dtlThumbnailImgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "ctgryId": "29391",
     "relPgmIds": "5252",
     "relArtistIds": "artist_00014",
     "relSongIds": "song_00014",
-    "mnetIfTrtYn": true
+    "mnetIfTrtYn": true,
+    "hitNum": "0",
+    "replNum": "0"
   },
   {
     "typeId": "singlePhoto",
@@ -65,14 +73,16 @@
     "singlePhotoNm": "10cm_01",
     "subName": "10cm",
     "singlePhotoDesc": "10cm",
-    "originImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "thumbnailImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "dtlThumbnailImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
+    "originImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
+    "thumbnailImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
+    "dtlThumbnailImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "ctgryId": "20312",
     "relPgmIds": "5353",
     "relArtistIds": "artist_00021",
     "relSongIds": "song_00021",
-    "mnetIfTrtYn": true
+    "mnetIfTrtYn": true,
+    "hitNum": "0",
+    "replNum": "0"
   },
   {
     "typeId": "singlePhoto",
@@ -80,14 +90,16 @@
     "singlePhotoNm": "BIGBANG_03",
     "subName": "BIGBANG",
     "singlePhotoDesc": "BIGBANG",
-    "originImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
-    "thumbnailImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
-    "dtlThumbnailImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "originImgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "thumbnailImgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "dtlThumbnailImgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "ctgryId": "51542",
     "relPgmIds": "5960",
     "relArtistIds": "artist_00001",
     "relSongIds": "song_00001",
-    "mnetIfTrtYn": true
+    "mnetIfTrtYn": true,
+    "hitNum": "0",
+    "replNum": "0"
   },
   {
     "typeId": "singlePhoto",
@@ -95,14 +107,16 @@
     "singlePhotoNm": "WannaONE_03",
     "subName": "Wanna One",
     "singlePhotoDesc": "Wanna One",
-    "originImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "thumbnailImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "dtlThumbnailImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
+    "originImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
+    "thumbnailImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
+    "dtlThumbnailImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "ctgryId": "24512",
     "relPgmIds": "5595",
     "relArtistIds": "artist_00002",
     "relSongIds": "song_00002",
-    "mnetIfTrtYn": true
+    "mnetIfTrtYn": true,
+    "hitNum": "0",
+    "replNum": "0"
   },
   {
     "typeId": "singlePhoto",
@@ -110,14 +124,16 @@
     "singlePhotoNm": "TWICE_03",
     "subName": "TWICE",
     "singlePhotoDesc": "TWICE",
-    "originImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "thumbnailImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "dtlThumbnailImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
+    "originImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
+    "thumbnailImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
+    "dtlThumbnailImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "ctgryId": "29341",
     "relPgmIds": "5151",
     "relArtistIds": "artist_00003",
     "relSongIds": "song_00003",
-    "mnetIfTrtYn": true
+    "mnetIfTrtYn": true,
+    "hitNum": "0",
+    "replNum": "0"
   },
   {
     "typeId": "singlePhoto",
@@ -125,14 +141,16 @@
     "singlePhotoNm": "Coldplay_03",
     "subName": "Coldplay",
     "singlePhotoDesc": "Coldplay",
-    "originImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
-    "thumbnailImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
-    "dtlThumbnailImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "originImgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "thumbnailImgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "dtlThumbnailImgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "ctgryId": "29391",
     "relPgmIds": "5252",
     "relArtistIds": "artist_00014",
     "relSongIds": "song_00014",
-    "mnetIfTrtYn": true
+    "mnetIfTrtYn": true,
+    "hitNum": "0",
+    "replNum": "0"
   },
   {
     "typeId": "singlePhoto",
@@ -140,13 +158,15 @@
     "singlePhotoNm": "10cm_03",
     "subName": "10cm",
     "singlePhotoDesc": "10cm",
-    "originImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "thumbnailImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "dtlThumbnailImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
+    "originImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
+    "thumbnailImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
+    "dtlThumbnailImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "ctgryId": "20312",
     "relPgmIds": "5353",
     "relArtistIds": "artist_00021",
     "relSongIds": "song_00021",
-    "mnetIfTrtYn": true
+    "mnetIfTrtYn": true,
+    "hitNum": "0",
+    "replNum": "0"
   }
 ]

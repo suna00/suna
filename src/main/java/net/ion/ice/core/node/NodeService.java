@@ -341,25 +341,25 @@ public class NodeService {
 
     public QueryResult getQueryResult(String query) {
         QueryContext queryContext = QueryContext.makeQueryContextFromQuery(query) ;
-        QueryResult queryResult = queryContext.makeQueryResult( null, null);
+        QueryResult queryResult = queryContext.makeQueryResult();
         return queryResult;
     }
 
     public QueryResult getQueryResult(String typeId, Map<String, String[]> parameterMap) {
         QueryContext queryContext = QueryContext.createQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
-        QueryResult queryResult = queryContext.makeQueryResult( null, null);
+        QueryResult queryResult = queryContext.makeQueryResult();
         return queryResult;
     }
 
     public QueryResult getReferenceQueryResult(String typeId, Map<String, String[]> parameterMap) {
         ReferenceQueryContext queryContext = ReferenceQueryContext.createQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
-        QueryResult queryResult = queryContext.makeQueryResult( null, null);
+        QueryResult queryResult = queryContext.makeQueryResult();
         return queryResult;
     }
 
     public QueryResult getCodeQueryResult(String typeId, Map<String, String[]> parameterMap) {
         ReferenceQueryContext queryContext = ReferenceQueryContext.createQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
-        QueryResult queryResult = queryContext.makeQueryResult( null, null);
+        QueryResult queryResult = queryContext.makeQueryResult();
         return queryResult;
     }
 

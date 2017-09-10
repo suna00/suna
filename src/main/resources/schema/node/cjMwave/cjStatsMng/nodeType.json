@@ -98,5 +98,45 @@
     "repositoryType": "data",
     "eviction": 0,
     "tableName": "cjDb#artistVoteStatsByYear"
+  },
+  {
+    "parentId": "cjStatsMng",
+    "typeId": "nodeType",
+    "id": "voteItemStatsByWly",
+    "tid": "voteItemStatsByWly",
+    "typeName": "주별 투표항목 현황",
+    "repositoryType": "data",
+    "eviction": 0,
+    "tableName": "cjDb#voteItemStatsByWly"
+  },
+  {
+    "parentId": "cjStatsMng",
+    "typeId": "nodeType",
+    "id": "voteItemStatsByCntry",
+    "tid": "voteItemStatsByCntry",
+    "typeName": "국가별 투표항목 현황",
+    "repositoryType": "data",
+    "eviction": 0,
+    "tableName": "cjDb#voteItemStatsByCntry"
+  },
+  {
+    "parentId": "cjStatsMng",
+    "typeId": "nodeType",
+    "id": "voteItemStatsBySex",
+    "tid": "voteItemStatsBySex",
+    "typeName": "성별 투표항목 현황",
+    "repositoryType": "data",
+    "eviction": 0,
+    "tableName": "cjDb#voteItemStatsBySex"
+  },
+  {
+    "parentId": "cjStatsMng",
+    "typeId": "nodeType",
+    "id": "voteItemStats",
+    "tid": "voteItemStats",
+    "typeName": "투표항목 현황",
+    "repositoryType": "data",
+    "eviction": 0,
+    "tableName": "cjDb#voteItemStats"
   }
 ]

@@ -19,6 +19,9 @@ public class ResultField {
 
     private ResultType resultType ;
 
+    private ExecuteType executeType ;
+
+
     public ResultField(String fieldName, String fieldValue){
         this.fieldName = fieldName ;
         this.fieldValue=fieldValue ;
@@ -32,17 +35,23 @@ public class ResultField {
 
     public ResultField(String fieldName, Map<String, Object> fieldOption) {
         this.fieldName = fieldName ;
+        if(fieldOption.containsKey("resultType")){
+            resultType = ResultType.valueOf(fieldOption.get("resultType").toString().toUpperCase()) ;
+        }else{
+            resultType = ResultType.LIST ;
+        }
+
         if(fieldOption.containsKey("query")) {
-            resultType = ResultType.QUERY ;
+            executeType = ExecuteType.QUERY ;
             this.fieldOption = fieldOption ;
         }else if(fieldOption.containsKey("select")){
-            resultType = ResultType.SELECT ;
+            executeType = ExecuteType.SELECT ;
             this.fieldOption = fieldOption ;
         }else if(fieldOption.containsKey("value")){
-            resultType = ResultType.VALUE ;
+            executeType = ExecuteType.VALUE ;
             this.staticValue = fieldOption.get("value") ;
         }else {
-            resultType = ResultType.OPTION ;
+            executeType = ExecuteType.OPTION ;
 
             if (fieldOption.containsKey("field")) {
                 this.fieldValue = (String) fieldOption.get("field");
@@ -92,7 +101,19 @@ public class ResultField {
         return resultType;
     }
 
+    public ExecuteType getExecuteType() {
+        return executeType;
+    }
+
     public enum ResultType {
+        MERGE,
+        NESTED,
+        LIST,
+        READ,
+        SIZE
+    }
+
+    public enum ExecuteType {
         QUERY,
         SELECT,
         EVENT,

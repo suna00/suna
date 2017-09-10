@@ -8,10 +8,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by jaeho on 2017. 7. 5..
@@ -119,4 +118,41 @@ public class ContextUtils {
             }
         }
     }
+
+    public static String makeContextConfig(ReadContext readContext, String paramName, String value) {
+        if (paramName.equals("fields") || paramName.equals("pids") || paramName.equals("response") || paramName.equals("searchFields") || paramName.equals("searchValue")) {
+            return null;
+        }
+
+        if(paramName.equals("includeReferenced")){
+            readContext.makeIncludeReferenced(value);
+            return null;
+        } else if(paramName.equals("referenceView")){
+            readContext.makeReferenceView(value);
+            return null;
+        }
+
+        if(readContext instanceof QueryContext){
+            QueryContext queryContext = (QueryContext) readContext;
+            if (paramName.equals("page")) {
+                queryContext.setCurrentPage(value);
+                return null;
+            } else if (paramName.equals("pageSize")) {
+                queryContext.setPageSize(value);
+                return null;
+            } else if (paramName.equals("count") || paramName.equals("limit")) {
+                queryContext.setLimit(value);
+                return null;
+            } else if (paramName.equals("query")) {
+                try {
+                    Map<String, Object> query = JsonUtils.parsingJsonToMap(value);
+
+                } catch (IOException e) {
+                }
+                return null;
+            }
+        }
+        return value;
+    }
+
 }

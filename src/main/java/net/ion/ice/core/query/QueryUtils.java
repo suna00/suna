@@ -20,38 +20,11 @@ public class QueryUtils {
 
     public static void makeQueryTerm(NodeType nodeType, QueryContext queryContext, List<QueryTerm> queryTerms, String paramName, Object val) {
         if(val == null) return ;
-
         String value = val.toString() ;
-
         value = value.equals("@sysdate") ? new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) : value.equals("@sysday") ? new SimpleDateFormat("yyyyMMdd").format(new Date()) : value;
 
-        if (paramName.equals("fields") || paramName.equals("pids") || paramName.equals("response") || paramName.equals("searchFields") || paramName.equals("searchValue")) {
-            return;
-        }
-
-        if (paramName.equals("page")) {
-            queryContext.setCurrentPage(value);
-            return;
-        } else if (paramName.equals("pageSize")) {
-            queryContext.setPageSize(value);
-            return;
-        } else if (paramName.equals("count") || paramName.equals("limit")) {
-            queryContext.setLimit(value);
-            return;
-        } else if (paramName.equals("query")) {
-            try {
-                Map<String, Object> query = JsonUtils.parsingJsonToMap(value);
-
-            } catch (IOException e) {
-            }
-            return ;
-        } else if(paramName.equals("includeReferenced")){
-            queryContext.makeIncludeReferenced(value);
-            return ;
-        } else if(paramName.equals("referenceView")){
-            queryContext.makeReferenceView(value);
-            return ;
-        }
+        value = ContextUtils.makeContextConfig(queryContext, paramName, value);
+        if (value == null) return;
 
         if (nodeType == null) {
             if (paramName.equals("sorting")) {
@@ -88,7 +61,6 @@ public class QueryUtils {
 
         }
     }
-
 
     public static List<QueryTerm> makeNodeQueryTerms(QueryContext context, Object q, NodeType nodeType) {
         List<QueryTerm> queryTerms = new ArrayList<>();

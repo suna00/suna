@@ -268,6 +268,282 @@
   {
     "typeId": "apiConfig",
     "category": "vote",
+    "apiId": "IfMwv100",
+    "apiName": "MWAVE 투표결과 목록조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "voteFormlCd",
+        "required": true
+      },
+      {
+        "paramName": "showLoCd",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "voteBasInfo",
+      "query": [
+        {
+          "field": "voteFormlCd",
+          "method": "matching",
+          "value": "{{:voteFormlCd}}"
+        },
+        {
+          "field": "showLoCd",
+          "method": "matching",
+          "value": "{{:showLoCd}}"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        }
+      ],
+      "response": {
+        "voteSeq": "",
+        "voteFormlCd": "",
+        "voteNm": "",
+        "voteDesc": "",
+        "pstngStDt": "",
+        "pstngFnsDt": "",
+        "topRankItem": {
+          "typeId": "voteItemStats",
+          "query": [
+            {
+              "field": "voteSeq",
+              "method": "matching",
+              "value": "{{:voteSeq}}"
+            },
+            {
+              "field": "rankNum",
+              "method": "matching",
+              "value": "1"
+            },
+            {
+              "referenceView": "voteItemSeq"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv101",
+    "apiName": "투표내역 상세",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "voteSeq",
+        "required": true
+      },
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "voteBasInfo",
+      "id": "{{:voteSeq}}",
+      "response": {
+        "_all_": "",
+        "refdItemList": {
+          "typeId": "voteItemInfo",
+          "query": [
+            {
+              "field": "voteSeq",
+              "method": "referenceJoin",
+              "value": "voteSeq_matching={{:voteSeq}}"
+            },
+            {
+              "sorting": "sortOdrg"
+            }
+          ],
+          "response": {
+            "_all_": "",
+            "stats": {
+              "typeId": "voteItemStats",
+              "query": [
+                {
+                  "field": "voteSeq",
+                  "method": "matching",
+                  "value": "{{:voteSeq}}"
+                },
+                {
+                  "field": "voteItemSeq",
+                  "method": "matching",
+                  "value": "{{:voteItemSeq}}"
+                }
+              ],
+              "response": {
+                "rankNum": "",
+                "rankGapNum": "",
+                "voteRate": "",
+                "voteNum": ""
+              }
+            },
+            "myVoteYn": {
+              "select": {
+                "ds": "cjDb",
+                "resultType": "value",
+                "sql": "select if(count(*)>0,'Y','N') myVoteYn from votePrtcptHst where voteSeq=@{voteSeq} and voteItemSeq =@{voteItemSeq} and prtcpMbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv102",
+    "apiName": "국가별 투표 현황",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "voteSeq",
+        "required": true
+      },
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      },
+      {
+        "paramName": "cntryCd",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "voteItemStatsByCntry",
+      "query": [
+        {
+          "field": "voteSeq",
+          "method": "matching",
+          "value": "{{:voteSeq}}"
+        },
+        {
+          "field": "cntryCd",
+          "method": "matching",
+          "value": "{{:cntryCd}}"
+        },
+        {
+          "referenceView":"voteSeq,voteItemSeq"
+        }
+      ],
+      "response": {
+        "_all_": "",
+        "myVoteYn": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select if(count(*)>0,'Y','N') myVoteYn from votePrtcptHst where voteSeq=@{voteSeq} and voteItemSeq =@{voteItemSeq} and prtcpMbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
+          }
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv103",
+    "apiName": "투표항목별 투표 현황",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "voteSeq",
+        "required": true
+      },
+      {
+        "paramName": "voteItemSeq",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "voteItemStats",
+      "query": [
+        {
+          "field": "voteSeq",
+          "method": "matching",
+          "value": "{{:voteSeq}}"
+        },
+        {
+          "field": "voteItemSeq",
+          "method": "matching",
+          "value": "{{:voteItemSeq}}"
+        }
+      ],
+      "response": {
+        "_all_": "",
+        "cntryVoteList": {
+          "typeId": "voteItemStatsByCntry",
+          "query": [
+            {
+              "field": "voteSeq",
+              "method": "matching",
+              "value": "{{:voteSeq}}"
+            },
+            {
+              "field": "voteItemSeq",
+              "method": "matching",
+              "value": "{{:voteItemSeq}}"
+            },
+            {
+              "sorting": "cntryCd"
+            }
+          ]
+        },
+        "sexVoteList": {
+          "typeId": "voteItemStatsBySex",
+          "query": [
+            {
+              "field": "voteSeq",
+              "method": "matching",
+              "value": "{{:voteSeq}}"
+            },
+            {
+              "field": "voteItemSeq",
+              "method": "matching",
+              "value": "{{:voteItemSeq}}"
+            },
+            {
+              "sorting": "sexCd"
+            }
+          ]
+        },
+        "weeklyRankList": {
+          "typeId": "voteItemStatsByWly",
+          "query": [
+            {
+              "field": "voteSeq",
+              "method": "matching",
+              "value": "{{:voteSeq}}"
+            },
+            {
+              "field": "voteItemSeq",
+              "method": "matching",
+              "value": "{{:voteItemSeq}}"
+            },
+            {
+              "sorting": "perdStDate desc",
+              "limit": "5"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
     "apiId": "IfMwv104",
     "apiName": "아티스트별 주간 투표 현황",
     "method": "GET",
