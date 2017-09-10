@@ -277,8 +277,6 @@ public class ReadContext implements Context {
                     subQueryContext.setNodeData(node);
                 }
                 subQueryContext.makeQueryResult(itemResult, resultField.getFieldName(), resultField.getResultType());
-            } else if(resultField.isStaticValue()){
-                itemResult.put(resultField.getFieldName(), ContextUtils.getValue(resultField.getStaticValue(), contextData));
             }else if(resultField.getExecuteType() != null){
                 Map<String, Object> _data = new HashMap<>();
                 _data.putAll(contextData);
@@ -299,7 +297,7 @@ public class ReadContext implements Context {
                         break ;
                     }
                     case VALUE: {
-                        itemResult.put(resultField.getFieldName(), ContextUtils.getValue(resultField.getStaticValue(), _data));
+                        itemResult.put(resultField.getFieldName(), ContextUtils.getValue(resultField.getStaticValue(), _data, this, nodeType, node));
                         break ;
                     }
                     case OPTION: {

@@ -1,6 +1,9 @@
 package net.ion.ice.core.context;
 
 import net.ion.ice.core.json.JsonUtils;
+import net.ion.ice.core.node.Node;
+import net.ion.ice.core.node.NodeType;
+import net.ion.ice.core.node.NodeUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.text.ParseException;
@@ -60,6 +63,25 @@ public class TemplateParam {
         return value.toString() ;
     }
 
+    public String format(Map<String, Object> data, ReadContext readContext, NodeType nodeType, Node node) {
+        Object value = null;
+        if(nodeType.getPropertyType(valueStr) != null){
+            value = NodeUtils.getResultValue(readContext, nodeType.getPropertyType(valueStr), node) ;
+        }
+
+        if(value == null){
+            value = JsonUtils.getValue(data, valueStr) ;
+        }
+
+        if(StringUtils.isNotEmpty(methodStr)){
+            return MethodHelper.execute(methodStr, methodParams, value, data) ;
+        }
+
+        if(value == null) return "" ;
+
+        return value.toString() ;
+    }
+
     public Object getValue(Map<String, Object> data) {
         Object value = JsonUtils.getValue(data, valueStr) ;
 
@@ -102,6 +124,8 @@ public class TemplateParam {
         }
         return null;
     }
+
+
 
 //    public LIST getFieldList(Node node, String key){
 //        if (StringUtils.contains(key, '.')) {
