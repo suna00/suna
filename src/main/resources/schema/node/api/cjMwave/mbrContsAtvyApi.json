@@ -206,7 +206,7 @@
           {
             "field": "mkerId",
             "method": "matching",
-            "value": "{{:snsTypeCd}}>{{:snsKey}}"
+            "value": "{{:makeIdValue(>,snsTypeCd,snsKey)}}"
           },
           {
             "field": "contsMetaDivCd",
@@ -216,7 +216,7 @@
           {
             "field": "contsMetaId",
             "method": "matching",
-            "value": "{{:name}}::{{:contsMetaId}}"
+            "value": "{{:makeIdValue(::,name,contsMetaId)}}"
           },
           {
             "sorting": "{{:sorting}}"
@@ -246,7 +246,7 @@
             "select": {
               "ds": "cjDb",
               "resultType": "value",
-              "sql": "select if(count(*)>0,'Y','N') myLikeYn from replLikeInfo where replSeq = @{replSeq} and mbrId = @{mkerId}"
+              "sql": "select if(count(*)>0,'Y','N') myLikeYn from replLikeInfo where replSeq = @{replSeq} and mbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
             }
           },
           "dclaNum": {
@@ -260,7 +260,7 @@
             "select": {
               "ds": "cjDb",
               "resultType": "value",
-              "sql": "select if(count(*)>0,'Y','N') myDclaYn from replDclaHst where replSeq = @{replSeq} and dclarId = @{mkerId}"
+              "sql": "select if(count(*)>0,'Y','N') myDclaYn from replDclaHst where replSeq = @{replSeq} and dclarId = @{makeIdValue(>,snsTypeCd,snsKey)}"
             }
           },
           "created": ""
