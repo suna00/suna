@@ -1,0 +1,42 @@
+[
+  {
+    "typeId": "blogBanner",
+    "id": 1,
+    "title": "Finibus Bonorum",
+    "blogBanner" : "",
+    "created": "20170821125255",
+    "sortOrder":1
+  },
+  {
+    "typeId": "blogBanner",
+    "id": 2,
+    "title": "passage",
+    "blogBanner" : "",
+    "created": "20170821125255",
+    "sortOrder":2
+  },
+  {
+    "typeId": "blogBanner",
+    "id": 3,
+    "title": "since the 1500s",
+    "blogBanner" : "",
+    "created": "20170821125255",
+    "sortOrder":3
+  },
+  {
+    "typeId": "blogBanner",
+    "id": 4,
+    "title": "Lorem Ipsum",
+    "blogBanner" : "",
+    "created": "20170821125255",
+    "sortOrder":4
+  },
+  {
+    "typeId": "blogBanner",
+    "id": 5,
+    "title": "The standard",
+    "blogBanner" : "",
+    "created": "20170821125255",
+    "sortOrder":5
+  }
+]
