@@ -367,6 +367,7 @@
             "_all_": "",
             "stats": {
               "typeId": "voteItemStats",
+              "resultType": "merge",
               "query": [
                 {
                   "field": "voteSeq",
@@ -436,7 +437,7 @@
           "value": "{{:cntryCd}}"
         },
         {
-          "referenceView":"voteSeq,voteItemSeq"
+          "referenceView": "voteSeq,voteItemSeq"
         }
       ],
       "response": {
@@ -479,6 +480,9 @@
           "field": "voteItemSeq",
           "method": "matching",
           "value": "{{:voteItemSeq}}"
+        },
+        {
+          "referenceView": "voteSeq,voteItemSeq"
         }
       ],
       "response": {
@@ -498,6 +502,9 @@
             },
             {
               "sorting": "cntryCd"
+            },
+            {
+              "referenceView": "cntryCd"
             }
           ]
         },
