@@ -436,35 +436,47 @@ public class QueryContext extends ReadContext {
         }
     }
 
-    public QueryResult makeQueryResult(Object result, String fieldName) {
-        List<Node> resultNodeList = getQueryList() ;
-        this.result = resultNodeList ;
-
-        return makeQueryResult(result, fieldName, resultNodeList);
+    public QueryResult makeQueryResult() {
+        return makeQueryResult(result, null, ResultField.ResultType.LIST);
     }
 
 
-    protected QueryResult makeQueryResult(Object result, String fieldName, List<Node> resultNodeList) {
-        NodeType nodeType = getNodetype() ;
+    public QueryResult makeQueryResult(Object result, String fieldName, ResultField.ResultType resultType) {
+        List<Node> resultNodeList = getQueryList() ;
+        this.result = resultNodeList ;
 
+        return makeQueryResult(result, fieldName, resultType, resultNodeList);
+    }
+
+
+    protected QueryResult makeQueryResult(Object result, String fieldName, ResultField.ResultType resultType, List<Node> resultNodeList) {
+        NodeType nodeType = getNodetype() ;
 
         if(fieldName == null){
             fieldName = "items" ;
         }
-
+        List<QueryResult> subList ;
         if(this.resultFields == null){
-            List<QueryResult> subList = makeDefaultResult(nodeType, resultNodeList);
-
-            if(result != null && result instanceof Map){
-                ((QueryResult) result).put(fieldName, subList) ;
-                return null ;
-            }else {
-                return makePaging(fieldName, subList);
-            }
+            subList = makeDefaultResult(nodeType, resultNodeList);
+        }else{
+            subList = makeResultList(nodeType, resultNodeList);
         }
 
-        List<QueryResult> subList = makeResultList(nodeType, resultNodeList);
-        if(result != null && result instanceof Map){
+        if(result == null){
+            return makePaging(fieldName, subList);
+        }
+        if(resultType != null){
+            if(resultType == ResultField.ResultType.MERGE) {
+                if(subList != null && subList.size() > 0) {
+                    ((Map) result).putAll(subList.get(0));
+                }
+            }else if(resultType == ResultField.ResultType.READ){
+                ((Map) result).put(fieldName, (subList != null && subList.size() > 0 ) ? subList.get(0) : null) ;
+            }else{
+                ((Map) result).put(fieldName, subList) ;
+            }
+            return (QueryResult) result;
+        }else if(result instanceof Map){
             ((QueryResult) result).put(fieldName, subList) ;
             return (QueryResult) result;
         }
@@ -499,7 +511,7 @@ public class QueryContext extends ReadContext {
                     if (pt.isTreeable()) {
                         QueryContext subQueryContext = QueryContext.makeQueryContextForTree(nodeType, pt, resultNode.getId().toString());
                         subQueryContext.setTreeable(true);
-                        subQueryContext.makeQueryResult(itemResult, "children");
+                        subQueryContext.makeQueryResult(itemResult, "children", null);
                     }
                 }
             }
