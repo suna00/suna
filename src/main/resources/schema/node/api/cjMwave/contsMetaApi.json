@@ -99,7 +99,7 @@
       "response": {
         "_all_": "",
         "seoTitle": {
-          "value": "{{:mergeValue(albumNm, | Mwave)}}"
+          "value": "{{:albumNm}} | Mwave"
         },
         "seoDesc": "albumDesc",
         "seoKywrd": "findKywrd"
@@ -285,7 +285,7 @@
       "response": {
         "_all_": "",
         "seoTitle": {
-          "value": "Mwave"
+          "value": "{{:artistNm}} | Mwave"
         },
         "seoDesc": "artistDesc",
         "seoKywrd": "findKywrd"
@@ -394,7 +394,7 @@
       "response": {
         "_all_": "",
         "seoTitle": {
-          "value": " | Mwave"
+          "value": "{{:musicVideoNm}} | Mwave"
         },
         "seoDesc": "musicVideoDesc",
         "seoKywrd": "findKywrd",
@@ -418,6 +418,33 @@
             "resultType": "value",
             "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('musicVideo','::',@{musicVideoId})"
           }
+        },
+        "refMusicVideoList": {
+          "typeId": "musicVideo",
+          "query": [
+            {
+              "field": "artistId",
+              "method": "matching",
+              "value": "{{:artistId}}"
+            },
+            {
+              "field": "findKywrd",
+              "method": "matching",
+              "value": "{{:searchKeyword}}"
+            },
+            {
+              "field": "showYn",
+              "method": "matching",
+              "value": "true"
+            },
+            {
+              "sorting": "{{:sorting}}"
+            },
+            {
+              "page": "{{:page}}",
+              "pageSize": "{{:pageSize}}"
+            }
+          ]
         }
       }
     }
@@ -537,7 +564,7 @@
       "response": {
         "_all_": "",
         "seoTitle": {
-          "value": " | Mwave"
+          "value": "{{:newsNm}} | Mwave"
         },
         "seoDesc": "newsDesc",
         "seoKywrd": "findKywrd",
@@ -743,7 +770,7 @@
           "pageSize": "{{:pageSize}}"
         }
       ],
-      "response":{
+      "response": {
         "_all_": "",
         "hitNum": {
           "select": {
@@ -839,7 +866,31 @@
           "page": "{{:page}}",
           "pageSize": "{{:pageSize}}"
         }
-      ]
+      ],
+      "response": {
+        "_all_": "",
+        "hitNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*) as hitNum from contsRetvInfo where tid = 'pgmVideo' and contsId = @{contentId}"
+          }
+        },
+        "replNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*)as replNum from replInfo where contsMetaId = concat('pgmVideo','::',@{contentId})"
+          }
+        },
+        "likeNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('pgmVideo','::',@{contentId})"
+          }
+        }
+      }
     }
   },
   {
@@ -856,7 +907,31 @@
     ],
     "config": {
       "typeId": "pgmVideo",
-      "id": "{{:contentId}}"
+      "id": "{{:contentId}}",
+      "response": {
+        "_all_": "",
+        "hitNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*) as hitNum from contsRetvInfo where tid = 'pgmVideo' and contsId = @{contentId}"
+          }
+        },
+        "replNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*)as replNum from replInfo where contsMetaId = concat('pgmVideo','::',@{contentId})"
+          }
+        },
+        "likeNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('pgmVideo','::',@{contentId})"
+          }
+        }
+      }
     }
   },
   {
@@ -925,6 +1000,13 @@
             "ds": "cjDb",
             "resultType": "value",
             "sql": "select count(*)as replNum from replInfo where contsMetaId = @{videoId}"
+          }
+        },
+        "likeNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = @{videoId}"
           }
         }
       }
