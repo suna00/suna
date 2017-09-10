@@ -82,7 +82,7 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "code",
-    "referenceValue": "",
+    "referenceValue": "codeId",
     "codeFilter": "dclaDivCd",
     "defaultValue": ""
   },

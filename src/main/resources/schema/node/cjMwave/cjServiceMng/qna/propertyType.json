@@ -48,7 +48,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "code",
-    "referenceValue": "",
+    "referenceValue": "codeId",
     "codeFilter": "qnaFildCd",
     "defaultValue": ""
   },
@@ -100,7 +100,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "code",
-    "referenceValue": "",
+    "referenceValue": "codeId",
     "codeFilter": "trtSttusCd",
     "defaultValue": ""
   },

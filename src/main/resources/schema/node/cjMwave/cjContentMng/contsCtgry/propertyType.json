@@ -30,7 +30,7 @@
     "indexable" :true,
     "analyzer" : "code",
     "referenceType" : "code",
-    "referenceValue" : "",
+    "referenceValue" : "codeId",
     "defaultValue" : "",
     "codeFilter": "contsMetaDivCd"
   }
