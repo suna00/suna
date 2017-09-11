@@ -1428,7 +1428,7 @@
     "referenceValue": "code",
     "codeFilter": "siteType",
     "defaultValue": ""
-  }
+  },
   {
     "typeId": "propertyType",
     "tid": "frequentlyAskedQuestion",
