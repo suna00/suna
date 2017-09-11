@@ -24,4 +24,15 @@ public class FileUtils {
         else
             return "application/octet-stream";
     }
+
+    public static boolean isAttach(String name){
+        String contentType = getContentType(name) ;
+        switch(contentType){
+            case "application/octet-stream" :
+                return true ;
+            default:
+                return false ;
+        }
+    }
+
 }
