@@ -5601,7 +5601,7 @@
     "referenceValue": "",
     "codeFilter": "",
     "defaultValue": "",
-    "idType": ""
+    "idType": "autoIncrement"
   },
   {
     "typeId": "propertyType",
@@ -5772,7 +5772,7 @@
     "referenceValue": "",
     "codeFilter": "",
     "defaultValue": "",
-    "idType": ""
+    "idType": "autoIncrement"
   },
   {
     "typeId": "propertyType",

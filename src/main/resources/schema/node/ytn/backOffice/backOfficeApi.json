@@ -90,7 +90,6 @@
         "typeId": "emailCertification",
         "event": "create",
         "data": {
-          "emailCertificationId": "{{:emailCertificationId}}",
           "name": "이메일 인증요청",
           "emailCertificationType": "{{:emailCertificationType}}",
           "adminId": "{{:adminId}}",
