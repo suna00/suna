@@ -330,11 +330,7 @@
       "label": "trueFalse>n",
       "refId": "trueFalse>n"
     },
-    "productOptionStatus": {
-      "value": "y",
-      "label": "사용",
-      "refId": "useYn>y"
-    },
+    "productOptionStatus": "y",
     "owner": {
       "value": "anonymous",
       "label": "anonymous",
@@ -601,11 +597,7 @@
     "categoryIds": "1,10",
     "productId": "3",
     "sortOrder": 1,
-    "newProductMapStatus": {
-      "value": "y",
-      "label": "사용",
-      "refId": "useYn>y"
-    },
+    "newProductMapStatus": "y",
     "fixedYn": {
       "value": "n",
       "label": "trueFalse>n",
@@ -623,11 +615,7 @@
     "categoryIds": "1,10",
     "productId": "3",
     "sortOrder": 2,
-    "newProductMapStatus": {
-      "value": "y",
-      "label": "사용",
-      "refId": "useYn>y"
-    },
+    "newProductMapStatus": "y",
     "fixedYn": {
       "value": "n",
       "label": "trueFalse>n",
@@ -645,11 +633,7 @@
     "categoryIds": "1,10",
     "productId": "3",
     "sortOrder": 3,
-    "newProductMapStatus": {
-      "value": "y",
-      "label": "사용",
-      "refId": "useYn>y"
-    },
+    "newProductMapStatus": "y",
     "fixedYn": {
       "value": "n",
       "label": "trueFalse>n",
@@ -667,11 +651,7 @@
     "categoryIds": "1,22",
     "productId": "3",
     "sortOrder": 1,
-    "newProductMapStatus": {
-      "value": "y",
-      "label": "사용",
-      "refId": "useYn>y"
-    },
+    "newProductMapStatus": "y",
     "fixedYn": {
       "value": "n",
       "label": "trueFalse>n",
@@ -689,11 +669,7 @@
     "categoryIds": "1,22",
     "productId": "3",
     "sortOrder": 2,
-    "newProductMapStatus": {
-      "value": "y",
-      "label": "사용",
-      "refId": "useYn>y"
-    },
+    "newProductMapStatus": "y",
     "fixedYn": {
       "value": "n",
       "label": "trueFalse>n",
@@ -711,11 +687,7 @@
     "categoryIds": "1,10",
     "productId": "3",
     "sortOrder": 1,
-    "newProductMapStatus": {
-      "value": "y",
-      "label": "사용",
-      "refId": "useYn>y"
-    },
+    "newProductMapStatus": "y",
     "fixedYn": {
       "value": "n",
       "label": "trueFalse>n",
@@ -733,11 +705,7 @@
     "categoryIds": "1,10",
     "productId": "3",
     "sortOrder": 2,
-    "newProductMapStatus": {
-      "value": "y",
-      "label": "사용",
-      "refId": "useYn>y"
-    },
+    "newProductMapStatus": "y",
     "fixedYn": {
       "value": "n",
       "label": "trueFalse>n",
@@ -755,11 +723,7 @@
     "categoryIds": "1,10",
     "productId": "3",
     "sortOrder": 3,
-    "newProductMapStatus": {
-      "value": "y",
-      "label": "사용",
-      "refId": "useYn>y"
-    },
+    "newProductMapStatus": "y",
     "fixedYn": {
       "value": "n",
       "label": "trueFalse>n",
@@ -777,11 +741,7 @@
     "categoryIds": "1,10",
     "productId": "3",
     "sortOrder": 4,
-    "newProductMapStatus": {
-      "value": "y",
-      "label": "사용",
-      "refId": "useYn>y"
-    },
+    "newProductMapStatus": "y",
     "fixedYn": {
       "value": "n",
       "label": "trueFalse>n",
@@ -799,11 +759,7 @@
     "categoryIds": "1,10",
     "productId": "3",
     "sortOrder": 5,
-    "newProductMapStatus": {
-      "value": "y",
-      "label": "사용",
-      "refId": "useYn>y"
-    },
+    "newProductMapStatus": "y",
     "fixedYn": {
       "value": "n",
       "label": "trueFalse>n",
@@ -820,11 +776,7 @@
       "label": "기획전",
       "refId": "addBenefitType>special"
     },
-    "addBenefitStatus": {
-      "value": "y",
-      "label": "사용",
-      "refId": "useYn>y"
-    },
+    "addBenefitStatus": "y",
     "addBenefitPaymentType": {
       "value": "abp009",
       "label": "PAYCO",
@@ -848,11 +800,7 @@
       "label": "기획전",
       "refId": "addBenefitType>special"
     },
-    "addBenefitStatus": {
-      "value": "y",
-      "label": "사용",
-      "refId": "useYn>y"
-    },
+    "addBenefitStatus": "y",
     "addBenefitPaymentType": {
       "value": "abp007",
       "label": "현대카드",
@@ -876,11 +824,7 @@
       "label": "무이자",
       "refId": "interestType>no"
     },
-    "interestStatus": {
-      "value": "y",
-      "label": "사용",
-      "refId": "useYn>y"
-    },
+    "interestStatus": "y",
     "cardType": {
       "value": "card001",
       "label": "롯데카드",
@@ -900,11 +844,7 @@
       "label": "무이자",
       "refId": "interestType>no"
     },
-    "interestStatus": {
-      "value": "y",
-      "label": "사용",
-      "refId": "useYn>y"
-    },
+    "interestStatus": "y",
     "cardType": {
       "value": "card002",
       "label": "비씨카드",
@@ -924,11 +864,7 @@
       "label": "부분무이자",
       "refId": "interestType>part"
     },
-    "interestStatus": {
-      "value": "y",
-      "label": "사용",
-      "refId": "useYn>y"
-    },
+    "interestStatus": "y",
     "cardType": {
       "value": "card003",
       "label": "삼성카드",
@@ -2109,7 +2045,6 @@
     "name": "세탁방법 및 취급시 주의사항",
     "sortOrder": 3
   },
-
   {
     "typeId": "productAttributeCategory",
     "productAttributeCategoryId": 12,
@@ -2138,7 +2073,6 @@
     "name": "OS",
     "sortOrder": 3
   },
-
   {
     "typeId": "productAttribute",
     "productAttributeId": 101,
@@ -2165,5 +2099,122 @@
     "productAttributeCategoryItemId": 103,
     "name": "세탁방법 및 취급시 주의사항",
     "value": "절대 손빨래 안대안대. 드라이크리닝 온니 "
+  },
+  {
+    "typeId": "searchFilter",
+    "searchFilterId": 101,
+    "name": "제조사",
+    "searchFilterStatus": "y",
+    "required": {
+      "value": "false",
+      "label": "FALSE",
+      "refId": "trueFalse>false"
+    },
+    "description": "명설명설명설명섦"
+  },
+  {
+    "typeId": "searchFilter",
+    "searchFilterId": 102,
+    "name": "브랜드",
+    "searchFilterStatus": "y",
+    "required": "false",
+    "description": "명설명설명설명섦"
+  },
+  {
+    "typeId": "searchFilter",
+    "searchFilterId": 103,
+    "name": "CPU",
+    "searchFilterStatus": "y",
+    "required": "false",
+    "description": "명설명설명설명섦",
+    "created": "20170911051538"
+  },
+  {
+    "typeId": "searchFilter",
+    "searchFilterId": 104,
+    "name": "화면크기 ",
+    "searchFilterStatus": "y",
+    "required": "false",
+    "description": "명설명설명설명섦"
+  },
+  {
+    "typeId": "searchFilterCode",
+    "searchFilterCodeId": 101,
+    "name": "삼성전자",
+    "searchFilterId": "101",
+    "searchFilterCodeStatus": "approve"
+  },
+  {
+    "typeId": "searchFilterCode",
+    "searchFilterCodeId": 102,
+    "name": "LG전자",
+    "searchFilterId": "101",
+    "searchFilterCodeStatus": "approve"
+  },
+  {
+    "typeId": "searchFilterCode",
+    "searchFilterCodeId": 103,
+    "name": "나이키",
+    "searchFilterId": "102",
+    "searchFilterCodeStatus": "approve"
+  },
+  {
+    "typeId": "searchFilterCode",
+    "searchFilterCodeId": 104,
+    "name": "아디다스 ",
+    "searchFilterId": "102",
+    "searchFilterCodeStatus": "approve"
+  },
+  {
+    "typeId": "searchFilterCode",
+    "searchFilterCodeId": 105,
+    "name": "FILA",
+    "searchFilterId": "102",
+    "searchFilterCodeStatus": "approve"
+  },
+  {
+    "typeId": "searchFilterCode",
+    "searchFilterCodeId": 106,
+    "name": "인텔 ",
+    "searchFilterId": "103",
+    "searchFilterCodeStatus": "approve"
+  },
+  {
+    "typeId": "searchFilterCode",
+    "searchFilterCodeId": 107,
+    "name": "인텔 코어 X-시리즈",
+    "searchFilterId": "103",
+    "searchFilterCodeStatus": "approve"
+  },
+  {
+    "typeId": "searchFilterCode",
+    "searchFilterCodeId": 108,
+    "name": "AMD",
+    "searchFilterId": "103",
+    "searchFilterCodeStatus": "approve"
+  },
+  {
+    "typeId": "productSearchFilter",
+    "productSearchFilterId": 101,
+    "productId": "3",
+    "name": null,
+    "searchFilterId": "101",
+    "searchFilterCodeIds": [101]
+  },
+  {
+    "typeId": "productSearchFilter",
+    "productSearchFilterId": 102,
+    "productId": "3",
+    "name": null,
+    "searchFilterId": "103",
+    "searchFilterCodeIds": [106,107]
+  },
+  {
+    "typeId": "productSearchFilter",
+    "productSearchFilterId": 103,
+    "productId": "3",
+    "name": null,
+    "searchFilterId": "104",
+    "searchFilterCodeIds": null
   }
 ]

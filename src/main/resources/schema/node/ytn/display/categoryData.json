@@ -725,7 +725,8 @@
     "sortOrder": "1",
     "categoryStatus": "y",
     "affiliateId": "",
-    "siteId": ""
+    "siteId": "",
+    "searchFilterIds": "101,103,104"
   },
   {
     "typeId": "category",
@@ -1388,7 +1389,8 @@
     "sortOrder": "6",
     "categoryStatus": "y",
     "affiliateId": "",
-    "siteId": ""
+    "siteId": "",
+    "searchFilterIds": "101,103"
   },
   {
     "typeId": "category",
