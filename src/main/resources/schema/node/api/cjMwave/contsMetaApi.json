@@ -923,6 +923,22 @@
     "method": "GET",
     "parameters": [
       {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
         "paramName": "ctgryId",
         "required": false
       },
@@ -1133,6 +1149,22 @@
     "method": "GET",
     "parameters": [
       {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
         "paramName": "contsMetaCtgryId",
         "required": false
       },
@@ -1171,6 +1203,13 @@
           "field": "searchKeyword",
           "method": "matching",
           "value": "{{:searchKeyword}}"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
         },
         {
           "referenceView": "videoId"

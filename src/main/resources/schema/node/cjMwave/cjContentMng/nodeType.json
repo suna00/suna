@@ -126,7 +126,7 @@
     "id": "videItgInfo",
     "tid": "videItgInfo",
     "typeName": "영상(통합) 정보",
-    "repositoryType": "data",
+    "repositoryType": "node",
     "eviction": 0,
     "tableName": "cjDb#videItgInfo"
   }
