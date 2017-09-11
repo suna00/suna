@@ -2643,6 +2643,22 @@
   },
   {
     "typeId": "propertyType",
+    "tid": "orderProduct",
+    "pid": "referencedOrderDeliveryPrice",
+    "propertyTypeName": "referenced주문서배송비",
+    "valueType": "REFERENCED",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "orderDeliveryPrice",
+    "referenceValue": "orderProductIds",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
     "tid": "orderProductItem",
     "pid": "orderProductItemId",
     "propertyTypeName": "ID",
