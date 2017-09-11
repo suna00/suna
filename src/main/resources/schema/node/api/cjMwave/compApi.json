@@ -34,7 +34,7 @@
     "config": {
       "getContsMetaDivTid": {
         "typeId": "mainBasInfo",
-
+        "resultType": "none",
         "query": [
           {
             "field": "mainDivCd",
