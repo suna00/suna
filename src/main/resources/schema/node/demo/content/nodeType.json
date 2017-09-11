@@ -1,0 +1,78 @@
+[
+  {
+    "typeId": "nodeType",
+    "tid": "blog",
+    "parentId": "contentsMng",
+    "repositoryType": "node",
+    "typeName": "Blog Post"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "blog",
+    "pid": "id",
+    "propertyTypeName": "ID",
+    "valueType": "INT",
+    "idable": true,
+    "indexable": true,
+    "labelable": false,
+    "required": true,
+    "analyzer": "code",
+    "idType": "autoIncrement"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "blog",
+    "pid": "title",
+    "propertyTypeName": "Title",
+    "valueType": "STRING",
+    "idable": false,
+    "indexable": true,
+    "labelable": true,
+    "required": true,
+    "analyzer": "code"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "blog",
+    "pid": "postImg",
+    "propertyTypeName": "Post Image",
+    "valueType": "FILE",
+    "idable": false,
+    "indexable": false,
+    "labelable": false,
+    "required": false
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "blog",
+    "pid": "abstraction",
+    "propertyTypeName": "Abstraction",
+    "valueType": "TEXT",
+    "idable": false,
+    "indexable": false,
+    "labelable": false,
+    "required": false
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "blog",
+    "pid": "body",
+    "propertyTypeName": "Body",
+    "valueType": "JSON",
+    "idable": false,
+    "indexable": false,
+    "labelable": false,
+    "required": false
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "blog",
+    "pid": "created",
+    "propertyTypeName": "Created",
+    "valueType": "DATE",
+    "idable": false,
+    "indexable": false,
+    "labelable": false,
+    "required": false
+  }
+]

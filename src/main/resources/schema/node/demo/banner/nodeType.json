@@ -1,0 +1,73 @@
+[
+  {
+    "typeId": "nodeType",
+    "tid": "blogBanner",
+    "parentId": "contentsMng",
+    "repositoryType": "node",
+    "typeName": "Blog Banner"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "blogBanner",
+    "pid": "id",
+    "propertyTypeName": "ID",
+    "valueType": "INT",
+    "idable": true,
+    "indexable": true,
+    "labelable": false,
+    "required": true,
+    "analyzer": "code",
+    "idType": "autoIncrement"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "blogBanner",
+    "pid": "title",
+    "propertyTypeName": "Title",
+    "valueType": "STRING",
+    "idable": false,
+    "indexable": true,
+    "labelable": true,
+    "required": true,
+    "analyzer": "code"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "blogBanner",
+    "pid": "bannerImg",
+    "propertyTypeName": "Post Image",
+    "valueType": "FILE",
+    "idable": false,
+    "indexable": false,
+    "labelable": false,
+    "required": false
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "blogBanner",
+    "pid": "created",
+    "propertyTypeName": "Created",
+    "valueType": "DATE",
+    "idable": false,
+    "indexable": false,
+    "labelable": false,
+    "required": false
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "blogBanner",
+    "pid": "sortOrder",
+    "propertyTypeName": "정렬 순서",
+    "valueType": "INT",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "simple",
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  }
+]
