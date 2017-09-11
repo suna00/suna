@@ -138,6 +138,7 @@ public class ExecuteContext extends ReadContext{
                 if(!data.containsKey(pt.getPid()) && !pt.isI18n()){
                     continue;
                 }
+
                 Object newValue = NodeUtils.getStoreValue(data, pt, node.getId()) ;
                 if(pt.isI18n() && newValue == null){
                     continue;
@@ -148,10 +149,19 @@ public class ExecuteContext extends ReadContext{
                 if(newValue == null && existValue == null) {
                     continue;
                 }else if(pt.isFile()){
-                    if(newValue != null && newValue instanceof FileValue){
+                    if(newValue != null && newValue instanceof String && ((String) newValue).contains("classpath:")) {
+                        if (existValue == null) {
+                            node.put(pt.getPid(), NodeUtils.getFileService().saveResourceFile(pt, id, (String) newValue));
+                            changedProperties.add(pt.getPid());
+                        } else if (existValue instanceof FileValue && !((FileValue) existValue).getFileName().equals(StringUtils.substringAfterLast((String) newValue, "/"))) {
+                            node.put(pt.getPid(), NodeUtils.getFileService().saveResourceFile(pt, id, (String) newValue));
+                            changedProperties.add(pt.getPid());
+                        }
+                    }else if(newValue != null && newValue instanceof FileValue){
                         node.put(pt.getPid(), newValue) ;
                         changedProperties.add(pt.getPid()) ;
                     }
+                    continue;
                 }else if(newValue == null && existValue != null){
                     node.remove(pt.getPid()) ;
                     changedProperties.add(pt.getPid()) ;

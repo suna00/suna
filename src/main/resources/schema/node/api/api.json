@@ -13,7 +13,7 @@
     "parameters" : [
     ],
     "config" : {
-      "items" : {
+      "root" : {
         "typeId":"{{:typeId}}",
         "query" : [
           {"parameters" : "all"}
@@ -30,12 +30,8 @@
     "parameters" : [
     ],
     "config" : {
-      "items" : {
-        "typeId":"{{:typeId}}",
-        "query" : [
-          {"parameters" : "all"}
-        ]
-      }
+      "typeId":"{{:typeId}}",
+      "id" : "{{:id}}"
     }
   }
 ]

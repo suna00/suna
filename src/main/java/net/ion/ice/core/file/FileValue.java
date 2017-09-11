@@ -25,7 +25,8 @@ public class FileValue implements Serializable{
         this.fileSize = multipartFile.getSize() ;
     }
 
-    public FileValue(Resource res, String path) {
+    public FileValue(PropertyType pt, Resource res, String path) {
+        this.handler = pt.getFileHandler() ;
         this.storePath = path ;
         this.fileName = res.getFilename() ;
         try {
@@ -33,6 +34,7 @@ public class FileValue implements Serializable{
         } catch (IOException e) {
             e.printStackTrace();
         }
+        this.contentType = FileUtils.getContentType(res.getFilename()) ;
     }
 
     public String getContentType() {
