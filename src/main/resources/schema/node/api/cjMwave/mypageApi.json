@@ -190,6 +190,10 @@
       {
         "paramName": "snsTypeCd",
         "required": true
+      },
+      {
+        "paramName": "trtSttusCd",
+        "required": false
       }
     ],
     "config": {
@@ -199,6 +203,11 @@
           "field": "qnarId",
           "method": "matching",
           "value": "{{:makeIdValue(>,snsTypeCd,snsKey)}}"
+        },
+        {
+          "field": "trtSttusCd",
+          "method": "matching",
+          "value": "{{:trtSttusCd)}}"
         },
         {
           "sorting": "{{:sorting}}"
