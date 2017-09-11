@@ -106,12 +106,6 @@ public class ContextUtils {
     }
 
     public static void makeApiResponse(Map<String, Object> response, ReadContext readContext) {
-
-//                if(response.containsKey("merge")){
-//                    queryContext.responseType = "merge" ;
-//                    queryContext.mergeField = (String) response.get("merge");
-//                }
-
         for(String fieldName : response.keySet()) {
             Object fieldValue = response.get(fieldName) ;
             if(fieldName.equals("_all_")){
