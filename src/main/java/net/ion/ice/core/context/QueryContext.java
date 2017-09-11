@@ -451,6 +451,9 @@ public class QueryContext extends ReadContext {
     protected QueryResult makeQueryResult(Object result, String fieldName, ResultField.ResultType resultType, List<Node> resultNodeList) {
         NodeType nodeType = getNodetype() ;
 
+        if(resultType != null && resultType == ResultField.ResultType.NONE){
+            return null;
+        }
         if(fieldName == null){
             fieldName = "items" ;
         }
@@ -465,7 +468,9 @@ public class QueryContext extends ReadContext {
             return makePaging(fieldName, subList);
         }
         if(resultType != null){
-            if(resultType == ResultField.ResultType.MERGE) {
+            if(resultType == ResultField.ResultType.NONE){
+                return null;
+            }else if(resultType == ResultField.ResultType.MERGE) {
                 if(subList != null && subList.size() > 0) {
                     ((Map) result).putAll(subList.get(0));
                 }

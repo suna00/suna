@@ -20,6 +20,7 @@ public class ApiQueryContext extends QueryContext{
     protected Map<String, Object> config  ;
     protected String responseType;
     protected String mergeField;
+    protected ResultField.ResultType resultType ;
 
 
     public ApiQueryContext(NodeType nodeType) {
@@ -30,7 +31,9 @@ public class ApiQueryContext extends QueryContext{
         super();
     }
 
-
+    public QueryResult makeQueryResult() {
+        return makeQueryResult(result, null, resultType);
+    }
 
     public static ApiQueryContext makeContextFromConfig(Map<String, Object> config, Map<String, Object> data) {
         ApiQueryContext queryContext = null;
@@ -52,6 +55,8 @@ public class ApiQueryContext extends QueryContext{
 //                queryContext.makeSearchFields((Map<String, Object>) config.get("query"));
             }else if(key.equals("response")){
                 ContextUtils.makeApiResponse((Map<String, Object>) config.get(key), queryContext);
+            }else if(key.equals("resultType")){
+                queryContext.resultType = ResultField.ResultType.valueOf(config.get("resultType").toString().toUpperCase());
             }
         }
         return queryContext;

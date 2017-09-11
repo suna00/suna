@@ -1,6 +1,7 @@
 package net.ion.ice.core.context;
 
 import net.ion.ice.core.json.JsonUtils;
+import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.query.ResultField;
@@ -80,6 +81,16 @@ public class ContextUtils {
         }
     }
 
+    public static Object getValue(Object staticValue, Map<String, Object> data, ReadContext readContext, NodeType nodeType, Node node) {
+        if(staticValue instanceof String && StringUtils.contains((String) staticValue, "{{:") && StringUtils.contains((String) staticValue, "}}")){
+            Template template = new Template((String) staticValue) ;
+            template.parsing();
+            return template.format(data, readContext, nodeType, node) ;
+        }else{
+            return staticValue ;
+        }
+    }
+
     public static String getParameterValue(String paramName, Map<String, String[]> parameterMap){
         if(!parameterMap.containsKey(paramName)){
             return null ;
@@ -154,5 +165,6 @@ public class ContextUtils {
         }
         return value;
     }
+
 
 }
