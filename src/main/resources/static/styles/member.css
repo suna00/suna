@@ -6,9 +6,9 @@
 .signup_step_box ul li.on span{color:#fff;}
 .signup_step_box ul li.step2,
 .signup_step_box ul li.step3{border-left:1px solid #f5f5f5;}
-.signup_step_box ul li.step1 span:before{content:'';display:inline-block;position:absolute;top:50%;margin-top:-18px;left:0;width:47px;height:36px;background-image:url("/image/member/icon_signup_step1.png");background-position: 0 -36px;background-repeat:no-repeat;}
-.signup_step_box ul li.step2 span:before{content:'';display:inline-block;position:absolute;top:50%;margin-top:-20px;left:0;width:40px;height:41px;background-image:url("/image/member/icon_signup_step2.png");background-position: 0 -41px;background-repeat:no-repeat;}
-.signup_step_box ul li.step3 span:before{content:'';display:inline-block;position:absolute;top:50%;margin-top:-20px;left:0;width:44px;height:39px;background-image:url("/image/member/icon_signup_step3.png");background-position: 0 -39px;background-repeat:no-repeat;}
+.signup_step_box ul li.step1 span:before{content:'';display:inline-block;position:absolute;top:50%;margin-top:-18px;left:0;width:47px;height:36px;background-image:url("../image/member/icon_signup_step1.png");background-position: 0 -36px;background-repeat:no-repeat;}
+.signup_step_box ul li.step2 span:before{content:'';display:inline-block;position:absolute;top:50%;margin-top:-20px;left:0;width:40px;height:41px;background-image:url("../image/member/icon_signup_step2.png");background-position: 0 -41px;background-repeat:no-repeat;}
+.signup_step_box ul li.step3 span:before{content:'';display:inline-block;position:absolute;top:50%;margin-top:-20px;left:0;width:44px;height:39px;background-image:url("../image/member/icon_signup_step3.png");background-position: 0 -39px;background-repeat:no-repeat;}
 .signup_step_box ul li.step1.on span:before,
 .signup_step_box ul li.step2.on span:before,
 .signup_step_box ul li.step3.on span:before{background-position:0 0;}
@@ -138,7 +138,7 @@ span.require{display:inline-block;margin-left:5px;color:#eb0000;}
 .app_intro_wrap .qr_desc p{color:#555555;}
 .app_intro_wrap .qr_desc p.tit{font-size:18px;font-weight:600;color:#222;padding-bottom:10px;}
 .login_dot_list{margin-top:16px;}
-.login_dot_list li{color:#888888;font-size:12px;padding-left:10px;background:url("/image/member/bg_login_dot_list.gif") 0 50% no-repeat;}
+.login_dot_list li{color:#888888;font-size:12px;padding-left:10px;background:url("../image/member/bg_login_dot_list.gif") 0 50% no-repeat;}
 
 
 /* 대학생 회원가입 */
@@ -153,10 +153,10 @@ span.require{display:inline-block;margin-left:5px;color:#eb0000;}
 .edu_signup_step ul li span.desc{bottom:23px;left:0;width:100%;text-align:center;font-size:16px;color:#222;}
 .edu_signup_step ul li span.desc span.em{color:#009fe3;}
 .edu_signup_step ul li span.icon{width:100px;height:100px;top:55px;left:50%;margin:0 0 0 -50px;background-position:0 0;background-repeat:no-repeat;}
-.edu_signup_step ul li.step1 span.icon{background-image:url("/image/member/icon_edu_signup_1.gif");}
-.edu_signup_step ul li.step2 span.icon{background-image:url("/image/member/icon_edu_signup_2.gif");}
-.edu_signup_step ul li.step3 span.icon{background-image:url("/image/member/icon_edu_signup_3.gif");}
-.edu_signup_step ul li.step4 span.icon{background-image:url("/image/member/icon_edu_signup_4.gif");}
+.edu_signup_step ul li.step1 span.icon{background-image:url("../image/member/icon_edu_signup_1.gif");}
+.edu_signup_step ul li.step2 span.icon{background-image:url("../image/member/icon_edu_signup_2.gif");}
+.edu_signup_step ul li.step3 span.icon{background-image:url("../image/member/icon_edu_signup_3.gif");}
+.edu_signup_step ul li.step4 span.icon{background-image:url("../image/member/icon_edu_signup_4.gif");}
 
 .edu_signup_help{clear:both;text-align:right;padding:13px 0;}
 .edu_signup_help > span{font-size:14px;color:#222;}
@@ -173,9 +173,9 @@ span.require{display:inline-block;margin-left:5px;color:#eb0000;}
 .uni_srch_box .field{padding:0 0 0 25px;}
 .uni_srch_box .field .field_box{background:#fff;overflow:hidden;width:450px;}
 .uni_srch_box .field .field_box input.txt{float:left;font-size:16px;padding:13px 10px 9px;width:392px;border:none;}
-.uni_srch_box .field .field_box a{float:left;width:58px;height:44px;background:url("/image/member/icon_edu_srch.gif") 0 0 no-repeat;text-indent:-9999px;}
+.uni_srch_box .field .field_box a{float:left;width:58px;height:44px;background:url("../image/member/icon_edu_srch.gif") 0 0 no-repeat;text-indent:-9999px;}
 .uni_srch_box .etc{width:233px;text-align:center;font-size:13px;color:#888;}
-.uni_srch_box .etc a{display:inlnie-block;padding-right:35px;background:url("/image/member/icon_edu_help.png") 100% 50% no-repeat;color:#fff;}
+.uni_srch_box .etc a{display:inlnie-block;padding-right:35px;background:url("../image/member/icon_edu_help.png") 100% 50% no-repeat;color:#fff;}
 
 .uni_srch_help{margin-top:36px;}
 .uni_srch_help p.tit{color:#222;font-size:14px;font-weight:600;padding-bottom:10px;}
@@ -191,8 +191,8 @@ span.require{display:inline-block;margin-left:5px;color:#eb0000;}
 .uni_srch_result .uni_srch_result_box ul li .uni_btn{display:table-cell;vertical-align:middle;}
 .uni_srch_result .uni_srch_result_box ul li .uni_btn{text-align:center;width:260px;}
 .uni_srch_result .uni_srch_result_box ul li .uni_btn a.btn.brd{margin:0 3px;border-color:#cccccc;border-radius:0;}
-.uni_srch_result .uni_srch_result_box ul li .uni_nm a{display:block;padding:10px 0 10px 48px;font-size:14px;background:url("/image/member/icon_edu_nm_off.gif") 20px 50% no-repeat;}
-.uni_srch_result .uni_srch_result_box ul li .uni_srch_inbox.on .uni_nm a{background-image:url("/image/member/icon_edu_nm_on.gif");font-weight:600;}
+.uni_srch_result .uni_srch_result_box ul li .uni_nm a{display:block;padding:10px 0 10px 48px;font-size:14px;background:url("../image/member/icon_edu_nm_off.gif") 20px 50% no-repeat;}
+.uni_srch_result .uni_srch_result_box ul li .uni_srch_inbox.on .uni_nm a{background-image:url("../image/member/icon_edu_nm_on.gif");font-weight:600;}
 
 .uni_srch_result .uni_signup_proc{display:none;background:#fafafa;border-bottom:1px solid #e5e5e5;padding:50px 0 30px;text-align:center;}
 .uni_srch_result .uni_signup_proc ul li{display:inline-block;width:150px;margin-left:50px;}
@@ -256,7 +256,7 @@ span.require{display:inline-block;margin-left:5px;color:#eb0000;}
 .rest_mem_box p.tit{text-align:center;font-size:18px;color:#000000;padding-top:74px;}
 .rest_mem_box .rest_mem_proc{padding-top:74px;padding-bottom:34px;}
 .rest_mem_box .rest_mem_proc ul{display:table;width:100%;table-layout:fixed;}
-.rest_mem_box .rest_mem_proc ul li{display:table-cell;background:url("/image/member/bg_rest_mem_proc_li.gif") 0 0 no-repeat;}
+.rest_mem_box .rest_mem_proc ul li{display:table-cell;background:url("../image/member/bg_rest_mem_proc_li.gif") 0 0 no-repeat;}
 .rest_mem_box .rest_mem_proc ul li.proc1{background:none;}
 .rest_mem_box .rest_mem_proc ul li.proc2{}
 .rest_mem_box .rest_mem_proc ul li.proc3{}
@@ -271,8 +271,8 @@ span.require{display:inline-block;margin-left:5px;color:#eb0000;}
 .rest_mem_box .rest_mem_certi_wrap{overflow:hidden;}
 .rest_mem_box .rest_mem_certi_wrap .rest_mem_certi{position:relative;float:right;width:570px;height:180px;background:#fff;}
 .rest_mem_box .rest_mem_certi_wrap .rest_mem_certi:first-child{float:left;}
-.rest_mem_box .rest_mem_certi_wrap .rest_mem_certi:nth-child(1){background:#fff url('/image/member/icon_rest_mem_certi_1.gif') 36px 53px no-repeat;}
-.rest_mem_box .rest_mem_certi_wrap .rest_mem_certi:nth-child(2){background:#fff url('/image/member/icon_rest_mem_certi_2.gif') 36px 53px no-repeat;}
+.rest_mem_box .rest_mem_certi_wrap .rest_mem_certi:nth-child(1){background:#fff url('../image/member/icon_rest_mem_certi_1.gif') 36px 53px no-repeat;}
+.rest_mem_box .rest_mem_certi_wrap .rest_mem_certi:nth-child(2){background:#fff url('../image/member/icon_rest_mem_certi_2.gif') 36px 53px no-repeat;}
 .rest_mem_box .rest_mem_certi_wrap .rest_mem_certi span.tit,
 .rest_mem_box .rest_mem_certi_wrap .rest_mem_certi span.desc,
 .rest_mem_box .rest_mem_certi_wrap .rest_mem_certi a.btn{position:absolute;}

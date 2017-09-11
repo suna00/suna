@@ -11,11 +11,11 @@ import org.springframework.web.servlet.ModelAndView;
 public class JSPController {
     private static Logger logger = LoggerFactory.getLogger(NodeBindingInfo.class);
 
-    @RequestMapping("/kcp/order")
+    @RequestMapping("/order")
     public ModelAndView order() {
         ModelAndView mv = new ModelAndView();
 
-        mv.setViewName("order");
+        mv.setViewName("/order/index");
         return mv;
     }
 }

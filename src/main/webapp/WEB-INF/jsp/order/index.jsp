@@ -14,10 +14,10 @@
     <meta name="Keywords" content="교육할인스토어">
     <meta name="Description" content="오직 대학생을 위한 할인프로그램, 대학생 와이군 서식중">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <script src="../assets/js/jquery.min.js"></script>
-    <script src="../assets/js/plugins.js"></script>
-    <script src="../assets/js/ui.js"></script>
+    <link rel="stylesheet" href="/styles/style.css">
+    <script src="/script/jquery.min.js"></script>
+    <script src="/script/plugins.js"></script>
+    <script src="/script/ui.js"></script>
 </head>
 <body>
 
@@ -958,12 +958,12 @@
                                             <th>배송지 선택</th>
                                             <td colspan="3">
                                                     <span class="in_field">
-                                                        <input type="radio" class="rdo" id="rdo1">
-                                                        <label for="rdo1">기본 배송지</label>
+                                                        <input type="radio" class="rdo" id="address1">
+                                                        <label for="address1">기본 배송지</label>
                                                     </span>
                                                 <span class="in_field">
-                                                        <input type="radio" class="rdo" id="rdo1">
-                                                        <label for="rdo1">새 배송지</label>
+                                                        <input type="radio" class="rdo" id="address2">
+                                                        <label for="address2">새 배송지</label>
                                                     </span>
 
                                                 <span class="in_field">

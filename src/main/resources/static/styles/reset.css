@@ -181,6 +181,6 @@ p.sml{font-size:12px !important;}
 .v_top{vertical-align:top !important;padding-top:10px !important;}
 
 
-ul.dot_list li{padding-left:10px;background:url("/image/common/bg_gray_dot.gif") 0 11px no-repeat;color:#888;font-size:12px;padding-top:2px;padding-bottom:2px;}
+ul.dot_list li{padding-left:10px;background:url("../image/common/bg_gray_dot.gif") 0 11px no-repeat;color:#888;font-size:12px;padding-top:2px;padding-bottom:2px;}
 ul.dot_list li a.btn{margin-left:10px;padding-top:1px;padding-bottom:2px;margin-top:-2px;}
 ul.dot_list li a.btn span{color:#333;}

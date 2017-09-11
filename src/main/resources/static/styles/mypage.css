@@ -19,7 +19,7 @@ table + .list_btn_wrap{margin-top:10px;}
 .mypage_topinfo .mypage_left .desc p:first-child{font-size:20px;padding-top:5px;}
 .mypage_topinfo .mypage_left .desc p:first-child strong{font-weight:600;}
 .mypage_topinfo .mypage_left .desc p + p{font-size:15px;}
-.mypage_topinfo .mypage_left .desc p + p a.sml{display:inline-block;margin-left:10px;font-size:12px;text-decoration:underline;color:#fff;padding-right:10px;background:url("/image/common/bg_sml_link_arr.png") 100% 50% no-repeat;}
+.mypage_topinfo .mypage_left .desc p + p a.sml{display:inline-block;margin-left:10px;font-size:12px;text-decoration:underline;color:#fff;padding-right:10px;background:url("../image/common/bg_sml_link_arr.png") 100% 50% no-repeat;}
 .mypage_topinfo .mypage_right .tbl_box{display:table;width:100%;table-layout:fixed;height:64px;}
 .mypage_topinfo .mypage_right .tbl_box .tbl_c_box{display:table-cell;vertical-align:middle;padding:0 0 0 30px;border-left:1px solid rgba(255,255,255,0.2);}
 .mypage_topinfo .mypage_right .tbl_box .tbl_c_box:first-child{border-left:none;}
@@ -39,12 +39,12 @@ table + .list_btn_wrap{margin-top:10px;}
 .tab_wrap .mypage_tab_nav.tab_nav + table.tbl{margin-top:20px;}
 .tab_wrap .mypage_tab_nav.tab_nav + table.tbl tbody td{padding-top:20px;padding-bottom:20px;}
 .tab_wrap .mypage_tab_nav.tab_nav + table.tbl tbody td.left{padding-left:20px;padding-right:20px;}
-.coupon_box{position:relative;width:90px;height:50px;background:url("/image/mypage/bg_coupon_box.png") 0 0 no-repeat;margin:0 auto;}
+.coupon_box{position:relative;width:90px;height:50px;background:url("../image/mypage/bg_coupon_box.png") 0 0 no-repeat;margin:0 auto;}
 .coupon_box p.price_dc,
 .coupon_box p.perc_dc{position:absolute;top:20px;left:0;width:100%;text-align:center;z-index:1;}
 .coupon_box p.price_dc{font-size:13px;font-weight:600;color:#009fe3;}
 .coupon_box p.perc_dc{font-size:20px;font-weight:600;color:#009fe3;font-family:'Montserrat', 'Noto Sans KR', sans-serif;}
-.coupon_box.off{background:url("/image/mypage/bg_coupon_box_off.png") 0 0 no-repeat;}
+.coupon_box.off{background:url("../image/mypage/bg_coupon_box_off.png") 0 0 no-repeat;}
 .coupon_box.off p.price_dc{font-size:13px;font-weight:600;color:#777777;}
 .coupon_box.off p.perc_dc{font-size:20px;font-weight:600;color:#777777;font-family:'Montserrat', 'Noto Sans KR', sans-serif;}
 
@@ -132,7 +132,7 @@ table + .list_btn_wrap{margin-top:10px;}
 .brd_box.ord_status_box .mypage_contents div.tit{width:137px;font-size:22px;font-weight:600;text-align:center;}
 .brd_box.ord_status_box .mypage_contents div.tit h2{padding-bottom:0;}
 .brd_box.ord_status_box .mypage_contents div.ord_status{width:648px;text-align:center;padding:0 45px;}
-.brd_box.ord_status_box .mypage_contents div.ord_status ul li{float:left;width:20%;background:url("/image/mypage/bg_ord_proc.gif") 0 50% no-repeat;}
+.brd_box.ord_status_box .mypage_contents div.ord_status ul li{float:left;width:20%;background:url("../image/mypage/bg_ord_proc.gif") 0 50% no-repeat;}
 .brd_box.ord_status_box .mypage_contents div.ord_status ul li:first-child{background:none;}
 .brd_box.ord_status_box .mypage_contents div.ord_status ul li span{display:block;text-align:center;}
 .brd_box.ord_status_box .mypage_contents div.ord_status ul li span:first-child{font-size:36px;color:#009fe3;letter-spacing:-2px;}
@@ -200,7 +200,7 @@ label input[type="checkbox"]{margin-right:4px;}
 .refund_acc span:last-child:after{display:none;}
 
 .ord_cancel_msg,
-.refund_alarm{display:inline-block;color:#ff0000;padding-left:18px;background:url("/image/mypage/icon_refund_alarm.png") 0 3px no-repeat;}
+.refund_alarm{display:inline-block;color:#ff0000;padding-left:18px;background:url("../image/mypage/icon_refund_alarm.png") 0 3px no-repeat;}
 .price + .refund_alarm{margin-left:15px;}
 .agree_wrap{padding-top:4px;}
 .agree_wrap label input{position:relative;top:2px;}
