@@ -3353,6 +3353,22 @@
   },
   {
     "typeId": "propertyType",
+    "tid": "searchFilter",
+    "pid": "referencedSearchFilterCode",
+    "propertyTypeName": "referenced검색필터정책코드",
+    "valueType": "REFERENCED",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": true,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "searchFilterCode",
+    "referenceValue": "searchFilterId",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
     "tid": "searchFilterCode",
     "pid": "searchFilterCodeId",
     "propertyTypeName": "ID",
