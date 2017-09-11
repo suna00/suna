@@ -256,6 +256,17 @@
     "typeId" : "builderPresentationalComponent",
     "componentTemplateType": "Spin",
     "componentClassType": "INPUT",
+    "componentClass": "DateRange",
+    "componentClassName": "DATE RANGE",
+    "icon": "fa-square-o",
+    "order": 141,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentTemplateType": "Spin",
+    "componentClassType": "INPUT",
     "componentClass": "DateTime",
     "componentClassName": "DATE TIME",
     "icon": "fa-square-o",
