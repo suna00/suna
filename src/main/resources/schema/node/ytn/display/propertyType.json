@@ -906,6 +906,23 @@
   {
     "typeId": "propertyType",
     "tid": "category",
+    "pid": "searchFilterIds",
+    "propertyTypeName": "검색필터정책",
+    "valueType": "REFERENCES",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "searchFilter",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "category",
     "pid": "referencedCategoryBanner",
     "propertyTypeName": "referenced카테고리배너",
     "valueType": "REFERENCED",

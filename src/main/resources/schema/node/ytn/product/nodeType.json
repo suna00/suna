@@ -46,24 +46,6 @@
   {
     "parentId": "productPath",
     "typeId": "nodeType",
-    "tid": "searchFilterPolicy",
-    "typeName": "검색필터정책",
-    "tableName": "ytnDevDb#searchFilterPolicy",
-    "repositoryType": "node",
-    "eviction": 0
-  },
-  {
-    "parentId": "productPath",
-    "typeId": "nodeType",
-    "tid": "searchFilterItem",
-    "typeName": "검색필터코드",
-    "tableName": "ytnDevDb#searchFilterItem",
-    "repositoryType": "node",
-    "eviction": 0
-  },
-  {
-    "parentId": "productPath",
-    "typeId": "nodeType",
     "tid": "productAttributeCategory",
     "typeName": "상품고시 분류",
     "tableName": "ytnDevDb#productAttributeCategory",
@@ -85,6 +67,33 @@
     "tid": "productAttribute",
     "typeName": "상품고시",
     "tableName": "ytnDevDb#productAttribute",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "productPath",
+    "typeId": "nodeType",
+    "tid": "searchFilter",
+    "typeName": "검색필터정책",
+    "tableName": "ytnDevDb#searchFilter",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "productPath",
+    "typeId": "nodeType",
+    "tid": "searchFilterCode",
+    "typeName": "검색필터정책코드",
+    "tableName": "ytnDevDb#searchFilterCode",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "productPath",
+    "typeId": "nodeType",
+    "tid": "productSearchFilter",
+    "typeName": "상품검색필터",
+    "tableName": "ytnDevDb#productSearchFilter",
     "repositoryType": "node",
     "eviction": 0
   }
