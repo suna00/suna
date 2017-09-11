@@ -87,30 +87,13 @@
     "method": "GET",
     "parameters": [
       {
-        "paramName": "searchKeyword",
-        "required": false
-      },
-      {
         "paramName": "ntfBbsSeq",
         "required": true
-      },
-      {
-        "paramName": "svcTermlDivCd",
-        "required": false
-      },
-      {
-        "paramName": "ntfLargeCtgCd",
-        "required": false
       }
     ],
     "config": {
       "typeId": "ntfBbs",
       "id": "{{:ntfBbsSeq}}",
-      "query":[
-        {
-          "referenceView": true
-        }
-      ],
       "response": {
         "ntfBbsSeq": "",
         "ntfBbsNm": "",
@@ -341,9 +324,13 @@
     ],
     "config": {
       "typeId": "faq",
-      "event": "retvNum",
+      "event": "view",
       "data": {
         "faqSeq": "{{:faqSeq}}"
+      },
+      "response":{
+        "faqSeq":"",
+        "retvNum":""
       }
     }
   }

@@ -38,9 +38,9 @@
   {
     "typeId": "propertyType",
     "tid": "news",
-    "pid": "ctgryId",
-    "id": "news>ctgryId",
-    "propertyTypeName": "카테고리 아이디",
+    "pid": "contsMetaCtgryId",
+    "id": "news>contsMetaCtgryId",
+    "propertyTypeName": "콘텐츠 카테고리 아이디",
     "valueType": "REFERENCE",
     "required": false,
     "idable": false,

@@ -65,8 +65,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>news>ctgryId",
-    "propertyTypeId": "news>ctgryId",
+    "id": "propertyTypeValidation>news>contsMetaCtgryId",
+    "propertyTypeId": "news>contsMetaCtgryId",
     "validation": {
       "language": "ko",
       "required": {
