@@ -99,6 +99,7 @@ dependencies {
     compile('org.infinispan:infinispan-query:9.1.0.Final')
     compile('io.jsonwebtoken:jjwt:0.7.0')
 
+    // DB
     compile("org.springframework:spring-jdbc")
     compile("org.apache.commons:commons-dbcp2:2.1.1")
     compile('com.oracle:ojdbc8:12.2.0.1')                       //oracle
@@ -106,9 +107,18 @@ dependencies {
     compile('org.mariadb.jdbc:mariadb-java-client:2.0.2')       //maria
     compile('com.microsoft.sqlserver:mssql-jdbc:6.1.0.jre8')    //msSql
 
+    //JSP
+    compile('org.apache.tomcat.embed:tomcat-embed-jasper:8.5.19')   //Need this to compile JSP
+    compile('javax.servlet:jstl:1.2')                               //JSTL for JSP
+
+    //PG
+    compile('kcp:ConnectionKCP:1.1.0')  //KCP Module1
+    compile('kcp:jPpcliE:1.1.0')        //KCP Module2
+
     compile('org.stagemonitor:stagemonitor-web-servlet:0.80.0.RC1')
     compile('org.projectlombok:lombok:1.16.16')
     runtime('org.springframework.boot:spring-boot-devtools')
+
     testCompile('org.springframework.boot:spring-boot-starter-test')
 
 }

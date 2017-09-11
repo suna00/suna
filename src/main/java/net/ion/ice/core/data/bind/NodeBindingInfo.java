@@ -216,6 +216,10 @@ public class NodeBindingInfo {
 
     public int insert(Node node) {
         List<Object> parameters = insertParameters(node);
+        if(node.getTypeId().equals("myDeliveryAddress")){
+            logger.info("myDeliveryAddress");
+            logger.info("myDeliveryAddress");
+        }
         int queryCallBack = jdbcTemplate.update(insertSql, parameters.toArray());
         return queryCallBack;
     }
