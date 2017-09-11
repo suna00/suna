@@ -247,11 +247,6 @@
         "typeId": "replInfo",
         "query": [
           {
-            "field": "mkerId",
-            "method": "matching",
-            "value": "{{:makeIdValue(>,snsTypeCd,snsKey)}}"
-          },
-          {
             "field": "contsMetaDivCd",
             "method": "matching",
             "value": "{{:contsMetaDivCd}}"
