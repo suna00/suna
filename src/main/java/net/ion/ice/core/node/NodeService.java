@@ -8,6 +8,7 @@ import net.ion.ice.core.context.ReferenceQueryContext;
 import net.ion.ice.core.event.Event;
 import net.ion.ice.core.event.EventAction;
 import net.ion.ice.core.event.EventListener;
+import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.file.FileService;
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
 import net.ion.ice.core.json.JsonUtils;
@@ -75,9 +76,15 @@ public class NodeService {
     }
 
     public NodeType getNodeType(String typeId) {
+        if(typeId == null){
+            logger.error("NOT FOUND TypeId is NULL!") ;
+            return null ;
+        }
+
         if(nodeTypeCache != null && nodeTypeCache.containsKey(typeId)) {
             return nodeTypeCache.get(typeId) ;
         }
+
 
         if(initNodeType.containsKey(typeId)){
             return initNodeType.get(typeId) ;
@@ -254,34 +261,40 @@ public class NodeService {
         return null ;
     }
 
+    public Node createNode(Map<String, Object> data, String typeId) {
+        return (Node) executeNode(data, typeId, EventService.CREATE);
+    }
 
-    public Node executeNode(Map<String, Object> data, String typeId, String event) {
-        ExecuteContext context = ExecuteContext.makeContextFromMap(data, typeId, event) ;
-
-        context.execute();
-        Node node = (Node) context.getResult();
-        return node ;
+    public Node updateNode(Map<String, Object> data, String typeId) {
+        return (Node) executeNode(data, typeId, EventService.UPDATE);
     }
 
 
-    public Node executeNode(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, String typeId, String event) {
+    public Object executeNode(Map<String, Object> data, String typeId, String event) {
+        ExecuteContext context = ExecuteContext.makeContextFromMap(data, typeId, event) ;
+        context.execute();
+        return context.getResult();
+    }
+
+
+    public Object executeNode(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, String typeId, String event) {
         NodeType nodeType = getNodeType(typeId) ;
 
         ExecuteContext context = ExecuteContext.makeContextFromParameter(parameterMap, multiFileMap, nodeType, event) ;
         context.execute();
-        Node node = (Node) context.getResult();
-        node.toDisplay();
-        return node;
+//        Node node = (Node) context.getResult();
+//        node.toDisplay();
+        return context.makeResult();
     }
 
-    public Node deleteNode(Map<String, String[]> parameterMap, String typeId) {
+    public Object deleteNode(Map<String, String[]> parameterMap, String typeId) {
         NodeType nodeType = getNodeType(typeId) ;
 
         ExecuteContext context = ExecuteContext.createContextFromParameter(parameterMap, nodeType, "delete", null) ;
         context.execute();
 
-        Node node = (Node) context.getResult();
-        return node ;
+//        Node node = (Node) context.getResult();
+        return context.makeResult() ;
     }
 
     public Node deleteNode(String typeId, String id) {
@@ -290,11 +303,11 @@ public class NodeService {
         ExecuteContext context = ExecuteContext.createContextFromParameter(null, nodeType, "delete", id) ;
         context.execute();
 
-        Node node = context.getNode() ;
+//        Node node = context.getNode() ;
 
 //        Node node = infinispanRepositoryService.getNode(typeId, id) ;
 //        infinispanRepositoryService.deleteNode(node) ;
-        return node ;
+        return context.getNode() ;
     }
 
     public Object readNode(Map<String, String[]> parameterMap, String typeId, String id) {
@@ -328,25 +341,25 @@ public class NodeService {
 
     public QueryResult getQueryResult(String query) {
         QueryContext queryContext = QueryContext.makeQueryContextFromQuery(query) ;
-        QueryResult queryResult = queryContext.makeQueryResult( null, null);
+        QueryResult queryResult = queryContext.makeQueryResult();
         return queryResult;
     }
 
     public QueryResult getQueryResult(String typeId, Map<String, String[]> parameterMap) {
         QueryContext queryContext = QueryContext.createQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
-        QueryResult queryResult = queryContext.makeQueryResult( null, null);
+        QueryResult queryResult = queryContext.makeQueryResult();
         return queryResult;
     }
 
     public QueryResult getReferenceQueryResult(String typeId, Map<String, String[]> parameterMap) {
         ReferenceQueryContext queryContext = ReferenceQueryContext.createQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
-        QueryResult queryResult = queryContext.makeQueryResult( null, null);
+        QueryResult queryResult = queryContext.makeQueryResult();
         return queryResult;
     }
 
     public QueryResult getCodeQueryResult(String typeId, Map<String, String[]> parameterMap) {
         ReferenceQueryContext queryContext = ReferenceQueryContext.createQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
-        QueryResult queryResult = queryContext.makeQueryResult( null, null);
+        QueryResult queryResult = queryContext.makeQueryResult();
         return queryResult;
     }
 

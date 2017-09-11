@@ -10,6 +10,7 @@ import net.ion.ice.core.query.QueryTerm;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
+import org.apache.lucene.analysis.core.SimpleAnalyzer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.document.DateTools;
 import org.apache.lucene.index.Term;
@@ -160,6 +161,9 @@ public class LuceneQueryUtils {
                 PropertyType pt = queryContext.getNodetype().getPropertyType(sortField) ;
                 if(pt != null) {
                     sortTypeStr = pt.getValueType().toString();
+                    if(!pt.isSorted() && pt.isSortable() && !pt.isNumeric()){
+                        sortField = sortField + "_sort" ;
+                    }
                 }else if(sortField.equals("created") || sortField.equals("changed")){
                     sortTypeStr = "DATE";
                 }
@@ -247,14 +251,19 @@ public class LuceneQueryUtils {
     }
 
     private static Query createKeywordTermQuery(QueryTerm term) throws IOException {
-
-
         Query query;
-        List<String> terms = getAllTermsFromText(
-                term.getQueryKey(),
-                term.getQueryValue(),
-                term.getAnalyzer()
-        );
+        List<String> terms;
+
+        if(term.getAnalyzer() instanceof SimpleAnalyzer){
+            terms = new ArrayList<>(1) ;
+            terms.add(term.getQueryValue()) ;
+        }else {
+            terms = getAllTermsFromText(
+                    term.getQueryKey(),
+                    term.getQueryValue(),
+                    term.getAnalyzer()
+            );
+        }
 
         if ( terms.size() == 0 ) {
             throw new IceRuntimeException("term size zero") ;

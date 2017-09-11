@@ -24,9 +24,10 @@ public class ApiContext {
 
     private Map<String, Object> config  ;
 
-    private List<ResultField> resultFieldList ;
+    private List<ResultField> commonResultFieldList ;
+    private List<ResultField> resultFields ;
 
-    public static ApiContext createContext(Node apiCategory, Node apiNode, Map<String, Object> config, Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, Map<String, Object> session) {
+    public static ApiContext createContext(Node apiCategory, Node apiNode, String typeId, Map<String, Object> config, Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, Map<String, Object> session) {
         ApiContext ctx = new ApiContext() ;
         ctx.apiCategory = apiCategory ;
         ctx.apiNode = apiNode ;
@@ -34,6 +35,9 @@ public class ApiContext {
         ctx.data.put("session", session);
         ctx.data.put("now", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())) ;
         ctx.data.put("sysdate", new Date()) ;
+        if(typeId != null) {
+            ctx.data.put("typeId", typeId);
+        }
 
 
         if(apiCategory.containsKey(COMMON_RESPONSE) && apiCategory.get(COMMON_RESPONSE) != null && ((Map<String, Object>) apiCategory.get(COMMON_RESPONSE)).size() > 0) {
@@ -49,22 +53,22 @@ public class ApiContext {
     }
 
     private void makeCommonResponse(Map<String, Object> response){
-        resultFieldList = new ArrayList<>() ;
+        commonResultFieldList = new ArrayList<>() ;
         for(String fieldName : response.keySet()) {
             Object fieldValue = response.get(fieldName);
             if (fieldValue == null) {
-                resultFieldList.add(new ResultField(fieldName, fieldName));
+                commonResultFieldList.add(new ResultField(fieldName, fieldName));
             } else if (fieldValue instanceof String) {
                 if (StringUtils.isEmpty((String) fieldValue)) {
-                    resultFieldList.add(new ResultField(fieldName, fieldName));
+                    commonResultFieldList.add(new ResultField(fieldName, fieldName));
                 } else {
-                    resultFieldList.add(new ResultField(fieldName, (String) fieldValue));
+                    commonResultFieldList.add(new ResultField(fieldName, (String) fieldValue));
                 }
             } else if (fieldValue instanceof Map) {
                 if (((Map) fieldValue).containsKey("select")) {
-                    resultFieldList.add(new ResultField(fieldName, ApiSelectContext.makeContextFromConfig((Map<String, Object>) fieldValue, data)));
+                    commonResultFieldList.add(new ResultField(fieldName, ApiSelectContext.makeContextFromConfig((Map<String, Object>) fieldValue, data)));
                 } else {
-                    resultFieldList.add(new ResultField(fieldName, (Map<String, Object>) fieldValue));
+                    commonResultFieldList.add(new ResultField(fieldName, (Map<String, Object>) fieldValue));
                 }
             }
         }
@@ -90,7 +94,7 @@ public class ApiContext {
             ApiQueryContext queryContext = ApiQueryContext.makeContextFromConfig(ctxRootConfig, data) ;
             setApiResultFormat(queryContext);
 
-            QueryResult queryResult = queryContext.makeQueryResult(null, null) ;
+            QueryResult queryResult = queryContext.makeQueryResult() ;
 
             addResultData(queryContext.getResult());
 
@@ -128,7 +132,7 @@ public class ApiContext {
 
     public Object makeApiResult() {
         if(config.containsKey("typeId") || config.containsKey("apiType")){
-            if(this.resultFieldList != null && this.resultFieldList.size() > 0){
+            if(this.commonResultFieldList != null && this.commonResultFieldList.size() > 0){
                 QueryResult queryResult = getCommonResult();
                 queryResult.putAll(makeSubApiReuslt(config));
                 return queryResult ;
@@ -137,7 +141,7 @@ public class ApiContext {
             }
         }else {
             QueryResult queryResult  ;
-            if(this.resultFieldList != null && this.resultFieldList.size() > 0){
+            if(this.commonResultFieldList != null && this.commonResultFieldList.size() > 0){
                 queryResult = getCommonResult();
             }else{
                 queryResult = new QueryResult() ;
@@ -148,7 +152,10 @@ public class ApiContext {
                 if("root".equals(key)) {
                     queryResult.putAll(makeSubApiReuslt(ctxRootConfig)) ;
                 }else{
-                    queryResult.put(key, makeSubApiReuslt(ctxRootConfig)) ;
+                    Map<String, Object> subQueryResult = makeSubApiReuslt(ctxRootConfig) ;
+                    if(subQueryResult != null) {
+                        queryResult.put(key, makeSubApiReuslt(ctxRootConfig));
+                    }
                 }
             }
             return queryResult ;
@@ -157,7 +164,7 @@ public class ApiContext {
 
     private QueryResult getCommonResult() {
         QueryResult queryResult = new QueryResult() ;
-        for (ResultField resultField : resultFieldList) {
+        for (ResultField resultField : commonResultFieldList) {
             if(resultField.isStaticValue()){
                 queryResult.put(resultField.getFieldName(), ContextUtils.getValue(resultField.getStaticValue(), data));
             } else {
@@ -176,7 +183,7 @@ public class ApiContext {
         if(result instanceof List){
             List resultList = (List) result;
             if(resultList.size() > 0) {
-                _data.putAll((Map<? extends String, ?>) resultList.get(resultList.size() - 1));
+                _data.putAll((Map<? extends String, ?>) resultList.get(0));
             }
         }else if(result instanceof Map){
             _data.putAll((Map<? extends String, ?>) result);

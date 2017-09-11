@@ -1,0 +1,17 @@
+[
+  {
+    "typeId": "dataTest",
+    "id": 1,
+    "value": "user"
+  },
+  {
+    "typeId": "dataTest",
+    "id": 2,
+    "value": "admin"
+  },
+  {
+    "typeId": "dataTest",
+    "id": 3,
+    "value": "system"
+  }
+]

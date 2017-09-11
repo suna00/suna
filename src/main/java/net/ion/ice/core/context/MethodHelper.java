@@ -195,6 +195,11 @@ public class MethodHelper {
                 if(p == null) return "false" ;
                 return (value.toString().equals(p.toString())) ? "true" : "false";
             }
+            case "makeIdValue" :{
+                if(StringUtils.isEmpty(methodParams[0])) return "" ;
+                String resultValue = makeIdValue(methodParams, data);
+                return resultValue;
+            }
 
             default :
                 methodStr = StringUtils.capitalize(methodStr) ;
@@ -233,5 +238,26 @@ public class MethodHelper {
             }
         }
         return null;
+    }
+
+    private static String makeIdValue(String[] methodParams, Map<String, Object> data){
+        String returnVal = "";
+        if(methodParams.length < 3) return null;
+
+        for(int i=1; i<methodParams.length; i++){
+            String paramStr = methodParams[i];
+
+            if (data != null && data.containsKey(paramStr)) {
+                if(i == 1){
+                    returnVal = data.get(paramStr).toString();
+                }else{
+                    returnVal += methodParams[0] + data.get(paramStr).toString();
+                }
+            }else{
+                returnVal = "";
+                break;
+            }
+        }
+        return returnVal;
     }
 }

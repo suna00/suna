@@ -1,0 +1,41 @@
+[
+  {
+    "typeId": "apiCategory",
+    "id": "mypage",
+    "categoryName": "마이페이지"
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "mypage",
+    "apiId": "writableReview",
+    "apiName": "작성가능한 리뷰 (select response 붙일예정)",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "items": {
+        "select" : {
+          "ds" : "ytnDevDb",
+          "resultType" : "list",
+          "sql" : "select a.orderProductIds, adddate(a.sendingDate, INTERVAL 30 day) as writeEndDate, c.* from orderdeliveryprice a, purchaseorder b, orderProduct c where a.orderId = b.purchaseOrderId and find_in_set(c.orderProductId, a.orderProductIds) and adddate(a.sendingDate, INTERVAL 30 day) >=  now() and b.memberNo = '77777' order by c.orderProductId desc "
+        }
+      }
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "mypage",
+    "apiId" : "recentlyViewedProduct",
+    "apiName" : "최근 본 상품",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "product",
+      "query" : [
+        {"field" : "productId", "method" : "matching", "value" : "{{:productIds}}" },
+        {"includeReferenced" : false, "referenceView" : "orderId"}
+      ]
+    }
+  }
+]

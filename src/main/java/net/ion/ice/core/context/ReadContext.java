@@ -44,6 +44,7 @@ public class ReadContext implements Context {
     protected NodeBindingInfo nodeBindingInfo ;
 
     protected Object result ;
+    protected Node node;
 
     protected String dateFormat ;
     protected Map<String, Object> fileUrlFormat ;
@@ -98,7 +99,7 @@ public class ReadContext implements Context {
 
     protected static void makeContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType, ReadContext context) {
         if (parameterMap == null || parameterMap.size() == 0) {
-            context.setIncludeReferenced(true);
+//            context.setIncludeReferenced(true);
             return ;
         }
         Map<String, Object> data = ContextUtils.makeContextData(parameterMap);
@@ -109,9 +110,9 @@ public class ReadContext implements Context {
         }else if(data.containsKey("pids")){
             makeResultField(context, (String) data.get("pids"));
         }
-        if(context.resultFields == null || context.resultFields.size() == 0 ){
-            context.setIncludeReferenced(true);
-        }
+//        if(context.resultFields == null || context.resultFields.size() == 0 ){
+//            context.setIncludeReferenced(true);
+//        }
 //        makeSearchFields(context, data) ;
     }
 
@@ -185,6 +186,7 @@ public class ReadContext implements Context {
         makeContextFromParameter(parameterMap, nodeType, context) ;
 
         context.makeIncludeReferenced();
+        if(context.includeReferenced == null) context.includeReferenced = true ;
         context.makeReferenceView();
 
         return context ;
@@ -205,27 +207,41 @@ public class ReadContext implements Context {
         return id;
     }
 
-    public QueryResult makeQueryResult(Object result, String fieldName) {
+    public QueryResult makeQueryResult() {
         return makeResult() ;
     }
 
-    public QueryResult makeResult() {
-        Node node = NodeUtils.getNode(nodeType.getTypeId(), id) ;
-        if(node == null){
-            this.result = data ;
-        }else{
-            this.result = node ;
-        }
+    public QueryResult makeQueryResult(Object result, String fieldName, ResultField.ResultType resultType) {
+        return makeResult() ;
+    }
 
+
+    public QueryResult makeResult() {
         QueryResult queryResult = new QueryResult() ;
         queryResult.put("result", "200") ;
         queryResult.put("resultMessage", "SUCCESS") ;
-        if(node != null) {
+        if(result != null){
+            if(result instanceof Node){
+                queryResult.put("item", makeResult((Node) result));
+            }else if(result instanceof Map){
+                queryResult.putAll((Map<? extends String, ?>) result);
+            }else{
+                queryResult.put("response", result.toString()) ;
+            }
+        }else if(this.node != null){
+            this.result = node ;
             queryResult.put("item", makeResult(node));
+        }else{
+            Node node = NodeUtils.getNode(nodeType.getTypeId(), id) ;
+            if(node != null) {
+                queryResult.put("item", makeResult(node));
+            }
         }
 
         return queryResult ;
     }
+
+
 
     protected QueryResult makeResult(Node node) {
         QueryResult itemResult = new QueryResult() ;
@@ -238,7 +254,7 @@ public class ReadContext implements Context {
             if (isIncludeReferenced()) {
                 for (PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)) {
                     QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(nodeType, pt, node);
-                    subQueryContext.makeQueryResult(itemResult, pt.getPid());
+                    subQueryContext.makeQueryResult(itemResult, pt.getPid(),null);
                 }
             }
         }else{
@@ -251,37 +267,54 @@ public class ReadContext implements Context {
     protected void makeItemQueryResult(Node node, QueryResult itemResult, Map<String, Object> contextData) {
 
         for (ResultField resultField : getResultFields()) {
-            if (resultField.getContext() != null) {
+            if(resultField.getFieldName().equals("_all_")){
+                for(PropertyType pt : nodeType.getPropertyTypes()){
+                    itemResult.put(pt.getPid(), NodeUtils.getResultValue(this, pt, node));
+                }
+            }else if (resultField.getContext() != null) {
                 ReadContext subQueryContext = (ReadContext) resultField.getContext();
                 if (node != null) {
                     subQueryContext.setNodeData(node);
                 }
-                subQueryContext.makeQueryResult(itemResult, resultField.getFieldName());
-            } else if(resultField.isStaticValue()){
-                itemResult.put(resultField.getFieldName(), ContextUtils.getValue(resultField.getStaticValue(), contextData));
-            }else if(resultField.getResultType() != null){
+                subQueryContext.makeQueryResult(itemResult, resultField.getFieldName(), resultField.getResultType());
+            }else if(resultField.getExecuteType() != null){
                 Map<String, Object> _data = new HashMap<>();
                 _data.putAll(contextData);
                 _data.putAll(node);
-                switch (resultField.getResultType()) {
+                switch (resultField.getExecuteType()) {
                     case QUERY: {
                         ApiQueryContext apiQueryContext = ApiQueryContext.makeContextFromConfig(resultField.getFieldOption(), _data);
-                        apiQueryContext.makeQueryResult(itemResult, resultField.getFieldName());
+                        apiQueryContext.dateFormat = this.dateFormat ;
+                        apiQueryContext.fileUrlFormat = this.fileUrlFormat ;
+                        apiQueryContext.makeQueryResult(itemResult, resultField.getFieldName(), resultField.getResultType());
                         break ;
                     }
                     case SELECT: {
                         ApiSelectContext apiQueryContext = ApiSelectContext.makeContextFromConfig(resultField.getFieldOption(), _data);
+                        apiQueryContext.dateFormat = this.dateFormat ;
+                        apiQueryContext.fileUrlFormat = this.fileUrlFormat ;
                         apiQueryContext.makeQueryResult(itemResult, resultField.getFieldName());
                         break ;
                     }
                     case VALUE: {
-                        itemResult.put(resultField.getFieldName(), ContextUtils.getValue(resultField.getStaticValue(), _data));
+                        itemResult.put(resultField.getFieldName(), ContextUtils.getValue(resultField.getStaticValue(), _data, this, nodeType, node));
                         break ;
                     }
                     case OPTION: {
                         String fieldValue = resultField.getFieldValue();
                         fieldValue = fieldValue == null || StringUtils.isEmpty(fieldValue) ? resultField.getFieldName() : fieldValue;
-                        itemResult.put(resultField.getFieldName(), NodeUtils.getResultValue(resultField.getFieldContext(), nodeType.getPropertyType(fieldValue), node));
+
+                        FieldContext fieldContext = resultField.getFieldContext() ;
+                        fieldContext.dateFormat = this.dateFormat ;
+                        fieldContext.fileUrlFormat = this.fileUrlFormat ;
+
+                        if(resultField.getResultType() == ResultField.ResultType.SIZE){
+                            fieldContext.includeReferenced = true ;
+                            List list = (List) NodeUtils.getResultValue(fieldContext, nodeType.getPropertyType(fieldValue), node);
+                            itemResult.put(resultField.getFieldName(), list == null ? 0 : list.size());
+                        }else {
+                            itemResult.put(resultField.getFieldName(), NodeUtils.getResultValue(fieldContext, nodeType.getPropertyType(fieldValue), node));
+                        }
                         break ;
                     }
                 }
@@ -292,6 +325,8 @@ public class ReadContext implements Context {
             }
         }
     }
+
+
 
     public boolean isReferenceView(String pid) {
         if (referenceView == null) {
@@ -359,7 +394,7 @@ public class ReadContext implements Context {
         return result;
     }
 
-    public void setResult(Node result) {
+    public void setResult(Object result) {
         this.result = result;
     }
 
