@@ -1,5 +1,6 @@
 package net.ion.ice.core.file;
 
+import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.PropertyType;
@@ -16,15 +17,11 @@ import java.util.concurrent.ConcurrentHashMap;
  * Created by jaeho on 2017. 6. 28..
  */
 
-@Service
+@Service("fileService")
 public class FileService {
 
     @Autowired
-    private InfinispanRepositoryService infinispanRepositoryService ;
-
-    @Autowired
     private NodeService nodeService ;
-
 
     private Map<String, FileRepository> repositoryMap = new ConcurrentHashMap<>() ;
 
@@ -35,8 +32,7 @@ public class FileService {
 
     public FileValue saveMultipartFile(PropertyType pt, String id, MultipartFile multipartFile) {
         FileRepository repository = getFileRepository(pt.getFileHandler()) ;
-        String saveFilePath = repository.saveMutipartFile(pt, id, multipartFile) ;
-        return new FileValue(pt, id, multipartFile, saveFilePath);
+        return repository.saveMutipartFile(pt, id, multipartFile) ;
     }
 
 
@@ -46,7 +42,11 @@ public class FileService {
             fileHandler = "default" ;
         }
 
-        return repositoryMap.get(fileHandler) ;
+        FileRepository repository = repositoryMap.get(fileHandler) ;
+        if(repository == null && fileHandler.equals("default")){
+            repository = ApplicationContextManager.getBean(DefaultFileRepository.class) ;
+        }
+        return repository ;
     }
 
     public Resource loadAsResource(String tid, String pid, String path) {
@@ -56,13 +56,9 @@ public class FileService {
         return repository.loadAsResource(path) ;
     }
 
-    public FileValue getFileInfo(PropertyType pt, String id, String value) {
-        FileRepository repository = getFileRepository(pt.getFileHandler()) ;
 
-        if(StringUtils.contains((String) value, "classpath:")){
-            FileValue fileValue = repository.getClasspathFileInfo(pt, id, value) ;
-            return fileValue ;
-        }
-        return null ;
+    public FileValue saveResourceFile(PropertyType pt, String id, String path) {
+        FileRepository repository = getFileRepository(pt.getFileHandler()) ;
+        return repository.saveResourceFile(pt, id, path) ;
     }
 }

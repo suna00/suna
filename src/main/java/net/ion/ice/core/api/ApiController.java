@@ -105,11 +105,7 @@ public class ApiController {
             return apiService.execute(request, "node", api, method, typeId) ;
         } catch (Exception e) {
             e.printStackTrace();
-            if(e.getCause() instanceof ClassCastException){
-                return JsonResponse.error(new Exception("형식이 맞지 않습니다."));
-            }else{
-                return JsonResponse.error(e);
-            }
+            return JsonResponse.error(e);
         }
     }
 
