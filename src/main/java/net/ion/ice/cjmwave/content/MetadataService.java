@@ -40,7 +40,6 @@ public class MetadataService {
         data.put(data.get("idableId").toString(), queryRs.get("metadataId"));
 
         logger.info("data.get(\"idableId\").toString() : " + data.get("idableId").toString());
-        logger.info("data.get(albumId).toString() : " + data.get("albumId").toString());
 
 //        ExecuteContext createContext = ExecuteContext.makeContextFromMap(data,data.get("seqName").toString(), EventService.CREATE);
 //        createContext.execute();
