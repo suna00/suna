@@ -4,6 +4,7 @@
     "id": 1,
     "title": "Finibus Bonorum",
     "blogBanner" : "",
+    "bannerImg" : "classpath:schema/node/demo/files/sample01.png",
     "created": "20170821125255",
     "sortOrder":1
   },
@@ -12,6 +13,7 @@
     "id": 2,
     "title": "passage",
     "blogBanner" : "",
+    "bannerImg" : "classpath:schema/node/demo/files/sample02.png",
     "created": "20170821125255",
     "sortOrder":2
   },
@@ -20,6 +22,7 @@
     "id": 3,
     "title": "since the 1500s",
     "blogBanner" : "",
+    "bannerImg" : "classpath:schema/node/demo/files/sample03.png",
     "created": "20170821125255",
     "sortOrder":3
   },
@@ -28,6 +31,7 @@
     "id": 4,
     "title": "Lorem Ipsum",
     "blogBanner" : "",
+    "bannerImg" : "classpath:schema/node/demo/files/sample04.png",
     "created": "20170821125255",
     "sortOrder":4
   },
@@ -36,6 +40,7 @@
     "id": 5,
     "title": "The standard",
     "blogBanner" : "",
+    "bannerImg" : "classpath:schema/node/demo/files/sample05.png",
     "created": "20170821125255",
     "sortOrder":5
   }
