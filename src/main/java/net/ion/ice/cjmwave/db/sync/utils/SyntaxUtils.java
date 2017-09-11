@@ -1,6 +1,7 @@
 package net.ion.ice.cjmwave.db.sync.utils;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,7 +28,7 @@ public class SyntaxUtils {
     *   이렇게 return 하면 jdbcTemplate 사용시
     *   template.queryForList(String.valueOf(map.get("query")), map.get("params")) 로 사용 가능
     * */
-    public static Map<String, Object> parse (String query, HttpServletRequest request){
+    public static Map<String, Object> parse (String query, HttpServletRequest request) throws Exception {
         Map<String, Object> rtn = new HashMap<>();
         /*
         * pseudo - 절차
@@ -45,7 +46,34 @@ public class SyntaxUtils {
             Map<String, Object> parsed = extractParams(query);
             List<String> parsedKeys = (List<String>) parsed.get("parameterKeys");
             for(String paramKey : parsedKeys) {
-                String value = request.getParameter(paramKey);
+                Object value = null;
+                if(paramKey.contains(".")) {
+                    // 데이터 타입 파싱
+                    String [] paramKeyParts = paramKey.split("\\.");
+                    String dataType = paramKeyParts[0].toUpperCase().trim();
+                    value = request.getParameter(paramKeyParts[1]).trim();
+                    switch (dataType) {
+                        case "BIGINT":
+                        case "INT":
+                            value = Integer.parseInt(value.toString());
+                            break;
+                        case "DATETIME":
+                        case "TIMESTAMP":
+                            SimpleDateFormat dFormat = null;
+                            if(value.toString().length() == 14) {
+                                dFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+                            } else if (value.toString().length() == 8) {
+                                dFormat = new SimpleDateFormat("yyyyMMdd");
+                            }
+                            value = dFormat.parse(value.toString());
+                            break;
+                        default:
+                            value = value.toString();
+                        break;
+                    }
+                }else {
+                    value = request.getParameter(paramKey);
+                }
                 temp.add(value);
             }
             // @{} 문자열 전부 ? 로 치환
@@ -75,7 +103,7 @@ public class SyntaxUtils {
 
         while(oMatcher.find()) {
             if(cMatcher.find()) {
-                parsed.add(originalStr.substring(oMatcher.start() + 2, cMatcher.start()));
+                parsed.add(originalStr.substring(oMatcher.start() + 2, cMatcher.start()));  //@{BIGINT.start}, @{DATETIME.created}
                 String toChange = originalStr.substring(oMatcher.start(), cMatcher.start() + 1);
                 willReplaced.add(toChange);
             }
