@@ -31,7 +31,7 @@
     "typeId" : "apiConfig",
     "category" : "product",
     "apiId" : "list",
-    "apiName" : "상품 리스트(backup) name, modelName 을 simple analyzer 로 하고 like 검색을???",
+    "apiName" : "상품 리스트",
     "method" : "GET",
     "parameters" : [
     ],
@@ -39,9 +39,9 @@
       "typeId": "product",
       "query" : [
         {"field" : "salePrice", "method" : "fromto", "value" : "{{:salePrice}}" },
-        {"sorting" : "{{:sorting}}"},
-        {"field" : "name", "method" : "matching_should", "value" : "{{:searchValue}}" },
-        {"field" : "modelName", "method" : "matching_should", "value" : "{{:searchValue}}" },
+        {"sorting" : "{{:sorting}}", "pageSize": "{{:pageSize}}", "page": "{{:page}}"},
+        {"field" : "name", "method" : "matchingShould", "value" : "*{{:searchValue}}*" },
+        {"field" : "modelName", "method" : "matchingShould", "value" : "*{{:searchValue}}*" },
         {"includeReferenced" : false, "referenceView" : "contentsId"}
       ]
     }

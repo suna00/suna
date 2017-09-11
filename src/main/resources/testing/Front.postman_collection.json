@@ -3342,7 +3342,7 @@
 			"id": "542c1f97-a721-91b9-6a82-eec845003520",
 			"headers": "",
 			"headerData": [],
-			"url": "{{protocol}}://{{hostname}}:{{port}}/node/productNoticeBanner/list.json?bannerStatus_matching=y&startDate_above=2017-08-22&endDate_below=2017-08-22&coverage_matching_should=all&categoryId_matching_should=1",
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/productNoticeBanner/list.json?bannerStatus_matching=y&startDate_above=2017-08-22&endDate_below=2017-08-22&coverage_matchingShould=all&categoryId_matchingShould=1",
 			"queryParams": [
 				{
 					"key": "bannerStatus_matching",
@@ -3366,14 +3366,14 @@
 					"enabled": true
 				},
 				{
-					"key": "coverage_matching_should",
+					"key": "coverage_matchingShould",
 					"value": "all",
 					"equals": true,
 					"description": "",
 					"enabled": true
 				},
 				{
-					"key": "categoryId_matching_should",
+					"key": "categoryId_matchingShould",
 					"value": "1",
 					"equals": true,
 					"description": "",
@@ -3632,7 +3632,7 @@
 		{
 			"id": "62812c04-8a63-ce54-25f6-201311cf2684",
 			"method": "GET",
-			"url": "{{protocol}}://{{hostname}}:{{port}}/node/frequentlyAskedQuestion/list.json?soring=faqType1,faqType2&frequentlyAskedQuestionStatus_matching=y&title_matching_should=*배송*&content_matching_should=*배송*",
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/frequentlyAskedQuestion/list.json?soring=faqType1,faqType2&frequentlyAskedQuestionStatus_matching=y&title_matchingShould=*배송*&content_matchingShould=*배송*",
 			"name": "고객센터 메인_FAQ 검색",
 			"dataMode": "params",
 			"headers": "",
@@ -8672,7 +8672,7 @@
 		{
 			"id": "ffb22f0a-5640-9efc-1a82-8a764197edf2",
 			"method": "GET",
-			"url": "{{protocol}}://{{hostname}}:{{port}}/node/frequentlyAskedQuestion/list.json?soring=faqType1,faqType2&frequentlyAskedQuestionStatus_matching=y&title_matching_should=*배송*&content_matching_should=*배송*",
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/frequentlyAskedQuestion/list.json?soring=faqType1,faqType2&frequentlyAskedQuestionStatus_matching=y&title_matchingShould=*배송*&content_matchingShould=*배송*",
 			"name": "FAQ 자주 찾는 질문_검색",
 			"dataMode": "params",
 			"headers": "",
