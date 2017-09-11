@@ -97,5 +97,60 @@
     "imgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "vdoUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "sortOdrg": 1
+  },
+  {
+    "typeId": "voteItemInfo",
+    "voteItemSeq": 145,
+    "voteSeq": 78958894,
+    "langCd": "eng",
+    "contsMetaId": "artist::artist_00001",
+    "itemNm": "TWICE",
+    "imgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "vdoUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "sortOdrg": 1
+  },
+  {
+    "typeId": "voteItemInfo",
+    "voteItemSeq": 150,
+    "voteSeq": 78958899,
+    "langCd": "eng",
+    "contsMetaId": "song::song_00001",
+    "itemNm": "Like Ooh-Ahh",
+    "imgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "vdoUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "sortOdrg": 1
+  },
+  {
+    "typeId": "voteItemInfo",
+    "voteItemSeq": 152,
+    "voteSeq": 45034905,
+    "langCd": "eng",
+    "contsMetaId": "artist::artist_00003",
+    "itemNm": "10cm",
+    "imgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "vdoUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "sortOdrg": 1
+  },
+  {
+    "typeId": "voteItemInfo",
+    "voteItemSeq": 159,
+    "voteSeq": 45034906,
+    "langCd": "eng",
+    "contsMetaId": "song::song_00001",
+    "itemNm": "Like Ooh-Ahh",
+    "imgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "vdoUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "sortOdrg": 1
+  },
+  {
+    "typeId": "voteItemInfo",
+    "voteItemSeq": 160,
+    "voteSeq": 45034906,
+    "langCd": "eng",
+    "contsMetaId": "artist::artist_00002",
+    "itemNm": "Coldplay",
+    "imgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "vdoUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "sortOdrg": 2
   }
 ]
