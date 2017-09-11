@@ -207,7 +207,7 @@
         {
           "field": "trtSttusCd",
           "method": "matching",
-          "value": "{{:trtSttusCd)}}"
+          "value": "{{:trtSttusCd}}"
         },
         {
           "sorting": "{{:sorting}}"

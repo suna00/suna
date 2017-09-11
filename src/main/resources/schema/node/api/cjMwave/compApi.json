@@ -32,119 +32,151 @@
       }
     ],
     "config": {
-      "typeId": "compItemInfo",
-      "query": [
-        {
-          "field": "mainSeq",
-          "method": "referenceJoin",
-          "value": "mainDivCd_matching={{:mainDivCd}}&showLoCd_matching={{:showLoCd}}&showYn_matching=true&limit=1&sorting=mainSeq"
-        },
-        {
-          "referenceView": "itemId,cnctContsId",
-          "includeReferenced": true
-        }
-      ],
-      "response": {
-        "_all_": "",
-        "refdAtribList": {
-          "typeId": "compAtribInfo",
-          "query": [
-            {
-              "field": "compItemSeq",
-              "method": "referenceJoin",
-              "value": "compItemSeq_matching={{:compItemSeq}}"
-            },
-            {
-              "field":"cnctItemYn",
-              "method": "matching",
-              "value": "false"
-            },
-            {
-              "referenceView": "contsId","includeReferenced": true
-            }
-          ],
-          "response": {
-            "_all_": "",
-            "newsHubNewsList": {
-              "typeId": "news",
-              "query": [
-                {
-                  "field": "newsNm",
-                  "method": "matchingShould",
-                  "value": "{{:default(newsHubKywrd,뺵뺵)}}"
-                },
-                {
-                  "field": "findKywrd",
-                  "method": "matchingShould",
-                  "value": "{{:default(newsHubKywrd,뺵뺵)}}"
-                }
-              ]
-            },
-            "newsHubVodList": {
-              "typeId": "pgmVideo",
-              "query": [
-                {
-                  "field": "title",
-                  "method": "matchingShould",
-                  "value": "{{:default(newsHubKywrd,뺵뺵)}}"
-                },
-                {
-                  "field": "searchKeyword",
-                  "method": "matchingShould",
-                  "value": "{{:default(newsHubKywrd,뺵뺵)}}"
-                }
-              ]
-            }
+      "getContsMetaDivTid": {
+        "typeId": "mainBasInfo",
+
+        "query": [
+          {
+            "field": "mainDivCd",
+            "method": "matching",
+            "value": "{{:mainDivCd}}"
+          },
+          {
+            "field": "showLoCd",
+            "method": "matching",
+            "value": "{{:showLoCd}}"
+          },
+          {
+            "field": "showYn",
+            "method": "matching",
+            "value": "true"
+          },
+          {
+            "limit": "1",
+            "sorting": "mainSeq desc"
           }
-        },
-        "cnctRefdAtribList": {
-          "typeId": "compAtribInfo",
-          "query": [
-            {
-              "field": "compItemSeq",
-              "method": "referenceJoin",
-              "value": "compItemSeq_matching={{:compItemSeq}}"
-            },
-            {
-              "field":"cnctItemYn",
-              "method": "matching",
-              "value": "true"
-            },
-            {
-              "referenceView": "contsId","includeReferenced": true
+        ],
+        "response": {
+          "mainSeq": ""
+        }
+      },
+      "root": {
+        "typeId": "compItemInfo",
+        "query": [
+          {
+            "field": "mainSeq",
+            "method": "matching",
+            "value": "{{:default(mainSeq,뺵뺵)}}"
+          },
+          {
+            "referenceView": "itemId,cnctContsId",
+            "includeReferenced": true
+          }
+        ],
+        "response": {
+          "_all_": "",
+          "refdAtribList": {
+            "typeId": "compAtribInfo",
+            "query": [
+              {
+                "field": "compItemSeq",
+                "method": "referenceJoin",
+                "value": "compItemSeq_matching={{:compItemSeq}}"
+              },
+              {
+                "field": "cnctItemYn",
+                "method": "matching",
+                "value": "false"
+              },
+              {
+                "referenceView": "contsId",
+                "includeReferenced": true
+              }
+            ],
+            "response": {
+              "_all_": "",
+              "newsHubNewsList": {
+                "typeId": "news",
+                "query": [
+                  {
+                    "field": "newsNm",
+                    "method": "matchingShould",
+                    "value": "{{:default(newsHubKywrd,뺵뺵)}}"
+                  },
+                  {
+                    "field": "findKywrd",
+                    "method": "matchingShould",
+                    "value": "{{:default(newsHubKywrd,뺵뺵)}}"
+                  }
+                ]
+              },
+              "newsHubVodList": {
+                "typeId": "pgmVideo",
+                "query": [
+                  {
+                    "field": "title",
+                    "method": "matchingShould",
+                    "value": "{{:default(newsHubKywrd,뺵뺵)}}"
+                  },
+                  {
+                    "field": "searchKeyword",
+                    "method": "matchingShould",
+                    "value": "{{:default(newsHubKywrd,뺵뺵)}}"
+                  }
+                ]
+              }
             }
-          ],
-          "response": {
-            "_all_": "",
-            "newsHubNewsList": {
-              "typeId": "news",
-              "query": [
-                {
-                  "field": "newsNm",
-                  "method": "matchingShould",
-                  "value": "{{:default(newsHubKywrd,뺵뺵)}}"
-                },
-                {
-                  "field": "findKywrd",
-                  "method": "matchingShould",
-                  "value": "{{:default(newsHubKywrd,뺵뺵)}}"
-                }
-              ]
-            },
-            "newsHubVodList": {
-              "typeId": "pgmVideo",
-              "query": [
-                {
-                  "field": "title",
-                  "method": "matchingShould",
-                  "value": "{{:default(newsHubKywrd,뺵뺵)}}"
-                },
-                {
-                  "field": "searchKeyword",
-                  "method": "matchingShould",
-                  "value": "{{:default(newsHubKywrd,뺵뺵)}}"
-                }
-              ]
+          },
+          "cnctRefdAtribList": {
+            "typeId": "compAtribInfo",
+            "query": [
+              {
+                "field": "compItemSeq",
+                "method": "referenceJoin",
+                "value": "compItemSeq_matching={{:compItemSeq}}"
+              },
+              {
+                "field": "cnctItemYn",
+                "method": "matching",
+                "value": "true"
+              },
+              {
+                "referenceView": "contsId",
+                "includeReferenced": true
+              }
+            ],
+            "response": {
+              "_all_": "",
+              "newsHubNewsList": {
+                "typeId": "news",
+                "query": [
+                  {
+                    "field": "newsNm",
+                    "method": "matchingShould",
+                    "value": "{{:default(newsHubKywrd,뺵뺵)}}"
+                  },
+                  {
+                    "field": "findKywrd",
+                    "method": "matchingShould",
+                    "value": "{{:default(newsHubKywrd,뺵뺵)}}"
+                  }
+                ]
+              },
+              "newsHubVodList": {
+                "typeId": "pgmVideo",
+                "query": [
+                  {
+                    "field": "title",
+                    "method": "matchingShould",
+                    "value": "{{:default(newsHubKywrd,뺵뺵)}}"
+                  },
+                  {
+                    "field": "searchKeyword",
+                    "method": "matchingShould",
+                    "value": "{{:default(newsHubKywrd,뺵뺵)}}"
+                  }
+                ]
+              }
             }
           }
         }

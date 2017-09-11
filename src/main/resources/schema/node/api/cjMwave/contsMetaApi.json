@@ -1137,6 +1137,72 @@
             "resultType": "value",
             "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('pgmVideo','::',@{contentId})"
           }
+        },
+        "refPgmVideoList": {
+          "typeId": "pgmVideo",
+          "query": [
+            {
+              "field": "ctgryId",
+              "method": "matching",
+              "value": "{{:ctgryId}}"
+            },
+            {
+              "field": "isUse",
+              "method": "matching",
+              "value": "true"
+            },
+            {
+              "sorting": "created desc",
+              "limit" : "15"
+            }
+          ]
+        },
+        "rcmdNewsList": {
+          "typeId": "news",
+          "query": [
+            {
+              "field": "relArtistIds",
+              "method": "matching",
+              "value": "{{:prsnNo}}"
+            },
+            {
+              "field": "showYn",
+              "method": "matching",
+              "value": "true"
+            },
+            {
+              "sorting": "created desc",
+              "limit" : "2"
+            }
+          ]
+        },
+        "rcmdVideoList": {
+          "typeId": "videItgInfo",
+          "query": [
+            {
+              "field": "artistId",
+              "method": "matching",
+              "value": "{{:prsnNo}}"
+            },
+            {
+              "sorting": "created desc",
+              "limit" : "2"
+            }
+          ]
+        },
+        "rcmdSPhotoList": {
+          "typeId": "singlePhoto",
+          "query": [
+            {
+              "field": "relArtistIds",
+              "method": "matching",
+              "value": "{{:prsnNo}}"
+            },
+            {
+              "sorting": "created desc",
+              "limit" : "2"
+            }
+          ]
         }
       }
     }
