@@ -87,7 +87,7 @@
     "menus" : "menu2",
     "title" : "태양의 후예 TEST BY",
     "body" : "송중기 나오네",
-    "date" : "20161102",
+    "date" : "20161101",
     "testFile" : "classpath:schema/test/testPdf.pdf"
   },
   {
