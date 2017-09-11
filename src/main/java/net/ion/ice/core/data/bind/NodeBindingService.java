@@ -135,6 +135,13 @@ public class NodeBindingService {
         return queryResult;
     }
 
+    public List<Map<String, Object>> list(String tid, String searchText) {
+        NodeType nodeType = NodeUtils.getNodeType(tid);
+        QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, nodeType);
+        NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(tid);
+        return nodeBindingInfo.list(queryContext);
+    }
+
     public void delete(Map<String, String[]> parameterMap, String typeId) {
         NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(typeId);
         nodeBindingInfo.delete(parameterMap);
