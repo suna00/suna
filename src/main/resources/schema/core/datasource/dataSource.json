@@ -48,6 +48,15 @@
     "dbType": "mySql",
     "username": "cjmwave",
     "password": "cjmwave0!@#"
+  }, {
+    "typeId": "datasource",
+    "datasourceId": "cjMigDb",
+    "profiles": "cj-local",
+    "dsName": "Test DB",
+    "jdbcUrl": "jdbc:mysql://125.131.88.156:3306/mig?useSSL=false",
+    "dbType": "mySql",
+    "username": "cjmwave",
+    "password": "cjmwave0!@#"
   },
   {
     "typeId": "datasource",
