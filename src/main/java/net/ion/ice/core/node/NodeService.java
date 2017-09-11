@@ -3,15 +3,16 @@ package net.ion.ice.core.node;
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.context.QueryContext;
-import net.ion.ice.core.data.bind.NodeBindingService;
+import net.ion.ice.core.context.ReadContext;
+import net.ion.ice.core.context.ReferenceQueryContext;
 import net.ion.ice.core.event.Event;
 import net.ion.ice.core.event.EventAction;
 import net.ion.ice.core.event.EventListener;
+import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.file.FileService;
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.query.QueryResult;
-import net.ion.ice.core.query.ResultField;
 import net.ion.ice.core.query.SimpleQueryResult;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.document.DateTools;
@@ -25,9 +26,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -46,11 +45,18 @@ public class NodeService {
     @Autowired
     private FileService fileService ;
 
+    @Autowired
+    private I18nConfiguration i18nConfiguration ;
+
+    @Autowired
+    private ApplicationContextManager applicationContextManager;
+
     private Map<String, NodeType> nodeTypeCache ;
-    private Map<String, NodeType> initNodeType = new ConcurrentHashMap<>() ;
+    private Map<String, NodeType> initNodeType  ;
 
     @PostConstruct
     public void init(){
+        initNodeType = new ConcurrentHashMap<>() ;
         try {
             initNodeType() ;
         } catch (IOException e) {
@@ -65,11 +71,20 @@ public class NodeService {
         this.nodeTypeCache = new ConcurrentHashMap<>() ;
     }
 
+    public String getDefaultLocale(){
+        return i18nConfiguration.getDefaults() ;
+    }
 
     public NodeType getNodeType(String typeId) {
+        if(typeId == null){
+            logger.error("NOT FOUND TypeId is NULL!") ;
+            return null ;
+        }
+
         if(nodeTypeCache != null && nodeTypeCache.containsKey(typeId)) {
             return nodeTypeCache.get(typeId) ;
         }
+
 
         if(initNodeType.containsKey(typeId)){
             return initNodeType.get(typeId) ;
@@ -108,38 +123,52 @@ public class NodeService {
 
 
     public List<Node> getNodeList(String typeId, String searchText) {
-        QueryContext queryContext = QueryContext.makeQueryContextFromText(searchText, getNodeType(typeId)) ;
+        QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, getNodeType(typeId)) ;
         return infinispanRepositoryService.getSubQueryNodes(typeId, queryContext) ;
     }
 
     public List<Node> getNodeList(String typeId, QueryContext queryContext) {
         return infinispanRepositoryService.getSubQueryNodes(typeId, queryContext) ;
     }
+    public List<Node> getDisplayNodeList(String typeId, QueryContext queryContext) {
+        NodeType nodeType = getNodeType(typeId) ;
+        List<Node> nodeList = queryContext.getQueryList() ;
+        for(Node node : nodeList){
+            node.toDisplay(queryContext) ;
+            if (queryContext.isTreeable()) {
+                for (PropertyType pt : nodeType.getPropertyTypes()) {
+                    if (pt.isTreeable()) {
+                        QueryContext subQueryContext = QueryContext.makeQueryContextForTree(nodeType, pt, node.getId().toString());
+                        subQueryContext.setTreeable(true);
+                        node.put("children", getDisplayNodeList(pt.getReferenceType(), subQueryContext));
+                    }
+                }
+            }
+        }
+        return nodeList ;
+    }
+
+
 
     public SimpleQueryResult getNodeList(String typeId, Map<String, String[]> parameterMap) {
-        QueryContext queryContext = QueryContext.makeQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
+        QueryContext queryContext = QueryContext.createQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
         return infinispanRepositoryService.getQueryNodes(typeId, queryContext) ;
     }
 
     public SimpleQueryResult getNodeTree(String typeId, Map<String, String[]> parameterMap) {
-        QueryContext queryContext = QueryContext.makeQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
+        QueryContext queryContext = QueryContext.createQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
         return infinispanRepositoryService.getQueryTreeNodes(typeId, queryContext) ;
     }
 
-    public SimpleQueryResult getNodeCode(String typeId, Map<String, String[]> parameterMap) {
-        QueryContext queryContext = QueryContext.makeQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
-        return infinispanRepositoryService.getQueryCodeNodes(typeId, queryContext) ;
-    }
-
     private void initNodeType() throws IOException {
-        Collection<Map<String, Object>> nodeTypeDataList = JsonUtils.parsingJsonResourceToList(ApplicationContextManager.getResource("classpath:schema/core/nodeType.json")) ;
+        Collection<Map<String, Object>> nodeTypeDataList = JsonUtils.parsingJsonResourceToList(applicationContextManager.getResource("classpath:schema/core/nodeType.json")) ;
 
         List<Node> nodeTypeList = NodeUtils.makeNodeList(nodeTypeDataList, "nodeType") ;
         for(Node nodeType : nodeTypeList){
             initNodeType.put(nodeType.getId(), new NodeType(nodeType)) ;
         }
 
-        Collection<Map<String, Object>> propertyTypeDataList = JsonUtils.parsingJsonResourceToList(ApplicationContextManager.getResource("classpath:schema/core/propertyType.json")) ;
+        Collection<Map<String, Object>> propertyTypeDataList = JsonUtils.parsingJsonResourceToList(applicationContextManager.getResource("classpath:schema/core/propertyType.json")) ;
 
         List<Node> propertyTypeList = NodeUtils.makeNodeList(propertyTypeDataList, "propertyType") ;
         for(Node propertyType : propertyTypeList){
@@ -147,7 +176,7 @@ public class NodeService {
             nodeType.addPropertyType(new PropertyType(propertyType));
         }
 
-        Collection<Map<String, Object>> eventDataList = JsonUtils.parsingJsonResourceToList(ApplicationContextManager.getResource("classpath:schema/core/event.json")) ;
+        Collection<Map<String, Object>> eventDataList = JsonUtils.parsingJsonResourceToList(applicationContextManager.getResource("classpath:schema/core/event.json")) ;
 
         List<Node> eventList = NodeUtils.makeNodeList(eventDataList, "event") ;
         for(Node event : eventList){
@@ -169,64 +198,54 @@ public class NodeService {
 
     private void  initSchema() throws IOException {
 
-        NodeValue nodeValue = infinispanRepositoryService.getLastCacheNodeValue() ;
-        String lastChanged = nodeValue == null ? "0" : DateTools.dateToString(nodeValue.getChanged(), DateTools.Resolution.SECOND);
-
-        logger.info("LAST CHANGED : " + lastChanged);
-
-
-        saveSchema("classpath:schema/core/*.json", lastChanged);
-        saveSchema("classpath:schema/core/*/*.json", lastChanged);
+        saveSchema("classpath:schema/core/*.json");
+        saveSchema("classpath:schema/core/*/*.json");
 //        saveSchema("classpath:schema/node/*.json", lastChanged);
-        saveSchema("classpath:schema/node/**/*.json", lastChanged);
+        saveSchema("classpath:schema/node/**/*.json");
 //        saveSchema("classpath:schema/test/*.json", lastChanged);
-        saveSchema("classpath:schema/test/**/*.json", lastChanged);
+        saveSchema("classpath:schema/test/**/*.json");
 
     }
-    private void saveSchema(String resourcePath, String lastChanged) throws IOException {
-        saveSchema(resourcePath, lastChanged, true);
-        saveSchema(resourcePath, lastChanged, false);
+    private void saveSchema(String resourcePath) throws IOException {
+        saveSchema(resourcePath, true);
+        saveSchema(resourcePath, false);
     }
 
-    private void saveSchema(String resourcePath, String lastChanged, boolean core) throws IOException {
-        Resource[] resources = ApplicationContextManager.getResources(resourcePath);
+    private void saveSchema(String resourcePath, boolean core) throws IOException {
+        Resource[] resources = applicationContextManager.getResources(resourcePath);
         if(core) {
             for (Resource resource : resources) {
                 if (resource.getFilename().equals("nodeType.json")) {
-                    fileNodeSave(lastChanged, resource);
+                    fileNodeSave(resource);
                 }
             }
 
             for (Resource resource : resources) {
                 if (resource.getFilename().equals("propertyType.json")) {
-                    fileNodeSave(lastChanged, resource);
+                    fileNodeSave(resource);
                 }
             }
 
             for (Resource resource : resources) {
                 if (resource.getFilename().equals("event.json")) {
-                    fileNodeSave(lastChanged, resource);
+                    fileNodeSave(resource);
                 }
             }
         }else {
             for (Resource resource : resources) {
                 if (!(resource.getFilename().equals("nodeType.json") || resource.getFilename().equals("propertyType.json") || resource.getFilename().equals("event.json"))) {
-                    fileNodeSave(lastChanged, resource);
+                    fileNodeSave(resource);
                 }
             }
         }
     }
 
-    private void fileNodeSave(String lastChanged, Resource resource) throws IOException {
+    private void fileNodeSave(Resource resource) throws IOException {
         String fileName = StringUtils.substringBefore(resource.getFilename(), ".json");
         Collection<Map<String, Object>> nodeDataList = JsonUtils.parsingJsonResourceToList(resource) ;
 
-        if(fileName.startsWith("20") && fileName.length() == 14 && lastChanged.compareTo(fileName) < 0){
-            nodeDataList.forEach(data -> saveNode(data));
-        }else{
-            List<Map<String, Object>> dataList = NodeUtils.makeDataListFilterBy(nodeDataList, lastChanged) ;
-            dataList.forEach(data -> saveNode(data));
-        }
+//        List<Map<String, Object>> dataList = NodeUtils.makeDataListFilterBy(nodeDataList, lastChanged) ;
+        nodeDataList.forEach(data -> saveNode(data));
     }
 
 
@@ -242,76 +261,68 @@ public class NodeService {
         return null ;
     }
 
+    public Node createNode(Map<String, Object> data, String typeId) {
+        return (Node) executeNode(data, typeId, EventService.CREATE);
+    }
 
-    public Node executeNode(Map<String, Object> data, String typeId, String event) {
-        ExecuteContext context = ExecuteContext.makeContextFromMap(data, typeId, event) ;
-
-        context.execute();
-        Node node =  context.getNode();
-        return node ;
+    public Node updateNode(Map<String, Object> data, String typeId) {
+        return (Node) executeNode(data, typeId, EventService.UPDATE);
     }
 
 
-    public Node executeNode(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, String typeId, String event) {
+    public Object executeNode(Map<String, Object> data, String typeId, String event) {
+        ExecuteContext context = ExecuteContext.makeContextFromMap(data, typeId, event) ;
+        context.execute();
+        return context.getResult();
+    }
+
+
+    public Object executeNode(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, String typeId, String event) {
         NodeType nodeType = getNodeType(typeId) ;
 
         ExecuteContext context = ExecuteContext.makeContextFromParameter(parameterMap, multiFileMap, nodeType, event) ;
         context.execute();
-        Node node =  context.getNode();
-        node.toDisplay();
-        return node;
+//        Node node = (Node) context.getResult();
+//        node.toDisplay();
+        return context.makeResult();
     }
 
-    public Node deleteNode(Map<String, String[]> parameterMap, String typeId) {
+    public Object deleteNode(Map<String, String[]> parameterMap, String typeId) {
         NodeType nodeType = getNodeType(typeId) ;
 
-        ExecuteContext context = ExecuteContext.makeContextFromParameter(parameterMap, nodeType, "delete") ;
-        Node node = context.getNode() ;
-        infinispanRepositoryService.deleteNode(node) ;
-        return node ;
+        ExecuteContext context = ExecuteContext.createContextFromParameter(parameterMap, nodeType, "delete", null) ;
+        context.execute();
+
+//        Node node = (Node) context.getResult();
+        return context.makeResult() ;
     }
 
     public Node deleteNode(String typeId, String id) {
-        Node node = infinispanRepositoryService.getNode(typeId, id) ;
-        infinispanRepositoryService.deleteNode(node) ;
-        return node ;
+        NodeType nodeType = getNodeType(typeId) ;
+
+        ExecuteContext context = ExecuteContext.createContextFromParameter(null, nodeType, "delete", id) ;
+        context.execute();
+
+//        Node node = context.getNode() ;
+
+//        Node node = infinispanRepositoryService.getNode(typeId, id) ;
+//        infinispanRepositoryService.deleteNode(node) ;
+        return context.getNode() ;
     }
 
-    public Node readNode(Map<String, String[]> parameterMap, String typeId, String id) {
-        return readNode(typeId, id) ;
+    public Object readNode(Map<String, String[]> parameterMap, String typeId, String id) {
+        NodeType nodeType = getNodeType(typeId) ;
+
+        ReadContext readContext = ReadContext.createContextFromParameter(parameterMap, nodeType, id) ;
+        return readContext.makeResult() ;
+//        return readNode(typeId, id) ;
     }
 
-    public Node readNode(Map<String, String[]> parameterMap, String typeId) {
-        String id = null ;
-        for(String paramName : parameterMap.keySet()){
-            if(paramName.equals("id")){
-                id = parameterMap.get(paramName)[0] ;
-            }
-        }
+    public Object readNode(Map<String, String[]> parameterMap, String typeId) {
+        NodeType nodeType = getNodeType(typeId) ;
 
-        if(id == null){
-            List<String> idablePids = NodeUtils.getNodeType(typeId).getIdablePIds() ;
-            id = "" ;
-            for(int i = 0 ; i < idablePids.size(); i++){
-                id = id + parameterMap.get(idablePids.get(i))[0] + (i < (idablePids.size() - 1) ? Node.ID_SEPERATOR : "") ;
-            }
-        }
-
-        return readNode(typeId, id) ;
-
-    }
-
-    public Node readNode(String typeId, String id) {
-        Node node = infinispanRepositoryService.getNode(typeId, id) ;
-        NodeType nodeType = NodeUtils.getNodeType(typeId) ;
-        node.toDisplay();
-
-        for(PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)){
-            QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(nodeType, pt, node) ;
-            node.put(pt.getPid(), infinispanRepositoryService.getSubQueryNodes(pt.getReferenceType(), subQueryContext)) ;
-        }
-
-        return node ;
+        ReadContext readContext = ReadContext.createContextFromParameter(parameterMap, nodeType, null) ;
+        return readContext.makeResult() ;
     }
 
     public Node getNode(String typeId, String id) {
@@ -330,16 +341,27 @@ public class NodeService {
 
     public QueryResult getQueryResult(String query) {
         QueryContext queryContext = QueryContext.makeQueryContextFromQuery(query) ;
-        QueryResult queryResult = queryContext.makeQueryResult( null, null);
+        QueryResult queryResult = queryContext.makeQueryResult();
         return queryResult;
     }
 
     public QueryResult getQueryResult(String typeId, Map<String, String[]> parameterMap) {
-        QueryContext queryContext = QueryContext.makeQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
-        QueryResult queryResult = queryContext.makeQueryResult( null, null);
+        QueryContext queryContext = QueryContext.createQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
+        QueryResult queryResult = queryContext.makeQueryResult();
         return queryResult;
     }
 
+    public QueryResult getReferenceQueryResult(String typeId, Map<String, String[]> parameterMap) {
+        ReferenceQueryContext queryContext = ReferenceQueryContext.createQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
+        QueryResult queryResult = queryContext.makeQueryResult();
+        return queryResult;
+    }
+
+    public QueryResult getCodeQueryResult(String typeId, Map<String, String[]> parameterMap) {
+        ReferenceQueryContext queryContext = ReferenceQueryContext.createQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
+        QueryResult queryResult = queryContext.makeQueryResult();
+        return queryResult;
+    }
 
     public Node event(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, String typeId, String event) {
         NodeType nodeType = getNodeType(typeId) ;
@@ -384,23 +406,23 @@ public class NodeService {
 
     public void changeEventAction(ExecuteContext context){
         Node node = context.getNode() ;
-        NodeType nodeType = getNodeType(StringUtils.substringBefore(node.getStringValue("event"), "@")) ;
+        NodeType nodeType = getNodeType(StringUtils.substringBefore(node.getStringValue("event"), Node.ID_SEPERATOR)) ;
 
         EventAction eventAction = new EventAction(node) ;
         nodeType.addEventAction(eventAction);
 
-        logger.info("Change EventAction : " + StringUtils.substringBefore(context.getNode().getStringValue("event"), "@"));
+        logger.info("Change EventAction : " + StringUtils.substringBefore(context.getNode().getStringValue("event"), Node.ID_SEPERATOR));
     }
 
 
     public void changeEventListener(ExecuteContext context){
         Node node = context.getNode() ;
-        NodeType nodeType = getNodeType(StringUtils.substringBefore(node.getStringValue("event"), "@")) ;
+        NodeType nodeType = getNodeType(StringUtils.substringBefore(node.getStringValue("event"), Node.ID_SEPERATOR)) ;
 
         EventListener eventListener = new EventListener(node) ;
         nodeType.addEventListener(eventListener);
 
-        logger.info("Change EventAction : " + StringUtils.substringBefore(context.getNode().getStringValue("event"), "@"));
+        logger.info("Change EventAction : " + StringUtils.substringBefore(context.getNode().getStringValue("event"), Node.ID_SEPERATOR));
     }
 
 }

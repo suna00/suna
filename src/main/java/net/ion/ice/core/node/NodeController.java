@@ -61,16 +61,16 @@ public class NodeController {
 
     private Object execute(HttpServletRequest request, String typeId, String event) {
         if(request instanceof MultipartHttpServletRequest) {
-            return JsonResponse.create(nodeService.executeNode(request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap(), typeId, event)) ;
+            return nodeService.executeNode(request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap(), typeId, event) ;
         }
-        return JsonResponse.create(nodeService.executeNode(request.getParameterMap(), null, typeId, event)) ;
+        return nodeService.executeNode(request.getParameterMap(), null, typeId, event) ;
     }
 
 
     @RequestMapping(value = "/node/{typeId}/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public Object deleteRest(WebRequest request, @PathVariable String typeId, @PathVariable String id) throws IOException {
-        return JsonResponse.create(nodeService.deleteNode(typeId, id)) ;
+        return nodeService.deleteNode(typeId, id) ;
     }
 
     @RequestMapping(value = "/node/{typeId}/delete.json", method = RequestMethod.POST)
@@ -81,7 +81,7 @@ public class NodeController {
 
 
     private Object delete(WebRequest request, String typeId) {
-        return JsonResponse.create(nodeService.deleteNode(request.getParameterMap(), typeId)) ;
+        return nodeService.deleteNode(request.getParameterMap(), typeId) ;
     }
 
     @RequestMapping(value = "/node/{typeId}/{id}", method = RequestMethod.GET)
@@ -97,11 +97,11 @@ public class NodeController {
     }
 
     private Object read(WebRequest request, String typeId, String id) throws JsonProcessingException {
-        return JsonResponse.create(nodeService.readNode(request.getParameterMap(), typeId, id)) ;
+        return nodeService.readNode(request.getParameterMap(), typeId, id) ;
     }
 
     private Object read(WebRequest request, String typeId) throws JsonProcessingException {
-        return JsonResponse.create(nodeService.readNode(request.getParameterMap(), typeId)) ;
+        return nodeService.readNode(request.getParameterMap(), typeId) ;
     }
 
 
@@ -167,8 +167,10 @@ public class NodeController {
 
     private Object code(WebRequest request, @PathVariable String typeId) {
         try {
-            SimpleQueryResult simpleQueryResult = nodeService.getNodeCode(typeId, request.getParameterMap()) ;
-            return JsonResponse.create(simpleQueryResult) ;
+            QueryResult queryResult = nodeService.getReferenceQueryResult(typeId, request.getParameterMap()) ;
+            return queryResult ;
+//            SimpleQueryResult simpleQueryResult = nodeService.getNodeCode(typeId, request.getParameterMap()) ;
+//            return JsonResponse.create(simpleQueryResult) ;
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             if(e.getCause() instanceof ClassCastException){
@@ -211,19 +213,12 @@ public class NodeController {
     }
 
 
-    @RequestMapping(value = "/node/{typeId}/event/{event}", method = RequestMethod.POST)
+    @RequestMapping(value = "/node/{typeId}/event/{event}")
     @ResponseBody
     public Object eventJson(HttpServletRequest request, @PathVariable String typeId, @PathVariable String event) throws IOException {
-        return event(request, typeId, event);
+        return execute(request, typeId, event);
     }
 
-
-    private Object event(HttpServletRequest request, String typeId, String event) {
-        if(request instanceof MultipartHttpServletRequest) {
-            return JsonResponse.create(nodeService.event(request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap(), typeId, event)) ;
-        }
-        return JsonResponse.create(nodeService.event(request.getParameterMap(), null, typeId, event)) ;
-    }
 
 }
 

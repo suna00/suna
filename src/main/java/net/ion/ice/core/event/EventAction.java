@@ -30,11 +30,11 @@ public class EventAction {
     }
 
     public String getEvent() {
-        return StringUtils.substringAfterLast(eventActionNode.getStringValue(Event.EVENT), "@");
+        return StringUtils.substringAfterLast(eventActionNode.getStringValue(Event.EVENT), Node.ID_SEPERATOR);
     }
 
     public String getTid() {
-        return StringUtils.substringBeforeLast(eventActionNode.getStringValue(Event.EVENT), "@");
+        return StringUtils.substringBeforeLast(eventActionNode.getStringValue(Event.EVENT), Node.ID_SEPERATOR);
     }
 
     public Object getId() {

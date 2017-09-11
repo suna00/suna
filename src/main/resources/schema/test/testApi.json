@@ -1,0 +1,352 @@
+[
+  {
+    "typeId" : "apiCategory",
+    "id" : "testApi",
+    "categoryName" : "Test API",
+    "dateFormat" : "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat" : {
+      "default":"http://localhost:8080/"
+    },
+    "commonParameters" : [
+      {"paramName" : "apiKey", "required" : true}
+    ],
+    "commonResponse" :{
+      "time" : "{{:sysdate}}"
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "defaultQuery",
+    "apiName" : "Default Query Test",
+    "method" : "GET",
+    "parameters" : [
+      {"paramName" : "page", "required" : true}
+    ],
+    "config" : {
+      "createItem" : {
+        "typeId": "testItem",
+        "event": "create",
+        "if" : "",
+        "data": {
+          "id": "{{:id}}",
+          "category": "{{:category}}",
+          "title": "{{:title}}"
+        }
+      },
+      "categories" : {
+        "typeId":"testCategory",
+        "select" : {"sql" : "select * from testCategory where categoryType = @{categoryType}"},
+        "response" : {
+          "categoryName": "",
+          "upperCategory": "parentCategory",
+          "refCode1": {
+            "typeId": "testItem",
+            "query": {"category": "{{:default(categoryId, drama)}}", "sorting" : "parentCategory"},
+            "response" : {
+              "category": "",
+              "itemTitle": "title"
+            }
+          }
+        }
+      },
+      "items" : {
+        "typeId":"testItem",
+        "query" : [
+          {"field" : "category", "method" : "matching", "value" : "drama" },
+          {"sorting" : "id desc"},
+          {"page" : "{{:itemsPage}}", "pageSize":20}
+        ]
+      },
+      "users" : {
+        "endpoint":"http://customer.api.com/api/test.json?id={{:testId}}"
+      }
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "simpleCategory",
+    "apiName" : "Simple Category Sample",
+    "method" : "GET",
+    "parameters" : [
+      {"paramName" : "page", "required" : true}
+    ],
+    "config" : {
+      "typeId": "testCategory",
+      "query" : [
+        {"field" : "categoryType", "method" : "matching", "value" : "{{:categoryType}}" },
+        {"sorting" : "changed desc"},
+        {"page" : "{{:page}}", "pageSize":2},
+        {"includeReferenced" : true}
+      ]
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "hasReferencedCategory",
+    "apiName" : "hasReferenced Query Sample",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "testCategory",
+      "query" : [
+        {"field" : "categoryType", "method" : "matching", "value" : "{{:categoryType}}" },
+        {"field" : "items", "method" : "hasReferenced", "value" : "menus_matching={{:menu}}"},
+        {"includeReferenced" : true}
+      ]
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "referenceJoinItem",
+    "apiName" : "referenceJoin Query Sample",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "testItem",
+      "query" : [
+        {"field" : "category", "method" : "referenceJoin", "value" : "categoryType_matching={{:categoryType}}" },
+        {"includeReferenced" : false, "referenceView" : "category"}
+      ]
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "responseTest",
+    "apiName" : "Default response Sample",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "test1": {
+        "typeId": "testItem",
+        "resultType" : "none",
+        "query": [
+          {
+            "field": "category",
+            "method": "match",
+            "value": "{{:category}}"
+          }
+        ]
+      },
+      "root":{
+        "typeId": "testItem",
+        "query": [
+          {
+            "field": "category",
+            "method": "match",
+            "value": "{{:category}}"
+          }
+        ],
+        "response": {
+          "_all_": "",
+          "menuList": {
+            "field": "menus",
+            "referenceView": true,
+            "includeReferenced": false
+          },
+          "itemTitle": "title",
+          "itemDesc": "body",
+          "staticValue": {
+            "value": "고정 값"
+          }
+        }
+      }
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "nodeNested",
+    "apiName" : "Node Nested Aggregation Sample",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "testCategory",
+      "query" : [
+        {"field" : "categoryType", "method" : "matching", "value" : "{{:categoryType}}" },
+        {"includeReferenced" : false}
+      ],
+      "response" :{
+        "categoryId" :"",
+        "categoryName" : "",
+        "categoryType" : "",
+        "itemList" : {
+          "typeId" : "testItem",
+          "query" : [
+            {"field" : "category", "method" : "matching", "value" : "{{:categoryId}}"},
+            {"includeReferenced" : false}
+          ]
+        }
+      }
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "dataNested",
+    "apiName" : "Data Nested Aggregation Sample",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "testItem",
+      "query" : [
+        {"includeReferenced" : false, "page": "{{:page}}"}
+      ],
+      "response" :{
+        "id" :"",
+        "category" : "",
+        "title" : "",
+        "body" : "",
+        "commentList" : {
+          "typeId" : "testComment",
+          "query" : [
+            {"field" : "itemId", "method" : "equals", "value" : "{{:id}}"}
+          ]
+        }
+      }
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "selectSample",
+    "apiName" : "Select Aggregation Sample",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "testItem",
+      "query" : [
+        {"includeReferenced" : false, "page": "{{:page}}"}
+      ],
+      "response" :{
+        "id" :"",
+        "category" : "",
+        "title" : "",
+        "body" : "",
+        "commentList" : {
+          "select" : {
+            "ds" : "mariaDb",
+            "resultType" : "list",
+            "sql" : "select * from testComment where itemId = @{id}"
+          }
+        }
+      }
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "mergeSample",
+    "apiName" : "Merge Aggregation Sample",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "testItem",
+      "query" : [
+        {"includeReferenced" : false, "page": "{{:page}}", "merge" : "baseItem" }
+      ],
+      "response" :{
+        "id" :"",
+        "category" : "",
+        "title" : "",
+        "body" : "",
+        "commentList" : {
+          "select" : {
+            "ds" : "mariaDb",
+            "resultType" : "list",
+            "sql" : "select * from testComment where itemId = @{id}"
+          }
+        }
+      }
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "eventSample",
+    "apiName" : "Event Sample",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "checkQuantity" : {
+        "typeId" : "productOptionItem",
+        "id" : "{{:prodId}}",
+        "response" : {
+          "quantity" : ""
+        }
+      },
+      "updateCart" : {
+        "typeId": "cart",
+        "event": "update",
+        "if" : "{{:aboveInt(quantity, 0)}}",
+        "data": {
+          "id": "{{:id}}",
+          "category": "{{:category}}",
+          "title": "{{:title}}"
+        }
+      }
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "referencedMergeSample",
+    "apiName" : "Referenced Merge Sample",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "testCategory",
+      "query" : [
+        {"includeReferenced" : false, "page": "{{:page}}"}
+      ],
+      "response" :{
+        "categoryName": "",
+        "categoryType" : "",
+        "itemSize" : {"resultType" : "size", "field" : "items"},
+        "merge" : {
+          "typeId" : "testItem",
+          "resultType" : "merge",
+          "query" : [
+            {"field" : "category", "method" : "matching", "value" : "{{:categoryId}}"},
+            {"includeReferenced" : false, "limit" : 1}
+          ]
+        }
+      }
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "selectResponseSample",
+    "apiName" : "Select Response Sample",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "select" : {
+        "ds" : "mariaDb",
+        "resultType" : "list",
+        "sql" : "select * from testComment "
+      },
+      "response" :{
+        "id": "commentId",
+        "userId" : "",
+        "parent" : {"propertyType" : "testComment.itemId", "field" : "itemId", "referenceView": true}
+      }
+    }
+  }
+
+]

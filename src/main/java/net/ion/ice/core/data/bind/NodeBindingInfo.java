@@ -1,13 +1,14 @@
 package net.ion.ice.core.data.bind;
 
+import net.ion.ice.core.context.QueryContext;
 import net.ion.ice.core.data.DBDataTypes;
+import net.ion.ice.core.data.DBQuery;
 import net.ion.ice.core.data.DBTypes;
-import net.ion.ice.core.data.context.DBQueryContext;
-import net.ion.ice.core.data.context.DBQueryTerm;
 import net.ion.ice.core.data.table.Column;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.PropertyType;
+import net.ion.ice.core.query.QueryTerm;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +19,6 @@ import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by seonwoong on 2017. 6. 28..
@@ -38,24 +38,19 @@ public class NodeBindingInfo {
     private String deleteSql = "";
     private String retrieveSql = "";
     private String listSql = "";
-    private String listParamSql = "";
-    private String totalCountSql = "";
-
-
-    private List<String> searchListQuery;
-    private List<Object> searchListValue;
-    private List<Object> resultCountValue;
-
+    private String insertSequenceSql = "";
+    private String updateSequenceSql = "";
+    private String retrieveSequenceSql = "";
 
     private JdbcTemplate jdbcTemplate;
 
 
     private List<Column> columnList;
     private List<Column> createColumnList;
-    private List<String> insertPids = new ArrayList<>();
+    private List<PropertyType> insertPids = new ArrayList<>();
 
-    private List<String> updatePids = new ArrayList<>();
-    private List<String> wherePids = new ArrayList<>();
+    private List<PropertyType> updatePids = new ArrayList<>();
+    private List<PropertyType> wherePids = new ArrayList<>();
 
 
     private Collection<PropertyType> propertyTypes;
@@ -100,16 +95,16 @@ public class NodeBindingInfo {
                     if (propertyType.getPid().equalsIgnoreCase(column.getColumnName())) {
                         insertColumns.add(column.getColumnName());
                         insertSetKeys.add("?");
-                        insertPids.add(propertyType.getPid());
+                        insertPids.add(propertyType);
 
                         if (!propertyType.isIdable()) {
                             updateColumns.add(String.format("%s = ?", column.getColumnName()));
-                            updatePids.add(propertyType.getPid());
+                            updatePids.add(propertyType);
                             break;
                         }
                         if (propertyType.isIdable()) {
                             whereIds.add(String.format("%s = ?", propertyType.getPid()));
-                            wherePids.add(propertyType.getPid());
+                            wherePids.add(propertyType);
                             break;
                         }
                     }
@@ -117,8 +112,6 @@ public class NodeBindingInfo {
             }
 
         }
-
-        updatePids.addAll(wherePids);
 
         if (createColumnList.size() > 0) {
             for (Column column : createColumnList) {
@@ -131,11 +124,11 @@ public class NodeBindingInfo {
 
         if (DBType.equalsIgnoreCase("mySql")) {
             listSql = String.format("SELECT * FROM %s LIMIT 1000", tableName);
-            retrieveSql = String.format("SELECT * FROM %s WITH(nolock) WHERE %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
+            retrieveSql = String.format("SELECT * FROM %s WHERE %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
 
         } else if (DBType.equalsIgnoreCase("msSql")) {
             listSql = String.format("SELECT TOP 1000 * FROM %s", tableName);
-            retrieveSql = String.format("SELECT * FROM %s WHERE %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
+            retrieveSql = String.format("SELECT * FROM %s WITH(nolock) WHERE %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
 
         } else if (DBType.equalsIgnoreCase("maria")) {
             listSql = String.format("SELECT * FROM %s LIMIT 1000", tableName);
@@ -168,7 +161,9 @@ public class NodeBindingInfo {
                     , tableName
                     , StringUtils.join(createColumns.toArray(), ", "));
         }
-
+        updateSequenceSql = String.format("UPDATE datasequence SET sequence = sequence + 1 WHERE nodeType = '%s'", nodeType.getTypeId());
+        insertSequenceSql = String.format("INSERT INTO datasequence (nodeType, sequence) VALUES ('%s', 1)", nodeType.getTypeId());
+        retrieveSequenceSql = String.format("SELECT sequence FROM datasequence WHERE nodeType = '%s'", nodeType.getTypeId());
     }
 
     public List<Column> getTableColumns(String tableName, String DBType) {
@@ -243,32 +238,33 @@ public class NodeBindingInfo {
         return result;
     }
 
-    public Map<String, Object> list() {
-        Map<String, Object> result = new ConcurrentHashMap<>();
-        List<Map<String, Object>> items = jdbcTemplate.queryForList(listSql);
-        result.put("items", items);
-        return result;
+    public Long retrieveSequence() {
+        int callback = jdbcTemplate.update(updateSequenceSql);
+        if (callback == 0) {
+            jdbcTemplate.update(insertSequenceSql);
+        }
+        Long sequence = jdbcTemplate.queryForObject(retrieveSequenceSql, Long.class);
+
+        return sequence;
     }
 
-    public Map<String, Object> list(DBQueryContext dbQueryContext) {
-        makeListQuery(dbQueryContext);
 
-        Map<String, Object> result = new ConcurrentHashMap<>();
+    public List<Map<String, Object>> list() {
+        return jdbcTemplate.queryForList(listSql);
+    }
+
+    public List<Map<String, Object>> list(QueryContext queryContext) {
+        DBQuery dbQuery = new DBQuery(tableName, queryContext);
         Map<String, Object> totalCount;
-        if(resultCountValue == null || resultCountValue.isEmpty()){
-            totalCount = jdbcTemplate.queryForMap(totalCountSql);
-        }else{
-            totalCount = jdbcTemplate.queryForMap(totalCountSql, resultCountValue.toArray());
+        if (dbQuery.getResultCountValue() == null || dbQuery.getResultCountValue().isEmpty()) {
+            totalCount = jdbcTemplate.queryForMap(dbQuery.getTotalCountSql());
+        } else {
+            totalCount = jdbcTemplate.queryForMap(dbQuery.getTotalCountSql(), dbQuery.getResultCountValue().toArray());
         }
-        List<Map<String, Object>> items = jdbcTemplate.queryForList(listParamSql, searchListValue.toArray());
-        double rc = ((Long) totalCount.get("totalCount")).doubleValue();
-        result.put("pageSize", dbQueryContext.getPageSize());
-        result.put("pageCount", (int) Math.ceil(rc / dbQueryContext.getPageSize()));
-        result.put("currentPage", dbQueryContext.getCurrentPage());
-        result.putAll(totalCount);
-        result.put("resultCount", items.size());
-        result.put("items", items);
-        return result;
+        List<Map<String, Object>> items = jdbcTemplate.queryForList(dbQuery.getListParamSql(), dbQuery.getSearchListValue().toArray());
+        queryContext.setResultSize(((Long) totalCount.get("totalCount")).intValue());
+        queryContext.setQueryListSize(items.size());
+        return items;
     }
 
     public int delete(Map<String, String[]> parameterMap) {
@@ -278,79 +274,75 @@ public class NodeBindingInfo {
     }
 
     public int delete(Node node) {
-        List<Object> parameters = updateParameters(node);
+        List<Object> parameters = deleteParameters(node);
         int queryCallBack = jdbcTemplate.update(deleteSql, parameters.toArray());
         return queryCallBack;
     }
 
     private List<Object> insertParameters(Map<String, String[]> parameterMap) {
         List<Object> parameters = new ArrayList<>();
-        for (String pid : insertPids) {
-            parameters.add(parameterMap.get(pid)[0]);
+        for (PropertyType pid : insertPids) {
+            parameters.add(parameterMap.get(pid.getPid())[0]);
         }
         return parameters;
     }
 
-    private List<Object> insertParameters(Node Node) {
+    private List<Object> insertParameters(Node node) {
         List<Object> parameters = new ArrayList<>();
-        for (String pid : insertPids) {
-            parameters.add(Node.getBindingValue(pid));
+        for (PropertyType pid : insertPids) {
+            parameters.add(extractNodeValue(node, pid.getPid()));
         }
         return parameters;
     }
 
     private List<Object> updateParameters(Map<String, String[]> parameterMap) {
         List<Object> parameters = new ArrayList<>();
-        for (String pid : updatePids) {
-            parameters.add(parameterMap.get(pid)[0]);
+        for (PropertyType pid : updatePids) {
+            parameters.add(parameterMap.get(pid.getPid())[0]);
+        }
+
+        for (PropertyType pid : wherePids) {
+            if(pid.getIdType().equals(PropertyType.IdType.autoIncrement)){
+
+            }
+            parameters.add(parameterMap.get(pid.getPid())[0]);
+
         }
         return parameters;
     }
 
     private List<Object> updateParameters(Node node) {
         List<Object> parameters = new ArrayList<>();
-        for (String pid : updatePids) {
-            parameters.add(node.getBindingValue(pid));
+
+        for (PropertyType pid : updatePids) {
+            parameters.add(extractNodeValue(node, pid.getPid()));
+        }
+
+        for (PropertyType pid : wherePids) {
+            parameters.add(extractNodeValue(node, pid.getPid()));
         }
         return parameters;
     }
 
-    private List<String> retrieveParameters(String id) {
-        return Arrays.asList(id.split("@"));
+    private List<Object> deleteParameters(Node node) {
+        List<Object> parameters = new ArrayList<>();
+
+        for (PropertyType pid : wherePids) {
+            parameters.add(extractNodeValue(node, pid.getPid()));
+        }
+        return parameters;
     }
 
-    public void makeListQuery(DBQueryContext dbQueryContext) {
-        searchListQuery = new ArrayList<>();
-        searchListValue = new ArrayList<>();
+    public Object extractNodeValue(Node node, String pid) {
+        return node.getBindingValue(pid);
+    }
 
-        int currentPage = dbQueryContext.getCurrentPage();
-        int pageSize = dbQueryContext.getPageSize();
-        String sorting = dbQueryContext.getSorting();
+    private List<String> retrieveParameters(String id) {
+        return Arrays.asList(id.split(Node.ID_SEPERATOR));
+    }
 
-        if (!dbQueryContext.getDbQueryTermList().isEmpty()) {
-            for (DBQueryTerm dbQueryTerm : dbQueryContext.getDbQueryTermList()) {
-                String query = String.format("%s %s ?", dbQueryTerm.getKey(), dbQueryTerm.getMethodQuery());
-                String value = dbQueryTerm.getValue();
-                searchListQuery.add(query);
-                searchListValue.add(value);
-            }
 
-            listParamSql = String.format("SELECT * FROM %s WHERE %s", tableName, StringUtils.join(searchListQuery.toArray(), " AND "));
-            totalCountSql = String.format("SELECT COUNT(*) as totalCount FROM %s WHERE %s", tableName, StringUtils.join(searchListQuery.toArray(), " AND "));
-
-            resultCountValue = new ArrayList<>(searchListValue);
-
-        } else {
-            listParamSql = String.format("SELECT * FROM %s", tableName);
-            totalCountSql = String.format("SELECT COUNT(*) as totalCount FROM %s", tableName);
-        }
-
-        if (sorting != null) {
-            listParamSql = listParamSql.concat(String.format(" ORDER BY ").concat(sorting));
-        }
-
-        listParamSql = listParamSql.concat(String.format(" LIMIT ?").concat(String.format(" OFFSET ?")));
-        searchListValue.add(pageSize);
-        searchListValue.add(pageSize * (currentPage - 1));
+    public JdbcTemplate getJdbcTemplate() {
+        return jdbcTemplate;
     }
 }

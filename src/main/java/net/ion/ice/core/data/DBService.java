@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,8 @@ public class DBService {
 
     @Autowired
     private NodeService nodeService;
+    @Autowired
+    private Environment environment;
 
     static Map<String, JdbcTemplate> dataSourceTemplate = new ConcurrentHashMap<>();
 
@@ -42,8 +45,9 @@ public class DBService {
 //    }
 
     public JdbcTemplate getJdbcTemplate(String dsId) {
+        String activeProfiles = environment.getActiveProfiles()[0];
         if (!dataSourceTemplate.containsKey(dsId)) {
-            Node dataSourceNode = nodeService.read("datasource", dsId);
+            Node dataSourceNode = nodeService.read("datasource", dsId.concat(">").concat(activeProfiles));
             DBConfiguration configuration = new DBConfiguration(dataSourceNode);
             dataSourceTemplate.put(dsId, new JdbcTemplate(setDataSource(configuration)));
         }

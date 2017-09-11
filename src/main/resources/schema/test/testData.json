@@ -74,18 +74,21 @@
     "id" : 1,
     "category" : "drama",
     "menus" : "menu1,menu2",
-    "title" : "도깨비",
+    "title" : "도깨비 test abc",
     "body" : "공유나오는 도깨비",
-    "date" : "20170110"
+    "date" : "20170110",
+    "testFile" : "classpath:schema/test/testImage.png"
   },
   {
     "typeId" : "testItem",
     "id" : 2,
+    "baseItem" : 1,
     "category" : "drama",
     "menus" : "menu2",
-    "title" : "태양의 후예",
+    "title" : "태양의 후예 TEST BY",
     "body" : "송중기 나오네",
-    "date" : "20161101"
+    "date" : "20161102",
+    "testFile" : "classpath:schema/test/testPdf.pdf"
   },
   {
     "typeId" : "testItem",

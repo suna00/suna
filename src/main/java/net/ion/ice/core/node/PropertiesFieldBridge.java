@@ -70,8 +70,8 @@ public class PropertiesFieldBridge implements FieldBridge {
                 break;
             }
             case DATE :{
-                Field field = new AnalyzerField(pid, DateTools.dateToString(NodeUtils.getDateValue(entry.getValue()), DateTools.Resolution.SECOND), sortedFieldAnalyzer(AnalyzerFactory.getAnalyzer(PropertyType.AnalyzerType.code))) ;
-                document.add(field);
+                document.add(new org.apache.lucene.document.LongField(pid,NodeUtils.getDateLongValue(entry.getValue()), numericFieldType(PropertyType.ValueType.LONG)));
+                break;
             }
 //            case CODE :{
 //                Field field = new AnalyzerField(pid, entry.getValue().to,  fieldAnalyzer(propertyType.getLuceneAnalyzer())) ;
@@ -79,12 +79,34 @@ public class PropertiesFieldBridge implements FieldBridge {
 //            }
             default:{
 //                Field field = new AnalyzerField(pid, entry.getValue().toString(), propertyType.isSorted() ? sortedFieldAnalyzer(propertyType.getLuceneAnalyzer()) : fieldAnalyzer(propertyType.getLuceneAnalyzer())) ;
-                Field field = new AnalyzerField(pid, entry.getValue().toString(), fieldAnalyzer(propertyType.getLuceneAnalyzer())) ;
-                document.add(field);
+                if(propertyType.isI18n()){
+                    if(entry.getValue() instanceof Map){
+                        Map<String, Object> i18nMap = (Map<String, Object>) entry.getValue();
+                        for(String key : i18nMap.keySet()){
+                            document.add(getKeywordField(propertyType, pid + "_" + key, i18nMap.get(key).toString()));
+                        }
+                    }
+                }else {
+                    document.add(getKeywordField(propertyType, pid, entry.getValue().toString()));
+                }
                 break;
             }
         }
+    }
 
+    private Field getKeywordField(PropertyType propertyType, String key, String value){
+        if(propertyType.isSorted()) {
+//            if(value != null) {
+//                return new AnalyzerField(key, value.toLowerCase(), sortedFieldAnalyzer());
+//            }else{
+                return new AnalyzerField(key, value, sortedFieldAnalyzer());
+//            }
+        }else{
+            if(propertyType.isSortable() && !propertyType.isNumeric()) {
+                return new AnalyzerField(key + "_sort", value, sortedFieldAnalyzer());
+            }
+            return new AnalyzerField(key, value, fieldAnalyzer(propertyType.getLuceneAnalyzer()));
+        }
 
     }
 
@@ -99,10 +121,10 @@ public class PropertiesFieldBridge implements FieldBridge {
         }else if(value instanceof Double){
             document.add(new org.apache.lucene.document.DoubleField(pid, (Double) value, numericFieldType(PropertyType.ValueType.DOUBLE)));
         }else if(value instanceof Date){
-            Field field = new AnalyzerField(pid, DateTools.dateToString((Date) value, DateTools.Resolution.SECOND), sortedFieldAnalyzer(AnalyzerFactory.getAnalyzer(PropertyType.AnalyzerType.code))) ;
-            document.add(field);
+            document.add(new org.apache.lucene.document.LongField(pid, NodeUtils.getDateLongValue(value), numericFieldType(PropertyType.ValueType.LONG)));
         }else{
-            Field field = new AnalyzerField(pid, entry.getValue().toString(), sortedFieldAnalyzer(AnalyzerFactory.getAnalyzer(PropertyType.AnalyzerType.code))) ;
+
+            Field field = new AnalyzerField(pid, entry.getValue().toString(), fieldAnalyzer(AnalyzerFactory.getAnalyzer(PropertyType.AnalyzerType.code))) ;
             document.add(field);
         }
 
@@ -168,15 +190,15 @@ public class PropertiesFieldBridge implements FieldBridge {
     }
 
 
-    public static org.apache.lucene.document.FieldType sortedFieldAnalyzer(Analyzer analyzer) {
+    public static org.apache.lucene.document.FieldType sortedFieldAnalyzer() {
         AnalyzerFieldType fieldType = new AnalyzerFieldType();
         fieldType.setIndexOptions(IndexOptions.DOCS_AND_FREQS);
         fieldType.setDocValuesType(DocValuesType.NONE);
         fieldType.setStored(false);
-        fieldType.setTokenized(true);
+        fieldType.setTokenized(false);
         fieldType.setOmitNorms(false);
         fieldType.freeze();
-        fieldType.setAnalyzer(analyzer);
+//        fieldType.setAnalyzer(AnalyzerFactory.getAnalyzer(PropertyType.AnalyzerType.simple));
         return fieldType;
     }
 

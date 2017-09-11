@@ -1,10 +1,9 @@
 package net.ion.ice.core.node;
 
-import infinispan.com.mchange.lang.ObjectUtils;
 import net.ion.ice.core.infinispan.lucene.AnalyzerFactory;
 import org.apache.lucene.analysis.Analyzer;
+import org.stagemonitor.util.StringUtils;
 
-import java.util.BitSet;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,11 +18,14 @@ public class PropertyType {
     public static final String VALUE_TYPE = "valueType";
     public static final String REFERENCE_TYPE = "referenceType";
     public static final String REFERENCE_VALUE = "referenceValue";
+    public static final String REFERENCE_VIEW = "referenceView";
+    public static final String CODE_FILTER = "codeFilter";
 
     public static final String FILE_HANDLER = "fileHandler";
+    public static final String SORTABLE = "sortable";
 
 
-    public enum ValueType {STRING, CODE, DATE, LONG, INT, DOUBLE, BOOLEAN, REFERENCED, REFERENCE, REFERENCES, TEXT, ARRAY, OBJECT, JSON, FILE}
+    public enum ValueType {STRING, CODE, DATE, LONG, INT, DOUBLE, BOOLEAN, REFERENCED, REFERENCE, REFERENCES, TEXT, ARRAY, OBJECT, JSON, FILE, FILES}
 
     public enum AnalyzerType {simple, code, whitespace, standard, cjk, korean}
 
@@ -37,6 +39,7 @@ public class PropertyType {
     public static final String LABELABLE = "labelable";
     public static final String REQUIRED = "required";
     public static final String TREEABLE = "treeable";
+    public static final String IGNORE_HIERARCHY_VALUE = "ignoreHierarchyValue";
     public static final String LENGTH = "length";
 
     public static final String I18N = "i18n";
@@ -94,7 +97,7 @@ public class PropertyType {
 
     public boolean isSorted(){
         switch (getAnalyzerType()){
-            case code: case simple:
+            case simple:
                 return true ;
         }
         return false ;
@@ -160,9 +163,16 @@ public class PropertyType {
         return propertyTypeNode.getStringValue(REFERENCE_VALUE);
     }
 
+    public String getCodeFilter() {
+        return propertyTypeNode.getStringValue(CODE_FILTER);
+    }
 
     public boolean isTreeable() {
         return propertyTypeNode.getBooleanValue(TREEABLE);
+    }
+
+    public boolean isIgnoreHierarchyValue() {
+        return propertyTypeNode.getBooleanValue(IGNORE_HIERARCHY_VALUE);
     }
 
     public boolean hasDefaultValue() {
@@ -186,7 +196,11 @@ public class PropertyType {
     }
 
     public String getFileHandler() {
-        return propertyTypeNode.getStringValue(FILE_HANDLER);
+        String handler = propertyTypeNode.getStringValue(FILE_HANDLER);
+        if(StringUtils.isEmpty(handler)){
+            return "default" ;
+        }
+        return handler ;
     }
 
     public Integer getLength() {
@@ -208,6 +222,21 @@ public class PropertyType {
 
     public boolean isI18n() {
         return propertyTypeNode.getBooleanValue(I18N);
+    }
+    public boolean isReferenceView() {
+        return propertyTypeNode.getBooleanValue(REFERENCE_VIEW);
+    }
+
+    public boolean isSortable() {
+        return propertyTypeNode.getBooleanValue(SORTABLE);
+    }
+
+    public boolean isNumeric(){
+        switch (getValueType()){
+            case INT: case LONG: case DOUBLE: case DATE:
+                return true ;
+        }
+        return false ;
     }
 
 }

@@ -3,8 +3,6 @@ package net.ion.ice.security.auth.jwt;
 import net.ion.ice.security.auth.JwtAuthenticationToken;
 import net.ion.ice.security.auth.jwt.extractor.TokenExtractor;
 import net.ion.ice.security.common.CookieUtil;
-import net.ion.ice.security.config.JwtConfig;
-import net.ion.ice.security.token.JwtTokenFactory;
 import net.ion.ice.security.token.RawAccessJwtToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationServiceException;
@@ -25,18 +23,14 @@ import java.io.IOException;
 public class JwtTokenAuthenticationProcessingFilter extends AbstractAuthenticationProcessingFilter {
     private final AuthenticationFailureHandler failureHandler;
     private final TokenExtractor tokenExtractor;
-    private final JwtConfig jwtConfig;
-    private final CookieUtil cookieUtil;
 
     @Autowired
     public JwtTokenAuthenticationProcessingFilter(AuthenticationFailureHandler failureHandler,
-                                                  TokenExtractor tokenExtractor, RequestMatcher matcher, JwtConfig jwtConfig, CookieUtil cookieUtil) {
+                                                  TokenExtractor tokenExtractor, RequestMatcher matcher) {
         super(matcher);
 
         this.failureHandler = failureHandler;
         this.tokenExtractor = tokenExtractor;
-        this.jwtConfig = jwtConfig;
-        this.cookieUtil = cookieUtil;
     }
 
     /*
@@ -45,14 +39,10 @@ public class JwtTokenAuthenticationProcessingFilter extends AbstractAuthenticati
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
 //        String tokenPayload = request.getHeader(jwtConfig.getHeadString());
-        String tokenPayload = cookieUtil.getValue(request, "accessToken");
+        String tokenPayload = CookieUtil.getValue(request, "iceJWT");
         RawAccessJwtToken token = new RawAccessJwtToken(tokenExtractor.extract(tokenPayload));
-        Object sessionToken = null;
         try {
-            if (request.getSession().getAttribute("accessToken").equals(token.getToken())) {
-                sessionToken = token;
-            }
-            return getAuthenticationManager().authenticate(new JwtAuthenticationToken((RawAccessJwtToken) sessionToken));
+            return getAuthenticationManager().authenticate(new JwtAuthenticationToken(token));
         } catch (NullPointerException ex) {
             throw new AuthenticationServiceException("Token is not exist in session");
         }

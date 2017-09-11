@@ -44,6 +44,63 @@
   },
   {
     "typeId" : "propertyType",
+    "tid" : "apiCategory",
+    "pid" : "dateFormat",
+    "propertyTypeName" : "Date Format",
+    "valueType" : "STRING",
+    "idable" : false,
+    "indexable" : false,
+    "labelable" : false,
+    "required" : false
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "apiCategory",
+    "pid" : "fileUrlFormat",
+    "propertyTypeName" : "File Url Format",
+    "valueType" : "JSON",
+    "idable" : false,
+    "indexable" : false,
+    "labelable" : false,
+    "required" : false
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "apiCategory",
+    "pid" : "commonParameters",
+    "propertyTypeName" : "Common Parameter Configuration",
+    "valueType" : "JSON",
+    "idable" : false,
+    "indexable" : false,
+    "labelable" : false,
+    "required" : false
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "apiCategory",
+    "pid" : "commonResponse",
+    "propertyTypeName" : "Common Response Configuration",
+    "valueType" : "JSON",
+    "idable" : false,
+    "indexable" : false,
+    "labelable" : false,
+    "required" : false
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "apiCategory",
+    "pid" : "apiList",
+    "propertyTypeName" : "API LIST",
+    "valueType" : "REFERENCED",
+    "idable" : false,
+    "indexable" : false,
+    "labelable" : false,
+    "required" : false,
+    "referenceType" : "apiConfig",
+    "referenceValue" : "category"
+  },
+  {
+    "typeId" : "propertyType",
     "tid" : "apiConfig",
     "pid" : "category",
     "propertyTypeName" : "API Category",
@@ -87,6 +144,17 @@
     "labelable" : false,
     "required" : true,
     "code" : [{"value" : "POST", "label" : "POST"}, {"value" : "GET", "label" : "GET"}, {"value" : "PUT", "label" : "PUT"}, {"value" : "DELETE", "label" : "DELETE"}, {"value" : "PATCH", "label" : "PATCH"}]
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "apiConfig",
+    "pid" : "parameters",
+    "propertyTypeName" : "Parameter Configuration",
+    "valueType" : "JSON",
+    "idable" : false,
+    "indexable" : false,
+    "labelable" : false,
+    "required" : false
   },
   {
     "typeId" : "propertyType",

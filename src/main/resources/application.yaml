@@ -16,7 +16,7 @@ server:
 jwtConfig:
   issuer: I-ON
   secretKey: dkdldhs!@#$
-  headerPrefix: SDP
+  tokenPrefix: SDP
   headString: X-Authorization
   tokenExpirationTime: 15 #분
   refreshTokenExpTime: 60 #분
@@ -24,7 +24,6 @@ jwtConfig:
 cluster:
   members:
     - 127.0.0.1
-    - localhost
 
 infinispan:
   cachePath: /resource/ice2/cache
@@ -47,7 +46,7 @@ file:
 
 
 i18n:
-  default: en
+  defaults: en
 
 ---
 #-Dspring.profiles.active=dev
@@ -60,7 +59,6 @@ hazelcast:
   baseDir: /resource/ice2/data_1
   members:
     - 127.0.0.1
-    - localhost
 
 
 
@@ -98,7 +96,7 @@ server:
 jwtConfig:
   issuer: I-ON
   secretKey: dkdldhs!@#$
-  headerPrefix: SDP
+  tokenPrefix: SDP
   headString: X-Authorization
   tokenExpirationTime: 15 #분
   refreshTokenExpTime: 60 #분
@@ -163,7 +161,7 @@ server:
 jwtConfig:
   issuer: I-ON
   secretKey: dkdldhs!@#$
-  headerPrefix: SDP
+  tokenPrefix: SDP
   headString: X-Authorization
   tokenExpirationTime: 15 #분
   refreshTokenExpTime: 60 #분
@@ -192,3 +190,48 @@ logging:
 file:
   default:
     path: /resource/cj_ice2/files
+
+---
+# 교보 개발 서버
+spring:
+  profiles: kybo-dev
+  http:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 20MB
+
+server:
+  port: 8088
+
+jwtConfig:
+  issuer: I-ON
+  secretKey: dkdldhs!@#$
+  tokenPrefix: SDP
+  headString: X-Authorization
+  tokenExpirationTime: 15 #분
+  refreshTokenExpTime: 60 #분
+
+
+cluster:
+  members:
+    - 127.0.0.1
+    - localhost
+
+infinispan:
+  cachePath: /resource/ice2/cache
+
+tomcat:
+  access-log-enabled: true
+  access-log-pattern: "%h %l %u %t \"%r\" %s %b %D"
+  basedir: tomcat
+
+logging:
+  config:
+    classpath:
+      - logback-access-dev-2.xml
+      - logback-dev-2.xml
+
+
+file:
+  default:
+    path: /resource/ice2/files

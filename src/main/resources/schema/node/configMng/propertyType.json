@@ -2,8 +2,8 @@
   {
     "typeId" : "propertyType",
     "tid": "groupCode",
-    "id": "groupCode@id",
-    "pid": "id",
+    "id": "groupCode>groupCodeId",
+    "pid": "groupCodeId",
     "propertyTypeName": "그룹코드 아이디",
     "valueType": "STRING",
     "required": true,
@@ -18,7 +18,7 @@
   {
     "typeId" : "propertyType",
     "tid": "groupCode",
-    "id": "groupCode@name",
+    "id": "groupCode>name",
     "pid": "name",
     "propertyTypeName": "그룹코드 명",
     "valueType": "STRING",
@@ -34,7 +34,7 @@
   {
     "typeId" : "propertyType",
     "tid": "groupCode",
-    "id": "groupCode@active",
+    "id": "groupCode>active",
     "pid": "active",
     "propertyTypeName": "활성 여부",
     "valueType": "BOOLEAN",
@@ -50,7 +50,7 @@
   {
     "typeId" : "propertyType",
     "tid": "code",
-    "id": "code@groupCodeId",
+    "id": "code>groupCodeId",
     "pid": "groupCodeId",
     "propertyTypeName": "그룹코드 아이디",
     "valueType": "STRING",
@@ -66,8 +66,8 @@
   {
     "typeId" : "propertyType",
     "tid": "code",
-    "id": "code@id",
-    "pid": "id",
+    "id": "code>codeId",
+    "pid": "codeId",
     "propertyTypeName": "코드 아이디",
     "valueType": "STRING",
     "required": true,
@@ -82,7 +82,7 @@
   {
     "typeId" : "propertyType",
     "tid": "code",
-    "id": "code@name",
+    "id": "code>name",
     "pid": "name",
     "propertyTypeName": "코드 명",
     "valueType": "STRING",
@@ -98,7 +98,7 @@
   {
     "typeId" : "propertyType",
     "tid": "code",
-    "id": "code@order",
+    "id": "code>order",
     "pid": "order",
     "propertyTypeName": "정렬 순서",
     "valueType": "LONG",
@@ -115,7 +115,7 @@
   {
     "typeId" : "propertyType",
     "tid": "code",
-    "id": "code@active",
+    "id": "code>active",
     "pid": "active",
     "propertyTypeName": "활성 여부",
     "valueType": "BOOLEAN",

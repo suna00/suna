@@ -23,6 +23,23 @@ public class JwtTokenFactory {
         this.jwtConfig = jwtConfig;
     }
 
+    public AccessJwtToken createInitJwtToken() {
+        Claims claims = Jwts.claims();
+        claims.setSubject("Anonymous");
+
+        LocalDateTime currentTime = LocalDateTime.now();
+
+        String token = Jwts.builder()
+                .setClaims(claims)
+                .setIssuer(jwtConfig.getIssuer())
+                .setIssuedAt(Date.from(currentTime.atZone(ZoneId.systemDefault()).toInstant()))
+                .setExpiration(Date.from(currentTime.plusMinutes(jwtConfig.getTokenExpirationTime()).atZone(ZoneId.systemDefault()).toInstant()))
+                .signWith(SignatureAlgorithm.HS512, jwtConfig.getSecretKey())
+                .compact();
+
+        return new AccessJwtToken(token, claims);
+    }
+
     public AccessJwtToken createAccessJwtToken(UserContext userContext) {
         if (StringUtils.isBlank(userContext.getUserId()))
             throw new IllegalArgumentException("Cannot create JWT Token without userId");
@@ -47,14 +64,15 @@ public class JwtTokenFactory {
         return new AccessJwtToken(token, claims);
     }
 
-    public JwtToken createRefreshToken(UserContext userContext) {
-        if (StringUtils.isBlank(userContext.getUserId())) {
-            throw new IllegalArgumentException("Cannot create JWT Token without userId");
-        }
+    public JwtToken createRefreshToken() {
+//        if (StringUtils.isBlank(userContext.getUserId())) {
+//            throw new IllegalArgumentException("Cannot create JWT Token without userId");
+//        }
 
         LocalDateTime currentTime = LocalDateTime.now();
 
-        Claims claims = Jwts.claims().setSubject(userContext.getUserId());
+//        Claims claims = Jwts.claims().setSubject(userContext.getUserId());
+        Claims claims = Jwts.claims().setSubject("Anonymous");
 //        claims.put("scopes", Arrays.asList(Scopes.REFRESH_TOKEN.authority()));
 
         String token = Jwts.builder()
