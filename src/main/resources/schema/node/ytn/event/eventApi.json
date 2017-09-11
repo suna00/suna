@@ -20,7 +20,7 @@
         {"field" : "categoryId", "method" : "matching", "value" : "{{:categoryId}}" },
         {"field" : "siteType", "method" : "matching", "value" : "{{:siteType}}" },
         {"field" : "specialExhibitionStatus", "method" : "matching", "value" : "use" },
-        {"field" : "name", "method" : "matching", "value" : "{{:searchValue}}" },
+        {"field" : "name", "method" : "matching", "value" : "*{{:searchValue}}*" },
         {"includeReferenced" : false}
       ]
     }
