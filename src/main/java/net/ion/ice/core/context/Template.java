@@ -1,6 +1,8 @@
 package net.ion.ice.core.context;
 
 
+import net.ion.ice.core.node.Node;
+import net.ion.ice.core.node.NodeType;
 import org.apache.commons.lang3.StringUtils;
 
 import java.text.ParseException;
@@ -96,6 +98,23 @@ public class Template {
         return resultStr ;
     }
 
+    public String format(Map<String, Object> data, ReadContext readContext, NodeType nodeType, Node node) {
+        String resultStr = templateStr ;
+//        for(TemplateArray templateArray : templateArrays){
+//            resultStr = StringUtils.replace(resultStr, templateArray.getReplaceStr(), templateArray.format(data)) ;
+//        }
+
+        for(TemplateParam templateParam : templateParams){
+            resultStr = StringUtils.replace(resultStr, templateParam.getTemplateStr(), templateParam.format(data, readContext, nodeType, node)) ;
+        }
+
+        for(SqlParam sqlParam : sqlParams){
+            resultStr = StringUtils.replace(resultStr, sqlParam.getTemplateStr(), "?") ;
+        }
+
+        return resultStr ;
+    }
+
 
     public List<Map<String, Object>> getArray(Map<String, Object> data, String key) {
         if(StringUtils.contains(key, '.')){
@@ -138,4 +157,6 @@ public class Template {
         }
         return values.toArray();
     }
+
+
 }

@@ -250,6 +250,10 @@ public class NodeUtils {
                 referenceType = StringUtils.substringBefore(refId, "::") ;
                 refId = StringUtils.substringAfter(refId, "::") ;
             }
+            if(StringUtils.isNotEmpty(pt.getCodeFilter()) && !StringUtils.contains(refId, Node.ID_SEPERATOR)){
+                refId = pt.getCodeFilter() + Node.ID_SEPERATOR + refId ;
+            }
+
             Node refNode = getNode(referenceType, refId);
             NodeType nodeType = nodeService.getNodeType(referenceType);
             return new ReferenceView(refNode.toDisplay(context), nodeType, context);
@@ -269,6 +273,9 @@ public class NodeUtils {
                 referenceType = StringUtils.substringBefore(refId, "::") ;
                 refId = StringUtils.substringAfter(refId, "::") ;
             }
+            if(StringUtils.isNotEmpty(pt.getCodeFilter()) && !StringUtils.contains(refId, Node.ID_SEPERATOR)){
+                refId = pt.getCodeFilter() + Node.ID_SEPERATOR + refId ;
+            }
 
             Node refNode = getNode(referenceType, refId);
             NodeType nodeType = nodeService.getNodeType(referenceType);
@@ -278,7 +285,7 @@ public class NodeUtils {
         }
     }
 
-    public static Object getResultValue(ReadContext context, PropertyType pt, Node node) {
+    public static Object getResultValue(ReadContext context, PropertyType pt, Map<String, Object> node) {
         Object value = node.get(pt.getPid());
         switch (pt.getValueType()) {
             case CODE: {
@@ -294,20 +301,12 @@ public class NodeUtils {
                     if (value instanceof ReferenceView) {
                         return NodeUtils.getReferenceValueView(context, ((ReferenceView) value).getRefId(), pt);
                     }
-                    if (context instanceof DataQueryContext) {
-                        return NodeUtils.getReferenceValueView(context, StringUtils.isEmpty(pt.getCodeFilter()) ? value : pt.getCodeFilter()+Node.ID_SEPERATOR+value, pt);
-                    } else {
-                        return NodeUtils.getReferenceValueView(context, value, pt);
-                    }
+                    return NodeUtils.getReferenceValueView(context, value, pt);
                 } else {
                     if (value instanceof Reference) {
                         return value;
                     }
-                    if (context instanceof DataQueryContext) {
-                        return NodeUtils.getReferenceValue(context, StringUtils.isEmpty(pt.getCodeFilter()) ? value : pt.getCodeFilter()+Node.ID_SEPERATOR+value, pt);
-                    } else {
-                        return NodeUtils.getReferenceValue(context, value, pt);
-                    }
+                    return NodeUtils.getReferenceValue(context, value, pt);
                 }
             }
             case REFERENCES: {
@@ -319,17 +318,9 @@ public class NodeUtils {
                 if (value != null && StringUtils.isNotEmpty(value.toString())) {
                     for (String refVal : StringUtils.split(value.toString(), ",")) {
                         if (context.isReferenceView(pt.getPid())) {
-                            if (context instanceof DataQueryContext) {
-                                refValues.add(NodeUtils.getReferenceValueView(context, StringUtils.isEmpty(pt.getCodeFilter()) ? value : pt.getCodeFilter()+Node.ID_SEPERATOR+refVal, pt));
-                            } else {
-                                refValues.add(NodeUtils.getReferenceValueView(context, refVal, pt));
-                            }
+                            refValues.add(NodeUtils.getReferenceValueView(context, refVal, pt));
                         } else {
-                            if (context instanceof DataQueryContext) {
-                                refValues.add(NodeUtils.getReferenceValue(context, StringUtils.isEmpty(pt.getCodeFilter()) ? value : pt.getCodeFilter()+Node.ID_SEPERATOR+refVal, pt));
-                            } else {
-                                refValues.add(NodeUtils.getReferenceValue(context, refVal, pt));
-                            }
+                            refValues.add(NodeUtils.getReferenceValue(context, refVal, pt));
                         }
                     }
                 }
@@ -353,8 +344,8 @@ public class NodeUtils {
                 return null;
             }
             case REFERENCED: {
-                if (context != null && context.isIncludeReferenced() && context.getLevel() < 3) {
-                    QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(getNodeType(node.getTypeId()), pt, node);
+                if (context != null && context.isIncludeReferenced() && context.getLevel() < 3 && node instanceof Node) {
+                    QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(getNodeType(((Node)node).getTypeId()), pt, (Node) node);
                     subQueryContext.setLevel(context.getLevel() + 1);
                     return getNodeService().getDisplayNodeList(pt.getReferenceType(), subQueryContext);
                 }
