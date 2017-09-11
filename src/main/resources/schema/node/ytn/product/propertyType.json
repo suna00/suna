@@ -1192,6 +1192,22 @@
   },
   {
     "typeId": "propertyType",
+    "tid": "product",
+    "pid": "referencedProductSearchFilter",
+    "propertyTypeName": "referenced상품검색필터",
+    "valueType": "REFERENCED",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "productSearchFilter",
+    "referenceValue": "productId",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
     "tid": "productByAffiliateMall",
     "pid": "productByAffiliateMallId",
     "propertyTypeName": "ID",
