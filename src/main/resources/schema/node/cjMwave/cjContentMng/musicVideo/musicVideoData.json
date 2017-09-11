@@ -18,7 +18,8 @@
     "relSongIds": "song_00001",
     "relArtistIds": "artist_00003",
     "showYn": true,
-    "rcmdContsYn": true
+    "rcmdContsYn": true,
+    "contsMetaCtgryId": ""
   },
   {
     "typeId": "musicVideo",
@@ -39,7 +40,8 @@
     "relSongIds": "song_00003",
     "relArtistIds": "artist_00014",
     "showYn": true,
-    "rcmdContsYn": true
+    "rcmdContsYn": true,
+    "contsMetaCtgryId": ""
   },
   {
     "typeId": "musicVideo",
@@ -60,7 +62,8 @@
     "relSongIds": "song_00014",
     "relArtistIds": "artist_00012",
     "showYn": true,
-    "rcmdContsYn": true
+    "rcmdContsYn": true,
+    "contsMetaCtgryId": ""
   },
   {
     "typeId": "musicVideo",
@@ -81,6 +84,7 @@
     "relSongIds": "song_00023",
     "relArtistIds": "artist_00028",
     "showYn": true,
-    "rcmdContsYn": true
+    "rcmdContsYn": true,
+    "contsMetaCtgryId": ""
   }
 ]

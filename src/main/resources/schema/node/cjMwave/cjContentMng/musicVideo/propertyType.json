@@ -333,8 +333,8 @@
   {
     "typeId": "propertyType",
     "tid": "musicVideo",
-    "pid": "ctgryId",
-    "id": "musicVideo>ctgryId",
+    "pid": "contsMetaCtgryId",
+    "id": "musicVideo>contsMetaCtgryId",
     "propertyTypeName": "카테고리 아이디",
     "valueType": "REFERENCE",
     "required": false,
