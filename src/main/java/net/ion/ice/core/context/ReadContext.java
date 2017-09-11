@@ -382,7 +382,7 @@ public class ReadContext implements Context {
         this.includeReferencedFields = includeReferencedFields;
     }
 
-    public void setNodeData(Node nodeData) {
+    public void setNodeData(Map<String, Object> nodeData) {
         Map<String, Object> _data = new HashMap<>() ;
         _data.putAll(data);
         _data.putAll(nodeData);
