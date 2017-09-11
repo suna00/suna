@@ -2168,7 +2168,7 @@
 		{
 			"id": "3515f52f-3c2f-1b9f-2e88-4e9e799b0a24",
 			"method": "GET",
-			"url": "{{protocol}}://{{hostname}}:{{port}}/node/shopEvent/list.json?eventStatus_matching=y&sorting=created desc&startDate_below=2017-08-22&endDate_above=2017-08-22&displayTargetType_not_matching=company",
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/shopEvent/list.json?eventStatus_matching=y&sorting=created desc&startDate_below=2017-08-22&endDate_above=2017-08-22&displayTargetType_notMatching=company",
 			"name": "이벤트 메인_이벤트 리스트",
 			"dataMode": "params",
 			"headers": "",
@@ -3113,7 +3113,7 @@
 		{
 			"id": "4e324d74-8369-ee95-94ea-685c21991324",
 			"method": "GET",
-			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/specialExhibitionApi/list.json?toDay=2017-08-22&categoryId=1&displayTargetType_not_matching=company",
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/specialExhibitionApi/list.json?toDay=2017-08-22&categoryId=1&displayTargetType_notMatching=company",
 			"name": "기획전 메인_기획전 리스트",
 			"dataMode": "params",
 			"headers": "",
@@ -3451,7 +3451,7 @@
 		{
 			"id": "58636a9b-84d1-429f-5ec7-0ee6dc5a391c",
 			"method": "GET",
-			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/specialExhibitionApi/view.json?toDay=2017-08-22&displayTargetType_not_matching=company",
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/specialExhibitionApi/view.json?toDay=2017-08-22&displayTargetType_notMatching=company",
 			"name": "기획전 상세_기획전 상세 조회",
 			"dataMode": "params",
 			"headers": "",
@@ -3892,7 +3892,7 @@
 		{
 			"id": "68aca3b1-461c-ca71-899c-88c62a05968b",
 			"method": "GET",
-			"url": "{{protocol}}://{{hostname}}:{{port}}/node/commonNotice/list.json?sorting=topFixedYn desc,created desc&pageSize=10&page=1&displayTargetType_not_matching=university",
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/commonNotice/list.json?sorting=topFixedYn desc,created desc&pageSize=10&page=1&displayTargetType_notMatching=university",
 			"name": "공지사항_리스트",
 			"dataMode": "params",
 			"headers": "",
@@ -4241,7 +4241,7 @@
 		{
 			"id": "6d3e3231-ad4a-9506-56a8-8cdbdce35669",
 			"method": "GET",
-			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/specialExhibitionApi/list.json?toDay=2017-08-22&categoryId=1&displayTargetType_not_matching=company",
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/specialExhibitionApi/list.json?toDay=2017-08-22&categoryId=1&displayTargetType_notMatching=company",
 			"name": "기획전 상세_다른 기획전 리스트",
 			"dataMode": "params",
 			"headers": "",
@@ -5107,7 +5107,7 @@
 			"id": "8da0eff9-1e44-d76e-eec3-92948949f4e9",
 			"headers": "",
 			"headerData": [],
-			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/specialExhibitionApi/list.json?toDay=2017-08-22&categoryId=1&displayTargetType_not_matching=company",
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/specialExhibitionApi/list.json?toDay=2017-08-22&categoryId=1&displayTargetType_notMatching=company",
 			"queryParams": [
 				{
 					"key": "toDay",
@@ -5124,7 +5124,7 @@
 					"enabled": true
 				},
 				{
-					"key": "displayTargetType_not_matching",
+					"key": "displayTargetType_notMatching",
 					"value": "company",
 					"equals": true,
 					"description": "",
@@ -7011,7 +7011,7 @@
 		{
 			"id": "cd0cf538-1c0b-313a-570b-bcf89fc584a1",
 			"method": "GET",
-			"url": "{{protocol}}://{{hostname}}:{{port}}/node/shopEvent/read.json?eventStatus_matching=y&startDate_below=2017-08-22&endDate_above=2017-08-22&displayTargetType_not_matching=university&shopEventId_matching=1",
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/shopEvent/read.json?eventStatus_matching=y&startDate_below=2017-08-22&endDate_above=2017-08-22&displayTargetType_notMatching=university&shopEventId_matching=1",
 			"name": "이벤트 상세_이벤트 상세 조회",
 			"dataMode": "params",
 			"headers": "",
