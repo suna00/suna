@@ -22,8 +22,7 @@ public class PropertyType {
     public static final String CODE_FILTER = "codeFilter";
 
     public static final String FILE_HANDLER = "fileHandler";
-
-
+    public static final String SORTABLE = "sortable";
 
 
     public enum ValueType {STRING, CODE, DATE, LONG, INT, DOUBLE, BOOLEAN, REFERENCED, REFERENCE, REFERENCES, TEXT, ARRAY, OBJECT, JSON, FILE, FILES}
@@ -227,4 +226,17 @@ public class PropertyType {
     public boolean isReferenceView() {
         return propertyTypeNode.getBooleanValue(REFERENCE_VIEW);
     }
+
+    public boolean isSortable() {
+        return propertyTypeNode.getBooleanValue(SORTABLE);
+    }
+
+    public boolean isNumeric(){
+        switch (getValueType()){
+            case INT: case LONG: case DOUBLE: case DATE:
+                return true ;
+        }
+        return false ;
+    }
+
 }

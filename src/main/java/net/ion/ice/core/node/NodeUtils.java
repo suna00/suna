@@ -249,6 +249,10 @@ public class NodeUtils {
                 referenceType = StringUtils.substringBefore(refId, "::") ;
                 refId = StringUtils.substringAfter(refId, "::") ;
             }
+            if(StringUtils.isNotEmpty(pt.getCodeFilter()) && !StringUtils.contains(refId, Node.ID_SEPERATOR)){
+                refId = pt.getCodeFilter() + Node.ID_SEPERATOR + refId ;
+            }
+
             Node refNode = getNode(referenceType, refId);
             NodeType nodeType = nodeService.getNodeType(referenceType);
             return new ReferenceView(refNode.toDisplay(context), nodeType, context);
@@ -267,6 +271,9 @@ public class NodeUtils {
             if(StringUtils.contains(refId, "::")){
                 referenceType = StringUtils.substringBefore(refId, "::") ;
                 refId = StringUtils.substringAfter(refId, "::") ;
+            }
+            if(StringUtils.isNotEmpty(pt.getCodeFilter()) && !StringUtils.contains(refId, Node.ID_SEPERATOR)){
+                refId = pt.getCodeFilter() + Node.ID_SEPERATOR + refId ;
             }
 
             Node refNode = getNode(referenceType, refId);
@@ -293,20 +300,12 @@ public class NodeUtils {
                     if (value instanceof ReferenceView) {
                         return NodeUtils.getReferenceValueView(context, ((ReferenceView) value).getRefId(), pt);
                     }
-                    if (context instanceof DataQueryContext) {
-                        return NodeUtils.getReferenceValueView(context, StringUtils.isEmpty(pt.getCodeFilter()) ? value : pt.getCodeFilter()+Node.ID_SEPERATOR+value, pt);
-                    } else {
-                        return NodeUtils.getReferenceValueView(context, value, pt);
-                    }
+                    return NodeUtils.getReferenceValueView(context, value, pt);
                 } else {
                     if (value instanceof Reference) {
                         return value;
                     }
-                    if (context instanceof DataQueryContext) {
-                        return NodeUtils.getReferenceValue(context, StringUtils.isEmpty(pt.getCodeFilter()) ? value : pt.getCodeFilter()+Node.ID_SEPERATOR+value, pt);
-                    } else {
-                        return NodeUtils.getReferenceValue(context, value, pt);
-                    }
+                    return NodeUtils.getReferenceValue(context, value, pt);
                 }
             }
             case REFERENCES: {
@@ -318,17 +317,9 @@ public class NodeUtils {
                 if (value != null && StringUtils.isNotEmpty(value.toString())) {
                     for (String refVal : StringUtils.split(value.toString(), ",")) {
                         if (context.isReferenceView(pt.getPid())) {
-                            if (context instanceof DataQueryContext) {
-                                refValues.add(NodeUtils.getReferenceValueView(context, StringUtils.isEmpty(pt.getCodeFilter()) ? value : pt.getCodeFilter()+Node.ID_SEPERATOR+refVal, pt));
-                            } else {
-                                refValues.add(NodeUtils.getReferenceValueView(context, refVal, pt));
-                            }
+                            refValues.add(NodeUtils.getReferenceValueView(context, refVal, pt));
                         } else {
-                            if (context instanceof DataQueryContext) {
-                                refValues.add(NodeUtils.getReferenceValue(context, StringUtils.isEmpty(pt.getCodeFilter()) ? value : pt.getCodeFilter()+Node.ID_SEPERATOR+refVal, pt));
-                            } else {
-                                refValues.add(NodeUtils.getReferenceValue(context, refVal, pt));
-                            }
+                            refValues.add(NodeUtils.getReferenceValue(context, refVal, pt));
                         }
                     }
                 }
@@ -461,7 +452,7 @@ public class NodeUtils {
                 } else {
                     String refsValues = "";
                     for (Object val : StringUtils.split(value.toString(), ",")) {
-                        refsValues += val.toString().trim() + ",";
+                        refsValues += getRefereceStoreValue(val.toString().trim(), pt) + ",";
                     }
                     if (refsValues.endsWith(",")) return StringUtils.substringBeforeLast(refsValues, ",");
                     else return refsValues;
@@ -657,7 +648,7 @@ public class NodeUtils {
             Map<String, Object> i18nData = new HashMap<>();
             value = NodeUtils.getStoreValue(value, pt, id);
             if (value instanceof String) {
-                i18nData.put(getNodeService().getDefaultLocale(), value);
+                i18nData.put(getDefaultLocale(), value);
             } else if (value instanceof Map) {
                 i18nData = (Map<String, Object>) value;
             }
@@ -672,7 +663,11 @@ public class NodeUtils {
             for (String fieldName : removePids) {
                 data.remove(fieldName);
             }
-            return i18nData;
+            if(i18nData.size() > 0) {
+                return i18nData;
+            }else{
+                return null ;
+            }
         }
         return NodeUtils.getStoreValue(value, pt, id);
     }
@@ -683,5 +678,9 @@ public class NodeUtils {
             nodeList.add(new Node(data, typeId));
         }
         return nodeList;
+    }
+
+    public static String getDefaultLocale(){
+        return getNodeService().getDefaultLocale() ;
     }
 }

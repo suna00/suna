@@ -1265,29 +1265,69 @@
 		},
 		{
 			"id": "178546c9-2ef5-b363-399e-e43a6ea14adf",
-			"method": "GET",
-			"url": "{{protocol}}://{{hostname}}:{{port}}/node/review/list.json?sorting=created desc&reviewStatus_matching=y&productId_matching=3&pageSize=10&page=1",
-			"name": "상품상세_상품평 리스트",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/review/list.json?sorting=created desc&reviewStatus_matching=y&productId_matching=3&pageSize=10&page=1&referenceView=orderProductId",
+			"folder": "f02e2e01-cfbb-9a41-5999-de51ecb964b6",
+			"queryParams": [
+				{
+					"key": "sorting",
+					"value": "created desc",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "reviewStatus_matching",
+					"value": "y",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "productId_matching",
+					"value": "3",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "pageSize",
+					"value": "10",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "page",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "referenceView",
+					"value": "orderProductId",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "f02e2e01-cfbb-9a41-5999-de51ecb964b6",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "f02e2e01-cfbb-9a41-5999-de51ecb964b6"
+			"helperAttributes": {},
+			"time": 1504768404494,
+			"name": "상품상세_상품평 리스트",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "18b6462b-17c1-6e3c-5d31-8bc4602253f9",
@@ -1823,28 +1863,48 @@
 		},
 		{
 			"id": "267fa860-8266-3266-c584-4789a9bd15ae",
-			"method": "GET",
-			"url": "{{protocol}}://{{hostname}}:{{port}}/node/product/list.json",
-			"name": "2,3depth 카테고리 상품 리스트_상품 리스트",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/product/list.json?salePrice=&sorting=&searchValue=product 001 사이다",
+			"folder": "4a9aa611-5655-4a87-24b4-d0ec1f2a8a4c",
+			"queryParams": [
+				{
+					"key": "salePrice",
+					"value": "",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "sorting",
+					"value": "",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "searchValue",
+					"value": "product 001 사이다",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"folder": "4a9aa611-5655-4a87-24b4-d0ec1f2a8a4c",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715"
+			"time": 1504970131607,
+			"name": "2,3depth 카테고리 상품 리스트_상품 리스트",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "26b79506-bd55-21e9-15e9-3d7c06038d7f",
@@ -2108,7 +2168,7 @@
 		{
 			"id": "3515f52f-3c2f-1b9f-2e88-4e9e799b0a24",
 			"method": "GET",
-			"url": "{{protocol}}://{{hostname}}:{{port}}/node/shopEvent/list.json?eventStatus_matching=y&sorting=created desc&startDate_below=2017-08-22&endDate_above=2017-08-22&displayTargetType_not_matching=company",
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/shopEvent/list.json?eventStatus_matching=y&sorting=created desc&startDate_below=2017-08-22&endDate_above=2017-08-22&displayTargetType_notMatching=company",
 			"name": "이벤트 메인_이벤트 리스트",
 			"dataMode": "params",
 			"headers": "",
@@ -3053,7 +3113,7 @@
 		{
 			"id": "4e324d74-8369-ee95-94ea-685c21991324",
 			"method": "GET",
-			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/specialExhibitionApi/list.json?toDay=2017-08-22&categoryId=1&displayTargetType_not_matching=company",
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/specialExhibitionApi/list.json?toDay=2017-08-22&categoryId=1&displayTargetType_notMatching=company",
 			"name": "기획전 메인_기획전 리스트",
 			"dataMode": "params",
 			"headers": "",
@@ -3282,7 +3342,7 @@
 			"id": "542c1f97-a721-91b9-6a82-eec845003520",
 			"headers": "",
 			"headerData": [],
-			"url": "{{protocol}}://{{hostname}}:{{port}}/node/productNoticeBanner/list.json?bannerStatus_matching=y&startDate_above=2017-08-22&endDate_below=2017-08-22&coverage_matching_should=all&categoryId_matching_should=1",
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/productNoticeBanner/list.json?bannerStatus_matching=y&startDate_above=2017-08-22&endDate_below=2017-08-22&coverage_matchingShould=all&categoryId_matchingShould=1",
 			"queryParams": [
 				{
 					"key": "bannerStatus_matching",
@@ -3306,14 +3366,14 @@
 					"enabled": true
 				},
 				{
-					"key": "coverage_matching_should",
+					"key": "coverage_matchingShould",
 					"value": "all",
 					"equals": true,
 					"description": "",
 					"enabled": true
 				},
 				{
-					"key": "categoryId_matching_should",
+					"key": "categoryId_matchingShould",
 					"value": "1",
 					"equals": true,
 					"description": "",
@@ -3391,7 +3451,7 @@
 		{
 			"id": "58636a9b-84d1-429f-5ec7-0ee6dc5a391c",
 			"method": "GET",
-			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/specialExhibitionApi/view.json?toDay=2017-08-22&displayTargetType_not_matching=company",
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/specialExhibitionApi/view.json?toDay=2017-08-22&displayTargetType_notMatching=company",
 			"name": "기획전 상세_기획전 상세 조회",
 			"dataMode": "params",
 			"headers": "",
@@ -3572,7 +3632,7 @@
 		{
 			"id": "62812c04-8a63-ce54-25f6-201311cf2684",
 			"method": "GET",
-			"url": "{{protocol}}://{{hostname}}:{{port}}/node/frequentlyAskedQuestion/list.json?soring=faqType1,faqType2&frequentlyAskedQuestionStatus_matching=y&title_matching_should=*배송*&content_matching_should=*배송*",
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/frequentlyAskedQuestion/list.json?soring=faqType1,faqType2&frequentlyAskedQuestionStatus_matching=y&title_matchingShould=*배송*&content_matchingShould=*배송*",
 			"name": "고객센터 메인_FAQ 검색",
 			"dataMode": "params",
 			"headers": "",
@@ -3832,7 +3892,7 @@
 		{
 			"id": "68aca3b1-461c-ca71-899c-88c62a05968b",
 			"method": "GET",
-			"url": "{{protocol}}://{{hostname}}:{{port}}/node/commonNotice/list.json?sorting=topFixedYn desc,created desc&pageSize=10&page=1&displayTargetType_not_matching=university",
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/commonNotice/list.json?sorting=topFixedYn desc,created desc&pageSize=10&page=1&displayTargetType_notMatching=university",
 			"name": "공지사항_리스트",
 			"dataMode": "params",
 			"headers": "",
@@ -4181,7 +4241,7 @@
 		{
 			"id": "6d3e3231-ad4a-9506-56a8-8cdbdce35669",
 			"method": "GET",
-			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/specialExhibitionApi/list.json?toDay=2017-08-22&categoryId=1&displayTargetType_not_matching=company",
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/specialExhibitionApi/list.json?toDay=2017-08-22&categoryId=1&displayTargetType_notMatching=company",
 			"name": "기획전 상세_다른 기획전 리스트",
 			"dataMode": "params",
 			"headers": "",
@@ -4335,29 +4395,34 @@
 		},
 		{
 			"id": "6fe93a3f-ccbb-c029-bd1d-de004cebdf2d",
-			"method": "GET",
-			"url": "",
-			"name": "마이페이지 메인_고객님 이 연락처가 맞나요?",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/member/read.json?memberNo=77777",
+			"folder": "455b9779-e444-61db-278a-0f642a5d2c37",
+			"queryParams": [
+				{
+					"key": "memberNo",
+					"value": "77777",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "455b9779-e444-61db-278a-0f642a5d2c37",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "455b9779-e444-61db-278a-0f642a5d2c37"
+			"helperAttributes": {},
+			"time": 1504967966408,
+			"name": "마이페이지 메인_고객님 이 연락처가 맞나요?",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "715bbd18-bd4e-5785-74a6-c5703452b547",
@@ -5042,7 +5107,7 @@
 			"id": "8da0eff9-1e44-d76e-eec3-92948949f4e9",
 			"headers": "",
 			"headerData": [],
-			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/specialExhibitionApi/list.json?toDay=2017-08-22&categoryId=1&displayTargetType_not_matching=company",
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/specialExhibitionApi/list.json?toDay=2017-08-22&categoryId=1&displayTargetType_notMatching=company",
 			"queryParams": [
 				{
 					"key": "toDay",
@@ -5059,7 +5124,7 @@
 					"enabled": true
 				},
 				{
-					"key": "displayTargetType_not_matching",
+					"key": "displayTargetType_notMatching",
 					"value": "company",
 					"equals": true,
 					"description": "",
@@ -5765,29 +5830,41 @@
 		},
 		{
 			"id": "a73d4247-bd7f-b94a-1824-91f63a6ac851",
-			"method": "GET",
-			"url": "",
-			"name": "회원정보 수정_비밀번호 인증",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/member/event/pwAuth.json?memberNo=77777&password=1234",
+			"folder": "455b9779-e444-61db-278a-0f642a5d2c37",
+			"queryParams": [
+				{
+					"key": "memberNo",
+					"value": "77777",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "1234",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "455b9779-e444-61db-278a-0f642a5d2c37",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "455b9779-e444-61db-278a-0f642a5d2c37"
+			"helperAttributes": {},
+			"time": 1504964985510,
+			"name": "회원정보 수정_비밀번호 인증",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "a8ac3629-f1d6-7079-b545-ce25e6a4117c",
@@ -6004,29 +6081,34 @@
 		},
 		{
 			"id": "accd8bd9-1a64-6cb8-1fb8-5cdc13a27eb6",
-			"method": "GET",
-			"url": "",
-			"name": "위시리스트_품절상품 삭제",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/interestProduct/event/removeOutOfStock?memberNo=",
+			"folder": "455b9779-e444-61db-278a-0f642a5d2c37",
+			"queryParams": [
+				{
+					"key": "memberNo",
+					"value": "",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "455b9779-e444-61db-278a-0f642a5d2c37",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "455b9779-e444-61db-278a-0f642a5d2c37"
+			"helperAttributes": {},
+			"time": 1504960638539,
+			"name": "위시리스트_품절상품 삭제",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "ad776860-eca1-387c-3993-7f0fdfac084f",
@@ -6795,28 +6877,34 @@
 		},
 		{
 			"id": "c8ec8478-a476-6a54-037e-b9b90033beb5",
-			"method": "GET",
-			"url": "",
-			"name": "검색내용 없음_최근 본 상품",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/product/list.json?productId_matching=2,1",
+			"folder": "40301d98-c60b-98fe-ae06-12bc7479f971",
+			"queryParams": [
+				{
+					"key": "productId_matching",
+					"value": "2,1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "40301d98-c60b-98fe-ae06-12bc7479f971",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715"
+			"helperAttributes": {},
+			"time": 1504965896174,
+			"name": "검색내용 없음_최근 본 상품",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "cbbe507d-6d74-3d6c-a1e5-9ce79e2774cb",
@@ -6848,7 +6936,8 @@
 			"id": "cbf17572-5454-9e3d-fd40-33d23f42a0c1",
 			"headers": "",
 			"headerData": [],
-			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/myDeliveryAddress/setBasic.json?memberNo=77777&myDeliveryAddressId=2",
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/myDeliveryAddress/setBasic.json?memberNo=77777&tobeId=14",
+			"folder": "455b9779-e444-61db-278a-0f642a5d2c37",
 			"queryParams": [
 				{
 					"key": "memberNo",
@@ -6858,8 +6947,8 @@
 					"enabled": true
 				},
 				{
-					"key": "myDeliveryAddressId",
-					"value": "2",
+					"key": "tobeId",
+					"value": "14",
 					"equals": true,
 					"description": "",
 					"enabled": true
@@ -6875,12 +6964,11 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1504271251226,
+			"time": 1504770588275,
 			"name": "배송지 관리_기본배송지 설정",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"responses": [],
-			"folder": "455b9779-e444-61db-278a-0f642a5d2c37"
+			"responses": []
 		},
 		{
 			"id": "ccffe0b8-fd24-7055-b25e-d5ad705e86a6",
@@ -6923,7 +7011,7 @@
 		{
 			"id": "cd0cf538-1c0b-313a-570b-bcf89fc584a1",
 			"method": "GET",
-			"url": "{{protocol}}://{{hostname}}:{{port}}/node/shopEvent/read.json?eventStatus_matching=y&startDate_below=2017-08-22&endDate_above=2017-08-22&displayTargetType_not_matching=university&shopEventId_matching=1",
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/shopEvent/read.json?eventStatus_matching=y&startDate_below=2017-08-22&endDate_above=2017-08-22&displayTargetType_notMatching=university&shopEventId_matching=1",
 			"name": "이벤트 상세_이벤트 상세 조회",
 			"dataMode": "params",
 			"headers": "",
@@ -7047,29 +7135,26 @@
 		},
 		{
 			"id": "d3234cfd-9afb-5af3-d789-54e0acf96a6c",
-			"method": "GET",
-			"url": "",
-			"name": "구매평_작성 가능한 구매평",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/mypage/writableReview2.json",
+			"folder": "455b9779-e444-61db-278a-0f642a5d2c37",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "455b9779-e444-61db-278a-0f642a5d2c37",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "455b9779-e444-61db-278a-0f642a5d2c37"
+			"helperAttributes": {},
+			"time": 1504964852938,
+			"name": "구매평_작성 가능한 구매평",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "d3246842-38b0-3b6e-865d-4e4a5a6dcbb0",
@@ -7125,29 +7210,62 @@
 		},
 		{
 			"id": "d723f5c7-c2d1-cb94-4ed8-f082d285e941",
-			"method": "GET",
-			"url": "",
-			"name": "마이페이지 메인_위시리스트",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/interestProduct/list.json?referenceView=productId&sorting=created desc&memberNo_matching=77777&pageSize=10&page=1",
+			"folder": "455b9779-e444-61db-278a-0f642a5d2c37",
+			"queryParams": [
+				{
+					"key": "referenceView",
+					"value": "productId",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "sorting",
+					"value": "created desc",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "memberNo_matching",
+					"value": "77777",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "pageSize",
+					"value": "10",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "page",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "455b9779-e444-61db-278a-0f642a5d2c37",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "455b9779-e444-61db-278a-0f642a5d2c37"
+			"helperAttributes": {},
+			"time": 1504966411202,
+			"name": "마이페이지 메인_위시리스트",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "d731f870-a092-eb22-d780-2d08f4d92d27",
@@ -8554,7 +8672,7 @@
 		{
 			"id": "ffb22f0a-5640-9efc-1a82-8a764197edf2",
 			"method": "GET",
-			"url": "{{protocol}}://{{hostname}}:{{port}}/node/frequentlyAskedQuestion/list.json?soring=faqType1,faqType2&frequentlyAskedQuestionStatus_matching=y&title_matching_should=*배송*&content_matching_should=*배송*",
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/frequentlyAskedQuestion/list.json?soring=faqType1,faqType2&frequentlyAskedQuestionStatus_matching=y&title_matchingShould=*배송*&content_matchingShould=*배송*",
 			"name": "FAQ 자주 찾는 질문_검색",
 			"dataMode": "params",
 			"headers": "",

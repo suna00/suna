@@ -122,7 +122,7 @@ public class NodeBindingService {
         NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(typeId);
 
         DataQueryContext queryContext = DataQueryContext.createQueryContextFromParameter(nodeBindingInfo, null, nodeType);
-        QueryResult queryResult = queryContext.makeQueryResult(null, null);
+        QueryResult queryResult = queryContext.makeQueryResult();
         return queryResult;
     }
 
@@ -132,7 +132,7 @@ public class NodeBindingService {
         NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(typeId);
 
         DataQueryContext queryContext = DataQueryContext.createQueryContextFromParameter(nodeBindingInfo, request.getParameterMap(), nodeType);
-        QueryResult queryResult = queryContext.makeQueryResult(null, null);
+        QueryResult queryResult = queryContext.makeQueryResult();
         return queryResult;
     }
 

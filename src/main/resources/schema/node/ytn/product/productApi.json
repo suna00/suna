@@ -7,7 +7,7 @@
   {
     "typeId" : "apiConfig",
     "category" : "product",
-    "apiId" : "list",
+    "apiId" : "listbackup",
     "apiName" : "상품 리스트 (네이버 최저가 붙여야하는데 header 세팅까지하고 로컬캐시 처리 필요 )",
     "method" : "GET",
     "parameters" : [
@@ -15,7 +15,6 @@
     "config" : {
       "typeId": "product",
       "query" : [
-        {"includeReferenced" : false, "referenceView" : "contentsId"}
       ],
       "response": {
         "productId": "",
@@ -30,8 +29,8 @@
   {
     "typeId" : "apiConfig",
     "category" : "product",
-    "apiId" : "listbackup",
-    "apiName" : "상품 리스트(backup) fromto, should 등 검색조건 걸려야함",
+    "apiId" : "list",
+    "apiName" : "상품 리스트",
     "method" : "GET",
     "parameters" : [
     ],
@@ -39,10 +38,9 @@
       "typeId": "product",
       "query" : [
         {"field" : "salePrice", "method" : "fromto", "value" : "{{:salePrice}}" },
-        {"sorting" : "{{:sorting}}"},
-        {"field" : "name", "method" : "matching_should", "value" : "{{:searchValue}}" },
-        {"field" : "category", "method" : "referenceJoin", "value" : "categoryType_matching={{:categoryType}}" },
-        {"includeReferenced" : false, "referenceView" : "contentsId"}
+        {"sorting" : "{{:sorting}}", "pageSize": "{{:pageSize}}", "page": "{{:page}}"},
+        {"field" : "name", "method" : "matchingShould", "value" : "*{{:searchValue}}*" },
+        {"field" : "modelName", "method" : "matchingShould", "value" : "*{{:searchValue}}*" }
       ]
     }
   }

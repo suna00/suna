@@ -1,0 +1,34 @@
+[
+  {
+    "typeId" : "event",
+    "tid": "interestProduct",
+    "event" : "removeOutOfStock",
+    "noneExecute" : true,
+    "eventName" : "품절상품 삭제"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "interestProduct>removeOutOfStock",
+    "action" : "removeOutOfStock",
+    "actionName" : "품절상품 삭제",
+    "actionType" : "service",
+    "actionBody" : "mypageService.removeOutOfStockProduct",
+    "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "member",
+    "event" : "pwAuth",
+    "noneExecute" : true,
+    "eventName" : "비밀번호 인증"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "member>pwAuth",
+    "action" : "pwAuth",
+    "actionName" : "비밀번호 인증",
+    "actionType" : "service",
+    "actionBody" : "mypageService.passwordAuthentication",
+    "order" : 1
+  }
+]

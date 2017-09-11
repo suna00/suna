@@ -5551,5 +5551,32 @@
     "description": "",
     "sortOrder": "3",
     "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "searchFilterCodeStatus",
+    "upperCode": "root",
+    "name": "검색필터코드 승인여부",
+    "description": "",
+    "sortOrder": "103",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "approve",
+    "upperCode": "searchFilterCodeStatus",
+    "name": "승인",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "unapprove",
+    "upperCode": "searchFilterCodeStatus",
+    "name": "미승인",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
   }
 ]

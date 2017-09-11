@@ -2,6 +2,7 @@ package net.ion.ice.core.data.bind;
 
 import net.ion.ice.core.context.QueryContext;
 import net.ion.ice.core.data.DBDataTypes;
+import net.ion.ice.core.data.DBQuery;
 import net.ion.ice.core.data.DBTypes;
 import net.ion.ice.core.data.table.Column;
 import net.ion.ice.core.node.Node;
@@ -37,17 +38,9 @@ public class NodeBindingInfo {
     private String deleteSql = "";
     private String retrieveSql = "";
     private String listSql = "";
-    private String listParamSql = "";
-    private String totalCountSql = "";
     private String insertSequenceSql = "";
     private String updateSequenceSql = "";
     private String retrieveSequenceSql = "";
-
-
-    private List<String> searchListQuery;
-    private List<Object> searchListValue;
-    private List<Object> resultCountValue;
-
 
     private JdbcTemplate jdbcTemplate;
 
@@ -223,6 +216,10 @@ public class NodeBindingInfo {
 
     public int insert(Node node) {
         List<Object> parameters = insertParameters(node);
+        if(node.getTypeId().equals("myDeliveryAddress")){
+            logger.info("myDeliveryAddress");
+            logger.info("myDeliveryAddress");
+        }
         int queryCallBack = jdbcTemplate.update(insertSql, parameters.toArray());
         return queryCallBack;
     }
@@ -261,14 +258,14 @@ public class NodeBindingInfo {
     }
 
     public List<Map<String, Object>> list(QueryContext queryContext) {
-        makeListQuery(queryContext);
+        DBQuery dbQuery = new DBQuery(tableName, queryContext);
         Map<String, Object> totalCount;
-        if (resultCountValue == null || resultCountValue.isEmpty()) {
-            totalCount = jdbcTemplate.queryForMap(totalCountSql);
+        if (dbQuery.getResultCountValue() == null || dbQuery.getResultCountValue().isEmpty()) {
+            totalCount = jdbcTemplate.queryForMap(dbQuery.getTotalCountSql());
         } else {
-            totalCount = jdbcTemplate.queryForMap(totalCountSql, resultCountValue.toArray());
+            totalCount = jdbcTemplate.queryForMap(dbQuery.getTotalCountSql(), dbQuery.getResultCountValue().toArray());
         }
-        List<Map<String, Object>> items = jdbcTemplate.queryForList(listParamSql, searchListValue.toArray());
+        List<Map<String, Object>> items = jdbcTemplate.queryForList(dbQuery.getListParamSql(), dbQuery.getSearchListValue().toArray());
         queryContext.setResultSize(((Long) totalCount.get("totalCount")).intValue());
         queryContext.setQueryListSize(items.size());
         return items;
@@ -348,40 +345,6 @@ public class NodeBindingInfo {
         return Arrays.asList(id.split(Node.ID_SEPERATOR));
     }
 
-    public void makeListQuery(QueryContext queryContext) {
-        searchListQuery = new ArrayList<>();
-        searchListValue = new ArrayList<>();
-
-        String sorting = queryContext.getSorting();
-
-        if (queryContext.getQueryTerms() != null && !queryContext.getQueryTerms().isEmpty()) {
-            for (QueryTerm queryTerm : queryContext.getQueryTerms()) {
-                String query = String.format("%s %s ?", queryTerm.getQueryKey(), queryTerm.getMethodQuery());
-                String value = queryTerm.getQueryValue();
-                searchListQuery.add(query);
-                searchListValue.add(value);
-            }
-
-            listParamSql = String.format("SELECT * FROM %s WHERE %s", tableName, StringUtils.join(searchListQuery.toArray(), " AND "));
-            totalCountSql = String.format("SELECT COUNT(*) as totalCount FROM %s WHERE %s", tableName, StringUtils.join(searchListQuery.toArray(), " AND "));
-
-            resultCountValue = new ArrayList<>(searchListValue);
-
-        } else {
-            listParamSql = String.format("SELECT * FROM %s", tableName);
-            totalCountSql = String.format("SELECT COUNT(*) as totalCount FROM %s", tableName);
-
-            resultCountValue = new ArrayList<>();
-        }
-
-        if (sorting != null) {
-            listParamSql = listParamSql.concat(String.format(" ORDER BY ").concat(sorting));
-        }
-
-        listParamSql = listParamSql.concat(String.format(" LIMIT ?").concat(String.format(" OFFSET ?")));
-        searchListValue.add(queryContext.getLimit());
-        searchListValue.add(queryContext.getOffset());
-    }
 
     public JdbcTemplate getJdbcTemplate() {
         return jdbcTemplate;

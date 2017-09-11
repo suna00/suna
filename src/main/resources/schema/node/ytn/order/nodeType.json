@@ -35,15 +35,6 @@
     "eviction": 0
   },
   {
-    "parentId": "deliveryPath",
-    "typeId": "nodeType",
-    "tid": "cartDeliveryPrice",
-    "typeName": "장바구니 배송비",
-    "tableName": "ytnDevDb#cartDeliveryPrice",
-    "repositoryType": "data",
-    "eviction": 0
-  },
-  {
     "parentId": "orderPath",
     "typeId": "nodeType",
     "tid": "developmentFundHistory",
@@ -148,15 +139,6 @@
     "tid": "tempOrderProductItem",
     "typeName": "임시 주문 상품 아이템",
     "tableName": "ytnDevDb#tempOrderProductItem",
-    "repositoryType": "data",
-    "eviction": 0
-  },
-  {
-    "parentId": "deliveryPath",
-    "typeId": "nodeType",
-    "tid": "tempOrderDeliveryPrice",
-    "typeName": "임시 주문 배송비",
-    "tableName": "ytnDevDb#tempOrderDeliveryPrice",
     "repositoryType": "data",
     "eviction": 0
   }
