@@ -97,7 +97,11 @@ public class Properties implements Map<String, Object>, Serializable, Cloneable 
                 value = pt.getDefaultValue() ;
             }
             if(value != null){
-                values.put(pt.getPid(), value) ;
+                if(pt.isFile() && value instanceof String && ((String) value).contains("classpath:")){
+                    values.put(pt.getPid(), NodeUtils.getFileService().saveResourceFile(pt, id, (String) value)) ;
+                }else {
+                    values.put(pt.getPid(), value);
+                }
             }
             if(pt.isI18n()){
                 String i18nPrefix = pt.getPid() + "_" ;
