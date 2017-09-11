@@ -3889,9 +3889,9 @@
   },
   {
     "typeId": "commonCode",
-    "code": "company",
+    "code": "all",
     "upperCode": "siteType",
-    "name": "기업",
+    "name": "전체",
     "description": "",
     "sortOrder": "1",
     "commonCodeStatus": "y"
@@ -5662,7 +5662,7 @@
   },
   {
     "typeId": "commonCode",
-    "code": "unimited",
+    "code": "unlimited",
     "upperCode": "limitYn",
     "name": "무제한",
     "description": "",
@@ -5689,7 +5689,7 @@
   },
   {
     "typeId": "commonCode",
-    "code": "unimited",
+    "code": "unlimited",
     "upperCode": "createPeriodType",
     "name": "무제한",
     "description": "",

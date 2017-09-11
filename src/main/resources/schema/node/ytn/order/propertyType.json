@@ -427,6 +427,22 @@
   },
   {
     "typeId": "propertyType",
+    "tid": "cartProduct",
+    "pid": "referencedCartDeliveryPrice",
+    "propertyTypeName": "referenced장바구니배송비",
+    "valueType": "REFERENCED",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "cartDeliveryPrice",
+    "referenceValue": "cartProductIds",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
     "tid": "developmentFundHistory",
     "pid": "developmentFundHistoryId",
     "propertyTypeName": "ID",
