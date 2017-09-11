@@ -3880,11 +3880,20 @@
   },
   {
     "typeId": "commonCode",
+    "code": "company",
+    "upperCode": "siteType",
+    "name": "기업",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
     "code": "university",
     "upperCode": "siteType",
     "name": "대학",
     "description": "",
-    "sortOrder": "2",
+    "sortOrder": "3",
     "commonCodeStatus": "y"
   },
   {
@@ -5577,6 +5586,150 @@
     "name": "미승인",
     "description": "",
     "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "channelType",
+    "upperCode": "root",
+    "name": "쿠폰 발급채널",
+    "description": "",
+    "sortOrder": "106",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "전체",
+    "upperCode": "channelType",
+    "name": "all",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "PC",
+    "upperCode": "channelType",
+    "name": "pc",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "Mobile Web",
+    "upperCode": "channelType",
+    "name": "mobile",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "APP",
+    "upperCode": "channelType",
+    "name": "app",
+    "description": "",
+    "sortOrder": "4",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "limitYn",
+    "upperCode": "root",
+    "name": "무제한제한여부",
+    "description": "",
+    "sortOrder": "107",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "unimited",
+    "upperCode": "limitYn",
+    "name": "무제한",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "limit",
+    "upperCode": "limitYn",
+    "name": "제한",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "createPeriodType",
+    "upperCode": "root",
+    "name": "쿠폰발급기간타입",
+    "description": "",
+    "sortOrder": "108",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "unimited",
+    "upperCode": "createPeriodType",
+    "name": "무제한",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "limit",
+    "upperCode": "createPeriodType",
+    "name": "제한",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "stop",
+    "upperCode": "createPeriodType",
+    "name": "발급중단",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "couponStatus",
+    "upperCode": "root",
+    "name": "쿠폰사용상태",
+    "description": "",
+    "sortOrder": "108",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "y",
+    "upperCode": "couponStatus",
+    "name": "사용",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "n",
+    "upperCode": "couponStatus",
+    "name": "미사용",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "delete",
+    "upperCode": "couponStatus",
+    "name": "삭제",
+    "description": "",
+    "sortOrder": "3",
     "commonCodeStatus": "y"
   }
 ]
