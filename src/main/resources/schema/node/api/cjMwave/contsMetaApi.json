@@ -814,11 +814,7 @@
     "config": {
       "typeId": "groupPhoto",
       "id": "{{:groupPhotoId}}",
-      "query": [
-        {
-          "referenceView": "compontSinglePhotoIds"
-        }
-      ],
+      "referenceView": "compontSinglePhotoIds",
       "response": {
         "_all_": "",
         "singlePhotoNm": {
@@ -960,7 +956,7 @@
           "value": "{{:ctgryId}}"
         },
         {
-          "field": "artistId",
+          "field": "relArtistIds",
           "method": "matching",
           "value": "{{:artistId}}"
         },
