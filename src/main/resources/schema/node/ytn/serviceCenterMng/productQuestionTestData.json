@@ -9,7 +9,7 @@
     "productQuestionStatus": "ready",
     "title": "사이즈 변경 가능한가요?",
     "contents": "ㅇㅇㅇㅇㅇㅇㅇ",
-    "privateYn": "y",
+    "privateStatus": "y",
     "created": "20170821053435",
     "changed": "20170821053435"
   },
@@ -23,7 +23,7 @@
     "productQuestionStatus": "ready",
     "title": "사이즈 변경 가능한가요?",
     "contents": "ㄴㄴㄴㄴㄴㄴ",
-    "privateYn": "n",
+    "privateStatus": "n",
     "created": "20170821053435",
     "changed": "20170821053435"
   },
@@ -37,7 +37,7 @@
     "productQuestionStatus": "completed",
     "title": "앞에 질문 철회합니다.",
     "contents": "ㄴㄴㄴㄴㄴㄴ냉무",
-    "privateYn": "n",
+    "privateStatus": "n",
     "created": "20170820203456",
     "changed": "20170821053544"
   },
@@ -51,7 +51,7 @@
     "productQuestionStatus": "completed",
     "title": "앞에 질문 철회합니다.",
     "contents": "ㅇㅇㅇㅇㅇㅇ냉무",
-    "privateYn": "y",
+    "privateStatus": "y",
     "created": "20170820203456",
     "changed": "20170821053544"
   }
