@@ -17,7 +17,10 @@
         "select" : {
           "ds" : "ytnDevDb",
           "resultType" : "list",
-          "sql" : "select a.orderProductIds, adddate(a.sendingDate, INTERVAL 30 day) as writeEndDate, c.* from orderdeliveryprice a, purchaseorder b, orderProduct c where a.orderId = b.purchaseOrderId and find_in_set(c.orderProductId, a.orderProductIds) and adddate(a.sendingDate, INTERVAL 30 day) >=  now() and b.memberNo = '77777' order by c.orderProductId desc "
+          "sql" : "select productId as product from orderProduct"
+        },
+        "response" :{
+          "parent" : {"propertyType" : "productOption.productId", "field" : "product", "referenceView": true}
         }
       }
     }
