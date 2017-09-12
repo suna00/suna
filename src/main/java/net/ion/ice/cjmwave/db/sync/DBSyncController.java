@@ -56,6 +56,7 @@ public class DBSyncController {
     }
 
 
+    // type 은 pip 혹은 mnet 임
     @RequestMapping(value = "/init/{initType}", produces = {"application/json"})
     public @ResponseBody String initialize(@PathVariable String initType, HttpServletRequest request)
             throws Exception {
@@ -63,10 +64,37 @@ public class DBSyncController {
         logger.info("Initialize type [ " + initType + " ]");
         JSONObject rtn = new JSONObject();
         String result = "500", result_msg = "ERROR", cause = "";
+
+        String pipExecuteIds[] = {};
+        String mnetExecuteIds[] = {
+                //"migAlbum",
+                "migAlbumMulti", "migArtist", "migArtistMulti"
+                , "migSong", "migSongMulti"
+                //, "migMusicVideo", "migMusicVideoMulti"
+                //, "migGroupPhoto", "migSinglePhoto"
+        };
+
         try{
             String task = request.getParameter("task");
             if(task == null){
                 // 해당 타입에 대한 전체 초기화
+                switch (initType) {
+                    case "pip" :
+                        logger.info("impletmet pip migration");
+                        break;
+                    case "mnet" :
+                        logger.info("MNET migration for all data");
+                        for(String executeId : mnetExecuteIds) {
+                            dbSyncService.executeWithIteration(executeId);
+                        }
+
+                        break;
+                    default:
+                        logger.info("Not identified initType");
+                        break;
+                }
+
+
             } else {
                 // 지정 태스크 초기화
             }

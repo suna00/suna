@@ -51,7 +51,6 @@ public class DBSyncService {
         logger.info("Start executing database Sync process with Id [ " + executeId + " ]");
         List<Map> altered = new ArrayList<>();
 
-
         //dbSyncProcess Node 에서 가져오기
         Object dbSyncMetaInfo = nodeService.readNode(null, PROCESS_TID, executeId);
         if(dbSyncMetaInfo == null) throw new Exception("[ " + executeId + " ] does not exists");
@@ -78,8 +77,55 @@ public class DBSyncService {
             nodeService.saveNode(fit);
             altered.add(fit);
         }
-
-
         return altered;
+    }
+
+
+    /*
+    * 결과가 안나올 때까지 이터레이션하면서 처리한다, 쿼리에 반드시 limit @{start} @{unit} 있어야 한다
+    * start unit 외 다른 파라미터는 받을 수 없음
+    * */
+    public void executeWithIteration (String executeId) throws Exception {
+        boolean loop = true;
+        int i = 0;
+        int unit = 100;
+        while(loop) {
+            // i 가 0 부터 99 까지
+            // 100 부터 199 까지
+
+            int start = i * 100;
+
+            Object dbSyncMetaInfo = nodeService.readNode(null, PROCESS_TID, executeId);
+            if (dbSyncMetaInfo == null) throw new Exception("[ " + executeId + " ] does not exists");
+            Map itemMap = (Map) ((Map) dbSyncMetaInfo).get("item");
+            String query = String.valueOf(itemMap.get("query"));
+            String targetNodeType = String.valueOf(itemMap.get("targetNodeType"));
+            String targetDs = String.valueOf(itemMap.get("targetDs"));
+
+            // 쿼리
+            Map<String, Object> jdbcParam = SyntaxUtils.parseWithLimit(query, start, unit);
+            String jdbcQuery = String.valueOf(jdbcParam.get("query"));
+
+            Object[] params = (Object[]) jdbcParam.get("params");
+
+            JdbcTemplate template = dbService.getJdbcTemplate(targetDs);
+            List<Map<String, Object>> queryRs = template.queryForList(jdbcQuery, params);
+
+            if (queryRs == null || queryRs.isEmpty()) {
+                loop = false;
+                continue;
+            } else {
+                List<Node> mapperInfoList = NodeUtils.getNodeList(MAPPER_TID, "executeId_matching=" + executeId);
+                Map<String, String> mapperStore = NodeMappingUtils.extractPropertyColumnMap(mapperInfoList);
+
+                for (Map qMap : queryRs) {
+                    // mapping 정보에 맞게 변경
+                    Map<String, Object> fit = NodeMappingUtils.mapData(targetNodeType, qMap, mapperStore);
+                    logger.info("CREATE INITIAL MIGRATION NODE :: " + String.valueOf(fit));
+                    nodeService.saveNode(fit);
+                }
+                i++;
+            }
+        }
     }
 }

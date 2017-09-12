@@ -88,6 +88,27 @@ public class SyntaxUtils {
         return rtn;
     }
 
+    // 상술된 메소드의 오버라이드
+    public static Map<String, Object> parseWithLimit (String query, int start, int unit) throws Exception {
+
+        Map<String, Object> rtn = new HashMap<>();
+        String patternedQuery = query;
+        List<Object> temp = new ArrayList<>();
+
+        // 하나라도 대상이 있을 때만 파싱하기
+        patternedQuery = patternedQuery.replaceAll("@\\{start}", "?");
+        patternedQuery = patternedQuery.replaceAll("@\\{unit}", "?");
+        patternedQuery = patternedQuery.replaceAll("@\\{BIGINT.start}", "?");
+        patternedQuery = patternedQuery.replaceAll("@\\{BIGINT.unit}", "?");
+        temp.add(start);
+        temp.add(unit);
+
+        rtn.put("query", patternedQuery);
+        rtn.put("params", temp.toArray());
+        return rtn;
+    }
+
+
     private static Map<String, Object> extractParams (String originalStr) {
 
         Map<String, Object> queryAndParams = new HashMap<>();
