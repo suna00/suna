@@ -72,5 +72,20 @@
         }
       }
     }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "product",
+    "apiId": "recentlyViewed",
+    "apiName": "최근 본 상품",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config" : {
+      "typeId": "product",
+      "query" : [
+        {"field" : "productId", "method" : "matching", "value" : "{{:productIds}}" }
+      ]
+    }
   }
 ]
