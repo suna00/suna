@@ -285,7 +285,7 @@ public class NodeUtils {
         }
     }
 
-    public static Object getResultValue(ReadContext context, PropertyType pt, Node node) {
+    public static Object getResultValue(ReadContext context, PropertyType pt, Map<String, Object> node) {
         Object value = node.get(pt.getPid());
         switch (pt.getValueType()) {
             case CODE: {
@@ -344,8 +344,8 @@ public class NodeUtils {
                 return null;
             }
             case REFERENCED: {
-                if (context != null && context.isIncludeReferenced() && context.getLevel() < 3) {
-                    QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(getNodeType(node.getTypeId()), pt, node);
+                if (context != null && context.isIncludeReferenced() && context.getLevel() < 3 && node instanceof Node) {
+                    QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(getNodeType(((Node)node).getTypeId()), pt, (Node) node);
                     subQueryContext.setLevel(context.getLevel() + 1);
                     return getNodeService().getDisplayNodeList(pt.getReferenceType(), subQueryContext);
                 }
@@ -466,8 +466,7 @@ public class NodeUtils {
                     FileValue fileValue = getFileService().saveMultipartFile(pt, id, (MultipartFile) value);
                     return fileValue;
                 } else if (value instanceof String) {
-                    FileValue fileValue = getFileService().getFileInfo(pt, id, (String) value); ;
-                    return null;
+                    return value ;
                 }
             }
             case OBJECT: {
