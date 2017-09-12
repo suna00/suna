@@ -40,7 +40,9 @@
         {"field" : "salePrice", "method" : "fromto", "value" : "{{:salePrice}}" },
         {"sorting" : "{{:sorting}}", "pageSize": "{{:pageSize}}", "page": "{{:page}}"},
         {"field" : "name", "method" : "matchingShould", "value" : "*{{:searchValue}}*" },
-        {"field" : "modelName", "method" : "matchingShould", "value" : "*{{:searchValue}}*" }
+        {"field" : "modelName", "method" : "matchingShould", "value" : "*{{:searchValue}}*" },
+        {"field" : "referencedProductSearchFilter", "method" : "hasReferenced", "value" : "searchFilterCodeIds_matching={{:searchFilterCodeIds}}"},
+        {"includeReferenced" : true}
       ]
     }
   },
