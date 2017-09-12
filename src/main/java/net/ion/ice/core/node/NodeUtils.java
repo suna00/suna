@@ -287,6 +287,10 @@ public class NodeUtils {
 
     public static Object getResultValue(ReadContext context, PropertyType pt, Map<String, Object> node) {
         Object value = node.get(pt.getPid());
+        return getResultValue(context, pt, node, value);
+    }
+
+    public static Object getResultValue(ReadContext context, PropertyType pt, Map<String, Object> node, Object value) {
         switch (pt.getValueType()) {
             case CODE: {
                 if (value == null) return null;
