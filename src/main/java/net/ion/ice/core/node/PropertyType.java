@@ -25,7 +25,7 @@ public class PropertyType {
     public static final String SORTABLE = "sortable";
 
 
-    public enum ValueType {STRING, CODE, DATE, LONG, INT, DOUBLE, BOOLEAN, REFERENCED, REFERENCE, REFERENCES, TEXT, ARRAY, OBJECT, JSON, FILE, FILES}
+    public enum ValueType {STRING, CODE, DATE, LONG, INT, DOUBLE, BOOLEAN, REFERENCED, REFERENCE, REFERENCES, TEXT, ARRAY, OBJECT, JSON, FILE, FILES, CONTENT}
 
     public enum AnalyzerType {simple, code, whitespace, standard, cjk, korean}
 
