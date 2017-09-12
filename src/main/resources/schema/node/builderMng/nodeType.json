@@ -1,10 +1,10 @@
 [
   {
-    "parentId" : "root",
+    "parentId" : "backOfficeMng",
     "typeId" : "nodeType",
     "id" : "builderMng",
     "tid" : "builderMng",
-    "typeName" : "빌더 관리",
+    "typeName" : "Builder Manager",
     "repositoryType" : "path",
     "eviction" : 0
   },
@@ -13,7 +13,7 @@
     "typeId" : "nodeType",
     "id" : "builderContainerComponent",
     "tid" : "builderContainerComponent",
-    "typeName" : "빌더 컨테이너 컴포넌트",
+    "typeName" : "Container Component",
     "repositoryType" : "node",
     "eviction" : 100
   },
@@ -22,7 +22,7 @@
     "typeId" : "nodeType",
     "id" : "builderPresentationalComponent",
     "tid" : "builderPresentationalComponent",
-    "typeName" : "빌더 프리젠테이셔널 컴포넌트",
+    "typeName" : "Presentational Component",
     "repositoryType" : "node",
     "eviction" : 100
   },
@@ -31,9 +31,8 @@
     "typeId" : "nodeType",
     "id" : "builderPage",
     "tid" : "builderPage",
-    "typeName" : "빌더 페이지",
+    "typeName" : "BackOffice Page",
     "repositoryType" : "node",
-    "eviction" : 500,
-    "tableName": "ytnDevDb#builderPage"
+    "eviction" : 500
   }
 ]

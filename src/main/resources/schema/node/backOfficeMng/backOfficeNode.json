@@ -2,7 +2,7 @@
   {
     "typeId" : "backOffice",
     "id": "adm",
-    "name": "Admin",
+    "name": "Administration",
     "order": "10",
     "active": "true"
   },

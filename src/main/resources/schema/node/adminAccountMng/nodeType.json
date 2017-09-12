@@ -4,7 +4,7 @@
     "parentId": "root",
     "id" : "adminAccountMng",
     "tid": "adminAccountMng",
-    "typeName": "관리자 계정 관리",
+    "typeName": "Admin Account",
     "repositoryType": "path",
     "tableName": "",
     "eviction" : 0
@@ -14,7 +14,7 @@
     "parentId": "adminAccountMng",
     "id" : "userGroup",
     "tid": "userGroup",
-    "typeName": "관리자 그룹",
+    "typeName": "User Group",
     "repositoryType": "node",
     "tableName": "",
     "eviction" : 50
@@ -24,7 +24,7 @@
     "parentId": "adminAccountMng",
     "id" : "user",
     "tid": "user",
-    "typeName": "관리자",
+    "typeName": "User",
     "repositoryType": "node",
     "tableName": "",
     "eviction" : 1000
@@ -34,7 +34,7 @@
     "parentId": "adminAccountMng",
     "id" : "groupAuthority",
     "tid": "groupAuthority",
-    "typeName": "그룹 권한",
+    "typeName": "Group Authority",
     "repositoryType": "node",
     "tableName": "",
     "eviction" : 200

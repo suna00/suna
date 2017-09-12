@@ -58,7 +58,7 @@
     "tid": "blog",
     "pid": "body",
     "propertyTypeName": "Body",
-    "valueType": "JSON",
+    "valueType": "CONTENT",
     "idable": false,
     "indexable": false,
     "labelable": false,

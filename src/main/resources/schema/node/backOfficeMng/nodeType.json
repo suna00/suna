@@ -4,7 +4,7 @@
     "typeId" : "nodeType",
     "id" : "backOfficeMng",
     "tid" : "backOfficeMng",
-    "typeName" : "백오피스 관리",
+    "typeName" : "BackOffice",
     "repositoryType" : "path",
     "eviction" : 0
   },
@@ -13,7 +13,7 @@
     "typeId" : "nodeType",
     "id" : "backOffice",
     "tid" : "backOffice",
-    "typeName" : "백오피스",
+    "typeName" : "BackOffice Type",
     "repositoryType" : "node",
     "eviction" : 10
   }

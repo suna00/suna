@@ -4,7 +4,7 @@
     "parentId": "userMng",
     "typeId": "nodeType",
     "repositoryType": "node",
-    "typeName": "권한"
+    "typeName": "Authority"
   },
   {
     "typeId": "propertyType",

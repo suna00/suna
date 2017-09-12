@@ -16,55 +16,55 @@
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "adm",
-    "gnbMenuId": "serviceCenterMng",
+    "gnbMenuId": "boardMng",
     "parentMenuId": "root",
     "menuId": "question",
-    "menuName": "1:1문의",
+    "menuName": "1:1 Question",
     "order": "10",
     "icon": "fa-list",
     "active": "true",
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "ytn/QuestionList" }
+      { "pageName": "List", "pageUrl": "board/QuestionList" }
     ]
   },
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "adm",
-    "gnbMenuId": "serviceCenterMng",
+    "gnbMenuId": "boardMng",
     "parentMenuId": "root",
     "menuId": "qna",
-    "menuName": "상품 Q&A",
+    "menuName": "Q&A",
     "order": "20",
     "icon": "fa-list",
     "active": "true",
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "ytn/QNAList" }
+      { "pageName": "List", "pageUrl": "board/QNAList" }
     ]
   },
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "adm",
-    "gnbMenuId": "serviceCenterMng",
+    "gnbMenuId": "boardMng",
     "parentMenuId": "root",
     "menuId": "review",
-    "menuName": "이용후기",
+    "menuName": "Review",
     "order": "30",
     "icon": "fa-list",
     "active": "true",
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "ytn/ReviewList" }
+      { "pageName": "List", "pageUrl": "board/ReviewList" }
     ]
   },
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "adm",
-    "gnbMenuId": "serviceCenterMng",
+    "gnbMenuId": "boardMng",
     "parentMenuId": "root",
     "menuId": "faq",
     "menuName": "FAQ",
@@ -73,47 +73,47 @@
     "active": "true",
     "index": "false",
     "pages": [
-      { "pageName": "목록", "pageUrl": "list" },
-      { "pageName": "등록", "pageUrl": "createForm" },
-      { "pageName": "수정", "pageUrl": "updateForm" }
+      { "pageName": "List", "pageUrl": "list" },
+      { "pageName": "Create", "pageUrl": "createForm" },
+      { "pageName": "Edit", "pageUrl": "updateForm" }
     ],
     "customPages": []
   },
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "adm",
-    "gnbMenuId": "serviceCenterMng",
+    "gnbMenuId": "boardMng",
     "parentMenuId": "root",
     "menuId": "notice",
-    "menuName": "공지사항",
+    "menuName": "Notice",
     "order": "50",
     "icon": "fa-list",
     "active": "true",
     "index": "false",
     "pages": [
-      { "pageName": "목록", "pageUrl": "list" },
-      { "pageName": "등록", "pageUrl": "createForm" },
-      { "pageName": "수정", "pageUrl": "updateForm" }
+      { "pageName": "List", "pageUrl": "list" },
+      { "pageName": "Create", "pageUrl": "createForm" },
+      { "pageName": "Edit", "pageUrl": "updateForm" }
     ],
     "customPages": [
-      { "pageName": "테스트", "pageUrl": "ytn/FilesTest" }
+      { "pageName": "Test", "pageUrl": "board/FilesTest" }
     ]
   },
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "adm",
-    "gnbMenuId": "serviceCenterMng",
+    "gnbMenuId": "boardMng",
     "parentMenuId": "root",
     "menuId": "answer",
-    "menuName": "자주쓰는 답변",
+    "menuName": "Reuse Answer",
     "order": "60",
     "icon": "fa-list",
     "active": "true",
     "index": "false",
     "pages": [
-      { "pageName": "목록", "pageUrl": "list" },
-      { "pageName": "등록", "pageUrl": "createForm" },
-      { "pageName": "수정", "pageUrl": "updateForm" }
+      { "pageName": "List", "pageUrl": "list" },
+      { "pageName": "Create", "pageUrl": "createForm" },
+      { "pageName": "Edit", "pageUrl": "updateForm" }
     ],
     "customPages": []
   },
@@ -123,15 +123,15 @@
     "gnbMenuId": "adminAccountMng",
     "parentMenuId": "root",
     "menuId": "account",
-    "menuName": "계정관리",
+    "menuName": "Account",
     "order": "10",
     "icon": "fa-user",
     "active": "true",
     "index": "false",
     "pages": [
-      { "pageName": "목록", "pageUrl": "list" },
-      { "pageName": "등록", "pageUrl": "createForm" },
-      { "pageName": "수정", "pageUrl": "updateForm" }
+      { "pageName": "List", "pageUrl": "list" },
+      { "pageName": "Create", "pageUrl": "createForm" },
+      { "pageName": "Edit", "pageUrl": "updateForm" }
     ],
     "customPages": []
   },
@@ -141,17 +141,17 @@
     "gnbMenuId": "adminAccountMng",
     "parentMenuId": "root",
     "menuId": "groupAuthority",
-    "menuName": "그룹권한관리",
+    "menuName": "Authority",
     "order": "20",
     "icon": "fa-users",
     "active": "true",
     "index": "false",
     "pages": [
-      { "pageName": "목록", "pageUrl": "list" },
-      { "pageName": "등록/수정", "pageUrl": "form" }
+      { "pageName": "List", "pageUrl": "list" },
+      { "pageName": "Form", "pageUrl": "form" }
     ],
     "customPages": [
-      { "pageName": "테스트", "pageUrl": "ytn/GroupAuthorityRoute" }
+      { "pageName": "Test", "pageUrl": "demo/GroupAuthorityRoute" }
     ]
   }
 ]

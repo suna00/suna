@@ -4,7 +4,7 @@
     "typeId" : "nodeType",
     "id" : "menuMng",
     "tid" : "menuMng",
-    "typeName" : "메뉴 관리",
+    "typeName" : "Menu",
     "repositoryType" : "path",
     "eviction" : 0
   },
@@ -13,7 +13,7 @@
     "typeId" : "nodeType",
     "id" : "adminGnbMenu",
     "tid" : "adminGnbMenu",
-    "typeName" : "관리자 GNB 메뉴",
+    "typeName" : "BackOffice GNB",
     "repositoryType" : "node",
     "eviction" : 100
   },
@@ -22,7 +22,7 @@
     "typeId" : "nodeType",
     "id" : "adminLnbMenu",
     "tid" : "adminLnbMenu",
-    "typeName" : "관리자 LNB 메뉴",
+    "typeName" : "BackOffice LNB",
     "repositoryType" : "node",
     "eviction" : 500
   }

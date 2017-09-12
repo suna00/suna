@@ -4,7 +4,7 @@
     "parentId" : "root",
     "typeId" : "nodeType",
     "repositoryType" : "path",
-    "typeName" : "API"
+    "typeName" : "API Manager"
   },
   {
     "tid" : "apiCategory",

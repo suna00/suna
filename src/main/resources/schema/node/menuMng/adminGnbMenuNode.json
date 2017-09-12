@@ -29,15 +29,6 @@
   {
     "typeId" : "adminGnbMenu",
     "backOfficeId": "adm",
-    "menuId": "displayMng",
-    "menuName": "Display",
-    "order": "30",
-    "icon": "",
-    "active": "true"
-  },
-  {
-    "typeId" : "adminGnbMenu",
-    "backOfficeId": "adm",
     "menuId": "menuMng",
     "menuName": "Menu",
     "order": "40",
@@ -62,7 +53,7 @@
     "icon": "",
     "active": "true"
   },
-    {
+  {
     "typeId" : "adminGnbMenu",
     "backOfficeId": "adm",
     "menuId": "affiliateMng",
@@ -74,18 +65,9 @@
   {
     "typeId" : "adminGnbMenu",
     "backOfficeId": "adm",
-    "menuId": "noticeMng",
-    "menuName": "Notice",
+    "menuId": "boardMng",
+    "menuName": "Boards",
     "order": "100",
-    "icon": "",
-    "active": "true"
-  },
-  {
-    "typeId" : "adminGnbMenu",
-    "backOfficeId": "adm",
-    "menuId": "policyMng",
-    "menuName": "Policy",
-    "order": "110",
     "icon": "",
     "active": "true"
   },
@@ -95,15 +77,6 @@
     "menuId": "analysisStatistics",
     "menuName": "Analysis/Statistics",
     "order": "120",
-    "icon": "",
-    "active": "true"
-  },
-  {
-    "typeId" : "adminGnbMenu",
-    "backOfficeId": "adm",
-    "menuId": "serviceCenterMng",
-    "menuName": "Customer",
-    "order": "130",
     "icon": "",
     "active": "true"
   },

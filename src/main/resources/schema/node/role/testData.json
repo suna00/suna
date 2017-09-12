@@ -1,17 +1,27 @@
 [
   {
     "typeId": "role",
-    "name": "일반",
+    "name": "Customer",
     "code": "user"
   },
   {
     "typeId": "role",
-    "name": "관리자",
+    "name": "Administrator",
     "code": "admin"
   },
   {
     "typeId": "role",
-    "name": "시스템",
+    "name": "Super Admin",
     "code": "system"
+  },
+  {
+    "typeId": "role",
+    "name": "Asset Manager",
+    "code": "asset"
+  },
+  {
+    "typeId": "role",
+    "name": "Content Manager",
+    "code": "content"
   }
 ]
