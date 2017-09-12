@@ -81,6 +81,9 @@ public class LuceneQueryUtils {
 
         if(queryContext.hasQueryTerms()) {
             for (QueryTerm term : queryContext.getQueryTerms()) {
+                if(StringUtils.isEmpty(term.getQueryValue())){
+                    continue;
+                }
                 if(term.isNot()){
                     notInnerQueries.add(createLuceneQuery(term)) ;
                 }else if(term.isShould()){

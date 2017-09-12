@@ -256,6 +256,17 @@
     "typeId" : "builderPresentationalComponent",
     "componentTemplateType": "Spin",
     "componentClassType": "INPUT",
+    "componentClass": "DateRange",
+    "componentClassName": "DATE RANGE",
+    "icon": "fa-square-o",
+    "order": 141,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentTemplateType": "Spin",
+    "componentClassType": "INPUT",
     "componentClass": "DateTime",
     "componentClassName": "DATE TIME",
     "icon": "fa-square-o",
@@ -359,6 +370,17 @@
     "componentClassName": "SORTABLE",
     "icon": "fa-square-o",
     "order": 220,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentTemplateType": "Spin",
+    "componentClassType": "INPUT",
+    "componentClass": "Iframe",
+    "componentClassName": "IFRAME",
+    "icon": "fa-square-o",
+    "order": 230,
     "active": true,
     "componentChildren": ""
   }

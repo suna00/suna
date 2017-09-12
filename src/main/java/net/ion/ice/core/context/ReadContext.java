@@ -186,6 +186,7 @@ public class ReadContext implements Context {
         makeContextFromParameter(parameterMap, nodeType, context) ;
 
         context.makeIncludeReferenced();
+        if(context.includeReferenced == null) context.includeReferenced = true ;
         context.makeReferenceView();
 
         return context ;
@@ -206,9 +207,14 @@ public class ReadContext implements Context {
         return id;
     }
 
-    public QueryResult makeQueryResult(Object result, String fieldName) {
+    public QueryResult makeQueryResult() {
         return makeResult() ;
     }
+
+    public QueryResult makeQueryResult(Object result, String fieldName, ResultField.ResultType resultType) {
+        return makeResult() ;
+    }
+
 
     public QueryResult makeResult() {
         QueryResult queryResult = new QueryResult() ;
@@ -248,7 +254,7 @@ public class ReadContext implements Context {
             if (isIncludeReferenced()) {
                 for (PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)) {
                     QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(nodeType, pt, node);
-                    subQueryContext.makeQueryResult(itemResult, pt.getPid());
+                    subQueryContext.makeQueryResult(itemResult, pt.getPid(),null);
                 }
             }
         }else{
@@ -270,19 +276,17 @@ public class ReadContext implements Context {
                 if (node != null) {
                     subQueryContext.setNodeData(node);
                 }
-                subQueryContext.makeQueryResult(itemResult, resultField.getFieldName());
-            } else if(resultField.isStaticValue()){
-                itemResult.put(resultField.getFieldName(), ContextUtils.getValue(resultField.getStaticValue(), contextData));
-            }else if(resultField.getResultType() != null){
+                subQueryContext.makeQueryResult(itemResult, resultField.getFieldName(), resultField.getResultType());
+            }else if(resultField.getExecuteType() != null){
                 Map<String, Object> _data = new HashMap<>();
                 _data.putAll(contextData);
                 _data.putAll(node);
-                switch (resultField.getResultType()) {
+                switch (resultField.getExecuteType()) {
                     case QUERY: {
                         ApiQueryContext apiQueryContext = ApiQueryContext.makeContextFromConfig(resultField.getFieldOption(), _data);
                         apiQueryContext.dateFormat = this.dateFormat ;
                         apiQueryContext.fileUrlFormat = this.fileUrlFormat ;
-                        apiQueryContext.makeQueryResult(itemResult, resultField.getFieldName());
+                        apiQueryContext.makeQueryResult(itemResult, resultField.getFieldName(), resultField.getResultType());
                         break ;
                     }
                     case SELECT: {
@@ -293,7 +297,7 @@ public class ReadContext implements Context {
                         break ;
                     }
                     case VALUE: {
-                        itemResult.put(resultField.getFieldName(), ContextUtils.getValue(resultField.getStaticValue(), _data));
+                        itemResult.put(resultField.getFieldName(), ContextUtils.getValue(resultField.getStaticValue(), _data, this, nodeType, node));
                         break ;
                     }
                     case OPTION: {
@@ -303,7 +307,14 @@ public class ReadContext implements Context {
                         FieldContext fieldContext = resultField.getFieldContext() ;
                         fieldContext.dateFormat = this.dateFormat ;
                         fieldContext.fileUrlFormat = this.fileUrlFormat ;
-                        itemResult.put(resultField.getFieldName(), NodeUtils.getResultValue(fieldContext, nodeType.getPropertyType(fieldValue), node));
+
+                        if(resultField.getResultType() == ResultField.ResultType.SIZE){
+                            fieldContext.includeReferenced = true ;
+                            List list = (List) NodeUtils.getResultValue(fieldContext, nodeType.getPropertyType(fieldValue), node);
+                            itemResult.put(resultField.getFieldName(), list == null ? 0 : list.size());
+                        }else {
+                            itemResult.put(resultField.getFieldName(), NodeUtils.getResultValue(fieldContext, nodeType.getPropertyType(fieldValue), node));
+                        }
                         break ;
                     }
                 }
@@ -314,6 +325,8 @@ public class ReadContext implements Context {
             }
         }
     }
+
+
 
     public boolean isReferenceView(String pid) {
         if (referenceView == null) {
@@ -369,7 +382,7 @@ public class ReadContext implements Context {
         this.includeReferencedFields = includeReferencedFields;
     }
 
-    public void setNodeData(Node nodeData) {
+    public void setNodeData(Map<String, Object> nodeData) {
         Map<String, Object> _data = new HashMap<>() ;
         _data.putAll(data);
         _data.putAll(nodeData);

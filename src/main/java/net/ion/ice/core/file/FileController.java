@@ -5,7 +5,6 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -26,8 +25,13 @@ public class FileController {
     public ResponseEntity<Resource> serveFile(@PathVariable String tid, @PathVariable String pid, @PathVariable String year, @PathVariable String day, @PathVariable String filename) {
 
         Resource file = fileService.loadAsResource(tid, pid, tid + "/" + pid + "/" +  year + "/" + day + "/" + filename);
+        return getAttach(filename, file);
+    }
+
+    private ResponseEntity<Resource> getAttach(@PathVariable String filename, Resource file) {
         return ResponseEntity
                 .ok()
+                .header(HttpHeaders.CONTENT_TYPE, FileUtils.getContentType(filename))
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""+file.getFilename()+"\"")
                 .body(file);
     }
@@ -36,6 +40,10 @@ public class FileController {
     @ResponseBody
     public ResponseEntity<Resource> serveImage(@PathVariable String tid, @PathVariable String pid, @PathVariable String year, @PathVariable String day, @PathVariable String filename) {
         Resource file = fileService.loadAsResource(tid, pid, tid + "/" + pid + "/" +  year + "/" + day + "/" + filename);
+        return getNonAttach(filename, file);
+    }
+
+    private ResponseEntity<Resource> getNonAttach(@PathVariable String filename, Resource file) {
         return ResponseEntity
                 .ok()
                 .header(HttpHeaders.CONTENT_TYPE, FileUtils.getContentType(filename))
@@ -46,11 +54,12 @@ public class FileController {
     @ResponseBody
     public ResponseEntity<Resource> serveFile2(@PathVariable String tid, @PathVariable String pid, @PathVariable String year, @PathVariable String day, @PathVariable String filename) {
         Resource file = fileService.loadAsResource(tid, pid, tid + "/" + pid + "/" +  year + "/" + day + "/" + filename);
-        return ResponseEntity
-                .ok()
-                .header(HttpHeaders.CONTENT_TYPE, FileUtils.getContentType(filename))
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""+file.getFilename()+"\"")
-                .body(file);
+        if(FileUtils.isAttach(file.getFilename())){
+            return getAttach(filename, file);
+        }else{
+            return getNonAttach(filename, file) ;
+        }
+
     }
 
 }

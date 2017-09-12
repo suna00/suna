@@ -124,16 +124,39 @@
     "parameters" : [
     ],
     "config" : {
-      "typeId": "testItem",
-      "query" : [
-        {"field" : "category", "method" : "match", "value" : "{{:category}}" }
-      ],
-      "response" :{
-        "_all_" :"",
-        "menuList" : {"field" : "menus", "referenceView" : true, "includeReferenced" : false},
-        "itemTitle" : "title",
-        "itemDesc" : "body",
-        "staticValue" : {"value" : "고정 값"}
+      "test1": {
+        "typeId": "testItem",
+        "resultType" : "none",
+        "query": [
+          {
+            "field": "category",
+            "method": "match",
+            "value": "{{:category}}"
+          }
+        ]
+      },
+      "root":{
+        "typeId": "testItem",
+        "query": [
+          {
+            "field": "category",
+            "method": "match",
+            "value": "{{:category}}"
+          }
+        ],
+        "response": {
+          "_all_": "",
+          "menuList": {
+            "field": "menus",
+            "referenceView": true,
+            "includeReferenced": false
+          },
+          "itemTitle": "title",
+          "itemDesc": "body",
+          "staticValue": {
+            "value": "고정 값"
+          }
+        }
       }
     }
   },
@@ -292,18 +315,36 @@
       "response" :{
         "categoryName": "",
         "categoryType" : "",
-        "itemSize" : {"size" : "items"},
+        "itemSize" : {"resultType" : "size", "field" : "items"},
         "merge" : {
           "typeId" : "testItem",
           "resultType" : "merge",
           "query" : [
             {"field" : "category", "method" : "matching", "value" : "{{:categoryId}}"},
             {"includeReferenced" : false, "limit" : 1}
-          ],
-          "response" :{
-
-          }
+          ]
         }
+      }
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "selectResponseSample",
+    "apiName" : "Select Response Sample",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "select" : {
+        "ds" : "mariaDb",
+        "resultType" : "list",
+        "sql" : "select * from testComment "
+      },
+      "response" :{
+        "id": "commentId",
+        "userId" : "",
+        "parent" : {"propertyType" : "testComment.itemId", "field" : "itemId", "referenceView": true}
       }
     }
   }

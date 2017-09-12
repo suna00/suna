@@ -35,12 +35,8 @@ public class ReferenceQueryContext extends QueryContext{
         return queryContext;
     }
 
-    public QueryResult makeQueryResult(Object result, String fieldName) {
+    public QueryResult makeQueryResult() {
         NodeType nodeType = getNodetype() ;
-
-        if(fieldName == null){
-            fieldName = "items" ;
-        }
 
         List<Object> resultList = NodeUtils.getNodeService().executeQuery(this) ;
 
@@ -56,6 +52,6 @@ public class ReferenceQueryContext extends QueryContext{
             code.put("label", node.getLabel(nodeType, this)) ;
             subList.add(code) ;
         }
-        return makePaging(fieldName, subList);
+        return makePaging("items", subList);
     }
 }
