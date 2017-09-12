@@ -1,19 +1,14 @@
 package net.ion.ice.service;
 
-import com.sun.org.apache.xerces.internal.xs.datatypes.ObjectList;
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.data.bind.NodeBindingInfo;
-import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
 import org.apache.log4j.Logger;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.*;
 
 
@@ -28,45 +23,6 @@ public class MypageService {
     @Autowired
     private NodeService nodeService;
     private CommonService common;
-
-//    최근 본 상품
-    public  ExecuteContext recentlyViewedProduct(ExecuteContext context) throws IOException {
-        Map<String, Object> data = new LinkedHashMap<>(context.getData());
-
-        String[] params = { "products" };
-        if (common.requiredParams(context, data, params)) return context;
-        List<Map<String, Object>> maps = JsonUtils.parsingJsonToList(data.get("products").toString());
-//
-//        Collections.sort(maps, new Comparator<Map<String, Object >>() {
-//
-//            @Override
-//
-//            public int compare(Map<String, Object> first, Map<String, Object> second) {
-//
-//                //return ((Integer) first.get("viewDate")).compareTo((Integer) second.get("viewDate")); //ascending order
-//
-//                return ((Integer) second.get("viewDate")).compareTo((Integer) first.get("viewDate")); //descending order
-//
-//            }
-//
-//        });
-
-
-
-        for(Map<String, Object> map : maps){
-            Node node = nodeService.getNode("product", map.get("productId").toString());
-            if(node != null){
-                map.putAll(node);
-            }
-        }
-
-        context.setResult(maps);
-
-        return context;
-    }
-
-
-
 
 
 //    배송지 등록수정 / 기본배송지 설정
