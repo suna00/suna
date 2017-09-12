@@ -8,7 +8,41 @@
     "typeId": "apiConfig",
     "category": "mypage",
     "apiId": "writableReview",
-    "apiName": "작성가능한 리뷰 (select response 붙일예정)",
+    "apiName": "작성가능한 리뷰",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config" : {
+      "typeId": "writableReview",
+      "query" : [
+        {"field" : "memberNo", "method" : "matching", "value" : "{{:memberNo}}" },
+        {"includeReferenced" : false, "referenceView" : "productId, baseOptionItemId"},
+        {"sorting" : "orderCreated desc", "pageSize": "{{:pageSize}}", "page": "{{:page}}"}
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "mypage",
+    "apiId": "writtenReview",
+    "apiName": "작성한 리뷰",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config" : {
+      "typeId": "review",
+      "query" : [
+        {"field" : "memberNo", "method" : "matching", "value" : "{{:memberNo}}" },
+        {"includeReferenced" : false, "referenceView" : "orderProductId,productId"},
+        {"sorting" : "orderId desc", "pageSize": "{{:pageSize}}", "page": "{{:page}}"}
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "mypage",
+    "apiId": "writableReview_backup",
+    "apiName": "ssssssss작성가능한 리뷰ssssssss",
     "method": "GET",
     "parameters": [
     ],
@@ -17,10 +51,12 @@
         "select" : {
           "ds" : "ytnDevDb",
           "resultType" : "list",
-          "sql" : "select productId as product from orderProduct"
+          "sql" : "SELECT c.orderProductId,c.orderId,b.created as orderCreated,c.productId,c.baseOptionItemId, adddate(a.sendingDate, INTERVAL 30 DAY) AS writeEndDate FROM orderdeliveryprice a, purchaseorder b, orderProduct c WHERE a.orderId = b.purchaseOrderId AND find_in_set(c.orderProductId, a.orderProductIds) AND adddate(a.sendingDate, INTERVAL 30 DAY) >= now() AND b.memberNo = @{memberNo} ORDER BY c.orderProductId DESC "
         },
         "response" :{
-          "parent" : {"propertyType" : "productOption.productId", "field" : "product", "referenceView": true}
+          "_all_": "",
+          "productId" : {"propertyType" : "productOption.productId", "field" : "productId", "referenceView": true},
+          "baseOptionItemId" : {"propertyType" : "cartProduct.baseOptionItemId", "field" : "baseOptionItemId", "referenceView": false}
         }
       }
     }
