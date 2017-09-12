@@ -2,27 +2,70 @@ package net.ion.ice.service;
 
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.data.bind.NodeBindingInfo;
+import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
+import org.apache.log4j.Logger;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.*;
 
 
 @Service("mypageService")
 public class MypageService {
+    public static final String CREATE = "create";
+    public static final String UPDATE = "update";
     public static final String DELETE = "delete";
+    public static final String SAVE = "save";
+    private Logger logger = Logger.getLogger(ProductService.class);
+
     @Autowired
     private NodeService nodeService;
+    private CommonService common;
+
+//    최근 본 상품
+    public  ExecuteContext recentlyViewedProduct(ExecuteContext context) {
+        Map<String, Object> data = new LinkedHashMap<>(context.getData());
+
+        String[] params = { "memberNo","defaultYn" };
+        if (common.requiredParams(context, data, params)) return context;
+
+
+        return context;
+    }
+
+//    배송지 등록수정 / 기본배송지 설정
+    public  ExecuteContext setMyDeliveryAddress(ExecuteContext context) {
+        Map<String, Object> data = new LinkedHashMap<>(context.getData());
+
+        String[] params = { "memberNo","defaultYn" };
+        if (common.requiredParams(context, data, params)) return context;
+
+        Node node = (Node) nodeService.executeNode(data, "myDeliveryAddress", SAVE);
+        if("trueFalse>y".equals(node.getValue("defaultYn"))){
+            List<Node> nodes = NodeUtils.getNodeList("myDeliveryAddress", "memberNo_matching="+data.get("memberNo")+"&myDeliveryAddressId_notMatching="+node.getId()+"&defaultYn_matching=y");
+            if(nodes.size() > 0){
+                for(Node address : nodes){
+                    address.put("defaultYn","trueFalse>n");
+                    nodeService.executeNode(address, "myDeliveryAddress", UPDATE);
+                }
+            }
+        }
+        context.setResult(node);
+        return context;
+    }
 
 //    관심상품 리스트 -> 품절상품 삭제
-    public ExecuteContext removeOutOfStockProduct(ExecuteContext context){
+    public ExecuteContext removeOutOfStockProduct(ExecuteContext context) {
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
 
         String[] params = { "memberNo" };
-        if (requiredParams(context, data, params)) return context;
+        if (common.requiredParams(context, data, params)) return context;
 
         NodeBindingInfo nodeBindingInfo = NodeUtils.getNodeBindingInfo(context.getNodeType().getTypeId()) ;
         String query = " select a.*\n" +
@@ -46,10 +89,10 @@ public class MypageService {
 
 //  POST 처리 필요 :  {{protocol}}://{{hostname}}:{{port}}/node/member/event/pwAuth.json?memberNo=77777&password=1234
 //    마이페이지 회원정보 수정 비밀번호 인증
-    public ExecuteContext passwordAuthentication(ExecuteContext context){
+    public ExecuteContext passwordAuthentication(ExecuteContext context) {
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
         String[] params = { "memberNo", "password" };
-        if (requiredParams(context, data, params)) return context;
+        if (common.requiredParams(context, data, params)) return context;
 
         Node node = nodeService.read("member", data.get("memberNo").toString());
         String nodePw = node.getValue("password").toString();
@@ -64,16 +107,6 @@ public class MypageService {
         }
 
         return context;
-    }
-
-    private boolean requiredParams(ExecuteContext context, Map<String, Object> data, String[] params) {
-        for(String str : params){
-            if(data.get(str) == null){
-                context.setResult("No Param : " + str);
-                return true;
-            }
-        }
-        return false;
     }
 
 
