@@ -55,6 +55,35 @@ public class DBSyncController {
         return rtn.toString();
     }
 
+
+    @RequestMapping(value = "/init/{initType}", produces = {"application/json"})
+    public @ResponseBody String initialize(@PathVariable String initType, HttpServletRequest request)
+            throws Exception {
+
+        logger.info("Initialize type [ " + initType + " ]");
+        JSONObject rtn = new JSONObject();
+        String result = "500", result_msg = "ERROR", cause = "";
+        try{
+            String task = request.getParameter("task");
+            if(task == null){
+                // 해당 타입에 대한 전체 초기화
+            } else {
+                // 지정 태스크 초기화
+            }
+            result = "200";
+            result_msg = "SUCCESS";
+        } catch (Exception e) {
+            logger.error("Database synchronize execution Error :: ", e);
+            cause = e.getMessage();
+        }
+        rtn.put("result", result);
+        rtn.put("result_msg", result_msg);
+        rtn.put("cause", cause);
+        return rtn.toString();
+    }
+
+
+
     /*
     * 실패 로그를 테이블로 쌓았다고 가정한다
     * 사용자가 실패로그 목록을 Excel 로 받았다고 가정

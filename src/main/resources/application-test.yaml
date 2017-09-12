@@ -43,3 +43,6 @@ file:
 
 i18n:
   defaults: eng
+
+temp-file:
+  dir: /

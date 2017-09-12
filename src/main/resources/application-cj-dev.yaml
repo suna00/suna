@@ -50,3 +50,6 @@ cjapi:
   pip:
     programurl: http://pipapi.itvs.cjenm.com/json/data/v1.0/global/clipmediainfo.asp
     clipmediaurl: http://pipapi.itvs.cjenm.com/json/data/v1.0/global/programinfo.asp
+
+temp-file:
+  dir: /
