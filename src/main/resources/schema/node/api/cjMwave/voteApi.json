@@ -296,6 +296,10 @@
         },
         {
           "sorting": "{{:sorting}}"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
         }
       ],
       "response": {
@@ -438,6 +442,10 @@
         },
         {
           "referenceView": "voteSeq,voteItemSeq"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
         }
       ],
       "response": {
@@ -483,6 +491,10 @@
         },
         {
           "referenceView": "voteSeq,voteItemSeq"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
         }
       ],
       "response": {
@@ -591,6 +603,10 @@
         },
         {
           "referenceView": "artistId"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
         }
       ]
     }
@@ -638,6 +654,10 @@
         },
         {
           "referenceView": "cntryCd,artistId"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
         }
       ]
     }
@@ -685,6 +705,10 @@
         },
         {
           "referenceView": "artistId,mbrId"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
         }
       ]
     }
@@ -723,6 +747,10 @@
         },
         {
           "referenceView": "artistId"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
         }
       ]
     }
@@ -752,6 +780,10 @@
         },
         {
           "referenceView": "artistId"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
         }
       ]
     }
@@ -781,6 +813,10 @@
         },
         {
           "referenceView": "artistId"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
         }
       ]
     }
@@ -828,6 +864,10 @@
         },
         {
           "referenceView": "cntryCd,artistId"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
         }
       ]
     }
@@ -875,6 +915,10 @@
         },
         {
           "referenceView": "artistId"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
         }
       ]
     }
@@ -922,6 +966,10 @@
         },
         {
           "referenceView": "artistId"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
         }
       ]
     }
@@ -961,6 +1009,10 @@
           },
           {
             "referenceView": "cntryCd"
+          },
+          {
+            "page": "{{:page}}",
+            "pageSize": "{{:pageSize}}"
           }
         ]
       },
