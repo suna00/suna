@@ -1,19 +1,21 @@
-<%@ page language="java" contentType="text/html;charset=euc-kr"%>
+<%@ page import="java.net.URLDecoder" %>
+<%@ page import="java.net.URLEncoder" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%
     /* ============================================================================== */
-    /* =   PAGE : °áÁ¦ °á°ú Ãâ·Â PAGE                                               = */
+    /* =   PAGE : ê²°ì œ ê²°ê³¼ ì¶œë ¥ PAGE                                               = */
     /* = -------------------------------------------------------------------------- = */
-    /* =   °áÁ¦ ¿äÃ» °á°ú°ªÀ» Ãâ·ÂÇÏ´Â ÆäÀÌÁöÀÔ´Ï´Ù.                                = */
+    /* =   ê²°ì œ ìš”ì²­ ê²°ê³¼ê°’ì„ ì¶œë ¥í•˜ëŠ” íŽ˜ì´ì§€ìž…ë‹ˆë‹¤.                                = */
     /* = -------------------------------------------------------------------------- = */
-    /* =   ¿¬µ¿½Ã ¿À·ù°¡ ¹ß»ýÇÏ´Â °æ¿ì ¾Æ·¡ÀÇ ÁÖ¼Ò·Î Á¢¼ÓÇÏ¼Å¼­ È®ÀÎÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.= */
-    /* =   Á¢¼Ó ÁÖ¼Ò : http://kcp.co.kr/technique.requestcode.do                    = */
+    /* =   ì—°ë™ì‹œ ì˜¤ë¥˜ê°€ ë°œìƒí•˜ëŠ” ê²½ìš° ì•„ëž˜ì˜ ì£¼ì†Œë¡œ ì ‘ì†í•˜ì…”ì„œ í™•ì¸í•˜ì‹œê¸° ë°”ëžë‹ˆë‹¤.= */
+    /* =   ì ‘ì† ì£¼ì†Œ : http://kcp.co.kr/technique.requestcode.do                    = */
     /* = -------------------------------------------------------------------------- = */
     /* =   Copyright (c)  2016  NHN KCP Inc.   All Rights Reserverd.                = */
     /* ============================================================================== */
 %>
 <%!
     /* ============================================================================== */
-    /* =   null °ªÀ» Ã³¸®ÇÏ´Â ¸Þ¼Òµå                                                = */
+    /* =   null ê°’ì„ ì²˜ë¦¬í•˜ëŠ” ë©”ì†Œë“œ                                                = */
     /* = -------------------------------------------------------------------------- = */
     public String f_get_parm( String val )
     {
@@ -23,106 +25,106 @@
     /* ============================================================================== */
 %>
 <%
-    request.setCharacterEncoding("euc-kr") ;
+    request.setCharacterEncoding("utf-8") ;
     /* ============================================================================== */
-    /* =   ÁöºÒ °á°ú                                                                = */
+    /* =   ì§€ë¶ˆ ê²°ê³¼                                                                = */
     /* = -------------------------------------------------------------------------- = */
-    String site_cd          = f_get_parm( request.getParameter( "site_cd"        ) );      // »çÀÌÆ® ÄÚµå
-    String req_tx           = f_get_parm( request.getParameter( "req_tx"         ) );      // ¿äÃ» ±¸ºÐ(½ÂÀÎ/Ãë¼Ò)
-    String use_pay_method   = f_get_parm( request.getParameter( "use_pay_method" ) );      // »ç¿ë °áÁ¦ ¼ö´Ü
-    String bSucc            = f_get_parm( request.getParameter( "bSucc"          ) );      // ¾÷Ã¼ DB Á¤»óÃ³¸® ¿Ï·á ¿©ºÎ
+    String site_cd          = f_get_parm( request.getParameter( "site_cd"        ) );      // ì‚¬ì´íŠ¸ ì½”ë“œ
+    String req_tx           = f_get_parm( request.getParameter( "req_tx"         ) );      // ìš”ì²­ êµ¬ë¶„(ìŠ¹ì¸/ì·¨ì†Œ)
+    String use_pay_method   = f_get_parm( request.getParameter( "use_pay_method" ) );      // ì‚¬ìš© ê²°ì œ ìˆ˜ë‹¨
+    String bSucc            = f_get_parm( request.getParameter( "bSucc"          ) );      // ì—…ì²´ DB ì •ìƒì²˜ë¦¬ ì™„ë£Œ ì—¬ë¶€
     /* = -------------------------------------------------------------------------- = */
-    String res_cd           = f_get_parm( request.getParameter( "res_cd"         ) );      // °á°ú ÄÚµå
-    String res_msg          = f_get_parm( request.getParameter( "res_msg"        ) );      // °á°ú ¸Þ½ÃÁö
+    String res_cd           = f_get_parm( request.getParameter( "res_cd"         ) );      // ê²°ê³¼ ì½”ë“œ
+    String res_msg          = f_get_parm( request.getParameter( "res_msg"        ) );      // ê²°ê³¼ ë©”ì‹œì§€
     String res_msg_bsucc    = "";
     /* = -------------------------------------------------------------------------- = */
-    String amount           = f_get_parm( request.getParameter( "amount"         ) );      // KCP ½ÇÁ¦ °Å·¡ ±Ý¾×
-    String ordr_idxx        = f_get_parm( request.getParameter( "ordr_idxx"      ) );      // ÁÖ¹®¹øÈ£
-    String tno              = f_get_parm( request.getParameter( "tno"            ) );      // KCP °Å·¡¹øÈ£
-    String good_name        = f_get_parm( request.getParameter( "good_name"      ) );      // »óÇ°¸í
-    String buyr_name        = f_get_parm( request.getParameter( "buyr_name"      ) );      // ±¸¸ÅÀÚ¸í
-    String buyr_tel1        = f_get_parm( request.getParameter( "buyr_tel1"      ) );      // ±¸¸ÅÀÚ ÀüÈ­¹øÈ£
-    String buyr_tel2        = f_get_parm( request.getParameter( "buyr_tel2"      ) );      // ±¸¸ÅÀÚ ÈÞ´ëÆù¹øÈ£
-    String buyr_mail        = f_get_parm( request.getParameter( "buyr_mail"      ) );      // ±¸¸ÅÀÚ E-Mail
+    String amount           = f_get_parm( request.getParameter( "amount"         ) );      // KCP ì‹¤ì œ ê±°ëž˜ ê¸ˆì•¡
+    String ordr_idxx        = f_get_parm( request.getParameter( "ordr_idxx"      ) );      // ì£¼ë¬¸ë²ˆí˜¸
+    String tno              = f_get_parm( request.getParameter( "tno"            ) );      // KCP ê±°ëž˜ë²ˆí˜¸
+    String good_name        = f_get_parm( request.getParameter( "good_name"      ) );      // ìƒí’ˆëª…
+    String buyr_name        = f_get_parm( request.getParameter( "buyr_name"      ) );      // êµ¬ë§¤ìžëª…
+    String buyr_tel1        = f_get_parm( request.getParameter( "buyr_tel1"      ) );      // êµ¬ë§¤ìž ì „í™”ë²ˆí˜¸
+    String buyr_tel2        = f_get_parm( request.getParameter( "buyr_tel2"      ) );      // êµ¬ë§¤ìž íœ´ëŒ€í°ë²ˆí˜¸
+    String buyr_mail        = f_get_parm( request.getParameter( "buyr_mail"      ) );      // êµ¬ë§¤ìž E-Mail
     /* = -------------------------------------------------------------------------- = */
-    // °øÅë
-    String pnt_issue        = f_get_parm( request.getParameter( "pnt_issue"      ) );      // Æ÷ÀÎÆ® ¼­ºñ½º»ç
-    String app_time         = f_get_parm( request.getParameter( "app_time"       ) );      // ½ÂÀÎ½Ã°£ (°øÅë)
+    // ê³µí†µ
+    String pnt_issue        = f_get_parm( request.getParameter( "pnt_issue"      ) );      // í¬ì¸íŠ¸ ì„œë¹„ìŠ¤ì‚¬
+    String app_time         = f_get_parm( request.getParameter( "app_time"       ) );      // ìŠ¹ì¸ì‹œê°„ (ê³µí†µ)
     /* = -------------------------------------------------------------------------- = */
-    // ½Å¿ëÄ«µå
-    String card_cd          = f_get_parm( request.getParameter( "card_cd"        ) );      // Ä«µå ÄÚµå
-    String card_name        = f_get_parm( request.getParameter( "card_name"      ) );      // Ä«µå¸í
-    String noinf            = f_get_parm( request.getParameter( "noinf"          ) );      // ¹«ÀÌÀÚ ¿©ºÎ
-    String quota            = f_get_parm( request.getParameter( "quota"          ) );      // ÇÒºÎ°³¿ù
-    String app_no           = f_get_parm( request.getParameter( "app_no"         ) );      // ½ÂÀÎ¹øÈ£
+    // ì‹ ìš©ì¹´ë“œ
+    String card_cd          = f_get_parm( request.getParameter( "card_cd"        ) );      // ì¹´ë“œ ì½”ë“œ
+    String card_name        = f_get_parm( request.getParameter( "card_name"      ) );      // ì¹´ë“œëª…
+    String noinf            = f_get_parm( request.getParameter( "noinf"          ) );      // ë¬´ì´ìž ì—¬ë¶€
+    String quota            = f_get_parm( request.getParameter( "quota"          ) );      // í• ë¶€ê°œì›”
+    String app_no           = f_get_parm( request.getParameter( "app_no"         ) );      // ìŠ¹ì¸ë²ˆí˜¸
     /* = -------------------------------------------------------------------------- = */
-    // °èÁÂÀÌÃ¼
-    String bank_name        = f_get_parm( request.getParameter( "bank_name"      ) );      // ÀºÇà¸í
-    String bank_code        = f_get_parm( request.getParameter( "bank_code"      ) );      // ÀºÇàÄÚµå
+    // ê³„ì¢Œì´ì²´
+    String bank_name        = f_get_parm( request.getParameter( "bank_name"      ) );      // ì€í–‰ëª…
+    String bank_code        = f_get_parm( request.getParameter( "bank_code"      ) );      // ì€í–‰ì½”ë“œ
     /* = -------------------------------------------------------------------------- = */
-    // °¡»ó°èÁÂ
-    String bankname         = f_get_parm( request.getParameter( "bankname"       ) );      // ÀÔ±ÝÇÒ ÀºÇà
-    String depositor        = f_get_parm( request.getParameter( "depositor"      ) );      // ÀÔ±ÝÇÒ °èÁÂ ¿¹±ÝÁÖ
-    String account          = f_get_parm( request.getParameter( "account"        ) );      // ÀÔ±ÝÇÒ °èÁÂ ¹øÈ£
-    String va_date          = f_get_parm( request.getParameter( "va_date"        ) );      // °¡»ó°èÁÂ ÀÔ±Ý¸¶°¨½Ã°£
+    // ê°€ìƒê³„ì¢Œ
+    String bankname         = f_get_parm( request.getParameter( "bankname"       ) );      // ìž…ê¸ˆí•  ì€í–‰
+    String depositor        = f_get_parm( request.getParameter( "depositor"      ) );      // ìž…ê¸ˆí•  ê³„ì¢Œ ì˜ˆê¸ˆì£¼
+    String account          = f_get_parm( request.getParameter( "account"        ) );      // ìž…ê¸ˆí•  ê³„ì¢Œ ë²ˆí˜¸
+    String va_date          = f_get_parm( request.getParameter( "va_date"        ) );      // ê°€ìƒê³„ì¢Œ ìž…ê¸ˆë§ˆê°ì‹œê°„
     /* = -------------------------------------------------------------------------- = */
-    // Æ÷ÀÎÆ®
-    String add_pnt          = f_get_parm( request.getParameter( "add_pnt"        ) );      // ¹ß»ý Æ÷ÀÎÆ®
-    String use_pnt          = f_get_parm( request.getParameter( "use_pnt"        ) );      // »ç¿ë°¡´É Æ÷ÀÎÆ®
-    String rsv_pnt          = f_get_parm( request.getParameter( "rsv_pnt"        ) );      // Àû¸³ Æ÷ÀÎÆ®
-    String pnt_app_time     = f_get_parm( request.getParameter( "pnt_app_time"   ) );      // ½ÂÀÎ½Ã°£
-    String pnt_app_no       = f_get_parm( request.getParameter( "pnt_app_no"     ) );      // ½ÂÀÎ¹øÈ£
-    String pnt_amount       = f_get_parm( request.getParameter( "pnt_amount"     ) );      // Àû¸³±Ý¾× or »ç¿ë±Ý¾×
+    // í¬ì¸íŠ¸
+    String add_pnt          = f_get_parm( request.getParameter( "add_pnt"        ) );      // ë°œìƒ í¬ì¸íŠ¸
+    String use_pnt          = f_get_parm( request.getParameter( "use_pnt"        ) );      // ì‚¬ìš©ê°€ëŠ¥ í¬ì¸íŠ¸
+    String rsv_pnt          = f_get_parm( request.getParameter( "rsv_pnt"        ) );      // ì ë¦½ í¬ì¸íŠ¸
+    String pnt_app_time     = f_get_parm( request.getParameter( "pnt_app_time"   ) );      // ìŠ¹ì¸ì‹œê°„
+    String pnt_app_no       = f_get_parm( request.getParameter( "pnt_app_no"     ) );      // ìŠ¹ì¸ë²ˆí˜¸
+    String pnt_amount       = f_get_parm( request.getParameter( "pnt_amount"     ) );      // ì ë¦½ê¸ˆì•¡ or ì‚¬ìš©ê¸ˆì•¡
     /* = -------------------------------------------------------------------------- = */
-    //ÈÞ´ëÆù
-    String commid           = f_get_parm( request.getParameter( "commid"         ) );      // Åë½Å»ç ÄÚµå
-    String mobile_no        = f_get_parm( request.getParameter( "mobile_no"      ) );      // ÈÞ´ëÆù ¹øÈ£
+    //íœ´ëŒ€í°
+    String commid           = f_get_parm( request.getParameter( "commid"         ) );      // í†µì‹ ì‚¬ ì½”ë“œ
+    String mobile_no        = f_get_parm( request.getParameter( "mobile_no"      ) );      // íœ´ëŒ€í° ë²ˆí˜¸
     /* = -------------------------------------------------------------------------- = */
-    //»óÇ°±Ç
-    String tk_van_code      = f_get_parm( request.getParameter( "tk_van_code"    ) );      // ¹ß±Þ»ç ÄÚµå
-    String tk_app_no        = f_get_parm( request.getParameter( "tk_app_no"      ) );      // ½ÂÀÎ ¹øÈ£
+    //ìƒí’ˆê¶Œ
+    String tk_van_code      = f_get_parm( request.getParameter( "tk_van_code"    ) );      // ë°œê¸‰ì‚¬ ì½”ë“œ
+    String tk_app_no        = f_get_parm( request.getParameter( "tk_app_no"      ) );      // ìŠ¹ì¸ ë²ˆí˜¸
     /* = -------------------------------------------------------------------------- = */
-    // Çö±Ý¿µ¼öÁõ
-    String cash_yn          = f_get_parm( request.getParameter( "cash_yn"        ) );      // Çö±Ý ¿µ¼öÁõ µî·Ï ¿©ºÎ
-    String cash_authno      = f_get_parm( request.getParameter( "cash_authno"    ) );      // Çö±Ý ¿µ¼öÁõ ½ÂÀÎ ¹øÈ£
-    String cash_tr_code     = f_get_parm( request.getParameter( "cash_tr_code"   ) );      // Çö±Ý ¿µ¼öÁõ ¹ßÇà ±¸ºÐ
-    String cash_id_info     = f_get_parm( request.getParameter( "cash_id_info"   ) );      // Çö±Ý ¿µ¼öÁõ µî·Ï ¹øÈ£
-    String cash_no          = f_get_parm( request.getParameter( "cash_no"        ) );      // Çö±Ý ¿µ¼öÁõ °Å·¡ ¹øÈ£
+    // í˜„ê¸ˆì˜ìˆ˜ì¦
+    String cash_yn          = f_get_parm( request.getParameter( "cash_yn"        ) );      // í˜„ê¸ˆ ì˜ìˆ˜ì¦ ë“±ë¡ ì—¬ë¶€
+    String cash_authno      = f_get_parm( request.getParameter( "cash_authno"    ) );      // í˜„ê¸ˆ ì˜ìˆ˜ì¦ ìŠ¹ì¸ ë²ˆí˜¸
+    String cash_tr_code     = f_get_parm( request.getParameter( "cash_tr_code"   ) );      // í˜„ê¸ˆ ì˜ìˆ˜ì¦ ë°œí–‰ êµ¬ë¶„
+    String cash_id_info     = f_get_parm( request.getParameter( "cash_id_info"   ) );      // í˜„ê¸ˆ ì˜ìˆ˜ì¦ ë“±ë¡ ë²ˆí˜¸
+    String cash_no          = f_get_parm( request.getParameter( "cash_no"        ) );      // í˜„ê¸ˆ ì˜ìˆ˜ì¦ ê±°ëž˜ ë²ˆí˜¸
     /* ============================================================================== */
 
     String req_tx_name = "";
 
     if     ( req_tx.equals( "pay" ) )
     {
-        req_tx_name = "ÁöºÒ" ;
+        req_tx_name = "ì§€ë¶ˆ" ;
     }
     else if( req_tx.equals( "mod" ) )
     {
-        req_tx_name = "Ãë¼Ò/¸ÅÀÔ" ;
+        req_tx_name = "ì·¨ì†Œ/ë§¤ìž…" ;
     }
 
     /* ============================================================================== */
-    /* =   °¡¸ÍÁ¡ Ãø DB Ã³¸® ½ÇÆÐ½Ã »ó¼¼ °á°ú ¸Þ½ÃÁö ¼³Á¤                           = */
+    /* =   ê°€ë§¹ì  ì¸¡ DB ì²˜ë¦¬ ì‹¤íŒ¨ì‹œ ìƒì„¸ ê²°ê³¼ ë©”ì‹œì§€ ì„¤ì •                           = */
     /* = -------------------------------------------------------------------------- = */
 
     if ( "pay".equals ( req_tx ) )
     {
-        // ¾÷Ã¼ DB Ã³¸® ½ÇÆÐ
+        // ì—…ì²´ DB ì²˜ë¦¬ ì‹¤íŒ¨
         if ( "false".equals ( bSucc ) )
         {
             if ( "0000".equals ( res_cd ) )
             {
-                res_msg_bsucc = "°áÁ¦´Â Á¤»óÀûÀ¸·Î ÀÌ·ç¾îÁ³Áö¸¸ ¼îÇÎ¸ô¿¡¼­ °áÁ¦ °á°ú¸¦ Ã³¸®ÇÏ´Â Áß ¿À·ù°¡ ¹ß»ýÇÏ¿© ½Ã½ºÅÛ¿¡¼­ ÀÚµ¿À¸·Î Ãë¼Ò ¿äÃ»À» ÇÏ¿´½À´Ï´Ù. <br> ¼îÇÎ¸ô·Î ÀüÈ­ÇÏ¿© È®ÀÎÇÏ½Ã±â ¹Ù¶ø´Ï´Ù." ;
+                res_msg_bsucc = "ê²°ì œëŠ” ì •ìƒì ìœ¼ë¡œ ì´ë£¨ì–´ì¡Œì§€ë§Œ ì‡¼í•‘ëª°ì—ì„œ ê²°ì œ ê²°ê³¼ë¥¼ ì²˜ë¦¬í•˜ëŠ” ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒí•˜ì—¬ ì‹œìŠ¤í…œì—ì„œ ìžë™ìœ¼ë¡œ ì·¨ì†Œ ìš”ì²­ì„ í•˜ì˜€ìŠµë‹ˆë‹¤. <br> ì‡¼í•‘ëª°ë¡œ ì „í™”í•˜ì—¬ í™•ì¸í•˜ì‹œê¸° ë°”ëžë‹ˆë‹¤." ;
             }
             else
             {
-                res_msg_bsucc = "°áÁ¦´Â Á¤»óÀûÀ¸·Î ÀÌ·ç¾îÁ³Áö¸¸ ¼îÇÎ¸ô¿¡¼­ °áÁ¦ °á°ú¸¦ Ã³¸®ÇÏ´Â Áß ¿À·ù°¡ ¹ß»ýÇÏ¿© ½Ã½ºÅÛ¿¡¼­ ÀÚµ¿À¸·Î Ãë¼Ò ¿äÃ»À» ÇÏ¿´À¸³ª, <br> <b>Ãë¼Ò°¡ ½ÇÆÐ µÇ¾ú½À´Ï´Ù.</b><br> ¼îÇÎ¸ô·Î ÀüÈ­ÇÏ¿© È®ÀÎÇÏ½Ã±â ¹Ù¶ø´Ï´Ù." ;
+                res_msg_bsucc = "ê²°ì œëŠ” ì •ìƒì ìœ¼ë¡œ ì´ë£¨ì–´ì¡Œì§€ë§Œ ì‡¼í•‘ëª°ì—ì„œ ê²°ì œ ê²°ê³¼ë¥¼ ì²˜ë¦¬í•˜ëŠ” ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒí•˜ì—¬ ì‹œìŠ¤í…œì—ì„œ ìžë™ìœ¼ë¡œ ì·¨ì†Œ ìš”ì²­ì„ í•˜ì˜€ìœ¼ë‚˜, <br> <b>ì·¨ì†Œê°€ ì‹¤íŒ¨ ë˜ì—ˆìŠµë‹ˆë‹¤.</b><br> ì‡¼í•‘ëª°ë¡œ ì „í™”í•˜ì—¬ í™•ì¸í•˜ì‹œê¸° ë°”ëžë‹ˆë‹¤." ;
             }
         }
     }
 
     /* = -------------------------------------------------------------------------- = */
-    /* =   °¡¸ÍÁ¡ Ãø DB Ã³¸® ½ÇÆÐ½Ã »ó¼¼ °á°ú ¸Þ½ÃÁö ¼³Á¤ ³¡                        = */
+    /* =   ê°€ë§¹ì  ì¸¡ DB ì²˜ë¦¬ ì‹¤íŒ¨ì‹œ ìƒì„¸ ê²°ê³¼ ë©”ì‹œì§€ ì„¤ì • ë                        = */
     /* ============================================================================== */
 
 %>
@@ -133,12 +135,12 @@
 
 <head>
     <title>*** NHN KCP [AX-HUB Version] ***</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=euc-kr" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="css/style.css" rel="stylesheet" type="text/css" id="cssLink"/>
     <script type="text/javascript">
-        /* ½Å¿ëÄ«µå ¿µ¼öÁõ */
-        /* ½Ç°áÁ¦½Ã : "https://admin8.kcp.co.kr/assist/bill.BillActionNew.do?cmd=card_bill&tno=" */
-        /* Å×½ºÆ®½Ã : "https://testadmin8.kcp.co.kr/assist/bill.BillActionNew.do?cmd=card_bill&tno=" */
+        /* ì‹ ìš©ì¹´ë“œ ì˜ìˆ˜ì¦ */
+        /* ì‹¤ê²°ì œì‹œ : "https://admin8.kcp.co.kr/assist/bill.BillActionNew.do?cmd=card_bill&tno=" */
+        /* í…ŒìŠ¤íŠ¸ì‹œ : "https://testadmin8.kcp.co.kr/assist/bill.BillActionNew.do?cmd=card_bill&tno=" */
         function receiptView( tno, ordr_idxx, amount )
         {
             receiptWin = "https://admin8.kcp.co.kr/assist/bill.BillActionNew.do?cmd=card_bill&tno=";
@@ -149,9 +151,9 @@
             window.open(receiptWin, "", "width=455, height=815");
         }
 
-        /* Çö±Ý ¿µ¼öÁõ */
-        /* ½Ç°áÁ¦½Ã : "https://admin8.kcp.co.kr/assist/bill.BillActionNew.do" */
-        /* Å×½ºÆ®½Ã : "https://testadmin8.kcp.co.kr/assist/bill.BillActionNew.do" */
+        /* í˜„ê¸ˆ ì˜ìˆ˜ì¦ */
+        /* ì‹¤ê²°ì œì‹œ : "https://admin8.kcp.co.kr/assist/bill.BillActionNew.do" */
+        /* í…ŒìŠ¤íŠ¸ì‹œ : "https://testadmin8.kcp.co.kr/assist/bill.BillActionNew.do" */
         function receiptView2( cash_no, ordr_idxx, amount )
         {
             receiptWin2 = "https://testadmin8.kcp.co.kr/assist/bill.BillActionNew.do?cmd=cash_bill&cash_no=";
@@ -162,9 +164,9 @@
             window.open(receiptWin2, "", "width=370, height=625");
         }
 
-        /* °¡»ó °èÁÂ ¸ðÀÇÀÔ±Ý ÆäÀÌÁö È£Ãâ */
-        /* Å×½ºÆ®½Ã¿¡¸¸ »ç¿ë°¡´É */
-        /* ½Ç°áÁ¦½Ã ÇØ´ç ½ºÅ©¸³Æ® ÁÖ¼®Ã³¸® */
+        /* ê°€ìƒ ê³„ì¢Œ ëª¨ì˜ìž…ê¸ˆ íŽ˜ì´ì§€ í˜¸ì¶œ */
+        /* í…ŒìŠ¤íŠ¸ì‹œì—ë§Œ ì‚¬ìš©ê°€ëŠ¥ */
+        /* ì‹¤ê²°ì œì‹œ í•´ë‹¹ ìŠ¤í¬ë¦½íŠ¸ ì£¼ì„ì²˜ë¦¬ */
         function receiptView3()
         {
             receiptWin3 = "http://devadmin.kcp.co.kr/Modules/Noti/TEST_Vcnt_Noti.jsp";
@@ -176,40 +178,40 @@
 <body>
 <form name="cancel" method="post">
     <div id="sample_wrap">
-        <h1>[°á°úÃâ·Â]<span> ÀÌ ÆäÀÌÁö´Â °áÁ¦ °á°ú¸¦ Ãâ·ÂÇÏ´Â »ùÇÃ(¿¹½Ã) ÆäÀÌÁöÀÔ´Ï´Ù.</span></h1>
+        <h1>[ê²°ê³¼ì¶œë ¥]<span> ì´ íŽ˜ì´ì§€ëŠ” ê²°ì œ ê²°ê³¼ë¥¼ ì¶œë ¥í•˜ëŠ” ìƒ˜í”Œ(ì˜ˆì‹œ) íŽ˜ì´ì§€ìž…ë‹ˆë‹¤.</span></h1>
         <div class="sample">
             <p>
-                ¿äÃ» °á°ú¸¦ Ãâ·ÂÇÏ´Â ÆäÀÌÁö ÀÔ´Ï´Ù.<br />
-                ¿äÃ»ÀÌ Á¤»óÀûÀ¸·Î Ã³¸®µÈ °æ¿ì °á°úÄÚµå(res_cd)°ªÀÌ 0000À¸·Î Ç¥½ÃµË´Ï´Ù.
+                ìš”ì²­ ê²°ê³¼ë¥¼ ì¶œë ¥í•˜ëŠ” íŽ˜ì´ì§€ ìž…ë‹ˆë‹¤.<br />
+                ìš”ì²­ì´ ì •ìƒì ìœ¼ë¡œ ì²˜ë¦¬ëœ ê²½ìš° ê²°ê³¼ì½”ë“œ(res_cd)ê°’ì´ 0000ìœ¼ë¡œ í‘œì‹œë©ë‹ˆë‹¤.
             </p>
             <%
                 /* ============================================================================== */
-    /* =   °áÁ¦ °á°ú ÄÚµå ¹× ¸Þ½ÃÁö Ãâ·Â(°á°úÆäÀÌÁö¿¡ ¹Ýµå½Ã Ãâ·ÂÇØÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.)= */
+    /* =   ê²°ì œ ê²°ê³¼ ì½”ë“œ ë° ë©”ì‹œì§€ ì¶œë ¥(ê²°ê³¼íŽ˜ì´ì§€ì— ë°˜ë“œì‹œ ì¶œë ¥í•´ì£¼ì‹œê¸° ë°”ëžë‹ˆë‹¤.)= */
     /* = -------------------------------------------------------------------------- = */
-    /* =   °áÁ¦ Á¤»ó : res_cd°ªÀÌ 0000À¸·Î ¼³Á¤µË´Ï´Ù.                              = */
-    /* =   °áÁ¦ ½ÇÆÐ : res_cd°ªÀÌ 0000ÀÌ¿ÜÀÇ °ªÀ¸·Î ¼³Á¤µË´Ï´Ù.                     = */
+    /* =   ê²°ì œ ì •ìƒ : res_cdê°’ì´ 0000ìœ¼ë¡œ ì„¤ì •ë©ë‹ˆë‹¤.                              = */
+    /* =   ê²°ì œ ì‹¤íŒ¨ : res_cdê°’ì´ 0000ì´ì™¸ì˜ ê°’ìœ¼ë¡œ ì„¤ì •ë©ë‹ˆë‹¤.                     = */
     /* = -------------------------------------------------------------------------- = */
             %>
-            <h2>&sdot; Ã³¸® °á°ú</h2>
+            <h2>&sdot; ì²˜ë¦¬ ê²°ê³¼</h2>
             <table class="tbl" cellpadding="0" cellspacing="0">
-                <!-- °á°ú ÄÚµå -->
+                <!-- ê²°ê³¼ ì½”ë“œ -->
                 <tr>
-                    <th>°á°ú ÄÚµå</th>
+                    <th>ê²°ê³¼ ì½”ë“œ</th>
                     <td><%=res_cd%></td>
                 </tr>
-                <!-- °á°ú ¸Þ½ÃÁö -->
+                <!-- ê²°ê³¼ ë©”ì‹œì§€ -->
                 <tr>
-                    <th>°á°ú ¸Þ¼¼Áö</th>
+                    <th>ê²°ê³¼ ë©”ì„¸ì§€</th>
                     <td><%=res_msg%></td>
                 </tr>
                 <%
-                    // Ã³¸® ÆäÀÌÁö(pp_cli_hub.jsp)¿¡¼­ °¡¸ÍÁ¡ DBÃ³¸® ÀÛ¾÷ÀÌ ½ÇÆÐÇÑ °æ¿ì »ó¼¼¸Þ½ÃÁö¸¦ Ãâ·ÂÇÕ´Ï´Ù.
+                    // ì²˜ë¦¬ íŽ˜ì´ì§€(pp_cli_hub.jsp)ì—ì„œ ê°€ë§¹ì  DBì²˜ë¦¬ ìž‘ì—…ì´ ì‹¤íŒ¨í•œ ê²½ìš° ìƒì„¸ë©”ì‹œì§€ë¥¼ ì¶œë ¥í•©ë‹ˆë‹¤.
                     if( !"".equals ( res_msg_bsucc ) )
                     {
                 %>
                 <tr>
-                    <th>°á°ú »ó¼¼ ¸Þ¼¼Áö</th>
-                    <td><%=res_msg_bsucc%></td>
+                    <th>ê²°ê³¼ ìƒì„¸ ë©”ì„¸ì§€</th>
+                    <td><%=res_msg_bsucc%>utf-8
                 </tr>
                 <%
                     }
@@ -217,383 +219,383 @@
             </table>
             <%
                 /* = -------------------------------------------------------------------------- = */
-    /* =   °áÁ¦ °á°ú ÄÚµå ¹× ¸Þ½ÃÁö Ãâ·Â ³¡                                         = */
+    /* =   ê²°ì œ ê²°ê³¼ ì½”ë“œ ë° ë©”ì‹œì§€ ì¶œë ¥ ë                                         = */
     /* ============================================================================== */
             %>
 
             <%
                 /* ============================================================================== */
-    /* =   01. °áÁ¦ °á°ú Ãâ·Â                                                       = */
+    /* =   01. ê²°ì œ ê²°ê³¼ ì¶œë ¥                                                       = */
     /* = -------------------------------------------------------------------------- = */
                 if ( "pay".equals ( req_tx ) )
                 {
         /* ============================================================================== */
-        /* =   01-1. ¾÷Ã¼ DB Ã³¸® Á¤»ó(bSucc°ªÀÌ false°¡ ¾Æ´Ñ °æ¿ì)                     = */
+        /* =   01-1. ì—…ì²´ DB ì²˜ë¦¬ ì •ìƒ(bSuccê°’ì´ falseê°€ ì•„ë‹Œ ê²½ìš°)                     = */
         /* = -------------------------------------------------------------------------- = */
                     if ( ! "false".equals ( bSucc ) )
                     {
             /* ============================================================================== */
-            /* =   01-1-1. Á¤»ó °áÁ¦½Ã °áÁ¦ °á°ú Ãâ·Â ( res_cd°ªÀÌ 0000ÀÎ °æ¿ì)             = */
+            /* =   01-1-1. ì •ìƒ ê²°ì œì‹œ ê²°ì œ ê²°ê³¼ ì¶œë ¥ ( res_cdê°’ì´ 0000ì¸ ê²½ìš°)             = */
             /* = -------------------------------------------------------------------------- = */
                         if ( "0000".equals ( res_cd ) )
                         {
             %>
-            <h2>&sdot; ÁÖ¹® Á¤º¸</h2>
+            <h2>&sdot; ì£¼ë¬¸ ì •ë³´</h2>
             <table class="tbl" cellpadding="0" cellspacing="0">
-                <!-- ÁÖ¹®¹øÈ£ -->
+                <!-- ì£¼ë¬¸ë²ˆí˜¸ -->
                 <tr>
-                    <th>ÁÖ¹® ¹øÈ£</th>
+                    <th>ì£¼ë¬¸ ë²ˆí˜¸</th>
                     <td><%= ordr_idxx %></td>
                 </tr>
-                <!-- KCP °Å·¡¹øÈ£ -->
+                <!-- KCP ê±°ëž˜ë²ˆí˜¸ -->
                 <tr>
-                    <th>KCP °Å·¡¹øÈ£</th>
+                    <th>KCP ê±°ëž˜ë²ˆí˜¸</th>
                     <td><%= tno %></td>
                 </tr>
-                <!-- KCP ½ÇÁ¦ °Å·¡ ±Ý¾× -->
+                <!-- KCP ì‹¤ì œ ê±°ëž˜ ê¸ˆì•¡ -->
                 <tr>
-                    <th>°áÁ¦ ±Ý¾×</th>
-                    <td><%= amount %>¿ø</td>
+                    <th>ê²°ì œ ê¸ˆì•¡</th>
+                    <td><%= amount %>ì›</td>
                 </tr>
-                <!-- »óÇ°¸í(good_name) -->
+                <!-- ìƒí’ˆëª…(good_name) -->
                 <tr>
-                    <th>»ó Ç° ¸í</th>
+                    <th>ìƒ í’ˆ ëª…</th>
                     <td><%= good_name %></td>
                 </tr>
-                <!-- ÁÖ¹®ÀÚ¸í -->
+                <!-- ì£¼ë¬¸ìžëª… -->
                 <tr>
-                    <th>ÁÖ¹®ÀÚ¸í</th>
+                    <th>ì£¼ë¬¸ìžëª…</th>
                     <td><%= buyr_name %></td>
                 </tr>
-                <!-- ÁÖ¹®ÀÚ ÀüÈ­¹øÈ£ -->
+                <!-- ì£¼ë¬¸ìž ì „í™”ë²ˆí˜¸ -->
                 <tr>
-                    <th>ÁÖ¹®ÀÚ ÀüÈ­¹øÈ£</th>
+                    <th>ì£¼ë¬¸ìž ì „í™”ë²ˆí˜¸</th>
                     <td><%= buyr_tel1 %></td>
                 </tr>
-                <!-- ÁÖ¹®ÀÚ ÈÞ´ëÆù¹øÈ£ -->
+                <!-- ì£¼ë¬¸ìž íœ´ëŒ€í°ë²ˆí˜¸ -->
                 <tr>
-                    <th>ÁÖ¹®ÀÚ ÈÞ´ëÆù¹øÈ£</th>
+                    <th>ì£¼ë¬¸ìž íœ´ëŒ€í°ë²ˆí˜¸</th>
                     <td><%= buyr_tel2 %></td>
                 </tr>
-                <!-- ÁÖ¹®ÀÚ E-mail -->
+                <!-- ì£¼ë¬¸ìž E-mail -->
                 <tr>
-                    <th>ÁÖ¹®ÀÚ E-mail</th>
+                    <th>ì£¼ë¬¸ìž E-mail</th>
                     <td><%= buyr_mail %></td>
                 </tr>
             </table>
             <%
                 /* ============================================================================== */
-                /* =   ½Å¿ëÄ«µå °áÁ¦ °á°ú Ãâ·Â                                             = */
+                /* =   ì‹ ìš©ì¹´ë“œ ê²°ì œ ê²°ê³¼ ì¶œë ¥                                             = */
                 /* = -------------------------------------------------------------------------- = */
                 if ( use_pay_method.equals("100000000000") )
                 {
             %>
-            <h2>&sdot; ½Å¿ëÄ«µå Á¤º¸</h2>
+            <h2>&sdot; ì‹ ìš©ì¹´ë“œ ì •ë³´</h2>
             <table class="tbl" cellpadding="0" cellspacing="0">
-                <!-- °áÁ¦¼ö´Ü : ½Å¿ëÄ«µå -->
+                <!-- ê²°ì œìˆ˜ë‹¨ : ì‹ ìš©ì¹´ë“œ -->
                 <tr>
-                    <th>°áÁ¦ ¼ö´Ü</th>
-                    <td>½Å¿ë Ä«µå</td>
+                    <th>ê²°ì œ ìˆ˜ë‹¨</th>
+                    <td>ì‹ ìš© ì¹´ë“œ</td>
                 </tr>
-                <!-- °áÁ¦ Ä«µå -->
+                <!-- ê²°ì œ ì¹´ë“œ -->
                 <tr>
-                    <th>°áÁ¦ Ä«µå</th>
+                    <th>ê²°ì œ ì¹´ë“œ</th>
                     <td><%= card_cd %> / <%= card_name %></td>
                 </tr>
-                <!-- ½ÂÀÎ½Ã°£ -->
+                <!-- ìŠ¹ì¸ì‹œê°„ -->
                 <tr>
-                    <th>½ÂÀÎ ½Ã°£</th>
+                    <th>ìŠ¹ì¸ ì‹œê°„</th>
                     <td><%= app_time %></td>
                 </tr>
-                <!-- ½ÂÀÎ¹øÈ£ -->
+                <!-- ìŠ¹ì¸ë²ˆí˜¸ -->
                 <tr>
-                    <th>½ÂÀÎ ¹øÈ£</th>
+                    <th>ìŠ¹ì¸ ë²ˆí˜¸</th>
                     <td><%= app_no %></td>
                 </tr>
-                <!-- ÇÒºÎ°³¿ù -->
+                <!-- í• ë¶€ê°œì›” -->
                 <tr>
-                    <th>ÇÒºÎ °³¿ù</th>
+                    <th>í• ë¶€ ê°œì›”</th>
                     <td><%= quota %></td>
                 </tr>
-                <!-- ¹«ÀÌÀÚ ¿©ºÎ -->
+                <!-- ë¬´ì´ìž ì—¬ë¶€ -->
                 <tr>
-                    <th>¹«ÀÌÀÚ ¿©ºÎ</th>
+                    <th>ë¬´ì´ìž ì—¬ë¶€</th>
                     <td><%= noinf %></td>
                 </tr>
                 <%
                     /* = -------------------------------------------------------------- = */
-                    /* =   º¹ÇÕ°áÁ¦(Æ÷ÀÎÆ®+½Å¿ëÄ«µå) ½ÂÀÎ °á°ú Ã³¸®                     = */
+                    /* =   ë³µí•©ê²°ì œ(í¬ì¸íŠ¸+ì‹ ìš©ì¹´ë“œ) ìŠ¹ì¸ ê²°ê³¼ ì²˜ë¦¬                     = */
                     /* = -------------------------------------------------------------- = */
                     if ( pnt_issue.equals("SCSK") || pnt_issue.equals( "SCWB" ) )
                     {
                 %>
             </table>
-            <h2>&sdot; Æ÷ÀÎÆ® Á¤º¸</h2>
+            <h2>&sdot; í¬ì¸íŠ¸ ì •ë³´</h2>
             <table class="tbl" cellpadding="0" cellspacing="0">
-                <!-- Æ÷ÀÎÆ®»ç -->
+                <!-- í¬ì¸íŠ¸ì‚¬ -->
                 <tr>
-                    <th>Æ÷ÀÎÆ®»ç</th>
+                    <th>í¬ì¸íŠ¸ì‚¬</th>
                     <td><%= pnt_issue %></td>
                 </tr>
-                <!-- Æ÷ÀÎÆ® ½ÂÀÎ ½Ã°£ -->
+                <!-- í¬ì¸íŠ¸ ìŠ¹ì¸ ì‹œê°„ -->
                 <tr>
-                    <th>Æ÷ÀÎÆ® ½ÂÀÎ½Ã°£</th>
+                    <th>í¬ì¸íŠ¸ ìŠ¹ì¸ì‹œê°„</th>
                     <td><%= pnt_app_time %></td>
                 </tr>
-                <!-- Æ÷ÀÎÆ® ½ÂÀÎ¹øÈ£ -->
+                <!-- í¬ì¸íŠ¸ ìŠ¹ì¸ë²ˆí˜¸ -->
                 <tr>
-                    <th>Æ÷ÀÎÆ® ½ÂÀÎ¹øÈ£</th>
+                    <th>í¬ì¸íŠ¸ ìŠ¹ì¸ë²ˆí˜¸</th>
                     <td><%= pnt_app_no %></td>
                 </tr>
-                <!-- Àû¸³±Ý¾× or »ç¿ë±Ý¾× -->
+                <!-- ì ë¦½ê¸ˆì•¡ or ì‚¬ìš©ê¸ˆì•¡ -->
                 <tr>
-                    <th>Àû¸³±Ý¾× or »ç¿ë±Ý¾×</th>
+                    <th>ì ë¦½ê¸ˆì•¡ or ì‚¬ìš©ê¸ˆì•¡</th>
                     <td><%= pnt_amount %></td>
                 </tr>
-                <!-- ¹ß»ý Æ÷ÀÎÆ® -->
+                <!-- ë°œìƒ í¬ì¸íŠ¸ -->
                 <tr>
-                    <th>¹ß»ý Æ÷ÀÎÆ®</th>
+                    <th>ë°œìƒ í¬ì¸íŠ¸</th>
                     <td><%= add_pnt %></td>
                 </tr>
-                <!-- »ç¿ë°¡´É Æ÷ÀÎÆ® -->
+                <!-- ì‚¬ìš©ê°€ëŠ¥ í¬ì¸íŠ¸ -->
                 <tr>
-                    <th>»ç¿ë°¡´É Æ÷ÀÎÆ®</th>
+                    <th>ì‚¬ìš©ê°€ëŠ¥ í¬ì¸íŠ¸</th>
                     <td><%= use_pnt %></td>
                 </tr>
-                <!-- ÃÑ ´©Àû Æ÷ÀÎÆ® -->
+                <!-- ì´ ëˆ„ì  í¬ì¸íŠ¸ -->
                 <tr>
-                    <th>ÃÑ ´©Àû Æ÷ÀÎÆ®</th>
+                    <th>ì´ ëˆ„ì  í¬ì¸íŠ¸</th>
                     <td><%= rsv_pnt %></td>
                 </tr>
                 <%                  }
                     /* ============================================================================== */
-                    /* =   ½Å¿ëÄ«µå ¿µ¼öÁõ Ãâ·Â                                                     = */
+                    /* =   ì‹ ìš©ì¹´ë“œ ì˜ìˆ˜ì¦ ì¶œë ¥                                                     = */
                     /* = -------------------------------------------------------------------------- = */
-                    /* =   ½ÇÁ¦ °Å·¡°Ç¿¡ ´ëÇØ¼­ ¿µ¼öÁõÀ» Ãâ·ÂÇÒ ¼ö ÀÖ½À´Ï´Ù.                        = */
+                    /* =   ì‹¤ì œ ê±°ëž˜ê±´ì— ëŒ€í•´ì„œ ì˜ìˆ˜ì¦ì„ ì¶œë ¥í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.                        = */
                     /* = -------------------------------------------------------------------------- = */
                 %>
                 <tr>
-                    <th>¿µ¼öÁõ È®ÀÎ</th>
-                    <td class="sub_content1"><a href="javascript:receiptView('<%=tno%>','<%= ordr_idxx %>','<%= amount %>')"><img src="./img/btn_receipt.png" alt="¿µ¼öÁõÀ» È®ÀÎÇÕ´Ï´Ù." />
+                    <th>ì˜ìˆ˜ì¦ í™•ì¸</th>
+                    <td class="sub_content1"><a href="javascript:receiptView('<%=tno%>','<%= ordr_idxx %>','<%= amount %>')"><img src="./img/btn_receipt.png" alt="ì˜ìˆ˜ì¦ì„ í™•ì¸í•©ë‹ˆë‹¤." />
                     </td>
             </table>
             <%              }
                 /* ============================================================================== */
-                /* =   °èÁÂÀÌÃ¼ °áÁ¦ °á°ú Ãâ·Â                                                  = */
+                /* =   ê³„ì¢Œì´ì²´ ê²°ì œ ê²°ê³¼ ì¶œë ¥                                                  = */
                 /* = -------------------------------------------------------------------------- = */
-            else if (use_pay_method.equals("010000000000"))       // °èÁÂÀÌÃ¼
+            else if (use_pay_method.equals("010000000000"))       // ê³„ì¢Œì´ì²´
             {
             %>
-            <h2>&sdot; °èÁÂÀÌÃ¼ Á¤º¸</h2>
+            <h2>&sdot; ê³„ì¢Œì´ì²´ ì •ë³´</h2>
             <table class="tbl" cellpadding="0" cellspacing="0">
-                <!-- °áÁ¦¼ö´Ü : °èÁÂÀÌÃ¼ -->
+                <!-- ê²°ì œìˆ˜ë‹¨ : ê³„ì¢Œì´ì²´ -->
                 <tr>
-                    <th>°áÁ¦ ¼ö´Ü</th>
-                    <td>°èÁÂÀÌÃ¼</td>
+                    <th>ê²°ì œ ìˆ˜ë‹¨</th>
+                    <td>ê³„ì¢Œì´ì²´</td>
                 </tr>
-                <!-- ÀÌÃ¼ ÀºÇà -->
+                <!-- ì´ì²´ ì€í–‰ -->
                 <tr>
-                    <th>ÀÌÃ¼ ÀºÇà</th>
+                    <th>ì´ì²´ ì€í–‰</th>
                     <td><%= bank_name %></td>
                 </tr>
-                <!-- ÀÌÃ¼ ÀºÇà ÄÚµå -->
+                <!-- ì´ì²´ ì€í–‰ ì½”ë“œ -->
                 <tr>
-                    <th>ÀÌÃ¼ ÀºÇàÄÚµå</th>
+                    <th>ì´ì²´ ì€í–‰ì½”ë“œ</th>
                     <td><%= bank_code %></td>
                 </tr>
-                <!-- ½ÂÀÎ½Ã°£ -->
+                <!-- ìŠ¹ì¸ì‹œê°„ -->
                 <tr>
-                    <th>½ÂÀÎ ½Ã°£</th>
+                    <th>ìŠ¹ì¸ ì‹œê°„</th>
                     <td><%= app_time %></td>
                 </tr>
             </table>
             <%
             }
                 /* ============================================================================== */
-                /* =   °¡»ó°èÁÂ °áÁ¦ °á°ú Ãâ·Â                                                  = */
+                /* =   ê°€ìƒê³„ì¢Œ ê²°ì œ ê²°ê³¼ ì¶œë ¥                                                  = */
                 /* = -------------------------------------------------------------------------- = */
             else if (use_pay_method.equals("001000000000"))
             {
             %>
-            <h2>&sdot; °¡»ó°èÁÂ Á¤º¸</h2>
+            <h2>&sdot; ê°€ìƒê³„ì¢Œ ì •ë³´</h2>
             <table class="tbl" cellpadding="0" cellspacing="0">
-                <!-- °áÁ¦¼ö´Ü : °¡»ó°èÁÂ -->
+                <!-- ê²°ì œìˆ˜ë‹¨ : ê°€ìƒê³„ì¢Œ -->
                 <tr>
-                    <th>°áÁ¦ ¼ö´Ü</th>
-                    <td>°¡»ó°èÁÂ</td>
+                    <th>ê²°ì œ ìˆ˜ë‹¨</th>
+                    <td>ê°€ìƒê³„ì¢Œ</td>
                 </tr>
-                <!-- ÀÔ±ÝÀºÇà -->
+                <!-- ìž…ê¸ˆì€í–‰ -->
                 <tr>
-                    <th>ÀÔ±Ý ÀºÇà</th>
+                    <th>ìž…ê¸ˆ ì€í–‰</th>
                     <td><%= bankname %></td>
                 </tr>
-                <!-- ÀÔ±Ý°èÁÂ ¿¹±ÝÁÖ -->
+                <!-- ìž…ê¸ˆê³„ì¢Œ ì˜ˆê¸ˆì£¼ -->
                 <tr>
-                    <th>ÀÔ±ÝÇÒ °èÁÂ ¿¹±ÝÁÖ</th>
+                    <th>ìž…ê¸ˆí•  ê³„ì¢Œ ì˜ˆê¸ˆì£¼</th>
                     <td><%= depositor %></td>
                 </tr>
-                <!-- ÀÔ±Ý°èÁÂ ¹øÈ£ -->
+                <!-- ìž…ê¸ˆê³„ì¢Œ ë²ˆí˜¸ -->
                 <tr>
-                    <th>ÀÔ±ÝÇÒ °èÁÂ ¹øÈ£</th>
+                    <th>ìž…ê¸ˆí•  ê³„ì¢Œ ë²ˆí˜¸</th>
                     <td><%= account %></td>
                 </tr>
-                <!-- °¡»ó°èÁÂ ÀÔ±Ý¸¶°¨½Ã°£ -->
+                <!-- ê°€ìƒê³„ì¢Œ ìž…ê¸ˆë§ˆê°ì‹œê°„ -->
                 <tr>
-                    <th>°¡»ó°èÁÂ ÀÔ±Ý¸¶°¨½Ã°£</th>
+                    <th>ê°€ìƒê³„ì¢Œ ìž…ê¸ˆë§ˆê°ì‹œê°„</th>
                     <td><%= va_date %></td>
                 </tr>
-                <!-- °¡»ó°èÁÂ ¸ðÀÇÀÔ±Ý(Å×½ºÆ®½Ã) -->
+                <!-- ê°€ìƒê³„ì¢Œ ëª¨ì˜ìž…ê¸ˆ(í…ŒìŠ¤íŠ¸ì‹œ) -->
                 <tr>
-                    <th>°¡»ó°èÁÂ ¸ðÀÇÀÔ±Ý</br>(Å×½ºÆ®½Ã »ç¿ë)</th>
-                    <td class="sub_content1"><a href="javascript:receiptView3()"><img src="./img/btn_vcn.png" alt="¸ðÀÇÀÔ±Ý ÆäÀÌÁö·Î ÀÌµ¿ÇÕ´Ï´Ù." />
+                    <th>ê°€ìƒê³„ì¢Œ ëª¨ì˜ìž…ê¸ˆ</br>(í…ŒìŠ¤íŠ¸ì‹œ ì‚¬ìš©)</th>
+                    <td class="sub_content1"><a href="javascript:receiptView3()"><img src="./img/btn_vcn.png" alt="ëª¨ì˜ìž…ê¸ˆ íŽ˜ì´ì§€ë¡œ ì´ë™í•©ë‹ˆë‹¤." />
                 </tr>
             </table>
             <%
             }
                 /* ============================================================================== */
-                /* =   Æ÷ÀÎÆ® °áÁ¦ °á°ú Ãâ·Â                                                    = */
+                /* =   í¬ì¸íŠ¸ ê²°ì œ ê²°ê³¼ ì¶œë ¥                                                    = */
                 /* = -------------------------------------------------------------------------- = */
             else if (use_pay_method.equals("000100000000"))
             {
             %>
-            <h2>&sdot; Æ÷ÀÎÆ® Á¤º¸</h2>
+            <h2>&sdot; í¬ì¸íŠ¸ ì •ë³´</h2>
             <table class="tbl" cellpadding="0" cellspacing="0">
-                <!-- °áÁ¦¼ö´Ü : Æ÷ÀÎÆ® -->
+                <!-- ê²°ì œìˆ˜ë‹¨ : í¬ì¸íŠ¸ -->
                 <tr>
-                    <th>°áÁ¦¼ö´Ü</th>
-                    <td>Æ÷ ÀÎ Æ®</td>
+                    <th>ê²°ì œìˆ˜ë‹¨</th>
+                    <td>í¬ ì¸ íŠ¸</td>
                 </tr>
-                <!-- Æ÷ÀÎÆ®»ç -->
+                <!-- í¬ì¸íŠ¸ì‚¬ -->
                 <tr>
-                    <th>Æ÷ÀÎÆ®»ç</th>
+                    <th>í¬ì¸íŠ¸ì‚¬</th>
                     <td><%= pnt_issue %></td>
                 </tr>
-                <!-- Æ÷ÀÎÆ® ½ÂÀÎ½Ã°£ -->
+                <!-- í¬ì¸íŠ¸ ìŠ¹ì¸ì‹œê°„ -->
                 <tr>
-                    <th>Æ÷ÀÎÆ® ½ÂÀÎ½Ã°£</th>
+                    <th>í¬ì¸íŠ¸ ìŠ¹ì¸ì‹œê°„</th>
                     <td><%= pnt_app_time %></td>
                 </tr>
-                <!-- Æ÷ÀÎÆ® ½ÂÀÎ¹øÈ£ -->
+                <!-- í¬ì¸íŠ¸ ìŠ¹ì¸ë²ˆí˜¸ -->
                 <tr>
-                    <th>Æ÷ÀÎÆ® ½ÂÀÎ¹øÈ£</th>
+                    <th>í¬ì¸íŠ¸ ìŠ¹ì¸ë²ˆí˜¸</th>
                     <td><%= pnt_app_no %></td>
                 </tr>
-                <!-- Àû¸³±Ý¾× or »ç¿ë±Ý¾× -->
+                <!-- ì ë¦½ê¸ˆì•¡ or ì‚¬ìš©ê¸ˆì•¡ -->
                 <tr>
-                    <th>Àû¸³±Ý¾× or »ç¿ë±Ý¾×</th>
+                    <th>ì ë¦½ê¸ˆì•¡ or ì‚¬ìš©ê¸ˆì•¡</th>
                     <td><%= pnt_amount %></td>
                 </tr>
-                <!-- ¹ß»ý Æ÷ÀÎÆ® -->
+                <!-- ë°œìƒ í¬ì¸íŠ¸ -->
                 <tr>
-                    <th>¹ß»ý Æ÷ÀÎÆ®</th>
+                    <th>ë°œìƒ í¬ì¸íŠ¸</th>
                     <td><%= add_pnt %></td>
                 </tr>
-                <!-- »ç¿ë°¡´É Æ÷ÀÎÆ® -->
+                <!-- ì‚¬ìš©ê°€ëŠ¥ í¬ì¸íŠ¸ -->
                 <tr>
-                    <th>»ç¿ë°¡´É Æ÷ÀÎÆ®</th>
+                    <th>ì‚¬ìš©ê°€ëŠ¥ í¬ì¸íŠ¸</th>
                     <td><%= use_pnt %></td>
                 </tr>
-                <!-- ÃÑ ´©Àû Æ÷ÀÎÆ® -->
+                <!-- ì´ ëˆ„ì  í¬ì¸íŠ¸ -->
                 <tr>
-                    <th>ÃÑ ´©Àû Æ÷ÀÎÆ®</th>
+                    <th>ì´ ëˆ„ì  í¬ì¸íŠ¸</th>
                     <td><%= rsv_pnt %></td>
                 </tr>
             </table>
             <%
             }
                 /* ============================================================================== */
-                /* =   ÈÞ´ëÆù °áÁ¦ °á°ú Ãâ·Â                                                    = */
+                /* =   íœ´ëŒ€í° ê²°ì œ ê²°ê³¼ ì¶œë ¥                                                    = */
                 /* = -------------------------------------------------------------------------- = */
             else if (use_pay_method.equals("000010000000"))
             {
             %>
-            <h2>&sdot; ÈÞ´ëÆù Á¤º¸</h2>
+            <h2>&sdot; íœ´ëŒ€í° ì •ë³´</h2>
             <table class="tbl" cellpadding="0" cellspacing="0">
-                <!-- °áÁ¦¼ö´Ü : ÈÞ´ëÆù -->
+                <!-- ê²°ì œìˆ˜ë‹¨ : íœ´ëŒ€í° -->
                 <tr>
-                    <th>°áÁ¦ ¼ö´Ü</th>
-                    <td>ÈÞ ´ë Æù</td>
+                    <th>ê²°ì œ ìˆ˜ë‹¨</th>
+                    <td>íœ´ ëŒ€ í°</td>
                 </tr>
-                <!-- ½ÂÀÎ½Ã°£ -->
+                <!-- ìŠ¹ì¸ì‹œê°„ -->
                 <tr>
-                    <th>½ÂÀÎ ½Ã°£</th>
+                    <th>ìŠ¹ì¸ ì‹œê°„</th>
                     <td><%= app_time %></td>
                 </tr>
-                <!-- Åë½Å»çÄÚµå -->
+                <!-- í†µì‹ ì‚¬ì½”ë“œ -->
                 <tr>
-                    <th>Åë½Å»ç ÄÚµå</th>
+                    <th>í†µì‹ ì‚¬ ì½”ë“œ</th>
                     <td><%= commid %></td>
                 </tr>
-                <!-- ½ÂÀÎ½Ã°£ -->
+                <!-- ìŠ¹ì¸ì‹œê°„ -->
                 <tr>
-                    <th>ÈÞ´ëÆù ¹øÈ£</th>
+                    <th>íœ´ëŒ€í° ë²ˆí˜¸</th>
                     <td><%= mobile_no %></td>
                 </tr>
             </table>
             <%
             }
                 /* ============================================================================== */
-                /* =   »óÇ°±Ç °áÁ¦ °á°ú Ãâ·Â                                                    = */
+                /* =   ìƒí’ˆê¶Œ ê²°ì œ ê²°ê³¼ ì¶œë ¥                                                    = */
                 /* = -------------------------------------------------------------------------- = */
             else if (use_pay_method.equals("000000001000"))
             {
             %>
-            <h2>&sdot; »óÇ°±Ç Á¤º¸</h2>
+            <h2>&sdot; ìƒí’ˆê¶Œ ì •ë³´</h2>
             <table class="tbl" cellpadding="0" cellspacing="0">
-                <!-- °áÁ¦¼ö´Ü : »óÇ°±Ç -->
+                <!-- ê²°ì œìˆ˜ë‹¨ : ìƒí’ˆê¶Œ -->
                 <tr>
-                    <th>°áÁ¦ ¼ö´Ü</th>
-                    <td>»ó Ç° ±Ç</td>
+                    <th>ê²°ì œ ìˆ˜ë‹¨</th>
+                    <td>ìƒ í’ˆ ê¶Œ</td>
                 </tr>
-                <!-- ¹ß±Þ»ç ÄÚµå -->
+                <!-- ë°œê¸‰ì‚¬ ì½”ë“œ -->
                 <tr>
-                    <th>¹ß±Þ»ç ÄÚµå</th>
+                    <th>ë°œê¸‰ì‚¬ ì½”ë“œ</th>
                     <td><%= tk_van_code %></td>
                 </tr>
-                <!-- ½ÂÀÎ½Ã°£ -->
+                <!-- ìŠ¹ì¸ì‹œê°„ -->
                 <tr>
-                    <th>½ÂÀÎ ½Ã°£</th>
+                    <th>ìŠ¹ì¸ ì‹œê°„</th>
                     <td><%= app_time %></td>
                 </tr>
-                <!-- ½ÂÀÎ¹øÈ£ -->
+                <!-- ìŠ¹ì¸ë²ˆí˜¸ -->
                 <tr>
-                    <th>½ÂÀÎ ¹øÈ£</th>
+                    <th>ìŠ¹ì¸ ë²ˆí˜¸</th>
                     <td><%= tk_app_no %></td>
                 </tr>
             </table>
             <%
                 }
                 /* ============================================================================== */
-                /* =   Çö±Ý¿µ¼öÁõ Á¤º¸ Ãâ·Â                                                     = */
+                /* =   í˜„ê¸ˆì˜ìˆ˜ì¦ ì •ë³´ ì¶œë ¥                                                     = */
                 /* = -------------------------------------------------------------------------- = */
                 if( !"".equals ( cash_yn ) )
                 {
                     if ( "010000000000".equals ( use_pay_method ) | "001000000000".equals ( use_pay_method ) )
                     {
             %>
-            <!-- Çö±Ý¿µ¼öÁõ Á¤º¸ Ãâ·Â-->
-            <h2>&sdot; Çö±Ý¿µ¼öÁõ Á¤º¸</h2>
+            <!-- í˜„ê¸ˆì˜ìˆ˜ì¦ ì •ë³´ ì¶œë ¥-->
+            <h2>&sdot; í˜„ê¸ˆì˜ìˆ˜ì¦ ì •ë³´</h2>
             <table class="tbl" cellpadding="0" cellspacing="0">
                 <tr>
-                    <th>Çö±Ý¿µ¼öÁõ µî·Ï¿©ºÎ</th>
+                    <th>í˜„ê¸ˆì˜ìˆ˜ì¦ ë“±ë¡ì—¬ë¶€</th>
                     <td><%= cash_yn %></td>
                 </tr>
                 <%
-                    //Çö±Ý¿µ¼öÁõÀÌ µî·ÏµÈ °æ¿ì ½ÂÀÎ¹øÈ£ °ªÀÌ Á¸Àç
+                    //í˜„ê¸ˆì˜ìˆ˜ì¦ì´ ë“±ë¡ëœ ê²½ìš° ìŠ¹ì¸ë²ˆí˜¸ ê°’ì´ ì¡´ìž¬
                     if( !"".equals ( cash_authno ) )
                     {
                 %>
                 <tr>
-                    <th>Çö±Ý¿µ¼öÁõ ½ÂÀÎ¹øÈ£</th>
+                    <th>í˜„ê¸ˆì˜ìˆ˜ì¦ ìŠ¹ì¸ë²ˆí˜¸</th>
                     <td><%= cash_authno %></td>
                 </tr>
                 <tr>
-                    <th>Çö±Ý¿µ¼öÁõ °Å·¡¹øÈ£</th>
+                    <th>í˜„ê¸ˆì˜ìˆ˜ì¦ ê±°ëž˜ë²ˆí˜¸</th>
                     <td><%= cash_no %></td>
                 </tr>
                 <tr>
-                    <th>¿µ¼öÁõ È®ÀÎ</th>
-                    <td class="sub_content1"><a href="javascript:receiptView2('<%= cash_no %>', '<%= ordr_idxx %>', '<%= amount %>' )"><img src="./img/btn_receipt.png" alt="Çö±Ý¿µ¼öÁõÀ»  È®ÀÎÇÕ´Ï´Ù." />
+                    <th>ì˜ìˆ˜ì¦ í™•ì¸</th>
+                    <td class="sub_content1"><a href="javascript:receiptView2('<%= cash_no %>', '<%= ordr_idxx %>', '<%= amount %>' )"><img src="./img/btn_receipt.png" alt="í˜„ê¸ˆì˜ìˆ˜ì¦ì„  í™•ì¸í•©ë‹ˆë‹¤." />
                     </td>
 
                         <%
@@ -605,21 +607,21 @@
                             }
                         }
             /* = -------------------------------------------------------------------------- = */
-            /* =   01-1-1. Á¤»ó °áÁ¦½Ã °áÁ¦ °á°ú Ãâ·Â END                                   = */
+            /* =   01-1-1. ì •ìƒ ê²°ì œì‹œ ê²°ì œ ê²°ê³¼ ì¶œë ¥ END                                   = */
             /* ============================================================================== */
                     }
         /* = -------------------------------------------------------------------------- = */
-        /* =   01-1. ¾÷Ã¼ DB Ã³¸® Á¤»ó END                                              = */
+        /* =   01-1. ì—…ì²´ DB ì²˜ë¦¬ ì •ìƒ END                                              = */
         /* ============================================================================== */
                 }
     /* = -------------------------------------------------------------------------- = */
-    /* =   01. °áÁ¦ °á°ú Ãâ·Â END                                                   = */
+    /* =   01. ê²°ì œ ê²°ê³¼ ì¶œë ¥ END                                                   = */
     /* ============================================================================== */
             %>
-            <!-- ¸ÅÀÔ ¿äÃ»/Ã³À½À¸·Î ÀÌ¹ÌÁö ¹öÆ° -->
+            <!-- ë§¤ìž… ìš”ì²­/ì²˜ìŒìœ¼ë¡œ ì´ë¯¸ì§€ ë²„íŠ¼ -->
             <tr>
                 <div class="btnset">
-                    <a href="../index.html" class="home">Ã³À½À¸·Î</a>
+                    <a href="index.html" class="home">ì²˜ìŒìœ¼ë¡œ</a>
                 </div>
             </tr>
             </tr>

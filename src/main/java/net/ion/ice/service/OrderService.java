@@ -9,10 +9,10 @@ import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +29,13 @@ public class OrderService {
     private NodeService nodeService;
     @Autowired
     private NodeBindingService nodeBindingService;
+
+    public Map<String, Object> readTempOrder(String tempOrderId) {
+        JdbcTemplate jdbcTemplate = nodeBindingService.getNodeBindingInfo("tempOrder").getJdbcTemplate();
+        Map<String, Object> queryResult = jdbcTemplate.queryForMap("SELECT o.* , (totalProductPrice + totalDeliveryPrice - totalDiscountPrice) as totalOrderPrice from ( select t.tempOrderId, (t.totalBaseOptionPrice + t.totalAddOptionPrice) as totalProductPrice, (SELECT ifnull(sum(deliveryPrice), 0) FROM temporderdeliveryprice WHERE tempOrderId = t.tempOrderId) AS totalDeliveryPrice, 0 AS totalDiscountPrice from ( SELECT cp.tempOrderId, sum((ifnull(pi.addPrice, 0) + ifnull(p.salePrice, 0)) * cp.quantity) AS totalBaseOptionPrice, (SELECT sum(pi.addPrice * ci.quantity) FROM temporderproductitem ci, productoptionitem pi WHERE tempOrderId = cp.tempOrderId AND ci.addOptionItemId = pi.productOptionItemId) AS totalAddOptionPrice FROM temporderproduct cp, productoptionitem pi, product p WHERE tempOrderId = " + tempOrderId + " AND cp.baseOptionItemId = pi.productOptionItemId AND p.productId = pi.productId ) t ) o");
+
+        return queryResult;
+    }
 
     public void directOrder(ExecuteContext context) {
         Map<String, Object> data = context.getData();
@@ -103,7 +110,7 @@ public class OrderService {
                 tempOrderProductItemData.put("tempOrderId", tempOrderId);
                 tempOrderProductItemData.put("tempOrderProductId", tempOrderProductNode.getId());
                 tempOrderProductItemData.put("productId", ((Map<String, Object>) tempOrderProductItem.get("productId")).get("value"));
-                tempOrderProductItemData.put("addOptionItemId", ((Map<String, Object>)tempOrderProductItem.get("addOptionItemId")).get("value"));
+                tempOrderProductItemData.put("addOptionItemId", ((Map<String, Object>) tempOrderProductItem.get("addOptionItemId")).get("value"));
                 tempOrderProductItemData.put("quantity", tempOrderProductItem.get("quantity"));
 
                 nodeService.executeNode(tempOrderProductItemData, "tempOrderProductItem", CREATE);

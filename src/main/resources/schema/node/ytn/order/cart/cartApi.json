@@ -128,7 +128,7 @@
               { "sorting": "created desc" },
               {"field" : "productId", "method" : "referenceJoin", "value" : "stockQuantity_notMatching=0" },
               { "includeReferenced": true, "referenceView": "productId" },
-              { "field": "cartProductId", "method": "matching", "value": "12" }
+              { "field": "cartProductId", "method": "in", "value": "{{:cartProductIds}}" }
             ],
             "response": {
               "_all_": "",
