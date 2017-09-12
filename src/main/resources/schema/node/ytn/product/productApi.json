@@ -43,5 +43,32 @@
         {"field" : "modelName", "method" : "matchingShould", "value" : "*{{:searchValue}}*" }
       ]
     }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "product",
+    "apiId" : "searchFilterList",
+    "apiName" : "카테고리별 상세 검색코드 리스트",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "category",
+      "query" : [
+        {"field" : "categoryId", "method" : "matching", "value" : "{{:categoryId}}" }
+      ],
+      "response": {
+        "categoryId": "",
+        "name": "",
+        "searchFilterIds": "",
+        "searchFilter": {
+          "typeId": "searchFilter",
+          "query" : [
+            {"field" : "searchFilter", "method" : "matching", "value" : "{{:searchFilterIds}}" },
+            { "includeReferenced": true }
+          ]
+        }
+      }
+    }
   }
 ]
