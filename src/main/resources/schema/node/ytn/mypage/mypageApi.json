@@ -8,36 +8,33 @@
     "typeId": "apiConfig",
     "category": "mypage",
     "apiId": "writableReview",
-    "apiName": "작성가능한 리뷰 (select response 붙일예정)",
+    "apiName": "작성가능한 리뷰",
     "method": "GET",
     "parameters": [
     ],
-    "config": {
-      "items": {
-        "select" : {
-          "ds" : "ytnDevDb",
-          "resultType" : "list",
-          "sql" : "select productId as product from orderProduct"
-        },
-        "response" :{
-          "parent" : {"propertyType" : "productOption.productId", "field" : "product", "referenceView": true}
-        }
-      }
+    "config" : {
+      "typeId": "writableReview",
+      "query" : [
+        {"field" : "memberNo", "method" : "matching", "value" : "{{:memberNo}}" },
+        {"includeReferenced" : false, "referenceView" : "productId, baseOptionItemId"},
+        {"sorting" : "orderCreated desc", "pageSize": "{{:pageSize}}", "page": "{{:page}}"}
+      ]
     }
   },
   {
-    "typeId" : "apiConfig",
-    "category" : "mypage",
-    "apiId" : "recentlyViewedProduct",
-    "apiName" : "최근 본 상품",
-    "method" : "GET",
-    "parameters" : [
+    "typeId": "apiConfig",
+    "category": "mypage",
+    "apiId": "writtenReview",
+    "apiName": "작성한 리뷰",
+    "method": "GET",
+    "parameters": [
     ],
     "config" : {
-      "typeId": "product",
+      "typeId": "review",
       "query" : [
-        {"field" : "productId", "method" : "matching", "value" : "{{:productIds}}" },
-        {"includeReferenced" : false, "referenceView" : "orderId"}
+        {"field" : "memberNo", "method" : "matching", "value" : "{{:memberNo}}" },
+        {"includeReferenced" : false, "referenceView" : "orderProductId,productId"},
+        {"sorting" : "orderId desc", "pageSize": "{{:pageSize}}", "page": "{{:page}}"}
       ]
     }
   }

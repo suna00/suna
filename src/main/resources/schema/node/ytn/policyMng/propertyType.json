@@ -85,17 +85,27 @@
     "tid": "commonCode",
     "pid": "commonCodeStatus",
     "propertyTypeName": "사용여부",
-    "valueType": "REFERENCE",
+    "valueType": "CODE",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
-    "analyzer": "code",
-    "referenceType": "commonCode",
-    "referenceValue": "code",
-    "codeFilter": "useYn",
-    "defaultValue": ""
+    "analyzer": "",
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": "",
+    "code": [
+      {
+        "value": "y",
+        "label": "사용"
+      },
+      {
+        "value": "n",
+        "label": "미사용"
+      }
+    ]
   },
   {
     "typeId": "propertyType",

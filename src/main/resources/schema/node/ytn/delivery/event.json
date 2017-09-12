@@ -1,0 +1,18 @@
+[
+  {
+    "typeId": "event",
+    "tid": "myDeliveryAddress",
+    "event": "setData",
+    "noneExecute": true,
+    "eventName": "기본배송지"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "myDeliveryAddress>setData",
+    "action": "setMyDeliveryAddress",
+    "actionName": "기본배송지 등록/수정 ",
+    "actionType": "service",
+    "actionBody": "mypageService.setMyDeliveryAddress",
+    "order": 1
+  }
+]

@@ -1704,6 +1704,23 @@
   {
     "typeId": "propertyType",
     "tid": "review",
+    "pid": "productId",
+    "propertyTypeName": "상품ID",
+    "valueType": "REFERENCE",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "product",
+    "referenceValue": "productId",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "review",
     "pid": "memberNo",
     "propertyTypeName": "회원번호",
     "valueType": "REFERENCE",
