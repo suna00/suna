@@ -38,16 +38,22 @@ public class ApiReadContext extends ReadContext{
 
             if(key.equals("id")){
                 readContext.id = (String) ContextUtils.getValue(config.get(key), data) ;
-            }else if(key.equals("response")){
-                ContextUtils.makeApiResponse((Map<String, Object>) config.get(key), readContext);
-            }else if(config.get(key) != null){
-                ContextUtils.makeContextConfig(readContext, key, config.get(key).toString());
-            }else if(key.equals("resultType")){
-                readContext.resultType = ResultField.ResultType.valueOf(config.get("resultType").toString().toUpperCase());
+            }else {
+                makeApiContext(config, readContext, key);
             }
         }
 
         return readContext;
+    }
+
+    protected static void makeApiContext(Map<String, Object> config, ApiReadContext readContext, String key) {
+        if(key.equals("response")){
+            ContextUtils.makeApiResponse((Map<String, Object>) config.get(key), readContext);
+        }else if(config.get(key) != null){
+            ContextUtils.makeContextConfig(readContext, key, config.get(key).toString());
+        }else if(key.equals("resultType")){
+            readContext.resultType = ResultField.ResultType.valueOf(config.get("resultType").toString().toUpperCase());
+        }
     }
 
 

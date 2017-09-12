@@ -115,6 +115,15 @@ public class ApiContext {
             addResultData(node.clone());
 
             return readContext.makeResult() ;
+        }else if(ctxRootConfig.containsKey("ids")){
+            ApiReadsContext readsContext = ApiReadsContext.makeContextFromConfig(ctxRootConfig, data) ;
+            setApiResultFormat(readsContext);
+
+            QueryResult queryResult = readsContext.makeQueryResult() ;
+
+            addResultData(readsContext.getResult());
+
+            return queryResult ;
         }
         return null ;
     }
