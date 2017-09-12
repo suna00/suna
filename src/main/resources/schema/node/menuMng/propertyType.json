@@ -256,6 +256,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "defaultValue": "[{\"pageName\": \"목록\",\"pageUrl\": \"list\"},{\"pageName\": \"등록\",\"pageUrl\": \"createForm\"},{\"pageName\": \"수정\",\"pageUrl\": \"updateForm\"},{\"pageName\": \"상세\",\"pageUrl\": \"view\"}]",
     "options": "{\"schema\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"pageName\":{\"type\":\"string\"},\"pageUrl\":{\"type\":\"string\"}},\"required\":[\"pageName\",\"pageUrl\"],\"collapsed\":true}}}"
   },
   {

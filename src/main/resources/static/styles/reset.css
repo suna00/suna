@@ -1,0 +1,186 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 1em;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+button {
+    font-size: 1em;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+
+/* HTML5 display-role reset for older browsers */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+ul {
+    list-style: none;
+}
+
+table {
+    /*border-collapse: collapse;*/
+    border-spacing: 0;
+    border-top:2px solid #999;
+}
+
+html{overflow-x:hidden;}
+body{font-weight:400;font-family:'Noto Sans KR', sans-serif;font-size:13px;color:#666666;letter-spacing:-1px;}
+*, *:before, *:after{-webkit-box-sizing:border-box;box-sizing:border-box;}
+a, a:active, a:visited, a:link, a:hover{text-decoration:none;color:#666666;}
+h1, h2, h3, h4, h5, h6{font-weight:700;font-family:inherit;}
+h1{font-size:33px;}
+h2{font-size:30px;}
+h3{font-size:22px;}
+h4{font-size:16px;}
+h5{font-size:14px;}
+h6{font-size:12px;}
+
+/* skip navigation */
+.sknavi{z-index: 1000;top: -500px;}
+.sknavi:active, .sknavi:focus {top: 0;display: block;width: 100%;text-align: center;font-weight: 600;background-color: #f7f7f7;text-decoration: none;height: 40px;line-height: 40px;color: #000;font-size: 15px;border-bottom: 1px solid #ddd;z-index: 10000;}
+.sknavi .skip {top: -9999px;}
+
+/* table */
+table caption{visibility:none;width:0;height:0;font-size:0;line-height:0;text-indent:-9999px;}
+table td.center{text-align:center;}
+table td.right, table td.price{text-align:right;}
+table td.left{text-align:left;}
+
+/* (in)visible element */
+.blind, .sknavi, .skip, legend{position:absolute;}
+legend, .blind{top:-9999px;left:-9999px;}
+
+
+
+/* common classes */
+.fl, .float_left, .f_left, .f_lft{float:left;}
+.fr, .float_right, .f_right, .f_rgt{float:right;}
+.hidden, .hide{display:none;visibility:hidden;}
+.blk, .block{display:block;}
+.in_blk, .in_block, .inline_block{display:inline-block;}
+.align_center, .txt_cen, .txt_center{text-align:center;}
+.align_left, .txt_lft, .txt_left, .align_l{text-align:left;}
+.align_right, .txt_rgt, .txt_right, .align_r{text-align:right;}
+.border_none, .brd_none, .no_border{border:none;}
+.no_padding{padding:0;}
+.no_margin{margin:0;}
+.ellipsis{overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+.pointer, a[href], button, input[type="submit"], input[type="button"], input[type="image"], label, label[for], select{cursor:pointer;}
+.clear, .clearfix{display:block;}
+.clear:after, .clearfix:after{content:"";display:block;height:0;clear:both;visibility:hidden;zoom:1;}
+.both, .clearboth{clear:both;}
+
+.no_result{border-top:2px solid #222222;padding:40px 0;border-bottom:1px solid #e5e5e5;}
+.no_result p{font-size:14px;text-align:center;}
+.error_msg{clear:both;color:#eb0000;font-size:12px;padding-top:5px;}
+span.em, strong.em{color:#009fe3;}
+span.em2, strong.em2{color:#eb0000;}
+p.sml{font-size:12px !important;}
+.v_top{vertical-align:top !important;padding-top:10px !important;}
+
+
+ul.dot_list li{padding-left:10px;background:url("../image/common/bg_gray_dot.gif") 0 11px no-repeat;color:#888;font-size:12px;padding-top:2px;padding-bottom:2px;}
+ul.dot_list li a.btn{margin-left:10px;padding-top:1px;padding-bottom:2px;margin-top:-2px;}
+ul.dot_list li a.btn span{color:#333;}

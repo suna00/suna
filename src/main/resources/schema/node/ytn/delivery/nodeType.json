@@ -10,6 +10,15 @@
   {
     "parentId": "deliveryPath",
     "typeId": "nodeType",
+    "tid": "cartDeliveryPrice",
+    "typeName": "장바구니 배송비",
+    "tableName": "ytnDevDb#cartDeliveryPrice",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "deliveryPath",
+    "typeId": "nodeType",
     "tid": "delivery",
     "typeName": "배송 정보",
     "tableName": "ytnDevDb#delivery",

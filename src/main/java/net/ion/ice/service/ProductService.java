@@ -1,6 +1,7 @@
 package net.ion.ice.service;
 
 import net.ion.ice.core.context.ExecuteContext;
+import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
@@ -15,6 +16,7 @@ import java.util.*;
 
 @Service("productService")
 public class ProductService {
+    public static final String CREATE = "create";
     public static final String UPDATE = "update";
     public static final String DELETE = "delete";
     public static final String SAVE = "save";
@@ -22,6 +24,8 @@ public class ProductService {
 
     @Autowired
     private NodeService nodeService ;
+    @Autowired
+    private NodeBindingService nodeBindingService ;
 
     public void make(ExecuteContext context) {
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
@@ -33,9 +37,11 @@ public class ProductService {
             productOptionItems(data, baseOptions, "baseOption");
             productOptionItems(data, addOptions, "addOption");
             productAttribute(data);
+            productToCategoryMap(data);
+            productSearchFilter(data);
 
         } catch (Exception e){
-
+            e.printStackTrace();
         }
     }
 
@@ -152,11 +158,54 @@ public class ProductService {
             list.add(node);
         }
 
+//        nodes 검색에 문제가 있는듯
 //        List<Node> nodes = NodeUtils.getNodeList("productAttribute", "productId_matching="+data.get("productId")+"&productAttributeCategoryId_notMatching="+data.get("productAttributeCategoryId").toString());
 //        for(Node node : nodes){
 //            nodeService.executeNode(node, "productAttribute", DELETE);
 //        }
 
+
+        return list;
+    }
+
+    private List<Node> productToCategoryMap(Map<String, Object> data) throws IOException {
+        List<Node> list = new ArrayList<>();
+        if(data.get("productToCategoryMap") == null) return list;
+
+        List<Map<String, Object>> referenced = nodeBindingService.list("productToCategoryMap", "productId_matching="+data.get("productId").toString());
+        List<Map<String, Object>> maps = JsonUtils.parsingJsonToList(data.get("productToCategoryMap").toString());
+        for(Map<String, Object> map : referenced){
+            if(!maps.contains(map)){
+                nodeService.executeNode(map, "productToCategoryMap", DELETE);
+            }
+        }
+        for(Map<String, Object> map : maps){
+            if(!referenced.contains(map)){
+                map = setMap(data, map);
+                nodeService.executeNode(map, "productToCategoryMap", CREATE);
+            }
+        }
+
+        return list;
+    }
+
+    private List<Node> productSearchFilter(Map<String, Object> data) throws IOException {
+        List<Node> list = new ArrayList<>();
+        if(data.get("productSearchFilter") == null) return list;
+
+        List<Map<String, Object>> referenced = nodeBindingService.list("productSearchFilter", "productId_matching="+data.get("productId").toString());
+        List<Map<String, Object>> maps = JsonUtils.parsingJsonToList(data.get("productSearchFilter").toString());
+        for(Map<String, Object> map : referenced){
+            if(!maps.contains(map)){
+                nodeService.executeNode(map, "productSearchFilter", DELETE);
+            }
+        }
+        for(Map<String, Object> map : maps){
+            if(!referenced.contains(map)){
+                map = setMap(data, map);
+                nodeService.executeNode(map, "productSearchFilter", CREATE);
+            }
+        }
 
         return list;
     }

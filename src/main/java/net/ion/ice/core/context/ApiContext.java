@@ -131,7 +131,7 @@ public class ApiContext {
 
 
     public Object makeApiResult() {
-        if(config.containsKey("typeId") || config.containsKey("apiType")){
+        if(config.containsKey("typeId") || config.containsKey("apiType") || config.containsKey("select")){
             if(this.commonResultFieldList != null && this.commonResultFieldList.size() > 0){
                 QueryResult queryResult = getCommonResult();
                 queryResult.putAll(makeSubApiReuslt(config));
@@ -154,7 +154,7 @@ public class ApiContext {
                 }else{
                     Map<String, Object> subQueryResult = makeSubApiReuslt(ctxRootConfig) ;
                     if(subQueryResult != null) {
-                        queryResult.put(key, makeSubApiReuslt(ctxRootConfig));
+                        queryResult.put(key, subQueryResult);
                     }
                 }
             }

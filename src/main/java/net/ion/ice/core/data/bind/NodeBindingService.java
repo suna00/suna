@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import net.ion.ice.core.context.DataQueryContext;
 import net.ion.ice.core.context.DataReadContext;
 import net.ion.ice.core.context.ExecuteContext;
+import net.ion.ice.core.context.QueryContext;
 import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.data.DBUtils;
 import net.ion.ice.core.node.*;
@@ -134,6 +135,13 @@ public class NodeBindingService {
         DataQueryContext queryContext = DataQueryContext.createQueryContextFromParameter(nodeBindingInfo, request.getParameterMap(), nodeType);
         QueryResult queryResult = queryContext.makeQueryResult();
         return queryResult;
+    }
+
+    public List<Map<String, Object>> list(String tid, String searchText) {
+        NodeType nodeType = NodeUtils.getNodeType(tid);
+        QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, nodeType);
+        NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(tid);
+        return nodeBindingInfo.list(queryContext);
     }
 
     public void delete(Map<String, String[]> parameterMap, String typeId) {

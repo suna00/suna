@@ -326,6 +326,27 @@
         }
       }
     }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "selectResponseSample",
+    "apiName" : "Select Response Sample",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "select" : {
+        "ds" : "mariaDb",
+        "resultType" : "list",
+        "sql" : "select * from testComment "
+      },
+      "response" :{
+        "id": "commentId",
+        "userId" : "",
+        "parent" : {"propertyType" : "testComment.itemId", "field" : "itemId", "referenceView": true}
+      }
+    }
   }
 
 ]

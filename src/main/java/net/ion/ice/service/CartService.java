@@ -29,6 +29,8 @@ public class CartService {
 
     @Autowired
     private NodeService nodeService ;
+    @Autowired
+    private NodeBindingService nodeBindingService ;
 
     public void addCart(ExecuteContext context) throws IOException {
         Map<String, Object> data = context.getData();
@@ -49,7 +51,7 @@ public class CartService {
     }
 
     private void mergeList(Map<String, Object> data, Object cartId, String tid) throws IOException {
-        List<Map<String, Object>> referenced = getList(tid, "cartId_matching="+cartId);
+        List<Map<String, Object>> referenced = nodeBindingService.list(tid, "cartId_matching="+cartId);
         List<Map<String, Object>> maps = JsonUtils.parsingJsonToList(data.get(tid).toString());
 
         boolean exist = false;
@@ -68,13 +70,13 @@ public class CartService {
         }
 
     }
-
-//    "nodeType=data" getList
-    private List<Map<String, Object>> getList(String tid, String searchText) {
-        NodeType nodeType = NodeUtils.getNodeType(tid);
-        QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, nodeType);
-        return getNodeBindingService().getNodeBindingInfo(nodeType.getTypeId()).list(queryContext);
-    }
+//
+////    "nodeType=data" getList
+//    private List<Map<String, Object>> getList(String tid, String searchText) {
+//        NodeType nodeType = NodeUtils.getNodeType(tid);
+//        QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, nodeType);
+//        return getNodeBindingService().getNodeBindingInfo(nodeType.getTypeId()).list(queryContext);
+//    }
 
     private void newCart(Map<String, Object> data) throws IOException {
         Node node = (Node) nodeService.executeNode(data, "cart", CREATE);

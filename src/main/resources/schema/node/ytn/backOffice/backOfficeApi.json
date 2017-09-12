@@ -50,7 +50,7 @@
         "select" : {
           "ds" : "ytnDevDb",
           "resultType" : "read",
-          "sql" : "select a.smsCertificationId, a.lastCertCode, a.certStatus, a.certRequestDate, a.certExpireDate, (certStatus = 'request' and certExpireDate > now() and lastCertCode = @{certCode}) as available from ( select smsCertificationId , certCode as lastCertCode , certStatus , certRequestDate , date_add(certRequestDate, interval +3 MINUTE) as certExpireDate from smscertification where cellphone = @{cellphone} order by smsCertificationId desc limit 1 ) a "
+          "sql" : "SELECT smsCertificationId, certCode, certStatus, certRequestDate, date_add(certRequestDate, INTERVAL +3 MINUTE) AS certExpireDate, (certStatus = 'request' AND date_add(certRequestDate, INTERVAL +3 MINUTE) > now() AND certCode = @{certCode}) AS available FROM smscertification WHERE certCode = @{certCode} limit 1"
         }
       },
       "successCertification" : {
@@ -90,7 +90,6 @@
         "typeId": "emailCertification",
         "event": "create",
         "data": {
-          "emailCertificationId": "{{:emailCertificationId}}",
           "name": "이메일 인증요청",
           "emailCertificationType": "{{:emailCertificationType}}",
           "adminId": "{{:adminId}}",
@@ -116,7 +115,7 @@
         "select" : {
           "ds" : "ytnDevDb",
           "resultType" : "read",
-          "sql" : "SELECT a.emailcertificationId, a.lastCertCode, a.certStatus, a.certRequestDate, a.certExpireDate, (certStatus = 'request' AND certExpireDate > now() AND lastCertCode = @{certCode}) AS available FROM (SELECT emailcertificationId, certCode AS lastCertCode, certStatus, certRequestDate, date_add(certRequestDate, INTERVAL +3 MINUTE) AS certExpireDate FROM emailcertification WHERE email = @{email} ORDER BY emailcertificationId DESC LIMIT 1) a  "
+          "sql" : "SELECT emailcertificationId, certCode certStatus, certRequestDate, date_add(certRequestDate, INTERVAL +3 MINUTE) AS certExpireDate, (certStatus = 'request' AND date_add(certRequestDate, INTERVAL +3 MINUTE) > now() AND certCode = @{certCode}) AS available FROM emailcertification WHERE certCode = @{certCode}  limit 1"
         }
       },
       "successCertification" : {

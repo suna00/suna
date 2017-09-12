@@ -17,9 +17,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.URL;
 import java.util.Date;
 import java.util.UUID;
 
@@ -54,7 +51,7 @@ public class DefaultFileRepository implements FileRepository{
     }
 
     @Override
-    public String saveMutipartFile(PropertyType pt, String id, MultipartFile multipartFile ) {
+    public FileValue saveMutipartFile(PropertyType pt, String id, MultipartFile multipartFile ) {
         String savePath = pt.getTid() + "/" +  pt.getPid() + "/" + DateFormatUtils.format(new Date(), "yyyyMM/dd/") + UUID.randomUUID() + "." + StringUtils.substringAfterLast(multipartFile.getOriginalFilename(), ".");
         File saveFile = new File(fileRoot, savePath) ;
         try {
@@ -67,7 +64,7 @@ public class DefaultFileRepository implements FileRepository{
             throw new RuntimeException("FILE SAVE ERROR : " + e.getMessage()) ;
         }
 
-        return savePath ;
+        return new FileValue(pt, id, multipartFile, savePath) ;
     }
 
     @Override
@@ -76,9 +73,19 @@ public class DefaultFileRepository implements FileRepository{
         return new FileSystemResource(file);
     }
 
+
     @Override
-    public FileValue getClasspathFileInfo(PropertyType pt, String id, String value) {
-        Resource res = ApplicationContextManager.getResource(value) ;
-        return new FileValue(res, value) ;
+    public FileValue saveResourceFile(PropertyType pt, String id, String path) {
+        Resource res = ApplicationContextManager.getResource(path) ;
+
+        String savePath = pt.getTid() + "/" +  pt.getPid() + "/" + DateFormatUtils.format(new Date(), "yyyyMM/dd/") + UUID.randomUUID() + "." + StringUtils.substringAfterLast(res.getFilename(), ".");
+        File saveFile = new File(fileRoot, savePath) ;
+        try {
+            org.apache.commons.io.FileUtils.copyToFile(res.getInputStream(), saveFile) ;
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("FILE SAVE ERROR : " + e.getMessage()) ;
+        }
+        return new FileValue(pt, res, savePath);
     }
 }
