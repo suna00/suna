@@ -1,83 +1,299 @@
 [
   {
     "typeId": "sersVoteItemInfo",
-    "sersVoteItemSeq": 83901238,
+    "sersVoteItemSeq": 12938129,
     "itemDivCd": "1",
-    "voteSeq": 3490391,
-    "sersItemVoteSeq": 45034903,
-    "banrSeq": 0,
+    "voteSeq": 300001,
+    "sersItemVoteSeq": 200006,
+    "banrSeq": null,
     "sortOdrg": 1
   },
   {
     "typeId": "sersVoteItemInfo",
-    "sersVoteItemSeq": 83901239,
+    "sersVoteItemSeq": 12938130,
     "itemDivCd": "1",
-    "voteSeq": 3490391,
-    "sersItemVoteSeq": 0,
-    "banrSeq": 102,
+    "voteSeq": 300001,
+    "sersItemVoteSeq": 200007,
+    "banrSeq": null,
     "sortOdrg": 2
   },
   {
     "typeId": "sersVoteItemInfo",
-    "sersVoteItemSeq": 83901240,
-    "itemDivCd": "1",
-    "voteSeq": 3490391,
-    "sersItemVoteSeq": 394194921,
-    "banrSeq": 0,
+    "sersVoteItemSeq": 12938131,
+    "itemDivCd": "2",
+    "voteSeq": 300001,
+    "sersItemVoteSeq": null,
+    "banrSeq": 104,
     "sortOdrg": 3
   },
   {
     "typeId": "sersVoteItemInfo",
-    "sersVoteItemSeq": 83901241,
+    "sersVoteItemSeq": 12938132,
     "itemDivCd": "2",
-    "voteSeq": 24321311,
-    "sersItemVoteSeq": 0,
-    "banrSeq": 103,
+    "voteSeq": 300002,
+    "sersItemVoteSeq": null,
+    "banrSeq": 112,
     "sortOdrg": 1
   },
   {
     "typeId": "sersVoteItemInfo",
-    "sersVoteItemSeq": 83901242,
-    "itemDivCd": "2",
-    "voteSeq": 24321311,
-    "sersItemVoteSeq": 45034903,
-    "banrSeq": 0,
+    "sersVoteItemSeq": 12938133,
+    "itemDivCd": "1",
+    "voteSeq": 300002,
+    "sersItemVoteSeq": 200009,
+    "banrSeq": null,
     "sortOdrg": 2
   },
   {
     "typeId": "sersVoteItemInfo",
-    "sersVoteItemSeq": 83901243,
+    "sersVoteItemSeq": 12938134,
     "itemDivCd": "2",
-    "voteSeq": 24321311,
-    "sersItemVoteSeq": 394194921,
-    "banrSeq": 0,
+    "voteSeq": 300002,
+    "sersItemVoteSeq": null,
+    "banrSeq": 119,
     "sortOdrg": 3
   },
   {
     "typeId": "sersVoteItemInfo",
-    "sersVoteItemSeq": 83901244,
+    "sersVoteItemSeq": 12938135,
     "itemDivCd": "1",
-    "voteSeq": 24321311,
-    "sersItemVoteSeq": 13490391,
-    "banrSeq": 0,
+    "voteSeq": 300002,
+    "sersItemVoteSeq": 200010,
+    "banrSeq": null,
     "sortOdrg": 4
   },
   {
     "typeId": "sersVoteItemInfo",
-    "sersVoteItemSeq": 83901245,
-    "itemDivCd": "1",
-    "voteSeq": 24321311,
-    "sersItemVoteSeq": 0,
-    "banrSeq": 102,
+    "sersVoteItemSeq": 12938136,
+    "itemDivCd": "2",
+    "voteSeq": 300002,
+    "sersItemVoteSeq": null,
+    "banrSeq": 104,
     "sortOdrg": 5
   },
   {
     "typeId": "sersVoteItemInfo",
-    "sersVoteItemSeq": 83901246,
+    "sersVoteItemSeq": 12938137,
     "itemDivCd": "1",
-    "voteSeq": 24321311,
-    "sersItemVoteSeq": 29194924,
-    "banrSeq": 0,
+    "voteSeq": 300003,
+    "sersItemVoteSeq": 200008,
+    "banrSeq": null,
+    "sortOdrg": 1
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 12938138,
+    "itemDivCd": "2",
+    "voteSeq": 300003,
+    "sersItemVoteSeq": null,
+    "banrSeq": 112,
+    "sortOdrg": 2
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 12938139,
+    "itemDivCd": "1",
+    "voteSeq": 300003,
+    "sersItemVoteSeq": 200011,
+    "banrSeq": null,
+    "sortOdrg": 3
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 12938140,
+    "itemDivCd": "1",
+    "voteSeq": 300003,
+    "sersItemVoteSeq": 200013,
+    "banrSeq": null,
+    "sortOdrg": 4
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 12938141,
+    "itemDivCd": "1",
+    "voteSeq": 300004,
+    "sersItemVoteSeq": 200014,
+    "banrSeq": null,
+    "sortOdrg": 1
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 12938142,
+    "itemDivCd": "1",
+    "voteSeq": 300004,
+    "sersItemVoteSeq": 200015,
+    "banrSeq": null,
+    "sortOdrg": 2
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 12938143,
+    "itemDivCd": "2",
+    "voteSeq": 300004,
+    "sersItemVoteSeq": null,
+    "banrSeq": 119,
+    "sortOdrg": 3
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 12938144,
+    "itemDivCd": "2",
+    "voteSeq": 300004,
+    "sersItemVoteSeq": null,
+    "banrSeq": 104,
+    "sortOdrg": 4
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 12938145,
+    "itemDivCd": "2",
+    "voteSeq": 300004,
+    "sersItemVoteSeq": null,
+    "banrSeq": 112,
+    "sortOdrg": 5
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 12938146,
+    "itemDivCd": "1",
+    "voteSeq": 300004,
+    "sersItemVoteSeq": 200009,
+    "banrSeq": null,
     "sortOdrg": 6
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 12938147,
+    "itemDivCd": "1",
+    "voteSeq": 300004,
+    "sersItemVoteSeq": 200010,
+    "banrSeq": null,
+    "sortOdrg": 7
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 12938148,
+    "itemDivCd": "1",
+    "voteSeq": 300005,
+    "sersItemVoteSeq": 200006,
+    "banrSeq": null,
+    "sortOdrg": 1
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 12938149,
+    "itemDivCd": "1",
+    "voteSeq": 300005,
+    "sersItemVoteSeq": 200007,
+    "banrSeq": null,
+    "sortOdrg": 2
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 12938150,
+    "itemDivCd": "1",
+    "voteSeq": 300005,
+    "sersItemVoteSeq": 200008,
+    "banrSeq": null,
+    "sortOdrg": 3
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 12938151,
+    "itemDivCd": "1",
+    "voteSeq": 300005,
+    "sersItemVoteSeq": 200009,
+    "banrSeq": null,
+    "sortOdrg": 4
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 12938152,
+    "itemDivCd": "2",
+    "voteSeq": 300005,
+    "sersItemVoteSeq": null,
+    "banrSeq": 112,
+    "sortOdrg": 5
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 12938153,
+    "itemDivCd": "1",
+    "voteSeq": 300005,
+    "sersItemVoteSeq": 200010,
+    "banrSeq": null,
+    "sortOdrg": 6
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 12938154,
+    "itemDivCd": "1",
+    "voteSeq": 300005,
+    "sersItemVoteSeq": 200011,
+    "banrSeq": null,
+    "sortOdrg": 7
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 12938155,
+    "itemDivCd": "1",
+    "voteSeq": 300005,
+    "sersItemVoteSeq": 200012,
+    "banrSeq": null,
+    "sortOdrg": 8
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 12938156,
+    "itemDivCd": "2",
+    "voteSeq": 300005,
+    "sersItemVoteSeq": null,
+    "banrSeq": 119,
+    "sortOdrg": 9
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 12938157,
+    "itemDivCd": "1",
+    "voteSeq": 300005,
+    "sersItemVoteSeq": 200013,
+    "banrSeq": null,
+    "sortOdrg": 10
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 12938158,
+    "itemDivCd": "2",
+    "voteSeq": 300005,
+    "sersItemVoteSeq": null,
+    "banrSeq": 104,
+    "sortOdrg": 11
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 12938159,
+    "itemDivCd": "1",
+    "voteSeq": 300005,
+    "sersItemVoteSeq": 200014,
+    "banrSeq": null,
+    "sortOdrg": 12
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 12938160,
+    "itemDivCd": "1",
+    "voteSeq": 300005,
+    "sersItemVoteSeq": 200015,
+    "banrSeq": null,
+    "sortOdrg": 13
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 12938161,
+    "itemDivCd": "1",
+    "voteSeq": 300005,
+    "sersItemVoteSeq": 200015,
+    "banrSeq": null,
+    "sortOdrg": 14
   }
 ]
