@@ -6,16 +6,16 @@
     "mainDivCd": "1",
     "svcDvcDivCd": "1",
     "showYn": true,
-    "showLoCd": "2"
+    "showLoCd": "1"
   },
   {
     "typeId": "mainBasInfo",
     "mainSeq": 101,
     "mainNm": "메인 정보2",
-    "mainDivCd": "1",
+    "mainDivCd": "2",
     "svcDvcDivCd": "2",
-    "showYn": true,
-    "showLoCd": "3"
+    "showYn": false,
+    "showLoCd": "2"
   },
   {
     "typeId": "mainBasInfo",
@@ -23,26 +23,26 @@
     "mainNm": "메인 정보3",
     "mainDivCd": "1",
     "svcDvcDivCd": "3",
-    "showYn": true,
-    "showLoCd": "4"
+    "showYn": false,
+    "showLoCd": "1"
   },
   {
     "typeId": "mainBasInfo",
     "mainSeq": 103,
     "mainNm": "메인 정보4",
-    "mainDivCd": "1",
+    "mainDivCd": "2",
     "svcDvcDivCd": "4",
-    "showYn": true,
+    "showYn": false,
     "showLoCd": "2"
   },
   {
     "typeId": "mainBasInfo",
     "mainSeq": 104,
     "mainNm": "서브메인1",
-    "mainDivCd": "2",
+    "mainDivCd": "1",
     "svcDvcDivCd": "1",
     "showYn": true,
-    "showLoCd": "3"
+    "showLoCd": "2"
   },
   {
     "typeId": "mainBasInfo",
@@ -51,15 +51,15 @@
     "mainDivCd": "2",
     "svcDvcDivCd": "2",
     "showYn": true,
-    "showLoCd": "4"
+    "showLoCd": "3"
   },
   {
     "typeId": "mainBasInfo",
     "mainSeq": 106,
     "mainNm": "서브메인3",
-    "mainDivCd": "2",
+    "mainDivCd": "1",
     "svcDvcDivCd": "3",
     "showYn": true,
-    "showLoCd": "2"
+    "showLoCd": "4"
   }
 ]
