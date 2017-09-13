@@ -2,86 +2,86 @@
   {
     "typeId": "productOptionItem",
     "productOptionItemId": 10001,
-    "productOptionCodes": "1001,1003",
+    "productOptionCodeCase": "오리지널:500ml",
     "productId": "3",
     "name": "오리지널 500ml",
-    "sortOrder": 1,
     "addPrice": 0,
     "supplyPrice": 0,
     "stockQuantity": 999,
-    "productOptionItemStatus": "y"
+    "productOptionItemStatus": "y",
+    "productOptionType": "mix"
   },
   {
     "typeId": "productOptionItem",
     "productOptionItemId": 10002,
-    "productOptionCodes": "1001,1004",
+    "productOptionCodeCase": "오리지널:1.5l",
     "productId": "3",
     "name": "오리지널 1.5l",
-    "sortOrder": 2,
     "addPrice": 500,
     "supplyPrice": 0,
     "stockQuantity": 999,
-    "productOptionItemStatus": "y"
+    "productOptionItemStatus": "y",
+    "productOptionType": "mix"
   },
   {
     "typeId": "productOptionItem",
     "productOptionItemId": 10003,
-    "productOptionCodes": "1002,1003",
+    "productOptionCodeCase": "무설탕:500ml",
     "productId": "3",
     "name": "무설탕 500ml",
-    "sortOrder": 3,
     "addPrice": 100,
     "supplyPrice": 0,
     "stockQuantity": 999,
-    "productOptionItemStatus": "y"
+    "productOptionItemStatus": "y",
+    "productOptionType": "mix"
   },
   {
     "typeId": "productOptionItem",
     "productOptionItemId": 10004,
-    "productOptionCodes": "1002,1004",
+    "productOptionCodeCase": "무설탕:1.5l",
     "productId": "3",
     "name": "무설탕 1.5l",
-    "sortOrder": 4,
     "addPrice": 600,
     "supplyPrice": 0,
     "stockQuantity": 999,
-    "productOptionItemStatus": "y"
+    "productOptionItemStatus": "y",
+    "productOptionType": "mix"
   },
   {
     "typeId": "productOptionItem",
     "productOptionItemId": 10005,
-    "productOptionCodes": "1005",
+    "productOptionCodeCase": "기본",
     "productId": "3",
     "name": "병따개",
-    "sortOrder": 1,
     "addPrice": 1500,
     "supplyPrice": 1500,
     "stockQuantity": 999,
-    "productOptionItemStatus": "y"
+    "productOptionItemStatus": "y",
+    "productOptionType": "add"
   },
   {
     "typeId": "productOptionItem",
     "productOptionItemId": 10006,
-    "productOptionCodes": "1006",
+    "productOptionCodeCase": "기본",
     "productId": "3",
     "name": "병뚜껑",
-    "sortOrder": 2,
     "addPrice": 500,
     "supplyPrice": 500,
     "stockQuantity": 999,
-    "productOptionItemStatus": "y"
+    "productOptionItemStatus": "y",
+    "productOptionType": "add"
   },
   {
     "typeId": "productOptionItem",
     "productOptionItemId": 10007,
-    "productOptionCodeCase": null,
+    "productOptionCodeCase": "기본",
     "productId": "3",
     "name": "컵홀더",
-    "sortOrder": 3,
     "addPrice": 2000,
     "supplyPrice": 2000,
     "stockQuantity": 999,
-    "productOptionItemStatus": "y"
+    "productOptionItemStatus": "y",
+    "productOptionType": "add"
   },
   {
     "typeId": "productOptionItem",
