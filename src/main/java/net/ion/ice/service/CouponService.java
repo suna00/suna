@@ -41,7 +41,7 @@ public class CouponService {
             return context;
         }
 
-        if("limitYn>limit".equals(couponType.getValue("createPeriodType"))){
+        if("createPeriodType>limit".equals(couponType.getValue("createPeriodType"))){
             LocalDateTime start = LocalDateTime.parse(couponType.getValue("createStartDate").toString(), formatter);
             LocalDateTime end = LocalDateTime.parse(couponType.getValue("createEndDate").toString(), formatter);
 
