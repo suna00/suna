@@ -57,7 +57,7 @@
     "pid": "contsId",
     "id": "compAtribInfo>contsId",
     "propertyTypeName": "컨텐츠 아이디",
-    "valueType": "REFERENCE",
+    "valueType": "REFERENCES",
     "required": false,
     "idable": false,
     "labelable": false,
