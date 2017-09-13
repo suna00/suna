@@ -33,6 +33,10 @@
       {
         "paramName": "searchKeyword",
         "required": false
+      },
+      {
+        "paramName": "progYn",
+        "required": false
       }
     ],
     "config": {
@@ -52,6 +56,21 @@
           "field": "findKywrd",
           "method": "matching",
           "value": "{{:searchKeyword}}"
+        },
+        {
+          "field": "pstngStDt",
+          "method": "below",
+          "value": "{{:conditionSysdate(progYn,true)}}"
+        },
+        {
+          "field": "pstngFnsDt",
+          "method": "above",
+          "value": "{{:conditionSysdate(progYn,true)}}"
+        },
+        {
+          "field": "pstngFnsDt",
+          "method": "under",
+          "value": "{{:conditionSysdate(progYn,false)}}"
         },
         {
           "field": "showYn",
