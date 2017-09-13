@@ -170,7 +170,7 @@ public class ApiSelectContext extends ReadContext{
                         if(resultField.getFieldOption().get("propertyType") != null){
                             String propertyType = (String) resultField.getFieldOption().get("propertyType");
                             NodeType _nodeType = NodeUtils.getNodeType(StringUtils.substringBefore(propertyType, ".")) ;
-                            itemResult.put(resultField.getFieldName(), NodeUtils.getResultValue(fieldContext, _nodeType.getPropertyType(StringUtils.substringAfter(propertyType, ".")), resultData));
+                            itemResult.put(resultField.getFieldName(), NodeUtils.getResultValue(fieldContext, _nodeType.getPropertyType(StringUtils.substringAfter(propertyType, ".")), resultData, getResultValue(resultData, fieldValue)));
                         }else {
                             itemResult.put(resultField.getFieldName(), getResultValue(resultData, fieldValue));
                         }
