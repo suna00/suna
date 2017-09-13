@@ -80,6 +80,16 @@
   },
   {
     "typeId": "datasource",
+    "datasourceId": "cjMig",
+    "profiles": "cj-dev",
+    "dsName": "Test DB",
+    "jdbcUrl": "jdbc:mysql://125.131.88.156:3306/ice2?useSSL=false",
+    "dbType": "mySql",
+    "username": "juneyoung",
+    "password": "1234"
+  }
+  ,{
+    "typeId": "datasource",
     "datasourceId": "cjDb",
     "profiles": "cj-dev01",
     "dsName": "Test DB",
