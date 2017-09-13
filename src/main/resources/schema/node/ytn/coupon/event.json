@@ -1,0 +1,18 @@
+[
+  {
+    "typeId": "event",
+    "tid": "couponType",
+    "event": "download",
+    "noneExecute": true,
+    "eventName": "쿠폰다운로드"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "couponType>download",
+    "action": "download",
+    "actionName": "쿠폰다운로드 ",
+    "actionType": "service",
+    "actionBody": "couponService.download",
+    "order": 1
+  }
+]
