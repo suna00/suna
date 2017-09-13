@@ -23,10 +23,21 @@ public class DBQuery {
 
         if (queryContext.getQueryTerms() != null && !queryContext.getQueryTerms().isEmpty()) {
             for (QueryTerm queryTerm : queryContext.getQueryTerms()) {
-                String query = String.format("%s %s ?", queryTerm.getQueryKey(), queryTerm.getMethodQuery());
-                String value = queryTerm.getQueryValue();
-                searchListQuery.add(query);
-                searchListValue.add(value);
+                if(queryTerm.getMethodQuery().equals("IN")){
+                    String[] values = queryTerm.getQueryValue().split(",");
+                    List<String> holder = new ArrayList<>();
+                    for(String value : values){
+                        holder.add("?");
+                        searchListValue.add(value);
+                    }
+                    String query = String.format("%s %s (%s)", queryTerm.getQueryKey(), queryTerm.getMethodQuery(), StringUtils.join(holder, ", "));
+                    searchListQuery.add(query);
+                }else{
+                    String query = String.format("%s %s ?", queryTerm.getQueryKey(), queryTerm.getMethodQuery());
+                    String value = queryTerm.getQueryValue();
+                    searchListQuery.add(query);
+                    searchListValue.add(value);
+                }
             }
 
             listParamSql = String.format("SELECT * FROM %s WHERE %s", tableName, StringUtils.join(searchListQuery.toArray(), " AND "));

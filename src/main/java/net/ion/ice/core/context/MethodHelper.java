@@ -200,6 +200,16 @@ public class MethodHelper {
                 String resultValue = makeIdValue(methodParams, data);
                 return resultValue;
             }
+            case "conditionSysdate" :{
+                if(value == null) return "" ;
+                String condition= methodParams[1];
+                if(StringUtils.isEmpty(methodParams[1])) condition =  "" ;
+                if(value.equals(condition)){
+                    return data.get("now").toString();
+                }else{
+                    return "";
+                }
+            }
 
             default :
                 methodStr = StringUtils.capitalize(methodStr) ;
