@@ -210,6 +210,13 @@ public class MethodHelper {
                     return "";
                 }
             }
+            case "getCommaItem" :{
+                if(value == null || StringUtils.isEmpty(value.toString())) return "" ;
+                String[] valueArrays = value.toString().split(",");
+                if(valueArrays.length == 0) return value.toString();
+                int paramInt = Integer.parseInt(methodParams[1]);
+                return valueArrays[paramInt] ;
+            }
 
             default :
                 methodStr = StringUtils.capitalize(methodStr) ;
