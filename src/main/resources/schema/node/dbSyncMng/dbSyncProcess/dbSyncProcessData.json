@@ -93,6 +93,7 @@
     , "targetNodeType": "musicVideoMulti"
     , "query": "SELECT mv_id as musicVideoId , lang_cd as langCd , mv_title as musicVideoNm , mv_subtitle as subName , mv_intro as musicVideoDesc , (SELECT YOUTUBE_URL FROM MT_MV_EMBED WHERE MV_ID = MMM.mv_id) as youtubeUrl , (SELECT TUDOU_URL FROM MT_MV_EMBED WHERE MV_ID = MMM.mv_id) as todouUrl , (SELECT GROUP_CONCAT(KEYWORD) FROM MT_MV_KEYWORD_META WHERE mv_id = MMM.mv_id) as findKywrd FROM MT_MV_META MMM LIMIT @{BIGINT.start}, @{BIGINT.unit}"
     , "onFail": "stop"
+    , "description" : "aa"
   }
 
 
