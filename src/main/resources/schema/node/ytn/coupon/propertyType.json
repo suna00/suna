@@ -717,6 +717,22 @@
   },
   {
     "typeId": "propertyType",
+    "tid": "couponType",
+    "pid": "referencedProductToCouponTypeMap",
+    "propertyTypeName": "referenced쿠폰매핑상품리스트",
+    "valueType": "REFERENCED",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": true,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "productToCouponTypeMap",
+    "referenceValue": "couponTypeId",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
     "tid": "productToCouponTypeMap",
     "pid": "productToCouponTypeMapId",
     "propertyTypeName": "ID",

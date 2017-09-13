@@ -1,0 +1,57 @@
+[
+  {
+    "typeId" : "apiCategory",
+    "id" : "coupon",
+    "categoryName" : "쿠폰 API"
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "coupon",
+    "apiId" : "downloadable",
+    "apiName" : "다운로드 가능한 쿠폰 리스트",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "categoryCoupons": {
+        "typeId": "couponType",
+        "query" : [
+          {"field" : "couponType", "method" : "matching", "value" : "category" },
+          {"field" : "categoryIds", "method" : "matching", "value" : "{{:categoryId}}" },
+          {"field" : "siteType", "method" : "matching", "value" : "{{:siteType}}" },
+          {"field" : "createPeriodType", "method" : "notMatching", "value" : "stop" },
+          {"field" : "createStartDate", "method" : "below", "value" : "{{:now}}" },
+          {"field" : "createEndDate", "method" : "above", "value" : "{{:now}}" }
+        ],
+        "response": {
+          "_all_": "",
+          "haveYn": {
+            "typeId": "coupon",
+            "query" : [
+              {"field" : "memberNo", "method" : "matching", "value" : "{{:memberNo}}" },
+              {"field" : "couponTypeId", "method" : "matching", "value" : "{{:couponTypeId}}" }
+            ]
+          }
+        }
+      },
+      "productCoupons": {
+        "typeId": "productToCouponTypeMap",
+        "query" : [
+          {"field" : "productId", "method" : "matching", "value" : "{{:productId}}" },
+          {"field" : "couponTypeId", "method" : "referenceJoin", "value" : "couponType_matching=product&siteType_matching={{:siteType}}&createPeriodType_notMatching=stop&createStartDate_below={{:now}}&createEndDate_above={{:now}}" },
+          {"includeReferenced" : false, "referenceView" : "couponTypeId"}
+        ],
+        "response": {
+          "_all_": "",
+          "haveYn": {
+            "typeId": "coupon",
+            "query" : [
+              {"field" : "memberNo", "method" : "matching", "value" : "{{:memberNo}}" },
+              {"field" : "couponTypeId", "method" : "matching", "value" : "{{:couponTypeId}}" }
+            ]
+          }
+        }
+      }
+    }
+  }
+]
