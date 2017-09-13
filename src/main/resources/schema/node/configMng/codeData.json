@@ -169,6 +169,14 @@
   },
   {
     "typeId": "code",
+    "groupCodeId": "showLo",
+    "codeId": "10",
+    "name": "Kpop Poll",
+    "order": 11,
+    "active": true
+  },
+  {
+    "typeId": "code",
     "groupCodeId": "svcDvcDiv",
     "codeId": "1",
     "name": "PC Web",
