@@ -1,6 +1,90 @@
 [
   {
     "typeId": "productOptionItem",
+    "productOptionItemId": 10001,
+    "productOptionCodes": "1001,1003",
+    "productId": "3",
+    "name": "오리지널 500ml",
+    "sortOrder": 1,
+    "addPrice": 0,
+    "supplyPrice": 0,
+    "stockQuantity": 999,
+    "productOptionItemStatus": "y"
+  },
+  {
+    "typeId": "productOptionItem",
+    "productOptionItemId": 10002,
+    "productOptionCodes": "1001,1004",
+    "productId": "3",
+    "name": "오리지널 1.5l",
+    "sortOrder": 2,
+    "addPrice": 500,
+    "supplyPrice": 0,
+    "stockQuantity": 999,
+    "productOptionItemStatus": "y"
+  },
+  {
+    "typeId": "productOptionItem",
+    "productOptionItemId": 10003,
+    "productOptionCodes": "1002,1003",
+    "productId": "3",
+    "name": "무설탕 500ml",
+    "sortOrder": 3,
+    "addPrice": 100,
+    "supplyPrice": 0,
+    "stockQuantity": 999,
+    "productOptionItemStatus": "y"
+  },
+  {
+    "typeId": "productOptionItem",
+    "productOptionItemId": 10004,
+    "productOptionCodes": "1002,1004",
+    "productId": "3",
+    "name": "무설탕 1.5l",
+    "sortOrder": 4,
+    "addPrice": 600,
+    "supplyPrice": 0,
+    "stockQuantity": 999,
+    "productOptionItemStatus": "y"
+  },
+  {
+    "typeId": "productOptionItem",
+    "productOptionItemId": 10005,
+    "productOptionCodes": "1005",
+    "productId": "3",
+    "name": "병따개",
+    "sortOrder": 1,
+    "addPrice": 1500,
+    "supplyPrice": 1500,
+    "stockQuantity": 999,
+    "productOptionItemStatus": "y"
+  },
+  {
+    "typeId": "productOptionItem",
+    "productOptionItemId": 10006,
+    "productOptionCodes": "1006",
+    "productId": "3",
+    "name": "병뚜껑",
+    "sortOrder": 2,
+    "addPrice": 500,
+    "supplyPrice": 500,
+    "stockQuantity": 999,
+    "productOptionItemStatus": "y"
+  },
+  {
+    "typeId": "productOptionItem",
+    "productOptionItemId": 10007,
+    "productOptionCodeCase": null,
+    "productId": "3",
+    "name": "컵홀더",
+    "sortOrder": 3,
+    "addPrice": 2000,
+    "supplyPrice": 2000,
+    "stockQuantity": 999,
+    "productOptionItemStatus": "y"
+  },
+  {
+    "typeId": "productOptionItem",
     "productOptionItemId": "10018",
     "productOptionCodeCase": "105:노랑",
     "productId": 3,
@@ -9,7 +93,7 @@
     "supplyPrice": "190.00",
     "stockQuantity": 999,
     "productOptionItemStatus": "y",
-    "productOptionType" : "mix"
+    "productOptionType": "mix"
   },
   {
     "typeId": "productOptionItem",
@@ -21,7 +105,7 @@
     "supplyPrice": "390.00",
     "stockQuantity": 999,
     "productOptionItemStatus": "y",
-    "productOptionType" : "mix"
+    "productOptionType": "mix"
   },
   {
     "typeId": "productOptionItem",
@@ -33,7 +117,7 @@
     "supplyPrice": "190.00",
     "stockQuantity": 999,
     "productOptionItemStatus": "y",
-    "productOptionType" : "mix"
+    "productOptionType": "mix"
   },
   {
     "typeId": "productOptionItem",
@@ -45,6 +129,6 @@
     "supplyPrice": "390.00",
     "stockQuantity": 999,
     "productOptionItemStatus": "y",
-    "productOptionType" : "mix"
+    "productOptionType": "mix"
   }
 ]
