@@ -57,8 +57,8 @@
   {
     "typeId": "propertyType",
     "tid": "mainBasInfo",
-    "pid": "svcDvcDivCd",
-    "id": "mainBasInfo>svcDvcDivCd",
+    "pid": "svcTermlDivCd",
+    "id": "mainBasInfo>svcTermlDivCd",
     "propertyTypeName": "서비스 단말 구분 코드",
     "valueType": "REFERENCE",
     "required": true,

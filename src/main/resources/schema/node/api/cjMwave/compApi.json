@@ -51,9 +51,9 @@
             "value": "{{:showLoCd}}"
           },
           {
-            "field": "svcDvcDivCd",
+            "field": "svcTermlDivCd",
             "method": "matching",
-            "value": "{{:svcDvcDivCd}}"
+            "value": "{{:svcTermlDivCd}}"
           },
           {
             "field": "showYn",
