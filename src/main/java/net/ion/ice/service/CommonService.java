@@ -14,7 +14,9 @@ public class CommonService {
         resultCodeMap.put("S0001", "required param. ");
 
         resultCodeMap.put("V0001", "존재하지 않는 쿠폰유형입니다.");
-        resultCodeMap.put("V0002", "발급가능한 쿠폰 수량이 모두 소진되었습니다.");
+        resultCodeMap.put("V0002", "[발급수제한] 쿠폰 수량이 모두 소진되었습니다.");
+        resultCodeMap.put("V0003", "[동일인재발급제한] 받을 수 있는 쿠폰이 없습니다.");
+        resultCodeMap.put("V0004", "발급가능한 기간이 만료되었습니다.");
     }
 
     public static boolean requiredParams(ExecuteContext context, Map<String, Object> data, String[] params) {

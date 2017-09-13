@@ -867,7 +867,7 @@
     "typeId": "commonCode",
     "code": "in",
     "upperCode": "affiliatePointType",
-    "name": "증액",
+    "name": "관리자 증액",
     "description": "",
     "sortOrder": "1",
     "commonCodeStatus": "y"
@@ -876,7 +876,7 @@
     "typeId": "commonCode",
     "code": "out",
     "upperCode": "affiliatePointType",
-    "name": "감액",
+    "name": "관리자 감액",
     "description": "",
     "sortOrder": "2",
     "commonCodeStatus": "y"
@@ -1903,6 +1903,33 @@
     "code": "out",
     "upperCode": "inAndOut",
     "name": "차감",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "affiliateInAndOut",
+    "upperCode": "root",
+    "name": "거래구분",
+    "description": "",
+    "sortOrder": "35",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "in",
+    "upperCode": "affiliateInAndOut",
+    "name": "증액",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "out",
+    "upperCode": "affiliateInAndOut",
+    "name": "감액",
     "description": "",
     "sortOrder": "2",
     "commonCodeStatus": "y"
