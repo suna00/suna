@@ -26,7 +26,8 @@
     "pushMsgRcvYn": true,
     "blacklistYn": false,
     "dormTrtDate": "",
-    "rtrmmbDate": ""
+    "rtrmmbDate": "",
+    "onairTranTkcgrYn": ""
   },
   {
     "typeId": "mbrInfo",
@@ -55,7 +56,8 @@
     "pushMsgRcvYn": true,
     "blacklistYn": false,
     "dormTrtDate": "20170822180000",
-    "rtrmmbDate": ""
+    "rtrmmbDate": "",
+    "onairTranTkcgrYn": ""
   },
   {
     "typeId": "mbrInfo",
@@ -84,7 +86,8 @@
     "pushMsgRcvYn": true,
     "blacklistYn": true,
     "dormTrtDate": "",
-    "rtrmmbDate": ""
+    "rtrmmbDate": "",
+    "onairTranTkcgrYn": ""
   },
   {
     "typeId": "mbrInfo",
@@ -113,7 +116,8 @@
     "pushMsgRcvYn": true,
     "blacklistYn": false,
     "dormTrtDate": "",
-    "rtrmmbDate": ""
+    "rtrmmbDate": "",
+    "onairTranTkcgrYn": ""
   },
   {
     "typeId": "mbrInfo",
@@ -142,7 +146,8 @@
     "pushMsgRcvYn": true,
     "blacklistYn": false,
     "dormTrtDate": "20170924180000",
-    "rtrmmbDate": ""
+    "rtrmmbDate": "",
+    "onairTranTkcgrYn": ""
   },
   {
     "typeId": "mbrInfo",
@@ -171,7 +176,8 @@
     "pushMsgRcvYn": true,
     "blacklistYn": false,
     "dormTrtDate": "",
-    "rtrmmbDate": ""
+    "rtrmmbDate": "",
+    "onairTranTkcgrYn": ""
   },
   {
     "typeId": "mbrInfo",
@@ -200,7 +206,8 @@
     "pushMsgRcvYn": true,
     "blacklistYn": false,
     "dormTrtDate": "",
-    "rtrmmbDate": ""
+    "rtrmmbDate": "",
+    "onairTranTkcgrYn": ""
   },
   {
     "typeId": "mbrInfo",
@@ -229,7 +236,8 @@
     "pushMsgRcvYn": true,
     "blacklistYn": false,
     "dormTrtDate": "",
-    "rtrmmbDate": ""
+    "rtrmmbDate": "",
+    "onairTranTkcgrYn": ""
   },
   {
     "typeId": "mbrInfo",
@@ -258,7 +266,8 @@
     "pushMsgRcvYn": true,
     "blacklistYn": false,
     "dormTrtDate": "",
-    "rtrmmbDate": ""
+    "rtrmmbDate": "",
+    "onairTranTkcgrYn": ""
   },
   {
     "typeId": "mbrInfo",
@@ -287,7 +296,8 @@
     "pushMsgRcvYn": true,
     "blacklistYn": false,
     "dormTrtDate": "",
-    "rtrmmbDate": ""
+    "rtrmmbDate": "",
+    "onairTranTkcgrYn": ""
   },
   {
     "typeId": "mbrInfo",
@@ -316,7 +326,8 @@
     "pushMsgRcvYn": true,
     "blacklistYn": false,
     "dormTrtDate": "",
-    "rtrmmbDate": ""
+    "rtrmmbDate": "",
+    "onairTranTkcgrYn": ""
   },
   {
     "typeId": "mbrInfo",
@@ -345,7 +356,8 @@
     "pushMsgRcvYn": true,
     "blacklistYn": false,
     "dormTrtDate": "",
-    "rtrmmbDate": ""
+    "rtrmmbDate": "",
+    "onairTranTkcgrYn": ""
   },
   {
     "typeId": "mbrInfo",
@@ -374,7 +386,8 @@
     "pushMsgRcvYn": true,
     "blacklistYn": false,
     "dormTrtDate": "",
-    "rtrmmbDate": ""
+    "rtrmmbDate": "",
+    "onairTranTkcgrYn": ""
   },
   {
     "typeId": "mbrInfo",
@@ -403,7 +416,8 @@
     "pushMsgRcvYn": true,
     "blacklistYn": false,
     "dormTrtDate": "",
-    "rtrmmbDate": ""
+    "rtrmmbDate": "",
+    "onairTranTkcgrYn": ""
   },
   {
     "typeId": "mbrInfo",

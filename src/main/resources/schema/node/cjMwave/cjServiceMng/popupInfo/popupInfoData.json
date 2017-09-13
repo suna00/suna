@@ -13,7 +13,8 @@
     "popupTitle": "2017년 MWAVE 이벤트 다국어 제목",
     "popupSbst": "2017년 MWAVE 이벤트 다국어 내용",
     "linkUrl": "mama/menu/sample",
-    "ImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg"
+    "ImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
+    "emgYn":""
   },
   {
     "typeId": "popupInfo",
@@ -29,7 +30,8 @@
     "popupTitle": "2017년 MWAVE 이벤트 다국어 제목",
     "popupSbst": "2017년 MWAVE 이벤트 다국어 내용",
     "linkUrl": "mama/menu/sample",
-    "ImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg"
+    "ImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
+    "emgYn":""
   },
   {
     "typeId": "popupInfo",
@@ -45,7 +47,8 @@
     "popupTitle": "2017년 MWAVE 이벤트 다국어 제목",
     "popupSbst": "2017년 MWAVE 이벤트 다국어 내용",
     "linkUrl": "mama/menu/sample",
-    "ImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg"
+    "ImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
+    "emgYn":""
   },
   {
     "typeId": "popupInfo",
@@ -61,6 +64,7 @@
     "popupTitle": "2017년 MWAVE 이벤트 다국어 제목",
     "popupSbst": "2017년 MWAVE 이벤트 다국어 내용",
     "linkUrl": "mama/menu/sample",
-    "ImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg"
+    "ImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
+    "emgYn":""
   }
 ]
