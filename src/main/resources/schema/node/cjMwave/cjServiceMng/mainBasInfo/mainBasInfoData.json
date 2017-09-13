@@ -4,7 +4,7 @@
     "mainSeq": 100,
     "mainNm": "메인 정보1",
     "mainDivCd": "1",
-    "svcDvcDivCd": "1",
+    "svcTermlDivCd": "1",
     "showYn": true,
     "showLoCd": "2"
   },
@@ -13,7 +13,7 @@
     "mainSeq": 101,
     "mainNm": "메인 정보2",
     "mainDivCd": "1",
-    "svcDvcDivCd": "2",
+    "svcTermlDivCd": "2",
     "showYn": true,
     "showLoCd": "3"
   },
@@ -22,7 +22,7 @@
     "mainSeq": 102,
     "mainNm": "메인 정보3",
     "mainDivCd": "1",
-    "svcDvcDivCd": "3",
+    "svcTermlDivCd": "3",
     "showYn": true,
     "showLoCd": "4"
   },
@@ -31,7 +31,7 @@
     "mainSeq": 103,
     "mainNm": "메인 정보4",
     "mainDivCd": "1",
-    "svcDvcDivCd": "4",
+    "svcTermlDivCd": "4",
     "showYn": true,
     "showLoCd": "2"
   },
@@ -40,7 +40,7 @@
     "mainSeq": 104,
     "mainNm": "서브메인1",
     "mainDivCd": "2",
-    "svcDvcDivCd": "1",
+    "svcTermlDivCd": "1",
     "showYn": true,
     "showLoCd": "3"
   },
@@ -49,7 +49,7 @@
     "mainSeq": 105,
     "mainNm": "서브메인2",
     "mainDivCd": "2",
-    "svcDvcDivCd": "2",
+    "svcTermlDivCd": "2",
     "showYn": true,
     "showLoCd": "4"
   },
@@ -58,7 +58,7 @@
     "mainSeq": 106,
     "mainNm": "서브메인3",
     "mainDivCd": "2",
-    "svcDvcDivCd": "3",
+    "svcTermlDivCd": "3",
     "showYn": true,
     "showLoCd": "2"
   }

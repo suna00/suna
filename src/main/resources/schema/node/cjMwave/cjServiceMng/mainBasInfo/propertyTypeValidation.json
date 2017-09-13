@@ -97,8 +97,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>mainBasInfo>svcDvcDivCd",
-    "propertyTypeId": "mainBasInfo>svcDvcDivCd",
+    "id": "propertyTypeValidation>mainBasInfo>svcTermlDivCd",
+    "propertyTypeId": "mainBasInfo>svcTermlDivCd",
     "validation": {
       "language": "ko",
       "required": {
