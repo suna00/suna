@@ -638,6 +638,10 @@
       {
         "pageName": "등록/수정",
         "pageUrl": "cj/vt/SersForm"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "cj/vt/SersView"
       }
     ]
   },
