@@ -75,7 +75,7 @@
           {
             "field": "mainSeq",
             "method": "matching",
-            "value": "{{:default(mainSeq,뺵뺵)}}"
+            "value": "{{:default(mainSeq,뺿뺿)}}"
           },
           {
             "referenceView": "itemId,cnctContsId",
@@ -110,12 +110,12 @@
                   {
                     "field": "newsNm",
                     "method": "matchingShould",
-                    "value": "{{:default(newsHubKywrd,뺵뺵)}}"
+                    "value": "{{:default(newsHubKywrd,뺿뺿)}}"
                   },
                   {
                     "field": "findKywrd",
                     "method": "matchingShould",
-                    "value": "{{:default(newsHubKywrd,뺵뺵)}}"
+                    "value": "{{:default(newsHubKywrd,뺿뺿)}}"
                   }
                 ]
               },
@@ -125,12 +125,12 @@
                   {
                     "field": "title",
                     "method": "matchingShould",
-                    "value": "{{:default(newsHubKywrd,뺵뺵)}}"
+                    "value": "{{:default(newsHubKywrd,뺿뺿)}}"
                   },
                   {
                     "field": "searchKeyword",
                     "method": "matchingShould",
-                    "value": "{{:default(newsHubKywrd,뺵뺵)}}"
+                    "value": "{{:default(newsHubKywrd,뺿뺿)}}"
                   }
                 ]
               }
@@ -162,12 +162,12 @@
                   {
                     "field": "newsNm",
                     "method": "matchingShould",
-                    "value": "{{:default(newsHubKywrd,뺵뺵)}}"
+                    "value": "{{:default(newsHubKywrd,뺿뺿)}}"
                   },
                   {
                     "field": "findKywrd",
                     "method": "matchingShould",
-                    "value": "{{:default(newsHubKywrd,뺵뺵)}}"
+                    "value": "{{:default(newsHubKywrd,뺿뺿)}}"
                   }
                 ]
               },
@@ -177,12 +177,12 @@
                   {
                     "field": "title",
                     "method": "matchingShould",
-                    "value": "{{:default(newsHubKywrd,뺵뺵)}}"
+                    "value": "{{:default(newsHubKywrd,뺿뺿)}}"
                   },
                   {
                     "field": "searchKeyword",
                     "method": "matchingShould",
-                    "value": "{{:default(newsHubKywrd,뺵뺵)}}"
+                    "value": "{{:default(newsHubKywrd,뺿뺿)}}"
                   }
                 ]
               }
