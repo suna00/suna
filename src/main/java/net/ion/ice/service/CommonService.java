@@ -29,15 +29,19 @@ public class CommonService {
 
     public static void setErrorMessage(ExecuteContext context,  String code) {
         Map<String, Object> object = new HashMap<>();
-        object.put("errorCode", code);
-        object.put("errorMessage", resultCodeMap.get(code));
+        Map<String, Object> object2 = new HashMap<>();
+        object2.put("code", code);
+        object2.put("message", resultCodeMap.get(code));
+        object.put("validate", object2);
         context.setResult(object);
     }
 
     public static void setErrorMessage(ExecuteContext context, String code, String message) {
         Map<String, Object> object = new HashMap<>();
-        object.put("errorCode", code);
-        object.put("errorMessage", resultCodeMap.get(code) + " " + message);
+        Map<String, Object> object2 = new HashMap<>();
+        object2.put("code", code);
+        object2.put("message", resultCodeMap.get(code) + " " + message);
+        object.put("validate", object2);
         context.setResult(object);
     }
 
