@@ -30,5 +30,21 @@
     "actionType" : "service",
     "actionBody" : "mypageService.passwordAuthentication",
     "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "member",
+    "event" : "sendEmail",
+    "noneExecute" : true,
+    "eventName" : "인증 메일전송"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "member>sendEmail",
+    "action" : "sendEmail",
+    "actionName" : "인증 메일전송",
+    "actionType" : "service",
+    "actionBody" : "memberService.authenticationSendEmail",
+    "order" : 1
   }
 ]

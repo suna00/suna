@@ -40,7 +40,51 @@
         {"field" : "salePrice", "method" : "fromto", "value" : "{{:salePrice}}" },
         {"sorting" : "{{:sorting}}", "pageSize": "{{:pageSize}}", "page": "{{:page}}"},
         {"field" : "name", "method" : "matchingShould", "value" : "*{{:searchValue}}*" },
-        {"field" : "modelName", "method" : "matchingShould", "value" : "*{{:searchValue}}*" }
+        {"field" : "modelName", "method" : "matchingShould", "value" : "*{{:searchValue}}*" },
+        {"field" : "referencedProductSearchFilter", "method" : "hasReferenced", "value" : "searchFilterCodeIds_matching={{:searchFilterCodeIds}}"},
+        {"includeReferenced" : true}
+      ]
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "product",
+    "apiId" : "searchFilterList",
+    "apiName" : "카테고리별 상세 검색코드 리스트",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "category",
+      "query" : [
+        {"field" : "categoryId", "method" : "matching", "value" : "{{:categoryId}}" }
+      ],
+      "response": {
+        "categoryId": "",
+        "name": "",
+        "searchFilterIds": "",
+        "searchFilter": {
+          "typeId": "searchFilter",
+          "query" : [
+            {"field" : "searchFilter", "method" : "matching", "value" : "{{:searchFilterIds}}" },
+            { "includeReferenced": true }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "product",
+    "apiId": "recentlyViewed",
+    "apiName": "최근 본 상품",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config" : {
+      "typeId": "product",
+      "query" : [
+        {"field" : "productId", "method" : "matching", "value" : "{{:productIds}}" }
       ]
     }
   }

@@ -204,6 +204,7 @@ public class QueryTerm {
         WILDCARD("LIKE"),
         FUZZY(""),
         MATCHING("LIKE"),
+        IN("IN"),
         EQUALS("="),
         ABOVE(">="),
         BELOW("<="),

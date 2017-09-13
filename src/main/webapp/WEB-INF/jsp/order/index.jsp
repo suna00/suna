@@ -1,15 +1,18 @@
-<%--
+<%@ page import="net.ion.ice.service.OrderService" %>
+<%@ page import="org.springframework.beans.factory.annotation.Autowired" %><%--
   Created by IntelliJ IDEA.
   User: yoonseonwoong
   Date: 2017. 9. 11.
   Time: PM 3:10
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=utf-8" language="java" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
     <title>주문/결제</title>
     <meta name="Keywords" content="교육할인스토어">
     <meta name="Description" content="오직 대학생을 위한 할인프로그램, 대학생 와이군 서식중">
@@ -44,30 +47,30 @@
             <div class="util">
                 <div class="in_container">
                     <ul>
-                        <li><a href="#" class="favorite"><span>즐겨찾기</span></a></li>
-                        <li><a href="#" class="app_download"><span>앱다운로드</span></a></li>
+                        <li><a href="javascript:void(0);" class="favorite"><span>즐겨찾기</span></a></li>
+                        <li><a href="javascript:void(0);" class="app_download"><span>앱다운로드</span></a></li>
                     </ul>
 
                     <ul>
-                        <li><a href="#"><span>로그인</span></a></li>
-                        <li><a href="#" class="mypage"><span>MY PAGE</span></a>
+                        <li><a href="javascript:void(0);"><span>로그인</span></a></li>
+                        <li><a href="javascript:void(0);" class="mypage"><span>MY PAGE</span></a>
                             <div class="util_nav">
-                                <div class="util_nav_tit"><a href="#"><span>MY PAGE</span></a></div>
+                                <div class="util_nav_tit"><a href="javascript:void(0);"><span>MY PAGE</span></a></div>
                                 <ul>
-                                    <li><a href="#"><span>주문/배송조회</span></a></li>
-                                    <li><a href="#"><span>쿠폰</span></a></li>
-                                    <li><a href="#"><span>위시리스트</span></a></li>
+                                    <li><a href="javascript:void(0);"><span>주문/배송조회</span></a></li>
+                                    <li><a href="javascript:void(0);"><span>쿠폰</span></a></li>
+                                    <li><a href="javascript:void(0);"><span>위시리스트</span></a></li>
                                 </ul>
                             </div>
                         </li>
-                        <li><a href="#" class="cart"><span>장바구니</span><span class="cnt">3</span></a></li>
-                        <li><a href="#" class="cs"><span>고객센터</span></a>
+                        <li><a href="javascript:void(0);" class="cart"><span>장바구니</span><span class="cnt">3</span></a></li>
+                        <li><a href="javascript:void(0);" class="cs"><span>고객센터</span></a>
                             <div class="util_nav">
-                                <div class="util_nav_tit"><a href="#"><span>고객센터</span></a></div>
+                                <div class="util_nav_tit"><a href="javascript:void(0);"><span>고객센터</span></a></div>
                                 <ul>
-                                    <li><a href="#"><span>FAQ</span></a></li>
-                                    <li><a href="#"><span>1:1문의</span></a></li>
-                                    <li><a href="#"><span>공지사항</span></a></li>
+                                    <li><a href="javascript:void(0);"><span>FAQ</span></a></li>
+                                    <li><a href="javascript:void(0);"><span>1:1문의</span></a></li>
+                                    <li><a href="javascript:void(0);"><span>공지사항</span></a></li>
                                     <li><span class="tel">02)<br>398-8880</span></li>
                                 </ul>
                             </div>
@@ -86,15 +89,16 @@
                         <div class="pop_keyword">
                             <ul>
                                 <li>
-                                    <a href="#"><span class="rank">1</span><span class="keyword">노트북</span></a>
+                                    <a href="javascript:void(0);"><span class="rank">1</span><span class="keyword">노트북</span></a>
                                     <div class="pop_keyword_list">
                                         <p class="tit">인기 검색어</p>
                                         <ul>
-                                            <li><a href="#"><span class="rank">1</span><span class="keyword">노트북</span><span class="new">NEW</span></a></li>
-                                            <li><a href="#"><span class="rank">2</span><span class="keyword">에어컨</span></a></li>
-                                            <li><a href="#"><span class="rank">3</span><span class="keyword">김치냉장고</span></a></li>
-                                            <li><a href="#"><span class="rank">4</span><span class="keyword">여성샌들</span></a></li>
-                                            <li><a href="#"><span class="rank">5</span><span class="keyword">남성샌들</span></a></li>
+                                            <li><a href="javascript:void(0);"><span class="rank">1</span><span class="keyword">노트북</span><span
+                                                    class="new">NEW</span></a></li>
+                                            <li><a href="javascript:void(0);"><span class="rank">2</span><span class="keyword">에어컨</span></a></li>
+                                            <li><a href="javascript:void(0);"><span class="rank">3</span><span class="keyword">김치냉장고</span></a></li>
+                                            <li><a href="javascript:void(0);"><span class="rank">4</span><span class="keyword">여성샌들</span></a></li>
+                                            <li><a href="javascript:void(0);"><span class="rank">5</span><span class="keyword">남성샌들</span></a></li>
                                         </ul>
                                     </div>
                                 </li>
@@ -103,7 +107,8 @@
 
                         <div class="logo_srch">
                             <div class="logo_srch_box">
-                                <div class="logo"><a href="#"><img src="../assets/images/sample/img_ygoon_logo.gif" alt="YGOON 교육할인 스토어"></a></div>
+                                <div class="logo"><a href="javascript:void(0);"><img src="/image/sample/img_ygoon_logo.gif" alt="YGOON 교육할인 스토어"></a>
+                                </div>
                                 <div class="srch">
                                     <form action="#">
                                         <fieldset>
@@ -111,7 +116,7 @@
                                             <div class="field_wrap">
                                                 <label for="keyword" class="blind">검색어입력</label>
                                                 <input type="text" class="txt" title="통합검색" id="keyword" value="LG전자 체인지업 페스티벌">
-                                                <a href="#" class="btn_srch"><span class="blind">검색</span></a>
+                                                <a href="javascript:void(0);" class="btn_srch"><span class="blind">검색</span></a>
                                             </div>
                                         </fieldset>
                                     </form>
@@ -121,19 +126,24 @@
 
                         <div class="banner_area">
                             <ul>
-                                <li><a href="#"><img src="http://via.placeholder.com/152x60/cccccc/333333?text=1" alt="교육할인 스토어 YGOON"></a></li>
-                                <li class="hide"><a href="#"><img src="http://via.placeholder.com/152x60/cccccc/333333?text=2" alt="교육할인 스토어 YGOON"></a></li>
-                                <li class="hide"><a href="#"><img src="http://via.placeholder.com/152x60/cccccc/333333?text=3" alt="교육할인 스토어 YGOON"></a></li>
-                                <li class="hide"><a href="#"><img src="http://via.placeholder.com/152x60/cccccc/333333?text=4" alt="교육할인 스토어 YGOON"></a></li>
-                                <li class="hide"><a href="#"><img src="http://via.placeholder.com/152x60/cccccc/333333?text=5" alt="교육할인 스토어 YGOON"></a></li>
+                                <li><a href="javascript:void(0);"><img src="http://via.placeholder.com/152x60/cccccc/333333?text=1"
+                                                                       alt="교육할인 스토어 YGOON"></a></li>
+                                <li class="hide"><a href="javascript:void(0);"><img src="http://via.placeholder.com/152x60/cccccc/333333?text=2"
+                                                                                    alt="교육할인 스토어 YGOON"></a></li>
+                                <li class="hide"><a href="javascript:void(0);"><img src="http://via.placeholder.com/152x60/cccccc/333333?text=3"
+                                                                                    alt="교육할인 스토어 YGOON"></a></li>
+                                <li class="hide"><a href="javascript:void(0);"><img src="http://via.placeholder.com/152x60/cccccc/333333?text=4"
+                                                                                    alt="교육할인 스토어 YGOON"></a></li>
+                                <li class="hide"><a href="javascript:void(0);"><img src="http://via.placeholder.com/152x60/cccccc/333333?text=5"
+                                                                                    alt="교육할인 스토어 YGOON"></a></li>
                             </ul>
                             <div class="banner_cnt">
                                 <span class="cur">1</span>
                                 <span class="tot">/5</span>
                             </div>
                             <div class="banner_arr">
-                                <a href="#" class="prev">이전</a>
-                                <a href="#" class="next">다음</a>
+                                <a href="javascript:void(0);" class="prev">이전</a>
+                                <a href="javascript:void(0);" class="next">다음</a>
                             </div>
                         </div>
 
@@ -148,45 +158,45 @@
 
                     <!-- view_all_cat -->
                     <div class="view_all_cat">
-                        <a href="#" class="btn_view_all"><span>카테고리 전체</span></a>
+                        <a href="javascript:void(0);" class="btn_view_all"><span>카테고리 전체</span></a>
                     </div>
                     <!-- // view_all_cat -->
 
                     <!-- GNB 스페셜 -->
                     <div class="nav_special">
                         <ul>
-                            <li><a href="#">신상품</a></li>
-                            <li><a href="#" class="mont">HOT DEAL</a></li>
-                            <li><a href="#" class="mont">BEST50</a></li>
-                            <li><a href="#">기획전</a></li>
+                            <li><a href="javascript:void(0);">신상품</a></li>
+                            <li><a href="javascript:void(0);" class="mont">HOT DEAL</a></li>
+                            <li><a href="javascript:void(0);" class="mont">BEST50</a></li>
+                            <li><a href="javascript:void(0);">기획전</a></li>
                         </ul>
 
                         <ul>
-                            <li><a href="#"><span>교육&middot;문화 제휴</span></a>
+                            <li><a href="javascript:void(0);"><span>교육&middot;문화 제휴</span></a>
                                 <div class="spon_subnav">
                                     <div class="spon_box">
                                         <div class="spon_list">
                                             <ul>
-                                                <li><a href="#">영화 싸게 보기</a></li>
-                                                <li><a href="#">대학로 살리기 프로젝트</a></li>
-                                                <li><a href="#">뮤지컬 연극</a></li>
-                                                <li><a href="#">놀이동산</a></li>
-                                                <li><a href="#">대학생도서 혜택</a></li>
-                                                <li><a href="#">대학생 중고도서장터</a></li>
+                                                <li><a href="javascript:void(0);">영화 싸게 보기</a></li>
+                                                <li><a href="javascript:void(0);">대학로 살리기 프로젝트</a></li>
+                                                <li><a href="javascript:void(0);">뮤지컬 연극</a></li>
+                                                <li><a href="javascript:void(0);">놀이동산</a></li>
+                                                <li><a href="javascript:void(0);">대학생도서 혜택</a></li>
+                                                <li><a href="javascript:void(0);">대학생 중고도서장터</a></li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                             </li>
-                            <li><a href="#"><span class="mont">YGOON 제휴</span></a>
+                            <li><a href="javascript:void(0);"><span class="mont">YGOON 제휴</span></a>
                                 <div class="spon_subnav">
                                     <div class="spon_box">
                                         <div class="spon_list">
                                             <ul>
-                                                <li><a href="#">와이군 형제들</a></li>
-                                                <li><a href="#">비행기 싸게 타기</a></li>
-                                                <li><a href="#">자격증 싸게 따기</a></li>
-                                                <li><a href="#">오프라인 할인 혜택</a></li>
+                                                <li><a href="javascript:void(0);">와이군 형제들</a></li>
+                                                <li><a href="javascript:void(0);">비행기 싸게 타기</a></li>
+                                                <li><a href="javascript:void(0);">자격증 싸게 따기</a></li>
+                                                <li><a href="javascript:void(0);">오프라인 할인 혜택</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -203,9 +213,10 @@
                 <div class="in_container">
                     <div class="header_fixed_wrap">
                         <div class="fixed_view_cat">
-                            <a href="#" class="fixed_view_all"><span>카테고리 전체</span></a>
+                            <a href="javascript:void(0);" class="fixed_view_all"><span>카테고리 전체</span></a>
                         </div>
-                        <div class="fixed_logo"><a href="#"><img src="../assets/images/common/img_header_fixed_logo.png" alt="YGOON 교육할인스토어"></a></div>
+                        <div class="fixed_logo"><a href="javascript:void(0);"><img src="/image/common/img_header_fixed_logo.png" alt="YGOON 교육할인스토어"></a>
+                        </div>
                         <div class="fixed_srch">
                             <div class="fixed_srch_box">
                                 <form action="#">
@@ -213,8 +224,8 @@
                                         <legend>검색</legend>
                                         <div class="field_wrap">
                                             <label for="keyword" class="blind">검색어입력</label>
-                                            <input type="text" class="txt" title="통합검색" id="keyword" value="LG전자 체인지업 페스티벌">
-                                            <a href="#" class="btn_srch"><span class="blind">검색</span></a>
+                                            <input type="text" class="txt" title="통합검색" id="searchKeyword" value="LG전자 체인지업 페스티벌">
+                                            <a href="javascript:void(0);" class="btn_srch"><span class="blind">검색</span></a>
                                         </div>
                                     </fieldset>
                                 </form>
@@ -222,38 +233,38 @@
                         </div>
                         <div class="fixed_special">
                             <ul>
-                                <li><a href="#"><span>신상품</span></a></li>
-                                <li><a href="#" class="mont"><span>HOT DEAL</span></a></li>
-                                <li><a href="#" class="mont"><span>BEST50</span></a></li>
-                                <li><a href="#"><span>기획전</span></a></li>
+                                <li><a href="javascript:void(0);"><span>신상품</span></a></li>
+                                <li><a href="javascript:void(0);" class="mont"><span>HOT DEAL</span></a></li>
+                                <li><a href="javascript:void(0);" class="mont"><span>BEST50</span></a></li>
+                                <li><a href="javascript:void(0);"><span>기획전</span></a></li>
                             </ul>
 
                             <ul>
-                                <li><a href="#"><span>교육&middot;문화 제휴</span></a>
+                                <li><a href="javascript:void(0);"><span>교육&middot;문화 제휴</span></a>
                                     <div class="spon_subnav">
                                         <div class="spon_box">
                                             <div class="spon_list">
                                                 <ul>
-                                                    <li><a href="#">영화 싸게 보기</a></li>
-                                                    <li><a href="#">대학로 살리기 프로젝트</a></li>
-                                                    <li><a href="#">뮤지컬 연극</a></li>
-                                                    <li><a href="#">놀이동산</a></li>
-                                                    <li><a href="#">대학생도서 혜택</a></li>
-                                                    <li><a href="#">대학생 중고도서장터</a></li>
+                                                    <li><a href="javascript:void(0);">영화 싸게 보기</a></li>
+                                                    <li><a href="javascript:void(0);">대학로 살리기 프로젝트</a></li>
+                                                    <li><a href="javascript:void(0);">뮤지컬 연극</a></li>
+                                                    <li><a href="javascript:void(0);">놀이동산</a></li>
+                                                    <li><a href="javascript:void(0);">대학생도서 혜택</a></li>
+                                                    <li><a href="javascript:void(0);">대학생 중고도서장터</a></li>
                                                 </ul>
                                             </div>
                                         </div>
                                     </div>
                                 </li>
-                                <li><a href="#"><span class="mont">YGOON 제휴</span></a>
+                                <li><a href="javascript:void(0);"><span class="mont">YGOON 제휴</span></a>
                                     <div class="spon_subnav">
                                         <div class="spon_box">
                                             <div class="spon_list">
                                                 <ul>
-                                                    <li><a href="#">와이군 형제들</a></li>
-                                                    <li><a href="#">비행기 싸게 타기</a></li>
-                                                    <li><a href="#">자격증 싸게 따기</a></li>
-                                                    <li><a href="#">오프라인 할인 혜택</a></li>
+                                                    <li><a href="javascript:void(0);">와이군 형제들</a></li>
+                                                    <li><a href="javascript:void(0);">비행기 싸게 타기</a></li>
+                                                    <li><a href="javascript:void(0);">자격증 싸게 따기</a></li>
+                                                    <li><a href="javascript:void(0);">오프라인 할인 혜택</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -270,187 +281,107 @@
                 <ul>
                     <li>
                         <div class="view_all_cat_inbox">
-                            <p><a href="#">디지털/가전</a></p>
+                            <p><a href="javascript:void(0);">디지털/가전</a></p>
                             <ul>
-                                <li><a href="#">노트북</a>
+                                <li><a href="javascript:void(0);">노트북</a>
                                     <div class="dp3_nav" style="width:150px;">
                                         <ul>
-                                            <li><a href="#">삼성노트북</a></li>
-                                            <li><a href="#">LG노트북</a></li>
-                                            <li><a href="#">맥북&amp;HP노트북</a></li>
-                                            <li><a href="#">노트북</a></li>
-                                            <li><a href="#">태블릿</a></li>
+                                            <li><a href="javascript:void(0);">삼성노트북</a></li>
+                                            <li><a href="javascript:void(0);">LG노트북</a></li>
+                                            <li><a href="javascript:void(0);">맥북&amp;HP노트북</a></li>
+                                            <li><a href="javascript:void(0);">노트북</a></li>
+                                            <li><a href="javascript:void(0);">태블릿</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="#">냉장고/김치냉장고/세탁기</a>
+                                <li><a href="javascript:void(0);">냉장고/김치냉장고/세탁기</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">냉장고</a></li>
-                                            <li><a href="#">김치냉장고</a></li>
-                                            <li><a href="#">세탁기</a></li>
+                                            <li><a href="javascript:void(0);">냉장고</a></li>
+                                            <li><a href="javascript:void(0);">김치냉장고</a></li>
+                                            <li><a href="javascript:void(0);">세탁기</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="#">TV/음향기기</a>
+                                <li><a href="javascript:void(0);">TV/음향기기</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">TV</a></li>
-                                            <li><a href="#">사운드바/헤드폰/이어폰</a></li>
+                                            <li><a href="javascript:void(0);">TV</a></li>
+                                            <li><a href="javascript:void(0);">사운드바/헤드폰/이어폰</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="#">PC&amp;모니터</a>
+                                <li><a href="javascript:void(0);">PC&amp;모니터</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">데스크탑</a></li>
-                                            <li><a href="#">모니터</a></li>
+                                            <li><a href="javascript:void(0);">데스크탑</a></li>
+                                            <li><a href="javascript:void(0);">모니터</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="#">PC주변기기</a>
+                                <li><a href="javascript:void(0);">PC주변기기</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">키보드/마우스</a></li>
-                                            <li><a href="#">저장장치/PC주변기기</a></li>
-                                            <li><a href="#">프린터</a></li>
-                                            <li><a href="#">잉크/토너</a></li>
+                                            <li><a href="javascript:void(0);">키보드/마우스</a></li>
+                                            <li><a href="javascript:void(0);">저장장치/PC주변기기</a></li>
+                                            <li><a href="javascript:void(0);">프린터</a></li>
+                                            <li><a href="javascript:void(0);">잉크/토너</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="#">카메라</a>
+                                <li><a href="javascript:void(0);">카메라</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">DSLR</a></li>
-                                            <li><a href="#">컴팩트</a></li>
-                                            <li><a href="#">캠코더/액션캠</a></li>
-                                            <li><a href="#">카메라 주변기기</a></li>
+                                            <li><a href="javascript:void(0);">DSLR</a></li>
+                                            <li><a href="javascript:void(0);">컴팩트</a></li>
+                                            <li><a href="javascript:void(0);">캠코더/액션캠</a></li>
+                                            <li><a href="javascript:void(0);">카메라 주변기기</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="#">주방/생활가전</a>
+                                <li><a href="javascript:void(0);">주방/생활가전</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">전기밥솥</a></li>
-                                            <li><a href="#">믹서/커피머신</a></li>
-                                            <li><a href="#">토스터기/전기포트</a></li>
-                                            <li><a href="#">청소기/다리미</a></li>
-                                            <li><a href="#">전자레인지/오븐</a></li>
-                                            <li><a href="#">가스/전기레인지</a></li>
+                                            <li><a href="javascript:void(0);">전기밥솥</a></li>
+                                            <li><a href="javascript:void(0);">믹서/커피머신</a></li>
+                                            <li><a href="javascript:void(0);">토스터기/전기포트</a></li>
+                                            <li><a href="javascript:void(0);">청소기/다리미</a></li>
+                                            <li><a href="javascript:void(0);">전자레인지/오븐</a></li>
+                                            <li><a href="javascript:void(0);">가스/전기레인지</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="#">뷰티/건강</a>
+                                <li><a href="javascript:void(0);">뷰티/건강</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">면도기</a></li>
-                                            <li><a href="#">드라이기/고데기</a></li>
-                                            <li><a href="#">공기청정기</a></li>
+                                            <li><a href="javascript:void(0);">면도기</a></li>
+                                            <li><a href="javascript:void(0);">드라이기/고데기</a></li>
+                                            <li><a href="javascript:void(0);">공기청정기</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="#">계절가전</a>
+                                <li><a href="javascript:void(0);">계절가전</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">에어컨</a></li>
-                                            <li><a href="#">에어워셔/가습기</a></li>
-                                            <li><a href="#">제습기</a></li>
-                                            <li><a href="#">선풍기/써큘레이터</a></li>
-                                            <li><a href="#">여름소형</a></li>
-                                            <li><a href="#">겨울소형</a></li>
+                                            <li><a href="javascript:void(0);">에어컨</a></li>
+                                            <li><a href="javascript:void(0);">에어워셔/가습기</a></li>
+                                            <li><a href="javascript:void(0);">제습기</a></li>
+                                            <li><a href="javascript:void(0);">선풍기/써큘레이터</a></li>
+                                            <li><a href="javascript:void(0);">여름소형</a></li>
+                                            <li><a href="javascript:void(0);">겨울소형</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="#">리퍼비시관</a>
+                                <li><a href="javascript:void(0);">리퍼비시관</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">삼성노트북(리퍼)</a></li>
-                                            <li><a href="#">LG노트북(리퍼)</a></li>
-                                            <li><a href="#">애플(리퍼)</a></li>
-                                            <li><a href="#">HP/레노버/외산(리퍼)</a></li>
-                                            <li><a href="#">데스크탑(리퍼)</a></li>
-                                            <li><a href="#">가전/생활용품(리퍼)</a></li>
-                                            <li><a href="#">휴대폰(리퍼/중고)</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="view_all_cat_inbox">
-                            <p><a href="#">스포츠/레저</a></p>
-                            <ul>
-                                <li><a href="#">스포츠용품</a>
-                                    <div class="dp3_nav">
-                                        <ul>
-                                            <li><a href="#">등산용품</a></li>
-                                            <li><a href="#">캠핑용품</a></li>
-                                            <li><a href="#">구기용품</a></li>
-                                            <li><a href="#">라이딩용품</a></li>
-                                            <li><a href="#">헬스용품</a></li>
-                                            <li><a href="#">수영용품</a></li>
-                                            <li><a href="#">방한용품</a></li>
-                                            <li><a href="#">전자기기</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li><a href="#">스포츠의류</a>
-                                    <div class="dp3_nav">
-                                        <ul>
-                                            <li><a href="#">상의</a></li>
-                                            <li><a href="#">하의</a></li>
-                                            <li><a href="#">아우터</a></li>
-                                            <li><a href="#">트레이닝복</a></li>
-                                            <li><a href="#">이너웨어</a></li>
-                                            <li><a href="#">키즈웨어</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li><a href="#">스포츠신발</a>
-                                    <div class="dp3_nav">
-                                        <ul>
-                                            <li><a href="#">런닝/운동화</a></li>
-                                            <li><a href="#">등산/트래킹화</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="view_all_cat_inbox">
-                            <p><a href="#">골프</a></p>
-                            <ul>
-                                <li><a href="#">골프클럽</a>
-                                    <div class="dp3_nav">
-                                        <ul>
-                                            <li><a href="#">풀세트</a></li>
-                                            <li><a href="#">드라이버</a></li>
-                                            <li><a href="#">우드</a></li>
-                                            <li><a href="#">유틸리티</a></li>
-                                            <li><a href="#">아이언세트</a></li>
-                                            <li><a href="#">웨지</a></li>
-                                            <li><a href="#">피터</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li><a href="#">골프용품</a>
-                                    <div class="dp3_nav">
-                                        <ul>
-                                            <li><a href="#">골프공</a></li>
-                                            <li><a href="#">골프화</a></li>
-                                            <li><a href="#">골프벨트</a></li>
-                                            <li><a href="#">골프장갑</a></li>
-                                            <li><a href="#">골프가방</a></li>
-                                            <li><a href="#">필드용품</a></li>
-                                            <li><a href="#">연습용품</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li><a href="#">골프의류</a>
-                                    <div class="dp3_nav">
-                                        <ul>
-                                            <li><a href="#">상의</a></li>
-                                            <li><a href="#">하의</a></li>
+                                            <li><a href="javascript:void(0);">삼성노트북(리퍼)</a></li>
+                                            <li><a href="javascript:void(0);">LG노트북(리퍼)</a></li>
+                                            <li><a href="javascript:void(0);">애플(리퍼)</a></li>
+                                            <li><a href="javascript:void(0);">HP/레노버/외산(리퍼)</a></li>
+                                            <li><a href="javascript:void(0);">데스크탑(리퍼)</a></li>
+                                            <li><a href="javascript:void(0);">가전/생활용품(리퍼)</a></li>
+                                            <li><a href="javascript:void(0);">휴대폰(리퍼/중고)</a></li>
                                         </ul>
                                     </div>
                                 </li>
@@ -459,129 +390,78 @@
                     </li>
                     <li>
                         <div class="view_all_cat_inbox">
-                            <p><a href="#">의류/잡화</a></p>
+                            <p><a href="javascript:void(0);">스포츠/레저</a></p>
                             <ul>
-                                <li><a href="#">가방/잡화</a>
+                                <li><a href="javascript:void(0);">스포츠용품</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">백팩/크로스백</a></li>
-                                            <li><a href="#">핸드백</a></li>
-                                            <li><a href="#">노트북/서류 가방</a></li>
-                                            <li><a href="#">여행용가방</a></li>
-                                            <li><a href="#">지갑/벨트</a></li>
-                                            <li><a href="#">모자/시즌소품</a></li>
-                                            <li><a href="#">선글라스/안경테</a></li>
-                                            <li><a href="#">우산/양산</a></li>
-                                            <li><a href="#">스타킹/양말</a></li>
+                                            <li><a href="javascript:void(0);">등산용품</a></li>
+                                            <li><a href="javascript:void(0);">캠핑용품</a></li>
+                                            <li><a href="javascript:void(0);">구기용품</a></li>
+                                            <li><a href="javascript:void(0);">라이딩용품</a></li>
+                                            <li><a href="javascript:void(0);">헬스용품</a></li>
+                                            <li><a href="javascript:void(0);">수영용품</a></li>
+                                            <li><a href="javascript:void(0);">방한용품</a></li>
+                                            <li><a href="javascript:void(0);">전자기기</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="#">시계/주얼리</a>
+                                <li><a href="javascript:void(0);">스포츠의류</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">브랜드시계</a></li>
-                                            <li><a href="#">패션시계</a></li>
-                                            <li><a href="#">쥬얼리</a></li>
+                                            <li><a href="javascript:void(0);">상의</a></li>
+                                            <li><a href="javascript:void(0);">하의</a></li>
+                                            <li><a href="javascript:void(0);">아우터</a></li>
+                                            <li><a href="javascript:void(0);">트레이닝복</a></li>
+                                            <li><a href="javascript:void(0);">이너웨어</a></li>
+                                            <li><a href="javascript:void(0);">키즈웨어</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="#">신발</a>
+                                <li><a href="javascript:void(0);">스포츠신발</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">운동화</a></li>
-                                            <li><a href="#">샌들/슬리퍼</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li><a href="#">남성의류</a>
-                                    <div class="dp3_nav">
-                                        <ul>
-                                            <li><a href="#">상의</a></li>
-                                            <li><a href="#">하의</a></li>
-                                            <li><a href="#">아우터</a></li>
-                                            <li><a href="#">니트/집업</a></li>
-                                            <li><a href="#">남성언더웨어</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li><a href="#">여성의류</a>
-                                    <div class="dp3_nav">
-                                        <ul>
-                                            <li><a href="#">티셔츠</a></li>
-                                            <li><a href="#">아우터</a></li>
-                                            <li><a href="#">스커트/바지</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li><a href="#">해외명품</a>
-                                    <div class="dp3_nav">
-                                        <ul>
-                                            <li><a href="#">피혁잡화</a></li>
-                                            <li><a href="#">시즌소품</a></li>
+                                            <li><a href="javascript:void(0);">런닝/운동화</a></li>
+                                            <li><a href="javascript:void(0);">등산/트래킹화</a></li>
                                         </ul>
                                     </div>
                                 </li>
                             </ul>
                         </div>
                         <div class="view_all_cat_inbox">
-                            <p><a href="#">뷰티</a></p>
+                            <p><a href="javascript:void(0);">골프</a></p>
                             <ul>
-                                <li><a href="#">향수</a>
+                                <li><a href="javascript:void(0);">골프클럽</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">여성향수</a></li>
-                                            <li><a href="#">남성향수</a></li>
+                                            <li><a href="javascript:void(0);">풀세트</a></li>
+                                            <li><a href="javascript:void(0);">드라이버</a></li>
+                                            <li><a href="javascript:void(0);">우드</a></li>
+                                            <li><a href="javascript:void(0);">유틸리티</a></li>
+                                            <li><a href="javascript:void(0);">아이언세트</a></li>
+                                            <li><a href="javascript:void(0);">웨지</a></li>
+                                            <li><a href="javascript:void(0);">피터</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="#">기초화장품</a>
+                                <li><a href="javascript:void(0);">골프용품</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">마스크/팩</a></li>
-                                            <li><a href="#">스킨/로션</a></li>
-                                            <li><a href="#">에센스/오일</a></li>
-                                            <li><a href="#">선블록/미스트</a></li>
-                                            <li><a href="#">크림</a></li>
-                                            <li><a href="#">아이케어</a></li>
+                                            <li><a href="javascript:void(0);">골프공</a></li>
+                                            <li><a href="javascript:void(0);">골프화</a></li>
+                                            <li><a href="javascript:void(0);">골프벨트</a></li>
+                                            <li><a href="javascript:void(0);">골프장갑</a></li>
+                                            <li><a href="javascript:void(0);">골프가방</a></li>
+                                            <li><a href="javascript:void(0);">필드용품</a></li>
+                                            <li><a href="javascript:void(0);">연습용품</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="#">메이크업/클렌징</a>
+                                <li><a href="javascript:void(0);">골프의류</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">클렌징</a></li>
-                                            <li><a href="#">베이스/BB크림</a></li>
-                                            <li><a href="#">팩트/파우더</a></li>
-                                            <li><a href="#">립/치크메이크업</a></li>
-                                            <li><a href="#">아이메이크업</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li><a href="#">바디/헤어/핸드</a>
-                                    <div class="dp3_nav">
-                                        <ul>
-                                            <li><a href="#">바디워시</a></li>
-                                            <li><a href="#">바디로션</a></li>
-                                            <li><a href="#">핸드/풋케어</a></li>
-                                            <li><a href="#">헤어워시</a></li>
-                                            <li><a href="#">헤어에센스</a></li>
-                                            <li><a href="#">바디미용용품</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li><a href="#">유기농</a>
-                                    <div class="dp3_nav">
-                                        <ul>
-                                            <li><a href="#">유기농 스킨케어</a></li>
-                                            <li><a href="#">유아 스킨케어</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li><a href="#">남성화장품</a>
-                                    <div class="dp3_nav">
-                                        <ul>
-                                            <li><a href="#">기초케어</a></li>
-                                            <li><a href="#">BB/클렌징</a></li>
+                                            <li><a href="javascript:void(0);">상의</a></li>
+                                            <li><a href="javascript:void(0);">하의</a></li>
                                         </ul>
                                     </div>
                                 </li>
@@ -590,89 +470,129 @@
                     </li>
                     <li>
                         <div class="view_all_cat_inbox">
-                            <p><a href="#">주방/생활/유아</a></p>
+                            <p><a href="javascript:void(0);">의류/잡화</a></p>
                             <ul>
-                                <li><a href="#">주방용품</a>
+                                <li><a href="javascript:void(0);">가방/잡화</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">식기/홈셋트</a></li>
-                                            <li><a href="#">냄비/후라이팬</a></li>
-                                            <li><a href="#">보관/밀폐용기</a></li>
-                                            <li><a href="#">조리도구</a></li>
+                                            <li><a href="javascript:void(0);">백팩/크로스백</a></li>
+                                            <li><a href="javascript:void(0);">핸드백</a></li>
+                                            <li><a href="javascript:void(0);">노트북/서류 가방</a></li>
+                                            <li><a href="javascript:void(0);">여행용가방</a></li>
+                                            <li><a href="javascript:void(0);">지갑/벨트</a></li>
+                                            <li><a href="javascript:void(0);">모자/시즌소품</a></li>
+                                            <li><a href="javascript:void(0);">선글라스/안경테</a></li>
+                                            <li><a href="javascript:void(0);">우산/양산</a></li>
+                                            <li><a href="javascript:void(0);">스타킹/양말</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="#">건강/생활용품</a>
+                                <li><a href="javascript:void(0);">시계/주얼리</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">안마기/찜질기</a></li>
-                                            <li><a href="#">건강측정기</a></li>
-                                            <li><a href="#">건강악세사리</a></li>
+                                            <li><a href="javascript:void(0);">브랜드시계</a></li>
+                                            <li><a href="javascript:void(0);">패션시계</a></li>
+                                            <li><a href="javascript:void(0);">쥬얼리</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="#">위생/욕실용품</a>
+                                <li><a href="javascript:void(0);">신발</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">화장지/티슈</a></li>
-                                            <li><a href="#">욕실용품</a></li>
+                                            <li><a href="javascript:void(0);">운동화</a></li>
+                                            <li><a href="javascript:void(0);">샌들/슬리퍼</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="#">유아용품</a>
+                                <li><a href="javascript:void(0);">남성의류</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">유모차/카시트</a></li>
-                                            <li><a href="#">아기띠/외출용품</a></li>
-                                            <li><a href="#">실내용품</a></li>
+                                            <li><a href="javascript:void(0);">상의</a></li>
+                                            <li><a href="javascript:void(0);">하의</a></li>
+                                            <li><a href="javascript:void(0);">아우터</a></li>
+                                            <li><a href="javascript:void(0);">니트/집업</a></li>
+                                            <li><a href="javascript:void(0);">남성언더웨어</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="#">수납/공구</a>
+                                <li><a href="javascript:void(0);">여성의류</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">공구/철물/안전</a></li>
-                                            <li><a href="#">생활악세사리</a></li>
+                                            <li><a href="javascript:void(0);">티셔츠</a></li>
+                                            <li><a href="javascript:void(0);">아우터</a></li>
+                                            <li><a href="javascript:void(0);">스커트/바지</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li><a href="javascript:void(0);">해외명품</a>
+                                    <div class="dp3_nav">
+                                        <ul>
+                                            <li><a href="javascript:void(0);">피혁잡화</a></li>
+                                            <li><a href="javascript:void(0);">시즌소품</a></li>
                                         </ul>
                                     </div>
                                 </li>
                             </ul>
                         </div>
                         <div class="view_all_cat_inbox">
-                            <p><a href="#">식품</a></p>
+                            <p><a href="javascript:void(0);">뷰티</a></p>
                             <ul>
-                                <li><a href="#">건강/다이어트</a>
+                                <li><a href="javascript:void(0);">향수</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">홍삼/건강즙</a></li>
-                                            <li><a href="#">건강기능식품</a></li>
-                                            <li><a href="#">다이어트식</a></li>
-                                            <li><a href="#">헬스/뷰티푸드</a></li>
+                                            <li><a href="javascript:void(0);">여성향수</a></li>
+                                            <li><a href="javascript:void(0);">남성향수</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="#">가공식품</a>
+                                <li><a href="javascript:void(0);">기초화장품</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">즉석조리식품</a></li>
-                                            <li><a href="#">냉동보관식품</a></li>
+                                            <li><a href="javascript:void(0);">마스크/팩</a></li>
+                                            <li><a href="javascript:void(0);">스킨/로션</a></li>
+                                            <li><a href="javascript:void(0);">에센스/오일</a></li>
+                                            <li><a href="javascript:void(0);">선블록/미스트</a></li>
+                                            <li><a href="javascript:void(0);">크림</a></li>
+                                            <li><a href="javascript:void(0);">아이케어</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="#">음료/간식</a>
+                                <li><a href="javascript:void(0);">메이크업/클렌징</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">커피/차</a></li>
-                                            <li><a href="#">과자/아이스크림</a></li>
+                                            <li><a href="javascript:void(0);">클렌징</a></li>
+                                            <li><a href="javascript:void(0);">베이스/BB크림</a></li>
+                                            <li><a href="javascript:void(0);">팩트/파우더</a></li>
+                                            <li><a href="javascript:void(0);">립/치크메이크업</a></li>
+                                            <li><a href="javascript:void(0);">아이메이크업</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="#">신선식품</a>
+                                <li><a href="javascript:void(0);">바디/헤어/핸드</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">수산물</a></li>
-                                            <li><a href="#">김치/장</a></li>
-                                            <li><a href="#">농산물</a></li>
+                                            <li><a href="javascript:void(0);">바디워시</a></li>
+                                            <li><a href="javascript:void(0);">바디로션</a></li>
+                                            <li><a href="javascript:void(0);">핸드/풋케어</a></li>
+                                            <li><a href="javascript:void(0);">헤어워시</a></li>
+                                            <li><a href="javascript:void(0);">헤어에센스</a></li>
+                                            <li><a href="javascript:void(0);">바디미용용품</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li><a href="javascript:void(0);">유기농</a>
+                                    <div class="dp3_nav">
+                                        <ul>
+                                            <li><a href="javascript:void(0);">유기농 스킨케어</a></li>
+                                            <li><a href="javascript:void(0);">유아 스킨케어</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li><a href="javascript:void(0);">남성화장품</a>
+                                    <div class="dp3_nav">
+                                        <ul>
+                                            <li><a href="javascript:void(0);">기초케어</a></li>
+                                            <li><a href="javascript:void(0);">BB/클렌징</a></li>
                                         </ul>
                                     </div>
                                 </li>
@@ -681,94 +601,185 @@
                     </li>
                     <li>
                         <div class="view_all_cat_inbox">
-                            <p><a href="#">가구/홈데코</a></p>
+                            <p><a href="javascript:void(0);">주방/생활/유아</a></p>
                             <ul>
-                                <li><a href="#">학생가구</a>
+                                <li><a href="javascript:void(0);">주방용품</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">책상</a></li>
-                                            <li><a href="#">의자</a></li>
-                                            <li><a href="#">책장</a></li>
+                                            <li><a href="javascript:void(0);">식기/홈셋트</a></li>
+                                            <li><a href="javascript:void(0);">냄비/후라이팬</a></li>
+                                            <li><a href="javascript:void(0);">보관/밀폐용기</a></li>
+                                            <li><a href="javascript:void(0);">조리도구</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="#">거실/주방가구</a>
+                                <li><a href="javascript:void(0);">건강/생활용품</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">거실가구</a></li>
-                                            <li><a href="#">주방가구</a></li>
+                                            <li><a href="javascript:void(0);">안마기/찜질기</a></li>
+                                            <li><a href="javascript:void(0);">건강측정기</a></li>
+                                            <li><a href="javascript:void(0);">건강악세사리</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="#">침실/수납가구</a>
+                                <li><a href="javascript:void(0);">위생/욕실용품</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">침대</a></li>
-                                            <li><a href="#">장롱/옷장</a></li>
-                                            <li><a href="#">화장대/수납가구</a></li>
-                                            <li><a href="#">장식가구/행거</a></li>
+                                            <li><a href="javascript:void(0);">화장지/티슈</a></li>
+                                            <li><a href="javascript:void(0);">욕실용품</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="#">침구/카페트</a>
+                                <li><a href="javascript:void(0);">유아용품</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">침구/이불</a></li>
-                                            <li><a href="#">카페트</a></li>
+                                            <li><a href="javascript:void(0);">유모차/카시트</a></li>
+                                            <li><a href="javascript:void(0);">아기띠/외출용품</a></li>
+                                            <li><a href="javascript:void(0);">실내용품</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="#">조명/소품</a>
+                                <li><a href="javascript:void(0);">수납/공구</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">조명/시계/액자</a></li>
-                                            <li><a href="#">디자인용품</a></li>
-                                            <li><a href="#">시즌용품</a></li>
+                                            <li><a href="javascript:void(0);">공구/철물/안전</a></li>
+                                            <li><a href="javascript:void(0);">생활악세사리</a></li>
                                         </ul>
                                     </div>
                                 </li>
                             </ul>
                         </div>
                         <div class="view_all_cat_inbox">
-                            <p><a href="#">e-쿠폰/문구/악기</a></p>
+                            <p><a href="javascript:void(0);">식품</a></p>
                             <ul>
-                                <li><a href="#">e-쿠폰/교육</a>
+                                <li><a href="javascript:void(0);">건강/다이어트</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">교육/여행/문화</a></li>
+                                            <li><a href="javascript:void(0);">홍삼/건강즙</a></li>
+                                            <li><a href="javascript:void(0);">건강기능식품</a></li>
+                                            <li><a href="javascript:void(0);">다이어트식</a></li>
+                                            <li><a href="javascript:void(0);">헬스/뷰티푸드</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="#">문구/사무/생활용품</a>
+                                <li><a href="javascript:void(0);">가공식품</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">복사용지/지류</a></li>
-                                            <li><a href="#">필기구</a></li>
-                                            <li><a href="#">사무용품</a></li>
-                                            <li><a href="#">식음료</a></li>
-                                            <li><a href="#">화일바인더</a></li>
-                                            <li><a href="#">사무기기</a></li>
-                                            <li><a href="#">미용위생</a></li>
-                                            <li><a href="#">학용품/채육용품</a></li>
-                                            <li><a href="#">디자인/화방</a></li>
-                                            <li><a href="#">금고/가구/잡화</a></li>
-                                            <li><a href="#">산업용품</a></li>
-                                            <li><a href="#">생활용품</a></li>
+                                            <li><a href="javascript:void(0);">즉석조리식품</a></li>
+                                            <li><a href="javascript:void(0);">냉동보관식품</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="#">DIY/공예</a>
+                                <li><a href="javascript:void(0);">음료/간식</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">미싱/취미</a></li>
+                                            <li><a href="javascript:void(0);">커피/차</a></li>
+                                            <li><a href="javascript:void(0);">과자/아이스크림</a></li>
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="#">악기</a>
+                                <li><a href="javascript:void(0);">신선식품</a>
                                     <div class="dp3_nav">
                                         <ul>
-                                            <li><a href="#">디지털피아노</a></li>
-                                            <li><a href="#">신디사이저</a></li>
+                                            <li><a href="javascript:void(0);">수산물</a></li>
+                                            <li><a href="javascript:void(0);">김치/장</a></li>
+                                            <li><a href="javascript:void(0);">농산물</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="view_all_cat_inbox">
+                            <p><a href="javascript:void(0);">가구/홈데코</a></p>
+                            <ul>
+                                <li><a href="javascript:void(0);">학생가구</a>
+                                    <div class="dp3_nav">
+                                        <ul>
+                                            <li><a href="javascript:void(0);">책상</a></li>
+                                            <li><a href="javascript:void(0);">의자</a></li>
+                                            <li><a href="javascript:void(0);">책장</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li><a href="javascript:void(0);">거실/주방가구</a>
+                                    <div class="dp3_nav">
+                                        <ul>
+                                            <li><a href="javascript:void(0);">거실가구</a></li>
+                                            <li><a href="javascript:void(0);">주방가구</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li><a href="javascript:void(0);">침실/수납가구</a>
+                                    <div class="dp3_nav">
+                                        <ul>
+                                            <li><a href="javascript:void(0);">침대</a></li>
+                                            <li><a href="javascript:void(0);">장롱/옷장</a></li>
+                                            <li><a href="javascript:void(0);">화장대/수납가구</a></li>
+                                            <li><a href="javascript:void(0);">장식가구/행거</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li><a href="javascript:void(0);">침구/카페트</a>
+                                    <div class="dp3_nav">
+                                        <ul>
+                                            <li><a href="javascript:void(0);">침구/이불</a></li>
+                                            <li><a href="javascript:void(0);">카페트</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li><a href="javascript:void(0);">조명/소품</a>
+                                    <div class="dp3_nav">
+                                        <ul>
+                                            <li><a href="javascript:void(0);">조명/시계/액자</a></li>
+                                            <li><a href="javascript:void(0);">디자인용품</a></li>
+                                            <li><a href="javascript:void(0);">시즌용품</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="view_all_cat_inbox">
+                            <p><a href="javascript:void(0);">e-쿠폰/문구/악기</a></p>
+                            <ul>
+                                <li><a href="javascript:void(0);">e-쿠폰/교육</a>
+                                    <div class="dp3_nav">
+                                        <ul>
+                                            <li><a href="javascript:void(0);">교육/여행/문화</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li><a href="javascript:void(0);">문구/사무/생활용품</a>
+                                    <div class="dp3_nav">
+                                        <ul>
+                                            <li><a href="javascript:void(0);">복사용지/지류</a></li>
+                                            <li><a href="javascript:void(0);">필기구</a></li>
+                                            <li><a href="javascript:void(0);">사무용품</a></li>
+                                            <li><a href="javascript:void(0);">식음료</a></li>
+                                            <li><a href="javascript:void(0);">화일바인더</a></li>
+                                            <li><a href="javascript:void(0);">사무기기</a></li>
+                                            <li><a href="javascript:void(0);">미용위생</a></li>
+                                            <li><a href="javascript:void(0);">학용품/채육용품</a></li>
+                                            <li><a href="javascript:void(0);">디자인/화방</a></li>
+                                            <li><a href="javascript:void(0);">금고/가구/잡화</a></li>
+                                            <li><a href="javascript:void(0);">산업용품</a></li>
+                                            <li><a href="javascript:void(0);">생활용품</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li><a href="javascript:void(0);">DIY/공예</a>
+                                    <div class="dp3_nav">
+                                        <ul>
+                                            <li><a href="javascript:void(0);">미싱/취미</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li><a href="javascript:void(0);">악기</a>
+                                    <div class="dp3_nav">
+                                        <ul>
+                                            <li><a href="javascript:void(0);">디지털피아노</a></li>
+                                            <li><a href="javascript:void(0);">신디사이저</a></li>
                                         </ul>
                                     </div>
                                 </li>
@@ -830,7 +841,8 @@
                                     <tr>
                                         <td scope="row" class="info_td">
                                             <div class="thumb">
-                                                <img src="../assets/images/sample/thumb_sample_600_2.jpg" alt="LG전자 ★LG전자&amp;교육할인공동기획★[LG전자] 초경량그램14 14ZD970-EX3YL">
+                                                <img src="/image/sample/thumb_sample_600_2.jpg"
+                                                     alt="LG전자 ★LG전자&amp;교육할인공동기획★[LG전자] 초경량그램14 14ZD970-EX3YL">
                                                 <div class="soldout_badge">품절</div>
                                             </div>
                                             <div class="info">
@@ -970,7 +982,7 @@
                                                         <select class="sel">
                                                             <option>최근배송지</option>
                                                         </select>
-                                                        <a href="#" class="btn brd btn_modal" data-src="addr_list"><span>주소록</span></a>
+                                                        <a href="javascript:void(0);" class="btn brd btn_modal" data-src="addr_list"><span>주소록</span></a>
                                                     </span>
                                             </td>
                                         </tr>
@@ -993,7 +1005,7 @@
                                             <td colspan="3" class="addr_basic">
                                                     <span class="in_field">
                                                        <input type="text" class="txt">
-                                                       <a href="#" class="btn brd"><span>주소찾기</span></a>
+                                                       <a href="javascript:void(0);" class="btn brd"><span>주소찾기</span></a>
                                                     </span>
 
                                                 <span class="in_field">
@@ -1053,14 +1065,16 @@
                                                 </colgroup>
                                                 <tr>
                                                     <th>할인쿠폰
-                                                        <a href="#" class="tooltip"><img src="../assets/images/cart/btn_label_question.png" alt=""></a>
+                                                        <a href="javascript:void(0);" class="tooltip"><img src="/image/cart/btn_label_question.png"
+                                                                                                           alt=""></a>
                                                         <div class="tooltip_box coupon_desc">
-                                                            <p>할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰</p>
+                                                            <p>
+                                                                할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰할인쿠폰</p>
                                                         </div>
                                                     </th>
                                                     <td>
                                                         <div class="coupon_info">
-                                                            <a href="#" class="btn sml blue btn_modal" data-src="coupon_list"><span>쿠폰 조회/적용</span></a>
+                                                            <a href="javascript:void(0);" class="btn sml blue btn_modal" data-src="coupon_list"><span>쿠폰 조회/적용</span></a>
                                                             <span>사용가능 쿠폰 : <strong>2장</strong> / 보유쿠폰 : <strong>10장</strong></span>
                                                         </div>
                                                         <div class="coupon_info">
@@ -1071,32 +1085,35 @@
                                                 </tr>
                                                 <tr>
                                                     <th>복지포인트
-                                                        <a href="#" class="tooltip"><img src="../assets/images/cart/btn_label_question.png" alt=""></a>
+                                                        <a href="javascript:void(0);" class="tooltip"><img src="/image/cart/btn_label_question.png"
+                                                                                                           alt=""></a>
                                                         <div class="tooltip_box pt1_desc">
                                                             <p>복지포인트복지포인트복지포인트복지포인트복지포인트복지포인트복지포인트복지포인트복지포인트복지포인트복지포인트복지포인트복지포인트복지포인트복지포인트복지포인트</p>
                                                         </div>
                                                     </th>
                                                     <td>
                                                         <input type="text" class="txt pt"> 원 / <span class="pt_info">150,000P</span>
-                                                        <a href="#" class="btn sml blue brd"><span>전체사용</span></a>
+                                                        <a href="javascript:void(0);" class="btn sml blue brd"><span>전체사용</span></a>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th>Y포인트
-                                                        <a href="#" class="tooltip"><img src="../assets/images/cart/btn_label_question.png" alt=""></a>
+                                                        <a href="javascript:void(0);" class="tooltip"><img src="/image/cart/btn_label_question.png"
+                                                                                                           alt=""></a>
                                                         <div class="tooltip_box pt2_desc">
                                                             <p>Y포인트Y포인트Y포인트Y포인트Y포인트Y포인트Y포인트Y포인트Y포인트Y포인트Y포인트Y포인트Y포인트Y포인트Y포인트Y포인트Y포인트Y포인트</p>
-                                                        </div></th>
+                                                        </div>
+                                                    </th>
                                                     <td>
                                                         <input type="text" class="txt pt"> 원 / <span class="pt_info">150,000P</span>
-                                                        <a href="#" class="btn sml blue brd"><span>전체사용</span></a>
+                                                        <a href="javascript:void(0);" class="btn sml blue brd"><span>전체사용</span></a>
                                                     </td>
                                                 </tr>
                                             </table>
 
                                             <p class="pt_srch">
-                                                복지포인트, Y포인트 상세조회는 <a href="#">MYPAGE &gt; 쇼핑혜택</a>에서 확인하실 수 있습니다.
-                                                <a href="#" class="btn brd"><span>내 쇼핑혜택 이동</span></a>
+                                                복지포인트, Y포인트 상세조회는 <a href="javascript:void(0);">MYPAGE &gt; 쇼핑혜택</a>에서 확인하실 수 있습니다.
+                                                <a href="javascript:void(0);" class="btn brd"><span>내 쇼핑혜택 이동</span></a>
                                             </p>
                                         </div>
                                     </div>
@@ -1115,11 +1132,11 @@
                                                         <div class="payment_method">
                                                             <ul>
                                                                 <li>
-                                                                    <input type="radio" id="rdo_pay1" name="pay_method" checked>
+                                                                    <input type="radio" id="rdo_pay1" name="pay_method" value="100000000000" checked>
                                                                     <label for="rdo_pay1">신용카드</label>
                                                                 </li>
                                                                 <li>
-                                                                    <input type="radio" id="rdo_pay2" name="pay_method">
+                                                                    <input type="radio" id="rdo_pay2" name="pay_method" value="010000000000">
                                                                     <label for="rdo_pay2">실시간 계좌이체</label>
                                                                 </li>
                                                                 <li>
@@ -1131,11 +1148,11 @@
                                                         <div class="payment_method">
                                                             <ul>
                                                                 <li>
-                                                                    <input type="radio" id="rdo_pay4" name="pay_method">
+                                                                    <input type="radio" id="rdo_pay4" name="pay_method" value="000010000000">
                                                                     <label for="rdo_pay4">휴대폰 결제</label>
                                                                 </li>
                                                                 <li>
-                                                                    <input type="radio" id="rdo_pay5" name="pay_method">
+                                                                    <input type="radio" id="rdo_pay5" name="pay_method" value="001000000000">
                                                                     <label for="rdo_pay5">가상계좌</label>
                                                                 </li>
                                                                 <li>
@@ -1156,7 +1173,6 @@
                                                 </tr>
                                             </table>
                                         </div>
-
 
 
                                         <!-- 현금영수증 -->
@@ -1238,68 +1254,68 @@
 
                                         <!-- 결제수단 -->
                                         <script>
-                                            $(document).ready(function(){
+                                            $(document).ready(function () {
                                                 // 결제수단
-                                                $(".payment_method input").click(function(){
+                                                $(".payment_method input").click(function () {
                                                     var $this = $(this)
-                                                        ,idx = $this.index(".payment_method input");
+                                                        , idx = $this.index(".payment_method input");
                                                     $(".pay_tab_wrap").addClass("hide").eq(idx).removeClass("hide");
-                                                    if(idx == 2){
+                                                    if (idx == 2) {
                                                         $(".ord_info .ord_info_box table tr.without_handbook").addClass("on");
-                                                    }else{
+                                                    } else {
                                                         $(".ord_info .ord_info_box table tr.without_handbook").removeClass("on");
                                                     }
 
-                                                    if(idx == 1 || idx == 2 || idx == 4){
+                                                    if (idx == 1 || idx == 2 || idx == 4) {
                                                         $(".cash_receipt_box").removeClass("hide");
-                                                    }else{
+                                                    } else {
                                                         $(".cash_receipt_box").addClass("hide");
                                                     }
 
                                                 });
 
-                                                $("input.rec_type").click(function(){
+                                                $("input.rec_type").click(function () {
                                                     var $this = $(this),
                                                         idx = $this.index("input.rec_type");
                                                     $(".receipt_box.receipt_2").add("hide");
-                                                    if(idx == 0){
+                                                    if (idx == 0) {
                                                         $(".receipt_type1").removeClass("hide").change();
                                                         $(".receipt_type2").addClass("hide");
                                                         $("select.receipt_type1, select.receipt_type2, .receipt_box input, .receipt_box select").prop("disabled", false);
-                                                    }else if(idx == 1){
+                                                    } else if (idx == 1) {
                                                         $(".receipt_type1").addClass("hide");
                                                         $(".receipt_type2").removeClass("hide").change();
                                                         $("select.receipt_type1, select.receipt_type2, .receipt_box input, .receipt_box select").prop("disabled", false);
-                                                    }else{
+                                                    } else {
                                                         $("select.receipt_type1, select.receipt_type2, .receipt_box input, .receipt_box select").prop("disabled", true);
                                                     }
                                                 });
 
-                                                $(".receipt_type1").change(function(){
+                                                $(".receipt_type1").change(function () {
                                                     var $this = $(this), val = $this.val();
                                                     $(".receipt_box").addClass("hide");
                                                     $(".receipt_type1").removeClass("hide");
                                                     $(".receipt_type2").addClass("hide");
 
-                                                    if(val == ""){
+                                                    if (val == "") {
                                                         $(".receipt_box.receipt_1").removeClass("hide");
                                                         $(".receipt_box.receipt_2").addClass("hide");
-                                                    }else{
+                                                    } else {
                                                         $(".receipt_box.receipt_1").addClass("hide");
                                                         $(".receipt_box.receipt_2").removeClass("hide");
                                                     }
                                                 });
 
-                                                $(".receipt_type2").change(function(){
+                                                $(".receipt_type2").change(function () {
                                                     var $this = $(this), val = $this.val();
                                                     $(".receipt_box").addClass("hide");
                                                     $(".receipt_type1").addClass("hide");
                                                     $(".receipt_type2").removeClass("hide");
 
-                                                    if(val == ""){
+                                                    if (val == "") {
                                                         $(".receipt_box.receipt_3").removeClass("hide");
                                                         $(".receipt_box.receipt_4").addClass("hide");
-                                                    }else{
+                                                    } else {
                                                         $(".receipt_box.receipt_3").addClass("hide");
                                                         $(".receipt_box.receipt_4").removeClass("hide");
                                                     }
@@ -1312,14 +1328,14 @@
                                         <div class="pay_tab_wrap pay_tab_wrap_1 tab_wrap">
                                             <div class="pay_tab_nav tab_with_contents">
                                                 <ul>
-                                                    <li class="on"><a href="#"><span>무이자 할부안내</span></a></li>
-                                                    <li><a href="#"><span>신용카드 이용안내</span></a></li>
+                                                    <li class="on"><a href="javascript:void(0);"><span>무이자 할부안내</span></a></li>
+                                                    <li><a href="javascript:void(0);"><span>신용카드 이용안내</span></a></li>
                                                 </ul>
                                             </div>
 
                                             <!-- 무이자 할부안내 -->
                                             <div class="tab_contents tab_contents1">
-                                                <img src="../assets/images/sample/img_card_event.gif" alt="">
+                                                <img src="/image/sample/img_card_event.gif" alt="">
                                             </div>
                                             <!-- // 무이자 할부안내 -->
 
@@ -1328,7 +1344,9 @@
                                                 <p class="tit">신용카드 결제 안내</p>
                                                 <ul class="dot_list">
                                                     <li>대상카드:BC/국민/외환/삼성/현대/신한(구LG)/수협/광주/우리(평화)씨티/하나(보람)/전북/농협NH/산은/제주
-                                                    <li>카드 첫 결제 시 국민, BC, 우리카드의 경우 ISP 인증서를 다운받아야 사용할 수 있습니다.<br>삼성, 외환, 신한, 현대, 롯데, 하나 등의 카드는 각 카드사별 안심선택 회원에 가입하여야만 이용 가능합니다.</li>
+                                                    <li>카드 첫 결제 시 국민, BC, 우리카드의 경우 ISP 인증서를 다운받아야 사용할 수 있습니다.<br>삼성, 외환, 신한, 현대, 롯데, 하나 등의 카드는 각 카드사별
+                                                        안심선택 회원에 가입하여야만 이용 가능합니다.
+                                                    </li>
                                                     <li>삼성, 현대, 신한(구LG), 롯데 : 금액에 상관없이 안심선택 또는 공인인증서 선택</li>
                                                     <li>외환 - 금액에 상관없이 안심선택 적용.</li>
                                                 </ul>
@@ -1341,7 +1359,7 @@
                                         <div class="pay_tab_wrap pay_tab_wrap_2  hide">
                                             <div class="pay_tab_nav">
                                                 <ul>
-                                                    <li class="on"><a href="#"><span>실시간 계좌이체 안내</span></a></li>
+                                                    <li class="on"><a href="javascript:void(0);"><span>실시간 계좌이체 안내</span></a></li>
                                                 </ul>
                                             </div>
 
@@ -1365,7 +1383,7 @@
                                         <div class="pay_tab_wrap pay_tab_wrap_3  hide">
                                             <div class="pay_tab_nav">
                                                 <ul>
-                                                    <li class="on"><a href="#"><span>무통장 입금 안내</span></a></li>
+                                                    <li class="on"><a href="javascript:void(0);"><span>무통장 입금 안내</span></a></li>
                                                 </ul>
                                             </div>
 
@@ -1442,7 +1460,7 @@
                                             </ul>
                                         </div>
                                         <div class="btn_wrap">
-                                            <a href="#" class="btn btn_payment"><span>결제하기</span></a>
+                                            <a href="/order/orderTest" class="btn btn_payment"><span>결제하기</span></a>
                                         </div>
 
                                         <div class="pay_agree_box">
@@ -1451,7 +1469,9 @@
                                                 <label for="chk_agree">구매 및 결제 진행 동의합니다. (필수)</label>
                                             </div>
                                             <div class="pay_agree_inbox">
-                                                <p>고객님께서는 아래 내용에 대하여 동의를 거부하실 수 있으며, 거부 시 상품배송, 구매 및 결제, 일부 Y포인트 적립이 제한됩니다.고객님께서는 아래 내용에 대하여 동의를 거부하실 수 있으며, 거부 시 상품배송, 구매 및 결제, 일부 Y포인트 적립이 제한됩니다.고객님께서는 아래 내용에 대하여 동의를 거부하실 수 있으며, 거부 시 상품배송, 구매 및 결제, 일부 Y포인트 적립이 제한됩니다.고객님께서는 아래 내용에 대하여 동의를 거부하실 수 있으며, 거부 시 상품배송, 구매 및 결제, 일부 Y포인트 적립이 제한됩니다.</p>
+                                                <p>고객님께서는 아래 내용에 대하여 동의를 거부하실 수 있으며, 거부 시 상품배송, 구매 및 결제, 일부 Y포인트 적립이 제한됩니다.고객님께서는 아래 내용에 대하여 동의를 거부하실
+                                                    수 있으며, 거부 시 상품배송, 구매 및 결제, 일부 Y포인트 적립이 제한됩니다.고객님께서는 아래 내용에 대하여 동의를 거부하실 수 있으며, 거부 시 상품배송, 구매 및 결제,
+                                                    일부 Y포인트 적립이 제한됩니다.고객님께서는 아래 내용에 대하여 동의를 거부하실 수 있으며, 거부 시 상품배송, 구매 및 결제, 일부 Y포인트 적립이 제한됩니다.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -1501,7 +1521,7 @@
                                     </td>
                                     <td><p class="phone_no">010-12345678</p></td>
                                     <td class="btn_td">
-                                        <a href="#" class="btn m_w sml dark"><span>선택</span></a>
+                                        <a href="javascript:void(0);" class="btn m_w sml dark"><span>선택</span></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -1513,19 +1533,19 @@
                                     </td>
                                     <td><p class="phone_no">010-12345678</p></td>
                                     <td class="btn_td">
-                                        <a href="#" class="btn m_w sml dark"><span>선택</span></a>
-                                        <a href="#" class="btn m_w sml brd"><span>삭제</span></a>
+                                        <a href="javascript:void(0);" class="btn m_w sml dark"><span>선택</span></a>
+                                        <a href="javascript:void(0);" class="btn m_w sml brd"><span>삭제</span></a>
                                     </td>
                                 </tr>
                                 </tbody>
                             </table>
 
                             <div class="btn_wrap">
-                                <a href="#" class="btn m_w sml cancel close"><span>취소</span></a>
+                                <a href="javascript:void(0);" class="btn m_w sml cancel close"><span>취소</span></a>
                             </div>
                         </div>
                         <div class="modal_close">
-                            <a href="#"><span>닫기</span></a>
+                            <a href="javascript:void(0);"><span>닫기</span></a>
                         </div>
                     </div>
                 </div>
@@ -1540,7 +1560,7 @@
                         <div class="modal_body">
 
                             <div class="coupon_max_apply">
-                                <a href="#" class="btn sml blue"><span>쿠폰 최대할인 적용</span></a>
+                                <a href="javascript:void(0);" class="btn sml blue"><span>쿠폰 최대할인 적용</span></a>
                             </div>
 
                             <table class="tbl">
@@ -1620,13 +1640,13 @@
                             </div>
 
                             <div class="btn_wrap">
-                                <a href="#" class="btn sml cancel m_w close"><span>취소</span></a>
-                                <a href="#" class="btn sml dark m_w"><span>적용</span></a>
+                                <a href="javascript:void(0);" class="btn sml cancel m_w close"><span>취소</span></a>
+                                <a href="javascript:void(0);" class="btn sml dark m_w"><span>적용</span></a>
                             </div>
 
                         </div>
                         <div class="modal_close">
-                            <a href="#"><span>닫기</span></a>
+                            <a href="javascript:void(0);"><span>닫기</span></a>
                         </div>
                     </div>
                 </div>
@@ -1642,16 +1662,16 @@
                 <div class="in_container">
                     <div class="footer_top_box">
                         <ul>
-                            <li><a href="#"><span>교육할인 스토어란?</span></a></li>
-                            <li><a href="#"><span>이용약관</span></a></li>
-                            <li><a href="#" class="privace_rule"><span>개인정보취급방침</span></a></li>
-                            <li><a href="#"><span>입점 및 제휴문의</span></a></li>
+                            <li><a href="javascript:void(0);"><span>교육할인 스토어란?</span></a></li>
+                            <li><a href="javascript:void(0);"><span>이용약관</span></a></li>
+                            <li><a href="javascript:void(0);" class="privace_rule"><span>개인정보취급방침</span></a></li>
+                            <li><a href="javascript:void(0);"><span>입점 및 제휴문의</span></a></li>
                         </ul>
                     </div>
 
                     <div class="footer_top_box">
                         <ul>
-                            <li><a href="#"><span>관련사이트 바로가기</span></a></li>
+                            <li><a href="javascript:void(0);"><span>관련사이트 바로가기</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -1660,7 +1680,7 @@
             <div class="in_container">
                 <div class="footer_btm">
                     <div class="footer_btm_box logo">
-                        <img src="../assets/images/sample/img_footer_ygoon_logo.gif" alt="YGOON 교육할인스토어">
+                        <img src="/image/sample/img_footer_ygoon_logo.gif" alt="YGOON 교육할인스토어">
                     </div>
                     <div class="footer_btm_box copyright">
                         <ul>
@@ -1668,7 +1688,7 @@
                             <li>대표이사 : 조준희</li>
                             <li>주소 : 서울특별시 마포구 상암산로 76 (상암동 1607, YTN 뉴스퀘어)</li>
                             <li>사업자 등록번호 : 102-81-32883</li>
-                            <li>통신판매업 : 마포 1507 <a href="#" target="_blank">[사업자번호 확인하기]</a></li>
+                            <li>통신판매업 : 마포 1507 <a href="javascript:void(0);" target="_blank">[사업자번호 확인하기]</a></li>
                             <li>전화 : 02-398-8880 팩스 : 02-398-8359</li>
                             <li>이메일 : csmaster@ytn.co.kr</li>
                             <li>개인정보책임관리자 : 이교준</li>
@@ -1683,12 +1703,12 @@
                         </div>
                         <ul>
                             <li>평일 09:00~18:00</li>
-                            <li>점심시간 11:30~13:00  (주말 및 법정공휴일 휴무)</li>
+                            <li>점심시간 11:30~13:00 (주말 및 법정공휴일 휴무)</li>
                             <li>주말 및 공휴일은 1:1문의하기를 이용해주세요</li>
                         </ul>
                         <div class="btn_wrap">
-                            <a href="#" class="btn"><span>자주하는 질문</span></a>
-                            <a href="#" class="btn"><span>1:1 문의하기</span></a>
+                            <a href="javascript:void(0);" class="btn"><span>자주하는 질문</span></a>
+                            <a href="javascript:void(0);" class="btn"><span>1:1 문의하기</span></a>
                         </div>
                     </div>
                 </div>
@@ -1795,11 +1815,11 @@
             </div>
 
             <div class="promotion_banner">
-                <a href="#"><img src="http://via.placeholder.com/100x100/?text=BANNER"></a>
+                <a href="javascript:void(0);"><img src="http://via.placeholder.com/100x100/?text=BANNER"></a>
             </div>
 
             <div class="go_top">
-                <a href="#top"><img src="../assets/images/common/btn_go_top.gif" alt="위로가기"></a>
+                <a href="#top"><img src="/image/common/btn_go_top.gif" alt="위로가기"></a>
             </div>
         </div>
         <!-- // wing -->
@@ -1808,6 +1828,16 @@
     <!-- // container -->
 </div>
 <!-- // wrap -->
-
+<script>
+    $(document).ready(function () {
+//        $.ajax({
+//            method: "POST",
+//            url: "/api/tempOrder/read",
+//            data: {id: 50}
+//        }).done(function (data) {
+//            alert("Data read: " + data);
+//        });
+    })
+</script>
 </body>
 </html>

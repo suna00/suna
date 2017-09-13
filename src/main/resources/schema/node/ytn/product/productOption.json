@@ -1,0 +1,22 @@
+[
+  {
+    "typeId": "productOption",
+    "productOptionId": "101",
+    "productId": 3,
+    "productOptionType": "mix",
+    "name": "사이즈",
+    "required": true,
+    "productOptionStatus": "y",
+    "productOptionCodes" : "100,105"
+  },
+  {
+    "typeId": "productOption",
+    "productOptionId": "102",
+    "productId": 3,
+    "productOptionType": "mix",
+    "name": "색상",
+    "required": true,
+    "productOptionStatus": "y",
+    "productOptionCodes" : "노랑,보라"
+  }
+]

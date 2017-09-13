@@ -1,8 +1,8 @@
 [
   {
-    "typeId" : "apiCategory",
-    "id" : "tempOrder",
-    "categoryName" : "임시 주문서 API"
+    "typeId": "apiCategory",
+    "id": "tempOrder",
+    "categoryName": "임시 주문서 API"
   },
   {
     "typeId": "apiConfig",
@@ -17,16 +17,25 @@
         "select": {
           "ds": "ytnDevDb",
           "resultType": "read",
-          "description": "장바구니 전체 계산",
+          "description": "임시주문서 전체 계산",
           "sql": "SELECT o.* , (totalProductPrice + totalDeliveryPrice - totalDiscountPrice) as totalOrderPrice from ( select t.tempOrderId, (t.totalBaseOptionPrice + t.totalAddOptionPrice) as totalProductPrice, (SELECT ifnull(sum(deliveryPrice), 0) FROM temporderdeliveryprice WHERE tempOrderId = t.tempOrderId) AS totalDeliveryPrice, 0 AS totalDiscountPrice from ( SELECT cp.tempOrderId, sum((ifnull(pi.addPrice, 0) + ifnull(p.salePrice, 0)) * cp.quantity) AS totalBaseOptionPrice, (SELECT sum(pi.addPrice * ci.quantity) FROM temporderproductitem ci, productoptionitem pi WHERE tempOrderId = cp.tempOrderId AND ci.addOptionItemId = pi.productOptionItemId)              AS totalAddOptionPrice FROM temporderproduct cp, productoptionitem pi, product p WHERE tempOrderId = @{tempOrderId} AND cp.baseOptionItemId = pi.productOptionItemId AND p.productId = pi.productId ) t ) o"
         }
       },
       "referencedTempOrderProduct": {
         "typeId": "tempOrderProduct",
         "query": [
-          { "sorting": "tempOrderDeliveryPriceId desc,created desc" },
-          { "field": "tempOrderId", "method": "matching", "value": "{{:tempOrderId}}" },
-          { "includeReferenced": true, "referenceView": "productId, tempOrderDeliveryPriceId, addOptionItemId"}
+          {
+            "sorting": "tempOrderDeliveryPriceId desc,created desc"
+          },
+          {
+            "field": "tempOrderId",
+            "method": "matching",
+            "value": "{{:tempOrderId}}"
+          },
+          {
+            "includeReferenced": true,
+            "referenceView": "productId, tempOrderDeliveryPriceId, addOptionItemId"
+          }
         ],
         "response": {
           "tempOrderProductId": "",
@@ -38,8 +47,15 @@
           "referencedTempOrderProductItem": {
             "typeId": "tempOrderProductItem",
             "query": [
-              { "field": "tempOrderProductId", "method": "matching", "value": "{{:tempOrderProductId}}" },
-              { "includeReferenced": true, "referenceView": "addOptionItemId" }
+              {
+                "field": "tempOrderProductId",
+                "method": "matching",
+                "value": "{{:tempOrderProductId}}"
+              },
+              {
+                "includeReferenced": true,
+                "referenceView": "addOptionItemId"
+              }
             ]
           },
           "calculateItem": {
@@ -47,7 +63,7 @@
               "ds": "ytnDevDb",
               "resultType": "read",
               "description": "장바구니상품 레벨 계산",
-              "sql": "SELECT x.*, ((productPrice * quantity) + totalAddOptionPrice) AS orderPrice FROM (SELECT cp.tempOrderProductId, cp.tempOrderId, cp.productId, cp.quantity, cp.baseOptionItemId, pi.name                                                            AS baseOptionItemName, ifnull(pi.addPrice, 0)                                             AS baseAddPrice, ifnull(p.salePrice, 0)                                             AS salePrice, (ifnull(pi.addPrice, 0) + ifnull(p.salePrice, 0))                  AS productPrice, ifnull((SELECT sum(pi.addPrice * ci.quantity) FROM temporderproductitem ci, productoptionitem pi WHERE tempOrderId = cp.tempOrderId and ci.tempOrderProductId = cp.tempOrderProductId AND ci.addOptionItemId = pi.productOptionItemId), 0) AS totalAddOptionPrice FROM temporderproduct cp, productoptionitem pi, product p WHERE pi.productOptionItemId = cp.baseOptionItemId AND p.productId = pi.productId AND cp.tempOrderProductId = @{tempOrderProductId}) x "
+              "sql": "SELECT x.*, ((productPrice * quantity) + totalAddOptionPrice) AS orderPrice FROM (SELECT cp.tempOrderProductId, cp.tempOrderId, cp.productId, cp.quantity, cp.baseOptionItemId, pi.name AS baseOptionItemName, ifnull(pi.addPrice, 0) AS baseAddPrice, ifnull(p.salePrice, 0) AS salePrice, (ifnull(pi.addPrice, 0) + ifnull(p.salePrice, 0)) AS productPrice, ifnull((SELECT sum(pi.addPrice * ci.quantity) FROM temporderproductitem ci, productoptionitem pi WHERE tempOrderId = cp.tempOrderId and ci.tempOrderProductId = cp.tempOrderProductId AND ci.addOptionItemId = pi.productOptionItemId), 0) AS totalAddOptionPrice FROM temporderproduct cp, productoptionitem pi, product p WHERE pi.productOptionItemId = cp.baseOptionItemId AND p.productId = pi.productId AND cp.tempOrderProductId = @{tempOrderProductId}) x"
             }
           }
         }
