@@ -84,6 +84,7 @@ public class DBSyncService {
     /*
     * 결과가 안나올 때까지 이터레이션하면서 처리한다, 쿼리에 반드시 limit @{start} @{unit} 있어야 한다
     * start unit 외 다른 파라미터는 받을 수 없음
+    * 실패에 대한 처리를 어떻게 할 것인지
     * */
     public void executeWithIteration (String executeId) throws Exception {
         boolean loop = true;

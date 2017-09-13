@@ -263,7 +263,7 @@
     "id": "song>showYn",
     "propertyTypeName": "노출 여부",
     "valueType": "BOOLEAN",
-    "required": true,
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,

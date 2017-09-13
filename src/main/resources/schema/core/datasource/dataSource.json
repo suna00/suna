@@ -80,6 +80,16 @@
   },
   {
     "typeId": "datasource",
+    "datasourceId": "cjMig",
+    "profiles": "cj-dev",
+    "dsName": "Test DB",
+    "jdbcUrl": "jdbc:mysql://125.131.88.156:3306/ice2?useSSL=false",
+    "dbType": "mySql",
+    "username": "cjmwave",
+    "password": "cjmwave0!@#"
+  }
+  ,{
+    "typeId": "datasource",
     "datasourceId": "cjDb",
     "profiles": "cj-dev01",
     "dsName": "Test DB",
@@ -93,7 +103,7 @@
     "datasourceId": "cjDb",
     "profiles": "aws-was",
     "dsName": "Test DB",
-    "jdbcUrl": "jdbc:mysql://10.17.118.242:3306/ice2?useSSL=false",
+    "jdbcUrl": "jdbc:mysql://authdbdev.cfwzre2kzbc1.ap-northeast-2.rds.amazonaws.com:3306/ice2?useSSL=false",
     "dbType": "mySql",
     "username": "cjmwave",
     "password": "cjmwave0!@#"

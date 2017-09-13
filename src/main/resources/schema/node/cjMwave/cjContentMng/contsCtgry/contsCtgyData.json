@@ -22,7 +22,7 @@
   {
     "typeId": "contsCtgry",
     "contsCtgryId": "102",
-    "contsMetaDivCd": "",
+    "contsMetaDivCd": "1",
     "upperContsCtgryId": "100",
     "contsCtgryNm": "남자",
     "sortOdrg": 1,
@@ -32,7 +32,7 @@
   {
     "typeId": "contsCtgry",
     "contsCtgryId": "103",
-    "contsMetaDivCd": "",
+    "contsMetaDivCd": "1",
     "upperContsCtgryId": "100",
     "contsCtgryNm": "여자",
     "sortOdrg": 2,
@@ -42,7 +42,7 @@
   {
     "typeId": "contsCtgry",
     "contsCtgryId": "104",
-    "contsMetaDivCd": "",
+    "contsMetaDivCd": "1",
     "upperContsCtgryId": "100",
     "contsCtgryNm": "남성그룹",
     "sortOdrg": 3,
@@ -52,7 +52,7 @@
   {
     "typeId": "contsCtgry",
     "contsCtgryId": "105",
-    "contsMetaDivCd": "",
+    "contsMetaDivCd": "1",
     "upperContsCtgryId": "100",
     "contsCtgryNm": "여성그룹",
     "sortOdrg": 4,
@@ -62,7 +62,7 @@
   {
     "typeId": "contsCtgry",
     "contsCtgryId": "106",
-    "contsMetaDivCd": "",
+    "contsMetaDivCd": "1",
     "upperContsCtgryId": "100",
     "contsCtgryNm": "혼성그룹",
     "sortOdrg": 5,
@@ -73,7 +73,7 @@
     "typeId": "contsCtgry",
     "contsCtgryId": "107",
     "contsMetaDivCd": "10",
-    "upperContsCtgryId": "root",
+    "upperContsCtgryId": "",
     "contsCtgryNm": "프로그램 1-1",
     "sortOdrg": 1,
     "contsCtgrydesc": "",
@@ -83,7 +83,7 @@
     "typeId": "contsCtgry",
     "contsCtgryId": "108",
     "contsMetaDivCd": "10",
-    "upperContsCtgryId": "root",
+    "upperContsCtgryId": "",
     "contsCtgryNm": "프로그램 1-2",
     "sortOdrg": 2,
     "contsCtgrydesc": "",
@@ -161,7 +161,7 @@
   },
   {
     "typeId": "contsCtgry",
-    "contsCtgryId": "115",
+    "contsCtgryId": "116",
     "contsMetaDivCd": "9",
     "upperContsCtgryId": "root",
     "contsCtgryNm": "투표 대분류1",
@@ -183,7 +183,17 @@
     "typeId": "contsCtgry",
     "contsCtgryId": "118",
     "contsMetaDivCd": "9",
-    "upperContsCtgryId": "115",
+    "upperContsCtgryId": "root",
+    "contsCtgryNm": "투표 대분류3",
+    "sortOdrg": 3,
+    "contsCtgrydesc": "투표 대분류3",
+    "useYn": true
+  },
+  {
+    "typeId": "contsCtgry",
+    "contsCtgryId": "118",
+    "contsMetaDivCd": "9",
+    "upperContsCtgryId": "116",
     "contsCtgryNm": "투표 대분류1-중분류1",
     "sortOdrg": 1,
     "contsCtgrydesc": "투표 대분류1-중분류1",
@@ -223,7 +233,7 @@
     "typeId": "contsCtgry",
     "contsCtgryId": "121",
     "contsMetaDivCd": "9",
-    "upperContsCtgryId": "115",
+    "upperContsCtgryId": "116",
     "contsCtgryNm": "투표 대분류1-중분류2",
     "sortOdrg": 2,
     "contsCtgrydesc": "투표 대분류1-중분류2",
@@ -243,6 +253,26 @@
     "typeId": "contsCtgry",
     "contsCtgryId": "123",
     "contsMetaDivCd": "9",
+    "upperContsCtgryId": "121",
+    "contsCtgryNm": "투표 대분류1-중분류2-소분류2",
+    "sortOdrg": 2,
+    "contsCtgrydesc": "투표 대분류1-중분류2-소분류2",
+    "useYn": true
+  },
+  {
+    "typeId": "contsCtgry",
+    "contsCtgryId": "124",
+    "contsMetaDivCd": "9",
+    "upperContsCtgryId": "121",
+    "contsCtgryNm": "투표 대분류1-중분류2-소분류3",
+    "sortOdrg": 3,
+    "contsCtgrydesc": "투표 대분류1-중분류2-소분류3",
+    "useYn": true
+  },
+  {
+    "typeId": "contsCtgry",
+    "contsCtgryId": "125",
+    "contsMetaDivCd": "9",
     "upperContsCtgryId": "117",
     "contsCtgryNm": "투표 대분류2-중분류1",
     "sortOdrg": 1,
@@ -251,12 +281,152 @@
   },
   {
     "typeId": "contsCtgry",
-    "contsCtgryId": "124",
+    "contsCtgryId": "126",
     "contsMetaDivCd": "9",
-    "upperContsCtgryId": "123",
+    "upperContsCtgryId": "125",
     "contsCtgryNm": "투표 대분류2-중분류1-소분류1",
     "sortOdrg": 1,
     "contsCtgrydesc": "투표 대분류2-중분류1-소분류1",
+    "useYn": true
+  },
+  {
+    "typeId": "contsCtgry",
+    "contsCtgryId": "127",
+    "contsMetaDivCd": "9",
+    "upperContsCtgryId": "125",
+    "contsCtgryNm": "투표 대분류2-중분류1-소분류2",
+    "sortOdrg": 2,
+    "contsCtgrydesc": "투표 대분류1-중분류1-소분류2",
+    "useYn": true
+  },
+  {
+    "typeId": "contsCtgry",
+    "contsCtgryId": "128",
+    "contsMetaDivCd": "9",
+    "upperContsCtgryId": "125",
+    "contsCtgryNm": "투표 대분류2-중분류1-소분류3",
+    "sortOdrg": 3,
+    "contsCtgrydesc": "투표 대분류1-중분류1-소분류3",
+    "useYn": true
+  },
+  {
+    "typeId": "contsCtgry",
+    "contsCtgryId": "129",
+    "contsMetaDivCd": "9",
+    "upperContsCtgryId": "117",
+    "contsCtgryNm": "투표 대분류2-중분류2",
+    "sortOdrg": 2,
+    "contsCtgrydesc": "투표 대분류2-중분류2",
+    "useYn": true
+  },
+  {
+    "typeId": "contsCtgry",
+    "contsCtgryId": "130",
+    "contsMetaDivCd": "9",
+    "upperContsCtgryId": "129",
+    "contsCtgryNm": "투표 대분류2-중분류2-소분류1",
+    "sortOdrg": 1,
+    "contsCtgrydesc": "투표 대분류1-중분류2-소분류1",
+    "useYn": true
+  },
+  {
+    "typeId": "contsCtgry",
+    "contsCtgryId": "131",
+    "contsMetaDivCd": "9",
+    "upperContsCtgryId": "129",
+    "contsCtgryNm": "투표 대분류2-중분류2-소분류2",
+    "sortOdrg": 2,
+    "contsCtgrydesc": "투표 대분류2-중분류2-소분류2",
+    "useYn": true
+  },
+  {
+    "typeId": "contsCtgry",
+    "contsCtgryId": "132",
+    "contsMetaDivCd": "9",
+    "upperContsCtgryId": "129",
+    "contsCtgryNm": "투표 대분류2-중분류2-소분류3",
+    "sortOdrg": 3,
+    "contsCtgrydesc": "투표 대분류2-중분류2-소분류3",
+    "useYn": true
+  },
+  {
+    "typeId": "contsCtgry",
+    "contsCtgryId": "133",
+    "contsMetaDivCd": "9",
+    "upperContsCtgryId": "118",
+    "contsCtgryNm": "투표 대분류3-중분류1",
+    "sortOdrg": 1,
+    "contsCtgrydesc": "투표 대분류2-중분류1",
+    "useYn": true
+  },
+  {
+    "typeId": "contsCtgry",
+    "contsCtgryId": "134",
+    "contsMetaDivCd": "9",
+    "upperContsCtgryId": "133",
+    "contsCtgryNm": "투표 대분류3-중분류1-소분류1",
+    "sortOdrg": 1,
+    "contsCtgrydesc": "투표 대분류2-중분류1-소분류1",
+    "useYn": true
+  },
+  {
+    "typeId": "contsCtgry",
+    "contsCtgryId": "135",
+    "contsMetaDivCd": "9",
+    "upperContsCtgryId": "133",
+    "contsCtgryNm": "투표 대분류3-중분류1-소분류2",
+    "sortOdrg": 2,
+    "contsCtgrydesc": "투표 대분류3-중분류1-소분류2",
+    "useYn": true
+  },
+  {
+    "typeId": "contsCtgry",
+    "contsCtgryId": "136",
+    "contsMetaDivCd": "9",
+    "upperContsCtgryId": "133",
+    "contsCtgryNm": "투표 대분류3-중분류1-소분류3",
+    "sortOdrg": 3,
+    "contsCtgrydesc": "투표 대분류3-중분류1-소분류3",
+    "useYn": true
+  },
+  {
+    "typeId": "contsCtgry",
+    "contsCtgryId": "137",
+    "contsMetaDivCd": "9",
+    "upperContsCtgryId": "118",
+    "contsCtgryNm": "투표 대분류3-중분류2",
+    "sortOdrg": 2,
+    "contsCtgrydesc": "투표 대분류3-중분류2",
+    "useYn": true
+  },
+  {
+    "typeId": "contsCtgry",
+    "contsCtgryId": "138",
+    "contsMetaDivCd": "9",
+    "upperContsCtgryId": "137",
+    "contsCtgryNm": "투표 대분류3-중분류2-소분류1",
+    "sortOdrg": 1,
+    "contsCtgrydesc": "투표 대분류3-중분류2-소분류1",
+    "useYn": true
+  },
+  {
+    "typeId": "contsCtgry",
+    "contsCtgryId": "139",
+    "contsMetaDivCd": "9",
+    "upperContsCtgryId": "137",
+    "contsCtgryNm": "투표 대분류3-중분류2-소분류2",
+    "sortOdrg": 2,
+    "contsCtgrydesc": "투표 대분류3-중분류2-소분류2",
+    "useYn": true
+  },
+  {
+    "typeId": "contsCtgry",
+    "contsCtgryId": "140",
+    "contsMetaDivCd": "9",
+    "upperContsCtgryId": "137",
+    "contsCtgryNm": "투표 대분류3-중분류2-소분류3",
+    "sortOdrg": 3,
+    "contsCtgrydesc": "투표 대분류3-중분류2-소분류3",
     "useYn": true
   }
 ]
