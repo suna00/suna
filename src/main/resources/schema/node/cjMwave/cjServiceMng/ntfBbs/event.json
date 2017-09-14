@@ -1,25 +1,25 @@
 [
   {
     "typeId": "event",
-    "tid": "faq",
+    "tid": "ntfBbs",
     "event": "view",
-    "noneExecute" : true,
+    "noneExecute": true,
     "eventName": "hitNum Event"
   },
   {
     "typeId": "eventAction",
-    "event": "faq>view",
+    "event": "ntfBbs>view",
     "action": "hitNumUpdEvent",
-    "actionName": "FAQ 조회수 업데이트",
+    "actionName": "ntfBbs 조회수 업데이트",
     "actionType": "service",
-    "actionBody": "faqService.hitNumUpdate",
+    "actionBody": "contsRetvService.hitNumUpdate",
     "order": 1
   },
   {
     "typeId": "eventListener",
     "tid": "contsRetvHst",
-    "event": "faq>view",
-    "listenerName": "FAQ 조회시 콘텐츠 조회 create",
+    "event": "ntfBbs>view",
+    "listenerName": "ntfBbs 조회시 콘텐츠 조회 create",
     "actionType": "service",
     "actionBody": "contsRetvService.insert"
   }

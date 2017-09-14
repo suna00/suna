@@ -1,25 +1,25 @@
 [
   {
     "typeId": "event",
-    "tid": "faq",
+    "tid": "news",
     "event": "view",
-    "noneExecute" : true,
+    "noneExecute": true,
     "eventName": "hitNum Event"
   },
   {
     "typeId": "eventAction",
-    "event": "faq>view",
+    "event": "news>view",
     "action": "hitNumUpdEvent",
-    "actionName": "FAQ 조회수 업데이트",
+    "actionName": "news 조회수 업데이트",
     "actionType": "service",
-    "actionBody": "faqService.hitNumUpdate",
+    "actionBody": "contsRetvService.hitNumUpdate",
     "order": 1
   },
   {
     "typeId": "eventListener",
     "tid": "contsRetvHst",
-    "event": "faq>view",
-    "listenerName": "FAQ 조회시 콘텐츠 조회 create",
+    "event": "news>view",
+    "listenerName": "news 조회시 콘텐츠 조회 create",
     "actionType": "service",
     "actionBody": "contsRetvService.insert"
   }

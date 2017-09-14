@@ -1,16 +1,40 @@
 [
   {
-    "typeId" : "event",
+    "typeId": "event",
     "tid": "song",
-    "event" : "saveMetadata",
-    "eventName" : "Save metadata"
+    "event": "saveMetadata",
+    "eventName": "Save metadata"
   },
   {
-    "typeId" : "eventAction",
+    "typeId": "eventAction",
     "event": "song>saveMetadata",
-    "action" : "saveMetadata",
-    "actionType" : "service",
-    "actionBody" : "metadataService.saveMetadata",
-    "order" : 1
+    "action": "saveMetadata",
+    "actionType": "service",
+    "actionBody": "metadataService.saveMetadata",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "song",
+    "event": "view",
+    "noneExecute": true,
+    "eventName": "hitNum Event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "song>view",
+    "action": "hitNumUpdEvent",
+    "actionName": "Song 조회수 업데이트",
+    "actionType": "service",
+    "actionBody": "contsRetvService.hitNumUpdate",
+    "order": 1
+  },
+  {
+    "typeId": "eventListener",
+    "tid": "contsRetvHst",
+    "event": "song>view",
+    "listenerName": "Song 조회시 콘텐츠 조회 create",
+    "actionType": "service",
+    "actionBody": "contsRetvService.insert"
   }
 ]

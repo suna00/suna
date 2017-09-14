@@ -502,12 +502,12 @@
   {
     "parentId": "cjServiceMng",
     "typeId": "nodeType",
-    "id": "contsRetvInfo",
-    "tid": "contsRetvInfo",
+    "id": "contsRetvHst",
+    "tid": "contsRetvHst",
     "typeName": "콘텐츠 조회 정보",
     "repositoryType": "data",
     "eviction": 0,
-    "tableName": "cjDb#contsRetvInfo"
+    "tableName": "cjDb#contsRetvHst"
   },
   {
     "parentId": "cjServiceMng",

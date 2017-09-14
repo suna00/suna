@@ -21,7 +21,7 @@ import net.ion.ice.IceRuntimeException;
 @Service("faqService")
 public class FaqService {
 
-    public void retvNumUpdate(ExecuteContext context) {
+    public void hitNumUpdate(ExecuteContext context) {
         Map<String, Object> data = context.getData();
         String faqSeq = data.get("faqSeq").toString();
         if (data == null || StringUtils.isEmpty(faqSeq)) {
@@ -32,10 +32,10 @@ public class FaqService {
         if (node == null) {
             throw new IceRuntimeException("Node is Null : faqSeq="+faqSeq) ;
         }
-        int retvNum = node.getIntValue("retvNum") + 1;
+        int hitNum = node.getIntValue("hitNum") + 1;
         Map<String, Object> updateData = new LinkedHashMap<>();
         updateData.put("faqSeq", faqSeq);
-        updateData.put("retvNum", retvNum);
+        updateData.put("hitNum", hitNum);
         Node result = (Node)NodeUtils.getNodeService().executeNode(updateData, "faq", EventService.UPDATE) ;
 
         context.setResult(result);

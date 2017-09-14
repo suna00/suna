@@ -193,8 +193,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>faq>retvNum",
-    "propertyTypeId": "faq>retvNum",
+    "id": "propertyTypeValidation>faq>hitNum",
+    "propertyTypeId": "faq>hitNum",
     "validation": {
       "language": "ko",
       "required": {

@@ -61,21 +61,21 @@
           "pageSize": "{{:pageSize}}"
         }
       ],
-      "response":{
-        "ntfBbsSeq":"",
-        "ntfBbsNm":"",
-        "ntfBbsTgtCd":"",
-        "ntfBbsTypeCd":"",
-        "ntfLargeCtgCd":"",
-        "ntfMidCtgCd":"",
-        "svcTermlDivCd":"",
-        "pstngStDt":"",
-        "pstngFnsDt":"",
-        "showYn":"",
-        "ntfSbst":"",
-        "hitNum":"",
-        "owner":"",
-        "created":""
+      "response": {
+        "ntfBbsSeq": "",
+        "ntfBbsNm": "",
+        "ntfBbsTgtCd": "",
+        "ntfBbsTypeCd": "",
+        "ntfLargeCtgCd": "",
+        "ntfMidCtgCd": "",
+        "svcTermlDivCd": "",
+        "pstngStDt": "",
+        "pstngFnsDt": "",
+        "showYn": "",
+        "ntfSbst": "",
+        "hitNum": "",
+        "owner": "",
+        "created": ""
       }
     }
   },
@@ -92,63 +92,73 @@
       }
     ],
     "config": {
-      "typeId": "ntfBbs",
-      "id": "{{:ntfBbsSeq}}",
-      "response": {
-        "ntfBbsSeq": "",
-        "ntfBbsNm": "",
-        "ntfBbsTgtCd": "",
-        "ntfBbsTypeCd": "",
-        "ntfLargeCtgCd": "",
-        "ntfMidCtgCd": "",
-        "svcTermlDivCd": "",
-        "pstngStDt": "",
-        "pstngFnsDt": "",
-        "ntfSbst": "",
-        "hitNum": "",
-        "owner":"",
-        "created":"",
-        "nextItem": {
-          "typeId": "ntfBbs",
-          "query": [
-            {
-              "field": "ntfBbsSeq",
-              "method": "under",
-              "value": "{{:ntfBbsSeq}}"
-            },
-            {
-              "sorting": "ntfBbsSeq desc",
-              "limit": "1"
+      "root": {
+        "typeId": "ntfBbs",
+        "id": "{{:ntfBbsSeq}}",
+        "response": {
+          "ntfBbsSeq": "",
+          "ntfBbsNm": "",
+          "ntfBbsTgtCd": "",
+          "ntfBbsTypeCd": "",
+          "ntfLargeCtgCd": "",
+          "ntfMidCtgCd": "",
+          "svcTermlDivCd": "",
+          "pstngStDt": "",
+          "pstngFnsDt": "",
+          "ntfSbst": "",
+          "hitNum": "",
+          "owner": "",
+          "created": "",
+          "nextItem": {
+            "typeId": "ntfBbs",
+            "query": [
+              {
+                "field": "ntfBbsSeq",
+                "method": "under",
+                "value": "{{:ntfBbsSeq}}"
+              },
+              {
+                "sorting": "ntfBbsSeq desc",
+                "limit": "1"
+              }
+            ],
+            "response": {
+              "ntfBbsSeq": "",
+              "ntfLargeCtgCd": "",
+              "ntfMidCtgCd": "",
+              "ntfBbsNm": "",
+              "created": ""
             }
-          ],
-          "response": {
-            "ntfBbsSeq": "",
-            "ntfLargeCtgCd": "",
-            "ntfMidCtgCd": "",
-            "ntfBbsNm": "",
-            "created": ""
-          }
-        },
-        "preItem": {
-          "typeId": "ntfBbs",
-          "query": [
-            {
-              "field": "ntfBbsSeq",
-              "method": "excess",
-              "value": "{{:ntfBbsSeq}}"
-            },
-            {
-              "sorting": "ntfBbsSeq asc",
-              "limit": "1"
+          },
+          "preItem": {
+            "typeId": "ntfBbs",
+            "query": [
+              {
+                "field": "ntfBbsSeq",
+                "method": "excess",
+                "value": "{{:ntfBbsSeq}}"
+              },
+              {
+                "sorting": "ntfBbsSeq asc",
+                "limit": "1"
+              }
+            ],
+            "response": {
+              "ntfBbsSeq": "",
+              "ntfLargeCtgCd": "",
+              "ntfMidCtgCd": "",
+              "ntfBbsNm": "",
+              "created": ""
             }
-          ],
-          "response": {
-            "ntfBbsSeq": "",
-            "ntfLargeCtgCd": "",
-            "ntfMidCtgCd": "",
-            "ntfBbsNm": "",
-            "created": ""
           }
+        }
+      },
+      "hitNumUpdate": {
+        "typeId": "ntfBbs",
+        "resultType": "none",
+        "event": "view",
+        "response":{
+          "hitNum":""
         }
       }
     }
@@ -306,7 +316,7 @@
         "qstnSbst": "",
         "ansrSbst": "",
         "sortOdrg": "",
-        "hitNum": "retvNum"
+        "hitNum": ""
       }
     }
   },
@@ -328,9 +338,9 @@
       "data": {
         "faqSeq": "{{:faqSeq}}"
       },
-      "response":{
-        "faqSeq":"",
-        "retvNum":""
+      "response": {
+        "faqSeq": "",
+        "hitNum": ""
       }
     }
   }

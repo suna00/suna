@@ -11,8 +11,7 @@
     "pstngStDt": "20170808180000",
     "pstngFnsDt": "20170908180000",
     "showYn": true,
-    "ntfSbst": "블릿 패치, 권고, 금지 목록에 데이터가 없을 경우 재검사 버튼을 선택하면 인터넷을 사용할 수 있습니다.",
-    "hitNum": 5515
+    "ntfSbst": "블릿 패치, 권고, 금지 목록에 데이터가 없을 경우 재검사 버튼을 선택하면 인터넷을 사용할 수 있습니다."
   },
   {
     "typeId": "ntfBbs",
@@ -26,8 +25,7 @@
     "pstngStDt": "20170808180000",
     "pstngFnsDt": "20170908180000",
     "showYn": true,
-    "ntfSbst": "CJ MWAVE가 새롭게 단장하였습니다. 앞으로 참여 많은 부탁 드립니다.",
-    "hitNum": 3801
+    "ntfSbst": "CJ MWAVE가 새롭게 단장하였습니다. 앞으로 참여 많은 부탁 드립니다."
   },
   {
     "typeId": "ntfBbs",
@@ -41,8 +39,7 @@
     "pstngStDt": "20170808180000",
     "pstngFnsDt": "20170908180000",
     "showYn": true,
-    "ntfSbst": "MAMA Event 참여 당첨자 공지, 상세내용을 아래 하단 url을 클릭해주세요",
-    "hitNum": 1352
+    "ntfSbst": "MAMA Event 참여 당첨자 공지, 상세내용을 아래 하단 url을 클릭해주세요"
   },
   {
     "typeId": "ntfBbs",
@@ -56,8 +53,7 @@
     "pstngStDt": "20170808180000",
     "pstngFnsDt": "20170908180000",
     "showYn": true,
-    "ntfSbst": "CJ MWAVE 홈페이지 리뉴얼 공지, 상세내용을 아래 하단 url을 클릭해주세요",
-    "hitNum": 18293819
+    "ntfSbst": "CJ MWAVE 홈페이지 리뉴얼 공지, 상세내용을 아래 하단 url을 클릭해주세요"
   },
   {
     "typeId": "ntfBbs",
@@ -71,8 +67,7 @@
     "pstngStDt": "20170808180000",
     "pstngFnsDt": "20170908180000",
     "showYn": true,
-    "ntfSbst": "9/5일 서버점검 공지, 상세내용을 아래 하단 url을 클릭해주세요",
-    "hitNum": 12313
+    "ntfSbst": "9/5일 서버점검 공지, 상세내용을 아래 하단 url을 클릭해주세요"
   },
   {
     "typeId": "ntfBbs",
@@ -86,7 +81,6 @@
     "pstngStDt": "20170808180000",
     "pstngFnsDt": "20170908180000",
     "showYn": true,
-    "ntfSbst": "2017년 가을, MAMA 사전투표 공지 상세내용을 아래 하단 url을 클릭해주세요",
-    "hitNum": 13231
+    "ntfSbst": "2017년 가을, MAMA 사전투표 공지 상세내용을 아래 하단 url을 클릭해주세요"
   }
 ]

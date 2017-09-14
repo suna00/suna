@@ -12,5 +12,29 @@
     "actionType" : "service",
     "actionBody" : "metadataService.saveMetadata",
     "order" : 1
+  },
+  {
+    "typeId": "event",
+    "tid": "album",
+    "event": "view",
+    "noneExecute": true,
+    "eventName": "hitNum Event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "album>view",
+    "action": "hitNumUpdEvent",
+    "actionName": "album 조회수 업데이트",
+    "actionType": "service",
+    "actionBody": "contsRetvService.hitNumUpdate",
+    "order": 1
+  },
+  {
+    "typeId": "eventListener",
+    "tid": "contsRetvHst",
+    "event": "album>view",
+    "listenerName": "album 조회시 콘텐츠 조회 create",
+    "actionType": "service",
+    "actionBody": "contsRetvService.insert"
   }
 ]
