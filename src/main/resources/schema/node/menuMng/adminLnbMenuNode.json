@@ -648,6 +648,33 @@
   {
     "typeId": "adminLnbMenu",
     "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "admin>root>voteMng",
+    "menuId": "voteMama",
+    "menuName": "MAMA EVENT",
+    "order": "40",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "cj/vt/MamaList"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "cj/vt/MamaForm"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "cj/vt/MamaView"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
     "gnbMenuId": "systemMng",
     "parentMenuId": "root",
     "menuId": "admrMng",
