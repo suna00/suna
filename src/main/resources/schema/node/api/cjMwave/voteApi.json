@@ -85,27 +85,9 @@
           "pageSize": "{{:pageSize}}"
         },
         {
-          "includeReferenced": true,
-          "referenceView": "refdSeriesItemList"
+          "includeReferenced": true
         }
-      ],
-      "response": {
-        "_all_": "",
-        "refdSeriesItemList": {
-          "typeId": "sersVoteItemInfo",
-          "query": [
-            {
-              "field": "voteSeq",
-              "method": "referenceJoin",
-              "value": "voteSeq_matching={{:voteSeq}}"
-            },
-            {
-              "referenceView": "sersItemVoteSeq",
-              "includeReferenced": true
-            }
-          ]
-        }
-      }
+      ]
     }
   },
   {
@@ -199,7 +181,8 @@
               "value": "voteSeq_matching={{:voteSeq}}"
             },
             {
-              "referenceView": "sersItemVoteSeq","includeReferenced": true
+              "referenceView": "sersItemVoteSeq",
+              "includeReferenced": true
             }
           ]
         }
