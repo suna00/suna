@@ -1130,25 +1130,24 @@
     "icon": "",
     "active": "true",
     "index": "false",
-    "pages": [
+    "pages": [],
+    "customPages": [
       {
         "pageName": "목록",
-        "pageUrl": "list"
+        "pageUrl": "cj/cc/faqCtg/FaqCtgList"
       },
       {
         "pageName": "등록",
-        "pageUrl": "form"
+        "pageUrl": "cj/cc/faqCtg/FaqCtgForm"
       },
       {
         "pageName": "수정",
-        "pageUrl": "uform"
+        "pageUrl": "cj/cc/faqCtg/FaqCtgUform"
       },
       {
         "pageName": "상세",
-        "pageUrl": "view"
+        "pageUrl": "cj/cc/faqCtg/FaqCtgView"
       }
-    ],
-    "customPages": [
     ]
   }
 ]
