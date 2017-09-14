@@ -47,4 +47,13 @@ public class CommonService {
         context.setResult(object);
     }
 
+    public static void setErrorMessageAlert(ExecuteContext context, String code, String message) {
+        Map<String, Object> object = new HashMap<>();
+        Map<String, Object> object2 = new HashMap<>();
+        object2.put("code", code);
+        object2.put("message", message);
+        object.put("validate", object2);
+        context.setResult(object);
+    }
+
 }
