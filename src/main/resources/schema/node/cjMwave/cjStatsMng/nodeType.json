@@ -138,5 +138,25 @@
     "repositoryType": "data",
     "eviction": 0,
     "tableName": "cjDb#voteItemStats"
+  },
+  {
+    "parentId": "cjStatsMng",
+    "typeId": "nodeType",
+    "id": "mcdChartBasInfo",
+    "tid": "mcdChartBasInfo",
+    "typeName": "MCD chart 기본정보",
+    "repositoryType": "data",
+    "eviction": 0,
+    "tableName": "cjDb#mcdChartBasInfo"
+  },
+  {
+    "parentId": "cjStatsMng",
+    "typeId": "nodeType",
+    "id": "mcdChartStats",
+    "tid": "mcdChartStats",
+    "typeName": "MCD chart 현황",
+    "repositoryType": "data",
+    "eviction": 0,
+    "tableName": "cjDb#mcdChartStats"
   }
 ]

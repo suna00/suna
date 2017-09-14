@@ -30,7 +30,8 @@
           "field": "showLoCd",
           "method": "matching",
           "value": "{{:showLoCd}}"
-        },{
+        },
+        {
           "field": "svcTypeCd",
           "method": "matching",
           "value": "{{:svcTypeCd}}"
@@ -47,6 +48,77 @@
           "limit": "1"
         }
       ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "onair",
+    "apiId": "IfLive002",
+    "apiName": "온라인 방송 번역정보 목록조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "onairSeq",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "onairTranInfo",
+      "query": [
+        {
+          "field": "onairSeq",
+          "method": "matching",
+          "value": "{{:onairSeq}}"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "onair",
+    "apiId": "IfLive003",
+    "apiName": "온라인 방송 번역정보 등록",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "onairSeq",
+        "required": true
+      },
+      {
+        "paramName": "langCd",
+        "required": true
+      },
+      {
+        "paramName": "tranSbst",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "onairTranInfo",
+      "event": "save"
     }
   }
 ]

@@ -213,6 +213,39 @@
   {
     "typeId": "apiConfig",
     "category": "member",
+    "apiId": "IfUser100",
+    "apiName": "회원 프로필 이미지 수정",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      },
+      {
+        "paramName": "imgUrl",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "mbrInfo",
+      "event": "update",
+      "data":{
+        "snsKey":"{{:snsKey}}",
+        "snsTypeCd":"{{:snsTypeCd}}",
+        "imgUrl":"{{:imgUrl}}"
+      },
+      "response":{
+        "imgUrl":""
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "member",
     "apiId": "IfUser101",
     "apiName": "회원 정보 수정",
     "method": "POST",
@@ -236,10 +269,6 @@
       {
         "paramName": "sexCd",
         "required": true
-      },
-      {
-        "paramName": "imgUrl",
-        "required": false
       },
       {
         "paramName": "bthYear",
