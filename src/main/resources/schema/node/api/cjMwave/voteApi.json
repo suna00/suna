@@ -85,9 +85,27 @@
           "pageSize": "{{:pageSize}}"
         },
         {
-          "includeReferenced": true
+          "includeReferenced": true,
+          "referenceView":"refdSeriesItemList"
         }
-      ]
+      ],
+      "response":{
+        "_all_": "",
+        "refdSeriesItemList": {
+          "typeId":"sersVoteItemInfo",
+          "query": [
+            {
+              "field": "voteSeq",
+              "method": "referenceJoin",
+              "value": "voteSeq_matching={{:voteSeq}}"
+            },
+            {
+              "referenceView": "sersItemVoteSeq",
+              "includeReferenced": true
+            }
+          ]
+        }
+      }
     }
   },
   {
