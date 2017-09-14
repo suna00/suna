@@ -654,7 +654,7 @@
     "compItemSeq": 120,
     "cnctItemYn": false,
     "contsId": "news::112724,news::193929,news::204392,news::102930",
-    "atribNm": "",
+    "atribNm": "News",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
     "videFilePath": "",
     "newsHubKywrd": ""
