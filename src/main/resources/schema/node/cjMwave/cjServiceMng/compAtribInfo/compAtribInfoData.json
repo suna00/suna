@@ -1,28 +1,6 @@
 [
   {
     "typeId": "compAtribInfo",
-    "compAtribSeq": 10111,
-    "compItemSeq": 101,
-    "cnctItemYn": false,
-    "contsId": "banrItemInfo::10001",
-    "atribNm": "PC_WEB_컨벤션 배너 TYPE1-1",
-    "imgPath": "http://cmsimg.global.mnet.com/banritem/123/12345.jpg",
-    "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "newsHubKywrd": "banner,bannertype1,conventionbanner_01"
-  },
-  {
-    "typeId": "compAtribInfo",
-    "compAtribSeq": 10112,
-    "compItemSeq": 101,
-    "cnctItemYn": false,
-    "contsId": "banrItemInfo::10002",
-    "atribNm": "PC_WEB_컨벤션 배너 TYPE1-2",
-    "imgPath": "http://cmsimg.global.mnet.com/banritem/123/12345.jpg",
-    "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "newsHubKywrd": "banner,bannertype2,conventionbanner_02"
-  },
-  {
-    "typeId": "compAtribInfo",
     "compAtribSeq": 10311,
     "compItemSeq": 103,
     "cnctItemYn": false,
@@ -30,7 +8,7 @@
     "atribNm": "TWICE",
     "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "TWICE"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -41,7 +19,7 @@
     "atribNm": "Coldplay",
     "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "Coldplay"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -52,7 +30,7 @@
     "atribNm": "10cm",
     "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "10cm"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -63,7 +41,7 @@
     "atribNm": "Big Bang",
     "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "Bigbang"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -74,216 +52,183 @@
     "atribNm": "Zedd",
     "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "zedd"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 10411,
     "compItemSeq": 104,
     "cnctItemYn": false,
-    "contsId": "news::112724",
-    "atribNm": "2년만에 돌아온 빅스 LR, 뜨거운 '청춘 음악'을 입다,mama,isuue",
+    "contsId": "",
+    "atribNm": "2017 HOT ISSUE",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
     "videFilePath": "",
-    "newsHubKywrd": "빅스lr,빅스,컴백,news,kcon,mama"
+    "newsHubKywrd": "2017 HOT ISSUE"
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 10412,
     "compItemSeq": 104,
     "cnctItemYn": false,
-    "contsId": "news::193929",
-    "atribNm": "더머니6’ 넉살 조우찬 한해, 미소 넘치는 다이나믹듀오 팀 “사랑해”,news,kcon",
+    "contsId": "",
+    "atribNm": "MEET&GREET",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_album05.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "다이나믹듀오,다듀,최자,개코,news,kcon,mama"
+    "newsHubKywrd": "MEET&GREET"
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 10413,
     "compItemSeq": 104,
     "cnctItemYn": false,
-    "contsId": "news::204392",
-    "atribNm": "Follow-Up to ‘Gangnam Style’ Hits No. 5,kcon,mama",
+    "contsId": "",
+    "atribNm": "MWAVE MUSIC CHART",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "psy,gangnamstyle,news"
+    "newsHubKywrd": "MWAVE MUSIC CHART"
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 10414,
     "compItemSeq": 104,
     "cnctItemYn": false,
-    "contsId": "news::102930",
-    "atribNm": "[★SHOT！]'Shomi 6'布“Zico＆Dean制作人，我遇到好运”最后一线印象",
+    "contsId": "",
+    "atribNm": "2017 MAMA",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/thumb_video_01.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "showmethemoney,zico,dean,news,mama"
-  },
-  {
-    "typeId": "compAtribInfo",
-    "compAtribSeq": 10415,
-    "compItemSeq": 104,
-    "cnctItemYn": false,
-    "contsId": "news::293192",
-    "atribNm": "[即将来临]雨已经来临了，海耶斯，黑眼圈,hot",
-    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
-    "videFilePath": "",
-    "newsHubKywrd": "heize,kpop,issue,kcon"
-  },
-  {
-    "typeId": "compAtribInfo",
-    "compAtribSeq": 10416,
-    "compItemSeq": 104,
-    "cnctItemYn": false,
-    "contsId": "pgmVideo::EA_18049",
-    "atribNm": "집밥 백선생2 33화",
-    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
-    "videFilePath": "",
-    "newsHubKywrd": "tvN,티비엔,집밥백선생,쿡방,레시피,백종원,김국진,이종혁,장동민,정준영,시래기,샤이니,온유,태민"
-  },
-  {
-    "typeId": "compAtribInfo",
-    "compAtribSeq": 10417,
-    "compItemSeq": 104,
-    "cnctItemYn": false,
-    "contsId": "pgmVideo::AA_23181_98054",
-    "atribNm": "레인보우루비 1화",
-    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
-    "videFilePath": "",
-    "newsHubKywrd": "레인보우루비,레루,레인보우 루비, 루비, rainbow ruby, ruby, rainbow, 초코, 썬더벨, 지나, 링링 시장님, 링링, 키키공주, 키키, 슬로우, 엘리, 제시, 데이지, 펠리시아, 페이지, 투니뮤직, 오프닝송, 오프닝, 노래"
-  },
-  {
-    "typeId": "compAtribInfo",
-    "compAtribSeq": 10418,
-    "compItemSeq": 104,
-    "cnctItemYn": false,
-    "contsId": "pgmVideo::SD_23471",
-    "atribNm": "원나잇푸드트립 먹방레이스 6화",
-    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
-    "videFilePath": "",
-    "newsHubKywrd": "원나잇푸드트립, 먹방레이스, 코요태, 김종민, 신지, 빽가, 필리핀, 세부, 이연복, 중국, 청두, 에일리, 일본, 곽시양, 인도, 맛집"
+    "newsHubKywrd": "2017 MAMA"
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 10511,
     "compItemSeq": 105,
     "cnctItemYn": false,
-    "contsId": "singlePhoto::454245",
-    "atribNm": "BIGBANG_01",
+    "contsId": "groupPhoto::554245",
+    "atribNm": "[Group] BIGBANG",
     "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "BIGBANG"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 10512,
     "compItemSeq": 105,
     "cnctItemYn": false,
-    "contsId": "singlePhoto::123124",
-    "atribNm": "WannaONE_01",
+    "contsId": "groupPhoto::523124",
+    "atribNm": "[Group] WannaONE",
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "Wanna One"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 10513,
     "compItemSeq": 105,
     "cnctItemYn": false,
-    "contsId": "singlePhoto::123231",
-    "atribNm": "TWICE_01",
+    "contsId": "groupPhoto::554245",
+    "atribNm": "[Group] 2'PM_01",
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "TWICE"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 10514,
     "compItemSeq": 105,
     "cnctItemYn": false,
-    "contsId": "singlePhoto::241231",
-    "atribNm": "Coldplay_01",
+    "contsId": "groupPhoto::523124",
+    "atribNm": "[Group] EXID",
     "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "Coldplay"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 10515,
     "compItemSeq": 105,
     "cnctItemYn": true,
-    "contsId": "voteItemInfo::109",
-    "atribNm": "2NE1",
+    "contsId": "groupPhoto::554245",
+    "atribNm": "[Group] 2NE1",
     "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "2NE1"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 10516,
     "compItemSeq": 105,
     "cnctItemYn": true,
-    "contsId": "voteItemInfo::110",
-    "atribNm": "2'PM",
+    "contsId": "voteItemInfo::198",
+    "atribNm": "태양",
     "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "2'PM"
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 10517,
+    "compItemSeq": 105,
+    "cnctItemYn": true,
+    "contsId": "voteItemInfo::199",
+    "atribNm": "G-DRAGON",
+    "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 10611,
     "compItemSeq": 106,
     "cnctItemYn": false,
-    "contsId": "news::112724",
-    "atribNm": "2년만에 돌아온 빅스 LR, 뜨거운 '청춘 음악'을 입다,mama,isuue",
+    "contsId": "news::112724,news::193929,news::203102",
+    "atribNm": "HOT ISSUE",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
     "videFilePath": "",
-    "newsHubKywrd": "빅스lr,빅스,컴백,news,kcon,mama"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 10612,
     "compItemSeq": 106,
     "cnctItemYn": false,
-    "contsId": "news::193929,news::204392",
-    "atribNm": "뉴스카테고리명",
+    "contsId": "news::193929,news::204392,news::102930",
+    "atribNm": "KCON 2017",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_album05.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "다이나믹듀오,다듀,최자,개코,news,kcon,mama"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 10613,
     "compItemSeq": 106,
     "cnctItemYn": false,
-    "contsId": "news::204392",
-    "atribNm": "Follow-Up to ‘Gangnam Style’ Hits No. 5,kcon,mama",
+    "contsId": "news::204392,news::102930,news::293192",
+    "atribNm": "2017 MAMA",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "psy,gangnamstyle,news"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 10614,
     "compItemSeq": 106,
     "cnctItemYn": false,
-    "contsId": "news::102930",
-    "atribNm": "[★SHOT！]'Shomi 6'布“Zico＆Dean制作人，我遇到好运”最后一线印象",
+    "contsId": "news::102930,ews::112724,news::193929",
+    "atribNm": "2017 MCOUNTDOWN",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/thumb_video_01.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "showmethemoney,zico,dean,news,mama"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 10615,
     "compItemSeq": 106,
     "cnctItemYn": false,
-    "contsId": "news::293192",
-    "atribNm": "[即将来临]雨已经来临了，海耶斯，黑眼圈,hot",
+    "contsId": "news::293192,news::193929,news::203102",
+    "atribNm": "FUN FUN",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
     "videFilePath": "",
-    "newsHubKywrd": "heize,kpop,issue,kcon"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -294,7 +239,7 @@
     "atribNm": "집밥 백선생2 33화",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
     "videFilePath": "",
-    "newsHubKywrd": "tvN,티비엔,집밥백선생,쿡방,레시피,백종원,김국진,이종혁,장동민,정준영,시래기,샤이니,온유,태민"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -305,7 +250,7 @@
     "atribNm": "레인보우루비 1화",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "레인보우루비,레루,레인보우 루비, 루비, rainbow ruby, ruby, rainbow, 초코, 썬더벨, 지나, 링링 시장님, 링링, 키키공주, 키키, 슬로우, 엘리, 제시, 데이지, 펠리시아, 페이지, 투니뮤직, 오프닝송, 오프닝, 노래"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -316,7 +261,7 @@
     "atribNm": "원나잇푸드트립 먹방레이스 6화",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "원나잇푸드트립, 먹방레이스, 코요태, 김종민, 신지, 빽가, 필리핀, 세부, 이연복, 중국, 청두, 에일리, 일본, 곽시양, 인도, 맛집"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -327,40 +272,7 @@
     "atribNm": "우리들의 인생학교 1화",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "손미나, 김용만, 정준하, 안정환, 전혜빈, 이홍기, 곽동연"
-  },
-  {
-    "typeId": "compAtribInfo",
-    "compAtribSeq": 10715,
-    "compItemSeq": 107,
-    "cnctItemYn": false,
-    "contsId": "pgmVideo::SD_25188",
-    "atribNm": "어느 날 갑자기 백만원 3화",
-    "imgPath": "http://10.184.57.248:8080/pub/images/component/thumb_video_01.jpg",
-    "videFilePath": "",
-    "newsHubKywrd": "김구라, 하니, 윤정수, 변우석, 백만원, 어느날갑자기백만원, 택연, 신동, 박준형, 악동뮤지션"
-  },
-  {
-    "typeId": "compAtribInfo",
-    "compAtribSeq": 10811,
-    "compItemSeq": 108,
-    "cnctItemYn": false,
-    "contsId": "banrItemInfo::10011",
-    "atribNm": "MO_WEB_컨벤션 배너 TYPE1-1",
-    "imgPath": "http://cmsimg.global.mnet.com/banritem/123/12345.jpg",
-    "videFilePath": "",
-    "newsHubKywrd": "MO_WEB_banner,bannertype1,conventionbanner_01"
-  },
-  {
-    "typeId": "compAtribInfo",
-    "compAtribSeq": 10812,
-    "compItemSeq": 108,
-    "cnctItemYn": false,
-    "contsId": "banrItemInfo::10012",
-    "atribNm": "MO_WEB_컨벤션 배너 TYPE1-2",
-    "imgPath": "http://cmsimg.global.mnet.com/banritem/456/6789.jpg",
-    "videFilePath": "",
-    "newsHubKywrd": "MO_WEB_banner,bannertype2,conventionbanner_02"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -371,7 +283,7 @@
     "atribNm": "Coldplay",
     "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "Coldplay"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -382,7 +294,7 @@
     "atribNm": "10cm",
     "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "10cm"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -393,7 +305,7 @@
     "atribNm": "Big Bang",
     "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "Big Bang"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -404,7 +316,7 @@
     "atribNm": "2'PM",
     "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "2'PM"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -415,62 +327,51 @@
     "atribNm": "Wanna One",
     "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "Wanna One"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 11111,
     "compItemSeq": 111,
     "cnctItemYn": false,
-    "contsId": "pgmVideo::EA_18049",
-    "atribNm": "집밥 백선생2 33화",
+    "contsId": "",
+    "atribNm": "2017 HOT ISSUE",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
     "videFilePath": "",
-    "newsHubKywrd": "tvN,티비엔,집밥백선생,쿡방,레시피,백종원,김국진,이종혁,장동민,정준영,시래기,샤이니,온유,태민"
+    "newsHubKywrd": "2017 HOT ISSUE"
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 11112,
     "compItemSeq": 111,
     "cnctItemYn": false,
-    "contsId": "pgmVideo::AA_23181_98054",
-    "atribNm": "레인보우루비 1화",
+    "contsId": "",
+    "atribNm": "MEET&GREET",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "레인보우루비,레루,레인보우 루비, 루비, rainbow ruby, ruby, rainbow, 초코, 썬더벨, 지나, 링링 시장님, 링링, 키키공주, 키키, 슬로우, 엘리, 제시, 데이지, 펠리시아, 페이지, 투니뮤직, 오프닝송, 오프닝, 노래"
+    "newsHubKywrd": "MEET&GREET"
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 11113,
     "compItemSeq": 111,
     "cnctItemYn": false,
-    "contsId": "news::112724",
-    "atribNm": "2년만에 돌아온 빅스 LR, 뜨거운 '청춘 음악'을 입다,mama,isuue",
+    "contsId": "",
+    "atribNm": "MWAVE MUSIC CHART",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
     "videFilePath": "",
-    "newsHubKywrd": "빅스lr,빅스,컴백,news,kcon,mama"
+    "newsHubKywrd": "MWAVE MUSIC CHART"
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 11114,
     "compItemSeq": 111,
     "cnctItemYn": false,
-    "contsId": "news::193929",
-    "atribNm": "더머니6’ 넉살 조우찬 한해, 미소 넘치는 다이나믹듀오 팀 “사랑해”,news,kcon",
+    "contsId": "",
+    "atribNm": "2017 MAMA",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_album05.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "다이나믹듀오,다듀,최자,개코,news,kcon,mama"
-  },
-  {
-    "typeId": "compAtribInfo",
-    "compAtribSeq": 11115,
-    "compItemSeq": 111,
-    "cnctItemYn": false,
-    "contsId": "news::204392",
-    "atribNm": "Follow-Up to ‘Gangnam Style’ Hits No. 5,kcon,mama",
-    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
-    "videFilePath": "",
-    "newsHubKywrd": "psy,gangnamstyle,news"
+    "newsHubKywrd": "2017 MAMA"
   },
   {
     "typeId": "compAtribInfo",
@@ -481,7 +382,7 @@
     "atribNm": "[Group] BIGBANG",
     "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "Meet G-Dragon, Seungri, Taeyang, TOP and Daesung... or simply, BIGBANG. Since their 2006 debut, the Korean boy band has dropped a slew of blazing tracks, embarked on a world tour and even charted on the Billboard 200 album chart in 2012."
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -492,51 +393,95 @@
     "atribNm": "[Group] WannaONE",
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "After releasing black-and-white individual profile pictures of the members, Wanna One has released a new batch of profile pictures in color!"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 11213,
     "compItemSeq": 112,
     "cnctItemYn": false,
-    "contsId": "groupPhoto::554249",
+    "contsId": "groupPhoto::554245",
     "atribNm": "[Group] 2'PM_01",
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "10cm/Big Bang/Zedd/유성은/김광석/악동뮤지션"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 11214,
     "compItemSeq": 112,
     "cnctItemYn": false,
-    "contsId": "groupPhoto::523126",
+    "contsId": "groupPhoto::523124",
     "atribNm": "[Group] EXID",
     "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "EXID_01/G-DRAGON_01/APINK_0/VIXX_01/EXO_01"
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 11215,
+    "compItemSeq": 112,
+    "cnctItemYn": false,
+    "contsId": "groupPhoto::554245",
+    "atribNm": "[Group] 2NE1",
+    "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 11311,
     "compItemSeq": 113,
     "cnctItemYn": false,
-    "contsId": "news::102930",
-    "atribNm": "[★SHOT！]'Shomi 6'布“Zico＆Dean制作人，我遇到好运”最后一线印象",
+    "contsId": "news::112724,news::193929,news::203102",
+    "atribNm": "HOT ISSUE",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/thumb_video_01.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "showmethemoney,zico,dean,news,mama"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 11312,
     "compItemSeq": 113,
     "cnctItemYn": false,
-    "contsId": "news::293192",
-    "atribNm": "[即将来临]雨已经来临了，海耶斯，黑眼圈,hot",
+    "contsId": "news::193929,news::204392,news::102930",
+    "atribNm": "KCON 2017",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
     "videFilePath": "",
-    "newsHubKywrd": "heize,kpop,issue,kcon"
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 11313,
+    "compItemSeq": 113,
+    "cnctItemYn": false,
+    "contsId": "news::204392,news::102930,news::293192",
+    "atribNm": "2017 MAMA",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/thumb_video_01.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 11314,
+    "compItemSeq": 113,
+    "cnctItemYn": false,
+    "contsId": "news::102930,ews::112724,news::193929",
+    "atribNm": "2017 MCOUNTDOWN",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 11315,
+    "compItemSeq": 113,
+    "cnctItemYn": false,
+    "contsId": "news::293192,news::193929,news::203102",
+    "atribNm": "FUN FUN",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
+    "videFilePath": "",
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -547,7 +492,7 @@
     "atribNm": "집밥 백선생2 33화",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
     "videFilePath": "",
-    "newsHubKywrd": "tvN,티비엔,집밥백선생,쿡방,레시피,백종원,김국진,이종혁,장동민,정준영,시래기,샤이니,온유,태민"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -558,7 +503,7 @@
     "atribNm": "레인보우루비 1화",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "레인보우루비,레루,레인보우 루비, 루비, rainbow ruby, ruby, rainbow, 초코, 썬더벨, 지나, 링링 시장님, 링링, 키키공주, 키키, 슬로우, 엘리, 제시, 데이지, 펠리시아, 페이지, 투니뮤직, 오프닝송, 오프닝, 노래"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -569,7 +514,7 @@
     "atribNm": "원나잇푸드트립 먹방레이스 6화",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "원나잇푸드트립, 먹방레이스, 코요태, 김종민, 신지, 빽가, 필리핀, 세부, 이연복, 중국, 청두, 에일리, 일본, 곽시양, 인도, 맛집"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -580,128 +525,73 @@
     "atribNm": "우리들의 인생학교 1화",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "손미나, 김용만, 정준하, 안정환, 전혜빈, 이홍기, 곽동연"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
-    "compAtribSeq": 11511,
-    "compItemSeq": 115,
-    "cnctItemYn": false,
-    "contsId": "banrItemInfo::10020",
-    "atribNm": "MO_APP_컨벤션 배너 TYPE1-1",
-    "imgPath": "http://cmsimg.global.mnet.com/banritem/123/12345.jpg",
-    "videFilePath": "",
-    "newsHubKywrd": "MO_APP_banner,bannertype1,conventionbanner_01"
-  },
-  {
-    "typeId": "compAtribInfo",
-    "compAtribSeq": 11512,
-    "compItemSeq": 115,
-    "cnctItemYn": false,
-    "contsId": "pgmVideo::EA_18049",
-    "atribNm": "집밥 백선생2 33화",
-    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
-    "videFilePath": "",
-    "newsHubKywrd": "tvN,티비엔,집밥백선생,쿡방,레시피,백종원,김국진,이종혁,장동민,정준영,시래기,샤이니,온유,태민"
-  },
-  {
-    "typeId": "compAtribInfo",
-    "compAtribSeq": 11512,
-    "compItemSeq": 117,
-    "cnctItemYn": false,
-    "contsId": "voteItemInfo::195",
-    "atribNm": "10cm",
-    "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
-    "videFilePath": "",
-    "newsHubKywrd": "10cm"
-  },
-  {
-    "typeId": "compAtribInfo",
-    "compAtribSeq": 11512,
-    "compItemSeq": 117,
-    "cnctItemYn": false,
-    "contsId": "voteItemInfo::196",
-    "atribNm": "유성은",
-    "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
-    "videFilePath": "",
-    "newsHubKywrd": "유성은"
-  },
-  {
-    "typeId": "compAtribInfo",
-    "compAtribSeq": 11512,
-    "compItemSeq": 117,
-    "cnctItemYn": false,
-    "contsId": "voteItemInfo::197",
-    "atribNm": "아이유",
-    "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
-    "videFilePath": "",
-    "newsHubKywrd": "아이유"
-  },
-  {
-    "typeId": "compAtribInfo",
-    "compAtribSeq": 11512,
+    "compAtribSeq": 11611,
     "compItemSeq": 117,
     "cnctItemYn": false,
     "contsId": "voteItemInfo::198",
     "atribNm": "태양",
     "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "태양"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
-    "compAtribSeq": 11512,
+    "compAtribSeq": 11612,
     "compItemSeq": 117,
     "cnctItemYn": false,
     "contsId": "voteItemInfo::199",
     "atribNm": "G-DRAGON",
     "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "G-DRAGON"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 11811,
     "compItemSeq": 118,
     "cnctItemYn": false,
-    "contsId": "news::112724",
-    "atribNm": "2년만에 돌아온 빅스 LR, 뜨거운 '청춘 음악'을 입다,mama,isuue",
+    "contsId": "",
+    "atribNm": "2017 HOT ISSUE",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
     "videFilePath": "",
-    "newsHubKywrd": "빅스lr,빅스,컴백,news,kcon,mama"
+    "newsHubKywrd": "2017 HOT ISSUE"
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 11812,
     "compItemSeq": 118,
     "cnctItemYn": false,
-    "contsId": "news::193929",
-    "atribNm": "더머니6’ 넉살 조우찬 한해, 미소 넘치는 다이나믹듀오 팀 “사랑해”,news,kcon",
+    "contsId": "",
+    "atribNm": "MEET&GREET",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_album05.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "다이나믹듀오,다듀,최자,개코,news,kcon,mama"
+    "newsHubKywrd": "MEET&GREET"
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 11813,
     "compItemSeq": 118,
     "cnctItemYn": false,
-    "contsId": "news::204392",
-    "atribNm": "Follow-Up to ‘Gangnam Style’ Hits No. 5,kcon,mama",
+    "contsId": "",
+    "atribNm": "MWAVE MUSIC CHART",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "psy,gangnamstyle,news"
+    "newsHubKywrd": "MWAVE MUSIC CHART"
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 11814,
     "compItemSeq": 118,
     "cnctItemYn": false,
-    "contsId": "pgmVideo::AA_23181_98054",
-    "atribNm": "레인보우루비 1화",
+    "contsId": "",
+    "atribNm": "2017 MAMA",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "레인보우루비,레루,레인보우 루비, 루비, rainbow ruby, ruby, rainbow, 초코, 썬더벨, 지나, 링링 시장님, 링링, 키키공주, 키키, 슬로우, 엘리, 제시, 데이지, 펠리시아, 페이지, 투니뮤직, 오프닝송, 오프닝, 노래"
+    "newsHubKywrd": "2017 MAMA"
   },
   {
     "typeId": "compAtribInfo",
@@ -712,7 +602,7 @@
     "atribNm": "[Group] BIGBANG",
     "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "Meet G-Dragon, Seungri, Taeyang, TOP and Daesung... or simply, BIGBANG. Since their 2006 debut, the Korean boy band has dropped a slew of blazing tracks, embarked on a world tour and even charted on the Billboard 200 album chart in 2012."
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -723,95 +613,51 @@
     "atribNm": "[Group] WannaONE",
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "After releasing black-and-white individual profile pictures of the members, Wanna One has released a new batch of profile pictures in color!"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 11913,
     "compItemSeq": 119,
     "cnctItemYn": false,
-    "contsId": "groupPhoto::554249",
+    "contsId": "groupPhoto::554245",
     "atribNm": "[Group] 2'PM_01",
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "10cm/Big Bang/Zedd/유성은/김광석/악동뮤지션"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 11914,
     "compItemSeq": 119,
     "cnctItemYn": false,
-    "contsId": "groupPhoto::523126",
+    "contsId": "groupPhoto::523124",
     "atribNm": "[Group] EXID",
     "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "EXID_01/G-DRAGON_01/APINK_0/VIXX_01/EXO_01"
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 11915,
+    "compItemSeq": 119,
+    "cnctItemYn": false,
+    "contsId": "groupPhoto::554245",
+    "atribNm": "[Group] 2NE1",
+    "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
     "compAtribSeq": 12011,
     "compItemSeq": 120,
     "cnctItemYn": false,
-    "contsId": "news::112724",
-    "atribNm": "2년만에 돌아온 빅스 LR, 뜨거운 '청춘 음악'을 입다,mama,isuue",
+    "contsId": "news::112724,news::193929,news::204392,news::102930",
+    "atribNm": "",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
     "videFilePath": "",
-    "newsHubKywrd": "빅스lr,빅스,컴백,news,kcon,mama"
-  },
-  {
-    "typeId": "compAtribInfo",
-    "compAtribSeq": 12012,
-    "compItemSeq": 120,
-    "cnctItemYn": false,
-    "contsId": "news::193929",
-    "atribNm": "더머니6’ 넉살 조우찬 한해, 미소 넘치는 다이나믹듀오 팀 “사랑해”,news,kcon",
-    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_album05.jpg",
-    "videFilePath": "",
-    "newsHubKywrd": "다이나믹듀오,다듀,최자,개코,news,kcon,mama"
-  },
-  {
-    "typeId": "compAtribInfo",
-    "compAtribSeq": 12013,
-    "compItemSeq": 120,
-    "cnctItemYn": false,
-    "contsId": "news::204392",
-    "atribNm": "Follow-Up to ‘Gangnam Style’ Hits No. 5,kcon,mama",
-    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
-    "videFilePath": "",
-    "newsHubKywrd": "psy,gangnamstyle,news"
-  },
-  {
-    "typeId": "compAtribInfo",
-    "compAtribSeq": 12014,
-    "compItemSeq": 120,
-    "cnctItemYn": false,
-    "contsId": "news::102930",
-    "atribNm": "[★SHOT！]'Shomi 6'布“Zico＆Dean制作人，我遇到好运”最后一线印象",
-    "imgPath": "http://10.184.57.248:8080/pub/images/component/thumb_video_01.jpg",
-    "videFilePath": "",
-    "newsHubKywrd": "showmethemoney,zico,dean,news,mama"
-  },
-  {
-    "typeId": "compAtribInfo",
-    "compAtribSeq": 12015,
-    "compItemSeq": 120,
-    "cnctItemYn": false,
-    "contsId": "news::293192",
-    "atribNm": "[即将来临]雨已经来临了，海耶斯，黑眼圈,hot",
-    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
-    "videFilePath": "",
-    "newsHubKywrd": "heize,kpop,issue,kcon"
-  },
-  {
-    "typeId": "compAtribInfo",
-    "compAtribSeq": 12016,
-    "compItemSeq": 120,
-    "cnctItemYn": false,
-    "contsId": "news::203102",
-    "atribNm": "歌手 'クラッシュ'の特別な犬の愛,hot,isuue,news",
-    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_album05.jpg",
-    "videFilePath": "",
-    "newsHubKywrd": "kpop,choiza,issue,mama"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -822,7 +668,7 @@
     "atribNm": "집밥 백선생2 33화",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
     "videFilePath": "",
-    "newsHubKywrd": "tvN,티비엔,집밥백선생,쿡방,레시피,백종원,김국진,이종혁,장동민,정준영,시래기,샤이니,온유,태민"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -833,7 +679,7 @@
     "atribNm": "레인보우루비 1화",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "레인보우루비,레루,레인보우 루비, 루비, rainbow ruby, ruby, rainbow, 초코, 썬더벨, 지나, 링링 시장님, 링링, 키키공주, 키키, 슬로우, 엘리, 제시, 데이지, 펠리시아, 페이지, 투니뮤직, 오프닝송, 오프닝, 노래"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -844,7 +690,7 @@
     "atribNm": "원나잇푸드트립 먹방레이스 6화",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "원나잇푸드트립, 먹방레이스, 코요태, 김종민, 신지, 빽가, 필리핀, 세부, 이연복, 중국, 청두, 에일리, 일본, 곽시양, 인도, 맛집"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -855,6 +701,677 @@
     "atribNm": "우리들의 인생학교 1화",
     "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "손미나, 김용만, 정준하, 안정환, 전혜빈, 이홍기, 곽동연"
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 20311,
+    "compItemSeq": 124,
+    "cnctItemYn": false,
+    "contsId": "voteItemInfo::198",
+    "atribNm": "태양",
+    "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 20312,
+    "compItemSeq": 124,
+    "cnctItemYn": false,
+    "contsId": "voteItemInfo::199",
+    "atribNm": "G-DRAGON",
+    "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 20411,
+    "compItemSeq": 125,
+    "cnctItemYn": false,
+    "contsId": "",
+    "atribNm": "2017 HOT ISSUE",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
+    "videFilePath": "",
+    "newsHubKywrd": "2017 HOT ISSUE"
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 20412,
+    "compItemSeq": 125,
+    "cnctItemYn": false,
+    "contsId": "",
+    "atribNm": "MEET&GREET",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_album05.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": "MEET&GREET"
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 20413,
+    "compItemSeq": 125,
+    "cnctItemYn": false,
+    "contsId": "",
+    "atribNm": "MWAVE MUSIC CHART",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": "MWAVE MUSIC CHART"
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 20414,
+    "compItemSeq": 125,
+    "cnctItemYn": false,
+    "contsId": "",
+    "atribNm": "2017 MAMA",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/thumb_video_01.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": "2017 MAMA"
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 20511,
+    "compItemSeq": 126,
+    "cnctItemYn": false,
+    "contsId": "groupPhoto::554245",
+    "atribNm": "[Group] BIGBANG",
+    "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 20512,
+    "compItemSeq": 126,
+    "cnctItemYn": false,
+    "contsId": "groupPhoto::523124",
+    "atribNm": "[Group] WannaONE",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 20513,
+    "compItemSeq": 126,
+    "cnctItemYn": false,
+    "contsId": "groupPhoto::554245",
+    "atribNm": "[Group] 2'PM_01",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 20514,
+    "compItemSeq": 126,
+    "cnctItemYn": false,
+    "contsId": "groupPhoto::523124",
+    "atribNm": "[Group] EXID",
+    "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 20515,
+    "compItemSeq": 126,
+    "cnctItemYn": true,
+    "contsId": "groupPhoto::554245",
+    "atribNm": "[Group] 2NE1",
+    "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 20516,
+    "compItemSeq": 126,
+    "cnctItemYn": true,
+    "contsId": "voteItemInfo::198",
+    "atribNm": "태양",
+    "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 20517,
+    "compItemSeq": 126,
+    "cnctItemYn": true,
+    "contsId": "voteItemInfo::199",
+    "atribNm": "G-DRAGON",
+    "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 20611,
+    "compItemSeq": 127,
+    "cnctItemYn": false,
+    "contsId": "news::112724,news::193929,news::203102",
+    "atribNm": "HOT ISSUE",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 20612,
+    "compItemSeq": 127,
+    "cnctItemYn": false,
+    "contsId": "news::193929,news::204392,news::102930",
+    "atribNm": "KCON 2017",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_album05.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 20613,
+    "compItemSeq": 127,
+    "cnctItemYn": false,
+    "contsId": "news::204392,news::102930,news::293192",
+    "atribNm": "2017 MAMA",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 20614,
+    "compItemSeq": 127,
+    "cnctItemYn": false,
+    "contsId": "news::102930,ews::112724,news::193929",
+    "atribNm": "2017 MCOUNTDOWN",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/thumb_video_01.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 20615,
+    "compItemSeq": 127,
+    "cnctItemYn": false,
+    "contsId": "news::293192,news::193929,news::203102",
+    "atribNm": "FUN FUN",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 20711,
+    "compItemSeq": 128,
+    "cnctItemYn": false,
+    "contsId": "pgmVideo::EA_18049",
+    "atribNm": "집밥 백선생2 33화",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 20712,
+    "compItemSeq": 128,
+    "cnctItemYn": false,
+    "contsId": "pgmVideo::AA_23181_98054",
+    "atribNm": "레인보우루비 1화",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 20713,
+    "compItemSeq": 128,
+    "cnctItemYn": false,
+    "contsId": "pgmVideo::SD_23471",
+    "atribNm": "원나잇푸드트립 먹방레이스 6화",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 20714,
+    "compItemSeq": 128,
+    "cnctItemYn": false,
+    "contsId": "pgmVideo::EA_24216",
+    "atribNm": "우리들의 인생학교 1화",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21011,
+    "compItemSeq": 131,
+    "cnctItemYn": false,
+    "contsId": "voteItemInfo::173",
+    "atribNm": "Coldplay",
+    "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21012,
+    "compItemSeq": 131,
+    "cnctItemYn": false,
+    "contsId": "voteItemInfo::174",
+    "atribNm": "10cm",
+    "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21013,
+    "compItemSeq": 131,
+    "cnctItemYn": false,
+    "contsId": "voteItemInfo::175",
+    "atribNm": "Big Bang",
+    "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21014,
+    "compItemSeq": 131,
+    "cnctItemYn": false,
+    "contsId": "voteItemInfo::176",
+    "atribNm": "2'PM",
+    "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21015,
+    "compItemSeq": 131,
+    "cnctItemYn": false,
+    "contsId": "voteItemInfo::177",
+    "atribNm": "Wanna One",
+    "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21111,
+    "compItemSeq": 132,
+    "cnctItemYn": false,
+    "contsId": "",
+    "atribNm": "2017 HOT ISSUE",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
+    "videFilePath": "",
+    "newsHubKywrd": "2017 HOT ISSUE"
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21112,
+    "compItemSeq": 132,
+    "cnctItemYn": false,
+    "contsId": "",
+    "atribNm": "MEET&GREET",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": "MEET&GREET"
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21113,
+    "compItemSeq": 132,
+    "cnctItemYn": false,
+    "contsId": "",
+    "atribNm": "MWAVE MUSIC CHART",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
+    "videFilePath": "",
+    "newsHubKywrd": "MWAVE MUSIC CHART"
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21114,
+    "compItemSeq": 132,
+    "cnctItemYn": false,
+    "contsId": "",
+    "atribNm": "2017 MAMA",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_album05.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": "2017 MAMA"
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21211,
+    "compItemSeq": 133,
+    "cnctItemYn": false,
+    "contsId": "groupPhoto::554245",
+    "atribNm": "[Group] BIGBANG",
+    "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21212,
+    "compItemSeq": 133,
+    "cnctItemYn": false,
+    "contsId": "groupPhoto::523124",
+    "atribNm": "[Group] WannaONE",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21213,
+    "compItemSeq": 133,
+    "cnctItemYn": false,
+    "contsId": "groupPhoto::554245",
+    "atribNm": "[Group] 2'PM_01",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21214,
+    "compItemSeq": 133,
+    "cnctItemYn": false,
+    "contsId": "groupPhoto::523124",
+    "atribNm": "[Group] EXID",
+    "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21215,
+    "compItemSeq": 133,
+    "cnctItemYn": false,
+    "contsId": "groupPhoto::554245",
+    "atribNm": "[Group] 2NE1",
+    "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21311,
+    "compItemSeq": 134,
+    "cnctItemYn": false,
+    "contsId": "news::112724,news::193929,news::203102",
+    "atribNm": "HOT ISSUE",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/thumb_video_01.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21312,
+    "compItemSeq": 134,
+    "cnctItemYn": false,
+    "contsId": "news::193929,news::204392,news::102930",
+    "atribNm": "KCON 2017",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21313,
+    "compItemSeq": 134,
+    "cnctItemYn": false,
+    "contsId": "news::204392,news::102930,news::293192",
+    "atribNm": "2017 MAMA",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/thumb_video_01.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21314,
+    "compItemSeq": 134,
+    "cnctItemYn": false,
+    "contsId": "news::102930,ews::112724,news::193929",
+    "atribNm": "2017 MCOUNTDOWN",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21315,
+    "compItemSeq": 134,
+    "cnctItemYn": false,
+    "contsId": "news::293192,news::193929,news::203102",
+    "atribNm": "FUN FUN",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21411,
+    "compItemSeq": 135,
+    "cnctItemYn": false,
+    "contsId": "pgmVideo::EA_18049",
+    "atribNm": "집밥 백선생2 33화",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21412,
+    "compItemSeq": 135,
+    "cnctItemYn": false,
+    "contsId": "pgmVideo::AA_23181_98054",
+    "atribNm": "레인보우루비 1화",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21413,
+    "compItemSeq": 135,
+    "cnctItemYn": false,
+    "contsId": "pgmVideo::SD_23471",
+    "atribNm": "원나잇푸드트립 먹방레이스 6화",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21414,
+    "compItemSeq": 135,
+    "cnctItemYn": false,
+    "contsId": "pgmVideo::EA_24216",
+    "atribNm": "우리들의 인생학교 1화",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21611,
+    "compItemSeq": 138,
+    "cnctItemYn": false,
+    "contsId": "voteItemInfo::198",
+    "atribNm": "태양",
+    "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21612,
+    "compItemSeq": 138,
+    "cnctItemYn": false,
+    "contsId": "voteItemInfo::199",
+    "atribNm": "G-DRAGON",
+    "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21811,
+    "compItemSeq": 139,
+    "cnctItemYn": false,
+    "contsId": "",
+    "atribNm": "2017 HOT ISSUE",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
+    "videFilePath": "",
+    "newsHubKywrd": "2017 HOT ISSUE"
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21812,
+    "compItemSeq": 139,
+    "cnctItemYn": false,
+    "contsId": "",
+    "atribNm": "MEET&GREET",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_album05.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": "MEET&GREET"
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21813,
+    "compItemSeq": 139,
+    "cnctItemYn": false,
+    "contsId": "",
+    "atribNm": "MWAVE MUSIC CHART",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": "MWAVE MUSIC CHART"
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21814,
+    "compItemSeq": 139,
+    "cnctItemYn": false,
+    "contsId": "",
+    "atribNm": "2017 MAMA",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": "2017 MAMA"
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21911,
+    "compItemSeq": 140,
+    "cnctItemYn": false,
+    "contsId": "groupPhoto::554245",
+    "atribNm": "[Group] BIGBANG",
+    "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21912,
+    "compItemSeq": 140,
+    "cnctItemYn": false,
+    "contsId": "groupPhoto::523124",
+    "atribNm": "[Group] WannaONE",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21913,
+    "compItemSeq": 140,
+    "cnctItemYn": false,
+    "contsId": "groupPhoto::554245",
+    "atribNm": "[Group] 2'PM_01",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21914,
+    "compItemSeq": 140,
+    "cnctItemYn": false,
+    "contsId": "groupPhoto::523124",
+    "atribNm": "[Group] EXID",
+    "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 21915,
+    "compItemSeq": 140,
+    "cnctItemYn": false,
+    "contsId": "groupPhoto::554245",
+    "atribNm": "[Group] 2NE1",
+    "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 22011,
+    "compItemSeq": 141,
+    "cnctItemYn": false,
+    "contsId": "news::112724,news::193929,news::204392,news::102930",
+    "atribNm": "News",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 22111,
+    "compItemSeq": 142,
+    "cnctItemYn": false,
+    "contsId": "pgmVideo::EA_18049",
+    "atribNm": "집밥 백선생2 33화",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 22112,
+    "compItemSeq": 142,
+    "cnctItemYn": false,
+    "contsId": "pgmVideo::AA_23181_98054",
+    "atribNm": "레인보우루비 1화",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 22113,
+    "compItemSeq": 142,
+    "cnctItemYn": false,
+    "contsId": "pgmVideo::SD_23471",
+    "atribNm": "원나잇푸드트립 먹방레이스 6화",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
+  },
+  {
+    "typeId": "compAtribInfo",
+    "compAtribSeq": 22114,
+    "compItemSeq": 142,
+    "cnctItemYn": false,
+    "contsId": "pgmVideo::EA_24216",
+    "atribNm": "우리들의 인생학교 1화",
+    "imgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
+    "videFilePath": "",
+    "newsHubKywrd": ""
   }
 ]

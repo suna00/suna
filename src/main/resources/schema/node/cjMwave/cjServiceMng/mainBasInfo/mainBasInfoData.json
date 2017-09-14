@@ -6,7 +6,7 @@
     "mainDivCd": "1",
     "svcTermlDivCd": "1",
     "showYn": true,
-    "showLoCd": "2"
+    "showLoCd": ""
   },
   {
     "typeId": "mainBasInfo",
@@ -15,7 +15,7 @@
     "mainDivCd": "1",
     "svcTermlDivCd": "2",
     "showYn": true,
-    "showLoCd": "3"
+    "showLoCd": ""
   },
   {
     "typeId": "mainBasInfo",
@@ -24,7 +24,7 @@
     "mainDivCd": "1",
     "svcTermlDivCd": "3",
     "showYn": true,
-    "showLoCd": "4"
+    "showLoCd": ""
   },
   {
     "typeId": "mainBasInfo",
@@ -33,7 +33,7 @@
     "mainDivCd": "1",
     "svcTermlDivCd": "4",
     "showYn": true,
-    "showLoCd": "2"
+    "showLoCd": ""
   },
   {
     "typeId": "mainBasInfo",
@@ -51,7 +51,7 @@
     "mainDivCd": "2",
     "svcTermlDivCd": "2",
     "showYn": true,
-    "showLoCd": "4"
+    "showLoCd": "3"
   },
   {
     "typeId": "mainBasInfo",
@@ -60,6 +60,6 @@
     "mainDivCd": "2",
     "svcTermlDivCd": "3",
     "showYn": true,
-    "showLoCd": "2"
+    "showLoCd": "3"
   }
 ]

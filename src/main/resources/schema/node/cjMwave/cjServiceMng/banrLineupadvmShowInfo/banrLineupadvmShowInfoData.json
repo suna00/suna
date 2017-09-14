@@ -2,37 +2,37 @@
   {
     "typeId": "banrLineupadvmShowInfo",
     "banrLineupadvmShowSeq": 401,
-    "banrLineupSeq": 139,
+    "banrLineupSeq": 135,
     "showOdrg": 2
   },
   {
     "typeId": "banrLineupadvmShowInfo",
     "banrLineupadvmShowSeq": 402,
-    "banrLineupSeq": 139,
+    "banrLineupSeq": 135,
     "showOdrg": 4
   },
   {
     "typeId": "banrLineupadvmShowInfo",
     "banrLineupadvmShowSeq": 403,
-    "banrLineupSeq": 140,
+    "banrLineupSeq": 138,
     "showOdrg": 2
   },
   {
     "typeId": "banrLineupadvmShowInfo",
     "banrLineupadvmShowSeq": 404,
-    "banrLineupSeq": 140,
-    "showOdrg": 4
+    "banrLineupSeq": 138,
+    "showOdrg": 7
   },
   {
     "typeId": "banrLineupadvmShowInfo",
     "banrLineupadvmShowSeq": 405,
     "banrLineupSeq": 141,
-    "showOdrg": 2
+    "showOdrg": 3
   },
   {
     "typeId": "banrLineupadvmShowInfo",
     "banrLineupadvmShowSeq": 406,
     "banrLineupSeq": 141,
-    "showOdrg": 4
+    "showOdrg": 5
   }
 ]
