@@ -34,8 +34,8 @@ public class MnetController {
         String mnetExecuteIds[] = {
                 "migAlbum", "migAlbumMulti"
                 , "migArtist", "migArtistMulti"
-                , "migSong", "migSongMulti"
                 , "migMusicVideo", "migMusicVideoMulti"
+                , "migSong", "migSongMulti"
         };
 
         JSONObject response = new JSONObject();
@@ -130,6 +130,7 @@ public class MnetController {
             result = "200";
             result_msg = "SUCCESS";
         } catch (Exception e) {
+            logger.error("Error detected ::", e);
             cause = e.getMessage();
         }
 

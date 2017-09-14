@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -80,6 +81,17 @@ public class DBSyncService {
         return altered;
     }
 
+    private void recordResult(JdbcTemplate template
+            , String mig_target, String mig_type, String mig_parameter, String request_ip
+            , int successCnt, int failCnt, long taskDuration, Date executeDate) {
+        String query = "INSERT INTO MIG_HISTORY " +
+                "(mig_target, mig_type, mig_parameter, request_ip" +
+                ", success_cnt, fail_cnt, task_duration, execution_date)" +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        template.update(query, mig_target, mig_type, mig_parameter, request_ip
+                , successCnt, failCnt, taskDuration, executeDate);
+    }
+
 
     /*
     * 결과가 안나올 때까지 이터레이션하면서 처리한다, 쿼리에 반드시 limit @{start} @{unit} 있어야 한다
@@ -90,6 +102,13 @@ public class DBSyncService {
         boolean loop = true;
         int i = 0;
         int unit = 100;
+        int successCnt = 0;
+        int skippedCnt = 0;
+        Date startTime = new Date();
+        String errorPolicy = "SKIP";
+        JdbcTemplate template = null;
+
+
         while(loop) {
             // i 가 0 부터 99 까지
             // 100 부터 199 까지
@@ -102,6 +121,9 @@ public class DBSyncService {
             String query = String.valueOf(itemMap.get("query"));
             String targetNodeType = String.valueOf(itemMap.get("targetNodeType"));
             String targetDs = String.valueOf(itemMap.get("targetDs"));
+            errorPolicy = String.valueOf(itemMap.get("onFail")).trim().toUpperCase();
+            errorPolicy = (!"NULL".equals(errorPolicy) && "STOP".equals(errorPolicy)) ? "STOP" : "SKIP";
+
 
             // 쿼리
             Map<String, Object> jdbcParam = SyntaxUtils.parseWithLimit(query, start, unit);
@@ -109,7 +131,7 @@ public class DBSyncService {
 
             Object[] params = (Object[]) jdbcParam.get("params");
 
-            JdbcTemplate template = dbService.getJdbcTemplate(targetDs);
+            template = dbService.getJdbcTemplate(targetDs);
             List<Map<String, Object>> queryRs = template.queryForList(jdbcQuery, params);
 
             if (queryRs == null || queryRs.isEmpty()) {
@@ -125,15 +147,36 @@ public class DBSyncService {
                     logger.info("CREATE INITIAL MIGRATION NODE :: " + String.valueOf(fit));
                     try{
                         nodeService.saveNodeWithException(fit);
+                        successCnt ++;
                     } catch (Exception e) {
                         // 실패한다면 실패 기록을 DB 에 저장한다.
                         logger.error("Recording exception :: ", e);
-
+                        if(errorPolicy.equals("stop")){
+                            loop = false;
+                            break;
+                        } else {
+                            skippedCnt++;
+                        }
                     }
                 }
                 i++;
             }
         }
+
+        long jobTaken = (new Date().getTime() - startTime.getTime());
+        logger.info(
+                "\n##### Execute Report :: ######" +
+                "\nExecutionId : " + executeId +
+                "\nStarted on : " + startTime +
+                "\nTime takes(ms) : " + jobTaken + " ms" +
+                "\nOnFail action : " + errorPolicy +
+                "\nSuccess Records Count : " + successCnt +
+                "\nSkipped Records Count : " + skippedCnt +
+                "\n##############################");
+
+        recordResult(template, "MNET", "INIT", null, null
+                , successCnt, skippedCnt, jobTaken, startTime);
+
     }
 
 
