@@ -24,7 +24,7 @@ cluster:
     - localhost
 
 infinispan:
-  cachePath: /home/ion/resource/ice2/cache
+  cachePath: /home/ion/cms/resource/ice2/cache
 
 tomcat:
   access-log-enabled: true
