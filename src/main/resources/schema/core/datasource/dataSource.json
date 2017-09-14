@@ -101,9 +101,19 @@
   {
     "typeId": "datasource",
     "datasourceId": "cjDb",
-    "profiles": "aws-was",
+    "profiles": "aws-dwas",
     "dsName": "Test DB",
     "jdbcUrl": "jdbc:mysql://authdbdev.cfwzre2kzbc1.ap-northeast-2.rds.amazonaws.com:3306/ice2?useSSL=false",
+    "dbType": "mySql",
+    "username": "cjmwave",
+    "password": "cjmwave0!@#"
+  },
+  {
+    "typeId": "datasource",
+    "datasourceId": "cjDb",
+    "profiles": "aws-pwas",
+    "dsName": "Test DB",
+    "jdbcUrl": "jdbc:mysql://cmsdb.cfwzre2kzbc1.ap-northeast-2.rds.amazonaws.com:3306/ice2?useSSL=false",
     "dbType": "mySql",
     "username": "cjmwave",
     "password": "cjmwave0!@#"

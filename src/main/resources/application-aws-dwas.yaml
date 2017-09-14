@@ -1,0 +1,54 @@
+spring:
+  profiles: aws-dwas
+  http:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 20MB
+
+server:
+  port: 8080
+
+jwtConfig:
+  issuer: I-ON
+  secretKey: dkdldhs!@#$
+  headerPrefix: SDP
+  headString: X-Authorization
+  tokenExpirationTime: 15 #분
+  refreshTokenExpTime: 60 #분
+
+
+cluster:
+  members:
+    - 10.75.4.10
+    - 127.0.0.1
+    - localhost
+
+infinispan:
+  cachePath: /home/ion/resource/ice2/cache
+
+tomcat:
+  access-log-enabled: true
+  access-log-pattern: "%h %l %u %t \"%r\" %s %b %D"
+  basedir: tomcat
+
+logging:
+  config:
+    classpath:
+      - logback-access-dev-2.xml
+      - logback-dev-2.xml
+
+file:
+  default:
+    path: /home/ion/resource/ice2/files
+
+
+i18n:
+  defaults: eng
+
+cjapi:
+  pip:
+    programurl: http://pipapi.itvs.cjenm.com/json/data/v1.0/global/clipmediainfo.asp
+    clipmediaurl: http://pipapi.itvs.cjenm.com/json/data/v1.0/global/programinfo.asp
+
+temp-file:
+  dir: /
