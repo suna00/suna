@@ -123,10 +123,21 @@ public class DBSyncService {
                     // mapping 정보에 맞게 변경
                     Map<String, Object> fit = NodeMappingUtils.mapData(targetNodeType, qMap, mapperStore);
                     logger.info("CREATE INITIAL MIGRATION NODE :: " + String.valueOf(fit));
-                    nodeService.saveNode(fit);
+                    try{
+                        nodeService.saveNodeWithException(fit);
+                    } catch (Exception e) {
+                        // 실패한다면 실패 기록을 DB 에 저장한다.
+                        logger.error("Recording exception :: ", e);
+
+                    }
                 }
                 i++;
             }
         }
+    }
+
+
+    public void executeForNewData (String executeId) throws Exception {
+
     }
 }
