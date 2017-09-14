@@ -86,13 +86,13 @@
         },
         {
           "includeReferenced": true,
-          "referenceView":"refdSeriesItemList"
+          "referenceView": "refdSeriesItemList"
         }
       ],
-      "response":{
+      "response": {
         "_all_": "",
         "refdSeriesItemList": {
-          "typeId":"sersVoteItemInfo",
+          "typeId": "sersVoteItemInfo",
           "query": [
             {
               "field": "voteSeq",
@@ -199,7 +199,7 @@
               "value": "voteSeq_matching={{:voteSeq}}"
             },
             {
-              "referenceView": "sersItemVoteSeq"
+              "referenceView": "sersItemVoteSeq","includeReferenced": true
             }
           ]
         }
