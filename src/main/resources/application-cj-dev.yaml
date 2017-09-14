@@ -48,8 +48,8 @@ i18n:
 
 cjapi:
   pip:
-    programurl: http://pipapi.itvs.cjenm.com/json/data/v1.0/global/clipmediainfo.asp
-    clipmediaurl: http://pipapi.itvs.cjenm.com/json/data/v1.0/global/programinfo.asp
+    programurl: http://pipapi.itvs.cjenm.com/json/data/v1.0/global/programinfo.asp
+    clipmediaurl: http://pipapi.itvs.cjenm.com/json/data/v1.0/global/clipmediainfo.asp
 
 temp-file:
   dir: /

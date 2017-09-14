@@ -1,11 +1,19 @@
 package net.ion.ice.cjmwave.external.pip;
 
+import net.ion.ice.cjmwave.db.sync.DBSyncService;
 import net.ion.ice.cjmwave.external.utils.CommonNetworkUtils;
 import net.ion.ice.cjmwave.external.utils.JSONNetworkUtils;
+import net.ion.ice.cjmwave.external.utils.MigrationUtils;
+import net.ion.ice.core.data.DBService;
+import net.ion.ice.core.node.NodeService;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,25 +34,22 @@ public class PipApiService {
     @Value("${cjapi.pip.clipmediaurl}")
     String clipMediaApiUrl;
 
-    public List fetchProgram (String paramStr) throws Exception {
-        return JSONNetworkUtils.fetchJSON(programApiUrl, paramStr);
-    }
+    @Autowired
+    NodeService nodeService;
 
-    public List fetchClipMedia (String paramStr) throws Exception {
-        return JSONNetworkUtils.fetchJSON(clipMediaApiUrl, paramStr);
-    }
+    @Autowired
+    DBService dbService;
 
-    public List fetchProgram (Map paramMap) throws Exception {
-        return fetchProgram(CommonNetworkUtils.MapToString(paramMap));
-    }
+    private JdbcTemplate template;
 
-    public List fetchClipMedia (Map paramMap) throws Exception {
-        return fetchClipMedia(CommonNetworkUtils.MapToString(paramMap));
+    @PostConstruct
+    public void prepareJdbcTemplate () {
+        template = dbService.getJdbcTemplate("cjDb");
     }
 
     private Map<String,Object> match (String nodeTypeId, Map<String, Object> data) {
         Map <String, Object> transformed = new HashMap<String, Object>();
-        transformed.put("nodeType", nodeTypeId);
+        transformed.put("typeId", nodeTypeId);
         transformed.put("mnetIfTrtYn", "Y");
         switch (nodeTypeId) {
             case "program" :
@@ -56,7 +61,8 @@ public class PipApiService {
                 transformed.put("bradFnsDate", data.get("enddate"));
                 transformed.put("repImgPath", data.get("programimg"));
                 transformed.put("thumbnailImgPath", data.get("programthumimg"));
-                transformed.put("prsn_nm", data.get("catmName"));
+                transformed.put("catmName", data.get("prsn_nm"));
+                transformed.put("showYn", "Y"); //?
 
                 if(data.containsKey("multilanguage")) {
                     List<Map<String, Object>> multiLangArr = (List<Map<String, Object>>) data.get("multilanguage");
@@ -100,31 +106,45 @@ public class PipApiService {
 
     public void doProgramMigration (String paramStr) throws Exception {
         List fetchedPrograms = JSONNetworkUtils.fetchJSON(programApiUrl, paramStr);
+        Date startTime = new Date();
+        int successCnt = 0, skippedCnt = 0;
         for(Object program : fetchedPrograms) {
             // 이 형변환이 실패하면 전체가 의미가 없음 - 그냥 규약 위반
             Map<String, Object> programMap = (Map<String, Object>) program;
             try {
-
-
-
+                nodeService.saveNode(match("program", programMap));
+                successCnt++;
             } catch (Exception e) {
                 logger.error("Failed to register PIP program :: ", e);
                 // 실패 목록에 쌓기
-
+                skippedCnt++;
             }
         }
+        long jobTaken = (new Date().getTime() - startTime.getTime());
+        MigrationUtils.printReport(startTime, "PIPProgramRecent", "SKIP", successCnt, skippedCnt);
+        MigrationUtils.recordResult(template, "PIP", "MANUAL", paramStr, null
+                , "program", successCnt, skippedCnt, jobTaken, startTime);
     }
 
     public void doClipMediaMigration (String paramStr) throws Exception {
         List fetchedClips = JSONNetworkUtils.fetchJSON(clipMediaApiUrl, paramStr);
+        Date startTime = new Date();
+        int successCnt = 0, skippedCnt = 0;
         for(Object clip : fetchedClips) {
             try {
-
+                Map<String, Object> clipMap = (Map<String, Object>) clip;
+                nodeService.saveNode(match("pgmVideo", clipMap));
+                successCnt++;
             } catch (Exception e) {
                 logger.error("Failed to register PIP clip :: ", e);
                 // 실패 목록에 쌓기
+                skippedCnt++;
             }
         }
+        long jobTaken = (new Date().getTime() - startTime.getTime());
+        MigrationUtils.printReport(startTime, "PIPClipMediaRecent", "SKIP", successCnt, skippedCnt);
+        MigrationUtils.recordResult(template, "PIP", "MANUAL", paramStr, null
+                ,"pgmVideo", successCnt, skippedCnt, jobTaken, startTime);
     }
 
     public void doProgramMigration (Map paramMap) throws Exception {

@@ -53,6 +53,8 @@ public class PipController {
                     logger.info("No suitable type for migration");
                     break;
             }
+            result = "200";
+            result_msg = "SUCCESS";
         } catch (Exception e) {
             cause = e.getMessage();
         }
@@ -75,19 +77,21 @@ public class PipController {
         try{
             switch (type) {
                 case "all" :
-                    pipService.fetchProgram("type=recent");
-                    pipService.fetchClipMedia("type=recent");
+                    pipService.doProgramMigration("type=recent");
+                    pipService.doClipMediaMigration("type=recent");
                     break;
                 case "program" :
-                    pipService.fetchProgram("type=recent");
+                    pipService.doProgramMigration("type=recent");
                     break;
                 case "clipMedia" :
-                    pipService.fetchClipMedia("type=recent");
+                    pipService.doClipMediaMigration("type=recent");
                     break;
                 default:
                     logger.info("No suitable type for migration");
                     break;
             }
+            result = "200";
+            result_msg = "SUCCESS";
         } catch (Exception e) {
             cause = e.getMessage();
         }

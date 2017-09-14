@@ -40,6 +40,7 @@ public class ScheduledPip {
     }
 
     public void doWork() {
+        /*
         try{
             // 여기 매칭되는 노드가 어떤 노드인지 알아볼 필요가 있겠다
             List newPrograms = pipService.fetchProgram("type=recent");
@@ -56,5 +57,6 @@ public class ScheduledPip {
         } catch (Exception e) {
             logger.error("Error while pip migration. do failure action :: ", e);
         }
+        */
     }
 }

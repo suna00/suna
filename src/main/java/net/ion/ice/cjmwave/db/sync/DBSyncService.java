@@ -2,6 +2,7 @@ package net.ion.ice.cjmwave.db.sync;
 
 import net.ion.ice.cjmwave.db.sync.utils.NodeMappingUtils;
 import net.ion.ice.cjmwave.db.sync.utils.SyntaxUtils;
+import net.ion.ice.cjmwave.external.utils.MigrationUtils;
 import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
@@ -81,17 +82,6 @@ public class DBSyncService {
         return altered;
     }
 
-    private void recordResult(JdbcTemplate template
-            , String mig_target, String mig_type, String mig_parameter, String request_ip
-            , int successCnt, int failCnt, long taskDuration, Date executeDate) {
-        String query = "INSERT INTO MIG_HISTORY " +
-                "(mig_target, mig_type, mig_parameter, request_ip" +
-                ", success_cnt, fail_cnt, task_duration, execution_date)" +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        template.update(query, mig_target, mig_type, mig_parameter, request_ip
-                , successCnt, failCnt, taskDuration, executeDate);
-    }
-
 
     /*
     * 결과가 안나올 때까지 이터레이션하면서 처리한다, 쿼리에 반드시 limit @{start} @{unit} 있어야 한다
@@ -105,7 +95,8 @@ public class DBSyncService {
         int successCnt = 0;
         int skippedCnt = 0;
         Date startTime = new Date();
-        String errorPolicy = "SKIP";
+        String failPolicy = "SKIP";
+        String targetNodeType = null;
         JdbcTemplate template = null;
 
 
@@ -119,10 +110,10 @@ public class DBSyncService {
             if (dbSyncMetaInfo == null) throw new Exception("[ " + executeId + " ] does not exists");
             Map itemMap = (Map) ((Map) dbSyncMetaInfo).get("item");
             String query = String.valueOf(itemMap.get("query"));
-            String targetNodeType = String.valueOf(itemMap.get("targetNodeType"));
+            targetNodeType = String.valueOf(itemMap.get("targetNodeType"));
             String targetDs = String.valueOf(itemMap.get("targetDs"));
-            errorPolicy = String.valueOf(itemMap.get("onFail")).trim().toUpperCase();
-            errorPolicy = (!"NULL".equals(errorPolicy) && "STOP".equals(errorPolicy)) ? "STOP" : "SKIP";
+            failPolicy = String.valueOf(itemMap.get("onFail")).trim().toUpperCase();
+            failPolicy = (!"NULL".equals(failPolicy) && "STOP".equals(failPolicy)) ? "STOP" : "SKIP";
 
 
             // 쿼리
@@ -151,7 +142,7 @@ public class DBSyncService {
                     } catch (Exception e) {
                         // 실패한다면 실패 기록을 DB 에 저장한다.
                         logger.error("Recording exception :: ", e);
-                        if(errorPolicy.equals("stop")){
+                        if(failPolicy.equals("STOP")){
                             loop = false;
                             break;
                         } else {
@@ -164,19 +155,9 @@ public class DBSyncService {
         }
 
         long jobTaken = (new Date().getTime() - startTime.getTime());
-        logger.info(
-                "\n##### Execute Report :: ######" +
-                "\nExecutionId : " + executeId +
-                "\nStarted on : " + startTime +
-                "\nTime takes(ms) : " + jobTaken + " ms" +
-                "\nOnFail action : " + errorPolicy +
-                "\nSuccess Records Count : " + successCnt +
-                "\nSkipped Records Count : " + skippedCnt +
-                "\n##############################");
-
-        recordResult(template, "MNET", "INIT", null, null
-                , successCnt, skippedCnt, jobTaken, startTime);
-
+        MigrationUtils.printReport(startTime, executeId, failPolicy, successCnt, skippedCnt);
+        MigrationUtils.recordResult(template, "MNET", "INIT", null, null
+                ,targetNodeType, successCnt, skippedCnt, jobTaken, startTime);
     }
 
 
