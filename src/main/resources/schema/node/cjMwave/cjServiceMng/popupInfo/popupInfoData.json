@@ -14,13 +14,13 @@
     "popupSbst": "2017년 MWAVE 이벤트 다국어 내용",
     "linkUrl": "mama/menu/sample",
     "ImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "emgYn":""
+    "emgYn":false
   },
   {
     "typeId": "popupInfo",
     "popupSeq": 101,
     "popupNm": "2018년 MWAVE 이벤트",
-    "pstngStDt": "20180101000000",
+    "pstngStDt": "20170101000000",
     "pstngFnsDt": "20180131000000",
     "svcTermlDivCd": "2",
     "showYn": true,
@@ -31,7 +31,7 @@
     "popupSbst": "2017년 MWAVE 이벤트 다국어 내용",
     "linkUrl": "mama/menu/sample",
     "ImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "emgYn":""
+    "emgYn":false
   },
   {
     "typeId": "popupInfo",
@@ -48,7 +48,7 @@
     "popupSbst": "2017년 MWAVE 이벤트 다국어 내용",
     "linkUrl": "mama/menu/sample",
     "ImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "emgYn":""
+    "emgYn":false
   },
   {
     "typeId": "popupInfo",
@@ -65,6 +65,6 @@
     "popupSbst": "2017년 MWAVE 이벤트 다국어 내용",
     "linkUrl": "mama/menu/sample",
     "ImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "emgYn":""
+    "emgYn":false
   }
 ]

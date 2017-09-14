@@ -449,8 +449,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>compItemInfo>cnctContsIfTgtCd",
-    "propertyTypeId": "compItemInfo>cnctContsIfTgtCd",
+    "id": "propertyTypeValidation>compItemInfo>cnctContsNm",
+    "propertyTypeId": "compItemInfo>cnctContsNm",
     "validation": {
       "language": "ko",
       "required": {
@@ -481,8 +481,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>compItemInfo>cnctContsSortBaseCd",
-    "propertyTypeId": "compItemInfo>cnctContsSortBaseCd",
+    "id": "propertyTypeValidation>compItemInfo>cnctContsIfTgtCd",
+    "propertyTypeId": "compItemInfo>cnctContsIfTgtCd",
     "validation": {
       "language": "ko",
       "required": {

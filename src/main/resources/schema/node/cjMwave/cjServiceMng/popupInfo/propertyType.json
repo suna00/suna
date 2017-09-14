@@ -130,25 +130,6 @@
     "codeFilter": "",
     "defaultValue": ""
   },
-
-  {
-    "typeId": "propertyType",
-    "tid": "popupInfo",
-    "pid": "emgYn",
-    "id": "popupInfo>emgYn",
-    "propertyTypeName": "긴급여부",
-    "valueType": "BOOLEAN",
-    "required": true,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "",
-    "referenceValue": "",
-    "codeFilter": "",
-    "defaultValue": ""
-  },
   {
     "typeId": "propertyType",
     "tid": "popupInfo",
@@ -268,8 +249,8 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": false,
-    "analyzer": null,
+    "indexable": true,
+    "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",

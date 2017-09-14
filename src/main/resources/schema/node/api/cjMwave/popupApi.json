@@ -25,6 +25,10 @@
       {
         "paramName": "svcTermlDivCd",
         "required": true
+      },
+      {
+        "paramName": "emgYn",
+        "required": false
       }
     ],
     "config": {
@@ -36,14 +40,19 @@
           "value": "{{:svcTermlDivCd}}"
         },
         {
-          "field": "showStDt",
-          "method": "below",
-          "value": "{{:@sysdate}}"
+          "field": "emgYn",
+          "method": "matching",
+          "value": "{{:emgYn}}"
         },
         {
-          "field": "showFnsDt",
+          "field": "pstngStDt",
+          "method": "below",
+          "value": "{{:now}}"
+        },
+        {
+          "field": "pstngFnsDt",
           "method": "above",
-          "value": "{{:@sysdate}}"
+          "value": "{{:now}}"
         },
         {
           "field": "showYn",
