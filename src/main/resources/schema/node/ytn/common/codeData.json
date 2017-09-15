@@ -3493,15 +3493,6 @@
   },
   {
     "typeId": "commonCode",
-    "code": "payType006",
-    "upperCode": "paymentType",
-    "name": "간편결제",
-    "description": "",
-    "sortOrder": "6",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
     "code": "payType007",
     "upperCode": "paymentType",
     "name": "복지포인트",
@@ -3516,6 +3507,24 @@
     "name": "마일리지",
     "description": "",
     "sortOrder": "8",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "payType009",
+    "upperCode": "paymentType",
+    "name": "PAYCO",
+    "description": "",
+    "sortOrder": "9",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "payType010",
+    "upperCode": "paymentType",
+    "name": "NPAY",
+    "description": "",
+    "sortOrder": "10",
     "commonCodeStatus": "y"
   },
   {
