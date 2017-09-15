@@ -36,6 +36,24 @@
     "eviction": 10
   },
   {
+    "parentId": "productPath",
+    "typeId": "nodeType",
+    "tid": "searchFilter",
+    "typeName": "검색필터정책",
+    "tableName": "ytnDevDb#searchFilter",
+    "repositoryType": "node",
+    "eviction": 1000
+  },
+  {
+    "parentId": "productPath",
+    "typeId": "nodeType",
+    "tid": "searchFilterCode",
+    "typeName": "검색필터정책코드",
+    "tableName": "ytnDevDb#searchFilterCode",
+    "repositoryType": "node",
+    "eviction": 2000
+  },
+  {
     "parentId": "contentsPath",
     "typeId": "nodeType",
     "tid": "contentsOptionType",
