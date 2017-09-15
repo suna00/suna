@@ -1024,6 +1024,40 @@
   {
     "typeId": "apiConfig",
     "category": "contsMeta",
+    "apiId": "IfPho003",
+    "apiName": "싱글 포토 상세조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "singlePhotoId",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "singlePhoto",
+      "id": "{{:singlePhotoId}}",
+      "response": {
+        "_all_": "",
+        "replNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*)as replNum from replInfo where contsMetaId = concat('singlePhoto','::',@{singlePhotoId})"
+          }
+        },
+        "likeNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('singlePhoto','::',@{singlePhotoId})"
+          }
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "contsMeta",
     "apiId": "IfVod001",
     "apiName": "프로그램 영상(PIP 클립/VOD) 목록조회",
     "method": "GET",
@@ -1298,7 +1332,7 @@
       "response": {
         "videoId": "",
         "videoDivCd": "",
-        "created":"",
+        "created": "",
         "hitNum": {
           "select": {
             "ds": "cjDb",
