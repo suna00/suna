@@ -533,7 +533,12 @@ public class NodeUtils {
             }
         }
         if (pt.isI18n() && value instanceof Map) {
-            return ((Map) value).get(getNodeService().getDefaultLocale());
+            Object localeValue =  ((Map) value).get(getNodeService().getDefaultLocale());
+            if(localeValue instanceof FileValue){
+                return ((FileValue) localeValue).getStorePath();
+            }else{
+                return localeValue ;
+            }
         }
         switch (pt.getValueType()) {
             case FILE: {
