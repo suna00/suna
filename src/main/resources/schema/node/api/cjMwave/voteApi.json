@@ -87,7 +87,17 @@
         {
           "includeReferenced": true
         }
-      ]
+      ],
+      "response":{
+        "_all_": "",
+        "voteNum":{
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select sum(voteNum)as voteNum from voteItemStats where voteSeq = @{voteSeq}"
+          }
+        }
+      }
     }
   },
   {
@@ -185,6 +195,13 @@
               "includeReferenced": true
             }
           ]
+        },
+        "voteNum":{
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select sum(voteNum)as voteNum, sum(voteRate)as voteRate from voteItemStats where voteSeq = @{voteSeq}"
+          }
         }
       }
     }
@@ -415,7 +432,7 @@
               "select": {
                 "ds": "cjDb",
                 "resultType": "value",
-                "sql": "select if(count(*)>0,'Y','N') myVoteYn from votePrtcptHst where voteSeq=@{voteSeq} and voteItemSeq =@{voteItemSeq} and prtcpMbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
+                "sql": "select if(count(*)>0,'true','false') myVoteYn from votePrtcptHst where voteSeq=@{voteSeq} and voteItemSeq =@{voteItemSeq} and prtcpMbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
               }
             }
           }
