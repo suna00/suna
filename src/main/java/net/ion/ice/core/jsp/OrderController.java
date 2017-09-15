@@ -18,9 +18,8 @@ public class OrderController {
     OrderService orderService;
 
     @RequestMapping("/order")
-    public ModelAndView order(@RequestParam String orderTempId) {
+    public ModelAndView order() {
         ModelAndView mv = new ModelAndView();
-        mv.addObject("tempOrderData",orderService.readTempOrder(orderTempId));
         mv.setViewName("/order/index");
         return mv;
     }

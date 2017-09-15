@@ -141,5 +141,15 @@
     "tableName": "ytnDevDb#tempOrderProductItem",
     "repositoryType": "data",
     "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "pg",
+    "typeName": "PG",
+    "tableName": "ytnDevDb#pg",
+    "repositoryType": "data",
+    "eviction": 0
   }
+
 ]
