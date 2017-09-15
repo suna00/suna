@@ -39,7 +39,7 @@
         {
           "field": "mbrId",
           "method": "matching",
-          "value": "{{:snsTypeCd}}>{{:snsKey}}"
+          "value": "{{:makeIdValue(>,snsTypeCd,snsKey)}}"
         },
         {
           "sorting": "{{:sorting}}"
@@ -92,7 +92,7 @@
         {
           "field": "prtcpMbrId",
           "method": "matching",
-          "value": "{{:snsTypeCd}}>{{:snsKey}}"
+          "value": "{{:makeIdValue(>,snsTypeCd,snsKey)}}"
         },
         {
           "sorting": "{{:sorting}}"

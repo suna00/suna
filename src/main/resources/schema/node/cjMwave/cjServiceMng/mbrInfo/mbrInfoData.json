@@ -27,7 +27,7 @@
     "blacklistYn": false,
     "dormTrtDate": "",
     "rtrmmbDate": "",
-    "onairTranTkcgrYn": ""
+    "onairTranTkcgrYn":true
   },
   {
     "typeId": "mbrInfo",
@@ -57,7 +57,7 @@
     "blacklistYn": false,
     "dormTrtDate": "20170822180000",
     "rtrmmbDate": "",
-    "onairTranTkcgrYn": ""
+    "onairTranTkcgrYn": false
   },
   {
     "typeId": "mbrInfo",
@@ -87,7 +87,7 @@
     "blacklistYn": true,
     "dormTrtDate": "",
     "rtrmmbDate": "",
-    "onairTranTkcgrYn": ""
+    "onairTranTkcgrYn": false
   },
   {
     "typeId": "mbrInfo",
@@ -117,7 +117,7 @@
     "blacklistYn": false,
     "dormTrtDate": "",
     "rtrmmbDate": "",
-    "onairTranTkcgrYn": ""
+    "onairTranTkcgrYn": false
   },
   {
     "typeId": "mbrInfo",
@@ -147,7 +147,7 @@
     "blacklistYn": false,
     "dormTrtDate": "20170924180000",
     "rtrmmbDate": "",
-    "onairTranTkcgrYn": ""
+    "onairTranTkcgrYn": false
   },
   {
     "typeId": "mbrInfo",
@@ -177,7 +177,7 @@
     "blacklistYn": false,
     "dormTrtDate": "",
     "rtrmmbDate": "",
-    "onairTranTkcgrYn": ""
+    "onairTranTkcgrYn": false
   },
   {
     "typeId": "mbrInfo",
@@ -207,7 +207,7 @@
     "blacklistYn": false,
     "dormTrtDate": "",
     "rtrmmbDate": "",
-    "onairTranTkcgrYn": ""
+    "onairTranTkcgrYn": false
   },
   {
     "typeId": "mbrInfo",
@@ -237,7 +237,7 @@
     "blacklistYn": false,
     "dormTrtDate": "",
     "rtrmmbDate": "",
-    "onairTranTkcgrYn": ""
+    "onairTranTkcgrYn": false
   },
   {
     "typeId": "mbrInfo",
@@ -267,7 +267,7 @@
     "blacklistYn": false,
     "dormTrtDate": "",
     "rtrmmbDate": "",
-    "onairTranTkcgrYn": ""
+    "onairTranTkcgrYn": false
   },
   {
     "typeId": "mbrInfo",
