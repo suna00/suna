@@ -54,6 +54,24 @@
     "eviction": 20000
   },
   {
+    "parentId": "productPath",
+    "typeId": "nodeType",
+    "tid": "productAttributeCategory",
+    "typeName": "상품고시 분류",
+    "tableName": "ytnDevDb#productAttributeCategory",
+    "repositoryType": "node",
+    "eviction": 1000
+  },
+  {
+    "parentId": "productPath",
+    "typeId": "nodeType",
+    "tid": "productAttributeCategoryItem",
+    "typeName": "상품고시 분류 항목",
+    "tableName": "ytnDevDb#productAttributeCategoryItem",
+    "repositoryType": "node",
+    "eviction": 10000
+  },
+  {
     "parentId": "contentsPath",
     "typeId": "nodeType",
     "tid": "contentsOptionType",
