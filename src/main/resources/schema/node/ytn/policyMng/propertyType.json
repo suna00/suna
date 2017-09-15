@@ -848,7 +848,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "codeFilter": "useYn",
+    "codeFilter": "searchFilterCodeStatus",
     "defaultValue": ""
   },
   {
