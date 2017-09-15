@@ -5929,5 +5929,32 @@
     "description": "",
     "sortOrder": "4",
     "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "tobe",
+    "upperCode": "YPointType",
+    "name": "적립예정",
+    "description": "",
+    "sortOrder": "5",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "cancel",
+    "upperCode": "YPointType",
+    "name": "취소",
+    "description": "",
+    "sortOrder": "6",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "return",
+    "upperCode": "YPointType",
+    "name": "반품",
+    "description": "",
+    "sortOrder": "7",
+    "commonCodeStatus": "y"
   }
 ]

@@ -1,0 +1,26 @@
+[
+  {
+    "typeId": "apiCategory",
+    "id": "YPoint",
+    "categoryName": "YPoint API"
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "YPoint",
+    "apiId": "summary",
+    "apiName": "Y포인트 리스트 상단 서머리",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "item": {
+        "select": {
+          "ds": "ytnDevDb",
+          "resultType": "read",
+          "description": "Y포인트 리스트 상단 서머리",
+          "sql": "select  sum( IF( YPointType != 'tobe', balance, 0) ) as useable ,sum( IF( YPointType = 'tobe', balance, 0)) as tobe , sum( IF( (adddate(now(), INTERVAL 1 MONTH) >= endDate ), balance, 0) ) as expiring from ypoint where memberNo=@{memberNo} "
+        }
+      }
+    }
+  }
+]
