@@ -1877,62 +1877,6 @@
     "modifier": "anonymous"
   },
   {
-    "typeId": "productAttributeCategory",
-    "productAttributeCategoryId": 11,
-    "name": "의류",
-    "productAttributeCategoryStatus": "y",
-    "description": "test"
-  },
-  {
-    "typeId": "productAttributeCategoryItem",
-    "productAttributeCategoryItemId": 101,
-    "productAttributeCategoryId": 11,
-    "name": "제품소재",
-    "sortOrder": 1
-  },
-  {
-    "typeId": "productAttributeCategoryItem",
-    "productAttributeCategoryItemId": 102,
-    "productAttributeCategoryId": 11,
-    "name": "색상",
-    "sortOrder": 2
-  },
-  {
-    "typeId": "productAttributeCategoryItem",
-    "productAttributeCategoryItemId": 103,
-    "productAttributeCategoryId": 11,
-    "name": "세탁방법 및 취급시 주의사항",
-    "sortOrder": 3
-  },
-  {
-    "typeId": "productAttributeCategory",
-    "productAttributeCategoryId": 12,
-    "name": "가전",
-    "productAttributeCategoryStatus": "y",
-    "description": "test"
-  },
-  {
-    "typeId": "productAttributeCategoryItem",
-    "productAttributeCategoryItemId": 104,
-    "productAttributeCategoryId": 12,
-    "name": "CPU",
-    "sortOrder": 1
-  },
-  {
-    "typeId": "productAttributeCategoryItem",
-    "productAttributeCategoryItemId": 105,
-    "productAttributeCategoryId": 12,
-    "name": "RAN",
-    "sortOrder": 2
-  },
-  {
-    "typeId": "productAttributeCategoryItem",
-    "productAttributeCategoryItemId": 106,
-    "productAttributeCategoryId": 12,
-    "name": "OS",
-    "sortOrder": 3
-  },
-  {
     "typeId": "productAttribute",
     "productAttributeId": 101,
     "productId": 3,
