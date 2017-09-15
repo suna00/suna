@@ -37,7 +37,7 @@ public class ApiReadContext extends ReadContext{
             if(key.equals("typeId")) continue ;
 
             if(key.equals("id")){
-                readContext.id = (String) ContextUtils.getValue(config.get(key), data) ;
+                readContext.id = ContextUtils.getValue(config.get(key), data).toString() ;
             }else {
                 makeApiContext(config, readContext, key);
             }

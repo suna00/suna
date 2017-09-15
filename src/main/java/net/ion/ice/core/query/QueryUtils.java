@@ -91,7 +91,9 @@ public class QueryUtils {
         if (q.containsKey("field") && q.containsKey("method")) {
             String field = q.get("field").toString();
             String method = q.get("method").toString();
-            String queryValue = (String) ContextUtils.getValue(q.get("value"), context.getData());
+            Object value = ContextUtils.getValue(q.get("value"), context.getData());
+            if(value == null) return ;
+            String queryValue = value.toString() ;
 
             if (method.equals("hasReferenced")) {
                 NodeType refNodeType = NodeUtils.getNodeType(nodeType.getPropertyType(field).getReferenceType());
@@ -119,7 +121,7 @@ public class QueryUtils {
             context.makeQueryTerm(nodeType);
         } else {
             for (String key : q.keySet()) {
-                makeQueryTerm(nodeType, context, queryTerms, key, (String) ContextUtils.getValue(q.get(key).toString(), context.getData()));
+                makeQueryTerm(nodeType, context, queryTerms, key, ContextUtils.getValue(q.get(key).toString(), context.getData()));
             }
         }
     }
