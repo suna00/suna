@@ -336,16 +336,14 @@ public class NodeUtils {
             }
             case FILE: {
                 if (value == null) return null;
-                if(context.getFileUrlFormat() != null && context.getFileUrlFormat().containsKey(pt.getFileHandler())){
-                    String fileUrlFormat = (String) context.getFileUrlFormat().get(pt.getFileHandler());
-                    if (value instanceof FileValue) {
-                        return fileUrlFormat + ((FileValue) value).getStorePath();
+                if(pt.isI18n() && context.hasLocale() && value instanceof Map){
+                    if(((Map) value).containsKey(context.getLocale())){
+                        return getFileResultValue(context, pt, ((Map) value).get(context.getLocale()));
+                    }else{
+                        return getFileResultValue(context, pt, ((Map) value).get(getNodeService().getDefaultLocale())) ;
                     }
                 }
-                if (value instanceof FileValue) {
-                    return value;
-                }
-                return null;
+                return getFileResultValue(context, pt, value);
             }
             case REFERENCED: {
                 if (context != null && context.isIncludeReferenced() && context.getLevel() < 3 && node instanceof Node) {
@@ -365,6 +363,18 @@ public class NodeUtils {
                 }
                 return value;
         }
+    }
+
+    private static Object getFileResultValue(ReadContext context, PropertyType pt, Object value) {
+        if(context.getFileUrlFormat() != null && context.getFileUrlFormat().containsKey(pt.getFileHandler())){
+            String fileUrlFormat = (String) context.getFileUrlFormat().get(pt.getFileHandler());
+            if (value instanceof FileValue) {
+                return fileUrlFormat + ((FileValue) value).getStorePath();
+            }
+        }else if (value instanceof FileValue) {
+            return value;
+        }
+        return null;
     }
 
 
@@ -651,7 +661,7 @@ public class NodeUtils {
             String i18nPrefix = pt.getPid() + "_";
             Map<String, Object> i18nData = new HashMap<>();
             value = NodeUtils.getStoreValue(value, pt, id);
-            if (value instanceof String) {
+            if (value instanceof String || value instanceof FileValue) {
                 i18nData.put(getDefaultLocale(), value);
             } else if (value instanceof Map) {
                 i18nData = (Map<String, Object>) value;
@@ -660,7 +670,8 @@ public class NodeUtils {
             List<String> removePids = new ArrayList<>();
             for (String fieldName : data.keySet()) {
                 if (fieldName.startsWith(i18nPrefix)) {
-                    i18nData.put(StringUtils.substringAfter(fieldName, i18nPrefix), data.get(fieldName));
+                    Object val = NodeUtils.getStoreValue(data.get(fieldName), pt, id);
+                    i18nData.put(StringUtils.substringAfter(fieldName, i18nPrefix), val);
                     removePids.add(fieldName);
                 }
             }
