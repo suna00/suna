@@ -82,6 +82,16 @@
   {
     "typeId" : "builderContainerComponent",
     "componentClassType": "FORMS",
+    "componentClass": "SortableForm",
+    "componentClassName": "SORTABLE FORM",
+    "icon": "fa-sort",
+    "order": 32,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClassType": "FORMS",
     "componentClass": "NestableForm",
     "componentClassName": "NESTABLE FORM",
     "icon": "fa-indent",
