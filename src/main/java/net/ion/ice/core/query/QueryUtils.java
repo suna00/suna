@@ -67,7 +67,7 @@ public class QueryUtils {
         if (q instanceof List) {
             for (Map<String, Object> _q : (List<Map<String, Object>>) q) {
                 makeNodeQueryTerm(context, _q, nodeType, queryTerms);
-                context.makeSearchFields( _q);
+                context.makeSearchFields(_q);
 
             }
         } else if (q instanceof Map) {
@@ -128,7 +128,10 @@ public class QueryUtils {
         if(fieldId.equals("id")){
             return new QueryTerm(fieldId, AnalyzerFactory.getAnalyzer("code"), method, value, PropertyType.ValueType.STRING);
         }
-        PropertyType propertyType = (PropertyType) nodeType.getPropertyType(fieldId);
+        PropertyType propertyType = nodeType.getPropertyType(fieldId);
+        if(propertyType == null && fieldId.contains("_")){
+            propertyType = nodeType.getPropertyType(StringUtils.substringBeforeLast(fieldId, "_"));
+        }
         if (propertyType != null && propertyType.isIndexable()) {
             try {
                 if(StringUtils.isNotEmpty(propertyType.getCodeFilter())){
