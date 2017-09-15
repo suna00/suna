@@ -51,7 +51,7 @@
     "typeName": "검색필터정책코드",
     "tableName": "ytnDevDb#searchFilterCode",
     "repositoryType": "node",
-    "eviction": 2000
+    "eviction": 20000
   },
   {
     "parentId": "contentsPath",
