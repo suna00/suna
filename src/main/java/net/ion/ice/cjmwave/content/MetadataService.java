@@ -15,7 +15,7 @@ import java.util.Map;
  */
 @Service("metadataService")
 public class MetadataService {
-    Logger logger = Logger.getLogger(DBSyncController.class);
+    Logger logger = Logger.getLogger(MetadataService.class);
 
     static String metadataSeqQuery = "SELECT getMetadataSeq(?) as metadataId";
     static String dsId = "cjDb";

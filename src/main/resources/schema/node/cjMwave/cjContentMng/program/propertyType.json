@@ -76,8 +76,8 @@
   {
     "typeId": "propertyType",
     "tid": "program",
-    "pid": "ctgryId",
-    "id": "program>ctgryId",
+    "pid": "contsMetaCtgryId",
+    "id": "program>contsMetaCtgryId",
     "propertyTypeName": "카테고리 아이디",
     "valueType": "REFERENCE",
     "required": false,

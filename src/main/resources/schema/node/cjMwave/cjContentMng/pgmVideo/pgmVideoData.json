@@ -27,7 +27,7 @@
     "showCntryCdList": "KOR,JPN",
     "mnetIfTrtYn": true,
     "rcmdContsYn": true,
-    "ctgryId": ""
+    "contsMetaCtgryId": ""
   },
   {
     "typeId": "pgmVideo",
@@ -57,7 +57,7 @@
     "showCntryCdList": "KOR",
     "mnetIfTrtYn": true,
     "rcmdContsYn": true,
-    "ctgryId": ""
+    "contsMetaCtgryId": ""
   },
   {
     "typeId": "pgmVideo",
@@ -87,7 +87,7 @@
     "showCntryCdList": "KOR,JPN",
     "mnetIfTrtYn": true,
     "rcmdContsYn": true,
-    "ctgryId": ""
+    "contsMetaCtgryId": ""
   },
   {
     "typeId": "pgmVideo",
@@ -117,7 +117,7 @@
     "showCntryCdList": "KOR",
     "mnetIfTrtYn": true,
     "rcmdContsYn": true,
-    "ctgryId": ""
+    "contsMetaCtgryId": ""
   },
   {
     "typeId": "pgmVideo",
@@ -147,6 +147,6 @@
     "showCntryCdList": "USA",
     "mnetIfTrtYn": true,
     "rcmdContsYn": true,
-    "ctgryId": ""
+    "contsMetaCtgryId": ""
   }
 ]

@@ -2238,5 +2238,21 @@
     "name": "정회원",
     "order": 3,
     "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "videoDivCd",
+    "codeId": "musicVideo",
+    "name": "뮤직비디오",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "videoDivCd",
+    "codeId": "pgmVideo",
+    "name": "프로그램 영상",
+    "order": 2,
+    "active": true
   }
 ]

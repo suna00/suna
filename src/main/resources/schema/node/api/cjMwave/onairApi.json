@@ -87,6 +87,11 @@
           "value": "{{:onairSeq}}"
         },
         {
+          "field": "langCd",
+          "method": "matching",
+          "value": "{{:langCd}}"
+        },
+        {
           "sorting": "{{:sorting}}"
         },
         {
@@ -112,13 +117,32 @@
         "required": true
       },
       {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      },
+      {
         "paramName": "tranSbst",
         "required": true
       }
     ],
     "config": {
-      "typeId": "onairTranInfo",
-      "event": "save"
+      "chkMember": {
+        "typeId": "mbrInfo",
+        "resultType": "none",
+        "id": "{{:makeIdValue(>,snsTypeCd,snsKey)}}",
+        "response":{
+          "onairTranTkcgrYn":""
+        }
+      },
+      "root": {
+        "typeId": "onairTranInfo",
+        "event": "save",
+        "if" : "{{:equals(onairTranTkcgrYn,onairTranTkcgrYn, true)}}"
+      }
     }
   }
 ]

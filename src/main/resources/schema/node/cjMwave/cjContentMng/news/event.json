@@ -22,5 +22,19 @@
     "listenerName": "news 조회시 콘텐츠 조회 create",
     "actionType": "service",
     "actionBody": "contsRetvService.insert"
+  },
+  {
+    "typeId" : "event",
+    "tid": "news",
+    "event" : "saveMetadata",
+    "eventName" : "Save metadata"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "news>saveMetadata",
+    "action" : "saveMetadata",
+    "actionType" : "service",
+    "actionBody" : "metadataService.saveMetadata",
+    "order" : 1
   }
 ]

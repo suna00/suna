@@ -92,6 +92,16 @@
   {
     "parentId": "cjContentMng",
     "typeId": "nodeType",
+    "id": "program2",
+    "tid": "program2",
+    "typeName": "프로그램_re",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#program2"
+  },
+  {
+    "parentId": "cjContentMng",
+    "typeId": "nodeType",
     "id": "pgmVideo",
     "tid": "pgmVideo",
     "typeName": "프로그램 VOD 영상",
@@ -99,6 +109,17 @@
     "eviction": 0,
     "i18n": true,
     "tableName": "cjDb#pgmVideo"
+  },
+  {
+    "parentId": "cjContentMng",
+    "typeId": "nodeType",
+    "id": "pgmVideo2",
+    "tid": "pgmVideo2",
+    "typeName": "프로그램 VOD 영상_re",
+    "repositoryType": "node",
+    "eviction": 0,
+    "i18n": true,
+    "tableName": "cjDb#pgmVideo2"
   },
   {
     "parentId": "cjContentMng",
