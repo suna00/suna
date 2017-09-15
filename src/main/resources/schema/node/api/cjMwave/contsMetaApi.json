@@ -1298,6 +1298,7 @@
       "response": {
         "videoId": "",
         "videoDivCd": "",
+        "created":"",
         "hitNum": {
           "select": {
             "ds": "cjDb",
