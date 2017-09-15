@@ -25,11 +25,11 @@ public class MigrationUtils {
         logger.info("INSERT INTO MIG_HISTORY :: row count :: " + cnt);
     }
 
-    public static void recordSingleDate(JdbcTemplate template, String dataStr, int result) {
+    public static void recordSingleDate(JdbcTemplate template, String nodeType, String dataStr, int result) {
         String insertQuery = "INSERT INTO MIG_DATA_HISTORY" +
                 " (target_node, data_str, rs, created)" +
                 " VALUES (?, ?, ?, now())";
-        template.update(insertQuery, dataStr, result);
+        template.update(insertQuery, nodeType, dataStr, result);
     }
 
 

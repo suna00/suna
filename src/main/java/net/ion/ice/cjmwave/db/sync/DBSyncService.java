@@ -151,7 +151,7 @@ public class DBSyncService {
                             skippedCnt++;
                         }
                     }
-                    MigrationUtils.recordSingleDate(template, String.valueOf(fit), rs);
+                    MigrationUtils.recordSingleDate(template, targetNodeType, String.valueOf(fit), rs);
                 }
                 i++;
             }
