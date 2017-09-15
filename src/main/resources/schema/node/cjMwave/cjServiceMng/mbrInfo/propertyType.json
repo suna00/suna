@@ -203,7 +203,7 @@
     "pid": "imgUrl",
     "id": "mbrInfo>imgUrl",
     "propertyTypeName": "썸네일 이미지 URL",
-    "valueType": "STRING",
+    "valueType": "FILE",
     "required": false,
     "idable": false,
     "labelable": false,
