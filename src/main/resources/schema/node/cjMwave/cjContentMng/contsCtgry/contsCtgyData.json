@@ -73,7 +73,7 @@
     "typeId": "contsCtgry",
     "contsCtgryId": "107",
     "contsMetaDivCd": "10",
-    "upperContsCtgryId": "root",
+    "upperContsCtgryId": "",
     "contsCtgryNm": "프로그램 1-1",
     "sortOdrg": 1,
     "contsCtgrydesc": "",
@@ -83,7 +83,7 @@
     "typeId": "contsCtgry",
     "contsCtgryId": "108",
     "contsMetaDivCd": "10",
-    "upperContsCtgryId": "root",
+    "upperContsCtgryId": "",
     "contsCtgryNm": "프로그램 1-2",
     "sortOdrg": 2,
     "contsCtgrydesc": "",
@@ -754,7 +754,7 @@
     "contsCtgryId": "1033",
     "contsMetaDivCd": "8",
     "upperContsCtgryId": "1032",
-    "contsCtgryNm": "1033",
+    "contsCtgryNm": "2017 AUSTRALIA",
     "sortOdrg": 1,
     "contsCtgrydesc": "",
     "useYn": true
@@ -764,7 +764,7 @@
     "contsCtgryId": "1034",
     "contsMetaDivCd": "8",
     "upperContsCtgryId": "1032",
-    "contsCtgryNm": "2016",
+    "contsCtgryNm": "2017 LA",
     "sortOdrg": 2,
     "contsCtgrydesc": "",
     "useYn": true
@@ -774,7 +774,7 @@
     "contsCtgryId": "1035",
     "contsMetaDivCd": "8",
     "upperContsCtgryId": "1032",
-    "contsCtgryNm": "2015",
+    "contsCtgryNm": "2017 NY",
     "sortOdrg": 3,
     "contsCtgrydesc": "",
     "useYn": true
@@ -784,7 +784,7 @@
     "contsCtgryId": "1036",
     "contsMetaDivCd": "8",
     "upperContsCtgryId": "1032",
-    "contsCtgryNm": "2014",
+    "contsCtgryNm": "2017 JAPAN",
     "sortOdrg": 4,
     "contsCtgrydesc": "",
     "useYn": true
@@ -794,7 +794,7 @@
     "contsCtgryId": "1037",
     "contsMetaDivCd": "8",
     "upperContsCtgryId": "1032",
-    "contsCtgryNm": "2013",
+    "contsCtgryNm": "2017 MEXICO",
     "sortOdrg": 5,
     "contsCtgrydesc": "",
     "useYn": true
@@ -804,7 +804,7 @@
     "contsCtgryId": "1038",
     "contsMetaDivCd": "8",
     "upperContsCtgryId": "1032",
-    "contsCtgryNm": "2012",
+    "contsCtgryNm": "2016 LA",
     "sortOdrg": 6,
     "contsCtgrydesc": "",
     "useYn": true
@@ -814,7 +814,7 @@
     "contsCtgryId": "1039",
     "contsMetaDivCd": "8",
     "upperContsCtgryId": "1032",
-    "contsCtgryNm": "2011",
+    "contsCtgryNm": "2016 NY",
     "sortOdrg": 7,
     "contsCtgrydesc": "",
     "useYn": true
@@ -824,7 +824,7 @@
     "contsCtgryId": "1040",
     "contsMetaDivCd": "8",
     "upperContsCtgryId": "1032",
-    "contsCtgryNm": "2010",
+    "contsCtgryNm": "2016 France",
     "sortOdrg": 8,
     "contsCtgrydesc": "",
     "useYn": true
@@ -834,7 +834,7 @@
     "contsCtgryId": "1041",
     "contsMetaDivCd": "8",
     "upperContsCtgryId": "1032",
-    "contsCtgryNm": "2009",
+    "contsCtgryNm": "2016 JAPAN",
     "sortOdrg": 9,
     "contsCtgrydesc": "",
     "useYn": true
@@ -844,7 +844,7 @@
     "contsCtgryId": "1042",
     "contsMetaDivCd": "8",
     "upperContsCtgryId": "1032",
-    "contsCtgryNm": "2008",
+    "contsCtgryNm": "2016 Abu Dhabi",
     "sortOdrg": 10,
     "contsCtgrydesc": "",
     "useYn": true
@@ -854,7 +854,7 @@
     "contsCtgryId": "1043",
     "contsMetaDivCd": "8",
     "upperContsCtgryId": "1032",
-    "contsCtgryNm": "2007",
+    "contsCtgryNm": "2015 NY",
     "sortOdrg": 11,
     "contsCtgrydesc": "",
     "useYn": true
@@ -864,7 +864,7 @@
     "contsCtgryId": "1044",
     "contsMetaDivCd": "8",
     "upperContsCtgryId": "1032",
-    "contsCtgryNm": "2006",
+    "contsCtgryNm": "2015 LA",
     "sortOdrg": 12,
     "contsCtgrydesc": "",
     "useYn": true
@@ -874,7 +874,7 @@
     "contsCtgryId": "1045",
     "contsMetaDivCd": "8",
     "upperContsCtgryId": "1032",
-    "contsCtgryNm": "2005",
+    "contsCtgryNm": "2014 LA",
     "sortOdrg": 13,
     "contsCtgrydesc": "",
     "useYn": true
@@ -884,7 +884,7 @@
     "contsCtgryId": "1046",
     "contsMetaDivCd": "8",
     "upperContsCtgryId": "1032",
-    "contsCtgryNm": "2004",
+    "contsCtgryNm": "2013 LA",
     "sortOdrg": 14,
     "contsCtgrydesc": "",
     "useYn": true
@@ -894,7 +894,7 @@
     "contsCtgryId": "1047",
     "contsMetaDivCd": "8",
     "upperContsCtgryId": "1032",
-    "contsCtgryNm": "2003",
+    "contsCtgryNm": "2012 KCON",
     "sortOdrg": 15,
     "contsCtgrydesc": "",
     "useYn": true
@@ -902,46 +902,6 @@
   {
     "typeId": "contsCtgry",
     "contsCtgryId": "1048",
-    "contsMetaDivCd": "8",
-    "upperContsCtgryId": "1032",
-    "contsCtgryNm": "2002",
-    "sortOdrg": 16,
-    "contsCtgrydesc": "",
-    "useYn": true
-  },
-  {
-    "typeId": "contsCtgry",
-    "contsCtgryId": "1049",
-    "contsMetaDivCd": "8",
-    "upperContsCtgryId": "1032",
-    "contsCtgryNm": "2001",
-    "sortOdrg": 17,
-    "contsCtgrydesc": "",
-    "useYn": true
-  },
-  {
-    "typeId": "contsCtgry",
-    "contsCtgryId": "1050",
-    "contsMetaDivCd": "8",
-    "upperContsCtgryId": "1032",
-    "contsCtgryNm": "2000",
-    "sortOdrg": 18,
-    "contsCtgrydesc": "",
-    "useYn": true
-  },
-  {
-    "typeId": "contsCtgry",
-    "contsCtgryId": "1051",
-    "contsMetaDivCd": "8",
-    "upperContsCtgryId": "1032",
-    "contsCtgryNm": "1999",
-    "sortOdrg": 19,
-    "contsCtgrydesc": "",
-    "useYn": true
-  },
-  {
-    "typeId": "contsCtgry",
-    "contsCtgryId": "1052",
     "contsMetaDivCd": "8",
     "upperContsCtgryId": "1003",
     "contsCtgryNm": "TV",
@@ -951,7 +911,7 @@
   },
   {
     "typeId": "contsCtgry",
-    "contsCtgryId": "1053",
+    "contsCtgryId": "1049",
     "contsMetaDivCd": "8",
     "upperContsCtgryId": "1003",
     "contsCtgryNm": "MOVIE",
@@ -961,7 +921,7 @@
   },
   {
     "typeId": "contsCtgry",
-    "contsCtgryId": "1054",
+    "contsCtgryId": "1050",
     "contsMetaDivCd": "8",
     "upperContsCtgryId": "1052",
     "contsCtgryNm": "TV",
@@ -971,7 +931,7 @@
   },
   {
     "typeId": "contsCtgry",
-    "contsCtgryId": "1055",
+    "contsCtgryId": "1051",
     "contsMetaDivCd": "8",
     "upperContsCtgryId": "1053",
     "contsCtgryNm": "MOVIE",
@@ -981,7 +941,7 @@
   },
   {
     "typeId": "contsCtgry",
-    "contsCtgryId": "1056",
+    "contsCtgryId": "1052",
     "contsMetaDivCd": "8",
     "upperContsCtgryId": "1004",
     "contsCtgryNm": "FEATURED",
@@ -991,7 +951,7 @@
   },
   {
     "typeId": "contsCtgry",
-    "contsCtgryId": "1057",
+    "contsCtgryId": "1053",
     "contsMetaDivCd": "8",
     "upperContsCtgryId": "1004",
     "contsCtgryNm": "Mwave Music Chart",
@@ -1001,7 +961,7 @@
   },
   {
     "typeId": "contsCtgry",
-    "contsCtgryId": "1058",
+    "contsCtgryId": "1054",
     "contsMetaDivCd": "8",
     "upperContsCtgryId": "1056",
     "contsCtgryNm": "FEATURED",
@@ -1011,7 +971,7 @@
   },
   {
     "typeId": "contsCtgry",
-    "contsCtgryId": "1059",
+    "contsCtgryId": "1055",
     "contsMetaDivCd": "8",
     "upperContsCtgryId": "1057",
     "contsCtgryNm": "Mwave Music Chart",
@@ -1021,7 +981,7 @@
   },
   {
     "typeId": "contsCtgry",
-    "contsCtgryId": "1060",
+    "contsCtgryId": "1056",
     "contsMetaDivCd": "8",
     "upperContsCtgryId": "1005",
     "contsCtgryNm": "I REPOTER",
@@ -1031,9 +991,9 @@
   },
   {
     "typeId": "contsCtgry",
-    "contsCtgryId": "1061",
+    "contsCtgryId": "1057",
     "contsMetaDivCd": "8",
-    "upperContsCtgryId": "1060",
+    "upperContsCtgryId": "1056",
     "contsCtgryNm": "I REPOTER",
     "sortOdrg": 1,
     "contsCtgrydesc": "",
@@ -1041,7 +1001,7 @@
   },
   {
     "typeId": "contsCtgry",
-    "contsCtgryId": "1062",
+    "contsCtgryId": "1058",
     "contsMetaDivCd": "8",
     "upperContsCtgryId": "1006",
     "contsCtgryNm": "Etc",
@@ -1051,7 +1011,7 @@
   },
   {
     "typeId": "contsCtgry",
-    "contsCtgryId": "1063",
+    "contsCtgryId": "1059",
     "contsMetaDivCd": "8",
     "upperContsCtgryId": "1062",
     "contsCtgryNm": "Etc",
@@ -1061,7 +1021,7 @@
   },
   {
     "typeId": "contsCtgry",
-    "contsCtgryId": "1064",
+    "contsCtgryId": "1060",
     "contsMetaDivCd": "8",
     "upperContsCtgryId": "1007",
     "contsCtgryNm": "Hide",
@@ -1071,7 +1031,7 @@
   },
   {
     "typeId": "contsCtgry",
-    "contsCtgryId": "1065",
+    "contsCtgryId": "1061",
     "contsMetaDivCd": "8",
     "upperContsCtgryId": "1064",
     "contsCtgryNm": "Hide",
@@ -1153,7 +1113,7 @@
     "typeId": "contsCtgry",
     "contsCtgryId": "2008",
     "contsMetaDivCd": "5",
-    "upperContsCtgryId": "2008",
+    "upperContsCtgryId": "2007",
     "contsCtgryNm": "2017",
     "sortOdrg": 1,
     "contsCtgrydesc": "",
@@ -1353,8 +1313,8 @@
     "typeId": "contsCtgry",
     "contsCtgryId": "2028",
     "contsMetaDivCd": "5",
-    "upperContsCtgryId": "2028",
-    "contsCtgryNm": "2017",
+    "upperContsCtgryId": "2027",
+    "contsCtgryNm": "2017 AUSTRALIA",
     "sortOdrg": 1,
     "contsCtgrydesc": "",
     "useYn": true
@@ -1364,7 +1324,7 @@
     "contsCtgryId": "2029",
     "contsMetaDivCd": "5",
     "upperContsCtgryId": "2028",
-    "contsCtgryNm": "2016",
+    "contsCtgryNm": "2017 LA",
     "sortOdrg": 2,
     "contsCtgrydesc": "",
     "useYn": true
@@ -1374,7 +1334,7 @@
     "contsCtgryId": "2030",
     "contsMetaDivCd": "5",
     "upperContsCtgryId": "2028",
-    "contsCtgryNm": "2015",
+    "contsCtgryNm": "2017 NY",
     "sortOdrg": 3,
     "contsCtgrydesc": "",
     "useYn": true
@@ -1384,7 +1344,7 @@
     "contsCtgryId": "2031",
     "contsMetaDivCd": "5",
     "upperContsCtgryId": "2028",
-    "contsCtgryNm": "2014",
+    "contsCtgryNm": "2017 JAPAN",
     "sortOdrg": 4,
     "contsCtgrydesc": "",
     "useYn": true
@@ -1394,7 +1354,7 @@
     "contsCtgryId": "2032",
     "contsMetaDivCd": "5",
     "upperContsCtgryId": "2028",
-    "contsCtgryNm": "2013",
+    "contsCtgryNm": "2017 MEXICO",
     "sortOdrg": 5,
     "contsCtgrydesc": "",
     "useYn": true
@@ -1404,7 +1364,7 @@
     "contsCtgryId": "2033",
     "contsMetaDivCd": "5",
     "upperContsCtgryId": "2028",
-    "contsCtgryNm": "2012",
+    "contsCtgryNm": "2016 LA",
     "sortOdrg": 6,
     "contsCtgrydesc": "",
     "useYn": true
@@ -1414,7 +1374,7 @@
     "contsCtgryId": "2034",
     "contsMetaDivCd": "5",
     "upperContsCtgryId": "2028",
-    "contsCtgryNm": "2011",
+    "contsCtgryNm": "2016 NY",
     "sortOdrg": 7,
     "contsCtgrydesc": "",
     "useYn": true
@@ -1424,7 +1384,7 @@
     "contsCtgryId": "2035",
     "contsMetaDivCd": "5",
     "upperContsCtgryId": "2028",
-    "contsCtgryNm": "2010",
+    "contsCtgryNm": "2016 France",
     "sortOdrg": 8,
     "contsCtgrydesc": "",
     "useYn": true
@@ -1434,7 +1394,7 @@
     "contsCtgryId": "2036",
     "contsMetaDivCd": "5",
     "upperContsCtgryId": "2028",
-    "contsCtgryNm": "2009",
+    "contsCtgryNm": "2016 JAPAN",
     "sortOdrg": 9,
     "contsCtgrydesc": "",
     "useYn": true
@@ -1444,7 +1404,7 @@
     "contsCtgryId": "2037",
     "contsMetaDivCd": "5",
     "upperContsCtgryId": "2028",
-    "contsCtgryNm": "2008",
+    "contsCtgryNm": "2016 Abu Dhabi",
     "sortOdrg": 10,
     "contsCtgrydesc": "",
     "useYn": true
@@ -1454,7 +1414,7 @@
     "contsCtgryId": "2038",
     "contsMetaDivCd": "5",
     "upperContsCtgryId": "2028",
-    "contsCtgryNm": "2007",
+    "contsCtgryNm": "2015 NY",
     "sortOdrg": 11,
     "contsCtgrydesc": "",
     "useYn": true
@@ -1464,7 +1424,7 @@
     "contsCtgryId": "2039",
     "contsMetaDivCd": "5",
     "upperContsCtgryId": "2028",
-    "contsCtgryNm": "2006",
+    "contsCtgryNm": "2015 LA",
     "sortOdrg": 12,
     "contsCtgrydesc": "",
     "useYn": true
@@ -1474,7 +1434,7 @@
     "contsCtgryId": "2040",
     "contsMetaDivCd": "5",
     "upperContsCtgryId": "2028",
-    "contsCtgryNm": "2005",
+    "contsCtgryNm": "2014 LA",
     "sortOdrg": 13,
     "contsCtgrydesc": "",
     "useYn": true
@@ -1484,7 +1444,7 @@
     "contsCtgryId": "2041",
     "contsMetaDivCd": "5",
     "upperContsCtgryId": "2028",
-    "contsCtgryNm": "2004",
+    "contsCtgryNm": "2013 LA",
     "sortOdrg": 14,
     "contsCtgrydesc": "",
     "useYn": true
@@ -1494,7 +1454,7 @@
     "contsCtgryId": "2042",
     "contsMetaDivCd": "5",
     "upperContsCtgryId": "2028",
-    "contsCtgryNm": "2003",
+    "contsCtgryNm": "2012 KCON",
     "sortOdrg": 15,
     "contsCtgrydesc": "",
     "useYn": true
@@ -1502,86 +1462,6 @@
   {
     "typeId": "contsCtgry",
     "contsCtgryId": "2043",
-    "contsMetaDivCd": "5",
-    "upperContsCtgryId": "2028",
-    "contsCtgryNm": "2002",
-    "sortOdrg": 16,
-    "contsCtgrydesc": "",
-    "useYn": true
-  },
-  {
-    "typeId": "contsCtgry",
-    "contsCtgryId": "2044",
-    "contsMetaDivCd": "5",
-    "upperContsCtgryId": "2028",
-    "contsCtgryNm": "2001",
-    "sortOdrg": 17,
-    "contsCtgrydesc": "",
-    "useYn": true
-  },
-  {
-    "typeId": "contsCtgry",
-    "contsCtgryId": "2045",
-    "contsMetaDivCd": "5",
-    "upperContsCtgryId": "2028",
-    "contsCtgryNm": "2000",
-    "sortOdrg": 18,
-    "contsCtgrydesc": "",
-    "useYn": true
-  },
-  {
-    "typeId": "contsCtgry",
-    "contsCtgryId": "2046",
-    "contsMetaDivCd": "5",
-    "upperContsCtgryId": "2028",
-    "contsCtgryNm": "1999",
-    "sortOdrg": 19,
-    "contsCtgrydesc": "",
-    "useYn": true
-  },
-  {
-    "typeId": "contsCtgry",
-    "contsCtgryId": "2047",
-    "contsMetaDivCd": "5",
-    "upperContsCtgryId": "2028",
-    "contsCtgryNm": "2002",
-    "sortOdrg": 20,
-    "contsCtgrydesc": "",
-    "useYn": true
-  },
-  {
-    "typeId": "contsCtgry",
-    "contsCtgryId": "2048",
-    "contsMetaDivCd": "5",
-    "upperContsCtgryId": "2028",
-    "contsCtgryNm": "2001",
-    "sortOdrg": 21,
-    "contsCtgrydesc": "",
-    "useYn": true
-  },
-  {
-    "typeId": "contsCtgry",
-    "contsCtgryId": "2049",
-    "contsMetaDivCd": "5",
-    "upperContsCtgryId": "2028",
-    "contsCtgryNm": "2000",
-    "sortOdrg": 22,
-    "contsCtgrydesc": "",
-    "useYn": true
-  },
-  {
-    "typeId": "contsCtgry",
-    "contsCtgryId": "2050",
-    "contsMetaDivCd": "5",
-    "upperContsCtgryId": "2028",
-    "contsCtgryNm": "1999",
-    "sortOdrg": 23,
-    "contsCtgrydesc": "",
-    "useYn": true
-  },
-  {
-    "typeId": "contsCtgry",
-    "contsCtgryId": "2051",
     "contsMetaDivCd": "5",
     "upperContsCtgryId": "2002",
     "contsCtgryNm": "Meet&Greet",
@@ -1591,9 +1471,9 @@
   },
   {
     "typeId": "contsCtgry",
-    "contsCtgryId": "2052",
+    "contsCtgryId": "2044",
     "contsMetaDivCd": "5",
-    "upperContsCtgryId": "2052",
+    "upperContsCtgryId": "2043",
     "contsCtgryNm": "Meet&Greet",
     "sortOdrg": 1,
     "contsCtgrydesc": "",
@@ -1601,7 +1481,7 @@
   },
   {
     "typeId": "contsCtgry",
-    "contsCtgryId": "2053",
+    "contsCtgryId": "2045",
     "contsMetaDivCd": "5",
     "upperContsCtgryId": "2003",
     "contsCtgryNm": "FEATURED",
@@ -1611,9 +1491,9 @@
   },
   {
     "typeId": "contsCtgry",
-    "contsCtgryId": "2054",
+    "contsCtgryId": "2046",
     "contsMetaDivCd": "5",
-    "upperContsCtgryId": "2054",
+    "upperContsCtgryId": "2045",
     "contsCtgryNm": "FEATURED",
     "sortOdrg": 1,
     "contsCtgrydesc": "",
@@ -1621,7 +1501,7 @@
   },
   {
     "typeId": "contsCtgry",
-    "contsCtgryId": "2055",
+    "contsCtgryId": "2047",
     "contsMetaDivCd": "5",
     "upperContsCtgryId": "2003",
     "contsCtgryNm": "M Countdown",
@@ -1631,17 +1511,17 @@
   },
   {
     "typeId": "contsCtgry",
-    "contsCtgryId": "2056",
+    "contsCtgryId": "2048",
     "contsMetaDivCd": "5",
-    "upperContsCtgryId": "2056",
+    "upperContsCtgryId": "2047",
     "contsCtgryNm": "M Countdown",
-    "sortOdrg": 1,
+    "sortOdrg": 2,
     "contsCtgrydesc": "",
     "useYn": true
   },
   {
     "typeId": "contsCtgry",
-    "contsCtgryId": "2057",
+    "contsCtgryId": "2049",
     "contsMetaDivCd": "5",
     "upperContsCtgryId": "2003",
     "contsCtgryNm": "Mwave Music Chart",
@@ -1651,17 +1531,17 @@
   },
   {
     "typeId": "contsCtgry",
-    "contsCtgryId": "2058",
+    "contsCtgryId": "2050",
     "contsMetaDivCd": "5",
-    "upperContsCtgryId": "2058",
+    "upperContsCtgryId": "2049",
     "contsCtgryNm": "Mwave Music Chart",
-    "sortOdrg": 1,
+    "sortOdrg": 3,
     "contsCtgrydesc": "",
     "useYn": true
   },
   {
     "typeId": "contsCtgry",
-    "contsCtgryId": "2059",
+    "contsCtgryId": "2051",
     "contsMetaDivCd": "5",
     "upperContsCtgryId": "2004",
     "contsCtgryNm": "M2",
@@ -1671,9 +1551,9 @@
   },
   {
     "typeId": "contsCtgry",
-    "contsCtgryId": "2060",
+    "contsCtgryId": "2052",
     "contsMetaDivCd": "5",
-    "upperContsCtgryId": "2060",
+    "upperContsCtgryId": "2051",
     "contsCtgryNm": "M2",
     "sortOdrg": 1,
     "contsCtgrydesc": "",
@@ -1681,7 +1561,7 @@
   },
   {
     "typeId": "contsCtgry",
-    "contsCtgryId": "2061",
+    "contsCtgryId": "2053",
     "contsMetaDivCd": "5",
     "upperContsCtgryId": "2005",
     "contsCtgryNm": "Etc",
@@ -1691,9 +1571,9 @@
   },
   {
     "typeId": "contsCtgry",
-    "contsCtgryId": "2062",
+    "contsCtgryId": "2054",
     "contsMetaDivCd": "5",
-    "upperContsCtgryId": "2062",
+    "upperContsCtgryId": "2053",
     "contsCtgryNm": "Etc",
     "sortOdrg": 1,
     "contsCtgrydesc": "",
@@ -1701,7 +1581,7 @@
   },
   {
     "typeId": "contsCtgry",
-    "contsCtgryId": "2063",
+    "contsCtgryId": "2055",
     "contsMetaDivCd": "5",
     "upperContsCtgryId": "2006",
     "contsCtgryNm": "Hide",
@@ -1711,9 +1591,9 @@
   },
   {
     "typeId": "contsCtgry",
-    "contsCtgryId": "2064",
+    "contsCtgryId": "2056",
     "contsMetaDivCd": "5",
-    "upperContsCtgryId": "2064",
+    "upperContsCtgryId": "2055",
     "contsCtgryNm": "Hide",
     "sortOdrg": 1,
     "contsCtgrydesc": "",
