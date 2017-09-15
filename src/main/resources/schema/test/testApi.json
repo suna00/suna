@@ -347,6 +347,22 @@
         "parent" : {"propertyType" : "testComment.itemId", "field" : "itemId", "referenceView": true}
       }
     }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "updateFileSample",
+    "apiName" : "Update File Sample",
+    "method" : "POST",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "testItem",
+      "event": "update",
+      "response":{
+        "testFile":""
+      }
+    }
   }
 
 ]
