@@ -1,0 +1,25 @@
+[
+  {
+    "typeId" : "event",
+    "tid": "videItgInfo",
+    "event" : "save",
+    "noneExecute" : true,
+    "eventName" : "컨텐츠 조회"
+  },
+  {
+    "typeId" : "eventListener",
+    "tid" : "videItgInfo",
+    "event": "musicVideo>saveMetadata",
+    "listenerName" : "뮤직비디오 저장시 videItgInfo에도 정보 저장",
+    "actionType" : "service",
+    "actionBody" : "videItgInfoService.videItgInfoMusicVideoSave"
+  },
+  {
+    "typeId" : "eventListener",
+    "tid" : "videItgInfo",
+    "event": "pgmVideo>saveMetadata",
+    "listenerName" : "뮤직비디오 저장시 videItgInfo에도 정보 저장",
+    "actionType" : "service",
+    "actionBody" : "videItgInfoService.videItgInfoPgmVideoSave"
+  }
+]

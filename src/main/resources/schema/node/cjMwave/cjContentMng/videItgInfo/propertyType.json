@@ -86,7 +86,7 @@
     "analyzer": null,
     "referenceType": "code",
     "referenceValue": "",
-    "codeFilter": "",
+    "codeFilter": "videoDivCd",
     "defaultValue": ""
   },
   {
