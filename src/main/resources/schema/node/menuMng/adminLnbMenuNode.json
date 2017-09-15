@@ -557,6 +557,10 @@
       {
         "pageName": "등록/수정",
         "pageUrl": "cj/vt/TrnmtForm"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "cj/vt/TrnmtView"
       }
     ]
   },
