@@ -41,6 +41,11 @@ public class CouponService {
             return context;
         }
 
+        List<Node> list = nodeService.getNodeList("coupon", "memberNo_matching="+data.get("memberNo")+"&couponTypeId_matching="+data.get("couponTypeId"));
+        if(list.size() > 0){
+            common.setErrorMessage(context, "V0005");
+        }
+
         if("createPeriodType>limit".equals(couponType.getValue("createPeriodType"))){
             LocalDateTime start = LocalDateTime.parse(couponType.getValue("createStartDate").toString(), formatter);
             LocalDateTime end = LocalDateTime.parse(couponType.getValue("createEndDate").toString(), formatter);
@@ -56,16 +61,19 @@ public class CouponService {
             return context;
         }
 
-        if("limitYn>limit".equals(couponType.getValue("samePersonQuantityType"))){
-            List<Node> list = nodeService.getNodeList("coupon", "memberNo_matching="+data.get("memberNo")+"&couponTypeId_matching="+data.get("couponTypeId"));
-            if(list.size() > 0){
-                int count = (int) couponType.getValue("samePersonQuantity");
-                if(list.size() >= count){
-                    common.setErrorMessage(context, "V0003");
-                    return context;
-                }
-            }
-        }
+/*
+        동일인 재발급
+        회원후기작성, 구매수량 충족 에만 해당
+*/
+//        if("limitYn>limit".equals(couponType.getValue("samePersonQuantityType"))){
+//            if(list.size() > 0){
+//                int count = (int) couponType.getValue("samePersonQuantity");
+//                if(list.size() >= count){
+//                    common.setErrorMessage(context, "V0003");
+//                    return context;
+//                }
+//            }
+//        }
 
         data.putAll(couponType);
 

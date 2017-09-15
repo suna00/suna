@@ -135,7 +135,7 @@
               "referencedCartProductItem": {
                 "typeId": "cartProductItem",
                 "query": [
-                  { "field": "cartProductId", "method": "matching", "value": "{{:cartProductId}}" },
+                  { "field": "cartProductId", "method": "equals", "value": "{{:cartProductId}}" },
                   { "includeReferenced": true, "referenceView": "addOptionItemId" }
                 ]
               },

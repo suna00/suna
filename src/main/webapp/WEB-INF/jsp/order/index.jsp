@@ -1,5 +1,4 @@
-<%@ page import="net.ion.ice.service.OrderService" %>
-<%@ page import="org.springframework.beans.factory.annotation.Autowired" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: yoonseonwoong
   Date: 2017. 9. 11.
@@ -7,8 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=utf-8" language="java" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<c:set var="tempOrder" value="${tempOrderData}"/>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -838,70 +841,87 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td scope="row" class="info_td">
-                                            <div class="thumb">
-                                                <img src="/image/sample/thumb_sample_600_2.jpg"
-                                                     alt="LG전자 ★LG전자&amp;교육할인공동기획★[LG전자] 초경량그램14 14ZD970-EX3YL">
-                                                <div class="soldout_badge">품절</div>
-                                            </div>
-                                            <div class="info">
-                                                <p class="nm">LG전자 ★LG전자&amp;교육할인공동기획★[LG전자] 초경량그램14 14ZD970-EX3YL [인텔7th 코어i3/4G/256G SS D/14</p>
-                                                <p class="opt">옵션1: 화이트/옵션2 : 500G</p>
+                                    <c:forEach var="tempOrderDeliveryPrice" items="${tempOrder.referencedTempOrderDeliveryPrice.items}"
+                                               varStatus="tempOrderDeliveryPriceStatus">
+                                        <c:forEach var="tempOrderProduct" items="${tempOrderDeliveryPrice.referencedTempOrderProduct}"
+                                                   varStatus="tempOrderProductStatus">
+                                            <c:set var="product" value="${tempOrderProduct.productId.item}"/>
+                                            <tr>
+                                                <td scope="row" class="info_td">
+                                                    <div class="thumb">
+                                                        <img src="/image/sample/thumb_sample_600_2.jpg"
+                                                             alt="LG전자 ★LG전자&amp;교육할인공동기획★[LG전자] 초경량그램14 14ZD970-EX3YL">
+                                                        <div class="soldout_badge">품절</div>
+                                                    </div>
+                                                    <div class="info">
+                                                        <p class="nm">${tempOrderProduct.name}</p>
+                                                        <p class="opt">${tempOrderProduct.calculateItem.baseOptionItemName}</p>
 
-                                                <!-- 2017-08-28 -->
-                                                <div class="add_opt">
-                                                    <p>추가옵션</p>
-                                                    <ul>
-                                                        <li>
-                                                            <span class="nm">삼성외장 DVD-ROM / 1개</span>
-                                                            <span class="price">
-                                                                        <span class="mont">5,000</span>
-                                                                        <span class="unit">원</span>
-                                                                    </span>
-                                                        </li>
-                                                        <li>
-                                                            <span class="nm">삼성외장 DVD-ROM / 1개</span>
-                                                            <span class="price">
-                                                                        <span class="mont">5,000</span>
-                                                                        <span class="unit">원</span>
-                                                                    </span>
-                                                        </li>
-                                                        <li>
-                                                            <span class="nm">삼성외장 DVD-ROM / 1개</span>
-                                                            <span class="price">
-                                                                        <span class="mont">5,000</span>
-                                                                        <span class="unit">원</span>
-                                                                    </span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <!-- 2017-08-28 -->
+                                                        <!-- 2017-08-28 -->
+                                                        <c:if test="${fn:length(tempOrderProduct.referencedTempOrderProductItem) > 0}">
+                                                            <div class="add_opt">
+                                                                <p>추가옵션</p>
+                                                                <ul>
+                                                                    <c:forEach var="tempOrderProductItem"
+                                                                               items="${tempOrderProduct.referencedTempOrderProductItem}"
+                                                                               varStatus="tempOrderProductItemStatus">
+                                                                        <li>
+                                                                            <span class="nm">${tempOrderProductItem.addOptionItemId.label} / ${tempOrderProductItem.quantity}개</span>
+                                                                            <span class="price">
+                                                                                <span class="mont"><fmt:formatNumber
+                                                                                        value="${tempOrderProductItem.addOptionItemId.item.addPrice}"
+                                                                                        pattern="#,###"/></span>
+                                                                                <span class="unit">원</span>
+                                                                            </span>
+                                                                        </li>
+                                                                    </c:forEach>
+                                                                </ul>
+                                                            </div>
+                                                        </c:if>
+                                                        <!-- 2017-08-28 -->
 
-                                                <!-- 2017-08-28 -->
-                                                <div class="timesale_badge">
-                                                    <span>타임세일 마감</span>
-                                                    <span class="mont">07 : 30 : 31</span>
-                                                </div>
-                                                <!-- // 2017-08-28 -->
-                                            </div>
-                                        </td>
-                                        <td class="brd_l">2</td>
-                                        <td>
-                                                    <span class="goods_price">
-                                                        <span class="mont">77,000</span><span class="unit">원</span>
-                                                        <span class="mont">+ 38,000</span><span class="unit">원</span>
-                                                        <span class="opt_add">(옵션추가)</span>
-                                                    </span>
-                                        </td>
-                                        <td>무료</td>
-                                        <td>
-                                                    <span class="tot_price">
-                                                        <span class="mont">154,000</span>
-                                                        <span class="unit">원</span>
-                                                    </span>
-                                        </td>
-                                    </tr>
+                                                        <!-- 2017-08-28 -->
+                                                            <%--<div class="timesale_badge">--%>
+                                                            <%--<span>타임세일 마감</span>--%>
+                                                            <%--<span class="mont">07 : 30 : 31</span>--%>
+                                                            <%--</div>--%>
+                                                        <!-- // 2017-08-28 -->
+                                                    </div>
+                                                </td>
+                                                <td class="brd_l">${tempOrderProduct.calculateItem.quantity}</td>
+                                                <td>
+                                                            <span class="goods_price">
+                                                                <span class="mont"><fmt:formatNumber
+                                                                        value="${tempOrderProduct.calculateItem.productPrice}"
+                                                                        pattern="#,###"/></span><span class="unit">원</span>
+                                                                <c:if test="${tempOrderProduct.calculateItem.totalAddOptionPrice > 0}">
+                                                                    <span class="mont">+ <fmt:formatNumber
+                                                                            value="${tempOrderProduct.calculateItem.totalAddOptionPrice}"
+                                                                            pattern="#,###"/></span><span class="unit">원</span>
+                                                                    <span class="opt_add">(옵션추가)</span>
+                                                                </c:if>
+                                                            </span>
+                                                </td>
+                                                <c:if test="${tempOrderProductStatus.index == 0}">
+                                                    <c:if test="${tempOrderDeliveryPrice.deliveryPrice > 0}">
+                                                        <td rowspan="${fn:length(tempOrderProduct)}"><fmt:formatNumber
+                                                                value="${tempOrderDeliveryPrice.deliveryPrice}" pattern="#,###"/>원
+                                                        </td>
+                                                    </c:if>
+                                                    <c:if test="${tempOrderDeliveryPrice.deliveryPrice == 0}">
+                                                        <td>무료</td>
+                                                    </c:if>
+                                                </c:if>
+                                                <td>
+                                                            <span class="tot_price">
+                                                                <span class="mont"><fmt:formatNumber
+                                                                        value="${tempOrderProduct.calculateItem.orderPrice}" pattern="#,###"/></span>
+                                                                <span class="unit">원</span>
+                                                            </span>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
@@ -912,21 +932,24 @@
                                     <li>
                                         <span class="tit">총 상품금액</span>
                                         <span class="price">
-                                                <span class="mont">158,500</span>
+                                                <span class="mont"><fmt:formatNumber value="${tempOrder.item.totalProductPrice}"
+                                                                                     pattern="#,###"/></span>
                                                 <span class="unit">원</span>
                                             </span>
                                     </li>
                                     <li>
                                         <span class="tit">총 배송비</span>
                                         <span class="price">
-                                                <span class="mont">2,500</span>
+                                                <span class="mont"><fmt:formatNumber value="${tempOrder.item.totalDeliveryPrice}"
+                                                                                     pattern="#,###"/></span>
                                                 <span class="unit">원</span>
                                             </span>
                                     </li>
                                     <li>
                                         <span class="tit">총 주문금액</span>
                                         <span class="price">
-                                                <span class="mont">161,000</span>
+                                                <span class="mont"><fmt:formatNumber value="${tempOrder.item.totalOrderPrice}"
+                                                                                     pattern="#,###"/></span>
                                                 <span class="unit">원</span>
                                             </span>
                                     </li>
@@ -1005,7 +1028,7 @@
                                             <td colspan="3" class="addr_basic">
                                                     <span class="in_field">
                                                        <input type="text" class="txt">
-                                                       <a href="javascript:void(0);" class="btn brd"><span>주소찾기</span></a>
+                                                       <a href="javascript:void(0);" class="btn brd" onclick="getTemporderData()"><span>주소찾기</span></a>
                                                     </span>
 
                                                 <span class="in_field">
@@ -1830,14 +1853,24 @@
 <!-- // wrap -->
 <script>
     $(document).ready(function () {
-//        $.ajax({
-//            method: "POST",
-//            url: "/api/tempOrder/read",
-//            data: {id: 50}
-//        }).done(function (data) {
-//            alert("Data read: " + data);
-//        });
+        $.ajax({
+            method: "POST",
+            url: "/api/tempOrder/read",
+            data: {id: 50}
+        }).done(function (data) {
+            alert("Data read: " + data);
+        });
     })
+
+    function getTemporderData() {
+        $.ajax({
+            method: "GET",
+            url: "/order/orderTest",
+        }).done(function (data) {
+            alert("Data read: " + data);
+        });
+
+    }
 </script>
 </body>
 </html>

@@ -10,9 +10,9 @@
   {
     "parentId": "pointPath",
     "typeId": "nodeType",
-    "tid": "saveAndUsedPointMap",
-    "typeName": "포인트 매핑",
-    "tableName": "ytnDevDb#saveAndUsedPointMap",
+    "tid": "usedPointMap",
+    "typeName": "포인트 사용 매핑",
+    "tableName": "ytnDevDb#usedPointMap",
     "repositoryType": "data",
     "eviction": 0
   },
@@ -28,45 +28,18 @@
   {
     "parentId": "pointPath",
     "typeId": "nodeType",
-    "tid": "point",
+    "tid": "affiliatePoint",
     "typeName": "제휴사 포인트",
-    "tableName": "ytnDevDb#point",
+    "tableName": "ytnDevDb#affiliatePoint",
     "repositoryType": "data",
     "eviction": 0
   },
   {
     "parentId": "pointPath",
     "typeId": "nodeType",
-    "tid": "usedPoint",
-    "typeName": "포인트 사용",
-    "tableName": "ytnDevDb#usedPoint",
-    "repositoryType": "data",
-    "eviction": 0
-  },
-  {
-    "parentId": "pointPath",
-    "typeId": "nodeType",
-    "tid": "mileageMap",
-    "typeName": "마일리지 매핑",
-    "tableName": "ytnDevDb#mileageMap",
-    "repositoryType": "data",
-    "eviction": 0
-  },
-  {
-    "parentId": "pointPath",
-    "typeId": "nodeType",
-    "tid": "saveMileage",
-    "typeName": "마일리지 적립",
-    "tableName": "ytnDevDb#saveMileage",
-    "repositoryType": "data",
-    "eviction": 0
-  },
-  {
-    "parentId": "pointPath",
-    "typeId": "nodeType",
-    "tid": "usedMileage",
-    "typeName": "마일리지 사용",
-    "tableName": "ytnDevDb#usedMileage",
+    "tid": "affiliateMemberPoint",
+    "typeName": "제휴사 회원 포인트",
+    "tableName": "ytnDevDb#affiliateMemberPoint",
     "repositoryType": "data",
     "eviction": 0
   }
