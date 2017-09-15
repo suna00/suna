@@ -170,9 +170,11 @@ public class ExecuteContext extends ReadContext{
                     changedProperties.add(pt.getPid()) ;
                 }else if(!newValue.equals(existValue)){
                     if(pt.isI18n()){
-                        ((Map<String, Object>) newValue).putAll((Map<? extends String, ?>) existValue);
+                        ((Map<String, Object>) existValue).putAll((Map<? extends String, ?>) newValue);
+                        node.put(pt.getPid(), existValue);
+                    }else {
+                        node.put(pt.getPid(), newValue);
                     }
-                    node.put(pt.getPid(), newValue) ;
                     changedProperties.add(pt.getPid()) ;
                 }
             }
