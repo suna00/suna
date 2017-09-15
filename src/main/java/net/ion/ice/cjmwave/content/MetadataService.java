@@ -49,4 +49,56 @@ public class MetadataService {
          context.setResult(nodeService.executeNode(data, data.get("seqName").toString(), "save"));
 
     }
+
+    public void getRcmdContsYnCount(ExecuteContext context) throws Exception{
+        logger.info("getRcmdContsYnCount");
+        String nodeId = context.getNodeType().getTypeId();
+
+        String rcmdContsYnCountQuery = "SELECT COUNT(showYn) as rcmdContsYnCnt FROM " + nodeId + " WHERE rcmdContsYn = 1";
+
+        logger.info("rcmdContsYnCountQuery : " + rcmdContsYnCountQuery);
+
+        Map<String, Object> data = context.getData();
+
+        logger.info("nodeTypeId : " + context.getNodeType().getTypeId());
+
+        JdbcTemplate template = dbService.getJdbcTemplate(dsId);
+        // Map<String, Object> queryRs = template.queryForMap(rcmdContsYnCountQuery);
+        context.setResult(template.queryForMap(rcmdContsYnCountQuery));
+    }
+
+    public void changeRcmdContsYn(ExecuteContext context) throws Exception{
+        String rcmdContsYnCountQuery = "SELECT COUNT(showYn) as rcmdContsYnCnt FROM " + context.getNodeType().getTypeId() + " WHERE rcmdContsYn = 1";
+
+        logger.info("rcmdContsYnCountQuery : " + rcmdContsYnCountQuery);
+
+        Map<String, Object> data = context.getData();
+
+        logger.info("nodeTypeId : " + context.getNodeType().getTypeId());
+        String nodeId = context.getNodeType().getTypeId();
+
+        JdbcTemplate template;
+        Map<String, Object> queryRs = null;
+
+        int rcmdContsYnCnt = 0;
+
+        // 상태값이 추천에서 비추천으로 바꿀 경우 추천 수를 체크하지 않고 그대로 save하면 됨.
+        // 추천일 경우 해당 노드의 추천 콘텐츠 수를 구해서 3개가 넘을 경우 추천수를 반환함.
+        if(data.get("rcmdContsYn").toString().equals("true")){
+            template = dbService.getJdbcTemplate(dsId);
+            queryRs = template.queryForMap(rcmdContsYnCountQuery);
+            logger.info("queryRs.rcmdContsYnCnt : " + queryRs.get("rcmdContsYnCnt"));
+
+            rcmdContsYnCnt = Integer.parseInt(queryRs.get("rcmdContsYnCnt").toString());
+            if(rcmdContsYnCnt > 3){
+                logger.info("rcmdContsYnCnt > 3");
+                context.setResult(queryRs);
+            }else{
+                logger.info("rcmdContsYnCnt < 3");
+                context.setResult(nodeService.executeNode(data, nodeId, "save"));
+            }
+        }else{
+            context.setResult(nodeService.executeNode(data, nodeId, "save"));
+        }
+    }
 }

@@ -14,6 +14,34 @@
     "order" : 1
   },
   {
+    "typeId" : "event",
+    "tid": "musicVideo",
+    "event" : "changeRcmdContsYn",
+    "eventName" : "Change Recommand content YN"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "musicVideo>changeRcmdContsYn",
+    "action" : "changeRcmdContsYn",
+    "actionType" : "service",
+    "actionBody" : "metadataService.changeRcmdContsYn",
+    "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "musicVideo",
+    "event" : "getRcmdContsYnCount",
+    "eventName" : "Change Recommand content YN"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "musicVideo>getRcmdContsYnCount",
+    "action" : "getRcmdContsYnCount",
+    "actionType" : "service",
+    "actionBody" : "metadataService.getRcmdContsYnCount",
+    "order" : 1
+  },
+  {
     "typeId": "event",
     "tid": "musicVideo",
     "event": "view",
