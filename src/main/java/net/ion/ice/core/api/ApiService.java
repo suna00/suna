@@ -47,8 +47,8 @@ public class ApiService {
         }
 
         if(apiMethod.equals("POST")){
-            if(request instanceof MultipartHttpServletRequest) {
-                ApiContext context = ApiContext.createContext(apiCategory, apiNode, typeId, (Map<String, Object>) apiNode.get("config"), request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap(), session) ;
+            if(request.getNativeRequest() instanceof MultipartHttpServletRequest) {
+                ApiContext context = ApiContext.createContext(apiCategory, apiNode, typeId, (Map<String, Object>) apiNode.get("config"), request.getParameterMap(), ((MultipartHttpServletRequest) request.getNativeRequest()).getMultiFileMap(), session) ;
                 return context.makeApiResult() ;
             }
             ApiContext context = ApiContext.createContext(apiCategory, apiNode, typeId, (Map<String, Object>) apiNode.get("config"), request.getParameterMap(), null, session) ;

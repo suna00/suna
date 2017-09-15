@@ -467,10 +467,10 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         for(PropertyType pt : nodeType.getPropertyTypes()){
             Object value = NodeUtils.getStoreValue(this, pt, this.id) ;
 
-            if(value != null){
-                put(pt.getPid(), value);
-            }else{
+            if(value == null || (value instanceof String && value.equals("_null_"))){
                 remove(pt.getPid()) ;
+            }else{
+                put(pt.getPid(), value);
             }
         }
         return this ;

@@ -58,7 +58,7 @@ public class ApiSelectContext extends ReadContext{
 
     public QueryResult makeQueryResult(Object result, String fieldName) {
         if(resultType == ResultField.ResultType.LIST) {
-            List<Map<String, Object>> resultList = this.jdbcTemplate.queryForList(this.sqlTemplate.format(data), this.sqlTemplate.getSqlParameterValues(data));
+            List<Map<String, Object>> resultList = this.jdbcTemplate.queryForList(this.sqlTemplate.format(data).toString(), this.sqlTemplate.getSqlParameterValues(data));
             this.result = resultList;
 
             List<QueryResult> subList = new ArrayList<>() ;
@@ -79,7 +79,7 @@ public class ApiSelectContext extends ReadContext{
                 return queryResult;
             }
         }else if(resultType == ResultField.ResultType.MERGE || resultType == ResultField.ResultType.VALUE){
-            Map<String, Object> resultMap = this.jdbcTemplate.queryForMap(this.sqlTemplate.format(data), this.sqlTemplate.getSqlParameterValues(data)) ;
+            Map<String, Object> resultMap = this.jdbcTemplate.queryForMap(this.sqlTemplate.format(data).toString(), this.sqlTemplate.getSqlParameterValues(data)) ;
             this.result = resultMap ;
 
             QueryResult itemResult = new QueryResult() ;
@@ -92,7 +92,7 @@ public class ApiSelectContext extends ReadContext{
                 return getQueryResult(itemResult);
             }
         }else{
-            Map<String, Object> resultMap = this.jdbcTemplate.queryForMap(this.sqlTemplate.format(data), this.sqlTemplate.getSqlParameterValues(data)) ;
+            Map<String, Object> resultMap = this.jdbcTemplate.queryForMap(this.sqlTemplate.format(data).toString(), this.sqlTemplate.getSqlParameterValues(data)) ;
             this.result = resultMap ;
 
             QueryResult itemResult = new QueryResult() ;
