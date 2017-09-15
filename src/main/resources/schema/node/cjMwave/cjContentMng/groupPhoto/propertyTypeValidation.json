@@ -97,8 +97,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>groupPhoto>ctgryId",
-    "propertyTypeId": "groupPhoto>ctgryId",
+    "id": "propertyTypeValidation>groupPhoto>contsMetaCtgryId",
+    "propertyTypeId": "groupPhoto>contsMetaCtgryId",
     "validation": {
       "language": "ko",
       "required": {

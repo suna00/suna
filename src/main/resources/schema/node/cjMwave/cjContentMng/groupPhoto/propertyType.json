@@ -58,8 +58,8 @@
   {
     "typeId": "propertyType",
     "tid": "groupPhoto",
-    "pid": "ctgryId",
-    "id": "groupPhoto>ctgryId",
+    "pid": "contsMetaCtgryId",
+    "id": "groupPhoto>contsMetaCtgryId",
     "propertyTypeName": "카테고리 아이디",
     "valueType": "REFERENCE",
     "required": false,

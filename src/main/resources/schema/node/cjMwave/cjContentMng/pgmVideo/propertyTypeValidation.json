@@ -865,8 +865,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>pgmVideo>ctgryId",
-    "propertyTypeId": "pgmVideo>ctgryId",
+    "id": "propertyTypeValidation>pgmVideo>contsMetaCtgryId",
+    "propertyTypeId": "pgmVideo>contsMetaCtgryId",
     "validation": {
       "language": "ko",
       "required": {

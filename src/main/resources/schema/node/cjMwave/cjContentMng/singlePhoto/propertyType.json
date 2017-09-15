@@ -131,8 +131,8 @@
   {
     "typeId": "propertyType",
     "tid": "singlePhoto",
-    "pid": "ctgryId",
-    "id": "singlePhoto>ctgryId",
+    "pid": "contsMetaCtgryId",
+    "id": "singlePhoto>contsMetaCtgryId",
     "propertyTypeName": "카테고리 아이디",
     "valueType": "REFERENCE",
     "required": false,

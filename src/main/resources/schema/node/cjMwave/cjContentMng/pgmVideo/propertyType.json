@@ -455,8 +455,8 @@
   {
     "typeId": "propertyType",
     "tid": "pgmVideo",
-    "pid": "ctgryId",
-    "id": "pgmVideo>ctgryId",
+    "pid": "contsMetaCtgryId",
+    "id": "pgmVideo>contsMetaCtgryId",
     "propertyTypeName": "카테고리 아이디",
     "valueType": "REFERENCE",
     "required": false,

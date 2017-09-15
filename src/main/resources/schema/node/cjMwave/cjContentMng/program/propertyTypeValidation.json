@@ -129,8 +129,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>program>ctgryId",
-    "propertyTypeId": "program>ctgryId",
+    "id": "propertyTypeValidation>program>contsMetaCtgryId",
+    "propertyTypeId": "program>contsMetaCtgryId",
     "validation": {
       "language": "ko",
       "required": {
