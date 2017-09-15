@@ -193,7 +193,7 @@ public class PipApiService {
                 // 실패 목록에 쌓기
                 skippedCnt++;
             }
-            MigrationUtils.recordSingleDate(template, String.valueOf(programMap), rs);
+            MigrationUtils.recordSingleDate(template,"program2", String.valueOf(programMap), rs);
         }
         long jobTaken = (new Date().getTime() - startTime.getTime());
         MigrationUtils.printReport(startTime, "PIPProgramRecent", "SKIP", successCnt, skippedCnt);
@@ -218,7 +218,7 @@ public class PipApiService {
                 // 실패 목록에 쌓기
                 skippedCnt++;
             }
-            MigrationUtils.recordSingleDate(template, String.valueOf(clipMap), rs);
+            MigrationUtils.recordSingleDate(template, "pgmVideo2", String.valueOf(clipMap), rs);
         }
         long jobTaken = (new Date().getTime() - startTime.getTime());
         MigrationUtils.printReport(startTime, "PIPClipMediaRecent", "SKIP", successCnt, skippedCnt);
