@@ -1242,6 +1242,22 @@
   },
   {
     "typeId": "propertyType",
+    "tid": "product",
+    "pid": "referencedLowerProduct",
+    "propertyTypeName": "referenced하위상품",
+    "valueType": "REFERENCED",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "product",
+    "referenceValue": "upperId",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
     "tid": "productByAffiliateMall",
     "pid": "productByAffiliateMallId",
     "propertyTypeName": "ID",
