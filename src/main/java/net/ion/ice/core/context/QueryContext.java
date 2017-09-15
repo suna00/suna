@@ -398,10 +398,7 @@ public class QueryContext extends ReadContext {
         for (String key : queryData.keySet()) {
             if (key.equals("typeId")) continue;
 
-            if (key.equals("q")) {
-                List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(queryContext, queryData.get("q"), queryContext.getNodetype());
-                queryContext.setQueryTerms(queryTerms);
-            } else if (key.equals("query")) {
+            if (key.equals("query")) {
                 List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(queryContext, queryData.get("query"), queryContext.getNodetype());
                 queryContext.setQueryTerms(queryTerms);
             } else {

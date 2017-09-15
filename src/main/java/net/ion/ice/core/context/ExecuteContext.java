@@ -160,6 +160,10 @@ public class ExecuteContext extends ReadContext{
                     }else if(newValue != null && newValue instanceof FileValue){
                         node.put(pt.getPid(), newValue) ;
                         changedProperties.add(pt.getPid()) ;
+                    }else if(pt.isI18n()){
+                        ((Map<String, Object>) existValue).putAll((Map<? extends String, ?>) newValue);
+                        node.put(pt.getPid(), existValue);
+                        changedProperties.add(pt.getPid()) ;
                     }
                     continue;
                 }else if(newValue == null && existValue != null){
