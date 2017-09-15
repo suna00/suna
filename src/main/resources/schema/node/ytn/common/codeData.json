@@ -1873,33 +1873,6 @@
   },
   {
     "typeId": "commonCode",
-    "code": "affiliateInAndOut",
-    "upperCode": "root",
-    "name": "거래구분",
-    "description": "",
-    "sortOrder": "35",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "in",
-    "upperCode": "affiliateInAndOut",
-    "name": "증액",
-    "description": "",
-    "sortOrder": "1",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "out",
-    "upperCode": "affiliateInAndOut",
-    "name": "감액",
-    "description": "",
-    "sortOrder": "2",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
     "code": "route001",
     "upperCode": "inflowRoute",
     "name": "기업-메일인증",
@@ -5815,15 +5788,6 @@
   },
   {
     "typeId": "commonCode",
-    "code": "saveMileageType",
-    "upperCode": "root",
-    "name": "마일리지 적립 타입",
-    "description": "",
-    "sortOrder": "111",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
     "code": "increase",
     "upperCode": "savePointType",
     "name": "관리자증액",
@@ -5842,25 +5806,7 @@
   },
   {
     "typeId": "commonCode",
-    "code": "purchase",
-    "upperCode": "saveMileageType",
-    "name": "상품구매",
-    "description": "",
-    "sortOrder": "1",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "event",
-    "upperCode": "saveMileageType",
-    "name": "이벤트",
-    "description": "",
-    "sortOrder": "2",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "affiliateMemberPointType",
+    "code": "welfarePointType",
     "upperCode": "root",
     "name": "제휴사 회원 포인트 타입",
     "description": "",
@@ -5870,7 +5816,7 @@
   {
     "typeId": "commonCode",
     "code": "increase",
-    "upperCode": "affiliateMemberPointType",
+    "upperCode": "welfarePointType",
     "name": "관리자 증액",
     "description": "",
     "sortOrder": "1",
@@ -5879,7 +5825,7 @@
   {
     "typeId": "commonCode",
     "code": "diminish",
-    "upperCode": "affiliateMemberPointType",
+    "upperCode": "welfarePointType",
     "name": "관리자 감액",
     "description": "",
     "sortOrder": "2",
@@ -5888,7 +5834,7 @@
   {
     "typeId": "commonCode",
     "code": "divide",
-    "upperCode": "affiliateMemberPointType",
+    "upperCode": "welfarePointType",
     "name": "분배",
     "description": "",
     "sortOrder": "3",
@@ -5897,7 +5843,7 @@
   {
     "typeId": "commonCode",
     "code": "getback",
-    "upperCode": "affiliateMemberPointType",
+    "upperCode": "welfarePointType",
     "name": "회수",
     "description": "",
     "sortOrder": "4",
@@ -5906,7 +5852,7 @@
   {
     "typeId": "commonCode",
     "code": "purchase",
-    "upperCode": "affiliateMemberPointType",
+    "upperCode": "welfarePointType",
     "name": "상품구매",
     "description": "",
     "sortOrder": "5",
@@ -5915,7 +5861,7 @@
   {
     "typeId": "commonCode",
     "code": "remove",
-    "upperCode": "affiliateMemberPointType",
+    "upperCode": "welfarePointType",
     "name": "소멸",
     "description": "",
     "sortOrder": "6",
@@ -5924,7 +5870,7 @@
   {
     "typeId": "commonCode",
     "code": "cancel",
-    "upperCode": "affiliateMemberPointType",
+    "upperCode": "welfarePointType",
     "name": "취소",
     "description": "",
     "sortOrder": "7",
@@ -5933,10 +5879,55 @@
   {
     "typeId": "commonCode",
     "code": "return",
-    "upperCode": "affiliateMemberPointType",
+    "upperCode": "welfarePointType",
     "name": "반품",
     "description": "",
     "sortOrder": "8",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "YPointType",
+    "upperCode": "root",
+    "name": "Y포인트 타입",
+    "description": "",
+    "sortOrder": "113",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "add",
+    "upperCode": "YPointType",
+    "name": "적립",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "use",
+    "upperCode": "YPointType",
+    "name": "사용",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "remove",
+    "upperCode": "YPointType",
+    "name": "소멸",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "getback",
+    "upperCode": "YPointType",
+    "name": "회수",
+    "description": "",
+    "sortOrder": "4",
     "commonCodeStatus": "y"
   }
 ]

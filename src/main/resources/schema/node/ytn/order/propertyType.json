@@ -2202,8 +2202,8 @@
   {
     "typeId": "propertyType",
     "tid": "purchaseOrder",
-    "pid": "pointUsePrice",
-    "propertyTypeName": "총 포인트사용금액",
+    "pid": "totalWelfarePoint",
+    "propertyTypeName": "총 복지포인트 사용 금액",
     "valueType": "DOUBLE",
     "required": false,
     "idable": false,
@@ -2219,8 +2219,8 @@
   {
     "typeId": "propertyType",
     "tid": "purchaseOrder",
-    "pid": "mileageUsePrice",
-    "propertyTypeName": "총 마일리지사용금액",
+    "pid": "totalYPoint",
+    "propertyTypeName": "총 Y포인트 사용 금액",
     "valueType": "DOUBLE",
     "required": false,
     "idable": false,
@@ -2545,23 +2545,6 @@
     "pid": "couponDiscountPrice",
     "propertyTypeName": "쿠폰할인금액",
     "valueType": "DOUBLE",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "",
-    "referenceValue": "",
-    "codeFilter": "",
-    "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "orderProduct",
-    "pid": "maxSavingMileage",
-    "propertyTypeName": "최대 적립마일리지",
-    "valueType": "INT",
     "required": false,
     "idable": false,
     "labelable": false,
@@ -3272,7 +3255,6 @@
     "codeFilter": "",
     "defaultValue": "",
     "idType": "autoIncrement"
-
   },
   {
     "typeId": "propertyType",
