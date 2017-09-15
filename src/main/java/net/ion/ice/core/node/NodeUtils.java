@@ -372,7 +372,7 @@ public class NodeUtils {
             if (value instanceof FileValue) {
                 return fileUrlFormat + ((FileValue) value).getStorePath();
             }
-        }else if (value instanceof FileValue) {
+        }else {
             return value;
         }
         return null;
