@@ -224,7 +224,7 @@
     "backOfficeId": "adm",
     "gnbMenuId": "policyMng",
     "parentMenuId": "root",
-    "menuId": "contentsOptionType",
+    "menuId": "productAttribute",
     "menuName": "상품정보 고시",
     "order": "50",
     "icon": "fa-list",
