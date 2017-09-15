@@ -13,6 +13,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -47,51 +49,105 @@ public class PipApiService {
         template = dbService.getJdbcTemplate("cjDb");
     }
 
-    private Map<String,Object> match (String nodeTypeId, Map<String, Object> data) {
+    private Map<String,Object> match (String nodeTypeId, Map<String, Object> data) throws ParseException {
         Map <String, Object> transformed = new HashMap<String, Object>();
         transformed.put("typeId", nodeTypeId);
-        transformed.put("mnetIfTrtYn", "Y");
+        transformed.put("mnetIfTrtYn", 1);  // default
+        SimpleDateFormat sdf14 = new SimpleDateFormat("yyyyMMddHHmmss");
+        String isUse = "N";
+
         switch (nodeTypeId) {
-            case "program" :
+            case "program2" :
                 transformed.put("pgmId", data.get("programid"));
-                transformed.put("pgmNm", data.get("title"));
-                transformed.put("pgmDesc", data.get("synopsis"));
+                transformed.put("pgmCd", data.get("programcode"));
+                transformed.put("title", data.get("title"));
+                transformed.put("synopsis", data.get("synopsis"));
+                transformed.put("genre", data.get("genre"));
+
+                transformed.put("targetAge", data.get("targetage"));
                 transformed.put("chId", data.get("channelid"));
-                transformed.put("bradStDate", data.get("startdate"));
-                transformed.put("bradFnsDate", data.get("enddate"));
-                transformed.put("repImgPath", data.get("programimg"));
-                transformed.put("thumbnailImgPath", data.get("programthumimg"));
-                transformed.put("catmName", data.get("prsn_nm"));
-                transformed.put("showYn", "Y"); //?
+                transformed.put("searchKeyword", data.get("searchkeyword"));
+                transformed.put("startDate", data.get("startdate"));
+                transformed.put("endDate", data.get("endDate"));
+
+                transformed.put("weekCd", data.get("weekcode"));    // 추가 작업 필요
+                transformed.put("startTime", data.get("starttime"));
+                transformed.put("endTime", data.get("endTime"));
+                transformed.put("regDate", data.get("regdate"));
+                transformed.put("modifyDate", data.get("modifydate"));
+
+
+                transformed.put("homepageUrl", data.get("homepageurl"));
+                transformed.put("reviewUrl", data.get("reviewurl"));
+                transformed.put("bbsUrl", data.get("bbsurl"));
+                transformed.put("pgmImg", data.get("programimg"));
+                transformed.put("pgmPosterImg", data.get("programposterimg"));
+
+                transformed.put("pgmBannerImg", data.get("programbannerimg"));
+                transformed.put("pgmThumbImg", data.get("programthumimg"));
+                transformed.put("prsnNm", data.get("prsn_nm"));
+                transformed.put("prsnFNm", data.get("prsn_f_nm"));
+                transformed.put("prsnNo", data.get("prsn_no"));
+
+                transformed.put("actor", data.get("actor"));
+                transformed.put("director", data.get("director"));
+                isUse = String.valueOf("isuse").toUpperCase();
+                transformed.put("isUse", "Y".equals(isUse) ? 1 : 0);
 
                 if(data.containsKey("multilanguage")) {
                     List<Map<String, Object>> multiLangArr = (List<Map<String, Object>>) data.get("multilanguage");
                     // 받아줄 테이블이 없음
                 }
                 break;
-            case "pgmVideo" :
-                transformed.put("programId", data.get("programid"));
+            case "pgmVideo2" :
+
+                transformed.put("pgmId", data.get("programid"));
                 transformed.put("contentId", data.get("contentid"));
                 transformed.put("contentTitle", data.get("contenttitle"));
                 transformed.put("cornerId", data.get("cornerid"));
                 transformed.put("clipOrder", data.get("cliporder"));
+
                 transformed.put("title", data.get("title"));
                 transformed.put("synopsis", data.get("synopsis"));
                 transformed.put("prsnName", data.get("prsn_nm"));
                 transformed.put("prsnFName", data.get("prsn_f_nm"));
                 transformed.put("prsnNo", data.get("prsn_no"));
+
                 transformed.put("searchKeyword", data.get("searchkeyword"));
+                transformed.put("mediaUrl", data.get("mediaurl"));
+                transformed.put("itemTypeId", data.get("itemtypeid"));
                 transformed.put("clipType", data.get("cliptype"));
                 transformed.put("contentType", data.get("contenttype"));
-                transformed.put("broadDate", data.get("broaddate"));
-                transformed.put("contentImgUrl", data.get("contentimg"));
+
+                String broadDateStr = String.valueOf(data.get("broaddate"));
+                Date braodDate = sdf14.parse(broadDateStr);
+                transformed.put("broadDate", braodDate);
+
+                String regDateStr = String.valueOf(data.get("regdate"));
+                Date regDate = sdf14.parse(regDateStr);
+                transformed.put("regDate", regDate);
+
+                String modifyDateStr = String.valueOf(data.get("modifydate"));
+                Date modifyDate = sdf14.parse(modifyDateStr);
+                transformed.put("modifyDate", modifyDate);
+
+                transformed.put("contentImg", data.get("contentimg"));
                 transformed.put("playTime", data.get("playtime"));
                 transformed.put("targetAge", data.get("targetage"));
-//                transformed.put("adLink", data.get("adlink"));
+                transformed.put("adLink", data.get("adlink"));
                 transformed.put("price", data.get("price"));
-                transformed.put("isMasterClip", data.get("ismasterclip"));
-                transformed.put("isUse", data.get("isuse"));
-                transformed.put("isFullVod", data.get("isfullvod"));
+
+                String isMasterClip = String.valueOf(data.get("ismasterclip")).trim().toUpperCase();
+                transformed.put("isMasterClip", ("Y".equals(isMasterClip) ? 1: 0));
+
+                isUse = String.valueOf(data.get("isuse")).trim().toUpperCase();
+                transformed.put("isUse", ("Y".equals(isUse) ? 1: 0));
+
+                String isFullVod = String.valueOf(data.get("isfullvod")).trim().toUpperCase();
+                transformed.put("isFullVod", ("Y".equals(isFullVod) ? 1: 0));
+
+                transformed.put("rcmdContsYn", 0); // 모르겠음
+
 
                 if(data.containsKey("multilanguage")) {
                     List<Map<String, Object>> multiLangArr = (List<Map<String, Object>>) data.get("multilanguage");
@@ -112,7 +168,8 @@ public class PipApiService {
             // 이 형변환이 실패하면 전체가 의미가 없음 - 그냥 규약 위반
             Map<String, Object> programMap = (Map<String, Object>) program;
             try {
-                nodeService.saveNode(match("program", programMap));
+                nodeService.saveNodeWithException(match("program2", programMap));
+                logger.info("PIP MIGRATION PROGRAM FETCHED :: " + String.valueOf(programMap));
                 successCnt++;
             } catch (Exception e) {
                 logger.error("Failed to register PIP program :: ", e);
@@ -133,7 +190,8 @@ public class PipApiService {
         for(Object clip : fetchedClips) {
             try {
                 Map<String, Object> clipMap = (Map<String, Object>) clip;
-                nodeService.saveNode(match("pgmVideo", clipMap));
+                nodeService.saveNodeWithException(match("pgmVideo2", clipMap));
+                logger.info("PIP MIGRATION MEDIACLIP FETCHED :: " + String.valueOf(clipMap));
                 successCnt++;
             } catch (Exception e) {
                 logger.error("Failed to register PIP clip :: ", e);

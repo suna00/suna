@@ -78,13 +78,13 @@ public class PipController {
             switch (type) {
                 case "all" :
                     pipService.doProgramMigration("type=recent");
-                    pipService.doClipMediaMigration("type=recent");
+                    pipService.doClipMediaMigration("type=recent&platform=mnetjapan");
                     break;
                 case "program" :
                     pipService.doProgramMigration("type=recent");
                     break;
                 case "clipMedia" :
-                    pipService.doClipMediaMigration("type=recent");
+                    pipService.doClipMediaMigration("type=recent&platform=mnetjapan");
                     break;
                 default:
                     logger.info("No suitable type for migration");
