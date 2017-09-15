@@ -9,7 +9,8 @@ import java.util.Properties;
 
 public class SendEmailService {
 
-    public void sendEmailHtml(String email, String title, String html) throws MessagingException {
+    public String sendEmailHtml(String email, String title, String html) {
+        String result = "success";
         Properties props = new Properties();
         props.setProperty("mail.transport.protocol", "smtp");
         props.setProperty("mail.host", "smtp.gmail.com");
@@ -32,17 +33,24 @@ public class SendEmailService {
 
         MimeMessage message = new MimeMessage(session);
 
-        message.setSender(new InternetAddress("ytn@ytn.co.kr"));
-        message.setSubject(title);
-        message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
+        try {
+            message.setSender(new InternetAddress("ytn@ytn.co.kr"));
+            message.setSubject(title);
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
 
-        Multipart multipart = new MimeMultipart();
-        MimeBodyPart mimeBodyPart = new MimeBodyPart();
+            Multipart multipart = new MimeMultipart();
+            MimeBodyPart mimeBodyPart = new MimeBodyPart();
 
-        mimeBodyPart.setContent(html, "text/html; charset=MS949");
-        multipart.addBodyPart(mimeBodyPart);
-        message.setContent(multipart);
+            mimeBodyPart.setContent(html, "text/html; charset=MS949");
+            multipart.addBodyPart(mimeBodyPart);
+            message.setContent(multipart);
 
-        Transport.send(message);
+            Transport.send(message);
+        } catch (MessagingException e) {
+            result = "error";
+            e.printStackTrace();
+        }
+
+        return result;
     }
 }
