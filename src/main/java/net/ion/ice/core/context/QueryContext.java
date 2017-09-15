@@ -537,7 +537,7 @@ public class QueryContext extends ReadContext {
         queryResult.put("resultCount", list.size()) ;
         if(isPaging()) {
             queryResult.put("pageSize", getPageSize());
-            queryResult.put("pageCount", getResultSize() / getPageSize() + 1);
+            queryResult.put("pageCount", getResultSize() / getPageSize() + (getResultSize() % getPageSize() > 0 ? 1 : 0));
             queryResult.put("currentPage", getCurrentPage());
         }else if(limit){
             queryResult.put("more", resultSize > queryListSize);
