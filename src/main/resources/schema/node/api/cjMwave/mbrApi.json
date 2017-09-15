@@ -232,12 +232,7 @@
     ],
     "config": {
       "typeId": "mbrInfo",
-      "event": "update",
-      "data":{
-        "snsKey":"{{:snsKey}}",
-        "snsTypeCd":"{{:snsTypeCd}}",
-        "imgUrl":"{{:imgUrl}}"
-      },
+      "event": "save",
       "response":{
         "imgUrl":""
       }
