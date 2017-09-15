@@ -24,7 +24,7 @@ public class ApiReadsContext extends ApiReadContext{
             if(key.equals("typeId")) continue ;
 
             if(key.equals("ids")){
-                String idsStr = (String) ContextUtils.getValue(config.get(key), data) ;
+                String idsStr = ContextUtils.getValue(config.get(key), data).toString() ;
                 readsContext.ids = new ArrayList<>() ;
                 for(String id : StringUtils.split(idsStr, ",")){
                     if(StringUtils.isNotEmpty(id)){

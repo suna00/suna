@@ -228,10 +228,11 @@ public class NodeUtils {
                 return getDateStringValue(value, null);
             }
             case FILE: {
-                if (value instanceof FileValue) {
+//                if (value instanceof FileValue) {
                     return value;
-                }
-                return null;
+//                }else {
+//
+//                }
             }
 
             default:
@@ -370,7 +371,7 @@ public class NodeUtils {
             if (value instanceof FileValue) {
                 return fileUrlFormat + ((FileValue) value).getStorePath();
             }
-        }else if (value instanceof FileValue) {
+        }else {
             return value;
         }
         return null;
@@ -532,7 +533,12 @@ public class NodeUtils {
             }
         }
         if (pt.isI18n() && value instanceof Map) {
-            return ((Map) value).get(getNodeService().getDefaultLocale());
+            Object localeValue =  ((Map) value).get(getNodeService().getDefaultLocale());
+            if(localeValue instanceof FileValue){
+                return ((FileValue) localeValue).getStorePath();
+            }else{
+                return localeValue ;
+            }
         }
         switch (pt.getValueType()) {
             case FILE: {
