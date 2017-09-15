@@ -6,6 +6,7 @@ import net.ion.ice.cjmwave.external.utils.JSONNetworkUtils;
 import net.ion.ice.cjmwave.external.utils.MigrationUtils;
 import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.node.NodeService;
+import net.logstash.logback.encoder.org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,10 +16,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by juneyoungoh on 2017. 9. 5..
@@ -55,11 +53,15 @@ public class PipApiService {
         transformed.put("mnetIfTrtYn", 1);  // default
         SimpleDateFormat sdf14 = new SimpleDateFormat("yyyyMMddHHmmss");
         String isUse = "N";
+        String regDateStr = "", modifyDateStr = "";
+        Date regDate = null, modifyDate = null;
+
 
         switch (nodeTypeId) {
             case "program2" :
-                transformed.put("pgmId", data.get("programid"));
-                transformed.put("pgmCd", data.get("programcode"));
+                logger.info("빌어먹을 거 :: " + String.valueOf(data));
+                transformed.put("programId", data.get("programid"));
+                transformed.put("programCd", data.get("programcode"));
                 transformed.put("title", data.get("title"));
                 transformed.put("synopsis", data.get("synopsis"));
                 transformed.put("genre", data.get("genre"));
@@ -73,18 +75,24 @@ public class PipApiService {
                 transformed.put("weekCd", data.get("weekcode"));    // 추가 작업 필요
                 transformed.put("startTime", data.get("starttime"));
                 transformed.put("endTime", data.get("endTime"));
-                transformed.put("regDate", data.get("regdate"));
-                transformed.put("modifyDate", data.get("modifydate"));
+
+                regDateStr = String.valueOf(data.get("regdate"));
+                regDate = sdf14.parse(regDateStr);
+                transformed.put("regDate", regDate);
+
+                modifyDateStr = String.valueOf(data.get("modifydate"));
+                modifyDate = sdf14.parse(modifyDateStr);
+                transformed.put("modifyDate", modifyDate);
 
 
                 transformed.put("homepageUrl", data.get("homepageurl"));
                 transformed.put("reviewUrl", data.get("reviewurl"));
                 transformed.put("bbsUrl", data.get("bbsurl"));
-                transformed.put("pgmImg", data.get("programimg"));
+                transformed.put("programImg", data.get("programimg"));
                 transformed.put("pgmPosterImg", data.get("programposterimg"));
 
-                transformed.put("pgmBannerImg", data.get("programbannerimg"));
-                transformed.put("pgmThumbImg", data.get("programthumimg"));
+                transformed.put("programBannerImg", data.get("programbannerimg"));
+                transformed.put("programThumbImg", data.get("programthumimg"));
                 transformed.put("prsnNm", data.get("prsn_nm"));
                 transformed.put("prsnFNm", data.get("prsn_f_nm"));
                 transformed.put("prsnNo", data.get("prsn_no"));
@@ -93,11 +101,6 @@ public class PipApiService {
                 transformed.put("director", data.get("director"));
                 isUse = String.valueOf("isuse").toUpperCase();
                 transformed.put("isUse", "Y".equals(isUse) ? 1 : 0);
-
-                if(data.containsKey("multilanguage")) {
-                    List<Map<String, Object>> multiLangArr = (List<Map<String, Object>>) data.get("multilanguage");
-                    // 받아줄 테이블이 없음
-                }
                 break;
             case "pgmVideo2" :
 
@@ -109,8 +112,8 @@ public class PipApiService {
 
                 transformed.put("title", data.get("title"));
                 transformed.put("synopsis", data.get("synopsis"));
-                transformed.put("prsnName", data.get("prsn_nm"));
-                transformed.put("prsnFName", data.get("prsn_f_nm"));
+                transformed.put("prsnNm", data.get("prsn_nm"));
+                transformed.put("prsnFNm", data.get("prsn_f_nm"));
                 transformed.put("prsnNo", data.get("prsn_no"));
 
                 transformed.put("searchKeyword", data.get("searchkeyword"));
@@ -123,15 +126,15 @@ public class PipApiService {
                 Date braodDate = sdf14.parse(broadDateStr);
                 transformed.put("broadDate", braodDate);
 
-                String regDateStr = String.valueOf(data.get("regdate"));
-                Date regDate = sdf14.parse(regDateStr);
+                regDateStr = String.valueOf(data.get("regdate"));
+                regDate = sdf14.parse(regDateStr);
                 transformed.put("regDate", regDate);
 
-                String modifyDateStr = String.valueOf(data.get("modifydate"));
-                Date modifyDate = sdf14.parse(modifyDateStr);
+                modifyDateStr = String.valueOf(data.get("modifydate"));
+                modifyDate = sdf14.parse(modifyDateStr);
                 transformed.put("modifyDate", modifyDate);
 
-                transformed.put("contentImg", data.get("contentimg"));
+                transformed.put("contentImgUrl", data.get("contentimg"));
                 transformed.put("playTime", data.get("playtime"));
                 transformed.put("targetAge", data.get("targetage"));
                 transformed.put("adLink", data.get("adlink"));
@@ -148,14 +151,26 @@ public class PipApiService {
 
                 transformed.put("rcmdContsYn", 0); // 모르겠음
 
-
-                if(data.containsKey("multilanguage")) {
-                    List<Map<String, Object>> multiLangArr = (List<Map<String, Object>>) data.get("multilanguage");
-                    // 받아줄 테이블이 없음
-                }
-
                 break;
         }
+
+        // 다국어는 한번에 처리함
+        List<String> countryList = new ArrayList<>();
+        if(data.containsKey("multilanguage")) {
+            List<Map<String, Object>> multiLangArr = (List<Map<String, Object>>) data.get("multilanguage");
+            // 받아줄 테이블이 없음
+            for(Object mLang : multiLangArr) {
+                Map<String, Object> mLangMap = (Map<String, Object>) mLang;
+                if(mLangMap.containsKey("lang_cd")) {
+                    countryList.add(String.valueOf(mLangMap.get("lang_cd")));
+                }
+            }
+        }
+        transformed.put("showCntryCdList", StringUtils.join(countryList, ","));
+
+
+
+        logger.info("변환 후 :: " + String.valueOf(transformed));
         return transformed;
     }
 
