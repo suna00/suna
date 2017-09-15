@@ -134,21 +134,24 @@ public class DBSyncService {
 
                 for (Map qMap : queryRs) {
                     // mapping 정보에 맞게 변경
+                    int rs = 0;
+
                     Map<String, Object> fit = NodeMappingUtils.mapData(targetNodeType, qMap, mapperStore);
                     logger.info("CREATE INITIAL MIGRATION NODE :: " + String.valueOf(fit));
                     try{
                         nodeService.saveNodeWithException(fit);
                         successCnt ++;
+                        rs = 1;
                     } catch (Exception e) {
                         // 실패한다면 실패 기록을 DB 에 저장한다.
                         logger.error("Recording exception :: ", e);
                         if(failPolicy.equals("STOP")){
                             loop = false;
-                            break;
                         } else {
                             skippedCnt++;
                         }
                     }
+                    MigrationUtils.recordSingleDate(template, String.valueOf(fit), rs);
                 }
                 i++;
             }

@@ -180,17 +180,20 @@ public class PipApiService {
         Date startTime = new Date();
         int successCnt = 0, skippedCnt = 0;
         for(Object program : fetchedPrograms) {
+            int rs = 0;
             // 이 형변환이 실패하면 전체가 의미가 없음 - 그냥 규약 위반
             Map<String, Object> programMap = (Map<String, Object>) program;
             try {
                 nodeService.saveNodeWithException(match("program2", programMap));
                 logger.info("PIP MIGRATION PROGRAM FETCHED :: " + String.valueOf(programMap));
                 successCnt++;
+                rs = 1;
             } catch (Exception e) {
                 logger.error("Failed to register PIP program :: ", e);
                 // 실패 목록에 쌓기
                 skippedCnt++;
             }
+            MigrationUtils.recordSingleDate(template, String.valueOf(programMap), rs);
         }
         long jobTaken = (new Date().getTime() - startTime.getTime());
         MigrationUtils.printReport(startTime, "PIPProgramRecent", "SKIP", successCnt, skippedCnt);
@@ -203,16 +206,19 @@ public class PipApiService {
         Date startTime = new Date();
         int successCnt = 0, skippedCnt = 0;
         for(Object clip : fetchedClips) {
+            int rs = 0;
+            Map<String, Object> clipMap = (Map<String, Object>) clip;
             try {
-                Map<String, Object> clipMap = (Map<String, Object>) clip;
                 nodeService.saveNodeWithException(match("pgmVideo2", clipMap));
                 logger.info("PIP MIGRATION MEDIACLIP FETCHED :: " + String.valueOf(clipMap));
                 successCnt++;
+                rs = 1;
             } catch (Exception e) {
                 logger.error("Failed to register PIP clip :: ", e);
                 // 실패 목록에 쌓기
                 skippedCnt++;
             }
+            MigrationUtils.recordSingleDate(template, String.valueOf(clipMap), rs);
         }
         long jobTaken = (new Date().getTime() - startTime.getTime());
         MigrationUtils.printReport(startTime, "PIPClipMediaRecent", "SKIP", successCnt, skippedCnt);
