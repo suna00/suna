@@ -229,10 +229,11 @@ public class NodeUtils {
                 return getDateStringValue(value, null);
             }
             case FILE: {
-                if (value instanceof FileValue) {
+//                if (value instanceof FileValue) {
                     return value;
-                }
-                return null;
+//                }else {
+//
+//                }
             }
 
             default:
