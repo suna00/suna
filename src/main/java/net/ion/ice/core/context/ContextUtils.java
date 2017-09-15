@@ -22,13 +22,29 @@ public class ContextUtils {
         Map<String, Object> data = new HashMap<>();
         if(parameterMap == null) return data ;
         for (String paramName : parameterMap.keySet()) {
-
             if(paramName.contains(".")){
                 String subTypeId = StringUtils.substringBefore(paramName, ".") ;
-                NodeType subNodeType = NodeUtils.getNodeType(subTypeId) ;
-                if(subNodeType != null){
-                    List<Map<String, Object>> subData = new ArrayList<>() ;
-
+                if(data.containsKey(subTypeId) && data.get(subTypeId) instanceof List){
+                    List<Map<String, Object>> subList = (List<Map<String, Object>>) data.get(subTypeId);
+                    String[] values = parameterMap.get(paramName);
+                    for(int i=0; i< subList.size(); i++){
+                        Map<String, Object> subData = subList.get(i) ;
+                        subData.put(paramName, values.length == 1 ? values[0] : (values.length > i ? values[i] : null)) ;
+                    }
+                    continue;
+                }else {
+                    NodeType subNodeType = NodeUtils.getNodeType(subTypeId);
+                    if (subNodeType != null) {
+                        List<Map<String, Object>> subList = new ArrayList<>();
+                        String[] values = parameterMap.get(paramName);
+                        for (int i = 0; i < values.length; i++) {
+                            Map<String, Object> subData = new HashMap<String, Object>();
+                            subData.put(paramName, values[i]);
+                            subList.add(subData);
+                        }
+                        data.put(subTypeId, subList) ;
+                        continue;
+                    }
                 }
             }
 

@@ -35,6 +35,7 @@ public class ExecuteContext extends ReadContext{
 
     protected String ifTest ;
 
+    protected List<ExecuteContext> subExecuteContextes ;
 
     public static ExecuteContext createContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType, String event, String id) {
         ExecuteContext ctx = new ExecuteContext();
