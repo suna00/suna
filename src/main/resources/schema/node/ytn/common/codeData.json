@@ -865,42 +865,6 @@
   },
   {
     "typeId": "commonCode",
-    "code": "in",
-    "upperCode": "affiliatePointType",
-    "name": "관리자 증액",
-    "description": "",
-    "sortOrder": "1",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "out",
-    "upperCode": "affiliatePointType",
-    "name": "관리자 감액",
-    "description": "",
-    "sortOrder": "2",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "div",
-    "upperCode": "affiliatePointType",
-    "name": "분배",
-    "description": "",
-    "sortOrder": "3",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "getback",
-    "upperCode": "affiliatePointType",
-    "name": "회수",
-    "description": "",
-    "sortOrder": "4",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
     "code": "affliate",
     "upperCode": "affliateRequestType",
     "name": "제휴사",
@@ -5775,6 +5739,195 @@
     "name": "삭제",
     "description": "",
     "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "increase",
+    "upperCode": "affiliatePointType",
+    "name": "관리자 증액",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "decrease",
+    "upperCode": "affiliatePointType",
+    "name": "관리자 감액",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "divide",
+    "upperCode": "affiliatePointType",
+    "name": "분배",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "getback",
+    "upperCode": "affiliatePointType",
+    "name": "회수",
+    "description": "",
+    "sortOrder": "4",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "purchase",
+    "upperCode": "affiliatePointType",
+    "name": "상품구매",
+    "description": "",
+    "sortOrder": "5",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "remove",
+    "upperCode": "affiliatePointType",
+    "name": "소멸",
+    "description": "",
+    "sortOrder": "6",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "savePointType",
+    "upperCode": "root",
+    "name": "포인트 적립 타입",
+    "description": "",
+    "sortOrder": "110",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "saveMileageType",
+    "upperCode": "root",
+    "name": "마일리지 적립 타입",
+    "description": "",
+    "sortOrder": "111",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "increase",
+    "upperCode": "savePointType",
+    "name": "관리자증액",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "divide",
+    "upperCode": "savePointType",
+    "name": "분배",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "purchase",
+    "upperCode": "saveMileageType",
+    "name": "상품구매",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "event",
+    "upperCode": "saveMileageType",
+    "name": "이벤트",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "affiliateMemberPointType",
+    "upperCode": "root",
+    "name": "제휴사 회원 포인트 타입",
+    "description": "",
+    "sortOrder": "112",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "increase",
+    "upperCode": "affiliateMemberPointType",
+    "name": "관리자 증액",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "diminish",
+    "upperCode": "affiliateMemberPointType",
+    "name": "관리자 감액",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "divide",
+    "upperCode": "affiliateMemberPointType",
+    "name": "분배",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "getback",
+    "upperCode": "affiliateMemberPointType",
+    "name": "회수",
+    "description": "",
+    "sortOrder": "4",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "purchase",
+    "upperCode": "affiliateMemberPointType",
+    "name": "상품구매",
+    "description": "",
+    "sortOrder": "5",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "remove",
+    "upperCode": "affiliateMemberPointType",
+    "name": "소멸",
+    "description": "",
+    "sortOrder": "6",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "cancel",
+    "upperCode": "affiliateMemberPointType",
+    "name": "취소",
+    "description": "",
+    "sortOrder": "7",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "return",
+    "upperCode": "affiliateMemberPointType",
+    "name": "반품",
+    "description": "",
+    "sortOrder": "8",
     "commonCodeStatus": "y"
   }
 ]
