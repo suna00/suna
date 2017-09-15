@@ -1039,13 +1039,12 @@
     "icon": "",
     "active": "true",
     "index": "false",
-    "pages": [
+    "pages": [],
+    "customPages": [
       {
         "pageName": "목록",
-        "pageUrl": "list"
-      }
-    ],
-    "customPages": [
+        "pageUrl": "cj/cc/noti/NotiList"
+      },
       {
         "pageName": "등록",
         "pageUrl": "cj/cc/noti/NotiForm"
