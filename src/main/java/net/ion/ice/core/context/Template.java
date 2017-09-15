@@ -81,7 +81,10 @@ public class Template {
     }
 
 
-    public String format(Map<String, Object> data) {
+    public Object format(Map<String, Object> data) {
+        if(templateParams.size() == 1 && templateStr.equals(templateParams.get(0).getTemplateStr())){
+            return templateParams.get(0).getValue(data) ;
+        }
         String resultStr = templateStr ;
         for(TemplateArray templateArray : templateArrays){
             resultStr = StringUtils.replace(resultStr, templateArray.getReplaceStr(), templateArray.format(data)) ;
