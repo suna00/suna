@@ -1,5 +1,6 @@
 [
   {
+    "typeId": "returnExchangePolicy",
     "returnExchangePolicyId": "1",
     "name": "공통",
     "contents": "반품 또는 교환이 가능힙니다.",
