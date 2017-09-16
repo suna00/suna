@@ -1,8 +1,8 @@
 [
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>blacklistDclaSetupMng>dclaSetupSeq",
-    "propertyTypeId": "blacklistDclaSetupMng>dclaSetupSeq",
+    "id": "propertyTypeValidation>dclaSetupMng>dclaSetupSeq",
+    "propertyTypeId": "dclaSetupMng>dclaSetupSeq",
     "validation": {
       "language": "ko",
       "required": {
@@ -33,8 +33,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>blacklistDclaSetupMng>setupBaseDayNum",
-    "propertyTypeId": "blacklistDclaSetupMng>setupBaseDayNum",
+    "id": "propertyTypeValidation>dclaSetupMng>setupBaseDayNum",
+    "propertyTypeId": "dclaSetupMng>setupBaseDayNum",
     "validation": {
       "language": "ko",
       "required": {
@@ -65,8 +65,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>blacklistDclaSetupMng>setupBaseCnt",
-    "propertyTypeId": "blacklistDclaSetupMng>setupBaseCnt",
+    "id": "propertyTypeValidation>dclaSetupMng>setupBaseCnt",
+    "propertyTypeId": "dclaSetupMng>setupBaseCnt",
     "validation": {
       "language": "ko",
       "required": {
@@ -97,8 +97,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>blacklistDclaSetupMng>setupTypeCd",
-    "propertyTypeId": "blacklistDclaSetupMng>setupTypeCd",
+    "id": "propertyTypeValidation>dclaSetupMng>setupTypeCd",
+    "propertyTypeId": "dclaSetupMng>setupTypeCd",
     "validation": {
       "language": "ko",
       "required": {
@@ -129,8 +129,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>blacklistDclaSetupMng>owner",
-    "propertyTypeId": "blacklistDclaSetupMng>owner",
+    "id": "propertyTypeValidation>dclaSetupMng>owner",
+    "propertyTypeId": "dclaSetupMng>owner",
     "validation": {
       "language": "ko",
       "required": {
@@ -161,8 +161,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>blacklistDclaSetupMng>created",
-    "propertyTypeId": "blacklistDclaSetupMng>created",
+    "id": "propertyTypeValidation>dclaSetupMng>created",
+    "propertyTypeId": "dclaSetupMng>created",
     "validation": {
       "language": "ko",
       "required": {
@@ -193,8 +193,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>blacklistDclaSetupMng>modifier",
-    "propertyTypeId": "blacklistDclaSetupMng>modifier",
+    "id": "propertyTypeValidation>dclaSetupMng>modifier",
+    "propertyTypeId": "dclaSetupMng>modifier",
     "validation": {
       "language": "ko",
       "required": {
@@ -225,8 +225,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>blacklistDclaSetupMng>changed",
-    "propertyTypeId": "blacklistDclaSetupMng>changed",
+    "id": "propertyTypeValidation>dclaSetupMng>changed",
+    "propertyTypeId": "dclaSetupMng>changed",
     "validation": {
       "language": "ko",
       "required": {

@@ -1,0 +1,23 @@
+[
+  {
+    "typeId": "dclaSetupMng",
+    "dclaSetupSeq": 100,
+    "setupBaseDayNum": 1,
+    "setupBaseCnt": 15,
+    "setupTypeCd": "1"
+  },
+  {
+    "typeId": "dclaSetupMng",
+    "dclaSetupSeq": 101,
+    "setupBaseDayNum":0,
+    "setupBaseCnt": 1000,
+    "setupTypeCd": "2"
+  },
+  {
+    "typeId": "dclaSetupMng",
+    "dclaSetupSeq": 102,
+    "setupBaseDayNum":0,
+    "setupBaseCnt": 15,
+    "setupTypeCd": "3"
+  }
+]

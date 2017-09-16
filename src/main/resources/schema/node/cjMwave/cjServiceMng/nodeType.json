@@ -92,12 +92,12 @@
   {
     "parentId": "cjServiceMng",
     "typeId": "nodeType",
-    "id": "blacklistDclaSetupMng",
-    "tid": "blacklistDclaSetupMng",
-    "typeName": "블랙리스트 신고 설정관리",
+    "id": "dclaSetupMng",
+    "tid": "dclaSetupMng",
+    "typeName": "신고 설정관리",
     "repositoryType": "node",
     "eviction": 0,
-    "tableName": "cjDb#blacklistDclaSetupMng"
+    "tableName": "cjDb#dclaSetupMng"
   },
   {
     "parentId": "cjServiceMng",

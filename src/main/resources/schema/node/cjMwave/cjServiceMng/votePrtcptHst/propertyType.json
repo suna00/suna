@@ -40,7 +40,7 @@
     "pid": "voteItemSeq",
     "id": "votePrtcptHst>voteItemSeq",
     "propertyTypeName": "투표 항목 일련번호",
-    "valueType": "REFERENCE",
+    "valueType": "REFERENCES",
     "required": false,
     "idable": false,
     "labelable": false,

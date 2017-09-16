@@ -1827,7 +1827,7 @@
     "typeId": "code",
     "groupCodeId": "setupTypeCd",
     "codeId": 1,
-    "name": "Type1",
+    "name": "블랙리스트 신고제한",
     "order": 1,
     "active": true
   },
@@ -1835,7 +1835,7 @@
     "typeId": "code",
     "groupCodeId": "setupTypeCd",
     "codeId": 2,
-    "name": "Type2",
+    "name": "투표IP ID 제한",
     "order": 2,
     "active": true
   },
@@ -1843,7 +1843,7 @@
     "typeId": "code",
     "groupCodeId": "setupTypeCd",
     "codeId": 3,
-    "name": "Type3",
+    "name": "AD ID 제한",
     "order": 3,
     "active": true
   },

@@ -302,9 +302,14 @@
             }
           },
           "dclaMaxNum": {
-            "typeId": "blacklistDclaSetupMng",
+            "typeId": "dclaSetupMng",
             "resultType": "merge",
             "query": [
+              {
+                "field": "setupTypeCd",
+                "method": "matching",
+                "value": "1"
+              },
               {
                 "sorting": "dclaSetupSeq desc",
                 "limit": "1"

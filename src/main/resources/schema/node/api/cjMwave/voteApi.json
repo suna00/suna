@@ -88,9 +88,9 @@
           "includeReferenced": true
         }
       ],
-      "response":{
+      "response": {
         "_all_": "",
-        "voteNum":{
+        "voteNum": {
           "select": {
             "ds": "cjDb",
             "resultType": "value",
@@ -196,7 +196,7 @@
             }
           ]
         },
-        "voteNum":{
+        "voteNum": {
           "select": {
             "ds": "cjDb",
             "resultType": "value",
@@ -300,6 +300,48 @@
         "memo": "",
         "prtcpDate": "created"
       }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv006",
+    "apiName": "아티스트별 진행투표 목록 조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "artistId",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "voteItemInfo",
+      "query": [
+        {
+          "field": "contsMetaId",
+          "method": "matching",
+          "value": "artist::{{:artistId}}"
+        },
+        {
+          "field": "voteSeq",
+          "method": "referenceJoin",
+          "value": "voteFormlCd_matching=voteFormlCd>1,voteFormlCd>2,voteFormlCd>4,voteFormlCd>5"
+        },
+        {
+          "field": "langCd",
+          "method": "matching",
+          "value": "{{:langCd}}"
+        },
+        {
+          "limit": "3",
+          "sorting": "voteSeq desc",
+          "referenceView": "voteSeq"
+        }
+      ]
     }
   },
   {
@@ -419,6 +461,9 @@
                   "field": "voteItemSeq",
                   "method": "matching",
                   "value": "{{:voteItemSeq}}"
+                },
+                {
+                  "sorting": "rankNum"
                 }
               ],
               "response": {
