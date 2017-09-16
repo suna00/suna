@@ -58,9 +58,8 @@
           "value": "{{:albumGenreCd}}"
         },
         {
-          "field": "findKywrd",
-          "method": "matching",
-          "value": "{{:searchKeyword}}"
+          "searchFields":"albumNm_{{:langCd}},albumDesc_{{:langCd}},findKywrd",
+          "searchValue":"{{:searchKeyword}}"
         },
         {
           "field": "showYn",
@@ -166,9 +165,8 @@
           "value": "{{:albumId}}"
         },
         {
-          "field": "findKywrd",
-          "method": "matching",
-          "value": "{{:searchKeyword}}"
+          "searchFields":"songNm_{{:langCd}},songDesc_{{:langCd}},findKywrd",
+          "searchValue":"{{:searchKeyword}}"
         },
         {
           "field": "showYn",
@@ -254,9 +252,8 @@
           "value": "{{:genreCd}}"
         },
         {
-          "field": "findKywrd",
-          "method": "matching",
-          "value": "{{:searchKeyword}}"
+          "searchFields":"artistNm_{{:langCd}},artistDesc_{{:langCd}},findKywrd",
+          "searchValue":"{{:searchKeyword}}"
         },
         {
           "field": "showYn",
@@ -340,6 +337,10 @@
         "required": false
       },
       {
+        "paramName": "contsMetaCtgryId",
+        "required": false
+      },
+      {
         "paramName": "searchKeyword",
         "required": false
       }
@@ -351,11 +352,14 @@
           "field": "artistId",
           "method": "matching",
           "value": "{{:artistId}}"
+        },{
+          "field": "contsMetaCtgryId",
+          "method": "matching",
+          "value": "{{:contsMetaCtgryId}}"
         },
         {
-          "field": "findKywrd",
-          "method": "matching",
-          "value": "{{:searchKeyword}}"
+          "searchFields":"musicVideoNm_{{:langCd}},musicVideoDesc_{{:langCd}},findKywrd",
+          "searchValue":"{{:searchKeyword}}"
         },
         {
           "field": "showYn",
@@ -432,7 +436,7 @@
               {
                 "field": "contsMetaCtgryId",
                 "method": "matchingShould",
-                "value": "{{:default(contsMetaCtgryId,뺿뺿)}}"
+                "value": "{{:getCommaItem(contsMetaCtgryId,last,뺿뺿)}}"
               },
               {
                 "field": "showYn",
@@ -451,7 +455,7 @@
               {
                 "field": "relArtistIds",
                 "method": "matching",
-                "value": "{{:getCommaItem(relArtistIds,0)}}"
+                "value": "{{:getCommaItem(relArtistIds,0,뺿뺿))}}"
               },
               {
                 "field": "showYn",
@@ -470,7 +474,7 @@
               {
                 "field": "artistId",
                 "method": "matching",
-                "value": "{{:getCommaItem(relArtistIds,0)}}"
+                "value": "{{:getCommaItem(relArtistIds,0,뺿뺿))}}"
               },
               {
                 "sorting": "created desc",
@@ -484,7 +488,7 @@
               {
                 "field": "relArtistIds",
                 "method": "matching",
-                "value": "{{:getCommaItem(relArtistIds,0)}}"
+                "value": "{{:getCommaItem(relArtistIds,0,뺿뺿))}}"
               },
               {
                 "sorting": "created desc",
@@ -559,9 +563,18 @@
           "value": "{{:searchKeyword}}"
         },
         {
+          "searchFields":"newsNm,newsDesc,findKywrd",
+          "searchValue":"{{:searchKeyword}}"
+        },
+        {
           "field": "showYn",
           "method": "matching",
           "value": "true"
+        },
+        {
+          "field": "langCd",
+          "method": "matching",
+          "value": "{{:langCd}}"
         },
         {
           "sorting": "{{:sorting}}"
@@ -672,9 +685,9 @@
             "typeId": "news",
             "query": [
               {
-                "field": "ctgryId",
+                "field": "contsMetaCtgryId",
                 "method": "matching",
-                "value": "{{:ctgryId}}"
+                "value": "{{:getCommaItem(contsMetaCtgryId,last,뺿뺿)}}"
               },
               {
                 "field": "showYn",
@@ -693,7 +706,7 @@
               {
                 "field": "relArtistIds",
                 "method": "matching",
-                "value": "{{:getCommaItem(relArtistIds,0)}}"
+                "value": "{{:getCommaItem(relArtistIds,0,뺿뺿))}}"
               },
               {
                 "field": "showYn",
@@ -712,7 +725,7 @@
               {
                 "field": "artistId",
                 "method": "matching",
-                "value": "{{:relArtistIds}}"
+                "value": "{{:getCommaItem(relArtistIds,0,뺿뺿))}}"
               },
               {
                 "sorting": "created desc",
@@ -726,7 +739,7 @@
               {
                 "field": "relArtistIds",
                 "method": "matching",
-                "value": "{{:relArtistIds}}"
+                "value": "{{:getCommaItem(relArtistIds,0,뺿뺿))}}"
               },
               {
                 "sorting": "created desc",
@@ -770,7 +783,7 @@
         "required": false
       },
       {
-        "paramName": "ctgryId",
+        "paramName": "contsMetaCtgryId",
         "required": false
       }
     ],
@@ -778,9 +791,9 @@
       "typeId": "groupPhoto",
       "query": [
         {
-          "field": "ctgryId",
+          "field": "contsMetaCtgryId",
           "method": "matching",
-          "value": "{{:ctgryId}}"
+          "value": "{{:contsMetaCtgryId}}"
         },
         {
           "field": "showYn",
@@ -866,9 +879,9 @@
             "typeId": "singlePhoto",
             "query": [
               {
-                "field": "ctgryId",
+                "field": "contsMetaCtgryId",
                 "method": "matching",
-                "value": "{{:ctgryId}}"
+                "value": "{{:getCommaItem(contsMetaCtgryId,last,뺿뺿)}}"
               },
               {
                 "field": "showYn",
@@ -887,7 +900,7 @@
               {
                 "field": "relArtistIds",
                 "method": "matching",
-                "value": "{{:getCommaItem(relArtistIds,0)}}"
+                "value": "{{:getCommaItem(relArtistIds,0,뺿뺿))}}"
               },
               {
                 "field": "showYn",
@@ -906,7 +919,7 @@
               {
                 "field": "artistId",
                 "method": "matching",
-                "value": "{{:getCommaItem(relArtistIds,0)}}"
+                "value": "{{:getCommaItem(relArtistIds,0,뺿뺿))}}"
               },
               {
                 "sorting": "created desc",
@@ -920,7 +933,7 @@
               {
                 "field": "relArtistIds",
                 "method": "matching",
-                "value": "{{:getCommaItem(relArtistIds,0)}}"
+                "value": "{{:getCommaItem(relArtistIds,0,뺿뺿))}}"
               },
               {
                 "sorting": "created desc",
@@ -964,7 +977,7 @@
         "required": false
       },
       {
-        "paramName": "ctgryId",
+        "paramName": "contsMetaCtgryId",
         "required": false
       },
       {
@@ -980,9 +993,9 @@
       "typeId": "singlePhoto",
       "query": [
         {
-          "field": "ctgryId",
+          "field": "contsMetaCtgryId",
           "method": "matching",
-          "value": "{{:ctgryId}}"
+          "value": "{{:contsMetaCtgryId}}"
         },
         {
           "field": "relArtistIds",
@@ -990,9 +1003,8 @@
           "value": "{{:artistId}}"
         },
         {
-          "field": "searchKeyword",
-          "method": "matching",
-          "value": "{{:searchKeyword}}"
+          "searchFields":"singlePhotoNm_{{:langCd}},singlePhotoDesc_{{:langCd}}",
+          "searchValue":"{{:searchKeyword}}"
         },
         {
           "sorting": "{{:sorting}}"
@@ -1099,7 +1111,7 @@
       "typeId": "pgmVideo",
       "query": [
         {
-          "field": "ctgryId",
+          "field": "contsMetaCtgryId",
           "method": "matching",
           "value": "{{:contsMetaCtgryId}}"
         },
@@ -1114,9 +1126,8 @@
           "value": "{{:rcmdContsYn}}"
         },
         {
-          "field": "searchKeyword",
-          "method": "matching",
-          "value": "{{:searchKeyword}}"
+          "searchFields":"title_{{:langCd}},contentTitle_{{:langCd}},synopsis_{{:langCd}},prsnName,searchKeyword",
+          "searchValue":"{{:searchKeyword}}"
         },
         {
           "sorting": "{{:sorting}}"
@@ -1181,9 +1192,9 @@
             "typeId": "pgmVideo",
             "query": [
               {
-                "field": "ctgryId",
+                "field": "contsMetaCtgryId",
                 "method": "matching",
-                "value": "{{:ctgryId}}"
+                "value": "{{:getCommaItem(contsMetaCtgryId,last,뺿뺿)}}"
               },
               {
                 "field": "isUse",
@@ -1202,7 +1213,7 @@
               {
                 "field": "relArtistIds",
                 "method": "matching",
-                "value": "{{:getCommaItem(prsnNo,0)}}"
+                "value": "{{:getCommaItem(prsnNo,0,뺿뺿)}}"
               },
               {
                 "field": "showYn",
@@ -1221,7 +1232,7 @@
               {
                 "field": "artistId",
                 "method": "matching",
-                "value": "{{:getCommaItem(prsnNo,0)}}"
+                "value": "{{:getCommaItem(prsnNo,0,뺿뺿)}}"
               },
               {
                 "sorting": "created desc",
@@ -1235,7 +1246,7 @@
               {
                 "field": "relArtistIds",
                 "method": "matching",
-                "value": "{{:getCommaItem(prsnNo,0)}}"
+                "value": "{{:getCommaItem(prsnNo,0,뺿뺿)}}"
               },
               {
                 "sorting": "created desc",
@@ -1317,6 +1328,10 @@
           "field": "searchKeyword",
           "method": "matching",
           "value": "{{:searchKeyword}}"
+        },
+        {
+          "searchFields":"title_{{:langCd}},contentTitle_{{:langCd}},synopsis_{{:langCd}},prsnName,searchKeyword",
+          "searchValue":"{{:searchKeyword}}"
         },
         {
           "sorting": "{{:sorting}}"

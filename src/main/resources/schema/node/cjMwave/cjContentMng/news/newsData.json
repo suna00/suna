@@ -3,7 +3,7 @@
     "typeId": "news",
     "newsId": "112724",
     "newsNm": "2년만에 돌아온 빅스 LR, 뜨거운 '청춘 음악'을 입다,mama,isuue",
-    "ctgryId": "1011",
+    "contsMetaCtgryId": "1002,1010,1011",
     "authrName": "정지원",
     "newsDesc": " 빅스 LR이 더쇼 무대를 통해 최초 컴백한다. 29일 방송되는 SBS MTV ‘더쇼’에서는 2년 만에 돌아온 치명적인 두 남자 빅스 LR의 컴백 무대가 공개된다. 빅스 LR이 선보인 두 번째 미니 앨범 ‘Whisper(위스퍼)’는 20대 청춘의 불안한 감정들을 빅스 LR만의 강렬한 색채로 표현해 시각적 효과를 극대화했으며, 귀를 사로잡는 트렌디한 음악으로 무장해 큰 호평을 받고 있다. ",
     "mscomName": "OSEN",
@@ -17,13 +17,15 @@
     "refVodIds": "15151",
     "refClipIds": "5595",
     "findKywrd": "빅스lr,빅스,컴백,news,kcon,mama",
-    "langCd": "kor"
+    "langCd": "kor",
+    "risingHitNum":222,
+    "hotHitNum":12222
   },
   {
     "typeId": "news",
     "newsId": "193929",
     "newsNm": "더머니6’ 넉살 조우찬 한해, 미소 넘치는 다이나믹듀오 팀 “사랑해”,news,kcon",
-    "ctgryId": "1035",
+    "contsMetaCtgryId": "1002,1032,1035",
     "authrName": "김예은",
     "newsDesc": "다이나믹듀오 최자는 8월 26일 자신의 인스타그램에 \"오늘 모든 공연이 완벽했지만 난 우리팀 공연이 내 취향이야. 다들 너무 고생했다 사랑해!\"라는 글과 사진을 게재했다. 공개된 사진 속에는 대기실에서 화기애애한 분위기를 보이고 있는 다이나믹듀오와 팀원 조우찬, 한해, 넉살의 모습이 담겨있다. 이들의 미소가 인상적이다. ",
     "mscomName": "뉴스엔",
@@ -37,13 +39,15 @@
     "refVodIds": "12124",
     "refClipIds": "5151",
     "findKywrd": "다이나믹듀오,다듀,최자,개코,news,kcon,mama",
-    "langCd": "kor"
+    "langCd": "kor",
+    "risingHitNum":1,
+    "hotHitNum":3
   },
   {
     "typeId": "news",
     "newsId": "204392",
     "newsNm": "Follow-Up to ‘Gangnam Style’ Hits No. 5,kcon,mama",
-    "ctgryId": "1037",
+    "contsMetaCtgryId": "1002,1032,1037",
     "authrName": "BEN SISARIO",
     "newsDesc": "Two months ago, Billboard began incorporating YouTube views in the formula for computing its all-important Hot 100 singles chart, allowing viral-video smashes to reach No. 1 even if they trailed other songs in sales and airplay, two of the chart’s other criteria.",
     "mscomName": "thenewyorktimes",
@@ -57,13 +61,15 @@
     "refVodIds": "18239",
     "refClipIds": "5252",
     "findKywrd": "psy,gangnamstyle,news",
-    "langCd": "eng"
+    "langCd": "eng",
+    "risingHitNum":110,
+    "hotHitNum":1110
   },
   {
     "typeId": "news",
     "newsId": "102930",
     "newsNm": "[★SHOT！]'Shomi 6'布“Zico＆Dean制作人，我遇到好运”最后一线印象",
-    "ctgryId": "1054",
+    "contsMetaCtgryId": "1005,1056,1054",
     "authrName": "JANG JINRI",
     "newsDesc": "H on on on 當天，Yoonju舉辦了一個舞台，由製片人Zico＆Dean製作的“紅太陽”淹沒了觀眾。當地舞颱風格的觀眾和觀眾，讓人聯想到真正的歌詞，爆炸性的搭配，音樂會，真正的故事，“怪獸說唱歌手”Swinges加入了舞台，完成了完美的舞台。",
     "mscomName": "OSEN",
@@ -77,13 +83,15 @@
     "refVodIds": "19482",
     "refClipIds": "5353",
     "findKywrd": "showmethemoney,zico,dean,news,mama",
-    "langCd": "zho-cn"
+    "langCd": "zho-cn",
+    "risingHitNum":330,
+    "hotHitNum":320
   },
   {
     "typeId": "news",
     "newsId": "293192",
     "newsNm": "[即将来临]雨已经来临了，海耶斯，黑眼圈,hot",
-    "ctgryId": "1013",
+    "contsMetaCtgryId": "1002,1012,1013",
     "authrName": "KIM HYUNDEOK",
     "newsDesc": "[顶级明星新闻=记者金贤德]“海耶斯”“雨如此来”，他对音乐的热爱，如海耶斯有很多的爱情性感。在22日，海斯在他的谣言上张贴了一张照片。",
     "mscomName": "TOPSTAR NEWS",
@@ -97,13 +105,15 @@
     "refVodIds": "21314",
     "refClipIds": "1314",
     "findKywrd": "heize,kpop,issue,kcon",
-    "langCd": "zho-tw"
+    "langCd": "zho-tw",
+    "risingHitNum":1130,
+    "hotHitNum":33330
   },
   {
     "typeId": "news",
     "newsId": "203102",
     "newsNm": "歌手 'クラッシュ'の特別な犬の愛,hot,isuue,news",
-    "ctgryId": "1033",
+    "contsMetaCtgryId": "1002,1032,1033",
     "authrName": "Jennylyn Gianan",
     "newsDesc": "最も思いやりのある歌手「クラッシュ」の愛は、多くのネチズンたちの暖かい反応を作り出しています。 「クラッシュ」はソーシャルネットワークです",
     "mscomName": "FAM타임스",
@@ -117,6 +127,8 @@
     "refVodIds": "23132",
     "refClipIds": "2523",
     "findKywrd": "kpop,choiza,issue,mama",
-    "langCd": "jpn"
+    "langCd": "jpn",
+    "risingHitNum":110,
+    "hotHitNum":0
   }
 ]

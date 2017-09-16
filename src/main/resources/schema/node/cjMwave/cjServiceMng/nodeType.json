@@ -142,16 +142,6 @@
   {
     "parentId": "cjServiceMng",
     "typeId": "nodeType",
-    "id": "qna",
-    "tid": "qna",
-    "typeName": "1:1문의하기(QNA)",
-    "repositoryType": "data",
-    "eviction": 0,
-    "tableName": "cjDb#qna"
-  },
-  {
-    "parentId": "cjServiceMng",
-    "typeId": "nodeType",
     "id": "faq",
     "tid": "faq",
     "typeName": "FAQ",

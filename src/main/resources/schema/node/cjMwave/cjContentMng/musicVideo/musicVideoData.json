@@ -19,7 +19,9 @@
     "relArtistIds": "artist_00003",
     "showYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "3002"
+    "contsMetaCtgryId": "3001,3002",
+    "risingHitNum":3,
+    "hotHitNum":100
   },
   {
     "typeId": "musicVideo",
@@ -41,7 +43,9 @@
     "relArtistIds": "artist_00014",
     "showYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "3002"
+    "contsMetaCtgryId": "3001,3002",
+    "risingHitNum":0,
+    "hotHitNum":0
   },
   {
     "typeId": "musicVideo",
@@ -63,7 +67,9 @@
     "relArtistIds": "artist_00012",
     "showYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "3001"
+    "contsMetaCtgryId": "3001",
+    "risingHitNum":4,
+    "hotHitNum":4
   },
   {
     "typeId": "musicVideo",
@@ -85,7 +91,9 @@
     "relArtistIds": "artist_00028",
     "showYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "3001"
+    "contsMetaCtgryId": "3001",
+    "risingHitNum":0,
+    "hotHitNum":0
   },
   {
     "typeId": "musicVideo",
@@ -107,7 +115,9 @@
     "relArtistIds": "",
     "showYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "3003"
+    "contsMetaCtgryId": "3001,3002,3003",
+    "risingHitNum":55,
+    "hotHitNum":1234
   },
   {
     "typeId": "musicVideo",
@@ -129,7 +139,9 @@
     "relArtistIds": "artist_00017",
     "showYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "3003"
+    "contsMetaCtgryId": "3001,3002,3003",
+    "risingHitNum":0,
+    "hotHitNum":0
   },
   {
     "typeId": "musicVideo",
@@ -151,7 +163,9 @@
     "relArtistIds": "artist_00012",
     "showYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "3003"
+    "contsMetaCtgryId": "3001,3002,3003",
+    "risingHitNum":9000,
+    "hotHitNum":90000
   },
   {
     "typeId": "musicVideo",
@@ -173,7 +187,9 @@
     "relArtistIds": "artist_00026",
     "showYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "3003"
+    "contsMetaCtgryId": "3001,3002,3003",
+    "risingHitNum":12345,
+    "hotHitNum":1234567
   },
   {
     "typeId": "musicVideo",
@@ -195,7 +211,9 @@
     "relArtistIds": "artist_00027",
     "showYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "3003"
+    "contsMetaCtgryId": "3001,3002,3003",
+    "risingHitNum":0,
+    "hotHitNum":0
   },
   {
     "typeId": "musicVideo",
@@ -217,7 +235,9 @@
     "relArtistIds": "artist_00017",
     "showYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "3003"
+    "contsMetaCtgryId": "3001,3002,3003",
+    "risingHitNum":0,
+    "hotHitNum":0
   },
   {
     "typeId": "musicVideo",
@@ -239,7 +259,9 @@
     "relArtistIds": "artist_00012",
     "showYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "3003"
+    "contsMetaCtgryId": "3001,3002,3003",
+    "risingHitNum":0,
+    "hotHitNum":0
   },
   {
     "typeId": "musicVideo",
@@ -261,7 +283,9 @@
     "relArtistIds": "artist_00026",
     "showYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "3003"
+    "contsMetaCtgryId": "3001,3002,3003",
+    "risingHitNum":0,
+    "hotHitNum":0
   },
   {
     "typeId": "musicVideo",
@@ -283,6 +307,8 @@
     "relArtistIds": "artist_00027",
     "showYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "3003"
+    "contsMetaCtgryId": "3001,3002,3003",
+    "risingHitNum":0,
+    "hotHitNum":0
   }
 ]

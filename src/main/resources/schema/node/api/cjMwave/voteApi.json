@@ -118,11 +118,6 @@
           "value": "{{:showLoCd}}"
         },
         {
-          "field": "findKywrd",
-          "method": "matching",
-          "value": "{{:searchKeyword}}"
-        },
-        {
           "field": "pstngStDt",
           "method": "below",
           "value": "{{:conditionSysdate(progYn,true)}}"
@@ -141,6 +136,10 @@
           "field": "showYn",
           "method": "matching",
           "value": "true"
+        },
+        {
+          "searchFields":"voteNm_{{:langCd}},voteDesc_{{:langCd}},findKywrd",
+          "searchValue":"{{:searchKeyword}}"
         },
         {
           "sorting": "{{:sorting}}"
