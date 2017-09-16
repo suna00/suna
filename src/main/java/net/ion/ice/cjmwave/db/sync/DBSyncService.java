@@ -165,6 +165,8 @@ public class DBSyncService {
 
 
     public void executeForNewData (String executeId) throws Exception {
+        // last Execution 시간은 MIG_DATA_HISTORY 에서 찾을 수 있음
+        // MSSQL 펑션이 있다고 생각하고 파라미터로 마지막 날짜를 던져서 노드 생성하면 됨
 
     }
 }
