@@ -2,6 +2,71 @@
   {
     "typeId": "apiConfig",
     "category": "vote",
+    "apiId": "IfMcv001",
+    "apiName": "MCD 주간 투표 결과조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "searchDt",
+        "required": false
+      }
+    ],
+    "config": {
+      "getMstId":{
+        "typeId":"mcdChartBasInfo",
+        "resultType" : "none",
+        "query":[
+          {
+            "field": "mstYyMmDd",
+            "method": "matching",
+            "value": "{{:searchDt}}"
+          }
+        ],
+        "response":{
+          "mstIdx":""
+        }
+      },
+      "root":{
+        "typeId": "mcdChartStats",
+        "query": [
+          {
+            "field": "chMstId",
+            "method": "matching",
+            "value": "{{:mstIdx}}"
+          },
+          {
+            "sorting": "ranking"
+          },
+          {
+            "page": "{{:page}}",
+            "pageSize": "{{:pageSize}}"
+          },
+          {
+            "referenceView": "songId"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
     "apiId": "IfMwv001",
     "apiName": "MWAVE 투표 목록조회",
     "method": "GET",
@@ -137,9 +202,14 @@
           "value": "{{:voteSeq}}"
         },
         {
-          "field": "voteYear",
-          "method": "matching",
-          "value": "{{:voteYear}}"
+          "field": "pstngStDt",
+          "method": "above",
+          "value": "{{:concatStr(voteYear,0101)}}"
+        },
+        {
+          "field": "pstngStDt",
+          "method": "below",
+          "value": "{{:concatStr(voteYear,1231)}}"
         },
         {
           "field": "showLoCd",
