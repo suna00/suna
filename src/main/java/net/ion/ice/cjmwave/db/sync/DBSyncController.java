@@ -19,6 +19,7 @@ import java.util.Map;
  * 디비 접속해서 노드 생성하는 부분은 서비스로 추출되어야 한다.
  * 그래야 스케쥴러에서 서비스를 Autowired 해서 사용가능함
  */
+@Deprecated
 @Controller
 @RequestMapping(value = { "dbSync" })
 public class DBSyncController {

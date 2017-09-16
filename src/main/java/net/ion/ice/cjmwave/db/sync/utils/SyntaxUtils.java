@@ -15,7 +15,6 @@ import java.util.regex.Pattern;
  * 가령 @{DATETIME.created} 와 같이 넘어올 수 있다
  * @{데이터 타입.http 파라미터 명} : 데이터 타입 생략시 디폴트는 문자열이다
  *
- * 데이터 타입처리는 다음 기회에...
  */
 public class SyntaxUtils {
 
@@ -88,9 +87,7 @@ public class SyntaxUtils {
         return rtn;
     }
 
-    // 상술된 메소드의 오버라이드
     public static Map<String, Object> parseWithLimit (String query, int start, int unit) throws Exception {
-
         Map<String, Object> rtn = new HashMap<>();
         String patternedQuery = query;
         List<Object> temp = new ArrayList<>();
@@ -102,9 +99,21 @@ public class SyntaxUtils {
         patternedQuery = patternedQuery.replaceAll("@\\{BIGINT.unit}", "?");
         temp.add(start);
         temp.add(unit);
-
         rtn.put("query", patternedQuery);
         rtn.put("params", temp.toArray());
+        return rtn;
+    }
+
+    /*
+    * 파싱 구현 필요
+    * */
+    public static Map<String, Object> prepareQuery (String query, Object ... params) {
+        //파싱하고
+        Map<String, Object> rtn = new HashMap<String, Object>();
+        String preparedQuery = "";
+        List<Object> preparedParams = new ArrayList<>();
+        rtn.put("query", preparedQuery);
+        rtn.put("params", preparedParams.toArray());
         return rtn;
     }
 

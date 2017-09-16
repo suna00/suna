@@ -1,0 +1,242 @@
+[
+  {
+    "typeId": "msSqlReplication"
+    , "executeId": "MT_ALBUM"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "MT_ALBUM"
+    , "toTable" : "MT_ALBUM_RE"
+    , "query": "EXEC dbo.recentAlbum @LastUpdated = @{TIMESTAMP.lastUpdated}"
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "executeId": "MT_ALBUM_ARTIST"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "MT_ALBUM_ARTIST"
+    , "toTable" : "MT_ALBUM_ARTIST_RE"
+    , "query": "EXEC dbo.recentAlbumArtist @LastUpdated = @{TIMESTAMP.lastUpdated}"
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "executeId": "mt_album_country"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "mt_album_country"
+    , "toTable" : "MT_ALBUM_COUNTRY_RE"
+    , "query": "EXEC dbo.recentAlbumCountry @LastUpdated = @{TIMESTAMP.lastUpdated}"
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "executeId": "MT_ALBUM_GENRE"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "MT_ALBUM_GENRE"
+    , "toTable" : "MT_ALBUM_GENRE_RE"
+    , "query": "EXEC dbo.recentAlbumGenre @LastUpdated = @{TIMESTAMP.lastUpdated}"
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "executeId": "MT_ALBUM_KEYWORD"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "MT_ALBUM_KEYWORD"
+    , "toTable" : "MT_ALBUM_KEYWORD_RE"
+    , "query": "EXEC dbo.recentAlbumKeyword @LastUpdated = @{TIMESTAMP.lastUpdated}"
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "executeId": "mt_album_keyword_meta"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "mt_album_keyword_meta"
+    , "toTable" : "MT_ALBUM_KEYWORD_META_RE"
+    , "query": "EXEC dbo.recentAlbumKeywordMeta @LastUpdated = @{TIMESTAMP.lastUpdated}"
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "executeId": "mt_album_meta"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "mt_album_meta"
+    , "toTable" : "MT_ALBUM_META_RE"
+    , "query": "EXEC dbo.recentAlbumMeta @LastUpdated = @{TIMESTAMP.lastUpdated}"
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "executeId": "MT_ALBUM_SONGS"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "MT_ALBUM_SONGS"
+    , "toTable" : "MT_ALBUM_SONGS_RE"
+    , "query": "EXEC dbo.recentAlbumSongs @LastUpdated = @{TIMESTAMP.lastUpdated}"
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "executeId": "MT_ARTIST"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "MT_ARTIST"
+    , "toTable" : "MT_ARTIST_RE"
+    , "query": "EXEC dbo.recentArtist @LastUpdated = @{TIMESTAMP.lastUpdated}"
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "executeId": "mt_artist_country"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "mt_artist_country"
+    , "toTable" : "MT_ARTIST_COUNTRY_RE"
+    , "query": "EXEC dbo.recentArtistCountry @LastUpdated = @{TIMESTAMP.lastUpdated}"
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "executeId": "MT_ARTIST_GENRE"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "MT_ARTIST_GENRE"
+    , "toTable" : "MT_ARTIST_GENRE_RE"
+    , "query": "EXEC dbo.recentArtistGenre @LastUpdated = @{TIMESTAMP.lastUpdated}"
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "executeId": "MT_ARTIST_KEYWORD"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "MT_ARTIST_KEYWORD"
+    , "toTable" : "MT_ARTIST_KEYWORD_RE"
+    , "query": "EXEC dbo.recentArtistKeyword @LastUpdated = @{TIMESTAMP.lastUpdated}"
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "executeId": "mt_artist_keyword_meta"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "mt_artist_keyword_meta"
+    , "toTable" : "MT_ARTIST_KEYWORD_META_RE"
+    , "query": "EXEC dbo.recentArtistKeywordMeta @LastUpdated = @{TIMESTAMP.lastUpdated}"
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "executeId": "mt_artist_meta"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "mt_artist_meta"
+    , "toTable" : "MT_ARTIST_META_RE"
+    , "query": "EXEC dbo.recentArtistMeta @LastUpdated = @{TIMESTAMP.lastUpdated}"
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "executeId": "MT_MV"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "MT_MV"
+    , "toTable" : "MT_MV_RE"
+    , "query": "EXEC dbo.recentMv @LastUpdated = @{TIMESTAMP.lastUpdated}"
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "executeId": "MT_MV_ARTIST"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "MT_MV_ARTIST"
+    , "toTable" : "MT_MV_ARTIST_RE"
+    , "query": "EXEC dbo.recentMvArtist @LastUpdated = @{TIMESTAMP.lastUpdated}"
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "executeId": "mt_mv_country"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "mt_mv_country"
+    , "toTable" : "MT_MV_COUNTRY_RE"
+    , "query": "EXEC dbo.recentMvCountry @LastUpdated = @{TIMESTAMP.lastUpdated}"
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "executeId": "MT_MV_EMBED"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "MT_MV_EMBED"
+    , "toTable" : "MT_MV_EMBED_RE"
+    , "query": "EXEC dbo.recentMvEmbed @LastUpdated = @{TIMESTAMP.lastUpdated}"
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "executeId": "MT_MV_KEYWORD"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "MT_MV_KEYWORD"
+    , "toTable" : "MT_MV_KEYWORD_RE"
+    , "query": "EXEC dbo.recentMvKeyword @LastUpdated = @{TIMESTAMP.lastUpdated}"
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "executeId": "mt_mv_keyword_meta"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "mt_mv_keyword_meta"
+    , "toTable" : "MT_MV_KEYWORD_META_RE"
+    , "query": "EXEC dbo.recentMvKeywordMeta @LastUpdated = @{TIMESTAMP.lastUpdated}"
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "executeId": "mt_mv_meta"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "mt_mv_meta"
+    , "toTable" : "MT_MV_META_RE"
+    , "query": "EXEC dbo.recentMvMeta @LastUpdated = @{TIMESTAMP.lastUpdated}"
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "executeId": "MT_SONG"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "MT_SONG"
+    , "toTable" : "MT_SONG_RE"
+    , "query": "EXEC dbo.recentSong @LastUpdated = @{TIMESTAMP.lastUpdated}"
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "executeId": "MT_SONG_ARTIST"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "MT_SONG_ARTIST"
+    , "toTable" : "MT_SONG_ARTIST_RE"
+    , "query": "EXEC dbo.recentSongArtist @LastUpdated = @{TIMESTAMP.lastUpdated}"
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "executeId": "mt_song_country"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "mt_song_country"
+    , "toTable" : "MT_SONG_COUNTRY_RE"
+    , "query": "EXEC dbo.recentSongCountry @LastUpdated = @{TIMESTAMP.lastUpdated}"
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "executeId": "MT_SONG_KEYWORD"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "MT_SONG_KEYWORD"
+    , "toTable" : "MT_SONG_KEYWORD_RE"
+    , "query": "EXEC dbo.recentSongKeyword @LastUpdated = @{TIMESTAMP.lastUpdated}"
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "executeId": "mt_song_keyword_meta"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "mt_song_keyword_meta"
+    , "toTable" : "MT_SONG_KEYWORD_META_RE"
+    , "query": "EXEC dbo.recentSongKeywordMeta @LastUpdated = @{TIMESTAMP.lastUpdated}"
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "executeId": "MT_SONG_LYRIC"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "MT_SONG_LYRIC"
+    , "toTable" : "MT_SONG_LYRIC_RE"
+    , "query": "EXEC dbo.recentSongLyric @LastUpdated = @{TIMESTAMP.lastUpdated}"
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "executeId": "mt_song_meta"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "mt_song_meta"
+    , "toTable" : "MT_SONG_META_RE"
+    , "query": "EXEC dbo.recentSongMeta @LastUpdated = @{TIMESTAMP.lastUpdated}"
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "executeId": "T_SM_S3_ChartTotalMst"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "T_SM_S3_ChartTotalMst"
+    , "toTable" : "T_SM_S3_ChartTotalMst_RE"
+    , "query": "EXEC dbo.recentChartTotalMst @LastUpdated = @{TIMESTAMP.last}"
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "executeId": "T_SM_S3_ChartTotalLst"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "T_SM_S3_ChartTotalLst"
+    , "toTable" : "T_SM_S3_ChartTotalLst_RE"
+    , "query": "EXEC dbo.recentAlbumChartTotalLst @LastUpdated = @{TIMESTAMP.last}"
+  }
+]
