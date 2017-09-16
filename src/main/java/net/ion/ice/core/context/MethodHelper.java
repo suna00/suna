@@ -218,6 +218,13 @@ public class MethodHelper {
                 return valueArrays[paramInt] ;
             }
 
+            case "concatStr":{
+                if(value == null || StringUtils.isEmpty(value.toString())) return "" ;
+                if(methodParams[1] == null) return "";
+                String concatStr = value.toString()+methodParams[1];
+                return concatStr;
+            }
+
             default :
                 methodStr = StringUtils.capitalize(methodStr) ;
                 String methodClass = "net.ion.ice.core.context.method." + methodStr ;
