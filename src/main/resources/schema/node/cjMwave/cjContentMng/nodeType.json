@@ -150,5 +150,25 @@
     "repositoryType": "node",
     "eviction": 0,
     "tableName": "cjDb#videItgInfo"
+  },
+  {
+    "parentId": "cjContentMng",
+    "typeId": "nodeType",
+    "id": "advMng",
+    "tid": "advMng",
+    "typeName": "광고 관리",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#advMng"
+  },
+  {
+    "parentId": "cjContentMng",
+    "typeId": "nodeType",
+    "id": "advShowOrder",
+    "tid": "advShowOrder",
+    "typeName": "광고 노출 순서",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#advShowOrder"
   }
 ]
