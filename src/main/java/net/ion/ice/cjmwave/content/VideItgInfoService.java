@@ -34,6 +34,7 @@ public class VideItgInfoService {
         saveData.put("contsMetaCtgryId", contextData.get("contsMetaCtgryId"));
         saveData.put("artistId", contextData.get("artistId"));
         saveData.put("rcmdContsYn", contextData.get("rcmdContsYn"));
+        saveData.put("synopsis", contextData.get("musicVideoDesc"));
 
         nodeService.executeNode(saveData, "videItgInfo".toString(), "save");
     }
@@ -50,9 +51,12 @@ public class VideItgInfoService {
         saveData.put("playTime", contextData.get("playTime"));
         saveData.put("videoDivCd", "pgmVideo");
         saveData.put("searchKeyword", contextData.get("searchKeyword"));
-        saveData.put("contsMetaCtgryId", contextData.get("ctgryId"));
+        saveData.put("contsMetaCtgryId", contextData.get("contsMetaCtgryId"));
         saveData.put("artistId", contextData.get("prsnNo"));
         saveData.put("rcmdContsYn", contextData.get("rcmdContsYn"));
+        saveData.put("contentTitle", contextData.get("contentTitle"));
+        saveData.put("synopsis", contextData.get("synopsis"));
+        saveData.put("prsnName", contextData.get("prsnName"));
 
         nodeService.executeNode(saveData, "videItgInfo".toString(), "save");
     }
