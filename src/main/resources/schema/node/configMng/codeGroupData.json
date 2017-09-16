@@ -453,6 +453,19 @@
     "name": "비디오 구분 코드",
     "active": true,
     "desc": "videItgInfo 비디오 구분 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "advContentType",
+    "name": "광고 콘텐츠 타입",
+    "active": true,
+    "desc": "광고 콘텐츠 타입 코드(Photo, News)"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "advPlatformType",
+    "name": "광고 플렛폼 타입",
+    "active": true,
+    "desc": "광고 플렛폼 타입 코드(PC, Mobile Web, Mobile App)"
   }
-
 ]
