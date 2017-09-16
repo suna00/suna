@@ -57,6 +57,20 @@
   },
   {
     "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation>returnExchangePolicy>name",
+    "propertyTypeId": "returnExchangePolicy>name",
+    "validation": {
+      "language": "ko",
+      "required": { "value": true, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "" },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extention": { "value": "", "description": "" },
+      "regularExpression": { "value": "", "description": "" }
+    }
+  },
+  {
+    "typeId" : "propertyTypeValidation",
     "id": "propertyTypeValidation>returnExchangePolicy>contents",
     "propertyTypeId": "returnExchangePolicy>contents",
     "validation": {
