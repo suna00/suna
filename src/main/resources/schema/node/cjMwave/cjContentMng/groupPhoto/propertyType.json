@@ -61,7 +61,7 @@
     "pid": "contsMetaCtgryId",
     "id": "groupPhoto>contsMetaCtgryId",
     "propertyTypeName": "카테고리 아이디",
-    "valueType": "REFERENCE",
+    "valueType": "REFERENCES",
     "required": false,
     "idable": false,
     "labelable": false,

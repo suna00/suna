@@ -79,7 +79,7 @@
     "pid": "contsMetaCtgryId",
     "id": "program>contsMetaCtgryId",
     "propertyTypeName": "카테고리 아이디",
-    "valueType": "REFERENCE",
+    "valueType": "REFERENCES",
     "required": false,
     "idable": false,
     "labelable": false,
@@ -398,24 +398,6 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "codeFilter": "",
-    "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "program",
-    "pid": "refdMultiLanginfo",
-    "id": "program>refdMultiLanginfo",
-    "propertyTypeName": "프로그램 다국어 리스트",
-    "valueType": "REFERENCED",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "pgmMultiLangInfo",
-    "referenceValue": "pgmId",
     "codeFilter": "",
     "defaultValue": ""
   }
