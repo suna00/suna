@@ -14,5 +14,21 @@
     "actionType": "service",
     "actionBody": "couponService.download",
     "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "coupon",
+    "event": "applicable",
+    "noneExecute": true,
+    "eventName": "적용가능한 쿠폰"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "coupon>applicable",
+    "action": "applicable",
+    "actionName": "적용가능한 쿠폰 ",
+    "actionType": "service",
+    "actionBody": "couponService.applicable",
+    "order": 1
   }
 ]

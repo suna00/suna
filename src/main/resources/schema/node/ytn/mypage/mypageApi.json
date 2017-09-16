@@ -7,6 +7,25 @@
   {
     "typeId": "apiConfig",
     "category": "mypage",
+    "apiId": "mainSummary",
+    "apiName": "마이페이지 메인 상단 서머리 대학(마일리지/쿠폰), 기업(마일리지/복지포인트/쿠폰)",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "item": {
+        "select": {
+          "ds": "ytnDevDb",
+          "resultType": "read",
+          "description": "Y포인트 리스트 상단 서머리",
+          "sql": "select (select IFNULL(sum(balance), 0) as useableYPoint from ypoint where memberNo = @{memberNo} and YPointType != 'tobe') as useableYPoint ,(select IFNULL(sum(balance), 0) as useableWelfarepoint from welfarepoint where memberNo = @{memberNo} ) as useableWelfarepoint ,(select IFNULL(count(*), 0) as haveCoupon from coupon where memberNo = @{memberNo} and couponStatus='n' and endDate >= now()) as haveCoupon "
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "mypage",
     "apiId": "writableReview",
     "apiName": "작성가능한 리뷰",
     "method": "GET",
