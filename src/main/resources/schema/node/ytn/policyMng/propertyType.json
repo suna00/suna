@@ -520,7 +520,7 @@
     "tid": "returnExchangePolicy",
     "pid": "returnExchangePolicyId",
     "propertyTypeName": "ID",
-    "valueType": "STRING",
+    "valueType": "INT",
     "required": true,
     "idable": true,
     "labelable": false,
@@ -530,7 +530,7 @@
     "referenceType": "",
     "referenceValue": "",
     "defaultValue": "",
-    "idType": ""
+    "idType": "autoIncrement"
   },
   {
     "typeId": "propertyType",
@@ -562,6 +562,23 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "returnExchangePolicy",
+    "pid": "returnExchangePolicyStatus",
+    "propertyTypeName": "사용여부",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
+    "codeFilter": "useYn",
     "defaultValue": ""
   },
   {

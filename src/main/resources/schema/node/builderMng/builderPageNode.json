@@ -61,8 +61,18 @@
   },
   {
     "typeId": "builderPage",
+    "id": "/adm/policyMng/return/list",
+    "content": "[]"
+  },
+  {
+    "typeId": "builderPage",
+    "id": "/adm/policyMng/return/createForm",
+    "content": "[]"
+  },
+  {
+    "typeId": "builderPage",
     "id": "/adm/policyMng/return/updateForm",
-    "content": "[{\"componentType\":\"container\",\"componentTemplateType\":\"\",\"componentClassType\":\"\",\"componentClass\":\"IceGrid\",\"componentChildren\":[{\"componentType\":\"container\",\"componentTemplateType\":\"\",\"componentClassType\":\"\",\"componentClass\":\"DefaultForm\",\"componentChildren\":[{\"componentType\":\"container\",\"componentClassType\":null,\"componentClass\":\"DefaultFormFooter\",\"componentChildren\":[{\"componentType\":\"presentational\",\"componentTemplateType\":\"Spin\",\"componentClassType\":\"BUTTON\",\"componentClass\":\"ButtonSave\",\"componentChildren\":[],\"componentKey\":\"27c683a016c8\",\"areaMode\":true,\"componentProps\":{\"reqUrl\":\"/node/returnExchangePolicy/save.json\",\"isMultipartFormData\":\"false\",\"callbackLink\":\"/adm/policyMng/return/list\",\"buttonName\":\"저장\",\"buttonIcon\":\"\",\"outline\":\"\",\"bsStyle\":\"primary\",\"customColor\":\"\",\"bsSize\":\"small\",\"key\":0,\"componentKey\":\"27c683a016c8\",\"parentComponentKey\":\"c9193a7c4ef8\"}}],\"componentKey\":\"c9193a7c4ef8\",\"areaMode\":true}],\"componentKey\":\"ca3c45e8c104\",\"areaMode\":true,\"componentProps\":{\"nodeTypeId\":\"returnExchangePolicy\",\"reqUrl\":\"/node/returnExchangePolicy/read.json\",\"defaultParams\":\"\",\"panelProps\":{\"colMd\":\"12\",\"title\":\"반품/교환정보\"},\"formTypes\":{\"isHorizontal\":\"\",\"colSize\":\"12\",\"horizontalColLabelSize\":\"4\",\"dataTypes\":\"contents\"},\"key\":0,\"componentKey\":\"ca3c45e8c104\",\"parentComponentKey\":\"b6a74af2d841\",\"dataTypes\":[{\"componentKey\":\"e1e74b9c0ff5\",\"componentClass\":\"TextEditor\",\"dataType\":\"text\",\"label\":\"내용\",\"id\":\"contents\",\"defaultValue\":\"\",\"isView\":\"false\",\"options\":{\"datas\":null},\"validationTypes\":[{\"id\":\"propertyTypeValidation>returnExchangePolicy>contents\",\"propertyTypeId\":{\"value\":\"contents\",\"label\":\"내용\",\"refId\":\"returnExchangePolicy>contents\"},\"validation\":{\"language\":\"ko\",\"required\":{\"value\":true,\"description\":\"필수 값 입니다.\"},\"duplicated\":{\"value\":false,\"description\":\"\"},\"min\":{\"value\":0,\"description\":\"최소 값 입니다.\"},\"max\":{\"value\":0,\"description\":\"최대 값 입니다.\"},\"extention\":{\"value\":\"\",\"description\":\"\"},\"regularExpression\":{\"value\":\"\",\"description\":\"\"}}}],\"colSize\":\"\",\"horizontalColLabelSize\":\"\",\"placeholder\":\"\",\"helpBlockValue\":\"\",\"isDisabled\":\"false\",\"isReadOnly\":\"false\",\"event\":{\"globalEvent\":\"false\",\"globalEventTargets\":\"\",\"globalEventActions\":[]}}]}}],\"componentKey\":\"b6a74af2d841\",\"areaMode\":true}]"
+    "content": "[]"
   },
   {
     "typeId": "builderPage",
