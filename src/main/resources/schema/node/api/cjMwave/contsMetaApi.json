@@ -987,6 +987,10 @@
       {
         "paramName": "searchKeyword",
         "required": false
+      },
+      {
+        "paramName": "rcmdContsYn",
+        "required": false
       }
     ],
     "config": {
@@ -996,6 +1000,11 @@
           "field": "contsMetaCtgryId",
           "method": "matching",
           "value": "{{:contsMetaCtgryId}}"
+        },
+        {
+          "field": "rcmdContsYn",
+          "method": "matching",
+          "value": "{{:rcmdContsYn}}"
         },
         {
           "field": "relArtistIds",
