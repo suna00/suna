@@ -535,6 +535,22 @@
   {
     "typeId": "propertyType",
     "tid": "returnExchangePolicy",
+    "pid": "name",
+    "propertyTypeName": "제목",
+    "valueType": "STRING",
+    "required": true,
+    "idable": false,
+    "labelable": true,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "cjk",
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "returnExchangePolicy",
     "pid": "contents",
     "propertyTypeName": "내용",
     "valueType": "TEXT",
@@ -542,8 +558,8 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": false,
-    "analyzer": null,
+    "indexable": true,
+    "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
     "defaultValue": ""
