@@ -109,7 +109,7 @@ public class QueryContext extends ReadContext {
 
     public void makeSearchFields(Map<String, Object> _config) {
         if(_config == null) return ;
-        String searchFieldsStr = (String) ContextUtils.getValue(_config.get("searchFields"), data);
+        String searchFieldsStr = (String) _config.get("searchFields");
         if(org.apache.commons.lang3.StringUtils.isEmpty(searchFieldsStr)) {
             return ;
         }
