@@ -1,4 +1,4 @@
-package net.ion.ice.cjmwave.external.mnet.lift;
+package net.ion.ice.cjmwave.external.mnet.data;
 
 import net.ion.ice.cjmwave.db.sync.utils.QueryUtils;
 import net.ion.ice.cjmwave.db.sync.utils.SyntaxUtils;
