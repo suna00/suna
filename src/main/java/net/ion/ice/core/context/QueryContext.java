@@ -109,12 +109,12 @@ public class QueryContext extends ReadContext {
 
     public void makeSearchFields(Map<String, Object> _config) {
         if(_config == null) return ;
-        String searchFieldsStr = (String) ContextUtils.getValue( _config.get("searchFields"), data);
+        String searchFieldsStr = (String) _config.get("searchFields");
         if(org.apache.commons.lang3.StringUtils.isEmpty(searchFieldsStr)) {
             return ;
         }
 
-        String searchValue = (String) _config.get("searchValue");
+        String searchValue = (String) ContextUtils.getValue(_config.get("searchValue"), data);
         if(org.apache.commons.lang3.StringUtils.isEmpty(searchValue)) {
             return ;
         }
@@ -398,10 +398,7 @@ public class QueryContext extends ReadContext {
         for (String key : queryData.keySet()) {
             if (key.equals("typeId")) continue;
 
-            if (key.equals("q")) {
-                List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(queryContext, queryData.get("q"), queryContext.getNodetype());
-                queryContext.setQueryTerms(queryTerms);
-            } else if (key.equals("query")) {
+            if (key.equals("query")) {
                 List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(queryContext, queryData.get("query"), queryContext.getNodetype());
                 queryContext.setQueryTerms(queryTerms);
             } else {
@@ -537,7 +534,7 @@ public class QueryContext extends ReadContext {
         queryResult.put("resultCount", list.size()) ;
         if(isPaging()) {
             queryResult.put("pageSize", getPageSize());
-            queryResult.put("pageCount", getResultSize() / getPageSize() + 1);
+            queryResult.put("pageCount", getResultSize() / getPageSize() + (getResultSize() % getPageSize() > 0 ? 1 : 0));
             queryResult.put("currentPage", getCurrentPage());
         }else if(limit){
             queryResult.put("more", resultSize > queryListSize);

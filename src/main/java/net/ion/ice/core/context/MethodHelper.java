@@ -200,6 +200,30 @@ public class MethodHelper {
                 String resultValue = makeIdValue(methodParams, data);
                 return resultValue;
             }
+            case "conditionSysdate" :{
+                if(value == null) return "" ;
+                String condition= methodParams[1];
+                if(StringUtils.isEmpty(methodParams[1])) condition =  "" ;
+                if(value.equals(condition)){
+                    return data.get("now").toString();
+                }else{
+                    return "";
+                }
+            }
+            case "getCommaItem" :{
+                if(value == null || StringUtils.isEmpty(value.toString())) return "" ;
+                String[] valueArrays = value.toString().split(",");
+                if(valueArrays.length == 0) return value.toString();
+                int paramInt = Integer.parseInt(methodParams[1]);
+                return valueArrays[paramInt] ;
+            }
+
+            case "concatStr":{
+                if(value == null || StringUtils.isEmpty(value.toString())) return "" ;
+                if(methodParams[1] == null) return "";
+                String concatStr = value.toString()+methodParams[1];
+                return concatStr;
+            }
 
             default :
                 methodStr = StringUtils.capitalize(methodStr) ;
