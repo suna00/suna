@@ -21,9 +21,9 @@ public class CommonNetworkUtils {
         return paramStr;
     }
 
-    public static Map<String, String> RequestMapToMap(HttpServletRequest request) {
+    public static Map<String, Object> RequestMapToMap(HttpServletRequest request) {
         Map<String, String[]> requestMap = request.getParameterMap();
-        Map<String, String> rtn = new HashMap<>();
+        Map<String, Object> rtn = new HashMap<>();
         Iterator<String> iter = requestMap.keySet().iterator();
         while(iter.hasNext()) {
             String k = iter.next();

@@ -1,5 +1,7 @@
 package net.ion.ice.cjmwave.db.sync.utils;
 
+import net.ion.ice.cjmwave.external.utils.CommonNetworkUtils;
+
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -28,7 +30,6 @@ public class SyntaxUtils {
     *   template.queryForList(String.valueOf(map.get("query")), map.get("params")) 로 사용 가능
     * */
     public static Map<String, Object> parse (String query, HttpServletRequest request) throws Exception {
-        Map<String, Object> rtn = new HashMap<>();
         /*
         * pseudo - 절차
         * 1. 쿼리 문자열이 @{} 를 포함한다면 내부 컨텐츠를 문자열 배열로 저장한다
@@ -37,54 +38,8 @@ public class SyntaxUtils {
         * 4. 2 결과에 맞게 순차적으로 오브젝트 배열을 생성한다.
         * 5. 맵 반환
         * */
-        String patternedQuery = query;
-        List<Object> temp = new ArrayList<>();
-
-        // 하나라도 대상이 있을 때만 파싱하기
-        if(query.contains(OPENER)) {
-            Map<String, Object> parsed = extractParams(query);
-            List<String> parsedKeys = (List<String>) parsed.get("parameterKeys");
-            for(String paramKey : parsedKeys) {
-                Object value = null;
-                if(paramKey.contains(".")) {
-                    // 데이터 타입 파싱
-                    String [] paramKeyParts = paramKey.split("\\.");
-                    String dataType = paramKeyParts[0].toUpperCase().trim();
-                    value = request.getParameter(paramKeyParts[1]).trim();
-                    switch (dataType) {
-                        case "BIGINT":
-                        case "INT":
-                            value = Integer.parseInt(value.toString());
-                            break;
-                        case "DATETIME":
-                        case "TIMESTAMP":
-                            SimpleDateFormat dFormat = null;
-                            if(value.toString().length() == 14) {
-                                dFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-                            } else if (value.toString().length() == 8) {
-                                dFormat = new SimpleDateFormat("yyyyMMdd");
-                            }
-                            value = dFormat.parse(value.toString());
-                            break;
-                        default:
-                            value = value.toString();
-                        break;
-                    }
-                }else {
-                    value = request.getParameter(paramKey);
-                }
-                temp.add(value);
-            }
-            // @{} 문자열 전부 ? 로 치환
-            List<String> replaceToQuestionMark = (List<String>) parsed.get("replaces");
-            for(String target : replaceToQuestionMark) {
-                patternedQuery = patternedQuery.replace(target, "?");
-            }
-        }
-
-        rtn.put("query", patternedQuery);
-        rtn.put("params", temp.toArray());
-        return rtn;
+        Map<String, Object> params = CommonNetworkUtils.RequestMapToMap(request);
+        return parse(query, params);
     }
 
     public static Map<String, Object> parseWithLimit (String query, int start, int unit) throws Exception {
@@ -107,11 +62,54 @@ public class SyntaxUtils {
     /*
     * 파싱 구현 필요
     * */
-    public static Map<String, Object> prepareQuery (String query, Object ... params) {
+    public static Map<String, Object> parse (String query, Map<String, Object> params) throws Exception {
         //파싱하고
         Map<String, Object> rtn = new HashMap<String, Object>();
-        String preparedQuery = "";
+        String preparedQuery = query;
+        List<Object> temp = new ArrayList<>();
+
         List<Object> preparedParams = new ArrayList<>();
+        if(query.contains(OPENER)) {
+            Map<String, Object> parsed = extractParams(query);
+            List<String> parsedKeys = (List<String>) parsed.get("parameterKeys");
+            for(String paramKey : parsedKeys) {
+                Object value = null;
+                if(paramKey.contains(".")) {
+                    // 데이터 타입 파싱
+                    String [] paramKeyParts = paramKey.split("\\.");
+                    String dataType = paramKeyParts[0].toUpperCase().trim();
+                    value = String.valueOf(params.get(paramKeyParts[1])).trim();
+                    switch (dataType) {
+                        case "BIGINT":
+                        case "INT":
+                            value = Integer.parseInt(value.toString());
+                            break;
+                        case "DATETIME":
+                        case "TIMESTAMP":
+                            SimpleDateFormat dFormat = null;
+                            if(value.toString().length() == 14) {
+                                dFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+                            } else if (value.toString().length() == 8) {
+                                dFormat = new SimpleDateFormat("yyyyMMdd");
+                            }
+                            value = dFormat.parse(value.toString());
+                            break;
+                        default:
+                            value = value.toString();
+                            break;
+                    }
+                }else {
+                    value = params.get(paramKey);
+                }
+                temp.add(value);
+            }
+            // @{} 문자열 전부 ? 로 치환
+            List<String> replaceToQuestionMark = (List<String>) parsed.get("replaces");
+            for(String target : replaceToQuestionMark) {
+                preparedQuery = preparedQuery.replace(target, "?");
+            }
+        }
+
         rtn.put("query", preparedQuery);
         rtn.put("params", preparedParams.toArray());
         return rtn;

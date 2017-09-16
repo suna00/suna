@@ -44,8 +44,6 @@ public class MnetDataDumpService {
     private JdbcTemplate mnetMSSQLTemplate;
     private JdbcTemplate ice2Template;
 
-    List<String> MnetTables;
-
     /*
     * 서비스 기동에 필요한 자원 준비
     * */
@@ -131,20 +129,73 @@ public class MnetDataDumpService {
         return rtn;
     }
 
+    /*
+    * 전달받은 노드의 하위 데이터가 있다면 해당 프로세스도 실행한다.
+    * */
+    private void executeSubTask (Node replicaNode, Object foreignKey) {
+        String subTasksStr = String.valueOf(replicaNode.get("subTasks"));
+        if(!"null".equals(subTasksStr)) {
+            //sub Tasks 에 대한 잡을 실행함
+            List<String> subTasksList = new ArrayList<>();
+            String[] subTasksArr = subTasksStr.split(",");
+            for(int i = 0; i < subTasksArr.length; i++) {
+                subTasksList.add(subTasksArr[i].trim());
+            }
 
-    private Map<String, Object> migrate(Date start, Node replicationNode) {
+            // 걸러진 태스크에 대해서 아래 키로 조회
+            for(String subExecuteId : subTasksList) {
+                Node subTask = nodeService.getNode(REP_TID, subExecuteId);
+                migrate(subTask, foreignKey);
+            }
+        }
+    }
+
+
+    private void migrate(Node replicationNode, Object foreignKey) {
+
+        Date startDate = new Date();
         Map<String, Object> migReport = new HashMap<String, Object>();
         try{
+
             String q = String.valueOf(replicationNode.get("query"));
             String fromTable = String.valueOf(replicationNode.get("fromTable"));
             String toTable = String.valueOf(replicationNode.get("toTable"));
+            String subTasks = String.valueOf(replicationNode.get("subTasks"));
+            String subTaskKey = String.valueOf(replicationNode.get("subTaskKey")).trim();
             Date lastUpdated = getLastUpdated(fromTable, toTable);
-            Map<String, Object> preparedQuery = SyntaxUtils.prepareQuery(q, lastUpdated);
+            boolean standAlone = (boolean) replicationNode.get("standAlone");
+
+
+            // 이 노드가 standAlone 이 아니라면 파라미터는 subTaskKey 를 써야 함
+            // standAlone 이라면 날짜가 테이블에 있다.
+            Map<String, Object> preparedQuery = null;
+            Map<String, Object> params = new HashMap<>();
+            if(standAlone) {
+                params.put("lastUpdated", lastUpdated);
+            } else if(foreignKey != null) {
+                subTaskKey = String.valueOf(replicationNode.get("subTaskKey")).trim();
+                params.put(subTaskKey, foreignKey);
+            }
+            preparedQuery = SyntaxUtils.parse(q, params);
+
 
             // MSSQL 로부터 데이터 가져오기
             List<Map<String, Object>> newData = queryMsSql(
                     String.valueOf(preparedQuery.get("query"))
                     , (Object[]) preparedQuery.get("params"));
+
+            if(standAlone && !"null".equals(subTasks)) {
+                for(Map<String, Object> singleDataToInput : newData){
+                    Object subTaskKeyValue = null;
+                    if(singleDataToInput.containsKey(subTaskKey.toLowerCase())){
+                        subTaskKeyValue = singleDataToInput.get(subTaskKey.toLowerCase());
+                        executeSubTask(replicationNode, subTaskKeyValue);
+                    } else if(singleDataToInput.containsKey(subTaskKey.toUpperCase())) {
+                        subTaskKeyValue = singleDataToInput.get(subTaskKey.toUpperCase());
+                        executeSubTask(replicationNode, subTaskKeyValue);
+                    }
+                }
+            }
 
             //mySql 에 밀어넣기
             migReport.putAll(upsertData(toTable, newData));
@@ -152,10 +203,10 @@ public class MnetDataDumpService {
             logger.error("error", e);
         }
         Date end = new Date();
-        migReport.put("jobStarted", start);
+        migReport.put("jobStarted", startDate);
         migReport.put("jobFinished", end);
-        migReport.put("jobDuration", (end.getTime() - start.getTime()));
-        return migReport;
+        migReport.put("jobDuration", (end.getTime() - startDate.getTime()));
+        MigrationUtils.recordDataCopyRecord(ice2Template, migReport);
     }
 
 
@@ -165,20 +216,21 @@ public class MnetDataDumpService {
     }
 
     public void copyData (String target) {
-        Date startDate = new Date();
         // 각자 레포트 보고
         try{
             switch (target) {
                 case  "ALL" :
                     List<Node> repNodeList = nodeService.getNodeList(REP_TID, "");
                     for(Node repNode : repNodeList) {
-                        Map<String, Object> report = migrate(startDate, repNode);
-                        MigrationUtils.recordDataCopyRecord(ice2Template, report);
+                        if((boolean)repNode.get("standAlone")) {
+                            migrate(repNode, null);
+                        }
                     }
                 default:
                     Node repNode = nodeService.getNode(REP_TID, target);
-                    Map<String, Object> report = migrate(startDate, repNode);
-                    MigrationUtils.recordDataCopyRecord(ice2Template, report);
+                    if((boolean)repNode.get("standAlone")) {
+                        migrate(repNode, null);
+                    }
                     break;
             }
         } catch (Exception e) {

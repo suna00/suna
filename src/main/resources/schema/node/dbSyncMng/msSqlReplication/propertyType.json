@@ -78,5 +78,53 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "msSqlReplication",
+    "pid": "standAlone",
+    "description" : "단독 실행 여부",
+    "propertyTypeName": "단독 실행 여부",
+    "valueType": "BOOLEAN",
+    "required": true,
+    "idable": false,
+    "labelable": true,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "msSqlReplication",
+    "pid": "subTasks",
+    "description" : "연관 작업 목록",
+    "propertyTypeName": "연관 작업목록",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": true,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "msSqlReplication",
+    "pid": "subTaskKey",
+    "description" : "연관 작업 목록 PK",
+    "propertyTypeName": "연관 작업목록 PK",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": true,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
   }
 ]
