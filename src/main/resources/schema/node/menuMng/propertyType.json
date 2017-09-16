@@ -118,7 +118,7 @@
     "id": "adminLnbMenu>gnbMenuId",
     "pid": "gnbMenuId",
     "propertyTypeName": "GNB 아이디",
-    "valueType": "REFERENCE",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
@@ -134,15 +134,14 @@
     "id": "adminLnbMenu>parentMenuId",
     "pid": "parentMenuId",
     "propertyTypeName": "상위 메뉴 아이디",
-    "valueType": "REFERENCE",
+    "valueType": "STRING",
     "required": true,
     "idable": true,
     "labelable": false,
     "treeable": true,
     "indexable": true,
     "analyzer": null,
-    "referenceType": "adminLnbMenu",
-    "referenceValue": ""
+    "referenceType": "adminLnbMenu"
   },
   {
     "typeId" : "propertyType",
