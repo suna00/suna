@@ -35,7 +35,8 @@ public class ExecuteContext extends ReadContext{
 
     protected String ifTest ;
 
-    protected List<ExecuteContext> subExecuteContextes ;
+    protected ExecuteContext parentContext ;
+    protected List<ExecuteContext> subExecuteContexts ;
 
     public static ExecuteContext createContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType, String event, String id) {
         ExecuteContext ctx = new ExecuteContext();
@@ -87,9 +88,9 @@ public class ExecuteContext extends ReadContext{
         return ctx ;
     }
 
-    public static ExecuteContext makeContextFromMap(Map<String, Object> data, String typeId) {
+    public static ExecuteContext makeContextFromMap(Map<String, Object> data, String typeId, ExecuteContext parentContext) {
         ExecuteContext ctx = new ExecuteContext();
-
+        ctx.parentContext = parentContext ;
         ctx.setData(data);
 
         NodeType nodeType = NodeUtils.getNodeType(typeId) ;
@@ -109,6 +110,7 @@ public class ExecuteContext extends ReadContext{
         ctx.setNodeType(nodeType);
 
         ctx.event = event ;
+
         ctx.init() ;
 
         return ctx ;
@@ -127,6 +129,9 @@ public class ExecuteContext extends ReadContext{
         }catch(Exception e){
         }
         exist = existNode != null ;
+        if(this.event == null && data.containsKey("event") && getNodeType().getPropertyType("event") == null){
+            this.event = (String) data.get("event");
+        }
 
         if(exist){
             if(event != null && event.equals("create")){
@@ -140,6 +145,7 @@ public class ExecuteContext extends ReadContext{
                     continue;
                 }
 
+
                 Object newValue = NodeUtils.getStoreValue(data, pt, node.getId()) ;
                 if(pt.isI18n() && newValue == null){
                     continue;
@@ -149,6 +155,9 @@ public class ExecuteContext extends ReadContext{
 
                 if(newValue == null && existValue == null) {
                     continue;
+                }else if(existValue != null &&newValue instanceof String && "_null_".equals(newValue)){
+                    node.remove(pt.getPid()) ;
+                    changedProperties.add(pt.getPid()) ;
                 }else if(pt.isFile()){
                     if(newValue != null && newValue instanceof String && ((String) newValue).contains("classpath:")) {
                         if (existValue == null) {
@@ -203,6 +212,31 @@ public class ExecuteContext extends ReadContext{
                 execute = true;
             }catch(Exception e){
                 execute =false ;
+            }
+        }
+
+        for(String key : data.keySet()){
+            Object value = data.get(key) ;
+            if(value instanceof List && (this.nodeType.getPropertyType(key) == null || !this.nodeType.getPropertyType(key).isList()) && NodeUtils.getNodeType(key) != null){
+                for(Map<String, Object> subData : (List<Map<String, Object>>)value){
+                    Map<String, Object> _data = new HashMap<>() ;
+                    _data.putAll(data);
+                    _data.remove(key) ;
+                    _data.putAll(subData);
+                    for(String _key : subData.keySet()){
+                        Object _val = subData.get(_key) ;
+                        if(_val instanceof String && "_parentId_".equals(_val)){
+                            _data.put(_key, this.id) ;
+                        }
+                    }
+                    ExecuteContext subContext = ExecuteContext.makeContextFromMap(_data, key, this) ;
+                    if(subExecuteContexts == null){
+                        subExecuteContexts = new ArrayList<>() ;
+                    }
+                    if(subContext != null) {
+                        subExecuteContexts.add(subContext);
+                    }
+                }
             }
         }
     }
@@ -312,6 +346,12 @@ public class ExecuteContext extends ReadContext{
         }
         EventService eventService = ApplicationContextManager.getBean(EventService.class) ;
         eventService.execute(this) ;
+
+        if(subExecuteContexts != null){
+            for(ExecuteContext subExecuteContext : subExecuteContexts){
+                eventService.execute(subExecuteContext);
+            }
+        }
         return true ;
     }
 
