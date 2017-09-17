@@ -145,6 +145,7 @@ public class ExecuteContext extends ReadContext{
                     continue;
                 }
 
+
                 Object newValue = NodeUtils.getStoreValue(data, pt, node.getId()) ;
                 if(pt.isI18n() && newValue == null){
                     continue;
@@ -154,6 +155,9 @@ public class ExecuteContext extends ReadContext{
 
                 if(newValue == null && existValue == null) {
                     continue;
+                }else if(existValue != null &&newValue instanceof String && "_null_".equals(newValue)){
+                    node.remove(pt.getPid()) ;
+                    changedProperties.add(pt.getPid()) ;
                 }else if(pt.isFile()){
                     if(newValue != null && newValue instanceof String && ((String) newValue).contains("classpath:")) {
                         if (existValue == null) {
