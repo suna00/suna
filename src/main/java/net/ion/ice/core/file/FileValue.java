@@ -17,6 +17,8 @@ public class FileValue implements Serializable{
     private String fileName  ;
     private Long fileSize ;
 
+    public FileValue() {}
+
     public FileValue(PropertyType pt, String id, MultipartFile multipartFile, String saveFilePath) {
         this.handler = pt.getFileHandler() ;
         this.storePath = saveFilePath ;
