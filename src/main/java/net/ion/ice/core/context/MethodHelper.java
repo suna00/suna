@@ -201,13 +201,22 @@ public class MethodHelper {
                 return resultValue;
             }
             case "conditionSysdate" :{
-                if(value == null) return "" ;
+                String defaultStr = "";
+                if(methodParams.length >2 && !methodParams[2].isEmpty()){
+                    defaultStr = methodParams[2].toString();
+                }
+                if(value == null) return defaultStr ;
                 String condition= methodParams[1];
                 if(StringUtils.isEmpty(methodParams[1])) condition =  "" ;
                 if(value.equals(condition)){
-                    return data.get("now").toString();
+                    if(methodParams.length >3 && !methodParams[3].isEmpty()){
+                        Date nowDate = new Date();
+                        return DateFormatUtils.format(nowDate, methodParams[3]);
+                    }else{
+                        return data.get("now").toString();
+                    }
                 }else{
-                    return "";
+                    return defaultStr;
                 }
             }
             case "getCommaItem" :{
