@@ -230,12 +230,15 @@ public class MethodHelper {
                 }
                 return valueArrays[paramInt] ;
             }
-
             case "concatStr":{
                 if(value == null || StringUtils.isEmpty(value.toString())) return "" ;
                 if(methodParams[1] == null) return "";
                 String concatStr = value.toString()+methodParams[1];
                 return concatStr;
+            }
+            case "convertString":{
+                if(value == null) return "";
+                return value.toString();
             }
 
             default :
