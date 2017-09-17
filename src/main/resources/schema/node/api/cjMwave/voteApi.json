@@ -190,6 +190,14 @@
       {
         "paramName": "voteFormlCd",
         "required": false
+      },
+      {
+        "paramName": "snsKey",
+        "required": false
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": false
       }
     ],
     "config": {
@@ -269,8 +277,17 @@
           "select": {
             "ds": "cjDb",
             "resultType": "value",
-            "sql": "select sum(voteNum)as voteNum, sum(voteRate)as voteRate from voteItemStats where voteSeq = @{voteSeq}"
+            "sql": "select sum(voteNum)as voteNum from voteItemStats where voteSeq = @{voteSeq}"
           }
+        },
+        "userVoteCnt": {
+          "value": "10"
+        },
+        "userPvCnt": {
+          "value": "1000"
+        },
+        "ipAdrVoteCnt": {
+          "value": "10000"
         }
       }
     }
@@ -315,10 +332,13 @@
         },
         "response": {
           "_all_": "",
-          "rstrtnPvCnt": {
+          "userVoteCnt": {
+            "value": "10"
+          },
+          "userPvCnt": {
             "value": "1000"
           },
-          "rstrtnIpCnt": {
+          "ipAdrVoteCnt": {
             "value": "10000"
           }
         }

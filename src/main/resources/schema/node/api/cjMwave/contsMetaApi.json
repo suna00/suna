@@ -1438,6 +1438,7 @@
         "videoId": "",
         "videoDivCd": "",
         "created": "",
+        "seoUrl": "",
         "hitNum": {
           "select": {
             "ds": "cjDb",
