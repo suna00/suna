@@ -263,6 +263,9 @@ public class NodeBindingInfo {
         }
         List<Map<String, Object>> items = jdbcTemplate.queryForList(dbQuery.getListParamSql(), dbQuery.getSearchListValue().toArray());
         queryContext.setResultSize(((Long) totalCount.get("totalCount")).intValue());
+        if(queryContext.getStart() > 0) {
+            items = items.subList(queryContext.getStart(), items.size()) ;
+        }
         queryContext.setQueryListSize(items.size());
         return items;
     }
