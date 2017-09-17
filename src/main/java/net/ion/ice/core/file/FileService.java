@@ -11,6 +11,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -36,6 +37,11 @@ public class FileService {
     public FileValue saveMultipartFile(PropertyType pt, String id, MultipartFile multipartFile) {
         FileRepository repository = getFileRepository(pt.getFileHandler()) ;
         return repository.saveMutipartFile(pt, id, multipartFile) ;
+    }
+
+    public FileValue saveFile(PropertyType pt, String id, File file, String fileName, String contentType) {
+        FileRepository repository = getFileRepository(pt.getFileHandler()) ;
+        return repository.saveFile(pt, id, file, fileName, contentType) ;
     }
 
     public FileValue fileValueMapper(String value) {

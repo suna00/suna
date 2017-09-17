@@ -14,6 +14,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -169,15 +170,23 @@ public class ExecuteContext extends ReadContext{
                             changedProperties.add(pt.getPid());
                         }
                     }else if(newValue != null && newValue instanceof FileValue){
-                        String newValueStorePath = ((FileValue) newValue).getStorePath();
+                        FileValue newFileValue = ((FileValue) newValue);
+                        String newValueStorePath = newFileValue.getStorePath();
                         String[] newValueStorePathSplit = StringUtils.split(newValueStorePath, "/");
                         String newValueTid = newValueStorePathSplit.length > 1 ? newValueStorePathSplit[0] : "";
                         String newValuePid = newValueStorePathSplit.length > 2 ? newValueStorePathSplit[1] : "";
 
                         if (!StringUtils.equals(newValueTid, nodeType.getTypeId()) && !StringUtils.equals(newValuePid, pt.getPid()) ) {
                             Resource resource = NodeUtils.getFileService().loadAsResource(newValueTid, newValuePid, newValueStorePath);
-
-
+                            File resourceFile = null;
+                            try {
+                                resourceFile = resource.getFile();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            FileValue fileValue = NodeUtils.getFileService().saveFile(pt, id, resourceFile, newFileValue.getFileName(), newFileValue.getContentType());
+                            node.put(pt.getPid(), fileValue) ;
+                            changedProperties.add(pt.getPid()) ;
                         } else {
                             node.put(pt.getPid(), newValue) ;
                             changedProperties.add(pt.getPid()) ;
