@@ -196,5 +196,23 @@
     "referenceValue": "",
     "codeFilter": "",
     "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "mcdChartBasInfo",
+    "pid": "refdStatsList",
+    "id": "mcdChartBasInfo>refdStatsList",
+    "propertyTypeName": "차트현황리스트",
+    "valueType": "REFERENCED",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "mcdChartStats",
+    "referenceValue": "chMstId",
+    "codeFilter": "",
+    "defaultValue": ""
   }
 ]

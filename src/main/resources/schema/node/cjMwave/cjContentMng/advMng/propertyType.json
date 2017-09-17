@@ -28,11 +28,11 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": false,
-    "analyzer": null,
+    "indexable": true,
+    "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
-    "codeFilter": "advContentType",
+    "codeFilter": "contsMetaDivCd",
     "defaultValue": ""
   },
   {
@@ -46,11 +46,11 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": false,
-    "analyzer": null,
+    "indexable": true,
+    "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
-    "codeFilter": "advPlatformType",
+    "codeFilter": "svcDvcDiv",
     "defaultValue": ""
   },
   {

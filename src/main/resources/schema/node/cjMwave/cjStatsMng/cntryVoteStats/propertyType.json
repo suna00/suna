@@ -19,7 +19,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "v",
+    "tid": "cntryVoteStats",
     "pid": "perdFnsDate",
     "id": "cntryVoteStats>perdFnsDate",
     "propertyTypeName": "기간종료일",

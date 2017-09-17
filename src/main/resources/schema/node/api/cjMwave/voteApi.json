@@ -28,21 +28,21 @@
       }
     ],
     "config": {
-      "getMstId":{
-        "typeId":"mcdChartBasInfo",
-        "resultType" : "none",
-        "query":[
+      "getMstId": {
+        "typeId": "mcdChartBasInfo",
+        "resultType": "none",
+        "query": [
           {
             "field": "mstYyMmDd",
             "method": "matching",
             "value": "{{:searchDt}}"
           }
         ],
-        "response":{
-          "mstIdx":""
+        "response": {
+          "mstIdx": ""
         }
       },
-      "root":{
+      "root": {
         "typeId": "mcdChartStats",
         "query": [
           {
@@ -138,8 +138,8 @@
           "value": "true"
         },
         {
-          "searchFields":"voteNm_{{:langCd}},voteDesc_{{:langCd}},findKywrd",
-          "searchValue":"{{:searchKeyword}}"
+          "searchFields": "voteNm_{{:langCd}},voteDesc_{{:langCd}},findKywrd",
+          "searchValue": "{{:searchKeyword}}"
         },
         {
           "sorting": "{{:sorting}}"
@@ -297,6 +297,10 @@
       {
         "paramName": "snsTypeCd",
         "required": true
+      },
+      {
+        "paramName": "connIpAdr",
+        "required": true
       }
     ],
     "config": {
@@ -306,7 +310,17 @@
         "data": {
           "voteSeq": "{{:voteSeq}}",
           "voteItemSeq": "{{:voteQueiSeq}}",
-          "prtcpMbrId": "{{:snsTypeCd}}>{{:snsKey}}"
+          "prtcpMbrId": "{{:snsTypeCd}}>{{:snsKey}}",
+          "connIpAdr": "{{:connIpAdr}}"
+        },
+        "response": {
+          "_all_": "",
+          "rstrtnPvCnt": {
+            "value": "1000"
+          },
+          "rstrtnIpCnt": {
+            "value": "10000"
+          }
         }
       }
     }
@@ -340,34 +354,53 @@
       }
     ],
     "config": {
-      "typeId": "votePwnrInfo",
-      "query": [
-        {
-          "field": "pwnrBasSeq",
-          "method": "referenceJoin",
-          "value": "voteSeq_matching={{:voteSeq}}&limit=1"
-        },
-        {
-          "sorting": "{{:sorting}}"
-        },
-        {
-          "page": "{{:page}}",
-          "pageSize": "{{:pageSize}}"
+      "root": {
+        "typeId": "votePwnrInfo",
+        "query": [
+          {
+            "field": "pwnrBasSeq",
+            "method": "matching",
+            "value": "{{:pwnrBasSeq}}"
+          },
+          {
+            "sorting": "{{:sorting}}"
+          },
+          {
+            "page": "{{:page}}",
+            "pageSize": "{{:pageSize}}"
+          }
+        ],
+        "response": {
+          "voteSeq": {
+            "value": "{{:voteSeq}}"
+          },
+          "votePwnrSeq": "",
+          "mbrId": "",
+          "mbrFirstName": "",
+          "mbrLastName": "",
+          "email": "",
+          "mblNo": "",
+          "homeAdr": "",
+          "memo": "",
+          "prtcpDate": "created"
         }
-      ],
-      "response": {
-        "voteSeq": {
-          "value": "{{:voteSeq}}"
-        },
-        "votePwnrSeq": "",
-        "mbrId": "",
-        "mbrFirstName": "",
-        "mbrLastName": "",
-        "email": "",
-        "mblNo": "",
-        "homeAdr": "",
-        "memo": "",
-        "prtcpDate": "created"
+      },
+      "votePwnrBasInfo": {
+        "typeId": "votePwnrBasInfo",
+        "query": [
+          {
+            "field": "voteSeq",
+            "method": "matching",
+            "value": "{{:voteSeq}}"
+          },
+          {
+            "limit": "1"
+          }
+        ],
+        "response": {
+          "pwnrBasSeq": "",
+          "url": ""
+        }
       }
     }
   },
@@ -504,44 +537,20 @@
       "response": {
         "_all_": "",
         "refdItemList": {
-          "typeId": "voteItemInfo",
+          "typeId": "voteItemStats",
           "query": [
             {
               "field": "voteSeq",
-              "method": "referenceJoin",
-              "value": "voteSeq_matching={{:voteSeq}}"
+              "method": "matching",
+              "value": "{{:voteSeq}}"
             },
             {
-              "sorting": "sortOdrg"
+              "sorting": "rankNum",
+              "referenceView": "voteItemSeq"
             }
           ],
           "response": {
             "_all_": "",
-            "stats": {
-              "typeId": "voteItemStats",
-              "resultType": "merge",
-              "query": [
-                {
-                  "field": "voteSeq",
-                  "method": "matching",
-                  "value": "{{:voteSeq}}"
-                },
-                {
-                  "field": "voteItemSeq",
-                  "method": "matching",
-                  "value": "{{:voteItemSeq}}"
-                },
-                {
-                  "sorting": "rankNum"
-                }
-              ],
-              "response": {
-                "rankNum": "",
-                "rankGapNum": "",
-                "voteRate": "",
-                "voteNum": ""
-              }
-            },
             "myVoteYn": {
               "select": {
                 "ds": "cjDb",
@@ -862,6 +871,83 @@
           "pageSize": "{{:pageSize}}"
         }
       ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv107",
+    "apiName": "MCD 투표내역 상세",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "bradTelcsDt",
+        "required": true
+      },
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "voteBasInfo",
+      "query": [
+        {
+          "field": "voteFormlCd",
+          "method": "matching",
+          "value": "2"
+        },
+        {
+          "field": "showLoCd",
+          "method": "matching",
+          "value": "4"
+        },
+        {
+          "field": "bradTelcsDt",
+          "method": "above",
+          "value": "{{:concatStr(bradTelcsDt,000000)}}"
+        },
+        {
+          "field": "bradTelcsDt",
+          "method": "below",
+          "value": "{{:concatStr(bradTelcsDt,235959)}}"
+        },
+        {
+          "limit": "1",
+          "sorting": "voteSeq desc"
+        }
+      ],
+      "response": {
+        "_all_": "",
+        "refdItemList": {
+          "typeId": "voteItemStats",
+          "query": [
+            {
+              "field": "voteSeq",
+              "method": "matching",
+              "value": "{{:voteSeq}}"
+            },
+            {
+              "sorting": "rankNum",
+              "referenceView": "voteItemSeq"
+            }
+          ],
+          "response": {
+            "_all_": "",
+            "myVoteYn": {
+              "select": {
+                "ds": "cjDb",
+                "resultType": "value",
+                "sql": "select if(count(*)>0,'true','false') myVoteYn from votePrtcptHst where voteSeq=@{voteSeq} and voteItemSeq =@{voteItemSeq} and prtcpMbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
+              }
+            }
+          }
+        }
+      }
     }
   },
   {

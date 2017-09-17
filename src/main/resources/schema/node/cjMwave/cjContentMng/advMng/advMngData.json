@@ -2,43 +2,43 @@
   {
     "typeId": "advMng",
     "advSeq": 1,
-    "contentType": "photo",
-    "platformType": "pc",
+    "contentType": "6",
+    "platformType": "1",
     "iframeUrl": "http://www.naver.com"
   },
   {
     "typeId": "advMng",
     "advSeq": 2,
-    "contentType": "photo",
+    "contentType": "6",
     "platformType": "moweb",
     "iframeUrl": "http://www.naver.com"
   },
   {
     "typeId": "advMng",
     "advSeq": 3,
-    "contentType": "photo",
-    "platformType": "moapp",
+    "contentType": "6",
+    "platformType": "3",
     "iframeUrl": "http://www.naver.com"
   },
   {
     "typeId": "advMng",
     "advSeq": 4,
-    "contentType": "news",
-    "platformType": "pc",
+    "contentType": "8",
+    "platformType": "1",
     "iframeUrl": "http://www.naver.com"
   },
   {
     "typeId": "advMng",
     "advSeq": 5,
-    "contentType": "news",
-    "platformType": "moweb",
+    "contentType": "8",
+    "platformType": "2",
     "iframeUrl": "http://www.naver.com"
   },
   {
     "typeId": "advMng",
     "advSeq": 6,
-    "contentType": "news",
-    "platformType": "moapp",
+    "contentType": "8",
+    "platformType": "3",
     "iframeUrl": "http://www.naver.com"
   }
 ]

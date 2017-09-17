@@ -58,8 +58,8 @@
           "value": "{{:albumGenreCd}}"
         },
         {
-          "searchFields":"albumNm_{{:langCd}},albumDesc_{{:langCd}},findKywrd",
-          "searchValue":"{{:searchKeyword}}"
+          "searchFields": "albumNm_{{:langCd}},albumDesc_{{:langCd}},findKywrd",
+          "searchValue": "{{:searchKeyword}}"
         },
         {
           "field": "showYn",
@@ -165,8 +165,8 @@
           "value": "{{:albumId}}"
         },
         {
-          "searchFields":"songNm_{{:langCd}},songDesc_{{:langCd}},findKywrd",
-          "searchValue":"{{:searchKeyword}}"
+          "searchFields": "songNm_{{:langCd}},songDesc_{{:langCd}},findKywrd",
+          "searchValue": "{{:searchKeyword}}"
         },
         {
           "field": "showYn",
@@ -252,8 +252,8 @@
           "value": "{{:genreCd}}"
         },
         {
-          "searchFields":"artistNm_{{:langCd}},artistDesc_{{:langCd}},findKywrd",
-          "searchValue":"{{:searchKeyword}}"
+          "searchFields": "artistNm_{{:langCd}},artistDesc_{{:langCd}},findKywrd",
+          "searchValue": "{{:searchKeyword}}"
         },
         {
           "field": "showYn",
@@ -352,14 +352,15 @@
           "field": "artistId",
           "method": "matching",
           "value": "{{:artistId}}"
-        },{
+        },
+        {
           "field": "contsMetaCtgryId",
           "method": "matching",
           "value": "{{:contsMetaCtgryId}}"
         },
         {
-          "searchFields":"musicVideoNm_{{:langCd}},musicVideoDesc_{{:langCd}},findKywrd",
-          "searchValue":"{{:searchKeyword}}"
+          "searchFields": "musicVideoNm_{{:langCd}},musicVideoDesc_{{:langCd}},findKywrd",
+          "searchValue": "{{:searchKeyword}}"
         },
         {
           "field": "showYn",
@@ -495,6 +496,16 @@
                 "limit": "2"
               }
             ]
+          },
+          "rcmdVoteList": {
+            "typeId": "voteBasInfo",
+            "query": [
+              {
+                "sorting": "created desc",
+                "limit": "3",
+                "includeReferenced": true
+              }
+            ]
           }
         }
       },
@@ -540,6 +551,10 @@
         "required": false
       },
       {
+        "paramName": "svcTermlDivCd",
+        "required": false
+      },
+      {
         "paramName": "searchKeyword",
         "required": false
       }
@@ -558,13 +573,8 @@
           "value": "{{:artistId}}"
         },
         {
-          "field": "findKywrd",
-          "method": "matching",
-          "value": "{{:searchKeyword}}"
-        },
-        {
-          "searchFields":"newsNm,newsDesc,findKywrd",
-          "searchValue":"{{:searchKeyword}}"
+          "searchFields": "newsNm,newsDesc,findKywrd",
+          "searchValue": "{{:searchKeyword}}"
         },
         {
           "field": "showYn",
@@ -599,6 +609,24 @@
             "resultType": "value",
             "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('news','::',@{newsId})"
           }
+        },
+        "adList": {
+          "typeId": "advMng",
+          "query": [
+            {
+              "field": "contentType",
+              "method": "matching",
+              "value": "8"
+            },
+            {
+              "field": "platformType",
+              "method": "matching",
+              "value": "{{:svcTermlDivCd}}"
+            },
+            {
+              "includeReferenced": true
+            }
+          ]
         }
       }
     }
@@ -746,6 +774,16 @@
                 "limit": "2"
               }
             ]
+          },
+          "rcmdVoteList": {
+            "typeId": "voteBasInfo",
+            "query": [
+              {
+                "sorting": "created desc",
+                "limit": "3",
+                "includeReferenced": true
+              }
+            ]
           }
         }
       },
@@ -849,6 +887,11 @@
         "paramName": "groupPhotoId",
         "required": true
       }
+    ,
+      {
+        "paramName": "svcTermlDivCd",
+        "required": false
+      }
     ],
     "config": {
       "root": {
@@ -940,6 +983,34 @@
                 "limit": "2"
               }
             ]
+          },
+          "rcmdVoteList": {
+            "typeId": "voteBasInfo",
+            "query": [
+              {
+                "sorting": "created desc",
+                "limit": "3",
+                "includeReferenced": true
+              }
+            ]
+          },
+          "adList": {
+            "typeId": "advMng",
+            "query": [
+              {
+                "field": "contentType",
+                "method": "matching",
+                "value": "6"
+              },
+              {
+                "field": "platformType",
+                "method": "matching",
+                "value": "{{:svcTermlDivCd}}"
+              },
+              {
+                "includeReferenced": true
+              }
+            ]
           }
         }
       },
@@ -1012,8 +1083,8 @@
           "value": "{{:artistId}}"
         },
         {
-          "searchFields":"singlePhotoNm_{{:langCd}},singlePhotoDesc_{{:langCd}}",
-          "searchValue":"{{:searchKeyword}}"
+          "searchFields": "singlePhotoNm_{{:langCd}},singlePhotoDesc_{{:langCd}}",
+          "searchValue": "{{:searchKeyword}}"
         },
         {
           "sorting": "{{:sorting}}"
@@ -1135,8 +1206,8 @@
           "value": "{{:rcmdContsYn}}"
         },
         {
-          "searchFields":"title_{{:langCd}},contentTitle_{{:langCd}},synopsis_{{:langCd}},prsnName,searchKeyword",
-          "searchValue":"{{:searchKeyword}}"
+          "searchFields": "title_{{:langCd}},contentTitle_{{:langCd}},synopsis_{{:langCd}},prsnName,searchKeyword",
+          "searchValue": "{{:searchKeyword}}"
         },
         {
           "sorting": "{{:sorting}}"
@@ -1262,6 +1333,16 @@
                 "limit": "2"
               }
             ]
+          },
+          "rcmdVoteList": {
+            "typeId": "voteBasInfo",
+            "query": [
+              {
+                "sorting": "created desc",
+                "limit": "3",
+                "includeReferenced": true
+              }
+            ]
           }
         }
       },
@@ -1339,8 +1420,8 @@
           "value": "{{:searchKeyword}}"
         },
         {
-          "searchFields":"title_{{:langCd}},contentTitle_{{:langCd}},synopsis_{{:langCd}},prsnName,searchKeyword",
-          "searchValue":"{{:searchKeyword}}"
+          "searchFields": "title_{{:langCd}},contentTitle_{{:langCd}},synopsis_{{:langCd}},prsnName,searchKeyword",
+          "searchValue": "{{:searchKeyword}}"
         },
         {
           "sorting": "{{:sorting}}"

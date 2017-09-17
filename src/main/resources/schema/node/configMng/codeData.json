@@ -2257,46 +2257,6 @@
   },
   {
     "typeId": "code",
-    "groupCodeId": "advContentType",
-    "codeId": "photo",
-    "name": "포토",
-    "order": 1,
-    "active": true
-  },
-  {
-    "typeId": "code",
-    "groupCodeId": "advContentType",
-    "codeId": "news",
-    "name": "뉴스",
-    "order": 2,
-    "active": true
-  },
-  {
-    "typeId": "code",
-    "groupCodeId": "advPlatformType",
-    "codeId": "pc",
-    "name": "PC",
-    "order": 1,
-    "active": true
-  },
-  {
-    "typeId": "code",
-    "groupCodeId": "advPlatformType",
-    "codeId": "moweb",
-    "name": "Mobile Web",
-    "order": 2,
-    "active": true
-  },
-  {
-    "typeId": "code",
-    "groupCodeId": "advPlatformType",
-    "codeId": "moapp",
-    "name": "Mobile App",
-    "order": 3,
-    "active": true
-  },
-  {
-    "typeId": "code",
     "groupCodeId": "appPlatformType",
     "codeId": "iphone",
     "name": "아이폰",
@@ -2311,4 +2271,5 @@
     "order": 2,
     "active": true
   }
+
 ]

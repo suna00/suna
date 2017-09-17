@@ -30,7 +30,7 @@
       }
     ],
     "commonResponse": {
-      "sysDt": "{{:sysdate}}"
+      "sysDt": "{{:convertString(sysdate)}}"
     }
   },
   {
@@ -64,7 +64,7 @@
       }
     ],
     "commonResponse": {
-      "sysDt": "{{:sysdate}}"
+      "sysDt": "{{:convertString(sysdate)}}"
     }
   },
   {
@@ -98,7 +98,7 @@
       }
     ],
     "commonResponse": {
-      "sysDt": "{{:sysdate}}"
+      "sysDt": "{{:convertString(sysdate)}}"
     }
   },
   {
@@ -132,7 +132,7 @@
       }
     ],
     "commonResponse": {
-      "sysDt": "{{:sysdate}}"
+      "sysDt": "{{:convertString(sysdate)}}"
     }
   },
   {
@@ -166,7 +166,7 @@
       }
     ],
     "commonResponse": {
-      "sysDt": "{{:sysdate}}"
+      "sysDt": "{{:convertString(sysdate)}}"
     }
   },
   {
@@ -200,7 +200,7 @@
       }
     ],
     "commonResponse": {
-      "sysDt": "{{:sysdate}}"
+      "sysDt": "{{:convertString(sysdate)}}"
     }
   },
   {
@@ -234,7 +234,7 @@
       }
     ],
     "commonResponse": {
-      "sysDt": "{{:sysdate}}"
+      "sysDt": "{{:convertString(sysdate)}}"
     }
   },
   {
@@ -268,7 +268,7 @@
       }
     ],
     "commonResponse": {
-      "sysDt": "{{:sysdate}}"
+      "sysDt": "{{:convertString(sysdate)}}"
     }
   },
   {
@@ -302,7 +302,7 @@
       }
     ],
     "commonResponse": {
-      "sysDt": "{{:sysdate}}"
+      "sysDt": "{{:convertString(sysdate)}}"
     }
   },
   {
@@ -336,7 +336,7 @@
       }
     ],
     "commonResponse": {
-      "sysDt": "{{:sysdate}}"
+      "sysDt": "{{:convertString(sysdate)}}"
     }
   },
   {
@@ -370,7 +370,7 @@
       }
     ],
     "commonResponse": {
-      "sysDt": "{{:sysdate}}"
+      "sysDt": "{{:convertString(sysdate)}}"
     }
   },
   {
@@ -404,7 +404,7 @@
       }
     ],
     "commonResponse": {
-      "sysDt": "{{:sysdate}}"
+      "sysDt": "{{:convertString(sysdate)}}"
     }
   },
   {
@@ -438,7 +438,7 @@
       }
     ],
     "commonResponse": {
-      "sysDt": "{{:sysdate}}"
+      "sysDt": "{{:convertString(sysdate)}}"
     }
   }
 ]
