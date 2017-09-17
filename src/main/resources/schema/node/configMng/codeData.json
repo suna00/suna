@@ -2294,6 +2294,21 @@
     "name": "Mobile App",
     "order": 3,
     "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "appPlatformType",
+    "codeId": "iphone",
+    "name": "아이폰",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "appPlatformType",
+    "codeId": "android",
+    "name": "안드로이드",
+    "order": 2,
+    "active": true
   }
-
 ]

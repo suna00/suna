@@ -467,5 +467,12 @@
     "name": "광고 플렛폼 타입",
     "active": true,
     "desc": "광고 플렛폼 타입 코드(PC, Mobile Web, Mobile App)"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "appPlatformType",
+    "name": "App 강제 업그레이드 플랫폼 타입",
+    "active": true,
+    "desc": "App 강제 업그레이드 플랫폼 타입(iphone, android)"
   }
 ]

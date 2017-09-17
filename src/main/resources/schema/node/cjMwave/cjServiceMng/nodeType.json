@@ -508,5 +508,15 @@
     "repositoryType": "data",
     "eviction": 0,
     "tableName": "cjDb#onairTranInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "appUpdMng",
+    "tid": "appUpdMng",
+    "typeName": "APP 강제 업데이트 관리",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#appUpdMng"
   }
 ]
