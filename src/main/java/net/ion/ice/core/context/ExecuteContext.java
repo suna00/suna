@@ -10,6 +10,7 @@ import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
 import net.ion.ice.core.query.QueryTerm;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.core.io.Resource;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -168,8 +169,19 @@ public class ExecuteContext extends ReadContext{
                             changedProperties.add(pt.getPid());
                         }
                     }else if(newValue != null && newValue instanceof FileValue){
-                        node.put(pt.getPid(), newValue) ;
-                        changedProperties.add(pt.getPid()) ;
+                        String newValueStorePath = ((FileValue) newValue).getStorePath();
+                        String[] newValueStorePathSplit = StringUtils.split(newValueStorePath, "/");
+                        String newValueTid = newValueStorePathSplit.length > 1 ? newValueStorePathSplit[0] : "";
+                        String newValuePid = newValueStorePathSplit.length > 2 ? newValueStorePathSplit[1] : "";
+
+                        if (!StringUtils.equals(newValueTid, nodeType.getTypeId()) && !StringUtils.equals(newValuePid, pt.getPid()) ) {
+                            Resource resource = NodeUtils.getFileService().loadAsResource(newValueTid, newValuePid, newValueStorePath);
+
+
+                        } else {
+                            node.put(pt.getPid(), newValue) ;
+                            changedProperties.add(pt.getPid()) ;
+                        }
                     }else if(newValue == null && existValue != null) {
                         node.remove(pt.getPid()) ;
                         changedProperties.add(pt.getPid()) ;

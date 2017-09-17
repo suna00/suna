@@ -1,5 +1,6 @@
 package net.ion.ice.core.file;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
 import net.ion.ice.core.node.NodeService;
@@ -25,6 +26,8 @@ public class FileService {
 
     private Map<String, FileRepository> repositoryMap = new ConcurrentHashMap<>() ;
 
+    private ObjectMapper objectMapper = new ObjectMapper();
+
     public void registerRepository(String repositoryKey, FileRepository repository) {
         repositoryMap.put(repositoryKey, repository) ;
     }
@@ -35,7 +38,15 @@ public class FileService {
         return repository.saveMutipartFile(pt, id, multipartFile) ;
     }
 
-
+    public FileValue fileValueMapper(String value) {
+        FileValue fileValue = null;
+        try {
+            fileValue = objectMapper.readValue(value, FileValue.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return fileValue;
+    }
 
     private FileRepository getFileRepository(String fileHandler) {
         if(StringUtils.isEmpty(fileHandler)){
