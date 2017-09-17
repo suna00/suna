@@ -560,74 +560,76 @@
       }
     ],
     "config": {
-      "typeId": "news",
-      "query": [
-        {
-          "field": "contsMetaCtgryId",
-          "method": "matching",
-          "value": "{{:contsMetaCtgryId}}"
-        },
-        {
-          "field": "artistId",
-          "method": "matching",
-          "value": "{{:artistId}}"
-        },
-        {
-          "searchFields": "newsNm,newsDesc,findKywrd",
-          "searchValue": "{{:searchKeyword}}"
-        },
-        {
-          "field": "showYn",
-          "method": "matching",
-          "value": "true"
-        },
-        {
-          "field": "langCd",
-          "method": "matching",
-          "value": "{{:langCd}}"
-        },
-        {
-          "sorting": "{{:sorting}}"
-        },
-        {
-          "page": "{{:page}}",
-          "pageSize": "{{:pageSize}}"
-        }
-      ],
-      "response": {
-        "_all_": "",
-        "replNum": {
-          "select": {
-            "ds": "cjDb",
-            "resultType": "value",
-            "sql": "select count(*)as replNum from replInfo where contsMetaId = concat('news','::',@{newsId})"
+      "root": {
+        "typeId": "news",
+        "query": [
+          {
+            "field": "contsMetaCtgryId",
+            "method": "matching",
+            "value": "{{:contsMetaCtgryId}}"
+          },
+          {
+            "field": "artistId",
+            "method": "matching",
+            "value": "{{:artistId}}"
+          },
+          {
+            "searchFields": "newsNm,newsDesc,findKywrd",
+            "searchValue": "{{:searchKeyword}}"
+          },
+          {
+            "field": "showYn",
+            "method": "matching",
+            "value": "true"
+          },
+          {
+            "field": "langCd",
+            "method": "matching",
+            "value": "{{:langCd}}"
+          },
+          {
+            "sorting": "{{:sorting}}"
+          },
+          {
+            "page": "{{:page}}",
+            "pageSize": "{{:pageSize}}"
           }
-        },
-        "likeNum": {
-          "select": {
-            "ds": "cjDb",
-            "resultType": "value",
-            "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('news','::',@{newsId})"
-          }
-        },
-        "adList": {
-          "typeId": "advMng",
-          "query": [
-            {
-              "field": "contentType",
-              "method": "matching",
-              "value": "8"
-            },
-            {
-              "field": "platformType",
-              "method": "matching",
-              "value": "{{:svcTermlDivCd}}"
-            },
-            {
-              "includeReferenced": true
+        ],
+        "response": {
+          "_all_": "",
+          "replNum": {
+            "select": {
+              "ds": "cjDb",
+              "resultType": "value",
+              "sql": "select count(*)as replNum from replInfo where contsMetaId = concat('news','::',@{newsId})"
             }
-          ]
+          },
+          "likeNum": {
+            "select": {
+              "ds": "cjDb",
+              "resultType": "value",
+              "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('news','::',@{newsId})"
+            }
+          }
         }
+      },
+      "adList": {
+        "typeId": "advMng",
+        "query": [
+          {
+            "field": "contentType",
+            "method": "matching",
+            "value": "8"
+          },
+          {
+            "field": "platformType",
+            "method": "matching",
+            "value": "{{:svcTermlDivCd}}"
+          },
+          {
+            "includeReferenced": true
+          }
+        ]
       }
     }
   },
@@ -886,8 +888,7 @@
       {
         "paramName": "groupPhotoId",
         "required": true
-      }
-    ,
+      },
       {
         "paramName": "svcTermlDivCd",
         "required": false
@@ -993,26 +994,26 @@
                 "includeReferenced": true
               }
             ]
-          },
-          "adList": {
-            "typeId": "advMng",
-            "query": [
-              {
-                "field": "contentType",
-                "method": "matching",
-                "value": "6"
-              },
-              {
-                "field": "platformType",
-                "method": "matching",
-                "value": "{{:svcTermlDivCd}}"
-              },
-              {
-                "includeReferenced": true
-              }
-            ]
           }
         }
+      },
+      "adList": {
+        "typeId": "advMng",
+        "query": [
+          {
+            "field": "contentType",
+            "method": "matching",
+            "value": "6"
+          },
+          {
+            "field": "platformType",
+            "method": "matching",
+            "value": "{{:svcTermlDivCd}}"
+          },
+          {
+            "includeReferenced": true
+          }
+        ]
       },
       "hitNumUpdate": {
         "typeId": "groupPhoto",
