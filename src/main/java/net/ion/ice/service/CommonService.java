@@ -23,6 +23,7 @@ public class CommonService {
         /*leave Member*/
         resultCodeMap.put("L0001", "진행중인 거래내역이 있습니다.");
         resultCodeMap.put("L0002", "회원정보가 존재하지 않습니다.");
+        resultCodeMap.put("L0003", "이미 탈퇴한 회원입니다.");
 
         /*Coupon*/
         resultCodeMap.put("V0001", "존재하지 않는 쿠폰유형입니다.");

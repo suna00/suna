@@ -177,7 +177,7 @@ public class MemberService {
     public ExecuteContext leaveMembership(ExecuteContext context){
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
 
-        String[] params = { "memberNo" };
+        String[] params = { "memberNo","leaveType","reasonType" };
         if (common.requiredParams(context, data, params)) return context;
 
         List<Node> list = nodeService.getNodeList("orderProduct", "memberNo_matching="+data.get("memberNo"));
@@ -198,12 +198,19 @@ public class MemberService {
             return context;
         }
 
-        node.put("memberStatus", "leave");
-        nodeService.executeNode(node, "member", common.UPDATE);
+        Node leave = nodeService.getNode("requestToleaveMember", data.get("memberNo").toString());
+        if(leave != null){
+            common.setErrorMessage(context, "L0003");
+            return context;
+        }
 
         data.putAll(node);
         data.put("leaveDate", new Date());
         nodeService.executeNode(data, "requestToleaveMember", common.CREATE);
+
+        node.put("memberStatus", "leave");
+        nodeService.executeNode(node, "member", common.UPDATE);
+
 
         return context;
     }
