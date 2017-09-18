@@ -11,7 +11,7 @@ public class FileUtils {
     /*
     * URL 로 파일을 요청하고 파일객체 반환
     * */
-    public File retrieveRemoteFile (String url) throws Exception {
+    public static File retrieveRemoteFile (String url) throws Exception {
         URL requestUrl = new URL(url);
         File file = null;
         org.apache.commons.io.FileUtils.copyURLToFile(requestUrl, file);
