@@ -56,5 +56,33 @@
         }
       }
     }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "coupon",
+    "apiId" : "applicable",
+    "apiName" : "적용 가능한 쿠폰 리스트",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "tempOrderProduct",
+      "query" : [
+        {"field" : "tempOrderId", "method" : "matching", "value" : "{{:tempOrderId}}" }
+      ],
+      "response": {
+        "_all_": "",
+        "applicableCoupons": {
+          "select" : {
+            "ds" : "ytnDevDb",
+            "resultType" : "list",
+            "sql" : "select z.* from ( SELECT x.couponId, y.*, @{orderPrice} as productPrice, IF(y.benefitsType='discountRate', IF((@{orderPrice} / 100 * y.benefitsPrice) > y.maxDiscountPrice, y.maxDiscountPrice,(@{orderPrice} / 100 * y.benefitsPrice)) , IF(y.minPurchasePrice < 1500, y.benefitsPrice, 0)) as discountPrice FROM ( (SELECT a.*, c.productId as useableProductId FROM coupon a, coupontypetoproductmap c WHERE a.memberNo = @{memberNo} AND c.productId = @{productId} AND a.couponTypeId = c.couponTypeId AND a.siteType in (select code from commoncode where upperCode='siteType' and find_in_set(code,IF(IFNULL(@{siteType}, 'all') != 'all', concat('company',',all'), 'all')) > 0) AND a.channelType in (select code from commoncode where upperCode='channelType' and find_in_set(code,IF(IFNULL(@{channelType}, 'all') != 'all', concat('pc',',all'), 'all')) > 0) AND a.startDate <= now() AND a.endDate >= now() AND a.couponStatus = 'n') UNION ALL (SELECT a.*, c.productId as useableProductId FROM coupon a , ( SELECT couponTypeId,productId FROM couponTypeToCategoryMap c, producttocategorymap p WHERE productId = @{productId} AND p.categoryId = c.categoryId GROUP BY couponTypeId ) c WHERE a.memberNo = @{memberNo} AND a.couponTypeId = c.couponTypeId AND a.siteType in (select code from commoncode where upperCode='siteType' and find_in_set(code,IF(IFNULL(@{siteType}, 'all') != 'all', concat('company',',all'), 'all')) > 0) AND a.channelType in (select code from commoncode where upperCode='channelType' and find_in_set(code,IF(IFNULL(@{channelType}, 'all') != 'all', concat('pc',',all'), 'all')) > 0) AND a.startDate <= now() AND a.endDate >= now() AND a.couponStatus = 'n' )) x, coupontype y where x.couponTypeId = y.couponTypeId ) z where z.discountPrice > 0 order by z.discountPrice desc"
+          },
+          "response": {
+            "_all_": ""
+          }
+        }
+      }
+    }
   }
 ]

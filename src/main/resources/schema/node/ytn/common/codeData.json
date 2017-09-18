@@ -5590,36 +5590,36 @@
   },
   {
     "typeId": "commonCode",
-    "code": "전체",
+    "code": "all",
     "upperCode": "channelType",
-    "name": "all",
+    "name": "전체",
     "description": "",
     "sortOrder": "1",
     "commonCodeStatus": "y"
   },
   {
     "typeId": "commonCode",
-    "code": "PC",
+    "code": "pc",
     "upperCode": "channelType",
-    "name": "pc",
+    "name": "PC",
     "description": "",
     "sortOrder": "2",
     "commonCodeStatus": "y"
   },
   {
     "typeId": "commonCode",
-    "code": "Mobile Web",
+    "code": "mobile",
     "upperCode": "channelType",
-    "name": "mobile",
+    "name": "Mobile Web",
     "description": "",
     "sortOrder": "3",
     "commonCodeStatus": "y"
   },
   {
     "typeId": "commonCode",
-    "code": "APP",
+    "code": "app",
     "upperCode": "channelType",
-    "name": "app",
+    "name": "APP",
     "description": "",
     "sortOrder": "4",
     "commonCodeStatus": "y"

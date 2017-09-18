@@ -111,7 +111,6 @@ public class NodeBindingService {
         return readContext.makeResult();
     }
 
-
     public NodeBindingInfo getNodeBindingInfo(String typeId) {
         nodeBindProcess(typeId);
         return nodeBindingInfoMap.get(typeId);
@@ -147,6 +146,11 @@ public class NodeBindingService {
     public void delete(Map<String, String[]> parameterMap, String typeId) {
         NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(typeId);
         nodeBindingInfo.delete(parameterMap);
+    }
+
+    public void delete(String typeId, String id) {
+        NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(typeId);
+        nodeBindingInfo.delete(id);
     }
 
     public void delete(ExecuteContext context) {

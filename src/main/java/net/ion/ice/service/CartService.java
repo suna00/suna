@@ -53,20 +53,19 @@ public class CartService {
         String productIds = (String) data.get("productIds");
         String[] productIdsArray = productIds.split(",");
         for(String productId : productIdsArray){
-            nodeService.deleteNode("cartProduct", productId);
-            List<Node> cartProductItemList = nodeService.getNodeList("cartProductItem", "cartProductId_matching=".concat(productId));
+            nodeBindingService.delete("cartProduct", productId);
+            List<Map<String, Object>> cartProductItemList = nodeBindingService.list("cartProductItem", "cartProductId_in=".concat(productId));
             if(cartProductItemList.size() > 0){
-                for(Node node : cartProductItemList){
-                    nodeService.deleteNode("cartProductItem", node.getId());
+                for(Map<String, Object> cartProductItem : cartProductItemList){
+                    nodeBindingService.delete("cartProductItem", String.valueOf(cartProductItem.get("cartProductItemId")));
                 }
             }
         }
-
-        context.setResult("");
+        context.setResult(CommonService.setResult("C0001"));
     }
 
     private void mergeList(Map<String, Object> data, Object cartId, String tid) throws IOException {
-        List<Map<String, Object>> referenced = nodeBindingService.list(tid, "cartId_matching="+cartId);
+        List<Map<String, Object>> referenced = nodeBindingService.list(tid, "cartId_in="+cartId);
         List<Map<String, Object>> maps = JsonUtils.parsingJsonToList(data.get(tid).toString());
 
         boolean exist = false;

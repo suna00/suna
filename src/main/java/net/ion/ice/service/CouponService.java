@@ -107,7 +107,7 @@ public class CouponService {
         return context;
     }
 
-//    적용가능한
+/*//    적용가능한
     public ExecuteContext applicable(ExecuteContext context) {
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
 
@@ -119,9 +119,10 @@ public class CouponService {
         NodeBindingInfo nodeBindingInfo = NodeUtils.getNodeBindingInfo(context.getNodeType().getTypeId()) ;
         List<Map<String, Object>> tempOrderProducts = nodeBindingService.list("tempOrderProduct", "tempOrderId_matching="+data.get("tempOrderId"));
 
+        String siteType = (data.get("siteType") == null ? "" : data.get("siteType").toString());
         for(Map<String, Object> tempOrderProduct : tempOrderProducts){
             List<Map<String, Object>> list = new ArrayList<>();
-            List<Map<String, Object>> coupons = getApplicableCoupons(nodeBindingInfo, data.get("memberNo").toString(), tempOrderProduct.get("productId").toString());
+            List<Map<String, Object>> coupons = getUseableCouponsForProduct(nodeBindingInfo, siteType, data.get("memberNo").toString(), tempOrderProduct.get("productId").toString());
             for(Map<String, Object> coupon : coupons){
                 Node node = nodeService.getNode("couponType", coupon.get("couponTypeId").toString());
                 Integer discountPrice = getDiscountPrice(node, tempOrderProduct.get("orderPrice"));
@@ -144,7 +145,7 @@ public class CouponService {
     }
 
     public Integer getDiscountPrice(Node couponType, Object orderPrice){
-        Integer result = 1000;
+        Integer result = 0;
         if("discountRate".equals(couponType.getValue("benefitsType"))){
 //            IF((15000 / 100 * y.benefitsPrice) > y.maxDiscountPrice, y.maxDiscountPrice,(15000 / 100 * y.benefitsPrice))
 
@@ -159,13 +160,13 @@ public class CouponService {
         return result;
     }
 
-    public List<Map<String, Object>> getApplicableCoupons(NodeBindingInfo nodeBindingInfo, String memberNo, String productId){
+    public List<Map<String, Object>> getUseableCouponsForProduct(NodeBindingInfo nodeBindingInfo, String siteType, String memberNo, String productId){
         List<Map<String, Object>> list = new ArrayList<>();
         String query = "SELECT a.*, c.productId as useableProductId\n" +
                 "FROM coupon a, coupontypetoproductmap c\n" +
                 "WHERE a.memberNo = ? AND c.productId = ? \n" +
                 "      AND a.couponTypeId = c.couponTypeId\n" +
-                "      AND a.siteType != IF(IFNULL('university', 'company') = 'university', 'company', 'university')\n" +
+                "      AND a.siteType != IF(IFNULL(?, 'company') = 'university', 'company', 'university')\n" +
                 "UNION ALL\n" +
                 "SELECT a.*, c.productId as useableProductId\n" +
                 "FROM coupon a\n" +
@@ -178,8 +179,8 @@ public class CouponService {
                 "    ) c\n" +
                 "WHERE a.memberNo = ? \n" +
                 "      AND a.couponTypeId = c.couponTypeId";
-        list = nodeBindingInfo.getJdbcTemplate().queryForList(query, memberNo, productId, productId, memberNo);
+        list = nodeBindingInfo.getJdbcTemplate().queryForList(query, memberNo, productId, siteType, productId, memberNo);
 
         return list;
-    }
+    }*/
 }
