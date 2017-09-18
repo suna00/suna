@@ -17,4 +17,27 @@ public class FileUtils {
         org.apache.commons.io.FileUtils.copyURLToFile(requestUrl, file);
         return file;
     }
+
+
+    public static String getMnetFileUrl (String mediaId, String mediaType, String sizeType) {
+        String imgUrl = "http://cmsimg.global.mnet.com/clipimage";
+        String strClipName = "";
+
+        String upperCased = mediaType.toUpperCase();
+        if("ALBUM".equals(upperCased) || "ARTIST".equals(upperCased)) {
+            mediaType = upperCased.toLowerCase();
+        } else if ("VOD".equals(upperCased) || "PROGRAM".equals(upperCased)) {
+            mediaType = "vod";
+        }
+
+        strClipName = "0000000000" + mediaId;
+        int sLen = strClipName.length() - 9;
+        strClipName = strClipName.substring(sLen);
+        return imgUrl + "/" + mediaType
+                + "/" + sizeType
+                + "/" + strClipName.substring(0, 3)
+                + "/" + strClipName.substring(3, 6)
+                + "/" + mediaId + ".jpg";
+    }
+
 }
