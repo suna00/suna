@@ -11,7 +11,7 @@
     "typeId": "advMng",
     "advSeq": 100002,
     "contentType": "8",
-    "platformType": "2",
+    "platformType": "1",
     "iframeUrl": "http://www.vlive.tv/video/38739",
     "created": "20170918140000"
   },
@@ -19,7 +19,7 @@
     "typeId": "advMng",
     "advSeq": 100003,
     "contentType": "6",
-    "platformType": "3",
+    "platformType": "1",
     "iframeUrl": "http://www.vlive.tv/video/38739",
     "created": "20170918140000"
   },
@@ -27,7 +27,71 @@
     "typeId": "advMng",
     "advSeq": 100004,
     "contentType": "8",
-    "platformType": "4",
+    "platformType": "1",
+    "iframeUrl": "http://www.vlive.tv/video/38739",
+    "created": "20170918140000"
+  },
+  {
+    "typeId": "advMng",
+    "advSeq": 100005,
+    "contentType": "6",
+    "platformType": "2",
+    "iframeUrl": "http://www.vlive.tv/video/38739",
+    "created": "20170918140000"
+  },
+  {
+    "typeId": "advMng",
+    "advSeq": 100006,
+    "contentType": "8",
+    "platformType": "2",
+    "iframeUrl": "http://www.vlive.tv/video/38739",
+    "created": "20170918140000"
+  },
+  {
+    "typeId": "advMng",
+    "advSeq": 100007,
+    "contentType": "6",
+    "platformType": "2",
+    "iframeUrl": "http://www.vlive.tv/video/38739",
+    "created": "20170918140000"
+  },
+  {
+    "typeId": "advMng",
+    "advSeq": 100008,
+    "contentType": "8",
+    "platformType": "2",
+    "iframeUrl": "http://www.vlive.tv/video/38739",
+    "created": "20170918140000"
+  },
+  {
+    "typeId": "advMng",
+    "advSeq": 100009,
+    "contentType": "6",
+    "platformType": "3",
+    "iframeUrl": "http://www.vlive.tv/video/38739",
+    "created": "20170918140000"
+  },
+  {
+    "typeId": "advMng",
+    "advSeq": 100010,
+    "contentType": "8",
+    "platformType": "3",
+    "iframeUrl": "http://www.vlive.tv/video/38739",
+    "created": "20170918140000"
+  },
+  {
+    "typeId": "advMng",
+    "advSeq": 100011,
+    "contentType": "6",
+    "platformType": "3",
+    "iframeUrl": "http://www.vlive.tv/video/38739",
+    "created": "20170918140000"
+  },
+  {
+    "typeId": "advMng",
+    "advSeq": 100012,
+    "contentType": "8",
+    "platformType": "3",
     "iframeUrl": "http://www.vlive.tv/video/38739",
     "created": "20170918140000"
   }
