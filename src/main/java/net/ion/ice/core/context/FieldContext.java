@@ -1,34 +1,39 @@
 package net.ion.ice.core.context;
 
+import net.ion.ice.core.node.Node;
+import net.ion.ice.core.node.NodeUtils;
+import net.ion.ice.core.node.Reference;
+import net.ion.ice.core.query.QueryResult;
+
 import java.util.Map;
 
 /**
  * Created by jaehocho on 2017. 8. 22..
  */
-public class FieldContext extends ReadContext{
+public class FieldContext extends ApiReadContext{
 
-    public static FieldContext createContextFromOption(Map<String, Object> fieldOption){
+    public static FieldContext makeContextFromConfig(Map<String, Object> config, Map<String, Object> data) {
         FieldContext context = new FieldContext() ;
 
-        for(String key : fieldOption.keySet()){
-            if(key.equals("field")) continue;
+        context.nodeType = NodeUtils.getNodeType((String) ContextUtils.getValue(config.get("typeId"), data)) ;
+        context.config = config ;
+        context.data = data ;
 
-            switch (key){
-                case "includeReferenced" :{
-                    context.setIncludeReferenced((Boolean) fieldOption.get("includeReferenced"));
-                    break ;
-                }
-                case "referenceView" :{
-                    context.setReferenceView((Boolean) fieldOption.get("referenceView"));
-                    break ;
-                }
-                default :{
-                    break ;
-                }
-
-            }
-
+        for(String key : config.keySet()) {
+            if(key.equals("typeId")) continue ;
+             makeApiContext(config, context, key);
         }
-        return context ;
+
+        return context;
+    }
+
+    public QueryResult makeQueryResult(Reference reference, Node refNode) {
+        QueryResult queryResult = new QueryResult() ;
+        queryResult.put("refId", reference.getRefId()) ;
+        queryResult.put("value", reference.getValue()) ;
+        queryResult.put("label", reference.getLabel()) ;
+
+        queryResult.put("item", makeResult(refNode)) ;
+        return queryResult ;
     }
 }

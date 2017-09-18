@@ -438,6 +438,9 @@ public class QueryContext extends ReadContext {
 
 
     public QueryResult makeQueryResult(Object result, String fieldName, ResultField.ResultType resultType) {
+        if(this.ifTest != null && !(this.ifTest.equalsIgnoreCase("true"))) {
+            return null ;
+        }
         List<Node> resultNodeList = getQueryList() ;
         this.result = resultNodeList ;
 

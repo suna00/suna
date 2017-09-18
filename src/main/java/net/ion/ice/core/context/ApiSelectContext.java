@@ -19,7 +19,6 @@ public class ApiSelectContext extends ReadContext{
 
     protected String ds ;
     protected String sql ;
-    protected ResultField.ResultType resultType ;
 
     protected JdbcTemplate jdbcTemplate ;
     protected Template sqlTemplate  ;
@@ -30,23 +29,18 @@ public class ApiSelectContext extends ReadContext{
         selectContext.config = config ;
         selectContext.data = data ;
 
-
-        if(config.containsKey("resultType")){
-            selectContext.resultType = ResultField.ResultType.valueOf(config.get("resultType").toString().toUpperCase());
+        for(String key : config.keySet()) {
+            if(key.equals("select")) continue ;
+            makeApiContext(config, selectContext, key);
         }
 
         Map<String, Object> select = (Map<String, Object>) config.get("select");
         selectContext.ds = (String) select.get("ds");
         selectContext.sql = (String) select.get("sql");
 
-        if(select.containsKey("resultType")){
+        if (select.containsKey("resultType")) {
             selectContext.resultType = ResultField.ResultType.valueOf(select.get("resultType").toString().toUpperCase());
         }
-
-        if(config.containsKey("response")){
-            ContextUtils.makeApiResponse((Map<String, Object>) config.get("response"), selectContext);
-        }
-
         DBService dbService = ApplicationContextManager.getBean(DBService.class) ;
         selectContext.jdbcTemplate = dbService.getJdbcTemplate(selectContext.ds) ;
         selectContext.sqlTemplate = new Template(selectContext.sql) ;
@@ -57,6 +51,9 @@ public class ApiSelectContext extends ReadContext{
 
 
     public QueryResult makeQueryResult(Object result, String fieldName) {
+        if(this.ifTest != null && !(this.ifTest.equalsIgnoreCase("true"))) {
+            return null ;
+        }
         if(resultType == ResultField.ResultType.LIST) {
             List<Map<String, Object>> resultList = this.jdbcTemplate.queryForList(this.sqlTemplate.format(data).toString(), this.sqlTemplate.getSqlParameterValues(data));
             this.result = resultList;
