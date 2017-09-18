@@ -479,6 +479,9 @@ public class NodeUtils {
                 } else if (value instanceof MultipartFile) {
                     FileValue fileValue = getFileService().saveMultipartFile(pt, id, (MultipartFile) value);
                     return fileValue;
+                } else if (value instanceof String && JsonUtils.isJson((String) value)) {
+                    FileValue fileValue = getFileService().fileValueMapper((String) value);
+                    return fileValue;
                 } else if (value instanceof String) {
                     return value ;
                 }
@@ -682,16 +685,6 @@ public class NodeUtils {
             }
             for (String fieldName : removePids) {
                 data.remove(fieldName);
-            }
-            List<String> removeLocale = new ArrayList<>() ;
-            for(String key : i18nData.keySet()){
-                Object val = i18nData.get(key) ;
-                if(val instanceof String && val.equals("_null_")){
-                    removeLocale.add(key) ;
-                }
-            }
-            for(String loc : removeLocale){
-                i18nData.remove(loc) ;
             }
 
             if(i18nData.size() > 0) {
