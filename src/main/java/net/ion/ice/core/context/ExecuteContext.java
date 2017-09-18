@@ -35,8 +35,6 @@ public class ExecuteContext extends ReadContext{
     protected Date time ;
     protected String event;
 
-    protected String ifTest ;
-
     protected ExecuteContext parentContext ;
     protected List<ExecuteContext> subExecuteContexts ;
 
