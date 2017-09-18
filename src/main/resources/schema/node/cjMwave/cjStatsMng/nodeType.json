@@ -158,5 +158,15 @@
     "repositoryType": "data",
     "eviction": 0,
     "tableName": "cjDb#mcdChartStats"
+  },
+  {
+    "parentId": "cjStatsMng",
+    "typeId": "nodeType",
+    "id": "artistSexVoteStatsByDly",
+    "tid": "artistSexVoteStatsByDly",
+    "typeName": "성별 아티스트 일별 투표현황",
+    "repositoryType": "data",
+    "eviction": 0,
+    "tableName": "cjDb#artistSexVoteStatsByDly"
   }
 ]

@@ -427,6 +427,52 @@
   {
     "typeId": "apiConfig",
     "category": "vote",
+    "apiId": "IfMwv005",
+    "apiName": "일별 투표내역 상세 조회(아티스트 성별)",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "voteSeq",
+        "required": true
+      },
+      {
+        "paramName": "perdDate",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "artistSexVoteStatsByDly",
+      "query": [
+        {
+          "field": "perdDate",
+          "method": "equals",
+          "value": "{{:perdDate}}"
+        },
+        {
+          "field": "voteSeq",
+          "method": "equals",
+          "value": "{{:voteSeq}}"
+        },
+        {
+          "field": "rankNum",
+          "method": "equals",
+          "value": "1"
+        },
+        {
+          "field": "langCd",
+          "method": "matching",
+          "value": "{{:langCd}}"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
     "apiId": "IfMwv006",
     "apiName": "아티스트별 진행투표 목록 조회",
     "method": "GET",
