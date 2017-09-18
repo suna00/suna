@@ -151,6 +151,21 @@
             "referenceView": true,
             "includeReferenced": false
           },
+          "category": {
+            "field": "category",
+            "referenceView": true,
+            "includeReferenced": false,
+            "response":{
+              "_all_":"",
+              "commentList" : {
+                "select" : {
+                  "ds" : "mariaDb",
+                  "resultType" : "list",
+                  "sql" : "select * from testComment where itemId = @{id}"
+                }
+              }
+            }
+          },
           "itemTitle": "title",
           "itemDesc": "body",
           "staticValue": {

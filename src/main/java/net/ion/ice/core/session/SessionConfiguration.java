@@ -31,9 +31,9 @@ import java.util.Properties;
  * instance to Tomcat for storage of HTTP sessions, instead of Tomcat's default
  * implementation.
  */
-@Configuration
-@ConfigurationProperties(prefix = "session")
-@ConditionalOnExpression("'${session.mode}' == 'cluster'")
+//@Configuration
+//@ConfigurationProperties(prefix = "session")
+//@ConditionalOnExpression("'${session.mode}' == 'cluster'")
 public class SessionConfiguration {
     private List<String> members = new ArrayList<>();
 
