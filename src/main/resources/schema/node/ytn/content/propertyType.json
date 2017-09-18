@@ -37,7 +37,7 @@
   {
     "typeId": "propertyType",
     "tid": "paymentTypeByContents",
-    "pid": "paymentTypes",
+    "pid": "paymentType",
     "propertyTypeName": "결제수단",
     "valueType": "REFERENCE",
     "required": false,
