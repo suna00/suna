@@ -1,23 +1,6 @@
 [
+
   {
-    "typeId": "dbSyncProcess"
-    , "executeId": "test0001"
-    , "targetDs": "cjDb"
-    , "targetNodeType": "dbTest01"
-    , "query": "SELECT now() as current FROM DUAL"
-    , "onFail": "skip"
-  }
-
-  , {
-    "typeId": "dbSyncProcess"
-    , "executeId": "test0002"
-    , "targetDs": "cjDb"
-    , "targetNodeType": "dbTest02"
-    , "query": "SELECT langId, count(*) as cnt FROM langMng GROUP By langId"
-    , "onFail": "stop"
-  }
-
-  , {
     "typeId": "dbSyncProcess"
     , "executeId": "migAlbum"
     , "targetDs": "cjMig"

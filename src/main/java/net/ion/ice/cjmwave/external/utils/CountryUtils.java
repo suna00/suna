@@ -10,13 +10,14 @@ public class CountryUtils {
             case "EN":
                 rtn = "eng";
                 break;
-            case "JP":
+            case "JA":
                 rtn = "jpn";
                 break;
             case "CH":
                 rtn = "zho-cn";
                 break;
             case "VN":
+            case "VI":
                 rtn = "vie";
                 break;
         }

@@ -1,7 +1,9 @@
 package net.ion.ice.cjmwave.external.pip;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import net.ion.ice.cjmwave.external.aws.s3.S3UploadService;
 import net.ion.ice.cjmwave.external.utils.CountryUtils;
+import net.ion.ice.cjmwave.external.utils.FileUtils;
 import net.ion.ice.cjmwave.external.utils.JSONNetworkUtils;
 import net.ion.ice.cjmwave.external.utils.MigrationUtils;
 import net.ion.ice.core.data.DBService;
@@ -40,14 +42,17 @@ public class PipApiService {
     @Value("${cjapi.pip.clipmediaurl}")
     String clipMediaApiUrl;
 
+    @Value("${file.default.path}")
+    String defaultFilePath;
+
     @Autowired
     NodeService nodeService;
 
     @Autowired
     DBService dbService;
 
-    @Value("${file.default.path}")
-    String defaultFilePath;
+    @Autowired
+    S3UploadService s3UploadService;
 
     private JdbcTemplate template;
 
@@ -56,7 +61,14 @@ public class PipApiService {
         template = dbService.getJdbcTemplate("cjDb");
     }
 
-    private Map<String,Object> match (String nodeTypeId, Map<String, Object> data) throws ParseException {
+    private String uploadS3ThenReturnUrl (String fileUrl) throws Exception {
+        if(null == fileUrl || "null".equals(fileUrl) || fileUrl.length() < 1) return "";
+        File retrievedFile = FileUtils.retrieveRemoteFile(fileUrl);
+        if(retrievedFile == null) throw new Exception("Could not find available file from  :: " + fileUrl);
+        return s3UploadService.uploadToS3(retrievedFile);
+    }
+
+    private Map<String,Object> match (String nodeTypeId, Map<String, Object> data) throws Exception {
         Map <String, Object> transformed = new HashMap<String, Object>();
         transformed.put("typeId", nodeTypeId);
         transformed.put("mnetIfTrtYn", 1);  // default
@@ -96,11 +108,21 @@ public class PipApiService {
                 transformed.put("homepageUrl", data.get("homepageurl"));
                 transformed.put("reviewUrl", data.get("reviewurl"));
                 transformed.put("bbsUrl", data.get("bbsurl"));
-                transformed.put("programImg", data.get("programimg"));
-                transformed.put("pgmPosterImg", data.get("programposterimg"));
 
-                transformed.put("programBannerImg", data.get("programbannerimg"));
-                transformed.put("programThumbImg", data.get("programthumimg"));
+                /*
+                * S3 파일 업로드 추가
+                * */
+                String programImg = String.valueOf(data.get("programimg"));
+                String posterImg = String.valueOf(data.get("programposterimg"));
+                String bannerImg = String.valueOf(data.get("programbannerimg"));
+                String thumbImg = String.valueOf(data.get("programthumimg"));
+
+                transformed.put("programImg", uploadS3ThenReturnUrl(programImg));
+                transformed.put("pgmPosterImg", uploadS3ThenReturnUrl(posterImg));
+                transformed.put("programBannerImg", uploadS3ThenReturnUrl(bannerImg));
+                transformed.put("programThumbImg", uploadS3ThenReturnUrl(thumbImg));
+
+
                 transformed.put("prsnNm", data.get("prsn_nm"));
                 transformed.put("prsnFNm", data.get("prsn_f_nm"));
                 transformed.put("prsnNo", data.get("prsn_no"));
@@ -142,7 +164,9 @@ public class PipApiService {
                 modifyDate = sdf14.parse(modifyDateStr);
                 transformed.put("modifyDate", modifyDate);
 
-                transformed.put("contentImgUrl", data.get("contentimg"));
+                String contentImgUrl = String.valueOf(data.get("contentimg"));
+                transformed.put("contentImgUrl", uploadS3ThenReturnUrl(contentImgUrl));
+
                 transformed.put("playTime", data.get("playtime"));
                 transformed.put("targetAge", data.get("targetage"));
                 transformed.put("adLink", data.get("adlink"));
@@ -243,10 +267,9 @@ public class PipApiService {
         return transformed;
     }
 
-
     public void doProgramMigration (String paramStr, boolean save) throws Exception {
         List fetchedPrograms = JSONNetworkUtils.fetchJSON(programApiUrl, paramStr);
-        if(save) storeFileToRecord(fetchedPrograms, "program");
+        if(save) storeFileToRecord(fetchedPrograms, PROGRAM_NT);
         Date startTime = new Date();
         int successCnt = 0, skippedCnt = 0;
         for(Object program : fetchedPrograms) {
@@ -273,7 +296,7 @@ public class PipApiService {
 
     public void doClipMediaMigration (String paramStr, boolean save) throws Exception {
         List fetchedClips = JSONNetworkUtils.fetchJSON(clipMediaApiUrl, paramStr);
-        if(save) storeFileToRecord(fetchedClips, "clipMedia");
+        if(save) storeFileToRecord(fetchedClips, CLIP_NT);
         Date startTime = new Date();
         int successCnt = 0, skippedCnt = 0;
         for(Object clip : fetchedClips) {
