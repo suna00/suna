@@ -31,8 +31,6 @@ import java.util.*;
 @Service
 public class MnetDataDumpService {
 
-    private Logger logger = Logger.getLogger(MnetDataDumpService.class);
-
     @Autowired
     DBService dbService;
 
@@ -40,7 +38,7 @@ public class MnetDataDumpService {
     NodeService nodeService;
 
     private static String REP_TID = "msSqlReplication";
-
+    private Logger logger = Logger.getLogger(MnetDataDumpService.class);
     private JdbcTemplate mnetMSSQLTemplate;
     private JdbcTemplate ice2Template;
 
@@ -214,6 +212,7 @@ public class MnetDataDumpService {
     public void copyData () {
         copyData("ALL");
     }
+
 
     public void copyData (String target) {
         // 각자 레포트 보고

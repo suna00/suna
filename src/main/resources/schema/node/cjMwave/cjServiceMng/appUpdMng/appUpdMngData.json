@@ -1,0 +1,29 @@
+[
+  {
+    "typeId": "appUpdMng",
+    "appUpdMngSeq": 1,
+    "platformType": "android",
+    "updVer": "Ver 1.01",
+    "updUrl": "http://www.naver.com",
+    "updNoti": "강제 업데이트 공지 내용1",
+    "updYn": true
+  },
+  {
+    "typeId": "appUpdMng",
+    "appUpdMngSeq": 2,
+    "platformType": "android",
+    "updVer": "Ver 1.02",
+    "updUrl": "http://www.naver.com",
+    "updNoti": "강제 업데이트 공지 내용2",
+    "updYn": true
+  },
+  {
+    "typeId": "appUpdMng",
+    "appUpdMngSeq": 3,
+    "platformType": "android",
+    "updVer": "Ver 1.02",
+    "updUrl": "http://www.naver.com",
+    "updNoti": "강제 업데이트 공지 내용3",
+    "updYn": true
+  }
+]

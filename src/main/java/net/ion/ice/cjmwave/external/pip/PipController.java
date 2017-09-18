@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by juneyoungoh on 2017. 9. 14..
  */
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class PipController {
 
     private Logger logger = Logger.getLogger(PipController.class);
+    private final String PLATFORM = "mnetjapan";
 
     @Autowired
     PipApiService pipService;
@@ -28,13 +31,10 @@ public class PipController {
 
     /*
     * PIP 초기 데이터를 받아와서 MYSQL 로 밀어넣었다는 전제
-    * 14 일 기준 program 이랑 pgmVideo 와 맵핑하는 조건으로 들어감
-    * 안맞는 데이터 / 다국어 데이터 어떻게 처리할 것인지 논의가 필요함
-    *
-    * 여튼 로직 상으로 이 부분은 URL 커넥션과 무관하고 DB to Node 임
+    * 17일 기준 all 로 댕겨야 할 수도 있다는 이야기
     * */
     @RequestMapping(value = "initialData/{type}", produces = { "application/json" })
-    public @ResponseBody String retrieveAll(@PathVariable String type) throws JSONException {
+    public @ResponseBody String retrieveAll(@PathVariable String type, HttpServletRequest request) throws JSONException {
         JSONObject response = new JSONObject();
         String result="500", result_msg = "ERROR", cause = "";
         try{
@@ -70,21 +70,24 @@ public class PipController {
     * 사실 service 가 List 를 반환하면 안되고, 리스트를 Node 로 만들어야 함
     * */
     @RequestMapping(value = "renew/{type}", produces = { "application/json" })
-    public @ResponseBody String retrievePartial(@PathVariable String type) throws JSONException {
+    public @ResponseBody String retrievePartial(@PathVariable String type, HttpServletRequest request) throws JSONException {
 
         JSONObject response = new JSONObject();
         String result="500", result_msg = "ERROR", cause = "";
         try{
+            String saveParam = request.getParameter("save");
+            boolean save = (saveParam != null && "Y".equals(saveParam.toUpperCase()));
+
             switch (type) {
                 case "all" :
-                    pipService.doProgramMigration("type=recent");
-                    pipService.doClipMediaMigration("type=recent&platform=mnetjapan");
+                    pipService.doProgramMigration("type=recent", save);
+                    pipService.doClipMediaMigration("type=recent&platform=" + PLATFORM, save);
                     break;
                 case "program" :
-                    pipService.doProgramMigration("type=recent");
+                    pipService.doProgramMigration("type=recent", save);
                     break;
                 case "clipMedia" :
-                    pipService.doClipMediaMigration("type=recent&platform=mnetjapan");
+                    pipService.doClipMediaMigration("type=recent&platform=" + PLATFORM, save);
                     break;
                 default:
                     logger.info("No suitable type for migration");

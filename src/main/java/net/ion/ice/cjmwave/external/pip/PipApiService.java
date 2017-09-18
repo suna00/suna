@@ -1,7 +1,9 @@
 package net.ion.ice.cjmwave.external.pip;
 
-import net.ion.ice.cjmwave.db.sync.DBSyncService;
-import net.ion.ice.cjmwave.external.utils.CommonNetworkUtils;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import net.ion.ice.cjmwave.external.aws.s3.S3UploadService;
+import net.ion.ice.cjmwave.external.utils.CountryUtils;
+import net.ion.ice.cjmwave.external.utils.FileUtils;
 import net.ion.ice.cjmwave.external.utils.JSONNetworkUtils;
 import net.ion.ice.cjmwave.external.utils.MigrationUtils;
 import net.ion.ice.core.data.DBService;
@@ -14,6 +16,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.FileTime;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -25,6 +32,7 @@ import java.util.*;
 public class PipApiService {
 
     private Logger logger = Logger.getLogger(PipApiService.class);
+    private long millisecond7Days = 1000*60*60*24*7;
 
     private static final String PROGRAM_NT = "program", CLIP_NT = "pgmVideo";
 
@@ -34,11 +42,17 @@ public class PipApiService {
     @Value("${cjapi.pip.clipmediaurl}")
     String clipMediaApiUrl;
 
+    @Value("${file.default.path}")
+    String defaultFilePath;
+
     @Autowired
     NodeService nodeService;
 
     @Autowired
     DBService dbService;
+
+    @Autowired
+    S3UploadService s3UploadService;
 
     private JdbcTemplate template;
 
@@ -47,7 +61,14 @@ public class PipApiService {
         template = dbService.getJdbcTemplate("cjDb");
     }
 
-    private Map<String,Object> match (String nodeTypeId, Map<String, Object> data) throws ParseException {
+    private String uploadS3ThenReturnUrl (String fileUrl) throws Exception {
+        if(null == fileUrl || "null".equals(fileUrl) || fileUrl.length() < 1) return "";
+        File retrievedFile = FileUtils.retrieveRemoteFile(fileUrl);
+        if(retrievedFile == null) throw new Exception("Could not find available file from  :: " + fileUrl);
+        return s3UploadService.uploadToS3(retrievedFile);
+    }
+
+    private Map<String,Object> match (String nodeTypeId, Map<String, Object> data) throws Exception {
         Map <String, Object> transformed = new HashMap<String, Object>();
         transformed.put("typeId", nodeTypeId);
         transformed.put("mnetIfTrtYn", 1);  // default
@@ -59,7 +80,6 @@ public class PipApiService {
 
         switch (nodeTypeId) {
             case "program2" :
-                logger.info("빌어먹을 거 :: " + String.valueOf(data));
                 transformed.put("programId", data.get("programid"));
                 transformed.put("programCd", data.get("programcode"));
                 transformed.put("title", data.get("title"));
@@ -88,11 +108,21 @@ public class PipApiService {
                 transformed.put("homepageUrl", data.get("homepageurl"));
                 transformed.put("reviewUrl", data.get("reviewurl"));
                 transformed.put("bbsUrl", data.get("bbsurl"));
-                transformed.put("programImg", data.get("programimg"));
-                transformed.put("pgmPosterImg", data.get("programposterimg"));
 
-                transformed.put("programBannerImg", data.get("programbannerimg"));
-                transformed.put("programThumbImg", data.get("programthumimg"));
+                /*
+                * S3 파일 업로드 추가
+                * */
+                String programImg = String.valueOf(data.get("programimg"));
+                String posterImg = String.valueOf(data.get("programposterimg"));
+                String bannerImg = String.valueOf(data.get("programbannerimg"));
+                String thumbImg = String.valueOf(data.get("programthumimg"));
+
+                transformed.put("programImg", uploadS3ThenReturnUrl(programImg));
+                transformed.put("pgmPosterImg", uploadS3ThenReturnUrl(posterImg));
+                transformed.put("programBannerImg", uploadS3ThenReturnUrl(bannerImg));
+                transformed.put("programThumbImg", uploadS3ThenReturnUrl(thumbImg));
+
+
                 transformed.put("prsnNm", data.get("prsn_nm"));
                 transformed.put("prsnFNm", data.get("prsn_f_nm"));
                 transformed.put("prsnNo", data.get("prsn_no"));
@@ -104,7 +134,7 @@ public class PipApiService {
                 break;
             case "pgmVideo2" :
 
-                transformed.put("pgmId", data.get("programid"));
+                transformed.put("programId", data.get("programid"));
                 transformed.put("contentId", data.get("contentid"));
                 transformed.put("contentTitle", data.get("contenttitle"));
                 transformed.put("cornerId", data.get("cornerid"));
@@ -112,8 +142,8 @@ public class PipApiService {
 
                 transformed.put("title", data.get("title"));
                 transformed.put("synopsis", data.get("synopsis"));
-                transformed.put("prsnNm", data.get("prsn_nm"));
-                transformed.put("prsnFNm", data.get("prsn_f_nm"));
+                transformed.put("prsnName", data.get("prsn_nm"));
+                transformed.put("prsnFName", data.get("prsn_f_nm"));
                 transformed.put("prsnNo", data.get("prsn_no"));
 
                 transformed.put("searchKeyword", data.get("searchkeyword"));
@@ -134,7 +164,9 @@ public class PipApiService {
                 modifyDate = sdf14.parse(modifyDateStr);
                 transformed.put("modifyDate", modifyDate);
 
-                transformed.put("contentImgUrl", data.get("contentimg"));
+                String contentImgUrl = String.valueOf(data.get("contentimg"));
+                transformed.put("contentImgUrl", uploadS3ThenReturnUrl(contentImgUrl));
+
                 transformed.put("playTime", data.get("playtime"));
                 transformed.put("targetAge", data.get("targetage"));
                 transformed.put("adLink", data.get("adlink"));
@@ -149,12 +181,35 @@ public class PipApiService {
                 String isFullVod = String.valueOf(data.get("isfullvod")).trim().toUpperCase();
                 transformed.put("isFullVod", ("Y".equals(isFullVod) ? 1: 0));
 
-                transformed.put("rcmdContsYn", 0); // 모르겠음
+                transformed.put("rcmdContsYn", 0); // 모르겠음 - 추천 여부 디폴트는 0
 
                 break;
         }
 
-        // 다국어는 한번에 처리함
+        /*
+        * 기본 표기 규약은 좌측이 원본, 우측이 노드 기준
+        * 다국어 처리 규약은 아래와 같음
+        * 프로퍼티명  + _3자리국가 코드
+        *
+        * PIP 코드 3자리 국가코드 매칭
+        * - EN : eng
+        * - JP : jpn
+        * - CH : zho-cn
+        * - VN : vie
+        *
+        * 프로퍼티 매칭 program
+        * - title : title
+        * - synopsis : synopsis
+        *
+        * 프로퍼티 매칭 clip
+        * - epi_title : contentTitle
+        * - cnts_title : title
+        * - synopsis : synopsis
+        * - search_keyword : searchKeyword
+        * - cast_prsn - prsnName
+        * - direct_prsn - 연출진
+        * - subtitle_path - subtitlePath
+        * */
         List<String> countryList = new ArrayList<>();
         if(data.containsKey("multilanguage")) {
             List<Map<String, Object>> multiLangArr = (List<Map<String, Object>>) data.get("multilanguage");
@@ -162,7 +217,45 @@ public class PipApiService {
             for(Object mLang : multiLangArr) {
                 Map<String, Object> mLangMap = (Map<String, Object>) mLang;
                 if(mLangMap.containsKey("lang_cd")) {
-                    countryList.add(String.valueOf(mLangMap.get("lang_cd")));
+                    String code2 = String.valueOf(mLangMap.get("lang_cd"));
+                    String code3 = CountryUtils.get3Code(code2);
+                    countryList.add(code3);
+
+
+                    switch (nodeTypeId) {
+                        case "program2" :
+                            if(mLangMap.containsKey("title")) {
+                                transformed.put("title_" + code3, String.valueOf(mLangMap.get("title")));
+                            }
+                            if(mLangMap.containsKey("synopsis")) {
+                                transformed.put("synopsis_" + code3, String.valueOf(mLangMap.get("synopsis")));
+                            }
+                            break;
+                        case "pgmVideo2" :
+                            if(mLangMap.containsKey("epi_title")) {
+                                transformed.put("contentTitle_" + code3, String.valueOf(mLangMap.get("epi_title")));
+                            }
+                            if(mLangMap.containsKey("cnts_title")) {
+                                transformed.put("title_" + code3, String.valueOf(mLangMap.get("cnts_title")));
+                            }
+                            if(mLangMap.containsKey("synopsis")) {
+                                transformed.put("synopsis_" + code3, String.valueOf(mLangMap.get("synopsis")));
+                            }
+                            if(mLangMap.containsKey("search_keyword")) {
+                                transformed.put("searchKeyword_" + code3, String.valueOf(mLangMap.get("search_keyword")));
+                            }
+                            if(mLangMap.containsKey("cast_prsn")) {
+                                transformed.put("prsnName_" + code3, String.valueOf(mLangMap.get("cast_prsn")));
+                            }
+                            if(mLangMap.containsKey("direct_prsn")) {
+                                transformed.put("directPrsn_" + code3, String.valueOf(mLangMap.get("direct_prsn")));
+                            }
+                            if(mLangMap.containsKey("subtitle_path")) {
+                                transformed.put("subtitlePath_" + code3, String.valueOf(mLangMap.get("subtitle_path")));
+                            }
+                            break;
+                    }
+
                 }
             }
         }
@@ -174,9 +267,9 @@ public class PipApiService {
         return transformed;
     }
 
-
-    public void doProgramMigration (String paramStr) throws Exception {
+    public void doProgramMigration (String paramStr, boolean save) throws Exception {
         List fetchedPrograms = JSONNetworkUtils.fetchJSON(programApiUrl, paramStr);
+        if(save) storeFileToRecord(fetchedPrograms, PROGRAM_NT);
         Date startTime = new Date();
         int successCnt = 0, skippedCnt = 0;
         for(Object program : fetchedPrograms) {
@@ -201,8 +294,9 @@ public class PipApiService {
                 , "program", successCnt, skippedCnt, jobTaken, startTime);
     }
 
-    public void doClipMediaMigration (String paramStr) throws Exception {
+    public void doClipMediaMigration (String paramStr, boolean save) throws Exception {
         List fetchedClips = JSONNetworkUtils.fetchJSON(clipMediaApiUrl, paramStr);
+        if(save) storeFileToRecord(fetchedClips, CLIP_NT);
         Date startTime = new Date();
         int successCnt = 0, skippedCnt = 0;
         for(Object clip : fetchedClips) {
@@ -226,11 +320,44 @@ public class PipApiService {
                 ,"pgmVideo", successCnt, skippedCnt, jobTaken, startTime);
     }
 
-    public void doProgramMigration (Map paramMap) throws Exception {
-        doProgramMigration(CommonNetworkUtils.MapToString(paramMap));
-    }
+    /*
+    * file:
+    *   default:
+    *     path: /resource/ice2/files/pip
+    *
+    * 아래에 type_yyyyMMddHHmm.pip 이름으로 파일을 쌓는다.
+    * 저장할 때 체크해서 일주일 이전에 작성된 파일이 있다면 삭제한다
+    * */
+    private void storeFileToRecord (List data, String type) {
+        try{
+            String pipDirStr = defaultFilePath.endsWith("/") ? defaultFilePath : defaultFilePath + "/";
+            pipDirStr = pipDirStr + "pip/";
+            SimpleDateFormat pipSdf = new SimpleDateFormat("yyyyMMddHHmm");
+            String pipFileName = type.toUpperCase() + "_" + pipSdf.format(new Date()) + ".pip";
 
-    public void doClipMediaMigration (Map paramMap) throws Exception {
-        doClipMediaMigration(CommonNetworkUtils.MapToString(paramMap));
+            File pipDir = new File(pipDirStr);
+            if(!pipDir.exists() && !pipDir.isDirectory()) Files.createDirectory(pipDir.toPath());
+            else {
+                Date today = new Date();
+                for(File oldFile : pipDir.listFiles()){
+                    // 생성일 확인 후 7일 이상 차이라면 지운다
+                    BasicFileAttributes attrs = Files.readAttributes(oldFile.toPath(), BasicFileAttributes.class);
+                    FileTime created = attrs.creationTime();
+                    long millis = today.getTime() - created.toMillis();
+                    if(millis > millisecond7Days) oldFile.delete();
+                };
+            }
+
+            // List to JSONString
+            ObjectMapper mapper = new ObjectMapper();
+            String jsonData = mapper.writeValueAsString(data);
+
+            File pipFile = new File(pipDirStr + pipFileName);
+            FileOutputStream fos = new FileOutputStream(pipFile);
+            fos.write(jsonData.getBytes("utf-8"));
+            fos.close();
+        }catch (Exception e) {
+            logger.info("Failed to record API result as File :: ", e);
+        }
     }
 };

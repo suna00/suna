@@ -456,16 +456,9 @@
   },
   {
     "typeId": "groupCode",
-    "groupCodeId": "advContentType",
-    "name": "광고 콘텐츠 타입",
+    "groupCodeId": "appPlatformType",
+    "name": "App 강제 업그레이드 플랫폼 타입",
     "active": true,
-    "desc": "광고 콘텐츠 타입 코드(Photo, News)"
-  },
-  {
-    "typeId": "groupCode",
-    "groupCodeId": "advPlatformType",
-    "name": "광고 플렛폼 타입",
-    "active": true,
-    "desc": "광고 플렛폼 타입 코드(PC, Mobile Web, Mobile App)"
+    "desc": "App 강제 업그레이드 플랫폼 타입(iphone, android)"
   }
 ]

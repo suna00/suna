@@ -57,7 +57,11 @@ public class DBQuery {
         }
 
         listParamSql = listParamSql.concat(String.format(" LIMIT ?").concat(String.format(" OFFSET ?")));
-        searchListValue.add(queryContext.getLimit());
+        if(queryContext.isPaging()) {
+            searchListValue.add(queryContext.getPageSize());
+        }else{
+            searchListValue.add(queryContext.getLimit());
+        }
         searchListValue.add(queryContext.getOffset());
     }
 

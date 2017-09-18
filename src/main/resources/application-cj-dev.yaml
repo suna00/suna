@@ -51,5 +51,10 @@ cjapi:
     programurl: http://pipapi.itvs.cjenm.com/json/data/v1.0/global/programinfo.asp
     clipmediaurl: http://pipapi.itvs.cjenm.com/json/data/v1.0/global/clipmediainfo.asp
 
+aws:
+  s3:
+    bucketName: cjmwave-prd/ion
+    bucketKey: P1c7asDMAXzodFn+4YGRgAo+w4ZUdGfuu1ncIzzK
+
 temp-file:
   dir: /

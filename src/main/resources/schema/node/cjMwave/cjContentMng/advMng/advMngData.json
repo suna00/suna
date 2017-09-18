@@ -1,44 +1,98 @@
 [
   {
     "typeId": "advMng",
-    "advSeq": 1,
-    "contentType": "photo",
-    "platformType": "pc",
-    "iframeUrl": "http://www.naver.com"
+    "advSeq": 100001,
+    "contentType": "6",
+    "platformType": "1",
+    "iframeUrl": "http://www.vlive.tv/video/38739",
+    "created": "20170918140000"
   },
   {
     "typeId": "advMng",
-    "advSeq": 2,
-    "contentType": "photo",
-    "platformType": "moweb",
-    "iframeUrl": "http://www.naver.com"
+    "advSeq": 100002,
+    "contentType": "8",
+    "platformType": "1",
+    "iframeUrl": "http://www.vlive.tv/video/38739",
+    "created": "20170918140000"
   },
   {
     "typeId": "advMng",
-    "advSeq": 3,
-    "contentType": "photo",
-    "platformType": "moapp",
-    "iframeUrl": "http://www.naver.com"
+    "advSeq": 100003,
+    "contentType": "6",
+    "platformType": "1",
+    "iframeUrl": "http://www.vlive.tv/video/38739",
+    "created": "20170918140000"
   },
   {
     "typeId": "advMng",
-    "advSeq": 4,
-    "contentType": "news",
-    "platformType": "pc",
-    "iframeUrl": "http://www.naver.com"
+    "advSeq": 100004,
+    "contentType": "8",
+    "platformType": "1",
+    "iframeUrl": "http://www.vlive.tv/video/38739",
+    "created": "20170918140000"
   },
   {
     "typeId": "advMng",
-    "advSeq": 5,
-    "contentType": "news",
-    "platformType": "moweb",
-    "iframeUrl": "http://www.naver.com"
+    "advSeq": 100005,
+    "contentType": "6",
+    "platformType": "2",
+    "iframeUrl": "http://www.vlive.tv/video/38739",
+    "created": "20170918140000"
   },
   {
     "typeId": "advMng",
-    "advSeq": 6,
-    "contentType": "news",
-    "platformType": "moapp",
-    "iframeUrl": "http://www.naver.com"
+    "advSeq": 100006,
+    "contentType": "8",
+    "platformType": "2",
+    "iframeUrl": "http://www.vlive.tv/video/38739",
+    "created": "20170918140000"
+  },
+  {
+    "typeId": "advMng",
+    "advSeq": 100007,
+    "contentType": "6",
+    "platformType": "2",
+    "iframeUrl": "http://www.vlive.tv/video/38739",
+    "created": "20170918140000"
+  },
+  {
+    "typeId": "advMng",
+    "advSeq": 100008,
+    "contentType": "8",
+    "platformType": "2",
+    "iframeUrl": "http://www.vlive.tv/video/38739",
+    "created": "20170918140000"
+  },
+  {
+    "typeId": "advMng",
+    "advSeq": 100009,
+    "contentType": "6",
+    "platformType": "3",
+    "iframeUrl": "http://www.vlive.tv/video/38739",
+    "created": "20170918140000"
+  },
+  {
+    "typeId": "advMng",
+    "advSeq": 100010,
+    "contentType": "8",
+    "platformType": "3",
+    "iframeUrl": "http://www.vlive.tv/video/38739",
+    "created": "20170918140000"
+  },
+  {
+    "typeId": "advMng",
+    "advSeq": 100011,
+    "contentType": "6",
+    "platformType": "3",
+    "iframeUrl": "http://www.vlive.tv/video/38739",
+    "created": "20170918140000"
+  },
+  {
+    "typeId": "advMng",
+    "advSeq": 100012,
+    "contentType": "8",
+    "platformType": "3",
+    "iframeUrl": "http://www.vlive.tv/video/38739",
+    "created": "20170918140000"
   }
 ]

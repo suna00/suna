@@ -79,5 +79,86 @@
     "showDateTabNm": "2017.11.24",
     "advmUrl": "https://www.youtube.com/watch?v=lgLWRFW1hF8",
     "showYn": true
+  },
+  {
+    "typeId": "banrLineupInfo",
+    "banrLineupSeq": 142,
+    "banrItemSeq": 10040,
+    "contsDivCd": "7",
+    "showDateTabNm": "2017.11.22",
+    "advmUrl": "https://www.youtube.com/watch?v=lgLWRFW1hF8",
+    "showYn": true
+  },
+  {
+    "typeId": "banrLineupInfo",
+    "banrLineupSeq": 143,
+    "banrItemSeq": 10041,
+    "contsDivCd": "7",
+    "showDateTabNm": "2017.11.23",
+    "advmUrl": "https://www.youtube.com/watch?v=lgLWRFW1hF8",
+    "showYn": true
+  },
+  {
+    "typeId": "banrLineupInfo",
+    "banrLineupSeq": 144,
+    "banrItemSeq": 10042,
+    "contsDivCd": "7",
+    "showDateTabNm": "2017.11.24",
+    "advmUrl": "https://www.youtube.com/watch?v=lgLWRFW1hF8",
+    "showYn": true
+  },
+  {
+    "typeId": "banrLineupInfo",
+    "banrLineupSeq": 145,
+    "banrItemSeq": 10043,
+    "contsDivCd": "7",
+    "showDateTabNm": "2017.11.22",
+    "advmUrl": "https://www.youtube.com/watch?v=lgLWRFW1hF8",
+    "showYn": true
+  },
+  {
+    "typeId": "banrLineupInfo",
+    "banrLineupSeq": 146,
+    "banrItemSeq": 10044,
+    "contsDivCd": "7",
+    "showDateTabNm": "2017.11.23",
+    "advmUrl": "https://www.youtube.com/watch?v=lgLWRFW1hF8",
+    "showYn": true
+  },
+  {
+    "typeId": "banrLineupInfo",
+    "banrLineupSeq": 147,
+    "banrItemSeq": 10045,
+    "contsDivCd": "7",
+    "showDateTabNm": "2017.11.24",
+    "advmUrl": "https://www.youtube.com/watch?v=lgLWRFW1hF8",
+    "showYn": true
+  },
+  {
+    "typeId": "banrLineupInfo",
+    "banrLineupSeq": 148,
+    "banrItemSeq": 10046,
+    "contsDivCd": "7",
+    "showDateTabNm": "2017.11.22",
+    "advmUrl": "https://www.youtube.com/watch?v=lgLWRFW1hF8",
+    "showYn": true
+  },
+  {
+    "typeId": "banrLineupInfo",
+    "banrLineupSeq": 149,
+    "banrItemSeq": 10047,
+    "contsDivCd": "7",
+    "showDateTabNm": "2017.11.23",
+    "advmUrl": "https://www.youtube.com/watch?v=lgLWRFW1hF8",
+    "showYn": true
+  },
+  {
+    "typeId": "banrLineupInfo",
+    "banrLineupSeq": 150,
+    "banrItemSeq": 10048,
+    "contsDivCd": "7",
+    "showDateTabNm": "2017.11.24",
+    "advmUrl": "https://www.youtube.com/watch?v=lgLWRFW1hF8",
+    "showYn": true
   }
 ]

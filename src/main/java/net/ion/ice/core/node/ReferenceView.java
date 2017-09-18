@@ -9,8 +9,8 @@ import org.apache.commons.lang3.StringUtils;
 public class ReferenceView extends Reference{
     protected Object item ;
 
-    public ReferenceView(Node node, NodeType nodeType, ReadContext context) {
-        super(node, nodeType, context);
+    public ReferenceView(Node node, ReadContext context) {
+        super(node, context);
         this.item = node ;
     }
 

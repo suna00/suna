@@ -243,21 +243,8 @@ public class NodeUtils {
 
     public static ReferenceView getReferenceValueView(ReadContext context, Object value, PropertyType pt) {
         try {
-            NodeService nodeService = getNodeService();
-
-            String referenceType = pt.getReferenceType() ;
-            String refId = value.toString() ;
-            if(StringUtils.contains(refId, "::")){
-                referenceType = StringUtils.substringBefore(refId, "::") ;
-                refId = StringUtils.substringAfter(refId, "::") ;
-            }
-            if(StringUtils.isNotEmpty(pt.getCodeFilter()) && !StringUtils.contains(refId, Node.ID_SEPERATOR)){
-                refId = pt.getCodeFilter() + Node.ID_SEPERATOR + refId ;
-            }
-
-            Node refNode = getNode(referenceType, refId);
-            NodeType nodeType = nodeService.getNodeType(referenceType);
-            return new ReferenceView(refNode.toDisplay(context), nodeType, context);
+            Node refNode = getReferenceNode(value, pt);
+            return new ReferenceView(refNode.toDisplay(context), context);
 
         } catch (Exception e) {
             return new ReferenceView(value.toString(), value.toString());
@@ -266,24 +253,26 @@ public class NodeUtils {
 
     public static Reference getReferenceValue(ReadContext context, Object value, PropertyType pt) {
         try {
-            NodeService nodeService = getNodeService();
-            String referenceType = pt.getReferenceType() ;
-            String refId = value.toString() ;
-
-            if(StringUtils.contains(refId, "::")){
-                referenceType = StringUtils.substringBefore(refId, "::") ;
-                refId = StringUtils.substringAfter(refId, "::") ;
-            }
-            if(StringUtils.isNotEmpty(pt.getCodeFilter()) && !StringUtils.contains(refId, Node.ID_SEPERATOR)){
-                refId = pt.getCodeFilter() + Node.ID_SEPERATOR + refId ;
-            }
-
-            Node refNode = getNode(referenceType, refId);
-            NodeType nodeType = nodeService.getNodeType(referenceType);
-            return new Reference(refNode, nodeType, context);
+            Node refNode = getReferenceNode(value, pt);
+            return new Reference(refNode, context);
         } catch (Exception e) {
             return new Reference(value.toString(), value.toString());
         }
+    }
+
+    public static Node getReferenceNode(Object value, PropertyType pt) {
+        String referenceType = pt.getReferenceType() ;
+        String refId = value.toString() ;
+
+        if(StringUtils.contains(refId, "::")){
+            referenceType = StringUtils.substringBefore(refId, "::") ;
+            refId = StringUtils.substringAfter(refId, "::") ;
+        }
+        if(StringUtils.isNotEmpty(pt.getCodeFilter()) && !StringUtils.contains(refId, Node.ID_SEPERATOR)){
+            refId = pt.getCodeFilter() + Node.ID_SEPERATOR + refId ;
+        }
+
+        return getNode(referenceType, refId);
     }
 
     public static Object getResultValue(ReadContext context, PropertyType pt, Map<String, Object> node) {
@@ -479,6 +468,9 @@ public class NodeUtils {
                     return value;
                 } else if (value instanceof MultipartFile) {
                     FileValue fileValue = getFileService().saveMultipartFile(pt, id, (MultipartFile) value);
+                    return fileValue;
+                } else if (value instanceof String && JsonUtils.isJson((String) value)) {
+                    FileValue fileValue = getFileService().fileValueMapper((String) value);
                     return fileValue;
                 } else if (value instanceof String) {
                     return value ;
@@ -683,16 +675,6 @@ public class NodeUtils {
             }
             for (String fieldName : removePids) {
                 data.remove(fieldName);
-            }
-            List<String> removeLocale = new ArrayList<>() ;
-            for(String key : i18nData.keySet()){
-                Object val = i18nData.get(key) ;
-                if(val instanceof String && val.equals("_null_")){
-                    removeLocale.add(key) ;
-                }
-            }
-            for(String loc : removeLocale){
-                i18nData.remove(loc) ;
             }
 
             if(i18nData.size() > 0) {

@@ -16,7 +16,6 @@ public class ApiReadContext extends ReadContext{
 
     protected Map<String, Object> config  ;
 
-    protected ResultField.ResultType resultType ;
 
     public ApiReadContext() {
         super();
@@ -46,20 +45,8 @@ public class ApiReadContext extends ReadContext{
         return readContext;
     }
 
-    protected static void makeApiContext(Map<String, Object> config, ApiReadContext readContext, String key) {
-        if(key.equals("response")){
-            ContextUtils.makeApiResponse((Map<String, Object>) config.get(key), readContext);
-        }else if(config.get(key) != null){
-            ContextUtils.makeContextConfig(readContext, key, config.get(key).toString());
-        }else if(key.equals("resultType")){
-            readContext.resultType = ResultField.ResultType.valueOf(config.get("resultType").toString().toUpperCase());
-        }
-    }
-
-
     public Node getNode(){
         return  NodeUtils.getNode(nodeType.getTypeId(), id) ;
     }
-
 
 }

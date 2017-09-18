@@ -87,7 +87,8 @@ public class SchedulerStore {
             Map<String, Timer> taskMap = TimerTaskFactory.getFactory().loadTasks(taskInfoList);
             schedulerMap.putAll(taskMap);
         } catch (Exception e) {
-            logger.error("Failed to load Scheduler Information :: ", e);
+//            logger.error("Failed to load Scheduler Information :: ", e);
+            logger.error("No Scheduler setting found for this profile :: " + profiles);
         }
     }
 }

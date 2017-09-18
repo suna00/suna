@@ -1,5 +1,5 @@
 spring:
-  profiles: aws-pwas
+  profiles: aws-apigw
   http:
     multipart:
       max-request-size: 10MB
@@ -19,12 +19,12 @@ jwtConfig:
 
 cluster:
   members:
-    - 10.75.4.10
+    - 10.75.6.48
     - 127.0.0.1
     - localhost
 
 infinispan:
-  cachePath: /home/ion/cms/resource/ice2/cache
+  cachePath: /home/ion/api/resource/ice2/cache
 
 tomcat:
   access-log-enabled: true
@@ -39,7 +39,7 @@ logging:
 
 file:
   default:
-    path: /home/ion/cms/resource/ice2/files
+    path: /home/ion/api/resource/ice2/files
 
 
 i18n:
@@ -57,4 +57,4 @@ aws:
 
 
 temp-file:
-  dir: /
+  dir: /home/ion/api/resource/ice2/cache

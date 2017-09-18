@@ -84,8 +84,7 @@
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",
-    "defaultValue": "",
-    "i18n": true
+    "defaultValue": ""
   },
   {
     "typeId": "propertyType",
@@ -102,7 +101,8 @@
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "i18n": true
   },
   {
     "typeId": "propertyType",
@@ -115,11 +115,12 @@
     "labelable": false,
     "treeable": false,
     "indexable": false,
-    "analyzer": null,
+    "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "i18n": true
   },
   {
     "typeId": "propertyType",
@@ -132,7 +133,25 @@
     "labelable": false,
     "treeable": false,
     "indexable": false,
-    "analyzer": null,
+    "analyzer": "cjk",
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": "",
+    "i18n": true
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "pgmVideo2",
+    "pid": "directPrsn",
+    "propertyTypeName": "연출진",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",
@@ -150,7 +169,7 @@
     "labelable": false,
     "treeable": false,
     "indexable": false,
-    "analyzer": null,
+    "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",
@@ -189,7 +208,8 @@
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "i18n": true
   },
   {
     "typeId": "propertyType",
@@ -449,23 +469,6 @@
   {
     "typeId": "propertyType",
     "tid": "pgmVideo2",
-    "pid": "subtitlePath",
-    "propertyTypeName": "mnet 인터페이스 처리 여부",
-    "valueType": "BOOLEAN",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "",
-    "referenceValue": "",
-    "codeFilter": "",
-    "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "pgmVideo2",
     "pid": "rcmdContsYn",
     "propertyTypeName": "추천 여부",
     "valueType": "BOOLEAN",
@@ -518,7 +521,7 @@
     "typeId": "propertyType",
     "tid": "pgmVideo",
     "pid": "subtitlePath",
-    "propertyTypeName": "???? 필요없으면 지우기",
+    "propertyTypeName": "자막 경로",
     "valueType": "STRING",
     "required": false,
     "idable": false,
@@ -529,7 +532,8 @@
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "i18n": true
   },
   {
     "typeId": "propertyType",

@@ -13,7 +13,6 @@ public class ApiReadsContext extends ApiReadContext{
     protected List<String> ids ;
 
 
-
     public static ApiReadsContext makeContextFromConfig(Map<String, Object> config, Map<String, Object> data) {
         ApiReadsContext readsContext = new ApiReadsContext();
         readsContext.nodeType = NodeUtils.getNodeType((String) ContextUtils.getValue(config.get("typeId"), data)) ;
