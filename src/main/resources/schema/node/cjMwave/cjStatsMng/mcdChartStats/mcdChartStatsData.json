@@ -1,25 +1,5 @@
 [
-  {
-    "typeId": "mcdChartStats",
-    "idx": 10002,
-    "chMstId": 100012,
-    "songId": "song_00001",
-    "ranking": 1,
-    "rankInter": 0,
-    "rankInterIcon": "H",
-    "rankPreWeek": 1,
-    "rankPeak": "",
-    "rankDuring": "",
-    "songRanking": 1,
-    "albumRanking": 1,
-    "musicRanking": 1,
-    "reserchRanking": 1,
-    "pdRanking": 1,
-    "smsRanking": 1,
-    "regDate": "20170824160045",
-    "tvRanking": 1,
-    "ageRanking": 1
-  },
+
   {
     "typeId": "mcdChartStats",
     "idx": 100012,
@@ -40,6 +20,27 @@
     "regDate": "20170824160045",
     "tvRanking": 2,
     "ageRanking": 2
+  },
+  {
+    "typeId": "mcdChartStats",
+    "idx": 10002,
+    "chMstId": 100012,
+    "songId": "song_00001",
+    "ranking": 1,
+    "rankInter": 0,
+    "rankInterIcon": "H",
+    "rankPreWeek": 1,
+    "rankPeak": "",
+    "rankDuring": "",
+    "songRanking": 1,
+    "albumRanking": 1,
+    "musicRanking": 1,
+    "reserchRanking": 1,
+    "pdRanking": 1,
+    "smsRanking": 1,
+    "regDate": "20170824160045",
+    "tvRanking": 1,
+    "ageRanking": 1
   },
   {
     "typeId": "mcdChartStats",
