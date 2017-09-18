@@ -195,7 +195,7 @@ public class ExecuteContext extends ReadContext{
                         node.remove(pt.getPid()) ;
                         changedProperties.add(pt.getPid()) ;
                     }else if(pt.isI18n()){
-                        ((Map<String, Object>) existValue).putAll((Map<? extends String, ?>) newValue);
+                        i18nRemove((Map<? extends String, ?>) newValue, (Map<String, Object>) existValue);
                         node.put(pt.getPid(), existValue);
                         changedProperties.add(pt.getPid()) ;
                     }
@@ -208,7 +208,7 @@ public class ExecuteContext extends ReadContext{
                     changedProperties.add(pt.getPid()) ;
                 }else if(!newValue.equals(existValue)){
                     if(pt.isI18n()){
-                        ((Map<String, Object>) existValue).putAll((Map<? extends String, ?>) newValue);
+                        i18nRemove((Map<? extends String, ?>) newValue, (Map<String, Object>) existValue);
                         node.put(pt.getPid(), existValue);
                     }else {
                         node.put(pt.getPid(), newValue);
@@ -262,6 +262,20 @@ public class ExecuteContext extends ReadContext{
                     }
                 }
             }
+        }
+    }
+
+    private void i18nRemove(Map<? extends String, ?> newValue, Map<String, Object> existValue) {
+        existValue.putAll(newValue);
+        List<String> removeLocale = new ArrayList<>() ;
+        for(String key :  existValue.keySet()){
+            Object val =  existValue.get(key) ;
+            if(val instanceof String && val.equals("_null_")){
+                removeLocale.add(key) ;
+            }
+        }
+        for(String loc : removeLocale){
+            existValue.remove(loc) ;
         }
     }
 

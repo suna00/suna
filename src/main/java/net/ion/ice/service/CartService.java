@@ -1,14 +1,13 @@
 package net.ion.ice.service;
 
 import net.ion.ice.core.context.ExecuteContext;
-import net.ion.ice.core.context.QueryContext;
-import net.ion.ice.core.data.bind.NodeBindingInfo;
 import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
-import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static net.ion.ice.core.node.NodeUtils.getNodeBindingService;
-
 @Service("cartService")
 public class CartService {
+    private static Logger logger = LoggerFactory.getLogger(CartService.class);
 
     public static final String CREATE = "create";
     public static final String UPDATE = "update";
@@ -50,8 +48,24 @@ public class CartService {
 
     }
 
+    public void removeProduct(ExecuteContext context) {
+        Map<String, Object> data = context.getData();
+        String productIds = (String) data.get("productIds");
+        String[] productIdsArray = productIds.split(",");
+        for(String productId : productIdsArray){
+            nodeBindingService.delete("cartProduct", productId);
+            List<Map<String, Object>> cartProductItemList = nodeBindingService.list("cartProductItem", "cartProductId_in=".concat(productId));
+            if(cartProductItemList.size() > 0){
+                for(Map<String, Object> cartProductItem : cartProductItemList){
+                    nodeBindingService.delete("cartProductItem", String.valueOf(cartProductItem.get("cartProductItemId")));
+                }
+            }
+        }
+        context.setResult(CommonService.setResult("C0001"));
+    }
+
     private void mergeList(Map<String, Object> data, Object cartId, String tid) throws IOException {
-        List<Map<String, Object>> referenced = nodeBindingService.list(tid, "cartId_matching="+cartId);
+        List<Map<String, Object>> referenced = nodeBindingService.list(tid, "cartId_in="+cartId);
         List<Map<String, Object>> maps = JsonUtils.parsingJsonToList(data.get(tid).toString());
 
         boolean exist = false;

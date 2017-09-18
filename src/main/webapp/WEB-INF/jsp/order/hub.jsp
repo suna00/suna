@@ -60,6 +60,7 @@
     String cust_ip = f_get_parm(request.getRemoteAddr()); // 요청 IP
     String ordr_idxx = f_get_parm(request.getParameter("ordr_idxx")); // 쇼핑몰 주문번호
     String good_name = f_get_parm(request.getParameter("good_name")); // 상품명
+    String ordr_mony = f_get_parm(request.getParameter("ordr_mony")); // 결제 금액
     /* = -------------------------------------------------------------------------- = */
     String res_cd = "";                                                     // 응답코드
     String res_msg = "";                                                     // 응답 메세지
@@ -152,8 +153,8 @@
         int ordr_data_set_no;
 
         ordr_data_set_no = c_PayPlus.mf_add_set("ordr_data");
-
-        c_PayPlus.mf_set_us(ordr_data_set_no, "ordr_mony", "1");
+        System.out.println("ordr_mony"+ ordr_mony);
+        c_PayPlus.mf_set_us(ordr_data_set_no, "ordr_mony", ordr_mony);
 
 
     }
@@ -296,6 +297,10 @@
     responseMap.put("use_pay_method   ", use_pay_method);
     responseMap.put("bSucc            ", bSucc);
     responseMap.put("amount           ", amount);
+    responseMap.put("total_amount     ", total_amount);
+    responseMap.put("card_mny         ", card_mny);
+    responseMap.put("bk_mny         ", bk_mny);
+    responseMap.put("coupon_mny       ", coupon_mny);
     responseMap.put("res_cd           ", res_cd);
     responseMap.put("res_msg          ", res_msg);
     responseMap.put("ordr_idxx        ", ordr_idxx);
@@ -331,6 +336,7 @@
     responseMap.put("mobile_no        ", mobile_no);
     responseMap.put("tk_van_code      ", tk_van_code);
     responseMap.put("tk_app_no        ", tk_app_no);
+    responseMap.put("shop_user_id     ", shop_user_id);
     responseMap.put("cash_yn          ", cash_yn);
     responseMap.put("cash_authno      ", cash_authno);
     responseMap.put("cash_tr_code     ", cash_tr_code);
@@ -473,6 +479,10 @@
     System.out.println("사용한 결제 수단 : " + use_pay_method);
     System.out.println("쇼핑몰 DB 처리 성공 여부 : " + bSucc);
     System.out.println("KCP 실제 거래 금액 : " + amount);
+    System.out.println("복합결제시 총 거래금액 " + total_amount);
+    System.out.println("카드결제금액 " + card_mny);
+    System.out.println("계좌이체결제금액 " + bk_mny);
+    System.out.println("쿠폰금액 " + coupon_mny);
     System.out.println("결과 코드 : " + res_cd);
     System.out.println("결과 메세지 : " + res_msg);
     System.out.println("주문번호 : " + ordr_idxx);
@@ -508,6 +518,7 @@
     System.out.println("휴대폰 번호 : " + mobile_no);
     System.out.println("발급사 코드 : " + tk_van_code);
     System.out.println("승인 번호 : " + tk_app_no);
+    System.out.println("가맹점 고객 아이디 " + shop_user_id);
     System.out.println("현금영수증 등록 여부 : " + cash_yn);
     System.out.println("현금 영수증 승인 번호 : " + cash_authno);
     System.out.println("현금 영수증 발행 구분 : " + cash_tr_code);

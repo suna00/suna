@@ -1,0 +1,58 @@
+[
+  {
+    "typeId": "cart",
+    "cartId": "50",
+    "memberNo": "77777",
+    "siteId": "ion",
+    "sessionId": "dkejdkakdjfj",
+    "buyNowYn": "n"
+  },
+  {
+    "typeId": "cartProduct",
+    "cartProductId": "11",
+    "cartId": "50",
+    "productId": "3",
+    "baseOptionItemId": "10002",
+    "quantity": 1,
+    "vendorId": 1
+  },
+  {
+    "typeId": "cartProduct",
+    "cartProductId": "12",
+    "cartId": "50",
+    "productId": "3",
+    "baseOptionItemId": "10001",
+    "quantity": 1,
+    "vendorId": 1
+  },
+  {
+    "typeId": "cartProductItem",
+    "cartProductItemId": "22",
+    "cartId": "50",
+    "cartProductId": "12",
+    "productId": "3",
+    "addOptionItemId": "10005",
+    "quantity": "2"
+  },
+  {
+    "typeId": "cartProductItem",
+    "cartProductItemId": "23",
+    "cartId": "50",
+    "cartProductId": 12,
+    "productId": "3",
+    "addOptionItemId": "10006",
+    "quantity": "2"
+  },
+  {
+    "typeId": "cartDeliveryPrice",
+    "cartDeliveryPriceId": "1",
+    "cartId": "50",
+    "cartProductIds": "11,12",
+    "vendorId": "1",
+    "deliveryPrice": "2500",
+    "bundleDeliveryYn": "y",
+    "deliveryPriceType": null,
+    "hopeDeliveryDate": null
+  }
+]
+

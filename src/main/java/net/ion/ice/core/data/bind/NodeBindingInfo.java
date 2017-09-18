@@ -8,7 +8,6 @@ import net.ion.ice.core.data.table.Column;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.PropertyType;
-import net.ion.ice.core.query.QueryTerm;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -264,9 +263,9 @@ public class NodeBindingInfo {
         List<Map<String, Object>> items = jdbcTemplate.queryForList(dbQuery.getListParamSql(), dbQuery.getSearchListValue().toArray());
         queryContext.setResultSize(((Long) totalCount.get("totalCount")).intValue());
 
-        if(queryContext.getStart() > 0) {
-            items = items.subList(queryContext.getStart(), items.size()) ;
-        }
+//        if(queryContext.getStart() > 0) {
+//            items = items.subList(queryContext.getStart(), items.size()) ;
+//        }
 
         queryContext.setQueryListSize(items.size());
         return items;
@@ -280,6 +279,12 @@ public class NodeBindingInfo {
 
     public int delete(Node node) {
         List<Object> parameters = deleteParameters(node);
+        int queryCallBack = jdbcTemplate.update(deleteSql, parameters.toArray());
+        return queryCallBack;
+    }
+
+    public int delete(String id) {
+        List<String> parameters = retrieveParameters(id);
         int queryCallBack = jdbcTemplate.update(deleteSql, parameters.toArray());
         return queryCallBack;
     }
@@ -337,6 +342,7 @@ public class NodeBindingInfo {
         }
         return parameters;
     }
+
 
     public Object extractNodeValue(Node node, String pid) {
         return node.getBindingValue(pid);

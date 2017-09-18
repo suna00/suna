@@ -686,16 +686,6 @@ public class NodeUtils {
             for (String fieldName : removePids) {
                 data.remove(fieldName);
             }
-            List<String> removeLocale = new ArrayList<>() ;
-            for(String key : i18nData.keySet()){
-                Object val = i18nData.get(key) ;
-                if(val instanceof String && val.equals("_null_")){
-                    removeLocale.add(key) ;
-                }
-            }
-            for(String loc : removeLocale){
-                i18nData.remove(loc) ;
-            }
 
             if(i18nData.size() > 0) {
                 return i18nData;
