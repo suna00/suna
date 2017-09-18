@@ -4,6 +4,8 @@ import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
+import net.ion.ice.core.node.PropertyType;
+import net.ion.ice.core.node.Reference;
 import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.ResultField;
 import org.apache.commons.lang3.StringUtils;
@@ -120,7 +122,6 @@ public class ApiSelectContext extends ReadContext{
             return ;
         }
 
-
         for (ResultField resultField : getResultFields()) {
             if(resultField.getFieldName().equals("_all_")){
                 for(String key : resultData.keySet()){
@@ -160,14 +161,23 @@ public class ApiSelectContext extends ReadContext{
                         String fieldValue = resultField.getFieldValue();
                         fieldValue = fieldValue == null || org.apache.commons.lang3.StringUtils.isEmpty(fieldValue) ? resultField.getFieldName() : fieldValue;
 
-                        FieldContext fieldContext = resultField.getFieldContext() ;
+                        FieldContext fieldContext = FieldContext.makeContextFromConfig(resultField.getFieldOption(), _data);
                         fieldContext.dateFormat = this.dateFormat ;
                         fieldContext.fileUrlFormat = this.fileUrlFormat ;
 
-                        if(resultField.getFieldOption().get("propertyType") != null){
+                        if(resultField.getFieldOption().get("propertyType") != null) {
                             String propertyType = (String) resultField.getFieldOption().get("propertyType");
                             NodeType _nodeType = NodeUtils.getNodeType(StringUtils.substringBefore(propertyType, ".")) ;
-                            itemResult.put(resultField.getFieldName(), NodeUtils.getResultValue(fieldContext, _nodeType.getPropertyType(StringUtils.substringAfter(propertyType, ".")), resultData, getResultValue(resultData, fieldValue)));
+                            PropertyType pt = _nodeType.getPropertyType(StringUtils.substringAfter(propertyType, ".")) ;
+                            if(StringUtils.isNotEmpty(pt.getReferenceType())){
+                                fieldContext.nodeType = NodeUtils.getNodeType(pt.getReferenceType()) ;
+                            }
+                            if(fieldContext.referenceView == true && fieldContext.getResultFields() != null ){
+                                fieldContext.referenceView = false ;
+                                itemResult.put(resultField.getFieldName(), fieldContext.makeQueryResult(NodeUtils.getReferenceNode(getResultValue(resultData, fieldValue), pt)));
+                            }else {
+                                itemResult.put(resultField.getFieldName(), NodeUtils.getResultValue(fieldContext, pt, resultData, getResultValue(resultData, fieldValue)));
+                            }
                         }else {
                             itemResult.put(resultField.getFieldName(), getResultValue(resultData, fieldValue));
                         }

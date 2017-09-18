@@ -334,8 +334,7 @@ public class ReadContext implements Context {
                         }else {
                             if(fieldContext.referenceView == true && fieldContext.getResultFields() != null ){
                                 fieldContext.referenceView = false ;
-                                Reference reference = (Reference) NodeUtils.getResultValue(fieldContext, pt, node);
-                                itemResult.put(resultField.getFieldName(), fieldContext.makeQueryResult(reference, NodeUtils.getReferenceNode(node.get(pt.getPid()), pt)));
+                                itemResult.put(resultField.getFieldName(), fieldContext.makeQueryResult(NodeUtils.getReferenceNode(node.get(pt.getPid()), pt)));
                             }else {
                                 itemResult.put(resultField.getFieldName(), NodeUtils.getResultValue(fieldContext, pt, node));
                             }
@@ -346,7 +345,9 @@ public class ReadContext implements Context {
             } else {
                 String fieldValue = resultField.getFieldValue();
                 fieldValue = fieldValue == null || StringUtils.isEmpty(fieldValue) ? resultField.getFieldName() : fieldValue;
-                itemResult.put(resultField.getFieldName(), NodeUtils.getResultValue(resultField.getFieldContext() != null ? resultField.getFieldContext() : this, nodeType.getPropertyType(fieldValue), node));
+                PropertyType pt = nodeType.getPropertyType(fieldValue) ;
+                if(pt == null) continue;
+                itemResult.put(resultField.getFieldName(), NodeUtils.getResultValue( this, pt, node));
             }
         }
     }

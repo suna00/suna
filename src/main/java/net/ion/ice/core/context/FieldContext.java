@@ -4,6 +4,7 @@ import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.Reference;
 import net.ion.ice.core.query.QueryResult;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Map;
 
@@ -27,11 +28,11 @@ public class FieldContext extends ApiReadContext{
         return context;
     }
 
-    public QueryResult makeQueryResult(Reference reference, Node refNode) {
+    public QueryResult makeQueryResult(Node refNode) {
         QueryResult queryResult = new QueryResult() ;
-        queryResult.put("refId", reference.getRefId()) ;
-        queryResult.put("value", reference.getValue()) ;
-        queryResult.put("label", reference.getLabel()) ;
+        queryResult.put("refId", refNode.getId()) ;
+        queryResult.put("value", StringUtils.contains(refNode.getId(), ">") ? StringUtils.substringAfterLast(refNode.getId(), ">") : refNode.getId() ) ;
+        queryResult.put("label", node.getLabel(this)) ;
 
         queryResult.put("item", makeResult(refNode)) ;
         return queryResult ;
