@@ -46,6 +46,14 @@ public class MypageService {
         return context;
     }
 
+    public void removeMyDeliveryAddress(ExecuteContext context){
+        Node node = context.getNode();
+        if(!node.getValue("defaultYn").equals("n")){ // 방어체계구축
+            nodeService.deleteNode(context.getNode().getTypeId(), context.getNode().getId());
+            context.setResult(CommonService.setResult("M0001"));
+        }
+    }
+
 //    관심상품 리스트 -> 품절상품 삭제
     public ExecuteContext removeOutOfStockProduct(ExecuteContext context) {
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
