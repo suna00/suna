@@ -97,8 +97,8 @@ public class Properties implements Map<String, Object>, Serializable, Cloneable 
                 value = pt.getDefaultValue() ;
             }
             if(value != null && !(value instanceof List)){
-                if(pt.isFile() && value instanceof String && ((String) value).contains("classpath:")){
-                    values.put(pt.getPid(), NodeUtils.getFileService().saveResourceFile(pt, id, (String) value)) ;
+                if(pt.isFile() && value instanceof String && (((String) value).startsWith("classpath:") || ((String) value).startsWith("http://") || ((String) value).startsWith("/"))){
+                    values.put(pt.getPid(), NodeUtils.getFileService().saveResourceFile(pt, id, (String) value));
                 }else {
                     values.put(pt.getPid(), value);
                 }
@@ -106,8 +106,12 @@ public class Properties implements Map<String, Object>, Serializable, Cloneable 
             if(pt.isI18n()){
                 String i18nPrefix = pt.getPid() + "_" ;
                 for(String fieldName : m.keySet()){
-                    if(fieldName.startsWith(i18nPrefix)){
-                        values.put(fieldName, m.get(fieldName)) ;
+                    if(fieldName.startsWith(i18nPrefix)) {
+                        if (pt.isFile() && m.get(fieldName) instanceof String && (((String) m.get(fieldName)).startsWith("classpath:") || ((String) m.get(fieldName)).startsWith("http://") || ((String) m.get(fieldName)).startsWith("/"))) {
+                            values.put(fieldName, NodeUtils.getFileService().saveResourceFile(pt, id, (String) m.get(fieldName)));
+                        } else {
+                            values.put(fieldName, m.get(fieldName));
+                        }
                     }
                 }
             }
