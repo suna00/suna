@@ -11,20 +11,76 @@
     "advShowOrderSeq": 1002,
     "advSeq": 100002,
     "listOrder": 2,
-    "showOrder": 2
+    "showOrder": 1
   },
   {
     "typeId": "advShowOrder",
     "advShowOrderSeq": 1003,
     "advSeq": 100003,
     "listOrder": 3,
-    "showOrder": 3
+    "showOrder": 2
   },
   {
     "typeId": "advShowOrder",
     "advShowOrderSeq": 1004,
     "advSeq": 100004,
     "listOrder": 4,
-    "showOrder": 4
+    "showOrder": 2
+  },
+  {
+    "typeId": "advShowOrder",
+    "advShowOrderSeq": 1005,
+    "advSeq": 100005,
+    "listOrder": 5,
+    "showOrder": 1
+  },
+  {
+    "typeId": "advShowOrder",
+    "advShowOrderSeq": 1006,
+    "advSeq": 100006,
+    "listOrder": 6,
+    "showOrder": 1
+  },
+  {
+    "typeId": "advShowOrder",
+    "advShowOrderSeq": 1007,
+    "advSeq": 100007,
+    "listOrder": 7,
+    "showOrder": 2
+  },
+  {
+    "typeId": "advShowOrder",
+    "advShowOrderSeq": 1008,
+    "advSeq": 100008,
+    "listOrder": 8,
+    "showOrder": 2
+  },
+  {
+    "typeId": "advShowOrder",
+    "advShowOrderSeq": 1009,
+    "advSeq": 100009,
+    "listOrder": 9,
+    "showOrder": 1
+  },
+  {
+    "typeId": "advShowOrder",
+    "advShowOrderSeq": 1010,
+    "advSeq": 100010,
+    "listOrder": 10,
+    "showOrder": 1
+  },
+  {
+    "typeId": "advShowOrder",
+    "advShowOrderSeq": 1011,
+    "advSeq": 100011,
+    "listOrder": 11,
+    "showOrder": 2
+  },
+  {
+    "typeId": "advShowOrder",
+    "advShowOrderSeq": 1012,
+    "advSeq": 100012,
+    "listOrder": 12,
+    "showOrder": 2
   }
 ]
