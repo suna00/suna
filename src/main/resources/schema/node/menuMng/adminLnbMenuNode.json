@@ -44,7 +44,24 @@
     "pages": [],
     "customPages": [
       { "pageName": "등록", "pageUrl": "ytn/product/CreateForm" },
-      { "pageName": "등록", "pageUrl": "ytn/product/UpdateForm" }
+      { "pageName": "수정", "pageUrl": "ytn/product/UpdateForm" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "root",
+    "menuId": "productOptionSet",
+    "menuName": "상품옵션 세트설정",
+    "order": "60",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "ytn/productOptionSet/CreateForm" },
+      { "pageName": "수정", "pageUrl": "ytn/productOptionSet/UpdateForm" }
     ]
   },
 

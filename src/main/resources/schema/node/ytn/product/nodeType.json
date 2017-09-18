@@ -28,6 +28,15 @@
   {
     "parentId": "productPath",
     "typeId": "nodeType",
+    "tid": "productOptionSet",
+    "typeName": "상품 옵션 세트",
+    "tableName": "ytnDevDb#productOptionSet",
+    "repositoryType": "node",
+    "eviction": 1000
+  },
+  {
+    "parentId": "productPath",
+    "typeId": "nodeType",
     "tid": "productOption",
     "typeName": "상품 옵션",
     "tableName": "ytnDevDb#productOption",
