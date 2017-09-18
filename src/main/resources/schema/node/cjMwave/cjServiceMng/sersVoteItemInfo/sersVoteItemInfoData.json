@@ -4,8 +4,8 @@
     "sersVoteItemSeq": 12938129,
     "itemDivCd": "1",
     "voteSeq": 300001,
-    "sersItemVoteSeq": 200006,
-    "banrSeq": null,
+    "sersItemVoteSeq": 200014,
+    "banrSeq": "",
     "sortOdrg": 1
   },
   {
@@ -13,8 +13,8 @@
     "sersVoteItemSeq": 12938130,
     "itemDivCd": "1",
     "voteSeq": 300001,
-    "sersItemVoteSeq": 200007,
-    "banrSeq": null,
+    "sersItemVoteSeq": 200016,
+    "banrSeq": "",
     "sortOdrg": 2
   },
   {
@@ -22,7 +22,7 @@
     "sersVoteItemSeq": 12938131,
     "itemDivCd": "2",
     "voteSeq": 300001,
-    "sersItemVoteSeq": null,
+    "sersItemVoteSeq": "",
     "banrSeq": 104,
     "sortOdrg": 3
   },
@@ -31,7 +31,7 @@
     "sersVoteItemSeq": 12938132,
     "itemDivCd": "2",
     "voteSeq": 300002,
-    "sersItemVoteSeq": null,
+    "sersItemVoteSeq": "",
     "banrSeq": 112,
     "sortOdrg": 1
   },
@@ -40,8 +40,8 @@
     "sersVoteItemSeq": 12938133,
     "itemDivCd": "1",
     "voteSeq": 300002,
-    "sersItemVoteSeq": 200009,
-    "banrSeq": null,
+    "sersItemVoteSeq": 200017,
+    "banrSeq": "",
     "sortOdrg": 2
   },
   {
@@ -49,7 +49,7 @@
     "sersVoteItemSeq": 12938134,
     "itemDivCd": "2",
     "voteSeq": 300002,
-    "sersItemVoteSeq": null,
+    "sersItemVoteSeq": "",
     "banrSeq": 119,
     "sortOdrg": 3
   },
@@ -58,8 +58,8 @@
     "sersVoteItemSeq": 12938135,
     "itemDivCd": "1",
     "voteSeq": 300002,
-    "sersItemVoteSeq": 200010,
-    "banrSeq": null,
+    "sersItemVoteSeq": 200018,
+    "banrSeq": "",
     "sortOdrg": 4
   },
   {
@@ -67,7 +67,7 @@
     "sersVoteItemSeq": 12938136,
     "itemDivCd": "2",
     "voteSeq": 300002,
-    "sersItemVoteSeq": null,
+    "sersItemVoteSeq": "",
     "banrSeq": 104,
     "sortOdrg": 5
   },
@@ -76,8 +76,8 @@
     "sersVoteItemSeq": 12938137,
     "itemDivCd": "1",
     "voteSeq": 300003,
-    "sersItemVoteSeq": 200008,
-    "banrSeq": null,
+    "sersItemVoteSeq": 200014,
+    "banrSeq": "",
     "sortOdrg": 1
   },
   {
@@ -85,7 +85,7 @@
     "sersVoteItemSeq": 12938138,
     "itemDivCd": "2",
     "voteSeq": 300003,
-    "sersItemVoteSeq": null,
+    "sersItemVoteSeq": "",
     "banrSeq": 112,
     "sortOdrg": 2
   },
@@ -94,8 +94,8 @@
     "sersVoteItemSeq": 12938139,
     "itemDivCd": "1",
     "voteSeq": 300003,
-    "sersItemVoteSeq": 200011,
-    "banrSeq": null,
+    "sersItemVoteSeq": 200016,
+    "banrSeq": "",
     "sortOdrg": 3
   },
   {
@@ -103,8 +103,8 @@
     "sersVoteItemSeq": 12938140,
     "itemDivCd": "1",
     "voteSeq": 300003,
-    "sersItemVoteSeq": 200013,
-    "banrSeq": null,
+    "sersItemVoteSeq": 200017,
+    "banrSeq": "",
     "sortOdrg": 4
   },
   {
@@ -113,7 +113,7 @@
     "itemDivCd": "1",
     "voteSeq": 300004,
     "sersItemVoteSeq": 200014,
-    "banrSeq": null,
+    "banrSeq": "",
     "sortOdrg": 1
   },
   {
@@ -122,7 +122,7 @@
     "itemDivCd": "1",
     "voteSeq": 300004,
     "sersItemVoteSeq": 200015,
-    "banrSeq": null,
+    "banrSeq": "",
     "sortOdrg": 2
   },
   {
@@ -130,7 +130,7 @@
     "sersVoteItemSeq": 12938143,
     "itemDivCd": "2",
     "voteSeq": 300004,
-    "sersItemVoteSeq": null,
+    "sersItemVoteSeq": "",
     "banrSeq": 119,
     "sortOdrg": 3
   },
@@ -139,7 +139,7 @@
     "sersVoteItemSeq": 12938144,
     "itemDivCd": "2",
     "voteSeq": 300004,
-    "sersItemVoteSeq": null,
+    "sersItemVoteSeq": "",
     "banrSeq": 104,
     "sortOdrg": 4
   },
@@ -148,7 +148,7 @@
     "sersVoteItemSeq": 12938145,
     "itemDivCd": "2",
     "voteSeq": 300004,
-    "sersItemVoteSeq": null,
+    "sersItemVoteSeq": "",
     "banrSeq": 112,
     "sortOdrg": 5
   },
@@ -158,7 +158,7 @@
     "itemDivCd": "1",
     "voteSeq": 300004,
     "sersItemVoteSeq": 200009,
-    "banrSeq": null,
+    "banrSeq": "",
     "sortOdrg": 6
   },
   {
@@ -167,7 +167,7 @@
     "itemDivCd": "1",
     "voteSeq": 300004,
     "sersItemVoteSeq": 200010,
-    "banrSeq": null,
+    "banrSeq": "",
     "sortOdrg": 7
   },
   {
@@ -176,7 +176,7 @@
     "itemDivCd": "1",
     "voteSeq": 300005,
     "sersItemVoteSeq": 200006,
-    "banrSeq": null,
+    "banrSeq": "",
     "sortOdrg": 1
   },
   {
@@ -185,7 +185,7 @@
     "itemDivCd": "1",
     "voteSeq": 300005,
     "sersItemVoteSeq": 200007,
-    "banrSeq": null,
+    "banrSeq": "",
     "sortOdrg": 2
   },
   {
@@ -194,7 +194,7 @@
     "itemDivCd": "1",
     "voteSeq": 300005,
     "sersItemVoteSeq": 200008,
-    "banrSeq": null,
+    "banrSeq": "",
     "sortOdrg": 3
   },
   {
@@ -203,7 +203,7 @@
     "itemDivCd": "1",
     "voteSeq": 300005,
     "sersItemVoteSeq": 200009,
-    "banrSeq": null,
+    "banrSeq": "",
     "sortOdrg": 4
   },
   {
@@ -211,7 +211,7 @@
     "sersVoteItemSeq": 12938152,
     "itemDivCd": "2",
     "voteSeq": 300005,
-    "sersItemVoteSeq": null,
+    "sersItemVoteSeq": "",
     "banrSeq": 112,
     "sortOdrg": 5
   },
@@ -221,7 +221,7 @@
     "itemDivCd": "1",
     "voteSeq": 300005,
     "sersItemVoteSeq": 200010,
-    "banrSeq": null,
+    "banrSeq": "",
     "sortOdrg": 6
   },
   {
@@ -230,7 +230,7 @@
     "itemDivCd": "1",
     "voteSeq": 300005,
     "sersItemVoteSeq": 200011,
-    "banrSeq": null,
+    "banrSeq": "",
     "sortOdrg": 7
   },
   {
@@ -239,7 +239,7 @@
     "itemDivCd": "1",
     "voteSeq": 300005,
     "sersItemVoteSeq": 200012,
-    "banrSeq": null,
+    "banrSeq": "",
     "sortOdrg": 8
   },
   {
@@ -247,7 +247,7 @@
     "sersVoteItemSeq": 12938156,
     "itemDivCd": "2",
     "voteSeq": 300005,
-    "sersItemVoteSeq": null,
+    "sersItemVoteSeq": "",
     "banrSeq": 119,
     "sortOdrg": 9
   },
@@ -257,7 +257,7 @@
     "itemDivCd": "1",
     "voteSeq": 300005,
     "sersItemVoteSeq": 200013,
-    "banrSeq": null,
+    "banrSeq": "",
     "sortOdrg": 10
   },
   {
@@ -265,7 +265,7 @@
     "sersVoteItemSeq": 12938158,
     "itemDivCd": "2",
     "voteSeq": 300005,
-    "sersItemVoteSeq": null,
+    "sersItemVoteSeq": "",
     "banrSeq": 104,
     "sortOdrg": 11
   },
@@ -275,7 +275,7 @@
     "itemDivCd": "1",
     "voteSeq": 300005,
     "sersItemVoteSeq": 200014,
-    "banrSeq": null,
+    "banrSeq": "",
     "sortOdrg": 12
   },
   {
@@ -284,7 +284,7 @@
     "itemDivCd": "1",
     "voteSeq": 300005,
     "sersItemVoteSeq": 200015,
-    "banrSeq": null,
+    "banrSeq": "",
     "sortOdrg": 13
   },
   {
@@ -293,7 +293,7 @@
     "itemDivCd": "1",
     "voteSeq": 300005,
     "sersItemVoteSeq": 200015,
-    "banrSeq": null,
+    "banrSeq": "",
     "sortOdrg": 14
   }
 ]
