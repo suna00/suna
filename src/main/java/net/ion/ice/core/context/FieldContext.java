@@ -29,10 +29,12 @@ public class FieldContext extends ApiReadContext{
     }
 
     public QueryResult makeQueryResult(Node refNode) {
+        this.node = refNode ;
+
         QueryResult queryResult = new QueryResult() ;
         queryResult.put("refId", refNode.getId()) ;
         queryResult.put("value", StringUtils.contains(refNode.getId(), ">") ? StringUtils.substringAfterLast(refNode.getId(), ">") : refNode.getId() ) ;
-        queryResult.put("label", node.getLabel(this)) ;
+        queryResult.put("label", refNode.getLabel(this)) ;
 
         queryResult.put("item", makeResult(refNode)) ;
         return queryResult ;
