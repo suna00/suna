@@ -173,4 +173,38 @@ public class MemberService {
             e.printStackTrace();
         }
     }
+
+    public ExecuteContext leaveMembership(ExecuteContext context){
+        Map<String, Object> data = new LinkedHashMap<>(context.getData());
+
+        String[] params = { "memberNo" };
+        if (common.requiredParams(context, data, params)) return context;
+
+        List<Node> list = nodeService.getNodeList("orderProduct", "memberNo_matching="+data.get("memberNo"));
+        if(list.size() > 0){
+            for(Node node : list){
+                String orderStatus = node.getValue("orderStatus").toString();
+//                배송완료,구매확정,취소완료,교환배송완료,반품완료
+                if( !("order006".equals(orderStatus) || "order007".equals(orderStatus) || "order009".equals(orderStatus) || "order016".equals(orderStatus) || "order021".equals(orderStatus))){
+                    common.setErrorMessage(context, "L0001");
+                    return context;
+                }
+            }
+        }
+
+        Node node = nodeService.getNode("member", data.get("memberNo").toString());
+        if(node == null){
+            common.setErrorMessage(context, "L0002");
+            return context;
+        }
+
+        node.put("memberStatus", "leave");
+        nodeService.executeNode(node, "member", common.UPDATE);
+
+        data.putAll(node);
+        data.put("leaveDate", new Date());
+        nodeService.executeNode(data, "requestToleaveMember", common.CREATE);
+
+        return context;
+    }
 }

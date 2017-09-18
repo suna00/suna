@@ -7,11 +7,22 @@ import java.util.Map;
 
 public class CommonService {
 
+    public static final String CREATE = "create";
+    public static final String UPDATE = "update";
+    public static final String DELETE = "delete";
+    public static final String SAVE = "save";
+    public static final String PATTERN = "yyyyMMddHHmmss";
+    public static final String unlimitedDate = "99991231235959";
+
     public static final Map<String, Object> resultCodeMap;
     static
     {
         resultCodeMap = new HashMap();
         resultCodeMap.put("S0001", "required param. ");
+
+        /*leave Member*/
+        resultCodeMap.put("L0001", "진행중인 거래내역이 있습니다.");
+        resultCodeMap.put("L0002", "회원정보가 존재하지 않습니다.");
 
         /*Coupon*/
         resultCodeMap.put("V0001", "존재하지 않는 쿠폰유형입니다.");
