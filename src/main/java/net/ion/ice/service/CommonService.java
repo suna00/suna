@@ -18,6 +18,11 @@ public class CommonService {
         resultCodeMap.put("V0003", "[동일인재발급제한] 받을 수 있는 쿠폰이 없습니다.");
         resultCodeMap.put("V0004", "발급가능한 기간이 만료되었습니다.");
         resultCodeMap.put("V0005", "이미 발급된 쿠폰입니다.");
+
+        /*Order (O0000)*/
+
+        /*Cart (C0000)*/
+        resultCodeMap.put("C0001", "상품 삭제 성공");
     }
 
     public static boolean requiredParams(ExecuteContext context, Map<String, Object> data, String[] params) {

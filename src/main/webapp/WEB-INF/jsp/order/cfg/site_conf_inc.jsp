@@ -66,6 +66,10 @@
     /* = 실결제 시 : 반드시 KCP에서 발급한 사이트코드(site_cd)와 사이트키(site_key) = */
     /* =            로 설정해 주십시오.                                             = */
     /* ============================================================================== */
+//    페이코 가능한 것
+//    String g_conf_site_cd   = "A52CY";
+//    String g_conf_site_key  = "0fGf5MHRgjRhbHKLFYXlAeT__";
+
     String g_conf_site_cd   = "T0000";
     String g_conf_site_key  = "3grptw1.zW0GSo4PQdaGvsF__";
 

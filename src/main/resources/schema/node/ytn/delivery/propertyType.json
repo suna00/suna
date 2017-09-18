@@ -276,7 +276,7 @@
   {
     "typeId": "propertyType",
     "tid": "delivery",
-    "pid": "buyerName",
+    "pid": "recipient",
     "propertyTypeName": "주문자명",
     "valueType": "STRING",
     "required": false,
