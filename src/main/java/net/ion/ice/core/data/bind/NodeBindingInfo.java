@@ -8,7 +8,6 @@ import net.ion.ice.core.data.table.Column;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.PropertyType;
-import net.ion.ice.core.query.QueryTerm;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -284,6 +283,12 @@ public class NodeBindingInfo {
         return queryCallBack;
     }
 
+    public int delete(String id) {
+        List<String> parameters = retrieveParameters(id);
+        int queryCallBack = jdbcTemplate.update(deleteSql, parameters.toArray());
+        return queryCallBack;
+    }
+
     private List<Object> insertParameters(Map<String, String[]> parameterMap) {
         List<Object> parameters = new ArrayList<>();
         for (PropertyType pid : insertPids) {
@@ -337,6 +342,7 @@ public class NodeBindingInfo {
         }
         return parameters;
     }
+
 
     public Object extractNodeValue(Node node, String pid) {
         return node.getBindingValue(pid);
