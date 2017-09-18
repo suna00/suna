@@ -230,7 +230,7 @@ public class NodeUtils {
             }
             case FILE: {
 //                if (value instanceof FileValue) {
-                    return value;
+                return value;
 //                }else {
 //
 //                }
@@ -261,6 +261,7 @@ public class NodeUtils {
     }
 
     public static Node getReferenceNode(Object value, PropertyType pt) {
+        if(value == null || pt == null) return null;
         String referenceType = pt.getReferenceType() ;
         String refId = value.toString() ;
 
