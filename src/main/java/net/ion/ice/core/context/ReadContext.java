@@ -332,7 +332,7 @@ public class ReadContext implements Context {
                             List list = (List) NodeUtils.getResultValue(fieldContext, pt, node);
                             itemResult.put(resultField.getFieldName(), list == null ? 0 : list.size());
                         }else {
-                            if(fieldContext.referenceView == true && fieldContext.getResultFields() != null ){
+                            if(fieldContext.referenceView != null && fieldContext.referenceView == true && fieldContext.getResultFields() != null ){
                                 fieldContext.referenceView = false ;
                                 itemResult.put(resultField.getFieldName(), fieldContext.makeQueryResult(NodeUtils.getReferenceNode(node.get(pt.getPid()), pt)));
                             }else {
