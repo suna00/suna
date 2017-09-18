@@ -142,7 +142,8 @@
             "field": "category",
             "method": "match",
             "value": "{{:category}}"
-          }
+          },
+          {"referenceView" : true}
         ],
         "response": {
           "_all_": "",
@@ -153,8 +154,6 @@
           },
           "category": {
             "field": "category",
-            "referenceView": true,
-            "includeReferenced": false,
             "response":{
               "_all_":"",
               "commentList" : {
@@ -162,6 +161,13 @@
                   "ds" : "mariaDb",
                   "resultType" : "list",
                   "sql" : "select * from testComment where itemId = @{id}"
+                }
+              },
+              "commentCnt" : {
+                "select" : {
+                  "ds" : "mariaDb",
+                  "resultType" : "value",
+                  "sql" : "select count(*) from testComment where itemId = @{id}"
                 }
               }
             }
