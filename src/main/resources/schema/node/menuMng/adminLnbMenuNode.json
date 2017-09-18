@@ -58,7 +58,9 @@
     "icon": "fa-list",
     "active": "true",
     "index": "false",
-    "pages": [],
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" }
+    ],
     "customPages": [
       { "pageName": "등록", "pageUrl": "ytn/productOptionSet/CreateForm" },
       { "pageName": "수정", "pageUrl": "ytn/productOptionSet/UpdateForm" }
