@@ -209,6 +209,16 @@ public class ExecuteContext extends ReadContext{
                 }else if(!newValue.equals(existValue)){
                     if(pt.isI18n()){
                         ((Map<String, Object>) existValue).putAll((Map<? extends String, ?>) newValue);
+                        List<String> removeLocale = new ArrayList<>() ;
+                        for(String key :  ((Map<String, Object>) existValue).keySet()){
+                            Object val =  ((Map<String, Object>) existValue).get(key) ;
+                            if(val instanceof String && val.equals("_null_")){
+                                removeLocale.add(key) ;
+                            }
+                        }
+                        for(String loc : removeLocale){
+                            ((Map<String, Object>) existValue).remove(loc) ;
+                        }
                         node.put(pt.getPid(), existValue);
                     }else {
                         node.put(pt.getPid(), newValue);
