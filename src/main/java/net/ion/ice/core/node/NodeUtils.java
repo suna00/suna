@@ -479,6 +479,9 @@ public class NodeUtils {
                 } else if (value instanceof MultipartFile) {
                     FileValue fileValue = getFileService().saveMultipartFile(pt, id, (MultipartFile) value);
                     return fileValue;
+                } else if (value instanceof String && JsonUtils.isJson((String) value)) {
+                    FileValue fileValue = getFileService().fileValueMapper((String) value);
+                    return fileValue;
                 } else if (value instanceof String) {
                     return value ;
                 }

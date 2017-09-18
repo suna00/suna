@@ -91,6 +91,7 @@ public class NodeService {
 
         try {
             Node nodeTypeNode = infinispanRepositoryService.getNode("nodeType", typeId);
+            if(nodeTypeNode == null) return null ;
 
             NodeType nodeType = new NodeType(nodeTypeNode);
             if(typeId.equals("propertyType")) {
