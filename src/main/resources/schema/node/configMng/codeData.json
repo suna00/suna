@@ -1643,7 +1643,7 @@
     "typeId": "code",
     "groupCodeId": "dclaDivCd",
     "codeId": 1,
-    "name": "Type1",
+    "name": "obscene contents/link",
     "order": 1,
     "active": true
   },
@@ -1651,7 +1651,7 @@
     "typeId": "code",
     "groupCodeId": "dclaDivCd",
     "codeId": 2,
-    "name": "Type2",
+    "name": "commercial advertisement/site marketing",
     "order": 2,
     "active": true
   },
@@ -1659,8 +1659,48 @@
     "typeId": "code",
     "groupCodeId": "dclaDivCd",
     "codeId": 3,
-    "name": "Type3",
+    "name": "llegal publication of information",
     "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "dclaDivCd",
+    "codeId": 4,
+    "name": "slanderous/libelous content or bullying",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "dclaDivCd",
+    "codeId": 5,
+    "name": "personal attack or defamation",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "dclaDivCd",
+    "codeId": 6,
+    "name": "violent or unacceptable language",
+    "order": 3,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "dclaDivCd",
+    "codeId": 7,
+    "name": "revelation of personal information",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "dclaDivCd",
+    "codeId": 8,
+    "name": "Other",
+    "order": 2,
     "active": true
   },
   {
@@ -2271,5 +2311,4 @@
     "order": 2,
     "active": true
   }
-
 ]
