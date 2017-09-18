@@ -46,5 +46,21 @@
     "actionType" : "service",
     "actionBody" : "memberService.authenticationSendEmail",
     "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "member",
+    "event" : "certEmail",
+    "noneExecute" : true,
+    "eventName" : "인증 유효체크"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "member>certEmail",
+    "action" : "certEmail",
+    "actionName" : "인증 유효체크",
+    "actionType" : "service",
+    "actionBody" : "memberService.authenticationCertEmail",
+    "order" : 1
   }
 ]
