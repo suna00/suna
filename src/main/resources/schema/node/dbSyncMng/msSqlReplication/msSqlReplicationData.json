@@ -2,7 +2,7 @@
   {
     "typeId": "msSqlReplication"
     , "standAlone" : true
-    , "subTasks" : "MT_ALBUM_ARTIST, mt_album_country, mt_album_country, MT_ALBUM_KEYWORD, mt_album_keyword_meta, mt_album_meta, MT_ALBUM_SONGS"
+    , "subTasks" : "MT_ALBUM_ARTIST, mt_album_country, MT_ALBUM_KEYWORD, mt_album_keyword_meta, mt_album_meta, MT_ALBUM_SONGS"
     , "subTaskKey" : "album_id"
     , "executeId": "MT_ALBUM"
     , "targetDs": "mnetDb"

@@ -1,32 +1,32 @@
 package net.ion.ice.cjmwave.external.pip.schedule;
 
-import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.cjmwave.external.pip.PipApiService;
 import net.ion.ice.core.node.NodeService;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
  * Created by juneyoungoh on 2017. 9. 13..
  * 72 시간 단위로 execute 되며 이 부분은 net.ion.ice.schedule 에서 읽힘
  */
-public class ScheduledPip {
+@Service
+public class ScheduledPipService {
 
     private ApplicationContext ctx;
-    private PipApiService pipService;
-    private NodeService nodeService;
-    private Logger logger;
 
-    public ScheduledPip() {
-        logger = Logger.getLogger(ScheduledPip.class);
-        ctx = ApplicationContextManager.getContext();
-        pipService = (PipApiService) ctx.getBean("pipApiService");
-        nodeService = (NodeService) ctx.getBean("nodeService");
-    }
+    @Autowired
+    private PipApiService pipService;
+
+    @Autowired
+    private NodeService nodeService;
+
+    private Logger logger = Logger.getLogger(ScheduledPipService.class);
+
 
     private Map<String, Object> convertToAcceptableMap (String nodeType, Object info) {
         Map<String, Object> nodeAcceptableMap = new HashMap<>();
@@ -39,7 +39,7 @@ public class ScheduledPip {
         return nodeAcceptableMap;
     }
 
-    public void doWork() {
+    public void executeScheduledMigration() {
         /*
         try{
             // 여기 매칭되는 노드가 어떤 노드인지 알아볼 필요가 있겠다

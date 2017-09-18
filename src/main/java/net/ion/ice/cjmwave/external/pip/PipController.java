@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by juneyoungoh on 2017. 9. 14..
  */
@@ -34,7 +36,7 @@ public class PipController {
     * 여튼 로직 상으로 이 부분은 URL 커넥션과 무관하고 DB to Node 임
     * */
     @RequestMapping(value = "initialData/{type}", produces = { "application/json" })
-    public @ResponseBody String retrieveAll(@PathVariable String type) throws JSONException {
+    public @ResponseBody String retrieveAll(@PathVariable String type, HttpServletRequest request) throws JSONException {
         JSONObject response = new JSONObject();
         String result="500", result_msg = "ERROR", cause = "";
         try{
@@ -70,21 +72,26 @@ public class PipController {
     * 사실 service 가 List 를 반환하면 안되고, 리스트를 Node 로 만들어야 함
     * */
     @RequestMapping(value = "renew/{type}", produces = { "application/json" })
-    public @ResponseBody String retrievePartial(@PathVariable String type) throws JSONException {
+    public @ResponseBody String retrievePartial(@PathVariable String type, HttpServletRequest request) throws JSONException {
 
         JSONObject response = new JSONObject();
         String result="500", result_msg = "ERROR", cause = "";
         try{
+            String saveParam = request.getParameter("save");
+
+            boolean save = (saveParam != null && "Y".equals(saveParam.toUpperCase()));
+
+
             switch (type) {
                 case "all" :
-                    pipService.doProgramMigration("type=recent");
-                    pipService.doClipMediaMigration("type=recent&platform=mnetjapan");
+                    pipService.doProgramMigration("type=recent", save);
+                    pipService.doClipMediaMigration("type=recent&platform=mnetjapan", save);
                     break;
                 case "program" :
-                    pipService.doProgramMigration("type=recent");
+                    pipService.doProgramMigration("type=recent", save);
                     break;
                 case "clipMedia" :
-                    pipService.doClipMediaMigration("type=recent&platform=mnetjapan");
+                    pipService.doClipMediaMigration("type=recent&platform=mnetjapan", save);
                     break;
                 default:
                     logger.info("No suitable type for migration");
