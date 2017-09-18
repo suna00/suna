@@ -15,8 +15,8 @@
     "showYn": true,
     "mnetIfTrtYn": true,
     "relArtistIds": "artist_00001",
-    "repImgPath": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
-    "thumbnailImgPath": "http://10.184.57.248:8080/pub/images/component/img_new_tab01.jpg",
+    "repImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
+    "thumbnailImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "showCntryCdList": "KOR",
     "refdMultiLanginfo": ""
   },
@@ -36,8 +36,8 @@
     "showYn": true,
     "mnetIfTrtYn": true,
     "relArtistIds": "artist_00002",
-    "repImgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
-    "thumbnailImgPath": "http://10.184.57.248:8080/pub/images/component/img_new_tab01.jpg",
+    "repImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
+    "thumbnailImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "showCntryCdList": "CHN",
     "refdMultiLanginfo": ""
   },
@@ -57,8 +57,8 @@
     "showYn": true,
     "mnetIfTrtYn": true,
     "relArtistIds": "artist_00015",
-    "repImgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
-    "thumbnailImgPath": "http://10.184.57.248:8080/pub/images/component/img_new_tab01.jpg",
+    "repImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
+    "thumbnailImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "showCntryCdList": "KOR",
     "refdMultiLanginfo": ""
   },
@@ -78,8 +78,8 @@
     "showYn": true,
     "mnetIfTrtYn": true,
     "relArtistIds": "artist_00016",
-    "repImgPath": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
-    "thumbnailImgPath": "http://10.184.57.248:8080/pub/images/component/img_new_tab01.jpg",
+    "repImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
+    "thumbnailImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "showCntryCdList": "USA",
     "refdMultiLanginfo": ""
   },
@@ -99,8 +99,8 @@
     "showYn": true,
     "mnetIfTrtYn": true,
     "relArtistIds": "artist_00017",
-    "repImgPath": "http://10.184.57.248:8080/pub/images/component/thumb_video_01.jpg",
-    "thumbnailImgPath": "http://10.184.57.248:8080/pub/images/component/thumb_shop_01.jpg",
+    "repImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
+    "thumbnailImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "showCntryCdList": "CHN",
     "refdMultiLanginfo": ""
   }

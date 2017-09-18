@@ -10,9 +10,7 @@
     "relPgmIds": "EA_B120169812",
     "relArtistIds": "artist_00017",
     "relSongIds": "song_00024",
-    "mnetIfTrtYn": true,
-    "risingHitNum":222,
-    "hotHitNum":200001
+    "mnetIfTrtYn": true
   },
   {
     "typeId": "groupPhoto",
@@ -25,9 +23,7 @@
     "relPgmIds": "AA_B120174019",
     "relArtistIds": "artist_00018",
     "relSongIds": "song_00025",
-    "mnetIfTrtYn": true,
-    "risingHitNum":777,
-    "hotHitNum":7777777
+    "mnetIfTrtYn": true
   },
   {
     "typeId": "groupPhoto",
@@ -40,9 +36,7 @@
     "relPgmIds": "SD_B120163312",
     "relArtistIds": "artist_00001",
     "relSongIds": "song_00026",
-    "mnetIfTrtYn": true,
-    "risingHitNum":123,
-    "hotHitNum":2233
+    "mnetIfTrtYn": true
   },
   {
     "typeId": "groupPhoto",
@@ -55,9 +49,7 @@
     "relPgmIds": "EA_B120173764",
     "relArtistIds": "artist_00002",
     "relSongIds": "song_00027",
-    "mnetIfTrtYn": true,
-    "risingHitNum":33333,
-    "hotHitNum":10664231
+    "mnetIfTrtYn": true
   },
   {
     "typeId": "groupPhoto",
@@ -70,8 +62,6 @@
     "relPgmIds": "EA_B120173764",
     "relArtistIds": "artist_00002, artist_00001",
     "relSongIds": "song_00029, song_00028, song_00027, song_00026, song_00024",
-    "mnetIfTrtYn": true,
-    "risingHitNum":0,
-    "hotHitNum":0
+    "mnetIfTrtYn": true
   }
 ]
