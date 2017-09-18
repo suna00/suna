@@ -311,6 +311,17 @@
     "typeId" : "builderPresentationalComponent",
     "componentTemplateType": "Spin",
     "componentClassType": "INPUT",
+    "componentClass": "Thumbnail",
+    "componentClassName": "THUMBNAIL",
+    "icon": "fa-square-o",
+    "order": 163,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentTemplateType": "Spin",
+    "componentClassType": "INPUT",
     "componentClass": "Video",
     "componentClassName": "VIDEO",
     "icon": "fa-square-o",
