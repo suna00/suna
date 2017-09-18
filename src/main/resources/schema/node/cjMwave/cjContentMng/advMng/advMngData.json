@@ -1,44 +1,34 @@
 [
   {
     "typeId": "advMng",
-    "advSeq": 1,
+    "advSeq": 100001,
     "contentType": "6",
     "platformType": "1",
-    "iframeUrl": "http://www.naver.com"
+    "iframeUrl": "http://www.vlive.tv/video/38739",
+    "created": "20170918140000"
   },
   {
     "typeId": "advMng",
-    "advSeq": 2,
-    "contentType": "6",
-    "platformType": "moweb",
-    "iframeUrl": "http://www.naver.com"
-  },
-  {
-    "typeId": "advMng",
-    "advSeq": 3,
-    "contentType": "6",
-    "platformType": "3",
-    "iframeUrl": "http://www.naver.com"
-  },
-  {
-    "typeId": "advMng",
-    "advSeq": 4,
-    "contentType": "8",
-    "platformType": "1",
-    "iframeUrl": "http://www.naver.com"
-  },
-  {
-    "typeId": "advMng",
-    "advSeq": 5,
+    "advSeq": 100002,
     "contentType": "8",
     "platformType": "2",
-    "iframeUrl": "http://www.naver.com"
+    "iframeUrl": "http://www.vlive.tv/video/38739",
+    "created": "20170918140000"
   },
   {
     "typeId": "advMng",
-    "advSeq": 6,
-    "contentType": "8",
+    "advSeq": 100003,
+    "contentType": "6",
     "platformType": "3",
-    "iframeUrl": "http://www.naver.com"
+    "iframeUrl": "http://www.vlive.tv/video/38739",
+    "created": "20170918140000"
+  },
+  {
+    "typeId": "advMng",
+    "advSeq": 100004,
+    "contentType": "8",
+    "platformType": "4",
+    "iframeUrl": "http://www.vlive.tv/video/38739",
+    "created": "20170918140000"
   }
 ]

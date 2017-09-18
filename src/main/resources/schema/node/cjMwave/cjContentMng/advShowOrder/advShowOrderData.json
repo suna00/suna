@@ -1,30 +1,30 @@
 [
   {
-    "advShowOrderSeq": 1,
     "typeId": "advShowOrder",
+    "advShowOrderSeq": 1001,
+    "advSeq": 100001,
     "listOrder": 1,
-    "advSeq": 1,
-    "showOrder": 5
+    "showOrder": 1
   },
   {
-    "advShowOrderSeq": 2,
     "typeId": "advShowOrder",
+    "advShowOrderSeq": 1002,
+    "advSeq": 100002,
     "listOrder": 2,
-    "advSeq": 1,
-    "showOrder": 10
+    "showOrder": 2
   },
   {
-    "advShowOrderSeq": 3,
     "typeId": "advShowOrder",
+    "advShowOrderSeq": 1003,
+    "advSeq": 100003,
     "listOrder": 3,
-    "advSeq": 1,
-    "showOrder": 20
+    "showOrder": 3
   },
   {
-    "advShowOrderSeq": 4,
     "typeId": "advShowOrder",
+    "advShowOrderSeq": 1004,
+    "advSeq": 100004,
     "listOrder": 4,
-    "advSeq": 1,
-    "showOrder": 25
+    "showOrder": 4
   }
 ]
