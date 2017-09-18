@@ -15,7 +15,6 @@ import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.SimpleQueryResult;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.lucene.document.DateTools;
 import org.apache.lucene.search.SortField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

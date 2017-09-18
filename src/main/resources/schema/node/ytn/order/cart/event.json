@@ -17,6 +17,22 @@
   },
   {
     "typeId" : "event",
+    "tid": "cart",
+    "event" : "removeProduct",
+    "noneExecute" : true,
+    "eventName" : "장바구니 상품 삭제"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "cart>removeProduct",
+    "action" : "removeProduct",
+    "actionName" : "장바구니 상품 삭제",
+    "actionType" : "service",
+    "actionBody" : "cartService.removeProduct",
+    "order" : 1
+  },
+  {
+    "typeId" : "event",
     "tid": "tempOrder",
     "event" : "add",
     "noneExecute": true,

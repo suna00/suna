@@ -1,14 +1,13 @@
 package net.ion.ice.service;
 
 import net.ion.ice.core.context.ExecuteContext;
-import net.ion.ice.core.context.QueryContext;
-import net.ion.ice.core.data.bind.NodeBindingInfo;
 import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
-import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static net.ion.ice.core.node.NodeUtils.getNodeBindingService;
-
 @Service("cartService")
 public class CartService {
+    private static Logger logger = LoggerFactory.getLogger(CartService.class);
 
     public static final String CREATE = "create";
     public static final String UPDATE = "update";
@@ -48,6 +46,23 @@ public class CartService {
             mergeList(data, cartId, "cartProduct");
         }
 
+    }
+
+    public void removeProduct(ExecuteContext context) {
+        Map<String, Object> data = context.getData();
+        String productIds = (String) data.get("productIds");
+        String[] productIdsArray = productIds.split(",");
+        for(String productId : productIdsArray){
+            nodeService.deleteNode("cartProduct", productId);
+            List<Node> cartProductItemList = nodeService.getNodeList("cartProductItem", "cartProductId_matching=".concat(productId));
+            if(cartProductItemList.size() > 0){
+                for(Node node : cartProductItemList){
+                    nodeService.deleteNode("cartProductItem", node.getId());
+                }
+            }
+        }
+
+        context.setResult("");
     }
 
     private void mergeList(Map<String, Object> data, Object cartId, String tid) throws IOException {

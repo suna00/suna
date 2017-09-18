@@ -5,6 +5,7 @@ import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.data.DBUtils;
 import net.ion.ice.core.data.bind.NodeBindingInfo;
 import net.ion.ice.core.data.bind.NodeBindingService;
+import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
@@ -26,7 +27,7 @@ public class CouponService {
     public static final String unlimitedDate = "99991231235959";
 
     @Autowired
-    private NodeService nodeService ;
+    private NodeService nodeService;
     @Autowired
     private NodeBindingService nodeBindingService ;
     protected CommonService common;

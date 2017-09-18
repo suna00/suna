@@ -821,6 +821,24 @@
   {
     "typeId": "propertyType",
     "tid": "payment",
+    "pid": "paymentId",
+    "propertyTypeName": "ID",
+    "valueType": "INT",
+    "required": true,
+    "idable": true,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": "",
+    "idType": "autoIncrement"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "payment",
     "pid": "orderId",
     "propertyTypeName": "주문서ID",
     "valueType": "REFERENCE",
@@ -3357,23 +3375,6 @@
     "codeFilter": "",
     "defaultValue": "",
     "idType": "autoIncrement"
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "pg",
-    "pid": "paymentId",
-    "propertyTypeName": "Payment Id",
-    "valueType": "REFERENCE",
-    "required": true,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "payment",
-    "referenceValue": "paymentId",
-    "codeFilter": "",
-    "defaultValue": ""
   },
   {
     "typeId": "propertyType",
