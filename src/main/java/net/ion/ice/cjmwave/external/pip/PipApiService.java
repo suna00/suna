@@ -40,14 +40,14 @@ public class PipApiService {
     @Value("${cjapi.pip.clipmediaurl}")
     String clipMediaApiUrl;
 
+    @Value("${file.default.path}")
+    String defaultFilePath;
+
     @Autowired
     NodeService nodeService;
 
     @Autowired
     DBService dbService;
-
-    @Value("${file.default.path}")
-    String defaultFilePath;
 
     private JdbcTemplate template;
 
@@ -243,10 +243,9 @@ public class PipApiService {
         return transformed;
     }
 
-
     public void doProgramMigration (String paramStr, boolean save) throws Exception {
         List fetchedPrograms = JSONNetworkUtils.fetchJSON(programApiUrl, paramStr);
-        if(save) storeFileToRecord(fetchedPrograms, "program");
+        if(save) storeFileToRecord(fetchedPrograms, PROGRAM_NT);
         Date startTime = new Date();
         int successCnt = 0, skippedCnt = 0;
         for(Object program : fetchedPrograms) {
@@ -273,7 +272,7 @@ public class PipApiService {
 
     public void doClipMediaMigration (String paramStr, boolean save) throws Exception {
         List fetchedClips = JSONNetworkUtils.fetchJSON(clipMediaApiUrl, paramStr);
-        if(save) storeFileToRecord(fetchedClips, "clipMedia");
+        if(save) storeFileToRecord(fetchedClips, CLIP_NT);
         Date startTime = new Date();
         int successCnt = 0, skippedCnt = 0;
         for(Object clip : fetchedClips) {
