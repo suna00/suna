@@ -141,8 +141,7 @@
     "treeable": true,
     "indexable": true,
     "analyzer": null,
-    "referenceType": "adminLnbMenu",
-    "referenceValue": ""
+    "referenceType": "adminLnbMenu"
   },
   {
     "typeId" : "propertyType",
