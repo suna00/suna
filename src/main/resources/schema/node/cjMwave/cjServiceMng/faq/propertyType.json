@@ -74,7 +74,7 @@
     "pid": "imgPath",
     "id": "faq>imgPath",
     "propertyTypeName": "이미지 경로",
-    "valueType": "STRING",
+    "valueType": "FILE",
     "required": false,
     "idable": false,
     "labelable": false,
