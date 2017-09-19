@@ -5956,5 +5956,86 @@
     "description": "",
     "sortOrder": "7",
     "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "reasonType",
+    "upperCode": "root",
+    "name": "회원탈퇴사유",
+    "description": "",
+    "sortOrder": "115",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "leave001",
+    "upperCode": "reasonType",
+    "name": "아이디 바꾸기 위해서",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "leave002",
+    "upperCode": "reasonType",
+    "name": "개인정보 유출 때문에",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "leave003",
+    "upperCode": "reasonType",
+    "name": "컨텐츠 및 서비스 부족",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "leave004",
+    "upperCode": "reasonType",
+    "name": "사이트 이용 불편",
+    "description": "",
+    "sortOrder": "4",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "leave005",
+    "upperCode": "reasonType",
+    "name": "이용하지 않아서",
+    "description": "",
+    "sortOrder": "5",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "leave006",
+    "upperCode": "reasonType",
+    "name": "상품이 다양하지 않아서",
+    "description": "",
+    "sortOrder": "6",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "leave007",
+    "upperCode": "reasonType",
+    "name": "배송관련 불만",
+    "description": "",
+    "sortOrder": "7",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "leave008",
+    "upperCode": "reasonType",
+    "name": "취소,교한,반품 불만",
+    "description": "",
+    "sortOrder": "8",
+    "commonCodeStatus": "y"
   }
 ]

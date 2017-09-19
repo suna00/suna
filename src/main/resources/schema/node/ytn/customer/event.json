@@ -62,5 +62,37 @@
     "actionType" : "service",
     "actionBody" : "memberService.authenticationCertEmail",
     "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "member",
+    "event" : "leave",
+    "noneExecute" : true,
+    "eventName" : "회원탈퇴"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "member>leave",
+    "action" : "leave",
+    "actionName" : "회원탈퇴",
+    "actionType" : "service",
+    "actionBody" : "memberService.leaveMembership",
+    "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "member",
+    "event" : "getTempPassword",
+    "noneExecute" : true,
+    "eventName" : "임시 비밀번호 생성"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "member>getTempPassword",
+    "action" : "getTempPassword",
+    "actionName" : "임시 비밀번호 생성",
+    "actionType" : "service",
+    "actionBody" : "memberService.getTempPassword",
+    "order" : 1
   }
 ]

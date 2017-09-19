@@ -173,4 +173,71 @@ public class MemberService {
             e.printStackTrace();
         }
     }
+
+    public ExecuteContext leaveMembership(ExecuteContext context){
+        Map<String, Object> data = new LinkedHashMap<>(context.getData());
+
+        String[] params = { "memberNo","leaveType","reasonType" };
+        if (common.requiredParams(context, data, params)) return context;
+
+        List<Node> list = nodeService.getNodeList("orderProduct", "memberNo_matching="+data.get("memberNo"));
+        if(list.size() > 0){
+            for(Node node : list){
+                String orderStatus = node.getValue("orderStatus").toString();
+//                배송완료,구매확정,취소완료,교환배송완료,반품완료
+                if( !("order006".equals(orderStatus) || "order007".equals(orderStatus) || "order009".equals(orderStatus) || "order016".equals(orderStatus) || "order021".equals(orderStatus))){
+                    common.setErrorMessage(context, "L0001");
+                    return context;
+                }
+            }
+        }
+
+        Node node = nodeService.getNode("member", data.get("memberNo").toString());
+        if(node == null){
+            common.setErrorMessage(context, "L0002");
+            return context;
+        }
+
+        Node leave = nodeService.getNode("requestToleaveMember", data.get("memberNo").toString());
+        if(leave != null){
+            common.setErrorMessage(context, "L0003");
+            return context;
+        }
+
+        data.putAll(node);
+        data.put("leaveDate", new Date());
+        nodeService.executeNode(data, "requestToleaveMember", common.CREATE);
+
+        node.put("memberStatus", "leave");
+        nodeService.executeNode(node, "member", common.UPDATE);
+
+
+        return context;
+    }
+
+    //    임시 비밀번호 생성
+    public ExecuteContext getTempPassword(ExecuteContext context){
+        Map<String, Object> object = new LinkedHashMap<>();
+        object.put("password", randomPassword());
+
+        context.setResult(object);
+
+        return context;
+    }
+
+    public String randomPassword(){
+        char pwCollection[] = new char[] {
+                '1','2','3','4','5','6','7','8','9','0',
+                'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
+                'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
+                '!','@','#','$','%','^','&'};
+
+        String ranPw = "";
+
+        for (int i = 0; i < 10; i++) {
+            int selectRandomPw = (int)(Math.random()*(pwCollection.length));//Math.rondom()은 0.0이상 1.0미만의 난수를 생성해 준다.
+            ranPw += pwCollection[selectRandomPw];
+        }
+        return ranPw;
+    }
 }

@@ -1,14 +1,9 @@
 package net.ion.ice.service;
 
 import net.ion.ice.core.context.ExecuteContext;
-import net.ion.ice.core.data.DBService;
-import net.ion.ice.core.data.DBUtils;
-import net.ion.ice.core.data.bind.NodeBindingInfo;
-import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
-import net.ion.ice.core.node.NodeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -19,25 +14,19 @@ import java.util.*;
 
 @Service("couponService")
 public class CouponService {
-    public static final String CREATE = "create";
-    public static final String UPDATE = "update";
-    public static final String DELETE = "delete";
-    public static final String SAVE = "save";
-    public static final String PATTERN = "yyyyMMddHHmmss";
-    public static final String unlimitedDate = "99991231235959";
 
     @Autowired
     private NodeService nodeService;
     @Autowired
     private NodeBindingService nodeBindingService ;
-    protected CommonService common;
+    private CommonService common;
 
     private JdbcTemplate jdbcTemplate ;
 
     public ExecuteContext download(ExecuteContext context) {
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(PATTERN);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(common.PATTERN);
         LocalDateTime now = LocalDateTime.now();
 
         String[] params = { "memberNo","couponTypeId" };
@@ -85,7 +74,7 @@ public class CouponService {
 
         data.putAll(couponType);
 
-        String endDate = unlimitedDate;
+        String endDate = common.unlimitedDate;
         if("limitYn>limit".equals(couponType.getValue("validePeriodType"))){
             LocalDateTime after = now.plusDays(Integer.parseInt(couponType.getValue("validePeriod").toString()));
             endDate = after.format(formatter);
@@ -96,12 +85,12 @@ public class CouponService {
         data.put("endDate", endDate);
         data.put("couponStatus", "n");
 
-        Object result = nodeService.executeNode(data, "coupon", SAVE);
+        Object result = nodeService.executeNode(data, "coupon", common.SAVE);
         context.setResult(result);
 
         if("limitYn>limit".equals(couponType.getValue("limitedQuantityType"))){
             couponType.put("remainingQuantity", Integer.parseInt(couponType.getValue("remainingQuantity").toString()) - 1);
-            nodeService.executeNode(couponType, "couponType", UPDATE);
+            nodeService.executeNode(couponType, "couponType", common.UPDATE);
         }
 
         return context;
