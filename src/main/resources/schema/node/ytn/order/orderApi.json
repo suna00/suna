@@ -1,12 +1,12 @@
 [
   {
     "typeId" : "apiCategory",
-    "id" : "purchaseOrder",
+    "id" : "orderSheet",
     "categoryName" : "주문서 API"
   },
   {
     "typeId" : "apiConfig",
-    "category" : "purchaseOrder",
+    "category" : "orderSheet",
     "apiId" : "read",
     "apiName" : "주문서 조회",
     "method" : "GET",
@@ -17,14 +17,14 @@
         "select" : {
           "ds" : "ytnDevDb",
           "resultType" : "read",
-          "sql" : "SELECT odr.*, (totalProductPrice + totalDeliveryPrice - totalDiscountPrice) AS totalOrderPrice FROM (SELECT a.purchaseOrderId, a.memberNo, a.siteId, a.sessionId, (SELECT ifnull(sum(orderPrice), 0) FROM orderproduct WHERE purchaseOrderId = a.purchaseOrderId) AS totalProductPrice, (SELECT ifnull(sum(deliveryPrice), 0) FROM orderdeliveryprice WHERE purchaseOrderId = a.purchaseOrderId) AS totalDeliveryPrice, 0 AS totalDiscountPrice FROM purchaseorder a WHERE purchaseOrderId = 1 OR sessionId = '{{:sessionId}}') odr"
+          "sql" : "SELECT odr.*, (totalProductPrice + totalDeliveryPrice - totalDiscountPrice) AS totalOrderPrice FROM (SELECT a.orderSheetId, a.memberNo, a.siteId, a.sessionId, (SELECT ifnull(sum(orderPrice), 0) FROM orderproduct WHERE orderSheetId = a.orderSheetId) AS totalProductPrice, (SELECT ifnull(sum(deliveryPrice), 0) FROM orderdeliveryprice WHERE orderSheetId = a.orderSheetId) AS totalDeliveryPrice, 0 AS totalDiscountPrice FROM orderSheet a WHERE orderSheetId = 1 OR sessionId = '{{:sessionId}}') odr"
         }
       },
       "referencedOrderProduct" : {
         "typeId" : "orderProduct",
         "query" : [
           {"sorting" : "orderDeliveryPriceId desc,created desc"},
-          {"field" : "orderId", "method" : "matching", "value" : "{{:orderId}}"},
+          {"field" : "orderSheetId", "method" : "matching", "value" : "{{:orderSheetId}}"},
           {"includeReferenced" : true, "referenceView": "productId"}
         ]
       }

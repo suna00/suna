@@ -50,7 +50,7 @@ public class MypageService {
         Node node = context.getNode();
         if(!node.getValue("defaultYn").equals("n")){ // 방어체계구축
             nodeService.deleteNode(context.getNode().getTypeId(), context.getNode().getId());
-            context.setResult(CommonService.setResult("M0001"));
+            context.setResult(CommonService.getResult("M0001"));
         }
     }
 

@@ -513,7 +513,7 @@
   {
     "typeId": "propertyType",
     "tid": "developmentFundHistory",
-    "pid": "orderId",
+    "pid": "orderSheetId",
     "propertyTypeName": "주문서ID",
     "valueType": "REFERENCE",
     "required": false,
@@ -522,8 +522,8 @@
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "purchaseOrder",
-    "referenceValue": "purchaseOrderId",
+    "referenceType": "orderSheet",
+    "referenceValue": "orderSheetId",
     "codeFilter": "",
     "defaultValue": ""
   },
@@ -838,7 +838,7 @@
   {
     "typeId": "propertyType",
     "tid": "paymentHistory",
-    "pid": "orderId",
+    "pid": "orderSheetId",
     "propertyTypeName": "주문서ID",
     "valueType": "REFERENCE",
     "required": false,
@@ -847,8 +847,8 @@
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "purchaseOrder",
-    "referenceValue": "purchaseOrderId",
+    "referenceType": "orderSheet",
+    "referenceValue": "orderSheetId",
     "codeFilter": "",
     "defaultValue": ""
   },
@@ -1196,7 +1196,7 @@
   {
     "typeId": "propertyType",
     "tid": "orderChange",
-    "pid": "orderId",
+    "pid": "orderSheetId",
     "propertyTypeName": "주문서ID",
     "valueType": "REFERENCE",
     "required": false,
@@ -1205,8 +1205,8 @@
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "purchaseOrder",
-    "referenceValue": "purchaseOrderId",
+    "referenceType": "orderSheet",
+    "referenceValue": "orderSheetId",
     "codeFilter": "",
     "defaultValue": ""
   },
@@ -1486,7 +1486,7 @@
   {
     "typeId": "propertyType",
     "tid": "orderChangeProduct",
-    "pid": "orderId",
+    "pid": "orderSheetId",
     "propertyTypeName": "주문서ID",
     "valueType": "REFERENCE",
     "required": false,
@@ -1495,8 +1495,8 @@
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "purchaseOrder",
-    "referenceValue": "purchaseOrderId",
+    "referenceType": "orderSheet",
+    "referenceValue": "orderSheetId",
     "codeFilter": "",
     "defaultValue": ""
   },
@@ -1689,8 +1689,8 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "purchaseOrder",
-    "pid": "purchaseOrderId",
+    "tid": "orderSheet",
+    "pid": "orderSheetId",
     "propertyTypeName": "ID",
     "valueType": "STRING",
     "required": true,
@@ -1707,7 +1707,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "purchaseOrder",
+    "tid": "orderSheet",
     "pid": "memberNo",
     "propertyTypeName": "회원번호",
     "valueType": "REFERENCE",
@@ -1724,7 +1724,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "purchaseOrder",
+    "tid": "orderSheet",
     "pid": "siteId",
     "propertyTypeName": "사이트ID",
     "valueType": "REFERENCE",
@@ -1741,7 +1741,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "purchaseOrder",
+    "tid": "orderSheet",
     "pid": "cartId",
     "propertyTypeName": "장바구니ID",
     "valueType": "REFERENCE",
@@ -1758,7 +1758,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "purchaseOrder",
+    "tid": "orderSheet",
     "pid": "sessionId",
     "propertyTypeName": "세션ID",
     "valueType": "STRING",
@@ -1775,7 +1775,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "purchaseOrder",
+    "tid": "orderSheet",
     "pid": "totalProductPrice",
     "propertyTypeName": "총 상품금액",
     "valueType": "DOUBLE",
@@ -1792,7 +1792,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "purchaseOrder",
+    "tid": "orderSheet",
     "pid": "totalDeliveryPrice",
     "propertyTypeName": "총 배송비",
     "valueType": "DOUBLE",
@@ -1809,7 +1809,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "purchaseOrder",
+    "tid": "orderSheet",
     "pid": "totalDiscountPrice",
     "propertyTypeName": "총 할인금액",
     "valueType": "DOUBLE",
@@ -1826,7 +1826,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "purchaseOrder",
+    "tid": "orderSheet",
     "pid": "totalOrderPrice",
     "propertyTypeName": "총 주문금액",
     "valueType": "DOUBLE",
@@ -1843,7 +1843,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "purchaseOrder",
+    "tid": "orderSheet",
     "pid": "totalPaymentPrice",
     "propertyTypeName": "총 결재금액",
     "valueType": "DOUBLE",
@@ -1860,7 +1860,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "purchaseOrder",
+    "tid": "orderSheet",
     "pid": "couponDiscountPrice",
     "propertyTypeName": "쿠폰할인금액",
     "valueType": "DOUBLE",
@@ -1877,7 +1877,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "purchaseOrder",
+    "tid": "orderSheet",
     "pid": "totalWelfarePoint",
     "propertyTypeName": "총 복지포인트 사용 금액",
     "valueType": "DOUBLE",
@@ -1894,7 +1894,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "purchaseOrder",
+    "tid": "orderSheet",
     "pid": "totalYPoint",
     "propertyTypeName": "총 Y포인트 사용 금액",
     "valueType": "DOUBLE",
@@ -1911,7 +1911,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "purchaseOrder",
+    "tid": "orderSheet",
     "pid": "purchaseaAgreementYn",
     "propertyTypeName": "구매 동의 여부",
     "valueType": "REFERENCE",
@@ -1928,7 +1928,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "purchaseOrder",
+    "tid": "orderSheet",
     "pid": "purchaseDeviceType",
     "propertyTypeName": "결제경로",
     "valueType": "REFERENCE",
@@ -1945,7 +1945,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "purchaseOrder",
+    "tid": "orderSheet",
     "pid": "created",
     "propertyTypeName": "등록일(주문일)",
     "valueType": "DATE",
@@ -1962,7 +1962,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "purchaseOrder",
+    "tid": "orderSheet",
     "pid": "changed",
     "propertyTypeName": "수정일(주문변경일)",
     "valueType": "DATE",
@@ -1979,7 +1979,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "purchaseOrder",
+    "tid": "orderSheet",
     "pid": "referencedOrderProduct",
     "propertyTypeName": "referenced주문서상품",
     "valueType": "REFERENCED",
@@ -1990,7 +1990,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "orderProduct",
-    "referenceValue": "orderId",
+    "referenceValue": "orderSheetId",
     "defaultValue": ""
   },
   {
@@ -2014,7 +2014,7 @@
   {
     "typeId": "propertyType",
     "tid": "orderProduct",
-    "pid": "orderId",
+    "pid": "orderSheetId",
     "propertyTypeName": "주문서ID",
     "valueType": "REFERENCE",
     "required": false,
@@ -2023,8 +2023,8 @@
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "purchaseOrder",
-    "referenceValue": "purchaseOrderId",
+    "referenceType": "orderSheet",
+    "referenceValue": "orderSheetId",
     "codeFilter": "",
     "defaultValue": ""
   },
@@ -2353,7 +2353,7 @@
   {
     "typeId": "propertyType",
     "tid": "orderProductItem",
-    "pid": "orderId",
+    "pid": "orderSheetId",
     "propertyTypeName": "주문서ID",
     "valueType": "REFERENCE",
     "required": false,
@@ -2362,8 +2362,8 @@
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "purchaseOrder",
-    "referenceValue": "purchaseOrderId",
+    "referenceType": "orderSheet",
+    "referenceValue": "orderSheetId",
     "codeFilter": "",
     "defaultValue": ""
   },
@@ -2520,6 +2520,23 @@
     "codeFilter": "",
     "defaultValue": "",
     "idType": "UUID"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "tempOrder",
+    "pid": "cartId",
+    "propertyTypeName": "Cart Id",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "cart",
+    "referenceValue": "cartId",
+    "codeFilter": "",
+    "defaultValue": ""
   },
   {
     "typeId": "propertyType",
@@ -3037,7 +3054,7 @@
   {
     "typeId": "propertyType",
     "tid": "pg",
-    "pid": "purchaseOrderId",
+    "pid": "orderSheetId",
     "propertyTypeName": "Purchase Order Id",
     "valueType": "REFERENCE",
     "required": true,
@@ -3046,8 +3063,8 @@
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "purchaseOrder",
-    "referenceValue": "purchaseOrderId",
+    "referenceType": "orderSheet",
+    "referenceValue": "orderSheetId",
     "codeFilter": "",
     "defaultValue": ""
   },
@@ -3089,7 +3106,7 @@
   {
     "typeId": "propertyType",
     "tid": "payment",
-    "pid": "orderId",
+    "pid": "orderSheetId",
     "propertyTypeName": "주문서ID",
     "valueType": "REFERENCE",
     "required": false,
@@ -3098,8 +3115,8 @@
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "purchaseOrder",
-    "referenceValue": "purchaseOrderId",
+    "referenceType": "orderSheet",
+    "referenceValue": "orderSheetId",
     "codeFilter": "",
     "defaultValue": ""
   },

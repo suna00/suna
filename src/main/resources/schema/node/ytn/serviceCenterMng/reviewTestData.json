@@ -2,7 +2,7 @@
   {
     "typeId": "review",
     "reviewId": 1,
-    "orderId": "1",
+    "orderSheetId": "1",
     "orderProductId": "1",
     "productId": "3",
     "memberNo": "77777",
@@ -19,7 +19,7 @@
   {
     "typeId": "review",
     "reviewId": 2,
-    "orderId": "1",
+    "orderSheetId": "1",
     "orderProductId": "1",
     "productId": "1",
     "memberNo": "77777",
@@ -36,7 +36,7 @@
   {
     "typeId": "review",
     "reviewId": 3,
-    "orderId": "1",
+    "orderSheetId": "1",
     "orderProductId": "1",
     "productId": "3",
     "memberNo": "77777",
@@ -53,7 +53,7 @@
   {
     "typeId": "review",
     "reviewId": 4,
-    "orderId": "1",
+    "orderSheetId": "1",
     "orderProductId": "1",
     "productId": "3",
     "memberNo": "77777",
@@ -70,7 +70,7 @@
   {
     "typeId": "review",
     "reviewId": 5,
-    "orderId": "1",
+    "orderSheetId": "1",
     "orderProductId": "1",
     "productId": "3",
     "memberNo": "77777",
@@ -87,7 +87,7 @@
   {
     "typeId": "review",
     "reviewId": 6,
-    "orderId": "1",
+    "orderSheetId": "1",
     "orderProductId": "1",
     "productId": "3",
     "memberNo": "77777",
@@ -104,7 +104,7 @@
   {
     "typeId": "review",
     "reviewId": 7,
-    "orderId": "1",
+    "orderSheetId": "1",
     "orderProductId": "1",
     "productId": "3",
     "memberNo": "77777",
@@ -121,7 +121,7 @@
   {
     "typeId": "review",
     "reviewId": 8,
-    "orderId": "1",
+    "orderSheetId": "1",
     "orderProductId": "1",
     "productId": "3",
     "memberNo": "8888888",
@@ -138,7 +138,7 @@
   {
     "typeId": "review",
     "reviewId": 9,
-    "orderId": "1",
+    "orderSheetId": "1",
     "orderProductId": "1",
     "productId": "3",
     "memberNo": "8888888",
@@ -155,7 +155,7 @@
   {
     "typeId": "review",
     "reviewId": 10,
-    "orderId": "1",
+    "orderSheetId": "1",
     "orderProductId": "1",
     "productId": "3",
     "memberNo": "8888888",
@@ -172,7 +172,7 @@
   {
     "typeId": "review",
     "reviewId": 11,
-    "orderId": "1",
+    "orderSheetId": "1",
     "orderProductId": "1",
     "productId": "3",
     "memberNo": "8888888",
@@ -189,7 +189,7 @@
   {
     "typeId": "review",
     "reviewId": 12,
-    "orderId": "1",
+    "orderSheetId": "1",
     "orderProductId": "1",
     "productId": "3",
     "memberNo": "8888888",

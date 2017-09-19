@@ -36,7 +36,7 @@ public class CommonService {
         resultCodeMap.put("M0001", "주소록 삭제 성공");
 
         /*Order*/
-
+        resultCodeMap.put("O0001", "임시 주문서 저장 성공");
         /*Cart*/
         resultCodeMap.put("C0001", "상품 삭제 성공");
     }
@@ -51,7 +51,7 @@ public class CommonService {
         return false;
     }
 
-    public static Object setResult(String code){
+    public static Object getResult(String code){
         Map<String, Object> object = new HashMap<>();
         Map<String, Object> object2 = new HashMap<>();
         object2.put("code", code);

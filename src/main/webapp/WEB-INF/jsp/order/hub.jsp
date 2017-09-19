@@ -118,7 +118,17 @@
     String cash_tr_code = f_get_parm(request.getParameter("cash_tr_code")); // 현금 영수증 발행 구분
     String cash_id_info = f_get_parm(request.getParameter("cash_id_info")); // 현금 영수증 등록 번호
     String cash_no = "";                                                     // 현금 영수증 거래 번호
-    System.out.println("shippingAddress" + f_get_parm(request.getParameter("shippingAddress")));
+
+    /*쉬핑 데이터*/
+    String shippingAddress = f_get_parm(request.getParameter("shippingAddress"));
+    String shippingCellPhone = f_get_parm(request.getParameter("shippingCellPhone"));
+    String shippingPhone = f_get_parm(request.getParameter("shippingPhone"));
+    String deliveryMemo = f_get_parm(request.getParameter("deliveryMemo"));
+    String addressName = f_get_parm(request.getParameter("addressName"));
+    String postCode = f_get_parm(request.getParameter("postCode"));
+    String recipient = f_get_parm(request.getParameter("recipient"));
+    String deliveryType = f_get_parm(request.getParameter("deliveryType"));
+
     /* ============================================================================== */
     /* =   02. 지불 요청 정보 설정 END
     /* ============================================================================== */
@@ -293,6 +303,7 @@
 
     Map<String, Object> responseMap = new ConcurrentHashMap<>();
 
+    /*Payment*/
     responseMap.put("gConfSiteCd", g_conf_site_cd);
     responseMap.put("reqTx", req_tx);
     responseMap.put("usePayMethod", use_pay_method);
@@ -343,6 +354,16 @@
     responseMap.put("cashIdInfo", cash_id_info);
     responseMap.put("cashNo", cash_no);
 
+    /*Delivery*/
+    responseMap.put("addressName", addressName);
+    responseMap.put("shippingAddress", shippingAddress);
+    responseMap.put("shippingCellPhone", shippingCellPhone);
+    responseMap.put("shippingPhone", shippingPhone);
+    responseMap.put("deliveryMemo", deliveryMemo);
+    responseMap.put("postCode", postCode);
+    responseMap.put("recipient", recipient);
+    responseMap.put("deliveryType", deliveryType);
+
     if (req_tx.equals("pay")) {
 
     /* = -------------------------------------------------------------------------- = */
@@ -352,42 +373,54 @@
     /* = -------------------------------------------------------------------------- = */
 
         if (res_cd.equals("0000")) {
-            String paymentId = orderService.savePayment(responseMap);
-            orderService.savePgResponse(responseMap, paymentId);
-            // 07-1-1. 신용카드
-            if (use_pay_method.equals("100000000000")) {
-                // 07-1-1-1. 복합결제(신용카드+포인트)
-                if (pnt_issue.equals("SCSK") || pnt_issue.equals("SCWB")) {
+
+            try {
+                String paymentId = orderService.savePayment(responseMap);
+
+                orderService.savePgResponse(responseMap, paymentId);
+                orderService.saveDelivery(responseMap);
+                orderService.addOrderSheet(responseMap);
+
+
+                // 07-1-1. 신용카드
+                if (use_pay_method.equals("100000000000")) {
+                    // 07-1-1-1. 복합결제(신용카드+포인트)
+                    if (pnt_issue.equals("SCSK") || pnt_issue.equals("SCWB")) {
+                    }
                 }
+
+                // 07-1-2. 계좌이체
+                if (use_pay_method.equals("010000000000")) {
+
+                }
+                // 07-1-3. 가상계좌
+                if (use_pay_method.equals("001000000000")) {
+
+                }
+                // 07-1-4. 포인트
+                if (use_pay_method.equals("000100000000")) {
+
+                }
+                // 07-1-5. 휴대폰
+                if (use_pay_method.equals("000010000000")) {
+
+                }
+                // 07-1-6. 상품권
+                if (use_pay_method.equals("000000001000")) {
+
+                }
+
+            } catch (Exception e) {
+                bSucc = "false";
             }
-
-            // 07-1-2. 계좌이체
-            if (use_pay_method.equals("010000000000")) {
-
-            }
-            // 07-1-3. 가상계좌
-            if (use_pay_method.equals("001000000000")) {
-
-            }
-            // 07-1-4. 포인트
-            if (use_pay_method.equals("000100000000")) {
-
-            }
-            // 07-1-5. 휴대폰
-            if (use_pay_method.equals("000010000000")) {
-
-            }
-            // 07-1-6. 상품권
-            if (use_pay_method.equals("000000001000")) {
-
-            }
-
         }
 
         /* = -------------------------------------------------------------------------- = */
         /* =   07-2. 승인 실패 DB 처리(res_cd != "0000")                                = */
         /* = -------------------------------------------------------------------------- = */
+
         if (!"0000".equals(res_cd)) {
+
         }
     }
     /* = -------------------------------------------------------------------------- = */
@@ -408,7 +441,6 @@
     /* = -------------------------------------------------------------------------- = */
 
     // 승인 결과 DB 처리 에러시 bSucc값을 false로 설정하여 거래건을 취소 요청
-    bSucc = "";
 
     if (req_tx.equals("pay")) {
         if (res_cd.equals("0000")) {

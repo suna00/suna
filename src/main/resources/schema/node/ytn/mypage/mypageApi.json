@@ -53,8 +53,27 @@
       "query" : [
         {"field" : "memberNo", "method" : "matching", "value" : "{{:memberNo}}" },
         {"includeReferenced" : false, "referenceView" : "orderProductId,productId"},
-        {"sorting" : "orderId desc", "pageSize": "{{:pageSize}}", "page": "{{:page}}"}
+        {"sorting" : "orderSheetId desc", "pageSize": "{{:pageSize}}", "page": "{{:page}}"}
       ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "mypage",
+    "apiId": "membershipLevel",
+    "apiName": "회원등급",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config" : {
+      "item": {
+        "select": {
+          "ds": "ytnDevDb",
+          "resultType": "read",
+          "description": "회원등급 구매횟수, 구매금액, 산정기간",
+          "sql": "select memberNo, name, userId, membershipLevel, purchaseCount, purchasePrice , concat(DATE_FORMAT(now(), '%Y'),'.01.01') as startDate , DATE_FORMAT(now(), '%Y.%m.%d') as endDate from member WHERE memberNo=@{memberNo} "
+        }
+      }
     }
   }
 ]

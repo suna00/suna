@@ -2240,7 +2240,7 @@
     "endDate": 20170904000000,
     "couponStatus": "n",
     "dateOfUse": "",
-    "orderId": ""
+    "orderSheetId": ""
   },
   {
     "typeId": "coupon",
@@ -2257,7 +2257,7 @@
     "endDate": 20170904000000,
     "couponStatus": "y",
     "dateOfUse": 20170902000000,
-    "orderId": ""
+    "orderSheetId": ""
   },
   {
     "typeId": "coupon",
@@ -2274,7 +2274,7 @@
     "endDate": 20170904000000,
     "couponStatus": "y",
     "dateOfUse": 20170902000000,
-    "orderId": ""
+    "orderSheetId": ""
   },
   {
     "typeId": "coupon",
@@ -2291,7 +2291,7 @@
     "endDate": 20171231000000,
     "couponStatus": "n",
     "dateOfUse": null,
-    "orderId": ""
+    "orderSheetId": ""
   },
   {
     "typeId": "coupon",
@@ -2308,7 +2308,7 @@
     "endDate": 20171231000000,
     "couponStatus": "n",
     "dateOfUse": null,
-    "orderId": ""
+    "orderSheetId": ""
   },
   {
     "typeId": "coupon",
@@ -2325,7 +2325,7 @@
     "endDate": 20171231000000,
     "couponStatus": "n",
     "dateOfUse": null,
-    "orderId": ""
+    "orderSheetId": ""
   },
   {
     "typeId": "coupon",
@@ -2342,7 +2342,7 @@
     "endDate": 20170901000000,
     "couponStatus": "n",
     "dateOfUse": null,
-    "orderId": ""
+    "orderSheetId": ""
   },
   {
     "typeId": "coupon",
@@ -2359,11 +2359,11 @@
     "endDate": 20171231000000,
     "couponStatus": "n",
     "dateOfUse": null,
-    "orderId": ""
+    "orderSheetId": ""
   },
   {
     "reviewId": 24,
-    "orderId": "1",
+    "orderSheetId": "1",
     "orderProductId": "11",
     "memberNo": "77777",
     "siteId": null,
@@ -2380,7 +2380,7 @@
   },
   {
     "reviewId": 25,
-    "orderId": "1",
+    "orderSheetId": "1",
     "orderProductId": "11",
     "memberNo": "77777",
     "siteId": null,
@@ -2397,7 +2397,7 @@
   },
   {
     "reviewId": 26,
-    "orderId": "1",
+    "orderSheetId": "1",
     "orderProductId": "12",
     "memberNo": "77777",
     "siteId": null,
@@ -2482,7 +2482,7 @@
     "affiliateId": 1,
     "welfarePointType": "divide",
     "affiliatePointId": 3,
-    "orderId": null,
+    "orderSheetId": null,
     "price": 50000,
     "balance": 0,
     "startDate": "20170101000000",
@@ -2495,7 +2495,7 @@
     "affiliateId": 1,
     "welfarePointType": "divide",
     "affiliatePointId": 4,
-    "orderId": null,
+    "orderSheetId": null,
     "price": 50000,
     "balance": 0,
     "startDate": "20170101000000",
@@ -2508,7 +2508,7 @@
     "affiliateId": 1,
     "welfarePointType": "divide",
     "affiliatePointId": 5,
-    "orderId": null,
+    "orderSheetId": null,
     "price": 50000,
     "balance": 35000,
     "startDate": "20170101000000",
@@ -2521,7 +2521,7 @@
     "affiliateId": 1,
     "welfarePointType": "divide",
     "affiliatePointId": 6,
-    "orderId": null,
+    "orderSheetId": null,
     "price": 50000,
     "balance": 50000,
     "startDate": "20170101000000",
@@ -2534,7 +2534,7 @@
     "affiliateId": 1,
     "welfarePointType": "getback",
     "affiliatePointId": 7,
-    "orderId": null,
+    "orderSheetId": null,
     "price": -40000,
     "balance": "",
     "startDate": null,
@@ -2547,7 +2547,7 @@
     "affiliateId": 1,
     "welfarePointType": "purchase",
     "affiliatePointId": "",
-    "orderId": 101,
+    "orderSheetId": 101,
     "price": -25000,
     "balance": "",
     "startDate": null,
@@ -2560,7 +2560,7 @@
     "affiliateId": 1,
     "welfarePointType": "remove",
     "affiliatePointId": "",
-    "orderId": null,
+    "orderSheetId": null,
     "price": -50000,
     "balance": "",
     "startDate": null,
@@ -2573,7 +2573,7 @@
     "affiliateId": 1,
     "welfarePointType": "cancel",
     "affiliatePointId": "",
-    "orderId": 101,
+    "orderSheetId": 101,
     "price": 25000,
     "balance": "",
     "startDate": null,
@@ -2598,7 +2598,7 @@
     "affiliateId": 1,
     "YPointType": "add",
     "description": "상품구매",
-    "orderId": 1,
+    "orderSheetId": 1,
     "orderProductId": 11,
     "productId": 3,
     "eventId": null,
@@ -2614,7 +2614,7 @@
     "affiliateId": 1,
     "YPointType": "add",
     "description": "상품구매",
-    "orderId": 2,
+    "orderSheetId": 2,
     "orderProductId": 15,
     "productId": 1,
     "eventId": null,
@@ -2630,7 +2630,7 @@
     "affiliateId": 1,
     "YPointType": "getback",
     "description": "상품취소",
-    "orderId": null,
+    "orderSheetId": null,
     "orderProductId": null,
     "productId": null,
     "eventId": null,
@@ -2646,7 +2646,7 @@
     "affiliateId": 1,
     "YPointType": "remove",
     "description": "포인트 유효기간 종료",
-    "orderId": null,
+    "orderSheetId": null,
     "orderProductId": null,
     "productId": null,
     "eventId": null,
@@ -2662,7 +2662,7 @@
     "affiliateId": 1,
     "YPointType": "add",
     "description": "상품구매",
-    "orderId": 5,
+    "orderSheetId": 5,
     "orderProductId": 20,
     "productId": 2,
     "eventId": null,
@@ -2678,7 +2678,7 @@
     "affiliateId": 1,
     "YPointType": "use",
     "description": "상품결제",
-    "orderId": 7,
+    "orderSheetId": 7,
     "orderProductId": null,
     "productId": null,
     "eventId": null,
@@ -2694,7 +2694,7 @@
     "affiliateId": 1,
     "YPointType": "add",
     "description": "상품구매",
-    "orderId": 8,
+    "orderSheetId": 8,
     "orderProductId": 21,
     "productId": 2,
     "eventId": null,
@@ -2710,7 +2710,7 @@
     "affiliateId": 1,
     "YPointType": "add",
     "description": "상품구매",
-    "orderId": 9,
+    "orderSheetId": 9,
     "orderProductId": 22,
     "productId": 2,
     "eventId": null,
@@ -2726,7 +2726,7 @@
     "affiliateId": 1,
     "YPointType": "add",
     "description": "상품구매",
-    "orderId": 10,
+    "orderSheetId": 10,
     "orderProductId": 23,
     "productId": 2,
     "eventId": null,
@@ -2742,7 +2742,7 @@
     "affiliateId": 1,
     "YPointType": "add",
     "description": "상품결제",
-    "orderId": 11,
+    "orderSheetId": 11,
     "orderProductId": null,
     "productId": null,
     "eventId": null,
@@ -2758,7 +2758,7 @@
     "affiliateId": 1,
     "YPointType": "tobe",
     "description": "상품구매",
-    "orderId": 12,
+    "orderSheetId": 12,
     "orderProductId": 24,
     "productId": 3,
     "eventId": null,

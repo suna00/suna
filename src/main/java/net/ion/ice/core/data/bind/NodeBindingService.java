@@ -136,10 +136,10 @@ public class NodeBindingService {
         return queryResult;
     }
 
-    public List<Map<String, Object>> list(String tid, String searchText) {
-        NodeType nodeType = NodeUtils.getNodeType(tid);
+    public List<Map<String, Object>> list(String typeId, String searchText) {
+        NodeType nodeType = NodeUtils.getNodeType(typeId);
         QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, nodeType);
-        NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(tid);
+        NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(typeId);
         return nodeBindingInfo.list(queryContext);
     }
 
