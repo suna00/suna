@@ -507,21 +507,21 @@
     "icon": "fa-tag",
     "active": "true",
     "index": "false",
-    "pages": [
+    "pages": [],
+    "customPages": [
       {
         "pageName": "목록",
-        "pageUrl": "list"
+        "pageUrl": "cj/webservice/MainBasInfoList"
       },
       {
         "pageName": "등록/수정",
-        "pageUrl": "form"
+        "pageUrl": "cj/webservice/MainBasInfoForm"
       },
       {
         "pageName": "상세",
-        "pageUrl": "view"
+        "pageUrl": "cj/webservice/MainBasInfoView"
       }
-    ],
-    "customPages": []
+    ]
   },
   {
     "typeId": "adminLnbMenu",

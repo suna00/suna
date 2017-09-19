@@ -104,9 +104,61 @@
             ],
             "response": {
               "_all_": "",
+              "contsId": {
+                "field": "contsId",
+                "referenceView": true,
+                "response": {
+                  "_all_": "",
+                  "contsMetaId":{
+                    "field":"contsMetaId",
+                    "referenceView":true,
+                    "response":{
+                      "_all_":"",
+                      "artistInfo":{
+                        "typeId":"artist",
+                        "resultType":"merge",
+                        "query":[
+                          {
+                            "field":"artistId",
+                            "method":"matching",
+                            "value":"{{:artistId}}"
+                          }
+                        ],
+                        "response":{
+                          "artistSex":"sex",
+                          "artistTypeCd":"typeCd"
+                        }
+                      }
+                    }
+                  },
+                  "replNum": {
+                    "select": {
+                      "ds": "cjDb",
+                      "resultType": "value",
+                      "sql": "select count(*)as replNum from replInfo where contsMetaId = concat( if(@{newsId} is not null ,'news',if(@{pgmVideoId} is not null,'pgmVideo',if(@{groupPhotoId} is not null,'groupPhoto',''))),'::',if(@{newsId} is not null ,@{newsId},if(@{pgmVideoId} is not null,@{pgmVideoId},if(@{groupPhotoId} is not null,@{groupPhotoId},''))))"
+                    }
+                  },
+                  "likeNum": {
+                    "select": {
+                      "ds": "cjDb",
+                      "resultType": "value",
+                      "sql": "select count(*) as likeNum from contsLikeInfo where contsMetaId = concat( if(@{newsId} is not null ,'news',if(@{pgmVideoId} is not null,'pgmVideo',if(@{groupPhotoId} is not null,'groupPhoto',''))),'::',if(@{newsId} is not null ,@{newsId},if(@{pgmVideoId} is not null,@{pgmVideoId},if(@{groupPhotoId} is not null,@{groupPhotoId},''))))"
+                    }
+                  },
+                  "singlePhotoNm": {
+                    "resultType": "size",
+                    "field": "compontSinglePhotoIds"
+                  }
+                }
+              },
               "newsHubNewsList": {
                 "typeId": "news",
                 "query": [
+                  {
+                    "field": "langCd",
+                    "method": "matching",
+                    "value": "{{:langCd}}"
+                  },
                   {
                     "field": "newsNm",
                     "method": "matchingShould",
@@ -117,7 +169,24 @@
                     "method": "matchingShould",
                     "value": "{{:default(newsHubKywrd,뺿뺿)}}"
                   }
-                ]
+                ],
+                "response": {
+                  "_all_": "",
+                  "replNum": {
+                    "select": {
+                      "ds": "cjDb",
+                      "resultType": "value",
+                      "sql": "select count(*)as replNum from replInfo where contsMetaId = concat('news','::',@{newsId})"
+                    }
+                  },
+                  "likeNum": {
+                    "select": {
+                      "ds": "cjDb",
+                      "resultType": "value",
+                      "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('news','::',@{newsId})"
+                    }
+                  }
+                }
               },
               "newsHubVodList": {
                 "typeId": "pgmVideo",
@@ -132,7 +201,24 @@
                     "method": "matchingShould",
                     "value": "{{:default(newsHubKywrd,뺿뺿)}}"
                   }
-                ]
+                ],
+                "response": {
+                  "_all_": "",
+                  "replNum": {
+                    "select": {
+                      "ds": "cjDb",
+                      "resultType": "value",
+                      "sql": "select count(*)as replNum from replInfo where contsMetaId = concat('pgmVideo','::',@{contentId})"
+                    }
+                  },
+                  "likeNum": {
+                    "select": {
+                      "ds": "cjDb",
+                      "resultType": "value",
+                      "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('pgmVideo','::',@{contentId})"
+                    }
+                  }
+                }
               }
             }
           },
@@ -156,9 +242,61 @@
             ],
             "response": {
               "_all_": "",
+              "contsId": {
+                "field": "contsId",
+                "referenceView": true,
+                "response": {
+                  "_all_": "",
+                  "contsMetaId":{
+                    "field":"contsMetaId",
+                    "referenceView":true,
+                    "response":{
+                      "_all_":"",
+                      "artistInfo":{
+                        "typeId":"artist",
+                        "resultType":"merge",
+                        "query":[
+                          {
+                            "field":"artistId",
+                            "method":"matching",
+                            "value":"{{:artistId}}"
+                          }
+                        ],
+                        "response":{
+                          "artistSex":"sex",
+                          "artistTypeCd":"typeCd"
+                        }
+                      }
+                    }
+                  },
+                  "replNum": {
+                    "select": {
+                      "ds": "cjDb",
+                      "resultType": "value",
+                      "sql": "select count(*)as replNum from replInfo where contsMetaId = concat( if(@{newsId} is not null ,'news',if(@{pgmVideoId} is not null,'pgmVideo',if(@{groupPhotoId} is not null,'groupPhoto',''))),'::',if(@{newsId} is not null ,@{newsId},if(@{pgmVideoId} is not null,@{pgmVideoId},if(@{groupPhotoId} is not null,@{groupPhotoId},''))))"
+                    }
+                  },
+                  "likeNum": {
+                    "select": {
+                      "ds": "cjDb",
+                      "resultType": "value",
+                      "sql": "select count(*) as likeNum from contsLikeInfo where contsMetaId = concat( if(@{newsId} is not null ,'news',if(@{pgmVideoId} is not null,'pgmVideo',if(@{groupPhotoId} is not null,'groupPhoto',''))),'::',if(@{newsId} is not null ,@{newsId},if(@{pgmVideoId} is not null,@{pgmVideoId},if(@{groupPhotoId} is not null,@{groupPhotoId},''))))"
+                    }
+                  },
+                  "singlePhotoNm": {
+                    "resultType": "size",
+                    "field": "compontSinglePhotoIds"
+                  }
+                }
+              },
               "newsHubNewsList": {
                 "typeId": "news",
                 "query": [
+                  {
+                    "field": "langCd",
+                    "method": "matching",
+                    "value": "{{:langCd}}"
+                  },
                   {
                     "field": "newsNm",
                     "method": "matchingShould",
@@ -169,7 +307,24 @@
                     "method": "matchingShould",
                     "value": "{{:default(newsHubKywrd,뺿뺿)}}"
                   }
-                ]
+                ],
+                "response": {
+                  "_all_": "",
+                  "replNum": {
+                    "select": {
+                      "ds": "cjDb",
+                      "resultType": "value",
+                      "sql": "select count(*)as replNum from replInfo where contsMetaId = concat('news','::',@{newsId})"
+                    }
+                  },
+                  "likeNum": {
+                    "select": {
+                      "ds": "cjDb",
+                      "resultType": "value",
+                      "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('news','::',@{newsId})"
+                    }
+                  }
+                }
               },
               "newsHubVodList": {
                 "typeId": "pgmVideo",
@@ -184,7 +339,24 @@
                     "method": "matchingShould",
                     "value": "{{:default(newsHubKywrd,뺿뺿)}}"
                   }
-                ]
+                ],
+                "response": {
+                  "_all_": "",
+                  "replNum": {
+                    "select": {
+                      "ds": "cjDb",
+                      "resultType": "value",
+                      "sql": "select count(*)as replNum from replInfo where contsMetaId = concat('pgmVideo','::',@{contentId})"
+                    }
+                  },
+                  "likeNum": {
+                    "select": {
+                      "ds": "cjDb",
+                      "resultType": "value",
+                      "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('pgmVideo','::',@{contentId})"
+                    }
+                  }
+                }
               }
             }
           },
