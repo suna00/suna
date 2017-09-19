@@ -95,7 +95,7 @@
     "pid": "thumImgUrl",
     "id": "voteBasInfo>thumImgUrl",
     "propertyTypeName": "썸네일 경로",
-    "valueType": "STRING",
+    "valueType": "FILE",
     "required": false,
     "idable": false,
     "labelable": false,
