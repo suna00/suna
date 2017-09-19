@@ -13,8 +13,6 @@ public class ResultField {
     private String fieldValue ;
     private Map<String, Object> fieldOption ;
 
-    private FieldContext fieldContext ;
-
     private Object staticValue ;
 
     private ResultType resultType ;
@@ -60,7 +58,6 @@ public class ResultField {
             }
 
             this.fieldOption = fieldOption;
-            this.fieldContext = FieldContext.createContextFromOption(fieldOption);
         }
     }
 
@@ -85,9 +82,6 @@ public class ResultField {
         return fieldOption ;
     }
 
-    public FieldContext getFieldContext(){
-        return fieldContext ;
-    }
 
     public boolean isStaticValue(){
         return this.staticValue != null ;

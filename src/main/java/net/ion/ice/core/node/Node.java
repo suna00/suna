@@ -358,7 +358,8 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         return getId().toString() ;
     }
 
-    public String getLabel(NodeType nodeType, ReadContext context) {
+    public String getLabel(ReadContext context) {
+        NodeType nodeType = NodeUtils.getNodeType(getTypeId()) ;
         if(context == null) return getLabel(nodeType) ;
         for(PropertyType pt : nodeType.getPropertyTypes()){
             if(pt.isLabelable()){

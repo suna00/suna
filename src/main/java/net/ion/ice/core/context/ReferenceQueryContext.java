@@ -49,7 +49,8 @@ public class ReferenceQueryContext extends QueryContext{
 
             code.put("refId", node.getId()) ;
             code.put("value", StringUtils.contains(node.getId(), Node.ID_SEPERATOR) ? StringUtils.substringAfterLast(node.getId(), Node.ID_SEPERATOR) : node.getId());
-            code.put("label", node.getLabel(nodeType, this)) ;
+            code.put("label", node.getLabel( this)) ;
+
             subList.add(code) ;
         }
         return makePaging("items", subList);
