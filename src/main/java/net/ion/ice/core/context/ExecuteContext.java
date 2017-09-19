@@ -345,6 +345,7 @@ public class ExecuteContext extends ReadContext{
 
         if(config.containsKey("data")){
             Map<String, Object> _data = new HashMap<>();
+            _data.putAll(data);
             Map<String, Object> subData = (Map<String, Object>) config.get("data");
             for(String key : subData.keySet()){
                 _data.put(key, ContextUtils.getValue(subData.get(key), data)) ;
