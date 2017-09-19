@@ -27,9 +27,7 @@
     "showCntryCdList": "KOR,JPN",
     "mnetIfTrtYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "2004,2054",
-    "risingHitNum":333,
-    "hotHitNum":2345
+    "contsMetaCtgryId": "2004,2054"
   },
   {
     "typeId": "pgmVideo",
@@ -59,9 +57,7 @@
     "showCntryCdList": "KOR",
     "mnetIfTrtYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "2001,2027,2028,2031",
-    "risingHitNum":0,
-    "hotHitNum":0
+    "contsMetaCtgryId": "2001,2027,2028,2031"
   },
   {
     "typeId": "pgmVideo",
@@ -91,9 +87,7 @@
     "showCntryCdList": "KOR,JPN",
     "mnetIfTrtYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "2001,2007,2009",
-    "risingHitNum":111,
-    "hotHitNum":111
+    "contsMetaCtgryId": "2001,2007,2009"
   },
   {
     "typeId": "pgmVideo",
@@ -123,9 +117,7 @@
     "showCntryCdList": "KOR",
     "mnetIfTrtYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "2002,2043,2044",
-    "risingHitNum":10,
-    "hotHitNum":10
+    "contsMetaCtgryId": "2002,2043,2044"
   },
   {
     "typeId": "pgmVideo",
@@ -155,8 +147,6 @@
     "showCntryCdList": "USA",
     "mnetIfTrtYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "2003,2049,2050",
-    "risingHitNum":234566,
-    "hotHitNum":34563422
+    "contsMetaCtgryId": "2003,2049,2050"
   }
 ]

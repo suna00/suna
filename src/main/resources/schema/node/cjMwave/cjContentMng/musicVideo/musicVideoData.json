@@ -6,7 +6,7 @@
     "subName": "[티저] BLACK6IX Coming Soon",
     "genreCd": "4201",
     "musicVideoDesc": "Artist : BLACK6IX(블랙식스) ",
-    "imgUrl": "http://10.184.57.248:8080/pub/images/component/img_slider_photo01.jpg  ",
+    "imgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "findKywrd": "Ko Ko Bop, Exo",
     "comotDt": "20171001180000",
     "artistId": "artist_00001",
@@ -19,9 +19,7 @@
     "relArtistIds": "artist_00003",
     "showYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "3001,3002",
-    "risingHitNum":3,
-    "hotHitNum":100
+    "contsMetaCtgryId": "3001,3002"
   },
   {
     "typeId": "musicVideo",
@@ -30,7 +28,7 @@
     "subName": "[티저] HONEYMOON (Trailer 1)",
     "genreCd": "4202",
     "musicVideoDesc": "HONEYMOON (Trailer 1) ",
-    "imgUrl": "http://10.184.57.248:8080/pub/images/component/img_album05.jpg",
+    "imgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "findKywrd": "honeymoon,bap,trailter",
     "comotDt": "201709050000",
     "artistId": "artist_00002",
@@ -43,9 +41,7 @@
     "relArtistIds": "artist_00014",
     "showYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "3001,3002",
-    "risingHitNum":0,
-    "hotHitNum":0
+    "contsMetaCtgryId": "3001,3002"
   },
   {
     "typeId": "musicVideo",
@@ -54,7 +50,7 @@
     "subName": "[티저] Dream O‘ Clock",
     "genreCd": "4203",
     "musicVideoDesc": "Coming up! 31st Aug. 2017.",
-    "imgUrl": "http://10.184.57.248:8080/pub/images/component/img_hotClip_box.jpg",
+    "imgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "findKywrd": "kbridge,dreamoclock,teaser",
     "comotDt": "20170831180000",
     "artistId": "artist_00003",
@@ -67,9 +63,7 @@
     "relArtistIds": "artist_00012",
     "showYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "3001",
-    "risingHitNum":4,
-    "hotHitNum":4
+    "contsMetaCtgryId": "3001"
   },
   {
     "typeId": "musicVideo",
@@ -78,7 +72,7 @@
     "subName": "진자 (ZINZA) (Feat. YDG, 수란)",
     "genreCd": "4204",
     "musicVideoDesc": "A song expressing various directions in response to the pendulum movement",
-    "imgUrl": "http://10.184.57.248:8080/pub/images/component/thumb_video_01.jpg",
+    "imgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "findKywrd": "zinza,ydg,suran,showmethemoney",
     "comotDt": "20171001180000",
     "artistId": "artist_00014",
@@ -91,9 +85,7 @@
     "relArtistIds": "artist_00028",
     "showYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "3001",
-    "risingHitNum":0,
-    "hotHitNum":0
+    "contsMetaCtgryId": "3001"
   },
   {
     "typeId": "musicVideo",
@@ -102,7 +94,7 @@
     "subName": "",
     "genreCd": "4201",
     "musicVideoDesc": "AOA 1st Album ANGEL'S knock",
-    "imgUrl": "http://10.184.57.248:8080/pub/images/component/thumb_video_01.jpg",
+    "imgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "findKywrd": "Excuse Me, aoa. AOA",
     "comotDt": "20170101180000",
     "artistId": "artist_00022",
@@ -115,9 +107,7 @@
     "relArtistIds": "",
     "showYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "3001,3002,3003",
-    "risingHitNum":55,
-    "hotHitNum":1234
+    "contsMetaCtgryId": "3001,3002,3003"
   },
   {
     "typeId": "musicVideo",
@@ -126,7 +116,7 @@
     "subName": "Zeze",
     "genreCd": "4201",
     "musicVideoDesc": "Zeze",
-    "imgUrl": "http://10.184.57.248:8080/pub/images/component/thumb_video_01.jpg",
+    "imgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "findKywrd": "Zeze",
     "comotDt": "20151023180000",
     "artistId": "artist_00019",
@@ -139,9 +129,7 @@
     "relArtistIds": "artist_00017",
     "showYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "3001,3002,3003",
-    "risingHitNum":0,
-    "hotHitNum":0
+    "contsMetaCtgryId": "3001,3002,3003"
   },
   {
     "typeId": "musicVideo",
@@ -150,7 +138,7 @@
     "subName": "나만바라봐",
     "genreCd": "4201",
     "musicVideoDesc": "나만바라봐",
-    "imgUrl": "http://10.184.57.248:8080/pub/images/component/thumb_video_01.jpg",
+    "imgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "findKywrd": "나만바라봐",
     "comotDt": "20080522160000",
     "artistId": "artist_00026",
@@ -163,9 +151,7 @@
     "relArtistIds": "artist_00012",
     "showYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "3001,3002,3003",
-    "risingHitNum":9000,
-    "hotHitNum":90000
+    "contsMetaCtgryId": "3001,3002,3003"
   },
   {
     "typeId": "musicVideo",
@@ -174,7 +160,7 @@
     "subName": "삐딱하게",
     "genreCd": "4201",
     "musicVideoDesc": "삐딱하게",
-    "imgUrl": "http://10.184.57.248:8080/pub/images/component/thumb_video_01.jpg",
+    "imgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "findKywrd": "삐딱하게",
     "comotDt": "20130905180000",
     "artistId": "artist_00028",
@@ -187,9 +173,7 @@
     "relArtistIds": "artist_00026",
     "showYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "3001,3002,3003",
-    "risingHitNum":12345,
-    "hotHitNum":1234567
+    "contsMetaCtgryId": "3001,3002,3003"
   },
   {
     "typeId": "musicVideo",
@@ -198,7 +182,7 @@
     "subName": "오아시스",
     "genreCd": "4201",
     "musicVideoDesc": "오아시스",
-    "imgUrl": "http://10.184.57.248:8080/pub/images/component/thumb_video_01.jpg",
+    "imgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "findKywrd": "오아시스, 에이핑크",
     "comotDt": "20170101180000",
     "artistId": "artist_00029",
@@ -211,9 +195,7 @@
     "relArtistIds": "artist_00027",
     "showYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "3001,3002,3003",
-    "risingHitNum":0,
-    "hotHitNum":0
+    "contsMetaCtgryId": "3001,3002,3003"
   },
   {
     "typeId": "musicVideo",
@@ -222,7 +204,7 @@
     "subName": "Song-C",
     "genreCd": "4201",
     "musicVideoDesc": "Song-C",
-    "imgUrl": "http://10.184.57.248:8080/pub/images/component/thumb_video_01.jpg",
+    "imgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "findKywrd": "Song-C",
     "comotDt": "20170101180000",
     "artistId": "artist_00003",
@@ -235,9 +217,7 @@
     "relArtistIds": "artist_00017",
     "showYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "3001,3002,3003",
-    "risingHitNum":0,
-    "hotHitNum":0
+    "contsMetaCtgryId": "3001,3002,3003"
   },
   {
     "typeId": "musicVideo",
@@ -246,7 +226,7 @@
     "subName": "Song-D",
     "genreCd": "4201",
     "musicVideoDesc": "Song-D",
-    "imgUrl": "http://10.184.57.248:8080/pub/images/component/thumb_video_01.jpg",
+    "imgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "findKywrd": "Song-D",
     "comotDt": "20170101180000",
     "artistId": "artist_00014",
@@ -259,9 +239,7 @@
     "relArtistIds": "artist_00012",
     "showYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "3001,3002,3003",
-    "risingHitNum":0,
-    "hotHitNum":0
+    "contsMetaCtgryId": "3001,3002,3003"
   },
   {
     "typeId": "musicVideo",
@@ -270,7 +248,7 @@
     "subName": "Song-E",
     "genreCd": "4201",
     "musicVideoDesc": "Song-E",
-    "imgUrl": "http://10.184.57.248:8080/pub/images/component/thumb_video_01.jpg",
+    "imgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "findKywrd": "Song-E",
     "comotDt": "20170101180000",
     "artistId": "artist_00022",
@@ -283,9 +261,7 @@
     "relArtistIds": "artist_00026",
     "showYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "3001,3002,3003",
-    "risingHitNum":0,
-    "hotHitNum":0
+    "contsMetaCtgryId": "3001,3002,3003"
   },
   {
     "typeId": "musicVideo",
@@ -294,7 +270,7 @@
     "subName": "Song-F",
     "genreCd": "4201",
     "musicVideoDesc": "Song-F",
-    "imgUrl": "http://10.184.57.248:8080/pub/images/component/thumb_video_01.jpg",
+    "imgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "findKywrd": "Song-F",
     "comotDt": "20170101180000",
     "artistId": "artist_00019",
@@ -307,8 +283,6 @@
     "relArtistIds": "artist_00027",
     "showYn": true,
     "rcmdContsYn": true,
-    "contsMetaCtgryId": "3001,3002,3003",
-    "risingHitNum":0,
-    "hotHitNum":0
+    "contsMetaCtgryId": "3001,3002,3003"
   }
 ]
