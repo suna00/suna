@@ -201,7 +201,7 @@
     "typeId": "commonCode",
     "code": "deliveryMethod",
     "upperCode": "root",
-    "name": "배송수단",
+    "name": "배송방법",
     "description": "",
     "sortOrder": "23",
     "commonCodeStatus": "y"
