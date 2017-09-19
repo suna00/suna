@@ -2787,23 +2787,6 @@
   {
     "typeId": "propertyType",
     "tid": "site",
-    "pid": "logoImage",
-    "propertyTypeName": "로고이미지",
-    "valueType": "STRING",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "",
-    "referenceValue": "",
-    "codeFilter": "",
-    "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "site",
     "pid": "siteStatus",
     "propertyTypeName": "사용여부",
     "valueType": "REFERENCE",

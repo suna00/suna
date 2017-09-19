@@ -120,6 +120,11 @@ public class DBService {
         basicDataSource.setUsername(dataConfiguration.getUsername());
         basicDataSource.setPassword(dataConfiguration.getPassword());
         basicDataSource.setUrl(dataConfiguration.getJdbcUrl());
+        if(dataConfiguration.isSsl()){
+            basicDataSource.setConnectionProperties("useSSL=true");
+        }else{
+            basicDataSource.setConnectionProperties("useSSL=false");
+        }
         basicDataSource.setInitialSize(3);
         basicDataSource.setMaxTotal(256);
         basicDataSource.setDefaultAutoCommit(true);

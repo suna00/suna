@@ -61,56 +61,29 @@ public class OrderService {
         } else {
 
         }
+    }
+
+    private void addPurchasOrder(String tempOrderId) {
 
     }
 
-    public void savePayment() {
-        Map<String, Object> payment = new HashMap<>();
-
-        String orderId = "";
-        String memberNo = "";
-        String paymentStatus = "";
-        String paymentDate = "";
-        String paymentPrice = "";
-        String paymentType = "";
-        String creditCard = "";
-        String cardNo = "";
-        String installment = "";
-        String bank = "";
-        String accountNo = "";
-        String accountOwner = "";
-        String virtualAccountBank = "";
-        String virtualAccountNo = "";
-        String virtualAccountOwner = "";
-        String virtualAccountDepositLimitDate = "";
-
-        payment.put("orderId", orderId);
-        payment.put("memberNo", memberNo);
-        payment.put("paymentStatus", paymentStatus);
-        payment.put("paymentDate", paymentDate);
-        payment.put("paymentPrice", paymentPrice);
-        payment.put("paymentType", paymentType);
-        payment.put("creditCard", creditCard);
-        payment.put("cardNo", cardNo);
-        payment.put("installment", installment);
-        payment.put("bank", bank);
-        payment.put("accountNo", accountNo);
-        payment.put("accountOwner", accountOwner);
-        payment.put("virtualAccountBank", virtualAccountBank);
-        payment.put("virtualAccountNo", virtualAccountNo);
-        payment.put("virtualAccountOwner", virtualAccountOwner);
-        payment.put("virtualAccountDepositLimitDate", virtualAccountDepositLimitDate);
-
-        nodeService.executeNode(payment, "payment", CREATE);
-
+    public String savePayment(Map<String, Object> payment) {
+        Node node = (Node) nodeService.executeNode(payment, "payment", CREATE);
+        return node.getId();
     }
 
-    public void savePgResponse(Map<String, Object> data) {
+    public String saveDelivery(Map<String, Object> delivery) {
+        Node node = (Node) nodeService.executeNode(delivery, "delivery", CREATE);
+        return node.getId();
+    }
+
+
+
+    public void savePgResponse(Map<String, Object> data, String paymentId) {
         Map<String, Object> pg = new HashMap<>();
 
         String JsonString = JsonUtils.toJsonString(data);
-        String paymentId = "";
-        String purchaseOrderId = "";
+        String purchaseOrderId = String.valueOf(data.get("ordrIdxx"));
 
         pg.put("paymentId", paymentId);
         pg.put("purchaseOrderId", purchaseOrderId);
@@ -159,6 +132,10 @@ public class OrderService {
                 tempOrderProductData.put("baseOptionItemId", calc.get("baseOptionItemId"));
                 tempOrderProductData.put("quantity", calc.get("quantity"));
                 tempOrderProductData.put("vendorId", calc.get("vendorId"));
+                tempOrderProductData.put("salePrice", ((Map<String, Object>) calc.get("calculateItem")).get("salePrice"));
+                tempOrderProductData.put("baseAddPrice", ((Map<String, Object>) calc.get("calculateItem")).get("baseAddPrice"));
+                tempOrderProductData.put("productPrice", ((Map<String, Object>) calc.get("calculateItem")).get("productPrice"));
+                tempOrderProductData.put("totalAddOptionPrice", ((Map<String, Object>) calc.get("calculateItem")).get("totalAddOptionPrice"));
 
                 Node tempOrderProductNode = (Node) nodeService.executeNode(tempOrderProductData, "tempOrderProduct", CREATE);
                 tempOrderProductIds.add(tempOrderProductNode.getId());

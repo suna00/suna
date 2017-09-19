@@ -118,6 +118,7 @@
     String cash_tr_code = f_get_parm(request.getParameter("cash_tr_code")); // 현금 영수증 발행 구분
     String cash_id_info = f_get_parm(request.getParameter("cash_id_info")); // 현금 영수증 등록 번호
     String cash_no = "";                                                     // 현금 영수증 거래 번호
+    System.out.println("shippingAddress" + f_get_parm(request.getParameter("shippingAddress")));
     /* ============================================================================== */
     /* =   02. 지불 요청 정보 설정 END
     /* ============================================================================== */
@@ -153,7 +154,7 @@
         int ordr_data_set_no;
 
         ordr_data_set_no = c_PayPlus.mf_add_set("ordr_data");
-        System.out.println("ordr_mony"+ ordr_mony);
+        System.out.println("ordr_mony" + ordr_mony);
         c_PayPlus.mf_set_us(ordr_data_set_no, "ordr_mony", ordr_mony);
 
 
@@ -292,56 +293,55 @@
 
     Map<String, Object> responseMap = new ConcurrentHashMap<>();
 
-    responseMap.put("g_conf_site_cd   ", g_conf_site_cd);
-    responseMap.put("req_tx           ", req_tx);
-    responseMap.put("use_pay_method   ", use_pay_method);
-    responseMap.put("bSucc            ", bSucc);
-    responseMap.put("amount           ", amount);
-    responseMap.put("total_amount     ", total_amount);
-    responseMap.put("card_mny         ", card_mny);
-    responseMap.put("bk_mny         ", bk_mny);
-    responseMap.put("coupon_mny       ", coupon_mny);
-    responseMap.put("res_cd           ", res_cd);
-    responseMap.put("res_msg          ", res_msg);
-    responseMap.put("ordr_idxx        ", ordr_idxx);
-    responseMap.put("tno              ", tno);
-    responseMap.put("good_name        ", good_name);
-    responseMap.put("buyr_name        ", buyr_name);
-    responseMap.put("buyr_tel1        ", buyr_tel1);
-    responseMap.put("buyr_tel2        ", buyr_tel2);
-    responseMap.put("buyr_mail        ", buyr_mail);
-    responseMap.put("app_time         ", app_time);
-    responseMap.put("card_cd          ", card_cd);
-    responseMap.put("card_name        ", card_name);
-    responseMap.put("app_no           ", app_no);
-    responseMap.put("noinf            ", noinf);
-    responseMap.put("quota            ", quota);
-    responseMap.put("partcanc_yn      ", partcanc_yn);
-    responseMap.put(" card_bin_type_01", card_bin_type_01);
-    responseMap.put(" card_bin_type_02", card_bin_type_02);
-    responseMap.put("bank_name        ", bank_name);
-    responseMap.put("bank_code        ", bank_code);
-    responseMap.put("bankname         ", bankname);
-    responseMap.put("depositor        ", depositor);
-    responseMap.put("account          ", account);
-    responseMap.put("va_date          ", va_date);
-    responseMap.put("pnt_issue        ", pnt_issue);
-    responseMap.put("pnt_app_time     ", pnt_app_time);
-    responseMap.put("pnt_app_no       ", pnt_app_no);
-    responseMap.put("pnt_amount       ", pnt_amount);
-    responseMap.put("add_pnt          ", add_pnt);
-    responseMap.put("use_pnt          ", use_pnt);
-    responseMap.put("rsv_pnt          ", rsv_pnt);
-    responseMap.put("commid           ", commid);
-    responseMap.put("mobile_no        ", mobile_no);
-    responseMap.put("tk_van_code      ", tk_van_code);
-    responseMap.put("tk_app_no        ", tk_app_no);
-    responseMap.put("shop_user_id     ", shop_user_id);
-    responseMap.put("cash_yn          ", cash_yn);
-    responseMap.put("cash_authno      ", cash_authno);
-    responseMap.put("cash_tr_code     ", cash_tr_code);
-    responseMap.put("cash_id_info     ", cash_id_info);
-    responseMap.put("cash_no          ", cash_no);
+    responseMap.put("gConfSiteCd", g_conf_site_cd);
+    responseMap.put("reqTx", req_tx);
+    responseMap.put("usePayMethod", use_pay_method);
+    responseMap.put("amount", amount);
+    responseMap.put("totalAmount", total_amount);
+    responseMap.put("cardMny", card_mny);
+    responseMap.put("bkMny", bk_mny);
+    responseMap.put("couponMny", coupon_mny);
+    responseMap.put("resCd", res_cd);
+    responseMap.put("resMsg", res_msg);
+    responseMap.put("ordrIdxx", ordr_idxx);
+    responseMap.put("tno", tno);
+    responseMap.put("goodName", good_name);
+    responseMap.put("buyrName", buyr_name);
+    responseMap.put("buyrTel1", buyr_tel1);
+    responseMap.put("buyrTel2", buyr_tel2);
+    responseMap.put("buyrMail", buyr_mail);
+    responseMap.put("appTime", app_time);
+    responseMap.put("cardCd", card_cd);
+    responseMap.put("cardName", card_name);
+    responseMap.put("appNo", app_no);
+    responseMap.put("noinf", noinf);
+    responseMap.put("quota", quota);
+    responseMap.put("partcancYn", partcanc_yn);
+    responseMap.put("cardBinType01", card_bin_type_01);
+    responseMap.put("cardBinType02", card_bin_type_02);
+    responseMap.put("bankName", bank_name);
+    responseMap.put("bankCode", bank_code);
+    responseMap.put("depositBankName", bankname);
+    responseMap.put("depositor", depositor);
+    responseMap.put("account", account);
+    responseMap.put("vaDate", va_date);
+    responseMap.put("pntIssue", pnt_issue);
+    responseMap.put("pntAppTime", pnt_app_time);
+    responseMap.put("pntAppNo", pnt_app_no);
+    responseMap.put("pntAmount", pnt_amount);
+    responseMap.put("addPnt", add_pnt);
+    responseMap.put("usePnt", use_pnt);
+    responseMap.put("rsvPnt", rsv_pnt);
+    responseMap.put("commid", commid);
+    responseMap.put("mobileNo", mobile_no);
+    responseMap.put("tkVanCode", tk_van_code);
+    responseMap.put("tkAppNo", tk_app_no);
+    responseMap.put("shopUserId", shop_user_id);
+    responseMap.put("cashYn", cash_yn);
+    responseMap.put("cashAuthno", cash_authno);
+    responseMap.put("cashTrCode", cash_tr_code);
+    responseMap.put("cashIdInfo", cash_id_info);
+    responseMap.put("cashNo", cash_no);
 
     if (req_tx.equals("pay")) {
 
@@ -352,7 +352,8 @@
     /* = -------------------------------------------------------------------------- = */
 
         if (res_cd.equals("0000")) {
-            orderService.savePgResponse(responseMap);
+            String paymentId = orderService.savePayment(responseMap);
+            orderService.savePgResponse(responseMap, paymentId);
             // 07-1-1. 신용카드
             if (use_pay_method.equals("100000000000")) {
                 // 07-1-1-1. 복합결제(신용카드+포인트)
@@ -380,6 +381,7 @@
             if (use_pay_method.equals("000000001000")) {
 
             }
+
         }
 
         /* = -------------------------------------------------------------------------- = */

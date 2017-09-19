@@ -6037,5 +6037,239 @@
     "description": "",
     "sortOrder": "8",
     "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "developmentFundStatus",
+    "upperCode": "root",
+    "name": "발전기금 적립여부",
+    "description": "",
+    "sortOrder": "115",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "joinMobileReadingCert",
+    "upperCode": "root",
+    "name": "모바일 열람증 가입",
+    "description": "",
+    "sortOrder": "115",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "interests",
+    "upperCode": "root",
+    "name": "관심분야",
+    "description": "",
+    "sortOrder": "115",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "y",
+    "upperCode": "developmentFundStatus",
+    "name": "적립",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "n",
+    "upperCode": "developmentFundStatus",
+    "name": "미적립",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "y",
+    "upperCode": "joinMobileReadingCert",
+    "name": "적용",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "n",
+    "upperCode": "joinMobileReadingCert",
+    "name": "미적용",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "c001",
+    "upperCode": "interests",
+    "name": "노트북",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "c002",
+    "upperCode": "interests",
+    "name": "패션/뷰티",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "c003",
+    "upperCode": "interests",
+    "name": "테마파크",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "c004",
+    "upperCode": "interests",
+    "name": "문화공연",
+    "description": "",
+    "sortOrder": "4",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "c005",
+    "upperCode": "interests",
+    "name": "스포츠",
+    "description": "",
+    "sortOrder": "5",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "c006",
+    "upperCode": "interests",
+    "name": "여행",
+    "description": "",
+    "sortOrder": "6",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "uSpec001",
+    "upperCode": "interests",
+    "name": "서포터즈",
+    "description": "",
+    "sortOrder": "7",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "uSpec002",
+    "upperCode": "interests",
+    "name": "공모전",
+    "description": "",
+    "sortOrder": "8",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "uSpec003",
+    "upperCode": "interests",
+    "name": "봉사활동",
+    "description": "",
+    "sortOrder": "9",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "uSpec004",
+    "upperCode": "interests",
+    "name": "인턴",
+    "description": "",
+    "sortOrder": "10",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "uSpec005",
+    "upperCode": "interests",
+    "name": "해외인턴",
+    "description": "",
+    "sortOrder": "11",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "uEdu001",
+    "upperCode": "interests",
+    "name": "외국어",
+    "description": "",
+    "sortOrder": "12",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "uEdu002",
+    "upperCode": "interests",
+    "name": "공무원",
+    "description": "",
+    "sortOrder": "13",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "uEdu003",
+    "upperCode": "interests",
+    "name": "자격증",
+    "description": "",
+    "sortOrder": "14",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "uEdu004",
+    "upperCode": "interests",
+    "name": "어학연수",
+    "description": "",
+    "sortOrder": "15",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "uService001",
+    "upperCode": "interests",
+    "name": "노트북",
+    "description": "",
+    "sortOrder": "16",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "uService002",
+    "upperCode": "interests",
+    "name": "패션/뷰티",
+    "description": "",
+    "sortOrder": "17",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "uService003",
+    "upperCode": "interests",
+    "name": "테마파크",
+    "description": "",
+    "sortOrder": "18",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "uService004",
+    "upperCode": "interests",
+    "name": "문화공연",
+    "description": "",
+    "sortOrder": "19",
+    "commonCodeStatus": "y"
   }
 ]
