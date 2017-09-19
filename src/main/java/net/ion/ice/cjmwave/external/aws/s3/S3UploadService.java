@@ -53,13 +53,20 @@ public class S3UploadService {
     }
 
 
-    public String uploadToS3 (File file) throws Exception {
-        if(s3Client == null) {
-            initializeS3Client();
+    public String uploadToS3 (File file) {
+        String rtn = null;
+        try{
+            if(s3Client == null) {
+                initializeS3Client();
+            }
+            PutObjectResult pors = s3Client.putObject(new PutObjectRequest(bucketName, bucketKey, file));
+            logger.info("Upload Result :: " + String.valueOf(pors));
+            String fileName = file.getName();
+            file.delete();
+            rtn = bucketUrl.toURI().toString() + "/" + fileName;
+        } catch (Exception e) {
+            logger.info("S3 Upload Failed :: return null :: ", e);
         }
-        PutObjectResult pors = s3Client.putObject(new PutObjectRequest(bucketName, bucketKey, file));
-        logger.info("Upload Result :: " + String.valueOf(pors));
-        String fileName = file.getName();
-        return bucketUrl.toURI().toString() + "/" + fileName;
+        return rtn;
     }
 };

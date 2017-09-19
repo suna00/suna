@@ -2,6 +2,7 @@ package net.ion.ice.cjmwave.external.utils;
 
 import java.io.File;
 import java.net.URL;
+import java.util.UUID;
 
 /**
  * Created by juneyoungoh on 2017. 9. 18..
@@ -11,11 +12,18 @@ public class FileUtils {
     /*
     * URL 로 파일을 요청하고 파일객체 반환
     * */
-    public static File retrieveRemoteFile (String url) throws Exception {
-        URL requestUrl = new URL(url);
+    public static File retrieveRemoteFile (String basicPath, String url) {
         File file = null;
-        int connectionTimeout = 3000, readTimeout = 60000;
-        org.apache.commons.io.FileUtils.copyURLToFile(requestUrl, file, connectionTimeout, readTimeout);
+        UUID uuid = UUID.randomUUID();
+        try{
+            file = new File(basicPath + "/" + uuid.toString() + ".jpg");
+            URL requestUrl = new URL(url);
+            int connectionTimeout = 3000, readTimeout = 60000;
+            org.apache.commons.io.FileUtils.copyURLToFile(requestUrl, file, connectionTimeout, readTimeout);
+        } catch (Exception e) {
+            // file retrieve 실패 null 을 반환함
+            file = null;
+        }
         return file;
     }
 
