@@ -1247,6 +1247,23 @@
   },
   {
     "typeId": "propertyType",
+    "tid": "member",
+    "pid": "interests",
+    "propertyTypeName": "관심분야",
+    "valueType": "REFERENCES",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
+    "codeFilter": "interests",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
     "tid": "myRefundAccount",
     "pid": "myRefundAccountId",
     "propertyTypeName": "ID",

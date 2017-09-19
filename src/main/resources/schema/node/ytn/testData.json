@@ -10,7 +10,6 @@
       "label": "siteType>company",
       "refId": "siteType>company"
     },
-    "logoImage": null,
     "siteStatus": "y"
   },
   {
@@ -24,7 +23,6 @@
       "label": "siteType>university",
       "refId": "siteType>university"
     },
-    "logoImage": null,
     "siteStatus": "y"
   },
   {
