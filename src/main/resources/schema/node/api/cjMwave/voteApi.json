@@ -607,7 +607,7 @@
           "query": [
             {
               "field": "voteSeq",
-              "method": "matching",
+              "method": "equals",
               "value": "{{:voteSeq}}"
             },
             {

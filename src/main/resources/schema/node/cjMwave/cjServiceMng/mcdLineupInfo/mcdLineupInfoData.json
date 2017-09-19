@@ -4,8 +4,8 @@
     "lineupInfoSeq": 54214,
     "lineupNm": "라인업 명 test",
     "bradYear": "2017",
-    "bradStDate": "20170831000000",
-    "bradFnsDate": "20170831235959",
+    "bradStDate": "20170824100000",
+    "bradFnsDate": "20170913100000",
     "lineupNum": 5,
     "showYn": true
   },
@@ -14,8 +14,8 @@
     "lineupInfoSeq": 54215,
     "lineupNm": "라인업 명 test",
     "bradYear": "2017",
-    "bradStDate": "20170910000000",
-    "bradFnsDate": "20170910235959",
+    "bradStDate": "20170817100000",
+    "bradFnsDate": "20170823100000",
     "lineupNum": 3,
     "showYn": true
   },
@@ -24,8 +24,8 @@
     "lineupInfoSeq": 50302,
     "lineupNm": "라인업 명 test",
     "bradYear": "2017",
-    "bradStDate": "20170927000000",
-    "bradFnsDate": "20170927235959",
+    "bradStDate": "20170914100000",
+    "bradFnsDate": "20170920100000",
     "lineupNum": 5,
     "showYn": true
   },
@@ -34,8 +34,8 @@
     "lineupInfoSeq": 53241,
     "lineupNm": "라인업 명 test",
     "bradYear": "2017",
-    "bradStDate": "20170801000000",
-    "bradFnsDate": "20170801235959",
+    "bradStDate": "20170921100000",
+    "bradFnsDate": "20170927000000",
     "lineupNum": 6,
     "showYn": true
   },
@@ -44,8 +44,8 @@
     "lineupInfoSeq": 52041,
     "lineupNm": "라인업 명 test",
     "bradYear": "2017",
-    "bradStDate": "20170606000000",
-    "bradFnsDate": "20170606235959",
+    "bradStDate": "20170928100000",
+    "bradFnsDate": "20171004000000",
     "lineupNum": 4,
     "showYn": true
   }

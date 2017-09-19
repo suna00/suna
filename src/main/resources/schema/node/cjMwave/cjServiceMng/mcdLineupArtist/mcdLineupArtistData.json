@@ -191,6 +191,7 @@
   {
     "typeId": "mcdLineupArtist",
     "lineupInfoSeq": 52041,
+    "langCd": "eng",
     "artistId": "artist_00002",
     "artistName": "coldplay",
     "thumImgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
