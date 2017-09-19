@@ -239,4 +239,12 @@ public class PropertyType {
         return false ;
     }
 
+    public boolean isList() {
+        switch (getValueType()){
+            case ARRAY: case JSON: case REFERENCED: case REFERENCES:
+                return true ;
+        }
+        return false ;
+    }
+
 }

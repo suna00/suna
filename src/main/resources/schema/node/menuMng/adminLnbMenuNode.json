@@ -153,5 +153,23 @@
     "customPages": [
       { "pageName": "Test", "pageUrl": "demo/GroupAuthorityRoute" }
     ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "contentMng",
+    "parentMenuId": "root",
+    "menuId": "blog",
+    "menuName": "Blog",
+    "order": "1",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "List", "pageUrl": "list" },
+      { "pageName": "Create", "pageUrl": "createForm" },
+      { "pageName": "Update", "pageUrl": "updateForm" },
+      { "pageName": "View", "pageUrl": "view" }
+    ]
   }
 ]

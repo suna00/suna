@@ -358,7 +358,8 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         return getId().toString() ;
     }
 
-    public String getLabel(NodeType nodeType, ReadContext context) {
+    public String getLabel(ReadContext context) {
+        NodeType nodeType = NodeUtils.getNodeType(getTypeId()) ;
         if(context == null) return getLabel(nodeType) ;
         for(PropertyType pt : nodeType.getPropertyTypes()){
             if(pt.isLabelable()){
@@ -467,10 +468,10 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         for(PropertyType pt : nodeType.getPropertyTypes()){
             Object value = NodeUtils.getStoreValue(this, pt, this.id) ;
 
-            if(value != null){
-                put(pt.getPid(), value);
-            }else{
+            if(value == null || (value instanceof String && value.equals("_null_"))){
                 remove(pt.getPid()) ;
+            }else{
+                put(pt.getPid(), value);
             }
         }
         return this ;

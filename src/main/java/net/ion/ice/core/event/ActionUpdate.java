@@ -27,7 +27,7 @@ public class ActionUpdate extends Action {
             this.sqlTemplate.parsing();
         }
 
-        this.jdbcTemplate.update(this.sqlTemplate.format(executeContext.getData()), this.sqlTemplate.getSqlParameterValues(executeContext.getData())) ;
+        this.jdbcTemplate.update(this.sqlTemplate.format(executeContext.getData()).toString(), this.sqlTemplate.getSqlParameterValues(executeContext.getData())) ;
 
     }
 

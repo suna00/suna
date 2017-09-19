@@ -200,6 +200,55 @@ public class MethodHelper {
                 String resultValue = makeIdValue(methodParams, data);
                 return resultValue;
             }
+            case "conditionSysdate" :{
+                String defaultStr = "";
+                if(methodParams.length >2 && !methodParams[2].isEmpty()){
+                    defaultStr = methodParams[2].toString();
+                }
+                if(value == null) return defaultStr ;
+                String condition= methodParams[1];
+                if(StringUtils.isEmpty(methodParams[1])) condition =  "" ;
+                if(value.equals(condition)){
+                    if(methodParams.length >3 && !methodParams[3].isEmpty()){
+                        Date nowDate = new Date();
+                        return DateFormatUtils.format(nowDate, methodParams[3]);
+                    }else{
+                        return data.get("now").toString();
+                    }
+                }else{
+                    return defaultStr;
+                }
+            }
+            case "getCommaItem" :{
+                String defaultStr = "";
+                int paramInt = 0;
+
+                if(!methodParams[2].isEmpty()){
+                    defaultStr = methodParams[2].toString();
+                }
+
+                if(value == null || StringUtils.isEmpty(value.toString())) return defaultStr ;
+
+                String[] valueArrays = value.toString().split(",");
+                if(valueArrays.length == 0) return value.toString();
+
+                if(!methodParams[1].isEmpty() && "last".equals(methodParams[1].toString())){
+                    paramInt = valueArrays.length -1;
+                }else{
+                    paramInt = Integer.parseInt(methodParams[1]);
+                }
+                return valueArrays[paramInt] ;
+            }
+            case "concatStr":{
+                if(value == null || StringUtils.isEmpty(value.toString())) return "" ;
+                if(methodParams[1] == null) return "";
+                String concatStr = value.toString()+methodParams[1];
+                return concatStr;
+            }
+            case "convertString":{
+                if(value == null) return "";
+                return value.toString();
+            }
 
             default :
                 methodStr = StringUtils.capitalize(methodStr) ;
