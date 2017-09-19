@@ -191,7 +191,7 @@
   {
     "typeId": "propertyType",
     "tid": "delivery",
-    "pid": "orderId",
+    "pid": "orderSheetId",
     "propertyTypeName": "주문서ID",
     "valueType": "REFERENCE",
     "required": true,
@@ -200,8 +200,8 @@
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "purchaseOrder",
-    "referenceValue": "purchaseOrderId",
+    "referenceType": "orderSheet",
+    "referenceValue": "orderSheetId",
     "codeFilter": "",
     "defaultValue": ""
   },
@@ -669,7 +669,7 @@
   {
     "typeId": "propertyType",
     "tid": "orderDeliveryPrice",
-    "pid": "orderId",
+    "pid": "orderSheetId",
     "propertyTypeName": "주문서ID",
     "valueType": "REFERENCE",
     "required": false,
@@ -678,8 +678,8 @@
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "purchaseOrder",
-    "referenceValue": "purchaseOrderId",
+    "referenceType": "orderSheet",
+    "referenceValue": "orderSheetId",
     "codeFilter": "",
     "defaultValue": ""
   },

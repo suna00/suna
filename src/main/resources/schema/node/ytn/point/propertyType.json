@@ -379,7 +379,7 @@
   {
     "typeId": "propertyType",
     "tid": "welfarePoint",
-    "pid": "orderId",
+    "pid": "orderSheetId",
     "propertyTypeName": "주문서ID",
     "valueType": "REFERENCE",
     "required": false,
@@ -388,8 +388,8 @@
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "purchaseOrder",
-    "referenceValue": "purchaseOrderId",
+    "referenceType": "orderSheet",
+    "referenceValue": "orderSheetId",
     "codeFilter": "",
     "defaultValue": ""
   },
@@ -738,7 +738,7 @@
   {
     "typeId": "propertyType",
     "tid": "YPoint",
-    "pid": "orderId",
+    "pid": "orderSheetId",
     "propertyTypeName": "주문서ID",
     "valueType": "REFERENCE",
     "required": false,
@@ -747,8 +747,8 @@
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "purchaseOrder",
-    "referenceValue": "purchaseOrderId",
+    "referenceType": "orderSheet",
+    "referenceValue": "orderSheetId",
     "codeFilter": "",
     "defaultValue": ""
   },

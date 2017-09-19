@@ -53,7 +53,7 @@
       "query" : [
         {"field" : "memberNo", "method" : "matching", "value" : "{{:memberNo}}" },
         {"includeReferenced" : false, "referenceView" : "orderProductId,productId"},
-        {"sorting" : "orderId desc", "pageSize": "{{:pageSize}}", "page": "{{:page}}"}
+        {"sorting" : "orderSheetId desc", "pageSize": "{{:pageSize}}", "page": "{{:page}}"}
       ]
     }
   },
