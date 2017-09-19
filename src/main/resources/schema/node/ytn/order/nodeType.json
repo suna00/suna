@@ -55,9 +55,9 @@
   {
     "parentId": "orderPath",
     "typeId": "nodeType",
-    "tid": "purchaseOrder",
+    "tid": "orderSheet",
     "typeName": "주문서",
-    "tableName": "ytnDevDb#purchaseOrder",
+    "tableName": "ytnDevDb#orderSheet",
     "repositoryType": "data",
     "eviction": 0
   },

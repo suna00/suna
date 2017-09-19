@@ -54,7 +54,7 @@
   {
     "typeId": "propertyType",
     "tid": "oneToOneQuestion",
-    "pid": "orderId",
+    "pid": "orderSheetId",
     "propertyTypeName": "주문서",
     "valueType": "REFERENCE",
     "required": true,
@@ -63,8 +63,8 @@
     "treeable": false,
     "indexable": false,
     "analyzer": "",
-    "referenceType": "purchaseOrder",
-    "referenceValue": "purchaseOrderId",
+    "referenceType": "orderSheet",
+    "referenceValue": "orderSheetId",
     "codeFilter": "",
     "defaultValue": ""
   },
@@ -306,7 +306,7 @@
   {
     "typeId": "propertyType",
     "tid": "oneToOneQuestionView",
-    "pid": "orderId",
+    "pid": "orderSheetId",
     "propertyTypeName": "주문서",
     "valueType": "REFERENCE",
     "required": true,
@@ -315,8 +315,8 @@
     "treeable": false,
     "indexable": false,
     "analyzer": "",
-    "referenceType": "purchaseOrder",
-    "referenceValue": "purchaseOrderId",
+    "referenceType": "orderSheet",
+    "referenceValue": "orderSheetId",
     "codeFilter": "",
     "defaultValue": ""
   },
@@ -1670,7 +1670,7 @@
   {
     "typeId": "propertyType",
     "tid": "review",
-    "pid": "orderId",
+    "pid": "orderSheetId",
     "propertyTypeName": "주문서",
     "valueType": "REFERENCE",
     "required": true,
@@ -1679,8 +1679,8 @@
     "treeable": false,
     "indexable": false,
     "analyzer": "",
-    "referenceType": "purchaseOrder",
-    "referenceValue": "purchaseOrderId",
+    "referenceType": "orderSheet",
+    "referenceValue": "orderSheetId",
     "codeFilter": "",
     "defaultValue": ""
   },
@@ -1918,7 +1918,7 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "orderProduct",
-    "referenceValue": "orderId",
+    "referenceValue": "orderSheetId",
     "codeFilter": "",
     "defaultValue": ""
   },
@@ -1943,7 +1943,7 @@
   {
     "typeId": "propertyType",
     "tid": "reviewView",
-    "pid": "orderId",
+    "pid": "orderSheetId",
     "propertyTypeName": "주문서",
     "valueType": "REFERENCE",
     "required": true,
@@ -1952,8 +1952,8 @@
     "treeable": false,
     "indexable": false,
     "analyzer": "",
-    "referenceType": "purchaseOrder",
-    "referenceValue": "purchaseOrderId",
+    "referenceType": "orderSheet",
+    "referenceValue": "orderSheetId",
     "codeFilter": "",
     "defaultValue": ""
   },
@@ -2276,7 +2276,7 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "orderProduct",
-    "referenceValue": "orderId",
+    "referenceValue": "orderSheetId",
     "codeFilter": "",
     "defaultValue": ""
   },

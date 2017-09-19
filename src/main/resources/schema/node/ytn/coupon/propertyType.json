@@ -224,7 +224,7 @@
   {
     "typeId": "propertyType",
     "tid": "coupon",
-    "pid": "orderId",
+    "pid": "orderSheetId",
     "propertyTypeName": "쿠폰사용 주문서ID",
     "valueType": "REFERENCE",
     "required": false,
@@ -233,8 +233,8 @@
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "purchaseOrder",
-    "referenceValue": "purchaseOrderId",
+    "referenceType": "orderSheet",
+    "referenceValue": "orderSheetId",
     "codeFilter": "",
     "defaultValue": ""
   },

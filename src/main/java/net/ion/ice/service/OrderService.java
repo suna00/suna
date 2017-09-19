@@ -83,10 +83,10 @@ public class OrderService {
         Map<String, Object> pg = new HashMap<>();
 
         String JsonString = JsonUtils.toJsonString(data);
-        String purchaseOrderId = String.valueOf(data.get("ordrIdxx"));
+        String orderSheetId = String.valueOf(data.get("ordrIdxx"));
 
         pg.put("paymentId", paymentId);
-        pg.put("purchaseOrderId", purchaseOrderId);
+        pg.put("orderSheetId", orderSheetId);
         pg.put("jsonResponse", JsonString);
 
         nodeService.executeNode(pg, "pg", CREATE);
