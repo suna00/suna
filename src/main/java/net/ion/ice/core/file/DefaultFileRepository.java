@@ -99,7 +99,7 @@ public class DefaultFileRepository implements FileRepository{
 
         String savePath = pt.getTid() + "/" +  pt.getPid() + "/" + DateFormatUtils.format(new Date(), "yyyyMM/dd/") + UUID.randomUUID() + "." + StringUtils.substringAfterLast(res.getFilename(), ".");
         File saveFile = new File(fileRoot, savePath) ;
-        int connectionTimeout = 3000, readTimeout = 5000;
+        int connectionTimeout = 500, readTimeout = 5000;
         try {
             FileUtils.copyURLToFile(res.getURL(), saveFile, connectionTimeout, readTimeout);
 //            org.apache.commons.io.FileUtils.copyToFile(res.getInputStream(), saveFile) ;
