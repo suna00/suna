@@ -1,6 +1,7 @@
 package net.ion.ice.cjmwave.external.mnet;
 
 import net.ion.ice.cjmwave.db.sync.DBSyncService;
+import net.ion.ice.cjmwave.external.mnet.schedule.ScheduledMnetService;
 import org.apache.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,6 +24,9 @@ public class MnetController {
 
     @Autowired
     DBSyncService dbSyncService;
+
+    @Autowired
+    ScheduledMnetService scheduledMnetService;
 
     /*
     * csv 가 MYSQL 로 부어졌다는 전제가 있음
@@ -87,46 +91,13 @@ public class MnetController {
     * 끌어오는 부분임
     * 0914 여전히 mssql 접속 정보는 없음
     * */
-    @RequestMapping(value = { "renew/{type}" })
+    @RequestMapping(value = { "renew/{type}" }, produces = {"application/json"})
     public @ResponseBody String retrievePartial (@PathVariable String type) throws JSONException {
-        String mnetExecuteIds[] = {
-                "migAlbumProcedure", "migAlbumMultiProcedure"
-                , "migArtistProcedure", "migArtistMultiProcedure"
-                , "migSongProcedure", "migSongMultiProcedure"
-                , "migMusicVideoProcedure", "migMusicVideoMultiProcedure"
-        };
-
         JSONObject response = new JSONObject();
         String result="500", result_msg = "ERROR", cause = "";
 
         try{
-            switch (type) {
-                case "all" :
-                    for(String executeId : mnetExecuteIds) {
-                        dbSyncService.executeForNewData("mnet", executeId);
-                    }
-                    break;
-                case "album" :
-                    dbSyncService.executeForNewData("mnet", "migAlbum");
-                    dbSyncService.executeForNewData("mnet", "migAlbumMulti");
-                    break;
-                case "artist" :
-                    dbSyncService.executeForNewData("mnet", "migArtist");
-                    dbSyncService.executeForNewData("mnet", "migArtistMulti");
-                    break;
-                case "song" :
-                    dbSyncService.executeForNewData("mnet", "migSong");
-                    dbSyncService.executeForNewData("mnet", "migSongMulti");
-                    break;
-                case "mv" :
-                    dbSyncService.executeForNewData("mnet", "migMusicVideo");
-                    dbSyncService.executeForNewData("mnet", "migMusicVideoMulti");
-                    break;
-                default:
-                    logger.info("Could not find appropriate type for migration");
-                    break;
-            }
-
+            scheduledMnetService.execute(type);
             result = "200";
             result_msg = "SUCCESS";
         } catch (Exception e) {

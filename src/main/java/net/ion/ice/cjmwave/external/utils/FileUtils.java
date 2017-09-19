@@ -14,7 +14,8 @@ public class FileUtils {
     public static File retrieveRemoteFile (String url) throws Exception {
         URL requestUrl = new URL(url);
         File file = null;
-        org.apache.commons.io.FileUtils.copyURLToFile(requestUrl, file);
+        int connectionTimeout = 3000, readTimeout = 60000;
+        org.apache.commons.io.FileUtils.copyURLToFile(requestUrl, file, connectionTimeout, readTimeout);
         return file;
     }
 
