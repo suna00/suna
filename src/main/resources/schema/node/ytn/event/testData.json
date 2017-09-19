@@ -394,46 +394,22 @@
   {
     "typeId": "specialExhibition",
     "specialExhibitionId": 1,
-    "affiliateId": {
-      "value": "1",
-      "label": "1",
-      "refId": "1"
-    },
+    "affiliateId": "1",
     "name": "기획전 테스트",
-    "displayTargetType": {
-      "value": "company",
-      "label": "기업",
-      "refId": "displayTargetType>company"
-    },
+    "displayTargetType": "company",
     "startDate": "20170731150000",
     "endDate": "20170830150000",
-    "timeSaleYn": {
-      "value": "n",
-      "label": "trueFalse>n",
-      "refId": "trueFalse>n"
-    },
-    "addBenefitYn": {
-      "value": "y",
-      "label": "trueFalse>y",
-      "refId": "trueFalse>y"
-    },
+    "timeSaleYn": "n",
+    "addBenefitYn": "y",
     "specialExhibitionStatus": "use",
     "mainImage": "test",
     "thumbnailImage": "test",
     "keyword": "test,special,기획전",
     "contents": "기획전 테스트",
     "created": "20170822074552",
-    "owner": {
-      "value": "anonymous",
-      "label": "anonymous",
-      "refId": "anonymous"
-    },
+    "owner":"y",
     "changed": "20170822074552",
-    "modifier": {
-      "value": "anonymous",
-      "label": "anonymous",
-      "refId": "anonymous"
-    },
+    "modifier": "anonymous",
     "siteId": null,
     "deviceType": null,
     "categoryId": "1"
@@ -488,58 +464,26 @@
   {
     "typeId": "specialExhibitionAnker",
     "specialExhibitionAnkerId": 1,
-    "specialExhibitionId": {
-      "value": "1",
-      "label": "기획전 테스트",
-      "refId": "1"
-    },
+    "specialExhibitionId": 1,
     "name": "바지",
     "sortOrder": 1,
-    "ankerStatus": {
-      "value": "y",
-      "label": "사용",
-      "refId": "useYn>y"
-    },
+    "ankerStatus": "y",
     "created": "20170822074648",
-    "owner": {
-      "value": "anonymous",
-      "label": "anonymous",
-      "refId": "anonymous"
-    },
+    "owner": "anonymous",
     "changed": "20170822074648",
-    "modifier": {
-      "value": "anonymous",
-      "label": "anonymous",
-      "refId": "anonymous"
-    }
+    "modifier":"anonymous"
   },
   {
     "typeId": "specialExhibitionAnker",
     "specialExhibitionAnkerId": 2,
-    "specialExhibitionId": {
-      "value": "1",
-      "label": "기획전 테스트",
-      "refId": "1"
-    },
+    "specialExhibitionId": "1",
     "name": "티셔츠",
     "sortOrder": 2,
-    "ankerStatus": {
-      "value": "y",
-      "label": "사용",
-      "refId": "useYn>y"
-    },
+    "ankerStatus": "y",
     "created": "20170822074657",
-    "owner": {
-      "value": "anonymous",
-      "label": "anonymous",
-      "refId": "anonymous"
-    },
+    "owner": "anonymous",
     "changed": "20170822074657",
-    "modifier": {
-      "value": "anonymous",
-      "label": "anonymous",
-      "refId": "anonymous"
-    }
+    "modifier": "anonymous"
   },
   {
     "typeId": "specialExhibitionAnker",

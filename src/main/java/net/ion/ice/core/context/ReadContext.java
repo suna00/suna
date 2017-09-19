@@ -334,9 +334,23 @@ public class ReadContext implements Context {
                         }else {
                             if(fieldContext.referenceView != null && fieldContext.referenceView == true && fieldContext.getResultFields() != null ){
                                 fieldContext.referenceView = false ;
-                                Node refNode = NodeUtils.getReferenceNode(node.get(pt.getPid()), pt);
-                                if(refNode != null) {
-                                    itemResult.put(resultField.getFieldName(), fieldContext.makeQueryResult(refNode));
+                                if(pt.getValueType() == PropertyType.ValueType.REFERENCES){
+                                    String values = (String) node.get(pt.getPid());
+                                    if (values != null && StringUtils.isNotEmpty(values)) {
+                                        List<QueryResult> refsResults = new ArrayList<>() ;
+                                        for (String refVal : StringUtils.split(values, ",")) {
+                                            Node refNode = NodeUtils.getReferenceNode(refVal, pt);
+                                            if(refNode != null) {
+                                                refsResults.add(fieldContext.makeQueryResult(refNode)) ;
+                                            }
+                                        }
+                                        itemResult.put(resultField.getFieldName(), refsResults);
+                                    }
+                                }else {
+                                    Node refNode = NodeUtils.getReferenceNode(node.get(pt.getPid()), pt);
+                                    if (refNode != null) {
+                                        itemResult.put(resultField.getFieldName(), fieldContext.makeQueryResult(refNode));
+                                    }
                                 }
                             }else {
                                 itemResult.put(resultField.getFieldName(), NodeUtils.getResultValue(fieldContext, pt, node));
