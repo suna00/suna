@@ -77,7 +77,7 @@
     "pid": "voteCtgry",
     "id": "voteBasInfo>voteCtgry",
     "propertyTypeName": "투표 카테고리",
-    "valueType": "REFERENCE",
+    "valueType": "REFERENCES",
     "required": false,
     "idable": false,
     "labelable": false,
@@ -86,6 +86,7 @@
     "analyzer": null,
     "referenceType": "contsCtgry",
     "referenceValue": "contsCtgryId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
