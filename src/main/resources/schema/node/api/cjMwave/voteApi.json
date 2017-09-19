@@ -34,7 +34,7 @@
         "query": [
           {
             "field": "mstYyMmDd",
-            "method": "matching",
+            "method": "equals",
             "value": "{{:searchDt}}"
           }
         ],
@@ -47,8 +47,8 @@
         "query": [
           {
             "field": "chMstId",
-            "method": "matching",
-            "value": "{{:mstIdx}}"
+            "method": "equals",
+            "value": "{{:default(mstIdx,뺿뺿)}}"
           },
           {
             "sorting": "ranking"
