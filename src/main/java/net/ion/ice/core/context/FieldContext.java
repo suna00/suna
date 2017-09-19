@@ -16,13 +16,13 @@ public class FieldContext extends ApiReadContext{
     public static FieldContext makeContextFromConfig(Map<String, Object> config, Map<String, Object> data) {
         FieldContext context = new FieldContext() ;
 
-        context.nodeType = NodeUtils.getNodeType((String) ContextUtils.getValue(config.get("typeId"), data)) ;
+//        context.nodeType = NodeUtils.getNodeType((String) ContextUtils.getValue(config.get("typeId"), data)) ;
         context.config = config ;
         context.data = data ;
 
         for(String key : config.keySet()) {
-            if(key.equals("typeId")) continue ;
-             makeApiContext(config, context, key);
+            if(key.equals("field")) continue ;
+            makeApiContext(config, context, key);
         }
 
         return context;
