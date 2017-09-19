@@ -224,7 +224,7 @@
     "pid": "mediaUrl",
     "id": "pgmVideo>mediaUrl",
     "propertyTypeName": "영상 url",
-    "valueType": "STRING",
+    "valueType": "FILE",
     "required": false,
     "idable": false,
     "labelable": false,
