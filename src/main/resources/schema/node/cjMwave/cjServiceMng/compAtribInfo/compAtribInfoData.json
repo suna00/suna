@@ -181,7 +181,7 @@
     "compItemSeq": 106,
     "cnctItemYn": false,
     "contsId": "news::112724,news::193929,news::203102,news::204392,news::102930",
-    "atribNm": "",
+    "atribNm": "2017 HOT NEWS",
     "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "",
     "newsHubKywrd": ""
@@ -192,7 +192,7 @@
     "compItemSeq": 106,
     "cnctItemYn": true,
     "contsId": "pgmVideo::EA_18049,pgmVideo::AA_23181_98054,pgmVideo::SD_23471,pgmVideo::EA_24216,pgmVideo::SD_25188",
-    "atribNm": "",
+    "atribNm": "2017 HOT VIDEO",
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videFilePath": "",
     "newsHubKywrd": ""
@@ -401,7 +401,7 @@
     "compItemSeq": 113,
     "cnctItemYn": false,
     "contsId": "news::112724,news::193929,news::203102,news::204392,news::102930,news::293192",
-    "atribNm": "",
+    "atribNm": "2017 HOT NEWS",
     "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "",
     "newsHubKywrd": ""
@@ -412,7 +412,7 @@
     "compItemSeq": 113,
     "cnctItemYn": true,
     "contsId": "pgmVideo::EA_18049,pgmVideo::AA_23181_98054,pgmVideo::SD_23471,pgmVideo::EA_24216,pgmVideo::SD_25188",
-    "atribNm": "",
+    "atribNm": "2017 HOT VIDEO",
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videFilePath": "",
     "newsHubKywrd": ""
@@ -588,7 +588,7 @@
     "compItemSeq": 120,
     "cnctItemYn": false,
     "contsId": "news::112724,news::193929,news::204392,news::102930",
-    "atribNm": "",
+    "atribNm": "2017 HOT NEWS",
     "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "",
     "newsHubKywrd": ""
@@ -943,7 +943,7 @@
     "atribNm": "2017 HOT ISSUE",
     "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "2017 HOT ISSUE"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -954,7 +954,7 @@
     "atribNm": "MEET&GREET",
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "MEET&GREET"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -965,7 +965,7 @@
     "atribNm": "MWAVE MUSIC CHART",
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "MWAVE MUSIC CHART"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -976,7 +976,7 @@
     "atribNm": "2017 MAMA",
     "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "2017 MAMA"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -1163,7 +1163,7 @@
     "atribNm": "2017 HOT ISSUE",
     "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "2017 HOT ISSUE"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -1174,7 +1174,7 @@
     "atribNm": "MEET&GREET",
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "MEET&GREET"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -1185,7 +1185,7 @@
     "atribNm": "MWAVE MUSIC CHART",
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "MWAVE MUSIC CHART"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
@@ -1196,7 +1196,7 @@
     "atribNm": "2017 MAMA",
     "imgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "videFilePath": "",
-    "newsHubKywrd": "2017 MAMA"
+    "newsHubKywrd": ""
   },
   {
     "typeId": "compAtribInfo",
