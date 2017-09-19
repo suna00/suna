@@ -103,24 +103,24 @@ public class MnetController {
             switch (type) {
                 case "all" :
                     for(String executeId : mnetExecuteIds) {
-                        dbSyncService.executeForNewData(executeId);
+                        dbSyncService.executeForNewData("mnet", executeId);
                     }
                     break;
                 case "album" :
-                    dbSyncService.executeForNewData("migAlbum");
-                    dbSyncService.executeForNewData("migAlbumMulti");
+                    dbSyncService.executeForNewData("mnet", "migAlbum");
+                    dbSyncService.executeForNewData("mnet", "migAlbumMulti");
                     break;
                 case "artist" :
-                    dbSyncService.executeForNewData("migArtist");
-                    dbSyncService.executeForNewData("migArtistMulti");
+                    dbSyncService.executeForNewData("mnet", "migArtist");
+                    dbSyncService.executeForNewData("mnet", "migArtistMulti");
                     break;
                 case "song" :
-                    dbSyncService.executeForNewData("migSong");
-                    dbSyncService.executeForNewData("migSongMulti");
+                    dbSyncService.executeForNewData("mnet", "migSong");
+                    dbSyncService.executeForNewData("mnet", "migSongMulti");
                     break;
                 case "mv" :
-                    dbSyncService.executeForNewData("migMusicVideo");
-                    dbSyncService.executeForNewData("migMusicVideoMulti");
+                    dbSyncService.executeForNewData("mnet", "migMusicVideo");
+                    dbSyncService.executeForNewData("mnet", "migMusicVideoMulti");
                     break;
                 default:
                     logger.info("Could not find appropriate type for migration");

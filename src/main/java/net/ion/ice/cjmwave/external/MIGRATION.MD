@@ -56,3 +56,32 @@ Method :
   recordDataCopyRecord : MSSQL to MySQL 복제 결과 저장
   recordResult : MySQL to Node 결과 저장 
 ```
+
+#### 4-1. Mnet - flow.초기
+
+0. MySQL `LOAD DATA` 로 덤프 읽어서 레플리카에 밀어넣기
+1. `MnetController.retrieveAll()` 실행 (`/migration/mnet/initialData/all` URL 호출)
+2. `dbSyncProcess` 의 정보 수행
+3. 레포트 작성
+
+#### 4-2. Mnet - flow.스케쥴
+
+0. 스케쥴러에서 특정 시간마다 `ScheduledMnetService.execute()` 수행
+1. 레포트로부터 최종 마이그레이션 수행 시간 가져오기
+2. `dbSyncProcess` 의 정보 수행
+3. 레포트 작성
+
+
+#### 5-1. PIP - flow.초기 (미구현)
+
+0. `type=all` 로 프로그램 / 영상의 전체 정보 요청
+1. 파일 저장
+2. 파일 읽어서 노드 생성
+3. 레포트 작성
+
+#### 4-2. PIP - flow.스케쥴
+
+0. 스케쥴러에서 특정 시간(아마도 60시간)마다 `ScheduledPipService.execute()` 수행
+1. `type=recent&playform=mnetjapan` 으로 API 호출
+2. JSON 정보로 노드 생성
+3. 레포트 작성
