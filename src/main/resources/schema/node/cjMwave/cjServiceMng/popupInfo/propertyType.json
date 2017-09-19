@@ -99,7 +99,7 @@
     "pid": "ImgUrl",
     "id": "popupInfo>ImgUrl",
     "propertyTypeName": "이미지 URL",
-    "valueType": "STRING",
+    "valueType": "FILE",
     "required": true,
     "idable": false,
     "labelable": false,
