@@ -62,15 +62,13 @@ public class MemberService {
 
         NodeBindingInfo nodeBindingInfo = NodeUtils.getNodeBindingInfo("emailCertification");
         String query = " SELECT emailcertificationId, email, certCode, certStatus, certRequestDate, date_add(certRequestDate, INTERVAL +60 MINUTE) AS certExpireDate, (certStatus = 'request' AND date_add(certRequestDate, INTERVAL +60 MINUTE) > now() AND certCode = ?) AS available FROM emailcertification WHERE certCode = ?  limit 1";
-        List<Map<String, Object>> list = nodeBindingInfo.getJdbcTemplate().queryForList(query, certCode, certCode);
+        List<Map<String, Object>> list = nodeBindingInfo.getJdbcTemplate().queryForList(query, certCode, certCode); // new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())
 
         if(0 < list.size()){
             Map<String,Object> map = list.get(0);
-
             String available = map.get("available").toString();
-            Integer compareToResult = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()).compareTo(map.get("certExpireDate").toString());
 
-            if("1".equals(available) && compareToResult < 1){
+            if("1".equals(available)){
                 Map<String, Object> emailCertificationData = new HashMap<>();
                 emailCertificationData.put("emailCertificationId", map.get("emailCertificationId"));
                 emailCertificationData.put("certStatus", "success");
