@@ -96,7 +96,7 @@
     "id": "mcdChartStats>rankInterIcon",
     "propertyTypeName": "전주대비",
     "valueType": "STRING",
-    "required": true,
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
