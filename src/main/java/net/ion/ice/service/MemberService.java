@@ -120,7 +120,7 @@ public class MemberService {
         emailCertificationData.put("certRequestDate", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()));
         nodeService.executeNode(emailCertificationData, "emailCertification", CREATE);
 
-        String linkUrl = "certCode="+certCode+"&siteType="+siteType+"&acceptTermsYn="+acceptTermsYn+"&receiveMarketingEmailAgreeYn="+receiveMarketingEmailAgreeYn+"&receiveMarketingSMSAgreeYn="+receiveMarketingSMSAgreeYn;
+        String linkUrl = "/signUp/stepTwo?certCode="+certCode+"&siteType="+siteType+"&acceptTermsYn="+acceptTermsYn+"&receiveMarketingEmailAgreeYn="+receiveMarketingEmailAgreeYn+"&receiveMarketingSMSAgreeYn="+receiveMarketingSMSAgreeYn;
 
         return linkUrl;
     }
@@ -130,7 +130,7 @@ public class MemberService {
 
         String title = "";
         String contents = "";
-        String link = "http://localhost:3090/signUp/stepTwo?"+linkUrl;
+        String link = "http://localhost:3090"+linkUrl;
 
         List<Node> list = nodeService.getNodeList("emailTemplate", "name_matching=본인인증");
         if(list.size() > 0){
