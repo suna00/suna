@@ -1,5 +1,6 @@
 package net.ion.ice.cjmwave.external.utils;
 
+import net.ion.ice.core.node.NodeType;
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -72,5 +73,19 @@ public class MigrationUtils {
                         "\nSuccess Records Count : " + successCnt +
                         "\nSkipped Records Count : " + skippedCnt +
                         "\n##############################");
+    }
+
+
+    public static void saveFailureNodes(JdbcTemplate template, String keyProperty, Map<String, Object> mapNode) {
+        try{
+            String nodeType = String.valueOf(mapNode.get("typeId"));
+            String nodeId = String.valueOf(mapNode.get(keyProperty));
+            String nodeValue = String.valueOf(mapNode);
+            String query = "INSERT INTO MIG_FAIL_DATA (nodeType, nodeId, nodeValue, created) "
+                    + "VALUES(?, ?, ?, NOW())";
+            template.update(query, nodeType, nodeId, nodeValue);
+        } catch (Exception e) {
+            logger.error("FAILED TO STORE FAILED NODE INFO ", e);
+        }
     }
 }
