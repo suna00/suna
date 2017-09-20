@@ -275,6 +275,23 @@
   {
     "typeId": "propertyType",
     "tid": "coupon",
+    "pid": "memo",
+    "propertyTypeName": "메모",
+    "valueType": "TEXT",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "simple",
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "coupon",
     "pid": "modifier",
     "propertyTypeName": "수정자",
     "valueType": "REFERENCE",
