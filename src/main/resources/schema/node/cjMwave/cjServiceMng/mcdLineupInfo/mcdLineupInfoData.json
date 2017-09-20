@@ -5,6 +5,7 @@
     "lineupNm": "라인업 명 test",
     "bradYear": "2017",
     "bradStDate": "20170824100000",
+    "bradDate": "20170824",
     "bradFnsDate": "20170913100000",
     "lineupNum": 5,
     "showYn": true
@@ -15,6 +16,7 @@
     "lineupNm": "라인업 명 test",
     "bradYear": "2017",
     "bradStDate": "20170817100000",
+    "bradDate": "20170817",
     "bradFnsDate": "20170823100000",
     "lineupNum": 3,
     "showYn": true
@@ -25,6 +27,7 @@
     "lineupNm": "라인업 명 test",
     "bradYear": "2017",
     "bradStDate": "20170914100000",
+    "bradDate": "20170914",
     "bradFnsDate": "20170920100000",
     "lineupNum": 5,
     "showYn": true
@@ -35,6 +38,7 @@
     "lineupNm": "라인업 명 test",
     "bradYear": "2017",
     "bradStDate": "20170921100000",
+    "bradDate": "20170921",
     "bradFnsDate": "20170927000000",
     "lineupNum": 6,
     "showYn": true
@@ -45,6 +49,7 @@
     "lineupNm": "라인업 명 test",
     "bradYear": "2017",
     "bradStDate": "20170928100000",
+    "bradDate": "20170928",
     "bradFnsDate": "20171004000000",
     "lineupNum": 4,
     "showYn": true
