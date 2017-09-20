@@ -158,6 +158,7 @@
       "label": "여자",
       "refId": "genderType>woman"
     },
+
     "birthday": null,
     "company": null,
     "department": null,
@@ -254,6 +255,141 @@
     "snsId": null,
     "snsProfileLink": null
   },
+  {
+    "typeId": "member",
+    "memberNo": 99999,
+    "siteId": {
+      "value": "ion",
+      "label": "아이온커뮤니케이션즈",
+      "refId": "ion"
+    },
+    "affiliateId": {
+      "value": "1",
+      "label": "아이온커뮤니케이션즈",
+      "refId": "1"
+    },
+    "userId": "sohapark@i-on.net",
+    "password": "1234",
+    "siteType": {
+      "value": "university",
+      "label": "대학",
+      "refId": "siteType>university"
+    },
+    "memberStatus": {
+      "value": "join",
+      "label": "가입",
+      "refId": "memberStatus>join"
+    },
+    "name": "박소하",
+    "universityName": null,
+    "major": null,
+    "studentId": null,
+    "firstName": null,
+    "lastName": null,
+    "nickName": null,
+    "profileImage": null,
+    "gender": {
+      "value": "woman",
+      "label": "여자",
+      "refId": "genderType>woman"
+    },
+    "birthday": null,
+    "company": null,
+    "department": null,
+    "phone": null,
+    "cellphone": "010-1111-2222",
+    "postCode": "135-080",
+    "address": "서울특별시 강남구 테헤란로 10길 15 (역삼동)",
+    "detailedAddress": "5",
+    "email": "sohapark@i-on.net",
+    "fax": null,
+    "termsOfUseAgreeYn": null,
+    "receiveMarketingEmailAgreeYn": "y",
+    "receiveMarketingSMSAgreeYn": "n",
+    "inflowRoute": null,
+    "joinDate": 20170801000000,
+    "lastLoginDate": 20170820000000,
+    "dormancyExtensionDate": null,
+    "acceptTermsYn": null,
+    "recommendedPerson": null,
+    "numberOfRecommendations": null,
+    "failedCount": null,
+    "lastFailedDate": null,
+    "membershipLevel": "general",
+    "barcode": null,
+    "snsLinkYn": null,
+    "snsType": null,
+    "snsId": null,
+    "snsProfileLink": null
+  },
+  {
+    "typeId": "member",
+    "memberNo": 66666,
+    "siteId": {
+      "value": "ion",
+      "label": "아이온커뮤니케이션즈",
+      "refId": "ion"
+    },
+    "affiliateId": {
+      "value": "1",
+      "label": "아이온커뮤니케이션즈",
+      "refId": "1"
+    },
+    "userId": "sohapark2@i-on.net",
+    "password": "1234",
+    "siteType": {
+      "value": "university",
+      "label": "대학",
+      "refId": "siteType>university"
+    },
+    "memberStatus": {
+      "value": "join",
+      "label": "가입",
+      "refId": "memberStatus>join"
+    },
+    "name": "박소하2",
+    "universityName": null,
+    "major": null,
+    "studentId": null,
+    "firstName": null,
+    "lastName": null,
+    "nickName": null,
+    "profileImage": null,
+    "gender": {
+      "value": "woman",
+      "label": "여자",
+      "refId": "genderType>woman"
+    },
+    "birthday": null,
+    "company": null,
+    "department": null,
+    "phone": null,
+    "cellphone": "010-1111-2222",
+    "postCode": "135-080",
+    "address": "서울특별시 강남구 테헤란로 10길 15 (역삼동)",
+    "detailedAddress": "5",
+    "email": "sohapark2@i-on.net",
+    "fax": null,
+    "termsOfUseAgreeYn": null,
+    "receiveMarketingEmailAgreeYn": "y",
+    "receiveMarketingSMSAgreeYn": "n",
+    "inflowRoute": null,
+    "joinDate": 20170801000000,
+    "lastLoginDate": 20170830000000,
+    "dormancyExtensionDate": null,
+    "acceptTermsYn": null,
+    "recommendedPerson": null,
+    "numberOfRecommendations": null,
+    "failedCount": null,
+    "lastFailedDate": null,
+    "membershipLevel": "vip",
+    "barcode": null,
+    "snsLinkYn": null,
+    "snsType": null,
+    "snsId": null,
+    "snsProfileLink": null
+  },
+
   {
     "typeId": "vendor",
     "vendorId": 1,
@@ -2486,7 +2622,8 @@
     "price": 50000,
     "balance": 0,
     "startDate": "20170101000000",
-    "endDate": "20171231235959"
+    "endDate": "20171231235959",
+    "memo": "메모잇따"
   },
   {
     "typeId": "welfarePoint",
@@ -2499,7 +2636,8 @@
     "price": 50000,
     "balance": 0,
     "startDate": "20170101000000",
-    "endDate": "20170915235959"
+    "endDate": "20170915235959",
+    "memo": "메모잇따"
   },
   {
     "typeId": "welfarePoint",
@@ -2512,7 +2650,8 @@
     "price": 50000,
     "balance": 35000,
     "startDate": "20170101000000",
-    "endDate": "20171231235959"
+    "endDate": "20171231235959",
+    "memo": null
   },
   {
     "typeId": "welfarePoint",
@@ -2525,7 +2664,8 @@
     "price": 50000,
     "balance": 50000,
     "startDate": "20170101000000",
-    "endDate": "20171231235959"
+    "endDate": "20171231235959",
+    "memo": null
   },
   {
     "typeId": "welfarePoint",
@@ -2538,7 +2678,8 @@
     "price": -40000,
     "balance": "",
     "startDate": null,
-    "endDate": null
+    "endDate": null,
+    "memo": "메모잇따"
   },
   {
     "typeId": "welfarePoint",
@@ -2551,7 +2692,8 @@
     "price": -25000,
     "balance": "",
     "startDate": null,
-    "endDate": null
+    "endDate": null,
+    "memo": "메모잇따"
   },
   {
     "typeId": "welfarePoint",
@@ -2564,7 +2706,8 @@
     "price": -50000,
     "balance": "",
     "startDate": null,
-    "endDate": null
+    "endDate": null,
+    "memo": null
   },
   {
     "typeId": "welfarePoint",
@@ -2577,7 +2720,8 @@
     "price": 25000,
     "balance": "",
     "startDate": null,
-    "endDate": null
+    "endDate": null,
+    "memo": "메모잇따"
   },
   {
     "typeId": "usedWelfarePointMap",
@@ -2605,7 +2749,8 @@
     "price": 120,
     "balance": 0,
     "startDate": "20170101000000",
-    "endDate": "20171231235959"
+    "endDate": "20171231235959",
+    "memo": "메모있다"
   },
   {
     "typeId": "YPoint",
@@ -2621,7 +2766,8 @@
     "price": 50,
     "balance": 0,
     "startDate": "20170101000000",
-    "endDate": "20170915235959"
+    "endDate": "20170915235959",
+    "memo": "메모있다"
   },
   {
     "typeId": "YPoint",
@@ -2637,7 +2783,8 @@
     "price": -120,
     "balance": null,
     "startDate": null,
-    "endDate": null
+    "endDate": null,
+    "memo": "메모있다"
   },
   {
     "typeId": "YPoint",
@@ -2653,7 +2800,8 @@
     "price": null,
     "balance": null,
     "startDate": null,
-    "endDate": null
+    "endDate": null,
+    "memo": null
   },
   {
     "typeId": "YPoint",
@@ -2669,7 +2817,8 @@
     "price": 100,
     "balance": 0,
     "startDate": "20170101000000",
-    "endDate": "20171231235959"
+    "endDate": "20171231235959",
+    "memo": null
   },
   {
     "typeId": "YPoint",
@@ -2685,7 +2834,8 @@
     "price": -100,
     "balance": null,
     "startDate": null,
-    "endDate": null
+    "endDate": null,
+    "memo": null
   },
   {
     "typeId": "YPoint",
@@ -2701,7 +2851,8 @@
     "price": 100,
     "balance": 0,
     "startDate": "20170101000000",
-    "endDate": "20171231235959"
+    "endDate": "20171231235959",
+    "memo": "메모있다"
   },
   {
     "typeId": "YPoint",
@@ -2717,7 +2868,8 @@
     "price": 100,
     "balance": 0,
     "startDate": "20170101000000",
-    "endDate": "20171231235959"
+    "endDate": "20171231235959",
+    "memo": null
   },
   {
     "typeId": "YPoint",
@@ -2733,7 +2885,8 @@
     "price": 100,
     "balance": 50,
     "startDate": "20170101000000",
-    "endDate": "20171231235959"
+    "endDate": "20171231235959",
+    "memo": null
   },
   {
     "typeId": "YPoint",
@@ -2749,7 +2902,8 @@
     "price": -250,
     "balance": null,
     "startDate": null,
-    "endDate": null
+    "endDate": null,
+    "memo": "메모있다"
   },
   {
     "typeId": "YPoint",
@@ -2765,7 +2919,8 @@
     "price": 2000,
     "balance": 2000,
     "startDate": "20170916000000",
-    "endDate": "20171231235959"
+    "endDate": "20171231235959",
+    "memo": "메모있다"
   },
   {
     "typeId": "usedYPointMap",
@@ -2802,5 +2957,138 @@
     "usedYPointMapId": 6,
     "YPointId": 9,
     "usedPrice": -50
+  },
+  {
+    "typeId": "commonMemo",
+    "item": {
+      "commonMemoId": 101,
+      "tid": "member",
+      "parentId": "memberNo",
+      "title": "memo1",
+      "contents": "memo1의 내용",
+      "owner": {
+        "value": "anonymous",
+        "label": "anonymous",
+        "refId": "anonymous"
+      },
+      "created": "20170916130235",
+      "modifier": {
+        "value": "anonymous",
+        "label": "anonymous",
+        "refId": "anonymous"
+      },
+      "changed": "20170917130235"
+    }
+  },
+  {
+    "typeId": "commonMemo",
+    "item": {
+      "commonMemoId": 102,
+      "tid": "member",
+      "parentId": "memberNo",
+      "title": "memo2",
+      "contents": "memo2의 내용",
+      "owner": {
+        "value": "anonymous",
+        "label": "anonymous",
+        "refId": "anonymous"
+      },
+      "created": "20170916130235",
+      "modifier": {
+        "value": "anonymous",
+        "label": "anonymous",
+        "refId": "anonymous"
+      },
+      "changed": "20170917130235"
+    }
+  },
+  {
+    "typeId": "commonMemo",
+    "item": {
+      "commonMemoId": 103,
+      "tid": "member",
+      "parentId": "memberNo",
+      "title": "memo3",
+      "contents": "memo3의 내용",
+      "owner": {
+        "value": "anonymous",
+        "label": "anonymous",
+        "refId": "anonymous"
+      },
+      "created": "20170916130235",
+      "modifier": {
+        "value": "anonymous",
+        "label": "anonymous",
+        "refId": "anonymous"
+      },
+      "changed": "20170917130235"
+    }
+  },
+  {
+    "typeId": "commonMemo",
+    "item": {
+      "commonMemoId": 104,
+      "tid": "member",
+      "parentId": "memberNo",
+      "title": "memo4",
+      "contents": "memo4의 내용",
+      "owner": {
+        "value": "anonymous",
+        "label": "anonymous",
+        "refId": "anonymous"
+      },
+      "created": "20170916130235",
+      "modifier": {
+        "value": "anonymous",
+        "label": "anonymous",
+        "refId": "anonymous"
+      },
+      "changed": "20170917130235"
+    }
+  },
+  {
+    "typeId": "commonMemo",
+    "item": {
+      "commonMemoId": 105,
+      "tid": "member",
+      "parentId": "memberNo",
+      "title": "memo5",
+      "contents": "memo5의 내용",
+      "owner": {
+        "value": "anonymous",
+        "label": "anonymous",
+        "refId": "anonymous"
+      },
+      "created": "20170916130235",
+      "modifier": {
+        "value": "anonymous",
+        "label": "anonymous",
+        "refId": "anonymous"
+      },
+      "changed": "20170917130235"
+    }
+  },
+  {
+    "typeId": "commonMemo",
+    "item": {
+      "commonMemoId": 106,
+      "tid": "member",
+      "parentId": "memberNo",
+      "title": "memo6",
+      "contents": "memo6의 내용",
+      "owner": {
+        "value": "anonymous",
+        "label": "anonymous",
+        "refId": "anonymous"
+      },
+      "created": "20170916130235",
+      "modifier": {
+        "value": "anonymous",
+        "label": "anonymous",
+        "refId": "anonymous"
+      },
+      "changed": "20170917130235"
+    }
   }
+
 ]
