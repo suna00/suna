@@ -720,13 +720,21 @@
     "icon": "",
     "active": "true",
     "index": "false",
-    "pages": [
+    "pages": [],
+    "customPages": [
       {
         "pageName": "목록",
-        "pageUrl": "list"
+        "pageUrl": "cj/br/BanrList"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "cj/br/BanrForm"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "cj/br/BanrView"
       }
-    ],
-    "customPages": []
+    ]
   },
   {
     "typeId": "adminLnbMenu",

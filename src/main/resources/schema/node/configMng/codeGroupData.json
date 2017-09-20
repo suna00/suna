@@ -85,6 +85,13 @@
   },
   {
     "typeId": "groupCode",
+    "groupCodeId": "banrLowTypeCd",
+    "name": "배너 하위 유형 코드",
+    "active": true,
+    "desc": "배너 하위 종류를 구분하는 코드"
+  },
+  {
+    "typeId": "groupCode",
     "groupCodeId": "banrSvcMenuTypeCd",
     "name": "서비스 메뉴 코드",
     "active": true,

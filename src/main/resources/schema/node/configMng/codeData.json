@@ -2310,5 +2310,29 @@
     "name": "안드로이드",
     "order": 2,
     "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "banrLowTypeCd",
+    "codeId": "1",
+    "name": "TYPE1",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "banrLowTypeCd",
+    "codeId": "2",
+    "name": "TYPE2",
+    "order": 2,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "banrLowTypeCd",
+    "codeId": "3",
+    "name": "TYPE3",
+    "order": 3,
+    "active": true
   }
 ]
