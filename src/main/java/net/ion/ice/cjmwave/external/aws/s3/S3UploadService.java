@@ -62,10 +62,11 @@ public class S3UploadService {
             PutObjectResult pors = s3Client.putObject(new PutObjectRequest(bucketName, bucketKey, file));
             logger.info("Upload Result :: " + String.valueOf(pors));
             String fileName = file.getName();
-            file.delete();
             rtn = bucketUrl.toURI().toString() + "/" + fileName;
         } catch (Exception e) {
             logger.info("S3 Upload Failed :: return null :: ", e);
+        } finally {
+            file.delete();
         }
         return rtn;
     }
