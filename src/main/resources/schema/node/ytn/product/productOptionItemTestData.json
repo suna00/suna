@@ -50,7 +50,7 @@
   {
     "typeId": "productOptionItem",
     "productOptionItemId": 10005,
-    "productOptionCodeCase": "기본",
+    "productOptionCodeCase": "병따개",
     "productId": "3",
     "name": "병따개",
     "addPrice": 1500,
@@ -62,7 +62,7 @@
   {
     "typeId": "productOptionItem",
     "productOptionItemId": 10006,
-    "productOptionCodeCase": "기본",
+    "productOptionCodeCase": "병뚜껑",
     "productId": "3",
     "name": "병뚜껑",
     "addPrice": 500,
@@ -74,7 +74,7 @@
   {
     "typeId": "productOptionItem",
     "productOptionItemId": 10007,
-    "productOptionCodeCase": "기본",
+    "productOptionCodeCase": "컵홀더",
     "productId": "3",
     "name": "컵홀더",
     "addPrice": 2000,
@@ -91,7 +91,7 @@
     "name": "105 노랑",
     "addPrice": "200.00",
     "supplyPrice": "190.00",
-    "stockQuantity": 999,
+    "stockQuantity": 0,
     "productOptionItemStatus": "y",
     "productOptionType": "mix"
   },
@@ -130,5 +130,181 @@
     "stockQuantity": 999,
     "productOptionItemStatus": "y",
     "productOptionType": "mix"
+  },
+  {
+    "typeId": "productOptionItem",
+    "productOptionItemId": "10021",
+    "productOptionCodeCase": "100:보라",
+    "productId": 3,
+    "name": "100 보라",
+    "addPrice": "400.00",
+    "supplyPrice": "390.00",
+    "stockQuantity": 999,
+    "productOptionItemStatus": "y",
+    "productOptionType": "mix"
+  },
+  {
+    "typeId": "productOptionItem",
+    "productOptionItemId": 10022,
+    "productOptionCodeCase": "종이컵",
+    "productId": "3",
+    "name": "종이컵",
+    "addPrice": 1500,
+    "supplyPrice": 1500,
+    "stockQuantity": 999,
+    "productOptionItemStatus": "y",
+    "productOptionType": "add"
+  },
+  {
+    "typeId": "productOptionItem",
+    "productOptionItemId": 10023,
+    "productOptionCodeCase": "머그컵",
+    "productId": "3",
+    "name": "머그컵",
+    "addPrice": 500,
+    "supplyPrice": 500,
+    "stockQuantity": 999,
+    "productOptionItemStatus": "y",
+    "productOptionType": "add"
+  },
+  {
+    "typeId": "productOptionItem",
+    "productOptionItemId": 10024,
+    "productOptionCodeCase": "키보드",
+    "productId": "3",
+    "name": "키보드",
+    "addPrice": 1500,
+    "supplyPrice": 1500,
+    "stockQuantity": 999,
+    "productOptionItemStatus": "y",
+    "productOptionType": "add"
+  },
+  {
+    "typeId": "productOptionItem",
+    "productOptionItemId": 10025,
+    "productOptionCodeCase": "마우스",
+    "productId": "3",
+    "name": "마우스",
+    "addPrice": 500,
+    "supplyPrice": 500,
+    "stockQuantity": 999,
+    "productOptionItemStatus": "y",
+    "productOptionType": "add"
+  },
+
+
+
+
+
+
+
+
+  {
+    "typeId": "productOptionItem",
+    "productOptionItemId": "10026",
+    "productOptionCodeCase": "105:노랑",
+    "productId": 6,
+    "name": "105 노랑",
+    "addPrice": "200.00",
+    "supplyPrice": "190.00",
+    "stockQuantity": 0,
+    "productOptionItemStatus": "y",
+    "productOptionType": "mix"
+  },
+  {
+    "typeId": "productOptionItem",
+    "productOptionItemId": "10027",
+    "productOptionCodeCase": "105:보라",
+    "productId": 6,
+    "name": "105 보라",
+    "addPrice": "400.00",
+    "supplyPrice": "390.00",
+    "stockQuantity": 999,
+    "productOptionItemStatus": "y",
+    "productOptionType": "mix"
+  },
+  {
+    "typeId": "productOptionItem",
+    "productOptionItemId": "10028",
+    "productOptionCodeCase": "100:노랑",
+    "productId": 6,
+    "name": "100 노랑",
+    "addPrice": "200.00",
+    "supplyPrice": "190.00",
+    "stockQuantity": 999,
+    "productOptionItemStatus": "y",
+    "productOptionType": "mix"
+  },
+  {
+    "typeId": "productOptionItem",
+    "productOptionItemId": "10029",
+    "productOptionCodeCase": "100:보라",
+    "productId": 6,
+    "name": "100 보라",
+    "addPrice": "400.00",
+    "supplyPrice": "390.00",
+    "stockQuantity": 999,
+    "productOptionItemStatus": "y",
+    "productOptionType": "mix"
+  },
+  {
+    "typeId": "productOptionItem",
+    "productOptionItemId": "10030",
+    "productOptionCodeCase": "100:보라",
+    "productId": 6,
+    "name": "100 보라",
+    "addPrice": "400.00",
+    "supplyPrice": "390.00",
+    "stockQuantity": 999,
+    "productOptionItemStatus": "y",
+    "productOptionType": "mix"
+  },
+  {
+    "typeId": "productOptionItem",
+    "productOptionItemId": 10031,
+    "productOptionCodeCase": "종이컵",
+    "productId": 6,
+    "name": "종이컵",
+    "addPrice": 1500,
+    "supplyPrice": 1500,
+    "stockQuantity": 999,
+    "productOptionItemStatus": "y",
+    "productOptionType": "add"
+  },
+  {
+    "typeId": "productOptionItem",
+    "productOptionItemId": 10032,
+    "productOptionCodeCase": "머그컵",
+    "productId": 6,
+    "name": "머그컵",
+    "addPrice": 500,
+    "supplyPrice": 500,
+    "stockQuantity": 999,
+    "productOptionItemStatus": "y",
+    "productOptionType": "add"
+  },
+  {
+    "typeId": "productOptionItem",
+    "productOptionItemId": 10033,
+    "productOptionCodeCase": "키보드",
+    "productId": 6,
+    "name": "키보드",
+    "addPrice": 1500,
+    "supplyPrice": 1500,
+    "stockQuantity": 999,
+    "productOptionItemStatus": "y",
+    "productOptionType": "add"
+  },
+  {
+    "typeId": "productOptionItem",
+    "productOptionItemId": 10034,
+    "productOptionCodeCase": "마우스",
+    "productId": 6,
+    "name": "마우스",
+    "addPrice": 500,
+    "supplyPrice": 500,
+    "stockQuantity": 999,
+    "productOptionItemStatus": "y",
+    "productOptionType": "add"
   }
 ]

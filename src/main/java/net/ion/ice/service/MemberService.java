@@ -32,21 +32,21 @@ public class MemberService {
 
     public ExecuteContext authenticationSendEmail(ExecuteContext context){
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
-        String emailCertificationType = data.get("emailCertificationType").toString();
-        String certStatus = data.get("certStatus").toString();
+
+        String[] params = { "emailCertificationType","certStatus","email","siteType","acceptTermsYn","receiveMarketingEmailAgreeYn","receiveMarketingSMSAgreeYn","date","time" };
+        if (common.requiredParams(context, data, params)) return context;
+
         String email = data.get("email").toString();
-        String siteType = data.get("siteType").toString();
         String date = data.get("date").toString();
         String time = data.get("time").toString();
 
         NodeBindingInfo nodeBindingInfo = NodeUtils.getNodeBindingInfo("member");
-        String query = " select count(memberNo) as count from member where email=? ";
-        String count = nodeBindingInfo.getJdbcTemplate().queryForList(query, email).get(0).get("count").toString();
+        String count = nodeBindingInfo.getJdbcTemplate().queryForList(" select count(memberNo) as count from member where email=? ", email).get(0).get("count").toString();
 
         if("0".equals(count)){
             String contextPath = replaceUrl();
-            String certCode = getCertCode(email, emailCertificationType, certStatus);
-            Map<String, String> html = html(contextPath, certCode, email, siteType, date, time);
+            String linkUrl = getCertCode(data);
+            Map<String, String> html = html(contextPath, linkUrl, date, time);
 
             sendEmailHtml(email, html.get("title"), html.get("contents"));
         } else {
@@ -58,6 +58,10 @@ public class MemberService {
 
     public ExecuteContext authenticationCertEmail(ExecuteContext context){
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
+
+        String[] params = { "certCode","siteType","acceptTermsYn","receiveMarketingEmailAgreeYn","receiveMarketingSMSAgreeYn" };
+        if (common.requiredParams(context, data, params)) return context;
+
         String certCode = data.get("certCode").toString();
 
         NodeBindingInfo nodeBindingInfo = NodeUtils.getNodeBindingInfo("emailCertification");
@@ -95,10 +99,17 @@ public class MemberService {
         return String.format("%s//%s", splitRequestUrl[0], splitRequestUrl[1]); // "http://localhost:8080", "http://125.131.88.206:8080"
     }
 
-    public String getCertCode(String email, String emailCertificationType, String certStatus){
+    public String getCertCode(Map<String, Object> data){
+        String emailCertificationType = data.get("emailCertificationType").toString();
+        String certStatus = data.get("certStatus").toString();
+        String email = data.get("email").toString();
+        String siteType = data.get("siteType").toString();
+        String acceptTermsYn = data.get("acceptTermsYn").toString();
+        String receiveMarketingEmailAgreeYn = data.get("receiveMarketingEmailAgreeYn").toString();
+        String receiveMarketingSMSAgreeYn = data.get("receiveMarketingSMSAgreeYn").toString();
+
         NodeBindingInfo nodeBindingInfo = NodeUtils.getNodeBindingInfo("emailCertification");
-        String query = " select to_base64(concat('ygoon!@#SHOP ',now())) as certCode ";
-        String certCode = nodeBindingInfo.getJdbcTemplate().queryForList(query).get(0).get("certCode").toString();
+        String certCode = nodeBindingInfo.getJdbcTemplate().queryForList(" select to_base64(concat('ygoon!@#SHOP ',now())) as certCode ").get(0).get("certCode").toString();
 
         Map<String, Object> emailCertificationData = new HashMap<>();
         emailCertificationData.put("name", "이메일 인증요청");
@@ -109,15 +120,17 @@ public class MemberService {
         emailCertificationData.put("certRequestDate", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()));
         nodeService.executeNode(emailCertificationData, "emailCertification", CREATE);
 
-        return certCode;
+        String linkUrl = "/signUp/stepTwo?certCode="+certCode+"&siteType="+siteType+"&acceptTermsYn="+acceptTermsYn+"&receiveMarketingEmailAgreeYn="+receiveMarketingEmailAgreeYn+"&receiveMarketingSMSAgreeYn="+receiveMarketingSMSAgreeYn;
+
+        return linkUrl;
     }
 
-    public Map<String, String> html(String contextPath, String certCode, String email, String siteType, String date, String time){
+    public Map<String, String> html(String contextPath, String linkUrl, String date, String time){
         Map<String, String> html = new HashMap<>();
 
         String title = "";
         String contents = "";
-        String link = "http://localhost:3090/signUp/stepTwo?certCode="+certCode+"&siteType="+siteType;
+        String link = "http://localhost:3090"+linkUrl;
 
         List<Node> list = nodeService.getNodeList("emailTemplate", "name_matching=본인인증");
         if(list.size() > 0){
