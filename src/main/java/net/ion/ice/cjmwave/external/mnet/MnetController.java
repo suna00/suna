@@ -36,10 +36,11 @@ public class MnetController {
     @RequestMapping(value = {"initialData/{type}"}, produces = { "application/json" })
     public @ResponseBody String retrieveAll(@PathVariable String type) throws JSONException {
         String mnetExecuteIds[] = {
-                "migAlbum", "migAlbumMulti"
-                , "migArtist", "migArtistMulti"
-                , "migMusicVideo", "migMusicVideoMulti"
-                , "migSong", "migSongMulti"
+                "album", "albumMulti"
+                , "artist", "artistMulti"
+                , "musicVideo", "musicVideoMulti"
+                , "song", "songMulti"
+                , "mcdChartBasInfo", "mcdChartStats"
         };
 
         JSONObject response = new JSONObject();
@@ -53,21 +54,24 @@ public class MnetController {
                     }
                     break;
                 case "album" :
-                    dbSyncService.executeWithIteration("migAlbum");
-                    dbSyncService.executeWithIteration("migAlbumMulti");
+                    dbSyncService.executeWithIteration("album");
+                    dbSyncService.executeWithIteration("albumMulti");
                     break;
                 case "artist" :
-                    dbSyncService.executeWithIteration("migArtist");
-                    dbSyncService.executeWithIteration("migArtistMulti");
+                    dbSyncService.executeWithIteration("artist");
+                    dbSyncService.executeWithIteration("artistMulti");
                     break;
                 case "song" :
-                    dbSyncService.executeWithIteration("migSong");
-                    dbSyncService.executeWithIteration("migSongMulti");
+                    dbSyncService.executeWithIteration("song");
+                    dbSyncService.executeWithIteration("songMulti");
                     break;
                 case "mv" :
-                    dbSyncService.executeWithIteration("migMusicVideo");
-                    dbSyncService.executeWithIteration("migMusicVideoMulti");
+                    dbSyncService.executeWithIteration("musicVideo");
+                    dbSyncService.executeWithIteration("musicVideoMulti");
                     break;
+                case "chart" :
+                    dbSyncService.executeWithIteration("mcdChartBasInfo");
+                    dbSyncService.executeWithIteration("mcdChartStats");
                 default:
                     logger.info("Could not find appropriate type for migration");
                     break;

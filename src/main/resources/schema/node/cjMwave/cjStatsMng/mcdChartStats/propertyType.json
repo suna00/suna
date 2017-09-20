@@ -218,9 +218,9 @@
   {
     "typeId": "propertyType",
     "tid": "mcdChartStats",
-    "pid": "reserchRanking",
-    "id": "mcdChartStats>reserchRanking",
-    "propertyTypeName": "reserchRanking",
+    "pid": "researchRanking",
+    "id": "mcdChartStats>researchRanking",
+    "propertyTypeName": "researchRanking",
     "valueType": "INT",
     "required": true,
     "idable": false,

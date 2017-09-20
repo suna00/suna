@@ -256,12 +256,6 @@ public class DBSyncService {
         // successIds 로 다국어 노드 업데이트 - Naming rule 에 따라 움직이기
         Node multiLanguageExecutionNode = nodeService.getNode(PROCESS_TID, executeId + "Multi");
         if(null != multiLanguageExecutionNode) {
-            // 다국어 실행
-
-            /*
-            * 09 19
-            * 수정 *절대* 필요!!!!
-            * */
             Map<String, Object> multiParamMap = new HashMap<>();
             String strIds = StringUtils.join(successIds, ",").trim();
             if(strIds.length() > 0) {

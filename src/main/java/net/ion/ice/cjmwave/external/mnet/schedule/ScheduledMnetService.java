@@ -62,6 +62,10 @@ public class ScheduledMnetService {
                 case "mv" :
                     dbSyncService.executeForNewData("mnet", "musicVideoPart");
                     break;
+                case "chart" :
+                    dbSyncService.executeForNewData("mnet", "mcdChartBasInfoPart");
+                    dbSyncService.executeForNewData("mnet", "mcdChartStatsPart");
+                    break;
                 default:
                     logger.info("Could not find appropriate type for migration");
                     break;
