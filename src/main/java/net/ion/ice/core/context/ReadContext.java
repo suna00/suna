@@ -287,6 +287,8 @@ public class ReadContext implements Context {
                 }
             }else if (resultField.getContext() != null) {
                 ReadContext subQueryContext = (ReadContext) resultField.getContext();
+                subQueryContext.dateFormat = this.dateFormat ;
+                subQueryContext.fileUrlFormat = this.fileUrlFormat ;
                 if (node != null) {
                     subQueryContext.setNodeData(node);
                 }
@@ -459,5 +461,13 @@ public class ReadContext implements Context {
             return (String) data.get("langCd");
         }
         return locale ;
+    }
+
+    public void setDateFormat(String dateFormat) {
+        this.dateFormat = dateFormat;
+    }
+
+    public void setFileUrlFormat(Map<String,Object> fileUrlFormat) {
+        this.fileUrlFormat = fileUrlFormat;
     }
 }

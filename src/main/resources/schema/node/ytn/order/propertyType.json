@@ -2524,6 +2524,23 @@
   {
     "typeId": "propertyType",
     "tid": "tempOrder",
+    "pid": "cartId",
+    "propertyTypeName": "Cart Id",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "cart",
+    "referenceValue": "cartId",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "tempOrder",
     "pid": "memberNo",
     "propertyTypeName": "회원번호",
     "valueType": "REFERENCE",

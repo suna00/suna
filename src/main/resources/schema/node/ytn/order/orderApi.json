@@ -13,20 +13,20 @@
     "parameters" : [
     ],
     "config" : {
-      "item" : {
-        "select" : {
-          "ds" : "ytnDevDb",
-          "resultType" : "read",
-          "sql" : "SELECT odr.*, (totalProductPrice + totalDeliveryPrice - totalDiscountPrice) AS totalOrderPrice FROM (SELECT a.orderSheetId, a.memberNo, a.siteId, a.sessionId, (SELECT ifnull(sum(orderPrice), 0) FROM orderproduct WHERE orderSheetId = a.orderSheetId) AS totalProductPrice, (SELECT ifnull(sum(deliveryPrice), 0) FROM orderdeliveryprice WHERE orderSheetId = a.orderSheetId) AS totalDeliveryPrice, 0 AS totalDiscountPrice FROM orderSheet a WHERE orderSheetId = 1 OR sessionId = '{{:sessionId}}') odr"
+      "typeId" : "orderSheet",
+      "query" : [
+        {"field" : "orderSheetId", "method" : "matching", "value" : "{{:orderSheetId}}"}
+      ],
+      "response": {
+        "_all_": "",
+        "referencedOrderProduct" : {
+          "typeId" : "orderDeliveryPrice",
+          "query" : [
+            {"sorting" : "orderDeliveryPriceId desc,created desc"},
+            {"field" : "orderSheetId", "method" : "matching", "value" : "{{:orderSheetId}}"},
+            {"includeReferenced" : true, "referenceView": "orderProductIds, productId"}
+          ]
         }
-      },
-      "referencedOrderProduct" : {
-        "typeId" : "orderProduct",
-        "query" : [
-          {"sorting" : "orderDeliveryPriceId desc,created desc"},
-          {"field" : "orderSheetId", "method" : "matching", "value" : "{{:orderSheetId}}"},
-          {"includeReferenced" : true, "referenceView": "productId"}
-        ]
       }
     }
   }

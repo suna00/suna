@@ -61,21 +61,24 @@ public class MemberService {
         String certCode = data.get("certCode").toString();
 
         NodeBindingInfo nodeBindingInfo = NodeUtils.getNodeBindingInfo("emailCertification");
-        String query = " SELECT emailcertificationId, certCode, certStatus, certRequestDate, date_add(certRequestDate, INTERVAL +60 MINUTE) AS certExpireDate, (certStatus = 'request' AND date_add(certRequestDate, INTERVAL +60 MINUTE) > now() AND certCode = ?) AS available FROM emailcertification WHERE certCode = ?  limit 1";
-        List<Map<String, Object>> list = nodeBindingInfo.getJdbcTemplate().queryForList(query, certCode, certCode);
+        String query = " SELECT emailcertificationId, email, certCode, certStatus, certRequestDate, date_add(certRequestDate, INTERVAL +60 MINUTE) AS certExpireDate, (certStatus = 'request' AND date_add(certRequestDate, INTERVAL +60 MINUTE) > now() AND certCode = ?) AS available FROM emailcertification WHERE certCode = ?  limit 1";
+        List<Map<String, Object>> list = nodeBindingInfo.getJdbcTemplate().queryForList(query, certCode, certCode); // new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())
 
         if(0 < list.size()){
-            String available = list.get(0).get("available").toString();
-            Date certExpireDate = (Date) list.get(0).get("certExpireDate");
-            Integer result = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()).compareTo(String.valueOf(certExpireDate));
+            Map<String,Object> map = list.get(0);
+            String available = map.get("available").toString();
 
-            if("1".equals(available) && result < 1){
+            if("1".equals(available)){
                 Map<String, Object> emailCertificationData = new HashMap<>();
-                emailCertificationData.put("emailCertificationId", list.get(0).get("emailCertificationId"));
+                emailCertificationData.put("emailCertificationId", map.get("emailCertificationId"));
                 emailCertificationData.put("certStatus", "success");
                 emailCertificationData.put("certSuccessDate", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()));
 
                 nodeService.executeNode(emailCertificationData, "emailCertification", UPDATE);
+
+                Map<String, Object> resultObject = new HashMap<>();
+                resultObject.put("email", map.get("email").toString());
+                context.setResult(resultObject);
             } else{
                 common.setErrorMessageAlert(context,"U0003", "만료된 인증코드입니다.");
             }
@@ -114,7 +117,7 @@ public class MemberService {
 
         String title = "";
         String contents = "";
-        String link = "http://localhost:3090/signUp/stepTwo?certCode="+certCode+"&siteType="+siteType+"&email="+email;
+        String link = "http://localhost:3090/signUp/stepTwo?certCode="+certCode+"&siteType="+siteType;
 
         List<Node> list = nodeService.getNodeList("emailTemplate", "name_matching=본인인증");
         if(list.size() > 0){
