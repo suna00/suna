@@ -288,10 +288,10 @@ public class NodeService {
         return context.makeResult();
     }
 
-    public Object deleteNode(Map<String, String[]> parameterMap, String typeId) {
+    public Object deleteNode(Map<String, String[]> parameterMap, String typeId, String id) {
         NodeType nodeType = getNodeType(typeId) ;
 
-        ExecuteContext context = ExecuteContext.createContextFromParameter(parameterMap, nodeType, "delete", null) ;
+        ExecuteContext context = ExecuteContext.createContextFromParameter(parameterMap, nodeType, "delete", id) ;
         context.execute();
 
 //        Node node = (Node) context.getResult();
