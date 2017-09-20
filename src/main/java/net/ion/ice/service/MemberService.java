@@ -32,6 +32,10 @@ public class MemberService {
 
     public ExecuteContext authenticationSendEmail(ExecuteContext context){
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
+
+        String[] params = { "emailCertificationType","certStatus","email","siteType","acceptTermsYn","receiveMarketingEmailAgreeYn","receiveMarketingSMSAgreeYn","date","time" };
+        if (common.requiredParams(context, data, params)) return context;
+
         String email = data.get("email").toString();
         String date = data.get("date").toString();
         String time = data.get("time").toString();
@@ -54,6 +58,10 @@ public class MemberService {
 
     public ExecuteContext authenticationCertEmail(ExecuteContext context){
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
+
+        String[] params = { "certCode","siteType","acceptTermsYn","receiveMarketingEmailAgreeYn","receiveMarketingSMSAgreeYn" };
+        if (common.requiredParams(context, data, params)) return context;
+
         String certCode = data.get("certCode").toString();
 
         NodeBindingInfo nodeBindingInfo = NodeUtils.getNodeBindingInfo("emailCertification");
