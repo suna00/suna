@@ -2,6 +2,7 @@ package net.ion.ice.service;
 
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.data.bind.NodeBindingInfo;
+import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
@@ -27,6 +28,7 @@ public class MemberService {
 
     @Autowired
     private NodeService nodeService;
+    private NodeBindingService nodeBindingService ;
     private CommonService common;
 
 
@@ -188,6 +190,43 @@ public class MemberService {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
+    }
+
+    public ExecuteContext searchPassword(ExecuteContext context){
+        Map<String, Object> data = new LinkedHashMap<>(context.getData());
+
+        String[] params = { "searchType","name","userId" };
+        if (common.requiredParams(context, data, params)) return context;
+
+        String searchType = data.get("searchType").toString();
+        String name = data.get("name").toString();
+        String userId = data.get("userId").toString();
+
+        NodeBindingInfo nodeBindingInfo = NodeUtils.getNodeBindingInfo("member");
+        List<Map<String,Object>> memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and userId=? ", name, userId);
+
+        if(0 < memberList.size()){
+            Map<String, Object> member = memberList.get(0);
+
+            if("email".equals(searchType)){
+                searchPasswordEmail(member);
+            } else {
+                String cellPhoneData = data.get("cellPhoneData").toString();
+                searchPasswordCellphone(member, cellPhoneData);
+            }
+        } else {
+            common.setErrorMessage(context, "U0004");
+            return context;
+        }
+        return context;
+    }
+
+    public void searchPasswordEmail(Map<String, Object> member){
+        // testApi/emailCertification/req.json?emailCertificationType=password&certStatus=request&adminId=&memberNo=77777&email=jlee84@i-on.net
+    }
+
+    public void searchPasswordCellphone(Map<String, Object> member, String cellPhoneData){
+        // testApi/smsCertification/req.json?smsCertificationType=id&certStatus=request&adminId=&memberNo=77777&cellphone=000-1111-7777
     }
 
     public ExecuteContext leaveMembership(ExecuteContext context){

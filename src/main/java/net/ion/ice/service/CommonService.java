@@ -25,6 +25,12 @@ public class CommonService {
         resultCodeMap.put("L0002", "회원정보가 존재하지 않습니다.");
         resultCodeMap.put("L0003", "이미 탈퇴한 회원입니다.");
 
+        /*Member*/
+        resultCodeMap.put("U0001", "중복된 인증 메일입니다.");
+        resultCodeMap.put("U0002", "존재하지 않는 인증코드입니다.");
+        resultCodeMap.put("U0003", "만료된 인증코드입니다.");
+        resultCodeMap.put("U0004", "회원정보가 일치하지 않습니다. 다시 입력해주세요.");
+
         /*Coupon*/
         resultCodeMap.put("V0001", "존재하지 않는 쿠폰유형입니다.");
         resultCodeMap.put("V0002", "[발급수제한] 쿠폰 수량이 모두 소진되었습니다.");
