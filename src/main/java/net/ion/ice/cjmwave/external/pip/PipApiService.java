@@ -2,13 +2,11 @@ package net.ion.ice.cjmwave.external.pip;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.ion.ice.cjmwave.external.aws.s3.S3UploadService;
-import net.ion.ice.cjmwave.external.utils.CountryUtils;
 import net.ion.ice.cjmwave.external.utils.FileUtils;
 import net.ion.ice.cjmwave.external.utils.JSONNetworkUtils;
 import net.ion.ice.cjmwave.external.utils.MigrationUtils;
 import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.node.NodeService;
-import net.logstash.logback.encoder.org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,7 +19,6 @@ import java.io.FileOutputStream;
 import java.nio.file.Files;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -53,6 +50,9 @@ public class PipApiService {
 
     @Autowired
     S3UploadService s3UploadService;
+
+    @Autowired
+    ISO639Storage langStorage;
 
     private JdbcTemplate template;
 
@@ -217,7 +217,6 @@ public class PipApiService {
         * - direct_prsn - 연출진
         * - subtitle_path - subtitlePath
         * */
-        List<String> countryList = new ArrayList<>();
         if(data.containsKey("multilanguage")) {
             List<Map<String, Object>> multiLangArr = (List<Map<String, Object>>) data.get("multilanguage");
             // 받아줄 테이블이 없음
@@ -225,9 +224,7 @@ public class PipApiService {
                 Map<String, Object> mLangMap = (Map<String, Object>) mLang;
                 if(mLangMap.containsKey("lang_cd")) {
                     String code2 = String.valueOf(mLangMap.get("lang_cd"));
-                    String code3 = CountryUtils.get3Code(code2);
-                    countryList.add(code3);
-
+                    String code3 = langStorage.getValue(code2);
 
                     switch (nodeTypeId) {
                         case "program" :
@@ -266,7 +263,8 @@ public class PipApiService {
                 }
             }
         }
-        transformed.put("showCntryCdList", StringUtils.join(countryList, ","));
+        // 언어 밖에 알 수 없음
+        transformed.put("showCntryCdList", null);
 
 
 
@@ -291,6 +289,7 @@ public class PipApiService {
             } catch (Exception e) {
                 logger.error("Failed to register PIP program :: ", e);
                 // 실패 목록에 쌓기
+                MigrationUtils.saveFailureNodes(template, "programId", programMap);
                 skippedCnt++;
             }
             MigrationUtils.recordSingleDate(template,"program", String.valueOf(programMap), rs);
@@ -317,6 +316,7 @@ public class PipApiService {
             } catch (Exception e) {
                 logger.error("Failed to register PIP clip :: ", e);
                 // 실패 목록에 쌓기
+                MigrationUtils.saveFailureNodes(template, "contentId", clipMap);
                 skippedCnt++;
             }
             MigrationUtils.recordSingleDate(template, "pgmVideo", String.valueOf(clipMap), rs);

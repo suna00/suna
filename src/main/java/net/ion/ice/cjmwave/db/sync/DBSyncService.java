@@ -124,6 +124,8 @@ public class DBSyncService {
                     break;
                 } else {
                     skippedCnt++;
+                    MigrationUtils.saveFailureNodes(ice2Template, "?", fit);
+
                 }
             }
             MigrationUtils.recordSingleDate(ice2Template, targetNodeType, String.valueOf(fit), rs); // 레코드에 대한 결과
@@ -203,6 +205,7 @@ public class DBSyncService {
                             loop = false;
                         } else {
                             skippedCnt++;
+                            MigrationUtils.saveFailureNodes(ice2Template, "?", fit);
                         }
                     }
                     MigrationUtils.recordSingleDate(template, targetNodeType, String.valueOf(fit), rs);
