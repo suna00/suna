@@ -94,5 +94,21 @@
     "actionType" : "service",
     "actionBody" : "memberService.getTempPassword",
     "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "member",
+    "event" : "searchPassword",
+    "noneExecute" : true,
+    "eventName" : "비밀번호찾기"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "member>searchPassword",
+    "action" : "searchPassword",
+    "actionName" : "비밀번호찾기",
+    "actionType" : "service",
+    "actionBody" : "memberService.searchPassword",
+    "order" : 1
   }
 ]
