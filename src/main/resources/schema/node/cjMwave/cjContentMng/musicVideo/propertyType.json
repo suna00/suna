@@ -62,7 +62,7 @@
     "id": "musicVideo>genreCd",
     "propertyTypeName": "장르코드",
     "valueType": "REFERENCE",
-    "required": true,
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
