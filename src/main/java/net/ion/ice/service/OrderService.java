@@ -2,6 +2,7 @@ package net.ion.ice.service;
 
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.context.QueryContext;
+import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
@@ -32,6 +33,8 @@ public class OrderService {
 
     @Autowired
     private NodeService nodeService;
+    @Autowired
+    private NodeBindingService nodeBindingService;
 
     public void directOrder(ExecuteContext context) {
         Map<String, Object> data = context.getData();
@@ -43,47 +46,67 @@ public class OrderService {
 
     // 임시 주문서 작성
     public void addTempOrder(ExecuteContext context) {
-        Map<String, Object> data = context.getData();
-        String tempOrderId = (String) data.get("tempOrderId");
-
-        Node node = null;
-
-        if (tempOrderId != null) {
-            node = NodeUtils.getNode("tempOrder", tempOrderId);
-        }
-
-        if (node == null) {
-            try {
-                createTempOrder(context);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-
+        try {
+            saveTempOrder(context);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    private void addPurchasOrder(String tempOrderId) {
+    // 주문서 작성
+    public void addOrderSheet(Map<String, Object> responseMap) {
+        Map<String, Object> orderSheet = new HashMap<>();
+        Map<String, Object> tempOrder = nodeBindingService.getNodeBindingInfo("tempOrder").retrieve(String.valueOf(responseMap.get("ordrIdxx")));
+
+        orderSheet.put("orderSheetId", tempOrder.get("tempOrderId"));
+        orderSheet.put("memberNo", tempOrder.get("memberNo"));
+        orderSheet.put("siteId", tempOrder.get("siteId"));
+        orderSheet.put("", tempOrder.get(""));
+        orderSheet.put("", tempOrder.get(""));
+        orderSheet.put("", tempOrder.get(""));
+        orderSheet.put("", tempOrder.get(""));
+        orderSheet.put("", tempOrder.get(""));
+        orderSheet.put("", tempOrder.get(""));
+        orderSheet.put("", tempOrder.get(""));
+        orderSheet.put("", tempOrder.get(""));
+        orderSheet.put("", tempOrder.get(""));
+
+        Node node = (Node) nodeService.executeNode(orderSheet, "orderSheet", CREATE);
+
+
+
 
     }
 
-    public String savePayment(Map<String, Object> payment) {
-        Node node = (Node) nodeService.executeNode(payment, "payment", CREATE);
+    // 결제 정보
+    public String savePayment(Map<String, Object> responseMap) {
+        Node node = (Node) nodeService.executeNode(responseMap, "payment", CREATE);
         return node.getId();
     }
+    // 결제 배송지
+    public void saveDelivery(Map<String, Object> responseMap) {
+        Map<String, Object>  refineDeliveryData = new HashMap<>();
 
-    public String saveDelivery(Map<String, Object> delivery) {
-        Node node = (Node) nodeService.executeNode(delivery, "delivery", CREATE);
-        return node.getId();
+        refineDeliveryData.put("orderSheetId", responseMap.get("ordrIdxx"));
+        refineDeliveryData.put("addressName", responseMap.get("addressName"));
+        refineDeliveryData.put("shippingAddress", responseMap.get("shippingAddress"));
+        refineDeliveryData.put("shippingCellPhone", responseMap.get("shippingCellPhone"));
+        refineDeliveryData.put("shippingPhone", responseMap.get("shippingPhone"));
+        refineDeliveryData.put("deliveryMemo", responseMap.get("deliveryMemo"));
+        refineDeliveryData.put("postCode", responseMap.get("postCode"));
+        refineDeliveryData.put("recipient", responseMap.get("recipient"));
+        refineDeliveryData.put("deliveryType", responseMap.get("deliveryType"));
+
+        nodeService.executeNode(refineDeliveryData, "delivery", CREATE);
     }
 
 
-
-    public void savePgResponse(Map<String, Object> data, String paymentId) {
+    //PG Response 저장
+    public void savePgResponse(Map<String, Object> responseMap, String paymentId) {
         Map<String, Object> pg = new HashMap<>();
 
-        String JsonString = JsonUtils.toJsonString(data);
-        String orderSheetId = String.valueOf(data.get("ordrIdxx"));
+        String JsonString = JsonUtils.toJsonString(responseMap);
+        String orderSheetId = String.valueOf(responseMap.get("ordrIdxx"));
 
         pg.put("paymentId", paymentId);
         pg.put("orderSheetId", orderSheetId);
@@ -93,20 +116,24 @@ public class OrderService {
 
     }
 
-    private void createTempOrder(ExecuteContext context) throws IOException {
+    private void saveTempOrder(ExecuteContext context) throws IOException {
         Map<String, Object> data = context.getData();
         Map<String, Object> tempOrder = new HashMap<>();
-        Node tempOrderNode = (Node) nodeService.executeNode(tempOrder, "tempOrder", CREATE);
         Map<String, Object> referencedCartDeliveryPrice = null;
+        String cartId = String.valueOf((JsonUtils.parsingJsonToMap((String) data.get("item"))).get("cartId"));
+
+        tempOrder.put("cartId", cartId);
+
+        Node tempOrderNode = (Node) nodeService.executeNode(tempOrder, "tempOrder", CREATE);
         try {
             referencedCartDeliveryPrice = JsonUtils.parsingJsonToMap((String) data.get("referencedCartDeliveryPrice"));
+
         } catch (IOException e) {
             e.printStackTrace();
         }
         List<Map<String, Object>> cartDeliveryPriceList = (List<Map<String, Object>>) referencedCartDeliveryPrice.get("items");
-
         makeTempOrderProductData(tempOrderNode.getId(), cartDeliveryPriceList);
-        context.setResult("");
+        context.setResult(CommonService.getResult("O0001"));
     }
 
     private void makeTempOrderProductData(Object tempOrderId, List<Map<String, Object>> cartDeliveryPriceList) {

@@ -61,7 +61,7 @@ public class CartService {
                 }
             }
         }
-        context.setResult(CommonService.setResult("C0001"));
+        context.setResult(CommonService.getResult("C0001"));
     }
 
     private void mergeList(Map<String, Object> data, Object cartId, String tid) throws IOException {
