@@ -346,9 +346,54 @@
     "voteSeq": 200018,
     "voteItemSeq": 251,
     "rankNum": 1,
-    "rankGapNum": "",
+    "rankGapNum": "0",
     "voteRate": 0,
-    "voteNum": 0
+    "voteNum": ""
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 200018,
+    "voteItemSeq": 252,
+    "rankNum": 2,
+    "rankGapNum": "2",
+    "voteRate": 0.18,
+    "voteNum": 9
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 200018,
+    "voteItemSeq": 253,
+    "rankNum": 3,
+    "rankGapNum": "3",
+    "voteRate": 0.16,
+    "voteNum": 8
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 200018,
+    "voteItemSeq": 254,
+    "rankNum": 4,
+    "rankGapNum": "",
+    "voteRate": 0.14,
+    "voteNum": 7
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 200018,
+    "voteItemSeq": 255,
+    "rankNum": 5,
+    "rankGapNum": "",
+    "voteRate": 0.12,
+    "voteNum": 6
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 200018,
+    "voteItemSeq": 256,
+    "rankNum": 6,
+    "rankGapNum": "",
+    "voteRate": 0.1,
+    "voteNum": 5
   },
   {
     "typeId": "voteItemStats",
@@ -2314,6 +2359,33 @@
   },
   {
     "typeId": "voteItemStats",
+    "voteSeq": 200055,
+    "voteItemSeq": 480,
+    "rankNum": 38,
+    "rankGapNum": "",
+    "voteRate": 0,
+    "voteNum": 0
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 200055,
+    "voteItemSeq": 481,
+    "rankNum": 39,
+    "rankGapNum": "",
+    "voteRate": 0,
+    "voteNum": 0
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 200055,
+    "voteItemSeq": 482,
+    "rankNum": 40,
+    "rankGapNum": "",
+    "voteRate": 0,
+    "voteNum": 0
+  },
+  {
+    "typeId": "voteItemStats",
     "voteSeq": 200001,
     "voteItemSeq": 501,
     "rankNum": 8,
@@ -2909,7 +2981,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200056,
-    "voteItemSeq": 567,
+    "voteItemSeq": 482,
     "rankNum": 11,
     "rankGapNum": "",
     "voteRate": 0,
@@ -2918,7 +2990,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200056,
-    "voteItemSeq": 568,
+    "voteItemSeq": 483,
     "rankNum": 10,
     "rankGapNum": "",
     "voteRate": 0,
@@ -2927,7 +2999,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200056,
-    "voteItemSeq": 569,
+    "voteItemSeq": 484,
     "rankNum": 9,
     "rankGapNum": "",
     "voteRate": 0,
@@ -2936,7 +3008,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200056,
-    "voteItemSeq": 570,
+    "voteItemSeq": 485,
     "rankNum": 8,
     "rankGapNum": "",
     "voteRate": 0.07,
@@ -2945,7 +3017,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200056,
-    "voteItemSeq": 571,
+    "voteItemSeq": 486,
     "rankNum": 7,
     "rankGapNum": "3",
     "voteRate": 0.08,
@@ -2954,7 +3026,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200056,
-    "voteItemSeq": 572,
+    "voteItemSeq": 487,
     "rankNum": 6,
     "rankGapNum": "",
     "voteRate": 0.15,
@@ -2963,7 +3035,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200056,
-    "voteItemSeq": 573,
+    "voteItemSeq": 488,
     "rankNum": 5,
     "rankGapNum": "2",
     "voteRate": 0.22,
@@ -2972,7 +3044,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200056,
-    "voteItemSeq": 574,
+    "voteItemSeq": 489,
     "rankNum": 4,
     "rankGapNum": "1",
     "voteRate": 0.33,
@@ -2981,7 +3053,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200056,
-    "voteItemSeq": 575,
+    "voteItemSeq": 490,
     "rankNum": 3,
     "rankGapNum": "",
     "voteRate": 0.5,
@@ -2990,7 +3062,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200056,
-    "voteItemSeq": 576,
+    "voteItemSeq": 491,
     "rankNum": 2,
     "rankGapNum": "",
     "voteRate": 0.6,
@@ -2999,7 +3071,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200056,
-    "voteItemSeq": 577,
+    "voteItemSeq": 492,
     "rankNum": 1,
     "rankGapNum": "",
     "voteRate": 0.75,
@@ -3008,7 +3080,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 578,
+    "voteItemSeq": 493,
     "rankNum": 1,
     "rankGapNum": "6",
     "voteRate": 0.45,
@@ -3017,7 +3089,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 579,
+    "voteItemSeq": 494,
     "rankNum": 2,
     "rankGapNum": "",
     "voteRate": 0.44,
@@ -3026,7 +3098,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 580,
+    "voteItemSeq": 495,
     "rankNum": 3,
     "rankGapNum": "",
     "voteRate": 0.42,
@@ -3035,7 +3107,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 581,
+    "voteItemSeq": 496,
     "rankNum": 4,
     "rankGapNum": "",
     "voteRate": 0.34,
@@ -3044,7 +3116,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 582,
+    "voteItemSeq": 497,
     "rankNum": 5,
     "rankGapNum": "4",
     "voteRate": 0.33,
@@ -3053,7 +3125,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 583,
+    "voteItemSeq": 498,
     "rankNum": 6,
     "rankGapNum": "7",
     "voteRate": 0.33,
@@ -3062,7 +3134,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 584,
+    "voteItemSeq": 499,
     "rankNum": 7,
     "rankGapNum": "",
     "voteRate": 0.33,
@@ -3071,7 +3143,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 585,
+    "voteItemSeq": 500,
     "rankNum": 8,
     "rankGapNum": "3",
     "voteRate": 0.33,
@@ -3080,7 +3152,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 586,
+    "voteItemSeq": 501,
     "rankNum": 9,
     "rankGapNum": "",
     "voteRate": 0.31,
@@ -3089,7 +3161,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 587,
+    "voteItemSeq": 502,
     "rankNum": 10,
     "rankGapNum": "2",
     "voteRate": 0.3,
@@ -3098,7 +3170,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 588,
+    "voteItemSeq": 503,
     "rankNum": 11,
     "rankGapNum": "",
     "voteRate": 0.28,
@@ -3107,7 +3179,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 589,
+    "voteItemSeq": 504,
     "rankNum": 12,
     "rankGapNum": "1",
     "voteRate": 0.22,
@@ -3116,7 +3188,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 590,
+    "voteItemSeq": 505,
     "rankNum": 13,
     "rankGapNum": "",
     "voteRate": 0.22,
@@ -3125,7 +3197,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 591,
+    "voteItemSeq": 506,
     "rankNum": 14,
     "rankGapNum": "",
     "voteRate": 0.22,
@@ -3134,7 +3206,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 592,
+    "voteItemSeq": 507,
     "rankNum": 15,
     "rankGapNum": "4",
     "voteRate": 0.22,
@@ -3143,7 +3215,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 593,
+    "voteItemSeq": 508,
     "rankNum": 16,
     "rankGapNum": "",
     "voteRate": 0.15,
@@ -3152,7 +3224,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 594,
+    "voteItemSeq": 509,
     "rankNum": 17,
     "rankGapNum": "",
     "voteRate": 0.15,
@@ -3161,7 +3233,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 595,
+    "voteItemSeq": 510,
     "rankNum": 18,
     "rankGapNum": "10",
     "voteRate": 0.15,
@@ -3170,7 +3242,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 596,
+    "voteItemSeq": 511,
     "rankNum": 19,
     "rankGapNum": "1",
     "voteRate": 0.08,
@@ -3179,7 +3251,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 597,
+    "voteItemSeq": 512,
     "rankNum": 20,
     "rankGapNum": "",
     "voteRate": 0.08,
@@ -3188,7 +3260,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 598,
+    "voteItemSeq": 513,
     "rankNum": 21,
     "rankGapNum": "",
     "voteRate": 0.08,
@@ -3197,7 +3269,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 599,
+    "voteItemSeq": 514,
     "rankNum": 22,
     "rankGapNum": "",
     "voteRate": 0.07,
@@ -3206,7 +3278,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 600,
+    "voteItemSeq": 515,
     "rankNum": 23,
     "rankGapNum": "",
     "voteRate": 0.07,
@@ -3215,7 +3287,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 601,
+    "voteItemSeq": 516,
     "rankNum": 24,
     "rankGapNum": "",
     "voteRate": 0.07,
@@ -3224,7 +3296,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 602,
+    "voteItemSeq": 517,
     "rankNum": 25,
     "rankGapNum": "",
     "voteRate": 0.06,
@@ -3233,7 +3305,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 603,
+    "voteItemSeq": 518,
     "rankNum": 26,
     "rankGapNum": "",
     "voteRate": 0.06,
@@ -3242,7 +3314,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 604,
+    "voteItemSeq": 519,
     "rankNum": 27,
     "rankGapNum": "",
     "voteRate": 0.06,
@@ -3251,7 +3323,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 605,
+    "voteItemSeq": 520,
     "rankNum": 28,
     "rankGapNum": "",
     "voteRate": 0.06,
@@ -3260,7 +3332,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 606,
+    "voteItemSeq": 521,
     "rankNum": 29,
     "rankGapNum": "4",
     "voteRate": 0.05,
@@ -3269,7 +3341,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 607,
+    "voteItemSeq": 522,
     "rankNum": 30,
     "rankGapNum": "",
     "voteRate": 0.05,
@@ -3278,7 +3350,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 608,
+    "voteItemSeq": 523,
     "rankNum": 31,
     "rankGapNum": "",
     "voteRate": 0.05,
@@ -3287,7 +3359,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 609,
+    "voteItemSeq": 524,
     "rankNum": 32,
     "rankGapNum": "",
     "voteRate": 0.04,
@@ -3296,7 +3368,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 610,
+    "voteItemSeq": 525,
     "rankNum": 33,
     "rankGapNum": "10",
     "voteRate": 0.04,
@@ -3305,7 +3377,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 611,
+    "voteItemSeq": 526,
     "rankNum": 34,
     "rankGapNum": "",
     "voteRate": 0.04,
@@ -3314,7 +3386,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 612,
+    "voteItemSeq": 527,
     "rankNum": 35,
     "rankGapNum": "",
     "voteRate": 0,
@@ -3323,7 +3395,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 613,
+    "voteItemSeq": 528,
     "rankNum": 36,
     "rankGapNum": "",
     "voteRate": 0,
@@ -3332,7 +3404,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 614,
+    "voteItemSeq": 529,
     "rankNum": 37,
     "rankGapNum": "",
     "voteRate": 0,
@@ -3341,7 +3413,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 615,
+    "voteItemSeq": 530,
     "rankNum": 38,
     "rankGapNum": "",
     "voteRate": 0,
@@ -3350,7 +3422,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 616,
+    "voteItemSeq": 531,
     "rankNum": 39,
     "rankGapNum": "",
     "voteRate": 0,
@@ -3359,7 +3431,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200057,
-    "voteItemSeq": 617,
+    "voteItemSeq": 532,
     "rankNum": 40,
     "rankGapNum": "",
     "voteRate": 0,
@@ -3368,7 +3440,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200058,
-    "voteItemSeq": 618,
+    "voteItemSeq": 533,
     "rankNum": 1,
     "rankGapNum": "6",
     "voteRate": 0.01,
@@ -3377,7 +3449,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200058,
-    "voteItemSeq": 619,
+    "voteItemSeq": 534,
     "rankNum": 2,
     "rankGapNum": "",
     "voteRate": 0.01,
@@ -3386,7 +3458,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200058,
-    "voteItemSeq": 620,
+    "voteItemSeq": 535,
     "rankNum": 3,
     "rankGapNum": "",
     "voteRate": 0.09,
@@ -3395,7 +3467,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200058,
-    "voteItemSeq": 621,
+    "voteItemSeq": 536,
     "rankNum": 4,
     "rankGapNum": "",
     "voteRate": 0.2,
@@ -3404,7 +3476,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200058,
-    "voteItemSeq": 622,
+    "voteItemSeq": 537,
     "rankNum": 5,
     "rankGapNum": "4",
     "voteRate": 0.2,
@@ -3413,7 +3485,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200058,
-    "voteItemSeq": 623,
+    "voteItemSeq": 538,
     "rankNum": 6,
     "rankGapNum": "7",
     "voteRate": 0.2,
@@ -3422,7 +3494,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200058,
-    "voteItemSeq": 624,
+    "voteItemSeq": 539,
     "rankNum": 7,
     "rankGapNum": "",
     "voteRate": 0.23,
@@ -3431,7 +3503,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200058,
-    "voteItemSeq": 625,
+    "voteItemSeq": 540,
     "rankNum": 8,
     "rankGapNum": "",
     "voteRate": 0.34,
@@ -3440,7 +3512,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200058,
-    "voteItemSeq": 626,
+    "voteItemSeq": 541,
     "rankNum": 9,
     "rankGapNum": "2",
     "voteRate": 0.45,
@@ -3449,7 +3521,7 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200058,
-    "voteItemSeq": 627,
+    "voteItemSeq": 542,
     "rankNum": 10,
     "rankGapNum": "",
     "voteRate": 0.9,
@@ -3458,10 +3530,523 @@
   {
     "typeId": "voteItemStats",
     "voteSeq": 200058,
-    "voteItemSeq": 628,
+    "voteItemSeq": 543,
     "rankNum": 11,
     "rankGapNum": "1",
     "voteRate": 1,
     "voteNum": 100
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 629,
+    "rankNum": 1,
+    "rankGapNum": "6",
+    "voteRate": 0.9,
+    "voteNum": 90
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 630,
+    "rankNum": 2,
+    "rankGapNum": "",
+    "voteRate": 0.89,
+    "voteNum": 89
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 631,
+    "rankNum": 3,
+    "rankGapNum": "",
+    "voteRate": 0.88,
+    "voteNum": 88
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 632,
+    "rankNum": 4,
+    "rankGapNum": "",
+    "voteRate": 0.87,
+    "voteNum": 87
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 633,
+    "rankNum": 5,
+    "rankGapNum": "4",
+    "voteRate": 0.86,
+    "voteNum": 86
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 634,
+    "rankNum": 6,
+    "rankGapNum": "7",
+    "voteRate": 0.85,
+    "voteNum": 85
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 635,
+    "rankNum": 7,
+    "rankGapNum": "",
+    "voteRate": 0.84,
+    "voteNum": 84
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 636,
+    "rankNum": 8,
+    "rankGapNum": "",
+    "voteRate": 0.83,
+    "voteNum": 83
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 637,
+    "rankNum": 9,
+    "rankGapNum": "2",
+    "voteRate": 0.82,
+    "voteNum": 82
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 638,
+    "rankNum": 10,
+    "rankGapNum": "",
+    "voteRate": 0.81,
+    "voteNum": 81
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 639,
+    "rankNum": 11,
+    "rankGapNum": "1",
+    "voteRate": 0.8,
+    "voteNum": 80
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 640,
+    "rankNum": 12,
+    "rankGapNum": "6",
+    "voteRate": 0.79,
+    "voteNum": 79
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 641,
+    "rankNum": 13,
+    "rankGapNum": "",
+    "voteRate": 0.78,
+    "voteNum": 78
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 642,
+    "rankNum": 14,
+    "rankGapNum": "",
+    "voteRate": 0.77,
+    "voteNum": 77
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 643,
+    "rankNum": 15,
+    "rankGapNum": "",
+    "voteRate": 0.76,
+    "voteNum": 76
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 644,
+    "rankNum": 16,
+    "rankGapNum": "4",
+    "voteRate": 0.75,
+    "voteNum": 75
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 645,
+    "rankNum": 17,
+    "rankGapNum": "7",
+    "voteRate": 0.74,
+    "voteNum": 74
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 646,
+    "rankNum": 18,
+    "rankGapNum": "",
+    "voteRate": 0.730000000000001,
+    "voteNum": 73
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 647,
+    "rankNum": 19,
+    "rankGapNum": "",
+    "voteRate": 0.720000000000001,
+    "voteNum": 72
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 648,
+    "rankNum": 20,
+    "rankGapNum": "2",
+    "voteRate": 0.710000000000001,
+    "voteNum": 71
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 649,
+    "rankNum": 21,
+    "rankGapNum": "",
+    "voteRate": 0.700000000000001,
+    "voteNum": 70
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 650,
+    "rankNum": 22,
+    "rankGapNum": "1",
+    "voteRate": 0.690000000000001,
+    "voteNum": 69
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 651,
+    "rankNum": 23,
+    "rankGapNum": "6",
+    "voteRate": 0.680000000000001,
+    "voteNum": 68
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 652,
+    "rankNum": 24,
+    "rankGapNum": "",
+    "voteRate": 0.670000000000001,
+    "voteNum": 67
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 653,
+    "rankNum": 25,
+    "rankGapNum": "",
+    "voteRate": 0.660000000000001,
+    "voteNum": 66
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 654,
+    "rankNum": 26,
+    "rankGapNum": "",
+    "voteRate": 0.650000000000001,
+    "voteNum": 65
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 655,
+    "rankNum": 27,
+    "rankGapNum": "4",
+    "voteRate": 0.640000000000001,
+    "voteNum": 64
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 656,
+    "rankNum": 28,
+    "rankGapNum": "7",
+    "voteRate": 0.630000000000001,
+    "voteNum": 63
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 657,
+    "rankNum": 29,
+    "rankGapNum": "",
+    "voteRate": 0.620000000000001,
+    "voteNum": 62
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 658,
+    "rankNum": 30,
+    "rankGapNum": "",
+    "voteRate": 0.610000000000001,
+    "voteNum": 61
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 659,
+    "rankNum": 31,
+    "rankGapNum": "2",
+    "voteRate": 0.600000000000001,
+    "voteNum": 60
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 660,
+    "rankNum": 32,
+    "rankGapNum": "",
+    "voteRate": 0.590000000000001,
+    "voteNum": 59
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 661,
+    "rankNum": 33,
+    "rankGapNum": "1",
+    "voteRate": 0.580000000000002,
+    "voteNum": 58
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 662,
+    "rankNum": 34,
+    "rankGapNum": "6",
+    "voteRate": 0.570000000000002,
+    "voteNum": 57
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 663,
+    "rankNum": 35,
+    "rankGapNum": "",
+    "voteRate": 0.560000000000002,
+    "voteNum": 56
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 664,
+    "rankNum": 36,
+    "rankGapNum": "",
+    "voteRate": 0.550000000000002,
+    "voteNum": 55
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 665,
+    "rankNum": 37,
+    "rankGapNum": "",
+    "voteRate": 0.540000000000002,
+    "voteNum": 54
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 666,
+    "rankNum": 38,
+    "rankGapNum": "4",
+    "voteRate": 0.530000000000002,
+    "voteNum": 53
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 667,
+    "rankNum": 39,
+    "rankGapNum": "7",
+    "voteRate": 0.520000000000002,
+    "voteNum": 52
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 668,
+    "rankNum": 40,
+    "rankGapNum": "",
+    "voteRate": 0.510000000000002,
+    "voteNum": 51
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 669,
+    "rankNum": 41,
+    "rankGapNum": "",
+    "voteRate": 0.500000000000002,
+    "voteNum": 50
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 670,
+    "rankNum": 42,
+    "rankGapNum": "2",
+    "voteRate": 0.490000000000002,
+    "voteNum": 49
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 671,
+    "rankNum": 43,
+    "rankGapNum": "",
+    "voteRate": 0.480000000000002,
+    "voteNum": 48
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 672,
+    "rankNum": 44,
+    "rankGapNum": "1",
+    "voteRate": 0.470000000000003,
+    "voteNum": 47
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 673,
+    "rankNum": 45,
+    "rankGapNum": "6",
+    "voteRate": 0.460000000000003,
+    "voteNum": 46
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 674,
+    "rankNum": 46,
+    "rankGapNum": "",
+    "voteRate": 0.450000000000003,
+    "voteNum": 45
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 675,
+    "rankNum": 47,
+    "rankGapNum": "",
+    "voteRate": 0.440000000000003,
+    "voteNum": 44
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 676,
+    "rankNum": 48,
+    "rankGapNum": "",
+    "voteRate": 0.430000000000003,
+    "voteNum": 43
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 677,
+    "rankNum": 49,
+    "rankGapNum": "4",
+    "voteRate": 0.420000000000003,
+    "voteNum": 42
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 678,
+    "rankNum": 50,
+    "rankGapNum": "7",
+    "voteRate": 0.410000000000003,
+    "voteNum": 41
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 679,
+    "rankNum": 51,
+    "rankGapNum": "",
+    "voteRate": 0.400000000000004,
+    "voteNum": 40
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 680,
+    "rankNum": 52,
+    "rankGapNum": "",
+    "voteRate": 0.390000000000004,
+    "voteNum": 39
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 681,
+    "rankNum": 53,
+    "rankGapNum": "2",
+    "voteRate": 0.380000000000004,
+    "voteNum": 38
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 682,
+    "rankNum": 54,
+    "rankGapNum": "",
+    "voteRate": 0.370000000000004,
+    "voteNum": 37
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 683,
+    "rankNum": 55,
+    "rankGapNum": "1",
+    "voteRate": 0.360000000000004,
+    "voteNum": 36
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 684,
+    "rankNum": 56,
+    "rankGapNum": "1",
+    "voteRate": 0.350000000000004,
+    "voteNum": 35
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 300005,
+    "voteItemSeq": 685,
+    "rankNum": 57,
+    "rankGapNum": "1",
+    "voteRate": 0.340000000000004,
+    "voteNum": 34
   }
 ]
