@@ -70,18 +70,18 @@ public class NodeController {
     @RequestMapping(value = "/node/{typeId}/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public Object deleteRest(WebRequest request, @PathVariable String typeId, @PathVariable String id) throws IOException {
-        return nodeService.deleteNode(typeId, id) ;
+        return delete(request, typeId, id);
     }
 
     @RequestMapping(value = "/node/{typeId}/delete.json", method = RequestMethod.POST)
     @ResponseBody
     public Object deleteJson(WebRequest request, @PathVariable String typeId) throws IOException {
-        return delete(request, typeId);
+        return delete(request, typeId, null);
     }
 
 
-    private Object delete(WebRequest request, String typeId) {
-        return nodeService.deleteNode(request.getParameterMap(), typeId) ;
+    private Object delete(WebRequest request, String typeId, String id) {
+        return nodeService.deleteNode(request.getParameterMap(), typeId, id) ;
     }
 
     @RequestMapping(value = "/node/{typeId}/{id}", method = RequestMethod.GET)
