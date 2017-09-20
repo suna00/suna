@@ -501,6 +501,11 @@
             "typeId": "voteBasInfo",
             "query": [
               {
+                "field":"voteFormlCd",
+                "method":"matching",
+                "value":"voteFormlCd>1,voteFormlCd>2,voteFormlCd>4,voteFormlCd>5"
+              },
+              {
                 "sorting": "created desc",
                 "limit": "3",
                 "includeReferenced": true
@@ -781,6 +786,11 @@
             "typeId": "voteBasInfo",
             "query": [
               {
+                "field":"voteFormlCd",
+                "method":"matching",
+                "value":"voteFormlCd>1,voteFormlCd>2,voteFormlCd>4,voteFormlCd>5"
+              },
+              {
                 "sorting": "created desc",
                 "limit": "3",
                 "includeReferenced": true
@@ -988,6 +998,11 @@
           "rcmdVoteList": {
             "typeId": "voteBasInfo",
             "query": [
+              {
+                "field":"voteFormlCd",
+                "method":"matching",
+                "value":"voteFormlCd>1,voteFormlCd>2,voteFormlCd>4,voteFormlCd>5"
+              },
               {
                 "sorting": "created desc",
                 "limit": "3",
@@ -1338,6 +1353,11 @@
           "rcmdVoteList": {
             "typeId": "voteBasInfo",
             "query": [
+              {
+                "field":"voteFormlCd",
+                "method":"matching",
+                "value":"voteFormlCd>1,voteFormlCd>2,voteFormlCd>4,voteFormlCd>5"
+              },
               {
                 "sorting": "created desc",
                 "limit": "3",
