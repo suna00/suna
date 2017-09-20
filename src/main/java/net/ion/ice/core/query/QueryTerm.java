@@ -210,7 +210,7 @@ public class QueryTerm {
         BELOW("<="),
         EXCESS(">"),
         UNDER("<"),
-        FROMTO("");
+        FROMTO("BETWEEN");
 
 
         private String queryString;
