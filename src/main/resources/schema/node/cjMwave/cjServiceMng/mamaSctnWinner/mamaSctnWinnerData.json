@@ -10,7 +10,9 @@
     "winnerSongName": "CHEER UP",
     "winnerThumImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "sortOdrg": 1,
-    "linkUrl": ""
+    "linkUrl": "",
+    "spnsrTitle":null,
+    "spnsrLogoImgPath":null
   },
   {
     "typeId": "mamaSctnWinner",
@@ -23,7 +25,9 @@
     "winnerSongName": "koobup",
     "winnerThumImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "sortOdrg": 2,
-    "linkUrl": ""
+    "linkUrl": "",
+    "spnsrTitle":null,
+    "spnsrLogoImgPath":null
   },
   {
     "typeId": "mamaSctnWinner",
@@ -36,7 +40,9 @@
     "winnerSongName": "no.1",
     "winnerThumImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "sortOdrg": 1,
-    "linkUrl": ""
+    "linkUrl": "",
+    "spnsrTitle":null,
+    "spnsrLogoImgPath":null
   },
   {
     "typeId": "mamaSctnWinner",
@@ -49,7 +55,9 @@
     "winnerSongName": "fanxxy child",
     "winnerThumImgPath": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "sortOdrg": 2,
-    "linkUrl": ""
+    "linkUrl": "",
+    "spnsrTitle":null,
+    "spnsrLogoImgPath":null
   },
   {
     "typeId": "mamaSctnWinner",
@@ -62,7 +70,9 @@
     "winnerSongName": "boombaya",
     "winnerThumImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "sortOdrg": 1,
-    "linkUrl": ""
+    "linkUrl": "",
+    "spnsrTitle":null,
+    "spnsrLogoImgPath":null
   },
   {
     "typeId": "mamaSctnWinner",
@@ -75,6 +85,8 @@
     "winnerSongName": "runtoyou",
     "winnerThumImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "sortOdrg": 2,
-    "linkUrl": ""
+    "linkUrl": "",
+    "spnsrTitle":null,
+    "spnsrLogoImgPath":null
   }
 ]

@@ -149,3 +149,45 @@ SELECT
 FROM
   MT_MV_META MMM
 LIMIT @{BIGINT.start}, @{BIGINT.unit}
+
+
+-- 차트 마스터
+SELECT
+  MstIdx as mstIdx,
+  MstYear as mstYear,
+  MstMonth as mstMonth,
+  MstWeek as mstWeek,
+  MstYyMmDd as mstYyMmDd,
+  MstFromDate as mstFromDate,
+  MstToDate as mstToDate,
+  CASE WHEN ServiceFlag = 'Y' THEN 1 ELSE 0 END as serviceFlag,
+  RegDate as regDate,
+  ModDate as modDate,
+  ONAIR_DT as onairDt
+FROM T_SM_S3_ChartTotalMst
+LIMIT @{BIGINT.start}, @{BIGINT.unit};
+
+
+-- 차트 스탯
+SELECT
+  Idx as idx,
+  chMstID as chMstId,
+  SongID as songId,
+  Ranking as ranking,
+  RankInter as rankInter,
+  RankInterIcon as rankInterIcon,
+  RankPreWeek as rankPreWeek,
+  RankPeak as rankPeak,
+  RankDuring as rankDuring,
+  songRanking,
+  albumRanking,
+  musicRanking,
+  reserchRanking,
+  pdRanking,
+  smsRanking,
+  RegDate as regDate,
+  tvRanking,
+  ageRanking
+FROM
+  T_SM_S3_ChartTotalLst
+LIMIT @{BIGINT.start}, @{BIGINT.unit};

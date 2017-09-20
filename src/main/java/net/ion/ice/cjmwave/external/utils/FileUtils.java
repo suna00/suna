@@ -27,7 +27,9 @@ public class FileUtils {
         return file;
     }
 
-
+    /*
+    * 이 부분의 로직은 고객이 전달한 부분임
+    * */
     public static String getMnetFileUrl (String mediaId, String mediaType, String sizeType) {
         String imgUrl = "http://cmsimg.global.mnet.com/clipimage";
         String strClipName = "";
@@ -48,5 +50,4 @@ public class FileUtils {
                 + "/" + strClipName.substring(3, 6)
                 + "/" + mediaId + ".jpg";
     }
-
-}
+};

@@ -56,10 +56,10 @@
     "datasourceId": "cjMig",
     "profiles": "cj-local",
     "dsName": "Test DB",
-    "jdbcUrl": "jdbc:mysql://127.0.0.1:3306/cj_mig?useSSL=false",
+    "jdbcUrl": "jdbc:mysql://125.131.88.156:3306/ice2?useSSL=false",
     "dbType": "mySql",
-    "username": "juneyoung",
-    "password": "1234"
+    "username": "cjmwave",
+    "password": "cjmwave0!@#"
   },
   {
     "typeId": "datasource",
