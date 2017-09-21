@@ -72,6 +72,17 @@ public class NodeType {
 		return labels ;
 	}
 
+	public List<String> getI18nPIds () {
+		List<String> i18ns = new ArrayList<>() ;
+		for(PropertyType pt : propertyTypes.values()){
+			if(pt.isI18n()){
+				i18ns.add(pt.getPid()) ;
+			}
+		}
+		return i18ns;
+	}
+
+
 	public List<PropertyType> getLabelablePropertyTypes() {
 		List<PropertyType> labelPts = new ArrayList<>() ;
 		for(PropertyType pt : propertyTypes.values()){
