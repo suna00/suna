@@ -10,11 +10,11 @@
     "linkDivCd": "1",
     "linkUrl": "http://www.mnet.com/chart/top100",
     "sortOdrg": 1,
-    "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "videThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "videStopThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
+    "videFilePath": "",
+    "videThumPath": "",
+    "videStopThumPath": "",
     "extrVideUrl": "",
-    "videInstPlayYn": false,
+    "videInstPlayYn": true,
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
@@ -27,18 +27,18 @@
     "langCd": "eng",
     "banrItemTitle": "컨벤션 배너 TYPE1-2",
     "subName": "컨벤션 배너 TYPE1-2-sub",
-    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
+    "imgPath": "광고 적용",
     "linkDivCd": "1",
     "linkUrl": "http://www.mnet.com/chart/top10",
     "sortOdrg": 2,
-    "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "videThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "videStopThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
+    "videFilePath": "",
+    "videThumPath": "",
+    "videStopThumPath": "",
     "extrVideUrl": "",
-    "videInstPlayYn": false,
-    "advmUrl": "",
+    "videInstPlayYn": true,
+    "advmUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "advmRightUrl": "",
-    "advmIframeHeight": 0,
+    "advmIframeHeight": 850,
     "advmRightIframeHeight": 0
   },
   {
@@ -60,8 +60,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -82,8 +81,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -104,8 +102,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -126,8 +123,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -136,7 +132,7 @@
     "langCd": "eng",
     "banrItemTitle": "라이브- type2- AD",
     "subName": "라이브- type2- AD",
-    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
+    "imgPath": "",
     "linkDivCd": "1",
     "linkUrl": "http://www.mnet.com/chart/top10",
     "sortOdrg": 1,
@@ -148,8 +144,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -158,7 +153,7 @@
     "langCd": "eng",
     "banrItemTitle": "라이브- type3- 디폴트AD-서비스단말1만가능",
     "subName": "라이브- type3- 디폴트AD-서비스단말1만가능",
-    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
+    "imgPath": "",
     "linkDivCd": "1",
     "linkUrl": "http://www.mnet.com/chart/top10",
     "sortOdrg": 1,
@@ -170,8 +165,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -184,16 +178,15 @@
     "linkDivCd": "1",
     "linkUrl": "http://www.mnet.com/chart/top10",
     "sortOdrg": 1,
-    "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "videThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "videStopThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
+    "videFilePath": "",
+    "videThumPath": "",
+    "videStopThumPath": "",
     "extrVideUrl": "",
     "videInstPlayYn": false,
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -214,8 +207,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -236,8 +228,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -258,8 +249,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -280,8 +270,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -302,8 +291,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -324,8 +312,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -346,8 +333,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -368,8 +354,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -390,8 +375,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -412,8 +396,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -434,8 +417,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -456,8 +438,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -478,8 +459,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -500,8 +480,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -522,8 +501,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -535,14 +513,6 @@
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "linkDivCd": "1",
     "linkUrl": "http://www.mnet.com/chart/top10",
-    "facebookImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "facebookLinkUrl": "http://www.mnet.com/chart/top100",
-    "twitterImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "twitterLinkUrl": "http://www.mnet.com/chart/top100",
-    "youtubeImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "youtubeLinkUrl": "http://www.mnet.com/chart/top100",
-    "instagramImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "instagramLinkUrl": "http://www.mnet.com/chart/top100",
     "sortOdrg": 1,
     "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
@@ -552,8 +522,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -565,14 +534,6 @@
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "linkDivCd": "1",
     "linkUrl": "http://www.mnet.com/chart/top10",
-    "facebookImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "facebookLinkUrl": "http://www.mnet.com/chart/top100",
-    "twitterImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "twitterLinkUrl": "http://www.mnet.com/chart/top100",
-    "youtubeImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "youtubeLinkUrl": "http://www.mnet.com/chart/top100",
-    "instagramImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "instagramLinkUrl": "http://www.mnet.com/chart/top100",
     "sortOdrg": 1,
     "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
@@ -582,8 +543,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -595,14 +555,6 @@
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "linkDivCd": "1",
     "linkUrl": "http://www.mnet.com/chart/top10",
-    "facebookImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "facebookLinkUrl": "http://www.mnet.com/chart/top100",
-    "twitterImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "twitterLinkUrl": "http://www.mnet.com/chart/top100",
-    "youtubeImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "youtubeLinkUrl": "http://www.mnet.com/chart/top100",
-    "instagramImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "instagramLinkUrl": "http://www.mnet.com/chart/top100",
     "sortOdrg": 1,
     "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
@@ -612,8 +564,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -625,14 +576,6 @@
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "linkDivCd": "1",
     "linkUrl": "http://www.mnet.com/chart/top10",
-    "facebookImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "facebookLinkUrl": "http://www.mnet.com/chart/top100",
-    "twitterImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "twitterLinkUrl": "http://www.mnet.com/chart/top100",
-    "youtubeImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "youtubeLinkUrl": "http://www.mnet.com/chart/top100",
-    "instagramImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "instagramLinkUrl": "http://www.mnet.com/chart/top100",
     "sortOdrg": 1,
     "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
@@ -642,8 +585,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -655,14 +597,6 @@
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "linkDivCd": "1",
     "linkUrl": "http://www.mnet.com/chart/top10",
-    "facebookImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "facebookLinkUrl": "http://www.mnet.com/chart/top100",
-    "twitterImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "twitterLinkUrl": "http://www.mnet.com/chart/top100",
-    "youtubeImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "youtubeLinkUrl": "http://www.mnet.com/chart/top100",
-    "instagramImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "instagramLinkUrl": "http://www.mnet.com/chart/top100",
     "sortOdrg": 1,
     "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
@@ -672,8 +606,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -685,14 +618,6 @@
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "linkDivCd": "1",
     "linkUrl": "http://www.mnet.com/chart/top10",
-    "facebookImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "facebookLinkUrl": "http://www.mnet.com/chart/top100",
-    "twitterImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "twitterLinkUrl": "http://www.mnet.com/chart/top100",
-    "youtubeImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "youtubeLinkUrl": "http://www.mnet.com/chart/top100",
-    "instagramImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "instagramLinkUrl": "http://www.mnet.com/chart/top100",
     "sortOdrg": 2,
     "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
@@ -702,8 +627,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -715,14 +639,6 @@
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "linkDivCd": "1",
     "linkUrl": "http://www.mnet.com/chart/top10",
-    "facebookImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "facebookLinkUrl": "http://www.mnet.com/chart/top100",
-    "twitterImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "twitterLinkUrl": "http://www.mnet.com/chart/top100",
-    "youtubeImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "youtubeLinkUrl": "http://www.mnet.com/chart/top100",
-    "instagramImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "instagramLinkUrl": "http://www.mnet.com/chart/top100",
     "sortOdrg": 3,
     "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
@@ -732,8 +648,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -745,14 +660,6 @@
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "linkDivCd": "1",
     "linkUrl": "http://www.mnet.com/chart/top10",
-    "facebookImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "facebookLinkUrl": "http://www.mnet.com/chart/top100",
-    "twitterImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "twitterLinkUrl": "http://www.mnet.com/chart/top100",
-    "youtubeImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "youtubeLinkUrl": "http://www.mnet.com/chart/top100",
-    "instagramImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "instagramLinkUrl": "http://www.mnet.com/chart/top100",
     "sortOdrg": 1,
     "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
@@ -762,8 +669,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -775,14 +681,6 @@
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "linkDivCd": "1",
     "linkUrl": "http://www.mnet.com/chart/top10",
-    "facebookImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "facebookLinkUrl": "http://www.mnet.com/chart/top100",
-    "twitterImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "twitterLinkUrl": "http://www.mnet.com/chart/top100",
-    "youtubeImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "youtubeLinkUrl": "http://www.mnet.com/chart/top100",
-    "instagramImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "instagramLinkUrl": "http://www.mnet.com/chart/top100",
     "sortOdrg": 2,
     "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
@@ -792,8 +690,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -805,14 +702,6 @@
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "linkDivCd": "1",
     "linkUrl": "http://www.mnet.com/chart/top10",
-    "facebookImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "facebookLinkUrl": "http://www.mnet.com/chart/top100",
-    "twitterImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "twitterLinkUrl": "http://www.mnet.com/chart/top100",
-    "youtubeImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "youtubeLinkUrl": "http://www.mnet.com/chart/top100",
-    "instagramImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "instagramLinkUrl": "http://www.mnet.com/chart/top100",
     "sortOdrg": 3,
     "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
@@ -822,8 +711,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -835,14 +723,6 @@
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "linkDivCd": "1",
     "linkUrl": "http://www.mnet.com/chart/top10",
-    "facebookImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "facebookLinkUrl": "http://www.mnet.com/chart/top100",
-    "twitterImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "twitterLinkUrl": "http://www.mnet.com/chart/top100",
-    "youtubeImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "youtubeLinkUrl": "http://www.mnet.com/chart/top100",
-    "instagramImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "instagramLinkUrl": "http://www.mnet.com/chart/top100",
     "sortOdrg": 1,
     "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
@@ -852,8 +732,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -865,14 +744,6 @@
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "linkDivCd": "1",
     "linkUrl": "http://www.mnet.com/chart/top10",
-    "facebookImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "facebookLinkUrl": "http://www.mnet.com/chart/top100",
-    "twitterImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "twitterLinkUrl": "http://www.mnet.com/chart/top100",
-    "youtubeImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "youtubeLinkUrl": "http://www.mnet.com/chart/top100",
-    "instagramImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "instagramLinkUrl": "http://www.mnet.com/chart/top100",
     "sortOdrg": 2,
     "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
@@ -882,8 +753,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -895,14 +765,6 @@
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "linkDivCd": "1",
     "linkUrl": "http://www.mnet.com/chart/top10",
-    "facebookImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "facebookLinkUrl": "http://www.mnet.com/chart/top100",
-    "twitterImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "twitterLinkUrl": "http://www.mnet.com/chart/top100",
-    "youtubeImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "youtubeLinkUrl": "http://www.mnet.com/chart/top100",
-    "instagramImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "instagramLinkUrl": "http://www.mnet.com/chart/top100",
     "sortOdrg": 3,
     "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
@@ -912,8 +774,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -925,14 +786,6 @@
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "linkDivCd": "1",
     "linkUrl": "http://www.mnet.com/chart/top10",
-    "facebookImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "facebookLinkUrl": "http://www.mnet.com/chart/top100",
-    "twitterImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "twitterLinkUrl": "http://www.mnet.com/chart/top100",
-    "youtubeImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "youtubeLinkUrl": "http://www.mnet.com/chart/top100",
-    "instagramImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "instagramLinkUrl": "http://www.mnet.com/chart/top100",
     "sortOdrg": 1,
     "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
@@ -942,8 +795,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -955,14 +807,6 @@
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "linkDivCd": "1",
     "linkUrl": "http://www.mnet.com/chart/top10",
-    "facebookImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "facebookLinkUrl": "http://www.mnet.com/chart/top100",
-    "twitterImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "twitterLinkUrl": "http://www.mnet.com/chart/top100",
-    "youtubeImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "youtubeLinkUrl": "http://www.mnet.com/chart/top100",
-    "instagramImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "instagramLinkUrl": "http://www.mnet.com/chart/top100",
     "sortOdrg": 1,
     "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
@@ -972,8 +816,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -985,14 +828,6 @@
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "linkDivCd": "1",
     "linkUrl": "http://www.mnet.com/chart/top10",
-    "facebookImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "facebookLinkUrl": "http://www.mnet.com/chart/top100",
-    "twitterImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "twitterLinkUrl": "http://www.mnet.com/chart/top100",
-    "youtubeImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "youtubeLinkUrl": "http://www.mnet.com/chart/top100",
-    "instagramImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "instagramLinkUrl": "http://www.mnet.com/chart/top100",
     "sortOdrg": 1,
     "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
@@ -1002,8 +837,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -1015,14 +849,6 @@
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "linkDivCd": "1",
     "linkUrl": "http://www.mnet.com/chart/top10",
-    "facebookImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "facebookLinkUrl": "http://www.mnet.com/chart/top100",
-    "twitterImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "twitterLinkUrl": "http://www.mnet.com/chart/top100",
-    "youtubeImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "youtubeLinkUrl": "http://www.mnet.com/chart/top100",
-    "instagramImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "instagramLinkUrl": "http://www.mnet.com/chart/top100",
     "sortOdrg": 2,
     "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
@@ -1032,8 +858,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -1045,14 +870,6 @@
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "linkDivCd": "1",
     "linkUrl": "http://www.mnet.com/chart/top10",
-    "facebookImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "facebookLinkUrl": "http://www.mnet.com/chart/top100",
-    "twitterImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "twitterLinkUrl": "http://www.mnet.com/chart/top100",
-    "youtubeImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "youtubeLinkUrl": "http://www.mnet.com/chart/top100",
-    "instagramImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "instagramLinkUrl": "http://www.mnet.com/chart/top100",
     "sortOdrg": 3,
     "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
@@ -1062,8 +879,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -1075,14 +891,6 @@
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "linkDivCd": "1",
     "linkUrl": "http://www.mnet.com/chart/top10",
-    "facebookImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "facebookLinkUrl": "http://www.mnet.com/chart/top100",
-    "twitterImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "twitterLinkUrl": "http://www.mnet.com/chart/top100",
-    "youtubeImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "youtubeLinkUrl": "http://www.mnet.com/chart/top100",
-    "instagramImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "instagramLinkUrl": "http://www.mnet.com/chart/top100",
     "sortOdrg": 1,
     "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
@@ -1092,8 +900,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -1105,14 +912,6 @@
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "linkDivCd": "1",
     "linkUrl": "http://www.mnet.com/chart/top10",
-    "facebookImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "facebookLinkUrl": "http://www.mnet.com/chart/top100",
-    "twitterImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "twitterLinkUrl": "http://www.mnet.com/chart/top100",
-    "youtubeImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "youtubeLinkUrl": "http://www.mnet.com/chart/top100",
-    "instagramImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "instagramLinkUrl": "http://www.mnet.com/chart/top100",
     "sortOdrg": 2,
     "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
@@ -1122,8 +921,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -1135,14 +933,6 @@
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "linkDivCd": "1",
     "linkUrl": "http://www.mnet.com/chart/top10",
-    "facebookImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "facebookLinkUrl": "http://www.mnet.com/chart/top100",
-    "twitterImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "twitterLinkUrl": "http://www.mnet.com/chart/top100",
-    "youtubeImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "youtubeLinkUrl": "http://www.mnet.com/chart/top100",
-    "instagramImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "instagramLinkUrl": "http://www.mnet.com/chart/top100",
     "sortOdrg": 3,
     "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
@@ -1152,8 +942,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -1165,14 +954,6 @@
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "linkDivCd": "1",
     "linkUrl": "http://www.mnet.com/chart/top10",
-    "facebookImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "facebookLinkUrl": "http://www.mnet.com/chart/top100",
-    "twitterImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "twitterLinkUrl": "http://www.mnet.com/chart/top100",
-    "youtubeImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "youtubeLinkUrl": "http://www.mnet.com/chart/top100",
-    "instagramImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "instagramLinkUrl": "http://www.mnet.com/chart/top100",
     "sortOdrg": 1,
     "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
@@ -1182,8 +963,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -1195,14 +975,6 @@
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "linkDivCd": "1",
     "linkUrl": "http://www.mnet.com/chart/top10",
-    "facebookImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "facebookLinkUrl": "http://www.mnet.com/chart/top100",
-    "twitterImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "twitterLinkUrl": "http://www.mnet.com/chart/top100",
-    "youtubeImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "youtubeLinkUrl": "http://www.mnet.com/chart/top100",
-    "instagramImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
-    "instagramLinkUrl": "http://www.mnet.com/chart/top100",
     "sortOdrg": 2,
     "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
@@ -1212,8 +984,7 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   },
   {
     "typeId": "banrItemInfo",
@@ -1225,14 +996,6 @@
     "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "linkDivCd": "1",
     "linkUrl": "http://www.mnet.com/chart/top10",
-    "facebookImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "facebookLinkUrl": "http://www.mnet.com/chart/top100",
-    "twitterImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "twitterLinkUrl": "http://www.mnet.com/chart/top100",
-    "youtubeImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "youtubeLinkUrl": "http://www.mnet.com/chart/top100",
-    "instagramImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
-    "instagramLinkUrl": "http://www.mnet.com/chart/top100",
     "sortOdrg": 3,
     "videFilePath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "videThumPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
@@ -1242,7 +1005,6 @@
     "advmUrl": "",
     "advmRightUrl": "",
     "advmIframeHeight": 0,
-    "advmRightIframeHeight": 0,
-    "dday": "20171101000000"
+    "advmRightIframeHeight": 0
   }
 ]
