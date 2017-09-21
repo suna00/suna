@@ -517,87 +517,27 @@
   "specialExhibitionHotKeywordId": 1,
   "siteId": null,
   "name": "핫키워드1",
-  "specialExhibitionId": {
-    "value": "1",
-    "label": "기획전 테스트",
-    "refId": "1"
-  },
+  "specialExhibitionId":"1",
   "sortOrder": 1,
-  "hotKeywordStatus": {
-    "value": "y",
-    "label": "사용",
-    "refId": "useYn>y"
-  },
-  "created": "20170822082014",
-  "owner": {
-    "value": "anonymous",
-    "label": "anonymous",
-    "refId": "anonymous"
-  },
-  "changed": "20170822082014",
-  "modifier": {
-    "value": "anonymous",
-    "label": "anonymous",
-    "refId": "anonymous"
-  }
+  "hotKeywordStatus": "y"
 },
   {
     "typeId": "specialExhibitionHotKeyword",
     "specialExhibitionHotKeywordId": 2,
     "siteId": null,
     "name": "핫키워드2",
-    "specialExhibitionId": {
-      "value": "1",
-      "label": "기획전 테스트",
-      "refId": "1"
-    },
+    "specialExhibitionId": "1",
     "sortOrder": 2,
-    "hotKeywordStatus": {
-      "value": "y",
-      "label": "사용",
-      "refId": "useYn>y"
-    },
-    "created": "20170822082020",
-    "owner": {
-      "value": "anonymous",
-      "label": "anonymous",
-      "refId": "anonymous"
-    },
-    "changed": "20170822082020",
-    "modifier": {
-      "value": "anonymous",
-      "label": "anonymous",
-      "refId": "anonymous"
-    }
+    "hotKeywordStatus": "y"
   },
   {
     "typeId": "specialExhibitionHotKeyword",
     "specialExhibitionHotKeywordId": 3,
     "siteId": null,
     "name": "핫키워드3",
-    "specialExhibitionId": {
-      "value": "1",
-      "label": "기획전 테스트",
-      "refId": "1"
-    },
+    "specialExhibitionId": "1",
     "sortOrder": 3,
-    "hotKeywordStatus": {
-      "value": "y",
-      "label": "사용",
-      "refId": "useYn>y"
-    },
-    "created": "20170822082024",
-    "owner": {
-      "value": "anonymous",
-      "label": "anonymous",
-      "refId": "anonymous"
-    },
-    "changed": "20170822082024",
-    "modifier": {
-      "value": "anonymous",
-      "label": "anonymous",
-      "refId": "anonymous"
-    }
+    "hotKeywordStatus": "y"
   },
   {
     "typeId": "specialExhibitionMainBanner",
