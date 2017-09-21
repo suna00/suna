@@ -6,6 +6,7 @@
     "contsDivCd": "1",
     "showDateTabNm": "2017.11.22",
     "advmUrl": "",
+    "advmShowOdrg": "",
     "showYn": true
   },
   {
@@ -15,6 +16,7 @@
     "contsDivCd": "2",
     "showDateTabNm": "2017.11.23",
     "advmUrl": "",
+    "advmShowOdrg": "",
     "showYn": true
   },
   {
@@ -24,6 +26,7 @@
     "contsDivCd": "7",
     "showDateTabNm": "2017.11.24",
     "advmUrl": "https://www.youtube.com/watch?v=lgLWRFW1hF8",
+    "advmShowOdrg": "2,4",
     "showYn": true
   },
   {
@@ -33,6 +36,7 @@
     "contsDivCd": "1",
     "showDateTabNm": "2017.11.22",
     "advmUrl": "",
+    "advmShowOdrg": "",
     "showYn": true
   },
   {
@@ -42,6 +46,7 @@
     "contsDivCd": "2",
     "showDateTabNm": "2017.11.23",
     "advmUrl": "",
+    "advmShowOdrg": "",
     "showYn": true
   },
   {
@@ -51,6 +56,7 @@
     "contsDivCd": "7",
     "showDateTabNm": "2017.11.24",
     "advmUrl": "https://www.youtube.com/watch?v=lgLWRFW1hF8",
+    "advmShowOdrg": "1,3",
     "showYn": true
   },
   {
@@ -60,6 +66,7 @@
     "contsDivCd": "1",
     "showDateTabNm": "2017.11.22",
     "advmUrl": "",
+    "advmShowOdrg": "",
     "showYn": true
   },
   {
@@ -69,6 +76,7 @@
     "contsDivCd": "2",
     "showDateTabNm": "2017.11.23",
     "advmUrl": "",
+    "advmShowOdrg": "",
     "showYn": true
   },
   {
@@ -78,6 +86,7 @@
     "contsDivCd": "7",
     "showDateTabNm": "2017.11.24",
     "advmUrl": "https://www.youtube.com/watch?v=lgLWRFW1hF8",
+    "advmShowOdrg": "1,3",
     "showYn": true
   },
   {
@@ -87,6 +96,7 @@
     "contsDivCd": "7",
     "showDateTabNm": "2017.11.22",
     "advmUrl": "https://www.youtube.com/watch?v=lgLWRFW1hF8",
+    "advmShowOdrg": "1,3",
     "showYn": true
   },
   {
@@ -96,6 +106,7 @@
     "contsDivCd": "7",
     "showDateTabNm": "2017.11.23",
     "advmUrl": "https://www.youtube.com/watch?v=lgLWRFW1hF8",
+    "advmShowOdrg": "1,3",
     "showYn": true
   },
   {
@@ -105,6 +116,7 @@
     "contsDivCd": "7",
     "showDateTabNm": "2017.11.24",
     "advmUrl": "https://www.youtube.com/watch?v=lgLWRFW1hF8",
+    "advmShowOdrg": "1,3",
     "showYn": true
   },
   {
@@ -114,6 +126,7 @@
     "contsDivCd": "7",
     "showDateTabNm": "2017.11.22",
     "advmUrl": "https://www.youtube.com/watch?v=lgLWRFW1hF8",
+    "advmShowOdrg": "1,3",
     "showYn": true
   },
   {
@@ -123,6 +136,7 @@
     "contsDivCd": "7",
     "showDateTabNm": "2017.11.23",
     "advmUrl": "https://www.youtube.com/watch?v=lgLWRFW1hF8",
+    "advmShowOdrg": "1,3",
     "showYn": true
   },
   {
@@ -132,6 +146,7 @@
     "contsDivCd": "7",
     "showDateTabNm": "2017.11.24",
     "advmUrl": "https://www.youtube.com/watch?v=lgLWRFW1hF8",
+    "advmShowOdrg": "1,3",
     "showYn": true
   },
   {
@@ -141,6 +156,7 @@
     "contsDivCd": "7",
     "showDateTabNm": "2017.11.22",
     "advmUrl": "https://www.youtube.com/watch?v=lgLWRFW1hF8",
+    "advmShowOdrg": "1,3",
     "showYn": true
   },
   {
@@ -150,6 +166,7 @@
     "contsDivCd": "7",
     "showDateTabNm": "2017.11.23",
     "advmUrl": "https://www.youtube.com/watch?v=lgLWRFW1hF8",
+    "advmShowOdrg": "1,3",
     "showYn": true
   },
   {
@@ -159,6 +176,7 @@
     "contsDivCd": "7",
     "showDateTabNm": "2017.11.24",
     "advmUrl": "https://www.youtube.com/watch?v=lgLWRFW1hF8",
+    "advmShowOdrg": "1,3",
     "showYn": true
   }
 ]
