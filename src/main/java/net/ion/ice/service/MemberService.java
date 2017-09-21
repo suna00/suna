@@ -6,18 +6,14 @@ import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -46,13 +42,13 @@ public class MemberService {
         String count = nodeBindingInfo.getJdbcTemplate().queryForList(" select count(memberNo) as count from member where email=? ", email).get(0).get("count").toString();
 
         if("0".equals(count)){
-            String contextPath = replaceUrl();
+            String contextPath = common.replaceUrl();
             String linkUrl = getCertCode(data);
-            Map<String, String> html = html(contextPath, linkUrl, date, time);
+            Map<String, String> html = memberHtml(contextPath, linkUrl, date, time);
 
             sendEmailHtml(email, html.get("title"), html.get("contents"));
         } else {
-            common.setErrorMessageAlert(context,"U0001", "중복된 인증 메일입니다.");
+            common.setErrorMessage(context, "U0001");
         }
 
         return context;
@@ -61,7 +57,7 @@ public class MemberService {
     public ExecuteContext authenticationCertEmail(ExecuteContext context){
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
 
-        String[] params = { "certCode","siteType","acceptTermsYn","receiveMarketingEmailAgreeYn","receiveMarketingSMSAgreeYn" };
+        String[] params = { "certCode" };
         if (common.requiredParams(context, data, params)) return context;
 
         String certCode = data.get("certCode").toString();
@@ -86,20 +82,20 @@ public class MemberService {
                 resultObject.put("email", map.get("email").toString());
                 context.setResult(resultObject);
             } else{
-                common.setErrorMessageAlert(context,"U0003", "만료된 인증코드입니다.");
+                common.setErrorMessage(context, "U0003");
             }
         } else {
-            common.setErrorMessageAlert(context,"U0002", "존재하지 않는 인증코드입니다.");
+            common.setErrorMessage(context, "U0002");
         }
 
         return context;
     }
 
-    public static String replaceUrl(){
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        String[] splitRequestUrl = StringUtils.split(request.getRequestURL().toString(), "/");
-        return String.format("%s//%s", splitRequestUrl[0], splitRequestUrl[1]); // "http://localhost:8080", "http://125.131.88.206:8080"
-    }
+//    public static String replaceUrl(){
+//        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+//        String[] splitRequestUrl = StringUtils.split(request.getRequestURL().toString(), "/");
+//        return String.format("%s//%s", splitRequestUrl[0], splitRequestUrl[1]); // "http://localhost:8080", "http://125.131.88.206:8080"
+//    }
 
     public String getCertCode(Map<String, Object> data){
         String emailCertificationType = data.get("emailCertificationType").toString();
@@ -127,7 +123,7 @@ public class MemberService {
         return linkUrl;
     }
 
-    public Map<String, String> html(String contextPath, String linkUrl, String date, String time){
+    public Map<String, String> memberHtml(String contextPath, String linkUrl, String date, String time){
         Map<String, String> html = new HashMap<>();
 
         String title = "";
@@ -210,6 +206,10 @@ public class MemberService {
 
             if("email".equals(searchType)){
                 searchPasswordEmail(member);
+
+                Map<String, Object> resultObject = new HashMap<>();
+                resultObject.put("email", member.get("email").toString());
+                context.setResult(resultObject);
             } else {
                 String cellPhoneData = data.get("cellPhoneData").toString();
                 searchPasswordCellphone(member, cellPhoneData);

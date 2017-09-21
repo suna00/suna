@@ -1,7 +1,11 @@
 package net.ion.ice.service;
 
 import net.ion.ice.core.context.ExecuteContext;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -85,13 +89,9 @@ public class CommonService {
         context.setResult(object);
     }
 
-    public static void setErrorMessageAlert(ExecuteContext context, String code, String message) {
-        Map<String, Object> object = new HashMap<>();
-        Map<String, Object> object2 = new HashMap<>();
-        object2.put("code", code);
-        object2.put("message", message);
-        object.put("validate", object2);
-        context.setResult(object);
+    public static String replaceUrl(){
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        String[] splitRequestUrl = StringUtils.split(request.getRequestURL().toString(), "/");
+        return String.format("%s//%s", splitRequestUrl[0], splitRequestUrl[1]); // "http://localhost:8080", "http://125.131.88.206:8080"
     }
-
 }
