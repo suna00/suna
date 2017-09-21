@@ -310,8 +310,8 @@
   {
     "typeId": "propertyType",
     "tid": "specialExhibition",
-    "pid": "siteId",
-    "propertyTypeName": "사이트",
+    "pid": "siteType",
+    "propertyTypeName": "사이트타입",
     "valueType": "REFERENCE",
     "required": false,
     "idable": false,
@@ -319,9 +319,9 @@
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "site",
-    "referenceValue": "siteId",
-    "codeFilter": "",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
+    "codeFilter": "siteType",
     "defaultValue": ""
   },
   {

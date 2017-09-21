@@ -156,23 +156,6 @@
   {
     "typeId": "propertyType",
     "tid": "product",
-    "pid": "siteId",
-    "propertyTypeName": "사이트",
-    "valueType": "REFERENCE",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
-    "referenceType": "site",
-    "referenceValue": "siteId",
-    "codeFilter": "",
-    "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "product",
     "pid": "specialExhibitionId",
     "propertyTypeName": "기획전ID",
     "valueType": "REFERENCE",
@@ -1378,6 +1361,23 @@
   },
   {
     "typeId": "propertyType",
+    "tid": "product",
+    "pid": "releaseDate",
+    "propertyTypeName": "출시일",
+    "valueType": "DATE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "simple",
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
     "tid": "productByAffiliateMall",
     "pid": "name",
     "propertyTypeName": "이름",
@@ -2362,7 +2362,6 @@
     "codeFilter": "",
     "defaultValue": ""
   },
-
   {
     "typeId": "propertyType",
     "tid": "productOptionSet",
@@ -2568,7 +2567,6 @@
     "codeFilter": "",
     "defaultValue": ""
   },
-
   {
     "typeId": "propertyType",
     "tid": "productOption",

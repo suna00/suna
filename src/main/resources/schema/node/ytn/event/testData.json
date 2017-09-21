@@ -616,5 +616,65 @@
     "deviceType" : "pc",
     "bannerElementStatus" : "y",
     "bannerElementType" : "fix"
+  },{
+  "typeId": "specialExhibition",
+  "specialExhibitionId": 98,
+  "affiliateId": "",
+  "siteType": "all",
+  "name": "타임 세일전",
+  "displayTargetType": "common",
+  "deviceType": "pc",
+  "categoryId": "",
+  "startDate": 20170901060000,
+  "endDate": 2017930060000,
+  "timeSaleYn": "y",
+  "addBenefitYn": "y",
+  "specialExhibitionStatus": "use",
+  "mainImage": "",
+  "thumbnailImage": "",
+  "keyword": "test",
+  "contents": "special"
+},
+  {
+    "typeId": "specialExhibition",
+    "specialExhibitionId": 99,
+    "affiliateId": "",
+    "siteType": "all",
+    "name": "특별 기획전",
+    "displayTargetType": "common",
+    "deviceType": "pc",
+    "categoryId": "",
+    "startDate": 20170731060000,
+    "endDate": 20171231060000,
+    "timeSaleYn": "n",
+    "addBenefitYn": "y",
+    "specialExhibitionStatus": "use",
+    "mainImage": "",
+    "thumbnailImage": "",
+    "keyword": "test",
+    "contents": "special"
+  },{
+  "typeId": "specialExhibitionAnker",
+  "specialExhibitionAnkerId": 991,
+  "specialExhibitionId": 99,
+  "name": "앵커 1",
+  "sortOrder": 1,
+  "ankerStatus": "y"
+},
+  {
+    "typeId": "specialExhibitionAnker",
+    "specialExhibitionAnkerId": 992,
+    "specialExhibitionId": 99,
+    "name": "앵커 2",
+    "sortOrder": 2,
+    "ankerStatus": "y"
+  },
+  {
+    "typeId": "specialExhibitionAnker",
+    "specialExhibitionAnkerId": 993,
+    "specialExhibitionId": 98,
+    "name": "앵커 98ㅇㅇ",
+    "sortOrder": 3,
+    "ankerStatus": "y"
   }
 ]
