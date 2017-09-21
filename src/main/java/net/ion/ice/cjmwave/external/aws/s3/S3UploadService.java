@@ -61,7 +61,6 @@ public class S3UploadService {
         s3Client.setRegion(com.amazonaws.regions.Region.getRegion(Regions.AP_NORTHEAST_2));
         bucketUrl = s3Client.getUrl(bucketName, bucketKey);
         logger.info("bucketURL :: " + bucketUrl);
-        System.exit(1);
     }
 
 
