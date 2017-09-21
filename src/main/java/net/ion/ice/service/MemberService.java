@@ -8,13 +8,9 @@ import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Service("memberService")
@@ -24,31 +20,74 @@ public class MemberService {
 
     @Autowired
     private NodeService nodeService;
+    @Autowired
     private NodeBindingService nodeBindingService ;
-    private CommonService common;
 
+    private CommonService commonService;
+    private EmailService emailService;
 
     public ExecuteContext authenticationSendEmail(ExecuteContext context){
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
 
-        String[] params = { "emailCertificationType","certStatus","email","siteType","acceptTermsYn","receiveMarketingEmailAgreeYn","receiveMarketingSMSAgreeYn","date","time" };
-        if (common.requiredParams(context, data, params)) return context;
+        String[] params = { "email","siteType","acceptTermsYn","receiveMarketingEmailAgreeYn","receiveMarketingSMSAgreeYn" };
+        if (commonService.requiredParams(context, data, params)) return context;
 
         String email = data.get("email").toString();
-        String date = data.get("date").toString();
-        String time = data.get("time").toString();
+        String siteType = data.get("siteType").toString();
+        String acceptTermsYn = data.get("acceptTermsYn").toString();
+        String receiveMarketingEmailAgreeYn = data.get("receiveMarketingEmailAgreeYn").toString();
+        String receiveMarketingSMSAgreeYn = data.get("receiveMarketingSMSAgreeYn").toString();
 
         NodeBindingInfo nodeBindingInfo = NodeUtils.getNodeBindingInfo("member");
         String count = nodeBindingInfo.getJdbcTemplate().queryForList(" select count(memberNo) as count from member where email=? ", email).get(0).get("count").toString();
 
         if("0".equals(count)){
-            String contextPath = common.replaceUrl();
-            String linkUrl = getCertCode(data);
-            Map<String, String> html = memberHtml(contextPath, linkUrl, date, time);
+            String certCode = getCertCode("이메일 인증요청", "join", null, email, "request");
+            String linkUrl = "/signUp/stepTwo?certCode="+certCode+"&siteType="+siteType+"&acceptTermsYn="+acceptTermsYn+"&receiveMarketingEmailAgreeYn="+receiveMarketingEmailAgreeYn+"&receiveMarketingSMSAgreeYn="+receiveMarketingSMSAgreeYn;
+            Map<String, String> html = memberHtml("본인인증", linkUrl);
 
-            sendEmailHtml(email, html.get("title"), html.get("contents"));
+            emailService.sendEmailHtml(email, html.get("title"), html.get("contents"));
         } else {
-            common.setErrorMessage(context, "U0001");
+            commonService.setErrorMessage(context, "U0001");
+        }
+
+        return context;
+    }
+
+    public ExecuteContext searchPassword(ExecuteContext context){
+        Map<String, Object> data = new LinkedHashMap<>(context.getData());
+
+        String[] params = { "searchType","name","userId" };
+        if (commonService.requiredParams(context, data, params)) return context;
+
+        String searchType = data.get("searchType").toString();
+        String name = data.get("name").toString();
+        String userId = data.get("userId").toString();
+
+        NodeBindingInfo nodeBindingInfo = NodeUtils.getNodeBindingInfo("member");
+        List<Map<String,Object>> memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and userId=? ", name, userId);
+
+        if(0 < memberList.size()){
+            Map<String, Object> member = memberList.get(0);
+            String memberNo = member.get("memberNo").toString();
+            String email = member.get("email").toString();
+            String cellPhone = member.get("cellPhone").toString();
+
+            if("email".equals(searchType)){
+                String certCode = getCertCode("이메일 인증요청", "password", memberNo, email, "request");
+                String linkUrl = "/signIn/changePassword?certCode="+certCode;
+                Map<String, String> html = memberHtml("비밀번호변경", linkUrl);
+
+                emailService.sendEmailHtml(member.get("email").toString(), html.get("title"), html.get("contents"));
+
+                Map<String, Object> resultObject = new HashMap<>();
+                resultObject.put("email", member.get("email").toString());
+                context.setResult(resultObject);
+            } else {
+                String cellPhoneData = data.get("cellPhoneData").toString();
+            }
+        } else {
+            commonService.setErrorMessage(context, "U0004");
         }
 
         return context;
@@ -58,7 +97,7 @@ public class MemberService {
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
 
         String[] params = { "certCode" };
-        if (common.requiredParams(context, data, params)) return context;
+        if (commonService.requiredParams(context, data, params)) return context;
 
         String certCode = data.get("certCode").toString();
 
@@ -82,158 +121,20 @@ public class MemberService {
                 resultObject.put("email", map.get("email").toString());
                 context.setResult(resultObject);
             } else{
-                common.setErrorMessage(context, "U0003");
+                commonService.setErrorMessage(context, "U0003");
             }
         } else {
-            common.setErrorMessage(context, "U0002");
+            commonService.setErrorMessage(context, "U0002");
         }
 
         return context;
-    }
-
-//    public static String replaceUrl(){
-//        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-//        String[] splitRequestUrl = StringUtils.split(request.getRequestURL().toString(), "/");
-//        return String.format("%s//%s", splitRequestUrl[0], splitRequestUrl[1]); // "http://localhost:8080", "http://125.131.88.206:8080"
-//    }
-
-    public String getCertCode(Map<String, Object> data){
-        String emailCertificationType = data.get("emailCertificationType").toString();
-        String certStatus = data.get("certStatus").toString();
-        String email = data.get("email").toString();
-        String siteType = data.get("siteType").toString();
-        String acceptTermsYn = data.get("acceptTermsYn").toString();
-        String receiveMarketingEmailAgreeYn = data.get("receiveMarketingEmailAgreeYn").toString();
-        String receiveMarketingSMSAgreeYn = data.get("receiveMarketingSMSAgreeYn").toString();
-
-        NodeBindingInfo nodeBindingInfo = NodeUtils.getNodeBindingInfo("emailCertification");
-        String certCode = nodeBindingInfo.getJdbcTemplate().queryForList(" select to_base64(concat('ygoon!@#SHOP ',now())) as certCode ").get(0).get("certCode").toString();
-
-        Map<String, Object> emailCertificationData = new HashMap<>();
-        emailCertificationData.put("name", "이메일 인증요청");
-        emailCertificationData.put("emailCertificationType", emailCertificationType);
-        emailCertificationData.put("email", email);
-        emailCertificationData.put("certCode", certCode);
-        emailCertificationData.put("certStatus", certStatus);
-        emailCertificationData.put("certRequestDate", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()));
-        nodeService.executeNode(emailCertificationData, "emailCertification", CREATE);
-
-        String linkUrl = "/signUp/stepTwo?certCode="+certCode+"&siteType="+siteType+"&acceptTermsYn="+acceptTermsYn+"&receiveMarketingEmailAgreeYn="+receiveMarketingEmailAgreeYn+"&receiveMarketingSMSAgreeYn="+receiveMarketingSMSAgreeYn;
-
-        return linkUrl;
-    }
-
-    public Map<String, String> memberHtml(String contextPath, String linkUrl, String date, String time){
-        Map<String, String> html = new HashMap<>();
-
-        String title = "";
-        String contents = "";
-        String link = "http://localhost:3090"+linkUrl;
-
-        List<Node> list = nodeService.getNodeList("emailTemplate", "name_matching=본인인증");
-        if(list.size() > 0){
-            title = list.get(0).get("title").toString();
-            contents = list.get(0).get("contents").toString();
-
-            contents = contents.replaceAll("src=\"http://localhost/assets/images","src="+contextPath+"/image");
-            contents = contents.replaceAll("href=\"#\"", "href="+link);
-            contents = contents.replaceAll("2017-07-20",date);
-            contents = contents.replaceAll("04:20:20",time);
-        }
-
-        html.put("title", title);
-        html.put("contents", contents);
-
-        return html;
-    }
-
-    public void sendEmailHtml(String email, String title, String html) {
-        Properties props = new Properties();
-        props.setProperty("mail.transport.protocol", "smtp");
-        props.setProperty("mail.host", "smtp.gmail.com");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.port", "465");
-
-        props.put("mail.smtp.socketFactory.port", "465");
-        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-        props.put("mail.smtp.socketFactory.fallback", "false");
-
-        props.setProperty("mail.smtp.quitwait", "false");
-
-        Authenticator auth = new Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("kimjiyeon0526@gmail.com", "14wldusdl");
-            }
-        };
-
-        Session session = Session.getInstance(props, auth);
-
-        MimeMessage message = new MimeMessage(session);
-
-        try {
-            message.setSender(new InternetAddress("ytn@ytn.co.kr"));
-            message.setSubject(title);
-            message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
-
-            Multipart multipart = new MimeMultipart();
-            MimeBodyPart mimeBodyPart = new MimeBodyPart();
-
-            mimeBodyPart.setContent(html, "text/html; charset=MS949");
-            multipart.addBodyPart(mimeBodyPart);
-            message.setContent(multipart);
-
-            Transport.send(message);
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public ExecuteContext searchPassword(ExecuteContext context){
-        Map<String, Object> data = new LinkedHashMap<>(context.getData());
-
-        String[] params = { "searchType","name","userId" };
-        if (common.requiredParams(context, data, params)) return context;
-
-        String searchType = data.get("searchType").toString();
-        String name = data.get("name").toString();
-        String userId = data.get("userId").toString();
-
-        NodeBindingInfo nodeBindingInfo = NodeUtils.getNodeBindingInfo("member");
-        List<Map<String,Object>> memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and userId=? ", name, userId);
-
-        if(0 < memberList.size()){
-            Map<String, Object> member = memberList.get(0);
-
-            if("email".equals(searchType)){
-                searchPasswordEmail(member);
-
-                Map<String, Object> resultObject = new HashMap<>();
-                resultObject.put("email", member.get("email").toString());
-                context.setResult(resultObject);
-            } else {
-                String cellPhoneData = data.get("cellPhoneData").toString();
-                searchPasswordCellphone(member, cellPhoneData);
-            }
-        } else {
-            common.setErrorMessage(context, "U0004");
-            return context;
-        }
-        return context;
-    }
-
-    public void searchPasswordEmail(Map<String, Object> member){
-        // testApi/emailCertification/req.json?emailCertificationType=password&certStatus=request&adminId=&memberNo=77777&email=jlee84@i-on.net
-    }
-
-    public void searchPasswordCellphone(Map<String, Object> member, String cellPhoneData){
-        // testApi/smsCertification/req.json?smsCertificationType=id&certStatus=request&adminId=&memberNo=77777&cellphone=000-1111-7777
     }
 
     public ExecuteContext leaveMembership(ExecuteContext context){
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
 
         String[] params = { "memberNo","leaveType","reasonType" };
-        if (common.requiredParams(context, data, params)) return context;
+        if (commonService.requiredParams(context, data, params)) return context;
 
         List<Node> list = nodeService.getNodeList("orderProduct", "memberNo_matching="+data.get("memberNo"));
         if(list.size() > 0){
@@ -241,7 +142,7 @@ public class MemberService {
                 String orderStatus = node.getValue("orderStatus").toString();
 //                배송완료,구매확정,취소완료,교환배송완료,반품완료
                 if( !("order006".equals(orderStatus) || "order007".equals(orderStatus) || "order009".equals(orderStatus) || "order016".equals(orderStatus) || "order021".equals(orderStatus))){
-                    common.setErrorMessage(context, "L0001");
+                    commonService.setErrorMessage(context, "L0001");
                     return context;
                 }
             }
@@ -249,22 +150,22 @@ public class MemberService {
 
         Node node = nodeService.getNode("member", data.get("memberNo").toString());
         if(node == null){
-            common.setErrorMessage(context, "L0002");
+            commonService.setErrorMessage(context, "L0002");
             return context;
         }
 
         Node leave = nodeService.getNode("requestToleaveMember", data.get("memberNo").toString());
         if(leave != null){
-            common.setErrorMessage(context, "L0003");
+            commonService.setErrorMessage(context, "L0003");
             return context;
         }
 
         data.putAll(node);
         data.put("leaveDate", new Date());
-        nodeService.executeNode(data, "requestToleaveMember", common.CREATE);
+        nodeService.executeNode(data, "requestToleaveMember", commonService.CREATE);
 
         node.put("memberStatus", "leave");
-        nodeService.executeNode(node, "member", common.UPDATE);
+        nodeService.executeNode(node, "member", commonService.UPDATE);
 
 
         return context;
@@ -294,5 +195,50 @@ public class MemberService {
             ranPw += pwCollection[selectRandomPw];
         }
         return ranPw;
+    }
+
+    public String getCertCode(String name, String emailCertificationType, String memberNo, String email, String certStatus){
+        NodeBindingInfo nodeBindingInfo = NodeUtils.getNodeBindingInfo("emailCertification");
+        String certCode = nodeBindingInfo.getJdbcTemplate().queryForList(" select to_base64(concat('ygoon!@#SHOP ',now())) as certCode ").get(0).get("certCode").toString();
+
+        Map<String, Object> emailCertificationData = new HashMap<>();
+        emailCertificationData.put("name",name);
+        emailCertificationData.put("emailCertificationType", emailCertificationType);
+        emailCertificationData.put("memberNo", memberNo);
+        emailCertificationData.put("email", email);
+        emailCertificationData.put("certCode", certCode);
+        emailCertificationData.put("certStatus", certStatus);
+        emailCertificationData.put("certRequestDate", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()));
+        nodeService.executeNode(emailCertificationData, "emailCertification", CREATE);
+
+        return certCode;
+    }
+
+    public Map<String, String> memberHtml(String templateName, String linkUrl){
+        Map<String, String> html = new HashMap<>();
+
+        String contextPath = commonService.replaceUrl();
+        LocalDateTime date = LocalDateTime.now().plusHours(1);
+
+        String title = "";
+        String contents = "";
+        String link = "http://localhost:3090"+linkUrl;
+
+        List<Map<String, Object>> emailTemplateList = nodeBindingService.list("emailTemplate", "name_in=".concat(templateName));
+
+        if(emailTemplateList.size() > 0){
+            title = emailTemplateList.get(0).get("title").toString();
+            contents = emailTemplateList.get(0).get("contents").toString();
+
+            contents = contents.replaceAll("src=\"http://localhost/assets/images","src="+contextPath+"/image");
+            contents = contents.replaceAll("href=\"#\"", "href="+link);
+            contents = contents.replaceAll("yyyy-MM-dd", date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))); // yyyy-MM-dd
+            contents = contents.replaceAll("HH:mm:ss", date.format(DateTimeFormatter.ofPattern("HH:mm:ss"))); // HH:mm:ss
+        }
+
+        html.put("title", title);
+        html.put("contents", contents);
+
+        return html;
     }
 }
