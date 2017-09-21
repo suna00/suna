@@ -36,10 +36,10 @@ public class MnetController {
     @RequestMapping(value = {"initialData/{type}"}, produces = { "application/json" })
     public @ResponseBody String retrieveAll(@PathVariable String type) throws JSONException {
         String mnetExecuteIds[] = {
-                "album", "albumMulti"
-                , "artist", "artistMulti"
-                , "musicVideo", "musicVideoMulti"
-                , "song", "songMulti"
+                "album"
+                , "artist"
+                , "musicVideo"
+                , "song"
                 , "mcdChartBasInfo", "mcdChartStats"
         };
 
@@ -55,19 +55,19 @@ public class MnetController {
                     break;
                 case "album" :
                     dbSyncService.executeWithIteration("album");
-                    dbSyncService.executeWithIteration("albumMulti");
+//                    dbSyncService.executeWithIteration("albumMulti");
                     break;
                 case "artist" :
                     dbSyncService.executeWithIteration("artist");
-                    dbSyncService.executeWithIteration("artistMulti");
+//                    dbSyncService.executeWithIteration("artistMulti");
                     break;
                 case "song" :
                     dbSyncService.executeWithIteration("song");
-                    dbSyncService.executeWithIteration("songMulti");
+//                    dbSyncService.executeWithIteration("songMulti");
                     break;
                 case "mv" :
                     dbSyncService.executeWithIteration("musicVideo");
-                    dbSyncService.executeWithIteration("musicVideoMulti");
+//                    dbSyncService.executeWithIteration("musicVideoMulti");
                     break;
                 case "chart" :
                     dbSyncService.executeWithIteration("mcdChartBasInfo");

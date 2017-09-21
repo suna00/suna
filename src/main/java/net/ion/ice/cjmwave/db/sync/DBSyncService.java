@@ -108,9 +108,51 @@ public class DBSyncService {
         List<Node> mapperInfoList = NodeUtils.getNodeList(MAPPER_TID, "executeId_matching=" + executeId);
         Map<String, String> mapperStore = NodeMappingUtils.extractPropertyColumnMap(mapperInfoList);
 
+        /*
+            다국어 처리가 여기로 변경되어야 함
+            {pid}_{langCd}
+        * */
+        final String MLANG_PID = "multiLanguageQuery";
+        boolean useMultiLanguage = executionNode.containsKey(MLANG_PID) && executionNode.get(MLANG_PID) != null;
+        String multiLangQuery = null;
+        String multiLangForeignKey = null;
+        if(useMultiLanguage) {
+            multiLangQuery = String.valueOf(executionNode.get("multiLanguageQuery"));
+            NodeType nodeType = nodeService.getNodeType(targetNodeType);
+            List<String> idables = nodeType.getIdablePIds();
+            if(idables != null && idables.size() == 1) multiLangForeignKey = idables.get(0);
+        }
+
+
         for (Map qMap : queryRs) {
             int rs = 0;
+
             Map<String, Object> fit = NodeMappingUtils.mapData(targetNodeType, qMap, mapperStore);
+            // 다국어 처리
+            try{
+                if(useMultiLanguage && multiLangForeignKey != null) {
+                    // 다국어 사용하는 쿼리 노드라면 추가쿼리를 해서 노드 정보에 다국어 정보를 추가한다.
+                    Map<String, Object> idMap = new HashMap<>();
+                    idMap.put("id", qMap.get(multiLangForeignKey));
+                    List<Map<String, Object>> multiLanguageInformation = ice2Template.queryForList(multiLangQuery, idMap);
+                    // langcd 랑 뭐 이것저것 들었다고 치자
+                    for(Map<String, Object> singleLangMap : multiLanguageInformation) {
+                        String langCd = String.valueOf(singleLangMap.get("langCd"));
+                        Iterator<String> multiIter = singleLangMap.keySet().iterator();
+                        while(multiIter.hasNext()) {
+                            String k = multiIter.next();
+                            Object v = singleLangMap.get(k);
+                            if(!k.equals("langCd")) {
+                                fit.put(k + "_" + langCd, v);
+                            }
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                logger.error("Failed to set multi language information, but consider it as normal");
+            }
+
+
             logger.info("CREATE MIGRATION NODE :: " + String.valueOf(fit));
             try{
                 Node finished = nodeService.saveNodeWithException(fit);
@@ -128,7 +170,8 @@ public class DBSyncService {
 
                 }
             }
-            MigrationUtils.recordSingleDate(ice2Template, targetNodeType, String.valueOf(fit), rs); // 레코드에 대한 결과
+            // 실패 이외에 성공도 기록하고 싶으면 주석을 푸시오.
+            //MigrationUtils.recordSingleDate(ice2Template, targetNodeType, String.valueOf(fit), rs); // 레코드에 대한 결과
         }
 
         long jobTaken = (new Date().getTime() - startTime.getTime());
@@ -208,7 +251,8 @@ public class DBSyncService {
                             MigrationUtils.saveFailureNodes(ice2Template, "?", fit);
                         }
                     }
-                    MigrationUtils.recordSingleDate(template, targetNodeType, String.valueOf(fit), rs);
+                    // 실패 이외에 성공도 기록하고 싶으면 주석을 푸시오.
+                    //MigrationUtils.recordSingleDate(template, targetNodeType, String.valueOf(fit), rs);
                 }
                 i++;
             }
@@ -257,6 +301,8 @@ public class DBSyncService {
         successIds = executeSingleTaskAndRecord(executionNode, targets2Update, "MNET", "SCHEDULE");
 
         // successIds 로 다국어 노드 업데이트 - Naming rule 에 따라 움직이기
+        /*
+        // 0920 더 이상 *Multi 테이블 사용하지 않음
         Node multiLanguageExecutionNode = nodeService.getNode(PROCESS_TID, executeId + "Multi");
         if(null != multiLanguageExecutionNode) {
             Map<String, Object> multiParamMap = new HashMap<>();
@@ -269,5 +315,6 @@ public class DBSyncService {
                 executeSingleTaskAndRecord(multiLanguageExecutionNode, multiLanguageTargets, "MNET", "SCHEDULE");
             }
         }
+        */
     }
 }
