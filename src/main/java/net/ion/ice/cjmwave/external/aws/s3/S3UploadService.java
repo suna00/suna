@@ -49,7 +49,7 @@ public class S3UploadService {
             awsCredentials = new BasicAWSCredentials(accessKey, secretKey);
             initializeS3Client();
         } catch (Exception e) {
-            logger.equals("Failed to initialize S3 storage");
+            logger.error("Failed to initialize S3 storage", e);
         }
     }
 
