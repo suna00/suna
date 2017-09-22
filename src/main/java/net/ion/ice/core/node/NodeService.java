@@ -197,16 +197,15 @@ public class NodeService {
     }
 
     private void  initSchema() throws IOException {
-
         saveSchema("classpath:schema/core/*.json");
         saveSchema("classpath:schema/core/*/*.json");
 //        saveSchema("classpath:schema/node/*.json", lastChanged);
-        saveSchema("classpath:schema/node/**/*.json");
+//        saveSchema("classpath:schema/node/**/*.json");
 //        saveSchema("classpath:schema/test/*.json", lastChanged);
-        saveSchema("classpath:schema/test/**/*.json");
+//        saveSchema("classpath:schema/test/**/*.json");
 
     }
-    private void saveSchema(String resourcePath) throws IOException {
+    public void saveSchema(String resourcePath) throws IOException {
         saveSchema(resourcePath, true);
         saveSchema(resourcePath, false);
     }
