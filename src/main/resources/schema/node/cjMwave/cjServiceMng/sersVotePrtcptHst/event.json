@@ -1,0 +1,17 @@
+[
+  {
+    "typeId": "event",
+    "tid": "sersVotePrtcptHst",
+    "event": "sersVoting",
+    "eventName": "SERIES VOTING Save Event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "sersVotePrtcptHst>sersVoting",
+    "action": "sersVotingEvent",
+    "actionName": "SERIES VOTING Save",
+    "actionType": "service",
+    "actionBody": "votePrtcptHstService.seriesVoting",
+    "order": 1
+  }
+]

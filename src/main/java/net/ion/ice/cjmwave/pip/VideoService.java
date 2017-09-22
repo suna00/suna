@@ -6,6 +6,8 @@ import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.net.URISyntaxException;
@@ -18,6 +20,7 @@ import java.util.Map;
 
 @Service("videoService")
 public class VideoService {
+    private static Logger logger = LoggerFactory.getLogger(VideoService.class);
     private String[] authKey = {"smccjenm"};
     private String[] cdnDomainUrl = {"pip-vodhls-mwave.cjenm.skcdn.com", "pip-cliphls-mwave.cjenm.skcdn.com"};
     private String[] buildPids = {"mediaUrl", "contentImgUrl", "subtitlePath"};
@@ -59,7 +62,7 @@ public class VideoService {
 
                 try {
                     String uriStri = cdmDomainUrlStr + uri.getURI();
-                    System.out.println("##PIP " + pid + " CDN URL : " + uriStri);
+                    logger.info("##PIP " + pid + " CDN URL : " + uriStri);
                     returnResult.put(pid, uriStri);
                 } catch (IllegalArgumentException iae) {
                     iae.printStackTrace();
