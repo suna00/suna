@@ -53,6 +53,7 @@ public class NodeUtils {
     }
 
     public static Node getNode(NodeType nodeType, String id) {
+        if(nodeType == null) return null ;
         if(nodeType.getRepositoryType().equals("data")){
             if (getNodeBindingService() == null) return null ;
             Map<String, Object> resultData =  getNodeBindingService().getNodeBindingInfo(nodeType.getTypeId()).retrieve(id) ;
@@ -230,7 +231,7 @@ public class NodeUtils {
             }
             case FILE: {
 //                if (value instanceof FileValue) {
-                    return value;
+                return value;
 //                }else {
 //
 //                }
@@ -243,21 +244,8 @@ public class NodeUtils {
 
     public static ReferenceView getReferenceValueView(ReadContext context, Object value, PropertyType pt) {
         try {
-            NodeService nodeService = getNodeService();
-
-            String referenceType = pt.getReferenceType() ;
-            String refId = value.toString() ;
-            if(StringUtils.contains(refId, "::")){
-                referenceType = StringUtils.substringBefore(refId, "::") ;
-                refId = StringUtils.substringAfter(refId, "::") ;
-            }
-            if(StringUtils.isNotEmpty(pt.getCodeFilter()) && !StringUtils.contains(refId, Node.ID_SEPERATOR)){
-                refId = pt.getCodeFilter() + Node.ID_SEPERATOR + refId ;
-            }
-
-            Node refNode = getNode(referenceType, refId);
-            NodeType nodeType = nodeService.getNodeType(referenceType);
-            return new ReferenceView(refNode.toDisplay(context), nodeType, context);
+            Node refNode = getReferenceNode(value, pt);
+            return new ReferenceView(refNode.toDisplay(context), context);
 
         } catch (Exception e) {
             return new ReferenceView(value.toString(), value.toString());
@@ -266,24 +254,27 @@ public class NodeUtils {
 
     public static Reference getReferenceValue(ReadContext context, Object value, PropertyType pt) {
         try {
-            NodeService nodeService = getNodeService();
-            String referenceType = pt.getReferenceType() ;
-            String refId = value.toString() ;
-
-            if(StringUtils.contains(refId, "::")){
-                referenceType = StringUtils.substringBefore(refId, "::") ;
-                refId = StringUtils.substringAfter(refId, "::") ;
-            }
-            if(StringUtils.isNotEmpty(pt.getCodeFilter()) && !StringUtils.contains(refId, Node.ID_SEPERATOR)){
-                refId = pt.getCodeFilter() + Node.ID_SEPERATOR + refId ;
-            }
-
-            Node refNode = getNode(referenceType, refId);
-            NodeType nodeType = nodeService.getNodeType(referenceType);
-            return new Reference(refNode, nodeType, context);
+            Node refNode = getReferenceNode(value, pt);
+            return new Reference(refNode, context);
         } catch (Exception e) {
             return new Reference(value.toString(), value.toString());
         }
+    }
+
+    public static Node getReferenceNode(Object value, PropertyType pt) {
+        if(value == null || pt == null) return null;
+        String referenceType = pt.getReferenceType() ;
+        String refId = value.toString() ;
+
+        if(StringUtils.contains(refId, "::")){
+            referenceType = StringUtils.substringBefore(refId, "::") ;
+            refId = StringUtils.substringAfter(refId, "::") ;
+        }
+        if(StringUtils.isNotEmpty(pt.getCodeFilter()) && !StringUtils.contains(refId, Node.ID_SEPERATOR)){
+            refId = pt.getCodeFilter() + Node.ID_SEPERATOR + refId ;
+        }
+
+        return getNode(referenceType, refId);
     }
 
     public static Object getResultValue(ReadContext context, PropertyType pt, Map<String, Object> node) {
@@ -347,8 +338,10 @@ public class NodeUtils {
                 return getFileResultValue(context, pt, value);
             }
             case REFERENCED: {
-                if (context != null && context.isIncludeReferenced() && context.getLevel() < 3 && node instanceof Node) {
+                if (context != null && context.isIncludeReferenced() && context.getLevel() < 5 && node instanceof Node) {
                     QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(getNodeType(((Node)node).getTypeId()), pt, (Node) node);
+                    subQueryContext.setDateFormat(context.getDateFormat()) ;
+                    subQueryContext.setFileUrlFormat(context.getFileUrlFormat()) ;
                     subQueryContext.setLevel(context.getLevel() + 1);
                     return getNodeService().getDisplayNodeList(pt.getReferenceType(), subQueryContext);
                 }
