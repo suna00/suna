@@ -119,6 +119,11 @@ public class ExecuteContext extends ReadContext{
 
     protected void init() {
         this.time = new Date() ;
+        if(this.event == null && data.containsKey("event") && getNodeType().getPropertyType("event") == null){
+            this.event = (String) data.get("event");
+        }
+
+
         if(nodeType == null){
             this.node = new Node(data);
             execute = true ;
@@ -129,9 +134,6 @@ public class ExecuteContext extends ReadContext{
         }catch(Exception e){
         }
         exist = existNode != null ;
-        if(this.event == null && data.containsKey("event") && getNodeType().getPropertyType("event") == null){
-            this.event = (String) data.get("event");
-        }
 
         if(exist){
             if(event != null && event.equals("create")){

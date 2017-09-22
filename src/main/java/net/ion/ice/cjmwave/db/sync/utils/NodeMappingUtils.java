@@ -1,6 +1,8 @@
 package net.ion.ice.cjmwave.db.sync.utils;
 
 import net.ion.ice.core.node.Node;
+import net.ion.ice.core.node.NodeService;
+import net.ion.ice.core.node.NodeType;
 
 import java.util.HashMap;
 import java.util.List;
@@ -34,5 +36,13 @@ public class NodeMappingUtils {
         });
         combined.put("typeId", targetNodeType);
         return combined;
+    }
+
+    public static String retrieveNodePrimaryKey (NodeService nodeService, String nodeTypeId) {
+        String pk = null;
+        NodeType nodeType = nodeService.getNodeType(nodeTypeId);
+        List<String> idables = nodeType.getIdablePIds();
+        if(idables != null && idables.size() == 1) pk = idables.get(0);
+        return pk;
     }
 }

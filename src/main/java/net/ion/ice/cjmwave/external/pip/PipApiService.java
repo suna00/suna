@@ -2,7 +2,6 @@ package net.ion.ice.cjmwave.external.pip;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.ion.ice.cjmwave.external.aws.s3.S3UploadService;
-import net.ion.ice.cjmwave.external.utils.FileUtils;
 import net.ion.ice.cjmwave.external.utils.JSONNetworkUtils;
 import net.ion.ice.cjmwave.external.utils.MigrationUtils;
 import net.ion.ice.core.data.DBService;
@@ -63,7 +62,7 @@ public class PipApiService {
 
     private String uploadS3ThenReturnUrl (String fileUrl) throws Exception {
         if(null == fileUrl || "null".equals(fileUrl) || fileUrl.length() < 1) return "";
-        File retrievedFile = FileUtils.retrieveRemoteFile(defaultFilePath, fileUrl);
+        File retrievedFile = MigrationUtils.retrieveRemoteFile(defaultFilePath, fileUrl);
         if(retrievedFile == null) {
             logger.info("Could not find available file from  :: " + fileUrl);
             return null;

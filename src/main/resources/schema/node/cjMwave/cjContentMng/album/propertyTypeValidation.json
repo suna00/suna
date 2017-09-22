@@ -353,8 +353,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>album>imgPath",
-    "propertyTypeId": "album>imgPath",
+    "id": "propertyTypeValidation>album>imgUrl",
+    "propertyTypeId": "album>imgUrl",
     "validation": {
       "language": "ko",
       "required": {

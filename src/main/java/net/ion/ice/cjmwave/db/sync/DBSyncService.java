@@ -2,22 +2,21 @@ package net.ion.ice.cjmwave.db.sync;
 
 import net.ion.ice.cjmwave.db.sync.utils.NodeMappingUtils;
 import net.ion.ice.cjmwave.db.sync.utils.SyntaxUtils;
+import net.ion.ice.cjmwave.external.aws.s3.S3UploadService;
 import net.ion.ice.cjmwave.external.utils.MigrationUtils;
 import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
-import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.util.*;
 
 /**
@@ -40,6 +39,12 @@ public class DBSyncService {
     @Autowired
     DBService dbService;
 
+    @Autowired
+    S3UploadService s3UploadService;
+
+    @Value("${file.default.path}")
+    String defaultFilePath;
+
     private JdbcTemplate ice2Template;
 
     @PostConstruct
@@ -51,49 +56,64 @@ public class DBSyncService {
         }
     }
 
+    private Map<String, Object> getMultiLanguageInfo (Map<String, Object> queryMap, String multiLangQuery, String foreignKey) {
+        Map<String, Object> additional = new HashMap<String, Object>();
+        try{
+            if(foreignKey != null) {
+                // 다국어 사용하는 쿼리 노드라면 추가쿼리를 해서 노드 정보에 다국어 정보를 추가한다.
+                Map<String, Object> idMap = new HashMap<>();
+                idMap.put("id", queryMap.get(foreignKey));
+                Map<String, Object> jdbcParam = SyntaxUtils.parse(multiLangQuery, idMap);
+                String jdbcQuery = String.valueOf(jdbcParam.get("query"));
+                Object[] params = (Object[]) jdbcParam.get("params");
 
-    /*
-    * executeId 로 dbSyncProcess 노드를 뒤져서
-    * DBService 로 원격 디비를 조회하고
-    * NodeService 로 노드를 생성한다
-    *
-    * Transactional 이 필요할까?
-    * Transactional 하지 않는다면 실패시 실패에 대한 기록을 쌓아 복구할 수 있는 인터페이스가 필요함
-    * */
-    @Transactional
-    public List<Map> executeJob(String executeId, HttpServletRequest request) throws Exception {
-
-        logger.info("Start executing database Sync process with Id [ " + executeId + " ]");
-        List<Map> altered = new ArrayList<>();
-
-        //dbSyncProcess Node 에서 가져오기
-        Object dbSyncMetaInfo = nodeService.readNode(null, PROCESS_TID, executeId);
-        if(dbSyncMetaInfo == null) throw new Exception("[ " + executeId + " ] does not exists");
-        Map itemMap = (Map) ((Map) dbSyncMetaInfo).get("item");
-        String query = String.valueOf(itemMap.get("query"));
-        String targetNodeType = String.valueOf(itemMap.get("targetNodeType"));
-        String targetDs = String.valueOf(itemMap.get("targetDs"));
-
-        // 쿼리
-        Map<String, Object> jdbcParam = SyntaxUtils.parse(query, request);
-        String jdbcQuery = String.valueOf(jdbcParam.get("query"));
-        Object[] params = (Object[]) jdbcParam.get("params");
-
-        JdbcTemplate template = dbService.getJdbcTemplate(targetDs);
-        List<Map<String, Object>> queryRs = template.queryForList(jdbcQuery, params);
-
-        // mapper 정보 추출
-        List<Node> mapperInfoList = NodeUtils.getNodeList(MAPPER_TID, "executeId_matching=" + executeId);
-        Map<String, String> mapperStore = NodeMappingUtils.extractPropertyColumnMap(mapperInfoList);
-
-        for(Map qMap : queryRs) {
-            // mapping 정보에 맞게 변경
-            Map<String, Object> fit = NodeMappingUtils.mapData(targetNodeType, qMap, mapperStore);
-            nodeService.saveNode(fit);
-            altered.add(fit);
+                List<Map<String, Object>> multiLanguageInformation = ice2Template.queryForList(jdbcQuery, params);
+                // langcd 랑 뭐 이것저것 들었다고 치자
+                for(Map<String, Object> singleLangMap : multiLanguageInformation) {
+                    String langCd = String.valueOf(singleLangMap.get("langCd"));
+                    Iterator<String> multiIter = singleLangMap.keySet().iterator();
+                    while(multiIter.hasNext()) {
+                        String k = multiIter.next();
+                        Object v = singleLangMap.get(k);
+                        if(!k.equals("langCd")) {
+                            additional.put(k + "_" + langCd.toLowerCase(), v);
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            logger.error("Failed to set multi language information, but consider it as normal", e);
         }
-        return altered;
+        return additional;
     }
+
+
+    // 복수 키 수용 못함
+    private Map<String, Object> getImageInfo(Map<String, Object> queryMap, String targetNodeTypeId, String nodePKPid) {
+        Map<String, Object> imageValues = new HashMap<String, Object>();
+        if(targetNodeTypeId.equals("album")
+                || targetNodeTypeId.equals("artist")){
+            try {
+                if(queryMap.containsKey(nodePKPid)){
+                    String nodePKValue = String.valueOf(queryMap.get(nodePKPid));
+                    String mnetFileUrl =
+                            MigrationUtils.getMnetFileUrl(nodePKValue
+                                    , targetNodeTypeId, targetNodeTypeId.equals("album") ? "360" : "320");
+                    File physicalFile = MigrationUtils.retrieveRemoteFile(defaultFilePath + "/mnet", mnetFileUrl);
+                    String s3Path = "";
+                    if(physicalFile != null) s3Path = s3UploadService.uploadToS3(physicalFile);
+                    logger.info("s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3");
+                    logger.info("s3 :: " + s3Path);
+                    logger.info("s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3");
+                    imageValues.put("imgUrl", MigrationUtils.retrieveRemoteFile(defaultFilePath + "/mnet", mnetFileUrl));
+                }
+            } catch (Exception e) {
+                logger.error("Failed to Load Image ... ", e);
+            }
+        }
+        return imageValues;
+    }
+
 
     private List<String> executeSingleTaskAndRecord (Node executionNode, List<Map<String, Object>> queryRs, String mig_target, String mig_type) throws Exception {
         List<String> successIds = new ArrayList<>();
@@ -115,12 +135,9 @@ public class DBSyncService {
         final String MLANG_PID = "multiLanguageQuery";
         boolean useMultiLanguage = executionNode.containsKey(MLANG_PID) && executionNode.get(MLANG_PID) != null;
         String multiLangQuery = null;
-        String multiLangForeignKey = null;
+        String currentNodePKPid = NodeMappingUtils.retrieveNodePrimaryKey(nodeService, targetNodeType);
         if(useMultiLanguage) {
             multiLangQuery = String.valueOf(executionNode.get("multiLanguageQuery"));
-            NodeType nodeType = nodeService.getNodeType(targetNodeType);
-            List<String> idables = nodeType.getIdablePIds();
-            if(idables != null && idables.size() == 1) multiLangForeignKey = idables.get(0);
         }
 
 
@@ -130,27 +147,13 @@ public class DBSyncService {
             Map<String, Object> fit = NodeMappingUtils.mapData(targetNodeType, qMap, mapperStore);
             // 다국어 처리
             try{
-                if(useMultiLanguage && multiLangForeignKey != null) {
-                    // 다국어 사용하는 쿼리 노드라면 추가쿼리를 해서 노드 정보에 다국어 정보를 추가한다.
-                    Map<String, Object> idMap = new HashMap<>();
-                    idMap.put("id", qMap.get(multiLangForeignKey));
-                    List<Map<String, Object>> multiLanguageInformation = ice2Template.queryForList(multiLangQuery, idMap);
-                    // langcd 랑 뭐 이것저것 들었다고 치자
-                    for(Map<String, Object> singleLangMap : multiLanguageInformation) {
-                        String langCd = String.valueOf(singleLangMap.get("langCd"));
-                        Iterator<String> multiIter = singleLangMap.keySet().iterator();
-                        while(multiIter.hasNext()) {
-                            String k = multiIter.next();
-                            Object v = singleLangMap.get(k);
-                            if(!k.equals("langCd")) {
-                                fit.put(k + "_" + langCd, v);
-                            }
-                        }
-                    }
+                if(useMultiLanguage) {
+                    fit.putAll(getMultiLanguageInfo(qMap, multiLangQuery, currentNodePKPid));
                 }
             } catch (Exception e) {
                 logger.error("Failed to set multi language information, but consider it as normal");
             }
+            fit.putAll(getImageInfo(qMap,targetNodeType, currentNodePKPid));
 
 
             logger.info("CREATE MIGRATION NODE :: " + String.valueOf(fit));
@@ -188,6 +191,7 @@ public class DBSyncService {
     * 실패에 대한 처리를 어떻게 할 것인지
     * */
     public void executeWithIteration (String executeId) throws Exception {
+//        int max = 1;
         boolean loop = true;
         int i = 0;
         int unit = 100;
@@ -202,18 +206,33 @@ public class DBSyncService {
         while(loop) {
             // i 가 0 부터 99 까지
             // 100 부터 199 까지
-
             int start = i * 100;
+            // TEST
+//            if(start > max) {
+//                loop = false;
+//                continue;
+//            }
 
-            Object dbSyncMetaInfo = nodeService.readNode(null, PROCESS_TID, executeId);
-            if (dbSyncMetaInfo == null) throw new Exception("[ " + executeId + " ] does not exists");
-            Map itemMap = (Map) ((Map) dbSyncMetaInfo).get("item");
-            String query = String.valueOf(itemMap.get("query"));
-            targetNodeType = String.valueOf(itemMap.get("targetNodeType"));
-            String targetDs = String.valueOf(itemMap.get("targetDs"));
-            failPolicy = String.valueOf(itemMap.get("onFail")).trim().toUpperCase();
+            Node executionNode = nodeService.read(PROCESS_TID, executeId);
+            if (executionNode == null) throw new Exception("[ " + executeId + " ] does not exists");
+            String query = String.valueOf(executionNode.get("query"));
+            targetNodeType = String.valueOf(executionNode.get("targetNodeType"));
+            String targetDs = String.valueOf(executionNode.get("targetDs"));
+            failPolicy = String.valueOf(executionNode.get("onFail")).trim().toUpperCase();
             failPolicy = (!"NULL".equals(failPolicy) && "STOP".equals(failPolicy)) ? "STOP" : "SKIP";
 
+
+            /*
+            다국어 처리가 여기로 변경되어야 함
+            {pid}_{langCd}
+            * */
+            final String MLANG_PID = "multiLanguageQuery";
+            boolean useMultiLanguage = executionNode.containsKey(MLANG_PID) && executionNode.get(MLANG_PID) != null;
+            String multiLangQuery = null;
+            String currentNodePKPid = NodeMappingUtils.retrieveNodePrimaryKey(nodeService, targetNodeType);
+            if(useMultiLanguage) {
+                multiLangQuery = String.valueOf(executionNode.get("multiLanguageQuery"));
+            }
 
             // 쿼리
             Map<String, Object> jdbcParam = SyntaxUtils.parseWithLimit(query, start, unit);
@@ -228,15 +247,21 @@ public class DBSyncService {
                 loop = false;
                 continue;
             } else {
+
                 List<Node> mapperInfoList = NodeUtils.getNodeList(MAPPER_TID, "executeId_matching=" + executeId);
                 Map<String, String> mapperStore = NodeMappingUtils.extractPropertyColumnMap(mapperInfoList);
 
                 for (Map qMap : queryRs) {
                     // mapping 정보에 맞게 변경
                     int rs = 0;
-
                     Map<String, Object> fit = NodeMappingUtils.mapData(targetNodeType, qMap, mapperStore);
+                    if(useMultiLanguage) {
+                        fit.putAll(getMultiLanguageInfo(qMap, multiLangQuery, currentNodePKPid));
+                    }
+                    fit.putAll(getImageInfo(qMap,targetNodeType, currentNodePKPid));
                     logger.info("CREATE INITIAL MIGRATION NODE :: " + String.valueOf(fit));
+
+
                     try{
                         nodeService.saveNodeWithException(fit);
                         successCnt ++;
@@ -244,6 +269,10 @@ public class DBSyncService {
                     } catch (Exception e) {
                         // 실패한다면 실패 기록을 DB 에 저장한다.
                         logger.error("Recording exception :: ", e);
+
+                        // FOR DEBUG 0922
+                        System.exit(0);
+
                         if(failPolicy.equals("STOP")){
                             loop = false;
                         } else {
@@ -270,9 +299,9 @@ public class DBSyncService {
         // MSSQL 펑션이 있다고 생각하고 파라미터로 마지막 날짜를 던져서 노드 생성하면 됨
         String queryForLastExecution =
                 "SELECT execution_date as lastUpdated "
-                + "FROM MIG_HISTORY "
-                + "WHERE mig_target = ? AND target_node = ? AND mig_type='SCHEDULE' "
-                + "ORDER BY execution_date DESC LIMIT 1";
+                        + "FROM MIG_HISTORY "
+                        + "WHERE mig_target = ? AND target_node = ? AND mig_type='SCHEDULE' "
+                        + "ORDER BY execution_date DESC LIMIT 1";
 
         Node executionNode = nodeService.getNode(PROCESS_TID, executeId);
         String targetNodeType = String.valueOf(executionNode.get("targetNodeType"));
@@ -297,24 +326,6 @@ public class DBSyncService {
         List<Map<String, Object>> targets2Update =
                 ice2Template.queryForList(jdbcQuery, params);
 
-
         successIds = executeSingleTaskAndRecord(executionNode, targets2Update, "MNET", "SCHEDULE");
-
-        // successIds 로 다국어 노드 업데이트 - Naming rule 에 따라 움직이기
-        /*
-        // 0920 더 이상 *Multi 테이블 사용하지 않음
-        Node multiLanguageExecutionNode = nodeService.getNode(PROCESS_TID, executeId + "Multi");
-        if(null != multiLanguageExecutionNode) {
-            Map<String, Object> multiParamMap = new HashMap<>();
-            String strIds = StringUtils.join(successIds, ",").trim();
-            if(strIds.length() > 0) {
-                multiParamMap.put("ids", strIds);
-                String multiQuery = String.valueOf(multiLanguageExecutionNode.get("query"));
-                List<Map<String, Object>> multiLanguageTargets =
-                        ice2Template.queryForList(multiQuery, multiParamMap);
-                executeSingleTaskAndRecord(multiLanguageExecutionNode, multiLanguageTargets, "MNET", "SCHEDULE");
-            }
-        }
-        */
     }
 }

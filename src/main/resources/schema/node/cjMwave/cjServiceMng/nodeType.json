@@ -518,5 +518,15 @@
     "repositoryType": "node",
     "eviction": 0,
     "tableName": "cjDb#appUpdMng"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "sersVotePrtcptHst",
+    "tid": "sersVotePrtcptHst",
+    "typeName": "시리즈 투표 참여 이력",
+    "repositoryType": "data",
+    "eviction": 0,
+    "tableName": "cjDb#sersVotePrtcptHst"
   }
 ]
