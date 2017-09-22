@@ -1052,7 +1052,7 @@
   {
     "typeId": "apiConfig",
     "category": "vote",
-    "apiId": "IfMwv008",
+    "apiId": "IfMwv108",
     "apiName": "MCD 투표 상세조회",
     "method": "GET",
     "parameters": [
