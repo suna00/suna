@@ -25,7 +25,7 @@ public class VotePrtcptHstService {
     private static String[] pidArray = {"sersVoteSeq", "voteSeq", "voteItemSeq", "prtcpMbrId", "connIpAdr"};
 
     @Autowired
-    private NodeService nodeService ;
+    private NodeService nodeService;
 
 
     /**
@@ -51,18 +51,18 @@ public class VotePrtcptHstService {
             return;
         }
         String voteResult = data.get("voteResult").toString();
-        logger.info("###request JsonString : " + voteResult);
+        //logger.info("###request JsonString : " + voteResult);
 
         //Json parsing
         List<Map<String, Object>> reqJson = JsonUtils.parsingJsonToList(voteResult);
         if (reqJson.isEmpty()) throw new IceRuntimeException("voteResult data is Null");
-        logger.info("###json to map size:" + reqJson.size());
+        //logger.info("###json to map size:" + reqJson.size());
 
         for (Map<String, Object> voteData : reqJson) {
             //node create
             Node result = (Node) nodeService.executeNode(voteData, "sersVotePrtcptHst", EventService.CREATE);
         }
-
-         context.setResult(returnResult);
+        returnResult.put("insertCnt", reqJson.size()+"");
+        context.setResult(returnResult);
     }
 }
