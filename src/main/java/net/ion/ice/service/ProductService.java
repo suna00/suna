@@ -172,6 +172,8 @@ public class ProductService {
             saveProductAttribute.put("productId", productId);
             saveProductAttribute.put("productAttributeCategoryId", productAttributeCategoryId);
             saveProductAttribute.put("productAttributeCategoryItemId", productAttribute.get("productAttributeCategoryItemId"));
+            saveProductAttribute.put("name", productAttribute.get("name"));
+            saveProductAttribute.put("value", productAttribute.get("value"));
 
             saveProductAttributeList.add(saveProductAttribute);
         }
