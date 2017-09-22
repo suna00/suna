@@ -57,7 +57,7 @@ public class S3UploadService {
                 .withCredentials(new AWSStaticCredentialsProvider(awsCredentials)).build();
         logger.info("bucketLocation with client :: " + s3Client.getBucketLocation(bucketName));
 //        logger.info("String with client :: " + s3Client.getObjectAsString(bucketName, bucketKey));
-        s3Client.setRegion(com.amazonaws.regions.Region.getRegion(Regions.AP_NORTHEAST_2));
+//        s3Client.setRegion(com.amazonaws.regions.Region.getRegion(Regions.AP_NORTHEAST_2));
     }
 
 
