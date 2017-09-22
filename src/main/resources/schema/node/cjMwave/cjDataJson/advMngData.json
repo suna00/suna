@@ -1,0 +1,50 @@
+[
+  {
+    "typeId": "advMng",
+    "advSeq": 750000,
+    "contentType": "6",
+    "platformType": "1",
+    "iframeUrl": "http://ipn.mwave.me/sand?id=xfaDtkS2",
+    "created": "20170921000000"
+  },
+  {
+    "typeId": "advMng",
+    "advSeq": 750010,
+    "contentType": "8",
+    "platformType": "1",
+    "iframeUrl": "http://ipn.mwave.me/sand?id=xfaDtkS2",
+    "created": "20170921000000"
+  },
+  {
+    "typeId": "advMng",
+    "advSeq": 750021,
+    "contentType": "6",
+    "platformType": "2",
+    "iframeUrl": "http://ipn.mwave.me/sand?id=xfaDtkS2",
+    "created": "20170921000000"
+  },
+  {
+    "typeId": "advMng",
+    "advSeq": 750031,
+    "contentType": "8",
+    "platformType": "2",
+    "iframeUrl": "http://ipn.mwave.me/sand?id=xfaDtkS2",
+    "created": "20170921000000"
+  },
+  {
+    "typeId": "advMng",
+    "advSeq": 750042,
+    "contentType": "6",
+    "platformType": "3",
+    "iframeUrl": "http://ipn.mwave.me/sand?id=xfaDtkS2",
+    "created": "20170921000000"
+  },
+  {
+    "typeId": "advMng",
+    "advSeq": 750052,
+    "contentType": "8",
+    "platformType": "3",
+    "iframeUrl": "http://ipn.mwave.me/sand?id=xfaDtkS2",
+    "created": "20170921000000"
+  }
+]
