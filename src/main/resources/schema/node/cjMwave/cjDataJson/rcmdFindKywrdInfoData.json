@@ -11,20 +11,13 @@
     "rcmdFindKywrdSeq": 101,
     "showDvcDivCd": "2",
     "kywrdNm": "hiphop, jazz",
-    "linkUrl": "https://www.naver.com/policy/privacy.html#a2"
+    "linkUrl": "https://www.naver.com/policy/privacy.html#a1"
   },
   {
     "typeId": "rcmdFindKywrdInfo",
     "rcmdFindKywrdSeq": 102,
     "showDvcDivCd": "3",
     "kywrdNm": "hiphop, jazz",
-    "linkUrl": "https://www.naver.com/policy/privacy.html#a3"
-  },
-  {
-    "typeId": "rcmdFindKywrdInfo",
-    "rcmdFindKywrdSeq": 103,
-    "showDvcDivCd": "4",
-    "kywrdNm": "hiphop, jazz",
-    "linkUrl": "https://www.naver.com/policy/privacy.html#a4"
+    "linkUrl": "https://www.naver.com/policy/privacy.html#a1"
   }
 ]

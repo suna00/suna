@@ -4,23 +4,20 @@
     "awardSctnSeq": 700,
     "awardYear": "2017",
     "awardSctnCd": "1",
-    "awardSctnDesc": "국내",
-    "refdWinnerList": ""
+    "awardSctnDesc": "국내"
   },
   {
     "typeId": "mamaAwardSctnInfo",
     "awardSctnSeq": 701,
     "awardYear": "2017",
     "awardSctnCd": "2",
-    "awardSctnDesc": "해외",
-    "refdWinnerList": ""
+    "awardSctnDesc": "해외"
   },
   {
     "typeId": "mamaAwardSctnInfo",
     "awardSctnSeq": 702,
     "awardYear": "2017",
     "awardSctnCd": "3",
-    "awardSctnDesc": "전문",
-    "refdWinnerList": ""
+    "awardSctnDesc": "전문"
   }
 ]

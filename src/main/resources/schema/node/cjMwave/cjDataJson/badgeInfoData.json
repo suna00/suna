@@ -1,0 +1,332 @@
+[
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 9100,
+    "badgeNm": "KCON",
+    "badgeDtl": "KCON_ICON_01",
+    "badgeCtgryCd": "1",
+    "useYn": true,
+    "svcTermlDivCd": "1",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 9200,
+    "badgeNm": "MWAVE",
+    "badgeDtl": "MWAVE_ICON_01",
+    "badgeCtgryCd": "2",
+    "useYn": true,
+    "svcTermlDivCd": "1",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 9300,
+    "badgeNm": "MAMA",
+    "badgeDtl": "MAMA_ICON_01",
+    "badgeCtgryCd": "3",
+    "useYn": true,
+    "svcTermlDivCd": "1",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 9400,
+    "badgeNm": "M COUNTDOWN",
+    "badgeDtl": "M COUNTDOWN_ICON_01",
+    "badgeCtgryCd": "1",
+    "useYn": true,
+    "svcTermlDivCd": "1",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 9500,
+    "badgeNm": "VOTE&RANK",
+    "badgeDtl": "VOTE&RANK_ICON_01",
+    "badgeCtgryCd": "2",
+    "useYn": true,
+    "svcTermlDivCd": "1",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 9600,
+    "badgeNm": "MEE&GREET",
+    "badgeDtl": "MEE&GREET_ICON_01",
+    "badgeCtgryCd": "3",
+    "useYn": true,
+    "svcTermlDivCd": "1",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 9700,
+    "badgeNm": "K-STARS",
+    "badgeDtl": "K-STARS_ICON_01",
+    "badgeCtgryCd": "1",
+    "useYn": true,
+    "svcTermlDivCd": "1",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 9800,
+    "badgeNm": "STORE",
+    "badgeDtl": "STORE_ICON_01",
+    "badgeCtgryCd": "2",
+    "useYn": true,
+    "svcTermlDivCd": "1",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 9900,
+    "badgeNm": "NEWS",
+    "badgeDtl": "NEWS_ICON_01",
+    "badgeCtgryCd": "3",
+    "useYn": true,
+    "svcTermlDivCd": "1",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 10000,
+    "badgeNm": "TV",
+    "badgeDtl": "TV_ICON_01",
+    "badgeCtgryCd": "1",
+    "useYn": true,
+    "svcTermlDivCd": "1",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 10100,
+    "badgeNm": "KPOP",
+    "badgeDtl": "KPOP_ICON_01",
+    "badgeCtgryCd": "2",
+    "useYn": true,
+    "svcTermlDivCd": "1",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 10200,
+    "badgeNm": "KCON",
+    "badgeDtl": "KCON_ICON_02",
+    "badgeCtgryCd": "1",
+    "useYn": true,
+    "svcTermlDivCd": "2",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 10300,
+    "badgeNm": "MWAVE",
+    "badgeDtl": "MWAVE_ICON_02",
+    "badgeCtgryCd": "2",
+    "useYn": true,
+    "svcTermlDivCd": "2",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 10400,
+    "badgeNm": "MAMA",
+    "badgeDtl": "MAMA_ICON_02",
+    "badgeCtgryCd": "3",
+    "useYn": true,
+    "svcTermlDivCd": "2",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 10500,
+    "badgeNm": "M COUNTDOWN",
+    "badgeDtl": "M COUNTDOWN_ICON_02",
+    "badgeCtgryCd": "1",
+    "useYn": true,
+    "svcTermlDivCd": "2",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 10600,
+    "badgeNm": "VOTE&RANK",
+    "badgeDtl": "VOTE&RANK_ICON_02",
+    "badgeCtgryCd": "2",
+    "useYn": true,
+    "svcTermlDivCd": "2",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 10700,
+    "badgeNm": "MEE&GREET",
+    "badgeDtl": "MEE&GREET_ICON_02",
+    "badgeCtgryCd": "3",
+    "useYn": true,
+    "svcTermlDivCd": "2",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 10800,
+    "badgeNm": "K-STARS",
+    "badgeDtl": "K-STARS_ICON_02",
+    "badgeCtgryCd": "1",
+    "useYn": true,
+    "svcTermlDivCd": "2",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 10900,
+    "badgeNm": "STORE",
+    "badgeDtl": "STORE_ICON_02",
+    "badgeCtgryCd": "2",
+    "useYn": true,
+    "svcTermlDivCd": "2",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 11000,
+    "badgeNm": "NEWS",
+    "badgeDtl": "NEWS_ICON_02",
+    "badgeCtgryCd": "3",
+    "useYn": true,
+    "svcTermlDivCd": "2",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 11100,
+    "badgeNm": "TV",
+    "badgeDtl": "TV_ICON_02",
+    "badgeCtgryCd": "1",
+    "useYn": true,
+    "svcTermlDivCd": "2",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 11200,
+    "badgeNm": "KPOP",
+    "badgeDtl": "KPOP_ICON_02",
+    "badgeCtgryCd": "2",
+    "useYn": true,
+    "svcTermlDivCd": "2",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 11300,
+    "badgeNm": "KCON",
+    "badgeDtl": "KCON_ICON_03",
+    "badgeCtgryCd": "1",
+    "useYn": true,
+    "svcTermlDivCd": "3",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 11400,
+    "badgeNm": "MWAVE",
+    "badgeDtl": "MWAVE_ICON_03",
+    "badgeCtgryCd": "2",
+    "useYn": true,
+    "svcTermlDivCd": "3",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 11500,
+    "badgeNm": "MAMA",
+    "badgeDtl": "MAMA_ICON_03",
+    "badgeCtgryCd": "3",
+    "useYn": true,
+    "svcTermlDivCd": "3",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 11600,
+    "badgeNm": "M COUNTDOWN",
+    "badgeDtl": "M COUNTDOWN_ICON_03",
+    "badgeCtgryCd": "1",
+    "useYn": true,
+    "svcTermlDivCd": "3",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 11700,
+    "badgeNm": "VOTE&RANK",
+    "badgeDtl": "VOTE&RANK_ICON_03",
+    "badgeCtgryCd": "2",
+    "useYn": true,
+    "svcTermlDivCd": "3",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 11800,
+    "badgeNm": "MEE&GREET",
+    "badgeDtl": "MEE&GREET_ICON_03",
+    "badgeCtgryCd": "3",
+    "useYn": true,
+    "svcTermlDivCd": "3",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 11900,
+    "badgeNm": "K-STARS",
+    "badgeDtl": "K-STARS_ICON_03",
+    "badgeCtgryCd": "1",
+    "useYn": true,
+    "svcTermlDivCd": "3",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 12000,
+    "badgeNm": "STORE",
+    "badgeDtl": "STORE_ICON_03",
+    "badgeCtgryCd": "2",
+    "useYn": true,
+    "svcTermlDivCd": "3",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 12100,
+    "badgeNm": "NEWS",
+    "badgeDtl": "NEWS_ICON_03",
+    "badgeCtgryCd": "3",
+    "useYn": true,
+    "svcTermlDivCd": "3",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 12200,
+    "badgeNm": "TV",
+    "badgeDtl": "TV_ICON_03",
+    "badgeCtgryCd": "1",
+    "useYn": true,
+    "svcTermlDivCd": "3",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  },
+  {
+    "typeId": "badgeInfo",
+    "badgeSeq": 12300,
+    "badgeNm": "KPOP",
+    "badgeDtl": "KPOP_ICON_03",
+    "badgeCtgryCd": "2",
+    "useYn": true,
+    "svcTermlDivCd": "3",
+    "imgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
+  }
+]

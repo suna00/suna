@@ -1,0 +1,32 @@
+[
+  {
+    "typeId": "svcMenuGroupInfo",
+    "svcMenuGroupSeq": 100,
+    "svcMenuGroupNm": "PC_2017년 MWAVE",
+    "svcDvcDivCd": "1",
+    "showYn": true,
+    "pstngStDt": "20170101",
+    "pstngFnsDt": "20171231",
+    "showCntryCdList": "all"
+  },
+  {
+    "typeId": "svcMenuGroupInfo",
+    "svcMenuGroupSeq": 101,
+    "svcMenuGroupNm": "MW_2017년 MWAVE",
+    "svcDvcDivCd": "2",
+    "showYn": true,
+    "pstngStDt": "20170101",
+    "pstngFnsDt": "20171231",
+    "showCntryCdList": "all"
+  },
+  {
+    "typeId": "svcMenuGroupInfo",
+    "svcMenuGroupSeq": 102,
+    "svcMenuGroupNm": "MA_2017년 MWAVE",
+    "svcDvcDivCd": "3",
+    "showYn": true,
+    "pstngStDt": "20170101",
+    "pstngFnsDt": "20171231",
+    "showCntryCdList": "all"
+  }
+]

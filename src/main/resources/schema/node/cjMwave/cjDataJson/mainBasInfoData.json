@@ -1,0 +1,596 @@
+[
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 100,
+    "mainNm": "PC_MWAVE MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "1",
+    "showYn": true,
+    "showLoCd": "2"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 101,
+    "mainNm": "MW_MWAVE MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "2",
+    "showYn": true,
+    "showLoCd": "2"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 108,
+    "mainNm": "MA_MWAVE MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "3",
+    "showYn": true,
+    "showLoCd": "2"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 104,
+    "mainNm": "PC_MWAVE SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "1",
+    "showYn": true,
+    "showLoCd": "2"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 105,
+    "mainNm": "MW_MWAVE SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "2",
+    "showYn": true,
+    "showLoCd": "2"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 106,
+    "mainNm": "MA_MWAVE SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "3",
+    "showYn": true,
+    "showLoCd": "2"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 107,
+    "mainNm": "PC_KCON MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "1",
+    "showYn": true,
+    "showLoCd": "1"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 108,
+    "mainNm": "MW_KCON MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "2",
+    "showYn": true,
+    "showLoCd": "1"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 109,
+    "mainNm": "MA_KCON MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "3",
+    "showYn": true,
+    "showLoCd": "1"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 110,
+    "mainNm": "PC_KCON SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "1",
+    "showYn": true,
+    "showLoCd": "1"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 111,
+    "mainNm": "MW_KCON SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "2",
+    "showYn": true,
+    "showLoCd": "1"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 112,
+    "mainNm": "MA_KCON SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "3",
+    "showYn": true,
+    "showLoCd": "1"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 113,
+    "mainNm": "PC_MAMA MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "1",
+    "showYn": true,
+    "showLoCd": "3"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 114,
+    "mainNm": "MW_MAMA MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "2",
+    "showYn": true,
+    "showLoCd": "3"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 115,
+    "mainNm": "MA_MAMA MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "3",
+    "showYn": true,
+    "showLoCd": "3"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 116,
+    "mainNm": "PC_MAMA SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "1",
+    "showYn": true,
+    "showLoCd": "3"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 117,
+    "mainNm": "MW_MAMA SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "2",
+    "showYn": true,
+    "showLoCd": "3"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 118,
+    "mainNm": "MA_MAMA SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "3",
+    "showYn": true,
+    "showLoCd": "3"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 119,
+    "mainNm": "PC_M COUNTDOWN MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "1",
+    "showYn": true,
+    "showLoCd": "4"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 120,
+    "mainNm": "MW_M COUNTDOWN MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "2",
+    "showYn": true,
+    "showLoCd": "4"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 121,
+    "mainNm": "MA_M COUNTDOWN MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "3",
+    "showYn": true,
+    "showLoCd": "4"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 122,
+    "mainNm": "PC_M COUNTDOWN SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "1",
+    "showYn": true,
+    "showLoCd": "4"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 123,
+    "mainNm": "MW_M COUNTDOWN SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "2",
+    "showYn": true,
+    "showLoCd": "4"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 124,
+    "mainNm": "MA_M COUNTDOWN SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "3",
+    "showYn": true,
+    "showLoCd": "4"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 125,
+    "mainNm": "PC_ VOTE & Rank MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "1",
+    "showYn": true,
+    "showLoCd": "5"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 126,
+    "mainNm": "MW_ VOTE & Rank MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "2",
+    "showYn": true,
+    "showLoCd": "5"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 127,
+    "mainNm": "MA_ VOTE & Rank MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "3",
+    "showYn": true,
+    "showLoCd": "5"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 128,
+    "mainNm": "PC_ VOTE & Rank SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "1",
+    "showYn": true,
+    "showLoCd": "5"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 129,
+    "mainNm": "MW_ VOTE & Rank SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "2",
+    "showYn": true,
+    "showLoCd": "5"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 130,
+    "mainNm": "MA_ VOTE & Rank SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "3",
+    "showYn": true,
+    "showLoCd": "5"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 131,
+    "mainNm": "PC_Meet&Greet MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "1",
+    "showYn": true,
+    "showLoCd": "6"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 132,
+    "mainNm": "MW_Meet&Greet MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "2",
+    "showYn": true,
+    "showLoCd": "6"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 133,
+    "mainNm": "MA_Meet&Greet MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "3",
+    "showYn": true,
+    "showLoCd": "6"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 134,
+    "mainNm": "PC_Meet&Greet SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "1",
+    "showYn": true,
+    "showLoCd": "6"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 135,
+    "mainNm": "MW_Meet&Greet SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "2",
+    "showYn": true,
+    "showLoCd": "6"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 136,
+    "mainNm": "MA_Meet&Greet SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "3",
+    "showYn": true,
+    "showLoCd": "6"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 137,
+    "mainNm": "PC_K-Stars MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "1",
+    "showYn": true,
+    "showLoCd": "7"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 138,
+    "mainNm": "MW_K-Stars MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "2",
+    "showYn": true,
+    "showLoCd": "7"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 139,
+    "mainNm": "MA_K-Stars MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "3",
+    "showYn": true,
+    "showLoCd": "7"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 140,
+    "mainNm": "PC_K-Stars SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "1",
+    "showYn": true,
+    "showLoCd": "7"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 141,
+    "mainNm": "MW_K-Stars SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "2",
+    "showYn": true,
+    "showLoCd": "7"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 142,
+    "mainNm": "MA_K-Stars SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "3",
+    "showYn": true,
+    "showLoCd": "7"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 143,
+    "mainNm": "PC_Store MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "1",
+    "showYn": true,
+    "showLoCd": "8"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 144,
+    "mainNm": "MW_Store MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "2",
+    "showYn": true,
+    "showLoCd": "8"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 145,
+    "mainNm": "MA_Store MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "3",
+    "showYn": true,
+    "showLoCd": "8"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 146,
+    "mainNm": "PC_Store SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "1",
+    "showYn": true,
+    "showLoCd": "8"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 147,
+    "mainNm": "MW_Store SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "2",
+    "showYn": true,
+    "showLoCd": "8"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 148,
+    "mainNm": "MA_Store SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "3",
+    "showYn": true,
+    "showLoCd": "8"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 149,
+    "mainNm": "PC_News MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "1",
+    "showYn": true,
+    "showLoCd": "9"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 150,
+    "mainNm": "MW_News MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "2",
+    "showYn": true,
+    "showLoCd": "9"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 151,
+    "mainNm": "MA_News MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "3",
+    "showYn": true,
+    "showLoCd": "9"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 152,
+    "mainNm": "PC_News SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "1",
+    "showYn": true,
+    "showLoCd": "9"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 153,
+    "mainNm": "MW_News SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "2",
+    "showYn": true,
+    "showLoCd": "9"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 154,
+    "mainNm": "MA_News SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "3",
+    "showYn": true,
+    "showLoCd": "9"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 155,
+    "mainNm": "PC_TV MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "1",
+    "showYn": true,
+    "showLoCd": "10"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 156,
+    "mainNm": "MW_TV MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "2",
+    "showYn": true,
+    "showLoCd": "10"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 157,
+    "mainNm": "MA_TV MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "3",
+    "showYn": true,
+    "showLoCd": "10"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 158,
+    "mainNm": "PC_TV SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "1",
+    "showYn": true,
+    "showLoCd": "10"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 159,
+    "mainNm": "MW_TV SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "2",
+    "showYn": true,
+    "showLoCd": "10"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 160,
+    "mainNm": "MA_TV SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "3",
+    "showYn": true,
+    "showLoCd": "10"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 161,
+    "mainNm": "PC_Kpop Poll MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "1",
+    "showYn": true,
+    "showLoCd": "11"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 162,
+    "mainNm": "MW_Kpop Poll MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "2",
+    "showYn": true,
+    "showLoCd": "11"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 163,
+    "mainNm": "MA_Kpop Poll MAIN",
+    "mainDivCd": "1",
+    "svcTermlDivCd": "3",
+    "showYn": true,
+    "showLoCd": "11"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 164,
+    "mainNm": "PC_Kpop Poll SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "1",
+    "showYn": true,
+    "showLoCd": "11"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 165,
+    "mainNm": "MW_Kpop Poll SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "2",
+    "showYn": true,
+    "showLoCd": "11"
+  },
+  {
+    "typeId": "mainBasInfo",
+    "mainSeq": 166,
+    "mainNm": "MA_Kpop Poll SUB MAIN",
+    "mainDivCd": "2",
+    "svcTermlDivCd": "3",
+    "showYn": true,
+    "showLoCd": "11"
+  }
+]
