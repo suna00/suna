@@ -2,9 +2,8 @@ package net.ion.ice.security.auth.ajax;
 
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
-import net.ion.ice.security.User.UserContext;
+import net.ion.ice.security.user.UserContext;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -12,8 +11,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
-
-import java.util.Collections;
 
 @Component
 public class DefaultAuthenticationProvider implements AuthenticationProvider {

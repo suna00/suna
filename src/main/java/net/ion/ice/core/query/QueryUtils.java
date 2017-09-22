@@ -78,6 +78,16 @@ public class QueryUtils {
         return queryTerms;
     }
 
+    public static QueryTerm makePropertyQueryTerm(NodeType nodeType, String fieldId, String method, String value) {
+        if(StringUtils.isEmpty(value)) return null ;
+        if(nodeType.isDataType()){
+            return makeDataQueryTerm(nodeType, fieldId, method, value) ;
+        }else{
+            return makeNodeQueryTerm(nodeType, fieldId, method, value) ;
+        }
+    }
+
+
     public static QueryTerm makePropertyQueryTerm(QueryTerm.QueryTermType queryTermType, NodeType nodeType, String fieldId, String method, String value) {
         if(StringUtils.isEmpty(value)) return null ;
         if(queryTermType == QueryTerm.QueryTermType.DATA){

@@ -13,6 +13,7 @@ import net.ion.ice.core.file.FileService;
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.query.QueryResult;
+import net.ion.ice.core.query.QueryTerm;
 import net.ion.ice.core.query.SimpleQueryResult;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.document.DateTools;
@@ -127,6 +128,13 @@ public class NodeService {
         QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, getNodeType(typeId)) ;
         return infinispanRepositoryService.getSubQueryNodes(typeId, queryContext) ;
     }
+
+    public List<Node> getNodeList(NodeType nodeType, List<QueryTerm> queryTerms) {
+        QueryContext queryContext = QueryContext.createQueryContextFromTerms(queryTerms, nodeType) ;
+        return infinispanRepositoryService.getSubQueryNodes(nodeType.getTypeId(), queryContext) ;
+
+    }
+
 
     public List<Node> getNodeList(String typeId, QueryContext queryContext) {
         return infinispanRepositoryService.getSubQueryNodes(typeId, queryContext) ;
@@ -424,5 +432,6 @@ public class NodeService {
 
         logger.info("Change EventAction : " + StringUtils.substringBefore(context.getNode().getStringValue("event"), Node.ID_SEPERATOR));
     }
+
 
 }
