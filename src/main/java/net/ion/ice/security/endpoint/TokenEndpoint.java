@@ -22,7 +22,7 @@ public class TokenEndpoint {
     @RequestMapping(value = "/auth/token", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public @ResponseBody
     Object jwtToken(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        sessionService.putSession(request, response);
+        sessionService.putSession(request, response, null);
         return JsonResponse.create();
     }
 }
