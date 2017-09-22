@@ -198,16 +198,15 @@ public class NodeService {
     }
 
     private void  initSchema() throws IOException {
-
         saveSchema("classpath:schema/core/*.json");
         saveSchema("classpath:schema/core/*/*.json");
 //        saveSchema("classpath:schema/node/*.json", lastChanged);
-        saveSchema("classpath:schema/node/**/*.json");
+//        saveSchema("classpath:schema/node/**/*.json");
 //        saveSchema("classpath:schema/test/*.json", lastChanged);
-        saveSchema("classpath:schema/test/**/*.json");
+//        saveSchema("classpath:schema/test/**/*.json");
 
     }
-    private void saveSchema(String resourcePath) throws IOException {
+    public void saveSchema(String resourcePath) throws IOException {
         saveSchema(resourcePath, true);
         saveSchema(resourcePath, false);
     }
@@ -300,10 +299,10 @@ public class NodeService {
         return context.makeResult();
     }
 
-    public Object deleteNode(Map<String, String[]> parameterMap, String typeId) {
+    public Object deleteNode(Map<String, String[]> parameterMap, String typeId, String id) {
         NodeType nodeType = getNodeType(typeId) ;
 
-        ExecuteContext context = ExecuteContext.createContextFromParameter(parameterMap, nodeType, "delete", null) ;
+        ExecuteContext context = ExecuteContext.createContextFromParameter(parameterMap, nodeType, "delete", id) ;
         context.execute();
 
 //        Node node = (Node) context.getResult();

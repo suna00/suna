@@ -32,6 +32,13 @@ public class DBQuery {
                     }
                     String query = String.format("%s %s (%s)", queryTerm.getQueryKey(), queryTerm.getMethodQuery(), StringUtils.join(holder, ", "));
                     searchListQuery.add(query);
+                }else if(queryTerm.getMethodQuery().equals("BETWEEN")){
+                    String query = String.format("(%s %s ? AND ?)", queryTerm.getQueryKey(), queryTerm.getMethodQuery(), StringUtils.substringBefore(queryTerm.getQueryValue(),"~"), StringUtils.substringAfter(queryTerm.getQueryValue(),"~"));
+                    String[] values = queryTerm.getQueryValue().split("~");
+                    for(String value : values){
+                        searchListValue.add(value);
+                    }
+                    searchListQuery.add(query);
                 }else{
                     String query = String.format("%s %s ?", queryTerm.getQueryKey(), queryTerm.getMethodQuery());
                     String value = queryTerm.getQueryValue();
