@@ -102,7 +102,7 @@ public class MemberService {
         String certCode = data.get("certCode").toString();
 
         NodeBindingInfo nodeBindingInfo = NodeUtils.getNodeBindingInfo("emailCertification");
-        String query = " SELECT emailcertificationId, email, certCode, certStatus, certRequestDate, date_add(certRequestDate, INTERVAL +60 MINUTE) AS certExpireDate, (certStatus = 'request' AND date_add(certRequestDate, INTERVAL +60 MINUTE) > now() AND certCode = ?) AS available FROM emailcertification WHERE certCode = ?  limit 1";
+        String query = " SELECT emailcertificationId, email, memberNo, certCode, certStatus, certRequestDate, date_add(certRequestDate, INTERVAL +60 MINUTE) AS certExpireDate, (certStatus = 'request' AND date_add(certRequestDate, INTERVAL +60 MINUTE) > now() AND certCode = ?) AS available FROM emailcertification WHERE certCode = ?  limit 1";
         List<Map<String, Object>> list = nodeBindingInfo.getJdbcTemplate().queryForList(query, certCode, certCode); // new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())
 
         if(0 < list.size()){
@@ -118,7 +118,12 @@ public class MemberService {
                 nodeService.executeNode(emailCertificationData, "emailCertification", UPDATE);
 
                 Map<String, Object> resultObject = new HashMap<>();
-                resultObject.put("email", map.get("email").toString());
+                Map<String, Object> item = new HashMap<>();
+
+                item.put("memberNo", map.get("memberNo"));
+                item.put("email", map.get("email"));
+                resultObject.put("data", item);
+
                 context.setResult(resultObject);
             } else{
                 commonService.setErrorMessage(context, "U0003");
