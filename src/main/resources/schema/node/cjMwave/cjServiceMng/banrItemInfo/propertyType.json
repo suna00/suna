@@ -61,7 +61,7 @@
     "id": "banrItemInfo>banrItemTitle",
     "propertyTypeName": "배너 항목명",
     "valueType": "STRING",
-    "required": true,
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
