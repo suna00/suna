@@ -25,7 +25,13 @@ public class NodeHelperService  {
     private NodeService nodeService ;
 
     public void reloadSchema(String resourcePath) throws IOException {
-        saveSchema(resourcePath);
+        if(resourcePath.equals("node")){
+            saveSchema("classpath:schema/node/**/*.json");
+        }else if(resourcePath.equals("test")){
+            saveSchema("classpath:schema/test/**/*.json");
+        }else {
+            saveSchema(resourcePath);
+        }
     }
 
     private void saveSchema(String resourcePath) throws IOException {

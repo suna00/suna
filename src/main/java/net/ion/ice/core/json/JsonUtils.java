@@ -158,4 +158,13 @@ public class JsonUtils {
             return null ;
         }
     }
+
+    public static String toJsonString(List<?> jsonData){
+        try {
+            return objectMapper.writeValueAsString(jsonData) ;
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return null ;
+        }
+    }
 }
