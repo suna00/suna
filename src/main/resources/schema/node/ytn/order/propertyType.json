@@ -3087,7 +3087,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "payments",
+    "tid": "payment",
     "pid": "paymentId",
     "propertyTypeName": "ID",
     "valueType": "INT",
