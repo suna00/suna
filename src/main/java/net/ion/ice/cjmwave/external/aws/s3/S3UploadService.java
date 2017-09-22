@@ -39,7 +39,6 @@ public class S3UploadService {
 
     private AWSCredentials awsCredentials;
     private AmazonS3 s3Client;
-    private URL bucketUrl;
 
     @PostConstruct
     public void init (){
@@ -59,8 +58,6 @@ public class S3UploadService {
         logger.info("bucketLocation with client :: " + s3Client.getBucketLocation(bucketName));
         logger.info("String with client :: " + s3Client.getObjectAsString(bucketName, bucketKey));
         s3Client.setRegion(com.amazonaws.regions.Region.getRegion(Regions.AP_NORTHEAST_2));
-        bucketUrl = s3Client.getUrl(bucketName, bucketKey);
-        logger.info("bucketURL :: " + bucketUrl);
     }
 
 
@@ -71,7 +68,9 @@ public class S3UploadService {
                 initializeS3Client();
             }
             String fileName = file.getName();
-            PutObjectResult pors = s3Client.putObject(new PutObjectRequest(bucketName, bucketKey + "/mig/" + fileName, file));
+            String fullBuckeyKey = bucketKey + "/mig/" + fileName;
+            PutObjectResult pors = s3Client.putObject(new PutObjectRequest(bucketName, fullBuckeyKey, file));
+            URL bucketUrl = s3Client.getUrl(bucketName, fullBuckeyKey);
             logger.info("Upload Result :: " + String.valueOf(pors));
             rtn = bucketUrl.toURI().toString() + "/mig/" + fileName;
         } catch (Exception e) {
