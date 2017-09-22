@@ -556,7 +556,7 @@ public class NodeUtils {
                 }
             }
             case OBJECT: {
-                if (value instanceof Map) {
+                if (value instanceof Map || value instanceof List) {
                     return JsonUtils.toJsonString((Map<String, Object>) value);
                 }
                 if (value instanceof String) {
