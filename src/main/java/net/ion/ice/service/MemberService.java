@@ -122,7 +122,7 @@ public class MemberService {
 
                 item.put("memberNo", map.get("memberNo"));
                 item.put("email", map.get("email"));
-                resultObject.put("data", item);
+                resultObject.put("item", item);
 
                 context.setResult(resultObject);
             } else{
