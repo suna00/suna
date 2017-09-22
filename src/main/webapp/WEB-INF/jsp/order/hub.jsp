@@ -22,6 +22,7 @@
 <%@ page import="net.ion.ice.service.OrderService" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.concurrent.ConcurrentHashMap" %>
+<%@ page import="org.apache.commons.lang3.StringUtils" %>
 <%@ include file="cfg/site_conf_inc.jsp" %>
 <%
     /* = -------------------------------------------------------------------------- = */
@@ -364,6 +365,8 @@
     responseMap.put("recipient", recipient);
     responseMap.put("deliveryType", deliveryType);
 
+
+    System.out.println("Method List _ 0");
     if (req_tx.equals("pay")) {
 
     /* = -------------------------------------------------------------------------- = */
@@ -371,15 +374,15 @@
     /* = -------------------------------------------------------------------------- = */
     /* =        각 결제수단을 구분하시어 DB 처리를 하시기 바랍니다.                 = */
     /* = -------------------------------------------------------------------------- = */
-
-        if (res_cd.equals("0000")) {
-
+        System.out.println("Method List _ 1");
+        if (StringUtils.equals(res_cd, "0000")){
             try {
+                System.out.println("Method List _ 2");
                 String paymentId = orderService.savePayment(responseMap);
 
-                orderService.savePgResponse(responseMap, paymentId);
                 orderService.saveDelivery(responseMap);
                 orderService.addOrderSheet(responseMap);
+                orderService.savePgResponse(responseMap, paymentId);
 
 
                 // 07-1-1. 신용카드

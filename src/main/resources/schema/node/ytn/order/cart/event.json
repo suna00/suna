@@ -46,5 +46,21 @@
     "actionType" : "service",
     "actionBody" : "orderService.addTempOrder",
     "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "tempOrder",
+    "event" : "verification",
+    "noneExecute": true,
+    "eventName" : "주문서 검증"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "tempOrder>verification",
+    "action" : "verification",
+    "actionName" : "주문서 검증",
+    "actionType" : "service",
+    "actionBody" : "orderService.verification",
+    "order" : 1
   }
 ]
