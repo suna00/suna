@@ -11,7 +11,7 @@
     "serviceFlag": true,
     "regDate": "201709070000",
     "modDate": "201709040000",
-    "onairDt": "201709280000"
+    "onairDt": "20170928"
   },
   {
     "typeId": "mcdChartBasInfo",
@@ -39,7 +39,7 @@
     "serviceFlag": true,
     "regDate": "201709210000",
     "modDate": "201709040000",
-    "onairDt": "201710120000"
+    "onairDt": "20171012"
   },
   {
     "typeId": "mcdChartBasInfo",
@@ -53,6 +53,6 @@
     "serviceFlag": true,
     "regDate": "201709280000",
     "modDate": "201709040000",
-    "onairDt": "201710090000"
+    "onairDt": "20171009"
   }
 ]
