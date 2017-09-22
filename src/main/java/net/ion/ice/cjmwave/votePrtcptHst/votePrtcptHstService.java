@@ -5,10 +5,12 @@ import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
+import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -21,9 +23,12 @@ import java.util.Map;
  * Created by leehh on 2017. 9. 20.
  */
 @Service("votePrtcptHstService")
-public class votePrtcptHstService {
-    private static Logger logger = LoggerFactory.getLogger(votePrtcptHstService.class);
+public class VotePrtcptHstService {
+    private static Logger logger = LoggerFactory.getLogger(VotePrtcptHstService.class);
     private static String[] pidArray = {"sersVoteSeq", "voteSeq", "voteItemSeq", "prtcpMbrId", "connIpAdr"};
+
+    @Autowired
+    private NodeService nodeService ;
 
     /**
      * 2017.09.20 leehh
@@ -57,7 +62,7 @@ public class votePrtcptHstService {
 
         for (Map<String, Object> voteData : reqJson) {
             //node create
-            Node result = (Node)NodeUtils.getNodeService().executeNode(voteData, "sersVotePrtcptHst", EventService.CREATE);
+            Node result = (Node) nodeService.executeNode(voteData, "sersVotePrtcptHst", EventService.CREATE);
         }
 
          context.setResult(returnResult);
