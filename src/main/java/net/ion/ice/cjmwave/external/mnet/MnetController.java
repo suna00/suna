@@ -55,19 +55,15 @@ public class MnetController {
                     break;
                 case "album" :
                     dbSyncService.executeWithIteration("album");
-//                    dbSyncService.executeWithIteration("albumMulti");
                     break;
                 case "artist" :
                     dbSyncService.executeWithIteration("artist");
-//                    dbSyncService.executeWithIteration("artistMulti");
                     break;
                 case "song" :
                     dbSyncService.executeWithIteration("song");
-//                    dbSyncService.executeWithIteration("songMulti");
                     break;
                 case "mv" :
                     dbSyncService.executeWithIteration("musicVideo");
-//                    dbSyncService.executeWithIteration("musicVideoMulti");
                     break;
                 case "chart" :
                     dbSyncService.executeWithIteration("mcdChartBasInfo");
