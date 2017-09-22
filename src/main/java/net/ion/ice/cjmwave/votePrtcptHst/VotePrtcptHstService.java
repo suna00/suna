@@ -6,8 +6,6 @@ import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
-import net.ion.ice.core.node.NodeUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,8 +20,8 @@ import java.util.Map;
  * Created by leehh on 2017. 9. 20.
  */
 @Service("votePrtcptHstService")
-public class votePrtcptHstService {
-    private static Logger logger = LoggerFactory.getLogger(votePrtcptHstService.class);
+public class VotePrtcptHstService {
+    private static Logger logger = LoggerFactory.getLogger(VotePrtcptHstService.class);
     private static String[] pidArray = {"sersVoteSeq", "voteSeq", "voteItemSeq", "prtcpMbrId", "connIpAdr"};
 
     @Autowired
