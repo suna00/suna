@@ -5,13 +5,13 @@
     "mstYear": "2017",
     "mstMonth": "9",
     "mstWeek": "1",
-    "mstYyMmDd": "201709070000",
-    "mstFromDate": "201709280000",
-    "mstToDate": "201712310000",
+    "mstYyMmDd": "20170907",
+    "mstFromDate": "2017-09-28",
+    "mstToDate": "2017-12-31",
     "serviceFlag": true,
     "regDate": "201709070000",
     "modDate": "201709040000",
-    "onairDt": "201709280000"
+    "onairDt": "20170928"
   },
   {
     "typeId": "mcdChartBasInfo",
@@ -19,9 +19,9 @@
     "mstYear": "2017",
     "mstMonth": "9",
     "mstWeek": "2",
-    "mstYyMmDd": "201709140000",
-    "mstFromDate": "201710050000",
-    "mstToDate": "201712310000",
+    "mstYyMmDd": "20170914",
+    "mstFromDate": "2017-10-05",
+    "mstToDate": "2017-12-31",
     "serviceFlag": true,
     "regDate": "201709140000",
     "modDate": "201709040000",
@@ -33,13 +33,13 @@
     "mstYear": "2017",
     "mstMonth": "9",
     "mstWeek": "3",
-    "mstYyMmDd": "201709210000",
-    "mstFromDate": "201710120000",
-    "mstToDate": "201712310000",
+    "mstYyMmDd": "20170921",
+    "mstFromDate": "2017-10-12",
+    "mstToDate": "2017-12-31",
     "serviceFlag": true,
     "regDate": "201709210000",
     "modDate": "201709040000",
-    "onairDt": "201710120000"
+    "onairDt": "20171012"
   },
   {
     "typeId": "mcdChartBasInfo",
@@ -47,12 +47,12 @@
     "mstYear": "2017",
     "mstMonth": "9",
     "mstWeek": "4",
-    "mstYyMmDd": "201709280000",
-    "mstFromDate": "201710090000",
-    "mstToDate": "201712310000",
+    "mstYyMmDd": "20170928",
+    "mstFromDate": "2017-10-09",
+    "mstToDate": "2017-12-31",
     "serviceFlag": true,
     "regDate": "201709280000",
     "modDate": "201709040000",
-    "onairDt": "201710090000"
+    "onairDt": "20171009"
   }
 ]
