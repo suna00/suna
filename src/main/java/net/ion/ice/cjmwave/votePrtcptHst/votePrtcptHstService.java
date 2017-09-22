@@ -30,6 +30,7 @@ public class VotePrtcptHstService {
     @Autowired
     private NodeService nodeService ;
 
+
     /**
      * 2017.09.20 leehh
      * 시리즈(MAMA) 투표하기 api에서 사용함
