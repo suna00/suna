@@ -2,11 +2,7 @@
   {
     "typeId": "onairTranInfo",
     "tranSeq": 1,
-    "onairSeq": {
-      "value": "54515",
-      "label": "2017년 MAMA 페스티벌",
-      "refId": "54515"
-    },
+    "onairSeq": 54515,
     "langCd": {
       "value": "eng",
       "label": "영어",
@@ -21,11 +17,7 @@
   {
     "typeId": "onairTranInfo",
     "tranSeq": 2,
-    "onairSeq": {
-      "value": "54515",
-      "label": "2017년 MAMA 페스티벌",
-      "refId": "54515"
-    },
+    "onairSeq": 54515,
     "langCd": {
       "value": "zho-cn",
       "label": "중국(간체)",
