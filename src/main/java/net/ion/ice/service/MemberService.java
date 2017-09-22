@@ -26,6 +26,40 @@ public class MemberService {
     private CommonService commonService;
     private EmailService emailService;
 
+    public ExecuteContext saveMember(ExecuteContext context){
+        Map<String, Object> contextData = new LinkedHashMap<>(context.getData());
+
+        Map<String, Object> resultObject = new HashMap<>();
+        Map<String, Object> item = new HashMap<>();
+        Node node;
+
+        if(contextData.get("memberNo") == null){
+
+            if(contextData.containsKey("password")){
+                contextData.put("password","1234"); // 암호화 처리 필요
+            }
+
+            node = (Node)nodeService.executeNode(contextData, "member", CREATE);
+
+        } else {
+
+            if(contextData.containsKey("password")){
+                contextData.put("password","1234"); // 암호화 처리 필요
+            }
+
+            node = (Node)nodeService.executeNode(contextData, "member", UPDATE);
+        }
+
+        item.put("memberNo", node.get("memberNo"));
+        item.put("email", node.get("email"));
+        item.put("name", node.get("name"));
+
+        resultObject.put("item", item);
+        context.setResult(resultObject);
+
+        return context;
+    }
+
     public ExecuteContext authenticationSendEmail(ExecuteContext context){
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
 
