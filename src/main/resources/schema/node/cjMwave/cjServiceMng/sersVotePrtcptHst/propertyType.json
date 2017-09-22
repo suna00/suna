@@ -14,6 +14,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "idType": "autoIncrement",
     "codeFilter": "",
     "defaultValue": ""
   },
