@@ -1011,25 +1011,24 @@
     "icon": "",
     "active": "true",
     "index": "false",
-    "pages": [
+    "pages": [],
+    "customPages": [
       {
         "pageName": "목록",
-        "pageUrl": "list"
+        "pageUrl": "cj/cc/qna/QnaList"
       },
       {
         "pageName": "등록",
-        "pageUrl": "form"
+        "pageUrl": "cj/cc/qna/QnaForm"
       },
       {
         "pageName": "수정",
-        "pageUrl": "uform"
+        "pageUrl": "cj/cc/qna/QnaUform"
       },
       {
         "pageName": "상세",
-        "pageUrl": "view"
+        "pageUrl": "cj/cc/qna/QnaView"
       }
-    ],
-    "customPages": [
     ]
   },
   {
