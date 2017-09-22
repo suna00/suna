@@ -8,7 +8,7 @@ import org.apache.commons.lang3.time.DateUtils;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.Date;
-import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -28,7 +28,8 @@ public class MethodHelper {
                     date = new Date(((Timestamp) value).getTime()) ;
                 }else {
                     try {
-                        date = DateUtils.parseDate(value.toString(), patterns);
+//                        date = DateUtils.parseDate(value.toString(), patterns);
+                        date = DateUtils.parseDate(value.toString(), Locale.KOREA, patterns);
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
