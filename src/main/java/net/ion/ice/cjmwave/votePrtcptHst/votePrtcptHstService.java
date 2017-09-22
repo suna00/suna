@@ -23,8 +23,8 @@ import java.util.Map;
  * Created by leehh on 2017. 9. 20.
  */
 @Service("votePrtcptHstService")
-public class VotePrtcptHstService {
-    private static Logger logger = LoggerFactory.getLogger(VotePrtcptHstService.class);
+public class votePrtcptHstService {
+    private static Logger logger = LoggerFactory.getLogger(votePrtcptHstService.class);
     private static String[] pidArray = {"sersVoteSeq", "voteSeq", "voteItemSeq", "prtcpMbrId", "connIpAdr"};
 
     @Autowired
