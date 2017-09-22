@@ -551,6 +551,9 @@ public class NodeUtils {
                 if (value instanceof Map) {
                     return JsonUtils.toJsonString((Map<String, Object>) value);
                 }
+                if (value instanceof List) {
+                    return JsonUtils.toJsonString((List<?>) value);
+                }
                 if (value instanceof String) {
                     return value;
                 }
