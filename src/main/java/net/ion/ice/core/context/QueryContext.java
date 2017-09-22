@@ -107,6 +107,12 @@ public class QueryContext extends ReadContext {
         return queryContext;
     }
 
+    public static QueryContext createQueryContextFromTerms(List<QueryTerm> queryTerms, NodeType nodeType) {
+        QueryContext queryContext = new QueryContext(nodeType);
+        queryContext.setQueryTerms(queryTerms);
+        return queryContext;
+    }
+
     public void makeSearchFields(Map<String, Object> _config) {
         if(_config == null) return ;
         String searchFieldsStr = (String)  ContextUtils.getValue(_config.get("searchFields"), data);
