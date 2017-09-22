@@ -7,6 +7,7 @@ import org.apache.commons.lang3.time.DateUtils;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
@@ -248,6 +249,20 @@ public class MethodHelper {
             case "convertString":{
                 if(value == null) return "";
                 return value.toString();
+            }
+            case "weekDate":{
+                String defaultStr = "";
+                if(methodParams.length >2 && !methodParams[2].isEmpty()){
+                    defaultStr = methodParams[2].toString();
+                }
+                if(methodParams[0].isEmpty())return defaultStr ;
+                String patternStr = "yyyyMMdd";
+                if(methodParams.length >1 && !methodParams[1].isEmpty()){
+                    patternStr = methodParams[1];
+                }
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.DAY_OF_WEEK,Integer.parseInt(methodParams[0]));
+                return DateFormatUtils.format(calendar.getTime(),patternStr);
             }
 
             default :
