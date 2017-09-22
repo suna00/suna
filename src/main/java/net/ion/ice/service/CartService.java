@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +24,9 @@ public class CartService {
     public static final String CREATE = "create";
     public static final String UPDATE = "update";
     public static final String DELETE = "delete";
-    public static final String ALL_EVENT = "allEvent";
+    public static final String SAVE = "save";
+    public static final String cartProduct_TID = "cartProduct";
+    public static final String cartProductItem_TID = "cartProductItem";
 
     @Autowired
     private NodeService nodeService ;
@@ -32,19 +35,13 @@ public class CartService {
 
     public void addCart(ExecuteContext context) throws IOException {
         Map<String, Object> data = context.getData();
-        Object cartId = data.get("cartId");
-        Node node = null;
+        List<Map<String, Object>> cartProducts = new ArrayList<>();
 
-        if(cartId != null){
-            node = NodeUtils.getNode("cart", cartId.toString());
-        }
+        Node cart = (Node) nodeService.executeNode(data, "cart", SAVE);
+        data.put("cartId", cart.getId());
+        cartProducts = mergeList(data, cart.getId());
 
-        if(node == null){
-            newCart(data);
-        }else{
-            nodeService.executeNode(data, "cart", UPDATE) ;
-            mergeList(data, cartId, "cartProduct");
-        }
+//        setDeliveryPrice(data, cartProducts);
 
     }
 
@@ -53,84 +50,125 @@ public class CartService {
         String productIds = (String) data.get("productIds");
         String[] productIdsArray = productIds.split(",");
         for(String productId : productIdsArray){
-            nodeBindingService.delete("cartProduct", productId);
-            List<Map<String, Object>> cartProductItemList = nodeBindingService.list("cartProductItem", "cartProductId_in=".concat(productId));
+            nodeBindingService.delete(cartProduct_TID, productId);
+            List<Map<String, Object>> cartProductItemList = nodeBindingService.list(cartProductItem_TID, "cartProductId_in=".concat(productId));
             if(cartProductItemList.size() > 0){
                 for(Map<String, Object> cartProductItem : cartProductItemList){
-                    nodeBindingService.delete("cartProductItem", String.valueOf(cartProductItem.get("cartProductItemId")));
+                    nodeBindingService.delete(cartProductItem_TID, String.valueOf(cartProductItem.get("cartProductItemId")));
                 }
             }
         }
         context.setResult(CommonService.getResult("C0001"));
     }
 
-    private void mergeList(Map<String, Object> data, Object cartId, String tid) throws IOException {
-        List<Map<String, Object>> referenced = nodeBindingService.list(tid, "cartId_in="+cartId);
-        List<Map<String, Object>> maps = JsonUtils.parsingJsonToList(data.get(tid).toString());
+    private List<Map<String, Object>> mergeList(Map<String, Object> data, Object cartId) throws IOException {
+        List<Map<String, Object>> referenced = nodeBindingService.list(cartProduct_TID, "cartId_equals="+cartId);
+        List<Map<String, Object>> maps = JsonUtils.parsingJsonToList(data.get(cartProduct_TID).toString());
+        List<Map<String, Object>> cartProducts = new ArrayList<>();
 
-        boolean exist = false;
         for(Map<String, Object> map : maps){
+            Node product = nodeService.getNode("product", map.get("productId").toString());
+            boolean exist = false;
+            boolean quantityDeliveryType = ("deliveryPriceType>quantity".equals(product.getValue("deliveryPriceType")));
+
             for(Map<String, Object> obj : referenced){
-                if((map.get("baseOptionItemId")).equals(obj.get("baseOptionItemId"))){
+                if(!quantityDeliveryType && (map.get("baseOptionItemId").toString()).equals(obj.get("baseOptionItemId").toString())){
                     exist = true;
+                    cartProducts.add(obj);
                 }
             }
             if(!exist){
                 map.putAll(data);
-                nodeService.executeNode(map, tid, CREATE) ;
+                map.put("vendorId",product.getValue("vendorId"));
+
+                Map<String, Object> cartProductMap = new LinkedHashMap<>();
+                if(quantityDeliveryType){
+                    cartProductMap = createCartProductByDeliveryQuantity(map, product);
+                }else{
+                    cartProductMap = createCartProduct(map);
+                }
+                if(map.get(cartProductItem_TID) != null) createCartProductItem(cartProductMap);
+
+                cartProducts.add(map);
             }else{
-                // 장바구니에 이미 존재하는 상품입니다
+                // 장바구니에 이미 존재하는 상품
             }
         }
 
-    }
-//
-////    "nodeType=data" getList
-//    private List<Map<String, Object>> getList(String tid, String searchText) {
-//        NodeType nodeType = NodeUtils.getNodeType(tid);
-//        QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, nodeType);
-//        return getNodeBindingService().getNodeBindingInfo(nodeType.getTypeId()).list(queryContext);
-//    }
-
-    private void newCart(Map<String, Object> data) throws IOException {
-        Node node = (Node) nodeService.executeNode(data, "cart", CREATE);
-        data.put("cartId", node.getId());
-
-        createList(data);
-
+        return cartProducts;
     }
 
+    // 수량별 배송비 경우 cartProduct 쪼갬
+    private Map<String, Object> createCartProductByDeliveryQuantity(Map<String, Object> map, Node product) throws IOException {
+        int quantity = Integer.parseInt(map.get("quantity").toString());
+        int deliveryConditionValue = Integer.parseInt(product.getValue("deliveryConditionValue").toString());
+        Map<String, Object> cartProductMap = new LinkedHashMap<>();
 
-    private List<Node> createList(Map<String, Object> data) throws IOException {
-        List<Node> list = new ArrayList<>();
-        for(Map<String, Object> map : JsonUtils.parsingJsonToList(data.get("cartProduct").toString())){
-            map.putAll(data);
-            Node node = (Node) nodeService.executeNode(map, "cartProduct", CREATE);
-            map.put("cartProductId", node.getId());
+        // 장바구니에 수량별 배송료 같은 기본옵션이 있는경우 나머지 수량 채워줌.
+        List<Map<String, Object>> cartProducts = nodeBindingService.list(cartProduct_TID, "cartId_equals="+map.get("cartId")+"&baseOptionItemId_equals="+map.get("baseOptionItemId")+"&quantity_below="+deliveryConditionValue);
+        if(cartProducts.size() > 0){
+            for(Map<String, Object> cartProduct : cartProducts){
+                int qtt = Integer.parseInt(cartProduct.get("quantity").toString());
+                if(qtt < deliveryConditionValue){
+                    cartProduct.put("quantity", deliveryConditionValue);
+                    nodeService.executeNode(cartProduct, cartProduct_TID, UPDATE) ;
 
-            if(map.get("cartProductItem") != null){
-                for(Map<String, Object> item : (List<Map<String, Object>>) map.get("cartProductItem")){
-                    item.putAll(map);
-                    nodeService.executeNode(item, "cartProductItem", CREATE) ;
+                    quantity = quantity - ( deliveryConditionValue - qtt );
                 }
             }
-            list.add(node);
         }
-        return list;
+
+        if(quantity > deliveryConditionValue){
+            int count = (int) Math.ceil((double) quantity / (double) deliveryConditionValue);
+            for(int i=0 ; i < count ; i++){
+                int cartProductQuantity = (i != count-1 ? deliveryConditionValue : ( quantity - (count-1) * deliveryConditionValue ));
+                map.put("quantity", cartProductQuantity);
+                cartProductMap = createCartProduct(map);
+
+                setDeliveryPrice("quantity", cartProductMap, product);
+            }
+        }else{
+            cartProductMap = createCartProduct(map);
+
+            setDeliveryPrice("quantity", cartProductMap, product);
+        }
+
+        return cartProductMap;
     }
 
-    public void setDeliveryPrice(){
+    private Map<String, Object> createCartProduct(Map<String, Object> map) {
+        Map<String, Object> newMap = new LinkedHashMap<>();
+        newMap.putAll(map);
+
+        Node node = (Node) nodeService.executeNode(newMap, cartProduct_TID, CREATE);
+        newMap.put("cartProductId", node.getId());
+
+        return newMap;
+    }
+
+    private void createCartProductItem(Map<String, Object> cartProduct) {
+        for(Map<String, Object> item : (List<Map<String, Object>>) cartProduct.get(cartProductItem_TID)){
+            item.putAll(cartProduct);
+            nodeService.executeNode(item, cartProductItem_TID, CREATE) ;
+        }
 
     }
 
-    public void update(ExecuteContext context){
-        Node node = context.getNode() ;
+    private void updateCartProduct(Map<String, Object> map) {
 
+        Node node = (Node) nodeService.executeNode(map, cartProduct_TID, CREATE);
+        map.put("cartProductId", node.getId());
+
+        createCartProductItem(map);
     }
 
-    public void delete(ExecuteContext context){
-        Node node = context.getNode() ;
+    public void setDeliveryPrice(String deliveryPriceType, Map<String, Object> cartProduct, Map<String, Object> product) throws IOException {
+        List<Map<String, Object>> deliveryPrice = new ArrayList<>();
 
+        cartProduct.putAll(product);
+        cartProduct.put("cartProductIds", cartProduct.get("cartProductId"));
+        nodeService.executeNode(cartProduct, "cartDeliveryPrice", CREATE);
     }
+
 
 }
