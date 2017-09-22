@@ -515,6 +515,35 @@
   {
     "typeId": "apiConfig",
     "category": "vote",
+    "apiId": "IfMwv007",
+    "apiName": "MAMA용 투표하기",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "voteResult",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "sersVotePrtcptHst",
+      "event": "sersVoting",
+      "response": {
+        "sersVoteSeq": "",
+        "userVoteCnt": {
+          "value": "10"
+        },
+        "userPvCnt": {
+          "value": "1000"
+        },
+        "ipAdrVoteCnt": {
+          "value": "10000"
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
     "apiId": "IfMwv100",
     "apiName": "MWAVE 투표결과 목록조회",
     "method": "GET",
@@ -561,12 +590,12 @@
           "query": [
             {
               "field": "voteSeq",
-              "method": "matching",
+              "method": "equals",
               "value": "{{:voteSeq}}"
             },
             {
               "field": "rankNum",
-              "method": "matching",
+              "method": "equals",
               "value": "1"
             },
             {
@@ -658,12 +687,12 @@
       "query": [
         {
           "field": "voteSeq",
-          "method": "matching",
+          "method": "equals",
           "value": "{{:voteSeq}}"
         },
         {
           "field": "cntryCd",
-          "method": "matching",
+          "method": "equals",
           "value": "{{:cntryCd}}"
         },
         {
@@ -707,12 +736,12 @@
       "query": [
         {
           "field": "voteSeq",
-          "method": "matching",
+          "method": "equals",
           "value": "{{:voteSeq}}"
         },
         {
           "field": "voteItemSeq",
-          "method": "matching",
+          "method": "equals",
           "value": "{{:voteItemSeq}}"
         },
         {
@@ -730,12 +759,12 @@
           "query": [
             {
               "field": "voteSeq",
-              "method": "matching",
+              "method": "equals",
               "value": "{{:voteSeq}}"
             },
             {
               "field": "voteItemSeq",
-              "method": "matching",
+              "method": "equals",
               "value": "{{:voteItemSeq}}"
             },
             {
@@ -751,12 +780,12 @@
           "query": [
             {
               "field": "voteSeq",
-              "method": "matching",
+              "method": "equals",
               "value": "{{:voteSeq}}"
             },
             {
               "field": "voteItemSeq",
-              "method": "matching",
+              "method": "equals",
               "value": "{{:voteItemSeq}}"
             },
             {
@@ -769,12 +798,12 @@
           "query": [
             {
               "field": "voteSeq",
-              "method": "matching",
+              "method": "equals",
               "value": "{{:voteSeq}}"
             },
             {
               "field": "voteItemSeq",
-              "method": "matching",
+              "method": "equals",
               "value": "{{:voteItemSeq}}"
             },
             {
@@ -811,17 +840,17 @@
       "query": [
         {
           "field": "artistId",
-          "method": "matching",
+          "method": "equals",
           "value": "{{:artistId}}"
         },
         {
           "field": "perdStDate",
-          "method": "matching",
+          "method": "equals",
           "value": "{{:perdStDate}}"
         },
         {
           "field": "perdFnsDate",
-          "method": "matching",
+          "method": "equals",
           "value": "{{:perdFnsDate}}"
         },
         {
@@ -862,17 +891,17 @@
       "query": [
         {
           "field": "artistId",
-          "method": "matching",
+          "method": "equals",
           "value": "{{:artistId}}"
         },
         {
           "field": "perdStDate",
-          "method": "matching",
+          "method": "equals",
           "value": "{{:perdStDate}}"
         },
         {
           "field": "perdFnsDate",
-          "method": "matching",
+          "method": "equals",
           "value": "{{:perdFnsDate}}"
         },
         {
@@ -913,17 +942,17 @@
       "query": [
         {
           "field": "artistId",
-          "method": "matching",
+          "method": "equals",
           "value": "{{:artistId}}"
         },
         {
           "field": "perdStDate",
-          "method": "matching",
+          "method": "equals",
           "value": "{{:perdStDate}}"
         },
         {
           "field": "perdFnsDate",
-          "method": "matching",
+          "method": "equals",
           "value": "{{:perdFnsDate}}"
         },
         {
@@ -946,6 +975,10 @@
     "apiName": "MCD 투표내역 상세",
     "method": "GET",
     "parameters": [
+      {
+        "paramName": "langCd",
+        "required": false
+      },
       {
         "paramName": "bradTelcsDt",
         "required": true
@@ -994,7 +1027,7 @@
           "query": [
             {
               "field": "voteSeq",
-              "method": "matching",
+              "method": "equals",
               "value": "{{:voteSeq}}"
             },
             {
@@ -1014,6 +1047,196 @@
           }
         }
       }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv008",
+    "apiName": "MCD 투표 상세조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "langCd",
+        "required": false
+      },
+      {
+        "paramName": "bradTelcsDt",
+        "required": true
+      },
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "voteBasInfo",
+      "query": [
+        {
+          "field": "voteFormlCd",
+          "method": "matching",
+          "value": "2"
+        },
+        {
+          "field": "showLoCd",
+          "method": "matching",
+          "value": "4"
+        },
+        {
+          "field": "bradTelcsDt",
+          "method": "above",
+          "value": "{{:concatStr(bradTelcsDt,000000)}}"
+        },
+        {
+          "field": "bradTelcsDt",
+          "method": "below",
+          "value": "{{:concatStr(bradTelcsDt,235959)}}"
+        },
+        {
+          "limit": "1",
+          "sorting": "voteSeq desc"
+        },
+        {
+          "referenceView": "sersItemVoteSeq",
+          "includeReferenced": true
+        }
+      ],
+      "response": {
+        "_all_": "",
+        "refdItemList": {
+          "typeId": "voteItemInfo",
+          "query": [
+            {
+              "field": "voteSeq",
+              "method": "referenceJoin",
+              "value": "voteSeq_matching={{:voteSeq}}"
+            },
+            {
+              "referenceView": "contsMetaId"
+            }
+          ]
+        },
+        "refdSeriesItemList": {
+          "typeId": "sersVoteItemInfo",
+          "query": [
+            {
+              "field": "voteSeq",
+              "method": "referenceJoin",
+              "value": "voteSeq_matching={{:voteSeq}}"
+            },
+            {
+              "referenceView": "sersItemVoteSeq",
+              "includeReferenced": true
+            }
+          ]
+        },
+        "voteNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select sum(voteNum)as voteNum from voteItemStats where voteSeq = @{voteSeq}"
+          }
+        },
+        "userVoteCnt": {
+          "value": "10"
+        },
+        "userPvCnt": {
+          "value": "1000"
+        },
+        "ipAdrVoteCnt": {
+          "value": "10000"
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv109",
+    "apiName": "아티스트별 국가 투표 현황(금주)",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "artistId",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "cntryVoteStatsByArtist",
+      "query": [
+        {
+          "field": "artistId",
+          "method": "equals",
+          "value": "{{:artistId}}"
+        },
+        {
+          "field": "perdStDate",
+          "method": "equals",
+          "value": "{{:weekDate(1,yyyy-MM-dd,뺿뺿)}}"
+        },
+        {
+          "field": "perdFnsDate",
+          "method": "equals",
+          "value": "{{:weekDate(7,yyyy-MM-dd,뺿뺿)}}"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "referenceView": "cntryCd,artistId"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv110",
+    "apiName": "아티스트별 투표회원 현황(금주)",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "artistId",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "voteMbrStatsByArtist",
+      "query": [
+        {
+          "field": "artistId",
+          "method": "equals",
+          "value": "{{:artistId}}"
+        },
+        {
+          "field": "perdStDate",
+          "method": "equals",
+          "value": "{{:weekDate(1,yyyy-MM-dd,뺿뺿)}}"
+        },
+        {
+          "field": "perdFnsDate",
+          "method": "equals",
+          "value": "{{:weekDate(7,yyyy-MM-dd,뺿뺿)}}"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "referenceView": "artistId,mbrId"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        }
+      ]
     }
   },
   {
@@ -1324,6 +1547,99 @@
           "ds": "cjDb",
           "resultType": "value",
           "sql": "select sum(voteNum) as totalVoteNum from cntryVoteStats where perdStDate = @{perdStDate} and perdFnsDate = @{perdFnsDate}"
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv207",
+    "apiName": "전체 국가 투표현황(금주)",
+    "method": "GET",
+    "config": {
+      "root": {
+        "typeId": "cntryVoteStats",
+        "query": [
+          {
+            "field": "perdStDate",
+            "method": "equals",
+            "value": "{{:weekDate(1,yyyy-MM-dd,뺿뺿)}}"
+          },
+          {
+            "field": "perdFnsDate",
+            "method": "equals",
+            "value": "{{:weekDate(7,yyyy-MM-dd,뺿뺿)}}"
+          },
+          {
+            "sorting": "{{:sorting}}"
+          },
+          {
+            "referenceView": "cntryCd"
+          },
+          {
+            "page": "{{:page}}",
+            "pageSize": "{{:pageSize}}"
+          }
+        ]
+      },
+      "getTotalVoteNum": {
+        "select": {
+          "ds": "cjDb",
+          "resultType": "value",
+          "sql": "select sum(voteNum) as totalVoteNum from cntryVoteStats where perdStDate = @{weekDate(1,yyyy-MM-dd,뺿뺿)} and perdFnsDate = @{weekDate(7,yyyy-MM-dd,뺿뺿)}"
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv208",
+    "apiName": "투표별 국가 투표 현황(금주)",
+    "method": "GET",
+    "parameters": [
+      {
+        "perdStDate": "voteSeq",
+        "required": true
+      }
+    ],
+    "config": {
+      "root": {
+        "typeId": "cntryVoteStatsByVote",
+        "query": [
+          {
+            "field": "voteSeq",
+            "method": "equals",
+            "value": "{{:voteSeq}}"
+          },
+          {
+            "field": "perdStDate",
+            "method": "equals",
+            "value": "{{:weekDate(1,yyyy-MM-dd,뺿뺿)}}"
+          },
+          {
+            "field": "perdFnsDate",
+            "method": "equals",
+            "value": "{{:weekDate(7,yyyy-MM-dd,뺿뺿)}}"
+          },
+          {
+            "sorting": "{{:sorting}}"
+          },
+          {
+            "referenceView": "cntryCd"
+          },
+          {
+            "page": "{{:page}}",
+            "pageSize": "{{:pageSize}}"
+          }
+        ]
+      },
+      "getTotalVoteNum": {
+        "select": {
+          "ds": "cjDb",
+          "resultType": "value",
+          "sql": "select sum(voteNum) as totalVoteNum from cntryVoteStatsByVote where voteSeq = @{voteSeq} and perdStDate = @{weekDate(1,yyyy-MM-dd,뺿뺿)} and perdFnsDate = @{weekDate(7,yyyy-MM-dd,뺿뺿)}"
         }
       }
     }

@@ -61,8 +61,9 @@ public class VotePrtcptHstService {
         for (Map<String, Object> voteData : reqJson) {
             //node create
             Node result = (Node) nodeService.executeNode(voteData, "sersVotePrtcptHst", EventService.CREATE);
+            context.setResult(result);
         }
-        returnResult.put("insertCnt", reqJson.size()+"");
-        context.setResult(returnResult);
+        //returnResult.put("insertCnt", reqJson.size()+"");
+        //context.setResult(returnResult);
     }
 }

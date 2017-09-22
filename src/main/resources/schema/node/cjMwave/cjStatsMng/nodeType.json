@@ -168,5 +168,15 @@
     "repositoryType": "data",
     "eviction": 0,
     "tableName": "cjDb#artistSexVoteStatsByDly"
+  },
+  {
+    "parentId": "cjStatsMng",
+    "typeId": "nodeType",
+    "id": "cntryVoteStatsByVote",
+    "tid": "cntryVoteStatsByVote",
+    "typeName": "투표별 전체 국가 투표 현황",
+    "repositoryType": "data",
+    "eviction": 0,
+    "tableName": "cjDb#cntryVoteStatsByVote"
   }
 ]
