@@ -201,13 +201,12 @@
     ],
     "config": {
       "typeId": "qna",
-      "event": "create",
+      "event": "save",
       "data": {
         "qnarId": "{{:snsTypeCd}}>{{:snsKey}}",
         "qnaNm": "{{:qnaNm}}",
         "qnaFildCd": "{{:qnaFildCd}}",
         "qstnSbst": "{{:qstnSbst}}",
-        "qstnAtcFilePath": "{{:qstnAtcFile}}",
         "trtSttusCd": "1"
       }
     }
