@@ -1,23 +1,23 @@
 [
   {
     "typeId": "dclaSetupMng",
-    "dclaSetupSeq": 100,
+    "dclaSetupSeq": 1500,
     "setupBaseDayNum": 1,
-    "setupBaseCnt": 15,
+    "setupBaseCnt": 10,
     "setupTypeCd": "1"
   },
   {
     "typeId": "dclaSetupMng",
-    "dclaSetupSeq": 101,
-    "setupBaseDayNum":0,
-    "setupBaseCnt": 1000,
+    "dclaSetupSeq": 1504,
+    "setupBaseDayNum": 1,
+    "setupBaseCnt": 10,
     "setupTypeCd": "2"
   },
   {
     "typeId": "dclaSetupMng",
-    "dclaSetupSeq": 102,
-    "setupBaseDayNum":0,
-    "setupBaseCnt": 15,
+    "dclaSetupSeq": 1507,
+    "setupBaseDayNum": 1,
+    "setupBaseCnt": 10,
     "setupTypeCd": "3"
   }
 ]
