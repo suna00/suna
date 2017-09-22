@@ -18,10 +18,10 @@
     "cnctContsNm": "",
     "cnctContsIfTgtCd": "",
     "cnctContsTypeCd": "",
-    "cnctContsLeftYn": "",
+    "cnctContsLeftYn": false,
     "cnctContsShowCntryCdList": "",
     "cnctContsId": "",
-    "cnctBgOptnYn": ""
+    "cnctBgOptnYn": false
   },
   {
     "typeId": "compItemInfo",
@@ -165,7 +165,7 @@
     "cnctContsLeftYn": "",
     "cnctContsShowCntryCdList": "",
     "cnctContsId": "",
-    "cnctBgOptnYn": ""
+    "cnctBgOptnYn": false
   },
   {
     "typeId": "compItemInfo",
@@ -189,7 +189,7 @@
     "cnctContsLeftYn": "",
     "cnctContsShowCntryCdList": "",
     "cnctContsId": "",
-    "cnctBgOptnYn": ""
+    "cnctBgOptnYn": false
   },
   {
     "typeId": "compItemInfo",
@@ -333,7 +333,7 @@
     "cnctContsLeftYn": "",
     "cnctContsShowCntryCdList": "",
     "cnctContsId": "",
-    "cnctBgOptnYn": ""
+    "cnctBgOptnYn": false
   },
   {
     "typeId": "compItemInfo",

@@ -507,18 +507,37 @@
     "icon": "fa-tag",
     "active": "true",
     "index": "false",
+    "pages": [],
+    "customPages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "cj/webservice/MainBasInfoList"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "cj/webservice/MainBasInfoForm"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "cj/webservice/MainBasInfoView"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "root",
+    "menuId": "menuMng",
+    "menuName": "메뉴 관리",
+    "order": "20",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
     "pages": [
       {
         "pageName": "목록",
         "pageUrl": "list"
-      },
-      {
-        "pageName": "등록/수정",
-        "pageUrl": "form"
-      },
-      {
-        "pageName": "상세",
-        "pageUrl": "view"
       }
     ],
     "customPages": []
@@ -673,6 +692,405 @@
       {
         "pageName": "상세",
         "pageUrl": "cj/vt/MamaView"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "root",
+    "menuId": "webEtc",
+    "menuName": "배너/이벤트/팝업 관리",
+    "order": "40",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "admin>root>webEtc",
+    "menuId": "banrMng",
+    "menuName": "배너 관리",
+    "order": "10",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "cj/br/BanrList"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "cj/br/BanrForm"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "cj/br/BanrView"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "admin>root>webEtc",
+    "menuId": "evtMng",
+    "menuName": "이벤트 관리",
+    "order": "20",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "admin>root>webEtc",
+    "menuId": "popMng",
+    "menuName": "팝업 관리",
+    "order": "30",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "admin>root>webEtc",
+    "menuId": "badgeMng",
+    "menuName": "뱃지 관리",
+    "order": "40",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "root",
+    "menuId": "meetMng",
+    "menuName": "Meet&Greet",
+    "order": "50",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "root",
+    "menuId": "userMng",
+    "menuName": "User Contents 관리",
+    "order": "60",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "admin>root>userMng",
+    "menuId": "voteHist",
+    "menuName": "투표",
+    "order": "10",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "admin>root>userMng",
+    "menuId": "votePwnr",
+    "menuName": "투표 당첨자 관리",
+    "order": "20",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "admin>root>userMng",
+    "menuId": "votePwnrInfo",
+    "menuName": "투표 당첨자 개인정보 조회",
+    "order": "30",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "admin>root>userMng",
+    "menuId": "repl",
+    "menuName": "댓글",
+    "order": "40",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "admin>root>userMng",
+    "menuId": "chat",
+    "menuName": "Global Chat",
+    "order": "50",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "root",
+    "menuId": "starSvc",
+    "menuName": "Star 서비스",
+    "order": "70",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "root",
+    "menuId": " airMng",
+    "menuName": "On-Air 관리",
+    "order": "80",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "root",
+    "menuId": "svcCenterMng",
+    "menuName": "고객센터",
+    "order": "100",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "admin>root>svcCenterMng",
+    "menuId": "noticeMng",
+    "menuName": "공지사항 관리",
+    "order": "10",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "cj/cc/noti/NotiList"
+      },
+      {
+        "pageName": "등록",
+        "pageUrl": "cj/cc/noti/NotiForm"
+      },
+      {
+        "pageName": "수정",
+        "pageUrl": "cj/cc/noti/NotiUform"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "cj/cc/noti/NotiView"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "admin>root>svcCenterMng",
+    "menuId": "qnaMng",
+    "menuName": "1:1 문의하기 관리",
+    "order": "10",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "수정",
+        "pageUrl": "uform"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
+    ],
+    "customPages": [
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "admin>root>svcCenterMng",
+    "menuId": "faqMng",
+    "menuName": "FAQ 관리",
+    "order": "20",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "cj/cc/faq/FaqList"
+      },
+      {
+        "pageName": "등록",
+        "pageUrl": "cj/cc/faq/FaqForm"
+      },
+      {
+        "pageName": "수정",
+        "pageUrl": "cj/cc/faq/FaqUform"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "cj/cc/faq/FaqView"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "admin>root>svcCenterMng",
+    "menuId": "faqCtgMng",
+    "menuName": "FAQ 카테고리 관리",
+    "order": "30",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "cj/cc/faqCtg/FaqCtgList"
+      },
+      {
+        "pageName": "등록",
+        "pageUrl": "cj/cc/faqCtg/FaqCtgForm"
+      },
+      {
+        "pageName": "수정",
+        "pageUrl": "cj/cc/faqCtg/FaqCtgUform"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "cj/cc/faqCtg/FaqCtgView"
       }
     ]
   },
@@ -1012,146 +1430,6 @@
       }
     ],
     "customPages": []
-  },
-  {
-    "typeId": "adminLnbMenu",
-    "backOfficeId": "admin",
-    "gnbMenuId": "webSvcMng",
-    "parentMenuId": "root",
-    "menuId": "svcCenterMng",
-    "menuName": "고객센터",
-    "order": "100",
-    "icon": "fa-tag",
-    "active": "true",
-    "index": "false",
-    "pages": [
-    ],
-    "customPages": []
-  },
-  {
-    "typeId": "adminLnbMenu",
-    "backOfficeId": "admin",
-    "gnbMenuId": "webSvcMng",
-    "parentMenuId": "admin>root>svcCenterMng",
-    "menuId": "noticeMng",
-    "menuName": "공지사항 관리",
-    "order": "10",
-    "icon": "",
-    "active": "true",
-    "index": "false",
-    "pages": [],
-    "customPages": [
-      {
-        "pageName": "목록",
-        "pageUrl": "cj/cc/noti/NotiList"
-      },
-      {
-        "pageName": "등록",
-        "pageUrl": "cj/cc/noti/NotiForm"
-      },
-      {
-        "pageName": "수정",
-        "pageUrl": "cj/cc/noti/NotiUform"
-      },
-      {
-        "pageName": "상세",
-        "pageUrl": "cj/cc/noti/NotiView"
-      }
-    ]
-  },
-  {
-    "typeId": "adminLnbMenu",
-    "backOfficeId": "admin",
-    "gnbMenuId": "webSvcMng",
-    "parentMenuId": "admin>root>svcCenterMng",
-    "menuId": "qnaMng",
-    "menuName": "1:1 문의하기 관리",
-    "order": "10",
-    "icon": "",
-    "active": "true",
-    "index": "false",
-    "pages": [
-      {
-        "pageName": "목록",
-        "pageUrl": "list"
-      },
-      {
-        "pageName": "등록",
-        "pageUrl": "form"
-      },
-      {
-        "pageName": "수정",
-        "pageUrl": "uform"
-      },
-      {
-        "pageName": "상세",
-        "pageUrl": "view"
-      }
-    ],
-    "customPages": [
-    ]
-  },
-  {
-    "typeId": "adminLnbMenu",
-    "backOfficeId": "admin",
-    "gnbMenuId": "webSvcMng",
-    "parentMenuId": "admin>root>svcCenterMng",
-    "menuId": "faqMng",
-    "menuName": "FAQ 관리",
-    "order": "20",
-    "icon": "",
-    "active": "true",
-    "index": "false",
-    "pages": [],
-    "customPages": [
-      {
-        "pageName": "목록",
-        "pageUrl": "cj/cc/faq/FaqList"
-      },
-      {
-        "pageName": "등록",
-        "pageUrl": "cj/cc/faq/FaqForm"
-      },
-      {
-        "pageName": "수정",
-        "pageUrl": "cj/cc/faq/FaqUform"
-      },
-      {
-        "pageName": "상세",
-        "pageUrl": "cj/cc/faq/FaqView"
-      }
-    ]
-  },
-  {
-    "typeId": "adminLnbMenu",
-    "backOfficeId": "admin",
-    "gnbMenuId": "webSvcMng",
-    "parentMenuId": "admin>root>svcCenterMng",
-    "menuId": "faqCtgMng",
-    "menuName": "FAQ 카테고리 관리",
-    "order": "30",
-    "icon": "",
-    "active": "true",
-    "index": "false",
-    "pages": [],
-    "customPages": [
-      {
-        "pageName": "목록",
-        "pageUrl": "cj/cc/faqCtg/FaqCtgList"
-      },
-      {
-        "pageName": "등록",
-        "pageUrl": "cj/cc/faqCtg/FaqCtgForm"
-      },
-      {
-        "pageName": "수정",
-        "pageUrl": "cj/cc/faqCtg/FaqCtgUform"
-      },
-      {
-        "pageName": "상세",
-        "pageUrl": "cj/cc/faqCtg/FaqCtgView"
-      }
-    ]
   },
   {
     "typeId" : "adminLnbMenu",

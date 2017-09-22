@@ -78,7 +78,8 @@ public class SyntaxUtils {
                     // 데이터 타입 파싱
                     String [] paramKeyParts = paramKey.split("\\.");
                     String dataType = paramKeyParts[0].toUpperCase().trim();
-                    value = String.valueOf(params.get(paramKeyParts[1])).trim();
+                    value = params.get(paramKeyParts[1]);
+//                    value = String.valueOf(params.get(paramKeyParts[1])).trim();
                     switch (dataType) {
                         case "BIGINT":
                         case "INT":
@@ -86,13 +87,15 @@ public class SyntaxUtils {
                             break;
                         case "DATETIME":
                         case "TIMESTAMP":
-                            SimpleDateFormat dFormat = null;
-                            if(value.toString().length() == 14) {
-                                dFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-                            } else if (value.toString().length() == 8) {
-                                dFormat = new SimpleDateFormat("yyyyMMdd");
+                            if(value.getClass().getName().contains("String")){
+                                SimpleDateFormat dFormat = null;
+                                if(value.toString().length() == 14) {
+                                    dFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+                                } else if (value.toString().length() == 8) {
+                                    dFormat = new SimpleDateFormat("yyyyMMdd");
+                                }
+                                value = dFormat.parse(value.toString());
                             }
-                            value = dFormat.parse(value.toString());
                             break;
                         default:
                             value = value.toString();
@@ -101,7 +104,7 @@ public class SyntaxUtils {
                 }else {
                     value = params.get(paramKey);
                 }
-                temp.add(value);
+                preparedParams.add(value);
             }
             // @{} 문자열 전부 ? 로 치환
             List<String> replaceToQuestionMark = (List<String>) parsed.get("replaces");

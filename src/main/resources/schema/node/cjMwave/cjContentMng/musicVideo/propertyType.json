@@ -62,7 +62,7 @@
     "id": "musicVideo>genreCd",
     "propertyTypeName": "장르코드",
     "valueType": "REFERENCE",
-    "required": true,
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
@@ -98,7 +98,7 @@
     "pid": "imgUrl",
     "id": "musicVideo>imgUrl",
     "propertyTypeName": "이미지경로",
-    "valueType": "TEXT",
+    "valueType": "FILE",
     "required": false,
     "idable": false,
     "labelable": false,
@@ -108,8 +108,7 @@
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",
-    "defaultValue": "",
-    "i18n": true
+    "defaultValue": ""
   },
   {
     "typeId": "propertyType",

@@ -12,6 +12,7 @@
     "cntryCd": "CHN",
     "sexCd": "1",
     "bthYear": "1989",
+    "imgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "email": "albert11@naver.com",
     "emailRcvYn": true,
     "smsRcvYn": true,
@@ -26,7 +27,7 @@
     "blacklistYn": false,
     "dormTrtDate": "",
     "rtrmmbDate": "",
-    "onairTranTkcgrYn":true
+    "onairTranTkcgrYn": false
   },
   {
     "typeId": "mbrInfo",
@@ -41,6 +42,7 @@
     "cntryCd": "CHN",
     "sexCd": "2",
     "bthYear": "1999",
+    "imgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "email": "albert12@naver.com",
     "emailRcvYn": true,
     "smsRcvYn": true,
@@ -70,6 +72,7 @@
     "cntryCd": "KOR",
     "sexCd": "1",
     "bthYear": "1974",
+    "imgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg",
     "email": "albert@naver.com",
     "emailRcvYn": true,
     "smsRcvYn": true,
@@ -94,11 +97,12 @@
     "mbrDivCd": "2",
     "mbrSttusCd": "1",
     "sbscShapCd": "3",
-    "sbscDt": "2017083000000",
+    "sbscDt": "20170830000000",
     "snsId": "Kevin",
     "cntryCd": "USA",
     "sexCd": "2",
     "bthYear": "1989",
+    "imgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "email": "kevin@naver.com",
     "emailRcvYn": true,
     "smsRcvYn": true,
@@ -128,6 +132,7 @@
     "cntryCd": "JPN",
     "sexCd": "2",
     "bthYear": "1999",
+    "imgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg",
     "email": "albert14@naver.com",
     "emailRcvYn": true,
     "smsRcvYn": true,
@@ -157,6 +162,7 @@
     "cntryCd": "KOR",
     "sexCd": "1",
     "bthYear": "1974",
+    "imgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "email": "esther@naver.com",
     "emailRcvYn": true,
     "smsRcvYn": true,
@@ -186,6 +192,7 @@
     "cntryCd": "KOR",
     "sexCd": "1",
     "bthYear": "1989",
+    "imgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "email": "gildong@naver.com",
     "emailRcvYn": true,
     "smsRcvYn": true,
@@ -215,6 +222,7 @@
     "cntryCd": "USA",
     "sexCd": "2",
     "bthYear": "1999",
+    "imgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "email": "super@gmail.com",
     "emailRcvYn": true,
     "smsRcvYn": true,
@@ -244,6 +252,7 @@
     "cntryCd": "KOR",
     "sexCd": "1",
     "bthYear": "1974",
+    "imgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "email": "super2@gmail.com",
     "emailRcvYn": true,
     "smsRcvYn": true,
@@ -273,6 +282,7 @@
     "cntryCd": "KOR",
     "sexCd": "1",
     "bthYear": "1989",
+    "imgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "email": "super3@gmail.com",
     "emailRcvYn": true,
     "smsRcvYn": true,
@@ -287,21 +297,22 @@
     "blacklistYn": false,
     "dormTrtDate": "",
     "rtrmmbDate": "",
-    "onairTranTkcgrYn": ""
+    "onairTranTkcgrYn": false
   },
   {
     "typeId": "mbrInfo",
     "snsTypeCd": "1",
-    "snsKey": "skdj26873000000",
+    "snsKey": "skdj26873",
     "aliasNm": "Super4",
     "mbrDivCd": "2",
     "mbrSttusCd": "1",
     "sbscShapCd": "3",
-    "sbscDt": "20170510",
+    "sbscDt": "20170510000000",
     "snsId": "Super4",
     "cntryCd": "KOR",
     "sexCd": "1",
     "bthYear": "1999",
+    "imgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "email": "super4@gmail.com",
     "emailRcvYn": true,
     "smsRcvYn": true,
@@ -316,7 +327,7 @@
     "blacklistYn": false,
     "dormTrtDate": "",
     "rtrmmbDate": "",
-    "onairTranTkcgrYn": ""
+    "onairTranTkcgrYn": false
   },
   {
     "typeId": "mbrInfo",
@@ -331,6 +342,7 @@
     "cntryCd": "KOR",
     "sexCd": "1",
     "bthYear": "1974",
+    "imgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "email": "super5@gmail.com",
     "emailRcvYn": true,
     "smsRcvYn": true,
@@ -345,7 +357,7 @@
     "blacklistYn": false,
     "dormTrtDate": "",
     "rtrmmbDate": "",
-    "onairTranTkcgrYn": ""
+    "onairTranTkcgrYn": false
   },
   {
     "typeId": "mbrInfo",
@@ -360,6 +372,7 @@
     "cntryCd": "KOR",
     "sexCd": "1",
     "bthYear": "1989",
+    "imgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "email": "super6@gmail.com",
     "emailRcvYn": true,
     "smsRcvYn": true,
@@ -374,7 +387,7 @@
     "blacklistYn": false,
     "dormTrtDate": "",
     "rtrmmbDate": "",
-    "onairTranTkcgrYn": ""
+    "onairTranTkcgrYn": false
   },
   {
     "typeId": "mbrInfo",
@@ -389,6 +402,7 @@
     "cntryCd": "KOR",
     "sexCd": "1",
     "bthYear": "1999",
+    "imgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "email": "super7@gmail.com",
     "emailRcvYn": true,
     "smsRcvYn": true,
@@ -403,7 +417,7 @@
     "blacklistYn": false,
     "dormTrtDate": "",
     "rtrmmbDate": "",
-    "onairTranTkcgrYn": ""
+    "onairTranTkcgrYn": false
   },
   {
     "typeId": "mbrInfo",
@@ -418,6 +432,7 @@
     "cntryCd": "JPN",
     "sexCd": "2",
     "bthYear": "1989",
+    "imgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "email": "super8@gmail.com",
     "emailRcvYn": true,
     "smsRcvYn": true,
@@ -431,7 +446,8 @@
     "pushMsgRcvYn": true,
     "blacklistYn": false,
     "dormTrtDate": "",
-    "rtrmmbDate": "20170808020000"
+    "rtrmmbDate": "201708080200",
+    "onairTranTkcgrYn": false
   },
   {
     "typeId": "mbrInfo",
@@ -446,6 +462,7 @@
     "cntryCd": "JPN",
     "sexCd": "2",
     "bthYear": "1989",
+    "imgUrl": "http://mwaveshop.interest.me/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/w/h/whisper.jpg",
     "email": "super9@gmail.com",
     "emailRcvYn": true,
     "smsRcvYn": true,
@@ -459,6 +476,7 @@
     "pushMsgRcvYn": true,
     "blacklistYn": false,
     "dormTrtDate": "",
-    "rtrmmbDate": "20170808020000"
+    "rtrmmbDate": "201708080200",
+    "onairTranTkcgrYn": false
   }
 ]

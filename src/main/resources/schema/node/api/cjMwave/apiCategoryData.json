@@ -5,7 +5,7 @@
     "categoryName": "Vote API",
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
-      "default": "http://localhost:8080/"
+      "default": "http://125.131.88.147:8080/image/"
     },
     "commonParameters": [
       {
@@ -39,7 +39,7 @@
     "categoryName": "Component API",
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
-      "default": "http://localhost:8080/"
+      "default": "http://125.131.88.147:8080/image/"
     },
     "commonParameters": [
       {
@@ -73,7 +73,7 @@
     "categoryName": "Banner API",
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
-      "default": "http://localhost:8080/"
+      "default": "http://125.131.88.147:8080/image/"
     },
     "commonParameters": [
       {
@@ -107,7 +107,7 @@
     "categoryName": "System common API",
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
-      "default": "http://localhost:8080/"
+      "default": "http://125.131.88.147:8080/image/"
     },
     "commonParameters": [
       {
@@ -141,7 +141,7 @@
     "categoryName": "Service Bbs API",
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
-      "default": "http://localhost:8080/"
+      "default": "http://125.131.88.147:8080/image/"
     },
     "commonParameters": [
       {
@@ -175,7 +175,7 @@
     "categoryName": "Service EVENT API",
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
-      "default": "http://localhost:8080/"
+      "default": "http://125.131.88.147:8080/image/"
     },
     "commonParameters": [
       {
@@ -209,7 +209,7 @@
     "categoryName": "POPUP API",
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
-      "default": "http://localhost:8080/"
+      "default": "http://125.131.88.147:8080/image/"
     },
     "commonParameters": [
       {
@@ -243,7 +243,7 @@
     "categoryName": "Contents Meta API",
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
-      "default": "http://localhost:8080/"
+      "default": "http://125.131.88.147:8080/image/"
     },
     "commonParameters": [
       {
@@ -277,7 +277,7 @@
     "categoryName": "ON-AIR API",
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
-      "default": "http://localhost:8080/"
+      "default": "http://125.131.88.147:8080/image/"
     },
     "commonParameters": [
       {
@@ -311,7 +311,7 @@
     "categoryName": "MCD LINEUP API",
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
-      "default": "http://localhost:8080/"
+      "default": "http://125.131.88.147:8080/image/"
     },
     "commonParameters": [
       {
@@ -345,7 +345,7 @@
     "categoryName": "MEMBER API",
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
-      "default": "http://localhost:8080/"
+      "default": "http://125.131.88.147:8080/image/"
     },
     "commonParameters": [
       {
@@ -379,7 +379,7 @@
     "categoryName": "MYPAGE API",
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
-      "default": "http://localhost:8080/"
+      "default": "http://125.131.88.147:8080/image/"
     },
     "commonParameters": [
       {
@@ -413,7 +413,7 @@
     "categoryName": "MEMBER CONTENTS ACTIVITY API",
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
-      "default": "http://localhost:8080/"
+      "default": "http://125.131.88.147:8080/image/"
     },
     "commonParameters": [
       {

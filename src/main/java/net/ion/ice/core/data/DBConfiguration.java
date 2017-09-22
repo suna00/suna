@@ -20,6 +20,7 @@ public class DBConfiguration implements Serializable {
     private String jdbcUrl;
     private String username;
     private String password;
+    private boolean ssl;
 
     public DBConfiguration(Node dataSourceNode) {
         this.dsId = dataSourceNode.getStringValue("id");
@@ -28,6 +29,7 @@ public class DBConfiguration implements Serializable {
         this.username = dataSourceNode.getStringValue("username");
         this.password = dataSourceNode.getStringValue("password");
         this.jdbcUrl = dataSourceNode.getStringValue("jdbcUrl");
+        this.ssl = dataSourceNode.getBooleanValue("ssl");
     }
 
     public String getDsId() {
@@ -52,5 +54,9 @@ public class DBConfiguration implements Serializable {
 
     public String getJdbcUrl() {
         return jdbcUrl;
+    }
+
+    public boolean isSsl() {
+        return ssl;
     }
 }

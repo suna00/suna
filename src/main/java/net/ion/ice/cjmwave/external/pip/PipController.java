@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by juneyoungoh on 2017. 9. 14..
+ * 구상할 때 규칙
+ * - 파일을 당겨오지 못하더라도 에러는 아니다 (파일 프로퍼티에 null)
+ *
  */
 
 @Controller
@@ -31,23 +34,27 @@ public class PipController {
 
     /*
     * PIP 초기 데이터를 받아와서 MYSQL 로 밀어넣었다는 전제
-    * 17일 기준 all 로 댕겨야 할 수도 있다는 이야기
+    * 17 일 기준 all 로 댕겨야 할 수도 있다는 이야기
+    * 19 일 그냥 all 로 호출 처리 가정하고 갱신
     * */
     @RequestMapping(value = "initialData/{type}", produces = { "application/json" })
     public @ResponseBody String retrieveAll(@PathVariable String type, HttpServletRequest request) throws JSONException {
         JSONObject response = new JSONObject();
         String result="500", result_msg = "ERROR", cause = "";
         try{
+            String saveParam = request.getParameter("save");
+            boolean save = (saveParam != null && "Y".equals(saveParam.toUpperCase()));
             switch (type) {
                 case "all" :
-                    dbSyncService.executeWithIteration("pipProgram");
-                    dbSyncService.executeWithIteration("pipClipMedia");
+                    // 데이터가 너무 크면 어떻게 함 ????
+                    pipService.doProgramMigration("type=all", save);
+                    pipService.doClipMediaMigration("type=all&platform=" + PLATFORM, save);
                     break;
                 case "program" :
-                    dbSyncService.executeWithIteration("pipProgram");
+                    pipService.doProgramMigration("type=all", save);
                     break;
                 case "clipMedia" :
-                    dbSyncService.executeWithIteration("pipClipMedia");
+                    pipService.doClipMediaMigration("type=all&platform=" + PLATFORM, save);
                     break;
                 default:
                     logger.info("No suitable type for migration");

@@ -22,8 +22,8 @@ import java.util.*;
  *
  * 상대 테이블에 상응하는 모든 테이블이 존재하여야 함
  *
- * 규칙 1. 테이블명은 MSSQL 원본 테이블_RE 로 지정한다
- * 규칙 2. MYSSQL 테이블은 대소문자를 구분한다 (하지만 반드시 테이블명은 대문자 + _ 규칙으로 만들기)
+ * 규칙 1. 테이블명은 MSSQL 원본 테이블.toUpperCase 로 지정한다
+ * 규칙 2. MYSSQL 테이블은 대소문자를 구분한다 (하지만 반드시 테이블명은 대문자로 만들기)
  * 규칙 3. 작업 기록에 대한 리포트(요약 정보) 를 기록한다
  *
  * MSSQL 없어서 테스트 못해봄
@@ -149,7 +149,7 @@ public class MnetDataDumpService {
     }
 
 
-    private void migrate(Node replicationNode, Object foreignKey) {
+    private void  migrate(Node replicationNode, Object foreignKey) {
 
         Date startDate = new Date();
         Map<String, Object> migReport = new HashMap<String, Object>();

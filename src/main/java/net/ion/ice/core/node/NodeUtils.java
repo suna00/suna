@@ -53,6 +53,7 @@ public class NodeUtils {
     }
 
     public static Node getNode(NodeType nodeType, String id) {
+        if(nodeType == null) return null ;
         if(nodeType.getRepositoryType().equals("data")){
             if (getNodeBindingService() == null) return null ;
             Map<String, Object> resultData =  getNodeBindingService().getNodeBindingInfo(nodeType.getTypeId()).retrieve(id) ;
@@ -230,7 +231,7 @@ public class NodeUtils {
             }
             case FILE: {
 //                if (value instanceof FileValue) {
-                    return value;
+                return value;
 //                }else {
 //
 //                }
@@ -261,6 +262,7 @@ public class NodeUtils {
     }
 
     public static Node getReferenceNode(Object value, PropertyType pt) {
+        if(value == null || pt == null) return null;
         String referenceType = pt.getReferenceType() ;
         String refId = value.toString() ;
 
@@ -336,8 +338,10 @@ public class NodeUtils {
                 return getFileResultValue(context, pt, value);
             }
             case REFERENCED: {
-                if (context != null && context.isIncludeReferenced() && context.getLevel() < 3 && node instanceof Node) {
+                if (context != null && context.isIncludeReferenced() && context.getLevel() < 5 && node instanceof Node) {
                     QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(getNodeType(((Node)node).getTypeId()), pt, (Node) node);
+                    subQueryContext.setDateFormat(context.getDateFormat()) ;
+                    subQueryContext.setFileUrlFormat(context.getFileUrlFormat()) ;
                     subQueryContext.setLevel(context.getLevel() + 1);
                     return getNodeService().getDisplayNodeList(pt.getReferenceType(), subQueryContext);
                 }

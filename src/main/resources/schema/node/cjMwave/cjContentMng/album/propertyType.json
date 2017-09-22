@@ -110,7 +110,7 @@
     "id": "album>genreCd",
     "propertyTypeName": "장르코드",
     "valueType": "REFERENCE",
-    "required": true,
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
@@ -198,7 +198,7 @@
     "pid": "imgUrl",
     "id": "album>imgUrl",
     "propertyTypeName": "이미지경로",
-    "valueType": "TEXT",
+    "valueType": "FILE",
     "required": false,
     "idable": false,
     "labelable": false,
@@ -207,6 +207,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {

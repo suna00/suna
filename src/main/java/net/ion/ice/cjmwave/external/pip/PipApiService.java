@@ -2,13 +2,11 @@ package net.ion.ice.cjmwave.external.pip;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.ion.ice.cjmwave.external.aws.s3.S3UploadService;
-import net.ion.ice.cjmwave.external.utils.CountryUtils;
 import net.ion.ice.cjmwave.external.utils.FileUtils;
 import net.ion.ice.cjmwave.external.utils.JSONNetworkUtils;
 import net.ion.ice.cjmwave.external.utils.MigrationUtils;
 import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.node.NodeService;
-import net.logstash.logback.encoder.org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,7 +19,6 @@ import java.io.FileOutputStream;
 import java.nio.file.Files;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -54,6 +51,9 @@ public class PipApiService {
     @Autowired
     S3UploadService s3UploadService;
 
+    @Autowired
+    ISO639Storage langStorage;
+
     private JdbcTemplate template;
 
     @PostConstruct
@@ -63,9 +63,21 @@ public class PipApiService {
 
     private String uploadS3ThenReturnUrl (String fileUrl) throws Exception {
         if(null == fileUrl || "null".equals(fileUrl) || fileUrl.length() < 1) return "";
-        File retrievedFile = FileUtils.retrieveRemoteFile(fileUrl);
-        if(retrievedFile == null) throw new Exception("Could not find available file from  :: " + fileUrl);
+        File retrievedFile = FileUtils.retrieveRemoteFile(defaultFilePath, fileUrl);
+        if(retrievedFile == null) {
+            logger.info("Could not find available file from  :: " + fileUrl);
+            return null;
+        }
         return s3UploadService.uploadToS3(retrievedFile);
+    }
+
+    private Date parse14(String dateStr) {
+        try{
+            SimpleDateFormat sdf14 = new SimpleDateFormat("yyyyMMddHHmmss");
+            return sdf14.parse(dateStr);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     private Map<String,Object> match (String nodeTypeId, Map<String, Object> data) throws Exception {
@@ -79,7 +91,7 @@ public class PipApiService {
 
 
         switch (nodeTypeId) {
-            case "program2" :
+            case "program" :
                 transformed.put("programId", data.get("programid"));
                 transformed.put("programCd", data.get("programcode"));
                 transformed.put("title", data.get("title"));
@@ -97,12 +109,10 @@ public class PipApiService {
                 transformed.put("endTime", data.get("endTime"));
 
                 regDateStr = String.valueOf(data.get("regdate"));
-                regDate = sdf14.parse(regDateStr);
-                transformed.put("regDate", regDate);
+                transformed.put("regDate", parse14(regDateStr));
 
                 modifyDateStr = String.valueOf(data.get("modifydate"));
-                modifyDate = sdf14.parse(modifyDateStr);
-                transformed.put("modifyDate", modifyDate);
+                transformed.put("modifyDate", parse14(modifyDateStr));
 
 
                 transformed.put("homepageUrl", data.get("homepageurl"));
@@ -132,7 +142,7 @@ public class PipApiService {
                 isUse = String.valueOf("isuse").toUpperCase();
                 transformed.put("isUse", "Y".equals(isUse) ? 1 : 0);
                 break;
-            case "pgmVideo2" :
+            case "pgmVideo" :
 
                 transformed.put("programId", data.get("programid"));
                 transformed.put("contentId", data.get("contentid"));
@@ -153,16 +163,13 @@ public class PipApiService {
                 transformed.put("contentType", data.get("contenttype"));
 
                 String broadDateStr = String.valueOf(data.get("broaddate"));
-                Date braodDate = sdf14.parse(broadDateStr);
-                transformed.put("broadDate", braodDate);
+                transformed.put("broadDate", parse14(broadDateStr));
 
                 regDateStr = String.valueOf(data.get("regdate"));
-                regDate = sdf14.parse(regDateStr);
-                transformed.put("regDate", regDate);
+                transformed.put("regDate", parse14(regDateStr));
 
                 modifyDateStr = String.valueOf(data.get("modifydate"));
-                modifyDate = sdf14.parse(modifyDateStr);
-                transformed.put("modifyDate", modifyDate);
+                transformed.put("modifyDate", parse14(modifyDateStr));
 
                 String contentImgUrl = String.valueOf(data.get("contentimg"));
                 transformed.put("contentImgUrl", uploadS3ThenReturnUrl(contentImgUrl));
@@ -210,7 +217,6 @@ public class PipApiService {
         * - direct_prsn - 연출진
         * - subtitle_path - subtitlePath
         * */
-        List<String> countryList = new ArrayList<>();
         if(data.containsKey("multilanguage")) {
             List<Map<String, Object>> multiLangArr = (List<Map<String, Object>>) data.get("multilanguage");
             // 받아줄 테이블이 없음
@@ -218,12 +224,10 @@ public class PipApiService {
                 Map<String, Object> mLangMap = (Map<String, Object>) mLang;
                 if(mLangMap.containsKey("lang_cd")) {
                     String code2 = String.valueOf(mLangMap.get("lang_cd"));
-                    String code3 = CountryUtils.get3Code(code2);
-                    countryList.add(code3);
-
+                    String code3 = langStorage.getValue(code2);
 
                     switch (nodeTypeId) {
-                        case "program2" :
+                        case "program" :
                             if(mLangMap.containsKey("title")) {
                                 transformed.put("title_" + code3, String.valueOf(mLangMap.get("title")));
                             }
@@ -231,7 +235,7 @@ public class PipApiService {
                                 transformed.put("synopsis_" + code3, String.valueOf(mLangMap.get("synopsis")));
                             }
                             break;
-                        case "pgmVideo2" :
+                        case "pgmVideo" :
                             if(mLangMap.containsKey("epi_title")) {
                                 transformed.put("contentTitle_" + code3, String.valueOf(mLangMap.get("epi_title")));
                             }
@@ -259,7 +263,8 @@ public class PipApiService {
                 }
             }
         }
-        transformed.put("showCntryCdList", StringUtils.join(countryList, ","));
+        // 언어 밖에 알 수 없음
+        transformed.put("showCntryCdList", null);
 
 
 
@@ -277,16 +282,17 @@ public class PipApiService {
             // 이 형변환이 실패하면 전체가 의미가 없음 - 그냥 규약 위반
             Map<String, Object> programMap = (Map<String, Object>) program;
             try {
-                nodeService.saveNodeWithException(match("program2", programMap));
+                nodeService.saveNodeWithException(match("program", programMap));
                 logger.info("PIP MIGRATION PROGRAM FETCHED :: " + String.valueOf(programMap));
                 successCnt++;
                 rs = 1;
             } catch (Exception e) {
                 logger.error("Failed to register PIP program :: ", e);
                 // 실패 목록에 쌓기
+                MigrationUtils.saveFailureNodes(template, "programId", programMap);
                 skippedCnt++;
             }
-            MigrationUtils.recordSingleDate(template,"program2", String.valueOf(programMap), rs);
+            MigrationUtils.recordSingleDate(template,"program", String.valueOf(programMap), rs);
         }
         long jobTaken = (new Date().getTime() - startTime.getTime());
         MigrationUtils.printReport(startTime, "PIPProgramRecent", "SKIP", successCnt, skippedCnt);
@@ -303,16 +309,17 @@ public class PipApiService {
             int rs = 0;
             Map<String, Object> clipMap = (Map<String, Object>) clip;
             try {
-                nodeService.saveNodeWithException(match("pgmVideo2", clipMap));
+                nodeService.saveNodeWithException(match("pgmVideo", clipMap));
                 logger.info("PIP MIGRATION MEDIACLIP FETCHED :: " + String.valueOf(clipMap));
                 successCnt++;
                 rs = 1;
             } catch (Exception e) {
                 logger.error("Failed to register PIP clip :: ", e);
                 // 실패 목록에 쌓기
+                MigrationUtils.saveFailureNodes(template, "contentId", clipMap);
                 skippedCnt++;
             }
-            MigrationUtils.recordSingleDate(template, "pgmVideo2", String.valueOf(clipMap), rs);
+            MigrationUtils.recordSingleDate(template, "pgmVideo", String.valueOf(clipMap), rs);
         }
         long jobTaken = (new Date().getTime() - startTime.getTime());
         MigrationUtils.printReport(startTime, "PIPClipMediaRecent", "SKIP", successCnt, skippedCnt);

@@ -67,6 +67,21 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": ""
+  }, {
+    "typeId" : "propertyType",
+    "tid": "dbSyncProcess",
+    "pid": "multiLanguageQuery",
+    "description" : "다국어 쿼리 정보",
+    "propertyTypeName": "다국어 쿼리",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",

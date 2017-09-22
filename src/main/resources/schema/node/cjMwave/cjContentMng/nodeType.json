@@ -87,7 +87,7 @@
     "typeName": "프로그램",
     "repositoryType": "node",
     "eviction": 0,
-    "tableName": "cjDb#program"
+    "tableName": "cjDb#program2"
   },
   {
     "parentId": "cjContentMng",
@@ -108,7 +108,7 @@
     "repositoryType": "node",
     "eviction": 0,
     "i18n": true,
-    "tableName": "cjDb#pgmVideo"
+    "tableName": "cjDb#pgmVideo2"
   },
   {
     "parentId": "cjContentMng",

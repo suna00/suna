@@ -140,8 +140,10 @@ String Boot를 기반으로 API를 제공하는 Backend 시스템
     * 다국어 지원
         * 속성별 다국어 추가 저장 기능 지원
             * 다국어 세팅 : 해당 노드에 "i18n": true 추가, 해당 속성프로퍼티에 "i18n": true 추가
-            * 다국어 저장 param : {pid_언어 : 값}
-                * ex) {"voteNm_en": "영문제목", "voteNm_ko": "한국어제목"}
+            * 다국어 저장 param : {pid : 값, pid_대상언어 : 값}
+                * ex) {"voteNm": "제목", "voteNm_ko": "한국어제목"}
+            * 다국어 삭제 param : {pid : 값, pid_대상언어 : "_null_"}
+                * ex) {"voteNm": "제목", "voteNm_ko": "_null_"}
         * 사용자 또는 클라이언트 로케일 설정에 따라서 해당 언어 또는 기본 설정언어(영어) 값 리턴
             * ex) {"title" : "Title"} or {"title" : "제목"}
         * 등록된 전체 다국어 리턴

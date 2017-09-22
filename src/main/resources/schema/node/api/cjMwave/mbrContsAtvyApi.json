@@ -172,14 +172,91 @@
       }
     ],
     "config": {
-      "typeId": "replLikeInfo",
-      "event": "save",
-      "data": {
-        "replSeq": "{{:contsReplSeq}}",
-        "mbrId": "{{:makeIdValue(>,snsTypeCd,snsKey)}}"
+      "getReplLikeSeq": {
+        "typeId": "replLikeInfo",
+        "resultType": "none",
+        "query": [
+          {
+            "field": "replSeq",
+            "method": "equals",
+            "value": "{{:contsReplSeq}}"
+          },
+          {
+            "field": "mbrId",
+            "method": "equals",
+            "value": "{{:makeIdValue(>,snsTypeCd,snsKey)}}"
+          }
+        ],
+        "response": {
+          "replLikeSeq": ""
+        }
       },
-      "response": {
-        "replLikeSeq": ""
+      "root": {
+        "typeId": "replLikeInfo",
+        "event": "save",
+        "data": {
+          "replSeq": "{{:contsReplSeq}}",
+          "mbrId": "{{:makeIdValue(>,snsTypeCd,snsKey)}}"
+        },
+        "response": {
+          "replLikeSeq": ""
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "mbrContsAtvy",
+    "apiId": "IfLike005",
+    "apiName": "댓글 LIKE(찜) 취소",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "replSeq",
+        "required": true
+      },
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      }
+    ],
+    "config": {
+      "getReplLikeSeq": {
+        "typeId": "replLikeInfo",
+        "resultType": "none",
+        "query": [
+          {
+            "field": "replSeq",
+            "method": "equals",
+            "value": "{{:replSeq}}"
+          },
+          {
+            "field": "mbrId",
+            "method": "equals",
+            "value": "{{:makeIdValue(>,snsTypeCd,snsKey)}}"
+          },
+          {
+            "sorting": "replLikeSeq desc",
+            "limit": "1"
+          }
+        ],
+        "response": {
+          "replLikeSeq": ""
+        }
+      },
+      "root": {
+        "typeId": "replLikeInfo",
+        "event": "delete",
+        "data": {
+          "replLikeSeq": "{{:replLikeSeq}}"
+        },
+        "response": {
+          "replLikeSeq": ""
+        }
       }
     }
   },
