@@ -47,6 +47,10 @@ public class CommonService {
 
         /*Order*/
         resultCodeMap.put("O0001", "임시 주문서 저장 성공");
+        resultCodeMap.put("O0002", "포인트 검증 실패");
+        resultCodeMap.put("O0003", "가격 검증 실패");
+        resultCodeMap.put("O0004", "가격 검증 성공");
+
         /*Cart*/
         resultCodeMap.put("C0001", "상품 삭제 성공");
     }
@@ -65,6 +69,18 @@ public class CommonService {
         Map<String, Object> object = new HashMap<>();
         Map<String, Object> object2 = new HashMap<>();
         object2.put("code", code);
+        object2.put("message", resultCodeMap.get(code));
+        object.put("validate", object2);
+
+        return object;
+    }
+
+    public static Object getResult(String code, Map<String, Object
+            > extraData){
+        Map<String, Object> object = new HashMap<>();
+        Map<String, Object> object2 = new HashMap<>();
+        object2.put("code", code);
+        object2.putAll(extraData);
         object2.put("message", resultCodeMap.get(code));
         object.put("validate", object2);
 
