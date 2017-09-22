@@ -1,56 +1,56 @@
 [
   {
     "typeId": "faqCtgryInfo",
-    "faqCtgrySeq": 515425,
+    "faqCtgrySeq": 510000,
     "faqCtgryNm": "Enjoying Mwave Site",
     "showOdrg": 1,
     "showYn": true,
     "descSbst": "Learn the basics to help you make the most of Mwave site",
-    "thumImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg"
+    "thumImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90790.jpg"
   },
   {
     "typeId": "faqCtgryInfo",
-    "faqCtgrySeq": 515426,
+    "faqCtgrySeq": 510001,
     "faqCtgryNm": "My Account",
     "showOdrg": 2,
     "showYn": true,
     "descSbst": "Manage your profile and account settings",
-    "thumImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg"
+    "thumImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
   },
   {
     "typeId": "faqCtgryInfo",
-    "faqCtgrySeq": 515427,
+    "faqCtgrySeq": 510002,
     "faqCtgryNm": "Vote & Rank",
     "showOdrg": 3,
     "showYn": true,
-    "descSbst": "Introduce Vote & Rank program and learn the basics to help you participate in.",
-    "thumImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg"
+    "descSbst": "Introduce Vote & Rank program and learn the basics to help youparticipate in.",
+    "thumImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90790.jpg"
   },
   {
     "typeId": "faqCtgryInfo",
-    "faqCtgrySeq": 515428,
+    "faqCtgrySeq": 510003,
     "faqCtgryNm": "SHOP",
     "showOdrg": 4,
     "showYn": true,
     "descSbst": "Learn the basics to help you make the most of MD SHOP",
-    "thumImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg"
+    "thumImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
   },
   {
     "typeId": "faqCtgryInfo",
-    "faqCtgrySeq": 515429,
+    "faqCtgrySeq": 510004,
     "faqCtgryNm": "Technical Problems",
     "showOdrg": 5,
     "showYn": true,
     "descSbst": "Help your Technical Problems on Mwave web site",
-    "thumImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg"
+    "thumImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90790.jpg"
   },
   {
     "typeId": "faqCtgryInfo",
-    "faqCtgrySeq": 515430,
+    "faqCtgrySeq": 510005,
     "faqCtgryNm": "Policies and reporting",
     "showOdrg": 6,
     "showYn": true,
     "descSbst": "Understand the Mwave Rules and report Violations",
-    "thumImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg"
+    "thumImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90789.jpg"
   }
 ]

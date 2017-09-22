@@ -1,0 +1,52 @@
+[
+  {
+    "typeId": "snsAthnCdMng",
+    "athnSeq": 198981,
+    "srvrDivCd": "189919891",
+    "snsTypeCd": "1",
+    "snsTypeNm": "Facebook",
+    "appId": "qfkdjfksjf",
+    "athnCd1": "198018",
+    "athnCd8": "199981"
+  },
+  {
+    "typeId": "snsAthnCdMng",
+    "athnSeq": 108991,
+    "srvrDivCd": "108901891",
+    "snsTypeCd": "8",
+    "snsTypeNm": "Twitter",
+    "appId": "qkjkfjdfd",
+    "athnCd1": "198991",
+    "athnCd8": "988891"
+  },
+  {
+    "typeId": "snsAthnCdMng",
+    "athnSeq": 108904,
+    "srvrDivCd": "109894801",
+    "snsTypeCd": "9",
+    "snsTypeNm": "kakao",
+    "appId": "asjdkfkjw",
+    "athnCd1": "108090",
+    "athnCd8": "598991"
+  },
+  {
+    "typeId": "snsAthnCdMng",
+    "athnSeq": 180918,
+    "srvrDivCd": "899451080",
+    "snsTypeCd": "4",
+    "snsTypeNm": "Weibo",
+    "appId": "skfuifjkf",
+    "athnCd1": "198091",
+    "athnCd8": "199811"
+  },
+  {
+    "typeId": "snsAthnCdMng",
+    "athnSeq": 840901,
+    "srvrDivCd": "108994801",
+    "snsTypeCd": "5",
+    "snsTypeNm": "Instragram",
+    "appId": "skfjawkfd",
+    "athnCd1": "998191",
+    "athnCd8": "189189"
+  }
+]

@@ -1,0 +1,56 @@
+[
+  {
+    "typeId": "mbrDvcInfo",
+    "mbrDvcSeq": "101",
+    "mbrId": "9>1898",
+    "dvcId": "kkk89784sjdfk",
+    "dvcNm": "ux9990",
+    "osCd": "1",
+    "osVer": "v.01"
+  },
+  {
+    "typeId": "mbrDvcInfo",
+    "mbrDvcSeq": "108",
+    "mbrId": "4>5994",
+    "dvcId": "sdk98dsjfl",
+    "dvcNm": "gx8900",
+    "osCd": "1",
+    "osVer": "v.09"
+  },
+  {
+    "typeId": "mbrDvcInfo",
+    "mbrDvcSeq": "109",
+    "mbrId": "1>8599",
+    "dvcId": "98skjksk90",
+    "dvcNm": "iphone8",
+    "osCd": "8",
+    "osVer": "v.08"
+  },
+  {
+    "typeId": "mbrDvcInfo",
+    "mbrDvcSeq": "104",
+    "mbrId": "5>ajdnj4984",
+    "dvcId": "skfj9s80sdjk",
+    "dvcNm": "gx-1",
+    "osCd": "1",
+    "osVer": "v.07"
+  },
+  {
+    "typeId": "mbrDvcInfo",
+    "mbrDvcSeq": "105",
+    "mbrId": "1>skdj86879",
+    "dvcId": "skjflew985ks",
+    "dvcNm": "iphone8",
+    "osCd": "8",
+    "osVer": "v.08"
+  },
+  {
+    "typeId": "mbrDvcInfo",
+    "mbrDvcSeq": "106",
+    "mbrId": "8>894kdnjdf",
+    "dvcId": "skjlfd99874hs",
+    "dvcNm": "iphone8",
+    "osCd": "8",
+    "osVer": "v.08"
+  }
+]

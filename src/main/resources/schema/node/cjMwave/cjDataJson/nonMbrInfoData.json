@@ -1,0 +1,50 @@
+[
+  {
+    "typeId": "nonMbrInfo",
+    "nonMbrSeq": 80000000,
+    "dvcId": "7100",
+    "dvcName": "galaxys8",
+    "dvcOsCd": "1",
+    "dvcOsVer": "1.5",
+    "connCntryCd": "CHN",
+    "downlDt": "80161008180000",
+    "pushKey": "dsfgerger948df",
+    "firstConnDt": "80170908180000"
+  },
+  {
+    "typeId": "nonMbrInfo",
+    "nonMbrSeq": 80000001,
+    "dvcId": "7101",
+    "dvcName": "galaxys7",
+    "dvcOsCd": "1",
+    "dvcOsVer": "1.4",
+    "connCntryCd": "JPN",
+    "downlDt": "80170901180000",
+    "pushKey": "gjwsdrger988df",
+    "firstConnDt": "80170905110000"
+  },
+  {
+    "typeId": "nonMbrInfo",
+    "nonMbrSeq": 80000002,
+    "dvcId": "7102",
+    "dvcName": "galaxys8plus",
+    "dvcOsCd": "8",
+    "dvcOsVer": "10.9.9",
+    "connCntryCd": "KOR",
+    "downlDt": "80171001110000",
+    "pushKey": "kdkwkerger948df",
+    "firstConnDt": "80171001110000"
+  },
+  {
+    "typeId": "nonMbrInfo",
+    "nonMbrSeq": 80000003,
+    "dvcId": "7103",
+    "dvcName": "galaxys7edge",
+    "dvcOsCd": "1",
+    "dvcOsVer": "1.5",
+    "connCntryCd": "CHN",
+    "downlDt": "80170809100000",
+    "pushKey": "dkfkwkfrger948df",
+    "firstConnDt": "80170901180000"
+  }
+]
