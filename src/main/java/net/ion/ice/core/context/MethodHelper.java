@@ -28,8 +28,7 @@ public class MethodHelper {
                     date = new Date(((Timestamp) value).getTime()) ;
                 }else {
                     try {
-//                        date = DateUtils.parseDate(value.toString(), patterns);
-                        date = DateUtils.parseDate(value.toString(), Locale.KOREA, patterns);
+                        date = DateUtils.parseDate(value.toString(), patterns);
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
