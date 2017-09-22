@@ -60,14 +60,14 @@ public class PipApiService {
         template = dbService.getJdbcTemplate("cjDb");
     }
 
-    private String uploadS3ThenReturnUrl (String fileUrl) throws Exception {
+    private String uploadS3ThenReturnUrl (String nodeTypeId, String fileUrl) throws Exception {
         if(null == fileUrl || "null".equals(fileUrl) || fileUrl.length() < 1) return "";
         File retrievedFile = MigrationUtils.retrieveRemoteFile(defaultFilePath, fileUrl);
         if(retrievedFile == null) {
             logger.info("Could not find available file from  :: " + fileUrl);
             return null;
         }
-        return s3UploadService.uploadToS3(retrievedFile);
+        return s3UploadService.uploadToS3(nodeTypeId, retrievedFile);
     }
 
     private Date parse14(String dateStr) {
@@ -126,10 +126,10 @@ public class PipApiService {
                 String bannerImg = String.valueOf(data.get("programbannerimg"));
                 String thumbImg = String.valueOf(data.get("programthumimg"));
 
-                transformed.put("programImg", uploadS3ThenReturnUrl(programImg));
-                transformed.put("pgmPosterImg", uploadS3ThenReturnUrl(posterImg));
-                transformed.put("programBannerImg", uploadS3ThenReturnUrl(bannerImg));
-                transformed.put("programThumbImg", uploadS3ThenReturnUrl(thumbImg));
+                transformed.put("programImg", uploadS3ThenReturnUrl(nodeTypeId, programImg));
+                transformed.put("pgmPosterImg", uploadS3ThenReturnUrl(nodeTypeId, posterImg));
+                transformed.put("programBannerImg", uploadS3ThenReturnUrl(nodeTypeId, bannerImg));
+                transformed.put("programThumbImg", uploadS3ThenReturnUrl(nodeTypeId, thumbImg));
 
 
                 transformed.put("prsnNm", data.get("prsn_nm"));
@@ -171,7 +171,7 @@ public class PipApiService {
                 transformed.put("modifyDate", parse14(modifyDateStr));
 
                 String contentImgUrl = String.valueOf(data.get("contentimg"));
-                transformed.put("contentImgUrl", uploadS3ThenReturnUrl(contentImgUrl));
+                transformed.put("contentImgUrl", uploadS3ThenReturnUrl(nodeTypeId, contentImgUrl));
 
                 transformed.put("playTime", data.get("playtime"));
                 transformed.put("targetAge", data.get("targetage"));

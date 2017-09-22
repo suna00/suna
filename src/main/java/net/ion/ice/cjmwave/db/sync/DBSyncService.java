@@ -101,7 +101,7 @@ public class DBSyncService {
                                     , targetNodeTypeId, targetNodeTypeId.equals("album") ? "360" : "320");
                     File physicalFile = MigrationUtils.retrieveRemoteFile(defaultFilePath + "/mnet", mnetFileUrl);
                     String s3Path = "";
-                    if(physicalFile != null) s3Path = s3UploadService.uploadToS3(physicalFile);
+                    if(physicalFile != null) s3Path = s3UploadService.uploadToS3(targetNodeTypeId, physicalFile);
                     logger.info("s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3");
                     logger.info("s3 :: " + s3Path);
                     logger.info("s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3");
