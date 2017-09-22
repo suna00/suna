@@ -6,7 +6,7 @@
     "showOdrg": 1,
     "showYn": true,
     "descSbst": "Learn the basics to help you make the most of Mwave site",
-    "thumImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg"
+    "thumImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg"
   },
   {
     "typeId": "faqCtgryInfo",
@@ -15,7 +15,7 @@
     "showOdrg": 2,
     "showYn": true,
     "descSbst": "Manage your profile and account settings",
-    "thumImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg"
+    "thumImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg"
   },
   {
     "typeId": "faqCtgryInfo",
@@ -24,7 +24,7 @@
     "showOdrg": 3,
     "showYn": true,
     "descSbst": "Introduce Vote & Rank program and learn the basics to help you participate in.",
-    "thumImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg"
+    "thumImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg"
   },
   {
     "typeId": "faqCtgryInfo",
@@ -33,7 +33,7 @@
     "showOdrg": 4,
     "showYn": true,
     "descSbst": "Learn the basics to help you make the most of MD SHOP",
-    "thumImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg"
+    "thumImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg"
   },
   {
     "typeId": "faqCtgryInfo",
@@ -42,7 +42,7 @@
     "showOdrg": 5,
     "showYn": true,
     "descSbst": "Help your Technical Problems on Mwave web site",
-    "thumImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg"
+    "thumImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90730.jpg"
   },
   {
     "typeId": "faqCtgryInfo",
@@ -51,6 +51,6 @@
     "showOdrg": 6,
     "showYn": true,
     "descSbst": "Understand the Mwave Rules and report Violations",
-    "thumImgUrl": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg"
+    "thumImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90729.jpg"
   }
 ]
