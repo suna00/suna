@@ -3,12 +3,8 @@
     "typeId": "onairTranInfo",
     "tranSeq": 1,
     "onairSeq": 54515,
-    "langCd": {
-      "value": "eng",
-      "label": "영어",
-      "refId": "eng"
-    },
-    "tranSbst": "2017년도 MAMA를 시작하겠습니다.\r\n올해에도 홍콩에서 열리게 되었습니다.\r\n첫번째 순서는 EXO입니다.",
+    "langCd": "eng",
+    "tranSbst": "2017년도 MAMA를 시작하겠습니다.올해에도 홍콩에서 열리게 되었습니다.첫번째 순서는 EXO입니다.",
     "owner": "anonymous",
     "created": "20170914215907",
     "modifier": "anonymous",
@@ -18,12 +14,8 @@
     "typeId": "onairTranInfo",
     "tranSeq": 2,
     "onairSeq": 54515,
-    "langCd": {
-      "value": "zho-cn",
-      "label": "중국(간체)",
-      "refId": "zho-cn"
-    },
-    "tranSbst": "ZHOCN_2017년도 MAMA를 시작하겠습니다.\r\n올해에도 홍콩에서 열리게 되었습니다.\r\n첫번째 순서는 EXO입니다.",
+    "langCd": "eng",
+    "tranSbst": "ZHOCN_2017년도 MAMA를 시작하겠습니다. 올해에도 홍콩에서 열리게 되었습니다. 첫번째 순서는 EXO입니다.",
     "owner": "anonymous",
     "created": "20170914220053",
     "modifier": "anonymous",
