@@ -1,0 +1,54 @@
+[
+  {
+    "typeId": "groupPhoto",
+    "groupPhotoId": "5252900",
+    "groupPhotoNm": "그룹 사진명_A_01",
+    "subName": "그룹 사진 부제명_A_01",
+    "contsMetaCtgryId": "4001,4005,4006",
+    "groupPhotoDesc": "A_01_그룹사진 입니다.",
+    "compontSinglePhotoIds": "7878900,7878911,7878922,7878933,7878944,7878955,7878966,7878977,7878988,7878999,7879010",
+    "relPgmIds": "MA_B120162959",
+    "relArtistIds": "268423",
+    "relSongIds": "1281820",
+    "mnetIfTrtYn": true
+  },
+  {
+    "typeId": "groupPhoto",
+    "groupPhotoId": "5353900",
+    "groupPhotoNm": "그룹 사진명_B_01",
+    "subName": "그룹 사진 부제명_B_01",
+    "contsMetaCtgryId": "4001,4088,4089",
+    "groupPhotoDesc": "B_01_그룹사진 입니다.",
+    "compontSinglePhotoIds": "7879021,7879032,7879043,7879054,7879065,7879076,7879087,7879098,7879109,7879120,7879131",
+    "relPgmIds": "MA_B120163033",
+    "relArtistIds": "18250",
+    "relSongIds": "1281821",
+    "mnetIfTrtYn": true
+  },
+  {
+    "typeId": "groupPhoto",
+    "groupPhotoId": "5454900",
+    "groupPhotoNm": "그룹 사진명_C_01",
+    "subName": "그룹 사진 부제명_C_01",
+    "contsMetaCtgryId": "4001,4088,4091",
+    "groupPhotoDesc": "C_01_그룹사진 입니다.",
+    "compontSinglePhotoIds": "7879142,7879153,7879164,7879175,7879186,7879197,7879208,7879219,7879230,7879241,7879252",
+    "relPgmIds": "MA_B120169436",
+    "relArtistIds": "177668",
+    "relSongIds": "1281822",
+    "mnetIfTrtYn": true
+  },
+  {
+    "typeId": "groupPhoto",
+    "groupPhotoId": "5555900",
+    "groupPhotoNm": "그룹 사진명_D_01",
+    "subName": "그룹 사진 부제명_D_01",
+    "contsMetaCtgryId": "4008,4050,4051",
+    "groupPhotoDesc": "D_01_그룹사진 입니다.",
+    "compontSinglePhotoIds": "7878900,7878911,7878922,7878933,7878944,7878955,7878966,7878977,7878988,7878999,7879010",
+    "relPgmIds": "MA_B120169444",
+    "relArtistIds": "627913",
+    "relSongIds": "1281823",
+    "mnetIfTrtYn": true
+  }
+]
