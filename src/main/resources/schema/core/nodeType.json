@@ -7,6 +7,7 @@
     "typeName" : "ROOT",
     "repositoryType" : "path",
     "tableName": "",
+    "clusterGroup": "all",
     "eviction" : 0
   },
   {
@@ -17,6 +18,7 @@
     "typeName" : "System",
     "repositoryType" : "path",
     "tableName": "",
+    "clusterGroup": "all",
     "eviction" : 0
   },
   {
@@ -27,6 +29,7 @@
     "typeName" : "NodeType",
     "repositoryType" : "node",
     "tableName": "",
+    "clusterGroup": "all",
     "eviction" : 1000
   },
   {
@@ -37,6 +40,7 @@
     "typeName" : "PropertyType",
     "repositoryType" : "node",
     "tableName": "",
+    "clusterGroup": "all",
     "eviction" : 10000
   },
   {
@@ -46,6 +50,7 @@
     "tid" : "propertyTypeValidation",
     "typeName" : "PropertyType Validation",
     "repositoryType" : "node",
+    "clusterGroup": "all",
     "eviction" : 30000
   },
   {
@@ -56,6 +61,7 @@
     "typeName" : "DataSource",
     "repositoryType" : "node",
     "tableName": "",
+    "clusterGroup": "all",
     "eviction" : 10
   },
   {
@@ -66,6 +72,7 @@
     "typeName" : "Event",
     "repositoryType" : "node",
     "tableName": "",
+    "clusterGroup": "all",
     "eviction" : 1000
   },
   {
@@ -76,6 +83,7 @@
     "typeName" : "Event Action",
     "repositoryType" : "node",
     "tableName": "",
+    "clusterGroup": "all",
     "eviction" : 1000
   },
   {
@@ -86,6 +94,7 @@
     "typeName" : "Event Listener",
     "repositoryType" : "node",
     "tableName": "",
+    "clusterGroup": "all",
     "eviction" : 1000
   },
   {
@@ -96,6 +105,7 @@
     "typeName" : "Event Action",
     "repositoryType" : "node",
     "tableName": "",
+    "clusterGroup": "all",
     "eviction" : 1000
   }
 ]

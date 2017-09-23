@@ -28,7 +28,6 @@ public class JsonUtils {
         objectMapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
     }
 
-
     public static boolean isJson(String jsonString) {
         try {
             objectMapper.readTree(jsonString);
