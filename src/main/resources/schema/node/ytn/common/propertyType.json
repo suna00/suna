@@ -208,6 +208,23 @@
   {
     "typeId": "propertyType",
     "tid": "commonResource",
+    "pid": "file",
+    "propertyTypeName": "파일",
+    "valueType": "FILE",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "commonResource",
     "pid": "name",
     "propertyTypeName": "이름",
     "valueType": "STRING",
@@ -222,6 +239,11 @@
     "codeFilter": "",
     "defaultValue": ""
   },
+
+
+
+
+
   {
     "typeId": "propertyType",
     "tid": "commonResource",
@@ -237,40 +259,6 @@
     "referenceType": "commonCode",
     "referenceValue": "code",
     "codeFilter": "commonResourceType",
-    "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "commonResource",
-    "pid": "comment",
-    "propertyTypeName": "용도",
-    "valueType": "STRING",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "",
-    "referenceValue": "",
-    "codeFilter": "",
-    "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "commonResource",
-    "pid": "file",
-    "propertyTypeName": "파일",
-    "valueType": "STRING",
-    "required": true,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "",
-    "referenceValue": "",
-    "codeFilter": "",
     "defaultValue": ""
   },
   {
