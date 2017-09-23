@@ -29,7 +29,7 @@ public class ProductService {
             productToCategoryMap(data);
             productSearchFilter(data);
 
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
