@@ -187,6 +187,10 @@
         "required": true
       },
       {
+        "paramName": "qstnrEmail",
+        "required": false
+      },
+      {
         "paramName": "qnaFildCd",
         "required": true
       },
@@ -195,7 +199,7 @@
         "required": true
       },
       {
-        "paramName": "qstnAtcFile",
+        "paramName": "qstnAtcFilePath",
         "required": false
       }
     ],
@@ -204,9 +208,6 @@
       "event": "save",
       "data": {
         "qnarId": "{{:snsTypeCd}}>{{:snsKey}}",
-        "qnaNm": "{{:qnaNm}}",
-        "qnaFildCd": "{{:qnaFildCd}}",
-        "qstnSbst": "{{:qstnSbst}}",
         "trtSttusCd": "1"
       }
     }
