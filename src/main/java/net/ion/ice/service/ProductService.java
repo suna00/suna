@@ -75,6 +75,7 @@ public class ProductService {
             Map<String, Object> saveProductBaseOption = new HashMap<>();
             if (tempExistProductBaseOption != null) saveProductBaseOption.put("productOptionId", tempExistProductBaseOption.getStringValue("productOptionId"));
             saveProductBaseOption.put("productId", productId);
+            saveProductBaseOption.put("productOptionType", baseOptionType);
             saveProductBaseOption.put("name", name);
             saveProductBaseOption.put("required", "true");
             saveProductBaseOption.put("productOptionStatus", "y");
@@ -153,6 +154,7 @@ public class ProductService {
             Map<String, Object> saveProductAddOption = new HashMap<>();
             if (tempExistProductAddOption != null) saveProductAddOption.put("productOptionId", tempExistProductAddOption.getStringValue("productOptionId"));
             saveProductAddOption.put("productId", productId);
+            saveProductAddOption.put("productOptionType", addOptionType);
             saveProductAddOption.put("name", name);
             saveProductAddOption.put("required", productAddOption.get("required"));
             saveProductAddOption.put("productOptionStatus", "y");
