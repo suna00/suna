@@ -163,7 +163,7 @@ public class S3FileRepository implements FileRepository {
 //            throw new RuntimeException("S3 MULTIPART FILE SAVE ERROR : " + e.getMessage()) ;
         } finally {
             if(saveFile != null && saveFile.exists()) {
-//                saveFile.delete();
+                saveFile.delete();
             }
         }
         return new FileValue(pt, id, multipartFile, savePath) ;
