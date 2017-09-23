@@ -1,6 +1,11 @@
 package net.ion.ice.core.cluster;
 
 import com.hazelcast.core.IAtomicLong;
+import com.hazelcast.core.ITopic;
+import net.ion.ice.core.context.ExecuteContext;
+import net.ion.ice.core.node.Node;
+import net.ion.ice.core.node.NodeType;
+import net.ion.ice.core.node.NodeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,4 +32,17 @@ public class ClusterService {
     }
 
 
+    public void node(ExecuteContext executeContext) {
+        Node node = executeContext.getNode() ;
+        if(node != null) {
+            NodeType nodeType = NodeUtils.getNodeType(node.getTypeId()) ;
+            String clusterGroup = nodeType.getClusterGroup() ;
+            ITopic topic = clusterConfiguration.getTopic(clusterGroup);
+            if(topic == null){
+                topic = clusterConfiguration.getTopic("all") ;
+            }
+
+            topic.publish(executeContext);
+        }
+    }
 }

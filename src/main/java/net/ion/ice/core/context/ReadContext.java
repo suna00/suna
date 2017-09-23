@@ -7,6 +7,7 @@ import net.ion.ice.core.query.QueryTerm;
 import net.ion.ice.core.query.ResultField;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.Map;
 /**
  * Created by jaehocho on 2017. 8. 11..
  */
-public class ReadContext implements Context {
+public class ReadContext implements Context, Serializable {
     protected NodeType nodeType;
     protected Map<String, Object> data;
 

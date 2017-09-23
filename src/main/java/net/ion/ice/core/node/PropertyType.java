@@ -4,6 +4,7 @@ import net.ion.ice.core.infinispan.lucene.AnalyzerFactory;
 import org.apache.lucene.analysis.Analyzer;
 import org.stagemonitor.util.StringUtils;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +12,7 @@ import java.util.Map;
 /**
  * Created by jaeho on 2017. 5. 15..
  */
-public class PropertyType {
+public class PropertyType implements Serializable{
     public static final String PROPERTYTYPE = "propertyType";
     public static final String DEFAULT_VALUE = "defaultValue";
     public static final String ID_TYPE = "idType";
