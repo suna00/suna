@@ -4,6 +4,7 @@
     "parentId" : "system",
     "typeId" : "nodeType",
     "repositoryType" : "node",
-    "typeName" : "Datasource"
+    "typeName" : "Datasource",
+    "clusterGroup": "all"
   }
 ]
