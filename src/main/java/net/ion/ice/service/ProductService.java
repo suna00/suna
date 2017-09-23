@@ -43,8 +43,8 @@ public class ProductService {
         String addOption = data.get("addOption").toString();
         String addOptionItem = data.get("addOptionItem").toString();
 
-        List<Node> existProductOptionList = (List<Node>) NodeQuery.build("baseOption").matching("productId", productId).getList();
-        List<Node> existProductOptionItemList = (List<Node>) NodeQuery.build("baseOptionItem").matching("productId", productId).getList();
+        List<Node> existProductOptionList = (List<Node>) NodeQuery.build("productOption").matching("productId", productId).getList();
+        List<Node> existProductOptionItemList = (List<Node>) NodeQuery.build("productOptionItem").matching("productId", productId).getList();
         List<Map<String, Object>> productBaseOptionList = JsonUtils.parsingJsonToList(baseOption);
         List<Map<String, Object>> productBaseOptionItemList = JsonUtils.parsingJsonToList(baseOptionItem);
         List<Map<String, Object>> productAddOptionList = JsonUtils.parsingJsonToList(addOption);
