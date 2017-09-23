@@ -116,4 +116,11 @@ public class S3Service {
         } while(result.isTruncated() == true );
         return s3FileInfo;
     }
+
+
+    public List removeFiles(String path2target) throws Exception {
+        List<Map<String, Object>> removed = new ArrayList<>();
+        //권한이 ion 이외에도 지울 수 있으므로 지우는 부분은 하지 않는게 좋을지도..
+        return removed;
+    }
 };

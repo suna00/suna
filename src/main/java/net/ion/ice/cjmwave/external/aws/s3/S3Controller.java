@@ -37,24 +37,41 @@ public class S3Controller {
             s3Files = s3Service.retrieveObjectList(subPath);
             result = "200";
             result_msg = "SUCCESS";
-            resultMap.put("items", s3Files);
         } catch (Exception e) {
             cause = e.getMessage();
         }
         resultMap.put("result", result);
         resultMap.put("result_msg", result_msg);
+        resultMap.put("items", s3Files);
         resultMap.put("size", s3Files.size());
         resultMap.put("cause", cause);
         return mapper.writeValueAsString(resultMap);
     }
 
-    @RequestMapping("remove")
-    public void removeFiles(HttpServletRequest request){
-        try {
+    /*
+    * 디렉토리 지정하면 하위 디렉토리 제외하고 파일을 모두 지움
+    * */
+    @RequestMapping(value = {"remove"}, produces = {"application/json"})
+    public @ResponseBody String removeFiles(HttpServletRequest request) throws Exception{
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String, Object> resultMap = new HashMap<>();
+        String result = "500", result_msg = "ERROR", cause = "";
+        List<Map<String, Object>> removedFiles = new ArrayList<>();
 
+        try {
+            String subPath = request.getParameter("path");
+            result = "200";
+            result_msg = "SUCCESS";
+            removedFiles = s3Service.removeFiles(subPath);
         } catch (Exception e) {
             logger.error("Failed to remove S3 files");
         }
+        resultMap.put("result", result);
+        resultMap.put("result_msg", result_msg);
+        resultMap.put("items", removedFiles);
+        resultMap.put("size", removedFiles.size());
+        resultMap.put("cause", cause);
+        return mapper.writeValueAsString(resultMap);
     }
 
 
