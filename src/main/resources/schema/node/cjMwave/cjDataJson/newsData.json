@@ -1,6 +1,6 @@
 [
   {
-    "typeId": "artist",
+    "typeId": "news",
     "newsId": "112720",
     "newsNm": "성룡키즈 ′JJCC′ 정훈희와 역대급 감성 콜라보레이션!",
     "contsMetaCtgryId": "1002,1010,1011",
@@ -20,7 +20,7 @@
     "langCd": "eng"
   },
   {
-    "typeId": "artist",
+    "typeId": "news",
     "newsId": "112721",
     "newsNm": "피에스타 ′짠해′, 아련 성숙 섹시미 물씬",
     "contsMetaCtgryId": "1002,1032,1035",
@@ -40,7 +40,7 @@
     "langCd": "eng"
   },
   {
-    "typeId": "artist",
+    "typeId": "news",
     "newsId": "112722",
     "newsNm": "′대세′ 레드벨벳! 금발 소녀들의 달콤 무대! ′ICE CREAM CAKE′",
     "contsMetaCtgryId": "1002,1032,1037",
@@ -60,7 +60,7 @@
     "langCd": "eng"
   },
   {
-    "typeId": "artist",
+    "typeId": "news",
     "newsId": "112723",
     "newsNm": "통했다! ′FTISLAND′표 하드록! 무대 압도하는 ′Pray′",
     "contsMetaCtgryId": "1005,1056,1054",
@@ -80,7 +80,7 @@
     "langCd": "eng"
   },
   {
-    "typeId": "artist",
+    "typeId": "news",
     "newsId": "112724",
     "newsNm": "miss A한테 찍혔다! 다른 남자 말고 ′너′",
     "contsMetaCtgryId": "1002,1012,1013",
@@ -100,7 +100,7 @@
     "langCd": "eng"
   },
   {
-    "typeId": "artist",
+    "typeId": "news",
     "newsId": "112725",
     "newsNm": "명불허전 ′EXO′ 여심저격 남성미 폭발!",
     "contsMetaCtgryId": "1002,1032,1033",
@@ -120,7 +120,7 @@
     "langCd": "eng"
   },
   {
-    "typeId": "artist",
+    "typeId": "news",
     "newsId": "112726",
     "newsNm": "4월 둘째 주 TOP10은 과연 누구?",
     "contsMetaCtgryId": "1002,1010,1011",
