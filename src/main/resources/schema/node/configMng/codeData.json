@@ -858,7 +858,7 @@
   {
     "typeId": "code",
     "groupCodeId": "artistType",
-    "codeId": "solo",
+    "codeId": "101",
     "name": "솔로",
     "order": 1,
     "active": true
@@ -866,7 +866,7 @@
   {
     "typeId": "code",
     "groupCodeId": "artistType",
-    "codeId": "group",
+    "codeId": "102",
     "name": "그룹",
     "order": 2,
     "active": true
