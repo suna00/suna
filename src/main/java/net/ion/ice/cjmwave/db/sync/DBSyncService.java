@@ -190,7 +190,7 @@ public class DBSyncService {
     * 실패에 대한 처리를 어떻게 할 것인지
     * */
     public void executeWithIteration (String executeId) throws Exception {
-        int max = 1;
+//        int max = 1;
         boolean loop = true;
         int i = 0;
         int unit = 100;
@@ -207,10 +207,10 @@ public class DBSyncService {
             // 100 부터 199 까지
             int start = i * 100;
             // TEST
-            if(start > max) {
-                loop = false;
-                continue;
-            }
+//            if(start > max) {
+//                loop = false;
+//                continue;
+//            }
 
             Node executionNode = nodeService.read(PROCESS_TID, executeId);
             if (executionNode == null) throw new Exception("[ " + executeId + " ] does not exists");

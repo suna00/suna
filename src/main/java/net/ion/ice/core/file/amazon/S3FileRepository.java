@@ -63,7 +63,10 @@ public class S3FileRepository implements FileRepository {
     private void initializeS3Client () throws Exception {
         awsCredentials = new BasicAWSCredentials(accessKey, secretAccessKey);
         s3Client = AmazonS3ClientBuilder.standard()
-                .withCredentials(new AWSStaticCredentialsProvider(awsCredentials)).build();
+                .withCredentials(new AWSStaticCredentialsProvider(awsCredentials))
+//                .withPathStyleAccessEnabled(true)
+//                .withChunkedEncodingDisabled(true)
+                .build();
         logger.info("bucketLocation with client :: " + s3Client.getBucketLocation(bucketName));
     }
 
@@ -149,14 +152,18 @@ public class S3FileRepository implements FileRepository {
         File saveFile = null;
         try {
             saveFile = new File(fileRoot, savePath);
+            if(!saveFile.getParentFile().exists()){
+                saveFile.getParentFile().mkdirs() ;
+            }
             multipartFile.transferTo(saveFile); // 이 경로에 떨어뜨리는 거 같은데..
             uploadFile(savePath, saveFile);
         } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("S3 MULTIPART FILE SAVE ERROR : " + e.getMessage()) ;
+            logger.error("S3 MULTIPART FILE SAVE ERROR : ", e);
+//            e.printStackTrace();
+//            throw new RuntimeException("S3 MULTIPART FILE SAVE ERROR : " + e.getMessage()) ;
         } finally {
             if(saveFile != null && saveFile.exists()) {
-                saveFile.delete();
+//                saveFile.delete();
             }
         }
         return new FileValue(pt, id, multipartFile, savePath) ;
@@ -171,8 +178,9 @@ public class S3FileRepository implements FileRepository {
             FileUtils.copyFile(file, saveFile);
             uploadFile(savePath, file);
         } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("S3 FILE SAVE ERROR : " + e.getMessage()) ;
+            logger.error("S3 MULTIPART FILE SAVE ERROR : ", e);
+//            e.printStackTrace();
+//            throw new RuntimeException("S3 FILE SAVE ERROR : " + e.getMessage()) ;
         } finally {
             if(file != null && file.exists()) {
                 file.delete();
@@ -196,13 +204,17 @@ public class S3FileRepository implements FileRepository {
                         + "/" + DateFormatUtils.format(new Date(), "yyyyMM/dd/") + UUID.randomUUID()
                         + "." + StringUtils.substringAfterLast(res.getFilename(), ".");
         File saveFile = null;
+        int connectionTimeout = 1000, readTimeout = 5000;
         try{
             saveFile = new File(fileRoot, savePath) ;
+            FileUtils.copyURLToFile(res.getURL(), saveFile, connectionTimeout, readTimeout);
+            logger.info("SAVE RESOURCE FILE S3 :: " + saveFile.getCanonicalPath());
             uploadFile(savePath, saveFile);
 
         } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("S3 FILE SAVE ERROR : " + e.getMessage()) ;
+            logger.error("S3 MULTIPART FILE SAVE ERROR : ", e);
+//            e.printStackTrace();
+//            throw new RuntimeException("S3 FILE SAVE ERROR : " + e.getMessage()) ;
         } finally {
             if(saveFile != null && saveFile.exists()) {
                 saveFile.delete();
