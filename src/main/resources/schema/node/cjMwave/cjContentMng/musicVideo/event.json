@@ -64,5 +64,12 @@
     "listenerName": "musicVideo 조회시 콘텐츠 조회 create",
     "actionType": "service",
     "actionBody": "contsRetvService.insert"
+  },
+  {
+    "typeId" : "event",
+    "tid": "musicVideo",
+    "event" : "update",
+    "noneExecute" : true,
+    "eventName" : "뮤직 비디오 업데이트"
   }
 ]

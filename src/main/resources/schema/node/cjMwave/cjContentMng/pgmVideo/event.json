@@ -52,5 +52,12 @@
     "listenerName": "pgmVideo 조회시 콘텐츠 조회 create",
     "actionType": "service",
     "actionBody": "contsRetvService.insert"
+  },
+  {
+    "typeId" : "event",
+    "tid": "pgmVideo",
+    "event" : "update",
+    "noneExecute" : true,
+    "eventName" : "프로그램 영상 업데이트"
   }
 ]
