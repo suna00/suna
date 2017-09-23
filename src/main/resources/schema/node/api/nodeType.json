@@ -4,21 +4,24 @@
     "parentId" : "root",
     "typeId" : "nodeType",
     "repositoryType" : "path",
-    "typeName" : "API"
+    "typeName" : "API",
+    "clusterGroup": "api"
   },
   {
     "tid" : "apiCategory",
     "parentId" : "api",
     "typeId" : "nodeType",
     "repositoryType" : "node",
-    "typeName" : "API Category Configuration"
+    "typeName" : "API Category Configuration",
+    "clusterGroup": "api"
   },
   {
-  "tid" : "apiConfig",
-  "parentId" : "api",
-  "typeId" : "nodeType",
-  "repositoryType" : "node",
-  "typeName" : "API Configuration"
+    "tid" : "apiConfig",
+    "parentId" : "api",
+    "typeId" : "nodeType",
+    "repositoryType" : "node",
+    "typeName" : "API Configuration",
+    "clusterGroup": "api"
   },
   {
     "typeId" : "propertyType",
