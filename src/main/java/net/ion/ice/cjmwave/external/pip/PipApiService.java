@@ -1,7 +1,7 @@
 package net.ion.ice.cjmwave.external.pip;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.ion.ice.cjmwave.external.aws.s3.S3UploadService;
+import net.ion.ice.cjmwave.external.aws.s3.S3Service;
 import net.ion.ice.cjmwave.external.utils.JSONNetworkUtils;
 import net.ion.ice.cjmwave.external.utils.MigrationUtils;
 import net.ion.ice.core.data.DBService;
@@ -48,7 +48,7 @@ public class PipApiService {
     DBService dbService;
 
     @Autowired
-    S3UploadService s3UploadService;
+    S3Service s3Service;
 
     @Autowired
     ISO639Storage langStorage;
@@ -67,7 +67,7 @@ public class PipApiService {
             logger.info("Could not find available file from  :: " + fileUrl);
             return null;
         }
-        return s3UploadService.uploadToS3(nodeTypeId, retrievedFile);
+        return s3Service.uploadToS3(nodeTypeId, retrievedFile);
     }
 
     private Date parse14(String dateStr) {

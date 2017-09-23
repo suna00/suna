@@ -2,7 +2,6 @@ package net.ion.ice.cjmwave.db.sync;
 
 import net.ion.ice.cjmwave.db.sync.utils.NodeMappingUtils;
 import net.ion.ice.cjmwave.db.sync.utils.SyntaxUtils;
-import net.ion.ice.cjmwave.external.aws.s3.S3UploadService;
 import net.ion.ice.cjmwave.external.utils.MigrationUtils;
 import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.node.Node;
@@ -16,7 +15,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.io.File;
 import java.util.*;
 
 /**
@@ -39,8 +37,8 @@ public class DBSyncService {
     @Autowired
     DBService dbService;
 
-    @Autowired
-    S3UploadService s3UploadService;
+//    @Autowired
+//    S3UploadService s3UploadService;
 
     @Value("${file.default.path}")
     String defaultFilePath;
@@ -99,13 +97,14 @@ public class DBSyncService {
                     String mnetFileUrl =
                             MigrationUtils.getMnetFileUrl(nodePKValue
                                     , targetNodeTypeId, targetNodeTypeId.equals("album") ? "360" : "320");
-                    File physicalFile = MigrationUtils.retrieveRemoteFile(defaultFilePath + "/mnet", mnetFileUrl);
-                    String s3Path = "";
-                    if(physicalFile != null) s3Path = s3UploadService.uploadToS3(targetNodeTypeId, physicalFile);
-                    logger.info("s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3");
-                    logger.info("s3 :: " + s3Path);
-                    logger.info("s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3");
-                    imageValues.put("imgUrl", MigrationUtils.retrieveRemoteFile(defaultFilePath + "/mnet", mnetFileUrl));
+//                    File physicalFile = MigrationUtils.retrieveRemoteFile(defaultFilePath + "/mnet", mnetFileUrl);
+//                    String s3Path = "";
+//                    if(physicalFile != null) s3Path = s3UploadService.uploadToS3(targetNodeTypeId, physicalFile);
+//                    logger.info("s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3");
+//                    logger.info("s3 :: " + s3Path);
+//                    logger.info("s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3");
+//                    imageValues.put("imgUrl", MigrationUtils.retrieveRemoteFile(defaultFilePath + "/mnet", mnetFileUrl));
+                    imageValues.put("imgUrl", mnetFileUrl);
                 }
             } catch (Exception e) {
                 logger.error("Failed to Load Image ... ", e);
@@ -191,7 +190,7 @@ public class DBSyncService {
     * 실패에 대한 처리를 어떻게 할 것인지
     * */
     public void executeWithIteration (String executeId) throws Exception {
-//        int max = 1;
+        int max = 1;
         boolean loop = true;
         int i = 0;
         int unit = 100;
@@ -208,10 +207,10 @@ public class DBSyncService {
             // 100 부터 199 까지
             int start = i * 100;
             // TEST
-//            if(start > max) {
-//                loop = false;
-//                continue;
-//            }
+            if(start > max) {
+                loop = false;
+                continue;
+            }
 
             Node executionNode = nodeService.read(PROCESS_TID, executeId);
             if (executionNode == null) throw new Exception("[ " + executeId + " ] does not exists");
