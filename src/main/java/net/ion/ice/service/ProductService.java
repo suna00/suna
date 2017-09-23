@@ -146,7 +146,7 @@ public class ProductService {
                 String existName = existProductOption.getStringValue("name");
                 String existProductOptionType = existProductOption.getStringValue("productOptionType");
 
-                if (StringUtils.equals(name, existName) && StringUtils.equals(addOptionType, existProductOptionType)) {
+                if (StringUtils.equals(name, existName) && StringUtils.equals(addOptionType, "add")) {
                     tempExistProductAddOption = existProductOption;
                 }
             }
@@ -154,7 +154,7 @@ public class ProductService {
             Map<String, Object> saveProductAddOption = new HashMap<>();
             if (tempExistProductAddOption != null) saveProductAddOption.put("productOptionId", tempExistProductAddOption.getStringValue("productOptionId"));
             saveProductAddOption.put("productId", productId);
-            saveProductAddOption.put("productOptionType", addOptionType);
+            saveProductAddOption.put("productOptionType", "add");
             saveProductAddOption.put("name", name);
             saveProductAddOption.put("required", productAddOption.get("required"));
             saveProductAddOption.put("productOptionStatus", "y");
@@ -170,7 +170,7 @@ public class ProductService {
             boolean exist = false;
             for (Map<String, Object> productAddOption : productAddOptionList) {
                 String name = productAddOption.get("name").toString();
-                if (StringUtils.equals(existName, name) && StringUtils.equals(existProductOptionType, addOptionType)) exist = true;
+                if (StringUtils.equals(existName, name) && StringUtils.equals(existProductOptionType, "add")) exist = true;
             }
 
             if (!exist) deleteProductAddOptionList.add(existProductOption);
@@ -184,7 +184,7 @@ public class ProductService {
                 String existProductOptionCodeCase = existProductOptionItem.getStringValue("productOptionCodeCase");
                 String existProductOptionType = existProductOptionItem.getStringValue("productOptionType");
 
-                if (StringUtils.equals(productOptionCodeCase, existProductOptionCodeCase) && StringUtils.equals(addOptionType, existProductOptionType)) {
+                if (StringUtils.equals(productOptionCodeCase, existProductOptionCodeCase) && StringUtils.equals("add", existProductOptionType)) {
                     tempExistProductAddOptionItem = existProductOptionItem;
                 }
             }
@@ -211,7 +211,7 @@ public class ProductService {
             boolean exist = false;
             for (Map<String, Object> productAddOption : productAddOptionList) {
                 String productOptionCodeCase = productAddOption.get("productOptionCodeCase").toString();
-                if (StringUtils.equals(existProductOptionCodeCase, productOptionCodeCase) && StringUtils.equals(existProductOptionType, addOptionType)) exist = true;
+                if (StringUtils.equals(existProductOptionCodeCase, productOptionCodeCase) && StringUtils.equals(existProductOptionType, "add")) exist = true;
             }
 
             if (!exist) deleteProductAddOptionItemList.add(existProductOptionItem);
