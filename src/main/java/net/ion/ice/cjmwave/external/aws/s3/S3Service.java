@@ -3,12 +3,9 @@ package net.ion.ice.cjmwave.external.aws.s3;
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.auth.profile.ProfileCredentialsProvider;
-import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.amazonaws.services.s3.model.PutObjectResult;
+import com.amazonaws.services.s3.model.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -16,6 +13,10 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by juneyoungoh on 2017. 9. 18..
@@ -79,5 +80,40 @@ public class S3Service {
             file.delete();
         }
         return rtn;
+    }
+
+    /*
+    * Default 버킷키(경로) 에 서브패스 를 더한 s3 디렉토리 목록을 조회함
+    * */
+    public List retrieveObjectList(String subPath) throws Exception {
+        if(subPath == null) subPath = "";
+
+        String prefix = bucketKey
+                 + ((subPath.length() > 0)  ? "/" + subPath : "");
+        final ListObjectsV2Request req = new ListObjectsV2Request()
+                        .withBucketName(bucketName)
+                        .withMaxKeys(2);
+        ListObjectsV2Result result = null;
+        List<Map<String, Object>> s3FileInfo = new ArrayList<>();
+
+        do {
+            result = s3Client.listObjectsV2(bucketName, prefix);
+            for (S3ObjectSummary objectSummary :
+                    result.getObjectSummaries()) {
+                Map<String, Object> singleFileInfo = new HashMap<String, Object>();
+                long fSize = objectSummary.getSize();
+                if(fSize > 0) {
+                    singleFileInfo.put("filePath" , objectSummary.getKey());
+                    singleFileInfo.put("fileSize" , objectSummary.getSize());
+                    singleFileInfo.put("fileModified" , objectSummary.getLastModified());
+                    s3FileInfo.add(singleFileInfo);
+                } else {
+                    // dir
+                }
+            }
+//            System.out.println("Next Continuation Token : " + result.getNextContinuationToken());
+            req.setContinuationToken(result.getNextContinuationToken());
+        } while(result.isTruncated() == true );
+        return s3FileInfo;
     }
 };

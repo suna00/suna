@@ -100,6 +100,17 @@
     "dbType": "mySql",
     "username": "cjmwave",
     "password": "cjmwave0!@#"
+  },
+  {
+    "typeId" : "datasource",
+    "datasourceId" : "mnetDb",
+    "profiles": "cj-dev",
+    "ssl" : false,
+    "dsName" : "TEST MNET DB",
+    "jdbcUrl" : "jdbc:sqlserver://125.131.88.94:1500;databaseName=ice2",
+    "dbType" : "msSql",
+    "username" : "iceuser",
+    "password" : "iceuser"
   }
   ,{
     "typeId": "datasource",
