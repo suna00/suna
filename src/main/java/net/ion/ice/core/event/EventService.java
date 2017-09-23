@@ -94,6 +94,8 @@ public class EventService {
 
         if(event == null) {
             return ;
+        }else if(!event.isNoneExecute()){
+            executeContext.getNode().toStore();
         }
 
         Event allEvent = nodeType.getEvent(ALL_EVENT) ;
