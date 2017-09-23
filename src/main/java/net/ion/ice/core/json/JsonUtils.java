@@ -1,5 +1,6 @@
 package net.ion.ice.core.json;
 
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
@@ -22,6 +23,10 @@ import java.util.Map;
 public class JsonUtils {
     private static Logger logger = LoggerFactory.getLogger(JsonUtils.class);
     private static ObjectMapper objectMapper = new ObjectMapper();
+
+    static {
+        objectMapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
+    }
 
     public static boolean isJson(String jsonString) {
         try {
