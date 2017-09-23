@@ -2,10 +2,13 @@ package net.ion.ice.service;
 
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.data.bind.NodeBindingService;
+import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
+import net.ion.ice.core.node.NodeQuery;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,14 +19,9 @@ import java.util.*;
 
 @Service("productService")
 public class ProductService {
-    public static final String CREATE = "create";
-    public static final String UPDATE = "update";
-    public static final String DELETE = "delete";
-    public static final String SAVE = "save";
-    private Logger logger = Logger.getLogger(ProductService.class);
-
     @Autowired
     private NodeService nodeService ;
+
     @Autowired
     private NodeBindingService nodeBindingService ;
 
@@ -31,7 +29,8 @@ public class ProductService {
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
 
         try{
-            nodeService.executeNode(data, "product", SAVE) ;
+            nodeService.executeNode(data, "product", EventService.SAVE);
+
             List<Node> baseOptions = productOptions(data, "baseOption");
             List<Node> addOptions = productOptions(data, "addOption");
             productOptionItems(data, baseOptions, "baseOption");
@@ -70,7 +69,7 @@ public class ProductService {
             }
             if(!exist){
                 node.put("productOptionStatus", "n");
-                nodeService.executeNode(node, "productOption", UPDATE);
+                nodeService.executeNode(node, "productOption", EventService.UPDATE);
             }
         }
 
@@ -88,7 +87,7 @@ public class ProductService {
             if(nodes.size() > 0){
                 map.put("productOptionId", nodes.get(0).getId());
             }
-            Node node = (Node) nodeService.executeNode(map, "productOption", SAVE);
+            Node node = (Node) nodeService.executeNode(map, "productOption", EventService.SAVE);
 
             list.add(node);
         }
@@ -124,7 +123,7 @@ public class ProductService {
             }
             if(!exist){
                 node.put("productOptionItemStatus", "n");
-                nodeService.executeNode(node, "productOptionItem", UPDATE);
+                nodeService.executeNode(node, "productOptionItem", EventService.UPDATE);
             }
         }
 
@@ -139,74 +138,165 @@ public class ProductService {
             item.put("productOptionType", ("baseOption".equals(type) ? options.get(0).get("productOptionType").toString() : "add"));
             item.put("productOptionCodeCase", item.get("productOptionCodeCase").toString());
 
-            Node node = (Node) nodeService.executeNode(item, "productOptionItem", SAVE);
+            Node node = (Node) nodeService.executeNode(item, "productOptionItem", EventService.SAVE);
             list.add(node);
         }
 
         return list;
     }
 
-    private List<Node> productAttribute(Map<String, Object> data) throws IOException {
-        List<Node> list = new ArrayList<>();
-        if(data.get("productAttributeCategoryId") == null || data.get("productAttribute") == null) return list;
+    private void productAttribute(Map<String, Object> data) throws IOException {
+        if (data.get("productAttributeCategoryId") == null || data.get("productAttribute") == null) return;
 
-        List<Map<String, Object>> maps = JsonUtils.parsingJsonToList(data.get("productAttribute").toString());
-        for(Map<String, Object> map : maps){
-            map = setMap(data, map);
+        String productId = data.get("productId").toString();
+        String productAttributeCategoryId = data.get("productAttributeCategoryId").toString();
+        List<Node> existProductAttributeList = (List<Node>) NodeQuery.build("productAttribute").matching("productId", productId).getList();
+        List<Map<String, Object>> productAttributeList = JsonUtils.parsingJsonToList(data.get("productAttribute").toString());
 
-            Node node = (Node) nodeService.executeNode(map, "productAttribute", SAVE);
-            list.add(node);
+        List<Map<String, Object>> saveProductAttributeList = new ArrayList<>();
+        List<Node> deleteProductAttributeList = new ArrayList<>();
+
+        for (Map<String, Object> productAttribute : productAttributeList) {
+            String productAttributeCategoryItemId = productAttribute.get("productAttributeCategoryItemId").toString();
+
+            Node tempExistProductAttribute = null;
+            for (Node existProductAttribute : existProductAttributeList) {
+                String existProductAttributeCategoryItemId = existProductAttribute.getStringValue("productAttributeCategoryItemId");
+                if (StringUtils.equals(productAttributeCategoryItemId, existProductAttributeCategoryItemId)) {
+                    tempExistProductAttribute = existProductAttribute;
+                }
+            }
+
+            Map<String, Object> saveProductAttribute = new HashMap<>();
+            if (tempExistProductAttribute != null) saveProductAttribute.put("productAttributeId", tempExistProductAttribute.getStringValue("productAttributeId"));
+            saveProductAttribute.put("productId", productId);
+            saveProductAttribute.put("productAttributeCategoryId", productAttributeCategoryId);
+            saveProductAttribute.put("productAttributeCategoryItemId", productAttribute.get("productAttributeCategoryItemId"));
+            saveProductAttribute.put("name", productAttribute.get("name"));
+            saveProductAttribute.put("value", productAttribute.get("value"));
+
+            saveProductAttributeList.add(saveProductAttribute);
         }
 
-//        nodes 검색에 문제가 있는듯
-//        List<Node> nodes = NodeUtils.getNodeList("productAttribute", "productId_matching="+data.get("productId")+"&productAttributeCategoryId_notMatching="+data.get("productAttributeCategoryId").toString());
-//        for(Node node : nodes){
-//            nodeService.executeNode(node, "productAttribute", DELETE);
-//        }
+        for (Node existProductAttribute : existProductAttributeList) {
+            String existProductAttributeCategoryItemId = existProductAttribute.getStringValue("productAttributeCategoryItemId");
 
+            boolean exist = false;
+            for (Map<String, Object> productAttribute : productAttributeList) {
+                String productAttributeCategoryItemId = productAttribute.get("productAttributeCategoryItemId").toString();
+                if (StringUtils.equals(existProductAttributeCategoryItemId, productAttributeCategoryItemId)) exist = true;
+            }
 
-        return list;
+            if (!exist) deleteProductAttributeList.add(existProductAttribute);
+        }
+
+        for (Map<String, Object> saveProductAttribute : saveProductAttributeList) {
+            nodeService.executeNode(saveProductAttribute, "productAttribute", EventService.SAVE);
+        }
+
+        for (Node deleteProductAttribute : deleteProductAttributeList) {
+            nodeService.executeNode(deleteProductAttribute, "productAttribute", EventService.DELETE);
+        }
     }
 
-    private List<Node> productToCategoryMap(Map<String, Object> data) throws IOException {
-        List<Node> list = new ArrayList<>();
-        if(data.get("productToCategoryMap") == null) return list;
+    private void productToCategoryMap(Map<String, Object> data) throws IOException {
+        if (data.get("productToCategoryMap") == null) return;
 
-        List<Map<String, Object>> referenced = nodeBindingService.list("productToCategoryMap", "productId_matching="+data.get("productId").toString());
-        List<Map<String, Object>> maps = JsonUtils.parsingJsonToList(data.get("productToCategoryMap").toString());
-        for(Map<String, Object> map : referenced){
-            if(!maps.contains(map)){
-                nodeService.executeNode(map, "productToCategoryMap", DELETE);
+        String productId = data.get("productId").toString();
+        List<Map<String, Object>> existProductToCategoryMapList = (List<Map<String, Object>>) NodeQuery.build("productToCategoryMap").matching("productId", productId).getList();
+        List<Map<String, Object>> productToCategoryMapList = JsonUtils.parsingJsonToList(data.get("productToCategoryMap").toString());
+
+        List<Map<String, Object>> saveProductToCategoryMapList = new ArrayList<>();
+        List<Map<String, Object>> deleteProductToCategoryMapList = new ArrayList<>();
+
+        for (Map<String, Object> productToCategoryMap : productToCategoryMapList) {
+            String categoryId = productToCategoryMap.get("categoryId").toString();
+
+            Map<String, Object> tempExistProductToCategoryMap = null;
+            for (Map<String, Object> existProductToCategoryMap : existProductToCategoryMapList) {
+                String existCategoryId = existProductToCategoryMap.get("categoryId").toString();
+                if (StringUtils.equals(categoryId, existCategoryId)) {
+                    tempExistProductToCategoryMap = existProductToCategoryMap;
+                }
             }
-        }
-        for(Map<String, Object> map : maps){
-            if(!referenced.contains(map)){
-                map = setMap(data, map);
-                nodeService.executeNode(map, "productToCategoryMap", CREATE);
-            }
+
+            Map<String, Object> saveProductToCategoryMap = new HashMap<>();
+            if (tempExistProductToCategoryMap != null) saveProductToCategoryMap.put("productToCategoryMapId", tempExistProductToCategoryMap.get("productToCategoryMapId"));
+            saveProductToCategoryMap.put("productId", productId);
+            saveProductToCategoryMap.put("categoryId", productToCategoryMap.get("categoryId"));
+
+            saveProductToCategoryMapList.add(saveProductToCategoryMap);
         }
 
-        return list;
+        for (Map<String, Object> existProductToCategoryMap : existProductToCategoryMapList) {
+            String existCategoryId = existProductToCategoryMap.get("categoryId").toString();
+
+            boolean exist = false;
+            for (Map<String, Object> productToCategoryMap : productToCategoryMapList) {
+                String categoryId = productToCategoryMap.get("categoryId").toString();
+                if (StringUtils.equals(existCategoryId, categoryId)) exist = true;
+            }
+
+            if (!exist) deleteProductToCategoryMapList.add(existProductToCategoryMap);
+        }
+
+        for (Map<String, Object> saveProductToCategoryMap : saveProductToCategoryMapList) {
+            nodeService.executeNode(saveProductToCategoryMap, "productToCategoryMap", EventService.SAVE);
+        }
+
+        for (Map<String, Object> deleteProductToCategoryMap : deleteProductToCategoryMapList) {
+            nodeService.executeNode(deleteProductToCategoryMap, "productToCategoryMap", EventService.DELETE);
+        }
     }
 
-    private List<Node> productSearchFilter(Map<String, Object> data) throws IOException {
-        List<Node> list = new ArrayList<>();
-        if(data.get("productSearchFilter") == null) return list;
+    private void productSearchFilter(Map<String, Object> data) throws IOException {
+        if (data.get("productSearchFilter") == null) return;
 
-        List<Map<String, Object>> referenced = nodeBindingService.list("productSearchFilter", "productId_matching="+data.get("productId").toString());
-        List<Map<String, Object>> maps = JsonUtils.parsingJsonToList(data.get("productSearchFilter").toString());
-        for(Map<String, Object> map : referenced){
-            if(!maps.contains(map)){
-                nodeService.executeNode(map, "productSearchFilter", DELETE);
+        String productId = data.get("productId").toString();
+        List<Map<String, Object>> existProductSearchFilterList = (List<Map<String, Object>>) NodeQuery.build("productSearchFilter").matching("productId", productId).getList();
+        List<Map<String, Object>> productSearchFilterList = JsonUtils.parsingJsonToList(data.get("productSearchFilter").toString());
+
+        List<Map<String, Object>> saveProductSearchFilterList = new ArrayList<>();
+        List<Map<String, Object>> deleteProductSearchFilterList = new ArrayList<>();
+
+        for (Map<String, Object> productSearchFilter : productSearchFilterList) {
+            String searchFilterId = productSearchFilter.get("searchFilterId").toString();
+
+            Map<String, Object> tempExistProductSearchFilter = null;
+            for (Map<String, Object> existProductSearchFilter : existProductSearchFilterList) {
+                String existSearchFilterId = existProductSearchFilter.get("searchFilterId").toString();
+                if (StringUtils.equals(searchFilterId, existSearchFilterId)) {
+                    tempExistProductSearchFilter = existProductSearchFilter;
+                }
             }
-        }
-        for(Map<String, Object> map : maps){
-            if(!referenced.contains(map)){
-                map = setMap(data, map);
-                nodeService.executeNode(map, "productSearchFilter", CREATE);
-            }
+
+            Map<String, Object> saveProductSearchFilter = new HashMap<>();
+            if (tempExistProductSearchFilter != null) saveProductSearchFilter.put("productSearchFilterId", tempExistProductSearchFilter.get("productSearchFilterId"));
+            saveProductSearchFilter.put("productId", productId);
+            saveProductSearchFilter.put("searchFilterId", productSearchFilter.get("searchFilterId"));
+            saveProductSearchFilter.put("searchFilterCodeIds", productSearchFilter.get("searchFilterCodeIds"));
+
+            saveProductSearchFilterList.add(saveProductSearchFilter);
         }
 
-        return list;
+        for (Map<String, Object> existProductSearchFilter : existProductSearchFilterList) {
+            String existSearchFilterId = existProductSearchFilter.get("searchFilterId").toString();
+
+            boolean exist = false;
+            for (Map<String, Object> productSearchFilter : productSearchFilterList) {
+                String searchFilterId = productSearchFilter.get("searchFilterId").toString();
+                if (StringUtils.equals(existSearchFilterId, searchFilterId)) exist = true;
+            }
+
+            if (!exist) deleteProductSearchFilterList.add(existProductSearchFilter);
+        }
+
+        for (Map<String, Object> saveProductSearchFilter : saveProductSearchFilterList) {
+            nodeService.executeNode(saveProductSearchFilter, "productSearchFilter", EventService.SAVE);
+        }
+
+        for (Map<String, Object> deleteProductSearchFilter : deleteProductSearchFilterList) {
+            nodeService.executeNode(deleteProductSearchFilter, "productSearchFilter", EventService.DELETE);
+        }
     }
 }

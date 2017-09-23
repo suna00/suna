@@ -1,6 +1,5 @@
 package net.ion.ice.security.config;
 
-import net.ion.ice.security.RestAuthenticationEntryPoint;
 import net.ion.ice.security.auth.ajax.DefaultAuthenticationProvider;
 import net.ion.ice.security.auth.ajax.DefaultLogoutHandler;
 import net.ion.ice.security.auth.ajax.DefaultLogoutSuccessHandler;
@@ -40,8 +39,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public static final String TOKEN_ENTRY_POINT = "/api/auth/token";
     public static final String TOKEN_REFRESH_ENTRY_POINT = "/api/auth/refreshToken";
 
-    @Autowired
-    private RestAuthenticationEntryPoint authenticationEntryPoint;
     @Autowired
     private AuthenticationSuccessHandler successHandler;
     @Autowired
@@ -97,7 +94,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http    .cors().and()
                 .csrf().disable() // We don't need CSRF for JWT based authentication
                 .exceptionHandling()
-                .authenticationEntryPoint(this.authenticationEntryPoint)
 
                 .and()
                 .sessionManagement()

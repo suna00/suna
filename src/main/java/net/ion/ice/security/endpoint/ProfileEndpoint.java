@@ -1,10 +1,9 @@
 package net.ion.ice.security.endpoint;
 
-import com.hazelcast.web.HazelcastHttpSession;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.security.auth.JwtAuthenticationToken;
-import net.ion.ice.security.User.UserContext;
+import net.ion.ice.security.user.UserContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,8 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 public class ProfileEndpoint {
