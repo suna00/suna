@@ -1,19 +1,15 @@
 package net.ion.ice.service;
 
 import net.ion.ice.core.context.ExecuteContext;
-import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeQuery;
 import net.ion.ice.core.node.NodeService;
-import net.ion.ice.core.node.NodeUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.ws.rs.DELETE;
 import java.io.IOException;
 import java.util.*;
 
@@ -22,19 +18,13 @@ public class ProductService {
     @Autowired
     private NodeService nodeService ;
 
-    @Autowired
-    private NodeBindingService nodeBindingService ;
-
     public void make(ExecuteContext context) {
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
 
-        try{
+        try {
             nodeService.executeNode(data, "product", EventService.SAVE);
 
-            List<Node> baseOptions = productOptions(data, "baseOption");
-            List<Node> addOptions = productOptions(data, "addOption");
-            productOptionItems(data, baseOptions, "baseOption");
-            productOptionItems(data, addOptions, "addOption");
+            productOption(data);
             productAttribute(data);
             productToCategoryMap(data);
             productSearchFilter(data);
@@ -44,105 +34,218 @@ public class ProductService {
         }
     }
 
+    public void productOption(Map<String, Object> data) throws IOException {
+        String productId = data.get("productId").toString();
+        String baseOptionType = data.get("baseOptionType").toString();
+        String baseOption = data.get("baseOption").toString();
+        String baseOptionItem = data.get("baseOptionItem").toString();
+        String addOptionType = data.get("addOptionType").toString();
+        String addOption = data.get("addOption").toString();
+        String addOptionItem = data.get("addOptionType").toString();
 
-    public List<Node> productOptions(Map<String, Object> data, String type) throws IOException {
-        List<Node> list = new ArrayList<>();
-        List<Map<String, Object>> maps = JsonUtils.parsingJsonToList(data.get(type).toString());
+        List<Node> existProductOptionList = (List<Node>) NodeQuery.build("baseOption").matching("productId", productId).getList();
+        List<Node> existProductOptionItemList = (List<Node>) NodeQuery.build("baseOptionItem").matching("productId", productId).getList();
+        List<Map<String, Object>> productBaseOptionList = JsonUtils.parsingJsonToList(baseOption);
+        List<Map<String, Object>> productBaseOptionItemList = JsonUtils.parsingJsonToList(baseOptionItem);
+        List<Map<String, Object>> productAddOptionList = JsonUtils.parsingJsonToList(addOption);
+        List<Map<String, Object>> productAddOptionItemList = JsonUtils.parsingJsonToList(addOptionItem);
 
-        if(data.get(type) == null || data.get(type + "Item") == null) return list;
+        List<Map<String, Object>> saveProductBaseOptionList = new ArrayList<>();
+        List<Map<String, Object>> saveProductBaseOptionItemList = new ArrayList<>();
+        List<Node> deleteProductBaseOptionList = new ArrayList<>();
+        List<Node> deleteProductBaseOptionItemList = new ArrayList<>();
+        List<Map<String, Object>> saveProductAddOptionList = new ArrayList<>();
+        List<Map<String, Object>> saveProductAddOptionItemList = new ArrayList<>();
+        List<Node> deleteProductAddOptionList = new ArrayList<>();
+        List<Node> deleteProductAddOptionItemList = new ArrayList<>();
 
-        String searchText = "";
-        if("baseOption".equals(type)){
-            searchText = "productId_matching="+data.get("productId")+"&productOptionType_notMatching=add";
-        }else{
-            searchText = "productId_matching="+data.get("productId")+"&productOptionType_matching=add";
-        }
-        List<Node> nodeList = NodeUtils.getNodeList("productOption", searchText);
+        for (Map<String, Object> productBaseOption : productBaseOptionList) {
+            String name = productBaseOption.get("name").toString();
 
-        for(Node node : nodeList){
-            Boolean exist = false;
-            for(Map<String, Object> map : maps){
-                String name = map.get("name").toString();
-                if(name.equals(node.getValue("name"))){
-                    exist = true;
+            Node tempExistProductBaseOption = null;
+            for (Node existProductOption : existProductOptionList) {
+                String existName = existProductOption.getStringValue("name");
+                String existProductOptionType = existProductOption.getStringValue("productOptionType");
+
+                if (StringUtils.equals(name, existName) && StringUtils.equals(baseOptionType, existProductOptionType)) {
+                    tempExistProductBaseOption = existProductOption;
                 }
             }
-            if(!exist){
-                node.put("productOptionStatus", "n");
-                nodeService.executeNode(node, "productOption", EventService.UPDATE);
-            }
+
+            Map<String, Object> saveProductBaseOption = new HashMap<>();
+            if (tempExistProductBaseOption != null) saveProductBaseOption.put("productOptionId", tempExistProductBaseOption.getStringValue("productOptionId"));
+            saveProductBaseOption.put("productId", productId);
+            saveProductBaseOption.put("name", name);
+            saveProductBaseOption.put("required", "true");
+            saveProductBaseOption.put("productOptionStatus", "y");
+            saveProductBaseOption.put("productOptionCodes", productBaseOption.get("productOptionCodes"));
+
+            saveProductBaseOptionList.add(saveProductBaseOption);
         }
 
-        for(Map<String, Object> map : maps) {
+        for (Node existProductOption : existProductOptionList) {
+            String existName = existProductOption.getStringValue("name");
+            String existProductOptionType = existProductOption.getStringValue("productOptionType");
 
-            map = setMap(data, map);
-            if (type.equals("baseOption")) {
-                map.put("productOptionType", map.get("baseOptionType"));
-                map.put("required", "true");
-            } else {
-                map.put("productOptionType", "add");
+            boolean exist = false;
+            for (Map<String, Object> productBaseOption : productBaseOptionList) {
+                String name = productBaseOption.get("name").toString();
+                if (StringUtils.equals(existName, name) && StringUtils.equals(existProductOptionType, baseOptionType)) exist = true;
             }
 
-            List<Node> nodes = NodeUtils.getNodeList("productOption", "productId_matching="+data.get("productId")+"&name_matching="+map.get("name").toString());
-            if(nodes.size() > 0){
-                map.put("productOptionId", nodes.get(0).getId());
-            }
-            Node node = (Node) nodeService.executeNode(map, "productOption", EventService.SAVE);
-
-            list.add(node);
-        }
-        return list;
-    }
-
-    private Map<String, Object>  setMap(Map<String, Object> data, Map<String, Object> map) {
-        Map<String, Object> m = new LinkedHashMap<>(data);
-        m.putAll(map);
-        return m;
-    }
-
-    private List<Node> productOptionItems(Map<String, Object> data, List<Node> options, String type) throws IOException {
-        List<Node> list = new ArrayList<>();
-        List<Map<String, Object>> maps = JsonUtils.parsingJsonToList(data.get(type + "Item").toString());
-        if(data.get(type) == null || data.get(type + "Item") == null) return list;
-
-        String searchText = "";
-        if("baseOption".equals(type)){
-            searchText = "productId_matching="+data.get("productId")+"&productOptionType_notMatching=add";
-        }else{
-            searchText = "productId_matching="+data.get("productId")+"&productOptionType_matching=add";
+            if (!exist) deleteProductBaseOptionList.add(existProductOption);
         }
 
-        List<Node> nodeList = NodeUtils.getNodeList("productOptionItem", searchText);
-        for(Node node : nodeList){
-            Boolean exist = false;
-            for(Map<String, Object> map : maps){
-                String name = map.get("name").toString();
-                if(name.equals(node.getValue("name"))){
-                    exist = true;
+        for (Map<String, Object> productBaseOptionItem : productBaseOptionItemList) {
+            String productOptionCodeCase = productBaseOptionItem.get("productOptionCodeCase").toString();
+
+            Node tempExistProductBaseOptionItem = null;
+            for (Node existProductOptionItem : existProductOptionItemList) {
+                String existProductOptionCodeCase = existProductOptionItem.getStringValue("productOptionCodeCase");
+                String existProductOptionType = existProductOptionItem.getStringValue("productOptionType");
+
+                if (StringUtils.equals(productOptionCodeCase, existProductOptionCodeCase) && StringUtils.equals(baseOptionType, existProductOptionType)) {
+                    tempExistProductBaseOptionItem = existProductOptionItem;
                 }
             }
-            if(!exist){
-                node.put("productOptionItemStatus", "n");
-                nodeService.executeNode(node, "productOptionItem", EventService.UPDATE);
-            }
+
+            Map<String, Object> saveProductBaseOptionItem = new HashMap<>();
+            if (tempExistProductBaseOptionItem != null) saveProductBaseOptionItem.put("productOptionItemId", tempExistProductBaseOptionItem.getStringValue("productOptionItemId"));
+            saveProductBaseOptionItem.put("productOptionCodeCase", productOptionCodeCase);
+            saveProductBaseOptionItem.put("productId", productId);
+            saveProductBaseOptionItem.put("name", productBaseOptionItem.get("name"));
+            saveProductBaseOptionItem.put("sortOrder", productBaseOptionItem.get("sortOrder"));
+            saveProductBaseOptionItem.put("addPrice", productBaseOptionItem.get("addPrice"));
+            saveProductBaseOptionItem.put("supplyPrice", productBaseOptionItem.get("supplyPrice"));
+            saveProductBaseOptionItem.put("stockQuantity", productBaseOptionItem.get("stockQuantity"));
+            saveProductBaseOptionItem.put("productOptionItemStatus", productBaseOptionItem.get("productOptionItemStatus"));
+            saveProductBaseOptionItem.put("productOptionType", baseOptionType);
+
+            saveProductBaseOptionItemList.add(saveProductBaseOptionItem);
         }
 
-        for(Map<String, Object> item : maps){
+        for (Node existProductOptionItem : existProductOptionItemList) {
+            String existProductOptionCodeCase = existProductOptionItem.getStringValue("productOptionCodeCase");
+            String existProductOptionType = existProductOptionItem.getStringValue("productOptionType");
 
-            List<Node> nodes = NodeUtils.getNodeList("productOptionItem", "productId_matching="+data.get("productId")+"&productOptionCodeCase_matching="+item.get("productOptionCodeCase").toString());
-            if(nodes.size() > 0){
-                item.put("productOptionItemId", nodes.get(0).getId());
+            boolean exist = false;
+            for (Map<String, Object> productBaseOption : productBaseOptionList) {
+                String productOptionCodeCase = productBaseOption.get("productOptionCodeCase").toString();
+                if (StringUtils.equals(existProductOptionCodeCase, productOptionCodeCase) && StringUtils.equals(existProductOptionType, baseOptionType)) exist = true;
             }
 
-            item = setMap(data, item);
-            item.put("productOptionType", ("baseOption".equals(type) ? options.get(0).get("productOptionType").toString() : "add"));
-            item.put("productOptionCodeCase", item.get("productOptionCodeCase").toString());
-
-            Node node = (Node) nodeService.executeNode(item, "productOptionItem", EventService.SAVE);
-            list.add(node);
+            if (!exist) deleteProductBaseOptionItemList.add(existProductOptionItem);
         }
 
-        return list;
+        for (Map<String, Object> productAddOption : productAddOptionList) {
+            String name = productAddOption.get("name").toString();
+
+            Node tempExistProductAddOption = null;
+            for (Node existProductOption : existProductOptionList) {
+                String existName = existProductOption.getStringValue("name");
+                String existProductOptionType = existProductOption.getStringValue("productOptionType");
+
+                if (StringUtils.equals(name, existName) && StringUtils.equals(addOptionType, existProductOptionType)) {
+                    tempExistProductAddOption = existProductOption;
+                }
+            }
+
+            Map<String, Object> saveProductAddOption = new HashMap<>();
+            if (tempExistProductAddOption != null) saveProductAddOption.put("productOptionId", tempExistProductAddOption.getStringValue("productOptionId"));
+            saveProductAddOption.put("productId", productId);
+            saveProductAddOption.put("name", name);
+            saveProductAddOption.put("required", productAddOption.get("required"));
+            saveProductAddOption.put("productOptionStatus", "y");
+            saveProductAddOption.put("productOptionCodes", productAddOption.get("productOptionCodes"));
+
+            saveProductAddOptionList.add(saveProductAddOption);
+        }
+
+        for (Node existProductOption : existProductOptionList) {
+            String existName = existProductOption.getStringValue("name");
+            String existProductOptionType = existProductOption.getStringValue("productOptionType");
+
+            boolean exist = false;
+            for (Map<String, Object> productAddOption : productAddOptionList) {
+                String name = productAddOption.get("name").toString();
+                if (StringUtils.equals(existName, name) && StringUtils.equals(existProductOptionType, addOptionType)) exist = true;
+            }
+
+            if (!exist) deleteProductAddOptionList.add(existProductOption);
+        }
+
+        for (Map<String, Object> productAddOptionItem : productAddOptionItemList) {
+            String productOptionCodeCase = productAddOptionItem.get("productOptionCodeCase").toString();
+
+            Node tempExistProductAddOptionItem = null;
+            for (Node existProductOptionItem : existProductOptionItemList) {
+                String existProductOptionCodeCase = existProductOptionItem.getStringValue("productOptionCodeCase");
+                String existProductOptionType = existProductOptionItem.getStringValue("productOptionType");
+
+                if (StringUtils.equals(productOptionCodeCase, existProductOptionCodeCase) && StringUtils.equals(addOptionType, existProductOptionType)) {
+                    tempExistProductAddOptionItem = existProductOptionItem;
+                }
+            }
+
+            Map<String, Object> saveProductAddOptionItem = new HashMap<>();
+            if (tempExistProductAddOptionItem != null) saveProductAddOptionItem.put("productOptionItemId", tempExistProductAddOptionItem.getStringValue("productOptionItemId"));
+            saveProductAddOptionItem.put("productOptionCodeCase", productOptionCodeCase);
+            saveProductAddOptionItem.put("productId", productId);
+            saveProductAddOptionItem.put("name", productAddOptionItem.get("name"));
+            saveProductAddOptionItem.put("sortOrder", productAddOptionItem.get("sortOrder"));
+            saveProductAddOptionItem.put("addPrice", productAddOptionItem.get("addPrice"));
+            saveProductAddOptionItem.put("supplyPrice", productAddOptionItem.get("supplyPrice"));
+            saveProductAddOptionItem.put("stockQuantity", productAddOptionItem.get("stockQuantity"));
+            saveProductAddOptionItem.put("productOptionItemStatus", productAddOptionItem.get("productOptionItemStatus"));
+            saveProductAddOptionItem.put("productOptionType", addOptionType);
+
+            saveProductAddOptionItemList.add(saveProductAddOptionItem);
+        }
+
+        for (Node existProductOptionItem : existProductOptionItemList) {
+            String existProductOptionCodeCase = existProductOptionItem.getStringValue("productOptionCodeCase");
+            String existProductOptionType = existProductOptionItem.getStringValue("productOptionType");
+
+            boolean exist = false;
+            for (Map<String, Object> productAddOption : productAddOptionList) {
+                String productOptionCodeCase = productAddOption.get("productOptionCodeCase").toString();
+                if (StringUtils.equals(existProductOptionCodeCase, productOptionCodeCase) && StringUtils.equals(existProductOptionType, addOptionType)) exist = true;
+            }
+
+            if (!exist) deleteProductAddOptionItemList.add(existProductOptionItem);
+        }
+
+        for (Map<String, Object> saveProductBaseOption : saveProductBaseOptionList) {
+            nodeService.executeNode(saveProductBaseOption, "productOption", EventService.SAVE);
+        }
+
+        for (Map<String, Object> saveProductBaseOptionItem : saveProductBaseOptionItemList) {
+            nodeService.executeNode(saveProductBaseOptionItem, "productOptionItem", EventService.SAVE);
+        }
+
+        for (Node deleteProductBaseOption : deleteProductBaseOptionList) {
+            nodeService.executeNode(deleteProductBaseOption, "productOption", EventService.DELETE);
+        }
+
+        for (Node deleteProductBaseOptionItem : deleteProductBaseOptionItemList) {
+            nodeService.executeNode(deleteProductBaseOptionItem, "productOptionItem", EventService.DELETE);
+        }
+
+        for (Map<String, Object> saveProductAddOption : saveProductAddOptionList) {
+            nodeService.executeNode(saveProductAddOption, "productOption", EventService.SAVE);
+        }
+
+        for (Map<String, Object> saveProductAddOptionItem : saveProductAddOptionItemList) {
+            nodeService.executeNode(saveProductAddOptionItem, "productOptionItem", EventService.SAVE);
+        }
+
+        for (Node deleteProductAddOption : deleteProductAddOptionList) {
+            nodeService.executeNode(deleteProductAddOption, "productOption", EventService.DELETE);
+        }
+
+        for (Node deleteProductAddOptionItem : deleteProductAddOptionItemList) {
+            nodeService.executeNode(deleteProductAddOptionItem, "productOptionItem", EventService.DELETE);
+        }
     }
 
     private void productAttribute(Map<String, Object> data) throws IOException {
