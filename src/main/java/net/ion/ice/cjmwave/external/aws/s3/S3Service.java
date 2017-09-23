@@ -21,9 +21,9 @@ import java.net.URL;
  * Created by juneyoungoh on 2017. 9. 18..
  */
 @Service
-public class S3UploadService {
+public class S3Service {
 
-    private Logger logger = Logger.getLogger(S3UploadService.class);
+    private Logger logger = Logger.getLogger(S3Service.class);
 
     @Value("${aws.s3.bucketName}")
     private String bucketName;
