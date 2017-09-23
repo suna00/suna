@@ -1,7 +1,7 @@
 package net.ion.ice.security.auth.ajax;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.ion.ice.security.User.UserContext;
+import net.ion.ice.security.user.UserContext;
 import net.ion.ice.security.common.CookieUtil;
 import net.ion.ice.security.token.JwtToken;
 import net.ion.ice.security.token.JwtTokenFactory;

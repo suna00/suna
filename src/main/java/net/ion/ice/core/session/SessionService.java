@@ -1,17 +1,25 @@
 package net.ion.ice.core.session;
 
 import net.ion.ice.core.cluster.ClusterConfiguration;
+import net.ion.ice.core.node.Node;
+import net.ion.ice.core.node.NodeService;
+import net.ion.ice.core.node.NodeType;
+import net.ion.ice.core.query.QueryTerm;
+import net.ion.ice.core.query.QueryUtils;
 import net.ion.ice.security.auth.jwt.extractor.TokenExtractor;
 import net.ion.ice.security.common.CookieUtil;
 import net.ion.ice.security.config.JwtConfig;
 import net.ion.ice.security.token.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.stagemonitor.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -25,6 +33,9 @@ public class SessionService {
     @Autowired
     private JwtConfig jwtConfig;
 
+    @Autowired
+    private NodeService nodeService ;
+
     public Map<String, Object> getSession(HttpServletRequest request) throws UnsupportedEncodingException {
 
         Map<String, Object> sessionMap = clusterConfiguration.getSesssionMap().get(getSessionKey(request));
@@ -32,15 +43,17 @@ public class SessionService {
         return sessionMap;
     }
 
-    public void putSession(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+    public void putSession(HttpServletRequest request, HttpServletResponse response, Map<String, Object> sessionData) throws UnsupportedEncodingException {
         Map<String, Map<String, Object>> sessionMap = clusterConfiguration.getSesssionMap();
 
         if (getSession(request) == null) {
             String sessionKey = tokenFactory.createInitJwtToken().getToken();
             String refreshSessionKey = tokenFactory.createRefreshToken().getToken();
 
-            Map<String, Object> data = new HashMap<>();
-            sessionMap.put(sessionKey, data);
+            if(sessionData == null) {
+                sessionData = new HashMap<>();
+            }
+            sessionMap.put(sessionKey, sessionData);
             CookieUtil.create(response, "iceJWT", jwtConfig.getTokenPrefix().concat(" ").concat(sessionKey), false, false, -1, request.getServerName());
             CookieUtil.create(response, "iceRefreshJWT", jwtConfig.getTokenPrefix().concat(" ").concat(refreshSessionKey), true, false, -1, request.getServerName());
         }
@@ -62,7 +75,7 @@ public class SessionService {
             removeSession(request);
             CookieUtil.create(response, "iceJWT", jwtConfig.getTokenPrefix().concat(" ").concat(sessionKey), false, false, -1, request.getServerName());
         }else{
-            putSession(request, response);
+            putSession(request, response, null);
         }
     }
     public String getSessionKey(HttpServletRequest request) throws UnsupportedEncodingException {
@@ -92,4 +105,33 @@ public class SessionService {
         sessionMap.put(key, strings[0]);
     }
 
+
+    public void memberLogin(HttpServletRequest request, HttpServletResponse response, String userId, String password, String siteId) {
+        if(StringUtils.isEmpty(siteId)){
+            siteId = "default" ;
+        }
+        NodeType memberType = nodeService.getNodeType("member") ;
+        List<QueryTerm> queryTerms = new ArrayList<>() ;
+        queryTerms.add(QueryUtils.makePropertyQueryTerm(memberType, "siteId", null, siteId)) ;
+        queryTerms.add(QueryUtils.makePropertyQueryTerm(memberType, "userId", null, userId)) ;
+
+        List<Node> nodes = nodeService.getNodeList(memberType, queryTerms) ;
+
+        if(nodes == null || nodes.size() ==0){
+
+        }
+
+        Node member = nodes.get(0) ;
+
+        if(!member.getStringValue("password").equals(password)){
+
+        }
+
+        try {
+            putSession(request, response, member);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

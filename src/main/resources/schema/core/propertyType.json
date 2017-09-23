@@ -67,6 +67,22 @@
   {
     "typeId" : "propertyType",
     "tid": "nodeType",
+    "id": "nodeType>clusterGroup",
+    "pid": "clusterGroup",
+    "propertyTypeName": "Clustering Group",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "nodeType",
     "id": "nodeType>eviction",
     "pid": "eviction",
     "propertyTypeName": "Eviction Size",
