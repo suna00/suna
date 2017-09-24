@@ -199,7 +199,6 @@
     "id": "album>imgUrl",
     "propertyTypeName": "이미지경로",
     "valueType": "FILE",
-    "fileHandler" : "s3",
     "required": false,
     "idable": false,
     "labelable": false,

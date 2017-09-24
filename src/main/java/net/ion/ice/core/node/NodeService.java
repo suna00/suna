@@ -209,7 +209,7 @@ public class NodeService {
         saveSchema("classpath:schema/core/*.json");
         saveSchema("classpath:schema/core/*/*.json");
 //        saveSchema("classpath:schema/node/*.json", lastChanged);
-//        saveSchema("classpath:schema/node/**/*.json");
+        saveSchema("classpath:schema/node/**/*.json");
 //        saveSchema("classpath:schema/test/*.json", lastChanged);
 //        saveSchema("classpath:schema/test/**/*.json");
 

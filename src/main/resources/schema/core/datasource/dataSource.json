@@ -49,7 +49,7 @@
 
   {
     "typeId": "datasource",
-    "datasourceId": "cjDb",
+    "datasourceId": "cjDb1",
     "profiles": "cj-local",
     "dsName": "Test DB",
     "jdbcUrl": "jdbc:mysql://125.131.88.156:3306/ice2?useSSL=false",
@@ -73,7 +73,7 @@
 
   {
     "typeId": "datasource",
-    "datasourceId": "cjDb",
+    "datasourceId": "cjDb2",
     "profiles": "cj-local-win",
     "dsName": "Test DB",
     "jdbcUrl": "jdbc:mysql://cmsdb.cfwzre2kzbc1.ap-northeast-2.rds.amazonaws.com:3306/ice2?useSSL=false",
@@ -99,7 +99,7 @@
 
   {
     "typeId": "datasource",
-    "datasourceId": "cjDb",
+    "datasourceId": "cjDb3",
     "profiles": "cj-dev",
     "dsName": "Test DB",
     "jdbcUrl": "jdbc:mysql://125.131.88.156:3306/ice2?useSSL=false",
@@ -136,7 +136,7 @@
 
   ,{
     "typeId": "datasource",
-    "datasourceId": "cjDb",
+    "datasourceId": "cjDb4",
     "profiles": "cj-dev01",
     "dsName": "Test DB",
     "jdbcUrl": "jdbc:mysql://172.17.118.242:3306/ice2?useSSL=false",
@@ -152,7 +152,7 @@
 
   {
     "typeId": "datasource",
-    "datasourceId": "cjDb",
+    "datasourceId": "cjDb5",
     "profiles": "aws-dwas",
     "dsName": "Test DB",
     "jdbcUrl": "jdbc:mysql://authdbdev.cfwzre2kzbc1.ap-northeast-2.rds.amazonaws.com:3306/ice2?useSSL=false",
@@ -168,7 +168,7 @@
 
   {
     "typeId": "datasource",
-    "datasourceId": "cjDb",
+    "datasourceId": "cjDb6",
     "profiles": "aws-cmswebwas",
     "dsName": "CMS PROD AWS RDS",
     "jdbcUrl": "jdbc:mysql://cmsdb.cfwzre2kzbc1.ap-northeast-2.rds.amazonaws.com:3306/ice2?useSSL=false",
@@ -184,7 +184,7 @@
 
   {
     "typeId": "datasource",
-    "datasourceId": "cjDb",
+    "datasourceId": "cjDb7",
     "profiles": "aws-apigw",
     "dsName": "CMS PROD RDS",
     "jdbcUrl": "jdbc:mysql://cmsdb.cfwzre2kzbc1.ap-northeast-2.rds.amazonaws.com:3306/ice2?useSSL=false",
