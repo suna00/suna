@@ -1,0 +1,332 @@
+[
+  {
+    "typeId": "msSqlReplication"
+  , "standAlone" : true
+  , "subTasks" : "album_artist, album_country, album_keyword, album_keyword_meta, album_meta, album_songs"
+  , "subTaskKey" : "album_id"
+  , "executeId": "album"
+  , "targetDs": "mnetDb"
+  , "fromTable" : "MT_ALBUM"
+  , "toTable" : "MT_ALBUM"
+  , "query": "EXEC dbo.recentAlbum @LastUpdated = @{TIMESTAMP.lastUpdated}"
+  }
+, {
+  "typeId": "msSqlReplication"
+, "standAlone" : false
+, "subTasks" : null
+, "subTaskKey" : null
+, "executeId": "album_artist"
+, "targetDs": "mnetDb"
+, "fromTable" : "MT_ALBUM_ARTIST"
+, "toTable" : "MT_ALBUM_ARTIST"
+, "query": "EXEC dbo.recentAlbumArtist @AlbumId = @{INT.albumId}"
+}
+, {
+  "typeId": "msSqlReplication"
+, "standAlone" : false
+, "subTasks" : null
+, "subTaskKey" : null
+, "executeId": "album_country"
+, "targetDs": "mnetDb"
+, "fromTable" : "mt_album_country"
+, "toTable" : "MT_ALBUM_COUNTRY"
+, "query": "EXEC dbo.recentAlbumCountry @AlbumId = @{INT.albumId}"
+}
+, {
+  "typeId": "msSqlReplication"
+, "standAlone" : true
+, "subTasks" : null
+, "subTaskKey" : null
+, "executeId": "album_genre"
+, "targetDs": "mnetDb"
+, "fromTable" : "MT_ALBUM_GENRE"
+, "toTable" : "MT_ALBUM_GENRE"
+, "query": "EXEC dbo.recentAlbumGenre @LastUpdated = @{TIMESTAMP.lastUpdated}"
+}
+, {
+  "typeId": "msSqlReplication"
+, "standAlone" : false
+, "subTasks" : null
+, "subTaskKey" : null
+, "executeId": "album_keyword"
+, "targetDs": "mnetDb"
+, "fromTable" : "MT_ALBUM_KEYWORD"
+, "toTable" : "MT_ALBUM_KEYWORD"
+, "query": "EXEC dbo.recentAlbumKeyword @AlbumId = @{INT.albumId}"
+}
+, {
+  "typeId": "msSqlReplication"
+, "standAlone" : false
+, "subTasks" : null
+, "subTaskKey" : null
+, "executeId": "album_keyword_meta"
+, "targetDs": "mnetDb"
+, "fromTable" : "mt_album_keyword_meta"
+, "toTable" : "MT_ALBUM_KEYWORD_META"
+, "query": "EXEC dbo.recentAlbumKeywordMeta @AlbumId = @{INT.albumId}"
+}
+, {
+  "typeId": "msSqlReplication"
+, "standAlone" : false
+, "subTasks" : null
+, "subTaskKey" : null
+, "executeId": "album_meta"
+, "targetDs": "mnetDb"
+, "fromTable" : "mt_album_meta"
+, "toTable" : "MT_ALBUM_META"
+, "query": "EXEC dbo.recentAlbumMeta @AlbumId = @{INT.albumId}"
+}
+, {
+  "typeId": "msSqlReplication"
+, "standAlone" : false
+, "subTasks" : null
+, "subTaskKey" : null
+, "executeId": "album_songs"
+, "targetDs": "mnetDb"
+, "fromTable" : "MT_ALBUM_SONGS"
+, "toTable" : "MT_ALBUM_SONGS"
+, "query": "EXEC dbo.recentAlbumSongs @AlbumId = @{INT.albumId}"
+}
+, {
+  "typeId": "msSqlReplication"
+, "executeId": "artist"
+, "standAlone" : true
+, "subTaskKey" : "artist_id"
+, "subTasks" : "artist_country, artist_keyword, artist_keyword_meta, artist_meta"
+, "targetDs": "mnetDb"
+, "fromTable" : "MT_ARTIST"
+, "toTable" : "MT_ARTIST"
+, "query": "EXEC dbo.recentArtist @LastUpdated = @{TIMESTAMP.lastUpdated}"
+}
+, {
+  "typeId": "msSqlReplication"
+, "standAlone" : false
+, "subTasks" : null
+, "subTaskKey" : null
+, "executeId": "artist_country"
+, "targetDs": "mnetDb"
+, "fromTable" : "mt_artist_country"
+, "toTable" : "MT_ARTIST_COUNTRY"
+, "query": "EXEC dbo.recentArtistCountry @ArtistId = @{INT.artistId}"
+}
+, {
+  "typeId": "msSqlReplication"
+, "standAlone" : true
+, "subTasks" : null
+, "subTaskKey" : null
+, "executeId": "artist_genre"
+, "targetDs": "mnetDb"
+, "fromTable" : "MT_ARTIST_GENRE"
+, "toTable" : "MT_ARTIST_GENRE"
+, "query": "EXEC dbo.recentArtistGenre @LastUpdated = @{TIMESTAMP.lastUpdated}"
+}
+, {
+  "typeId": "msSqlReplication"
+, "standAlone" : false
+, "subTasks" : null
+, "subTaskKey" : null
+, "executeId": "artist_keyword"
+, "targetDs": "mnetDb"
+, "fromTable" : "MT_ARTIST_KEYWORD"
+, "toTable" : "MT_ARTIST_KEYWORD"
+, "query": "EXEC dbo.recentArtistKeyword @ArtistId = @{INT.artistId}"
+}
+, {
+  "typeId": "msSqlReplication"
+, "standAlone" : false
+, "subTasks" : null
+, "subTaskKey" : null
+, "executeId": "artist_keyword_meta"
+, "targetDs": "mnetDb"
+, "fromTable" : "mt_artist_keyword_meta"
+, "toTable" : "MT_ARTIST_KEYWORD_META"
+, "query": "EXEC dbo.recentArtistKeywordMeta @ArtistId = @{INT.artistId}"
+}
+, {
+  "typeId": "msSqlReplication"
+, "standAlone" : false
+, "subTasks" : null
+, "subTaskKey" : null
+, "executeId": "artist_meta"
+, "targetDs": "mnetDb"
+, "fromTable" : "mt_artist_meta"
+, "toTable" : "MT_ARTIST_META"
+, "query": "EXEC dbo.recentArtistMeta @ArtistId = @{INT.artistId}"
+}
+, {
+  "typeId": "msSqlReplication"
+, "standAlone" : true
+, "subTaskKey" : "mv_id"
+, "subTasks" : "mv_artist, mv_country, mv_embed, mv_keyword, mv_keyword_meta, mv_meta"
+, "executeId": "mv"
+, "targetDs": "mnetDb"
+, "fromTable" : "MT_MV"
+, "toTable" : "MT_MV"
+, "query": "EXEC dbo.recentMv @LastUpdated = @{TIMESTAMP.lastUpdated}"
+}
+, {
+  "typeId": "msSqlReplication"
+, "standAlone" : false
+, "subTasks" : null
+, "subTaskKey" : null
+, "executeId": "mv_artist"
+, "targetDs": "mnetDb"
+, "fromTable" : "MT_MV_ARTIST"
+, "toTable" : "MT_MV_ARTIST"
+, "query": "EXEC dbo.recentMvArtist @MvId = @{INT.mvId}"
+}
+, {
+  "typeId": "msSqlReplication"
+, "standAlone" : false
+, "subTasks" : null
+, "subTaskKey" : null
+, "executeId": "mv_country"
+, "targetDs": "mnetDb"
+, "fromTable" : "mt_mv_country"
+, "toTable" : "MT_MV_COUNTRY"
+, "query": "EXEC dbo.recentMvCountry @MvId = @{INT.mvId}"
+}
+, {
+  "typeId": "msSqlReplication"
+, "standAlone" : false
+, "subTasks" : null
+, "subTaskKey" : null
+, "executeId": "mv_embed"
+, "targetDs": "mnetDb"
+, "fromTable" : "MT_MV_EMBED"
+, "toTable" : "MT_MV_EMBED"
+, "query": "EXEC dbo.recentMvEmbed @MvId = @{INT.mvId}"
+}
+, {
+  "typeId": "msSqlReplication"
+, "standAlone" : false
+, "subTasks" : null
+, "subTaskKey" : null
+, "executeId": "mv_keyword"
+, "targetDs": "mnetDb"
+, "fromTable" : "MT_MV_KEYWORD"
+, "toTable" : "MT_MV_KEYWORD"
+, "query": "EXEC dbo.recentMvKeyword @MvId = @{INT.mvId}"
+}
+, {
+  "typeId": "msSqlReplication"
+, "standAlone" : false
+, "subTasks" : null
+, "subTaskKey" : null
+, "executeId": "mv_keyword_meta"
+, "targetDs": "mnetDb"
+, "fromTable" : "mt_mv_keyword_meta"
+, "toTable" : "MT_MV_KEYWORD_META"
+, "query": "EXEC dbo.recentMvKeywordMeta @MvId = @{INT.mvId}"
+}
+, {
+  "typeId": "msSqlReplication"
+, "standAlone" : false
+, "subTasks" : null
+, "subTaskKey" : null
+, "executeId": "mv_meta"
+, "targetDs": "mnetDb"
+, "fromTable" : "mt_mv_meta"
+, "toTable" : "MT_MV_META"
+, "query": "EXEC dbo.recentMvMeta @MvId = @{INT.mvId}"
+}
+, {
+  "typeId": "msSqlReplication"
+, "standAlone" : true
+, "subTasks" : "song_artist, song_country, song_keyword, song_keyword_meta, song_meta"
+, "subTaskKey" : "song_id"
+, "executeId": "song"
+, "targetDs": "mnetDb"
+, "fromTable" : "MT_SONG"
+, "toTable" : "MT_SONG"
+, "query": "EXEC dbo.recentSong @LastUpdated = @{TIMESTAMP.lastUpdated}"
+}
+, {
+  "typeId": "msSqlReplication"
+, "standAlone" : false
+, "subTasks" : null
+, "subTaskKey" : null
+, "executeId": "song_artist"
+, "targetDs": "mnetDb"
+, "fromTable" : "MT_SONG_ARTIST"
+, "toTable" : "MT_SONG_ARTIST"
+, "query": "EXEC dbo.recentSongArtist @SongId = @{INT.songId}"
+}
+, {
+  "typeId": "msSqlReplication"
+, "standAlone" : false
+, "subTasks" : null
+, "subTaskKey" : null
+, "executeId": "song_country"
+, "targetDs": "mnetDb"
+, "fromTable" : "mt_song_country"
+, "toTable" : "MT_SONG_COUNTRY"
+, "query": "EXEC dbo.recentSongCountry @SongId = @{INT.songId}"
+}
+, {
+  "typeId": "msSqlReplication"
+, "standAlone" : false
+, "subTasks" : null
+, "subTaskKey" : null
+, "executeId": "song_keyword"
+, "targetDs": "mnetDb"
+, "fromTable" : "MT_SONG_KEYWORD"
+, "toTable" : "MT_SONG_KEYWORD"
+, "query": "EXEC dbo.recentSongKeyword @SongId = @{INT.songId}"
+}
+, {
+  "typeId": "msSqlReplication"
+, "standAlone" : false
+, "subTasks" : null
+, "subTaskKey" : null
+, "executeId": "song_keyword_meta"
+, "targetDs": "mnetDb"
+, "fromTable" : "mt_song_keyword_meta"
+, "toTable" : "MT_SONG_KEYWORD_META"
+, "query": "EXEC dbo.recentSongKeywordMeta @SongId = @{INT.songId}"
+}
+, {
+  "typeId": "msSqlReplication"
+, "standAlone" : true
+, "subTasks" : null
+, "subTaskKey" : null
+, "executeId": "song_lyric"
+, "targetDs": "mnetDb"
+, "fromTable" : "MT_SONG_LYRIC"
+, "toTable" : "MT_SONG_LYRIC"
+, "query": "EXEC dbo.recentSongLyric @LastUpdated = @{TIMESTAMP.lastUpdated}"
+}
+, {
+  "typeId": "msSqlReplication"
+, "standAlone" : false
+, "subTasks" : null
+, "subTaskKey" : null
+, "executeId": "song_meta"
+, "targetDs": "mnetDb"
+, "fromTable" : "mt_song_meta"
+, "toTable" : "MT_SONG_META"
+, "query": "EXEC dbo.recentSongMeta @SongId = @{INT.songId}"
+}
+, {
+  "typeId": "msSqlReplication"
+, "standAlone" : true
+, "subTasks" : null
+, "subTaskKey" : null
+, "executeId": "chartMst"
+, "targetDs": "mnetDb"
+, "fromTable" : "T_SM_S3_ChartTotalMst"
+, "toTable" : "T_SM_S3_ChartTotalMst"
+, "query": "EXEC dbo.recentChartTotalMst @LastUpdated = @{TIMESTAMP.lastUpdated}"
+}
+, {
+  "typeId": "msSqlReplication"
+, "standAlone" : true
+, "subTasks" : null
+, "subTaskKey" : null
+, "executeId": "chartLst"
+, "targetDs": "mnetDb"
+, "fromTable" : "T_SM_S3_ChartTotalLst"
+, "toTable" : "T_SM_S3_ChartTotalLst"
+, "query": "EXEC dbo.recentAlbumChartTotalLst @LastUpdated = @{TIMESTAMP.lastUpdated}"
+}
+]

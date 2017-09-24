@@ -74,7 +74,7 @@ public class MnetDataDumpService {
     * */
     private Date getLastUpdated (String fromTable, String toTable) {
         String query = "SELECT * FROM MSSQL_DUMP_REPORT " +
-                "WHERE mssqlTable = ? AND myssqlTable = ? " +
+                "WHERE mssqlTable = ? AND mysqlTable = ? " +
                 "ORDER BY jobStarted DESC LIMIT 1";
         Map<String, Object> qResult = null;
         try {
@@ -143,21 +143,23 @@ public class MnetDataDumpService {
             // 걸러진 태스크에 대해서 아래 키로 조회
             for(String subExecuteId : subTasksList) {
                 Node subTask = nodeService.getNode(REP_TID, subExecuteId);
-                migrate(subTask, foreignKey);
+                migrate(subTask, foreignKey, null);
             }
         }
     }
 
 
-    private void  migrate(Node replicationNode, Object foreignKey) {
+    private void  migrate(Node replicationNode, Object foreignKey, Date provided) {
 
         Date startDate = new Date();
         Map<String, Object> migReport = new HashMap<String, Object>();
+        String fromTable = "", toTable = "";
+
         try{
 
             String q = String.valueOf(replicationNode.get("query"));
-            String fromTable = String.valueOf(replicationNode.get("fromTable"));
-            String toTable = String.valueOf(replicationNode.get("toTable"));
+            fromTable = String.valueOf(replicationNode.get("fromTable"));
+            toTable = String.valueOf(replicationNode.get("toTable"));
             String subTasks = String.valueOf(replicationNode.get("subTasks"));
             String subTaskKey = String.valueOf(replicationNode.get("subTaskKey")).trim();
             Date lastUpdated = getLastUpdated(fromTable, toTable);
@@ -169,10 +171,15 @@ public class MnetDataDumpService {
             Map<String, Object> preparedQuery = null;
             Map<String, Object> params = new HashMap<>();
             if(standAlone) {
-                params.put("lastUpdated", lastUpdated);
+                if(provided != null) {
+                    params.put("lastUpdated", provided);
+                } else {
+                    params.put("lastUpdated", lastUpdated);
+                }
             } else if(foreignKey != null) {
                 subTaskKey = String.valueOf(replicationNode.get("subTaskKey")).trim();
-                params.put(subTaskKey, foreignKey);
+//                params.put(subTaskKey, foreignKey);
+                params.put("id", foreignKey);
             }
             preparedQuery = SyntaxUtils.parse(q, params);
 
@@ -201,6 +208,8 @@ public class MnetDataDumpService {
             logger.error("error", e);
         }
         Date end = new Date();
+        migReport.put("mssqlTable", fromTable);
+        migReport.put("mysqlTable", toTable);
         migReport.put("jobStarted", startDate);
         migReport.put("jobFinished", end);
         migReport.put("jobDuration", (end.getTime() - startDate.getTime()));
@@ -210,25 +219,28 @@ public class MnetDataDumpService {
 
     // 특별한 테이블이 지정되지 않은 경우 모든 테이블에 대한 작업을 수행함
     public void copyData () {
-        copyData("ALL");
+        copyData("ALL", null);
     }
 
 
-    public void copyData (String target) {
+    public void copyData (String target, Date provided) {
         // 각자 레포트 보고
+        logger.info("parameters :: target :: " + target + " :: provided :: " + provided);
+
         try{
             switch (target) {
                 case  "ALL" :
                     List<Node> repNodeList = nodeService.getNodeList(REP_TID, "");
                     for(Node repNode : repNodeList) {
                         if((boolean)repNode.get("standAlone")) {
-                            migrate(repNode, null);
+                            migrate(repNode, null, provided);
                         }
                     }
                 default:
                     Node repNode = nodeService.getNode(REP_TID, target);
+                    logger.info("repNode :: " + repNode);
                     if((boolean)repNode.get("standAlone")) {
-                        migrate(repNode, null);
+                        migrate(repNode, null, provided);
                     }
                     break;
             }

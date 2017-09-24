@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 /**
  * Created by juneyoungoh on 2017. 9. 14..
@@ -92,12 +96,25 @@ public class MnetController {
     * 0914 여전히 mssql 접속 정보는 없음
     * */
     @RequestMapping(value = { "renew/{type}" }, produces = {"application/json"})
-    public @ResponseBody String retrievePartial (@PathVariable String type) throws JSONException {
+    public @ResponseBody String retrievePartial (@PathVariable String type, HttpServletRequest request) throws JSONException {
         JSONObject response = new JSONObject();
         String result="500", result_msg = "ERROR", cause = "";
 
         try{
-            scheduledMnetService.execute(type);
+            String requestedDate = request.getParameter("date");
+            Date provided = null;
+            if(requestedDate != null) {
+                SimpleDateFormat sdf = null;
+                if(requestedDate.length() == 14) {
+                    sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+                } else if (requestedDate.length() == 8) {
+                    sdf = new SimpleDateFormat("yyyyMMdd");
+                }
+                provided = sdf.parse(requestedDate);
+            }
+
+
+            scheduledMnetService.execute(type, provided);
             result = "200";
             result_msg = "SUCCESS";
         } catch (Exception e) {

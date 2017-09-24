@@ -6,6 +6,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 /**
  * Created by juneyoungoh on 2017. 9. 19..
  * 주기연동을 함
@@ -33,12 +35,12 @@ public class ScheduledMnetService {
     };
 
 
-    public void execute(String type) {
+    public void execute(String type, Date provided) {
         try{
 
             //신규 증분에 대한 MSSQL to MySQL 마이그레이션 수행
             logger.info("Migration schedule :: Step1");
-//            mnetDataDumpService.copyData(type);
+//            mnetDataDumpService.copyData(type, provided);
 
 
             logger.info("Migration schedule :: Step2");
@@ -47,24 +49,24 @@ public class ScheduledMnetService {
             switch (type) {
                 case "all" :
                     for(String executeId : mnetExecuteIds) {
-                        dbSyncService.executeForNewData("mnet", executeId);
+                        dbSyncService.executeForNewData("mnet", executeId, provided);
                     }
                     break;
                 case "album" :
-                    dbSyncService.executeForNewData("mnet", "albumPart");
+                    dbSyncService.executeForNewData("mnet", "albumPart", provided);
                     break;
                 case "artist" :
-                    dbSyncService.executeForNewData("mnet", "artistPart");
+                    dbSyncService.executeForNewData("mnet", "artistPart", provided);
                     break;
                 case "song" :
-                    dbSyncService.executeForNewData("mnet", "songPart");
+                    dbSyncService.executeForNewData("mnet", "songPart", provided);
                     break;
                 case "mv" :
-                    dbSyncService.executeForNewData("mnet", "musicVideoPart");
+                    dbSyncService.executeForNewData("mnet", "musicVideoPart", provided);
                     break;
                 case "chart" :
-                    dbSyncService.executeForNewData("mnet", "mcdChartBasInfoPart");
-                    dbSyncService.executeForNewData("mnet", "mcdChartStatsPart");
+                    dbSyncService.executeForNewData("mnet", "mcdChartBasInfoPart", provided);
+                    dbSyncService.executeForNewData("mnet", "mcdChartStatsPart", provided);
                     break;
                 default:
                     logger.info("Could not find appropriate type for migration");

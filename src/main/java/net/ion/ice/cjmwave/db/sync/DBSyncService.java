@@ -293,7 +293,7 @@ public class DBSyncService {
     }
 
 
-    public void executeForNewData (String mig_target, String executeId) throws Exception {
+    public void executeForNewData (String mig_target, String executeId, Date provided) throws Exception {
         // last Execution 시간은 MIG_DATA_HISTORY 에서 찾을 수 있음
         // MSSQL 펑션이 있다고 생각하고 파라미터로 마지막 날짜를 던져서 노드 생성하면 됨
         String queryForLastExecution =
@@ -307,12 +307,17 @@ public class DBSyncService {
         String query = String.valueOf(executionNode.get("query"));
 
         Map<String, Object> lastExecutionRs = null;
-        try {
-            lastExecutionRs = ice2Template.queryForMap(queryForLastExecution, mig_target, targetNodeType);
-        } catch (EmptyResultDataAccessException erda) {
-            logger.info("No data found");
+        if(provided == null) {
+            try {
+                lastExecutionRs = ice2Template.queryForMap(queryForLastExecution, mig_target, targetNodeType);
+            } catch (EmptyResultDataAccessException erda) {
+                logger.info("No data found");
+                lastExecutionRs = new HashMap<String, Object>();
+                lastExecutionRs.put("lastUpdated", new Date());
+            }
+        } else {
             lastExecutionRs = new HashMap<String, Object>();
-            lastExecutionRs.put("lastUpdated", new Date());
+            lastExecutionRs.put("lastUpdated", provided);
         }
 
         // 그래봤자 ID 속성이 뭔지 모르잖아

@@ -18,7 +18,7 @@ public class MigrationUtils {
 
     public static void recordDataCopyRecord (JdbcTemplate template, Map<String, Object> report) {
         String query = "INSERT INTO MSSQL_DUMP_REPORT " +
-                "(msssqlTable, mysqlTable, successCnt, skippedCnt" +
+                "(mssqlTable, mysqlTable, successCnt, skippedCnt" +
                 ", jobStarted, jobFinished, jobDuration) VALUES " +
                 "(?, ?, ?, ?" +
                 ", ?, ?, ?)";
