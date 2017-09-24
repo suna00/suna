@@ -63,6 +63,9 @@ public class FileService {
         if(repository == null && fileHandler.equals("default")){
             repository = ApplicationContextManager.getBean(DefaultFileRepository.class) ;
         }
+        if(repository == null){
+            repository = ApplicationContextManager.getBean(DefaultFileRepository.class) ;
+        }
         return repository ;
     }
 
