@@ -1,12 +1,11 @@
-# 운영 API 게이트웨이 서버 (10.75.6.48) 설정
-# - 운영 API GW 는 CMSWebWAS(130) 와 통신할 수 있음(필수. 사용자 데이터 저장)
-# - 운영 API GW 는 API CACHE(144) 와 통신할 수 있음(필수. API)
-# - 운영 API GW 는 CMS RDS 와 통신할 수 있음(선택. 성능) - datasource.json
-# - 운영 API GW 는 회원 RDS 와 통신할 수 있음(필수. 투표) - datasource.json
+# 운영 API 캐시 서버 (10.75.6.144) 설정
+# - 운영 API 캐시는 API 게이트웨이(48) 로 부터 API 요청을 받는다
+# - 운영 API 캐시는 CMSWEBWAS(130) 와 통신할 수 있음(필수. API)
+# - 운영 API 캐시는 RDS 와 통신하지 않는다 - datasource.json 에 설정이 필요없음
 
 
 spring:
-  profiles: aws-apigw
+  profiles: aws-apicache
   http:
     multipart:
       max-request-size: 10MB
@@ -27,7 +26,7 @@ jwtConfig:
 # 스케일업할 때 members 가 자동으로 늘어나나?
 cluster:
   members:
-    - 10.75.6.48
+    - 10.75.6.144
     - 127.0.0.1
     - localhost
 

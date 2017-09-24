@@ -42,6 +42,11 @@
     "username": "cjmwave",
     "password": "cjmwave0!@#"
   },
+
+
+
+
+
   {
     "typeId": "datasource",
     "datasourceId": "cjDb",
@@ -61,6 +66,11 @@
     "username": "cjmwave",
     "password": "cjmwave0!@#"
   },
+
+
+
+
+
   {
     "typeId": "datasource",
     "datasourceId": "cjDb",
@@ -81,6 +91,12 @@
     "username": "cjmwave",
     "password": "cjmwave0!@#"
   },
+
+
+
+
+
+
   {
     "typeId": "datasource",
     "datasourceId": "cjDb",
@@ -112,6 +128,12 @@
     "username" : "iceuser",
     "password" : "iceuser"
   }
+
+
+
+
+
+
   ,{
     "typeId": "datasource",
     "datasourceId": "cjDb",
@@ -122,6 +144,12 @@
     "username": "cjmwave",
     "password": "cjmwave0!@#"
   },
+
+
+
+
+
+
   {
     "typeId": "datasource",
     "datasourceId": "cjDb",
@@ -132,14 +160,47 @@
     "username": "cjmwave",
     "password": "cjmwave0!@#"
   },
+
+
+
+
+
+
   {
     "typeId": "datasource",
     "datasourceId": "cjDb",
-    "profiles": "aws-pwas",
-    "dsName": "Test DB",
+    "profiles": "aws-cmswebwas",
+    "dsName": "CMS PROD AWS RDS",
     "jdbcUrl": "jdbc:mysql://cmsdb.cfwzre2kzbc1.ap-northeast-2.rds.amazonaws.com:3306/ice2?useSSL=false",
     "dbType": "mySql",
     "username": "cjmwave",
     "password": "cjmwave0!@#"
+  },
+
+
+
+
+
+
+  {
+    "typeId": "datasource",
+    "datasourceId": "cjDb",
+    "profiles": "aws-apigw",
+    "dsName": "CMS PROD RDS",
+    "jdbcUrl": "jdbc:mysql://cmsdb.cfwzre2kzbc1.ap-northeast-2.rds.amazonaws.com:3306/ice2?useSSL=false",
+    "dbType": "mySql",
+    "username": "cjmwave",
+    "password": "cjmwave0!@#"
+  },
+  {
+    "typeId": "datasource",
+    "datasourceId": "voteDb",
+    "profiles": "aws-apigw",
+    "dsName": "USER/VOTE PROD RDS",
+    "jdbcUrl": "jdbc:gauthdb.cfwzre2kzbc1.ap-northeast-2.rds.amazonaws.com:3306/ice2?useSSL=false",
+    "dbType": "mySql",
+    "username": "cjmwave",
+    "password": "cjmwave0!@#"
   }
+
 ]
