@@ -65,5 +65,6 @@ aws:
     secretKey: P1c7asDMAXzodFn+4YGRgAo+w4ZUdGfuu1ncIzzK
 
 
+
 temp-file:
   dir: /home/ion/api/resource/ice2/cache
