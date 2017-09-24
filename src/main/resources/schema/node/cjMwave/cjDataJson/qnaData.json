@@ -14,7 +14,7 @@
   },
   {
     "typeId": "qna",
-    "qnaSeq": 800000,
+    "qnaSeq": 800001,
     "qnaNm": "투표 문의 드립니다.",
     "qnaFildCd": "2",
     "qnarId": "8>4889",
@@ -27,7 +27,7 @@
   },
   {
     "typeId": "qna",
-    "qnaSeq": 800000,
+    "qnaSeq": 800002,
     "qnaNm": "중복투표 문의",
     "qnaFildCd": "3",
     "qnarId": "9>1898",
@@ -40,7 +40,7 @@
   },
   {
     "typeId": "qna",
-    "qnaSeq": 800000,
+    "qnaSeq": 800003,
     "qnaNm": "mwave문의 드립니다.",
     "qnaFildCd": "1",
     "qnarId": "4>5994",
@@ -53,7 +53,7 @@
   },
   {
     "typeId": "qna",
-    "qnaSeq": 800000,
+    "qnaSeq": 800004,
     "qnaNm": "mama 투표 문의 드립니다.",
     "qnaFildCd": "2",
     "qnarId": "5>1418",
@@ -66,7 +66,7 @@
   },
   {
     "typeId": "qna",
-    "qnaSeq": 800000,
+    "qnaSeq": 800005,
     "qnaNm": "플레이어 문의 드립니다.",
     "qnaFildCd": "3",
     "qnarId": "1>1984",
@@ -79,7 +79,7 @@
   },
   {
     "typeId": "qna",
-    "qnaSeq": 800000,
+    "qnaSeq": 800006,
     "qnaNm": "투표 문의 드립니다.",
     "qnaFildCd": "1",
     "qnarId": "8>4889",
@@ -92,7 +92,7 @@
   },
   {
     "typeId": "qna",
-    "qnaSeq": 800000,
+    "qnaSeq": 800007,
     "qnaNm": "중복투표 문의",
     "qnaFildCd": "2",
     "qnarId": "9>1898",
@@ -105,7 +105,7 @@
   },
   {
     "typeId": "qna",
-    "qnaSeq": 800000,
+    "qnaSeq": 800008,
     "qnaNm": "mwave문의 드립니다.",
     "qnaFildCd": "3",
     "qnarId": "4>5994",
@@ -118,7 +118,7 @@
   },
   {
     "typeId": "qna",
-    "qnaSeq": 800000,
+    "qnaSeq": 800009,
     "qnaNm": "mama 투표 문의 드립니다.",
     "qnaFildCd": "1",
     "qnarId": "5>1418",
@@ -131,7 +131,7 @@
   },
   {
     "typeId": "qna",
-    "qnaSeq": 800000,
+    "qnaSeq": 800010,
     "qnaNm": "플레이어 문의 드립니다.",
     "qnaFildCd": "2",
     "qnarId": "1>1984",
@@ -144,7 +144,7 @@
   },
   {
     "typeId": "qna",
-    "qnaSeq": 800000,
+    "qnaSeq": 800011,
     "qnaNm": "투표 문의 드립니다.",
     "qnaFildCd": "3",
     "qnarId": "8>4889",
@@ -157,7 +157,7 @@
   },
   {
     "typeId": "qna",
-    "qnaSeq": 800000,
+    "qnaSeq": 800012,
     "qnaNm": "중복투표 문의",
     "qnaFildCd": "1",
     "qnarId": "9>1898",
@@ -170,7 +170,7 @@
   },
   {
     "typeId": "qna",
-    "qnaSeq": 800000,
+    "qnaSeq": 800013,
     "qnaNm": "mwave문의 드립니다.",
     "qnaFildCd": "2",
     "qnarId": "4>5994",
@@ -183,7 +183,7 @@
   },
   {
     "typeId": "qna",
-    "qnaSeq": 800000,
+    "qnaSeq": 800014,
     "qnaNm": "mama 투표 문의 드립니다.",
     "qnaFildCd": "3",
     "qnarId": "5>1418",
