@@ -57,7 +57,11 @@ public class PipApiService {
 
     @PostConstruct
     public void prepareJdbcTemplate () {
-        template = dbService.getJdbcTemplate("cjDb");
+        try{
+            template = dbService.getJdbcTemplate("cjDb");
+        } catch (Exception e) {
+            logger.error("Failed to Load cjDb... For PIP");
+        }
     }
 
     private File pullImage (String nodeTypeId, String fileUrl) throws Exception {
