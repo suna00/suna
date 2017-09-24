@@ -6,6 +6,7 @@ import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,7 +43,18 @@ public class ClusterService {
                 topic = clusterConfiguration.getTopic("all") ;
             }
 
-            topic.publish(executeContext);
+            topic.publish(node);
         }
+    }
+
+    public boolean checkClusterGroup(NodeType nodeType){
+        String clusterGroup = nodeType.getClusterGroup() ;
+        if(StringUtils.isEmpty(clusterGroup)){
+            clusterGroup = "cms" ;
+        }
+
+
+        if(clusterGroup.equals("all")) return true ;
+        return clusterConfiguration.getGroupList().contains(clusterGroup) ;
     }
 }

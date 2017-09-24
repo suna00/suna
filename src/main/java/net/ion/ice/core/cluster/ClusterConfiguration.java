@@ -58,12 +58,15 @@ public class ClusterConfiguration {
         Config config = new Config();
         config.setInstanceName("ice-cluster-hazelcast") ;
 
-        if(StringUtils.isEmpty(this.groups)){
+        if(StringUtils.isEmpty(this.groups) ){
             logger.warn("Not Define Groups");
             groupList.add("all") ;
         }else{
             for(String grp : StringUtils.split(groups, ",")){
                 groupList.add(grp.trim()) ;
+            }
+            if(!groupList.contains("all")) {
+                groupList.add("all");
             }
         }
         logger.info("Define Cluster Group List : " + groupList );
@@ -113,5 +116,12 @@ public class ClusterConfiguration {
         return this.topicMap.get(group);
     }
 
+    public List<String> getGroupList(){
+        return this.groupList ;
+    }
+
+    public void setGroups(String groups) {
+        this.groups = groups;
+    }
 }
 
