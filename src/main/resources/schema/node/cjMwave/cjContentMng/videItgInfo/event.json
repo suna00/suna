@@ -8,28 +8,11 @@
     "actionBody" : "videItgInfoService.videItgInfoMusicVideoSave"
   },
   {
-    "typeId" : "eventListener",
-    "tid" : "videItgInfo",
-    "event": "musicVideo>update",
-    "listenerName" : "뮤직비디오 저장시 videItgInfo에도 정보 저장",
-    "actionType" : "service",
-    "actionBody" : "videItgInfoService.videItgInfoMusicVideoSave"
-  },
-  {
-    "typeId" : "eventListener",
-    "tid" : "videItgInfo",
+    "typeId": "eventListener",
+    "tid": "videItgInfo",
     "event": "pgmVideo>saveMetadata",
-    "listenerName" : "프로그램 영상 저장시 videItgInfo에도 정보 저장",
-    "actionType" : "service",
-    "actionBody" : "videItgInfoService.videItgInfoPgmVideoSave"
-  },
-  {
-    "typeId" : "eventListener",
-    "tid" : "videItgInfo",
-    "event": "pgmVideo>update",
-    "listenerName" : "프로그램 영상 저장시 videItgInfo에도 정보 저장",
-    "actionType" : "service",
-    "actionBody" : "videItgInfoService.videItgInfoPgmVideoSave"
+    "listenerName": "프로그램 영상 저장시 videItgInfo에도 정보 저장",
+    "actionType": "service",
+    "actionBody": "videItgInfoService.videItgInfoPgmVideoSave"
   }
-
 ]

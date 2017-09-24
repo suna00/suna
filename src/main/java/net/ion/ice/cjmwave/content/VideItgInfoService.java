@@ -20,7 +20,7 @@ public class VideItgInfoService {
     Logger logger = Logger.getLogger(VideItgInfoService.class);
 
     public void videItgInfoMusicVideoSave(ExecuteContext context){
-        logger.info("videItgInfoPgmVideoSave!!!");
+        logger.info("videItgInfoMusicVideoSave!!!");
         Map<String, Object> contextData = context.getData();
 
         Map<String, Object> saveData = new HashMap<String, Object>();
