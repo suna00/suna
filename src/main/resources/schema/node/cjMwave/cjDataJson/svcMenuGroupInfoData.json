@@ -2,31 +2,31 @@
   {
     "typeId": "svcMenuGroupInfo",
     "svcMenuGroupSeq": 100,
-    "svcMenuGroupNm": "PC_2017년 MWAVE",
+    "svcMenuGroupNm": "2017_Default_Web",
     "svcDvcDivCd": "1",
     "showYn": true,
     "pstngStDt": "20170101",
-    "pstngFnsDt": "20171231",
-    "showCntryCdList": "all"
+    "pstngFnsDt": "20201231",
+    "showCntryCdList": "KOR,CHN,THA,PHL,IDN,VNM,USA,TWN,MAL,JPN,BRA,MEX,SGP,HKG,GBR,RUS,PER,SAU,CDN,AUS,RCH,ARG,TUR,DUE,FRA,MMR,IND,COL,ESP,KAZ,ITA,KHM,POL,ECU,ARE,NLD,BOL,MAR,NZL,DZA,IRQ,UKR,EGY,SWE,BRU,HUN,VEN,PRT,FIN,MAC"
   },
   {
     "typeId": "svcMenuGroupInfo",
     "svcMenuGroupSeq": 101,
-    "svcMenuGroupNm": "MW_2017년 MWAVE",
+    "svcMenuGroupNm": "2017_Default_Mobile",
     "svcDvcDivCd": "2",
     "showYn": true,
     "pstngStDt": "20170101",
-    "pstngFnsDt": "20171231",
-    "showCntryCdList": "all"
+    "pstngFnsDt": "20201231",
+    "showCntryCdList": "KOR,CHN,THA,PHL,IDN,VNM,USA,TWN,MAL,JPN,BRA,MEX,SGP,HKG,GBR,RUS,PER,SAU,CDN,AUS,RCH,ARG,TUR,DUE,FRA,MMR,IND,COL,ESP,KAZ,ITA,KHM,POL,ECU,ARE,NLD,BOL,MAR,NZL,DZA,IRQ,UKR,EGY,SWE,BRU,HUN,VEN,PRT,FIN,MAC"
   },
   {
     "typeId": "svcMenuGroupInfo",
     "svcMenuGroupSeq": 102,
-    "svcMenuGroupNm": "MA_2017년 MWAVE",
+    "svcMenuGroupNm": "2017_Default_App",
     "svcDvcDivCd": "3",
     "showYn": true,
     "pstngStDt": "20170101",
-    "pstngFnsDt": "20171231",
-    "showCntryCdList": "all"
+    "pstngFnsDt": "20201231",
+    "showCntryCdList": "KOR,CHN,THA,PHL,IDN,VNM,USA,TWN,MAL,JPN,BRA,MEX,SGP,HKG,GBR,RUS,PER,SAU,CDN,AUS,RCH,ARG,TUR,DUE,FRA,MMR,IND,COL,ESP,KAZ,ITA,KHM,POL,ECU,ARE,NLD,BOL,MAR,NZL,DZA,IRQ,UKR,EGY,SWE,BRU,HUN,VEN,PRT,FIN,MAC"
   }
 ]
