@@ -208,7 +208,8 @@
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "fileHandler":"default"
   },
   {
     "typeId": "propertyType",
