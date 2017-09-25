@@ -2,7 +2,7 @@ package net.ion.ice.security.auth.ajax;
 
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
-import net.ion.ice.security.User.UserContext;
+import net.ion.ice.security.UserContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
