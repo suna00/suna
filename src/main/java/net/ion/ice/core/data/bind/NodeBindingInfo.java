@@ -287,7 +287,12 @@ public class NodeBindingInfo {
     private List<Object> insertParameters(Map<String, String[]> parameterMap) {
         List<Object> parameters = new ArrayList<>();
         for (PropertyType pid : insertPids) {
-            parameters.add(parameterMap.get(pid.getPid())[0]);
+            if (parameterMap.get(pid.getPid()) == null) {
+                parameters.add(null);
+            } else {
+                parameters.add(parameterMap.get(pid.getPid())[0]);
+            }
+
         }
         return parameters;
     }
