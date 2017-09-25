@@ -279,18 +279,20 @@ public class PipApiService {
             int rs = 0;
             // 이 형변환이 실패하면 전체가 의미가 없음 - 그냥 규약 위반
             Map<String, Object> programMap = (Map<String, Object>) program;
+            Map<String, Object> fit = new HashMap<String, Object>();
             try {
-                nodeService.saveNodeWithException(match("program", programMap));
-                logger.info("PIP MIGRATION PROGRAM FETCHED :: " + String.valueOf(programMap));
+                fit = match("program", programMap);
+                nodeService.saveNodeWithException(fit);
+                logger.info("PIP MIGRATION PROGRAM FETCHED :: " + String.valueOf(fit));
                 successCnt++;
                 rs = 1;
             } catch (Exception e) {
                 logger.error("Failed to register PIP program :: ", e);
                 // 실패 목록에 쌓기
-                MigrationUtils.saveFailureNodes(template, "programId", programMap);
+                MigrationUtils.saveFailureNodes(template, "programId", fit);
                 skippedCnt++;
             }
-            MigrationUtils.recordSingleDate(template,"program", String.valueOf(programMap), rs);
+//            MigrationUtils.recordSingleData(template,"program", String.valueOf(programMap), rs);
         }
         long jobTaken = (new Date().getTime() - startTime.getTime());
         MigrationUtils.printReport(startTime, "PIPProgramRecent", "SKIP", successCnt, skippedCnt);
@@ -306,18 +308,20 @@ public class PipApiService {
         for(Object clip : fetchedClips) {
             int rs = 0;
             Map<String, Object> clipMap = (Map<String, Object>) clip;
+            Map<String, Object> fit = new HashMap<String, Object>();
             try {
-                nodeService.saveNodeWithException(match("pgmVideo", clipMap));
-                logger.info("PIP MIGRATION MEDIACLIP FETCHED :: " + String.valueOf(clipMap));
+                fit = match("pgmVideo", clipMap);
+                nodeService.saveNodeWithException(fit);
+                logger.info("PIP MIGRATION MEDIACLIP FETCHED :: " + String.valueOf(fit));
                 successCnt++;
                 rs = 1;
             } catch (Exception e) {
                 logger.error("Failed to register PIP clip :: ", e);
                 // 실패 목록에 쌓기
-                MigrationUtils.saveFailureNodes(template, "contentId", clipMap);
+                MigrationUtils.saveFailureNodes(template, "contentId", fit);
                 skippedCnt++;
             }
-            MigrationUtils.recordSingleDate(template, "pgmVideo", String.valueOf(clipMap), rs);
+//            MigrationUtils.recordSingleData(template, "pgmVideo", String.valueOf(clipMap), rs);
         }
         long jobTaken = (new Date().getTime() - startTime.getTime());
         MigrationUtils.printReport(startTime, "PIPClipMediaRecent", "SKIP", successCnt, skippedCnt);
