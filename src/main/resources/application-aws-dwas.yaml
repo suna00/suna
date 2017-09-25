@@ -18,6 +18,8 @@ jwtConfig:
 
 
 cluster:
+  mode: all
+  groups: all
   members:
     - 10.75.4.10
     - 127.0.0.1

@@ -18,6 +18,8 @@ jwtConfig:
 
 
 cluster:
+  mode: all
+  groups: all
   members:
     - 172.17.118.241
     - 127.0.0.1
