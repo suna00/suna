@@ -40,16 +40,20 @@ public class ClusterConfiguration {
 
     @PostConstruct
     public void init(){
-        if(hazelcast == null) {
-            hazelcast = Hazelcast.newHazelcastInstance(config());
-            for(String grp : groupList){
-                ITopic topic = hazelcast.getReliableTopic(grp + "_topic") ;
-                topic.addMessageListener(new TopicListener()) ;
-                topicMap.put(grp, topic) ;
+        try{
+            if(hazelcast == null) {
+                hazelcast = Hazelcast.newHazelcastInstance(config());
+                for(String grp : groupList){
+                    ITopic topic = hazelcast.getReliableTopic(grp + "_topic") ;
+                    topic.addMessageListener(new TopicListener()) ;
+                    topicMap.put(grp, topic) ;
 
-                IQueue queue = hazelcast.getQueue(grp + "_queue") ;
+                    IQueue queue = hazelcast.getQueue(grp + "_queue") ;
 
+                }
             }
+        } catch (Exception e) {
+            logger.error("Hazelcast Cluster initializing failed ", e);
         }
     }
 
