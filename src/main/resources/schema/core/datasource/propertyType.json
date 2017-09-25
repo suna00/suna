@@ -80,6 +80,7 @@
   },
   {
     "typeId" : "propertyType",
+    "id" :"dataSequence>nodeType",
     "tid" : "dataSequence",
     "pid" : "nodeType",
     "propertyTypeName" : "노드타입",
@@ -92,6 +93,7 @@
   },
   {
     "typeId" : "propertyType",
+    "id" :"dataSequence>sequence",
     "tid" : "dataSequence",
     "pid" : "sequence",
     "propertyTypeName" : "노드타입",

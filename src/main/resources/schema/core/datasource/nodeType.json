@@ -9,6 +9,7 @@
     "clusterGroup": "all"
   },
   {
+    "id" :"dataSequence",
     "tid" : "dataSequence",
     "parentId" : "system",
     "typeId" : "nodeType",

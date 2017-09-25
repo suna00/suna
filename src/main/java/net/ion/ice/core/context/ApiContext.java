@@ -46,6 +46,7 @@ public class ApiContext {
             ctx.data.put("typeId", typeId);
         }
 
+
         if(apiCategory.containsKey(COMMON_RESPONSE) && apiCategory.get(COMMON_RESPONSE) != null && ((Map<String, Object>) apiCategory.get(COMMON_RESPONSE)).size() > 0) {
             ctx.makeCommonResponse((Map<String, Object>) apiCategory.get(COMMON_RESPONSE)) ;
         }
