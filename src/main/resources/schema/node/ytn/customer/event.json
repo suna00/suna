@@ -50,17 +50,49 @@
   {
     "typeId" : "event",
     "tid": "member",
+    "event" : "sendSms",
+    "noneExecute" : true,
+    "eventName" : "인증 SMS전송"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "member>sendSms",
+    "action" : "sendSms",
+    "actionName" : "인증 SMS전송",
+    "actionType" : "service",
+    "actionBody" : "memberService.authenticationSendSms",
+    "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "member",
     "event" : "certEmail",
     "noneExecute" : true,
-    "eventName" : "인증 유효체크"
+    "eventName" : "인증 Email 유효체크"
   },
   {
     "typeId" : "eventAction",
     "event": "member>certEmail",
     "action" : "certEmail",
-    "actionName" : "인증 유효체크",
+    "actionName" : "인증 Email 유효체크",
     "actionType" : "service",
     "actionBody" : "memberService.authenticationCertEmail",
+    "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "member",
+    "event" : "certSms",
+    "noneExecute" : true,
+    "eventName" : "인증 SMS 유효체크"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "member>certSms",
+    "action" : "certSms",
+    "actionName" : "인증 SMS 유효체크",
+    "actionType" : "service",
+    "actionBody" : "memberService.authenticationCertSms",
     "order" : 1
   },
   {
@@ -109,6 +141,22 @@
     "actionName" : "회원정보저장",
     "actionType" : "service",
     "actionBody" : "memberService.saveMemberInfo",
+    "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "member",
+    "event" : "certPassword",
+    "noneExecute" : true,
+    "eventName" : "비밀번호인증"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "member>certPassword",
+    "action" : "certPassword",
+    "actionName" : "비밀번호인증",
+    "actionType" : "service",
+    "actionBody" : "memberService.certPassword",
     "order" : 1
   }
 ]
