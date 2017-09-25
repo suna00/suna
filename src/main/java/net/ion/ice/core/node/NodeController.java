@@ -194,13 +194,13 @@ public class NodeController {
 
     @RequestMapping(value = "/node/query")
     @ResponseBody
-    public Object queryeRest(WebRequest request, @RequestParam(value = "query") String query) throws IOException {
-        return query(request, query);
+    public Object queryeRest(WebRequest request) throws IOException {
+        return query(request);
     }
 
-    private Object query(WebRequest request, String query) {
+    private Object query(WebRequest request) {
         try {
-            QueryResult queryResult = nodeService.getQueryResult(query) ;
+            QueryResult queryResult = nodeService.getQueryResult(request.getParameterMap()) ;
             return queryResult ;
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
