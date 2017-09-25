@@ -52,10 +52,10 @@ cjapi:
 
 aws:
   s3:
-    bucketName: cjmwave-prd
+    bucketName: cjmwave-dev
     bucketKey: ion
-    accessKey: AKIAJWGJBWJU3TLXANWA
-    secretKey: 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
+    accessKey: AKIAIBQJZKS334ELQ7KA
+    secretKey: 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
 
 temp-file:
   dir: c:/
