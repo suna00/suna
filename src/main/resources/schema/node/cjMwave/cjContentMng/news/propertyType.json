@@ -29,7 +29,7 @@
     "labelable": true,
     "treeable": false,
     "indexable": true,
-    "analyzer": "cjk",
+    "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",
