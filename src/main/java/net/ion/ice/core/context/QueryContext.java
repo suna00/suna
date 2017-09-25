@@ -1,5 +1,6 @@
 package net.ion.ice.core.context;
 
+import net.ion.ice.core.cluster.ClusterUtils;
 import net.ion.ice.core.data.bind.NodeBindingInfo;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.*;
@@ -103,6 +104,12 @@ public class QueryContext extends ReadContext {
                 QueryUtils.makeQueryTerm(nodeType, queryContext, queryTerms, paramName, value);
             }
         }
+        queryContext.setQueryTerms(queryTerms);
+        return queryContext;
+    }
+
+    public static QueryContext createQueryContextFromTerms(List<QueryTerm> queryTerms, NodeType nodeType) {
+        QueryContext queryContext = new QueryContext(nodeType);
         queryContext.setQueryTerms(queryTerms);
         return queryContext;
     }
@@ -374,47 +381,6 @@ public class QueryContext extends ReadContext {
     }
 
 
-    public static QueryContext makeQueryContextFromQuery(String query) {
-        try {
-            Map<String, Object> queryData = JsonUtils.parsingJsonToMap(query);
-            QueryContext queryContext = new QueryContext();
-            for (String key : queryData.keySet()) {
-                queryContext.addResultField(new ResultField(key, makeQueryContextFromQueryData((Map<String, Object>) queryData.get(key))));
-            }
-            return queryContext;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public static QueryContext makeQueryContextFromQueryData(Map<String, Object> queryData) {
-        QueryContext queryContext = null;
-        if (queryData.containsKey("typeId")) {
-            queryContext = new QueryContext(NodeUtils.getNodeType((String) queryData.get("typeId")));
-        } else {
-            queryContext = new QueryContext();
-        }
-        for (String key : queryData.keySet()) {
-            if (key.equals("typeId")) continue;
-
-            if (key.equals("query")) {
-                List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(queryContext, queryData.get("query"), queryContext.getNodetype());
-                queryContext.setQueryTerms(queryTerms);
-            } else {
-                Object val = queryData.get(key);
-                if (val == null) {
-                    queryContext.addResultField(new ResultField(key, key));
-                } else if (val instanceof String) {
-                    queryContext.addResultField(new ResultField(key, (String) val));
-                } else if (val instanceof Map) {
-                    queryContext.addResultField(new ResultField(key, makeQueryContextFromQueryData((Map<String, Object>) val)));
-                }
-            }
-        }
-        return queryContext;
-    }
-
     public List<Node> getQueryList() {
         if(this.queryTermType == QueryTerm.QueryTermType.DATA) {
             if(nodeBindingInfo == null){
@@ -440,6 +406,9 @@ public class QueryContext extends ReadContext {
     public QueryResult makeQueryResult(Object result, String fieldName, ResultField.ResultType resultType) {
         if(this.ifTest != null && !(this.ifTest.equalsIgnoreCase("true"))) {
             return null ;
+        }
+        if(this.remote){
+            ClusterUtils.callQuery((ApiQueryContext) this) ;
         }
         List<Node> resultNodeList = getQueryList() ;
         this.result = resultNodeList ;

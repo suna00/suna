@@ -378,7 +378,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         if(value instanceof String){
             return (String) value;
         }else if(value instanceof Map){
-            if(((Map) value).containsKey(locale)){
+            if(StringUtils.isNotEmpty(locale) && ((Map) value).containsKey(locale)){
                 return ((Map) value).get(locale).toString();
             }else{
                 return (String) ((Map) value).get(NodeUtils.getNodeService().getDefaultLocale());

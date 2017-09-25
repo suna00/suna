@@ -67,4 +67,12 @@ public class FileValue implements Serializable{
     public String toString(){
         return this.storePath ;
     }
+
+    @Override
+    public boolean equals(Object fileValue){
+        if(fileValue instanceof FileValue){
+            return this.getStorePath().equals(((FileValue) fileValue).getStorePath()) ;
+        }
+        return false ;
+    }
 }

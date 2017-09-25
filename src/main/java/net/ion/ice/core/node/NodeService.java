@@ -1,10 +1,9 @@
 package net.ion.ice.core.node;
 
 import net.ion.ice.ApplicationContextManager;
-import net.ion.ice.core.context.ExecuteContext;
-import net.ion.ice.core.context.QueryContext;
-import net.ion.ice.core.context.ReadContext;
-import net.ion.ice.core.context.ReferenceQueryContext;
+import net.ion.ice.IceRuntimeException;
+import net.ion.ice.core.cluster.ClusterService;
+import net.ion.ice.core.context.*;
 import net.ion.ice.core.event.Event;
 import net.ion.ice.core.event.EventAction;
 import net.ion.ice.core.event.EventListener;
@@ -13,6 +12,7 @@ import net.ion.ice.core.file.FileService;
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.query.QueryResult;
+import net.ion.ice.core.query.QueryTerm;
 import net.ion.ice.core.query.SimpleQueryResult;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.document.DateTools;
@@ -20,6 +20,7 @@ import org.apache.lucene.search.SortField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
@@ -46,13 +47,22 @@ public class NodeService {
     private FileService fileService ;
 
     @Autowired
+    private ClusterService clusterService ;
+
+    @Autowired
     private I18nConfiguration i18nConfiguration ;
 
     @Autowired
     private ApplicationContextManager applicationContextManager;
 
+    @Autowired
+    private Environment environment;
+
+
     private Map<String, NodeType> nodeTypeCache ;
     private Map<String, NodeType> initNodeType  ;
+    private Map<String, Node> datasource  ;
+
 
     @PostConstruct
     public void init(){
@@ -128,6 +138,13 @@ public class NodeService {
         return infinispanRepositoryService.getSubQueryNodes(typeId, queryContext) ;
     }
 
+    public List<Node> getNodeList(NodeType nodeType, List<QueryTerm> queryTerms) {
+        QueryContext queryContext = QueryContext.createQueryContextFromTerms(queryTerms, nodeType) ;
+        return infinispanRepositoryService.getSubQueryNodes(nodeType.getTypeId(), queryContext) ;
+
+    }
+
+
     public List<Node> getNodeList(String typeId, QueryContext queryContext) {
         return infinispanRepositoryService.getSubQueryNodes(typeId, queryContext) ;
     }
@@ -162,20 +179,8 @@ public class NodeService {
     }
 
     private void initNodeType() throws IOException {
-        Collection<Map<String, Object>> nodeTypeDataList = JsonUtils.parsingJsonResourceToList(applicationContextManager.getResource("classpath:schema/core/nodeType.json")) ;
-
-        List<Node> nodeTypeList = NodeUtils.makeNodeList(nodeTypeDataList, "nodeType") ;
-        for(Node nodeType : nodeTypeList){
-            initNodeType.put(nodeType.getId(), new NodeType(nodeType)) ;
-        }
-
-        Collection<Map<String, Object>> propertyTypeDataList = JsonUtils.parsingJsonResourceToList(applicationContextManager.getResource("classpath:schema/core/propertyType.json")) ;
-
-        List<Node> propertyTypeList = NodeUtils.makeNodeList(propertyTypeDataList, "propertyType") ;
-        for(Node propertyType : propertyTypeList){
-            NodeType nodeType = initNodeType.get(propertyType.get("tid")) ;
-            nodeType.addPropertyType(new PropertyType(propertyType));
-        }
+        initSaveNodeType("classpath:schema/core/nodeType.json");
+        initPropertyType("classpath:schema/core/propertyType.json");
 
         Collection<Map<String, Object>> eventDataList = JsonUtils.parsingJsonResourceToList(applicationContextManager.getResource("classpath:schema/core/event.json")) ;
 
@@ -195,19 +200,62 @@ public class NodeService {
             }
         }
 
+        initSaveNodeType("classpath:schema/core/datasource/nodeType.json");
+        initPropertyType("classpath:schema/core/datasource/propertyType.json");
+
+        datasource = new ConcurrentHashMap<>() ;
+
+        initDatasource("classpath:schema/core/datasource/dataSource.json");
+
+        try {
+            initDatasource("classpath:schema/core/datasource/" + environment.getActiveProfiles()[0] + "/dataSource.json");
+        }catch(Exception e){
+
+        }
+
+
+    }
+
+    private void initDatasource(String file) throws IOException {
+        Collection<Map<String, Object>> dsDataList = JsonUtils.parsingJsonResourceToList(applicationContextManager.getResource(file)) ;
+
+        List<Node> dsList = NodeUtils.makeNodeList(dsDataList, "datasource") ;
+        for(Node ds : dsList){
+            datasource.put(ds.getId(), ds) ;
+        }
+    }
+
+    private void initPropertyType(String file) throws IOException {
+        Collection<Map<String, Object>> propertyTypeDataList = JsonUtils.parsingJsonResourceToList(applicationContextManager.getResource(file)) ;
+
+        List<Node> propertyTypeList = NodeUtils.makeNodeList(propertyTypeDataList, "propertyType") ;
+        for(Node propertyType : propertyTypeList){
+            NodeType nodeType = initNodeType.get(propertyType.get("tid")) ;
+            nodeType.addPropertyType(new PropertyType(propertyType));
+        }
+    }
+
+    private void initSaveNodeType(String file) throws IOException {
+        Collection<Map<String, Object>> nodeTypeDataList = JsonUtils.parsingJsonResourceToList(applicationContextManager.getResource(file)) ;
+
+        List<Node> nodeTypeList = NodeUtils.makeNodeList(nodeTypeDataList, "nodeType") ;
+        for(Node nodeType : nodeTypeList){
+            initNodeType.put(nodeType.getId(), new NodeType(nodeType)) ;
+        }
     }
 
     private void  initSchema() throws IOException {
-
         saveSchema("classpath:schema/core/*.json");
         saveSchema("classpath:schema/core/*/*.json");
+        saveSchema("classpath:schema/core/datasource/" + environment.getActiveProfiles()[0] + "/dataSource.json");
+
 //        saveSchema("classpath:schema/node/*.json", lastChanged);
-        saveSchema("classpath:schema/node/**/*.json");
+//        saveSchema("classpath:schema/node/**/*.json");
 //        saveSchema("classpath:schema/test/*.json", lastChanged);
-        saveSchema("classpath:schema/test/**/*.json");
+//        saveSchema("classpath:schema/test/**/*.json");
 
     }
-    private void saveSchema(String resourcePath) throws IOException {
+    public void saveSchema(String resourcePath) throws IOException {
         saveSchema(resourcePath, true);
         saveSchema(resourcePath, false);
     }
@@ -252,6 +300,9 @@ public class NodeService {
 
     public Node saveNode(Map<String, Object> data) {
         try {
+            NodeType nodeType = getNodeType(data.get(Node.TYPEID).toString()) ;
+            if(!clusterService.checkClusterGroup(nodeType)) return null;
+
             ExecuteContext context = ExecuteContext.makeContextFromMap(data);
             context.execute();
             Node saveNode =  context.getNode();
@@ -280,6 +331,9 @@ public class NodeService {
 
     public Object executeNode(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, String typeId, String event) {
         NodeType nodeType = getNodeType(typeId) ;
+        if(!clusterService.checkClusterGroup(nodeType)){
+            throw new IceRuntimeException("Not Support Type Error") ;
+        }
 
         ExecuteContext context = ExecuteContext.makeContextFromParameter(parameterMap, multiFileMap, nodeType, event) ;
         context.execute();
@@ -288,10 +342,10 @@ public class NodeService {
         return context.makeResult();
     }
 
-    public Object deleteNode(Map<String, String[]> parameterMap, String typeId) {
+    public Object deleteNode(Map<String, String[]> parameterMap, String typeId, String id) {
         NodeType nodeType = getNodeType(typeId) ;
 
-        ExecuteContext context = ExecuteContext.createContextFromParameter(parameterMap, nodeType, "delete", null) ;
+        ExecuteContext context = ExecuteContext.createContextFromParameter(parameterMap, nodeType, "delete", id) ;
         context.execute();
 
 //        Node node = (Node) context.getResult();
@@ -340,8 +394,11 @@ public class NodeService {
         return infinispanRepositoryService.getSortedValue(typeId, pid, sortType, reverse) ;
     }
 
-    public QueryResult getQueryResult(String query) {
-        QueryContext queryContext = QueryContext.makeQueryContextFromQuery(query) ;
+    public QueryResult getQueryResult(Map<String, String[]> parameterMap) throws IOException {
+        Map<String, Object> config = JsonUtils.parsingJsonToMap(parameterMap.get("_config_")[0]) ;
+        Map<String, Object> data = ContextUtils.makeContextData(parameterMap) ;
+
+        ApiQueryContext queryContext = ApiQueryContext.makeContextFromConfig(config, data) ;
         QueryResult queryResult = queryContext.makeQueryResult();
         return queryResult;
     }
@@ -426,4 +483,15 @@ public class NodeService {
         logger.info("Change EventAction : " + StringUtils.substringBefore(context.getNode().getStringValue("event"), Node.ID_SEPERATOR));
     }
 
+
+    public void startBatch(String typeId){
+        infinispanRepositoryService.startBatch(typeId);
+    }
+    public void endBatch(String typeId, boolean commit){
+        infinispanRepositoryService.endBatch(typeId, commit);
+    }
+
+    public Node getDatasource(String dsId) {
+        return this.datasource.get(dsId) ;
+    }
 }

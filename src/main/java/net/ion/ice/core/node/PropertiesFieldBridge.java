@@ -83,7 +83,8 @@ public class PropertiesFieldBridge implements FieldBridge {
                     if(entry.getValue() instanceof Map){
                         Map<String, Object> i18nMap = (Map<String, Object>) entry.getValue();
                         for(String key : i18nMap.keySet()){
-                            document.add(getKeywordField(propertyType, pid + "_" + key, i18nMap.get(key).toString()));
+//                            document.add(getKeywordField(propertyType, pid + "_" + key, i18nMap.get(key).toString()));
+                            if(i18nMap.containsKey(key) && i18nMap.get(key) != null) document.add(getKeywordField(propertyType, pid + "_" + key, i18nMap.get(key).toString()));
                         }
                     }
                 }else {

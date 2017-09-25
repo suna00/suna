@@ -53,6 +53,7 @@ public class NodeUtils {
     }
 
     public static Node getNode(NodeType nodeType, String id) {
+        if(nodeType == null) return null ;
         if(nodeType.getRepositoryType().equals("data")){
             if (getNodeBindingService() == null) return null ;
             Map<String, Object> resultData =  getNodeBindingService().getNodeBindingInfo(nodeType.getTypeId()).retrieve(id) ;
@@ -75,7 +76,7 @@ public class NodeUtils {
 
     public static List<Node> makeNodeList(Collection<Map<String, Object>> nodeDataList, String typeId) {
         List<Node> nodeList = new ArrayList<Node>();
-        nodeDataList.forEach(data -> nodeList.add(new Node(data)));
+        nodeDataList.forEach(data -> nodeList.add( new Node(data)));
         return nodeList;
     }
 
@@ -328,7 +329,7 @@ public class NodeUtils {
             case FILE: {
                 if (value == null) return null;
                 if(pt.isI18n() && context.hasLocale() && value instanceof Map){
-                    if(((Map) value).containsKey(context.getLocale())){
+                    if(StringUtils.isNotEmpty(context.getLocale()) && ((Map) value).containsKey(context.getLocale())){
                         return getFileResultValue(context, pt, ((Map) value).get(context.getLocale()));
                     }else{
                         return getFileResultValue(context, pt, ((Map) value).get(getNodeService().getDefaultLocale())) ;
@@ -337,8 +338,10 @@ public class NodeUtils {
                 return getFileResultValue(context, pt, value);
             }
             case REFERENCED: {
-                if (context != null && context.isIncludeReferenced() && context.getLevel() < 3 && node instanceof Node) {
+                if (context != null && context.isIncludeReferenced() && context.getLevel() < 5 && node instanceof Node) {
                     QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(getNodeType(((Node)node).getTypeId()), pt, (Node) node);
+                    subQueryContext.setDateFormat(context.getDateFormat()) ;
+                    subQueryContext.setFileUrlFormat(context.getFileUrlFormat()) ;
                     subQueryContext.setLevel(context.getLevel() + 1);
                     return getNodeService().getDisplayNodeList(pt.getReferenceType(), subQueryContext);
                 }
@@ -346,7 +349,7 @@ public class NodeUtils {
             }
             default:
                 if(pt.isI18n() && context.hasLocale() && value instanceof Map){
-                    if(((Map) value).containsKey(context.getLocale())){
+                    if(StringUtils.isNotEmpty(context.getLocale()) &&((Map) value).containsKey(context.getLocale())){
                         return ((Map) value).get(context.getLocale()) ;
                     }else{
                         return ((Map) value).get(getNodeService().getDefaultLocale()) ;
@@ -548,6 +551,9 @@ public class NodeUtils {
             case OBJECT: {
                 if (value instanceof Map) {
                     return JsonUtils.toJsonString((Map<String, Object>) value);
+                }
+                if (value instanceof List) {
+                    return JsonUtils.toJsonString((List<?>) value);
                 }
                 if (value instanceof String) {
                     return value;

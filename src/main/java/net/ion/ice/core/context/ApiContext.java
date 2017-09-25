@@ -1,5 +1,7 @@
 package net.ion.ice.core.context;
 
+import net.ion.ice.core.api.ApiException;
+import net.ion.ice.core.api.RequestParameter;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.query.QueryResult;
@@ -16,6 +18,9 @@ import java.util.*;
  */
 public class ApiContext {
     public static final String COMMON_RESPONSE = "commonResponse";
+    public static final String COMMON_PARAMETERS = "commonParameters";
+
+    public static final String PARAMETERS = "parameters";
     public static final String DATE_FORMAT = "dateFormat";
     public static final String FILE_URL_FORMAT = "fileUrlFormat";
     private Node apiCategory;
@@ -26,6 +31,8 @@ public class ApiContext {
 
     private List<ResultField> commonResultFieldList ;
     private List<ResultField> resultFields ;
+
+    private List<RequestParameter> parameters ;
 
     public static ApiContext createContext(Node apiCategory, Node apiNode, String typeId, Map<String, Object> config, Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, Map<String, Object> session) {
         ApiContext ctx = new ApiContext() ;
@@ -39,17 +46,35 @@ public class ApiContext {
             ctx.data.put("typeId", typeId);
         }
 
-
         if(apiCategory.containsKey(COMMON_RESPONSE) && apiCategory.get(COMMON_RESPONSE) != null && ((Map<String, Object>) apiCategory.get(COMMON_RESPONSE)).size() > 0) {
             ctx.makeCommonResponse((Map<String, Object>) apiCategory.get(COMMON_RESPONSE)) ;
         }
 
+        if(apiCategory.containsKey(ApiContext.COMMON_PARAMETERS) && apiCategory.get(ApiContext.COMMON_PARAMETERS) != null && ((List<Map<String, Object>>) apiCategory.get(ApiContext.COMMON_PARAMETERS)).size() > 0) {
+            checkRequiredParameter((List<Map<String, Object>>) apiCategory.get(ApiContext.COMMON_PARAMETERS), parameterMap, multiFileMap);
+        }
+
+
+        if(apiNode.containsKey(ApiContext.PARAMETERS) && apiNode.get(ApiContext.PARAMETERS) != null && ((List<Map<String, Object>>) apiNode.get(ApiContext.PARAMETERS)).size() > 0) {
+            checkRequiredParameter((List<Map<String, Object>>) apiNode.get(ApiContext.PARAMETERS), parameterMap, multiFileMap);
+        }
 
 //        ctx.config = new HashMap<>() ;
 //        ctx.config.putAll(apiCategory);
         ctx.config = config ;
 
         return ctx ;
+    }
+
+    private static void checkRequiredParameter(List<Map<String, Object>> parameterConfig, Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap) {
+        for(Map<String, Object> param : parameterConfig){
+            if(param.containsKey("required") && (boolean) param.get("required")){
+                String paramName = (String) param.get("paramName");
+                if(!((parameterMap.containsKey(paramName) || parameterMap.get(paramName).length == 0 || StringUtils.isEmpty(parameterMap.get(paramName) [0])) || (multiFileMap != null && multiFileMap.containsKey(paramName)))){
+                    throw new ApiException("403", "Required Parameter : " + paramName) ;
+                }
+            }
+        }
     }
 
     private void makeCommonResponse(Map<String, Object> response){

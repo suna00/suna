@@ -7,6 +7,7 @@ import net.ion.ice.core.query.QueryTerm;
 import net.ion.ice.core.query.ResultField;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.Map;
 /**
  * Created by jaehocho on 2017. 8. 11..
  */
-public class ReadContext implements Context {
+public class ReadContext implements Context, Serializable {
     protected NodeType nodeType;
     protected Map<String, Object> data;
 
@@ -50,7 +51,8 @@ public class ReadContext implements Context {
     protected String ifTest ;
     protected ResultField.ResultType resultType ;
 
-
+    protected Boolean remote ;
+    
     public NodeType getNodetype() {
         return nodeType;
     }
@@ -249,6 +251,9 @@ public class ReadContext implements Context {
             Node node = NodeUtils.getNode(nodeType.getTypeId(), id) ;
             if(node != null) {
                 queryResult.put("item", makeResult(node));
+            }else{
+                queryResult.put("result", "404") ;
+                queryResult.put("resultMessage", "Not Found") ;
             }
         }
 
@@ -287,6 +292,8 @@ public class ReadContext implements Context {
                 }
             }else if (resultField.getContext() != null) {
                 ReadContext subQueryContext = (ReadContext) resultField.getContext();
+                subQueryContext.dateFormat = this.dateFormat ;
+                subQueryContext.fileUrlFormat = this.fileUrlFormat ;
                 if (node != null) {
                     subQueryContext.setNodeData(node);
                 }
@@ -334,9 +341,23 @@ public class ReadContext implements Context {
                         }else {
                             if(fieldContext.referenceView != null && fieldContext.referenceView == true && fieldContext.getResultFields() != null ){
                                 fieldContext.referenceView = false ;
-                                Node refNode = NodeUtils.getReferenceNode(node.get(pt.getPid()), pt);
-                                if(refNode != null) {
-                                    itemResult.put(resultField.getFieldName(), fieldContext.makeQueryResult(refNode));
+                                if(pt.getValueType() == PropertyType.ValueType.REFERENCES){
+                                    String values = (String) node.get(pt.getPid());
+                                    if (values != null && StringUtils.isNotEmpty(values)) {
+                                        List<QueryResult> refsResults = new ArrayList<>() ;
+                                        for (String refVal : StringUtils.split(values, ",")) {
+                                            Node refNode = NodeUtils.getReferenceNode(refVal, pt);
+                                            if(refNode != null) {
+                                                refsResults.add(fieldContext.makeQueryResult(refNode)) ;
+                                            }
+                                        }
+                                        itemResult.put(resultField.getFieldName(), refsResults);
+                                    }
+                                }else {
+                                    Node refNode = NodeUtils.getReferenceNode(node.get(pt.getPid()), pt);
+                                    if (refNode != null) {
+                                        itemResult.put(resultField.getFieldName(), fieldContext.makeQueryResult(refNode));
+                                    }
                                 }
                             }else {
                                 itemResult.put(resultField.getFieldName(), NodeUtils.getResultValue(fieldContext, pt, node));
@@ -436,7 +457,9 @@ public class ReadContext implements Context {
     }
 
     public boolean hasLocale() {
-        return this.data != null && ((this.data.containsKey("locale") && StringUtils.isNotEmpty((String) data.get("locale"))) || (this.data.containsKey("langCd") && StringUtils.isNotEmpty((String) data.get("langCd")))) ;
+//        return this.data != null && ((this.data.containsKey("locale") && StringUtils.isNotEmpty((String) data.get("locale"))) || (this.data.containsKey("langCd") && StringUtils.isNotEmpty((String) data.get("langCd")))) ;
+        return this.data != null && ((this.data.containsKey("locale")) || (this.data.containsKey("langCd"))) ;
+
     }
 
     public String getLocale() {
@@ -445,5 +468,17 @@ public class ReadContext implements Context {
             return (String) data.get("langCd");
         }
         return locale ;
+    }
+
+    public void setDateFormat(String dateFormat) {
+        this.dateFormat = dateFormat;
+    }
+
+    public void setFileUrlFormat(Map<String,Object> fileUrlFormat) {
+        this.fileUrlFormat = fileUrlFormat;
+    }
+
+    public NodeType getNodeType() {
+        return nodeType;
     }
 }

@@ -1,6 +1,7 @@
 package net.ion.ice.core.event;
 
 import net.ion.ice.IceRuntimeException;
+import net.ion.ice.core.cluster.ClusterService;
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
 import net.ion.ice.core.node.Node;
@@ -23,6 +24,7 @@ public class EventService {
 
     public static final String CREATE = "create";
     public static final String UPDATE = "update";
+    public static final String SAVE = "save";
     public static final String DELETE = "delete";
     public static final String ALL_EVENT = "allEvent";
 
@@ -37,6 +39,8 @@ public class EventService {
     @Autowired
     private InfinispanRepositoryService infinispanService ;
 
+    @Autowired
+    private ClusterService clusterService ;
 
     @Autowired
     private EventBroker eventBroker ;
@@ -86,6 +90,7 @@ public class EventService {
 
         if((event == null || !event.isNoneExecute()) && nodeType.isNode() && executeContext.getNode() != null) {
             infinispanService.execute(executeContext) ;
+            clusterService.node(executeContext) ;
             if(executeContext.getResult() == null) {
                 executeContext.setResult(executeContext.getNode());
             }
@@ -93,6 +98,8 @@ public class EventService {
 
         if(event == null) {
             return ;
+        }else if(!event.isNoneExecute()){
+            executeContext.getNode().toStore();
         }
 
         Event allEvent = nodeType.getEvent(ALL_EVENT) ;

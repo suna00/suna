@@ -1,5 +1,6 @@
 package net.ion.ice.core.response;
 
+import net.ion.ice.core.api.ApiException;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.query.SimpleQueryResult;
 

@@ -2,6 +2,7 @@ package net.ion.ice.core.context;
 
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.IceRuntimeException;
+import net.ion.ice.core.cluster.ClusterUtils;
 import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.file.FileValue;
 import net.ion.ice.core.node.Node;
@@ -119,6 +120,11 @@ public class ExecuteContext extends ReadContext{
 
     protected void init() {
         this.time = new Date() ;
+        if(this.event == null && data.containsKey("event") && getNodeType().getPropertyType("event") == null){
+            this.event = (String) data.get("event");
+        }
+
+
         if(nodeType == null){
             this.node = new Node(data);
             execute = true ;
@@ -129,9 +135,6 @@ public class ExecuteContext extends ReadContext{
         }catch(Exception e){
         }
         exist = existNode != null ;
-        if(this.event == null && data.containsKey("event") && getNodeType().getPropertyType("event") == null){
-            this.event = (String) data.get("event");
-        }
 
         if(exist){
             if(event != null && event.equals("create")){
@@ -223,7 +226,7 @@ public class ExecuteContext extends ReadContext{
             execute = changedProperties.size() > 0 ;
             if(execute) {
                 node.setUpdate(userId, time);
-            }else if(event != null && !event.equals("update") ){
+            }else if(event != null && !(event.equals("update") || event.equals("save"))){
                 execute = true;
             }
 
@@ -340,11 +343,15 @@ public class ExecuteContext extends ReadContext{
 
         NodeType nodeType = NodeUtils.getNodeType((String) ContextUtils.getValue(config.get("typeId"), data));
         ctx.setNodeType(nodeType);
+        if(ClusterUtils.getClusterService().checkClusterGroup(nodeType)){
+            ctx.remote = true ;
+        }
 
         ctx.event = (String) ContextUtils.getValue(config.get("event"), data);
 
         if(config.containsKey("data")){
             Map<String, Object> _data = new HashMap<>();
+            _data.putAll(data);
             Map<String, Object> subData = (Map<String, Object>) config.get("data");
             for(String key : subData.keySet()){
                 _data.put(key, ContextUtils.getValue(subData.get(key), data)) ;
@@ -386,12 +393,16 @@ public class ExecuteContext extends ReadContext{
         if(this.ifTest != null && !(this.ifTest.equalsIgnoreCase("true"))){
             return false ;
         }
-        EventService eventService = ApplicationContextManager.getBean(EventService.class) ;
-        eventService.execute(this) ;
+        if(this.remote != null && this.remote){
+            this.setResult(ClusterUtils.callExecute(this));
+        }else {
+            EventService eventService = ApplicationContextManager.getBean(EventService.class);
+            eventService.execute(this);
 
-        if(subExecuteContexts != null){
-            for(ExecuteContext subExecuteContext : subExecuteContexts){
-                eventService.execute(subExecuteContext);
+            if (subExecuteContexts != null) {
+                for (ExecuteContext subExecuteContext : subExecuteContexts) {
+                    eventService.execute(subExecuteContext);
+                }
             }
         }
         return true ;
