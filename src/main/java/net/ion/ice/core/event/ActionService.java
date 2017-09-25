@@ -40,7 +40,14 @@ public class ActionService extends Action {
         }
         try {
             method.invoke(service, executeContext) ;
+        } catch (InvocationTargetException e) {
+            if(e.getTargetException() instanceof IceRuntimeException){
+                throw (IceRuntimeException) e.getTargetException() ;
+            }
         } catch (Exception e) {
+            if(e instanceof IceRuntimeException){
+                throw (IceRuntimeException) e ;
+            }
             throw new IceRuntimeException("ACTION execute Exception : " + e.getMessage(), e) ;
         }
     }
