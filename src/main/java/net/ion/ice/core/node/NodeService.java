@@ -3,10 +3,7 @@ package net.ion.ice.core.node;
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.IceRuntimeException;
 import net.ion.ice.core.cluster.ClusterService;
-import net.ion.ice.core.context.ExecuteContext;
-import net.ion.ice.core.context.QueryContext;
-import net.ion.ice.core.context.ReadContext;
-import net.ion.ice.core.context.ReferenceQueryContext;
+import net.ion.ice.core.context.*;
 import net.ion.ice.core.event.Event;
 import net.ion.ice.core.event.EventAction;
 import net.ion.ice.core.event.EventListener;
@@ -358,8 +355,11 @@ public class NodeService {
         return infinispanRepositoryService.getSortedValue(typeId, pid, sortType, reverse) ;
     }
 
-    public QueryResult getQueryResult(String query) {
-        QueryContext queryContext = QueryContext.makeQueryContextFromQuery(query) ;
+    public QueryResult getQueryResult(Map<String, String[]> parameterMap) throws IOException {
+        Map<String, Object> config = JsonUtils.parsingJsonToMap(parameterMap.get("_config_")[0]) ;
+        Map<String, Object> data = ContextUtils.makeContextData(parameterMap) ;
+
+        ApiQueryContext queryContext = ApiQueryContext.makeContextFromConfig(config, data) ;
         QueryResult queryResult = queryContext.makeQueryResult();
         return queryResult;
     }
@@ -444,5 +444,12 @@ public class NodeService {
         logger.info("Change EventAction : " + StringUtils.substringBefore(context.getNode().getStringValue("event"), Node.ID_SEPERATOR));
     }
 
+
+    public void startBatch(String typeId){
+        infinispanRepositoryService.startBatch(typeId);
+    }
+    public void endBatch(String typeId, boolean commit){
+        infinispanRepositoryService.endBatch(typeId, commit);
+    }
 
 }
