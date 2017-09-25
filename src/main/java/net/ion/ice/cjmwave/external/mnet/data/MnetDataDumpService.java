@@ -48,8 +48,8 @@ public class MnetDataDumpService {
     @PostConstruct
     private void initTemplate () {
         try{
-            mnetMSSQLTemplate = dbService.getJdbcTemplate("mnetDb");
             ice2Template = dbService.getJdbcTemplate("cjDb");
+            mnetMSSQLTemplate = dbService.getJdbcTemplate("mnetDb");
         } catch (Exception e) {
             logger.error("Failed to Initialize. Disabled to migrate", e);
         }
@@ -118,6 +118,7 @@ public class MnetDataDumpService {
                     }
                     successCnt++;
                 } catch (Exception e) {
+                    logger.error("Failed to copy data :: ", e);
                     skippedCnt++;
                 }
             }
@@ -189,6 +190,7 @@ public class MnetDataDumpService {
                     String.valueOf(preparedQuery.get("query"))
                     , (Object[]) preparedQuery.get("params"));
 
+//            //FOR TEST 0925
             if(standAlone && !"null".equals(subTasks)) {
                 for(Map<String, Object> singleDataToInput : newData){
                     Object subTaskKeyValue = null;

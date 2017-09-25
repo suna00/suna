@@ -50,6 +50,8 @@ file:
 i18n:
   defaults: en
 
+temp-file:
+  dir: /
 ---
 #-Dspring.profiles.active=dev
 spring:
@@ -62,6 +64,8 @@ hazelcast:
   members:
     - 127.0.0.1
 
+temp-file:
+  dir: /
 
 
 ---
@@ -84,6 +88,8 @@ session:
 hazelcast:
   baseDir: /resource/ice2/data_2
 
+temp-file:
+  dir: /
 ---
 # 교보 개발 서버
 spring:
@@ -128,3 +134,6 @@ logging:
 file:
   default:
     path: /resource/ice2/files
+
+temp-file:
+  dir: /

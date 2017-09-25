@@ -30,17 +30,7 @@ public class DBService {
     @Autowired
     private NodeService nodeService;
 
-    static Map<String, JdbcTemplate> dataSourceTemplate = new ConcurrentHashMap<>();
-
-//    일단 미사용
-//
-//    @PostConstruct
-//    public void initJdbcDataSource() {
-//        for(Node dataSourceNode : nodeService.getNodeList("datasource", "")){
-//            setDatabaseConfiguration(dataSourceNode);
-//            dataSourceTemplate.put((String) dataSourceNode.get("id"), new JdbcTemplate(setDataSource(configuration)));
-//        }
-//    }
+    public static Map<String, JdbcTemplate> dataSourceTemplate = new ConcurrentHashMap<>();
 
     public JdbcTemplate getJdbcTemplate(String dsId) {
         if (!dataSourceTemplate.containsKey(dsId)) {

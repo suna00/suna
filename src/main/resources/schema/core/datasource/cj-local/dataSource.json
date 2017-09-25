@@ -1,0 +1,42 @@
+[
+  {
+    "typeId": "datasource",
+    "id": "cjDb",
+    "dsName": "DEV CMS DB",
+    "jdbcUrl": "jdbc:mysql://125.131.88.156:3306/ice2",
+    "ssl" : false,
+    "dbType": "mySql",
+    "username": "cjmwave",
+    "password": "cjmwave0!@#"
+  }, {
+    "typeId": "datasource",
+    "id": "cjMig",
+    "dsName": "DEV CMS DB",
+    "jdbcUrl": "jdbc:mysql://125.131.88.156:3306/ice2",
+    "ssl" : false,
+    "dbType": "mySql",
+    "username": "cjmwave",
+    "password": "cjmwave0!@#"
+  },
+  {
+    "typeId" : "datasource",
+    "id" : "mnetDb",
+    "ssl" : false,
+    "dsName" : "DEV MNET DB",
+    "jdbcUrl" : "jdbc:sqlserver://125.131.88.94:1500;databaseName=ice2",
+    "ssl" : false,
+    "dbType" : "msSql",
+    "username" : "iceuser",
+    "password" : "iceuser"
+  },
+  {
+    "typeId": "datasource",
+    "id": "voteDb",
+    "dsName": "DEV USER/VOTE RDS",
+    "jdbcUrl": "jdbc:mysql://125.131.88.156:3306/cj-vote",
+    "ssl" : false,
+    "dbType": "mySql",
+    "username": "cjmwave",
+    "password": "cjmwave0!@#"
+  }
+]

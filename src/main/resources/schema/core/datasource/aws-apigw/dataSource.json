@@ -1,0 +1,42 @@
+[
+  {
+    "typeId": "datasource",
+    "id": "cjDb",
+    "dsName": "CMS DB PROD",
+    "jdbcUrl": "jdbc:mysql://authdbdev.cfwzre2kzbc1.ap-northeast-2.rds.amazonaws.com:3306/ice",
+    "ssl" : false,
+    "dbType": "mySql",
+    "username": "cjmwave",
+    "password": "cjmwave0!@#"
+  }
+, {
+  "typeId": "datasource",
+  "id": "cjMig",
+  "dsName": "CMS DB PROD",
+  "jdbcUrl": "jdbc:mysql://authdbdev.cfwzre2kzbc1.ap-northeast-2.rds.amazonaws.com:3306/ice2",
+  "ssl" : false,
+  "dbType": "mySql",
+  "username": "cjmwave",
+  "password": "cjmwave0!@#"
+},
+  {
+    "typeId" : "datasource",
+    "id" : "mnetDb",
+    "dsName" : "TEST MNET DB",
+    "jdbcUrl" : "jdbc:sqlserver://125.131.88.94:1500;databaseName=ice2",
+    "ssl" : false,
+    "dbType" : "msSql",
+    "username" : "iceuser",
+    "password" : "iceuser"
+  },
+  {
+    "typeId": "datasource",
+    "id": "voteDb",
+    "dsName": "PROD USER/VOTE RDS",
+    "jdbcUrl": "jdbc:gauthdb.cfwzre2kzbc1.ap-northeast-2.rds.amazonaws.com:3306/ice2",
+    "ssl" : false,
+    "dbType": "mySql",
+    "username": "cjmwave",
+    "password": "cjmwave0!@#"
+  }
+]
