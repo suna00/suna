@@ -152,33 +152,5 @@
         }
       }
     }
-  },
-  {
-    "typeId": "apiConfig",
-    "category": "cart",
-    "apiId": "changeQuantity",
-    "apiName": "장바구니 수량 변경",
-    "method": "GET",
-    "parameters": [
-    ],
-    "config": {
-      "item": {
-        "select": {
-          "ds": "ytnDevDb",
-          "resultType": "read",
-          "sql": "select (stockQuantity >= @{quantity}) as isValid from productOptionItem where productOptionItemId = @{productOptionItemId} "
-        }
-      },
-      "success": {
-        "typeId": "cartProduct",
-        "event": "update",
-        "if": "{{:excessInt(isValid, 0)}}",
-        "data": {
-          "cartProductId": "{{:cartProductId}}",
-          "quantity": "{{:quantity}}",
-          "changed": "{{:now}}"
-        }
-      }
-    }
   }
 ]

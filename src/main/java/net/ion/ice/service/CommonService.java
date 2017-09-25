@@ -23,6 +23,14 @@ public class CommonService {
     {
         resultCodeMap = new HashMap();
         resultCodeMap.put("S0001", "required param. ");
+        resultCodeMap.put("S0002", "저장 성공");
+
+        /*product*/
+        resultCodeMap.put("P0001", "미승인 상품입니다.");
+        resultCodeMap.put("P0002", "전시중인 상품이 아닙니다.");
+        resultCodeMap.put("P0003", "삭제된 상품입니다.");
+        resultCodeMap.put("P0004", "판매중인 상품이 아닙니다.");
+        resultCodeMap.put("P0005", "재고가 부족합니다.");
 
         /*leave Member*/
         resultCodeMap.put("L0001", "진행중인 거래내역이 있습니다.");
@@ -75,8 +83,7 @@ public class CommonService {
         return object;
     }
 
-    public static Object getResult(String code, Map<String, Object
-            > extraData){
+    public static Object getResult(String code, Map<String, Object> extraData){
         Map<String, Object> object = new HashMap<>();
         Map<String, Object> object2 = new HashMap<>();
         object2.put("code", code);

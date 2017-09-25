@@ -29,6 +29,7 @@ import java.util.Set;
 @ConfigurationProperties(prefix = "cluster")
 public class ClusterConfiguration {
     private List<String> members = new ArrayList<>();
+    private String groups ;
     private HazelcastInstance hazelcast  ;
 
 

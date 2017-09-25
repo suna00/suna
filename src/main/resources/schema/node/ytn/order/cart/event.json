@@ -33,6 +33,22 @@
   },
   {
     "typeId" : "event",
+    "tid": "cart",
+    "event" : "changeQuantity",
+    "noneExecute" : true,
+    "eventName" : "장바구니 상품 수량 변경"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "cart>changeQuantity",
+    "action" : "changeQuantity",
+    "actionName" : "장바구니 상품 수량 변경",
+    "actionType" : "service",
+    "actionBody" : "cartService.changeQuantity",
+    "order" : 1
+  },
+  {
+    "typeId" : "event",
     "tid": "tempOrder",
     "event" : "add",
     "noneExecute": true,
@@ -41,11 +57,11 @@
   {
     "typeId" : "eventAction",
     "event": "tempOrder>add",
-    "action" : "addTempOrder",
-    "actionName" : "임시 주문서 저장",
-    "actionType" : "service",
-    "actionBody" : "orderService.addTempOrder",
-    "order" : 1
+    "action": "addTempOrder",
+    "actionName": "임시 주문서 저장",
+    "actionType": "service",
+    "actionBody": "orderService.addTempOrder",
+    "order": 1
   },
   {
     "typeId" : "event",
