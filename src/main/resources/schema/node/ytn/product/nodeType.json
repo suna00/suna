@@ -41,7 +41,7 @@
     "typeName": "상품 옵션",
     "tableName": "ytnDevDb#productOption",
     "repositoryType": "node",
-    "eviction": 0
+    "eviction": 10000
   },
   {
     "parentId": "productPath",
@@ -50,7 +50,7 @@
     "typeName": "상품 옵션 아이템",
     "tableName": "ytnDevDb#productOptionItem",
     "repositoryType": "node",
-    "eviction": 0
+    "eviction": 100000
   },
   {
     "parentId": "productPath",
@@ -59,7 +59,7 @@
     "typeName": "상품고시",
     "tableName": "ytnDevDb#productAttribute",
     "repositoryType": "node",
-    "eviction": 0
+    "eviction": 10000
   },
   {
     "parentId": "productPath",
@@ -68,6 +68,6 @@
     "typeName": "상품검색필터",
     "tableName": "ytnDevDb#productSearchFilter",
     "repositoryType": "node",
-    "eviction": 0
+    "eviction": 100000
   }
 ]
