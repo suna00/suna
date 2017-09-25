@@ -20,6 +20,7 @@ import org.apache.lucene.search.SortField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
@@ -54,8 +55,14 @@ public class NodeService {
     @Autowired
     private ApplicationContextManager applicationContextManager;
 
+    @Autowired
+    private Environment environment;
+
+
     private Map<String, NodeType> nodeTypeCache ;
     private Map<String, NodeType> initNodeType  ;
+    private Map<String, Node> datasource  ;
+
 
     @PostConstruct
     public void init(){
@@ -172,20 +179,8 @@ public class NodeService {
     }
 
     private void initNodeType() throws IOException {
-        Collection<Map<String, Object>> nodeTypeDataList = JsonUtils.parsingJsonResourceToList(applicationContextManager.getResource("classpath:schema/core/nodeType.json")) ;
-
-        List<Node> nodeTypeList = NodeUtils.makeNodeList(nodeTypeDataList, "nodeType") ;
-        for(Node nodeType : nodeTypeList){
-            initNodeType.put(nodeType.getId(), new NodeType(nodeType)) ;
-        }
-
-        Collection<Map<String, Object>> propertyTypeDataList = JsonUtils.parsingJsonResourceToList(applicationContextManager.getResource("classpath:schema/core/propertyType.json")) ;
-
-        List<Node> propertyTypeList = NodeUtils.makeNodeList(propertyTypeDataList, "propertyType") ;
-        for(Node propertyType : propertyTypeList){
-            NodeType nodeType = initNodeType.get(propertyType.get("tid")) ;
-            nodeType.addPropertyType(new PropertyType(propertyType));
-        }
+        initSaveNodeType("classpath:schema/core/nodeType.json");
+        initPropertyType("classpath:schema/core/propertyType.json");
 
         Collection<Map<String, Object>> eventDataList = JsonUtils.parsingJsonResourceToList(applicationContextManager.getResource("classpath:schema/core/event.json")) ;
 
@@ -205,11 +200,55 @@ public class NodeService {
             }
         }
 
+        initSaveNodeType("classpath:schema/core/datasource/nodeType.json");
+        initPropertyType("classpath:schema/core/datasource/propertyType.json");
+
+        datasource = new ConcurrentHashMap<>() ;
+
+        initDatasource("classpath:schema/core/datasource/dataSource.json");
+
+        try {
+            initDatasource("classpath:schema/core/datasource/" + environment.getActiveProfiles()[0] + "/dataSource.json");
+        }catch(Exception e){
+
+        }
+
+
+    }
+
+    private void initDatasource(String file) throws IOException {
+        Collection<Map<String, Object>> dsDataList = JsonUtils.parsingJsonResourceToList(applicationContextManager.getResource(file)) ;
+
+        List<Node> dsList = NodeUtils.makeNodeList(dsDataList, "datasource") ;
+        for(Node ds : dsList){
+            datasource.put(ds.getId(), ds) ;
+        }
+    }
+
+    private void initPropertyType(String file) throws IOException {
+        Collection<Map<String, Object>> propertyTypeDataList = JsonUtils.parsingJsonResourceToList(applicationContextManager.getResource(file)) ;
+
+        List<Node> propertyTypeList = NodeUtils.makeNodeList(propertyTypeDataList, "propertyType") ;
+        for(Node propertyType : propertyTypeList){
+            NodeType nodeType = initNodeType.get(propertyType.get("tid")) ;
+            nodeType.addPropertyType(new PropertyType(propertyType));
+        }
+    }
+
+    private void initSaveNodeType(String file) throws IOException {
+        Collection<Map<String, Object>> nodeTypeDataList = JsonUtils.parsingJsonResourceToList(applicationContextManager.getResource(file)) ;
+
+        List<Node> nodeTypeList = NodeUtils.makeNodeList(nodeTypeDataList, "nodeType") ;
+        for(Node nodeType : nodeTypeList){
+            initNodeType.put(nodeType.getId(), new NodeType(nodeType)) ;
+        }
     }
 
     private void  initSchema() throws IOException {
         saveSchema("classpath:schema/core/*.json");
         saveSchema("classpath:schema/core/*/*.json");
+        saveSchema("classpath:schema/core/datasource/" + environment.getActiveProfiles()[0] + "/dataSource.json");
+
 //        saveSchema("classpath:schema/node/*.json", lastChanged);
 //        saveSchema("classpath:schema/node/**/*.json");
 //        saveSchema("classpath:schema/test/*.json", lastChanged);
@@ -452,4 +491,7 @@ public class NodeService {
         infinispanRepositoryService.endBatch(typeId, commit);
     }
 
+    public Node getDatasource(String dsId) {
+        return this.datasource.get(dsId) ;
+    }
 }

@@ -1,5 +1,6 @@
 [
   {
+    "id" :"datasource",
     "tid" : "datasource",
     "parentId" : "system",
     "typeId" : "nodeType",
