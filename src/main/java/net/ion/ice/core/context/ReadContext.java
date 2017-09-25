@@ -51,7 +51,8 @@ public class ReadContext implements Context, Serializable {
     protected String ifTest ;
     protected ResultField.ResultType resultType ;
 
-
+    protected Boolean remote ;
+    
     public NodeType getNodetype() {
         return nodeType;
     }
@@ -475,5 +476,9 @@ public class ReadContext implements Context, Serializable {
 
     public void setFileUrlFormat(Map<String,Object> fileUrlFormat) {
         this.fileUrlFormat = fileUrlFormat;
+    }
+
+    public NodeType getNodeType() {
+        return nodeType;
     }
 }

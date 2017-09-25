@@ -46,6 +46,7 @@ public class ApiContext {
             ctx.data.put("typeId", typeId);
         }
 
+
         if(apiCategory.containsKey(COMMON_RESPONSE) && apiCategory.get(COMMON_RESPONSE) != null && ((Map<String, Object>) apiCategory.get(COMMON_RESPONSE)).size() > 0) {
             ctx.makeCommonResponse((Map<String, Object>) apiCategory.get(COMMON_RESPONSE)) ;
         }
@@ -70,7 +71,7 @@ public class ApiContext {
         for(Map<String, Object> param : parameterConfig){
             if(param.containsKey("required") && (boolean) param.get("required")){
                 String paramName = (String) param.get("paramName");
-                if(!(parameterMap.containsKey(paramName) || (multiFileMap != null && multiFileMap.containsKey(paramName)))){
+                if(!((parameterMap.containsKey(paramName) || parameterMap.get(paramName).length == 0 || StringUtils.isEmpty(parameterMap.get(paramName) [0])) || (multiFileMap != null && multiFileMap.containsKey(paramName)))){
                     throw new ApiException("403", "Required Parameter : " + paramName) ;
                 }
             }

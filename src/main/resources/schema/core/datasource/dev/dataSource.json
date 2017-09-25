@@ -1,8 +1,7 @@
 [
   {
     "typeId": "datasource",
-    "datasourceId": "ytnDevDb",
-    "profiles": "dev",
+    "id": "ytnDevDb",
     "dsName": "YTN Dev DB",
     "jdbcUrl": "jdbc:mysql://125.131.88.147:3306/ytn",
     "dbType": "mySql",

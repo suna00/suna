@@ -1,5 +1,6 @@
 [
   {
+    "id" :"datasource",
     "tid" : "datasource",
     "parentId" : "system",
     "typeId" : "nodeType",
@@ -8,6 +9,7 @@
     "clusterGroup": "all"
   },
   {
+    "id" :"dataSequence",
     "tid" : "dataSequence",
     "parentId" : "system",
     "typeId" : "nodeType",
