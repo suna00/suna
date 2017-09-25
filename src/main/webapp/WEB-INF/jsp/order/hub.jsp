@@ -130,6 +130,12 @@
     String recipient = f_get_parm(request.getParameter("recipient"));
     String deliveryType = f_get_parm(request.getParameter("deliveryType"));
 
+
+    String finalCouponDiscountPrice = request.getParameter("finalCouponDiscountPrice");
+    String useYPoint = request.getParameter("useYPoint");
+    String useWelfarepoint = request.getParameter("useWelfarepoint");
+    String usedCoupon = request.getParameter("usedCoupon");
+
     /* ============================================================================== */
     /* =   02. 지불 요청 정보 설정 END
     /* ============================================================================== */
@@ -365,8 +371,12 @@
     responseMap.put("recipient", recipient);
     responseMap.put("deliveryType", deliveryType);
 
+    /*OrderSheet*/
+    responseMap.put("finalCouponDiscountPrice", finalCouponDiscountPrice);
+    responseMap.put("useYPoint", useYPoint);
+    responseMap.put("useWelfarepoint", useWelfarepoint);
+    responseMap.put("usedCoupon", usedCoupon);
 
-    System.out.println("Method List _ 0");
     if (req_tx.equals("pay")) {
 
     /* = -------------------------------------------------------------------------- = */
@@ -374,16 +384,12 @@
     /* = -------------------------------------------------------------------------- = */
     /* =        각 결제수단을 구분하시어 DB 처리를 하시기 바랍니다.                 = */
     /* = -------------------------------------------------------------------------- = */
-        System.out.println("Method List _ 1");
         if (StringUtils.equals(res_cd, "0000")){
             try {
-                System.out.println("Method List _ 2");
                 String paymentId = orderService.savePayment(responseMap);
-
-                orderService.saveDelivery(responseMap);
-                orderService.addOrderSheet(responseMap);
                 orderService.savePgResponse(responseMap, paymentId);
 
+                bSucc = orderService.addOrderSheet(responseMap);
 
                 // 07-1-1. 신용카드
                 if (use_pay_method.equals("100000000000")) {
