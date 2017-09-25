@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -45,6 +46,7 @@ public class ApiService {
         if(!method.equals(apiMethod)){
             throw new RuntimeException("Not Allow Method") ;
         }
+
 
         if(apiMethod.equals("POST")){
             if(request.getNativeRequest() instanceof MultipartHttpServletRequest) {

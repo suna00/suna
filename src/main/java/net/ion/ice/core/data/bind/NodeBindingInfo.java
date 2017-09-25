@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
@@ -23,7 +24,7 @@ import java.util.*;
  * Created by seonwoong on 2017. 6. 28..
  */
 
-public class NodeBindingInfo {
+public class NodeBindingInfo implements Serializable{
     private static Logger logger = LoggerFactory.getLogger(NodeBindingInfo.class);
 
     private NodeType nodeType;

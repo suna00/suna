@@ -30,7 +30,7 @@ public class ClusterController {
         Set<Member> members = config.getClusterMembers() ;
 
         for(Member member : members){
-            System.out.println( member.getAddress().getHost()) ;
+            System.out.println( member.getAddress().getHost() + ":" + member.getAddress().getPort()) ;
         }
 
 

@@ -328,7 +328,7 @@ public class NodeUtils {
             case FILE: {
                 if (value == null) return null;
                 if(pt.isI18n() && context.hasLocale() && value instanceof Map){
-                    if(((Map) value).containsKey(context.getLocale())){
+                    if(StringUtils.isNotEmpty(context.getLocale()) && ((Map) value).containsKey(context.getLocale())){
                         return getFileResultValue(context, pt, ((Map) value).get(context.getLocale()));
                     }else{
                         return getFileResultValue(context, pt, ((Map) value).get(getNodeService().getDefaultLocale())) ;
@@ -348,7 +348,7 @@ public class NodeUtils {
             }
             default:
                 if(pt.isI18n() && context.hasLocale() && value instanceof Map){
-                    if(((Map) value).containsKey(context.getLocale())){
+                    if(StringUtils.isNotEmpty(context.getLocale()) &&((Map) value).containsKey(context.getLocale())){
                         return ((Map) value).get(context.getLocale()) ;
                     }else{
                         return ((Map) value).get(getNodeService().getDefaultLocale()) ;
