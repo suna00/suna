@@ -650,14 +650,6 @@
   {
     "typeId": "code",
     "groupCodeId": "tgtDivCd",
-    "codeId": "5",
-    "name": "VOD",
-    "order": 5,
-    "active": true
-  },
-  {
-    "typeId": "code",
-    "groupCodeId": "tgtDivCd",
     "codeId": "6",
     "name": "PHOTO",
     "order": 6,
