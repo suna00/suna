@@ -1,13 +1,10 @@
 package net.ion.ice.service;
 
 import net.ion.ice.core.context.ExecuteContext;
-import net.ion.ice.core.context.QueryContext;
 import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
-import net.ion.ice.core.node.NodeType;
-import net.ion.ice.core.node.NodeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.utils.URIBuilder;
 import org.slf4j.Logger;
@@ -20,8 +17,6 @@ import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.*;
-
-import static net.ion.ice.core.node.NodeUtils.getNodeBindingService;
 
 @Service("orderService")
 public class OrderService {
@@ -144,12 +139,19 @@ public class OrderService {
                 }
                 totalPrice = totalPrice + productPrice;
             }
-            // 배송비 로직 추가 필요            // 배송비 로직 추가 필요            // 배송비 로직 추가 필요            // 배송비 로직 추가 필요
+            /**
+             * 배송비 체크 로직이 필요하다.
+             * 배송비 체크 로직이 필요하다.
+             * 배송비 체크 로직이 필요하다.
+             * 배송비 체크 로직이 필요하다.
+             * 배송비 체크 로직이 필요하다.
+             * */
             totalPrice = totalPrice - useYPoint - useWelfarepoint + deliveryPrice;
-            if (totalPrice != finalPrice && duplicated) { // 최종 가격 검증 & 쿠폰 중복 검증
-                context.setResult(CommonService.getResult("O0003")); // 실패
+
+            if (totalPrice != finalPrice && duplicated) {                       // 최종 가격 검증 & 쿠폰 중복 검증
+                context.setResult(CommonService.getResult("O0003"));      // 검증실패
             } else {
-                context.setResult(CommonService.getResult("O0004")); // 성공
+                context.setResult(CommonService.getResult("O0004"));      // 검증성공
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -223,7 +225,7 @@ public class OrderService {
         totalOrderPrice = totalProductPrice - totalYPoint - totalWelfarePoint + totalDeliveryPrice; //총 주문금액
 
         /**
-         * 최종으로 totalOrderPrice 와 totalPaymentPrice 을 체크하고 쿠폰 중복 체크.
+         * 최종으로 totalOrderPrice 와 totalPaymentPrice 을 체크 및 쿠폰 중복 체크.
          * 성공 시, bSucc = "true"
          * 실패 시, bSucc = "false"
          * */
@@ -264,14 +266,18 @@ public class OrderService {
         return bSucc;
     }
 
-    // 결제 정보
+    /**
+     * 결제 정보를 저장하는 Method.
+     * */
     public String savePayment(Map<String, Object> responseMap) {
         Node node = (Node) nodeService.executeNode(responseMap, "payment", CREATE);
         logger.info("123123");
         return node.getId();
     }
 
-    // 결제 배송지
+    /**
+     * 주문서 배송지를 저장하는 Method.
+     * */
     public void saveDelivery(Map<String, Object> responseMap) {
         Map<String, Object> refineDeliveryData = new HashMap<>();
 
@@ -290,7 +296,9 @@ public class OrderService {
     }
 
 
-    //PG Response 저장
+    /**
+     * PG return 데이터를 저장하는  Method.(리턴 값을 가공하지 JsonString 으로 저장, 일종의 Backup Data)
+     * */
     public void savePgResponse(Map<String, Object> responseMap, String paymentId) {
         Map<String, Object> pg = new HashMap<>();
 
@@ -376,19 +384,9 @@ public class OrderService {
         }
     }
 
-
-    //    "nodeType=data" getList
-    private List<Map<String, Object>> getList(String tid, String searchText) {
-        NodeType nodeType = NodeUtils.getNodeType(tid);
-        QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, nodeType);
-        return getNodeBindingService().getNodeBindingInfo(nodeType.getTypeId()).list(queryContext);
-    }
-
-    private void newTempOrder(Map<String, Object> data) throws IOException {
-        Node node = (Node) nodeService.executeNode(data, "cart", CREATE);
-        data.put("cartId", node.getId());
-    }
-
+    /**
+     * 쿠폰 중복 체크 Method.
+     * */
     private boolean duplication(Collection<Object> ids) {
         List<Integer> idList = new ArrayList(ids);
         boolean duplication = false;
@@ -405,13 +403,12 @@ public class OrderService {
         return duplication;
     }
 
-    // batch : 주문 성공 or 일정기간 주문 성사되지 않은 주문서 제거
-    public void cleanTempOrder() {
+    /**
+     * 주문 성공시 임시 주문서를 삭제하는 Method.
+     * 일정 시간이 지난 주문서도 삭제 한다.
+     * */
+    public void removeTempOrder() {
 
     }
 
-    // 주문성공
-    public void addOrder() {
-
-    }
 }
