@@ -43,7 +43,7 @@ public class InfinispanCacheManager {
                 .purgeOnStartup(false)
                 .ignoreModifications(false)
                 .location(cachePath)
-//                .transaction().transactionMode(TransactionMode.TRANSACTIONAL).lockingMode(LockingMode.OPTIMISTIC) //마이그 실행시 주석 제거
+//                .transaction().transactionMode(TransactionMode.NON_TRANSACTIONAL).lockingMode(LockingMode.OPTIMISTIC) //마이그 실행시 주석 제거
                 .transaction().transactionMode(TransactionMode.NON_TRANSACTIONAL) //마이그 실행시 주석
                 .indexing().index(Index.LOCAL)
                 .addProperty("hibernate.search.lucene_version", "LUCENE_CURRENT")
@@ -69,6 +69,11 @@ public class InfinispanCacheManager {
         Cache<K,V> cache = manager.getCache(cacheType, false) ;
         if(cache == null){
             cache = cacheInit(cacheType, size) ;
+//            try {
+//                Thread.sleep(500);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
         }
 
         return cache;

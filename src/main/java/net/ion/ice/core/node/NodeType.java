@@ -2,17 +2,19 @@ package net.ion.ice.core.node;
 
 import net.ion.ice.core.event.*;
 import net.ion.ice.core.event.EventListener;
-import org.stagemonitor.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  * Created by jaeho on 2017. 5. 15..
  */
-public class NodeType {
+public class NodeType implements Serializable{
 	public static final String NODETYPE = "nodeType";
 	public static final String TABLE_NAME = "tableName";
 	public static final String REPOSITORY_TYPE = "repositoryType";
+	public static final String CLUSTER_GROUP = "clusterGroup";
 
 	public static final String NODE = "node";
 	public static final String DATA = "data";
@@ -20,7 +22,6 @@ public class NodeType {
 	private Node nodeTypeNode ;
 	private Map<String, PropertyType> propertyTypes ;
 	private Map<String, Event> events ;
-
 
 
 	public NodeType(Node nodeTypeNode) {
@@ -209,4 +210,10 @@ public class NodeType {
 		return results ;
 	}
 
+	public String getClusterGroup() {
+		if(StringUtils.isEmpty((String) nodeTypeNode.get(CLUSTER_GROUP))){
+			return "cms" ;
+		}
+		return (String) nodeTypeNode.get(CLUSTER_GROUP) ;
+	}
 }

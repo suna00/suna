@@ -17,6 +17,7 @@ jwtConfig:
   refreshTokenExpTime: 60 #분
 
 cluster:
+  mode: api
   groups: api
   members:
     - 127.0.0.1

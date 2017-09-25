@@ -225,7 +225,7 @@ public class ExecuteContext extends ReadContext{
             execute = changedProperties.size() > 0 ;
             if(execute) {
                 node.setUpdate(userId, time);
-            }else if(event != null && !event.equals("update") ){
+            }else if(event != null && !(event.equals("update") || event.equals("save"))){
                 execute = true;
             }
 
