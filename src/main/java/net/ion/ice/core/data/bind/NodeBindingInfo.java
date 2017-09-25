@@ -291,16 +291,18 @@ public class NodeBindingInfo implements Serializable{
     }
 
     private List<Object> insertParameters(Map<String, String[]> parameterMap) {
-        List<Object> parameters = new ArrayList<>();
+        List<Object> insertParameters = new ArrayList<>();
         for (PropertyType pid : insertPids) {
-            if (parameterMap.get(pid.getPid()) == null) {
-                parameters.add(null);
-            } else {
-                parameters.add(parameterMap.get(pid.getPid())[0]);
+            if (parameterMap.get(pid.getPid()) == null ) {
+                insertParameters.add(null);
+            } else if(parameterMap.get(pid.getPid())[0].equals("")){
+                insertParameters.add(null);
+            } else{
+                insertParameters.add(parameterMap.get(pid.getPid())[0]);
             }
 
         }
-        return parameters;
+        return insertParameters;
     }
 
     private List<Object> insertParameters(Node node) {
@@ -312,19 +314,25 @@ public class NodeBindingInfo implements Serializable{
     }
 
     private List<Object> updateParameters(Map<String, String[]> parameterMap) {
-        List<Object> parameters = new ArrayList<>();
+        List<Object> updateParameters = new ArrayList<>();
         for (PropertyType pid : updatePids) {
-            parameters.add(parameterMap.get(pid.getPid())[0]);
+            if (parameterMap.get(pid.getPid()) == null ) {
+                updateParameters.add(null);
+            } else if(parameterMap.get(pid.getPid())[0].equals("")){
+                updateParameters.add(null);
+            } else{
+                updateParameters.add(parameterMap.get(pid.getPid())[0]);
+            }
         }
 
         for (PropertyType pid : wherePids) {
             if(pid.getIdType().equals(PropertyType.IdType.autoIncrement)){
 
             }
-            parameters.add(parameterMap.get(pid.getPid())[0]);
+            updateParameters.add(parameterMap.get(pid.getPid())[0]);
 
         }
-        return parameters;
+        return updateParameters;
     }
 
     private List<Object> updateParameters(Node node) {
