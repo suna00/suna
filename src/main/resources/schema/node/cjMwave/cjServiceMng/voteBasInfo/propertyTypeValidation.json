@@ -161,8 +161,8 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>voteBasInfo>logoImgUrl",
-    "propertyTypeId": "voteBasInfo>logoImgUrl",
+    "id": "propertyTypeValidation>voteBasInfo>spnsrLogoImgPath",
+    "propertyTypeId": "voteBasInfo>spnsrLogoImgPath",
     "validation": {
       "language": "ko",
       "required": {

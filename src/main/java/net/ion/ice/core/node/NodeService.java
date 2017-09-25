@@ -1,6 +1,8 @@
 package net.ion.ice.core.node;
 
 import net.ion.ice.ApplicationContextManager;
+import net.ion.ice.IceRuntimeException;
+import net.ion.ice.core.cluster.ClusterService;
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.context.QueryContext;
 import net.ion.ice.core.context.ReadContext;
@@ -45,6 +47,9 @@ public class NodeService {
 
     @Autowired
     private FileService fileService ;
+
+    @Autowired
+    private ClusterService clusterService ;
 
     @Autowired
     private I18nConfiguration i18nConfiguration ;
@@ -259,6 +264,9 @@ public class NodeService {
 
     public Node saveNode(Map<String, Object> data) {
         try {
+            NodeType nodeType = getNodeType(data.get(Node.TYPEID).toString()) ;
+            if(!clusterService.checkClusterGroup(nodeType)) return null;
+
             ExecuteContext context = ExecuteContext.makeContextFromMap(data);
             context.execute();
             Node saveNode =  context.getNode();
@@ -299,6 +307,9 @@ public class NodeService {
 
     public Object executeNode(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, String typeId, String event) {
         NodeType nodeType = getNodeType(typeId) ;
+        if(!clusterService.checkClusterGroup(nodeType)){
+            throw new IceRuntimeException("Not Support Type Error") ;
+        }
 
         ExecuteContext context = ExecuteContext.makeContextFromParameter(parameterMap, multiFileMap, nodeType, event) ;
         context.execute();

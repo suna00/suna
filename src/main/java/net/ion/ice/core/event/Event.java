@@ -2,13 +2,14 @@ package net.ion.ice.core.event;
 
 import net.ion.ice.core.node.Node;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by jaeho on 2017. 7. 12..
  */
-public class Event {
+public class Event implements Serializable{
     public static final String EVENT = "event";
     public static final String NONE_EXECUTE = "noneExecute";
 
