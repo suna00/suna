@@ -281,7 +281,7 @@
     "labelable": false,
     "treeable": false,
     "indexable": true,
-    "analyzer": "cjk",
+    "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",
