@@ -10,7 +10,7 @@
     "commonParameters": [
       {
         "paramName": "apiKey",
-        "required": true
+        "required": false
       },
       {
         "paramName": "page",
@@ -26,7 +26,7 @@
       },
       {
         "paramName": "langCd",
-        "required": false
+        "required": true
       }
     ],
     "commonResponse": {
@@ -44,7 +44,7 @@
     "commonParameters": [
       {
         "paramName": "apiKey",
-        "required": true
+        "required": false
       },
       {
         "paramName": "page",
@@ -60,7 +60,7 @@
       },
       {
         "paramName": "langCd",
-        "required": false
+        "required": true
       }
     ],
     "commonResponse": {
@@ -78,7 +78,7 @@
     "commonParameters": [
       {
         "paramName": "apiKey",
-        "required": true
+        "required": false
       },
       {
         "paramName": "page",
@@ -94,7 +94,7 @@
       },
       {
         "paramName": "langCd",
-        "required": false
+        "required": true
       }
     ],
     "commonResponse": {
@@ -112,7 +112,7 @@
     "commonParameters": [
       {
         "paramName": "apiKey",
-        "required": true
+        "required": false
       },
       {
         "paramName": "page",
@@ -128,7 +128,7 @@
       },
       {
         "paramName": "langCd",
-        "required": false
+        "required": true
       }
     ],
     "commonResponse": {
@@ -146,7 +146,7 @@
     "commonParameters": [
       {
         "paramName": "apiKey",
-        "required": true
+        "required": false
       },
       {
         "paramName": "page",
@@ -162,7 +162,7 @@
       },
       {
         "paramName": "langCd",
-        "required": false
+        "required": true
       }
     ],
     "commonResponse": {
@@ -180,7 +180,7 @@
     "commonParameters": [
       {
         "paramName": "apiKey",
-        "required": true
+        "required": false
       },
       {
         "paramName": "page",
@@ -196,7 +196,7 @@
       },
       {
         "paramName": "langCd",
-        "required": false
+        "required": true
       }
     ],
     "commonResponse": {
@@ -214,7 +214,7 @@
     "commonParameters": [
       {
         "paramName": "apiKey",
-        "required": true
+        "required": false
       },
       {
         "paramName": "page",
@@ -230,7 +230,7 @@
       },
       {
         "paramName": "langCd",
-        "required": false
+        "required": true
       }
     ],
     "commonResponse": {
@@ -248,7 +248,7 @@
     "commonParameters": [
       {
         "paramName": "apiKey",
-        "required": true
+        "required": false
       },
       {
         "paramName": "page",
@@ -264,7 +264,7 @@
       },
       {
         "paramName": "langCd",
-        "required": false
+        "required": true
       }
     ],
     "commonResponse": {
@@ -282,7 +282,7 @@
     "commonParameters": [
       {
         "paramName": "apiKey",
-        "required": true
+        "required": false
       },
       {
         "paramName": "page",
@@ -298,7 +298,7 @@
       },
       {
         "paramName": "langCd",
-        "required": false
+        "required": true
       }
     ],
     "commonResponse": {
@@ -316,7 +316,7 @@
     "commonParameters": [
       {
         "paramName": "apiKey",
-        "required": true
+        "required": false
       },
       {
         "paramName": "page",
@@ -332,7 +332,7 @@
       },
       {
         "paramName": "langCd",
-        "required": false
+        "required": true
       }
     ],
     "commonResponse": {
@@ -350,7 +350,7 @@
     "commonParameters": [
       {
         "paramName": "apiKey",
-        "required": true
+        "required": false
       },
       {
         "paramName": "page",
@@ -366,7 +366,7 @@
       },
       {
         "paramName": "langCd",
-        "required": false
+        "required": true
       }
     ],
     "commonResponse": {
@@ -384,7 +384,7 @@
     "commonParameters": [
       {
         "paramName": "apiKey",
-        "required": true
+        "required": false
       },
       {
         "paramName": "page",
@@ -400,7 +400,7 @@
       },
       {
         "paramName": "langCd",
-        "required": false
+        "required": true
       }
     ],
     "commonResponse": {
@@ -418,7 +418,7 @@
     "commonParameters": [
       {
         "paramName": "apiKey",
-        "required": true
+        "required": false
       },
       {
         "paramName": "page",
@@ -434,7 +434,7 @@
       },
       {
         "paramName": "langCd",
-        "required": false
+        "required": true
       }
     ],
     "commonResponse": {
