@@ -407,7 +407,7 @@ public class QueryContext extends ReadContext {
         if(this.ifTest != null && !(this.ifTest.equalsIgnoreCase("true"))) {
             return null ;
         }
-        if(this.remote){
+        if(this.remote != null && this.remote){
             ClusterUtils.callQuery((ApiQueryContext) this) ;
         }
         List<Node> resultNodeList = getQueryList() ;

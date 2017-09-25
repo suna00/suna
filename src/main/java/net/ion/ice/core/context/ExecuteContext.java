@@ -343,9 +343,9 @@ public class ExecuteContext extends ReadContext{
 
         NodeType nodeType = NodeUtils.getNodeType((String) ContextUtils.getValue(config.get("typeId"), data));
         ctx.setNodeType(nodeType);
-        if(ClusterUtils.getClusterService().checkClusterGroup(nodeType)){
-            ctx.remote = true ;
-        }
+//        if(ClusterUtils.getClusterService().checkClusterGroup(nodeType)){
+//            ctx.remote = true ;
+//        }
 
         ctx.event = (String) ContextUtils.getValue(config.get("event"), data);
 
