@@ -24,7 +24,7 @@ import java.util.*;
  * Created by seonwoong on 2017. 6. 28..
  */
 
-public class NodeBindingInfo implements Serializable{
+public class NodeBindingInfo implements Serializable {
     private static Logger logger = LoggerFactory.getLogger(NodeBindingInfo.class);
 
     private NodeType nodeType;
@@ -289,18 +289,32 @@ public class NodeBindingInfo implements Serializable{
         int queryCallBack = jdbcTemplate.update(deleteSql, parameters.toArray());
         return queryCallBack;
     }
-
+    /**
+     * 디비 저장 시 디비 컬럼이 null이 가능한지 체크 하고 가능하면 null 저장
+     * 불가능하면 빈 텍스트 저장하도록 수정. 테스트 필요.. 문제되면 알려주세요.
+     * */
     private List<Object> insertParameters(Map<String, String[]> parameterMap) {
         List<Object> insertParameters = new ArrayList<>();
         for (PropertyType pid : insertPids) {
-            if (parameterMap.get(pid.getPid()) == null ) {
-                insertParameters.add(null);
-            } else if(parameterMap.get(pid.getPid())[0].equals("")){
-                insertParameters.add(null);
-            } else{
-                insertParameters.add(parameterMap.get(pid.getPid())[0]);
-            }
+            for (Column column : columnList) {
+                if (column.getColumnName().equals(pid.getPid())) {
+                    if (column.getNullable()) {
+                        if (parameterMap.get(pid.getPid()) == null || parameterMap.get(pid.getPid())[0].equals("")) {
+                            insertParameters.add(null);
+                        } else {
+                            insertParameters.add(parameterMap.get(pid.getPid())[0]);
+                        }
 
+                    } else {
+                        if (parameterMap.get(pid.getPid()) == null || parameterMap.get(pid.getPid())[0].equals("")) {
+                            insertParameters.add("");
+                        } else {
+                            insertParameters.add(parameterMap.get(pid.getPid())[0]);
+                        }
+                    }
+                    break;
+                }
+            }
         }
         return insertParameters;
     }
@@ -316,17 +330,29 @@ public class NodeBindingInfo implements Serializable{
     private List<Object> updateParameters(Map<String, String[]> parameterMap) {
         List<Object> updateParameters = new ArrayList<>();
         for (PropertyType pid : updatePids) {
-            if (parameterMap.get(pid.getPid()) == null ) {
-                updateParameters.add(null);
-            } else if(parameterMap.get(pid.getPid())[0].equals("")){
-                updateParameters.add(null);
-            } else{
-                updateParameters.add(parameterMap.get(pid.getPid())[0]);
+            for (Column column : columnList) {
+                if (column.getColumnName().equals(pid.getPid())) {
+                    if (column.getNullable()) {
+                        if (parameterMap.get(pid.getPid()) == null || parameterMap.get(pid.getPid())[0].equals("")) {
+                            updateParameters.add(null);
+                        } else {
+                            updateParameters.add(parameterMap.get(pid.getPid())[0]);
+                        }
+
+                    } else {
+                        if (parameterMap.get(pid.getPid()) == null || parameterMap.get(pid.getPid())[0].equals("")) {
+                            updateParameters.add("");
+                        } else {
+                            updateParameters.add(parameterMap.get(pid.getPid())[0]);
+                        }
+                    }
+                    break;
+                }
             }
         }
 
         for (PropertyType pid : wherePids) {
-            if(pid.getIdType().equals(PropertyType.IdType.autoIncrement)){
+            if (pid.getIdType().equals(PropertyType.IdType.autoIncrement)) {
 
             }
             updateParameters.add(parameterMap.get(pid.getPid())[0]);
