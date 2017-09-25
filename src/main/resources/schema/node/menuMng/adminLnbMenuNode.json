@@ -163,14 +163,23 @@
     "active": "true",
     "index": "false",
     "pages": [
-      { "pageName": "목록", "pageUrl": "list" },
-      { "pageName": "등록/수정", "pageUrl": "form" },
-      { "pageName": "상세", "pageUrl": "view" }
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
     ],
     "customPages": []
   },
   {
-    "typeId" : "adminLnbMenu",
+    "typeId": "adminLnbMenu",
     "backOfficeId": "admin",
     "gnbMenuId": "configMng",
     "parentMenuId": "root",
@@ -181,14 +190,23 @@
     "active": "true",
     "index": "false",
     "pages": [
-      { "pageName": "목록", "pageUrl": "list" },
-      { "pageName": "등록/수정", "pageUrl": "form" },
-      { "pageName": "상세", "pageUrl": "view" }
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
     ],
     "customPages": []
   },
   {
-    "typeId" : "adminLnbMenu",
+    "typeId": "adminLnbMenu",
     "backOfficeId": "admin",
     "gnbMenuId": "configMng",
     "parentMenuId": "root",
@@ -387,7 +405,8 @@
       {
         "pageName": "상세",
         "pageUrl": "cj/content/SinglePhotoView"
-      }]
+      }
+    ]
   },
   {
     "typeId": "adminLnbMenu",
@@ -413,7 +432,8 @@
       {
         "pageName": "상세",
         "pageUrl": "cj/content/GroupPhotoView"
-      }]
+      }
+    ]
   },
   {
     "typeId": "adminLnbMenu",
@@ -466,6 +486,95 @@
       {
         "pageName": "상세",
         "pageUrl": "cj/content/PgmVideoView"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "metadataMng",
+    "parentMenuId": "root",
+    "menuId": "news",
+    "menuName": "뉴스",
+    "order": "80",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "cj/content/NewsList"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "cj/content/NewsForm"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "cj/content/NewsView"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "metadataMng",
+    "parentMenuId": "root",
+    "menuId": "mamaWinner",
+    "menuName": "MAMA Winner 관리",
+    "order": "100",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "cj/content/mama/WinnerList"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "cj/content/mama/WinnerView"
+      },
+      {
+        "pageName": "등록",
+        "pageUrl": "cj/content/mama/WinnerForm"
+      },
+      {
+        "pageName": "수정",
+        "pageUrl": "cj/content/mama/WinnerUform"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "metadataMng",
+    "parentMenuId": "root",
+    "menuId": "mamaLineup",
+    "menuName": "MCD LINEUP 관리",
+    "order": "110",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "cj/content/mama/LineupList"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "cj/content/mama/LineupView"
+      },
+      {
+        "pageName": "등록",
+        "pageUrl": "cj/content/mama/LineupForm"
+      },
+      {
+        "pageName": "수정",
+        "pageUrl": "cj/content/mama/LineupUform"
       }
     ]
   },
@@ -1435,7 +1544,7 @@
     "customPages": []
   },
   {
-    "typeId" : "adminLnbMenu",
+    "typeId": "adminLnbMenu",
     "backOfficeId": "adm",
     "gnbMenuId": "contentMng",
     "parentMenuId": "root",
@@ -1446,10 +1555,22 @@
     "active": "true",
     "index": "false",
     "pages": [
-      { "pageName": "List", "pageUrl": "list" },
-      { "pageName": "Create", "pageUrl": "createForm" },
-      { "pageName": "Update", "pageUrl": "updateForm" },
-      { "pageName": "View", "pageUrl": "view" }
+      {
+        "pageName": "List",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "Create",
+        "pageUrl": "createForm"
+      },
+      {
+        "pageName": "Update",
+        "pageUrl": "updateForm"
+      },
+      {
+        "pageName": "View",
+        "pageUrl": "view"
+      }
     ]
   }
 ]

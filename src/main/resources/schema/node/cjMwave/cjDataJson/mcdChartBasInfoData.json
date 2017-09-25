@@ -5,12 +5,12 @@
     "mstYear": "2017",
     "mstMonth": "9",
     "mstWeek": "1",
-    "mstYyMmDd": "20170907",
+    "mstYyMmDd": "20170928",
     "mstFromDate": "2017-09-28",
     "mstToDate": "2017-12-31",
     "serviceFlag": true,
-    "regDate": "201709070000",
-    "modDate": "201709040000",
+    "regDate": "20170907000000",
+    "modDate": "20170904000000",
     "onairDt": "20170928"
   },
   {
@@ -19,12 +19,12 @@
     "mstYear": "2017",
     "mstMonth": "9",
     "mstWeek": "2",
-    "mstYyMmDd": "20170914",
+    "mstYyMmDd": "20171005",
     "mstFromDate": "2017-10-05",
     "mstToDate": "2017-12-31",
     "serviceFlag": true,
-    "regDate": "201709140000",
-    "modDate": "201709040000",
+    "regDate": "20170914000000",
+    "modDate": "20170904000000",
     "onairDt": "20171005"
   },
   {
@@ -33,12 +33,12 @@
     "mstYear": "2017",
     "mstMonth": "9",
     "mstWeek": "3",
-    "mstYyMmDd": "20170921",
+    "mstYyMmDd": "20171012",
     "mstFromDate": "2017-10-12",
     "mstToDate": "2017-12-31",
     "serviceFlag": true,
-    "regDate": "201709210000",
-    "modDate": "201709040000",
+    "regDate": "20170921000000",
+    "modDate": "20170904000000",
     "onairDt": "20171012"
   },
   {
@@ -47,12 +47,12 @@
     "mstYear": "2017",
     "mstMonth": "9",
     "mstWeek": "4",
-    "mstYyMmDd": "20170928",
-    "mstFromDate": "2017-10-09",
+    "mstYyMmDd": "20171019",
+    "mstFromDate": "2017-10-19",
     "mstToDate": "2017-12-31",
     "serviceFlag": true,
-    "regDate": "201709280000",
-    "modDate": "201709040000",
-    "onairDt": "20171009"
+    "regDate": "20170928000000",
+    "modDate": "20170904000000",
+    "onairDt": "20171019"
   }
 ]

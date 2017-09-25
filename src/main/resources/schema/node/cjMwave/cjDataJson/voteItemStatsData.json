@@ -5,7 +5,7 @@
     "voteItemSeq": 7000000,
     "rankNum": 1,
     "rankGapNum": "1",
-    "voteRate": 0.0246,
+    "voteRate": 0.02,
     "voteNum": 1300
   },
   {
@@ -14,7 +14,7 @@
     "voteItemSeq": 7000001,
     "rankNum": 2,
     "rankGapNum": "2",
-    "voteRate": 0.0245,
+    "voteRate": 0.02,
     "voteNum": 1290
   },
   {
@@ -23,7 +23,7 @@
     "voteItemSeq": 7000002,
     "rankNum": 3,
     "rankGapNum": "",
-    "voteRate": 0.0243,
+    "voteRate": 0.02,
     "voteNum": 1280
   },
   {
@@ -32,7 +32,7 @@
     "voteItemSeq": 7000003,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.0241,
+    "voteRate": 0.02,
     "voteNum": 1270
   },
   {
@@ -41,7 +41,7 @@
     "voteItemSeq": 7000004,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0239,
+    "voteRate": 0.02,
     "voteNum": 1260
   },
   {
@@ -50,7 +50,7 @@
     "voteItemSeq": 7000005,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0237,
+    "voteRate": 0.02,
     "voteNum": 1250
   },
   {
@@ -59,7 +59,7 @@
     "voteItemSeq": 7000006,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0235,
+    "voteRate": 0.02,
     "voteNum": 1240
   },
   {
@@ -68,7 +68,7 @@
     "voteItemSeq": 7000007,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0233,
+    "voteRate": 0.02,
     "voteNum": 1230
   },
   {
@@ -77,7 +77,7 @@
     "voteItemSeq": 7000008,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0231,
+    "voteRate": 0.02,
     "voteNum": 1220
   },
   {
@@ -86,7 +86,7 @@
     "voteItemSeq": 7000009,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0229,
+    "voteRate": 0.02,
     "voteNum": 1210
   },
   {
@@ -95,7 +95,7 @@
     "voteItemSeq": 7000010,
     "rankNum": 11,
     "rankGapNum": "2",
-    "voteRate": 0.0227,
+    "voteRate": 0.02,
     "voteNum": 1200
   },
   {
@@ -104,7 +104,7 @@
     "voteItemSeq": 7000011,
     "rankNum": 12,
     "rankGapNum": "",
-    "voteRate": 0.0226,
+    "voteRate": 0.02,
     "voteNum": 1190
   },
   {
@@ -113,7 +113,7 @@
     "voteItemSeq": 7000012,
     "rankNum": 13,
     "rankGapNum": "",
-    "voteRate": 0.0224,
+    "voteRate": 0.02,
     "voteNum": 1180
   },
   {
@@ -122,7 +122,7 @@
     "voteItemSeq": 7000013,
     "rankNum": 14,
     "rankGapNum": "",
-    "voteRate": 0.0222,
+    "voteRate": 0.02,
     "voteNum": 1170
   },
   {
@@ -131,7 +131,7 @@
     "voteItemSeq": 7000014,
     "rankNum": 15,
     "rankGapNum": "",
-    "voteRate": 0.022,
+    "voteRate": 0.02,
     "voteNum": 1160
   },
   {
@@ -140,7 +140,7 @@
     "voteItemSeq": 7000015,
     "rankNum": 16,
     "rankGapNum": "",
-    "voteRate": 0.0218,
+    "voteRate": 0.02,
     "voteNum": 1150
   },
   {
@@ -149,7 +149,7 @@
     "voteItemSeq": 7000016,
     "rankNum": 17,
     "rankGapNum": "",
-    "voteRate": 0.0216,
+    "voteRate": 0.02,
     "voteNum": 1140
   },
   {
@@ -158,7 +158,7 @@
     "voteItemSeq": 7000017,
     "rankNum": 18,
     "rankGapNum": "",
-    "voteRate": 0.0214,
+    "voteRate": 0.02,
     "voteNum": 1130
   },
   {
@@ -167,7 +167,7 @@
     "voteItemSeq": 7000018,
     "rankNum": 19,
     "rankGapNum": "",
-    "voteRate": 0.0212,
+    "voteRate": 0.02,
     "voteNum": 1120
   },
   {
@@ -176,7 +176,7 @@
     "voteItemSeq": 7000019,
     "rankNum": 20,
     "rankGapNum": "",
-    "voteRate": 0.021,
+    "voteRate": 0.02,
     "voteNum": 1110
   },
   {
@@ -185,7 +185,7 @@
     "voteItemSeq": 7000020,
     "rankNum": 21,
     "rankGapNum": "",
-    "voteRate": 0.0209,
+    "voteRate": 0.02,
     "voteNum": 1100
   },
   {
@@ -194,7 +194,7 @@
     "voteItemSeq": 7000021,
     "rankNum": 22,
     "rankGapNum": "3",
-    "voteRate": 0.0207,
+    "voteRate": 0.02,
     "voteNum": 1090
   },
   {
@@ -203,7 +203,7 @@
     "voteItemSeq": 7000022,
     "rankNum": 23,
     "rankGapNum": "",
-    "voteRate": 0.0205,
+    "voteRate": 0.02,
     "voteNum": 1080
   },
   {
@@ -212,7 +212,7 @@
     "voteItemSeq": 7000023,
     "rankNum": 24,
     "rankGapNum": "",
-    "voteRate": 0.0203,
+    "voteRate": 0.02,
     "voteNum": 1070
   },
   {
@@ -221,7 +221,7 @@
     "voteItemSeq": 7000024,
     "rankNum": 25,
     "rankGapNum": "",
-    "voteRate": 0.0201,
+    "voteRate": 0.02,
     "voteNum": 1060
   },
   {
@@ -230,7 +230,7 @@
     "voteItemSeq": 7000025,
     "rankNum": 26,
     "rankGapNum": "",
-    "voteRate": 0.0199,
+    "voteRate": 0.02,
     "voteNum": 1050
   },
   {
@@ -239,7 +239,7 @@
     "voteItemSeq": 7000026,
     "rankNum": 27,
     "rankGapNum": "",
-    "voteRate": 0.0197,
+    "voteRate": 0.02,
     "voteNum": 1040
   },
   {
@@ -248,7 +248,7 @@
     "voteItemSeq": 7000027,
     "rankNum": 28,
     "rankGapNum": "",
-    "voteRate": 0.0195,
+    "voteRate": 0.02,
     "voteNum": 1030
   },
   {
@@ -257,7 +257,7 @@
     "voteItemSeq": 7000028,
     "rankNum": 29,
     "rankGapNum": "",
-    "voteRate": 0.0193,
+    "voteRate": 0.02,
     "voteNum": 1020
   },
   {
@@ -266,7 +266,7 @@
     "voteItemSeq": 7000029,
     "rankNum": 30,
     "rankGapNum": "",
-    "voteRate": 0.0191,
+    "voteRate": 0.02,
     "voteNum": 1010
   },
   {
@@ -275,7 +275,7 @@
     "voteItemSeq": 7000030,
     "rankNum": 31,
     "rankGapNum": "",
-    "voteRate": 0.019,
+    "voteRate": 0.02,
     "voteNum": 1000
   },
   {
@@ -284,7 +284,7 @@
     "voteItemSeq": 7000031,
     "rankNum": 32,
     "rankGapNum": "",
-    "voteRate": 0.0188,
+    "voteRate": 0.02,
     "voteNum": 990
   },
   {
@@ -293,7 +293,7 @@
     "voteItemSeq": 7000032,
     "rankNum": 33,
     "rankGapNum": "4",
-    "voteRate": 0.0186,
+    "voteRate": 0.02,
     "voteNum": 980
   },
   {
@@ -302,7 +302,7 @@
     "voteItemSeq": 7000033,
     "rankNum": 34,
     "rankGapNum": "5",
-    "voteRate": 0.0184,
+    "voteRate": 0.02,
     "voteNum": 970
   },
   {
@@ -311,7 +311,7 @@
     "voteItemSeq": 7000034,
     "rankNum": 35,
     "rankGapNum": "6",
-    "voteRate": 0.0182,
+    "voteRate": 0.02,
     "voteNum": 960
   },
   {
@@ -320,7 +320,7 @@
     "voteItemSeq": 7000035,
     "rankNum": 36,
     "rankGapNum": "7",
-    "voteRate": 0.018,
+    "voteRate": 0.02,
     "voteNum": 950
   },
   {
@@ -329,7 +329,7 @@
     "voteItemSeq": 7000036,
     "rankNum": 37,
     "rankGapNum": "",
-    "voteRate": 0.0178,
+    "voteRate": 0.02,
     "voteNum": 940
   },
   {
@@ -338,7 +338,7 @@
     "voteItemSeq": 7000037,
     "rankNum": 38,
     "rankGapNum": "",
-    "voteRate": 0.0176,
+    "voteRate": 0.02,
     "voteNum": 930
   },
   {
@@ -347,7 +347,7 @@
     "voteItemSeq": 7000038,
     "rankNum": 39,
     "rankGapNum": "",
-    "voteRate": 0.0174,
+    "voteRate": 0.02,
     "voteNum": 920
   },
   {
@@ -356,7 +356,7 @@
     "voteItemSeq": 7000039,
     "rankNum": 40,
     "rankGapNum": "",
-    "voteRate": 0.0173,
+    "voteRate": 0.02,
     "voteNum": 910
   },
   {
@@ -365,7 +365,7 @@
     "voteItemSeq": 7000040,
     "rankNum": 41,
     "rankGapNum": "",
-    "voteRate": 0.0171,
+    "voteRate": 0.02,
     "voteNum": 900
   },
   {
@@ -374,7 +374,7 @@
     "voteItemSeq": 7000041,
     "rankNum": 42,
     "rankGapNum": "",
-    "voteRate": 0.0169,
+    "voteRate": 0.02,
     "voteNum": 890
   },
   {
@@ -383,7 +383,7 @@
     "voteItemSeq": 7000042,
     "rankNum": 43,
     "rankGapNum": "",
-    "voteRate": 0.0167,
+    "voteRate": 0.02,
     "voteNum": 880
   },
   {
@@ -392,7 +392,7 @@
     "voteItemSeq": 7000043,
     "rankNum": 44,
     "rankGapNum": "",
-    "voteRate": 0.0165,
+    "voteRate": 0.02,
     "voteNum": 870
   },
   {
@@ -401,7 +401,7 @@
     "voteItemSeq": 7000044,
     "rankNum": 45,
     "rankGapNum": "",
-    "voteRate": 0.0163,
+    "voteRate": 0.02,
     "voteNum": 860
   },
   {
@@ -410,7 +410,7 @@
     "voteItemSeq": 7000045,
     "rankNum": 46,
     "rankGapNum": "",
-    "voteRate": 0.0161,
+    "voteRate": 0.02,
     "voteNum": 850
   },
   {
@@ -419,7 +419,7 @@
     "voteItemSeq": 7000046,
     "rankNum": 47,
     "rankGapNum": "",
-    "voteRate": 0.0159,
+    "voteRate": 0.02,
     "voteNum": 840
   },
   {
@@ -428,7 +428,7 @@
     "voteItemSeq": 7000047,
     "rankNum": 48,
     "rankGapNum": "",
-    "voteRate": 0.0157,
+    "voteRate": 0.02,
     "voteNum": 830
   },
   {
@@ -437,7 +437,7 @@
     "voteItemSeq": 7000048,
     "rankNum": 49,
     "rankGapNum": "",
-    "voteRate": 0.0155,
+    "voteRate": 0.02,
     "voteNum": 820
   },
   {
@@ -446,7 +446,7 @@
     "voteItemSeq": 7000049,
     "rankNum": 50,
     "rankGapNum": "",
-    "voteRate": 0.0154,
+    "voteRate": 0.02,
     "voteNum": 810
   },
   {
@@ -455,7 +455,7 @@
     "voteItemSeq": 7000051,
     "rankNum": 1,
     "rankGapNum": "1",
-    "voteRate": 0.0186,
+    "voteRate": 0.02,
     "voteNum": 980
   },
   {
@@ -464,7 +464,7 @@
     "voteItemSeq": 7000052,
     "rankNum": 2,
     "rankGapNum": "2",
-    "voteRate": 0.0184,
+    "voteRate": 0.02,
     "voteNum": 970
   },
   {
@@ -473,7 +473,7 @@
     "voteItemSeq": 7000053,
     "rankNum": 3,
     "rankGapNum": "",
-    "voteRate": 0.0182,
+    "voteRate": 0.02,
     "voteNum": 960
   },
   {
@@ -482,7 +482,7 @@
     "voteItemSeq": 7000054,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.018,
+    "voteRate": 0.02,
     "voteNum": 950
   },
   {
@@ -491,7 +491,7 @@
     "voteItemSeq": 7000055,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0178,
+    "voteRate": 0.02,
     "voteNum": 940
   },
   {
@@ -500,7 +500,7 @@
     "voteItemSeq": 7000056,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0176,
+    "voteRate": 0.02,
     "voteNum": 930
   },
   {
@@ -509,7 +509,7 @@
     "voteItemSeq": 7000057,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0174,
+    "voteRate": 0.02,
     "voteNum": 920
   },
   {
@@ -518,7 +518,7 @@
     "voteItemSeq": 7000058,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0173,
+    "voteRate": 0.02,
     "voteNum": 910
   },
   {
@@ -527,7 +527,7 @@
     "voteItemSeq": 7000059,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0171,
+    "voteRate": 0.02,
     "voteNum": 900
   },
   {
@@ -536,7 +536,7 @@
     "voteItemSeq": 7000060,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0169,
+    "voteRate": 0.02,
     "voteNum": 890
   },
   {
@@ -545,7 +545,7 @@
     "voteItemSeq": 7000061,
     "rankNum": 11,
     "rankGapNum": "2",
-    "voteRate": 0.0167,
+    "voteRate": 0.02,
     "voteNum": 880
   },
   {
@@ -554,7 +554,7 @@
     "voteItemSeq": 7000062,
     "rankNum": 12,
     "rankGapNum": "",
-    "voteRate": 0.0165,
+    "voteRate": 0.02,
     "voteNum": 870
   },
   {
@@ -563,7 +563,7 @@
     "voteItemSeq": 7000063,
     "rankNum": 13,
     "rankGapNum": "",
-    "voteRate": 0.0163,
+    "voteRate": 0.02,
     "voteNum": 860
   },
   {
@@ -572,7 +572,7 @@
     "voteItemSeq": 7000064,
     "rankNum": 14,
     "rankGapNum": "",
-    "voteRate": 0.0161,
+    "voteRate": 0.02,
     "voteNum": 850
   },
   {
@@ -581,7 +581,7 @@
     "voteItemSeq": 7000065,
     "rankNum": 15,
     "rankGapNum": "",
-    "voteRate": 0.0159,
+    "voteRate": 0.02,
     "voteNum": 840
   },
   {
@@ -590,7 +590,7 @@
     "voteItemSeq": 7000066,
     "rankNum": 16,
     "rankGapNum": "",
-    "voteRate": 0.0157,
+    "voteRate": 0.02,
     "voteNum": 830
   },
   {
@@ -599,7 +599,7 @@
     "voteItemSeq": 7000067,
     "rankNum": 17,
     "rankGapNum": "",
-    "voteRate": 0.0155,
+    "voteRate": 0.02,
     "voteNum": 820
   },
   {
@@ -608,7 +608,7 @@
     "voteItemSeq": 7000068,
     "rankNum": 18,
     "rankGapNum": "",
-    "voteRate": 0.0154,
+    "voteRate": 0.02,
     "voteNum": 810
   },
   {
@@ -617,7 +617,7 @@
     "voteItemSeq": 7000069,
     "rankNum": 19,
     "rankGapNum": "",
-    "voteRate": 0.0152,
+    "voteRate": 0.02,
     "voteNum": 800
   },
   {
@@ -626,7 +626,7 @@
     "voteItemSeq": 7000070,
     "rankNum": 20,
     "rankGapNum": "",
-    "voteRate": 0.015,
+    "voteRate": 0.01,
     "voteNum": 790
   },
   {
@@ -635,7 +635,7 @@
     "voteItemSeq": 7000071,
     "rankNum": 21,
     "rankGapNum": "",
-    "voteRate": 0.0148,
+    "voteRate": 0.01,
     "voteNum": 780
   },
   {
@@ -644,7 +644,7 @@
     "voteItemSeq": 7000072,
     "rankNum": 22,
     "rankGapNum": "3",
-    "voteRate": 0.0146,
+    "voteRate": 0.01,
     "voteNum": 770
   },
   {
@@ -653,7 +653,7 @@
     "voteItemSeq": 7000073,
     "rankNum": 23,
     "rankGapNum": "",
-    "voteRate": 0.0144,
+    "voteRate": 0.01,
     "voteNum": 760
   },
   {
@@ -662,7 +662,7 @@
     "voteItemSeq": 7000074,
     "rankNum": 24,
     "rankGapNum": "",
-    "voteRate": 0.0142,
+    "voteRate": 0.01,
     "voteNum": 750
   },
   {
@@ -671,7 +671,7 @@
     "voteItemSeq": 7000075,
     "rankNum": 25,
     "rankGapNum": "",
-    "voteRate": 0.014,
+    "voteRate": 0.01,
     "voteNum": 740
   },
   {
@@ -680,7 +680,7 @@
     "voteItemSeq": 7000076,
     "rankNum": 26,
     "rankGapNum": "",
-    "voteRate": 0.0138,
+    "voteRate": 0.01,
     "voteNum": 730
   },
   {
@@ -689,7 +689,7 @@
     "voteItemSeq": 7000077,
     "rankNum": 27,
     "rankGapNum": "",
-    "voteRate": 0.0136,
+    "voteRate": 0.01,
     "voteNum": 720
   },
   {
@@ -698,7 +698,7 @@
     "voteItemSeq": 7000078,
     "rankNum": 28,
     "rankGapNum": "",
-    "voteRate": 0.0135,
+    "voteRate": 0.01,
     "voteNum": 710
   },
   {
@@ -707,7 +707,7 @@
     "voteItemSeq": 7000079,
     "rankNum": 29,
     "rankGapNum": "",
-    "voteRate": 0.0133,
+    "voteRate": 0.01,
     "voteNum": 700
   },
   {
@@ -716,7 +716,7 @@
     "voteItemSeq": 7000080,
     "rankNum": 30,
     "rankGapNum": "",
-    "voteRate": 0.0131,
+    "voteRate": 0.01,
     "voteNum": 690
   },
   {
@@ -725,7 +725,7 @@
     "voteItemSeq": 7000081,
     "rankNum": 31,
     "rankGapNum": "",
-    "voteRate": 0.0129,
+    "voteRate": 0.01,
     "voteNum": 680
   },
   {
@@ -734,7 +734,7 @@
     "voteItemSeq": 7000082,
     "rankNum": 32,
     "rankGapNum": "",
-    "voteRate": 0.0127,
+    "voteRate": 0.01,
     "voteNum": 670
   },
   {
@@ -743,7 +743,7 @@
     "voteItemSeq": 7000083,
     "rankNum": 33,
     "rankGapNum": "4",
-    "voteRate": 0.0125,
+    "voteRate": 0.01,
     "voteNum": 660
   },
   {
@@ -752,7 +752,7 @@
     "voteItemSeq": 7000084,
     "rankNum": 34,
     "rankGapNum": "5",
-    "voteRate": 0.0123,
+    "voteRate": 0.01,
     "voteNum": 650
   },
   {
@@ -761,7 +761,7 @@
     "voteItemSeq": 7000085,
     "rankNum": 35,
     "rankGapNum": "6",
-    "voteRate": 0.0121,
+    "voteRate": 0.01,
     "voteNum": 640
   },
   {
@@ -770,7 +770,7 @@
     "voteItemSeq": 7000086,
     "rankNum": 36,
     "rankGapNum": "7",
-    "voteRate": 0.0119,
+    "voteRate": 0.01,
     "voteNum": 630
   },
   {
@@ -779,7 +779,7 @@
     "voteItemSeq": 7000087,
     "rankNum": 37,
     "rankGapNum": "",
-    "voteRate": 0.0118,
+    "voteRate": 0.01,
     "voteNum": 620
   },
   {
@@ -788,7 +788,7 @@
     "voteItemSeq": 7000088,
     "rankNum": 38,
     "rankGapNum": "",
-    "voteRate": 0.0116,
+    "voteRate": 0.01,
     "voteNum": 610
   },
   {
@@ -797,7 +797,7 @@
     "voteItemSeq": 7000089,
     "rankNum": 39,
     "rankGapNum": "",
-    "voteRate": 0.0114,
+    "voteRate": 0.01,
     "voteNum": 600
   },
   {
@@ -806,7 +806,7 @@
     "voteItemSeq": 7000090,
     "rankNum": 40,
     "rankGapNum": "",
-    "voteRate": 0.0112,
+    "voteRate": 0.01,
     "voteNum": 590
   },
   {
@@ -815,7 +815,7 @@
     "voteItemSeq": 7000091,
     "rankNum": 41,
     "rankGapNum": "",
-    "voteRate": 0.011,
+    "voteRate": 0.01,
     "voteNum": 580
   },
   {
@@ -824,7 +824,7 @@
     "voteItemSeq": 7000092,
     "rankNum": 42,
     "rankGapNum": "",
-    "voteRate": 0.0108,
+    "voteRate": 0.01,
     "voteNum": 570
   },
   {
@@ -833,7 +833,7 @@
     "voteItemSeq": 7000093,
     "rankNum": 43,
     "rankGapNum": "",
-    "voteRate": 0.0106,
+    "voteRate": 0.01,
     "voteNum": 560
   },
   {
@@ -842,7 +842,7 @@
     "voteItemSeq": 7000094,
     "rankNum": 44,
     "rankGapNum": "",
-    "voteRate": 0.0104,
+    "voteRate": 0.01,
     "voteNum": 550
   },
   {
@@ -851,7 +851,7 @@
     "voteItemSeq": 7000095,
     "rankNum": 45,
     "rankGapNum": "",
-    "voteRate": 0.0102,
+    "voteRate": 0.01,
     "voteNum": 540
   },
   {
@@ -869,7 +869,7 @@
     "voteItemSeq": 7000097,
     "rankNum": 47,
     "rankGapNum": "",
-    "voteRate": 0.0099,
+    "voteRate": 0.01,
     "voteNum": 520
   },
   {
@@ -878,7 +878,7 @@
     "voteItemSeq": 7000098,
     "rankNum": 48,
     "rankGapNum": "",
-    "voteRate": 0.0097,
+    "voteRate": 0.01,
     "voteNum": 510
   },
   {
@@ -887,7 +887,7 @@
     "voteItemSeq": 7000099,
     "rankNum": 49,
     "rankGapNum": "",
-    "voteRate": 0.0095,
+    "voteRate": 0.01,
     "voteNum": 500
   },
   {
@@ -896,7 +896,7 @@
     "voteItemSeq": 7000100,
     "rankNum": 50,
     "rankGapNum": "",
-    "voteRate": 0.0093,
+    "voteRate": 0.01,
     "voteNum": 490
   },
   {
@@ -905,7 +905,7 @@
     "voteItemSeq": 7000102,
     "rankNum": 3,
     "rankGapNum": "1",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 8
   },
   {
@@ -914,7 +914,7 @@
     "voteItemSeq": 7000103,
     "rankNum": 1,
     "rankGapNum": "2",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -923,7 +923,7 @@
     "voteItemSeq": 7000104,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 7
   },
   {
@@ -932,7 +932,7 @@
     "voteItemSeq": 7000105,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 6
   },
   {
@@ -941,7 +941,7 @@
     "voteItemSeq": 7000106,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 5
   },
   {
@@ -950,7 +950,7 @@
     "voteItemSeq": 7000107,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -959,7 +959,7 @@
     "voteItemSeq": 7000108,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -968,7 +968,7 @@
     "voteItemSeq": 7000109,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -977,7 +977,7 @@
     "voteItemSeq": 7000110,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -986,7 +986,7 @@
     "voteItemSeq": 7000111,
     "rankNum": 2,
     "rankGapNum": "",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -995,7 +995,7 @@
     "voteItemSeq": 7000113,
     "rankNum": 3,
     "rankGapNum": "1",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 8
   },
   {
@@ -1004,7 +1004,7 @@
     "voteItemSeq": 7000114,
     "rankNum": 1,
     "rankGapNum": "2",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -1013,7 +1013,7 @@
     "voteItemSeq": 7000115,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 7
   },
   {
@@ -1022,7 +1022,7 @@
     "voteItemSeq": 7000116,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 6
   },
   {
@@ -1031,7 +1031,7 @@
     "voteItemSeq": 7000117,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 5
   },
   {
@@ -1040,7 +1040,7 @@
     "voteItemSeq": 7000118,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1049,7 +1049,7 @@
     "voteItemSeq": 7000119,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1058,7 +1058,7 @@
     "voteItemSeq": 7000120,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1067,7 +1067,7 @@
     "voteItemSeq": 7000121,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1076,7 +1076,7 @@
     "voteItemSeq": 7000122,
     "rankNum": 2,
     "rankGapNum": "",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -1085,7 +1085,7 @@
     "voteItemSeq": 7000124,
     "rankNum": 3,
     "rankGapNum": "1",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 8
   },
   {
@@ -1094,7 +1094,7 @@
     "voteItemSeq": 7000125,
     "rankNum": 1,
     "rankGapNum": "2",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -1103,7 +1103,7 @@
     "voteItemSeq": 7000126,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 7
   },
   {
@@ -1112,7 +1112,7 @@
     "voteItemSeq": 7000127,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 6
   },
   {
@@ -1121,7 +1121,7 @@
     "voteItemSeq": 7000128,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 5
   },
   {
@@ -1130,7 +1130,7 @@
     "voteItemSeq": 7000129,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1139,7 +1139,7 @@
     "voteItemSeq": 7000130,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1148,7 +1148,7 @@
     "voteItemSeq": 7000131,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1157,7 +1157,7 @@
     "voteItemSeq": 7000132,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1166,7 +1166,7 @@
     "voteItemSeq": 7000133,
     "rankNum": 2,
     "rankGapNum": "",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -1175,7 +1175,7 @@
     "voteItemSeq": 7000135,
     "rankNum": 3,
     "rankGapNum": "1",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 8
   },
   {
@@ -1184,7 +1184,7 @@
     "voteItemSeq": 7000136,
     "rankNum": 1,
     "rankGapNum": "2",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -1193,7 +1193,7 @@
     "voteItemSeq": 7000137,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 7
   },
   {
@@ -1202,7 +1202,7 @@
     "voteItemSeq": 7000138,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 6
   },
   {
@@ -1211,7 +1211,7 @@
     "voteItemSeq": 7000139,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 5
   },
   {
@@ -1220,7 +1220,7 @@
     "voteItemSeq": 7000140,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1229,7 +1229,7 @@
     "voteItemSeq": 7000141,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1238,7 +1238,7 @@
     "voteItemSeq": 7000142,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1247,7 +1247,7 @@
     "voteItemSeq": 7000143,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1256,7 +1256,7 @@
     "voteItemSeq": 7000144,
     "rankNum": 2,
     "rankGapNum": "",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -1265,7 +1265,7 @@
     "voteItemSeq": 7000146,
     "rankNum": 3,
     "rankGapNum": "1",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 8
   },
   {
@@ -1274,7 +1274,7 @@
     "voteItemSeq": 7000147,
     "rankNum": 1,
     "rankGapNum": "2",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -1283,7 +1283,7 @@
     "voteItemSeq": 7000148,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 7
   },
   {
@@ -1292,7 +1292,7 @@
     "voteItemSeq": 7000149,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 6
   },
   {
@@ -1301,7 +1301,7 @@
     "voteItemSeq": 7000150,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 5
   },
   {
@@ -1310,7 +1310,7 @@
     "voteItemSeq": 7000151,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1319,7 +1319,7 @@
     "voteItemSeq": 7000152,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1328,7 +1328,7 @@
     "voteItemSeq": 7000153,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1337,7 +1337,7 @@
     "voteItemSeq": 7000154,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1346,7 +1346,7 @@
     "voteItemSeq": 7000155,
     "rankNum": 2,
     "rankGapNum": "",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -1355,7 +1355,7 @@
     "voteItemSeq": 7000157,
     "rankNum": 3,
     "rankGapNum": "1",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 8
   },
   {
@@ -1364,7 +1364,7 @@
     "voteItemSeq": 7000158,
     "rankNum": 1,
     "rankGapNum": "2",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -1373,7 +1373,7 @@
     "voteItemSeq": 7000159,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 7
   },
   {
@@ -1382,7 +1382,7 @@
     "voteItemSeq": 7000160,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 6
   },
   {
@@ -1391,7 +1391,7 @@
     "voteItemSeq": 7000161,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 5
   },
   {
@@ -1400,7 +1400,7 @@
     "voteItemSeq": 7000162,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1409,7 +1409,7 @@
     "voteItemSeq": 7000163,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1418,7 +1418,7 @@
     "voteItemSeq": 7000164,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1427,7 +1427,7 @@
     "voteItemSeq": 7000165,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1436,7 +1436,7 @@
     "voteItemSeq": 7000166,
     "rankNum": 2,
     "rankGapNum": "",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -1445,7 +1445,7 @@
     "voteItemSeq": 7000168,
     "rankNum": 3,
     "rankGapNum": "1",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 8
   },
   {
@@ -1454,7 +1454,7 @@
     "voteItemSeq": 7000169,
     "rankNum": 1,
     "rankGapNum": "2",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -1463,7 +1463,7 @@
     "voteItemSeq": 7000170,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 7
   },
   {
@@ -1472,7 +1472,7 @@
     "voteItemSeq": 7000171,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 6
   },
   {
@@ -1481,7 +1481,7 @@
     "voteItemSeq": 7000172,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 5
   },
   {
@@ -1490,7 +1490,7 @@
     "voteItemSeq": 7000173,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1499,7 +1499,7 @@
     "voteItemSeq": 7000174,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1508,7 +1508,7 @@
     "voteItemSeq": 7000175,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1517,7 +1517,7 @@
     "voteItemSeq": 7000176,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1526,7 +1526,7 @@
     "voteItemSeq": 7000177,
     "rankNum": 2,
     "rankGapNum": "",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -1535,7 +1535,7 @@
     "voteItemSeq": 7000179,
     "rankNum": 3,
     "rankGapNum": "1",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 8
   },
   {
@@ -1544,7 +1544,7 @@
     "voteItemSeq": 7000180,
     "rankNum": 1,
     "rankGapNum": "2",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -1553,7 +1553,7 @@
     "voteItemSeq": 7000181,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 7
   },
   {
@@ -1562,7 +1562,7 @@
     "voteItemSeq": 7000182,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 6
   },
   {
@@ -1571,7 +1571,7 @@
     "voteItemSeq": 7000183,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 5
   },
   {
@@ -1580,7 +1580,7 @@
     "voteItemSeq": 7000184,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1589,7 +1589,7 @@
     "voteItemSeq": 7000185,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1598,7 +1598,7 @@
     "voteItemSeq": 7000186,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1607,7 +1607,7 @@
     "voteItemSeq": 7000187,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1616,7 +1616,7 @@
     "voteItemSeq": 7000188,
     "rankNum": 2,
     "rankGapNum": "",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -1625,7 +1625,7 @@
     "voteItemSeq": 7000190,
     "rankNum": 3,
     "rankGapNum": "1",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 8
   },
   {
@@ -1634,7 +1634,7 @@
     "voteItemSeq": 7000191,
     "rankNum": 1,
     "rankGapNum": "2",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -1643,7 +1643,7 @@
     "voteItemSeq": 7000192,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 7
   },
   {
@@ -1652,7 +1652,7 @@
     "voteItemSeq": 7000193,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 6
   },
   {
@@ -1661,7 +1661,7 @@
     "voteItemSeq": 7000194,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 5
   },
   {
@@ -1670,7 +1670,7 @@
     "voteItemSeq": 7000195,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1679,7 +1679,7 @@
     "voteItemSeq": 7000196,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1688,7 +1688,7 @@
     "voteItemSeq": 7000197,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1697,7 +1697,7 @@
     "voteItemSeq": 7000198,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1706,7 +1706,7 @@
     "voteItemSeq": 7000199,
     "rankNum": 2,
     "rankGapNum": "",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -1715,7 +1715,7 @@
     "voteItemSeq": 7000201,
     "rankNum": 3,
     "rankGapNum": "1",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 8
   },
   {
@@ -1724,7 +1724,7 @@
     "voteItemSeq": 7000202,
     "rankNum": 1,
     "rankGapNum": "2",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -1733,7 +1733,7 @@
     "voteItemSeq": 7000203,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 7
   },
   {
@@ -1742,7 +1742,7 @@
     "voteItemSeq": 7000204,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 6
   },
   {
@@ -1751,7 +1751,7 @@
     "voteItemSeq": 7000205,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 5
   },
   {
@@ -1760,7 +1760,7 @@
     "voteItemSeq": 7000206,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1769,7 +1769,7 @@
     "voteItemSeq": 7000207,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1778,7 +1778,7 @@
     "voteItemSeq": 7000208,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1787,7 +1787,7 @@
     "voteItemSeq": 7000209,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1796,7 +1796,7 @@
     "voteItemSeq": 7000210,
     "rankNum": 2,
     "rankGapNum": "",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -1805,7 +1805,7 @@
     "voteItemSeq": 7000212,
     "rankNum": 3,
     "rankGapNum": "1",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 8
   },
   {
@@ -1814,7 +1814,7 @@
     "voteItemSeq": 7000213,
     "rankNum": 1,
     "rankGapNum": "2",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -1823,7 +1823,7 @@
     "voteItemSeq": 7000214,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 7
   },
   {
@@ -1832,7 +1832,7 @@
     "voteItemSeq": 7000215,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 6
   },
   {
@@ -1841,7 +1841,7 @@
     "voteItemSeq": 7000216,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 5
   },
   {
@@ -1850,7 +1850,7 @@
     "voteItemSeq": 7000217,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1859,7 +1859,7 @@
     "voteItemSeq": 7000218,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1868,7 +1868,7 @@
     "voteItemSeq": 7000219,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1877,7 +1877,7 @@
     "voteItemSeq": 7000220,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1886,7 +1886,7 @@
     "voteItemSeq": 7000221,
     "rankNum": 2,
     "rankGapNum": "",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -1895,7 +1895,7 @@
     "voteItemSeq": 7000223,
     "rankNum": 3,
     "rankGapNum": "1",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 8
   },
   {
@@ -1904,7 +1904,7 @@
     "voteItemSeq": 7000224,
     "rankNum": 1,
     "rankGapNum": "2",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -1913,7 +1913,7 @@
     "voteItemSeq": 7000225,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 7
   },
   {
@@ -1922,7 +1922,7 @@
     "voteItemSeq": 7000226,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 6
   },
   {
@@ -1931,7 +1931,7 @@
     "voteItemSeq": 7000227,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 5
   },
   {
@@ -1940,7 +1940,7 @@
     "voteItemSeq": 7000228,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1949,7 +1949,7 @@
     "voteItemSeq": 7000229,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1958,7 +1958,7 @@
     "voteItemSeq": 7000230,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1967,7 +1967,7 @@
     "voteItemSeq": 7000231,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -1976,7 +1976,7 @@
     "voteItemSeq": 7000232,
     "rankNum": 2,
     "rankGapNum": "",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -1985,7 +1985,7 @@
     "voteItemSeq": 7000234,
     "rankNum": 3,
     "rankGapNum": "1",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 8
   },
   {
@@ -1994,7 +1994,7 @@
     "voteItemSeq": 7000235,
     "rankNum": 1,
     "rankGapNum": "2",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -2003,7 +2003,7 @@
     "voteItemSeq": 7000236,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 7
   },
   {
@@ -2012,7 +2012,7 @@
     "voteItemSeq": 7000237,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 6
   },
   {
@@ -2021,7 +2021,7 @@
     "voteItemSeq": 7000238,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 5
   },
   {
@@ -2030,7 +2030,7 @@
     "voteItemSeq": 7000239,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2039,7 +2039,7 @@
     "voteItemSeq": 7000240,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2048,7 +2048,7 @@
     "voteItemSeq": 7000241,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2057,7 +2057,7 @@
     "voteItemSeq": 7000242,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2066,7 +2066,7 @@
     "voteItemSeq": 7000243,
     "rankNum": 2,
     "rankGapNum": "",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -2075,7 +2075,7 @@
     "voteItemSeq": 7000245,
     "rankNum": 3,
     "rankGapNum": "1",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 8
   },
   {
@@ -2084,7 +2084,7 @@
     "voteItemSeq": 7000246,
     "rankNum": 1,
     "rankGapNum": "2",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -2093,7 +2093,7 @@
     "voteItemSeq": 7000247,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 7
   },
   {
@@ -2102,7 +2102,7 @@
     "voteItemSeq": 7000248,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 6
   },
   {
@@ -2111,7 +2111,7 @@
     "voteItemSeq": 7000249,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 5
   },
   {
@@ -2120,7 +2120,7 @@
     "voteItemSeq": 7000250,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2129,7 +2129,7 @@
     "voteItemSeq": 7000251,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2138,7 +2138,7 @@
     "voteItemSeq": 7000252,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2147,7 +2147,7 @@
     "voteItemSeq": 7000253,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2156,7 +2156,7 @@
     "voteItemSeq": 7000254,
     "rankNum": 2,
     "rankGapNum": "",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -2165,7 +2165,7 @@
     "voteItemSeq": 7000256,
     "rankNum": 3,
     "rankGapNum": "1",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 8
   },
   {
@@ -2174,7 +2174,7 @@
     "voteItemSeq": 7000257,
     "rankNum": 1,
     "rankGapNum": "2",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -2183,7 +2183,7 @@
     "voteItemSeq": 7000258,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 7
   },
   {
@@ -2192,7 +2192,7 @@
     "voteItemSeq": 7000259,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 6
   },
   {
@@ -2201,7 +2201,7 @@
     "voteItemSeq": 7000260,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 5
   },
   {
@@ -2210,7 +2210,7 @@
     "voteItemSeq": 7000261,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2219,7 +2219,7 @@
     "voteItemSeq": 7000262,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2228,7 +2228,7 @@
     "voteItemSeq": 7000263,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2237,7 +2237,7 @@
     "voteItemSeq": 7000264,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2246,7 +2246,7 @@
     "voteItemSeq": 7000265,
     "rankNum": 2,
     "rankGapNum": "",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -2255,7 +2255,7 @@
     "voteItemSeq": 7000267,
     "rankNum": 3,
     "rankGapNum": "1",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 8
   },
   {
@@ -2264,7 +2264,7 @@
     "voteItemSeq": 7000268,
     "rankNum": 1,
     "rankGapNum": "2",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -2273,7 +2273,7 @@
     "voteItemSeq": 7000269,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 7
   },
   {
@@ -2282,7 +2282,7 @@
     "voteItemSeq": 7000270,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 6
   },
   {
@@ -2291,7 +2291,7 @@
     "voteItemSeq": 7000271,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 5
   },
   {
@@ -2300,7 +2300,7 @@
     "voteItemSeq": 7000272,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2309,7 +2309,7 @@
     "voteItemSeq": 7000273,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2318,7 +2318,7 @@
     "voteItemSeq": 7000274,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2327,7 +2327,7 @@
     "voteItemSeq": 7000275,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2336,7 +2336,7 @@
     "voteItemSeq": 7000276,
     "rankNum": 2,
     "rankGapNum": "",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -2345,7 +2345,7 @@
     "voteItemSeq": 7000278,
     "rankNum": 3,
     "rankGapNum": "1",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 8
   },
   {
@@ -2354,7 +2354,7 @@
     "voteItemSeq": 7000279,
     "rankNum": 1,
     "rankGapNum": "2",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -2363,7 +2363,7 @@
     "voteItemSeq": 7000280,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 7
   },
   {
@@ -2372,7 +2372,7 @@
     "voteItemSeq": 7000281,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 6
   },
   {
@@ -2381,7 +2381,7 @@
     "voteItemSeq": 7000282,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 5
   },
   {
@@ -2390,7 +2390,7 @@
     "voteItemSeq": 7000283,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2399,7 +2399,7 @@
     "voteItemSeq": 7000284,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2408,7 +2408,7 @@
     "voteItemSeq": 7000285,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2417,7 +2417,7 @@
     "voteItemSeq": 7000286,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2426,7 +2426,7 @@
     "voteItemSeq": 7000287,
     "rankNum": 2,
     "rankGapNum": "",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -2435,7 +2435,7 @@
     "voteItemSeq": 7000289,
     "rankNum": 3,
     "rankGapNum": "1",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 8
   },
   {
@@ -2444,7 +2444,7 @@
     "voteItemSeq": 7000290,
     "rankNum": 1,
     "rankGapNum": "2",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -2453,7 +2453,7 @@
     "voteItemSeq": 7000291,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 7
   },
   {
@@ -2462,7 +2462,7 @@
     "voteItemSeq": 7000292,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 6
   },
   {
@@ -2471,7 +2471,7 @@
     "voteItemSeq": 7000293,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 5
   },
   {
@@ -2480,7 +2480,7 @@
     "voteItemSeq": 7000294,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2489,7 +2489,7 @@
     "voteItemSeq": 7000295,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2498,7 +2498,7 @@
     "voteItemSeq": 7000296,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2507,7 +2507,7 @@
     "voteItemSeq": 7000297,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2516,7 +2516,7 @@
     "voteItemSeq": 7000298,
     "rankNum": 2,
     "rankGapNum": "",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -2525,7 +2525,7 @@
     "voteItemSeq": 7000300,
     "rankNum": 3,
     "rankGapNum": "1",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 8
   },
   {
@@ -2534,7 +2534,7 @@
     "voteItemSeq": 7000301,
     "rankNum": 1,
     "rankGapNum": "2",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -2543,7 +2543,7 @@
     "voteItemSeq": 7000302,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 7
   },
   {
@@ -2552,7 +2552,7 @@
     "voteItemSeq": 7000303,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 6
   },
   {
@@ -2561,7 +2561,7 @@
     "voteItemSeq": 7000304,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 5
   },
   {
@@ -2570,7 +2570,7 @@
     "voteItemSeq": 7000305,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2579,7 +2579,7 @@
     "voteItemSeq": 7000306,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2588,7 +2588,7 @@
     "voteItemSeq": 7000307,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2597,7 +2597,7 @@
     "voteItemSeq": 7000308,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2606,7 +2606,7 @@
     "voteItemSeq": 7000309,
     "rankNum": 2,
     "rankGapNum": "",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -2615,7 +2615,7 @@
     "voteItemSeq": 7000311,
     "rankNum": 3,
     "rankGapNum": "1",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 8
   },
   {
@@ -2624,7 +2624,7 @@
     "voteItemSeq": 7000312,
     "rankNum": 1,
     "rankGapNum": "2",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -2633,7 +2633,7 @@
     "voteItemSeq": 7000313,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 7
   },
   {
@@ -2642,7 +2642,7 @@
     "voteItemSeq": 7000314,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 6
   },
   {
@@ -2651,7 +2651,7 @@
     "voteItemSeq": 7000315,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 5
   },
   {
@@ -2660,7 +2660,7 @@
     "voteItemSeq": 7000316,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2669,7 +2669,7 @@
     "voteItemSeq": 7000317,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2678,7 +2678,7 @@
     "voteItemSeq": 7000318,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2687,7 +2687,7 @@
     "voteItemSeq": 7000319,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2696,7 +2696,7 @@
     "voteItemSeq": 7000320,
     "rankNum": 2,
     "rankGapNum": "",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -2705,7 +2705,7 @@
     "voteItemSeq": 7000321,
     "rankNum": 3,
     "rankGapNum": "1",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 8
   },
   {
@@ -2714,7 +2714,7 @@
     "voteItemSeq": 7000322,
     "rankNum": 1,
     "rankGapNum": "2",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -2723,7 +2723,7 @@
     "voteItemSeq": 7000323,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 7
   },
   {
@@ -2732,7 +2732,7 @@
     "voteItemSeq": 7000324,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 6
   },
   {
@@ -2741,7 +2741,7 @@
     "voteItemSeq": 7000325,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 5
   },
   {
@@ -2750,7 +2750,7 @@
     "voteItemSeq": 7000326,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2759,7 +2759,7 @@
     "voteItemSeq": 7000327,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2768,7 +2768,7 @@
     "voteItemSeq": 7000328,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2777,7 +2777,7 @@
     "voteItemSeq": 7000329,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2786,7 +2786,7 @@
     "voteItemSeq": 7000330,
     "rankNum": 2,
     "rankGapNum": "",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -2795,7 +2795,7 @@
     "voteItemSeq": 7000333,
     "rankNum": 3,
     "rankGapNum": "1",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 8
   },
   {
@@ -2804,7 +2804,7 @@
     "voteItemSeq": 7000334,
     "rankNum": 1,
     "rankGapNum": "2",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -2813,7 +2813,7 @@
     "voteItemSeq": 7000335,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 7
   },
   {
@@ -2822,7 +2822,7 @@
     "voteItemSeq": 7000336,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 6
   },
   {
@@ -2831,7 +2831,7 @@
     "voteItemSeq": 7000337,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 5
   },
   {
@@ -2840,7 +2840,7 @@
     "voteItemSeq": 7000338,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2849,7 +2849,7 @@
     "voteItemSeq": 7000339,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2858,7 +2858,7 @@
     "voteItemSeq": 7000340,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2867,7 +2867,7 @@
     "voteItemSeq": 7000341,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2876,7 +2876,7 @@
     "voteItemSeq": 7000342,
     "rankNum": 2,
     "rankGapNum": "",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -2885,7 +2885,7 @@
     "voteItemSeq": 7000344,
     "rankNum": 3,
     "rankGapNum": "1",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 8
   },
   {
@@ -2894,7 +2894,7 @@
     "voteItemSeq": 7000345,
     "rankNum": 1,
     "rankGapNum": "2",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -2903,7 +2903,7 @@
     "voteItemSeq": 7000346,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 7
   },
   {
@@ -2912,7 +2912,7 @@
     "voteItemSeq": 7000347,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 6
   },
   {
@@ -2921,7 +2921,7 @@
     "voteItemSeq": 7000348,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 5
   },
   {
@@ -2930,7 +2930,7 @@
     "voteItemSeq": 7000349,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2939,7 +2939,7 @@
     "voteItemSeq": 7000350,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2948,7 +2948,7 @@
     "voteItemSeq": 7000351,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2957,7 +2957,7 @@
     "voteItemSeq": 7000352,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -2966,7 +2966,7 @@
     "voteItemSeq": 7000353,
     "rankNum": 2,
     "rankGapNum": "",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -2975,7 +2975,7 @@
     "voteItemSeq": 7000355,
     "rankNum": 3,
     "rankGapNum": "1",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 8
   },
   {
@@ -2984,7 +2984,7 @@
     "voteItemSeq": 7000356,
     "rankNum": 1,
     "rankGapNum": "2",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -2993,7 +2993,7 @@
     "voteItemSeq": 7000357,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 7
   },
   {
@@ -3002,7 +3002,7 @@
     "voteItemSeq": 7000358,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 6
   },
   {
@@ -3011,7 +3011,7 @@
     "voteItemSeq": 7000359,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 5
   },
   {
@@ -3020,7 +3020,7 @@
     "voteItemSeq": 7000360,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -3029,7 +3029,7 @@
     "voteItemSeq": 7000361,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -3038,7 +3038,7 @@
     "voteItemSeq": 7000362,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -3047,7 +3047,7 @@
     "voteItemSeq": 7000363,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -3056,7 +3056,7 @@
     "voteItemSeq": 7000364,
     "rankNum": 2,
     "rankGapNum": "",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -3065,7 +3065,7 @@
     "voteItemSeq": 7000367,
     "rankNum": 3,
     "rankGapNum": "1",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 8
   },
   {
@@ -3074,7 +3074,7 @@
     "voteItemSeq": 7000368,
     "rankNum": 1,
     "rankGapNum": "2",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -3083,7 +3083,7 @@
     "voteItemSeq": 7000369,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 7
   },
   {
@@ -3092,7 +3092,7 @@
     "voteItemSeq": 7000370,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 6
   },
   {
@@ -3101,7 +3101,7 @@
     "voteItemSeq": 7000371,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 5
   },
   {
@@ -3110,7 +3110,7 @@
     "voteItemSeq": 7000372,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -3119,7 +3119,7 @@
     "voteItemSeq": 7000373,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -3128,7 +3128,7 @@
     "voteItemSeq": 7000374,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -3137,7 +3137,7 @@
     "voteItemSeq": 7000375,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -3146,7 +3146,7 @@
     "voteItemSeq": 7000376,
     "rankNum": 2,
     "rankGapNum": "",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -3155,7 +3155,7 @@
     "voteItemSeq": 7000378,
     "rankNum": 3,
     "rankGapNum": "1",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 8
   },
   {
@@ -3164,7 +3164,7 @@
     "voteItemSeq": 7000379,
     "rankNum": 1,
     "rankGapNum": "2",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -3173,7 +3173,7 @@
     "voteItemSeq": 7000380,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 7
   },
   {
@@ -3182,7 +3182,7 @@
     "voteItemSeq": 7000381,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 6
   },
   {
@@ -3191,7 +3191,7 @@
     "voteItemSeq": 7000382,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 5
   },
   {
@@ -3200,7 +3200,7 @@
     "voteItemSeq": 7000383,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -3209,7 +3209,7 @@
     "voteItemSeq": 7000384,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -3218,7 +3218,7 @@
     "voteItemSeq": 7000385,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -3227,7 +3227,7 @@
     "voteItemSeq": 7000386,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -3236,7 +3236,7 @@
     "voteItemSeq": 7000387,
     "rankNum": 2,
     "rankGapNum": "",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -3245,7 +3245,7 @@
     "voteItemSeq": 7000378,
     "rankNum": 3,
     "rankGapNum": "1",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 8
   },
   {
@@ -3254,7 +3254,7 @@
     "voteItemSeq": 7000379,
     "rankNum": 1,
     "rankGapNum": "2",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -3263,7 +3263,7 @@
     "voteItemSeq": 7000380,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 7
   },
   {
@@ -3272,7 +3272,7 @@
     "voteItemSeq": 7000381,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 6
   },
   {
@@ -3281,7 +3281,7 @@
     "voteItemSeq": 7000382,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 5
   },
   {
@@ -3290,7 +3290,7 @@
     "voteItemSeq": 7000383,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -3299,7 +3299,7 @@
     "voteItemSeq": 7000384,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -3308,7 +3308,7 @@
     "voteItemSeq": 7000385,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -3317,7 +3317,7 @@
     "voteItemSeq": 7000386,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -3326,7 +3326,7 @@
     "voteItemSeq": 7000387,
     "rankNum": 2,
     "rankGapNum": "",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -3335,7 +3335,7 @@
     "voteItemSeq": 7000389,
     "rankNum": 3,
     "rankGapNum": "1",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 8
   },
   {
@@ -3344,7 +3344,7 @@
     "voteItemSeq": 7000390,
     "rankNum": 1,
     "rankGapNum": "2",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
   },
   {
@@ -3353,7 +3353,7 @@
     "voteItemSeq": 7000391,
     "rankNum": 4,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 7
   },
   {
@@ -3362,7 +3362,7 @@
     "voteItemSeq": 7000392,
     "rankNum": 5,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 6
   },
   {
@@ -3371,7 +3371,7 @@
     "voteItemSeq": 7000393,
     "rankNum": 6,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 5
   },
   {
@@ -3380,7 +3380,7 @@
     "voteItemSeq": 7000394,
     "rankNum": 7,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -3389,7 +3389,7 @@
     "voteItemSeq": 7000395,
     "rankNum": 8,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -3398,7 +3398,7 @@
     "voteItemSeq": 7000396,
     "rankNum": 9,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -3407,7 +3407,7 @@
     "voteItemSeq": 7000397,
     "rankNum": 10,
     "rankGapNum": "",
-    "voteRate": 0.0001,
+    "voteRate": 0.00,
     "voteNum": 4
   },
   {
@@ -3416,7 +3416,367 @@
     "voteItemSeq": 7000398,
     "rankNum": 2,
     "rankGapNum": "",
-    "voteRate": 0.0002,
+    "voteRate": 0.00,
     "voteNum": 10
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000400,
+    "rankNum": 1,
+    "rankGapNum": "1",
+    "voteRate": 0.02,
+    "voteNum": 980
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000401,
+    "rankNum": 2,
+    "rankGapNum": "2",
+    "voteRate": 0.02,
+    "voteNum": 970
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000402,
+    "rankNum": 3,
+    "rankGapNum": "",
+    "voteRate": 0.02,
+    "voteNum": 960
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000403,
+    "rankNum": 4,
+    "rankGapNum": "",
+    "voteRate": 0.02,
+    "voteNum": 950
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000404,
+    "rankNum": 5,
+    "rankGapNum": "",
+    "voteRate": 0.02,
+    "voteNum": 940
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000405,
+    "rankNum": 6,
+    "rankGapNum": "",
+    "voteRate": 0.02,
+    "voteNum": 930
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000406,
+    "rankNum": 7,
+    "rankGapNum": "",
+    "voteRate": 0.02,
+    "voteNum": 920
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000407,
+    "rankNum": 8,
+    "rankGapNum": "",
+    "voteRate": 0.02,
+    "voteNum": 910
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000408,
+    "rankNum": 9,
+    "rankGapNum": "",
+    "voteRate": 0.02,
+    "voteNum": 900
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000409,
+    "rankNum": 10,
+    "rankGapNum": "",
+    "voteRate": 0.02,
+    "voteNum": 890
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000410,
+    "rankNum": 11,
+    "rankGapNum": "2",
+    "voteRate": 0.02,
+    "voteNum": 880
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000411,
+    "rankNum": 12,
+    "rankGapNum": "",
+    "voteRate": 0.02,
+    "voteNum": 870
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000412,
+    "rankNum": 13,
+    "rankGapNum": "",
+    "voteRate": 0.02,
+    "voteNum": 860
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000413,
+    "rankNum": 14,
+    "rankGapNum": "",
+    "voteRate": 0.02,
+    "voteNum": 850
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000414,
+    "rankNum": 15,
+    "rankGapNum": "",
+    "voteRate": 0.02,
+    "voteNum": 840
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000415,
+    "rankNum": 16,
+    "rankGapNum": "",
+    "voteRate": 0.02,
+    "voteNum": 830
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000416,
+    "rankNum": 17,
+    "rankGapNum": "",
+    "voteRate": 0.02,
+    "voteNum": 820
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000417,
+    "rankNum": 18,
+    "rankGapNum": "",
+    "voteRate": 0.02,
+    "voteNum": 810
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000418,
+    "rankNum": 19,
+    "rankGapNum": "",
+    "voteRate": 0.02,
+    "voteNum": 800
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000419,
+    "rankNum": 20,
+    "rankGapNum": "",
+    "voteRate": 0.01,
+    "voteNum": 790
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000420,
+    "rankNum": 21,
+    "rankGapNum": "",
+    "voteRate": 0.01,
+    "voteNum": 780
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000421,
+    "rankNum": 22,
+    "rankGapNum": "3",
+    "voteRate": 0.01,
+    "voteNum": 770
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000422,
+    "rankNum": 23,
+    "rankGapNum": "",
+    "voteRate": 0.01,
+    "voteNum": 760
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000423,
+    "rankNum": 24,
+    "rankGapNum": "",
+    "voteRate": 0.01,
+    "voteNum": 750
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000424,
+    "rankNum": 25,
+    "rankGapNum": "",
+    "voteRate": 0.01,
+    "voteNum": 740
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000425,
+    "rankNum": 26,
+    "rankGapNum": "",
+    "voteRate": 0.01,
+    "voteNum": 730
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000426,
+    "rankNum": 27,
+    "rankGapNum": "",
+    "voteRate": 0.01,
+    "voteNum": 740
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000427,
+    "rankNum": 28,
+    "rankGapNum": "",
+    "voteRate": 0.01,
+    "voteNum": 730
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000428,
+    "rankNum": 29,
+    "rankGapNum": "",
+    "voteRate": 0.01,
+    "voteNum": 740
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000429,
+    "rankNum": 30,
+    "rankGapNum": "",
+    "voteRate": 0.01,
+    "voteNum": 730
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000430,
+    "rankNum": 31,
+    "rankGapNum": "",
+    "voteRate": 0.01,
+    "voteNum": 740
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000431,
+    "rankNum": 32,
+    "rankGapNum": "",
+    "voteRate": 0.01,
+    "voteNum": 730
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000432,
+    "rankNum": 33,
+    "rankGapNum": "",
+    "voteRate": 0.01,
+    "voteNum": 740
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000433,
+    "rankNum": 34,
+    "rankGapNum": "",
+    "voteRate": 0.01,
+    "voteNum": 730
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000434,
+    "rankNum": 35,
+    "rankGapNum": "",
+    "voteRate": 0.01,
+    "voteNum": 740
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000435,
+    "rankNum": 36,
+    "rankGapNum": "",
+    "voteRate": 0.01,
+    "voteNum": 730
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000436,
+    "rankNum": 37,
+    "rankGapNum": "",
+    "voteRate": 0.01,
+    "voteNum": 740
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000437,
+    "rankNum": 38,
+    "rankGapNum": "",
+    "voteRate": 0.01,
+    "voteNum": 730
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000438,
+    "rankNum": 39,
+    "rankGapNum": "",
+    "voteRate": 0.01,
+    "voteNum": 740
+  },
+  {
+    "typeId": "voteItemStats",
+    "voteSeq": 800035,
+    "voteItemSeq": 7000439,
+    "rankNum": 40,
+    "rankGapNum": "",
+    "voteRate": 0.01,
+    "voteNum": 730
   }
 ]
