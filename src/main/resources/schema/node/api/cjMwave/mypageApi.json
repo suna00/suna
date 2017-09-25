@@ -49,7 +49,7 @@
           "pageSize": "{{:pageSize}}"
         },
         {
-          "referenceView": "contsMetaId"
+          "referenceView": "contsMetaId,compontSinglePhotoIds"
         }
       ]
     }
