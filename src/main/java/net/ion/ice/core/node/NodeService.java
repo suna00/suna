@@ -246,7 +246,9 @@ public class NodeService {
     private void  initSchema() throws IOException {
         saveSchema("classpath:schema/core/*.json");
         saveSchema("classpath:schema/core/*/*.json");
-        saveSchema("classpath:schema/core/datasource/" + environment.getActiveProfiles()[0] + "/dataSource.json");
+        try {
+            saveSchema("classpath:schema/core/datasource/" + environment.getActiveProfiles()[0] + "/dataSource.json");
+        }catch (Exception e){}
 
 //        saveSchema("classpath:schema/node/*.json", lastChanged);
 //        saveSchema("classpath:schema/node/**/*.json");
