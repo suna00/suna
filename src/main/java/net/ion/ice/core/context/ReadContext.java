@@ -250,6 +250,9 @@ public class ReadContext implements Context, Serializable {
             Node node = NodeUtils.getNode(nodeType.getTypeId(), id) ;
             if(node != null) {
                 queryResult.put("item", makeResult(node));
+            }else{
+                queryResult.put("result", "404") ;
+                queryResult.put("resultMessage", "Not Found") ;
             }
         }
 
@@ -453,7 +456,9 @@ public class ReadContext implements Context, Serializable {
     }
 
     public boolean hasLocale() {
-        return this.data != null && ((this.data.containsKey("locale") && StringUtils.isNotEmpty((String) data.get("locale"))) || (this.data.containsKey("langCd") && StringUtils.isNotEmpty((String) data.get("langCd")))) ;
+//        return this.data != null && ((this.data.containsKey("locale") && StringUtils.isNotEmpty((String) data.get("locale"))) || (this.data.containsKey("langCd") && StringUtils.isNotEmpty((String) data.get("langCd")))) ;
+        return this.data != null && ((this.data.containsKey("locale")) || (this.data.containsKey("langCd"))) ;
+
     }
 
     public String getLocale() {

@@ -48,12 +48,13 @@ public class ClusterService {
     }
 
     public boolean checkClusterGroup(NodeType nodeType){
+        if(clusterConfiguration.isAll()){
+            return true ;
+        }
         String clusterGroup = nodeType.getClusterGroup() ;
         if(StringUtils.isEmpty(clusterGroup)){
             clusterGroup = "cms" ;
         }
-
-
         if(clusterGroup.equals("all")) return true ;
         return clusterConfiguration.getGroupList().contains(clusterGroup) ;
     }

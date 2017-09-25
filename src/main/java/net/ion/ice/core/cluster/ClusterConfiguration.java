@@ -31,6 +31,8 @@ public class ClusterConfiguration {
     private Logger logger = LoggerFactory.getLogger(ClusterConfiguration.class);
 
     private List<String> members = new ArrayList<>();
+    private String mode ;
+
     private String groups ;
     private HazelcastInstance hazelcast  ;
 
@@ -122,6 +124,14 @@ public class ClusterConfiguration {
 
     public void setGroups(String groups) {
         this.groups = groups;
+    }
+
+    public void setMode(String mode) {
+        this.mode = mode;
+    }
+
+    public boolean isAll() {
+        return mode == null || mode.equals("all");
     }
 }
 
