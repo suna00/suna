@@ -2,6 +2,7 @@ package net.ion.ice.core.context;
 
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.IceRuntimeException;
+import net.ion.ice.core.cluster.ClusterUtils;
 import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.file.FileValue;
 import net.ion.ice.core.node.Node;
@@ -342,6 +343,9 @@ public class ExecuteContext extends ReadContext{
 
         NodeType nodeType = NodeUtils.getNodeType((String) ContextUtils.getValue(config.get("typeId"), data));
         ctx.setNodeType(nodeType);
+        if(ClusterUtils.getClusterService().checkClusterGroup(nodeType)){
+            ctx.remote = true ;
+        }
 
         ctx.event = (String) ContextUtils.getValue(config.get("event"), data);
 
@@ -389,12 +393,16 @@ public class ExecuteContext extends ReadContext{
         if(this.ifTest != null && !(this.ifTest.equalsIgnoreCase("true"))){
             return false ;
         }
-        EventService eventService = ApplicationContextManager.getBean(EventService.class) ;
-        eventService.execute(this) ;
+        if(this.remote != null && this.remote){
+            this.setResult(ClusterUtils.callExecute(this));
+        }else {
+            EventService eventService = ApplicationContextManager.getBean(EventService.class);
+            eventService.execute(this);
 
-        if(subExecuteContexts != null){
-            for(ExecuteContext subExecuteContext : subExecuteContexts){
-                eventService.execute(subExecuteContext);
+            if (subExecuteContexts != null) {
+                for (ExecuteContext subExecuteContext : subExecuteContexts) {
+                    eventService.execute(subExecuteContext);
+                }
             }
         }
         return true ;

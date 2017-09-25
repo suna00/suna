@@ -4,10 +4,7 @@ package net.ion.ice.core.cluster;
  * Created by jaehocho on 2017. 3. 10..
  */
 
-import com.hazelcast.config.Config;
-import com.hazelcast.config.JoinConfig;
-import com.hazelcast.config.QueueConfig;
-import com.hazelcast.config.ReliableTopicConfig;
+import com.hazelcast.config.*;
 import com.hazelcast.core.*;
 import com.hazelcast.topic.TopicOverloadPolicy;
 import org.apache.commons.lang3.StringUtils;
@@ -71,6 +68,16 @@ public class ClusterConfiguration {
                 groupList.add("all");
             }
         }
+
+        if(StringUtils.isEmpty(this.mode)){
+            this.mode = "all" ;
+        }
+
+        MemberAttributeConfig memberConfig = new MemberAttributeConfig() ;
+        memberConfig.setStringAttribute("mode", this.mode);
+        memberConfig.setStringAttribute("groups", StringUtils.join(groupList, ","));
+        config.setMemberAttributeConfig(memberConfig);
+
         logger.info("Define Cluster Group List : " + groupList );
 
         JoinConfig joinConfig = config.getNetworkConfig().getJoin();

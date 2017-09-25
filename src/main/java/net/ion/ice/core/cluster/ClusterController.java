@@ -31,6 +31,7 @@ public class ClusterController {
 
         for(Member member : members){
             System.out.println( member.getAddress().getHost() + ":" + member.getAddress().getPort()) ;
+            System.out.println( member.getAttributes()) ;
         }
 
 

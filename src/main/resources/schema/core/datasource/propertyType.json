@@ -1,8 +1,9 @@
 [
   {
     "typeId" : "propertyType",
+    "id" :"datasource>id",
     "tid" : "datasource",
-    "pid" : "datasourceId",
+    "pid" : "id",
     "propertyTypeName" : "DS ID",
     "valueType" : "STRING",
     "idable" : true,
@@ -12,18 +13,8 @@
     "length": 100
   },
   {
-    "typeId": "propertyType",
-    "tid": "datasource",
-    "pid": "profiles",
-    "propertyTypeName": "Profiles",
-    "valueType": "STRING",
-    "idable": true,
-    "indexable": true,
-    "labelable": false,
-    "required": true
-  },
-  {
     "typeId" : "propertyType",
+    "id" :"datasource>dsName",
     "tid" : "datasource",
     "pid" : "dsName",
     "propertyTypeName" : "DS Name",
@@ -36,6 +27,7 @@
   },
   {
     "typeId" : "propertyType",
+    "id" :"datasource>dbType",
     "tid" : "datasource",
     "pid" : "dbType",
     "propertyTypeName" : "DB Type",
@@ -48,6 +40,7 @@
   },
   {
     "typeId" : "propertyType",
+    "id" :"datasource>jdbcUrl",
     "tid" : "datasource",
     "pid" : "jdbcUrl",
     "propertyTypeName" : "JDBC URL",
@@ -60,6 +53,7 @@
   },
   {
     "typeId" : "propertyType",
+    "id" :"datasource>username",
     "tid" : "datasource",
     "pid" : "username",
     "propertyTypeName" : "User Name",
@@ -73,6 +67,7 @@
   },
   {
     "typeId" : "propertyType",
+    "id" :"datasource>password",
     "tid" : "datasource",
     "pid" : "password",
     "propertyTypeName" : "Password",
