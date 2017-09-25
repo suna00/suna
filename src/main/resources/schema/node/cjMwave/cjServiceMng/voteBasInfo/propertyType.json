@@ -92,8 +92,8 @@
   {
     "typeId": "propertyType",
     "tid": "voteBasInfo",
-    "pid": "logoImgUrl",
-    "id": "voteBasInfo>logoImgUrl",
+    "pid": "spnsrLogoImgPath",
+    "id": "voteBasInfo>spnsrLogoImgPath",
     "propertyTypeName": "로고 이미지 경로",
     "valueType": "FILE",
     "required": false,
