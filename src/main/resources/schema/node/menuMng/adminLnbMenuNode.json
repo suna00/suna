@@ -727,8 +727,12 @@
         "pageUrl": "cj/br/BanrList"
       },
       {
-        "pageName": "등록/수정",
+        "pageName": "기본정보등록",
         "pageUrl": "cj/br/BanrForm"
+      },
+      {
+        "pageName": "항목등록/수정",
+        "pageUrl": "cj/br/BanrUForm"
       },
       {
         "pageName": "상세",
