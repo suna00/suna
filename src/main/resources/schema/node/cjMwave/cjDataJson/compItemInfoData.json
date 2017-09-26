@@ -577,10 +577,10 @@
   },
   {
     "typeId": "compItemInfo",
-    "compItemSeq": 21203,
-    "mainSeq": 116,
+    "compItemSeq": 21303,
+    "mainSeq": 122,
     "itemDivCd": "4",
-    "itemId": "",
+    "itemId": "voteBasInfo::800001",
     "itemNm": "M COUNTDOWN PRE-VOTE",
     "subName": "Vote for the BEST Korean song loved by fans around the world!",
     "typeCd": "4",
