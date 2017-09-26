@@ -4987,6 +4987,15 @@
   },
   {
     "typeId": "commonCode",
+    "code": "sleepMember",
+    "upperCode": "emailCertificationType",
+    "name": "휴면회원해제",
+    "description": "",
+    "sortOrder": "4",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
     "code": "mainBannerLocation",
     "upperCode": "root",
     "name": "메인 배너 위치",
