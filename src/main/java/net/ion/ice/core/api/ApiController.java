@@ -2,6 +2,8 @@ package net.ion.ice.core.api;
 
 import net.ion.ice.core.query.SimpleQueryResult;
 import net.ion.ice.core.response.JsonResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.context.request.WebRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
@@ -18,6 +21,7 @@ import java.io.IOException;
  */
 @Controller
 public class ApiController {
+    private static Logger logger = LoggerFactory.getLogger(ApiController.class);
 
     @Autowired
     private ApiService apiService ;
@@ -113,6 +117,7 @@ public class ApiController {
         try {
             return apiService.execute(request, category, api, method) ;
         } catch (Exception e) {
+            logger.error("api error : " + request.getNativeRequest(HttpServletRequest.class).getRequestURI()) ;
             if(e.getCause() instanceof ClassCastException){
                 return JsonResponse.error(new Exception("형식이 맞지 않습니다."));
             }else{

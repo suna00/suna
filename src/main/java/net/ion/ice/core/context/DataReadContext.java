@@ -1,12 +1,14 @@
 package net.ion.ice.core.context;
 
 import net.ion.ice.core.data.bind.NodeBindingInfo;
+import net.ion.ice.core.infinispan.NotFoundNodeException;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
 import net.ion.ice.core.query.QueryResult;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.dao.EmptyResultDataAccessException;
 
 import java.util.List;
 import java.util.Map;
@@ -30,16 +32,25 @@ public class DataReadContext extends ReadContext{
     }
 
     public QueryResult makeResult() {
-        Map<String, Object> resultData = nodeBindingInfo.retrieve(id) ;
-        Node node = new Node(resultData, nodeType.getTypeId()) ;
+        try {
+            Map<String, Object> resultData = nodeBindingInfo.retrieve(id);
+            Node node = new Node(resultData, nodeType.getTypeId());
 
-        QueryResult itemResult = makeResult(node);
+            QueryResult itemResult = makeResult(node);
 
-        QueryResult queryResult = new QueryResult() ;
-        queryResult.put("result", "200") ;
-        queryResult.put("resultMessage", "SUCCESS") ;
-        queryResult.put("item", itemResult) ;
+            QueryResult queryResult = new QueryResult();
+            queryResult.put("result", "200");
+            queryResult.put("resultMessage", "SUCCESS");
+            queryResult.put("item", itemResult);
 
-        return queryResult ;
+            return queryResult ;
+        }catch(NotFoundNodeException e){
+            QueryResult queryResult = new QueryResult();
+            queryResult.put("result", "404");
+            queryResult.put("resultMessage", "Not Found!");
+            return queryResult ;
+
+        }
+
     }
 }

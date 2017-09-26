@@ -5,12 +5,14 @@ import net.ion.ice.core.data.DBDataTypes;
 import net.ion.ice.core.data.DBQuery;
 import net.ion.ice.core.data.DBTypes;
 import net.ion.ice.core.data.table.Column;
+import net.ion.ice.core.infinispan.NotFoundNodeException;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.PropertyType;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.io.Serializable;
@@ -234,8 +236,13 @@ public class NodeBindingInfo implements Serializable {
 
     public Map<String, Object> retrieve(String id) {
         List<String> parameters = retrieveParameters(id);
-        Map<String, Object> result = jdbcTemplate.queryForMap(retrieveSql, parameters.toArray());
-        return result;
+        try {
+            Map<String, Object> result = jdbcTemplate.queryForMap(retrieveSql, parameters.toArray());
+            return result ;
+        }catch(EmptyResultDataAccessException e){
+            logger.error("Node Binding Retrieve Error : "+ retrieveSql + " : " + id);
+            throw new NotFoundNodeException("data", id) ;
+        }
     }
 
     public Long retrieveSequence() {
