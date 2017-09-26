@@ -411,8 +411,14 @@ public class ExecuteContext extends ReadContext{
         }else if(this.node != null){
             this.result = node ;
             return node ;
+        }else if(StringUtils.isNotEmpty(id)){
+            try {
+                return NodeUtils.getNode(nodeType.getTypeId(), id);
+            }catch(Exception e){
+                return new HashMap<String, Object>() ;
+            }
         }else{
-            return NodeUtils.getNode(nodeType.getTypeId(), id) ;
+            return new HashMap<String, Object>() ;
         }
     }
 }
