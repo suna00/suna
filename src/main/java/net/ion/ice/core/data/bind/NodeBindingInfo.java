@@ -5,13 +5,14 @@ import net.ion.ice.core.data.DBDataTypes;
 import net.ion.ice.core.data.DBQuery;
 import net.ion.ice.core.data.DBTypes;
 import net.ion.ice.core.data.table.Column;
+import net.ion.ice.core.infinispan.NotFoundNodeException;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.PropertyType;
-import net.ion.ice.core.query.QueryTerm;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.io.Serializable;
@@ -25,7 +26,7 @@ import java.util.*;
  * Created by seonwoong on 2017. 6. 28..
  */
 
-public class NodeBindingInfo implements Serializable{
+public class NodeBindingInfo implements Serializable {
     private static Logger logger = LoggerFactory.getLogger(NodeBindingInfo.class);
 
     private NodeType nodeType;
@@ -235,8 +236,13 @@ public class NodeBindingInfo implements Serializable{
 
     public Map<String, Object> retrieve(String id) {
         List<String> parameters = retrieveParameters(id);
-        Map<String, Object> result = jdbcTemplate.queryForMap(retrieveSql, parameters.toArray());
-        return result;
+        try {
+            Map<String, Object> result = jdbcTemplate.queryForMap(retrieveSql, parameters.toArray());
+            return result ;
+        }catch(EmptyResultDataAccessException e){
+            logger.error("Node Binding Retrieve Error : "+ retrieveSql + " : " + id);
+            throw new NotFoundNodeException("data", id) ;
+        }
     }
 
     public Long retrieveSequence() {
@@ -285,17 +291,39 @@ public class NodeBindingInfo implements Serializable{
         return queryCallBack;
     }
 
+    public int delete(String id) {
+        List<String> parameters = retrieveParameters(id);
+        int queryCallBack = jdbcTemplate.update(deleteSql, parameters.toArray());
+        return queryCallBack;
+    }
+    /**
+     * 디비 저장 시 디비 컬럼이 null이 가능한지 체크 하고 가능하면 null 저장
+     * 불가능하면 빈 텍스트 저장하도록 수정. 테스트 필요.. 문제되면 알려주세요.
+     * */
     private List<Object> insertParameters(Map<String, String[]> parameterMap) {
-        List<Object> parameters = new ArrayList<>();
+        List<Object> insertParameters = new ArrayList<>();
         for (PropertyType pid : insertPids) {
-            if (parameterMap.get(pid.getPid()) == null) {
-                parameters.add(null);
-            } else {
-                parameters.add(parameterMap.get(pid.getPid())[0]);
-            }
+            for (Column column : columnList) {
+                if (column.getColumnName().equals(pid.getPid())) {
+                    if (column.getNullable()) {
+                        if (parameterMap.get(pid.getPid()) == null || parameterMap.get(pid.getPid())[0].equals("")) {
+                            insertParameters.add(null);
+                        } else {
+                            insertParameters.add(parameterMap.get(pid.getPid())[0]);
+                        }
 
+                    } else {
+                        if (parameterMap.get(pid.getPid()) == null || parameterMap.get(pid.getPid())[0].equals("")) {
+                            insertParameters.add("");
+                        } else {
+                            insertParameters.add(parameterMap.get(pid.getPid())[0]);
+                        }
+                    }
+                    break;
+                }
+            }
         }
-        return parameters;
+        return insertParameters;
     }
 
     private List<Object> insertParameters(Node node) {
@@ -307,19 +335,37 @@ public class NodeBindingInfo implements Serializable{
     }
 
     private List<Object> updateParameters(Map<String, String[]> parameterMap) {
-        List<Object> parameters = new ArrayList<>();
+        List<Object> updateParameters = new ArrayList<>();
         for (PropertyType pid : updatePids) {
-            parameters.add(parameterMap.get(pid.getPid())[0]);
+            for (Column column : columnList) {
+                if (column.getColumnName().equals(pid.getPid())) {
+                    if (column.getNullable()) {
+                        if (parameterMap.get(pid.getPid()) == null || parameterMap.get(pid.getPid())[0].equals("")) {
+                            updateParameters.add(null);
+                        } else {
+                            updateParameters.add(parameterMap.get(pid.getPid())[0]);
+                        }
+
+                    } else {
+                        if (parameterMap.get(pid.getPid()) == null || parameterMap.get(pid.getPid())[0].equals("")) {
+                            updateParameters.add("");
+                        } else {
+                            updateParameters.add(parameterMap.get(pid.getPid())[0]);
+                        }
+                    }
+                    break;
+                }
+            }
         }
 
         for (PropertyType pid : wherePids) {
-            if(pid.getIdType().equals(PropertyType.IdType.autoIncrement)){
+            if (pid.getIdType().equals(PropertyType.IdType.autoIncrement)) {
 
             }
-            parameters.add(parameterMap.get(pid.getPid())[0]);
+            updateParameters.add(parameterMap.get(pid.getPid())[0]);
 
         }
-        return parameters;
+        return updateParameters;
     }
 
     private List<Object> updateParameters(Node node) {
@@ -343,6 +389,7 @@ public class NodeBindingInfo implements Serializable{
         }
         return parameters;
     }
+
 
     public Object extractNodeValue(Node node, String pid) {
         return node.getBindingValue(pid);

@@ -10,8 +10,11 @@ import com.hazelcast.topic.TopicOverloadPolicy;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 
 import javax.annotation.PostConstruct;
 import java.util.*;
@@ -27,33 +30,36 @@ import java.util.*;
 public class ClusterConfiguration {
     private Logger logger = LoggerFactory.getLogger(ClusterConfiguration.class);
 
+    private String port ;
+
     private List<String> members = new ArrayList<>();
     private String mode ;
 
     private String groups ;
-    private HazelcastInstance hazelcast  ;
+    private static HazelcastInstance hazelcast  ;
 
     private List<String> groupList = new ArrayList<>() ;
 
     private Map<String, ITopic> topicMap = new HashMap<>() ;
     private Map<String, IQueue> queueMap = new HashMap<>() ;
 
+    @Autowired
+    private Environment environment;
+
+
     @PostConstruct
     public void init(){
-        try{
-            if(hazelcast == null) {
-                hazelcast = Hazelcast.newHazelcastInstance(config());
-                for(String grp : groupList){
-                    ITopic topic = hazelcast.getReliableTopic(grp + "_topic") ;
-                    topic.addMessageListener(new TopicListener()) ;
-                    topicMap.put(grp, topic) ;
+        this.port = environment.getProperty("server.port") ;
+        if(hazelcast == null) {
+            hazelcast = Hazelcast.getOrCreateHazelcastInstance(config());
+            for(String grp : groupList){
+                ITopic topic = hazelcast.getReliableTopic(grp + "_topic") ;
+                topic.addMessageListener(new TopicListener()) ;
+                topicMap.put(grp, topic) ;
 
-                    IQueue queue = hazelcast.getQueue(grp + "_queue") ;
+                IQueue queue = hazelcast.getQueue(grp + "_queue") ;
 
-                }
             }
-        } catch (Exception e) {
-            logger.error("Hazelcast Cluster initializing failed ", e);
         }
     }
 
@@ -80,6 +86,7 @@ public class ClusterConfiguration {
         MemberAttributeConfig memberConfig = new MemberAttributeConfig() ;
         memberConfig.setStringAttribute("mode", this.mode);
         memberConfig.setStringAttribute("groups", StringUtils.join(groupList, ","));
+        memberConfig.setStringAttribute("port", port);
         config.setMemberAttributeConfig(memberConfig);
 
         logger.info("Define Cluster Group List : " + groupList );
@@ -105,6 +112,7 @@ public class ClusterConfiguration {
     }
 
     public Set<Member> getClusterMembers(){
+        if(hazelcast == null) return null ;
         return hazelcast.getCluster().getMembers() ;
     }
 
@@ -118,10 +126,12 @@ public class ClusterConfiguration {
     }
 
     public IAtomicLong getIAtomicLong(String name) {
+        if(hazelcast == null) return null ;
         return hazelcast.getAtomicLong(name) ;
     }
 
     public Map<String, Map<String, Object>> getSesssionMap() {
+        if(hazelcast == null) return null ;
         return hazelcast.getReplicatedMap("ice_session");
     }
 

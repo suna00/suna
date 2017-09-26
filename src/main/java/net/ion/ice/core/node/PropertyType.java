@@ -21,6 +21,7 @@ public class PropertyType implements Serializable{
     public static final String REFERENCE_VALUE = "referenceValue";
     public static final String REFERENCE_VIEW = "referenceView";
     public static final String CODE_FILTER = "codeFilter";
+    public static final String REFERENCED_FILTER = "referencedFilter";
 
     public static final String FILE_HANDLER = "fileHandler";
     public static final String SORTABLE = "sortable";
@@ -166,6 +167,10 @@ public class PropertyType implements Serializable{
 
     public String getCodeFilter() {
         return propertyTypeNode.getStringValue(CODE_FILTER);
+    }
+
+    public String getReferencedFilter() {
+        return propertyTypeNode.getStringValue(REFERENCED_FILTER);
     }
 
     public boolean isTreeable() {

@@ -337,43 +337,6 @@ public class ExecuteContext extends ReadContext{
         }
     }
 
-    public static ExecuteContext makeContextFromConfig(Map<String, Object> config, Map<String, Object> data) {
-        ExecuteContext ctx = new ExecuteContext();
-
-
-        NodeType nodeType = NodeUtils.getNodeType((String) ContextUtils.getValue(config.get("typeId"), data));
-        ctx.setNodeType(nodeType);
-//        if(ClusterUtils.getClusterService().checkClusterGroup(nodeType)){
-//            ctx.remote = true ;
-//        }
-
-        ctx.event = (String) ContextUtils.getValue(config.get("event"), data);
-
-        if(config.containsKey("data")){
-            Map<String, Object> _data = new HashMap<>();
-            _data.putAll(data);
-            Map<String, Object> subData = (Map<String, Object>) config.get("data");
-            for(String key : subData.keySet()){
-                _data.put(key, ContextUtils.getValue(subData.get(key), data)) ;
-            }
-            ctx.data = _data ;
-        }else{
-            ctx.data = data ;
-        }
-
-        if(config.containsKey("response")){
-            ContextUtils.makeApiResponse((Map<String, Object>) config.get("response"), ctx);
-        }
-
-        if(config.containsKey("if")){
-            ctx.ifTest =  ContextUtils.getValue(config.get("if"), data).toString();
-        }
-
-        ctx.init() ;
-
-        return ctx ;
-    }
-
     public static ExecuteContext makeEventContextFromParameter(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, NodeType nodeType, String event) {
         EventExecuteContext ctx = new EventExecuteContext();
 
@@ -393,16 +356,12 @@ public class ExecuteContext extends ReadContext{
         if(this.ifTest != null && !(this.ifTest.equalsIgnoreCase("true"))){
             return false ;
         }
-        if(this.remote != null && this.remote){
-            this.setResult(ClusterUtils.callExecute(this));
-        }else {
-            EventService eventService = ApplicationContextManager.getBean(EventService.class);
-            eventService.execute(this);
+        EventService eventService = ApplicationContextManager.getBean(EventService.class);
+        eventService.execute(this);
 
-            if (subExecuteContexts != null) {
-                for (ExecuteContext subExecuteContext : subExecuteContexts) {
-                    eventService.execute(subExecuteContext);
-                }
+        if (subExecuteContexts != null) {
+            for (ExecuteContext subExecuteContext : subExecuteContexts) {
+                eventService.execute(subExecuteContext);
             }
         }
         return true ;

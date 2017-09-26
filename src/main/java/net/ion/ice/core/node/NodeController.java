@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * Created by jaehocho on 2017. 5. 17..
@@ -200,7 +201,8 @@ public class NodeController {
 
     private Object query(WebRequest request) {
         try {
-            QueryResult queryResult = nodeService.getQueryResult(request.getParameterMap()) ;
+            Map<String, String[]> parameterMap = request.getParameterMap() ;
+            QueryResult queryResult = nodeService.getQueryResult(parameterMap) ;
             return queryResult ;
         } catch (Exception e) {
             logger.error(e.getMessage(), e);

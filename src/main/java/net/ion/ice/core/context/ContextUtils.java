@@ -22,6 +22,7 @@ public class ContextUtils {
         Map<String, Object> data = new HashMap<>();
         if(parameterMap == null) return data ;
         for (String paramName : parameterMap.keySet()) {
+            if(paramName.startsWith("_") && paramName.endsWith("_")) continue;
             if(paramName.contains(".")){
                 String subTypeId = StringUtils.substringBefore(paramName, ".") ;
                 if(data.containsKey(subTypeId) && data.get(subTypeId) instanceof List){
@@ -176,6 +177,15 @@ public class ContextUtils {
             return null;
         } else if(paramName.equals("referenceView")){
             readContext.makeReferenceView(value);
+            return null;
+        } else if(paramName.equals(ApiContext.DATE_FORMAT)){
+            readContext.dateFormat = value ;
+            return null;
+        } else if(paramName.equals(ApiContext.FILE_URL_FORMAT)){
+            try {
+                readContext.fileUrlFormat = JsonUtils.parsingJsonToMap(value) ;
+            } catch (IOException e) {
+            }
             return null;
         }
 
