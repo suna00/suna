@@ -32,7 +32,8 @@ public class ISO639Storage {
         try{
             initializeLanguageInfo();
         } catch (Exception e) {
-            logger.info("FAILED TO LOAD ISO639 INFORMATION :: It will bad effect on Migration :-(");
+            logger.error("FAILED TO LOAD ISO639 INFORMATION :: It will bad effect on Migration :-(", e);
+//            logger.info("FAILED TO LOAD ISO639 INFORMATION :: It will bad effect on Migration :-(");
         }
     }
 
