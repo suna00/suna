@@ -37,7 +37,7 @@
           "ds": "ytnDevDb",
           "resultType": "read",
           "description": "마이페이지 메인 주문 현황",
-          "sql": "SELECT a.memberNo, sum(orderStatus in ('order001','order002')) as orderReception, sum(orderStatus = 'order003') as completePayment, sum(orderStatus = 'order004') as preparingProduct, sum(orderStatus = 'order005') as delivering, sum(orderStatus = 'order006') as completeDelivery, (select count(*) from mypagewritablereviewview where memberNo = 77777) as writableReview, sum(orderStatus >= 'order008') as cancelExchangeReturn from ordersheet a, orderproduct b where a.memberNo=77777 and a.orderSheetId = b.orderSheetId group by a.memberNo "
+          "sql": "SELECT a.memberNo, sum(orderStatus in ('order001','order002')) as orderReception, sum(orderStatus = 'order003') as completePayment, sum(orderStatus = 'order004') as preparingProduct, sum(orderStatus = 'order005') as delivering, sum(orderStatus = 'order006') as completeDelivery, (select count(*) from mypagewritablereviewview where memberNo = @{memberNo}) as writableReview, sum(orderStatus >= 'order008') as cancelExchangeReturn from ordersheet a, orderproduct b where a.memberNo=@{memberNo} and a.orderSheetId = b.orderSheetId group by a.memberNo "
         }
       }
     }
