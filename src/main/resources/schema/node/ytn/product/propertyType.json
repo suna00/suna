@@ -870,8 +870,8 @@
   {
     "typeId": "propertyType",
     "tid": "product",
-    "pid": "reservationYn",
-    "propertyTypeName": "예약배송여부",
+    "pid": "deliveryDateType",
+    "propertyTypeName": "배송일 유형",
     "valueType": "REFERENCE",
     "required": false,
     "idable": false,
@@ -881,7 +881,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "codeFilter": "trueFalse",
+    "codeFilter": "deliveryDateType",
     "defaultValue": ""
   },
   {
@@ -2180,8 +2180,8 @@
   {
     "typeId": "propertyType",
     "tid": "productByAffiliateMall",
-    "pid": "reservationYn",
-    "propertyTypeName": "예약배송여부",
+    "pid": "deliveryDateType",
+    "propertyTypeName": "배송일 유형",
     "valueType": "REFERENCE",
     "required": false,
     "idable": false,
@@ -2191,7 +2191,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "codeFilter": "trueFalse",
+    "codeFilter": "deliveryDateType",
     "defaultValue": ""
   },
   {

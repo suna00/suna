@@ -6280,5 +6280,41 @@
     "description": "",
     "sortOrder": "19",
     "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "deliveryDateType",
+    "upperCode": "root",
+    "name": "배송일 유형",
+    "description": "",
+    "sortOrder": "116",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "n",
+    "upperCode": "deliveryDateType",
+    "name": "사용안함",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "hopeDeliveryPossiblePeriod",
+    "upperCode": "deliveryDateType",
+    "name": "희망배송",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "scheduledDeliveryDate",
+    "upperCode": "deliveryDateType",
+    "name": "예약구매",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
   }
 ]
