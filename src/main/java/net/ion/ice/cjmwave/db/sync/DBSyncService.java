@@ -241,14 +241,34 @@ public class DBSyncService {
                 multiLangQuery = String.valueOf(executionNode.get("multiLanguageQuery"));
             }
 
+            System.out.println("========================================================");
+            System.out.println("multiLanguageQuery :: " + multiLangQuery);
+            System.out.println("========================================================");
+
             // 쿼리
             Map<String, Object> jdbcParam = SyntaxUtils.parseWithLimit(query, start, unit);
             String jdbcQuery = String.valueOf(jdbcParam.get("query"));
-
             Object[] params = (Object[]) jdbcParam.get("params");
+
+
+            System.out.println("========================================================");
+            System.out.println("multiLanguageQuery :: " + jdbcQuery);
+            System.out.println("========================================================");
+
+            System.out.println("========================================================");
+            for(Object a: params) {
+                System.out.println("Class of Param :: " + a.getClass().getName());
+                System.out.println("Value of Param :: " + String.valueOf(a));
+            }
+            System.out.println("========================================================");
+
 
             template = dbService.getJdbcTemplate(targetDs);
             List<Map<String, Object>> queryRs = template.queryForList(jdbcQuery, params);
+
+            System.out.println("========================================================");
+            System.out.println("Q Result :: " + queryRs);
+            System.out.println("========================================================");
 
             if (queryRs == null || queryRs.isEmpty()) {
                 loop = false;

@@ -81,6 +81,7 @@ public class MnetController {
             result = "200";
             result_msg = "SUCCESS";
         } catch (Exception e) {
+            logger.error("ERROR", e);
             cause = e.getMessage();
         }
 
