@@ -221,6 +221,13 @@ public class DBSyncService {
             failPolicy = String.valueOf(executionNode.get("onFail")).trim().toUpperCase();
             failPolicy = (!"NULL".equals(failPolicy) && "STOP".equals(failPolicy)) ? "STOP" : "SKIP";
 
+            System.out.println("==========================================================");
+            System.out.println("==========================================================");
+            System.out.println("EXECUTION NODE :: " + String.valueOf(executionNode));
+            System.out.println("QQQQQ :: " + query);
+            System.out.println("==========================================================");
+            System.out.println("==========================================================");
+
 
             /*
             다국어 처리가 여기로 변경되어야 함
@@ -253,6 +260,14 @@ public class DBSyncService {
 
                 for (Map qMap : queryRs) {
                     // mapping 정보에 맞게 변경
+
+
+                    System.out.println("----------------------------------------------------------");
+                    System.out.println("----------------------------------------------------------");
+                    System.out.println("qoqoqoqoqo :: " + String.valueOf(qMap));
+                    System.out.println("----------------------------------------------------------");
+                    System.out.println("----------------------------------------------------------");
+
                     int rs = 0;
                     Map<String, Object> fit = NodeMappingUtils.mapData(targetNodeType, qMap, mapperStore);
                     if(useMultiLanguage) {
