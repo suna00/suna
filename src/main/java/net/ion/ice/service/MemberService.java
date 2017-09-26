@@ -60,6 +60,33 @@ public class MemberService {
         return context;
     }
 
+    public ExecuteContext certPassword(ExecuteContext context){
+        Map<String, Object> data = new LinkedHashMap<>(context.getData());
+
+        Map<String, Object> resultObject = new HashMap<>();
+        Map<String, Object> item = new HashMap<>();
+
+        if(data.containsKey("email")){
+            authenticationCertEmail(context);
+        }
+
+        if(data.containsKey("cellphone")){
+            NodeBindingInfo nodeBindingInfo = NodeUtils.getNodeBindingInfo("smsCertification");
+            String query = " SELECT * FROM smscertification WHERE certCode = ? AND cellphone = ? AND certStatus = 'success' ";
+            List<Map<String,Object>> certList = nodeBindingInfo.getJdbcTemplate().queryForList(query, data.get("certCode"), data.get("cellphone"));
+
+            if(0 < certList.size()){
+                item.put("memberNo", certList.get(0).get("memberNo"));
+                resultObject.put("item", item);
+                context.setResult(resultObject);
+            } else {
+                commonService.setErrorMessage(context, "U0002"); return context;
+            }
+        }
+
+        return context;
+    }
+
     public ExecuteContext authenticationSendEmail(ExecuteContext context){
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
 
@@ -90,7 +117,10 @@ public class MemberService {
                 sendEmail(emailCertificationType, member.get("email").toString(), member);
 
                 Map<String, Object> resultObject = new HashMap<>();
-                resultObject.put("email", member.get("email"));
+                Map<String, Object> item = new HashMap<>();
+
+                item.put("email", member.get("email"));
+                resultObject.put("item", item);
                 context.setResult(resultObject);
             } else {
                 commonService.setErrorMessage(context, "U0004"); return context;
@@ -103,13 +133,46 @@ public class MemberService {
     public ExecuteContext authenticationSendSms(ExecuteContext context){
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
 
+        Map<String, Object> resultObject = new HashMap<>();
+        Map<String, Object> item = new HashMap<>();
+
         String[] params = { "smsCertificationType" };
         if (commonService.requiredParams(context, data, params)) return context;
 
-        String smsCertificationType = data.get("smsCertificationType").toString(); // 아이디 : id, 패스워드 : password, 휴면회원해제 : sleep
+        NodeBindingInfo nodeBindingInfo = NodeUtils.getNodeBindingInfo("member");
+        String smsCertificationType = data.get("smsCertificationType").toString();
         String cellphone = data.get("cellphone").toString();
 
-        sendSms(smsCertificationType, cellphone, data);
+        if("id".equals(smsCertificationType)){
+            List<Map<String,Object>> memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" SELECT * FROM member WHERE cellphone=? ORDER BY memberNo DESC ", cellphone);
+
+            if(0 < memberList.size()){
+                Map<String, Object> member = memberList.get(0);
+                sendSms(smsCertificationType, cellphone, member);
+
+                item.put("cellphone", member.get("cellphone"));
+                resultObject.put("item", item);
+                context.setResult(resultObject);
+            } else {
+                commonService.setErrorMessage(context, "U0005"); return context;
+            }
+        }
+
+        if("password".equals(smsCertificationType) || "sleepMember".equals(smsCertificationType)){
+            List<Map<String,Object>> memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and userId=? and cellphone=?", data.get("name").toString(), data.get("userId").toString(), cellphone);
+
+            if(0 < memberList.size()){
+                Map<String, Object> member = memberList.get(0);
+                sendSms(smsCertificationType, cellphone, member);
+
+                item.put("memberNo", member.get("memberNo"));
+                item.put("cellphone", member.get("cellphone"));
+                resultObject.put("item", item);
+                context.setResult(resultObject);
+            } else {
+                commonService.setErrorMessage(context, "U0004"); return context;
+            }
+        }
 
         return context;
     }
@@ -121,10 +184,11 @@ public class MemberService {
         if (commonService.requiredParams(context, data, params)) return context;
 
         String certCode = data.get("certCode").toString();
+        String email = data.get("email").toString();
 
         NodeBindingInfo nodeBindingInfo = NodeUtils.getNodeBindingInfo("emailCertification");
-        String query = " SELECT emailcertificationId, email, memberNo, certCode, certStatus, certRequestDate, date_add(certRequestDate, INTERVAL +60 MINUTE) AS certExpireDate, (certStatus = 'request' AND date_add(certRequestDate, INTERVAL +60 MINUTE) > now() AND certCode = ?) AS available FROM emailcertification WHERE certCode = ?  limit 1";
-        List<Map<String, Object>> list = nodeBindingInfo.getJdbcTemplate().queryForList(query, certCode, certCode); // new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())
+        String query = " SELECT emailcertificationId, email, memberNo, certCode, certStatus, certRequestDate, date_add(certRequestDate, INTERVAL +60 MINUTE) AS certExpireDate, (certStatus = 'request' AND date_add(certRequestDate, INTERVAL +60 MINUTE) > now() AND certCode = ?) AS available FROM emailcertification WHERE certCode = ? and email = ? limit 1";
+        List<Map<String, Object>> list = nodeBindingInfo.getJdbcTemplate().queryForList(query, certCode, certCode, email);
 
         if(0 < list.size()){
             Map<String,Object> map = list.get(0);
@@ -142,7 +206,7 @@ public class MemberService {
                 Map<String, Object> item = new HashMap<>();
 
                 item.put("memberNo", map.get("memberNo"));
-                item.put("email", map.get("email"));
+                item.put("email", email); // 회원가입
                 resultObject.put("item", item);
 
                 context.setResult(resultObject);
@@ -163,10 +227,11 @@ public class MemberService {
         if (commonService.requiredParams(context, data, params)) return context;
 
         String certCode = data.get("certCode").toString();
+        String cellphone = data.get("cellphone").toString();
 
         NodeBindingInfo nodeBindingInfo = NodeUtils.getNodeBindingInfo("smsCertification");
-        String query = " SELECT smsCertificationId, memberNo, certCode, certStatus, certRequestDate, date_add(certRequestDate, INTERVAL +3 MINUTE) AS certExpireDate, (certStatus = 'request' AND date_add(certRequestDate, INTERVAL +3 MINUTE) > now() AND certCode = ?) AS available FROM smscertification WHERE certCode = ? limit 1";
-        List<Map<String, Object>> list = nodeBindingInfo.getJdbcTemplate().queryForList(query, certCode, certCode);
+        String query = " SELECT smsCertificationId, cellphone, memberNo, certCode, certStatus, certRequestDate, date_add(certRequestDate, INTERVAL +3 MINUTE) AS certExpireDate, (certStatus = 'request' AND date_add(certRequestDate, INTERVAL +3 MINUTE) > now() AND certCode = ?) AS available FROM smscertification WHERE certCode = ? AND cellphone = ? limit 1";
+        List<Map<String, Object>> list = nodeBindingInfo.getJdbcTemplate().queryForList(query, certCode, certCode, cellphone);
 
         if(0 < list.size()){
             Map<String,Object> map = list.get(0);
@@ -178,7 +243,7 @@ public class MemberService {
                 smsCertificationData.put("certStatus", "success");
                 smsCertificationData.put("certSuccessDate", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()));
 
-                nodeService.executeNode(smsCertificationData, "emailCertification", UPDATE);
+                nodeService.executeNode(smsCertificationData, "smsCertification", UPDATE);
 
                 Map<String, Object> resultObject = new HashMap<>();
                 Map<String, Object> item = new HashMap<>();
@@ -191,7 +256,7 @@ public class MemberService {
                 commonService.setErrorMessage(context, "U0003");
             }
         } else {
-            commonService.setErrorMessage(context, "U0002");
+            commonService.setErrorMessage(context, "U0006");
         }
 
         return context;
@@ -226,21 +291,21 @@ public class MemberService {
         // 회원가입 : join
         if("join".equals(emailCertificationType)){
             String certCode = getEmailCertCode("이메일 인증요청", emailCertificationType, null, email, "request");
-            String linkUrl = "/signUp/stepTwo?certCode="+certCode+"&siteType="+data.get("siteType")+"&acceptTermsYn="+data.get("acceptTermsYn")+"&receiveMarketingEmailAgreeYn="+data.get("receiveMarketingEmailAgreeYn")+"&receiveMarketingSMSAgreeYn="+data.get("receiveMarketingSMSAgreeYn");
+            String linkUrl = "/signUp/stepTwo?certCode="+certCode+"&email="+email+"&siteType="+data.get("siteType")+"&acceptTermsYn="+data.get("acceptTermsYn")+"&receiveMarketingEmailAgreeYn="+data.get("receiveMarketingEmailAgreeYn")+"&receiveMarketingSMSAgreeYn="+data.get("receiveMarketingSMSAgreeYn");
             html = setHtml("본인인증", linkUrl);
         }
 
         // 비밀번호 : password
         if("password".equals(emailCertificationType)){
             String certCode = getEmailCertCode("이메일 인증요청", emailCertificationType, data.get("memberNo").toString(), email, "request");
-            String linkUrl = "/signIn/changePassword?certCode="+certCode;
+            String linkUrl = "/signIn/changePassword?certCode="+certCode+"&email="+email;
             html = setHtml("비밀번호변경", linkUrl);
         }
 
         // 휴면회원:sleep
         if("sleep".equals(emailCertificationType)){
             String certCode = getEmailCertCode("이메일 인증요청", emailCertificationType, data.get("memberNo").toString(), email, "request");
-            String linkUrl = "/signIn/changePassword?certCode="+certCode;
+            String linkUrl = "/signIn/changePassword?certCode="+certCode+"&email="+email;
             html = setHtml("휴면해제이메일인증", linkUrl);
         }
 
@@ -253,6 +318,7 @@ public class MemberService {
         String certCdoe = getSmsCertCode("SMS 인증요청", smsCertificationType, data.get("memberNo").toString(), cellphone, "request");
         String Message = "인증번호["+certCdoe+"]";
 
+        System.out.println(Message);
         // 문자 전송
     }
 
@@ -275,7 +341,7 @@ public class MemberService {
 
     public String getSmsCertCode(String name, String smsCertificationType, String memberNo, String cellphone, String certStatus){
         NodeBindingInfo nodeBindingInfo = NodeUtils.getNodeBindingInfo("smsCertification");
-        String certCode = nodeBindingInfo.getJdbcTemplate().queryForList(" select FLOOR(1000 + (RAND()*8999)) as certCode ").get(0).get("certCode").toString();
+        String certCode = nodeBindingInfo.getJdbcTemplate().queryForList(" select FLOOR(100000 + (RAND()*899999)) as certCode ").get(0).get("certCode").toString();
 
         Map<String, Object> smsCertificationData = new HashMap<>();
         smsCertificationData.put("name",name);
