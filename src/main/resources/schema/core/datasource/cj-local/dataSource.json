@@ -8,15 +8,6 @@
     "dbType": "mySql",
     "username": "cjmwave",
     "password": "cjmwave0!@#"
-  }, {
-    "typeId": "datasource",
-    "id": "cjMig",
-    "dsName": "DEV CMS DB",
-    "jdbcUrl": "jdbc:mysql://125.131.88.156:3306/ice2",
-    "ssl" : false,
-    "dbType": "mySql",
-    "username": "cjmwave",
-    "password": "cjmwave0!@#"
   },
   {
     "typeId" : "datasource",

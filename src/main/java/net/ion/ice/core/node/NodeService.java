@@ -293,11 +293,21 @@ public class NodeService {
     }
 
     private void fileNodeSave(Resource resource) throws IOException {
-        String fileName = StringUtils.substringBefore(resource.getFilename(), ".json");
-        Collection<Map<String, Object>> nodeDataList = JsonUtils.parsingJsonResourceToList(resource) ;
-
+        try{
+            String fileName = StringUtils.substringBefore(resource.getFilename(), ".json");
+            Collection<Map<String, Object>> nodeDataList = JsonUtils.parsingJsonResourceToList(resource) ;
 //        List<Map<String, Object>> dataList = NodeUtils.makeDataListFilterBy(nodeDataList, lastChanged) ;
-        nodeDataList.forEach(data -> saveNode(data));
+
+            for(Map<String, Object> data : nodeDataList) {
+                try{
+                    saveNode(data);
+                } catch (Exception e) {
+                    logger.error("Fail node save :: " + String.valueOf(data), e);
+                }
+            }
+        } catch (Exception e) {
+            logger.error("Fail fileNodeSave :: ", e);
+        }
     }
 
 
