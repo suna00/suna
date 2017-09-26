@@ -102,19 +102,12 @@ public class ApiContext {
 
     private Map<String, Object> makeSubApiReuslt(Map<String, Object> ctxRootConfig) {
         if(ctxRootConfig.containsKey("event")){
-            ExecuteContext executeContext = ExecuteContext.makeContextFromConfig(ctxRootConfig, data) ;
-            if(executeContext.execute()) {
-                if(executeContext.getResult() != null){
-                    addResultData(executeContext.getResult()) ;
-                }else if(executeContext.getNode() != null) {
-                    Node node = executeContext.getNode();
-                    addResultData(node.clone());
-                }
+            ApiExecuteContext executeContext = ApiExecuteContext.makeContextFromConfig(ctxRootConfig, data) ;
+            QueryResult queryResult = executeContext.makeQueryResult() ;
 
-                return executeContext.makeResult() ;
-            }else{
-                return new QueryResult().setResult("0").setResultMessage("None Executed") ;
-            }
+            addResultData(executeContext.getResult());
+
+            return queryResult ;
 
         }else if(ctxRootConfig.containsKey("query")){
             ApiQueryContext queryContext = ApiQueryContext.makeContextFromConfig(ctxRootConfig, data) ;
@@ -211,7 +204,6 @@ public class ApiContext {
 
 
     public void addResultData(Object result) {
-
         Map<String, Object> _data = new HashMap<>() ;
         _data.putAll(data);
 

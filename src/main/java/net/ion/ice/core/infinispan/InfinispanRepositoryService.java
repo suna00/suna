@@ -34,8 +34,6 @@ public class InfinispanRepositoryService {
     @Autowired
     private InfinispanCacheManager cacheManager;
 
-    @Autowired
-    private NodeService nodeService;
 
     public Cache<String, Node> getNodeCache(String tid) {
         return cacheManager.getCache(tid, 100000);

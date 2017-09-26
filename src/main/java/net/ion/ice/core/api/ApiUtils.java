@@ -169,6 +169,7 @@ public class ApiUtils {
 
         for (String key : data.keySet()) {
             Object value = data.get(key) ;
+            if(value == null) continue;
             if (first)
                 first = false;
             else
