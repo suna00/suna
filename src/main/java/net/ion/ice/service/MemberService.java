@@ -108,9 +108,14 @@ public class MemberService {
             }
         }
 
-        // 비밀번호 : password, 휴면회원해제:sleep
-        if("password".equals(emailCertificationType) || "sleep".equals(emailCertificationType)){
-            List<Map<String,Object>> memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and userId=? ", data.get("name").toString(), data.get("userId").toString());
+        // 비밀번호 : password, 휴면회원해제 : sleepMember
+        if("password".equals(emailCertificationType) || "sleepMember".equals(emailCertificationType)){
+            List<Map<String,Object>> memberList;
+            if("password".equals(emailCertificationType)){
+                memberList= nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and userId=? ", data.get("name"), data.get("userId"));
+            } else {
+                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and email=? ", data.get("name"), data.get("email"));
+            }
 
             if(0 < memberList.size()){
                 Map<String, Object> member = memberList.get(0);
@@ -143,6 +148,7 @@ public class MemberService {
         String smsCertificationType = data.get("smsCertificationType").toString();
         String cellphone = data.get("cellphone").toString();
 
+        // 아이디 : id
         if("id".equals(smsCertificationType)){
             List<Map<String,Object>> memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" SELECT * FROM member WHERE cellphone=? ORDER BY memberNo DESC ", cellphone);
 
@@ -158,8 +164,15 @@ public class MemberService {
             }
         }
 
+        // 패스워드 : password, 휴면회원해제 : sleepMember
         if("password".equals(smsCertificationType) || "sleepMember".equals(smsCertificationType)){
-            List<Map<String,Object>> memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and userId=? and cellphone=?", data.get("name").toString(), data.get("userId").toString(), cellphone);
+            List<Map<String, Object>> memberList;
+
+            if("password".equals(smsCertificationType)){
+                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and userId=? and cellphone=? ", data.get("name"), data.get("userId"), cellphone);
+            } else {
+                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and email=? and cellphone=? ", data.get("name"), data.get("email"), cellphone);
+            }
 
             if(0 < memberList.size()){
                 Map<String, Object> member = memberList.get(0);
@@ -300,8 +313,8 @@ public class MemberService {
             html = setHtml("비밀번호변경", linkUrl);
         }
 
-        // 휴면회원:sleep
-        if("sleep".equals(emailCertificationType)){
+        // 휴면회원해제 : sleepMember
+        if("sleepMember".equals(emailCertificationType)){
             String certCode = getEmailCertCode("이메일 인증요청", emailCertificationType, data.get("memberNo").toString(), email, "request");
             String linkUrl = "/signIn/changePassword?certCode="+certCode+"&email="+email;
             html = setHtml("휴면해제이메일인증", linkUrl);
