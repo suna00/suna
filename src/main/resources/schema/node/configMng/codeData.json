@@ -1065,6 +1065,14 @@
   },
   {
     "typeId": "code",
+    "groupCodeId": "contsMetaDivCd",
+    "codeId": "11",
+    "name": "온라인방송",
+    "order": 11,
+    "active": true
+  },
+  {
+    "typeId": "code",
     "groupCodeId": "intrstCd",
     "codeId": 1,
     "name": "뷰티",
