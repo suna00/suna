@@ -275,14 +275,12 @@ public class MemberService {
                 if(hex.length() == 1) hexString.append('0');
                 hexString.append(hex);
             }
-
             encodingPassword = hexString.toString();
-            System.out.println("encodingPassword : " + encodingPassword);
         } catch(Exception ex){
             throw new RuntimeException(ex);
         }
 
-        return  password; //encodingPassword;
+        return  encodingPassword;
     }
 
     public void sendEmail(String emailCertificationType, String email, Map<String, Object> data){
