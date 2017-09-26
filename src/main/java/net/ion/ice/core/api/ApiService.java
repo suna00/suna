@@ -1,19 +1,19 @@
 package net.ion.ice.core.api;
 
+import net.ion.ice.IceRuntimeException;
 import net.ion.ice.core.context.ApiContext;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
-import net.ion.ice.core.response.JsonResponse;
 import net.ion.ice.core.session.SessionService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.NativeWebRequest;
-import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,6 +22,8 @@ import java.util.Map;
 
 @Service
 public class ApiService {
+
+    private static Logger logger = LoggerFactory.getLogger(ApiService.class);
 
     @Autowired
     private NodeService nodeService ;
@@ -36,6 +38,17 @@ public class ApiService {
     public Object execute(NativeWebRequest request, String category, String api, String method, String typeId) {
         Node apiCategory  = nodeService.getNode("apiCategory", category) ;
         Node apiNode = nodeService.getNode("apiConfig", category + Node.ID_SEPERATOR + api) ;
+
+        if(apiCategory == null){
+            logger.error("Not Found Api Category : " + category );
+            throw new IceRuntimeException("Not Found Api Category : " + category) ;
+        }
+
+        if(apiNode == null){
+            logger.error("Not Found Api Config : " + api);
+            throw new IceRuntimeException("Not Found Api Config : " + api) ;
+        }
+
 
         String apiMethod = (String) apiNode.get("method");
         Map<String, Object> session = null;
