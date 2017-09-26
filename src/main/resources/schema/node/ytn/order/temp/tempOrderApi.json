@@ -25,7 +25,7 @@
         "typeId": "tempOrderDeliveryPrice",
         "query": [
           { "sorting": "created desc" },
-          { "field": "tempOrderId", "method": "matching", "value": "{{:tempOrderId}}" }
+          { "field": "tempOrderId", "method": "equals", "value": "{{:tempOrderId}}" }
         ],
         "response": {
           "_all_": "",
