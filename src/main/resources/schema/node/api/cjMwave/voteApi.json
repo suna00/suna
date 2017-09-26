@@ -7,22 +7,6 @@
     "method": "GET",
     "parameters": [
       {
-        "paramName": "page",
-        "required": false
-      },
-      {
-        "paramName": "pageSize",
-        "required": false
-      },
-      {
-        "paramName": "sorting",
-        "required": false
-      },
-      {
-        "paramName": "langCd",
-        "required": false
-      },
-      {
         "paramName": "searchDt",
         "required": false
       }
@@ -71,22 +55,6 @@
     "apiName": "MWAVE 투표 목록조회",
     "method": "GET",
     "parameters": [
-      {
-        "paramName": "page",
-        "required": false
-      },
-      {
-        "paramName": "pageSize",
-        "required": false
-      },
-      {
-        "paramName": "sorting",
-        "required": false
-      },
-      {
-        "paramName": "langCd",
-        "required": false
-      },
       {
         "paramName": "voteFormlCd",
         "required": false
@@ -172,10 +140,6 @@
     "method": "GET",
     "parameters": [
       {
-        "paramName": "langCd",
-        "required": false
-      },
-      {
         "paramName": "voteSeq",
         "required": false
       },
@@ -198,6 +162,10 @@
       {
         "paramName": "snsTypeCd",
         "required": false
+      },
+      {
+        "paramName": "connIpAdr",
+        "required": true
       }
     ],
     "config": {
@@ -522,6 +490,10 @@
       {
         "paramName": "voteResult",
         "required": true
+      },
+      {
+        "paramName": "connIpAdr",
+        "required": true
       }
     ],
     "config": {
@@ -569,6 +541,11 @@
           "field": "showLoCd",
           "method": "matching",
           "value": "{{:showLoCd}}"
+        },
+        {
+          "field": "pstngFnsDt",
+          "method": "under",
+          "value": "{{:now}}"
         },
         {
           "sorting": "{{:sorting}}"
@@ -976,10 +953,6 @@
     "method": "GET",
     "parameters": [
       {
-        "paramName": "langCd",
-        "required": false
-      },
-      {
         "paramName": "bradTelcsDt",
         "required": true
       },
@@ -1057,10 +1030,6 @@
     "method": "GET",
     "parameters": [
       {
-        "paramName": "langCd",
-        "required": false
-      },
-      {
         "paramName": "bradTelcsDt",
         "required": true
       },
@@ -1070,6 +1039,10 @@
       },
       {
         "paramName": "snsTypeCd",
+        "required": true
+      },
+      {
+        "paramName": "connIpAdr",
         "required": true
       }
     ],

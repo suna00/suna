@@ -32,21 +32,31 @@
       }
     ],
     "config": {
-      "typeId": "mbrInfo",
-      "event": "save",
-      "data": {
-        "snsKey": "{{:snsKey}}",
-        "snsTypeCd": "{{:snsTypeCd}}",
-        "aliasNm": "{{:aliasNm}}",
-        "pushMsgRcvYn": "{{:pushMsgRcvYn}}",
-        "sbscShapCd": "{{:sbscShapCd}}",
-        "infoOttpAgreeYn": "{{:infoOttpAgreeYn}}",
-        "mbrDivCd": "1",
-        "mbrSttusCd": "1",
-        "sbscDt": "{{:now}}"
+      "chkMbr": {
+        "typeId": "mbrInfo",
+        "event": "chkMbr",
+        "response": {
+          "chkResult": ""
+        }
       },
-      "response": {
-        "sbscDt": ""
+      "root": {
+        "typeId": "mbrInfo",
+        "event": "save",
+        "if": "{{:chkResult}}",
+        "data": {
+          "snsKey": "{{:snsKey}}",
+          "snsTypeCd": "{{:snsTypeCd}}",
+          "aliasNm": "{{:aliasNm}}",
+          "pushMsgRcvYn": "{{:pushMsgRcvYn}}",
+          "sbscShapCd": "{{:sbscShapCd}}",
+          "infoOttpAgreeYn": "{{:infoOttpAgreeYn}}",
+          "mbrDivCd": "1",
+          "mbrSttusCd": "1",
+          "sbscDt": "{{:now}}"
+        },
+        "response": {
+          "sbscDt": ""
+        }
       }
     }
   },
@@ -233,8 +243,8 @@
     "config": {
       "typeId": "mbrInfo",
       "event": "save",
-      "response":{
-        "imgUrl":""
+      "response": {
+        "imgUrl": ""
       }
     }
   },

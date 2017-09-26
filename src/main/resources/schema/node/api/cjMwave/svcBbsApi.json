@@ -117,6 +117,16 @@
             "typeId": "ntfBbs",
             "query": [
               {
+                "field": "svcTermlDivCd",
+                "method": "matching",
+                "value": "{{:svcTermlDivCd}}"
+              },
+              {
+                "field": "ntfLargeCtgCd",
+                "method": "matching",
+                "value": "{{:ntfLargeCtgCd}}"
+              },
+              {
                 "field": "ntfBbsSeq",
                 "method": "under",
                 "value": "{{:ntfBbsSeq}}"
@@ -137,6 +147,16 @@
           "preItem": {
             "typeId": "ntfBbs",
             "query": [
+              {
+                "field": "svcTermlDivCd",
+                "method": "matching",
+                "value": "{{:svcTermlDivCd}}"
+              },
+              {
+                "field": "ntfLargeCtgCd",
+                "method": "matching",
+                "value": "{{:ntfLargeCtgCd}}"
+              },
               {
                 "field": "ntfBbsSeq",
                 "method": "excess",

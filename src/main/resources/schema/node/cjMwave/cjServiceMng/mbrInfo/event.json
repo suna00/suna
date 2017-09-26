@@ -1,0 +1,18 @@
+[
+  {
+    "typeId": "event",
+    "tid": "mbrInfo",
+    "event": "chkMbr",
+    "noneExecute": true,
+    "eventName": "member check Event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "mbrInfo>chkMbr",
+    "action": "chkMbrEvent",
+    "actionName": "회원 가입 여부 확인",
+    "actionType": "service",
+    "actionBody": "mbrInfoService.chkMbr",
+    "order": 1
+  }
+]

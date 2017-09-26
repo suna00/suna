@@ -106,9 +106,17 @@
           "name": ""
         }
       },
+      "myLikeYn": {
+        "select": {
+          "ds": "cjDb",
+          "resultType": "value",
+          "sql": "select if(count(*)>0,'false','true') myLikeYn from contsLikeInfo where contsMetaDivCd=@{contsMetaDivCd} and contsMetaId=@{makeIdValue(::,name,contsMetaId)} and mbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
+        }
+      },
       "root": {
         "typeId": "contsLikeInfo",
         "event": "save",
+        "if":"{{:myLikeYn}}",
         "data": {
           "contsMetaDivCd": "{{:contsMetaDivCd}}",
           "contsMetaId": "{{:makeIdValue(::,name,contsMetaId)}}",
@@ -172,28 +180,17 @@
       }
     ],
     "config": {
-      "getReplLikeSeq": {
-        "typeId": "replLikeInfo",
-        "resultType": "none",
-        "query": [
-          {
-            "field": "replSeq",
-            "method": "equals",
-            "value": "{{:contsReplSeq}}"
-          },
-          {
-            "field": "mbrId",
-            "method": "equals",
-            "value": "{{:makeIdValue(>,snsTypeCd,snsKey)}}"
-          }
-        ],
-        "response": {
-          "replLikeSeq": ""
+      "myLikeYn": {
+        "select": {
+          "ds": "cjDb",
+          "resultType": "value",
+          "sql": "select if(count(*)>0,'false','true') myLikeYn from replLikeInfo where replSeq=@{contsReplSeq} and mbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
         }
       },
       "root": {
         "typeId": "replLikeInfo",
         "event": "save",
+        "if":"{{:myLikeYn}}",
         "data": {
           "replSeq": "{{:contsReplSeq}}",
           "mbrId": "{{:makeIdValue(>,snsTypeCd,snsKey)}}"
