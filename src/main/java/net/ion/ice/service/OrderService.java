@@ -42,7 +42,7 @@ public class OrderService {
     public void addTempOrder(ExecuteContext context) {
         try {
             saveTempOrder(context);
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -363,8 +363,11 @@ public class OrderService {
         Map<String, Object> data = context.getData();
         Map<String, Object> storeTempOrder = new HashMap<>();
         Map<String, Object> referencedCartDeliveryPrice = null;
+        List<String> selectProductIds = new ArrayList<>();
 
-        List<String> selectProductIds = Arrays.asList(String.valueOf(data.get("productIds")).split(",")); // 카트에서 선택한 상품 리스트
+        if(data.get("productIds") != null){
+            selectProductIds = Arrays.asList(String.valueOf(data.get("productIds")).split(",")); // 카트에서 선택한 상품 리스트
+        }
 
         String cartId = String.valueOf((JsonUtils.parsingJsonToMap((String) data.get("item"))).get("cartId"));
         storeTempOrder.put("cartId", cartId);
@@ -390,11 +393,11 @@ public class OrderService {
             Map<String, Object> storeTempOrderDeliveryPrice = new HashMap<>();
             List<String> tempOrderProductIds = new ArrayList<>();
             storeTempOrderDeliveryPrice.put("tempOrderId", tempOrderId);
-            storeTempOrderDeliveryPrice.put("vendorId", ((Map<String, Object>) cartDeliveryPrice.get("vendorId")).get("value"));
+            storeTempOrderDeliveryPrice.put("vendorId", JsonUtils.getValue(cartDeliveryPrice, "vendorId.value"));
             storeTempOrderDeliveryPrice.put("deliveryPrice", cartDeliveryPrice.get("deliveryPrice"));
             storeTempOrderDeliveryPrice.put("bundleDeliveryYn", ((Map<String, Object>) cartDeliveryPrice.get("bundleDeliveryYn")).get("value"));
-            storeTempOrderDeliveryPrice.put("deliveryMethod", cartDeliveryPrice.get("deliveryMethod"));
-            storeTempOrderDeliveryPrice.put("deliveryPriceType", cartDeliveryPrice.get("deliveryPriceType"));
+            storeTempOrderDeliveryPrice.put("deliveryMethod", JsonUtils.getValue(cartDeliveryPrice, "deliveryMethod.value"));
+            storeTempOrderDeliveryPrice.put("deliveryPriceType", JsonUtils.getValue(cartDeliveryPrice, "deliveryPriceType.value"));
             storeTempOrderDeliveryPrice.put("hopeDeliveryDate", cartDeliveryPrice.get("hopeDeliveryDate"));
 
             /**
@@ -402,8 +405,8 @@ public class OrderService {
              */
             if (selectProductIds.size() == 0) {
                 List<Map<String, String>> cartProductIds = (List<Map<String, String>>) cartDeliveryPrice.get("cartProductIds");
-                for (Map<String, String> ccartProductId : cartProductIds) {
-                    selectProductIds.add(ccartProductId.get("value"));
+                for (Map<String, String> cartProductId : cartProductIds) {
+                    selectProductIds.add(cartProductId.get("value"));
                 }
             }
 
