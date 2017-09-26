@@ -40,10 +40,13 @@ public class ApiQueryContext extends QueryContext{
         queryContext.config = config ;
         queryContext.data = data ;
 
-//        if(!ClusterUtils.getClusterService().checkClusterGroup(nodeType)){
-//            queryContext.remote = true ;
-//            return queryContext ;
-//        }
+        if(!ClusterUtils.getClusterService().checkClusterGroup(nodeType)){
+            queryContext.remote = true ;
+            if(config.containsKey("if")) {
+                queryContext.ifTest = ContextUtils.getValue(config.get("if"), queryContext.data).toString();
+            }
+            return queryContext ;
+        }
 
         for(String key : config.keySet()) {
             if(key.equals("typeId")) continue ;

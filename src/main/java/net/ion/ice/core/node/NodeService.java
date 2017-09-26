@@ -3,6 +3,7 @@ package net.ion.ice.core.node;
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.IceRuntimeException;
 import net.ion.ice.core.cluster.ClusterService;
+import net.ion.ice.core.cluster.ClusterUtils;
 import net.ion.ice.core.context.*;
 import net.ion.ice.core.event.Event;
 import net.ion.ice.core.event.EventAction;
@@ -397,7 +398,15 @@ public class NodeService {
     }
 
     public QueryResult getQueryResult(Map<String, String[]> parameterMap) throws IOException {
-        Map<String, Object> config = JsonUtils.parsingJsonToMap(parameterMap.get("_config_")[0]) ;
+        Map<String, Object> config = JsonUtils.parsingJsonToMap(parameterMap.get(ClusterUtils.CONFIG_)[0]) ;
+        if(parameterMap.containsKey(ClusterUtils.DATE_FORMAT_)){
+            config.put(ApiContext.DATE_FORMAT, parameterMap.get(ClusterUtils.DATE_FORMAT_)[0]) ;
+        }
+        if(parameterMap.containsKey(ClusterUtils.FILE_URL_FORMAT_)){
+            config.put(ApiContext.FILE_URL_FORMAT, parameterMap.get(ClusterUtils.FILE_URL_FORMAT_)[0]) ;
+        }
+
+
         Map<String, Object> data = ContextUtils.makeContextData(parameterMap) ;
 
         ApiQueryContext queryContext = ApiQueryContext.makeContextFromConfig(config, data) ;
