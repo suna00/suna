@@ -6301,7 +6301,7 @@
   },
   {
     "typeId": "commonCode",
-    "code": "hopeDeliveryPossiblePeriod",
+    "code": "hopeDelivery",
     "upperCode": "deliveryDateType",
     "name": "희망배송",
     "description": "",
@@ -6310,7 +6310,7 @@
   },
   {
     "typeId": "commonCode",
-    "code": "scheduledDeliveryDate",
+    "code": "scheduledDelivery",
     "upperCode": "deliveryDateType",
     "name": "예약구매",
     "description": "",
