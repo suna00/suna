@@ -11,7 +11,7 @@ server:
 jwtConfig:
   issuer: I-ON
   secretKey: dkdldhs!@#$
-  tokenPrefix: SDP
+  headerPrefix: SDP
   headString: X-Authorization
   tokenExpirationTime: 15 #분
   refreshTokenExpTime: 60 #분
