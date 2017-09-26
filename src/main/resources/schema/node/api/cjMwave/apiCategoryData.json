@@ -26,7 +26,7 @@
       },
       {
         "paramName": "langCd",
-        "required": true
+        "required": false
       }
     ],
     "commonResponse": {
@@ -60,7 +60,7 @@
       },
       {
         "paramName": "langCd",
-        "required": true
+        "required": false
       }
     ],
     "commonResponse": {
@@ -94,7 +94,7 @@
       },
       {
         "paramName": "langCd",
-        "required": true
+        "required": false
       }
     ],
     "commonResponse": {
@@ -128,7 +128,7 @@
       },
       {
         "paramName": "langCd",
-        "required": true
+        "required": false
       }
     ],
     "commonResponse": {
@@ -162,7 +162,7 @@
       },
       {
         "paramName": "langCd",
-        "required": true
+        "required": false
       }
     ],
     "commonResponse": {
@@ -196,7 +196,7 @@
       },
       {
         "paramName": "langCd",
-        "required": true
+        "required": false
       }
     ],
     "commonResponse": {
@@ -230,7 +230,7 @@
       },
       {
         "paramName": "langCd",
-        "required": true
+        "required": false
       }
     ],
     "commonResponse": {
@@ -264,7 +264,7 @@
       },
       {
         "paramName": "langCd",
-        "required": true
+        "required": false
       }
     ],
     "commonResponse": {
@@ -298,7 +298,7 @@
       },
       {
         "paramName": "langCd",
-        "required": true
+        "required": false
       }
     ],
     "commonResponse": {
@@ -332,7 +332,7 @@
       },
       {
         "paramName": "langCd",
-        "required": true
+        "required": false
       }
     ],
     "commonResponse": {
@@ -366,7 +366,7 @@
       },
       {
         "paramName": "langCd",
-        "required": true
+        "required": false
       }
     ],
     "commonResponse": {
@@ -400,7 +400,7 @@
       },
       {
         "paramName": "langCd",
-        "required": true
+        "required": false
       }
     ],
     "commonResponse": {
@@ -434,7 +434,7 @@
       },
       {
         "paramName": "langCd",
-        "required": true
+        "required": false
       }
     ],
     "commonResponse": {

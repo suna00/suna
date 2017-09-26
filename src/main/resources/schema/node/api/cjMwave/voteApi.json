@@ -122,6 +122,36 @@
       ],
       "response": {
         "_all_": "",
+        "refdItemList": {
+          "typeId": "voteItemInfo",
+          "query": [
+            {
+              "field": "voteSeq",
+              "method": "referenceJoin",
+              "value": "voteSeq_matching={{:voteSeq}}"
+            },
+            {
+              "field": "langCd",
+              "method": "matching",
+              "value": "{{:langCd}}"
+            }
+          ]
+        },
+        "refdSeriesItemList": {
+          "typeId": "sersVoteItemInfo",
+          "query": [
+            {
+              "field": "voteSeq",
+              "method": "referenceJoin",
+              "value": "voteSeq_matching={{:voteSeq}}"
+            },
+            {
+              "field": "langCd",
+              "method": "matching",
+              "value": "{{:langCd}}"
+            }
+          ]
+        },
         "voteNum": {
           "select": {
             "ds": "cjDb",
@@ -223,6 +253,11 @@
               "value": "voteSeq_matching={{:voteSeq}}"
             },
             {
+              "field": "langCd",
+              "method": "matching",
+              "value": "{{:langCd}}"
+            },
+            {
               "referenceView": "contsMetaId"
             }
           ]
@@ -234,6 +269,11 @@
               "field": "voteSeq",
               "method": "referenceJoin",
               "value": "voteSeq_matching={{:voteSeq}}"
+            },
+            {
+              "field": "langCd",
+              "method": "matching",
+              "value": "{{:langCd}}"
             },
             {
               "referenceView": "sersItemVoteSeq",
@@ -321,22 +361,6 @@
     "method": "GET",
     "parameters": [
       {
-        "paramName": "page",
-        "required": false
-      },
-      {
-        "paramName": "pageSize",
-        "required": false
-      },
-      {
-        "paramName": "sorting",
-        "required": false
-      },
-      {
-        "paramName": "langCd",
-        "required": false
-      },
-      {
         "paramName": "voteSeq",
         "required": true
       }
@@ -400,10 +424,6 @@
     "method": "GET",
     "parameters": [
       {
-        "paramName": "langCd",
-        "required": false
-      },
-      {
         "paramName": "voteSeq",
         "required": true
       },
@@ -446,10 +466,6 @@
     "method": "GET",
     "parameters": [
       {
-        "paramName": "langCd",
-        "required": false
-      },
-      {
         "paramName": "artistId",
         "required": true
       }
@@ -461,6 +477,11 @@
           "field": "contsMetaId",
           "method": "matching",
           "value": "artist::{{:artistId}}"
+        },
+        {
+          "field": "langCd",
+          "method": "matching",
+          "value": "{{:langCd}}"
         },
         {
           "field": "voteSeq",
