@@ -8,10 +8,12 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 @SpringBootApplication(scanBasePackages = {"net.ion.ice"}, exclude = {DataSourceAutoConfiguration.class})
 @EnableAsync
+@EnableScheduling
 public class Ice2Application {
     private static Logger logger = LoggerFactory.getLogger(Ice2Application.class);
 

@@ -51,7 +51,7 @@ public class ClusterConfiguration {
     public void init(){
         this.port = environment.getProperty("server.port") ;
         if(hazelcast == null) {
-            hazelcast = Hazelcast.newHazelcastInstance(config());
+            hazelcast = Hazelcast.getOrCreateHazelcastInstance(config());
             for(String grp : groupList){
                 ITopic topic = hazelcast.getReliableTopic(grp + "_topic") ;
                 topic.addMessageListener(new TopicListener()) ;
