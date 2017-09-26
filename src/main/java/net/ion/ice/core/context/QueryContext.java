@@ -296,7 +296,6 @@ public class QueryContext extends ReadContext {
         String refTypeId = pt.getReferenceType();
         NodeType refNodeType = NodeUtils.getNodeType(refTypeId);
 
-
         QueryContext queryContext = new QueryContext(refNodeType);
         List<QueryTerm> queryTerms = new ArrayList<>();
 
@@ -316,6 +315,18 @@ public class QueryContext extends ReadContext {
                         QueryUtils.makeQueryTerm(refNodeType, queryContext, queryTerms, refPt.getPid(), node.getId().toString());
                     }
                 }
+            }
+        }
+
+        if (refNodeType != null && StringUtils.isNotEmpty(pt.getReferencedFilter())) {
+            String referencedFilter = pt.getReferencedFilter();
+            List<String> referencedFilterList = Arrays.asList(StringUtils.split(referencedFilter, "&"));
+
+            for (String referencedFilterParam : referencedFilterList) {
+                String referencedFilterParamName = StringUtils.substringBefore(referencedFilterParam, "=");
+                String referencedFilterParamValue = StringUtils.substringAfter(referencedFilterParam, "=");
+
+                QueryUtils.makeQueryTerm(refNodeType, queryContext, queryTerms, referencedFilterParamName, referencedFilterParamValue);
             }
         }
 
