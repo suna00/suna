@@ -191,6 +191,7 @@ public class DBSyncService {
     * */
     public void executeWithIteration (String executeId) throws Exception {
 //        int max = 1;
+        logger.info("DBSyncService.executeWithIteration :: " + executeId);
         boolean loop = true;
         int i = 0;
         int unit = 100;

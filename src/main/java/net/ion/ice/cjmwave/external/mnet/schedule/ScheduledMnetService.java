@@ -37,6 +37,7 @@ public class ScheduledMnetService {
 
     public void execute(String type, Date provided) {
         try{
+            logger.info("MnetDataDumpService.execute :: " + type);
 
             //신규 증분에 대한 MSSQL to MySQL 마이그레이션 수행
             logger.info("Migration schedule :: Step1");

@@ -46,6 +46,7 @@ public class MnetController {
                 , "song"
                 , "mcdChartBasInfo", "mcdChartStats"
         };
+        logger.info("Enter MnetController.retrieveAll type :: " + type);
 
         JSONObject response = new JSONObject();
         String result="500", result_msg = "ERROR", cause = "";
@@ -99,6 +100,7 @@ public class MnetController {
     public @ResponseBody String retrievePartial (@PathVariable String type, HttpServletRequest request) throws JSONException {
         JSONObject response = new JSONObject();
         String result="500", result_msg = "ERROR", cause = "";
+        logger.info("Enter MnetController.retrievePartial type :: " + type);
 
         try{
             String requestedDate = request.getParameter("date");
