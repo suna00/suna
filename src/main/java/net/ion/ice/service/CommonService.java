@@ -43,6 +43,7 @@ public class CommonService {
         resultCodeMap.put("U0003", "만료된 인증코드입니다.");
         resultCodeMap.put("U0004", "회원정보가 일치하지 않습니다. 다시 입력해주세요.");
         resultCodeMap.put("U0005", "입력하신 정보와 일치하는 아이디가 없습니다. 다시 입력해주세요.");
+        resultCodeMap.put("U0006", "인증번호를 잘못 입력하셨습니다.");
 
         /*Coupon*/
         resultCodeMap.put("V0001", "존재하지 않는 쿠폰유형입니다.");
