@@ -4,7 +4,7 @@
     "sersVoteItemSeq": 501000000,
     "itemDivCd": "1",
     "voteSeq": 800041,
-    "sersItemVoteSeq": 800022,
+    "sersItemVoteSeq": 300001,
     "banrSeq": "",
     "sortOdrg": 1
   },
@@ -13,7 +13,7 @@
     "sersVoteItemSeq": 501000001,
     "itemDivCd": "1",
     "voteSeq": 800041,
-    "sersItemVoteSeq": 800023,
+    "sersItemVoteSeq": 300002,
     "banrSeq": "",
     "sortOdrg": 2
   },
@@ -22,8 +22,8 @@
     "sersVoteItemSeq": 501000002,
     "itemDivCd": "2",
     "voteSeq": 800041,
-    "sersItemVoteSeq": "",
-    "banrSeq": 20171003,
+    "sersItemVoteSeq": 300003,
+    "banrSeq": "",
     "sortOdrg": 3
   },
   {
@@ -31,8 +31,8 @@
     "sersVoteItemSeq": 501000003,
     "itemDivCd": "2",
     "voteSeq": 800041,
-    "sersItemVoteSeq": "",
-    "banrSeq": 20171004,
+    "sersItemVoteSeq": 300004,
+    "banrSeq": "",
     "sortOdrg": 4
   },
   {
@@ -40,7 +40,7 @@
     "sersVoteItemSeq": 501000004,
     "itemDivCd": "1",
     "voteSeq": 800041,
-    "sersItemVoteSeq": 800024,
+    "sersItemVoteSeq": 300005,
     "banrSeq": "",
     "sortOdrg": 5
   },
@@ -49,7 +49,7 @@
     "sersVoteItemSeq": 501000005,
     "itemDivCd": "1",
     "voteSeq": 800041,
-    "sersItemVoteSeq": 800025,
+    "sersItemVoteSeq": 300006,
     "banrSeq": "",
     "sortOdrg": 6
   },
@@ -58,7 +58,7 @@
     "sersVoteItemSeq": 501000006,
     "itemDivCd": "1",
     "voteSeq": 800041,
-    "sersItemVoteSeq": 800026,
+    "sersItemVoteSeq": 300007,
     "banrSeq": "",
     "sortOdrg": 7
   },
@@ -67,8 +67,8 @@
     "sersVoteItemSeq": 501000007,
     "itemDivCd": "2",
     "voteSeq": 800041,
-    "sersItemVoteSeq": "",
-    "banrSeq": 20171003,
+    "sersItemVoteSeq": 300008,
+    "banrSeq": "",
     "sortOdrg": 8
   },
   {
@@ -76,7 +76,7 @@
     "sersVoteItemSeq": 501000008,
     "itemDivCd": "1",
     "voteSeq": 800041,
-    "sersItemVoteSeq": 800027,
+    "sersItemVoteSeq": 300009,
     "banrSeq": "",
     "sortOdrg": 9
   },
@@ -85,7 +85,7 @@
     "sersVoteItemSeq": 501000009,
     "itemDivCd": "1",
     "voteSeq": 800041,
-    "sersItemVoteSeq": 800028,
+    "sersItemVoteSeq": 300010,
     "banrSeq": "",
     "sortOdrg": 10
   },
@@ -94,7 +94,7 @@
     "sersVoteItemSeq": 501000010,
     "itemDivCd": "1",
     "voteSeq": 800041,
-    "sersItemVoteSeq": 800029,
+    "sersItemVoteSeq": 300011,
     "banrSeq": "",
     "sortOdrg": 11
   },
@@ -103,7 +103,7 @@
     "sersVoteItemSeq": 501000011,
     "itemDivCd": "1",
     "voteSeq": 800041,
-    "sersItemVoteSeq": 800030,
+    "sersItemVoteSeq": 300012,
     "banrSeq": "",
     "sortOdrg": 12
   },
@@ -112,8 +112,62 @@
     "sersVoteItemSeq": 501000012,
     "itemDivCd": "1",
     "voteSeq": 800041,
-    "sersItemVoteSeq": 800031,
+    "sersItemVoteSeq": 300013,
     "banrSeq": "",
     "sortOdrg": 13
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 501000013,
+    "itemDivCd": "1",
+    "voteSeq": 800041,
+    "sersItemVoteSeq": 300014,
+    "banrSeq": "",
+    "sortOdrg": 14
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 501000014,
+    "itemDivCd": "1",
+    "voteSeq": 800041,
+    "sersItemVoteSeq": 300015,
+    "banrSeq": "",
+    "sortOdrg": 15
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 501000015,
+    "itemDivCd": "1",
+    "voteSeq": 800041,
+    "sersItemVoteSeq": 300016,
+    "banrSeq": "",
+    "sortOdrg": 16
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 501000016,
+    "itemDivCd": "1",
+    "voteSeq": 800041,
+    "sersItemVoteSeq": 300017,
+    "banrSeq": "",
+    "sortOdrg": 17
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 501000017,
+    "itemDivCd": "1",
+    "voteSeq": 800041,
+    "sersItemVoteSeq": 300018,
+    "banrSeq": "",
+    "sortOdrg": 18
+  },
+  {
+    "typeId": "sersVoteItemInfo",
+    "sersVoteItemSeq": 501000018,
+    "itemDivCd": "1",
+    "voteSeq": 800041,
+    "sersItemVoteSeq": 300019,
+    "banrSeq": "",
+    "sortOdrg": 19
   }
 ]
