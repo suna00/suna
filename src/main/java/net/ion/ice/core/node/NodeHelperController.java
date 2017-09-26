@@ -25,7 +25,7 @@ public class NodeHelperController {
     public Object saveJson(HttpServletRequest request, @RequestParam String filePath)  {
         try {
             logger.info("reload schema");
-            nodeHelperService.reloadSchema(filePath);
+            nodeHelperService.reloadSchema(request, filePath);
         }catch(Exception e){
             logger.error(e.getMessage(), e);
             return JsonResponse.error(e) ;
