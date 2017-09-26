@@ -62,6 +62,7 @@
             "value": "{{:default(mainSeq,뺿뺿)}}"
           },
           {
+            "sorting": "sortOdrg",
             "referenceView": "itemId,cnctContsId",
             "includeReferenced": true
           }
@@ -93,24 +94,24 @@
                 "referenceView": true,
                 "response": {
                   "_all_": "",
-                  "contsMetaId":{
-                    "field":"contsMetaId",
-                    "referenceView":true,
-                    "response":{
-                      "_all_":"",
-                      "artistInfo":{
-                        "typeId":"artist",
-                        "resultType":"merge",
-                        "query":[
+                  "contsMetaId": {
+                    "field": "contsMetaId",
+                    "referenceView": true,
+                    "response": {
+                      "_all_": "",
+                      "artistInfo": {
+                        "typeId": "artist",
+                        "resultType": "merge",
+                        "query": [
                           {
-                            "field":"artistId",
-                            "method":"matching",
-                            "value":"{{:artistId}}"
+                            "field": "artistId",
+                            "method": "matching",
+                            "value": "{{:artistId}}"
                           }
                         ],
-                        "response":{
-                          "artistSex":"sex",
-                          "artistTypeCd":"typeCd"
+                        "response": {
+                          "artistSex": "sex",
+                          "artistTypeCd": "typeCd"
                         }
                       }
                     }
@@ -231,24 +232,24 @@
                 "referenceView": true,
                 "response": {
                   "_all_": "",
-                  "contsMetaId":{
-                    "field":"contsMetaId",
-                    "referenceView":true,
-                    "response":{
-                      "_all_":"",
-                      "artistInfo":{
-                        "typeId":"artist",
-                        "resultType":"merge",
-                        "query":[
+                  "contsMetaId": {
+                    "field": "contsMetaId",
+                    "referenceView": true,
+                    "response": {
+                      "_all_": "",
+                      "artistInfo": {
+                        "typeId": "artist",
+                        "resultType": "merge",
+                        "query": [
                           {
-                            "field":"artistId",
-                            "method":"matching",
-                            "value":"{{:artistId}}"
+                            "field": "artistId",
+                            "method": "matching",
+                            "value": "{{:artistId}}"
                           }
                         ],
-                        "response":{
-                          "artistSex":"sex",
-                          "artistTypeCd":"typeCd"
+                        "response": {
+                          "artistSex": "sex",
+                          "artistTypeCd": "typeCd"
                         }
                       }
                     }
