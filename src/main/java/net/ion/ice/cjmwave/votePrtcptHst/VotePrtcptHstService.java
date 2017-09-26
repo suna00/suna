@@ -60,7 +60,12 @@ public class VotePrtcptHstService {
         for (Map<String, Object> voteData : reqJson) {
             //node create
             Node result = (Node) nodeService.executeNode(voteData, "sersVotePrtcptHst", EventService.CREATE);
-            context.setResult(result);
+            if(result != null){
+                context.setResult(result);
+            }else{
+                logger.info("###sersVotePrtcptHst result null ");
+            }
+
         }
         //returnResult.put("insertCnt", reqJson.size()+"");
         //context.setResult(returnResult);

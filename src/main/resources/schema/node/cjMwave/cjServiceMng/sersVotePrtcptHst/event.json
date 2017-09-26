@@ -3,6 +3,7 @@
     "typeId": "event",
     "tid": "sersVotePrtcptHst",
     "event": "sersVoting",
+    "noneExecute" : true,
     "eventName": "SERIES VOTING Save Event"
   },
   {
