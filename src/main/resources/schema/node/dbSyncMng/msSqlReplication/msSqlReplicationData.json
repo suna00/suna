@@ -9,6 +9,7 @@
     , "fromTable" : "MT_ALBUM"
     , "toTable" : "MT_ALBUM"
     , "query": "EXEC ice2.recentAlbum @LastUpdated = @{TIMESTAMP.lastUpdated}"
+    , "query_nosp": "SELECT * FROM MT_ALBUM WHERE CREATE_DT > @{TIMESTAMP.lastUpdated} OR UPDATE_DT > @{TIMESTAMP.lastUpdated}"
   }
   , {
     "typeId": "msSqlReplication"
@@ -20,6 +21,7 @@
     , "fromTable" : "MT_ALBUM_ARTIST"
     , "toTable" : "MT_ALBUM_ARTIST"
     , "query": "EXEC ice2.recentAlbumArtist @AlbumId = @{VARCHAR.id}"
+    , "query_nosp": "SELECT * FROM MT_ALBUM_ARTIST WHERE ALBUM_ID = @{VARCHAR.id}"
   }
   , {
     "typeId": "msSqlReplication"
@@ -31,6 +33,7 @@
     , "fromTable" : "mt_album_country"
     , "toTable" : "MT_ALBUM_COUNTRY"
     , "query": "EXEC ice2.recentAlbumCountry @AlbumId = @{VARCHAR.id}"
+    , "query_nosp": "SELECT * FROM MT_ALBUM_COUNTRY WHERE ALBUM_ID = @{VARCHAR.id}"
   }
   , {
     "typeId": "msSqlReplication"
@@ -42,6 +45,7 @@
     , "fromTable" : "MT_ALBUM_GENRE"
     , "toTable" : "MT_ALBUM_GENRE"
     , "query": "EXEC ice2.recentAlbumGenre @LastUpdated = @{TIMESTAMP.lastUpdated}"
+    , "query_nosp": "SELECT * FROM MT_ALBUM_GENRE WHERE CREATE_DT > @{TIMESTAMP.lastUpdated} OR UPDATE_DT > @{TIMESTAMP.lastUpdated}"
   }
   , {
     "typeId": "msSqlReplication"
@@ -53,6 +57,7 @@
     , "fromTable" : "MT_ALBUM_KEYWORD"
     , "toTable" : "MT_ALBUM_KEYWORD"
     , "query": "EXEC ice2.recentAlbumKeyword @AlbumId = @{VARCHAR.id}"
+    , "query_nosp": "SELECT * FROM MT_ALBUM_KEYWORD WHERE ALBUM_ID = @{VARCHAR.id}"
   }
   , {
     "typeId": "msSqlReplication"
@@ -64,6 +69,7 @@
     , "fromTable" : "mt_album_keyword_meta"
     , "toTable" : "MT_ALBUM_KEYWORD_META"
     , "query": "EXEC ice2.recentAlbumKeywordMeta @AlbumId = @{VARCHAR.id}"
+    , "query_nosp": "SELECT * FROM MT_ALBUM_KEYWORD_META WHERE ALBUM_ID = @{VARCHAR.id}"
   }
   , {
     "typeId": "msSqlReplication"
@@ -75,6 +81,7 @@
     , "fromTable" : "mt_album_meta"
     , "toTable" : "MT_ALBUM_META"
     , "query": "EXEC ice2.recentAlbumMeta @AlbumId = @{VARCHAR.id}"
+    , "query_nosp": "SELECT * FROM MT_ALBUM_META WHERE ALBUM_ID = @{VARCHAR.id}"
   }
   , {
     "typeId": "msSqlReplication"
@@ -86,6 +93,7 @@
     , "fromTable" : "MT_ALBUM_SONGS"
     , "toTable" : "MT_ALBUM_SONGS"
     , "query": "EXEC ice2.recentAlbumSongs @AlbumId = @{VARCHAR.id}"
+    , "query_nosp": "SELECT * FROM MT_ALBUM_SONGS WHERE ALBUM_ID = @{VARCHAR.id}"
   }
   , {
     "typeId": "msSqlReplication"
@@ -97,6 +105,7 @@
     , "fromTable" : "MT_ARTIST"
     , "toTable" : "MT_ARTIST"
     , "query": "EXEC ice2.recentArtist @LastUpdated = @{TIMESTAMP.lastUpdated}"
+    , "query_nosp": "SELECT * FROM MT_ARTIST WHERE CREATE_DT > @{TIMESTAMP.lastUpdated} OR UPDATE_DT > @{TIMESTAMP.lastUpdated}"
   }
   , {
     "typeId": "msSqlReplication"
@@ -108,6 +117,7 @@
     , "fromTable" : "mt_artist_country"
     , "toTable" : "MT_ARTIST_COUNTRY"
     , "query": "EXEC ice2.recentArtistCountry @ArtistId = @{VARCHAR.id}"
+    , "query_nosp": "SELECT * FROM MT_ARTIST_COUNTRY WHERE artist_id = @{VARCHAR.id}"
   }
   , {
     "typeId": "msSqlReplication"
@@ -119,6 +129,7 @@
     , "fromTable" : "MT_ARTIST_GENRE"
     , "toTable" : "MT_ARTIST_GENRE"
     , "query": "EXEC ice2.recentArtistGenre @LastUpdated = @{TIMESTAMP.lastUpdated}"
+    , "query_nosp": "SELECT * FROM MT_ARTIST_GENRE WHERE CREATE_DT > @{TIMESTAMP.lastUpdated} OR UPDATE_DT > @{TIMESTAMP.lastUpdated}"
   }
   , {
     "typeId": "msSqlReplication"
@@ -130,6 +141,7 @@
     , "fromTable" : "MT_ARTIST_KEYWORD"
     , "toTable" : "MT_ARTIST_KEYWORD"
     , "query": "EXEC ice2.recentArtistKeyword @ArtistId = @{VARCHAR.id}"
+    , "query_nosp": "SELECT * FROM MT_ARTIST_KEYWORD WHERE ARTIST_ID > @{VARCHAR.id}"
   }
   , {
     "typeId": "msSqlReplication"
@@ -141,6 +153,7 @@
     , "fromTable" : "mt_artist_keyword_meta"
     , "toTable" : "MT_ARTIST_KEYWORD_META"
     , "query": "EXEC ice2.recentArtistKeywordMeta @ArtistId = @{VARCHAR.id}"
+    , "query_nosp": "SELECT * FROM MT_ARTIST_KEYWORD_META WHERE ARTIST_ID = @{VARCHAR.id}"
   }
   , {
     "typeId": "msSqlReplication"
@@ -152,6 +165,7 @@
     , "fromTable" : "mt_artist_meta"
     , "toTable" : "MT_ARTIST_META"
     , "query": "EXEC ice2.recentArtistMeta @ArtistId = @{VARCHAR.id}"
+    , "query_nosp": "SELECT * FROM MT_ARTIST_META WHERE ARTIST_ID = @{VARCHAR.id}"
   }
   , {
     "typeId": "msSqlReplication"
@@ -163,6 +177,7 @@
     , "fromTable" : "MT_MV"
     , "toTable" : "MT_MV"
     , "query": "EXEC ice2.recentMv @LastUpdated = @{TIMESTAMP.lastUpdated}"
+    , "query_nosp": "SELECT * FROM MT_MV WHERE CREATE_DT > @{TIMESTAMP.lastUpdated} OR UPDATE_DT > @{TIMESTAMP.lastUpdated}"
   }
   , {
     "typeId": "msSqlReplication"
@@ -174,6 +189,7 @@
     , "fromTable" : "MT_MV_ARTIST"
     , "toTable" : "MT_MV_ARTIST"
     , "query": "EXEC ice2.recentMvArtist @MvId = @{VARCHAR.id}"
+    , "query_nosp": "SELECT * FROM MT_MV_ARTIST WHERE MV_ID = @{VARCHAR.id}"
   }
   , {
     "typeId": "msSqlReplication"
@@ -185,6 +201,7 @@
     , "fromTable" : "mt_mv_country"
     , "toTable" : "MT_MV_COUNTRY"
     , "query": "EXEC ice2.recentMvCountry @MvId = @{VARCHAR.id}"
+    , "query_nosp": "SELECT * FROM MT_MV_COUNTRY WHERE MV_ID = @{VARCHAR.id}"
   }
   , {
     "typeId": "msSqlReplication"
@@ -196,6 +213,7 @@
     , "fromTable" : "MT_MV_EMBED"
     , "toTable" : "MT_MV_EMBED"
     , "query": "EXEC ice2.recentMvEmbed @MvId = @{VARCHAR.id}"
+    , "query_nosp": "SELECT * FROM MT_MV_EMBED WHERE MV_ID = @{VARCHAR.id}"
   }
   , {
     "typeId": "msSqlReplication"
@@ -207,6 +225,7 @@
     , "fromTable" : "MT_MV_KEYWORD"
     , "toTable" : "MT_MV_KEYWORD"
     , "query": "EXEC ice2.recentMvKeyword @MvId = @{VARCHAR.id}"
+    , "query_nosp": "SELECT * FROM MT_MV_KEYWORD WHERE MV_ID = @{VARCHAR.id}"
   }
   , {
     "typeId": "msSqlReplication"
@@ -218,6 +237,7 @@
     , "fromTable" : "mt_mv_keyword_meta"
     , "toTable" : "MT_MV_KEYWORD_META"
     , "query": "EXEC ice2.recentMvKeywordMeta @MvId = @{VARCHAR.id}"
+    , "query_nosp": "SELECT * FROM MT_MV_KEYWORD_META WHERE MV_ID = @{VARCHAR.id}"
   }
   , {
     "typeId": "msSqlReplication"
@@ -229,17 +249,30 @@
     , "fromTable" : "mt_mv_meta"
     , "toTable" : "MT_MV_META"
     , "query": "EXEC ice2.recentMvMeta @MvId = @{VARCHAR.id}"
+    , "query_nosp": "SELECT * FROM MT_MV_META WHERE MV_ID = @{VARCHAR.id}"
   }
   , {
     "typeId": "msSqlReplication"
     , "standAlone" : true
-    , "subTasks" : "song_artist, song_country, song_keyword, song_keyword_meta, song_meta"
+    , "subTasks" : "song_artist, song_album, song_country, song_keyword, song_keyword_meta, song_meta"
     , "subTaskKey" : "song_id"
     , "executeId": "song"
     , "targetDs": "mnetDb"
     , "fromTable" : "MT_SONG"
     , "toTable" : "MT_SONG"
     , "query": "EXEC ice2.recentSong @LastUpdated = @{TIMESTAMP.lastUpdated}"
+    , "query_nosp": "SELECT * FROM MT_SONG WHERE CREATE_DT > @{TIMESTAMP.lastUpdated} OR UPDATE_DT > @{TIMESTAMP.lastUpdated}"
+  }, {
+      "typeId": "msSqlReplication"
+    , "standAlone" : false
+    , "subTasks" : null
+    , "subTaskKey" : null
+    , "executeId": "song_album"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "MT_SONG_ALBUM"
+    , "toTable" : "MT_SONG_ALBUM"
+    , "query": "EXEC ice2.recentSongAlbum @SongId = @{VARCHAR.id}"
+    , "query_nosp": "SELECT * FROM MT_SONG_ALBUM WHERE SONG_ID = @{VARCHAR.id}"
   }
   , {
     "typeId": "msSqlReplication"
@@ -251,6 +284,7 @@
     , "fromTable" : "MT_SONG_ARTIST"
     , "toTable" : "MT_SONG_ARTIST"
     , "query": "EXEC ice2.recentSongArtist @SongId = @{VARCHAR.id}"
+    , "query_nosp": "SELECT * FROM MT_SONG_ARTIST WHERE SONG_ID = @{VARCHAR.id}"
   }
   , {
     "typeId": "msSqlReplication"
@@ -262,6 +296,7 @@
     , "fromTable" : "mt_song_country"
     , "toTable" : "MT_SONG_COUNTRY"
     , "query": "EXEC ice2.recentSongCountry @SongId = @{VARCHAR.id}"
+    , "query_nosp": "SELECT * FROM MT_SONG_COUNTRY WHERE SONG_ID = @{VARCHAR.id}"
   }
   , {
     "typeId": "msSqlReplication"
@@ -273,6 +308,7 @@
     , "fromTable" : "MT_SONG_KEYWORD"
     , "toTable" : "MT_SONG_KEYWORD"
     , "query": "EXEC ice2.recentSongKeyword @SongId = @{VARCHAR.id}"
+    , "query_nosp": "SELECT * FROM MT_SONG_KEYWORD WHERE SONG_ID = @{VARCHAR.id}"
   }
   , {
     "typeId": "msSqlReplication"
@@ -284,6 +320,7 @@
     , "fromTable" : "mt_song_keyword_meta"
     , "toTable" : "MT_SONG_KEYWORD_META"
     , "query": "EXEC ice2.recentSongKeywordMeta @SongId = @{VARCHAR.id}"
+    , "query_nosp": "SELECT * FROM MT_SONG_KEYWORD_META WHERE SONG_ID = @{VARCHAR.id}"
   }
   , {
     "typeId": "msSqlReplication"
@@ -295,17 +332,19 @@
     , "fromTable" : "MT_SONG_LYRIC"
     , "toTable" : "MT_SONG_LYRIC"
     , "query": "EXEC ice2.recentSongLyric @LastUpdated = @{TIMESTAMP.lastUpdated}"
+    , "query_nosp": "SELECT * FROM MT_SONG_LYRIC WHERE CREATE_DT > @{TIMESTAMP.lastUpdated} OR UPDATE_DT > @{TIMESTAMP.lastUpdated}"
   }
   , {
     "typeId": "msSqlReplication"
     , "standAlone" : false
     , "subTasks" : null
-, "subTaskKey" : null
+    , "subTaskKey" : null
     , "executeId": "song_meta"
     , "targetDs": "mnetDb"
     , "fromTable" : "mt_song_meta"
     , "toTable" : "MT_SONG_META"
     , "query": "EXEC ice2.recentSongMeta @SongId = @{VARCHAR.id}"
+    , "query_nosp": "SELECT * FROM MT_SONG_META WHERE SONG_ID = @{VARCHAR.id}"
   }
   , {
     "typeId": "msSqlReplication"
@@ -317,6 +356,7 @@
     , "fromTable" : "T_SM_S3_ChartTotalMst"
     , "toTable" : "T_SM_S3_ChartTotalMst"
     , "query": "EXEC ice2.recentChartTotalMst @LastUpdated = @{TIMESTAMP.lastUpdated}"
+    , "query_nosp": "SELECT * FROM T_SM_S3_ChartTotalMst WHERE RegDate > @{TIMESTAMP.lastUpdated} OR ModDate > @{TIMESTAMP.lastUpdated}"
   }
   , {
     "typeId": "msSqlReplication"
@@ -328,5 +368,6 @@
     , "fromTable" : "T_SM_S3_ChartTotalLst"
     , "toTable" : "T_SM_S3_ChartTotalLst"
     , "query": "EXEC ice2.recentAlbumChartTotalLst @LastUpdated = @{TIMESTAMP.lastUpdated}"
+    , "query_nosp": "SELECT * FROM T_SM_S3_ChartTotalMst WHERE RegDate > @{TIMESTAMP.lastUpdated}"
   }
 ]
