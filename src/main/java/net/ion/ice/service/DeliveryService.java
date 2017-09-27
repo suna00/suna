@@ -1,6 +1,7 @@
 package net.ion.ice.service;
 
 import net.ion.ice.ApplicationContextManager;
+import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.json.JsonUtils;
@@ -27,7 +28,6 @@ public class DeliveryService {
         jdbcTemplate = dbService.getJdbcTemplate("ytnDevDb");
     }
 
-
     public void removeDeliveryPrice(String cartProductId) throws IOException {
         Map<String, Object> result = getCartDeliveryPriceMap(cartProductId);
         List<String> ids = new ArrayList<String>(Arrays.asList(result.get("cartProductIds").toString().split(",")));
@@ -41,6 +41,7 @@ public class DeliveryService {
             result.put("cartProductIds", cartProductIds);
             result.put("deliveryPriceType", (deliveryPrice > 0 ? "conditional" : "free"));
             result.put("deliveryPrice", deliveryPrice);
+            CommonService.resetMap(result);
             nodeService.executeNode(result, CartService.cartDeliveryPrice_TID, CartService.UPDATE);
         }
     }
@@ -57,6 +58,7 @@ public class DeliveryService {
         // 수량별배송비 : quantity (기준수량별로 장바구니 상품 row 나뉘고 setDeliveryPrice 이므로 무조건 create)
         if ("quantity".equals(deliveryPriceType) || "charge".equals(deliveryPriceType)) {
             map.put("cartProductIds", map.get("cartProductId"));
+            CommonService.resetMap(map);
             nodeService.executeNode(map, CartService.cartDeliveryPrice_TID, CartService.CREATE);
         } else {
             // 무료배송비 : free
@@ -73,6 +75,7 @@ public class DeliveryService {
             if (cartDeliveryPrices.size() == 0) {
                 map.put("deliveryPrice", calculateDeliveryPrice(map.get("cartProductId").toString()));
                 map.put("cartProductIds", map.get("cartProductId"));
+                CommonService.resetMap(map);
                 nodeService.executeNode(map, CartService.cartDeliveryPrice_TID, CartService.CREATE);
             } else {
                 for (Map<String, Object> deliveryPrice : cartDeliveryPrices) {
@@ -81,6 +84,7 @@ public class DeliveryService {
                     deliveryPrice.put("deliveryPriceType", ("free".equals(deliveryPrice.get("deliveryPriceType")) || "free".equals(deliveryPriceType) ? "free" : "conditional"));
                     deliveryPrice.put("deliveryPrice", calculateDeliveryPrice(cartProductIds));
                     deliveryPrice.put("cartProductIds", cartProductIds);
+                    CommonService.resetMap(deliveryPrice);
                     nodeService.executeNode(deliveryPrice, CartService.cartDeliveryPrice_TID, CartService.UPDATE);
 
                 }
