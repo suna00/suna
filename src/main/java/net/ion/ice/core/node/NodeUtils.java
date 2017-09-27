@@ -667,6 +667,7 @@ public class NodeUtils {
             value = NodeUtils.getStoreValue(value, pt, id);
             if (value instanceof String || value instanceof FileValue) {
                 i18nData.put(getDefaultLocale(), value);
+                data.put(pt.getPid(), value) ;
             } else if (value instanceof Map) {
                 i18nData = (Map<String, Object>) value;
             }
@@ -689,7 +690,11 @@ public class NodeUtils {
                 return null ;
             }
         }
-        return NodeUtils.getStoreValue(value, pt, id);
+        Object resultValue = NodeUtils.getStoreValue(value, pt, id);
+        if(resultValue instanceof FileValue){
+            data.put(pt.getPid(), resultValue) ;
+        }
+        return resultValue ;
     }
 
     public static List<Node> initDataNodeList(String typeId, List<Map<String, Object>> resultList) {

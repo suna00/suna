@@ -4,6 +4,8 @@ import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -17,6 +19,8 @@ import java.util.Map;
  */
 public class MethodHelper {
 //    private static Logger logger = LogManager.getLogger();
+@Autowired
+private static Environment environment;
 
     private static String[] patterns = new String[]{"yyyyMMdd", "yyyyMMddHHmmss", "yyyyMMdd HHmmss", "yyyy-MM-dd", "yyyy.MM.dd", "yyyy/MM/dd", "yyyyMMdd-HHmmss", "yyyy-MM-dd HH:mm", "yyyy-MM-dd HH:mm:ss", "yyyy.MM.dd HH:mm:ss", "yyyy/MM/dd HH:mm:ss", "yyyy-MM-dd HH:mm:ss.SSS", "yyyy-MM-dd'T'HH:mm:ss", "yyyy-MM-dd'T'HH:mm:ssZZ"} ;
 
@@ -261,8 +265,20 @@ public class MethodHelper {
                     patternStr = methodParams[1];
                 }
                 Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.DAY_OF_WEEK,Integer.parseInt(methodParams[0]));
+                if(Integer.parseInt(methodParams[0])>7){
+                    int weekNum = Integer.parseInt(methodParams[0])-7;
+                    calendar.set(Calendar.DAY_OF_WEEK,weekNum);
+                    calendar.add(Calendar.DATE, 7);
+                }else{
+                    calendar.set(Calendar.DAY_OF_WEEK,Integer.parseInt(methodParams[0]));
+                }
                 return DateFormatUtils.format(calendar.getTime(),patternStr);
+            }
+            case "getEnvValue":{
+                if(methodParams.length <1 || methodParams[0].isEmpty()){
+                    return "";
+                }
+                return environment.getProperty(methodParams[0]) ;
             }
 
             default :

@@ -154,6 +154,9 @@ public class ApiContext {
 
         if(apiCategory.containsKey(FILE_URL_FORMAT) && apiCategory.get(FILE_URL_FORMAT) != null && ((Map<String, Object>) apiCategory.get(FILE_URL_FORMAT)).size() > 0){
             queryContext.fileUrlFormat = (Map<String, Object>) apiCategory.get(FILE_URL_FORMAT);
+            for(String key : queryContext.fileUrlFormat.keySet()){
+                queryContext.fileUrlFormat.put(key, ContextUtils.getValue(queryContext.fileUrlFormat.get(key), data)) ;
+            }
         }
     }
 
