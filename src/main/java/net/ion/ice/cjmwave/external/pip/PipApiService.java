@@ -65,10 +65,6 @@ public class PipApiService {
         }
     }
 
-    private File pullImage (String nodeTypeId, String fileUrl) throws Exception {
-        if(null == fileUrl || "null".equals(fileUrl) || fileUrl.length() < 1) return null;
-        return MigrationUtils.retrieveRemoteFile(defaultFilePath, fileUrl);
-    }
 
     private Date parse14(String dateStr) {
         try{
@@ -118,18 +114,11 @@ public class PipApiService {
                 transformed.put("reviewUrl", data.get("reviewurl"));
                 transformed.put("bbsUrl", data.get("bbsurl"));
 
-                /*
-                * S3 파일 업로드 추가
-                * */
-                String programImg = String.valueOf(data.get("programimg"));
-                String posterImg = String.valueOf(data.get("programposterimg"));
-                String bannerImg = String.valueOf(data.get("programbannerimg"));
-                String thumbImg = String.valueOf(data.get("programthumimg"));
-
-                transformed.put("programImg", pullImage(nodeTypeId, programImg));
-                transformed.put("pgmPosterImg", pullImage(nodeTypeId, posterImg));
-                transformed.put("programBannerImg", pullImage(nodeTypeId, bannerImg));
-                transformed.put("programThumbImg", pullImage(nodeTypeId, thumbImg));
+//                0927 프로그램 이미지는 경로(STRING) 으로 사용하는 걸로 결정됨
+                transformed.put("programImg", data.get("programimg"));
+                transformed.put("pgmPosterImg", data.get("programposterimg"));
+                transformed.put("programBannerImg", data.get("programbannerimg"));
+                transformed.put("programThumbImg", data.get("programthumimg"));
 
 
                 transformed.put("prsnNm", data.get("prsn_nm"));
@@ -170,8 +159,7 @@ public class PipApiService {
                 modifyDateStr = String.valueOf(data.get("modifydate"));
                 transformed.put("modifyDate", parse14(modifyDateStr));
 
-                String contentImgUrl = String.valueOf(data.get("contentimg"));
-                transformed.put("contentImgUrl", pullImage(nodeTypeId, contentImgUrl));
+                transformed.put("contentImgUrl", data.get("contentimg"));
 
                 transformed.put("playTime", data.get("playtime"));
                 transformed.put("targetAge", data.get("targetage"));
@@ -298,7 +286,6 @@ public class PipApiService {
 
                 skippedCnt++;
             }
-//            MigrationUtils.recordSingleData(template,"program", String.valueOf(programMap), rs);
         }
         long jobTaken = (new Date().getTime() - startTime.getTime());
         MigrationUtils.printReport(startTime, "PIPProgramRecent", "SKIP", successCnt, skippedCnt);
@@ -331,7 +318,6 @@ public class PipApiService {
                 }
                 skippedCnt++;
             }
-//            MigrationUtils.recordSingleData(template, "pgmVideo", String.valueOf(clipMap), rs);
         }
         long jobTaken = (new Date().getTime() - startTime.getTime());
         MigrationUtils.printReport(startTime, "PIPClipMediaRecent", "SKIP", successCnt, skippedCnt);
