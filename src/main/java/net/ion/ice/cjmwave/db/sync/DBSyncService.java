@@ -1,5 +1,6 @@
 package net.ion.ice.cjmwave.db.sync;
 
+import net.ion.ice.IceRuntimeException;
 import net.ion.ice.cjmwave.db.sync.utils.NodeMappingUtils;
 import net.ion.ice.cjmwave.db.sync.utils.SyntaxUtils;
 import net.ion.ice.cjmwave.external.utils.MigrationUtils;
@@ -168,8 +169,11 @@ public class DBSyncService {
                     break;
                 } else {
                     skippedCnt++;
-                    MigrationUtils.saveFailureNodes(ice2Template, "?", fit);
-
+                    if(e instanceof IceRuntimeException) {
+                        MigrationUtils.saveFilureNodes2(ice2Template, ((IceRuntimeException) e).getRootCause().getClass().getName(), fit);
+                    } else {
+                        MigrationUtils.saveFilureNodes2(ice2Template, e.getClass().getName(), fit);
+                    }
                 }
             }
             // 실패 이외에 성공도 기록하고 싶으면 주석을 푸시오.
@@ -272,15 +276,15 @@ public class DBSyncService {
                     } catch (Exception e) {
                         // 실패한다면 실패 기록을 DB 에 저장한다.
                         logger.error("Recording exception :: ", e);
-
-                        // FOR DEBUG 0922
-                        System.exit(0);
-
                         if(failPolicy.equals("STOP")){
                             loop = false;
                         } else {
                             skippedCnt++;
-                            MigrationUtils.saveFailureNodes(ice2Template, "?", fit);
+                        }
+                        if(e instanceof IceRuntimeException) {
+                            MigrationUtils.saveFilureNodes2(ice2Template, ((IceRuntimeException) e).getRootCause().getClass().getName(), fit);
+                        } else {
+                            MigrationUtils.saveFilureNodes2(ice2Template, e.getClass().getName(), fit);
                         }
                     }
                     // 실패 이외에 성공도 기록하고 싶으면 주석을 푸시오.

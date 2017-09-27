@@ -183,6 +183,9 @@ public class ExecuteContext extends ReadContext{
                             try {
                                 resourceFile = resource.getFile();
                             } catch (Exception e) {
+                                if(e instanceof IceRuntimeException){
+                                    throw new IceRuntimeException("File Exception :", e);
+                                }
                                 e.printStackTrace();
                             }
                             FileValue fileValue = NodeUtils.getFileService().saveFile(pt, id, resourceFile, newFileValue.getFileName(), newFileValue.getContentType());
@@ -243,6 +246,9 @@ public class ExecuteContext extends ReadContext{
                 execute = true;
             }catch(Exception e){
                 execute =false ;
+                if(e instanceof IceRuntimeException){
+                    throw new IceRuntimeException("File Exception :", e);
+                }
             }
         }
 
