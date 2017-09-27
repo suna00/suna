@@ -364,11 +364,12 @@ public class NodeUtils {
             String fileUrlFormat = (String) context.getFileUrlFormat().get(pt.getFileHandler());
             if (value instanceof FileValue) {
                 return fileUrlFormat + ((FileValue) value).getStorePath();
+            }else{
+                return fileUrlFormat + value ;
             }
         }else {
             return value;
         }
-        return null;
     }
 
 
