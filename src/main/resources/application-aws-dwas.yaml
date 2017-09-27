@@ -26,7 +26,7 @@ cluster:
     - localhost
 
 infinispan:
-  cachePath: /home/ion/resource/ice2/cache
+  cachePath: /data/ion/resource/ice2/cache
 
 tomcat:
   access-log-enabled: true
@@ -41,7 +41,7 @@ logging:
 
 file:
   default:
-    path: /home/ion/resource/ice2/files
+    path: /data/ion/resource/ice2/files
 
 
 i18n:
