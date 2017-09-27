@@ -89,8 +89,8 @@ public class VotePrtcptHstService {
         String mbrPvTableName = voteBasNode.getId().toString() + "_votePvHstByMbr";
         String createMbrPvTableSql = String.format("CREATE TABLE %s (" +
                                                     "seq bigInt NOT NULL AUTO_INCREMENT COMMENT '일련번호', " +
-                                                    "voteDate NOT NULL varchar(8) COMMENT '투표일자', " +
-                                                    "mbrId NOT NULL varchar(220) COMMENT '회원아이디', " +
+                                                    "voteDate varchar(8) NOT NULL COMMENT '투표일자', " +
+                                                    "mbrId varchar(220) NOT NULL COMMENT '회원아이디', " +
                                                     "created datetime NOT NULL COMMENT '등록일시', " +
                                                     "PRIMARY KEY (seq)" +
                                                     ")"

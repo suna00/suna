@@ -1,5 +1,6 @@
 package net.ion.ice.scheduling;
 
+import net.ion.ice.core.node.NodeService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.aop.support.AopUtils;
@@ -25,23 +26,29 @@ import org.springframework.scheduling.config.ScheduledTask;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.scheduling.support.ScheduledMethodRunnable;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 import org.springframework.util.StringValueResolver;
 
+import javax.annotation.PostConstruct;
 import java.lang.reflect.Method;
 import java.util.*;
 import java.util.concurrent.ScheduledExecutorService;
 
 
-@Service("schedulingService")
+@Component("schedulingService")
 public class SchedulingService {
     public static final String DEFAULT_TASK_SCHEDULER_BEAN_NAME = "taskScheduler";
 
     protected final Log logger = LogFactory.getLog(getClass());
 
+    @Autowired
     private TaskScheduler scheduler;
+
+    @Autowired
+    private NodeService nodeService ;
 
     private StringValueResolver embeddedValueResolver;
 
@@ -57,21 +64,18 @@ public class SchedulingService {
     private final Map<Object, Set<ScheduledTask>> scheduledTasks =
             new IdentityHashMap<Object, Set<ScheduledTask>>(16);
 
+    @PostConstruct
+    public void initSchedule(){
+        if (this.scheduler != null) {
+            this.registrar.setScheduler(this.scheduler);
 
+//            nodeService.getNodeList("schedule", "useYn_matching=Y") ;
+        }
+
+    }
 
 
     private void finishRegistration() {
-        if (this.scheduler != null) {
-            this.registrar.setScheduler(this.scheduler);
-        }
-
-        if (this.beanFactory instanceof ListableBeanFactory) {
-            Map<String, SchedulingConfigurer> configurers =
-                    ((ListableBeanFactory) this.beanFactory).getBeansOfType(SchedulingConfigurer.class);
-            for (SchedulingConfigurer configurer : configurers.values()) {
-                configurer.configureTasks(this.registrar);
-            }
-        }
 
         if (this.registrar.hasTasks() && this.registrar.getScheduler() == null) {
             Assert.state(this.beanFactory != null, "BeanFactory must be set to find scheduler by type");
