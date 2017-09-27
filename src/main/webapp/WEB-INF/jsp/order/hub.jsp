@@ -399,32 +399,39 @@
 
                 // 07-1-1. 신용카드
                 if (use_pay_method.equals("100000000000")) {
-                    // 07-1-1-1. 복합결제(신용카드+포인트)
                     responseMap.put("orderStatus", "order003"); //결제 완료
+                    responseMap.put("usePayMethodName", "신용카드");
                     if (pnt_issue.equals("SCSK") || pnt_issue.equals("SCWB")) {
+                        // 07-1-1-1. 복합결제(신용카드+포인트)
                         responseMap.put("orderStatus", "order003"); //결제 완료
+                        responseMap.put("usePayMethodName", "신용카드+포인트");
                     }
                 }
 
                 // 07-1-2. 계좌이체
                 if (use_pay_method.equals("010000000000")) {
                     responseMap.put("orderStatus", "order002"); //입금대기
+                    responseMap.put("usePayMethodName", "계좌이체");
                 }
                 // 07-1-3. 가상계좌
                 if (use_pay_method.equals("001000000000")) {
                     responseMap.put("orderStatus", "order003"); //결제 완료
+                    responseMap.put("usePayMethodName", "가상계좌");
                 }
                 // 07-1-4. 포인트
                 if (use_pay_method.equals("000100000000")) {
                     responseMap.put("orderStatus", "order003"); //결제 완료
+                    responseMap.put("usePayMethodName", "포인트");
                 }
                 // 07-1-5. 휴대폰
                 if (use_pay_method.equals("000010000000")) {
                     responseMap.put("orderStatus", "order003"); //결제 완료
+                    responseMap.put("usePayMethodName", "휴대폰");
                 }
                 // 07-1-6. 상품권
                 if (use_pay_method.equals("000000001000")) {
                     responseMap.put("orderStatus", "order003"); //결제 완료
+                    responseMap.put("usePayMethodName", "상품권");
                 }
 
                 bSucc = orderService.addOrderSheet(responseMap);
