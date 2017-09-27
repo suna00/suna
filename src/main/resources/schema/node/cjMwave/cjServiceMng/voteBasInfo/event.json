@@ -1,25 +1,33 @@
 [
   {
-    "typeId" : "event",
-    "id" : "voteBasInfo>selCreate",
+    "typeId": "event",
+    "id": "voteBasInfo>selCreate",
     "tid": "voteBasInfo",
-    "event" : "selCreate",
-    "eventName" : "selCreate Node Type"
+    "event": "selCreate",
+    "eventName": "selCreate Node Type"
   },
   {
-    "typeId" : "event",
-    "id" : "eventAction>selCreate",
+    "typeId": "event",
+    "id": "eventAction>selCreate",
     "tid": "eventAction",
-    "event" : "selCreate",
-    "eventName" : "selCreate eventAction"
+    "event": "selCreate",
+    "eventName": "selCreate eventAction"
   },
   {
-    "typeId" : "eventAction",
-    "id" : "voteBasInfo>selCreate>selCreateEvent",
+    "typeId": "eventAction",
+    "id": "voteBasInfo>selCreate>selCreateEvent",
     "event": "voteBasInfo>selCreate",
-    "action" : "selCreateEvent",
-    "actionType" : "service",
-    "actionBody" : "voteService.selCreateEvent",
-    "order" : 1
+    "action": "selCreateEvent",
+    "actionType": "service",
+    "actionBody": "voteService.selCreateEvent",
+    "order": 1
+  },
+  {
+    "typeId": "eventListener",
+    "tid": "votePrtcptHst",
+    "event": "voteBasInfo>create",
+    "listenerName": "투표별 이력테이블 생성",
+    "actionType": "service",
+    "actionBody": "votePrtcptHstService.hstTableCreate"
   }
 ]
