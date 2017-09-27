@@ -16,7 +16,6 @@ import org.stagemonitor.core.Stagemonitor;
 
 @SpringBootApplication(scanBasePackages = {"net.ion.ice"},exclude = {DataSourceAutoConfiguration.class})
 @EnableAsync
-@EnableScheduling
 public class Ice2Application {
 	private static Logger logger = LoggerFactory.getLogger(Ice2Application.class);
 
