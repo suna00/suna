@@ -122,6 +122,7 @@
 
     /*쉬핑 데이터*/
     String shippingAddress = f_get_parm(request.getParameter("shippingAddress"));
+    String shippingDetailedAddress = f_get_parm(request.getParameter("shippingDetailedAddress"));
     String shippingCellPhone = f_get_parm(request.getParameter("shippingCellPhone"));
     String shippingPhone = f_get_parm(request.getParameter("shippingPhone"));
     String deliveryMemo = f_get_parm(request.getParameter("deliveryMemo"));
@@ -129,6 +130,9 @@
     String postCode = f_get_parm(request.getParameter("postCode"));
     String recipient = f_get_parm(request.getParameter("recipient"));
     String deliveryType = f_get_parm(request.getParameter("deliveryType"));
+    String addMyDeliveryAddress = f_get_parm(request.getParameter("addMyDeliveryAddress"));
+    String changeDefaultAddress = f_get_parm(request.getParameter("changeDefaultAddress"));
+    String myDeliveryAddressId = f_get_parm(request.getParameter("myDeliveryAddressId"));
 
 
     String finalCouponDiscountPrice = request.getParameter("finalCouponDiscountPrice");
@@ -244,7 +248,7 @@
             if (use_pay_method.equals("010000000000")) {
                 app_time = c_PayPlus.mf_get_res("app_time"); // 승인시간
                 bank_name = c_PayPlus.mf_get_res("bank_name"); // 은행명
-                bank_code = c_PayPlus.mf_get_res("bank_code"); // 은행코드
+                bank_code = c_PayPlus.mf_get_res("bank_code"); // 은행코드n
                 bk_mny = c_PayPlus.mf_get_res("bk_mny"); // 계좌이체결제금액
             }
 
@@ -364,12 +368,16 @@
     /*Delivery*/
     responseMap.put("addressName", addressName);
     responseMap.put("shippingAddress", shippingAddress);
+    responseMap.put("shippingDetailedAddress", shippingDetailedAddress);
     responseMap.put("shippingCellPhone", shippingCellPhone);
     responseMap.put("shippingPhone", shippingPhone);
     responseMap.put("deliveryMemo", deliveryMemo);
     responseMap.put("postCode", postCode);
     responseMap.put("recipient", recipient);
     responseMap.put("deliveryType", deliveryType);
+    responseMap.put("addMyDeliveryAddress", addMyDeliveryAddress);
+    responseMap.put("changeDefaultAddress", changeDefaultAddress);
+    responseMap.put("myDeliveryAddressId", myDeliveryAddressId);
 
     /*OrderSheet*/
     responseMap.put("finalCouponDiscountPrice", finalCouponDiscountPrice);

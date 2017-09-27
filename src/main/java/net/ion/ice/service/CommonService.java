@@ -30,7 +30,7 @@ public class CommonService {
         resultCodeMap.put("P0002", "전시중인 상품이 아닙니다.");
         resultCodeMap.put("P0003", "삭제된 상품입니다.");
         resultCodeMap.put("P0004", "판매중인 상품이 아닙니다.");
-        resultCodeMap.put("P0005", "재고가 부족합니다.");
+        resultCodeMap.put("P0005", "품절된 상품입니다.");
 
         /*leave Member*/
         resultCodeMap.put("L0001", "진행중인 거래내역이 있습니다.");
@@ -63,6 +63,9 @@ public class CommonService {
 
         /*Cart*/
         resultCodeMap.put("C0001", "상품 삭제 성공");
+        resultCodeMap.put("C0002", "수량을 1개 이하로 선택할 수 없습니다.");
+        resultCodeMap.put("C0003", "최소 주문가능 수량은 N개 입니다.");
+        resultCodeMap.put("C0004", "선택하신 옵션의 재고가 부족합니다.");
     }
 
     public static boolean requiredParams(ExecuteContext context, Map<String, Object> data, String[] params) {

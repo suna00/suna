@@ -2518,8 +2518,7 @@
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",
-    "defaultValue": "",
-    "idType": "UUID"
+    "defaultValue": ""
   },
   {
     "typeId": "propertyType",

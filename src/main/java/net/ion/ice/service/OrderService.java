@@ -16,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service("orderService")
@@ -164,17 +165,16 @@ public class OrderService {
     public String addOrderSheet(Map<String, Object> responseMap) {
         String bSucc;
         Map<String, Object> storeOrderSheet = new HashMap<>();
-        Map<String, Object> storeOrderProduct = new HashMap<>();
-        Map<String, Object> storeOrderProductItem = new HashMap<>();
         Map<String, Object> storeOrderDeliveryPrice = new HashMap<>();
+        List<String> orderProductIds = new ArrayList<>();
 
         Map<String, Object> tempOrder = nodeBindingService.getNodeBindingInfo("tempOrder").retrieve(String.valueOf(responseMap.get("ordrIdxx")));
         List<Map<String, Object>> tempOrderDeliveryPriceList = nodeBindingService.list("tempOrderDeliveryPrice", "tempOrderId_in=".concat(String.valueOf(responseMap.get("ordrIdxx"))));
 
         double totalProductPrice = 0;
         double totalDeliveryPrice = Double.parseDouble(String.valueOf(tempOrderDeliveryPriceList.get(0).get("deliveryPrice")));
-        double totalDiscountPrice;
-        double totalOrderPrice;
+        double totalDiscountPrice = 0;
+        double totalOrderPrice = 0;
         double couponDiscountPrice = 0;
         double totalPaymentPrice = Double.parseDouble(String.valueOf(responseMap.get("amount")));
         double totalWelfarePoint = Double.parseDouble(String.valueOf(responseMap.get("useWelfarepoint")));
@@ -198,14 +198,14 @@ public class OrderService {
         Map<String, Object> couponIds = null;
         try {
             couponIds = JsonUtils.parsingJsonToMap((String) responseMap.get("usedCoupon"));
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         Map<String, Object> couponResponse = getCoupon((String) responseMap.get("memberNo"), (String) responseMap.get("ordrIdxx"));
         List<Map<String, Object>> items = (List<Map<String, Object>>) couponResponse.get("items"); //상품 정보
 
-        boolean duplicated = duplication(couponIds.values()); // 쿠폰 아이디 중복 체크 메소드
+        boolean duplicated = duplication(couponIds.values()); // 쿠폰 아이디 중복 체크
 
         /**
          * productPrice - couponDiscountPrice 가격을 모두 더하여 totalProductPrice 값을 만든다.
@@ -214,19 +214,21 @@ public class OrderService {
         for (Map<String, Object> item : items) {
             double orderPrice = (double) item.get("orderPrice");
 
-            storeOrderProduct.put("orderSheetId", responseMap.get("ordrIdxx"));                              //주문서 아이디
-            storeOrderProduct.put("productId", ((Map) item.get("productId")).get("value"));                  //상품 아이디
-            storeOrderProduct.put("baseOptionItemId", ((Map) item.get("baseOptionItemId")).get("value"));    //기본옵션 아이템 아이디
-            storeOrderProduct.put("baseOptionItemName", ((Map) item.get("baseOptionItemId")).get("label"));  //기본옵션 아이템명
-            storeOrderProduct.put("quantity", item.get("quantity"));                                         //수량
-            storeOrderProduct.put("salePrice", item.get("salePrice"));                                       //판매가
-            storeOrderProduct.put("baseAddPrice", item.get("baseAddPrice"));                                 //기본옵션추가금액
-            storeOrderProduct.put("productPrice", item.get("productPrice"));                                 //상품금액
-            storeOrderProduct.put("totalAddOptionPrice", item.get("totalAddOptionPrice"));                   //추가옵션금액
-            storeOrderProduct.put("orderPrice", item.get("orderPrice"));                                     //주문금액
-            storeOrderProduct.put("orderStatus", responseMap.get("orderStatus"));                            //주문상태
-            storeOrderProduct.put("vendorId", item.get("vendorId"));                                         //벤더사 아이디
-            storeOrderProduct.put("purchasePhoneNo", "");                                                    //유가증권 구매 전화번호
+            Map<String, Object> storeOrderProduct = new HashMap<>();
+
+            storeOrderProduct.put("orderSheetId", responseMap.get("ordrIdxx"));                                     //주문서 아이디
+            storeOrderProduct.put("productId", JsonUtils.getValue(item, "productId.value"));                   //상품 아이디
+            storeOrderProduct.put("baseOptionItemId", JsonUtils.getValue(item, "baseOptionItemId.value"));     //기본옵션 아이템 아이디
+            storeOrderProduct.put("baseOptionItemName", JsonUtils.getValue(item, "baseOptionItemId.label"));   //기본옵션 아이템명
+            storeOrderProduct.put("quantity", item.get("quantity"));                                                //수량
+            storeOrderProduct.put("salePrice", item.get("salePrice"));                                              //판매가
+            storeOrderProduct.put("baseAddPrice", item.get("baseAddPrice"));                                        //기본옵션추가금액
+            storeOrderProduct.put("productPrice", item.get("productPrice"));                                        //상품금액
+            storeOrderProduct.put("totalAddOptionPrice", item.get("totalAddOptionPrice"));                          //추가옵션금액
+            storeOrderProduct.put("orderPrice", item.get("orderPrice"));                                            //주문금액
+            storeOrderProduct.put("orderStatus", responseMap.get("orderStatus"));                                   //주문상태
+            storeOrderProduct.put("vendorId", item.get("vendorId"));                                                //벤더사 아이디
+            storeOrderProduct.put("purchasePhoneNo", "");                                                           //유가증권 구매 전화번호
 
 
             String couponId = String.valueOf(couponIds.get("tempOrderProductId"));
@@ -243,23 +245,24 @@ public class OrderService {
             }
             Node orderProductNode = (Node) nodeService.executeNode(storeOrderProduct, "orderProduct", CREATE);
 
+            orderProductIds.add(orderProductNode.getId()); //orderDeliveryPrice | orderProductIds 에 넣기 위하여.
             /**
              * orderProductItem 생성
              * */
-            logger.info("123");
 
-            List<Map<String, Object>> tempOrderProductItemList = nodeBindingService.list("tempOrderProductItem", "tempOrderProductId_in=".concat((String) item.get("tempOrderProductId")));
-
+            List<Map<String, Object>> tempOrderProductItemList = nodeBindingService.list("tempOrderProductItem", "tempOrderProductId_in=".concat(String.valueOf(item.get("tempOrderProductId"))));
             for (Map<String, Object> tempOrderProductItem : tempOrderProductItemList) {
+                Map<String, Object> storeOrderProductItem = new HashMap<>();
+
                 storeOrderProductItem.put("orderSheetId", responseMap.get("ordrIdxx"));
                 storeOrderProductItem.put("orderProductId", orderProductNode.getId());
                 storeOrderProductItem.put("productId", tempOrderProductItem.get("productId"));
                 storeOrderProductItem.put("addOptionItemId", tempOrderProductItem.get("addOptionItemId"));
-                storeOrderProductItem.put("addOptionItemName", tempOrderProductItem.get(""));
-                storeOrderProductItem.put("quantity", tempOrderProductItem.get(""));
-                storeOrderProductItem.put("addOptionPrice", tempOrderProductItem.get(""));
+//                storeOrderProductItem.put("addOptionItemName", tempOrderProductItem.get(""));
+                storeOrderProductItem.put("quantity", tempOrderProductItem.get("quantity"));
+                storeOrderProductItem.put("addOptionPrice", tempOrderProductItem.get("addOptionPrice"));
 
-                nodeService.executeNode(storeOrderProductItem, "orderProductItem", CREATE);
+                Node orderProductItemNode = (Node) nodeService.executeNode(storeOrderProductItem, "orderProductItem", CREATE);
             }
             totalProductPrice = totalProductPrice + orderPrice;
         }
@@ -281,7 +284,7 @@ public class OrderService {
 
 
 //        orderSheet.put("sessionId", tempOrder.get("sessionId"));
-        storeOrderSheet.put("orderSheetId", tempOrder.get("tempOrderId"));   //주문서 번호
+        storeOrderSheet.put("orderSheetId", responseMap.get("ordrIdxx"));   //주문서 번호
         storeOrderSheet.put("cartId", tempOrder.get("cartId"));              //카트 아이디
         storeOrderSheet.put("memberNo", tempOrder.get("memberNo"));          //회원번호
         storeOrderSheet.put("siteId", tempOrder.get("siteId"));              //사이트 아이디
@@ -297,10 +300,15 @@ public class OrderService {
         storeOrderSheet.put("purchaseDeviceType", tempOrder.get(""));
 
         nodeService.executeNode(storeOrderSheet, "orderSheet", CREATE);
-        saveDelivery(responseMap);
 
 
-        if (totalOrderPrice != totalPaymentPrice && !duplicated) {
+        storeOrderDeliveryPrice.put("orderSheetId", responseMap.get("ordrIdxx"));
+        storeOrderDeliveryPrice.put("orderProductIds", StringUtils.join(orderProductIds, ","));
+        storeOrderDeliveryPrice.put("vendorId", StringUtils.join(orderProductIds, ","));
+
+        boolean saveDelivery = saveDelivery(responseMap); // 배송지 저장
+
+        if (totalOrderPrice != totalPaymentPrice && !duplicated && !saveDelivery) {
             bSucc = "false";
             return bSucc;
         } else {
@@ -314,19 +322,23 @@ public class OrderService {
      */
     public String savePayment(Map<String, Object> responseMap) {
         Node node = (Node) nodeService.executeNode(responseMap, "payment", CREATE);
-        logger.info("123123");
         return node.getId();
     }
+
 
     /**
      * 주문서 배송지를 저장하는 Method.
      */
-    public void saveDelivery(Map<String, Object> responseMap) {
+    public boolean saveDelivery(Map<String, Object> responseMap) {
+
+        boolean result = false;
         Map<String, Object> storeRefineDelivery = new HashMap<>();
+
+        String address = String.valueOf(responseMap.get("shippingAddress")).concat(" ").concat(String.valueOf(responseMap.get("shippingDetailedAddress")));
 
         storeRefineDelivery.put("orderSheetId", responseMap.get("ordrIdxx"));
         storeRefineDelivery.put("addressName", responseMap.get("addressName"));
-        storeRefineDelivery.put("address", responseMap.get("shippingAddress"));
+        storeRefineDelivery.put("address", address);
         storeRefineDelivery.put("cellphone", responseMap.get("shippingCellPhone"));
         storeRefineDelivery.put("phone", responseMap.get("shippingPhone"));
         storeRefineDelivery.put("deliveryMemo", responseMap.get("deliveryMemo"));
@@ -335,7 +347,54 @@ public class OrderService {
         storeRefineDelivery.put("deliveryType", responseMap.get("deliveryType"));
 
         nodeService.executeNode(storeRefineDelivery, "delivery", CREATE);
-        logger.info("saveDelivery end");
+
+        String myDeliveryAddressId = String.valueOf(responseMap.get("myDeliveryAddressId"));
+
+        if (responseMap.get("addMyDeliveryAddress").equals("on")) {       //주소록 추가
+
+            Map<String, Object> storeMyDeliveryAddress = new HashMap<>();
+
+            storeMyDeliveryAddress.put("memberNo", responseMap.get("memberNo"));
+            storeMyDeliveryAddress.put("siteId", responseMap.get("siteId"));
+            storeMyDeliveryAddress.put("addressName", responseMap.get("addressName"));
+            storeMyDeliveryAddress.put("postCode", responseMap.get("postCode"));
+            storeMyDeliveryAddress.put("address", responseMap.get("shippingAddress"));
+            storeMyDeliveryAddress.put("detailedAddress", responseMap.get("shippingDetailedAddress"));
+            storeMyDeliveryAddress.put("cellphone", responseMap.get("shippingCellPhone"));
+            storeMyDeliveryAddress.put("phone", responseMap.get("phone"));
+            if (responseMap.get("changeDefaultAddress").equals("on")) {   //기본 배송지
+
+                List<Node> myDeliveryAddressNodeList = nodeService.getNodeList("myDeliveryAddress", "defaultYn_matching=y");
+                Node myDeliveryAddressNode = myDeliveryAddressNodeList.get(0);
+                myDeliveryAddressNode.put("defaultYn", "n");
+                nodeService.updateNode(myDeliveryAddressNode, "myDeliveryAddress");
+
+                storeMyDeliveryAddress.put("defaultYn", "y");
+
+            } else {
+
+                storeMyDeliveryAddress.put("defaultYn", "n");
+            }
+
+            nodeService.executeNode(storeMyDeliveryAddress, "myDeliveryAddress", CREATE);
+
+            result = true;
+
+        } else {
+            if (responseMap.get("changeDefaultAddress").equals("on")) {   //기본 배송지
+                List<Node> myDefaultDeliveryAddressNodeList = nodeService.getNodeList("myDeliveryAddress", "defaultYn_matching=y");
+                Node myDefaultDeliveryAddressNode = myDefaultDeliveryAddressNodeList.get(0);
+                myDefaultDeliveryAddressNode.put("defaultYn", "n");
+                nodeService.updateNode(myDefaultDeliveryAddressNode, "myDeliveryAddress");
+
+                List<Node> myDeliveryAddressNodeList = nodeService.getNodeList("myDeliveryAddress", "myDeliveryAddressId_matching=".concat(myDeliveryAddressId));
+                Node myDeliveryAddressNode = myDeliveryAddressNodeList.get(0);
+                myDeliveryAddressNode.put("defaultYn", "y");
+                nodeService.updateNode(myDeliveryAddressNode, "myDeliveryAddress");
+            }
+            result = true;
+        }
+        return result;
     }
 
 
@@ -365,12 +424,13 @@ public class OrderService {
         Map<String, Object> referencedCartDeliveryPrice = null;
         List<String> selectProductIds = new ArrayList<>();
 
-        if(data.get("productIds") != null){
+        if (data.get("productIds") != null) {
             selectProductIds = Arrays.asList(String.valueOf(data.get("productIds")).split(",")); // 카트에서 선택한 상품 리스트
         }
 
         String cartId = String.valueOf((JsonUtils.parsingJsonToMap((String) data.get("item"))).get("cartId"));
         storeTempOrder.put("cartId", cartId);
+        storeTempOrder.put("tempOrderId", orderNumber(cartId));
 
         try {
             referencedCartDeliveryPrice = JsonUtils.parsingJsonToMap((String) data.get("referencedCartDeliveryPrice"));
@@ -444,9 +504,10 @@ public class OrderService {
                             Map<String, Object> storeTempOrderProductItem = new HashMap<>();
                             storeTempOrderProductItem.put("tempOrderId", tempOrderId);
                             storeTempOrderProductItem.put("tempOrderProductId", tempOrderProductNode.getId());
-                            storeTempOrderProductItem.put("productId", ((Map<String, Object>) tempOrderProductItem.get("productId")).get("value"));
-                            storeTempOrderProductItem.put("addOptionItemId", ((Map<String, Object>) tempOrderProductItem.get("addOptionItemId")).get("value"));
+                            storeTempOrderProductItem.put("productId", JsonUtils.getValue(tempOrderProductItem, "productId.value"));
+                            storeTempOrderProductItem.put("addOptionItemId", JsonUtils.getValue(tempOrderProductItem, "addOptionItemId.value"));
                             storeTempOrderProductItem.put("quantity", tempOrderProductItem.get("quantity"));
+                            storeTempOrderProductItem.put("addOptionPrice", JsonUtils.getValue(tempOrderProductItem, "addOptionItemId.item.addPrice"));
 
                             nodeService.executeNode(storeTempOrderProductItem, "tempOrderProductItem", CREATE);
                         }
@@ -477,6 +538,23 @@ public class OrderService {
         }
         return duplication;
     }
+
+    /**
+     * 주문번호 생성 Method.
+     */
+    private String orderNumber(String cartId) {
+        String orderNumber = "B";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmssSSS", Locale.KOREA);
+        Date currentTime = new Date();
+        String time = simpleDateFormat.format(currentTime);
+        orderNumber = orderNumber.concat(time).concat(cartId);
+        return orderNumber;
+    }
+
+    private void pointDeduction(String yPoin){
+
+    }
+
 
     /**
      * 주문 성공시 임시 주문서를 삭제하는 Method.

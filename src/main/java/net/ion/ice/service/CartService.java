@@ -35,6 +35,15 @@ public class CartService {
     public NodeBindingInfo nodeBindingInfo;
 
 
+    private Object executeNode(Map<String, Object> map, String typeId, String event) {
+        map.remove("owner");
+        map.remove("created");
+        map.remove("modifier");
+        map.remove("changed");
+        return nodeService.executeNode(map, typeId, event);
+    }
+
+    // 장바구니 담기
     public ExecuteContext addCart(ExecuteContext context) throws IOException {
         nodeBindingInfo = NodeUtils.getNodeBindingInfo(context.getNodeType().getTypeId());
         Map<String, Object> data = context.getData();
@@ -44,14 +53,20 @@ public class CartService {
 //        for(Map<String, Object> map : maps){
 //            if(!checkSaleStatus(context, map.get("productId").toString())) return context;
 //            if(!checkStock(context, map.get("baseOptionItemId").toString(), (int) map.get("quantity"))) return context;
-//            for(Map<String, Object> item : (List<Map<String, Object>>) map.get(cartProductItem_TID)){
-//                if(!checkStock(context, item.get("addOptionItemId").toString(), (int) item.get("quantity"))) return context;
+//            if(map.get(cartProductItem_TID) != null){
+//                for(Map<String, Object> item : (List<Map<String, Object>>) map.get(cartProductItem_TID)){
+//                    if(!checkStock(context, item.get("addOptionItemId").toString(), (int) item.get("quantity"))) return context;
+//                }
 //            }
+//            if(!checkQuantity(context, map)) return context;
 //        }
 
-        Node cart = (Node) nodeService.executeNode(data, "cart", SAVE);
+        Node cart = (Node) executeNode(data, "cart", SAVE);
         data.put("cartId", cart.getId());
-        addProducts(data, cart.getId());
+
+        if(data.get("cartProduct") != null){
+            addProducts(data, cart.getId());
+        }
 
         Map<String, Object> result = new HashMap<>();
         result.put("cartId", cart.getId());
@@ -75,22 +90,22 @@ public class CartService {
     public boolean checkSaleStatus(ExecuteContext context, String productId){
         Node node = NodeUtils.getNode("product", productId);
 
-        if(!"approve".equals(node.getValue("approvalStatus"))){
+        if(!"approvalStatus>approve".equals(node.getValue("approvalStatus"))){
             context.setResult(CommonService.getResult("P0001"));
             return false;
         }
 
-        if(!"y".equals(node.getValue("productStatus"))){
+        if(!"displayStatus>y".equals(node.getValue("productStatus"))){
             context.setResult(CommonService.getResult("P0002"));
             return false;
         }
 
-        if("approve".equals(node.getValue("deleteStatus"))){
+        if("deleteStatus>approve".equals(node.getValue("deleteStatus"))){
             context.setResult(CommonService.getResult("P0003"));
             return false;
         }
 
-        if(!"sale".equals(node.getValue("saleStatus"))){
+        if(!"saleStatus>sale".equals(node.getValue("saleStatus"))){
             context.setResult(CommonService.getResult("P0004"));
             return false;
         }
@@ -98,56 +113,103 @@ public class CartService {
         return true;
     }
 
+    // 수량 체크 (최소,최대:0이면 무제한)
+    public boolean checkQuantity(ExecuteContext context, Map<String, Object> map){
+        Node cartProduct = NodeUtils.getNode(cartProduct_TID, map.get("cartProductId").toString());
+        int change = Integer.parseInt(cartProduct.get("quantity").toString()) + Integer.parseInt(map.get("quantity").toString());
+
+        if(change <= 0){
+            context.setResult(CommonService.getResult("C0002"));
+            return false;
+        }
+        if(map.get("productId") != null || map.get("cartProductId") != null){
+            String productId = null;
+            if(map.get("productId") == null){
+                productId = cartProduct.getValue("productId").toString();
+            }else{
+                productId = map.get("productId").toString();
+            }
+            Node node = NodeUtils.getNode("product", productId);
+            int min = Integer.parseInt((node.getValue("minOrderQuantity") == null ? 0 : node.getValue("minOrderQuantity")).toString());
+            int max = Integer.parseInt((node.getValue("maxOrderQuantity") == null ? 0 : node.getValue("maxOrderQuantity")).toString());
+
+            Map<String, Object> temp = new LinkedHashMap<>();
+            temp.put("minOrderQuantity", min);
+            temp.put("maxOrderQuantity", max);
+
+            if(change < min){
+                context.setResult(CommonService.getResult("C0003", temp));
+                return false;
+            }
+            if(max != 0 && change > max){
+                context.setResult(CommonService.getResult("C0004", temp));
+                return false;
+            }
+        }
+        return true;
+    }
+
     // 수량변경
     public ExecuteContext changeQuantity(ExecuteContext context) throws IOException {
         nodeBindingInfo = NodeUtils.getNodeBindingInfo(context.getNodeType().getTypeId());
         Map<String, Object> data = context.getData();
-        Map<String, Object> deliveryPriceMap = getCartDeliveryPriceMap(data.get("cartProductId").toString());
+        Node cartProduct = NodeUtils.getNode(cartProduct_TID, data.get("cartProductId").toString());
+        int quantity = Integer.parseInt(data.get("quantity").toString()) + Integer.parseInt(cartProduct.get("quantity").toString());
 
-        Node node = NodeUtils.getNode("cartProduct", data.get("cartProductId").toString());
+        if(!checkSaleStatus(context, cartProduct.get("productId").toString())) return context;
+        if(!checkStock(context, cartProduct.getValue("baseOptionItemId").toString(), quantity)) return context;
+        if(!checkQuantity(context, data)) return context;
 
-//        if(!checkSaleStatus(context, node.get("productId").toString())) return context;
-//        if(!checkStock(context, node.getValue("baseOptionItemId").toString(), (int) data.get("quantity"))) return context;
-
-        node.put("quantity", data.get("quantity"));
-        if("quantity".equals(deliveryPriceMap.get("deliveryPriceType"))){
-            Node product = NodeUtils.getNode("product", node.getValue("productId").toString());
-            createCartProductByDeliveryQuantity(node, product);
-        }else{
-            nodeService.executeNode(node, cartProduct_TID, SAVE);
-            // 배송비 재처리
-            Map<String, Object> map = getTotalProductPriceMap(data.get("cartProductId").toString());
-            if(Double.parseDouble(map.get("totalProductPrice").toString()) >= Double.parseDouble(map.get("deliveryConditionValue").toString())){
-                deliveryPriceMap.put("deliveryPrice", 0);
-            }else{
-                deliveryPriceMap.put("deliveryPrice", map.get("deliveryPrice"));
-            }
-            nodeService.executeNode(deliveryPriceMap, cartDeliveryPrice_TID, SAVE);
-
-        }
-
+        changeQuantity(cartProduct, Integer.parseInt(data.get("quantity").toString()));
         context.setResult(CommonService.getResult("S0002"));
 
         return context;
     }
 
+    public void changeQuantity(Map<String, Object> cartProduct, Integer changeCount) throws IOException {
+        Map<String, Object> deliveryPriceMap = getCartDeliveryPriceMap(cartProduct.get("cartProductId").toString());
+
+        if("quantity".equals(deliveryPriceMap.get("deliveryPriceType"))){
+            Node product = NodeUtils.getNode("product", cartProduct.get("productId").toString());
+            if(changeCount > 0){
+                cartProduct.put("quantity", changeCount);
+                createCartProductByQuantity(cartProduct, product);
+            }else{
+                cartProduct.put("changeCount", changeCount);
+                minusCartProductQuantity(cartProduct);
+            }
+        }else{
+            cartProduct.put("quantity", changeCount + Integer.parseInt(cartProduct.get("quantity").toString()));
+            executeNode(cartProduct, cartProduct_TID, SAVE);
+            // 배송비 재처리
+            deliveryPriceMap.put("deliveryPrice", calculateDeliveryPrice(cartProduct.get("cartProductId").toString()));
+            executeNode(deliveryPriceMap, cartDeliveryPrice_TID, SAVE);
+
+        }
+
+    }
+
     public void removeProduct(ExecuteContext context) throws IOException {
         nodeBindingInfo = NodeUtils.getNodeBindingInfo(context.getNodeType().getTypeId());
         Map<String, Object> data = context.getData();
-        String productIds = (String) data.get("productIds");
-        String[] productIdsArray = productIds.split(",");
-        for(String productId : productIdsArray){
-            nodeBindingService.delete(cartProduct_TID, productId);
-            List<Map<String, Object>> cartProductItemList = nodeBindingService.list(cartProductItem_TID, "cartProductId_in=".concat(productId));
+        String cartProductIds = (String) data.get("productIds");
+        removeProduct(cartProductIds);
+        context.setResult(CommonService.getResult("C0001"));
+    }
+
+    public void removeProduct(String cartProductIds) throws IOException {
+        String[] cartProductIdsArray = cartProductIds.split(",");
+        for(String cartProductId : cartProductIdsArray){
+            nodeBindingService.delete(cartProduct_TID, cartProductId);
+            List<Map<String, Object>> cartProductItemList = nodeBindingService.list(cartProductItem_TID, "cartProductId_equals=".concat(cartProductId));
             if(cartProductItemList.size() > 0){
                 for(Map<String, Object> cartProductItem : cartProductItemList){
                     nodeBindingService.delete(cartProductItem_TID, String.valueOf(cartProductItem.get("cartProductItemId")));
                 }
             }
-            removeDeliveryPrice(productId);
+            removeDeliveryPrice(cartProductId);
 
         }
-        context.setResult(CommonService.getResult("C0001"));
     }
 
     private void removeDeliveryPrice(String cartProductId) throws IOException {
@@ -159,10 +221,38 @@ public class CartService {
         }else{
             ids.remove(cartProductId);
             String cartProductIds = StringUtils.join(ids, ",");
+            Integer deliveryPrice = calculateDeliveryPrice(cartProductIds);
             result.put("cartProductIds", cartProductIds);
-            result.put("deliveryPrice", calculateDeliveryPrice(null, cartProductIds));
-            nodeService.executeNode(result, cartDeliveryPrice_TID, UPDATE);
+            result.put("deliveryPriceType", (deliveryPrice > 0 ? "conditional" : "free"));
+            result.put("deliveryPrice", deliveryPrice);
+            executeNode(result, cartDeliveryPrice_TID, UPDATE);
         }
+    }
+
+    // 동일 장바구니 상품 처리 여부
+    private boolean existCartProduct(Map<String, Object> map, Map<String, Object> cartProduct, Map<String, Object> product, boolean isFirstRow){
+        if(!(map.get("baseOptionItemId").toString()).equals(cartProduct.get("baseOptionItemId").toString())){
+            return false;
+        }
+
+        Map<String, Object> m = getCartDeliveryPriceMap(cartProduct.get("cartProductId").toString());
+        if("deliveryDateType>hopeDelivery".equals(product.get("deliveryDateType"))){
+            String cartDate = m.get("hopeDeliveryDate").toString();
+            String mapDate = map.get("hopeDeliveryDate").toString();
+            if(!cartDate.equals(mapDate)) return false;
+        }
+
+        if("deliveryDateType>scheduledDelivery".equals(product.get("deliveryDateType"))){
+            String cartDate = m.get("scheduledDeliveryDate").toString();
+            String productDate = product.get("scheduledDeliveryDate").toString();
+            if(!cartDate.equals(productDate)) return false;
+        }
+
+        if(!("deliveryPriceType>quantity".equals(product.get("deliveryPriceType")) && isFirstRow)){
+            return false;
+        }
+
+        return true;
     }
 
     private void addProducts(Map<String, Object> data, Object cartId) throws IOException {
@@ -175,7 +265,10 @@ public class CartService {
             boolean quantityDeliveryType = ("deliveryPriceType>quantity".equals(product.getValue("deliveryPriceType")));
 
             for(Map<String, Object> obj : referenced){
-                if(!quantityDeliveryType && (map.get("baseOptionItemId").toString()).equals(obj.get("baseOptionItemId").toString())){
+                if(existCartProduct(map, obj, product, obj.equals(referenced.get(0)))){
+                    changeQuantity(obj, Integer.parseInt(map.get("quantity").toString()));
+                    obj.putAll(map);
+                    if(map.get(cartProductItem_TID) != null) createCartProductItem(obj);
                     exist = true;
                 }
             }
@@ -185,201 +278,261 @@ public class CartService {
 
                 Map<String, Object> cartProductMap = new LinkedHashMap<>();
                 if(quantityDeliveryType){
-                    cartProductMap = createCartProductByDeliveryQuantity(map, product);
+                    createCartProductByQuantity(map, product);
                 }else{
                     cartProductMap = createCartProduct(map);
                     cartProductMap.putAll(product);
 
                     if(map.get(cartProductItem_TID) != null) createCartProductItem(cartProductMap);
 
-                    setDeliveryPrice(map, cartProductMap);
+                    setDeliveryPrice(cartProductMap, product);
                 }
 
-            }else{
-                // 장바구니에 이미 존재하는 상품
             }
         }
 
     }
 
-    // 수량별 배송비 경우 cartProduct 쪼갬
-    private Map<String, Object> createCartProductByDeliveryQuantity(Map<String, Object> map, Node product) throws IOException {
+    // 수량별 배송비 경우 기준수량 초과 시 cartProduct 나누기.
+    private Map<String, Object> createCartProductByQuantity(Map<String, Object> map, Node product) throws IOException {
         int quantity = Integer.parseInt(map.get("quantity").toString());
         int deliveryConditionValue = Integer.parseInt(product.getValue("deliveryConditionValue").toString());
         Map<String, Object> cartProductMap = new LinkedHashMap<>();
 
         // 장바구니에 수량별 배송료 같은 기본옵션이 있는경우 나머지 수량 채워줌.
-        List<Map<String, Object>> cartProducts = nodeBindingService.list(cartProduct_TID, "cartId_equals="+map.get("cartId")+"&baseOptionItemId_equals="+map.get("baseOptionItemId")+"&quantity_below="+deliveryConditionValue);
+        List<Map<String, Object>> cartProducts = nodeBindingService.list(cartProduct_TID, "sorting=created&cartId_equals="+map.get("cartId")+"&baseOptionItemId_equals="+map.get("baseOptionItemId"));
         if(cartProducts.size() > 0){
             for(Map<String, Object> cartProduct : cartProducts){
                 int qtt = Integer.parseInt(cartProduct.get("quantity").toString());
                 if(qtt < deliveryConditionValue){
                     cartProduct.put("quantity", deliveryConditionValue);
-                    nodeService.executeNode(cartProduct, cartProduct_TID, UPDATE) ;
-
+                    executeNode(cartProduct, cartProduct_TID, UPDATE) ;
                     quantity = quantity - ( deliveryConditionValue - qtt );
                 }
             }
         }
-
+        if(quantity <= 0 ) return null;
         if(quantity > deliveryConditionValue){
             int count = (int) Math.ceil((double) quantity / (double) deliveryConditionValue);
             for(int i=0 ; i < count ; i++){
                 int cartProductQuantity = (i != count-1 ? deliveryConditionValue : ( quantity - (count-1) * deliveryConditionValue ));
                 map.put("quantity", cartProductQuantity);
                 cartProductMap = createCartProduct(map);
-                cartProductMap.putAll(product);
 
                 if(i == 0){
                     if(map.get(cartProductItem_TID) != null) createCartProductItem(cartProductMap);
                 }
-                setDeliveryPrice(map, cartProductMap);
+                setDeliveryPrice(cartProductMap, product);
             }
         }else{
+            map.put("quantity", quantity);
             cartProductMap = createCartProduct(map);
-            cartProductMap.putAll(product);
 
             if(map.get(cartProductItem_TID) != null) createCartProductItem(cartProductMap);
 
-            setDeliveryPrice(map, cartProductMap);
+            setDeliveryPrice(cartProductMap, product);
         }
 
         return cartProductMap;
+    }
+
+    private void minusCartProductQuantity(Map<String, Object> map) throws IOException {
+        int minusCount = -(Integer.parseInt(map.get("changeCount").toString()));
+        int quantity = Integer.parseInt(map.get("quantity").toString());
+        Node product = NodeUtils.getNode("product", map.get("productId").toString());
+        int deliveryConditionValue = Integer.parseInt(product.getValue("deliveryConditionValue").toString());
+
+        if(quantity == minusCount){ // 얘도 원래 있을 수 없지만 함 넣어 봐써
+            removeProduct(map.get("cartProductId").toString());
+
+        }else if(quantity > minusCount){
+            map.put("quantity", quantity - minusCount);
+            executeNode(map, cartProduct_TID, UPDATE) ;
+
+            // 배송비 기준 수량 미달인 카트상품 row > 1 이면 합쳐주기.
+            List<Map<String, Object>> cartProducts = nodeBindingService.list(cartProduct_TID, "sorting=cartProductId&cartId_equals=" + map.get("cartId")+"&baseOptionItemId_equals=" + map.get("baseOptionItemId") + "&quantity_notEquals=" + deliveryConditionValue);
+            if(cartProducts.size() > 1){
+                Map<String, Object> temp = new LinkedHashMap<>();
+                int need = 0;
+                for(Map<String, Object> cartProduct : cartProducts){
+                    if(temp.size() == 0){
+                        temp.putAll(cartProduct);
+                    }else{
+                        need = deliveryConditionValue - Integer.parseInt(temp.get("quantity").toString());
+                        int resource= Integer.parseInt(cartProduct.get("quantity").toString());
+
+                        if(need == resource){
+                            temp.put("quantity", deliveryConditionValue);
+                            executeNode(temp, cartProduct_TID, UPDATE) ;
+                            removeProduct(cartProduct.get("cartProductId").toString());
+
+                        }else if(need < resource){
+                            temp.put("quantity", deliveryConditionValue);
+                            executeNode(temp, cartProduct_TID, UPDATE) ;
+
+                            cartProduct.put("quantity", resource - need);
+                            executeNode(cartProduct, cartProduct_TID, UPDATE) ;
+
+                        }else{
+                            // need > resource
+                            temp.put("quantity", deliveryConditionValue);
+                            executeNode(temp, cartProduct_TID, UPDATE) ;
+                            removeProduct(cartProduct.get("cartProductId").toString());
+                            need = need - resource;
+                        }
+
+                    }
+                    temp.clear();
+                    temp.putAll(cartProduct);
+                }
+            }
+        }else{
+            // quantity < minusCount : 있을 수 없음
+        }
+
     }
 
     private Map<String, Object> createCartProduct(Map<String, Object> map) {
         Map<String, Object> newMap = new LinkedHashMap<>();
         newMap.putAll(map);
         newMap.remove("cartProductId");
-        Node node = (Node) nodeService.executeNode(newMap, cartProduct_TID, CREATE);
-        newMap.put("cartProductId", node.getId());
+        newMap.remove("cartProductItem");
+        Node node = (Node) executeNode(newMap, cartProduct_TID, CREATE);
+        map.put("cartProductId", node.getId());
 
-        return newMap;
+        return map;
     }
 
     private void createCartProductItem(Map<String, Object> cartProduct) {
         for(Map<String, Object> item : (List<Map<String, Object>>) cartProduct.get(cartProductItem_TID)){
-            item.putAll(cartProduct);
-            nodeService.executeNode(item, cartProductItem_TID, CREATE) ;
+            List<Map<String, Object>> cartProductItems = nodeBindingService.list(cartProductItem_TID, "cartId_equals="+cartProduct.get("cartId")+"&addOptionItemId_equals="+item.get("addOptionItemId"));
+            if(cartProductItems.size() > 0){
+                for(Map<String, Object> obj : cartProductItems){
+                    obj.put("quantity", Integer.parseInt(obj.get("quantity").toString()) + Integer.parseInt(item.get("quantity").toString()));
+                    executeNode(obj, cartProductItem_TID, UPDATE) ;
+                }
+            }else{
+                Map<String, Object> m = new HashMap<>(cartProduct);
+                m.putAll(item);
+                m.remove("cartProduct");
+                m.remove("cartProductItem");
+                executeNode(m, cartProductItem_TID, CREATE) ;
+            }
         }
 
     }
 
-    private void updateCartProduct(Map<String, Object> map) {
+    public void setDeliveryPrice(Map<String, Object> cartProduct, Node product) throws IOException {
+        Map<String, Object> map = new LinkedHashMap<>(cartProduct);
+        String deliveryPriceType = StringUtils.substringAfter(product.get("deliveryPriceType").toString(),">");
+        String deliveryMethod = StringUtils.substringAfter(product.get("deliveryMethod").toString(),">");
+        String deliveryDateType = StringUtils.substringAfter(product.get("deliveryDateType").toString(),">");
+        map.putAll(product);
+        map.remove("cartProductItem");
 
-        Node node = (Node) nodeService.executeNode(map, cartProduct_TID, CREATE);
-        map.put("cartProductId", node.getId());
-
-        createCartProductItem(map);
-    }
-
-    public void setDeliveryPrice(Map<String, Object> map, Map<String, Object> cartProduct) throws IOException {
-        String deliveryPriceType = StringUtils.substringAfter(cartProduct.get("deliveryPriceType").toString(),">");
-        String deliveryMethod = StringUtils.substringAfter(cartProduct.get("deliveryMethod").toString(),">");
-
-//        유료배송비 : charge
-//        수량별배송비 : quantity
+        // 유료배송비 : charge
+        // 수량별배송비 : quantity (기준수량별로 장바구니 상품 row 나뉘고 setDeliveryPrice 이므로 무조건 create)
         if("quantity".equals(deliveryPriceType) || "charge".equals(deliveryPriceType)){
-            cartProduct.put("cartProductIds", cartProduct.get("cartProductId"));
-            cartProduct.put("deliveryMethod", deliveryMethod);
-            nodeService.executeNode(cartProduct, cartDeliveryPrice_TID, CREATE);
+            map.put("cartProductIds", map.get("cartProductId"));
+            executeNode(map, cartDeliveryPrice_TID, CREATE);
         }else{
-//            무료배송비 : free
-//            조건부무료배송 : conditional
-            List<Map<String, Object>> cartDeliveryPrices = nodeBindingService.list(cartDeliveryPrice_TID, "cartId_equals="+cartProduct.get("cartId")+"&vendorId_equals="+cartProduct.get("vendorId")+"&deliveryMethod_equals="+deliveryMethod+"&bundleDeliveryYn_equals=y&deliveryPriceType_in=free,conditional");
+            // 무료배송비 : free
+            // 조건부무료배송 : conditional
+            String searchText = "cartId_equals="+map.get("cartId")
+                    + "&vendorId_equals=" + map.get("vendorId")
+                    + "&bundleDeliveryYn_equals=y&deliveryPriceType_in=free,conditional"
+                    + "&deliveryMethod_equals=" + deliveryMethod
+                    + "&deliveryDateType_equals=" + deliveryDateType
+                    + ("hopeDelivery".equals(deliveryDateType) ? "&hopeDeliveryDate_equals=" + cartProduct.get("hopeDeliveryDate") : "")
+                    + ("scheduledDelivery".equals(deliveryDateType) ? "&scheduledDeliveryDate_equals=" + cartProduct.get("scheduledDeliveryDate") : "");
+
+            List<Map<String, Object>> cartDeliveryPrices = nodeBindingService.list(cartDeliveryPrice_TID, searchText);
             if(cartDeliveryPrices.size() == 0){
-                cartProduct.put("cartProductIds", cartProduct.get("cartProductId"));
-                cartProduct.put("deliveryPrice", calculateDeliveryPrice(null, cartProduct.get("cartProductId").toString()));
-                cartProduct.put("deliveryMethod", deliveryMethod);
-                nodeService.executeNode(cartProduct, cartDeliveryPrice_TID, CREATE);
+                map.put("deliveryPrice", calculateDeliveryPrice(map.get("cartProductId").toString()));
+                map.put("cartProductIds", map.get("cartProductId"));
+                executeNode(map, cartDeliveryPrice_TID, CREATE);
             }else{
                 for(Map<String, Object> deliveryPrice : cartDeliveryPrices){
-                    if("free".equals(deliveryPrice.get("deliveryPriceType")) || "free".equals(deliveryPriceType)){
-                        deliveryPrice.put("deliveryPriceType", "free");
-                        deliveryPrice.put("cartProductIds", (deliveryPrice.get("cartProductIds").toString()).concat(",").concat(cartProduct.get("cartProductId").toString()));
-                        nodeService.executeNode(deliveryPrice, cartDeliveryPrice_TID, UPDATE);
-                    }else{
-                        deliveryPrice.put("deliveryPrice", calculateDeliveryPrice(map, deliveryPrice.get("cartProductIds").toString()));
-                        deliveryPrice.put("cartProductIds", (deliveryPrice.get("cartProductIds").toString()).concat(",").concat(cartProduct.get("cartProductId").toString()));
-                        nodeService.executeNode(deliveryPrice, cartDeliveryPrice_TID, UPDATE);
+                    String cartProductIds = (deliveryPrice.get("cartProductIds").toString()).concat(",").concat(map.get("cartProductId").toString());
 
-                    }
+                    deliveryPrice.put("deliveryPriceType", ("free".equals(deliveryPrice.get("deliveryPriceType")) || "free".equals(deliveryPriceType) ? "free" : "conditional"));
+                    deliveryPrice.put("deliveryPrice", calculateDeliveryPrice(cartProductIds));
+                    deliveryPrice.put("cartProductIds", cartProductIds);
+                    executeNode(deliveryPrice, cartDeliveryPrice_TID, UPDATE);
+
                 }
             }
         }
     }
 
 //    배송비 계산
-    public Integer calculateDeliveryPrice(Map<String, Object> map, String cartProductIds) throws IOException {
+    public Integer calculateDeliveryPrice(String cartProductIds) throws IOException {
         Map<String, Object> m = getTotalProductPriceMap(cartProductIds);
         Integer totalProductPrice = (m.get("totalProductPrice") != null ? (int) Double.parseDouble(m.get("totalProductPrice").toString()) : 0);
-
         String deliveryPriceType = m.get("deliveryPriceType").toString();
-        Integer deliveryConditionValue = Integer.parseInt(m.get("deliveryConditionValue").toString());
 
         if(deliveryPriceType.contains("free")) return 0;
-        if(deliveryPriceType.contains("conditional")){
-            Integer price = (map != null ? getTotalProductPrice(map) : 0);
-            if(cartProductIds != null){
-                price = price + totalProductPrice;
-            }
-            if(price >= deliveryConditionValue) return 0;
-        }
+
+        Integer deliveryConditionValue = Integer.parseInt(m.get("deliveryConditionValue").toString());
+        if(deliveryPriceType.contains("conditional") && totalProductPrice >= deliveryConditionValue) return 0;
+
         return (int) Double.parseDouble(m.get("deliveryPrice").toString());
     }
 
-//    담을 상품
-    public Integer getTotalProductPrice(Map<String, Object> map) throws IOException {
-//        {
-//            "productId": 503,
-//                "baseOptionItemId": 50019,
-//                "quantity": 2,
-//                "cartProductItem": [
-//            {
-//                "addOptionItemId": 50020,
-//                    "quantity": 3
-//            }
-//  ]
-//        }
-        Integer price = getBaseOptionProductPrice(map);
+    /*{
+        "productId": 503,
+            "baseOptionItemId": 50019,
+            "quantity": 2,
+            "cartProductItem": [
+        {
+            "addOptionItemId": 50020,
+                "quantity": 3
+        }
+                  ]
+    }*/
+    public Integer getTotalProductPriceFromParam(Map<String, Object> map) throws IOException {
+
+        Integer price = getBaseOptionProductPrice(map.get("baseOptionItemId"), map.get("quantity"));
 
         if(map.get("cartProductItem") != null){
-            price = price + getAddOptionProductPrice(map);
+            price = price + getAddOptionProductPrice(map.get("cartProductItem").toString());
         }
 
         return price;
     }
 
-    private Integer getAddOptionProductPrice(Map<String, Object> map) throws IOException {
+    // 현재 추가옵션 가격
+    private Integer getAddOptionProductPrice(String cartProductItem) throws IOException {
         Integer price = 0;
         String query = "select IFNULL(max(pi.addPrice * ?), 0) as addOptionPrice\n" +
                 "      from productoptionitem pi\n" +
                 "      where pi.productOptionItemId = ? " ;
 
-        for(Map<String, Object> item : JsonUtils.parsingJsonToList(map.get("cartProductItem").toString())){
+        for(Map<String, Object> item : JsonUtils.parsingJsonToList(cartProductItem)){
             Map<String, Object> result = nodeBindingInfo.getJdbcTemplate().queryForMap(query, item.get("quantity"), item.get("addOptionItemId"));
             price = price + (int) Double.parseDouble(result.get("addOptionPrice").toString());
         }
         return price;
     }
 
-    private Integer getBaseOptionProductPrice(Map<String, Object> map) {
+    // 현재 기본옵션 상품 가격
+    private Integer getBaseOptionProductPrice(Object baseOptionItemId, Object quantity) {
         String query = "select\n" +
                         "  IFNULL(max((p.salePrice + pi.addPrice) * ?), 0) as baseOptionPrice\n" +
                         "from productoptionitem pi, product p\n" +
                         "where p.productId = pi.productId\n" +
                         "  and pi.productOptionItemId = ? " ;
-        Map<String, Object> result = nodeBindingInfo.getJdbcTemplate().queryForMap(query, map.get("quantity"), map.get("baseOptionItemId"));
+        Map<String, Object> result = nodeBindingInfo.getJdbcTemplate().queryForMap(query, baseOptionItemId, quantity);
         return (int) Double.parseDouble(result.get("baseOptionPrice").toString());
     }
 
-    //    기존 담긴 상품
     public Map<String, Object> getTotalProductPriceMap(String cartProductIds){
         String[] ids = StringUtils.split(cartProductIds,",");
         List<String> holder = new ArrayList<>();
         for(String id : ids){
             holder.add("?");
         }
+        String holders = StringUtils.join(holder, ",");
 
         String query = "select (totalBaseOptionPrice + totalAddOptionPrice) as totalProductPrice, deliveryPrice, deliveryConditionValue, deliveryPriceType\n" +
                 "from (\n" +
@@ -390,16 +543,30 @@ public class CartService {
                 "     , min(p.deliveryPrice) as deliveryPrice, min(p.deliveryConditionValue) as deliveryConditionValue, group_concat(p.deliveryPriceType) as deliveryPriceType\n" +
                 "   FROM cartproduct cp, productoptionitem pi, product p\n" +
                 "   WHERE cp.baseOptionItemId = pi.productOptionItemId AND p.productId = pi.productId\n" +
-                "         and cp.cartProductId in ( " + StringUtils.join(holder, ", ") + ")\n" +
+                "         and cp.cartProductId in ( " + holders + ")\n" +
                 "   group by cp.cartId\n" +
                 ") x";
 
-        return nodeBindingInfo.getJdbcTemplate().queryForMap(query, cartProductIds);
+        return nodeBindingInfo.getJdbcTemplate().queryForMap(query, ids);
     }
 
     private Map<String, Object> getCartDeliveryPriceMap(String cartProductId) {
-        String query = "select * from cartdeliveryprice\n" +
-                "where find_in_set(?, cartProductIds) > 0 " ;
+        String query = "select\n" +
+                        "  cartDeliveryPriceId\n" +
+                        "  ,cartId\n" +
+                        "  ,cartProductIds\n" +
+                        "  ,vendorId\n" +
+                        "  ,deliveryPrice\n" +
+                        "  ,bundleDeliveryYn\n" +
+                        "  ,deliveryMethod\n" +
+                        "  ,deliveryPriceType\n" +
+                        "  ,deliveryDateType\n" +
+                        "  ,date_format(scheduledDeliveryDate, '%Y%m%d%H%i%s') as scheduledDeliveryDate\n" +
+                        "  ,date_format(hopeDeliveryDate, '%Y%m%d%H%i%s') as hopeDeliveryDate\n" +
+                        "  ,created\n" +
+                        "  ,changed\n" +
+                        "from cartdeliveryprice\n" +
+                        "where find_in_set(?, cartProductIds) > 0 " ;
         return nodeBindingInfo.getJdbcTemplate().queryForMap(query, cartProductId);
     }
 

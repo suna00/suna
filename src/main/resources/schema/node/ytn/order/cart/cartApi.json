@@ -118,7 +118,7 @@
         "typeId": "cartDeliveryPrice",
         "query": [
           { "sorting": "created desc" },
-          { "field": "cartId", "method": "matching", "value": "{{:cartId}}" }
+          { "field": "cartId", "method": "equals", "value": "{{:cartId}}"}
         ],
         "response": {
           "_all_": "",
