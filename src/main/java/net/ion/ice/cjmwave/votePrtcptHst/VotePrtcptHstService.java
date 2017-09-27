@@ -77,22 +77,43 @@ public class VotePrtcptHstService {
 
     public void hstTableCreate(ExecuteContext context) {
         Node voteBasNode = context.getNode();
-        String tableName = voteBasNode.getId().toString() + "_voteHstByMbr";
-        String createTableSql = String.format("CREATE TABLE %s (" +
-                        "seq bingInt COMMENT '일련번호', " +
-                        "voteDate varchar(8) COMMENT '투표일자', " +
-                        "mbrId varchar(220) COMMENT '회원아이디', " +
-                        "created datetime COMMENT '등록일시', " +
+        String mbrTableName = voteBasNode.getId().toString() + "_voteHstByMbr";
+        String createMbrTableSql = String.format("CREATE TABLE %s (" +
+                                                "seq bigInt NOT NULL AUTO_INCREMENT COMMENT '일련번호', " +
+                                                "voteDate varchar(8) NOT NULL COMMENT '투표일자', " +
+                                                "mbrId varchar(220) NOT NULL COMMENT '회원아이디', " +
+                                                "created datetime NOT NULL COMMENT '등록일시', " +
+                                                "PRIMARY KEY (seq)" +
+                                                ")"
+                                              , mbrTableName);
+        String mbrPvTableName = voteBasNode.getId().toString() + "_votePvHstByMbr";
+        String createMbrPvTableSql = String.format("CREATE TABLE %s (" +
+                                                    "seq bigInt NOT NULL AUTO_INCREMENT COMMENT '일련번호', " +
+                                                    "voteDate NOT NULL varchar(8) COMMENT '투표일자', " +
+                                                    "mbrId NOT NULL varchar(220) COMMENT '회원아이디', " +
+                                                    "created datetime NOT NULL COMMENT '등록일시', " +
+                                                    "PRIMARY KEY (seq)" +
+                                                    ")"
+                                            , mbrPvTableName);
+        String itemTableName = voteBasNode.getId().toString() + "_voteItemHstByMbr";
+        String createItemTableSql = String.format("CREATE TABLE %s (" +
+                        "seq bigInt NOT NULL AUTO_INCREMENT COMMENT '일련번호', " +
+                        "voteDate varchar(8) NOT NULL COMMENT '투표일자', " +
+                        "voteItemSeq bigInt NOT NULL COMMENT '투표일자', " +
+                        "mbrId varchar(220) NOT NULL COMMENT '회원아이디', " +
+                        "created datetime NOT NULL COMMENT '등록일시', " +
                         "PRIMARY KEY (seq)" +
                         ")"
-                , tableName);
+                , itemTableName);
 
         try {
-            //JdbcTemplate jdbcTemplate = NodeBindingUtils.getNodeBindingService().getNodeBindingInfo("voteBasInfo").getJdbcTemplate();
-            //JdbcTemplate jdbcTemplate = dbService.getJdbcTemplate("cjDb") ;
             JdbcTemplate jdbcTemplate2 = NodeUtils.getNodeBindingService().getNodeBindingInfo("voteBasInfo").getJdbcTemplate();
-            //jdbcTemplate.execute(createTableSql);
-            jdbcTemplate2.execute(createTableSql);
+            jdbcTemplate2.execute(createMbrTableSql);
+            jdbcTemplate2.execute(createItemTableSql);
+            String voteFormlCd = voteBasNode.getStringValue("voteFormlCd");
+            if("voteFormlCd>1".equals(voteFormlCd)){//토너먼트인 경우에만 pv 이력테이블 생성
+                jdbcTemplate2.execute(createMbrPvTableSql);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
