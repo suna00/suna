@@ -54,6 +54,7 @@ public class CommonService {
 
         /*MyPage*/
         resultCodeMap.put("M0001", "주소록 삭제 성공");
+        resultCodeMap.put("M0002", "주문접수, 결제완료인 경우만 배송지 변경이 가능합니다.");
 
         /*Order*/
         resultCodeMap.put("O0001", "임시 주문서 저장 성공");

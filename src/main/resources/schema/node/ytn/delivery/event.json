@@ -30,5 +30,21 @@
     "actionType": "service",
     "actionBody": "mypageService.removeMyDeliveryAddress",
     "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "delivery",
+    "event": "updateOrderDeliveryAddress",
+    "noneExecute": true,
+    "eventName": "주문서 상세조회 배송지 변경"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "delivery>updateOrderDeliveryAddress",
+    "action": "updateOrderDeliveryAddress",
+    "actionName": "주문서 상세조회 배송지 변경",
+    "actionType": "service",
+    "actionBody": "mypageService.updateOrderDeliveryAddress",
+    "order": 1
   }
 ]

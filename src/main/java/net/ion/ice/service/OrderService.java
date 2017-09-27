@@ -422,11 +422,6 @@ public class OrderService {
         Map<String, Object> data = context.getData();
         Map<String, Object> storeTempOrder = new HashMap<>();
         Map<String, Object> referencedCartDeliveryPrice = null;
-        List<String> selectProductIds = new ArrayList<>();
-
-        if (data.get("productIds") != null) {
-            selectProductIds = Arrays.asList(String.valueOf(data.get("productIds")).split(",")); // 카트에서 선택한 상품 리스트
-        }
 
         String cartId = String.valueOf((JsonUtils.parsingJsonToMap((String) data.get("item"))).get("cartId"));
         storeTempOrder.put("cartId", cartId);
@@ -442,13 +437,13 @@ public class OrderService {
 
         Node tempOrderNode = (Node) nodeService.executeNode(storeTempOrder, "tempOrder", CREATE);
 
-        makeTempOrderProductData(tempOrderNode.getId(), cartDeliveryPriceList, selectProductIds); // 임시 주문서 상품목록 Maker
+        makeTempOrderProductData(tempOrderNode.getId(), cartDeliveryPriceList, data.get("productIds")); // 임시 주문서 상품목록 Maker
         Map<String, Object> extraData = new HashMap<>();
         extraData.put("tempOrderId", tempOrderNode.getId());
         context.setResult(CommonService.getResult("O0001", extraData)); // 성공 시
     }
 
-    private void makeTempOrderProductData(Object tempOrderId, List<Map<String, Object>> cartDeliveryPriceList, List<String> selectProductIds) {
+    private void makeTempOrderProductData(Object tempOrderId, List<Map<String, Object>> cartDeliveryPriceList, Object reqSelectCartProductIds) {
         for (Map<String, Object> cartDeliveryPrice : cartDeliveryPriceList) {
             Map<String, Object> storeTempOrderDeliveryPrice = new HashMap<>();
             List<String> tempOrderProductIds = new ArrayList<>();
@@ -458,15 +453,25 @@ public class OrderService {
             storeTempOrderDeliveryPrice.put("bundleDeliveryYn", ((Map<String, Object>) cartDeliveryPrice.get("bundleDeliveryYn")).get("value"));
             storeTempOrderDeliveryPrice.put("deliveryMethod", JsonUtils.getValue(cartDeliveryPrice, "deliveryMethod.value"));
             storeTempOrderDeliveryPrice.put("deliveryPriceType", JsonUtils.getValue(cartDeliveryPrice, "deliveryPriceType.value"));
+            storeTempOrderDeliveryPrice.put("deliveryDateType", JsonUtils.getValue(cartDeliveryPrice, "deliveryDateType.value"));
             storeTempOrderDeliveryPrice.put("hopeDeliveryDate", cartDeliveryPrice.get("hopeDeliveryDate"));
+            storeTempOrderDeliveryPrice.put("scheduledDeliveryDate", cartDeliveryPrice.get("scheduledDeliveryDate"));
 
             /**
              * 선택한 상품이 없을 땐 상품 전체를 선택했다고 가정하고 카트 전체 상품 아이디를 가져온다.
              */
-            if (selectProductIds.size() == 0) {
+
+            List<String> selectCartProductIds = new ArrayList<>();
+
+            if (reqSelectCartProductIds != null) {
+                selectCartProductIds = Arrays.asList(String.valueOf(reqSelectCartProductIds).split(",")); // 카트에서 선택한 상품 리스트
+            }
+
+            if (selectCartProductIds.size() == 0) {
+
                 List<Map<String, String>> cartProductIds = (List<Map<String, String>>) cartDeliveryPrice.get("cartProductIds");
                 for (Map<String, String> cartProductId : cartProductIds) {
-                    selectProductIds.add(cartProductId.get("value"));
+                    selectCartProductIds.add(cartProductId.get("value"));
                 }
             }
 
@@ -481,7 +486,7 @@ public class OrderService {
                 /**
                  * 선택상품목록과 장바구니상품목록을 비교하면서 넣어준다.
                  */
-                for (String selectProductId : selectProductIds) {
+                for (String selectProductId : selectCartProductIds) {
                     if (!selectProductId.equals(String.valueOf(calc.get("cartProductId")))) {
                         continue;
                     } else {

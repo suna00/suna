@@ -57,7 +57,7 @@ public class CartService {
 //            }
 //            if(!checkQuantity(context, map)) return context;
 //        }
-
+        CommonService.resetMap(data);
         Node cart = (Node) nodeService.executeNode(data, "cart", SAVE);
         data.put("cartId", cart.getId());
 
@@ -177,9 +177,11 @@ public class CartService {
             }
         }else{
             cartProduct.put("quantity", changeCount + Integer.parseInt(cartProduct.get("quantity").toString()));
+            CommonService.resetMap(cartProduct);
             nodeService.executeNode(cartProduct, cartProduct_TID, SAVE);
             // 배송비 재처리
             deliveryPriceMap.put("deliveryPrice", deliveryService.calculateDeliveryPrice(cartProduct.get("cartProductId").toString()));
+            CommonService.resetMap(deliveryPriceMap);
             nodeService.executeNode(deliveryPriceMap, cartDeliveryPrice_TID, SAVE);
 
         }
@@ -291,6 +293,7 @@ public class CartService {
                 int qtt = Integer.parseInt(cartProduct.get("quantity").toString());
                 if(qtt < deliveryConditionValue){
                     cartProduct.put("quantity", deliveryConditionValue);
+                    CommonService.resetMap(cartProduct);
                     nodeService.executeNode(cartProduct, cartProduct_TID, UPDATE) ;
                     quantity = quantity - ( deliveryConditionValue - qtt );
                 }
@@ -332,6 +335,7 @@ public class CartService {
 
         }else if(quantity > minusCount){
             map.put("quantity", quantity - minusCount);
+            CommonService.resetMap(map);
             nodeService.executeNode(map, cartProduct_TID, UPDATE) ;
 
             // 배송비 기준 수량 미달인 카트상품 row > 1 이면 합쳐주기.
@@ -348,19 +352,23 @@ public class CartService {
 
                         if(need == resource){
                             temp.put("quantity", deliveryConditionValue);
+                            CommonService.resetMap(temp);
                             nodeService.executeNode(temp, cartProduct_TID, UPDATE) ;
                             removeProduct(cartProduct.get("cartProductId").toString());
 
                         }else if(need < resource){
                             temp.put("quantity", deliveryConditionValue);
+                            CommonService.resetMap(temp);
                             nodeService.executeNode(temp, cartProduct_TID, UPDATE) ;
 
                             cartProduct.put("quantity", resource - need);
+                            CommonService.resetMap(cartProduct);
                             nodeService.executeNode(cartProduct, cartProduct_TID, UPDATE) ;
 
                         }else{
                             // need > resource
                             temp.put("quantity", deliveryConditionValue);
+                            CommonService.resetMap(temp);
                             nodeService.executeNode(temp, cartProduct_TID, UPDATE) ;
                             removeProduct(cartProduct.get("cartProductId").toString());
                             need = need - resource;
@@ -382,6 +390,7 @@ public class CartService {
         newMap.putAll(map);
         newMap.remove("cartProductId");
         newMap.remove("cartProductItem");
+        CommonService.resetMap(newMap);
         Node node = (Node) nodeService.executeNode(newMap, cartProduct_TID, CREATE);
         map.put("cartProductId", node.getId());
 
@@ -394,6 +403,7 @@ public class CartService {
             if(cartProductItems.size() > 0){
                 for(Map<String, Object> obj : cartProductItems){
                     obj.put("quantity", Integer.parseInt(obj.get("quantity").toString()) + Integer.parseInt(item.get("quantity").toString()));
+                    CommonService.resetMap(obj);
                     nodeService.executeNode(obj, cartProductItem_TID, UPDATE) ;
                 }
             }else{
@@ -401,6 +411,7 @@ public class CartService {
                 m.putAll(item);
                 m.remove("cartProduct");
                 m.remove("cartProductItem");
+                CommonService.resetMap(m);
                 nodeService.executeNode(m, cartProductItem_TID, CREATE) ;
             }
         }
