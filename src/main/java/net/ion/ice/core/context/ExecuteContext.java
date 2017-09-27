@@ -252,13 +252,15 @@ public class ExecuteContext extends ReadContext{
             }
         }
 
+        List<String> subDataKeys = new ArrayList<>();
+
         for(String key : data.keySet()){
             Object value = data.get(key) ;
             if(value instanceof List && (this.nodeType.getPropertyType(key) == null || !this.nodeType.getPropertyType(key).isList()) && NodeUtils.getNodeType(key) != null){
                 for(Map<String, Object> subData : (List<Map<String, Object>>)value){
                     Map<String, Object> _data = new HashMap<>() ;
-                    _data.putAll(data);
-                    _data.remove(key) ;
+//                    _data.putAll(data);
+//                    _data.remove(key) ;
                     _data.putAll(subData);
                     for(String _key : subData.keySet()){
                         Object _val = subData.get(_key) ;
@@ -274,7 +276,13 @@ public class ExecuteContext extends ReadContext{
                         subExecuteContexts.add(subContext);
                     }
                 }
+
+                subDataKeys.add(key);
             }
+        }
+
+        for(String subDataKey : subDataKeys) {
+            data.remove(subDataKey);
         }
     }
 
