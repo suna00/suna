@@ -351,33 +351,6 @@
     "voteNum": 10
   },
   {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
     "typeId": "voteItemStats",
     "voteSeq": 800006,
     "voteItemSeq": 7000124,
@@ -394,33 +367,6 @@
     "rankGapNum": "",
     "voteRate": 1,
     "voteNum": 4
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
   },
   {
     "typeId": "voteItemStats",
@@ -441,33 +387,6 @@
     "voteNum": 20
   },
   {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
     "typeId": "voteItemStats",
     "voteSeq": 800008,
     "voteItemSeq": 7000146,
@@ -484,33 +403,6 @@
     "rankGapNum": 1,
     "voteRate": 0.4,
     "voteNum": 20
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
   },
   {
     "typeId": "voteItemStats",
@@ -531,33 +423,6 @@
     "voteNum": 9
   },
   {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
     "typeId": "voteItemStats",
     "voteSeq": 800010,
     "voteItemSeq": 7000168,
@@ -574,33 +439,6 @@
     "rankGapNum": 1,
     "voteRate": 0.58,
     "voteNum": 42
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
   },
   {
     "typeId": "voteItemStats",
@@ -621,33 +459,6 @@
     "voteNum": 22
   },
   {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
     "typeId": "voteItemStats",
     "voteSeq": 800012,
     "voteItemSeq": 7000190,
@@ -664,33 +475,6 @@
     "rankGapNum": 1,
     "voteRate": 0.97,
     "voteNum": 66
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
   },
   {
     "typeId": "voteItemStats",
@@ -711,33 +495,6 @@
     "voteNum": 63
   },
   {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
     "typeId": "voteItemStats",
     "voteSeq": 800014,
     "voteItemSeq": 7000212,
@@ -754,33 +511,6 @@
     "rankGapNum": 1,
     "voteRate": 0.61,
     "voteNum": 534
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
   },
   {
     "typeId": "voteItemStats",
@@ -801,33 +531,6 @@
     "voteNum": 3234
   },
   {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
     "typeId": "voteItemStats",
     "voteSeq": 800016,
     "voteItemSeq": 7000234,
@@ -844,33 +547,6 @@
     "rankGapNum": 1,
     "voteRate": 0.42,
     "voteNum": 22
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
   },
   {
     "typeId": "voteItemStats",
@@ -891,33 +567,6 @@
     "voteNum": 66
   },
   {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
     "typeId": "voteItemStats",
     "voteSeq": 800018,
     "voteItemSeq": 7000256,
@@ -934,33 +583,6 @@
     "rankGapNum": 1,
     "voteRate": 0.66,
     "voteNum": 63
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
   },
   {
     "typeId": "voteItemStats",
@@ -981,33 +603,6 @@
     "voteNum": 534
   },
   {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
     "typeId": "voteItemStats",
     "voteSeq": 800020,
     "voteItemSeq": 7000278,
@@ -1026,33 +621,6 @@
     "voteNum": 3234
   },
   {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
     "typeId": "voteItemStats",
     "voteSeq": 800021,
     "voteItemSeq": 7000289,
@@ -1069,33 +637,6 @@
     "rankGapNum": 1,
     "voteRate": 0.93,
     "voteNum": 3421
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
   },
   {
     "typeId": "voteItemStats",
@@ -1152,15 +693,6 @@
     "voteNum": 4
   },
   {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
     "typeId": "voteItemStats",
     "voteSeq": 800023,
     "voteItemSeq": 7000311,
@@ -1213,15 +745,6 @@
     "rankGapNum": "",
     "voteRate": 0,
     "voteNum": 4
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
   },
   {
     "typeId": "voteItemStats",
@@ -1278,15 +801,6 @@
     "voteNum": 4
   },
   {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
     "typeId": "voteItemStats",
     "voteSeq": 800025,
     "voteItemSeq": 7000333,
@@ -1339,15 +853,6 @@
     "rankGapNum": "",
     "voteRate": 0,
     "voteNum": 4
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
   },
   {
     "typeId": "voteItemStats",
@@ -1404,15 +909,6 @@
     "voteNum": 4
   },
   {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
     "typeId": "voteItemStats",
     "voteSeq": 800027,
     "voteItemSeq": 7000355,
@@ -1465,15 +961,6 @@
     "rankGapNum": "",
     "voteRate": 0,
     "voteNum": 4
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
   },
   {
     "typeId": "voteItemStats",
@@ -1530,15 +1017,6 @@
     "voteNum": 4
   },
   {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
     "typeId": "voteItemStats",
     "voteSeq": 800029,
     "voteItemSeq": 7000378,
@@ -1593,15 +1071,6 @@
     "voteNum": 4
   },
   {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
     "typeId": "voteItemStats",
     "voteSeq": 800030,
     "voteItemSeq": 7000378,
@@ -1654,15 +1123,6 @@
     "rankGapNum": "",
     "voteRate": 0,
     "voteNum": 4
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
   },
   {
     "typeId": "voteItemStats",
@@ -1719,24 +1179,6 @@
     "voteNum": 4
   },
   {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
     "typeId": "voteItemStats",
     "voteSeq": 800032,
     "voteItemSeq": 7010398,
@@ -1789,15 +1231,6 @@
     "rankGapNum": "",
     "voteRate": 0,
     "voteNum": 4
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
   },
   {
     "typeId": "voteItemStats",
@@ -1854,15 +1287,6 @@
     "voteNum": 4
   },
   {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
     "typeId": "voteItemStats",
     "voteSeq": 800034,
     "voteItemSeq": 7010412,
@@ -1915,15 +1339,6 @@
     "rankGapNum": "",
     "voteRate": 0,
     "voteNum": 4
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
   },
   {
     "typeId": "voteItemStats",
@@ -1980,24 +1395,6 @@
     "voteNum": 4
   },
   {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
     "typeId": "voteItemStats",
     "voteSeq": 800043,
     "voteItemSeq": 7010426,
@@ -2050,15 +1447,6 @@
     "rankGapNum": "",
     "voteRate": 0,
     "voteNum": 4
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
   },
   {
     "typeId": "voteItemStats",
@@ -2115,15 +1503,6 @@
     "voteNum": 4
   },
   {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
     "typeId": "voteItemStats",
     "voteSeq": 800045,
     "voteItemSeq": 7010440,
@@ -2176,15 +1555,6 @@
     "rankGapNum": "",
     "voteRate": 0,
     "voteNum": 4
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
   },
   {
     "typeId": "voteItemStats",
@@ -2430,15 +1800,6 @@
     "voteNum": 3
   },
   {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
     "typeId": "voteItemStats",
     "voteSeq": 800047,
     "voteItemSeq": 7010447,
@@ -2529,24 +1890,6 @@
     "voteNum": 75
   },
   {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
     "typeId": "voteItemStats",
     "voteSeq": 800039,
     "voteItemSeq": 7000564,
@@ -2601,15 +1944,6 @@
     "voteNum": 95
   },
   {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
     "typeId": "voteItemStats",
     "voteSeq": 800040,
     "voteItemSeq": 7000575,
@@ -2644,24 +1978,6 @@
     "rankGapNum": "",
     "voteRate": 0.1,
     "voteNum": 97
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
-  },
-  {
-    "typeId": "",
-    "voteSeq": "",
-    "voteItemSeq": "",
-    "rankNum": "",
-    "rankGapNum": "",
-    "voteRate": "",
-    "voteNum": ""
   },
   {
     "typeId": "voteItemStats",
