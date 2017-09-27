@@ -16,7 +16,7 @@
       },
       {
         "paramName": "showLoCd",
-        "required": true
+        "required": false
       }
     ],
     "config": {
