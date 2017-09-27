@@ -326,8 +326,7 @@
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",
-    "defaultValue": "",
-    "fileHandler":"s3"
+    "defaultValue": ""
   },
   {
     "typeId": "propertyType",
@@ -344,8 +343,7 @@
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",
-    "defaultValue": "",
-    "fileHandler":"s3"
+    "defaultValue": ""
   },
   {
     "typeId": "propertyType",
@@ -362,8 +360,7 @@
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",
-    "defaultValue": "",
-    "fileHandler":"s3"
+    "defaultValue": ""
   },
   {
     "typeId": "propertyType",
@@ -380,8 +377,7 @@
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",
-    "defaultValue": "",
-    "fileHandler":"s3"
+    "defaultValue": ""
   },
   {
     "typeId": "propertyType",
