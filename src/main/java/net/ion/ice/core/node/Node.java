@@ -463,10 +463,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         return this ;
     }
 
-    private boolean executeStore ;
     public Node toStore() {
-        if(executeStore) return this ;
-
         NodeType nodeType = NodeUtils.getNodeType(getTypeId()) ;
         for(PropertyType pt : nodeType.getPropertyTypes()){
             Object value = NodeUtils.getStoreValue(this, pt, this.id) ;

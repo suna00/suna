@@ -148,7 +148,6 @@ public class ExecuteContext extends ReadContext{
                     continue;
                 }
 
-
                 Object newValue = NodeUtils.getStoreValue(data, pt, node.getId()) ;
                 if(pt.isI18n() && newValue == null){
                     continue;
