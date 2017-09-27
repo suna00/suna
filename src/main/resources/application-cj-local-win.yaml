@@ -61,3 +61,6 @@ aws:
 
 temp-file:
   dir: c:/
+
+image:
+  prefixUrl: http://125.131.88.147:8080/image/

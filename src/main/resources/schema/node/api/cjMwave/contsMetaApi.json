@@ -387,9 +387,14 @@
                 "value": "{{:getCommaItem(relArtistIds,0,뺿뺿))}}"
               },
               {
-                "field": "showYn",
+                "field": "apvSttusCd",
                 "method": "matching",
-                "value": "true"
+                "value": "2"
+              },
+              {
+                "field": "langCd",
+                "method": "matching",
+                "value": "{{:langCd}}"
               },
               {
                 "sorting": "created desc",
@@ -434,11 +439,49 @@
                 "value":"voteFormlCd>1,voteFormlCd>2,voteFormlCd>4,voteFormlCd>5"
               },
               {
+                "field": "showYn",
+                "method": "matching",
+                "value": "true"
+              },
+              {
                 "sorting": "created desc",
                 "limit": "3",
                 "includeReferenced": true
               }
-            ]
+            ],
+            "response":{
+              "_all_":"",
+              "refdItemList": {
+                "typeId": "voteItemInfo",
+                "query": [
+                  {
+                    "field": "voteSeq",
+                    "method": "referenceJoin",
+                    "value": "voteSeq_matching={{:voteSeq}}"
+                  },
+                  {
+                    "field": "langCd",
+                    "method": "matching",
+                    "value": "{{:langCd}}"
+                  }
+                ]
+              },
+              "refdSeriesItemList": {
+                "typeId": "sersVoteItemInfo",
+                "query": [
+                  {
+                    "field": "voteSeq",
+                    "method": "referenceJoin",
+                    "value": "voteSeq_matching={{:voteSeq}}"
+                  },
+                  {
+                    "field": "langCd",
+                    "method": "matching",
+                    "value": "{{:langCd}}"
+                  }
+                ]
+              }
+            }
           }
         }
       },
@@ -468,10 +511,6 @@
         "required": false
       },
       {
-        "paramName": "svcTermlDivCd",
-        "required": false
-      },
-      {
         "paramName": "searchKeyword",
         "required": false
       }
@@ -495,9 +534,9 @@
             "searchValue": "{{:searchKeyword}}"
           },
           {
-            "field": "showYn",
+            "field": "apvSttusCd",
             "method": "matching",
-            "value": "true"
+            "value": "2"
           },
           {
             "field": "langCd",
@@ -597,6 +636,16 @@
                 "value": "{{:newsId}}"
               },
               {
+                "field": "apvSttusCd",
+                "method": "matching",
+                "value": "2"
+              },
+              {
+                "field": "langCd",
+                "method": "matching",
+                "value": "{{:langCd}}"
+              },
+              {
                 "sorting": "newsId desc",
                 "limit": "1"
               }
@@ -613,6 +662,16 @@
                 "field": "newsId",
                 "method": "excess",
                 "value": "{{:newsId}}"
+              },
+              {
+                "field": "apvSttusCd",
+                "method": "matching",
+                "value": "2"
+              },
+              {
+                "field": "langCd",
+                "method": "matching",
+                "value": "{{:langCd}}"
               },
               {
                 "sorting": "newsId asc",
@@ -633,9 +692,14 @@
                 "value": "{{:getCommaItem(contsMetaCtgryId,last,뺿뺿)}}"
               },
               {
-                "field": "showYn",
+                "field": "apvSttusCd",
                 "method": "matching",
-                "value": "true"
+                "value": "2"
+              },
+              {
+                "field": "langCd",
+                "method": "matching",
+                "value": "{{:langCd}}"
               },
               {
                 "sorting": "created desc",
@@ -652,9 +716,14 @@
                 "value": "{{:getCommaItem(relArtistIds,0,뺿뺿))}}"
               },
               {
-                "field": "showYn",
+                "field": "apvSttusCd",
                 "method": "matching",
-                "value": "true"
+                "value": "2"
+              },
+              {
+                "field": "langCd",
+                "method": "matching",
+                "value": "{{:langCd}}"
               },
               {
                 "sorting": "created desc",
@@ -699,11 +768,49 @@
                 "value":"voteFormlCd>1,voteFormlCd>2,voteFormlCd>4,voteFormlCd>5"
               },
               {
+                "field": "showYn",
+                "method": "matching",
+                "value": "true"
+              },
+              {
                 "sorting": "created desc",
                 "limit": "3",
                 "includeReferenced": true
               }
-            ]
+            ],
+            "response":{
+              "_all_":"",
+              "refdItemList": {
+                "typeId": "voteItemInfo",
+                "query": [
+                  {
+                    "field": "voteSeq",
+                    "method": "referenceJoin",
+                    "value": "voteSeq_matching={{:voteSeq}}"
+                  },
+                  {
+                    "field": "langCd",
+                    "method": "matching",
+                    "value": "{{:langCd}}"
+                  }
+                ]
+              },
+              "refdSeriesItemList": {
+                "typeId": "sersVoteItemInfo",
+                "query": [
+                  {
+                    "field": "voteSeq",
+                    "method": "referenceJoin",
+                    "value": "voteSeq_matching={{:voteSeq}}"
+                  },
+                  {
+                    "field": "langCd",
+                    "method": "matching",
+                    "value": "{{:langCd}}"
+                  }
+                ]
+              }
+            }
           }
         }
       },
@@ -826,11 +933,6 @@
                 "value": "{{:getCommaItem(contsMetaCtgryId,last,뺿뺿)}}"
               },
               {
-                "field": "showYn",
-                "method": "matching",
-                "value": "true"
-              },
-              {
                 "sorting": "created desc",
                 "limit": "15"
               }
@@ -845,9 +947,14 @@
                 "value": "{{:getCommaItem(relArtistIds,0,뺿뺿))}}"
               },
               {
-                "field": "showYn",
+                "field": "apvSttusCd",
                 "method": "matching",
-                "value": "true"
+                "value": "2"
+              },
+              {
+                "field": "langCd",
+                "method": "matching",
+                "value": "{{:langCd}}"
               },
               {
                 "sorting": "created desc",
@@ -892,11 +999,49 @@
                 "value":"voteFormlCd>1,voteFormlCd>2,voteFormlCd>4,voteFormlCd>5"
               },
               {
+                "field": "showYn",
+                "method": "matching",
+                "value": "true"
+              },
+              {
                 "sorting": "created desc",
                 "limit": "3",
                 "includeReferenced": true
               }
-            ]
+            ],
+            "response":{
+              "_all_":"",
+              "refdItemList": {
+                "typeId": "voteItemInfo",
+                "query": [
+                  {
+                    "field": "voteSeq",
+                    "method": "referenceJoin",
+                    "value": "voteSeq_matching={{:voteSeq}}"
+                  },
+                  {
+                    "field": "langCd",
+                    "method": "matching",
+                    "value": "{{:langCd}}"
+                  }
+                ]
+              },
+              "refdSeriesItemList": {
+                "typeId": "sersVoteItemInfo",
+                "query": [
+                  {
+                    "field": "voteSeq",
+                    "method": "referenceJoin",
+                    "value": "voteSeq_matching={{:voteSeq}}"
+                  },
+                  {
+                    "field": "langCd",
+                    "method": "matching",
+                    "value": "{{:langCd}}"
+                  }
+                ]
+              }
+            }
           }
         }
       },
@@ -1168,9 +1313,14 @@
                 "value": "{{:getCommaItem(prsnNo,0,뺿뺿)}}"
               },
               {
-                "field": "showYn",
+                "field": "apvSttusCd",
                 "method": "matching",
-                "value": "true"
+                "value": "2"
+              },
+              {
+                "field": "langCd",
+                "method": "matching",
+                "value": "{{:langCd}}"
               },
               {
                 "sorting": "created desc",
@@ -1215,11 +1365,49 @@
                 "value":"voteFormlCd>1,voteFormlCd>2,voteFormlCd>4,voteFormlCd>5"
               },
               {
+                "field": "showYn",
+                "method": "matching",
+                "value": "true"
+              },
+              {
                 "sorting": "created desc",
                 "limit": "3",
                 "includeReferenced": true
               }
-            ]
+            ],
+            "response":{
+              "_all_":"",
+              "refdItemList": {
+                "typeId": "voteItemInfo",
+                "query": [
+                  {
+                    "field": "voteSeq",
+                    "method": "referenceJoin",
+                    "value": "voteSeq_matching={{:voteSeq}}"
+                  },
+                  {
+                    "field": "langCd",
+                    "method": "matching",
+                    "value": "{{:langCd}}"
+                  }
+                ]
+              },
+              "refdSeriesItemList": {
+                "typeId": "sersVoteItemInfo",
+                "query": [
+                  {
+                    "field": "voteSeq",
+                    "method": "referenceJoin",
+                    "value": "voteSeq_matching={{:voteSeq}}"
+                  },
+                  {
+                    "field": "langCd",
+                    "method": "matching",
+                    "value": "{{:langCd}}"
+                  }
+                ]
+              }
+            }
           }
         }
       },

@@ -182,8 +182,22 @@
       }
     ],
     "config": {
-      "typeId": "mbrInfo",
-      "id": "{{:makeIdValue(>,snsTypeCd,snsKey)}}"
+      "root": {
+        "typeId": "mbrInfo",
+        "id": "{{:makeIdValue(>,snsTypeCd,snsKey)}}"
+      },
+      "lastLoginDtUpd": {
+        "typeId": "mbrInfo",
+        "event": "update",
+        "data": {
+          "snsKey": "{{:snsKey}}",
+          "snsTypeCd": "{{:replaceAll(snsTypeCd,snsTypeCd>, ,)}}",
+          "lastLoginDt": "{{:now}}"
+        },
+        "response": {
+          "lastLoginDt": ""
+        }
+      }
     }
   },
   {
@@ -291,6 +305,29 @@
     "config": {
       "typeId": "mbrInfo",
       "event": "update"
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "member",
+    "apiId": "lastLoginDtUpd",
+    "apiName": "회원 최종 로그인 일시 수정",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "id",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "mbrInfo",
+      "event": "update",
+      "data": {
+        "lastLoginDt": "{{:now}}"
+      },
+      "response": {
+        "lastLoginDt": ""
+      }
     }
   }
 ]
