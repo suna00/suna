@@ -268,6 +268,8 @@ public class ExecuteContext extends ReadContext{
                         subExecuteContexts.add(subContext);
                     }
                 }
+
+                data.remove(key);
             }
         }
     }
