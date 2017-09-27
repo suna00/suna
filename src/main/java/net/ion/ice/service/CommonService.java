@@ -122,4 +122,13 @@ public class CommonService {
         String[] splitRequestUrl = StringUtils.split(request.getRequestURL().toString(), "/");
         return String.format("%s//%s", splitRequestUrl[0], splitRequestUrl[1]); // "http://localhost:8080", "http://125.131.88.206:8080"
     }
+
+    public static Map<String, Object> resetMap(Map<String, Object> map) {
+        map.remove("owner");
+        map.remove("created");
+        map.remove("modifier");
+        map.remove("changed");
+        return map;
+    }
+
 }

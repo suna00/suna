@@ -1,0 +1,163 @@
+[
+  {
+    "typeId": "deliveryEnterprise",
+    "deliveryEnterpriseId": 6,
+    "name": "현대택배",
+    "deliverySearchUrl": "http://www.hlc.co.kr/hydex/jsp/tracking/trackingViewCus.jsp?InvNo=",
+    "deliveryEnterpriseStatus": "y"
+  },
+  {
+    "typeId": "deliveryEnterprise",
+    "deliveryEnterpriseId": 7,
+    "name": "아주택배",
+    "deliverySearchUrl": "http://www.ajulogis.co.kr/common/asp/search_history_proc.asp?gubun=1&sheetno=",
+    "deliveryEnterpriseStatus": "y"
+  },
+  {
+    "typeId": "deliveryEnterprise",
+    "deliveryEnterpriseId": 8,
+    "name": "KT로지스",
+    "deliverySearchUrl": "http://218.153.4.42/customer/cus_trace_02.asp?searchMethod=I&invc_no=",
+    "deliveryEnterpriseStatus": "y"
+  },
+  {
+    "typeId": "deliveryEnterprise",
+    "deliveryEnterpriseId": 9,
+    "name": "건영택배",
+    "deliverySearchUrl": "http://www.kunyoung.com/transport.html?mode=t1&t_no=",
+    "deliveryEnterpriseStatus": "y"
+  },
+  {
+    "typeId": "deliveryEnterprise",
+    "deliveryEnterpriseId": 10,
+    "name": "트라넷택배",
+    "deliverySearchUrl": "http://www.etranet.co.kr/branch/chase/listbody.html?a_gb=center&a_cd=4&a_item=0&fr_slipno=",
+    "deliveryEnterpriseStatus": "y"
+  },
+  {
+    "typeId": "deliveryEnterprise",
+    "deliveryEnterpriseId": 11,
+    "name": "하나로택배",
+    "deliverySearchUrl": "http://www.hanarologis.com/branch/chase/listbody.html?a_gb=center&a_cd=4&a_item=0&fr_slipno=",
+    "deliveryEnterpriseStatus": "y"
+  },
+  {
+    "typeId": "deliveryEnterprise",
+    "deliveryEnterpriseId": 13,
+    "name": "양양택배",
+    "deliverySearchUrl": "http://www.yangyang21.co.kr/YYSearch/YYSearch.jsp?&Slip01=[1]&Slip02=[2]&Slip03=[3]",
+    "deliveryEnterpriseStatus": "y"
+  },
+  {
+    "typeId": "deliveryEnterprise",
+    "deliveryEnterpriseId": 14,
+    "name": "일양택배",
+    "deliverySearchUrl": "http://www.ilyanglogis.com/functionality/tracking_result.asp?hawb_no=",
+    "deliveryEnterpriseStatus": "y"
+  },
+  {
+    "typeId": "deliveryEnterprise",
+    "deliveryEnterpriseId": 15,
+    "name": "한진택배",
+    "deliverySearchUrl": "http://www.hanjin.co.kr/Delivery_html/inquiry/result_waybill.jsp?wbl_num=",
+    "deliveryEnterpriseStatus": "y"
+  },
+  {
+    "typeId": "deliveryEnterprise",
+    "deliveryEnterpriseId": 16,
+    "name": "신세계쎄덱스택배",
+    "deliverySearchUrl": "http://ptop.sedex.co.kr:8080/jsp/tr/detailSheet.jsp?iSheetNo=",
+    "deliveryEnterpriseStatus": "y"
+  },
+  {
+    "typeId": "deliveryEnterprise",
+    "deliveryEnterpriseId": 17,
+    "name": "대신택배",
+    "deliverySearchUrl": "http://home.daesinlogistics.co.kr/daesin/jsp/d_freight_chase/d_general_process2.jsp?billno1=[1]&billno2=[2]&billno3=[3]",
+    "deliveryEnterpriseStatus": "y"
+  },
+  {
+    "typeId": "deliveryEnterprise",
+    "deliveryEnterpriseId": 18,
+    "name": "CJ대한통운택배",
+    "deliverySearchUrl": "https://www.doortodoor.co.kr/parcel/doortodoor.do?fsp_action=PARC_ACT_002&fsp_cmd=retrieveInvNoACT&invc_no=",
+    "deliveryEnterpriseStatus": "y"
+  },
+  {
+    "typeId": "deliveryEnterprise",
+    "deliveryEnterpriseId": 19,
+    "name": "우체국택배",
+    "deliverySearchUrl": "http://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1=",
+    "deliveryEnterpriseStatus": "y"
+  },
+  {
+    "typeId": "deliveryEnterprise",
+    "deliveryEnterpriseId": 20,
+    "name": "우체국 등기/소포",
+    "deliverySearchUrl": "http://service.epost.go.kr/trace.RetrieveRegiPrclDeliv.postal?sid1=",
+    "deliveryEnterpriseStatus": "y"
+  },
+  {
+    "typeId": "deliveryEnterprise",
+    "deliveryEnterpriseId": 21,
+    "name": "CJ GLS택배",
+    "deliverySearchUrl": "http://www.cjgls.co.kr/kor/service/service02_02.asp?slipno=",
+    "deliveryEnterpriseStatus": "y"
+  },
+  {
+    "typeId": "deliveryEnterprise",
+    "deliveryEnterpriseId": 22,
+    "name": "CJ HTH",
+    "deliverySearchUrl": "https://cjhth.com/homepage/searchTraceGoods/SearchTraceDtdShtno.jhtml?dtdShtno=",
+    "deliveryEnterpriseStatus": "y"
+  },
+  {
+    "typeId": "deliveryEnterprise",
+    "deliveryEnterpriseId": 23,
+    "name": "KGB택배",
+    "deliverySearchUrl": "http://www.kgbls.co.kr/tracing.asp?number=",
+    "deliveryEnterpriseStatus": "y"
+  },
+  {
+    "typeId": "deliveryEnterprise",
+    "deliveryEnterpriseId": 24,
+    "name": "로젠택배",
+    "deliverySearchUrl": "http://d2d.ilogen.com/d2d/delivery/invoice_tracesearch_quick.jsp?slipno=",
+    "deliveryEnterpriseStatus": "y"
+  },
+  {
+    "typeId": "deliveryEnterprise",
+    "deliveryEnterpriseId": 26,
+    "name": "KG로지스",
+    "deliverySearchUrl": "http://www.kglogis.co.kr/delivery/delivery_result.jsp?item_no=",
+    "deliveryEnterpriseStatus": "y"
+  },
+  {
+    "typeId": "deliveryEnterprise",
+    "deliveryEnterpriseId": 27,
+    "name": "경동택배",
+    "deliverySearchUrl": "http://www.kdexp.com/main.kd",
+    "deliveryEnterpriseStatus": "y"
+  },
+  {
+    "typeId": "deliveryEnterprise",
+    "deliveryEnterpriseId": 28,
+    "name": "CVSnet편의점택배",
+    "deliverySearchUrl": "http://www.cvsnet.co.kr/postbox/m_delivery/local/local.jsp?invoice_no=",
+    "deliveryEnterpriseStatus": "y"
+  },
+  {
+    "typeId": "deliveryEnterprise",
+    "deliveryEnterpriseId": 29,
+    "name": "SC로지스",
+    "deliverySearchUrl": "http://www.sc-logis.co.kr/cus_search_result.html?awbino=",
+    "deliveryEnterpriseStatus": "y"
+  },
+  {
+    "typeId": "deliveryEnterprise",
+    "deliveryEnterpriseId": 30,
+    "name": "롯데택배",
+    "deliverySearchUrl": "https://www.lotteglogis.com/open/tracking?invno=",
+    "deliveryEnterpriseStatus": "y"
+  }
+]
