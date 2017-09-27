@@ -51,8 +51,9 @@ public class MemberService {
         }
 
         item.put("memberNo", node.get("memberNo"));
-        item.put("email", node.get("email"));
+        item.put("userId", node.get("userId"));
         item.put("name", node.get("name"));
+        item.put("email", node.get("email"));
 
         resultObject.put("item", item);
         context.setResult(resultObject);
@@ -73,7 +74,7 @@ public class MemberService {
         if(data.containsKey("cellphone")){
             NodeBindingInfo nodeBindingInfo = NodeUtils.getNodeBindingInfo("smsCertification");
             String query = " SELECT * FROM smscertification WHERE certCode = ? AND cellphone = ? AND certStatus = 'success' ";
-            List<Map<String,Object>> certList = nodeBindingInfo.getJdbcTemplate().queryForList(query, data.get("certCode"), data.get("cellphone"));
+            List<Map<String,Object>> certList = nodeBindingInfo.getJdbcTemplate().queryForList(query, data.get("certCode").toString(), data.get("cellphone").toString());
 
             if(0 < certList.size()){
                 item.put("memberNo", certList.get(0).get("memberNo"));
@@ -112,9 +113,9 @@ public class MemberService {
         if("password".equals(emailCertificationType) || "sleepMember".equals(emailCertificationType)){
             List<Map<String,Object>> memberList;
             if("password".equals(emailCertificationType)){
-                memberList= nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and userId=? ", data.get("name"), data.get("userId"));
+                memberList= nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and userId=? ", data.get("name").toString(), data.get("userId").toString());
             } else {
-                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and email=? ", data.get("name"), data.get("email"));
+                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and email=? ", data.get("name").toString(), data.get("email").toString());
             }
 
             if(0 < memberList.size()){
@@ -169,9 +170,9 @@ public class MemberService {
             List<Map<String, Object>> memberList;
 
             if("password".equals(smsCertificationType)){
-                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and userId=? and cellphone=? ", data.get("name"), data.get("userId"), cellphone);
+                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and userId=? and cellphone=? ", data.get("name").toString(), data.get("userId").toString(), cellphone);
             } else {
-                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and email=? and cellphone=? ", data.get("name"), data.get("email"), cellphone);
+                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and email=? and cellphone=? ", data.get("name").toString(), data.get("email").toString(), cellphone);
             }
 
             if(0 < memberList.size()){
@@ -316,7 +317,7 @@ public class MemberService {
         // 휴면회원해제 : sleepMember
         if("sleepMember".equals(emailCertificationType)){
             String certCode = getEmailCertCode("이메일 인증요청", emailCertificationType, data.get("memberNo").toString(), email, "request");
-            String linkUrl = "/signIn/changePassword?certCode="+certCode+"&email="+email;
+            String linkUrl = "/signIn/changePassword?certCode="+certCode+"&email="+email+"&certificationType=sleepMember";
             html = setHtml("휴면해제이메일인증", linkUrl);
         }
 

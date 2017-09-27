@@ -45,7 +45,7 @@ public class ClusterService {
                 topic = clusterConfiguration.getTopic("all") ;
             }
 
-            topic.publish(node);
+//            topic.publish(node);
         }
     }
 
