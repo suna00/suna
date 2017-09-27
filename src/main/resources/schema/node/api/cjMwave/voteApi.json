@@ -1241,11 +1241,11 @@
     "method": "GET",
     "parameters": [
       {
-        "perdStDate": "perdStDate",
+        "paramName": "perdStDate",
         "required": true
       },
       {
-        "perdFnsDate": "perdFnsDate",
+        "paramName": "perdFnsDate",
         "required": true
       }
     ],
@@ -1283,7 +1283,7 @@
     "method": "GET",
     "parameters": [
       {
-        "perdStDate": "perdYm",
+        "paramName": "perdYm",
         "required": true
       }
     ],
@@ -1316,7 +1316,7 @@
     "method": "GET",
     "parameters": [
       {
-        "perdStDate": "perdYear",
+        "paramName": "perdYear",
         "required": true
       }
     ],
@@ -1349,15 +1349,15 @@
     "method": "GET",
     "parameters": [
       {
-        "perdStDate": "cntryCd",
+        "paramName": "cntryCd",
         "required": true
       },
       {
-        "perdStDate": "perdStDate",
+        "paramName": "perdStDate",
         "required": false
       },
       {
-        "perdFnsDate": "perdFnsDate",
+        "paramName": "perdFnsDate",
         "required": false
       }
     ],
@@ -1400,15 +1400,15 @@
     "method": "GET",
     "parameters": [
       {
-        "perdStDate": "sexCd",
+        "paramName": "sexCd",
         "required": true
       },
       {
-        "perdStDate": "perdStDate",
+        "paramName": "perdStDate",
         "required": false
       },
       {
-        "perdFnsDate": "perdFnsDate",
+        "paramName": "perdFnsDate",
         "required": false
       }
     ],
@@ -1451,15 +1451,15 @@
     "method": "GET",
     "parameters": [
       {
-        "perdStDate": "typeCd",
+        "paramName": "typeCd",
         "required": true
       },
       {
-        "perdStDate": "perdStDate",
+        "paramName": "perdStDate",
         "required": false
       },
       {
-        "perdFnsDate": "perdFnsDate",
+        "paramName": "perdFnsDate",
         "required": false
       }
     ],
@@ -1502,11 +1502,11 @@
     "method": "GET",
     "parameters": [
       {
-        "perdStDate": "perdStDate",
+        "paramName": "perdStDate",
         "required": true
       },
       {
-        "perdFnsDate": "perdFnsDate",
+        "paramName": "perdFnsDate",
         "required": true
       }
     ],
@@ -1594,7 +1594,7 @@
     "method": "GET",
     "parameters": [
       {
-        "perdStDate": "voteSeq",
+        "paramName": "voteSeq",
         "required": true
       }
     ],
