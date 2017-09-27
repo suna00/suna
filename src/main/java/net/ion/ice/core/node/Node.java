@@ -247,13 +247,13 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     @Override
     public void putAll(Map<? extends String, ?> m) {
         if(getTypeId() != null){
-            putAll(m, getTypeId()) ;
+            putAll((Map<String, Object>) m, getTypeId()) ;
         }else {
             properties.putAll(m);
         }
     }
 
-    public void putAll(Map<? extends String, ?> m, String typeId) {
+    public void putAll(Map<String, Object> m, String typeId) {
         NodeType nodeType = NodeUtils.getNodeType(typeId) ;
         if(nodeType != null && nodeType.isInit()){
             properties.putAll(m, nodeType);

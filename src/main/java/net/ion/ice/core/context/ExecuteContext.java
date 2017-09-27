@@ -162,6 +162,7 @@ public class ExecuteContext extends ReadContext{
                     node.remove(pt.getPid()) ;
                     changedProperties.add(pt.getPid()) ;
                 }else if(pt.isFile()){
+                    if(newValue != null) data.put(pt.getPid(), newValue) ;
                     if(newValue != null && newValue instanceof String && (((String) newValue).startsWith("classpath:") || ((String) newValue).startsWith("http://") || ((String) newValue).startsWith("/"))) {
                         if (existValue == null) {
                             node.put(pt.getPid(), NodeUtils.getFileService().saveResourceFile(pt, id, (String) newValue));

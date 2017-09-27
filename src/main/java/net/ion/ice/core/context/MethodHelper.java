@@ -261,7 +261,13 @@ public class MethodHelper {
                     patternStr = methodParams[1];
                 }
                 Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.DAY_OF_WEEK,Integer.parseInt(methodParams[0]));
+                if(Integer.parseInt(methodParams[0])>7){
+                    int weekNum = Integer.parseInt(methodParams[0])-7;
+                    calendar.set(Calendar.DAY_OF_WEEK,weekNum);
+                    calendar.add(Calendar.DATE, 7);
+                }else{
+                    calendar.set(Calendar.DAY_OF_WEEK,Integer.parseInt(methodParams[0]));
+                }
                 return DateFormatUtils.format(calendar.getTime(),patternStr);
             }
 
