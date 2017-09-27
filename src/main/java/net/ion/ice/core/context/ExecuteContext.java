@@ -246,6 +246,8 @@ public class ExecuteContext extends ReadContext{
             }
         }
 
+        List<String> subDataKeys = new ArrayList<>();
+
         for(String key : data.keySet()){
             Object value = data.get(key) ;
             if(value instanceof List && (this.nodeType.getPropertyType(key) == null || !this.nodeType.getPropertyType(key).isList()) && NodeUtils.getNodeType(key) != null){
@@ -269,8 +271,12 @@ public class ExecuteContext extends ReadContext{
                     }
                 }
 
-                data.remove(key);
+                subDataKeys.add(key);
             }
+        }
+
+        for(String subDataKey : subDataKeys) {
+            data.remove(subDataKey);
         }
     }
 
