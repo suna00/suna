@@ -430,6 +430,7 @@ public class OrderService {
 
         String cartId = String.valueOf((JsonUtils.parsingJsonToMap((String) data.get("item"))).get("cartId"));
         storeTempOrder.put("cartId", cartId);
+        storeTempOrder.put("tempOrderId", orderNumber(cartId));
 
         try {
             referencedCartDeliveryPrice = JsonUtils.parsingJsonToMap((String) data.get("referencedCartDeliveryPrice"));
@@ -542,11 +543,11 @@ public class OrderService {
      * 주문번호 생성 Method.
      */
     private String orderNumber(String cartId) {
-        String orderNumber = "Y";
+        String orderNumber = "B";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmssSSS", Locale.KOREA);
         Date currentTime = new Date();
         String time = simpleDateFormat.format(currentTime);
-        orderNumber.concat(time).concat(cartId);
+        orderNumber = orderNumber.concat(time).concat(cartId);
         return orderNumber;
     }
 
