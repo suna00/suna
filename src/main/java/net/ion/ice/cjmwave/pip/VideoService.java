@@ -2,7 +2,9 @@ package net.ion.ice.cjmwave.pip;
 
 import com.skb.auth.local.SkbURI;
 import net.ion.ice.IceRuntimeException;
+import net.ion.ice.core.api.ApiException;
 import net.ion.ice.core.context.ExecuteContext;
+import net.ion.ice.core.infinispan.NotFoundNodeException;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -30,22 +32,26 @@ public class VideoService {
         String cdmDomainUrlStr;
 
         Map<String, Object> data = context.getData();
-        if (data.isEmpty()) throw new IceRuntimeException("Parameter is Empty");
+        if (data.isEmpty()) throw new ApiException("400", "Parameter is Empty");
 
         String contentId = data.get("contentId").toString();
         if (StringUtils.isEmpty(contentId)) {
-            throw new IceRuntimeException("contentId Parameter is Null");
+            throw new ApiException("400", "Required Parameter : contentId");
         }
 
-        Node node = NodeUtils.getNode("pgmVideo", contentId);
-        if (node.isEmpty()) {
-            throw new IceRuntimeException("Node is Null : contentId=" + contentId);
+        Node node = null;
+        try {
+            node = NodeUtils.getNode("pgmVideo", contentId);
+        } catch (NotFoundNodeException e) {
+        }
+        if (node == null || node.isEmpty()) {
+            throw new ApiException("404", "contentId=" + contentId+" data is Null");
         }
 
         String clipTypeObj = node.getStringValue("clipType");
         String clipType = (StringUtils.contains(clipTypeObj, Node.ID_SEPERATOR)) ? StringUtils.substringAfterLast(clipTypeObj, Node.ID_SEPERATOR) : clipTypeObj;
         String playTime = node.getStringValue("playTime");
-        returnResult.put("playTime",playTime);
+        returnResult.put("playTime", playTime);
 
         if ("1".equals(clipType)) {
             cdmDomainUrlStr = cdnDomainUrl[0];
