@@ -8,6 +8,7 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectResult;
 import net.ion.ice.ApplicationContextManager;
+import net.ion.ice.IceRuntimeException;
 import net.ion.ice.core.file.FileRepository;
 import net.ion.ice.core.file.FileService;
 import net.ion.ice.core.file.FileValue;
@@ -157,6 +158,7 @@ public class S3FileRepository implements FileRepository {
             uploadFile(savePath, saveFile);
         } catch (Exception e) {
             logger.error("S3 MULTIPART FILE SAVE ERROR : ", e);
+            throw new IceRuntimeException("S3 MULTIPART FILE SAVE ERROR : ", e);
         }
 //        finally {
 //            if(saveFile != null && saveFile.exists()) {
@@ -176,6 +178,7 @@ public class S3FileRepository implements FileRepository {
             uploadFile(savePath, file);
         } catch (Exception e) {
             logger.error("S3 MULTIPART FILE SAVE ERROR : ", e);
+            throw new IceRuntimeException("S3 MULTIPART FILE SAVE ERROR : ", e);
         }
 //        finally {
 //            if(file != null && file.exists()) {
@@ -209,6 +212,7 @@ public class S3FileRepository implements FileRepository {
 
         } catch (Exception e) {
             logger.error("S3 MULTIPART FILE SAVE ERROR : ", e);
+            throw new IceRuntimeException("S3 MULTIPART FILE SAVE ERROR : ", e);
         }
 //        finally {
 //            if(saveFile != null && saveFile.exists()) {

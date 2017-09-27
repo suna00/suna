@@ -1,6 +1,7 @@
 package net.ion.ice.cjmwave.external.pip;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import net.ion.ice.IceRuntimeException;
 import net.ion.ice.cjmwave.external.aws.s3.S3Service;
 import net.ion.ice.cjmwave.external.utils.JSONNetworkUtils;
 import net.ion.ice.cjmwave.external.utils.MigrationUtils;
@@ -289,7 +290,12 @@ public class PipApiService {
             } catch (Exception e) {
                 logger.error("Failed to register PIP program :: ", e);
                 // 실패 목록에 쌓기
-                MigrationUtils.saveFailureNodes(template, "programId", fit);
+                if(e instanceof IceRuntimeException) {
+                    MigrationUtils.saveFilureNodes2(template, ((IceRuntimeException) e).getRootCause().getClass().getName(), fit);
+                } else {
+                    MigrationUtils.saveFilureNodes2(template, e.getClass().getName(), fit);
+                }
+
                 skippedCnt++;
             }
 //            MigrationUtils.recordSingleData(template,"program", String.valueOf(programMap), rs);
@@ -318,7 +324,11 @@ public class PipApiService {
             } catch (Exception e) {
                 logger.error("Failed to register PIP clip :: ", e);
                 // 실패 목록에 쌓기
-                MigrationUtils.saveFailureNodes(template, "contentId", fit);
+                if(e instanceof IceRuntimeException) {
+                    MigrationUtils.saveFilureNodes2(template, ((IceRuntimeException) e).getRootCause().getClass().getName(), fit);
+                } else {
+                    MigrationUtils.saveFilureNodes2(template, e.getClass().getName(), fit);
+                }
                 skippedCnt++;
             }
 //            MigrationUtils.recordSingleData(template, "pgmVideo", String.valueOf(clipMap), rs);

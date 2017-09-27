@@ -1,5 +1,6 @@
 package net.ion.ice.cjmwave.external.utils;
 
+import net.ion.ice.core.json.JsonUtils;
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -56,12 +57,12 @@ public class MigrationUtils {
         logger.info("INSERT INTO MIG_HISTORY :: row count :: " + cnt);
     }
 
-    public static void recordSingleData(JdbcTemplate template, String nodeType, String dataStr, int result) {
-        String insertQuery = "INSERT INTO MIG_DATA_HISTORY" +
-                " (target_node, data_str, rs, created)" +
-                " VALUES (?, ?, ?, now())";
-        template.update(insertQuery, nodeType, dataStr, result);
-    }
+//    public static void recordSingleData(JdbcTemplate template, String nodeType, String dataStr, int result) {
+//        String insertQuery = "INSERT INTO MIG_DATA_HISTORY" +
+//                " (target_node, data_str, rs, created)" +
+//                " VALUES (?, ?, ?, now())";
+//        template.update(insertQuery, nodeType, dataStr, result);
+//    }
 
 
     public static void printReport(Date startTime, String executeId, String failPolicy, int successCnt, int skippedCnt) {
@@ -77,17 +78,15 @@ public class MigrationUtils {
                         "\n##############################");
     }
 
-
-    public static void saveFailureNodes(JdbcTemplate template, String keyProperty, Map<String, Object> mapNode) {
+    public static void saveFilureNodes2(JdbcTemplate template, String exName, Map<String, Object> mapNode) {
         try{
+            String reportIn = "INSERT INTO NODE_CREATION_FAIL " +
+                    "(nodeType, nodeId, exception, jsonValue) VALUES " +
+                    "(?, ?, ?, ?)";
             String nodeType = String.valueOf(mapNode.get("typeId"));
-            String nodeId = String.valueOf(mapNode.get(keyProperty));
-            String nodeValue = String.valueOf(mapNode);
-            String query = "INSERT INTO MIG_FAIL_DATA (nodeType, nodeId, nodeValue, created) "
-                    + "VALUES(?, ?, ?, NOW())";
-            template.update(query, nodeType, nodeId, nodeValue);
+            template.update(reportIn, nodeType, "", exName, JsonUtils.toJsonString(mapNode));
         } catch (Exception e) {
-            logger.error("FAILED TO STORE FAILED NODE INFO ", e);
+            logger.error("FAILED TO HAND OUT NODE CREATE FAIL REPORT :: ", e);
         }
     }
 
