@@ -62,7 +62,7 @@ public class DefaultFileRepository implements FileRepository{
             multipartFile.transferTo(saveFile);
         } catch (IOException e) {
             e.printStackTrace();
-            throw new TolerableMissingFileException("FILE SAVE ERROR : " + e.getMessage()) ;
+            throw new TolerableMissingFileException("FILE SAVE ERROR : ", e) ;
         }
 
         return new FileValue(pt, id, multipartFile, savePath) ;
@@ -80,7 +80,7 @@ public class DefaultFileRepository implements FileRepository{
             FileUtils.copyFile(file, saveFile);
         } catch (IOException e) {
             e.printStackTrace();
-            throw new TolerableMissingFileException("FILE SAVE ERROR : " + e.getMessage()) ;
+            throw new TolerableMissingFileException("FILE SAVE ERROR : ", e) ;
         }
 
         return new FileValue(pt, id, file, savePath, fileName, contentType) ;
@@ -105,7 +105,7 @@ public class DefaultFileRepository implements FileRepository{
 //            org.apache.commons.io.FileUtils.copyToFile(res.getInputStream(), saveFile) ;
         } catch (IOException e) {
             e.printStackTrace();
-            throw new TolerableMissingFileException("FILE SAVE ERROR : " + e.getMessage()) ;
+            throw new TolerableMissingFileException("FILE SAVE ERROR : " ,e) ;
         }
         return new FileValue(pt, res, savePath);
     }
