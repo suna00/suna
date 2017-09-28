@@ -74,7 +74,7 @@
     "joinReferrer": null,
     "universityMallCode": null,
     "universityMallAccessCode": null,
-    "universityMallJoinUrl": null,
+    "universityMallJoinUrl": "http://www.snu.ac.kr/index.html",
     "siteType": "university",
     "affilieateType": null,
     "affiliateStatus": "y",
