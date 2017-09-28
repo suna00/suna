@@ -1,6 +1,8 @@
 package net.ion.ice.core.node;
 
+import net.ion.ice.core.file.FileValue;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.Serializable;
 import java.util.*;
@@ -90,15 +92,21 @@ public class Properties implements Map<String, Object>, Serializable, Cloneable 
         return typeId;
     }
 
-    public void putAll(Map<? extends String, ?> m, NodeType nodeType) {
+    public void putAll(Map<String, Object> m, NodeType nodeType) {
         for(PropertyType pt : nodeType.getPropertyTypes()){
             Object value = m.get(pt.getPid()) ;
             if(value == null && pt.hasDefaultValue()){
                 value = pt.getDefaultValue() ;
             }
             if(value != null && !(value instanceof List)){
-                if(pt.isFile() && value instanceof String && (((String) value).startsWith("classpath:") || ((String) value).startsWith("http://") || ((String) value).startsWith("/"))){
-                    values.put(pt.getPid(), NodeUtils.getFileService().saveResourceFile(pt, id, (String) value));
+                if(pt.isFile() && value instanceof String && (((String) value).startsWith("classpath:") || ((String) value).startsWith("http://") || ((String) value).startsWith("/"))) {
+                    FileValue fileValue = NodeUtils.getFileService().saveResourceFile(pt, id, (String) value);
+                    values.put(pt.getPid(), fileValue);
+                    m.put(pt.getPid(), fileValue);
+                }else  if(pt.isFile() && value instanceof MultipartFile){
+                    FileValue fileValue = NodeUtils.getFileService().saveMultipartFile(pt, id, (MultipartFile) value);
+                    values.put(pt.getPid(), fileValue);
+                    m.put(pt.getPid(), fileValue) ;
                 }else {
                     values.put(pt.getPid(), value);
                 }
@@ -108,7 +116,13 @@ public class Properties implements Map<String, Object>, Serializable, Cloneable 
                 for(String fieldName : m.keySet()){
                     if(fieldName.startsWith(i18nPrefix)) {
                         if (pt.isFile() && m.get(fieldName) instanceof String && (((String) m.get(fieldName)).startsWith("classpath:") || ((String) m.get(fieldName)).startsWith("http://") || ((String) m.get(fieldName)).startsWith("/"))) {
-                            values.put(fieldName, NodeUtils.getFileService().saveResourceFile(pt, id, (String) m.get(fieldName)));
+                            FileValue fileValue = NodeUtils.getFileService().saveResourceFile(pt, id, (String) m.get(fieldName));
+                            values.put(fieldName, fileValue);
+                            m.put(fieldName, fileValue);
+                        } else if(pt.isFile() && m.get(fieldName) instanceof MultipartFile){
+                            FileValue fileValue = NodeUtils.getFileService().saveMultipartFile(pt, id, (MultipartFile) value);
+                            values.put(fieldName, fileValue);
+                            m.put(fieldName, fileValue);
                         } else {
                             values.put(fieldName, m.get(fieldName));
                         }

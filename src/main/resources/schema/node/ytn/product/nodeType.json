@@ -14,7 +14,7 @@
     "typeName": "상품",
     "tableName": "ytnDevDb#product",
     "repositoryType": "node",
-    "eviction": 0
+    "eviction": 1000000
   },
   {
     "parentId": "productPath",

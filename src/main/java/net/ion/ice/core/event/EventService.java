@@ -98,7 +98,7 @@ public class EventService {
 
         if(event == null) {
             return ;
-        }else if(!event.isNoneExecute()){
+        }else if(!event.isNoneExecute() && !nodeType.isNode()){
             executeContext.getNode().toStore();
         }
 

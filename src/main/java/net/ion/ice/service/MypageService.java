@@ -2,6 +2,7 @@ package net.ion.ice.service;
 
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.data.bind.NodeBindingInfo;
+import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
@@ -22,15 +23,38 @@ public class MypageService {
 
     @Autowired
     private NodeService nodeService;
-    private CommonService common;
+    @Autowired
+    private NodeBindingService nodeBindingService ;
 
 
-//    배송지 등록수정 / 기본배송지 설정
+    //주문 상세조회 배송지 변경
+    public ExecuteContext updateOrderDeliveryAddress(ExecuteContext context){
+        Map<String, Object> data = context.getData();
+        String[] params = { "orderSheetId", "deliveryId","postCode","cellphone","phone","address","recipient" };
+
+        if (CommonService.requiredParams(context, data, params)) return context;
+
+        List<Map<String, Object>> orderProducts = nodeBindingService.list("orderProduct", "orderSheetId_equals="+data.get("orderSheetId"));
+        for(Map<String, Object> orderProduct : orderProducts){
+            String orderStatus = orderProduct.get("orderStatus").toString();
+            if(!("order001".equals(orderStatus) || "order002".equals(orderStatus))){
+                context.setResult(CommonService.getResult("M0002"));
+                return context;
+            }
+        }
+        nodeService.executeNode(data, "delivery", CartService.UPDATE);
+        context.setResult(CommonService.getResult("S0002"));
+        return context;
+    }
+
+
+
+    //    배송지 등록수정 / 기본배송지 설정
     public  ExecuteContext setMyDeliveryAddress(ExecuteContext context) {
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
 
         String[] params = { "memberNo","defaultYn" };
-        if (common.requiredParams(context, data, params)) return context;
+        if (CommonService.requiredParams(context, data, params)) return context;
 
         Node node = (Node) nodeService.executeNode(data, "myDeliveryAddress", SAVE);
         if("trueFalse>y".equals(node.getValue("defaultYn"))){
@@ -59,7 +83,7 @@ public class MypageService {
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
 
         String[] params = { "memberNo" };
-        if (common.requiredParams(context, data, params)) return context;
+        if (CommonService.requiredParams(context, data, params)) return context;
 
         NodeBindingInfo nodeBindingInfo = NodeUtils.getNodeBindingInfo(context.getNodeType().getTypeId()) ;
         String query = " select a.*\n" +
@@ -86,7 +110,7 @@ public class MypageService {
     public ExecuteContext passwordAuthentication(ExecuteContext context) {
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
         String[] params = { "memberNo", "password" };
-        if (common.requiredParams(context, data, params)) return context;
+        if (CommonService.requiredParams(context, data, params)) return context;
 
         Node node = nodeService.read("member", data.get("memberNo").toString());
         String nodePw = node.getValue("password").toString();

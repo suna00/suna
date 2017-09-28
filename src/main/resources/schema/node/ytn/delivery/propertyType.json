@@ -259,7 +259,7 @@
   {
     "typeId": "propertyType",
     "tid": "delivery",
-    "pid": "requestChangeOfOrderId",
+    "pid": "orderChangeId",
     "propertyTypeName": "주문 변경 요청 ID",
     "valueType": "REFERENCE",
     "required": false,
@@ -268,8 +268,8 @@
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "requestChangeOfOrder",
-    "referenceValue": "requestChangeOfOrderId",
+    "referenceType": "orderChange",
+    "referenceValue": "orderChangeId",
     "codeFilter": "",
     "defaultValue": ""
   },
@@ -1368,23 +1368,6 @@
   {
     "typeId": "propertyType",
     "tid": "orderChangeDeliveryPrice",
-    "pid": "couponId",
-    "propertyTypeName": "무료배송쿠폰ID",
-    "valueType": "REFERENCE",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "coupone",
-    "referenceValue": "couponId",
-    "codeFilter": "",
-    "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "orderChangeDeliveryPrice",
     "pid": "deliveryEnterpriseId",
     "propertyTypeName": "택배사ID",
     "valueType": "REFERENCE",
@@ -1448,23 +1431,6 @@
     "referenceType": "commonCode",
     "referenceValue": "code",
     "codeFilter": "deliveryStatus",
-    "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "orderChangeDeliveryPrice",
-    "pid": "scheduledDeliveryDate",
-    "propertyTypeName": "배송예정일",
-    "valueType": "DATE",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "",
-    "referenceValue": "",
-    "codeFilter": "",
     "defaultValue": ""
   },
   {

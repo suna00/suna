@@ -52,6 +52,22 @@
     "backOfficeId": "adm",
     "gnbMenuId": "productMng",
     "parentMenuId": "root",
+    "menuId": "productUpdateList",
+    "menuName": "상품정보 일괄변경",
+    "order": "30",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "ytn/product/UpdateList" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "root",
     "menuId": "productOptionSet",
     "menuName": "상품옵션 세트설정",
     "order": "60",

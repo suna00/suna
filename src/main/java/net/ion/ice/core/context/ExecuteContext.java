@@ -148,7 +148,6 @@ public class ExecuteContext extends ReadContext{
                     continue;
                 }
 
-
                 Object newValue = NodeUtils.getStoreValue(data, pt, node.getId()) ;
                 if(pt.isI18n() && newValue == null){
                     continue;
@@ -162,6 +161,7 @@ public class ExecuteContext extends ReadContext{
                     node.remove(pt.getPid()) ;
                     changedProperties.add(pt.getPid()) ;
                 }else if(pt.isFile()){
+                    if(newValue != null) data.put(pt.getPid(), newValue) ;
                     if(newValue != null && newValue instanceof String && (((String) newValue).startsWith("classpath:") || ((String) newValue).startsWith("http://") || ((String) newValue).startsWith("/"))) {
                         if (existValue == null) {
                             node.put(pt.getPid(), NodeUtils.getFileService().saveResourceFile(pt, id, (String) newValue));
@@ -246,13 +246,15 @@ public class ExecuteContext extends ReadContext{
             }
         }
 
+        List<String> subDataKeys = new ArrayList<>();
+
         for(String key : data.keySet()){
             Object value = data.get(key) ;
             if(value instanceof List && (this.nodeType.getPropertyType(key) == null || !this.nodeType.getPropertyType(key).isList()) && NodeUtils.getNodeType(key) != null){
                 for(Map<String, Object> subData : (List<Map<String, Object>>)value){
                     Map<String, Object> _data = new HashMap<>() ;
-                    _data.putAll(data);
-                    _data.remove(key) ;
+//                    _data.putAll(data);
+//                    _data.remove(key) ;
                     _data.putAll(subData);
                     for(String _key : subData.keySet()){
                         Object _val = subData.get(_key) ;
@@ -268,7 +270,13 @@ public class ExecuteContext extends ReadContext{
                         subExecuteContexts.add(subContext);
                     }
                 }
+
+                subDataKeys.add(key);
             }
+        }
+
+        for(String subDataKey : subDataKeys) {
+            data.remove(subDataKey);
         }
     }
 

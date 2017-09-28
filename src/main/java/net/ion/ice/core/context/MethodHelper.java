@@ -1,9 +1,12 @@
 package net.ion.ice.core.context;
 
+import net.ion.ice.ApplicationContextManager;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -27,6 +30,8 @@ public class MethodHelper {
                 Date date = null ;
                 if(value instanceof Timestamp){
                     date = new Date(((Timestamp) value).getTime()) ;
+                }else if(value instanceof Date){
+                    date = (Date) value;
                 }else {
                     try {
                         date = DateUtils.parseDate(value.toString(), patterns);
@@ -261,8 +266,21 @@ public class MethodHelper {
                     patternStr = methodParams[1];
                 }
                 Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.DAY_OF_WEEK,Integer.parseInt(methodParams[0]));
+                if(Integer.parseInt(methodParams[0])>7){
+                    int weekNum = Integer.parseInt(methodParams[0])-7;
+                    calendar.set(Calendar.DAY_OF_WEEK,weekNum);
+                    calendar.add(Calendar.DATE, 7);
+                }else{
+                    calendar.set(Calendar.DAY_OF_WEEK,Integer.parseInt(methodParams[0]));
+                }
                 return DateFormatUtils.format(calendar.getTime(),patternStr);
+            }
+            case "getEnvValue":{
+                if(methodParams.length <1 || methodParams[0].isEmpty()){
+                    return "";
+                }
+
+                return ApplicationContextManager.getContext().getEnvironment().getProperty(methodParams[0]) ;
             }
 
             default :
