@@ -1479,7 +1479,7 @@
     "typeId": "commonCode",
     "code": "recallAddress",
     "upperCode": "deliveryType",
-    "name": "회수지",
+    "name": "회수배송지",
     "description": "",
     "sortOrder": "2",
     "commonCodeStatus": "y"
@@ -1488,7 +1488,16 @@
     "typeId": "commonCode",
     "code": "returnAddress",
     "upperCode": "deliveryType",
-    "name": "반품",
+    "name": "반품배송지",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "returnAddress",
+    "upperCode": "deliveryType",
+    "name": "교환배송지",
     "description": "",
     "sortOrder": "3",
     "commonCodeStatus": "y"

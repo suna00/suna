@@ -29,20 +29,17 @@
           ]
         },
         "delivery":{
-          "select": {
-            "ds": "ytnDevDb",
-            "resultType": "read",
-            "description": "배송지",
-            "sql": "select * from delivery where orderSheetId = @{orderSheetId} and orderChangeId is null"
-          }
+          "typeId" : "delivery",
+          "query" : [
+            {"field" : "orderSheetId", "method" : "equals", "value" : "{{:orderSheetId}}"},
+            {"field" : "orderChangeId", "method" : "equals", "value" : "deliveryAddress"}
+          ]
         },
         "payment":{
-          "select": {
-            "ds": "ytnDevDb",
-            "resultType": "read",
-            "description": "결제정보",
-            "sql": "select * from payment where ordrIdxx = @{orderSheetId} "
-          }
+          "typeId" : "payment",
+          "query" : [
+            {"field" : "ordrIdxx", "method" : "equals", "value" : "{{:orderSheetId}}"}
+          ]
         }
       }
     }
@@ -166,6 +163,19 @@
               ]
             }
           }
+        },
+        "delivery":{
+          "typeId" : "delivery",
+          "query" : [
+            {"field" : "orderSheetId", "method" : "equals", "value" : "{{:orderSheetId}}"},
+            {"field" : "orderChangeId", "method" : "notEquals", "value" : "deliveryAddress"}
+          ]
+        },
+        "payment":{
+          "typeId" : "payment",
+          "query" : [
+            {"field" : "ordrIdxx", "method" : "equals", "value" : "{{:orderSheetId}}"}
+          ]
         }
       }
     }
