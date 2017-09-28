@@ -68,6 +68,22 @@
     "backOfficeId": "adm",
     "gnbMenuId": "productMng",
     "parentMenuId": "root",
+    "menuId": "productDeleteList",
+    "menuName": "삭제상품 목록",
+    "order": "50",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "ytn/product/DeleteList" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "root",
     "menuId": "productOptionSet",
     "menuName": "상품옵션 세트설정",
     "order": "60",
