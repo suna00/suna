@@ -19,9 +19,9 @@ import java.util.*;
 public class ContextUtils {
 
     public static Map<String, Object> makeContextData(Map<String, String[]> parameterMap) {
-        Map<String, Object> dataMap = new HashMap<>();
+        Map<String, Object> dataMap = new LinkedHashMap<>();
         if(parameterMap == null) return dataMap ;
-        Map<String, Object> subDataMap = new HashMap<>();
+        Map<String, Object> subDataMap = new LinkedHashMap<>();
 
         for (String paramName : parameterMap.keySet()) {
             if(paramName.startsWith("_") && paramName.endsWith("_")) continue;
@@ -94,7 +94,7 @@ public class ContextUtils {
     public static Map<String, Object> makeContextData(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap){
         Map<String, Object> dataMap = ContextUtils.makeContextData(parameterMap);
         if(multiFileMap == null || multiFileMap.size() == 0) return dataMap ;
-        Map<String, Object> subDataMap = new HashMap<>();
+        Map<String, Object> subDataMap = new LinkedHashMap<>();
 
         for(String paramName : multiFileMap.keySet()){
             List<MultipartFile> multipartFiles = multiFileMap.get(paramName) ;
@@ -134,6 +134,16 @@ public class ContextUtils {
             if(multipartFiles != null && multipartFiles.size() > 0){
                 dataMap.put(paramName, multipartFiles.get(0)) ;
             }
+        }
+
+        int subDataIndex = 0;
+        for (String subDataKey : subDataMap.keySet()) {
+            String subTypeId = StringUtils.substringBefore(subDataKey, "[");
+            if (!dataMap.containsKey(subTypeId)) dataMap.put(subTypeId, new ArrayList<>());
+            List<Map<String, Object>> subList = (List<Map<String, Object>>) dataMap.get(subTypeId);
+            Map<String, Object> subData = subList.get(subDataIndex);
+            subData.putAll((Map<? extends String, ?>) subDataMap.get(subDataKey));
+            subDataIndex++;
         }
 
         return dataMap ;
