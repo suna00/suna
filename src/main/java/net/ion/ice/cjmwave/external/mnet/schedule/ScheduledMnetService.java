@@ -41,7 +41,7 @@ public class ScheduledMnetService {
 
             //신규 증분에 대한 MSSQL to MySQL 마이그레이션 수행
             logger.info("Migration schedule :: Step1");
-//            mnetDataDumpService.copyData(type, provided);
+            mnetDataDumpService.copyData(type, provided);
 
 
             logger.info("Migration schedule :: Step2");

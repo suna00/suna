@@ -43,6 +43,11 @@ public class MnetDataDumpService {
     private JdbcTemplate ice2Template;
 
     /*
+    * 한 테이블에 얼마나 정보를 밀어넣었는가를 판단하는 기준이므로 MySQL 테이블명을 키로 잡는다
+    * */
+    Map<String, Object> migrationReports;
+
+    /*
     * 서비스 기동에 필요한 자원 준비
     * */
     @PostConstruct
@@ -149,16 +154,43 @@ public class MnetDataDumpService {
         }
     }
 
+    private void updateReport(String toTable, Map<String, Object> report) throws Exception {
+        if (migrationReports.containsKey(toTable)) {
+            // 기존 자료 업데이트
+            /*
+            * 업데이트 되는 항목은 + successCnt, skippedCnt, jobDuration, jobFinished
+            *
+            * */
+            int currentSuccessCnt = (int) report.get("successCnt");
+            int currentSkippedCnt = (int) report.get("skippedCnt");
+            long currentJobDuration = (long) report.get("jobDuration");
+            Map<String, Object> formerData = (Map) migrationReports.get(toTable);
+            formerData.put("jobFinished", report.get("jobFinished"));
+
+            if(formerData.containsKey("successCnt")) {
+                formerData.put("successCnt", (currentSuccessCnt + (int) formerData.get("successCnt")));
+                formerData.put("skippedCnt", (currentSkippedCnt + (int) formerData.get("skippedCnt")));
+                formerData.put("skippedCnt", (currentJobDuration + (long) formerData.get("jobDuration")));
+            }
+            migrationReports.put(toTable, formerData);
+        } else {
+            // 신규 등록
+            migrationReports.put(toTable, report);
+        }
+    }
+
 
     private void  migrate(Node replicationNode, Object foreignKey, Date provided) {
 
+        logger.info("in migrate method");
         Date startDate = new Date();
         Map<String, Object> migReport = new HashMap<String, Object>();
         String fromTable = "", toTable = "";
 
         try{
 
-            String q = String.valueOf(replicationNode.get("query"));
+//            String q = String.valueOf(replicationNode.get("query"));
+            String q = String.valueOf(replicationNode.get("query_nosp"));
             fromTable = String.valueOf(replicationNode.get("fromTable"));
             toTable = String.valueOf(replicationNode.get("toTable"));
             String subTasks = String.valueOf(replicationNode.get("subTasks"));
@@ -185,10 +217,14 @@ public class MnetDataDumpService {
             preparedQuery = SyntaxUtils.parse(q, params);
 
 
+            logger.info("print jdbcTemplate Query :: " + String.valueOf(preparedQuery.get("query")));
+
             // MSSQL 로부터 데이터 가져오기
             List<Map<String, Object>> newData = queryMsSql(
                     String.valueOf(preparedQuery.get("query"))
                     , (Object[]) preparedQuery.get("params"));
+
+            logger.info("Length of Query result :: " + newData.size());
 
 //            //FOR TEST 0925
             if(standAlone && !"null".equals(subTasks)) {
@@ -215,7 +251,11 @@ public class MnetDataDumpService {
         migReport.put("jobStarted", startDate);
         migReport.put("jobFinished", end);
         migReport.put("jobDuration", (end.getTime() - startDate.getTime()));
-        MigrationUtils.recordDataCopyRecord(ice2Template, migReport);
+        try{
+            updateReport(toTable, migReport);
+        } catch (Exception e) {
+            logger.info("It does not make you fool even though you are a poor reporter..." + toTable);
+        }
     }
 
 
@@ -228,6 +268,8 @@ public class MnetDataDumpService {
     public void copyData (String target, Date provided) {
         // 각자 레포트 보고
         logger.info("parameters :: target :: " + target + " :: provided :: " + provided);
+        // 리포트 정보 초기화
+        migrationReports = new HashMap<>();
 
         try{
             switch (target) {
@@ -241,11 +283,22 @@ public class MnetDataDumpService {
                 default:
                     Node repNode = nodeService.getNode(REP_TID, target);
                     logger.info("repNode :: " + repNode);
-                    if((boolean)repNode.get("standAlone")) {
+//                    if((boolean)repNode.get("standAlone")) {
+                    if("true".equals(String.valueOf(repNode.get("standAlone")))) {
+                        logger.info("Starting head node migration...");
                         migrate(repNode, null, provided);
+                    } else {
+                        logger.info("This is a tail node");
                     }
                     break;
             }
+
+            Iterator<String> migRepoIterator = migrationReports.keySet().iterator();
+            while(migRepoIterator.hasNext()) {
+                String reportKey = migRepoIterator.next();
+                MigrationUtils.recordDataCopyRecord(ice2Template, (Map) migrationReports.get(reportKey));
+            }
+
         } catch (Exception e) {
             logger.error("Error occurred while copy data from MSSQL to MYSQL", e);
         }
