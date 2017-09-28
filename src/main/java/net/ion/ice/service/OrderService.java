@@ -94,7 +94,7 @@ public class OrderService {
     }
 
     /**
-     * PG 호출 전에 검증하는 Method.
+     * PG 결제 승인 요청 전에 검증하는 Method.
      */
     public void verification(ExecuteContext context) {
         try {
@@ -152,11 +152,58 @@ public class OrderService {
             if (totalPrice != finalPrice && duplicated) {                       // 최종 가격 검증 & 쿠폰 중복 검증
                 context.setResult(CommonService.getResult("O0003"));      // 검증실패
             } else {
-                context.setResult(CommonService.getResult("O0004"));      // 검증성공
+                Map<String, Object> result = new HashMap<>();
+                result.put("ordr_mony", totalPrice);
+                context.setResult(CommonService.getResult("O0004", result));      // 검증성공
+
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    public Double getFinalPrice(String reqTempOrderId, String memberNo, String reqUseYPoint, String reqUseWelfarepoint, String usedCoupon) {
+        double totalPrice = 0;
+
+        try {
+
+            Map<String, Object> couponIds = JsonUtils.parsingJsonToMap(usedCoupon);
+
+            /*포인트*/
+            List<Map<String, Object>> tempOrderDeliveryPriceList = nodeBindingService.list("tempOrderDeliveryPrice", "tempOrderId_in=".concat(reqTempOrderId));
+            double useYPoint = Double.parseDouble(reqUseYPoint);
+            double useWelfarepoint = Double.parseDouble(reqUseWelfarepoint);
+            double deliveryPrice = 0;
+
+            for(Map<String, Object> tempOrderDeliveryPrice: tempOrderDeliveryPriceList){
+                deliveryPrice = deliveryPrice + Double.parseDouble(String.valueOf(tempOrderDeliveryPrice.get("deliveryPrice")));
+            }
+
+
+            Map<String, Object> couponResponse = getCoupon(memberNo, reqTempOrderId);
+
+            List<Map<String, Object>> coupons = (List<Map<String, Object>>) couponResponse.get("items");
+
+            for (Map<String, Object> coupon : coupons) {
+                double productPrice = (double) coupon.get("orderPrice");
+                String tempOrderProductId = String.valueOf(coupon.get("tempOrderProductId"));
+                String couponId = String.valueOf(couponIds.get(tempOrderProductId));
+                List<Map<String, Object>> applicableCoupons = (List<Map<String, Object>>) coupon.get("applicableCoupons");
+                for (Map<String, Object> applicableCoupon : applicableCoupons) {
+                    if (couponId.equals(String.valueOf(applicableCoupon.get("couponId")))) {
+                        productPrice = productPrice - (double) applicableCoupon.get("discountPrice");
+                    }
+                }
+                totalPrice = totalPrice + productPrice;
+            }
+
+            totalPrice = totalPrice - useYPoint - useWelfarepoint + deliveryPrice;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return totalPrice;
     }
 
     /**
@@ -172,7 +219,7 @@ public class OrderService {
         List<Map<String, Object>> tempOrderDeliveryPriceList = nodeBindingService.list("tempOrderDeliveryPrice", "tempOrderId_in=".concat(String.valueOf(responseMap.get("ordrIdxx"))));
 
         double totalProductPrice = 0;
-        double totalDeliveryPrice = Double.parseDouble(String.valueOf(tempOrderDeliveryPriceList.get(0).get("deliveryPrice")));
+        double totalDeliveryPrice = 0;
         double totalDiscountPrice = 0;
         double totalOrderPrice = 0;
         double couponDiscountPrice = 0;
@@ -184,6 +231,11 @@ public class OrderService {
 
         double useableYPoint = (double) ((Map<String, Object>) summaryResponse.get("item")).get("useableYPoint");
         double useableWelfarepoint = (double) ((Map<String, Object>) summaryResponse.get("item")).get("useableWelfarepoint");
+
+        for(Map<String, Object> tempOrderDeliveryPrice: tempOrderDeliveryPriceList){
+            totalDeliveryPrice = totalDeliveryPrice + Double.parseDouble(String.valueOf(tempOrderDeliveryPrice.get("deliveryPrice")));
+        }
+
 
         /**
          * 사용자 포인트를 조회하여 사용 포인트와 체크한다.
@@ -308,11 +360,10 @@ public class OrderService {
 
         boolean saveDelivery = saveDelivery(responseMap); // 배송지 저장
 
-        if (totalOrderPrice != totalPaymentPrice && !duplicated && !saveDelivery) {
-            bSucc = "false";
-            return bSucc;
-        } else {
+        if (totalOrderPrice == totalPaymentPrice && !duplicated && saveDelivery) {
             bSucc = "true";
+        } else {
+            bSucc = "false";
         }
         return bSucc;
     }
@@ -375,7 +426,6 @@ public class OrderService {
 
                 storeMyDeliveryAddress.put("defaultYn", "n");
             }
-
             nodeService.executeNode(storeMyDeliveryAddress, "myDeliveryAddress", CREATE);
 
             result = true;
@@ -391,8 +441,8 @@ public class OrderService {
                 Node myDeliveryAddressNode = myDeliveryAddressNodeList.get(0);
                 myDeliveryAddressNode.put("defaultYn", "y");
                 nodeService.updateNode(myDeliveryAddressNode, "myDeliveryAddress");
+                result = true;
             }
-            result = true;
         }
         return result;
     }
