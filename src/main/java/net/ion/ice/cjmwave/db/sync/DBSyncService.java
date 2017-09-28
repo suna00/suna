@@ -352,7 +352,8 @@ public class DBSyncService {
         int loop = 0;
         boolean hasNext = true;
         while(hasNext) {
-            start = start*loop;
+            start = unit*loop;
+            logger.info("START :: " + start + " :: END :: " + unit);
             List<Map<String, Object>> contents = ice2Template.queryForList(query, start, unit);
             if(contents != null && contents.size() < unit) {
                 hasNext = false;
@@ -363,8 +364,9 @@ public class DBSyncService {
                     nodeService.saveNode(content);
                 } catch (Exception e) {
                     e.printStackTrace();
-                    if(skip) continue;
-                    else {
+                    if(skip){
+                        continue;
+                    } else {
                         hasNext = false;
                         break;
                     }
