@@ -1,6 +1,7 @@
 package net.ion.ice.cjmwave.external.mnet;
 
 import net.ion.ice.cjmwave.db.sync.DBSyncService;
+import net.ion.ice.cjmwave.external.mnet.data.MnetNodeRecoveryService;
 import net.ion.ice.cjmwave.external.mnet.schedule.ScheduledMnetService;
 import org.apache.log4j.Logger;
 import org.json.JSONException;
@@ -31,6 +32,9 @@ public class MnetController {
 
     @Autowired
     ScheduledMnetService scheduledMnetService;
+
+    @Autowired
+    MnetNodeRecoveryService mnetNodeRecoveryService;
 
     /*
     * csv 가 MYSQL 로 부어졌다는 전제가 있음
@@ -128,6 +132,71 @@ public class MnetController {
         response.put("result", result);
         response.put("result_msg", result_msg);
         response.put("cause", cause);
+        response.put("warning", "This response for API Call. Does not guarantee Data");
+        return String.valueOf(response);
+    }
+
+    /*
+    * NODE_CREATION_FAIL 테이블의 isFixed 가 0 인 정보를 수정하고
+    * 성공시 플래그를 1로 처리한다
+    *
+    * type 이 all 이라면 모든 대상을 처리
+    * type 이 file 이라면 FileNotFoundException 에 대한 대상을 처리함
+    * seq 를 알고 있다면 해당 seq 의 데이터만 실행할 수 있음
+    *
+    * file 의 경우 재시도 시에 파일이 없더라도 성공으로 간주하고 노드를 생성한다.
+    * */
+    @RequestMapping(value = {"recovery/group"}, produces = {"application/json"})
+    public @ResponseBody String recoverFailNodes(HttpServletRequest request) throws Exception {
+        JSONObject response = new JSONObject();
+        String result="500", result_msg = "ERROR", cause = "", caution = "";
+        String type = request.getParameter("type");
+        logger.info("Enter MnetController.recoverFailNodes type :: " + type);
+        try{
+
+            switch (type.toUpperCase()) {
+                case "ALL" :
+                    mnetNodeRecoveryService.recoverNodeAll();
+                    break;
+                case "FILE" :
+                    caution = "Consider as success if image is missing";
+                    mnetNodeRecoveryService.recoverNodeByException("FileNotFoundException");
+                    break;
+                default:
+                    break;
+            }
+
+            result = "200";
+            result_msg = "SUCCESS";
+        } catch (Exception e) {
+            logger.error("Error detected ::", e);
+            cause = e.getMessage();
+        }
+
+        response.put("result", result);
+        response.put("result_msg", result_msg);
+        response.put("cause", cause);
+        response.put("caution", caution);
+        response.put("warning", "This response for API Call. Does not guarantee Data");
+        return String.valueOf(response);
+    }
+
+    @RequestMapping(value = {"recovery/single"}, produces = {"application/json"})
+    public @ResponseBody String recoverSingleNodes(HttpServletRequest request) throws Exception {
+        JSONObject response = new JSONObject();
+        String result="500", result_msg = "ERROR", cause = "", caution = "";
+        try{
+            mnetNodeRecoveryService.recoverNodeBySeq(request.getParameter("seq"));
+            result = "200";
+            result_msg = "SUCCESS";
+        } catch (Exception e) {
+            logger.error("Error detected ::", e);
+            cause = e.getMessage();
+        }
+        response.put("result", result);
+        response.put("result_msg", result_msg);
+        response.put("cause", cause);
+        response.put("caution", caution);
         response.put("warning", "This response for API Call. Does not guarantee Data");
         return String.valueOf(response);
     }
