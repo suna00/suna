@@ -8,11 +8,11 @@
     "parameters": [
       {
         "paramName": "contsMetaDivCd",
-        "required": true
+        "required": false
       },
       {
         "paramName": "contsMetaId",
-        "required": true
+        "required": false
       },
       {
         "paramName": "snsKey",
@@ -28,17 +28,17 @@
       "query": [
         {
           "field": "contsMetaDivCd",
-          "method": "matching",
+          "method": "equals",
           "value": "{{:contsMetaDivCd}}"
         },
         {
           "field": "contsMetaId",
-          "method": "matching",
+          "method": "equals",
           "value": "{{:contsMetaId}}"
         },
         {
           "field": "mbrId",
-          "method": "matching",
+          "method": "equals",
           "value": "{{:makeIdValue(>,snsTypeCd,snsKey)}}"
         },
         {
@@ -62,22 +62,6 @@
     "method": "GET",
     "parameters": [
       {
-        "paramName": "page",
-        "required": false
-      },
-      {
-        "paramName": "pageSize",
-        "required": false
-      },
-      {
-        "paramName": "sorting",
-        "required": false
-      },
-      {
-        "paramName": "langCd",
-        "required": false
-      },
-      {
         "paramName": "snsKey",
         "required": true
       },
@@ -91,7 +75,7 @@
       "query": [
         {
           "field": "prtcpMbrId",
-          "method": "matching",
+          "method": "equals",
           "value": "{{:makeIdValue(>,snsTypeCd,snsKey)}}"
         },
         {
@@ -115,22 +99,6 @@
     "method": "GET",
     "parameters": [
       {
-        "paramName": "page",
-        "required": false
-      },
-      {
-        "paramName": "pageSize",
-        "required": false
-      },
-      {
-        "paramName": "sorting",
-        "required": false
-      },
-      {
-        "paramName": "langCd",
-        "required": false
-      },
-      {
         "paramName": "snsKey",
         "required": true
       },
@@ -144,7 +112,7 @@
       "query": [
         {
           "field": "mkerId",
-          "method": "matching",
+          "method": "equals",
           "value": "{{:makeIdValue(>,snsTypeCd,snsKey)}}"
         },
         {
@@ -168,22 +136,6 @@
     "method": "GET",
     "parameters": [
       {
-        "paramName": "page",
-        "required": false
-      },
-      {
-        "paramName": "pageSize",
-        "required": false
-      },
-      {
-        "paramName": "sorting",
-        "required": false
-      },
-      {
-        "paramName": "langCd",
-        "required": false
-      },
-      {
         "paramName": "snsKey",
         "required": true
       },
@@ -201,12 +153,12 @@
       "query": [
         {
           "field": "qnarId",
-          "method": "matching",
+          "method": "equals",
           "value": "{{:makeIdValue(>,snsTypeCd,snsKey)}}"
         },
         {
           "field": "trtSttusCd",
-          "method": "matching",
+          "method": "equals",
           "value": "{{:trtSttusCd}}"
         },
         {

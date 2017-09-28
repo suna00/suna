@@ -332,6 +332,14 @@
       {
         "paramName": "musicVideoId",
         "required": true
+      },
+      {
+        "paramName": "snsKey",
+        "required": false
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": false
       }
     ],
     "config": {
@@ -357,6 +365,13 @@
               "ds": "cjDb",
               "resultType": "value",
               "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('musicVideo','::',@{musicVideoId})"
+            }
+          },
+          "myLikeYn": {
+            "select": {
+              "ds": "cjDb",
+              "resultType": "value",
+              "sql": "select if(count(*)>0,'Y','N') myLikeYn from contsLikeInfo where contsMetaDivCd = '4' and contsMetaId = concat('musicVideo','::',@{musicVideoId}) and mbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
             }
           },
           "refMusicVideoList": {
@@ -434,9 +449,9 @@
             "typeId": "voteBasInfo",
             "query": [
               {
-                "field":"voteFormlCd",
-                "method":"matching",
-                "value":"voteFormlCd>1,voteFormlCd>2,voteFormlCd>4,voteFormlCd>5"
+                "field": "voteFormlCd",
+                "method": "matching",
+                "value": "voteFormlCd>1,voteFormlCd>2,voteFormlCd>4,voteFormlCd>5"
               },
               {
                 "field": "showYn",
@@ -449,8 +464,8 @@
                 "includeReferenced": true
               }
             ],
-            "response":{
-              "_all_":"",
+            "response": {
+              "_all_": "",
               "refdItemList": {
                 "typeId": "voteItemInfo",
                 "query": [
@@ -599,6 +614,14 @@
       {
         "paramName": "newsId",
         "required": true
+      },
+      {
+        "paramName": "snsKey",
+        "required": false
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": false
       }
     ],
     "config": {
@@ -627,6 +650,13 @@
               "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('news','::',@{newsId})"
             }
           },
+          "myLikeYn": {
+            "select": {
+              "ds": "cjDb",
+              "resultType": "value",
+              "sql": "select if(count(*)>0,'Y','N') myLikeYn from contsLikeInfo where contsMetaDivCd = '8' and contsMetaId = concat('news','::',@{newsId}) and mbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
+            }
+          },
           "nextItem": {
             "typeId": "news",
             "query": [
@@ -646,7 +676,7 @@
                 "value": "{{:langCd}}"
               },
               {
-                "sorting": "newsId desc",
+                "sorting": "{{:sorting}}",
                 "limit": "1"
               }
             ],
@@ -763,9 +793,9 @@
             "typeId": "voteBasInfo",
             "query": [
               {
-                "field":"voteFormlCd",
-                "method":"matching",
-                "value":"voteFormlCd>1,voteFormlCd>2,voteFormlCd>4,voteFormlCd>5"
+                "field": "voteFormlCd",
+                "method": "matching",
+                "value": "voteFormlCd>1,voteFormlCd>2,voteFormlCd>4,voteFormlCd>5"
               },
               {
                 "field": "showYn",
@@ -778,8 +808,8 @@
                 "includeReferenced": true
               }
             ],
-            "response":{
-              "_all_":"",
+            "response": {
+              "_all_": "",
               "refdItemList": {
                 "typeId": "voteItemInfo",
                 "query": [
@@ -897,6 +927,14 @@
       {
         "paramName": "svcTermlDivCd",
         "required": false
+      },
+      {
+        "paramName": "snsKey",
+        "required": false
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": false
       }
     ],
     "config": {
@@ -914,14 +952,21 @@
             "select": {
               "ds": "cjDb",
               "resultType": "value",
-              "sql": "select count(*)as replNum from replInfo where contsMetaId = concat('groupPhoto','::',@{groupPhotoId})"
+              "sql": "select count(*) as replNum from replInfo where contsMetaId = concat('groupPhoto','::',@{groupPhotoId})"
             }
           },
           "likeNum": {
             "select": {
               "ds": "cjDb",
               "resultType": "value",
-              "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('groupPhoto','::',@{groupPhotoId})"
+              "sql": "select count(*) as likeNum from contsLikeInfo where contsMetaId = concat('groupPhoto','::',@{groupPhotoId})"
+            }
+          },
+          "myLikeYn": {
+            "select": {
+              "ds": "cjDb",
+              "resultType": "value",
+              "sql": "select if(count(*)>0,'Y','N') myLikeYn from contsLikeInfo where contsMetaDivCd = '6' and contsMetaId = concat('groupPhoto','::',@{groupPhotoId}) and mbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
             }
           },
           "refSinglePhotoList": {
@@ -994,9 +1039,9 @@
             "typeId": "voteBasInfo",
             "query": [
               {
-                "field":"voteFormlCd",
-                "method":"matching",
-                "value":"voteFormlCd>1,voteFormlCd>2,voteFormlCd>4,voteFormlCd>5"
+                "field": "voteFormlCd",
+                "method": "matching",
+                "value": "voteFormlCd>1,voteFormlCd>2,voteFormlCd>4,voteFormlCd>5"
               },
               {
                 "field": "showYn",
@@ -1009,8 +1054,8 @@
                 "includeReferenced": true
               }
             ],
-            "response":{
-              "_all_":"",
+            "response": {
+              "_all_": "",
               "refdItemList": {
                 "typeId": "voteItemInfo",
                 "query": [
@@ -1156,6 +1201,14 @@
       {
         "paramName": "singlePhotoId",
         "required": true
+      },
+      {
+        "paramName": "snsKey",
+        "required": false
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": false
       }
     ],
     "config": {
@@ -1175,6 +1228,13 @@
             "ds": "cjDb",
             "resultType": "value",
             "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('singlePhoto','::',@{singlePhotoId})"
+          }
+        },
+        "myLikeYn": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select if(count(*)>0,'Y','N') myLikeYn from contsLikeInfo where contsMetaDivCd = '7' and contsMetaId = concat('singlePhoto','::',@{singlePhotoId}) and mbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
           }
         }
       }
@@ -1263,6 +1323,14 @@
       {
         "paramName": "contentId",
         "required": true
+      },
+      {
+        "paramName": "snsKey",
+        "required": false
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": false
       }
     ],
     "config": {
@@ -1283,6 +1351,13 @@
               "ds": "cjDb",
               "resultType": "value",
               "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('pgmVideo','::',@{contentId})"
+            }
+          },
+          "myLikeYn": {
+            "select": {
+              "ds": "cjDb",
+              "resultType": "value",
+              "sql": "select if(count(*)>0,'Y','N') myLikeYn from contsLikeInfo where contsMetaDivCd = '5' and contsMetaId = concat('pgmVideo','::',@{contentId}) and mbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
             }
           },
           "refPgmVideoList": {
@@ -1360,9 +1435,9 @@
             "typeId": "voteBasInfo",
             "query": [
               {
-                "field":"voteFormlCd",
-                "method":"matching",
-                "value":"voteFormlCd>1,voteFormlCd>2,voteFormlCd>4,voteFormlCd>5"
+                "field": "voteFormlCd",
+                "method": "matching",
+                "value": "voteFormlCd>1,voteFormlCd>2,voteFormlCd>4,voteFormlCd>5"
               },
               {
                 "field": "showYn",
@@ -1375,8 +1450,8 @@
                 "includeReferenced": true
               }
             ],
-            "response":{
-              "_all_":"",
+            "response": {
+              "_all_": "",
               "refdItemList": {
                 "typeId": "voteItemInfo",
                 "query": [

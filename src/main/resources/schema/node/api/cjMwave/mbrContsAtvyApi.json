@@ -7,22 +7,6 @@
     "method": "GET",
     "parameters": [
       {
-        "paramName": "page",
-        "required": false
-      },
-      {
-        "paramName": "pageSize",
-        "required": false
-      },
-      {
-        "paramName": "sorting",
-        "required": false
-      },
-      {
-        "paramName": "langCd",
-        "required": false
-      },
-      {
         "paramName": "contsMetaDivCd",
         "required": true
       },
@@ -106,17 +90,17 @@
           "name": ""
         }
       },
-      "myLikeYn": {
+      "chkContsLike": {
         "select": {
           "ds": "cjDb",
           "resultType": "value",
-          "sql": "select if(count(*)>0,'false','true') myLikeYn from contsLikeInfo where contsMetaDivCd=@{contsMetaDivCd} and contsMetaId=@{makeIdValue(::,name,contsMetaId)} and mbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
+          "sql": "select if(count(*)>0,'false','true') likeNullYn from contsLikeInfo where contsMetaDivCd=@{contsMetaDivCd} and contsMetaId=@{makeIdValue(::,name,contsMetaId)} and mbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
         }
       },
       "root": {
         "typeId": "contsLikeInfo",
         "event": "save",
-        "if":"{{:myLikeYn}}",
+        "if":"{{:likeNullYn}}",
         "data": {
           "contsMetaDivCd": "{{:contsMetaDivCd}}",
           "contsMetaId": "{{:makeIdValue(::,name,contsMetaId)}}",
@@ -265,22 +249,6 @@
     "method": "GET",
     "parameters": [
       {
-        "paramName": "page",
-        "required": false
-      },
-      {
-        "paramName": "pageSize",
-        "required": false
-      },
-      {
-        "paramName": "sorting",
-        "required": false
-      },
-      {
-        "paramName": "langCd",
-        "required": false
-      },
-      {
         "paramName": "snsKey",
         "required": false
       },
@@ -294,6 +262,10 @@
       },
       {
         "paramName": "contsMetaId",
+        "required": false
+      },
+      {
+        "paramName": "lastReplCreated",
         "required": false
       }
     ],
@@ -329,6 +301,11 @@
             "field": "contsMetaId",
             "method": "matching",
             "value": "{{:makeIdValue(::,name,contsMetaId)}}"
+          },
+          {
+            "field": "created",
+            "method": "under",
+            "value": "{{:dateFormat(lastReplCreated,yyyyMMddHHmmss)}}"
           },
           {
             "sorting": "{{:sorting}}"

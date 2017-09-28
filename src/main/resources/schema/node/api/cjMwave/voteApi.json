@@ -617,38 +617,40 @@
       },
       {
         "paramName": "snsKey",
-        "required": true
+        "required": false
       },
       {
         "paramName": "snsTypeCd",
-        "required": true
+        "required": false
       }
     ],
     "config": {
-      "typeId": "voteBasInfo",
-      "id": "{{:voteSeq}}",
-      "response": {
-        "_all_": "",
-        "refdItemList": {
-          "typeId": "voteItemStats",
-          "query": [
-            {
-              "field": "voteSeq",
-              "method": "equals",
-              "value": "{{:voteSeq}}"
-            },
-            {
-              "sorting": "rankNum",
-              "referenceView": "voteItemSeq"
-            }
-          ],
-          "response": {
-            "_all_": "",
-            "myVoteYn": {
-              "select": {
-                "ds": "cjDb",
-                "resultType": "value",
-                "sql": "select if(count(*)>0,'true','false') myVoteYn from votePrtcptHst where voteSeq=@{voteSeq} and voteItemSeq =@{voteItemSeq} and prtcpMbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
+      "root": {
+        "typeId": "voteBasInfo",
+        "id": "{{:voteSeq}}",
+        "response": {
+          "_all_": "",
+          "refdItemList": {
+            "typeId": "voteItemStats",
+            "query": [
+              {
+                "field": "voteSeq",
+                "method": "equals",
+                "value": "{{:voteSeq}}"
+              },
+              {
+                "sorting": "rankNum",
+                "referenceView": "voteItemSeq"
+              }
+            ],
+            "response": {
+              "_all_": "",
+              "myVoteYn": {
+                "select": {
+                  "ds": "cjDb",
+                  "resultType": "value",
+                  "sql": "select if(count(*)>0,'true','false') myVoteYn from votePrtcptHst where voteSeq=@{voteSeq} and voteItemSeq =@{voteItemSeq} and voteItemSeq =(select voteItemSeq from votePrtcptHst where  voteSeq=@{voteSeq} and prtcpMbrId = @{makeIdValue(>,snsTypeCd,snsKey)} order by created desc limit 0,1)"
+                }
               }
             }
           }
@@ -1056,11 +1058,11 @@
       },
       {
         "paramName": "snsKey",
-        "required": true
+        "required": false
       },
       {
         "paramName": "snsTypeCd",
-        "required": true
+        "required": false
       },
       {
         "paramName": "connIpAdr",
@@ -1169,13 +1171,13 @@
         },
         {
           "field": "perdStDate",
-          "method": "equals",
-          "value": "{{:weekDate(1,yyyy-MM-dd,뺿뺿)}}"
+          "method": "below",
+          "value": "{{:dateFormat(sysdate,yyyy-MM-dd)}}"
         },
         {
           "field": "perdFnsDate",
-          "method": "equals",
-          "value": "{{:weekDate(7,yyyy-MM-dd,뺿뺿)}}"
+          "method": "above",
+          "value": "{{:dateFormat(sysdate,yyyy-MM-dd)}}"
         },
         {
           "sorting": "{{:sorting}}"
@@ -1212,13 +1214,13 @@
         },
         {
           "field": "perdStDate",
-          "method": "equals",
-          "value": "{{:weekDate(1,yyyy-MM-dd,뺿뺿)}}"
+          "method": "below",
+          "value": "{{:dateFormat(sysdate,yyyy-MM-dd)}}"
         },
         {
           "field": "perdFnsDate",
-          "method": "equals",
-          "value": "{{:weekDate(7,yyyy-MM-dd,뺿뺿)}}"
+          "method": "above",
+          "value": "{{:dateFormat(sysdate,yyyy-MM-dd)}}"
         },
         {
           "sorting": "{{:sorting}}"
@@ -1557,13 +1559,13 @@
         "query": [
           {
             "field": "perdStDate",
-            "method": "equals",
-            "value": "{{:weekDate(1,yyyy-MM-dd,뺿뺿)}}"
+            "method": "below",
+            "value": "{{:dateFormat(sysdate,yyyy-MM-dd)}}"
           },
           {
             "field": "perdFnsDate",
-            "method": "equals",
-            "value": "{{:weekDate(7,yyyy-MM-dd,뺿뺿)}}"
+            "method": "above",
+            "value": "{{:dateFormat(sysdate,yyyy-MM-dd)}}"
           },
           {
             "sorting": "{{:sorting}}"
@@ -1581,7 +1583,7 @@
         "select": {
           "ds": "cjDb",
           "resultType": "value",
-          "sql": "select sum(voteNum) as totalVoteNum from cntryVoteStats where perdStDate = @{weekDate(1,yyyy-MM-dd,뺿뺿)} and perdFnsDate = @{weekDate(7,yyyy-MM-dd,뺿뺿)}"
+          "sql": "select sum(voteNum) as totalVoteNum from cntryVoteStats where @{dateFormat(sysdate,yyyy-MM-dd)} BETWEEN perdStDate and perdFnsDate"
         }
       }
     }
@@ -1609,13 +1611,13 @@
           },
           {
             "field": "perdStDate",
-            "method": "equals",
-            "value": "{{:weekDate(1,yyyy-MM-dd,뺿뺿)}}"
+            "method": "below",
+            "value": "{{:dateFormat(sysdate,yyyy-MM-dd)}}"
           },
           {
             "field": "perdFnsDate",
-            "method": "equals",
-            "value": "{{:weekDate(7,yyyy-MM-dd,뺿뺿)}}"
+            "method": "above",
+            "value": "{{:dateFormat(sysdate,yyyy-MM-dd)}}"
           },
           {
             "sorting": "{{:sorting}}"
@@ -1633,9 +1635,170 @@
         "select": {
           "ds": "cjDb",
           "resultType": "value",
-          "sql": "select sum(voteNum) as totalVoteNum from cntryVoteStatsByVote where voteSeq = @{voteSeq} and perdStDate = @{weekDate(1,yyyy-MM-dd,뺿뺿)} and perdFnsDate = @{weekDate(7,yyyy-MM-dd,뺿뺿)}"
+          "sql": "select sum(voteNum) as totalVoteNum from cntryVoteStatsByVote where voteSeq = @{voteSeq} and perdStDate = @{weekDate(2,yyyy-MM-dd,뺿뺿)} and perdFnsDate = @{weekDate(8,yyyy-MM-dd,뺿뺿)}"
         }
       }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv209",
+    "apiName": "주별 아티스트 투표현황(금주)",
+    "method": "GET",
+    "config": {
+      "typeId": "artistVoteStatsByWly",
+      "query": [
+        {
+          "field": "perdStDate",
+          "method": "below",
+          "value": "{{:dateFormat(sysdate,yyyy-MM-dd)}}"
+        },
+        {
+          "field": "perdFnsDate",
+          "method": "above",
+          "value": "{{:dateFormat(sysdate,yyyy-MM-dd)}}"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "referenceView": "artistId"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv210",
+    "apiName": "국가별 아티스트 투표현황(금주)",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "cntryCd",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "artistVoteStatsByCntry",
+      "query": [
+        {
+          "field": "cntryCd",
+          "method": "matching",
+          "value": "{{:cntryCd}}"
+        },
+        {
+          "field": "perdStDate",
+          "method": "below",
+          "value": "{{:dateFormat(sysdate,yyyy-MM-dd)}}"
+        },
+        {
+          "field": "perdFnsDate",
+          "method": "above",
+          "value": "{{:dateFormat(sysdate,yyyy-MM-dd)}}"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "referenceView": "cntryCd,artistId"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv211",
+    "apiName": "성별 아티스트 투표현황(금주)",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "sexCd",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "artistVoteStatsBySex",
+      "query": [
+        {
+          "field": "sexCd",
+          "method": "matching",
+          "value": "{{:sexCd}}"
+        },
+        {
+          "field": "perdStDate",
+          "method": "below",
+          "value": "{{:dateFormat(sysdate,yyyy-MM-dd)}}"
+        },
+        {
+          "field": "perdFnsDate",
+          "method": "above",
+          "value": "{{:dateFormat(sysdate,yyyy-MM-dd)}}"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "referenceView": "artistId"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        }
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv212",
+    "apiName": "타입별 아티스트 투표현황(금주)",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "typeCd",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "artistVoteStatsByType",
+      "query": [
+        {
+          "field": "typeCd",
+          "method": "matching",
+          "value": "{{:typeCd}}"
+        },
+        {
+          "field": "perdStDate",
+          "method": "below",
+          "value": "{{:dateFormat(sysdate,yyyy-MM-dd)}}"
+        },
+        {
+          "field": "perdFnsDate",
+          "method": "above",
+          "value": "{{:dateFormat(sysdate,yyyy-MM-dd)}}"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "referenceView": "artistId"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        }
+      ]
     }
   }
 ]

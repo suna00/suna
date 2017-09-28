@@ -189,6 +189,7 @@
       "lastLoginDtUpd": {
         "typeId": "mbrInfo",
         "event": "update",
+        "if": "{{:sbscShapCd}}",
         "data": {
           "snsKey": "{{:snsKey}}",
           "snsTypeCd": "{{:replaceAll(snsTypeCd,snsTypeCd>, ,)}}",
@@ -300,34 +301,15 @@
       {
         "paramName": "infoOttpAgreeYn",
         "required": true
+      },
+      {
+        "paramName": "email",
+        "required": false
       }
     ],
     "config": {
       "typeId": "mbrInfo",
       "event": "update"
-    }
-  },
-  {
-    "typeId": "apiConfig",
-    "category": "member",
-    "apiId": "lastLoginDtUpd",
-    "apiName": "회원 최종 로그인 일시 수정",
-    "method": "GET",
-    "parameters": [
-      {
-        "paramName": "id",
-        "required": true
-      }
-    ],
-    "config": {
-      "typeId": "mbrInfo",
-      "event": "update",
-      "data": {
-        "lastLoginDt": "{{:now}}"
-      },
-      "response": {
-        "lastLoginDt": ""
-      }
     }
   }
 ]
