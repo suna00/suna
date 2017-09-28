@@ -44,13 +44,13 @@ public class ClusterConfiguration {
     private Map<String, ITopic> topicMap = new HashMap<>() ;
     private Map<String, IQueue> queueMap = new HashMap<>() ;
 
-//    @Autowired
+    @Autowired
     private Environment environment;
 
 
     @PostConstruct
     public void init(){
-        this.environment = ApplicationContextManager.getContext().getEnvironment();
+//        this.environment = ApplicationContextManager.getContext().getEnvironment();
         this.port = environment.getProperty("server.port") ;
         if(hazelcast == null) {
             hazelcast = Hazelcast.getOrCreateHazelcastInstance(config());
