@@ -7,6 +7,7 @@ import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.file.TolerableMissingFileException;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
+import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -339,5 +340,37 @@ public class DBSyncService {
                 ice2Template.queryForList(jdbcQuery, params);
 
         successIds = executeSingleTaskAndRecord(executionNode, targets2Update, "MNET", "SCHEDULE");
+    }
+
+
+    public void loadTable2Node(String tid, boolean skip) {
+        NodeType nt = nodeService.getNodeType(tid);
+        String targetTableName = nt.getTableName();
+        String query = "SELECT * FROM " + targetTableName + " LIMIT ?,?";
+        int start = 0;
+        int unit = 1000;
+        int loop = 0;
+        boolean hasNext = true;
+        while(hasNext) {
+            start = start*loop;
+            List<Map<String, Object>> contents = ice2Template.queryForList(query, start, unit);
+            if(contents != null && contents.size() < unit) {
+                hasNext = false;
+            }
+            for(Map<String, Object> content : contents) {
+                try{
+                    content.put("typeId", tid);
+                    nodeService.saveNode(content);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    if(skip) continue;
+                    else {
+                        hasNext = false;
+                        break;
+                    }
+                }
+            }
+            loop++;
+        }
     }
 }
