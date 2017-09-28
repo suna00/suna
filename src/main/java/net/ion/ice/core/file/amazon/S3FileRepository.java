@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
+import java.net.URL;
 import java.util.Date;
 import java.util.UUID;
 
@@ -124,7 +125,7 @@ public class S3FileRepository implements FileRepository {
     ###################################################################################################
     * */
 
-    private PutObjectResult uploadFile (String dirPath, File file) throws Exception {
+    private String makeS3Path(String dirPath, File file ) throws Exception {
         String fileName = file.getName();
         String fullBucketPath = null;
         if(!dirPath.startsWith(defaultBucketKey)) {
@@ -136,7 +137,18 @@ public class S3FileRepository implements FileRepository {
         } else {
             fullBucketPath = dirPath;
         }
+        return fullBucketPath;
+    }
 
+    private String retrieveS3URL (String dirPath, File file) throws Exception {
+        String fullBucketPath = makeS3Path(dirPath, file);
+        URL bucketUrl = s3Client.getUrl(bucketName, fullBucketPath);
+        return bucketUrl.toURI().toString();
+    }
+
+    private PutObjectResult uploadFile (String dirPath, File file) throws Exception {
+        String fileName = file.getName();
+        String fullBucketPath = makeS3Path(dirPath, file);
         logger.info("Send File [ " + fileName + " ] to S3(included FileName) [ " + fullBucketPath + " ]" );
         return s3Client.putObject(new PutObjectRequest(bucketName, fullBucketPath, file));
     }
@@ -156,6 +168,7 @@ public class S3FileRepository implements FileRepository {
             }
             multipartFile.transferTo(saveFile); // 이 경로에 떨어뜨리는 거 같은데..
             uploadFile(savePath, saveFile);
+            savePath = retrieveS3URL(savePath, saveFile);
         } catch (Exception e) {
             logger.error("S3 MULTIPART FILE SAVE ERROR : ", e);
             throw new TolerableMissingFileException("S3 MULTIPART FILE SAVE ERROR : ", e);
@@ -176,6 +189,7 @@ public class S3FileRepository implements FileRepository {
             // 원격이니까 일부러 파일 경로 만들어 주지 않아도 됨
             FileUtils.copyFile(file, saveFile);
             uploadFile(savePath, file);
+            savePath = retrieveS3URL(savePath, saveFile);
         } catch (Exception e) {
             logger.error("S3 FILE SAVE ERROR : ", e);
             throw new TolerableMissingFileException("S3 FILE SAVE ERROR : ", e);
@@ -209,7 +223,7 @@ public class S3FileRepository implements FileRepository {
             FileUtils.copyURLToFile(res.getURL(), saveFile, connectionTimeout, readTimeout);
             logger.info("SAVE RESOURCE FILE S3 :: " + saveFile.getCanonicalPath());
             uploadFile(savePath, saveFile);
-
+            savePath = retrieveS3URL(savePath, saveFile);
         } catch (Exception e) {
             logger.error("S3 SAVE RESOURCE FILE SAVE ERROR : ", e);
             throw new TolerableMissingFileException("S3 SAVE RESOURCE FILE SAVE ERROR : ", e);
