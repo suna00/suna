@@ -30,6 +30,8 @@ public class MethodHelper {
                 Date date = null ;
                 if(value instanceof Timestamp){
                     date = new Date(((Timestamp) value).getTime()) ;
+                }else if(value instanceof Date){
+                    date = (Date) value;
                 }else {
                     try {
                         date = DateUtils.parseDate(value.toString(), patterns);
