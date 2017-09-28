@@ -34,7 +34,7 @@ public class ContextUtils {
                     }
                     continue;
                 }else {
-                    NodeType subNodeType = NodeUtils.getNodeType(subTypeId);
+                    NodeType subNodeType = NodeUtils.getNodeType(StringUtils.substringBefore(subTypeId, "["));
                     if (subNodeType != null) {
                         List<Map<String, Object>> subList = new ArrayList<>();
                         String[] values = parameterMap.get(paramName);
@@ -83,7 +83,7 @@ public class ContextUtils {
                     }
                     continue;
                 }else {
-                    NodeType subNodeType = NodeUtils.getNodeType(subTypeId);
+                    NodeType subNodeType = NodeUtils.getNodeType(StringUtils.substringBefore(subTypeId, "["));
                     if (subNodeType != null) {
                         List<Map<String, Object>> subList = new ArrayList<>();
 
