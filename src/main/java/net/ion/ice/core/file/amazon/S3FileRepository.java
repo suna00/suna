@@ -177,8 +177,8 @@ public class S3FileRepository implements FileRepository {
             FileUtils.copyFile(file, saveFile);
             uploadFile(savePath, file);
         } catch (Exception e) {
-            logger.error("S3 MULTIPART FILE SAVE ERROR : ", e);
-            throw new IceRuntimeException("S3 MULTIPART FILE SAVE ERROR : ", e);
+            logger.error("S3 FILE SAVE ERROR : ", e);
+            throw new IceRuntimeException("S3 FILE SAVE ERROR : ", e);
         }
 //        finally {
 //            if(file != null && file.exists()) {
@@ -211,8 +211,8 @@ public class S3FileRepository implements FileRepository {
             uploadFile(savePath, saveFile);
 
         } catch (Exception e) {
-            logger.error("S3 MULTIPART FILE SAVE ERROR : ", e);
-            throw new IceRuntimeException("S3 MULTIPART FILE SAVE ERROR : ", e);
+            logger.error("S3 SAVE RESOURCE FILE SAVE ERROR : ", e);
+            throw new IceRuntimeException("S3 SAVE RESOURCE FILE SAVE ERROR : ", e);
         }
 //        finally {
 //            if(saveFile != null && saveFile.exists()) {
