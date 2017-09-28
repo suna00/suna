@@ -1963,7 +1963,7 @@
     "typeId": "code",
     "groupCodeId": "awardSctnCd",
     "codeId": 1,
-    "name": "Type1",
+    "name": "국내 부문",
     "order": 1,
     "active": true
   },
@@ -1971,7 +1971,7 @@
     "typeId": "code",
     "groupCodeId": "awardSctnCd",
     "codeId": 2,
-    "name": "Type2",
+    "name": "해외 부문",
     "order": 2,
     "active": true
   },
@@ -1979,7 +1979,7 @@
     "typeId": "code",
     "groupCodeId": "awardSctnCd",
     "codeId": 3,
-    "name": "Type3",
+    "name": "전문 부문",
     "order": 3,
     "active": true
   },
