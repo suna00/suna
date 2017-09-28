@@ -128,7 +128,7 @@ public class MnetController {
         response.put("result", result);
         response.put("result_msg", result_msg);
         response.put("cause", cause);
-        response.put("warning", "This response for API Call. Does not guarantee Data.");
+        response.put("warning", "This response for API Call. Does not guarantee Data");
         return String.valueOf(response);
     }
 }
