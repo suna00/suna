@@ -32,7 +32,7 @@
           "typeId" : "delivery",
           "query" : [
             {"field" : "orderSheetId", "method" : "equals", "value" : "{{:orderSheetId}}"},
-            {"field" : "orderChangeId", "method" : "equals", "value" : "deliveryAddress"}
+            {"field" : "deliveryType", "method" : "equals", "value" : "deliveryAddress"}
           ]
         },
         "payment":{
@@ -168,7 +168,7 @@
           "typeId" : "delivery",
           "query" : [
             {"field" : "orderSheetId", "method" : "equals", "value" : "{{:orderSheetId}}"},
-            {"field" : "orderChangeId", "method" : "notEquals", "value" : "deliveryAddress"}
+            {"field" : "deliveryType", "method" : "notEquals", "value" : "deliveryAddress"}
           ]
         },
         "payment":{
