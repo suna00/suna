@@ -220,6 +220,23 @@
   {
     "typeId": "propertyType",
     "tid": "pgmVideo",
+    "pid": "artistIds",
+    "propertyTypeName": "출연자 코드(NODE)",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "pgmVideo",
     "pid": "searchKeyword",
     "id": "pgmVideo>searchKeyword",
     "propertyTypeName": "검색키워드",

@@ -210,7 +210,7 @@
     "referenceValue": "",
     "codeFilter": "",
     "defaultValue": "",
-    "fileHandler":"default"
+    "fileHandler":"s3"
   },
   {
     "typeId": "propertyType",

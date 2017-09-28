@@ -434,6 +434,23 @@
   {
     "typeId": "propertyType",
     "tid": "program",
+    "pid": "artistIds",
+    "propertyTypeName": "출연자 코드(NODE)",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "program",
     "pid": "actor",
     "propertyTypeName": "출연진",
     "valueType": "STRING",
