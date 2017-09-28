@@ -1,10 +1,10 @@
 package net.ion.ice.cjmwave.db.sync;
 
-import net.ion.ice.IceRuntimeException;
 import net.ion.ice.cjmwave.db.sync.utils.NodeMappingUtils;
 import net.ion.ice.cjmwave.db.sync.utils.SyntaxUtils;
 import net.ion.ice.cjmwave.external.utils.MigrationUtils;
 import net.ion.ice.core.data.DBService;
+import net.ion.ice.core.file.TolerableMissingFileException;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
@@ -169,8 +169,8 @@ public class DBSyncService {
                     break;
                 } else {
                     skippedCnt++;
-                    if(e instanceof IceRuntimeException) {
-                        MigrationUtils.saveFilureNodes2(ice2Template, ((IceRuntimeException) e).getRootCause().getClass().getName(), fit);
+                    if(e instanceof TolerableMissingFileException) {
+                        MigrationUtils.saveFilureNodes2(ice2Template, ((TolerableMissingFileException) e).getRootCause().getClass().getName(), fit);
                     } else {
                         MigrationUtils.saveFilureNodes2(ice2Template, e.getClass().getName(), fit);
                     }
@@ -281,8 +281,8 @@ public class DBSyncService {
                         } else {
                             skippedCnt++;
                         }
-                        if(e instanceof IceRuntimeException) {
-                            MigrationUtils.saveFilureNodes2(ice2Template, ((IceRuntimeException) e).getRootCause().getClass().getName(), fit);
+                        if(e instanceof TolerableMissingFileException) {
+                            MigrationUtils.saveFilureNodes2(ice2Template, ((TolerableMissingFileException) e).getRootCause().getClass().getName(), fit);
                         } else {
                             MigrationUtils.saveFilureNodes2(ice2Template, e.getClass().getName(), fit);
                         }

@@ -1,7 +1,7 @@
 package net.ion.ice.core.node;
 
 import net.ion.ice.core.file.FileValue;
-import org.apache.commons.lang.StringUtils;
+import net.ion.ice.core.file.TolerableMissingFileException;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.Serializable;
@@ -100,7 +100,12 @@ public class Properties implements Map<String, Object>, Serializable, Cloneable 
             }
             if(value != null && !(value instanceof List)){
                 if(pt.isFile() && value instanceof String && (((String) value).startsWith("classpath:") || ((String) value).startsWith("http://") || ((String) value).startsWith("/"))) {
-                    FileValue fileValue = NodeUtils.getFileService().saveResourceFile(pt, id, (String) value);
+                    FileValue fileValue = null;
+                    try{
+                        fileValue = NodeUtils.getFileService().saveResourceFile(pt, id, (String) value);
+                    } catch (TolerableMissingFileException e) {
+                        e.printStackTrace();
+                    }
                     values.put(pt.getPid(), fileValue);
                     m.put(pt.getPid(), fileValue);
                 }else  if(pt.isFile() && value instanceof MultipartFile){
@@ -120,7 +125,12 @@ public class Properties implements Map<String, Object>, Serializable, Cloneable 
                             values.put(fieldName, fileValue);
                             m.put(fieldName, fileValue);
                         } else if(pt.isFile() && m.get(fieldName) instanceof MultipartFile){
-                            FileValue fileValue = NodeUtils.getFileService().saveMultipartFile(pt, id, (MultipartFile) value);
+                            FileValue fileValue = null;
+                            try {
+                                fileValue = NodeUtils.getFileService().saveMultipartFile(pt, id, (MultipartFile) value);
+                            } catch (TolerableMissingFileException e) {
+                                e.printStackTrace();
+                            }
                             values.put(fieldName, fileValue);
                             m.put(fieldName, fileValue);
                         } else {

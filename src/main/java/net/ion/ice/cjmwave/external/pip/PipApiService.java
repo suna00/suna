@@ -1,11 +1,11 @@
 package net.ion.ice.cjmwave.external.pip;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.ion.ice.IceRuntimeException;
 import net.ion.ice.cjmwave.external.aws.s3.S3Service;
 import net.ion.ice.cjmwave.external.utils.JSONNetworkUtils;
 import net.ion.ice.cjmwave.external.utils.MigrationUtils;
 import net.ion.ice.core.data.DBService;
+import net.ion.ice.core.file.TolerableMissingFileException;
 import net.ion.ice.core.node.NodeService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -278,8 +278,8 @@ public class PipApiService {
             } catch (Exception e) {
                 logger.error("Failed to register PIP program :: ", e);
                 // 실패 목록에 쌓기
-                if(e instanceof IceRuntimeException) {
-                    MigrationUtils.saveFilureNodes2(template, ((IceRuntimeException) e).getRootCause().getClass().getName(), fit);
+                if(e instanceof TolerableMissingFileException) {
+                    MigrationUtils.saveFilureNodes2(template, ((TolerableMissingFileException) e).getRootCause().getClass().getName(), fit);
                 } else {
                     MigrationUtils.saveFilureNodes2(template, e.getClass().getName(), fit);
                 }
@@ -311,8 +311,8 @@ public class PipApiService {
             } catch (Exception e) {
                 logger.error("Failed to register PIP clip :: ", e);
                 // 실패 목록에 쌓기
-                if(e instanceof IceRuntimeException) {
-                    MigrationUtils.saveFilureNodes2(template, ((IceRuntimeException) e).getRootCause().getClass().getName(), fit);
+                if(e instanceof TolerableMissingFileException) {
+                    MigrationUtils.saveFilureNodes2(template, ((TolerableMissingFileException) e).getRootCause().getClass().getName(), fit);
                 } else {
                     MigrationUtils.saveFilureNodes2(template, e.getClass().getName(), fit);
                 }
