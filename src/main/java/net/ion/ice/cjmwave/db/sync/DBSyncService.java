@@ -29,8 +29,7 @@ public class DBSyncService {
     private Logger logger = Logger.getLogger(DBSyncService.class);
 
     private final String PROCESS_TID = "dbSyncProcess"
-            , MAPPER_TID = "dbSyncMapper"
-            , HISTORY_TID = "dbSyncHistory";
+            , MAPPER_TID = "dbSyncMapper";
 
 
     @Autowired
@@ -38,9 +37,6 @@ public class DBSyncService {
 
     @Autowired
     DBService dbService;
-
-//    @Autowired
-//    S3UploadService s3UploadService;
 
     @Value("${file.default.path}")
     String defaultFilePath;
@@ -171,14 +167,12 @@ public class DBSyncService {
                 } else {
                     skippedCnt++;
                     if(e instanceof TolerableMissingFileException) {
-                        MigrationUtils.saveFilureNodes2(ice2Template, ((TolerableMissingFileException) e).getRootCause().getClass().getName(), fit);
+                        MigrationUtils.handoutNodeFailReport(ice2Template, ((TolerableMissingFileException) e).getRootCause().getClass().getName(), fit);
                     } else {
-                        MigrationUtils.saveFilureNodes2(ice2Template, e.getClass().getName(), fit);
+                        MigrationUtils.handoutNodeFailReport(ice2Template, e.getClass().getName(), fit);
                     }
                 }
             }
-            // 실패 이외에 성공도 기록하고 싶으면 주석을 푸시오.
-            //MigrationUtils.recordSingleDate(ice2Template, targetNodeType, String.valueOf(fit), rs); // 레코드에 대한 결과
         }
 
         long jobTaken = (new Date().getTime() - startTime.getTime());
@@ -192,7 +186,6 @@ public class DBSyncService {
     /*
     * 결과가 안나올 때까지 이터레이션하면서 처리한다, 쿼리에 반드시 limit @{start} @{unit} 있어야 한다
     * start unit 외 다른 파라미터는 받을 수 없음
-    * 실패에 대한 처리를 어떻게 할 것인지
     * */
     public void executeWithIteration (String executeId) throws Exception {
 //        int max = 1;
@@ -283,13 +276,11 @@ public class DBSyncService {
                             skippedCnt++;
                         }
                         if(e instanceof TolerableMissingFileException) {
-                            MigrationUtils.saveFilureNodes2(ice2Template, ((TolerableMissingFileException) e).getRootCause().getClass().getName(), fit);
+                            MigrationUtils.handoutNodeFailReport(ice2Template, ((TolerableMissingFileException) e).getRootCause().getClass().getName(), fit);
                         } else {
-                            MigrationUtils.saveFilureNodes2(ice2Template, e.getClass().getName(), fit);
+                            MigrationUtils.handoutNodeFailReport(ice2Template, e.getClass().getName(), fit);
                         }
                     }
-                    // 실패 이외에 성공도 기록하고 싶으면 주석을 푸시오.
-                    //MigrationUtils.recordSingleDate(template, targetNodeType, String.valueOf(fit), rs);
                 }
                 i++;
             }

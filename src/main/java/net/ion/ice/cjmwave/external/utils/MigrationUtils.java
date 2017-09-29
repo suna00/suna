@@ -57,14 +57,6 @@ public class MigrationUtils {
         logger.info("INSERT INTO MIG_HISTORY :: row count :: " + cnt);
     }
 
-//    public static void recordSingleData(JdbcTemplate template, String nodeType, String dataStr, int result) {
-//        String insertQuery = "INSERT INTO MIG_DATA_HISTORY" +
-//                " (target_node, data_str, rs, created)" +
-//                " VALUES (?, ?, ?, now())";
-//        template.update(insertQuery, nodeType, dataStr, result);
-//    }
-
-
     public static void printReport(Date startTime, String executeId, String failPolicy, int successCnt, int skippedCnt) {
         long jobTaken = (new Date().getTime() - startTime.getTime());
         logger.info(
@@ -78,7 +70,7 @@ public class MigrationUtils {
                         "\n##############################");
     }
 
-    public static void saveFilureNodes2(JdbcTemplate template, String exName, Map<String, Object> mapNode) {
+    public static void handoutNodeFailReport(JdbcTemplate template, String exName, Map<String, Object> mapNode) {
         try{
             String reportIn = "INSERT INTO NODE_CREATION_FAIL " +
                     "(nodeType, nodeId, exception, jsonValue) VALUES " +
@@ -86,27 +78,19 @@ public class MigrationUtils {
             String nodeType = String.valueOf(mapNode.get("typeId"));
             template.update(reportIn, nodeType, "", exName, JsonUtils.toJsonString(mapNode));
         } catch (Exception e) {
-            logger.error("FAILED TO HAND OUT NODE CREATE FAIL REPORT :: ", e);
+            logger.error("UNABLE TO HAND OUT NODE CREATE FAIL REPORT :: But consider it as normal");
         }
     }
 
-
-    /*
-    * URL 로 파일을 요청하고 파일객체 반환
-    * */
-    public static File retrieveRemoteFile (String basicPath, String url) {
-        File file = null;
-        UUID uuid = UUID.randomUUID();
+    public static void handoutDB2DBFailReport(JdbcTemplate template, String fromTable, String toTable, String exception, String ppk) {
         try{
-            file = new File(basicPath + "/" + uuid.toString() + ".jpg");
-            URL requestUrl = new URL(url);
-            int connectionTimeout = 3000, readTimeout = 60000;
-            org.apache.commons.io.FileUtils.copyURLToFile(requestUrl, file, connectionTimeout, readTimeout);
+            String reportIn = "INSERT INTO MSSQL_DUMP_FAIL" +
+                    " (mysqlTable, mssqlTable, exception, ppk)" +
+                    " VALUES (?, ?, ?, ?)";
+            template.update(reportIn, fromTable, toTable, exception, ppk);
         } catch (Exception e) {
-            // file retrieve 실패 null 을 반환함
-            file = null;
+            logger.error("UNABLE TO HAND OUT DB2DB DUMP FAIL REPORT :: But consider it as normal");
         }
-        return file;
     }
 
     /*

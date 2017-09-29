@@ -279,9 +279,9 @@ public class PipApiService {
                 logger.error("Failed to register PIP program :: ", e);
                 // 실패 목록에 쌓기
                 if(e instanceof TolerableMissingFileException) {
-                    MigrationUtils.saveFilureNodes2(template, ((TolerableMissingFileException) e).getRootCause().getClass().getName(), fit);
+                    MigrationUtils.handoutNodeFailReport(template, ((TolerableMissingFileException) e).getRootCause().getClass().getName(), fit);
                 } else {
-                    MigrationUtils.saveFilureNodes2(template, e.getClass().getName(), fit);
+                    MigrationUtils.handoutNodeFailReport(template, e.getClass().getName(), fit);
                 }
 
                 skippedCnt++;
@@ -312,9 +312,9 @@ public class PipApiService {
                 logger.error("Failed to register PIP clip :: ", e);
                 // 실패 목록에 쌓기
                 if(e instanceof TolerableMissingFileException) {
-                    MigrationUtils.saveFilureNodes2(template, ((TolerableMissingFileException) e).getRootCause().getClass().getName(), fit);
+                    MigrationUtils.handoutNodeFailReport(template, ((TolerableMissingFileException) e).getRootCause().getClass().getName(), fit);
                 } else {
-                    MigrationUtils.saveFilureNodes2(template, e.getClass().getName(), fit);
+                    MigrationUtils.handoutNodeFailReport(template, e.getClass().getName(), fit);
                 }
                 skippedCnt++;
             }

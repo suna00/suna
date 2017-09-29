@@ -20,17 +20,6 @@
   , {
     "parentId" : "root",
     "typeId" : "nodeType",
-    "tid" : "dbSyncHistory",
-    "typeName" : "DB 동기화 개별 작업 내역",
-    "repositoryType" : "node",
-    "eviction" : 500
-  }
-
-
-
-  , {
-    "parentId" : "root",
-    "typeId" : "nodeType",
     "tid" : "msSqlReplication",
     "typeName" : "DB 삽입 테스트 노드 01",
     "repositoryType" : "node",

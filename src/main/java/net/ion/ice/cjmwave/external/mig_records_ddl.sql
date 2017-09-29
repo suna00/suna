@@ -14,7 +14,7 @@ CREATE TABLE MIG_HISTORY (
 );
 
 
-/* MNET / PIP */
+/* MNET / PIP
 DROP TABLE MIG_DATA_HISTORY;
 CREATE TABLE MIG_DATA_HISTORY (
    seq INT PRIMARY KEY                    COMMENT 'PK' AUTO_INCREMENT
@@ -23,6 +23,7 @@ CREATE TABLE MIG_DATA_HISTORY (
   , rs TINYINT(1)                         COMMENT '성공(0)/실패(1)' DEFAULT 0
   , created DATETIME                      COMMENT '생성일'
 );
+*/
 
 
 /* MNET */
@@ -42,7 +43,7 @@ CREATE TABLE MSSQL_DUMP_REPORT (
 /*
   개별 데이터에 대한 실패를 기록함
   MYSQL TO NODE FAILURE
-*/
+
 DROP TABLE MIG_FAIL_DATA;
 CREATE TABLE MIG_FAIL_DATA (
   seq INT PRIMARY KEY                     COMMENT 'PK' AUTO_INCREMENT
@@ -50,4 +51,29 @@ CREATE TABLE MIG_FAIL_DATA (
   , nodeId VARCHAR(200)                   COMMENT '대상 노드의 키가 되는 정보'
   , nodeValue LONGTEXT                    COMMENT '실패한 삽입 정보'
   , created DATETIME DEFAULT NOW()        COMMENT '생성일'
+);
+*/
+
+
+
+CREATE TABLE MSSQL_DUMP_FAIL (
+    seq BIGINT PRIMARY KEY AUTO_INCREMENT   COMMENT '시퀀스'
+  , mysqlTable VARCHAR(200)               COMMENT 'Mysql 테이블명'
+  , mssqlTable VARCHAR(200)               COMMENT 'Mssql 테이블명'
+  , exception VARCHAR(300)                COMMENT '발생 예외 유형'
+  , ppk VARCHAR(200)                 COMMENT '부모의 PK'
+  , isFixed TINYINT(1) DEFAULT 0          COMMENT '수정 완료 여부'
+  , created DATETIME DEFAULT NOW()        COMMENT '생성일'
+  , changed DATETIME DEFAULT NOW()        COMMENT '수정일'
+);
+
+CREATE TABLE NODE_CREATION_FAIL (
+    seq BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT '시퀀스 아이디'
+  , nodeType VARCHAR(300)               COMMENT '대상 노드 타입'
+  , nodeId VARCHAR(200)                 COMMENT '대상 노드 PK'
+  , exception VARCHAR(300)              COMMENT '발생 예외 유형'
+  , jsonValue LONGTEXT                  COMMENT '대상 데이터'
+  , isFixed TINYINT(1)  DEFAULT 0       COMMENT '처리 상태'
+  , created DATETIME  DEFAULT NOW()     COMMENT '예외 발생 시점'
+  , changed DATETIME  DEFAULT NOW()     COMMENT '최종 수정 시점'
 );
