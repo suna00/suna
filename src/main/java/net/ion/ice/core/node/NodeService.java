@@ -324,6 +324,9 @@ public class NodeService {
         return (Node) executeNode(data, typeId, EventService.UPDATE);
     }
 
+    public Object executeResult(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap) {
+        return null ;
+    }
 
     public Object executeNode(Map<String, Object> data, String typeId, String event) {
         ExecuteContext context = ExecuteContext.makeContextFromMap(data, typeId, event) ;
@@ -505,4 +508,6 @@ public class NodeService {
     public Node getDatasource(String dsId) {
         return this.datasource.get(dsId) ;
     }
+
+
 }
