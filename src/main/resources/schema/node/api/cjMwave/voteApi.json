@@ -1238,6 +1238,81 @@
   {
     "typeId": "apiConfig",
     "category": "vote",
+    "apiId": "IfMwv111",
+    "apiName": "MWAVE 투표 진행현황 목록조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "voteFormlCd",
+        "required": true
+      },
+      {
+        "paramName": "showLoCd",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "voteBasInfo",
+      "query": [
+        {
+          "field": "voteFormlCd",
+          "method": "matching",
+          "value": "{{:voteFormlCd}}"
+        },
+        {
+          "field": "showLoCd",
+          "method": "matching",
+          "value": "{{:showLoCd}}"
+        },
+        {
+          "field": "pstngStDt",
+          "method": "below",
+          "value": "{{:dateFormat(sysdate,yyyy-MM-dd)}}"
+        },
+        {
+          "field": "pstngFnsDt",
+          "method": "above",
+          "value": "{{:dateFormat(sysdate,yyyy-MM-dd)}}"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        },
+        {
+          "page": "{{:page}}",
+          "pageSize": "{{:pageSize}}"
+        }
+      ],
+      "response": {
+        "voteSeq": "",
+        "voteFormlCd": "",
+        "voteNm": "",
+        "voteDesc": "",
+        "pstngStDt": "",
+        "pstngFnsDt": "",
+        "topRankItem": {
+          "typeId": "voteItemStats",
+          "query": [
+            {
+              "field": "voteSeq",
+              "method": "equals",
+              "value": "{{:voteSeq}}"
+            },
+            {
+              "field": "rankNum",
+              "method": "equals",
+              "value": "1"
+            },
+            {
+              "referenceView": "voteItemSeq"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
     "apiId": "IfMwv200",
     "apiName": "주별 아티스트 투표현황",
     "method": "GET",
