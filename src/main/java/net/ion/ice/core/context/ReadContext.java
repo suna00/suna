@@ -7,6 +7,7 @@ import net.ion.ice.core.query.QueryTerm;
 import net.ion.ice.core.query.ResultField;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.Map;
 /**
  * Created by jaehocho on 2017. 8. 11..
  */
-public class ReadContext implements Context {
+public class ReadContext implements Context, Serializable {
     protected NodeType nodeType;
     protected Map<String, Object> data;
 
@@ -50,7 +51,8 @@ public class ReadContext implements Context {
     protected String ifTest ;
     protected ResultField.ResultType resultType ;
 
-
+    protected Boolean remote ;
+    
     public NodeType getNodetype() {
         return nodeType;
     }
@@ -249,6 +251,9 @@ public class ReadContext implements Context {
             Node node = NodeUtils.getNode(nodeType.getTypeId(), id) ;
             if(node != null) {
                 queryResult.put("item", makeResult(node));
+            }else{
+                queryResult.put("result", "404") ;
+                queryResult.put("resultMessage", "Not Found") ;
             }
         }
 
@@ -452,7 +457,9 @@ public class ReadContext implements Context {
     }
 
     public boolean hasLocale() {
-        return this.data != null && ((this.data.containsKey("locale") && StringUtils.isNotEmpty((String) data.get("locale"))) || (this.data.containsKey("langCd") && StringUtils.isNotEmpty((String) data.get("langCd")))) ;
+//        return this.data != null && ((this.data.containsKey("locale") && StringUtils.isNotEmpty((String) data.get("locale"))) || (this.data.containsKey("langCd") && StringUtils.isNotEmpty((String) data.get("langCd")))) ;
+        return this.data != null && ((this.data.containsKey("locale")) || (this.data.containsKey("langCd"))) ;
+
     }
 
     public String getLocale() {
@@ -469,5 +476,9 @@ public class ReadContext implements Context {
 
     public void setFileUrlFormat(Map<String,Object> fileUrlFormat) {
         this.fileUrlFormat = fileUrlFormat;
+    }
+
+    public NodeType getNodeType() {
+        return nodeType;
     }
 }

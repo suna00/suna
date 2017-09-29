@@ -10,6 +10,7 @@ import org.infinispan.configuration.global.GlobalConfigurationBuilder;
 import org.infinispan.eviction.EvictionStrategy;
 import org.infinispan.manager.DefaultCacheManager;
 import org.infinispan.manager.EmbeddedCacheManager;
+import org.infinispan.transaction.LockingMode;
 import org.infinispan.transaction.TransactionMode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -68,6 +69,11 @@ public class InfinispanCacheManager {
         Cache<K,V> cache = manager.getCache(cacheType, false) ;
         if(cache == null){
             cache = cacheInit(cacheType, size) ;
+//            try {
+//                Thread.sleep(500);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
         }
 
         return cache;

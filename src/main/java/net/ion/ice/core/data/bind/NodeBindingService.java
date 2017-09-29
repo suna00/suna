@@ -1,6 +1,7 @@
 package net.ion.ice.core.data.bind;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import net.ion.ice.IceRuntimeException;
 import net.ion.ice.core.context.DataQueryContext;
 import net.ion.ice.core.context.DataReadContext;
 import net.ion.ice.core.context.ExecuteContext;
@@ -78,9 +79,19 @@ public class NodeBindingService {
         Node node = context.getNode();
         NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(node.getTypeId());
 
-        int callback = nodeBindingInfo.update(node);
-        if (callback == 0) {
-            nodeBindingInfo.insert(node);
+        if(nodeBindingInfo == null) {
+            logger.error("Node Binding Error : " +  node.getTypeId());
+            throw new IceRuntimeException("Node Binding Error : " +  node.getTypeId()) ;
+        }
+        int callback = 0;
+        try {
+            callback = nodeBindingInfo.update(node);
+            if (callback == 0) {
+                nodeBindingInfo.insert(node);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new IceRuntimeException("Node Binding Execute Error : " +  e.getMessage(), e) ;
         }
         context.setResult(node);
         logger.info("Node Binding {} - {} :  " + (callback == 0 ? "insert" : "update"), node.getTypeId(), node.getId());

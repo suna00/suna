@@ -2,6 +2,7 @@ package net.ion.ice.core.context;
 
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.IceRuntimeException;
+import net.ion.ice.core.cluster.ClusterUtils;
 import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.file.FileValue;
 import net.ion.ice.core.node.Node;
@@ -119,6 +120,11 @@ public class ExecuteContext extends ReadContext{
 
     protected void init() {
         this.time = new Date() ;
+        if(this.event == null && data.containsKey("event") && getNodeType().getPropertyType("event") == null){
+            this.event = (String) data.get("event");
+        }
+
+
         if(nodeType == null){
             this.node = new Node(data);
             execute = true ;
@@ -129,9 +135,6 @@ public class ExecuteContext extends ReadContext{
         }catch(Exception e){
         }
         exist = existNode != null ;
-        if(this.event == null && data.containsKey("event") && getNodeType().getPropertyType("event") == null){
-            this.event = (String) data.get("event");
-        }
 
         if(exist){
             if(event != null && event.equals("create")){
@@ -144,7 +147,6 @@ public class ExecuteContext extends ReadContext{
                 if(!data.containsKey(pt.getPid()) && !pt.isI18n()){
                     continue;
                 }
-
 
                 Object newValue = NodeUtils.getStoreValue(data, pt, node.getId()) ;
                 if(pt.isI18n() && newValue == null){
@@ -159,6 +161,7 @@ public class ExecuteContext extends ReadContext{
                     node.remove(pt.getPid()) ;
                     changedProperties.add(pt.getPid()) ;
                 }else if(pt.isFile()){
+                    if(newValue != null) data.put(pt.getPid(), newValue) ;
                     if(newValue != null && newValue instanceof String && (((String) newValue).startsWith("classpath:") || ((String) newValue).startsWith("http://") || ((String) newValue).startsWith("/"))) {
                         if (existValue == null) {
                             node.put(pt.getPid(), NodeUtils.getFileService().saveResourceFile(pt, id, (String) newValue));
@@ -223,7 +226,7 @@ public class ExecuteContext extends ReadContext{
             execute = changedProperties.size() > 0 ;
             if(execute) {
                 node.setUpdate(userId, time);
-            }else if(event != null && !event.equals("update") ){
+            }else if(event != null && !(event.equals("update") || event.equals("save"))){
                 execute = true;
             }
 
@@ -243,13 +246,15 @@ public class ExecuteContext extends ReadContext{
             }
         }
 
+        List<String> subDataKeys = new ArrayList<>();
+
         for(String key : data.keySet()){
             Object value = data.get(key) ;
             if(value instanceof List && (this.nodeType.getPropertyType(key) == null || !this.nodeType.getPropertyType(key).isList()) && NodeUtils.getNodeType(key) != null){
                 for(Map<String, Object> subData : (List<Map<String, Object>>)value){
                     Map<String, Object> _data = new HashMap<>() ;
-                    _data.putAll(data);
-                    _data.remove(key) ;
+//                    _data.putAll(data);
+//                    _data.remove(key) ;
                     _data.putAll(subData);
                     for(String _key : subData.keySet()){
                         Object _val = subData.get(_key) ;
@@ -265,7 +270,13 @@ public class ExecuteContext extends ReadContext{
                         subExecuteContexts.add(subContext);
                     }
                 }
+
+                subDataKeys.add(key);
             }
+        }
+
+        for(String subDataKey : subDataKeys) {
+            data.remove(subDataKey);
         }
     }
 
@@ -334,40 +345,6 @@ public class ExecuteContext extends ReadContext{
         }
     }
 
-    public static ExecuteContext makeContextFromConfig(Map<String, Object> config, Map<String, Object> data) {
-        ExecuteContext ctx = new ExecuteContext();
-
-
-        NodeType nodeType = NodeUtils.getNodeType((String) ContextUtils.getValue(config.get("typeId"), data));
-        ctx.setNodeType(nodeType);
-
-        ctx.event = (String) ContextUtils.getValue(config.get("event"), data);
-
-        if(config.containsKey("data")){
-            Map<String, Object> _data = new HashMap<>();
-            _data.putAll(data);
-            Map<String, Object> subData = (Map<String, Object>) config.get("data");
-            for(String key : subData.keySet()){
-                _data.put(key, ContextUtils.getValue(subData.get(key), data)) ;
-            }
-            ctx.data = _data ;
-        }else{
-            ctx.data = data ;
-        }
-
-        if(config.containsKey("response")){
-            ContextUtils.makeApiResponse((Map<String, Object>) config.get("response"), ctx);
-        }
-
-        if(config.containsKey("if")){
-            ctx.ifTest =  ContextUtils.getValue(config.get("if"), data).toString();
-        }
-
-        ctx.init() ;
-
-        return ctx ;
-    }
-
     public static ExecuteContext makeEventContextFromParameter(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, NodeType nodeType, String event) {
         EventExecuteContext ctx = new EventExecuteContext();
 
@@ -387,11 +364,11 @@ public class ExecuteContext extends ReadContext{
         if(this.ifTest != null && !(this.ifTest.equalsIgnoreCase("true"))){
             return false ;
         }
-        EventService eventService = ApplicationContextManager.getBean(EventService.class) ;
-        eventService.execute(this) ;
+        EventService eventService = ApplicationContextManager.getBean(EventService.class);
+        eventService.execute(this);
 
-        if(subExecuteContexts != null){
-            for(ExecuteContext subExecuteContext : subExecuteContexts){
+        if (subExecuteContexts != null) {
+            for (ExecuteContext subExecuteContext : subExecuteContexts) {
                 eventService.execute(subExecuteContext);
             }
         }
@@ -442,8 +419,14 @@ public class ExecuteContext extends ReadContext{
         }else if(this.node != null){
             this.result = node ;
             return node ;
+        }else if(StringUtils.isNotEmpty(id)){
+            try {
+                return NodeUtils.getNode(nodeType.getTypeId(), id);
+            }catch(Exception e){
+                return new HashMap<String, Object>() ;
+            }
         }else{
-            return NodeUtils.getNode(nodeType.getTypeId(), id) ;
+            return new HashMap<String, Object>() ;
         }
     }
 }

@@ -4,7 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import net.ion.ice.security.config.JwtConfig;
-import net.ion.ice.security.User.UserContext;
+import net.ion.ice.security.UserContext;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -45,7 +45,7 @@ public class JwtTokenFactory {
             throw new IllegalArgumentException("Cannot create JWT Token without userId");
 
 //        if (userContext.getAuthorities() == null || userContext.getAuthorities().isEmpty())
-//            throw new IllegalArgumentException("User doesn't have any privileges");
+//            throw new IllegalArgumentException("user doesn't have any privileges");
 
         Claims claims = Jwts.claims();
         claims.setSubject(userContext.getUserId());

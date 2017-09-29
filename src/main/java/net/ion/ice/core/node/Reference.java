@@ -24,4 +24,16 @@ public class Reference extends Code {
     public String getRefId() {
         return refId;
     }
+
+
+    @Override
+    public boolean equals(Object reference){
+        if(reference instanceof Reference){
+            return getRefId().equals(((Reference) reference).getRefId());
+        }
+
+        return getRefId().equals(reference) ;
+    }
+
+
 }

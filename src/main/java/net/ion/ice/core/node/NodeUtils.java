@@ -76,7 +76,7 @@ public class NodeUtils {
 
     public static List<Node> makeNodeList(Collection<Map<String, Object>> nodeDataList, String typeId) {
         List<Node> nodeList = new ArrayList<Node>();
-        nodeDataList.forEach(data -> nodeList.add(new Node(data)));
+        nodeDataList.forEach(data -> nodeList.add( new Node(data)));
         return nodeList;
     }
 
@@ -329,7 +329,7 @@ public class NodeUtils {
             case FILE: {
                 if (value == null) return null;
                 if(pt.isI18n() && context.hasLocale() && value instanceof Map){
-                    if(((Map) value).containsKey(context.getLocale())){
+                    if(StringUtils.isNotEmpty(context.getLocale()) && ((Map) value).containsKey(context.getLocale())){
                         return getFileResultValue(context, pt, ((Map) value).get(context.getLocale()));
                     }else{
                         return getFileResultValue(context, pt, ((Map) value).get(getNodeService().getDefaultLocale())) ;
@@ -349,7 +349,7 @@ public class NodeUtils {
             }
             default:
                 if(pt.isI18n() && context.hasLocale() && value instanceof Map){
-                    if(((Map) value).containsKey(context.getLocale())){
+                    if(StringUtils.isNotEmpty(context.getLocale()) &&((Map) value).containsKey(context.getLocale())){
                         return ((Map) value).get(context.getLocale()) ;
                     }else{
                         return ((Map) value).get(getNodeService().getDefaultLocale()) ;
@@ -552,6 +552,9 @@ public class NodeUtils {
                 if (value instanceof Map) {
                     return JsonUtils.toJsonString((Map<String, Object>) value);
                 }
+                if (value instanceof List) {
+                    return JsonUtils.toJsonString((List<?>) value);
+                }
                 if (value instanceof String) {
                     return value;
                 }
@@ -665,6 +668,7 @@ public class NodeUtils {
             value = NodeUtils.getStoreValue(value, pt, id);
             if (value instanceof String || value instanceof FileValue) {
                 i18nData.put(getDefaultLocale(), value);
+                data.put(pt.getPid(), value) ;
             } else if (value instanceof Map) {
                 i18nData = (Map<String, Object>) value;
             }
@@ -687,7 +691,11 @@ public class NodeUtils {
                 return null ;
             }
         }
-        return NodeUtils.getStoreValue(value, pt, id);
+        Object resultValue = NodeUtils.getStoreValue(value, pt, id);
+        if(resultValue instanceof FileValue){
+            data.put(pt.getPid(), resultValue) ;
+        }
+        return resultValue ;
     }
 
     public static List<Node> initDataNodeList(String typeId, List<Map<String, Object>> resultList) {

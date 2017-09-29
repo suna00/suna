@@ -7,6 +7,7 @@
     "typeName" : "File Store",
     "repositoryType" : "node",
     "tableName": "",
+    "clusterGroup": "all",
     "eviction" : 100000
   }
 ]

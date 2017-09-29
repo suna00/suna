@@ -1,5 +1,7 @@
 package net.ion.ice.core.context;
 
+import net.ion.ice.core.api.ApiException;
+import net.ion.ice.core.api.RequestParameter;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.query.QueryResult;
@@ -16,6 +18,9 @@ import java.util.*;
  */
 public class ApiContext {
     public static final String COMMON_RESPONSE = "commonResponse";
+    public static final String COMMON_PARAMETERS = "commonParameters";
+
+    public static final String PARAMETERS = "parameters";
     public static final String DATE_FORMAT = "dateFormat";
     public static final String FILE_URL_FORMAT = "fileUrlFormat";
     private Node apiCategory;
@@ -26,6 +31,8 @@ public class ApiContext {
 
     private List<ResultField> commonResultFieldList ;
     private List<ResultField> resultFields ;
+
+    private List<RequestParameter> parameters ;
 
     public static ApiContext createContext(Node apiCategory, Node apiNode, String typeId, Map<String, Object> config, Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, Map<String, Object> session) {
         ApiContext ctx = new ApiContext() ;
@@ -39,17 +46,35 @@ public class ApiContext {
             ctx.data.put("typeId", typeId);
         }
 
-
         if(apiCategory.containsKey(COMMON_RESPONSE) && apiCategory.get(COMMON_RESPONSE) != null && ((Map<String, Object>) apiCategory.get(COMMON_RESPONSE)).size() > 0) {
             ctx.makeCommonResponse((Map<String, Object>) apiCategory.get(COMMON_RESPONSE)) ;
         }
 
+        if(apiCategory.containsKey(ApiContext.COMMON_PARAMETERS) && apiCategory.get(ApiContext.COMMON_PARAMETERS) != null && ((List<Map<String, Object>>) apiCategory.get(ApiContext.COMMON_PARAMETERS)).size() > 0) {
+            checkRequiredParameter((List<Map<String, Object>>) apiCategory.get(ApiContext.COMMON_PARAMETERS), parameterMap, multiFileMap);
+        }
+
+
+        if(apiNode.containsKey(ApiContext.PARAMETERS) && apiNode.get(ApiContext.PARAMETERS) != null && ((List<Map<String, Object>>) apiNode.get(ApiContext.PARAMETERS)).size() > 0) {
+            checkRequiredParameter((List<Map<String, Object>>) apiNode.get(ApiContext.PARAMETERS), parameterMap, multiFileMap);
+        }
 
 //        ctx.config = new HashMap<>() ;
 //        ctx.config.putAll(apiCategory);
         ctx.config = config ;
 
         return ctx ;
+    }
+
+    private static void checkRequiredParameter(List<Map<String, Object>> parameterConfig, Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap) {
+        for(Map<String, Object> param : parameterConfig){
+            if(param.containsKey("required") && (boolean) param.get("required")){
+                String paramName = (String) param.get("paramName");
+                if(!((parameterMap != null && parameterMap.containsKey(paramName) && parameterMap.get(paramName) != null && parameterMap.get(paramName).length > 0 && StringUtils.isNotEmpty(parameterMap.get(paramName) [0])) || (multiFileMap != null && multiFileMap.containsKey(paramName)))){
+                    throw new ApiException("400", "Required Parameter : " + paramName) ;
+                }
+            }
+        }
     }
 
     private void makeCommonResponse(Map<String, Object> response){
@@ -76,19 +101,12 @@ public class ApiContext {
 
     private Map<String, Object> makeSubApiReuslt(Map<String, Object> ctxRootConfig) {
         if(ctxRootConfig.containsKey("event")){
-            ExecuteContext executeContext = ExecuteContext.makeContextFromConfig(ctxRootConfig, data) ;
-            if(executeContext.execute()) {
-                if(executeContext.getResult() != null){
-                    addResultData(executeContext.getResult()) ;
-                }else if(executeContext.getNode() != null) {
-                    Node node = executeContext.getNode();
-                    addResultData(node.clone());
-                }
+            ApiExecuteContext executeContext = ApiExecuteContext.makeContextFromConfig(ctxRootConfig, data) ;
+            QueryResult queryResult = executeContext.makeQueryResult() ;
 
-                return executeContext.makeResult() ;
-            }else{
-                return new QueryResult().setResult("0").setResultMessage("None Executed") ;
-            }
+            addResultData(executeContext.getResult());
+
+            return queryResult ;
 
         }else if(ctxRootConfig.containsKey("query")){
             ApiQueryContext queryContext = ApiQueryContext.makeContextFromConfig(ctxRootConfig, data) ;
@@ -135,6 +153,9 @@ public class ApiContext {
 
         if(apiCategory.containsKey(FILE_URL_FORMAT) && apiCategory.get(FILE_URL_FORMAT) != null && ((Map<String, Object>) apiCategory.get(FILE_URL_FORMAT)).size() > 0){
             queryContext.fileUrlFormat = (Map<String, Object>) apiCategory.get(FILE_URL_FORMAT);
+            for(String key : queryContext.fileUrlFormat.keySet()){
+                queryContext.fileUrlFormat.put(key, ContextUtils.getValue(queryContext.fileUrlFormat.get(key), data)) ;
+            }
         }
     }
 
@@ -185,7 +206,6 @@ public class ApiContext {
 
 
     public void addResultData(Object result) {
-
         Map<String, Object> _data = new HashMap<>() ;
         _data.putAll(data);
 

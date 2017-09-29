@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * Created by jaehocho on 2017. 5. 17..
@@ -194,13 +195,14 @@ public class NodeController {
 
     @RequestMapping(value = "/node/query")
     @ResponseBody
-    public Object queryeRest(WebRequest request, @RequestParam(value = "query") String query) throws IOException {
-        return query(request, query);
+    public Object queryeRest(WebRequest request) throws IOException {
+        return query(request);
     }
 
-    private Object query(WebRequest request, String query) {
+    private Object query(WebRequest request) {
         try {
-            QueryResult queryResult = nodeService.getQueryResult(query) ;
+            Map<String, String[]> parameterMap = request.getParameterMap() ;
+            QueryResult queryResult = nodeService.getQueryResult(parameterMap) ;
             return queryResult ;
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
@@ -211,6 +213,17 @@ public class NodeController {
             }
         }
     }
+
+    @RequestMapping(value = "/node/event")
+    @ResponseBody
+    public Object eventRest(HttpServletRequest request) throws IOException {
+        if (request instanceof MultipartHttpServletRequest) {
+            return nodeService.executeResult(request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap());
+        }
+        return nodeService.executeResult(request.getParameterMap(), null);
+    }
+
+
 
 
     @RequestMapping(value = "/node/{typeId}/event/{event}")
