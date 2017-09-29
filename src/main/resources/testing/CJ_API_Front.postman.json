@@ -63,7 +63,8 @@
         "35829032-ed22-bb10-31ab-b3526c976506",
         "0ae04966-581c-8c08-ab07-5b1452aaf062",
         "25b69154-38cf-03d6-c9e4-1106a6e0508f",
-        "54236840-0a69-3b27-13a8-02cd05f07703"
+        "54236840-0a69-3b27-13a8-02cd05f07703",
+        "41339893-fae0-bc06-383d-5a0dec931250"
       ],
       "owner": "2433871",
       "folders_order": [],
@@ -1387,6 +1388,57 @@
       "helperAttributes": {},
       "time": 1505561748537,
       "name": "곡 목록조회(IF_SONG_001)",
+      "description": "",
+      "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
+      "responses": []
+    },
+    {
+      "id": "41339893-fae0-bc06-383d-5a0dec931250",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/vote/IfMwv111?voteFormlCd=2&showLoCd=3&langCd=eng&sorting=voteSeq",
+      "queryParams": [
+        {
+          "key": "voteFormlCd",
+          "value": "2",
+          "equals": true,
+          "description": "투표방식코드(String) NotNull",
+          "enabled": true
+        },
+        {
+          "key": "showLoCd",
+          "value": "3",
+          "equals": true,
+          "description": "노출위치구분코드(String) NotNull",
+          "enabled": true
+        },
+        {
+          "key": "langCd",
+          "value": "eng",
+          "equals": true,
+          "description": "",
+          "enabled": true
+        },
+        {
+          "key": "sorting",
+          "value": "voteSeq",
+          "equals": true,
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "preRequestScript": null,
+      "pathVariables": {},
+      "pathVariableData": [],
+      "method": "GET",
+      "data": null,
+      "dataMode": "params",
+      "version": 2,
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "time": 1506666435495,
+      "name": "MWAVE 투표결과 목록조회(IF_MWV_111)",
       "description": "",
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
       "responses": []
