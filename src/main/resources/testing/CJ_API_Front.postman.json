@@ -51,6 +51,7 @@
         "c5289a7c-4072-8646-a675-4e87f4b20808",
         "c38f6e06-827a-451b-6787-a43b8c976a62",
         "4a6e8dc9-edcc-841a-804f-50b187d54619",
+        "41339893-fae0-bc06-383d-5a0dec931250",
         "e6eb1044-524e-657e-12b5-93e4960bc7b9",
         "55a887fa-2757-52e4-9570-0871b0c614ec",
         "8fb927ec-2e3e-5612-4825-0973bd202770",
@@ -63,8 +64,7 @@
         "35829032-ed22-bb10-31ab-b3526c976506",
         "0ae04966-581c-8c08-ab07-5b1452aaf062",
         "25b69154-38cf-03d6-c9e4-1106a6e0508f",
-        "54236840-0a69-3b27-13a8-02cd05f07703",
-        "41339893-fae0-bc06-383d-5a0dec931250"
+        "54236840-0a69-3b27-13a8-02cd05f07703"
       ],
       "owner": "2433871",
       "folders_order": [],
@@ -1161,12 +1161,15 @@
       "version": 2,
       "tests": null,
       "currentHelper": "normal",
-      "helperAttributes": {},
+      "helperAttributes": "{}",
       "time": 1506599115663,
       "name": "Q&A 질문 등록(IF_QNA_001)",
       "description": "",
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
-      "responses": []
+      "responses": [],
+      "isFromCollection": true,
+      "collectionRequestId": "2d5b5ced-3c2b-41a3-845d-b298a448b70a",
+      "timestamp": null
     },
     {
       "id": "31290c30-8ecd-30e5-0d30-9860b827e770",
@@ -2061,12 +2064,15 @@
       "version": 2,
       "tests": null,
       "currentHelper": "normal",
-      "helperAttributes": {},
+      "helperAttributes": "{}",
       "time": 1506495546754,
       "name": "MAMA용 투표하기(IF_MWV_007)",
       "description": "",
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
-      "responses": []
+      "responses": [],
+      "isFromCollection": true,
+      "collectionRequestId": "64c7be29-56c6-d38e-8045-cd8c94deca76",
+      "timestamp": null
     },
     {
       "id": "6c91e59c-4b82-2e60-2d90-bde852e97353",
@@ -2797,7 +2803,7 @@
       "id": "94a71dfd-23ac-7bc9-6c98-54aa3567b85c",
       "headers": "",
       "headerData": [],
-      "url": "{{protocol}}://{{hostname}}:{{port}}/api/contsMeta/IfPtb001?contsMetaCtgryId=4001&langCd=eng",
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/contsMeta/IfPtb001?contsMetaCtgryId=4001&rcmdContsYn=&langCd=eng",
       "folder": "cbd7c96f-03db-cde3-144c-0881bea9b59f",
       "queryParams": [
         {
@@ -2805,6 +2811,13 @@
           "value": "4001",
           "equals": true,
           "description": "콘텐츠메타카테고리 아이디(String) NotNull",
+          "enabled": true
+        },
+        {
+          "key": "rcmdContsYn",
+          "value": "",
+          "equals": true,
+          "description": "추천콘텐츠여부(String)",
           "enabled": true
         },
         {
@@ -2825,7 +2838,7 @@
       "tests": null,
       "currentHelper": "normal",
       "helperAttributes": {},
-      "time": 1506406588326,
+      "time": 1506694481555,
       "name": "번들(그룹) 포토 목록조회(IF_PTB_001)",
       "description": "",
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
