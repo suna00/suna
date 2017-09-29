@@ -182,12 +182,13 @@ public class NodeUtils {
         } else if (value instanceof String && ((String) value).length() == 14 && dateFormat.equals("yyyyMMddHHmmss")) {
             return (String) value;
         } else {
-            try {
-                return DateFormatUtils.format(DateTools.stringToDate(value.toString()), dateFormat);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            return value.toString();
+//            try {
+//                return DateFormatUtils.format(DateTools.stringToDate(value.toString()), dateFormat);//DateTools에서 시간이 변환될때 value에 +9시간 되서 수정
+                return DateFormatUtils.format(NodeUtils.getDateValue(value), dateFormat);
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//            }
+//            return value.toString();
         }
     }
 
@@ -379,7 +380,8 @@ public class NodeUtils {
 
         switch (pt.getValueType()) {
             case DATE: {
-                return DateTools.dateToString(NodeUtils.getDateValue(value), DateTools.Resolution.SECOND);
+//                return DateTools.dateToString(NodeUtils.getDateValue(value), DateTools.Resolution.SECOND);
+                return DateFormatUtils.format(NodeUtils.getDateValue(value), "yyyyMMddHHmmss");
             }
             case STRING:
             case TEXT: {
