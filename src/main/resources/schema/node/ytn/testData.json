@@ -429,6 +429,7 @@
     "numberOfRecommendations": null,
     "failedCount": null,
     "lastFailedDate": null,
+    "interests": "c001,c002",
     "membershipLevel": "general",
     "barcode": null,
     "snsLinkYn": null,
@@ -618,13 +619,9 @@
   {
     "typeId": "newProductMap",
     "newProductMapId": 1,
-    "newProductId": {
-      "value": "1",
-      "label": "2017년 7월 ",
-      "refId": "1"
-    },
+    "newProductId": "1",
     "categoryIds": "1,10",
-    "productId": "3",
+    "productId": "12",
     "sortOrder": 1,
     "newProductMapStatus": "y",
     "fixedYn": {
@@ -636,13 +633,9 @@
   {
     "typeId": "newProductMap",
     "newProductMapId": 2,
-    "newProductId": {
-      "value": "1",
-      "label": "2017년 7월 ",
-      "refId": "1"
-    },
+    "newProductId": "2",
     "categoryIds": "1,10",
-    "productId": "3",
+    "productId": "1",
     "sortOrder": 2,
     "newProductMapStatus": "y",
     "fixedYn": {
@@ -654,11 +647,7 @@
   {
     "typeId": "newProductMap",
     "newProductMapId": 3,
-    "newProductId": {
-      "value": "1",
-      "label": "2017년 7월 ",
-      "refId": "1"
-    },
+    "newProductId": "3",
     "categoryIds": "1,10",
     "productId": "3",
     "sortOrder": 3,
@@ -672,11 +661,7 @@
   {
     "typeId": "newProductMap",
     "newProductMapId": 4,
-    "newProductId": {
-      "value": "1",
-      "label": "2017년 7월 ",
-      "refId": "1"
-    },
+    "newProductId": "4",
     "categoryIds": "1,22",
     "productId": "3",
     "sortOrder": 1,
