@@ -255,8 +255,8 @@
   {
     "typeId": "propertyType",
     "tid": "compItemInfo",
-    "pid": "cnctContsNm",
-    "id": "compItemInfo>cnctContsNm",
+    "pid": "cnctContsSubName",
+    "id": "compItemInfo>cnctContsSubName",
     "propertyTypeName": "연결 콘텐츠 부제명",
     "valueType": "STRING",
     "required": false,
