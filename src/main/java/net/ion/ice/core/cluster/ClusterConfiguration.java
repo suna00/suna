@@ -7,7 +7,6 @@ package net.ion.ice.core.cluster;
 import com.hazelcast.config.*;
 import com.hazelcast.core.*;
 import com.hazelcast.topic.TopicOverloadPolicy;
-import net.ion.ice.ApplicationContextManager;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,7 +49,6 @@ public class ClusterConfiguration {
 
     @PostConstruct
     public void init(){
-//        this.environment = ApplicationContextManager.getContext().getEnvironment();
         this.port = environment.getProperty("server.port") ;
         if(hazelcast == null) {
             hazelcast = Hazelcast.getOrCreateHazelcastInstance(config());
