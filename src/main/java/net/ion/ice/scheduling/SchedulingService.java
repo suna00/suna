@@ -68,7 +68,7 @@ public class SchedulingService {
     public void initSchedule(){
         if (this.scheduler != null) {
             this.registrar.setScheduler(this.scheduler);
-
+            logger.info(this.scheduler);
 //            nodeService.getNodeList("schedule", "useYn_matching=Y") ;
         }
 
