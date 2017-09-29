@@ -5489,7 +5489,7 @@
     "pid": "file",
     "propertyTypeName": "파일",
     "valueType": "STRING",
-    "required": true,
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
