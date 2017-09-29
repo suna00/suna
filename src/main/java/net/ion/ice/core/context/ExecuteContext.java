@@ -4,11 +4,13 @@ import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.IceRuntimeException;
 import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.file.FileValue;
+import net.ion.ice.core.file.TolerableMissingFileException;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.core.io.Resource;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,6 +37,8 @@ public class ExecuteContext extends ReadContext{
 
     protected ExecuteContext parentContext ;
     protected List<ExecuteContext> subExecuteContexts ;
+
+    private Logger logger = Logger.getLogger(ExecuteContext.class);
 
     public static ExecuteContext createContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType, String event, String id) {
         ExecuteContext ctx = new ExecuteContext();
@@ -160,13 +164,20 @@ public class ExecuteContext extends ReadContext{
                 }else if(pt.isFile()){
                     if(newValue != null) data.put(pt.getPid(), newValue) ;
                     if(newValue != null && newValue instanceof String && (((String) newValue).startsWith("classpath:") || ((String) newValue).startsWith("http://") || ((String) newValue).startsWith("/"))) {
-                        if (existValue == null) {
-                            node.put(pt.getPid(), NodeUtils.getFileService().saveResourceFile(pt, id, (String) newValue));
-                            changedProperties.add(pt.getPid());
-                        } else if (existValue instanceof FileValue && !((FileValue) existValue).getFileName().equals(StringUtils.substringAfterLast((String) newValue, "/"))) {
-                            node.put(pt.getPid(), NodeUtils.getFileService().saveResourceFile(pt, id, (String) newValue));
-                            changedProperties.add(pt.getPid());
+                        try{
+                            if (existValue == null) {
+                                node.put(pt.getPid(), NodeUtils.getFileService().saveResourceFile(pt, id, (String) newValue));
+                                changedProperties.add(pt.getPid());
+                            } else if (existValue instanceof FileValue && !((FileValue) existValue).getFileName().equals(StringUtils.substringAfterLast((String) newValue, "/"))) {
+                                node.put(pt.getPid(), NodeUtils.getFileService().saveResourceFile(pt, id, (String) newValue));
+                                changedProperties.add(pt.getPid());
+                            }
+                        } catch (Exception e) {
+                            if(e instanceof TolerableMissingFileException) {
+                                logger.info("Fetching Not found image is not an error");
+                            }
                         }
+
                     }else if(newValue != null && newValue instanceof FileValue){
                         FileValue newFileValue = ((FileValue) newValue);
                         String newValueStorePath = newFileValue.getStorePath();

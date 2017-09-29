@@ -104,7 +104,7 @@ public class Properties implements Map<String, Object>, Serializable, Cloneable 
                     try{
                         fileValue = NodeUtils.getFileService().saveResourceFile(pt, id, (String) value);
                     } catch (TolerableMissingFileException e) {
-                        e.printStackTrace();
+                        System.err.println("Fetching not found image is not an error");
                     }
                     values.put(pt.getPid(), fileValue);
                     m.put(pt.getPid(), fileValue);
