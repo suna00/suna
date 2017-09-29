@@ -1,7 +1,6 @@
 package net.ion.ice.service;
 
 import net.ion.ice.core.context.ExecuteContext;
-import net.ion.ice.core.data.bind.NodeBindingInfo;
 import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
@@ -38,11 +37,9 @@ public class CartService {
     @Autowired
     private NodeBindingService nodeBindingService ;
 
-    public NodeBindingInfo nodeBindingInfo;
 
     // 장바구니 담기
     public ExecuteContext addCart(ExecuteContext context) throws IOException {
-        nodeBindingInfo = NodeUtils.getNodeBindingInfo(context.getNodeType().getTypeId());
         Map<String, Object> data = context.getData();
 
         // validate
@@ -148,7 +145,6 @@ public class CartService {
 
     // 수량변경
     public ExecuteContext changeQuantity(ExecuteContext context) throws IOException {
-        nodeBindingInfo = NodeUtils.getNodeBindingInfo(context.getNodeType().getTypeId());
         Map<String, Object> data = context.getData();
         Node cartProduct = NodeUtils.getNode(cartProduct_TID, data.get("cartProductId").toString());
         int quantity = Integer.parseInt(data.get("quantity").toString()) + Integer.parseInt(cartProduct.get("quantity").toString());
@@ -189,7 +185,6 @@ public class CartService {
     }
 
     public void removeProduct(ExecuteContext context) throws IOException {
-        nodeBindingInfo = NodeUtils.getNodeBindingInfo(context.getNodeType().getTypeId());
         Map<String, Object> data = context.getData();
         String cartProductIds = (String) data.get("productIds");
         removeProduct(cartProductIds);

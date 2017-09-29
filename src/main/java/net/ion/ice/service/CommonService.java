@@ -67,6 +67,13 @@ public class CommonService {
         resultCodeMap.put("C0002", "수량을 1개 이하로 선택할 수 없습니다.");
         resultCodeMap.put("C0003", "최소 주문가능 수량은 N개 입니다.");
         resultCodeMap.put("C0004", "선택하신 옵션의 재고가 부족합니다.");
+
+        /*YPoint*/
+        resultCodeMap.put("Y0001", "Y포인트 잔액이 부족합니다.");
+
+        /*WelfarePoint*/
+        resultCodeMap.put("W0001", "복지포인트 잔액이 부족합니다.");
+
     }
 
     public static boolean requiredParams(ExecuteContext context, Map<String, Object> data, String[] params) {
