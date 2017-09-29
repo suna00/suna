@@ -5454,7 +5454,7 @@
     "tid": "newStoreRequest",
     "pid": "newStoreRequestType",
     "propertyTypeName": "분류",
-    "valueType": "REFERENCE",
+    "valueType": "REFERENCES",
     "required": true,
     "idable": false,
     "labelable": false,
