@@ -429,6 +429,7 @@
     "numberOfRecommendations": null,
     "failedCount": null,
     "lastFailedDate": null,
+    "interests": "c001,c002",
     "membershipLevel": "general",
     "barcode": null,
     "snsLinkYn": null,
