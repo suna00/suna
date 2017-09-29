@@ -1,0 +1,11 @@
+[
+  {
+    "typeId": "eventAction",
+    "event": "qna>create",
+    "action": "fileNmUpdEvent",
+    "actionName": "첨부파일명 업데이트",
+    "actionType": "service",
+    "actionBody": "qnaService.fileNmUpdEvent",
+    "order": 1
+  }
+]
