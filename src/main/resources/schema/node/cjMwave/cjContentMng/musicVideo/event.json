@@ -66,13 +66,6 @@
     "actionBody": "contsRetvService.insert"
   },
   {
-    "typeId": "event",
-    "tid": "musicVideo",
-    "event": "update",
-    "noneExecute": true,
-    "eventName": "뮤직 비디오 업데이트"
-  },
-  {
     "typeId": "eventListener",
     "tid": "videItgInfo",
     "event": "musicVideo>update",

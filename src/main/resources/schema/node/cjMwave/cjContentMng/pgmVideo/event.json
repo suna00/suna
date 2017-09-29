@@ -54,13 +54,6 @@
     "actionBody": "contsRetvService.insert"
   },
   {
-    "typeId" : "event",
-    "tid": "pgmVideo",
-    "event" : "update",
-    "noneExecute" : true,
-    "eventName" : "프로그램 영상 업데이트"
-  },
-  {
     "typeId" : "eventListener",
     "tid" : "videItgInfo",
     "event": "pgmVideo>update",
