@@ -4,11 +4,8 @@ import net.ion.ice.core.json.JsonUtils;
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.io.File;
-import java.net.URL;
 import java.util.Date;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * Created by juneyoungoh on 2017. 9. 14..

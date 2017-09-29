@@ -31,6 +31,8 @@ public class DBSyncService {
     private final String PROCESS_TID = "dbSyncProcess"
             , MAPPER_TID = "dbSyncMapper";
 
+    private static int BATCH_UNIT = 2000;
+
 
     @Autowired
     NodeService nodeService;
@@ -192,7 +194,7 @@ public class DBSyncService {
         logger.info("DBSyncService.executeWithIteration :: " + executeId);
         boolean loop = true;
         int i = 0;
-        int unit = 100;
+        int unit = BATCH_UNIT;
         int successCnt = 0;
         int skippedCnt = 0;
         Date startTime = new Date();
@@ -204,7 +206,7 @@ public class DBSyncService {
         while(loop) {
             // i 가 0 부터 99 까지
             // 100 부터 199 까지
-            int start = i * 100;
+            int start = i * unit;
             // TEST
 //            if(start > max) {
 //                loop = false;

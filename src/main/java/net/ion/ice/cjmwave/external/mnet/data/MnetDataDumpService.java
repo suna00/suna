@@ -101,7 +101,7 @@ public class MnetDataDumpService {
     * 신규 데이터 MySql 에 밀어넣기
     * 키를 받아도 복합키같은 부분이 문제
     * */
-    private Map<String, Integer> upsertData (String toTable, List<Map<String, Object>> newData) throws Exception {
+    private Map<String, Integer> upsertData (String fromTable, String toTable, List<Map<String, Object>> newData) throws Exception {
         Map<String, Integer> rtn = new HashMap<>();
         int successCnt = 0, skippedCnt = 0;
         if(newData != null && !newData.isEmpty()) {
@@ -114,8 +114,9 @@ public class MnetDataDumpService {
             List<String> orderedInsertFields = (List<String>) insertInfo.get("orderedParameterKeys");
 
             for(Map<String, Object> data : newData) {
+                Object[] uQueryParams = null;
                 try {
-                    Object[] uQueryParams = QueryUtils.prepareQueryParams(orderedUpdateFields, data);
+                    uQueryParams = QueryUtils.prepareQueryParams(orderedUpdateFields, data);
                     int upRs = ice2Template.update(updateQuery, uQueryParams);
                     if(upRs < 1) {
                         Object[] iQueryParams = QueryUtils.prepareQueryParams(orderedInsertFields, data);
@@ -125,6 +126,7 @@ public class MnetDataDumpService {
                 } catch (Exception e) {
                     logger.error("Failed to copy data :: ", e);
                     skippedCnt++;
+                    MigrationUtils.handoutDB2DBFailReport(ice2Template, fromTable, toTable, e.getClass().getName(), Arrays.toString(uQueryParams));
                 }
             }
         }
@@ -154,6 +156,11 @@ public class MnetDataDumpService {
         }
     }
 
+    /*
+    * 본정보와 부가정보의 리포트를 종합해서 사용하기 위한 용도
+    * 가령 artist 와 artist meta 가 있으면 해당 맵 정보를 마이그레이션 종료 시점까지
+    * 지속적으로 업데이트함
+    * */
     private void updateReport(String toTable, Map<String, Object> report) throws Exception {
         if (migrationReports.containsKey(toTable)) {
             // 기존 자료 업데이트
@@ -170,7 +177,7 @@ public class MnetDataDumpService {
             if(formerData.containsKey("successCnt")) {
                 formerData.put("successCnt", (currentSuccessCnt + (int) formerData.get("successCnt")));
                 formerData.put("skippedCnt", (currentSkippedCnt + (int) formerData.get("skippedCnt")));
-                formerData.put("skippedCnt", (currentJobDuration + (long) formerData.get("jobDuration")));
+                formerData.put("jobDuration", (currentJobDuration + (long) formerData.get("jobDuration")));
             }
             migrationReports.put(toTable, formerData);
         } else {
@@ -211,7 +218,6 @@ public class MnetDataDumpService {
                 }
             } else if(foreignKey != null) {
                 subTaskKey = String.valueOf(replicationNode.get("subTaskKey")).trim();
-//                params.put(subTaskKey, foreignKey);
                 params.put("id", foreignKey);
             }
             preparedQuery = SyntaxUtils.parse(q, params);
@@ -226,7 +232,6 @@ public class MnetDataDumpService {
 
             logger.info("Length of Query result :: " + newData.size());
 
-//            //FOR TEST 0925
             if(standAlone && !"null".equals(subTasks)) {
                 for(Map<String, Object> singleDataToInput : newData){
                     Object subTaskKeyValue = null;
@@ -241,7 +246,7 @@ public class MnetDataDumpService {
             }
 
             //mySql 에 밀어넣기
-            migReport.putAll(upsertData(toTable, newData));
+            migReport.putAll(upsertData(fromTable, toTable, newData));
         } catch (Exception e) {
             logger.error("error", e);
         }

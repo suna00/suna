@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -85,7 +84,6 @@ public class MnetNodeRecoveryService {
     }
 
 
-    @Transactional
     public void recoverNodeAll() throws Exception {
         int success = 0, skipped = 0;
         logger.info("Recover All NODE_CREATION_FAIL");
