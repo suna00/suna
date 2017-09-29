@@ -244,7 +244,7 @@ public class CartService {
 
     private void addProducts(Map<String, Object> data, Object cartId) throws IOException {
         List<Map<String, Object>> referenced = nodeBindingService.list(cartProduct_TID, "cartId_equals="+cartId);
-        List<Map<String, Object>> maps = JsonUtils.parsingJsonToList(data.get(cartProduct_TID).toString());
+        List<Map<String, Object>> maps = JsonUtils.parsingJsonToList(data.get("productList").toString());
 
         for(Map<String, Object> map : maps){
             Node product = NodeUtils.getNode("product", map.get("productId").toString());
