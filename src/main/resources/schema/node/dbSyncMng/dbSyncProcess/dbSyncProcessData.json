@@ -1,5 +1,4 @@
 [
-
   {
     "typeId": "dbSyncProcess"
     , "executeId": "album"
@@ -21,7 +20,6 @@
     , "onFail": "skip"
   }
 
-
   , {
     "typeId": "dbSyncProcess"
     , "executeId": "song"
@@ -31,7 +29,6 @@
     , "multiLanguageQuery" : "SELECT lang_cd as langCd , song_nm as songNm , song_short_info as subName , song_media_info as songDesc , (SELECT GROUP_CONCAT(keyword) FROM MT_SONG_KEYWORD_META WHERE song_id = MSM.song_id) as findKywrd FROM MT_SONG_META MSM WHERE song_id=@{VARCHAR.id}"
     , "onFail": "skip"
   }
-
 
   , {
     "typeId": "dbSyncProcess"
@@ -43,7 +40,6 @@
     , "onFail": "skip"
   }
 
-
   , {
     "typeId": "dbSyncProcess"
     , "executeId": "mcdChartBasInfo"
@@ -53,7 +49,6 @@
     , "query": "SELECT MstIdx as mstIdx, MstYear as mstYear, MstMonth as mstMonth, MstWeek as mstWeek, MstYyMmDd as mstYyMmDd, MstFromDate as mstFromDate, MstToDate as mstToDate, CASE WHEN ServiceFlag = 'Y' THEN 1 ELSE 0 END as serviceFlag, RegDate as regDate, ModDate as modDate, ONAIR_DT as onairDt FROM T_SM_S3_ChartTotalMst LIMIT @{BIGINT.start}, @{BIGINT.unit}"
     , "onFail": "skip"
   }
-
 
   , {
     "typeId": "dbSyncProcess"
@@ -101,7 +96,6 @@
     , "onFail": "skip"
   }
 
-
   , {
     "typeId": "dbSyncProcess"
     , "executeId": "songPart"
@@ -111,7 +105,6 @@
     , "multiLanguageQuery" : "SELECT song_id as songId , lang_cd as langCd , song_nm as songNm , song_short_info as subName , song_media_info as songDesc , (SELECT GROUP_CONCAT(keyword) FROM MT_SONG_KEYWORD_META WHERE song_id = MSM.song_id) as findKywrd FROM MT_SONG_META MSM WHERE song_id=@{VARCHAR.id}"
     , "onFail": "skip"
   }
-
 
   , {
     "typeId": "dbSyncProcess"
@@ -123,7 +116,6 @@
     , "onFail": "skip"
   }
 
-
   , {
     "typeId": "dbSyncProcess"
     , "executeId": "mcdChartBasInfoPart"
@@ -133,7 +125,6 @@
     , "multiLanguageQuery" : null
     , "onFail": "skip"
   }
-
 
   , {
     "typeId": "dbSyncProcess"
