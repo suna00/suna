@@ -71,7 +71,7 @@
     "eviction": 100000
   },
   {
-    "parentId": "displayPath",
+    "parentId": "productPath",
     "typeId": "nodeType",
     "tid": "productNoticeBanner",
     "typeName": "상품 공지 배너",
