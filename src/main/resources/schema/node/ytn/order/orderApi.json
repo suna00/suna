@@ -128,7 +128,7 @@
       "query" : [
         {"field" : "memberNo", "method" : "equals", "value" : "{{:memberNo}}"},
         {"field" : "orderSheetId", "method" : "equals", "value" : "{{:orderSheetId}}"},
-        {"field" : "created", "method" : "above", "value" : "{{:now}}"},
+        {"field" : "created", "method" : "above", "value" : ""},
         {"includeReferenced" : true, "sorting" : "orderSheetId desc"},
         {"field" : "referencedOrderProduct", "method" : "hasReferenced", "value" : "productId_equals={{:productId}}&orderStatus_equals={{:orderStatus}}"}
       ],
