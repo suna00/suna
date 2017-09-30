@@ -35,7 +35,7 @@ public class OrderService {
     @Autowired
     private Environment environment;
 
-    public void buyItnow(ExecuteContext context) {
+    public void buyItNow(ExecuteContext context) {
         try {
             createTempOrder(context.getData());
             context.setResult(CommonService.getResult("O0001")); // 성공 시
@@ -519,10 +519,10 @@ public class OrderService {
             List<Map<String, Object>> productList = JsonUtils.parsingJsonToList(String.valueOf(data.get("product")));
 
             for (Map<String, Object> product : productList) {
-                String productId = (String) JsonUtils.getValue(product, "productId");
-                String baseOptionItemId = (String) JsonUtils.getValue(product, "baseOptionItemId");
-                String quantity = (String) JsonUtils.getValue(product, "quantity");
-                List<Map<String, Object>> productItemList = (List<Map<String, Object>>) JsonUtils.getValue(product, "productItem");
+                String productId = String.valueOf(JsonUtils.getValue(product, "productId")) ;
+                String baseOptionItemId = String.valueOf(JsonUtils.getValue(product, "baseOptionItemId"));
+                String quantity = String.valueOf(JsonUtils.getValue(product, "quantity")) ;
+                List<Map<String, Object>> productItemList = product.get("productItem") != null ? (List<Map<String, Object>>)product.get("productItem") :  null;
                 List<Map<String, Object>> storeProductItemList = new ArrayList<>();
                 Map<String, Object> storeTempOrderProduct = new HashMap<>();
 
@@ -542,13 +542,13 @@ public class OrderService {
                 storeTempOrderProduct.put("vendorId", productNode.getBindingValue("vendorId"));
 
 
-                if (productItemList == null && productItemList.size() != 0) {
+                if (productItemList != null) {
                     for (Map<String, Object> productItem : productItemList) {
                         Map<String, Object> storeTempOrderProductItem = new HashMap<>();
 
-                        productId = (String) JsonUtils.getValue(productItem, "productId");
-                        String addOptionItemId = (String) JsonUtils.getValue(productItem, "addOptionItemId");
-                        quantity = (String) JsonUtils.getValue(productItem, "addOptionItemId");
+                        productId = String.valueOf(JsonUtils.getValue(productItem, "productId")) ;
+                        String addOptionItemId = String.valueOf(JsonUtils.getValue(productItem, "addOptionItemId")) ;
+                        quantity = String.valueOf(JsonUtils.getValue(productItem, "addOptionItemId"));
 
                         Node productAddOptionItemNode = nodeService.getNode("productOptionItem", String.valueOf(addOptionItemId));
 
