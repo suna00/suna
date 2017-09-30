@@ -1,0 +1,82 @@
+[
+  {
+    "typeId": "event",
+    "tid": "YPoint",
+    "event": "addYPoint",
+    "noneExecute": true,
+    "eventName": "YPoint 적립"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "YPoint>addYPoint",
+    "action": "addYPoint",
+    "actionName": "YPoint 적립 ",
+    "actionType": "service",
+    "actionBody": "PointService.addYPoint",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "YPoint",
+    "event": "useYPoint",
+    "noneExecute": true,
+    "eventName": "YPoint 사용"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "YPoint>useYPoint",
+    "action": "useYPoint",
+    "actionName": "YPoint 사용 ",
+    "actionType": "service",
+    "actionBody": "PointService.useYPoint",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "YPoint",
+    "event": "refundYPoint",
+    "noneExecute": true,
+    "eventName": "YPoint 환불"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "YPoint>refundYPoint",
+    "action": "refundYPoint",
+    "actionName": "YPoint 환불 ",
+    "actionType": "service",
+    "actionBody": "PointService.refundYPoint",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "welfarePoint",
+    "event": "useWelfarePoint",
+    "noneExecute": true,
+    "eventName": "welfarePoint 사용"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "welfarePoint>useWelfarePoint",
+    "action": "useWelfarePoint",
+    "actionName": "WelfarePoint 사용 ",
+    "actionType": "service",
+    "actionBody": "PointService.useWelfarePoint",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "welfarePoint",
+    "event": "refundWelfarePoint",
+    "noneExecute": true,
+    "eventName": "welfarePoint 환불"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "welfarePoint>refundWelfarePoint",
+    "action": "refundWelfarePoint",
+    "actionName": "WelfarePoint 환불 ",
+    "actionType": "service",
+    "actionBody": "PointService.refundWelfarePoint",
+    "order": 1
+  }
+]
