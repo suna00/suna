@@ -1,0 +1,20 @@
+[
+  {
+    "parentId" : "root",
+    "typeId" : "nodeType",
+    "id" : "serviceBuilder",
+    "tid" : "serviceBuilder",
+    "typeName" : "서비스 빌더",
+    "repositoryType" : "path",
+    "eviction" : 0
+  },
+  {
+    "parentId" : "serviceBuilder",
+    "typeId" : "nodeType",
+    "id" : "servicePage",
+    "tid" : "servicePage",
+    "typeName" : "서비스 빌더",
+    "repositoryType" : "node",
+    "eviction" : 0
+  }
+]
