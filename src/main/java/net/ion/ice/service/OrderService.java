@@ -570,6 +570,14 @@ public class OrderService {
                 double orderPrice = productPrice + totalAddOptionPrice;
 
                 storeTempOrderProduct.put("orderPrice", orderPrice);
+                //수량별 배송비 정책
+
+//                if(productNode.getStoreValue("deliveryPriceType").equals("quantity")){
+//
+//
+//                }else if(){
+//
+//                }
 
                 Node tempOrderProductNode = (Node) nodeService.executeNode(storeTempOrderProduct, "tempOrderProduct", CommonService.CREATE);
 
@@ -664,6 +672,14 @@ public class OrderService {
             nodeService.executeNode(storeTempOrderDeliveryPrice, "tempOrderDeliveryPrice", CommonService.CREATE);
         }
     }
+
+    /**
+     * 임시 주문서 배송지
+     */
+    private void createTempOrderDelivery(Map<String, Object> tempOrderProduct){
+
+    }
+
 
     /**
      * 쿠폰 중복 체크 Method.
