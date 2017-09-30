@@ -1,8 +1,5 @@
 package net.ion.ice.service;
 
-import net.ion.ice.ApplicationContextManager;
-import net.ion.ice.core.context.ExecuteContext;
-import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
@@ -12,20 +9,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.*;
 
 @Service("deliveryService")
 public class DeliveryService {
-    public JdbcTemplate jdbcTemplate;
     @Autowired
     private NodeBindingService nodeBindingService ;
     @Autowired
     private NodeService nodeService ;
 
-    public DeliveryService() {
-        DBService dbService = ApplicationContextManager.getBean(DBService.class) ;
-        jdbcTemplate = dbService.getJdbcTemplate("ytnDevDb");
+    private JdbcTemplate jdbcTemplate ;
+    @PostConstruct
+    public void init(){
+        this.jdbcTemplate = nodeBindingService.getNodeBindingInfo("YPoint").getJdbcTemplate();
     }
 
     public void removeDeliveryPrice(String cartProductId) throws IOException {
@@ -42,7 +40,7 @@ public class DeliveryService {
             result.put("deliveryPriceType", (deliveryPrice > 0 ? "conditional" : "free"));
             result.put("deliveryPrice", deliveryPrice);
             CommonService.resetMap(result);
-            nodeService.executeNode(result, CartService.cartDeliveryPrice_TID, CartService.UPDATE);
+            nodeService.executeNode(result, CartService.cartDeliveryPrice_TID, CommonService.UPDATE);
         }
     }
 
@@ -59,7 +57,7 @@ public class DeliveryService {
         if ("quantity".equals(deliveryPriceType) || "charge".equals(deliveryPriceType)) {
             map.put("cartProductIds", map.get("cartProductId"));
             CommonService.resetMap(map);
-            nodeService.executeNode(map, CartService.cartDeliveryPrice_TID, CartService.CREATE);
+            nodeService.executeNode(map, CartService.cartDeliveryPrice_TID, CommonService.CREATE);
         } else {
             // 무료배송비 : free
             // 조건부무료배송 : conditional
@@ -76,7 +74,7 @@ public class DeliveryService {
                 map.put("deliveryPrice", calculateDeliveryPrice(map.get("cartProductId").toString()));
                 map.put("cartProductIds", map.get("cartProductId"));
                 CommonService.resetMap(map);
-                nodeService.executeNode(map, CartService.cartDeliveryPrice_TID, CartService.CREATE);
+                nodeService.executeNode(map, CartService.cartDeliveryPrice_TID, CommonService.CREATE);
             } else {
                 for (Map<String, Object> deliveryPrice : cartDeliveryPrices) {
                     String cartProductIds = (deliveryPrice.get("cartProductIds").toString()).concat(",").concat(map.get("cartProductId").toString());
@@ -85,7 +83,7 @@ public class DeliveryService {
                     deliveryPrice.put("deliveryPrice", calculateDeliveryPrice(cartProductIds));
                     deliveryPrice.put("cartProductIds", cartProductIds);
                     CommonService.resetMap(deliveryPrice);
-                    nodeService.executeNode(deliveryPrice, CartService.cartDeliveryPrice_TID, CartService.UPDATE);
+                    nodeService.executeNode(deliveryPrice, CartService.cartDeliveryPrice_TID, CommonService.UPDATE);
 
                 }
             }

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -31,11 +32,18 @@ public class PointService {
     public static final String MEMBER = "member";
     public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(CommonService.PATTERN);
 
-    public JdbcTemplate jdbcTemplate;
     @Autowired
     private NodeService nodeService ;
     @Autowired
     private NodeBindingService nodeBindingService ;
+
+
+    private JdbcTemplate jdbcTemplate ;
+
+    @PostConstruct
+    public void init(){
+        this.jdbcTemplate = nodeBindingService.getNodeBindingInfo("YPoint").getJdbcTemplate();
+    }
 
     public boolean checkUsablePoint(String memberNo, String type, int usePoint){
         Node node = NodeUtils.getNode(MEMBER, memberNo);
@@ -44,7 +52,6 @@ public class PointService {
     }
 
     public Double getTotalBalance(String type, String memberNo) {
-        Integer price = 0;
         String YPointQuery = "select IFNULL(sum(balance), 0) as totalBalance\n" +
                 "from ypoint\n" +
                 "where memberNo = ? \n" +
@@ -65,8 +72,6 @@ public class PointService {
 
     //type : YPOINT, WDLFAREPOINT
     private Double updateMember(String memberNo, String type, Integer usePoint) {
-        DBService dbService = ApplicationContextManager.getBean(DBService.class) ;
-        jdbcTemplate = dbService.getJdbcTemplate("ytnDevDb");
 
         Node member = NodeUtils.getNode(MEMBER, memberNo);
         Double totalBalance = getTotalBalance(type, memberNo);
