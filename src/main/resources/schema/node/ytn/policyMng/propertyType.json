@@ -1680,7 +1680,7 @@
     "treeable": false,
     "indexable": false,
     "analyzer": "",
-    "referenceType": "addBenefitForm",
+    "referenceType": "addBenefitItem",
     "referenceValue": "addBenefitId",
     "defaultValue": ""
   },
