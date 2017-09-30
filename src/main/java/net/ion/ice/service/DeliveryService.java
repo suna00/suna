@@ -4,12 +4,12 @@ import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
+import net.ion.ice.core.node.NodeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.*;
 
@@ -20,11 +20,7 @@ public class DeliveryService {
     @Autowired
     private NodeService nodeService ;
 
-    private JdbcTemplate jdbcTemplate ;
-    @PostConstruct
-    public void init(){
-        this.jdbcTemplate = nodeBindingService.getNodeBindingInfo("YPoint").getJdbcTemplate();
-    }
+    private JdbcTemplate jdbcTemplate = NodeUtils.getNodeBindingInfo("YPoint").getJdbcTemplate();
 
     public void removeDeliveryPrice(String cartProductId) throws IOException {
         Map<String, Object> result = getCartDeliveryPriceMap(cartProductId);
