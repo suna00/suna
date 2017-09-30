@@ -17,8 +17,6 @@ import java.util.*;
 
 @Service("memberService")
 public class MemberService {
-    public static final String CREATE = "create";
-    public static final String UPDATE = "update";
 
     @Autowired
     private NodeService nodeService;
@@ -40,14 +38,14 @@ public class MemberService {
                 String password = SHA256(contextData.get("password").toString());
                 contextData.put("password", password);
             }
-            node = (Node)nodeService.executeNode(contextData, "member", CREATE);
+            node = (Node)nodeService.executeNode(contextData, "member", CommonService.CREATE);
 
         } else {
             if(contextData.containsKey("password")){
                 String password = SHA256(contextData.get("password").toString());
                 contextData.put("password", password);
             }
-            node = (Node)nodeService.executeNode(contextData, "member", UPDATE);
+            node = (Node)nodeService.executeNode(contextData, "member", CommonService.UPDATE);
         }
 
         item.put("memberNo", node.get("memberNo"));
@@ -214,7 +212,7 @@ public class MemberService {
                 emailCertificationData.put("certStatus", "success");
                 emailCertificationData.put("certSuccessDate", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()));
 
-                nodeService.executeNode(emailCertificationData, "emailCertification", UPDATE);
+                nodeService.executeNode(emailCertificationData, "emailCertification", CommonService.UPDATE);
 
                 Map<String, Object> resultObject = new HashMap<>();
                 Map<String, Object> item = new HashMap<>();
@@ -257,7 +255,7 @@ public class MemberService {
                 smsCertificationData.put("certStatus", "success");
                 smsCertificationData.put("certSuccessDate", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()));
 
-                nodeService.executeNode(smsCertificationData, "smsCertification", UPDATE);
+                nodeService.executeNode(smsCertificationData, "smsCertification", CommonService.UPDATE);
 
                 Map<String, Object> resultObject = new HashMap<>();
                 Map<String, Object> item = new HashMap<>();
@@ -346,7 +344,7 @@ public class MemberService {
         emailCertificationData.put("certCode", certCode);
         emailCertificationData.put("certStatus", certStatus);
         emailCertificationData.put("certRequestDate", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()));
-        nodeService.executeNode(emailCertificationData, "emailCertification", CREATE);
+        nodeService.executeNode(emailCertificationData, "emailCertification", CommonService.CREATE);
 
         return certCode;
     }
@@ -363,7 +361,7 @@ public class MemberService {
         smsCertificationData.put("certCode", certCode);
         smsCertificationData.put("certStatus", certStatus);
         smsCertificationData.put("certRequestDate", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()));
-        nodeService.executeNode(smsCertificationData, "smsCertification", CREATE);
+        nodeService.executeNode(smsCertificationData, "smsCertification", CommonService.CREATE);
 
         return certCode;
     }

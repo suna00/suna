@@ -24,10 +24,6 @@ public class OrderService {
 
     private static Logger logger = LoggerFactory.getLogger(OrderService.class);
 
-    public static final String CREATE = "create";
-    public static final String UPDATE = "update";
-    public static final String DELETE = "delete";
-
     @Autowired
     private NodeService nodeService;
     @Autowired
@@ -301,7 +297,7 @@ public class OrderService {
                     couponDiscountPrice = couponDiscountPrice + (double) applicableCoupon.get("discountPrice");
                 }
             }
-            Node orderProductNode = (Node) nodeService.executeNode(storeOrderProduct, "orderProduct", CREATE);
+            Node orderProductNode = (Node) nodeService.executeNode(storeOrderProduct, "orderProduct", CommonService.CREATE);
 
             orderProductIds.add(orderProductNode.getId()); //orderDeliveryPrice | orderProductIds 에 넣기 위하여.
             /**
@@ -320,7 +316,7 @@ public class OrderService {
                 storeOrderProductItem.put("quantity", tempOrderProductItem.get("quantity"));
                 storeOrderProductItem.put("addOptionPrice", tempOrderProductItem.get("addOptionPrice"));
 
-                Node orderProductItemNode = (Node) nodeService.executeNode(storeOrderProductItem, "orderProductItem", CREATE);
+                Node orderProductItemNode = (Node) nodeService.executeNode(storeOrderProductItem, "orderProductItem", CommonService.CREATE);
             }
             totalProductPrice = totalProductPrice + orderPrice;
         }
@@ -357,7 +353,7 @@ public class OrderService {
         storeOrderSheet.put("purchaseaAgreementYn", "y");
         storeOrderSheet.put("purchaseDeviceType", tempOrder.get(""));
 
-        nodeService.executeNode(storeOrderSheet, "orderSheet", CREATE);
+        nodeService.executeNode(storeOrderSheet, "orderSheet", CommonService.CREATE);
 
 
         storeOrderDeliveryPrice.put("orderSheetId", responseMap.get("ordrIdxx"));
@@ -378,7 +374,7 @@ public class OrderService {
      * 결제 정보를 저장하는 Method.
      */
     public String createPayment(Map<String, Object> responseMap) {
-        Node node = (Node) nodeService.executeNode(responseMap, "payment", CREATE);
+        Node node = (Node) nodeService.executeNode(responseMap, "payment", CommonService.CREATE);
         return node.getId();
     }
 
@@ -403,7 +399,7 @@ public class OrderService {
         storeRefineDelivery.put("recipient", responseMap.get("recipient"));
         storeRefineDelivery.put("deliveryType", responseMap.get("deliveryType"));
 
-        nodeService.executeNode(storeRefineDelivery, "delivery", CREATE);
+        nodeService.executeNode(storeRefineDelivery, "delivery", CommonService.CREATE);
 
         String myDeliveryAddressId = String.valueOf(responseMap.get("myDeliveryAddressId"));
 
@@ -432,7 +428,7 @@ public class OrderService {
 
                 storeMyDeliveryAddress.put("defaultYn", "n");
             }
-            nodeService.executeNode(storeMyDeliveryAddress, "myDeliveryAddress", CREATE);
+            nodeService.executeNode(storeMyDeliveryAddress, "myDeliveryAddress", CommonService.CREATE);
 
             result = true;
 
@@ -467,7 +463,7 @@ public class OrderService {
         storePg.put("orderSheetId", orderSheetId);
         storePg.put("jsonResponse", JsonString);
 
-        nodeService.executeNode(storePg, "pg", CREATE);
+        nodeService.executeNode(storePg, "pg", CommonService.CREATE);
 
     }
 
@@ -479,7 +475,7 @@ public class OrderService {
 
         Map<String, Object> storeTempOrder = new HashMap<>();
         storeTempOrder.put("tempOrderId", orderNumberGenerator());
-        Node tempOrderNode = (Node) nodeService.executeNode(storeTempOrder, "tempOrder", CREATE);
+        Node tempOrderNode = (Node) nodeService.executeNode(storeTempOrder, "tempOrder", CommonService.CREATE);
 
         String tempOrderId = tempOrderNode.getId();
 
@@ -506,7 +502,7 @@ public class OrderService {
         }
         List<Map<String, Object>> cartDeliveryPriceList = (List<Map<String, Object>>) referencedCartDeliveryPrice.get("items");
 
-        Node tempOrderNode = (Node) nodeService.executeNode(storeTempOrder, "tempOrder", CREATE);
+        Node tempOrderNode = (Node) nodeService.executeNode(storeTempOrder, "tempOrder", CommonService.CREATE);
 
         createTempOrderProduct(tempOrderNode.getId(), cartDeliveryPriceList, data.get("productIds")); // 임시 주문서 상품목록 Maker
         Map<String, Object> extraData = new HashMap<>();
@@ -575,11 +571,11 @@ public class OrderService {
 
                 storeTempOrderProduct.put("orderPrice", orderPrice);
 
-                Node tempOrderProductNode = (Node) nodeService.executeNode(storeTempOrderProduct, "tempOrderProduct", CREATE);
+                Node tempOrderProductNode = (Node) nodeService.executeNode(storeTempOrderProduct, "tempOrderProduct", CommonService.CREATE);
 
                 for (Map<String, Object> storeTempOrderProductItem : storeProductItemList) {
                     storeTempOrderProductItem.put("tempOrderProductId", tempOrderProductNode.getId());
-                    nodeService.executeNode(storeTempOrderProductItem, "tempOrderProductItem", CREATE);
+                    nodeService.executeNode(storeTempOrderProductItem, "tempOrderProductItem", CommonService.CREATE);
                 }
             }
         } catch (IOException e) {
@@ -645,7 +641,7 @@ public class OrderService {
                         storeTempOrderProduct.put("orderPrice", calc.get("orderPrice"));
                         storeTempOrderProduct.put("vendorId", calc.get("vendorId"));
 
-                        Node tempOrderProductNode = (Node) nodeService.executeNode(storeTempOrderProduct, "tempOrderProduct", CREATE);
+                        Node tempOrderProductNode = (Node) nodeService.executeNode(storeTempOrderProduct, "tempOrderProduct", CommonService.CREATE);
                         tempOrderProductIds.add(tempOrderProductNode.getId());
                         List<Map<String, Object>> referencedCartProductItem = (List<Map<String, Object>>) cartProduct.get("referencedCartProductItem");
 
@@ -658,14 +654,14 @@ public class OrderService {
                             storeTempOrderProductItem.put("quantity", tempOrderProductItem.get("quantity"));
                             storeTempOrderProductItem.put("addOptionPrice", JsonUtils.getValue(tempOrderProductItem, "addOptionItemId.item.addPrice"));
 
-                            nodeService.executeNode(storeTempOrderProductItem, "tempOrderProductItem", CREATE);
+                            nodeService.executeNode(storeTempOrderProductItem, "tempOrderProductItem", CommonService.CREATE);
                         }
                     }
                 }
 
             }
             storeTempOrderDeliveryPrice.put("tempOrderProductIds", StringUtils.join(tempOrderProductIds.toArray(), ","));
-            nodeService.executeNode(storeTempOrderDeliveryPrice, "tempOrderDeliveryPrice", CREATE);
+            nodeService.executeNode(storeTempOrderDeliveryPrice, "tempOrderDeliveryPrice", CommonService.CREATE);
         }
     }
 

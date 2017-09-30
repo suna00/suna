@@ -21,10 +21,6 @@ import java.util.Map;
 public class CartService {
     private static Logger logger = LoggerFactory.getLogger(CartService.class);
 
-    public static final String CREATE = "create";
-    public static final String UPDATE = "update";
-    public static final String DELETE = "delete";
-    public static final String SAVE = "save";
     public static final String cartProduct_TID = "cartProduct";
     public static final String cartProductItem_TID = "cartProductItem";
     public static final String cartDeliveryPrice_TID = "cartDeliveryPrice";
@@ -55,7 +51,7 @@ public class CartService {
 //            if(!checkQuantity(context, map)) return context;
 //        }
         CommonService.resetMap(data);
-        Node cart = (Node) nodeService.executeNode(data, "cart", SAVE);
+        Node cart = (Node) nodeService.executeNode(data, "cart", CommonService.SAVE);
         data.put("cartId", cart.getId());
 
         if(data.get("cartProduct") != null){
@@ -174,11 +170,11 @@ public class CartService {
         }else{
             cartProduct.put("quantity", changeCount + Integer.parseInt(cartProduct.get("quantity").toString()));
             CommonService.resetMap(cartProduct);
-            nodeService.executeNode(cartProduct, cartProduct_TID, SAVE);
+            nodeService.executeNode(cartProduct, cartProduct_TID, CommonService.SAVE);
             // 배송비 재처리
             deliveryPriceMap.put("deliveryPrice", deliveryService.calculateDeliveryPrice(cartProduct.get("cartProductId").toString()));
             CommonService.resetMap(deliveryPriceMap);
-            nodeService.executeNode(deliveryPriceMap, cartDeliveryPrice_TID, SAVE);
+            nodeService.executeNode(deliveryPriceMap, cartDeliveryPrice_TID, CommonService.SAVE);
 
         }
 
@@ -289,7 +285,7 @@ public class CartService {
                 if(qtt < deliveryConditionValue){
                     cartProduct.put("quantity", deliveryConditionValue);
                     CommonService.resetMap(cartProduct);
-                    nodeService.executeNode(cartProduct, cartProduct_TID, UPDATE) ;
+                    nodeService.executeNode(cartProduct, cartProduct_TID, CommonService.UPDATE) ;
                     quantity = quantity - ( deliveryConditionValue - qtt );
                 }
             }
@@ -331,7 +327,7 @@ public class CartService {
         }else if(quantity > minusCount){
             map.put("quantity", quantity - minusCount);
             CommonService.resetMap(map);
-            nodeService.executeNode(map, cartProduct_TID, UPDATE) ;
+            nodeService.executeNode(map, cartProduct_TID, CommonService.UPDATE) ;
 
             // 배송비 기준 수량 미달인 카트상품 row > 1 이면 합쳐주기.
             List<Map<String, Object>> cartProducts = nodeBindingService.list(cartProduct_TID, "sorting=cartProductId&cartId_equals=" + map.get("cartId")+"&baseOptionItemId_equals=" + map.get("baseOptionItemId") + "&quantity_notEquals=" + deliveryConditionValue);
@@ -348,23 +344,23 @@ public class CartService {
                         if(need == resource){
                             temp.put("quantity", deliveryConditionValue);
                             CommonService.resetMap(temp);
-                            nodeService.executeNode(temp, cartProduct_TID, UPDATE) ;
+                            nodeService.executeNode(temp, cartProduct_TID, CommonService.UPDATE) ;
                             removeProduct(cartProduct.get("cartProductId").toString());
 
                         }else if(need < resource){
                             temp.put("quantity", deliveryConditionValue);
                             CommonService.resetMap(temp);
-                            nodeService.executeNode(temp, cartProduct_TID, UPDATE) ;
+                            nodeService.executeNode(temp, cartProduct_TID, CommonService.UPDATE) ;
 
                             cartProduct.put("quantity", resource - need);
                             CommonService.resetMap(cartProduct);
-                            nodeService.executeNode(cartProduct, cartProduct_TID, UPDATE) ;
+                            nodeService.executeNode(cartProduct, cartProduct_TID, CommonService.UPDATE) ;
 
                         }else{
                             // need > resource
                             temp.put("quantity", deliveryConditionValue);
                             CommonService.resetMap(temp);
-                            nodeService.executeNode(temp, cartProduct_TID, UPDATE) ;
+                            nodeService.executeNode(temp, cartProduct_TID, CommonService.UPDATE) ;
                             removeProduct(cartProduct.get("cartProductId").toString());
                             need = need - resource;
                         }
@@ -386,7 +382,7 @@ public class CartService {
         newMap.remove("cartProductId");
         newMap.remove("cartProductItem");
         CommonService.resetMap(newMap);
-        Node node = (Node) nodeService.executeNode(newMap, cartProduct_TID, CREATE);
+        Node node = (Node) nodeService.executeNode(newMap, cartProduct_TID, CommonService.CREATE);
         map.put("cartProductId", node.getId());
 
         return map;
@@ -399,7 +395,7 @@ public class CartService {
                 for(Map<String, Object> obj : cartProductItems){
                     obj.put("quantity", Integer.parseInt(obj.get("quantity").toString()) + Integer.parseInt(item.get("quantity").toString()));
                     CommonService.resetMap(obj);
-                    nodeService.executeNode(obj, cartProductItem_TID, UPDATE) ;
+                    nodeService.executeNode(obj, cartProductItem_TID, CommonService.UPDATE) ;
                 }
             }else{
                 Map<String, Object> m = new HashMap<>(cartProduct);
@@ -407,7 +403,7 @@ public class CartService {
                 m.remove("cartProduct");
                 m.remove("cartProductItem");
                 CommonService.resetMap(m);
-                nodeService.executeNode(m, cartProductItem_TID, CREATE) ;
+                nodeService.executeNode(m, cartProductItem_TID, CommonService.CREATE) ;
             }
         }
 
