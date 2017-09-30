@@ -4,6 +4,7 @@ import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
+import net.ion.ice.core.query.FacetTerm;
 import net.ion.ice.core.query.ResultField;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.MultiValueMap;
@@ -250,6 +251,10 @@ public class ContextUtils {
                 } catch (IOException e) {
                 }
                 return null;
+            } else if(paramName.equals("facet")){
+                for(String field : StringUtils.split(value, ",")){
+                    queryContext.addFacetTerm(new FacetTerm(field, null));
+                }
             }
         }
         return value;
