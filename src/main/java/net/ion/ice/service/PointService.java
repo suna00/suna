@@ -1,14 +1,19 @@
 package net.ion.ice.service;
 
+import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.context.ExecuteContext;
+import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.data.bind.NodeBindingInfo;
 import net.ion.ice.core.data.bind.NodeBindingService;
+import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -26,11 +31,11 @@ public class PointService {
     public static final String MEMBER = "member";
     public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(CommonService.PATTERN);
 
+    public JdbcTemplate jdbcTemplate;
     @Autowired
     private NodeService nodeService ;
     @Autowired
     private NodeBindingService nodeBindingService ;
-    public NodeBindingInfo nodeBindingInfo;
 
     public boolean checkUsablePoint(String memberNo, String type, int usePoint){
         Node node = NodeUtils.getNode(MEMBER, memberNo);
@@ -38,13 +43,36 @@ public class PointService {
         return true;
     }
 
+    public Double getTotalBalance(String type, String memberNo) {
+        Integer price = 0;
+        String YPointQuery = "select IFNULL(sum(balance), 0) as totalBalance\n" +
+                "from ypoint\n" +
+                "where memberNo = ? \n" +
+                "and YPointType='add'\n" +
+                "and endDate >= now() ";
+
+        String welfarePointQuery = "select IFNULL(sum(balance), 0) as totalBalance\n" +
+                "from welfarepoint\n" +
+                "where memberNo=? \n" +
+                "and welfarepointType='divide'\n" +
+                "and endDate >= now() ";
+
+        Map<String, Object> result = jdbcTemplate.queryForMap(("YPoint".equals(type) ? YPointQuery : welfarePointQuery), memberNo);
+
+        return Double.parseDouble(result.get("totalBalance").toString());
+    }
+
+
     //type : YPOINT, WDLFAREPOINT
     private Double updateMember(String memberNo, String type, Integer usePoint) {
+        DBService dbService = ApplicationContextManager.getBean(DBService.class) ;
+        jdbcTemplate = dbService.getJdbcTemplate("ytnDevDb");
+
         Node member = NodeUtils.getNode(MEMBER, memberNo);
-        Double point = (member.get(type) == null ? 0 : Double.parseDouble(member.get(type).toString()));
-        member.put(type, point + usePoint);
+        Double totalBalance = getTotalBalance(type, memberNo);
+        member.put(type, totalBalance);
         nodeService.executeNode(member, MEMBER, CommonService.UPDATE);
-        return point + usePoint;
+        return totalBalance;
     }
 
     // 유효기간 짧은순으로 순차적 차감
