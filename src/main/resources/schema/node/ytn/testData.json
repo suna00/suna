@@ -781,54 +781,6 @@
     }
   },
   {
-    "typeId": "addBenefit",
-    "addBenefitId": 1,
-    "year": 2017,
-    "month": 8,
-    "addBenefitType": {
-      "value": "special",
-      "label": "기획전",
-      "refId": "addBenefitType>special"
-    },
-    "addBenefitStatus": "y",
-    "addBenefitPaymentType": {
-      "value": "abp009",
-      "label": "PAYCO",
-      "refId": "addBenefitPaymentType>abp009"
-    },
-    "discountType": {
-      "value": "priority",
-      "label": "선할인",
-      "refId": "discountType>priority"
-    },
-    "sortOrder": 1,
-    "description": "5,000원 할인"
-  },
-  {
-    "typeId": "addBenefit",
-    "addBenefitId": 2,
-    "year": 2017,
-    "month": 8,
-    "addBenefitType": {
-      "value": "special",
-      "label": "기획전",
-      "refId": "addBenefitType>special"
-    },
-    "addBenefitStatus": "y",
-    "addBenefitPaymentType": {
-      "value": "abp007",
-      "label": "현대카드",
-      "refId": "addBenefitPaymentType>abp007"
-    },
-    "discountType": {
-      "value": "charge",
-      "label": "청구할인",
-      "refId": "discountType>charge"
-    },
-    "sortOrder": 2,
-    "description": "할인 5% / 최대 50,000원"
-  },
-  {
     "typeId": "interestFreeInstallment",
     "interestFreeInstallmentId": 1,
     "year": 2017,

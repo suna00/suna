@@ -96,6 +96,15 @@
     "typeName": "추가혜택",
     "tableName": "ytnDevDb#addBenefit",
     "repositoryType": "node",
+    "eviction": 1000
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "addBenefitItem",
+    "typeName": "추가혜택 Item",
+    "tableName": "ytnDevDb#addBenefitItem",
+    "repositoryType": "node",
     "eviction": 10000
   },
   {
@@ -105,6 +114,6 @@
     "typeName": "무이자할부",
     "tableName": "ytnDevDb#interestFreeInstallment",
     "repositoryType": "node",
-    "eviction": 10000
+    "eviction": 1000
   }
 ]
