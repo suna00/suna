@@ -78,5 +78,21 @@
     "actionType" : "service",
     "actionBody" : "orderService.verification",
     "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "tempOrder",
+    "event" : "buyItNow",
+    "noneExecute": true,
+    "eventName" : "바로주문"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "tempOrder>buyItNow",
+    "action" : "buyItNow",
+    "actionName" : "바로주문",
+    "actionType" : "service",
+    "actionBody" : "orderService.buyItNow",
+    "order" : 1
   }
 ]

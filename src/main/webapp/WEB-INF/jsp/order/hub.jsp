@@ -392,7 +392,7 @@
     responseMap.put("useWelfarepoint", useWelfarepoint);
     responseMap.put("usedCoupon", usedCoupon);
 
-    String paymentId = orderService.savePayment(responseMap);
+    String paymentId = orderService.createPayment(responseMap);
 
     if (req_tx.equals("pay")) {
     /* = -------------------------------------------------------------------------- = */
@@ -402,7 +402,7 @@
     /* = -------------------------------------------------------------------------- = */
         if (StringUtils.equals(res_cd, "0000")){
             try {
-                orderService.savePgResponse(responseMap, paymentId);
+                orderService.createPgResponse(responseMap, paymentId);
 
                 // 07-1-1. 신용카드
                 if (use_pay_method.equals("100000000000")) {
@@ -441,7 +441,7 @@
                     responseMap.put("usePayMethodName", "상품권");
                 }
 
-                bSucc = orderService.addOrderSheet(responseMap);
+                bSucc = orderService.createOrderSheet(responseMap);
 
             } catch (Exception e) {
                 bSucc = "false";
