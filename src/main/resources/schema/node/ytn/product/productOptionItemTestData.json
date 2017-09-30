@@ -306,5 +306,17 @@
     "stockQuantity": 999,
     "productOptionItemStatus": "y",
     "productOptionType": "add"
+  },
+  {
+    "typeId": "productOptionItem",
+    "productOptionItemId": 10035,
+    "productOptionCodeCase": "default",
+    "productId": 1,
+    "name": "",
+    "addPrice": 0,
+    "supplyPrice": 0,
+    "stockQuantity": 0,
+    "productOptionItemStatus": "y",
+    "productOptionType": "default"
   }
 ]
