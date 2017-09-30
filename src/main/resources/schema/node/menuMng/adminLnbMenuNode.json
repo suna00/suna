@@ -375,6 +375,38 @@
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "adm",
+    "gnbMenuId": "policyMng",
+    "parentMenuId": "root",
+    "menuId": "addBenefit",
+    "menuName": "추가혜택",
+    "order": "60",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "ytn/AddBenefitForm" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "policyMng",
+    "parentMenuId": "root",
+    "menuId": "interestFree",
+    "menuName": "무이자 할부",
+    "order": "70",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "ytn/InterestFreeForm" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
     "gnbMenuId": "serviceCenterMng",
     "parentMenuId": "root",
     "menuId": "question",

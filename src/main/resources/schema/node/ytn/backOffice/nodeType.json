@@ -91,24 +91,6 @@
   {
     "parentId": "backOfficePath",
     "typeId": "nodeType",
-    "tid": "interestFreeInstallment",
-    "typeName": "무이자할부",
-    "tableName": "ytnDevDb#interestFreeInstallment",
-    "repositoryType": "node",
-    "eviction": 0
-  },
-  {
-    "parentId": "backOfficePath",
-    "typeId": "nodeType",
-    "tid": "addBenefit",
-    "typeName": "추가혜택",
-    "tableName": "ytnDevDb#addBenefit",
-    "repositoryType": "node",
-    "eviction": 0
-  },
-  {
-    "parentId": "backOfficePath",
-    "typeId": "nodeType",
     "tid": "deliveryEnterprise",
     "typeName": "택배사",
     "tableName": "ytnDevDb#deliveryEnterprise",
