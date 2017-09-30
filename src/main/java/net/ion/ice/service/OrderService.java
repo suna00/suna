@@ -570,14 +570,19 @@ public class OrderService {
                 double orderPrice = productPrice + totalAddOptionPrice;
 
                 storeTempOrderProduct.put("orderPrice", orderPrice);
-                //수량별 배송비 정책
 
-//                if(productNode.getStoreValue("deliveryPriceType").equals("quantity")){
-//
-//
-//                }else if(){
-//
-//                }
+                //수량별 배송비 정책
+                if(productNode.getStoreValue("deliveryPriceType").equals("quantity")){
+                /**
+                 *
+                 *
+                 * 코딩코딩코딩코딩코딩코딩코딩코딩코딩코딩코딩코딩
+                 *
+                 *
+                 * */
+                }else{
+
+                }
 
                 Node tempOrderProductNode = (Node) nodeService.executeNode(storeTempOrderProduct, "tempOrderProduct", CommonService.CREATE);
 
