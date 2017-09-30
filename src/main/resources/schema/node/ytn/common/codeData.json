@@ -1495,11 +1495,11 @@
   },
   {
     "typeId": "commonCode",
-    "code": "returnAddress",
+    "code": "exchangeAddress",
     "upperCode": "deliveryType",
     "name": "교환배송지",
     "description": "",
-    "sortOrder": "3",
+    "sortOrder": "4",
     "commonCodeStatus": "y"
   },
   {

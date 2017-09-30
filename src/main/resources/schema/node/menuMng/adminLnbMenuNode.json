@@ -98,6 +98,25 @@
       { "pageName": "수정", "pageUrl": "ytn/productOptionSet/UpdateForm" }
     ]
   },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "root",
+    "menuId": "productNoticeBanner",
+    "menuName": "상품공지 배너관리",
+    "order": "70",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" }
+    ],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "ytn/productNoticeBanner/CreateForm" },
+      { "pageName": "수정", "pageUrl": "ytn/productNoticeBanner/UpdateForm" }
+    ]
+  },
 
   {
     "typeId" : "adminLnbMenu",

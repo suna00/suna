@@ -9,6 +9,7 @@ import net.ion.ice.core.node.Reference;
 import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.ResultField;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.*;
@@ -57,7 +58,12 @@ public class ApiSelectContext extends ReadContext{
             return null ;
         }
         if(resultType == ResultField.ResultType.LIST) {
-            List<Map<String, Object>> resultList = this.jdbcTemplate.queryForList(this.sqlTemplate.format(data).toString(), this.sqlTemplate.getSqlParameterValues(data));
+            List<Map<String, Object>> resultList = null;
+            try {
+                resultList = this.jdbcTemplate.queryForList(this.sqlTemplate.format(data).toString(), this.sqlTemplate.getSqlParameterValues(data));
+            }catch(EmptyResultDataAccessException e){
+                resultList = new ArrayList<>();
+            }
             this.result = resultList;
 
             List<QueryResult> subList = new ArrayList<>() ;
@@ -78,8 +84,12 @@ public class ApiSelectContext extends ReadContext{
                 return queryResult;
             }
         }else if(resultType == ResultField.ResultType.MERGE || resultType == ResultField.ResultType.VALUE){
-            Map<String, Object> resultMap = this.jdbcTemplate.queryForMap(this.sqlTemplate.format(data).toString(), this.sqlTemplate.getSqlParameterValues(data)) ;
-            this.result = resultMap ;
+            Map<String, Object> resultMap = null ;
+            try {
+                resultMap = this.jdbcTemplate.queryForMap(this.sqlTemplate.format(data).toString(), this.sqlTemplate.getSqlParameterValues(data)) ;
+            }catch(EmptyResultDataAccessException e){
+                resultMap = new HashMap<>() ;
+            }
 
             QueryResult itemResult = new QueryResult() ;
             makeItemQueryResult(resultMap, itemResult, data) ;
@@ -91,7 +101,13 @@ public class ApiSelectContext extends ReadContext{
                 return getQueryResult(itemResult);
             }
         }else{
-            Map<String, Object> resultMap = this.jdbcTemplate.queryForMap(this.sqlTemplate.format(data).toString(), this.sqlTemplate.getSqlParameterValues(data)) ;
+
+            Map<String, Object> resultMap = null ;
+            try {
+                resultMap = this.jdbcTemplate.queryForMap(this.sqlTemplate.format(data).toString(), this.sqlTemplate.getSqlParameterValues(data));
+            }catch(EmptyResultDataAccessException e){
+                resultMap = new HashMap<>() ;
+            }
             this.result = resultMap ;
 
             QueryResult itemResult = new QueryResult() ;
