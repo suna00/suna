@@ -29,8 +29,6 @@ public class DBService {
 
     @Autowired
     private NodeService nodeService;
-    @Autowired
-    private Environment environment;
 
     static Map<String, JdbcTemplate> dataSourceTemplate = new ConcurrentHashMap<>();
 
@@ -45,9 +43,8 @@ public class DBService {
 //    }
 
     public JdbcTemplate getJdbcTemplate(String dsId) {
-        String activeProfiles = environment.getActiveProfiles()[0];
         if (!dataSourceTemplate.containsKey(dsId)) {
-            Node dataSourceNode = nodeService.read("datasource", dsId.concat(">").concat(activeProfiles));
+            Node dataSourceNode = nodeService.getDatasource(dsId);
             DBConfiguration configuration = new DBConfiguration(dataSourceNode);
             dataSourceTemplate.put(dsId, new JdbcTemplate(setDataSource(configuration)));
         }
@@ -120,6 +117,11 @@ public class DBService {
         basicDataSource.setUsername(dataConfiguration.getUsername());
         basicDataSource.setPassword(dataConfiguration.getPassword());
         basicDataSource.setUrl(dataConfiguration.getJdbcUrl());
+        if(dataConfiguration.isSsl()){
+            basicDataSource.setConnectionProperties("useSSL=true");
+        }else{
+            basicDataSource.setConnectionProperties("useSSL=false");
+        }
         basicDataSource.setInitialSize(3);
         basicDataSource.setMaxTotal(256);
         basicDataSource.setDefaultAutoCommit(true);

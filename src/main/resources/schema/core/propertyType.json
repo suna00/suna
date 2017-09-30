@@ -67,6 +67,22 @@
   {
     "typeId" : "propertyType",
     "tid": "nodeType",
+    "id": "nodeType>clusterGroup",
+    "pid": "clusterGroup",
+    "propertyTypeName": "Clustering Group",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "nodeType",
     "id": "nodeType>eviction",
     "pid": "eviction",
     "propertyTypeName": "Eviction Size",
@@ -226,8 +242,8 @@
     "referenceValue": "",
     "code": [{"value": "STRING", "label": "String"}, {"value": "INT", "label": "Integer"}, {"value": "LONG", "label": "Long"}, {"value": "DOUBLE", "label": "double"},
       {"value": "BOOLEAN", "label": "Boolean"}, {"value": "DATE", "label": "Date"}, {"value": "TEXT", "label": "Text"}, {"value": "FILE", "label": "File"},
-      {"value": "REFERENCE", "label": "Reference"},{"value": "REFERENCES", "label": "Multi Reference"},
-      {"value": "REFERENCED", "label": "Referenced List"}, {"value": "ARRAY", "label": "Data Array"}, {"value": "OBJECT", "label": "Data Object"}]
+      {"value": "REFERENCE", "label": "Reference"},{"value": "REFERENCES", "label": "Multi Reference"}, {"value": "REFERENCED", "label": "Referenced List"},
+      {"value": "ARRAY", "label": "Data Array"}, {"value": "OBJECT", "label": "Data Object"}, {"value": "CONTENT", "label": "Content Builder"}]
   },
   {
     "typeId" : "propertyType",
@@ -441,6 +457,22 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
+    "id": "propertyType>referencedFilter",
+    "pid": "referencedFilter",
+    "propertyTypeName": "Referenced Property Filter",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": "",
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "propertyType",
     "id": "propertyType>options",
     "pid": "options",
     "propertyTypeName": "Options",
@@ -455,6 +487,24 @@
     "referenceValue": "",
     "parentValue": "",
     "defaultValue": "{}"
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "propertyType",
+    "id": "propertyType>fileHandler",
+    "pid": "fileHandler",
+    "propertyTypeName": "File Handler",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "",
+    "referenceValue": "",
+    "parentValue": "",
+    "defaultValue": "default"
   },
   {
     "typeId" : "propertyType",

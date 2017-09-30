@@ -142,7 +142,8 @@
             "field": "category",
             "method": "match",
             "value": "{{:category}}"
-          }
+          },
+          {"referenceView" : true}
         ],
         "response": {
           "_all_": "",
@@ -150,6 +151,26 @@
             "field": "menus",
             "referenceView": true,
             "includeReferenced": false
+          },
+          "category": {
+            "field": "category",
+            "response":{
+              "_all_":"",
+              "commentList" : {
+                "select" : {
+                  "ds" : "mariaDb",
+                  "resultType" : "list",
+                  "sql" : "select * from testComment where itemId = @{id}"
+                }
+              },
+              "commentCnt" : {
+                "select" : {
+                  "ds" : "mariaDb",
+                  "resultType" : "value",
+                  "sql" : "select count(*) from testComment where itemId = @{id}"
+                }
+              }
+            }
           },
           "itemTitle": "title",
           "itemDesc": "body",
@@ -345,6 +366,22 @@
         "id": "commentId",
         "userId" : "",
         "parent" : {"propertyType" : "testComment.itemId", "field" : "itemId", "referenceView": true}
+      }
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "updateFileSample",
+    "apiName" : "Update File Sample",
+    "method" : "POST",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "testItem",
+      "event": "update",
+      "response":{
+        "testFile":""
       }
     }
   }

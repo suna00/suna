@@ -1,6 +1,6 @@
 package net.ion.ice.security.auth;
 
-import net.ion.ice.security.User.UserContext;
+import net.ion.ice.security.UserContext;
 import net.ion.ice.security.token.RawAccessJwtToken;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;

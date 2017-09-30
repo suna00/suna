@@ -1,5 +1,6 @@
 package net.ion.ice.core.context;
 
+import net.ion.ice.core.cluster.ClusterUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
@@ -18,9 +19,6 @@ import java.util.Map;
  */
 public class ApiQueryContext extends QueryContext{
     protected Map<String, Object> config  ;
-    protected String responseType;
-    protected String mergeField;
-    protected ResultField.ResultType resultType ;
 
 
     public ApiQueryContext(NodeType nodeType) {
@@ -36,15 +34,19 @@ public class ApiQueryContext extends QueryContext{
     }
 
     public static ApiQueryContext makeContextFromConfig(Map<String, Object> config, Map<String, Object> data) {
-        ApiQueryContext queryContext = null;
-        if (config.containsKey("typeId")) {
-            queryContext = new ApiQueryContext(NodeUtils.getNodeType((String) ContextUtils.getValue(config.get("typeId"), data)));
-        } else {
-            queryContext = new ApiQueryContext();
-        }
+        NodeType nodeType = NodeUtils.getNodeType((String) ContextUtils.getValue(config.get("typeId"), data)) ;
+        ApiQueryContext queryContext = new ApiQueryContext(nodeType);
 
         queryContext.config = config ;
         queryContext.data = data ;
+
+        if(!ClusterUtils.getClusterService().checkClusterGroup(nodeType)){
+            queryContext.remote = true ;
+            if(config.containsKey("if")) {
+                queryContext.ifTest = ContextUtils.getValue(config.get("if"), queryContext.data).toString();
+            }
+            return queryContext ;
+        }
 
         for(String key : config.keySet()) {
             if(key.equals("typeId")) continue ;
@@ -53,14 +55,15 @@ public class ApiQueryContext extends QueryContext{
                 List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(queryContext, config.get("query"), queryContext.nodeType);
                 queryContext.setQueryTerms(queryTerms);
 //                queryContext.makeSearchFields((Map<String, Object>) config.get("query"));
-            }else if(key.equals("response")){
-                ContextUtils.makeApiResponse((Map<String, Object>) config.get(key), queryContext);
-            }else if(key.equals("resultType")){
-                queryContext.resultType = ResultField.ResultType.valueOf(config.get("resultType").toString().toUpperCase());
+            }else {
+                makeApiContext(config, queryContext, key);
             }
         }
         return queryContext;
     }
 
 
+    public Map<String, Object> getConfig() {
+        return config;
+    }
 }

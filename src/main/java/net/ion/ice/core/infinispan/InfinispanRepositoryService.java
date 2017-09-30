@@ -34,8 +34,6 @@ public class InfinispanRepositoryService {
     @Autowired
     private InfinispanCacheManager cacheManager;
 
-    @Autowired
-    private NodeService nodeService;
 
     public Cache<String, Node> getNodeCache(String tid) {
         return cacheManager.getCache(tid, 100000);
@@ -65,6 +63,18 @@ public class InfinispanRepositoryService {
     public Collection<Node> getNodes(String typeId) {
         return (Collection<Node>) getNodeCache(typeId).values();
     }
+
+
+    public void startBatch(String typeId){
+        Cache<String, Node> nodeCache = getNodeCache(typeId);
+        nodeCache.startBatch() ;
+    }
+
+    public void endBatch(String typeId, boolean commit){
+        Cache<String, Node> nodeCache = getNodeCache(typeId);
+        nodeCache.endBatch(commit);
+    }
+
 
     public Node execute(ExecuteContext context) {
         Node node = context.getNode();

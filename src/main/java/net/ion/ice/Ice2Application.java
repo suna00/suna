@@ -9,7 +9,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.stagemonitor.core.Stagemonitor;
 
 @SpringBootApplication(scanBasePackages = {"net.ion.ice"},exclude = {DataSourceAutoConfiguration.class})
@@ -32,4 +34,14 @@ public class Ice2Application {
 		taskExecutor.setQueueCapacity(100);
 		return taskExecutor;
 	}
+
+
+	@Bean
+	public ThreadPoolTaskScheduler threadPoolTaskScheduler(){
+		ThreadPoolTaskScheduler threadPoolTaskScheduler	= new ThreadPoolTaskScheduler();
+		threadPoolTaskScheduler.setPoolSize(5);
+		threadPoolTaskScheduler.setThreadNamePrefix("ThreadPoolTaskScheduler");
+		return threadPoolTaskScheduler;
+	}
+
 }

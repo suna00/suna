@@ -1,15 +1,13 @@
 package net.ion.ice.core.context;
 
 import net.ion.ice.core.data.bind.NodeBindingInfo;
-import net.ion.ice.core.node.Node;
-import net.ion.ice.core.node.NodeType;
-import net.ion.ice.core.node.NodeUtils;
-import net.ion.ice.core.node.PropertyType;
+import net.ion.ice.core.node.*;
 import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.QueryTerm;
 import net.ion.ice.core.query.ResultField;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +16,7 @@ import java.util.Map;
 /**
  * Created by jaehocho on 2017. 8. 11..
  */
-public class ReadContext implements Context {
+public class ReadContext implements Context, Serializable {
     protected NodeType nodeType;
     protected Map<String, Object> data;
 
@@ -50,7 +48,11 @@ public class ReadContext implements Context {
     protected Map<String, Object> fileUrlFormat ;
     protected List<ResultField> commonResultFields;
 
+    protected String ifTest ;
+    protected ResultField.ResultType resultType ;
 
+    protected Boolean remote ;
+    
     public NodeType getNodetype() {
         return nodeType;
     }
@@ -65,6 +67,20 @@ public class ReadContext implements Context {
     public void setIncludeReferenced(String value) {
         this.includeReferenced = Boolean.parseBoolean(value) ;
     }
+
+
+    protected static void makeApiContext(Map<String, Object> config, ReadContext readContext, String key) {
+        if(key.equals("response")){
+            ContextUtils.makeApiResponse((Map<String, Object>) config.get(key), readContext);
+        }else if(key.equals("resultType")){
+            readContext.resultType = ResultField.ResultType.valueOf(config.get("resultType").toString().toUpperCase());
+        }else if(key.equals("if")){
+            readContext.ifTest =  ContextUtils.getValue(config.get("if"), readContext.data).toString();
+        }else if(config.get(key) != null){
+            ContextUtils.makeContextConfig(readContext, key, config.get(key).toString());
+        }
+    }
+
 
     protected static void makeResultField(ReadContext context, String fields) {
         if(StringUtils.contains(fields,",")) {
@@ -235,6 +251,9 @@ public class ReadContext implements Context {
             Node node = NodeUtils.getNode(nodeType.getTypeId(), id) ;
             if(node != null) {
                 queryResult.put("item", makeResult(node));
+            }else{
+                queryResult.put("result", "404") ;
+                queryResult.put("resultMessage", "Not Found") ;
             }
         }
 
@@ -265,14 +284,16 @@ public class ReadContext implements Context {
     }
 
     protected void makeItemQueryResult(Node node, QueryResult itemResult, Map<String, Object> contextData) {
-
+        NodeType _nodeType = NodeUtils.getNodeType(node.getTypeId()) ;
         for (ResultField resultField : getResultFields()) {
             if(resultField.getFieldName().equals("_all_")){
-                for(PropertyType pt : nodeType.getPropertyTypes()){
+                for(PropertyType pt : _nodeType.getPropertyTypes()){
                     itemResult.put(pt.getPid(), NodeUtils.getResultValue(this, pt, node));
                 }
             }else if (resultField.getContext() != null) {
                 ReadContext subQueryContext = (ReadContext) resultField.getContext();
+                subQueryContext.dateFormat = this.dateFormat ;
+                subQueryContext.fileUrlFormat = this.fileUrlFormat ;
                 if (node != null) {
                     subQueryContext.setNodeData(node);
                 }
@@ -297,23 +318,50 @@ public class ReadContext implements Context {
                         break ;
                     }
                     case VALUE: {
-                        itemResult.put(resultField.getFieldName(), ContextUtils.getValue(resultField.getStaticValue(), _data, this, nodeType, node));
+                        itemResult.put(resultField.getFieldName(), ContextUtils.getValue(resultField.getStaticValue(), _data, this, _nodeType, node));
                         break ;
                     }
                     case OPTION: {
                         String fieldValue = resultField.getFieldValue();
                         fieldValue = fieldValue == null || StringUtils.isEmpty(fieldValue) ? resultField.getFieldName() : fieldValue;
 
-                        FieldContext fieldContext = resultField.getFieldContext() ;
+                        PropertyType pt = _nodeType.getPropertyType(fieldValue) ;
+                        if(pt == null) continue;
+
+                        FieldContext fieldContext = FieldContext.makeContextFromConfig(resultField.getFieldOption(), _data);
                         fieldContext.dateFormat = this.dateFormat ;
                         fieldContext.fileUrlFormat = this.fileUrlFormat ;
-
+                        if(StringUtils.isNotEmpty(pt.getReferenceType()) && NodeUtils.getNodeType(pt.getReferenceType()) != null ){
+                            fieldContext.nodeType = NodeUtils.getNodeType(pt.getReferenceType()) ;
+                        }
                         if(resultField.getResultType() == ResultField.ResultType.SIZE){
                             fieldContext.includeReferenced = true ;
-                            List list = (List) NodeUtils.getResultValue(fieldContext, nodeType.getPropertyType(fieldValue), node);
+                            List list = (List) NodeUtils.getResultValue(fieldContext, pt, node);
                             itemResult.put(resultField.getFieldName(), list == null ? 0 : list.size());
                         }else {
-                            itemResult.put(resultField.getFieldName(), NodeUtils.getResultValue(fieldContext, nodeType.getPropertyType(fieldValue), node));
+                            if(fieldContext.referenceView != null && fieldContext.referenceView == true && fieldContext.getResultFields() != null ){
+                                fieldContext.referenceView = false ;
+                                if(pt.getValueType() == PropertyType.ValueType.REFERENCES){
+                                    String values = (String) node.get(pt.getPid());
+                                    if (values != null && StringUtils.isNotEmpty(values)) {
+                                        List<QueryResult> refsResults = new ArrayList<>() ;
+                                        for (String refVal : StringUtils.split(values, ",")) {
+                                            Node refNode = NodeUtils.getReferenceNode(refVal, pt);
+                                            if(refNode != null) {
+                                                refsResults.add(fieldContext.makeQueryResult(refNode)) ;
+                                            }
+                                        }
+                                        itemResult.put(resultField.getFieldName(), refsResults);
+                                    }
+                                }else {
+                                    Node refNode = NodeUtils.getReferenceNode(node.get(pt.getPid()), pt);
+                                    if (refNode != null) {
+                                        itemResult.put(resultField.getFieldName(), fieldContext.makeQueryResult(refNode));
+                                    }
+                                }
+                            }else {
+                                itemResult.put(resultField.getFieldName(), NodeUtils.getResultValue(fieldContext, pt, node));
+                            }
                         }
                         break ;
                     }
@@ -321,7 +369,9 @@ public class ReadContext implements Context {
             } else {
                 String fieldValue = resultField.getFieldValue();
                 fieldValue = fieldValue == null || StringUtils.isEmpty(fieldValue) ? resultField.getFieldName() : fieldValue;
-                itemResult.put(resultField.getFieldName(), NodeUtils.getResultValue(resultField.getFieldContext() != null ? resultField.getFieldContext() : this, nodeType.getPropertyType(fieldValue), node));
+                PropertyType pt = _nodeType.getPropertyType(fieldValue) ;
+                if(pt == null) continue;
+                itemResult.put(resultField.getFieldName(), NodeUtils.getResultValue( this, pt, node));
             }
         }
     }
@@ -407,7 +457,9 @@ public class ReadContext implements Context {
     }
 
     public boolean hasLocale() {
-        return this.data != null && ((this.data.containsKey("locale") && StringUtils.isNotEmpty((String) data.get("locale"))) || (this.data.containsKey("langCd") && StringUtils.isNotEmpty((String) data.get("langCd")))) ;
+//        return this.data != null && ((this.data.containsKey("locale") && StringUtils.isNotEmpty((String) data.get("locale"))) || (this.data.containsKey("langCd") && StringUtils.isNotEmpty((String) data.get("langCd")))) ;
+        return this.data != null && ((this.data.containsKey("locale")) || (this.data.containsKey("langCd"))) ;
+
     }
 
     public String getLocale() {
@@ -416,5 +468,17 @@ public class ReadContext implements Context {
             return (String) data.get("langCd");
         }
         return locale ;
+    }
+
+    public void setDateFormat(String dateFormat) {
+        this.dateFormat = dateFormat;
+    }
+
+    public void setFileUrlFormat(Map<String,Object> fileUrlFormat) {
+        this.fileUrlFormat = fileUrlFormat;
+    }
+
+    public NodeType getNodeType() {
+        return nodeType;
     }
 }

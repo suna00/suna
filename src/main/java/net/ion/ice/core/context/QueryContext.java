@@ -1,5 +1,6 @@
 package net.ion.ice.core.context;
 
+import net.ion.ice.core.cluster.ClusterUtils;
 import net.ion.ice.core.data.bind.NodeBindingInfo;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.*;
@@ -107,14 +108,20 @@ public class QueryContext extends ReadContext {
         return queryContext;
     }
 
+    public static QueryContext createQueryContextFromTerms(List<QueryTerm> queryTerms, NodeType nodeType) {
+        QueryContext queryContext = new QueryContext(nodeType);
+        queryContext.setQueryTerms(queryTerms);
+        return queryContext;
+    }
+
     public void makeSearchFields(Map<String, Object> _config) {
         if(_config == null) return ;
-        String searchFieldsStr = (String) _config.get("searchFields");
+        String searchFieldsStr = (String)  ContextUtils.getValue(_config.get("searchFields"), data);
         if(org.apache.commons.lang3.StringUtils.isEmpty(searchFieldsStr)) {
             return ;
         }
 
-        String searchValue = (String) _config.get("searchValue");
+        String searchValue = (String) ContextUtils.getValue(_config.get("searchValue"), data);
         if(org.apache.commons.lang3.StringUtils.isEmpty(searchValue)) {
             return ;
         }
@@ -289,7 +296,6 @@ public class QueryContext extends ReadContext {
         String refTypeId = pt.getReferenceType();
         NodeType refNodeType = NodeUtils.getNodeType(refTypeId);
 
-
         QueryContext queryContext = new QueryContext(refNodeType);
         List<QueryTerm> queryTerms = new ArrayList<>();
 
@@ -309,6 +315,18 @@ public class QueryContext extends ReadContext {
                         QueryUtils.makeQueryTerm(refNodeType, queryContext, queryTerms, refPt.getPid(), node.getId().toString());
                     }
                 }
+            }
+        }
+
+        if (refNodeType != null && StringUtils.isNotEmpty(pt.getReferencedFilter())) {
+            String referencedFilter = pt.getReferencedFilter();
+            List<String> referencedFilterList = Arrays.asList(StringUtils.split(referencedFilter, "&"));
+
+            for (String referencedFilterParam : referencedFilterList) {
+                String referencedFilterParamName = StringUtils.substringBefore(referencedFilterParam, "=");
+                String referencedFilterParamValue = StringUtils.substringAfter(referencedFilterParam, "=");
+
+                QueryUtils.makeQueryTerm(refNodeType, queryContext, queryTerms, referencedFilterParamName, referencedFilterParamValue);
             }
         }
 
@@ -374,50 +392,6 @@ public class QueryContext extends ReadContext {
     }
 
 
-    public static QueryContext makeQueryContextFromQuery(String query) {
-        try {
-            Map<String, Object> queryData = JsonUtils.parsingJsonToMap(query);
-            QueryContext queryContext = new QueryContext();
-            for (String key : queryData.keySet()) {
-                queryContext.addResultField(new ResultField(key, makeQueryContextFromQueryData((Map<String, Object>) queryData.get(key))));
-            }
-            return queryContext;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public static QueryContext makeQueryContextFromQueryData(Map<String, Object> queryData) {
-        QueryContext queryContext = null;
-        if (queryData.containsKey("typeId")) {
-            queryContext = new QueryContext(NodeUtils.getNodeType((String) queryData.get("typeId")));
-        } else {
-            queryContext = new QueryContext();
-        }
-        for (String key : queryData.keySet()) {
-            if (key.equals("typeId")) continue;
-
-            if (key.equals("q")) {
-                List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(queryContext, queryData.get("q"), queryContext.getNodetype());
-                queryContext.setQueryTerms(queryTerms);
-            } else if (key.equals("query")) {
-                List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(queryContext, queryData.get("query"), queryContext.getNodetype());
-                queryContext.setQueryTerms(queryTerms);
-            } else {
-                Object val = queryData.get(key);
-                if (val == null) {
-                    queryContext.addResultField(new ResultField(key, key));
-                } else if (val instanceof String) {
-                    queryContext.addResultField(new ResultField(key, (String) val));
-                } else if (val instanceof Map) {
-                    queryContext.addResultField(new ResultField(key, makeQueryContextFromQueryData((Map<String, Object>) val)));
-                }
-            }
-        }
-        return queryContext;
-    }
-
     public List<Node> getQueryList() {
         if(this.queryTermType == QueryTerm.QueryTermType.DATA) {
             if(nodeBindingInfo == null){
@@ -441,10 +415,19 @@ public class QueryContext extends ReadContext {
 
 
     public QueryResult makeQueryResult(Object result, String fieldName, ResultField.ResultType resultType) {
-        List<Node> resultNodeList = getQueryList() ;
-        this.result = resultNodeList ;
+        if(this.ifTest != null && !(this.ifTest.equalsIgnoreCase("true"))) {
+            return null ;
+        }
+        if(this.remote != null && this.remote){
+            Map<String, Object> queryResult = ClusterUtils.callQuery((ApiQueryContext) this) ;
+            this.result = (List<Map<String, Object>>) queryResult.get("items");
+            return new QueryResult(queryResult) ;
+        }else {
+            List<Node> resultNodeList = getQueryList();
+            this.result = resultNodeList;
 
-        return makeQueryResult(result, fieldName, resultType, resultNodeList);
+            return makeQueryResult(result, fieldName, resultType, resultNodeList);
+        }
     }
 
 
@@ -537,7 +520,7 @@ public class QueryContext extends ReadContext {
         queryResult.put("resultCount", list.size()) ;
         if(isPaging()) {
             queryResult.put("pageSize", getPageSize());
-            queryResult.put("pageCount", getResultSize() / getPageSize() + 1);
+            queryResult.put("pageCount", getResultSize() / getPageSize() + (getResultSize() % getPageSize() > 0 ? 1 : 0));
             queryResult.put("currentPage", getCurrentPage());
         }else if(limit){
             queryResult.put("more", resultSize > queryListSize);

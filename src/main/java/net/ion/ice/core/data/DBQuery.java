@@ -23,10 +23,28 @@ public class DBQuery {
 
         if (queryContext.getQueryTerms() != null && !queryContext.getQueryTerms().isEmpty()) {
             for (QueryTerm queryTerm : queryContext.getQueryTerms()) {
-                String query = String.format("%s %s ?", queryTerm.getQueryKey(), queryTerm.getMethodQuery());
-                String value = queryTerm.getQueryValue();
-                searchListQuery.add(query);
-                searchListValue.add(value);
+                if(queryTerm.getMethodQuery().equals("IN")){
+                    String[] values = queryTerm.getQueryValue().split(",");
+                    List<String> holder = new ArrayList<>();
+                    for(String value : values){
+                        holder.add("?");
+                        searchListValue.add(value);
+                    }
+                    String query = String.format("%s %s (%s)", queryTerm.getQueryKey(), queryTerm.getMethodQuery(), StringUtils.join(holder, ", "));
+                    searchListQuery.add(query);
+                }else if(queryTerm.getMethodQuery().equals("BETWEEN")){
+                    String query = String.format("(%s %s ? AND ?)", queryTerm.getQueryKey(), queryTerm.getMethodQuery(), StringUtils.substringBefore(queryTerm.getQueryValue(),"~"), StringUtils.substringAfter(queryTerm.getQueryValue(),"~"));
+                    String[] values = queryTerm.getQueryValue().split("~");
+                    for(String value : values){
+                        searchListValue.add(value);
+                    }
+                    searchListQuery.add(query);
+                }else{
+                    String query = String.format("%s %s ?", queryTerm.getQueryKey(), queryTerm.getMethodQuery());
+                    String value = queryTerm.getQueryValue();
+                    searchListQuery.add(query);
+                    searchListValue.add(value);
+                }
             }
 
             listParamSql = String.format("SELECT * FROM %s WHERE %s", tableName, StringUtils.join(searchListQuery.toArray(), " AND "));
@@ -46,7 +64,11 @@ public class DBQuery {
         }
 
         listParamSql = listParamSql.concat(String.format(" LIMIT ?").concat(String.format(" OFFSET ?")));
-        searchListValue.add(queryContext.getLimit());
+        if(queryContext.isPaging()) {
+            searchListValue.add(queryContext.getPageSize());
+        }else{
+            searchListValue.add(queryContext.getLimit());
+        }
         searchListValue.add(queryContext.getOffset());
     }
 

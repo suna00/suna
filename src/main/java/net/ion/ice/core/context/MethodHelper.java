@@ -1,12 +1,16 @@
 package net.ion.ice.core.context;
 
+import net.ion.ice.ApplicationContextManager;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +30,8 @@ public class MethodHelper {
                 Date date = null ;
                 if(value instanceof Timestamp){
                     date = new Date(((Timestamp) value).getTime()) ;
+                }else if(value instanceof Date){
+                    date = (Date) value;
                 }else {
                     try {
                         date = DateUtils.parseDate(value.toString(), patterns);
@@ -199,6 +205,82 @@ public class MethodHelper {
                 if(StringUtils.isEmpty(methodParams[0])) return "" ;
                 String resultValue = makeIdValue(methodParams, data);
                 return resultValue;
+            }
+            case "conditionSysdate" :{
+                String defaultStr = "";
+                if(methodParams.length >2 && !methodParams[2].isEmpty()){
+                    defaultStr = methodParams[2].toString();
+                }
+                if(value == null) return defaultStr ;
+                String condition= methodParams[1];
+                if(StringUtils.isEmpty(methodParams[1])) condition =  "" ;
+                if(value.equals(condition)){
+                    if(methodParams.length >3 && !methodParams[3].isEmpty()){
+                        Date nowDate = new Date();
+                        return DateFormatUtils.format(nowDate, methodParams[3]);
+                    }else{
+                        return data.get("now").toString();
+                    }
+                }else{
+                    return defaultStr;
+                }
+            }
+            case "getCommaItem" :{
+                String defaultStr = "";
+                int paramInt = 0;
+
+                if(!methodParams[2].isEmpty()){
+                    defaultStr = methodParams[2].toString();
+                }
+
+                if(value == null || StringUtils.isEmpty(value.toString())) return defaultStr ;
+
+                String[] valueArrays = value.toString().split(",");
+                if(valueArrays.length == 0) return value.toString();
+
+                if(!methodParams[1].isEmpty() && "last".equals(methodParams[1].toString())){
+                    paramInt = valueArrays.length -1;
+                }else{
+                    paramInt = Integer.parseInt(methodParams[1]);
+                }
+                return valueArrays[paramInt] ;
+            }
+            case "concatStr":{
+                if(value == null || StringUtils.isEmpty(value.toString())) return "" ;
+                if(methodParams[1] == null) return "";
+                String concatStr = value.toString()+methodParams[1];
+                return concatStr;
+            }
+            case "convertString":{
+                if(value == null) return "";
+                return value.toString();
+            }
+            case "weekDate":{
+                String defaultStr = "";
+                if(methodParams.length >2 && !methodParams[2].isEmpty()){
+                    defaultStr = methodParams[2].toString();
+                }
+                if(methodParams[0].isEmpty())return defaultStr ;
+                String patternStr = "yyyyMMdd";
+                if(methodParams.length >1 && !methodParams[1].isEmpty()){
+                    patternStr = methodParams[1];
+                }
+                Calendar calendar = Calendar.getInstance();
+                if(Integer.parseInt(methodParams[0])>7){
+                    int weekNum = Integer.parseInt(methodParams[0])-7;
+                    calendar.set(Calendar.DAY_OF_WEEK,weekNum);
+                    calendar.add(Calendar.DATE, 7);
+                }else{
+                    calendar.set(Calendar.DAY_OF_WEEK,Integer.parseInt(methodParams[0]));
+                }
+                return DateFormatUtils.format(calendar.getTime(),patternStr);
+            }
+            case "getEnvValue":{
+                if(methodParams.length <1 || methodParams[0].isEmpty()){
+                    return "";
+                }
+
+                return ApplicationContextManager.getContext().getEnvironment().getProperty(methodParams[0]) ;
             }
 
             default :

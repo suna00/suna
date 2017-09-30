@@ -118,7 +118,7 @@
     "id": "adminLnbMenu>gnbMenuId",
     "pid": "gnbMenuId",
     "propertyTypeName": "GNB 아이디",
-    "valueType": "REFERENCE",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
@@ -134,15 +134,14 @@
     "id": "adminLnbMenu>parentMenuId",
     "pid": "parentMenuId",
     "propertyTypeName": "상위 메뉴 아이디",
-    "valueType": "REFERENCE",
+    "valueType": "STRING",
     "required": true,
     "idable": true,
     "labelable": false,
     "treeable": true,
     "indexable": true,
     "analyzer": null,
-    "referenceType": "adminLnbMenu",
-    "referenceValue": ""
+    "referenceType": "adminLnbMenu"
   },
   {
     "typeId" : "propertyType",
@@ -256,6 +255,7 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
+    "defaultValue": "[{\"pageName\": \"목록\",\"pageUrl\": \"list\"},{\"pageName\": \"등록\",\"pageUrl\": \"createForm\"},{\"pageName\": \"수정\",\"pageUrl\": \"updateForm\"},{\"pageName\": \"상세\",\"pageUrl\": \"view\"}]",
     "options": "{\"schema\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"pageName\":{\"type\":\"string\"},\"pageUrl\":{\"type\":\"string\"}},\"required\":[\"pageName\",\"pageUrl\"],\"collapsed\":true}}}"
   },
   {

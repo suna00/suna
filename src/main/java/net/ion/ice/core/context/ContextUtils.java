@@ -19,16 +19,51 @@ import java.util.*;
 public class ContextUtils {
 
     public static Map<String, Object> makeContextData(Map<String, String[]> parameterMap) {
-        Map<String, Object> data = new HashMap<>();
-        if(parameterMap == null) return data ;
-        for (String paramName : parameterMap.keySet()) {
+        Map<String, Object> dataMap = new LinkedHashMap<>();
+        if(parameterMap == null) return dataMap ;
+        Map<String, Object> subDataMap = new LinkedHashMap<>();
 
+        for (String paramName : parameterMap.keySet()) {
+            if(paramName.startsWith("_") && paramName.endsWith("_")) continue;
             if(paramName.contains(".")){
                 String subTypeId = StringUtils.substringBefore(paramName, ".") ;
-                NodeType subNodeType = NodeUtils.getNodeType(subTypeId) ;
-                if(subNodeType != null){
-                    List<Map<String, Object>> subData = new ArrayList<>() ;
+                if(dataMap.containsKey(subTypeId) && dataMap.get(subTypeId) instanceof List){
+                    List<Map<String, Object>> subList = (List<Map<String, Object>>) dataMap.get(subTypeId);
+                    String[] values = parameterMap.get(paramName);
+                    for(int i=0; i< subList.size(); i++){
+                        Map<String, Object> subData = subList.get(i) ;
+                        subData.put(StringUtils.substringAfterLast(paramName, "."), values.length == 1 ? values[0] : (values.length > i ? values[i] : null)) ;
+                    }
+                    continue;
+                } else if(StringUtils.contains(subTypeId, "[") && StringUtils.contains(subTypeId, "]")) {
+                    if (!subDataMap.containsKey(subTypeId)) subDataMap.put(subTypeId, new HashMap<>());
+                    String[] values = parameterMap.get(paramName);
+                    String value = null;
 
+                    if (values == null || StringUtils.isEmpty(values[0])) {
+                        continue;
+                    }else if ( values.length == 1 ) {
+                        value = values[0];
+                    }else {
+                        value = StringUtils.join(values, ',');
+                    }
+
+                    Map<String, Object> subData = (Map<String, Object>) subDataMap.get(subTypeId);
+                    subData.put(StringUtils.substringAfterLast(paramName, "."), value);
+                    continue;
+                } else {
+                    NodeType subNodeType = NodeUtils.getNodeType(subTypeId);
+                    if (subNodeType != null) {
+                        List<Map<String, Object>> subList = new ArrayList<>();
+                        String[] values = parameterMap.get(paramName);
+                        for (int i = 0; i < values.length; i++) {
+                            Map<String, Object> subData = new HashMap<String, Object>();
+                            subData.put(StringUtils.substringAfterLast(paramName, "."), values[i]);
+                            subList.add(subData);
+                        }
+                        dataMap.put(subTypeId, subList) ;
+                        continue;
+                    }
                 }
             }
 
@@ -43,24 +78,75 @@ public class ContextUtils {
                 value = StringUtils.join(values, ',');
             }
 
-            data.put(paramName, value);
+            dataMap.put(paramName, value);
         }
-        return data;
+
+        for (String subDataKey : subDataMap.keySet()) {
+            String subTypeId = StringUtils.substringBefore(subDataKey, "[");
+            if (!dataMap.containsKey(subTypeId)) dataMap.put(subTypeId, new ArrayList<>());
+            List<Map<String, Object>> subList = (List<Map<String, Object>>) dataMap.get(subTypeId);
+            subList.add((Map<String, Object>) subDataMap.get(subDataKey));
+        }
+
+        return dataMap;
     }
 
     public static Map<String, Object> makeContextData(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap){
-        Map<String, Object> data = ContextUtils.makeContextData(parameterMap);
-        if(multiFileMap == null || multiFileMap.size() == 0)
-            return data ;
+        Map<String, Object> dataMap = ContextUtils.makeContextData(parameterMap);
+        if(multiFileMap == null || multiFileMap.size() == 0) return dataMap ;
+        Map<String, Object> subDataMap = new LinkedHashMap<>();
 
         for(String paramName : multiFileMap.keySet()){
             List<MultipartFile> multipartFiles = multiFileMap.get(paramName) ;
+
+            if(paramName.contains(".")){
+                String subTypeId = StringUtils.substringBefore(paramName, ".") ;
+                if(dataMap.containsKey(subTypeId) && dataMap.get(subTypeId) instanceof List){
+                    List<Map<String, Object>> subList = (List<Map<String, Object>>) dataMap.get(subTypeId);
+                    for(int i=0; i< subList.size(); i++){
+                        Map<String, Object> subData = subList.get(i) ;
+                        subData.put(StringUtils.substringAfterLast(paramName, "."), multipartFiles.size() == 1 ? multipartFiles.get(0) : (multipartFiles.size() > i ? multipartFiles.get(i) : null)) ;
+                    }
+                    continue;
+                }else if(StringUtils.contains(subTypeId, "[") && StringUtils.contains(subTypeId, "]")) {
+                    if(multipartFiles != null && multipartFiles.size() > 0){
+                        if (!subDataMap.containsKey(subTypeId)) subDataMap.put(subTypeId, new HashMap<>());
+                        Map<String, Object> subData = (Map<String, Object>) subDataMap.get(subTypeId);
+                        subData.put(StringUtils.substringAfterLast(paramName, "."), multipartFiles.get(0));
+                    }
+                    continue;
+                } else {
+                    NodeType subNodeType = NodeUtils.getNodeType(subTypeId);
+                    if (subNodeType != null) {
+                        List<Map<String, Object>> subList = new ArrayList<>();
+
+                        for (MultipartFile file : multipartFiles) {
+                            Map<String, Object> subData = new HashMap<String, Object>();
+                            subData.put(StringUtils.substringAfterLast(paramName, "."), file);
+                            subList.add(subData);
+                        }
+                        dataMap.put(subTypeId, subList) ;
+                        continue;
+                    }
+                }
+            }
+
             if(multipartFiles != null && multipartFiles.size() > 0){
-                data.put(paramName, multipartFiles.get(0)) ;
+                dataMap.put(paramName, multipartFiles.get(0)) ;
             }
         }
 
-        return data ;
+        int subDataIndex = 0;
+        for (String subDataKey : subDataMap.keySet()) {
+            String subTypeId = StringUtils.substringBefore(subDataKey, "[");
+            if (!dataMap.containsKey(subTypeId)) dataMap.put(subTypeId, new ArrayList<>());
+            List<Map<String, Object>> subList = (List<Map<String, Object>>) dataMap.get(subTypeId);
+            Map<String, Object> subData = subList.get(subDataIndex);
+            subData.putAll((Map<? extends String, ?>) subDataMap.get(subDataKey));
+            subDataIndex++;
+        }
+
+        return dataMap ;
     }
 
 
@@ -134,6 +220,15 @@ public class ContextUtils {
             return null;
         } else if(paramName.equals("referenceView")){
             readContext.makeReferenceView(value);
+            return null;
+        } else if(paramName.equals(ApiContext.DATE_FORMAT)){
+            readContext.dateFormat = value ;
+            return null;
+        } else if(paramName.equals(ApiContext.FILE_URL_FORMAT)){
+            try {
+                readContext.fileUrlFormat = JsonUtils.parsingJsonToMap(value) ;
+            } catch (IOException e) {
+            }
             return null;
         }
 

@@ -2,13 +2,11 @@ package net.ion.ice.security.auth.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
-import net.ion.ice.core.node.NodeService;
 import net.ion.ice.security.auth.JwtAuthenticationToken;
 import net.ion.ice.security.config.JwtConfig;
-import net.ion.ice.security.User.UserContext;
+import net.ion.ice.security.UserContext;
 import net.ion.ice.security.token.RawAccessJwtToken;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;

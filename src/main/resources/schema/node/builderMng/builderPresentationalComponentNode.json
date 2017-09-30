@@ -311,6 +311,17 @@
     "typeId" : "builderPresentationalComponent",
     "componentTemplateType": "Spin",
     "componentClassType": "INPUT",
+    "componentClass": "Thumbnail",
+    "componentClassName": "THUMBNAIL",
+    "icon": "fa-square-o",
+    "order": 163,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentTemplateType": "Spin",
+    "componentClassType": "INPUT",
     "componentClass": "Video",
     "componentClassName": "VIDEO",
     "icon": "fa-square-o",
@@ -370,6 +381,17 @@
     "componentClassName": "SORTABLE",
     "icon": "fa-square-o",
     "order": 220,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderPresentationalComponent",
+    "componentTemplateType": "Spin",
+    "componentClassType": "INPUT",
+    "componentClass": "Iframe",
+    "componentClassName": "IFRAME",
+    "icon": "fa-square-o",
+    "order": 230,
     "active": true,
     "componentChildren": ""
   }

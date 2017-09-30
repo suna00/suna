@@ -191,6 +191,13 @@ public class QueryTerm {
     }
 
     public String getMethodQuery() {
+        if(isNot()){
+            if(QueryMethod.MATCHING.equals(method) || QueryMethod.IN.equals(method)){
+                return "NOT ".concat(method.getQueryString());
+            }else if(QueryMethod.EQUALS.equals(method)){
+                return "!".concat(method.getQueryString());
+            }
+        }
         return method.getQueryString();
     }
 
@@ -204,12 +211,13 @@ public class QueryTerm {
         WILDCARD("LIKE"),
         FUZZY(""),
         MATCHING("LIKE"),
+        IN("IN"),
         EQUALS("="),
         ABOVE(">="),
         BELOW("<="),
         EXCESS(">"),
         UNDER("<"),
-        FROMTO("");
+        FROMTO("BETWEEN");
 
 
         private String queryString;

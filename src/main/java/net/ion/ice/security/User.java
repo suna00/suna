@@ -1,4 +1,4 @@
-package net.ion.ice.security.User;
+package net.ion.ice.security;
 
 import lombok.Data;
 

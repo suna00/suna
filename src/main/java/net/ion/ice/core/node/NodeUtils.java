@@ -53,6 +53,7 @@ public class NodeUtils {
     }
 
     public static Node getNode(NodeType nodeType, String id) {
+        if(nodeType == null) return null ;
         if(nodeType.getRepositoryType().equals("data")){
             if (getNodeBindingService() == null) return null ;
             Map<String, Object> resultData =  getNodeBindingService().getNodeBindingInfo(nodeType.getTypeId()).retrieve(id) ;
@@ -75,7 +76,7 @@ public class NodeUtils {
 
     public static List<Node> makeNodeList(Collection<Map<String, Object>> nodeDataList, String typeId) {
         List<Node> nodeList = new ArrayList<Node>();
-        nodeDataList.forEach(data -> nodeList.add(new Node(data)));
+        nodeDataList.forEach(data -> nodeList.add( new Node(data)));
         return nodeList;
     }
 
@@ -181,12 +182,13 @@ public class NodeUtils {
         } else if (value instanceof String && ((String) value).length() == 14 && dateFormat.equals("yyyyMMddHHmmss")) {
             return (String) value;
         } else {
-            try {
-                return DateFormatUtils.format(DateTools.stringToDate(value.toString()), dateFormat);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            return value.toString();
+//            try {
+//                return DateFormatUtils.format(DateTools.stringToDate(value.toString()), dateFormat);//DateTools에서 시간이 변환될때 value에 +9시간 되서 수정
+                return DateFormatUtils.format(NodeUtils.getDateValue(value), dateFormat);
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//            }
+//            return value.toString();
         }
     }
 
@@ -229,10 +231,11 @@ public class NodeUtils {
                 return getDateStringValue(value, null);
             }
             case FILE: {
-                if (value instanceof FileValue) {
-                    return value;
-                }
-                return null;
+//                if (value instanceof FileValue) {
+                return value;
+//                }else {
+//
+//                }
             }
 
             default:
@@ -242,21 +245,8 @@ public class NodeUtils {
 
     public static ReferenceView getReferenceValueView(ReadContext context, Object value, PropertyType pt) {
         try {
-            NodeService nodeService = getNodeService();
-
-            String referenceType = pt.getReferenceType() ;
-            String refId = value.toString() ;
-            if(StringUtils.contains(refId, "::")){
-                referenceType = StringUtils.substringBefore(refId, "::") ;
-                refId = StringUtils.substringAfter(refId, "::") ;
-            }
-            if(StringUtils.isNotEmpty(pt.getCodeFilter()) && !StringUtils.contains(refId, Node.ID_SEPERATOR)){
-                refId = pt.getCodeFilter() + Node.ID_SEPERATOR + refId ;
-            }
-
-            Node refNode = getNode(referenceType, refId);
-            NodeType nodeType = nodeService.getNodeType(referenceType);
-            return new ReferenceView(refNode.toDisplay(context), nodeType, context);
+            Node refNode = getReferenceNode(value, pt);
+            return new ReferenceView(refNode.toDisplay(context), context);
 
         } catch (Exception e) {
             return new ReferenceView(value.toString(), value.toString());
@@ -265,28 +255,35 @@ public class NodeUtils {
 
     public static Reference getReferenceValue(ReadContext context, Object value, PropertyType pt) {
         try {
-            NodeService nodeService = getNodeService();
-            String referenceType = pt.getReferenceType() ;
-            String refId = value.toString() ;
-
-            if(StringUtils.contains(refId, "::")){
-                referenceType = StringUtils.substringBefore(refId, "::") ;
-                refId = StringUtils.substringAfter(refId, "::") ;
-            }
-            if(StringUtils.isNotEmpty(pt.getCodeFilter()) && !StringUtils.contains(refId, Node.ID_SEPERATOR)){
-                refId = pt.getCodeFilter() + Node.ID_SEPERATOR + refId ;
-            }
-
-            Node refNode = getNode(referenceType, refId);
-            NodeType nodeType = nodeService.getNodeType(referenceType);
-            return new Reference(refNode, nodeType, context);
+            Node refNode = getReferenceNode(value, pt);
+            return new Reference(refNode, context);
         } catch (Exception e) {
             return new Reference(value.toString(), value.toString());
         }
     }
 
+    public static Node getReferenceNode(Object value, PropertyType pt) {
+        if(value == null || pt == null) return null;
+        String referenceType = pt.getReferenceType() ;
+        String refId = value.toString() ;
+
+        if(StringUtils.contains(refId, "::")){
+            referenceType = StringUtils.substringBefore(refId, "::") ;
+            refId = StringUtils.substringAfter(refId, "::") ;
+        }
+        if(StringUtils.isNotEmpty(pt.getCodeFilter()) && !StringUtils.contains(refId, Node.ID_SEPERATOR)){
+            refId = pt.getCodeFilter() + Node.ID_SEPERATOR + refId ;
+        }
+
+        return getNode(referenceType, refId);
+    }
+
     public static Object getResultValue(ReadContext context, PropertyType pt, Map<String, Object> node) {
         Object value = node.get(pt.getPid());
+        return getResultValue(context, pt, node, value);
+    }
+
+    public static Object getResultValue(ReadContext context, PropertyType pt, Map<String, Object> node, Object value) {
         switch (pt.getValueType()) {
             case CODE: {
                 if (value == null) return null;
@@ -332,20 +329,20 @@ public class NodeUtils {
             }
             case FILE: {
                 if (value == null) return null;
-                if(context.getFileUrlFormat() != null && context.getFileUrlFormat().containsKey(pt.getFileHandler())){
-                    String fileUrlFormat = (String) context.getFileUrlFormat().get(pt.getFileHandler());
-                    if (value instanceof FileValue) {
-                        return fileUrlFormat + ((FileValue) value).getStorePath();
+                if(pt.isI18n() && context.hasLocale() && value instanceof Map){
+                    if(StringUtils.isNotEmpty(context.getLocale()) && ((Map) value).containsKey(context.getLocale())){
+                        return getFileResultValue(context, pt, ((Map) value).get(context.getLocale()));
+                    }else{
+                        return getFileResultValue(context, pt, ((Map) value).get(getNodeService().getDefaultLocale())) ;
                     }
                 }
-                if (value instanceof FileValue) {
-                    return value;
-                }
-                return null;
+                return getFileResultValue(context, pt, value);
             }
             case REFERENCED: {
-                if (context != null && context.isIncludeReferenced() && context.getLevel() < 3 && node instanceof Node) {
+                if (context != null && context.isIncludeReferenced() && context.getLevel() < 5 && node instanceof Node) {
                     QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(getNodeType(((Node)node).getTypeId()), pt, (Node) node);
+                    subQueryContext.setDateFormat(context.getDateFormat()) ;
+                    subQueryContext.setFileUrlFormat(context.getFileUrlFormat()) ;
                     subQueryContext.setLevel(context.getLevel() + 1);
                     return getNodeService().getDisplayNodeList(pt.getReferenceType(), subQueryContext);
                 }
@@ -353,7 +350,7 @@ public class NodeUtils {
             }
             default:
                 if(pt.isI18n() && context.hasLocale() && value instanceof Map){
-                    if(((Map) value).containsKey(context.getLocale())){
+                    if(StringUtils.isNotEmpty(context.getLocale()) &&((Map) value).containsKey(context.getLocale())){
                         return ((Map) value).get(context.getLocale()) ;
                     }else{
                         return ((Map) value).get(getNodeService().getDefaultLocale()) ;
@@ -363,6 +360,18 @@ public class NodeUtils {
         }
     }
 
+    private static Object getFileResultValue(ReadContext context, PropertyType pt, Object value) {
+        if(context.getFileUrlFormat() != null && context.getFileUrlFormat().containsKey(pt.getFileHandler())){
+            String fileUrlFormat = (String) context.getFileUrlFormat().get(pt.getFileHandler());
+            if (value instanceof FileValue) {
+                return fileUrlFormat + ((FileValue) value).getStorePath();
+            }
+        }else {
+            return value;
+        }
+        return null;
+    }
+
 
     public static Object getStoreValue(Object value, PropertyType pt, String id) {
         if (value == null || StringUtils.equals(StringUtils.trim(value.toString()), "null") || StringUtils.isEmpty(StringUtils.trim(value.toString())))
@@ -370,7 +379,8 @@ public class NodeUtils {
 
         switch (pt.getValueType()) {
             case DATE: {
-                return DateTools.dateToString(NodeUtils.getDateValue(value), DateTools.Resolution.SECOND);
+//                return DateTools.dateToString(NodeUtils.getDateValue(value), DateTools.Resolution.SECOND);
+                return DateFormatUtils.format(NodeUtils.getDateValue(value), "yyyyMMddHHmmss");
             }
             case STRING:
             case TEXT: {
@@ -465,6 +475,9 @@ public class NodeUtils {
                 } else if (value instanceof MultipartFile) {
                     FileValue fileValue = getFileService().saveMultipartFile(pt, id, (MultipartFile) value);
                     return fileValue;
+                } else if (value instanceof String && JsonUtils.isJson((String) value)) {
+                    FileValue fileValue = getFileService().fileValueMapper((String) value);
+                    return fileValue;
                 } else if (value instanceof String) {
                     return value ;
                 }
@@ -519,7 +532,12 @@ public class NodeUtils {
             }
         }
         if (pt.isI18n() && value instanceof Map) {
-            return ((Map) value).get(getNodeService().getDefaultLocale());
+            Object localeValue =  ((Map) value).get(getNodeService().getDefaultLocale());
+            if(localeValue instanceof FileValue){
+                return ((FileValue) localeValue).getStorePath();
+            }else{
+                return localeValue ;
+            }
         }
         switch (pt.getValueType()) {
             case FILE: {
@@ -535,6 +553,9 @@ public class NodeUtils {
             case OBJECT: {
                 if (value instanceof Map) {
                     return JsonUtils.toJsonString((Map<String, Object>) value);
+                }
+                if (value instanceof List) {
+                    return JsonUtils.toJsonString((List<?>) value);
                 }
                 if (value instanceof String) {
                     return value;
@@ -647,8 +668,9 @@ public class NodeUtils {
             String i18nPrefix = pt.getPid() + "_";
             Map<String, Object> i18nData = new HashMap<>();
             value = NodeUtils.getStoreValue(value, pt, id);
-            if (value instanceof String) {
+            if (value instanceof String || value instanceof FileValue) {
                 i18nData.put(getDefaultLocale(), value);
+                data.put(pt.getPid(), value) ;
             } else if (value instanceof Map) {
                 i18nData = (Map<String, Object>) value;
             }
@@ -656,20 +678,26 @@ public class NodeUtils {
             List<String> removePids = new ArrayList<>();
             for (String fieldName : data.keySet()) {
                 if (fieldName.startsWith(i18nPrefix)) {
-                    i18nData.put(StringUtils.substringAfter(fieldName, i18nPrefix), data.get(fieldName));
+                    Object val = NodeUtils.getStoreValue(data.get(fieldName), pt, id);
+                    i18nData.put(StringUtils.substringAfter(fieldName, i18nPrefix), val);
                     removePids.add(fieldName);
                 }
             }
             for (String fieldName : removePids) {
                 data.remove(fieldName);
             }
+
             if(i18nData.size() > 0) {
                 return i18nData;
             }else{
                 return null ;
             }
         }
-        return NodeUtils.getStoreValue(value, pt, id);
+        Object resultValue = NodeUtils.getStoreValue(value, pt, id);
+        if(resultValue instanceof FileValue){
+            data.put(pt.getPid(), resultValue) ;
+        }
+        return resultValue ;
     }
 
     public static List<Node> initDataNodeList(String typeId, List<Map<String, Object>> resultList) {
