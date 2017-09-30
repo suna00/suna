@@ -12,7 +12,7 @@
     "action": "addYPoint",
     "actionName": "YPoint 적립 ",
     "actionType": "service",
-    "actionBody": "PointService.addYPoint",
+    "actionBody": "pointService.addYPoint",
     "order": 1
   },
   {
@@ -28,7 +28,7 @@
     "action": "useYPoint",
     "actionName": "YPoint 사용 ",
     "actionType": "service",
-    "actionBody": "PointService.useYPoint",
+    "actionBody": "pointService.useYPoint",
     "order": 1
   },
   {
@@ -44,7 +44,7 @@
     "action": "refundYPoint",
     "actionName": "YPoint 환불 ",
     "actionType": "service",
-    "actionBody": "PointService.refundYPoint",
+    "actionBody": "pointService.refundYPoint",
     "order": 1
   },
   {
@@ -60,7 +60,7 @@
     "action": "useWelfarePoint",
     "actionName": "WelfarePoint 사용 ",
     "actionType": "service",
-    "actionBody": "PointService.useWelfarePoint",
+    "actionBody": "pointService.useWelfarePoint",
     "order": 1
   },
   {
@@ -76,7 +76,7 @@
     "action": "refundWelfarePoint",
     "actionName": "WelfarePoint 환불 ",
     "actionType": "service",
-    "actionBody": "PointService.refundWelfarePoint",
+    "actionBody": "pointService.refundWelfarePoint",
     "order": 1
   }
 ]

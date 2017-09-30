@@ -39,10 +39,12 @@ public class PointService {
     }
 
     //type : YPOINT, WDLFAREPOINT
-    private void updateMember(String memberNo, String type, Integer usePoint) {
+    private Double updateMember(String memberNo, String type, Integer usePoint) {
         Node member = NodeUtils.getNode(MEMBER, memberNo);
-        member.put(type, Integer.parseInt(member.get(type).toString()) + usePoint);
+        Double point = (member.get(type) == null ? 0 : Double.parseDouble(member.get(type).toString()));
+        member.put(type, point + usePoint);
         nodeService.executeNode(member, MEMBER, CommonService.UPDATE);
+        return point + usePoint;
     }
 
     // 유효기간 짧은순으로 순차적 차감
@@ -84,7 +86,10 @@ public class PointService {
 
         nodeService.executeNode(map, YPOINT, CommonService.CREATE);
 
-        updateMember(data.get("memberNo").toString(), YPOINT, -point);
+        Double havePoint = updateMember(data.get("memberNo").toString(), YPOINT, point);
+        Map<String, Object> result = new HashMap<>();
+        result.put(YPOINT, havePoint);
+        context.setResult(CommonService.getResult("S0002", result));
 
         return context;
     }
@@ -108,7 +113,10 @@ public class PointService {
         map.put("price", -point);
         nodeService.executeNode(map, YPOINT, CommonService.CREATE);
 
-        updateMember(data.get("memberNo").toString(), YPOINT, -point);
+        Double havePoint = updateMember(data.get("memberNo").toString(), YPOINT, -point);
+        Map<String, Object> result = new HashMap<>();
+        result.put(YPOINT, havePoint);
+        context.setResult(CommonService.getResult("S0002", result));
 
         return context;
     }
@@ -139,7 +147,10 @@ public class PointService {
         map.put("price", point);
         nodeService.executeNode(map, YPOINT, CommonService.CREATE);
 
-        updateMember(data.get("memberNo").toString(), YPOINT, point);
+        Double havePoint = updateMember(data.get("memberNo").toString(), YPOINT, point);
+        Map<String, Object> result = new HashMap<>();
+        result.put(YPOINT, havePoint);
+        context.setResult(CommonService.getResult("S0002", result));
 
         return context;
     }
@@ -166,7 +177,10 @@ public class PointService {
         map.put("price", temp);
         nodeService.executeNode(map, YPOINT, CommonService.CREATE);
 
-        updateMember(data.get("memberNo").toString(), YPOINT, -temp);
+        Double havePoint = updateMember(data.get("memberNo").toString(), YPOINT, -temp);
+        Map<String, Object> result = new HashMap<>();
+        result.put(YPOINT, havePoint);
+        context.setResult(CommonService.getResult("S0002", result));
 
         return context;
     }
@@ -189,7 +203,10 @@ public class PointService {
         map.put("price", -point);
         nodeService.executeNode(map, WELFAREPOINT, CommonService.CREATE);
 
-        updateMember(data.get("memberNo").toString(), WELFAREPOINT, -point);
+        Double havePoint = updateMember(data.get("memberNo").toString(), WELFAREPOINT, -point);
+        Map<String, Object> result = new HashMap<>();
+        result.put(WELFAREPOINT, havePoint);
+        context.setResult(CommonService.getResult("S0002", result));
 
 
         return context;
@@ -213,7 +230,10 @@ public class PointService {
         map.put("price", point);
         nodeService.executeNode(map, WELFAREPOINT, CommonService.CREATE);
 
-        updateMember(data.get("memberNo").toString(), WELFAREPOINT, point);
+        Double havePoint = updateMember(data.get("memberNo").toString(), WELFAREPOINT, point);
+        Map<String, Object> result = new HashMap<>();
+        result.put(WELFAREPOINT, havePoint);
+        context.setResult(CommonService.getResult("S0002", result));
 
         return context;
     }
