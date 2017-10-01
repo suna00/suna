@@ -54,6 +54,188 @@ public class DBSyncService {
         }
     }
 
+    /*
+    * 10-01
+    * 기존 쿼리 속도가 운영에서 문제가 있어 한번에 처리하는 부분을 나눴음
+    * 이 부분은 시간 관계상 하드코딩으로 처림됨.
+    * */
+    private Map<String, Object> appendCommaStringProperties (String nodeType, Map<String, Object> fit){
+        // 차트는 그룹콘캣이 불필요하므로 처리할 필요가 없음
+        logger.info("ORIGINAL NODE SUB QUERY ::" + nodeType);
+        String genreSubQuery = "";
+        String countrySubQuery = "";
+        String keywordSubQuery = "";
+        String artistSubQuery = "";
+        String albumSubQuery = "";
+        String songSubQuery = "";
+        String id = "";
+        switch(nodeType) {
+            case "album" :
+                id = String.valueOf(fit.get("albumId"));
+                // 장르코드, 국가코드, 키워드, 아티스트 아이디, 곡 아이디
+                genreSubQuery = "SELECT GROUP_CONCAT(GENRE_CD) AS genreCd FROM MT_ALBUM_GENRE WHERE ALBUM_ID = ?";
+                countrySubQuery = "SELECT GROUP_CONCAT(country_cd) AS showCntryCdList FROM MT_ALBUM_COUNTRY WHERE ALBUM_ID = ?";
+                keywordSubQuery = "SELECT GROUP_CONCAT(KEYWORD) AS findKywrd FROM MT_ALBUM_KEYWORD WHERE ALBUM_ID = ?";
+                artistSubQuery = "SELECT GROUP_CONCAT(ARTIST_ID) AS relArtistIds FROM MT_ALBUM_ARTIST WHERE ALBUM_ID = ?";
+                songSubQuery = "SELECT GROUP_CONCAT(SONG_ID) AS relSongIds FROM MT_ALBUM_SONGS WHERE ALBUM_ID = ?";
+
+                break;
+            case "artist" :
+                id = String.valueOf(fit.get("artistId"));
+                // 장르코드. 키워드, 국가코드
+                genreSubQuery = "SELECT GROUP_CONCAT(GENRE_CD) AS genreCd FROM MT_ARTIST_GENRE WHERE ARTIST_ID = ?";
+                keywordSubQuery = "SELECT GROUP_CONCAT(KEYWORD) AS findKywrd FROM MT_ARTIST_KEYWORD WHERE ARTIST_ID = ?";
+                countrySubQuery = "SELECT GROUP_CONCAT(country_cd) AS showCntryCdList FROM MT_ARTIST_COUNTRY WHERE ARTIST_ID = ?";
+
+                break;
+            case "musicVideo" :
+                id = String.valueOf(fit.get("mvId"));
+                // 키워드, 국가, 아티스트 - youtubeUrl, toudoUrl??
+                keywordSubQuery = "SELECT GROUP_CONCAT(KEYWORD) FROM MT_MV_KEYWORD WHERE MV_ID = ?";
+                countrySubQuery = "SELECT GROUP_CONCAT(country_cd) FROM MT_MV_COUNTRY WHERE mv_id = ?";
+                artistSubQuery = "SELECT GROUP_CONCAT(ARTIST_ID) FROM MT_MV_ARTIST WHERE MV_ID = ?";
+                break;
+            case "song" :
+                id = String.valueOf(fit.get("songId"));
+                // 키워드, 국가, 아티스트, 앨범
+                keywordSubQuery = "SELECT GROUP_CONCAT(KEYWORD) AS findKywrd FROM MT_SONG_KEYWORD WHERE SONG_ID = ?";
+                countrySubQuery = "SELECT GROUP_CONCAT(country_cd) AS showCntryCdList FROM MT_SONG_COUNTRY WHERE song_id = ?";
+                artistSubQuery = "SELECT GROUP_CONCAT(ARTIST_ID) AS refArtistIds FROM MT_SONG_ARTIST WHERE SONG_ID = ?";
+                albumSubQuery = "SELECT GROUP_CONCAT(ALBUM_ID) AS refAlbumIds FROM MT_ALBUM_SONGS WHERE SONG_ID = ?";
+                break;
+        }
+
+        if(genreSubQuery != null && genreSubQuery.length() > 0) {
+            Map<String, Object> rs = new HashMap<>();
+            try{
+                rs = ice2Template.queryForMap(genreSubQuery, id);
+                switch(nodeType) {
+                    case "album":
+                    case "artist":
+                        fit.putAll(rs);
+                        break;
+                }
+            } catch (Exception e) {
+                logger.error("Failed to retrieve sub information GENRE :: " + nodeType + "." + id);
+            }
+        }
+
+        if(countrySubQuery != null && countrySubQuery.length() > 0) {
+            Map<String, Object> rs = new HashMap<>();
+            try{
+                rs = ice2Template.queryForMap(countrySubQuery, id);
+                fit.putAll(rs);
+            } catch (Exception e) {
+                logger.error("Failed to retrieve sub information COUNTRY :: " + nodeType + "." + id);
+            }
+        }
+
+        if(keywordSubQuery != null && keywordSubQuery.length() > 0) {
+            Map<String, Object> rs = new HashMap<>();
+            try{
+                rs = ice2Template.queryForMap(keywordSubQuery, id);
+                fit.putAll(rs);
+            } catch (Exception e) {
+                logger.error("Failed to retrieve sub information KEYWORD :: " + nodeType + "." + id);
+            }
+        }
+
+        if(artistSubQuery != null && artistSubQuery.length() > 0) {
+            Map<String, Object> rs = new HashMap<>();
+            try{
+                rs = ice2Template.queryForMap(artistSubQuery, id);
+                switch (nodeType) {
+                    case "album":
+                    case "musicVideo":
+                    case "song":
+                        fit.putAll(rs);
+                        break;
+                }
+            } catch (Exception e) {
+                logger.error("Failed to retrieve sub information ARTIST :: " + nodeType + "." + id);
+            }
+        }
+
+        if(songSubQuery != null && songSubQuery.length() > 0) {
+            Map<String, Object> rs = new HashMap<>();
+            try{
+                rs = ice2Template.queryForMap(songSubQuery, id);
+                switch (nodeType){
+                    case  "album" :
+                        fit.putAll(rs);
+                        break;
+                }
+            } catch (Exception e) {
+                logger.error("Failed to retrieve sub information SONG :: " + nodeType + "." + id);
+            }
+        }
+
+
+        if(albumSubQuery != null && albumSubQuery.length() > 0) {
+            Map<String, Object> rs = new HashMap<>();
+            try{
+                rs = ice2Template.queryForMap(albumSubQuery, id);
+                switch (nodeType) {
+                    case "song":
+                        fit.putAll(rs);
+                        break;
+                }
+            } catch (Exception e) {
+                logger.error("Failed to retrieve sub information ALBUM :: " + nodeType + "." + id);
+            }
+        }
+        logger.info("ORIGINAL NODE INFORMATION :: " + String.valueOf(fit));
+        return fit;
+    }
+
+
+
+    private Map<String, Object> appendMultiLangCommaStringProperties (String originalNodeType, String langCd, Map<String, Object> additional){
+        // 차트는 그룹콘캣이 불필요하므로 처리할 필요가 없음
+        logger.info("MULTILINGUAL SEPARATED SUB QUERY :: " + originalNodeType + "/" + langCd);
+        String keywordSubQuery = "";
+        String id = "";
+        switch(originalNodeType) {
+            case "album" :
+                id = String.valueOf(additional.get("albumId"));
+                keywordSubQuery = "SELECT GROUP_CONCAT(keyword) AS findKywrd FROM MT_ALBUM_KEYWORD_META WHERE album_id = ? AND lang_cd = ?";
+                break;
+            case "artist" :
+                id = String.valueOf(additional.get("artistId"));
+                keywordSubQuery = "SELECT GROUP_CONCAT(keyword) AS findKywrd FROM MT_ARTIST_KEYWORD_META WHERE artist_id = ? AND lang_cd = ?";
+                break;
+            case "musicVideo" :
+                id = String.valueOf(additional.get("mvId"));
+                keywordSubQuery = "SELECT GROUP_CONCAT(KEYWORD) AS findKywrd FROM MT_MV_KEYWORD_META WHERE mv_id = ? AND lang_cd = ?";
+                break;
+            case "song" :
+                id = String.valueOf(additional.get("songId"));
+                keywordSubQuery = "SELECT GROUP_CONCAT(keyword) AS findKywrd FROM MT_SONG_KEYWORD_META WHERE song_id = ? AND lang_cd = ?";
+                break;
+        }
+
+        if(keywordSubQuery != null && keywordSubQuery.length() > 0) {
+            Map<String, Object> rs = new HashMap<>();
+            try{
+                rs = ice2Template.queryForMap(keywordSubQuery, id, langCd);
+                Iterator<String> iterator = rs.keySet().iterator();
+                while (iterator.hasNext()) {
+                    String k = iterator.next();
+                    Object v = rs.get(k);
+                    additional.put(k + "_" + langCd, v);
+                }
+            } catch (Exception e) {
+                logger.error("Failed to retrieve Multilingual sub information KEYWORD :: " + originalNodeType + "." + id);
+            }
+        }
+
+        return additional;
+    }
+
+
+
+
+
     private Map<String, Object> getMultiLanguageInfo (Map<String, Object> queryMap, String multiLangQuery, String foreignKey) {
         Map<String, Object> additional = new HashMap<String, Object>();
         try{
@@ -65,6 +247,8 @@ public class DBSyncService {
                 String jdbcQuery = String.valueOf(jdbcParam.get("query"));
                 Object[] params = (Object[]) jdbcParam.get("params");
 
+                String originalTypeId = String.valueOf(queryMap.get("typeId"));
+
                 List<Map<String, Object>> multiLanguageInformation = ice2Template.queryForList(jdbcQuery, params);
                 // langcd 랑 뭐 이것저것 들었다고 치자
                 for(Map<String, Object> singleLangMap : multiLanguageInformation) {
@@ -73,6 +257,24 @@ public class DBSyncService {
                     while(multiIter.hasNext()) {
                         String k = multiIter.next();
                         Object v = singleLangMap.get(k);
+
+                        // ==================================================
+                        // ==================================================
+                        // ==================================================
+                        // 쿼리 성능 이슈로 GROUP_CONCAT 분리 1001
+                        // ==================================================
+                        // ==================================================
+                        // ==================================================
+                        additional = appendMultiLangCommaStringProperties(originalTypeId, langCd, additional);
+                        // ==================================================
+                        // ==================================================
+                        // ==================================================
+                        // 1001 ENDS
+                        // ==================================================
+                        // ==================================================
+                        // ==================================================
+
+
                         if(!k.equals("langCd")) {
                             additional.put(k + "_" + langCd.toLowerCase(), v);
                         }
@@ -82,6 +284,8 @@ public class DBSyncService {
         } catch (Exception e) {
             logger.error("Failed to set multi language information, but consider it as normal", e);
         }
+
+        logger.info("MULTILINGUAL INFORMATION :: " + String.valueOf(additional));
         return additional;
     }
 
@@ -137,6 +341,7 @@ public class DBSyncService {
             int rs = 0;
 
             Map<String, Object> fit = NodeMappingUtils.mapData(targetNodeType, qMap, mapperStore);
+            fit = appendCommaStringProperties(targetNodeType, fit);
             // 다국어 처리
             try{
                 if(useMultiLanguage) {
@@ -215,7 +420,7 @@ public class DBSyncService {
             failPolicy = (!"NULL".equals(failPolicy) && "STOP".equals(failPolicy)) ? "STOP" : "SKIP";
 
 
-//            nodeService.startBatch(targetNodeType);
+            nodeService.startBatch(targetNodeType);
             /*
             다국어 처리가 여기로 변경되어야 함
             {pid}_{langCd}
@@ -251,6 +456,7 @@ public class DBSyncService {
 
                     int rs = 0;
                     Map<String, Object> fit = NodeMappingUtils.mapData(targetNodeType, qMap, mapperStore);
+                    fit = appendCommaStringProperties(targetNodeType, fit);
                     if(useMultiLanguage) {
                         fit.putAll(getMultiLanguageInfo(qMap, multiLangQuery, currentNodePKPid));
                     }
@@ -280,7 +486,7 @@ public class DBSyncService {
                 i++;
             }
 
-//            nodeService.endBatch(targetNodeType, true);
+            nodeService.endBatch(targetNodeType, true);
         }
 
         long jobTaken = (new Date().getTime() - startTime.getTime());
