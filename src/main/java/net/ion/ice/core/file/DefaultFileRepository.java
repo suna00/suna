@@ -95,6 +95,7 @@ public class DefaultFileRepository implements FileRepository{
 
     @Override
     public FileValue saveResourceFile(PropertyType pt, String id, String path) {
+        if(path.startsWith("/")) path = "file:" + path ;
         Resource res = ApplicationContextManager.getResource(path) ;
 
         String savePath = pt.getTid() + "/" +  pt.getPid() + "/" + DateFormatUtils.format(new Date(), "yyyyMM/dd/") + UUID.randomUUID() + "." + StringUtils.substringAfterLast(res.getFilename(), ".");
