@@ -26,7 +26,7 @@
     "tid": "artist",
     "typeName": "아티스트",
     "repositoryType": "node",
-    "eviction": 0,
+    "eviction": 10000,
     "tableName": "cjDb#artist"
   },
   {
@@ -36,7 +36,7 @@
     "tid": "album",
     "typeName": "앨범",
     "repositoryType": "node",
-    "eviction": 0,
+    "eviction": 10000,
     "tableName": "cjDb#album"
   },
   {
@@ -46,7 +46,7 @@
     "tid": "song",
     "typeName": "곡",
     "repositoryType": "node",
-    "eviction": 0,
+    "eviction": 10000,
     "tableName": "cjDb#song"
   },
   {
@@ -56,7 +56,7 @@
     "tid": "musicVideo",
     "typeName": "뮤직비디오",
     "repositoryType": "node",
-    "eviction": 0,
+    "eviction": 10000,
     "tableName": "cjDb#musicVideo"
   },
   {
@@ -66,7 +66,7 @@
     "tid": "singlePhoto",
     "typeName": "단일 사진",
     "repositoryType": "node",
-    "eviction": 0,
+    "eviction": 10000,
     "tableName": "cjDb#singlePhoto"
   },
   {
@@ -76,7 +76,7 @@
     "tid": "groupPhoto",
     "typeName": "그룹 사진",
     "repositoryType": "node",
-    "eviction": 0,
+    "eviction": 10000,
     "tableName": "cjDb#groupPhoto"
   },
   {
@@ -96,7 +96,7 @@
     "tid": "pgmVideo",
     "typeName": "프로그램 VOD 영상",
     "repositoryType": "node",
-    "eviction": 0,
+    "eviction": 10000,
     "i18n": true,
     "tableName": "cjDb#pgmVideo2"
   },
@@ -107,7 +107,7 @@
     "tid": "news",
     "typeName": "뉴스",
     "repositoryType": "node",
-    "eviction": 0,
+    "eviction": 10000,
     "tableName": "cjDb#news"
   },
   {
@@ -127,7 +127,7 @@
     "tid": "videItgInfo",
     "typeName": "영상(통합) 정보",
     "repositoryType": "node",
-    "eviction": 0,
+    "eviction": 10000,
     "tableName": "cjDb#videItgInfo"
   },
   {
