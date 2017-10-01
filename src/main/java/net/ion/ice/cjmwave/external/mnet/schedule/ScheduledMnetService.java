@@ -25,17 +25,6 @@ public class ScheduledMnetService {
     @Autowired
     private MnetDataDumpService mnetDataDumpService;
 
-    /*
-    * 다국어는 단독으로 증분을 판별할 수 없기 때문에 별도 실행 할 수 없음
-    * */
-    private String [] mnetExecuteIds = {
-            "albumPart"
-            , "artistPart"
-            , "musicVideoPart"
-            , "songPart"
-    };
-
-
     public void execute(String type, Date provided) {
         try{
             logger.info("MnetDataDumpService.execute :: " + type);
@@ -44,49 +33,10 @@ public class ScheduledMnetService {
             logger.info("Migration schedule :: Step1");
             mnetDataDumpService.copyData(type, provided);
 
-
             logger.info("Migration schedule :: Step2");
             // 이전 실행시간 히스토리에서 가져와서 파라미터로 수행한다
             // dbSyncProcess 의 주기적 쿼리를 실행하도록 처리
-
-            switch (type) {
-                case "all" :
-                    for(String executeId : mnetExecuteIds) {
-//                        dbSyncService.executeForNewData("mnet", executeId, provided);
-                        ParallelDBSyncExecutor parallel = new ParallelDBSyncExecutor(executeId) {
-                            @Override
-                            public void run() {
-                                try{
-                                    this.dbSyncService.executeForNewData("mnet", this.executeId, provided);
-                                } catch (Exception e) {
-                                    logger.error("Error occurs in Thread : ", e);
-                                }
-                            }
-                        };
-                        parallel.executeMigration();
-                    }
-                    break;
-                case "album" :
-                    dbSyncService.executeForNewData("mnet", "albumPart", provided);
-                    break;
-                case "artist" :
-                    dbSyncService.executeForNewData("mnet", "artistPart", provided);
-                    break;
-                case "song" :
-                    dbSyncService.executeForNewData("mnet", "songPart", provided);
-                    break;
-                case "mv" :
-                    dbSyncService.executeForNewData("mnet", "musicVideoPart", provided);
-                    break;
-                case "chart" :
-                    dbSyncService.executeForNewData("mnet", "mcdChartBasInfoPart", provided);
-                    dbSyncService.executeForNewData("mnet", "mcdChartStatsPart", provided);
-                    break;
-                default:
-                    logger.info("Could not find appropriate type for migration");
-                    break;
-            }
-
+            dbSyncService.executeForNewData("mnet", type, provided);
         } catch (Exception e) {
             logger.error("FAILED TO EXECUTE MNET MIGRATION :: ", e);
         }

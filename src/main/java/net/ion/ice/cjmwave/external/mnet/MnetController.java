@@ -49,56 +49,13 @@ public class MnetController {
     * */
     @RequestMapping(value = {"initialData/{type}"}, produces = { "application/json" })
     public @ResponseBody String retrieveAll(@PathVariable String type) throws JSONException {
-        String mnetExecuteIds[] = {
-                "album"
-                , "artist"
-                , "musicVideo"
-                , "song"
-                , "mcdChartBasInfo", "mcdChartStats"
-        };
         logger.info("Enter MnetController.retrieveAll type :: " + type);
 
         JSONObject response = new JSONObject();
         String result="500", result_msg = "ERROR", cause = "";
 
         try{
-            switch (type) {
-                case "all" :
-                    for(String executeId : mnetExecuteIds) {
-//                        dbSyncService.executeWithIteration(executeId);
-                        ParallelDBSyncExecutor parallel = new ParallelDBSyncExecutor(executeId) {
-                            @Override
-                            public void run() {
-                                try{
-                                    this.dbSyncService.executeWithIteration(this.executeId);
-                                } catch (Exception e) {
-                                    logger.error("Error occurs in Thread : ", e);
-                                }
-                            }
-                        };
-                        parallel.executeMigration();
-                    }
-                    break;
-                case "album" :
-                    dbSyncService.executeWithIteration("album");
-                    break;
-                case "artist" :
-                    dbSyncService.executeWithIteration("artist");
-                    break;
-                case "song" :
-                    dbSyncService.executeWithIteration("song");
-                    break;
-                case "mv" :
-                    dbSyncService.executeWithIteration("musicVideo");
-                    break;
-                case "chart" :
-                    dbSyncService.executeWithIteration("mcdChartBasInfo");
-                    dbSyncService.executeWithIteration("mcdChartStats");
-                default:
-                    logger.info("Could not find appropriate type for migration");
-                    break;
-            }
-
+            dbSyncService.executeForInitData(type);
             result = "200";
             result_msg = "SUCCESS";
         } catch (Exception e) {
@@ -136,7 +93,6 @@ public class MnetController {
                 }
                 provided = sdf.parse(requestedDate);
             }
-
 
             scheduledMnetService.execute(type, provided);
             result = "200";

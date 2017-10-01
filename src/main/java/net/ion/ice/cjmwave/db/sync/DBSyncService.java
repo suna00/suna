@@ -43,10 +43,28 @@ public class DBSyncService {
     @Autowired
     DBProcessStorage storage;
 
+
     @Value("${file.default.path}")
     String defaultFilePath;
 
     private JdbcTemplate ice2Template;
+
+    private String mnetExecuteIds[] = {
+            "album"
+            , "artist"
+            , "musicVideo"
+            , "song"
+            , "mcdChartBasInfo", "mcdChartStats"
+    };
+
+    private String [] mnetPartialExecuteIds = {
+            "albumPart"
+            , "artistPart"
+            , "musicVideoPart"
+            , "songPart"
+            , "mcdChartBasInfoPart"
+            , "mcdChartStatsPart"
+    };
 
     @PostConstruct
     public void init(){
@@ -191,8 +209,6 @@ public class DBSyncService {
         return fit;
     }
 
-
-
     private Map<String, Object> appendMultiLangCommaStringProperties (String originalNodeType, String langCd, Map<String, Object> additional){
         // 차트는 그룹콘캣이 불필요하므로 처리할 필요가 없음
         logger.debug("MULTILINGUAL SEPARATED SUB QUERY :: " + originalNodeType + "/" + langCd);
@@ -234,10 +250,6 @@ public class DBSyncService {
 
         return additional;
     }
-
-
-
-
 
     private Map<String, Object> getMultiLanguageInfo (Map<String, Object> queryMap, String multiLangQuery, String foreignKey) {
         Map<String, Object> additional = new HashMap<String, Object>();
@@ -293,7 +305,6 @@ public class DBSyncService {
         return additional;
     }
 
-
     // 복수 키 수용 못함
     private Map<String, Object> getImageInfo(Map<String, Object> queryMap, String targetNodeTypeId, String nodePKPid) {
         Map<String, Object> imageValues = new HashMap<String, Object>();
@@ -313,7 +324,6 @@ public class DBSyncService {
         }
         return imageValues;
     }
-
 
     private List<String> executeSingleTaskAndRecord (Node executionNode, List<Map<String, Object>> queryRs, String mig_target, String mig_type) throws Exception {
         List<String> successIds = new ArrayList<>();
@@ -386,12 +396,11 @@ public class DBSyncService {
         return  successIds;
     }
 
-
     /*
     * 결과가 안나올 때까지 이터레이션하면서 처리한다, 쿼리에 반드시 limit @{start} @{unit} 있어야 한다
     * start unit 외 다른 파라미터는 받을 수 없음
     * */
-    public void executeWithIteration (String executeId) throws Exception {
+    private void executeWithIteration (String executeId) throws Exception {
 //        int max = 1;
         logger.info("DBSyncService.executeWithIteration :: " + executeId);
         boolean loop = true;
@@ -404,10 +413,6 @@ public class DBSyncService {
         String targetNodeType = null;
         JdbcTemplate template = null;
 
-        if(!storage.isAbleToRun(executeId)){
-            logger.info("[ " + executeId + " ] is already in process");
-            return;
-        }
 
         while(loop) {
             // i 가 0 부터 99 까지
@@ -503,17 +508,7 @@ public class DBSyncService {
                 ,targetNodeType, successCnt, skippedCnt, jobTaken, startTime);
     }
 
-
-    public void executeForNewData (String mig_target, String executeId, Date provided) throws Exception {
-        // last Execution 시간은 MIG_DATA_HISTORY 에서 찾을 수 있음
-        // MSSQL 펑션이 있다고 생각하고 파라미터로 마지막 날짜를 던져서 노드 생성하면 됨
-
-        if(!storage.isAbleToRun(executeId)){
-            logger.info("[ " + executeId + " ] is already in process");
-            return;
-        }
-
-
+    private void executeWithRange(String mig_target, String executeId, Date provided) throws Exception {
         String queryForLastExecution =
                 "SELECT execution_date as lastUpdated "
                         + "FROM MIG_HISTORY "
@@ -551,6 +546,131 @@ public class DBSyncService {
         successIds = executeSingleTaskAndRecord(executionNode, targets2Update, "MNET", "SCHEDULE");
     }
 
+    public void executeForInitData (String type) throws Exception {
+        switch (type) {
+            case "all" :
+                for(String executeId : mnetExecuteIds) {
+                    ParallelDBSyncExecutor parallel = new ParallelDBSyncExecutor(executeId) {
+                        @Override
+                        public void run() {
+                            try{
+                                this.dbSyncService.executeWithIteration(this.executeId);
+                            } catch (Exception e) {
+                                logger.error("Error occurs in Thread : ", e);
+                            }
+                        }
+                    };
+                    parallel.executeMigration();
+                }
+                break;
+            case "album" :
+                if(storage.isAbleToRun("album")) {
+                    executeWithIteration("album");
+                } else {
+                    logger.info("[ album ] Task is already Running. Ignore this request");
+                }
+                break;
+            case "artist" :
+                if(storage.isAbleToRun("artist")) {
+                    executeWithIteration("artist");
+                } else {
+                    logger.info("[ artist ] Task is already Running. Ignore this request");
+                }
+                break;
+            case "song" :
+                if(storage.isAbleToRun("song")) {
+                    executeWithIteration("song");
+                } else {
+                    logger.info("[ song ] Task is already Running. Ignore this request");
+                }
+                break;
+            case "mv" :
+                if(storage.isAbleToRun("musicVideo")) {
+                    executeWithIteration("musicVideo");
+                } else {
+                    logger.info("[ musicVideo ] Task is already Running. Ignore this request");
+                }
+                break;
+            case "chart" :
+                if(storage.isAbleToRun("mcdChartBasInfo")) {
+                    executeWithIteration("mcdChartBasInfo");
+                } else {
+                    logger.info("[ mcdChartBasInfo ] Task is already Running. Ignore this request");
+                }
+                if(storage.isAbleToRun("mcdChartStats")) {
+                    executeWithIteration("mcdChartStats");
+                } else {
+                    logger.info("[ mcdChartStats ] Task is already Running. Ignore this request");
+                }
+            default:
+                logger.info("Could not find appropriate type for migration");
+                break;
+        }
+    }
+
+    public void executeForNewData (String mig_target, String type, Date provided) throws Exception {
+        switch (type) {
+            case "all" :
+                for(String executeId : mnetPartialExecuteIds) {
+                    ParallelDBSyncExecutor parallel = new ParallelDBSyncExecutor(executeId) {
+                        @Override
+                        public void run() {
+                            try{
+                                this.dbSyncService.executeWithRange("mnet", this.executeId, provided);
+                            } catch (Exception e) {
+                                logger.error("Error occurs in Thread : ", e);
+                            }
+                        }
+                    };
+                    parallel.executeMigration();
+                }
+                break;
+            case "album" :
+                if(storage.isAbleToRun("albumPart")) {
+                    executeWithRange("mnet", "albumPart", provided);
+                } else {
+                    logger.info("[ albumPart ] Task is already Running. Ignore this request");
+                }
+                break;
+            case "artist" :
+                if(storage.isAbleToRun("artistPart")) {
+                    executeWithRange("mnet", "artistPart", provided);
+                } else {
+                    logger.info("[ artistPart ] Task is already Running. Ignore this request");
+                }
+                break;
+            case "song" :
+                if(storage.isAbleToRun("songPart")) {
+                    executeWithRange("mnet", "songPart", provided);
+                } else {
+                    logger.info("[ songPart ] Task is already Running. Ignore this request");
+                }
+                break;
+            case "mv" :
+                if(storage.isAbleToRun("musicVideoPart")) {
+                    executeWithRange("mnet", "musicVideoPart", provided);
+                } else {
+                    logger.info("[ musicVideoPart ] Task is already Running. Ignore this request");
+                }
+                break;
+            case "chart" :
+                if(storage.isAbleToRun("mcdChartBasInfoPart")) {
+                    executeWithRange("mnet", "mcdChartBasInfoPart", provided);
+                } else {
+                    logger.info("[ mcdChartBasInfoPart ] Task is already Running. Ignore this request");
+                }
+
+                if(storage.isAbleToRun("mcdChartStatsPart")) {
+                    executeWithRange("mnet", "mcdChartStatsPart", provided);
+                } else {
+                    logger.info("[ mcdChartStatsPart ] Task is already Running. Ignore this request");
+                }
+                break;
+            default:
+                logger.info("Could not find appropriate type for migration");
+                break;
+        }
+    }
 
     public void loadTable2Node(String tid, boolean skip) {
         NodeType nt = nodeService.getNodeType(tid);
