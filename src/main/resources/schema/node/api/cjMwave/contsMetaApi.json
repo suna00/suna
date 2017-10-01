@@ -42,8 +42,19 @@
           "value": "{{:albumGenreCd}}"
         },
         {
-          "searchFields": "albumNm_{{:langCd}},albumDesc_{{:langCd}},findKywrd",
-          "searchValue": "{{:searchKeyword}}"
+          "field": "albumNm_{{:langCd}}",
+          "method": "wildcardShould",
+          "value": "{{:searchKeyword}}*"
+        },
+        {
+          "field": "albumDesc_{{:langCd}}",
+          "method": "wildcardShould",
+          "value": "{{:searchKeyword}}*"
+        },
+        {
+          "field": "findKywrd_{{:langCd}}",
+          "method": "matchingShould",
+          "value": "{{:searchKeyword}}"
         },
         {
           "field": "showYn",
@@ -129,8 +140,19 @@
           "value": "{{:albumId}}"
         },
         {
-          "searchFields": "songNm_{{:langCd}},songDesc_{{:langCd}},findKywrd",
-          "searchValue": "{{:searchKeyword}}"
+          "field": "songNm_{{:langCd}}",
+          "method": "wildcardShould",
+          "value": "{{:searchKeyword}}*"
+        },
+        {
+          "field": "songDesc_{{:langCd}}",
+          "method": "wildcardShould",
+          "value": "{{:searchKeyword}}*"
+        },
+        {
+          "field": "findKywrd_{{:langCd}}",
+          "method": "matchingShould",
+          "value": "{{:searchKeyword}}"
         },
         {
           "field": "showYn",
@@ -200,8 +222,19 @@
           "value": "{{:genreCd}}"
         },
         {
-          "searchFields": "artistNm_{{:langCd}},artistDesc_{{:langCd}},findKywrd",
-          "searchValue": "{{:searchKeyword}}"
+          "field": "artistNm_{{:langCd}}",
+          "method": "wildcardShould",
+          "value": "{{:searchKeyword}}*"
+        },
+        {
+          "field": "artistDesc_{{:langCd}}",
+          "method": "wildcardShould",
+          "value": "{{:searchKeyword}}*"
+        },
+        {
+          "field": "findKywrd",
+          "method": "matchingShould",
+          "value": "{{:searchKeyword}}"
         },
         {
           "field": "showYn",
@@ -287,8 +320,19 @@
           "value": "{{:contsMetaCtgryId}}"
         },
         {
-          "searchFields": "musicVideoNm_{{:langCd}},musicVideoDesc_{{:langCd}},findKywrd",
-          "searchValue": "{{:searchKeyword}}"
+          "field": "musicVideoNm_{{:langCd}}",
+          "method": "wildcardShould",
+          "value": "{{:searchKeyword}}*"
+        },
+        {
+          "field": "musicVideoDesc_{{:langCd}}",
+          "method": "wildcardShould",
+          "value": "{{:searchKeyword}}*"
+        },
+        {
+          "field": "findKywrd_{{:langCd}}",
+          "method": "matchingShould",
+          "value": "{{:searchKeyword}}"
         },
         {
           "field": "showYn",
@@ -545,8 +589,19 @@
             "value": "{{:artistId}}"
           },
           {
-            "searchFields": "newsNm,newsDesc,findKywrd",
-            "searchValue": "{{:searchKeyword}}"
+            "field": "newsNm",
+            "method": "wildcardShould",
+            "value": "{{:searchKeyword}}*"
+          },
+          {
+            "field": "newsDesc",
+            "method": "wildcardShould",
+            "value": "{{:searchKeyword}}*"
+          },
+          {
+            "field": "findKywrd",
+            "method": "matchingShould",
+            "value": "{{:searchKeyword}}"
           },
           {
             "field": "apvSttusCd",
@@ -1170,8 +1225,14 @@
           "value": "{{:artistId}}"
         },
         {
-          "searchFields": "singlePhotoNm_{{:langCd}},singlePhotoDesc_{{:langCd}}",
-          "searchValue": "{{:searchKeyword}}"
+          "field": "singlePhotoNm_{{:langCd}}",
+          "method": "wildcardShould",
+          "value": "{{:searchKeyword}}*"
+        },
+        {
+          "field": "singlePhotoDesc_{{:langCd}}",
+          "method": "wildcardShould",
+          "value": "{{:searchKeyword}}*"
         },
         {
           "sorting": "{{:sorting}}"
@@ -1292,8 +1353,29 @@
           "value": "{{:rcmdContsYn}}"
         },
         {
-          "searchFields": "title_{{:langCd}},contentTitle_{{:langCd}},synopsis_{{:langCd}},prsnName,searchKeyword",
-          "searchValue": "{{:searchKeyword}}"
+          "field": "title_{{:langCd}}",
+          "method": "wildcardShould",
+          "value": "{{:searchKeyword}}*"
+        },
+        {
+          "field": "contentTitle_{{:langCd}}",
+          "method": "wildcardShould",
+          "value": "{{:searchKeyword}}*"
+        },
+        {
+          "field": "synopsis_{{:langCd}}",
+          "method": "wildcardShould",
+          "value": "{{:searchKeyword}}*"
+        },
+        {
+          "field": "prsnName",
+          "method": "matchingShould",
+          "value": "{{:searchKeyword}}"
+        },
+        {
+          "field": "searchKeyword",
+          "method": "matchingShould",
+          "value": "{{:searchKeyword}}"
         },
         {
           "sorting": "{{:sorting}}"
@@ -1548,13 +1630,29 @@
           "value": "{{:rcmdContsYn}}"
         },
         {
-          "field": "searchKeyword",
-          "method": "matching",
+          "field": "title_{{:langCd}}",
+          "method": "wildcardShould",
+          "value": "{{:searchKeyword}}*"
+        },
+        {
+          "field": "contentTitle_{{:langCd}}",
+          "method": "wildcardShould",
+          "value": "{{:searchKeyword}}*"
+        },
+        {
+          "field": "synopsis_{{:langCd}}",
+          "method": "wildcardShould",
+          "value": "{{:searchKeyword}}*"
+        },
+        {
+          "field": "prsnName",
+          "method": "matchingShould",
           "value": "{{:searchKeyword}}"
         },
         {
-          "searchFields": "title_{{:langCd}},contentTitle_{{:langCd}},synopsis_{{:langCd}},prsnName,searchKeyword",
-          "searchValue": "{{:searchKeyword}}"
+          "field": "searchKeyword",
+          "method": "matchingShould",
+          "value": "{{:searchKeyword}}"
         },
         {
           "sorting": "{{:sorting}}"
