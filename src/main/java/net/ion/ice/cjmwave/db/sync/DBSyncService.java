@@ -97,13 +97,6 @@ public class DBSyncService {
                     String mnetFileUrl =
                             MigrationUtils.getMnetFileUrl(nodePKValue
                                     , targetNodeTypeId, targetNodeTypeId.equals("album") ? "360" : "320");
-//                    File physicalFile = MigrationUtils.retrieveRemoteFile(defaultFilePath + "/mnet", mnetFileUrl);
-//                    String s3Path = "";
-//                    if(physicalFile != null) s3Path = s3UploadService.uploadToS3(targetNodeTypeId, physicalFile);
-//                    logger.info("s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3");
-//                    logger.info("s3 :: " + s3Path);
-//                    logger.info("s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3 s3");
-//                    imageValues.put("imgUrl", MigrationUtils.retrieveRemoteFile(defaultFilePath + "/mnet", mnetFileUrl));
                     imageValues.put("imgUrl", mnetFileUrl);
                 }
             } catch (Exception e) {
@@ -222,7 +215,7 @@ public class DBSyncService {
             failPolicy = (!"NULL".equals(failPolicy) && "STOP".equals(failPolicy)) ? "STOP" : "SKIP";
 
 
-
+//            nodeService.startBatch(targetNodeType);
             /*
             다국어 처리가 여기로 변경되어야 함
             {pid}_{langCd}
@@ -286,6 +279,8 @@ public class DBSyncService {
                 }
                 i++;
             }
+
+//            nodeService.endBatch(targetNodeType, true);
         }
 
         long jobTaken = (new Date().getTime() - startTime.getTime());
