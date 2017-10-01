@@ -1,6 +1,8 @@
 package net.ion.ice.cjmwave.external.mnet;
 
+import net.ion.ice.cjmwave.db.sync.DBProcessStorage;
 import net.ion.ice.cjmwave.db.sync.DBSyncService;
+import net.ion.ice.cjmwave.db.sync.ParallelDBSyncExecutor;
 import net.ion.ice.cjmwave.external.mnet.data.MnetNodeRecoveryService;
 import net.ion.ice.cjmwave.external.mnet.schedule.ScheduledMnetService;
 import org.apache.log4j.Logger;
@@ -36,6 +38,10 @@ public class MnetController {
     @Autowired
     MnetNodeRecoveryService mnetNodeRecoveryService;
 
+    @Autowired
+    DBProcessStorage storage;
+
+
     /*
     * csv 가 MYSQL 로 부어졌다는 전제가 있음
     * mysql 테이블 기준으로 쿼리해서 노드로 밀어넣는다
@@ -59,7 +65,18 @@ public class MnetController {
             switch (type) {
                 case "all" :
                     for(String executeId : mnetExecuteIds) {
-                        dbSyncService.executeWithIteration(executeId);
+//                        dbSyncService.executeWithIteration(executeId);
+                        ParallelDBSyncExecutor parallel = new ParallelDBSyncExecutor(executeId) {
+                            @Override
+                            public void run() {
+                                try{
+                                    this.dbSyncService.executeWithIteration(this.executeId);
+                                } catch (Exception e) {
+                                    logger.error("Error occurs in Thread : ", e);
+                                }
+                            }
+                        };
+                        parallel.executeMigration();
                     }
                     break;
                 case "album" :

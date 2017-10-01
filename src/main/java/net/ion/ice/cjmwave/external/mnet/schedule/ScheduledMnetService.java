@@ -1,6 +1,7 @@
 package net.ion.ice.cjmwave.external.mnet.schedule;
 
 import net.ion.ice.cjmwave.db.sync.DBSyncService;
+import net.ion.ice.cjmwave.db.sync.ParallelDBSyncExecutor;
 import net.ion.ice.cjmwave.external.mnet.data.MnetDataDumpService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,10 +48,22 @@ public class ScheduledMnetService {
             logger.info("Migration schedule :: Step2");
             // 이전 실행시간 히스토리에서 가져와서 파라미터로 수행한다
             // dbSyncProcess 의 주기적 쿼리를 실행하도록 처리
+
             switch (type) {
                 case "all" :
                     for(String executeId : mnetExecuteIds) {
-                        dbSyncService.executeForNewData("mnet", executeId, provided);
+//                        dbSyncService.executeForNewData("mnet", executeId, provided);
+                        ParallelDBSyncExecutor parallel = new ParallelDBSyncExecutor(executeId) {
+                            @Override
+                            public void run() {
+                                try{
+                                    this.dbSyncService.executeForNewData("mnet", this.executeId, provided);
+                                } catch (Exception e) {
+                                    logger.error("Error occurs in Thread : ", e);
+                                }
+                            }
+                        };
+                        parallel.executeMigration();
                     }
                     break;
                 case "album" :

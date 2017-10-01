@@ -36,7 +36,7 @@
     , "targetDs": "cjDb"
     , "targetNodeType": "musicVideo"
     , "query": "SELECT MV_ID as musicVideoId , MV_TITLE as musicVideoNm , MV_SUBTITLE as subName , GENRE_CD as genreCd , MV_INTRO as musicVideoDesc, STR_TO_DATE(RELEASE_YMD, '%Y%m%d') as comotDt , ARTIST_IDS as artistId , (SELECT YOUTUBE_URL FROM MT_MV_EMBED WHERE MV_ID = MV.MV_ID) as youtubeUrl , (SELECT TUDOU_URL FROM MT_MV_EMBED WHERE MV_ID = MV.MV_ID) as todouUrl , RUNNING_TIME as playTime, 1 as mnetIfTrtYn , DISPLAY_FLG as showYn , SONG_ID as relSongIds FROM (SELECT * FROM MT_MV ORDER BY MV_ID ASC LIMIT @{BIGINT.start}, @{BIGINT.unit}) MV"
-    , "multiLanguageQuery" : "SELECT mv_id as musicVideoId , lang_cd as langCd , mv_title as musicVideoNm , mv_subtitle as subName , mv_intro as musicVideoDesc , (SELECT YOUTUBE_URL FROM MT_MV_EMBED WHERE MV_ID = MMM.mv_id) as youtubeUrl , (SELECT TUDOU_URL FROM MT_MV_EMBED WHERE MV_ID = MMM.mv_id) as todouUrl FROM MT_MV_META MMM mv_id=@{VARCHAR.id}"
+    , "multiLanguageQuery" : "SELECT mv_id as musicVideoId , lang_cd as langCd , mv_title as musicVideoNm , mv_subtitle as subName , mv_intro as musicVideoDesc , (SELECT YOUTUBE_URL FROM MT_MV_EMBED WHERE MV_ID = MMM.mv_id) as youtubeUrl , (SELECT TUDOU_URL FROM MT_MV_EMBED WHERE MV_ID = MMM.mv_id) as todouUrl FROM MT_MV_META MMM WHERE mv_id=@{VARCHAR.id}"
     , "onFail": "skip"
   }
 
