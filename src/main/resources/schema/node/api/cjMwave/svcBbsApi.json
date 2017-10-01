@@ -54,8 +54,14 @@
           "value": "true"
         },
         {
-          "searchFields":"ntfBbsNm_{{:langCd}},ntfSbst_{{:langCd}}",
-          "searchValue":"{{:searchKeyword}}"
+          "field": "ntfBbsNm_{{:langCd}}",
+          "method": "wildcardShould",
+          "value": "{{:searchKeyword}}*"
+        },
+        {
+          "field": "ntfSbst_{{:langCd}}",
+          "method": "wildcardShould",
+          "value": "{{:searchKeyword}}*"
         },
         {
           "sorting": "{{:sorting}}"
@@ -327,8 +333,14 @@
           "value": "true"
         },
         {
-          "searchFields":"qstnSbst,ansrSbst",
-          "searchValue":"{{:searchKeyword}}"
+          "field": "qstnSbst",
+          "method": "wildcardShould",
+          "value": "{{:searchKeyword}}*"
+        },
+        {
+          "field": "ansrSbst",
+          "method": "wildcardShould",
+          "value": "{{:searchKeyword}}*"
         },
         {
           "sorting": "{{:sorting}}"

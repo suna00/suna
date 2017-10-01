@@ -106,8 +106,19 @@
           "value": "true"
         },
         {
-          "searchFields": "voteNm_{{:langCd}},voteDesc_{{:langCd}},findKywrd",
-          "searchValue": "{{:searchKeyword}}"
+          "field": "voteNm_{{:langCd}}",
+          "method": "wildcardShould",
+          "value": "{{:searchKeyword}}*"
+        },
+        {
+          "field": "voteDesc_{{:langCd}}",
+          "method": "wildcardShould",
+          "value": "{{:searchKeyword}}*"
+        },
+        {
+          "field": "findKywrd",
+          "method": "matchingShould",
+          "value": "{{:searchKeyword}}"
         },
         {
           "sorting": "{{:sorting}}"
