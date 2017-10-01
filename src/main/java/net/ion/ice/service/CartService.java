@@ -263,7 +263,7 @@ public class CartService {
 
                     if (map.get(cartProductItem_TID) != null) createCartProductItem(cartProductMap);
 
-                    deliveryService.setDeliveryPrice(cartProductMap, product);
+                    deliveryService.setDeliveryPrice(cartProductMap, product, "cart");
                 }
 
             }
@@ -301,7 +301,7 @@ public class CartService {
                 if (i == 0) {
                     if (map.get(cartProductItem_TID) != null) createCartProductItem(cartProductMap);
                 }
-                deliveryService.setDeliveryPrice(cartProductMap, product);
+                deliveryService.setDeliveryPrice(cartProductMap, product, "cart");
             }
         } else {
             map.put("quantity", quantity);
@@ -309,7 +309,7 @@ public class CartService {
 
             if (map.get(cartProductItem_TID) != null) createCartProductItem(cartProductMap);
 
-            deliveryService.setDeliveryPrice(cartProductMap, product);
+            deliveryService.setDeliveryPrice(cartProductMap, product, "cart");
         }
 
         return cartProductMap;

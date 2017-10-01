@@ -16,9 +16,9 @@ import java.util.*;
 @Service("deliveryService")
 public class DeliveryService {
     @Autowired
-    private NodeBindingService nodeBindingService ;
+    private NodeBindingService nodeBindingService;
     @Autowired
-    private NodeService nodeService ;
+    private NodeService nodeService;
 
     public void removeDeliveryPrice(String cartProductId) throws IOException {
         Map<String, Object> result = getCartDeliveryPriceMap(cartProductId);
@@ -38,47 +38,104 @@ public class DeliveryService {
         }
     }
 
-    public void setDeliveryPrice(Map<String, Object> cartProduct, Node product) throws IOException {
-        Map<String, Object> map = new LinkedHashMap<String, Object>(cartProduct);
-        String deliveryPriceType = StringUtils.substringAfter(product.get("deliveryPriceType").toString(), ">");
-        String deliveryMethod = StringUtils.substringAfter(product.get("deliveryMethod").toString(), ">");
-        String deliveryDateType = StringUtils.substringAfter(product.get("deliveryDateType").toString(), ">");
-        map.putAll(product);
-        map.remove("cartProductItem");
+    public void setDeliveryPrice(Map<String, Object> storeProduct, Node productNode, String nodeTypeId) throws IOException {
+        Map<String, Object> storeProductMap = new LinkedHashMap(storeProduct);
+        String deliveryPriceType = String.valueOf(productNode.getBindingValue("deliveryPriceType"));
+        String deliveryMethod = String.valueOf(productNode.getBindingValue("deliveryMethod"));
+        String deliveryDateType = String.valueOf(productNode.getBindingValue("deliveryDateType"));
+        storeProductMap.putAll(productNode);
+        storeProductMap.remove("cartProductItem");
 
         // 유료배송비 : charge
         // 수량별배송비 : quantity (기준수량별로 장바구니 상품 row 나뉘고 setDeliveryPrice 이므로 무조건 create)
         if ("quantity".equals(deliveryPriceType) || "charge".equals(deliveryPriceType)) {
-            map.put("cartProductIds", map.get("cartProductId"));
-            CommonService.resetMap(map);
-            nodeService.executeNode(map, CartService.cartDeliveryPrice_TID, CommonService.CREATE);
+            switch (nodeTypeId) {
+
+                case "cart":
+                    storeProductMap.put("cartProductIds", storeProductMap.get("cartProductId"));
+                    CommonService.resetMap(storeProductMap);
+                    nodeService.executeNode(storeProductMap, CartService.cartDeliveryPrice_TID, CommonService.CREATE);
+                    break;
+
+                case "tempOrder":
+                    storeProductMap.put("tempOrderProductIds", storeProductMap.get("tempOrderProductId"));
+                    CommonService.resetMap(storeProductMap);
+                    nodeService.executeNode(storeProductMap, "tempOrderDeliveryPrice", CommonService.CREATE);
+                    break;
+            }
+
         } else {
             // 무료배송비 : free
             // 조건부무료배송 : conditional
-            String searchText = "cartId_equals=" + map.get("cartId")
-                    + "&vendorId_equals=" + map.get("vendorId")
-                    + "&bundleDeliveryYn_equals=y&deliveryPriceType_in=free,conditional"
-                    + "&deliveryMethod_equals=" + deliveryMethod
-                    + "&deliveryDateType_equals=" + deliveryDateType
-                    + ("hopeDelivery".equals(deliveryDateType) ? "&hopeDeliveryDate_equals=" + cartProduct.get("hopeDeliveryDate") : "")
-                    + ("scheduledDelivery".equals(deliveryDateType) ? "&scheduledDeliveryDate_equals=" + cartProduct.get("scheduledDeliveryDate") : "");
+            String searchText = "";
+            List<Map<String, Object>> deliveryPriceList = new ArrayList<>();
 
-            List<Map<String, Object>> cartDeliveryPrices = nodeBindingService.list(CartService.cartDeliveryPrice_TID, searchText);
-            if (cartDeliveryPrices.size() == 0) {
-                map.put("deliveryPrice", calculateDeliveryPrice(map.get("cartProductId").toString()));
-                map.put("cartProductIds", map.get("cartProductId"));
-                CommonService.resetMap(map);
-                nodeService.executeNode(map, CartService.cartDeliveryPrice_TID, CommonService.CREATE);
+            switch (nodeTypeId) {
+                case "cart":
+                    searchText = "cartId_equals=" + storeProductMap.get("cartId")
+                            + "&vendorId_equals=" + storeProductMap.get("vendorId")
+                            + "&bundleDeliveryYn_equals=y&deliveryPriceType_in=free,conditional"
+                            + "&deliveryMethod_equals=" + deliveryMethod
+                            + "&deliveryDateType_equals=" + deliveryDateType
+                            + ("hopeDelivery".equals(deliveryDateType) ? "&hopeDeliveryDate_equals=" + storeProduct.get("hopeDeliveryDate") : "")
+                            + ("scheduledDelivery".equals(deliveryDateType) ? "&scheduledDeliveryDate_equals=" + storeProduct.get("scheduledDeliveryDate") : "");
+                    deliveryPriceList = nodeBindingService.list(CartService.cartDeliveryPrice_TID, searchText);
+                    break;
+
+                case "tempOrder":
+                    searchText = "tempOrderId_equals=" + storeProductMap.get("tempOrderId")
+                            + "&vendorId_equals=" + storeProductMap.get("vendorId")
+                            + "&bundleDeliveryYn_equals=y&deliveryPriceType_in=free,conditional"
+                            + "&deliveryMethod_equals=" + deliveryMethod
+                            + "&deliveryDateType_equals=" + deliveryDateType
+                            + ("hopeDelivery".equals(deliveryDateType) ? "&hopeDeliveryDate_equals=" + storeProduct.get("hopeDeliveryDate") : "")
+                            + ("scheduledDelivery".equals(deliveryDateType) ? "&scheduledDeliveryDate_equals=" + storeProduct.get("scheduledDeliveryDate") : "");
+                    deliveryPriceList = nodeBindingService.list(CartService.cartDeliveryPrice_TID, searchText);
+                    break;
+
+            }
+
+            if (deliveryPriceList.size() == 0) {
+                switch (nodeTypeId) {
+                    case "cart":
+                        storeProductMap.put("deliveryPrice", calculateDeliveryPrice(storeProductMap.get("cartProductId").toString()));
+                        storeProductMap.put("cartProductIds", storeProductMap.get("cartProductId"));
+                        CommonService.resetMap(storeProductMap);
+                        nodeService.executeNode(storeProductMap, CartService.cartDeliveryPrice_TID, CommonService.CREATE);
+                        break;
+
+                    case "tempOrder":
+                        storeProductMap.put("deliveryPrice", calculateDeliveryPrice(storeProductMap.get("tempOrderProductId").toString()));
+                        storeProductMap.put("tempOrderProductIds", storeProductMap.get("tempOrderProductId"));
+                        CommonService.resetMap(storeProductMap);
+                        nodeService.executeNode(storeProductMap, "tempOrderDeliveryPrice", CommonService.CREATE);
+                        break;
+                }
+
+
             } else {
-                for (Map<String, Object> deliveryPrice : cartDeliveryPrices) {
-                    String cartProductIds = (deliveryPrice.get("cartProductIds").toString()).concat(",").concat(map.get("cartProductId").toString());
+                switch (nodeTypeId) {
+                    case "cart":
+                        for (Map<String, Object> cartDeliveryPrice : deliveryPriceList) {
+                            String cartProductIds = (cartDeliveryPrice.get("cartProductIds").toString()).concat(",").concat(storeProductMap.get("cartProductIds").toString());
+                            cartDeliveryPrice.put("deliveryPriceType", ("free".equals(cartDeliveryPrice.get("deliveryPriceType")) || "free".equals(deliveryPriceType) ? "free" : "conditional"));
+                            cartDeliveryPrice.put("deliveryPrice", calculateDeliveryPrice(cartProductIds));
+                            cartDeliveryPrice.put("cartProductIds", cartProductIds);
+                            CommonService.resetMap(cartDeliveryPrice);
+                            nodeService.executeNode(cartDeliveryPrice, CartService.cartDeliveryPrice_TID, CommonService.UPDATE);
+                        }
+                        break;
 
-                    deliveryPrice.put("deliveryPriceType", ("free".equals(deliveryPrice.get("deliveryPriceType")) || "free".equals(deliveryPriceType) ? "free" : "conditional"));
-                    deliveryPrice.put("deliveryPrice", calculateDeliveryPrice(cartProductIds));
-                    deliveryPrice.put("cartProductIds", cartProductIds);
-                    CommonService.resetMap(deliveryPrice);
-                    nodeService.executeNode(deliveryPrice, CartService.cartDeliveryPrice_TID, CommonService.UPDATE);
-
+                    case "tempOrder":
+                        for (Map<String, Object> tempOrderDeliveryPrice : deliveryPriceList) {
+                            String tempOrderProductIds = (tempOrderDeliveryPrice.get("tempOrderProductIds").toString()).concat(",").concat(storeProductMap.get("tempOrderProductIds").toString());
+                            tempOrderDeliveryPrice.put("deliveryPriceType", ("free".equals(tempOrderDeliveryPrice.get("deliveryPriceType")) || "free".equals(deliveryPriceType) ? "free" : "conditional"));
+                            tempOrderDeliveryPrice.put("deliveryPrice", calculateDeliveryPrice(tempOrderProductIds));
+                            tempOrderDeliveryPrice.put("tempOrderProductIds", tempOrderProductIds);
+                            CommonService.resetMap(tempOrderDeliveryPrice);
+                            nodeService.executeNode(tempOrderDeliveryPrice, "tempOrderDeliveryPrice", CommonService.UPDATE);
+                        }
+                        break;
                 }
             }
         }
