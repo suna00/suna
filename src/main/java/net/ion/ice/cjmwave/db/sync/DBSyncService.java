@@ -253,6 +253,7 @@ public class DBSyncService {
                 // langcd 랑 뭐 이것저것 들었다고 치자
                 for(Map<String, Object> singleLangMap : multiLanguageInformation) {
                     String langCd = String.valueOf(singleLangMap.get("langCd"));
+                    langCd = langCd.toLowerCase();
                     Iterator<String> multiIter = singleLangMap.keySet().iterator();
                     while(multiIter.hasNext()) {
                         String k = multiIter.next();
@@ -276,7 +277,7 @@ public class DBSyncService {
 
 
                         if(!k.equals("langCd")) {
-                            additional.put(k + "_" + langCd.toLowerCase(), v);
+                            additional.put(k + "_" + langCd, v);
                         }
                     }
                 }
