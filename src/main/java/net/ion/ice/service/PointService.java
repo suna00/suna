@@ -37,8 +37,6 @@ public class PointService {
     @Autowired
     private NodeBindingService nodeBindingService ;
 
-    private JdbcTemplate jdbcTemplate = NodeUtils.getNodeBindingInfo("YPoint").getJdbcTemplate();
-
     public boolean checkUsablePoint(String memberNo, String type, int usePoint){
         Node node = NodeUtils.getNode(MEMBER, memberNo);
         if(Integer.parseInt(node.get(type).toString()) < usePoint) return false;
@@ -46,6 +44,7 @@ public class PointService {
     }
 
     public Double getTotalBalance(String type, String memberNo) {
+        JdbcTemplate jdbcTemplate = NodeUtils.getNodeBindingInfo("YPoint").getJdbcTemplate();
         String YPointQuery = "select IFNULL(sum(balance), 0) as totalBalance\n" +
                 "from ypoint\n" +
                 "where memberNo = ? \n" +
