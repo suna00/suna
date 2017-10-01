@@ -132,7 +132,7 @@ public class QueryUtils {
                     context.addJoinQuery(joinQueryContext);
                 }
             } else {
-                QueryTerm queryTerm = makePropertyQueryTerm(context.getQueryTermType(), nodeType, q.get("field").toString(), method, queryValue);
+                QueryTerm queryTerm = makePropertyQueryTerm(context.getQueryTermType(), nodeType, field, method, queryValue);
                 if (queryTerm != null) {
                     queryTerms.add(queryTerm);
                 }
