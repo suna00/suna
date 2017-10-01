@@ -12,18 +12,30 @@ import org.apache.lucene.index.DocValuesType;
 import org.apache.lucene.index.IndexOptions;
 import org.hibernate.search.bridge.FieldBridge;
 import org.hibernate.search.bridge.LuceneOptions;
+import org.hibernate.search.bridge.MetadataProvidingFieldBridge;
+import org.hibernate.search.bridge.spi.FieldMetadataBuilder;
 
 import java.util.Date;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by jaeho on 2017. 3. 31..
  */
-public class PropertiesFieldBridge implements FieldBridge {
+public class PropertiesFieldBridge implements FieldBridge, MetadataProvidingFieldBridge {
 
     public PropertiesFieldBridge(){
         System.out.println("INIT FIELD");
     }
+
+    private FieldMetadataBuilder builder ;
+
+    @Override
+    public void configureFieldMetadata(String name, FieldMetadataBuilder builder) {
+        System.out.print(name);
+        this.builder = builder ;
+    }
+
 
     @Override
     public void set(String fieldName, Object value, Document document, LuceneOptions luceneOptions) {
@@ -58,18 +70,22 @@ public class PropertiesFieldBridge implements FieldBridge {
 
         switch (valueType) {
             case LONG :{
+//                builder.field(pid, org.hibernate.search.bridge.spi.FieldType.LONG) ;
                 document.add(new org.apache.lucene.document.LongField(pid, NodeUtils.getLongValue(entry.getValue()), numericFieldType(valueType)));
                 break;
             }
             case INT :{
+//                builder.field(pid, org.hibernate.search.bridge.spi.FieldType.INTEGER) ;
                 document.add(new org.apache.lucene.document.IntField(pid, NodeUtils.getIntValue(entry.getValue()), numericFieldType(valueType)));
                 break;
             }
             case DOUBLE :{
+//                builder.field(pid, org.hibernate.search.bridge.spi.FieldType.DOUBLE) ;
                 document.add(new org.apache.lucene.document.DoubleField(pid, NodeUtils.getDoubleValue(entry.getValue()), numericFieldType(valueType)));
                 break;
             }
             case DATE :{
+//                builder.field(pid, org.hibernate.search.bridge.spi.FieldType.LONG) ;
                 document.add(new org.apache.lucene.document.LongField(pid,NodeUtils.getDateLongValue(entry.getValue()), numericFieldType(PropertyType.ValueType.LONG)));
                 break;
             }
@@ -78,6 +94,7 @@ public class PropertiesFieldBridge implements FieldBridge {
 //                document.add(field);
 //            }
             default:{
+//                builder.field(pid, org.hibernate.search.bridge.spi.FieldType.STRING) ;
 //                Field field = new AnalyzerField(pid, entry.getValue().toString(), propertyType.isSorted() ? sortedFieldAnalyzer(propertyType.getLuceneAnalyzer()) : fieldAnalyzer(propertyType.getLuceneAnalyzer())) ;
                 if(propertyType.isI18n()){
                     if(entry.getValue() instanceof Map){
@@ -201,6 +218,7 @@ public class PropertiesFieldBridge implements FieldBridge {
 //        fieldType.setAnalyzer(AnalyzerFactory.getAnalyzer(PropertyType.AnalyzerType.simple));
         return fieldType;
     }
+
 
 //    @Override
 //    public void set(String name, Object value, Document document, LuceneOptions luceneOps) {

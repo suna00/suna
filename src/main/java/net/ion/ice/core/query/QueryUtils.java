@@ -43,6 +43,10 @@ public class QueryUtils {
             } else if (paramName.contains("_")) {
                 String fieldId = StringUtils.substringBeforeLast(paramName, "_");
                 String method = StringUtils.substringAfterLast(paramName, "_");
+                if(method.equals("facet")){
+                    queryContext.addFacetTerm(new FacetTerm(fieldId, value));
+                }
+
                 QueryTerm queryTerm = QueryUtils.makePropertyQueryTerm(queryContext.getQueryTermType(), nodeType, fieldId, method, value);
                 if (queryTerm == null) {
                     queryTerm = QueryUtils.makePropertyQueryTerm(queryContext.getQueryTermType(), nodeType, paramName, null, value);
@@ -101,10 +105,16 @@ public class QueryUtils {
         if (q.containsKey("field") && q.containsKey("method")) {
             String field = q.get("field").toString();
             String method = q.get("method").toString();
+
             Object value = ContextUtils.getValue(q.get("value"), context.getData());
+
+            if(method.equals("facet")) {
+                context.addFacetTerm(new FacetTerm(field, value)) ;
+                return ;
+            }
+
             if(value == null) return ;
             String queryValue = value.toString() ;
-
             if (method.equals("hasReferenced")) {
                 NodeType refNodeType = NodeUtils.getNodeType(nodeType.getPropertyType(field).getReferenceType());
                 QueryContext joinQueryContext = QueryContext.createQueryContextFromText(queryValue, refNodeType);
