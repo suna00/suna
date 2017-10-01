@@ -55,6 +55,10 @@ public class CommonService {
         /*MyPage*/
         resultCodeMap.put("M0001", "주소록 삭제 성공");
         resultCodeMap.put("M0002", "주문접수, 결제완료인 경우만 배송지 변경이 가능합니다.");
+        resultCodeMap.put("M0003", "부분취소를 할 수 없습니다.");
+        resultCodeMap.put("M0004", "취소신청을 할 수 없습니다. 주문상태를 확인해 주세요.");
+        resultCodeMap.put("M0005", "교환신청을 할 수 없습니다. 주문상태를 확인해 주세요.(SMS 또는 LG/삼성 직배송의 경우 교환불가)");
+        resultCodeMap.put("M0006", "반품신청을 할 수 없습니다. 주문상태를 확인해 주세요..(SMS 또는 LG/삼성 직배송의 경우 반품불가)");
 
         /*Order*/
         resultCodeMap.put("O0001", "임시 주문서 저장 성공");
