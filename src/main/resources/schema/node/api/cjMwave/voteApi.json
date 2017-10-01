@@ -594,6 +594,8 @@
         "voteDesc": "",
         "pstngStDt": "",
         "pstngFnsDt": "",
+        "spnsrLogoImgPath": "",
+        "thumImgUrl": "",
         "topRankItem": {
           "typeId": "voteItemStats",
           "query": [
@@ -992,11 +994,11 @@
       },
       {
         "paramName": "snsKey",
-        "required": true
+        "required": false
       },
       {
         "paramName": "snsTypeCd",
-        "required": true
+        "required": false
       }
     ],
     "config": {
@@ -1300,6 +1302,8 @@
         "voteDesc": "",
         "pstngStDt": "",
         "pstngFnsDt": "",
+        "spnsrLogoImgPath": "",
+        "thumImgUrl": "",
         "topRankItem": {
           "typeId": "voteItemStats",
           "query": [
