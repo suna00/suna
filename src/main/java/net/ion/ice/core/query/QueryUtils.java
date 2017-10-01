@@ -103,7 +103,7 @@ public class QueryUtils {
 
     public static void makeNodeQueryTerm(QueryContext context, Map<String, Object> q, NodeType nodeType, List<QueryTerm> queryTerms) {
         if (q.containsKey("field") && q.containsKey("method")) {
-            String field = q.get("field").toString();
+            String field = (String) ContextUtils.getValue(q.get("field"), context.getData());
             String method = q.get("method").toString();
 
             Object value = ContextUtils.getValue(q.get("value"), context.getData());
