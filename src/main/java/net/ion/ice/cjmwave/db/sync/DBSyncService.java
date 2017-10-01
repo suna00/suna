@@ -61,7 +61,7 @@ public class DBSyncService {
     * */
     private Map<String, Object> appendCommaStringProperties (String nodeType, Map<String, Object> fit){
         // 차트는 그룹콘캣이 불필요하므로 처리할 필요가 없음
-        logger.info("ORIGINAL NODE SUB QUERY ::" + nodeType);
+        logger.debug("ORIGINAL NODE SUB QUERY ::" + nodeType);
         String genreSubQuery = "";
         String countrySubQuery = "";
         String keywordSubQuery = "";
@@ -184,7 +184,7 @@ public class DBSyncService {
                 logger.error("Failed to retrieve sub information ALBUM :: " + nodeType + "." + id);
             }
         }
-        logger.info("ORIGINAL NODE INFORMATION :: " + String.valueOf(fit));
+        logger.debug("ORIGINAL NODE INFORMATION :: " + String.valueOf(fit));
         return fit;
     }
 
@@ -192,7 +192,7 @@ public class DBSyncService {
 
     private Map<String, Object> appendMultiLangCommaStringProperties (String originalNodeType, String langCd, Map<String, Object> additional){
         // 차트는 그룹콘캣이 불필요하므로 처리할 필요가 없음
-        logger.info("MULTILINGUAL SEPARATED SUB QUERY :: " + originalNodeType + "/" + langCd);
+        logger.debug("MULTILINGUAL SEPARATED SUB QUERY :: " + originalNodeType + "/" + langCd);
         String keywordSubQuery = "";
         String id = "";
         switch(originalNodeType) {
@@ -286,7 +286,7 @@ public class DBSyncService {
             logger.error("Failed to set multi language information, but consider it as normal", e);
         }
 
-        logger.info("MULTILINGUAL INFORMATION :: " + String.valueOf(additional));
+        logger.debug("MULTILINGUAL INFORMATION :: " + String.valueOf(additional));
         return additional;
     }
 
@@ -354,7 +354,7 @@ public class DBSyncService {
             fit.putAll(getImageInfo(qMap,targetNodeType, currentNodePKPid));
 
 
-            logger.info("CREATE MIGRATION NODE :: " + String.valueOf(fit));
+            logger.debug("CREATE MIGRATION NODE :: " + String.valueOf(fit));
             try{
                 Node finished = nodeService.saveNodeWithException(fit);
                 successIds.add(finished.getId());
@@ -462,7 +462,7 @@ public class DBSyncService {
                         fit.putAll(getMultiLanguageInfo(qMap, multiLangQuery, currentNodePKPid));
                     }
                     fit.putAll(getImageInfo(qMap,targetNodeType, currentNodePKPid));
-                    logger.info("CREATE INITIAL MIGRATION NODE :: " + String.valueOf(fit));
+                    logger.debug("CREATE INITIAL MIGRATION NODE :: " + String.valueOf(fit));
 
 
                     try{
