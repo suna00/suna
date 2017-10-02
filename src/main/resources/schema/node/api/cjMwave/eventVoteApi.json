@@ -130,11 +130,8 @@
             "sql": "select sum(voteNum)as voteNum from voteItemStats where voteSeq = @{voteSeq}"
           }
         },
-        "userVoteCnt": {
+        "userEvtVoteCnt": {
           "value": "10"
-        },
-        "userPvCnt": {
-          "value": "1000"
         },
         "ipAdrVoteCnt": {
           "value": "10000"
@@ -182,11 +179,8 @@
         },
         "response": {
           "_all_": "",
-          "userVoteCnt": {
+          "userEvtVoteCnt": {
             "value": "10"
-          },
-          "userPvCnt": {
-            "value": "1000"
           },
           "ipAdrVoteCnt": {
             "value": "10000"
