@@ -235,6 +235,18 @@
       "id": "11e9978d-103c-49ce-def4-68f155aa4321"
     },
     {
+      "name": "15.이벤트투표",
+      "description": "",
+      "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
+      "order": [
+        "8220ba89-f275-5cb0-d541-1bb64333ada3",
+        "6a1088f3-f0c6-22ea-d3cf-083587832528"
+      ],
+      "owner": "2433871",
+      "folders_order": [],
+      "id": "4b2afada-e40c-fe37-f225-30f7042eb600"
+    },
+    {
       "name": "99.시스템",
       "description": "",
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
@@ -263,6 +275,7 @@
     "cb1c8239-a9ac-d21f-62aa-034ea8d272cb",
     "6165d2ac-9ba4-5f69-fc34-78f36c058808",
     "11e9978d-103c-49ce-def4-68f155aa4321",
+    "4b2afada-e40c-fe37-f225-30f7042eb600",
     "94baa0a8-e352-4545-1529-95accfeac9ae"
   ],
   "timestamp": 1503377797967,
@@ -1213,12 +1226,12 @@
       "id": "34553d2a-0b02-6151-1f20-3aca9de7ce02",
       "headers": "",
       "headerData": [],
-      "url": "{{protocol}}://{{hostname}}:{{port}}/api/vote/IfMwv107?bradTelcsDt=20171029&snsKey=park100&snsTypeCd=1&langCd=eng",
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/vote/IfMwv107?bradTelcsDt=20170928&snsKey=park100&snsTypeCd=1&langCd=eng",
       "folder": "1975e6cf-9157-826c-7f3c-1ec1825c5e8a",
       "queryParams": [
         {
           "key": "bradTelcsDt",
-          "value": "20171029",
+          "value": "20170928",
           "equals": true,
           "description": "방송일시(String) NotNull YYYMMDD",
           "enabled": true
@@ -1227,14 +1240,14 @@
           "key": "snsKey",
           "value": "park100",
           "equals": true,
-          "description": "SNS 토큰키(String) NotNull",
+          "description": "SNS 토큰키(String)",
           "enabled": true
         },
         {
           "key": "snsTypeCd",
           "value": "1",
           "equals": true,
-          "description": "SNS 유형코드(String) NotNull",
+          "description": "SNS 유형코드(String)",
           "enabled": true
         },
         {
@@ -1255,7 +1268,7 @@
       "tests": null,
       "currentHelper": "normal",
       "helperAttributes": {},
-      "time": 1505650689821,
+      "time": 1506859371166,
       "name": "MCD 투표내역 상세(IF_MWV_107)",
       "description": "",
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
@@ -2075,6 +2088,66 @@
       "timestamp": null
     },
     {
+      "id": "6a1088f3-f0c6-22ea-d3cf-083587832528",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/vote/IfMev002?",
+      "queryParams": [],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "POST",
+      "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
+      "data": [
+        {
+          "key": "voteSeq",
+          "value": "200005",
+          "description": "투표일련번호(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "voteQueiSeq",
+          "value": "167,168,169",
+          "description": "투표문항번호(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "snsKey",
+          "value": "park100",
+          "description": "sns 토큰키(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "snsTypeCd",
+          "value": "1",
+          "description": "sns 유형코드(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "connIpAdr",
+          "value": "127.0.0.1",
+          "description": "접속IP주소(String) NotNull",
+          "type": "text",
+          "enabled": true
+        }
+      ],
+      "dataMode": "params",
+      "name": "MAMA용 이벤트(Star Cheer Event) 투표하기(IF_MEV_002)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1506939229279,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "4b2afada-e40c-fe37-f225-30f7042eb600"
+    },
+    {
       "id": "6c91e59c-4b82-2e60-2d90-bde852e97353",
       "headers": "",
       "headerData": [],
@@ -2540,11 +2613,92 @@
       "tests": null,
       "currentHelper": "normal",
       "helperAttributes": {},
-      "time": 1506600669381,
+      "time": 1506860216684,
       "name": "싱글 포토 상세조회(IF_PHO_003)",
       "description": "",
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
       "responses": []
+    },
+    {
+      "id": "8220ba89-f275-5cb0-d541-1bb64333ada3",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/vote/IfMev001?voteYear=2017&showLoCd=4&voteFormlCd=2&snsKey&snsTypeCd&connIpAdr=127.0.0.1&langCd=eng",
+      "queryParams": [
+        {
+          "key": "voteSeq",
+          "value": "200005",
+          "equals": true,
+          "description": "투표일련번호(String)",
+          "enabled": false
+        },
+        {
+          "key": "voteYear",
+          "value": "2017",
+          "equals": true,
+          "description": "투표년도(String)",
+          "enabled": true
+        },
+        {
+          "key": "showLoCd",
+          "value": "4",
+          "equals": true,
+          "description": "노출위치구분코드(String)",
+          "enabled": true
+        },
+        {
+          "key": "voteFormlCd",
+          "value": "2",
+          "equals": true,
+          "description": "투표방식코드(String)",
+          "enabled": true
+        },
+        {
+          "key": "snsKey",
+          "value": "",
+          "equals": false,
+          "description": "sns 토큰키(String)",
+          "enabled": true
+        },
+        {
+          "key": "snsTypeCd",
+          "value": "",
+          "equals": false,
+          "description": "sns 유형코드(String) ",
+          "enabled": true
+        },
+        {
+          "key": "connIpAdr",
+          "value": "127.0.0.1",
+          "equals": true,
+          "description": "접속IP주소(String) NotNull",
+          "enabled": true
+        },
+        {
+          "key": "langCd",
+          "value": "eng",
+          "equals": true,
+          "description": "",
+          "enabled": true
+        }
+      ],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "GET",
+      "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
+      "data": null,
+      "dataMode": "params",
+      "name": "이벤트 투표 상세조회(IF_MEV_001)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1506939060598,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "4b2afada-e40c-fe37-f225-30f7042eb600"
     },
     {
       "id": "85b2ae86-511a-e505-4e5c-8df5ef0ae2c7",
@@ -3859,14 +4013,14 @@
       "id": "c5967f61-8cc5-df7b-034f-89936f50e12b",
       "headers": "",
       "headerData": [],
-      "url": "{{protocol}}://{{hostname}}:{{port}}/api/contsMeta/IfArt002?artistId=268423&langCd=eng",
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/contsMeta/IfArt002?artistId=1761090&langCd=eng",
       "folder": "cbd7c96f-03db-cde3-144c-0881bea9b59f",
       "queryParams": [
         {
           "key": "artistId",
-          "value": "268423",
+          "value": "1761090",
           "equals": true,
-          "description": "아티스트 상세조회(IF_ART_002) NotNull",
+          "description": "아티스트 아이디(String) NotNull",
           "enabled": true
         },
         {
@@ -3887,7 +4041,7 @@
       "tests": null,
       "currentHelper": "normal",
       "helperAttributes": {},
-      "time": 1506174104002,
+      "time": 1506845317154,
       "name": "아티스트 상세조회(IF_ART_002)",
       "description": "",
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
