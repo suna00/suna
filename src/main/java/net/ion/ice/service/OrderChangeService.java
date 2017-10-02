@@ -44,13 +44,13 @@ public class OrderChangeService {
         "orderChangeProduct": [
             {
                 "orderProductId": 39,
-                "productId": 3,
+                "productId": 512,
                 "quantity": 1,
                 "changeReasonType": "cancel001"
             },
             {
                 "orderProductId": 40,
-                "productId": 3,
+                "productId": 521,
                 "quantity": 1,
                 "changeReasonType": "cancel001"
             }
@@ -71,13 +71,13 @@ public class OrderChangeService {
         "orderChangeProduct": [
             {
                 "orderProductId": 39,
-                "productId": 3,
+                "productId": 512,
                 "quantity": 1,
                 "changeReasonType": "cancel001"
             },
             {
                 "orderProductId": 40,
-                "productId": 3,
+                "productId": 521,
                 "quantity": 1,
                 "changeReasonType": "cancel001"
             }
@@ -110,13 +110,13 @@ public class OrderChangeService {
         "orderChangeProduct": [
             {
                 "orderProductId": 39,
-                "productId": 3,
+                "productId": 512,
                 "quantity": 1,
                 "changeReasonType": "cancel001"
             },
             {
                 "orderProductId": 40,
-                "productId": 3,
+                "productId": 521,
                 "quantity": 1,
                 "changeReasonType": "cancel001"
             }
@@ -303,7 +303,7 @@ public class OrderChangeService {
             node.put("quantity", 0);
             node.put("orderPrice", 0);
             node.put("orderStatus", orderStatus);    //(마이페이지 주문배송조회 40 : 통합관리자에 노출되고 취소 최종 승인 받게 되어있음.. 읭? 바로 취소완료아닝가..)
-            nodeService.executeNode(node, orderProduct, CommonService.UPDATE);
+//            nodeService.executeNode(node, orderProduct, CommonService.UPDATE);
 
         }else if(quantity > changeQuantity){
             // 주문상품의 수량 부분 취소/교환/반품
@@ -312,7 +312,7 @@ public class OrderChangeService {
 
             node.put("quantity", quantity - changeQuantity);
             node.put("orderPrice", (productPrice * (quantity - changeQuantity)) + totalAddOptionPrice);
-            nodeService.executeNode(node, orderProduct, CommonService.UPDATE);
+//            nodeService.executeNode(node, orderProduct, CommonService.UPDATE);
 
             // 추가배송비 발생 여부 체크
             if(true){
@@ -350,7 +350,7 @@ public class OrderChangeService {
     }
 
 
-    // 반품 : 반품지
+    // 반품 : 회수지, (반품지 : 벤더가 등록한 반품주소 노출)
     // 교환 : 회수지, 배송지
     private void createDeliveryAddress(Map<String, Object> data, String orderChangeId) throws IOException {
         for(Map<String, Object> m : JsonUtils.parsingJsonToList(data.get("delivery").toString())){
