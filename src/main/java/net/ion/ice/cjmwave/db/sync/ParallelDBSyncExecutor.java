@@ -12,8 +12,6 @@ public abstract class ParallelDBSyncExecutor extends Thread {
     public String executeId;
     public DBProcessStorage storage;
 
-
-
     public ParallelDBSyncExecutor(String executeId){
         this.executeId = executeId;
         this.dbSyncService = (DBSyncService) ApplicationContextManager.getBean("DBSyncService");
@@ -25,8 +23,8 @@ public abstract class ParallelDBSyncExecutor extends Thread {
     @Override
     public void run() {
         Thread check = storage.getProcess(executeId);
-        if(check != null) {
-            System.out.println("Thread with [ " + executeId + " ] is already exists. Ignore this request");
+        if(check != null && check.getState().equals(State.RUNNABLE)) {
+            System.out.println("Thread with [ " + executeId + " ] is already running. Ignore this request :: " + check.getState());
             return;
         } else {
             System.out.println("Thread with [ " + executeId + " ] is getting started. Accept this request");

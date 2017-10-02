@@ -12,9 +12,9 @@ import net.ion.ice.core.node.NodeUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -34,7 +34,8 @@ public class DBSyncService {
 
     private static int BATCH_UNIT = 2000;
 
-    private ThreadPoolTaskExecutor threadPoolTaskExecutor;
+    @Autowired
+    TaskExecutor taskExecutor;
 
 
     @Autowired
@@ -73,11 +74,6 @@ public class DBSyncService {
     public void init(){
         try{
             ice2Template = dbService.getJdbcTemplate("cjDb");
-            threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
-            threadPoolTaskExecutor.setCorePoolSize(10);
-            threadPoolTaskExecutor.setMaxPoolSize(12);
-            threadPoolTaskExecutor.setQueueCapacity(20);
-            threadPoolTaskExecutor.initialize();
         } catch (Exception e) {
             logger.error("Could not initialize JdbcTemplate");
         }
@@ -558,7 +554,7 @@ public class DBSyncService {
         switch (type) {
             case "all" :
                 for(String executeId : mnetExecuteIds) {
-                    threadPoolTaskExecutor.execute(new ParallelDBSyncExecutor(executeId) {
+                    taskExecutor.execute(new ParallelDBSyncExecutor(executeId) {
                         @Override
                         public void action() {
                             try{
@@ -620,7 +616,7 @@ public class DBSyncService {
             case "all" :
                 for(String executeId : mnetPartialExecuteIds) {
 
-                    threadPoolTaskExecutor.execute(new ParallelDBSyncExecutor(executeId) {
+                    taskExecutor.execute(new ParallelDBSyncExecutor(executeId) {
                         @Override
                         public void action() {
                             try{
