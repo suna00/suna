@@ -6,16 +6,14 @@ import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
+import net.ion.ice.core.query.QueryResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service("cartService")
 public class CartService {
@@ -32,6 +30,53 @@ public class CartService {
     private NodeService nodeService;
     @Autowired
     private NodeBindingService nodeBindingService;
+
+    // 장바구니 조회
+    public ExecuteContext cartRead(ExecuteContext context) throws IOException {
+        Map<String, Object> data = context.getData();
+
+        List<Map<String, Object>> cartProducts = nodeBindingService.list("cartProduct", "sorting=created&cartId_equals=" + context.getData().get("cartId"));
+        List<Map<String, Object>> cartProductItems = nodeBindingService.list("cartProductItem", "sorting=created&cartId_equals=" + context.getData().get("cartId"));
+        // cart 만들기
+        for(Map<String, Object> cartProduct : cartProducts){
+            Integer cartProductId = JsonUtils.getIntValue(cartProduct, "cartProductId") ;
+            List<Map<String, Object>> subCartProdductItems = new ArrayList<>() ;
+            for(Map<String, Object> cartProductItem : cartProductItems){
+                if(cartProductId == JsonUtils.getIntValue(cartProductItem, "cartProductId")){
+                    subCartProdductItems.add(cartProductItem) ;
+                }
+            }
+            cartProduct.put("cartProductItem", subCartProdductItems) ;
+        }
+
+        List<Map<String, Object>> deliveryProductList = deliveryService.makeDeliveryData(cartProducts) ;
+        Map<String, Object> deliveryPriceList = deliveryService.calculateDeliveryPrice(deliveryProductList) ;
+
+        QueryResult queryResult = new QueryResult() ;
+        List<QueryResult> items = new ArrayList<>() ;
+
+        for(String key : deliveryPriceList.keySet()){
+            QueryResult itemResult = new QueryResult() ;
+            itemResult.put("deliverySeq", key) ;
+            List<Map<String, Object>> priceList = (List<Map<String, Object>>) deliveryPriceList.get(key) ;
+
+            itemResult.put("deliveryPrice", priceList.get(0).get("deliveryPrice")) ;
+
+            List<Map<String, Object>> subProductResult = new ArrayList<>() ;
+            for(Map<String, Object> priceProduct : priceList){
+                subProductResult.add(priceProduct) ;
+            }
+
+            itemResult.put("item", subProductResult) ;
+
+            items.add(itemResult) ;
+        }
+
+        queryResult.put("items", items) ;
+        context.setResult(queryResult);
+        return context;
+    }
+
 
 
     // 장바구니 담기
@@ -54,7 +99,7 @@ public class CartService {
         Node cart = (Node) nodeService.executeNode(data, "cart", CommonService.SAVE);
         data.put("cartId", cart.getId());
 
-        if (data.get("cartProduct") != null) {
+        if (data.get("productList") != null) {
             addProducts(data, cart.getId());
         }
 
@@ -400,8 +445,8 @@ public class CartService {
             } else {
                 Map<String, Object> m = new HashMap<>(cartProduct);
                 m.putAll(item);
-                m.remove("cartProduct");
-                m.remove("cartProductItem");
+                m.remove("productList");
+                m.remove("productItem");
                 CommonService.resetMap(m);
                 nodeService.executeNode(m, cartProductItem_TID, CommonService.CREATE);
             }
