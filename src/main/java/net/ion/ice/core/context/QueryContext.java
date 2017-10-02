@@ -4,11 +4,9 @@ import net.ion.ice.core.cluster.ClusterUtils;
 import net.ion.ice.core.data.bind.NodeBindingInfo;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.*;
-import net.ion.ice.core.query.QueryResult;
-import net.ion.ice.core.query.QueryTerm;
-import net.ion.ice.core.query.QueryUtils;
-import net.ion.ice.core.query.ResultField;
+import net.ion.ice.core.query.*;
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.search.query.facet.Facet;
 import org.infinispan.Cache;
 import org.infinispan.query.SearchManager;
 
@@ -42,6 +40,7 @@ public class QueryContext extends ReadContext {
     protected int queryListSize;
 
 
+    protected List<FacetTerm> facetTerms ;
 
     public QueryContext(NodeType nodeType) {
         this.nodeType = nodeType;
@@ -526,6 +525,21 @@ public class QueryContext extends ReadContext {
             queryResult.put("more", resultSize > queryListSize);
             queryResult.put("moreCount", resultSize - queryListSize);
         }
+        if(getFacetTerms() != null && getFacetTerms().size() > 0){
+            QueryResult facets = new QueryResult() ;
+            for(FacetTerm facetTerm : getFacetTerms()){
+//                List<Map<String, Object>> facet = new ArrayList<>() ;
+                Map<String, Object> facet = new HashMap<>() ;
+                for(Facet fc : facetTerm.getFacets()){
+//                    Map<String, Object> fcv = new HashMap<>() ;
+//                    fcv.put("value", fc.getValue()) ;
+//                    fcv.put("count", fc.getValue()) ;
+                    facet.put(fc.getValue(), fc.getCount()) ;
+                }
+                facets.put(facetTerm.getName(), facet) ;
+            }
+            queryResult.put("facets", facets) ;
+        }
         queryResult.put(fieldName, list) ;
         return queryResult ;
     }
@@ -581,4 +595,15 @@ public class QueryContext extends ReadContext {
         this.queryTerms.add(queryTerm);
     }
 
+    public List<FacetTerm> getFacetTerms() {
+        return facetTerms;
+    }
+
+    public void addFacetTerm(FacetTerm facetTerm) {
+        if(facetTerms == null) {
+            facetTerms = new ArrayList<>() ;
+        }
+
+        facetTerms.add(facetTerm) ;
+    }
 }

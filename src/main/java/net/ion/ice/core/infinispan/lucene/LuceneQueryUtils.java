@@ -6,6 +6,7 @@ import net.ion.ice.core.context.QueryContext;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
+import net.ion.ice.core.query.FacetTerm;
 import net.ion.ice.core.query.QueryTerm;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.analysis.Analyzer;
@@ -23,10 +24,11 @@ import org.hibernate.search.bridge.spi.ConversionContext;
 import org.hibernate.search.engine.spi.DocumentBuilderIndexedEntity;
 import org.hibernate.search.exception.AssertionFailure;
 import org.hibernate.search.exception.SearchException;
-import org.hibernate.search.query.dsl.BooleanJunction;
-import org.hibernate.search.query.dsl.impl.FieldContext;
-import org.hibernate.search.query.dsl.impl.QueryBuildingContext;
-import org.hibernate.search.query.dsl.impl.RangeQueryContext;
+import org.hibernate.search.query.dsl.*;
+import org.hibernate.search.query.dsl.impl.*;
+import org.hibernate.search.query.engine.spi.FacetManager;
+import org.hibernate.search.query.facet.FacetSortOrder;
+import org.hibernate.search.query.facet.FacetingRequest;
 import org.infinispan.query.CacheQuery;
 
 import java.io.IOException;
@@ -139,13 +141,89 @@ public class LuceneQueryUtils {
 
         if(queryContext.hasSorting()) {
             makeSorting(queryContext, cacheQuery);
-        }else{
+        }
 
+        if(queryContext.getFacetTerms()!= null && queryContext.getFacetTerms().size() > 0){
+            makeFacet(queryContext, cacheQuery) ;
         }
 
         cacheQuery.maxResults(queryContext.getMaxResultSize()) ;
 
         return cacheQuery ;
+    }
+
+    private static void makeFacet(QueryContext queryContext, CacheQuery cacheQuery) {
+        FacetManager facetManager = cacheQuery.getFacetManager() ;
+        QueryBuilder queryBuilder = queryContext.getSearchManager().buildQueryBuilderForClass(Node.class).get();
+
+        for(FacetTerm facetTerm : queryContext.getFacetTerms()){
+            PropertyType pt = queryContext.getNodetype().getPropertyType(facetTerm.getName()) ;
+            if(pt != null) {
+                if(pt.isSortable() && !pt.isNumeric()){
+                    facetTerm.setFieldName(facetTerm.getName() + "_sort") ;
+                }
+            }
+            if(facetTerm.isDiscrete()) {
+                FacetingRequest fieldFacetRequest = queryBuilder.facet()
+                        .name(facetTerm.getName())
+                        .onField(facetTerm.getFieldName())
+                        .discrete()
+                        .orderedBy(FacetSortOrder.COUNT_DESC)
+                        .includeZeroCounts(false)
+                        .maxFacetCount(-1)
+                        .createFacetingRequest();
+                facetManager.enableFaceting(fieldFacetRequest);
+            }else{
+                FacetRangeAboveBelowContext<Object> cond = queryBuilder.facet()
+                        .name(facetTerm.getName())
+                        .onField(facetTerm.getFieldName())
+                        .range() ;
+                FacetRangeBelowContinuationContext<Object> below = null ;
+                FacetRangeEndContext<Object> fromto = null ;
+                FacetingRequest rangeFacetRequest = null ;
+                PropertyType.ValueType valueType = pt.getValueType();
+
+                for(int i = 0; i< facetTerm.getRangeList().size(); i++){
+                    String fc = facetTerm.getRangeList().get(i) ;
+                    if(i == 0){
+                        below = cond.below(getValueTypeValue(valueType, fc.trim())) ;
+                    }else if(i == (facetTerm.getRangeList().size() - 1)){
+                        rangeFacetRequest = fromto.above(getValueTypeValue(valueType, fc.trim())).excludeLimit().createFacetingRequest() ;
+                    }else{
+                        Object from  = getValueTypeValue(valueType, StringUtils.substringBefore(fc,"~").trim()) ;
+                        Object to  = getValueTypeValue(valueType, StringUtils.substringAfter(fc,"~").trim()) ;
+
+                        if(fromto == null){
+                            fromto = below.from(from).to(to) ;
+                        }else{
+                            fromto = fromto.from(from).to(to) ;
+                        }
+                    }
+                }
+                facetManager.enableFaceting(rangeFacetRequest) ;
+            }
+        }
+    }
+
+    private static Object getValueTypeValue(PropertyType.ValueType valueType, String value) {
+        switch (valueType){
+            case DATE: {
+                return NodeUtils.getDateLongValue(value) ;
+            }
+            case LONG: {
+                return Long.parseLong(value) ;
+            }
+            case INT: {
+                return Integer.parseInt(value) ;
+            }
+            case DOUBLE: {
+                return Double.parseDouble(value);
+            }
+            default: {
+                return value;
+            }
+
+        }
     }
 
     private static void makeSorting(QueryContext queryContext, CacheQuery cacheQuery) {

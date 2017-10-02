@@ -5,12 +5,14 @@ import net.ion.ice.core.infinispan.lucene.LuceneQueryUtils;
 import net.ion.ice.core.infinispan.lucene.QueryType;
 import net.ion.ice.core.node.*;
 import net.ion.ice.core.context.QueryContext;
+import net.ion.ice.core.query.FacetTerm;
 import net.ion.ice.core.query.SimpleQueryResult;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.search.Sort;
 import org.apache.lucene.search.SortField;
 import org.hibernate.search.query.dsl.BooleanJunction;
 import org.hibernate.search.query.dsl.QueryBuilder;
+import org.hibernate.search.query.facet.Facet;
 import org.infinispan.Cache;
 import org.infinispan.query.CacheQuery;
 import org.infinispan.query.Search;
@@ -125,7 +127,11 @@ public class InfinispanRepositoryService {
         List<Object> list = cacheQuery.list();
         queryContext.setResultSize(cacheQuery.getResultSize());
         queryContext.setQueryListSize(list.size()) ;
-
+        if(queryContext.getFacetTerms() != null) {
+            for (FacetTerm facet : queryContext.getFacetTerms()) {
+                facet.setFacets(cacheQuery.getFacetManager().getFacets(facet.getName()));
+            }
+        }
         if(queryContext.getStart() > 0) {
             return list.subList(queryContext.getStart(), list.size()) ;
         }
@@ -220,6 +226,13 @@ public class InfinispanRepositoryService {
         List<Object> list = cacheQuery.list();
         queryContext.setResultSize(cacheQuery.getResultSize());
         queryContext.setQueryListSize(list.size()) ;
+
+        if(queryContext.getFacetTerms() != null && queryContext.getFacetTerms().size() > 0){
+            for(FacetTerm facetTerm : queryContext.getFacetTerms()){
+                List<Facet> facets = cacheQuery.getFacetManager().getFacets(facetTerm.getName()) ;
+                facetTerm.setFacets(facets) ;
+            }
+        }
 
         if(queryContext.getStart() > 0) {
             return list.subList(queryContext.getStart(), list.size()) ;
