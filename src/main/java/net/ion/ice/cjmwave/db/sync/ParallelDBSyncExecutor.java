@@ -27,6 +27,7 @@ public abstract class ParallelDBSyncExecutor extends Thread {
             System.out.println("Thread with [ " + executeId + " ] is already exists. Ignore this request");
             return;
         } else {
+            System.out.println("Thread with [ " + executeId + " ] is getting started. Accept this request");
             storage.addProcess(executeId, this);
         }
         this.run();
