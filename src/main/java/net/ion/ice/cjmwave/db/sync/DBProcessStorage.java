@@ -3,6 +3,7 @@ package net.ion.ice.cjmwave.db.sync;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -29,6 +30,10 @@ public class DBProcessStorage {
     public void killProcess(String executeId) {
         Thread process = getProcess(executeId);
         if(process != null) process.interrupt();
+    }
+
+    public Map<String, Thread> getProcessStorage(){
+        return this.dbSyncProcessStorage;
     }
 
     public boolean isAbleToRun(String executeId) {

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Migration DashBoard</title>
+    <style>
+
+        .contentBox {
+            width: 100%;
+            margin: 20px;
+            padding-top: 100px;
+            height: 500px;
+            position: relative;
+        }
+
+        .historyBox{
+            width: 100%;
+            max-height: 500px;
+        }
+
+        .mnetHistory{
+            width: 50%;
+            float: left;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .pipHistory{
+            width: 50%;
+            float: right;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .failBox {
+            width: 80%;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+
+        table, th, td {
+            /*border-style: solid;*/
+            border: solid 1px;
+        }
+
+        td {
+            max-width: 200px;
+            max-height: 40px;
+            overflow-x: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- #0. 마이그레이션 내역 -->
+    <div class="contentBox">
+        <h1>#0. 마이그레이션 내역 (MIG_HISTORY) </h1>
+        <div class="historyBox"> <!-- 수평 정렬 -->
+
+            <!-- MNET Table -->
+            <div class="mnetHistory">
+                <h3>MNET</h3>
+                <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>시퀀스</th>
+                                <th>대상 노드</th>
+                                <th>성공</th>
+                                <th>실패</th>
+                                <th>시작 시간</th>
+                                <th>수행시간(ms)</th>
+                            </tr>
+                        </thead>
+                        <tbody mnet-history-body>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- MNET Table ends -->
+
+            <!-- PIP Table -->
+            <div class="pipHistory">
+                <h3>PIP</h3>
+                <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>시퀀스</th>
+                                <th>대상 노드</th>
+                                <th>성공</th>
+                                <th>실패</th>
+                                <th>시작 시간</th>
+                                <th>수행시간(ms)</th>
+                            </tr>
+                        </thead>
+                        <tbody pip-history-body>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- PIP Table ends -->
+
+        </div>
+    </div>
+
+    <!-- 마이그레이션 내역 종료 -->
+
+    <!-- 실패 내역 -->
+    <div class="contentBox">
+        <h1>#1. 마이그레이션 실패 내역</h1>
+        <div class="failBox">
+            <h3>실패 노드 데이터 목록</h3>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>시퀀스</th>
+                            <th>대상노드</th>
+                            <th>오류 정보</th>
+                            <th>데이터 정보</th>
+                            <th>수정여부</th>
+                            <th>발생일</th>
+                            <th>수정일</th>
+                            <th>action</th>
+                        </tr>
+                    </thead>
+                    <tbody fail-body>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 실패 내역 종료 -->
+
+
+
+    <div class="contentBox">
+        <h1>#1. 진행 중 프로세스</h1>
+        <div>
+            <p>
+                해당 정보는 실시간이 아니니 새로고침 하시오<br>
+                죽은 쓰레드는 TERMINATED 로 표기됨
+            </p>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                      작업 ID
+                    </th>
+                    <th>
+                        상태
+                    </th>
+                </tr>
+            </thead>
+            <tbody process-body>
+
+            </tbody>
+        </table>
+    </div>
+    <!--<div>-->
+        <!--<h1>#2. 리커버리 플랜</h1>-->
+        <!--<div>-->
+            <!--<form name="retryForm" action="/migration/recovery/single">-->
+                <!--<div>-->
+                    <!--<input type="text" name="seq" value="">-->
+                    <!--<button type="submit">복구</button>-->
+                <!--</div>-->
+            <!--</form>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <script>
+
+        function callAjax(url, method, callback) {
+            var httpRequest;
+            if (window.XMLHttpRequest) { // Mozilla, Safari, ...
+                httpRequest = new XMLHttpRequest();
+            } else if (window.ActiveXObject) { // IE
+                try {
+                    httpRequest = new ActiveXObject("Msxml2.XMLHTTP");
+                }
+                catch (e) {
+                    try {
+                        httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    catch (e) {}
+                }
+            }
+
+            if (!httpRequest) {
+                alert('Giving up :( Cannot create an XMLHTTP instance');
+                return false;
+            }
+
+            httpRequest.onload = alertContents;
+            httpRequest.open(method, url);
+            httpRequest.send();
+
+            function alertContents() {
+                if (httpRequest.readyState === 4) {
+                    if (httpRequest.status === 200) {
+                        window.x = httpRequest;
+                        callback(JSON.parse(httpRequest.responseText));
+                    } else {
+                        alert('There was a problem with the request.');
+                    }
+                }
+            }
+        }
+
+        console.log("Displaying data here");
+
+        window.addEventListener('load', function(){
+
+            callAjax('migration/monitor/historyList', 'POST', function(d) {
+                if(d.result != '200'){
+                    alert('오류 발생');
+                    console.log(d);
+                    return;
+                }
+                var mnetTbody = document.querySelector('[mnet-history-body]');
+                var pipTbody = document.querySelector('[pip-history-body]');
+                var items  = d.items;
+                for(var i = 0; i < items.length; i++) {
+                    var item = items[i];
+                    var target = item['mig_target'];
+                    var tr = document.createElement('tr');
+                    var fields = ['mig_seq', 'target_node', 'success_cnt', 'fail_cnt', 'execution_date', 'task_duration'];
+                    for(var j = 0; j < fields.length; j++) {
+                        var td = document.createElement('td');
+                        td.innerText = item[fields[j]] || '';
+                        tr.appendChild(td);
+                    }
+                    if(target.toUpperCase().indexOf('MNET') > -1) {
+                        if(mnetTbody) mnetTbody.appendChild(tr);
+                    } else if(target.toUpperCase().indexOf('PIP') > -1) {
+                        if(pipTbody) pipTbody.appendChild(tr);
+                    }
+                }
+            });
+
+            callAjax('migration/monitor/failList', 'POST', function(d) {
+                if(d.result != '200'){
+                    alert('오류 발생');
+                    console.log(d);
+                    return;
+                }
+                var failTbody = document.querySelector('[fail-body]');
+                var items  = d.items;
+                for(var i = 0; i < items.length; i++) {
+                    var item = items[i];
+                    var tr = document.createElement('tr');
+                    var fields = ['seq', 'nodeType', 'exception', 'jsonValue', 'isFixed', 'created', 'changed', 'action'];
+                    for(var j = 0; j < fields.length; j++) {
+
+
+                        var td = document.createElement('td');
+                        var textValue = '';
+                        if(fields[j] == 'isFixed') {
+                            textValue = item[fields[j]] || 'false';
+                        } else {
+                            textValue = item[fields[j]] || '';
+                        }
+
+                        if(fields[j] == 'action'){
+                            var action = document.createElement('button');
+                            action.innerHTML = '복구';
+                            action.addEventListener('click', function(seq){
+                                callAjax('migration/mnet/recovery/single?seq=' + seq, 'POST', function(d){
+                                    try {
+                                        if(d.result == '200') {
+                                            alert(seq + ' 복구되었습니다');
+                                            location.reload();
+                                        }
+                                    } catch(exception) {
+                                        alert('오류발생');
+                                    }
+                                })
+                            }.bind(this, item.seq), false);
+                            td.appendChild(action);
+                        } else {
+                            td.innerText = textValue;
+                        }
+                        tr.appendChild(td);
+                    }
+                    if(failTbody) failTbody.appendChild(tr);
+                }
+            });
+
+            callAjax('migration/monitor/processList', 'POST', function(d){
+                console.log(d);
+                if(d.result != '200'){
+                    alert('오류 발생');
+                    console.log(d);
+                    return;
+                }
+                var procBody = document.querySelector('[process-body]');
+                var items  = d.items;
+                for(var i = 0; i < items.length; i++) {
+                    var item = items[i];
+                    var tr = document.createElement('tr');
+                    var fields = ['executeId', 'status'];
+                    for(var j = 0; j < fields.length; j++) {
+                        var td = document.createElement('td');
+                        td.innerText = item[fields[j]] || '';
+                        tr.appendChild(td);
+                    }
+                    if(procBody) procBody.appendChild(tr);
+                }
+            });
+
+        }, false);
+
+
+    </script>
+</body>
+</html>
