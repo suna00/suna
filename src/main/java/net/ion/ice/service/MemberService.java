@@ -1,14 +1,23 @@
 package net.ion.ice.service;
 
+import net.ion.ice.core.api.ApiException;
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.data.bind.NodeBindingInfo;
 import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
+import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
+import net.ion.ice.core.query.QueryTerm;
+import net.ion.ice.core.query.QueryUtils;
+import net.ion.ice.core.session.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.stagemonitor.util.StringUtils;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -20,11 +29,54 @@ public class MemberService {
 
     @Autowired
     private NodeService nodeService;
+
     @Autowired
     private NodeBindingService nodeBindingService ;
 
+    @Autowired
+    private SessionService sessionService ;
+
+
     private CommonService commonService;
     private EmailService emailService;
+
+
+    public ExecuteContext login(ExecuteContext context){
+        String siteId = context.getDataStringValue("siteId") ;
+        String userId = context.getDataStringValue("userId") ;
+        String password = context.getDataStringValue("password") ;
+
+        if(StringUtils.isEmpty(siteId)){
+            siteId = "default" ;
+        }
+        NodeType memberType = nodeService.getNodeType("member") ;
+        List<QueryTerm> queryTerms = new ArrayList<>() ;
+        queryTerms.add(QueryUtils.makePropertyQueryTerm(memberType, "siteId", null, siteId)) ;
+        queryTerms.add(QueryUtils.makePropertyQueryTerm(memberType, "userId", null, userId)) ;
+
+        List<Node> nodes = nodeService.getNodeList(memberType, queryTerms) ;
+
+        if(nodes == null || nodes.size() ==0){
+            throw new ApiException("400", "Not Found User") ;
+        }
+
+        Node member = nodes.get(0) ;
+
+        if(!member.getStringValue("password").equals(password)){
+            throw new ApiException("400", "The password is incorrect") ;
+        }
+
+        Map<String, Object> session = new HashMap<>() ;
+        session.put("member", member) ;
+        session.put("role", "customer") ;
+        try {
+            sessionService.putSession(context.getHttpRequest(), context.getHttpResponse(), member);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return context ;
+
+    }
 
     public ExecuteContext saveMemberInfo(ExecuteContext context){
         Map<String, Object> contextData = new LinkedHashMap<>(context.getData());
