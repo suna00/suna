@@ -1,25 +1,27 @@
 package net.ion.ice.service;
 
+import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.context.ExecuteContext;
+import net.ion.ice.core.data.DBService;
+import net.ion.ice.core.data.bind.NodeBindingInfo;
 import net.ion.ice.core.data.bind.NodeBindingService;
+import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service("pointService")
-public class PointService implements InitializingBean {
+public class PointService {
 
     public static final String YPOINT = "YPoint";
     public static final String WELFAREPOINT = "welfarePoint";
@@ -30,20 +32,19 @@ public class PointService implements InitializingBean {
     public static final String MEMBER = "member";
     public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(CommonService.PATTERN);
 
-    JdbcTemplate jdbcTemplate;
-
     @Autowired
-    private NodeService nodeService;
+    private NodeService nodeService ;
     @Autowired
-    private NodeBindingService nodeBindingService;
+    private NodeBindingService nodeBindingService ;
 
-    public boolean checkUsablePoint(String memberNo, String type, int usePoint) {
+    public boolean checkUsablePoint(String memberNo, String type, int usePoint){
         Node node = NodeUtils.getNode(MEMBER, memberNo);
-        if (Integer.parseInt(node.get(type).toString()) < usePoint) return false;
+        if(Integer.parseInt(node.get(type).toString()) < usePoint) return false;
         return true;
     }
 
     public Double getTotalBalance(String type, String memberNo) {
+        JdbcTemplate jdbcTemplate = NodeUtils.getNodeBindingInfo("YPoint").getJdbcTemplate();
         String YPointQuery = "select IFNULL(sum(balance), 0) as totalBalance\n" +
                 "from ypoint\n" +
                 "where memberNo = ? \n" +
@@ -76,13 +77,13 @@ public class PointService implements InitializingBean {
     private void deductInOrder(Integer point, String searchText, String typeTid, String mapTid) {
         Integer temp = point;
         List<Map<String, Object>> useablePointList = nodeBindingService.list(typeTid, searchText);
-        for (Map<String, Object> p : useablePointList) {
+        for(Map<String, Object> p : useablePointList){
             Integer balance = Integer.parseInt(p.get("balance").toString());
-            if (temp >= balance) {
+            if(temp >= balance ){
                 p.put("balance", 0);
                 p.put("usedPrice", balance);
                 temp = temp - balance;
-            } else {
+            }else{
                 p.put("balance", balance - temp);
                 p.put("usedPrice", temp);
             }
@@ -123,7 +124,7 @@ public class PointService implements InitializingBean {
         Map<String, Object> data = context.getData();
         Integer point = Integer.parseInt(data.get(YPOINT).toString());
 
-        if (!checkUsablePoint(data.get("memberNo").toString(), YPOINT, point)) {
+        if(!checkUsablePoint(data.get("memberNo").toString(), YPOINT, point)){
             context.setResult(CommonService.getResult("Y0001"));
             return context;
         }
@@ -151,17 +152,17 @@ public class PointService implements InitializingBean {
         Map<String, Object> data = context.getData();
         Integer point = Integer.parseInt(data.get(YPOINT).toString());
 
-        List<Map<String, Object>> usedPointMapList = nodeBindingService.list(usedYPointMap, "orderSheetId_equals=" + data.get("orderSheetId"));
-        for (Map<String, Object> y : usedPointMapList) {
+        List<Map<String, Object>> usedPointMapList = nodeBindingService.list(usedYPointMap, "orderSheetId_equals="+data.get("orderSheetId"));
+        for(Map<String, Object> y : usedPointMapList){
             Node node = NodeUtils.getNode(YPOINT, y.get(YPOINT.concat("Id")).toString());
             node.put("balance", y.get("usedPrice"));
             nodeService.executeNode(node, YPOINT, CommonService.UPDATE);
         }
 
         String description = "";
-        if ("cancel".equals(data.get("changeType"))) {
+        if("cancel".equals(data.get("changeType"))){
             description = "상품취소";
-        } else if ("exchange".equals(data.get("changeType"))) {
+        }else if("exchange".equals(data.get("changeType"))){
             description = "상품반품";
         }
 
@@ -188,7 +189,7 @@ public class PointService implements InitializingBean {
         Integer temp = 0;
         String now = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd")).concat("000000");
         List<Map<String, Object>> list = nodeBindingService.list(YPOINT, "YPointType_equals=add&balance_notEquals=0&endDate_below=" + now + "&sorting=endDate");
-        for (Map<String, Object> y : list) {
+        for(Map<String, Object> y : list){
             Node node = NodeUtils.getNode(YPOINT, y.get("YPointId").toString());
             temp = temp + Integer.parseInt(node.get("balance").toString());
             node.put("balance", 0);
@@ -214,7 +215,7 @@ public class PointService implements InitializingBean {
         Map<String, Object> data = context.getData();
         Integer point = Integer.parseInt(data.get(WELFAREPOINT).toString());
 
-        if (checkUsablePoint(data.get("memberNo").toString(), WELFAREPOINT, point)) {
+        if(checkUsablePoint(data.get("memberNo").toString(), WELFAREPOINT, point)){
             context.setResult(CommonService.getResult("W0001"));
             return context;
         }
@@ -242,8 +243,8 @@ public class PointService implements InitializingBean {
         Map<String, Object> data = context.getData();
         Integer point = Integer.parseInt(data.get(WELFAREPOINT).toString());
 
-        List<Map<String, Object>> usedPointMapList = nodeBindingService.list(usedWelfarePointMap, "orderSheetId_equals=" + data.get("orderSheetId"));
-        for (Map<String, Object> y : usedPointMapList) {
+        List<Map<String, Object>> usedPointMapList = nodeBindingService.list(usedWelfarePointMap, "orderSheetId_equals="+data.get("orderSheetId"));
+        for(Map<String, Object> y : usedPointMapList){
             Node node = NodeUtils.getNode(WELFAREPOINT, y.get(WELFAREPOINT.concat("Id")).toString());
             node.put("balance", y.get("usedPrice"));
             nodeService.executeNode(node, WELFAREPOINT, CommonService.UPDATE);
@@ -294,8 +295,4 @@ public class PointService implements InitializingBean {
         return context;
     }
 
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        this.jdbcTemplate = nodeBindingService.getNodeBindingInfo("YPoint").getJdbcTemplate();
-    }
 }
