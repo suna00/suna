@@ -534,7 +534,13 @@ public class QueryContext extends ReadContext {
 //                    Map<String, Object> fcv = new HashMap<>() ;
 //                    fcv.put("value", fc.getValue()) ;
 //                    fcv.put("count", fc.getValue()) ;
-                    facet.put(fc.getValue(), fc.getCount()) ;
+                    if(fc.getValue().contains(",")){
+                        for(String fck : StringUtils.split(fc.getValue(), ",")){
+                            facet.put(fck, facet.containsKey(fck) ? (Integer) facet.get(fck) + fc.getCount() : fc.getCount()) ;
+                        }
+                    }else {
+                        facet.put(fc.getValue(), fc.getCount());
+                    }
                 }
                 facets.put(facetTerm.getName(), facet) ;
             }
