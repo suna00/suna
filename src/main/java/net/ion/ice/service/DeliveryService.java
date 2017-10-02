@@ -4,8 +4,8 @@ import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
-import net.ion.ice.core.node.NodeUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -14,11 +14,13 @@ import java.io.IOException;
 import java.util.*;
 
 @Service("deliveryService")
-public class DeliveryService {
+public class DeliveryService implements InitializingBean {
     @Autowired
     private NodeBindingService nodeBindingService;
     @Autowired
     private NodeService nodeService;
+
+    JdbcTemplate jdbcTemplate;
 
     public void removeDeliveryPrice(String cartProductId) throws IOException {
         Map<String, Object> result = getCartDeliveryPriceMap(cartProductId);
@@ -172,7 +174,6 @@ public class DeliveryService {
         String query = "select IFNULL(max(pi.addPrice * ?), 0) as addOptionPrice\n" +
                 "      from productoptionitem pi\n" +
                 "      where pi.productOptionItemId = ? ";
-        JdbcTemplate jdbcTemplate = nodeBindingService.getNodeBindingInfo("YPoint").getJdbcTemplate();
         for (Map<String, Object> item : JsonUtils.parsingJsonToList(cartProductItem)) {
             Map<String, Object> result = jdbcTemplate.queryForMap(query, item.get("quantity"), item.get("addOptionItemId"));
             price = price + (int) Double.parseDouble(result.get("addOptionPrice").toString());
@@ -182,7 +183,6 @@ public class DeliveryService {
 
     // 현재 기본옵션 상품 가격
     public Integer getBaseOptionProductPrice(Object baseOptionItemId, Object quantity) {
-        JdbcTemplate jdbcTemplate = nodeBindingService.getNodeBindingInfo("YPoint").getJdbcTemplate();
         String query = "select\n" +
                 "  IFNULL(max((p.salePrice + pi.addPrice) * ?), 0) as baseOptionPrice\n" +
                 "from productoptionitem pi, product p\n" +
@@ -195,7 +195,6 @@ public class DeliveryService {
     public Map<String, Object> getTotalProductPriceMap(String cartProductIds) {
         String[] ids = StringUtils.split(cartProductIds, ",");
         List<String> holder = new ArrayList<String>();
-        JdbcTemplate jdbcTemplate = nodeBindingService.getNodeBindingInfo("YPoint").getJdbcTemplate();
         for (String id : ids) {
             holder.add("?");
         }
@@ -218,7 +217,6 @@ public class DeliveryService {
     }
 
     public Map<String, Object> getCartDeliveryPriceMap(String cartProductId) {
-        JdbcTemplate jdbcTemplate = nodeBindingService.getNodeBindingInfo("YPoint").getJdbcTemplate();
         String query = "select\n" +
                 "  cartDeliveryPriceId\n" +
                 "  ,cartId\n" +
@@ -236,5 +234,10 @@ public class DeliveryService {
                 "from cartdeliveryprice\n" +
                 "where find_in_set(?, cartProductIds) > 0 ";
         return jdbcTemplate.queryForMap(query, cartProductId);
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        this.jdbcTemplate = nodeBindingService.getNodeBindingInfo("YPoint").getJdbcTemplate();
     }
 }

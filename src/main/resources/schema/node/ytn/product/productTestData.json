@@ -191,7 +191,7 @@
     "deliveryMethod": "delivery",
     "deliveryPriceType": "quantity",
     "deliveryPrice": 2500,
-    "deliveryConditionValue": "1",
+    "deliveryConditionValue": "2",
     "bundleDeliveryYn": null,
     "cashOnDeliveryYn": null,
     "deliveryDateType": "n",

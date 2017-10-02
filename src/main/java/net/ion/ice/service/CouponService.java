@@ -5,12 +5,13 @@ import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service("couponService")
 public class CouponService {
@@ -18,10 +19,10 @@ public class CouponService {
     @Autowired
     private NodeService nodeService;
     @Autowired
-    private NodeBindingService nodeBindingService ;
-    private CommonService common;
+    NodeBindingService nodeBindingService ;
 
-    private JdbcTemplate jdbcTemplate ;
+    CommonService common;
+
 
     public ExecuteContext download(ExecuteContext context) {
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
