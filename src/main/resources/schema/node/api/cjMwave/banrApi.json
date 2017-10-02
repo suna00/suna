@@ -64,7 +64,29 @@
         {
           "includeReferenced": true
         }
-      ]
+      ],
+      "response": {
+        "_all_": "",
+        "refdBanrItemList": {
+          "typeId": "banrItemInfo",
+          "query": [
+            {
+              "field": "banrSeq",
+              "method": "referenceJoin",
+              "value": "banrSeq_matching={{:banrSeq}}"
+            },
+            {
+              "field": "langCd",
+              "method": "matching",
+              "value": "{{:langCd}}"
+            },
+            {
+              "includeReferenced": true,
+              "sorting": "sortOdrg"
+            }
+          ]
+        }
+      }
     }
   }
 ]

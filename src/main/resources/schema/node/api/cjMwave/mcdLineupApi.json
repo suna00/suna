@@ -36,6 +36,25 @@
       ],
       "response":{
         "_all_": "",
+        "refdLineupList":{
+          "typeId": "mcdLineupArtist",
+          "query": [
+            {
+              "field": "lineupInfoSeq",
+              "method": "referenceJoin",
+              "value": "lineupInfoSeq_matching={{:lineupInfoSeq}}"
+            },
+            {
+              "field": "langCd",
+              "method": "matching",
+              "value": "{{:langCd}}"
+            },
+            {
+              "includeReferenced": true,
+              "sorting": "sortOdrg"
+            }
+          ]
+        },
         "lineupNum":{
           "resultType": "size",
           "field": "refdLineupList"
