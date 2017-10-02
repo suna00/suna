@@ -1306,6 +1306,124 @@
             "resultType": "value",
             "sql": "select if(count(*)>0,'Y','N') myLikeYn from contsLikeInfo where contsMetaDivCd = '7' and contsMetaId = concat('singlePhoto','::',@{singlePhotoId}) and mbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
           }
+        },"refSinglePhotoList": {
+          "typeId": "singlePhoto",
+          "query": [
+            {
+              "field": "contsMetaCtgryId",
+              "method": "matching",
+              "value": "{{:getCommaItem(contsMetaCtgryId,last,뺿뺿)}}"
+            },
+            {
+              "sorting": "created desc",
+              "limit": "15"
+            }
+          ]
+        },
+        "rcmdNewsList": {
+          "typeId": "news",
+          "query": [
+            {
+              "field": "relArtistIds",
+              "method": "matching",
+              "value": "{{:getCommaItem(relArtistIds,0,뺿뺿))}}"
+            },
+            {
+              "field": "apvSttusCd",
+              "method": "matching",
+              "value": "2"
+            },
+            {
+              "field": "langCd",
+              "method": "matching",
+              "value": "{{:langCd}}"
+            },
+            {
+              "sorting": "created desc",
+              "limit": "2"
+            }
+          ]
+        },
+        "rcmdVideoList": {
+          "typeId": "videItgInfo",
+          "query": [
+            {
+              "field": "artistId",
+              "method": "matching",
+              "value": "{{:getCommaItem(relArtistIds,0,뺿뺿))}}"
+            },
+            {
+              "sorting": "created desc",
+              "limit": "2"
+            }
+          ]
+        },
+        "rcmdSPhotoList": {
+          "typeId": "singlePhoto",
+          "query": [
+            {
+              "field": "relArtistIds",
+              "method": "matching",
+              "value": "{{:getCommaItem(relArtistIds,0,뺿뺿))}}"
+            },
+            {
+              "sorting": "created desc",
+              "limit": "2"
+            }
+          ]
+        },
+        "rcmdVoteList": {
+          "typeId": "voteBasInfo",
+          "query": [
+            {
+              "field": "voteFormlCd",
+              "method": "matching",
+              "value": "voteFormlCd>1,voteFormlCd>2,voteFormlCd>4,voteFormlCd>5"
+            },
+            {
+              "field": "showYn",
+              "method": "matching",
+              "value": "true"
+            },
+            {
+              "sorting": "created desc",
+              "limit": "3",
+              "includeReferenced": true
+            }
+          ],
+          "response": {
+            "_all_": "",
+            "refdItemList": {
+              "typeId": "voteItemInfo",
+              "query": [
+                {
+                  "field": "voteSeq",
+                  "method": "referenceJoin",
+                  "value": "voteSeq_matching={{:voteSeq}}"
+                },
+                {
+                  "field": "langCd",
+                  "method": "matching",
+                  "value": "{{:langCd}}"
+                }
+              ]
+            },
+            "refdSeriesItemList": {
+              "typeId": "sersVoteItemInfo",
+              "query": [
+                {
+                  "field": "voteSeq",
+                  "method": "referenceJoin",
+                  "value": "voteSeq_matching={{:voteSeq}}"
+                },
+                {
+                  "field": "langCd",
+                  "method": "matching",
+                  "value": "{{:langCd}}"
+                }
+              ]
+            }
+          }
         }
       }
     }
