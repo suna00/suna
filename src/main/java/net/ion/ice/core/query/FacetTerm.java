@@ -11,9 +11,11 @@ public class FacetTerm {
     private String field ;
     private List<String> rangeList;
     private List<Facet> facets;
+    private String fieldName;
 
     public FacetTerm(String field, Object value) {
         this.field = field ;
+        this.fieldName = field ;
         if(value != null){
             rangeList = new ArrayList<>() ;
             for(String range : StringUtils.split(value.toString(), ",")){
@@ -24,7 +26,7 @@ public class FacetTerm {
 
 
     public String getFieldName() {
-        return field;
+        return fieldName;
     }
 
     public String getName() {
@@ -41,5 +43,13 @@ public class FacetTerm {
 
     public void setFacets(List<Facet> facets) {
         this.facets = facets;
+    }
+
+    public void setFieldName(String fieldName) {
+        this.fieldName = fieldName;
+    }
+
+    public List<Facet> getFacets() {
+        return facets;
     }
 }
