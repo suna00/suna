@@ -93,7 +93,13 @@ public class PropertiesFieldBridge implements FieldBridge {
                     }
                 }else {
                     if(propertyType.isSortable() && !propertyType.isNumeric()) {
-                        document.add(new SortedSetDocValuesFacetField(pid + "_sort" , entry.getValue().toString()));
+                        if(propertyType.getValueType() == PropertyType.ValueType.REFERENCES){
+                            for(String val : StringUtils.split(entry.getValue().toString())){
+                                document.add(new SortedSetDocValuesFacetField(pid + "_sort", val));
+                            }
+                        }else {
+                            document.add(new SortedSetDocValuesFacetField(pid + "_sort", entry.getValue().toString()));
+                        }
                     }
                     document.add(getKeywordField(propertyType, pid, entry.getValue().toString()));
                 }
