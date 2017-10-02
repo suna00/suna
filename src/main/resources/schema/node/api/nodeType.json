@@ -151,6 +151,29 @@
   {
     "typeId" : "propertyType",
     "tid" : "apiConfig",
+    "pid" : "role",
+    "propertyTypeName" : "ROLE",
+    "valueType" : "REFERENCES",
+    "idable" : false,
+    "indexable" : true,
+    "labelable" : false,
+    "required" : false,
+    "referenceType" : "role"
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "apiConfig",
+    "pid" : "secure",
+    "propertyTypeName" : "Secure",
+    "valueType" : "BOOLEAN",
+    "idable" : false,
+    "indexable" : false,
+    "labelable" : false,
+    "required" : false
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "apiConfig",
     "pid" : "parameters",
     "propertyTypeName" : "Parameter Configuration",
     "valueType" : "JSON",
