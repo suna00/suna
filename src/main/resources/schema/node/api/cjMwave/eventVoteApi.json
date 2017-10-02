@@ -2,7 +2,7 @@
   {
     "typeId": "apiConfig",
     "category": "vote",
-    "apiId": "fMev001",
+    "apiId": "IfMev001",
     "apiName": "이벤트 투표 상세조회",
     "method": "GET",
     "parameters": [
