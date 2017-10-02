@@ -1,0 +1,198 @@
+[
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "fMev001",
+    "apiName": "이벤트 투표 상세조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "voteSeq",
+        "required": false
+      },
+      {
+        "paramName": "voteYear",
+        "required": false
+      },
+      {
+        "paramName": "showLoCd",
+        "required": false
+      },
+      {
+        "paramName": "voteFormlCd",
+        "required": false
+      },
+      {
+        "paramName": "snsKey",
+        "required": false
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": false
+      },
+      {
+        "paramName": "connIpAdr",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "voteBasInfo",
+      "query": [
+        {
+          "field": "voteSeq",
+          "method": "matching",
+          "value": "{{:voteSeq}}"
+        },
+        {
+          "field": "pstngStDt",
+          "method": "above",
+          "value": "{{:concatStr(voteYear,0101)}}"
+        },
+        {
+          "field": "pstngStDt",
+          "method": "below",
+          "value": "{{:concatStr(voteYear,1231)}}"
+        },
+        {
+          "field": "showLoCd",
+          "method": "matching",
+          "value": "{{:showLoCd}}"
+        },
+        {
+          "field": "voteFormlCd",
+          "method": "matching",
+          "value": "{{:voteFormlCd}}"
+        },
+        {
+          "field": "showYn",
+          "method": "matching",
+          "value": "true"
+        },
+        {
+          "field": "evVoteYn",
+          "method": "matching",
+          "value": "true"
+        },
+        {
+          "sorting": "voteSeq desc"
+        },
+        {
+          "limit": "1"
+        },
+        {
+          "referenceView": "sersItemVoteSeq",
+          "includeReferenced": true
+        }
+      ],
+      "response": {
+        "_all_": "",
+        "refdItemList": {
+          "typeId": "voteItemInfo",
+          "query": [
+            {
+              "field": "voteSeq",
+              "method": "referenceJoin",
+              "value": "voteSeq_matching={{:voteSeq}}"
+            },
+            {
+              "field": "langCd",
+              "method": "matching",
+              "value": "{{:langCd}}"
+            },
+            {
+              "referenceView": "contsMetaId"
+            }
+          ]
+        },
+        "refdSeriesItemList": {
+          "typeId": "sersVoteItemInfo",
+          "query": [
+            {
+              "field": "voteSeq",
+              "method": "referenceJoin",
+              "value": "voteSeq_matching={{:voteSeq}}"
+            },
+            {
+              "field": "langCd",
+              "method": "matching",
+              "value": "{{:langCd}}"
+            },
+            {
+              "referenceView": "sersItemVoteSeq",
+              "includeReferenced": true
+            }
+          ]
+        },
+        "voteNum": {
+          "select": {
+            "ds": "cjDb",
+            "resultType": "value",
+            "sql": "select sum(voteNum)as voteNum from voteItemStats where voteSeq = @{voteSeq}"
+          }
+        },
+        "userVoteCnt": {
+          "value": "10"
+        },
+        "userPvCnt": {
+          "value": "1000"
+        },
+        "ipAdrVoteCnt": {
+          "value": "10000"
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMev002",
+    "apiName": "MAMA용 이벤트 투표하기",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "voteSeq",
+        "required": true
+      },
+      {
+        "paramName": "voteQueiSeq",
+        "required": true
+      },
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      },
+      {
+        "paramName": "connIpAdr",
+        "required": true
+      }
+    ],
+    "config": {
+      "createItem": {
+        "typeId": "votePrtcptHst",
+        "event": "save",
+        "data": {
+          "voteSeq": "{{:voteSeq}}",
+          "voteItemSeq": "{{:voteQueiSeq}}",
+          "prtcpMbrId": "{{:snsTypeCd}}>{{:snsKey}}",
+          "connIpAdr": "{{:connIpAdr}}"
+        },
+        "response": {
+          "_all_": "",
+          "userVoteCnt": {
+            "value": "10"
+          },
+          "userPvCnt": {
+            "value": "1000"
+          },
+          "ipAdrVoteCnt": {
+            "value": "10000"
+          }
+        }
+      }
+    }
+  }
+]
