@@ -811,7 +811,7 @@
     "typeId": "code",
     "groupCodeId": "osCd",
     "codeId": "1",
-    "name": "osCdTmp1",
+    "name": "iOS",
     "order": 1,
     "active": true
   },
@@ -819,7 +819,7 @@
     "typeId": "code",
     "groupCodeId": "osCd",
     "codeId": "2",
-    "name": "osCdTmp2",
+    "name": "안드로이드",
     "order": 2,
     "active": true
   },
