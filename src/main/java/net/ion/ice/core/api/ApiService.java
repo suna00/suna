@@ -13,6 +13,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
@@ -31,11 +32,11 @@ public class ApiService {
     @Autowired
     private SessionService sessionService;
 
-    public Object execute(NativeWebRequest request, String category, String api, String method) {
-        return execute(request, category, api, method, null) ;
+    public Object execute(NativeWebRequest request, HttpServletResponse response, String category, String api, String method) {
+        return execute(request, response, category, api, method, null) ;
     }
 
-    public Object execute(NativeWebRequest request, String category, String api, String method, String typeId) {
+    public Object execute(NativeWebRequest request, HttpServletResponse response, String category, String api, String method, String typeId) {
         Node apiCategory  = nodeService.getNode("apiCategory", category) ;
         Node apiNode = nodeService.getNode("apiConfig", category + Node.ID_SEPERATOR + api) ;
 
@@ -58,22 +59,11 @@ public class ApiService {
             e.printStackTrace();
         }
 
-        if(!method.equals(apiMethod)){
+        if(apiMethod.equals("GET") || !method.equals(apiMethod)){
             throw new RuntimeException("Not Allow Method") ;
         }
 
-
-        if(apiMethod.equals("POST")){
-            if(request.getNativeRequest() instanceof MultipartHttpServletRequest) {
-                ApiContext context = ApiContext.createContext(apiCategory, apiNode, typeId, (Map<String, Object>) apiNode.get("config"), request.getParameterMap(), ((MultipartHttpServletRequest) request.getNativeRequest()).getMultiFileMap(), session) ;
-                return context.makeApiResult() ;
-            }
-            ApiContext context = ApiContext.createContext(apiCategory, apiNode, typeId, (Map<String, Object>) apiNode.get("config"), request.getParameterMap(), null, session) ;
-            return context.makeApiResult() ;
-        }
-
-        ApiContext context = ApiContext.createContext(apiCategory, apiNode, typeId, (Map<String, Object>) apiNode.get("config"), request.getParameterMap(), null, session) ;
+        ApiContext context = ApiContext.createContext(apiCategory, apiNode, typeId, (Map<String, Object>) apiNode.get("config"), request, response, session) ;
         return context.makeApiResult() ;
-
     }
 }
