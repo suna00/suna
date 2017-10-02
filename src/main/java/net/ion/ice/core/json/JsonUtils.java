@@ -3,6 +3,7 @@ package net.ion.ice.core.json;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import net.ion.ice.core.node.Reference;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -147,8 +148,10 @@ public class JsonUtils {
                 result = StringUtils.substringBeforeLast(result, ",") ;
             }
             return result ;
-        }else if(val instanceof Map){
-            return getValue((Map<String, Object>) val, StringUtils.substringAfter(key, ".")) ;
+        }else if(val instanceof Map) {
+            return getValue((Map<String, Object>) val, StringUtils.substringAfter(key, "."));
+        }else if(val instanceof Reference){
+            return ((Reference) val).getValue() ;
         }else if(val != null){
             return val ;
         }
@@ -171,5 +174,41 @@ public class JsonUtils {
             e.printStackTrace();
             return null ;
         }
+    }
+
+
+    public static Double getDoubleValue(Map<String, Object> data, String key){
+        Object value = getValue(data, key) ;
+
+        if(value == null) return 0D ;
+
+        if(value instanceof Double){
+            return (Double) value;
+        }
+        return Double.parseDouble(value.toString()) ;
+
+    }
+
+    public static Integer getIntValue(Map<String, Object> data, String key) {
+        Object value = getValue(data, key) ;
+
+        if(value == null) return 0 ;
+
+        if(value instanceof Integer){
+            return (Integer) value;
+        }
+        return Integer.parseInt(value.toString()) ;
+
+    }
+
+    public static String getStringValue(Map<String, Object> data, String key) {
+        Object value = getValue(data, key) ;
+
+        if(value == null) return "" ;
+
+        if(value instanceof String){
+            return (String) value;
+        }
+        return value.toString() ;
     }
 }

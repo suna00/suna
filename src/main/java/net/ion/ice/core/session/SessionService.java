@@ -127,6 +127,7 @@ public class SessionService {
 
         }
 
+
         try {
             putSession(request, response, member);
         } catch (UnsupportedEncodingException e) {
