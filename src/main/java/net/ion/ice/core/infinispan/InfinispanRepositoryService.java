@@ -127,7 +127,11 @@ public class InfinispanRepositoryService {
         List<Object> list = cacheQuery.list();
         queryContext.setResultSize(cacheQuery.getResultSize());
         queryContext.setQueryListSize(list.size()) ;
-
+        if(queryContext.getFacetTerms() != null) {
+            for (FacetTerm facet : queryContext.getFacetTerms()) {
+                facet.setFacets(cacheQuery.getFacetManager().getFacets(facet.getName()));
+            }
+        }
         if(queryContext.getStart() > 0) {
             return list.subList(queryContext.getStart(), list.size()) ;
         }

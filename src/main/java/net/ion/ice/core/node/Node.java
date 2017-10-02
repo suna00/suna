@@ -13,8 +13,6 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Created by jaeho on 2017. 3. 31..
  */
-
-@ProvidedId
 @Indexed
 public class Node implements Map<String, Object>, Serializable, Cloneable{
     public static final String ID = "id";
@@ -27,12 +25,13 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
     public static List<String> NODE_VALUE_KEYS = Arrays.asList(new String[] {"id", "typeId", "owner", "modifier", "created", "changed", "status"}) ;
 
-
-
     @DocumentId
     @Field
     @Analyzer(impl = CodeAnalyzer.class)
     private String id ;
+
+    @Field(analyze = Analyze.NO)
+    private String facet ;
 
     @Field
     @Analyzer(impl = CodeAnalyzer.class)
@@ -56,9 +55,9 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     private Date changed ;
 
 
-    @Field
+    @Field(analyze = Analyze.NO)
     @FieldBridge(impl = PropertiesFieldBridge.class)
-    private Properties properties ;
+    private Properties<String, Object> properties ;
 
 
     public Node(){
@@ -500,7 +499,6 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
         return NodeUtils.getNode(referenceType, refId);
     }
-
 
 
 

@@ -8,8 +8,11 @@ import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.ResultField;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -34,10 +37,20 @@ public class ApiContext {
 
     private List<RequestParameter> parameters ;
 
-    public static ApiContext createContext(Node apiCategory, Node apiNode, String typeId, Map<String, Object> config, Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, Map<String, Object> session) {
+    private NativeWebRequest httpRequest ;
+    private HttpServletResponse httpResponse ;
+
+    public static ApiContext createContext(Node apiCategory, Node apiNode, String typeId, Map<String, Object> config, NativeWebRequest request, HttpServletResponse response, Map<String, Object> session) {
+        Map<String, String[]> parameterMap = request.getParameterMap() ;
+        MultiValueMap<String, MultipartFile> multiFileMap = null ;
+        if(request.getNativeRequest() instanceof MultipartHttpServletRequest) {
+            multiFileMap = ((MultipartHttpServletRequest) request.getNativeRequest()).getMultiFileMap() ;
+        }
         ApiContext ctx = new ApiContext() ;
         ctx.apiCategory = apiCategory ;
         ctx.apiNode = apiNode ;
+        ctx.httpRequest = request ;
+        ctx.httpResponse = response ;
         ctx.data = ContextUtils.makeContextData(parameterMap, multiFileMap) ;
         ctx.data.put("session", session);
         ctx.data.put("now", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())) ;
@@ -101,7 +114,7 @@ public class ApiContext {
 
     private Map<String, Object> makeSubApiReuslt(Map<String, Object> ctxRootConfig) {
         if(ctxRootConfig.containsKey("event")){
-            ApiExecuteContext executeContext = ApiExecuteContext.makeContextFromConfig(ctxRootConfig, data) ;
+            ApiExecuteContext executeContext = ApiExecuteContext.makeContextFromConfig(ctxRootConfig, data, httpRequest, httpResponse) ;
             QueryResult queryResult = executeContext.makeQueryResult() ;
 
             addResultData(executeContext.getResult());

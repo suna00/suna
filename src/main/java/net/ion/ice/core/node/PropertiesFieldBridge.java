@@ -3,11 +3,13 @@ package net.ion.ice.core.node;
 import net.ion.ice.core.infinispan.lucene.AnalyzerFactory;
 import net.ion.ice.core.infinispan.lucene.AnalyzerField;
 import net.ion.ice.core.infinispan.lucene.AnalyzerFieldType;
+import org.apache.commons.lang.StringUtils;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.DateTools;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.FieldType;
+import org.apache.lucene.facet.sortedset.SortedSetDocValuesFacetField;
 import org.apache.lucene.index.DocValuesType;
 import org.apache.lucene.index.IndexOptions;
 import org.hibernate.search.bridge.FieldBridge;
@@ -22,29 +24,19 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Created by jaeho on 2017. 3. 31..
  */
-public class PropertiesFieldBridge implements FieldBridge, MetadataProvidingFieldBridge {
+public class PropertiesFieldBridge implements FieldBridge {
 
     public PropertiesFieldBridge(){
-        System.out.println("INIT FIELD");
     }
-
-    private FieldMetadataBuilder builder ;
-
-    @Override
-    public void configureFieldMetadata(String name, FieldMetadataBuilder builder) {
-        System.out.print(name);
-        this.builder = builder ;
-    }
-
 
     @Override
     public void set(String fieldName, Object value, Document document, LuceneOptions luceneOptions) {
-        if ( value != null ) {
+        if ( value != null && fieldName.equals("properties") ) {
             indexNotNullMap( fieldName, value, document, luceneOptions );
         }
     }
     private void indexNotNullMap(String name, Object value, Document document, LuceneOptions luceneOptions) {
-        Properties properties = (Properties) value;
+        Properties<String, Object> properties = (Properties) value;
         String typeId = properties.getTypeId() ;
         NodeType nodeType = NodeUtils.getNodeType(typeId) ;
         if(nodeType == null){
@@ -70,22 +62,18 @@ public class PropertiesFieldBridge implements FieldBridge, MetadataProvidingFiel
 
         switch (valueType) {
             case LONG :{
-//                builder.field(pid, org.hibernate.search.bridge.spi.FieldType.LONG) ;
                 document.add(new org.apache.lucene.document.LongField(pid, NodeUtils.getLongValue(entry.getValue()), numericFieldType(valueType)));
                 break;
             }
             case INT :{
-//                builder.field(pid, org.hibernate.search.bridge.spi.FieldType.INTEGER) ;
                 document.add(new org.apache.lucene.document.IntField(pid, NodeUtils.getIntValue(entry.getValue()), numericFieldType(valueType)));
                 break;
             }
             case DOUBLE :{
-//                builder.field(pid, org.hibernate.search.bridge.spi.FieldType.DOUBLE) ;
                 document.add(new org.apache.lucene.document.DoubleField(pid, NodeUtils.getDoubleValue(entry.getValue()), numericFieldType(valueType)));
                 break;
             }
             case DATE :{
-//                builder.field(pid, org.hibernate.search.bridge.spi.FieldType.LONG) ;
                 document.add(new org.apache.lucene.document.LongField(pid,NodeUtils.getDateLongValue(entry.getValue()), numericFieldType(PropertyType.ValueType.LONG)));
                 break;
             }
@@ -94,7 +82,6 @@ public class PropertiesFieldBridge implements FieldBridge, MetadataProvidingFiel
 //                document.add(field);
 //            }
             default:{
-//                builder.field(pid, org.hibernate.search.bridge.spi.FieldType.STRING) ;
 //                Field field = new AnalyzerField(pid, entry.getValue().toString(), propertyType.isSorted() ? sortedFieldAnalyzer(propertyType.getLuceneAnalyzer()) : fieldAnalyzer(propertyType.getLuceneAnalyzer())) ;
                 if(propertyType.isI18n()){
                     if(entry.getValue() instanceof Map){
@@ -104,6 +91,9 @@ public class PropertiesFieldBridge implements FieldBridge, MetadataProvidingFiel
                         }
                     }
                 }else {
+                    if(propertyType.isSortable() && !propertyType.isNumeric()) {
+                        document.add(new SortedSetDocValuesFacetField(pid + "_sort" , entry.getValue().toString()));
+                    }
                     document.add(getKeywordField(propertyType, pid, entry.getValue().toString()));
                 }
                 break;
@@ -119,9 +109,6 @@ public class PropertiesFieldBridge implements FieldBridge, MetadataProvidingFiel
                 return new AnalyzerField(key, value, sortedFieldAnalyzer());
 //            }
         }else{
-            if(propertyType.isSortable() && !propertyType.isNumeric()) {
-                return new AnalyzerField(key + "_sort", value, sortedFieldAnalyzer());
-            }
             return new AnalyzerField(key, value, fieldAnalyzer(propertyType.getLuceneAnalyzer()));
         }
 
@@ -134,6 +121,7 @@ public class PropertiesFieldBridge implements FieldBridge, MetadataProvidingFiel
         if(value instanceof Long){
             document.add(new org.apache.lucene.document.LongField(pid, (Long) value, numericFieldType(PropertyType.ValueType.LONG)));
         }else if(value instanceof Integer){
+
             document.add(new org.apache.lucene.document.IntField(pid, (Integer) value, numericFieldType(PropertyType.ValueType.INT)));
         }else if(value instanceof Double){
             document.add(new org.apache.lucene.document.DoubleField(pid, (Double) value, numericFieldType(PropertyType.ValueType.DOUBLE)));

@@ -43,6 +43,7 @@
     "labelable": false,
     "treeable": false,
     "indexable": true,
+    "sortable" : true,
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",

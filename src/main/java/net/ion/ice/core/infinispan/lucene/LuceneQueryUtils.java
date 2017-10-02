@@ -157,6 +157,12 @@ public class LuceneQueryUtils {
         QueryBuilder queryBuilder = queryContext.getSearchManager().buildQueryBuilderForClass(Node.class).get();
 
         for(FacetTerm facetTerm : queryContext.getFacetTerms()){
+            PropertyType pt = queryContext.getNodetype().getPropertyType(facetTerm.getName()) ;
+            if(pt != null) {
+                if(pt.isSortable() && !pt.isNumeric()){
+                    facetTerm.setFieldName(facetTerm.getName() + "_sort") ;
+                }
+            }
             if(facetTerm.isDiscrete()) {
                 FacetingRequest fieldFacetRequest = queryBuilder.facet()
                         .name(facetTerm.getName())
@@ -175,7 +181,6 @@ public class LuceneQueryUtils {
                 FacetRangeBelowContinuationContext<Object> below = null ;
                 FacetRangeEndContext<Object> fromto = null ;
                 FacetingRequest rangeFacetRequest = null ;
-                PropertyType pt = queryContext.getNodetype().getPropertyType(facetTerm.getFieldName()) ;
                 PropertyType.ValueType valueType = pt.getValueType();
 
                 for(int i = 0; i< facetTerm.getRangeList().size(); i++){
