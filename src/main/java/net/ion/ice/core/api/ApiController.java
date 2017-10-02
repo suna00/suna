@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.NativeWebRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
@@ -26,60 +27,60 @@ public class ApiController {
 
     @RequestMapping(value = "/api/{category}/{api}", method = RequestMethod.GET)
     @ResponseBody
-    public Object get(NativeWebRequest request, @PathVariable String category, @PathVariable String api) throws IOException {
-        return api(request, category, api, "GET");
+    public Object get(NativeWebRequest request, HttpServletResponse response, @PathVariable String category, @PathVariable String api) throws IOException {
+        return api(request, response, category, api, "GET");
     }
 
     @RequestMapping(value = "/api/{category}/{api}", method = RequestMethod.POST)
     @ResponseBody
-    public Object post(NativeWebRequest request, @PathVariable String category, @PathVariable String api) throws IOException {
-        return api(request, category, api, "POST");
+    public Object post(NativeWebRequest request, HttpServletResponse response, @PathVariable String category, @PathVariable String api) throws IOException {
+        return api(request, response, category, api, "POST");
     }
 
 
     @RequestMapping(value = "/api/node/{typeId}/{api}", method = RequestMethod.GET)
     @ResponseBody
-    public Object getNode(NativeWebRequest request, @PathVariable String typeId, @PathVariable String api) throws IOException {
-        return nodeApi(request, typeId, api, "GET");
+    public Object getNode(NativeWebRequest request, HttpServletResponse response, @PathVariable String typeId, @PathVariable String api) throws IOException {
+        return nodeApi(request, response, typeId, api, "GET");
     }
 
     @RequestMapping(value = "/api/node/{typeId}/{api}", method = RequestMethod.POST)
     @ResponseBody
-    public Object eventNode(NativeWebRequest request, @PathVariable String typeId, @PathVariable String api) throws IOException {
-        return nodeApi(request, typeId, api, "POST");
+    public Object eventNode(NativeWebRequest request, HttpServletResponse response, @PathVariable String typeId, @PathVariable String api) throws IOException {
+        return nodeApi(request, response, typeId, api, "POST");
     }
 
     @RequestMapping(value = "/api/{category}/{api}.json", method = RequestMethod.GET)
     @ResponseBody
-    public Object getJson(NativeWebRequest request, @PathVariable String category, @PathVariable String api) throws IOException {
-        return api(request, category, api, "GET");
+    public Object getJson(NativeWebRequest request, HttpServletResponse response, @PathVariable String category, @PathVariable String api) throws IOException {
+        return api(request, response, category, api, "GET");
     }
 
     @RequestMapping(value = "/api/{category}/{api}.json", method = RequestMethod.POST)
     @ResponseBody
-    public Object postJson(NativeWebRequest request, @PathVariable String category, @PathVariable String api) throws IOException {
-        return api(request, category, api, "POST");
+    public Object postJson(NativeWebRequest request, HttpServletResponse response, @PathVariable String category, @PathVariable String api) throws IOException {
+        return api(request, response, category, api, "POST");
     }
 
 
     @RequestMapping(value = "/api/node/{typeId}/{api}.json", method = RequestMethod.GET)
     @ResponseBody
-    public Object getNodeJson(NativeWebRequest request, @PathVariable String typeId, @PathVariable String api) throws IOException {
-        return nodeApi(request, typeId, api, "GET");
+    public Object getNodeJson(NativeWebRequest request, HttpServletResponse response, @PathVariable String typeId, @PathVariable String api) throws IOException {
+        return nodeApi(request, response, typeId, api, "GET");
     }
 
     @RequestMapping(value = "/api/node/{typeId}/{api}.json", method = RequestMethod.POST)
     @ResponseBody
-    public Object eventNodeJson(NativeWebRequest request, @PathVariable String typeId, @PathVariable String api) throws IOException {
-        return nodeApi(request, typeId, api, "POST");
+    public Object eventNodeJson(NativeWebRequest request, HttpServletResponse response, @PathVariable String typeId, @PathVariable String api) throws IOException {
+        return nodeApi(request, response, typeId, api, "POST");
     }
 
 
 
     @RequestMapping(value = "/testApi/{category}/{api}", method = RequestMethod.GET)
     @ResponseBody
-    public Object testGet(NativeWebRequest request, @PathVariable String category, @PathVariable String api) throws IOException {
-        return api(request, category, api, "GET");
+    public Object testGet(NativeWebRequest request, HttpServletResponse response, @PathVariable String category, @PathVariable String api) throws IOException {
+        return api(request, response, category, api, "GET");
     }
 
 //
@@ -102,18 +103,18 @@ public class ApiController {
 //    }
 
 
-    private Object nodeApi(NativeWebRequest request, String typeId, String api, String method) {
+    private Object nodeApi(NativeWebRequest request, HttpServletResponse response, String typeId, String api, String method) {
         try {
-            return apiService.execute(request, "node", api, method, typeId) ;
+            return apiService.execute(request, response, "node", api, method, typeId) ;
         } catch (Exception e) {
             e.printStackTrace();
             return JsonResponse.error(e);
         }
     }
 
-    private Object api(NativeWebRequest request, String category, String api, String method) {
+    private Object api(NativeWebRequest request, HttpServletResponse response, String category, String api, String method) {
         try {
-            return apiService.execute(request, category, api, method) ;
+            return apiService.execute(request, response, category, api, method) ;
         } catch (Exception e) {
             logger.error("api error : " + request.getNativeRequest(HttpServletRequest.class).getRequestURI()) ;
             if(e.getCause() instanceof ClassCastException){

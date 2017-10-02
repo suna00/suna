@@ -70,12 +70,12 @@ public class PropertiesFieldBridge implements FieldBridge, MetadataProvidingFiel
 
         switch (valueType) {
             case LONG :{
-//                builder.field(pid, org.hibernate.search.bridge.spi.FieldType.LONG) ;
+                builder.field(pid, org.hibernate.search.bridge.spi.FieldType.LONG) ;
                 document.add(new org.apache.lucene.document.LongField(pid, NodeUtils.getLongValue(entry.getValue()), numericFieldType(valueType)));
                 break;
             }
             case INT :{
-//                builder.field(pid, org.hibernate.search.bridge.spi.FieldType.INTEGER) ;
+                builder.field(pid, org.hibernate.search.bridge.spi.FieldType.INTEGER) ;
                 document.add(new org.apache.lucene.document.IntField(pid, NodeUtils.getIntValue(entry.getValue()), numericFieldType(valueType)));
                 break;
             }
