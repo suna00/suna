@@ -115,5 +115,14 @@
     "tableName": "ytnDevDb#interestFreeInstallment",
     "repositoryType": "node",
     "eviction": 1000
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "interestFreeInstallmentItem",
+    "typeName": "무이자할부 Item",
+    "tableName": "ytnDevDb#interestFreeInstallmentItem",
+    "repositoryType": "node",
+    "eviction": 10000
   }
 ]

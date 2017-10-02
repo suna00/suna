@@ -781,66 +781,6 @@
     }
   },
   {
-    "typeId": "interestFreeInstallment",
-    "interestFreeInstallmentId": 1,
-    "year": 2017,
-    "month": 8,
-    "interestType": {
-      "value": "no",
-      "label": "무이자",
-      "refId": "interestType>no"
-    },
-    "interestStatus": "y",
-    "cardType": {
-      "value": "card001",
-      "label": "롯데카드",
-      "refId": "cardType>card001"
-    },
-    "maximumMonth": 12,
-    "sortOrder": 1,
-    "description": "2,3,4,5,6,12개월(5만원 이상 결제 시)"
-  },
-  {
-    "typeId": "interestFreeInstallment",
-    "interestFreeInstallmentId": 2,
-    "year": 2017,
-    "month": 8,
-    "interestType": {
-      "value": "no",
-      "label": "무이자",
-      "refId": "interestType>no"
-    },
-    "interestStatus": "y",
-    "cardType": {
-      "value": "card002",
-      "label": "비씨카드",
-      "refId": "cardType>card002"
-    },
-    "maximumMonth": 6,
-    "sortOrder": 2,
-    "description": "6개월(5만원 이상 결제 시)"
-  },
-  {
-    "typeId": "interestFreeInstallment",
-    "interestFreeInstallmentId": 3,
-    "year": 2017,
-    "month": 8,
-    "interestType": {
-      "value": "part",
-      "label": "부분무이자",
-      "refId": "interestType>part"
-    },
-    "interestStatus": "y",
-    "cardType": {
-      "value": "card003",
-      "label": "삼성카드",
-      "refId": "cardType>card003"
-    },
-    "maximumMonth": null,
-    "sortOrder": 1,
-    "description": "6개월(5만원 이상 결제 시)"
-  },
-  {
     "typeId": "theme",
     "themeId": 1,
     "pageType": "best",
