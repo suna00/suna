@@ -173,11 +173,11 @@ public class S3FileRepository implements FileRepository {
             logger.error("S3 MULTIPART FILE SAVE ERROR");
             throw new TolerableMissingFileException("S3 MULTIPART FILE SAVE ERROR : ", e);
         }
-//        finally {
-//            if(saveFile != null && saveFile.exists()) {
-//                saveFile.delete();
-//            }
-//        }
+        finally {
+            if(saveFile != null && saveFile.exists()) {
+                saveFile.delete();
+            }
+        }
         return new FileValue(pt, id, multipartFile, savePath) ;
     }
 
@@ -194,11 +194,11 @@ public class S3FileRepository implements FileRepository {
             logger.error("S3 FILE SAVE ERROR");
             throw new TolerableMissingFileException("S3 FILE SAVE ERROR : ", e);
         }
-//        finally {
-//            if(file != null && file.exists()) {
-//                file.delete();
-//            }
-//        }
+        finally {
+            if(file != null && file.exists()) {
+                file.delete();
+            }
+        }
         return new FileValue(pt, id, file, savePath, fileName, contentType) ;
     }
 
@@ -228,11 +228,11 @@ public class S3FileRepository implements FileRepository {
             logger.error("S3 SAVE RESOURCE FILE SAVE ERROR");
             throw new TolerableMissingFileException("S3 SAVE RESOURCE FILE SAVE ERROR : ", e);
         }
-//        finally {
-//            if(saveFile != null && saveFile.exists()) {
-//                saveFile.delete();
-//            }
-//        }
+        finally {
+            if(saveFile != null && saveFile.exists()) {
+                saveFile.delete();
+            }
+        }
         return new FileValue(pt, res, savePath);
     }
 }
