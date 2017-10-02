@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -32,6 +33,8 @@ public class DBSyncService {
             , MAPPER_TID = "dbSyncMapper";
 
     private static int BATCH_UNIT = 2000;
+
+    private ThreadPoolTaskExecutor threadPoolTaskExecutor;
 
 
     @Autowired
@@ -70,6 +73,11 @@ public class DBSyncService {
     public void init(){
         try{
             ice2Template = dbService.getJdbcTemplate("cjDb");
+            threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
+            threadPoolTaskExecutor.setCorePoolSize(10);
+            threadPoolTaskExecutor.setMaxPoolSize(12);
+            threadPoolTaskExecutor.setQueueCapacity(20);
+            threadPoolTaskExecutor.initialize();
         } catch (Exception e) {
             logger.error("Could not initialize JdbcTemplate");
         }
@@ -550,17 +558,16 @@ public class DBSyncService {
         switch (type) {
             case "all" :
                 for(String executeId : mnetExecuteIds) {
-                    ParallelDBSyncExecutor parallel = new ParallelDBSyncExecutor(executeId) {
+                    threadPoolTaskExecutor.execute(new ParallelDBSyncExecutor(executeId) {
                         @Override
-                        public void run() {
+                        public void action() {
                             try{
                                 this.dbSyncService.executeWithIteration(this.executeId);
                             } catch (Exception e) {
                                 logger.error("Error occurs in Thread : ", e);
                             }
                         }
-                    };
-                    parallel.executeMigration();
+                    });
                 }
                 break;
             case "album" :
@@ -612,56 +619,56 @@ public class DBSyncService {
         switch (type) {
             case "all" :
                 for(String executeId : mnetPartialExecuteIds) {
-                    ParallelDBSyncExecutor parallel = new ParallelDBSyncExecutor(executeId) {
+
+                    threadPoolTaskExecutor.execute(new ParallelDBSyncExecutor(executeId) {
                         @Override
-                        public void run() {
+                        public void action() {
                             try{
-                                this.dbSyncService.executeWithRange("mnet", this.executeId, provided);
+                                this.dbSyncService.executeWithRange(mig_target, this.executeId, provided);
                             } catch (Exception e) {
                                 logger.error("Error occurs in Thread : ", e);
                             }
                         }
-                    };
-                    parallel.executeMigration();
+                    });
                 }
                 break;
             case "album" :
                 if(storage.isAbleToRun("albumPart")) {
-                    executeWithRange("mnet", "albumPart", provided);
+                    executeWithRange(mig_target, "albumPart", provided);
                 } else {
                     logger.info("[ albumPart ] Task is already Running. Ignore this request");
                 }
                 break;
             case "artist" :
                 if(storage.isAbleToRun("artistPart")) {
-                    executeWithRange("mnet", "artistPart", provided);
+                    executeWithRange(mig_target, "artistPart", provided);
                 } else {
                     logger.info("[ artistPart ] Task is already Running. Ignore this request");
                 }
                 break;
             case "song" :
                 if(storage.isAbleToRun("songPart")) {
-                    executeWithRange("mnet", "songPart", provided);
+                    executeWithRange(mig_target, "songPart", provided);
                 } else {
                     logger.info("[ songPart ] Task is already Running. Ignore this request");
                 }
                 break;
             case "mv" :
                 if(storage.isAbleToRun("musicVideoPart")) {
-                    executeWithRange("mnet", "musicVideoPart", provided);
+                    executeWithRange(mig_target, "musicVideoPart", provided);
                 } else {
                     logger.info("[ musicVideoPart ] Task is already Running. Ignore this request");
                 }
                 break;
             case "chart" :
                 if(storage.isAbleToRun("mcdChartBasInfoPart")) {
-                    executeWithRange("mnet", "mcdChartBasInfoPart", provided);
+                    executeWithRange(mig_target, "mcdChartBasInfoPart", provided);
                 } else {
                     logger.info("[ mcdChartBasInfoPart ] Task is already Running. Ignore this request");
                 }
 
                 if(storage.isAbleToRun("mcdChartStatsPart")) {
-                    executeWithRange("mnet", "mcdChartStatsPart", provided);
+                    executeWithRange(mig_target, "mcdChartStatsPart", provided);
                 } else {
                     logger.info("[ mcdChartStatsPart ] Task is already Running. Ignore this request");
                 }

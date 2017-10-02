@@ -20,8 +20,10 @@ public abstract class ParallelDBSyncExecutor extends Thread {
         this.storage = (DBProcessStorage) ApplicationContextManager.getBean("DBProcessStorage");
     }
 
+    public abstract void action();
 
-    public void executeMigration(){
+    @Override
+    public void run() {
         Thread check = storage.getProcess(executeId);
         if(check != null) {
             System.out.println("Thread with [ " + executeId + " ] is already exists. Ignore this request");
@@ -30,6 +32,6 @@ public abstract class ParallelDBSyncExecutor extends Thread {
             System.out.println("Thread with [ " + executeId + " ] is getting started. Accept this request");
             storage.addProcess(executeId, this);
         }
-        this.run();
+        action();
     }
 };
