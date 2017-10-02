@@ -59,7 +59,8 @@ public class ApiService {
             e.printStackTrace();
         }
 
-        if(apiMethod.equals("GET") || !method.equals(apiMethod)){
+//        if(apiMethod.equals("GET") || !method.equals(apiMethod)){
+        if(!method.equals(apiMethod)){
             throw new RuntimeException("Not Allow Method") ;
         }
 
