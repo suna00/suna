@@ -93,7 +93,6 @@
       "chkContsLike": {
         "select": {
           "ds": "cjDb",
-          "resultType": "value",
           "sql": "select if(count(*)>0,'false','true') likeNullYn from contsLikeInfo where contsMetaDivCd=@{contsMetaDivCd} and contsMetaId=@{makeIdValue(::,name,contsMetaId)} and mbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
         }
       },
@@ -167,7 +166,6 @@
       "myLikeYn": {
         "select": {
           "ds": "cjDb",
-          "resultType": "value",
           "sql": "select if(count(*)>0,'false','true') myLikeYn from replLikeInfo where replSeq=@{contsReplSeq} and mbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
         }
       },
@@ -304,7 +302,7 @@
           },
           {
             "field": "created",
-            "method": "excess",
+            "method": "under",
             "value": "{{:dateFormat(lastReplCreated,yyyyMMddHHmmss)}}"
           },
           {
