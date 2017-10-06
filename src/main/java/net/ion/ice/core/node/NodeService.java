@@ -253,7 +253,7 @@ public class NodeService {
         }catch (Exception e){}
 
 //        saveSchema("classpath:schema/node/*.json", lastChanged);
-//        saveSchema("classpath:schema/node/**/*.json");
+        saveSchema("classpath:schema/node/**/*.json");
 //        saveSchema("classpath:schema/test/*.json", lastChanged);
 //        saveSchema("classpath:schema/test/**/*.json");
 

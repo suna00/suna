@@ -729,14 +729,6 @@
   },
   {
     "typeId": "code",
-    "groupCodeId": "voteFormlCd",
-    "codeId": "5",
-    "name": "MAMA EVENT",
-    "order": 5,
-    "active": true
-  },
-  {
-    "typeId": "code",
     "groupCodeId": "rstrtnPredDivCd",
     "codeId": "day",
     "name": "일자별",
