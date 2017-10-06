@@ -361,8 +361,8 @@
                 "query": [
                   {
                     "field": "chMstId",
-                    "method": "referenceJoin",
-                    "value": "chMstId_matching={{:mstIdx}}"
+                    "method": "equals",
+                    "value": "{{:mstIdx}}"
                   },
                   {
                     "sorting": "ranking",
