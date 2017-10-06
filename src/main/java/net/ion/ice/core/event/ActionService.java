@@ -41,6 +41,7 @@ public class ActionService extends Action {
         try {
             method.invoke(service, executeContext) ;
         } catch (InvocationTargetException e) {
+            e.getTargetException().printStackTrace();
             if(e.getTargetException() instanceof IceRuntimeException){
                 throw (IceRuntimeException) e.getTargetException() ;
             }
