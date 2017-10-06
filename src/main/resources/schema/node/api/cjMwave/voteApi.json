@@ -352,7 +352,7 @@
     "config": {
       "createItem": {
         "typeId": "votePrtcptHst",
-        "event": "save",
+        "event": "voting",
         "data": {
           "voteSeq": "{{:voteSeq}}",
           "voteItemSeq": "{{:voteQueiSeq}}",
