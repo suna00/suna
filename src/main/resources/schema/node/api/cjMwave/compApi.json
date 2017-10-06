@@ -349,14 +349,8 @@
             "typeId": "mcdChartBasInfo",
             "query": [
               {
-                "field": "mstFromDate",
-                "method": "below",
-                "value": "{{:conditionSysdate(itemDivCd,itemDivCd>3,뺿뺿,yyyy.MM.dd)}}"
-              },
-              {
-                "field": "mstToDate",
-                "method": "above",
-                "value": "{{:conditionSysdate(itemDivCd,itemDivCd>3,뺿뺿,yyyy.MM.dd)}}"
+                "sorting": "mstIdx desc",
+                "limit": "1"
               }
             ]
           }
