@@ -1,16 +1,17 @@
 package net.ion.ice.cjmwave.mbrInfo;
 
+import java.text.ParseException;
+import java.util.List;
 import net.ion.ice.core.api.ApiException;
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.infinispan.NotFoundNodeException;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -24,13 +25,10 @@ public class MbrInfoService {
 
     public void chkMbr(ExecuteContext context) {
         Map<String, Object> data = context.getData();
+        chkSnsParams(data);
         String snsKey = data.get("snsKey").toString();
         String snsTypeCd = data.get("snsTypeCd").toString();
-        if (StringUtils.isEmpty(snsTypeCd)) {
-            throw new ApiException("400", "Required Parameter : snsTypeCd");
-        } else if (StringUtils.isEmpty(snsKey)) {
-            throw new ApiException("400", "Required Parameter : snsKey");
-        }
+
 
         Node anode = null;
         try {
@@ -50,13 +48,9 @@ public class MbrInfoService {
 
     public void semiMbrJoin(ExecuteContext context){
         Map<String, Object> data = context.getData();
+        chkSnsParams(data);
         String snsKey = data.get("snsKey").toString();
         String snsTypeCd = data.get("snsTypeCd").toString();
-        if (StringUtils.isEmpty(snsTypeCd)) {
-            throw new ApiException("400", "Required Parameter : snsTypeCd");
-        } else if (StringUtils.isEmpty(snsKey)) {
-            throw new ApiException("400", "Required Parameter : snsKey");
-        }
 
         //create
         data.put("snsTypeCd", snsTypeCd);
@@ -72,17 +66,18 @@ public class MbrInfoService {
 
     public void rglrMbrJoin(ExecuteContext context){
         Map<String, Object> data = context.getData();
+        chkSnsParams(data);
         String snsKey = data.get("snsKey").toString();
         String snsTypeCd = data.get("snsTypeCd").toString();
-        if (StringUtils.isEmpty(snsTypeCd)) {
-            throw new ApiException("400", "Required Parameter : snsTypeCd");
-        } else if (StringUtils.isEmpty(snsKey)) {
-            throw new ApiException("400", "Required Parameter : snsKey");
-        }
 
         Node anode = null;
         try {
             anode = NodeUtils.getNodeService().read("mbrInfo", snsTypeCd + ">" + snsKey);
+
+            String mbrSttusCd = anode.getStringValue("mbrSttusCd");
+            if("mbrSttusCd>2".equals(mbrSttusCd) || "mbrSttusCd>3".equals(mbrSttusCd)){
+                throw new ApiException("412", "You are in an impossible state of active membership.");
+            }
             String mbrDivCd = anode.getStringValue("mbrDivCd");
             if("mbrDivCd>2".equals(mbrDivCd)){
                 throw new ApiException("411", "You are already an active member.");
@@ -95,7 +90,6 @@ public class MbrInfoService {
         data.put("snsTypeCd", snsTypeCd);
         data.put("snsKey", snsKey);
         data.put("mbrDivCd", "2");
-        data.put("mbrSttusCd", "1");
         data.put("sttusChgSbst", "정회원 전환");
         Node result = (Node) NodeUtils.getNodeService().executeNode(data, "mbrInfo", EventService.UPDATE);
         context.setResult(result);
@@ -103,13 +97,9 @@ public class MbrInfoService {
 
     public void updLoginInfo(ExecuteContext context) {
         Map<String, Object> data = context.getData();
+        chkSnsParams(data);
         String snsKey = data.get("snsKey").toString();
         String snsTypeCd = data.get("snsTypeCd").toString();
-        if (StringUtils.isEmpty(snsTypeCd)) {
-            throw new ApiException("400", "Required Parameter : snsTypeCd");
-        } else if (StringUtils.isEmpty(snsKey)) {
-            throw new ApiException("400", "Required Parameter : snsKey");
-        }
 
         Node anode = null;
         try {
@@ -118,16 +108,162 @@ public class MbrInfoService {
             }
             anode = NodeUtils.getNodeService().read("mbrInfo", snsTypeCd + ">" + snsKey);
             if (anode != null && !anode.isEmpty()) {
-                //node에 최종수정일 디바이스 정보 등 수정해야됨
+                //node에 최종수정일 디바이스 정보 등 수정
                 Map<String, Object> updateData = new LinkedHashMap<>();
                 updateData.put("id", snsTypeCd + ">" + snsKey);
-                //String nowDate = DateFormatUtils.format(new Date(), "yyyyMMddHHmmss");//data.get("now").toString()
                 updateData.put("lastLoginDt", new Date());
                 Node result = (Node) NodeUtils.getNodeService().executeNode(updateData, "mbrInfo", EventService.UPDATE);
                 context.setResult(result);
             }
         } catch (NotFoundNodeException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void rejoin(ExecuteContext context){
+        Map<String, Object> data = context.getData();
+        chkSnsParams(data);
+        String snsKey = data.get("snsKey").toString();
+        String snsTypeCd = data.get("snsTypeCd").toString();
+
+        if (data.get("infoOttpAgreeYn") == null || StringUtils.isEmpty(data.get("infoOttpAgreeYn").toString())) {
+            throw new ApiException("400", "Required Parameter : infoOttpAgreeYn");
+        }
+        String infoOttpAgreeYn = data.get("infoOttpAgreeYn").toString();
+        if(!"true".equals(infoOttpAgreeYn)){
+            throw new ApiException("413", "InfoOttpAgreeYn is not true");
+        }
+
+        Node anode = null;
+        try {
+            anode = NodeUtils.getNodeService().read("mbrInfo", snsTypeCd + ">" + snsKey);
+
+            String mbrSttusCd = anode.getStringValue("mbrSttusCd");
+            Date rtrmmbDate = null;
+            if(anode.get("rtrmmbDate") != null){
+                try {
+                    rtrmmbDate = DateUtils.parseDate(anode.getStringValue("rtrmmbDate"), "yyyyMMddHHmmss","yyyy/MM/dd HH:mm:ss");
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+            if(!"mbrSttusCd>3".equals(mbrSttusCd)){
+                throw new ApiException("414", "You are not in a state to rejoin.");
+            }
+            if(rtrmmbDate == null){
+                throw new ApiException("415", "rtrmmbDate is null");
+            }
+
+            List<Node> dclaNodeList = null;
+            try{
+                dclaNodeList = NodeUtils.getNodeService().getNodeList("dclaSetupMng","setupTypeCd_matching=4&sorting=dclaSetupSeq desc&limit=1");
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            if(dclaNodeList == null || dclaNodeList.isEmpty()){
+                throw new ApiException("416", "There is no membership re-entry condition.");
+            }
+            Node dclaNode = dclaNodeList.get(0);
+            int setupBaseDayNum = dclaNode.getIntValue("setupBaseDayNum");
+
+            Date rejoinAbleDate = DateUtils.addDays(rtrmmbDate,setupBaseDayNum);
+            System.out.println("rejoinAbleDate:"+rejoinAbleDate);
+            Date current = new Date();
+            System.out.println("current:"+current);
+            if(current.getTime() < rejoinAbleDate.getTime()){
+                throw new ApiException("417", "Re-entry is possible after "+setupBaseDayNum+" days.");
+            }
+
+            //update
+            data.put("snsTypeCd", snsTypeCd);
+            data.put("snsKey", snsKey);
+            data.put("mbrSttusCd", "1");
+            data.put("rtrmmbDate", "");
+            data.put("sttusChgSbst", "재가입");
+            Node result = (Node) NodeUtils.getNodeService().executeNode(data, "mbrInfo", EventService.UPDATE);
+            context.setResult(result);
+        } catch (NotFoundNodeException e) {
+            throw new ApiException("404", "Not Found Member");
+        }
+
+    }
+
+    public void secession(ExecuteContext context) {
+        Map<String, Object> data = context.getData();
+        chkSnsParams(data);
+        String snsKey = data.get("snsKey").toString();
+        String snsTypeCd = data.get("snsTypeCd").toString();
+
+
+        Node anode = null;
+        try {
+            anode = NodeUtils.getNodeService().read("mbrInfo", snsTypeCd + ">" + snsKey);
+
+            String mbrSttusCd = anode.getStringValue("mbrSttusCd");
+            if("mbrSttusCd>3".equals(mbrSttusCd)){
+                throw new ApiException("417", "You are already unsubscribed.");
+            }
+
+            //update
+            data.put("snsTypeCd", snsTypeCd);
+            data.put("snsKey", snsKey);
+            data.put("mbrSttusCd", "3");
+            data.put("rtrmmbDate", new Date());
+            data.put("sttusChgSbst", "회원 탈퇴");
+            Node result = (Node) NodeUtils.getNodeService().executeNode(data, "mbrInfo", EventService.UPDATE);
+            context.setResult(result);
+        } catch (NotFoundNodeException e) {
+            throw new ApiException("404", "Not Found Member");
+        }
+    }
+
+    public void dormReles(ExecuteContext context) {
+        Map<String, Object> data = context.getData();
+        chkSnsParams(data);
+        String snsKey = data.get("snsKey").toString();
+        String snsTypeCd = data.get("snsTypeCd").toString();
+
+        if (data.get("infoOttpAgreeYn") == null || StringUtils.isEmpty(data.get("infoOttpAgreeYn").toString())) {
+            throw new ApiException("400", "Required Parameter : infoOttpAgreeYn");
+        }
+        String infoOttpAgreeYn = data.get("infoOttpAgreeYn").toString();
+        if(!"true".equals(infoOttpAgreeYn)){
+            throw new ApiException("413", "InfoOttpAgreeYn is not true");
+        }
+
+        Node anode = null;
+        try {
+            anode = NodeUtils.getNodeService().read("mbrInfo", snsTypeCd + ">" + snsKey);
+
+            String mbrSttusCd = anode.getStringValue("mbrSttusCd");
+            if("mbrSttusCd>1".equals(mbrSttusCd)){
+                throw new ApiException("411", "You are already an active member.");
+            }else if("mbrSttusCd>3".equals(mbrSttusCd)){
+                throw new ApiException("417", "You are already unsubscribed.");
+            }
+
+            //update
+            data.put("snsTypeCd", snsTypeCd);
+            data.put("snsKey", snsKey);
+            data.put("mbrSttusCd", "1");
+            data.put("dormTrtDate", "");
+            data.put("sttusChgSbst", "휴면 해제");
+            Node result = (Node) NodeUtils.getNodeService().executeNode(data, "mbrInfo", EventService.UPDATE);
+            context.setResult(result);
+        } catch (NotFoundNodeException e) {
+            throw new ApiException("404", "Not Found Member");
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private static void chkSnsParams(Map<String, Object> data) {
+
+        if (data.get("snsTypeCd") == null || StringUtils.isEmpty(data.get("snsTypeCd").toString())) {
+            throw new ApiException("400", "Required Parameter : snsTypeCd");
+        } else if (data.get("snsKey") == null || StringUtils.isEmpty(data.get("snsKey").toString())) {
+            throw new ApiException("400", "Required Parameter : snsKey");
         }
     }
 

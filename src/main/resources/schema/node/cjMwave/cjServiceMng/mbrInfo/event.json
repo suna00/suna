@@ -102,5 +102,53 @@
     "listenerName": "정회원 가입시 회원 디바이스정보 저장",
     "actionType": "service",
     "actionBody": "mbrDvcInfoService.mbrDvcInfoSave"
+  },
+  {
+    "typeId": "event",
+    "tid": "mbrInfo",
+    "event": "rejoin",
+    "noneExecute": true,
+    "eventName": "member rejoin Event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "mbrInfo>rejoin",
+    "action": "rejoinEvent",
+    "actionName": "재가입",
+    "actionType": "service",
+    "actionBody": "mbrInfoService.rejoin",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "mbrInfo",
+    "event": "secession",
+    "noneExecute": true,
+    "eventName": "member secession Event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "mbrInfo>secession",
+    "action": "secessionEvent",
+    "actionName": "탈퇴",
+    "actionType": "service",
+    "actionBody": "mbrInfoService.secession",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "mbrInfo",
+    "event": "dormReles",
+    "noneExecute": true,
+    "eventName": "member dormReles Event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "mbrInfo>dormReles",
+    "action": "dormRelesEvent",
+    "actionName": "휴면 해제",
+    "actionType": "service",
+    "actionBody": "mbrInfoService.dormReles",
+    "order": 1
   }
 ]

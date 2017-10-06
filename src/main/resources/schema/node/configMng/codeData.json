@@ -1881,6 +1881,14 @@
   },
   {
     "typeId": "code",
+    "groupCodeId": "setupTypeCd",
+    "codeId": 4,
+    "name": "탈퇴 후 재가입 가능일수",
+    "order": 4,
+    "active": true
+  },
+  {
+    "typeId": "code",
     "groupCodeId": "bradGenreCd",
     "codeId": 1,
     "name": "Type1",

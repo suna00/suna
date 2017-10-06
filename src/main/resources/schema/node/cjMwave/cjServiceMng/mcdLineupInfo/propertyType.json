@@ -46,7 +46,7 @@
     "labelable": false,
     "treeable": false,
     "indexable": true,
-    "analyzer": "cjk",
+    "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
     "defaultValue": ""
@@ -97,7 +97,7 @@
     "labelable": false,
     "treeable": false,
     "indexable": true,
-    "analyzer": "cjk",
+    "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
     "defaultValue": ""

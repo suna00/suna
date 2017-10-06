@@ -159,13 +159,7 @@
     ],
     "config": {
       "typeId": "mbrInfo",
-      "event": "update",
-      "data": {
-        "snsKey": "{{:snsKey}}",
-        "snsTypeCd": "{{:snsTypeCd}}",
-        "rtrmmbDate": "{{:now}}",
-        "mbrSttusCd": "3"
-      },
+      "event": "secession",
       "response": {
         "rtrmmbDate": ""
       }
@@ -190,13 +184,19 @@
     "config": {
       "root": {
         "typeId": "mbrInfo",
-        "id": "{{:makeIdValue(>,snsTypeCd,snsKey)}}"
+        "id": "{{:makeIdValue(>,snsTypeCd,snsKey)}}",
+        "response": {
+          "_all_": "",
+          "imgFileName": {
+            "value": "{{:getFileNm(imgUrl)}}"
+          }
+        }
       },
       "lastLoginDtUpd": {
         "typeId": "mbrInfo",
         "event": "svcLogin",
-        "response":{
-          "lastLoginDt":""
+        "response": {
+          "lastLoginDt": ""
         }
       }
     }
@@ -223,13 +223,35 @@
     ],
     "config": {
       "typeId": "mbrInfo",
-      "event": "update",
-      "data": {
-        "snsKey": "{{:snsKey}}",
-        "snsTypeCd": "{{:snsTypeCd}}",
-        "infoOttpAgreeYn": "{{:infoOttpAgreeYn}}",
-        "mbrSttusCd": "1"
+      "event": "dormReles",
+      "response": {
+        "changed": ""
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "member",
+    "apiId": "IfUser006",
+    "apiName": "탈퇴회원 재가입",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "snsKey",
+        "required": true
       },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      },
+      {
+        "paramName": "infoOttpAgreeYn",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "mbrInfo",
+      "event": "rejoin",
       "response": {
         "changed": ""
       }
@@ -284,11 +306,11 @@
       },
       {
         "paramName": "cntryCd",
-        "required": true
+        "required": false
       },
       {
         "paramName": "sexCd",
-        "required": true
+        "required": false
       },
       {
         "paramName": "bthYear",
@@ -300,7 +322,7 @@
       },
       {
         "paramName": "infoOttpAgreeYn",
-        "required": true
+        "required": false
       },
       {
         "paramName": "email",

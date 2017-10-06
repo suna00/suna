@@ -20,8 +20,9 @@ public class MbrSttusHstService {
     public void sttusHstCreate(ExecuteContext context) {
         try {
             Node mbrNode = context.getNode();
-            //context 에 있는 existNode와 상태코드를 비교해서 변경된 경우에만 이력을 쌓아야함
             Map<String, Object> data = context.getData();
+            //context 에 있는 existNode와 상태코드를 비교해서 변경된 경우에만 이력을 쌓아야함
+            Map<String, Object> createData = new LinkedHashMap<>();
 
             if (StringUtils.isEmpty(mbrNode.getId()) || StringUtils.isEmpty(mbrNode.getStringValue("mbrSttusCd"))) {
                 //skip
@@ -32,10 +33,15 @@ public class MbrSttusHstService {
             if (StringUtils.contains(mbrSttusCd, "mbrSttusCd>")) {
                 mbrSttusCd = StringUtils.replace(mbrSttusCd, "mbrSttusCd>", "");
             }
-            data.put("mbrId", mbrNode.getId());
-            data.put("mbrSttusCd", mbrSttusCd);
+            String sttusChgSbst = "";
+            if (data.get("sttusChgSbst") != null && !StringUtils.isEmpty(data.get("sttusChgSbst").toString())) {
+                sttusChgSbst = data.get("sttusChgSbst").toString();
+            }
+            createData.put("mbrId", mbrNode.getId());
+            createData.put("mbrSttusCd", mbrSttusCd);
+            createData.put("sttusChgSbst", sttusChgSbst);
 
-            NodeUtils.getNodeService().executeNode(data, "mbrSttusHst", EventService.CREATE);
+            NodeUtils.getNodeService().executeNode(createData, "mbrSttusHst", EventService.CREATE);
         } catch (Exception e) {
             e.printStackTrace();
         }

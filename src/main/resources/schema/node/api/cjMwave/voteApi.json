@@ -1298,6 +1298,11 @@
           "value": "{{:dateFormat(sysdate,yyyy-MM-dd)}}"
         },
         {
+          "field": "evVoteYn",
+          "method": "matching",
+          "value": "false"
+        },
+        {
           "sorting": "{{:sorting}}"
         },
         {

@@ -222,7 +222,7 @@
     "pid": "cnctContsDivCd",
     "id": "compItemInfo>cnctContsDivCd",
     "propertyTypeName": "연결 콘텐츠 구분 코드",
-    "valueType": "STRING",
+    "valueType": "REFERENCE",
     "required": false,
     "idable": false,
     "labelable": false,
@@ -231,7 +231,7 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
-    "codeFilter": "",
+    "codeFilter": "itemDivCd",
     "defaultValue": ""
   },
   {
@@ -276,7 +276,7 @@
     "pid": "cnctContsIfTgtCd",
     "id": "compItemInfo>cnctContsIfTgtCd",
     "propertyTypeName": "연결 콘텐츠 연동 대상 코드",
-    "valueType": "STRING",
+    "valueType": "REFERENCE",
     "required": false,
     "idable": false,
     "labelable": false,
@@ -285,7 +285,7 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
-    "codeFilter": "",
+    "codeFilter": "ifTgtCd",
     "defaultValue": ""
   },
   {
@@ -294,7 +294,7 @@
     "pid": "cnctContsTypeCd",
     "id": "compItemInfo>cnctContsTypeCd",
     "propertyTypeName": "연결 콘텐츠 유형 코드",
-    "valueType": "STRING",
+    "valueType": "REFERENCE",
     "required": false,
     "idable": false,
     "labelable": false,
@@ -303,7 +303,7 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
-    "codeFilter": "",
+    "codeFilter": "typeCd",
     "defaultValue": ""
   },
   {
@@ -330,15 +330,15 @@
     "pid": "cnctContsShowCntryCdList",
     "id": "compItemInfo>cnctContsShowCntryCdList",
     "propertyTypeName": "연결 콘텐츠 노출국가 코드리스트",
-    "valueType": "TEXT",
+    "valueType": "REFERENCES",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
-    "analyzer": "cjk",
-    "referenceType": "",
-    "referenceValue": "",
+    "analyzer": "code",
+    "referenceType": "cntryMng",
+    "referenceValue": "cntryId",
     "codeFilter": "",
     "defaultValue": ""
   },
