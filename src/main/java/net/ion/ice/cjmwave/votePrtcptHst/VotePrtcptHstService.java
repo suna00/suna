@@ -176,137 +176,135 @@ public class VotePrtcptHstService {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 
         Node seriesVoteBasInfo = null;
+        String mbrId = null;
 
-        List<Map<String, Object>> resList = synchronizedList(new ArrayList());
+        //List<Map<String, Object>> resList = synchronizedList(new ArrayList());
+        List<Map<String, Object>> insertList = synchronizedList(new ArrayList());
         for (Map<String, Object> voteData : reqJson) {
             voteData.put("connIpAdr",connIpAdr);//ip
-            // TODO - Checking Available IP
-
             if (seriesVoteBasInfo == null) {
-                // TODO - series VoteBasInfo 캐시 데이터 확인 필요.
                 seriesVoteBasInfo = NodeUtils.getNode(VOTE_BAS_INFO, voteData.get("sersVoteSeq").toString());
             }
-            // 투표 진행일 (현재날짜)
-            String voteDate = DateFormatUtils.format(now, "yyyyMMdd");
-            // 투표 시작일
-            String pstngStDt = seriesVoteBasInfo.get("pstngStDt").toString().substring(0, 8);
-            // 투표 종료일
-            String pstngFnsDt = seriesVoteBasInfo.get("pstngFnsDt").toString().substring(0, 8);
-
-            // Checking Available Date
-            if (voteDate.compareTo(pstngStDt) < 0 || voteDate.compareTo(pstngFnsDt) > 0) {
-                throw new ApiException("400", "Required Parameter : It is not voting period");
-            }
-
             // 사용자 ID
-            String mbrId = voteData.get("prtcpMbrId").toString();
-
-            // 투표 시작일 (DateTime)
-            Long pstngStDtTime = 0L;
-            // 투표 종료일 (DateTime)
-            Long pstngFnsDtTime = 0L;
-            // 투표 진행일 - 현재날짜 (DateTime)
-            Long voteDtTime = 0L;
-            // TODO 날짜 카운트 방식 변경 - 속도 비교 필요.
-            try {
-                pstngStDtTime = dateFormat.parse(pstngStDt).getTime();
-                pstngFnsDtTime = dateFormat.parse(pstngFnsDt).getTime();
-                voteDtTime = dateFormat.parse(voteDate).getTime();
-
-            } catch (ParseException e) {
-                throw new ApiException("500", e.getMessage());
+            if (mbrId==null || mbrId.length()<=0) {
+                mbrId = voteData.get("prtcpMbrId").toString();
             }
-            // 총 투표 기간 - Day Count
-            Long seriesDayCnt = (pstngFnsDtTime - pstngStDtTime) / (24*60*60*1000);
-            seriesDayCnt += 1; // 시작일 포함
-            // 현재까지의 투표 기간 - Day Count
-            Long dayCntByPeriod = (voteDtTime - pstngStDtTime) / (24*60*60*1000);
-            dayCntByPeriod += 1; // 시작일 포함
+            insertList.add(voteData);
+        }
+        // TODO - Checking Available IP with mbrId and voteSeq
 
-            // 투표 날짜 간격
-            Long rstrtnDayCnt = Long.valueOf(seriesVoteBasInfo.getIntValue("rstrtnDayCnt"));
-            // 투표 날짜 간격별 투표수
-            Long rstrtnVoteCnt = Long.valueOf(seriesVoteBasInfo.getIntValue("rstrtnVoteCnt"));
+        String voteDate = DateFormatUtils.format(now, "yyyyMMdd");          // 투표 진행일 (현재날짜)
+        String pstngStDt = seriesVoteBasInfo.get("pstngStDt").toString().substring(0, 8);   // 투표 시작일
+        String pstngFnsDt = seriesVoteBasInfo.get("pstngFnsDt").toString().substring(0, 8); // 투표 종료일
 
-            if (rstrtnDayCnt==0 || rstrtnDayCnt==null) {
-                rstrtnDayCnt = seriesDayCnt;
+        // Checking Available Date
+        if (voteDate.compareTo(pstngStDt) < 0 || voteDate.compareTo(pstngFnsDt) > 0) {
+            throw new ApiException("400", "Required Parameter : It is not voting period");
+        }
+
+        Long pstngStDtTime = 0L;    // 투표 시작일 (DateTime)
+        Long pstngFnsDtTime = 0L;   // 투표 종료일 (DateTime)
+        Long voteDtTime = 0L;       // 투표 진행일 - 현재날짜 (DateTime)
+        // TODO 날짜 카운트 방식 변경 - 속도 비교 필요.
+        try {
+            pstngStDtTime = dateFormat.parse(pstngStDt).getTime();
+            pstngFnsDtTime = dateFormat.parse(pstngFnsDt).getTime();
+            voteDtTime = dateFormat.parse(voteDate).getTime();
+        } catch (ParseException e) {
+            throw new ApiException("500", e.getMessage());
+        }
+        // 총 투표 기간 - Day Count
+        Long seriesDayCnt = (pstngFnsDtTime - pstngStDtTime) / (24*60*60*1000);
+        seriesDayCnt += 1; // 시작일 포함
+        // 현재까지의 투표 기간 - Day Count
+        Long dayCntByPeriod = (voteDtTime - pstngStDtTime) / (24*60*60*1000);
+        dayCntByPeriod += 1; // 시작일 포함
+
+        // 투표 날짜 간격
+        Long rstrtnDayCnt = Long.valueOf(seriesVoteBasInfo.getIntValue("rstrtnDayCnt"));
+        // 투표 날짜 간격별 투표수
+        Long rstrtnVoteCnt = Long.valueOf(seriesVoteBasInfo.getIntValue("rstrtnVoteCnt"));
+
+        if (rstrtnDayCnt==0 || rstrtnDayCnt==null) {
+            rstrtnDayCnt = seriesDayCnt;
+        }
+        /*
+        // TODO - 무제한 투표수 확인 - 투표 날짜 간격은 무제한일 경우 기간으로 대체 가능한데... 투표수는 무제한이 가능한가......
+        if (rstrtnVoteCnt==0 || rstrtnVoteCnt==null) {
+            rstrtnVoteCnt = seriesDayCnt;
+        }
+        */
+
+        // Series Vote Node
+        //Node seriesVoteData = NodeUtils.getNode(
+        // Response Parameter
+        // 날짜 간격 투표수
+        Long maxVoteCntByMbr = Long.valueOf(rstrtnVoteCnt);
+        Long voteCntByMbr = 0L;
+        // 누적 투표 여부 확인
+        if (seriesVoteBasInfo.getBooleanValue("accumRstrtnAlwdYn")) {
+            // 현재기준 최대 누적 투표수 (날짜 간격 투표수 계산)
+            maxVoteCntByMbr = (dayCntByPeriod / rstrtnDayCnt) * rstrtnVoteCnt;
+            if((dayCntByPeriod % rstrtnDayCnt) > 0) {
+                maxVoteCntByMbr += rstrtnVoteCnt;
             }
-            /*
-            // TODO - 무제한 투표수 확인 - 투표 날짜 간격은 무제한일 경우 기간으로 대체 가능한데... 투표수는 무제한이 가능한가......
-            if (rstrtnVoteCnt==0 || rstrtnVoteCnt==null) {
-                rstrtnVoteCnt = seriesDayCnt;
+            // 누적 투표수
+            voteCntByMbr = selectSeriesVoteHstByAccum(seriesVoteBasInfo.get("voteSeq").toString(), mbrId, pstngStDt.toString(), voteDate);
+
+        } else {
+            // 날짜 간격별 조회를 위한 시작일 계산   ---- 투표 진행일수
+            Long rstrtnStDate = voteDtTime - ((dayCntByPeriod % rstrtnDayCnt) * (24*60*60*1000));
+            Date chkDt = new Date(rstrtnStDate);
+            String voteCntStDt = DateFormatUtils.format(chkDt, "yyyyMMdd");
+
+            if (voteCntStDt.compareTo(pstngStDt) < 0) {
+                voteCntStDt = pstngStDt;
             }
-            */
-            // Response Parameter
-            // 날짜 간격 투표수
-            Long maxVoteCntByMbr = Long.valueOf(rstrtnVoteCnt);
-            Long voteCntByMbr = 0L;
-            // 누적 투표 여부 확인
-            if (seriesVoteBasInfo.getBooleanValue("accumRstrtnAlwdYn")) {
-                // 현재기준 최대 누적 투표수 (날짜 간격 투표수 계산)
-                maxVoteCntByMbr = (dayCntByPeriod / rstrtnDayCnt) * rstrtnVoteCnt;
-                if((dayCntByPeriod % rstrtnDayCnt) > 0) {
-                    maxVoteCntByMbr += rstrtnVoteCnt;
-                }
-                // 누적 투표수
-                voteCntByMbr = selectSeriesVoteHstByAccum(voteData.get("voteSeq").toString(), mbrId, pstngStDt.toString(), voteDate);
+            // 현재기준 투표수
+            voteCntByMbr = selectSeriesVoteHstByAccum(seriesVoteBasInfo.get("voteSeq").toString(), mbrId, voteCntStDt.toString(), voteDate);
+        }
 
-            } else {
-                // 날짜 간격별 조회를 위한 시작일 계산   ---- 투표 진행일수
-                Long rstrtnStDate = voteDtTime - ((dayCntByPeriod % rstrtnDayCnt) * (24*60*60*1000));
-                Date chkDt = new Date(rstrtnStDate);
-                String voteCntStDt = DateFormatUtils.format(chkDt, "yyyyMMdd");
+        // 가능한 투표수 확인
+        if(voteCntByMbr>=maxVoteCntByMbr) {
+            throw new ApiException("420", "You have exceeded the number of votes");
+        }
 
-                if (voteCntStDt.compareTo(pstngStDt) < 0) {
-                    voteCntStDt = pstngStDt;
-                }
-                // 현재기준 투표수
-                voteCntByMbr = selectSeriesVoteHstByAccum(voteData.get("voteSeq").toString(), mbrId, voteCntStDt.toString(), voteDate);
-            }
 
-            // 가능한 투표수 확인
-            if(voteCntByMbr>=maxVoteCntByMbr) {
-                throw new ApiException("420", "You have exceeded the number of votes");
-            }
+        // TODO - 접근 IP 관리 테이블에 등록 -
 
-            String voteSeq = voteData.get(VOTE_SEQ).toString();
-            String voteItemSeq = (String) voteData.get("voteItemSeq");
-
-            // 투표 등록
-            String insertVoteHst = "INSERT INTO " + voteSeq + "_voteHstByMbr" +
-                                    "(voteDate, mbrId, created) VALUES(?,?,?)";
-            jdbcTemplate.update(insertVoteHst, voteDate, mbrId, now);
-
+        // 투표 등록
+        String insertVoteHst = "INSERT INTO " + seriesVoteBasInfo.get(VOTE_SEQ).toString() + "_voteHstByMbr" +
+                "(voteDate, mbrId, created) VALUES(?,?,?)";
+        jdbcTemplate.update(insertVoteHst, voteDate, mbrId, now);
+        // 투표 하위 아이템 등록
+        for (Map<String, Object> voteData : insertList) {
+            String voteItemSeq = voteData.get("voteItemSeq").toString();
             // Vote Item 투표 등록 // TODO - series 요청일 경우 "voteQueiSeq"와 같이 입력값이 여러개 인지 확인 필요.
-            // TODO Series 투표는 Series Item Table에 Insert 하도록 변경.
-            String insertVoteItemHst = "INSERT INTO " + voteSeq + "_voteItemHstByMbr " +
-                                        "(voteDate, voteItemSeq, mbrId, created) VALUES(?,?,?,?)";
-            jdbcTemplate.update(insertVoteItemHst, voteDate, voteItemSeq, mbrId, now);
-            // Series Item table에 등록
-            String insertSeriesVoteItemHst = "INSERT INTO " + seriesVoteBasInfo.get("voteSeq") + "_voteItemHstByMbr " +
+            String insertSeriesVoteItemHst = "INSERT INTO " + voteData.get(VOTE_SEQ) + "_voteItemHstByMbr " +
                     "(voteDate, voteItemSeq, mbrId, created) VALUES(?,?,?,?)";
             jdbcTemplate.update(insertSeriesVoteItemHst, voteDate, voteItemSeq, mbrId, now);
-
-            // TODO - 접근 IP 관리 테이블에 등록 -
-
-            //node create
-            Node resNode = (Node) nodeService.executeNode(voteData, "sersVotePrtcptHst", EventService.CREATE);
-
-            resNode.put("maxVoteCntByMbr", maxVoteCntByMbr);    // TODO - Delete
-            resNode.put("userVoteCnt", voteCntByMbr + 1);
-            resNode.put("userPvCnt", 10);
-            resNode.put("ipAdrVoteCnt", 10);
-
-            resList.add(resNode);
         }
+
+
+        //node create
+        //Node resNode = (Node) nodeService.executeNode(seriesVoteBasInfo, "sersVotePrtcptHst", EventService.CREATE);
+        Map<String, Object> responseMap = new ConcurrentHashMap<>() ;
+        //responseMap.put("sersVoteSeq", seriesVoteBasInfo.get(VOTE_SEQ).toString());
+        //responseMap.put("maxVoteCnt", maxVoteCntByMbr);    // TODO - Delete
+        responseMap.put("userVoteCnt", voteCntByMbr + 1);
+        responseMap.put("userPvCnt", 10);
+        responseMap.put("ipAdrVoteCnt", 10);
+
+        //resList.add(resNode);
         Map<String, Object> response = new ConcurrentHashMap<>();
-        response.put("response", resList);
+        response.put("response", responseMap);
         if (response.size() > 0) {
             context.setResult(response);
         } else {
             logger.info("###sersVotePrtcptHst result null ");
         }
     }
+
 
     public void hstTableCreate(ExecuteContext context) {
         Node voteBasNode = context.getNode();
