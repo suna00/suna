@@ -1,0 +1,18 @@
+[
+  {
+    "typeId": "event",
+    "tid": "votePrtcptHst",
+    "event": "voting",
+    "noneExecute" : true,
+    "eventName": "VOTING Save Event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "votePrtcptHst>voting",
+    "action": "save Event",
+    "actionName": "VOTING Save",
+    "actionType": "service",
+    "actionBody": "votePrtcptHstService.voting",
+    "order": 1
+  }
+]
