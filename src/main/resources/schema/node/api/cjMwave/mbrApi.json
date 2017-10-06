@@ -29,6 +29,22 @@
       {
         "paramName": "infoOttpAgreeYn",
         "required": true
+      },
+      {
+        "paramName": "dvcId",
+        "required": false
+      },
+      {
+        "paramName": "dvcNm",
+        "required": false
+      },
+      {
+        "paramName": "osCd",
+        "required": false
+      },
+      {
+        "paramName": "osVer",
+        "required": false
       }
     ],
     "config": {
@@ -41,19 +57,8 @@
       },
       "root": {
         "typeId": "mbrInfo",
-        "event": "save",
+        "event": "semiMbrJoin",
         "if": "{{:chkResult}}",
-        "data": {
-          "snsKey": "{{:snsKey}}",
-          "snsTypeCd": "{{:snsTypeCd}}",
-          "aliasNm": "{{:aliasNm}}",
-          "pushMsgRcvYn": "{{:pushMsgRcvYn}}",
-          "sbscShapCd": "{{:sbscShapCd}}",
-          "infoOttpAgreeYn": "{{:infoOttpAgreeYn}}",
-          "mbrDivCd": "1",
-          "mbrSttusCd": "1",
-          "sbscDt": "{{:now}}"
-        },
         "response": {
           "sbscDt": ""
         }
@@ -110,26 +115,27 @@
       {
         "paramName": "emailRcvYn",
         "required": true
+      },
+      {
+        "paramName": "dvcId",
+        "required": false
+      },
+      {
+        "paramName": "dvcNm",
+        "required": false
+      },
+      {
+        "paramName": "osCd",
+        "required": false
+      },
+      {
+        "paramName": "osVer",
+        "required": false
       }
     ],
     "config": {
       "typeId": "mbrInfo",
-      "event": "update",
-      "data": {
-        "snsKey": "{{:snsKey}}",
-        "snsTypeCd": "{{:snsTypeCd}}",
-        "aliasNm": "{{:aliasNm}}",
-        "cntryCd": "{{:cntryCd}}",
-        "sexCd": "{{:sexCd}}",
-        "thumImgPath": "{{:imgUrl}}",
-        "bthYear": "{{:bthYear}}",
-        "intrstCdList": "{{:intrstCdList}}",
-        "infoOttpAgreeYn": "{{:infoOttpAgreeYn}}",
-        "email": "{{:email}}",
-        "emailRcvYn": "{{:emailRcvYn}}",
-        "mbrDivCd": "2",
-        "mbrSttusCd": "1"
-      },
+      "event": "rglrMbrJoin",
       "response": {
         "changed": ""
       }
@@ -188,15 +194,9 @@
       },
       "lastLoginDtUpd": {
         "typeId": "mbrInfo",
-        "event": "update",
-        "if": "{{:sbscShapCd}}",
-        "data": {
-          "snsKey": "{{:snsKey}}",
-          "snsTypeCd": "{{:replaceAll(snsTypeCd,snsTypeCd>, ,)}}",
-          "lastLoginDt": "{{:now}}"
-        },
-        "response": {
-          "lastLoginDt": ""
+        "event": "svcLogin",
+        "response":{
+          "lastLoginDt":""
         }
       }
     }
