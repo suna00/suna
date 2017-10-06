@@ -114,6 +114,8 @@
         "cc52c18f-eba7-ddb7-80cc-b6b409a76f1a",
         "a8722616-6d27-f032-05f0-232f6ee1cddc",
         "6c91e59c-4b82-2e60-2d90-bde852e97353",
+        "dea6b0ca-a625-9605-0fa7-c8408ea69642",
+        "d288563c-f7ff-07f9-60d1-1ec564815fa0",
         "f0a3b9e9-f526-d06c-4cd2-6efd5233578b",
         "c43330e0-cea8-fcaf-a055-deb8e684ea46"
       ],
@@ -551,7 +553,7 @@
       "data": [
         {
           "key": "snsKey",
-          "value": "testkeyUser",
+          "value": "testkeyUser21",
           "description": "SNS토큰키(String) NotNull",
           "type": "text",
           "enabled": true
@@ -565,7 +567,7 @@
         },
         {
           "key": "aliasNm",
-          "value": "",
+          "value": "test",
           "description": "닉네임명(String)",
           "type": "text",
           "enabled": true
@@ -586,7 +588,7 @@
         },
         {
           "key": "imgUrl",
-          "value": "",
+          "value": "park100.jpg",
           "description": "회원이미지파일(file) ",
           "type": "file",
           "enabled": true
@@ -625,6 +627,34 @@
           "description": "이메일수신여부(String) NotNull",
           "type": "text",
           "enabled": true
+        },
+        {
+          "key": "dvcId",
+          "value": "test",
+          "description": "앱아이디(String) 안드로이드는 AD ID, IOS는 IDFA(APP에서만 전달)",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "dvcNm",
+          "value": "",
+          "description": "디바이스명(String)(APP에서만 전달)",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "osCd",
+          "value": "",
+          "description": "운영체제코드(String)(APP에서만 전달)",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "osVer",
+          "value": "",
+          "description": "운영체제 버전(String)(APP에서만 전달)",
+          "type": "text",
+          "enabled": true
         }
       ],
       "dataMode": "params",
@@ -632,7 +662,7 @@
       "tests": null,
       "currentHelper": "normal",
       "helperAttributes": {},
-      "time": 1505024061201,
+      "time": 1507281879999,
       "name": "정회원 전환(IF_USER_002)",
       "description": "",
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
@@ -743,7 +773,7 @@
       "data": [
         {
           "key": "snsKey",
-          "value": "testkeyUser",
+          "value": "testkeyUser21",
           "description": "SNS토큰키(String) NotNull",
           "type": "text",
           "enabled": true
@@ -782,13 +812,41 @@
           "description": "정보공개동의여부(Boolean) NotNull",
           "type": "text",
           "enabled": true
+        },
+        {
+          "key": "dvcId",
+          "value": "test11",
+          "description": "앱아이디(String) 안드로이드는 AD ID, IOS는 IDFA(APP에서만 전달)",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "dvcNm",
+          "value": "test",
+          "description": "디바이스명(String)(APP에서만 전달)",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "osCd",
+          "value": "1",
+          "description": "운영체제코드(String)(APP에서만 전달)",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "osVer",
+          "value": "0.0.1",
+          "description": "운영체제 버전(String)(APP에서만 전달)",
+          "type": "text",
+          "enabled": true
         }
       ],
       "dataMode": "params",
       "tests": null,
       "currentHelper": "normal",
       "helperAttributes": {},
-      "time": 1505024288321,
+      "time": 1507281812313,
       "name": "준회원 가입(IF_USER_001)",
       "description": "",
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
@@ -1279,6 +1337,7 @@
       "headers": "",
       "headerData": [],
       "url": "{{protocol}}://{{hostname}}:{{port}}/api/vote/IfMwv209?sorting=voteNum desc&langCd=eng",
+      "folder": "1975e6cf-9157-826c-7f3c-1ec1825c5e8a",
       "queryParams": [
         {
           "key": "sorting",
@@ -1413,6 +1472,7 @@
       "headers": "",
       "headerData": [],
       "url": "{{protocol}}://{{hostname}}:{{port}}/api/vote/IfMwv111?voteFormlCd=2&showLoCd=3&langCd=eng&sorting=voteSeq",
+      "folder": "1975e6cf-9157-826c-7f3c-1ec1825c5e8a",
       "queryParams": [
         {
           "key": "voteFormlCd",
@@ -1724,7 +1784,7 @@
       "tests": null,
       "currentHelper": "normal",
       "helperAttributes": {},
-      "time": 1506497627222,
+      "time": 1507270363123,
       "name": "서비스 컴포넌트 상세조회(IfCom001)",
       "description": "",
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
@@ -2234,12 +2294,12 @@
       "id": "769dddf0-1526-7e56-1c36-6632e1980e53",
       "headers": "",
       "headerData": [],
-      "url": "{{protocol}}://{{hostname}}:{{port}}/api/mcdlineup/IfMcl001?bradDate=2017-08-01&langCd=eng",
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/mcdlineup/IfMcl001?bradDate=2017-10-19&langCd=eng",
       "folder": "d269e58b-7339-df29-fee4-08864d6444c6",
       "queryParams": [
         {
           "key": "bradDate",
-          "value": "2017-08-01",
+          "value": "2017-10-19",
           "equals": true,
           "description": "방송일자(String) ",
           "enabled": true
@@ -2262,7 +2322,7 @@
       "tests": null,
       "currentHelper": "normal",
       "helperAttributes": {},
-      "time": 1505060783423,
+      "time": 1507303126160,
       "name": "MCD 라인업(출연자) 상세조회(IF_MCL_001)",
       "description": "",
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
@@ -3146,12 +3206,12 @@
       "id": "a8722616-6d27-f032-05f0-232f6ee1cddc",
       "headers": "",
       "headerData": [],
-      "url": "{{protocol}}://{{hostname}}:{{port}}/api/member/IfUser004?snsKey=park100&snsTypeCd=1",
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/member/IfUser004?snsKey=testkeyUser20&snsTypeCd=1&dvcId=test&dvcNm=test&osCd=1&osVer=1.0.1",
       "folder": "298ddc11-fcb0-a874-3049-a3b1dd8038ae",
       "queryParams": [
         {
           "key": "snsKey",
-          "value": "park100",
+          "value": "testkeyUser20",
           "equals": true,
           "description": "SNS 토큰키(String) NotNull",
           "enabled": true
@@ -3161,6 +3221,34 @@
           "value": "1",
           "equals": true,
           "description": "SNS 유형코드(String) NotNull",
+          "enabled": true
+        },
+        {
+          "key": "dvcId",
+          "value": "test",
+          "equals": true,
+          "description": "앱아이디(String) 안드로이드는 AD ID, IOS는 IDFA(APP에서만 전달)",
+          "enabled": true
+        },
+        {
+          "key": "dvcNm",
+          "value": "test",
+          "equals": true,
+          "description": "디바이스명(String)(APP에서만 전달)",
+          "enabled": true
+        },
+        {
+          "key": "osCd",
+          "value": "1",
+          "equals": true,
+          "description": "운영체제코드(String)(APP에서만 전달)",
+          "enabled": true
+        },
+        {
+          "key": "osVer",
+          "value": "1.0.1",
+          "equals": true,
+          "description": "운영체제 버전(String)(APP에서만 전달)",
           "enabled": true
         }
       ],
@@ -3174,7 +3262,7 @@
       "tests": null,
       "currentHelper": "normal",
       "helperAttributes": {},
-      "time": 1505024630989,
+      "time": 1507282146298,
       "name": "회원ID 인증/정보 조회(IF_USER_004)",
       "description": "",
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
@@ -4278,6 +4366,64 @@
       "responses": []
     },
     {
+      "id": "d288563c-f7ff-07f9-60d1-1ec564815fa0",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/member/IfUser007",
+      "queryParams": [],
+      "preRequestScript": null,
+      "pathVariables": {},
+      "pathVariableData": [],
+      "method": "POST",
+      "data": [
+        {
+          "key": "dvcId",
+          "value": "test11",
+          "description": "앱아이디(String) NotNull 안드로이드는 AD ID, IOS는 IDFA",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "dvcNm",
+          "value": "test",
+          "description": "디바이스명(String)",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "osCd",
+          "value": "1",
+          "description": "운영체제코드(String)",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "osVer",
+          "value": "0.0.1",
+          "description": "운영체제 버전(String)",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "connCntryCd",
+          "value": "KOR",
+          "description": "국가코드(String) NotNull",
+          "type": "text",
+          "enabled": true
+        }
+      ],
+      "dataMode": "params",
+      "version": 2,
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "time": 1507301553793,
+      "name": "비회원 정보 전송(IF_USER_007)",
+      "description": "",
+      "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
+      "responses": []
+    },
+    {
       "id": "d330b905-f48d-8e00-0cd7-5e91c4d6b2f1",
       "headers": "",
       "headerData": [],
@@ -4590,6 +4736,52 @@
       "description": "",
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
       "responses": []
+    },
+    {
+      "id": "dea6b0ca-a625-9605-0fa7-c8408ea69642",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/member/IfUser006",
+      "queryParams": [],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "POST",
+      "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
+      "data": [
+        {
+          "key": "snsKey",
+          "value": "testkeyUser21",
+          "description": "SNS토큰키(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "snsTypeCd",
+          "value": "1",
+          "description": "SNS 유형코드(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "infoOttpAgreeYn",
+          "value": "true",
+          "description": "정보공개동의여부(String) NotNull",
+          "type": "text",
+          "enabled": true
+        }
+      ],
+      "dataMode": "params",
+      "name": "탈퇴회원 재가입(IF_USER_006)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1507288378822,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "298ddc11-fcb0-a874-3049-a3b1dd8038ae"
     },
     {
       "id": "e067f2ea-3bcf-bad0-3768-35b1717e5739",
