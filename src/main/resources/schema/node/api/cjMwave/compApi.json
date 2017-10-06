@@ -353,7 +353,24 @@
                 "limit": "1",
                 "includeReferenced": true
               }
-            ]
+            ],
+            "response":{
+              "_all_":"",
+              "refdStatsList":{
+                "typeId": "mcdChartStats",
+                "query": [
+                  {
+                    "field": "chMstId",
+                    "method": "referenceJoin",
+                    "value": "chMstId_matching={{:mstIdx}}"
+                  },
+                  {
+                    "sorting": "ranking",
+                    "referenceView": "songId"
+                  }
+                ]
+              }
+            }
           }
         }
       }
