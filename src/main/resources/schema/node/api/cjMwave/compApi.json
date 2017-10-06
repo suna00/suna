@@ -350,7 +350,8 @@
             "query": [
               {
                 "sorting": "mstIdx desc",
-                "limit": "1"
+                "limit": "1",
+                "includeReferenced": true
               }
             ]
           }
