@@ -191,7 +191,6 @@ public class VotePrtcptHstService {
             }
             insertList.add(voteData);
         }
-        // TODO - Checking Available IP with mbrId and voteSeq
 
         String voteDate = DateFormatUtils.format(now, "yyyyMMdd");          // 투표 진행일 (현재날짜)
         String pstngStDt = seriesVoteBasInfo.get("pstngStDt").toString().substring(0, 8);   // 투표 시작일
@@ -199,7 +198,22 @@ public class VotePrtcptHstService {
 
         // Checking Available Date
         if (voteDate.compareTo(pstngStDt) < 0 || voteDate.compareTo(pstngFnsDt) > 0) {
-            throw new ApiException("400", "Required Parameter : It is not voting period");
+            throw new ApiException("400", "Required Parameter : It is not voting period.");
+        }
+
+        // Checking Available IP with mbrId and voteSeq
+        List<Node> dclaNodeList = NodeUtils.getNodeService()
+                .getNodeList("dclaSetupMng","setupTypeCd_matching=2&sorting=dclaSetupSeq desc&limit=1");
+        Node dclaNode = dclaNodeList.get(0);
+
+        Integer ipDclaCnt = dclaNode.getIntValue("setupBaseCnt");
+
+        String selectIpDclaCnt = "SELECT count(*) ipCnt FROM voteHstByIp WHERE ipAdr=? AND voteDate=?";
+        Map<String, Object> ipCntMap = jdbcTemplate.queryForMap(selectIpDclaCnt, connIpAdr, voteDate);
+        Integer mbrIpDclaCnt = Integer.parseInt(ipCntMap.get("ipCnt").toString());
+
+        if (mbrIpDclaCnt >= ipDclaCnt) {
+            throw new ApiException("401", "This IP connection has exceeded the maximum number.");
         }
 
         Long pstngStDtTime = 0L;    // 투표 시작일 (DateTime)
@@ -270,7 +284,10 @@ public class VotePrtcptHstService {
         }
 
 
-        // TODO - 접근 IP 관리 테이블에 등록 -
+        // 접근 IP 관리 테이블에 등록
+        String insertIpDclaCnt = "INSERT INTO voteHstByIp (voteDate, ipAdr, created) VALUES(?,?,?)";
+        jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now);
+
 
         // 투표 등록
         String insertVoteHst = "INSERT INTO " + seriesVoteBasInfo.get(VOTE_SEQ).toString() + "_voteHstByMbr" +
@@ -290,10 +307,10 @@ public class VotePrtcptHstService {
         //Node resNode = (Node) nodeService.executeNode(seriesVoteBasInfo, "sersVotePrtcptHst", EventService.CREATE);
         Map<String, Object> responseMap = new ConcurrentHashMap<>() ;
         //responseMap.put("sersVoteSeq", seriesVoteBasInfo.get(VOTE_SEQ).toString());
-        //responseMap.put("maxVoteCnt", maxVoteCntByMbr);    // TODO - Delete
+        //responseMap.put("maxVoteCnt", maxVoteCntByMbr);
         responseMap.put("userVoteCnt", voteCntByMbr + 1);
         responseMap.put("userPvCnt", 10);
-        responseMap.put("ipAdrVoteCnt", 10);
+        responseMap.put("ipAdrVoteCnt", ipDclaCnt - mbrIpDclaCnt - 1);
 
         //resList.add(resNode);
         Map<String, Object> response = new ConcurrentHashMap<>();
