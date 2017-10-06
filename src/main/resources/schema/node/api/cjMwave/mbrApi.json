@@ -260,6 +260,45 @@
   {
     "typeId": "apiConfig",
     "category": "member",
+    "apiId": "IfUser007",
+    "apiName": "비회원 정보 전송",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "dvcId",
+        "required": true
+      },
+      {
+        "paramName": "dvcNm",
+        "required": false
+      },
+      {
+        "paramName": "osCd",
+        "required": false
+      },
+      {
+        "paramName": "osVer",
+        "required": false
+      },
+      {
+        "paramName": "connCntryCd",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "nonMbrInfo",
+      "event": "save",
+      "data": {
+        "firstConnDt": "{{:now}}"
+      },
+      "response": {
+        "dvcId": ""
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "member",
     "apiId": "IfUser100",
     "apiName": "회원 프로필 이미지 수정",
     "method": "POST",
