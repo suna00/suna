@@ -14,5 +14,93 @@
     "actionType": "service",
     "actionBody": "mbrInfoService.chkMbr",
     "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "mbrInfo",
+    "event": "svcLogin",
+    "noneExecute": true,
+    "eventName": "member check Event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "mbrInfo>svcLogin",
+    "action": "svcLoginEvent",
+    "actionName": "Front 회원 로그인 시 관련 정보 수정",
+    "actionType": "service",
+    "actionBody": "mbrInfoService.updLoginInfo",
+    "order": 1
+  },
+  {
+    "typeId": "eventListener",
+    "tid": "mbrDvcInfo",
+    "event": "mbrInfo>svcLogin",
+    "listenerName": "Front 회원 로그인 시 회원 디바이스정보 저장",
+    "actionType": "service",
+    "actionBody": "mbrDvcInfoService.mbrDvcInfoSave"
+  },
+  {
+    "typeId": "eventListener",
+    "tid": "mbrSttusHst",
+    "event": "mbrInfo>create",
+    "listenerName": "회원 상태 변경시 상태이력 create",
+    "actionType": "service",
+    "actionBody": "mbrSttusHstService.sttusHstCreate"
+  },
+  {
+    "typeId": "eventListener",
+    "tid": "mbrSttusHst",
+    "event": "mbrInfo>update",
+    "listenerName": "회원 상태 변경시 상태이력 create",
+    "actionType": "service",
+    "actionBody": "mbrSttusHstService.sttusHstCreate"
+  },
+  {
+    "typeId": "event",
+    "tid": "mbrInfo",
+    "event": "semiMbrJoin",
+    "noneExecute": true,
+    "eventName": "semi member join Event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "mbrInfo>semiMbrJoin",
+    "action": "semiMbrJoinEvent",
+    "actionName": "준회원 가입",
+    "actionType": "service",
+    "actionBody": "mbrInfoService.semiMbrJoin",
+    "order": 1
+  },
+  {
+    "typeId": "eventListener",
+    "tid": "mbrDvcInfo",
+    "event": "mbrInfo>semiMbrJoin",
+    "listenerName": "준회원 가입시 회원 디바이스정보 저장",
+    "actionType": "service",
+    "actionBody": "mbrDvcInfoService.mbrDvcInfoSave"
+  },
+  {
+    "typeId": "event",
+    "tid": "mbrInfo",
+    "event": "rglrMbrJoin",
+    "noneExecute": true,
+    "eventName": "rglr member join Event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "mbrInfo>rglrMbrJoin",
+    "action": "rglrMbrJoinEvent",
+    "actionName": "정회원 가입",
+    "actionType": "service",
+    "actionBody": "mbrInfoService.rglrMbrJoin",
+    "order": 1
+  },
+  {
+    "typeId": "eventListener",
+    "tid": "mbrDvcInfo",
+    "event": "mbrInfo>rglrMbrJoin",
+    "listenerName": "정회원 가입시 회원 디바이스정보 저장",
+    "actionType": "service",
+    "actionBody": "mbrDvcInfoService.mbrDvcInfoSave"
   }
 ]
