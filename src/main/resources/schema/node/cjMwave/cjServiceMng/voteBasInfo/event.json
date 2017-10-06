@@ -32,18 +32,18 @@
   },
   {
     "typeId": "event",
-    "tid": "votePrtcptHst",
+    "tid": "voteBasInfo",
     "event": "voting",
     "noneExecute" : true,
     "eventName": "VOTING Save Event"
   },
   {
     "typeId": "eventAction",
-    "event": "votePrtcptHst>voting",
-    "action": "save Event",
+    "event": "voteBasInfo>voting",
+    "action": "votingEvent",
     "actionName": "VOTING Save",
     "actionType": "service",
     "actionBody": "votePrtcptHstService.voting",
-    "order": 1
+    "order": 2
   }
 ]
