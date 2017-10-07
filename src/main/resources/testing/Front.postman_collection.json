@@ -388,7 +388,8 @@
 				"6fac7b4e-69a8-fae7-fd04-499963b3d387",
 				"f6aa50f3-2307-da23-6286-d9d5ff57210e",
 				"9d42ce97-1f37-cba5-693b-8dd5b754d9ac",
-				"a8ac3629-f1d6-7079-b545-ce25e6a4117c"
+				"a8ac3629-f1d6-7079-b545-ce25e6a4117c",
+				"4b7c6757-6930-3532-6be4-d17219d45bf7"
 			],
 			"owner": "297192",
 			"folders_order": [],
@@ -538,29 +539,48 @@
 		},
 		{
 			"id": "00e7e6ce-a9b3-baa7-f47c-b04db3a2b625",
-			"method": "GET",
-			"url": "",
-			"name": "취소 신청_취소 수량 변경",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/orderChange/event/refundablePrice?memberNo=77777&ordersheetId=091ce09f-335b-4846-ba38-29d464e65cea&orderChangeProduct=[]",
+			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
+			"queryParams": [
+				{
+					"key": "memberNo",
+					"value": "77777",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "ordersheetId",
+					"value": "091ce09f-335b-4846-ba38-29d464e65cea",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "orderChangeProduct",
+					"value": "[]",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "a2bd1d31-b61c-5a0a-76b1-a6b448614574"
+			"helperAttributes": {},
+			"time": 1506841910979,
+			"name": "취소 신청_취소 수량 변경",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "01181099-5fe9-5fd7-f907-2558a907d607",
@@ -775,29 +795,34 @@
 		},
 		{
 			"id": "0600c307-626e-2eac-998b-c2290bae7e31",
-			"method": "GET",
-			"url": "",
-			"name": "교환 상세 조회_교환 상품 리스트",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/orderChange/read.json?orderChangeId=3",
+			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
+			"queryParams": [
+				{
+					"key": "orderChangeId",
+					"value": "3",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "a2bd1d31-b61c-5a0a-76b1-a6b448614574"
+			"helperAttributes": {},
+			"time": 1506745338846,
+			"name": "교환 상세 조회_교환 상품 리스트",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "0b2dea23-fbfd-93f1-23db-130053aacd6b",
@@ -1078,29 +1103,32 @@
 		},
 		{
 			"id": "124a8b3e-760f-2589-a5a4-61de56b1d949",
-			"method": "GET",
-			"url": "",
-			"name": "주문 배송 메인_최근 주문 내역",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/orderSheet/recentlyList.json?memberNo=88888",
+			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
+			"queryParams": [
+				{
+					"key": "memberNo",
+					"value": "88888",
+					"equals": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "a2bd1d31-b61c-5a0a-76b1-a6b448614574"
+			"helperAttributes": {},
+			"time": 1506753792959,
+			"name": "주문 배송 메인_최근 주문 내역",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "140ad3b6-b7be-c544-065d-3fb3f8e9ff79",
@@ -1130,28 +1158,55 @@
 		},
 		{
 			"id": "14167e19-0554-4ecf-289b-c89566971039",
-			"method": "GET",
-			"url": "",
-			"name": "1:1문의_상품선택대상",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/data/orderSheet/list.json?sorting=created desc&includeReferenced=true&memberNo_matching=77777&created_above=20170910",
+			"folder": "6374d12f-e712-82ab-d2f0-372ec34e474c",
+			"queryParams": [
+				{
+					"key": "sorting",
+					"value": "created desc",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "includeReferenced",
+					"value": "true",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "memberNo_matching",
+					"value": "77777",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "created_above",
+					"value": "20170910",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "6374d12f-e712-82ab-d2f0-372ec34e474c",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715"
+			"helperAttributes": {},
+			"time": 1506411378365,
+			"name": "1:1문의_상품선택대상",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "144d2146-760f-ca8b-8a5f-8464cbc13317",
@@ -1381,29 +1436,26 @@
 		},
 		{
 			"id": "18b6462b-17c1-6e3c-5d31-8bc4602253f9",
-			"method": "GET",
-			"url": "",
-			"name": "반품 신청_반품 신청",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/orderChange/event/requestReturn",
+			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "POST",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "a2bd1d31-b61c-5a0a-76b1-a6b448614574"
+			"helperAttributes": {},
+			"time": 1506768988086,
+			"name": "반품 신청_반품 신청",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "19c43482-16eb-1b90-2663-b38ebf076411",
@@ -1549,29 +1601,34 @@
 		},
 		{
 			"id": "1e0058c8-100e-cefd-aa46-8e47f9e7adbd",
-			"method": "GET",
-			"url": "",
-			"name": "주문 상세조회_배송지 정보",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/orderSheet/read.json?orderSheetId=091ce09f-335b-4846-ba38-29d464e65cea",
+			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
+			"queryParams": [
+				{
+					"key": "orderSheetId",
+					"value": "091ce09f-335b-4846-ba38-29d464e65cea",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "a2bd1d31-b61c-5a0a-76b1-a6b448614574"
+			"helperAttributes": {},
+			"time": 1506521688152,
+			"name": "주문 상세조회_배송지 정보",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "1e1b6a6b-08a7-6a6b-1922-152938a35f18",
@@ -2080,29 +2137,34 @@
 		},
 		{
 			"id": "2ed43be8-42fe-8a65-3b2f-cb5fe384754b",
-			"method": "GET",
-			"url": "",
-			"name": "취소 신청_주문 상품 리스트",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/orderSheet/read.json?orderSheetId=B20170927232008520250",
+			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
+			"queryParams": [
+				{
+					"key": "orderSheetId",
+					"value": "B20170927232008520250",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "a2bd1d31-b61c-5a0a-76b1-a6b448614574"
+			"helperAttributes": {},
+			"time": 1506579079795,
+			"name": "취소 신청_주문 상품 리스트",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "2f6c9feb-def5-fb49-56cd-685c2e0810d6",
@@ -2472,29 +2534,34 @@
 		},
 		{
 			"id": "392365b9-bcdf-d8e4-9f0a-008fed83d307",
-			"method": "GET",
-			"url": "",
-			"name": "취소/교환/반품 조회 리스트_주문 리스트",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/orderChange/list.json?memberNo=77777",
+			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
+			"queryParams": [
+				{
+					"key": "memberNo",
+					"value": "77777",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "a2bd1d31-b61c-5a0a-76b1-a6b448614574"
+			"helperAttributes": {},
+			"time": 1506587941530,
+			"name": "취소/교환/반품 조회 리스트_주문 리스트",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "39587313-ff0c-075d-c443-ba6b751351af",
@@ -2745,12 +2812,12 @@
 			"id": "3e7730f5-3c18-eda2-ad9a-78bde4064f46",
 			"headers": "",
 			"headerData": [],
-			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/cart/read.json?cartId=96",
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/cart/cartRead?cartId=250",
 			"folder": "fbef8ed5-d63e-081d-e1ac-6c54a38292d6",
 			"queryParams": [
 				{
 					"key": "cartId",
-					"value": "96",
+					"value": "250",
 					"equals": true,
 					"description": "",
 					"enabled": true
@@ -2766,7 +2833,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1506097458968,
+			"time": 1507367919426,
 			"name": "장바구니 리스트_장바구니 상품 리스트",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
@@ -2786,10 +2853,10 @@
 			"data": [
 				{
 					"key": "cartId",
-					"value": "129",
+					"value": "332",
 					"description": "장바구니 아이디가 없으면 create, 있으면 update",
 					"type": "text",
-					"enabled": true
+					"enabled": false
 				},
 				{
 					"key": "memberNo",
@@ -2813,23 +2880,86 @@
 					"enabled": true
 				},
 				{
-					"key": "cartProduct",
-					"value": "[\n\t{\n\t\t\"productId\":520,\n\t\t\"baseOptionItemId\":50099,\n\t\t\"quantity\":1\n\t}\n]",
-					"description": "",
-					"type": "text",
-					"enabled": true
-				},
-				{
-					"key": "",
-					"value": ",\n\t{\n\t\t\"productId\":519,\n\t\t\"baseOptionItemId\":50098,\n\t\t\"quantity\":1\n\t}",
-					"description": "",
+					"key": "productList",
+					"value": "[\n\t{\n\t\t\"productId\":512,\n\t\t\"baseOptionItemId\":50064,\n\t\t\"quantity\":2\n\t}\n]",
+					"description": "수량별 (벤더 1)",
 					"type": "text",
 					"enabled": false
 				},
 				{
-					"key": "changed",
-					"value": "",
-					"description": "",
+					"key": "productList",
+					"value": "[\n\t{\n\t\t\"productId\":519,\n\t\t\"baseOptionItemId\":50098,\n\t\t\"quantity\":1\n\t}\n]",
+					"description": "조건부A  (벤더 1)",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "productList",
+					"value": "[\n\t{\n\t\t\"productId\":520,\n\t\t\"baseOptionItemId\":50099,\n\t\t\"quantity\":1\n\t}\n]",
+					"description": "조건부B (벤더 1)",
+					"type": "text",
+					"enabled": false
+				},
+				{
+					"key": "productList",
+					"value": "[\n\t{\n\t\t\"productId\":506,\n\t\t\"baseOptionItemId\":50037,\n\t\t\"quantity\":4\n\t}\n]",
+					"description": "조건부 (벤더 2)",
+					"type": "text",
+					"enabled": false
+				},
+				{
+					"key": "productList",
+					"value": "[\n  {\n    \"productId\": 521,\n    \"baseOptionItemId\": 50100,\n    \"quantity\": 1,\n    \"productItem\": [\n      {\n        \"addOptionItemId\": 50104,\n        \"quantity\": 2\n      },\n      {\n        \"addOptionItemId\": 50105,\n        \"quantity\": 3\n      }\n    ]\n  },\n  {\n    \"productId\": 519,\n    \"baseOptionItemId\": 50098,\n    \"quantity\": 1\n  },\n  {\n    \"productId\": 506,\n    \"baseOptionItemId\": 50037,\n    \"quantity\": 4\n  }\n]",
+					"description": "멀티",
+					"type": "text",
+					"enabled": false
+				},
+				{
+					"key": "productList",
+					"value": "[\n  {\n    \"productId\": 503,\n    \"baseOptionItemId\": 50019,\n    \"quantity\": 3,\n    \"productItem\": [\n      {\n        \"addOptionItemId\": 50020,\n        \"quantity\": 1\n      }\n    ]\n  }\n]",
+					"description": "조건부 옵션",
+					"type": "text",
+					"enabled": false
+				},
+				{
+					"key": "productList",
+					"value": "[\n  {\n    \"productId\": 521,\n    \"baseOptionItemId\": 50100,\n    \"quantity\": 3,\n    \"productItem\": [\n      {\n        \"addOptionItemId\": 50104,\n        \"quantity\": 2\n      }\n    ]\n  }\n]",
+					"description": "조건부 옵션 수량별 배송",
+					"type": "text",
+					"enabled": false
+				},
+				{
+					"key": "productList",
+					"value": "[\n\t{\n\t\t\"productId\":501,\n\t\t\"baseOptionItemId\":50001,\n\t\t\"quantity\":1\n\t}\n]",
+					"description": "무료배송 (벤더 1)",
+					"type": "text",
+					"enabled": false
+				},
+				{
+					"key": "productList",
+					"value": "[\n\t{\n\t\t\"productId\":508,\n\t\t\"baseOptionItemId\":50018,\n\t\t\"quantity\":1\n\t}\n]",
+					"description": "유료배송 (벤더 1)",
+					"type": "text",
+					"enabled": false
+				},
+				{
+					"key": "productList",
+					"value": "[\n\t{\n\t\t\"productId\":505,\n\t\t\"baseOptionItemId\":50030,\n\t\t\"quantity\":1\n\t}\n]",
+					"description": "무료배송 (벤더 2)  묶음x",
+					"type": "text",
+					"enabled": false
+				},
+				{
+					"key": "productList",
+					"value": "[\n  {\n    \"productId\":509,\n    \"baseOptionItemId\":50051,\n    \"hopeDeliveryDate\":20171010120000,\n    \"quantity\":1\n  }\n]",
+					"description": "희망배송",
+					"type": "text",
+					"enabled": false
+				},
+				{
+					"key": "productList",
+					"value": "[\n\t{\n\t\t\"productId\":510,\n\t\t\"baseOptionItemId\":50052,\n\t\t\"quantity\":1\n\t}\n]",
+					"description": "예약배송",
 					"type": "text",
 					"enabled": false
 				}
@@ -2839,7 +2969,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1506176058533,
+			"time": 1506949961478,
 			"name": "상품상세_장바구니담기",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
@@ -3233,30 +3363,66 @@
 			"folderId": "a2bd1d31-b61c-5a0a-76b1-a6b448614574"
 		},
 		{
-			"id": "4d66e6b3-9703-621b-208d-5535d50e1135",
-			"method": "GET",
-			"url": "",
-			"name": "주문 상세조회_결제 정보",
-			"dataMode": "params",
+			"id": "4b7c6757-6930-3532-6be4-d17219d45bf7",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/orderSheet/recentlyList.json?memberNo=88888",
+			"folder": "455b9779-e444-61db-278a-0f642a5d2c37",
+			"queryParams": [
+				{
+					"key": "memberNo",
+					"value": "88888",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
+			"helperAttributes": {},
+			"time": 1506751583929,
+			"name": "마이페이지 메인_최근 주문 내역(new)",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
+		},
+		{
+			"id": "4d66e6b3-9703-621b-208d-5535d50e1135",
+			"headers": "",
+			"headerData": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/orderSheet/read.json?orderSheetId=091ce09f-335b-4846-ba38-29d464e65cea",
 			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "a2bd1d31-b61c-5a0a-76b1-a6b448614574"
+			"queryParams": [
+				{
+					"key": "orderSheetId",
+					"value": "091ce09f-335b-4846-ba38-29d464e65cea",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1506521684945,
+			"name": "주문 상세조회_결제 정보",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "4dc55c70-4483-add7-2367-c84c664f30cc",
@@ -4164,29 +4330,34 @@
 		},
 		{
 			"id": "694a7855-b474-fc2c-fc13-61ecd2b63fc5",
-			"method": "GET",
-			"url": "",
-			"name": "반품 신청_주문 상품 리스트",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/orderSheet/read.json?orderSheetId=B20170927232008520250",
+			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
+			"queryParams": [
+				{
+					"key": "orderSheetId",
+					"value": "B20170927232008520250",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "a2bd1d31-b61c-5a0a-76b1-a6b448614574"
+			"helperAttributes": {},
+			"time": 1506579076714,
+			"name": "반품 신청_주문 상품 리스트",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "6991bc8a-3506-7913-440c-0b518cee2cbc",
@@ -4394,7 +4565,7 @@
 			"data": [
 				{
 					"key": "productIds",
-					"value": "662",
+					"value": "881",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -4405,7 +4576,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1506176638129,
+			"time": 1506513773106,
 			"name": "장바구니 리스트_선택상품 삭제",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
@@ -4570,12 +4741,12 @@
 			"id": "6f5c5f21-7e0d-e137-2390-66d53b34f109",
 			"headers": "",
 			"headerData": [],
-			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/orderSheet/read.json?orderSheetId=1",
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/orderSheet/read.json?orderSheetId=B20170927232008520250",
 			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
 			"queryParams": [
 				{
 					"key": "orderSheetId",
-					"value": "1",
+					"value": "B20170927232008520250",
 					"equals": true,
 					"description": "",
 					"enabled": true
@@ -4591,7 +4762,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1505819995811,
+			"time": 1506950029037,
 			"name": "주문 상세조회_주문 상품 리스트",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
@@ -5080,19 +5251,19 @@
 			"id": "82c4e093-9508-0fb1-79dd-ed38769934a4",
 			"headers": "",
 			"headerData": [],
-			"url": "{{protocol}}://{{hostname}}:{{port}}/node/cart/event/changeQuantity.json?cartProductId=661&quantity=1",
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/cart/event/changeQuantity.json?cartProductId=957&quantity=-1",
 			"folder": "fbef8ed5-d63e-081d-e1ac-6c54a38292d6",
 			"queryParams": [
 				{
 					"key": "cartProductId",
-					"value": "661",
+					"value": "957",
 					"equals": true,
 					"description": "",
 					"enabled": true
 				},
 				{
 					"key": "quantity",
-					"value": "1",
+					"value": "-1",
 					"equals": true,
 					"description": "",
 					"enabled": true
@@ -5108,7 +5279,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1506178098511,
+			"time": 1506513773907,
 			"name": "장바구니 리스트_수량 적용",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
@@ -5212,7 +5383,7 @@
 			"currentHelper": "normal",
 			"helperAttributes": {},
 			"time": 1505917264084,
-			"name": "마이페이지 메인_최근 주문 내역",
+			"name": "마이페이지 메인_최근 주문 내역(사용안함)",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
 			"responses": []
@@ -5457,29 +5628,55 @@
 		},
 		{
 			"id": "8ca9ae5e-9fdc-a52a-78e7-ec6fc8d238ea",
-			"method": "GET",
-			"url": "{{protocol}}://{{hostname}}:{{port}}/node/productQuestion/list.json?pageSize=10&page=1&memberNo_matching=77777",
-			"name": "상품Q&A_QNA 리스트",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/productQuestion/list.json?pageSize=10&page=1&memberNo_matching=77777&created_fromto=20170821~20170822",
+			"folder": "455b9779-e444-61db-278a-0f642a5d2c37",
+			"queryParams": [
+				{
+					"key": "pageSize",
+					"value": "10",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "page",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "memberNo_matching",
+					"value": "77777",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "created_fromto",
+					"value": "20170821~20170822",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "455b9779-e444-61db-278a-0f642a5d2c37",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "455b9779-e444-61db-278a-0f642a5d2c37"
+			"helperAttributes": {},
+			"time": 1506601163475,
+			"name": "상품Q&A_QNA 리스트",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "8da0eff9-1e44-d76e-eec3-92948949f4e9",
@@ -6275,28 +6472,26 @@
 		},
 		{
 			"id": "a8ac3629-f1d6-7079-b545-ce25e6a4117c",
-			"method": "GET",
-			"url": "",
-			"name": "교환 신청_교환 배송비 결제 및 교환 신청",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/orderChange/event/requestExchange",
+			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "POST",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715"
+			"helperAttributes": {},
+			"time": 1506768998261,
+			"name": "교환 신청_교환 교환 신청",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "a92ee2ba-ce02-31ac-2624-55f768c64d2f",
@@ -7396,29 +7591,34 @@
 		},
 		{
 			"id": "cbbe507d-6d74-3d6c-a1e5-9ce79e2774cb",
-			"method": "GET",
-			"url": "",
-			"name": "주문 상세조회_주문자 정보",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/orderSheet/read.json?orderSheetId=091ce09f-335b-4846-ba38-29d464e65cea",
+			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
+			"queryParams": [
+				{
+					"key": "orderSheetId",
+					"value": "091ce09f-335b-4846-ba38-29d464e65cea",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "a2bd1d31-b61c-5a0a-76b1-a6b448614574"
+			"helperAttributes": {},
+			"time": 1506521691256,
+			"name": "주문 상세조회_주문자 정보",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "cbf17572-5454-9e3d-fd40-33d23f42a0c1",
@@ -7597,29 +7797,34 @@
 		},
 		{
 			"id": "d2cb89c9-2ea5-c293-fe6f-4adc3d3c6a4e",
-			"method": "GET",
-			"url": "",
-			"name": "반품 상세 조회_반품 상품 리스트",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/orderChange/read.json?orderChangeId=2",
+			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
+			"queryParams": [
+				{
+					"key": "orderChangeId",
+					"value": "2",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "a2bd1d31-b61c-5a0a-76b1-a6b448614574"
+			"helperAttributes": {},
+			"time": 1506751741025,
+			"name": "반품 상세 조회_반품 상품 리스트",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "d3234cfd-9afb-5af3-d789-54e0acf96a6c",
@@ -7694,29 +7899,48 @@
 		},
 		{
 			"id": "d4cac303-da01-55b3-f7bd-2e022fe3c8bc",
-			"method": "GET",
-			"url": "",
-			"name": "취소 신청_취소 신청",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/orderChange/event/requestCancel",
+			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "POST",
+			"data": [
+				{
+					"key": "memberNo",
+					"value": "88888",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "orderSheetId",
+					"value": "B20170927232008520250",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "orderChangeProduct",
+					"value": "[\n            {\n                \"orderProductId\": 39,\n                \"productId\": 512,\n                \"quantity\": 1,\n                \"changeReasonType\": \"cancel001\"\n            },\n            {\n                \"orderProductId\": 40,\n                \"productId\": 521,\n                \"quantity\": 1,\n                \"changeReasonType\": \"cancel001\"\n            }\n        ]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "a2bd1d31-b61c-5a0a-76b1-a6b448614574"
+			"helperAttributes": {},
+			"time": 1506946626404,
+			"name": "취소 신청_취소 신청",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "d723f5c7-c2d1-cb94-4ed8-f082d285e941",
@@ -8286,29 +8510,97 @@
 		},
 		{
 			"id": "e82c1394-0c30-9b03-06b3-121829e387d4",
-			"method": "GET",
-			"url": "",
-			"name": "주문 상세조회_배송지 변경",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/delivery/event/updateOrderDeliveryAddress",
+			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "POST",
+			"data": [
+				{
+					"key": "orderSheetId",
+					"value": "091ce09f-335b-4846-ba38-29d464e65cea11",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "deliveryId",
+					"value": "99999",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "addressName",
+					"value": "상암ytn",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "postCode",
+					"value": "03926",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "address",
+					"value": "서울특별시 마포구 상암동 1607 YTN 뉴스",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "recipient",
+					"value": "윤서눙",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "cellphone",
+					"value": "010-010-010",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "phone",
+					"value": "02-299-1234",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "deliveryMemo",
+					"value": "빨리빨리",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "deliveryType",
+					"value": "general",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "a2bd1d31-b61c-5a0a-76b1-a6b448614574"
+			"helperAttributes": {},
+			"time": 1506522315402,
+			"name": "주문 상세조회_배송지 변경",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "e8964b7f-7a90-f320-0548-7e75226d1179",
@@ -8409,29 +8701,34 @@
 		},
 		{
 			"id": "ebc62cdd-ded4-e250-b65a-bde7e3b6a4a6",
-			"method": "GET",
-			"url": "",
-			"name": "교환 신청_주문 상품 리스트",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/orderSheet/read.json?orderSheetId=B20170927232008520250",
+			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
+			"queryParams": [
+				{
+					"key": "orderSheetId",
+					"value": "B20170927232008520250",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "a2bd1d31-b61c-5a0a-76b1-a6b448614574"
+			"helperAttributes": {},
+			"time": 1506579071828,
+			"name": "교환 신청_주문 상품 리스트",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "edb1fd8c-cd59-a65f-9056-3d7120b0c95e",
@@ -8949,29 +9246,69 @@
 		},
 		{
 			"id": "f85df55a-4646-7bd0-f573-134e74fba22d",
-			"method": "GET",
-			"url": "",
-			"name": "주문 배송 조회 리스트_주문상태별 주문 리스트",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/orderSheet/list.json?pageSize=10&page=1&createdFromto&orderSheetId=&productId=&orderStatus=",
+			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
+			"queryParams": [
+				{
+					"key": "pageSize",
+					"value": "10",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "page",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "createdFromto",
+					"value": "",
+					"equals": false,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "orderSheetId",
+					"value": "",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "productId",
+					"value": "",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "orderStatus",
+					"value": "",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "a2bd1d31-b61c-5a0a-76b1-a6b448614574"
+			"helperAttributes": {},
+			"time": 1506950779644,
+			"name": "주문 배송 조회 리스트_주문상태별 주문 리스트",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "f877a5e0-d180-7fa3-b032-a95d8e71c6ef",
@@ -9234,29 +9571,34 @@
 		},
 		{
 			"id": "ffddf6f4-791d-f484-d7a5-17e45189d441",
-			"method": "GET",
-			"url": "",
-			"name": "취소 상세 조회_취소 상품 리스트",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/orderChange/read.json?orderChangeId=1",
+			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
+			"queryParams": [
+				{
+					"key": "orderChangeId",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "a2bd1d31-b61c-5a0a-76b1-a6b448614574"
+			"helperAttributes": {},
+			"time": 1506751716997,
+			"name": "취소 상세 조회_취소 상품 리스트",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		}
 	]
 }
