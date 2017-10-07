@@ -350,7 +350,7 @@
       }
     ],
     "config": {
-      "createItem": {
+      "root": {
         "typeId": "voteBasInfo",
         "event": "voting",
         "data": {

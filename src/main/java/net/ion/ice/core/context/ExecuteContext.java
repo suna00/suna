@@ -287,7 +287,11 @@ public class ExecuteContext extends ReadContext{
     }
 
     private void i18nRemove(Map<? extends String, ?> newValue, Map<String, Object> existValue) {
-        existValue.putAll(newValue);
+        if(existValue == null){
+            existValue = (Map<String, Object>) newValue;
+        }else {
+            existValue.putAll(newValue);
+        }
         List<String> removeLocale = new ArrayList<>() ;
         for(String key :  existValue.keySet()){
             Object val =  existValue.get(key) ;
