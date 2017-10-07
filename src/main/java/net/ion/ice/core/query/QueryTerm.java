@@ -205,6 +205,9 @@ public class QueryTerm {
         return valueType;
     }
 
+    public String getValue(){
+        return queryValue.toString() ;
+    }
 
     public enum QueryMethod {
         PHRASE("LIKE"),

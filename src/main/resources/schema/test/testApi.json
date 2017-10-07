@@ -78,7 +78,26 @@
         {"field" : "categoryType", "method" : "matching", "value" : "{{:categoryType}}" },
         {"sorting" : "changed desc"},
         {"page" : "{{:page}}", "pageSize":2},
-        {"includeReferenced" : true}
+        {"includeReferenced" : false}
+      ]
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "naviReadCategory",
+    "apiName" : "Navigation Read Category Sample",
+    "method" : "GET",
+    "config" : {
+      "typeId": "testCategory",
+      "resultType" : "naviRead",
+      "naviId" : [{"field" : "categoryId", "value" : "{{:categoryId}}"}],
+      "query" : [
+        {"field" : "categoryType", "method" : "matching", "value" : "{{:categoryType}}" },
+        {"sorting" : "changed desc"},
+        {"page" : "{{:page}}", "pageSize":2},
+        {"position" : "{{:position}}"},
+        {"includeReferenced" : false}
       ]
     }
   },
