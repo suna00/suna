@@ -447,4 +447,16 @@ public class ExecuteContext extends ReadContext{
     public HttpServletResponse getHttpResponse() {
         return httpResponse;
     }
+
+    public List<String> getChangedProperties(){
+        return this.changedProperties ;
+    }
+
+    public Node getExistNode(){
+        return existNode ;
+    }
+
+    public boolean isExist(){
+        return  exist ;
+    }
 }
