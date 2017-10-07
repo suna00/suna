@@ -174,7 +174,7 @@ public class VotePrtcptHstService {
 
         resMap.put("userVoteCnt", mbrVoteCount.get(mbrId).get(voteBasInfo.getId()));
         resMap.put("userPvCnt", 10);    // TODO - PV Count
-        resMap.put("ipAdrVoteCnt", getNumberOfDclaSetMngCnt() - selectVoteHstByIp((String) data.get("connIpAdr"), voteDate, voteBasInfo));
+        //resMap.put("ipAdrVoteCnt", getNumberOfDclaSetMngCnt() - selectVoteHstByIp((String) data.get("connIpAdr"), voteDate, voteBasInfo));
         resMap.put("ipAdrVoteCnt", ipDclaCnt - mbrIpDclaCnt - 1);
         //data.put("createItem", resMap);
 
@@ -351,7 +351,6 @@ public class VotePrtcptHstService {
         responseMap.put("userVoteCnt", voteCntByMbr + 1);
         responseMap.put("ipAdrVoteCnt", ipDclaCnt - mbrIpDclaCnt - 1);
 
-        //resList.add(resNode);
         Map<String, Object> response = new ConcurrentHashMap<>();
         response.put("response", responseMap);
         if (response.size() > 0) {
