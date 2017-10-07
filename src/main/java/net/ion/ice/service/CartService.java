@@ -49,8 +49,8 @@ public class CartService {
             cartProduct.put("cartProductItem", subCartProdductItems);
         }
 
-        List<Map<String, Object>> deliveryProductList = deliveryService.makeDeliveryData(cartProducts);
-        Map<String, Object> deliveryPriceList = deliveryService.calculateDeliveryPrice(deliveryProductList);
+        List<Map<String, Object>> deliveryProductList = deliveryService.makeDeliveryData(cartProducts, "cart") ;
+        Map<String, Object> deliveryPriceList = deliveryService.calculateDeliveryPrice(deliveryProductList, "cart") ;
 
         QueryResult queryResult = new QueryResult();
         List<QueryResult> items = new ArrayList<>();
@@ -77,6 +77,7 @@ public class CartService {
         context.setResult(queryResult);
         return context;
     }
+
 
 
     // 장바구니 담기

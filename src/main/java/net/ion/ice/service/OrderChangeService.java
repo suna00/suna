@@ -11,9 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service("orderChangeService")
 public class OrderChangeService {
@@ -329,7 +327,7 @@ public class OrderChangeService {
 
     private String createOrderChange(Map<String, Object> data) throws IOException {
         Map<String, Object> item = new LinkedHashMap<>(data);
-        item.putAll(calculateRefundPrice(data));
+//        item.putAll(calculateRefundPrice(data));
         Node node = (Node) nodeService.executeNode(item, orderChange, CommonService.CREATE);
         item.put("orderChangeId", node.getId());
 
@@ -363,76 +361,164 @@ public class OrderChangeService {
     //취소신청 : 취소상품 선택 수량 변경 Event
     public ExecuteContext refundablePrice(ExecuteContext context) throws IOException {
         Map<String, Object> data = context.getData();
-        String[] params = { "memberNo", "ordersheetId","orderChangeProduct" };
+        String[] params = { "memberNo", "orderSheetId","orderChangeProduct" };
         if (CommonService.requiredParams(context, data, params)) return context;
-        if(!isPartChangePossible(data.get("ordersheetId").toString())){
+        if(!isPartChangePossible(data.get("orderSheetId").toString())){
             context.setResult(CommonService.getResult("M0003"));
             return context;
         }
 
-        Map<String, Object> item = calculateRefundPrice(data);
+
+        Map<String, Object> orderSheetNode = NodeUtils.getNode("orderSheet", data.get("orderSheetId").toString());
+        List<Map<String, Object>> orderProducts = nodeBindingService.list("orderProduct", "sorting=created&orderSheetId_equals=" + data.get("orderSheetId"));
+        List<Map<String, Object>> orderProductItems = nodeBindingService.list("orderProductItem", "sorting=created&orderSheetId_equals=" + data.get("orderSheetId"));
+
+        List<Map<String, Object>> orderChangeProducts = JsonUtils.parsingJsonToList(data.get("orderChangeProduct").toString());
+
+        List<Map<String, Object>> orderChangeProductList = changeProductList(orderProducts, orderProductItems, orderChangeProducts); // 취소할 상품
+        List<Map<String, Object>> orderRestProductList = restProductList(orderProducts, orderProductItems, orderChangeProducts);    //취소하고 남을 상품
+
+        List<Map<String, Object>> deliveryProductList = deliveryService.makeDeliveryData(orderChangeProductList, "order") ;
+        Map<String, Object> deliveryPriceList = deliveryService.calculateDeliveryPrice(deliveryProductList, "order") ;
+
+        List<Map<String, Object>> deliveryProductListForRest = deliveryService.makeDeliveryData(orderRestProductList, "order") ;
+        Map<String, Object> deliveryPriceListForRest = deliveryService.calculateDeliveryPrice(deliveryProductListForRest, "order") ;
+
+
+        double cancelOrderPrice = 0;
+        double cancelProductPrice = 0;
+        double cancelDeliveryPrice = 0;
+        double totalRestDeliveryPrice = 0;
+        double deductPrice = 0;
+        double addDeliveryPrice = 0;
+        double refundPrice = 0;
+        double refundPaymentPrice = 0;
+        double refundYPoint = 0;
+        double refundWelfarepoint = 0;
+        for(String key : deliveryPriceList.keySet()){
+            for(Map<String, Object> map : (List<Map<String, Object>>) deliveryPriceList.get(key)){
+                cancelProductPrice += JsonUtils.getDoubleValue(map, "orderPrice");
+                cancelDeliveryPrice += JsonUtils.getDoubleValue(map, "deliveryPrice");
+            }
+        }
+
+        for(String key : deliveryPriceListForRest.keySet()){
+            for(Map<String, Object> map : (List<Map<String, Object>>) deliveryPriceListForRest.get(key)){
+                totalRestDeliveryPrice += JsonUtils.getDoubleValue(map, "deliveryPrice");
+            }
+        }
+
+        cancelOrderPrice = cancelProductPrice + cancelDeliveryPrice - JsonUtils.getDoubleValue(orderSheetNode, "totalDiscountPrice");
+        addDeliveryPrice = (totalRestDeliveryPrice > JsonUtils.getDoubleValue(orderSheetNode, "totalDiscountPrice") ? totalRestDeliveryPrice - JsonUtils.getDoubleValue(orderSheetNode, "totalDiscountPrice") : 0) ;
+        deductPrice = addDeliveryPrice;
+        refundPrice = cancelProductPrice - deductPrice ;
+
+        double temp = refundPrice;
+        double orderYPoint = JsonUtils.getDoubleValue(orderSheetNode, "totalYPoint");
+        double orderWelfarePoint = JsonUtils.getDoubleValue(orderSheetNode, "totalWelfarePoint");
+        if(temp >= orderYPoint){
+            temp = temp - orderYPoint;
+            refundYPoint = orderYPoint;
+        }else{
+            temp = 0;
+            refundYPoint = temp;
+        }
+
+        if(temp >= orderWelfarePoint){
+            temp = temp - orderWelfarePoint;
+            refundWelfarepoint = orderWelfarePoint;
+        }else{
+            temp = 0;
+            refundWelfarepoint = temp;
+        }
+        refundPaymentPrice = temp;
+
+        Map<String, Object> item = new LinkedHashMap<>();
+        Map<String, Object> result = new LinkedHashMap<>();
+        result.put("cancelOrderPrice", cancelOrderPrice);
+        result.put("cancelProductPrice", cancelProductPrice);
+        result.put("cancelDeliveryPrice", cancelDeliveryPrice);
+        result.put("deductPrice", deductPrice);
+        result.put("addDeliveryPrice", addDeliveryPrice);
+        result.put("refundPrice", refundPrice);
+        result.put("refundYPoint", refundYPoint);
+        result.put("refundWelfarepoint", refundWelfarepoint);
+        result.put("refundPaymentPrice", refundPaymentPrice);
+
+//        부분취소시 결제정보 :
+        List<Map<String, Object>> list = nodeBindingService.list(payment, "orderSheetId_equals="+data.get("orderSheetId")+"&orderChangeId_equals=null");
+        if(list.size() > 0){
+            result.put("payment", list.get(0));
+        }
+
+        orderSheetNode.put("orderProduct", orderProducts);
+//        data.put("orderChangeProduct", JsonUtils.parsingJsonToList(data.get("orderChangeProduct").toString()));
+//        item.put("requestParams", data);
+        item.put("item", result);
+//        item.put("orderSheet", orderSheetNode);
+//        item.put("deliveryPriceList", deliveryPriceList);
+
         context.setResult(item);
         return context;
     }
 
-    private Map<String, Object> calculateRefundPrice(Map<String, Object> data) throws IOException {
-        Node orderSheet = NodeUtils.getNode("ordersheet", data.get("ordersheetId").toString());
-        List<Map<String, Object>> maps = JsonUtils.parsingJsonToList(data.get("orderChangeProduct").toString());
-
-        double totalProductPrice = 0;
-        double totalDeliveryPrice = 0;
-
-
-//        for(Map<String, Object> map : maps){
-//            Node orderProduct = NodeUtils.getNode("orderProduct", map.get("orderProductId").toString());
-//            int quantity = Integer.parseInt(orderProduct.get("quantity").toString());
-//            int cancelQuantity = Integer.parseInt(map.get("quantity").toString());
-//
-//            totalProductPrice = totalProductPrice + (Double.parseDouble(orderProduct.get("orderPrice").toString()) / quantity * cancelQuantity);
-//
-//            Map<String, Object> deliveryPriceMap = deliveryService.getOrderDeliveryPriceMap(map.get("orderProductId").toString());
-//            double deliveryPrice = Double.parseDouble(deliveryPriceMap.get("deliveryPrice").toString());
-//            String[] ids = StringUtils.split(deliveryPriceMap.get("orderProductIds").toString(), ",");
-//
-//
-//            if(quantity - cancelQuantity == 0){ //주문수 = 취소수
-//                if(ids.length - 1 == 0){
-//                    // 배송비 환불
-//                }else if(ids.length - 1 > 0){
-//                    // 배송비 재계산
-//                    // 0 -> 2500 : 배송비부과, 차감금액
-//                }
-//
-//            }else if(quantity - cancelQuantity > 0){ //주문수 > 취소수
-//
-//            }else{
-//                //주문수 < 취소수 error
-//            }
-//
-//
-//            totalDeliveryPrice = totalDeliveryPrice + deliveryPrice;
-//
-//
-//        }
-
-        Map<String, Object> item = new LinkedHashMap<>();
-        Map<String, Object> result = new LinkedHashMap<>();
-        result.put("AAAAA", "현재 하드코딩 데이터임. 계산로직 아직.");
-        result.put("cancelOrderPrice", 17500);
-        result.put("totalProductPrice", 15000);
-        result.put("totalDeliveryPrice", 2500);
-        result.put("deductPrice", 0);
-        result.put("addDeliveryPrice", 0);
-        result.put("refundPrice", 17500);
-        result.put("refundPaymentPrice", 13000);
-        result.put("refundYPoint", 4000);
-        result.put("refundWelfarepoint", 500);
-
-        List<Map<String, Object>> list = nodeBindingService.list(payment, "paymentId_equals=63");
-        if(list.size() > 0){
-            result.put("payment", list.get(0));
+    private List<Map<String, Object>> changeProductList(List<Map<String, Object>> orderProducts, List<Map<String, Object>> orderProductItems, List<Map<String, Object>> orderChangeProducts) {
+        List<Map<String, Object>> orderChangeProductList = new ArrayList<>();
+        for(Map<String, Object> orderChangeProduct : orderChangeProducts){
+            for(Map<String, Object> orderProduct : orderProducts){
+                Integer orderProductId = JsonUtils.getIntValue(orderProduct, "orderProductId") ;
+                if(orderProductId.equals(JsonUtils.getIntValue(orderChangeProduct, "orderProductId"))){
+                    Map<String, Object> temp = new HashMap<>();
+                    temp.putAll(orderProduct);
+                    temp.putAll(orderChangeProduct);
+                    if(JsonUtils.getIntValue(orderChangeProduct, "quantity").equals(JsonUtils.getIntValue(orderProduct, "quantity"))){
+                        List<Map<String, Object>> subOrderProdductItems = new ArrayList<>() ;
+                        for(Map<String, Object> orderProductItem : orderProductItems){
+                            if(orderProductId == JsonUtils.getIntValue(orderProductItem, "orderProductId")){
+                                subOrderProdductItems.add(orderProductItem) ;
+                            }
+                        }
+                        temp.put("orderProductItem", subOrderProdductItems) ;
+                    }
+                    orderChangeProductList.add(temp);
+                }
+            }
         }
-        item.put("item", result);
-        return item;
+        return orderChangeProductList;
+    }
+
+
+    private List<Map<String, Object>> restProductList(List<Map<String, Object>> orderProducts, List<Map<String, Object>> orderProductItems, List<Map<String, Object>> orderChangeProducts) {
+        List<Map<String, Object>> orderRestProductList = new ArrayList<>();
+
+
+        for(Map<String, Object> orderProduct : orderProducts){
+            boolean exist = false;
+            for(Map<String, Object> orderChangeProduct : orderChangeProducts){
+                Integer orderProductId = JsonUtils.getIntValue(orderProduct, "orderProductId") ;
+                if(orderProductId.equals(JsonUtils.getIntValue(orderChangeProduct, "orderProductId"))){
+                    exist = true;
+                    if(JsonUtils.getIntValue(orderProduct, "quantity") > JsonUtils.getIntValue(orderChangeProduct, "quantity")){
+                        orderProduct.put("quantity", JsonUtils.getIntValue(orderProduct, "quantity") - JsonUtils.getIntValue(orderChangeProduct, "quantity"));
+                        List<Map<String, Object>> subOrderProdductItems = new ArrayList<>() ;
+                        for(Map<String, Object> orderProductItem : orderProductItems){
+                            if(orderProductId == JsonUtils.getIntValue(orderProductItem, "orderProductId")){
+                                subOrderProdductItems.add(orderProductItem) ;
+                            }
+                        }
+                        orderProduct.put("orderProductItem", subOrderProdductItems) ;
+                        orderRestProductList.add(orderProduct);
+                    }else{
+                        //제거대상
+                    }
+                }
+            }
+
+            if(!exist){
+                orderRestProductList.add(orderProduct);
+            }
+        }
+
+        return orderRestProductList;
     }
 }
