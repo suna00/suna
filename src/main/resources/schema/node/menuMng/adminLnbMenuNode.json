@@ -988,13 +988,17 @@
     "icon": "",
     "active": "true",
     "index": "false",
-    "pages": [
+    "pages": [],
+    "customPages": [
       {
         "pageName": "목록",
-        "pageUrl": "list"
+        "pageUrl": "cj/vt/PwnrInfoList"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "cj/vt/PwnrInfoView"
       }
-    ],
-    "customPages": []
+    ]
   },
   {
     "typeId": "adminLnbMenu",
