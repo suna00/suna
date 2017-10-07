@@ -58,7 +58,7 @@ public class VotePrtcptHstService {
     @PostConstruct
     public void init() {
         // TODO - 캐시 데이터가 없을 경우 오류 발생
-        jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
+
     }
 
     /**
@@ -66,6 +66,10 @@ public class VotePrtcptHstService {
      * 단일 투표하기 api에서 사용함
      */
     public void voting(ExecuteContext context) {
+        if(jdbcTemplate == null){
+            jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
+        }
+
         Map<String, Object> data = context.getData() ;
 
         Date now = new Date();
@@ -148,6 +152,10 @@ public class VotePrtcptHstService {
      * 시리즈(MAMA) 투표하기 api에서 사용함
      */
     public void seriesVoting(ExecuteContext context) {
+        if(jdbcTemplate == null){
+            jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
+        }
+
         Map<String, String> returnResult = new HashMap<>();//response
         Map<String, Object> data = context.getData();
         if (data.isEmpty()) {
@@ -324,6 +332,9 @@ public class VotePrtcptHstService {
 
 
     public void hstTableCreate(ExecuteContext context) {
+        if(jdbcTemplate == null){
+            jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
+        }
         Node voteBasNode = context.getNode();
         String mbrTableName = voteBasNode.getId().toString() + "_voteHstByMbr";
         String createMbrTableSql = String.format("CREATE TABLE %s (" +
