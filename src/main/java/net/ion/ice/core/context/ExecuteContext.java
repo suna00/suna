@@ -198,7 +198,11 @@ public class ExecuteContext extends ReadContext{
                         node.remove(pt.getPid()) ;
                         changedProperties.add(pt.getPid()) ;
                     }else if(pt.isI18n()){
-                        existValue = i18nRemove((Map<? extends String, ?>) newValue, (Map<String, Object>) existValue);
+                        if(!(existValue instanceof Map)){
+                            existValue = newValue ;
+                        }else {
+                            existValue = i18nRemove((Map<? extends String, ?>) newValue, (Map<String, Object>) existValue);
+                        }
                         for(String locKey : ((Map<String, Object>) existValue).keySet()){
                             Object locVal = ((Map<String, Object>) existValue).get(locKey) ;
                             if(locVal instanceof String && (((String) locVal).startsWith("classpath:") || ((String) locVal).startsWith("http://") || ((String) locVal).startsWith("/"))) {
@@ -217,7 +221,11 @@ public class ExecuteContext extends ReadContext{
                     changedProperties.add(pt.getPid()) ;
                 }else if(!newValue.equals(existValue)){
                     if(pt.isI18n()){
-                        existValue = i18nRemove((Map<? extends String, ?>) newValue, (Map<String, Object>) existValue);
+                        if(!(existValue instanceof Map)){
+                            existValue = newValue ;
+                        }else {
+                            existValue = i18nRemove((Map<? extends String, ?>) newValue, (Map<String, Object>) existValue);
+                        }
                         node.put(pt.getPid(), existValue);
                     }else {
                         node.put(pt.getPid(), newValue);
