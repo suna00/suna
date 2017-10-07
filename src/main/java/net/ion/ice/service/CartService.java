@@ -34,49 +34,49 @@ public class CartService {
     // 장바구니 조회
     public ExecuteContext cartRead(ExecuteContext context) throws IOException {
         Map<String, Object> data = context.getData();
-
+        Integer totalSize = 0;
         List<Map<String, Object>> cartProducts = nodeBindingService.list("cartProduct", "sorting=created&cartId_equals=" + context.getData().get("cartId"));
         List<Map<String, Object>> cartProductItems = nodeBindingService.list("cartProductItem", "sorting=created&cartId_equals=" + context.getData().get("cartId"));
         // cart 만들기
-        for(Map<String, Object> cartProduct : cartProducts){
-            Integer cartProductId = JsonUtils.getIntValue(cartProduct, "cartProductId") ;
-            List<Map<String, Object>> subCartProdductItems = new ArrayList<>() ;
-            for(Map<String, Object> cartProductItem : cartProductItems){
-                if(cartProductId == JsonUtils.getIntValue(cartProductItem, "cartProductId")){
-                    subCartProdductItems.add(cartProductItem) ;
+        for (Map<String, Object> cartProduct : cartProducts) {
+            Integer cartProductId = JsonUtils.getIntValue(cartProduct, "cartProductId");
+            List<Map<String, Object>> subCartProdductItems = new ArrayList<>();
+            for (Map<String, Object> cartProductItem : cartProductItems) {
+                if (cartProductId.equals(JsonUtils.getIntValue(cartProductItem, "cartProductId"))) {
+                    subCartProdductItems.add(cartProductItem);
                 }
             }
-            cartProduct.put("cartProductItem", subCartProdductItems) ;
+            cartProduct.put("cartProductItem", subCartProdductItems);
         }
 
-        List<Map<String, Object>> deliveryProductList = deliveryService.makeDeliveryData(cartProducts) ;
-        Map<String, Object> deliveryPriceList = deliveryService.calculateDeliveryPrice(deliveryProductList) ;
+        List<Map<String, Object>> deliveryProductList = deliveryService.makeDeliveryData(cartProducts);
+        Map<String, Object> deliveryPriceList = deliveryService.calculateDeliveryPrice(deliveryProductList);
 
-        QueryResult queryResult = new QueryResult() ;
-        List<QueryResult> items = new ArrayList<>() ;
+        QueryResult queryResult = new QueryResult();
+        List<QueryResult> items = new ArrayList<>();
 
-        for(String key : deliveryPriceList.keySet()){
-            QueryResult itemResult = new QueryResult() ;
-            itemResult.put("deliverySeq", key) ;
-            List<Map<String, Object>> priceList = (List<Map<String, Object>>) deliveryPriceList.get(key) ;
+        for (String key : deliveryPriceList.keySet()) {
+            QueryResult itemResult = new QueryResult();
+            itemResult.put("deliverySeq", key);
+            List<Map<String, Object>> priceList = (List<Map<String, Object>>) deliveryPriceList.get(key);
 
-            itemResult.put("deliveryPrice", priceList.get(0).get("deliveryPrice")) ;
+            itemResult.put("deliveryPrice", priceList.get(0).get("deliveryPrice"));
 
-            List<Map<String, Object>> subProductResult = new ArrayList<>() ;
-            for(Map<String, Object> priceProduct : priceList){
-                subProductResult.add(priceProduct) ;
+            List<Map<String, Object>> subProductResult = new ArrayList<>();
+            for (Map<String, Object> priceProduct : priceList) {
+                subProductResult.add(priceProduct);
             }
 
-            itemResult.put("item", subProductResult) ;
-
-            items.add(itemResult) ;
+            itemResult.put("item", subProductResult);
+            totalSize += subProductResult.size();
+            items.add(itemResult);
         }
 
-        queryResult.put("items", items) ;
+        queryResult.put("length", totalSize);
+        queryResult.put("items", items);
         context.setResult(queryResult);
         return context;
     }
-
 
 
     // 장바구니 담기

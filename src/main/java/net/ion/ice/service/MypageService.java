@@ -123,5 +123,11 @@ public class MypageService {
         return context;
     }
 
+    public ExecuteContext oneToOneProudctList(ExecuteContext context) {
+        Map<String, Object> data = context.getData();
 
+        String memberNo = String.valueOf(data.get("memberNo"));
+
+        return context;
+    }
 }
