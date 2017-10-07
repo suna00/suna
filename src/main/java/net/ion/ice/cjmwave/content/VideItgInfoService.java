@@ -1,6 +1,7 @@
 package net.ion.ice.cjmwave.content;
 
 import net.ion.ice.core.context.ExecuteContext;
+import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,46 +21,56 @@ public class VideItgInfoService {
     Logger logger = Logger.getLogger(VideItgInfoService.class);
 
     public void videItgInfoMusicVideoSave(ExecuteContext context){
-        logger.info("videItgInfoMusicVideoSave!!!");
-        Map<String, Object> contextData = context.getData();
+        try {
+            Node node = context.getNode();
 
-        Map<String, Object> saveData = new HashMap<String, Object>();
+            Map<String, Object> saveData = new HashMap<String, Object>();
 
-        saveData.put("videoId", "musicVideo::" + contextData.get("musicVideoId"));
-        saveData.put("title", contextData.get("musicVideoNm"));
-        saveData.put("imgUrl", contextData.get("imgUrl"));
-        saveData.put("playTime", contextData.get("playTime"));
-        saveData.put("videoDivCd", "musicVideo");
-        saveData.put("searchKeyword", contextData.get("findKywrd"));
-        saveData.put("contsMetaCtgryId", contextData.get("contsMetaCtgryId"));
-        saveData.put("artistId", contextData.get("artistId"));
-        saveData.put("rcmdContsYn", contextData.get("rcmdContsYn"));
-        saveData.put("synopsis", contextData.get("musicVideoDesc"));
-        saveData.put("seoUrl", contextData.get("seoUrl"));
+            saveData.put("videoId", "musicVideo::" + node.getId());
+            saveData.put("title", node.get("musicVideoNm"));
+            saveData.put("imgUrl", node.get("imgUrl"));
+            saveData.put("playTime", node.get("playTime"));
+            saveData.put("videoDivCd", "musicVideo");
+            saveData.put("searchKeyword", node.get("findKywrd"));
+            saveData.put("contsMetaCtgryId", node.get("contsMetaCtgryId"));
+            saveData.put("artistId", node.get("artistId"));
+            saveData.put("rcmdContsYn", node.get("rcmdContsYn"));
+            saveData.put("synopsis", node.get("musicVideoDesc"));
+            saveData.put("seoUrl", node.get("seoUrl"));
 
-        nodeService.executeNode(saveData, "videItgInfo".toString(), "save");
+            logger.info("videItgInfoMusicVideoSave!!! : " + saveData);
+
+            nodeService.executeNode(saveData, "videItgInfo", "save");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void videItgInfoPgmVideoSave(ExecuteContext context){
-        logger.info("videItgInfoPgmVideoSave!!!");
-        Map<String, Object> contextData = context.getData();
+        try {
 
-        Map<String, Object> saveData = new HashMap<String, Object>();
+            Node node = context.getNode();
 
-        saveData.put("videoId", "pgmVideo::" + contextData.get("contentId"));
-        saveData.put("title", contextData.get("title"));
-        saveData.put("imgUrl", contextData.get("contentImgUrl"));
-        saveData.put("playTime", contextData.get("playTime"));
-        saveData.put("videoDivCd", "pgmVideo");
-        saveData.put("searchKeyword", contextData.get("searchKeyword"));
-        saveData.put("contsMetaCtgryId", contextData.get("contsMetaCtgryId"));
-        saveData.put("artistId", contextData.get("prsnNo"));
-        saveData.put("rcmdContsYn", contextData.get("rcmdContsYn"));
-        saveData.put("contentTitle", contextData.get("contentTitle"));
-        saveData.put("synopsis", contextData.get("synopsis"));
-        saveData.put("prsnName", contextData.get("prsnName"));
-        saveData.put("seoUrl", contextData.get("seoUrl"));
+            Map<String, Object> saveData = new HashMap<String, Object>();
 
-        nodeService.executeNode(saveData, "videItgInfo".toString(), "save");
+            saveData.put("videoId", "pgmVideo::" + node.getId());
+            saveData.put("title", node.get("title"));
+            saveData.put("imgUrl", node.get("contentImgUrl"));
+            saveData.put("playTime", node.get("playTime"));
+            saveData.put("videoDivCd", "pgmVideo");
+            saveData.put("searchKeyword", node.get("searchKeyword"));
+            saveData.put("contsMetaCtgryId", node.get("contsMetaCtgryId"));
+            saveData.put("artistId", node.get("prsnNo"));
+            saveData.put("rcmdContsYn", node.get("rcmdContsYn"));
+            saveData.put("contentTitle", node.get("contentTitle"));
+            saveData.put("synopsis", node.get("synopsis"));
+            saveData.put("prsnName", node.get("prsnName"));
+            saveData.put("seoUrl", node.get("seoUrl"));
+
+            logger.info("videItgInfo pgm save : " + saveData);
+            nodeService.executeNode(saveData, "videItgInfo", "save");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

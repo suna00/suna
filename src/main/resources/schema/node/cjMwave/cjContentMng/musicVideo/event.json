@@ -74,6 +74,14 @@
     "actionBody": "videItgInfoService.videItgInfoMusicVideoSave"
   },
   {
+    "typeId": "eventListener",
+    "tid": "videItgInfo",
+    "event": "musicVideo>create",
+    "listenerName": "뮤직비디오 저장시 videItgInfo에도 정보 저장",
+    "actionType": "service",
+    "actionBody": "videItgInfoService.videItgInfoMusicVideoSave"
+  },
+  {
     "typeId": "event",
     "tid": "musicVideo",
     "event": "insert",
