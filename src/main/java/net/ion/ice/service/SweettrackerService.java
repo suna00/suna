@@ -4,6 +4,8 @@ import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.NodeService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,7 @@ import java.util.Map;
 
 @Service("sweettrackerService")
 public class SweettrackerService {
+    public Logger logger = LoggerFactory.getLogger(SweettrackerService.class);
 
     public static final String orderDeliveryPrice = "orderDeliveryPrice";
     public static final String orderProduct = "orderProduct";
@@ -37,6 +40,7 @@ public class SweettrackerService {
 
     // 스윗트래커 callback_url
     public ExecuteContext getData(ExecuteContext context){
+        logger.info("-----START SweettrackerService ");
         Map<String, Object> data = context.getData();
         try{
             String[] params = { "fid", "invoice_no","level" };
@@ -45,6 +49,7 @@ public class SweettrackerService {
                     data.put("success", false);
                     data.put("message", "fail-required param " + str);
                     context.setResult(data);
+                    logger.info("----- SweettrackerService context : " + context);
                     return context;
                 }
             }
@@ -55,6 +60,7 @@ public class SweettrackerService {
                 data.put("success", false);
                 data.put("message", "fail-invalid fid");
                 context.setResult(data);
+                logger.info("----- SweettrackerService context : " + context);
                 return context;
             }else{
                 for(Map<String, Object> map : listById){
@@ -62,6 +68,7 @@ public class SweettrackerService {
                         data.put("success", false);
                         data.put("message", "fail-The invoice_no of fid does not match trackingNo.");
                         context.setResult(data);
+                        logger.info("----- SweettrackerService context : " + context);
                         return context;
                     }else{
                         List<Map<String, Object>> orderProducts = nodeBindingService.list(orderProduct, "orderProductId_in=" + map.get("orderProductIds"));
@@ -88,6 +95,7 @@ public class SweettrackerService {
             data.put("success", true);
             data.put("message", "success");
             context.setResult(data);
+            logger.info("----- SweettrackerService context : " + context);
             return context;
 
         }catch (Exception e){
@@ -95,7 +103,8 @@ public class SweettrackerService {
 
             data.put("success", false);
             data.put("message", "fail-" + e.getMessage());
-
+            context.setResult(data);
+            logger.info("----- SweettrackerService context : " + context);
             return context;
         }
 
