@@ -950,13 +950,17 @@
     "icon": "",
     "active": "true",
     "index": "false",
-    "pages": [
+    "pages": [],
+    "customPages": [
       {
         "pageName": "목록",
-        "pageUrl": "list"
+        "pageUrl": "cj/vt/PrtcptHstList"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "cj/vt/PrtcptHstView"
       }
-    ],
-    "customPages": []
+    ]
   },
   {
     "typeId": "adminLnbMenu",
