@@ -128,6 +128,7 @@
     "typeName": "영상(통합) 정보",
     "repositoryType": "node",
     "eviction": 10000,
+    "i18n": true,
     "tableName": "cjDb#videItgInfo"
   },
   {
