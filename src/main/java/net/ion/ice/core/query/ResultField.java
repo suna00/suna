@@ -106,7 +106,8 @@ public class ResultField {
         READ,
         NONE,
         SIZE,
-        VALUE
+        VALUE,
+        NAVIREAD
     }
 
     public enum ExecuteType {

@@ -19,7 +19,7 @@ public class RefreshTokenEndpoint {
     @Autowired
     private SessionService sessionService;
 
-    @RequestMapping(value = "/auth/refreshToken", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "api/auth/refreshToken", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public @ResponseBody
     Object refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         sessionService.refreshSession(request, response);

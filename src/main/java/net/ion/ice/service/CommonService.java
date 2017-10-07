@@ -78,6 +78,8 @@ public class CommonService {
         /*WelfarePoint*/
         resultCodeMap.put("W0001", "복지포인트 잔액이 부족합니다.");
 
+        resultCodeMap.put("CORE#JWT01", "Get JWT Success");
+        resultCodeMap.put("CORE#JWT02", "JWT Expired");
     }
 
     public static boolean requiredParams(ExecuteContext context, Map<String, Object> data, String[] params) {

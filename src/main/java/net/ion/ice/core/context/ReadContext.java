@@ -54,6 +54,8 @@ public class ReadContext implements Context, Serializable {
 
     protected Boolean remote ;
 
+
+
     public NodeType getNodetype() {
         return nodeType;
     }

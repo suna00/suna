@@ -209,8 +209,8 @@ public class DeliveryService {
                 double lowDeliveryPrice = 0 ;
                 for(Map<String, Object> condtionalBundleDeliveryProduct : condtionalBundleDeliveryProducts){
                     Double deliveryPrice =  JsonUtils.getDoubleValue(condtionalBundleDeliveryProduct, "product.deliveryPrice");
-                    Double deliverConditionalValue = JsonUtils.getDoubleValue(condtionalBundleDeliveryProduct, "product.deliverConditionalValue") ;
-                    if(freeYn == false && bundleOrderPrice >= deliverConditionalValue){
+                    Double deliveryConditionValue = JsonUtils.getDoubleValue(condtionalBundleDeliveryProduct, "product.deliveryConditionValue") ;
+                    if(freeYn == false && bundleOrderPrice >= deliveryConditionValue){
                         freeYn =true ;
                     }
                     if(lowDeliveryPrice == 0){
@@ -248,9 +248,9 @@ public class DeliveryService {
             }
 
             for(Map<String, Object> condtionalNOtBundleDeliveryProduct: condtionalNOtBundleDeliveryProducts){
-                Integer deliverConditionalValue = JsonUtils.getIntValue(condtionalNOtBundleDeliveryProduct, "product.deliverConditionalValue") ;
+                Integer deliveryConditionValue = JsonUtils.getIntValue(condtionalNOtBundleDeliveryProduct, "product.deliveryConditionValue") ;
                 Integer orderPrice = JsonUtils.getIntValue(condtionalNOtBundleDeliveryProduct, "orderPrice") ;
-                if(orderPrice >= deliverConditionalValue){
+                if(orderPrice >= deliveryConditionValue){
                     condtionalNOtBundleDeliveryProduct.put("deliveryPrice", 0) ;
                 }else{
                     Double cartProductDeliveryPrice = JsonUtils.getDoubleValue(condtionalNOtBundleDeliveryProduct, "product.delivertyPrice") ;

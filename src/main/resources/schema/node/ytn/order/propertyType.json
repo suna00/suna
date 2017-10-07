@@ -2285,6 +2285,23 @@
   {
     "typeId": "propertyType",
     "tid": "orderProduct",
+    "pid": "paymentPrice",
+    "propertyTypeName": "결제금액",
+    "valueType": "DOUBLE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "orderProduct",
     "pid": "orderStatus",
     "propertyTypeName": "주문상태",
     "valueType": "REFERENCE",
