@@ -92,7 +92,11 @@ public class QueryContext extends ReadContext {
             return queryContext;
         }
 
-        for (String param : StringUtils.split(searchText, '&')) {
+        String seperator = "&" ;
+        if(StringUtils.contains(searchText, "_and_")){
+            seperator = "_and_" ;
+        }
+        for (String param : StringUtils.split(searchText, seperator)) {
             if (StringUtils.isNotEmpty(param) && StringUtils.contains(param, "=")) {
                 String value = StringUtils.substringAfter(param, "=");
                 if (StringUtils.isEmpty(value)) {
@@ -503,10 +507,11 @@ public class QueryContext extends ReadContext {
         Map<String, Object> contextData = new HashMap<>() ;
         contextData.putAll(data);
 
-        for(Node resultNode : resultNodeList) {
+        for(int i=0; i<resultNodeList.size(); i++) {
+            Node resultNode = resultNodeList.get(i) ;
             contextData.putAll(resultNode);
             QueryResult subQueryResult = new QueryResult() ;
-            makeItemQueryResult(resultNode, subQueryResult, contextData);
+            makeItemQueryResult(resultNode, subQueryResult, contextData, i);
             subList.add(subQueryResult) ;
         }
         return subList;
