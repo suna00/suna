@@ -46,5 +46,21 @@
     "actionType": "service",
     "actionBody": "mypageService.updateOrderDeliveryAddress",
     "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "orderDeliveryPrice",
+    "event": "sweettrackerGetData",
+    "noneExecute": true,
+    "eventName": "스윗트래커 callback url"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "orderDeliveryPrice>sweettrackerGetData",
+    "action": "sweettrackerGetData",
+    "actionName": "스윗트래커 callback url",
+    "actionType": "service",
+    "actionBody": "sweettrackerService.getData",
+    "order": 1
   }
 ]
