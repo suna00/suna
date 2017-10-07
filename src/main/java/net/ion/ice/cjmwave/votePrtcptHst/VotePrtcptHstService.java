@@ -347,7 +347,7 @@ public class VotePrtcptHstService {
         String createItemTableSql = String.format("CREATE TABLE %s (" +
                         "seq bigInt NOT NULL AUTO_INCREMENT COMMENT '일련번호', " +
                         "voteDate varchar(8) NOT NULL COMMENT '투표일자', " +
-                        "voteSeq bigInt NOT NULL COMMENT '투표 일련번호', " +
+                        //"voteSeq bigInt NOT NULL COMMENT '투표 일련번호', " +
                         "voteItemSeq bigInt NOT NULL COMMENT '투표 항목', " +
                         "mbrId varchar(220) NOT NULL COMMENT '회원아이디', " +
                         "created datetime NOT NULL COMMENT '등록일시', " +
