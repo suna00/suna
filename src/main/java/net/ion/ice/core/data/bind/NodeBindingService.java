@@ -75,7 +75,7 @@ public class NodeBindingService {
         }
     }
 
-    public Node execute(ExecuteContext context) {
+    public void execute(ExecuteContext context) {
         Node node = context.getNode();
         NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(node.getTypeId());
 
@@ -94,8 +94,7 @@ public class NodeBindingService {
             throw new IceRuntimeException("Node Binding Execute Error : " +  e.getMessage(), e) ;
         }
         context.setResult(node);
-        logger.info("Node Binding {} - {} :  " + (callback == 0 ? "insert" : "update"), node.getTypeId(), node.getId());
-        return node;
+        logger.info("Node Binding {} - {} - {} :  " + (callback == 0 ? "insert" : "update"), node.getTypeId(), node.getId(), context.getEvent());
     }
 
     public void createTable(String typeId, HttpServletResponse response) {
@@ -122,6 +121,7 @@ public class NodeBindingService {
         return readContext.makeResult();
     }
 
+
     public NodeBindingInfo getNodeBindingInfo(String typeId) {
         nodeBindProcess(typeId);
         return nodeBindingInfoMap.get(typeId);
@@ -147,21 +147,16 @@ public class NodeBindingService {
         return queryResult;
     }
 
-    public List<Map<String, Object>> list(String typeId, String searchText) {
-        NodeType nodeType = NodeUtils.getNodeType(typeId);
+    public List<Map<String, Object>> list(String tid, String searchText) {
+        NodeType nodeType = NodeUtils.getNodeType(tid);
         QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, nodeType);
-        NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(typeId);
+        NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(tid);
         return nodeBindingInfo.list(queryContext);
     }
 
     public void delete(Map<String, String[]> parameterMap, String typeId) {
         NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(typeId);
         nodeBindingInfo.delete(parameterMap);
-    }
-
-    public void delete(String typeId, String id) {
-        NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(typeId);
-        nodeBindingInfo.delete(id);
     }
 
     public void delete(ExecuteContext context) {
