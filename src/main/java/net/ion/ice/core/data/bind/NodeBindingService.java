@@ -165,6 +165,11 @@ public class NodeBindingService {
         nodeBindingInfo.delete(node);
     }
 
+    public void delete(String typeId, String id) {
+        NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(typeId);
+        nodeBindingInfo.delete(id);
+    }
+
     public Long sequence(String typeId) {
         NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(typeId);
         return nodeBindingInfo.retrieveSequence();
