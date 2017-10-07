@@ -55,6 +55,10 @@ public class CommonService {
         /*MyPage*/
         resultCodeMap.put("M0001", "주소록 삭제 성공");
         resultCodeMap.put("M0002", "주문접수, 결제완료인 경우만 배송지 변경이 가능합니다.");
+        resultCodeMap.put("M0003", "부분취소를 할 수 없습니다.");
+        resultCodeMap.put("M0004", "취소신청을 할 수 없습니다. 주문상태를 확인해 주세요.");
+        resultCodeMap.put("M0005", "교환신청을 할 수 없습니다. 주문상태를 확인해 주세요.(SMS 또는 LG/삼성 직배송의 경우 교환불가)");
+        resultCodeMap.put("M0006", "반품신청을 할 수 없습니다. 주문상태를 확인해 주세요..(SMS 또는 LG/삼성 직배송의 경우 반품불가)");
 
         /*Order*/
         resultCodeMap.put("O0001", "임시 주문서 저장 성공");
@@ -67,6 +71,15 @@ public class CommonService {
         resultCodeMap.put("C0002", "수량을 1개 이하로 선택할 수 없습니다.");
         resultCodeMap.put("C0003", "최소 주문가능 수량은 N개 입니다.");
         resultCodeMap.put("C0004", "선택하신 옵션의 재고가 부족합니다.");
+
+        /*YPoint*/
+        resultCodeMap.put("Y0001", "Y포인트 잔액이 부족합니다.");
+
+        /*WelfarePoint*/
+        resultCodeMap.put("W0001", "복지포인트 잔액이 부족합니다.");
+
+        resultCodeMap.put("CORE#JWT01", "Get JWT Success");
+        resultCodeMap.put("CORE#JWT02", "JWT Expired");
     }
 
     public static boolean requiredParams(ExecuteContext context, Map<String, Object> data, String[] params) {

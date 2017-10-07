@@ -88,5 +88,41 @@
     "tableName": "ytnDevDb#contentsOptionTypeFields",
     "repositoryType": "node",
     "eviction": 2000
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "addBenefit",
+    "typeName": "추가혜택",
+    "tableName": "ytnDevDb#addBenefit",
+    "repositoryType": "node",
+    "eviction": 1000
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "addBenefitItem",
+    "typeName": "추가혜택 Item",
+    "tableName": "ytnDevDb#addBenefitItem",
+    "repositoryType": "node",
+    "eviction": 10000
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "interestFreeInstallment",
+    "typeName": "무이자할부",
+    "tableName": "ytnDevDb#interestFreeInstallment",
+    "repositoryType": "node",
+    "eviction": 1000
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "interestFreeInstallmentItem",
+    "typeName": "무이자할부 Item",
+    "tableName": "ytnDevDb#interestFreeInstallmentItem",
+    "repositoryType": "node",
+    "eviction": 10000
   }
 ]

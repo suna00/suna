@@ -69,5 +69,14 @@
     "tableName": "ytnDevDb#productSearchFilter",
     "repositoryType": "node",
     "eviction": 100000
+  },
+  {
+    "parentId": "productPath",
+    "typeId": "nodeType",
+    "tid": "productNoticeBanner",
+    "typeName": "상품 공지 배너",
+    "tableName": "ytnDevDb#productNoticeBanner",
+    "repositoryType": "node",
+    "eviction": 1000
   }
 ]

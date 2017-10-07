@@ -78,5 +78,37 @@
     "actionType" : "service",
     "actionBody" : "orderService.verification",
     "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "tempOrder",
+    "event" : "buyItNow",
+    "noneExecute": true,
+    "eventName" : "바로주문"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "tempOrder>buyItNow",
+    "action" : "buyItNow",
+    "actionName" : "바로주문",
+    "actionType" : "service",
+    "actionBody" : "orderService.buyItNow",
+    "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "cart",
+    "event" : "cartRead",
+    "noneExecute": true,
+    "eventName" : "장바구니 조회"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "cart>cartRead",
+    "action" : "cartRead",
+    "actionName" : "장바구니 조회",
+    "actionType" : "service",
+    "actionBody" : "cartService.cartRead",
+    "order" : 1
   }
 ]

@@ -214,6 +214,17 @@ public class NodeController {
         }
     }
 
+    @RequestMapping(value = "/node/event")
+    @ResponseBody
+    public Object eventRest(HttpServletRequest request) throws IOException {
+        if (request instanceof MultipartHttpServletRequest) {
+            return nodeService.executeResult(request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap());
+        }
+        return nodeService.executeResult(request.getParameterMap(), null);
+    }
+
+
+
 
     @RequestMapping(value = "/node/{typeId}/event/{event}")
     @ResponseBody

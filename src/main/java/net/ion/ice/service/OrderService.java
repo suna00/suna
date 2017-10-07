@@ -24,25 +24,29 @@ public class OrderService {
 
     private static Logger logger = LoggerFactory.getLogger(OrderService.class);
 
-    public static final String CREATE = "create";
-    public static final String UPDATE = "update";
-    public static final String DELETE = "delete";
-
     @Autowired
     private NodeService nodeService;
     @Autowired
     private NodeBindingService nodeBindingService;
     @Autowired
+    private DeliveryService deliveryService;
+    @Autowired
     private Environment environment;
 
-    public void directOrder(ExecuteContext context) {
-        Map<String, Object> data = context.getData();
+    public void buyItNow(ExecuteContext context) {
+        try {
+            createTempOrder(context.getData());
+            context.setResult(CommonService.getResult("O0001")); // 성공 시
+        } catch (Exception e) {
+            context.setResult("");
+            e.printStackTrace();
+        }
     }
 
     // 임시 주문서 작성
     public void addTempOrder(ExecuteContext context) {
         try {
-            saveTempOrder(context);
+            createTempOrder(context);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -94,7 +98,7 @@ public class OrderService {
     }
 
     /**
-     * PG 호출 전에 검증하는 Method.
+     * PG 결제 승인 요청 전에 검증하는 Method.
      */
     public void verification(ExecuteContext context) {
         try {
@@ -125,7 +129,7 @@ public class OrderService {
 
             List<Map<String, Object>> items = (List<Map<String, Object>>) couponResponse.get("items");
 
-            boolean duplicated = duplication(couponIds.values());// 쿠폰 아이디 중복 체크
+            boolean duplicated = repetitionCheck(couponIds.values());// 쿠폰 아이디 중복 체크
 
 
             for (Map<String, Object> item : items) {
@@ -152,17 +156,64 @@ public class OrderService {
             if (totalPrice != finalPrice && duplicated) {                       // 최종 가격 검증 & 쿠폰 중복 검증
                 context.setResult(CommonService.getResult("O0003"));      // 검증실패
             } else {
-                context.setResult(CommonService.getResult("O0004"));      // 검증성공
+                Map<String, Object> result = new HashMap<>();
+                result.put("ordr_mony", totalPrice);
+                context.setResult(CommonService.getResult("O0004", result));      // 검증성공
+
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+
+    public Double getFinalPrice(String reqTempOrderId, String memberNo, String reqUseYPoint, String reqUseWelfarepoint, String usedCoupon) {
+        double totalPrice = 0;
+
+        try {
+
+            Map<String, Object> couponIds = JsonUtils.parsingJsonToMap(usedCoupon);
+
+            /*포인트*/
+            List<Map<String, Object>> tempOrderDeliveryPriceList = nodeBindingService.list("tempOrderDeliveryPrice", "tempOrderId_in=".concat(reqTempOrderId));
+            double useYPoint = Double.parseDouble(reqUseYPoint);
+            double useWelfarepoint = Double.parseDouble(reqUseWelfarepoint);
+            double deliveryPrice = 0;
+
+            for (Map<String, Object> tempOrderDeliveryPrice : tempOrderDeliveryPriceList) {
+                deliveryPrice = deliveryPrice + Double.parseDouble(String.valueOf(tempOrderDeliveryPrice.get("deliveryPrice")));
+            }
+
+
+            Map<String, Object> couponResponse = getCoupon(memberNo, reqTempOrderId);
+
+            List<Map<String, Object>> coupons = (List<Map<String, Object>>) couponResponse.get("items");
+
+            for (Map<String, Object> coupon : coupons) {
+                double productPrice = (double) coupon.get("orderPrice");
+                String tempOrderProductId = String.valueOf(coupon.get("tempOrderProductId"));
+                String couponId = String.valueOf(couponIds.get(tempOrderProductId));
+                List<Map<String, Object>> applicableCoupons = (List<Map<String, Object>>) coupon.get("applicableCoupons");
+                for (Map<String, Object> applicableCoupon : applicableCoupons) {
+                    if (couponId.equals(String.valueOf(applicableCoupon.get("couponId")))) {
+                        productPrice = productPrice - (double) applicableCoupon.get("discountPrice");
+                    }
+                }
+                totalPrice = totalPrice + productPrice;
+            }
+
+            totalPrice = totalPrice - useYPoint - useWelfarepoint + deliveryPrice;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return totalPrice;
+    }
+
     /**
      * 결제 후 최종적으로 한번 더 검증하여 주문서를 생성하는 Method.
      */
-    public String addOrderSheet(Map<String, Object> responseMap) {
+    public String createOrderSheet(Map<String, Object> responseMap) {
         String bSucc;
         Map<String, Object> storeOrderSheet = new HashMap<>();
         Map<String, Object> storeOrderDeliveryPrice = new HashMap<>();
@@ -172,7 +223,7 @@ public class OrderService {
         List<Map<String, Object>> tempOrderDeliveryPriceList = nodeBindingService.list("tempOrderDeliveryPrice", "tempOrderId_in=".concat(String.valueOf(responseMap.get("ordrIdxx"))));
 
         double totalProductPrice = 0;
-        double totalDeliveryPrice = Double.parseDouble(String.valueOf(tempOrderDeliveryPriceList.get(0).get("deliveryPrice")));
+        double totalDeliveryPrice = 0;
         double totalDiscountPrice = 0;
         double totalOrderPrice = 0;
         double couponDiscountPrice = 0;
@@ -184,6 +235,11 @@ public class OrderService {
 
         double useableYPoint = (double) ((Map<String, Object>) summaryResponse.get("item")).get("useableYPoint");
         double useableWelfarepoint = (double) ((Map<String, Object>) summaryResponse.get("item")).get("useableWelfarepoint");
+
+        for (Map<String, Object> tempOrderDeliveryPrice : tempOrderDeliveryPriceList) {
+            totalDeliveryPrice = totalDeliveryPrice + Double.parseDouble(String.valueOf(tempOrderDeliveryPrice.get("deliveryPrice")));
+        }
+
 
         /**
          * 사용자 포인트를 조회하여 사용 포인트와 체크한다.
@@ -205,7 +261,7 @@ public class OrderService {
         Map<String, Object> couponResponse = getCoupon((String) responseMap.get("memberNo"), (String) responseMap.get("ordrIdxx"));
         List<Map<String, Object>> items = (List<Map<String, Object>>) couponResponse.get("items"); //상품 정보
 
-        boolean duplicated = duplication(couponIds.values()); // 쿠폰 아이디 중복 체크
+        boolean duplicated = repetitionCheck(couponIds.values()); // 쿠폰 아이디 중복 체크
 
         /**
          * productPrice - couponDiscountPrice 가격을 모두 더하여 totalProductPrice 값을 만든다.
@@ -243,7 +299,7 @@ public class OrderService {
                     couponDiscountPrice = couponDiscountPrice + (double) applicableCoupon.get("discountPrice");
                 }
             }
-            Node orderProductNode = (Node) nodeService.executeNode(storeOrderProduct, "orderProduct", CREATE);
+            Node orderProductNode = (Node) nodeService.executeNode(storeOrderProduct, "orderProduct", CommonService.CREATE);
 
             orderProductIds.add(orderProductNode.getId()); //orderDeliveryPrice | orderProductIds 에 넣기 위하여.
             /**
@@ -262,7 +318,7 @@ public class OrderService {
                 storeOrderProductItem.put("quantity", tempOrderProductItem.get("quantity"));
                 storeOrderProductItem.put("addOptionPrice", tempOrderProductItem.get("addOptionPrice"));
 
-                Node orderProductItemNode = (Node) nodeService.executeNode(storeOrderProductItem, "orderProductItem", CREATE);
+                Node orderProductItemNode = (Node) nodeService.executeNode(storeOrderProductItem, "orderProductItem", CommonService.CREATE);
             }
             totalProductPrice = totalProductPrice + orderPrice;
         }
@@ -299,20 +355,19 @@ public class OrderService {
         storeOrderSheet.put("purchaseaAgreementYn", "y");
         storeOrderSheet.put("purchaseDeviceType", tempOrder.get(""));
 
-        nodeService.executeNode(storeOrderSheet, "orderSheet", CREATE);
+        nodeService.executeNode(storeOrderSheet, "orderSheet", CommonService.CREATE);
 
 
         storeOrderDeliveryPrice.put("orderSheetId", responseMap.get("ordrIdxx"));
         storeOrderDeliveryPrice.put("orderProductIds", StringUtils.join(orderProductIds, ","));
         storeOrderDeliveryPrice.put("vendorId", StringUtils.join(orderProductIds, ","));
 
-        boolean saveDelivery = saveDelivery(responseMap); // 배송지 저장
+        boolean saveDelivery = createDelivery(responseMap); // 배송지 저장
 
-        if (totalOrderPrice != totalPaymentPrice && !duplicated && !saveDelivery) {
-            bSucc = "false";
-            return bSucc;
-        } else {
+        if (totalOrderPrice == totalPaymentPrice && !duplicated && saveDelivery) {
             bSucc = "true";
+        } else {
+            bSucc = "false";
         }
         return bSucc;
     }
@@ -320,8 +375,8 @@ public class OrderService {
     /**
      * 결제 정보를 저장하는 Method.
      */
-    public String savePayment(Map<String, Object> responseMap) {
-        Node node = (Node) nodeService.executeNode(responseMap, "payment", CREATE);
+    public String createPayment(Map<String, Object> responseMap) {
+        Node node = (Node) nodeService.executeNode(responseMap, "payment", CommonService.CREATE);
         return node.getId();
     }
 
@@ -329,7 +384,7 @@ public class OrderService {
     /**
      * 주문서 배송지를 저장하는 Method.
      */
-    public boolean saveDelivery(Map<String, Object> responseMap) {
+    public boolean createDelivery(Map<String, Object> responseMap) {
 
         boolean result = false;
         Map<String, Object> storeRefineDelivery = new HashMap<>();
@@ -346,7 +401,7 @@ public class OrderService {
         storeRefineDelivery.put("recipient", responseMap.get("recipient"));
         storeRefineDelivery.put("deliveryType", responseMap.get("deliveryType"));
 
-        nodeService.executeNode(storeRefineDelivery, "delivery", CREATE);
+        nodeService.executeNode(storeRefineDelivery, "delivery", CommonService.CREATE);
 
         String myDeliveryAddressId = String.valueOf(responseMap.get("myDeliveryAddressId"));
 
@@ -375,8 +430,7 @@ public class OrderService {
 
                 storeMyDeliveryAddress.put("defaultYn", "n");
             }
-
-            nodeService.executeNode(storeMyDeliveryAddress, "myDeliveryAddress", CREATE);
+            nodeService.executeNode(storeMyDeliveryAddress, "myDeliveryAddress", CommonService.CREATE);
 
             result = true;
 
@@ -391,8 +445,8 @@ public class OrderService {
                 Node myDeliveryAddressNode = myDeliveryAddressNodeList.get(0);
                 myDeliveryAddressNode.put("defaultYn", "y");
                 nodeService.updateNode(myDeliveryAddressNode, "myDeliveryAddress");
+                result = true;
             }
-            result = true;
         }
         return result;
     }
@@ -401,7 +455,7 @@ public class OrderService {
     /**
      * PG return 데이터를 저장하는  Method.(리턴 값을 가공하지 JsonString 으로 저장, 일종의 Backup Data)
      */
-    public void savePgResponse(Map<String, Object> responseMap, String paymentId) {
+    public void createPgResponse(Map<String, Object> responseMap, String paymentId) {
         Map<String, Object> storePg = new HashMap<>();
 
         String JsonString = JsonUtils.toJsonString(responseMap);
@@ -411,21 +465,36 @@ public class OrderService {
         storePg.put("orderSheetId", orderSheetId);
         storePg.put("jsonResponse", JsonString);
 
-        nodeService.executeNode(storePg, "pg", CREATE);
+        nodeService.executeNode(storePg, "pg", CommonService.CREATE);
 
+    }
+
+    /**
+     *
+     */
+
+    private void createTempOrder(Map<String, Object> data) throws IOException {
+
+        Map<String, Object> storeTempOrder = new HashMap<>();
+        storeTempOrder.put("tempOrderId", orderNumberGenerator());
+        Node tempOrderNode = (Node) nodeService.executeNode(storeTempOrder, "tempOrder", CommonService.CREATE);
+
+        String tempOrderId = tempOrderNode.getId();
+
+        createTempOrderProduct(tempOrderId, data);
     }
 
     /**
      * 임시 주문서 생성 Method
      */
-    private void saveTempOrder(ExecuteContext context) throws IOException {
+    private void createTempOrder(ExecuteContext context) throws IOException {
         Map<String, Object> data = context.getData();
         Map<String, Object> storeTempOrder = new HashMap<>();
         Map<String, Object> referencedCartDeliveryPrice = null;
 
         String cartId = String.valueOf((JsonUtils.parsingJsonToMap((String) data.get("item"))).get("cartId"));
         storeTempOrder.put("cartId", cartId);
-        storeTempOrder.put("tempOrderId", orderNumber(cartId));
+        storeTempOrder.put("tempOrderId", orderNumberGenerator());
 
         try {
             referencedCartDeliveryPrice = JsonUtils.parsingJsonToMap((String) data.get("referencedCartDeliveryPrice"));
@@ -435,15 +504,121 @@ public class OrderService {
         }
         List<Map<String, Object>> cartDeliveryPriceList = (List<Map<String, Object>>) referencedCartDeliveryPrice.get("items");
 
-        Node tempOrderNode = (Node) nodeService.executeNode(storeTempOrder, "tempOrder", CREATE);
+        Node tempOrderNode = (Node) nodeService.executeNode(storeTempOrder, "tempOrder", CommonService.CREATE);
 
-        makeTempOrderProductData(tempOrderNode.getId(), cartDeliveryPriceList, data.get("productIds")); // 임시 주문서 상품목록 Maker
+        createTempOrderProduct(tempOrderNode.getId(), cartDeliveryPriceList, data.get("productIds")); // 임시 주문서 상품목록 Maker
         Map<String, Object> extraData = new HashMap<>();
         extraData.put("tempOrderId", tempOrderNode.getId());
         context.setResult(CommonService.getResult("O0001", extraData)); // 성공 시
     }
 
-    private void makeTempOrderProductData(Object tempOrderId, List<Map<String, Object>> cartDeliveryPriceList, Object reqSelectCartProductIds) {
+    private void createTempOrderProduct(String tempOrderId, Map<String, Object> data) {
+        try {
+            List<Map<String, Object>> productList = JsonUtils.parsingJsonToList(String.valueOf(data.get("product")));
+
+            for (Map<String, Object> product : productList) {
+                String productId = String.valueOf(JsonUtils.getValue(product, "productId"));
+                String baseOptionItemId = String.valueOf(JsonUtils.getValue(product, "baseOptionItemId"));
+                Integer quantity = (Integer) JsonUtils.getValue(product, "quantity");
+                List<Map<String, Object>> productItemList = product.get("productItem") != null ? (List<Map<String, Object>>) product.get("productItem") : null;
+                List<Map<String, Object>> storeProductItemList = new ArrayList<>();
+                Map<String, Object> storeTempOrderProduct = new HashMap<>();
+
+                Node productNode = nodeService.getNode("product", productId);
+                Node productBaseOptionItemNode = nodeService.getNode("productOptionItem", String.valueOf(baseOptionItemId));
+
+                double baseAddPrice = (double) productBaseOptionItemNode.get("addPrice");
+                double salePrice = (double) productNode.getBindingValue("salePrice");
+                double productPrice = baseAddPrice + salePrice;
+                double totalAddOptionPrice = 0;
+
+                Integer deliveryConditionValue = Integer.parseInt(String.valueOf(productNode.getBindingValue("deliveryConditionValue")));
+                String deliveryPriceType = String.valueOf(productNode.getBindingValue("deliveryPriceType"));
+
+                storeTempOrderProduct.put("tempOrderId", tempOrderId);
+                storeTempOrderProduct.put("productId", productId);
+                storeTempOrderProduct.put("baseOptionItemId", baseOptionItemId);
+                storeTempOrderProduct.put("quantity", quantity);
+                storeTempOrderProduct.put("salePrice", salePrice);
+                storeTempOrderProduct.put("vendorId", productNode.getBindingValue("vendorId"));
+
+
+                if (productItemList != null) {
+                    for (Map<String, Object> productItem : productItemList) {
+                        Map<String, Object> storeTempOrderProductItem = new HashMap<>();
+
+                        productId = String.valueOf(JsonUtils.getValue(productItem, "productId"));
+                        String addOptionItemId = String.valueOf(JsonUtils.getValue(productItem, "addOptionItemId"));
+                        quantity = (Integer) JsonUtils.getValue(productItem, "quantity");
+
+                        Node productAddOptionItemNode = nodeService.getNode("productOptionItem", String.valueOf(addOptionItemId));
+
+                        double addOptionPrice = (double) productAddOptionItemNode.get("addPrice");
+
+                        storeTempOrderProductItem.put("tempOrderId", tempOrderId);
+//                        storeTempOrderProductItem.put("tempOrderProductId", );
+                        storeTempOrderProductItem.put("productId", productId);
+                        storeTempOrderProductItem.put("addOptionItemId", addOptionItemId);
+                        storeTempOrderProductItem.put("quantity", quantity);
+                        storeTempOrderProductItem.put("addOptionPrice", addOptionPrice);
+
+                        totalAddOptionPrice += addOptionPrice;
+
+                        storeProductItemList.add(storeTempOrderProductItem);
+                    }
+                }
+
+                storeTempOrderProduct.put("baseAddPrice", baseAddPrice);
+                storeTempOrderProduct.put("productPrice", productPrice);
+                storeTempOrderProduct.put("totalAddOptionPrice", totalAddOptionPrice);
+
+                double orderPrice = productPrice + totalAddOptionPrice;
+
+                storeTempOrderProduct.put("orderPrice", orderPrice);
+
+                //수량별 배송비 정책
+                if (deliveryPriceType.equals("quantity")) {
+                    if (quantity > deliveryConditionValue) {
+                        int count = (int) Math.ceil((double) quantity / (double) deliveryConditionValue);
+                        for (int i = 0; i < count; i++) {
+                            int reSizeProductQuantity = (i != count - 1 ? deliveryConditionValue : (quantity - (count - 1) * deliveryConditionValue));
+                            storeTempOrderProduct.put("quantity", reSizeProductQuantity);
+
+                            Node tempOrderProductNode = (Node) nodeService.executeNode(storeTempOrderProduct, "tempOrderProduct", CommonService.CREATE);
+
+                            if (i == 0) {
+                                for (Map<String, Object> storeTempOrderProductItem : storeProductItemList) {
+                                    storeTempOrderProductItem.put("tempOrderProductId", tempOrderProductNode.getId());
+                                    nodeService.executeNode(storeTempOrderProductItem, "tempOrderProductItem", CommonService.CREATE);
+                                }
+                            }
+                            deliveryService.setDeliveryPrice(storeTempOrderProduct, productNode, "tempOrder");
+                        }
+                    } else {
+                        Node tempOrderProductNode = (Node) nodeService.executeNode(storeTempOrderProduct, "tempOrderProduct", CommonService.CREATE);
+
+                        for (Map<String, Object> storeTempOrderProductItem : storeProductItemList) {
+                            storeTempOrderProductItem.put("tempOrderProductId", tempOrderProductNode.getId());
+                            nodeService.executeNode(storeTempOrderProductItem, "tempOrderProductItem", CommonService.CREATE);
+                        }
+                        deliveryService.setDeliveryPrice(storeTempOrderProduct, productNode, "tempOrder");
+                    }
+                } else {
+                    Node tempOrderProductNode = (Node) nodeService.executeNode(storeTempOrderProduct, "tempOrderProduct", CommonService.CREATE);
+
+                    for (Map<String, Object> storeTempOrderProductItem : storeProductItemList) {
+                        storeTempOrderProductItem.put("tempOrderProductId", tempOrderProductNode.getId());
+                        nodeService.executeNode(storeTempOrderProductItem, "tempOrderProductItem", CommonService.CREATE);
+                    }
+                    deliveryService.setDeliveryPrice(storeTempOrderProduct, productNode, "tempOrder");
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void createTempOrderProduct(Object tempOrderId, List<Map<String, Object>> cartDeliveryPriceList, Object reqSelectCartProductIds) {
         for (Map<String, Object> cartDeliveryPrice : cartDeliveryPriceList) {
             Map<String, Object> storeTempOrderDeliveryPrice = new HashMap<>();
             List<String> tempOrderProductIds = new ArrayList<>();
@@ -501,7 +676,7 @@ public class OrderService {
                         storeTempOrderProduct.put("orderPrice", calc.get("orderPrice"));
                         storeTempOrderProduct.put("vendorId", calc.get("vendorId"));
 
-                        Node tempOrderProductNode = (Node) nodeService.executeNode(storeTempOrderProduct, "tempOrderProduct", CREATE);
+                        Node tempOrderProductNode = (Node) nodeService.executeNode(storeTempOrderProduct, "tempOrderProduct", CommonService.CREATE);
                         tempOrderProductIds.add(tempOrderProductNode.getId());
                         List<Map<String, Object>> referencedCartProductItem = (List<Map<String, Object>>) cartProduct.get("referencedCartProductItem");
 
@@ -514,21 +689,29 @@ public class OrderService {
                             storeTempOrderProductItem.put("quantity", tempOrderProductItem.get("quantity"));
                             storeTempOrderProductItem.put("addOptionPrice", JsonUtils.getValue(tempOrderProductItem, "addOptionItemId.item.addPrice"));
 
-                            nodeService.executeNode(storeTempOrderProductItem, "tempOrderProductItem", CREATE);
+                            nodeService.executeNode(storeTempOrderProductItem, "tempOrderProductItem", CommonService.CREATE);
                         }
                     }
                 }
 
             }
             storeTempOrderDeliveryPrice.put("tempOrderProductIds", StringUtils.join(tempOrderProductIds.toArray(), ","));
-            nodeService.executeNode(storeTempOrderDeliveryPrice, "tempOrderDeliveryPrice", CREATE);
+            nodeService.executeNode(storeTempOrderDeliveryPrice, "tempOrderDeliveryPrice", CommonService.CREATE);
         }
     }
 
     /**
+     * 임시 주문서 배송지
+     */
+    private void createTempOrderDelivery(Map<String, Object> tempOrderProduct, Node product) {
+
+    }
+
+
+    /**
      * 쿠폰 중복 체크 Method.
      */
-    private boolean duplication(Collection<Object> ids) {
+    private boolean repetitionCheck(Collection<Object> ids) {
         List<Integer> idList = new ArrayList(ids);
         boolean duplication = false;
         for (int i = 0; i < idList.size(); i++) {
@@ -545,21 +728,36 @@ public class OrderService {
     }
 
     /**
+     * 포인트 차감 Method.
+     */
+    private boolean pointsDeduction(String memberNo) {
+        return false;
+    }
+
+    /**
      * 주문번호 생성 Method.
      */
-    private String orderNumber(String cartId) {
+    private String orderNumberGenerator() {
+        Random random = new Random();
+
+        String appendNumber1 = String.valueOf(random.nextInt(10));
+        String appendNumber2 = String.valueOf(random.nextInt(10));
+        String appendNumber3 = String.valueOf(random.nextInt(10));
+
         String orderNumber = "B";
+
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmssSSS", Locale.KOREA);
         Date currentTime = new Date();
         String time = simpleDateFormat.format(currentTime);
-        orderNumber = orderNumber.concat(time).concat(cartId);
+
+        orderNumber = orderNumber.concat(time).concat(appendNumber1).concat(appendNumber2).concat(appendNumber3);
+
         return orderNumber;
     }
 
-    private void pointDeduction(String yPoin){
+    private void pointDeduction(String yPoin) {
 
     }
-
 
     /**
      * 주문 성공시 임시 주문서를 삭제하는 Method.

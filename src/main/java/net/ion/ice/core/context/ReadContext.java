@@ -1,6 +1,7 @@
 package net.ion.ice.core.context;
 
 import net.ion.ice.core.data.bind.NodeBindingInfo;
+import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.*;
 import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.QueryTerm;
@@ -52,7 +53,7 @@ public class ReadContext implements Context, Serializable {
     protected ResultField.ResultType resultType ;
 
     protected Boolean remote ;
-    
+
     public NodeType getNodetype() {
         return nodeType;
     }
@@ -481,4 +482,18 @@ public class ReadContext implements Context, Serializable {
     public NodeType getNodeType() {
         return nodeType;
     }
+
+    public String getDataStringValue(String key) {
+        Object val = JsonUtils.getValue(data, key) ;
+        if(val == null) return "" ;
+        if(val instanceof String){
+            return (String) val;
+        }
+        return val.toString() ;
+    }
+
+    public Object getDataValue(String key) {
+        return JsonUtils.getValue(data, key) ;
+    }
+
 }

@@ -23,6 +23,7 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.concurrent.ConcurrentHashMap" %>
 <%@ page import="org.apache.commons.lang3.StringUtils" %>
+<%@ page import="org.apache.log4j.Logger" %>
 <%@ include file="cfg/site_conf_inc.jsp" %>
 <%
     /* = -------------------------------------------------------------------------- = */
@@ -40,6 +41,11 @@
     }
     /* ============================================================================== */
 %>
+
+<%!
+    static Logger logger = Logger.getLogger("hub.jsp");
+%>
+
 <%
     /* ============================================================================== */
     /* =   POST 형식 체크부분                                                       = */
@@ -51,6 +57,8 @@
     /* ============================================================================== */
 %>
 <%
+    OrderService orderService = (OrderService) ApplicationContextManager.getContext().getBean("orderService");
+
     request.setCharacterEncoding("utf-8");
     /* ============================================================================== */
     /* =   02. 지불 요청 정보 설정                                                  = */
@@ -61,7 +69,7 @@
     String cust_ip = f_get_parm(request.getRemoteAddr()); // 요청 IP
     String ordr_idxx = f_get_parm(request.getParameter("ordr_idxx")); // 쇼핑몰 주문번호
     String good_name = f_get_parm(request.getParameter("good_name")); // 상품명
-    String ordr_mony = f_get_parm(request.getParameter("ordr_mony")); // 결제 금액
+    String ordr_chk = f_get_parm(request.getParameter("ordr_chk")); //
     /* = -------------------------------------------------------------------------- = */
     String res_cd = "";                                                     // 응답코드
     String res_msg = "";                                                     // 응답 메세지
@@ -73,7 +81,7 @@
     String buyr_mail = f_get_parm(request.getParameter("buyr_mail")); // 주문자 E-mail 주소
     /* = -------------------------------------------------------------------------- = */
     String use_pay_method = f_get_parm(request.getParameter("use_pay_method")); // 결제 방법
-    String bSucc = "";                                                     // 업체 DB 처리 성공 여부
+    String bSucc = "false";                                                     // 업체 DB 처리 성공 여부
     /* = -------------------------------------------------------------------------- = */
     String app_time = "";                                                     // 승인시간 (모든 결제 수단 공통)
     String amount = "";                                                     // KCP 실제 거래금액
@@ -135,10 +143,11 @@
     String myDeliveryAddressId = f_get_parm(request.getParameter("myDeliveryAddressId"));
 
 
-    String finalCouponDiscountPrice = request.getParameter("finalCouponDiscountPrice");
+//    String finalCouponDiscountPrice = request.getParameter("finalCouponDiscountPrice");
     String useYPoint = request.getParameter("useYPoint");
     String useWelfarepoint = request.getParameter("useWelfarepoint");
     String usedCoupon = request.getParameter("usedCoupon");
+    String memberNo = request.getParameter("memberNo");
 
     /* ============================================================================== */
     /* =   02. 지불 요청 정보 설정 END
@@ -175,8 +184,8 @@
         int ordr_data_set_no;
 
         ordr_data_set_no = c_PayPlus.mf_add_set("ordr_data");
-        System.out.println("ordr_mony" + ordr_mony);
-        c_PayPlus.mf_set_us(ordr_data_set_no, "ordr_mony", ordr_mony);
+        Double orderPay = orderService.getFinalPrice(ordr_idxx, memberNo,  useYPoint, useWelfarepoint, usedCoupon);
+        c_PayPlus.mf_set_us(ordr_data_set_no, "ordr_mony", String.valueOf(orderPay.intValue()));
 
 
     }
@@ -310,8 +319,6 @@
     /* =      결과를 업체 자체적으로 DB 처리 작업하시는 부분입니다.                 = */
     /* = -------------------------------------------------------------------------- = */
 
-    OrderService orderService = (OrderService) ApplicationContextManager.getContext().getBean("orderService");
-
     Map<String, Object> responseMap = new ConcurrentHashMap<>();
 
     /*Payment*/
@@ -380,13 +387,14 @@
     responseMap.put("myDeliveryAddressId", myDeliveryAddressId);
 
     /*OrderSheet*/
-    responseMap.put("finalCouponDiscountPrice", finalCouponDiscountPrice);
+//    responseMap.put("finalCouponDiscountPrice", finalCouponDiscountPrice);
     responseMap.put("useYPoint", useYPoint);
     responseMap.put("useWelfarepoint", useWelfarepoint);
     responseMap.put("usedCoupon", usedCoupon);
 
-    if (req_tx.equals("pay")) {
+    String paymentId = orderService.createPayment(responseMap);
 
+    if (req_tx.equals("pay")) {
     /* = -------------------------------------------------------------------------- = */
     /* =   07-1. 승인 결과 DB 처리(res_cd == "0000")                                = */
     /* = -------------------------------------------------------------------------- = */
@@ -394,8 +402,7 @@
     /* = -------------------------------------------------------------------------- = */
         if (StringUtils.equals(res_cd, "0000")){
             try {
-                String paymentId = orderService.savePayment(responseMap);
-                orderService.savePgResponse(responseMap, paymentId);
+                orderService.createPgResponse(responseMap, paymentId);
 
                 // 07-1-1. 신용카드
                 if (use_pay_method.equals("100000000000")) {
@@ -434,7 +441,7 @@
                     responseMap.put("usePayMethodName", "상품권");
                 }
 
-                bSucc = orderService.addOrderSheet(responseMap);
+                bSucc = orderService.createOrderSheet(responseMap);
 
             } catch (Exception e) {
                 bSucc = "false";
@@ -446,7 +453,7 @@
         /* = -------------------------------------------------------------------------- = */
 
         if (!"0000".equals(res_cd)) {
-
+            bSucc = "false";
         }
     }
     /* = -------------------------------------------------------------------------- = */
@@ -533,58 +540,61 @@
 </head>
 
 <%
-    System.out.println("-----------------결제정보(" + ordr_idxx + ")------------------");
-    System.out.println("사이트 코드 : " + g_conf_site_cd);
-    System.out.println("요청구분 : " + req_tx);
-    System.out.println("사용한 결제 수단 : " + use_pay_method);
-    System.out.println("쇼핑몰 DB 처리 성공 여부 : " + bSucc);
-    System.out.println("KCP 실제 거래 금액 : " + amount);
-    System.out.println("복합결제시 총 거래금액 " + total_amount);
-    System.out.println("카드결제금액 " + card_mny);
-    System.out.println("계좌이체결제금액 " + bk_mny);
-    System.out.println("쿠폰금액 " + coupon_mny);
-    System.out.println("결과 코드 : " + res_cd);
-    System.out.println("결과 메세지 : " + res_msg);
-    System.out.println("주문번호 : " + ordr_idxx);
-    System.out.println("KCP 거래번호 : " + tno);
-    System.out.println("상품명 : " + good_name);
-    System.out.println("주문자명 : " + buyr_name);
-    System.out.println("주문자 전화번호 : " + buyr_tel1);
-    System.out.println("주문자 휴대폰번호 : " + buyr_tel2);
-    System.out.println("주문자 E-mail : " + buyr_mail);
-    System.out.println("승인시간 : " + app_time);
-    System.out.println("카드코드 : " + card_cd);
-    System.out.println("카드이름 : " + card_name);
-    System.out.println("승인번호 : " + app_no);
-    System.out.println("무이자여부 : " + noinf);
-    System.out.println("할부개월 : " + quota);
-    System.out.println("부분취소가능여부 : " + partcanc_yn);
-    System.out.println("카드구분1 : " + card_bin_type_01);
-    System.out.println("카드구분2 : " + card_bin_type_02);
-    System.out.println("은행명 : " + bank_name);
-    System.out.println("은행코드 : " + bank_code);
-    System.out.println("입금 은행 : " + bankname);
-    System.out.println("입금계좌 예금주 : " + depositor);
-    System.out.println("입금계좌 번호 : " + account);
-    System.out.println("가상계좌 입금마감시간 : " + va_date);
-    System.out.println("포인트 서비스사 : " + pnt_issue);
-    System.out.println("승인시간 : " + pnt_app_time);
-    System.out.println("승인번호 : " + pnt_app_no);
-    System.out.println("적립금액 or 사용금액 : " + pnt_amount);
-    System.out.println("발생 포인트 : " + add_pnt);
-    System.out.println("사용가능 포인트 : " + use_pnt);
-    System.out.println("총 누적 포인트 : " + rsv_pnt);
-    System.out.println("통신사 코드 : " + commid);
-    System.out.println("휴대폰 번호 : " + mobile_no);
-    System.out.println("발급사 코드 : " + tk_van_code);
-    System.out.println("승인 번호 : " + tk_app_no);
-    System.out.println("가맹점 고객 아이디 " + shop_user_id);
-    System.out.println("현금영수증 등록 여부 : " + cash_yn);
-    System.out.println("현금 영수증 승인 번호 : " + cash_authno);
-    System.out.println("현금 영수증 발행 구분 : " + cash_tr_code);
-    System.out.println("현금 영수증 등록 번호 : " + cash_id_info);
-    System.out.println("현금 영수증 거래 번호 : " + cash_no);
-    System.out.println("----------------------------------------------------------");
+
+    logger.info("-----------------결제정보(" + ordr_idxx + ")------------------");
+    logger.info("사이트 코드 : " + g_conf_site_cd);
+    logger.info("ordr_chk " + ordr_chk);
+    logger.info("요청구분 : " + req_tx);
+    logger.info("사용한 결제 수단 : " + use_pay_method);
+    logger.info("사용한 결제 수단 : " + use_pay_method);
+    logger.info("쇼핑몰 DB 처리 성공 여부 : " + bSucc);
+    logger.info("KCP 실제 거래 금액 : " + amount);
+    logger.info("복합결제시 총 거래금액 : " + total_amount);
+    logger.info("카드결제금액 " + card_mny);
+    logger.info("계좌이체결제금액 " + bk_mny);
+    logger.info("쿠폰금액 " + coupon_mny);
+    logger.info("결과 코드 : " + res_cd);
+    logger.info("결과 메세지 : " + res_msg);
+    logger.info("주문번호 : " + ordr_idxx);
+    logger.info("KCP 거래번호 : " + tno);
+    logger.info("상품명 : " + good_name);
+    logger.info("주문자명 : " + buyr_name);
+    logger.info("주문자 전화번호 : " + buyr_tel1);
+    logger.info("주문자 휴대폰번호 : " + buyr_tel2);
+    logger.info("주문자 E-mail : " + buyr_mail);
+    logger.info("승인시간 : " + app_time);
+    logger.info("카드코드 : " + card_cd);
+    logger.info("카드이름 : " + card_name);
+    logger.info("승인번호 : " + app_no);
+    logger.info("무이자여부 : " + noinf);
+    logger.info("할부개월 : " + quota);
+    logger.info("부분취소가능여부 : " + partcanc_yn);
+    logger.info("카드구분1 : " + card_bin_type_01);
+    logger.info("카드구분2 : " + card_bin_type_02);
+    logger.info("은행명 : " + bank_name);
+    logger.info("은행코드 : " + bank_code);
+    logger.info("입금 은행 : " + bankname);
+    logger.info("입금계좌 예금주 : " + depositor);
+    logger.info("입금계좌 번호 : " + account);
+    logger.info("가상계좌 입금마감시간 : " + va_date);
+    logger.info("포인트 서비스사 : " + pnt_issue);
+    logger.info("승인시간 : " + pnt_app_time);
+    logger.info("승인번호 : " + pnt_app_no);
+    logger.info("적립금액 or 사용금액 : " + pnt_amount);
+    logger.info("발생 포인트 : " + add_pnt);
+    logger.info("사용가능 포인트 : " + use_pnt);
+    logger.info("총 누적 포인트 : " + rsv_pnt);
+    logger.info("통신사 코드 : " + commid);
+    logger.info("휴대폰 번호 : " + mobile_no);
+    logger.info("발급사 코드 : " + tk_van_code);
+    logger.info("승인 번호 : " + tk_app_no);
+    logger.info("가맹점 고객 아이디 " + shop_user_id);
+    logger.info("현금영수증 등록 여부 : " + cash_yn);
+    logger.info("현금 영수증 승인 번호 : " + cash_authno);
+    logger.info("현금 영수증 발행 구분 : " + cash_tr_code);
+    logger.info("현금 영수증 등록 번호 : " + cash_id_info);
+    logger.info("현금 영수증 거래 번호 : " + cash_no);
+    logger.info("----------------------------------------------------------");
 
 %>
 

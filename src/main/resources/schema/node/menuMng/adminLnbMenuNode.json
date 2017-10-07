@@ -52,6 +52,38 @@
     "backOfficeId": "adm",
     "gnbMenuId": "productMng",
     "parentMenuId": "root",
+    "menuId": "productUpdateList",
+    "menuName": "상품정보 일괄변경",
+    "order": "30",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "ytn/product/UpdateList" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "root",
+    "menuId": "productDeleteList",
+    "menuName": "삭제상품 목록",
+    "order": "50",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "ytn/product/DeleteList" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "root",
     "menuId": "productOptionSet",
     "menuName": "상품옵션 세트설정",
     "order": "60",
@@ -64,6 +96,89 @@
     "customPages": [
       { "pageName": "등록", "pageUrl": "ytn/productOptionSet/CreateForm" },
       { "pageName": "수정", "pageUrl": "ytn/productOptionSet/UpdateForm" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "root",
+    "menuId": "productNoticeBanner",
+    "menuName": "상품공지 배너관리",
+    "order": "70",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" }
+    ],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "ytn/productNoticeBanner/CreateForm" },
+      { "pageName": "수정", "pageUrl": "ytn/productNoticeBanner/UpdateForm" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "orderPaymentMng",
+    "parentMenuId": "root",
+    "menuId": "orderDelivery",
+    "menuName": "주문/배송관리",
+    "order": "10",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "ytn/orderDelivery/List" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "orderPaymentMng",
+    "parentMenuId": "root",
+    "menuId": "orderCancel",
+    "menuName": "취소관리",
+    "order": "20",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "ytn/orderCancel/List" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "orderPaymentMng",
+    "parentMenuId": "root",
+    "menuId": "orderExchange",
+    "menuName": "교환관리",
+    "order": "30",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "ytn/orderExchange/List" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "orderPaymentMng",
+    "parentMenuId": "root",
+    "menuId": "orderReturn",
+    "menuName": "반품관리",
+    "order": "40",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "ytn/orderReturn/List" }
     ]
   },
 
@@ -255,6 +370,38 @@
       { "pageName": "목록", "pageUrl": "list" },
       { "pageName": "등록", "pageUrl": "createForm" },
       { "pageName": "수정", "pageUrl": "updateForm" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "policyMng",
+    "parentMenuId": "root",
+    "menuId": "addBenefit",
+    "menuName": "추가혜택",
+    "order": "60",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "ytn/AddBenefitForm" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "policyMng",
+    "parentMenuId": "root",
+    "menuId": "interestFree",
+    "menuName": "무이자 할부",
+    "order": "70",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "ytn/InterestFreeForm" }
     ]
   },
   {

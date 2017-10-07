@@ -7,13 +7,17 @@ import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.query.QueryResult;
+import org.springframework.web.context.request.NativeWebRequest;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ApiExecuteContext extends ExecuteContext{
     protected Map<String, Object> config  ;
+
 
     public QueryResult makeQueryResult() {
         if(this.ifTest != null && !(this.ifTest.equalsIgnoreCase("true"))){
@@ -48,8 +52,11 @@ public class ApiExecuteContext extends ExecuteContext{
     }
 
 
-    public static ApiExecuteContext makeContextFromConfig(Map<String, Object> config, Map<String, Object> data) {
+    public static ApiExecuteContext makeContextFromConfig(Map<String, Object> config, Map<String, Object> data, NativeWebRequest httpRequest, HttpServletResponse httpResponse) {
         ApiExecuteContext ctx = new ApiExecuteContext();
+        ctx.httpRequest = httpRequest.getNativeRequest(HttpServletRequest.class);
+        ctx.httpResponse = httpResponse ;
+
 
         NodeType nodeType = NodeUtils.getNodeType((String) ContextUtils.getValue(config.get("typeId"), data));
         ctx.setNodeType(nodeType);
@@ -86,5 +93,6 @@ public class ApiExecuteContext extends ExecuteContext{
 
         return ctx ;
     }
+
 
 }

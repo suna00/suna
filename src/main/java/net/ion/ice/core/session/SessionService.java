@@ -50,7 +50,7 @@ public class SessionService {
             String sessionKey = tokenFactory.createInitJwtToken().getToken();
             String refreshSessionKey = tokenFactory.createRefreshToken().getToken();
 
-            if(sessionData == null) {
+            if (sessionData == null) {
                 sessionData = new HashMap<>();
             }
             sessionMap.put(sessionKey, sessionData);
@@ -126,6 +126,7 @@ public class SessionService {
         if(!member.getStringValue("password").equals(password)){
 
         }
+
 
         try {
             putSession(request, response, member);

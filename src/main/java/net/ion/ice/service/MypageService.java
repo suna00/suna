@@ -15,10 +15,6 @@ import java.util.*;
 
 @Service("mypageService")
 public class MypageService {
-    public static final String CREATE = "create";
-    public static final String UPDATE = "update";
-    public static final String DELETE = "delete";
-    public static final String SAVE = "save";
     private Logger logger = Logger.getLogger(ProductService.class);
 
     @Autowired
@@ -42,7 +38,7 @@ public class MypageService {
                 return context;
             }
         }
-        nodeService.executeNode(data, "delivery", CartService.UPDATE);
+        nodeService.executeNode(data, "delivery", CommonService.UPDATE);
         context.setResult(CommonService.getResult("S0002"));
         return context;
     }
@@ -56,13 +52,13 @@ public class MypageService {
         String[] params = { "memberNo","defaultYn" };
         if (CommonService.requiredParams(context, data, params)) return context;
 
-        Node node = (Node) nodeService.executeNode(data, "myDeliveryAddress", SAVE);
+        Node node = (Node) nodeService.executeNode(data, "myDeliveryAddress", CommonService.SAVE);
         if("trueFalse>y".equals(node.getValue("defaultYn"))){
             List<Node> nodes = NodeUtils.getNodeList("myDeliveryAddress", "memberNo_matching="+data.get("memberNo")+"&myDeliveryAddressId_notMatching="+node.getId()+"&defaultYn_matching=y");
             if(nodes.size() > 0){
                 for(Node address : nodes){
                     address.put("defaultYn","trueFalse>n");
-                    nodeService.executeNode(address, "myDeliveryAddress", UPDATE);
+                    nodeService.executeNode(address, "myDeliveryAddress", CommonService.UPDATE);
                 }
             }
         }

@@ -13,8 +13,11 @@ import net.ion.ice.core.query.QueryTerm;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.core.io.Resource;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -38,6 +41,9 @@ public class ExecuteContext extends ReadContext{
 
     protected ExecuteContext parentContext ;
     protected List<ExecuteContext> subExecuteContexts ;
+
+    protected HttpServletRequest httpRequest ;
+    protected HttpServletResponse httpResponse ;
 
     public static ExecuteContext createContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType, String event, String id) {
         ExecuteContext ctx = new ExecuteContext();
@@ -281,7 +287,11 @@ public class ExecuteContext extends ReadContext{
     }
 
     private void i18nRemove(Map<? extends String, ?> newValue, Map<String, Object> existValue) {
-        existValue.putAll(newValue);
+        if(existValue == null){
+            existValue = (Map<String, Object>) newValue;
+        }else {
+            existValue.putAll(newValue);
+        }
         List<String> removeLocale = new ArrayList<>() ;
         for(String key :  existValue.keySet()){
             Object val =  existValue.get(key) ;
@@ -428,5 +438,13 @@ public class ExecuteContext extends ReadContext{
         }else{
             return new HashMap<String, Object>() ;
         }
+    }
+
+    public HttpServletRequest getHttpRequest() {
+        return httpRequest;
+    }
+
+    public HttpServletResponse getHttpResponse() {
+        return httpResponse;
     }
 }

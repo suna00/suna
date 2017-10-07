@@ -1037,96 +1037,6 @@
   {
     "typeId": "commonCode",
     "code": "cancel",
-    "upperCode": "changeReasonType",
-    "name": "취소",
-    "description": "",
-    "sortOrder": "1",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "returnExchange",
-    "upperCode": "changeReasonType",
-    "name": "반품/교환",
-    "description": "",
-    "sortOrder": "2",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "cr001",
-    "upperCode": "cancel",
-    "name": "단순변심",
-    "description": "",
-    "sortOrder": "1",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "cr002",
-    "upperCode": "cancel",
-    "name": "재주문",
-    "description": "",
-    "sortOrder": "2",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "cr003",
-    "upperCode": "cancel",
-    "name": "품절",
-    "description": "",
-    "sortOrder": "3",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "cr004",
-    "upperCode": "returnExchange",
-    "name": "단순변심",
-    "description": "",
-    "sortOrder": "1",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "cr005",
-    "upperCode": "returnExchange",
-    "name": "제품하자",
-    "description": "",
-    "sortOrder": "2",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "cr006",
-    "upperCode": "returnExchange",
-    "name": "부품하자",
-    "description": "",
-    "sortOrder": "3",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "cr007",
-    "upperCode": "returnExchange",
-    "name": "오배송",
-    "description": "",
-    "sortOrder": "4",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "cr008",
-    "upperCode": "returnExchange",
-    "name": "재주문",
-    "description": "",
-    "sortOrder": "5",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "cancel",
     "upperCode": "changeType",
     "name": "취소",
     "description": "",
@@ -1558,29 +1468,38 @@
   },
   {
     "typeId": "commonCode",
-    "code": "general",
+    "code": "deliveryAddress",
     "upperCode": "deliveryType",
-    "name": "일반배송",
+    "name": "배송지",
     "description": "",
     "sortOrder": "1",
     "commonCodeStatus": "y"
   },
   {
     "typeId": "commonCode",
-    "code": "exchange",
+    "code": "recallAddress",
     "upperCode": "deliveryType",
-    "name": "교환배송",
+    "name": "회수배송지",
     "description": "",
     "sortOrder": "2",
     "commonCodeStatus": "y"
   },
   {
     "typeId": "commonCode",
-    "code": "return",
+    "code": "returnAddress",
     "upperCode": "deliveryType",
-    "name": "반품배송",
+    "name": "반품배송지",
     "description": "",
     "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "exchangeAddress",
+    "upperCode": "deliveryType",
+    "name": "교환배송지",
+    "description": "",
+    "sortOrder": "4",
     "commonCodeStatus": "y"
   },
   {
@@ -6315,6 +6234,78 @@
     "name": "예약구매",
     "description": "",
     "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "cancel001",
+    "upperCode": "changeReasonType",
+    "name": "단순변심",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "cancel002",
+    "upperCode": "changeReasonType",
+    "name": "재주문",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "cancel003",
+    "upperCode": "changeReasonType",
+    "name": "품절",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "returnExchange001",
+    "upperCode": "changeReasonType",
+    "name": "단순변심",
+    "description": "",
+    "sortOrder": "4",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "returnExchange002",
+    "upperCode": "changeReasonType",
+    "name": "제품하자",
+    "description": "",
+    "sortOrder": "5",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "returnExchange003",
+    "upperCode": "changeReasonType",
+    "name": "부품하자",
+    "description": "",
+    "sortOrder": "6",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "returnExchange004",
+    "upperCode": "changeReasonType",
+    "name": "오배송",
+    "description": "",
+    "sortOrder": "7",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "returnExchange005",
+    "upperCode": "changeReasonType",
+    "name": "재주문",
+    "description": "",
+    "sortOrder": "8",
     "commonCodeStatus": "y"
   }
 ]

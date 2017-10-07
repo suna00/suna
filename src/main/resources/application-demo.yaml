@@ -3,16 +3,11 @@
 # This is necessary to be able to run multiple copies of the
 # application on the same machine.
 spring:
-  profiles:
-    active: dev
+  profiles: demo
   http:
     multipart:
       max-request-size: 10MB
       max-file-size: 20MB
-  mvc:
-    view:
-      prefix: /WEB-INF/jsp/
-      suffix: .jsp
 
 server:
   port: 8080
@@ -32,7 +27,7 @@ cluster:
     - 127.0.0.1
 
 infinispan:
-  cachePath: /resource/ice2/cache
+  cachePath: /resource/ice2/demo/cache
 
 tomcat:
   access-log-enabled: true
@@ -53,6 +48,3 @@ file:
 
 i18n:
   defaults: en
-
-
-
