@@ -154,6 +154,213 @@
   {
     "typeId": "adminLnbMenu",
     "backOfficeId": "admin",
+    "gnbMenuId": "mbrMng",
+    "parentMenuId": "root",
+    "menuId": "mbrInfoMng",
+    "menuName": "회원 정보 관리",
+    "order": "10",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "mbrMng",
+    "parentMenuId": "root",
+    "menuId": "dcalrMngConfig",
+    "menuName": "신고 관리 설정",
+    "order": "20",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "mbrMng",
+    "parentMenuId": "root",
+    "menuId": "mbrLogMng",
+    "menuName": "회원 로그",
+    "order": "30",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "list"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "mbrMng",
+    "parentMenuId": "admin>root>mbrInfoMng",
+    "menuId": "mbrBasicInfo",
+    "menuName": "회원 기본정보 조회",
+    "order": "10",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+    ],
+    "customPages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "cj/mbr/default/List"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "cj/mbr/default/Form"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "cj/mbr/default/View"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "mbrMng",
+    "parentMenuId": "admin>root>mbrInfoMng",
+    "menuId": "mbrDetailInfo",
+    "menuName": "회원 상세정보 조회",
+    "order": "20",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+    ],
+    "customPages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "cj/mbr/detail/List"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "cj/mbr/detail/Form"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "cj/mbr/detail/View"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "mbrMng",
+    "parentMenuId": "admin>root>mbrInfoMng",
+    "menuId": "nonMbr",
+    "menuName": "비회원",
+    "order": "30",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+    ],
+    "customPages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "cj/mbr/non/List"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "cj/mbr/non/Form"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "cj/mbr/non/View"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "mbrMng",
+    "parentMenuId": "admin>root>mbrInfoMng",
+    "menuId": "blacklist",
+    "menuName": "블랙리스트",
+    "order": "40",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "cj/mbr/blacklist/List"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "cj/mbr/blacklist/Form"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "cj/mbr/blacklist/View"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "mbrMng",
+    "parentMenuId": "admin>root>mbrInfoMng",
+    "menuId": "diapMbr",
+    "menuName": "휴면 회원",
+    "order": "50",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+    ],
+    "customPages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "cj/mbr/diap/List"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "cj/mbr/diap/Form"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "cj/mbr/diap/View"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
     "gnbMenuId": "configMng",
     "parentMenuId": "root",
     "menuId": "gnbMng",
@@ -1262,16 +1469,19 @@
         "pageUrl": "list"
       },
       {
+        "pageName": "등록",
+        "pageUrl": "form"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "view"
+      },
+      {
         "pageName": "수정",
         "pageUrl": "uform"
       }
     ],
-    "customPages": [
-      {
-        "pageName": "등록",
-        "pageUrl": "cj/AdmrGroupForm"
-      }
-    ]
+    "customPages": []
   },
   {
     "typeId": "adminLnbMenu",
