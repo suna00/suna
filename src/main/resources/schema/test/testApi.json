@@ -79,7 +79,11 @@
         {"sorting" : "changed desc"},
         {"page" : "{{:page}}", "pageSize":2},
         {"includeReferenced" : false}
-      ]
+      ],
+      "response": {
+        "position": "_position_",
+        "_all_": ""
+      }
     }
   },
   {
