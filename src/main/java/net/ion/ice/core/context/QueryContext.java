@@ -92,7 +92,11 @@ public class QueryContext extends ReadContext {
             return queryContext;
         }
 
-        for (String param : StringUtils.split(searchText, '&')) {
+        String seperator = "&" ;
+        if(StringUtils.contains(searchText, "_and_")){
+            seperator = "_and_" ;
+        }
+        for (String param : StringUtils.split(searchText, seperator)) {
             if (StringUtils.isNotEmpty(param) && StringUtils.contains(param, "=")) {
                 String value = StringUtils.substringAfter(param, "=");
                 if (StringUtils.isEmpty(value)) {

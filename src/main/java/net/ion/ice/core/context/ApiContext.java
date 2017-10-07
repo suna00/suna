@@ -155,6 +155,15 @@ public class ApiContext {
             addResultData(readsContext.getResult());
 
             return queryResult ;
+        }else if(ctxRootConfig.containsKey("endpoint")){
+            ApiRelayContext relayContext = ApiRelayContext.makeContextFromConfig(ctxRootConfig, data) ;
+//            setApiResultFormat(readsContext);
+
+            QueryResult queryResult = relayContext.makeQueryResult() ;
+
+            addResultData(relayContext.getResult());
+
+            return queryResult ;
         }
         return null ;
     }
@@ -174,7 +183,7 @@ public class ApiContext {
 
 
     public Object makeApiResult() {
-        if(config.containsKey("typeId") || config.containsKey("apiType") || config.containsKey("select")){
+        if(config.containsKey("typeId") || config.containsKey("apiType") || config.containsKey("select") || config.containsKey("endpoint")){
             if(this.commonResultFieldList != null && this.commonResultFieldList.size() > 0){
                 QueryResult queryResult = getCommonResult();
                 queryResult.putAll(makeSubApiReuslt(config));
