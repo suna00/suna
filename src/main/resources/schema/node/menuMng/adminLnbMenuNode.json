@@ -1086,13 +1086,21 @@
     "icon": "",
     "active": "true",
     "index": "false",
-    "pages": [
+    "pages": [],
+    "customPages": [
       {
         "pageName": "목록",
-        "pageUrl": "list"
+        "pageUrl": "cj/pop/PopList"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "cj/pop/PopForm"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "cj/pop/PopView"
       }
-    ],
-    "customPages": []
+    ]
   },
   {
     "typeId": "adminLnbMenu",
