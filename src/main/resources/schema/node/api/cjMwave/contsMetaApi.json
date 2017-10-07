@@ -572,6 +572,10 @@
       {
         "paramName": "searchKeyword",
         "required": false
+      },
+      {
+        "paramName": "rcmdContsYn",
+        "required": false
       }
     ],
     "config": {
@@ -587,6 +591,11 @@
             "field": "artistId",
             "method": "matching",
             "value": "{{:artistId}}"
+          },
+          {
+            "field": "rcmdContsYn",
+            "method": "matching",
+            "value": "{{:rcmdContsYn}}"
           },
           {
             "field": "newsNm",
