@@ -243,15 +243,15 @@ public class CartService {
                     nodeBindingService.delete(cartProductItem_TID, String.valueOf(cartProductItem.get("cartProductItemId")));
                 }
             }
-            deliveryService.removeDeliveryPrice(cartProductId);
+//            deliveryService.removeDeliveryPrice(cartProductId);
 
         }
     }
 
-    private void removeDeliveryPrice(String cartProductId) throws IOException {
-
-        deliveryService.removeDeliveryPrice(cartProductId);
-    }
+//    private void removeDeliveryPrice(String cartProductId) throws IOException {
+//
+//        deliveryService.removeDeliveryPrice(cartProductId);
+//    }
 
     // 동일 장바구니 상품 처리 여부
     private boolean existCartProduct(Map<String, Object> map, Map<String, Object> cartProduct, Map<String, Object> product, boolean isFirstRow) {
