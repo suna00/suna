@@ -1,5 +1,6 @@
 package net.ion.ice.security.endpoint;
 
+import io.jsonwebtoken.ExpiredJwtException;
 import net.ion.ice.core.response.JsonResponse;
 import net.ion.ice.core.session.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,16 +14,32 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 public class TokenEndpoint {
     @Autowired
     SessionService sessionService;
 
-    @RequestMapping(value = "/auth/token", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "api/auth/token", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public @ResponseBody
     Object jwtToken(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        sessionService.putSession(request, response, null);
-        return JsonResponse.create();
+        Map<String, Object> resultCodeMap = new HashMap<>();
+        try {
+
+            sessionService.putSession(request, response, null);
+            resultCodeMap.put("code", "CORE#JWT01");
+            resultCodeMap.put("message", "JWT Success");
+
+            return JsonResponse.create(resultCodeMap);
+
+        } catch (ExpiredJwtException expiredEx) {
+
+            resultCodeMap.put("code", "CORE#JWT02");
+            resultCodeMap.put("message", "JWT Expired");
+
+            return JsonResponse.create(resultCodeMap);
+        }
     }
 }
