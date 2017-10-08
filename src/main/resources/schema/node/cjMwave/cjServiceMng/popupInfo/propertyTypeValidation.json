@@ -134,7 +134,7 @@
     "validation": {
       "language": "ko",
       "required": {
-        "value": true,
+        "value": false,
         "description": "필수 값 입니다."
       },
       "duplicated": {
@@ -166,7 +166,7 @@
     "validation": {
       "language": "ko",
       "required": {
-        "value": true,
+        "value": false,
         "description": "필수 값 입니다."
       },
       "duplicated": {
@@ -358,7 +358,7 @@
     "validation": {
       "language": "ko",
       "required": {
-        "value": true,
+        "value": false,
         "description": "필수 값 입니다."
       },
       "duplicated": {
@@ -422,7 +422,7 @@
     "validation": {
       "language": "ko",
       "required": {
-        "value": true,
+        "value": false,
         "description": "필수 값 입니다."
       },
       "duplicated": {
