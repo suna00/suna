@@ -404,11 +404,12 @@ public class DBSyncService {
     * 결과가 안나올 때까지 이터레이션하면서 처리한다, 쿼리에 반드시 limit @{start} @{unit} 있어야 한다
     * start unit 외 다른 파라미터는 받을 수 없음
     * */
-    private void executeWithIteration (String executeId) throws Exception {
+    private void executeWithIteration (String executeId, Integer startPage, Integer totalPages) throws Exception {
 //        int max = 1;
         logger.info("DBSyncService.executeWithIteration :: " + executeId);
         boolean loop = true;
-        int i = 0;
+        startPage = (startPage == null) ? 1 : startPage;
+        int i = startPage - 1; // 사용자는 1 페이지부터 시작할 건데, 계산은 인덱스 기준이므로 1 뺌
         int unit = BATCH_UNIT;
         int successCnt = 0;
         int skippedCnt = 0;
@@ -427,6 +428,14 @@ public class DBSyncService {
 //                loop = false;
 //                continue;
 //            }
+
+            if(totalPages != null) {
+                if(i > totalPages -1) {
+                    logger.info("Batch finished arrange from [ " + startPage + " ] page to [ " + totalPages + " ] page has finished");
+                    loop = false;
+                    continue;
+                }
+            }
 
             Node executionNode = nodeService.read(PROCESS_TID, executeId);
             if (executionNode == null) throw new Exception("[ " + executeId + " ] does not exists");
@@ -550,7 +559,7 @@ public class DBSyncService {
         successIds = executeSingleTaskAndRecord(executionNode, targets2Update, "MNET", "SCHEDULE");
     }
 
-    public void executeForInitData (String type) throws Exception {
+    public void executeForInitData (String type, Integer start, Integer total) throws Exception {
         switch (type) {
             case "all" :
                 for(String executeId : mnetExecuteIds) {
@@ -558,7 +567,7 @@ public class DBSyncService {
                         @Override
                         public void action() {
                             try{
-                                this.dbSyncService.executeWithIteration(this.executeId);
+                                this.dbSyncService.executeWithIteration(this.executeId, 0, 0);
                             } catch (Exception e) {
                                 logger.error("Error occurs in Thread : ", e);
                             }
@@ -568,40 +577,40 @@ public class DBSyncService {
                 break;
             case "album" :
                 if(storage.isAbleToRun("album")) {
-                    executeWithIteration("album");
+                    executeWithIteration("album", start, total);
                 } else {
                     logger.info("[ album ] Task is already Running. Ignore this request");
                 }
                 break;
             case "artist" :
                 if(storage.isAbleToRun("artist")) {
-                    executeWithIteration("artist");
+                    executeWithIteration("artist", start, total);
                 } else {
                     logger.info("[ artist ] Task is already Running. Ignore this request");
                 }
                 break;
             case "song" :
                 if(storage.isAbleToRun("song")) {
-                    executeWithIteration("song");
+                    executeWithIteration("song", start, total);
                 } else {
                     logger.info("[ song ] Task is already Running. Ignore this request");
                 }
                 break;
             case "mv" :
                 if(storage.isAbleToRun("musicVideo")) {
-                    executeWithIteration("musicVideo");
+                    executeWithIteration("musicVideo", start, total);
                 } else {
                     logger.info("[ musicVideo ] Task is already Running. Ignore this request");
                 }
                 break;
             case "chart" :
                 if(storage.isAbleToRun("mcdChartBasInfo")) {
-                    executeWithIteration("mcdChartBasInfo");
+                    executeWithIteration("mcdChartBasInfo", start, total);
                 } else {
                     logger.info("[ mcdChartBasInfo ] Task is already Running. Ignore this request");
                 }
                 if(storage.isAbleToRun("mcdChartStats")) {
-                    executeWithIteration("mcdChartStats");
+                    executeWithIteration("mcdChartStats", start, total);
                 } else {
                     logger.info("[ mcdChartStats ] Task is already Running. Ignore this request");
                 }
