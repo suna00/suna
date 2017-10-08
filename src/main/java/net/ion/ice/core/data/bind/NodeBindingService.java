@@ -94,7 +94,7 @@ public class NodeBindingService {
             throw new IceRuntimeException("Node Binding Execute Error : " +  e.getMessage(), e) ;
         }
         context.setResult(node);
-        logger.info("Node Binding {} - {} :  " + (callback == 0 ? "insert" : "update"), node.getTypeId(), node.getId());
+        logger.info("Node Binding {} - {} - {} :  " + (callback == 0 ? "insert" : "update"), node.getTypeId(), node.getId(), context.getEvent());
     }
 
     public void createTable(String typeId, HttpServletResponse response) {
@@ -163,6 +163,11 @@ public class NodeBindingService {
         Node node = context.getNode();
         NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(node.getTypeId());
         nodeBindingInfo.delete(node);
+    }
+
+    public void delete(String typeId, String id) {
+        NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(typeId);
+        nodeBindingInfo.delete(id);
     }
 
     public Long sequence(String typeId) {

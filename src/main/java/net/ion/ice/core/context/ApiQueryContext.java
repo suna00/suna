@@ -20,7 +20,6 @@ import java.util.Map;
 public class ApiQueryContext extends QueryContext{
     protected Map<String, Object> config  ;
 
-
     public ApiQueryContext(NodeType nodeType) {
         super(nodeType) ;
     }
@@ -51,10 +50,12 @@ public class ApiQueryContext extends QueryContext{
         for(String key : config.keySet()) {
             if(key.equals("typeId")) continue ;
 
-            if(key.equals("query")){
+            if(key.equals("query")) {
                 List<QueryTerm> queryTerms = QueryUtils.makeNodeQueryTerms(queryContext, config.get("query"), queryContext.nodeType);
                 queryContext.setQueryTerms(queryTerms);
 //                queryContext.makeSearchFields((Map<String, Object>) config.get("query"));
+            }else if(key.equals("naviId")){
+                queryContext.naviIdTerm = QueryUtils.makeNodeQueryTerms(queryContext, config.get("naviId"), queryContext.nodeType);
             }else {
                 makeApiContext(config, queryContext, key);
             }
