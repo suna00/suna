@@ -2241,6 +2241,14 @@
   },
   {
     "typeId": "code",
+    "groupCodeId": "contsMetaDivTid",
+    "codeId": "11",
+    "name": "onairInfo",
+    "order": 10,
+    "active": true
+  },
+  {
+    "typeId": "code",
     "groupCodeId": "sersVoteItemDivCd",
     "codeId": "1",
     "name": "Vote Select",
