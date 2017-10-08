@@ -1294,8 +1294,12 @@
         "pageUrl": "cj/air/OnairList"
       },
       {
-        "pageName": "등록/수정",
+        "pageName": "등록",
         "pageUrl": "cj/air/OnairForm"
+      },
+      {
+        "pageName": "수정",
+        "pageUrl": "cj/air/OnairUForm"
       },
       {
         "pageName": "상세",
