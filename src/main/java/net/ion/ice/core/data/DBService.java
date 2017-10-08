@@ -3,6 +3,7 @@ package net.ion.ice.core.data;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
+import net.ion.ice.core.node.NodeUtils;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -34,7 +35,8 @@ public class DBService {
 
     public JdbcTemplate getJdbcTemplate(String dsId) {
         if (!dataSourceTemplate.containsKey(dsId)) {
-            Node dataSourceNode = nodeService.getDatasource(dsId);
+//            Node dataSourceNode = nodeService.getDatasource(dsId); 캐시가 없을때, nodeService를 못가져옴
+            Node dataSourceNode = NodeUtils.getNodeService().getDatasource(dsId);
             DBConfiguration configuration = new DBConfiguration(dataSourceNode);
             dataSourceTemplate.put(dsId, new JdbcTemplate(setDataSource(configuration)));
         }
