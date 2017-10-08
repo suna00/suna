@@ -1603,6 +1603,15 @@
   },
   {
     "typeId": "commonCode",
+    "code": "faq105",
+    "upperCode": "faqType",
+    "name": "기타",
+    "description": "",
+    "sortOrder": "5",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
     "code": "faq201",
     "upperCode": "faq101",
     "name": "배송",
