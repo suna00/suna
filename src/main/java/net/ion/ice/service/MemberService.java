@@ -93,12 +93,19 @@ public class MemberService {
             }
             node = (Node) nodeService.executeNode(contextData, "member", CommonService.CREATE);
 
+            //회원가입 메일 전송
+
         } else {
             if (contextData.containsKey("password")) {
                 String password = SHA256(contextData.get("password").toString());
                 contextData.put("password", password);
+                contextData.put("failedCount", null);
             }
-            node = (Node) nodeService.executeNode(contextData, "member", CommonService.UPDATE);
+            node = (Node)nodeService.executeNode(contextData, "member", CommonService.UPDATE);
+
+            if(contextData.containsKey("changeMarketingAgreeYn")){
+                // 광고정보 수정 메일 전송
+            }
         }
 
         item.put("memberNo", node.get("memberNo"));
