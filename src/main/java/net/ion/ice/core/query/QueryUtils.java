@@ -2,13 +2,11 @@ package net.ion.ice.core.query;
 
 import net.ion.ice.core.context.*;
 import net.ion.ice.core.infinispan.lucene.AnalyzerFactory;
-import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
 import org.apache.commons.lang3.StringUtils;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,17 +43,17 @@ public class QueryUtils {
                 String method = StringUtils.substringAfterLast(paramName, "_");
                 if(method.equals("facet")){
                     queryContext.addFacetTerm(new FacetTerm(fieldId, value));
-                } else if (method.equals("hasReferenced")) {
+                } else if (method.startsWith("hasReferenced")) {
                     NodeType refNodeType = NodeUtils.getNodeType(nodeType.getPropertyType(fieldId).getReferenceType());
-                    QueryContext joinQueryContext = QueryContext.createQueryContextFromText(value, refNodeType);
+                    QueryContext joinQueryContext = QueryContext.createQueryContextFromText(value, refNodeType, StringUtils.substringAfter(method, "hasReferenced"));
                     if (joinQueryContext != null) {
                         joinQueryContext.setTargetJoinField(nodeType.getPropertyType(fieldId).getReferenceValue());
                         joinQueryContext.setSourceJoinField("id");
                         queryContext.addJoinQuery(joinQueryContext);
                     }
-                } else if (method.equals("referenceJoin")) {
+                } else if (method.startsWith("referenceJoin")) {
                     NodeType refNodeType = NodeUtils.getNodeType(nodeType.getPropertyType(fieldId).getReferenceType());
-                    QueryContext joinQueryContext = QueryContext.createQueryContextFromText(value, refNodeType);
+                    QueryContext joinQueryContext = QueryContext.createQueryContextFromText(value, refNodeType, StringUtils.substringAfter(method, "referenceJoin"));
                     if (joinQueryContext != null) {
                         joinQueryContext.setTargetJoinField("id");
                         joinQueryContext.setSourceJoinField(fieldId);
@@ -130,17 +128,17 @@ public class QueryUtils {
 
             if (value == null) return;
             String queryValue = value.toString();
-            if (method.equals("hasReferenced")) {
+            if (method.startsWith("hasReferenced")) {
                 NodeType refNodeType = NodeUtils.getNodeType(nodeType.getPropertyType(field).getReferenceType());
-                QueryContext joinQueryContext = QueryContext.createQueryContextFromText(queryValue, refNodeType);
+                QueryContext joinQueryContext = QueryContext.createQueryContextFromText(queryValue, refNodeType, StringUtils.substringAfter(method, "hasReferenced"));
                 if (joinQueryContext != null) {
                     joinQueryContext.setTargetJoinField(nodeType.getPropertyType(field).getReferenceValue());
                     joinQueryContext.setSourceJoinField("id");
                     context.addJoinQuery(joinQueryContext);
                 }
-            } else if (method.equals("referenceJoin")) {
+            } else if (method.startsWith("referenceJoin")) {
                 NodeType refNodeType = NodeUtils.getNodeType(nodeType.getPropertyType(field).getReferenceType());
-                QueryContext joinQueryContext = QueryContext.createQueryContextFromText(queryValue, refNodeType);
+                QueryContext joinQueryContext = QueryContext.createQueryContextFromText(queryValue, refNodeType, StringUtils.substringAfter(method, "referenceJoin"));
                 if (joinQueryContext != null) {
                     joinQueryContext.setTargetJoinField("id");
                     joinQueryContext.setSourceJoinField(field);
