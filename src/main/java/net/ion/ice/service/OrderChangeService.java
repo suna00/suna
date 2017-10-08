@@ -1,5 +1,6 @@
 package net.ion.ice.service;
 
+import com.hazelcast.util.JsonUtil;
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.json.JsonUtils;
@@ -38,7 +39,7 @@ public class OrderChangeService {
 /*  CANCEL
     {
         "memberNo": 88888,
-        "ordersheetId": "B20170927232008520250",
+        "orderSheetId": "B20170927232008520250",
         "orderChangeProduct": [
             {
                 "orderProductId": 39,
@@ -56,7 +57,8 @@ public class OrderChangeService {
         "refundAccount": {  //무통장입금
             "accountNo": "000-1123-121412",
             "bankName": "하나은행",
-            "accountOwner": "윤서눙"
+            "accountOwner": "윤서눙",
+            "myRefundAccountYn": true
         }
     }
 */
@@ -65,7 +67,7 @@ public class OrderChangeService {
 /*  RETURN
     {
         "memberNo": 88888,
-        "ordersheetId": "B20170927232008520250",
+        "orderSheetId": "B20170927232008520250",
         "orderChangeProduct": [
             {
                 "orderProductId": 39,
@@ -83,7 +85,8 @@ public class OrderChangeService {
         "refundAccount": {  //무통장입금
             "accountNo": "000-1123-121412",
             "bankName": "하나은행",
-            "accountOwner": "윤서눙"
+            "accountOwner": "윤서눙",
+            "myRefundAccountYn": true
         },
         "recallType": "directly",   //request 방문회수요청(회수배송비+반품배송비), directly 고객직접발송(반품배송비), already 고객발송완료(반품배송비)
         "trackingNo": "1234",
@@ -104,7 +107,7 @@ public class OrderChangeService {
 /*  EXCHANGE
     {
         "memberNo": 88888,
-        "ordersheetId": "B20170927232008520250",
+        "orderSheetId": "B20170927232008520250",
         "orderChangeProduct": [
             {
                 "orderProductId": 39,
@@ -221,10 +224,13 @@ public class OrderChangeService {
         return "vendor";
     }
 
+    /*
+        취소신청
+    */
     public ExecuteContext requestCancel(ExecuteContext context) throws IOException {
         Map<String, Object> data = context.getData();
 
-        String[] params = { "memberNo", "ordersheetId","orderChangeProduct" };
+        String[] params = { "orderSheetId","orderChangeProduct" };
         if (CommonService.requiredParams(context, data, params)) return context;
 
         if(!isRequestPossible(data, CANCEL)){
@@ -233,26 +239,46 @@ public class OrderChangeService {
         }
 
         if("part".equals(getChangeRange(data))){
-            if(!isPartChangePossible(data.get("ordersheetId").toString())){
+            if(!isPartChangePossible(JsonUtils.getStringValue(data, "orderSheetId"))){
                 context.setResult(CommonService.getResult("M0003"));
                 return context;
             }
-
-            if("추가배송비발생".equals("")){
-                //읭?
-            }
         }
 
-        data.put("changeType", CANCEL);
-        data.put("orderStatus", "order008");    //취소신청
-        createOrderChange(data);
+        Map<String, Object> result = calculateRefundablePrice(data);
+        Map<String, Object> map = (Map<String, Object>) result.get("willBeRefundedItem");
+        map.put("changeType", CANCEL);
+        map.put("orderStatus", "order008");    //취소신청
 
+        Map<String, Object> orderChangeNode = createOrderChange(map);
+
+        Map<String, Object> restMap = (Map<String, Object>) result.get("restItem");
+        Map<String, Object> restDeliveryPriceList = (Map<String, Object>) restMap.get("restDeliveryPriceList");
+//        deliveryService.makeDeliveryPrice(JsonUtils.getStringValue(data, "orderSheetId"), restDeliveryPriceList);
+
+        Map<String, Object> item = new LinkedHashMap<>();
+        item.put("item", orderChangeNode);
+        context.setResult(item);
         return context;
     }
 
+
+    /*
+        취소완료
+    */
+    public ExecuteContext completeCancel(ExecuteContext context) throws IOException {
+        //  Update orderSheet
+        //  updateOrderProduct(map, JsonUtils.getStringValue(willBeRefundedItem, "changeType"), JsonUtils.getStringValue(willBeRefundedItem, "orderStatus"));
+        //  deliveryService.makeDeliveryPrice(JsonUtils.getStringValue(data, "orderSheetId"), restDeliveryPriceList);
+
+        return context;
+    }
+    /*
+        교환신청
+    */
     public ExecuteContext requestExchange(ExecuteContext context) throws IOException {
         Map<String, Object> data = context.getData();
-        String[] params = { "memberNo", "ordersheetId","orderChangeProduct" };
+        String[] params = { "orderSheetId","orderChangeProduct" };
         if (CommonService.requiredParams(context, data, params)) return context;
         if(!isRequestPossible(data, EXCHANGE)){
             context.setResult(CommonService.getResult("M0005"));
@@ -261,15 +287,19 @@ public class OrderChangeService {
 
         data.put("changeType", EXCHANGE);
         data.put("orderStatus", "order010");    //교환요청
-        String orderChangeId = createOrderChange(data);
-        createDeliveryAddress(data, orderChangeId);
+
+        Map<String, Object> orderChangeNode = createOrderChange(data);
+        createDeliveryAddress(data, JsonUtils.getStringValue(orderChangeNode, "orderChangeId"));
 
         return context;
     }
 
+    /*
+        반품신청
+    */
     public ExecuteContext requestReturn(ExecuteContext context) throws IOException {
         Map<String, Object> data = context.getData();
-        String[] params = { "memberNo", "ordersheetId","orderChangeProduct" };
+        String[] params = { "orderSheetId","orderChangeProduct" };
         if (CommonService.requiredParams(context, data, params)) return context;
         if(!isRequestPossible(data, RETURN)){
             context.setResult(CommonService.getResult("M0006"));
@@ -277,7 +307,7 @@ public class OrderChangeService {
         }
 
         if("part".equals(getChangeRange(data))){
-            if(!isPartChangePossible(data.get("ordersheetId").toString())){
+            if(!isPartChangePossible(data.get("orderSheetId").toString())){
                 context.setResult(CommonService.getResult("M0003"));
                 return context;
             }
@@ -285,8 +315,8 @@ public class OrderChangeService {
         }
         data.put("changeType", RETURN);
         data.put("orderStatus", "order017");    //반품요청
-        String orderChangeId = createOrderChange(data);
-        createDeliveryAddress(data, orderChangeId);
+        Map<String, Object> orderChangeNode = createOrderChange(data);
+        createDeliveryAddress(data, JsonUtils.getStringValue(orderChangeNode, "orderChangeId"));
 
         return context;
     }
@@ -294,28 +324,26 @@ public class OrderChangeService {
 
     public void updateOrderProduct(Map<String, Object> map, String changeType, String orderStatus){
         Node node = NodeUtils.getNode(orderProduct, map.get("orderProductId").toString());
-        Integer quantity = Integer.parseInt(node.get("quantity").toString());
-        Integer changeQuantity = Integer.parseInt(map.get("quantity").toString());
+        Integer quantity = JsonUtils.getIntValue(node, "quantity");
+        Integer changeQuantity = JsonUtils.getIntValue(map, "quantity");
 
         if(quantity.equals(changeQuantity)){
             node.put("quantity", 0);
             node.put("orderPrice", 0);
+            node.put("couponDiscountPrice", 0);
             node.put("orderStatus", orderStatus);    //(마이페이지 주문배송조회 40 : 통합관리자에 노출되고 취소 최종 승인 받게 되어있음.. 읭? 바로 취소완료아닝가..)
-//            nodeService.executeNode(node, orderProduct, CommonService.UPDATE);
+            nodeService.executeNode(node, orderProduct, CommonService.UPDATE);
 
         }else if(quantity > changeQuantity){
             // 주문상품의 수량 부분 취소/교환/반품
-            Integer productPrice = Integer.parseInt(node.get("productPrice").toString());
-            Integer totalAddOptionPrice = Integer.parseInt(node.get("totalAddOptionPrice").toString());
+            double productPrice = JsonUtils.getDoubleValue(node, "productPrice");
+            double totalAddOptionPrice = JsonUtils.getDoubleValue(node, "totalAddOptionPrice");
+            double couponDiscountPrice = JsonUtils.getDoubleValue(node, "couponDiscountPrice");
 
             node.put("quantity", quantity - changeQuantity);
             node.put("orderPrice", (productPrice * (quantity - changeQuantity)) + totalAddOptionPrice);
-//            nodeService.executeNode(node, orderProduct, CommonService.UPDATE);
-
-            // 추가배송비 발생 여부 체크
-            if(true){
-
-            }
+//            node.put("paymentPrice", (productPrice * (quantity - changeQuantity)) + totalAddOptionPrice - couponDiscountPrice);
+            nodeService.executeNode(node, orderProduct, CommonService.UPDATE);
 
         }else{
             //error
@@ -323,28 +351,67 @@ public class OrderChangeService {
 
     }
 
-    // orderchangedeliveryprice 교환배송비 발생때만 생길듯.. 송장이 붙어있자나. 부분취소로 추가배송비 붙는거는 orderdeliveryprice 에 넣어야하나......하아...
+    // orderchangedeliveryprice 교환배송비 발생때만 생길듯.. 송장이 붙어있자나
 
-    private String createOrderChange(Map<String, Object> data) throws IOException {
-        Map<String, Object> item = new LinkedHashMap<>(data);
-//        item.putAll(calculateRefundPrice(data));
-        Node node = (Node) nodeService.executeNode(item, orderChange, CommonService.CREATE);
-        item.put("orderChangeId", node.getId());
+    private Map<String, Object> createOrderChange(Map<String, Object> willBeRefundedItem) throws IOException {
+        Map<String, Object> m = new LinkedHashMap<>();
+        m.put("orderSheetId", JsonUtils.getStringValue(willBeRefundedItem, "orderSheetId"));
+        m.put("memberNo", JsonUtils.getStringValue(willBeRefundedItem, "memberNo"));
+        m.put("changeType", JsonUtils.getStringValue(willBeRefundedItem, "changeType"));
+        m.put("cancelOrderPrice", JsonUtils.getDoubleValue(willBeRefundedItem, "cancelOrderPrice"));
+        m.put("cancelProductPrice", JsonUtils.getDoubleValue(willBeRefundedItem, "cancelProductPrice"));
+        m.put("cancelDeliveryPrice", JsonUtils.getDoubleValue(willBeRefundedItem, "cancelDeliveryPrice"));
+        m.put("deductPrice", JsonUtils.getDoubleValue(willBeRefundedItem, "deductPrice"));
+        m.put("addDeliveryPrice", JsonUtils.getDoubleValue(willBeRefundedItem, "addDeliveryPrice"));
+        m.put("refundPrice", JsonUtils.getDoubleValue(willBeRefundedItem, "refundPrice"));
+        m.put("refundWelfarePoint", JsonUtils.getDoubleValue(willBeRefundedItem, "refundWelfarePoint"));
+        m.put("refundYPoint", JsonUtils.getDoubleValue(willBeRefundedItem, "refundYPoint"));
+        m.put("refundPaymentPrice", JsonUtils.getDoubleValue(willBeRefundedItem, "refundPaymentPrice"));
+        m.put("recallType", JsonUtils.getStringValue(willBeRefundedItem, "recallType"));
+        m.put("trackingNo", JsonUtils.getStringValue(willBeRefundedItem, "trackingNo"));
+        m.put("deliveryEnterpriseId", JsonUtils.getStringValue(willBeRefundedItem, "deliveryEnterpriseId"));
+        m.put("exchangeAgreeYn", JsonUtils.getStringValue(willBeRefundedItem, "exchangeAgreeYn"));
 
-        for(Map<String, Object> map : JsonUtils.parsingJsonToList(item.get("orderChangeProduct").toString())){
-            createOrderChangeProduct(item, map);
-            updateOrderProduct(map, data.get("changeType").toString(), data.get("orderStatus").toString());
+        Node node = (Node) nodeService.executeNode(m, orderChange, CommonService.CREATE);
+        m.put("orderChangeId", node.getId());
 
+        Map<String, Object> orderChangeProductList = (Map<String, Object>) willBeRefundedItem.get("orderChangeDeliveryList");
+        List<Map<String, Object>> tempList = new ArrayList<>();
+        for(String key : orderChangeProductList.keySet()){
+            for(Map<String, Object> map : (List<Map<String, Object>>) orderChangeProductList.get(key)){
+                tempList.add(createOrderChangeProduct(m, map));
+//                updateOrderProduct(map, JsonUtils.getStringValue(willBeRefundedItem, "changeType"), JsonUtils.getStringValue(willBeRefundedItem, "orderStatus"));
+            }
         }
-        return node.getId();
+        //update orderSheet
+
+        m.put("orderChangeProduct", tempList);
+        return m;
     }
 
-    private void createOrderChangeProduct(Map<String, Object> item, Map<String, Object> map) {
-        Map<String, Object> m = new LinkedHashMap<>(item);
-        m.putAll(map);
-        Node product = NodeUtils.getNode("product", map.get("productId").toString());
-        m.put("vendorId", product.get("vendorId"));
-        nodeService.executeNode(CommonService.resetMap(m), orderChangeProduct, CommonService.CREATE);
+    private Map<String, Object> createOrderChangeProduct(Map<String, Object> orderChange, Map<String, Object> map) {
+        Map<String, Object> m = new LinkedHashMap<>();
+        m.put("orderChangeId", JsonUtils.getStringValue(orderChange, "orderChangeId"));
+        m.put("orderSheetId", JsonUtils.getStringValue(orderChange, "orderSheetId"));
+        m.put("orderProductId", JsonUtils.getIntValue(map, "orderProductId"));
+        m.put("productId", JsonUtils.getIntValue(map, "productId"));
+        m.put("baseOptionItemId", JsonUtils.getIntValue(map, "baseOptionItemId"));
+        m.put("baseOptionItemName", JsonUtils.getStringValue(map, "baseOptionItemName"));
+        m.put("quantity", JsonUtils.getIntValue(map, "quantity"));
+        m.put("salePrice", JsonUtils.getDoubleValue(map, "salePrice"));
+        m.put("baseAddPrice", JsonUtils.getDoubleValue(map, "baseAddPrice"));
+        m.put("productPrice", JsonUtils.getDoubleValue(map, "productPrice"));
+        m.put("totalAddOptionPrice", JsonUtils.getDoubleValue(map, "totalAddOptionPrice"));
+        m.put("orderPrice", JsonUtils.getDoubleValue(map, "orderPrice"));
+        m.put("paymentPrice", JsonUtils.getDoubleValue(map, "paymentPrice"));
+        m.put("couponId", JsonUtils.getIntValue(map, "couponId"));
+        m.put("couponDiscountPrice", JsonUtils.getDoubleValue(map, "couponDiscountPrice"));
+        m.put("changeType", JsonUtils.getStringValue(map, "changeType"));
+        m.put("changeReasonType", JsonUtils.getStringValue(map, "changeReasonType"));
+        m.put("reason", JsonUtils.getStringValue(map, "reason"));
+        m.put("exchangeOption", JsonUtils.getStringValue(map, "exchangeOption"));
+        m.put("vendorId", JsonUtils.getStringValue(map, "product.vendorId"));
+        return (Map<String, Object>) nodeService.executeNode(m, orderChangeProduct, CommonService.CREATE);
     }
 
 
@@ -359,7 +426,7 @@ public class OrderChangeService {
     }
 
     //취소신청 : 취소상품 선택 수량 변경 Event
-    public ExecuteContext refundablePrice(ExecuteContext context) throws IOException {
+    public ExecuteContext getRefundablePrice(ExecuteContext context) throws IOException {
         Map<String, Object> data = context.getData();
         String[] params = { "memberNo", "orderSheetId","orderChangeProduct" };
         if (CommonService.requiredParams(context, data, params)) return context;
@@ -367,16 +434,23 @@ public class OrderChangeService {
             context.setResult(CommonService.getResult("M0003"));
             return context;
         }
+        Map<String, Object> result = calculateRefundablePrice(data);
 
+        context.setResult(result);
+        return context;
+    }
 
+    public Map<String, Object> calculateRefundablePrice(Map<String, Object> data) throws IOException {
+        //주문서정보
         Map<String, Object> orderSheetNode = NodeUtils.getNode("orderSheet", data.get("orderSheetId").toString());
         List<Map<String, Object>> orderProducts = nodeBindingService.list("orderProduct", "sorting=created&orderSheetId_equals=" + data.get("orderSheetId"));
         List<Map<String, Object>> orderProductItems = nodeBindingService.list("orderProductItem", "sorting=created&orderSheetId_equals=" + data.get("orderSheetId"));
 
+        //주문변경 신청 상품리스트
         List<Map<String, Object>> orderChangeProducts = JsonUtils.parsingJsonToList(data.get("orderChangeProduct").toString());
 
-        List<Map<String, Object>> orderChangeProductList = changeProductList(orderProducts, orderProductItems, orderChangeProducts); // 취소할 상품
-        List<Map<String, Object>> orderRestProductList = restProductList(orderProducts, orderProductItems, orderChangeProducts);    //취소하고 남을 상품
+        List<Map<String, Object>> orderChangeProductList = changeProductList(orderProducts, orderProductItems, orderChangeProducts); // 변경할 상품
+        List<Map<String, Object>> orderRestProductList = restProductList(orderProducts, orderProductItems, orderChangeProducts);    //변경하고 남을 상품
 
         List<Map<String, Object>> deliveryProductList = deliveryService.makeDeliveryData(orderChangeProductList, "order") ;
         Map<String, Object> deliveryPriceList = deliveryService.calculateDeliveryPrice(deliveryProductList, "order") ;
@@ -388,6 +462,7 @@ public class OrderChangeService {
         double cancelOrderPrice = 0;
         double cancelProductPrice = 0;
         double cancelDeliveryPrice = 0;
+        double cancelDiscountPrice = 0;
         double totalRestDeliveryPrice = 0;
         double deductPrice = 0;
         double addDeliveryPrice = 0;
@@ -395,10 +470,19 @@ public class OrderChangeService {
         double refundPaymentPrice = 0;
         double refundYPoint = 0;
         double refundWelfarepoint = 0;
+
+        Map<String, Double> orderChangeProducsDeliveryPrice = new HashMap<>();  //변경신청할 상품의 기존 배송비 distinct
+        for(Map<String, Object> map : orderChangeProducts){
+            Map<String, Object> deliveryPriceMap = deliveryService.getOrderDeliveryPriceMap(JsonUtils.getStringValue(map, "orderProductId"));
+            orderChangeProducsDeliveryPrice.put(JsonUtils.getStringValue(deliveryPriceMap, "orderDeliveryPriceId"), JsonUtils.getDoubleValue(deliveryPriceMap, "deliveryPrice"));
+        }
+        for(String key : orderChangeProducsDeliveryPrice.keySet()){
+            cancelDeliveryPrice += orderChangeProducsDeliveryPrice.get(key);
+        }
+
         for(String key : deliveryPriceList.keySet()){
             for(Map<String, Object> map : (List<Map<String, Object>>) deliveryPriceList.get(key)){
                 cancelProductPrice += JsonUtils.getDoubleValue(map, "orderPrice");
-                cancelDeliveryPrice += JsonUtils.getDoubleValue(map, "deliveryPrice");
             }
         }
 
@@ -408,10 +492,11 @@ public class OrderChangeService {
             }
         }
 
-        cancelOrderPrice = cancelProductPrice + cancelDeliveryPrice - JsonUtils.getDoubleValue(orderSheetNode, "totalDiscountPrice");
-        addDeliveryPrice = (totalRestDeliveryPrice > JsonUtils.getDoubleValue(orderSheetNode, "totalDiscountPrice") ? totalRestDeliveryPrice - JsonUtils.getDoubleValue(orderSheetNode, "totalDiscountPrice") : 0) ;
+        //상품금액 합계+배송비 합계-할인금액합계(total이 아니고 취소대상의 할인금액) 수정필요
+        cancelOrderPrice = cancelProductPrice + cancelDeliveryPrice - cancelDiscountPrice; //JsonUtils.getDoubleValue(orderSheetNode, "totalDiscountPrice");
+        addDeliveryPrice = (cancelDeliveryPrice + totalRestDeliveryPrice > JsonUtils.getDoubleValue(orderSheetNode, "totalDeliveryPrice") ? cancelDeliveryPrice + totalRestDeliveryPrice - JsonUtils.getDoubleValue(orderSheetNode, "totalDeliveryPrice") : 0);
         deductPrice = addDeliveryPrice;
-        refundPrice = cancelProductPrice - deductPrice ;
+        refundPrice = cancelOrderPrice - deductPrice ;
 
         double temp = refundPrice;
         double orderYPoint = JsonUtils.getDoubleValue(orderSheetNode, "totalYPoint");
@@ -420,46 +505,60 @@ public class OrderChangeService {
             temp = temp - orderYPoint;
             refundYPoint = orderYPoint;
         }else{
-            temp = 0;
             refundYPoint = temp;
+            temp = 0;
         }
 
         if(temp >= orderWelfarePoint){
             temp = temp - orderWelfarePoint;
             refundWelfarepoint = orderWelfarePoint;
         }else{
-            temp = 0;
             refundWelfarepoint = temp;
+            temp = 0;
         }
         refundPaymentPrice = temp;
 
-        Map<String, Object> item = new LinkedHashMap<>();
         Map<String, Object> result = new LinkedHashMap<>();
-        result.put("cancelOrderPrice", cancelOrderPrice);
-        result.put("cancelProductPrice", cancelProductPrice);
-        result.put("cancelDeliveryPrice", cancelDeliveryPrice);
-        result.put("deductPrice", deductPrice);
-        result.put("addDeliveryPrice", addDeliveryPrice);
-        result.put("refundPrice", refundPrice);
-        result.put("refundYPoint", refundYPoint);
-        result.put("refundWelfarepoint", refundWelfarepoint);
-        result.put("refundPaymentPrice", refundPaymentPrice);
+        Map<String, Object> item = new LinkedHashMap<>();
+        item.put("cancelOrderPrice", cancelOrderPrice);
+        item.put("cancelProductPrice", cancelProductPrice);
+        item.put("cancelDeliveryPrice", cancelDeliveryPrice);
+        item.put("deductPrice", deductPrice);
+        item.put("addDeliveryPrice", addDeliveryPrice);
+        item.put("refundPrice", refundPrice);
+        item.put("refundYPoint", refundYPoint);
+        item.put("refundWelfarepoint", refundWelfarepoint);
+        item.put("refundPaymentPrice", refundPaymentPrice);
+        item.put("orderSheetId", data.get("orderSheetId"));
+        item.put("memberNo", orderSheetNode.get("memberNo"));
+        item.put("orderChangeDeliveryList", deliveryPriceList);
 
 //        부분취소시 결제정보 :
         List<Map<String, Object>> list = nodeBindingService.list(payment, "orderSheetId_equals="+data.get("orderSheetId")+"&orderChangeId_equals=null");
         if(list.size() > 0){
-            result.put("payment", list.get(0));
+            item.put("payment", list.get(0));
         }
+
+        Map<String, Object> restItem = new LinkedHashMap<>();
+        restItem.put("totalProductPrice", JsonUtils.getDoubleValue(orderSheetNode, "totalProductPrice") - cancelProductPrice);
+        restItem.put("totalDeliveryPrice", JsonUtils.getDoubleValue(orderSheetNode, "totalDeliveryPrice") - cancelDeliveryPrice + addDeliveryPrice);
+        restItem.put("totalDiscountPrice", JsonUtils.getDoubleValue(orderSheetNode, "totalDiscountPrice") - cancelDiscountPrice);
+        restItem.put("totalOrderPrice", JsonUtils.getDoubleValue(orderSheetNode, "totalOrderPrice") - cancelOrderPrice);
+        restItem.put("totalPaymentPrice", JsonUtils.getDoubleValue(orderSheetNode, "totalPaymentPrice") - refundPaymentPrice);
+        restItem.put("couponDiscountPrice", JsonUtils.getDoubleValue(orderSheetNode, "couponDiscountPrice") - cancelDiscountPrice);
+        restItem.put("totalYPoint", JsonUtils.getDoubleValue(orderSheetNode, "totalYPoint") - refundYPoint);
+        restItem.put("totalWelfarePoint", JsonUtils.getDoubleValue(orderSheetNode, "totalWelfarePoint") - refundWelfarepoint);
+        restItem.put("restDeliveryPriceList", deliveryPriceListForRest);
+
 
         orderSheetNode.put("orderProduct", orderProducts);
 //        data.put("orderChangeProduct", JsonUtils.parsingJsonToList(data.get("orderChangeProduct").toString()));
 //        item.put("requestParams", data);
-        item.put("item", result);
-//        item.put("orderSheet", orderSheetNode);
-//        item.put("deliveryPriceList", deliveryPriceList);
-
-        context.setResult(item);
-        return context;
+        result.put("willBeRefundedItem", item);
+        result.put("restItem", restItem);
+        result.put("orderSheet", orderSheetNode);
+//        result.put("deliveryPriceList", deliveryPriceList);
+        return result;
     }
 
     private List<Map<String, Object>> changeProductList(List<Map<String, Object>> orderProducts, List<Map<String, Object>> orderProductItems, List<Map<String, Object>> orderChangeProducts) {
@@ -514,7 +613,7 @@ public class OrderChangeService {
                 }
             }
 
-            if(!exist){
+            if(!exist && JsonUtils.getIntValue(orderProduct, "quantity") > 0){
                 orderRestProductList.add(orderProduct);
             }
         }

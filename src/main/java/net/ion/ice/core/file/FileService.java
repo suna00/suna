@@ -2,10 +2,11 @@ package net.ion.ice.core.file;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.ion.ice.ApplicationContextManager;
-import net.ion.ice.core.infinispan.InfinispanRepositoryService;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.PropertyType;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Service("fileService")
 public class FileService {
+    private static Logger logger = LoggerFactory.getLogger(FileService.class);
+
 
     @Autowired
     private NodeService nodeService ;
@@ -35,8 +38,14 @@ public class FileService {
 
 
     public FileValue saveMultipartFile(PropertyType pt, String id, MultipartFile multipartFile) {
-        FileRepository repository = getFileRepository(pt.getFileHandler()) ;
-        return repository.saveMutipartFile(pt, id, multipartFile) ;
+        logger.info("Save Multipart File : property = {}, id = {}, param = {}, file = {} ", pt.getPid(), id, multipartFile.getName(), multipartFile.getOriginalFilename());
+        try {
+            FileRepository repository = getFileRepository(pt.getFileHandler());
+            return repository.saveMutipartFile(pt, id, multipartFile);
+        }catch(Exception e){
+            logger.error("Multipart File save error : property = {}, param = {}, file = {}, error : {}", pt.getPid(), multipartFile.getName(), multipartFile.getOriginalFilename(), e.getMessage());
+            throw e ;
+        }
     }
 
     public FileValue saveFile(PropertyType pt, String id, File file, String fileName, String contentType) {
