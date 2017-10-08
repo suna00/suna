@@ -1281,7 +1281,7 @@
     "backOfficeId": "admin",
     "gnbMenuId": "webSvcMng",
     "parentMenuId": "root",
-    "menuId": " airMng",
+    "menuId": "airMng",
     "menuName": "On-Air 관리",
     "order": "80",
     "icon": "fa-tag",
