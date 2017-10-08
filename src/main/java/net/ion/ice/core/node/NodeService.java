@@ -16,7 +16,6 @@ import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.QueryTerm;
 import net.ion.ice.core.query.SimpleQueryResult;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.lucene.document.DateTools;
 import org.apache.lucene.search.SortField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -135,7 +134,7 @@ public class NodeService {
 
 
     public List<Node> getNodeList(String typeId, String searchText) {
-        QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, getNodeType(typeId)) ;
+        QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, getNodeType(typeId), null) ;
         return infinispanRepositoryService.getSubQueryNodes(typeId, queryContext) ;
     }
 
