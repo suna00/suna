@@ -82,18 +82,18 @@ public class OrderChangeService {
                 "changeReasonType": "cancel001"
             }
         ],
-        "refundAccount": {  //무통장입금
+        "refundAccount": {
             "accountNo": "000-1123-121412",
             "bankName": "하나은행",
             "accountOwner": "윤서눙",
             "myRefundAccountYn": true
         },
-        "recallType": "directly",   //request 방문회수요청(회수배송비+반품배송비), directly 고객직접발송(반품배송비), already 고객발송완료(반품배송비)
+        "recallType": "request",   //request 방문회수요청(회수배송비+반품배송비), directly 고객직접발송(반품배송비), already 고객발송완료(반품배송비)
         "trackingNo": "1234",
         "deliveryEnterpriseId": "6",
         "delivery": [
             {
-                "deliveryType": "recallAddress",    //회수지 recallAddress,  반품지 returnAddress
+                "deliveryType": "recallAddress",
                 "recipient": "윤서눙",
                 "cellphone": "011-011-011",
                 "phone": "02-299-1234",
@@ -135,7 +135,7 @@ public class OrderChangeService {
                 "address": "서울시 강남구 역삼동 823-39 아이온 빌딩 4"
             },
             {
-                "deliveryType": "deliveryAddress",    //배송지 deliveryAddress
+                "deliveryType": "exchangeAddress",    //교환배송지
                 "recipient": "윤서눙",
                 "cellphone": "011-011-011",
                 "phone": "02-299-1234",
@@ -155,8 +155,16 @@ public class OrderChangeService {
 
             if("exchange".equals(changeType) || "return".equals(changeType)){
                 Node product = NodeUtils.getNode("product", map.get("productId").toString());
-                // LG삼성 직배송, SMS = 교환 반품 불가
-                if("delivery".equals(product.get("sms")) || "delivery".equals(product.get("lg")) || "delivery".equals(product.get("samsung"))) return false;
+                /*
+                 * LG삼성 직배송, SMS = 교환 반품 불가
+                    문자발송 : sms
+                    LG배송 : lg
+                    삼성배송 : samsung
+                    업체택배 : delivery
+                */
+
+                String deliveryMethod = JsonUtils.getStringValue(product, "deliveryMethod");
+                if("deliveryMethod>sms".equals(deliveryMethod) || "deliveryMethod>lg".equals(deliveryMethod) || "deliveryMethod>samsung".equals(deliveryMethod)) return false;
 
                 //order005	배송중 / order006	배송완료 / order007	구매확정
                 if(!("order005".equals(orderProduct.get("orderStatus"))
@@ -197,11 +205,12 @@ public class OrderChangeService {
     }
 
     // 부분취소/부분반품 가능여부
-    public boolean isPartChangePossible(String orderSheetId){
-        List<Map<String, Object>> list = nodeBindingService.list(payment, "ordrIdxx_equals=" + orderSheetId);
+    public boolean isPartChangePossible(Map<String, Object> data){
+        List<Map<String, Object>> list = nodeBindingService.list(payment, "ordrIdxx_equals=" + JsonUtils.getStringValue(data, "orderSheetId"));
         if(list.size() > 0){
             for(Map<String, Object> map : list){
                 String usePayMethod = map.get("usePayMethod").toString();
+                data.put("usePayMethod", usePayMethod);
                 //계좌이체 : 010000000000
                 //무통장입금 가상계좌 : 001000000000
                 if("010000000000".equals(usePayMethod) || "001000000000".equals(usePayMethod))return false;
@@ -224,6 +233,23 @@ public class OrderChangeService {
         return "vendor";
     }
 
+
+    // 환불계좌
+    public Map<String, Object> myRefundAccount(Map<String, Object> data) {
+        Map<String, Object> refundAccount = (Map<String, Object>) data.get("refundAccount");
+        if(JsonUtils.getBooleanValue(refundAccount, "myRefundAccountYn") && data.get("memberNo") != null){
+            Node my = null;
+            List<Node> list = nodeService.getNodeList("myRefundAccount", "memberNo_matching=" + JsonUtils.getStringValue(data, "memberNo"));
+            if(list.size() > 0){
+                my = list.get(0);
+            }
+            my.putAll(refundAccount);
+            nodeService.executeNode(my, orderProduct, CommonService.SAVE);
+        }
+
+        return refundAccount;
+    }
+
     /*
         취소신청
     */
@@ -239,14 +265,22 @@ public class OrderChangeService {
         }
 
         if("part".equals(getChangeRange(data))){
-            if(!isPartChangePossible(JsonUtils.getStringValue(data, "orderSheetId"))){
+            if(!isPartChangePossible(data)){
                 context.setResult(CommonService.getResult("M0003"));
                 return context;
             }
         }
+        Map<String, Object> map = new LinkedHashMap<>();
+        if("010000000000".equals(JsonUtils.getStringValue(data, "usePayMethod")) || "001000000000".equals(JsonUtils.getStringValue(data, "usePayMethod"))) {
+            if (data.get("refundAccount") == null) {
+                context.setResult(CommonService.getResult("M0009"));
+                return context;
+            }
+            map.putAll(myRefundAccount(data));
+        }
 
         Map<String, Object> result = calculateRefundablePrice(data);
-        Map<String, Object> map = (Map<String, Object>) result.get("willBeRefundedItem");
+        map.putAll((Map<String, Object>) result.get("willBeRefundedItem"));
         map.put("changeType", CANCEL);
         map.put("orderStatus", "order008");    //취소신청
 
@@ -261,7 +295,6 @@ public class OrderChangeService {
         context.setResult(item);
         return context;
     }
-
 
     /*
         취소완료
@@ -285,12 +318,22 @@ public class OrderChangeService {
             return context;
         }
 
-        data.put("changeType", EXCHANGE);
-        data.put("orderStatus", "order010");    //교환요청
+        Map<String, Object> map = new LinkedHashMap<>();
+        Map<String, Object> result = calculateRefundablePrice(data);
+        map.putAll((Map<String, Object>) result.get("willBeRefundedItem"));
+        map.put("changeType", EXCHANGE);
+        map.put("orderStatus", "order010");    //교환요청
+        map.put("recallType", JsonUtils.getStringValue(data, "recallType"));
+        map.put("trackingNo", JsonUtils.getStringValue(data, "trackingNo"));
+        map.put("deliveryEnterpriseId", JsonUtils.getStringValue(data, "deliveryEnterpriseId"));
+        map.put("exchangeReturnAgreeYn", JsonUtils.getStringValue(data, "exchangeReturnAgreeYn"));
 
-        Map<String, Object> orderChangeNode = createOrderChange(data);
+        Map<String, Object> orderChangeNode = createOrderChange(map);
         createDeliveryAddress(data, JsonUtils.getStringValue(orderChangeNode, "orderChangeId"));
 
+        Map<String, Object> item = new LinkedHashMap<>();
+        item.put("item", orderChangeNode);
+        context.setResult(item);
         return context;
     }
 
@@ -307,17 +350,37 @@ public class OrderChangeService {
         }
 
         if("part".equals(getChangeRange(data))){
-            if(!isPartChangePossible(data.get("orderSheetId").toString())){
+            if(!isPartChangePossible(data)){
                 context.setResult(CommonService.getResult("M0003"));
                 return context;
             }
 
         }
-        data.put("changeType", RETURN);
-        data.put("orderStatus", "order017");    //반품요청
-        Map<String, Object> orderChangeNode = createOrderChange(data);
+
+        Map<String, Object> map = new LinkedHashMap<>();
+        if("010000000000".equals(JsonUtils.getStringValue(data, "usePayMethod")) || "001000000000".equals(JsonUtils.getStringValue(data, "usePayMethod"))) {
+            if (data.get("refundAccount") == null) {
+                context.setResult(CommonService.getResult("M0009"));
+                return context;
+            }
+            map.putAll(myRefundAccount(data));
+        }
+
+        Map<String, Object> result = calculateRefundablePrice(data);
+        map.putAll((Map<String, Object>) result.get("willBeRefundedItem"));
+        map.put("changeType", RETURN);
+        map.put("orderStatus", "order017");    //반품요청
+        map.put("recallType", JsonUtils.getStringValue(data, "recallType"));
+        map.put("trackingNo", JsonUtils.getStringValue(data, "trackingNo"));
+        map.put("deliveryEnterpriseId", JsonUtils.getStringValue(data, "deliveryEnterpriseId"));
+        map.put("exchangeReturnAgreeYn", JsonUtils.getStringValue(data, "exchangeReturnAgreeYn"));
+
+        Map<String, Object> orderChangeNode = createOrderChange(map);
         createDeliveryAddress(data, JsonUtils.getStringValue(orderChangeNode, "orderChangeId"));
 
+        Map<String, Object> item = new LinkedHashMap<>();
+        item.put("item", orderChangeNode);
+        context.setResult(item);
         return context;
     }
 
@@ -370,7 +433,7 @@ public class OrderChangeService {
         m.put("recallType", JsonUtils.getStringValue(willBeRefundedItem, "recallType"));
         m.put("trackingNo", JsonUtils.getStringValue(willBeRefundedItem, "trackingNo"));
         m.put("deliveryEnterpriseId", JsonUtils.getStringValue(willBeRefundedItem, "deliveryEnterpriseId"));
-        m.put("exchangeAgreeYn", JsonUtils.getStringValue(willBeRefundedItem, "exchangeAgreeYn"));
+        m.put("exchangeReturnAgreeYn", JsonUtils.getStringValue(willBeRefundedItem, "exchangeReturnAgreeYn"));
 
         Node node = (Node) nodeService.executeNode(m, orderChange, CommonService.CREATE);
         m.put("orderChangeId", node.getId());
@@ -430,7 +493,7 @@ public class OrderChangeService {
         Map<String, Object> data = context.getData();
         String[] params = { "memberNo", "orderSheetId","orderChangeProduct" };
         if (CommonService.requiredParams(context, data, params)) return context;
-        if(!isPartChangePossible(data.get("orderSheetId").toString())){
+        if(!isPartChangePossible(data)){
             context.setResult(CommonService.getResult("M0003"));
             return context;
         }
