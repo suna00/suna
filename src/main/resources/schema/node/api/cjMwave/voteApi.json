@@ -663,7 +663,7 @@
               },
               {
                 "sorting": "rankNum",
-                "referenceView": "voteItemSeq"
+                "referenceView": "voteItemSeq,contsMetaId"
               }
             ],
             "response": {
@@ -1033,7 +1033,7 @@
             },
             {
               "sorting": "rankNum",
-              "referenceView": "voteItemSeq"
+              "referenceView": "voteItemSeq,contsMetaId"
             }
           ],
           "response": {
