@@ -21,72 +21,72 @@ public class DeliveryService {
     @Autowired
     private NodeService nodeService;
 
-    public void removeDeliveryPrice(String cartProductId) throws IOException {
-        Map<String, Object> result = getCartDeliveryPriceMap(cartProductId);
-        List<String> ids = new ArrayList<String>(Arrays.asList(result.get("cartProductIds").toString().split(",")));
+//    public void removeDeliveryPrice(String cartProductId) throws IOException {
+//        Map<String, Object> result = getCartDeliveryPriceMap(cartProductId);
+//        List<String> ids = new ArrayList<String>(Arrays.asList(result.get("cartProductIds").toString().split(",")));
+//
+//        if (ids.size() == 1) {
+//            nodeBindingService.delete(CartService.cartDeliveryPrice_TID, result.get("cartDeliveryPriceId").toString());
+//        } else {
+//            ids.remove(cartProductId);
+//            String cartProductIds = StringUtils.join(ids, ",");
+//            Integer deliveryPrice = calculateDeliveryPrice(cartProductIds);
+//            result.put("cartProductIds", cartProductIds);
+//            result.put("deliveryPriceType", (deliveryPrice > 0 ? "conditional" : "free"));
+//            result.put("deliveryPrice", deliveryPrice);
+//            CommonService.resetMap(result);
+//            nodeService.executeNode(result, CartService.cartDeliveryPrice_TID, CommonService.UPDATE);
+//        }
+//    }
 
-        if (ids.size() == 1) {
-            nodeBindingService.delete(CartService.cartDeliveryPrice_TID, result.get("cartDeliveryPriceId").toString());
-        } else {
-            ids.remove(cartProductId);
-            String cartProductIds = StringUtils.join(ids, ",");
-            Integer deliveryPrice = calculateDeliveryPrice(cartProductIds);
-            result.put("cartProductIds", cartProductIds);
-            result.put("deliveryPriceType", (deliveryPrice > 0 ? "conditional" : "free"));
-            result.put("deliveryPrice", deliveryPrice);
-            CommonService.resetMap(result);
-            nodeService.executeNode(result, CartService.cartDeliveryPrice_TID, CommonService.UPDATE);
-        }
-    }
+    public void deliverPrice(ExecuteContext context) {
 
-    public void deliverPrice(ExecuteContext context){
-
-        List<Map<String, Object>> changeList = new ArrayList<>() ;
+        List<Map<String, Object>> changeList = new ArrayList<>();
         List<Map<String, Object>> deliveryPriceList = new ArrayList<>();
         List<Map<String, Object>> cartProducts = nodeBindingService.list("cartProduct", "sorting=created&cartId_equals=" + context.getData().get("cartId"));
         List<Map<String, Object>> cartProductItems = nodeBindingService.list("cartProductItem", "sorting=created&cartId_equals=" + context.getData().get("cartId"));
         // cart 만들기
-        for(Map<String, Object> cartProduct : cartProducts){
-            Integer cartProductId = JsonUtils.getIntValue(cartProduct, "cartProductId") ;
-            List<Map<String, Object>> subCartProdductItems = new ArrayList<>() ;
-            for(Map<String, Object> cartProductItem : cartProductItems){
-                if(cartProductId == JsonUtils.getIntValue(cartProductItem, "cartProductId")){
-                    subCartProdductItems.add(cartProductItem) ;
+        for (Map<String, Object> cartProduct : cartProducts) {
+            Integer cartProductId = JsonUtils.getIntValue(cartProduct, "cartProductId");
+            List<Map<String, Object>> subCartProdductItems = new ArrayList<>();
+            for (Map<String, Object> cartProductItem : cartProductItems) {
+                if (cartProductId == JsonUtils.getIntValue(cartProductItem, "cartProductId")) {
+                    subCartProdductItems.add(cartProductItem);
                 }
             }
-            cartProduct.put("cartProductItem", subCartProdductItems) ;
+            cartProduct.put("cartProductItem", subCartProdductItems);
         }
 
 
-        for(Map<String, Object> changeItem : changeList){
+        for (Map<String, Object> changeItem : changeList) {
             String changeType = (String) changeItem.get("changeType");
-            if(changeType == null){
-                changeType = "update" ;
+            if (changeType == null) {
+                changeType = "update";
             }
 
-            switch(changeType){
-                case "add" :{
-                    cartProducts.add(changeItem) ;
+            switch (changeType) {
+                case "add": {
+                    cartProducts.add(changeItem);
                 }
-                case "udpate":{
-                    for(Map<String, Object> cartItem : cartProducts){
-                        if(cartItem.get("cartProductId").equals(changeItem.get("cartProductId"))){
+                case "udpate": {
+                    for (Map<String, Object> cartItem : cartProducts) {
+                        if (cartItem.get("cartProductId").equals(changeItem.get("cartProductId"))) {
                             cartItem.putAll(changeItem);
                         }
                     }
                 }
-                case "remove":{
-                    for(int i=0; i < cartProducts.size(); i++){
-                        Map<String, Object> cartItem = cartProducts.get(i) ;
-                        if(cartItem.get("cartProductId").equals(changeItem.get("cartProductId"))){
-                            cartProducts.remove(i) ;
+                case "remove": {
+                    for (int i = 0; i < cartProducts.size(); i++) {
+                        Map<String, Object> cartItem = cartProducts.get(i);
+                        if (cartItem.get("cartProductId").equals(changeItem.get("cartProductId"))) {
+                            cartProducts.remove(i);
                         }
                     }
                 }
             }
         }
 
-        calculateDeliveryPrice(cartProducts) ;
+        calculateDeliveryPrice(cartProducts, "cart") ;
 
     }
 
@@ -120,112 +120,108 @@ public class DeliveryService {
 */
 
 
-    public List<Map<String, Object>> makeDeliveryData(List<Map<String, Object>> cartProducts) {
-        for(Map<String, Object> cartProduct : cartProducts){
-            System.out.println(cartProduct) ;
-            double cartItemPrice = 0 ;
-            Node product = nodeService.getNode("product", cartProduct.get("productId").toString()) ;
-            cartProduct.put("product", product) ;
-            cartItemPrice = Double.parseDouble(product.getStringValue("salePrice")) ;
+    // type : cart, temporder, order(취소교환반품 신청)
+    public List<Map<String, Object>> makeDeliveryData(List<Map<String, Object>> list, String type) {
+        for(Map<String, Object> map : list){
+            System.out.println(map) ;
+            double productPrice = 0 ;
+            Node product = nodeService.getNode("product", map.get("productId").toString()) ;
+            map.put("product", product) ;
+            productPrice = Double.parseDouble(product.getStringValue("salePrice")) ;
 
             //salePrice, 배송정책
-            Node baseOptionItem =  nodeService.getNode("productOptionItem", cartProduct.get("baseOptionItemId").toString());
-            cartProduct.put("baseOptionItem", baseOptionItem) ;
+            Node baseOptionItem =  nodeService.getNode("productOptionItem", map.get("baseOptionItemId").toString());
+            map.put("baseOptionItem", baseOptionItem) ;
             //addOptionPrice
-            cartItemPrice += Double.parseDouble(baseOptionItem.getStringValue("addPrice")) ;
+            productPrice += Double.parseDouble(baseOptionItem.getStringValue("addPrice")) ;
 
-            double orderPrice = cartItemPrice * JsonUtils.getDoubleValue(cartProduct, "quantity") ;
+            double orderPrice = productPrice * JsonUtils.getDoubleValue(map, "quantity") ;
 
-            List<Map<String, Object>> cartProductItems = new ArrayList<>() ;
-            for(Map<String, Object> cartProductItem : (List<Map<String, Object>>) cartProduct.get("cartProductItem")){
-                Node addOptionItem =  nodeService.getNode("productOptionItem", cartProductItem.get("addOptionItemId").toString());
-                cartProductItems.add(addOptionItem) ;
-                orderPrice += JsonUtils.getDoubleValue(cartProductItem, "quantity") * Double.parseDouble(addOptionItem.getStringValue("addPrice"))  ;
+            List<Map<String, Object>> productItems = new ArrayList<>() ;
+            if(map.get(type+"ProductItem") != null){
+                for(Map<String, Object> productItem : (List<Map<String, Object>>) map.get(type+"ProductItem")){
+                    Node addOptionItem =  nodeService.getNode("productOptionItem", productItem.get("addOptionItemId").toString());
+                    productItems.add(addOptionItem) ;
+                    orderPrice += JsonUtils.getDoubleValue(productItem, "quantity") * Double.parseDouble(addOptionItem.getStringValue("addPrice"))  ;
+                }
             }
-            cartProduct.put("orderPrice", orderPrice) ;
-            cartProduct.put("cartProductItems", cartProductItems) ;
+            map.put("orderPrice", orderPrice) ;
+            map.put(type+"ProductItems", productItems) ;
         }
 
-        return cartProducts ;
-//        calculateDeliveryPrice(cartProducts);
+        return list ;
     }
 
-    //    deliveryMethod
-//            deliveryPriceType
-//    deliveryPrice
-//            deliveryConditionValue
-//    bundleDeliveryYn
-//            cashOnDeliveryYn
-//    deliveryDateType
-//            hopeDeliveryPossiblePeriod
-//    scheduledDeliveryDate
-
-    public Map<String, Object> calculateDeliveryPrice(List<Map<String, Object>> cartProducts) {
+    // type : cart, temporder, order(취소교환반품 신청)
+    public Map<String, Object> calculateDeliveryPrice(List<Map<String, Object>> list, String type) {
         Map<String, Object> vendors = new LinkedHashMap<>() ;
-        for(Map<String, Object> cartProduct : cartProducts){
-            String vendorId = JsonUtils.getStringValue(cartProduct, "product.vendorId") ;
+        for(Map<String, Object> map : list){
+            String vendorId = JsonUtils.getStringValue(map, "product.vendorId") ;
             if(!vendors.containsKey(vendorId)){
-                List<Map<String, Object>> vendorCartProducts = new ArrayList<>() ;
-                vendors.put(vendorId, vendorCartProducts) ;
+                List<Map<String, Object>> vendorProducts = new ArrayList<>() ;
+                vendors.put(vendorId, vendorProducts) ;
             }
-            ((List<Map<String, Object>>)vendors.get(vendorId)).add(cartProduct) ;
+            ((List<Map<String, Object>>)vendors.get(vendorId)).add(map) ;
         }
 
-        int deliverySeq = 0 ;
+        int deliverySeq = 0;
 
-        for(Object vendor : vendors.values()){
+        for (Object vendor : vendors.values()) {
             List<Map<String, Object>> soldoutProducts = makeCondtionalList((List<Map<String, Object>>) vendor, "baseOptionItem.stockQuantity", "0");
-            for(Map<String, Object> soldoutProduct: soldoutProducts) {
-                soldoutProduct.put("soldout", true) ;
+            for (Map<String, Object> soldoutProduct : soldoutProducts) {
+                soldoutProduct.put("soldout", true);
             }
             List<Map<String, Object>> productEndProducts = makeNotCondtionalList((List<Map<String, Object>>) vendor, "product.productStatus", "y");
-            for(Map<String, Object> productEndProduct: productEndProducts) {
-                productEndProduct.put("soldout", true) ;
+            for (Map<String, Object> productEndProduct : productEndProducts) {
+                productEndProduct.put("soldout", true);
             }
             List<Map<String, Object>> saleEndProducts = makeNotCondtionalList((List<Map<String, Object>>) vendor, "product.saleStatus", "sale");
-            for(Map<String, Object> saleEndProduct: saleEndProducts) {
-                saleEndProduct.put("soldout", true) ;
+            for (Map<String, Object> saleEndProduct : saleEndProducts) {
+                saleEndProduct.put("soldout", true);
             }
 
             List<Map<String, Object>> bundleDeliveryProducts = makeCondtionalList((List<Map<String, Object>>) vendor, "product.bundleDeliveryYn", "y");
             List<Map<String, Object>> notBundleDeliveryProducts = makeCondtionalList((List<Map<String, Object>>) vendor, "product.bundleDeliveryYn", "n");
 
+            List<Map<String, Object>> quantityBundleDeliveryProducts = makeCondtionalList(bundleDeliveryProducts, "product.deliveryPriceType", "quantity");
             List<Map<String, Object>> freeBundleDeliveryProducts = makeCondtionalList(bundleDeliveryProducts, "product.deliveryPriceType", "free");
-            List<Map<String, Object>> condtionalBundleDeliveryProducts = makeCondtionalList(bundleDeliveryProducts, "product.deliveryPriceType", "conditional");
-            if(freeBundleDeliveryProducts.size() > 0){
-                freeBundleDeliveryProducts.addAll(condtionalBundleDeliveryProducts) ;
-                condtionalBundleDeliveryProducts = new ArrayList<>() ;
-                deliverySeq++ ;
-                for(Map<String, Object> freeBundleDeliveryProduct : freeBundleDeliveryProducts) {
-                    freeBundleDeliveryProduct.put("deliveryPrice", 0) ;
-                    freeBundleDeliveryProduct.put("deliverySeq", deliverySeq) ;
+            List<Map<String, Object>> conditionalBundleDeliveryProducts = makeCondtionalList(bundleDeliveryProducts, "product.deliveryPriceType", "conditional");
+
+
+            if (freeBundleDeliveryProducts.size() > 0) {
+                freeBundleDeliveryProducts.addAll(conditionalBundleDeliveryProducts);
+                conditionalBundleDeliveryProducts = new ArrayList<>();
+                deliverySeq++;
+                for (Map<String, Object> freeBundleDeliveryProduct : freeBundleDeliveryProducts) {
+                    freeBundleDeliveryProduct.put("deliveryPrice", 0);
+                    freeBundleDeliveryProduct.put("deliverySeq", deliverySeq);
                 }
-            }else{
-                double bundleOrderPrice = 0 ;
-                for(Map<String, Object> condtionalBundleDeliveryProduct : condtionalBundleDeliveryProducts){
-                    bundleOrderPrice += JsonUtils.getDoubleValue(condtionalBundleDeliveryProduct, "orderPrice");
+            } else {
+                double bundleOrderPrice = 0;
+                for (Map<String, Object> conditionalBundleDeliveryProduct : conditionalBundleDeliveryProducts) {
+                    bundleOrderPrice += JsonUtils.getDoubleValue(conditionalBundleDeliveryProduct, "orderPrice");
                 }
-                boolean freeYn = false ;
-                double lowDeliveryPrice = 0 ;
-                for(Map<String, Object> condtionalBundleDeliveryProduct : condtionalBundleDeliveryProducts){
-                    Double deliveryPrice =  JsonUtils.getDoubleValue(condtionalBundleDeliveryProduct, "product.deliveryPrice");
-                    Double deliveryConditionValue = JsonUtils.getDoubleValue(condtionalBundleDeliveryProduct, "product.deliveryConditionValue") ;
-                    if(freeYn == false && bundleOrderPrice >= deliveryConditionValue){
-                        freeYn =true ;
+                boolean freeYn = false;
+                double lowDeliveryPrice = 0;
+                for (Map<String, Object> conditionalBundleDeliveryProduct : conditionalBundleDeliveryProducts) {
+                    Double deliveryPrice = JsonUtils.getDoubleValue(conditionalBundleDeliveryProduct, "product.deliveryPrice");
+                    Double deliveryConditionValue = JsonUtils.getDoubleValue(conditionalBundleDeliveryProduct, "product.deliveryConditionValue");
+                    if (freeYn == false && bundleOrderPrice >= deliveryConditionValue) {
+                        freeYn = true;
                     }
-                    if(lowDeliveryPrice == 0){
-                        lowDeliveryPrice = deliveryPrice ;
-                    }else if(lowDeliveryPrice > deliveryPrice){
-                        lowDeliveryPrice = deliveryPrice ;
+                    if (lowDeliveryPrice == 0) {
+                        lowDeliveryPrice = deliveryPrice;
+                    } else if (lowDeliveryPrice > deliveryPrice) {
+                        lowDeliveryPrice = deliveryPrice;
                     }
                 }
-                if(freeYn){
-                    lowDeliveryPrice = 0 ;
+                if (freeYn) {
+                    lowDeliveryPrice = 0;
                 }
-                deliverySeq++ ;
-                for(Map<String, Object> condtionalBundleDeliveryProduct : condtionalBundleDeliveryProducts) {
-                    condtionalBundleDeliveryProduct.put("deliveryPrice", lowDeliveryPrice) ;
-                    condtionalBundleDeliveryProduct.put("deliverySeq", deliverySeq) ;
+                deliverySeq++;
+                for (Map<String, Object> conditionalBundleDeliveryProduct : conditionalBundleDeliveryProducts) {
+                    conditionalBundleDeliveryProduct.put("deliveryPrice", lowDeliveryPrice);
+                    conditionalBundleDeliveryProduct.put("deliverySeq", deliverySeq);
                 }
             }
 
@@ -237,72 +233,72 @@ public class DeliveryService {
 
             double vendorDeliveryPrice = 0;
             for(Map<String, Object> chargeBundleDeliveryProduct: chargeNotBundleDeliveryProducts){
-                Double cartProductDeliveryPrice = JsonUtils.getDoubleValue(chargeBundleDeliveryProduct, "product.delivertyPrice") ;
-                chargeBundleDeliveryProduct.put("deliveryPrice", cartProductDeliveryPrice) ;
-                vendorDeliveryPrice += cartProductDeliveryPrice ;
+                Double productDeliveryPrice = JsonUtils.getDoubleValue(chargeBundleDeliveryProduct, "product.deliveryPrice") ;
+                chargeBundleDeliveryProduct.put("deliveryPrice", productDeliveryPrice) ;
+                vendorDeliveryPrice += productDeliveryPrice ;
             }
             for(Map<String, Object> quantityBundleDeliveryProduct: quantityNotBundleDeliveryProducts){
-                Double cartProductDeliveryPrice = JsonUtils.getIntValue(quantityBundleDeliveryProduct, "product.delivertyPrice") *  JsonUtils.getDoubleValue(quantityBundleDeliveryProduct, "quantity") ;
-                quantityBundleDeliveryProduct.put("deliveryPrice", cartProductDeliveryPrice) ;
-                vendorDeliveryPrice += cartProductDeliveryPrice;
+                Double productDeliveryPrice = JsonUtils.getDoubleValue(quantityBundleDeliveryProduct, "product.deliveryPrice") *  JsonUtils.getIntValue(quantityBundleDeliveryProduct, "quantity") ;
+                quantityBundleDeliveryProduct.put("deliveryPrice", productDeliveryPrice) ;
+                vendorDeliveryPrice += productDeliveryPrice;
             }
 
             for(Map<String, Object> condtionalNOtBundleDeliveryProduct: condtionalNOtBundleDeliveryProducts){
                 Integer deliveryConditionValue = JsonUtils.getIntValue(condtionalNOtBundleDeliveryProduct, "product.deliveryConditionValue") ;
-                Integer orderPrice = JsonUtils.getIntValue(condtionalNOtBundleDeliveryProduct, "orderPrice") ;
+                double orderPrice = JsonUtils.getDoubleValue(condtionalNOtBundleDeliveryProduct, "orderPrice") ;
                 if(orderPrice >= deliveryConditionValue){
                     condtionalNOtBundleDeliveryProduct.put("deliveryPrice", 0) ;
                 }else{
-                    Double cartProductDeliveryPrice = JsonUtils.getDoubleValue(condtionalNOtBundleDeliveryProduct, "product.delivertyPrice") ;
-                    condtionalNOtBundleDeliveryProduct.put("deliveryPrice", cartProductDeliveryPrice) ;
-                    vendorDeliveryPrice += cartProductDeliveryPrice;
+                    Double productDeliveryPrice = JsonUtils.getDoubleValue(condtionalNOtBundleDeliveryProduct, "product.deliveryPrice") ;
+                    condtionalNOtBundleDeliveryProduct.put("deliveryPrice", productDeliveryPrice) ;
+                    vendorDeliveryPrice += productDeliveryPrice;
                 }
             }
         }
 
-        Map<String, Object> deliveryCartProduct = new LinkedHashMap<>() ;
-        for(Map<String, Object> cartProduct : cartProducts){
+        Map<String, Object> deliveryProduct = new LinkedHashMap<>() ;
+        for(Map<String, Object> map : list){
             String deliverySeqKey = null ;
-            if(cartProduct.containsKey("deliverySeq")){
-                deliverySeqKey = cartProduct.get("deliverySeq").toString() ;
+            if(map.containsKey("deliverySeq")){
+                deliverySeqKey = map.get("deliverySeq").toString() ;
             }else{
-                deliverySeqKey = cartProduct.get("cartProductId").toString() ;
+                deliverySeqKey = map.get(type+"ProductId").toString() ;
             }
-            if(!deliveryCartProduct.containsKey(deliverySeqKey)){
-                deliveryCartProduct.put(deliverySeqKey, new ArrayList<Map<String, Object>>()) ;
+            if(!deliveryProduct.containsKey(deliverySeqKey)){
+                deliveryProduct.put(deliverySeqKey, new ArrayList<Map<String, Object>>()) ;
             }
-            List<Map<String, Object>> subCartProducts = (List<Map<String, Object>>) deliveryCartProduct.get(deliverySeqKey);
-            subCartProducts.add(cartProduct) ;
+            List<Map<String, Object>> subProducts = (List<Map<String, Object>>) deliveryProduct.get(deliverySeqKey);
+            subProducts.add(map) ;
         }
-        return deliveryCartProduct ;
+        return deliveryProduct ;
     }
 
     private List<Map<String, Object>> makeCondtionalList(List<Map<String, Object>> data, String key, String value) {
-        List<Map<String, Object>> list = new ArrayList<>() ;
-        for(Map<String, Object> item : data){
-            String val = JsonUtils.getStringValue(item, key) ;
-            if(val != null && val.contains(">")){
-                val = StringUtils.substringAfterLast(val, ">") ;
+        List<Map<String, Object>> list = new ArrayList<>();
+        for (Map<String, Object> item : data) {
+            String val = JsonUtils.getStringValue(item, key);
+            if (val != null && val.contains(">")) {
+                val = StringUtils.substringAfterLast(val, ">");
             }
-            if(val.equals(value) && !(item.containsKey("soldout") && (boolean) item.get("soldout"))){
-                list.add(item) ;
+            if (val.equals(value) && !(item.containsKey("soldout") && (boolean) item.get("soldout"))) {
+                list.add(item);
             }
         }
-        return list ;
+        return list;
     }
 
     private List<Map<String, Object>> makeNotCondtionalList(List<Map<String, Object>> data, String key, String value) {
-        List<Map<String, Object>> list = new ArrayList<>() ;
-        for(Map<String, Object> item : data){
-            String val = JsonUtils.getStringValue(item, key) ;
-            if(val != null && val.contains(">")){
-                val = StringUtils.substringAfterLast(val, ">") ;
+        List<Map<String, Object>> list = new ArrayList<>();
+        for (Map<String, Object> item : data) {
+            String val = JsonUtils.getStringValue(item, key);
+            if (val != null && val.contains(">")) {
+                val = StringUtils.substringAfterLast(val, ">");
             }
-            if(!val.equals(value) && !(item.containsKey("soldout") && (boolean) item.get("soldout"))){
-                list.add(item) ;
+            if (!val.equals(value) && !(item.containsKey("soldout") && (boolean) item.get("soldout"))) {
+                list.add(item);
             }
         }
-        return list ;
+        return list;
     }
 
 

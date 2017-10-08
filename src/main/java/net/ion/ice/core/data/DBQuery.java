@@ -40,10 +40,20 @@ public class DBQuery {
                     }
                     searchListQuery.add(query);
                 }else{
-                    String query = String.format("%s %s ?", queryTerm.getQueryKey(), queryTerm.getMethodQuery());
                     String value = queryTerm.getQueryValue();
-                    searchListQuery.add(query);
-                    searchListValue.add(value);
+                    String term = queryTerm.getMethodQuery();
+                    if("null".equals(value)){
+                        term = "is";
+                        if(queryTerm.getMethodQuery().contains("!")){
+                            term += " not ";
+                        }
+                        String query = String.format("%s %s null", queryTerm.getQueryKey(), term);
+                        searchListQuery.add(query);
+                    }else{
+                        String query = String.format("%s %s ?", queryTerm.getQueryKey(), term);
+                        searchListQuery.add(query);
+                        searchListValue.add(value);
+                    }
                 }
             }
 
