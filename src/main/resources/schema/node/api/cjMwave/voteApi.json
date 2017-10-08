@@ -693,14 +693,6 @@
         "required": true
       },
       {
-        "paramName": "snsKey",
-        "required": true
-      },
-      {
-        "paramName": "snsTypeCd",
-        "required": true
-      },
-      {
         "paramName": "cntryCd",
         "required": true
       }
@@ -725,17 +717,7 @@
           "page": "{{:page}}",
           "pageSize": "{{:pageSize}}"
         }
-      ],
-      "response": {
-        "_all_": "",
-        "myVoteYn": {
-          "select": {
-            "ds": "cjDb",
-            "resultType": "value",
-            "sql": "select if(count(*)>0,'Y','N') myVoteYn from votePrtcptHst where voteSeq=@{voteSeq} and voteItemSeq =@{voteItemSeq} and prtcpMbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
-          }
-        }
-      }
+      ]
     }
   },
   {
