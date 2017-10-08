@@ -12,31 +12,26 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class DBProcessStorage {
 
-    private ConcurrentHashMap<String, Thread> dbSyncProcessStorage;
+    private ConcurrentHashMap<String, ParallelDBSyncExecutor> dbSyncProcessStorage;
 
     @PostConstruct
     public void init(){
         dbSyncProcessStorage = new ConcurrentHashMap<>();
     }
 
-    public Thread getProcess(String executeId) {
+    public ParallelDBSyncExecutor getProcess(String executeId) {
         return dbSyncProcessStorage.get(executeId);
     }
 
-    public void addProcess(String executeId, Thread task) {
+    public void addProcess(String executeId, ParallelDBSyncExecutor task) {
         dbSyncProcessStorage.put(executeId, task);
     }
 
-    public void killProcess(String executeId) {
-        Thread process = getProcess(executeId);
-        if(process != null) process.interrupt();
-    }
-
-    public Map<String, Thread> getProcessStorage(){
+    public Map<String, ParallelDBSyncExecutor> getProcessStorage(){
         return this.dbSyncProcessStorage;
     }
 
     public boolean isAbleToRun(String executeId) {
-        return (dbSyncProcessStorage.get(executeId) == null);
+        return (dbSyncProcessStorage.get(executeId) == null || !dbSyncProcessStorage.get(executeId).isRun());
     }
 }
