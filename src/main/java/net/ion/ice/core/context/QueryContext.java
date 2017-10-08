@@ -557,16 +557,22 @@ public class QueryContext extends ReadContext {
                         throw new ApiException("404", "Not Found Position") ;
                     }
                     queryResult.put("position", this.position) ;
-                    if(this.position > 1){
+                    if(this.position == 1){
+                        queryResult.put("prev", new HashMap<>()) ;
+                        queryResult.put("item", list.get(0)) ;
+                        if(list.size() > 1){
+                            queryResult.put("next", list.get(1)) ;
+                        }else{
+                            queryResult.put("next", new HashMap<>()) ;
+                        }
+                    }else{
                         queryResult.put("prev", list.get(0)) ;
                         queryResult.put("item", list.get(1)) ;
-                    }else{
-                        queryResult.put("item", list.get(0)) ;
-                        queryResult.put("next", list.get(1)) ;
-                    }
-
-                    if(list.size() == 3){
-                        queryResult.put("next", list.get(2)) ;
+                        if(list.size() > 2){
+                            queryResult.put("next", list.get(2)) ;
+                        }else{
+                            queryResult.put("next", new HashMap<>()) ;
+                        }
                     }
                 }
 
