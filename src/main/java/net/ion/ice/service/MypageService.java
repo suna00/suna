@@ -115,7 +115,13 @@ public class MypageService {
             node.put("failedCount", failedCount );
             node.put("lastFailedDate", new Date());
             nodeService.updateNode(node, "member");
-            context.setResult("비밀번호 인증 실패 " + failedCount + "회");
+            //context.setResult("비밀번호 인증 실패 " + failedCount + "회");
+
+            if(failedCount < 5 ){
+                CommonService.setErrorMessage(context, "M0007");
+            } else {
+                CommonService.setErrorMessage(context, "M0008");
+            }
         }else{
             context.setResult("비밀번호 인증 성공");
         }
