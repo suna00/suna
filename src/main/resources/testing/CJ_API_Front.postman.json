@@ -655,6 +655,13 @@
           "description": "운영체제 버전(String)(APP에서만 전달)",
           "type": "text",
           "enabled": true
+        },
+        {
+          "key": "langCd",
+          "value": "kor",
+          "description": "",
+          "type": "text",
+          "enabled": false
         }
       ],
       "dataMode": "params",
@@ -662,7 +669,7 @@
       "tests": null,
       "currentHelper": "normal",
       "helperAttributes": {},
-      "time": 1507281879999,
+      "time": 1507450086126,
       "name": "정회원 전환(IF_USER_002)",
       "description": "",
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
@@ -672,13 +679,21 @@
       "id": "15ecdc3a-ce2f-5f4d-bfd1-3c6a121ce039",
       "headers": "",
       "headerData": [],
-      "url": "{{protocol}}://{{hostname}}:{{port}}/api/system/IfSys002?groupCodeId=socialLinkCd",
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/system/IfSys002?groupCodeId=contsMetaDivCd&pageSize=20",
+      "folder": "94baa0a8-e352-4545-1529-95accfeac9ae",
       "queryParams": [
         {
           "key": "groupCodeId",
-          "value": "socialLinkCd",
+          "value": "contsMetaDivCd",
           "equals": true,
           "description": "그룹코드아이디(String) NotNull",
+          "enabled": true
+        },
+        {
+          "key": "pageSize",
+          "value": "20",
+          "equals": true,
+          "description": "",
           "enabled": true
         }
       ],
@@ -692,13 +707,11 @@
       "tests": null,
       "currentHelper": "normal",
       "helperAttributes": {},
-      "time": 1503481658168,
+      "time": 1507466159697,
       "name": "코드 목록조회(IF_SYS_002)",
       "description": "",
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
-      "responses": [],
-      "folder": "94baa0a8-e352-4545-1529-95accfeac9ae",
-      "collection_id": "2adae506-64a6-1c57-e5a4-d46e3ec4655b"
+      "responses": []
     },
     {
       "id": "1b814894-f7ec-2498-05c1-b278a0da2206",
@@ -1781,10 +1794,10 @@
       "method": "GET",
       "data": null,
       "dataMode": "params",
-      "tests": null,
+      "tests": "var jsonData = JSON.parse(responseBody);\ntests[\"Result\"] = jsonData.result === \"200\";\n\ntests[\"Items\"] = jsonData.items.length > 0 ;\n\ntests[\"Item key checky\"] = \"compItemSeq\" in jsonData.items[0]  && \"mainSeq\" in jsonData.items[0] ;",
       "currentHelper": "normal",
       "helperAttributes": {},
-      "time": 1507270363123,
+      "time": 1507444193211,
       "name": "서비스 컴포넌트 상세조회(IfCom001)",
       "description": "",
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
@@ -3942,14 +3955,14 @@
         {
           "key": "cntryCd",
           "value": "KOR",
-          "description": "국가코드(String) NotNull",
+          "description": "국가코드(String) ",
           "type": "text",
           "enabled": true
         },
         {
           "key": "sexCd",
           "value": "1",
-          "description": "성별코드(String) NotNull",
+          "description": "성별코드(String) ",
           "type": "text",
           "enabled": true
         },
@@ -3970,7 +3983,7 @@
         {
           "key": "infoOttpAgreeYn",
           "value": "false",
-          "description": "정보공개동의여부(String) NotNull",
+          "description": "정보공개동의여부(String) ",
           "type": "text",
           "enabled": true
         },
@@ -3987,7 +4000,7 @@
       "tests": null,
       "currentHelper": "normal",
       "helperAttributes": {},
-      "time": 1506653407179,
+      "time": 1507345841442,
       "name": "회원 정보 수정(IF_USER_101)",
       "description": "",
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
@@ -4483,15 +4496,22 @@
       "method": "POST",
       "data": [
         {
-          "key": "likeSeq",
-          "value": "1710",
-          "description": "일련번호(String) NotNull",
+          "key": "contsMetaDivCd",
+          "value": "8",
+          "description": "콘텐츠 메타 구분 코드(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "contsMetaId",
+          "value": "204392",
+          "description": "콘텐츠 메타 아이디(String) NotNull",
           "type": "text",
           "enabled": true
         },
         {
           "key": "snsKey",
-          "value": "park100",
+          "value": "testkeyUser20",
           "description": "SNS 토큰키(String) NotNull",
           "type": "text",
           "enabled": true
@@ -4509,7 +4529,7 @@
       "tests": null,
       "currentHelper": "normal",
       "helperAttributes": {},
-      "time": 1505061439102,
+      "time": 1507465661461,
       "name": "콘텐츠 LIKE(찜) 취소(IF_LIKE_003)",
       "description": "",
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
