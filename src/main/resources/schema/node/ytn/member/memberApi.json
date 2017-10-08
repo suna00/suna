@@ -9,7 +9,7 @@
     "category": "member",
     "apiId": "signIn",
     "apiName": "로그인",
-    "method": "GET",
+    "method": "POST",
     "parameters": [
       {"paramName" : "userId", "required" : true},
       {"paramName" : "password", "required" : true},
