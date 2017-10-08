@@ -85,10 +85,6 @@ public class MemberService {
         Node node;
 
         if (contextData.get("memberNo") == null) {
-            if (contextData.containsKey("password")) {
-                String password = SHA256(contextData.get("password").toString());
-                contextData.put("password", password);
-            }
             contextData.put("barcode", setBarcode());
             node = (Node) nodeService.executeNode(contextData, "member", CommonService.CREATE);
 
@@ -96,8 +92,6 @@ public class MemberService {
 
         } else {
             if (contextData.containsKey("password")) {
-                String password = SHA256(contextData.get("password").toString());
-                contextData.put("password", password);
                 contextData.put("failedCount", null);
             }
             node = (Node)nodeService.executeNode(contextData, "member", CommonService.UPDATE);
@@ -336,27 +330,6 @@ public class MemberService {
         }
 
         return context;
-    }
-
-    public String SHA256(String password) {
-        String encodingPassword;
-
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] hash = digest.digest(password.getBytes("UTF-8"));
-            StringBuffer hexString = new StringBuffer();
-
-            for (int i = 0; i < hash.length; i++) {
-                String hex = Integer.toHexString(0xff & hash[i]);
-                if (hex.length() == 1) hexString.append('0');
-                hexString.append(hex);
-            }
-            encodingPassword = hexString.toString();
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
-        }
-
-        return encodingPassword;
     }
 
     public String setBarcode(){
