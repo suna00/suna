@@ -1288,7 +1288,20 @@
     "active": "true",
     "index": "false",
     "pages": [],
-    "customPages": []
+    "customPages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "cj/air/OnairList"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "cj/air/OnairForm"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "cj/air/OnairView"
+      }
+    ]
   },
   {
     "typeId": "adminLnbMenu",
