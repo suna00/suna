@@ -149,7 +149,7 @@
         {
           "field": "upperContsCtgryId",
           "method": "matching",
-          "value": "{{:upperContsCtgryId}}"
+          "value": "{{:default(upperContsCtgryId,root)}}"
         },
         {
           "field": "useYn",
