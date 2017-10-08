@@ -99,7 +99,7 @@
       "root": {
         "typeId": "contsLikeInfo",
         "event": "save",
-        "if":"{{:likeNullYn}}",
+        "if": "{{:likeNullYn}}",
         "data": {
           "contsMetaDivCd": "{{:contsMetaDivCd}}",
           "contsMetaId": "{{:makeIdValue(::,name,contsMetaId)}}",
@@ -119,7 +119,11 @@
     "method": "POST",
     "parameters": [
       {
-        "paramName": "likeSeq",
+        "paramName": "contsMetaDivCd",
+        "required": true
+      },
+      {
+        "paramName": "contsMetaId",
         "required": true
       },
       {
@@ -132,13 +136,41 @@
       }
     ],
     "config": {
-      "typeId": "contsLikeInfo",
-      "event": "delete",
-      "data": {
-        "likeSeq": "{{:likeSeq}}"
+      "getContsMetaDivTid": {
+        "typeId": "code",
+        "resultType": "none",
+        "query": [
+          {
+            "field": "groupCodeId",
+            "method": "matching",
+            "value": "contsMetaDivTid"
+          },
+          {
+            "field": "codeId",
+            "method": "matching",
+            "value": "{{:contsMetaDivCd}}"
+          }
+        ],
+        "response": {
+          "name": ""
+        }
       },
-      "response": {
-        "likeSeq": ""
+      "chkContsLike": {
+        "select": {
+          "ds": "cjDb",
+          "sql": "select if(count(*)>0,'true','false') likeYn, max(likeSeq) likeSeq from contsLikeInfo where contsMetaDivCd=@{contsMetaDivCd} and contsMetaId=@{makeIdValue(::,name,contsMetaId)} and mbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
+        }
+      },
+      "root": {
+        "typeId": "contsLikeInfo",
+        "event": "delete",
+        "if": "{{:likeYn}}",
+        "data": {
+          "likeSeq": "{{:likeSeq}}"
+        },
+        "response": {
+          "likeSeq": ""
+        }
       }
     }
   },
@@ -172,7 +204,7 @@
       "root": {
         "typeId": "replLikeInfo",
         "event": "save",
-        "if":"{{:myLikeYn}}",
+        "if": "{{:myLikeYn}}",
         "data": {
           "replSeq": "{{:contsReplSeq}}",
           "mbrId": "{{:makeIdValue(>,snsTypeCd,snsKey)}}"
