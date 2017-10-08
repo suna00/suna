@@ -7,22 +7,6 @@
     "method": "GET",
     "parameters": [
       {
-        "paramName": "page",
-        "required": false
-      },
-      {
-        "paramName": "pageSize",
-        "required": false
-      },
-      {
-        "paramName": "sorting",
-        "required": false
-      },
-      {
-        "paramName": "langCd",
-        "required": false
-      },
-      {
         "paramName": "useYn",
         "required": false
       }
@@ -60,22 +44,6 @@
     "parameters": [
       {
         "paramName": "groupCodeId",
-        "required": false
-      },
-      {
-        "paramName": "page",
-        "required": false
-      },
-      {
-        "paramName": "pageSize",
-        "required": false
-      },
-      {
-        "paramName": "sorting",
-        "required": false
-      },
-      {
-        "paramName": "langCd",
         "required": false
       }
     ],
@@ -119,22 +87,6 @@
       },
       {
         "paramName": "upperContsCtgryId",
-        "required": false
-      },
-      {
-        "paramName": "page",
-        "required": false
-      },
-      {
-        "paramName": "pageSize",
-        "required": false
-      },
-      {
-        "paramName": "sorting",
-        "required": false
-      },
-      {
-        "paramName": "langCd",
         "required": false
       }
     ],
