@@ -130,7 +130,6 @@
         {"field" : "orderSheetId", "method" : "equals", "value" : "{{:orderSheetId}}"},
         {"field" : "created", "method" : "above", "value" : ""},
         {"includeReferenced" : true, "sorting" : "orderSheetId desc"},
-        {"pageSize": "{{:pageSize}}", "page": "{{:page}}"},
         {"field" : "referencedOrderProduct", "method" : "hasReferenced", "value" : "productId_equals={{:productId}}&orderStatus_equals={{:orderStatus}}"}
       ],
       "response": {
