@@ -563,14 +563,11 @@ public class DBSyncService {
         switch (type) {
             case "all" :
                 for(String executeId : mnetExecuteIds) {
+
                     taskExecutor.execute(new ParallelDBSyncExecutor(executeId) {
                         @Override
-                        public void action() {
-                            try{
-                                this.dbSyncService.executeWithIteration(this.executeId, 0, 0);
-                            } catch (Exception e) {
-                                logger.error("Error occurs in Thread : ", e);
-                            }
+                        public void action() throws Exception {
+                            this.dbSyncService.executeWithIteration(this.executeId, 0, 0);
                         }
                     });
                 }
@@ -627,12 +624,8 @@ public class DBSyncService {
 
                     taskExecutor.execute(new ParallelDBSyncExecutor(executeId) {
                         @Override
-                        public void action() {
-                            try{
-                                this.dbSyncService.executeWithRange(mig_target, this.executeId, provided);
-                            } catch (Exception e) {
-                                logger.error("Error occurs in Thread : ", e);
-                            }
+                        public void action() throws Exception {
+                            this.dbSyncService.executeWithRange(mig_target, this.executeId, provided);
                         }
                     });
                 }

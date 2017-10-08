@@ -1,6 +1,7 @@
 package net.ion.ice.cjmwave.external.monitor;
 
 import net.ion.ice.cjmwave.db.sync.DBProcessStorage;
+import net.ion.ice.cjmwave.db.sync.ParallelDBSyncExecutor;
 import net.ion.ice.core.data.DBService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,14 +50,14 @@ public class MigrationMonitorService {
     // 프로세스 목록 반환
     public List<Map<String, Object>> getProcessList () throws Exception {
         List<Map<String, Object>> processList = new ArrayList<>();
-        Map<String, Thread> storage = dbProcessStorage.getProcessStorage();
+        Map<String, ParallelDBSyncExecutor> storage = dbProcessStorage.getProcessStorage();
         Iterator<String> iter = storage.keySet().iterator();
         while(iter.hasNext()) {
             String k = iter.next();
-            Thread t = dbProcessStorage.getProcess(k);
+            ParallelDBSyncExecutor t = dbProcessStorage.getProcess(k);
             Map<String, Object> infoMap = new HashMap<String, Object>();
             infoMap.put("executeId", k);
-            infoMap.put("status", t.getState());
+            infoMap.put("status", t.isRun() ? "RUNNING" : "TERMINATED");
             processList.add(infoMap);
         }
         return processList;
