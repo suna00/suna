@@ -48,14 +48,35 @@ public class MnetController {
     * 리스폰스 결과는 API 호출에 대한 응답이며 응답이 200 이더라도 데이터를 보장하지 않는다
     * */
     @RequestMapping(value = {"initialData/{type}"}, produces = { "application/json" })
-    public @ResponseBody String retrieveAll(@PathVariable String type) throws JSONException {
+    public @ResponseBody String retrieveAll(@PathVariable String type, HttpServletRequest request) throws JSONException {
         logger.info("Enter MnetController.retrieveAll type :: " + type);
 
         JSONObject response = new JSONObject();
         String result="500", result_msg = "ERROR", cause = "";
 
         try{
-            dbSyncService.executeForInitData(type);
+            /*
+            * 17.10.07
+            * startPage 는 배치를 시작할 페이지
+            * totalPage 는 총 사용될 배치
+            * 타입이 all 일 경우에는 적용되지 않음
+            *
+            * */
+
+            int start = 0;
+            int total = 0;
+
+            String startPage = request.getParameter("startPage");
+            String totalPage = request.getParameter("totalPage");
+            if(startPage != null) {
+                start = Integer.parseInt(startPage.trim());
+            }
+
+            if(totalPage != null) {
+                total = Integer.parseInt(totalPage.trim());
+            }
+
+            dbSyncService.executeForInitData(type, start, total);
             result = "200";
             result_msg = "SUCCESS";
         } catch (Exception e) {
