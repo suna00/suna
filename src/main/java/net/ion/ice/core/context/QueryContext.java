@@ -558,12 +558,12 @@ public class QueryContext extends ReadContext {
                     }
                     queryResult.put("position", this.position) ;
                     if(this.position == 1){
-                        queryResult.put("prev", new HashMap<>()) ;
+                        queryResult.put("prev", null) ;
                         queryResult.put("item", list.get(0)) ;
                         if(list.size() > 1){
                             queryResult.put("next", list.get(1)) ;
                         }else{
-                            queryResult.put("next", new HashMap<>()) ;
+                            queryResult.put("next", null) ;
                         }
                     }else{
                         queryResult.put("prev", list.get(0)) ;
@@ -571,7 +571,7 @@ public class QueryContext extends ReadContext {
                         if(list.size() > 2){
                             queryResult.put("next", list.get(2)) ;
                         }else{
-                            queryResult.put("next", new HashMap<>()) ;
+                            queryResult.put("next", null) ;
                         }
                     }
                 }
