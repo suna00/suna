@@ -2,6 +2,8 @@ package net.ion.ice.cjmwave.mbrInfo;
 
 import java.text.ParseException;
 import java.util.List;
+
+import net.ion.ice.cjmwave.errMsgInfo.ErrMsgUtil;
 import net.ion.ice.core.api.ApiException;
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.event.EventService;
@@ -22,7 +24,7 @@ import java.util.Map;
 
 @Service("mbrInfoService")
 public class MbrInfoService {
-
+    private ErrMsgUtil errMsgUtil = new ErrMsgUtil();
     public void chkMbr(ExecuteContext context) {
         Map<String, Object> data = context.getData();
         chkSnsParams(data);
@@ -76,11 +78,11 @@ public class MbrInfoService {
 
             String mbrSttusCd = anode.getStringValue("mbrSttusCd");
             if("mbrSttusCd>2".equals(mbrSttusCd) || "mbrSttusCd>3".equals(mbrSttusCd)){
-                throw new ApiException("412", "You are in an impossible state of active membership.");
+                throw new ApiException("412", errMsgUtil.getErrMsg(context,"412"));
             }
             String mbrDivCd = anode.getStringValue("mbrDivCd");
             if("mbrDivCd>2".equals(mbrDivCd)){
-                throw new ApiException("411", "You are already an active member.");
+                throw new ApiException("411", errMsgUtil.getErrMsg(context,"411"));
             }
         } catch (NotFoundNodeException e) {
             throw new ApiException("404", "Not Found Member");
@@ -131,7 +133,7 @@ public class MbrInfoService {
         }
         String infoOttpAgreeYn = data.get("infoOttpAgreeYn").toString();
         if(!"true".equals(infoOttpAgreeYn)){
-            throw new ApiException("413", "InfoOttpAgreeYn is not true");
+            throw new ApiException("413", errMsgUtil.getErrMsg(context,"413"));
         }
 
         Node anode = null;
@@ -148,10 +150,10 @@ public class MbrInfoService {
                 }
             }
             if(!"mbrSttusCd>3".equals(mbrSttusCd)){
-                throw new ApiException("414", "You are not in a state to rejoin.");
+                throw new ApiException("414", errMsgUtil.getErrMsg(context,"414"));
             }
             if(rtrmmbDate == null){
-                throw new ApiException("415", "rtrmmbDate is null");
+                throw new ApiException("415", errMsgUtil.getErrMsg(context,"415"));
             }
 
             List<Node> dclaNodeList = null;
@@ -162,7 +164,7 @@ public class MbrInfoService {
             }
 
             if(dclaNodeList == null || dclaNodeList.isEmpty()){
-                throw new ApiException("416", "There is no membership re-entry condition.");
+                throw new ApiException("416", errMsgUtil.getErrMsg(context,"416"));
             }
             Node dclaNode = dclaNodeList.get(0);
             int setupBaseDayNum = dclaNode.getIntValue("setupBaseDayNum");
@@ -172,7 +174,7 @@ public class MbrInfoService {
             Date current = new Date();
             System.out.println("current:"+current);
             if(current.getTime() < rejoinAbleDate.getTime()){
-                throw new ApiException("417", "Re-entry is possible after "+setupBaseDayNum+" days.");
+                throw new ApiException("417", String.format(errMsgUtil.getErrMsg(context,"417"),setupBaseDayNum));
             }
 
             //update
@@ -202,7 +204,7 @@ public class MbrInfoService {
 
             String mbrSttusCd = anode.getStringValue("mbrSttusCd");
             if("mbrSttusCd>3".equals(mbrSttusCd)){
-                throw new ApiException("417", "You are already unsubscribed.");
+                throw new ApiException("418", errMsgUtil.getErrMsg(context,"418"));
             }
 
             //update
@@ -229,7 +231,7 @@ public class MbrInfoService {
         }
         String infoOttpAgreeYn = data.get("infoOttpAgreeYn").toString();
         if(!"true".equals(infoOttpAgreeYn)){
-            throw new ApiException("413", "InfoOttpAgreeYn is not true");
+            throw new ApiException("413", errMsgUtil.getErrMsg(context,"413"));
         }
 
         Node anode = null;
@@ -238,9 +240,9 @@ public class MbrInfoService {
 
             String mbrSttusCd = anode.getStringValue("mbrSttusCd");
             if("mbrSttusCd>1".equals(mbrSttusCd)){
-                throw new ApiException("411", "You are already an active member.");
+                throw new ApiException("411", errMsgUtil.getErrMsg(context,"411"));
             }else if("mbrSttusCd>3".equals(mbrSttusCd)){
-                throw new ApiException("417", "You are already unsubscribed.");
+                throw new ApiException("418", errMsgUtil.getErrMsg(context,"418"));
             }
 
             //update
@@ -263,7 +265,7 @@ public class MbrInfoService {
         if (data.get("snsTypeCd") == null || StringUtils.isEmpty(data.get("snsTypeCd").toString())) {
             throw new ApiException("400", "Required Parameter : snsTypeCd");
         } else if (data.get("snsKey") == null || StringUtils.isEmpty(data.get("snsKey").toString())) {
-            throw new ApiException("400", "Required Parameter : snsKey");
+            throw new ApiException("400", "Required Parameter :snsKey");
         }
     }
 

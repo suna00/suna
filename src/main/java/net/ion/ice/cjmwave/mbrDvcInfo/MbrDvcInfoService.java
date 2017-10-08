@@ -17,12 +17,15 @@ public class MbrDvcInfoService {
     public void mbrDvcInfoSave(ExecuteContext context) {
         try {
             Map<String, Object> data = context.getData();
-            String snsKey = data.get("snsKey").toString();
-            String snsTypeCd = data.get("snsTypeCd").toString();
-            if (StringUtils.isEmpty(snsTypeCd) || StringUtils.isEmpty(snsKey)) {
+            if (data.get("snsTypeCd") == null || StringUtils.isEmpty(data.get("snsTypeCd").toString())) {
+                //skip
+                return;
+            } else if (data.get("snsKey") == null || StringUtils.isEmpty(data.get("snsKey").toString())) {
                 //skip
                 return;
             }
+            String snsKey = data.get("snsKey").toString();
+            String snsTypeCd = data.get("snsTypeCd").toString();
 
             if(StringUtils.contains(snsTypeCd,"snsTypeCd>")){
                 snsTypeCd = StringUtils.replace(snsTypeCd,"snsTypeCd>","");

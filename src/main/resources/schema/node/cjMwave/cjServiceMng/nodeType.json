@@ -528,5 +528,25 @@
     "repositoryType": "data",
     "eviction": 0,
     "tableName": "cjDb#sersVotePrtcptHst"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "mbrAppIdInfo",
+    "tid": "mbrAppIdInfo",
+    "typeName": "회원 앱아이디 정보",
+    "repositoryType": "data",
+    "eviction": 0,
+    "tableName": "cjDb#mbrAppIdInfo"
+  },
+  {
+    "parentId": "cjServiceMng",
+    "typeId": "nodeType",
+    "id": "pushMsgSendInfo",
+    "tid": "pushMsgSendInfo",
+    "typeName": "푸쉬 메세지 전송 정보",
+    "repositoryType": "data",
+    "eviction": 0,
+    "tableName": "cjDb#pushMsgSendInfo"
   }
 ]

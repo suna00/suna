@@ -1,0 +1,50 @@
+[
+  {
+    "typeId": "errMsgInfo",
+    "errCd": "411",
+    "errMsg": "You are already an active member.",
+    "errMsg_kor": "이미 정회원 입니다"
+  },
+  {
+    "typeId": "errMsgInfo",
+    "errCd": "412",
+    "errMsg": "You are in an impossible state of active membership.",
+    "errMsg_kor": "정회원 전환이 불가능한 상태입니다"
+  },
+  {
+    "typeId": "errMsgInfo",
+    "errCd": "413",
+    "errMsg": "InfoOttpAgreeYn is not true",
+    "errMsg_kor": "정보제공동의여부가 true가 아닙니다"
+  },
+  {
+    "typeId": "errMsgInfo",
+    "errCd": "414",
+    "errMsg": "You are not in a state to rejoin.",
+    "errMsg_kor": "재가입을 할 수 없는 상태입니다"
+  },
+  {
+    "typeId": "errMsgInfo",
+    "errCd": "415",
+    "errMsg": "rtrmmbDate is null",
+    "errMsg_kor": "탈퇴일자가 null 입니다"
+  },
+  {
+    "typeId": "errMsgInfo",
+    "errCd": "416",
+    "errMsg": "There is no membership re-entry condition.",
+    "errMsg_kor": "회원 재가입 기준이 없습니다"
+  },
+  {
+    "typeId": "errMsgInfo",
+    "errCd": "417",
+    "errMsg": "Re-entry is possible after %s days.",
+    "errMsg_kor": "재가입은 %s 일 후에 가능합니다"
+  },
+  {
+    "typeId": "errMsgInfo",
+    "errCd": "418",
+    "errMsg": "You are already unsubscribed.",
+    "errMsg_kor": "당신은 이미 탈퇴 상태입니다"
+  }
+]

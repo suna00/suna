@@ -1,12 +1,23 @@
 [
   {
-    "parentId" : "cjBackOfficeMng",
-    "typeId" : "nodeType",
-    "id" : "systemNtf",
-    "tid" : "systemNtf",
-    "typeName" : "시스템 공지사항",
-    "repositoryType" : "node",
-    "eviction" : 0,
-    "tableName" : "cjDb#systemNtf"
+    "parentId": "cjBackOfficeMng",
+    "typeId": "nodeType",
+    "id": "systemNtf",
+    "tid": "systemNtf",
+    "typeName": "시스템 공지사항",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#systemNtf"
+  },
+  {
+    "parentId": "cjBackOfficeMng",
+    "typeId": "nodeType",
+    "id": "errMsgInfo",
+    "tid": "errMsgInfo",
+    "typeName": "에러코드 정보",
+    "repositoryType": "node",
+    "eviction": 0,
+    "tableName": "cjDb#errMsgInfo",
+    "i18n": true
   }
 ]
