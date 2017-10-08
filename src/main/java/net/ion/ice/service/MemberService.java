@@ -15,8 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.stagemonitor.util.StringUtils;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
@@ -91,6 +89,7 @@ public class MemberService {
                 String password = SHA256(contextData.get("password").toString());
                 contextData.put("password", password);
             }
+            contextData.put("barcode", setBarcode());
             node = (Node) nodeService.executeNode(contextData, "member", CommonService.CREATE);
 
             //회원가입 메일 전송
@@ -358,6 +357,21 @@ public class MemberService {
         }
 
         return encodingPassword;
+    }
+
+    public String setBarcode(){
+        String barcode = "";
+
+        for(int i=0; i<4; i++){
+            Integer randomInt = ((int)(Math.random()*10000)+1000);
+            if(10000 <= randomInt){
+                randomInt = randomInt-1000;
+            }
+            barcode += (randomInt+" ");
+        }
+
+        barcode = barcode.substring(0, barcode.length()-1);
+        return barcode;
     }
 
     public void sendEmail(String emailCertificationType, String email, Map<String, Object> data) {
