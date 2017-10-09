@@ -3,7 +3,10 @@
     "typeId": "categoryBanner",
     "categoryBannerId": 1,
     "categoryId": 1,
+    "linkContentsType": "product",
+    "linkContentsId": "3",
     "file": "classpath:schema/node/ytn/display/file/category1.jpeg",
+    "vodUrl": "",
     "ulr": "",
     "bannerStatus": "y"
   },
@@ -11,8 +14,10 @@
     "typeId": "categoryBanner",
     "categoryBannerId": 2,
     "categoryId": 2,
+    "linkContentsType": "specialExhibition",
+    "linkContentsId": "1",
     "file": "",
-    "ulr": "http://www.youtube.com/embed/n_dZNLr2cME?rel=0&amp;hd=1",
+    "vodUlr": "http://www.youtube.com/embed/n_dZNLr2cME?rel=0&amp;hd=1",
     "bannerStatus": "y"
   }
 ]
