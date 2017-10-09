@@ -46,7 +46,9 @@ public class ApiReadContext extends ReadContext{
     }
 
     public Node getNode(){
-        return  NodeUtils.getNode(nodeType.getTypeId(), id) ;
+        Node node = NodeUtils.getNode(nodeType.getTypeId(), id) ;
+        this.result = node ;
+        return node ;
     }
 
 }

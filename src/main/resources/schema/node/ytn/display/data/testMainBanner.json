@@ -1,0 +1,26 @@
+[
+  {
+    "typeId": "mainBanner",
+    "mainBannerId": 1,
+    "name": "Surprise Sale 페스타",
+    "mainBannerLocation": "main",
+    "categoryId": "",
+    "linkContentsType": "product",
+    "linkContentsId": "3",
+    "file": "classpath:schema/node/ytn/display/file/main1.jpeg",
+    "sortOrder": 1,
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "mainBanner",
+    "mainBannerId": 2,
+    "name": "와이군 세일 페스타",
+    "mainBannerLocation": "main",
+    "categoryId": "",
+    "linkContentsType": "specialExhibition",
+    "linkContentsId": "1",
+    "file": "classpath:schema/node/ytn/display/file/main2.jpeg",
+    "sortOrder": 2,
+    "bannerStatus": "y"
+  }
+]
