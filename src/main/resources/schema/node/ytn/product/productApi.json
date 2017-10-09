@@ -60,10 +60,8 @@
     ],
     "config" : {
       "typeId": "product",
-      "query" : [
-        {"field" : "productId", "method" : "matching", "value" : "{{:productId}}" },
-        {"includeReferenced" : "true"}
-      ],
+      "id": "{{:productId}}",
+      "includeReferenced" : "true",
       "response": {
         "_all_": "",
         "referencedProductToCategoryMap" : {
