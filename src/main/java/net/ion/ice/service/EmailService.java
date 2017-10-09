@@ -1,11 +1,7 @@
 package net.ion.ice.service;
 
 import net.ion.ice.ApplicationContextManager;
-import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.node.Node;
-import net.ion.ice.core.node.NodeService;
-import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.mail.*;
