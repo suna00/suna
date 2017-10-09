@@ -3728,7 +3728,7 @@
         },
         {
           "key": "snsKey",
-          "value": "park100",
+          "value": "testkeyUser20",
           "description": "SNS 토큰키(String) NotNull",
           "type": "text",
           "enabled": true
@@ -3746,7 +3746,7 @@
       "tests": null,
       "currentHelper": "normal",
       "helperAttributes": {},
-      "time": 1505652086884,
+      "time": 1507467319093,
       "name": "콘텐츠 LIKE(찜) 등록(IF_LIKE_002)",
       "description": "",
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
@@ -4383,6 +4383,7 @@
       "headers": "",
       "headerData": [],
       "url": "{{protocol}}://{{hostname}}:{{port}}/api/member/IfUser007",
+      "folder": "298ddc11-fcb0-a874-3049-a3b1dd8038ae",
       "queryParams": [],
       "preRequestScript": null,
       "pathVariables": {},
@@ -4643,7 +4644,7 @@
       "id": "d764478f-b1ed-35fd-38e7-a42870856b73",
       "headers": "",
       "headerData": [],
-      "url": "{{protocol}}://{{hostname}}:{{port}}/api/vote/IfMwv102?voteSeq=800039&snsKey=park100&snsTypeCd=1&cntryCd=KOR&langCd=eng",
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/vote/IfMwv102?voteSeq=800039&cntryCd=KOR&langCd=eng",
       "folder": "1975e6cf-9157-826c-7f3c-1ec1825c5e8a",
       "queryParams": [
         {
@@ -4651,20 +4652,6 @@
           "value": "800039",
           "equals": true,
           "description": "투표일련번호(String) NotNull",
-          "enabled": true
-        },
-        {
-          "key": "snsKey",
-          "value": "park100",
-          "equals": true,
-          "description": "SNS 토큰키(String) NotNull",
-          "enabled": true
-        },
-        {
-          "key": "snsTypeCd",
-          "value": "1",
-          "equals": true,
-          "description": "SNS 유형코드(String) NotNull",
           "enabled": true
         },
         {
@@ -4692,7 +4679,7 @@
       "tests": null,
       "currentHelper": "normal",
       "helperAttributes": {},
-      "time": 1506172726474,
+      "time": 1507467594369,
       "name": "국가별 투표 현황(IF_MWV_102)",
       "description": "",
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
@@ -5279,7 +5266,7 @@
         },
         {
           "key": "email",
-          "value": "",
+          "value": "test@email.com",
           "description": "Email(String)",
           "type": "text",
           "enabled": true
@@ -5307,8 +5294,8 @@
         },
         {
           "key": "indvInfoAgreeYn",
-          "value": "",
-          "description": "개인정보동의여부(Boolean)",
+          "value": "true",
+          "description": "개인정보동의여부(Boolean) NotNull",
           "type": "text",
           "enabled": true
         },
@@ -5325,7 +5312,7 @@
       "tests": null,
       "currentHelper": "normal",
       "helperAttributes": {},
-      "time": 1505058856627,
+      "time": 1507525730246,
       "name": "당첨자 정보 전송(IF_EVT_002)",
       "description": "",
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
