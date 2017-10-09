@@ -30,5 +30,21 @@
     "actionType": "service",
     "actionBody": "productService.make",
     "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "product",
+    "event": "getGroupCount",
+    "noneExecute": true,
+    "eventName": "검색카테고리 그룹카운트"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "product>getGroupCount",
+    "action": "getGroupCount",
+    "actionName": "검색카테고리 그룹카운트",
+    "actionType": "service",
+    "actionBody": "productSearchService.getGroupCount",
+    "order": 1
   }
 ]

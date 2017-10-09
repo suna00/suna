@@ -33,7 +33,6 @@ public class CartService {
 
     // 장바구니 조회
     public ExecuteContext cartRead(ExecuteContext context) throws IOException {
-        Map<String, Object> data = context.getData();
         Integer totalSize = 0;
         List<Map<String, Object>> cartProducts = nodeBindingService.list("cartProduct", "sorting=created&cartId_equals=" + context.getData().get("cartId"));
         List<Map<String, Object>> cartProductItems = nodeBindingService.list("cartProductItem", "sorting=created&cartId_equals=" + context.getData().get("cartId"));

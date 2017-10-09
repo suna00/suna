@@ -2,7 +2,10 @@
   {
     "typeId" : "apiCategory",
     "id" : "coupon",
-    "categoryName" : "쿠폰 API"
+    "categoryName" : "쿠폰 API",
+    "fileUrlFormat" : {
+      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
+    }
   },
   {
     "typeId" : "apiConfig",

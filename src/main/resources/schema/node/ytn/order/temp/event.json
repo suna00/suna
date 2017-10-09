@@ -1,0 +1,34 @@
+[
+  {
+    "typeId": "event",
+    "tid": "tempOrder",
+    "event": "addTempOrder",
+    "noneExecute": true,
+    "eventName": "임시 주문서 생성"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "tempOrder>addTempOrder",
+    "action": "addTempOrder",
+    "actionName": "임시 주문서 저장",
+    "actionType": "service",
+    "actionBody": "orderService.addTempOrder",
+    "order": 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "tempOrder",
+    "event" : "tempOrderRead",
+    "noneExecute": true,
+    "eventName" : "장바구니 조회"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "tempOrder>tempOrderRead",
+    "action" : "tempOrderRead",
+    "actionName" : "장바구니 조회",
+    "actionType" : "service",
+    "actionBody" : "orderService.tempOrderRead",
+    "order" : 1
+  }
+]

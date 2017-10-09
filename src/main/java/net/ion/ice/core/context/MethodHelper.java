@@ -282,6 +282,13 @@ public class MethodHelper {
 
                 return ApplicationContextManager.getContext().getEnvironment().getProperty(methodParams[0]) ;
             }
+            case "wildcard":{
+                if(value == null || StringUtils.isEmpty(value.toString())){
+                    return "";
+                }
+
+                return "*" + value + "*" ;
+            }
 
             default :
                 methodStr = StringUtils.capitalize(methodStr) ;

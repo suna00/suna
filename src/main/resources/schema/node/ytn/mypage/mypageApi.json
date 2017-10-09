@@ -2,7 +2,10 @@
   {
     "typeId": "apiCategory",
     "id": "mypage",
-    "categoryName": "마이페이지"
+    "categoryName": "마이페이지",
+    "fileUrlFormat" : {
+      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
+    }
   },
   {
     "typeId": "apiConfig",

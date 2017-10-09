@@ -2,7 +2,10 @@
   {
     "typeId": "apiCategory",
     "id": "myDeliveryAddress",
-    "categoryName": "나의 배송지"
+    "categoryName": "나의 배송지",
+    "fileUrlFormat" : {
+      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
+    }
   },
   {
     "typeId": "apiConfig",
