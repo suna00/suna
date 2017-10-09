@@ -2,7 +2,10 @@
   {
     "typeId": "apiCategory",
     "id": "member",
-    "categoryName": "Member"
+    "categoryName": "Member",
+    "fileUrlFormat" : {
+      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
+    }
   },
   {
     "typeId": "apiConfig",

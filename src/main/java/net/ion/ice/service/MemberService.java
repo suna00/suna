@@ -107,8 +107,8 @@ public class MemberService {
             contextData.put("barcode", setBarcode());
             node = (Node) nodeService.executeNode(contextData, "member", CommonService.CREATE);
 
-            //회원가입 메일 전송
-
+            Map<String, String> emailTemplate = getEmailTemplate("회원가입");
+            EmailService.setHtmlMemberJoin(node, node.get("email").toString(), emailTemplate);
         } else {
             if (contextData.containsKey("password")) {
                 contextData.put("failedCount", null);
@@ -116,7 +116,8 @@ public class MemberService {
             node = (Node)nodeService.executeNode(contextData, "member", CommonService.UPDATE);
 
             if(contextData.containsKey("changeMarketingAgreeYn")){
-                // 광고정보 수정 메일 전송
+                Map<String, String> emailTemplate = getEmailTemplate("광고성 정보수신동의 결과");
+                EmailService.setHtmlMemberInfoChange(node, node.get("email").toString(), emailTemplate);
             }
         }
 
@@ -530,5 +531,21 @@ public class MemberService {
             ranPw += pwCollection[selectRandomPw];
         }
         return ranPw;
+    }
+
+    public Map<String, String> getEmailTemplate(String emailName){
+        Map<String, String> setHtmlMap = new HashMap<>();
+        String title = "";
+        String contents = "";
+
+        List<Map<String, Object>> emailTemplateList = nodeBindingService.list("emailTemplate", "name_in=".concat(emailName));
+        if (emailTemplateList.size() > 0) {
+            title = emailTemplateList.get(0).get("title").toString();
+            contents = emailTemplateList.get(0).get("contents").toString();
+        }
+        setHtmlMap.put("title", title);
+        setHtmlMap.put("contents", contents);
+
+        return setHtmlMap;
     }
 }
