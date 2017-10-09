@@ -7,7 +7,7 @@
     "linkContentsId": "3",
     "file": "classpath:schema/node/ytn/display/file/category1.jpeg",
     "vodUrl": "",
-    "ulr": "",
+    "url": "",
     "bannerStatus": "y"
   },
   {
@@ -17,7 +17,7 @@
     "linkContentsType": "specialExhibition",
     "linkContentsId": "1",
     "file": "",
-    "vodUlr": "http://www.youtube.com/embed/n_dZNLr2cME?rel=0&amp;hd=1",
+    "vodUrl": "http://www.youtube.com/embed/n_dZNLr2cME?rel=0&amp;hd=1",
     "bannerStatus": "y"
   }
 ]
