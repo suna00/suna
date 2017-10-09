@@ -68,7 +68,24 @@
           }
         ],
         "response": {
-          "_all_": "",
+          "compItemSeq":"",
+          "mainSeq":"",
+          "itemDivCd":"",
+          "itemId":"",
+          "itemNm":"",
+          "subName":"",
+          "typeCd":"",
+          "ifTgtCd":"",
+          "sortOdrg":"",
+          "bgOptnYn":"",
+          "cnctContsDivCd":"",
+          "cnctContsNm":"",
+          "cnctContsSubName":"",
+          "cnctContsIfTgtCd":"",
+          "cnctContsTypeCd":"",
+          "cnctContsLeftYn":"",
+          "cnctContsId":"",
+          "cnctBgOptnYn":"",
           "refdAtribList": {
             "typeId": "compAtribInfo",
             "query": [
@@ -207,6 +224,10 @@
               }
             }
           },
+          "owner":"",
+          "created":"",
+          "modifier":"",
+          "changed":"",
           "cnctRefdAtribList": {
             "typeId": "compAtribInfo",
             "query": [
@@ -350,7 +371,7 @@
             "query": [
               {
                 "sorting": "mstIdx desc",
-                "limit": "1",
+                "limit": "{{:decodeVal(itemDivCd,itemDivCd>3,1,0)}}",
                 "includeReferenced": true
               }
             ],

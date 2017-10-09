@@ -1797,13 +1797,9 @@
         "videoDivCd": "",
         "created": "",
         "seoUrl": "",
-        "hitNum": {
-          "select": {
-            "ds": "cjDb",
-            "resultType": "value",
-            "sql": "select count(*) as hitNum from contsRetvInfo where concat(tid,'::',contsId) = @{videoId}"
-          }
-        },
+        "hitNum": "",
+        "risingHitNum": "",
+        "hotHitNum": "",
         "replNum": {
           "select": {
             "ds": "cjDb",

@@ -753,8 +753,8 @@
           "referenceView": "voteSeq,voteItemSeq"
         },
         {
-          "page": "{{:page}}",
-          "pageSize": "{{:pageSize}}"
+          "limit":"1",
+          "sorting":"rankNum"
         }
       ],
       "response": {
