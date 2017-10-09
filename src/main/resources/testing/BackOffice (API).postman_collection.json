@@ -1,0 +1,2059 @@
+{
+	"id": "6cc20ffd-96ac-9676-3e39-cae75bf40503",
+	"name": "BackOffice (API)",
+	"description": "",
+	"order": [
+		"55d6a8ea-803a-ac90-4c43-ec9d06484ce0",
+		"6237b792-6d85-6602-5c8e-d2683f4a0dd4",
+		"566062c3-d194-83c7-5d0c-263f75a823a7",
+		"d2c67808-dcd7-412a-7868-96781ee97d51",
+		"7b7e46dd-5d96-1754-6f5a-fcc7a974951a",
+		"111d7e6d-42bd-b6aa-5966-f95c01b6bc27",
+		"11ccc89a-1361-930c-4a1f-d399c5afb259",
+		"a1370a4d-44e8-a741-3473-62a450249336"
+	],
+	"folders": [
+		{
+			"name": "포인트",
+			"description": "",
+			"collectionId": "6cc20ffd-96ac-9676-3e39-cae75bf40503",
+			"order": [
+				"e3bcf46b-d13f-76e8-4710-8f9426e96439",
+				"afa9592e-bdf7-55d0-5079-c9dc0380795b",
+				"dc857451-7a60-ff9e-6510-16c93fee3624",
+				"50133250-ca21-160e-d4cf-b59c17d184f2",
+				"0ee3a894-5555-2d24-eb4c-86480b062651"
+			],
+			"owner": "297192",
+			"folders_order": [],
+			"id": "70c23aa0-4913-ab09-72d7-ce2199987661"
+		}
+	],
+	"folders_order": [
+		"70c23aa0-4913-ab09-72d7-ce2199987661"
+	],
+	"timestamp": 1504509139443,
+	"owner": "297192",
+	"public": false,
+	"requests": [
+		{
+			"id": "0ee3a894-5555-2d24-eb4c-86480b062651",
+			"headers": "",
+			"headerData": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/welfarePoint/event/refundWelfarePoint",
+			"folder": "70c23aa0-4913-ab09-72d7-ce2199987661",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "memberNo",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "orderSheetId",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "welfarePoint",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1506745906672,
+			"name": "WelfarePoint 환불",
+			"description": "",
+			"collectionId": "6cc20ffd-96ac-9676-3e39-cae75bf40503",
+			"responses": []
+		},
+		{
+			"id": "111d7e6d-42bd-b6aa-5966-f95c01b6bc27",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/product/event/make",
+			"folder": "7bba84f2-fd2d-0bb3-a31c-6428403240d2",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "productId",
+					"value": "14",
+					"description": "ID (bigint) Not null",
+					"enabled": false
+				},
+				{
+					"key": "upperId",
+					"value": "",
+					"description": "상위상품ID (bigint) ",
+					"enabled": false
+				},
+				{
+					"key": "name",
+					"value": "QQQX  no Option",
+					"description": "이름 (varchar) "
+				},
+				{
+					"key": "productType",
+					"value": "base",
+					"description": "상품타입 (varchar)  : base/site/special"
+				},
+				{
+					"key": "siteType",
+					"value": "",
+					"description": "사이트타입 (varchar) : null/company/university"
+				},
+				{
+					"key": "contentsType",
+					"value": "goods",
+					"description": "컨텐츠타입 (varchar) : goods/securities/cellphone"
+				},
+				{
+					"key": "taxType",
+					"value": "tax",
+					"description": "과세구분 (varchar)  : tax/notax/taxonline"
+				},
+				{
+					"key": "siteId",
+					"value": "",
+					"description": "사이트ID (varchar) "
+				},
+				{
+					"key": "specialExhibitionId",
+					"value": "",
+					"description": "기획전ID (bigint) "
+				},
+				{
+					"key": "specialExhibitionAnkerId",
+					"value": "",
+					"description": "기획전앵커ID (bigint) "
+				},
+				{
+					"key": "vendorId",
+					"value": "1",
+					"description": "밴더ID (bigint) ",
+					"enabled": true
+				},
+				{
+					"key": "approverId",
+					"value": "",
+					"description": "승인자ID (varchar) "
+				},
+				{
+					"key": "approvalDate",
+					"value": "",
+					"description": "승인일 (datetime) "
+				},
+				{
+					"key": "approvalStatus",
+					"value": "request",
+					"description": "승인상태 (varchar)  : request/approve/reject"
+				},
+				{
+					"key": "productStatus",
+					"value": "n",
+					"description": "전시상태 (varchar)  : y / n"
+				},
+				{
+					"key": "deleteStatus",
+					"value": "",
+					"description": "삭제상태 (varchar) : request/approve/reject"
+				},
+				{
+					"key": "saleStatus",
+					"value": "stop",
+					"description": "판매상태 (varchar) : sale/stop/end"
+				},
+				{
+					"key": "startDate",
+					"value": "2017-08-01",
+					"description": "판매시작일 (datetime) "
+				},
+				{
+					"key": "endDate",
+					"value": "2020-12-31",
+					"description": "판매종료일 (datetime) "
+				},
+				{
+					"key": "stockQuantity",
+					"value": "999",
+					"description": "재고수량 (bigint) "
+				},
+				{
+					"key": "keyword",
+					"value": "test,TEST,테스트,",
+					"description": "키워드 (varchar) "
+				},
+				{
+					"key": "description",
+					"value": "테스트 ",
+					"description": "설명 (text) "
+				},
+				{
+					"key": "mdComment",
+					"value": "MD가 추천합니다.",
+					"description": "MD한마디 (text) "
+				},
+				{
+					"key": "PRIcon",
+					"value": "",
+					"description": "홍보아이콘 (varchar) "
+				},
+				{
+					"key": "supplyPrice",
+					"value": "2000",
+					"description": "공급가 (decimal) "
+				},
+				{
+					"key": "salePrice",
+					"value": "4000",
+					"description": "판매가(할인가) (decimal) "
+				},
+				{
+					"key": "consumerPrice",
+					"value": "5000",
+					"description": "소비자가(정상가) (decimal) "
+				},
+				{
+					"key": "discountRate",
+					"value": "20",
+					"description": "할인율 (double) "
+				},
+				{
+					"key": "lowestPriceKey",
+					"value": "",
+					"description": "최저가 매핑키 (varchar) "
+				},
+				{
+					"key": "soarPopularityYn",
+					"value": "false",
+					"description": "인기급등여부 (varchar)  true/false"
+				},
+				{
+					"key": "mdRecommendYn",
+					"value": "false",
+					"description": "MD추천여부 (varchar)  true/false"
+				},
+				{
+					"key": "bestProductYn",
+					"value": "false",
+					"description": "베스트상품여부 (varchar)  true/false"
+				},
+				{
+					"key": "newProductYn",
+					"value": "true",
+					"description": "신상품여부 (varchar)  true/false"
+				},
+				{
+					"key": "saleYn",
+					"value": "false",
+					"description": "세일여부 (varchar)  true/false"
+				},
+				{
+					"key": "minOrderQuantity",
+					"value": "1",
+					"description": "최소주문가능수량 (bigint) "
+				},
+				{
+					"key": "maxOrderQuantity",
+					"value": "10",
+					"description": "최대주문가능수량 (bigint) "
+				},
+				{
+					"key": "purchaseCount",
+					"value": "",
+					"description": "구매건수 (bigint) ",
+					"enabled": true
+				},
+				{
+					"key": "viewCount",
+					"value": "",
+					"description": "조회수 (bigint) ",
+					"enabled": true
+				},
+				{
+					"key": "reviewCount",
+					"value": "",
+					"description": "상품평수 (bigint) "
+				},
+				{
+					"key": "reviewAverageScore",
+					"value": "",
+					"description": "상품평 평균 점수 (double) "
+				},
+				{
+					"key": "timeSaleStartDate",
+					"value": "",
+					"description": "타임세일 시작일 (datetime) "
+				},
+				{
+					"key": "timeSaleEndDate",
+					"value": "",
+					"description": "타임세일 종료일 (datetime) "
+				},
+				{
+					"key": "timeSalePrice",
+					"value": "",
+					"description": "타임세일가 (decimal) "
+				},
+				{
+					"key": "deliveryMethod",
+					"value": "delivery",
+					"description": "배송수단 (varchar)  : sms/lg/samsung/delivery"
+				},
+				{
+					"key": "deliveryPriceType",
+					"value": "conditional",
+					"description": "배송비타입 (varchar) : free/conditional/fix"
+				},
+				{
+					"key": "deliveryPrice",
+					"value": "2500",
+					"description": "배송비 (decimal) "
+				},
+				{
+					"key": "freeDeliveryCondition",
+					"value": "30000",
+					"description": "무료배송조건 (varchar)  (조건부 : 0이상 구매시 무료) (수량별 :  0개당 배송비 별도)"
+				},
+				{
+					"key": "bundleDeliveryYn",
+					"value": "true",
+					"description": "묶음배송가능여부 (varchar) : true/false"
+				},
+				{
+					"key": "reservationYn",
+					"value": "false",
+					"description": "예약배송여부 (varchar) : true/false"
+				},
+				{
+					"key": "scheduledDeliveryDate",
+					"value": "",
+					"description": "배송예정일 (varchar) "
+				},
+				{
+					"key": "exchangeDeliveryPrice",
+					"value": "5000",
+					"description": "교환 배송비 (decimal) "
+				},
+				{
+					"key": "returnDeliveryPrice",
+					"value": "2500",
+					"description": "반품 배송비 (decimal) "
+				},
+				{
+					"key": "hopeDeliveryPossiblePeriod",
+					"value": "",
+					"description": "희망배송 가능기간 (varchar) "
+				},
+				{
+					"key": "productInflowRoute",
+					"value": "",
+					"description": "유입경로(varchar) : shoplinker/sabangnet",
+					"type": "text",
+					"enabled": false
+				},
+				{
+					"key": "originProductId",
+					"value": "",
+					"description": "연동입수상품ID(varchar)",
+					"type": "text",
+					"enabled": false
+				},
+				{
+					"key": "modelName",
+					"value": "",
+					"description": "모델명(varchar)",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "returnExchangePolicyId",
+					"value": "",
+					"description": "반품/교환 정책 ID(bigint)",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "productToCategoryMap",
+					"value": "[\n  {\n    \"categoryId\": \"1,10,108\"\n  },\n  {\n    \"categoryId\": \"1,10,57\"\n  }\n]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "productOptionSetId",
+					"value": "",
+					"description": "옵션선택",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "baseOptionType",
+					"value": "n",
+					"description": "기본옵션 유형 : n / mix / single",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "baseOption",
+					"value": "[\n  {\n    \"name\": \"No Option\",\n    \"productOptionCodes\": \"default\",\n    \"productOptionStatus\": \"y\"\n  }\n]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "baseOptionItem",
+					"value": "[\n  {\n    \"productOptionCodeCase\": \"default\",\n    \"name\": \"default\",\n    \"sortOrder\": 1,\n    \"addPrice\": 0,\n    \"supplyPrice\": 0,\n    \"stockQuantity\": 999,\n    \"productOptionItemStatus\": \"y\"\n  }\n]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "addOptionType",
+					"value": "n",
+					"description": "추가옵션 : n / y",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "addOption",
+					"value": "[]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "addOptionItem",
+					"value": "[]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "resources",
+					"value": "[\n  {\n    \"fileType\": \"imageurl\",\n    \"fileUseType\": \"representation\",\n    \"fileUrl\": \"http://qa.ygoon.com/file/getImage?atchFileId=PRODUCT__1485422177932&fileSn=0\",\n    \"sortOrder\": 1\n  },\n  {\n    \"fileType\": \"imageurl\",\n    \"fileUseType\": \"addition\",\n    \"fileUrl\": \"http://qa.ygoon.com/file/getImage?atchFileId=2017_06_29_164411.jpg\",\n    \"sortOrder\": 2\n  },\n  {\n    \"fileType\": \"imageurl\",\n    \"fileUseType\": \"addition\",\n    \"fileUrl\": \"http://qa.ygoon.com/file/getImage?atchFileId=2017_01_26_181555.jpg\",\n    \"sortOrder\": 3\n  },\n  {\n    \"fileType\": \"imageurl\",\n    \"fileUseType\": \"addition\",\n    \"fileUrl\": \"http://qa.ygoon.com/file/getImage?atchFileId=2017_04_19_192754.jpg\",\n    \"sortOrder\": 4\n  },\n  {\n    \"fileType\": \"imageurl\",\n    \"fileUseType\": \"addition\",\n    \"fileUrl\": \"http://qa.ygoon.com/file/getImage?atchFileId=2017_01_09_094106.jpg\",\n    \"sortOrder\": 5\n  }\n]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "contentsOptionTypeId",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "contentsOptions",
+					"value": "[\n    {\n      \"name\": \"제품소재\",\n      \"value\": \"플라스틱\"\n    },\n    {\n      \"name\": \"색상\",\n      \"value\": \"블랙\"\n    },\n    {\n      \"name\": \"치수\",\n      \"value\": \"FREE\"\n    },\n    {\n      \"name\": \"제조사\",\n      \"value\": \"LG\"\n    },\n    {\n      \"name\": \"제조연월\",\n      \"value\": \"201701\"\n    }\n  ]",
+					"description": "상품고시",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "productAttributeCategoryId",
+					"value": "11",
+					"description": "상품정보고시 (bigint) ",
+					"enabled": true
+				},
+				{
+					"key": "productAttribute",
+					"value": "[\n  {\n    \"productAttributeCategoryItemId\": 101,\n    \"name\": \"제품소재\",\n    \"value\": \"나이롱22~\"\n  },\n  {\n    \"productAttributeCategoryItemId\": 102,\n    \"name\": \"색상\",\n    \"value\": \"빨강2222 \"\n  },\n  {\n    \"productAttributeCategoryItemId\": 103,\n    \"name\": \"세탁방법 및 취급시 주의사항\",\n    \"value\": \"2222절대 손빨래 안대안대. 드라이크리닝 온니 \"\n  }\n]",
+					"description": "상품고시 (TID:productAttribute, ID: productAttributeId)",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "productSearchFilter",
+					"value": "[\n  {\n    \"searchFilterId\": \"101\",\n    \"searchFilterCodeIds\": [\"101\"]\n  },\n  {\n    \"searchFilterId\": \"103\",\n    \"searchFilterCodeIds\": [\"106\",\"107\"]\n  },\n  {\n    \"searchFilterId\": \"104\",\n    \"searchFilterCodeIds\": null\n  }\n]",
+					"description": "상품검색필터 (TID:productSearchFilter, ID: productSearchFilterId)",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1505818493060,
+			"name": "상품 등록(옵션없음) product/event/make",
+			"description": "",
+			"collectionId": "6cc20ffd-96ac-9676-3e39-cae75bf40503",
+			"responses": []
+		},
+		{
+			"id": "11ccc89a-1361-930c-4a1f-d399c5afb259",
+			"headers": "",
+			"headerData": [],
+			"url": "https://dev-tracking-api.sweettracker.net/add_invoice",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "num",
+					"value": "504254237701",
+					"description": "운송장번호(공백또는 “-” 제거)",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "code",
+					"value": "05",
+					"description": "택배사 코드",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "fid",
+					"value": "4",
+					"description": "해당 건의 결과 전송에 쓰이는 식별 값",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "callback_url",
+					"value": "http://125.131.88.206:8080/node/orderDeliveryPrice/event/sweettrackerGetData",
+					"description": "결과를 전달받을 URL",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "tier",
+					"value": "ytn",
+					"description": "발급받은 tier",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "key",
+					"value": "LaTfL9LcqSZKG6maH6OPhQ",
+					"description": "발급받은 key",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1507373486503,
+			"name": "[스윗트래커] 운송장 추적 요청 API",
+			"description": "",
+			"collectionId": "6cc20ffd-96ac-9676-3e39-cae75bf40503",
+			"responses": []
+		},
+		{
+			"id": "50133250-ca21-160e-d4cf-b59c17d184f2",
+			"headers": "",
+			"headerData": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/welfarePoint/event/useWelfarePoint",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "memberNo",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "orderSheetId",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "welfarePoint",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1506745920765,
+			"name": "WelfarePoint 사용",
+			"description": "",
+			"collectionId": "6cc20ffd-96ac-9676-3e39-cae75bf40503",
+			"responses": []
+		},
+		{
+			"id": "55d6a8ea-803a-ac90-4c43-ec9d06484ce0",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/product/event/make",
+			"folder": "7bba84f2-fd2d-0bb3-a31c-6428403240d2",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "productId",
+					"value": "14",
+					"description": "ID (bigint) Not null",
+					"enabled": false
+				},
+				{
+					"key": "upperId",
+					"value": "",
+					"description": "상위상품ID (bigint) ",
+					"enabled": false
+				},
+				{
+					"key": "name",
+					"value": "QQQ111",
+					"description": "이름 (varchar) "
+				},
+				{
+					"key": "productType",
+					"value": "base",
+					"description": "상품타입 (varchar)  : base/site/special"
+				},
+				{
+					"key": "siteType",
+					"value": "",
+					"description": "사이트타입 (varchar) : null/company/university"
+				},
+				{
+					"key": "contentsType",
+					"value": "goods",
+					"description": "컨텐츠타입 (varchar) : goods/securities/cellphone"
+				},
+				{
+					"key": "taxType",
+					"value": "tax",
+					"description": "과세구분 (varchar)  : tax/notax/taxonline"
+				},
+				{
+					"key": "siteId",
+					"value": "",
+					"description": "사이트ID (varchar) "
+				},
+				{
+					"key": "specialExhibitionId",
+					"value": "",
+					"description": "기획전ID (bigint) "
+				},
+				{
+					"key": "specialExhibitionAnkerId",
+					"value": "",
+					"description": "기획전앵커ID (bigint) "
+				},
+				{
+					"key": "vendorId",
+					"value": "1",
+					"description": "밴더ID (bigint) ",
+					"enabled": true
+				},
+				{
+					"key": "approverId",
+					"value": "",
+					"description": "승인자ID (varchar) "
+				},
+				{
+					"key": "approvalDate",
+					"value": "",
+					"description": "승인일 (datetime) "
+				},
+				{
+					"key": "approvalStatus",
+					"value": "request",
+					"description": "승인상태 (varchar)  : request/approve/reject"
+				},
+				{
+					"key": "productStatus",
+					"value": "n",
+					"description": "전시상태 (varchar)  : y / n"
+				},
+				{
+					"key": "deleteStatus",
+					"value": "",
+					"description": "삭제상태 (varchar) : request/approve/reject"
+				},
+				{
+					"key": "saleStatus",
+					"value": "stop",
+					"description": "판매상태 (varchar) : sale/stop/end"
+				},
+				{
+					"key": "startDate",
+					"value": "2017-08-01",
+					"description": "판매시작일 (datetime) "
+				},
+				{
+					"key": "endDate",
+					"value": "2020-12-31",
+					"description": "판매종료일 (datetime) "
+				},
+				{
+					"key": "stockQuantity",
+					"value": "999",
+					"description": "재고수량 (bigint) "
+				},
+				{
+					"key": "keyword",
+					"value": "test,TEST,테스트,",
+					"description": "키워드 (varchar) "
+				},
+				{
+					"key": "description",
+					"value": "테스트 ",
+					"description": "설명 (text) "
+				},
+				{
+					"key": "mdComment",
+					"value": "MD가 추천합니다.",
+					"description": "MD한마디 (text) "
+				},
+				{
+					"key": "PRIcon",
+					"value": "",
+					"description": "홍보아이콘 (varchar) "
+				},
+				{
+					"key": "supplyPrice",
+					"value": "2000",
+					"description": "공급가 (decimal) "
+				},
+				{
+					"key": "salePrice",
+					"value": "4000",
+					"description": "판매가(할인가) (decimal) "
+				},
+				{
+					"key": "consumerPrice",
+					"value": "5000",
+					"description": "소비자가(정상가) (decimal) "
+				},
+				{
+					"key": "discountRate",
+					"value": "20",
+					"description": "할인율 (double) "
+				},
+				{
+					"key": "lowestPriceKey",
+					"value": "",
+					"description": "최저가 매핑키 (varchar) "
+				},
+				{
+					"key": "soarPopularityYn",
+					"value": "false",
+					"description": "인기급등여부 (varchar)  true/false"
+				},
+				{
+					"key": "mdRecommendYn",
+					"value": "false",
+					"description": "MD추천여부 (varchar)  true/false"
+				},
+				{
+					"key": "bestProductYn",
+					"value": "false",
+					"description": "베스트상품여부 (varchar)  true/false"
+				},
+				{
+					"key": "newProductYn",
+					"value": "true",
+					"description": "신상품여부 (varchar)  true/false"
+				},
+				{
+					"key": "saleYn",
+					"value": "false",
+					"description": "세일여부 (varchar)  true/false"
+				},
+				{
+					"key": "minOrderQuantity",
+					"value": "1",
+					"description": "최소주문가능수량 (bigint) "
+				},
+				{
+					"key": "maxOrderQuantity",
+					"value": "10",
+					"description": "최대주문가능수량 (bigint) "
+				},
+				{
+					"key": "purchaseCount",
+					"value": "",
+					"description": "구매건수 (bigint) ",
+					"enabled": true
+				},
+				{
+					"key": "viewCount",
+					"value": "",
+					"description": "조회수 (bigint) ",
+					"enabled": true
+				},
+				{
+					"key": "reviewCount",
+					"value": "",
+					"description": "상품평수 (bigint) "
+				},
+				{
+					"key": "reviewAverageScore",
+					"value": "",
+					"description": "상품평 평균 점수 (double) "
+				},
+				{
+					"key": "timeSaleStartDate",
+					"value": "",
+					"description": "타임세일 시작일 (datetime) "
+				},
+				{
+					"key": "timeSaleEndDate",
+					"value": "",
+					"description": "타임세일 종료일 (datetime) "
+				},
+				{
+					"key": "timeSalePrice",
+					"value": "",
+					"description": "타임세일가 (decimal) "
+				},
+				{
+					"key": "deliveryMethod",
+					"value": "delivery",
+					"description": "배송수단 (varchar)  : sms/lg/samsung/delivery"
+				},
+				{
+					"key": "deliveryPriceType",
+					"value": "conditional",
+					"description": "배송비타입 (varchar) : free/conditional/fix"
+				},
+				{
+					"key": "deliveryPrice",
+					"value": "2500",
+					"description": "배송비 (decimal) "
+				},
+				{
+					"key": "freeDeliveryCondition",
+					"value": "30000",
+					"description": "무료배송조건 (varchar)  (조건부 : 0이상 구매시 무료) (수량별 :  0개당 배송비 별도)"
+				},
+				{
+					"key": "bundleDeliveryYn",
+					"value": "true",
+					"description": "묶음배송가능여부 (varchar) : true/false"
+				},
+				{
+					"key": "reservationYn",
+					"value": "false",
+					"description": "예약배송여부 (varchar) : true/false"
+				},
+				{
+					"key": "scheduledDeliveryDate",
+					"value": "",
+					"description": "배송예정일 (varchar) "
+				},
+				{
+					"key": "exchangeDeliveryPrice",
+					"value": "5000",
+					"description": "교환 배송비 (decimal) "
+				},
+				{
+					"key": "returnDeliveryPrice",
+					"value": "2500",
+					"description": "반품 배송비 (decimal) "
+				},
+				{
+					"key": "hopeDeliveryPossiblePeriod",
+					"value": "",
+					"description": "희망배송 가능기간 (varchar) "
+				},
+				{
+					"key": "productInflowRoute",
+					"value": "",
+					"description": "유입경로(varchar) : shoplinker/sabangnet",
+					"type": "text",
+					"enabled": false
+				},
+				{
+					"key": "originProductId",
+					"value": "",
+					"description": "연동입수상품ID(varchar)",
+					"type": "text",
+					"enabled": false
+				},
+				{
+					"key": "modelName",
+					"value": "",
+					"description": "모델명(varchar)",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "returnExchangePolicyId",
+					"value": "",
+					"description": "반품/교환 정책 ID(bigint)",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "productToCategoryMap",
+					"value": "[\n  {\n    \"categoryId\": \"1,10,108\"\n  },\n  {\n    \"categoryId\": \"1,10,57\"\n  }\n]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "productOptionSetId",
+					"value": "",
+					"description": "옵션선택",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "baseOptionType",
+					"value": "mix",
+					"description": "기본옵션 유형 : n / mix / single",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "baseOption",
+					"value": "[\n  {\n    \"name\": \"사이즈\",\n    \"productOptionCodes\": \"100,105\",\n    \"productOptionStatus\": \"y\"\n  },\n  {\n    \"name\": \"색상\",\n    \"productOptionCodes\": \"red,blue\",\n    \"productOptionStatus\": \"y\"\n  }\n]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "baseOptionItem",
+					"value": "[\n  {\n    \"productOptionCodeCase\": \"100:red\",\n    \"name\": \"100 Red\",\n    \"sortOrder\": 1,\n    \"addPrice\": 200,\n    \"supplyPrice\": 190,\n    \"stockQuantity\": 999,\n    \"productOptionItemStatus\": \"y\"\n  },\n  {\n    \"productOptionCodeCase\": \"100:blue\",\n    \"name\": \"100 Blue\",\n    \"sortOrder\": 2,\n    \"addPrice\": 400,\n    \"supplyPrice\": 390,\n    \"stockQuantity\": 999,\n    \"productOptionItemStatus\": \"y\"\n  },\n  {\n    \"productOptionCodeCase\": \"105:red\",\n    \"name\": \"105 Red\",\n    \"sortOrder\": 3,\n    \"addPrice\": 200,\n    \"supplyPrice\": 190,\n    \"stockQuantity\": 999,\n    \"productOptionItemStatus\": \"y\"\n  },\n  {\n    \"productOptionCodeCase\": \"105:blue\",\n    \"name\": \"105 Blue\",\n    \"sortOrder\": 4,\n    \"addPrice\": 400,\n    \"supplyPrice\": 390,\n    \"stockQuantity\": 999,\n    \"productOptionItemStatus\": \"y\"\n  }\n]\n",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "addOptionType",
+					"value": "y",
+					"description": "추가옵션 : n / y",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "addOption",
+					"value": "[\n  {\n    \"name\": \"사은품\",\n    \"productOptionCodes\": \"깔창,운동화 끈\",\n    \"required\": true,\n    \"productOptionStatus\": \"y\"\n  },\n  {\n    \"name\": \"추가옵션\",\n    \"productOptionCodes\": \"옵션명1,옵션명2\",\n    \"required\": false,\n    \"productOptionStatus\": \"y\"\n  }\n]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "addOptionItem",
+					"value": "[\n  {\n    \"productOptionCodeCase\": \"사은품:깔창\",\n    \"name\": \"사은품 > 깔창\",\n    \"sortOrder\": 1,\n    \"addPrice\": 200,\n    \"supplyPrice\": 190,\n    \"stockQuantity\": 999,\n    \"productOptionItemStatus\": \"y\"\n  },\n  {\n    \"productOptionCodeCase\": \"사은품:운동화 끈\",\n    \"name\": \"사은품 > 운동화 끈\",\n    \"sortOrder\": 2,\n    \"addPrice\": 400,\n    \"supplyPrice\": 390,\n    \"stockQuantity\": 999,\n    \"productOptionItemStatus\": \"y\"\n  },\n  {\n    \"productOptionCodeCase\": \"추가옵션:옵션명1\",\n    \"name\": \"추가옵션 > 옵션명1\",\n    \"sortOrder\": 3,\n    \"addPrice\": 200,\n    \"supplyPrice\": 190,\n    \"stockQuantity\": 999,\n    \"productOptionItemStatus\": \"y\"\n  },\n  {\n    \"productOptionCodeCase\": \"추가옵션:옵션명2\",\n    \"name\": \"추가옵션 > 옵션명2\",\n    \"sortOrder\": 4,\n    \"addPrice\": 400,\n    \"supplyPrice\": 390,\n    \"stockQuantity\": 999,\n    \"productOptionItemStatus\": \"y\"\n  }\n]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "resources",
+					"value": "[\n  {\n    \"fileType\": \"imageurl\",\n    \"fileUseType\": \"representation\",\n    \"fileUrl\": \"http://qa.ygoon.com/file/getImage?atchFileId=PRODUCT__1485422177932&fileSn=0\",\n    \"sortOrder\": 1\n  },\n  {\n    \"fileType\": \"imageurl\",\n    \"fileUseType\": \"addition\",\n    \"fileUrl\": \"http://qa.ygoon.com/file/getImage?atchFileId=2017_06_29_164411.jpg\",\n    \"sortOrder\": 2\n  },\n  {\n    \"fileType\": \"imageurl\",\n    \"fileUseType\": \"addition\",\n    \"fileUrl\": \"http://qa.ygoon.com/file/getImage?atchFileId=2017_01_26_181555.jpg\",\n    \"sortOrder\": 3\n  },\n  {\n    \"fileType\": \"imageurl\",\n    \"fileUseType\": \"addition\",\n    \"fileUrl\": \"http://qa.ygoon.com/file/getImage?atchFileId=2017_04_19_192754.jpg\",\n    \"sortOrder\": 4\n  },\n  {\n    \"fileType\": \"imageurl\",\n    \"fileUseType\": \"addition\",\n    \"fileUrl\": \"http://qa.ygoon.com/file/getImage?atchFileId=2017_01_09_094106.jpg\",\n    \"sortOrder\": 5\n  }\n]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "contentsOptionTypeId",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "contentsOptions",
+					"value": "[\n    {\n      \"name\": \"제품소재\",\n      \"value\": \"플라스틱\"\n    },\n    {\n      \"name\": \"색상\",\n      \"value\": \"블랙\"\n    },\n    {\n      \"name\": \"치수\",\n      \"value\": \"FREE\"\n    },\n    {\n      \"name\": \"제조사\",\n      \"value\": \"LG\"\n    },\n    {\n      \"name\": \"제조연월\",\n      \"value\": \"201701\"\n    }\n  ]",
+					"description": "상품고시",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "productAttributeCategoryId",
+					"value": "11",
+					"description": "상품정보고시 (bigint) ",
+					"enabled": true
+				},
+				{
+					"key": "productAttribute",
+					"value": "[\n  {\n    \"productAttributeCategoryItemId\": 101,\n    \"name\": \"제품소재\",\n    \"value\": \"나이롱22~\"\n  },\n  {\n    \"productAttributeCategoryItemId\": 102,\n    \"name\": \"색상\",\n    \"value\": \"빨강2222 \"\n  },\n  {\n    \"productAttributeCategoryItemId\": 103,\n    \"name\": \"세탁방법 및 취급시 주의사항\",\n    \"value\": \"2222절대 손빨래 안대안대. 드라이크리닝 온니 \"\n  }\n]",
+					"description": "상품고시 (TID:productAttribute, ID: productAttributeId)",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "productSearchFilter",
+					"value": "[\n  {\n    \"searchFilterId\": \"101\",\n    \"searchFilterCodeIds\": [\"101\"]\n  },\n  {\n    \"searchFilterId\": \"103\",\n    \"searchFilterCodeIds\": [\"106\",\"107\"]\n  },\n  {\n    \"searchFilterId\": \"104\",\n    \"searchFilterCodeIds\": null\n  }\n]",
+					"description": "상품검색필터 (TID:productSearchFilter, ID: productSearchFilterId)",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1505901694315,
+			"name": "상품 등록 product/event/make",
+			"description": "",
+			"collectionId": "6cc20ffd-96ac-9676-3e39-cae75bf40503",
+			"responses": []
+		},
+		{
+			"id": "566062c3-d194-83c7-5d0c-263f75a823a7",
+			"headers": "",
+			"headerData": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/searchFilter/list.json?searchFilterId_matching=101,103,104&includeReferenced=true",
+			"queryParams": [
+				{
+					"key": "searchFilterId_matching",
+					"value": "101,103,104",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "includeReferenced",
+					"value": "true",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1505314751440,
+			"name": "상품관리 검색필터코드 탐색 searchFilterCode/list.json",
+			"description": "",
+			"collectionId": "6cc20ffd-96ac-9676-3e39-cae75bf40503",
+			"responses": []
+		},
+		{
+			"id": "6237b792-6d85-6602-5c8e-d2683f4a0dd4",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/product/event/sabangnet",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "productId",
+					"value": "",
+					"description": "ID (bigint) Not null",
+					"enabled": false
+				},
+				{
+					"key": "upperId",
+					"value": "",
+					"description": "상위상품ID (bigint) ",
+					"enabled": false
+				},
+				{
+					"key": "name",
+					"value": "QQQ",
+					"description": "이름 (varchar) "
+				},
+				{
+					"key": "productType",
+					"value": "base",
+					"description": "상품타입 (varchar)  : base/site/special",
+					"enabled": false
+				},
+				{
+					"key": "productManageType",
+					"value": "",
+					"description": "상품관리타입 (varchar) "
+				},
+				{
+					"key": "siteType",
+					"value": "",
+					"description": "사이트타입 (varchar) : null/company/university",
+					"enabled": false
+				},
+				{
+					"key": "contentsType",
+					"value": "goods",
+					"description": "컨텐츠타입 (varchar)  : goods/securities/cellphone"
+				},
+				{
+					"key": "taxType",
+					"value": "tax",
+					"description": "과세구분 (varchar)  : tax/notax/taxonline"
+				},
+				{
+					"key": "contentsId",
+					"value": "",
+					"description": "contentsID (bigint) ",
+					"enabled": false
+				},
+				{
+					"key": "siteId",
+					"value": "",
+					"description": "사이트ID (varchar) ",
+					"enabled": false
+				},
+				{
+					"key": "specialExhibitionId",
+					"value": "",
+					"description": "기획전ID (bigint) ",
+					"enabled": false
+				},
+				{
+					"key": "specialExhibitionAnkerId",
+					"value": "",
+					"description": "기획전앵커ID (bigint) ",
+					"enabled": false
+				},
+				{
+					"key": "vendorId",
+					"value": "13",
+					"description": "밴더ID (bigint) ",
+					"enabled": false
+				},
+				{
+					"key": "approverId",
+					"value": "",
+					"description": "승인자ID (varchar) ",
+					"enabled": false
+				},
+				{
+					"key": "approvalDate",
+					"value": "",
+					"description": "승인일 (datetime) ",
+					"enabled": false
+				},
+				{
+					"key": "approvalStatus",
+					"value": "request",
+					"description": "승인상태 (varchar)  : request/approve/reject",
+					"enabled": false
+				},
+				{
+					"key": "productStatus",
+					"value": "n",
+					"description": "전시상태 (varchar)  : y / n"
+				},
+				{
+					"key": "deleteStatus",
+					"value": "",
+					"description": "삭제상태 (varchar)  : request/approve/reject"
+				},
+				{
+					"key": "saleStatus",
+					"value": "stop",
+					"description": "판매상태 (varchar) : sale/stop/end"
+				},
+				{
+					"key": "startDate",
+					"value": "2017-08-01",
+					"description": "판매시작일 (datetime) "
+				},
+				{
+					"key": "endDate",
+					"value": "2017-12-31",
+					"description": "판매종료일 (datetime) "
+				},
+				{
+					"key": "stockQuantity",
+					"value": "9999",
+					"description": "재고수량 (bigint) "
+				},
+				{
+					"key": "keyword",
+					"value": "test,TEST,테스트",
+					"description": "키워드 (varchar) "
+				},
+				{
+					"key": "description",
+					"value": "테스트 테스트 설명설",
+					"description": "설명 (text) "
+				},
+				{
+					"key": "mdComment",
+					"value": "MD가 추천합니다.",
+					"description": "MD한마디 (text) ",
+					"enabled": false
+				},
+				{
+					"key": "PRIcon",
+					"value": "",
+					"description": "홍보아이콘 (varchar) ",
+					"enabled": false
+				},
+				{
+					"key": "supplyPrice",
+					"value": "2000",
+					"description": "공급가 (decimal) "
+				},
+				{
+					"key": "salePrice",
+					"value": "4000",
+					"description": "판매가(할인가) (decimal) "
+				},
+				{
+					"key": "consumerPrice",
+					"value": "5000",
+					"description": "소비자가(정상가) (decimal) "
+				},
+				{
+					"key": "discountRate",
+					"value": "20",
+					"description": "할인율 (double) "
+				},
+				{
+					"key": "lowestPriceKey",
+					"value": "",
+					"description": "최저가 매핑키 (varchar) "
+				},
+				{
+					"key": "soarPopularityYn",
+					"value": "false",
+					"description": "인기급등여부 (varchar)  true/false",
+					"enabled": false
+				},
+				{
+					"key": "mdRecommendYn",
+					"value": "false",
+					"description": "MD추천여부 (varchar)  true/false",
+					"enabled": false
+				},
+				{
+					"key": "bestProductYn",
+					"value": "false",
+					"description": "베스트상품여부 (varchar)  true/false",
+					"enabled": false
+				},
+				{
+					"key": "newProductYn",
+					"value": "false",
+					"description": "신상품여부 (varchar)  true/false",
+					"enabled": false
+				},
+				{
+					"key": "saleYn",
+					"value": "false",
+					"description": "세일여부 (varchar)  true/false",
+					"enabled": false
+				},
+				{
+					"key": "minOrderQuantity",
+					"value": "",
+					"description": "최소주문가능수량 (bigint) "
+				},
+				{
+					"key": "maxOrderQuantity",
+					"value": "",
+					"description": "최대주문가능수량 (bigint) "
+				},
+				{
+					"key": "purchaseCount",
+					"value": "",
+					"description": "구매건수 (bigint) ",
+					"enabled": false
+				},
+				{
+					"key": "viewCount",
+					"value": "",
+					"description": "조회수 (bigint) ",
+					"enabled": false
+				},
+				{
+					"key": "reviewCount",
+					"value": "",
+					"description": "상품평수 (bigint) ",
+					"enabled": false
+				},
+				{
+					"key": "reviewAverageScore",
+					"value": "",
+					"description": "상품평 평균 점수 (double) ",
+					"enabled": false
+				},
+				{
+					"key": "timeSaleStartDate",
+					"value": "",
+					"description": "타임세일 시작일 (datetime) ",
+					"enabled": false
+				},
+				{
+					"key": "timeSaleEndDate",
+					"value": "",
+					"description": "타임세일 종료일 (datetime) ",
+					"enabled": false
+				},
+				{
+					"key": "timeSalePrice",
+					"value": "",
+					"description": "타임세일가 (decimal) ",
+					"enabled": false
+				},
+				{
+					"key": "deliveryMethod",
+					"value": "delivery",
+					"description": "배송수단 (varchar) : sms/lg/samsung/delivery"
+				},
+				{
+					"key": "deliveryPriceType",
+					"value": "conditional",
+					"description": "배송비타입 (varchar)  : free/conditional/fix"
+				},
+				{
+					"key": "deliveryPrice",
+					"value": "2500",
+					"description": "배송비 (decimal) "
+				},
+				{
+					"key": "freeDeliveryCondition",
+					"value": "30000",
+					"description": "무료배송조건 (varchar) (조건부 : 0이상 구매시 무료) (수량별 : 0개당 배송비 별도)"
+				},
+				{
+					"key": "bundleDeliveryYn",
+					"value": "true",
+					"description": "묶음배송가능여부 (varchar) : true/false"
+				},
+				{
+					"key": "cashOnDeliveryYn",
+					"value": "",
+					"description": "착불배송여부 (varchar) : true/false",
+					"enabled": false
+				},
+				{
+					"key": "reservationYn",
+					"value": "false",
+					"description": "예약배송여부 (varchar) : true/false"
+				},
+				{
+					"key": "scheduledDeliveryDate",
+					"value": "",
+					"description": "배송예정일 (varchar) "
+				},
+				{
+					"key": "deliveryPosibleArea",
+					"value": "",
+					"description": "배송가능지역 (varchar) ",
+					"enabled": false
+				},
+				{
+					"key": "exchangeDeliveryPrice",
+					"value": "5000",
+					"description": "교환 배송비 (decimal) "
+				},
+				{
+					"key": "returnDeliveryPrice",
+					"value": "2500",
+					"description": "반품 배송비 (decimal) "
+				},
+				{
+					"key": "hopeDeliveryPossiblePeriod",
+					"value": "",
+					"description": "희망배송 가능기간 (varchar) "
+				},
+				{
+					"key": "modelName",
+					"value": "",
+					"description": "모델명 (varchar) "
+				},
+				{
+					"key": "modelNo",
+					"value": "",
+					"description": "모델No (varchar) "
+				},
+				{
+					"key": "returnExchangePolicyId",
+					"value": "",
+					"description": "반품/교환 정책 ID (varchar) ",
+					"enabled": false
+				},
+				{
+					"key": "productOptionSetId",
+					"value": "",
+					"description": "옵션선택 (bigint) ",
+					"enabled": false
+				},
+				{
+					"key": "cellphoneLinkForNew",
+					"value": "",
+					"description": "휴대폰개통 링크_신규개통 (varchar) ",
+					"enabled": false
+				},
+				{
+					"key": "cellphoneLinkForMove",
+					"value": "",
+					"description": "휴대폰개통 링크_번호이동 (varchar) ",
+					"enabled": false
+				},
+				{
+					"key": "cellphoneLinkForChange",
+					"value": "",
+					"description": "휴대폰개통 링크_기기변경 (varchar) ",
+					"enabled": false
+				},
+				{
+					"key": "owner",
+					"value": "",
+					"description": "등록자 (varchar) ",
+					"enabled": false
+				},
+				{
+					"key": "created",
+					"value": "",
+					"description": "등록일 (datetime) ",
+					"enabled": false
+				},
+				{
+					"key": "modifier",
+					"value": "",
+					"description": "수정자 (varchar) ",
+					"enabled": false
+				},
+				{
+					"key": "changed",
+					"value": "",
+					"description": "수정일 (datetime) ",
+					"enabled": false
+				},
+				{
+					"key": "productToCategoryMap",
+					"value": "[ { \"categoryId\": \"1,10,108\" }, { \"categoryId\": \"1,10,57\" } ]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "productOptionSetId",
+					"value": "",
+					"description": "옵션선택",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "baseOptionType",
+					"value": "mix",
+					"description": "기본옵션 유형 : n / mix / single",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "baseOption",
+					"value": "[ { \"name\": \"사이즈\", \"productOptionCodes\": \"100,105\", \"productOptionStatus\": \"y\" }, { \"name\": \"색상\", \"productOptionCodes\": \"노랑,보라\", \"productOptionStatus\": \"y\" } ]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "baseOptionItem",
+					"value": "[ { \"productOptionCodeCase\": \"100:red\", \"name\": \"100 Red\", \"sortOrder\": 1, \"addPrice\": 200, \"supplyPrice\": 190, \"stockQuantity\": 999, \"productOptionItemStatus\": \"y\" }, { \"productOptionCodeCase\": \"100:blue\", \"name\": \"100 Blue\", \"sortOrder\": 2, \"addPrice\": 400, \"supplyPrice\": 390, \"stockQuantity\": 999, \"productOptionItemStatus\": \"y\" }, { \"productOptionCodeCase\": \"105:red\", \"name\": \"105 Red\", \"sortOrder\": 3, \"addPrice\": 200, \"supplyPrice\": 190, \"stockQuantity\": 999, \"productOptionItemStatus\": \"y\" }, { \"productOptionCodeCase\": \"105:blue\", \"name\": \"105 Blue\", \"sortOrder\": 4, \"addPrice\": 400, \"supplyPrice\": 390, \"stockQuantity\": 999, \"productOptionItemStatus\": \"y\" } ] ",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "addOptionType",
+					"value": "y",
+					"description": "추가옵션 : n / y",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "addOption",
+					"value": "[ { \"name\": \"사은품\", \"productOptionCodes\": \"깔창,운동화 끈\", \"required\": true, \"productOptionStatus\": \"y\" }, { \"name\": \"추가옵션\", \"productOptionCodes\": \"옵션명1,옵션명2\", \"required\": false, \"productOptionStatus\": \"y\" } ]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "addOptionItem",
+					"value": "[ { \"productOptionCodeCase\": \"사은품:깔창\", \"name\": \"사은품 > 깔창\", \"sortOrder\": 1, \"addPrice\": 200, \"supplyPrice\": 190, \"stockQuantity\": 999, \"productOptionItemStatus\": \"y\" }, { \"productOptionCodeCase\": \"사은품:운동화 끈\", \"name\": \"사은품 > 운동화 끈\", \"sortOrder\": 2, \"addPrice\": 400, \"supplyPrice\": 390, \"stockQuantity\": 999, \"productOptionItemStatus\": \"y\" }, { \"productOptionCodeCase\": \"추가옵션:옵션명1\", \"name\": \"추가옵션 > 옵션명1\", \"sortOrder\": 3, \"addPrice\": 200, \"supplyPrice\": 190, \"stockQuantity\": 999, \"productOptionItemStatus\": \"y\" }, { \"productOptionCodeCase\": \"추가옵션:옵션명2\", \"name\": \"추가옵션 > 옵션명2\", \"sortOrder\": 4, \"addPrice\": 400, \"supplyPrice\": 390, \"stockQuantity\": 999, \"productOptionItemStatus\": \"y\" } ]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "resources",
+					"value": "[ { \"fileType\": \"imageurl\", \"fileUseType\": \"representation\", \"fileUrl\": \"http://qa.ygoon.com/file/getImage?atchFileId=PRODUCT__1485422177932&fileSn=0\", \"sortOrder\": 1 }, { \"fileType\": \"imageurl\", \"fileUseType\": \"addition\", \"fileUrl\": \"http://qa.ygoon.com/file/getImage?atchFileId=2017_06_29_164411.jpg\", \"sortOrder\": 2 }, { \"fileType\": \"imageurl\", \"fileUseType\": \"addition\", \"fileUrl\": \"http://qa.ygoon.com/file/getImage?atchFileId=2017_01_26_181555.jpg\", \"sortOrder\": 3 }, { \"fileType\": \"imageurl\", \"fileUseType\": \"addition\", \"fileUrl\": \"http://qa.ygoon.com/file/getImage?atchFileId=2017_04_19_192754.jpg\", \"sortOrder\": 4 }, { \"fileType\": \"imageurl\", \"fileUseType\": \"addition\", \"fileUrl\": \"http://qa.ygoon.com/file/getImage?atchFileId=2017_01_09_094106.jpg\", \"sortOrder\": 5 } ]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "contentsOptionTypeId",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "contentsOptions",
+					"value": "[ { \"name\": \"제품소재\", \"value\": \"플라스틱\" }, { \"name\": \"색상\", \"value\": \"블랙\" }, { \"name\": \"치수\", \"value\": \"FREE\" }, { \"name\": \"제조사\", \"value\": \"LG\" }, { \"name\": \"제조연월\", \"value\": \"201701\" } ]",
+					"description": "상품정보 고시",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "productInflowRoute",
+					"value": "sabangnet",
+					"description": "유입경로 (varchar)  : shoplinker/sabangnet",
+					"enabled": false
+				},
+				{
+					"key": "originProductId",
+					"value": "1",
+					"description": "연동입수상품ID (varchar) "
+				},
+				{
+					"key": "sabangnetId",
+					"value": "sabangytn",
+					"description": "사방넷ID",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "sabangnetPw",
+					"value": "1234",
+					"description": "사방넷PW",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1504779715610,
+			"name": "사방넷 상품등록 product/event/sabangnet.json",
+			"description": "",
+			"collectionId": "6cc20ffd-96ac-9676-3e39-cae75bf40503",
+			"responses": []
+		},
+		{
+			"id": "7b7e46dd-5d96-1754-6f5a-fcc7a974951a",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/myDeliveryAddress/event/setData.json",
+			"folder": "39c33a3a-8c03-11b2-b84e-9028ed830df4",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "myDeliveryAddressId",
+					"value": "102",
+					"description": "ID (bigint) Not null",
+					"enabled": false
+				},
+				{
+					"key": "memberNo",
+					"value": "77777",
+					"description": "회원번호 (bigint) Not null"
+				},
+				{
+					"key": "siteId",
+					"value": "",
+					"description": "사이트ID (varchar) ",
+					"enabled": false
+				},
+				{
+					"key": "defaultYn",
+					"value": "y",
+					"description": "기본배송지여부 (varchar) Not null",
+					"enabled": true
+				},
+				{
+					"key": "addressName",
+					"value": "aaa2",
+					"description": "주소명 (varchar) Not null",
+					"enabled": true
+				},
+				{
+					"key": "postCode",
+					"value": "123",
+					"description": "우편번호 (varchar) Not null",
+					"enabled": true
+				},
+				{
+					"key": "address",
+					"value": "123",
+					"description": "주소 (text) Not null",
+					"enabled": true
+				},
+				{
+					"key": "detailedAddress",
+					"value": "123",
+					"description": "상세주소 (text) ",
+					"enabled": true
+				},
+				{
+					"key": "city",
+					"value": "123",
+					"description": "도시 (text) ",
+					"enabled": false
+				},
+				{
+					"key": "cellphone",
+					"value": "",
+					"description": "휴대폰 (varchar) ",
+					"enabled": false
+				},
+				{
+					"key": "phone",
+					"value": "",
+					"description": "전화번호 (varchar) ",
+					"enabled": false
+				},
+				{
+					"key": "created",
+					"value": "",
+					"description": "등록일 (datetime) ",
+					"enabled": false
+				},
+				{
+					"key": "changed",
+					"value": "",
+					"description": "수정일 (datetime) "
+				},
+				{
+					"key": "recipient",
+					"value": "ddd",
+					"description": "수령인 (varchar) Not null",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1505197720192,
+			"name": "나의 배송지(기본배송지처리) myDeliveryAddress/save.json",
+			"description": "",
+			"collectionId": "6cc20ffd-96ac-9676-3e39-cae75bf40503",
+			"responses": []
+		},
+		{
+			"id": "a1370a4d-44e8-a741-3473-62a450249336",
+			"headers": "",
+			"headerData": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/orderDeliveryPrice/event/sweettrackerGetData",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "fid",
+					"value": "2",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "invoice_no",
+					"value": "123456789",
+					"description": "",
+					"type": "text",
+					"enabled": false
+				},
+				{
+					"key": "level",
+					"value": "6",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1507367920504,
+			"name": "[스윗트래커] 운송장 추적정보 수신API(Callback_URL)",
+			"description": "",
+			"collectionId": "6cc20ffd-96ac-9676-3e39-cae75bf40503",
+			"responses": []
+		},
+		{
+			"id": "afa9592e-bdf7-55d0-5079-c9dc0380795b",
+			"headers": "",
+			"headerData": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/YPoint/event/useYPoint",
+			"folder": "70c23aa0-4913-ab09-72d7-ce2199987661",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "memberNo",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "orderSheetId",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "YPoint",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1506745916621,
+			"name": "YPoint 사용",
+			"description": "",
+			"collectionId": "6cc20ffd-96ac-9676-3e39-cae75bf40503",
+			"responses": []
+		},
+		{
+			"id": "d2c67808-dcd7-412a-7868-96781ee97d51",
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/couponType/save.json",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "6cc20ffd-96ac-9676-3e39-cae75bf40503",
+			"data": [
+				{
+					"key": "couponTypeId",
+					"value": "105",
+					"description": "ID (bigint) Not null",
+					"enabled": true
+				},
+				{
+					"key": "name",
+					"value": "카테고리 10% 발급수제한 20",
+					"description": "이름 (varchar) "
+				},
+				{
+					"key": "siteType",
+					"value": "all",
+					"description": "사이트타입 (varchar) "
+				},
+				{
+					"key": "channelType",
+					"value": "all",
+					"description": "발급채널 (varchar) "
+				},
+				{
+					"key": "benefitsType",
+					"value": "discountRate",
+					"description": "혜택타입 (varchar) "
+				},
+				{
+					"key": "benefitsPrice",
+					"value": "20",
+					"description": "혜택타입-할인금액,할인율 (decimal) "
+				},
+				{
+					"key": "minPurchasePrice",
+					"value": "1000",
+					"description": "최소결제금액(할인금액) (decimal) "
+				},
+				{
+					"key": "maxDiscountPrice",
+					"value": "",
+					"description": "최대할인금액(할인율) (decimal) "
+				},
+				{
+					"key": "couponType",
+					"value": "category",
+					"description": "발급구분 (varchar) "
+				},
+				{
+					"key": "counditionalAuto",
+					"value": "",
+					"description": "조건부자동 (varchar) "
+				},
+				{
+					"key": "categoryIds",
+					"value": "57,108",
+					"description": "카테고리ID (varchar) "
+				},
+				{
+					"key": "limitedQuantityType",
+					"value": "limit",
+					"description": "발급수 제한 타입 (varchar) "
+				},
+				{
+					"key": "limitedQuantity",
+					"value": "10",
+					"description": "발급수 제한 개수 (bigint) "
+				},
+				{
+					"key": "samePersonQuantityType",
+					"value": "limit",
+					"description": "동일인 재발급 타입 (varchar) "
+				},
+				{
+					"key": "samePersonQuantity",
+					"value": "2",
+					"description": "동일인 재발급 수량 (bigint) "
+				},
+				{
+					"key": "validePeriodType",
+					"value": "limit",
+					"description": "유효기간타입 (varchar) "
+				},
+				{
+					"key": "validePeriod",
+					"value": "3",
+					"description": "유효기간 (bigint) "
+				},
+				{
+					"key": "createPeriodType",
+					"value": "limit",
+					"description": "발급기간타입 (varchar) "
+				},
+				{
+					"key": "createStartDate",
+					"value": "20170801000000",
+					"description": "발급 시작일 (datetime) "
+				},
+				{
+					"key": "createEndDate",
+					"value": "20171231235959",
+					"description": "발급 종료일 (datetime) "
+				},
+				{
+					"key": "owner",
+					"value": "",
+					"description": "등록자 (varchar) ",
+					"enabled": false
+				},
+				{
+					"key": "created",
+					"value": "",
+					"description": "등록일 (datetime) ",
+					"enabled": false
+				},
+				{
+					"key": "modifier",
+					"value": "",
+					"description": "수정자 (varchar) ",
+					"enabled": false
+				},
+				{
+					"key": "changed",
+					"value": "",
+					"description": "수정일 (datetime) ",
+					"enabled": false
+				}
+			],
+			"dataMode": "urlencoded",
+			"name": "쿠폰관리 - 쿠폰유형 couponType/save.json",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1505135172237,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "dc857451-7a60-ff9e-6510-16c93fee3624",
+			"headers": "",
+			"headerData": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/YPoint/event/refundYPoint",
+			"folder": "70c23aa0-4913-ab09-72d7-ce2199987661",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "memberNo",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "orderSheetId",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "YPoint",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1506745755900,
+			"name": "YPoint 환불",
+			"description": "",
+			"collectionId": "6cc20ffd-96ac-9676-3e39-cae75bf40503",
+			"responses": []
+		},
+		{
+			"id": "e3bcf46b-d13f-76e8-4710-8f9426e96439",
+			"headers": "",
+			"headerData": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/YPoint/event/addYPoint",
+			"folder": "70c23aa0-4913-ab09-72d7-ce2199987661",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [
+				{
+					"key": "memberNo",
+					"value": "88888",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "orderSheetId",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "orderProductId",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "productId",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "eventId",
+					"value": "",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "YPoint",
+					"value": "200",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1506762851715,
+			"name": "YPoint 적립",
+			"description": "",
+			"collectionId": "6cc20ffd-96ac-9676-3e39-cae75bf40503",
+			"responses": []
+		}
+	]
+}

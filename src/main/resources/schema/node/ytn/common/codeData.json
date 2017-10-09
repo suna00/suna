@@ -1603,6 +1603,15 @@
   },
   {
     "typeId": "commonCode",
+    "code": "faq105",
+    "upperCode": "faqType",
+    "name": "기타",
+    "description": "",
+    "sortOrder": "5",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
     "code": "faq201",
     "upperCode": "faq101",
     "name": "배송",
@@ -3687,6 +3696,15 @@
     "name": "판매종료",
     "description": "",
     "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "soldout",
+    "upperCode": "saleStatus",
+    "name": "SOLDOUT",
+    "description": "",
+    "sortOrder": "4",
     "commonCodeStatus": "y"
   },
   {

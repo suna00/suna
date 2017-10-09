@@ -47,11 +47,11 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
 
     @Field(analyze = Analyze.NO)
-    @DateBridge(resolution = Resolution.SECOND)
+    @DateBridge(resolution = Resolution.MILLISECOND)
     private Date created ;
 
     @Field(analyze = Analyze.NO)
-    @DateBridge(resolution = Resolution.SECOND)
+    @DateBridge(resolution = Resolution.MILLISECOND)
     private Date changed ;
 
 
@@ -96,8 +96,8 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     public Node(Map<String, Object> data){
         properties = new Properties() ;
         this.id = data.get(ID).toString();
-        this.putAll(data);
         this.properties.setId(id) ;
+        this.putAll(data);
     }
 
 
@@ -145,10 +145,9 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
                 }
             }
         }
-
-        this.putAll(data, typeId);
         this.properties.setId(id) ;
         this.properties.setTypeId(typeId) ;
+        this.putAll(data, typeId);
     }
 
     private boolean isNullId() {

@@ -134,7 +134,7 @@ public class NodeService {
 
 
     public List<Node> getNodeList(String typeId, String searchText) {
-        QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, getNodeType(typeId)) ;
+        QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, getNodeType(typeId), null) ;
         return infinispanRepositoryService.getSubQueryNodes(typeId, queryContext) ;
     }
 

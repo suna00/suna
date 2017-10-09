@@ -235,7 +235,9 @@ public class ContextUtils {
 
         if(readContext instanceof QueryContext){
             QueryContext queryContext = (QueryContext) readContext;
-            if (paramName.equals("page")) {
+            if(paramName.equals("position")){
+                queryContext.setPosition(value) ;
+            }else if (paramName.equals("page")) {
                 queryContext.setCurrentPage(value);
                 return null;
             } else if (paramName.equals("pageSize")) {

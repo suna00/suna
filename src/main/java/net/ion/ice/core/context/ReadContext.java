@@ -54,6 +54,8 @@ public class ReadContext implements Context, Serializable {
 
     protected Boolean remote ;
 
+
+
     public NodeType getNodetype() {
         return nodeType;
     }
@@ -224,6 +226,10 @@ public class ReadContext implements Context, Serializable {
         return id;
     }
 
+    public static String getParamId(Map<String, String[]> parameterMap, String typeId){
+        return getId(parameterMap, NodeUtils.getNodeType(typeId), null) ;
+    }
+
     public QueryResult makeQueryResult() {
         return makeResult() ;
     }
@@ -279,12 +285,12 @@ public class ReadContext implements Context, Serializable {
             }
         }else{
             this.setNodeData(node);
-            makeItemQueryResult(node, itemResult, this.data);
+            makeItemQueryResult(node, itemResult, this.data, 0);
         }
         return itemResult;
     }
 
-    protected void makeItemQueryResult(Node node, QueryResult itemResult, Map<String, Object> contextData) {
+    protected void makeItemQueryResult(Node node, QueryResult itemResult, Map<String, Object> contextData, int i) {
         NodeType _nodeType = NodeUtils.getNodeType(node.getTypeId()) ;
         for (ResultField resultField : getResultFields()) {
             if(resultField.getFieldName().equals("_all_")){
@@ -370,9 +376,14 @@ public class ReadContext implements Context, Serializable {
             } else {
                 String fieldValue = resultField.getFieldValue();
                 fieldValue = fieldValue == null || StringUtils.isEmpty(fieldValue) ? resultField.getFieldName() : fieldValue;
-                PropertyType pt = _nodeType.getPropertyType(fieldValue) ;
-                if(pt == null) continue;
-                itemResult.put(resultField.getFieldName(), NodeUtils.getResultValue( this, pt, node));
+
+                if (resultField.getFieldValue().equals("_position_")) {
+                    itemResult.put(resultField.getFieldName(), ((QueryContext) this).getStart() + i + 1);
+                }else {
+                    PropertyType pt = _nodeType.getPropertyType(fieldValue);
+                    if (pt == null) continue;
+                    itemResult.put(resultField.getFieldName(), NodeUtils.getResultValue(this, pt, node));
+                }
             }
         }
     }
@@ -394,7 +405,7 @@ public class ReadContext implements Context, Serializable {
 
     public boolean isIncludeReferenced(String pid) {
         if (includeReferenced == null) {
-            return true;
+            return false;
         }
         if (includeReferenced && includeReferencedFields == null) {
             return true;

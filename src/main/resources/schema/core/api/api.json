@@ -1,0 +1,126 @@
+[
+  {
+    "typeId" : "apiCategory",
+    "id" : "node",
+    "categoryName" : "Node API Relay",
+    "fileUrlFormat" : {
+      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "node",
+    "apiId" : "list",
+    "apiName" : "Default list API",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "root" : {
+        "typeId":"{{:typeId}}",
+        "query" : [
+          {"parameters" : "all"}
+        ]
+      }
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "node",
+    "apiId" : "detailList",
+    "apiName" : "Default list API",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "root" : {
+        "typeId":"{{:typeId}}",
+        "query" : [
+          {"parameters" : "all"},
+          {"includeReferenced" : true},
+          {"referenceView" : true}
+        ]
+      }
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "node",
+    "apiId" : "read",
+    "apiName" : "Default read API",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId":"{{:typeId}}",
+      "id" : "{{:id}}",
+      "includeReferenced" : true,
+      "referenceView" : true
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "node",
+    "apiId" : "save",
+    "apiName" : "Default save API",
+    "method" : "POST",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId":"{{:typeId}}",
+      "event": "save"
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "node",
+    "apiId" : "create",
+    "apiName" : "Default create API",
+    "method" : "POST",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId":"{{:typeId}}",
+      "event": "create"
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "node",
+    "apiId" : "update",
+    "apiName" : "Default update API",
+    "method" : "POST",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId":"{{:typeId}}",
+      "event": "update"
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "node",
+    "apiId" : "delete",
+    "apiName" : "Default delete API",
+    "method" : "POST",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId":"{{:typeId}}",
+      "event": "delete"
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "node",
+    "apiId" : "event",
+    "apiName" : "Default event API",
+    "method" : "POST",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId":"{{:typeId}}",
+      "event": "{{:event}}"
+    }
+  }
+]

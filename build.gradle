@@ -115,6 +115,9 @@ dependencies {
     compile('kcp:jPpcliE:1.1.0')        //KCP Module (결제 승인 요청 시 소켓통신용 jar 파일)
     compile('kcp:ConnectionKCP:1.1.0')  //KCP Module (스마트폰(mobile_sample)결제 모듈 연동 시, 거래등록 soap 통신용 jar 파일)
 
+
+    compile('com.github.scribejava:scribejava-apis:4.2.0') // 소셜로그인
+
     compile('org.stagemonitor:stagemonitor-web-servlet:0.80.0.RC1')
     compile('org.projectlombok:lombok:1.16.16')
     runtime('org.springframework.boot:spring-boot-devtools')

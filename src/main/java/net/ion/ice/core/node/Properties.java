@@ -54,7 +54,7 @@ public class Properties<K,V> extends LinkedHashMap<K, V> implements Map<K,V>, Se
                             put(fieldName, fileValue);
                             m.put(fieldName, fileValue);
                         } else if(pt.isFile() && m.get(fieldName) instanceof MultipartFile){
-                            FileValue fileValue = NodeUtils.getFileService().saveMultipartFile(pt, id, (MultipartFile) value);
+                            FileValue fileValue = NodeUtils.getFileService().saveMultipartFile(pt, id, (MultipartFile) m.get(fieldName));
                             put(fieldName, fileValue);
                             m.put(fieldName, fileValue);
                         } else {
