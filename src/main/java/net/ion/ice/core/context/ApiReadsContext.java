@@ -1,5 +1,6 @@
 package net.ion.ice.core.context;
 
+import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.ResultField;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class ApiReadsContext extends ApiReadContext{
+public class ApiReadsContext extends ApiQueryContext{
     protected List<String> ids ;
 
 
@@ -39,7 +40,17 @@ public class ApiReadsContext extends ApiReadContext{
 
 
     public QueryResult makeQueryResult() {
-        return makeQueryResult(result, null, resultType);
+        List<Node> nodes = new ArrayList<>() ;
+
+        for(String _id : ids){
+            Node _node = NodeUtils.getNode(nodeType.getTypeId(), _id ) ;
+            if(_node != null) {
+                nodes.add(_node);
+            }
+        }
+        this.result = nodes;
+
+        return makeQueryResult(result, null, resultType, nodes);
     }
 
 }
