@@ -798,6 +798,7 @@
     "analyzer": "code",
     "referenceType": "category",
     "referenceValue": "upperId",
+    "referencedFilter": "sorting=sortOrder asc",
     "defaultValue": ""
   },
   {
