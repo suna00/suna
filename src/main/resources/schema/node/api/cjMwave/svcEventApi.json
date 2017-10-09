@@ -60,7 +60,7 @@
               "value": "awardSctnSeq_matching={{:awardSctnSeq}}"
             },
             {
-              "sorting":"sortOdrg"
+              "sorting": "sortOdrg"
             }
           ]
         }
@@ -112,7 +112,7 @@
       },
       {
         "paramName": "indvInfoAgreeYn",
-        "required": false
+        "required": true
       },
       {
         "paramName": "selItemAgreeYn",
@@ -120,36 +120,13 @@
       }
     ],
     "config": {
-      "getVotePwnrSeq": {
-        "typeId": "votePwnrInfo",
-        "resultType": "none",
-        "query": [
-          {
-            "field": "pwnrBasSeq",
-            "method": "referenceJoin",
-            "value": "voteSeq_matching={{:voteSeq}}&limit=1"
-          },
-          {
-            "field": "mbrId",
-            "method": "matching",
-            "value": "{{:snsTypeCd}}>{{:snsKey}}"
-          },
-          {
-            "sorting": "votePwnrSeq desc",
-            "limit": 1
-          }
-        ],
-        "response": {
-          "votePwnrSeq": ""
-        }
+      "typeId": "votePwnrInputInfo",
+      "event": "save",
+      "data": {
+        "mbrId": "{{:makeIdValue(>,snsTypeCd,snsKey)}}"
       },
-      "root": {
-        "typeId": "votePwnrInfo",
-        "event": "update",
-        "if": "{{:aboveInt(votePwnrSeq,0)}}",
-        "response": {
-          "changed": ""
-        }
+      "response": {
+        "changed": ""
       }
     }
   }
