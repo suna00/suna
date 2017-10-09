@@ -10,7 +10,10 @@
   {
     "typeId" : "apiCategory",
     "id" : "theme",
-    "categoryName" : "테마 API(메인, 베스트, 카테고리 메인 등)"
+    "categoryName" : "테마 API(메인, 베스트, 카테고리 메인 등)",
+    "fileUrlFormat" : {
+      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
+    }
   },
   {
     "typeId" : "apiConfig",
@@ -45,7 +48,10 @@
   {
     "typeId" : "apiCategory",
     "id" : "beltBanner",
-    "categoryName" : "띠배너 API"
+    "categoryName" : "띠배너 API",
+    "fileUrlFormat" : {
+      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
+    }
   },
   {
     "typeId" : "apiConfig",
@@ -67,7 +73,10 @@
   {
     "typeId" : "apiCategory",
     "id" : "displayBanner",
-    "categoryName" : "전시배너 API"
+    "categoryName" : "전시배너 API",
+    "fileUrlFormat" : {
+      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
+    }
   },
   {
     "typeId" : "apiConfig",

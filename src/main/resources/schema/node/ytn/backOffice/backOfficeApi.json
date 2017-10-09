@@ -2,7 +2,10 @@
   {
     "typeId": "apiCategory",
     "id": "smsCertification",
-    "categoryName": "SMS 인증"
+    "categoryName": "SMS 인증",
+    "fileUrlFormat" : {
+      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
+    }
   },
   {
     "typeId": "apiConfig",
@@ -68,7 +71,10 @@
   {
     "typeId": "apiCategory",
     "id": "emailCertification",
-    "categoryName": "EMAIL 인증"
+    "categoryName": "EMAIL 인증",
+    "fileUrlFormat" : {
+      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
+    }
   },
   {
     "typeId": "apiConfig",

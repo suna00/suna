@@ -19,8 +19,8 @@
     "typeId": "commonResource",
     "commonResourceId": 22,
     "tid": "product",
-    "contentsId": 6519092,
-    "file": "classpath:schema/node/ytn/product/file/6519092.jpeg",
+    "contentsId": 65192,
+    "file": "classpath:schema/node/ytn/product/file/65192.jpeg",
     "name": "main"
   },
   {
@@ -28,7 +28,7 @@
     "commonResourceId": 23,
     "tid": "product",
     "contentsId": 65193,
-    "file": "classpath:schema/node/ytn/product/file/6519093.jpeg",
+    "file": "classpath:schema/node/ytn/product/file/65193.jpeg",
     "name": "main"
   },
   {
@@ -36,7 +36,7 @@
     "commonResourceId": 24,
     "tid": "product",
     "contentsId": 65194,
-    "file": "classpath:schema/node/ytn/product/file/6519094.jpeg",
+    "file": "classpath:schema/node/ytn/product/file/65194.jpeg",
     "name": "main"
   },
   {
@@ -44,7 +44,7 @@
     "commonResourceId": 25,
     "tid": "product",
     "contentsId": 65195,
-    "file": "classpath:schema/node/ytn/product/file/6519095.jpeg",
+    "file": "classpath:schema/node/ytn/product/file/65195.jpeg",
     "name": "main"
   }
 ]
