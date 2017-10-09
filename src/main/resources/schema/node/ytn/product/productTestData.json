@@ -12638,134 +12638,224 @@
   {
     "typeId": "productToCategoryMap",
     "productToCategoryMapId": 1,
-    "categoryId": "9,24,44",
+    "categoryId": "1,13,86",
     "productId": 65190
   },
   {
     "typeId": "productToCategoryMap",
     "productToCategoryMapId": 2,
-    "categoryId": "9,23,115",
+    "categoryId": "1,12,85",
     "productId": 65191
   },
   {
     "typeId": "productToCategoryMap",
     "productToCategoryMapId": 3,
-    "categoryId": "9,23,115",
+    "categoryId": "1,12,85",
     "productId": 65192
   },
   {
     "typeId": "productToCategoryMap",
     "productToCategoryMapId": 4,
-    "categoryId": "9,23,116",
+    "categoryId": "1,12,85",
     "productId": 65193
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 6,
+    "categoryId": "1,12,85",
+    "productId": 65195
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 7,
+    "categoryId": "1,12,85",
+    "productId": 65196
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 8,
+    "categoryId": "1,12,85",
+    "productId": 65197
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 9,
+    "categoryId": "1,12,85",
+    "productId": 65198
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 10,
+    "categoryId": "1,12,85",
+    "productId": 65199
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 11,
+    "categoryId": "1,13,86",
+    "productId": 65200
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 12,
+    "categoryId": "1,13,86",
+    "productId": 65201
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 13,
+    "categoryId": "1,12,85",
+    "productId": 65202
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 14,
+    "categoryId": "1,13,86",
+    "productId": 65203
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 15,
+    "categoryId": "1,13,86",
+    "productId": 65204
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 16,
+    "categoryId": "1,12,85",
+    "productId": 65205
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 17,
+    "categoryId": "1,12,85",
+    "productId": 65206
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 18,
+    "categoryId": "1,12,85",
+    "productId": 65207
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 19,
+    "categoryId": "1,12,85",
+    "productId": 65208
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 20,
+    "categoryId": "1,12,85",
+    "productId": 65209
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 21,
+    "categoryId": "1,12,85",
+    "productId": 65210
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 22,
+    "categoryId": "1,12,85",
+    "productId": 65211
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 25,
+    "categoryId": "1,12,85",
+    "productId": 65213
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 28,
+    "categoryId": "1,12,85",
+    "productId": 65216
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 46,
+    "categoryId": "1,12,85",
+    "productId": 65233
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 48,
+    "categoryId": "1,12,85",
+    "productId": 65235
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 50,
+    "categoryId": "1,12,85",
+    "productId": 65237
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 53,
+    "categoryId": "1,12,85",
+    "productId": 65239
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 61,
+    "categoryId": "1,12,85",
+    "productId": 65244
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 70,
+    "categoryId": "1,12,85",
+    "productId": 65249
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 71,
+    "categoryId": "1,12,85",
+    "productId": 65250
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 105,
+    "categoryId": "1,13,86",
+    "productId": 65284
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 106,
+    "categoryId": "1,13,86",
+    "productId": 65285
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 107,
+    "categoryId": "1,12,85",
+    "productId": 65286
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 108,
+    "categoryId": "1,12,85",
+    "productId": 65287
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 109,
+    "categoryId": "1,13,86",
+    "productId": 65288
+  },
+  {
+    "typeId": "productToCategoryMap",
+    "productToCategoryMapId": 110,
+    "categoryId": "1,13,86",
+    "productId": 65289
   },
   {
     "typeId": "productToCategoryMap",
     "productToCategoryMapId": 5,
     "categoryId": "4,21,33",
     "productId": 65194
-  },
-  {
-    "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 6,
-    "categoryId": "9,23,42",
-    "productId": 65195
-  },
-  {
-    "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 7,
-    "categoryId": "9,23,42",
-    "productId": 65196
-  },
-  {
-    "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 8,
-    "categoryId": "9,23,42",
-    "productId": 65197
-  },
-  {
-    "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 9,
-    "categoryId": "9,23,42",
-    "productId": 65198
-  },
-  {
-    "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 10,
-    "categoryId": "9,23,42",
-    "productId": 65199
-  },
-  {
-    "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 11,
-    "categoryId": "9,24,121",
-    "productId": 65200
-  },
-  {
-    "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 12,
-    "categoryId": "9,24,121",
-    "productId": 65201
-  },
-  {
-    "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 13,
-    "categoryId": "9,23,115",
-    "productId": 65202
-  },
-  {
-    "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 14,
-    "categoryId": "9,24,119",
-    "productId": 65203
-  },
-  {
-    "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 15,
-    "categoryId": "9,24,121",
-    "productId": 65204
-  },
-  {
-    "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 16,
-    "categoryId": "9,23,115",
-    "productId": 65205
-  },
-  {
-    "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 17,
-    "categoryId": "9,23,42",
-    "productId": 65206
-  },
-  {
-    "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 18,
-    "categoryId": "9,23,42",
-    "productId": 65207
-  },
-  {
-    "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 19,
-    "categoryId": "9,23,116",
-    "productId": 65208
-  },
-  {
-    "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 20,
-    "categoryId": "9,23,115",
-    "productId": 65209
-  },
-  {
-    "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 21,
-    "categoryId": "9,23,41",
-    "productId": 65210
-  },
-  {
-    "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 22,
-    "categoryId": "9,23,116",
-    "productId": 65211
   },
   {
     "typeId": "productToCategoryMap",
@@ -12781,12 +12871,6 @@
   },
   {
     "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 25,
-    "categoryId": "9,23,115",
-    "productId": 65213
-  },
-  {
-    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 26,
     "categoryId": "9,25,123",
     "productId": 65214
@@ -12796,12 +12880,6 @@
     "productToCategoryMapId": 27,
     "categoryId": "15,61,200",
     "productId": 65215
-  },
-  {
-    "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 28,
-    "categoryId": "9,23,41",
-    "productId": 65216
   },
   {
     "typeId": "productToCategoryMap",
@@ -12907,33 +12985,15 @@
   },
   {
     "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 46,
-    "categoryId": "9,23,42",
-    "productId": 65233
-  },
-  {
-    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 47,
     "categoryId": "15,61,200",
     "productId": 65234
   },
   {
     "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 48,
-    "categoryId": "9,23,42",
-    "productId": 65235
-  },
-  {
-    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 49,
     "categoryId": "15,61,200",
     "productId": 65236
-  },
-  {
-    "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 50,
-    "categoryId": "9,23,115",
-    "productId": 65237
   },
   {
     "typeId": "productToCategoryMap",
@@ -12946,12 +13006,6 @@
     "productToCategoryMapId": 52,
     "categoryId": "15::61::199",
     "productId": 65238
-  },
-  {
-    "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 53,
-    "categoryId": "9,23,41",
-    "productId": 65239
   },
   {
     "typeId": "productToCategoryMap",
@@ -12994,12 +13048,6 @@
     "productToCategoryMapId": 60,
     "categoryId": "15,61,201",
     "productId": 65243
-  },
-  {
-    "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 61,
-    "categoryId": "9,23,41",
-    "productId": 65244
   },
   {
     "typeId": "productToCategoryMap",
@@ -13048,18 +13096,6 @@
     "productToCategoryMapId": 69,
     "categoryId": "15,61,200",
     "productId": 65248
-  },
-  {
-    "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 70,
-    "categoryId": "9,23,115",
-    "productId": 65249
-  },
-  {
-    "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 71,
-    "categoryId": "9,23,42",
-    "productId": 65250
   },
   {
     "typeId": "productToCategoryMap",
@@ -13258,41 +13294,5 @@
     "productToCategoryMapId": 104,
     "categoryId": "2,78,244",
     "productId": 65283
-  },
-  {
-    "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 105,
-    "categoryId": "9,24,44",
-    "productId": 65284
-  },
-  {
-    "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 106,
-    "categoryId": "9,24,43",
-    "productId": 65285
-  },
-  {
-    "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 107,
-    "categoryId": "9,23,116",
-    "productId": 65286
-  },
-  {
-    "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 108,
-    "categoryId": "9,23,115",
-    "productId": 65287
-  },
-  {
-    "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 109,
-    "categoryId": "9,24,121",
-    "productId": 65288
-  },
-  {
-    "typeId": "productToCategoryMap",
-    "productToCategoryMapId": 110,
-    "categoryId": "9,24,44",
-    "productId": 65289
   }
 ]
