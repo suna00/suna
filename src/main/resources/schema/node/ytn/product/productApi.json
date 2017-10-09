@@ -42,7 +42,8 @@
         {"field" : "name", "method" : "matchingShould", "value" : "*{{:searchValue}}*" },
         {"field" : "modelName", "method" : "matchingShould", "value" : "*{{:searchValue}}*" },
         {"field" : "referencedProductSearchFilter", "method" : "hasReferenced", "value" : "searchFilterCodeIds_matching={{:searchFilterCodeIds}}"},
-        {"includeReferenced" : true}
+        {"field" : "referencedProductToCategoryMap", "method" : "hasReferenced", "value" : "categoryId_matching={{:categoryId}}"},
+        {"includeReferenced" : "referencedMainImage,referencedProductSearchFilter"}
       ]
     }
   },
