@@ -154,7 +154,7 @@ public class ApiContext {
             setApiResultFormat(readContext);
 
             Node node = readContext.getNode() ;
-            addResultData(node.clone());
+            addResultData(node);
 
             return readContext.makeResult() ;
         }else if(ctxRootConfig.containsKey("ids")){

@@ -216,11 +216,11 @@ public class ContextUtils {
             return null;
         }
 
-        if(paramName.equals("includeReferenced")){
-            readContext.makeIncludeReferenced(value);
+        if(paramName.equals("includeReferenced") && StringUtils.isNotEmpty(value)){
+            readContext.makeIncludeReferenced(ContextUtils.getValue(value, readContext.data).toString());
             return null;
-        } else if(paramName.equals("referenceView")){
-            readContext.makeReferenceView(value);
+        } else if(paramName.equals("referenceView")  && StringUtils.isNotEmpty(value) ){
+            readContext.makeReferenceView(ContextUtils.getValue(value, readContext.data).toString());
             return null;
         } else if(paramName.equals(ApiContext.DATE_FORMAT)){
             readContext.dateFormat = value ;
