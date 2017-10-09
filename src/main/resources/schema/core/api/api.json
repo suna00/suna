@@ -2,7 +2,10 @@
   {
     "typeId" : "apiCategory",
     "id" : "node",
-    "categoryName" : "Node API Relay"
+    "categoryName" : "Node API Relay",
+    "fileUrlFormat" : {
+      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
+    }
   },
   {
     "typeId" : "apiConfig",
@@ -53,6 +56,71 @@
       "id" : "{{:id}}",
       "includeReferenced" : true,
       "referenceView" : true
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "node",
+    "apiId" : "save",
+    "apiName" : "Default save API",
+    "method" : "POST",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId":"{{:typeId}}",
+      "event": "save"
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "node",
+    "apiId" : "create",
+    "apiName" : "Default create API",
+    "method" : "POST",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId":"{{:typeId}}",
+      "event": "create"
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "node",
+    "apiId" : "update",
+    "apiName" : "Default update API",
+    "method" : "POST",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId":"{{:typeId}}",
+      "event": "update"
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "node",
+    "apiId" : "delete",
+    "apiName" : "Default delete API",
+    "method" : "POST",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId":"{{:typeId}}",
+      "event": "delete"
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "node",
+    "apiId" : "event",
+    "apiName" : "Default event API",
+    "method" : "POST",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId":"{{:typeId}}",
+      "event": "{{:event}}"
     }
   }
 ]
