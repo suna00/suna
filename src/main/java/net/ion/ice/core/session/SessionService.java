@@ -56,6 +56,11 @@ public class SessionService {
             sessionMap.put(sessionKey, sessionData);
             CookieUtil.create(response, "iceJWT", jwtConfig.getTokenPrefix().concat(" ").concat(sessionKey), false, false, -1, request.getServerName());
             CookieUtil.create(response, "iceRefreshJWT", jwtConfig.getTokenPrefix().concat(" ").concat(refreshSessionKey), true, false, -1, request.getServerName());
+        }else{
+            Map<String, Object> session = getSession(request);
+            if(sessionData != null){
+                session.putAll(sessionData);
+            }
         }
     }
 

@@ -40,21 +40,11 @@
     "apiId": "me",
     "apiName": "사용자정보조회",
     "method": "POST",
-    "parameters": [
-      {
-        "paramName": "userId",
-        "required": true
-      }
-    ],
+    "parameters": [],
     "config": {
       "typeId": "member",
-      "query": [
-        {
-          "field": "userId",
-          "method": "matching",
-          "value": "{{:userId}}"
-        }
-      ],
+      "event": "me",
+      "data": {},
       "response": {
         "_all_": ""
       }

@@ -66,7 +66,7 @@ public class MemberService {
         session.put("member", member);
         session.put("role", "customer");
         try {
-            sessionService.putSession(context.getHttpRequest(), context.getHttpResponse(), member);
+            sessionService.putSession(context.getHttpRequest(), context.getHttpResponse(), session);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -88,8 +88,10 @@ public class MemberService {
             if(null != node || !node.isEmpty() || node.size() != 0){
                 context.setResult(CommonService.getResult("U0009"));    //로그인을 한 사용자
             }else{
-                context.setResult(CommonService.getResult("U0010"));    //로그인을 하지 않은 사용자
+                context.setResult(CommonService.getResult("U0010"));    //로그인을 하지않은 사용자
             }
+        }else{
+            context.setResult(CommonService.getResult("U0010"));    //로그인을 하지않은 사용자
         }
      return context;
     }

@@ -52,6 +52,10 @@ public class OrderService {
         }
     }
 
+    public void setTempOrder(ExecuteContext context){
+
+    }
+
     /**
      * 사용자의 포인트, 쿠폰갯수를 조회
      */
@@ -470,7 +474,7 @@ public class OrderService {
     }
 
     /**
-     *
+     * 바로 주문 임시 주문서 생성
      */
 
     private void createTempOrder(Map<String, Object> data) throws IOException {
