@@ -72,5 +72,6 @@ public class ApiService {
 
         ApiContext context = ApiContext.createContext(apiCategory, apiNode, typeId, event, (Map<String, Object>) apiNode.get("config"), request, response, session) ;
         return context.makeApiResult() ;
+
     }
 }
