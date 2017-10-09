@@ -27,6 +27,7 @@ jwtConfig:
 
 cluster:
   api-prefix: http://localhost:8080/
+  front-prefix: http://localhost:3090/
   mode: all
   groups: all
   members:
