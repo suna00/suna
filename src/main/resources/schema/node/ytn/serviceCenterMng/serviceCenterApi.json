@@ -2,7 +2,10 @@
   {
     "typeId": "apiCategory",
     "id": "serviceCenter",
-    "categoryName": "서비스센터 API"
+    "categoryName": "서비스센터 API",
+    "fileUrlFormat" : {
+      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
+    }
   },
   {
     "typeId": "apiConfig",
