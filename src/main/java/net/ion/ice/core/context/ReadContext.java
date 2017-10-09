@@ -507,4 +507,11 @@ public class ReadContext implements Context, Serializable {
         return JsonUtils.getValue(data, key) ;
     }
 
+    public Boolean getReferenceView() {
+        return referenceView;
+    }
+
+    public List<String> getReferenceViewFields() {
+        return referenceViewFields;
+    }
 }
