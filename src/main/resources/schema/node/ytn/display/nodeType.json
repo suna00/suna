@@ -76,7 +76,7 @@
     "tid": "productToCategoryMap",
     "typeName": "카테고리 상품 매핑",
     "tableName": "ytnDevDb#productToCategoryMap",
-    "repositoryType": "data",
+    "repositoryType": "node",
     "eviction": 0
   },
   {
