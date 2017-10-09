@@ -423,6 +423,11 @@
             "value": "showCntryCdList_matching={{:cntryCd}}&svcDvcDivCd_matching={{:svcTermlDivCd}}&showYn_matching=true&limit=1"
           },
           {
+            "field": "useYn",
+            "method": "matching",
+            "value": "true"
+          },
+          {
             "includeReferenced": true
           }
         ]
