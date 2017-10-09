@@ -26,6 +26,7 @@
     "config" : {
       "typeId": "productToThemeMap",
       "query" : [
+        {"limit" : 50},
         {"sorting" : "sortOrder"},
         {"field" : "productToThemeMapStatus", "method" : "matching", "value" : "y" },
         {"includeReferenced" : "referencedMainImage,referencedProductAttribute", "referenceView" : "themeId,productId"},
