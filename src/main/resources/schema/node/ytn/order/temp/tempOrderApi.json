@@ -7,6 +7,40 @@
   {
     "typeId": "apiConfig",
     "category": "tempOrder",
+    "apiId": "addTempOrder",
+    "apiName": "임시주문서 저장",
+    "method": "POST",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "tempOrder",
+      "noneExecute": true,
+      "event": "addTempOrder",
+      "data": {
+        "product": "{{:product}}"
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "tempOrder",
+    "apiId": "tempOrderRead",
+    "apiName": "임시주문서 조회",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "tempOrder",
+      "noneExecute": true,
+      "event" : "tempOrderRead",
+      "data": {
+        "tempOrderId": "{{:tempOrderId}}"
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "tempOrder",
     "apiId": "read",
     "apiName": "임시 주문서 조회",
     "method": "GET",
@@ -24,26 +58,52 @@
       "referencedTempOrderDeliveryPrice": {
         "typeId": "tempOrderDeliveryPrice",
         "query": [
-          { "sorting": "created desc" },
-          { "field": "tempOrderId", "method": "equals", "value": "{{:tempOrderId}}" }
+          {
+            "sorting": "created desc"
+          },
+          {
+            "field": "tempOrderId",
+            "method": "equals",
+            "value": "{{:tempOrderId}}"
+          }
         ],
         "response": {
           "_all_": "",
           "referencedTempOrderProduct": {
             "typeId": "tempOrderProduct",
             "query": [
-              { "sorting": "created desc" },
-              {"field" : "productId", "method" : "referenceJoin", "value" : "stockQuantity_notMatching=0" },
-              { "includeReferenced": true, "referenceView": "productId" },
-              { "field": "tempOrderProductId", "method": "in", "value": "{{:tempOrderProductIds}}" }
+              {
+                "sorting": "created desc"
+              },
+              {
+                "field": "productId",
+                "method": "referenceJoin",
+                "value": "stockQuantity_notMatching=0"
+              },
+              {
+                "includeReferenced": true,
+                "referenceView": "productId"
+              },
+              {
+                "field": "tempOrderProductId",
+                "method": "in",
+                "value": "{{:tempOrderProductIds}}"
+              }
             ],
             "response": {
               "_all_": "",
               "referencedTempOrderProductItem": {
                 "typeId": "tempOrderProductItem",
                 "query": [
-                  { "field": "tempOrderProductId", "method": "equals", "value": "{{:tempOrderProductId}}" },
-                  { "includeReferenced": true, "referenceView": "addOptionItemId" }
+                  {
+                    "field": "tempOrderProductId",
+                    "method": "equals",
+                    "value": "{{:tempOrderProductId}}"
+                  },
+                  {
+                    "includeReferenced": true,
+                    "referenceView": "addOptionItemId"
+                  }
                 ]
               },
               "calculateItem": {
