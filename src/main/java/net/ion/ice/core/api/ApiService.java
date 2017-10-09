@@ -2,6 +2,7 @@ package net.ion.ice.core.api;
 
 import net.ion.ice.IceRuntimeException;
 import net.ion.ice.core.context.ApiContext;
+import net.ion.ice.core.context.ReadContext;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.session.SessionService;
@@ -68,8 +69,8 @@ public class ApiService {
             throw new RuntimeException("Not Allow Method") ;
         }
 
+
         ApiContext context = ApiContext.createContext(apiCategory, apiNode, typeId, event, (Map<String, Object>) apiNode.get("config"), request, response, session) ;
         return context.makeApiResult() ;
-
     }
 }

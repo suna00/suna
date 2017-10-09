@@ -63,6 +63,12 @@ public class ApiContext {
             ctx.data.put("event", event);
         }
 
+        if(apiCategory.getId().equals("node") && apiNode.getId().equals("node>read")){
+            if(!request.getParameterMap().containsKey("id")){
+                ctx.data.put("id", ReadContext.getParamId(request.getParameterMap(), typeId)) ;
+            }
+        }
+
 
         if(apiCategory.containsKey(COMMON_RESPONSE) && apiCategory.get(COMMON_RESPONSE) != null && ((Map<String, Object>) apiCategory.get(COMMON_RESPONSE)).size() > 0) {
             ctx.makeCommonResponse((Map<String, Object>) apiCategory.get(COMMON_RESPONSE)) ;
