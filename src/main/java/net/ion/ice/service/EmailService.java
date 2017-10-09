@@ -15,6 +15,7 @@ import java.util.Properties;
 @Service("EmailService")
 public class EmailService {
     public static final String callBackUrl = ApplicationContextManager.getContext().getEnvironment().getProperty("cluster.front-prefix");
+    public static final String apiUrl = ApplicationContextManager.getContext().getEnvironment().getProperty("cluster.api-prefix");
 
     public static void sendEmailHtml(String email, String title, String html) {
         Properties props = new Properties();
@@ -74,7 +75,6 @@ public class EmailService {
     }
 
     public static String getFooter(String siteType, String company){
-        String apiUrl = ApplicationContextManager.getContext().getEnvironment().getProperty("cluster.api-prefix");
         String footer;
         // footer-대학 : <img src="http://localhost/assets/images/email/logo_store.png" alt="YGOON 교육할인스토어" width="111" style="border:0;">
         // footer-기업 : <img src="http://localhost/assets/images/email/logo_small.png" alt="YGOON" width="49" style="border:0;"><span style="display:block;text-align:center;font-size:16px;font-weight:600;color:#fff;letter-spacing:-2px;">해당 기업명 출력영역</span>
@@ -91,32 +91,23 @@ public class EmailService {
     }
 
     public static void setHtmlMemberJoin(Node node, String email, Map<String, String> emailTemplate) {
-        String apiUrl = ApplicationContextManager.getContext().getEnvironment().getProperty("cluster.api-prefix");
-        String callBackUrl = ApplicationContextManager.getContext().getEnvironment().getProperty("cluster.front-prefix");
-
-        String siteId = node.getBindingValue("siteId").toString();
-        String siteType = node.getBindingValue("siteType").toString();
-        String company = "";
-        if("company".equals(siteType)){
-            company = node.getStringValue("company");
-        }
-
         String title = emailTemplate.get("title").toString();
         String contents = emailTemplate.get("contents").toString();
+        String siteId = node.getBindingValue("siteId").toString();
+        String siteType = node.getBindingValue("siteType").toString();
+        String company = node.getStringValue("company");
 
         String header = getHeader(siteType, company);
         String footer = getFooter(siteType, company);
 
         contents = contents.replaceAll("<img src=\"header\">", header);
         contents = contents.replaceAll("src=\"../assets/images/", "src=" + apiUrl + "/image");
-
         contents = contents.replaceAll("userId", node.getStringValue("userId")); // abc***@ytn.co.kr
         contents = contents.replaceAll("joinDate", node.getStringValue("joinDate")); // 2017-07-21
         contents = contents.replaceAll("name", node.getStringValue("name")); // 홍*동
         contents = contents.replaceAll("cellphone", node.getStringValue("cellphone")); // 010-11**-11**
         contents = contents.replaceAll("receiveMarketingEmailAgreeYn", node.getReferenceNode("receiveMarketingEmailAgreeYn").get("name").toString()); //	동의
         contents = contents.replaceAll("receiveMarketingSMSAgreeYn", node.getReferenceNode("receiveMarketingSMSAgreeYn").get("name").toString()); // 	동의
-
         contents = contents.replaceAll("href=\"#\"", "href="+callBackUrl+siteId+"/intro");
         contents = contents.replaceAll("<img src=\"footer\">", footer);
 
@@ -124,16 +115,23 @@ public class EmailService {
     }
 
     public static void setHtmlMemberInfoChange(Node node, String email, Map<String, String> emailTemplate) {
-        String siteType = node.getBindingValue("siteType").toString();
-        if("company".equals(siteType)){
-            String company = node.getStringValue("company");
-        }
-
-        String apiUrl = ApplicationContextManager.getContext().getEnvironment().getProperty("cluster.api-prefix");
-        String callBackUrl = ApplicationContextManager.getContext().getEnvironment().getProperty("cluster.front-prefix");
-
         String title = emailTemplate.get("title").toString();
         String contents = emailTemplate.get("contents").toString();
+        String siteId = node.getBindingValue("siteId").toString();
+        String siteType = node.getBindingValue("siteType").toString();
+        String company = node.getStringValue("company");
+
+        String header = getHeader(siteType, company);
+        String footer = getFooter(siteType, company);
+
+        contents = contents.replaceAll("<img src=\"header\">", header);
+        contents = contents.replaceAll("src=\"../assets/images/", "src=" + apiUrl + "/image");
+        contents = contents.replaceAll("agreeType", ""); // 이메일 , SMS
+        contents = contents.replaceAll("agreeYn", ""); // 동의
+        contents = contents.replaceAll("date", ""); // 2017-01-01
+        contents = contents.replaceAll("href=\"#\"", "href="+callBackUrl+siteId+"/serviceCenter");
+        contents = contents.replaceAll("<img src=\"footer\">", footer);
+
         sendEmailHtml(email, title, contents);
     }
 }
