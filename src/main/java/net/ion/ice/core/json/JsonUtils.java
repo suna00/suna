@@ -211,4 +211,15 @@ public class JsonUtils {
         }
         return value.toString() ;
     }
+
+    public static boolean getBooleanValue(Map<String, Object> data, String key) {
+        Object value = getValue(data, key) ;
+
+        if(value == null) return false ;
+
+        if(value instanceof String){
+            return (boolean) value;
+        }
+        return (boolean) value ;
+    }
 }

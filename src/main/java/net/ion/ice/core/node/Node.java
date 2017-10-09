@@ -47,11 +47,11 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
 
     @Field(analyze = Analyze.NO)
-    @DateBridge(resolution = Resolution.SECOND)
+    @DateBridge(resolution = Resolution.MILLISECOND)
     private Date created ;
 
     @Field(analyze = Analyze.NO)
-    @DateBridge(resolution = Resolution.SECOND)
+    @DateBridge(resolution = Resolution.MILLISECOND)
     private Date changed ;
 
 

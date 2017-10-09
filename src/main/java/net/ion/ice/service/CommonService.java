@@ -59,9 +59,10 @@ public class CommonService {
         resultCodeMap.put("M0003", "부분취소를 할 수 없습니다.");
         resultCodeMap.put("M0004", "취소신청을 할 수 없습니다. 주문상태를 확인해 주세요.");
         resultCodeMap.put("M0005", "교환신청을 할 수 없습니다. 주문상태를 확인해 주세요.(SMS 또는 LG/삼성 직배송의 경우 교환불가)");
-        resultCodeMap.put("M0006", "반품신청을 할 수 없습니다. 주문상태를 확인해 주세요..(SMS 또는 LG/삼성 직배송의 경우 반품불가)");
+        resultCodeMap.put("M0006", "반품신청을 할 수 없습니다. 주문상태를 확인해 주세요.(SMS 또는 LG/삼성 직배송의 경우 반품불가)");
         resultCodeMap.put("M0007", "비밀번호가 맞지 않습니다.");
         resultCodeMap.put("M0008", "비밀번호가 5회 잘못 입력하셨습니다.\n개인 정보보호를 위하여 비밀번호를 재설정 해주시기 바랍니다.");
+        resultCodeMap.put("M0009", "환불계좌 정보를 입력해주세요.");
 
 
         /*Order*/

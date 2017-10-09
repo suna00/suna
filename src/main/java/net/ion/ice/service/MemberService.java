@@ -15,8 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.stagemonitor.util.StringUtils;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
@@ -87,18 +85,13 @@ public class MemberService {
         Node node;
 
         if (contextData.get("memberNo") == null) {
-            if (contextData.containsKey("password")) {
-                String password = SHA256(contextData.get("password").toString());
-                contextData.put("password", password);
-            }
+            contextData.put("barcode", setBarcode());
             node = (Node) nodeService.executeNode(contextData, "member", CommonService.CREATE);
 
             //회원가입 메일 전송
 
         } else {
             if (contextData.containsKey("password")) {
-                String password = SHA256(contextData.get("password").toString());
-                contextData.put("password", password);
                 contextData.put("failedCount", null);
             }
             node = (Node)nodeService.executeNode(contextData, "member", CommonService.UPDATE);
@@ -339,25 +332,19 @@ public class MemberService {
         return context;
     }
 
-    public String SHA256(String password) {
-        String encodingPassword;
+    public String setBarcode(){
+        String barcode = "";
 
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] hash = digest.digest(password.getBytes("UTF-8"));
-            StringBuffer hexString = new StringBuffer();
-
-            for (int i = 0; i < hash.length; i++) {
-                String hex = Integer.toHexString(0xff & hash[i]);
-                if (hex.length() == 1) hexString.append('0');
-                hexString.append(hex);
+        for(int i=0; i<4; i++){
+            Integer randomInt = ((int)(Math.random()*10000)+1000);
+            if(10000 <= randomInt){
+                randomInt = randomInt-1000;
             }
-            encodingPassword = hexString.toString();
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
+            barcode += (randomInt+" ");
         }
 
-        return encodingPassword;
+        barcode = barcode.substring(0, barcode.length()-1);
+        return barcode;
     }
 
     public void sendEmail(String emailCertificationType, String email, Map<String, Object> data) {
