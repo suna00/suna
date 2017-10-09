@@ -2,7 +2,10 @@
   {
     "typeId" : "apiCategory",
     "id" : "orderSheet",
-    "categoryName" : "주문서 API"
+    "categoryName" : "주문서 API",
+    "fileUrlFormat" : {
+      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
+    }
   },
   {
     "typeId" : "apiConfig",
@@ -167,7 +170,10 @@
   {
     "typeId" : "apiCategory",
     "id" : "orderChange",
-    "categoryName" : "취소교한반품 API"
+    "categoryName" : "취소교한반품 API",
+    "fileUrlFormat" : {
+      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
+    }
   },
   {
     "typeId" : "apiConfig",

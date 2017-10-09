@@ -392,7 +392,7 @@
   {
     "typeId": "member",
     "memberNo": 55555,
-    "siteId": null,
+    "siteId": "ion",
     "affiliateId": null,
     "userId": "yeon0153@nate.com",
     "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
@@ -408,7 +408,7 @@
     "profileImage": null,
     "gender": "woman",
     "birthday": "1988-01-01",
-    "company": null,
+    "company": "아이온커뮤니케이션즈",
     "department": null,
     "phone": null,
     "cellphone": "016-5555-6666",

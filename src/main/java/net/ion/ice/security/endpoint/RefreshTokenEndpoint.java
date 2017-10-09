@@ -22,7 +22,11 @@ public class RefreshTokenEndpoint {
     @RequestMapping(value = "api/auth/refreshToken", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
     public @ResponseBody
     Object refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        sessionService.refreshSession(request, response);
+        try {
+            sessionService.refreshSession(request, response);
+        }catch(Exception e){
+            return JsonResponse.error(e) ;
+        }
         return JsonResponse.create();
     }
 }
