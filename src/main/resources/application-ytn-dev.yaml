@@ -21,6 +21,9 @@ jwtConfig:
   refreshTokenExpTime: 60 #분
 
 cluster:
+  api-prefix: http://localhost:8080/
+  mode: all
+  groups: all
   members:
     - 127.0.0.1
     - localhost
