@@ -4,8 +4,7 @@
     "commonResourceId": 100,
     "tid": "product",
     "contentsId": 3,
-    "file": "/resource/thumb_sample_600_2.jpg",
-    "name": "main",
-    "realFileName": "thumb_sample_600_2.jpg"
+    "file": "classpath:schema/test/testPdf.pdf",
+    "name": "main"
   }
 ]
