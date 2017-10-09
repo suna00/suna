@@ -174,5 +174,23 @@
     "actionType" : "service",
     "actionBody" : "memberService.signIn",
     "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "member",
+    "event" : "me",
+    "noneExecute" : true,
+    "eventName" : "로그인 상태 체크"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "member>me",
+    "action" : "me",
+    "actionName" : "로그인",
+    "actionType" : "service",
+    "actionBody" : "memberService.me",
+    "order" : 1
   }
+
+
 ]

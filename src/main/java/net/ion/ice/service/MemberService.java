@@ -13,10 +13,8 @@ import net.ion.ice.core.query.QueryUtils;
 import net.ion.ice.core.session.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.stagemonitor.util.StringUtils;
-
+import org.apache.commons.lang3.StringUtils;
 import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -74,7 +72,26 @@ public class MemberService {
         }
         context.setResult(CommonService.getResult("U0007"));
         return context;
+    }
 
+    public ExecuteContext me (ExecuteContext context){
+        Map<String, Object> session = null;
+
+        try {
+            session = sessionService.getSession(context.getHttpRequest());
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        if(session != null){
+            Node node = (Node) session.get("member");
+            if(null != node || !node.isEmpty() || node.size() != 0){
+                context.setResult(CommonService.getResult("U0009"));    //로그인을 한 사용자
+            }else{
+                context.setResult(CommonService.getResult("U0010"));    //로그인을 하지 않은 사용자
+            }
+        }
+     return context;
     }
 
     public ExecuteContext saveMemberInfo(ExecuteContext context) {

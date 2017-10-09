@@ -45,6 +45,9 @@ public class CommonService {
         resultCodeMap.put("U0005", "입력하신 정보와 일치하는 아이디가 없습니다. 다시 입력해주세요.");
         resultCodeMap.put("U0006", "인증번호를 잘못 입력하셨습니다.");
         resultCodeMap.put("U0007", "로그인 성공");
+        resultCodeMap.put("U0008", "로그인 실패");
+        resultCodeMap.put("U0009", "로그인 사용자");
+        resultCodeMap.put("U0010", "비로그인 사용자");
 
         /*Coupon*/
         resultCodeMap.put("V0001", "존재하지 않는 쿠폰유형입니다.");

@@ -11,9 +11,18 @@
     "apiName": "로그인",
     "method": "POST",
     "parameters": [
-      {"paramName" : "userId", "required" : true},
-      {"paramName" : "password", "required" : true},
-      {"paramName" : "siteId", "required" : true}
+      {
+        "paramName": "userId",
+        "required": true
+      },
+      {
+        "paramName": "password",
+        "required": true
+      },
+      {
+        "paramName": "siteId",
+        "required": true
+      }
     ],
     "config": {
       "typeId": "member",
@@ -22,6 +31,32 @@
         "userId": "{{:userId}}",
         "password": "{{:password}}",
         "siteId": "{{:siteId}}"
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "member",
+    "apiId": "me",
+    "apiName": "사용자정보조회",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "userId",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "member",
+      "query": [
+        {
+          "field": "userId",
+          "method": "matching",
+          "value": "{{:userId}}"
+        }
+      ],
+      "response": {
+        "_all_": ""
       }
     }
   }
