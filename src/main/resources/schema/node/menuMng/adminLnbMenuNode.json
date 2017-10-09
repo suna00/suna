@@ -850,13 +850,21 @@
     "icon": "fa-tag",
     "active": "true",
     "index": "false",
-    "pages": [
+    "pages": [],
+    "customPages": [
       {
         "pageName": "목록",
-        "pageUrl": "list"
+        "pageUrl": "cj/svcmu/SvcMenuList"
+      },
+      {
+        "pageName": "메뉴그룹등록",
+        "pageUrl": "cj/svcmu/SvcMenuForm"
+      },
+      {
+        "pageName": "메뉴등록/수정",
+        "pageUrl": "cj/svcmu/SvcMenuUForm"
       }
-    ],
-    "customPages": []
+    ]
   },
   {
     "typeId": "adminLnbMenu",
