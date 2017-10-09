@@ -37,12 +37,12 @@ public class DefaultAuthenticationSuccessHandler implements AuthenticationSucces
                                         Authentication authentication) throws IOException, ServletException {
         UserContext userContext = (UserContext) authentication.getPrincipal();
 
-        JwtToken accessToken = tokenFactory.createAccessJwtToken(userContext);
-        JwtToken refreshToken = tokenFactory.createRefreshToken();
+//        JwtToken accessToken = tokenFactory.createAccessJwtToken(userContext);
+//        JwtToken refreshToken = tokenFactory.createRefreshToken();
 
         Map<String, String> tokenMap = new HashMap<>();
-        tokenMap.put("iceJWT", accessToken.getToken());
-        tokenMap.put("iceRefreshJWT", refreshToken.getToken());
+//        tokenMap.put("iceJWT", accessToken.getToken());
+//        tokenMap.put("iceRefreshJWT", refreshToken.getToken());
 
 //        HttpSession session = request.getSession();
 //        session.setAttribute("accessToken", accessToken.getToken());
@@ -50,8 +50,8 @@ public class DefaultAuthenticationSuccessHandler implements AuthenticationSucces
 //        System.out.println("sessionID::::\t" + session.getId());
 //        int maxAge = 60 * 60 * 24; // 24 hour
 
-        CookieUtil.create(response, "iceJWT", "SDP ".concat(accessToken.getToken()), false, false, -1, request.getServerName());
-        CookieUtil.create(response, "iceRefreshJWT", "SDP ".concat(refreshToken.getToken()), true, false, -1, request.getServerName());
+//        CookieUtil.create(response, "iceJWT", "SDP ".concat(accessToken.getToken()), false, false, -1, request.getServerName());
+//        CookieUtil.create(response, "iceRefreshJWT", "SDP ".concat(refreshToken.getToken()), true, false, -1, request.getServerName());
 
         response.setStatus(HttpStatus.OK.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
