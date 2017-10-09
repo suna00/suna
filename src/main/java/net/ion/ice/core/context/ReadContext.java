@@ -226,6 +226,10 @@ public class ReadContext implements Context, Serializable {
         return id;
     }
 
+    public static String getParamId(Map<String, String[]> parameterMap, String typeId){
+        return getId(parameterMap, NodeUtils.getNodeType(typeId), null) ;
+    }
+
     public QueryResult makeQueryResult() {
         return makeResult() ;
     }
