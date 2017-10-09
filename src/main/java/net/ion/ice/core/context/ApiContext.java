@@ -40,7 +40,7 @@ public class ApiContext {
     private NativeWebRequest httpRequest ;
     private HttpServletResponse httpResponse ;
 
-    public static ApiContext createContext(Node apiCategory, Node apiNode, String typeId, Map<String, Object> config, NativeWebRequest request, HttpServletResponse response, Map<String, Object> session) {
+    public static ApiContext createContext(Node apiCategory, Node apiNode, String typeId, String event, Map<String, Object> config, NativeWebRequest request, HttpServletResponse response, Map<String, Object> session) {
         Map<String, String[]> parameterMap = request.getParameterMap() ;
         MultiValueMap<String, MultipartFile> multiFileMap = null ;
         if(request.getNativeRequest() instanceof MultipartHttpServletRequest) {
@@ -57,6 +57,10 @@ public class ApiContext {
         ctx.data.put("sysdate", new Date()) ;
         if(typeId != null) {
             ctx.data.put("typeId", typeId);
+        }
+
+        if(event != null) {
+            ctx.data.put("event", event);
         }
 
 
