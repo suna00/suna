@@ -5212,9 +5212,9 @@
   },
   {
     "typeId": "commonCode",
-    "code": "popup",
+    "code": "top",
     "upperCode": "singleBannerLocation",
-    "name": "팝업배너",
+    "name": "Top배너",
     "description": "",
     "sortOrder": "2",
     "commonCodeStatus": "y"
@@ -5262,6 +5262,25 @@
     "name": "고객센터메인",
     "description": "",
     "sortOrder": "7",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "popup1",
+    "upperCode": "singleBannerLocation",
+    "name": "팝업1",
+    "description": "",
+    "sortOrder": "8",
+    "commonCodeStatus": "y"
+  },
+
+  {
+    "typeId": "commonCode",
+    "code": "popup2",
+    "upperCode": "singleBannerLocation",
+    "name": "팝업2",
+    "description": "",
+    "sortOrder": "9",
     "commonCodeStatus": "y"
   },
   {
