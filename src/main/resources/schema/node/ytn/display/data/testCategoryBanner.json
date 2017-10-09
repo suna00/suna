@@ -1,0 +1,18 @@
+[
+  {
+    "typeId": "categoryBanner",
+    "categoryBannerId": 1,
+    "categoryId": 1,
+    "file": "classpath:schema/node/ytn/display/file/category1.jpeg",
+    "ulr": "",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "categoryBanner",
+    "categoryBannerId": 2,
+    "categoryId": 2,
+    "file": "",
+    "ulr": "http://www.youtube.com/embed/n_dZNLr2cME?rel=0&amp;hd=1",
+    "bannerStatus": "y"
+  }
+]
