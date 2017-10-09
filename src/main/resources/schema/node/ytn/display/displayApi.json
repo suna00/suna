@@ -25,7 +25,7 @@
       "query" : [
         {"sorting" : "sortOrder"},
         {"field" : "productToThemeMapStatus", "method" : "matching", "value" : "y" },
-        {"includeReferenced" : true, "referenceView" : "themeId,productId"},
+        {"includeReferenced" : "referencedMainImage,referencedProductAttribute", "referenceView" : "themeId,productId"},
         {"field" : "themeId", "method" : "referenceJoin", "value" : "themeStatus_matching=y&pageType_matching={{:pageType}}&themeType_matching={{:themeType}}&siteType_matching={{:siteType}}&categoryId_matching={{:categoryId}}&name_matching={{:name}}" }
       ]
     },
