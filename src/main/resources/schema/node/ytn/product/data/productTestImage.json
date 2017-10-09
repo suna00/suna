@@ -1,10 +1,50 @@
 [
   {
     "typeId": "commonResource",
-    "commonResourceId": 100,
+    "commonResourceId": 20,
     "tid": "product",
-    "contentsId": 3,
-    "file": "classpath:schema/test/testPdf.pdf",
+    "contentsId": 65190,
+    "file": "classpath:schema/node/ytn/product/file/65190.jpeg",
+    "name": "main"
+  },
+  {
+    "typeId": "commonResource",
+    "commonResourceId": 21,
+    "tid": "product",
+    "contentsId": 65191,
+    "file": "classpath:schema/node/ytn/product/file/65191.jpeg",
+    "name": "main"
+  },
+  {
+    "typeId": "commonResource",
+    "commonResourceId": 22,
+    "tid": "product",
+    "contentsId": 6519092,
+    "file": "classpath:schema/node/ytn/product/file/6519092.jpeg",
+    "name": "main"
+  },
+  {
+    "typeId": "commonResource",
+    "commonResourceId": 23,
+    "tid": "product",
+    "contentsId": 65193,
+    "file": "classpath:schema/node/ytn/product/file/6519093.jpeg",
+    "name": "main"
+  },
+  {
+    "typeId": "commonResource",
+    "commonResourceId": 24,
+    "tid": "product",
+    "contentsId": 65194,
+    "file": "classpath:schema/node/ytn/product/file/6519094.jpeg",
+    "name": "main"
+  },
+  {
+    "typeId": "commonResource",
+    "commonResourceId": 25,
+    "tid": "product",
+    "contentsId": 65195,
+    "file": "classpath:schema/node/ytn/product/file/6519095.jpeg",
     "name": "main"
   }
 ]

@@ -405,7 +405,7 @@ public class ReadContext implements Context, Serializable {
 
     public boolean isIncludeReferenced(String pid) {
         if (includeReferenced == null) {
-            return true;
+            return false;
         }
         if (includeReferenced && includeReferencedFields == null) {
             return true;
