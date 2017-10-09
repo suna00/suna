@@ -277,12 +277,12 @@ public class ReadContext implements Context, Serializable {
                 itemResult.put(pt.getPid(), NodeUtils.getResultValue(this, pt, node));
             }
 
-            if (isIncludeReferenced()) {
-                for (PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)) {
-                    QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(nodeType, pt, node);
-                    subQueryContext.makeQueryResult(itemResult, pt.getPid(),null);
-                }
-            }
+//            if (isIncludeReferenced()) {
+//                for (PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)) {
+//                    QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(nodeType, pt, node);
+//                    subQueryContext.makeQueryResult(itemResult, pt.getPid(),null);
+//                }
+//            }
         }else{
             this.setNodeData(node);
             makeItemQueryResult(node, itemResult, this.data, 0);
