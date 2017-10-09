@@ -71,11 +71,22 @@ public class ApiController {
 
     @RequestMapping(value = "/api/node/{typeId}/{api}.json", method = RequestMethod.POST)
     @ResponseBody
-    public Object eventNodeJson(NativeWebRequest request, HttpServletResponse response, @PathVariable String typeId, @PathVariable String api) throws IOException {
+    public Object defaultEventNodeJson(NativeWebRequest request, HttpServletResponse response, @PathVariable String typeId, @PathVariable String api) throws IOException {
         return nodeApi(request, response, typeId, api, "POST");
     }
 
+    @RequestMapping(value = "/api/node/{typeId}/event/{api}", method = RequestMethod.POST)
+    @ResponseBody
+    public Object customEventNode(NativeWebRequest request, HttpServletResponse response, @PathVariable String typeId, @PathVariable String api) throws IOException {
+        return nodeEvent(request, response, typeId, api, "POST");
+    }
 
+
+    @RequestMapping(value = "/api/node/{typeId}/event/{api}.json", method = RequestMethod.POST)
+    @ResponseBody
+    public Object customeventNodeJson(NativeWebRequest request, HttpServletResponse response, @PathVariable String typeId, @PathVariable String api) throws IOException {
+        return nodeEvent(request, response, typeId, api, "POST");
+    }
 
     @RequestMapping(value = "/testApi/{category}/{api}", method = RequestMethod.GET)
     @ResponseBody
@@ -111,6 +122,16 @@ public class ApiController {
             return JsonResponse.error(e);
         }
     }
+
+    private Object nodeEvent(NativeWebRequest request, HttpServletResponse response, String typeId, String api, String method) {
+        try {
+            return apiService.execute(request, response, "node", "event", method, typeId, api) ;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return JsonResponse.error(e);
+        }
+    }
+
 
     private Object api(NativeWebRequest request, HttpServletResponse response, String category, String api, String method) {
         try {

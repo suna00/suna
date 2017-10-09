@@ -37,6 +37,10 @@ public class ApiService {
     }
 
     public Object execute(NativeWebRequest request, HttpServletResponse response, String category, String api, String method, String typeId) {
+        return execute(request, response, category, api, method, typeId, null) ;
+    }
+
+    public Object execute(NativeWebRequest request, HttpServletResponse response, String category, String api, String method, String typeId, String event) {
         Node apiCategory  = nodeService.getNode("apiCategory", category) ;
         Node apiNode = nodeService.getNode("apiConfig", category + Node.ID_SEPERATOR + api) ;
 
@@ -64,7 +68,8 @@ public class ApiService {
             throw new RuntimeException("Not Allow Method") ;
         }
 
-        ApiContext context = ApiContext.createContext(apiCategory, apiNode, typeId, (Map<String, Object>) apiNode.get("config"), request, response, session) ;
+        ApiContext context = ApiContext.createContext(apiCategory, apiNode, typeId, event, (Map<String, Object>) apiNode.get("config"), request, response, session) ;
         return context.makeApiResult() ;
+
     }
 }
