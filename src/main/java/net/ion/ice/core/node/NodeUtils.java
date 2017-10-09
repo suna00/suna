@@ -166,7 +166,7 @@ public class NodeUtils {
     }
 
     public static Long getDateLongValue(Object value){
-        return DateTools.round(NodeUtils.getDateValue(value), DateTools.Resolution.SECOND).getTime() ;
+        return DateTools.round(NodeUtils.getDateValue(value), DateTools.Resolution.MILLISECOND).getTime() ;
     }
 
     public static String getDateStringValue(Object value, String dateFormat) {

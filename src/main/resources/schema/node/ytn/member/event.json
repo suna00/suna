@@ -158,5 +158,21 @@
     "actionType" : "service",
     "actionBody" : "memberService.certPassword",
     "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "member",
+    "event" : "signIn",
+    "noneExecute" : true,
+    "eventName" : "로그인"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "member>signIn",
+    "action" : "signIn",
+    "actionName" : "로그인",
+    "actionType" : "service",
+    "actionBody" : "memberService.signIn",
+    "order" : 1
   }
 ]

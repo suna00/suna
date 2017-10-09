@@ -539,44 +539,51 @@
 		},
 		{
 			"id": "00e7e6ce-a9b3-baa7-f47c-b04db3a2b625",
-			"headers": "",
-			"headerData": [],
-			"url": "{{protocol}}://{{hostname}}:{{port}}/node/orderChange/event/refundablePrice?memberNo=77777&ordersheetId=091ce09f-335b-4846-ba38-29d464e65cea&orderChangeProduct=[]",
-			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
-			"queryParams": [
+			"headers": "Content-Type: application/x-www-form-urlencoded\n",
+			"headerData": [
 				{
-					"key": "memberNo",
-					"value": "77777",
-					"equals": true,
-					"description": "",
-					"enabled": true
-				},
-				{
-					"key": "ordersheetId",
-					"value": "091ce09f-335b-4846-ba38-29d464e65cea",
-					"equals": true,
-					"description": "",
-					"enabled": true
-				},
-				{
-					"key": "orderChangeProduct",
-					"value": "[]",
-					"equals": true,
+					"key": "Content-Type",
+					"value": "application/x-www-form-urlencoded",
 					"description": "",
 					"enabled": true
 				}
 			],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/orderChange/event/getRefundablePrice",
+			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
+			"queryParams": [],
 			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"method": "GET",
-			"data": null,
-			"dataMode": "params",
+			"method": "POST",
+			"data": [
+				{
+					"key": "memberNo",
+					"value": "77777",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "orderSheetId",
+					"value": "B20170928234611021250",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "orderChangeProduct",
+					"value": "[\n  {\n    \"orderProductId\": 79,\n    \"productId\": 506,\n    \"quantity\": 4,\n    \"changeReasonType\": 0\n  },\n  {\n    \"orderProductId\": 80,\n    \"productId\": 506,\n    \"quantity\": 3,\n    \"changeReasonType\": 0\n  }\n]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "urlencoded",
 			"version": 2,
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1506841910979,
+			"time": 1507478588572,
 			"name": "취소 신청_취소 수량 변경",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
@@ -596,7 +603,7 @@
 			"pathVariableData": [],
 			"preRequestScript": null,
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
+			"description": "(신청하면 자동으로 드러가)",
 			"descriptionFormat": "html",
 			"time": 1501553372228,
 			"version": 2,
@@ -1445,13 +1452,77 @@
 			"pathVariables": {},
 			"pathVariableData": [],
 			"method": "POST",
-			"data": null,
+			"data": [
+				{
+					"key": "memberNo",
+					"value": "77777",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "orderSheetId",
+					"value": "B20170928234611021250",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "orderChangeProduct",
+					"value": "[\n  {\n    \"orderProductId\": 80,\n    \"productId\": 506,\n    \"quantity\": 1,\n    \"changeReasonType\": \"cancel001\"\n  }\n]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "refundAccount",
+					"value": "{\n            \"accountNo\": \"000-1123-121412\",\n            \"bankName\": \"하나은행\",\n            \"accountOwner\": \"윤서눙\",\n            \"myRefundAccountYn\": true\n        }",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "recallType",
+					"value": "request",
+					"description": "request 방문회수요청, directly 고객직접발송, already 고객발송완료",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "trackingNo",
+					"value": "1234",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "deliveryEnterpriseId",
+					"value": "6",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "delivery",
+					"value": "[\n            {\n                \"deliveryType\": \"recallAddress\",\n                \"recipient\": \"윤서눙 회수즤\",\n                \"cellphone\": \"011-011-011\",\n                \"phone\": \"02-299-1234\",\n                \"postCode\": \"135080\",\n                \"address\": \"서울시 강남구 역삼동 823-39 아이온 빌딩 4\"\n            }\n        ]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "exchangeReturnAgreeYn",
+					"value": "true",
+					"description": "true/false",
+					"type": "text",
+					"enabled": true
+				}
+			],
 			"dataMode": "params",
 			"version": 2,
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1506768988086,
+			"time": 1507486376391,
 			"name": "반품 신청_반품 신청",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
@@ -1632,29 +1703,48 @@
 		},
 		{
 			"id": "1e1b6a6b-08a7-6a6b-1922-152938a35f18",
-			"method": "GET",
-			"url": "",
-			"name": "반품 신청_반품 수량 변경",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/orderChange/event/getRefundablePrice",
+			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "POST",
+			"data": [
+				{
+					"key": "memberNo",
+					"value": "77777",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "orderSheetId",
+					"value": "B20170928234611021250",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "orderChangeProduct",
+					"value": "[\n  {\n    \"orderProductId\": 80,\n    \"productId\": 506,\n    \"quantity\": 1,\n    \"changeReasonType\": \"cancel001\"\n  }\n]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "a2bd1d31-b61c-5a0a-76b1-a6b448614574"
+			"helperAttributes": {},
+			"time": 1507484370525,
+			"name": "반품 신청_반품 수량 변경",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "1ed45c2b-a51c-051e-8a5a-a397edc92e07",
@@ -3822,7 +3912,7 @@
 			"id": "59730107-9fe0-e541-629d-84bcfb5b94a0",
 			"method": "GET",
 			"url": "",
-			"name": "교환 상세 조회_교환배송비 결제",
+			"name": "교환 상세 조회_교환배송비 결제(없음)",
 			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
@@ -4332,12 +4422,12 @@
 			"id": "694a7855-b474-fc2c-fc13-61ecd2b63fc5",
 			"headers": "",
 			"headerData": [],
-			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/orderSheet/read.json?orderSheetId=B20170927232008520250",
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/orderSheet/read.json?orderSheetId=B20170928234611021250",
 			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
 			"queryParams": [
 				{
 					"key": "orderSheetId",
-					"value": "B20170927232008520250",
+					"value": "B20170928234611021250",
 					"equals": true,
 					"description": "",
 					"enabled": true
@@ -4353,7 +4443,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1506579076714,
+			"time": 1507485832942,
 			"name": "반품 신청_주문 상품 리스트",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
@@ -6020,29 +6110,48 @@
 		},
 		{
 			"id": "99005577-d1eb-b32b-21ef-8f2be8f37855",
-			"method": "GET",
-			"url": "",
-			"name": "취소 신청_환불 예정 금액",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/orderChange/event/getRefundablePrice",
+			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "POST",
+			"data": [
+				{
+					"key": "memberNo",
+					"value": "88888",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "orderSheetId",
+					"value": "B20170927232008520250",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "orderChangeProduct",
+					"value": "[\n  {\n    \"orderProductId\": 79,\n    \"productId\": 506,\n    \"quantity\": 4,\n    \"changeReasonType\": 0\n  },\n  {\n    \"orderProductId\": 80,\n    \"productId\": 506,\n    \"quantity\": 3,\n    \"changeReasonType\": 0\n  }\n]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "a2bd1d31-b61c-5a0a-76b1-a6b448614574"
+			"helperAttributes": {},
+			"time": 1507478675768,
+			"name": "취소 신청_환불 예정 금액",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "99f1b62e-0f20-5198-23e5-b179aa29d079",
@@ -6481,13 +6590,70 @@
 			"pathVariables": {},
 			"pathVariableData": [],
 			"method": "POST",
-			"data": null,
+			"data": [
+				{
+					"key": "memberNo",
+					"value": "88888",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "orderSheetId",
+					"value": "B20170928234611021250",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "orderChangeProduct",
+					"value": "[\n  {\n    \"orderProductId\": 80,\n    \"productId\": 506,\n    \"quantity\": 1,\n    \"changeReasonType\": \"cancel001\"\n  }\n]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "recallType",
+					"value": "request",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "trackingNo",
+					"value": "1234",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "deliveryEnterpriseId",
+					"value": "6",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "delivery",
+					"value": "[\n            {\n                \"deliveryType\": \"recallAddress\", \n                \"recipient\": \"윤서눙 회수\",\n                \"cellphone\": \"011-011-011\",\n                \"phone\": \"02-299-1234\",\n                \"postCode\": \"135080\",\n                \"address\": \"서울시 강남구 역삼동 823-39 아이온 빌딩 4\"\n            },\n            {\n                \"deliveryType\": \"exchangeAddress\", \n                \"recipient\": \"윤서눙 교환배송지임\",\n                \"cellphone\": \"011-011-011\",\n                \"phone\": \"02-299-1234\",\n                \"postCode\": \"135080\",\n                \"address\": \"서울시 강남구 역삼동 823-39 아이온 빌딩 4\"\n            }\n        ]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "exchangeReturnAgreeYn",
+					"value": "true",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
 			"dataMode": "params",
 			"version": 2,
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1506768998261,
+			"time": 1507488313034,
 			"name": "교환 신청_교환 교환 신청",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
@@ -7799,12 +7965,12 @@
 			"id": "d2cb89c9-2ea5-c293-fe6f-4adc3d3c6a4e",
 			"headers": "",
 			"headerData": [],
-			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/orderChange/read.json?orderChangeId=2",
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/orderChange/read.json?orderChangeId=38",
 			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
 			"queryParams": [
 				{
 					"key": "orderChangeId",
-					"value": "2",
+					"value": "38",
 					"equals": true,
 					"description": "",
 					"enabled": true
@@ -7820,7 +7986,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1506751741025,
+			"time": 1507485684885,
 			"name": "반품 상세 조회_반품 상품 리스트",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
@@ -7914,18 +8080,25 @@
 					"value": "88888",
 					"description": "",
 					"type": "text",
-					"enabled": true
+					"enabled": false
 				},
 				{
 					"key": "orderSheetId",
-					"value": "B20170927232008520250",
+					"value": "B20170928234611021250",
 					"description": "",
 					"type": "text",
 					"enabled": true
 				},
 				{
 					"key": "orderChangeProduct",
-					"value": "[\n            {\n                \"orderProductId\": 39,\n                \"productId\": 512,\n                \"quantity\": 1,\n                \"changeReasonType\": \"cancel001\"\n            },\n            {\n                \"orderProductId\": 40,\n                \"productId\": 521,\n                \"quantity\": 1,\n                \"changeReasonType\": \"cancel001\"\n            }\n        ]",
+					"value": "[\n  {\n    \"orderProductId\": 80,\n    \"productId\": 506,\n    \"quantity\": 1,\n    \"changeReasonType\": \"cancel001\"\n  }\n]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "refundAccount",
+					"value": "{ \n            \"accountNo\": \"000-1123-121412\",\n            \"bankName\": \"하나은행\",\n            \"accountOwner\": \"윤서눙\",\n            \"myRefundAccountYn\": true\n        }",
 					"description": "",
 					"type": "text",
 					"enabled": true
@@ -7936,7 +8109,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1506946626404,
+			"time": 1507484306785,
 			"name": "취소 신청_취소 신청",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
@@ -8687,7 +8860,7 @@
 			"pathVariableData": [],
 			"preRequestScript": null,
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
+			"description": "신청할때 처리됨.",
 			"descriptionFormat": "html",
 			"time": 1501553372228,
 			"version": 2,
@@ -8703,12 +8876,12 @@
 			"id": "ebc62cdd-ded4-e250-b65a-bde7e3b6a4a6",
 			"headers": "",
 			"headerData": [],
-			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/orderSheet/read.json?orderSheetId=B20170927232008520250",
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/orderSheet/read.json?orderSheetId=B20170927224553297250",
 			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
 			"queryParams": [
 				{
 					"key": "orderSheetId",
-					"value": "B20170927232008520250",
+					"value": "B20170927224553297250",
 					"equals": true,
 					"description": "",
 					"enabled": true
@@ -8724,7 +8897,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1506579071828,
+			"time": 1507487236791,
 			"name": "교환 신청_주문 상품 리스트",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
@@ -8732,29 +8905,34 @@
 		},
 		{
 			"id": "edb1fd8c-cd59-a65f-9056-3d7120b0c95e",
-			"method": "GET",
-			"url": "",
-			"name": "취소 상세 조회_환불 내역",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
-			"queryParams": [],
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/orderChange/read.json?orderChangeId=37",
+			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
+			"queryParams": [
+				{
+					"key": "orderChangeId",
+					"value": "37",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "a2bd1d31-b61c-5a0a-76b1-a6b448614574"
+			"helperAttributes": {},
+			"time": 1507479068996,
+			"name": "취소 상세 조회_환불 내역",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "edec6498-0edf-07cc-430b-953f16d72567",
@@ -9518,29 +9696,55 @@
 		},
 		{
 			"id": "fed80f5c-2348-096f-4b63-a19be126af4a",
-			"method": "GET",
-			"url": "",
-			"name": "취소 신청_환불계좌",
-			"dataMode": "params",
 			"headers": "",
 			"headerData": [],
-			"data": null,
+			"url": "{{protocol}}://{{hostname}}:{{port}}/node/orderChange/event/getRefundablePrice",
+			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
-			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1501553372228,
+			"method": "POST",
+			"data": [
+				{
+					"key": "memberNo",
+					"value": "77777",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "orderSheetId",
+					"value": "B20170928234611021250",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "orderChangeProduct",
+					"value": "[\n  {\n    \"orderProductId\": 79,\n    \"productId\": 506,\n    \"quantity\": 4,\n    \"changeReasonType\": 0\n  },\n  {\n    \"orderProductId\": 80,\n    \"productId\": 506,\n    \"quantity\": 3,\n    \"changeReasonType\": 0\n  }\n]",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "refundAccount",
+					"value": "{ \n  \"accountNo\": \"000-1123-121412\",\n  \"bankName\": \"하나은행\",\n  \"accountOwner\": \"윤서눙\",\n  \"myRefundAccountYn\": true\n}",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": "{}",
-			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
-			"collection_id": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
-			"folderId": "a2bd1d31-b61c-5a0a-76b1-a6b448614574"
+			"helperAttributes": {},
+			"time": 1507478918343,
+			"name": "취소 신청_환불계좌",
+			"description": "",
+			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",
+			"responses": []
 		},
 		{
 			"id": "ffb22f0a-5640-9efc-1a82-8a764197edf2",
@@ -9573,12 +9777,12 @@
 			"id": "ffddf6f4-791d-f484-d7a5-17e45189d441",
 			"headers": "",
 			"headerData": [],
-			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/orderChange/read.json?orderChangeId=1",
+			"url": "{{protocol}}://{{hostname}}:{{port}}/testApi/orderChange/read.json?orderChangeId=37",
 			"folder": "a2bd1d31-b61c-5a0a-76b1-a6b448614574",
 			"queryParams": [
 				{
 					"key": "orderChangeId",
-					"value": "1",
+					"value": "37",
 					"equals": true,
 					"description": "",
 					"enabled": true
@@ -9594,7 +9798,7 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1506751716997,
+			"time": 1507483380632,
 			"name": "취소 상세 조회_취소 상품 리스트",
 			"description": "",
 			"collectionId": "6fec6cc0-b5dd-1bfa-551f-9d2e69536715",

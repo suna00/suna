@@ -2,17 +2,17 @@
   {
     "typeId": "event",
     "tid": "orderChange",
-    "event": "refundablePrice",
+    "event": "getRefundablePrice",
     "noneExecute": true,
     "eventName": "취소대상 선택"
   },
   {
     "typeId": "eventAction",
-    "event": "orderChange>refundablePrice",
-    "action": "refundablePrice",
+    "event": "orderChange>getRefundablePrice",
+    "action": "getRefundablePrice",
     "actionName": "취소대상 선택",
     "actionType": "service",
-    "actionBody": "orderChangeService.refundablePrice",
+    "actionBody": "orderChangeService.getRefundablePrice",
     "order": 1
   },
   {

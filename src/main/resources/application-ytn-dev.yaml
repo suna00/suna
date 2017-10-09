@@ -27,7 +27,7 @@ cluster:
     - 125.131.88.206
 
 infinispan:
-  cachePath: /resource/ice2/cache
+  cachePath: /resource/ytn/cache
 
 tomcat:
   access-log-enabled: true
@@ -42,4 +42,4 @@ logging:
 
 file:
   default:
-    path: /resource/ice2/files
+    path: /resource/ytn/files
