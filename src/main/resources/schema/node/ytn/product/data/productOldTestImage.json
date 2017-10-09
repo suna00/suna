@@ -1,0 +1,26 @@
+[
+  {
+    "typeId": "commonResource",
+    "commonResourceId": 1,
+    "tid": "product",
+    "contentsId": 3,
+    "file": "classpath:schema/node/ytn/product/file/note1.jpeg",
+    "name": "main"
+  },
+  {
+    "typeId": "commonResource",
+    "commonResourceId": 2,
+    "tid": "product",
+    "contentsId": 3,
+    "file": "classpath:schema/node/ytn/product/file/note2.jpeg",
+    "name": "add"
+  },
+  {
+    "typeId": "commonResource",
+    "commonResourceId": 3,
+    "tid": "product",
+    "contentsId": 3,
+    "file": "classpath:schema/node/ytn/product/file/note1.jpeg",
+    "name": "add"
+  }
+]

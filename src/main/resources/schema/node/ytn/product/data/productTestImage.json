@@ -1,11 +1,50 @@
 [
   {
     "typeId": "commonResource",
-    "commonResourceId": 100,
+    "commonResourceId": 10,
     "tid": "product",
-    "contentsId": 3,
-    "file": "/resource/thumb_sample_600_2.jpg",
-    "name": "main",
-    "realFileName": "thumb_sample_600_2.jpg"
+    "contentsId": 65190,
+    "file": "classpath:schema/node/ytn/product/file/65190.jpeg",
+    "name": "main"
+  },
+  {
+    "typeId": "commonResource",
+    "commonResourceId": 11,
+    "tid": "product",
+    "contentsId": 65191,
+    "file": "classpath:schema/node/ytn/product/file/65191.jpeg",
+    "name": "main"
+  },
+  {
+    "typeId": "commonResource",
+    "commonResourceId": 12,
+    "tid": "product",
+    "contentsId": 6519092,
+    "file": "classpath:schema/node/ytn/product/file/6519092.jpeg",
+    "name": "main"
+  },
+  {
+    "typeId": "commonResource",
+    "commonResourceId": 13,
+    "tid": "product",
+    "contentsId": 65193,
+    "file": "classpath:schema/node/ytn/product/file/6519093.jpeg",
+    "name": "main"
+  },
+  {
+    "typeId": "commonResource",
+    "commonResourceId": 14,
+    "tid": "product",
+    "contentsId": 65194,
+    "file": "classpath:schema/node/ytn/product/file/6519094.jpeg",
+    "name": "main"
+  },
+  {
+    "typeId": "commonResource",
+    "commonResourceId": 15,
+    "tid": "product",
+    "contentsId": 65195,
+    "file": "classpath:schema/node/ytn/product/file/6519095.jpeg",
+    "name": "main"
   }
 ]

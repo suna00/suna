@@ -3700,6 +3700,15 @@
   },
   {
     "typeId": "commonCode",
+    "code": "soldout",
+    "upperCode": "saleStatus",
+    "name": "SOLDOUT",
+    "description": "",
+    "sortOrder": "4",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
     "code": "5",
     "upperCode": "scoreCode",
     "name": "매우만족",

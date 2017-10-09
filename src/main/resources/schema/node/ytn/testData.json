@@ -437,33 +437,6 @@
     "snsId": null,
     "snsProfileLink": null
   },
-
-  {
-    "typeId": "vendor",
-    "vendorId": 1,
-    "name": "밴더임",
-    "vendorStatus": "y",
-    "limitedProductCount": 0,
-    "mainCategory": null,
-    "mainBrand": null,
-    "businessNo": null,
-    "representative": null,
-    "postCode": null,
-    "address": null,
-    "businessConditions": null,
-    "typeOfIndustry": null,
-    "phone": null,
-    "fax": null,
-    "homepage": null,
-    "settlementDepositAccountNo": null,
-    "settlementDepositBankName": null,
-    "settlementDepositAccountOwner": null,
-    "exchangeReturnAddress": null,
-    "exchangeReturnPostCode": null,
-    "exchangeReturnAdmin": null,
-    "exchangeReturnPhone": null,
-    "productInflowRoute": null
-  },
   {
     "typeId": "myRefundAccount",
     "myRefundAccountId": 1,
