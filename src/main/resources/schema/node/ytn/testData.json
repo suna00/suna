@@ -134,7 +134,7 @@
       "refId": "1"
     },
     "userId": "jlee84@i-on.net",
-    "password": "1234",
+    "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
     "siteType": {
       "value": "company",
       "label": "기업",
@@ -202,7 +202,7 @@
       "refId": "1"
     },
     "userId": "swyoon@i-on.net",
-    "password": "1234",
+    "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
     "siteType": {
       "value": "company",
       "label": "기업",
@@ -269,7 +269,7 @@
       "refId": "1"
     },
     "userId": "sohapark@i-on.net",
-    "password": "1234",
+    "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
     "siteType": {
       "value": "university",
       "label": "대학",
@@ -336,7 +336,7 @@
       "refId": "1"
     },
     "userId": "sohapark2@i-on.net",
-    "password": "1234",
+    "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
     "siteType": {
       "value": "university",
       "label": "대학",
@@ -395,7 +395,7 @@
     "siteId": null,
     "affiliateId": null,
     "userId": "yeon0153@nate.com",
-    "password": "1234",
+    "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
     "siteType": "company",
     "memberStatus": "sleepMember",
     "name": "김지연",
@@ -419,7 +419,7 @@
     "fax": null,
     "termsOfUseAgreeYn": null,
     "receiveMarketingEmailAgreeYn": "true",
-    "receiveMarketingSMSAgreeYn": "true",
+    "receiveMarketingSMSAgreeYn": "false",
     "inflowRoute": null,
     "joinDate": null,
     "lastLoginDate": null,
@@ -431,7 +431,7 @@
     "lastFailedDate": null,
     "interests": "c001,c002",
     "membershipLevel": "general",
-    "barcode": null,
+    "barcode": "1234 5678 9012 3456",
     "snsLinkYn": null,
     "snsType": null,
     "snsId": null,

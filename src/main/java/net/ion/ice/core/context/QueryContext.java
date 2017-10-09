@@ -2,18 +2,12 @@ package net.ion.ice.core.context;
 
 import net.ion.ice.core.api.ApiException;
 import net.ion.ice.core.cluster.ClusterUtils;
-import net.ion.ice.core.data.bind.NodeBindingInfo;
-import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.*;
 import net.ion.ice.core.query.*;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.search.query.facet.Facet;
-import org.infinispan.Cache;
 import org.infinispan.query.SearchManager;
 
-import javax.management.Query;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -44,6 +38,7 @@ public class QueryContext extends ReadContext {
 
     protected List<FacetTerm> facetTerms ;
     protected List<QueryTerm> naviIdTerm ;
+    private String joinMethod;
 
 
     public QueryContext(NodeType nodeType) {
@@ -82,9 +77,15 @@ public class QueryContext extends ReadContext {
     }
 
 
-    public static QueryContext createQueryContextFromText(String searchText, NodeType nodeType) {
+    public static QueryContext createQueryContextFromText(String searchText, NodeType nodeType, String booleanMethod) {
         QueryContext queryContext = new QueryContext(nodeType);
 //        queryContext.setIncludeReferenced(false);
+
+        if(StringUtils.isEmpty(booleanMethod)){
+            booleanMethod = "must" ;
+        }
+
+        queryContext.joinMethod = booleanMethod.toLowerCase() ;
 
         java.util.List<QueryTerm> queryTerms = new ArrayList<>();
 
@@ -708,4 +709,7 @@ public class QueryContext extends ReadContext {
     }
 
 
+    public String getJoinMethod() {
+        return joinMethod;
+    }
 }

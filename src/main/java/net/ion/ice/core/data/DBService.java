@@ -1,6 +1,7 @@
 package net.ion.ice.core.data;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import net.ion.ice.IceRuntimeException;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
@@ -47,6 +48,9 @@ public class DBService {
         if (!dataSourceTemplate.containsKey(dsId)) {
 //            Node dataSourceNode = nodeService.getDatasource(dsId); 캐시가 없을때, nodeService를 못가져옴
             Node dataSourceNode = NodeUtils.getNodeService().getDatasource(dsId);
+            if(dataSourceNode == null){
+                throw new IceRuntimeException("Not found datasource : " + dsId) ;
+            }
             DBConfiguration configuration = new DBConfiguration(dataSourceNode);
             dataSourceTemplate.put(dsId, new JdbcTemplate(setDataSource(configuration)));
         }

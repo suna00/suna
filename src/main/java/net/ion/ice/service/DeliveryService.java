@@ -92,33 +92,61 @@ public class DeliveryService {
 
     /*
 
-    [
+        orderDeliveryPrice Merge
+    */
+    public void makeDeliveryPrice(String orderSheetId, Map<String, Object> calculateDeliveryPrice){
+        List<Map<String, Object>> beforeDeliveryPriceList = nodeBindingService.list("orderDeliveryPrice", "orderSheetId_equals=" + orderSheetId);
+        List<String> deliveryPriceIds = new ArrayList<>();
 
-        {
+        for(String key : calculateDeliveryPrice.keySet()){
+            Map<String, Object> temp = new LinkedHashMap<>();
+            boolean isFree = false;
 
-            "productId": 512,
-            "baseOptionId": 39,
-            "quantity": 1,
-            "productItem": [
-                {
-                    "addOptionId": 41,
-                    "quantity": 1
+            for(Map<String, Object> map : (List<Map<String, Object>>) calculateDeliveryPrice.get(key)){
+                temp.put("orderSheetId", orderSheetId);
+                temp.put("orderProductIds", (temp.get("orderProductIds") != null ? temp.get("orderProductIds").toString().concat(",").concat(JsonUtils.getStringValue(map, "orderProductId")) : JsonUtils.getStringValue(map, "orderProductId")));
+                temp.put("vendorId", JsonUtils.getStringValue(map, "product.vendorId"));
+                temp.put("deliveryPrice", JsonUtils.getStringValue(map, "deliveryPrice"));
+                temp.put("bundleDeliveryYn", JsonUtils.getStringValue(map, "product.bundleDeliveryYn"));
+                temp.put("deliveryMethod", JsonUtils.getStringValue(map, "product.deliveryMethod"));
+                if(!isFree){
+                    temp.put("deliveryPriceType", JsonUtils.getStringValue(map, "product.deliveryPriceType"));
                 }
-            ]
-        },
-        {
-
-            "productId": 512,
-            "baseOptionId": 40,
-            "quantity": 1,
+                if("free".equals(JsonUtils.getStringValue(map, "product.deliveryPriceType"))){
+                    isFree = true;
+                }
+                if(beforeDeliveryPriceList.size() > 0){
+                    String orderDeliveryPriceId = findDeliveryPrice(beforeDeliveryPriceList, JsonUtils.getStringValue(map, "orderProductId"));
+                    if(orderDeliveryPriceId != null){
+                        temp.put("orderDeliveryPriceId", orderDeliveryPriceId);
+                    }
+                }
+            }
+            Node node = (Node) nodeService.executeNode(temp, "orderDeliveryPrice", CommonService.SAVE);
+            deliveryPriceIds.add(node.getId());
         }
 
+        // remove 대상 처리
+        for(Map<String, Object> map : beforeDeliveryPriceList){
+            if(!deliveryPriceIds.contains(JsonUtils.getStringValue(map, "orderDeliveryPriceId"))){
+                nodeService.executeNode(map, "orderDeliveryPrice", CommonService.DELETE);
+//                System.out.println("deliveryPrice DELETE : " + JsonUtils.getStringValue(map, "orderDeliveryPriceId"));
+            }
+        }
+    }
 
-    ]
+    public String findDeliveryPrice(List<Map<String, Object>> beforeDeliveryPriceList, String orderProductId){
+        if(beforeDeliveryPriceList.size() == 0) return null;
+        String orderDeliveryPriceId = null;
+        for(Map<String, Object> map : beforeDeliveryPriceList){
+            if((",".concat(JsonUtils.getStringValue(map, "orderProductIds")).concat(",")).contains(",".concat(orderProductId).concat(","))){
+                orderDeliveryPriceId = JsonUtils.getStringValue(map, "orderDeliveryPriceId");
+                return orderDeliveryPriceId;
+            }
+        }
 
-
-*/
-
+        return orderDeliveryPriceId;
+    }
 
     // type : cart, temporder, order(취소교환반품 신청)
     public List<Map<String, Object>> makeDeliveryData(List<Map<String, Object>> list, String type) {
@@ -238,7 +266,10 @@ public class DeliveryService {
                 vendorDeliveryPrice += productDeliveryPrice ;
             }
             for(Map<String, Object> quantityBundleDeliveryProduct: quantityNotBundleDeliveryProducts){
-                Double productDeliveryPrice = JsonUtils.getDoubleValue(quantityBundleDeliveryProduct, "product.deliveryPrice") *  JsonUtils.getIntValue(quantityBundleDeliveryProduct, "quantity") ;
+
+                int count = (int) Math.ceil(JsonUtils.getIntValue(quantityBundleDeliveryProduct, "quantity") / JsonUtils.getDoubleValue(quantityBundleDeliveryProduct, "product.deliveryConditionValue"));
+
+                Double productDeliveryPrice = JsonUtils.getDoubleValue(quantityBundleDeliveryProduct, "product.deliveryPrice") *  count ;
                 quantityBundleDeliveryProduct.put("deliveryPrice", productDeliveryPrice) ;
                 vendorDeliveryPrice += productDeliveryPrice;
             }
@@ -500,5 +531,13 @@ public class DeliveryService {
                 "from cartdeliveryprice\n" +
                 "where find_in_set(?, cartProductIds) > 0 ";
         return jdbcTemplate.queryForMap(query, cartProductId);
+    }
+
+    public Map<String, Object> getOrderDeliveryPriceMap(String orderProductId) {
+        JdbcTemplate jdbcTemplate = nodeBindingService.getNodeBindingInfo("YPoint").getJdbcTemplate();
+        String query = "select *" +
+                "from orderdeliveryprice\n" +
+                "where find_in_set(?, orderProductIds) > 0 ";
+        return jdbcTemplate.queryForMap(query, orderProductId);
     }
 }

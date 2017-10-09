@@ -63,7 +63,8 @@
         {"field" : "newProductId", "method" : "referenceJoin", "value" : "newProductStatus_matching=y&siteType_matching={{:siteType}}&year_matching={{:year}}&month_matching={{:month}}" },
         {"field" : "productId", "method" : "referenceJoin", "value" : "name_matching={{:searchValue}}&salePrice_fromto={{:salePrice}}" },
         {"includeReferenced" : false, "referenceView" : "newProductId,productId"},
-        {"sorting" : "{{:sorting}}", "pageSize": "{{:pageSize}}", "page": "{{:page}}"}
+        {"sorting" : "{{:sorting}}", "pageSize": "{{:pageSize}}", "page": "{{:page}}"},
+        {"facet":"categoryIds"}
       ]
     }
   }
