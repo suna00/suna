@@ -163,8 +163,13 @@
                   },
                   {
                     "field": "newsNm",
-                    "method": "matchingShould",
-                    "value": "{{:default(newsHubKywrd,뺿뺿)}}"
+                    "method": "wildcardShould",
+                    "value": "{{:default(newsHubKywrd,뺿뺿)}}*"
+                  },
+                  {
+                    "field": "newsDesc",
+                    "method": "wildcardShould",
+                    "value": "{{:default(newsHubKywrd,뺿뺿)}}*"
                   },
                   {
                     "field": "findKywrd",
@@ -195,8 +200,8 @@
                 "query": [
                   {
                     "field": "title",
-                    "method": "matchingShould",
-                    "value": "{{:default(newsHubKywrd,뺿뺿)}}"
+                    "method": "wildcardShould",
+                    "value": "{{:default(newsHubKywrd,뺿뺿)}}*"
                   },
                   {
                     "field": "searchKeyword",
@@ -305,8 +310,13 @@
                   },
                   {
                     "field": "newsNm",
-                    "method": "matchingShould",
-                    "value": "{{:default(newsHubKywrd,뺿뺿)}}"
+                    "method": "wildcardShould",
+                    "value": "{{:default(newsHubKywrd,뺿뺿)}}*"
+                  },
+                  {
+                    "field": "newsDesc",
+                    "method": "wildcardShould",
+                    "value": "{{:default(newsHubKywrd,뺿뺿)}}*"
                   },
                   {
                     "field": "findKywrd",
@@ -337,8 +347,8 @@
                 "query": [
                   {
                     "field": "title",
-                    "method": "matchingShould",
-                    "value": "{{:default(newsHubKywrd,뺿뺿)}}"
+                    "method": "wildcardShould",
+                    "value": "{{:default(newsHubKywrd,뺿뺿)}}*"
                   },
                   {
                     "field": "searchKeyword",
