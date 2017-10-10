@@ -782,7 +782,7 @@
     "referenceType": "commonCode",
     "referenceValue": "code",
     "codeFilter": "displayStatus",
-    "defaultValue": ""
+    "defaultValue": "y"
   },
   {
     "typeId": "propertyType",
