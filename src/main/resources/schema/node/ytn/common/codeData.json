@@ -5212,9 +5212,9 @@
   },
   {
     "typeId": "commonCode",
-    "code": "popup",
+    "code": "top",
     "upperCode": "singleBannerLocation",
-    "name": "팝업배너",
+    "name": "Top배너",
     "description": "",
     "sortOrder": "2",
     "commonCodeStatus": "y"
@@ -5266,6 +5266,25 @@
   },
   {
     "typeId": "commonCode",
+    "code": "popup1",
+    "upperCode": "singleBannerLocation",
+    "name": "팝업1",
+    "description": "",
+    "sortOrder": "8",
+    "commonCodeStatus": "y"
+  },
+
+  {
+    "typeId": "commonCode",
+    "code": "popup2",
+    "upperCode": "singleBannerLocation",
+    "name": "팝업2",
+    "description": "",
+    "sortOrder": "9",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
     "code": "slide",
     "upperCode": "specialExhibitionMainBannerType",
     "name": "슬라이드",
@@ -5307,6 +5326,15 @@
     "name": "메인",
     "description": "",
     "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "intro",
+    "upperCode": "displayBannerLocation",
+    "name": "인트로",
+    "description": "",
+    "sortOrder": "2",
     "commonCodeStatus": "y"
   },
   {
@@ -6324,6 +6352,42 @@
     "name": "재주문",
     "description": "",
     "sortOrder": "8",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "bannerTemplate",
+    "upperCode": "root",
+    "name": "띠배너 템플릿",
+    "description": "",
+    "sortOrder": "117",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "1",
+    "upperCode": "bannerTemplate",
+    "name": "이미지 1단",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "2",
+    "upperCode": "bannerTemplate",
+    "name": "이미지 2단",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "3",
+    "upperCode": "bannerTemplate",
+    "name": "이미지 3단",
+    "description": "",
+    "sortOrder": "4",
     "commonCodeStatus": "y"
   }
 ]

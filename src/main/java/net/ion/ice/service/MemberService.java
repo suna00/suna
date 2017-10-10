@@ -14,6 +14,7 @@ import net.ion.ice.core.session.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.apache.commons.lang3.StringUtils;
+
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -66,7 +67,7 @@ public class MemberService {
         session.put("member", member);
         session.put("role", "customer");
         try {
-            sessionService.putSession(context.getHttpRequest(), context.getHttpResponse(), member);
+            sessionService.putSession(context.getHttpRequest(), context.getHttpResponse(), session);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -74,24 +75,49 @@ public class MemberService {
         return context;
     }
 
-    public ExecuteContext me (ExecuteContext context){
+    public ExecuteContext me(ExecuteContext context) {
         Map<String, Object> session = null;
-
         try {
             session = sessionService.getSession(context.getHttpRequest());
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
 
-        if(session != null){
-            Node node = (Node) session.get("member");
-            if(null != node || !node.isEmpty() || node.size() != 0){
-                context.setResult(CommonService.getResult("U0009"));    //로그인을 한 사용자
-            }else{
-                context.setResult(CommonService.getResult("U0010"));    //로그인을 하지 않은 사용자
+        if (session != null) {
+            String cartId = String.valueOf(session.get("cartId"));
+            Node memberNode = (Node) session.get("member");
+            if (null == session.get("cartId")) {
+                Map<String, Object> cartData = new HashMap<>();
+                try {
+                    cartData.put("sessionId", sessionService.getSessionKey(context.getHttpRequest()));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                Node cartNode = (Node) nodeService.executeNode(cartData, "cart", CommonService.CREATE);
+                Map<String, Object> sessionData = new HashMap<>();
+                sessionData.put("cartId", cartNode.getId());
+                cartId = cartNode.getId();
+                try {
+                    sessionService.putSession(context.getHttpRequest(), context.getHttpResponse(), sessionData);
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            Map<String, Object> extraData = new HashMap<>();
+
+            if (null == memberNode) {
+                extraData.put("cartId", cartId);
+                context.setResult(CommonService.getResult("U0010", extraData));    //로그인을 하지않은 사용자
+
+            } else {
+                extraData.put("memberNo", memberNode.get("memberNo"));
+                extraData.put("name", memberNode.get("name"));
+                extraData.put("cartId", cartId);
+                context.setResult(CommonService.getResult("U0009", extraData));    //로그인을 한 사용자
             }
         }
-     return context;
+        return context;
     }
 
     public ExecuteContext saveMemberInfo(ExecuteContext context) {
@@ -105,16 +131,17 @@ public class MemberService {
             contextData.put("barcode", setBarcode());
             node = (Node) nodeService.executeNode(contextData, "member", CommonService.CREATE);
 
-            //회원가입 메일 전송
-
+            Map<String, String> emailTemplate = getEmailTemplate("회원가입");
+            EmailService.setHtmlMemberJoin(node, node.get("email").toString(), emailTemplate);
         } else {
             if (contextData.containsKey("password")) {
                 contextData.put("failedCount", null);
             }
-            node = (Node)nodeService.executeNode(contextData, "member", CommonService.UPDATE);
+            node = (Node) nodeService.executeNode(contextData, "member", CommonService.UPDATE);
 
-            if(contextData.containsKey("changeMarketingAgreeYn")){
-                // 광고정보 수정 메일 전송
+            if (contextData.containsKey("changeMarketingAgreeYn")) {
+                Map<String, String> emailTemplate = getEmailTemplate("광고성 정보수신동의 결과");
+                EmailService.setHtmlMemberInfoChange(node, node.get("email").toString(), emailTemplate);
             }
         }
 
@@ -349,18 +376,18 @@ public class MemberService {
         return context;
     }
 
-    public String setBarcode(){
+    public String setBarcode() {
         String barcode = "";
 
-        for(int i=0; i<4; i++){
-            Integer randomInt = ((int)(Math.random()*10000)+1000);
-            if(10000 <= randomInt){
-                randomInt = randomInt-1000;
+        for (int i = 0; i < 4; i++) {
+            Integer randomInt = ((int) (Math.random() * 10000) + 1000);
+            if (10000 <= randomInt) {
+                randomInt = randomInt - 1000;
             }
-            barcode += (randomInt+" ");
+            barcode += (randomInt + " ");
         }
 
-        barcode = barcode.substring(0, barcode.length()-1);
+        barcode = barcode.substring(0, barcode.length() - 1);
         return barcode;
     }
 
@@ -528,5 +555,21 @@ public class MemberService {
             ranPw += pwCollection[selectRandomPw];
         }
         return ranPw;
+    }
+
+    public Map<String, String> getEmailTemplate(String emailName) {
+        Map<String, String> setHtmlMap = new HashMap<>();
+        String title = "";
+        String contents = "";
+
+        List<Map<String, Object>> emailTemplateList = nodeBindingService.list("emailTemplate", "name_in=".concat(emailName));
+        if (emailTemplateList.size() > 0) {
+            title = emailTemplateList.get(0).get("title").toString();
+            contents = emailTemplateList.get(0).get("contents").toString();
+        }
+        setHtmlMap.put("title", title);
+        setHtmlMap.put("contents", contents);
+
+        return setHtmlMap;
     }
 }

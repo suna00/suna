@@ -186,11 +186,9 @@
     "typeId" : "eventAction",
     "event": "member>me",
     "action" : "me",
-    "actionName" : "로그인",
+    "actionName" : "상태체크",
     "actionType" : "service",
     "actionBody" : "memberService.me",
     "order" : 1
   }
-
-
 ]

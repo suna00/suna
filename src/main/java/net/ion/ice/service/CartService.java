@@ -7,6 +7,7 @@ import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.query.QueryResult;
+import net.ion.ice.core.session.SessionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +32,11 @@ public class CartService {
     @Autowired
     private NodeBindingService nodeBindingService;
 
+    @Autowired
+    private SessionService sessionService ;
+
     // 장바구니 조회
     public ExecuteContext cartRead(ExecuteContext context) throws IOException {
-        Map<String, Object> data = context.getData();
         Integer totalSize = 0;
         List<Map<String, Object>> cartProducts = nodeBindingService.list("cartProduct", "sorting=created&cartId_equals=" + context.getData().get("cartId"));
         List<Map<String, Object>> cartProductItems = nodeBindingService.list("cartProductItem", "sorting=created&cartId_equals=" + context.getData().get("cartId"));
@@ -96,11 +99,28 @@ public class CartService {
 //            }
 //            if(!checkQuantity(context, map)) return context;
 //        }
+
+        Map<String, Object> sessionData = sessionService.getSession(context.getHttpRequest()) ;
+
+        String sessionId = sessionService.getSessionKey(context.getHttpRequest()) ;
         CommonService.resetMap(data);
+        if(sessionData.containsKey("cartId")) {
+            data.put("cartId", sessionData.get("cartId"));
+        }else{
+            data.put("cartId", "");
+        }
+
+        data.put("sessionId", sessionId) ;
+        if(sessionData.containsKey("member")){
+            data.put("memberNo", JsonUtils.getStringValue(sessionData, "memberNo")) ;
+        }
+
         Node cart = (Node) nodeService.executeNode(data, "cart", CommonService.SAVE);
         data.put("cartId", cart.getId());
+        sessionData.put("cartId", cart.getId()) ;
 
-        if (data.get("productList") != null) {
+
+        if (data.get("product") != null) {
             addProducts(data, cart.getId());
         }
 
@@ -281,7 +301,7 @@ public class CartService {
 
     private void addProducts(Map<String, Object> data, Object cartId) throws IOException {
         List<Map<String, Object>> referenced = nodeBindingService.list(cartProduct_TID, "cartId_equals=" + cartId);
-        List<Map<String, Object>> maps = JsonUtils.parsingJsonToList(data.get("productList").toString());
+        List<Map<String, Object>> maps = JsonUtils.parsingJsonToList(data.get("product").toString());
 
         for (Map<String, Object> map : maps) {
             Node product = NodeUtils.getNode("product", map.get("productId").toString());

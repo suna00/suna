@@ -2,7 +2,10 @@
   {
     "typeId": "apiCategory",
     "id": "cart",
-    "categoryName": "장바구니 API"
+    "categoryName": "장바구니 API",
+    "fileUrlFormat" : {
+      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
+    }
   },
   {
     "typeId": "apiConfig",

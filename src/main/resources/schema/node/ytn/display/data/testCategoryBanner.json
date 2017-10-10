@@ -1,0 +1,102 @@
+[
+  {
+    "typeId": "categoryBanner",
+    "categoryBannerId": 1,
+    "categoryId": 1,
+    "file": "classpath:schema/node/ytn/display/file/category1.jpeg",
+    "vodUrl": "",
+    "url": "/product/view?categoryId=12&productId=17265",
+    "bannerStatus": "y"
+  },
+
+  {
+    "typeId": "categoryBanner",
+    "categoryBannerId": 2,
+    "categoryId": 2,
+    "file": "",
+    "vodUrl": "http://www.youtube.com/embed/n_dZNLr2cME?rel=0&amp;hd=1",
+    "url": "/product/view?categoryId=12&productId=17343",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "categoryBanner",
+    "categoryBannerId": 3,
+    "categoryId": 3,
+    "file": "classpath:schema/node/ytn/display/file/category2.jpeg",
+    "vodUrl": "",
+    "url": "/product/view?categoryId=12&productId=24857",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "categoryBanner",
+    "categoryBannerId": 4,
+    "categoryId": 4,
+    "file": "classpath:schema/node/ytn/display/file/category3.jpeg",
+    "vodUrl": "",
+    "url": "/product/view?categoryId=12&productId=25264",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "categoryBanner",
+    "categoryBannerId": 5,
+    "categoryId": 5,
+    "file": "classpath:schema/node/ytn/display/file/category4.jpeg",
+    "vodUrl": "",
+    "url": "/product/view?categoryId=12&productId=27513",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "categoryBanner",
+    "categoryBannerId": 6,
+    "categoryId": 6,
+    "file": "classpath:schema/node/ytn/display/file/category5.jpeg",
+    "vodUrl": "",
+    "url": "/product/view?categoryId=12&productId=44897",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "categoryBanner",
+    "categoryBannerId": 7,
+    "categoryId": 7,
+    "file": "classpath:schema/node/ytn/display/file/category6.jpeg",
+    "vodUrl": "",
+    "url": "/product/view?categoryId=12&productId=48750",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "categoryBanner",
+    "categoryBannerId": 8,
+    "categoryId": 8,
+    "file": "classpath:schema/node/ytn/display/file/category7.jpeg",
+    "vodUrl": "",
+    "url": "/product/view?categoryId=12&productId=63749",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "categoryBanner",
+    "categoryBannerId": 9,
+    "categoryId": 9,
+    "file": "classpath:schema/node/ytn/display/file/category8.jpeg",
+    "vodUrl": "",
+    "url": "/product/view?categoryId=12&productId=64063",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "categoryBanner",
+    "categoryBannerId": 10,
+    "categoryId": 10,
+    "file": "classpath:schema/node/ytn/display/file/category9.jpeg",
+    "vodUrl": "",
+    "url": "/product/view?categoryId=12&productId=64185",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "categoryBanner",
+    "categoryBannerId": 11,
+    "categoryId": 11,
+    "file": "classpath:schema/node/ytn/display/file/category10.jpeg",
+    "vodUrl": "",
+    "url": "/product/view?categoryId=12&productId=64464",
+    "bannerStatus": "y"
+  }
+]

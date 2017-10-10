@@ -2,7 +2,10 @@
   {
     "typeId" : "apiCategory",
     "id" : "specialExhibitionApi",
-    "categoryName" : "이벤트 API"
+    "categoryName" : "이벤트 API",
+    "fileUrlFormat" : {
+      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
+    }
   },
   {
     "typeId" : "apiConfig",
@@ -45,7 +48,10 @@
   {
     "typeId" : "apiCategory",
     "id" : "newProduct",
-    "categoryName" : "신상품 API"
+    "categoryName" : "신상품 API",
+    "fileUrlFormat" : {
+      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
+    }
   },
   {
     "typeId" : "apiConfig",
