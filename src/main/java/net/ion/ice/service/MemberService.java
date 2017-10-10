@@ -1,5 +1,6 @@
 package net.ion.ice.service;
 
+import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.api.ApiException;
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.data.bind.NodeBindingInfo;
@@ -397,21 +398,21 @@ public class MemberService {
         // 회원가입 : join
         if ("join".equals(emailCertificationType)) {
             String certCode = getEmailCertCode("이메일 인증요청", emailCertificationType, null, email, "request");
-            String linkUrl = "/signUp/stepTwo?certCode=" + certCode + "&email=" + email + "&siteType=" + data.get("siteType") + "&acceptTermsYn=" + data.get("acceptTermsYn") + "&receiveMarketingEmailAgreeYn=" + data.get("receiveMarketingEmailAgreeYn") + "&receiveMarketingSMSAgreeYn=" + data.get("receiveMarketingSMSAgreeYn");
+            String linkUrl = data.get("siteId") + "/signUp/stepTwo?certCode=" + certCode + "&email=" + email + "&siteType=" + data.get("siteType") + "&acceptTermsYn=" + data.get("acceptTermsYn") + "&receiveMarketingEmailAgreeYn=" + data.get("receiveMarketingEmailAgreeYn") + "&receiveMarketingSMSAgreeYn=" + data.get("receiveMarketingSMSAgreeYn");
             html = setHtml("본인인증", linkUrl);
         }
 
         // 비밀번호 : password
         if ("password".equals(emailCertificationType)) {
             String certCode = getEmailCertCode("이메일 인증요청", emailCertificationType, data.get("memberNo").toString(), email, "request");
-            String linkUrl = "/signIn/changePassword?certCode=" + certCode + "&email=" + email;
+            String linkUrl = data.get("siteId") + "/signIn/changePassword?certCode=" + certCode + "&email=" + email;
             html = setHtml("비밀번호변경", linkUrl);
         }
 
         // 휴면회원해제 : sleepMember
         if ("sleepMember".equals(emailCertificationType)) {
             String certCode = getEmailCertCode("이메일 인증요청", emailCertificationType, data.get("memberNo").toString(), email, "request");
-            String linkUrl = "/signIn/changePassword?certCode=" + certCode + "&email=" + email + "&certificationType=sleepMember";
+            String linkUrl = data.get("siteId") + "/signIn/changePassword?certCode=" + certCode + "&email=" + email + "&certificationType=sleepMember";
             html = setHtml("휴면해제이메일인증", linkUrl);
         }
 
@@ -470,7 +471,7 @@ public class MemberService {
 
         String title = "";
         String contents = "";
-        String link = "http://localhost:3090" + linkUrl; // http://125.131.88.206:3090
+        String link = ApplicationContextManager.getContext().getEnvironment().getProperty("cluster.front-prefix") + linkUrl; // http://125.131.88.206:3090
 
         List<Map<String, Object>> emailTemplateList = nodeBindingService.list("emailTemplate", "name_in=".concat(templateName));
 
