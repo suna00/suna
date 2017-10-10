@@ -518,10 +518,19 @@
       }
     ],
     "config": {
-      "typeId": "replInfo",
-      "event": "delete",
-      "data": {
-        "replSeq": "{{:contsReplSeq}}"
+      "chkMyRelp": {
+        "select": {
+          "ds": "cjDb",
+          "sql": "select if(count(*)>0,'true','false') MyRelpYn from replInfo where replSeq=@{contsReplSeq} and mkerId = @{makeIdValue(>,snsTypeCd,snsKey)}"
+        }
+      },
+      "root": {
+        "typeId": "replInfo",
+        "event": "delete",
+        "if":"{{:MyRelpYn}}",
+        "data": {
+          "replSeq": "{{:contsReplSeq}}"
+        }
       }
     }
   },
