@@ -37,6 +37,22 @@ public class CartService {
 
     // 장바구니 조회
     public ExecuteContext cartRead(ExecuteContext context) throws IOException {
+
+        Map<String, Object> sessionData = sessionService.getSession(context.getHttpRequest()) ;
+
+        String sessionId = sessionService.getSessionKey(context.getHttpRequest()) ;
+        if(sessionData.containsKey("cartId")) {
+            context.getData().put("cartId", sessionData.get("cartId"));
+        }else{
+            context.getData().put("cartId", "");
+        }
+
+        context.getData().put("sessionId", sessionId) ;
+        if(sessionData.containsKey("member")){
+            context.getData().put("memberNo", JsonUtils.getStringValue(sessionData, "memberNo")) ;
+        }
+
+
         Integer totalSize = 0;
         List<Map<String, Object>> cartProducts = nodeBindingService.list("cartProduct", "sorting=created&cartId_equals=" + context.getData().get("cartId"));
         List<Map<String, Object>> cartProductItems = nodeBindingService.list("cartProductItem", "sorting=created&cartId_equals=" + context.getData().get("cartId"));
