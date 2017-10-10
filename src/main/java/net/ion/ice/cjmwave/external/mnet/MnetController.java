@@ -63,7 +63,7 @@ public class MnetController {
             *
             * */
 
-            int start = 0;
+            int start = 1;
             int total = 0;
 
             String startPage = request.getParameter("startPage");

@@ -429,7 +429,7 @@ public class DBSyncService {
 //                continue;
 //            }
 
-            if(totalPages != null) {
+            if(totalPages != null && totalPages > 0) {
                 if(i > totalPages -1) {
                     logger.info("Batch finished arrange from [ " + startPage + " ] page to [ " + totalPages + " ] page has finished");
                     loop = false;
@@ -567,7 +567,7 @@ public class DBSyncService {
                     taskExecutor.execute(new ParallelDBSyncExecutor(executeId) {
                         @Override
                         public void action() throws Exception {
-                            this.dbSyncService.executeWithIteration(this.executeId, 0, 0);
+                            this.dbSyncService.executeWithIteration(this.executeId, start, total);
                         }
                     });
                 }

@@ -35,19 +35,14 @@ public abstract class ParallelDBSyncExecutor implements Runnable {
             storage.addProcess(executeId, this);
         }
         try{
-            action();
             this.isRun = true;
+            action();
+            this.isRun = false;
         } catch (Exception e) {
             System.out.println("PARALLEL DB SYNC EXECUTOR ERROR :: " );
             e.printStackTrace();
             System.out.println("TURNING STATUS TERMINATED");
             this.isRun = false;
         }
-    }
-
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
-        this.isRun = false;
     }
 };
