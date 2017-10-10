@@ -44,7 +44,7 @@ public class CartService {
         if(sessionData.containsKey("cartId")) {
             context.getData().put("cartId", sessionData.get("cartId"));
         }else{
-            context.getData().put("cartId", "");
+            context.getData().put("cartId", "abcdefg");
         }
 
         context.getData().put("sessionId", sessionId) ;
@@ -295,18 +295,18 @@ public class CartService {
             return false;
         }
 
-        Map<String, Object> m = deliveryService.getCartDeliveryPriceMap(cartProduct.get("cartProductId").toString());
-        if ("deliveryDateType>hopeDelivery".equals(product.get("deliveryDateType"))) {
-            String cartDate = m.get("hopeDeliveryDate").toString();
-            String mapDate = map.get("hopeDeliveryDate").toString();
-            if (!cartDate.equals(mapDate)) return false;
-        }
+//        Map<String, Object> m = deliveryService.getCartDeliveryPriceMap(cartProduct.get("cartProductId").toString());
+//        if ("deliveryDateType>hopeDelivery".equals(product.get("deliveryDateType"))) {
+//            String cartDate = m.get("hopeDeliveryDate").toString();
+//            String mapDate = map.get("hopeDeliveryDate").toString();
+//            if (!cartDate.equals(mapDate)) return false;
+//        }
 
-        if ("deliveryDateType>scheduledDelivery".equals(product.get("deliveryDateType"))) {
-            String cartDate = m.get("scheduledDeliveryDate").toString();
-            String productDate = product.get("scheduledDeliveryDate").toString();
-            if (!cartDate.equals(productDate)) return false;
-        }
+//        if ("deliveryDateType>scheduledDelivery".equals(product.get("deliveryDateType"))) {
+//            String cartDate = m.get("scheduledDeliveryDate").toString();
+//            String productDate = product.get("scheduledDeliveryDate").toString();
+//            if (!cartDate.equals(productDate)) return false;
+//        }
 
         if (!("deliveryPriceType>quantity".equals(product.get("deliveryPriceType")) && isFirstRow)) {
             return false;
@@ -326,7 +326,7 @@ public class CartService {
 
             for (Map<String, Object> obj : referenced) {
                 if (existCartProduct(map, obj, product, obj.equals(referenced.get(0)))) {
-                    changeQuantity(obj, Integer.parseInt(map.get("quantity").toString()));
+//                    changeQuantity(obj, Integer.parseInt(map.get("quantity").toString()));
                     obj.putAll(map);
                     if (map.get(cartProductItem_TID) != null) createCartProductItem(obj);
                     exist = true;
@@ -381,7 +381,7 @@ public class CartService {
                 cartProductMap = createCartProduct(map);
 
                 if (i == 0) {
-                    if (map.get(cartProductItem_TID) != null) createCartProductItem(cartProductMap);
+                    if (map.get("productItem") != null) createCartProductItem(cartProductMap);
                 }
                 //deliveryService.setDeliveryPrice(cartProductMap, product, "cart");
             }
@@ -389,7 +389,7 @@ public class CartService {
             map.put("quantity", quantity);
             cartProductMap = createCartProduct(map);
 
-            if (map.get(cartProductItem_TID) != null) createCartProductItem(cartProductMap);
+            if (map.get("productItem") != null) createCartProductItem(cartProductMap);
 
             //deliveryService.setDeliveryPrice(cartProductMap, product, "cart");
         }
@@ -471,7 +471,7 @@ public class CartService {
     }
 
     private void createCartProductItem(Map<String, Object> cartProduct) {
-        for (Map<String, Object> item : (List<Map<String, Object>>) cartProduct.get(cartProductItem_TID)) {
+        for (Map<String, Object> item : (List<Map<String, Object>>) cartProduct.get("productItem")) {
             List<Map<String, Object>> cartProductItems = nodeBindingService.list(cartProductItem_TID, "cartId_equals=" + cartProduct.get("cartId") + "&addOptionItemId_equals=" + item.get("addOptionItemId"));
             if (cartProductItems.size() > 0) {
                 for (Map<String, Object> obj : cartProductItems) {

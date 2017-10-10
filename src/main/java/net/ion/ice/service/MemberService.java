@@ -85,36 +85,14 @@ public class MemberService {
         }
 
         if (session != null) {
-            String cartId = String.valueOf(session.get("cartId"));
             Node memberNode = (Node) session.get("member");
-            if (null == session.get("cartId")) {
-                Map<String, Object> cartData = new HashMap<>();
-                try {
-                    cartData.put("sessionId", sessionService.getSessionKey(context.getHttpRequest()));
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-                Node cartNode = (Node) nodeService.executeNode(cartData, "cart", CommonService.CREATE);
-                Map<String, Object> sessionData = new HashMap<>();
-                sessionData.put("cartId", cartNode.getId());
-                cartId = cartNode.getId();
-                try {
-                    sessionService.putSession(context.getHttpRequest(), context.getHttpResponse(), sessionData);
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
-            }
-
             Map<String, Object> extraData = new HashMap<>();
 
             if (null == memberNode) {
-                extraData.put("cartId", cartId);
-                context.setResult(CommonService.getResult("U0010", extraData));    //로그인을 하지않은 사용자
-
+                context.setResult(CommonService.getResult("U0010"));    //로그인을 하지않은 사용자
             } else {
                 extraData.put("memberNo", memberNode.get("memberNo"));
                 extraData.put("name", memberNode.get("name"));
-                extraData.put("cartId", cartId);
                 context.setResult(CommonService.getResult("U0009", extraData));    //로그인을 한 사용자
             }
         }

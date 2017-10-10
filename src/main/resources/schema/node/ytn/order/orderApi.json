@@ -12,7 +12,7 @@
     "category" : "orderSheet",
     "apiId" : "read",
     "apiName" : "주문서 조회",
-    "method" : "GET",
+    "method" : "POST",
     "parameters" : [
     ],
     "config" : {
