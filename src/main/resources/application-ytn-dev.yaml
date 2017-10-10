@@ -21,17 +21,15 @@ jwtConfig:
   refreshTokenExpTime: 60 #분
 
 cluster:
-  api-prefix: http://localhost:8080/
-  front-prefix: http://localhost:3090/
+  api-prefix: http://125.131.88.206:8080/
+  front-prefix: http://125.131.88.206:8888/
   mode: all
   groups: all
   members:
-    - 127.0.0.1
-    - localhost
     - 125.131.88.206
 
 infinispan:
-  cachePath: /resource/ytn/cache
+  cachePath: /resource/ice2/cache
 
 tomcat:
   access-log-enabled: true
@@ -46,4 +44,5 @@ logging:
 
 file:
   default:
-    path: /resource/ytn/files
+    path: /resource/ice2/files
+
