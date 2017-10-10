@@ -158,7 +158,6 @@
       "label": "여자",
       "refId": "genderType>woman"
     },
-
     "birthday": null,
     "company": null,
     "department": null,
@@ -2056,6 +2055,86 @@
       },
       "changed": "20170917130235"
     }
+  },
+  {
+    "typeId": "popularSearches",
+    "popularSearchesId": 1,
+    "siteId": "ion",
+    "name": "노트북",
+    "sortOrder": 1,
+    "popularSearchesStatus": "y",
+    "popularSearchesType": "batch"
+  },
+  {
+    "typeId": "popularSearches",
+    "popularSearchesId": 2,
+    "siteId": "ion",
+    "name": "에어컨",
+    "sortOrder": 1,
+    "popularSearchesStatus": "y",
+    "popularSearchesType": "batch"
+  },
+  {
+    "typeId": "popularSearches",
+    "popularSearchesId": 3,
+    "siteId": "ion",
+    "name": "여성샌들",
+    "sortOrder": 1,
+    "popularSearchesStatus": "y",
+    "popularSearchesType": "batch"
+  },
+  {
+    "typeId": "popularSearches",
+    "popularSearchesId": 4,
+    "siteId": "ion",
+    "name": "사이다",
+    "sortOrder": 4,
+    "popularSearchesStatus": "y",
+    "popularSearchesType": "batch"
+  },
+  {
+    "typeId": "popularSearches",
+    "popularSearchesId": 5,
+    "siteId": "ion",
+    "name": "환타custom",
+    "sortOrder": 5,
+    "popularSearchesStatus": "y",
+    "popularSearchesType": "custom"
+  },
+  {
+    "typeId": "popularSearches",
+    "popularSearchesId": 6,
+    "siteId": "ion",
+    "name": "밀키스",
+    "sortOrder": 6,
+    "popularSearchesStatus": "y",
+    "popularSearchesType": "batch"
+  },
+  {
+    "typeId": "popularSearches",
+    "popularSearchesId": 7,
+    "siteId": "mall",
+    "name": "오예스",
+    "sortOrder": 1,
+    "popularSearchesStatus": "y",
+    "popularSearchesType": "batch"
+  },
+  {
+    "typeId": "popularSearches",
+    "popularSearchesId": 8,
+    "siteId": "mall",
+    "name": "스타벅스",
+    "sortOrder": 2,
+    "popularSearchesStatus": "y",
+    "popularSearchesType": "batch"
+  },
+  {
+    "typeId": "popularSearches",
+    "popularSearchesId": 9,
+    "siteId": "mall",
+    "name": "HARIBO",
+    "sortOrder": 3,
+    "popularSearchesStatus": "y",
+    "popularSearchesType": "batch"
   }
-
 ]
