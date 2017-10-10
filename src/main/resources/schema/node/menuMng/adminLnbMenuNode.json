@@ -146,8 +146,13 @@
     "icon": "fa-list",
     "active": "true",
     "index": "false",
-    "pages": [],
-    "customPages": []
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" }
+    ],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "ytn/marketingEvent/CreateForm" },
+      { "pageName": "수정", "pageUrl": "ytn/marketingEvent/UpdateForm" }
+    ]
   },
 
   {
