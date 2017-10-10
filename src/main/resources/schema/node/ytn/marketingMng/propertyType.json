@@ -224,6 +224,23 @@
   {
     "typeId": "propertyType",
     "tid": "shopEvent",
+    "pid": "viewCount",
+    "propertyTypeName": "조회수",
+    "valueType": "INT",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "simple",
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "shopEvent",
     "pid": "created",
     "propertyTypeName": "등록일",
     "valueType": "DATE",
