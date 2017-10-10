@@ -56,6 +56,15 @@
   {
     "typeId": "adminGnbMenu",
     "backOfficeId": "admin",
+    "menuId": "mobileMng",
+    "menuName": "모바일서비스 관리",
+    "order": "70",
+    "icon": "",
+    "active": "true"
+  },
+  {
+    "typeId": "adminGnbMenu",
+    "backOfficeId": "admin",
     "menuId": "custom",
     "menuName": "테스트 컴포넌트",
     "order": "200",

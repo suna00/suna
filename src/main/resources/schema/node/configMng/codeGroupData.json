@@ -467,5 +467,12 @@
     "name": "App 강제 업그레이드 플랫폼 타입",
     "active": true,
     "desc": "App 강제 업그레이드 플랫폼 타입(iphone, android)"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "pushTgtCd",
+    "name": "푸쉬 발송 대상 코드",
+    "active": true,
+    "desc": "푸쉬 발송 대상 코드"
   }
 ]

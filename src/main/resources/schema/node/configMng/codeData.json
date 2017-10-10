@@ -2342,5 +2342,13 @@
     "name": "TYPE3",
     "order": 3,
     "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "pushTgtCd",
+    "codeId": "1",
+    "name": "전체",
+    "order": 1,
+    "active": true
   }
 ]

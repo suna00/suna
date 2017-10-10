@@ -27,6 +27,7 @@ public class VoteResponseService {
 
     public void voteStatus(ExecuteContext context) {
         Map<String, Object> data = context.getData() ;
+
         String term = "voteSeq_matching={{:voteSeq}}&pstngStDt_above={{:concatStr(voteYear,0101)}}&pstngStDt_below={{:concatStr(voteYear,1231)}}"
                 + "&showLoCd_matching={{:showLoCd}}&voteFormlCd_matching={{:voteFormlCd}}&showYn_matching=true&evVoteYn_matching=true"
                 + "&sorting=voteSeq desc&limit=1";

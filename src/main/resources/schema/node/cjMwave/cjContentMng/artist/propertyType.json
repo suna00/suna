@@ -82,7 +82,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "code",
-    "referenceValue": "codeId",
+    "referenceValue": "",
     "codeFilter": "artistSexCd",
     "defaultValue": ""
   },
@@ -118,7 +118,7 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "code",
-    "referenceValue": "codeId",
+    "referenceValue": "",
     "codeFilter": "artistGenreCd",
     "defaultValue": ""
   },
@@ -210,7 +210,7 @@
     "referenceValue": "",
     "codeFilter": "",
     "defaultValue": "",
-    "fileHandler":"s3"
+    "fileHandler": "s3"
   },
   {
     "typeId": "propertyType",
