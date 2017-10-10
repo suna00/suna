@@ -436,6 +436,9 @@
             "field": "useYn",
             "method": "matching",
             "value": "true"
+          },
+          {
+            "sorting": "sortOdrg"
           }
         ],
         "response": {
@@ -452,6 +455,9 @@
                 "field": "useYn",
                 "method": "matching",
                 "value": "true"
+              },
+              {
+                "sorting": "sortOdrg"
               }
             ],
             "response": {
@@ -476,6 +482,9 @@
                     "field": "useYn",
                     "method": "matching",
                     "value": "true"
+                  },
+                  {
+                    "sorting": "sortOdrg"
                   }
                 ],
                 "response": {
@@ -500,6 +509,9 @@
                         "field": "useYn",
                         "method": "matching",
                         "value": "true"
+                      },
+                      {
+                        "sorting": "sortOdrg"
                       }
                     ],
                     "response": {
@@ -524,6 +536,9 @@
                             "field": "useYn",
                             "method": "matching",
                             "value": "true"
+                          },
+                          {
+                            "sorting": "sortOdrg"
                           }
                         ],
                         "response": {
@@ -548,6 +563,9 @@
                                 "field": "useYn",
                                 "method": "matching",
                                 "value": "true"
+                              },
+                              {
+                                "sorting": "sortOdrg"
                               }
                             ],
                             "response": {
@@ -572,6 +590,9 @@
                                     "field": "useYn",
                                     "method": "matching",
                                     "value": "true"
+                                  },
+                                  {
+                                    "sorting": "sortOdrg"
                                   }
                                 ],
                                 "response": {
@@ -598,6 +619,7 @@
                                         "value": "true"
                                       },
                                       {
+                                        "sorting": "sortOdrg",
                                         "includeReferenced": true
                                       }
                                     ]
