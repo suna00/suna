@@ -138,6 +138,21 @@
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "adm",
+    "gnbMenuId": "marketingMng",
+    "parentMenuId": "root",
+    "menuId": "event",
+    "menuName": "이벤트 관리",
+    "order": "40",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": []
+  },
+
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
     "gnbMenuId": "orderPaymentMng",
     "parentMenuId": "root",
     "menuId": "orderDelivery",

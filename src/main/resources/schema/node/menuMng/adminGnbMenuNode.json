@@ -29,15 +29,6 @@
   {
     "typeId" : "adminGnbMenu",
     "backOfficeId": "adm",
-    "menuId": "menuMng",
-    "menuName": "메뉴",
-    "order": "40",
-    "icon": "",
-    "active": "true"
-  },
-  {
-    "typeId" : "adminGnbMenu",
-    "backOfficeId": "adm",
     "menuId": "marketingMng",
     "menuName": "마케팅",
     "order": "50",
