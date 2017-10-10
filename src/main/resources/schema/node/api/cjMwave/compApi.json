@@ -455,15 +455,15 @@
               }
             ],
             "response": {
-              "svcMenuId":"",
-              "upperSvcMenuId":"",
-              "svcMenuNm":"",
-              "sortOdrg":"",
-              "svcMenuUrl":"",
-              "useYn":"",
-              "svcMenuGroupSeq":"",
-              "bgColorCode":"",
-              "showLoCd":"",
+              "svcMenuId": "",
+              "upperSvcMenuId": "",
+              "svcMenuNm": "",
+              "sortOdrg": "",
+              "svcMenuUrl": "",
+              "useYn": "",
+              "svcMenuGroupSeq": "",
+              "bgColorCode": "",
+              "showLoCd": "",
               "children": {
                 "typeId": "svcMenuInfo",
                 "query": [
@@ -477,16 +477,17 @@
                     "method": "matching",
                     "value": "true"
                   }
-                ],"response": {
-                  "svcMenuId":"",
-                  "upperSvcMenuId":"",
-                  "svcMenuNm":"",
-                  "sortOdrg":"",
-                  "svcMenuUrl":"",
-                  "useYn":"",
-                  "svcMenuGroupSeq":"",
-                  "bgColorCode":"",
-                  "showLoCd":"",
+                ],
+                "response": {
+                  "svcMenuId": "",
+                  "upperSvcMenuId": "",
+                  "svcMenuNm": "",
+                  "sortOdrg": "",
+                  "svcMenuUrl": "",
+                  "useYn": "",
+                  "svcMenuGroupSeq": "",
+                  "bgColorCode": "",
+                  "showLoCd": "",
                   "children": {
                     "typeId": "svcMenuInfo",
                     "query": [
@@ -500,16 +501,17 @@
                         "method": "matching",
                         "value": "true"
                       }
-                    ],"response": {
-                      "svcMenuId":"",
-                      "upperSvcMenuId":"",
-                      "svcMenuNm":"",
-                      "sortOdrg":"",
-                      "svcMenuUrl":"",
-                      "useYn":"",
-                      "svcMenuGroupSeq":"",
-                      "bgColorCode":"",
-                      "showLoCd":"",
+                    ],
+                    "response": {
+                      "svcMenuId": "",
+                      "upperSvcMenuId": "",
+                      "svcMenuNm": "",
+                      "sortOdrg": "",
+                      "svcMenuUrl": "",
+                      "useYn": "",
+                      "svcMenuGroupSeq": "",
+                      "bgColorCode": "",
+                      "showLoCd": "",
                       "children": {
                         "typeId": "svcMenuInfo",
                         "query": [
@@ -523,16 +525,17 @@
                             "method": "matching",
                             "value": "true"
                           }
-                        ],"response": {
-                          "svcMenuId":"",
-                          "upperSvcMenuId":"",
-                          "svcMenuNm":"",
-                          "sortOdrg":"",
-                          "svcMenuUrl":"",
-                          "useYn":"",
-                          "svcMenuGroupSeq":"",
-                          "bgColorCode":"",
-                          "showLoCd":"",
+                        ],
+                        "response": {
+                          "svcMenuId": "",
+                          "upperSvcMenuId": "",
+                          "svcMenuNm": "",
+                          "sortOdrg": "",
+                          "svcMenuUrl": "",
+                          "useYn": "",
+                          "svcMenuGroupSeq": "",
+                          "bgColorCode": "",
+                          "showLoCd": "",
                           "children": {
                             "typeId": "svcMenuInfo",
                             "query": [
@@ -546,16 +549,17 @@
                                 "method": "matching",
                                 "value": "true"
                               }
-                            ],"response": {
-                              "svcMenuId":"",
-                              "upperSvcMenuId":"",
-                              "svcMenuNm":"",
-                              "sortOdrg":"",
-                              "svcMenuUrl":"",
-                              "useYn":"",
-                              "svcMenuGroupSeq":"",
-                              "bgColorCode":"",
-                              "showLoCd":"",
+                            ],
+                            "response": {
+                              "svcMenuId": "",
+                              "upperSvcMenuId": "",
+                              "svcMenuNm": "",
+                              "sortOdrg": "",
+                              "svcMenuUrl": "",
+                              "useYn": "",
+                              "svcMenuGroupSeq": "",
+                              "bgColorCode": "",
+                              "showLoCd": "",
                               "children": {
                                 "typeId": "svcMenuInfo",
                                 "query": [
@@ -569,16 +573,17 @@
                                     "method": "matching",
                                     "value": "true"
                                   }
-                                ],"response": {
-                                  "svcMenuId":"",
-                                  "upperSvcMenuId":"",
-                                  "svcMenuNm":"",
-                                  "sortOdrg":"",
-                                  "svcMenuUrl":"",
-                                  "useYn":"",
-                                  "svcMenuGroupSeq":"",
-                                  "bgColorCode":"",
-                                  "showLoCd":"",
+                                ],
+                                "response": {
+                                  "svcMenuId": "",
+                                  "upperSvcMenuId": "",
+                                  "svcMenuNm": "",
+                                  "sortOdrg": "",
+                                  "svcMenuUrl": "",
+                                  "useYn": "",
+                                  "svcMenuGroupSeq": "",
+                                  "bgColorCode": "",
+                                  "showLoCd": "",
                                   "children": {
                                     "typeId": "svcMenuInfo",
                                     "query": [
