@@ -21,13 +21,11 @@ jwtConfig:
   refreshTokenExpTime: 60 #분
 
 cluster:
-  api-prefix: http://localhost:8080/
-  front-prefix: http://localhost:3090/
+  api-prefix: http://125.131.88.206:8080/
+  front-prefix: http://125.131.88.206:8888/
   mode: all
   groups: all
   members:
-    - 127.0.0.1
-    - localhost
     - 125.131.88.206
 
 infinispan:
