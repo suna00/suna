@@ -41,14 +41,16 @@ public class ProductSearchService {
         Map<String, Object> map = JsonUtils.parsingJsonToMap((String) data.get("categoryMap"));
         List<Node> levelA = nodeService.getNodeList("category", "level=A");
         for(Node A : levelA){
+            int count = 0;
             for(String key : map.keySet()){
                 if(key.equals(A.getId())){
-                    A.put("count", map.get(key));
-                    A.put("totalCount", map.get(key));
-                    A.put("lowerCategoryList", new ArrayList<>());
-                    result.put(key, A);
+                    count = JsonUtils.getIntValue(map, key);
                 }
             }
+            A.put("count",count);
+            A.put("totalCount",count);
+            A.put("lowerCategoryList", new ArrayList<>());
+            result.put(A.getId(), A);
         }
 
         List<Node> levelC = nodeService.getNodeList("category", "level=C");
