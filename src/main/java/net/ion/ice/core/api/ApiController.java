@@ -81,6 +81,12 @@ public class ApiController {
         return nodeEvent(request, response, typeId, api, "POST");
     }
 
+    @RequestMapping(value = "/api/node/{typeId}/event/{api}", method = RequestMethod.GET)
+    @ResponseBody
+    public Object customEventNodeTest(NativeWebRequest request, HttpServletResponse response, @PathVariable String typeId, @PathVariable String api) throws IOException {
+        return nodeEvent(request, response, typeId, api, "POST");
+    }
+
 
     @RequestMapping(value = "/api/node/{typeId}/event/{api}.json", method = RequestMethod.POST)
     @ResponseBody

@@ -14,7 +14,6 @@ import java.net.URLEncoder;
  */
 public class CookieUtil {
     public static void create(HttpServletResponse response, String name, String value, Boolean httpOnly , Boolean secure, Integer maxAge, String domain) throws UnsupportedEncodingException {
-
         Cookie cookie = new Cookie(name, URLEncoder.encode(value, "UTF-8"));
         cookie.setDomain(domain);
         cookie.setPath("/");
