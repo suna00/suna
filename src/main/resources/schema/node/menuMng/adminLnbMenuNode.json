@@ -1796,6 +1796,33 @@
   },
   {
     "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "mobileMng",
+    "parentMenuId": "root",
+    "menuId": "pushMng",
+    "menuName": "Push 관리",
+    "order": "10",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "cj/mo/PushList"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "cj/mo/PushForm"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "cj/mo/PushView"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
     "backOfficeId": "adm",
     "gnbMenuId": "contentMng",
     "parentMenuId": "root",
