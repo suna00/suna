@@ -1,0 +1,146 @@
+[
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 1,
+    "singleBannerLocation": "leftSide",
+    "sortOrder": 1,
+    "file": "classpath:schema/node/ytn/display/file/singleSide1.jpeg",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=2",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 2,
+    "singleBannerLocation": "rightSide",
+    "sortOrder": 1,
+    "file": "classpath:schema/node/ytn/display/file/singleSide2.jpeg",
+    "url": "/product/view?categoryId=12&productId=1",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 3,
+    "singleBannerLocation": "nextToSearch",
+    "sortOrder": 1,
+    "file": "classpath:schema/node/ytn/display/file/nextToSearch1.jpeg",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=1",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 4,
+    "singleBannerLocation": "nextToSearch",
+    "sortOrder": 2,
+    "file": "classpath:schema/node/ytn/display/file/nextToSearch2.jpeg",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=2",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 5,
+    "singleBannerLocation": "nextToSearch",
+    "sortOrder": 3,
+    "file": "classpath:schema/node/ytn/display/file/nextToSearch3.jpeg",
+    "url": "/product/view?categoryId=12&productId=64063",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 6,
+    "singleBannerLocation": "nextToSearch",
+    "sortOrder": 4,
+    "file": "classpath:schema/node/ytn/display/file/nextToSearch4.jpeg",
+    "url": "/product/view?categoryId=12&productId=1",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 7,
+    "singleBannerLocation": "mypageMain",
+    "sortOrder": 1,
+    "file": "classpath:schema/node/ytn/display/file/mypageMain.jpg",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=1",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 8,
+    "singleBannerLocation": "serviceCenterMain",
+    "sortOrder": 1,
+    "file": "classpath:schema/node/ytn/display/file/serviceCenterMain1.jpeg",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=2",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 9,
+    "singleBannerLocation": "serviceCenterMain",
+    "sortOrder": 2,
+    "file": "classpath:schema/node/ytn/display/file/serviceCenterMain2.jpeg",
+    "url": "/product/view?categoryId=12&productId=64063",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singlebanner",
+    "singleBannerd": 10,
+    "singleBannerLocation": "login",
+    "sortOrder": 1,
+    "file": "classpath:schema/node/ytn/display/file/login.jpeg",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=2",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singlebanner",
+    "singleBannerd": 11,
+    "singleBannerLocation": "popup1",
+    "sortOrder": 1,
+    "file": "classpath:schema/node/ytn/display/file/pop1.jpeg",
+    "url": "/product/view?categoryId=12&productId=1",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singlebanner",
+    "singleBannerd": 12,
+    "singleBannerLocation": "popup1",
+    "sortOrder": 2,
+    "file": "classpath:schema/node/ytn/display/file/pop2.jpeg",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=1",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singlebanner",
+    "singleBannerd": 13,
+    "singleBannerLocation": "popup2",
+    "sortOrder": 1,
+    "file": "classpath:schema/node/ytn/display/file/pop3.jpeg",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=2",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singlebanner",
+    "singleBannerd": 14,
+    "singleBannerLocation": "popup2",
+    "sortOrder": 2,
+    "file": "classpath:schema/node/ytn/display/file/pop4.jpeg",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=2",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singlebanner",
+    "singleBannerd": 15,
+    "singleBannerLocation": "popup2",
+    "sortOrder": 3,
+    "file": "classpath:schema/node/ytn/display/file/pop5.jpeg",
+    "url": "/product/view?categoryId=12&productId=1",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singlebanner",
+    "singleBannerd": 16,
+    "singleBannerLocation": "top",
+    "sortOrder": 1,
+    "file": "classpath:schema/node/ytn/display/file/top1.jpeg",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=1",
+    "bannerStatus": "y"
+  }
+]

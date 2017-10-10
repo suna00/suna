@@ -61,6 +61,21 @@
   {
     "typeId" : "apiConfig",
     "category" : "node",
+    "apiId" : "reads",
+    "apiName" : "Default reads API",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId":"{{:typeId}}",
+      "ids" : "{{:ids}}",
+      "includeReferenced" : "{{:includeReferenced}}",
+      "referenceView" : "{{:referenceView}}"
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "node",
     "apiId" : "save",
     "apiName" : "Default save API",
     "method" : "POST",
