@@ -44,6 +44,54 @@
     "actionName": "VOTING Save",
     "actionType": "service",
     "actionBody": "votePrtcptHstService.voting",
-    "order": 2
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "voteBasInfo",
+    "event": "voteDetail",
+    "noneExecute" : true,
+    "eventName": "VOTING detail View"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "voteBasInfo>voteDetail",
+    "action": "voteDetail",
+    "actionName": "VOTING detail",
+    "actionType": "service",
+    "actionBody": "voteResponseService.voteStatus",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "voteBasInfo",
+    "event": "resIfMwv001",
+    "noneExecute": true,
+    "eventName": "get Total Vote Count Event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "voteBasInfo>resIfMwv001",
+    "action": "resIfMwv001Event",
+    "actionName": "get Total voting Count Event Action",
+    "actionType": "service",
+    "actionBody": "voteResponseService.resIfMwv001",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "voteBasInfo",
+    "event": "resIfMwv002",
+    "noneExecute": true,
+    "eventName": "get Total Vote Count Event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "voteBasInfo>resIfMwv002",
+    "action": "resIfMwv001Event",
+    "actionName": "get Total voting Count Event Action",
+    "actionType": "service",
+    "actionBody": "voteResponseService.resIfMwv002",
+    "order": 1
   }
 ]

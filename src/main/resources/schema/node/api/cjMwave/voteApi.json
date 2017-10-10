@@ -181,6 +181,35 @@
   {
     "typeId": "apiConfig",
     "category": "vote",
+    "apiId": "IfMwv001-1",
+    "apiName": "MWAVE 투표 목록조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "voteFormlCd",
+        "required": false
+      },
+      {
+        "paramName": "showLoCd",
+        "required": false
+      },
+      {
+        "paramName": "searchKeyword",
+        "required": false
+      },
+      {
+        "paramName": "progYn",
+        "required": false
+      }
+    ],
+    "config": {
+      "typeId": "voteBasInfo",
+      "event": "resIfMwv001"
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
     "apiId": "IfMwv002",
     "apiName": "MWAVE 투표 상세조회",
     "method": "GET",
@@ -319,6 +348,47 @@
           "value": "10000"
         }
       }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv002-1",
+    "apiName": "MWAVE 투표 상세조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "voteSeq",
+        "required": false
+      },
+      {
+        "paramName": "voteYear",
+        "required": false
+      },
+      {
+        "paramName": "showLoCd",
+        "required": false
+      },
+      {
+        "paramName": "voteFormlCd",
+        "required": false
+      },
+      {
+        "paramName": "snsKey",
+        "required": false
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": false
+      },
+      {
+        "paramName": "connIpAdr",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "voteBasInfo",
+      "event": "resIfMwv002"
     }
   },
   {
