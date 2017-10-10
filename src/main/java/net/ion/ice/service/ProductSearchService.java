@@ -64,6 +64,9 @@ public class ProductSearchService {
 
         List<Node> levelB = nodeService.getNodeList("category", "level=B");
         for(Node B : levelB){
+            B.put("count", 0);
+            B.put("totalCount", 0);
+            Map<String, Object> A = (Map<String, Object>) result.get(B.getValue("upperId"));
             for(String key : map.keySet()){
                 if(key.equals(B.getId())){
                     B.put("count", map.get(key));
@@ -75,12 +78,11 @@ public class ProductSearchService {
                     }
                     B.put("totalCount", totalCount);
 
-                    Map<String, Object> A = (Map<String, Object>) result.get(B.getValue("upperId"));
                     A.put("totalCount", JsonUtils.getIntValue(A, "totalCount") + totalCount);
-                    List<Map<String, Object>> lower = (List<Map<String, Object>>) A.get("lowerCategoryList");
-                    lower.add(B);
                 }
             }
+            List<Map<String, Object>> lower = (List<Map<String, Object>>) A.get("lowerCategoryList");
+            lower.add(B);
         }
 
 
