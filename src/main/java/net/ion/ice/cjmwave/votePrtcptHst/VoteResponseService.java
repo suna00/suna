@@ -166,8 +166,9 @@ public class VoteResponseService {
         if (jdbcTemplate == null) {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
         }
-        String voteNumSQL = "SELECT sum(voteNum) AS voteNum FROM voteItemStats WHERE voteSeq=?";
-        Map voteNumMap = jdbcTemplate.queryForMap(voteNumSQL, voteSeq);
+        String voteNumSQL = "SELECT count(*) AS voteNum FROM " + voteSeq + "_voteHstByMbr";
+
+        Map voteNumMap = jdbcTemplate.queryForMap(voteNumSQL);
 
         Integer retValue = voteNumMap.get("voteNum")==null ? 0 : Integer.parseInt(voteNumMap.get("voteNum").toString());
         return retValue;
