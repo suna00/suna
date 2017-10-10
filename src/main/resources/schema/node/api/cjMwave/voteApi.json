@@ -672,7 +672,7 @@
                 "select": {
                   "ds": "cjDb",
                   "resultType": "value",
-                  "sql": "select if(count(*)>0,'true','false') myVoteYn from votePrtcptHst where voteSeq=@{voteSeq} and voteItemSeq =@{voteItemSeq} and voteItemSeq =(select voteItemSeq from votePrtcptHst where  voteSeq=@{voteSeq} and prtcpMbrId = @{makeIdValue(>,snsTypeCd,snsKey)} order by created desc limit 0,1)"
+                  "sql": "select  if(count(*)>0,'true','false') myVoteYn from @{voteSeq}_voteItemHstByMbr where voteItemSeq = @{voteItemSeq} and voteItemSeq =(select voteItemSeq from @{voteSeq}_voteItemHstByMbr where mbrId = @{makeIdValue(>,snsTypeCd,snsKey)} order by created desc limit 0,1)"
                 }
               }
             }
@@ -753,8 +753,8 @@
           "referenceView": "voteSeq,voteItemSeq"
         },
         {
-          "page": "{{:page}}",
-          "pageSize": "{{:pageSize}}"
+          "limit":"1",
+          "sorting":"rankNum"
         }
       ],
       "response": {
@@ -1042,7 +1042,7 @@
               "select": {
                 "ds": "cjDb",
                 "resultType": "value",
-                "sql": "select if(count(*)>0,'true','false') myVoteYn from votePrtcptHst where voteSeq=@{voteSeq} and voteItemSeq =@{voteItemSeq} and prtcpMbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
+                "sql": "select if(count(*)>0,'true','false') myVoteYn from @{voteSeq}_voteItemHstByMbr where voteItemSeq = @{voteItemSeq} and voteItemSeq =(select voteItemSeq from @{voteSeq}_voteItemHstByMbr where mbrId = @{makeIdValue(>,snsTypeCd,snsKey)} order by voteDate desc limit 0,1)"
               }
             }
           }

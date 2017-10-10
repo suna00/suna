@@ -68,7 +68,24 @@
           }
         ],
         "response": {
-          "_all_": "",
+          "compItemSeq":"",
+          "mainSeq":"",
+          "itemDivCd":"",
+          "itemId":"",
+          "itemNm":"",
+          "subName":"",
+          "typeCd":"",
+          "ifTgtCd":"",
+          "sortOdrg":"",
+          "bgOptnYn":"",
+          "cnctContsDivCd":"",
+          "cnctContsNm":"",
+          "cnctContsSubName":"",
+          "cnctContsIfTgtCd":"",
+          "cnctContsTypeCd":"",
+          "cnctContsLeftYn":"",
+          "cnctContsId":"",
+          "cnctBgOptnYn":"",
           "refdAtribList": {
             "typeId": "compAtribInfo",
             "query": [
@@ -146,8 +163,13 @@
                   },
                   {
                     "field": "newsNm",
-                    "method": "matchingShould",
-                    "value": "{{:default(newsHubKywrd,뺿뺿)}}"
+                    "method": "wildcardShould",
+                    "value": "{{:default(newsHubKywrd,뺿뺿)}}*"
+                  },
+                  {
+                    "field": "newsDesc",
+                    "method": "wildcardShould",
+                    "value": "{{:default(newsHubKywrd,뺿뺿)}}*"
                   },
                   {
                     "field": "findKywrd",
@@ -178,8 +200,8 @@
                 "query": [
                   {
                     "field": "title",
-                    "method": "matchingShould",
-                    "value": "{{:default(newsHubKywrd,뺿뺿)}}"
+                    "method": "wildcardShould",
+                    "value": "{{:default(newsHubKywrd,뺿뺿)}}*"
                   },
                   {
                     "field": "searchKeyword",
@@ -207,6 +229,10 @@
               }
             }
           },
+          "owner":"",
+          "created":"",
+          "modifier":"",
+          "changed":"",
           "cnctRefdAtribList": {
             "typeId": "compAtribInfo",
             "query": [
@@ -284,8 +310,13 @@
                   },
                   {
                     "field": "newsNm",
-                    "method": "matchingShould",
-                    "value": "{{:default(newsHubKywrd,뺿뺿)}}"
+                    "method": "wildcardShould",
+                    "value": "{{:default(newsHubKywrd,뺿뺿)}}*"
+                  },
+                  {
+                    "field": "newsDesc",
+                    "method": "wildcardShould",
+                    "value": "{{:default(newsHubKywrd,뺿뺿)}}*"
                   },
                   {
                     "field": "findKywrd",
@@ -316,8 +347,8 @@
                 "query": [
                   {
                     "field": "title",
-                    "method": "matchingShould",
-                    "value": "{{:default(newsHubKywrd,뺿뺿)}}"
+                    "method": "wildcardShould",
+                    "value": "{{:default(newsHubKywrd,뺿뺿)}}*"
                   },
                   {
                     "field": "searchKeyword",
@@ -350,7 +381,7 @@
             "query": [
               {
                 "sorting": "mstIdx desc",
-                "limit": "1",
+                "limit": "{{:decodeVal(itemDivCd,itemDivCd>3,1,0)}}",
                 "includeReferenced": true
               }
             ],
@@ -400,6 +431,11 @@
             "field": "svcMenuGroupSeq",
             "method": "referenceJoin",
             "value": "showCntryCdList_matching={{:cntryCd}}&svcDvcDivCd_matching={{:svcTermlDivCd}}&showYn_matching=true&limit=1"
+          },
+          {
+            "field": "useYn",
+            "method": "matching",
+            "value": "true"
           },
           {
             "includeReferenced": true

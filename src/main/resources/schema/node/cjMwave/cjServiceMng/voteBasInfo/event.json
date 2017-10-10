@@ -45,5 +45,21 @@
     "actionType": "service",
     "actionBody": "votePrtcptHstService.voting",
     "order": 2
+  },
+  {
+    "typeId": "event",
+    "tid": "voteBasInfo",
+    "event": "voteDetail",
+    "noneExecute" : true,
+    "eventName": "VOTING detail View"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "voteBasInfo>voteDetail",
+    "action": "voteDetail",
+    "actionName": "VOTING detail",
+    "actionType": "service",
+    "actionBody": "voteResponseService.voteStatus",
+    "order": 1
   }
 ]

@@ -37,6 +37,9 @@ public class VideItgInfoService {
             saveData.put("rcmdContsYn", node.get("rcmdContsYn"));
             saveData.put("synopsis", node.get("musicVideoDesc"));
             saveData.put("seoUrl", node.get("seoUrl"));
+            saveData.put("hitNum", node.get("hitNum"));
+            saveData.put("risingHitNum", node.get("risingHitNum"));
+            saveData.put("hotHitNum", node.get("hotHitNum"));
 
             logger.info("videItgInfoMusicVideoSave!!! : " + saveData);
 
@@ -66,6 +69,9 @@ public class VideItgInfoService {
             saveData.put("synopsis", node.get("synopsis"));
             saveData.put("prsnName", node.get("prsnName"));
             saveData.put("seoUrl", node.get("seoUrl"));
+            saveData.put("hitNum", node.get("hitNum"));
+            saveData.put("risingHitNum", node.get("risingHitNum"));
+            saveData.put("hotHitNum", node.get("hotHitNum"));
 
             logger.info("videItgInfo pgm save : " + saveData);
             nodeService.executeNode(saveData, "videItgInfo", "save");
