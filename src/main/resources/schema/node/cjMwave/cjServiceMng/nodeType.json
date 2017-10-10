@@ -156,7 +156,8 @@
     "tid": "svcMenuGroupInfo",
     "typeName": "서비스 메뉴 그룹 정보",
     "repositoryType": "node",
-    "eviction": 0
+    "eviction": 0,
+    "tableName": "cjDb#svcMenuGroupInfo"
   },
   {
     "parentId": "cjServiceMng",
