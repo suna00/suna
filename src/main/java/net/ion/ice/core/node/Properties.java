@@ -1,6 +1,7 @@
 package net.ion.ice.core.node;
 
 import net.ion.ice.core.file.FileValue;
+import net.ion.ice.core.file.TolerableMissingFileException;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.Serializable;
@@ -34,11 +35,28 @@ public class Properties<K,V> extends LinkedHashMap<K, V> implements Map<K,V>, Se
             }
             if(value != null && !(value instanceof List)){
                 if(pt.isFile() && value instanceof String && (((String) value).startsWith("classpath:") || ((String) value).startsWith("http://") || ((String) value).startsWith("/"))) {
-                    FileValue fileValue = NodeUtils.getFileService().saveResourceFile(pt, id, (String) value);
+                    FileValue fileValue = null;
+                    try{
+                        fileValue = NodeUtils.getFileService().saveResourceFile(pt, id, (String) value);
+                    } catch (Exception e) {
+                        if(e instanceof TolerableMissingFileException) {
+                            System.out.println("Fetching Not found image is not an error");
+                        }
+                    }
                     put(pt.getPid(), fileValue);
                     m.put(pt.getPid(), fileValue);
                 }else  if(pt.isFile() && value instanceof MultipartFile){
-                    FileValue fileValue = NodeUtils.getFileService().saveMultipartFile(pt, id, (MultipartFile) value);
+
+                    FileValue fileValue = null;
+
+                    try{
+                        fileValue = NodeUtils.getFileService().saveMultipartFile(pt, id, (MultipartFile) value);
+                    } catch (Exception e) {
+                        if(e instanceof TolerableMissingFileException) {
+                            System.out.println("Fetching Not found image is not an error");
+                        }
+                    }
+
                     put(pt.getPid(), fileValue);
                     m.put(pt.getPid(), fileValue) ;
                 }else {
@@ -50,11 +68,27 @@ public class Properties<K,V> extends LinkedHashMap<K, V> implements Map<K,V>, Se
                 for(String fieldName : m.keySet()){
                     if(fieldName.startsWith(i18nPrefix)) {
                         if (pt.isFile() && m.get(fieldName) instanceof String && (((String) m.get(fieldName)).startsWith("classpath:") || ((String) m.get(fieldName)).startsWith("http://") || ((String) m.get(fieldName)).startsWith("/"))) {
-                            FileValue fileValue = NodeUtils.getFileService().saveResourceFile(pt, id, (String) m.get(fieldName));
+                            FileValue fileValue = null;
+                            try{
+                                fileValue = NodeUtils.getFileService().saveResourceFile(pt, id, (String) m.get(fieldName));
+                            } catch (Exception e) {
+                                if(e instanceof TolerableMissingFileException) {
+                                    System.out.println("Fetching Not found image is not an error");
+                                }
+                            }
+
                             put(fieldName, fileValue);
                             m.put(fieldName, fileValue);
                         } else if(pt.isFile() && m.get(fieldName) instanceof MultipartFile){
-                            FileValue fileValue = NodeUtils.getFileService().saveMultipartFile(pt, id, (MultipartFile) m.get(fieldName));
+                            FileValue fileValue = null;
+                            try{
+                                fileValue = NodeUtils.getFileService().saveMultipartFile(pt, id, (MultipartFile) m.get(fieldName));
+                            } catch (Exception e) {
+                                if(e instanceof TolerableMissingFileException) {
+                                    System.out.println("Fetching Not found image is not an error");
+                                }
+                            }
+
                             put(fieldName, fileValue);
                             m.put(fieldName, fileValue);
                         } else {
