@@ -1,0 +1,18 @@
+[
+  {
+    "typeId": "event",
+    "tid": "pushMSgSendInfo",
+    "event": "send",
+    "noneExecute": true,
+    "eventName": "push message send Event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "pushMSgSendInfo>send",
+    "action": "sendEvent",
+    "actionName": "푸쉬 메세지 전송 이벤트",
+    "actionType": "service",
+    "actionBody": "FCMPushService.sendPushMsg",
+    "order": 1
+  }
+]
