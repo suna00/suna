@@ -5,7 +5,8 @@
     "categoryName": "Vote API",
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
-      "default": "{{:getEnvValue(image.prefixUrl,url)}}"
+      "default": "{{:getEnvValue(image.prefixUrl,url)}}",
+      "s3":""
     },
     "commonParameters": [
       {
@@ -39,7 +40,8 @@
     "categoryName": "Component API",
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
-      "default": "{{:getEnvValue(image.prefixUrl,url)}}"
+      "default": "{{:getEnvValue(image.prefixUrl,url)}}",
+      "s3":""
     },
     "commonParameters": [
       {
@@ -73,7 +75,8 @@
     "categoryName": "Banner API",
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
-      "default": "{{:getEnvValue(image.prefixUrl,url)}}"
+      "default": "{{:getEnvValue(image.prefixUrl,url)}}",
+      "s3":""
     },
     "commonParameters": [
       {
@@ -107,7 +110,8 @@
     "categoryName": "System common API",
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
-      "default": "{{:getEnvValue(image.prefixUrl,url)}}"
+      "default": "{{:getEnvValue(image.prefixUrl,url)}}",
+      "s3":""
     },
     "commonParameters": [
       {
@@ -141,7 +145,8 @@
     "categoryName": "Service Bbs API",
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
-      "default": "{{:getEnvValue(image.prefixUrl,url)}}"
+      "default": "{{:getEnvValue(image.prefixUrl,url)}}",
+      "s3":""
     },
     "commonParameters": [
       {
@@ -175,7 +180,8 @@
     "categoryName": "Service EVENT API",
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
-      "default": "{{:getEnvValue(image.prefixUrl,url)}}"
+      "default": "{{:getEnvValue(image.prefixUrl,url)}}",
+      "s3":""
     },
     "commonParameters": [
       {
@@ -209,7 +215,8 @@
     "categoryName": "POPUP API",
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
-      "default": "{{:getEnvValue(image.prefixUrl,url)}}"
+      "default": "{{:getEnvValue(image.prefixUrl,url)}}",
+      "s3":""
     },
     "commonParameters": [
       {
@@ -243,7 +250,8 @@
     "categoryName": "Contents Meta API",
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
-      "default": "{{:getEnvValue(image.prefixUrl,url)}}"
+      "default": "{{:getEnvValue(image.prefixUrl,url)}}",
+      "s3":""
     },
     "commonParameters": [
       {
@@ -277,7 +285,8 @@
     "categoryName": "ON-AIR API",
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
-      "default": "{{:getEnvValue(image.prefixUrl,url)}}"
+      "default": "{{:getEnvValue(image.prefixUrl,url)}}",
+      "s3":""
     },
     "commonParameters": [
       {
@@ -311,7 +320,8 @@
     "categoryName": "MCD LINEUP API",
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
-      "default": "{{:getEnvValue(image.prefixUrl,url)}}"
+      "default": "{{:getEnvValue(image.prefixUrl,url)}}",
+      "s3":""
     },
     "commonParameters": [
       {
@@ -345,7 +355,8 @@
     "categoryName": "MEMBER API",
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
-      "default": "{{:getEnvValue(image.prefixUrl,url)}}"
+      "default": "{{:getEnvValue(image.prefixUrl,url)}}",
+      "s3":""
     },
     "commonParameters": [
       {
@@ -379,7 +390,8 @@
     "categoryName": "MYPAGE API",
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
-      "default": "{{:getEnvValue(image.prefixUrl,url)}}"
+      "default": "{{:getEnvValue(image.prefixUrl,url)}}",
+      "s3":""
     },
     "commonParameters": [
       {
@@ -413,7 +425,8 @@
     "categoryName": "MEMBER CONTENTS ACTIVITY API",
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
-      "default": "{{:getEnvValue(image.prefixUrl,url)}}"
+      "default": "{{:getEnvValue(image.prefixUrl,url)}}",
+      "s3":""
     },
     "commonParameters": [
       {
