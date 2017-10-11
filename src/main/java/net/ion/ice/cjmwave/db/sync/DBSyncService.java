@@ -357,6 +357,20 @@ public class DBSyncService {
 
         for (Map qMap : queryRs) {
             int rs = 0;
+            // 만약에 Node 의 mnetIfTrtYn 가 false 라면 무시한다.
+            try{
+                String pkValue = String.valueOf(qMap.get(currentNodePKPid));
+                Node targetNode = nodeService.read(targetNodeType, pkValue);
+                if(targetNode != null) {
+                    boolean mnetIfTrtYn = targetNode.getBooleanValue("mnetIfTrtYn");
+                    logger.info("mnetIfTrtYn Value For :: " + targetNodeType + " :: "
+                            + pkValue + " :: mnetIfTrtYn :: " + String.valueOf(mnetIfTrtYn));
+                    if(!mnetIfTrtYn) continue;
+                }
+            } catch (Exception e) {
+                logger.error("Failed to check [ mnetIfTrtYn ]. Ignore and override");
+            }
+
 
             Map<String, Object> fit = NodeMappingUtils.mapData(targetNodeType, qMap, mapperStore);
             fit = appendCommaStringProperties(targetNodeType, fit);
