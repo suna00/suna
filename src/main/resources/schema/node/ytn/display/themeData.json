@@ -2337,7 +2337,7 @@
     "pageType": "best",
     "themeType": "best1m",
     "siteType": "all",
-    "categoryId": "",
+    "categoryId": "1",
     "name": "BEST 한달",
     "sortOrder": 1,
     "themeStatus": "y"
@@ -2348,7 +2348,7 @@
     "pageType": "best",
     "themeType": "mdbest",
     "siteType": "all",
-    "categoryId": "",
+    "categoryId": "1",
     "name": "MDBEST",
     "sortOrder": 2,
     "themeStatus": "y"
