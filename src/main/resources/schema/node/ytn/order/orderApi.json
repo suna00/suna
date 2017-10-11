@@ -230,7 +230,7 @@
     "category" : "orderChange",
     "apiId" : "read",
     "apiName" : "취소교환반품 조회",
-    "method" : "GET",
+    "method" : "POST",
     "parameters" : [
     ],
     "config" : {
