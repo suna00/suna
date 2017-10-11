@@ -9,20 +9,34 @@ spring:
     multipart:
       max-request-size: 10MB
       max-file-size: 20MB
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+  resources:
+    chain:
+      cache: true
+      enabled: true
+    cache-period: 3600
 
 server:
   port: 8080
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain,text/javascript,application/javascript,text/css
+
 
 jwtConfig:
   issuer: I-ON
   secretKey: dkdldhs!@#$
   tokenPrefix: SDP
   headString: X-Authorization
-  tokenExpirationTime: 15 #분
-  refreshTokenExpTime: 60 #분
+  tokenExpirationTime: 1800 #분
+  refreshTokenExpTime: 1800 #분
 
 cluster:
   api-prefix: http://localhost:8080/
+  front-prefix: http://localhost:3090/
   mode: all
   groups: all
   members:
@@ -50,6 +64,8 @@ file:
 
 i18n:
   defaults: en
+
+
 
 ---
 #-Dspring.profiles.active=dev
