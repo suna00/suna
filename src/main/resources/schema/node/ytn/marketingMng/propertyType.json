@@ -167,7 +167,7 @@
     "analyzer": "",
     "referenceType": "commonResource",
     "referenceValue": "contentsId",
-    "referencedFilter": "",
+    "referencedFilter": "tid_matching=shopEvent",
     "codeFilter": "",
     "defaultValue": ""
   },

@@ -1205,7 +1205,7 @@
     "analyzer": "",
     "referenceType": "commonResource",
     "referenceValue": "contentsId",
-    "referencedFilter": "name_matching=main",
+    "referencedFilter": "tid_matching=product&name_matching=main",
     "codeFilter": "",
     "defaultValue": ""
   },
@@ -1223,7 +1223,7 @@
     "analyzer": "",
     "referenceType": "commonResource",
     "referenceValue": "contentsId",
-    "referencedFilter": "name_matching=add",
+    "referencedFilter": "tid_matching=product&name_matching=add",
     "codeFilter": "",
     "defaultValue": ""
   },
