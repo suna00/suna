@@ -21,7 +21,7 @@
         {"field" : "startDate", "method" : "below", "value" : "{{:toDay}}" },
         {"field" : "endDate", "method" : "above", "value" : "{{:toDay}}" },
         {"field" : "categoryId", "method" : "matching", "value" : "{{:categoryId}}" },
-        {"field" : "siteType", "method" : "matching", "value" : "{{:siteType}}" },
+        {"field" : "siteType", "method" : "matching", "value" : "all,{{:siteType}}" },
         {"field" : "specialExhibitionStatus", "method" : "matching", "value" : "use" },
         {"field" : "name", "method" : "matching", "value" : "{{:searchValue}}" },
         {"includeReferenced" : false}
