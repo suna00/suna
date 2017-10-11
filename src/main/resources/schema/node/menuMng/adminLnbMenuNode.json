@@ -176,21 +176,21 @@
     "icon": "fa-tag",
     "active": "true",
     "index": "false",
-    "pages": [
+    "pages": [],
+    "customPages": [
       {
         "pageName": "목록",
-        "pageUrl": "list"
-      },
-      {
-        "pageName": "등록/수정",
-        "pageUrl": "form"
+        "pageUrl": "cj/mbr/dclar//List"
       },
       {
         "pageName": "상세",
-        "pageUrl": "view"
+        "pageUrl": "cj/mbr/dclar/View"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "cj/mbr/dclar/Form"
       }
-    ],
-    "customPages": []
+    ]
   },
   {
     "typeId": "adminLnbMenu",
@@ -1465,25 +1465,21 @@
     "icon": "fa-tag",
     "active": "true",
     "index": "false",
-    "pages": [
+    "pages": [],
+    "customPages": [
       {
         "pageName": "목록",
-        "pageUrl": "list"
+        "pageUrl": "cj/admr/info/List"
       },
       {
-        "pageName": "등록",
-        "pageUrl": "form"
-      },
-      {
-        "pageName": "수정",
-        "pageUrl": "uform"
+        "pageName": "등록/수정",
+        "pageUrl": "cj/admr/info/Form"
       },
       {
         "pageName": "상세",
-        "pageUrl": "view"
+        "pageUrl": "cj/admr/info/View"
       }
-    ],
-    "customPages": []
+    ]
   },
   {
     "typeId": "adminLnbMenu",
@@ -1496,30 +1492,26 @@
     "icon": "fa-tag",
     "active": "true",
     "index": "false",
-    "pages": [
+    "pages": [],
+    "customPages": [
       {
         "pageName": "목록",
-        "pageUrl": "list"
+        "pageUrl": "cj/admr/group/List"
       },
       {
-        "pageName": "등록",
-        "pageUrl": "form"
+        "pageName": "등록/수정",
+        "pageUrl": "cj/admr/group/Form"
       },
       {
         "pageName": "상세",
-        "pageUrl": "view"
-      },
-      {
-        "pageName": "수정",
-        "pageUrl": "uform"
+        "pageUrl": "cj/admr/group/View"
       }
-    ],
-    "customPages": []
+    ]
   },
   {
     "typeId": "adminLnbMenu",
-    "backOfficeId": "admin",
     "gnbMenuId": "systemMng",
+    "backOfficeId": "admin",
     "parentMenuId": "root",
     "menuId": "codeMng",
     "menuName": "코드관리",
