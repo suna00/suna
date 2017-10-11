@@ -191,15 +191,17 @@ public class ExecuteContext extends ReadContext{
                         if (!StringUtils.equals(newValueTid, nodeType.getTypeId()) && !StringUtils.equals(newValuePid, pt.getPid()) ) {
                             Resource resource = NodeUtils.getFileService().loadAsResource(newValueTid, newValuePid, newValueStorePath);
                             File resourceFile = null;
+                            FileValue fileValue = null;
                             try {
                                 resourceFile = resource.getFile();
+                                fileValue = NodeUtils.getFileService().saveFile(pt, id, resourceFile, newFileValue.getFileName(), newFileValue.getContentType());
                             } catch (Exception e) {
                                 if(e instanceof IceRuntimeException){
                                     throw new IceRuntimeException("File Exception :", e);
                                 }
                                 e.printStackTrace();
                             }
-                            FileValue fileValue = NodeUtils.getFileService().saveFile(pt, id, resourceFile, newFileValue.getFileName(), newFileValue.getContentType());
+//                            FileValue fileValue = NodeUtils.getFileService().saveFile(pt, id, resourceFile, newFileValue.getFileName(), newFileValue.getContentType());
                             node.put(pt.getPid(), fileValue) ;
                             changedProperties.add(pt.getPid()) ;
                         } else {

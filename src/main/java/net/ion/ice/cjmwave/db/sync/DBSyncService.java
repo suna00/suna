@@ -429,7 +429,7 @@ public class DBSyncService {
 //                continue;
 //            }
 
-            if(totalPages != null) {
+            if(totalPages != null && totalPages > 0) {
                 if(i > totalPages -1) {
                     logger.info("Batch finished arrange from [ " + startPage + " ] page to [ " + totalPages + " ] page has finished");
                     loop = false;
@@ -464,10 +464,8 @@ public class DBSyncService {
             String jdbcQuery = String.valueOf(jdbcParam.get("query"));
             Object[] params = (Object[]) jdbcParam.get("params");
 
-
             template = dbService.getJdbcTemplate(targetDs);
             List<Map<String, Object>> queryRs = template.queryForList(jdbcQuery, params);
-
 
             if (queryRs == null || queryRs.isEmpty()) {
                 loop = false;
@@ -487,8 +485,8 @@ public class DBSyncService {
                         fit.putAll(getMultiLanguageInfo(qMap, multiLangQuery, currentNodePKPid));
                     }
                     fit.putAll(getImageInfo(qMap,targetNodeType, currentNodePKPid));
-                    logger.debug("CREATE INITIAL MIGRATION NODE :: " + String.valueOf(fit));
-
+//                    logger.debug("CREATE INITIAL MIGRATION NODE :: " + String.valueOf(fit));
+                    System.out.println("CREATE INITIAL MIGRATION NODE :: " + String.valueOf(fit));
 
                     try{
                         nodeService.saveNodeWithException(fit);
@@ -563,51 +561,81 @@ public class DBSyncService {
         switch (type) {
             case "all" :
                 for(String executeId : mnetExecuteIds) {
-
                     taskExecutor.execute(new ParallelDBSyncExecutor(executeId) {
                         @Override
                         public void action() throws Exception {
-                            this.dbSyncService.executeWithIteration(this.executeId, 0, 0);
+                            this.dbSyncService.executeWithIteration(this.executeId, start, total);
                         }
                     });
                 }
                 break;
             case "album" :
                 if(storage.isAbleToRun("album")) {
-                    executeWithIteration("album", start, total);
+                    taskExecutor.execute(new ParallelDBSyncExecutor("album") {
+                        @Override
+                        public void action() throws Exception {
+                            System.out.println(this.executeId + " :: " + start + " :: " + total);
+                            this.dbSyncService.executeWithIteration(this.executeId, start, total);
+                        }
+                    });
                 } else {
                     logger.info("[ album ] Task is already Running. Ignore this request");
                 }
                 break;
             case "artist" :
                 if(storage.isAbleToRun("artist")) {
-                    executeWithIteration("artist", start, total);
+                    taskExecutor.execute(new ParallelDBSyncExecutor("artist") {
+                        @Override
+                        public void action() throws Exception {
+                            this.dbSyncService.executeWithIteration(this.executeId, start, total);
+                        }
+                    });
                 } else {
                     logger.info("[ artist ] Task is already Running. Ignore this request");
                 }
                 break;
             case "song" :
                 if(storage.isAbleToRun("song")) {
-                    executeWithIteration("song", start, total);
+                    taskExecutor.execute(new ParallelDBSyncExecutor("song") {
+                        @Override
+                        public void action() throws Exception {
+                            this.dbSyncService.executeWithIteration(this.executeId, start, total);
+                        }
+                    });
                 } else {
                     logger.info("[ song ] Task is already Running. Ignore this request");
                 }
                 break;
             case "mv" :
                 if(storage.isAbleToRun("musicVideo")) {
-                    executeWithIteration("musicVideo", start, total);
+                    taskExecutor.execute(new ParallelDBSyncExecutor("musicVideo") {
+                        @Override
+                        public void action() throws Exception {
+                            this.dbSyncService.executeWithIteration(this.executeId, start, total);
+                        }
+                    });
                 } else {
                     logger.info("[ musicVideo ] Task is already Running. Ignore this request");
                 }
                 break;
             case "chart" :
                 if(storage.isAbleToRun("mcdChartBasInfo")) {
-                    executeWithIteration("mcdChartBasInfo", start, total);
+                    taskExecutor.execute(new ParallelDBSyncExecutor("mcdChartBasInfo") {
+                        @Override
+                        public void action() throws Exception {
+                            this.dbSyncService.executeWithIteration(this.executeId, start, total);
+                        }
+                    });
                 } else {
                     logger.info("[ mcdChartBasInfo ] Task is already Running. Ignore this request");
                 }
                 if(storage.isAbleToRun("mcdChartStats")) {
-                    executeWithIteration("mcdChartStats", start, total);
+                    taskExecutor.execute(new ParallelDBSyncExecutor("mcdChartStats") {
+                        @Override
+                        public void action() throws Exception {
+                            this.dbSyncService.executeWithIteration(this.executeId, start, total);
+                        }
+                    });
                 } else {
                     logger.info("[ mcdChartStats ] Task is already Running. Ignore this request");
                 }
@@ -621,7 +649,6 @@ public class DBSyncService {
         switch (type) {
             case "all" :
                 for(String executeId : mnetPartialExecuteIds) {
-
                     taskExecutor.execute(new ParallelDBSyncExecutor(executeId) {
                         @Override
                         public void action() throws Exception {
@@ -632,41 +659,71 @@ public class DBSyncService {
                 break;
             case "album" :
                 if(storage.isAbleToRun("albumPart")) {
-                    executeWithRange(mig_target, "albumPart", provided);
+                    taskExecutor.execute(new ParallelDBSyncExecutor("albumPart") {
+                        @Override
+                        public void action() throws Exception {
+                            this.dbSyncService.executeWithRange(mig_target, this.executeId, provided);
+                        }
+                    });
                 } else {
                     logger.info("[ albumPart ] Task is already Running. Ignore this request");
                 }
                 break;
             case "artist" :
                 if(storage.isAbleToRun("artistPart")) {
-                    executeWithRange(mig_target, "artistPart", provided);
+                    taskExecutor.execute(new ParallelDBSyncExecutor("artistPart") {
+                        @Override
+                        public void action() throws Exception {
+                            this.dbSyncService.executeWithRange(mig_target, this.executeId, provided);
+                        }
+                    });
                 } else {
                     logger.info("[ artistPart ] Task is already Running. Ignore this request");
                 }
                 break;
             case "song" :
                 if(storage.isAbleToRun("songPart")) {
-                    executeWithRange(mig_target, "songPart", provided);
+                    taskExecutor.execute(new ParallelDBSyncExecutor("songPart") {
+                        @Override
+                        public void action() throws Exception {
+                            this.dbSyncService.executeWithRange(mig_target, this.executeId, provided);
+                        }
+                    });
                 } else {
                     logger.info("[ songPart ] Task is already Running. Ignore this request");
                 }
                 break;
             case "mv" :
                 if(storage.isAbleToRun("musicVideoPart")) {
-                    executeWithRange(mig_target, "musicVideoPart", provided);
+                    taskExecutor.execute(new ParallelDBSyncExecutor("musicVideoPart") {
+                        @Override
+                        public void action() throws Exception {
+                            this.dbSyncService.executeWithRange(mig_target, this.executeId, provided);
+                        }
+                    });
                 } else {
                     logger.info("[ musicVideoPart ] Task is already Running. Ignore this request");
                 }
                 break;
             case "chart" :
                 if(storage.isAbleToRun("mcdChartBasInfoPart")) {
-                    executeWithRange(mig_target, "mcdChartBasInfoPart", provided);
+                    taskExecutor.execute(new ParallelDBSyncExecutor("mcdChartBasInfoPart") {
+                        @Override
+                        public void action() throws Exception {
+                            this.dbSyncService.executeWithRange(mig_target, this.executeId, provided);
+                        }
+                    });
                 } else {
                     logger.info("[ mcdChartBasInfoPart ] Task is already Running. Ignore this request");
                 }
 
                 if(storage.isAbleToRun("mcdChartStatsPart")) {
-                    executeWithRange(mig_target, "mcdChartStatsPart", provided);
+                    taskExecutor.execute(new ParallelDBSyncExecutor("mcdChartStatsPart") {
+                        @Override
+                        public void action() throws Exception {
+                            this.dbSyncService.executeWithRange(mig_target, this.executeId, provided);
+                        }
+                    });
                 } else {
                     logger.info("[ mcdChartStatsPart ] Task is already Running. Ignore this request");
                 }
