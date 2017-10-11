@@ -41,14 +41,16 @@ public class ProductSearchService {
         Map<String, Object> map = JsonUtils.parsingJsonToMap((String) data.get("categoryMap"));
         List<Node> levelA = nodeService.getNodeList("category", "level=A");
         for(Node A : levelA){
+            int count = 0;
             for(String key : map.keySet()){
                 if(key.equals(A.getId())){
-                    A.put("count", map.get(key));
-                    A.put("totalCount", map.get(key));
-                    A.put("lowerCategoryList", new ArrayList<>());
-                    result.put(key, A);
+                    count = JsonUtils.getIntValue(map, key);
                 }
             }
+            A.put("count",count);
+            A.put("totalCount",count);
+            A.put("lowerCategoryList", new ArrayList<>());
+            result.put(A.getId(), A);
         }
 
         List<Node> levelC = nodeService.getNodeList("category", "level=C");
@@ -62,6 +64,9 @@ public class ProductSearchService {
 
         List<Node> levelB = nodeService.getNodeList("category", "level=B");
         for(Node B : levelB){
+            B.put("count", 0);
+            B.put("totalCount", 0);
+            Map<String, Object> A = (Map<String, Object>) result.get(B.getValue("upperId"));
             for(String key : map.keySet()){
                 if(key.equals(B.getId())){
                     B.put("count", map.get(key));
@@ -73,12 +78,11 @@ public class ProductSearchService {
                     }
                     B.put("totalCount", totalCount);
 
-                    Map<String, Object> A = (Map<String, Object>) result.get(B.getValue("upperId"));
                     A.put("totalCount", JsonUtils.getIntValue(A, "totalCount") + totalCount);
-                    List<Map<String, Object>> lower = (List<Map<String, Object>>) A.get("lowerCategoryList");
-                    lower.add(B);
                 }
             }
+            List<Map<String, Object>> lower = (List<Map<String, Object>>) A.get("lowerCategoryList");
+            lower.add(B);
         }
 
 

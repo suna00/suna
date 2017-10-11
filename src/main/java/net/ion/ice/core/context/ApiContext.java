@@ -3,7 +3,6 @@ package net.ion.ice.core.context;
 import net.ion.ice.core.api.ApiException;
 import net.ion.ice.core.api.RequestParameter;
 import net.ion.ice.core.node.Node;
-import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.ResultField;
 import org.apache.commons.lang3.StringUtils;
@@ -12,6 +11,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -37,7 +37,7 @@ public class ApiContext {
 
     private List<RequestParameter> parameters ;
 
-    private NativeWebRequest httpRequest ;
+    private HttpServletRequest httpRequest ;
     private HttpServletResponse httpResponse ;
 
     public static ApiContext createContext(Node apiCategory, Node apiNode, String typeId, String event, Map<String, Object> config, NativeWebRequest request, HttpServletResponse response, Map<String, Object> session) {
@@ -49,7 +49,7 @@ public class ApiContext {
         ApiContext ctx = new ApiContext() ;
         ctx.apiCategory = apiCategory ;
         ctx.apiNode = apiNode ;
-        ctx.httpRequest = request ;
+        ctx.httpRequest = request.getNativeRequest(HttpServletRequest.class) ;
         ctx.httpResponse = response ;
         ctx.data = ContextUtils.makeContextData(parameterMap, multiFileMap) ;
         ctx.data.put("session", session);
@@ -115,7 +115,7 @@ public class ApiContext {
                 }
             } else if (fieldValue instanceof Map) {
                 if (((Map) fieldValue).containsKey("select")) {
-                    commonResultFieldList.add(new ResultField(fieldName, ApiSelectContext.makeContextFromConfig((Map<String, Object>) fieldValue, data)));
+                    commonResultFieldList.add(new ResultField(fieldName, ApiSelectContext.makeContextFromConfig((Map<String, Object>) fieldValue, data, httpRequest, httpResponse)));
                 } else {
                     commonResultFieldList.add(new ResultField(fieldName, (Map<String, Object>) fieldValue));
                 }
@@ -133,7 +133,7 @@ public class ApiContext {
             return queryResult ;
 
         }else if(ctxRootConfig.containsKey("query")){
-            ApiQueryContext queryContext = ApiQueryContext.makeContextFromConfig(ctxRootConfig, data) ;
+            ApiQueryContext queryContext = ApiQueryContext.makeContextFromConfig(ctxRootConfig, data, httpRequest, httpResponse) ;
             setApiResultFormat(queryContext);
 
             QueryResult queryResult = queryContext.makeQueryResult() ;
@@ -142,15 +142,15 @@ public class ApiContext {
 
             return queryResult ;
         }else if(ctxRootConfig.containsKey("select")){
-            ApiSelectContext selectContext = ApiSelectContext.makeContextFromConfig(ctxRootConfig, data) ;
+            ApiSelectContext selectContext = ApiSelectContext.makeContextFromConfig(ctxRootConfig, data, httpRequest, httpResponse) ;
             setApiResultFormat(selectContext);
 
-            QueryResult queryResult =  selectContext.makeQueryResult(null, null) ;
+            QueryResult queryResult =  selectContext.makeQueryResult() ;
             addResultData(selectContext.getResult());
 
             return queryResult ;
         }else if(ctxRootConfig.containsKey("id")){
-            ApiReadContext readContext = ApiReadContext.makeContextFromConfig(ctxRootConfig, data) ;
+            ApiReadContext readContext = ApiReadContext.makeContextFromConfig(ctxRootConfig, data, httpRequest, httpResponse) ;
             setApiResultFormat(readContext);
 
             Node node = readContext.getNode() ;
@@ -158,7 +158,7 @@ public class ApiContext {
 
             return readContext.makeResult() ;
         }else if(ctxRootConfig.containsKey("ids")){
-            ApiReadsContext readsContext = ApiReadsContext.makeContextFromConfig(ctxRootConfig, data) ;
+            ApiQueryContext readsContext = ApiReadsContext.makeContextFromConfig(ctxRootConfig, data, httpRequest, httpResponse) ;
             setApiResultFormat(readsContext);
 
             QueryResult queryResult = readsContext.makeQueryResult() ;

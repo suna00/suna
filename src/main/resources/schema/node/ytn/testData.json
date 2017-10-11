@@ -26,13 +26,26 @@
     "siteStatus": "y"
   },
   {
+    "typeId": "site",
+    "siteId": "ytn",
+    "name": "YTN",
+    "description": null,
+    "url": null,
+    "siteType": {
+      "value": "company",
+      "label": "siteType>company",
+      "refId": "siteType>company"
+    },
+    "siteStatus": "y"
+  },
+  {
     "typeId": "affiliate",
     "affiliateId": 100,
     "name": "아이온커뮤니케이션즈",
     "siteId": "ion",
     "affiliateStoreMallUrl": null,
     "developmentFundRate": null,
-    "selectableEmail": null,
+    "selectableEmail": "i-on.net",
     "joinReferrer": null,
     "universityMallCode": null,
     "universityMallAccessCode": null,
@@ -51,7 +64,7 @@
     "siteId": "ion-spin",
     "affiliateStoreMallUrl": null,
     "developmentFundRate": null,
-    "selectableEmail": null,
+    "selectableEmail": "i-on2.net",
     "joinReferrer": null,
     "universityMallCode": null,
     "universityMallAccessCode": null,
@@ -70,7 +83,7 @@
     "siteId": "university",
     "affiliateStoreMallUrl": null,
     "developmentFundRate": null,
-    "selectableEmail": null,
+    "selectableEmail": "",
     "joinReferrer": null,
     "universityMallCode": null,
     "universityMallAccessCode": null,
@@ -158,7 +171,6 @@
       "label": "여자",
       "refId": "genderType>woman"
     },
-
     "birthday": null,
     "company": null,
     "department": null,
@@ -302,6 +314,140 @@
     "address": "서울특별시 강남구 테헤란로 10길 15 (역삼동)",
     "detailedAddress": "5",
     "email": "pm1200@i-on.net",
+    "fax": null,
+    "termsOfUseAgreeYn": null,
+    "receiveMarketingEmailAgreeYn": null,
+    "receiveMarketingSMSAgreeYn": null,
+    "inflowRoute": null,
+    "joinDate": null,
+    "lastLoginDate": null,
+    "dormancyExtensionDate": null,
+    "acceptTermsYn": null,
+    "recommendedPerson": null,
+    "numberOfRecommendations": null,
+    "failedCount": null,
+    "lastFailedDate": null,
+    "membershipLevel": "general",
+    "barcode": null,
+    "snsLinkYn": null,
+    "snsType": null,
+    "snsId": null,
+    "snsProfileLink": null
+  },
+  {
+    "typeId": "member",
+    "memberNo": 9999998,
+    "siteId": {
+      "value": "ytn",
+      "label": "YTN",
+      "refId": "ytn"
+    },
+    "affiliateId": {
+      "value": "120",
+      "label": "와이티엔",
+      "refId": "120"
+    },
+    "userId": "company@ytn.co.kr",
+    "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+    "siteType": {
+      "value": "company",
+      "label": "기업",
+      "refId": "siteType>company"
+    },
+    "memberStatus": {
+      "value": "join",
+      "label": "가입",
+      "refId": "memberStatus>join"
+    },
+    "name": "기업사용자",
+    "universityName": null,
+    "major": null,
+    "studentId": null,
+    "firstName": null,
+    "lastName": null,
+    "nickName": null,
+    "profileImage": null,
+    "gender": {
+      "value": "man",
+      "label": "남자",
+      "refId": "genderType>man"
+    },
+    "birthday": null,
+    "company": null,
+    "department": null,
+    "phone": null,
+    "cellphone": "010-1111-2222",
+    "postCode": "135-080",
+    "address": "서울특별시 강남구 테헤란로 10길 15 (역삼동)",
+    "detailedAddress": "5",
+    "email": "testCompany@ytn.co.kr",
+    "fax": null,
+    "termsOfUseAgreeYn": null,
+    "receiveMarketingEmailAgreeYn": null,
+    "receiveMarketingSMSAgreeYn": null,
+    "inflowRoute": null,
+    "joinDate": null,
+    "lastLoginDate": null,
+    "dormancyExtensionDate": null,
+    "acceptTermsYn": null,
+    "recommendedPerson": null,
+    "numberOfRecommendations": null,
+    "failedCount": null,
+    "lastFailedDate": null,
+    "membershipLevel": "general",
+    "barcode": null,
+    "snsLinkYn": null,
+    "snsType": null,
+    "snsId": null,
+    "snsProfileLink": null
+  },
+  {
+    "typeId": "member",
+    "memberNo": 9999999,
+    "siteId": {
+      "value": "ytn",
+      "label": "YTN",
+      "refId": "ytn"
+    },
+    "affiliateId": {
+      "value": "120",
+      "label": "와이티엔",
+      "refId": "120"
+    },
+    "userId": "university@ytn.co.kr",
+    "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+    "siteType": {
+      "value": "company",
+      "label": "기업",
+      "refId": "siteType>university"
+    },
+    "memberStatus": {
+      "value": "join",
+      "label": "가입",
+      "refId": "memberStatus>join"
+    },
+    "name": "대학사용자",
+    "universityName": null,
+    "major": null,
+    "studentId": null,
+    "firstName": null,
+    "lastName": null,
+    "nickName": null,
+    "profileImage": null,
+    "gender": {
+      "value": "man",
+      "label": "남자",
+      "refId": "genderType>man"
+    },
+    "birthday": null,
+    "company": null,
+    "department": null,
+    "phone": null,
+    "cellphone": "010-2222-4444",
+    "postCode": "135-080",
+    "address": "서울특별시 강남구 테헤란로 10길 15 (역삼동)",
+    "detailedAddress": "123",
+    "email": "testUniversity@ytn.ac.kr",
     "fax": null,
     "termsOfUseAgreeYn": null,
     "receiveMarketingEmailAgreeYn": null,
@@ -2056,6 +2202,86 @@
       },
       "changed": "20170917130235"
     }
+  },
+  {
+    "typeId": "popularSearches",
+    "popularSearchesId": 1,
+    "siteId": "ion",
+    "name": "노트북",
+    "sortOrder": 1,
+    "popularSearchesStatus": "y",
+    "popularSearchesType": "batch"
+  },
+  {
+    "typeId": "popularSearches",
+    "popularSearchesId": 2,
+    "siteId": "ion",
+    "name": "에어컨",
+    "sortOrder": 1,
+    "popularSearchesStatus": "y",
+    "popularSearchesType": "batch"
+  },
+  {
+    "typeId": "popularSearches",
+    "popularSearchesId": 3,
+    "siteId": "ion",
+    "name": "여성샌들",
+    "sortOrder": 1,
+    "popularSearchesStatus": "y",
+    "popularSearchesType": "batch"
+  },
+  {
+    "typeId": "popularSearches",
+    "popularSearchesId": 4,
+    "siteId": "ion",
+    "name": "사이다",
+    "sortOrder": 4,
+    "popularSearchesStatus": "y",
+    "popularSearchesType": "batch"
+  },
+  {
+    "typeId": "popularSearches",
+    "popularSearchesId": 5,
+    "siteId": "ion",
+    "name": "환타custom",
+    "sortOrder": 5,
+    "popularSearchesStatus": "y",
+    "popularSearchesType": "custom"
+  },
+  {
+    "typeId": "popularSearches",
+    "popularSearchesId": 6,
+    "siteId": "ion",
+    "name": "밀키스",
+    "sortOrder": 6,
+    "popularSearchesStatus": "y",
+    "popularSearchesType": "batch"
+  },
+  {
+    "typeId": "popularSearches",
+    "popularSearchesId": 7,
+    "siteId": "mall",
+    "name": "오예스",
+    "sortOrder": 1,
+    "popularSearchesStatus": "y",
+    "popularSearchesType": "batch"
+  },
+  {
+    "typeId": "popularSearches",
+    "popularSearchesId": 8,
+    "siteId": "mall",
+    "name": "스타벅스",
+    "sortOrder": 2,
+    "popularSearchesStatus": "y",
+    "popularSearchesType": "batch"
+  },
+  {
+    "typeId": "popularSearches",
+    "popularSearchesId": 9,
+    "siteId": "mall",
+    "name": "HARIBO",
+    "sortOrder": 3,
+    "popularSearchesStatus": "y",
+    "popularSearchesType": "batch"
   }
-
 ]

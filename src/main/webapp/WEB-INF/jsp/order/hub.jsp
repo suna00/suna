@@ -148,6 +148,7 @@
     String useWelfarepoint = request.getParameter("useWelfarepoint");
     String usedCoupon = request.getParameter("usedCoupon");
     String memberNo = request.getParameter("memberNo");
+    String siteId = request.getParameter("siteId");
 
     /* ============================================================================== */
     /* =   02. 지불 요청 정보 설정 END
@@ -543,7 +544,7 @@
 
     logger.info("-----------------결제정보(" + ordr_idxx + ")------------------");
     logger.info("사이트 코드 : " + g_conf_site_cd);
-    logger.info("ordr_chk " + ordr_chk);
+    logger.info("ordr_chk : " + ordr_chk);
     logger.info("요청구분 : " + req_tx);
     logger.info("사용한 결제 수단 : " + use_pay_method);
     logger.info("사용한 결제 수단 : " + use_pay_method);
@@ -599,7 +600,7 @@
 %>
 
 <body onload="goResult()">
-<form name="pay_info" method="post" action="http://localhost:3090/order/complete">
+<form name="pay_info" method="post" action="http://localhost:3090/<%=siteId%>/order/complete">
     <input type="hidden" name="site_cd" value="<%= g_conf_site_cd   %>">    <!-- 사이트 코드 -->
     <input type="hidden" name="req_tx" value="<%= req_tx           %>">    <!-- 요청 구분 -->
     <input type="hidden" name="use_pay_method" value="<%= use_pay_method   %>">    <!-- 사용한 결제 수단 -->

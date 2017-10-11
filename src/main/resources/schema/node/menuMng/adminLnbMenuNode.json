@@ -138,6 +138,26 @@
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "adm",
+    "gnbMenuId": "marketingMng",
+    "parentMenuId": "root",
+    "menuId": "event",
+    "menuName": "이벤트 관리",
+    "order": "40",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" }
+    ],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "ytn/marketingEvent/CreateForm" },
+      { "pageName": "수정", "pageUrl": "ytn/marketingEvent/UpdateForm" }
+    ]
+  },
+
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
     "gnbMenuId": "orderPaymentMng",
     "parentMenuId": "root",
     "menuId": "orderDelivery",
@@ -215,6 +235,7 @@
       { "pageName": "목록", "pageUrl": "list" }
     ],
     "customPages": [
+      { "pageName": "등록", "pageUrl": "ytn/AffComCreateForm" },
       { "pageName": "수정", "pageUrl": "ytn/AffComUpdateForm" }
     ]
   },
@@ -233,6 +254,7 @@
       { "pageName": "목록", "pageUrl": "list" }
     ],
     "customPages": [
+      { "pageName": "등록", "pageUrl": "ytn/AffComMemberCreateForm" },
       { "pageName": "수정", "pageUrl": "ytn/AffComMemberUpdateForm" }
     ]
   },
@@ -251,6 +273,7 @@
       { "pageName": "목록", "pageUrl": "list" }
     ],
     "customPages": [
+      { "pageName": "등록", "pageUrl": "ytn/AffUniCreateForm" },
       { "pageName": "수정", "pageUrl": "ytn/AffUniUpdateForm" }
     ]
   },
@@ -269,6 +292,7 @@
       { "pageName": "목록", "pageUrl": "list" }
     ],
     "customPages": [
+      { "pageName": "등록", "pageUrl": "ytn/AffUniMemberCreateForm" },
       { "pageName": "수정", "pageUrl": "ytn/AffUniMemberUpdateForm" }
     ]
   },

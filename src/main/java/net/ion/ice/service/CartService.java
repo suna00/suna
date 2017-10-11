@@ -7,6 +7,7 @@ import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.query.QueryResult;
+import net.ion.ice.core.session.SessionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +32,27 @@ public class CartService {
     @Autowired
     private NodeBindingService nodeBindingService;
 
+    @Autowired
+    private SessionService sessionService ;
+
     // 장바구니 조회
     public ExecuteContext cartRead(ExecuteContext context) throws IOException {
+
+        Map<String, Object> sessionData = sessionService.getSession(context.getHttpRequest()) ;
+
+        String sessionId = sessionService.getSessionKey(context.getHttpRequest()) ;
+        if(sessionData.containsKey("cartId")) {
+            context.getData().put("cartId", sessionData.get("cartId"));
+        }else{
+            context.getData().put("cartId", "abcdefg");
+        }
+
+        context.getData().put("sessionId", sessionId) ;
+        if(sessionData.containsKey("member")){
+            context.getData().put("memberNo", JsonUtils.getStringValue(sessionData, "memberNo")) ;
+        }
+
+
         Integer totalSize = 0;
         List<Map<String, Object>> cartProducts = nodeBindingService.list("cartProduct", "sorting=created&cartId_equals=" + context.getData().get("cartId"));
         List<Map<String, Object>> cartProductItems = nodeBindingService.list("cartProductItem", "sorting=created&cartId_equals=" + context.getData().get("cartId"));
@@ -95,11 +115,28 @@ public class CartService {
 //            }
 //            if(!checkQuantity(context, map)) return context;
 //        }
+
+        Map<String, Object> sessionData = sessionService.getSession(context.getHttpRequest()) ;
+
+        String sessionId = sessionService.getSessionKey(context.getHttpRequest()) ;
         CommonService.resetMap(data);
+        if(sessionData.containsKey("cartId")) {
+            data.put("cartId", sessionData.get("cartId"));
+        }else{
+            data.put("cartId", "");
+        }
+
+        data.put("sessionId", sessionId) ;
+        if(sessionData.containsKey("member")){
+            data.put("memberNo", JsonUtils.getStringValue(sessionData, "memberNo")) ;
+        }
+
         Node cart = (Node) nodeService.executeNode(data, "cart", CommonService.SAVE);
         data.put("cartId", cart.getId());
+        sessionData.put("cartId", cart.getId()) ;
 
-        if (data.get("productList") != null) {
+
+        if (data.get("product") != null) {
             addProducts(data, cart.getId());
         }
 
@@ -258,18 +295,18 @@ public class CartService {
             return false;
         }
 
-        Map<String, Object> m = deliveryService.getCartDeliveryPriceMap(cartProduct.get("cartProductId").toString());
-        if ("deliveryDateType>hopeDelivery".equals(product.get("deliveryDateType"))) {
-            String cartDate = m.get("hopeDeliveryDate").toString();
-            String mapDate = map.get("hopeDeliveryDate").toString();
-            if (!cartDate.equals(mapDate)) return false;
-        }
+//        Map<String, Object> m = deliveryService.getCartDeliveryPriceMap(cartProduct.get("cartProductId").toString());
+//        if ("deliveryDateType>hopeDelivery".equals(product.get("deliveryDateType"))) {
+//            String cartDate = m.get("hopeDeliveryDate").toString();
+//            String mapDate = map.get("hopeDeliveryDate").toString();
+//            if (!cartDate.equals(mapDate)) return false;
+//        }
 
-        if ("deliveryDateType>scheduledDelivery".equals(product.get("deliveryDateType"))) {
-            String cartDate = m.get("scheduledDeliveryDate").toString();
-            String productDate = product.get("scheduledDeliveryDate").toString();
-            if (!cartDate.equals(productDate)) return false;
-        }
+//        if ("deliveryDateType>scheduledDelivery".equals(product.get("deliveryDateType"))) {
+//            String cartDate = m.get("scheduledDeliveryDate").toString();
+//            String productDate = product.get("scheduledDeliveryDate").toString();
+//            if (!cartDate.equals(productDate)) return false;
+//        }
 
         if (!("deliveryPriceType>quantity".equals(product.get("deliveryPriceType")) && isFirstRow)) {
             return false;
@@ -280,7 +317,7 @@ public class CartService {
 
     private void addProducts(Map<String, Object> data, Object cartId) throws IOException {
         List<Map<String, Object>> referenced = nodeBindingService.list(cartProduct_TID, "cartId_equals=" + cartId);
-        List<Map<String, Object>> maps = JsonUtils.parsingJsonToList(data.get("productList").toString());
+        List<Map<String, Object>> maps = JsonUtils.parsingJsonToList(data.get("product").toString());
 
         for (Map<String, Object> map : maps) {
             Node product = NodeUtils.getNode("product", map.get("productId").toString());
@@ -289,7 +326,7 @@ public class CartService {
 
             for (Map<String, Object> obj : referenced) {
                 if (existCartProduct(map, obj, product, obj.equals(referenced.get(0)))) {
-                    changeQuantity(obj, Integer.parseInt(map.get("quantity").toString()));
+//                    changeQuantity(obj, Integer.parseInt(map.get("quantity").toString()));
                     obj.putAll(map);
                     if (map.get(cartProductItem_TID) != null) createCartProductItem(obj);
                     exist = true;
@@ -344,7 +381,7 @@ public class CartService {
                 cartProductMap = createCartProduct(map);
 
                 if (i == 0) {
-                    if (map.get(cartProductItem_TID) != null) createCartProductItem(cartProductMap);
+                    if (map.get("productItem") != null) createCartProductItem(cartProductMap);
                 }
                 //deliveryService.setDeliveryPrice(cartProductMap, product, "cart");
             }
@@ -352,7 +389,7 @@ public class CartService {
             map.put("quantity", quantity);
             cartProductMap = createCartProduct(map);
 
-            if (map.get(cartProductItem_TID) != null) createCartProductItem(cartProductMap);
+            if (map.get("productItem") != null) createCartProductItem(cartProductMap);
 
             //deliveryService.setDeliveryPrice(cartProductMap, product, "cart");
         }
@@ -434,7 +471,7 @@ public class CartService {
     }
 
     private void createCartProductItem(Map<String, Object> cartProduct) {
-        for (Map<String, Object> item : (List<Map<String, Object>>) cartProduct.get(cartProductItem_TID)) {
+        for (Map<String, Object> item : (List<Map<String, Object>>) cartProduct.get("productItem")) {
             List<Map<String, Object>> cartProductItems = nodeBindingService.list(cartProductItem_TID, "cartId_equals=" + cartProduct.get("cartId") + "&addOptionItemId_equals=" + item.get("addOptionItemId"));
             if (cartProductItems.size() > 0) {
                 for (Map<String, Object> obj : cartProductItems) {
