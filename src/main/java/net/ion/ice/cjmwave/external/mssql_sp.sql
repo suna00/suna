@@ -2,7 +2,7 @@
 
 DROP PROCEDURE ice2.recentAlbum;
 CREATE PROCEDURE ice2.recentAlbum
-    @LastUpdated smalldatetime
+    @LastUpdated datetime
 AS
   BEGIN
     SELECT *
@@ -13,7 +13,7 @@ AS
   END;
 
   -- TEST
-  DECLARE @tmp SMALLDATETIME;
+  DECLARE @tmp datetime;
   SET @tmp = GETDATE();
   EXEC dbo.recentAlbum @LastUpdated=@tmp;
 
@@ -47,7 +47,7 @@ AS
   -- =============================== PROCEDURE ALBUM GENRE ====================================
   DROP PROCEDURE ice2.recentAlbumGenre;
 CREATE PROCEDURE ice2.recentAlbumGenre
-    @LastUpdated smalldatetime
+    @LastUpdated datetime
 AS
   BEGIN
     SELECT *
@@ -117,7 +117,7 @@ AS
   -- =============================== PROCEDURE ARTIST ========================================
   DROP PROCEDURE ice2.recentArtist;
 CREATE PROCEDURE ice2.recentArtist
-    @LastUpdated smalldatetime
+    @LastUpdated datetime
 AS
   BEGIN
     SELECT *
@@ -145,7 +145,7 @@ AS
   -- =============================== PROCEDURE ARTIST GENRE =================================
   DROP PROCEDURE ice2.recentArtistGenre;
 CREATE PROCEDURE ice2.recentArtistGenre
-    @LastUpdated smalldatetime
+    @LastUpdated datetime
 AS
   BEGIN
     SELECT *
@@ -200,7 +200,7 @@ AS
   -- =============================== PROCEDURE MV ============================================
   DROP PROCEDURE ice2.recentMv;
 CREATE PROCEDURE ice2.recentMv
-    @LastUpdated smalldatetime
+    @LastUpdated datetime
 AS
   BEGIN
     SELECT *
@@ -298,7 +298,7 @@ AS
   -- =============================== PROCEDURE SONG ============================================
   DROP PROCEDURE ice2.recentSong;
 CREATE PROCEDURE ice2.recentSong
-    @LastUpdated smalldatetime
+    @LastUpdated datetime
 AS
   BEGIN
     SELECT *
@@ -384,7 +384,7 @@ AS
   -- =============================== PROCEDURE SONG LYRIC ======================================
   DROP PROCEDURE ice2.recentSongLyric;
 CREATE PROCEDURE ice2.recentSongLyric
-    @LastUpdated smalldatetime
+    @LastUpdated datetime
 AS
   BEGIN
     SELECT *
@@ -412,7 +412,7 @@ AS
   -- =============================== PROCEDURE CHART TOTAL MASTER ==============================
   DROP PROCEDURE ice2.recentChartTotalMst;
 CREATE PROCEDURE ice2.recentChartTotalMst
-    @LastUpdated smalldatetime
+    @LastUpdated datetime
 AS
   BEGIN
     SELECT *
@@ -426,7 +426,7 @@ AS
   -- =============================== PROCEDURE CHHART TOTAL LIST ===============================
   DROP PROCEDURE ice2.recentAlbumChartTotalLst;
 CREATE PROCEDURE ice2.recentAlbumChartTotalLst
-    @LastUpdated smalldatetime
+    @LastUpdated datetime
 AS
   BEGIN
     SELECT *

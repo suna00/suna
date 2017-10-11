@@ -2,9 +2,12 @@ package net.ion.ice.cjmwave.db.sync;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
+import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +27,9 @@ public class TemporaryFileController {
     @Value("${temp-file.dir}")
     String baseDirectory;
 
+    @Autowired
+    TemporaryFileService temporaryFileService;
+
     @RequestMapping(value = { "/download" })
     public void download (HttpServletRequest request, HttpServletResponse resp) throws Exception {
         String fName = request.getParameter("fName");
@@ -37,5 +43,28 @@ public class TemporaryFileController {
         InputStream fis = new FileInputStream(f);
         IOUtils.copy(fis, resp.getOutputStream());
         resp.flushBuffer();
+    }
+
+
+    @RequestMapping(value = {"/loadCSV"}, produces = { "application/json" })
+    public @ResponseBody String loadCsv(HttpServletRequest request) throws Exception {
+        String result = "500", result_msg = "ERROR", cause = "";
+        JSONObject jsonObject = new JSONObject();
+        try {
+            //CSV 읽어서 노드로 만들기
+            String targetNodeType = request.getParameter("nodeType");
+            String fullPath = request.getParameter("csv");
+            temporaryFileService.registerNodeFromCSV(targetNodeType, fullPath);
+            result = "200";
+            result_msg = "SUCCESS";
+        } catch (Exception e) {
+            cause = e.getClass().getName();
+            e.printStackTrace();
+        }
+        logger.info("process done");
+        jsonObject.put("result", result);
+        jsonObject.put("result_msg", result_msg);
+        jsonObject.put("cause", cause);
+        return String.valueOf(jsonObject);
     }
 }

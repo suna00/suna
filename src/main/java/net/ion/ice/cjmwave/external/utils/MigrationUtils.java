@@ -1,11 +1,12 @@
 package net.ion.ice.cjmwave.external.utils;
 
+import com.opencsv.CSVReader;
 import net.ion.ice.core.json.JsonUtils;
 import org.apache.log4j.Logger;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.util.Date;
-import java.util.Map;
+import java.io.FileReader;
+import java.util.*;
 
 /**
  * Created by juneyoungoh on 2017. 9. 14..
@@ -112,5 +113,31 @@ public class MigrationUtils {
                 + "/" + strClipName.substring(0, 3)
                 + "/" + strClipName.substring(3, 6)
                 + "/" + mediaId + ".jpg";
+    }
+
+
+    public static List<Map<String, Object>> readFromCSV(String csvFullPath, String delimiter) throws Exception {
+        CSVReader csvReader = null;
+        List<String> headers = new ArrayList<>();
+        List<Map<String, Object>> rtn = new ArrayList<>();
+
+        csvReader = new CSVReader(new FileReader(csvFullPath));
+        String [] line;
+        int i = 0;
+        while ((line = csvReader.readNext()) != null) {
+            if(i == 0) {
+                headers = Arrays.asList(line);
+            } else {
+                Map<String, Object> row = new HashMap<String, Object>();
+                for(String header : headers) {
+                    int headerIndex = headers.indexOf(header);
+                    row.put(header, line[headerIndex]);
+                }
+                rtn.add(row);
+                logger.info("New CSV Data [ " + String.valueOf(row) + " ]");
+            }
+            i++;
+        }
+        return rtn;
     }
 }
