@@ -82,7 +82,7 @@
   },
   {
     "typeId": "singlebanner",
-    "singleBannerd": 10,
+    "singleBannerId": 10,
     "singleBannerLocation": "login",
     "sortOrder": 1,
     "file": "classpath:schema/node/ytn/display/file/login.jpeg",
@@ -91,7 +91,7 @@
   },
   {
     "typeId": "singlebanner",
-    "singleBannerd": 11,
+    "singleBannerId": 11,
     "singleBannerLocation": "popup1",
     "sortOrder": 1,
     "file": "classpath:schema/node/ytn/display/file/pop1.jpeg",
@@ -100,7 +100,7 @@
   },
   {
     "typeId": "singlebanner",
-    "singleBannerd": 12,
+    "singleBannerId": 12,
     "singleBannerLocation": "popup1",
     "sortOrder": 2,
     "file": "classpath:schema/node/ytn/display/file/pop2.jpeg",
@@ -109,7 +109,7 @@
   },
   {
     "typeId": "singlebanner",
-    "singleBannerd": 13,
+    "singleBannerId": 13,
     "singleBannerLocation": "popup2",
     "sortOrder": 1,
     "file": "classpath:schema/node/ytn/display/file/pop3.jpeg",
@@ -118,7 +118,7 @@
   },
   {
     "typeId": "singlebanner",
-    "singleBannerd": 14,
+    "singleBannerId": 14,
     "singleBannerLocation": "popup2",
     "sortOrder": 2,
     "file": "classpath:schema/node/ytn/display/file/pop4.jpeg",
@@ -127,7 +127,7 @@
   },
   {
     "typeId": "singlebanner",
-    "singleBannerd": 15,
+    "singleBannerId": 15,
     "singleBannerLocation": "popup2",
     "sortOrder": 3,
     "file": "classpath:schema/node/ytn/display/file/pop5.jpeg",
@@ -136,7 +136,7 @@
   },
   {
     "typeId": "singlebanner",
-    "singleBannerd": 16,
+    "singleBannerId": 16,
     "singleBannerLocation": "top",
     "sortOrder": 1,
     "file": "classpath:schema/node/ytn/display/file/top1.jpeg",
