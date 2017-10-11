@@ -24,14 +24,14 @@ public class ProductSearchService {
     @Autowired
     private NodeBindingService nodeBindingService ;
 
-//    {
-//        "1" : 5
-//        "10 : 10,
-//        "20 : 11,
-//        "21 : 1,
-//        "81 : 2,
-//        "82 : 3,
-//    }
+//    "categoryMap": {
+//                    "1" : 5
+//                    "10 : 10,
+//                    "20 : 11,
+//                    "21 : 1,
+//                    "81 : 2,
+//                    "82 : 3,
+//                }
     public ExecuteContext getGroupCount(ExecuteContext context) throws IOException {
         Map<String, Object> data = context.getData();
         if(data.get("categoryMap") == null) return null;
