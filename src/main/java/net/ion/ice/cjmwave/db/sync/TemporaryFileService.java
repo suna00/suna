@@ -60,6 +60,8 @@ public class TemporaryFileService {
                     rs.put("typeId", nodeType);
                     fetchArtistSubInfo(artistId, rs);
                     fetchArtistMultiLanguageInfo(artistId, rs);
+                    fetchArtistImg(artistId, rs);
+
                     logger.info("FULL FETCHED INFORMATION :: " + String.valueOf(rs));
                     nodeService.saveNodeWithException(rs);
                     success++;
@@ -148,4 +150,10 @@ public class TemporaryFileService {
         return artistBasicInfo;
     }
 
+    private Map<String, Object> fetchArtistImg(String artistId, Map<String, Object> artistBasicInfo) {
+        String mnetFileUrl =
+                MigrationUtils.getMnetFileUrl(artistId, "artist", "320");
+        artistBasicInfo.put("imgUrl", mnetFileUrl);
+        return artistBasicInfo;
+    }
 }
