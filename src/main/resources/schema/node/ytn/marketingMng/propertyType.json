@@ -87,7 +87,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "category",
+    "tid": "shopEvent",
     "pid": "selectedUniversity",
     "propertyTypeName": "지정 대학",
     "valueType": "REFERENCES",
@@ -104,7 +104,7 @@
   },
   {
     "typeId": "propertyType",
-    "tid": "category",
+    "tid": "shopEvent",
     "pid": "selectedCompany",
     "propertyTypeName": "지정 기업",
     "valueType": "REFERENCES",
