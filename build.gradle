@@ -120,7 +120,6 @@ dependencies {
 
     compile('org.stagemonitor:stagemonitor-web-servlet:0.80.0.RC1')
     compile('org.projectlombok:lombok:1.16.16')
-    runtime('org.springframework.boot:spring-boot-devtools')
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
 

@@ -4,7 +4,7 @@
     "id": "member",
     "categoryName": "Member",
     "fileUrlFormat" : {
-      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
+      "default": "/"
     }
   },
   {

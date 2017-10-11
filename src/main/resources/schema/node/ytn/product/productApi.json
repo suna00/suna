@@ -4,7 +4,7 @@
     "id" : "product",
     "categoryName" : "상품 API",
     "fileUrlFormat" : {
-      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
+      "default": "/"
     }
   },
   {
