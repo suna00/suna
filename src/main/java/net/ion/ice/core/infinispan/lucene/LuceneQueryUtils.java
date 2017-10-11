@@ -73,9 +73,21 @@ public class LuceneQueryUtils {
                         Query termQuery = new TermQuery(new Term(sourceJoinField, joinVal));
                         booleanQueryBuilder.add(termQuery, BooleanClause.Occur.SHOULD);
                     }
-                    innerQueries.add(booleanQueryBuilder.build());
+                    if(joinQueryContext.getJoinMethod().equals("not")){
+                        notInnerQueries.add(booleanQueryBuilder.build()) ;
+                    }else if(joinQueryContext.getJoinMethod().equals("should")){
+                        shouldInnerQueries.add(booleanQueryBuilder.build()) ;
+                    }else {
+                        innerQueries.add(booleanQueryBuilder.build());
+                    }
                 }else if(joinValues.size() == 1){
-                    innerQueries.add(new TermQuery(new Term(sourceJoinField, joinValues.get(0)))) ;
+                    if(joinQueryContext.getJoinMethod().equals("not")){
+                        notInnerQueries.add(new TermQuery(new Term(sourceJoinField, joinValues.get(0)))) ;
+                    }else if(joinQueryContext.getJoinMethod().equals("should")){
+                        shouldInnerQueries.add(new TermQuery(new Term(sourceJoinField, joinValues.get(0)))) ;
+                    }else {
+                        innerQueries.add(new TermQuery(new Term(sourceJoinField, joinValues.get(0)))) ;
+                    }
                 }
             }
         }

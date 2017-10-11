@@ -10,6 +10,7 @@ import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.data.DBUtils;
 import net.ion.ice.core.node.*;
 import net.ion.ice.core.query.QueryResult;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -149,7 +150,7 @@ public class NodeBindingService {
 
     public List<Map<String, Object>> list(String tid, String searchText) {
         NodeType nodeType = NodeUtils.getNodeType(tid);
-        QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, nodeType);
+        QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, nodeType, null);
         NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(tid);
         return nodeBindingInfo.list(queryContext);
     }

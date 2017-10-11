@@ -226,6 +226,10 @@ public class ReadContext implements Context, Serializable {
         return id;
     }
 
+    public static String getParamId(Map<String, String[]> parameterMap, String typeId){
+        return getId(parameterMap, NodeUtils.getNodeType(typeId), null) ;
+    }
+
     public QueryResult makeQueryResult() {
         return makeResult() ;
     }
@@ -273,12 +277,12 @@ public class ReadContext implements Context, Serializable {
                 itemResult.put(pt.getPid(), NodeUtils.getResultValue(this, pt, node));
             }
 
-            if (isIncludeReferenced()) {
-                for (PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)) {
-                    QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(nodeType, pt, node);
-                    subQueryContext.makeQueryResult(itemResult, pt.getPid(),null);
-                }
-            }
+//            if (isIncludeReferenced()) {
+//                for (PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)) {
+//                    QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(nodeType, pt, node);
+//                    subQueryContext.makeQueryResult(itemResult, pt.getPid(),null);
+//                }
+//            }
         }else{
             this.setNodeData(node);
             makeItemQueryResult(node, itemResult, this.data, 0);
@@ -401,7 +405,7 @@ public class ReadContext implements Context, Serializable {
 
     public boolean isIncludeReferenced(String pid) {
         if (includeReferenced == null) {
-            return true;
+            return false;
         }
         if (includeReferenced && includeReferencedFields == null) {
             return true;
@@ -503,4 +507,11 @@ public class ReadContext implements Context, Serializable {
         return JsonUtils.getValue(data, key) ;
     }
 
+    public Boolean getReferenceView() {
+        return referenceView;
+    }
+
+    public List<String> getReferenceViewFields() {
+        return referenceViewFields;
+    }
 }

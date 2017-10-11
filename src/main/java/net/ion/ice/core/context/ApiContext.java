@@ -40,7 +40,7 @@ public class ApiContext {
     private NativeWebRequest httpRequest ;
     private HttpServletResponse httpResponse ;
 
-    public static ApiContext createContext(Node apiCategory, Node apiNode, String typeId, Map<String, Object> config, NativeWebRequest request, HttpServletResponse response, Map<String, Object> session) {
+    public static ApiContext createContext(Node apiCategory, Node apiNode, String typeId, String event, Map<String, Object> config, NativeWebRequest request, HttpServletResponse response, Map<String, Object> session) {
         Map<String, String[]> parameterMap = request.getParameterMap() ;
         MultiValueMap<String, MultipartFile> multiFileMap = null ;
         if(request.getNativeRequest() instanceof MultipartHttpServletRequest) {
@@ -58,6 +58,17 @@ public class ApiContext {
         if(typeId != null) {
             ctx.data.put("typeId", typeId);
         }
+
+        if(event != null) {
+            ctx.data.put("event", event);
+        }
+
+        if(apiCategory.getId().equals("node") && apiNode.getId().equals("node>read")){
+            if(!request.getParameterMap().containsKey("id")){
+                ctx.data.put("id", ReadContext.getParamId(request.getParameterMap(), typeId)) ;
+            }
+        }
+
 
         if(apiCategory.containsKey(COMMON_RESPONSE) && apiCategory.get(COMMON_RESPONSE) != null && ((Map<String, Object>) apiCategory.get(COMMON_RESPONSE)).size() > 0) {
             ctx.makeCommonResponse((Map<String, Object>) apiCategory.get(COMMON_RESPONSE)) ;
@@ -143,7 +154,7 @@ public class ApiContext {
             setApiResultFormat(readContext);
 
             Node node = readContext.getNode() ;
-            if(node != null) addResultData(node.clone());
+            addResultData(node);
 
             return readContext.makeResult() ;
         }else if(ctxRootConfig.containsKey("ids")){

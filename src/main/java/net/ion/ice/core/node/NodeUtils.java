@@ -167,7 +167,7 @@ public class NodeUtils {
     }
 
     public static Long getDateLongValue(Object value){
-        return DateTools.round(NodeUtils.getDateValue(value), DateTools.Resolution.SECOND).getTime() ;
+        return DateTools.round(NodeUtils.getDateValue(value), DateTools.Resolution.MILLISECOND).getTime() ;
     }
 
     public static String getDateStringValue(Object value, String dateFormat) {
@@ -339,8 +339,10 @@ public class NodeUtils {
                 return getFileResultValue(context, pt, value);
             }
             case REFERENCED: {
-                if (context != null && context.isIncludeReferenced() && context.getLevel() < 5 && node instanceof Node) {
+                if (context != null && context.isIncludeReferenced(pt.getPid()) && context.getLevel() < 5 && node instanceof Node) {
                     QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(getNodeType(((Node)node).getTypeId()), pt, (Node) node);
+//                    subQueryContext.setReferenceView(context.getReferenceView());
+//                    subQueryContext.setReferenceViewFields(context.getReferenceViewFields());
                     subQueryContext.setDateFormat(context.getDateFormat()) ;
                     subQueryContext.setFileUrlFormat(context.getFileUrlFormat()) ;
                     subQueryContext.setLevel(context.getLevel() + 1);
