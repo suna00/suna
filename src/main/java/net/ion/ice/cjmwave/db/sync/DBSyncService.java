@@ -32,7 +32,7 @@ public class DBSyncService {
     private final String PROCESS_TID = "dbSyncProcess"
             , MAPPER_TID = "dbSyncMapper";
 
-    private static int BATCH_UNIT = 100;
+    private static int BATCH_UNIT = 2000;
 
     @Autowired
     TaskExecutor taskExecutor;
