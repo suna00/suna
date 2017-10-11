@@ -46,5 +46,41 @@
     "errCd": "418",
     "errMsg": "You are already unsubscribed.",
     "errMsg_kor": "당신은 이미 탈퇴 상태입니다"
+  },
+  {
+    "typeId": "errMsgInfo",
+    "errCd": "420",
+    "errMsg": "Incorrect Parameter",
+    "errMsg_kor": "입력값이 잘못되었습니다."
+  },
+  {
+    "typeId": "errMsgInfo",
+    "errCd": "421",
+    "errMsg": "Your IP address is not valid.",
+    "errMsg_kor": "유효하지 않은 IP 주소 입니다."
+  },
+  {
+    "typeId": "errMsgInfo",
+    "errCd": "422",
+    "errMsg": "It is not voting period.",
+    "errMsg_kor": "투표기간이 아닙니다."
+  },
+  {
+    "typeId": "errMsgInfo",
+    "errCd": "423",
+    "errMsg": "You have exceeded the number of votes.",
+    "errMsg_kor": "투표수를 초과하였습니다."
+  },
+  {
+    "typeId": "errMsgInfo",
+    "errCd": "424",
+    "errMsg": "The item could not be found.",
+    "errMsg_kor": "해당 항목을 찾을수 없습니다."
+  },
+  {
+    "typeId": "errMsgInfo",
+    "errCd": "425",
+    "errMsg": "Date Parse Error.",
+    "errMsg_kor": "날짜 변경 오류"
   }
 ]
