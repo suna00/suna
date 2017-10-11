@@ -32,7 +32,7 @@ public class DBSyncService {
     private final String PROCESS_TID = "dbSyncProcess"
             , MAPPER_TID = "dbSyncMapper";
 
-    private static int BATCH_UNIT = 2000;
+    private static int BATCH_UNIT = 100;
 
     @Autowired
     TaskExecutor taskExecutor;
@@ -464,10 +464,8 @@ public class DBSyncService {
             String jdbcQuery = String.valueOf(jdbcParam.get("query"));
             Object[] params = (Object[]) jdbcParam.get("params");
 
-
             template = dbService.getJdbcTemplate(targetDs);
             List<Map<String, Object>> queryRs = template.queryForList(jdbcQuery, params);
-
 
             if (queryRs == null || queryRs.isEmpty()) {
                 loop = false;
@@ -487,8 +485,8 @@ public class DBSyncService {
                         fit.putAll(getMultiLanguageInfo(qMap, multiLangQuery, currentNodePKPid));
                     }
                     fit.putAll(getImageInfo(qMap,targetNodeType, currentNodePKPid));
-                    logger.debug("CREATE INITIAL MIGRATION NODE :: " + String.valueOf(fit));
-
+//                    logger.debug("CREATE INITIAL MIGRATION NODE :: " + String.valueOf(fit));
+                    System.out.println("CREATE INITIAL MIGRATION NODE :: " + String.valueOf(fit));
 
                     try{
                         nodeService.saveNodeWithException(fit);
@@ -576,6 +574,7 @@ public class DBSyncService {
                     taskExecutor.execute(new ParallelDBSyncExecutor("album") {
                         @Override
                         public void action() throws Exception {
+                            System.out.println(this.executeId + " :: " + start + " :: " + total);
                             this.dbSyncService.executeWithIteration(this.executeId, start, total);
                         }
                     });
