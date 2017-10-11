@@ -154,6 +154,7 @@ public class TemporaryFileService {
         String mnetFileUrl =
                 MigrationUtils.getMnetFileUrl(artistId, "artist", "320");
         artistBasicInfo.put("imgUrl", mnetFileUrl);
+        logger.info(mnetFileUrl);
         return artistBasicInfo;
     }
 }
