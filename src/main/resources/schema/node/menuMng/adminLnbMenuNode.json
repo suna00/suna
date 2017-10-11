@@ -124,7 +124,7 @@
     "gnbMenuId": "displayMng",
     "parentMenuId": "root",
     "menuId": "menu",
-    "menuName": "메뉴 관리",
+    "menuName": "카테고리 관리",
     "order": "70",
     "icon": "fa-list",
     "active": "true",
