@@ -26,6 +26,19 @@
     "siteStatus": "y"
   },
   {
+    "typeId": "site",
+    "siteId": "ytn",
+    "name": "YTN",
+    "description": null,
+    "url": null,
+    "siteType": {
+      "value": "company",
+      "label": "siteType>company",
+      "refId": "siteType>company"
+    },
+    "siteStatus": "y"
+  },
+  {
     "typeId": "affiliate",
     "affiliateId": 100,
     "name": "아이온커뮤니케이션즈",
