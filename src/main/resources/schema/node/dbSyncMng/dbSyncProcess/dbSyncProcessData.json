@@ -15,7 +15,7 @@
     , "executeId": "artist"
     , "targetDs": "cjDb"
     , "targetNodeType": "artist"
-    , "query": "SELECT ARTIST_ID as artistId , ARTIST_NM as artistNm , STR_TO_DATE(ARTIST_BIRTH_YMD, '%Y%m%d')  as cretDt , ARTIST_NATIONALITY as bpnac , ARTIST_GENDER as sex ,  RIGHT(ARTIST_TYPE_CD, 3) as typeCd, STR_TO_DATE(DEBUT_YMD, '%Y%m%d') as debutDt , DEBUT_ALBUM_ID as debutAlbum , ARTIST_INTRO as artistDesc , ARTIST_NM as atvyName, DISPLAY_FLG as showYn , 1 as mnetIfTrtYn FROM (SELECT * FROM MT_ARTIST ORDER BY ARTIST_ID DESC LIMIT @{BIGINT.start}, @{BIGINT.unit}) ARTIST"
+    , "query": "SELECT ARTIST_ID as artistId , ARTIST_NM as artistNm , STR_TO_DATE(ARTIST_BIRTH_YMD, '%Y%m%d')  as cretDt , ARTIST_NATIONALITY as bpnac , RIGHT(ARTIST_GENDER, 3) as sex ,  RIGHT(ARTIST_TYPE_CD, 3) as typeCd, STR_TO_DATE(DEBUT_YMD, '%Y%m%d') as debutDt , DEBUT_ALBUM_ID as debutAlbum , ARTIST_INTRO as artistDesc , ARTIST_NM as atvyName, DISPLAY_FLG as showYn , 1 as mnetIfTrtYn FROM (SELECT * FROM MT_ARTIST ORDER BY ARTIST_ID DESC LIMIT @{BIGINT.start}, @{BIGINT.unit}) ARTIST"
     , "multiLanguageQuery" : "SELECT lang_cd as langCd , artist_nm as artistNm , artist_intro as artistDesc , artist_prev_active_nm as atvyName FROM MT_ARTIST_META ARTIST_META WHERE artist_id=@{VARCHAR.id}"
     , "onFail": "skip"
   }
@@ -83,7 +83,7 @@
     , "executeId": "artistPart"
     , "targetDs": "cjDb"
     , "targetNodeType": "artist"
-    , "query": "SELECT ARTIST_ID as artistId , ARTIST_NM as artistNm , STR_TO_DATE(ARTIST_BIRTH_YMD, '%Y%m%d') as cretDt , ARTIST_NATIONALITY as bpnac , ARTIST_GENDER as sex , RIGHT(ARTIST_TYPE_CD, 3) as typeCd, STR_TO_DATE(DEBUT_YMD, '%Y%m%d') as debutDt , DEBUT_ALBUM_ID as debutAlbum , ARTIST_INTRO as artistDesc , ARTIST_NM as atvyName, DISPLAY_FLG as showYn , 1 as mnetIfTrtYn FROM MT_ARTIST ARTIST WHERE CREATE_DT > @{DATETIME.lastUpdated} OR UPDATE_DT > @{DATETIME.lastUpdated}"
+    , "query": "SELECT ARTIST_ID as artistId , ARTIST_NM as artistNm , STR_TO_DATE(ARTIST_BIRTH_YMD, '%Y%m%d') as cretDt , ARTIST_NATIONALITY as bpnac , RIGHT(ARTIST_GENDER, 3) as sex , RIGHT(ARTIST_TYPE_CD, 3) as typeCd, STR_TO_DATE(DEBUT_YMD, '%Y%m%d') as debutDt , DEBUT_ALBUM_ID as debutAlbum , ARTIST_INTRO as artistDesc , ARTIST_NM as atvyName, DISPLAY_FLG as showYn , 1 as mnetIfTrtYn FROM MT_ARTIST ARTIST WHERE CREATE_DT > @{DATETIME.lastUpdated} OR UPDATE_DT > @{DATETIME.lastUpdated}"
     , "multiLanguageQuery" : "SELECT artist_id as artistId , lang_cd as langCd , artist_nm as artistNm , artist_intro as artistDesc , artist_prev_active_nm as atvyName FROM MT_ARTIST_META ARTIST_META WHERE artist_id=@{VARCHAR.id}"
     , "onFail": "skip"
   }
