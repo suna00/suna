@@ -12,7 +12,7 @@
     "category" : "orderSheet",
     "apiId" : "read",
     "apiName" : "주문서 조회",
-    "method" : "POST",
+    "method" : "GET",
     "parameters" : [
     ],
     "config" : {
@@ -230,7 +230,7 @@
     "category" : "orderChange",
     "apiId" : "read",
     "apiName" : "취소교환반품 조회",
-    "method" : "POST",
+    "method" : "GET",
     "parameters" : [
     ],
     "config" : {
