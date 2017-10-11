@@ -13,9 +13,18 @@ spring:
     view:
       prefix: /WEB-INF/jsp/
       suffix: .jsp
+  resources:
+    chain:
+      cache: true
+      enabled: true
+    cache-period: 3600
 
 server:
   port: 8080
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain,text/javascript,application/javascript,text/css
+
 
 jwtConfig:
   issuer: I-ON

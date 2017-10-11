@@ -9,8 +9,17 @@ spring:
       view:
         prefix: /WEB-INF/jsp/
         suffix: .jsp
+  resources:
+    chain:
+      cache: true
+      enabled: true
+    cache-period: 3600
+
 server:
   port: 8080
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain,application/javascript,text/css
 
 jwtConfig:
   issuer: I-ON
@@ -21,8 +30,8 @@ jwtConfig:
   refreshTokenExpTime: 60 #분
 
 cluster:
-  api-prefix: http://125.131.88.206:8080/
-  front-prefix: http://125.131.88.206:8888/
+  api-prefix: http://test.ygoon.com:8080/
+  front-prefix: http://test.ygoon.com:8888/
   mode: all
   groups: all
   members:

@@ -54,7 +54,8 @@ public class ReadContext implements Context, Serializable {
 
     protected Boolean remote ;
 
-
+    protected Boolean cacheable ;
+    protected String cacheTime ;
 
     public NodeType getNodetype() {
         return nodeType;
@@ -81,6 +82,14 @@ public class ReadContext implements Context, Serializable {
             readContext.ifTest =  ContextUtils.getValue(config.get("if"), readContext.data).toString();
         }else if(config.get(key) != null){
             ContextUtils.makeContextConfig(readContext, key, config.get(key).toString());
+        }
+    }
+
+
+    protected static void makeApiContextParam(Map<String, Object> data, ReadContext readContext) {
+        if(data.containsKey("cacheTime") && data.get("cacheTime") != null && StringUtils.isNotEmpty(data.get("cacheTime").toString())){
+            readContext.cacheable = true ;
+            readContext.cacheTime = data.get("cacheTime").toString() ;
         }
     }
 
