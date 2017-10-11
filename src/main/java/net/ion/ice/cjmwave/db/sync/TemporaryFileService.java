@@ -10,6 +10,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -56,6 +58,9 @@ public class TemporaryFileService {
                 try{
                     Map<String, Object> rs = ice2template.queryForMap(query, artistId);
                     rs.put("typeId", nodeType);
+                    fetchArtistSubInfo(artistId, rs);
+                    fetchArtistMultiLanguageInfo(artistId, rs);
+                    logger.info("FULL FETCHED INFORMATION :: " + String.valueOf(rs));
                     nodeService.saveNodeWithException(rs);
                     success++;
                 } catch (Exception e) {
@@ -73,6 +78,74 @@ public class TemporaryFileService {
                 nodeService.createNode(mapData, nodeType);
             }
         }
+    }
+
+    private Map<String, Object> fetchArtistSubInfo(String artistId, Map<String, Object> artistBasicInfo) {
+        String genreSubQuery = "SELECT GROUP_CONCAT(GENRE_CD) AS genreCd FROM MT_ARTIST_GENRE WHERE ARTIST_ID = ?";
+        String keywordSubQuery = "SELECT GROUP_CONCAT(KEYWORD) AS findKywrd FROM MT_ARTIST_KEYWORD WHERE ARTIST_ID = ?";
+        String countrySubQuery = "SELECT GROUP_CONCAT(country_cd) AS showCntryCdList FROM MT_ARTIST_COUNTRY WHERE ARTIST_ID = ?";
+
+        try{
+            artistBasicInfo.putAll(ice2template.queryForMap(genreSubQuery, artistId));
+        } catch (Exception e) {
+            logger.error("Failed to add genreCd :: ", e);
+        }
+
+        try{
+            artistBasicInfo.putAll(ice2template.queryForMap(keywordSubQuery, artistId));
+        } catch (Exception e) {
+            logger.error("Failed to add findKywrd :: ", e);
+        }
+
+        try{
+            artistBasicInfo.putAll(ice2template.queryForMap(countrySubQuery, artistId));
+        } catch (Exception e) {
+            logger.error("Failed to add showCntryCdList :: ", e);
+        }
+        return  artistBasicInfo;
+    }
+
+
+    private Map<String, Object> fetchArtistMultiLanguageInfo(String artistId, Map<String, Object> artistBasicInfo){
+//        Map<String, Object> multiLanguageMap = new HashedMap();
+        try {
+
+            String query = "SELECT " +
+                    "lang_cd as langCd , artist_nm as artistNm " +
+                    ", artist_intro as artistDesc " +
+                    ", artist_prev_active_nm as atvyName " +
+                    "FROM MT_ARTIST_META ARTIST_META WHERE artist_id= ?";
+
+            List<Map<String, Object>> multiLanguages = ice2template.queryForList(query, artistId);
+            for(Map<String, Object> singleLangMap : multiLanguages) {
+                String langCd = String.valueOf(singleLangMap.get("langCd"));
+                langCd = langCd.toLowerCase();
+                Iterator<String> multiIter = singleLangMap.keySet().iterator();
+                while(multiIter.hasNext()) {
+                    String k = multiIter.next();
+                    Object v = singleLangMap.get(k);
+                    String keywordSubQuery = "SELECT GROUP_CONCAT(keyword) AS findKywrd FROM MT_ARTIST_KEYWORD_META WHERE artist_id = ? AND lang_cd = ?";
+                    Map<String, Object> rs = new HashMap<>();
+                    try{
+                        rs = ice2template.queryForMap(keywordSubQuery, artistId, langCd);
+                        Iterator<String> iterator = rs.keySet().iterator();
+                        while (iterator.hasNext()) {
+                            String k1 = iterator.next();
+                            Object v1 = rs.get(k1);
+                            artistBasicInfo.put(k + "_" + langCd, v1);
+                        }
+                    } catch (Exception e) {
+                        logger.info("Failed to register Artist Multi Language Information CSV", e);
+                    }
+                    if(!k.equals("langCd")) {
+                        artistBasicInfo.put(k + "_" + langCd, v);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            logger.error("Failed to set multi language information, but consider it as normal", e);
+        }
+        return artistBasicInfo;
     }
 
 }
