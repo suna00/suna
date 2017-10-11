@@ -12,12 +12,12 @@
   {
     "typeId" : "datasource",
     "id" : "mnetDb",
-    "dsName" : "TEST MNET DB",
-    "jdbcUrl" : "jdbc:sqlserver://125.131.88.94:1500;databaseName=ice2",
+    "dsName" : "REAL MNET DB",
+    "jdbcUrl" : "jdbc:sqlserver://172.16.37.242:6231;databaseName=mmis",
     "ssl" : false,
     "dbType" : "msSql",
-    "username" : "iceuser",
-    "password" : "iceuser"
+    "username" : "cjmwave_back",
+    "password" : "Dkdldhs0!@#"
   },
   {
     "typeId": "datasource",

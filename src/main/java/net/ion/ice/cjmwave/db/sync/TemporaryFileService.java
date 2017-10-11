@@ -122,6 +122,12 @@ public class TemporaryFileService {
             for(Map<String, Object> singleLangMap : multiLanguages) {
                 String langCd = String.valueOf(singleLangMap.get("langCd"));
                 langCd = langCd.toLowerCase();
+                if("chn".equals(langCd)) {
+                    langCd = "zho-cn";
+                }else if("twn".equals(langCd)) {
+                    langCd = "zho-tw";
+                }
+
                 Iterator<String> multiIter = singleLangMap.keySet().iterator();
                 while(multiIter.hasNext()) {
                     String k = multiIter.next();

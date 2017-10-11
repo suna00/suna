@@ -8,7 +8,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "MT_ALBUM"
     , "toTable" : "MT_ALBUM"
-    , "query": "EXEC ice2.recentAlbum @LastUpdated = @{TIMESTAMP.lastUpdated}"
+    , "query": "EXEC mmis.recentAlbum @LastUpdated = @{TIMESTAMP.lastUpdated}"
     , "query_nosp": "SELECT * FROM ice2.MT_ALBUM WHERE CREATE_DT > @{TIMESTAMP.lastUpdated} OR UPDATE_DT > @{TIMESTAMP.lastUpdated}"
   }
   , {
@@ -20,7 +20,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "MT_ALBUM_ARTIST"
     , "toTable" : "MT_ALBUM_ARTIST"
-    , "query": "EXEC ice2.recentAlbumArtist @AlbumId = @{VARCHAR.id}"
+    , "query": "EXEC mmis.recentAlbumArtist @AlbumId = @{VARCHAR.id}"
     , "query_nosp": "SELECT * FROM ice2.MT_ALBUM_ARTIST WHERE ALBUM_ID = @{VARCHAR.id}"
   }
   , {
@@ -32,7 +32,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "mt_album_country"
     , "toTable" : "MT_ALBUM_COUNTRY"
-    , "query": "EXEC ice2.recentAlbumCountry @AlbumId = @{VARCHAR.id}"
+    , "query": "EXEC mmis.recentAlbumCountry @AlbumId = @{VARCHAR.id}"
     , "query_nosp": "SELECT * FROM ice2.MT_ALBUM_COUNTRY WHERE ALBUM_ID = @{VARCHAR.id}"
   }
   , {
@@ -44,7 +44,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "MT_ALBUM_GENRE"
     , "toTable" : "MT_ALBUM_GENRE"
-    , "query": "EXEC ice2.recentAlbumGenre @LastUpdated = @{TIMESTAMP.lastUpdated}"
+    , "query": "EXEC mmis.recentAlbumGenre @LastUpdated = @{TIMESTAMP.lastUpdated}"
     , "query_nosp": "SELECT * FROM ice2.MT_ALBUM_GENRE WHERE CREATE_DT > @{TIMESTAMP.lastUpdated} OR UPDATE_DT > @{TIMESTAMP.lastUpdated}"
   }
   , {
@@ -56,7 +56,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "MT_ALBUM_KEYWORD"
     , "toTable" : "MT_ALBUM_KEYWORD"
-    , "query": "EXEC ice2.recentAlbumKeyword @AlbumId = @{VARCHAR.id}"
+    , "query": "EXEC mmis.recentAlbumKeyword @AlbumId = @{VARCHAR.id}"
     , "query_nosp": "SELECT * FROM ice2.MT_ALBUM_KEYWORD WHERE ALBUM_ID = @{VARCHAR.id}"
   }
   , {
@@ -68,7 +68,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "mt_album_keyword_meta"
     , "toTable" : "MT_ALBUM_KEYWORD_META"
-    , "query": "EXEC ice2.recentAlbumKeywordMeta @AlbumId = @{VARCHAR.id}"
+    , "query": "EXEC mmis.recentAlbumKeywordMeta @AlbumId = @{VARCHAR.id}"
     , "query_nosp": "SELECT * FROM ice2.MT_ALBUM_KEYWORD_META WHERE ALBUM_ID = @{VARCHAR.id}"
   }
   , {
@@ -80,7 +80,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "mt_album_meta"
     , "toTable" : "MT_ALBUM_META"
-    , "query": "EXEC ice2.recentAlbumMeta @AlbumId = @{VARCHAR.id}"
+    , "query": "EXEC mmis.recentAlbumMeta @AlbumId = @{VARCHAR.id}"
     , "query_nosp": "SELECT * FROM ice2.MT_ALBUM_META WHERE ALBUM_ID = @{VARCHAR.id}"
   }
   , {
@@ -92,7 +92,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "MT_ALBUM_SONGS"
     , "toTable" : "MT_ALBUM_SONGS"
-    , "query": "EXEC ice2.recentAlbumSongs @AlbumId = @{VARCHAR.id}"
+    , "query": "EXEC mmis.recentAlbumSongs @AlbumId = @{VARCHAR.id}"
     , "query_nosp": "SELECT * FROM ice2.MT_ALBUM_SONGS WHERE ALBUM_ID = @{VARCHAR.id}"
   }
   , {
@@ -104,7 +104,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "MT_ARTIST"
     , "toTable" : "MT_ARTIST"
-    , "query": "EXEC ice2.recentArtist @LastUpdated = @{TIMESTAMP.lastUpdated}"
+    , "query": "EXEC mmis.recentArtist @LastUpdated = @{TIMESTAMP.lastUpdated}"
     , "query_nosp": "SELECT * FROM dbo.MT_ARTIST WHERE CREATE_DT > @{TIMESTAMP.lastUpdated} OR UPDATE_DT > @{TIMESTAMP.lastUpdated}"
   }
   , {
@@ -116,7 +116,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "mt_artist_country"
     , "toTable" : "MT_ARTIST_COUNTRY"
-    , "query": "EXEC ice2.recentArtistCountry @ArtistId = @{VARCHAR.id}"
+    , "query": "EXEC mmis.recentArtistCountry @ArtistId = @{VARCHAR.id}"
     , "query_nosp": "SELECT * FROM dbo.MT_ARTIST_COUNTRY WHERE artist_id = @{VARCHAR.id}"
   }
   , {
@@ -128,7 +128,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "MT_ARTIST_GENRE"
     , "toTable" : "MT_ARTIST_GENRE"
-    , "query": "EXEC ice2.recentArtistGenre @LastUpdated = @{TIMESTAMP.lastUpdated}"
+    , "query": "EXEC mmis.recentArtistGenre @LastUpdated = @{TIMESTAMP.lastUpdated}"
     , "query_nosp": "SELECT * FROM dbo.MT_ARTIST_GENRE WHERE CREATE_DT > @{TIMESTAMP.lastUpdated} OR UPDATE_DT > @{TIMESTAMP.lastUpdated}"
   }
   , {
@@ -140,7 +140,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "MT_ARTIST_KEYWORD"
     , "toTable" : "MT_ARTIST_KEYWORD"
-    , "query": "EXEC ice2.recentArtistKeyword @ArtistId = @{VARCHAR.id}"
+    , "query": "EXEC mmis.recentArtistKeyword @ArtistId = @{VARCHAR.id}"
     , "query_nosp": "SELECT * FROM dbo.MT_ARTIST_KEYWORD WHERE ARTIST_ID = @{VARCHAR.id}"
   }
   , {
@@ -152,7 +152,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "mt_artist_keyword_meta"
     , "toTable" : "MT_ARTIST_KEYWORD_META"
-    , "query": "EXEC ice2.recentArtistKeywordMeta @ArtistId = @{VARCHAR.id}"
+    , "query": "EXEC mmis.recentArtistKeywordMeta @ArtistId = @{VARCHAR.id}"
     , "query_nosp": "SELECT * FROM dbo.MT_ARTIST_KEYWORD_META WHERE ARTIST_ID = @{VARCHAR.id}"
   }
   , {
@@ -164,7 +164,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "mt_artist_meta"
     , "toTable" : "MT_ARTIST_META"
-    , "query": "EXEC ice2.recentArtistMeta @ArtistId = @{VARCHAR.id}"
+    , "query": "EXEC mmis.recentArtistMeta @ArtistId = @{VARCHAR.id}"
     , "query_nosp": "SELECT * FROM dbo.MT_ARTIST_META WHERE ARTIST_ID = @{VARCHAR.id}"
   }
   , {
@@ -176,7 +176,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "MT_MV"
     , "toTable" : "MT_MV"
-    , "query": "EXEC ice2.recentMv @LastUpdated = @{TIMESTAMP.lastUpdated}"
+    , "query": "EXEC mmis.recentMv @LastUpdated = @{TIMESTAMP.lastUpdated}"
     , "query_nosp": "SELECT * FROM ice2.MT_MV WHERE CREATE_DT > @{TIMESTAMP.lastUpdated} OR UPDATE_DT > @{TIMESTAMP.lastUpdated}"
   }
   , {
@@ -188,7 +188,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "MT_MV_ARTIST"
     , "toTable" : "MT_MV_ARTIST"
-    , "query": "EXEC ice2.recentMvArtist @MvId = @{VARCHAR.id}"
+    , "query": "EXEC mmis.recentMvArtist @MvId = @{VARCHAR.id}"
     , "query_nosp": "SELECT * FROM ice2.MT_MV_ARTIST WHERE MV_ID = @{VARCHAR.id}"
   }
   , {
@@ -200,7 +200,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "mt_mv_country"
     , "toTable" : "MT_MV_COUNTRY"
-    , "query": "EXEC ice2.recentMvCountry @MvId = @{VARCHAR.id}"
+    , "query": "EXEC mmis.recentMvCountry @MvId = @{VARCHAR.id}"
     , "query_nosp": "SELECT * FROM ice2.MT_MV_COUNTRY WHERE MV_ID = @{VARCHAR.id}"
   }
   , {
@@ -212,7 +212,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "MT_MV_EMBED"
     , "toTable" : "MT_MV_EMBED"
-    , "query": "EXEC ice2.recentMvEmbed @MvId = @{VARCHAR.id}"
+    , "query": "EXEC mmis.recentMvEmbed @MvId = @{VARCHAR.id}"
     , "query_nosp": "SELECT * FROM ice2.MT_MV_EMBED WHERE MV_ID = @{VARCHAR.id}"
   }
   , {
@@ -224,7 +224,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "MT_MV_KEYWORD"
     , "toTable" : "MT_MV_KEYWORD"
-    , "query": "EXEC ice2.recentMvKeyword @MvId = @{VARCHAR.id}"
+    , "query": "EXEC mmis.recentMvKeyword @MvId = @{VARCHAR.id}"
     , "query_nosp": "SELECT * FROM ice2.MT_MV_KEYWORD WHERE MV_ID = @{VARCHAR.id}"
   }
   , {
@@ -236,7 +236,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "mt_mv_keyword_meta"
     , "toTable" : "MT_MV_KEYWORD_META"
-    , "query": "EXEC ice2.recentMvKeywordMeta @MvId = @{VARCHAR.id}"
+    , "query": "EXEC mmis.recentMvKeywordMeta @MvId = @{VARCHAR.id}"
     , "query_nosp": "SELECT * FROM ice2.MT_MV_KEYWORD_META WHERE MV_ID = @{VARCHAR.id}"
   }
   , {
@@ -248,7 +248,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "mt_mv_meta"
     , "toTable" : "MT_MV_META"
-    , "query": "EXEC ice2.recentMvMeta @MvId = @{VARCHAR.id}"
+    , "query": "EXEC mmis.recentMvMeta @MvId = @{VARCHAR.id}"
     , "query_nosp": "SELECT * FROM ice2.MT_MV_META WHERE MV_ID = @{VARCHAR.id}"
   }
   , {
@@ -260,7 +260,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "MT_SONG"
     , "toTable" : "MT_SONG"
-    , "query": "EXEC ice2.recentSong @LastUpdated = @{TIMESTAMP.lastUpdated}"
+    , "query": "EXEC mmis.recentSong @LastUpdated = @{TIMESTAMP.lastUpdated}"
     , "query_nosp": "SELECT * FROM ice2.MT_SONG WHERE CREATE_DT > @{TIMESTAMP.lastUpdated} OR UPDATE_DT > @{TIMESTAMP.lastUpdated}"
   }, {
       "typeId": "msSqlReplication"
@@ -271,7 +271,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "MT_SONG_ALBUM"
     , "toTable" : "MT_SONG_ALBUM"
-    , "query": "EXEC ice2.recentSongAlbum @SongId = @{VARCHAR.id}"
+    , "query": "EXEC mmis.recentSongAlbum @SongId = @{VARCHAR.id}"
     , "query_nosp": "SELECT * FROM ice2.MT_SONG_ALBUM WHERE SONG_ID = @{VARCHAR.id}"
   }
   , {
@@ -283,7 +283,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "MT_SONG_ARTIST"
     , "toTable" : "MT_SONG_ARTIST"
-    , "query": "EXEC ice2.recentSongArtist @SongId = @{VARCHAR.id}"
+    , "query": "EXEC mmis.recentSongArtist @SongId = @{VARCHAR.id}"
     , "query_nosp": "SELECT * FROM ice2.MT_SONG_ARTIST WHERE SONG_ID = @{VARCHAR.id}"
   }
   , {
@@ -295,7 +295,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "mt_song_country"
     , "toTable" : "MT_SONG_COUNTRY"
-    , "query": "EXEC ice2.recentSongCountry @SongId = @{VARCHAR.id}"
+    , "query": "EXEC mmis.recentSongCountry @SongId = @{VARCHAR.id}"
     , "query_nosp": "SELECT * FROM ice2.MT_SONG_COUNTRY WHERE SONG_ID = @{VARCHAR.id}"
   }
   , {
@@ -307,7 +307,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "MT_SONG_KEYWORD"
     , "toTable" : "MT_SONG_KEYWORD"
-    , "query": "EXEC ice2.recentSongKeyword @SongId = @{VARCHAR.id}"
+    , "query": "EXEC mmis.recentSongKeyword @SongId = @{VARCHAR.id}"
     , "query_nosp": "SELECT * FROM ice2.MT_SONG_KEYWORD WHERE SONG_ID = @{VARCHAR.id}"
   }
   , {
@@ -319,7 +319,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "mt_song_keyword_meta"
     , "toTable" : "MT_SONG_KEYWORD_META"
-    , "query": "EXEC ice2.recentSongKeywordMeta @SongId = @{VARCHAR.id}"
+    , "query": "EXEC mmis.recentSongKeywordMeta @SongId = @{VARCHAR.id}"
     , "query_nosp": "SELECT * FROM ice2.MT_SONG_KEYWORD_META WHERE SONG_ID = @{VARCHAR.id}"
   }
   , {
@@ -331,7 +331,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "MT_SONG_LYRIC"
     , "toTable" : "MT_SONG_LYRIC"
-    , "query": "EXEC ice2.recentSongLyric @LastUpdated = @{TIMESTAMP.lastUpdated}"
+    , "query": "EXEC mmis.recentSongLyric @LastUpdated = @{TIMESTAMP.lastUpdated}"
     , "query_nosp": "SELECT * FROM ice2.MT_SONG_LYRIC WHERE CREATE_DT > @{TIMESTAMP.lastUpdated} OR UPDATE_DT > @{TIMESTAMP.lastUpdated}"
   }
   , {
@@ -343,7 +343,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "mt_song_meta"
     , "toTable" : "MT_SONG_META"
-    , "query": "EXEC ice2.recentSongMeta @SongId = @{VARCHAR.id}"
+    , "query": "EXEC mmis.recentSongMeta @SongId = @{VARCHAR.id}"
     , "query_nosp": "SELECT * FROM ice2.MT_SONG_META WHERE SONG_ID = @{VARCHAR.id}"
   }
   , {
@@ -355,7 +355,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "T_SM_S3_ChartTotalMst"
     , "toTable" : "T_SM_S3_ChartTotalMst"
-    , "query": "EXEC ice2.recentChartTotalMst @LastUpdated = @{TIMESTAMP.lastUpdated}"
+    , "query": "EXEC mmis.recentChartTotalMst @LastUpdated = @{TIMESTAMP.lastUpdated}"
     , "query_nosp": "SELECT * FROM ice2.T_SM_S3_ChartTotalMst WHERE RegDate > @{TIMESTAMP.lastUpdated} OR ModDate > @{TIMESTAMP.lastUpdated}"
   }
   , {
@@ -367,7 +367,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "T_SM_S3_ChartTotalLst"
     , "toTable" : "T_SM_S3_ChartTotalLst"
-    , "query": "EXEC ice2.recentAlbumChartTotalLst @LastUpdated = @{TIMESTAMP.lastUpdated}"
+    , "query": "EXEC mmis.recentAlbumChartTotalLst @LastUpdated = @{TIMESTAMP.lastUpdated}"
     , "query_nosp": "SELECT * FROM ice2.T_SM_S3_ChartTotalMst WHERE RegDate > @{TIMESTAMP.lastUpdated}"
   }
 ]

@@ -213,6 +213,12 @@ public class PipApiService {
                     String code2 = String.valueOf(mLangMap.get("lang_cd"));
                     String code3 = langStorage.getValue(code2);
 
+                    if("chn".equals(code3)) {
+                        code3 = "zho-cn";
+                    }else if("twn".equals(code3)) {
+                        code3 = "zho-tw";
+                    }
+
                     switch (nodeTypeId) {
                         case "program" :
                             if(mLangMap.containsKey("title")) {
