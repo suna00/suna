@@ -7,14 +7,19 @@ spring:
 
 server:
   port: 8080
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain,text/javascript,application/javascript,text/css
+
 
 jwtConfig:
   issuer: I-ON
   secretKey: dkdldhs!@#$
   tokenPrefix: SDP
   headString: X-Authorization
-  tokenExpirationTime: 15 #분
-  refreshTokenExpTime: 60 #분
+  tokenExpirationTime: 1800 #분
+  refreshTokenExpTime: 1800 #분
+
 
 cluster:
   mode: api
