@@ -23,6 +23,40 @@ public class ActionService extends Action {
 
     @Override
     public void execute(ExecuteContext executeContext) {
+        initService();
+        try {
+            method.invoke(service, executeContext) ;
+        } catch (InvocationTargetException e) {
+            e.getTargetException().printStackTrace();
+            if(e.getTargetException() instanceof IceRuntimeException){
+                throw (IceRuntimeException) e.getTargetException() ;
+            }
+        } catch (Exception e) {
+            if(e instanceof IceRuntimeException){
+                throw (IceRuntimeException) e ;
+            }
+            throw new IceRuntimeException("ACTION execute Exception : " + e.getMessage(), e) ;
+        }
+    }
+
+    public void execute() {
+        initService();
+        try {
+            method.invoke(service) ;
+        } catch (InvocationTargetException e) {
+            e.getTargetException().printStackTrace();
+            if(e.getTargetException() instanceof IceRuntimeException){
+                throw (IceRuntimeException) e.getTargetException() ;
+            }
+        } catch (Exception e) {
+            if(e instanceof IceRuntimeException){
+                throw (IceRuntimeException) e ;
+            }
+            throw new IceRuntimeException("ACTION execute Exception : " + e.getMessage(), e) ;
+        }
+    }
+
+    private void initService() {
         if(service == null){
             service = ApplicationContextManager.getBean(serviceName) ;
         }
@@ -37,19 +71,6 @@ public class ActionService extends Action {
         }
         if(method == null){
             throw new IceRuntimeException("Not Found ACTION Service : " + serviceName+ "." + methodName) ;
-        }
-        try {
-            method.invoke(service, executeContext) ;
-        } catch (InvocationTargetException e) {
-            e.getTargetException().printStackTrace();
-            if(e.getTargetException() instanceof IceRuntimeException){
-                throw (IceRuntimeException) e.getTargetException() ;
-            }
-        } catch (Exception e) {
-            if(e instanceof IceRuntimeException){
-                throw (IceRuntimeException) e ;
-            }
-            throw new IceRuntimeException("ACTION execute Exception : " + e.getMessage(), e) ;
         }
     }
 
