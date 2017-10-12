@@ -17,10 +17,13 @@ public class ScheduleNodeRunner implements Runnable{
 
     @Override
     public void run() {
-        Action action = Action.create(scheduleNode.getStringValue(Action.ACTION_TYPE), scheduleNode.getStringValue(Action.DATASOURCE), scheduleNode.getStringValue(Action.ACTION_BODY)) ;
-
         logger.info("schedule run : " + scheduleNode.getId());
-
-        action.execute();
+        try{
+            Action action = Action.create(scheduleNode.getStringValue(Action.ACTION_TYPE), scheduleNode.getStringValue(Action.DATASOURCE), scheduleNode.getStringValue(Action.ACTION_BODY)) ;
+            action.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+            // 아마도 여기서 쓰레드 죽여야 하지 않을까.
+        }
     }
 }
