@@ -127,8 +127,8 @@ public class DBSyncService {
                 // 키워드, 국가, 아티스트, 앨범
                 keywordSubQuery = "SELECT GROUP_CONCAT(KEYWORD) AS findKywrd FROM MT_SONG_KEYWORD WHERE SONG_ID = ?";
                 countrySubQuery = "SELECT GROUP_CONCAT(country_cd) AS showCntryCdList FROM MT_SONG_COUNTRY WHERE song_id = ?";
-                artistSubQuery = "SELECT GROUP_CONCAT(ARTIST_ID) AS refArtistIds FROM MT_SONG_ARTIST WHERE SONG_ID = ?";
-                albumSubQuery = "SELECT GROUP_CONCAT(ALBUM_ID) AS refAlbumIds FROM MT_ALBUM_SONGS WHERE SONG_ID = ?";
+                artistSubQuery = "SELECT GROUP_CONCAT(ARTIST_ID) AS relArtistIds FROM MT_SONG_ARTIST WHERE SONG_ID = ?";
+                albumSubQuery = "SELECT GROUP_CONCAT(ALBUM_ID) AS relAlbumIds FROM MT_ALBUM_SONGS WHERE SONG_ID = ?";
                 break;
         }
 
