@@ -327,8 +327,8 @@
       { "pageName": "목록", "pageUrl": "list" }
     ],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "ytn/AffComCreateForm" },
-      { "pageName": "수정", "pageUrl": "ytn/AffComUpdateForm" }
+      { "pageName": "등록", "pageUrl": "ytn/affiliate/AffComCreateForm" },
+      { "pageName": "수정", "pageUrl": "ytn/affiliate/AffComUpdateForm" }
     ]
   },
   {
@@ -365,8 +365,8 @@
       { "pageName": "목록", "pageUrl": "list" }
     ],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "ytn/AffUniCreateForm" },
-      { "pageName": "수정", "pageUrl": "ytn/AffUniUpdateForm" }
+      { "pageName": "등록", "pageUrl": "ytn/affiliate/AffUniCreateForm" },
+      { "pageName": "수정", "pageUrl": "ytn/affiliate/AffUniUpdateForm" }
     ]
   },
   {
