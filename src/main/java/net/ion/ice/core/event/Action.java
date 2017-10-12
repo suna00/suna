@@ -12,6 +12,8 @@ public abstract class Action {
 
     public abstract void execute(ExecuteContext executeContext);
 
+    public abstract void execute();
+
 
     public enum ActionType {service, update, select, call, function}
 

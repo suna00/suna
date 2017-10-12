@@ -7,6 +7,6 @@
     "config": "30000",
     "enable": true,
     "actionType": "service",
-    "actionBody": "test"
+    "actionBody": "testService.schedule"
   }
 ]
