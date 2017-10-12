@@ -94,7 +94,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "ytn/product/UpdateList" }
+      { "pageName": "목록", "pageUrl": "ytn/productUpdate/List" }
     ]
   },
   {
@@ -110,7 +110,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "ytn/product/DeleteList" }
+      { "pageName": "목록", "pageUrl": "ytn/productDelete/List" }
     ]
   },
   {
