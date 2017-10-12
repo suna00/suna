@@ -1771,6 +1771,52 @@
   {
     "typeId": "adminLnbMenu",
     "backOfficeId": "admin",
+    "gnbMenuId": "systemMng",
+    "parentMenuId": "root",
+    "menuId": "seoMng",
+    "menuName": "SEO 관리",
+    "order": "80",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "cj/seo/SeoList"
+      },
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "cj/seo/SeoUForm"
+      },
+      {
+        "pageName": "상세",
+        "pageUrl": "cj/seo/SeoView"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "systemMng",
+    "parentMenuId": "root",
+    "menuId": "advMng",
+    "menuName": "광고 관리",
+    "order": "90",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      {
+        "pageName": "등록/수정",
+        "pageUrl": "cj/adv/advForm"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
     "gnbMenuId": "mobileMng",
     "parentMenuId": "root",
     "menuId": "pushMng",
