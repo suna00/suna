@@ -24,7 +24,7 @@
     "name": "MNET Partial Batch",
     "type": "delay",
     "config": "3000",
-    "enable": true,
+    "enable": false,
     "actionType": "service",
     "actionBody": "scheduledMnetService.executeAuto"
   }
