@@ -1,12 +1,15 @@
 package net.ion.ice.core.context;
 
+import net.ion.ice.core.infinispan.InfinispanCacheManager;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.query.FacetTerm;
+import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.ResultField;
 import org.apache.commons.lang3.StringUtils;
+import org.infinispan.Cache;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -262,5 +265,15 @@ public class ContextUtils {
         return value;
     }
 
+
+    public static QueryResult makeCacheResult(String cacheKey, CacheableContext cacheableContext) {
+        Cache<String, QueryResult> cache = InfinispanCacheManager.getLocalCache(cacheableContext.getCacheTime()) ;
+        QueryResult queryResult = cache.get(cacheKey) ;
+        if(queryResult == null){
+            queryResult =  cacheableContext.makeCacheResult();
+            cache.put(cacheKey, queryResult) ;
+        }
+        return queryResult ;
+    }
 
 }

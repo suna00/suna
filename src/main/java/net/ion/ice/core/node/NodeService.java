@@ -29,6 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -62,6 +63,7 @@ public class NodeService {
     private Map<String, NodeType> nodeTypeCache ;
     private Map<String, NodeType> initNodeType  ;
     private Map<String, Node> datasource  ;
+    private Map<String, Node> scheduler;
 
 
     @PostConstruct
@@ -203,14 +205,26 @@ public class NodeService {
         initSaveNodeType("classpath:schema/core/datasource/nodeType.json");
         initPropertyType("classpath:schema/core/datasource/propertyType.json");
 
+        initSaveNodeType("classpath:schema/core/schedule/nodeType.json");
+        initPropertyType("classpath:schema/core/schedule/propertyType.json");
+
         datasource = new ConcurrentHashMap<>() ;
+        scheduler = new HashMap<>();
 
         initDatasource("classpath:schema/core/datasource/dataSource.json");
+        initScheduler("classpath:schema/core/schedule/scheduleTask.json");
 
         try {
             initDatasource("classpath:schema/core/datasource/" + environment.getActiveProfiles()[0] + "/dataSource.json");
         }catch(Exception e){
+            logger.error("Failed to load DataSource for current profile");
+        }
 
+        try {
+            initScheduler("classpath:schema/core/schedule/" + environment.getActiveProfiles()[0] + "/scheduleTask.json");
+            logger.info("Success to load ScheduleTask for current profile");
+        }catch(Exception e){
+            logger.error("Failed to load ScheduleTask for current profile");
         }
 
 
@@ -222,6 +236,15 @@ public class NodeService {
         List<Node> dsList = NodeUtils.makeNodeList(dsDataList, "datasource") ;
         for(Node ds : dsList){
             datasource.put(ds.getId(), ds) ;
+        }
+    }
+
+    private void initScheduler(String file) throws IOException {
+        Collection<Map<String, Object>> scheduleDataList = JsonUtils.parsingJsonResourceToList(applicationContextManager.getResource(file)) ;
+
+        List<Node> scheduleList = NodeUtils.makeNodeList(scheduleDataList, "scheduleTask") ;
+        for(Node schedule : scheduleList){
+            scheduler.put(schedule.getId(), schedule) ;
         }
     }
 
@@ -249,6 +272,10 @@ public class NodeService {
         saveSchema("classpath:schema/core/*/*.json");
         try {
             saveSchema("classpath:schema/core/datasource/" + environment.getActiveProfiles()[0] + "/dataSource.json");
+        }catch (Exception e){}
+
+        try {
+            saveSchema("classpath:schema/core/schedule/" + environment.getActiveProfiles()[0] + "/scheduleTask.json");
         }catch (Exception e){}
 
 //        saveSchema("classpath:schema/node/*.json", lastChanged);

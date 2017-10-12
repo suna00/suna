@@ -1,0 +1,81 @@
+[
+  {
+    "typeId" : "propertyType",
+    "id" :"scheduleTask>id",
+    "tid" : "scheduleTask",
+    "pid" : "id",
+    "propertyTypeName" : "ID",
+    "valueType" : "STRING",
+    "idable" : true,
+    "indexable" : true,
+    "labelable" : false,
+    "required" : true,
+    "length": 100
+  },
+  {
+    "typeId" : "propertyType",
+    "id" :"scheduleTask>name",
+    "tid" : "scheduleTask",
+    "pid" : "name",
+    "propertyTypeName" : "Name",
+    "valueType" : "STRING",
+    "idable" : false,
+    "indexable" : true,
+    "labelable" : true,
+    "required" : true,
+    "length": 100
+  },
+  {
+    "typeId" : "propertyType",
+    "id" :"scheduleTask>type",
+    "tid" : "scheduleTask",
+    "pid" : "type",
+    "propertyTypeName" : "Type",
+    "valueType" : "CODE",
+    "idable" : false,
+    "indexable" : true,
+    "labelable" : false,
+    "required" : true,
+    "code" : [{"value" : "cron", "label" : "cron"}, {"value" : "delay", "label" : "delay"}]
+  },
+  {
+    "typeId" : "propertyType",
+    "id" :"scheduleTask>config",
+    "tid" : "scheduleTask",
+    "pid" : "config",
+    "propertyTypeName" : "CONFIG",
+    "valueType" : "STRING",
+    "idable" : false,
+    "indexable" : false,
+    "labelable" : false,
+    "required" : true,
+    "length": 100
+  },
+  {
+    "typeId" : "propertyType",
+    "id" :"scheduleTask>actionType",
+    "tid" : "scheduleTask",
+    "pid" : "actionType",
+    "propertyTypeName" : "Action Type",
+    "valueType" : "STRING",
+    "idable" : false,
+    "indexable" : false,
+    "labelable" : false,
+    "required" : true,
+    "length": 100
+
+  },
+  {
+    "typeId" : "propertyType",
+    "id" :"scheduleTask>actionBody",
+    "tid" : "scheduleTask",
+    "pid" : "actionBody",
+    "propertyTypeName" : "Action Body",
+    "valueType" : "STRING",
+    "idable" : false,
+    "indexable" : false,
+    "labelable" : false,
+    "required" : true,
+    "length": 100
+  }
+]

@@ -7,7 +7,8 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.*;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -26,17 +27,14 @@ public class S3Service {
 
     private Logger logger = Logger.getLogger(S3Service.class);
 
-    @Value("${aws.s3.bucketName}")
+    @Autowired
+    Environment env;
+
     private String bucketName;
-
-    @Value("${aws.s3.bucketKey}")
     private String bucketKey;
-
-    @Value("${aws.s3.accessKey}")
     private String accessKey;
-
-    @Value("${aws.s3.secretKey}")
     private String secretKey;
+
 
     private AWSCredentials awsCredentials;
     private AmazonS3 s3Client;
@@ -46,10 +44,15 @@ public class S3Service {
         try {
             //Issue Credential
             //awsCredentials = new ProfileCredentialsProvider().getCredentials();
+            bucketName = env.getProperty("aws.s3.bucketName");
+            bucketKey = env.getProperty("aws.s3.bucketKey");
+            accessKey = env.getProperty("aws.s3.accessKey");
+            secretKey = env.getProperty("aws.s3.secretKey");
+
             awsCredentials = new BasicAWSCredentials(accessKey, secretKey);
             initializeS3Client();
         } catch (Exception e) {
-            logger.error("Failed to initialize S3 storage", e);
+            logger.error("Failed to initialize S3 storage :: " + e.getClass().getName());
         }
     }
 
