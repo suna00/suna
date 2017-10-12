@@ -52,9 +52,9 @@ public class ApiExecuteContext extends ExecuteContext{
     }
 
 
-    public static ApiExecuteContext makeContextFromConfig(Map<String, Object> config, Map<String, Object> data, NativeWebRequest httpRequest, HttpServletResponse httpResponse) {
+    public static ApiExecuteContext makeContextFromConfig(Map<String, Object> config, Map<String, Object> data, HttpServletRequest httpRequest, HttpServletResponse httpResponse) {
         ApiExecuteContext ctx = new ApiExecuteContext();
-        ctx.httpRequest = httpRequest.getNativeRequest(HttpServletRequest.class);
+        ctx.httpRequest = httpRequest;
         ctx.httpResponse = httpResponse ;
 
 
