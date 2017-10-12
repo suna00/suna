@@ -1519,24 +1519,23 @@
     "icon": "fa-tag",
     "active": "true",
     "index": "false",
-    "pages": [
+    "pages": [],
+    "customPages": [
       {
         "pageName": "목록",
-        "pageUrl": "list"
+        "pageUrl": "cj/code/CodeList"
       },
       {
         "pageName": "등록",
-        "pageUrl": "form"
+        "pageUrl": "cj/code/CodeForm"
       },
       {
         "pageName": "수정",
-        "pageUrl": "uform"
-      }
-    ],
-    "customPages": [
+        "pageUrl": "cj/code/CodeUForm"
+      },
       {
         "pageName": "상세",
-        "pageUrl": "cj/CodeView"
+        "pageUrl": "cj/code/CodeView"
       }
     ]
   },
@@ -1565,25 +1564,21 @@
     "icon": "",
     "active": "true",
     "index": "false",
-    "pages": [
+    "pages": [],
+    "customPages": [
       {
         "pageName": "목록",
-        "pageUrl": "list"
+        "pageUrl": "cj/rgn/CntryList"
       },
       {
-        "pageName": "등록",
-        "pageUrl": "form"
-      },
-      {
-        "pageName": "수정",
-        "pageUrl": "uform"
+        "pageName": "등록/수정",
+        "pageUrl": "cj/rgn/CntryForm"
       },
       {
         "pageName": "상세",
-        "pageUrl": "view"
+        "pageUrl": "cj/rgn/CntryView"
       }
-    ],
-    "customPages": []
+    ]
   },
   {
     "typeId": "adminLnbMenu",
@@ -1596,25 +1591,21 @@
     "icon": "",
     "active": "true",
     "index": "false",
-    "pages": [
+    "pages": [],
+    "customPages": [
       {
         "pageName": "목록",
-        "pageUrl": "list"
+        "pageUrl": "cj/rgn/LangList"
       },
       {
-        "pageName": "등록",
-        "pageUrl": "form"
-      },
-      {
-        "pageName": "수정",
-        "pageUrl": "uform"
+        "pageName": "등록/수정",
+        "pageUrl": "cj/rgn/LangForm"
       },
       {
         "pageName": "상세",
-        "pageUrl": "view"
+        "pageUrl": "cj/rgn/LangView"
       }
-    ],
-    "customPages": []
+    ]
   },
   {
     "typeId": "adminLnbMenu",
