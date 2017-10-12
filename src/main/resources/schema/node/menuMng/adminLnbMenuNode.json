@@ -1809,16 +1809,8 @@
     "pages": [],
     "customPages": [
       {
-        "pageName": "목록",
-        "pageUrl": "cj/adv/advList"
-      },
-      {
         "pageName": "등록/수정",
-        "pageUrl": "cj/adv/advUForm"
-      },
-      {
-        "pageName": "상세",
-        "pageUrl": "cj/adv/advView"
+        "pageUrl": "cj/adv/advForm"
       }
     ]
   },
