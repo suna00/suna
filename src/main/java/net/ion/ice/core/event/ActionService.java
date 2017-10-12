@@ -23,21 +23,7 @@ public class ActionService extends Action {
 
     @Override
     public void execute(ExecuteContext executeContext) {
-        if(service == null){
-            service = ApplicationContextManager.getBean(serviceName) ;
-        }
-
-        if(method == null){
-            for (Method _method : service.getClass().getMethods()) {
-                if (methodName.equals(_method.getName()) && _method.getParameterTypes().length == 1 && Context.class.isAssignableFrom(_method.getParameterTypes()[0])) {
-                    this.method = _method ;
-                    break;
-                }
-            }
-        }
-        if(method == null){
-            throw new IceRuntimeException("Not Found ACTION Service : " + serviceName+ "." + methodName) ;
-        }
+        initService();
         try {
             method.invoke(service, executeContext) ;
         } catch (InvocationTargetException e) {
@@ -50,6 +36,49 @@ public class ActionService extends Action {
                 throw (IceRuntimeException) e ;
             }
             throw new IceRuntimeException("ACTION execute Exception : " + e.getMessage(), e) ;
+        }
+    }
+
+    @Override
+    public void execute() {
+        initService();
+        try {
+            method.invoke(service) ;
+        } catch (InvocationTargetException e) {
+            e.getTargetException().printStackTrace();
+            if(e.getTargetException() instanceof IceRuntimeException){
+                throw (IceRuntimeException) e.getTargetException() ;
+            }
+        } catch (Exception e) {
+            if(e instanceof IceRuntimeException){
+                throw (IceRuntimeException) e ;
+            }
+            throw new IceRuntimeException("ACTION execute Exception : " + e.getMessage(), e) ;
+        }
+    }
+
+    private void initService() {
+        if(service == null){
+            service = ApplicationContextManager.getBean(serviceName) ;
+        }
+
+        if(method == null){
+            for (Method _method : service.getClass().getMethods()) {
+                if (methodName.equals(_method.getName())) {
+                    if(_method.getParameterTypes().length == 1 && Context.class.isAssignableFrom(_method.getParameterTypes()[0])){
+                        //기존
+                        this.method = _method;
+                        break;
+                    } else {
+                        //스케쥴러용 추가분
+                        this.method = _method;
+                        break;
+                    }
+                }
+            }
+        }
+        if(method == null){
+            throw new IceRuntimeException("Not Found ACTION Service : " + serviceName + "." + methodName) ;
         }
     }
 

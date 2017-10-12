@@ -5,6 +5,8 @@ import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,7 @@ import java.util.Map;
 
 @Service("testService")
 public class TestService {
+    private static Logger logger = LoggerFactory.getLogger(TestService.class);
 
     @Autowired
     private NodeService nodeService ;
@@ -44,5 +47,9 @@ public class TestService {
         ExecuteContext updateContext = ExecuteContext.makeContextFromMap(updateData, "testCategory", EventService.UPDATE) ;
         updateContext.execute();
 //        context.setResult(updateContext.getNode()) ;
+    }
+
+    public void schedule(){
+        logger.info("test service schedule run : ");
     }
 }
