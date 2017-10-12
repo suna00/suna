@@ -87,5 +87,23 @@
         }
       }
     }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "coupon",
+    "apiId": "applicableCoupon",
+    "apiName": "임시주문서 저장",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "coupon",
+      "noneExecute": true,
+      "event": "applicableCoupon",
+      "data": {
+        "typeId": "{{:typeId}}",
+        "id": "{{:id}}"
+      }
+    }
   }
 ]
