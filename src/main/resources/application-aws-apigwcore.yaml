@@ -70,3 +70,8 @@ aws:
 
 temp-file:
   dir: /data/ion/api/resource/ice2/cache
+
+mobile:
+  push:
+    fcmApiKey: AAAA-z1uhx4:APA91bHlHSqGakLe7RKY1fuvTpUyx1hZKX5BG7ydfK96Kfy9bCX0upciPQ6UlpOXECEcc4tsYFiiEUy6aHSWWMZwwN-V6rtu-aeOAGg0_r6GAFaVkJF3jEOxiO4kblsi4tNDOAApMZx2
+    fcmApiUrl: https://fcm.googleapis.com/fcm/send

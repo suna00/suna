@@ -453,5 +453,40 @@
     "commonResponse": {
       "sysDt": "{{:convertString(sysdate)}}"
     }
+  },
+  {
+    "typeId": "apiCategory",
+    "id": "push",
+    "categoryName": "PUSH MESSAGE API",
+    "dateFormat": "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat": {
+      "default": "{{:getEnvValue(image.prefixUrl,url)}}",
+      "s3":""
+    },
+    "commonParameters": [
+      {
+        "paramName": "apiKey",
+        "required": false
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "commonResponse": {
+      "sysDt": "{{:convertString(sysdate)}}"
+    }
   }
 ]

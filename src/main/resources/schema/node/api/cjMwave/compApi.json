@@ -159,7 +159,12 @@
                   {
                     "field": "langCd",
                     "method": "matching",
-                    "value": "{{:langCd}}"
+                    "value": "{{:conditionDefault(langCd,eng,eng,zho-cn,zho-tw)}}"
+                  },
+                  {
+                    "field": "apvSttusCd",
+                    "method": "matching",
+                    "value": "2"
                   },
                   {
                     "field": "newsNm",
@@ -175,6 +180,9 @@
                     "field": "findKywrd",
                     "method": "matchingShould",
                     "value": "{{:default(newsHubKywrd,뺿뺿)}}"
+                  },
+                  {
+                    "sorting": "created desc"
                   }
                 ],
                 "response": {
@@ -306,7 +314,12 @@
                   {
                     "field": "langCd",
                     "method": "matching",
-                    "value": "{{:langCd}}"
+                    "value": "{{:conditionDefault(langCd,eng,eng,zho-cn,zho-tw)}}"
+                  },
+                  {
+                    "field": "apvSttusCd",
+                    "method": "matching",
+                    "value": "2"
                   },
                   {
                     "field": "newsNm",
@@ -322,6 +335,9 @@
                     "field": "findKywrd",
                     "method": "matchingShould",
                     "value": "{{:default(newsHubKywrd,뺿뺿)}}"
+                  },
+                  {
+                    "sorting": "created desc"
                   }
                 ],
                 "response": {

@@ -14,5 +14,21 @@
     "actionType": "service",
     "actionBody": "FCMPushService.sendPushMsg",
     "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "pushMSgSendInfo",
+    "event": "view",
+    "noneExecute": true,
+    "eventName": "push message view Event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "pushMSgSendInfo>view",
+    "action": "hitNumUpdateEvent",
+    "actionName": "조회수 증가 이벤트",
+    "actionType": "service",
+    "actionBody": "contsRetvService.hitNumUpdate",
+    "order": 1
   }
 ]

@@ -1,0 +1,34 @@
+[
+  {
+    "typeId": "apiConfig",
+    "category": "push",
+    "apiId": "IfPush002",
+    "apiName": "PushMsg 조회수 Up",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "msgSeq",
+        "required": true
+      },
+      {
+        "paramName": "snsKey",
+        "required": false
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": false
+      }
+    ],
+    "config": {
+      "typeId": "pushMsgSendInfo",
+      "event": "view",
+      "data": {
+        "faqSeq": "{{:msgSeq}}"
+      },
+      "response": {
+        "msgSeq": "",
+        "hitNum": ""
+      }
+    }
+  }
+]
