@@ -43,13 +43,11 @@ public class VoteStatisticsService {
         Date now = new Date();
         String voteDate = DateFormatUtils.format(now, "yyyyMMddHHmmss");
 
-        //}&pstngStDt_above={{:concatStr(voteYear,0101)}}&pstngStDt_below={{:concatStr(voteYear,1231)}}
         List<Node> voteBasInfoList = NodeUtils.getNodeList(VOTE_BAS_INFO, "pstngStDt_below=" + voteDate + "&pstngFnsDt_above="+ voteDate);
-        List<Node> voteBasInfoList2 = new ArrayList<>();    // TODO - For Test
-        voteBasInfoList2.add( NodeUtils.getNode(VOTE_BAS_INFO, "800033"));
+//        List<Node> voteBasInfoList2 = new ArrayList<>();    // TODO - For Test
+//        voteBasInfoList2.add( NodeUtils.getNode(VOTE_BAS_INFO, "800033"));
 
-        voteBasInfoList = new ArrayList<>();
-        for (Node voteBasInfo : voteBasInfoList2) {
+        for (Node voteBasInfo : voteBasInfoList) {
 
             // 각 voteItem에 해당하는 투표수
             List<Map<String, Object>> voteNumInfoList = getVoteNumByVoteItemList(voteBasInfo.getId());
@@ -69,7 +67,7 @@ public class VoteStatisticsService {
                     voteItemStatsMap.put("created", now);
                     //voteItemStats = nodeService.createNode(voteItemStatsMap, VOTE_ITEM_STATS);
 
-                    // insert
+                    // 생성된 항목 voteItemStatus 생성
                     insertVoteItemStats(voteItemStatsMap);
                     voteItemStats = selectVoteItemStats(voteItemStatsMap.get("voteSeq").toString(),
                                                     Integer.parseInt(voteItemStatsMap.get("rankNum").toString()));
@@ -87,7 +85,7 @@ public class VoteStatisticsService {
                 voteItemStats.put("created", now);
 
                 //totalVoteNum += Integer.parseInt(voteNumInfo.get("voteNum").toString());
-                // TODO - 3. 생성된 항목 voteItemStatus에 등록 또는 업데이트
+                // 생성된 항목 voteItemStatus에 업데이트
                 updateVoteItemStats(voteItemStats);
             }
         }
