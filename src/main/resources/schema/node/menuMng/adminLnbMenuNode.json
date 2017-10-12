@@ -123,6 +123,98 @@
     "backOfficeId": "adm",
     "gnbMenuId": "displayMng",
     "parentMenuId": "root",
+    "menuId": "bestSale",
+    "menuName": "BEST50(판매 BEST)",
+    "order": "50",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": []
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "displayMng",
+    "parentMenuId": "bestSale",
+    "menuId": "university",
+    "menuName": "대학몰",
+    "order": "10",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "ytn/displayBestSale/UniversityForm" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "displayMng",
+    "parentMenuId": "bestSale",
+    "menuId": "company",
+    "menuName": "기업몰",
+    "order": "20",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "ytn/displayBestSale/CompanyForm" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "displayMng",
+    "parentMenuId": "root",
+    "menuId": "bestMd",
+    "menuName": "BEST50(MD BEST)",
+    "order": "60",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": []
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "displayMng",
+    "parentMenuId": "bestMd",
+    "menuId": "university",
+    "menuName": "대학몰",
+    "order": "10",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "ytn/displayBestMd/UniversityForm" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "displayMng",
+    "parentMenuId": "bestMd",
+    "menuId": "company",
+    "menuName": "기업몰",
+    "order": "20",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "ytn/displayBestSale/CompanyForm" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "displayMng",
+    "parentMenuId": "root",
     "menuId": "menu",
     "menuName": "카테고리 관리",
     "order": "70",
