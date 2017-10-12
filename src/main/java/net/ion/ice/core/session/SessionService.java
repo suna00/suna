@@ -9,7 +9,9 @@ import net.ion.ice.core.query.QueryUtils;
 import net.ion.ice.security.auth.jwt.extractor.TokenExtractor;
 import net.ion.ice.security.common.CookieUtil;
 import net.ion.ice.security.config.JwtConfig;
-import net.ion.ice.security.token.*;
+import net.ion.ice.security.token.JwtTokenFactory;
+import net.ion.ice.security.token.RawAccessJwtToken;
+import net.ion.ice.security.token.RefreshToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.stagemonitor.util.StringUtils;
@@ -48,15 +50,34 @@ public class SessionService {
 
         if (getSession(request) == null) {
             String sessionKey = tokenFactory.createInitJwtToken().getToken();
-            String refreshSessionKey = tokenFactory.createRefreshToken().getToken();
+            String refreshSessionKey = null ;
 
-            if(sessionData == null) {
+            if (sessionData == null) {
+                refreshSessionKey = tokenFactory.createRefreshToken(false).getToken();
                 sessionData = new HashMap<>();
+            }else{
+                refreshSessionKey = tokenFactory.createRefreshToken(true).getToken();
             }
             sessionMap.put(sessionKey, sessionData);
             CookieUtil.create(response, "iceJWT", jwtConfig.getTokenPrefix().concat(" ").concat(sessionKey), false, false, -1, request.getServerName());
             CookieUtil.create(response, "iceRefreshJWT", jwtConfig.getTokenPrefix().concat(" ").concat(refreshSessionKey), true, false, -1, request.getServerName());
+        }else{
+            Map<String, Object> session = getSession(request);
+            if(sessionData != null){
+                session.putAll(sessionData);
+            }
         }
+    }
+
+    public String createTempSession(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+        String sessionKey = tokenFactory.createInitJwtToken().getToken();
+        String refreshSessionKey = null ;
+
+        refreshSessionKey = tokenFactory.createRefreshToken(false).getToken();
+        String token = jwtConfig.getTokenPrefix().concat(" ").concat(sessionKey) ;
+        CookieUtil.create(response, "iceJWT", token, false, false, -1, request.getServerName());
+        CookieUtil.create(response, "iceRefreshJWT", jwtConfig.getTokenPrefix().concat(" ").concat(refreshSessionKey), true, false, -1, request.getServerName());
+        return token ;
     }
 
     public void removeSession(HttpServletRequest request) throws UnsupportedEncodingException {
@@ -126,7 +147,6 @@ public class SessionService {
         if(!member.getStringValue("password").equals(password)){
 
         }
-
 
         try {
             putSession(request, response, member);
