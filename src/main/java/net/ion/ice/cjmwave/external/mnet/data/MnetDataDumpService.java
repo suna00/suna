@@ -89,7 +89,9 @@ public class MnetDataDumpService {
         }
 
         if(qResult == null || qResult.isEmpty()) {
-            return new Date();
+            Calendar cal = Calendar.getInstance();
+            cal.set(Calendar.MONTH, cal.get(Calendar.MONTH) - 1);
+            return cal.getTime();
         } else {
             Date lastDate = (Date) qResult.get("jobStarted");
             return lastDate;
@@ -275,10 +277,10 @@ public class MnetDataDumpService {
         logger.info("parameters :: target :: " + target + " :: provided :: " + provided);
         // 리포트 정보 초기화
         migrationReports = new HashMap<>();
-
+        target = target.trim().toLowerCase();
         try{
             switch (target) {
-                case  "ALL" :
+                case  "all" :
                     List<Node> repNodeList = nodeService.getNodeList(REP_TID, "");
                     for(Node repNode : repNodeList) {
                         if((boolean)repNode.get("standAlone")) {
