@@ -34,7 +34,7 @@ public class Properties<K,V> extends LinkedHashMap<K, V> implements Map<K,V>, Se
                 value = pt.getDefaultValue() ;
             }
             if(value != null && !(value instanceof List)){
-                if(pt.isFile() && value instanceof String && (((String) value).startsWith("classpath:") || ((String) value).startsWith("http://") || ((String) value).startsWith("/"))) {
+                if(pt.isFile() && value instanceof String && (((String) value).startsWith("classpath:") || ((String) value).startsWith("http://") || ((String) value).startsWith("https://") || ((String) value).startsWith("/"))) {
                     FileValue fileValue = null;
                     try{
                         fileValue = NodeUtils.getFileService().saveResourceFile(pt, id, (String) value);
@@ -67,7 +67,7 @@ public class Properties<K,V> extends LinkedHashMap<K, V> implements Map<K,V>, Se
                 String i18nPrefix = pt.getPid() + "_" ;
                 for(String fieldName : m.keySet()){
                     if(fieldName.startsWith(i18nPrefix)) {
-                        if (pt.isFile() && m.get(fieldName) instanceof String && (((String) m.get(fieldName)).startsWith("classpath:") || ((String) m.get(fieldName)).startsWith("http://") || ((String) m.get(fieldName)).startsWith("/"))) {
+                        if (pt.isFile() && m.get(fieldName) instanceof String && (((String) m.get(fieldName)).startsWith("classpath:") || ((String) m.get(fieldName)).startsWith("http://") || ((String) m.get(fieldName)).startsWith("https://") || ((String) m.get(fieldName)).startsWith("/"))) {
                             FileValue fileValue = null;
                             try{
                                 fileValue = NodeUtils.getFileService().saveResourceFile(pt, id, (String) m.get(fieldName));
