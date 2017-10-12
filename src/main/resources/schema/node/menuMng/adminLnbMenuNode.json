@@ -1810,7 +1810,7 @@
     "customPages": [
       {
         "pageName": "등록/수정",
-        "pageUrl": "cj/adv/advForm"
+        "pageUrl": "cj/adv/AdvForm"
       }
     ]
   },
