@@ -69,6 +69,17 @@ public class SessionService {
         }
     }
 
+    public String createTempSession(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+        String sessionKey = tokenFactory.createInitJwtToken().getToken();
+        String refreshSessionKey = null ;
+
+        refreshSessionKey = tokenFactory.createRefreshToken(false).getToken();
+        String token = jwtConfig.getTokenPrefix().concat(" ").concat(sessionKey) ;
+        CookieUtil.create(response, "iceJWT", token, false, false, -1, request.getServerName());
+        CookieUtil.create(response, "iceRefreshJWT", jwtConfig.getTokenPrefix().concat(" ").concat(refreshSessionKey), true, false, -1, request.getServerName());
+        return token ;
+    }
+
     public void removeSession(HttpServletRequest request) throws UnsupportedEncodingException {
         Map<String, Object> sessionMap = clusterConfiguration.getSesssionMap().get(getSessionKey(request));
         sessionMap.put(getSessionKey(request), null);

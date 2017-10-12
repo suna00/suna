@@ -4,7 +4,7 @@
     "id" : "specialExhibitionApi",
     "categoryName" : "이벤트 API",
     "fileUrlFormat" : {
-      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
+      "default": "/"
     }
   },
   {
@@ -21,7 +21,7 @@
         {"field" : "startDate", "method" : "below", "value" : "{{:toDay}}" },
         {"field" : "endDate", "method" : "above", "value" : "{{:toDay}}" },
         {"field" : "categoryId", "method" : "matching", "value" : "{{:categoryId}}" },
-        {"field" : "siteType", "method" : "matching", "value" : "{{:siteType}}" },
+        {"field" : "siteType", "method" : "matching", "value" : "all,{{:siteType}}" },
         {"field" : "specialExhibitionStatus", "method" : "matching", "value" : "use" },
         {"field" : "name", "method" : "matching", "value" : "{{:searchValue}}" },
         {"includeReferenced" : false}
@@ -50,7 +50,7 @@
     "id" : "newProduct",
     "categoryName" : "신상품 API",
     "fileUrlFormat" : {
-      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
+      "default": "/"
     }
   },
   {

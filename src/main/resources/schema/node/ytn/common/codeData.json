@@ -6389,5 +6389,32 @@
     "description": "",
     "sortOrder": "4",
     "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "displayTargetSelectType",
+    "upperCode": "root",
+    "name": "대상선택",
+    "description": "",
+    "sortOrder": "118",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "all",
+    "upperCode": "displayTargetSelectType",
+    "name": "전체",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "select",
+    "upperCode": "displayTargetSelectType",
+    "name": "지정",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
   }
 ]

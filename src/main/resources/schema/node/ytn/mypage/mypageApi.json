@@ -4,7 +4,7 @@
     "id": "mypage",
     "categoryName": "마이페이지",
     "fileUrlFormat" : {
-      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
+      "default": "/"
     }
   },
   {
@@ -57,7 +57,7 @@
       "typeId": "writableReview",
       "query" : [
         {"field" : "memberNo", "method" : "matching", "value" : "{{:memberNo}}" },
-        {"includeReferenced" : false, "referenceView" : "productId, baseOptionItemId"},
+        {"includeReferenced" : true, "referenceView" : "productId, baseOptionItemId"},
         {"sorting" : "orderCreated desc", "pageSize": "{{:pageSize}}", "page": "{{:page}}"}
       ]
     }
@@ -74,7 +74,7 @@
       "typeId": "review",
       "query" : [
         {"field" : "memberNo", "method" : "matching", "value" : "{{:memberNo}}" },
-        {"includeReferenced" : false, "referenceView" : "orderProductId,productId"},
+        {"includeReferenced" : true, "referenceView" : "orderProductId,productId"},
         {"sorting" : "orderSheetId desc", "pageSize": "{{:pageSize}}", "page": "{{:page}}"}
       ]
     }

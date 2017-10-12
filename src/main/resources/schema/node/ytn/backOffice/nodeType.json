@@ -231,5 +231,14 @@
     "tableName": "ytnDevDb#emailCertification",
     "repositoryType": "data",
     "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "productViewHistory",
+    "typeName": "상품 조회 이력",
+    "tableName": "ytnDevDb#productViewHistory",
+    "repositoryType": "data",
+    "eviction": 0
   }
 ]
