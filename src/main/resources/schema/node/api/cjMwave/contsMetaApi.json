@@ -453,7 +453,7 @@
               {
                 "field": "langCd",
                 "method": "matching",
-                "value": "{{:langCd}}"
+                "value": "{{:conditionDefault(langCd,eng,eng,zho-cn,zho-tw}}"
               },
               {
                 "sorting": "created desc",
@@ -620,7 +620,7 @@
           {
             "field": "langCd",
             "method": "matching",
-            "value": "{{:langCd}}"
+            "value": "{{:conditionDefault(langCd,eng,eng,zho-cn,zho-tw)}}"
           },
           {
             "sorting": "{{:sorting}}"
@@ -737,7 +737,7 @@
               {
                 "field": "langCd",
                 "method": "matching",
-                "value": "{{:langCd}}"
+                "value": "{{:conditionDefault(langCd,eng,eng,zho-cn,zho-tw)}}"
               },
               {
                 "sorting": "{{:sorting}}",
@@ -765,7 +765,7 @@
               {
                 "field": "langCd",
                 "method": "matching",
-                "value": "{{:langCd}}"
+                "value": "{{:conditionDefault(langCd,eng,eng,zho-cn,zho-tw)}}"
               },
               {
                 "sorting": "newsId asc",
@@ -793,7 +793,7 @@
               {
                 "field": "langCd",
                 "method": "matching",
-                "value": "{{:langCd}}"
+                "value": "{{:conditionDefault(langCd,eng,eng,zho-cn,zho-tw)}}"
               },
               {
                 "sorting": "created desc",
@@ -817,7 +817,7 @@
               {
                 "field": "langCd",
                 "method": "matching",
-                "value": "{{:langCd}}"
+                "value": "{{:conditionDefault(langCd,eng,eng,zho-cn,zho-tw)}}"
               },
               {
                 "sorting": "created desc",
@@ -1072,7 +1072,7 @@
               {
                 "field": "langCd",
                 "method": "matching",
-                "value": "{{:langCd}}"
+                "value": "{{:conditionDefault(langCd,eng,eng,zho-cn,zho-tw)}}"
               },
               {
                 "sorting": "created desc",
@@ -1315,7 +1315,8 @@
             "resultType": "value",
             "sql": "select if(count(*)>0,'Y','N') myLikeYn from contsLikeInfo where contsMetaDivCd = '7' and contsMetaId = concat('singlePhoto','::',@{singlePhotoId}) and mbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
           }
-        },"refSinglePhotoList": {
+        },
+        "refSinglePhotoList": {
           "typeId": "singlePhoto",
           "query": [
             {
@@ -1345,7 +1346,7 @@
             {
               "field": "langCd",
               "method": "matching",
-              "value": "{{:langCd}}"
+              "value": "{{:conditionDefault(langCd,eng,eng,zho-cn,zho-tw)}}"
             },
             {
               "sorting": "created desc",
@@ -1613,7 +1614,7 @@
               {
                 "field": "langCd",
                 "method": "matching",
-                "value": "{{:langCd}}"
+                "value": "{{:conditionDefault(langCd,eng,eng,zho-cn,zho-tw)}}"
               },
               {
                 "sorting": "created desc",

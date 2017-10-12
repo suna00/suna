@@ -1,0 +1,18 @@
+[
+  {
+    "typeId": "eventListener",
+    "tid": "mbrAppIdInfo",
+    "event": "nonMbrInfo>create",
+    "listenerName": "비회원정보 생성시 앱정보도 생성",
+    "actionType": "service",
+    "actionBody": "mbrAppIdInfoService.appIdSave"
+  },
+  {
+    "typeId": "eventListener",
+    "tid": "mbrAppIdInfo",
+    "event": "nonMbrInfo>update",
+    "listenerName": "비회원정보 생성시 앱정보도 생성",
+    "actionType": "service",
+    "actionBody": "mbrAppIdInfoService.appIdSave"
+  }
+]

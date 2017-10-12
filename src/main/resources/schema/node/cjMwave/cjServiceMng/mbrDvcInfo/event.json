@@ -1,0 +1,18 @@
+[
+  {
+    "typeId": "eventListener",
+    "tid": "mbrAppIdInfo",
+    "event": "mbrDvcInfo>create",
+    "listenerName": "디바이스정보 생성시 앱정보도 생성",
+    "actionType": "service",
+    "actionBody": "mbrAppIdInfoService.mbrAppIdSave"
+  },
+  {
+    "typeId": "eventListener",
+    "tid": "mbrAppIdInfo",
+    "event": "mbrDvcInfo>update",
+    "listenerName": "디바이스정보 생성시 앱정보도 생성",
+    "actionType": "service",
+    "actionBody": "mbrAppIdInfoService.mbrAppIdSave"
+  }
+]
