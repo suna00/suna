@@ -67,6 +67,20 @@
   },
   {
     "typeId" : "propertyType",
+    "id" :"scheduleTask>enable",
+    "tid" : "scheduleTask",
+    "pid" : "enable",
+    "propertyTypeName" : "Enable",
+    "valueType" : "BOOLEAN",
+    "idable" : false,
+    "indexable" : true,
+    "labelable" : false,
+    "required" : true,
+    "length": 100
+
+  },
+  {
+    "typeId" : "propertyType",
     "id" :"scheduleTask>actionBody",
     "tid" : "scheduleTask",
     "pid" : "actionBody",
