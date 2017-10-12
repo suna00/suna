@@ -1225,20 +1225,29 @@
   },
   {
     "typeId": "commonCode",
-    "code": "securities",
+    "code": "cellphone",
     "upperCode": "contentsType",
-    "name": "유가증권",
+    "name": "휴대폰개통",
     "description": "",
     "sortOrder": "2",
     "commonCodeStatus": "y"
   },
   {
     "typeId": "commonCode",
-    "code": "cellphone",
+    "code": "healthCheckup",
     "upperCode": "contentsType",
-    "name": "휴대폰개통",
+    "name": "건강검진",
     "description": "",
-    "sortOrder": "2",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "securities",
+    "upperCode": "contentsType",
+    "name": "유가증권",
+    "description": "",
+    "sortOrder": "4",
     "commonCodeStatus": "y"
   },
   {

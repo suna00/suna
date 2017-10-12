@@ -35,16 +35,50 @@
     "backOfficeId": "adm",
     "gnbMenuId": "productMng",
     "parentMenuId": "root",
-    "menuId": "productForm",
-    "menuName": "상품등록/수정",
+    "menuId": "productGoodsForm",
+    "menuName": "상품 등록/수정",
     "order": "20",
     "icon": "fa-list",
     "active": "true",
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "ytn/product/CreateForm" },
-      { "pageName": "수정", "pageUrl": "ytn/product/UpdateForm" }
+      { "pageName": "등록", "pageUrl": "ytn/product/CreateGoodsForm" },
+      { "pageName": "수정", "pageUrl": "ytn/product/UpdateGoodsForm" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "root",
+    "menuId": "productPhoneForm",
+    "menuName": "휴대폰개통상품 등록/수정",
+    "order": "21",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "ytn/product/CreateGoodsForm" },
+      { "pageName": "수정", "pageUrl": "ytn/product/UpdateGoodsForm" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "root",
+    "menuId": "productHealthForm",
+    "menuName": "건강검진상품 등록/수정",
+    "order": "22",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "ytn/product/CreateHealthForm" },
+      { "pageName": "수정", "pageUrl": "ytn/product/UpdateHealthForm" }
     ]
   },
   {
@@ -60,7 +94,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "ytn/product/UpdateList" }
+      { "pageName": "목록", "pageUrl": "ytn/productUpdate/List" }
     ]
   },
   {
@@ -76,7 +110,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "ytn/product/DeleteList" }
+      { "pageName": "목록", "pageUrl": "ytn/productDelete/List" }
     ]
   },
   {
@@ -137,7 +171,7 @@
     "backOfficeId": "adm",
     "gnbMenuId": "displayMng",
     "parentMenuId": "adm>root>bestSale",
-    "menuId": "university",
+    "menuId": "bestSaleUniversity",
     "menuName": "대학몰",
     "order": "10",
     "icon": "",
@@ -153,7 +187,7 @@
     "backOfficeId": "adm",
     "gnbMenuId": "displayMng",
     "parentMenuId": "adm>root>bestSale",
-    "menuId": "company",
+    "menuId": "bestSaleCompany",
     "menuName": "기업몰",
     "order": "20",
     "icon": "",
@@ -183,7 +217,7 @@
     "backOfficeId": "adm",
     "gnbMenuId": "displayMng",
     "parentMenuId": "adm>root>bestMd",
-    "menuId": "university",
+    "menuId": "bestMdUniversity",
     "menuName": "대학몰",
     "order": "10",
     "icon": "",
@@ -199,7 +233,7 @@
     "backOfficeId": "adm",
     "gnbMenuId": "displayMng",
     "parentMenuId": "adm>root>bestMd",
-    "menuId": "company",
+    "menuId": "bestMdCompany",
     "menuName": "기업몰",
     "order": "20",
     "icon": "",
@@ -327,8 +361,8 @@
       { "pageName": "목록", "pageUrl": "list" }
     ],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "ytn/AffComCreateForm" },
-      { "pageName": "수정", "pageUrl": "ytn/AffComUpdateForm" }
+      { "pageName": "등록", "pageUrl": "ytn/affiliate/AffComCreateForm" },
+      { "pageName": "수정", "pageUrl": "ytn/affiliate/AffComUpdateForm" }
     ]
   },
   {
@@ -365,8 +399,8 @@
       { "pageName": "목록", "pageUrl": "list" }
     ],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "ytn/AffUniCreateForm" },
-      { "pageName": "수정", "pageUrl": "ytn/AffUniUpdateForm" }
+      { "pageName": "등록", "pageUrl": "ytn/affiliate/AffUniCreateForm" },
+      { "pageName": "수정", "pageUrl": "ytn/affiliate/AffUniUpdateForm" }
     ]
   },
   {
