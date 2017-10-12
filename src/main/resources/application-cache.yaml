@@ -1,12 +1,12 @@
 spring:
-  profiles: cms
+  profiles: cache
   http:
     multipart:
       max-request-size: 10MB
       max-file-size: 20MB
 
 server:
-  port: 8081
+  port: 8082
   compression:
     enabled: true
     mime-types: application/json,application/xml,text/html,text/xml,text/plain,text/javascript,application/javascript,text/css
@@ -22,13 +22,13 @@ jwtConfig:
 
 
 cluster:
-  mode: cms
+  mode: cache
   groups: cms
   members:
     - 127.0.0.1
 
 infinispan:
-  cachePath: /resource/ice2/cms
+  cachePath: /resource/ice2/cacheable
 
 tomcat:
   access-log-enabled: true

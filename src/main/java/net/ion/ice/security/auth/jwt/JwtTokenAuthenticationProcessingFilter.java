@@ -52,6 +52,7 @@ public class JwtTokenAuthenticationProcessingFilter extends AbstractAuthenticati
         try {
             return getAuthenticationManager().authenticate(new JwtAuthenticationToken(token));
         } catch(Exception e){
+//            ApplicationContextManager.getBean(SessionService.class).createTempSession(request, response) ;
             CookieUtil.clear(response, "iceJWT");
             CookieUtil.clear(response, "iceRefreshJWT");
             throw new AuthenticationServiceException("Token is not exist in session");
