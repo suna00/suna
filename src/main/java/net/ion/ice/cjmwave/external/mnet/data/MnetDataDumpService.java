@@ -198,8 +198,8 @@ public class MnetDataDumpService {
 
         try{
 
-//            String q = String.valueOf(replicationNode.get("query"));
-            String q = String.valueOf(replicationNode.get("query_nosp"));
+            String q = String.valueOf(replicationNode.get("query"));
+//            String q = String.valueOf(replicationNode.get("query_nosp"));
             fromTable = String.valueOf(replicationNode.get("fromTable"));
             toTable = String.valueOf(replicationNode.get("toTable"));
             String subTasks = String.valueOf(replicationNode.get("subTasks"));
