@@ -1,7 +1,6 @@
 package net.ion.ice.cjmwave.external.mnet.schedule;
 
 import net.ion.ice.cjmwave.db.sync.DBSyncService;
-import net.ion.ice.cjmwave.db.sync.ParallelDBSyncExecutor;
 import net.ion.ice.cjmwave.external.mnet.data.MnetDataDumpService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +41,7 @@ public class ScheduledMnetService {
 
     public void executeAuto() {
         try{
+            System.out.println("SCHEDULING MNET MIGRATION EXECUTED");
             String type = "all";
             Date provided = null;
             logger.info("MnetDataDumpService.execute :: " + type);

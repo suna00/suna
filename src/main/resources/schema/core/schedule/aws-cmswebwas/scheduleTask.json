@@ -1,0 +1,31 @@
+[
+  {
+    "typeId": "scheduleTask",
+    "id": "testDelay",
+    "name": "Delay Test 30 sec",
+    "type": "delay",
+    "config": "30000",
+    "enable": false,
+    "actionType": "service",
+    "actionBody": "testService.schedule"
+  }
+  , {
+    "typeId": "scheduleTask",
+    "id": "pipPartial",
+    "name": "PIP PARTIAL",
+    "type": "cron",
+    "config": "0 0 */72 * * *",
+    "enable": true,
+    "actionType": "service",
+    "actionBody": "scheduledPipService.execute"
+  }, {
+    "typeId": "scheduleTask",
+    "id": "mnetPartial",
+    "name": "MNET Partial Batch",
+    "type": "delay",
+    "config": "3000",
+    "enable": false,
+    "actionType": "service",
+    "actionBody": "scheduledMnetService.executeAuto"
+  }
+]

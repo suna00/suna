@@ -2,11 +2,13 @@ package net.ion.ice.cjmwave.db.sync;
 
 import net.ion.ice.ApplicationContextManager;
 
+import java.io.Serializable;
+
 /**
  * Created by juneyoungoh on 2017. 10. 1..
  * artist, album, song, musicVideo
  */
-public abstract class ParallelDBSyncExecutor implements Runnable {
+public abstract class ParallelDBSyncExecutor implements Runnable, Serializable {
 
     public DBSyncService dbSyncService;
     public String executeId;
