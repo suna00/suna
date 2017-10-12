@@ -63,7 +63,7 @@ public class ActionService extends Action {
 
         if(method == null){
             for (Method _method : service.getClass().getMethods()) {
-                if (methodName.equals(_method.getName()) && _method.getParameterTypes().length == 1 && Context.class.isAssignableFrom(_method.getParameterTypes()[0])) {
+                if (methodName.equals(_method.getName()) && _method.getParameterTypes().length == 0) {
                     this.method = _method ;
                     break;
                 }
