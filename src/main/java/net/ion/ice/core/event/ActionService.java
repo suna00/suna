@@ -23,7 +23,7 @@ public class ActionService extends Action {
 
     @Override
     public void execute(ExecuteContext executeContext) {
-        initService();
+        initActionService();
         try {
             method.invoke(service, executeContext) ;
         } catch (InvocationTargetException e) {
@@ -39,8 +39,26 @@ public class ActionService extends Action {
         }
     }
 
+    private void initActionService() {
+        if(service == null){
+            service = ApplicationContextManager.getBean(serviceName) ;
+        }
+
+        if(method == null){
+            for (Method _method : service.getClass().getMethods()) {
+                if (methodName.equals(_method.getName()) && _method.getParameterTypes().length == 1 && Context.class.isAssignableFrom(_method.getParameterTypes()[0])) {
+                    this.method = _method ;
+                    break;
+                }
+            }
+        }
+        if(method == null){
+            throw new IceRuntimeException("Not Found ACTION Service : " + serviceName+ "." + methodName) ;
+        }
+    }
+
     public void execute() {
-        initService();
+        initScheduleService();
         try {
             method.invoke(service) ;
         } catch (InvocationTargetException e) {
@@ -56,7 +74,7 @@ public class ActionService extends Action {
         }
     }
 
-    private void initService() {
+    private void initScheduleService() {
         if(service == null){
             service = ApplicationContextManager.getBean(serviceName) ;
         }
@@ -70,7 +88,7 @@ public class ActionService extends Action {
             }
         }
         if(method == null){
-            throw new IceRuntimeException("Not Found ACTION Service : " + serviceName+ "." + methodName) ;
+            throw new IceRuntimeException("Not Found SCHEDULE Service : " + serviceName+ "." + methodName) ;
         }
     }
 
