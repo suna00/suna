@@ -11,7 +11,7 @@ import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -47,8 +47,9 @@ public class DBSyncService {
     @Autowired
     DBProcessStorage storage;
 
+    @Autowired
+    Environment env;
 
-    @Value("${file.default.path}")
     String defaultFilePath;
 
     private JdbcTemplate ice2Template;
@@ -73,6 +74,7 @@ public class DBSyncService {
     @PostConstruct
     public void init(){
         try{
+            defaultFilePath = env.getProperty("file.default.path");
             ice2Template = dbService.getJdbcTemplate("cjDb");
         } catch (Exception e) {
             logger.error("Could not initialize JdbcTemplate");

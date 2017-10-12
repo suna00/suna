@@ -52,7 +52,7 @@ public class S3Service {
             awsCredentials = new BasicAWSCredentials(accessKey, secretKey);
             initializeS3Client();
         } catch (Exception e) {
-            logger.error("Failed to initialize S3 storage", e);
+            logger.error("Failed to initialize S3 storage :: " + e.getClass().getName());
         }
     }
 

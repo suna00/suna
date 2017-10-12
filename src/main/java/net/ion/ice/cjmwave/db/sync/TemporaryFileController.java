@@ -4,11 +4,12 @@ import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
@@ -23,12 +24,23 @@ import java.io.InputStream;
 public class TemporaryFileController {
 
     private Logger logger = Logger.getLogger(TemporaryFileController.class);
-
-    @Value("${temp-file.dir}")
     String baseDirectory;
 
     @Autowired
+    Environment env;
+
+    @Autowired
     TemporaryFileService temporaryFileService;
+
+    @PostConstruct
+    public void init(){
+        try {
+            baseDirectory =  env.getProperty("temp-file.dir");
+        } catch (Exception e) {
+            logger.error("Error :: " + e.getClass().getName());
+        }
+    }
+
 
     @RequestMapping(value = { "/download" })
     public void download (HttpServletRequest request, HttpServletResponse resp) throws Exception {
