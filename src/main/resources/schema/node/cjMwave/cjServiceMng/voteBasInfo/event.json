@@ -109,5 +109,21 @@
     "actionType": "service",
     "actionBody": "voteStatisticsService.IFMwave101",
     "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "voteBasInfo",
+    "event": "resIfMwv108",
+    "noneExecute": true,
+    "eventName": "get Total Vote Count Event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "voteBasInfo>resIfMwv108",
+    "action": "resIfMwv108Event",
+    "actionName": "get Total voting Count Event Action",
+    "actionType": "service",
+    "actionBody": "voteResponseService.resIfMwv108",
+    "order": 1
   }
 ]

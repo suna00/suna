@@ -1158,6 +1158,16 @@
           "value": "4"
         },
         {
+          "field": "showYn",
+          "method": "matching",
+          "value": "true"
+        },
+        {
+          "field": "evVoteYn",
+          "method": "matching",
+          "value": "false"
+        },
+        {
           "field": "bradTelcsDt",
           "method": "above",
           "value": "{{:concatStr(bradTelcsDt,000000)}}"
@@ -1222,6 +1232,35 @@
           "value": "10000"
         }
       }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv108-1",
+    "apiName": "MCD 투표 상세조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "bradTelcsDt",
+        "required": true
+      },
+      {
+        "paramName": "snsKey",
+        "required": false
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": false
+      },
+      {
+        "paramName": "connIpAdr",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "voteBasInfo",
+      "event": "resIfMwv108"
     }
   },
   {
