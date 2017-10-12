@@ -29,6 +29,7 @@
         {"limit" : 50},
         {"sorting" : "sortOrder"},
         {"field" : "productToThemeMapStatus", "method" : "matching", "value" : "y" },
+        {"field" : "themeId", "method" : "matching", "value" : "{{:themeId}}"},
         {"includeReferenced" : "referencedMainImage,referencedProductAttribute", "referenceView" : "themeId,productId"},
         {"field" : "themeId", "method" : "referenceJoin", "value" : "themeStatus_matching=y&pageType_matching={{:pageType}}&themeType_matching={{:themeType}}&siteType_matching={{:siteType}}&categoryId_matching={{:categoryId}}&name_matching={{:name}}" }
       ]
