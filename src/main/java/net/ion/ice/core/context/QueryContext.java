@@ -20,7 +20,7 @@ public class QueryContext extends ReadContext {
     protected List<QueryContext> joinQueryContexts ;
     protected String targetJoinField ;
     protected String sourceJoinField ;
-    
+
     protected SearchManager searchManager;
     protected String sorting;
     protected Integer pageSize;
@@ -52,6 +52,7 @@ public class QueryContext extends ReadContext {
 
     public QueryContext() {
     }
+
 
     public static QueryContext createQueryContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType) {
         QueryContext queryContext = new QueryContext(nodeType);
@@ -165,7 +166,7 @@ public class QueryContext extends ReadContext {
             searchField = searchField.trim() ;
             if(StringUtils.isNotEmpty(searchField)) {
                 this.searchFields.add(searchField) ;
-                QueryTerm queryTerm = QueryUtils.makePropertyQueryTerm(this.getQueryTermType(), this.nodeType, searchField, "matchingShould", searchValue);
+                QueryTerm queryTerm = QueryUtils.makePropertyQueryTerm(this.getQueryTermType(), this.nodeType, searchField, "wildcardShould", searchValue);
                 this.addQueryTerm(queryTerm);
             }
         }
@@ -662,7 +663,7 @@ public class QueryContext extends ReadContext {
     public List<QueryContext> getJoinQueryContexts(){
         return joinQueryContexts ;
     }
-    
+
 
     public Integer getLimit() {
         return getMaxResultSize();

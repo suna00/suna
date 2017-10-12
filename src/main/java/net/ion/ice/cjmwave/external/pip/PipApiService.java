@@ -9,7 +9,7 @@ import net.ion.ice.core.file.TolerableMissingFileException;
 import net.ion.ice.core.node.NodeService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -33,14 +33,12 @@ public class PipApiService {
 
     private static final String PROGRAM_NT = "program", CLIP_NT = "pgmVideo";
 
-    @Value("${cjapi.pip.programurl}")
     String programApiUrl;
-
-    @Value("${cjapi.pip.clipmediaurl}")
     String clipMediaApiUrl;
-
-    @Value("${file.default.path}")
     String defaultFilePath;
+
+    @Autowired
+    Environment env;
 
     @Autowired
     NodeService nodeService;
@@ -59,6 +57,9 @@ public class PipApiService {
     @PostConstruct
     public void prepareJdbcTemplate () {
         try{
+            programApiUrl = env.getProperty("cjapi.pip.programurl");
+            clipMediaApiUrl = env.getProperty("cjapi.pip.clipmediaurl");
+            defaultFilePath = env.getProperty("file.default.path");
             template = dbService.getJdbcTemplate("cjDb");
         } catch (Exception e) {
             logger.error("Failed to Load cjDb... For PIP");

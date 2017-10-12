@@ -282,6 +282,22 @@ public class MethodHelper {
 
                 return ApplicationContextManager.getContext().getEnvironment().getProperty(methodParams[0]) ;
             }
+            case "conditionDefault":{
+                if(methodParams == null || methodParams.length < 2) return "";
+                if(value == null || StringUtils.isEmpty(value.toString())) return methodParams[1] ;
+                boolean conditionMatchYn = false;
+                for(int i=2; i<methodParams.length; i++){
+                    String test = methodParams[i] ;
+                    if(test.equals(value.toString())){
+                        conditionMatchYn = true;
+                    }
+                }
+                if(!conditionMatchYn){
+                    return methodParams[1] ;
+                }else{
+                    return value.toString();
+                }
+            }
 
             default :
                 methodStr = StringUtils.capitalize(methodStr) ;

@@ -126,7 +126,12 @@ public class VoteStatisticsService {
         String selectQuery = "SELECT voteSeq, voteItemSeq, rankNum, rankGapNum, voteRate, voteNum, owner, created " +
                             "FROM voteItemStats WHERE voteSeq=? AND rankNum=?";
 
-        return jdbcTemplate.queryForMap(selectQuery, voteSeq, rankNum);
+        try {
+            Map retMap = jdbcTemplate.queryForMap(selectQuery, voteSeq, rankNum);
+            return retMap;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     private void insertVoteItemStats(Map<String, Object> voteItemStats) {
