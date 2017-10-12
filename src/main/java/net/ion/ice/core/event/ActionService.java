@@ -69,11 +69,12 @@ public class ActionService extends Action {
                         //기존
                         this.method = _method;
                         break;
-                    } else {
-                        //스케쥴러용 추가분
-                        this.method = _method;
-                        break;
                     }
+//                    else {
+//                        //스케쥴러용 추가분
+//                        this.method = _method;
+//                        break;
+//                    }
                 }
             }
         }
