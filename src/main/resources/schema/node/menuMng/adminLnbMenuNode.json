@@ -36,15 +36,49 @@
     "gnbMenuId": "productMng",
     "parentMenuId": "root",
     "menuId": "productForm",
-    "menuName": "상품등록/수정",
+    "menuName": "상품 등록/수정",
     "order": "20",
     "icon": "fa-list",
     "active": "true",
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "ytn/product/CreateForm" },
-      { "pageName": "수정", "pageUrl": "ytn/product/UpdateForm" }
+      { "pageName": "등록", "pageUrl": "ytn/product/CreateGoodsForm" },
+      { "pageName": "수정", "pageUrl": "ytn/product/UpdateGoodsForm" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "root",
+    "menuId": "productForm",
+    "menuName": "휴대폰개통상품 등록/수정",
+    "order": "21",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "ytn/product/CreateGoodsForm" },
+      { "pageName": "수정", "pageUrl": "ytn/product/UpdateGoodsForm" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "root",
+    "menuId": "productForm",
+    "menuName": "건강검진상품 등록/수정",
+    "order": "22",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "ytn/product/CreateHealthForm" },
+      { "pageName": "수정", "pageUrl": "ytn/product/UpdateHealthForm" }
     ]
   },
   {
