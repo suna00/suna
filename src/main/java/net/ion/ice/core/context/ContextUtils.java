@@ -1,11 +1,15 @@
 package net.ion.ice.core.context;
 
+import net.ion.ice.core.infinispan.InfinispanCacheManager;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
+import net.ion.ice.core.query.FacetTerm;
+import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.ResultField;
 import org.apache.commons.lang3.StringUtils;
+import org.infinispan.Cache;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -215,11 +219,11 @@ public class ContextUtils {
             return null;
         }
 
-        if(paramName.equals("includeReferenced")){
-            readContext.makeIncludeReferenced(value);
+        if(paramName.equals("includeReferenced") && StringUtils.isNotEmpty(value)){
+            readContext.makeIncludeReferenced(ContextUtils.getValue(value, readContext.data).toString());
             return null;
-        } else if(paramName.equals("referenceView")){
-            readContext.makeReferenceView(value);
+        } else if(paramName.equals("referenceView")  && StringUtils.isNotEmpty(value) ){
+            readContext.makeReferenceView(ContextUtils.getValue(value, readContext.data).toString());
             return null;
         } else if(paramName.equals(ApiContext.DATE_FORMAT)){
             readContext.dateFormat = value ;
@@ -234,7 +238,9 @@ public class ContextUtils {
 
         if(readContext instanceof QueryContext){
             QueryContext queryContext = (QueryContext) readContext;
-            if (paramName.equals("page")) {
+            if(paramName.equals("position")){
+                queryContext.setPosition(value) ;
+            }else if (paramName.equals("page")) {
                 queryContext.setCurrentPage(value);
                 return null;
             } else if (paramName.equals("pageSize")) {
@@ -250,10 +256,24 @@ public class ContextUtils {
                 } catch (IOException e) {
                 }
                 return null;
+            } else if(paramName.equals("facet")){
+                for(String field : StringUtils.split(value, ",")){
+                    queryContext.addFacetTerm(new FacetTerm(field, null));
+                }
             }
         }
         return value;
     }
 
+
+    public static QueryResult makeCacheResult(String cacheKey, CacheableContext cacheableContext) {
+        Cache<String, QueryResult> cache = InfinispanCacheManager.getLocalCache(cacheableContext.getCacheTime()) ;
+        QueryResult queryResult = cache.get(cacheKey) ;
+        if(queryResult == null){
+            queryResult =  cacheableContext.makeCacheResult();
+            cache.put(cacheKey, queryResult) ;
+        }
+        return queryResult ;
+    }
 
 }

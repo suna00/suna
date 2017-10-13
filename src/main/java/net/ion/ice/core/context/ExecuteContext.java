@@ -2,21 +2,20 @@ package net.ion.ice.core.context;
 
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.IceRuntimeException;
-import net.ion.ice.core.cluster.ClusterUtils;
 import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.file.FileValue;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
-import net.ion.ice.core.query.QueryTerm;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.core.io.Resource;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -38,6 +37,9 @@ public class ExecuteContext extends ReadContext{
 
     protected ExecuteContext parentContext ;
     protected List<ExecuteContext> subExecuteContexts ;
+
+    protected HttpServletRequest httpRequest ;
+    protected HttpServletResponse httpResponse ;
 
     public static ExecuteContext createContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType, String event, String id) {
         ExecuteContext ctx = new ExecuteContext();
@@ -162,7 +164,7 @@ public class ExecuteContext extends ReadContext{
                     changedProperties.add(pt.getPid()) ;
                 }else if(pt.isFile()){
                     if(newValue != null) data.put(pt.getPid(), newValue) ;
-                    if(newValue != null && newValue instanceof String && (((String) newValue).startsWith("classpath:") || ((String) newValue).startsWith("http://") || ((String) newValue).startsWith("/"))) {
+                    if(newValue != null && newValue instanceof String && (((String) newValue).startsWith("classpath:") || ((String) newValue).startsWith("http://") || ((String) newValue).startsWith("https://") || ((String) newValue).startsWith("/"))) {
                         if (existValue == null) {
                             node.put(pt.getPid(), NodeUtils.getFileService().saveResourceFile(pt, id, (String) newValue));
                             changedProperties.add(pt.getPid());
@@ -196,10 +198,14 @@ public class ExecuteContext extends ReadContext{
                         node.remove(pt.getPid()) ;
                         changedProperties.add(pt.getPid()) ;
                     }else if(pt.isI18n()){
-                        i18nRemove((Map<? extends String, ?>) newValue, (Map<String, Object>) existValue);
+                        if(!(existValue instanceof Map)){
+                            existValue = newValue ;
+                        }else {
+                            existValue = i18nRemove((Map<? extends String, ?>) newValue, (Map<String, Object>) existValue);
+                        }
                         for(String locKey : ((Map<String, Object>) existValue).keySet()){
                             Object locVal = ((Map<String, Object>) existValue).get(locKey) ;
-                            if(locVal instanceof String && (((String) locVal).startsWith("classpath:") || ((String) locVal).startsWith("http://") || ((String) locVal).startsWith("/"))) {
+                            if(locVal instanceof String && (((String) locVal).startsWith("classpath:") || ((String) locVal).startsWith("http://") || ((String) locVal).startsWith("https://") || ((String) locVal).startsWith("/"))) {
                                 ((Map<String, Object>) existValue).put(locKey, NodeUtils.getFileService().saveResourceFile(pt, id, (String) locVal));
                             }
                         }
@@ -215,7 +221,11 @@ public class ExecuteContext extends ReadContext{
                     changedProperties.add(pt.getPid()) ;
                 }else if(!newValue.equals(existValue)){
                     if(pt.isI18n()){
-                        i18nRemove((Map<? extends String, ?>) newValue, (Map<String, Object>) existValue);
+                        if(!(existValue instanceof Map)){
+                            existValue = newValue ;
+                        }else {
+                            existValue = i18nRemove((Map<? extends String, ?>) newValue, (Map<String, Object>) existValue);
+                        }
                         node.put(pt.getPid(), existValue);
                     }else {
                         node.put(pt.getPid(), newValue);
@@ -280,8 +290,12 @@ public class ExecuteContext extends ReadContext{
         }
     }
 
-    private void i18nRemove(Map<? extends String, ?> newValue, Map<String, Object> existValue) {
-        existValue.putAll(newValue);
+    private Map<String, Object> i18nRemove(Map<? extends String, ?> newValue, Map<String, Object> existValue) {
+        if(existValue == null){
+            existValue = (Map<String, Object>) newValue;
+        }else {
+            existValue.putAll(newValue);
+        }
         List<String> removeLocale = new ArrayList<>() ;
         for(String key :  existValue.keySet()){
             Object val =  existValue.get(key) ;
@@ -292,6 +306,8 @@ public class ExecuteContext extends ReadContext{
         for(String loc : removeLocale){
             existValue.remove(loc) ;
         }
+
+        return existValue ;
     }
 
 
@@ -428,5 +444,25 @@ public class ExecuteContext extends ReadContext{
         }else{
             return new HashMap<String, Object>() ;
         }
+    }
+
+    public HttpServletRequest getHttpRequest() {
+        return httpRequest;
+    }
+
+    public HttpServletResponse getHttpResponse() {
+        return httpResponse;
+    }
+
+    public List<String> getChangedProperties(){
+        return this.changedProperties ;
+    }
+
+    public Node getExistNode(){
+        return existNode ;
+    }
+
+    public boolean isExist(){
+        return  exist ;
     }
 }

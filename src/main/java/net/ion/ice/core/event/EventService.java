@@ -67,7 +67,7 @@ public class EventService {
         eventData.put(EVENT, event) ;
         eventData.put("eventName", event + " " + node.get("typeName")) ;
 
-        return nodeService.createNode(eventData, EVENT) ;
+        return (Node) nodeService.executeNode(eventData, EVENT, SAVE);
     }
 
     private Node createEventAction(Node eventNode, String event) {
@@ -78,7 +78,7 @@ public class EventService {
         eventActionData.put("actionBody", DELETE.equals(event) ? "nodeBindingService.delete" : "nodeBindingService.execute") ;
         eventActionData.put("order", 1) ;
 
-        return nodeService.createNode(eventActionData, EVENT_ACTION) ;
+        return (Node) nodeService.executeNode(eventActionData, EVENT_ACTION, SAVE);
     }
 
     public void execute(ExecuteContext executeContext) {
@@ -90,7 +90,7 @@ public class EventService {
 
         if((event == null || !event.isNoneExecute()) && nodeType.isNode() && executeContext.getNode() != null) {
             infinispanService.execute(executeContext) ;
-            clusterService.node(executeContext) ;
+            clusterService.cache(executeContext) ;
             if(executeContext.getResult() == null) {
                 executeContext.setResult(executeContext.getNode());
             }

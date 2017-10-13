@@ -5,29 +5,33 @@ import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
-import net.ion.ice.core.node.Reference;
 import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.ResultField;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.context.request.NativeWebRequest;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
 /**
  * Created by jaehocho on 2017. 8. 24..
  */
-public class ApiSelectContext extends ReadContext{
+public class ApiSelectContext extends ReadContext implements CacheableContext{
     protected Map<String, Object> config  ;
-
+    protected HttpServletRequest httpRequest ;
+    protected HttpServletResponse httpResponse ;
     protected String ds ;
     protected String sql ;
 
     protected JdbcTemplate jdbcTemplate ;
     protected Template sqlTemplate  ;
 
+
     public static ApiSelectContext makeContextFromConfig(Map<String, Object> config, Map<String, Object> data) {
         ApiSelectContext selectContext = new ApiSelectContext();
-
         selectContext.config = config ;
         selectContext.data = data ;
 
@@ -52,12 +56,40 @@ public class ApiSelectContext extends ReadContext{
     }
 
 
+    public static ApiSelectContext makeContextFromConfig(Map<String, Object> config, Map<String, Object> data, HttpServletRequest httpRequest, HttpServletResponse httpResponse) {
+        ApiSelectContext selectContext = makeContextFromConfig(config, data) ;
+        selectContext.httpRequest = httpRequest ;
+        selectContext.httpResponse = httpResponse ;
+        return selectContext ;
+    }
+
+
+    public QueryResult makeQueryResult() {
+        if(cacheable != null && cacheable){
+            String cacheKey = makeCacheKey() ;
+            return ContextUtils.makeCacheResult(cacheKey, this) ;
+
+        }
+        return makeQueryResult(null, null);
+    }
+
+
+    public String makeCacheKey(){
+        String keySrc = httpRequest.getRequestURI() + "?" + httpRequest.getQueryString() ;
+        return keySrc ;
+    }
+
     public QueryResult makeQueryResult(Object result, String fieldName) {
         if(this.ifTest != null && !(this.ifTest.equalsIgnoreCase("true"))) {
             return null ;
         }
         if(resultType == ResultField.ResultType.LIST) {
-            List<Map<String, Object>> resultList = this.jdbcTemplate.queryForList(this.sqlTemplate.format(data).toString(), this.sqlTemplate.getSqlParameterValues(data));
+            List<Map<String, Object>> resultList = null;
+            try {
+                resultList = this.jdbcTemplate.queryForList(this.sqlTemplate.format(data).toString(), this.sqlTemplate.getSqlParameterValues(data));
+            }catch(EmptyResultDataAccessException e){
+                resultList = new ArrayList<>();
+            }
             this.result = resultList;
 
             List<QueryResult> subList = new ArrayList<>() ;
@@ -78,8 +110,12 @@ public class ApiSelectContext extends ReadContext{
                 return queryResult;
             }
         }else if(resultType == ResultField.ResultType.MERGE || resultType == ResultField.ResultType.VALUE){
-            Map<String, Object> resultMap = this.jdbcTemplate.queryForMap(this.sqlTemplate.format(data).toString(), this.sqlTemplate.getSqlParameterValues(data)) ;
-            this.result = resultMap ;
+            Map<String, Object> resultMap = null ;
+            try {
+                resultMap = this.jdbcTemplate.queryForMap(this.sqlTemplate.format(data).toString(), this.sqlTemplate.getSqlParameterValues(data)) ;
+            }catch(EmptyResultDataAccessException e){
+                resultMap = new HashMap<>() ;
+            }
 
             QueryResult itemResult = new QueryResult() ;
             makeItemQueryResult(resultMap, itemResult, data) ;
@@ -91,7 +127,13 @@ public class ApiSelectContext extends ReadContext{
                 return getQueryResult(itemResult);
             }
         }else{
-            Map<String, Object> resultMap = this.jdbcTemplate.queryForMap(this.sqlTemplate.format(data).toString(), this.sqlTemplate.getSqlParameterValues(data)) ;
+
+            Map<String, Object> resultMap = null ;
+            try {
+                resultMap = this.jdbcTemplate.queryForMap(this.sqlTemplate.format(data).toString(), this.sqlTemplate.getSqlParameterValues(data));
+            }catch(EmptyResultDataAccessException e){
+                resultMap = new HashMap<>() ;
+            }
             this.result = resultMap ;
 
             QueryResult itemResult = new QueryResult() ;
@@ -140,14 +182,14 @@ public class ApiSelectContext extends ReadContext{
                 _data.putAll(resultData);
                 switch (resultField.getExecuteType()) {
                     case QUERY: {
-                        ApiQueryContext apiQueryContext = ApiQueryContext.makeContextFromConfig(resultField.getFieldOption(), _data);
+                        ApiQueryContext apiQueryContext = ApiQueryContext.makeContextFromConfig(resultField.getFieldOption(), _data, httpRequest, httpResponse);
                         apiQueryContext.dateFormat = this.dateFormat ;
                         apiQueryContext.fileUrlFormat = this.fileUrlFormat ;
                         apiQueryContext.makeQueryResult(itemResult, resultField.getFieldName(), resultField.getResultType());
                         break ;
                     }
                     case SELECT: {
-                        ApiSelectContext apiQueryContext = ApiSelectContext.makeContextFromConfig(resultField.getFieldOption(), _data);
+                        ApiSelectContext apiQueryContext = ApiSelectContext.makeContextFromConfig(resultField.getFieldOption(), _data, httpRequest, httpResponse);
                         apiQueryContext.dateFormat = this.dateFormat ;
                         apiQueryContext.fileUrlFormat = this.fileUrlFormat ;
                         apiQueryContext.makeQueryResult(itemResult, resultField.getFieldName());
@@ -202,4 +244,13 @@ public class ApiSelectContext extends ReadContext{
         return value ;
     }
 
+    @Override
+    public String getCacheTime() {
+        return cacheTime;
+    }
+
+    @Override
+    public QueryResult makeCacheResult() {
+        return makeQueryResult(null, null);
+    }
 }

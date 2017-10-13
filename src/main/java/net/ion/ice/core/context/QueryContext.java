@@ -1,20 +1,13 @@
 package net.ion.ice.core.context;
 
+import net.ion.ice.core.api.ApiException;
 import net.ion.ice.core.cluster.ClusterUtils;
-import net.ion.ice.core.data.bind.NodeBindingInfo;
-import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.*;
-import net.ion.ice.core.query.QueryResult;
-import net.ion.ice.core.query.QueryTerm;
-import net.ion.ice.core.query.QueryUtils;
-import net.ion.ice.core.query.ResultField;
+import net.ion.ice.core.query.*;
 import org.apache.commons.lang3.StringUtils;
-import org.infinispan.Cache;
+import org.hibernate.search.query.facet.Facet;
 import org.infinispan.query.SearchManager;
 
-import javax.management.Query;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -27,13 +20,14 @@ public class QueryContext extends ReadContext {
     protected List<QueryContext> joinQueryContexts ;
     protected String targetJoinField ;
     protected String sourceJoinField ;
-    
+
     protected SearchManager searchManager;
     protected String sorting;
     protected Integer pageSize;
     protected Integer currentPage;
     protected Integer maxSize;
     protected Integer resultSize;
+    protected Integer position;
 
     protected boolean paging;
     protected boolean limit;
@@ -41,6 +35,10 @@ public class QueryContext extends ReadContext {
     protected boolean treeable;
     protected int queryListSize;
 
+
+    protected List<FacetTerm> facetTerms ;
+    protected List<QueryTerm> naviIdTerm ;
+    private String joinMethod;
 
 
     public QueryContext(NodeType nodeType) {
@@ -54,6 +52,7 @@ public class QueryContext extends ReadContext {
 
     public QueryContext() {
     }
+
 
     public static QueryContext createQueryContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType) {
         QueryContext queryContext = new QueryContext(nodeType);
@@ -79,9 +78,15 @@ public class QueryContext extends ReadContext {
     }
 
 
-    public static QueryContext createQueryContextFromText(String searchText, NodeType nodeType) {
+    public static QueryContext createQueryContextFromText(String searchText, NodeType nodeType, String booleanMethod) {
         QueryContext queryContext = new QueryContext(nodeType);
 //        queryContext.setIncludeReferenced(false);
+
+        if(StringUtils.isEmpty(booleanMethod)){
+            booleanMethod = "must" ;
+        }
+
+        queryContext.joinMethod = booleanMethod.toLowerCase() ;
 
         java.util.List<QueryTerm> queryTerms = new ArrayList<>();
 
@@ -89,7 +94,11 @@ public class QueryContext extends ReadContext {
             return queryContext;
         }
 
-        for (String param : StringUtils.split(searchText, '&')) {
+        String seperator = "&" ;
+        if(StringUtils.contains(searchText, "_and_")){
+            seperator = "_and_" ;
+        }
+        for (String param : StringUtils.split(searchText, seperator)) {
             if (StringUtils.isNotEmpty(param) && StringUtils.contains(param, "=")) {
                 String value = StringUtils.substringAfter(param, "=");
                 if (StringUtils.isEmpty(value)) {
@@ -157,7 +166,7 @@ public class QueryContext extends ReadContext {
             searchField = searchField.trim() ;
             if(StringUtils.isNotEmpty(searchField)) {
                 this.searchFields.add(searchField) ;
-                QueryTerm queryTerm = QueryUtils.makePropertyQueryTerm(this.getQueryTermType(), this.nodeType, searchField, "matchingShould", searchValue);
+                QueryTerm queryTerm = QueryUtils.makePropertyQueryTerm(this.getQueryTermType(), this.nodeType, searchField, "wildcardShould", searchValue);
                 this.addQueryTerm(queryTerm);
             }
         }
@@ -238,7 +247,19 @@ public class QueryContext extends ReadContext {
         this.maxSize = Integer.valueOf(maxSize);
     }
 
+    public void setPosition(String position){
+        if(StringUtils.isEmpty(position)){
+            this.position = null ;
+        }else {
+            this.position = Integer.parseInt(position);
+        }
+    }
+
     public int getMaxResultSize() {
+        if(this.position != null){
+            return this.position + 1 ;
+        }
+
         if (maxSize == null && currentPage == null && pageSize == null) {
             maxSize = 100;
             currentPage = 1;
@@ -255,7 +276,11 @@ public class QueryContext extends ReadContext {
                 maxSize = pageSize;
             }
             this.paging = true;
-            return pageSize * currentPage;
+            if(this.resultType != null && this.resultType == ResultField.ResultType.NAVIREAD) {
+                return pageSize * currentPage + 1;
+            }else{
+                return pageSize * currentPage;
+            }
         } else {
             currentPage = 1;
             pageSize = maxSize;
@@ -270,7 +295,17 @@ public class QueryContext extends ReadContext {
 
 
     public Integer getStart() {
+        if(this.position != null){
+            return this.position == 1 ? 0 : this.position - 2 ;
+        }
+
         if (paging) {
+            if(this.resultType != null && this.resultType == ResultField.ResultType.NAVIREAD){
+                int start =  (currentPage - 1) * pageSize;
+                if(start >0){
+                    return start - 1;
+                }
+            }
             return (currentPage - 1) * pageSize;
         }
         return 0;
@@ -437,9 +472,7 @@ public class QueryContext extends ReadContext {
         if(resultType != null && resultType == ResultField.ResultType.NONE){
             return null;
         }
-        if(fieldName == null){
-            fieldName = "items" ;
-        }
+
         List<QueryResult> subList ;
         if(this.resultFields == null){
             subList = makeDefaultResult(nodeType, resultNodeList);
@@ -458,16 +491,16 @@ public class QueryContext extends ReadContext {
                     ((Map) result).putAll(subList.get(0));
                 }
             }else if(resultType == ResultField.ResultType.READ){
-                ((Map) result).put(fieldName, (subList != null && subList.size() > 0 ) ? subList.get(0) : null) ;
+                ((Map) result).put(fieldName == null ? "item" : fieldName, (subList != null && subList.size() > 0 ) ? subList.get(0) : null) ;
             }else{
-                ((Map) result).put(fieldName, subList) ;
+                ((Map) result).put(fieldName == null ? "items" : fieldName, subList) ;
             }
             return (QueryResult) result;
         }else if(result instanceof Map){
-            ((QueryResult) result).put(fieldName, subList) ;
+            ((QueryResult) result).put(fieldName == null ? "items" : fieldName, subList) ;
             return (QueryResult) result;
         }
-        return makePaging(fieldName, subList);
+        return makePaging(fieldName == null ? "items" : fieldName, subList);
     }
 
     protected List<QueryResult> makeResultList(NodeType nodeType, List<Node> resultNodeList) {
@@ -476,10 +509,11 @@ public class QueryContext extends ReadContext {
         Map<String, Object> contextData = new HashMap<>() ;
         contextData.putAll(data);
 
-        for(Node resultNode : resultNodeList) {
+        for(int i=0; i<resultNodeList.size(); i++) {
+            Node resultNode = resultNodeList.get(i) ;
             contextData.putAll(resultNode);
             QueryResult subQueryResult = new QueryResult() ;
-            makeItemQueryResult(resultNode, subQueryResult, contextData);
+            makeItemQueryResult(resultNode, subQueryResult, contextData, i);
             subList.add(subQueryResult) ;
         }
         return subList;
@@ -511,7 +545,68 @@ public class QueryContext extends ReadContext {
         QueryResult queryResult = new QueryResult() ;
         queryResult.put("result", "200") ;
         queryResult.put("resultMessage", "SUCCESS") ;
-        makePaging(queryResult, fieldName, list);
+
+        if(resultType != null){
+            if(resultType == ResultField.ResultType.NONE) {
+                return null;
+            }else if(resultType == ResultField.ResultType.LIST){
+                makePaging(queryResult, fieldName == null ? "items" : fieldName, list);
+            }else if(resultType == ResultField.ResultType.READ){
+                queryResult.put(fieldName == null ? "item" : fieldName, (list != null && list.size() > 0 ) ? list.get(0) : null) ;
+            }else if(resultType == ResultField.ResultType.NAVIREAD){
+                if(this.position != null){
+                    if(list.size() == 0){
+                        throw new ApiException("404", "Not Found Position") ;
+                    }
+                    queryResult.put("position", this.position) ;
+                    if(this.position == 1){
+                        queryResult.put("prev", null) ;
+                        queryResult.put("item", list.get(0)) ;
+                        if(list.size() > 1){
+                            queryResult.put("next", list.get(1)) ;
+                        }else{
+                            queryResult.put("next", null) ;
+                        }
+                    }else{
+                        queryResult.put("prev", list.get(0)) ;
+                        queryResult.put("item", list.get(1)) ;
+                        if(list.size() > 2){
+                            queryResult.put("next", list.get(2)) ;
+                        }else{
+                            queryResult.put("next", null) ;
+                        }
+                    }
+                }
+
+                for(int i=0; i<list.size(); i++){
+                    Map<String, Object> item = (Map<String, Object>) list.get(i);
+                    boolean matched = false ;
+                    for(QueryTerm term : naviIdTerm){
+                        Object val = item.get(term.getQueryKey()) ;
+                        if(val != null && val.toString().equals(term.getValue())){
+                            matched = true ;
+                        }else{
+                            matched = false ;
+                        }
+                    }
+                    if(matched == true){
+                        queryResult.put("position", getStart() + i + 1) ;
+                        if(i > 0){
+                            queryResult.put("prev", list.get(i-1)) ;
+                        }
+                        queryResult.put("item", item) ;
+                        if((i + 1) < list.size()){
+                            queryResult.put("next", list.get(i+1)) ;
+                        }
+
+                        break ;
+                    }
+                }
+            }
+        }else{
+            makePaging(queryResult, fieldName == null ? "items" : fieldName, list);
+        }
+
         return queryResult ;
     }
 
@@ -525,6 +620,27 @@ public class QueryContext extends ReadContext {
         }else if(limit){
             queryResult.put("more", resultSize > queryListSize);
             queryResult.put("moreCount", resultSize - queryListSize);
+        }
+        if(getFacetTerms() != null && getFacetTerms().size() > 0){
+            QueryResult facets = new QueryResult() ;
+            for(FacetTerm facetTerm : getFacetTerms()){
+//                List<Map<String, Object>> facet = new ArrayList<>() ;
+                Map<String, Object> facet = new HashMap<>() ;
+                for(Facet fc : facetTerm.getFacets()){
+//                    Map<String, Object> fcv = new HashMap<>() ;
+//                    fcv.put("value", fc.getValue()) ;
+//                    fcv.put("count", fc.getValue()) ;
+                    if(fc.getValue().contains(",")){
+                        for(String fck : StringUtils.split(fc.getValue(), ",")){
+                            facet.put(fck, facet.containsKey(fck) ? (Integer) facet.get(fck) + fc.getCount() : fc.getCount()) ;
+                        }
+                    }else {
+                        facet.put(fc.getValue(), fc.getCount());
+                    }
+                }
+                facets.put(facetTerm.getName(), facet) ;
+            }
+            queryResult.put("facets", facets) ;
         }
         queryResult.put(fieldName, list) ;
         return queryResult ;
@@ -547,7 +663,7 @@ public class QueryContext extends ReadContext {
     public List<QueryContext> getJoinQueryContexts(){
         return joinQueryContexts ;
     }
-    
+
 
     public Integer getLimit() {
         return getMaxResultSize();
@@ -581,4 +697,20 @@ public class QueryContext extends ReadContext {
         this.queryTerms.add(queryTerm);
     }
 
+    public List<FacetTerm> getFacetTerms() {
+        return facetTerms;
+    }
+
+    public void addFacetTerm(FacetTerm facetTerm) {
+        if(facetTerms == null) {
+            facetTerms = new ArrayList<>() ;
+        }
+
+        facetTerms.add(facetTerm) ;
+    }
+
+
+    public String getJoinMethod() {
+        return joinMethod;
+    }
 }

@@ -1,6 +1,7 @@
 package net.ion.ice.core.context;
 
 import net.ion.ice.core.data.bind.NodeBindingInfo;
+import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.*;
 import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.QueryTerm;
@@ -52,7 +53,10 @@ public class ReadContext implements Context, Serializable {
     protected ResultField.ResultType resultType ;
 
     protected Boolean remote ;
-    
+
+    protected Boolean cacheable ;
+    protected String cacheTime ;
+
     public NodeType getNodetype() {
         return nodeType;
     }
@@ -78,6 +82,14 @@ public class ReadContext implements Context, Serializable {
             readContext.ifTest =  ContextUtils.getValue(config.get("if"), readContext.data).toString();
         }else if(config.get(key) != null){
             ContextUtils.makeContextConfig(readContext, key, config.get(key).toString());
+        }
+    }
+
+
+    protected static void makeApiContextParam(Map<String, Object> data, ReadContext readContext) {
+        if(data.containsKey("cacheTime") && data.get("cacheTime") != null && StringUtils.isNotEmpty(data.get("cacheTime").toString())){
+            readContext.cacheable = true ;
+            readContext.cacheTime = data.get("cacheTime").toString() ;
         }
     }
 
@@ -223,6 +235,10 @@ public class ReadContext implements Context, Serializable {
         return id;
     }
 
+    public static String getParamId(Map<String, String[]> parameterMap, String typeId){
+        return getId(parameterMap, NodeUtils.getNodeType(typeId), null) ;
+    }
+
     public QueryResult makeQueryResult() {
         return makeResult() ;
     }
@@ -270,20 +286,20 @@ public class ReadContext implements Context, Serializable {
                 itemResult.put(pt.getPid(), NodeUtils.getResultValue(this, pt, node));
             }
 
-            if (isIncludeReferenced()) {
-                for (PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)) {
-                    QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(nodeType, pt, node);
-                    subQueryContext.makeQueryResult(itemResult, pt.getPid(),null);
-                }
-            }
+//            if (isIncludeReferenced()) {
+//                for (PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)) {
+//                    QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(nodeType, pt, node);
+//                    subQueryContext.makeQueryResult(itemResult, pt.getPid(),null);
+//                }
+//            }
         }else{
             this.setNodeData(node);
-            makeItemQueryResult(node, itemResult, this.data);
+            makeItemQueryResult(node, itemResult, this.data, 0);
         }
         return itemResult;
     }
 
-    protected void makeItemQueryResult(Node node, QueryResult itemResult, Map<String, Object> contextData) {
+    protected void makeItemQueryResult(Node node, QueryResult itemResult, Map<String, Object> contextData, int i) {
         NodeType _nodeType = NodeUtils.getNodeType(node.getTypeId()) ;
         for (ResultField resultField : getResultFields()) {
             if(resultField.getFieldName().equals("_all_")){
@@ -369,9 +385,14 @@ public class ReadContext implements Context, Serializable {
             } else {
                 String fieldValue = resultField.getFieldValue();
                 fieldValue = fieldValue == null || StringUtils.isEmpty(fieldValue) ? resultField.getFieldName() : fieldValue;
-                PropertyType pt = _nodeType.getPropertyType(fieldValue) ;
-                if(pt == null) continue;
-                itemResult.put(resultField.getFieldName(), NodeUtils.getResultValue( this, pt, node));
+
+                if (resultField.getFieldValue().equals("_position_")) {
+                    itemResult.put(resultField.getFieldName(), ((QueryContext) this).getStart() + i + 1);
+                }else {
+                    PropertyType pt = _nodeType.getPropertyType(fieldValue);
+                    if (pt == null) continue;
+                    itemResult.put(resultField.getFieldName(), NodeUtils.getResultValue(this, pt, node));
+                }
             }
         }
     }
@@ -393,7 +414,7 @@ public class ReadContext implements Context, Serializable {
 
     public boolean isIncludeReferenced(String pid) {
         if (includeReferenced == null) {
-            return true;
+            return false;
         }
         if (includeReferenced && includeReferencedFields == null) {
             return true;
@@ -480,5 +501,26 @@ public class ReadContext implements Context, Serializable {
 
     public NodeType getNodeType() {
         return nodeType;
+    }
+
+    public String getDataStringValue(String key) {
+        Object val = JsonUtils.getValue(data, key) ;
+        if(val == null) return "" ;
+        if(val instanceof String){
+            return (String) val;
+        }
+        return val.toString() ;
+    }
+
+    public Object getDataValue(String key) {
+        return JsonUtils.getValue(data, key) ;
+    }
+
+    public Boolean getReferenceView() {
+        return referenceView;
+    }
+
+    public List<String> getReferenceViewFields() {
+        return referenceViewFields;
     }
 }

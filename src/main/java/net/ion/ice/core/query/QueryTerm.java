@@ -205,7 +205,13 @@ public class QueryTerm {
         return valueType;
     }
 
+    public String getValue(){
+        return queryValue.toString() ;
+    }
 
+    public String toString(){
+        return this.queryKey + "=" + this.queryValue ;
+    }
     public enum QueryMethod {
         PHRASE("LIKE"),
         WILDCARD("LIKE"),
