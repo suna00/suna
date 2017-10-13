@@ -9,7 +9,6 @@ import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.session.SessionService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -130,6 +129,9 @@ public class CouponService {
         for (Map<String, Object> targetProduct : targetProductList) {
             String productId = JsonUtils.getStringValue(targetProduct, "productId");
             Double orderPrice = JsonUtils.getDoubleValue(targetProduct, "orderPrice");
+            Map<String, Object> productInfo =  getProductInfo(targetProduct);
+            targetProduct.put("productName", productInfo.get("productName"));
+            targetProduct.put("baseOptionItemName", productInfo.get("baseOptionItemName"));
             List<Node> productToCategoryMap = nodeService.getNodeList("productToCategoryMap", "productId_matching=".concat(productId));
             List<Node> productCoupon = new ArrayList<>();
             for (Node coupon : couponList) {
@@ -142,13 +144,11 @@ public class CouponService {
                         for (Map<String, Object> couponTypeToCategoryMap : couponTypeToCategoryMapList) {
                             coupon.put("couponType", couponType);
                             Map<String, Double> couponDiscountCalculatorMap = couponDiscountCalculator(orderPrice, coupon);
-                            Map<String, Object> productInfo =  getProductInfo(targetProduct);
-                            couponTypeToCategoryMap.putAll(productInfo);
-                            couponTypeToCategoryMap.put("couponName", JsonUtils.getStringValue(couponType, "name"));
-                            couponTypeToCategoryMap.put("tempOrderProductId", JsonUtils.getDoubleValue(targetProduct, "tempOrderProductId"));
-                            couponTypeToCategoryMap.put("orderPrice", JsonUtils.getDoubleValue(targetProduct, "orderPrice"));
-                            couponTypeToCategoryMap.put("resultDiscountPrice", couponDiscountCalculatorMap.get("resultDiscountPrice"));
-                            couponTypeToCategoryMap.put("resultOrderPrice", couponDiscountCalculatorMap.get("resultOrderPrice"));
+                            coupon.put("tempOrderProductId", JsonUtils.getDoubleValue(targetProduct, "tempOrderProductId"));
+                            coupon.put("orderPrice", JsonUtils.getDoubleValue(targetProduct, "orderPrice"));
+                            coupon.put("resultDiscountPrice", couponDiscountCalculatorMap.get("resultDiscountPrice"));
+                            coupon.put("resultOrderPrice", couponDiscountCalculatorMap.get("resultOrderPrice"));
+                            productCoupon.add(coupon.clone());
                         }
                     }
                 }
@@ -159,18 +159,15 @@ public class CouponService {
                         coupon.put("couponType", couponType);
                         Map<String, Double> couponDiscountCalculatorMap = couponDiscountCalculator(orderPrice, coupon);
                         if (couponDiscountCalculatorMap.get("resultOrderPrice") != orderPrice) {
-                            Map<String, Object> productInfo =  getProductInfo(targetProduct);
-                            couponTypeToProductMap.putAll(productInfo);
-                            couponTypeToProductMap.put("couponName", JsonUtils.getStringValue(couponType, "name"));
-                            couponTypeToProductMap.put("tempOrderProductId", JsonUtils.getDoubleValue(targetProduct, "tempOrderProductId"));
-                            couponTypeToProductMap.put("orderPrice", JsonUtils.getDoubleValue(targetProduct, "orderPrice"));
-                            couponTypeToProductMap.put("resultDiscountPrice", couponDiscountCalculatorMap.get("resultDiscountPrice"));
-                            couponTypeToProductMap.put("resultOrderPrice", couponDiscountCalculatorMap.get("resultOrderPrice"));
+                            coupon.put("tempOrderProductId", JsonUtils.getDoubleValue(targetProduct, "tempOrderProductId"));
+                            coupon.put("orderPrice", JsonUtils.getDoubleValue(targetProduct, "orderPrice"));
+                            coupon.put("resultDiscountPrice", couponDiscountCalculatorMap.get("resultDiscountPrice"));
+                            coupon.put("resultOrderPrice", couponDiscountCalculatorMap.get("resultOrderPrice"));
+                            productCoupon.add(coupon.clone());
                         }
                     }
                 }
                 coupon.put("couponTypeToProductMapList", couponTypeToProductMapList);
-                productCoupon.add(coupon.clone());
             }
             targetProduct.put("coupon", productCoupon);
         }
