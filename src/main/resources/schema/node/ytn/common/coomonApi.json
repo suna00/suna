@@ -4,7 +4,7 @@
     "id" : "common",
     "categoryName" : "코드 API",
     "fileUrlFormat" : {
-      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
+      "default": "/"
     }
   },
   {

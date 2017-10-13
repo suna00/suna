@@ -4,7 +4,7 @@
     "id": "smsCertification",
     "categoryName": "SMS 인증",
     "fileUrlFormat" : {
-      "default": "/"
+       "default": "/"
     }
   },
   {
@@ -73,7 +73,7 @@
     "id": "emailCertification",
     "categoryName": "EMAIL 인증",
     "fileUrlFormat" : {
-      "default": "/"
+       "default": "/"
     }
   },
   {

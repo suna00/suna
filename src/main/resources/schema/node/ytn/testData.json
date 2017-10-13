@@ -338,9 +338,9 @@
     "typeId": "member",
     "memberNo": 9999998,
     "siteId": {
-      "value": "ytn",
-      "label": "YTN",
-      "refId": "ytn"
+      "value": "ion",
+      "label": "ION",
+      "refId": "ion"
     },
     "affiliateId": {
       "value": "120",
@@ -405,9 +405,9 @@
     "typeId": "member",
     "memberNo": 9999999,
     "siteId": {
-      "value": "ytn",
-      "label": "YTN",
-      "refId": "ytn"
+      "value": "mall",
+      "label": "Mall",
+      "refId": "mall"
     },
     "affiliateId": {
       "value": "120",

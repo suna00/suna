@@ -4,7 +4,7 @@
     "id" : "node",
     "categoryName" : "Node API Relay",
     "fileUrlFormat" : {
-      "default": "/"
+       "default": "/"
     }
   },
   {
