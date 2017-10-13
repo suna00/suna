@@ -735,8 +735,8 @@
   {
     "typeId": "propertyType",
     "tid": "couponType",
-    "pid": "referencedcouponTypeToProductMap",
-    "propertyTypeName": "referenced쿠폰매핑상품리스트",
+    "pid": "couponTypeToProductMap",
+    "propertyTypeName": "쿠폰 매핑 상품 리스트",
     "valueType": "REFERENCED",
     "required": false,
     "idable": false,
@@ -745,6 +745,22 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "couponTypeToProductMap",
+    "referenceValue": "couponTypeId",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "couponType",
+    "pid": "couponTypeToCategoryMap",
+    "propertyTypeName": "쿠폰 매핑 카테고리 리스트",
+    "valueType": "REFERENCED",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": true,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "couponTypeToCategoryMap",
     "referenceValue": "couponTypeId",
     "defaultValue": ""
   },
