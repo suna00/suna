@@ -345,7 +345,7 @@
     "typeId": "propertyType",
     "tid": "couponType",
     "pid": "name",
-    "propertyTypeName": "이름",
+    "propertyTypeName": "쿠폰명",
     "valueType": "STRING",
     "required": false,
     "idable": false,
