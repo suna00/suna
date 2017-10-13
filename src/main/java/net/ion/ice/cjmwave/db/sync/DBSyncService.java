@@ -559,7 +559,9 @@ public class DBSyncService {
             } catch (EmptyResultDataAccessException erda) {
                 logger.info("No data found");
                 lastExecutionRs = new HashMap<String, Object>();
-                lastExecutionRs.put("lastUpdated", new Date());
+                Calendar cal = Calendar.getInstance();
+                cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 14);
+                lastExecutionRs.put("lastUpdated", cal.getTime());
             }
         } else {
             lastExecutionRs = new HashMap<String, Object>();

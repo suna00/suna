@@ -90,7 +90,7 @@ public class MnetDataDumpService {
 
         if(qResult == null || qResult.isEmpty()) {
             Calendar cal = Calendar.getInstance();
-            cal.set(Calendar.MONTH, cal.get(Calendar.MONTH) - 1);
+            cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 14);
             return cal.getTime();
         } else {
             Date lastDate = (Date) qResult.get("jobStarted");
