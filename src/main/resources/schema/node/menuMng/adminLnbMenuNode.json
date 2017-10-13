@@ -1457,6 +1457,25 @@
   {
     "typeId": "adminLnbMenu",
     "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "root",
+    "menuId": "mamaReplMng",
+    "menuName": "MAMA EVENT 댓글 관리",
+    "order": "100",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "cj/mevt/MamaReplList"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
     "gnbMenuId": "systemMng",
     "parentMenuId": "root",
     "menuId": "admrMng",
