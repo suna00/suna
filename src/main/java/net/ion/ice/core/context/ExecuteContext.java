@@ -164,7 +164,7 @@ public class ExecuteContext extends ReadContext{
                     changedProperties.add(pt.getPid()) ;
                 }else if(pt.isFile()){
                     if(newValue != null) data.put(pt.getPid(), newValue) ;
-                    if(newValue != null && newValue instanceof String && (((String) newValue).startsWith("classpath:") || ((String) newValue).startsWith("http://") || ((String) newValue).startsWith("/"))) {
+                    if(newValue != null && newValue instanceof String && (((String) newValue).startsWith("classpath:") || ((String) newValue).startsWith("http://") || ((String) newValue).startsWith("https://") || ((String) newValue).startsWith("/"))) {
                         if (existValue == null) {
                             node.put(pt.getPid(), NodeUtils.getFileService().saveResourceFile(pt, id, (String) newValue));
                             changedProperties.add(pt.getPid());
@@ -205,7 +205,7 @@ public class ExecuteContext extends ReadContext{
                         }
                         for(String locKey : ((Map<String, Object>) existValue).keySet()){
                             Object locVal = ((Map<String, Object>) existValue).get(locKey) ;
-                            if(locVal instanceof String && (((String) locVal).startsWith("classpath:") || ((String) locVal).startsWith("http://") || ((String) locVal).startsWith("/"))) {
+                            if(locVal instanceof String && (((String) locVal).startsWith("classpath:") || ((String) locVal).startsWith("http://") || ((String) locVal).startsWith("https://") || ((String) locVal).startsWith("/"))) {
                                 ((Map<String, Object>) existValue).put(locKey, NodeUtils.getFileService().saveResourceFile(pt, id, (String) locVal));
                             }
                         }
