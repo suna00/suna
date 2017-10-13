@@ -60,5 +60,14 @@
     "tableName": "ytnDevDb#orderChangeDeliveryPrice",
     "repositoryType": "data",
     "eviction": 0
+  },
+  {
+    "parentId": "deliveryPath",
+    "typeId": "nodeType",
+    "tid": "deliveryTrackingInfo",
+    "typeName": "배송추적정보",
+    "tableName": "ytnDevDb#deliveryTrackingInfo",
+    "repositoryType": "data",
+    "eviction": 0
   }
 ]

@@ -9,10 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service("sweettrackerService")
 public class SweettrackerService {
@@ -20,6 +17,7 @@ public class SweettrackerService {
 
     public static final String orderDeliveryPrice = "orderDeliveryPrice";
     public static final String orderProduct = "orderProduct";
+    public static final String deliveryTrackingInfo = "deliveryTrackingInfo";
     @Autowired
     private NodeBindingService nodeBindingService ;
     @Autowired
@@ -37,8 +35,10 @@ public class SweettrackerService {
         deliveryStatusMap.put("6", "order006"); //배송 완료
     }
 
+    // 운송장 추적 요청 API :https://dev-tracking-api.sweettracker.net/add_invoice
 
-    // 스윗트래커 callback_url
+
+    // 운송장 추적정보 수신API(Callback_URL)
     public ExecuteContext getData(ExecuteContext context){
         logger.info("-----START SweettrackerService ");
         Map<String, Object> data = context.getData();
@@ -54,7 +54,6 @@ public class SweettrackerService {
                 }
             }
 
-
             List<Map<String, Object>> listById = nodeBindingService.list(orderDeliveryPrice, "orderDeliveryPriceId_equals=" + data.get("fid"));
             if(listById.size() == 0){
                 data.put("success", false);
@@ -64,6 +63,9 @@ public class SweettrackerService {
                 return context;
             }else{
                 for(Map<String, Object> map : listById){
+
+                    createDeliveryTrackingInfo(data);
+
                     if(!JsonUtils.getStringValue(map, "trackingNo").equals(JsonUtils.getStringValue(data, "invoice_no"))){
                         data.put("success", false);
                         data.put("message", "fail-The invoice_no of fid does not match trackingNo.");
@@ -71,21 +73,9 @@ public class SweettrackerService {
                         logger.info("----- SweettrackerService context : " + context);
                         return context;
                     }else{
-                        List<Map<String, Object>> orderProducts = nodeBindingService.list(orderProduct, "orderProductId_in=" + map.get("orderProductIds"));
-                        String orderStatusByLevel = deliveryStatusMap.get(data.get("level"));
-                        for(Map<String, Object> op : orderProducts){
-                            if(checkUpdateYn(orderStatusByLevel, op)){
-                                op.put("orderStatus", orderStatusByLevel);
-                                op.put("changed", new Date());
-                                nodeService.executeNode(op, orderProduct, CommonService.UPDATE);
-                                data.put("orderStatus", orderStatusByLevel);
-                            }
-                        }
-
+                        String orderStatusByLevel = updateOrderProductStatus(data, map);
                         if(!JsonUtils.getStringValue(map, "deliveryStatus").equals(orderStatusByLevel)){
-                            map.put("deliveryStatus", orderStatusByLevel);
-                            map.put("changed", new Date());
-                            nodeService.executeNode(map, orderDeliveryPrice, CommonService.UPDATE);
+                            updateDeliveryPriceStatus(map, orderStatusByLevel, orderDeliveryPrice);
                         }
                     }
                 }
@@ -110,10 +100,47 @@ public class SweettrackerService {
 
     }
 
-//# order004,상품준비중
-//# order005,배송중
-//# order014,교환상품 준비중
-//# order015,교환배송중
+    public void createDeliveryTrackingInfo(Map<String, Object> data) {
+        Map<String, Object> info = new LinkedHashMap<>();
+        info.put("orderDeliveryPriceId", JsonUtils.getStringValue(data,"fid"));
+        info.put("trackingNo",JsonUtils.getStringValue(data,"invoice_no"));
+        info.put("level",JsonUtils.getIntValue(data,"level"));
+        info.put("timeTrans",JsonUtils.getStringValue(data,"time_trans"));
+        info.put("timeSweet",JsonUtils.getStringValue(data,"time_sweet"));
+        info.put("location",JsonUtils.getStringValue(data,"where"));
+        info.put("telnoOffice",JsonUtils.getStringValue(data,"telno_of f ice"));
+        info.put("telnoMan",JsonUtils.getStringValue(data,"telno_man"));
+        info.put("details",JsonUtils.getStringValue(data,"details"));
+        info.put("recvAddr",JsonUtils.getStringValue(data,"recv_addr"));
+        info.put("recvName",JsonUtils.getStringValue(data,"recv_name"));
+        info.put("sendName",JsonUtils.getStringValue(data,"send_name"));
+        nodeService.executeNode(info, deliveryTrackingInfo, CommonService.CREATE);
+    }
+
+    public void updateDeliveryPriceStatus(Map<String, Object> map, String orderStatusByLevel, String orderDeliveryPrice) {
+        map.put("deliveryStatus", orderStatusByLevel);
+        map.put("changed", new Date());
+        nodeService.executeNode(map, orderDeliveryPrice, CommonService.UPDATE);
+    }
+
+    public String updateOrderProductStatus(Map<String, Object> data, Map<String, Object> map) {
+        List<Map<String, Object>> orderProducts = nodeBindingService.list(orderProduct, "orderProductId_in=" + map.get("orderProductIds"));
+        String orderStatusByLevel = deliveryStatusMap.get(data.get("level"));
+        for(Map<String, Object> op : orderProducts){
+            if(checkUpdateYn(orderStatusByLevel, op)){
+                op.put("orderStatus", orderStatusByLevel);
+                op.put("changed", new Date());
+                nodeService.executeNode(op, orderProduct, CommonService.UPDATE);
+                data.put("orderStatus", orderStatusByLevel);
+            }
+        }
+        return orderStatusByLevel;
+    }
+
+    //# order004,상품준비중
+    //# order005,배송중
+    //# order014,교환상품 준비중
+    //# order015,교환배송중
     private boolean checkUpdateYn(String orderStatusByLevel, Map<String, Object> op) {
         if(orderStatusByLevel.equals(JsonUtils.getStringValue(op, "orderStatus"))) return false;
         String orderStatus = JsonUtils.getStringValue(op, "orderStatus");
