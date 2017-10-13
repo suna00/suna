@@ -81,7 +81,7 @@
     "bannerStatus": "y"
   },
   {
-    "typeId": "singlebanner",
+    "typeId": "singleBanner",
     "singleBannerId": 10,
     "singleBannerLocation": "login",
     "sortOrder": 1,
@@ -90,7 +90,7 @@
     "bannerStatus": "y"
   },
   {
-    "typeId": "singlebanner",
+    "typeId": "singleBanner",
     "singleBannerId": 11,
     "singleBannerLocation": "popup1",
     "sortOrder": 1,
@@ -99,7 +99,7 @@
     "bannerStatus": "y"
   },
   {
-    "typeId": "singlebanner",
+    "typeId": "singleBanner",
     "singleBannerId": 12,
     "singleBannerLocation": "popup1",
     "sortOrder": 2,
@@ -108,7 +108,7 @@
     "bannerStatus": "y"
   },
   {
-    "typeId": "singlebanner",
+    "typeId": "singleBanner",
     "singleBannerId": 13,
     "singleBannerLocation": "popup2",
     "sortOrder": 1,
@@ -117,7 +117,7 @@
     "bannerStatus": "y"
   },
   {
-    "typeId": "singlebanner",
+    "typeId": "singleBanner",
     "singleBannerId": 14,
     "singleBannerLocation": "popup2",
     "sortOrder": 2,
@@ -126,7 +126,7 @@
     "bannerStatus": "y"
   },
   {
-    "typeId": "singlebanner",
+    "typeId": "singleBanner",
     "singleBannerId": 15,
     "singleBannerLocation": "popup2",
     "sortOrder": 3,
@@ -135,7 +135,7 @@
     "bannerStatus": "y"
   },
   {
-    "typeId": "singlebanner",
+    "typeId": "singleBanner",
     "singleBannerId": 16,
     "singleBannerLocation": "top",
     "sortOrder": 1,

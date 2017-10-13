@@ -166,7 +166,7 @@ public class QueryContext extends ReadContext {
             searchField = searchField.trim() ;
             if(StringUtils.isNotEmpty(searchField)) {
                 this.searchFields.add(searchField) ;
-                QueryTerm queryTerm = QueryUtils.makePropertyQueryTerm(this.getQueryTermType(), this.nodeType, searchField, "matchingShould", searchValue);
+                QueryTerm queryTerm = QueryUtils.makePropertyQueryTerm(this.getQueryTermType(), this.nodeType, searchField, "wildcardShould", searchValue);
                 this.addQueryTerm(queryTerm);
             }
         }

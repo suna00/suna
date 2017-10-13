@@ -4,7 +4,7 @@
     "id" : "displayApi",
     "categoryName" : "Display API",
     "fileUrlFormat" : {
-      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
+       "default": "/"
     }
   },
   {
@@ -12,7 +12,7 @@
     "id" : "theme",
     "categoryName" : "테마 API(메인, 베스트, 카테고리 메인 등)",
     "fileUrlFormat" : {
-      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
+       "default": "/"
     }
   },
   {
@@ -29,8 +29,9 @@
         {"limit" : 50},
         {"sorting" : "sortOrder"},
         {"field" : "productToThemeMapStatus", "method" : "matching", "value" : "y" },
+        {"field" : "themeId", "method" : "matching", "value" : "{{:themeId}}"},
         {"includeReferenced" : "referencedMainImage,referencedProductAttribute", "referenceView" : "themeId,productId"},
-        {"field" : "themeId", "method" : "referenceJoin", "value" : "themeStatus_matching=y&pageType_matching={{:pageType}}&themeType_matching={{:themeType}}&siteType_matching={{:siteType}}&categoryId_matching={{:categoryId}}&name_matching={{:name}}" }
+        {"field" : "themeId", "method" : "referenceJoin", "value" : "themeStatus_matching=y&pageType_matching={{:pageType}}&themeType_matching={{:themeType}}&siteType_matching=all,{{:siteType}}&categoryId_matching={{:categoryId}}&name_matching={{:name}}" }
       ]
     },
     "themeList" : {
@@ -51,7 +52,7 @@
     "id" : "beltBanner",
     "categoryName" : "띠배너 API",
     "fileUrlFormat" : {
-      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
+       "default": "/"
     }
   },
   {
@@ -76,7 +77,7 @@
     "id" : "displayBanner",
     "categoryName" : "전시배너 API",
     "fileUrlFormat" : {
-      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
+       "default": "/"
     }
   },
   {

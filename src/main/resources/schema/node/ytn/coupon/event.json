@@ -30,5 +30,23 @@
     "actionType": "service",
     "actionBody": "couponService.applicable",
     "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "coupon",
+    "event": "applicableCoupon",
+    "noneExecute": true,
+    "eventName": "적용가능한 쿠폰 메소드"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "coupon>applicableCoupon",
+    "action": "applicableCoupon",
+    "actionName": "적용가능한 쿠폰 메소드",
+    "actionType": "service",
+    "actionBody": "couponService.applicableCouponList",
+    "order": 1
   }
+
+
 ]

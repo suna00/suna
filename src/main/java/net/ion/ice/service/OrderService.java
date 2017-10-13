@@ -225,7 +225,7 @@ public class OrderService {
 
             for (String key : deliveryPriceList.keySet()) {
                 List<Map<String, Object>> priceList = (List<Map<String, Object>>) deliveryPriceList.get(key);
-                deliveryPrice += Double.parseDouble(String.valueOf(priceList.get(0).get("deliveryPrice")));
+                deliveryPrice += (Double) priceList.get(0).get("deliveryPrice");
             }
 
             List<Map<String, Object>> coupons = getCoupons(memberNo, reqTempOrderId);

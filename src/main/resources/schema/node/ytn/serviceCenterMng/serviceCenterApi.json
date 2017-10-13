@@ -4,7 +4,7 @@
     "id": "serviceCenter",
     "categoryName": "서비스센터 API",
     "fileUrlFormat" : {
-      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
+       "default": "/"
     }
   },
   {
@@ -82,32 +82,22 @@
         {
           "field": "referencedOrderProduct",
           "method": "hasReferenced",
-          "value": "productId_equals={{:productId}}&orderStatus_equals={{:orderStatus}}"
+          "value": "orderStatus_equals={{:orderStatus}}"
         }
       ],
       "response": {
         "_all_": "",
-        "referencedOrderProduct": {
-          "typeId": "orderProduct",
-          "query": [
-            {
-              "field": "orderSheetId",
-              "method": "equals",
-              "value": "{{:orderSheetId}}"
-            },
-            {
-              "field": "productId",
-              "method": "equals",
-              "value": "{{:productId}}"
-            },
-            {
-              "includeReferenced": true,
-              "referenceView": "productId,deliveryEnterpriseId"
-            }
+        "referencedOrderProduct" : {
+          "typeId" : "orderProduct",
+          "query" : [
+            {"field" : "orderSheetId", "method" : "equals", "value" : "{{:orderSheetId}}"},
+            {"field" : "productId", "method" : "equals", "value" : "{{:productId}}"},
+            {"includeReferenced" : "referencedMainImage", "referenceView": "productId,deliveryEnterpriseId"}
           ],
           "response": {
             "_all_": "",
-            "referencedOrderDeliveryPrice": {
+            "productId": {"field" : "productId",  "referenceView":"productId,deliveryEnterpriseId", "includeReferenced" : "referencedMainImage"},
+            "referencedOrderDeliveryPrice" : {
               "select": {
                 "ds": "ytnDevDb",
                 "resultType": "read",
@@ -120,7 +110,7 @@
                 "ds": "ytnDevDb",
                 "resultType": "read",
                 "description": "버튼 조회 정보",
-                "sql": "SELECT if(a.orderstatus = 'order002' || a.orderstatus = 'order003', 'true', 'false') AS cancelBtn, if(b.contentsType = 'goods' && (a.orderstatus = 'order005' || a.orderstatus = 'order006'), 'true', 'false') AS exchangeBtn, if(b.contentsType = 'goods' && (a.orderstatus = 'order005' || a.orderstatus = 'order006'), 'true', 'false') AS returnBtn, (CASE WHEN b.contentsType = 'goods' THEN if((SELECT IFNULL(max(if((sendingDate + INTERVAL 30 DAY) >= now(), TRUE, FALSE)), FALSE)FROM orderdeliveryprice WHERE orderSheetId = a.orderSheetId and find_in_set(@{orderProductId}, orderProductIds) > 0) && (a.orderstatus = 'order005' || a.orderstatus = 'order006' || a.orderstatus = 'order007'), 'true', 'false') ELSE if(a.orderstatus = 'order005' || a.orderstatus = 'order006' || a.orderstatus = 'order007', 'true', 'false') END ) AS reviewBtn, if(b.contentsType = 'goods' && b.deliveryMethod = 'delivery' && (a.orderstatus = 'order005' || a.orderstatus = 'order006' || a.orderstatus = 'order015' || a.orderstatus = 'order016'), 'true', 'false') AS trackingViewBtn, if(b.contentsType = 'goods' && (a.orderstatus = 'order002' || a.orderstatus = 'order003'), 'true','false') AS addressChangeBtn FROM orderproduct a, product b WHERE a.productId = b.productId AND a.orderProductId = @{orderProductId} "
+                "sql": "SELECT if(a.orderstatus = 'order002' || a.orderstatus = 'order003' || a.orderStatus = 'order004', 'true', 'false') AS cancelBtn, if(b.contentsType = 'goods' && (a.orderstatus = 'order005' || a.orderstatus = 'order006'), 'true', 'false') AS exchangeBtn, if(b.contentsType = 'goods' && (a.orderstatus = 'order005' || a.orderstatus = 'order006'), 'true', 'false') AS returnBtn, (CASE WHEN b.contentsType = 'goods' THEN if((SELECT IFNULL(max(if((sendingDate + INTERVAL 30 DAY) >= now(), TRUE, FALSE)), FALSE)FROM orderdeliveryprice WHERE orderSheetId = a.orderSheetId and find_in_set(@{orderProductId}, orderProductIds) > 0) && (a.orderstatus = 'order005' || a.orderstatus = 'order006' || a.orderstatus = 'order007'), 'true', 'false') ELSE if(a.orderstatus = 'order005' || a.orderstatus = 'order006' || a.orderstatus = 'order007', 'true', 'false') END ) AS reviewBtn, if(b.contentsType = 'goods' && b.deliveryMethod = 'delivery' && (a.orderstatus = 'order005' || a.orderstatus = 'order006' || a.orderstatus = 'order015' || a.orderstatus = 'order016'), 'true', 'false') AS trackingViewBtn, if(b.contentsType = 'goods' && (a.orderstatus = 'order002' || a.orderstatus = 'order003'), 'true','false') AS addressChangeBtn FROM orderproduct a, product b WHERE a.productId = b.productId AND a.orderProductId = @{orderProductId} "
               }
             }
           }

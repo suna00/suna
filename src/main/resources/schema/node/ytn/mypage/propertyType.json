@@ -5,7 +5,7 @@
     "pid": "orderProductId",
     "propertyTypeName": "ID",
     "valueType": "INT",
-    "required": true,
+    "required": false,
     "idable": true,
     "labelable": false,
     "treeable": false,

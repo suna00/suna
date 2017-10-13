@@ -90,7 +90,7 @@ public class EventService {
 
         if((event == null || !event.isNoneExecute()) && nodeType.isNode() && executeContext.getNode() != null) {
             infinispanService.execute(executeContext) ;
-            clusterService.node(executeContext) ;
+            clusterService.cache(executeContext) ;
             if(executeContext.getResult() == null) {
                 executeContext.setResult(executeContext.getNode());
             }

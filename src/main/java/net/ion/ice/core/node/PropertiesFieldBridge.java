@@ -88,20 +88,20 @@ public class PropertiesFieldBridge implements FieldBridge {
                         Map<String, Object> i18nMap = (Map<String, Object>) entry.getValue();
                         for(String key : i18nMap.keySet()){
 //                            document.add(getKeywordField(propertyType, pid + "_" + key, i18nMap.get(key).toString()));
-                            if(i18nMap.containsKey(key) && i18nMap.get(key) != null) document.add(getKeywordField(propertyType, pid + "_" + key, i18nMap.get(key).toString()));
+                            if(i18nMap.containsKey(key) && i18nMap.get(key) != null){
+                                document.add(getKeywordField(propertyType, pid + "_" + key, i18nMap.get(key).toString()));
+                            }
                         }
                     }
                 }else {
                     if(propertyType.isSortable() && !propertyType.isNumeric()) {
-//                        if(propertyType.getValueType() == PropertyType.ValueType.REFERENCES){
-//                            for(String val : StringUtils.split(entry.getValue().toString())){
-//                                document.add(new SortedSetDocValuesFacetField(pid + "_sort", val));
-//                            }
-//                        }else {
-                            document.add(new SortedSetDocValuesFacetField(pid + "_sort", entry.getValue().toString()));
-//                        }
+                        document.add(new SortedSetDocValuesFacetField(pid + "_sort", entry.getValue().toString()));
                     }
                     document.add(getKeywordField(propertyType, pid, entry.getValue().toString()));
+                    if(propertyType.getValueType() == PropertyType.ValueType.REFERENCE){
+                        Node refNode = NodeUtils.getReferenceNode(entry.getValue(), propertyType);
+
+                    }
                 }
                 break;
             }
@@ -110,11 +110,7 @@ public class PropertiesFieldBridge implements FieldBridge {
 
     private Field getKeywordField(PropertyType propertyType, String key, String value){
         if(propertyType.isSorted()) {
-//            if(value != null) {
-//                return new AnalyzerField(key, value.toLowerCase(), sortedFieldAnalyzer());
-//            }else{
-                return new AnalyzerField(key, value, sortedFieldAnalyzer());
-//            }
+            return new AnalyzerField(key, value, sortedFieldAnalyzer());
         }else{
             return new AnalyzerField(key, value, fieldAnalyzer(propertyType.getLuceneAnalyzer()));
         }

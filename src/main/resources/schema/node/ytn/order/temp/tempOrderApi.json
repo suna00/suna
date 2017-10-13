@@ -4,7 +4,7 @@
     "id": "tempOrder",
     "categoryName": "임시 주문서 API",
     "fileUrlFormat" : {
-      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
+       "default": "/"
     }
   },
   {
