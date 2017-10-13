@@ -22,7 +22,7 @@ public class MigrationUtils {
                 "(?, ?, ?, ?" +
                 ", ?, ?, ?)";
         try{
-            logger.info(
+            System.out.println(
                     "\n#### DATA COPY Report :: #####" +
                             "\nMsSql Table : " + report.get("mssqlTable") +
                             "\nMySql Table : " + report.get("mysqlTable") +

@@ -1,16 +1,16 @@
 [
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>advShowOrder>advSeq",
-    "propertyTypeId": "advShowOrder>advSeq",
+    "id": "propertyTypeValidation>advShowOrder>advShowOrderSeq",
+    "propertyTypeId": "advShowOrder>advShowOrderSeq",
     "validation": {
       "language": "ko",
       "required": {
-        "value": false,
+        "value": true,
         "description": "필수 값 입니다."
       },
       "duplicated": {
-        "value": false,
+        "value": true,
         "description": "중복된 값 입니다."
       },
       "min": {
@@ -33,12 +33,12 @@
   },
   {
     "typeId": "propertyTypeValidation",
-    "id": "propertyTypeValidation>advShowOrder>order",
-    "propertyTypeId": "advShowOrder>order",
+    "id": "propertyTypeValidation>advShowOrder>advSeq",
+    "propertyTypeId": "advShowOrder>advSeq",
     "validation": {
       "language": "ko",
       "required": {
-        "value": false,
+        "value": true,
         "description": "필수 값 입니다."
       },
       "duplicated": {
@@ -67,6 +67,134 @@
     "typeId": "propertyTypeValidation",
     "id": "propertyTypeValidation>advShowOrder>showOrder",
     "propertyTypeId": "advShowOrder>showOrder",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": true,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation>advShowOrder>owner",
+    "propertyTypeId": "advShowOrder>owner",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation>advShowOrder>created",
+    "propertyTypeId": "advShowOrder>created",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation>advShowOrder>modifier",
+    "propertyTypeId": "advShowOrder>modifier",
+    "validation": {
+      "language": "ko",
+      "required": {
+        "value": false,
+        "description": "필수 값 입니다."
+      },
+      "duplicated": {
+        "value": false,
+        "description": "중복된 값 입니다."
+      },
+      "min": {
+        "value": 0,
+        "description": "최소 값 입니다."
+      },
+      "max": {
+        "value": 0,
+        "description": "최대 값 입니다."
+      },
+      "extention": {
+        "value": "",
+        "description": "확장자를 허용하지 않습니다."
+      },
+      "regularExpression": {
+        "value": "",
+        "description": ""
+      }
+    }
+  },
+  {
+    "typeId": "propertyTypeValidation",
+    "id": "propertyTypeValidation>advShowOrder>changed",
+    "propertyTypeId": "advShowOrder>changed",
     "validation": {
       "language": "ko",
       "required": {

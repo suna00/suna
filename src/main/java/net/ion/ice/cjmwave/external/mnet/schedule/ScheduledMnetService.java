@@ -28,10 +28,18 @@ public class ScheduledMnetService {
         try{
             logger.info("MnetDataDumpService.execute :: " + type);
 
+            System.out.println("###############################");
+            System.out.println(type + " :: Start copy Data :: " + new Date());
+            System.out.println("###############################");
+
             //신규 증분에 대한 MSSQL to MySQL 마이그레이션 수행
             mnetDataDumpService.copyData(type, provided);
             // 이전 실행시간 히스토리에서 가져와서 파라미터로 수행한다
             // dbSyncProcess 의 주기적 쿼리를 실행하도록 처리
+
+            System.out.println("###############################");
+            System.out.println(type + " :: Start generate Node :: " + new Date());
+            System.out.println("###############################");
             dbSyncService.executeForNewData("mnet", type, provided);
         } catch (Exception e) {
             logger.error("FAILED TO EXECUTE MNET MIGRATION :: ", e);

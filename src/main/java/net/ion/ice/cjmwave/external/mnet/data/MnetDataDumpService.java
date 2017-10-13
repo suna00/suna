@@ -90,7 +90,7 @@ public class MnetDataDumpService {
 
         if(qResult == null || qResult.isEmpty()) {
             Calendar cal = Calendar.getInstance();
-            cal.set(Calendar.MONTH, cal.get(Calendar.MONTH) - 1);
+            cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 14);
             return cal.getTime();
         } else {
             Date lastDate = (Date) qResult.get("jobStarted");
@@ -274,7 +274,7 @@ public class MnetDataDumpService {
 
     public void copyData (String target, Date provided) {
         // 각자 레포트 보고
-        logger.info("parameters :: target :: " + target + " :: provided :: " + provided);
+        logger.info("START COPY DATA :: " + target);
         // 리포트 정보 초기화
         migrationReports = new HashMap<>();
         target = target.trim().toLowerCase();

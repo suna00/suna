@@ -1177,11 +1177,11 @@
     "customPages": [
       {
         "pageName": "목록",
-        "pageUrl": "cj/vt/PrtcptHstList"
+        "pageUrl": "cj/usercon/PrtcptHstList"
       },
       {
         "pageName": "상세",
-        "pageUrl": "cj/vt/PrtcptHstView"
+        "pageUrl": "cj/usercon/PrtcptHstView"
       }
     ]
   },
@@ -1219,11 +1219,11 @@
     "customPages": [
       {
         "pageName": "목록",
-        "pageUrl": "cj/vt/PwnrInfoList"
+        "pageUrl": "cj/usercon/PwnrInfoList"
       },
       {
         "pageName": "상세",
-        "pageUrl": "cj/vt/PwnrInfoView"
+        "pageUrl": "cj/usercon/PwnrInfoView"
       }
     ]
   },
@@ -1238,13 +1238,13 @@
     "icon": "",
     "active": "true",
     "index": "false",
-    "pages": [
+    "pages": [],
+    "customPages": [
       {
         "pageName": "목록",
-        "pageUrl": "list"
+        "pageUrl": "cj/usercon/ReplList"
       }
-    ],
-    "customPages": []
+    ]
   },
   {
     "typeId": "adminLnbMenu",
@@ -1451,6 +1451,25 @@
       {
         "pageName": "상세",
         "pageUrl": "cj/cc/faqCtg/FaqCtgView"
+      }
+    ]
+  },
+  {
+    "typeId": "adminLnbMenu",
+    "backOfficeId": "admin",
+    "gnbMenuId": "webSvcMng",
+    "parentMenuId": "root",
+    "menuId": "mamaReplMng",
+    "menuName": "MAMA EVENT 댓글 관리",
+    "order": "100",
+    "icon": "fa-tag",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      {
+        "pageName": "목록",
+        "pageUrl": "cj/usercon/MamaReplList"
       }
     ]
   },
