@@ -213,8 +213,6 @@ public class NodeService {
         }catch(Exception e){
 
         }
-
-
     }
 
     private void initDatasource(String file) throws IOException {
