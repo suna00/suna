@@ -274,7 +274,7 @@ public class MnetDataDumpService {
 
     public void copyData (String target, Date provided) {
         // 각자 레포트 보고
-        logger.info("parameters :: target :: " + target + " :: provided :: " + provided);
+        logger.info("START COPY DATA :: " + target);
         // 리포트 정보 초기화
         migrationReports = new HashMap<>();
         target = target.trim().toLowerCase();
