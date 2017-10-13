@@ -280,6 +280,22 @@
       { "pageName": "수정", "pageUrl": "ytn/marketingEvent/UpdateForm" }
     ]
   },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "marketingMng",
+    "parentMenuId": "root",
+    "menuId": "search",
+    "menuName": "추천검색어 관리",
+    "order": "50",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "ytn/marketingSearch/Form" }
+    ]
+  },
 
   {
     "typeId" : "adminLnbMenu",
