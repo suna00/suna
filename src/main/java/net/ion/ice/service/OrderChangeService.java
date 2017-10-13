@@ -290,9 +290,11 @@ public class OrderChangeService {
         Map<String, Object> restDeliveryPriceList = (Map<String, Object>) restMap.get("restDeliveryPriceList");
 //        deliveryService.makeDeliveryPrice(JsonUtils.getStringValue(data, "orderSheetId"), restDeliveryPriceList);
 
-        Map<String, Object> item = new LinkedHashMap<>();
-        item.put("item", orderChangeNode);
-        context.setResult(item);
+//        Map<String, Object> item = new LinkedHashMap<>();
+//        item.put("item", orderChangeNode);
+//        context.setResult(item);
+
+        context.setResult(CommonService.getResult("M0004"));
         return context;
     }
 
@@ -331,9 +333,10 @@ public class OrderChangeService {
         Map<String, Object> orderChangeNode = createOrderChange(map);
         createDeliveryAddress(data, JsonUtils.getStringValue(orderChangeNode, "orderChangeId"));
 
-        Map<String, Object> item = new LinkedHashMap<>();
-        item.put("item", orderChangeNode);
-        context.setResult(item);
+//        Map<String, Object> item = new LinkedHashMap<>();
+//        item.put("item", orderChangeNode);
+//        context.setResult(item);
+        context.setResult(CommonService.getResult("M0004"));
         return context;
     }
 
@@ -378,9 +381,10 @@ public class OrderChangeService {
         Map<String, Object> orderChangeNode = createOrderChange(map);
         createDeliveryAddress(data, JsonUtils.getStringValue(orderChangeNode, "orderChangeId"));
 
-        Map<String, Object> item = new LinkedHashMap<>();
-        item.put("item", orderChangeNode);
-        context.setResult(item);
+//        Map<String, Object> item = new LinkedHashMap<>();
+//        item.put("item", orderChangeNode);
+//        context.setResult(item);
+        context.setResult(CommonService.getResult("M0004"));
         return context;
     }
 
