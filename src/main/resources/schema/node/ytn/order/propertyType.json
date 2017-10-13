@@ -1994,6 +1994,23 @@
   },
   {
     "typeId": "propertyType",
+    "tid": "orderChangeProduct",
+    "pid": "orderChangeStatus",
+    "propertyTypeName": "주문변경상태",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "commonCode",
+    "referenceValue": "code",
+    "codeFilter": "orderChangeStatus",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
     "tid": "orderSheet",
     "pid": "orderSheetId",
     "propertyTypeName": "ID",
