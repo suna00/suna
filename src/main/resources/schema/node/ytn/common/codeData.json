@@ -703,7 +703,7 @@
   },
   {
     "typeId": "commonCode",
-    "code": "counditionalAuto",
+    "code": "conditionalAuto",
     "upperCode": "root",
     "name": "조건부자동",
     "description": "",
@@ -4349,7 +4349,7 @@
   {
     "typeId": "commonCode",
     "code": "auto001",
-    "upperCode": "counditionalAuto",
+    "upperCode": "conditionalAuto",
     "name": "회원가입",
     "description": "",
     "sortOrder": "1",
@@ -4358,7 +4358,7 @@
   {
     "typeId": "commonCode",
     "code": "auto002",
-    "upperCode": "counditionalAuto",
+    "upperCode": "conditionalAuto",
     "name": "회원 후기 작성",
     "description": "",
     "sortOrder": "2",
@@ -4367,7 +4367,7 @@
   {
     "typeId": "commonCode",
     "code": "auto003",
-    "upperCode": "counditionalAuto",
+    "upperCode": "conditionalAuto",
     "name": "로그인 이벤트",
     "description": "",
     "sortOrder": "3",
@@ -4376,7 +4376,7 @@
   {
     "typeId": "commonCode",
     "code": "auto004",
-    "upperCode": "counditionalAuto",
+    "upperCode": "conditionalAuto",
     "name": "첫구매",
     "description": "",
     "sortOrder": "4",
@@ -4385,7 +4385,7 @@
   {
     "typeId": "commonCode",
     "code": "auto005",
-    "upperCode": "counditionalAuto",
+    "upperCode": "conditionalAuto",
     "name": "구매수량 충족",
     "description": "",
     "sortOrder": "5",
@@ -4394,7 +4394,7 @@
   {
     "typeId": "commonCode",
     "code": "auto006",
-    "upperCode": "counditionalAuto",
+    "upperCode": "conditionalAuto",
     "name": "룰렛 이벤트",
     "description": "",
     "sortOrder": "6",
