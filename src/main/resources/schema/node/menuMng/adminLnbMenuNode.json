@@ -60,8 +60,8 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "ytn/product/CreateGoodsForm" },
-      { "pageName": "수정", "pageUrl": "ytn/product/UpdateGoodsForm" }
+      { "pageName": "등록", "pageUrl": "ytn/product/CreatePhoneForm" },
+      { "pageName": "수정", "pageUrl": "ytn/product/UpdatePhoneForm" }
     ]
   },
   {
