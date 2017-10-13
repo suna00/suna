@@ -2,7 +2,7 @@
   {
     "typeId": "msSqlReplication"
     , "standAlone" : true
-    , "subTasks" : "album_artist, album_country, album_keyword, album_keyword_meta, album_meta, album_songs"
+    , "subTasks" : "album_artist, album_country, album_keyword, album_keyword_meta, album_meta"
     , "subTaskKey" : "album_id"
     , "executeId": "album"
     , "targetDs": "mnetDb"
@@ -92,7 +92,7 @@
     , "targetDs": "mnetDb"
     , "fromTable" : "MT_ALBUM_SONGS"
     , "toTable" : "MT_ALBUM_SONGS"
-    , "query": "EXEC recentAlbumSongs @AlbumId = @{VARCHAR.id}"
+    , "query": "EXEC recentAlbumSongs @SongId = @{VARCHAR.id}"
     , "query_nosp": "SELECT * FROM ice2.MT_ALBUM_SONGS WHERE ALBUM_ID = @{VARCHAR.id}"
   }
   , {
@@ -254,7 +254,7 @@
   , {
     "typeId": "msSqlReplication"
     , "standAlone" : true
-    , "subTasks" : "song_artist, song_album, song_country, song_keyword, song_keyword_meta, song_meta"
+    , "subTasks" : "song_artist, song_country, song_keyword, song_keyword_meta, song_meta, album_songs"
     , "subTaskKey" : "song_id"
     , "executeId": "song"
     , "targetDs": "mnetDb"
@@ -262,17 +262,6 @@
     , "toTable" : "MT_SONG"
     , "query": "EXEC recentSong @LastUpdated = @{TIMESTAMP.lastUpdated}"
     , "query_nosp": "SELECT * FROM ice2.MT_SONG WHERE CREATE_DT > @{TIMESTAMP.lastUpdated} OR UPDATE_DT > @{TIMESTAMP.lastUpdated}"
-  }, {
-      "typeId": "msSqlReplication"
-    , "standAlone" : false
-    , "subTasks" : null
-    , "subTaskKey" : null
-    , "executeId": "song_album"
-    , "targetDs": "mnetDb"
-    , "fromTable" : "MT_ALBUM_SONGS"
-    , "toTable" : "MT_ALBUM_SONGS"
-    , "query": "EXEC recentAlbumSongs @SongId = @{VARCHAR.id}"
-    , "query_nosp": "SELECT * FROM ice2.MT_ALBUM_SONGS WHERE SONG_ID = @{VARCHAR.id}"
   }
   , {
     "typeId": "msSqlReplication"
