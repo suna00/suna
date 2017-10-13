@@ -39,6 +39,13 @@ $ > git push codecommit
 ```
 - 원인 : 커밋 트리가 달라서 병합이 안됨 > 어차피 `codecommit` 은 완성된 소스를 배포하기 위해 걸치는 절차이므로 현재 ion 브랜치가 최신이라면 무조건 덮어쓰면 해결됨
 
+#### 계정정보
+
+```
+ID : prd_devops@ion-at-987692723403
+PW : 5dyn5TEBHHqENrjnP2F2jZlC/FQadypZCqv7amYtigs=
+```
+
 #### History
 
 - 2017.10.12 - 초안 작성 
