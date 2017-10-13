@@ -96,5 +96,55 @@
         {"sorting" : "sortOrder"}
       ]
     }
+  },
+  {
+    "typeId" : "apiCategory",
+    "id" : "category",
+    "categoryName" : "카테고리 API",
+    "fileUrlFormat" : {
+      "default": "/"
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "category",
+    "apiId" : "list",
+    "apiName" : "카테고리 리스트",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "category",
+      "query" : [
+        {"field" : "level", "method" : "matching", "value" : "A"},
+        {"field" : "categoryStatus", "method" : "matching", "value" : "y"},
+        {"sorting" : "sortOrder"}
+      ],
+      "response": {
+        "_all_": "",
+        "children": {
+          "typeId": "category",
+          "query" : [
+            {"field" : "level", "method" : "matching", "value" : "B"},
+            {"field" : "categoryStatus", "method" : "matching", "value" : "y"},
+            {"field" : "upperId", "method" : "matching", "value" : "{{:categoryId}}"},
+            {"sorting" : "sortOrder"}
+          ],
+          "response": {
+            "_all_": "",
+            "children": {
+              "typeId": "category",
+              "query" : [
+                {"field" : "level", "method" : "matching", "value" : "C"},
+                {"field" : "categoryStatus", "method" : "matching", "value" : "y"},
+                {"field" : "upperId", "method" : "matching", "value" : "{{:categoryId}}"},
+                {"sorting" : "sortOrder"}
+              ]
+            }
+          }
+        }
+
+      }
+    }
   }
 ]

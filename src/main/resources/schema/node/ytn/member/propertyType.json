@@ -1368,23 +1368,6 @@
   {
     "typeId": "propertyType",
     "tid": "myRefundAccount",
-    "pid": "name",
-    "propertyTypeName": "이름",
-    "valueType": "STRING",
-    "required": false,
-    "idable": false,
-    "labelable": true,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "cjk",
-    "referenceType": "",
-    "referenceValue": "",
-    "codeFilter": "",
-    "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "myRefundAccount",
     "pid": "accountNo",
     "propertyTypeName": "계좌번호",
     "valueType": "STRING",

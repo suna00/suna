@@ -60,8 +60,8 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "ytn/product/CreateGoodsForm" },
-      { "pageName": "수정", "pageUrl": "ytn/product/UpdateGoodsForm" }
+      { "pageName": "등록", "pageUrl": "ytn/product/CreatePhoneForm" },
+      { "pageName": "수정", "pageUrl": "ytn/product/UpdatePhoneForm" }
     ]
   },
   {
@@ -266,6 +266,25 @@
     "backOfficeId": "adm",
     "gnbMenuId": "marketingMng",
     "parentMenuId": "root",
+    "menuId": "coupon",
+    "menuName": "쿠폰 관리",
+    "order": "20",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" }
+    ],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "ytn/marketingCoupon/CreateForm" },
+      { "pageName": "수정", "pageUrl": "ytn/marketingCoupon/UpdateForm" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "marketingMng",
+    "parentMenuId": "root",
     "menuId": "event",
     "menuName": "이벤트 관리",
     "order": "40",
@@ -278,6 +297,22 @@
     "customPages": [
       { "pageName": "등록", "pageUrl": "ytn/marketingEvent/CreateForm" },
       { "pageName": "수정", "pageUrl": "ytn/marketingEvent/UpdateForm" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "marketingMng",
+    "parentMenuId": "root",
+    "menuId": "search",
+    "menuName": "추천검색어 관리",
+    "order": "50",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "ytn/marketingSearch/Form" }
     ]
   },
 

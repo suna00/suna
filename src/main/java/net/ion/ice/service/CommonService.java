@@ -66,6 +66,7 @@ public class CommonService {
         resultCodeMap.put("M0007", "비밀번호가 맞지 않습니다.");
         resultCodeMap.put("M0008", "비밀번호가 5회 잘못 입력하셨습니다.\n개인 정보보호를 위하여 비밀번호를 재설정 해주시기 바랍니다.");
         resultCodeMap.put("M0009", "환불계좌 정보를 입력해주세요.");
+        resultCodeMap.put("M0010", "주문변경 신청 성공하였습니다.");
 
 
         /*Order*/

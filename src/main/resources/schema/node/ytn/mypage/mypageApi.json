@@ -21,7 +21,7 @@
           "ds": "ytnDevDb",
           "resultType": "read",
           "description": "Y포인트 리스트 상단 서머리",
-          "sql": "SELECT name, membershipLevel, date_format(now(),'%m') as month,(SELECT IFNULL(sum(balance), 0) AS useableYPoint FROM ypoint WHERE memberNo = @{session.memberNo} AND YPointType != 'tobe')                  AS useableYPoint, (SELECT IFNULL(sum(balance), 0) AS useableWelfarepoint FROM welfarepoint WHERE memberNo = @{session.memberNo})                                           AS useableWelfarepoint, (SELECT IFNULL(count(*), 0) AS haveCoupon FROM coupon WHERE memberNo = @{session.memberNo} AND couponStatus='n' AND endDate >= now()) AS haveCoupon from member where memberNo = @{session.memberNo}"
+          "sql": "SELECT name, membershipLevel, date_format(now(),'%m') as month,(SELECT IFNULL(sum(balance), 0) AS useableYPoint FROM ypoint WHERE memberNo = @{session.member.memberNo} AND YPointType != 'tobe')                 AS useableYPoint, (SELECT IFNULL(sum(balance), 0) AS useableWelfarepoint FROM welfarepoint WHERE memberNo = @{session.member.memberNo})                                           AS useableWelfarepoint, (SELECT IFNULL(count(*), 0) AS haveCoupon FROM coupon WHERE memberNo = @{session.member.memberNo} AND couponStatus='n' AND endDate >= now()) AS haveCoupon from member where memberNo = @{session.member.memberNo}"
         }
       }
     }
