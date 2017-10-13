@@ -4,7 +4,7 @@
     "id" : "displayApi",
     "categoryName" : "Display API",
     "fileUrlFormat" : {
-      "default": "/"
+       "default": "/"
     }
   },
   {
@@ -12,7 +12,7 @@
     "id" : "theme",
     "categoryName" : "테마 API(메인, 베스트, 카테고리 메인 등)",
     "fileUrlFormat" : {
-      "default": "/"
+       "default": "/"
     }
   },
   {
@@ -52,7 +52,7 @@
     "id" : "beltBanner",
     "categoryName" : "띠배너 API",
     "fileUrlFormat" : {
-      "default": "/"
+       "default": "/"
     }
   },
   {
@@ -77,7 +77,7 @@
     "id" : "displayBanner",
     "categoryName" : "전시배너 API",
     "fileUrlFormat" : {
-      "default": "/"
+       "default": "/"
     }
   },
   {

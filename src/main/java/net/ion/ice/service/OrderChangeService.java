@@ -276,13 +276,16 @@ public class OrderChangeService {
                 context.setResult(CommonService.getResult("M0009"));
                 return context;
             }
-            map.putAll(myRefundAccount(data));
+//            map.putAll(myRefundAccount(data));
         }
 
         Map<String, Object> result = calculateRefundablePrice(data);
         map.putAll((Map<String, Object>) result.get("willBeRefundedItem"));
         map.put("changeType", CANCEL);
-        map.put("orderStatus", "order008");    //취소신청
+        map.put("orderChangeStatus", "order008");    //취소신청
+        if(data.get("refundAccount") != null){
+            map.putAll(JsonUtils.parsingJsonToMap(data.get("refundAccount").toString()));
+        }
 
         Map<String, Object> orderChangeNode = createOrderChange(map);
 
@@ -291,6 +294,7 @@ public class OrderChangeService {
 //        deliveryService.makeDeliveryPrice(JsonUtils.getStringValue(data, "orderSheetId"), restDeliveryPriceList);
 
         Map<String, Object> item = new LinkedHashMap<>();
+        item.putAll((Map<? extends String, ?>) CommonService.getResult("M0010"));
         item.put("item", orderChangeNode);
         context.setResult(item);
         return context;
@@ -322,7 +326,7 @@ public class OrderChangeService {
         Map<String, Object> result = calculateRefundablePrice(data);
         map.putAll((Map<String, Object>) result.get("willBeRefundedItem"));
         map.put("changeType", EXCHANGE);
-        map.put("orderStatus", "order010");    //교환요청
+        map.put("orderChangeStatus", "order010");    //교환요청
         map.put("recallType", JsonUtils.getStringValue(data, "recallType"));
         map.put("trackingNo", JsonUtils.getStringValue(data, "trackingNo"));
         map.put("deliveryEnterpriseId", JsonUtils.getStringValue(data, "deliveryEnterpriseId"));
@@ -332,6 +336,7 @@ public class OrderChangeService {
         createDeliveryAddress(data, JsonUtils.getStringValue(orderChangeNode, "orderChangeId"));
 
         Map<String, Object> item = new LinkedHashMap<>();
+        item.putAll((Map<? extends String, ?>) CommonService.getResult("M0010"));
         item.put("item", orderChangeNode);
         context.setResult(item);
         return context;
@@ -363,22 +368,26 @@ public class OrderChangeService {
                 context.setResult(CommonService.getResult("M0009"));
                 return context;
             }
-            map.putAll(myRefundAccount(data));
+//            map.putAll(myRefundAccount(data));
         }
 
         Map<String, Object> result = calculateRefundablePrice(data);
         map.putAll((Map<String, Object>) result.get("willBeRefundedItem"));
         map.put("changeType", RETURN);
-        map.put("orderStatus", "order017");    //반품요청
+        map.put("orderChangeStatus", "order017");    //반품요청
         map.put("recallType", JsonUtils.getStringValue(data, "recallType"));
         map.put("trackingNo", JsonUtils.getStringValue(data, "trackingNo"));
         map.put("deliveryEnterpriseId", JsonUtils.getStringValue(data, "deliveryEnterpriseId"));
         map.put("exchangeReturnAgreeYn", JsonUtils.getStringValue(data, "exchangeReturnAgreeYn"));
+        if(data.get("refundAccount") != null){
+            map.putAll(JsonUtils.parsingJsonToMap(data.get("refundAccount").toString()));
+        }
 
         Map<String, Object> orderChangeNode = createOrderChange(map);
         createDeliveryAddress(data, JsonUtils.getStringValue(orderChangeNode, "orderChangeId"));
 
         Map<String, Object> item = new LinkedHashMap<>();
+        item.putAll((Map<? extends String, ?>) CommonService.getResult("M0010"));
         item.put("item", orderChangeNode);
         context.setResult(item);
         return context;
@@ -418,22 +427,7 @@ public class OrderChangeService {
 
     private Map<String, Object> createOrderChange(Map<String, Object> willBeRefundedItem) throws IOException {
         Map<String, Object> m = new LinkedHashMap<>();
-        m.put("orderSheetId", JsonUtils.getStringValue(willBeRefundedItem, "orderSheetId"));
-        m.put("memberNo", JsonUtils.getStringValue(willBeRefundedItem, "memberNo"));
-        m.put("changeType", JsonUtils.getStringValue(willBeRefundedItem, "changeType"));
-        m.put("cancelOrderPrice", JsonUtils.getDoubleValue(willBeRefundedItem, "cancelOrderPrice"));
-        m.put("cancelProductPrice", JsonUtils.getDoubleValue(willBeRefundedItem, "cancelProductPrice"));
-        m.put("cancelDeliveryPrice", JsonUtils.getDoubleValue(willBeRefundedItem, "cancelDeliveryPrice"));
-        m.put("deductPrice", JsonUtils.getDoubleValue(willBeRefundedItem, "deductPrice"));
-        m.put("addDeliveryPrice", JsonUtils.getDoubleValue(willBeRefundedItem, "addDeliveryPrice"));
-        m.put("refundPrice", JsonUtils.getDoubleValue(willBeRefundedItem, "refundPrice"));
-        m.put("refundWelfarePoint", JsonUtils.getDoubleValue(willBeRefundedItem, "refundWelfarePoint"));
-        m.put("refundYPoint", JsonUtils.getDoubleValue(willBeRefundedItem, "refundYPoint"));
-        m.put("refundPaymentPrice", JsonUtils.getDoubleValue(willBeRefundedItem, "refundPaymentPrice"));
-        m.put("recallType", JsonUtils.getStringValue(willBeRefundedItem, "recallType"));
-        m.put("trackingNo", JsonUtils.getStringValue(willBeRefundedItem, "trackingNo"));
-        m.put("deliveryEnterpriseId", JsonUtils.getStringValue(willBeRefundedItem, "deliveryEnterpriseId"));
-        m.put("exchangeReturnAgreeYn", JsonUtils.getStringValue(willBeRefundedItem, "exchangeReturnAgreeYn"));
+        m.putAll(willBeRefundedItem);
 
         Node node = (Node) nodeService.executeNode(m, orderChange, CommonService.CREATE);
         m.put("orderChangeId", node.getId());
@@ -448,6 +442,7 @@ public class OrderChangeService {
         }
         //update orderSheet
 
+        m.remove("orderChangeDeliveryList");
         m.put("orderChangeProduct", tempList);
         return m;
     }
@@ -469,7 +464,8 @@ public class OrderChangeService {
         m.put("paymentPrice", JsonUtils.getDoubleValue(map, "paymentPrice"));
         m.put("couponId", JsonUtils.getIntValue(map, "couponId"));
         m.put("couponDiscountPrice", JsonUtils.getDoubleValue(map, "couponDiscountPrice"));
-        m.put("changeType", JsonUtils.getStringValue(map, "changeType"));
+        m.put("changeType", JsonUtils.getStringValue(orderChange, "changeType"));
+        m.put("orderChangeStatus", JsonUtils.getStringValue(orderChange, "orderChangeStatus"));
         m.put("changeReasonType", JsonUtils.getStringValue(map, "changeReasonType"));
         m.put("reason", JsonUtils.getStringValue(map, "reason"));
         m.put("exchangeOption", JsonUtils.getStringValue(map, "exchangeOption"));
