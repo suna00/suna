@@ -92,9 +92,11 @@
     "typeId": "apiConfig",
     "category": "coupon",
     "apiId": "applicableCoupon",
-    "apiName": "임시주문서 저장",
-    "method": "GET",
+    "apiName": "적용가능한 쿠폰 조회",
+    "method": "POST",
     "parameters": [
+      {"paramName" : "id", "required" : true},
+      {"paramName" : "typeId", "required" : true}
     ],
     "config": {
       "typeId": "coupon",
