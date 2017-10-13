@@ -108,7 +108,8 @@
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "i18n": true
   },
   {
     "typeId": "propertyType",
