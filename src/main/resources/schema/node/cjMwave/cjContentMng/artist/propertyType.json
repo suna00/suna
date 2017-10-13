@@ -28,9 +28,10 @@
     "labelable": true,
     "treeable": false,
     "indexable": true,
-    "analyzer": "simple",
+    "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
+    "codeFilter": "",
     "defaultValue": "",
     "i18n": true
   },
