@@ -7,6 +7,7 @@ import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
+import org.apache.avro.data.Json;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,7 @@ public class OrderChangeService {
     public static final String orderChangeDeliveryPrice = "orderChangeDeliveryPrice";
     public static final String orderProduct = "orderProduct";
     public static final String delivery = "delivery";
+    public static final String myRefundAccount = "myRefundAccount";
 
     public static final String CANCEL = "cancel";
     public static final String EXCHANGE = "exchange";
@@ -235,16 +237,16 @@ public class OrderChangeService {
 
 
     // 환불계좌
-    public Map<String, Object> myRefundAccount(Map<String, Object> data) {
-        Map<String, Object> refundAccount = (Map<String, Object>) data.get("refundAccount");
+    public Map<String, Object> myRefundAccount(Map<String, Object> refundAccount, Map<String, Object> data) {
         if(JsonUtils.getBooleanValue(refundAccount, "myRefundAccountYn") && data.get("memberNo") != null){
-            Node my = null;
+            Map<String, Object> my = new HashMap<>();
             List<Node> list = nodeService.getNodeList("myRefundAccount", "memberNo_matching=" + JsonUtils.getStringValue(data, "memberNo"));
             if(list.size() > 0){
                 my = list.get(0);
             }
+            my.put("memberNo", JsonUtils.getIntValue(data, "memberNo"));
             my.putAll(refundAccount);
-            nodeService.executeNode(my, orderProduct, CommonService.SAVE);
+            nodeService.executeNode(my, myRefundAccount, CommonService.SAVE);
         }
 
         return refundAccount;
@@ -284,7 +286,9 @@ public class OrderChangeService {
         map.put("changeType", CANCEL);
         map.put("orderChangeStatus", "order008");    //취소신청
         if(data.get("refundAccount") != null){
-            map.putAll(JsonUtils.parsingJsonToMap(data.get("refundAccount").toString()));
+            Map<String, Object> refundAccount = JsonUtils.parsingJsonToMap(data.get("refundAccount").toString());
+            myRefundAccount(refundAccount, data);
+            map.putAll(refundAccount);
         }
 
         Map<String, Object> orderChangeNode = createOrderChange(map);
@@ -380,6 +384,8 @@ public class OrderChangeService {
         map.put("deliveryEnterpriseId", JsonUtils.getStringValue(data, "deliveryEnterpriseId"));
         map.put("exchangeReturnAgreeYn", JsonUtils.getStringValue(data, "exchangeReturnAgreeYn"));
         if(data.get("refundAccount") != null){
+            Map<String, Object> refundAccount = JsonUtils.parsingJsonToMap(data.get("refundAccount").toString());
+            myRefundAccount(refundAccount, data);
             map.putAll(JsonUtils.parsingJsonToMap(data.get("refundAccount").toString()));
         }
 

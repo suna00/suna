@@ -164,19 +164,20 @@ public class DeliveryService {
             productPrice += Double.parseDouble(baseOptionItem.getStringValue("addPrice")) ;
 
             double orderPrice = productPrice * JsonUtils.getDoubleValue(map, "quantity") ;
-            double addOptionPrice = 0 ;
+            double totalAddOptionPrice = 0 ;
 
             List<Map<String, Object>> productItems = new ArrayList<>() ;
             if(map.get(type+"ProductItem") != null){
                 for(Map<String, Object> productItem : (List<Map<String, Object>>) map.get(type+"ProductItem")){
                     Node addOptionItem =  nodeService.getNode("productOptionItem", productItem.get("addOptionItemId").toString());
-                    addOptionItem.put("quantity", productItem.get("quantity"));
+                    Integer quantity = (Integer) productItem.get("quantity");
+                    addOptionItem.put("quantity", quantity);
                     productItems.add(addOptionItem) ;
-                    addOptionPrice += Double.parseDouble(addOptionItem.getStringValue("addPrice"));
+                    totalAddOptionPrice += Double.parseDouble(addOptionItem.getStringValue("addPrice")) * quantity;
                     orderPrice += JsonUtils.getDoubleValue(productItem, "quantity") * Double.parseDouble(addOptionItem.getStringValue("addPrice"))  ;
                 }
             }
-            map.put("addOptionPrice", addOptionPrice);
+            map.put("totalAddOptionPrice", totalAddOptionPrice);
             map.put("orderPrice", orderPrice);
             map.put(type+"ProductItems", productItems) ;
         }
