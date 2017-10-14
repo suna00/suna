@@ -564,22 +564,8 @@ public class VotePrtcptHstService {
         String insertEventVoteItemHst = "INSERT INTO " + data.get(VOTE_SEQ) + "_voteItemHstByMbr " +
                 "(voteDate, voteItemSeq, mbrId, created) VALUES(?,?,?,?)";
 
-        List<Map<String, Object>> resList = new ArrayList<>();
         for (String voteItemSeq : StringUtils.split(voteItemSeqs, ",")) {
             jdbcTemplate.update(insertEventVoteItemHst, voteDate, voteItemSeq, mbrId, now);
-            Node voteItemInfo = nodeService.getNode(VOTE_ITEM_INFO, voteItemSeq);
-            String voteSeq = null;
-            if (voteItemInfo!=null) {
-                voteSeq = voteItemInfo.getStringValue("voteSeq");
-            }
-
-            Map<String, Object> resItemInfoMap = new ConcurrentHashMap<>();
-            resItemInfoMap.put("sersVoteSeq", eventVoteBasInfo.getId());
-            resItemInfoMap.put("voteSeq", voteSeq==null?"":voteSeq);
-            resItemInfoMap.put("voteItemSeq", voteItemSeq);
-            resItemInfoMap.put("prtcpMbrId", mbrId);
-
-            resList.add(resItemInfoMap);
         }
 
         // Event 투표수 증가
@@ -592,15 +578,13 @@ public class VotePrtcptHstService {
         jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now);
 
         //node create
+        Map<String, Object> resDataMap = new ConcurrentHashMap<>();
+        resDataMap.put("ipAdrVoteCnt", ipDclaCnt - mbrIpDclaCnt - 1);
+        resDataMap.put("userEvtVoteCnt", voteNum - usedVoteNum);
+
         Map<String, Object> response = new ConcurrentHashMap<>();
-        response.put("response", resList);
-        response.put("ipAdrVoteCnt", ipDclaCnt - mbrIpDclaCnt - 1);
-        response.put("userEvtVoteCnt", voteNum - usedVoteNum);
-        if (response.size() > 0) {
-            context.setResult(response);
-        } else {
-            logger.info("###sersVotePrtcptHst result null ");
-        }
+        response.put("response", resDataMap);
+        context.setResult(response);
     }
 
     private Map<String,Object> selectVoteEvtByMbr(String mbrId) {
