@@ -25,7 +25,7 @@ cluster:
   groups: cms
   members:
     - 10.75.6.144-145 # CACHE 1-2
-    - 10.75.7.144 # CACHE 3
+    #- 10.75.7.144-145 # CACHE 3
     - 127.0.0.1
     - localhost
 

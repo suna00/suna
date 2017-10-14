@@ -24,7 +24,8 @@ cluster:
   mode: cms
   groups: cms
   members:
-    - 10.75.6.130-1 # CMS 1 / CMS 2
+    - 10.75.6.130-131 # CMS 1 / CMS 2
+    #- 10.75.7.130-131 # 마이그레이션 이후
     - 127.0.0.1
     - localhost
 
