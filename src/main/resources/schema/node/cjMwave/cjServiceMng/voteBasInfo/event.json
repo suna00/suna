@@ -65,6 +65,22 @@
   {
     "typeId": "event",
     "tid": "voteBasInfo",
+    "event": "evtVoting",
+    "noneExecute" : true,
+    "eventName": "VOTING Save Event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "voteBasInfo>evtVoting",
+    "action": "evtVotingEvent",
+    "actionName": "EVENT VOTING Save",
+    "actionType": "service",
+    "actionBody": "votePrtcptHstService.evtVoting",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "voteBasInfo",
     "event": "resIfMwv001",
     "noneExecute": true,
     "eventName": "get Total Vote Count Event"
