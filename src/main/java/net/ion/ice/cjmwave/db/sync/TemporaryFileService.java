@@ -10,10 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by juneyoungoh on 2017. 10. 11..
@@ -28,6 +25,9 @@ public class TemporaryFileService {
 
     @Autowired
     DBService dbService;
+
+    @Autowired
+    TemporaryMigrationService temporaryMigrationService;
 
     private JdbcTemplate ice2template;
 
@@ -76,9 +76,25 @@ public class TemporaryFileService {
             logger.info("fail :: " + fail);
             logger.info("#########################################################");
         } else {
-            for(Map<String, Object> mapData : csvRowList) {
-                nodeService.createNode(mapData, nodeType);
+            // 앨범 / 뮤직비디오 / 곡
+            List<String> ids = new ArrayList<>();
+            String key = "";
+            switch (nodeType){
+                case "album":
+                    key = "albumId";
+                    break;
+                case  "song":
+                    key = "songId";
+                    break;
+                case "musicVideo":
+                    key = "mvId";
+                    break;
             }
+            for(Map<String, Object> mapData : csvRowList) {
+                String id = String.valueOf(mapData.get(key));
+                ids.add(id);
+            }
+            temporaryMigrationService.doTemporaryMigration(nodeType, ids);
         }
     }
 
