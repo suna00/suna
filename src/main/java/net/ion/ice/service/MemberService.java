@@ -376,7 +376,7 @@ public class MemberService {
         // 회원가입 : join
         if ("join".equals(emailCertificationType)) {
             String certCode = getEmailCertCode("이메일 인증요청", emailCertificationType, null, email, "request");
-            String linkUrl = data.get("siteId") + "/signUp/stepTwo?certCode=" + certCode + "&email=" + email + "&siteType=" + data.get("siteType") + "&acceptTermsYn=" + data.get("acceptTermsYn") + "&receiveMarketingEmailAgreeYn=" + data.get("receiveMarketingEmailAgreeYn") + "&receiveMarketingSMSAgreeYn=" + data.get("receiveMarketingSMSAgreeYn");
+            String linkUrl = data.get("siteId") + "/signUp/stepTwo?certCode=" + certCode + "&email=" + email + "&affiliateId=" + data.get("affiliateId") + "&acceptTermsYn=" + data.get("acceptTermsYn") + "&receiveMarketingEmailAgreeYn=" + data.get("receiveMarketingEmailAgreeYn") + "&receiveMarketingSMSAgreeYn=" + data.get("receiveMarketingSMSAgreeYn");
             html = setHtml("본인인증", linkUrl);
         }
 
