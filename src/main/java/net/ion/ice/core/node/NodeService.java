@@ -205,8 +205,12 @@ public class NodeService {
         initSaveNodeType("classpath:schema/core/datasource/nodeType.json");
         initPropertyType("classpath:schema/core/datasource/propertyType.json");
 
-        initSaveNodeType("classpath:schema/core/schedule/nodeType.json");
-        initPropertyType("classpath:schema/core/schedule/propertyType.json");
+        try{
+            initSaveNodeType("classpath:schema/core/schedule/nodeType.json");
+            initPropertyType("classpath:schema/core/schedule/propertyType.json");
+        } catch (Exception e) {
+            logger.info("This server is unable to run scheduler :: " + e.getClass().getName());
+        }
 
         datasource = new ConcurrentHashMap<>() ;
         scheduler = new HashMap<>();
@@ -226,8 +230,6 @@ public class NodeService {
         }catch(Exception e){
             logger.error("Failed to load ScheduleTask for current profile");
         }
-
-
     }
 
     private void initDatasource(String file) throws IOException {
