@@ -86,7 +86,7 @@
     "tid": "program",
     "typeName": "프로그램",
     "repositoryType": "node",
-    "eviction": 0,
+    "eviction": 10000,
     "tableName": "cjDb#program2"
   },
   {
