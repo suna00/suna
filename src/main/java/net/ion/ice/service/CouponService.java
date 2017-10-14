@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -124,7 +125,8 @@ public class CouponService {
         Node memberNode = (Node) sessionData.get("member");
         String memberNo = memberNode.getStringValue("memberNo");
         String siteType = String.valueOf(memberNode.getBindingValue("siteType"));
-        List<Node> couponList = (List<Node>) NodeQuery.build("coupon").matching("memberNo", memberNo).matching("couponStatus", "n").matching("siteType", "all,".concat(siteType)).getList();
+        String now = new SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA).format(new Date());
+        List<Node> couponList = (List<Node>) NodeQuery.build("coupon").matching("memberNo", memberNo).matching("couponStatus", "n").matching("siteType", "all,".concat(siteType)).above("endDate", now).getList();
 
         for (Map<String, Object> targetProduct : targetProductList) {
             String productId = JsonUtils.getStringValue(targetProduct, "productId");
@@ -178,6 +180,12 @@ public class CouponService {
         return context;
     }
 
+    private ExecuteContext maxumDiscountPriceCoupons(ExecuteContext context){
+
+
+        return context;
+    }
+
     private Map<String, Object> getProductInfo(Map<String, Object> product) {
         Map<String, Object> productInfo = new HashMap<>();
         String productId = JsonUtils.getStringValue(product, "productId");
@@ -226,81 +234,4 @@ public class CouponService {
 
         return result;
     }
-
-/*//    적용가능한
-    public ExecuteContext applicable(ExecuteContext context) {
-        Map<String, Object> data = new LinkedHashMap<>(context.getData());
-
-        if(data.get("memberNo") == null) return context;
-
-        String[] params = { "tempOrderId" };
-        if (common.requiredParams(context, data, params)) return context;
-
-        NodeBindingInfo nodeBindingInfo = NodeUtils.getNodeBindingInfo(context.getNodeType().getTypeId()) ;
-        List<Map<String, Object>> tempOrderProducts = nodeBindingService.list("tempOrderProduct", "tempOrderId_matching="+data.get("tempOrderId"));
-
-        String siteType = (data.get("siteType") == null ? "" : data.get("siteType").toString());
-        for(Map<String, Object> tempOrderProduct : tempOrderProducts){
-            List<Map<String, Object>> list = new ArrayList<>();
-            List<Map<String, Object>> coupons = getUseableCouponsForProduct(nodeBindingInfo, siteType, data.get("memberNo").toString(), tempOrderProduct.get("productId").toString());
-            for(Map<String, Object> coupon : coupons){
-                Node node = nodeService.getNode("couponType", coupon.get("couponTypeId").toString());
-                Integer discountPrice = getDiscountPrice(node, tempOrderProduct.get("orderPrice"));
-                if(discountPrice > 0){
-                    coupon.put("discountPrice", discountPrice);
-                    list.add(coupon);
-                }
-            }
-
-            tempOrderProduct.put("applicableCoupons", list);
-
-        }
-
-        Map<String, Object> object = new HashMap<>();
-        object.put("items", tempOrderProducts);
-
-        context.setResult(object);
-
-        return context;
-    }
-
-    public Integer getDiscountPrice(Node couponType, Object orderPrice){
-        Integer result = 0;
-        if("discountRate".equals(couponType.getValue("benefitsType"))){
-//            IF((15000 / 100 * y.benefitsPrice) > y.maxDiscountPrice, y.maxDiscountPrice,(15000 / 100 * y.benefitsPrice))
-
-        }else if("discountPrice".equals(couponType.getValue("benefitsType"))){
-//            IF(y.minPurchasePrice < 1500, y.benefitsPrice, 0)
-
-
-        }else if("freeDelivery".equals(couponType.getValue("benefitsType"))){
-
-        }
-
-        return result;
-    }
-
-    public List<Map<String, Object>> getUseableCouponsForProduct(NodeBindingInfo nodeBindingInfo, String siteType, String memberNo, String productId){
-        List<Map<String, Object>> list = new ArrayList<>();
-        String query = "SELECT a.*, c.productId as useableProductId\n" +
-                "FROM coupon a, coupontypetoproductmap c\n" +
-                "WHERE a.memberNo = ? AND c.productId = ? \n" +
-                "      AND a.couponTypeId = c.couponTypeId\n" +
-                "      AND a.siteType != IF(IFNULL(?, 'company') = 'university', 'company', 'university')\n" +
-                "UNION ALL\n" +
-                "SELECT a.*, c.productId as useableProductId\n" +
-                "FROM coupon a\n" +
-                "  , (\n" +
-                "      SELECT couponTypeId,productId\n" +
-                "      FROM couponTypeToCategoryMap c, producttocategorymap p\n" +
-                "      WHERE productId = ? \n" +
-                "            AND p.categoryId = c.categoryId\n" +
-                "      GROUP BY couponTypeId\n" +
-                "    ) c\n" +
-                "WHERE a.memberNo = ? \n" +
-                "      AND a.couponTypeId = c.couponTypeId";
-        list = nodeBindingInfo.getJdbcTemplate().queryForList(query, memberNo, productId, siteType, productId, memberNo);
-
-        return list;
-    }*/
 }
