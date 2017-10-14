@@ -125,5 +125,21 @@
     "actionType": "service",
     "actionBody": "voteResponseService.resIfMwv108",
     "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "voteBasInfo",
+    "event": "resIfUlc002",
+    "noneExecute": true,
+    "eventName": "My Vote List Event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "voteBasInfo>resIfUlc002",
+    "action": "resIfUlc002Event",
+    "actionName": "MyVoteList EventAction",
+    "actionType": "service",
+    "actionBody": "voteResponseService.resIfUlc002",
+    "order": 1
   }
 ]
