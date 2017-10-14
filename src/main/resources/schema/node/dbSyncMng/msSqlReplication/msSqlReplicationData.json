@@ -359,4 +359,116 @@
     , "query": "EXEC recentAlbumChartTotalLst @LastUpdated = @{TIMESTAMP.lastUpdated}"
     , "query_nosp": "SELECT * FROM ice2.T_SM_S3_ChartTotalMst WHERE RegDate > @{TIMESTAMP.lastUpdated}"
   }
+
+
+
+
+
+
+
+
+
+
+
+  , {
+    "typeId": "msSqlReplication"
+    , "standAlone" : false
+    , "subTasks" : "artist_country, artist_keyword, artist_keyword_meta, artist_meta"
+    , "subTaskKey" : "artist_id"
+    , "executeId": "retrieveSingleArtist"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "MT_ARTIST"
+    , "toTable" : "MT_ARTIST"
+    , "query": "EXEC retrieveSingleArtist @ArtistId = @{VARCHAR.id}"
+    , "query_nosp": ""
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "standAlone" : false
+    , "subTasks" : "album_artist, album_country, album_keyword, album_keyword_meta, album_meta"
+    , "subTaskKey" : "album_id"
+    , "executeId": "retrieveSingleAlbum"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "MT_ALBUM"
+    , "toTable" : "MT_ALBUM"
+    , "query": "EXEC retrieveSingleAlbum @AlbumId = @{VARCHAR.id}"
+    , "query_nosp": ""
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "standAlone" : false
+    , "subTasks" : "mv_artist, mv_country, mv_embed, mv_keyword, mv_keyword_meta, mv_meta"
+    , "subTaskKey" : "mv_id"
+    , "executeId": "retrieveSingleMusicVideo"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "MT_MV"
+    , "toTable" : "MT_MV"
+    , "query": "EXEC retrieveSingleMusicVideo @MvId = @{VARCHAR.id}"
+    , "query_nosp": ""
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "standAlone" : false
+    , "subTasks" : "song_artist, song_country, song_keyword, song_keyword_meta, song_meta, album_songs"
+    , "subTaskKey" : "song_id"
+    , "executeId": "retrieveSingleSong"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "MT_SONG"
+    , "toTable" : "MT_SONG"
+    , "query": "EXEC retrieveSingleSong @SongId = @{VARCHAR.id}"
+    , "query_nosp": ""
+  }
+
+
+
+
+
+  , {
+    "typeId": "msSqlReplication"
+    , "standAlone" : false
+    , "subTasks" : "artist_country, artist_keyword, artist_keyword_meta, artist_meta"
+    , "subTaskKey" : "artist_id"
+    , "executeId": "retrieveMultiArtist"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "MT_ARTIST"
+    , "toTable" : "MT_ARTIST"
+    , "query": "EXEC retrieveMultiArtist @ArtistId1 = @{VARCHAR.id1}, @ArtistId2 = @{VARCHAR.id2}, @ArtistId3 = @{VARCHAR.id3}, @ArtistId4 = @{VARCHAR.id4}, @ArtistId5 = @{VARCHAR.id5}, @ArtistId6 = @{VARCHAR.id6}, @ArtistId7 = @{VARCHAR.id7}, @ArtistId8 = @{VARCHAR.id8}, @ArtistId9 = @{VARCHAR.id9}, @ArtistId10 = @{VARCHAR.id10}"
+    , "query_nosp": ""
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "standAlone" : false
+    , "subTasks" : "album_artist, album_country, album_keyword, album_keyword_meta, album_meta"
+    , "subTaskKey" : "album_id"
+    , "executeId": "retrieveMultiAlbum"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "MT_ALBUM"
+    , "toTable" : "MT_ALBUM"
+    , "query": "EXEC retrieveMultiAlbum @AlbumId1 = @{VARCHAR.id1}, @AlbumId2 = @{VARCHAR.id2}, @AlbumId3 = @{VARCHAR.id3}, @AlbumId4 = @{VARCHAR.id4}, @AlbumId5 = @{VARCHAR.id5}, @AlbumId6 = @{VARCHAR.id6}, @AlbumId7 = @{VARCHAR.id7}, @AlbumId8 = @{VARCHAR.id8}, @AlbumId9 = @{VARCHAR.id9}, @AlbumId10 = @{VARCHAR.id10}"
+    , "query_nosp": ""
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "standAlone" : false
+    , "subTasks" : "mv_artist, mv_country, mv_embed, mv_keyword, mv_keyword_meta, mv_meta"
+    , "subTaskKey" : "mv_id"
+    , "executeId": "retrieveMultiMusicVideo"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "MT_MV"
+    , "toTable" : "MT_MV"
+    , "query": "EXEC retrieveMultiMusicVideo @MvId1 = @{VARCHAR.id1}, @MvId2 = @{VARCHAR.id2}, @MvId3 = @{VARCHAR.id3}, @MvId4 = @{VARCHAR.id4}, @MvId5 = @{VARCHAR.id5}, @MvId6 = @{VARCHAR.id6}, @MvId7 = @{VARCHAR.id7}, @MvId8 = @{VARCHAR.id8}, @MvId9 = @{VARCHAR.id9}, @MvId10 = @{VARCHAR.id10}"
+    , "query_nosp": ""
+  }
+  , {
+    "typeId": "msSqlReplication"
+    , "standAlone" : false
+    , "subTasks" : "song_artist, song_country, song_keyword, song_keyword_meta, song_meta, album_songs"
+    , "subTaskKey" : "song_id"
+    , "executeId": "retrieveSingleSong"
+    , "targetDs": "mnetDb"
+    , "fromTable" : "MT_SONG"
+    , "toTable" : "MT_SONG"
+    , "query": "EXEC retrieveSingleSong @SongId = @{VARCHAR.id}"
+    , "query_nosp": ""
+  }
 ]

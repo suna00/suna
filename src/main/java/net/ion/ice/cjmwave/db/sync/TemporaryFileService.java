@@ -109,7 +109,6 @@ public class TemporaryFileService {
 
 
     private Map<String, Object> fetchArtistMultiLanguageInfo(String artistId, Map<String, Object> artistBasicInfo){
-//        Map<String, Object> multiLanguageMap = new HashedMap();
         try {
 
             String query = "SELECT " +
