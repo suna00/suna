@@ -140,11 +140,11 @@
   {
     "typeId": "couponType",
     "couponTypeId": 107,
-    "name": "카테고리 1000원 발급무제한",
+    "name": "카테고리 2000원 발급무제한",
     "siteType": "all",
     "channelType": "all",
     "benefitsType": "discountPrice",
-    "benefitsPrice": 1000,
+    "benefitsPrice": 2000,
     "minPurchasePrice": 10000,
     "maxDiscountPrice": "",
     "couponType": "assign",
@@ -352,7 +352,7 @@
   {
     "typeId": "coupon",
     "couponId": 103,
-    "name": "카테고리 1000원 발급무제한",
+    "name": "카테고리 2000원 발급무제한",
     "memberNo": 77777,
     "siteType": "all",
     "channelType": "",
