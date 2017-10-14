@@ -25,7 +25,17 @@
         {"field" : "referencedProductSearchFilter", "method" : "hasReferenced", "value" : "searchFilterCodeIds_matching={{:searchFilterCodeIds}}"},
         {"field" : "referencedProductToCategoryMap", "method" : "hasReferenced", "value" : "categoryId_matching={{:categoryId}}"},
         {"includeReferenced" : "referencedMainImage,referencedProductSearchFilter"}
-      ]
+      ],
+      "response": {
+        "_all_": "",
+        "downloadableCoupon": {
+          "select" : {
+            "ds" : "ytnDevDb",
+            "resultType" : "read",
+            "sql" : "select count(*) as couponCount from ( SELECT couponTypeId FROM couponTypeToCategoryMap c, producttocategorymap p WHERE productId = @{productId} AND p.categoryId = c.categoryId GROUP BY couponTypeId union ALL select couponTypeId from couponTypeToProductMap WHERE productId = @{productId} ) a, coupontype b WHERE b.couponTypeId = a.couponTypeId AND b.couponType in ('product','category') AND b.siteType != IF(IFNULL(@{session.member.siteType}, 'company') = 'university', 'company', 'university') AND createPeriodType != 'stop' AND createStartDate <= now() AND createEndDate >= now()  "
+          }
+        }
+      }
     }
   },
   {

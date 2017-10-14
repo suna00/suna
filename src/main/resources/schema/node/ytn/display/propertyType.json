@@ -2513,6 +2513,23 @@
   {
     "typeId": "propertyType",
     "tid": "theme",
+    "pid": "themeTemplate",
+    "propertyTypeName": "템플릿 타입",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
+    "codeFilter": "themeTemplate",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "theme",
     "pid": "siteType",
     "propertyTypeName": "사이트타입",
     "valueType": "REFERENCE",
@@ -3686,6 +3703,23 @@
     "referenceType": "commonCode",
     "referenceValue": "code",
     "codeFilter": "singleBannerLocation",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "singleBanner",
+    "pid": "categoryId",
+    "propertyTypeName": "카테고리ID",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "category",
+    "referenceValue": "categoryId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {
