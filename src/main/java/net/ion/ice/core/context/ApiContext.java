@@ -126,6 +126,8 @@ public class ApiContext {
     private Map<String, Object> makeSubApiReuslt(Map<String, Object> ctxRootConfig) {
         if(ctxRootConfig.containsKey("event")){
             ApiExecuteContext executeContext = ApiExecuteContext.makeContextFromConfig(ctxRootConfig, data, httpRequest, httpResponse) ;
+            setApiResultFormat(executeContext);
+
             QueryResult queryResult = executeContext.makeQueryResult() ;
 
             addResultData(executeContext.getResult());
