@@ -31,7 +31,8 @@
         {"field" : "productToThemeMapStatus", "method" : "matching", "value" : "y" },
         {"field" : "themeId", "method" : "matching", "value" : "{{:themeId}}"},
         {"includeReferenced" : "referencedMainImage,referencedProductAttribute", "referenceView" : "themeId,productId"},
-        {"field" : "themeId", "method" : "referenceJoin", "value" : "themeStatus_matching=y&pageType_matching={{:pageType}}&themeType_matching={{:themeType}}&siteType_matching=all,{{:siteType}}&categoryId_matching={{:categoryId}}&name_matching={{:name}}" }
+        {"field" : "themeId", "method" : "referenceJoin", "value" : "themeStatus_matching=y&pageType_matching={{:default(pageType, xxxxxx)}}&themeType_matching={{:default(themeType, xxxxxx)}}&siteType_matching=all,{{:siteType}}&categoryId_matching={{:categoryId}}&name_matching={{:name}}" },
+        {"sorting" : "sortOrder"}
       ]
     },
     "themeList" : {

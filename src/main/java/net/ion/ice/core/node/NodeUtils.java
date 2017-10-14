@@ -183,7 +183,7 @@ public class NodeUtils {
         } else {
 //            try {
 //                return DateFormatUtils.format(DateTools.stringToDate(value.toString()), dateFormat);//DateTools에서 시간이 변환될때 value에 +9시간 되서 수정
-                return DateFormatUtils.format(NodeUtils.getDateValue(value), dateFormat);
+            return DateFormatUtils.format(NodeUtils.getDateValue(value), dateFormat);
 //            } catch (ParseException e) {
 //                e.printStackTrace();
 //            }
@@ -245,7 +245,16 @@ public class NodeUtils {
     public static ReferenceView getReferenceValueView(ReadContext context, Object value, PropertyType pt) {
         try {
             Node refNode = getReferenceNode(value, pt);
-            return new ReferenceView(refNode.toDisplay(context), context);
+//            context.setExcludeReferenceType(context.getNodeType().getTypeId()) ;
+            ReadContext subReadContext = ReadContext.makeQueryContextForReference(pt, (Node) refNode);
+            subReadContext.setReferenceView(context.getReferenceView());
+            subReadContext.setReferenceViewFields(context.getSubReferenceViewFields(pt.getPid()));
+            subReadContext.setIncludeReferenced(context.isIncludeReferencedValue());
+            subReadContext.setIncludeReferencedFields(context.getIncludeReferencedFields());
+            subReadContext.setDateFormat(context.getDateFormat()) ;
+            subReadContext.setFileUrlFormat(context.getFileUrlFormat()) ;
+            subReadContext.setLevel(context.getLevel() + 1);
+            return new ReferenceView(refNode.toDisplay(subReadContext), subReadContext);
 
         } catch (Exception e) {
             return new ReferenceView(value.toString(), value.toString());
@@ -293,7 +302,7 @@ public class NodeUtils {
             }
             case REFERENCE: {
                 if (value == null) return null;
-                if (context.isReferenceView(pt.getPid())) {
+                if (context.isReferenceView(pt)) {
                     if (value instanceof ReferenceView) {
                         return NodeUtils.getReferenceValueView(context, ((ReferenceView) value).getRefId(), pt);
                     }
@@ -313,7 +322,7 @@ public class NodeUtils {
                 List<Reference> refValues = new ArrayList<>();
                 if (value != null && StringUtils.isNotEmpty(value.toString())) {
                     for (String refVal : StringUtils.split(value.toString(), ",")) {
-                        if (context.isReferenceView(pt.getPid())) {
+                        if (context.isReferenceView(pt)) {
                             refValues.add(NodeUtils.getReferenceValueView(context, refVal, pt));
                         } else {
                             refValues.add(NodeUtils.getReferenceValue(context, refVal, pt));
@@ -338,13 +347,16 @@ public class NodeUtils {
                 return getFileResultValue(context, pt, value);
             }
             case REFERENCED: {
-                if (context != null && context.isIncludeReferenced(pt.getPid()) && context.getLevel() < 5 && node instanceof Node) {
+                if (context != null && context.isIncludeReferenced(pt) && context.getLevel() < 5 && node instanceof Node) {
                     QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(getNodeType(((Node)node).getTypeId()), pt, (Node) node);
-//                    subQueryContext.setReferenceView(context.getReferenceView());
-//                    subQueryContext.setReferenceViewFields(context.getReferenceViewFields());
+                    subQueryContext.setReferenceView(context.getReferenceView());
+                    subQueryContext.setReferenceViewFields(context.getSubReferenceViewFields(pt.getPid()));
+                    subQueryContext.setIncludeReferenced(context.isIncludeReferencedValue());
+                    subQueryContext.setIncludeReferencedFields(context.getIncludeReferencedFields());
                     subQueryContext.setDateFormat(context.getDateFormat()) ;
                     subQueryContext.setFileUrlFormat(context.getFileUrlFormat()) ;
                     subQueryContext.setLevel(context.getLevel() + 1);
+
                     return getNodeService().getDisplayNodeList(pt.getReferenceType(), subQueryContext);
                 }
                 return null;

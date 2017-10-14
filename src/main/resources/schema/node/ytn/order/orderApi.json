@@ -19,6 +19,7 @@
       "typeId" : "orderSheet",
       "query" : [
         {"field" : "orderSheetId", "method" : "matching", "value" : "{{:orderSheetId}}"},
+        {"field" : "memberNo", "method" : "matching", "value" : "{{:session.member.memberNo}}"},
         {"referenceView": "memberNo"}
       ],
       "response": {
@@ -80,7 +81,7 @@
     "config" : {
       "typeId" : "orderSheet",
       "query" : [
-        {"field" : "memberNo", "method" : "equals", "value" : "{{:default(session.memberNo, xxxxxx)}}"},
+        {"field" : "memberNo", "method" : "equals", "value" : "{{:default(session.member.memberNo, xxxxxx)}}"},
         {"field" : "orderSheetId", "method" : "equals", "value" : "{{:orderSheetId}}"},
         {"field" : "created", "method" : "fromto", "value" : "{{:createdFromto}}"},
         {"includeReferenced" : true, "sorting" : "orderSheetId desc", "pageSize": "{{:pageSize}}", "page": "{{:page}}"},
@@ -129,7 +130,7 @@
     "config" : {
       "typeId" : "orderSheet",
       "query" : [
-        {"field" : "memberNo", "method" : "equals", "value" : "{{:default(session.memberNo, xxxxxx)}}"},
+        {"field" : "memberNo", "method" : "equals", "value" : "{{:default(session.member.memberNo, xxxxxx)}}"},
         {"field" : "orderSheetId", "method" : "equals", "value" : "{{:orderSheetId}}"},
         {"field" : "created", "method" : "above", "value" : ""},
         {"includeReferenced" : true, "sorting" : "orderSheetId desc"},
@@ -186,7 +187,7 @@
     "config" : {
       "typeId" : "orderChange",
       "query" : [
-        {"field" : "memberNo", "method" : "equals", "value" : "{{:default(session.memberNo, xxxxxx)}}"},
+        {"field" : "memberNo", "method" : "equals", "value" : "{{:default(session.member.memberNo, xxxxxx)}}"},
         {"field" : "orderSheetId", "method" : "equals", "value" : "{{:orderSheetId}}"},
         {"field" : "changeType", "method" : "equals", "value" : "{{:changeType}}"},
         {"field" : "created", "method" : "fromto", "value" : "{{:createdFromto}}"},
@@ -237,6 +238,7 @@
       "typeId" : "orderChange",
       "query" : [
         {"field" : "orderChangeId", "method" : "matching", "value" : "{{:orderChangeId}}"},
+        {"field" : "memberNo", "method" : "matching", "value" : "{{:session.member.memberNo}}"},
         {"includeReferenced" : true, "referenceView": "memberNo"}
       ],
       "response": {

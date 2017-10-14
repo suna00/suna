@@ -310,7 +310,7 @@
     "productId": "",
     "publishedDate": 20170901000000,
     "startDate": 20170901000000,
-    "endDate": 20170904000000,
+    "endDate": 20180904000000,
     "couponStatus": "n",
     "dateOfUse": "",
     "orderId": ""
@@ -327,7 +327,7 @@
     "productId": "",
     "publishedDate": 20170901000000,
     "startDate": 20170901000000,
-    "endDate": 20170904000000,
+    "endDate": 20180904000000,
     "couponStatus": "n",
     "dateOfUse": "",
     "orderId": ""
@@ -344,9 +344,9 @@
     "productId": "",
     "publishedDate": 20170901000000,
     "startDate": 20170901000000,
-    "endDate": 20170904000000,
+    "endDate": 20180904000000,
     "couponStatus": "n",
-    "dateOfUse": 20170902000000,
+    "dateOfUse": null,
     "orderId": ""
   },
   {
@@ -361,9 +361,9 @@
     "productId": "",
     "publishedDate": 20170901000000,
     "startDate": 20170901000000,
-    "endDate": 20170904000000,
+    "endDate": 20180904000000,
     "couponStatus": "n",
-    "dateOfUse": 20170902000000,
+    "dateOfUse": null,
     "orderId": ""
   },
   {
@@ -378,9 +378,9 @@
     "productId": "",
     "publishedDate": 20170901000000,
     "startDate": 20170901000000,
-    "endDate": 20170904000000,
+    "endDate": 20180904000000,
     "couponStatus": "n",
-    "dateOfUse": 20170902000000,
+    "dateOfUse": null,
     "orderId": ""
   },
   {
@@ -395,9 +395,9 @@
     "productId": "",
     "publishedDate": 20170901000000,
     "startDate": 20170901000000,
-    "endDate": 20170904000000,
+    "endDate": 20180904000000,
     "couponStatus": "n",
-    "dateOfUse": 20170902000000,
+    "dateOfUse": null,
     "orderId": ""
   },
   {
