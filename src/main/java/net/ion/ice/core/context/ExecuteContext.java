@@ -194,7 +194,11 @@ public class ExecuteContext extends ReadContext{
                             FileValue fileValue = null;
                             try {
                                 resourceFile = resource.getFile();
+                                fileValue = NodeUtils.getFileService().saveFile(pt, id, resourceFile, newFileValue.getFileName(), newFileValue.getContentType());
                             } catch (Exception e) {
+                                if(e instanceof IceRuntimeException){
+                                    throw new IceRuntimeException("File Exception :", e);
+                                }
                                 e.printStackTrace();
                             }
 //                            FileValue fileValue = NodeUtils.getFileService().saveFile(pt, id, resourceFile, newFileValue.getFileName(), newFileValue.getContentType());

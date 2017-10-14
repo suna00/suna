@@ -571,23 +571,6 @@
   {
     "typeId": "propertyType",
     "tid": "program",
-    "pid": "refdMultiLanginfo",
-    "propertyTypeName": "프로그램 다국어 리스트",
-    "valueType": "REFERENCED",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "pgmMultiLangInfo",
-    "referenceValue": "pgmId",
-    "codeFilter": "",
-    "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "program",
     "pid": "showCntryCdList",
     "propertyTypeName": "노출국가 코드리스트",
     "valueType": "REFERENCES",
