@@ -11,6 +11,8 @@ import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -222,6 +224,7 @@ public class VoteResponseService {
     }
 
     public void resIfUlc002(ExecuteContext context) {
+        Map<String, Object> result = new LinkedHashMap<>();
         if (jdbcTemplate == null) {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
         }
@@ -237,29 +240,107 @@ public class VoteResponseService {
         //전체 투표일련번호 조회
         String term = "sorting=voteSeq";
         List<Node> voteInfoList = nodeService.getNodeList(VOTE_BAS_INFO, (String) ContextUtils.getValue(term, data));
-        List<Map<String, Object>> myVoteList = new ArrayList<>() ;
+        List<Map<String, Object>> myVoteList = new ArrayList<>();
         for (Node voteInfo : voteInfoList) {
+            //투표별 투표내역 조회해서 result에 합쳐야함
             String voteSeq = voteInfo.getId();
-            String votedListSql = "select '" + voteSeq + "' as voteSeq, voteItemSeq, mbrId as prtcpMbrId, created from " + voteSeq + "_voteItemHstByMbr where mbrId ='" + snsTypeCd + ">" + snsKey + "' ";
-            List<Map<String, Object>> votedList = jdbcTemplate.queryForList(votedListSql);
+            String votedListSql = "select mbrId, count(*) as voteNum, max(created) as created from " + voteSeq + "_voteHstByMbr where mbrId ='" + snsTypeCd + ">" + snsKey + "' group by mbrId ";
 
-            //sorting을 해야되는데....
+            List<Map<String, Object>> votedList = jdbcTemplate.queryForList(votedListSql);
+            if (votedList != null && votedList.size() > 0) {
+                Map<String, Object> item = new LinkedHashMap<>();
+                //voteSeq response 형식 만들기.
+                voteInfo.toDisplay(context);
+                Map<String, Object> voteBasInfo = new LinkedHashMap<>();
+                voteBasInfo.put("value", voteInfo.getStringValue("voteSeq"));
+                voteBasInfo.put("label", voteInfo.getStringValue("voteNm"));
+                voteBasInfo.put("refId", voteInfo.getStringValue("voteSeq"));
+                voteBasInfo.put("item", voteInfo);
+
+                Map<String, Object> votedresult = votedList.get(0);
+
+                item.put("voteSeq", voteBasInfo);
+                //item.put("createdSort", votedresult.get("created"));
+                Object createdObj = votedresult.get("created");
+                if (createdObj instanceof Date) {
+                    Date createdDate = (Date) votedresult.get("created");
+                    item.put("created", DateFormatUtils.format(createdDate, "yyyy-MM-dd HH:mm:ss"));
+                } else {
+                    item.put("created", votedresult.get("created"));
+                }
+
+                myVoteList.add(item);
+            }
 
         }
+        //response는 paging,sorting=default로 created desc로 적용되어야 함
+        Collections.sort(myVoteList, new CompareCreatedDesc());
 
+        //paging
+        int totalCount = myVoteList.size();
+        int pageSize = 10;
+        int page = 1;
+        if(data.get("pageSize") != null){
+            int paramPageSize = Integer.parseInt(data.get("pageSize").toString());
+            pageSize = paramPageSize;
+        }
+        if(data.get("page") != null){
+            int paramPage = Integer.parseInt(data.get("page").toString());
+            page = paramPage;
+        }
+        int pageCount = totalCount / pageSize + (totalCount % pageSize > 0 ? 1 : 0);
+        List<Map<String, Object>> myVotePagingList = new ArrayList<>();
+        for(int i=(pageSize*(page-1)); i< (page*pageSize) ; i++){
+            if(i <= (myVoteList.size()-1)) {
+                myVotePagingList.add(myVoteList.get(i));
+            }
+        }
 
-//        Collections.sort(resultList, new Comparator<Map<String, Object>>() {
-//            @Override
-//            public int compare(Map<String, Object> o1, Map<String, Object> o2) {
-//                return o1.get();
-//            }
-//        });
-
-        //response는 paging,sorting 적용되어야 함
         //voteSeq에 referenceView 설정
-        //voteItemSeq,prtcpMbrId(mbrId)는 reference유형으로.
         //created
+        result.put("totalCount", totalCount);
+        result.put("resultCount", myVotePagingList.size());
+        result.put("pageSize", pageSize);
+        result.put("pageCount", pageCount);
+        result.put("currentPage", page);
+        result.put("items", myVotePagingList);
 
+        context.setResult(result);
+    }
 
+    /**
+     * pid로 내림차순(Desc) 정
+     */
+    static class CompareCreatedDesc implements Comparator<Map<String, Object>> {
+        @Override
+        public int compare(Map<String, Object> o1, Map<String, Object> o2) {
+            Date o1Obj = null;
+            Date o2Obj = null;
+            try {
+                o1Obj = DateUtils.parseDate(o1.get("created").toString(), "yyyy-MM-dd HH:mm:ss");
+                o2Obj = DateUtils.parseDate(o2.get("created").toString(), "yyyy-MM-dd HH:mm:ss");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return o2Obj.compareTo(o1Obj);
+        }
+    }
+
+    /**
+     * pid로 오름차순(Asc) 정렬
+     */
+    static class CompareCreatedAsc implements Comparator<Map<String, Object>> {
+        @Override
+        public int compare(Map<String, Object> o1, Map<String, Object> o2) {
+            Date o1Obj = null;
+            Date o2Obj = null;
+            try {
+                o1Obj = DateUtils.parseDate(o1.get("created").toString(), "yyyy-MM-dd HH:mm:ss");
+                o2Obj = DateUtils.parseDate(o2.get("created").toString(), "yyyy-MM-dd HH:mm:ss");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return o1Obj.compareTo(o2Obj);
+        }
     }
 }

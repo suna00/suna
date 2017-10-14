@@ -57,7 +57,7 @@
   {
     "typeId": "apiConfig",
     "category": "mypage",
-    "apiId": "IfUlc002",
+    "apiId": "IfUlc002-1",
     "apiName": "My 투표 내역 조회",
     "method": "GET",
     "parameters": [
@@ -89,6 +89,27 @@
           "referenceView": "voteSeq"
         }
       ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "mypage",
+    "apiId": "IfUlc002",
+    "apiName": "My 투표 내역 조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "voteBasInfo",
+      "event": "resIfUlc002"
     }
   },
   {

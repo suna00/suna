@@ -581,8 +581,18 @@ public class DBSyncService {
         successIds = executeSingleTaskAndRecord(executionNode, targets2Update, "MNET", "SCHEDULE");
     }
 
+    private void executeWithId(String mig_target, String executeId, String id) throws Exception {
+        Node tempExecutionNode = nodeService.getNode(PROCESS_TID, executeId);
+        String query = String.valueOf(tempExecutionNode.get("query"));
+        // executeId 실행하고 결과 처리
+        List<Map<String, Object>> targets2Update =
+                ice2Template.queryForList(query, id);
+        executeSingleTaskAndRecord(tempExecutionNode, targets2Update, mig_target.toLowerCase(), "MANUAL");
+    }
+
+
     public void executeForInitData (String type, Integer start, Integer total) throws Exception {
-        switch (type) {
+        switch (type.toLowerCase()) {
             case "all" :
                 for(String executeId : mnetExecuteIds) {
                     taskExecutor.execute(new ParallelDBSyncExecutor(executeId) {
@@ -630,7 +640,7 @@ public class DBSyncService {
                     logger.info("[ song ] Task is already Running. Ignore this request");
                 }
                 break;
-            case "mv" :
+            case "musicvideo" :
                 if(storage.isAbleToRun("musicVideo")) {
                     taskExecutor.execute(new ParallelDBSyncExecutor("musicVideo") {
                         @Override
@@ -670,7 +680,7 @@ public class DBSyncService {
     }
 
     public void executeForNewData (String mig_target, String type, Date provided) throws Exception {
-        switch (type) {
+        switch (type.toLowerCase()) {
             case "all" :
                 for(String executeId : mnetPartialExecuteIds) {
                     taskExecutor.execute(new ParallelDBSyncExecutor(executeId) {
@@ -717,7 +727,7 @@ public class DBSyncService {
                     logger.info("[ songPart ] Task is already Running. Ignore this request");
                 }
                 break;
-            case "mv" :
+            case "musicvideo" :
                 if(storage.isAbleToRun("musicVideoPart")) {
                     taskExecutor.execute(new ParallelDBSyncExecutor("musicVideoPart") {
                         @Override
@@ -757,6 +767,71 @@ public class DBSyncService {
                 break;
         }
     }
+
+    public void executeForTempData (String mig_target, String type, List<String> ids) throws Exception {
+        switch (type.toLowerCase()) {
+            case "album" :
+                if(storage.isAbleToRun("tempAlbum")) {
+                    taskExecutor.execute(new ParallelDBSyncExecutor("tempAlbum") {
+                        @Override
+                        public void action() throws Exception {
+                            for(int i = 0; i < ids.size(); i++){
+                                this.dbSyncService.executeWithId(mig_target, this.executeId, ids.get(i));
+                            }
+                        }
+                    });
+                } else {
+                    logger.info("[ albumPart ] Task is already Running. Ignore this request");
+                }
+                break;
+            case "artist" :
+                if(storage.isAbleToRun("tempArtist")) {
+                    taskExecutor.execute(new ParallelDBSyncExecutor("tempArtist") {
+                        @Override
+                        public void action() throws Exception {
+                            for(int i = 0; i < ids.size(); i++){
+                                this.dbSyncService.executeWithId(mig_target, this.executeId, ids.get(i));
+                            }
+                        }
+                    });
+                } else {
+                    logger.info("[ artistPart ] Task is already Running. Ignore this request");
+                }
+                break;
+            case "song" :
+                if(storage.isAbleToRun("tempSong")) {
+                    taskExecutor.execute(new ParallelDBSyncExecutor("tempSong") {
+                        @Override
+                        public void action() throws Exception {
+                            for(int i = 0; i < ids.size(); i++){
+                                this.dbSyncService.executeWithId(mig_target, this.executeId, ids.get(i));
+                            }
+                        }
+                    });
+                } else {
+                    logger.info("[ songPart ] Task is already Running. Ignore this request");
+                }
+                break;
+            case "musicvideo" :
+                if(storage.isAbleToRun("tempMusicVideo")) {
+                    taskExecutor.execute(new ParallelDBSyncExecutor("tempMusicVideo") {
+                        @Override
+                        public void action() throws Exception {
+                            for(int i = 0; i < ids.size(); i++){
+                                this.dbSyncService.executeWithId(mig_target, this.executeId, ids.get(i));
+                            }
+                        }
+                    });
+                } else {
+                    logger.info("[ musicVideoPart ] Task is already Running. Ignore this request");
+                }
+                break;
+            default:
+                logger.info("Could not find appropriate type for migration");
+                break;
+        }
+    }
+
 
     public void loadTable2Node(String tid, boolean skip) {
         NodeType nt = nodeService.getNodeType(tid);

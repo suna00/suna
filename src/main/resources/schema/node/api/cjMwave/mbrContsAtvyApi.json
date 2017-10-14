@@ -334,7 +334,7 @@
           },
           {
             "field": "created",
-            "method": "under",
+            "method": "below",
             "value": "{{:dateFormat(lastReplCreated,yyyyMMddHHmmss)}}"
           },
           {

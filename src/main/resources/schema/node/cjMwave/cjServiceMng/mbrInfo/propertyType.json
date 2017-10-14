@@ -176,7 +176,7 @@
     "analyzer": "code",
     "referenceType": "code",
     "referenceValue": "",
-    "codeFilter": "sex",
+    "codeFilter": "sexCd",
     "defaultValue": ""
   },
   {

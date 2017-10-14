@@ -1,0 +1,73 @@
+# 기존의 application-aws-cmswebwas 를 대체함
+# hazelcast
+
+spring:
+  profiles: aws-cms
+  http:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 20MB
+
+server:
+  port: 8080
+
+jwtConfig:
+  issuer: I-ON
+  secretKey: dkdldhs!@#$
+  tokenPrefix: SDP
+  headString: X-Authorization
+  tokenExpirationTime: 15 #분
+  refreshTokenExpTime: 60 #분
+
+
+cluster:
+  mode: cms
+  groups: cms
+  members:
+    - 10.75.6.130-131 # CMS 1 / CMS 2
+    #- 10.75.7.130-131 # 마이그레이션 이후
+    - 127.0.0.1
+    - localhost
+
+infinispan:
+  cachePath: /data/ion/cms/resource/ice2/cache
+
+tomcat:
+  access-log-enabled: true
+  access-log-pattern: "%h %l %u %t \"%r\" %s %b %D"
+  basedir: tomcat
+
+logging:
+  config:
+    classpath:
+      - logback-access-dev-2.xml
+      - logback-dev-2.xml
+
+file:
+  default:
+    path: /data/ion/cms/resource/ice2/files
+
+
+i18n:
+  defaults: eng
+
+cjapi:
+  pip:
+    programurl: http://pipapi.itvs.cjenm.com/json/data/v1.0/global/programinfo.asp
+    clipmediaurl: http://pipapi.itvs.cjenm.com/json/data/v1.0/global/clipmediainfo.asp
+
+aws:
+  s3:
+    bucketName: cjmwave-prd
+    bucketKey: ion
+    accessKey: AKIAJWGJBWJU3TLXANWA
+    secretKey: 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
+
+
+temp-file:
+  dir: /data/ion/cms/resource/ice2/cache
+
+mobile:
+  push:
+    fcmApiKey: AAAA-z1uhx4:APA91bHlHSqGakLe7RKY1fuvTpUyx1hZKX5BG7ydfK96Kfy9bCX0upciPQ6UlpOXECEcc4tsYFiiEUy6aHSWWMZwwN-V6rtu-aeOAGg0_r6GAFaVkJF3jEOxiO4kblsi4tNDOAApMZx2
+    fcmApiUrl: https://fcm.googleapis.com/fcm/send

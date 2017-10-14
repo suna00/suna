@@ -1805,8 +1805,12 @@
         "pageUrl": "cj/seo/SeoList"
       },
       {
-        "pageName": "등록/수정",
-        "pageUrl": "cj/seo/SeoUForm"
+        "pageName": "등록",
+        "pageUrl": "cj/seo/SeoForm"
+      },
+      {
+        "pageName": "수정",
+        "pageUrl": "cj/seo/SeoUform"
       },
       {
         "pageName": "상세",
