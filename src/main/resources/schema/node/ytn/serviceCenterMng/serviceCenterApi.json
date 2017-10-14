@@ -49,7 +49,7 @@
         {
           "field": "memberNo",
           "method": "equals",
-          "value": "{{:memberNo}}"
+          "value": "{{:session.member.memberNo}}"
         },
         {
           "field": "created",

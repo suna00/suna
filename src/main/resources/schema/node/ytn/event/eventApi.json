@@ -41,7 +41,7 @@
       "query" : [
         {"field" : "specialExhibitionId", "method" : "matching", "value" : "{{:specialExhibitionId}}" },
         {"includeReferenced" : true, "referenceView" : "specialExhibitionId"},
-        {"field" : "specialExhibitionId", "method" : "referenceJoin", "value" : "specialExhibitionStatus_matching=use&categoryId_matching={{:categoryId}}&siteType_matching={{:siteType}}" }
+        {"field" : "specialExhibitionId", "method" : "referenceJoin", "value" : "specialExhibitionStatus_matching=use&categoryId_matching={{:categoryId}}&siteType_matching=all,{{:siteType}}" }
       ]
     }
   },
@@ -66,7 +66,7 @@
       "query" : [
         {"field" : "newProductMapStatus", "method" : "matching", "value" : "y" },
         {"field" : "categoryIds", "method" : "matching", "value" : "{{:categoryId}}" },
-        {"field" : "newProductId", "method" : "referenceJoin", "value" : "newProductStatus_matching=y&siteType_matching={{:siteType}}&year_matching={{:year}}&month_matching={{:month}}" },
+        {"field" : "newProductId", "method" : "referenceJoin", "value" : "newProductStatus_matching=y&siteType_matching=all,{{:siteType}}&year_matching={{:year}}&month_matching={{:month}}" },
         {"field" : "productId", "method" : "referenceJoin", "value" : "name_matching={{:searchValue}}&salePrice_fromto={{:salePrice}}" },
         {"includeReferenced" : false, "referenceView" : "newProductId,productId"},
         {"sorting" : "{{:sorting}}", "pageSize": "{{:pageSize}}", "page": "{{:page}}"},

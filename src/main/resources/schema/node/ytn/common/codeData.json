@@ -703,7 +703,7 @@
   },
   {
     "typeId": "commonCode",
-    "code": "counditionalAuto",
+    "code": "conditionalAuto",
     "upperCode": "root",
     "name": "조건부자동",
     "description": "",
@@ -4349,7 +4349,7 @@
   {
     "typeId": "commonCode",
     "code": "auto001",
-    "upperCode": "counditionalAuto",
+    "upperCode": "conditionalAuto",
     "name": "회원가입",
     "description": "",
     "sortOrder": "1",
@@ -4358,7 +4358,7 @@
   {
     "typeId": "commonCode",
     "code": "auto002",
-    "upperCode": "counditionalAuto",
+    "upperCode": "conditionalAuto",
     "name": "회원 후기 작성",
     "description": "",
     "sortOrder": "2",
@@ -4367,7 +4367,7 @@
   {
     "typeId": "commonCode",
     "code": "auto003",
-    "upperCode": "counditionalAuto",
+    "upperCode": "conditionalAuto",
     "name": "로그인 이벤트",
     "description": "",
     "sortOrder": "3",
@@ -4376,7 +4376,7 @@
   {
     "typeId": "commonCode",
     "code": "auto004",
-    "upperCode": "counditionalAuto",
+    "upperCode": "conditionalAuto",
     "name": "첫구매",
     "description": "",
     "sortOrder": "4",
@@ -4385,7 +4385,7 @@
   {
     "typeId": "commonCode",
     "code": "auto005",
-    "upperCode": "counditionalAuto",
+    "upperCode": "conditionalAuto",
     "name": "구매수량 충족",
     "description": "",
     "sortOrder": "5",
@@ -4394,7 +4394,7 @@
   {
     "typeId": "commonCode",
     "code": "auto006",
-    "upperCode": "counditionalAuto",
+    "upperCode": "conditionalAuto",
     "name": "룰렛 이벤트",
     "description": "",
     "sortOrder": "6",
@@ -5282,7 +5282,6 @@
     "sortOrder": "8",
     "commonCodeStatus": "y"
   },
-
   {
     "typeId": "commonCode",
     "code": "popup2",
@@ -6424,6 +6423,69 @@
     "name": "지정",
     "description": "",
     "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "deliveryTrackingLevel",
+    "upperCode": "root",
+    "name": "배송단계(스윗트래커)",
+    "description": "",
+    "sortOrder": "118",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "1",
+    "upperCode": "deliveryTrackingLevel",
+    "name": "배송준비",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "2",
+    "upperCode": "deliveryTrackingLevel",
+    "name": "집회완료",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "3",
+    "upperCode": "deliveryTrackingLevel",
+    "name": "배송진행중",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "4",
+    "upperCode": "deliveryTrackingLevel",
+    "name": "지점도착",
+    "description": "",
+    "sortOrder": "4",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "5",
+    "upperCode": "deliveryTrackingLevel",
+    "name": "배송출발",
+    "description": "",
+    "sortOrder": "5",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "6",
+    "upperCode": "deliveryTrackingLevel",
+    "name": "배송완료",
+    "description": "",
+    "sortOrder": "6",
     "commonCodeStatus": "y"
   }
 ]

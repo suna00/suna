@@ -14,7 +14,7 @@
     "typeName": "쿠폰",
     "tableName": "ytnDevDb#coupon",
     "repositoryType": "node",
-    "eviction": 0
+    "eviction": 100000
   },
   {
     "parentId": "couponPath",
@@ -23,7 +23,7 @@
     "typeName": "쿠폰유형",
     "tableName": "ytnDevDb#couponType",
     "repositoryType": "node",
-    "eviction": 0
+    "eviction": 10000
   },
   {
     "parentId": "couponPath",
@@ -32,7 +32,7 @@
     "typeName": "쿠폰유형 상품 매핑",
     "tableName": "ytnDevDb#couponTypeToProductMap",
     "repositoryType": "data",
-    "eviction": 0
+    "eviction": 100000
   },
   {
     "parentId": "couponPath",
@@ -41,6 +41,6 @@
     "typeName": "쿠폰유형 카테고리 매핑",
     "tableName": "ytnDevDb#couponTypeToCategoryMap",
     "repositoryType": "data",
-    "eviction": 0
+    "eviction": 500000
   }
 ]

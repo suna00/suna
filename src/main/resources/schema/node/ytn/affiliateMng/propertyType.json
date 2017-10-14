@@ -648,23 +648,6 @@
   {
     "typeId": "propertyType",
     "tid": "affiliate",
-    "pid": "logoImage",
-    "propertyTypeName": "로고이미지",
-    "valueType": "STRING",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": false,
-    "analyzer": null,
-    "referenceType": "",
-    "referenceValue": "",
-    "codeFilter": "",
-    "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "affiliate",
     "pid": "joinInformationPC",
     "propertyTypeName": "대학홈페이지 가입 경로안내(pc)",
     "valueType": "TEXT",
