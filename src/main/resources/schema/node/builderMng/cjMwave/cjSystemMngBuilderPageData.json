@@ -19,23 +19,14 @@
                 "componentType": "container",
                 "componentTemplateType": "",
                 "componentClassType": "TABLES",
-                "componentClass": "DefaultListFooter",
-                "componentChildren": [],
-                "componentKey": "1cb420a38574",
-                "areaMode": true
-              },
-              {
-                "componentType": "container",
-                "componentTemplateType": "",
-                "componentClassType": "TABLES",
                 "componentClass": "DefaultListSearch",
                 "componentChildren": [],
-                "componentKey": "2e69128645dc",
+                "componentKey": "d7e41923507e",
                 "areaMode": true,
                 "componentProps": {
                   "searchTypes": [
                     {
-                      "componentKey": "5d1a7d348ae6",
+                      "componentKey": "bb3dfc3bcafd",
                       "componentClass": "Switch",
                       "label": "운영자 상태",
                       "isView": false,
@@ -43,7 +34,7 @@
                       "options": {}
                     },
                     {
-                      "componentKey": "4b372d92820e",
+                      "componentKey": "5f3addd39178",
                       "componentClass": "DateRange",
                       "label": "등록일시",
                       "isView": false,
@@ -87,23 +78,55 @@
                     },
                     "value": "admrId,admrNm,email,phone"
                   },
-                  "key": 1,
-                  "componentKey": "2e69128645dc",
-                  "parentComponentKey": "e6219f0435d3",
+                  "key": 0,
+                  "componentKey": "d7e41923507e",
+                  "parentComponentKey": "d5ee1c35249a",
                   "nodeTypeId": "admrInfo",
                   "searchConfig": {
                     "searchTypes": "admrSttusYn,created",
                     "searchFields": "admrId,admrNm,email,phone"
                   }
                 }
+              },
+              {
+                "componentType": "container",
+                "componentTemplateType": "",
+                "componentClassType": "TABLES",
+                "componentClass": "DefaultListFooter",
+                "componentChildren": [
+                  {
+                    "componentType": "presentational",
+                    "componentTemplateType": "Spin",
+                    "componentClassType": "BUTTON",
+                    "componentClass": "ButtonLink",
+                    "componentChildren": [],
+                    "componentKey": "38f86b8b4704",
+                    "areaMode": true,
+                    "componentProps": {
+                      "reqUrl": "/admin/systemMng/admrMng/form",
+                      "buttonName": "신규등록",
+                      "buttonIcon": "",
+                      "outline": "",
+                      "bsStyle": "primary",
+                      "customColor": "",
+                      "bsSize": "small",
+                      "disabled": "",
+                      "key": 0,
+                      "componentKey": "38f86b8b4704",
+                      "parentComponentKey": "1336caa39dc6"
+                    }
+                  }
+                ],
+                "componentKey": "1336caa39dc6",
+                "areaMode": true
               }
             ],
-            "componentKey": "e6219f0435d3",
+            "componentKey": "d5ee1c35249a",
             "areaMode": true,
             "componentProps": {
               "nodeTypeId": "admrInfo",
               "reqUrl": "/node/admrInfo/list.json",
-              "defaultParams": "page=1",
+              "defaultParams": "page=1&pageSize=10",
               "role": "",
               "panelProps": {
                 "colMd": "12",
@@ -120,15 +143,29 @@
                 "hasEmptyTh": "false",
                 "emptyThName": "",
                 "dataTypeIdAble": "",
-                "dataTypes": "admrId,admrSttusYn,admrNm,email,phone,created"
+                "dataTypes": "admrSttusYn,admrId,admrNm,email,phone,created"
               },
               "key": 0,
-              "componentKey": "e6219f0435d3",
-              "parentComponentKey": "827551c8ecf9",
+              "componentKey": "d5ee1c35249a",
+              "parentComponentKey": "ae06b23e5562",
               "dataTypeIdAble": "admrId",
               "dataTypes": {
+                "admrSttusYn": {
+                  "componentKey": "e62915034275",
+                  "id": "admrSttusYn",
+                  "label": "운영자 상태",
+                  "idAble": "false",
+                  "options": {
+                    "componentClass": "Switch"
+                  },
+                  "viewLink": "false",
+                  "viewPath": "",
+                  "textAlign": "center",
+                  "width": "",
+                  "role": ""
+                },
                 "admrId": {
-                  "componentKey": "00fe06002ba0",
+                  "componentKey": "28dba47be638",
                   "id": "admrId",
                   "label": "운영자 아이디",
                   "idAble": "true",
@@ -136,17 +173,8 @@
                     "componentClass": "Text"
                   }
                 },
-                "admrSttusYn": {
-                  "componentKey": "1b9254f968bd",
-                  "id": "admrSttusYn",
-                  "label": "운영자 상태",
-                  "idAble": "false",
-                  "options": {
-                    "componentClass": "Switch"
-                  }
-                },
                 "admrNm": {
-                  "componentKey": "bc92e81326d2",
+                  "componentKey": "ae04f9f6aceb",
                   "id": "admrNm",
                   "label": "담당자명",
                   "idAble": "false",
@@ -160,7 +188,7 @@
                   "role": ""
                 },
                 "email": {
-                  "componentKey": "cdff0a35f0db",
+                  "componentKey": "bb3486e60e24",
                   "id": "email",
                   "label": "이메일",
                   "idAble": "false",
@@ -168,13 +196,13 @@
                     "componentClass": "Text"
                   },
                   "viewLink": "true",
-                  "viewPath": "/admin/systemMng/admrMng/view?admrId={{admrId}}",
+                  "viewPath": "/admin/systemMng/admrMng/list?admrId={{admrId}}",
                   "textAlign": "center",
                   "width": "",
                   "role": ""
                 },
                 "phone": {
-                  "componentKey": "f442574981ff",
+                  "componentKey": "913c60d3eac4",
                   "id": "phone",
                   "label": "연락처",
                   "idAble": "false",
@@ -183,7 +211,7 @@
                   }
                 },
                 "created": {
-                  "componentKey": "f04367eff357",
+                  "componentKey": "3bda6d3f2a3e",
                   "id": "created",
                   "label": "등록일시",
                   "idAble": "false",
@@ -195,7 +223,7 @@
             }
           }
         ],
-        "componentKey": "827551c8ecf9",
+        "componentKey": "ae06b23e5562",
         "areaMode": true
       }
     ]
@@ -1170,8 +1198,8 @@
     ]
   },
   {
-    "typeId" : "builderPage",
-    "id" : "/admin/systemMng/admrGroupMng/list",
+    "typeId": "builderPage",
+    "id": "/admin/systemMng/admrGroupMng/list",
     "content": [
       {
         "componentType": "container",
@@ -1622,8 +1650,8 @@
     ]
   },
   {
-    "typeId" : "builderPage",
-    "id" : "/admin/systemMng/admrGroupMng/uform",
+    "typeId": "builderPage",
+    "id": "/admin/systemMng/admrGroupMng/uform",
     "content": [
       {
         "componentType": "container",
