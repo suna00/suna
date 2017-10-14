@@ -6496,5 +6496,41 @@
     "description": "",
     "sortOrder": "6",
     "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "themeTemplate",
+    "upperCode": "root",
+    "name": "테마 템플릿",
+    "description": "",
+    "sortOrder": "118",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "hotitemA",
+    "upperCode": "themeTemplate",
+    "name": "HOT ITEM 템플릿 유형 A",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "hotitemB",
+    "upperCode": "themeTemplate",
+    "name": "HOT ITEM 템플릿 유형 B",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "hotitemC",
+    "upperCode": "themeTemplate",
+    "name": "HOT ITEM 템플릿 유형 C",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
   }
 ]

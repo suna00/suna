@@ -581,7 +581,7 @@ public class ReadContext implements Context, Serializable {
     }
 
     public Map<String, Object> getSubReferenceViewFields(String pid) {
-        if(this.referenceViewFields != null && !this.referenceViewFields.containsKey(pid)){
+        if(this.referenceViewFields == null || !this.referenceViewFields.containsKey(pid)){
             return new HashMap<>() ;
         }
         return (Map<String, Object>) this.referenceViewFields.get(pid);
