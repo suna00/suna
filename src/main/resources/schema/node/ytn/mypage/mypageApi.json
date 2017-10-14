@@ -40,7 +40,7 @@
           "ds": "ytnDevDb",
           "resultType": "read",
           "description": "마이페이지 메인 주문 현황",
-          "sql": "SELECT a.memberNo, sum(orderStatus in ('order001','order002')) as orderReception, sum(orderStatus = 'order003') as completePayment, sum(orderStatus = 'order004') as preparingProduct, sum(orderStatus = 'order005') as delivering, sum(orderStatus = 'order006') as completeDelivery, (select count(*) from mypagewritablereviewview where memberNo = @{session.memberNo}) as writableReview, sum(orderStatus >= 'order008') as cancelExchangeReturn from ordersheet a, orderproduct b where a.memberNo=@{session.memberNo} and a.orderSheetId = b.orderSheetId group by a.memberNo "
+          "sql": "SELECT a.memberNo, sum(orderStatus in ('order001','order002')) as orderReception, sum(orderStatus = 'order003') as completePayment, sum(orderStatus = 'order004') as preparingProduct, sum(orderStatus = 'order005') as delivering, sum(orderStatus = 'order006') as completeDelivery, (select count(*) from mypagewritablereviewview where memberNo = @{session.member.memberNo}) as writableReview, sum(orderStatus >= 'order008') as cancelExchangeReturn from ordersheet a, orderproduct b where a.memberNo=@{session.member.memberNo} and a.orderSheetId = b.orderSheetId group by a.memberNo "
         }
       }
     }
@@ -56,7 +56,7 @@
     "config" : {
       "typeId": "writableReview",
       "query" : [
-        {"field" : "memberNo", "method" : "matching", "value" : "{{:session.memberNo}}" },
+        {"field" : "memberNo", "method" : "matching", "value" : "{{:session.member.memberNo}}" },
         {"includeReferenced" : true, "referenceView" : "productId, baseOptionItemId"},
         {"sorting" : "orderCreated desc", "pageSize": "{{:pageSize}}", "page": "{{:page}}"}
       ]
@@ -73,7 +73,7 @@
     "config" : {
       "typeId": "review",
       "query" : [
-        {"field" : "memberNo", "method" : "matching", "value" : "{{:session.memberNo}}" },
+        {"field" : "memberNo", "method" : "matching", "value" : "{{:session.member.memberNo}}" },
         {"includeReferenced" : true, "referenceView" : "orderProductId,productId"},
         {"sorting" : "orderSheetId desc", "pageSize": "{{:pageSize}}", "page": "{{:page}}"}
       ]
@@ -93,7 +93,7 @@
           "ds": "ytnDevDb",
           "resultType": "read",
           "description": "회원등급 구매횟수, 구매금액, 산정기간",
-          "sql": "select memberNo, name, userId, membershipLevel, purchaseCount, purchasePrice , concat(DATE_FORMAT(now(), '%Y'),'.01.01') as startDate , DATE_FORMAT(now(), '%Y.%m.%d') as endDate from member WHERE memberNo=@{session.memberNo} "
+          "sql": "select memberNo, name, userId, membershipLevel, purchaseCount, purchasePrice , concat(DATE_FORMAT(now(), '%Y'),'.01.01') as startDate , DATE_FORMAT(now(), '%Y.%m.%d') as endDate from member WHERE memberNo=@{session.member.memberNo} "
         }
       }
     }

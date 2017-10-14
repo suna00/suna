@@ -20,7 +20,7 @@
         "select" : {
           "ds" : "ytnDevDb",
           "resultType" : "list",
-          "sql" : "select a.couponTypeId from ( select couponTypeId from couponTypeToCategoryMap c, producttocategorymap p where productId=@{productId} and p.categoryId = c.categoryId group by couponTypeId ) a, coupontype b where b.couponTypeId = a.couponTypeId and b.couponType = 'category' and b.siteType != IF(IFNULL(@{siteType},'company') ='university','company', 'university') and createPeriodType != 'stop' and createStartDate <= now() and createEndDate >= now() "
+          "sql" : "select a.couponTypeId from ( select couponTypeId from couponTypeToCategoryMap c, producttocategorymap p where productId=@{productId} and p.categoryId = c.categoryId group by couponTypeId ) a, coupontype b where b.couponTypeId = a.couponTypeId and b.couponType = 'category' and b.siteType != IF(IFNULL(@{session.member.siteType},'company') ='university','company', 'university') and createPeriodType != 'stop' and createStartDate <= now() and createEndDate >= now() "
         },
         "response": {
           "_all_": "",
@@ -34,7 +34,7 @@
           "haveYn": {
             "typeId": "coupon",
             "query" : [
-              {"field" : "memberNo", "method" : "matching", "value" : "{{:memberNo}}" },
+              {"field" : "memberNo", "method" : "matching", "value" : "{{:session.member.memberNo}}" },
               {"field" : "couponTypeId", "method" : "matching", "value" : "{{:couponTypeId}}" }
             ]
           }
@@ -44,7 +44,7 @@
         "typeId": "couponTypeToProductMap",
         "query" : [
           {"field" : "productId", "method" : "matching", "value" : "{{:productId}}" },
-          {"field" : "couponTypeId", "method" : "referenceJoin", "value" : "couponType_matching=product&siteType_matching={{:siteType}}&createPeriodType_notMatching=stop&createStartDate_below={{:now}}&createEndDate_above={{:now}}" },
+          {"field" : "couponTypeId", "method" : "referenceJoin", "value" : "couponType_matching=product&siteType_matching={{:session.member.siteType}}&createPeriodType_notMatching=stop&createStartDate_below={{:now}}&createEndDate_above={{:now}}" },
           {"includeReferenced" : false, "referenceView" : "couponTypeId"}
         ],
         "response": {
@@ -52,7 +52,7 @@
           "haveYn": {
             "typeId": "coupon",
             "query" : [
-              {"field" : "memberNo", "method" : "matching", "value" : "{{:memberNo}}" },
+              {"field" : "memberNo", "method" : "matching", "value" : "{{:session.member.memberNo}}" },
               {"field" : "couponTypeId", "method" : "matching", "value" : "{{:couponTypeId}}" }
             ]
           }
