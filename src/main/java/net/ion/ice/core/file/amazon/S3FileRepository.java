@@ -65,7 +65,7 @@ public class S3FileRepository implements FileRepository {
     private void initializeS3Client () throws Exception {
         awsCredentials = new BasicAWSCredentials(accessKey, secretAccessKey);
         s3Client = AmazonS3ClientBuilder.standard()
-//                .withRegion("ap-northeast-2") //로컬에서 오류나면 해제
+                .withRegion("ap-northeast-2") //로컬에서 오류나면 해제
                 .withCredentials(new AWSStaticCredentialsProvider(awsCredentials))
                 .build();
         logger.info("bucketLocation with client :: " + s3Client.getBucketLocation(bucketName));
@@ -168,8 +168,9 @@ public class S3FileRepository implements FileRepository {
                 saveFile.getParentFile().mkdirs() ;
             }
             multipartFile.transferTo(saveFile); // 이 경로에 떨어뜨리는 거 같은데..
-            uploadFile(savePath, saveFile);
-            savePath = retrieveS3URL(savePath, saveFile);
+            uploadFile(savePath, saveFile);//s3에 올림.
+            //savePath = retrieveS3URL(savePath, saveFile);
+            saveFile.delete();
         } catch (Exception e) {
             logger.error("S3 MULTIPART FILE SAVE ERROR");
             throw new TolerableMissingFileException("S3 MULTIPART FILE SAVE ERROR : ", e);
@@ -190,7 +191,7 @@ public class S3FileRepository implements FileRepository {
             // 원격이니까 일부러 파일 경로 만들어 주지 않아도 됨
             FileUtils.copyFile(file, saveFile);
             uploadFile(savePath, file);
-            savePath = retrieveS3URL(savePath, saveFile);
+            //savePath = retrieveS3URL(savePath, saveFile);
         } catch (Exception e) {
             logger.error("S3 FILE SAVE ERROR");
             throw new TolerableMissingFileException("S3 FILE SAVE ERROR : ", e);
@@ -224,7 +225,7 @@ public class S3FileRepository implements FileRepository {
             FileUtils.copyURLToFile(res.getURL(), saveFile, connectionTimeout, readTimeout);
             logger.info("SAVE RESOURCE FILE S3 :: " + saveFile.getCanonicalPath());
             uploadFile(savePath, saveFile);
-            savePath = retrieveS3URL(savePath, saveFile);
+            //savePath = retrieveS3URL(savePath, saveFile); s3 full 경로를 가져오는 부분인듯..
         } catch (Exception e) {
             logger.error("S3 SAVE RESOURCE FILE SAVE ERROR");
             throw new TolerableMissingFileException("S3 SAVE RESOURCE FILE SAVE ERROR : ", e);
