@@ -152,7 +152,7 @@ public class CollectService {
 
     public void bestSaleBydays(int day) {
         String searchText = "created_fromto="+getPeriodDate(day);
-        List<Map<String, Object>> List = nodeBindingService.list("orderProduct", searchText);
+        List<Map<String, Object>> list = nodeBindingService.list("orderProduct", searchText);
         Map<String, Object> distinctProducts = new LinkedHashMap<>();
 
         int i = 0;
