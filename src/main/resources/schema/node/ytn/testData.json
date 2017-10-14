@@ -10,7 +10,10 @@
       "label": "siteType>company",
       "refId": "siteType>company"
     },
-    "siteStatus": "y"
+    "siteStatus": "y",
+    "logoImage": "classpath:schema/node/ytn/backOffice/file/ion_logo_b.png",
+    "logoImage2": "classpath:schema/node/ytn/backOffice/file/ion_logo_w.png"
+
   },
   {
     "typeId": "site",
@@ -23,7 +26,9 @@
       "label": "siteType>university",
       "refId": "siteType>university"
     },
-    "siteStatus": "y"
+    "siteStatus": "y",
+    "logoImage": "classpath:schema/node/ytn/backOffice/file/img_ygoon_logo.gif",
+    "logoImage2": "classpath:schema/node/ytn/backOffice/file/img_header_fixed_logo.png"
   },
   {
     "typeId": "site",

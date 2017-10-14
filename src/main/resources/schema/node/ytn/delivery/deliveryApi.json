@@ -20,7 +20,7 @@
         "select" : {
           "ds" : "ytnDevDb",
           "resultType" : "read",
-          "sql" : "select min(myDeliveryAddressId) as asisId from myDeliveryAddress where memberNo = @{memberNo} and defaultYn='y' "
+          "sql" : "select min(myDeliveryAddressId) as asisId from myDeliveryAddress where memberNo = @{session.member.memberNo} and defaultYn='y' "
         }
       },
       "asisSetN" : {
