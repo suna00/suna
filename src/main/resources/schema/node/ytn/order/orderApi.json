@@ -19,6 +19,7 @@
       "typeId" : "orderSheet",
       "query" : [
         {"field" : "orderSheetId", "method" : "matching", "value" : "{{:orderSheetId}}"},
+        {"field" : "memberNo", "method" : "matching", "value" : "{{:session.member.memberNo}}"},
         {"referenceView": "memberNo"}
       ],
       "response": {
@@ -237,6 +238,7 @@
       "typeId" : "orderChange",
       "query" : [
         {"field" : "orderChangeId", "method" : "matching", "value" : "{{:orderChangeId}}"},
+        {"field" : "memberNo", "method" : "matching", "value" : "{{:session.member.memberNo}}"},
         {"includeReferenced" : true, "referenceView": "memberNo"}
       ],
       "response": {
