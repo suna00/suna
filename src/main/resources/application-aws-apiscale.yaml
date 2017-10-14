@@ -66,7 +66,7 @@ temp-file:
   dir: /data/ion/api/resource/ice2/cache
 
 image:
-  prefixUrl: http://g-api-elb-579243851.ap-northeast-2.elb.amazonaws.com/image/
+  prefixUrl: http://g-p-api-elb-321213426.ap-northeast-2.elb.amazonaws.com/image/
 
 mobile:
   push:
