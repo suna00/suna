@@ -101,7 +101,7 @@ public class VideoService {
         if (StringUtils.isEmpty(clipType) || StringUtils.isEmpty(contentImgPip)) {
             throw new IceRuntimeException("pipImgSave required value is null : clipType=" + clipType + ", contentImgPip=" + contentImgPip);
         } else {
-            pipImgUrl = "http://" + getImgUrl(clipType, contentImgPip);
+            pipImgUrl = getImgUrl(clipType, contentImgPip);
             System.out.println("pipImgUrl:" + pipImgUrl);
         }
 
