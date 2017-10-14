@@ -313,7 +313,7 @@
     "id": "pgmVideo>contentImgUrl",
     "propertyTypeName": "클립영상 대표 이미지 URL",
     "valueType": "FILE",
-    "required": false,
+    "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
