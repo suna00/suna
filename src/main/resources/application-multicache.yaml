@@ -1,0 +1,78 @@
+# CMS 캐시 동기화 테스트용 프로파일
+# 10.75.7.144, 10.75.7.145
+# 투표서버의 ice2 스키마를 바라봅니다
+# hazelcast
+
+spring:
+  profiles: multicache
+  http:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 20MB
+
+server:
+  port: 8080
+
+jwtConfig:
+  issuer: I-ON
+  secretKey: dkdldhs!@#$
+  tokenPrefix: SDP
+  headString: X-Authorization
+  tokenExpirationTime: 15 #분
+  refreshTokenExpTime: 60 #분
+
+
+cluster:
+  mode: cache
+  groups: cms
+  members:
+    - 10.75.7.144-145
+    - 127.0.0.1
+    - localhost
+
+infinispan:
+  cachePath: /data/ion/cache-core/resource/ice2/cache
+
+tomcat:
+  access-log-enabled: true
+  access-log-pattern: "%h %l %u %t \"%r\" %s %b %D"
+  basedir: tomcat
+
+logging:
+  config:
+    classpath:
+      - logback-access-dev-2.xml
+      - logback-dev-2.xml
+
+file:
+  default:
+    path: /data/ion/cache-core/resource/ice2/files
+
+
+i18n:
+  defaults: eng
+
+cjapi:
+  pip:
+    programurl: http://pipapi.itvs.cjenm.com/json/data/v1.0/global/programinfo.asp
+    clipmediaurl: http://pipapi.itvs.cjenm.com/json/data/v1.0/global/clipmediainfo.asp
+
+aws:
+  s3:
+    bucketName: cjmwave-prd
+    bucketKey: ion
+    accessKey: AKIAJWGJBWJU3TLXANWA
+    secretKey: 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
+
+
+temp-file:
+  dir: /data/ion/cache-core/resource/ice2/cache
+
+image:
+  prefixUrl: http://125.131.88.147:8080/image/
+  s3PrefixUrl: https://cjmwave-prd.s3.ap-northeast-2.amazonaws.com/ion/
+
+mobile:
+  push:
+    fcmApiKey: AAAA-z1uhx4:APA91bHlHSqGakLe7RKY1fuvTpUyx1hZKX5BG7ydfK96Kfy9bCX0upciPQ6UlpOXECEcc4tsYFiiEUy6aHSWWMZwwN-V6rtu-aeOAGg0_r6GAFaVkJF3jEOxiO4kblsi4tNDOAApMZx2
+    fcmApiUrl: https://fcm.googleapis.com/fcm/send
