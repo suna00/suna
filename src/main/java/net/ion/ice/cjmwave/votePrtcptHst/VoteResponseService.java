@@ -78,11 +78,13 @@ public class VoteResponseService {
                 + "&findKywrd_matchingShould={{:searchKeyword}}&sorting={{:sorting}}&page={{:page}}&pageSize={{:pageSize}}&langCd_matching={{:langCd}}";
 
         Map<String, Object> data = context.getData();
-        /*
         if (data.get("pageSize")==null || Integer.parseInt(data.get("pageSize").toString())<=0) {
             data.put("pageSize", 10);
         }
-        */
+        if (data.get("page")==null || Integer.parseInt(data.get("page").toString())<=0) {
+            data.put("page", 1);
+        }
+
         context.setIncludeReferenced(true);
 
         List<Node> voteInfoList = nodeService.getNodeList(VOTE_BAS_INFO, (String) ContextUtils.getValue(term, data));
@@ -127,10 +129,27 @@ public class VoteResponseService {
                 + "&showLoCd_matching={{:showLoCd}}&voteFormlCd_matching={{:voteFormlCd}}&showYn_matching=true&evVoteYn_matching=false"
                 + "&sorting=voteSeq desc&limit=1";
 
-
         Map<String, Object> data = context.getData();
 
         List<Node> voteInfoList = nodeService.getNodeList(VOTE_BAS_INFO, (String) ContextUtils.getValue(term, data));
+
+        String mbrId = "";
+        if (data.get("snsTypeCd")!=null || data.get("snsKey")!=null) {
+            mbrId = data.get("snsTypeCd").toString() + ">" + data.get("snsKey").toString();
+        }
+
+        Date now = new Date();
+        String connIpAdr = data.get("connIpAdr").toString();
+        String voteDate = DateFormatUtils.format(now, "yyyyMMdd");
+
+        // Checking Available IP with mbrId and voteSeq
+        String searchText = "setupTypeCd_matching=2&sorting=dclaSetupSeq desc&limit=1";
+        List<Node> dclaNodeList = nodeService.getNodeList("dclaSetupMng", searchText);
+        Node dclaNode = dclaNodeList.get(0);
+        Integer ipDclaCnt = dclaNode.getIntValue("setupBaseCnt");
+        Integer ipCnt = getIpCnt(connIpAdr, voteDate);
+
+        Integer ipAdrVoteCnt = ipDclaCnt - ipCnt;
 
         for (Node voteBasInfo : voteInfoList) {
 
@@ -158,11 +177,43 @@ public class VoteResponseService {
             // voteNum 계산
             Integer voteNum = getVoteNum(voteBasInfo.getId());
             voteBasInfo.put("voteNum", (voteNum == null) ? 0 : voteNum);
+
+            // userVoteCnt
+            Integer userVoteCnt = 0;
+            if (mbrId!=null && mbrId.length()>0) {
+                userVoteCnt = getUserVoteCnt(voteBasInfo.getId(), mbrId);
+            }
+            voteBasInfo.put("userVoteCnt", (userVoteCnt == null) ? 0 : userVoteCnt);
+            voteBasInfo.put("userPvCnt", 0);
+            voteBasInfo.put("ipAdrVoteCnt", ipAdrVoteCnt);
         }
 
         data.put("items", voteInfoList);
 
         context.setResult(data);
+    }
+
+    private Integer getUserVoteCnt(String voteSeq, String mbrId) {
+        if (jdbcTemplate == null) {
+            jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
+        }
+        String voteNumSQL = "SELECT count(*) AS userVoteCnt FROM " + voteSeq + "_voteHstByMbr WHERE mbrId=?";
+
+        Map voteNumMap = jdbcTemplate.queryForMap(voteNumSQL, mbrId);
+
+        Integer retValue = voteNumMap.get("userVoteCnt") == null ? 0 : Integer.parseInt(voteNumMap.get("userVoteCnt").toString());
+        return retValue;
+    }
+
+
+    // 접근 IP Count 조회
+    private Integer getIpCnt(String connIpAdr, String voteDate) {
+
+        String selectIpDclaCnt = "SELECT count(*) ipCnt FROM voteHstByIp WHERE ipAdr=? AND voteDate=?";
+        Map<String, Object> ipCntMap = jdbcTemplate.queryForMap(selectIpDclaCnt, connIpAdr, voteDate);
+        Integer mbrIpDclaCnt = Integer.parseInt(ipCntMap.get("ipCnt").toString());
+
+        return mbrIpDclaCnt;
     }
 
     public void resIfMwv108(ExecuteContext context) {
@@ -175,8 +226,25 @@ public class VoteResponseService {
                 + "&sorting=voteSeq desc&limit=1";
 
         Map<String, Object> data = context.getData();
-
         List<Node> voteInfoList = nodeService.getNodeList(VOTE_BAS_INFO, (String) ContextUtils.getValue(term, data));
+
+        String mbrId = "";
+        if (data.get("snsTypeCd")!=null || data.get("snsKey")!=null) {
+            mbrId = data.get("snsTypeCd").toString() + ">" + data.get("snsKey").toString();
+        }
+
+        Date now = new Date();
+        String connIpAdr = data.get("connIpAdr").toString();
+        String voteDate = DateFormatUtils.format(now, "yyyyMMdd");
+
+        // Checking Available IP with mbrId and voteSeq
+        String searchText = "setupTypeCd_matching=2&sorting=dclaSetupSeq desc&limit=1";
+        List<Node> dclaNodeList = nodeService.getNodeList("dclaSetupMng", searchText);
+        Node dclaNode = dclaNodeList.get(0);
+        Integer ipDclaCnt = dclaNode.getIntValue("setupBaseCnt");
+        Integer ipCnt = getIpCnt(connIpAdr, voteDate);
+
+        Integer ipAdrVoteCnt = ipDclaCnt - ipCnt;
 
         for (Node voteBasInfo : voteInfoList) {
 
@@ -204,6 +272,15 @@ public class VoteResponseService {
             // voteNum 계산
             Integer voteNum = getVoteNum(voteBasInfo.getId());
             voteBasInfo.put("voteNum", (voteNum == null) ? 0 : voteNum);
+
+            // userVoteCnt
+            Integer userVoteCnt = 0;
+            if (mbrId!=null && mbrId.length()>0) {
+                userVoteCnt = getUserVoteCnt(voteBasInfo.getId(), mbrId);
+            }
+            voteBasInfo.put("userVoteCnt", (userVoteCnt == null) ? 0 : userVoteCnt);
+            voteBasInfo.put("userPvCnt", 0);
+            voteBasInfo.put("ipAdrVoteCnt", ipAdrVoteCnt);
         }
 
         data.put("items", voteInfoList);
