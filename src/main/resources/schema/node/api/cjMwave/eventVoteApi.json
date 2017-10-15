@@ -174,47 +174,6 @@
   {
     "typeId": "apiConfig",
     "category": "vote",
-    "apiId": "IfMev001-2",
-    "apiName": "이벤트 투표 상세조회 - 2",
-    "method": "GET",
-    "parameters": [
-      {
-        "paramName": "voteSeq",
-        "required": false
-      },
-      {
-        "paramName": "voteYear",
-        "required": false
-      },
-      {
-        "paramName": "showLoCd",
-        "required": false
-      },
-      {
-        "paramName": "voteFormlCd",
-        "required": false
-      },
-      {
-        "paramName": "snsKey",
-        "required": false
-      },
-      {
-        "paramName": "snsTypeCd",
-        "required": false
-      },
-      {
-        "paramName": "connIpAdr",
-        "required": true
-      }
-    ],
-    "config": {
-      "typeId": "voteBasInfo",
-      "event": "voteDetail"
-    }
-  },
-  {
-    "typeId": "apiConfig",
-    "category": "vote",
     "apiId": "IfMev002",
     "apiName": "MAMA용 이벤트 투표하기",
     "method": "POST",
@@ -249,15 +208,6 @@
           "voteItemSeq": "{{:voteQueiSeq}}",
           "prtcpMbrId": "{{:snsTypeCd}}>{{:snsKey}}",
           "connIpAdr": "{{:connIpAdr}}"
-        },
-        "response": {
-          "_all_": "",
-          "userEvtVoteCnt": {
-            "value": "10"
-          },
-          "ipAdrVoteCnt": {
-            "value": "10000"
-          }
         }
       }
     }
@@ -285,16 +235,7 @@
     "config": {
       "createItem": {
         "typeId": "voteBasInfo",
-        "event": "sponsorEvtVoting",
-        "response": {
-          "_all_": "",
-          "userEvtVoteCnt": {
-            "value": "10"
-          },
-          "ipAdrVoteCnt": {
-            "value": "10000"
-          }
-        }
+        "event": "sponsorEvtVoting"
       }
     }
   }
