@@ -56,7 +56,10 @@ public class VideoService {
         String clipType = (StringUtils.contains(clipTypeObj, Node.ID_SEPERATOR)) ? StringUtils.substringAfterLast(clipTypeObj, Node.ID_SEPERATOR) : clipTypeObj;
         String playTime = node.getStringValue("playTime");
         returnResult.put("playTime", playTime);
-        String fileUrlFormat = ApplicationContextManager.getContext().getEnvironment().getProperty("image.prefixUrl");
+        String fileUrlFormat = ApplicationContextManager.getContext().getEnvironment().getProperty("image.s3PrefixUrl");
+        if(fileUrlFormat == null || StringUtils.isEmpty(fileUrlFormat)){
+            fileUrlFormat= ApplicationContextManager.getContext().getEnvironment().getProperty("image.prefixUrl");
+        }
         String fullUrl = "";
         if (node.get("contentImgUrl") != null) {
             fullUrl = fileUrlFormat + ((FileValue) node.get("contentImgUrl")).getStorePath();
