@@ -46,13 +46,13 @@ public class PropertiesFieldBridge implements FieldBridge {
         }else{
             for (Map.Entry<String, Object> entry : properties.entrySet() ) {
                 PropertyType propertyType = nodeType.getPropertyType(entry.getKey()) ;
-                indexEntry(entry, document, luceneOptions, propertyType );
+                indexEntry(entry, document, luceneOptions, propertyType, nodeType );
             }
         }
 
     }
 
-    private void indexEntry(Map.Entry<String, Object> entry, Document document, LuceneOptions luceneOptions, PropertyType propertyType) {
+    private void indexEntry(Map.Entry<String, Object> entry, Document document, LuceneOptions luceneOptions, PropertyType propertyType, NodeType nodeType) {
         if(propertyType == null) return ;
         String pid  = entry.getKey() ;
 
@@ -99,7 +99,12 @@ public class PropertiesFieldBridge implements FieldBridge {
                     }
                     document.add(getKeywordField(propertyType, pid, entry.getValue().toString()));
                     if(propertyType.getValueType() == PropertyType.ValueType.REFERENCE){
-                        Node refNode = NodeUtils.getReferenceNode(entry.getValue(), propertyType);
+                        try {
+                            Node refNode = NodeUtils.getReferenceNode(entry.getValue(), propertyType);
+                            if(refNode != null){
+                                document.add(getKeywordField(propertyType, pid + "_label", refNode.getLabel(NodeUtils.getNodeType(refNode.getTypeId()))));
+                            }
+                        }catch (Exception e){}
 
                     }
                 }

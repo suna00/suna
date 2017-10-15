@@ -6,6 +6,8 @@ import net.ion.ice.core.cluster.ClusterService;
 import net.ion.ice.core.cluster.ClusterUtils;
 import net.ion.ice.core.context.ApiExecuteContext;
 import net.ion.ice.core.context.ExecuteContext;
+import net.ion.ice.core.infinispan.InfinispanCacheManager;
+import net.ion.ice.core.infinispan.InfinispanRepositoryService;
 import net.ion.ice.core.json.JsonUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -33,6 +35,8 @@ public class NodeHelperService  {
     @Autowired
     private NodeService nodeService ;
 
+    @Autowired
+    private InfinispanRepositoryService infinispanRepositoryService ;
 
 
     @Autowired
@@ -64,7 +68,10 @@ public class NodeHelperService  {
             if(items.size() > 0){
                 for(Map<String, Object> item : items){
                     ExecuteContext context = ExecuteContext.createContextFromMap(nodeType, item) ;
-
+                    Node node = context.getNode() ;
+                    if(node != null) {
+                        infinispanRepositoryService.cacheNode(node);
+                    }
                 }
             }
         }
