@@ -2,14 +2,17 @@ package net.ion.ice.core.data.bind;
 
 import net.ion.ice.IceRuntimeException;
 import net.ion.ice.core.context.QueryContext;
+import net.ion.ice.core.context.Template;
 import net.ion.ice.core.data.DBDataTypes;
 import net.ion.ice.core.data.DBQuery;
 import net.ion.ice.core.data.DBTypes;
 import net.ion.ice.core.data.table.Column;
 import net.ion.ice.core.infinispan.NotFoundNodeException;
+import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.PropertyType;
+import net.ion.ice.core.query.QueryTerm;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -263,6 +266,17 @@ public class NodeBindingInfo implements Serializable {
     }
 
     public List<Map<String, Object>> list(QueryContext queryContext) {
+        if (queryContext.getQueryTerms() != null && !queryContext.getQueryTerms().isEmpty()) {
+            for (QueryTerm queryTerm : queryContext.getQueryTerms()) {
+                if("EXISTS".equals(queryTerm.getMethod().toString())){
+                    Template sqlTemplate = new Template(queryTerm.getQueryValue());
+                    sqlTemplate.parsing();
+                    Map<String, Object> result = jdbcTemplate.queryForMap(sqlTemplate.format(queryContext.getData()).toString(), sqlTemplate.getSqlParameterValues(queryContext.getData()));
+                    queryTerm.setQueryValue(JsonUtils.getStringValue(result, "inValue"));
+                }
+            }
+        }
+
         DBQuery dbQuery = new DBQuery(tableName, queryContext);
         Map<String, Object> totalCount;
         if (dbQuery.getResultCountValue() == null || dbQuery.getResultCountValue().isEmpty()) {
