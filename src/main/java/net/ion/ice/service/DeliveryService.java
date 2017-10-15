@@ -151,7 +151,6 @@ public class DeliveryService {
     // type : cart, temporder, order(취소교환반품 신청)
     public List<Map<String, Object>> makeDeliveryData(List<Map<String, Object>> list, String type) {
         for(Map<String, Object> map : list){
-            System.out.println(map) ;
             double productPrice = 0 ;
             Node product = nodeService.getNode("product", map.get("productId").toString()) ;
             map.put("product", product) ;
