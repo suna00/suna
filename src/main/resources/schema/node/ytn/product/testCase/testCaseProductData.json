@@ -9291,469 +9291,469 @@
     "productOptionType": "add"
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100001,
     "categoryId": "1,672,673",
     "productId": 100001,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100002,
     "categoryId": "1,672,673",
     "productId": 100002,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100003,
     "categoryId": "1,672,673",
     "productId": 100003,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100004,
     "categoryId": "1,672,673",
     "productId": 100004,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100005,
     "categoryId": "1,672,673",
     "productId": 100005,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100006,
     "categoryId": "1,672,673",
     "productId": 100006,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100007,
     "categoryId": "1,672,673",
     "productId": 100007,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100008,
     "categoryId": "1,672,673",
     "productId": 100008,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100009,
     "categoryId": "1,672,673",
     "productId": 100009,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100010,
     "categoryId": "1,672,673",
     "productId": 100010,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100011,
     "categoryId": "1,672,673",
     "productId": 100011,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100012,
     "categoryId": "1,672,673",
     "productId": 100012,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100013,
     "categoryId": "1,672,673",
     "productId": 100013,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100014,
     "categoryId": "1,672,673",
     "productId": 100014,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100015,
     "categoryId": "1,672,673",
     "productId": 100015,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100016,
     "categoryId": "1,672,673",
     "productId": 100016,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100017,
     "categoryId": "1,672,673",
     "productId": 100017,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100018,
     "categoryId": "1,672,673",
     "productId": 100018,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100019,
     "categoryId": "1,672,673",
     "productId": 100019,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100020,
     "categoryId": "1,672,673",
     "productId": 100020,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100021,
     "categoryId": "1,672,673",
     "productId": 100021,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100022,
     "categoryId": "1,672,673",
     "productId": 100022,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100023,
     "categoryId": "1,672,673",
     "productId": 100023,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100024,
     "categoryId": "1,672,673",
     "productId": 100024,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100025,
     "categoryId": "1,672,673",
     "productId": 100025,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100026,
     "categoryId": "1,672,673",
     "productId": 100026,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100027,
     "categoryId": "1,672,673",
     "productId": 100027,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100028,
     "categoryId": "1,672,673",
     "productId": 100028,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100029,
     "categoryId": "1,672,673",
     "productId": 100029,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100030,
     "categoryId": "1,672,673",
     "productId": 100030,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100031,
     "categoryId": "1,672,673",
     "productId": 100031,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100032,
     "categoryId": "1,672,673",
     "productId": 100032,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100033,
     "categoryId": "1,672,673",
     "productId": 100033,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100034,
     "categoryId": "1,672,673",
     "productId": 100034,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100035,
     "categoryId": "1,672,673",
     "productId": 100035,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100036,
     "categoryId": "1,672,673",
     "productId": 100036,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100037,
     "categoryId": "1,672,673",
     "productId": 100037,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100038,
     "categoryId": "1,672,673",
     "productId": 100038,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100039,
     "categoryId": "1,672,673",
     "productId": 100039,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100040,
     "categoryId": "1,672,673",
     "productId": 100040,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100041,
     "categoryId": "1,672,673",
     "productId": 100041,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100042,
     "categoryId": "1,672,673",
     "productId": 100042,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100043,
     "categoryId": "1,672,673",
     "productId": 100043,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100044,
     "categoryId": "1,672,673",
     "productId": 100044,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100045,
     "categoryId": "1,672,673",
     "productId": 100045,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100046,
     "categoryId": "1,672,673",
     "productId": 100046,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100047,
     "categoryId": "1,672,673",
     "productId": 100047,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100048,
     "categoryId": "1,672,673",
     "productId": 100048,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100049,
     "categoryId": "1,672,673",
     "productId": 100049,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100050,
     "categoryId": "1,672,673",
     "productId": 100050,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100051,
     "categoryId": "1,672,673",
     "productId": 100051,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100052,
     "categoryId": "1,672,673",
     "productId": 100052,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100053,
     "categoryId": "1,672,673",
     "productId": 100053,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100054,
     "categoryId": "1,672,673",
     "productId": 100054,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100055,
     "categoryId": "1,672,673",
     "productId": 100055,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100056,
     "categoryId": "1,672,673",
     "productId": 100056,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100057,
     "categoryId": "1,672,673",
     "productId": 100057,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100058,
     "categoryId": "1,672,673",
     "productId": 100058,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100059,
     "categoryId": "1,672,673",
     "productId": 100059,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100060,
     "categoryId": "1,672,673",
     "productId": 100060,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100061,
     "categoryId": "1,672,673",
     "productId": 100061,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100062,
     "categoryId": "1,672,673",
     "productId": 100062,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100063,
     "categoryId": "1,672,673",
     "productId": 100063,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100064,
     "categoryId": "1,672,673",
     "productId": 100064,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100065,
     "categoryId": "1,672,673",
     "productId": 100065,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100066,
     "categoryId": "1,672,673",
     "productId": 100066,
     "created": 20171015000000
   },
   {
-    "typeId": "productToCategory",
+    "typeId": "productToCategoryMap",
     "productToCategoryMapId": 100067,
     "categoryId": "1,672,673",
     "productId": 100067,
