@@ -198,25 +198,25 @@ public class CouponService {
             targetProduct.put("coupon", productCoupon);
         }
         List<Map<String, Object>> allCouponList = allCouponList(targetProductList);
-        Map<String, Object> maximumCouponList = sortMaximumList(allCouponList);
+        Map<Object, Object> maximumCouponMap = sortMaximumList(allCouponList);
         queryResult.put("items", targetProductList);
-        queryResult.put("maximum", maximumCouponList);
+        queryResult.put("maximum", maximumCouponMap);
         context.setResult(queryResult);
 
         return context;
     }
 
-    private Map<String, Object> sortMaximumList(List<Map<String, Object>> allCouponList) {
+    private Map<Object, Object> sortMaximumList(List<Map<String, Object>> allCouponList) {
         List<Integer> selectedProductList = new ArrayList<>();
         List<Integer> selectedCouponList = new ArrayList<>();
-        Map<String, Object> resultMap = new HashMap<>();
+        Map<Object, Object> resultMap = new HashMap<>();
 
         int index = 0;
         for (Map<String, Object> coupon : allCouponList) {
             boolean duplicated1 = false;
             boolean duplicated2 = false;
             if (index == 0) {
-                resultMap.put(String.valueOf(coupon.get("tempOrderProductId")), coupon.get("couponId"));
+                resultMap.put(coupon.get("tempOrderProductId"), coupon.get("couponId"));
                 selectedProductList.add((Integer) coupon.get("tempOrderProductId"));
                 selectedCouponList.add((Integer) coupon.get("couponId"));
                 index++;
@@ -239,10 +239,9 @@ public class CouponService {
             if (duplicated1 || duplicated2) {
                 continue;
             }
-            resultMap.put(String.valueOf(coupon.get("tempOrderProductId")), coupon.get("couponId"));
+            resultMap.put(coupon.get("tempOrderProductId"), coupon.get("couponId"));
             selectedProductList.add((Integer) coupon.get("tempOrderProductId"));
             selectedCouponList.add((Integer) coupon.get("couponId"));
-            index++;
         }
         return resultMap;
     }

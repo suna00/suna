@@ -74,6 +74,8 @@ public class CommonService {
         resultCodeMap.put("O0002", "포인트 검증 실패");
         resultCodeMap.put("O0003", "가격 검증 실패");
         resultCodeMap.put("O0004", "가격 검증 성공");
+        resultCodeMap.put("O0005", "포인트구매 성공");
+        resultCodeMap.put("O0006", "포인트구매 실패");
 
         /*Cart*/
         resultCodeMap.put("C0001", "상품 삭제 성공");
