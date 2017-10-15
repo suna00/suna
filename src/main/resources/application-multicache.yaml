@@ -27,6 +27,8 @@ cluster:
   groups: cms
   members:
     - 10.75.7.144-145
+    #- 10.75.7.144
+    #- 10.75.7.145
     - 127.0.0.1
     - localhost
 
