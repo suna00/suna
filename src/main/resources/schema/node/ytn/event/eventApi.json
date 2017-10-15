@@ -56,8 +56,8 @@
   {
     "typeId" : "apiConfig",
     "category" : "newProduct",
-    "apiId" : "list",
-    "apiName" : "신상품 리스트",
+    "apiId" : "list22",
+    "apiName" : "신상품 리스트22",
     "method" : "GET",
     "parameters" : [
     ],
@@ -79,6 +79,49 @@
             "ds" : "ytnDevDb",
             "resultType" : "read",
             "sql" : "select count(*) as couponCount from ( SELECT couponTypeId FROM couponTypeToCategoryMap c, producttocategorymap p WHERE productId = @{productId} AND p.categoryId = c.categoryId GROUP BY couponTypeId union ALL select couponTypeId from couponTypeToProductMap WHERE productId = @{productId} ) a, coupontype b WHERE b.couponTypeId = a.couponTypeId AND b.couponType in ('product','category') AND b.siteType != IF(IFNULL(@{session.member.siteType}, 'company') = 'university', 'company', 'university') AND createPeriodType != 'stop' AND createStartDate <= now() AND createEndDate >= now()  "
+          }
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "newProduct",
+    "apiId": "list",
+    "apiName": "신상품 리스트",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "product",
+      "query": [
+        {
+          "field": "name",
+          "method": "matching",
+          "value": "{{:searchValue}}"
+        },
+        {
+          "field": "salePrice",
+          "method": "fromto",
+          "value": "{{:salePrice}}"
+        },
+        {
+          "field": "referencedNewProductMap",
+          "method": "hasReferenced",
+          "aaaaaa": "newProductId_referenceJoin=newProductStatus_matching=y_and_year_matching={{:year}}_and_month_matching={{:month}}&",
+          "value": "newProductMapStatus_matching=y&categoryIds_matching={{:categoryId}}"
+        },
+        {
+          "sorting": "{{:sorting}}"
+        }
+      ],
+      "response": {
+        "_all_": "",
+        "downloadableCoupon": {
+          "select": {
+            "ds": "ytnDevDb",
+            "resultType": "read",
+            "sql": "select count(*) as couponCount from ( SELECT couponTypeId FROM couponTypeToCategoryMap c, producttocategorymap p WHERE productId = @{productId} AND p.categoryId = c.categoryId GROUP BY couponTypeId union ALL select couponTypeId from couponTypeToProductMap WHERE productId = @{productId} ) a, coupontype b WHERE b.couponTypeId = a.couponTypeId AND b.couponType in ('product','category') AND b.siteType != IF(IFNULL(@{session.member.siteType}, 'company') = 'university', 'company', 'university') AND createPeriodType != 'stop' AND createStartDate <= now() AND createEndDate >= now()  "
           }
         }
       }
