@@ -3,6 +3,7 @@ package net.ion.ice.core.session;
 import net.ion.ice.core.api.ApiException;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.response.JsonResponse;
+import net.ion.ice.security.common.CookieUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,8 @@ public class SessionController {
     public Object logout(HttpServletRequest request, HttpServletResponse response) {
         try {
             sessionService.removeSession(request);
+            CookieUtil.clear(response, "iceJWT");
+            CookieUtil.clear(response, "iceRefreshJWT");
             return JsonResponse.create();
         }catch(Exception e){
             return JsonResponse.error(e) ;
