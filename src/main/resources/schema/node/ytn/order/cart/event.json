@@ -49,6 +49,22 @@
   },
   {
     "typeId" : "event",
+    "tid": "cart",
+    "event" : "changeCartProductQuantity",
+    "noneExecute" : true,
+    "eventName" : "장바구니 상품 수량 변경"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "cart>changeCartProductQuantity",
+    "action" : "changeQuantity",
+    "actionName" : "장바구니 상품 수량 변경",
+    "actionType" : "service",
+    "actionBody" : "cartService.changeCartProductQuantity",
+    "order" : 1
+  },
+  {
+    "typeId" : "event",
     "tid": "tempOrder",
     "event" : "verification",
     "noneExecute": true,

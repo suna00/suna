@@ -33,23 +33,23 @@ public class CartService {
     private NodeBindingService nodeBindingService;
 
     @Autowired
-    private SessionService sessionService ;
+    private SessionService sessionService;
 
     // 장바구니 조회
     public ExecuteContext cartRead(ExecuteContext context) throws IOException {
 
-        Map<String, Object> sessionData = sessionService.getSession(context.getHttpRequest()) ;
+        Map<String, Object> sessionData = sessionService.getSession(context.getHttpRequest());
 
-        String sessionId = sessionService.getSessionKey(context.getHttpRequest()) ;
-        if(sessionData.containsKey("cartId")) {
+        String sessionId = sessionService.getSessionKey(context.getHttpRequest());
+        if (sessionData.containsKey("cartId")) {
             context.getData().put("cartId", sessionData.get("cartId"));
-        }else{
+        } else {
             context.getData().put("cartId", "abcdefg");
         }
 
-        context.getData().put("sessionId", sessionId) ;
-        if(sessionData.containsKey("member")){
-            context.getData().put("memberNo", JsonUtils.getStringValue(sessionData, "memberNo")) ;
+        context.getData().put("sessionId", sessionId);
+        if (sessionData.containsKey("member")) {
+            context.getData().put("memberNo", JsonUtils.getStringValue(sessionData, "memberNo"));
         }
 
 
@@ -68,8 +68,8 @@ public class CartService {
             cartProduct.put("cartProductItem", subCartProdductItems);
         }
 
-        List<Map<String, Object>> deliveryProductList = deliveryService.makeDeliveryData(cartProducts, "cart") ;
-        Map<String, Object> deliveryPriceList = deliveryService.calculateDeliveryPrice(deliveryProductList, "cart") ;
+        List<Map<String, Object>> deliveryProductList = deliveryService.makeDeliveryData(cartProducts, "cart");
+        Map<String, Object> deliveryPriceList = deliveryService.calculateDeliveryPrice(deliveryProductList, "cart");
 
         QueryResult queryResult = new QueryResult();
         List<QueryResult> items = new ArrayList<>();
@@ -98,7 +98,6 @@ public class CartService {
     }
 
 
-
     // 장바구니 담기
     public ExecuteContext addCart(ExecuteContext context) throws IOException {
         Map<String, Object> data = context.getData();
@@ -116,24 +115,24 @@ public class CartService {
 //            if(!checkQuantity(context, map)) return context;
 //        }
 
-        Map<String, Object> sessionData = sessionService.getSession(context.getHttpRequest()) ;
+        Map<String, Object> sessionData = sessionService.getSession(context.getHttpRequest());
 
-        String sessionId = sessionService.getSessionKey(context.getHttpRequest()) ;
+        String sessionId = sessionService.getSessionKey(context.getHttpRequest());
         CommonService.resetMap(data);
-        if(sessionData.containsKey("cartId")) {
+        if (sessionData.containsKey("cartId")) {
             data.put("cartId", sessionData.get("cartId"));
-        }else{
+        } else {
             data.put("cartId", "");
         }
 
-        data.put("sessionId", sessionId) ;
-        if(sessionData.containsKey("member")){
-            data.put("memberNo", JsonUtils.getStringValue(sessionData, "memberNo")) ;
+        data.put("sessionId", sessionId);
+        if (sessionData.containsKey("member")) {
+            data.put("memberNo", JsonUtils.getStringValue(sessionData, "memberNo"));
         }
 
         Node cart = (Node) nodeService.executeNode(data, "cart", CommonService.SAVE);
         data.put("cartId", cart.getId());
-        sessionData.put("cartId", cart.getId()) ;
+        sessionData.put("cartId", cart.getId());
 
 
         if (data.get("product") != null) {
@@ -220,6 +219,48 @@ public class CartService {
         }
         return true;
     }
+
+    public ExecuteContext changeCartProductQuantity(ExecuteContext context) throws IOException {
+        Map<String, Object> data = context.getData();
+        Map<String, Object> cartProduct = nodeBindingService.list(cartProduct_TID, "cartProductId_equals=".concat(String.valueOf(data.get("cartProductId")))).get(0);
+        String productId = String.valueOf(cartProduct.get("productId"));
+        Node productNode = nodeService.getNode("product", productId);
+
+        Integer stockQuantity = productNode.getIntValue("stockQuantity");                       //재고
+        Integer maxOrderQuantity = productNode.getIntValue("maxOrderQuantity");                 //최대구매수량
+        Integer minOrderQuantity = productNode.getIntValue("minOrderQuantity");                 //최소구매수량
+        Integer changeCartProductQuantity = JsonUtils.getIntValue(data, "quantity");            //변경수량
+
+        Map<String, Object> extraData = new HashMap<>();
+        if (changeCartProductQuantity > stockQuantity) {
+            extraData.put("code", "F");
+            extraData.put("message", "재고가 부족합니다.");
+            context.setResult(extraData);
+            return context;
+        }
+
+        if (changeCartProductQuantity > maxOrderQuantity) {
+            extraData.put("code", "F");
+            extraData.put("message", "구매 가능한 수량을 초과하였습니다.");
+            context.setResult(extraData);
+            return context;
+        }
+
+        if (minOrderQuantity > changeCartProductQuantity) {
+            extraData.put("code", "F");
+            extraData.put("message", "최소 구매수량 " + minOrderQuantity + " 입니다");
+            context.setResult(extraData);
+            return context;
+
+        }
+        cartProduct.put("quantity", changeCartProductQuantity);
+        nodeService.executeNode(cartProduct, cartProduct_TID, CommonService.UPDATE);
+        extraData.put("code", "S");
+        extraData.put("message", "수량이 변경되었습니다.");
+        context.setResult(extraData);
+        return context;
+    }
+
 
     // 수량변경
     public ExecuteContext changeQuantity(ExecuteContext context) throws IOException {
@@ -326,7 +367,7 @@ public class CartService {
 
             for (Map<String, Object> obj : referenced) {
                 if (existCartProduct(map, obj, product, obj.equals(referenced.get(0)))) {
-//                    changeQuantity(obj, Integer.parseInt(map.get("quantity").toString()));
+                    changeQuantity(obj, Integer.parseInt(map.get("quantity").toString()));
                     obj.putAll(map);
                     if (map.get(cartProductItem_TID) != null) createCartProductItem(obj);
                     exist = true;

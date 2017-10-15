@@ -24,6 +24,7 @@ public class CommonService {
         resultCodeMap = new HashMap();
         resultCodeMap.put("S0001", "required param. ");
         resultCodeMap.put("S0002", "저장 성공");
+        resultCodeMap.put("S0003", "저장 실패");
 
         /*product*/
         resultCodeMap.put("P0001", "미승인 상품입니다.");
