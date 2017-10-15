@@ -2,6 +2,7 @@ package net.ion.ice.core.query;
 
 import net.ion.ice.core.context.*;
 import net.ion.ice.core.infinispan.lucene.AnalyzerFactory;
+import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
@@ -170,9 +171,20 @@ public class QueryUtils {
         if(fieldId.equals("id")){
             return new QueryTerm(fieldId, AnalyzerFactory.getAnalyzer("code"), method, value, PropertyType.ValueType.STRING);
         }
+
         PropertyType propertyType = nodeType.getPropertyType(fieldId);
         if(propertyType == null && fieldId.contains("_")){
             propertyType = nodeType.getPropertyType(StringUtils.substringBeforeLast(fieldId, "_"));
+        }
+        if(propertyType == null && Node.NODE_VALUE_KEYS.contains(fieldId)){
+            switch (fieldId){
+                case "created": case "changed" :{
+                    return new QueryTerm(fieldId, null, method, value, PropertyType.ValueType.DATE);
+                }
+                case "id": case "owner" : case "modifier" :{
+                    return new QueryTerm(fieldId, AnalyzerFactory.getAnalyzer("code"), method, value, PropertyType.ValueType.STRING);
+                }
+            }
         }
         if (propertyType != null && propertyType.isIndexable()) {
             try {

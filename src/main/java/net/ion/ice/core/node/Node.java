@@ -23,7 +23,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     public static final String TYPE_SEPERATOR = "::";
     public static final String ID_SEPERATOR = ">";
 
-    public static List<String> NODE_VALUE_KEYS = Arrays.asList(new String[] {"id", "typeId", "owner", "modifier", "created", "changed", "status"}) ;
+    public static List<String> NODE_VALUE_KEYS = Arrays.asList(new String[] {"id", "typeId", "owner", "modifier", "created", "changed"}) ;
 
     @DocumentId
     @Field
