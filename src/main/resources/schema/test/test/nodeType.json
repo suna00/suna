@@ -3,7 +3,6 @@
     "tid": "dataTest",
     "parentId": "test",
     "typeId": "nodeType",
-    "tableName": "mariaDb#test",
     "repositoryType": "data",
     "typeName": "테스트"
   },

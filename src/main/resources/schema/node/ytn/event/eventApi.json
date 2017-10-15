@@ -4,7 +4,7 @@
     "id" : "specialExhibitionApi",
     "categoryName" : "이벤트 API",
     "fileUrlFormat" : {
-       "default": "/"
+       "default": "{{:getEnvValue(cluster.file-prefix, url)}}"
     }
   },
   {
@@ -50,7 +50,7 @@
     "id" : "newProduct",
     "categoryName" : "신상품 API",
     "fileUrlFormat" : {
-       "default": "/"
+       "default": "{{:getEnvValue(cluster.file-prefix, url)}}"
     }
   },
   {

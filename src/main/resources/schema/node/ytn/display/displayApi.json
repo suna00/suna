@@ -4,7 +4,7 @@
     "id" : "displayApi",
     "categoryName" : "Display API",
     "fileUrlFormat" : {
-       "default": "/"
+       "default": "{{:getEnvValue(cluster.file-prefix, url)}}"
     }
   },
   {
@@ -12,7 +12,7 @@
     "id" : "theme",
     "categoryName" : "테마 API(메인, 베스트, 카테고리 메인 등)",
     "fileUrlFormat" : {
-       "default": "/"
+       "default": "{{:getEnvValue(cluster.file-prefix, url)}}"
     }
   },
   {
@@ -24,7 +24,7 @@
     "parameters" : [
     ],
     "config" : {
-      "items": {
+      "root":{
         "typeId": "productToThemeMap",
         "query" : [
           {"limit" : 50},
@@ -54,7 +54,7 @@
     "id" : "beltBanner",
     "categoryName" : "띠배너 API",
     "fileUrlFormat" : {
-       "default": "/"
+       "default": "{{:getEnvValue(cluster.file-prefix, url)}}"
     }
   },
   {
@@ -79,7 +79,7 @@
     "id" : "displayBanner",
     "categoryName" : "전시배너 API",
     "fileUrlFormat" : {
-       "default": "/"
+       "default": "{{:getEnvValue(cluster.file-prefix, url)}}"
     }
   },
   {
@@ -104,7 +104,7 @@
     "id" : "category",
     "categoryName" : "카테고리 API",
     "fileUrlFormat" : {
-      "default": "/"
+      "default": "{{:getEnvValue(cluster.file-prefix, url)}}"
     }
   },
   {

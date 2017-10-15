@@ -36,6 +36,7 @@ jwtConfig:
 
 cluster:
   api-prefix: http://localhost:8080/
+  file-prefix: /
   mode: all
   groups: all
   members:
