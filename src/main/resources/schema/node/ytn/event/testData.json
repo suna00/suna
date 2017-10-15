@@ -190,7 +190,7 @@
     }
   },{
   "typeId": "specialExhibitionHotKeyword",
-  "specialExhibitionHotKeywordId": 1,
+  "specialExhibitionHotKeywordId": 98,
   "siteId": null,
   "name": "핫키워드1",
   "specialExhibitionId":"1",
@@ -199,7 +199,7 @@
 },
   {
     "typeId": "specialExhibitionHotKeyword",
-    "specialExhibitionHotKeywordId": 2,
+    "specialExhibitionHotKeywordId": 98,
     "siteId": null,
     "name": "핫키워드2",
     "specialExhibitionId": "1",
@@ -208,7 +208,7 @@
   },
   {
     "typeId": "specialExhibitionHotKeyword",
-    "specialExhibitionHotKeywordId": 3,
+    "specialExhibitionHotKeywordId": 98,
     "siteId": null,
     "name": "핫키워드3",
     "specialExhibitionId": "1",
