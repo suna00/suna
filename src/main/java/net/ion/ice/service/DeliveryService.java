@@ -170,7 +170,7 @@ public class DeliveryService {
             if(map.get(type+"ProductItem") != null){
                 for(Map<String, Object> productItem : (List<Map<String, Object>>) map.get(type+"ProductItem")){
                     Node addOptionItem =  nodeService.getNode("productOptionItem", productItem.get("addOptionItemId").toString());
-                    Integer quantity = (Integer) productItem.get("quantity");
+                    Integer quantity = Integer.parseInt(String.valueOf(productItem.get("quantity")));
                     addOptionItem.put("quantity", quantity);
                     productItems.add(addOptionItem) ;
                     totalAddOptionPrice += Double.parseDouble(addOptionItem.getStringValue("addPrice")) * quantity;

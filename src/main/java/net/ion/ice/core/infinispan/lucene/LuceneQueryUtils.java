@@ -88,6 +88,8 @@ public class LuceneQueryUtils {
                     }else {
                         innerQueries.add(new TermQuery(new Term(sourceJoinField, joinValues.get(0)))) ;
                     }
+                }else if(joinQueryContext.getJoinMethod().equals("must")){
+                    return null ;
                 }
             }
         }

@@ -29,8 +29,8 @@ public class RemoveTokenEndpoint {
 
         sessionService.removeSession(request);
 
-        CookieUtil.clear(response, "iceJWT");
-        CookieUtil.clear(response, "iceRefreshJWT");
+        CookieUtil.clear(request, response, "iceJWT");
+        CookieUtil.clear(request, response, "iceRefreshJWT");
 
         resultCodeMap.put("code", "200");
         resultCodeMap.put("message", "JWT Removed");

@@ -1,6 +1,5 @@
 package net.ion.ice.security.auth.jwt;
 
-import io.jsonwebtoken.ExpiredJwtException;
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.session.SessionService;
 import net.ion.ice.security.auth.JwtAuthenticationToken;
@@ -53,8 +52,8 @@ public class JwtTokenAuthenticationProcessingFilter extends AbstractAuthenticati
             return getAuthenticationManager().authenticate(new JwtAuthenticationToken(token));
         } catch(Exception e){
 //            ApplicationContextManager.getBean(SessionService.class).createTempSession(request, response) ;
-            CookieUtil.clear(response, "iceJWT");
-            CookieUtil.clear(response, "iceRefreshJWT");
+            CookieUtil.clear(request, response, "iceJWT");
+            CookieUtil.clear(request, response, "iceRefreshJWT");
             throw new AuthenticationServiceException("Token is not exist in session");
         }
     }

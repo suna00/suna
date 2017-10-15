@@ -127,6 +127,13 @@ public class InfinispanRepositoryService {
             e.printStackTrace();
         }
 
+        if(cacheQuery == null){
+            queryContext.setResultSize(0);
+            queryContext.setQueryListSize(0) ;
+            return new ArrayList<>() ;
+        }
+
+
         List<Object> list = cacheQuery.list();
         queryContext.setResultSize(cacheQuery.getResultSize());
         queryContext.setQueryListSize(list.size()) ;
@@ -224,6 +231,12 @@ public class InfinispanRepositoryService {
             cacheQuery = LuceneQueryUtils.makeQuery(queryContext);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+        if(cacheQuery == null){
+            queryContext.setResultSize(0);
+            queryContext.setQueryListSize(0) ;
+            return new ArrayList<>() ;
         }
 
         List<Object> list = cacheQuery.list();

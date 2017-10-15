@@ -223,7 +223,8 @@ public class QueryTerm {
         BELOW("<="),
         EXCESS(">"),
         UNDER("<"),
-        FROMTO("BETWEEN");
+        FROMTO("BETWEEN"),
+        EXISTS("IN");
 
 
         private String queryString;
