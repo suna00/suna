@@ -327,7 +327,7 @@ public class OrderService {
                 storeOrderProduct.put("totalAddOptionPrice", JsonUtils.getDoubleValue(product, "totalAddOptionPrice"));
                 storeOrderProduct.put("orderPrice", JsonUtils.getDoubleValue(product, "orderPrice"));
 
-                storeOrderProduct.put("couponId", JsonUtils.getIntValue(couponIds, "tempOrderProductId"));
+                storeOrderProduct.put("couponId", JsonUtils.getIntNullableValue(couponIds, "tempOrderProductId"));
 //                storeOrderProduct.put("couponDiscountPrice", JsonUtils.getIntValue(productItem, "couponDiscountPrice"));
                 storeOrderProduct.put("vendorId", JsonUtils.getIntValue(product, "vendorId"));
 //                storeOrderProduct.put("purchasePhoneNo", JsonUtils.getIntValue(productItem, "purchasePhoneNo"));

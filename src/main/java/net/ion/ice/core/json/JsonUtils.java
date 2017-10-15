@@ -201,6 +201,15 @@ public class JsonUtils {
 
     }
 
+    public static Integer getIntNullableValue(Map<String, Object> data, String key) {
+        Integer value = getIntValue(data, key) ;
+
+        if(value == 0) return null;
+
+        return Integer.parseInt(value.toString()) ;
+
+    }
+
     public static String getStringValue(Map<String, Object> data, String key) {
         Object value = getValue(data, key) ;
 
