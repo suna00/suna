@@ -322,7 +322,7 @@
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",
-    "defaultValue": ""
+    "defaultValue": "s3"
   },
   {
     "typeId": "propertyType",
