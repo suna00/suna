@@ -249,6 +249,17 @@
       "id": "4b2afada-e40c-fe37-f225-30f7042eb600"
     },
     {
+      "name": "16.푸쉬메세지",
+      "description": "",
+      "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
+      "order": [
+        "1eb9aba3-0925-ee2f-34d7-4c6eadd32d10"
+      ],
+      "owner": "2433871",
+      "folders_order": [],
+      "id": "5965a341-898a-1b1b-78d1-f19e8f18e38a"
+    },
+    {
       "name": "99.시스템",
       "description": "",
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
@@ -278,6 +289,7 @@
     "6165d2ac-9ba4-5f69-fc34-78f36c058808",
     "11e9978d-103c-49ce-def4-68f155aa4321",
     "4b2afada-e40c-fe37-f225-30f7042eb600",
+    "5965a341-898a-1b1b-78d1-f19e8f18e38a",
     "94baa0a8-e352-4545-1529-95accfeac9ae"
   ],
   "timestamp": 1503377797967,
@@ -588,7 +600,7 @@
         },
         {
           "key": "imgUrl",
-          "value": "park100.jpg",
+          "value": "",
           "description": "회원이미지파일(file) ",
           "type": "file",
           "enabled": true
@@ -668,12 +680,15 @@
       "version": 2,
       "tests": null,
       "currentHelper": "normal",
-      "helperAttributes": {},
+      "helperAttributes": "{}",
       "time": 1507450086126,
       "name": "정회원 전환(IF_USER_002)",
       "description": "",
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
-      "responses": []
+      "responses": [],
+      "isFromCollection": true,
+      "collectionRequestId": "13e7b3d4-b213-9a7c-c1c1-6778ec658163",
+      "timestamp": null
     },
     {
       "id": "15ecdc3a-ce2f-5f4d-bfd1-3c6a121ce039",
@@ -771,6 +786,52 @@
       "description": "",
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
       "responses": []
+    },
+    {
+      "id": "1eb9aba3-0925-ee2f-34d7-4c6eadd32d10",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/push/IfPush002?msgSeq=101&snsKey&snsTypeCd",
+      "queryParams": [
+        {
+          "key": "msgSeq",
+          "value": "101",
+          "equals": true,
+          "description": "메세지일련번호(String) NotNull",
+          "enabled": true
+        },
+        {
+          "key": "snsKey",
+          "value": "",
+          "equals": false,
+          "description": "SNS토큰키(String)",
+          "enabled": true
+        },
+        {
+          "key": "snsTypeCd",
+          "value": "",
+          "equals": false,
+          "description": "SNS유형코드(String)",
+          "enabled": true
+        }
+      ],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "GET",
+      "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
+      "data": null,
+      "dataMode": "params",
+      "name": "Push 메세지 확인(IF_PUSH_002)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1507792385270,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "5965a341-898a-1b1b-78d1-f19e8f18e38a"
     },
     {
       "id": "2063b514-b4fb-68ed-1c53-999481eec042",
@@ -1079,12 +1140,12 @@
       "id": "28218d96-1c69-5114-10ca-92e2ef9bc95b",
       "headers": "",
       "headerData": [],
-      "url": "{{protocol}}://{{hostname}}:{{port}}/api/system/IfSys003?contsMetaDivCd=7&upperContsCtgryId=&langCd=eng",
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/system/IfSys003?contsMetaDivCd=1&upperContsCtgryId=&langCd=eng",
       "folder": "94baa0a8-e352-4545-1529-95accfeac9ae",
       "queryParams": [
         {
           "key": "contsMetaDivCd",
-          "value": "7",
+          "value": "1",
           "equals": true,
           "description": "콘텐츠 메타 구분 코드(String)  NotNull",
           "enabled": true
@@ -1114,7 +1175,7 @@
       "tests": null,
       "currentHelper": "normal",
       "helperAttributes": {},
-      "time": 1506406579345,
+      "time": 1507617693567,
       "name": "콘텐츠 카테고리 목록 조회(IF_SYS_003)",
       "description": "",
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
@@ -1235,7 +1296,7 @@
         },
         {
           "key": "qstnAtcFilePath",
-          "value": "park100.jpg",
+          "value": "",
           "description": "질문  첨부 파일(File)",
           "type": "file",
           "enabled": true
@@ -1252,7 +1313,6 @@
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
       "responses": [],
       "isFromCollection": true,
-      "collectionRequestId": "2d5b5ced-3c2b-41a3-845d-b298a448b70a",
       "timestamp": null
     },
     {
@@ -2157,7 +2217,6 @@
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
       "responses": [],
       "isFromCollection": true,
-      "collectionRequestId": "64c7be29-56c6-d38e-8045-cd8c94deca76",
       "timestamp": null
     },
     {
@@ -2696,7 +2755,8 @@
       "id": "8220ba89-f275-5cb0-d541-1bb64333ada3",
       "headers": "",
       "headerData": [],
-      "url": "{{protocol}}://{{hostname}}:{{port}}/api/vote/IfMev001?voteYear=2017&showLoCd=4&voteFormlCd=2&snsKey&snsTypeCd&connIpAdr=127.0.0.1&langCd=eng",
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/vote/IfMev001?voteYear=2017&showLoCd=3&voteFormlCd=2&snsKey&snsTypeCd&connIpAdr=127.0.0.1&langCd=eng",
+      "folder": "4b2afada-e40c-fe37-f225-30f7042eb600",
       "queryParams": [
         {
           "key": "voteSeq",
@@ -2714,7 +2774,7 @@
         },
         {
           "key": "showLoCd",
-          "value": "4",
+          "value": "3",
           "equals": true,
           "description": "노출위치구분코드(String)",
           "enabled": true
@@ -2755,23 +2815,21 @@
           "enabled": true
         }
       ],
+      "preRequestScript": null,
       "pathVariables": {},
       "pathVariableData": [],
-      "preRequestScript": null,
       "method": "GET",
-      "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
       "data": null,
       "dataMode": "params",
-      "name": "이벤트 투표 상세조회(IF_MEV_001)",
-      "description": "",
-      "descriptionFormat": "html",
-      "time": 1506939060598,
       "version": 2,
-      "responses": [],
       "tests": null,
       "currentHelper": "normal",
       "helperAttributes": {},
-      "folder": "4b2afada-e40c-fe37-f225-30f7042eb600"
+      "time": 1507875605252,
+      "name": "이벤트 투표 상세조회(IF_MEV_001)",
+      "description": "",
+      "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
+      "responses": []
     },
     {
       "id": "85b2ae86-511a-e505-4e5c-8df5ef0ae2c7",
@@ -4055,12 +4113,12 @@
       "id": "c5289a7c-4072-8646-a675-4e87f4b20808",
       "headers": "",
       "headerData": [],
-      "url": "{{protocol}}://{{hostname}}:{{port}}/api/vote/IfMwv108?bradTelcsDt=20170928&connIpAdr=127.0.0.1&snsKey&snsTypeCd&langCd=eng",
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/vote/IfMwv108-1?bradTelcsDt=20171019&connIpAdr=127.0.0.1&snsKey&snsTypeCd&langCd=eng",
       "folder": "1975e6cf-9157-826c-7f3c-1ec1825c5e8a",
       "queryParams": [
         {
           "key": "bradTelcsDt",
-          "value": "20170928",
+          "value": "20171019",
           "equals": true,
           "description": "방송일시(String) NotNull YYYMMDD",
           "enabled": true
@@ -4104,7 +4162,7 @@
       "tests": null,
       "currentHelper": "normal",
       "helperAttributes": {},
-      "time": 1506649485744,
+      "time": 1507813273513,
       "name": "MCD 투표 상세조회(IF_MWV_108)",
       "description": "",
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
@@ -4442,16 +4500,16 @@
       "headers": "",
       "headerData": [],
       "url": "{{protocol}}://{{hostname}}:{{port}}/api/mbrContsAtvy/IfCmt004",
+      "folder": "cb1c8239-a9ac-d21f-62aa-034ea8d272cb",
       "queryParams": [],
+      "preRequestScript": null,
       "pathVariables": {},
       "pathVariableData": [],
-      "preRequestScript": null,
       "method": "POST",
-      "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
       "data": [
         {
           "key": "contsReplSeq",
-          "value": "5422",
+          "value": "2",
           "description": "댓글 일련번호(String) NotNull",
           "type": "text",
           "enabled": true
@@ -4472,17 +4530,15 @@
         }
       ],
       "dataMode": "params",
-      "name": "댓글 삭제(IF_CMT_004)",
-      "description": "",
-      "descriptionFormat": "html",
-      "time": 1504533019343,
       "version": 2,
-      "responses": [],
       "tests": null,
       "currentHelper": "normal",
       "helperAttributes": {},
-      "folder": "cb1c8239-a9ac-d21f-62aa-034ea8d272cb",
-      "collection_id": "2adae506-64a6-1c57-e5a4-d46e3ec4655b"
+      "time": 1507622348427,
+      "name": "댓글 삭제(IF_CMT_004)",
+      "description": "",
+      "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
+      "responses": []
     },
     {
       "id": "d363c4c3-e014-8790-ef49-3c4174ac2818",
@@ -4596,14 +4652,14 @@
       "data": [
         {
           "key": "voteSeq",
-          "value": "200005",
+          "value": "800038",
           "description": "투표일련번호(String) NotNull",
           "type": "text",
           "enabled": true
         },
         {
           "key": "voteQueiSeq",
-          "value": "167,168,169",
+          "value": "7000523",
           "description": "투표문항번호(String) NotNull",
           "type": "text",
           "enabled": true
@@ -4624,7 +4680,7 @@
         },
         {
           "key": "connIpAdr",
-          "value": "127.0.0.1",
+          "value": "127.0.0.2",
           "description": "접속IP주소(String) NotNull",
           "type": "text",
           "enabled": true
@@ -4634,7 +4690,7 @@
       "tests": null,
       "currentHelper": "normal",
       "helperAttributes": {},
-      "time": 1505653454622,
+      "time": 1507813270051,
       "name": "MWAVE 투표하기(IF_MWV_003)",
       "description": "",
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
