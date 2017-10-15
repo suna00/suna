@@ -592,7 +592,7 @@ public class ReadContext implements Context, Serializable {
         return readContext ;
     }
 
-    public void setData(Map<String, Object> data) {
+    public void setData(Map<String,Object> data) {
         this.data = data;
     }
 }
