@@ -247,6 +247,7 @@ public class NodeUtils {
             Node refNode = getReferenceNode(value, pt);
 //            context.setExcludeReferenceType(context.getNodeType().getTypeId()) ;
             ReadContext subReadContext = ReadContext.makeQueryContextForReference(pt, (Node) refNode);
+            subReadContext.setData(context.getData()) ;
             subReadContext.setReferenceView(context.getReferenceView());
             subReadContext.setReferenceViewFields(context.getSubReferenceViewFields(pt.getPid()));
             subReadContext.setIncludeReferenced(context.isIncludeReferencedValue());
@@ -349,6 +350,7 @@ public class NodeUtils {
             case REFERENCED: {
                 if (context != null && context.isIncludeReferenced(pt) && context.getLevel() < 5 && node instanceof Node) {
                     QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(getNodeType(((Node)node).getTypeId()), pt, (Node) node);
+                    subQueryContext.setData(context.getData());
                     subQueryContext.setReferenceView(context.getReferenceView());
                     subQueryContext.setReferenceViewFields(context.getSubReferenceViewFields(pt.getPid()));
                     subQueryContext.setIncludeReferenced(context.isIncludeReferencedValue());
