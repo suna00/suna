@@ -21,7 +21,7 @@
   },
   {
     "typeId": "datasource",
-    "id": "voteDb",
+    "id": "authDb",
     "dsName": "PROD USER/VOTE RDS",
     "jdbcUrl": "jdbc:authdb.cfwzre2kzbc1.ap-northeast-2.rds.amazonaws.com:3306/authdb",
     "ssl" : false,
