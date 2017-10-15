@@ -591,4 +591,8 @@ public class ReadContext implements Context, Serializable {
         ReadContext readContext = new ReadContext() ;
         return readContext ;
     }
+
+    public void setData(Map<String, Object> data) {
+        this.data = data;
+    }
 }
