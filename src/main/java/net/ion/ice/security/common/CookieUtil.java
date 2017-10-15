@@ -19,7 +19,7 @@ public class CookieUtil {
         if(domain != null) {
             String[] domains = StringUtils.split(domain, ".");
             if (domains != null && domains.length == 3) {
-                domain = domains[1] + "/" + domains[2];
+                domain = domains[1] + "." + domains[2];
             }
             cookie.setDomain(domain);
         }
