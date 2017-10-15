@@ -26,6 +26,7 @@ public class SessionController {
     private SessionService sessionService ;
 
     @RequestMapping(value = "/session/login", method = RequestMethod.POST)
+    @ResponseBody
     public Object login(HttpServletRequest request, HttpServletResponse response, @RequestParam String userId, @RequestParam String password) {
         try {
             return JsonResponse.create(sessionService.userLogin(request, response, userId, password));
@@ -35,6 +36,7 @@ public class SessionController {
     }
 
     @RequestMapping(value = "/session/me", method = RequestMethod.GET)
+    @ResponseBody
     public Object login(HttpServletRequest request, HttpServletResponse response) {
         Map<String, Object> session = null;
         try {
