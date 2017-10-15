@@ -41,6 +41,19 @@ public class ExecuteContext extends ReadContext{
     protected HttpServletRequest httpRequest ;
     protected HttpServletResponse httpResponse ;
 
+
+    public static ExecuteContext createContextFromMap(NodeType nodeType, Map<String, Object> data) {
+        ExecuteContext ctx = new ExecuteContext();
+        ctx.setData(data);
+        ctx.event = "save";
+        ctx.setNodeType(nodeType);
+
+        ctx.init() ;
+
+        return ctx ;
+
+    }
+
     public static ExecuteContext createContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType, String event, String id) {
         ExecuteContext ctx = new ExecuteContext();
 
@@ -465,4 +478,5 @@ public class ExecuteContext extends ReadContext{
     public boolean isExist(){
         return  exist ;
     }
+
 }

@@ -1,8 +1,16 @@
 package net.ion.ice.core.node;
 
+import com.hazelcast.core.Member;
 import net.ion.ice.ApplicationContextManager;
+import net.ion.ice.core.cluster.ClusterService;
+import net.ion.ice.core.cluster.ClusterUtils;
+import net.ion.ice.core.context.ApiExecuteContext;
+import net.ion.ice.core.context.ExecuteContext;
+import net.ion.ice.core.infinispan.InfinispanCacheManager;
+import net.ion.ice.core.infinispan.InfinispanRepositoryService;
 import net.ion.ice.core.json.JsonUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.lucene.document.DateTools;
 import org.apache.lucene.search.SortField;
@@ -27,6 +35,13 @@ public class NodeHelperService  {
     @Autowired
     private NodeService nodeService ;
 
+    @Autowired
+    private InfinispanRepositoryService infinispanRepositoryService ;
+
+
+    @Autowired
+    private ClusterService clusterService ;
+
     private Map<String, Date> lastChangedMap = new ConcurrentHashMap<>() ;
 
     public void  initSchema(String profile) throws IOException {
@@ -35,15 +50,33 @@ public class NodeHelperService  {
         try {
             saveResourceSchema("classpath:schema/core/datasource/" + profile + "/dataSource.json");
         }catch (Exception e){}
-
-//        saveSchema("classpath:schema/node/*.json", lastChanged);
-//        saveSchema("classpath:schema/node/**/*.json");
-//        saveSchema("classpath:schema/test/*.json", lastChanged);
-//        saveSchema("classpath:schema/test/**/*.json");
-
+        syncSchema() ;
     }
 
+    public void syncSchema() throws IOException {
+        NodeType nodeType = nodeService.getNodeType("nodeType") ;
+        Date nodeTypeLast = (Date) nodeService.getSortedValue(nodeType.getTypeId(), "changed", SortField.Type.LONG, true );
+        String lastChanged = DateFormatUtils.format(nodeTypeLast, "yyyyMMddHHmmss");
+        logger.info("nodeType Last : " + nodeTypeLast);
 
+        List<Member> cacheServers = clusterService.getClusterCacheSyncServers() ;
+
+        for(Member cacheServer : cacheServers){
+            Map<String, Object> result = ClusterUtils.callNodeList(cacheServer, nodeType.getTypeId(), "chagned_excess=" + lastChanged)  ;
+            List<Map<String, Object>> items = (List<Map<String, Object>>) result.get("items");
+
+            if(items.size() > 0){
+                for(Map<String, Object> item : items){
+                    ExecuteContext context = ExecuteContext.createContextFromMap(nodeType, item) ;
+                    Node node = context.getNode() ;
+                    if(node != null) {
+                        infinispanRepositoryService.cacheNode(node);
+                    }
+                }
+            }
+        }
+
+    }
 
     public void reloadSchema(String resourcePath) throws IOException {
         if(resourcePath.equals("node")){
@@ -103,50 +136,54 @@ public class NodeHelperService  {
         if(core) {
             for (Resource resource : resources) {
                 if (resource.getFilename().equals("nodeType.json")) {
-                    fileNodeSave(resource);
+                    fileNodeSave(resource, core);
                 }
             }
 
             for (Resource resource : resources) {
                 if (resource.getFilename().equals("propertyType.json")) {
-                    fileNodeSave(resource);
+                    fileNodeSave(resource, core);
                 }
             }
 
             for (Resource resource : resources) {
                 if (resource.getFilename().equals("event.json")) {
-                    fileNodeSave(resource);
+                    fileNodeSave(resource, core);
                 }
             }
         }else {
             for (Resource resource : resources) {
                 if (!(resource.getFilename().equals("nodeType.json") || resource.getFilename().equals("propertyType.json") || resource.getFilename().equals("event.json"))) {
-                    fileNodeSave(resource);
+                    fileNodeSave(resource, core);
                 }
             }
         }
     }
 
-    private void fileNodeSave(Resource resource) throws IOException {
+    private void fileNodeSave(Resource resource, boolean core) throws IOException {
         String fileName = StringUtils.substringBefore(resource.getFilename(), ".json");
         Date last = new Date(resource.lastModified()) ;
 
         Collection<Map<String, Object>> nodeDataList = JsonUtils.parsingJsonResourceToList(resource) ;
 
+
         for(Map<String, Object> data : nodeDataList){
             String typeId = data.get(Node.TYPEID).toString() ;
             if(!lastChangedMap.containsKey(typeId)){
                 Date changed = (Date) nodeService.getSortedValue(typeId, "changed", SortField.Type.LONG, true );
-                lastChangedMap.put(typeId, changed) ;
+                if(changed != null) {
+                    lastChangedMap.put(typeId, changed);
+                }
             }
 
             Date changed = lastChangedMap.get(typeId) ;
 
-            if(changed == null || changed.before(last)){
+//            if(core || changed == null || changed.before(last)){
+//                data.put("changed", last) ;
                 nodeService.saveNode(data) ;
-            }else{
-                logger.info("After last schema : " + typeId);
-            }
+//            }else{
+//                logger.info("After last schema : " + typeId);
+//            }
         }
     }
 }

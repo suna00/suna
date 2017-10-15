@@ -118,5 +118,13 @@
     "contentsId": 11,
     "file": "classpath:schema/node/ytn/product/file/perfume1.jpeg",
     "name": "add"
+  },
+  {
+    "typeId": "commonResource",
+    "commonResourceId": 125,
+    "tid": "product",
+    "contentsId": 510,
+    "file": "classpath:schema/node/ytn/product/file/pc1.jpeg",
+    "name": "main"
   }
 ]

@@ -190,7 +190,7 @@
     }
   },{
   "typeId": "specialExhibitionHotKeyword",
-  "specialExhibitionHotKeywordId": 1,
+  "specialExhibitionHotKeywordId": 98,
   "siteId": null,
   "name": "핫키워드1",
   "specialExhibitionId":"1",
@@ -199,7 +199,7 @@
 },
   {
     "typeId": "specialExhibitionHotKeyword",
-    "specialExhibitionHotKeywordId": 2,
+    "specialExhibitionHotKeywordId": 98,
     "siteId": null,
     "name": "핫키워드2",
     "specialExhibitionId": "1",
@@ -208,7 +208,7 @@
   },
   {
     "typeId": "specialExhibitionHotKeyword",
-    "specialExhibitionHotKeywordId": 3,
+    "specialExhibitionHotKeywordId": 98,
     "siteId": null,
     "name": "핫키워드3",
     "specialExhibitionId": "1",
@@ -240,7 +240,7 @@
   "name": "타임 세일전",
   "displayTargetType": "common",
   "deviceType": "pc",
-  "categoryId": "",
+  "categoryId": "1",
   "startDate": 20170901060000,
   "endDate": 2017930060000,
   "timeSaleYn": "y",
@@ -259,7 +259,7 @@
     "name": "특별 기획전",
     "displayTargetType": "common",
     "deviceType": "pc",
-    "categoryId": "",
+    "categoryId": "2",
     "startDate": 20170731060000,
     "endDate": 20171231060000,
     "timeSaleYn": "n",

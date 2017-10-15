@@ -56,8 +56,8 @@
   {
     "typeId" : "apiConfig",
     "category" : "newProduct",
-    "apiId" : "list22",
-    "apiName" : "신상품 리스트22",
+    "apiId" : "facetData",
+    "apiName" : "신상품 리스트 facet",
     "method" : "GET",
     "parameters" : [
     ],
@@ -66,22 +66,12 @@
       "query" : [
         {"field" : "newProductMapStatus", "method" : "matching", "value" : "y" },
         {"field" : "categoryIds", "method" : "matching", "value" : "{{:categoryId}}" },
-        {"field" : "newProductId", "method" : "referenceJoin", "value" : "newProductStatus_matching=y&siteType_matching=all,{{:siteType}}&year_matching={{:year}}&month_matching={{:month}}" },
-        {"field" : "productId", "method" : "referenceJoin", "value" : "name_matching={{:searchValue}}&salePrice_fromto={{:salePrice}}&sorting={{:sorting}}" },
+        {"field" : "newProductId", "method" : "referenceJoin", "value" : "newProductStatus_matching=y&siteType_matching=siteType>{{:siteType}}&year_matching={{:year}}&month_matching={{:month}}" },
+        {"field" : "productId", "method" : "referenceJoin", "value" : "name_matching={{:searchValue}}&salePrice_fromto={{:salePrice}}" },
         {"includeReferenced" : false, "referenceView" : "newProductId,productId"},
-        {"pageSize": "{{:pageSize}}", "page": "{{:page}}"},
+        {"pageSize": "1", "page": "1"},
         {"facet":"categoryIds"}
-      ],
-      "response": {
-        "_all_": "",
-        "downloadableCoupon": {
-          "select" : {
-            "ds" : "ytnDevDb",
-            "resultType" : "read",
-            "sql" : "select count(*) as couponCount from ( SELECT couponTypeId FROM couponTypeToCategoryMap c, producttocategorymap p WHERE productId = @{productId} AND p.categoryId = c.categoryId GROUP BY couponTypeId union ALL select couponTypeId from couponTypeToProductMap WHERE productId = @{productId} ) a, coupontype b WHERE b.couponTypeId = a.couponTypeId AND b.couponType in ('product','category') AND b.siteType != IF(IFNULL(@{session.member.siteType}, 'company') = 'university', 'company', 'university') AND createPeriodType != 'stop' AND createStartDate <= now() AND createEndDate >= now()  "
-          }
-        }
-      }
+      ]
     }
   },
   {
@@ -93,35 +83,47 @@
     "parameters": [
     ],
     "config": {
-      "typeId": "product",
-      "query": [
-        {
-          "field": "name",
-          "method": "matching",
-          "value": "{{:searchValue}}"
-        },
-        {
-          "field": "salePrice",
-          "method": "fromto",
-          "value": "{{:salePrice}}"
-        },
-        {
-          "field": "referencedNewProductMap",
-          "method": "hasReferenced",
-          "aaaaaa": "newProductId_referenceJoin=newProductStatus_matching=y_and_year_matching={{:year}}_and_month_matching={{:month}}&",
-          "value": "newProductMapStatus_matching=y&categoryIds_matching={{:categoryId}}"
-        },
-        {
-          "sorting": "{{:sorting}}"
-        }
-      ],
-      "response": {
-        "_all_": "",
-        "downloadableCoupon": {
-          "select": {
-            "ds": "ytnDevDb",
-            "resultType": "read",
-            "sql": "select count(*) as couponCount from ( SELECT couponTypeId FROM couponTypeToCategoryMap c, producttocategorymap p WHERE productId = @{productId} AND p.categoryId = c.categoryId GROUP BY couponTypeId union ALL select couponTypeId from couponTypeToProductMap WHERE productId = @{productId} ) a, coupontype b WHERE b.couponTypeId = a.couponTypeId AND b.couponType in ('product','category') AND b.siteType != IF(IFNULL(@{session.member.siteType}, 'company') = 'university', 'company', 'university') AND createPeriodType != 'stop' AND createStartDate <= now() AND createEndDate >= now()  "
+      "newProduct":{
+        "typeId": "newProduct",
+        "resultType" : "none",
+        "query" : [
+          {"field" : "newProductStatus", "method" : "matching", "value" : "y" },
+          {"field" : "siteType", "method" : "matching", "value" : "siteType>{{:siteType}}" },
+          {"field" : "year", "method" : "matching", "value" : "{{:year}}" },
+          {"field" : "month", "method" : "matching", "value" : "{{:month}}" }
+        ]
+      },
+      "root": {
+        "typeId": "product",
+        "query": [
+          {
+            "field": "name",
+            "method": "matching",
+            "value": "{{:searchValue}}"
+          },
+          {
+            "field": "salePrice",
+            "method": "fromto",
+            "value": "{{:salePrice}}"
+          },
+          {
+            "field": "referencedNewProductMap",
+            "method": "hasReferenced",
+            "value": "newProductId={{:newProductId}}&newProductMapStatus_matching=y&categoryIds_matching={{:categoryId}}"
+          },
+          {
+            "sorting": "{{:sorting}}"
+          },
+          {"includeReferenced" : "referencedMainImage"}
+        ],
+        "response": {
+          "_all_": "",
+          "downloadableCoupon": {
+            "select": {
+              "ds": "ytnDevDb",
+              "resultType": "read",
+              "sql": "select count(*) as couponCount from ( SELECT couponTypeId FROM couponTypeToCategoryMap c, producttocategorymap p WHERE productId = @{productId} AND p.categoryId = c.categoryId GROUP BY couponTypeId union ALL select couponTypeId from couponTypeToProductMap WHERE productId = @{productId} ) a, coupontype b WHERE b.couponTypeId = a.couponTypeId AND b.couponType in ('product','category') AND b.siteType != IF(IFNULL(@{session.member.siteType}, 'company') = 'university', 'company', 'university') AND createPeriodType != 'stop' AND createStartDate <= now() AND createEndDate >= now()  "
+            }
           }
         }
       }

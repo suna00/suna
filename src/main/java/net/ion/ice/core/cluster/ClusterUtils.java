@@ -60,6 +60,17 @@ public class ClusterUtils {
             e.printStackTrace();
         }
         return null;
-
     }
+
+    public static Map<String, Object> callNodeList(Member member, String typeId, String queryString) {
+        String url = "http://" + member.getAddress().getHost() + ":" + member.getStringAttribute("port")  + "/node/" + typeId + "?" + queryString ;
+        try {
+            String resultStr = ApiUtils.callApiMethod(url, null, 5000, 20000, ApiUtils.GET) ;
+            return JsonUtils.parsingJsonToMap(resultStr) ;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

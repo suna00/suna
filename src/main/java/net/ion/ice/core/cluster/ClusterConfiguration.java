@@ -46,6 +46,7 @@ public class ClusterConfiguration {
     @Autowired
     private Environment environment;
 
+    private String localMemberUUID ;
 
     @PostConstruct
     public void init(){
@@ -60,6 +61,8 @@ public class ClusterConfiguration {
                 IQueue queue = hazelcast.getQueue(grp + "_queue") ;
 
             }
+
+            this.localMemberUUID = hazelcast.getCluster().getLocalMember().getUuid() ;
         }
     }
 
@@ -125,6 +128,9 @@ public class ClusterConfiguration {
         return hazelcast ;
     }
 
+    public String getLocalMemberUUID(){
+        return localMemberUUID ;
+    }
     public IAtomicLong getIAtomicLong(String name) {
         if(hazelcast == null) return null ;
         return hazelcast.getAtomicLong(name) ;
@@ -134,6 +140,12 @@ public class ClusterConfiguration {
         if(hazelcast == null) return null ;
         return hazelcast.getReplicatedMap("ice_session");
     }
+
+    public Map<String, Map<String, Object>> getSesssionMap(String siteId) {
+        if(hazelcast == null) return null ;
+        return hazelcast.getReplicatedMap(siteId + "_session");
+    }
+
 
     public ITopic getTopic(String group) {
         return this.topicMap.get(group);
@@ -153,6 +165,10 @@ public class ClusterConfiguration {
 
     public boolean isAll() {
         return mode == null || mode.equals("all");
+    }
+
+    public String getMode(){
+        return mode ;
     }
 }
 
