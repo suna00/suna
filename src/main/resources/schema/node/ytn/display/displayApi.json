@@ -24,7 +24,7 @@
     "parameters" : [
     ],
     "config" : {
-      "items": {
+      "root":{
         "typeId": "productToThemeMap",
         "query" : [
           {"limit" : 50},
