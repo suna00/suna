@@ -6,6 +6,7 @@ import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.query.QueryResult;
+import net.ion.ice.core.session.SessionService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +15,9 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -30,6 +33,10 @@ public class OrderService {
     private NodeBindingService nodeBindingService;
     @Autowired
     private DeliveryService deliveryService;
+    @Autowired
+    private CouponService couponService;
+    @Autowired
+    private SessionService sessionService;
     @Autowired
     private Environment environment;
 
@@ -140,74 +147,9 @@ public class OrderService {
 
     }
 
-    /**
-     * PG 결제 승인 요청 전에 검증하는 Method.
-     */
-    public void verification(ExecuteContext context) {
-        try {
-            Map<String, Object> data = context.getData();
-
-            double totalPrice = 0;
-
-            Map<String, Object> couponIds = JsonUtils.parsingJsonToMap((String) data.get("usedCoupon"));
-
-            /*포인트*/
-            Map<String, Object> summaryResponse = getSummary((String) data.get("memberNo"));
-
-            double useableYPoint = ((BigDecimal) summaryResponse.get("useableYPoint")).doubleValue();
-            double useableWelfarepoint = ((BigDecimal) summaryResponse.get("useableWelfarepoint")).doubleValue();
-            double useYPoint = JsonUtils.getDoubleValue(data, "useYPoint");
-            double useWelfarepoint = JsonUtils.getDoubleValue(data, "useWelfarepoint");
-            double deliveryPrice = JsonUtils.getDoubleValue(data, "deliveryPrice");
-
-            double finalPrice = JsonUtils.getDoubleValue(data, "finalPrice");
-
-            if (useYPoint > useableYPoint && useWelfarepoint > useableWelfarepoint) {
-                context.setResult(CommonService.getResult("O0002"));            // 실패
-                return;
-            }
-
-            /*쿠폰*/
-            List<Map<String, Object>> items = getCoupons((String) data.get("memberNo"), (String) data.get("tempOrderId"));
-
-            boolean duplicated = repetitionCheck(couponIds.values());// 쿠폰 아이디 중복 체크
-
-            for (Map<String, Object> item : items) {
-                double productPrice = ((BigDecimal) item.get("orderPrice")).doubleValue();
-                String tempOrderProductId = String.valueOf(item.get("tempOrderProductId"));
-                String couponId = String.valueOf(couponIds.get(tempOrderProductId));
-                List<Map<String, Object>> applicableCoupons = (List<Map<String, Object>>) item.get("applicableCoupons");
-                for (Map<String, Object> applicableCoupon : applicableCoupons) {
-                    if (couponId.equals(String.valueOf(applicableCoupon.get("couponId")))) {
-                        productPrice = productPrice - ((BigDecimal) applicableCoupon.get("discountPrice")).doubleValue();
-                    }
-                }
-                totalPrice = totalPrice + productPrice;
-            }
-            /**
-             * 배송비 체크 로직이 필요하다.
-             * 배송비 체크 로직이 필요하다.
-             * 배송비 체크 로직이 필요하다.
-             * 배송비 체크 로직이 필요하다.
-             * 배송비 체크 로직이 필요하다.
-             * */
-            totalPrice = totalPrice - useYPoint - useWelfarepoint + deliveryPrice;
-
-            if (totalPrice != finalPrice && duplicated) {                       // 최종 가격 검증 & 쿠폰 중복 검증
-                context.setResult(CommonService.getResult("O0003"));      // 검증실패
-            } else {
-                Map<String, Object> result = new HashMap<>();
-                result.put("ordr_mony", totalPrice);
-                context.setResult(CommonService.getResult("O0004", result));      // 검증성공
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
 
-    public Double getFinalPrice(String reqTempOrderId, String memberNo, String reqUseYPoint, String reqUseWelfarepoint, String usedCoupon) {
+    public Double getFinalPrice(String reqTempOrderId, String reqMemberNo, String reqUseYPoint, String reqUseWelfarepoint, String usedCoupon) {
         double totalPrice = 0;
 
         try {
@@ -228,20 +170,17 @@ public class OrderService {
                 deliveryPrice += (Double) priceList.get(0).get("deliveryPrice");
             }
 
-            List<Map<String, Object>> coupons = getCoupons(memberNo, reqTempOrderId);
+            for(Map<String, Object> tempOrderProduct : tempOrderProducts){
+                String tempOrderProductId = JsonUtils.getStringValue(tempOrderProduct, "tempOrderProductId");
+                Integer couponId = JsonUtils.getIntNullableValue(couponIds, tempOrderProductId);
+                Integer memberNo = Integer.parseInt(reqMemberNo);
+                Map<String, Double> discountPriceMap = couponService.productCouponDiscountPrice(Integer.parseInt(tempOrderProductId), couponId, "", memberNo);
 
-            for (Map<String, Object> coupon : coupons) {
-                double productPrice = ((BigDecimal) coupon.get("orderPrice")).doubleValue();
-                String tempOrderProductId = String.valueOf(coupon.get("tempOrderProductId"));
-                String couponId = String.valueOf(couponIds.get(tempOrderProductId));
-                List<Map<String, Object>> applicableCoupons = (List<Map<String, Object>>) coupon.get("applicableCoupons");
-                for (Map<String, Object> applicableCoupon : applicableCoupons) {
-                    if (couponId.equals(String.valueOf(applicableCoupon.get("couponId")))) {
-                        productPrice = productPrice - ((BigDecimal) applicableCoupon.get("discountPrice")).doubleValue();
-                    }
-                }
-                totalPrice = totalPrice + productPrice;
+                Double resultOrderPrice = discountPriceMap.get("resultOrderPrice");
+                totalPrice += resultOrderPrice;
             }
+
+
 
             totalPrice = totalPrice - useYPoint - useWelfarepoint + deliveryPrice;
 
@@ -251,11 +190,84 @@ public class OrderService {
         return totalPrice;
     }
 
+    /**
+     * PG 결제 승인 요청 전에 검증하는 Method.
+     */
+    public void verification(ExecuteContext context) {
+        try {
+            Map<String, Object> data = context.getData();
+            double totalPrice = 0;
+            Map<String, Object> session = sessionService.getSession(context.getHttpRequest());
+            Map<String, Object> couponIds = JsonUtils.parsingJsonToMap((String) data.get("usedCoupon"));
+            /*포인트*/
+            Map<String, Object> summaryResponse = getSummary((String) data.get("memberNo"));
 
-    public String createOrderSheet(Map<String, Object> responseMap) {
-        String bSucc = "false";
+            double useableYPoint = ((BigDecimal) summaryResponse.get("useableYPoint")).doubleValue();
+            double useableWelfarepoint = ((BigDecimal) summaryResponse.get("useableWelfarepoint")).doubleValue();
+            double useYPoint = JsonUtils.getDoubleValue(data, "useYPoint");
+            double useWelfarepoint = JsonUtils.getDoubleValue(data, "useWelfarepoint");
+            double deliveryPrice = JsonUtils.getDoubleValue(data, "deliveryPrice");
+
+            double finalPrice = JsonUtils.getDoubleValue(data, "finalPrice");
+
+            if (useYPoint > useableYPoint && useWelfarepoint > useableWelfarepoint) {
+                context.setResult(CommonService.getResult("O0002"));            // 실패
+                return;
+            }
+
+            /*쿠폰*/
+//            boolean duplicated = repetitionCheck(couponIds.values());// 쿠폰 아이디 중복 체크
+
+//            if(duplicated){
+//                context.setResult(CommonService.getResult("O0002"));            // 실패
+//                return;
+//            }
+            List<Map<String, Object>> tempOrderProducts = nodeBindingService.list("tempOrderProduct", "sorting=created&tempOrderId_equals=" + context.getData().get("tempOrderId"));
+
+            for(Map<String, Object> tempOrderProduct : tempOrderProducts){
+                String tempOrderProductId = JsonUtils.getStringValue(tempOrderProduct, "tempOrderProductId");
+                Integer couponId = JsonUtils.getIntNullableValue(couponIds, tempOrderProductId);
+                Integer memberNo = JsonUtils.getIntValue(session, "member.memberNo");
+                Map<String, Double> discountPriceMap = couponService.productCouponDiscountPrice(Integer.parseInt(tempOrderProductId), couponId, "", memberNo);
+
+                Double resultOrderPrice = discountPriceMap.get("resultOrderPrice");
+                totalPrice += resultOrderPrice;
+            }
+
+            List<Map<String, Object>> deliveryProductList = deliveryService.makeDeliveryData(tempOrderProducts, "tempOrder");
+            Map<String, Object> deliveryPriceList = deliveryService.calculateDeliveryPrice(deliveryProductList, "tempOrder");
+
+            for (String key : deliveryPriceList.keySet()) {
+                List<Map<String, Object>> priceList = (List<Map<String, Object>>) deliveryPriceList.get(key);
+                deliveryPrice += Double.parseDouble(String.valueOf(priceList.get(0).get("deliveryPrice")));
+            }
+
+
+            totalPrice = totalPrice - useYPoint - useWelfarepoint + deliveryPrice;
+
+            if (totalPrice != finalPrice) {                       // 최종 가격 검증 & 쿠폰 중복 검증
+                context.setResult(CommonService.getResult("O0003"));      // 검증실패
+            } else {
+                Map<String, Object> result = new HashMap<>();
+                result.put("ordr_mony", totalPrice);
+                context.setResult(CommonService.getResult("O0004", result));      // 검증성공
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String createOrderSheet(Map<String, Object> responseMap, HttpServletRequest request) {
+        String bSucc = "true";
         List<Map<String, Object>> tempOrderProducts = nodeBindingService.list("tempOrderProduct", "sorting=created&tempOrderId_equals=" + String.valueOf(responseMap.get("ordrIdxx")));
         List<Map<String, Object>> tempOrderProductItems = nodeBindingService.list("tempOrderProductItem", "sorting=created&tempOrderId_equals=" + String.valueOf(responseMap.get("ordrIdxx")));
+        Map<String, Object> session = null;
+        try {
+            session = sessionService.getSession(request);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
 
         for (Map<String, Object> tempOrderProduct : tempOrderProducts) {
             Integer tempOrderProductId = JsonUtils.getIntValue(tempOrderProduct, "tempOrderProductId");
@@ -267,10 +279,6 @@ public class OrderService {
             }
             tempOrderProduct.put("tempOrderProductItem", subTempOrderProdductItems);
         }
-
-        List<Map<String, Object>> deliveryProductList = deliveryService.makeDeliveryData(tempOrderProducts, "tempOrder");
-        Map<String, Object> deliveryPriceList = deliveryService.calculateDeliveryPrice(deliveryProductList, "tempOrder");
-
         List<QueryResult> items = new ArrayList<>();
         double totalProductPrice = 0;
         double totalDeliveryPrice = 0;
@@ -280,6 +288,9 @@ public class OrderService {
         double totalPaymentPrice = Double.parseDouble(String.valueOf(responseMap.get("amount")));
         double totalWelfarePoint = Double.parseDouble(String.valueOf(responseMap.get("useWelfarepoint")));
         double totalYPoint = Double.parseDouble(String.valueOf(responseMap.get("useYPoint")));
+
+        List<Map<String, Object>> deliveryProductList = deliveryService.makeDeliveryData(tempOrderProducts, "tempOrder");
+        Map<String, Object> deliveryPriceList = deliveryService.calculateDeliveryPrice(deliveryProductList, "tempOrder");
 
         for (String key : deliveryPriceList.keySet()) {
             QueryResult itemResult = new QueryResult();
@@ -304,6 +315,13 @@ public class OrderService {
             e.printStackTrace();
         }
 
+//        boolean duplicated = repetitionCheck(couponIds.values()); // 쿠폰 아이디 중복 체크
+
+//        if (duplicated) {
+//            bSucc = "false";
+//            return bSucc;
+//        }
+
         for (Map<String, Object> deliveryItem : items) {
 //            Map<String, Object> storeOrderDeliveryPrice = new HashMap<>();
 //            List orderProductIds = new ArrayList();
@@ -327,7 +345,12 @@ public class OrderService {
                 storeOrderProduct.put("totalAddOptionPrice", JsonUtils.getDoubleValue(product, "totalAddOptionPrice"));
                 storeOrderProduct.put("orderPrice", JsonUtils.getDoubleValue(product, "orderPrice"));
 
-                storeOrderProduct.put("couponId", JsonUtils.getIntNullableValue(couponIds, "tempOrderProductId"));
+                String tempOrderProductId = JsonUtils.getStringValue(product, "tempOrderProductId");
+                Integer couponId = JsonUtils.getIntNullableValue(couponIds, tempOrderProductId);
+                storeOrderProduct.put("couponId", couponId);
+                Integer memberNo = JsonUtils.getIntValue(session, "member.memberNo");
+
+                Map<String, Double> discountPriceMap = couponService.productCouponDiscountPrice(Integer.parseInt(tempOrderProductId), couponId, "", memberNo);
 //                storeOrderProduct.put("couponDiscountPrice", JsonUtils.getIntValue(productItem, "couponDiscountPrice"));
                 storeOrderProduct.put("vendorId", JsonUtils.getIntValue(product, "vendorId"));
 //                storeOrderProduct.put("purchasePhoneNo", JsonUtils.getIntValue(productItem, "purchasePhoneNo"));
@@ -404,8 +427,6 @@ public class OrderService {
 
 
         deliveryService.makeDeliveryPrice(String.valueOf(responseMap.get("ordrIdxx")), orderDeliveryPriceList);
-
-        bSucc = "true";
 
         return bSucc;
     }

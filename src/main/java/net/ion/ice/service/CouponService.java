@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -105,6 +106,28 @@ public class CouponService {
         return context;
     }
 
+    public Map<String,Double> productCouponDiscountPrice(Integer tempOrderProductId, Integer couponId, String siteType, Integer memberNo){
+        Map<String, Double> couponDiscountPriceMap = new HashMap<>();
+        List<Map<String,Object>> tempOrderProduct = nodeBindingService.list("tempOrderProduct", "tempOrderProductId_equals=".concat(String.valueOf(tempOrderProductId)));
+        String now = new SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA).format(new Date());
+        List<Node> couponList = new ArrayList<>();
+        if(couponId != null){
+            couponList = (List<Node>) NodeQuery.build("coupon").matching("couponId", String.valueOf(couponId)).matching("memberNo", String.valueOf(memberNo)).matching("couponStatus", "n").matching("siteType", "all,".concat(siteType)).above("endDate", now).getList();
+        }
+
+        Double orderPrice =  ((BigDecimal) tempOrderProduct.get(0).get("orderPrice")).doubleValue();
+        if(couponList.size() > 0){
+            Node couponNode = couponList.get(0);
+            Node couponType = nodeService.getNode("couponType", JsonUtils.getStringValue(couponNode, "couponTypeId"));
+            couponDiscountPriceMap = couponDiscountCalculator(orderPrice, couponType);
+        }else{
+            couponDiscountPriceMap.put("orderPrice", orderPrice);
+            couponDiscountPriceMap.put("resultOrderPrice", orderPrice);
+            couponDiscountPriceMap.put("resultDiscountPrice", 0D);
+        }
+        return couponDiscountPriceMap;
+    }
+
     public ExecuteContext applicableCouponList(ExecuteContext context) {
         Map<String, Object> contextData = context.getData();
         Map<String, Object> sessionData = null;
@@ -146,7 +169,7 @@ public class CouponService {
                     if (couponTypeToCategoryMapList != null && couponTypeToCategoryMapList.size() > 0) {
                         for (Map<String, Object> couponTypeToCategoryMap : couponTypeToCategoryMapList) {
                             coupon.put("couponType", couponType);
-                            Map<String, Double> couponDiscountCalculatorMap = couponDiscountCalculator(orderPrice, coupon);
+                            Map<String, Double> couponDiscountCalculatorMap = couponDiscountCalculator(orderPrice, couponType);
                             coupon.put("tempOrderProductId", JsonUtils.getIntValue(targetProduct, "tempOrderProductId"));
                             coupon.put("orderPrice", JsonUtils.getDoubleValue(targetProduct, "orderPrice"));
                             coupon.put("resultDiscountPrice", couponDiscountCalculatorMap.get("resultDiscountPrice"));
@@ -160,7 +183,7 @@ public class CouponService {
                 if (coupon.get("couponTypeToProductMapList") != null && ((List) coupon.get("couponTypeToProductMapList")).size() > 0) {
                     for (Map<String, Object> couponTypeToProductMap : couponTypeToProductMapList) {
                         coupon.put("couponType", couponType);
-                        Map<String, Double> couponDiscountCalculatorMap = couponDiscountCalculator(orderPrice, coupon);
+                        Map<String, Double> couponDiscountCalculatorMap = couponDiscountCalculator(orderPrice, couponType);
                         if (couponDiscountCalculatorMap.get("resultOrderPrice") != orderPrice) {
                             coupon.put("tempOrderProductId", JsonUtils.getIntValue(targetProduct, "tempOrderProductId"));
                             coupon.put("orderPrice", JsonUtils.getDoubleValue(targetProduct, "orderPrice"));
@@ -256,9 +279,8 @@ public class CouponService {
         return productInfo;
     }
 
-    private Map<String, Double> couponDiscountCalculator(Double orderPrice, Node coupon) {
+    private Map<String, Double> couponDiscountCalculator(Double orderPrice, Node couponType) {
         Map<String, Double> result = new HashMap<>();
-        Node couponType = (Node) coupon.get("couponType");
 
         String benefitsType = String.valueOf(couponType.getBindingValue("benefitsType"));
         Double benefitsPrice = (Double) couponType.getBindingValue("benefitsPrice");
@@ -285,6 +307,7 @@ public class CouponService {
 
         resultOrderPrice = Math.ceil(orderPrice - resultDiscountPrice);
 
+        result.put("orderPrice", orderPrice);
         result.put("resultOrderPrice", resultOrderPrice);
         result.put("resultDiscountPrice", resultDiscountPrice);
 
