@@ -66,7 +66,7 @@ public class ReadContext implements Context, Serializable {
         return includeReferenced != null && includeReferenced;
     }
 
-    public void setIncludeReferenced(boolean includeReference) {
+    public void setIncludeReferenced(Boolean includeReference) {
         this.includeReferenced = includeReference;
     }
     public void setIncludeReferenced(String value) {
