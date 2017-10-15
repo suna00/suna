@@ -27,7 +27,7 @@ public class TopicListener implements MessageListener<CacheMessage>{
 
     @Override
     public void onMessage(Message<CacheMessage> message) {
-        logger.info(message.getPublishingMember().getUuid() + "=" + clusterConfiguration.getHazelcast().getCluster().getLocalMember().getUuid());
+//        logger.info(message.getPublishingMember().getUuid() + "=" + clusterConfiguration.getHazelcast().getCluster().getLocalMember().getUuid());
 
         if(uuid.equals(message.getPublishingMember().getUuid())){
            return ;

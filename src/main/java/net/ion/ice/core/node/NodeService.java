@@ -58,6 +58,9 @@ public class NodeService {
     @Autowired
     private Environment environment;
 
+    @Autowired
+    private NodeHelperService nodeHelperService;
+
 
     private Map<String, NodeType> nodeTypeCache ;
     private Map<String, NodeType> initNodeType  ;
@@ -74,7 +77,7 @@ public class NodeService {
         }
 
         try {
-            initSchema();
+            nodeHelperService.initSchema(environment.getActiveProfiles()[0]);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -243,62 +246,6 @@ public class NodeService {
             initNodeType.put(nodeType.getId(), new NodeType(nodeType)) ;
         }
     }
-
-    private void  initSchema() throws IOException {
-        saveSchema("classpath:schema/core/*.json");
-        saveSchema("classpath:schema/core/*/*.json");
-        try {
-            saveSchema("classpath:schema/core/datasource/" + environment.getActiveProfiles()[0] + "/dataSource.json");
-        }catch (Exception e){}
-
-//        saveSchema("classpath:schema/node/*.json", lastChanged);
-//        saveSchema("classpath:schema/node/**/*.json");
-//        saveSchema("classpath:schema/test/*.json", lastChanged);
-//        saveSchema("classpath:schema/test/**/*.json");
-
-    }
-    public void saveSchema(String resourcePath) throws IOException {
-        saveSchema(resourcePath, true);
-        saveSchema(resourcePath, false);
-    }
-
-    private void saveSchema(String resourcePath, boolean core) throws IOException {
-        Resource[] resources = applicationContextManager.getResources(resourcePath);
-        if(core) {
-            for (Resource resource : resources) {
-                if (resource.getFilename().equals("nodeType.json")) {
-                    fileNodeSave(resource);
-                }
-            }
-
-            for (Resource resource : resources) {
-                if (resource.getFilename().equals("propertyType.json")) {
-                    fileNodeSave(resource);
-                }
-            }
-
-            for (Resource resource : resources) {
-                if (resource.getFilename().equals("event.json")) {
-                    fileNodeSave(resource);
-                }
-            }
-        }else {
-            for (Resource resource : resources) {
-                if (!(resource.getFilename().equals("nodeType.json") || resource.getFilename().equals("propertyType.json") || resource.getFilename().equals("event.json"))) {
-                    fileNodeSave(resource);
-                }
-            }
-        }
-    }
-
-    private void fileNodeSave(Resource resource) throws IOException {
-        String fileName = StringUtils.substringBefore(resource.getFilename(), ".json");
-        Collection<Map<String, Object>> nodeDataList = JsonUtils.parsingJsonResourceToList(resource) ;
-
-//        List<Map<String, Object>> dataList = NodeUtils.makeDataListFilterBy(nodeDataList, lastChanged) ;
-        nodeDataList.forEach(data -> saveNode(data));
-    }
-
 
     public Node saveNode(Map<String, Object> data) {
         try {
