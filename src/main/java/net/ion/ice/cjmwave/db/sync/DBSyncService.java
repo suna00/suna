@@ -34,6 +34,8 @@ public class DBSyncService {
 
     private static int BATCH_UNIT = 200;
 
+    boolean useBatch = false;
+
     @Autowired
     TaskExecutor taskExecutor;
 
@@ -468,7 +470,7 @@ public class DBSyncService {
             failPolicy = (!"NULL".equals(failPolicy) && "STOP".equals(failPolicy)) ? "STOP" : "SKIP";
 
 
-            nodeService.startBatch(targetNodeType);
+            if(useBatch) nodeService.startBatch(targetNodeType);
             /*
             다국어 처리가 여기로 변경되어야 함
             {pid}_{langCd}
@@ -532,7 +534,7 @@ public class DBSyncService {
                 i++;
             }
 
-            nodeService.endBatch(targetNodeType, true);
+            if(useBatch) nodeService.endBatch(targetNodeType, true);
         }
 
         long jobTaken = (new Date().getTime() - startTime.getTime());
