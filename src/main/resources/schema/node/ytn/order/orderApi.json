@@ -284,5 +284,21 @@
         }
       }
     }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "orderSheet",
+    "apiId": "pointOrder",
+    "apiName": "포인트 구매",
+    "method": "POST",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "orderSheet",
+      "noneExecute": true,
+      "event" : "pointOrder",
+      "data": {
+      }
+    }
   }
 ]

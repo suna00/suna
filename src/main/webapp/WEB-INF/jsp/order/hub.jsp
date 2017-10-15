@@ -127,6 +127,7 @@
     String cash_tr_code = f_get_parm(request.getParameter("cash_tr_code")); // 현금 영수증 발행 구분
     String cash_id_info = f_get_parm(request.getParameter("cash_id_info")); // 현금 영수증 등록 번호
     String cash_no = "";                                                     // 현금 영수증 거래 번호
+    String good_mny = f_get_parm(request.getParameter("cash_id_info"));
 
     /*쉬핑 데이터*/
     String shippingAddress = f_get_parm(request.getParameter("shippingAddress"));
@@ -323,6 +324,7 @@
 
     /*Payment*/
     responseMap.put("gConfSiteCd", g_conf_site_cd);
+    responseMap.put("goodMny", good_mny);               //finalPrice
     responseMap.put("reqTx", req_tx);
     responseMap.put("usePayMethod", use_pay_method);
     responseMap.put("amount", amount);
@@ -543,6 +545,7 @@
     logger.info("-----------------결제정보(" + ordr_idxx + ")------------------");
     logger.info("사이트 코드 : " + g_conf_site_cd);
     logger.info("ordr_chk : " + ordr_chk);
+    logger.info("프론트최종 결제금액(this.finalPrice) : " + good_mny);
     logger.info("요청구분 : " + req_tx);
     logger.info("사용한 결제 수단 : " + use_pay_method);
     logger.info("사용한 결제 수단 : " + use_pay_method);
