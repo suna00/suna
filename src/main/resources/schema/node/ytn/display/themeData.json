@@ -2502,7 +2502,7 @@
     "themeType": "mdbest",
     "themeTemplate": "",
     "siteType": "all",
-    "categoryId": "",
+    "categoryId": "1",
     "name": "MDBEST",
     "sortOrder": 1,
     "themeStatus": "y"
@@ -2550,7 +2550,7 @@
     "themeType": "mdbest",
     "themeTemplate": "",
     "siteType": "all",
-    "categoryId": "",
+    "categoryId": "2",
     "name": "MDBEST",
     "sortOrder": 2,
     "themeStatus": "y"
