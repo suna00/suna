@@ -27,7 +27,8 @@ cluster:
   mode: all
   groups: all
   members:
-    - 10.75.6-7.140
+    - 10.75.6.140
+    - 10.75.7.140
     - 127.0.0.1
     - localhost
 
