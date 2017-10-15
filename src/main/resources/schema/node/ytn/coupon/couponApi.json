@@ -4,7 +4,7 @@
     "id" : "coupon",
     "categoryName" : "쿠폰 API",
     "fileUrlFormat" : {
-       "default": "/"
+       "default": "{{:getEnvValue(cluster.file-prefix, url)}}"
     }
   },
   {

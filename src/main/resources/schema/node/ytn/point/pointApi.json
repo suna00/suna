@@ -4,7 +4,7 @@
     "id": "YPoint",
     "categoryName": "YPoint API",
     "fileUrlFormat" : {
-       "default": "/"
+       "default": "{{:getEnvValue(cluster.file-prefix, url)}}"
     }
   },
   {

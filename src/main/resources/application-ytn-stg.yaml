@@ -1,6 +1,6 @@
 # YTN 개발 서버
 spring:
-  profiles: ytn-dev
+  profiles: ytn-stg
   http:
     multipart:
       max-request-size: 20MB
@@ -30,13 +30,13 @@ jwtConfig:
   refreshTokenExpTime: 1800 #분
 
 cluster:
-  api-prefix: http://test.ygoon.com:8080/
-  front-prefix: http://test.ygoon.com:8888/
-  file-prefix: http://test.ygoon.com:8888/
+  api-prefix: http://tapi.ygoon.com/
+  front-prefix: http://test.ygoon.com/
+  file-prefix: http://tfile.ygoon.com/
   mode: all
   groups: all
   members:
-    - 125.131.88.206
+    - 172.16.0.11
 
 infinispan:
   cachePath: /resource/ice2/cache
