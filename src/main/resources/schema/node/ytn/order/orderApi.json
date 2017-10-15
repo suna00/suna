@@ -4,7 +4,7 @@
     "id" : "orderSheet",
     "categoryName" : "주문서 API",
     "fileUrlFormat" : {
-       "default": "{{:getEnvValue(cluster.file-prefix, url)}}"
+      "default": "{{:getEnvValue(cluster.file-prefix, url)}}"
     }
   },
   {
@@ -42,6 +42,14 @@
               ],
               "response": {
                 "_all_": "",
+                "referencedMainImage" : {
+                  "typeId" : "commonResource",
+                  "query" : [
+                    {"field" : "contentsId", "method" : "matching", "value" : "{{:productId}}"},
+                    {"field" : "tid", "method" : "matching", "value" : "product"},
+                    {"field" : "name", "method" : "matching", "value" : "main"}
+                  ]
+                },
                 "functionBtn": {
                   "select": {
                     "ds": "ytnDevDb",
@@ -94,10 +102,18 @@
           "query" : [
             {"field" : "orderSheetId", "method" : "equals", "value" : "{{:orderSheetId}}"},
             {"field" : "productId", "method" : "equals", "value" : "{{:productId}}"},
-            {"includeReferenced" : true, "referenceView": "productId,deliveryEnterpriseId"}
+            {"includeReferenced" : true, "referenceView": "deliveryEnterpriseId"}
           ],
           "response": {
             "_all_": "",
+            "referencedMainImage" : {
+              "typeId" : "commonResource",
+              "query" : [
+                {"field" : "contentsId", "method" : "matching", "value" : "{{:productId}}"},
+                {"field" : "tid", "method" : "matching", "value" : "product"},
+                {"field" : "name", "method" : "matching", "value" : "main"}
+              ]
+            },
             "referencedOrderDeliveryPrice" : {
               "select": {
                 "ds": "ytnDevDb",
@@ -143,10 +159,18 @@
           "query" : [
             {"field" : "orderSheetId", "method" : "equals", "value" : "{{:orderSheetId}}"},
             {"field" : "productId", "method" : "equals", "value" : "{{:productId}}"},
-            {"includeReferenced" : true, "referenceView": "productId,deliveryEnterpriseId"}
+            {"includeReferenced" : true, "referenceView": "deliveryEnterpriseId"}
           ],
           "response": {
             "_all_": "",
+            "referencedMainImage" : {
+              "typeId" : "commonResource",
+              "query" : [
+                {"field" : "contentsId", "method" : "matching", "value" : "{{:productId}}"},
+                {"field" : "tid", "method" : "matching", "value" : "product"},
+                {"field" : "name", "method" : "matching", "value" : "main"}
+              ]
+            },
             "referencedOrderDeliveryPrice" : {
               "select": {
                 "ds": "ytnDevDb",
@@ -173,7 +197,7 @@
     "id" : "orderChange",
     "categoryName" : "취소교한반품 API",
     "fileUrlFormat" : {
-       "default": "{{:getEnvValue(cluster.file-prefix, url)}}"
+      "default": "{{:getEnvValue(cluster.file-prefix, url)}}"
     }
   },
   {
@@ -201,10 +225,18 @@
           "query" : [
             {"field" : "orderChangeId", "method" : "equals", "value" : "{{:orderChangeId}}"},
             {"field" : "productId", "method" : "equals", "value" : "{{:productId}}"},
-            {"includeReferenced" : true, "referenceView": "productId"}
+            {"includeReferenced" : true}
           ],
           "response": {
             "_all_": "",
+            "referencedMainImage" : {
+              "typeId" : "commonResource",
+              "query" : [
+                {"field" : "contentsId", "method" : "matching", "value" : "{{:productId}}"},
+                {"field" : "tid", "method" : "matching", "value" : "product"},
+                {"field" : "name", "method" : "matching", "value" : "main"}
+              ]
+            },
             "referencedOrderChangeDeliveryPrice" : {
               "select": {
                 "ds": "ytnDevDb",
@@ -247,10 +279,18 @@
           "typeId" : "orderChangeProduct",
           "query" : [
             {"field" : "orderChangeId", "method" : "equals", "value" : "{{:orderChangeId}}"},
-            {"includeReferenced" : true, "referenceView": "orderProductIds, productId"}
+            {"includeReferenced" : true, "referenceView": "orderProductIds"}
           ],
           "response": {
             "_all_": "",
+            "referencedMainImage" : {
+              "typeId" : "commonResource",
+              "query" : [
+                {"field" : "contentsId", "method" : "matching", "value" : "{{:productId}}"},
+                {"field" : "tid", "method" : "matching", "value" : "product"},
+                {"field" : "name", "method" : "matching", "value" : "main"}
+              ]
+            },
             "referencedOrderChangeDeliveryPrice" : {
               "select": {
                 "ds": "ytnDevDb",
