@@ -207,6 +207,7 @@ public class OrderService {
             double useYPoint = JsonUtils.getDoubleValue(data, "useYPoint");
             double useWelfarepoint = JsonUtils.getDoubleValue(data, "useWelfarepoint");
             double deliveryPrice = JsonUtils.getDoubleValue(data, "deliveryPrice");
+            double finalDeliveryPrice = 0;
 
             double finalPrice = JsonUtils.getDoubleValue(data, "finalPrice");
 
@@ -239,11 +240,11 @@ public class OrderService {
 
             for (String key : deliveryPriceList.keySet()) {
                 List<Map<String, Object>> priceList = (List<Map<String, Object>>) deliveryPriceList.get(key);
-                deliveryPrice += Double.parseDouble(String.valueOf(priceList.get(0).get("deliveryPrice")));
+                finalDeliveryPrice += Double.parseDouble(String.valueOf(priceList.get(0).get("deliveryPrice")));
             }
 
 
-            totalPrice = totalPrice - useYPoint - useWelfarepoint + deliveryPrice;
+            totalPrice = totalPrice - useYPoint - useWelfarepoint + finalDeliveryPrice;
 
             if (totalPrice != finalPrice) {                       // 최종 가격 검증 & 쿠폰 중복 검증
                 context.setResult(CommonService.getResult("O0003"));      // 검증실패
@@ -334,8 +335,6 @@ public class OrderService {
 //        }
 
         for (Map<String, Object> deliveryItem : items) {
-
-            totalDeliveryPrice += JsonUtils.getDoubleValue(deliveryItem, "deliveryPrice");
 
             for (Map<String, Object> product : (List<Map<String, Object>>) deliveryItem.get("item")) {
                 Map<String, Object> storeOrderProduct = new HashMap<>();
@@ -482,7 +481,6 @@ public class OrderService {
             itemResult.put("deliverySeq", key);
             List<Map<String, Object>> priceList = (List<Map<String, Object>>) deliveryPriceList.get(key);
             itemResult.put("deliveryPrice", priceList.get(0).get("deliveryPrice"));
-            totalDeliveryPrice += Double.parseDouble(String.valueOf(priceList.get(0).get("deliveryPrice")));
 
             List<Map<String, Object>> subProductResult = new ArrayList<>();
             for (Map<String, Object> priceProduct : priceList) {
