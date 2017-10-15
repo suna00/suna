@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by jaehocho on 2017. 8. 11..
@@ -27,7 +28,7 @@ public class ReadContext implements Context, Serializable {
     protected List<String> includeReferencedFields ;
 
     protected Boolean referenceView ;
-    protected List<String> referenceViewFields ;
+    protected Map<String, Object> referenceViewFields ;
 
 
     protected List<String> searchFields ;
@@ -160,10 +161,10 @@ public class ReadContext implements Context, Serializable {
         }else if ("false".equals(referenceView)) {
             this.referenceView = false;
         }else{
-            this.referenceViewFields = new ArrayList<>() ;
+            this.referenceViewFields = new ConcurrentHashMap<>() ;
             for(String f : StringUtils.split(referenceView, ",")){
                 if(StringUtils.isNotEmpty(f.trim())){
-                    this.referenceViewFields.add(f.trim()) ;
+                    makeNestedMap(this.referenceViewFields, f.trim()) ;
                 }
             }
             if(this.referenceViewFields.size() > 0){
@@ -172,6 +173,18 @@ public class ReadContext implements Context, Serializable {
                 this.referenceView = false ;
             }
         }
+    }
+
+    private Map<String, Object> makeNestedMap(Map<String, Object> map, String key) {
+        String k = key ;
+        if(key.contains(".")){
+            k = StringUtils.substringBefore(key, ".") ;
+            Map<String, Object> subMap = new HashMap<>() ;
+            map.put(k, makeNestedMap(subMap, StringUtils.substringAfter(key, ".")));
+            return map ;
+        }
+        map.put(k, new HashMap<>()) ;
+        return map ;
     }
 
     public void makeIncludeReferenced() {
@@ -214,7 +227,7 @@ public class ReadContext implements Context, Serializable {
         makeContextFromParameter(parameterMap, nodeType, context) ;
 
         context.makeIncludeReferenced();
-        if(context.includeReferenced == null) context.includeReferenced = true ;
+//        if(context.includeReferenced == null) context.includeReferenced = true ;
         context.makeReferenceView();
 
         return context ;
@@ -399,26 +412,33 @@ public class ReadContext implements Context, Serializable {
 
 
 
-    public boolean isReferenceView(String pid) {
+    public boolean isReferenceView(PropertyType pt) {
         if (referenceView == null) {
             return false;
         }
         if (referenceView && referenceViewFields == null) {
             return true;
-        } else if (referenceView && referenceViewFields.contains(pid)) {
+        } else if (referenceView && referenceViewFields.containsKey(pt.getPid())) {
             return true;
         }
 
         return false;
     }
 
-    public boolean isIncludeReferenced(String pid) {
+    public boolean isIncludeReferenced(PropertyType pt) {
         if (includeReferenced == null) {
             return false;
         }
         if (includeReferenced && includeReferencedFields == null) {
+            if(this.excludeReferenceList != null && excludeReferenceList.contains(pt.getReferenceType())){
+                return false ;
+            }
             return true;
-        } else if (includeReferenced && includeReferencedFields.contains(pid)) {
+        } else if (includeReferenced && includeReferencedFields.contains(pt.getPid())) {
+            if(this.excludeReferenceList != null && excludeReferenceList.contains(pt.getReferenceType())){
+                return false ;
+            }
+
             return true;
         }
 
@@ -445,7 +465,7 @@ public class ReadContext implements Context, Serializable {
         this.referenceView = referenceView;
     }
 
-    public void setReferenceViewFields(List<String> referenceViewFields) {
+    public void setReferenceViewFields(Map<String, Object> referenceViewFields) {
         this.referenceViewFields = referenceViewFields;
     }
 
@@ -520,7 +540,55 @@ public class ReadContext implements Context, Serializable {
         return referenceView;
     }
 
-    public List<String> getReferenceViewFields() {
-        return referenceViewFields;
+
+    protected String excludeReferenceType ;
+    protected List<String> excludeReferenceList ;
+
+    public void setExcludeReferenceType(List<String> excludeReferenceList, String excludeReferenceType) {
+        this.excludeReferenceType = excludeReferenceType;
+
+        if(this.excludeReferenceList == null){
+            this.excludeReferenceList = new ArrayList<>() ;
+        }
+
+        this.excludeReferenceList.add(excludeReferenceType) ;
+    }
+
+    public List<String> getIncludeReferencedFields() {
+        return includeReferencedFields;
+    }
+
+    public Boolean isIncludeReferencedValue() {
+        return this.includeReferenced;
+    }
+
+    public List<String> getExcludeReferenceList() {
+        return excludeReferenceList;
+    }
+
+    protected List<String> referencePath ;
+    public void addReferencepath(List<String> referencePath, String pid) {
+        this.referencePath = referencePath ;
+        if(this.referencePath == null){
+            this.referencePath = new ArrayList<>() ;
+        }
+        this.referencePath.add(pid) ;
+    }
+
+
+    public List<String> getReferencePath() {
+        return referencePath;
+    }
+
+    public Map<String, Object> getSubReferenceViewFields(String pid) {
+        if(this.referenceViewFields == null || !this.referenceViewFields.containsKey(pid)){
+            return new HashMap<>() ;
+        }
+        return (Map<String, Object>) this.referenceViewFields.get(pid);
+    }
+
+    public static ReadContext makeQueryContextForReference(PropertyType pt, Node refNode) {
+        ReadContext readContext = new ReadContext() ;
+        return readContext ;
     }
 }
