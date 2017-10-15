@@ -1,5 +1,6 @@
 package net.ion.ice.core.data.bind;
 
+import net.ion.ice.IceRuntimeException;
 import net.ion.ice.core.context.QueryContext;
 import net.ion.ice.core.data.DBDataTypes;
 import net.ion.ice.core.data.DBQuery;
@@ -202,6 +203,7 @@ public class NodeBindingInfo implements Serializable {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new IceRuntimeException("db error ", e);
         }
         return columnList;
     }
