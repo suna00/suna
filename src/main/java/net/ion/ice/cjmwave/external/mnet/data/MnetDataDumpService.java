@@ -280,8 +280,7 @@ public class MnetDataDumpService {
             String subTasks = String.valueOf(replicationNode.get("subTasks"));
             String subTaskKey = String.valueOf(replicationNode.get("subTaskKey")).trim();
             Date lastUpdated = getLastUpdated(fromTable, toTable);
-            boolean isTopNode = (boolean) replicationNode.getTypeId().toLowerCase().contains("receive");
-
+            boolean isTopNode = (boolean) replicationNode.getId().toLowerCase().contains("retrieve");
 
             // 이 노드가 standAlone 이 아니라면 파라미터는 subTaskKey 를 써야 함
             // standAlone 이라면 날짜가 테이블에 있다.
@@ -290,7 +289,7 @@ public class MnetDataDumpService {
             if(isTopNode) {
                 if(ids.size() == 1) {
                     params.put("id", ids.get(0));
-                } else if(ids.size() > 1) {
+                } else if(ids.size() == 10) {
                     for(int i = 1; i < 11; i++) {
                         params.put("id" + i, ids.get(i - 1));
                     }
@@ -430,11 +429,10 @@ public class MnetDataDumpService {
             logger.info("LeftCount :: " + tail);
 
             // 10 개씩 묶어서 처리
-            Map<String, Object> multiMapParams = new HashedMap();
             for(int i = 0; i < head; i++) {
                 int startIdx = (i * unit);
                 toIndex = ((i + 1) * unit);
-                List<String> subListByUnit = ids.subList((i+1 * unit), unit);
+                List<String> subListByUnit = ids.subList((i * unit), unit);
                 migrateWithList(replicationMultiLogic, null, subListByUnit);
             }
 
