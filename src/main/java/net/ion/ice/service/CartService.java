@@ -11,6 +11,7 @@ import net.ion.ice.core.session.SessionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -52,7 +53,6 @@ public class CartService {
             context.getData().put("memberNo", JsonUtils.getStringValue(sessionData, "memberNo"));
         }
 
-
         Integer totalSize = 0;
         List<Map<String, Object>> cartProducts = nodeBindingService.list("cartProduct", "sorting=created&cartId_equals=" + context.getData().get("cartId"));
         List<Map<String, Object>> cartProductItems = nodeBindingService.list("cartProductItem", "sorting=created&cartId_equals=" + context.getData().get("cartId"));
@@ -83,6 +83,7 @@ public class CartService {
 
             List<Map<String, Object>> subProductResult = new ArrayList<>();
             for (Map<String, Object> priceProduct : priceList) {
+                priceProduct.put("downloadableCoupon", getCouponCount(JsonUtils.getStringValue(priceProduct, "productId"), JsonUtils.getStringValue(sessionData, "siteType")));
                 subProductResult.add(priceProduct);
             }
 
@@ -530,6 +531,18 @@ public class CartService {
             }
         }
 
+    }
+
+    public Map<String, Object> getCouponCount(String productId, String siteType) {
+        JdbcTemplate jdbcTemplate = nodeBindingService.getNodeBindingInfo("couponType").getJdbcTemplate();
+        String query = "SELECT count(*) AS couponCount\n" +
+                "FROM (SELECT couponTypeId\n" +
+                "      FROM couponTypeToCategoryMap c, producttocategorymap p\n" +
+                "      WHERE productId = ? AND p.categoryId = c.categoryId GROUP BY couponTypeId UNION ALL SELECT couponTypeId FROM couponTypeToProductMap WHERE productId = ?) a, coupontype b\n" +
+                "WHERE b.couponTypeId = a.couponTypeId AND b.couponType IN ('product', 'category') AND\n" +
+                "      b.siteType != IF(IFNULL( ?, 'company') = 'university', 'company', 'university') AND\n" +
+                "      createPeriodType != 'stop' AND createStartDate <= now() AND createEndDate >= now() ";
+        return jdbcTemplate.queryForMap(query, productId, productId, siteType);
     }
 
 }
