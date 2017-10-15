@@ -83,7 +83,7 @@ public class SessionService {
 
     public void removeSession(HttpServletRequest request) throws UnsupportedEncodingException {
         Map<String, Object> sessionMap = clusterConfiguration.getSesssionMap().get(getSessionKey(request));
-        sessionMap.put(getSessionKey(request), null);
+        sessionMap.remove(getSessionKey(request));
     }
 
     public void refreshSession(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {

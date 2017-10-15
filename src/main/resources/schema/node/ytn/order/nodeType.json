@@ -150,6 +150,15 @@
     "tableName": "ytnDevDb#pg",
     "repositoryType": "data",
     "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "orderSheetAdmin",
+    "typeName": "전체 주문서",
+    "tableName": "ytnDevDb#nodeType",
+    "repositoryType": "data",
+    "eviction": 0
   }
 
 ]
