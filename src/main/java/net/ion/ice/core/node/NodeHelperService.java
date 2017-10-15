@@ -50,7 +50,7 @@ public class NodeHelperService  {
         try {
             saveResourceSchema("classpath:schema/core/datasource/" + profile + "/dataSource.json");
         }catch (Exception e){}
-
+        syncSchema() ;
     }
 
     public void syncSchema() throws IOException {
