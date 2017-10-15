@@ -35,6 +35,17 @@ public class SessionController {
         }
     }
 
+    @RequestMapping(value = "/session/logout", method = RequestMethod.POST)
+    @ResponseBody
+    public Object logout(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            sessionService.removeSession(request);
+            return JsonResponse.create();
+        }catch(Exception e){
+            return JsonResponse.error(e) ;
+        }
+    }
+
     @RequestMapping(value = "/session/me", method = RequestMethod.GET)
     @ResponseBody
     public Object login(HttpServletRequest request, HttpServletResponse response) {
