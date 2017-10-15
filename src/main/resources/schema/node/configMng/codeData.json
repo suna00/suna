@@ -977,6 +977,14 @@
   },
   {
     "typeId": "code",
+    "groupCodeId": "snsTypeCd",
+    "codeId": "10",
+    "name": "qoo10",
+    "order": 10,
+    "active": true
+  },
+  {
+    "typeId": "code",
     "groupCodeId": "contsMetaDivCd",
     "codeId": "1",
     "name": "아티스트",
