@@ -601,6 +601,9 @@
 %>
 
 <body onload="goResult()">
+<%
+    if (res_cd.equals("0000")){
+%>
 <form name="pay_info" method="post" action="http://localhost:3090/<%=siteId%>/order/complete">
     <input type="hidden" name="site_cd" value="<%= g_conf_site_cd   %>">    <!-- 사이트 코드 -->
     <input type="hidden" name="req_tx" value="<%= req_tx           %>">    <!-- 요청 구분 -->
@@ -658,5 +661,12 @@
     <input type="hidden" name="cash_no" value="<%= cash_no          %>">    <!-- 현금 영수증 거래 번호 -->
 
 </form>
+<%
+    }else{
+%>
+<form name="pay_info" method="get" action="http://localhost:3090/<%=siteId%>/order/<%=ordr_idxx%>"></form>
+<%
+    }
+%>
 </body>
 </html>

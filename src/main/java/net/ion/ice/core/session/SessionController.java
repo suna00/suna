@@ -35,7 +35,7 @@ public class SessionController {
         }
     }
 
-    @RequestMapping(value = "/session/logout", method = RequestMethod.POST)
+    @RequestMapping(value = "/session/logout", method = RequestMethod.GET)
     @ResponseBody
     public Object logout(HttpServletRequest request, HttpServletResponse response) {
         try {
