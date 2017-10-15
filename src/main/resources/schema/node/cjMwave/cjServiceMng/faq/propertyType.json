@@ -121,6 +121,23 @@
   },
   {
     "typeId": "propertyType",
+    "tid": "faqCtgryInfo",
+    "pid": "showYn",
+    "id": "faqCtgryInfo>showYn",
+    "propertyTypeName": "노출 여부",
+    "valueType": "BOOLEAN",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "simple",
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
     "tid": "faq",
     "pid": "owner",
     "id": "faq>owner",

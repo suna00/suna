@@ -322,7 +322,8 @@
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",
-    "defaultValue": "s3"
+    "defaultValue": "",
+    "fileHandler":"s3"
   },
   {
     "typeId": "propertyType",
