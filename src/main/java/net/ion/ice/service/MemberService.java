@@ -92,6 +92,7 @@ public class MemberService {
                 context.setResult(CommonService.getResult("U0010"));    //로그인을 하지않은 사용자
             } else {
                 extraData.put("memberNo", memberNode.get("memberNo"));
+                extraData.put("userId", memberNode.get("userId"));
                 extraData.put("name", memberNode.get("name"));
                 context.setResult(CommonService.getResult("U0009", extraData));    //로그인을 한 사용자
             }
