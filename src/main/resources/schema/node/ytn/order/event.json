@@ -62,5 +62,21 @@
     "actionType": "service",
     "actionBody": "orderChangeService.requestReturn",
     "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "orderSheet",
+    "event": "pointOrder",
+    "noneExecute": true,
+    "eventName": "포인트구매"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "orderSheet>pointOrder",
+    "action": "pointOrder",
+    "actionName": "반품신청",
+    "actionType": "service",
+    "actionBody": "orderService.pointOrder",
+    "order": 1
   }
 ]

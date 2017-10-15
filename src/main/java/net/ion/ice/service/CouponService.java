@@ -151,8 +151,9 @@ public class CouponService {
         String siteType = String.valueOf(memberNode.getBindingValue("siteType"));
         String now = new SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA).format(new Date());
         List<Node> couponList = (List<Node>) NodeQuery.build("coupon").matching("memberNo", memberNo).matching("couponStatus", "n").matching("siteType", "all,".concat(siteType)).above("endDate", now).getList();
-
+        Map<String, Object> initCouponMap = new HashMap<>();
         for (Map<String, Object> targetProduct : targetProductList) {
+            initCouponMap.put(String.valueOf(targetProduct.get("tempOrderProductId")), null);
             String productId = JsonUtils.getStringValue(targetProduct, "productId");
             Double orderPrice = JsonUtils.getDoubleValue(targetProduct, "orderPrice");
             Map<String, Object> productInfo = getProductInfo(targetProduct);
@@ -198,18 +199,17 @@ public class CouponService {
             targetProduct.put("coupon", productCoupon);
         }
         List<Map<String, Object>> allCouponList = allCouponList(targetProductList);
-        Map<String, Object> maximumCouponList = sortMaximumList(allCouponList);
+        Map<String, Object> maximumCouponMap = sortMaximumList(initCouponMap, allCouponList);
         queryResult.put("items", targetProductList);
-        queryResult.put("maximum", maximumCouponList);
+        queryResult.put("maximum", maximumCouponMap);
         context.setResult(queryResult);
 
         return context;
     }
 
-    private Map<String, Object> sortMaximumList(List<Map<String, Object>> allCouponList) {
+    private Map<String, Object> sortMaximumList(Map<String, Object> resultMap, List<Map<String, Object>> allCouponList) {
         List<Integer> selectedProductList = new ArrayList<>();
         List<Integer> selectedCouponList = new ArrayList<>();
-        Map<String, Object> resultMap = new HashMap<>();
 
         int index = 0;
         for (Map<String, Object> coupon : allCouponList) {
@@ -224,8 +224,10 @@ public class CouponService {
             }
             for (Integer tempOrderProductId : selectedProductList) {
                 if (StringUtils.equals(String.valueOf(coupon.get("tempOrderProductId")), String.valueOf(tempOrderProductId))) {
-                    duplicated1 = true;
-                    break;
+                    if(resultMap.get(String.valueOf(tempOrderProductId)) != null){
+                        duplicated1 = true;
+                        break;
+                    }
                 }
             }
             for (Integer couponId : selectedCouponList) {
@@ -242,7 +244,6 @@ public class CouponService {
             resultMap.put(String.valueOf(coupon.get("tempOrderProductId")), coupon.get("couponId"));
             selectedProductList.add((Integer) coupon.get("tempOrderProductId"));
             selectedCouponList.add((Integer) coupon.get("couponId"));
-            index++;
         }
         return resultMap;
     }
