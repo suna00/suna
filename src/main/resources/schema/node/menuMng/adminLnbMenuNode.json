@@ -171,7 +171,7 @@
     "gnbMenuId": "mbrMng",
     "parentMenuId": "root",
     "menuId": "dcalrMngConfig",
-    "menuName": "신고 관리 설정",
+    "menuName": "신고 관리 리스트",
     "order": "20",
     "icon": "fa-tag",
     "active": "true",
@@ -180,7 +180,7 @@
     "customPages": [
       {
         "pageName": "목록",
-        "pageUrl": "cj/mbr/dclar//List"
+        "pageUrl": "cj/mbr/dclar/List"
       },
       {
         "pageName": "상세",
