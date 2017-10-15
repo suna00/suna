@@ -497,6 +497,23 @@
   {
     "typeId": "propertyType",
     "tid": "couponType",
+    "pid": "downloadUrl",
+    "propertyTypeName": "쿠폰 다운로드 URL",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": "",
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "couponType",
     "pid": "limitedQuantityType",
     "propertyTypeName": "발급수 제한 타입",
     "valueType": "REFERENCE",
