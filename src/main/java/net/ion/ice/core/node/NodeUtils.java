@@ -142,7 +142,6 @@ public class NodeUtils {
 
     public static Double getDoubleValue(Object value) {
         if (value == null) return null;
-
         if (value instanceof Double) {
             return (Double) value;
         } else if (StringUtils.isEmpty(value.toString())) {
@@ -341,8 +340,8 @@ public class NodeUtils {
             case REFERENCED: {
                 if (context != null && context.isIncludeReferenced(pt.getPid()) && context.getLevel() < 5 && node instanceof Node) {
                     QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(getNodeType(((Node)node).getTypeId()), pt, (Node) node);
-//                    subQueryContext.setReferenceView(context.getReferenceView());
-//                    subQueryContext.setReferenceViewFields(context.getReferenceViewFields());
+                    subQueryContext.setReferenceView(context.getReferenceView());
+                    subQueryContext.setReferenceViewFields(context.getReferenceViewFields());
                     subQueryContext.setDateFormat(context.getDateFormat()) ;
                     subQueryContext.setFileUrlFormat(context.getFileUrlFormat()) ;
                     subQueryContext.setLevel(context.getLevel() + 1);
