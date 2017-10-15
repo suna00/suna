@@ -1,10 +1,10 @@
 # CMS 캐시 동기화 테스트용 프로파일
-# 10.75.7.144, 10.75.7.145
-# 디비 필요없음
+# 10.75.6.131, 10.75.7.130
+# 투표서버의 authdb 스키마를 바라봅니다
 # hazelcast
 
 spring:
-  profiles: multicms
+  profiles: multigw
   http:
     multipart:
       max-request-size: 10MB
@@ -22,17 +22,17 @@ jwtConfig:
   refreshTokenExpTime: 60 #분
 
 
+# 스케일업할 때 members 가 자동으로 늘어나나?
 cluster:
-  mode: cms
-  groups: cms
+  mode: all
+  groups: all
   members:
-    - 10.75.6.131
-    - 10.75.7.130
+    - 10.75.6-7.140
     - 127.0.0.1
     - localhost
 
 infinispan:
-  cachePath: /data/ion/cms-core/resource/ice2/cache
+  cachePath: /data/ion/gw-core/resource/ice2/cache
 
 tomcat:
   access-log-enabled: true
@@ -47,7 +47,7 @@ logging:
 
 file:
   default:
-    path: /data/ion/cms-core/resource/ice2/files
+    path: /data/ion/gw-core/resource/ice2/files
 
 
 i18n:
@@ -67,10 +67,10 @@ aws:
 
 
 temp-file:
-  dir: /data/ion/cms-core/resource/ice2/cache
+  dir: /data/ion/gw-core/resource/ice2/cache
 
 image:
-  prefixUrl: http://125.131.88.147:8080/image/
+  prefixUrl: http://g-api-elb-579243851.ap-northeast-2.elb.amazonaws.com/image/
   s3PrefixUrl: https://cjmwave-prd.s3.ap-northeast-2.amazonaws.com/ion/
 
 mobile:

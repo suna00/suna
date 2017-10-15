@@ -34,7 +34,7 @@ public class DBSyncService {
 
     private static int BATCH_UNIT = 200;
 
-    boolean useBatch = false;
+    boolean useBatch = true;
 
     @Autowired
     TaskExecutor taskExecutor;

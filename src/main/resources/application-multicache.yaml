@@ -1,10 +1,10 @@
 # CMS 캐시 동기화 테스트용 프로파일
 # 10.75.7.144, 10.75.7.145
-# 디비 필요없음
+# 투표서버의 ice2 스키마를 바라봅니다
 # hazelcast
 
 spring:
-  profiles: multicms
+  profiles: multicache
   http:
     multipart:
       max-request-size: 10MB
@@ -23,16 +23,15 @@ jwtConfig:
 
 
 cluster:
-  mode: cms
+  mode: cache
   groups: cms
   members:
-    - 10.75.6.131
-    - 10.75.7.130
+    - 10.75.7.144-145
     - 127.0.0.1
     - localhost
 
 infinispan:
-  cachePath: /data/ion/cms-core/resource/ice2/cache
+  cachePath: /data/ion/cache-core/resource/ice2/cache
 
 tomcat:
   access-log-enabled: true
@@ -47,7 +46,7 @@ logging:
 
 file:
   default:
-    path: /data/ion/cms-core/resource/ice2/files
+    path: /data/ion/cache-core/resource/ice2/files
 
 
 i18n:
@@ -67,7 +66,7 @@ aws:
 
 
 temp-file:
-  dir: /data/ion/cms-core/resource/ice2/cache
+  dir: /data/ion/cache-core/resource/ice2/cache
 
 image:
   prefixUrl: http://125.131.88.147:8080/image/
