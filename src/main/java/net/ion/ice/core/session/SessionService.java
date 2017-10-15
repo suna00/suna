@@ -13,9 +13,9 @@ import net.ion.ice.security.config.JwtConfig;
 import net.ion.ice.security.token.JwtTokenFactory;
 import net.ion.ice.security.token.RawAccessJwtToken;
 import net.ion.ice.security.token.RefreshToken;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.stagemonitor.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -131,7 +131,7 @@ public class SessionService {
     public Map<String, Object> userLogin(HttpServletRequest request, HttpServletResponse response, String userId, String password) {
         Node node = nodeService.getNode("user", userId) ;
 
-        if(node == null || node.getStringValue("password").equals(password)){
+        if(node == null || !StringUtils.equals(node.getStringValue("password"), password)){
             throw new ApiException("300", "Login Fail") ;
         }
 
