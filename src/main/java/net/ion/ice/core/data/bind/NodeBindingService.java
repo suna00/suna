@@ -122,7 +122,6 @@ public class NodeBindingService {
         return readContext.makeResult();
     }
 
-
     public NodeBindingInfo getNodeBindingInfo(String typeId) {
         nodeBindProcess(typeId);
         return nodeBindingInfoMap.get(typeId);

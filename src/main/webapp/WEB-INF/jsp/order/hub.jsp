@@ -143,7 +143,6 @@
     String myDeliveryAddressId = f_get_parm(request.getParameter("myDeliveryAddressId"));
 
 
-//    String finalCouponDiscountPrice = request.getParameter("finalCouponDiscountPrice");
     String useYPoint = request.getParameter("useYPoint");
     String useWelfarepoint = request.getParameter("useWelfarepoint");
     String usedCoupon = request.getParameter("usedCoupon");
@@ -388,7 +387,6 @@
     responseMap.put("myDeliveryAddressId", myDeliveryAddressId);
 
     /*OrderSheet*/
-//    responseMap.put("finalCouponDiscountPrice", finalCouponDiscountPrice);
     responseMap.put("useYPoint", useYPoint);
     responseMap.put("useWelfarepoint", useWelfarepoint);
     responseMap.put("usedCoupon", usedCoupon);
@@ -442,7 +440,7 @@
                     responseMap.put("usePayMethodName", "상품권");
                 }
 
-                bSucc = orderService.createOrderSheet(responseMap);
+                bSucc = orderService.createOrderSheet(responseMap, request);
 
             } catch (Exception e) {
                 bSucc = "false";
