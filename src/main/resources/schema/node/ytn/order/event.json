@@ -76,7 +76,7 @@
     "action": "orderList",
     "actionName": "주문리스트",
     "actionType": "service",
-    "actionBody": "mypageOrderService.getOrderSheetList",
+    "actionBody": "mypageOrderService.getMypageOrderList",
     "order": 1
   },
   {

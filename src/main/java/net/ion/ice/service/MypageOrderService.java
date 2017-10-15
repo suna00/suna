@@ -6,10 +6,12 @@ import net.ion.ice.core.data.bind.NodeBindingInfo;
 import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.*;
+import net.ion.ice.core.session.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,17 +21,35 @@ public class MypageOrderService {
 
     public static final String orderSheet_TID = "orderSheet";
     public static final String orderProduct_TID = "orderProduct";
-    public static final String orderProductItem_TID = "orderProductItem";
-    public static final String orderDeliveryPrice_TID = "orderDeliveryPrice";
     public static final String commonResource_TID = "commonResource";
 
     @Autowired
-    private NodeService nodeService;
+    private SessionService sessionService;
     @Autowired
     private NodeBindingService nodeBindingService;
 
 
-    public ExecuteContext getOrderSheetList(ExecuteContext context) {
+    public ExecuteContext getMypageOrderList(ExecuteContext context) {
+        Map<String, Object> session = null;
+        try {
+            session = sessionService.getSession(context.getHttpRequest());
+            String memberNo = JsonUtils.getStringValue(session, "member.memberNo");
+            getOrderSheetList(context, memberNo);
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return context;
+    }
+
+    public ExecuteContext getAdminOrderList(ExecuteContext context) {
+        getOrderSheetList(context, "");
+
+        return context;
+    }
+
+    public void getOrderSheetList(ExecuteContext context, String memberNo) {
         Map<String, Object> data = context.getData();
         int pageSize = (JsonUtils.getIntValue(data, "pageSize") == 0 ? 10 : JsonUtils.getIntValue(data, "pageSize"));
         int page = JsonUtils.getIntValue(data, "page");
@@ -46,7 +66,8 @@ public class MypageOrderService {
                 "&sorting=created desc" +
                 (orderSheetId != "" ? "&orderSheetId_equals="+orderSheetId : "") +
                 (orderProductId != "" || orderStatus != "" ? "&orderSheetId_exists="+existsQuery : "") +
-                (createdFromto != "" ? "&created_fromto="+createdFromto : "");
+                (createdFromto != "" ? "&created_fromto="+createdFromto : "") +
+                (memberNo != "" ? "&memberNo_equals="+memberNo : "");
 
         List<Map<String, Object>> sheetTotalList = nodeBindingService.list(orderSheet_TID, "");
 
@@ -84,8 +105,6 @@ public class MypageOrderService {
 
         item.put("items", sheetList);
         context.setResult(item);
-
-        return context;
     }
 
     public void putReferenceValue(String nodeTypeId, ExecuteContext context, Map<String, Object> op) {
