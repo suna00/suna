@@ -102,7 +102,39 @@
             {
               "referenceView": "contsMetaId"
             }
-          ]
+          ],
+          "response":{
+            "_all_":"",
+            "statsList": {
+              "typeId": "voteItemStats",
+              "resultType": "merge",
+              "query": [
+                {
+                  "field": "voteSeq",
+                  "method": "equals",
+                  "value": "{{:voteSeq}}"
+                },
+                {
+                  "field": "voteItemSeq",
+                  "method": "equals",
+                  "value": "{{:voteItemSeq}}"
+                },
+                {
+                  "sorting": "rankNum"
+                }
+              ],
+              "response": {
+                "voteNum": "",
+                "myVoteYn": {
+                  "select": {
+                    "ds": "cjDb",
+                    "resultType": "value",
+                    "sql": "select  if(count(*)>0,'true','false') myVoteYn from @{voteSeq}_voteItemHstByMbr where voteItemSeq = @{voteItemSeq} and voteItemSeq =(select voteItemSeq from @{voteSeq}_voteItemHstByMbr where mbrId = @{makeIdValue(>,snsTypeCd,snsKey)} order by created desc limit 0,1)"
+                  }
+                }
+              }
+            }
+          }
         },
         "refdSeriesItemList": {
           "typeId": "sersVoteItemInfo",

@@ -66,7 +66,7 @@ public class ReadContext implements Context, Serializable {
         return includeReferenced != null && includeReferenced;
     }
 
-    public void setIncludeReferenced(boolean includeReference) {
+    public void setIncludeReferenced(Boolean includeReference) {
         this.includeReferenced = includeReference;
     }
     public void setIncludeReferenced(String value) {
@@ -590,5 +590,9 @@ public class ReadContext implements Context, Serializable {
     public static ReadContext makeQueryContextForReference(PropertyType pt, Node refNode) {
         ReadContext readContext = new ReadContext() ;
         return readContext ;
+    }
+
+    public void setData(Map<String,Object> data) {
+        this.data = data;
     }
 }
