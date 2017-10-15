@@ -16,13 +16,7 @@ import java.net.URLEncoder;
 public class CookieUtil {
     public static void create(HttpServletResponse response, String name, String value, Boolean httpOnly , Boolean secure, Integer maxAge, String domain) throws UnsupportedEncodingException {
         Cookie cookie = new Cookie(name, URLEncoder.encode(value, "UTF-8"));
-        if(domain != null) {
-            String[] domains = StringUtils.split(domain, ".");
-            if (domains != null && domains.length == 3) {
-                domain = domains[1] + "." + domains[2];
-            }
-            cookie.setDomain(domain);
-        }
+        setDomain(cookie, domain);
         cookie.setPath("/");
         cookie.setHttpOnly(httpOnly);
         cookie.setSecure(secure);
@@ -31,13 +25,26 @@ public class CookieUtil {
         response.addCookie(cookie);
     }
 
-    public static void clear(HttpServletResponse response, String name) {
+    public static void clear(HttpServletRequest request, HttpServletResponse response, String name) {
         Cookie cookie = new Cookie(name, null);
+        String domain = request.getServerName() ;
+        setDomain(cookie, domain);
+
         cookie.setPath("/");
         cookie.setHttpOnly(true);
         cookie.setMaxAge(0);
 
         response.addCookie(cookie);
+    }
+
+    private static void setDomain(Cookie cookie, String domain) {
+        if(domain != null) {
+            String[] domains = StringUtils.split(domain, ".");
+            if (domains != null && domains.length == 3) {
+                domain = domains[1] + "." + domains[2];
+            }
+            cookie.setDomain(domain);
+        }
     }
 
     public static String getValue(HttpServletRequest httpServletRequest, String name) throws UnsupportedEncodingException {
