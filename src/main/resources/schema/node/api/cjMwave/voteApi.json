@@ -51,7 +51,7 @@
   {
     "typeId": "apiConfig",
     "category": "vote",
-    "apiId": "IfMwv001",
+    "apiId": "IfMwv001-1",
     "apiName": "MWAVE 투표 목록조회",
     "method": "GET",
     "parameters": [
@@ -181,7 +181,7 @@
   {
     "typeId": "apiConfig",
     "category": "vote",
-    "apiId": "IfMwv001-1",
+    "apiId": "IfMwv001",
     "apiName": "MWAVE 투표 목록조회",
     "method": "GET",
     "parameters": [
@@ -210,7 +210,7 @@
   {
     "typeId": "apiConfig",
     "category": "vote",
-    "apiId": "IfMwv002",
+    "apiId": "IfMwv002-1",
     "apiName": "MWAVE 투표 상세조회",
     "method": "GET",
     "parameters": [
@@ -353,7 +353,7 @@
   {
     "typeId": "apiConfig",
     "category": "vote",
-    "apiId": "IfMwv002-1",
+    "apiId": "IfMwv002",
     "apiName": "MWAVE 투표 상세조회",
     "method": "GET",
     "parameters": [
@@ -1123,7 +1123,7 @@
   {
     "typeId": "apiConfig",
     "category": "vote",
-    "apiId": "IfMwv108",
+    "apiId": "IfMwv108-1",
     "apiName": "MCD 투표 상세조회",
     "method": "GET",
     "parameters": [
@@ -1156,6 +1156,16 @@
           "field": "showLoCd",
           "method": "matching",
           "value": "4"
+        },
+        {
+          "field": "showYn",
+          "method": "matching",
+          "value": "true"
+        },
+        {
+          "field": "evVoteYn",
+          "method": "matching",
+          "value": "false"
         },
         {
           "field": "bradTelcsDt",
@@ -1222,6 +1232,35 @@
           "value": "10000"
         }
       }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMwv108",
+    "apiName": "MCD 투표 상세조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "bradTelcsDt",
+        "required": true
+      },
+      {
+        "paramName": "snsKey",
+        "required": false
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": false
+      },
+      {
+        "paramName": "connIpAdr",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "voteBasInfo",
+      "event": "resIfMwv108"
     }
   },
   {

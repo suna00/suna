@@ -210,8 +210,8 @@
     ],
     "config": {
       "createItem": {
-        "typeId": "votePrtcptHst",
-        "event": "save",
+        "typeId": "voteBasInfo",
+        "event": "evtVoting",
         "data": {
           "voteSeq": "{{:voteSeq}}",
           "voteItemSeq": "{{:voteQueiSeq}}",

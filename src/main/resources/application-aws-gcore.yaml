@@ -1,12 +1,8 @@
-# 운영 API 게이트웨이 서버 (10.75.6.48) 설정
-# - 운영 API GW 는 CMSWebWAS(130) 와 통신할 수 있음(필수. 사용자 데이터 저장)
-# - 운영 API GW 는 API CACHE(144) 와 통신할 수 있음(필수. API)
-# - 운영 API GW 는 CMS RDS 와 통신할 수 있음(선택. 성능) - datasource.json
-# - 운영 API GW 는 회원 RDS 와 통신할 수 있음(필수. 투표) - datasource.json
-
+# 기존의 application-aws-apigw 를 대체함
+# 오토스케일의 대상이 아님
 
 spring:
-  profiles: aws-api-scalable
+  profiles: aws-gcore
   http:
     multipart:
       max-request-size: 10MB
@@ -23,13 +19,11 @@ jwtConfig:
   tokenExpirationTime: 15 #분
   refreshTokenExpTime: 60 #분
 
-
-# 스케일업할 때 members 가 자동으로 늘어나나?
 cluster:
-  mode: all
-  groups: all
+  mode: api
+  groups: api
   members:
-    - 10.75.6.165
+    - 10.75.6.48
     - 127.0.0.1
     - localhost
 
@@ -51,7 +45,6 @@ file:
   default:
     path: /data/ion/api/resource/ice2/files
 
-
 i18n:
   defaults: eng
 
@@ -60,10 +53,20 @@ cjapi:
     programurl: http://pipapi.itvs.cjenm.com/json/data/v1.0/global/programinfo.asp
     clipmediaurl: http://pipapi.itvs.cjenm.com/json/data/v1.0/global/clipmediainfo.asp
 
-
+aws:
+  s3:
+    bucketName: cjmwave-prd
+    bucketKey: ion
+    accessKey: AKIAJWGJBWJU3TLXANWA
+    secretKey: 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
 
 temp-file:
   dir: /data/ion/api/resource/ice2/cache
 
 image:
   prefixUrl: http://g-api-elb-579243851.ap-northeast-2.elb.amazonaws.com/image/
+
+mobile:
+  push:
+    fcmApiKey: AAAA-z1uhx4:APA91bHlHSqGakLe7RKY1fuvTpUyx1hZKX5BG7ydfK96Kfy9bCX0upciPQ6UlpOXECEcc4tsYFiiEUy6aHSWWMZwwN-V6rtu-aeOAGg0_r6GAFaVkJF3jEOxiO4kblsi4tNDOAApMZx2
+    fcmApiUrl: https://fcm.googleapis.com/fcm/send

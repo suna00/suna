@@ -85,7 +85,11 @@ public class InfinispanRepositoryService {
             deleteNode(node);
             return node ;
         }
+        cacheNode(node);
+        return node.clone();
+    }
 
+    public void cacheNode(Node node) {
         Cache<String, Node> nodeCache = null ;
 
         try {
@@ -100,7 +104,6 @@ public class InfinispanRepositoryService {
             e.printStackTrace();
             logger.error(node.toString(), e);
         }
-        return node.clone();
     }
 
     public void remove(ExecuteContext context) {

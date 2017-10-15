@@ -2,6 +2,7 @@ package net.ion.ice.core.file;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.ion.ice.ApplicationContextManager;
+import net.ion.ice.core.file.amazon.S3FileRepository;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.PropertyType;
 import org.apache.commons.lang3.StringUtils;
@@ -71,6 +72,9 @@ public class FileService {
         FileRepository repository = repositoryMap.get(fileHandler) ;
         if(repository == null && fileHandler.equals("default")){
             repository = ApplicationContextManager.getBean(DefaultFileRepository.class) ;
+        }
+        if(repository == null && fileHandler.equals("s3")){
+            repository = ApplicationContextManager.getBean(S3FileRepository.class) ;
         }
         if(repository == null){
             repository = ApplicationContextManager.getBean(DefaultFileRepository.class) ;

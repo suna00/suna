@@ -62,6 +62,11 @@
             "value": "{{:default(mainSeq,뺿뺿)}}"
           },
           {
+            "field": "showYn",
+            "method": "matching",
+            "value": "true"
+          },
+          {
             "sorting": "sortOdrg",
             "referenceView": "itemId,cnctContsId",
             "includeReferenced": true
@@ -159,7 +164,12 @@
                   {
                     "field": "langCd",
                     "method": "matching",
-                    "value": "{{:langCd}}"
+                    "value": "{{:conditionDefault(langCd,eng,eng,zho-cn,zho-tw)}}"
+                  },
+                  {
+                    "field": "apvSttusCd",
+                    "method": "matching",
+                    "value": "2"
                   },
                   {
                     "field": "newsNm",
@@ -175,6 +185,9 @@
                     "field": "findKywrd",
                     "method": "matchingShould",
                     "value": "{{:default(newsHubKywrd,뺿뺿)}}"
+                  },
+                  {
+                    "sorting": "created desc"
                   }
                 ],
                 "response": {
@@ -306,7 +319,12 @@
                   {
                     "field": "langCd",
                     "method": "matching",
-                    "value": "{{:langCd}}"
+                    "value": "{{:conditionDefault(langCd,eng,eng,zho-cn,zho-tw)}}"
+                  },
+                  {
+                    "field": "apvSttusCd",
+                    "method": "matching",
+                    "value": "2"
                   },
                   {
                     "field": "newsNm",
@@ -322,6 +340,9 @@
                     "field": "findKywrd",
                     "method": "matchingShould",
                     "value": "{{:default(newsHubKywrd,뺿뺿)}}"
+                  },
+                  {
+                    "sorting": "created desc"
                   }
                 ],
                 "response": {

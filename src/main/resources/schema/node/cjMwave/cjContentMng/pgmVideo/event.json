@@ -83,5 +83,14 @@
     "listenerName" : "프로그램 영상 저장시 videItgInfo에도 정보 저장",
     "actionType" : "service",
     "actionBody" : "videItgInfoService.videItgInfoPgmVideoSave"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "pgmVideo>create",
+    "action": "pipImgCreateEvent",
+    "actionName": "pip 이미지 저장",
+    "actionType": "service",
+    "actionBody": "videoService.pipImgSave",
+    "order": 3
   }
 ]

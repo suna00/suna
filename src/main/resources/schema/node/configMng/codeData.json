@@ -1065,6 +1065,14 @@
   },
   {
     "typeId": "code",
+    "groupCodeId": "contsMetaDivCd",
+    "codeId": "12",
+    "name": "투표항목",
+    "order": 12,
+    "active": true
+  },
+  {
+    "typeId": "code",
     "groupCodeId": "intrstCd",
     "codeId": 1,
     "name": "뷰티",
@@ -2244,7 +2252,15 @@
     "groupCodeId": "contsMetaDivTid",
     "codeId": "11",
     "name": "onairInfo",
-    "order": 10,
+    "order": 11,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "contsMetaDivTid",
+    "codeId": "12",
+    "name": "voteItemInfo",
+    "order": 12,
     "active": true
   },
   {

@@ -35,7 +35,7 @@ public class ClusterService {
     }
 
 
-    public void node(ExecuteContext executeContext) {
+    public void cache(ExecuteContext executeContext) {
         Node node = executeContext.getNode() ;
         if(node != null) {
             NodeType nodeType = NodeUtils.getNodeType(node.getTypeId()) ;
@@ -44,8 +44,7 @@ public class ClusterService {
             if(topic == null){
                 topic = clusterConfiguration.getTopic("all") ;
             }
-
-//            topic.publish(node);
+            topic.publish(new CacheMessage(executeContext.getEvent(), node));
         }
     }
 
@@ -71,4 +70,6 @@ public class ClusterService {
         }
         return null ;
     }
+
+
 }

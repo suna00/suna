@@ -14,15 +14,17 @@ public class PushUtils {
     public static Map<String, Object> getFcmMessage(String targets
             , String title, String body, String image, Map<String, Object> customInfo){
         Map<String, Object> organizedMessage = new HashMap<String, Object>();
+        Map<String, Object> notificationMap = new HashMap<String, Object> ();
         Map<String, Object> dataMap = new HashMap<String, Object> ();
 
-        dataMap.put("title", title);
-        dataMap.put("body", body);
-        dataMap.put("image", image);
-        if(customInfo != null) dataMap.put("custom", customInfo);
+        notificationMap.put("title", title);
+        notificationMap.put("body", body);
+        //dataMap.put("image", image);
+        //if(customInfo != null) dataMap.put("custom", customInfo);
 //        organizedMessage.put("registration_ids", targets);
         organizedMessage.put("to", targets);
-        organizedMessage.put("data", dataMap);
+        organizedMessage.put("notification", notificationMap);
+        if(customInfo != null) organizedMessage.put("data", customInfo);
         return organizedMessage;
     }
 }

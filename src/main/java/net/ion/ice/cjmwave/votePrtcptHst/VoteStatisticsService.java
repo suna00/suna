@@ -4,13 +4,13 @@ import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
-import net.ion.ice.schedule.ScheduleController;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.xml.crypto.Data;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -43,50 +43,71 @@ public class VoteStatisticsService {
         Date now = new Date();
         String voteDate = DateFormatUtils.format(now, "yyyyMMddHHmmss");
 
+        // 투표 기간안에 있는 모든 VoteBasInfo 조회
         List<Node> voteBasInfoList = NodeUtils.getNodeList(VOTE_BAS_INFO, "pstngStDt_below=" + voteDate + "&pstngFnsDt_above="+ voteDate);
-//        List<Node> voteBasInfoList2 = new ArrayList<>();    // TODO - For Test
-//        voteBasInfoList2.add( NodeUtils.getNode(VOTE_BAS_INFO, "800033"));
-
         for (Node voteBasInfo : voteBasInfoList) {
+            // 총 투표수
+            Integer totalVoteNum = selectTotalVoteCnt(voteBasInfo.getId());
 
-            // 각 voteItem에 해당하는 투표수
+            // VoteSeq에 해당 하는 모든 voteItemInfo 가져오기
+            List<Node> voteItemInfoList = NodeUtils.getNodeList(VOTE_ITEM_INFO, "voteSeq_matching=" + voteBasInfo.getId());
+
+            // 각 투표가 진행된 voteItem 정보 및 Count 조회
             List<Map<String, Object>> voteNumInfoList = getVoteNumByVoteItemList(voteBasInfo.getId());
+            List<Map<String, Object>> rtVoteItemStatsList = new ArrayList<>();
 
             int rankNum = 1;
-            int totalVoteNum = selectTotalVoteCnt(voteBasInfo.getId());
+            List<String> checkVoteItemSeqList = new ArrayList<>();
             for (Map<String, Object> voteNumInfo : voteNumInfoList) {
-
-                // 각 voteSeq과 voteItemSeq에 해당하는 voteItemStatus 항목 생성
-                Map<String, Object> voteItemStats = selectVoteItemStats(voteNumInfo.get("voteSeq").toString(), rankNum);
-                if (voteItemStats == null) {
-                    // TODO - create Node
-                    Map<String, Object> voteItemStatsMap = new ConcurrentHashMap<>();
-                    voteItemStatsMap.put("voteSeq", voteNumInfo.get("voteSeq"));
-                    voteItemStatsMap.put("voteItemSeq", voteNumInfo.get("voteItemSeq"));
-                    voteItemStatsMap.put("rankNum", rankNum);
-                    voteItemStatsMap.put("created", now);
-                    //voteItemStats = nodeService.createNode(voteItemStatsMap, VOTE_ITEM_STATS);
-
-                    // 생성된 항목 voteItemStatus 생성
-                    insertVoteItemStats(voteItemStatsMap);
-                    voteItemStats = selectVoteItemStats(voteItemStatsMap.get("voteSeq").toString(),
-                                                    Integer.parseInt(voteItemStatsMap.get("rankNum").toString()));
-                }
-
-                voteItemStats.put("voteSeq", voteNumInfo.get("voteSeq"));
-                voteItemStats.put("voteItemSeq", voteNumInfo.get("voteItemSeq"));
-                voteItemStats.put("created", now);
-                voteItemStats.put("rankNum", rankNum++);
+                voteNumInfo.put("rankNum", rankNum);
                 // Rank Gap - pass
                 // TODO - VoteRate
                 Double voteNumDouble = Double.parseDouble(voteNumInfo.get("voteNum").toString());
-                voteItemStats.put("voteRate", voteNumDouble/totalVoteNum);
-                voteItemStats.put("voteNum", voteNumInfo.get("voteNum"));
-                voteItemStats.put("created", now);
+                BigDecimal voteCnt = new BigDecimal(voteNumDouble*100);
+                BigDecimal totalCnt = new BigDecimal(totalVoteNum);
 
-                //totalVoteNum += Integer.parseInt(voteNumInfo.get("voteNum").toString());
-                // 생성된 항목 voteItemStatus에 업데이트
-                updateVoteItemStats(voteItemStats);
+                BigDecimal voteRate = voteCnt.divide(totalCnt, 1, BigDecimal.ROUND_HALF_UP);
+                voteNumInfo.put("voteRate", voteRate.doubleValue());
+                voteNumInfo.put("voteNum", voteNumInfo.get("voteNum"));
+                voteNumInfo.put("created", now);
+
+                // Response List에 추가
+                rtVoteItemStatsList.add(voteNumInfo);
+                checkVoteItemSeqList.add(voteNumInfo.get("voteItemSeq").toString());
+                rankNum++;
+            }
+
+            for (Node voteItemInfo : voteItemInfoList) {
+                if(!checkVoteItemSeqList.contains(voteItemInfo.get("voteItemSeq").toString())) {
+                    Map<String, Object> tmpVoteItemInfoMap = new ConcurrentHashMap<>();
+                    tmpVoteItemInfoMap.put("voteSeq", voteItemInfo.get("voteSeq"));
+                    tmpVoteItemInfoMap.put("voteItemSeq", voteItemInfo.get("voteItemSeq"));
+
+                    tmpVoteItemInfoMap.put("rankNum", rankNum);
+                    // Rank Gap - pass
+                    // TODO - VoteRate
+                    //Double voteNumDouble = Double.parseDouble(voteNumInfo.get("voteNum").toString());
+                    tmpVoteItemInfoMap.put("voteRate", 0);
+                    tmpVoteItemInfoMap.put("voteNum", 0);
+                    tmpVoteItemInfoMap.put("created", now);
+
+                    // Response List에 추가
+                    rtVoteItemStatsList.add(tmpVoteItemInfoMap);
+                    rankNum++;
+                }
+            }
+
+            // Hazelcase 등록 대상 Data - rtVoteItemStatsList
+            // Insert or Update
+            for (Map<String, Object> voteItemStatsMap : rtVoteItemStatsList) {
+
+                Map<String, Object> checkVoteItemStats = selectVoteItemStats(voteItemStatsMap.get("voteSeq").toString(),
+                                                    Integer.parseInt(voteItemStatsMap.get("rankNum").toString()));
+                if (checkVoteItemStats == null) {
+                    insertVoteItemStats(voteItemStatsMap);
+                } else {
+                    updateVoteItemStats(voteItemStatsMap);
+                }
             }
         }
         context.setResult(voteBasInfoList);
@@ -105,7 +126,6 @@ public class VoteStatisticsService {
     }
 
     private List<Map<String, Object>> getVoteNumByVoteItemList(String voteSeq) {
-
         if (jdbcTemplate==null) {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
         }
@@ -150,10 +170,11 @@ public class VoteStatisticsService {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
         }
 
-        String updateQuery = "UPDATE voteItemStats SET voteItemSeq= ?, voteRate= ?, voteNum= ? WHERE voteSeq=? AND rankNum=?";
+        String updateQuery = "UPDATE voteItemStats SET voteItemSeq= ?, voteRate= ?, voteNum= ?, created= ? WHERE voteSeq=? AND rankNum=?";
 
-        jdbcTemplate.update(updateQuery, voteItemStats.get("voteItemSeq"), voteItemStats.get("voteRate"), voteItemStats.get("voteNum"),
-                            voteItemStats.get("voteSeq"), voteItemStats.get("rankNum"));
+        jdbcTemplate.update(updateQuery,
+                    voteItemStats.get("voteItemSeq"), voteItemStats.get("voteRate"), voteItemStats.get("voteNum"), voteItemStats.get("created"),
+                    voteItemStats.get("voteSeq"), voteItemStats.get("rankNum"));
 
     }
 }

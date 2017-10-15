@@ -65,6 +65,22 @@
   {
     "typeId": "event",
     "tid": "voteBasInfo",
+    "event": "evtVoting",
+    "noneExecute" : true,
+    "eventName": "VOTING Save Event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "voteBasInfo>evtVoting",
+    "action": "evtVotingEvent",
+    "actionName": "EVENT VOTING Save",
+    "actionType": "service",
+    "actionBody": "votePrtcptHstService.evtVoting",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "voteBasInfo",
     "event": "resIfMwv001",
     "noneExecute": true,
     "eventName": "get Total Vote Count Event"
@@ -108,6 +124,38 @@
     "actionName": "get Total voting Count Event Action",
     "actionType": "service",
     "actionBody": "voteStatisticsService.IFMwave101",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "voteBasInfo",
+    "event": "resIfMwv108",
+    "noneExecute": true,
+    "eventName": "get Total Vote Count Event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "voteBasInfo>resIfMwv108",
+    "action": "resIfMwv108Event",
+    "actionName": "get Total voting Count Event Action",
+    "actionType": "service",
+    "actionBody": "voteResponseService.resIfMwv108",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "voteBasInfo",
+    "event": "resIfUlc002",
+    "noneExecute": true,
+    "eventName": "My Vote List Event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "voteBasInfo>resIfUlc002",
+    "action": "resIfUlc002Event",
+    "actionName": "MyVoteList EventAction",
+    "actionType": "service",
+    "actionBody": "voteResponseService.resIfUlc002",
     "order": 1
   }
 ]

@@ -54,7 +54,7 @@ public class ClusterConfiguration {
             hazelcast = Hazelcast.getOrCreateHazelcastInstance(config());
             for(String grp : groupList){
                 ITopic topic = hazelcast.getReliableTopic(grp + "_topic") ;
-                topic.addMessageListener(new TopicListener()) ;
+                topic.addMessageListener(new TopicListener(this)) ;
                 topicMap.put(grp, topic) ;
 
                 IQueue queue = hazelcast.getQueue(grp + "_queue") ;

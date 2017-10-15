@@ -68,6 +68,10 @@ public class FileValue implements Serializable{
         return this.storePath ;
     }
 
+    public String getHandler(){
+        return this.handler;
+    }
+
     @Override
     public boolean equals(Object fileValue){
         if(fileValue instanceof FileValue){

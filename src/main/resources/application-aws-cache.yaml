@@ -1,5 +1,8 @@
+# 기존의 application-aws-apicache 를 대체함
+# hazelcast 관련 group 과 mode 를 변경하였음
+
 spring:
-  profiles: aws-cmswebwas
+  profiles: aws-cache
   http:
     multipart:
       max-request-size: 10MB
@@ -18,15 +21,16 @@ jwtConfig:
 
 
 cluster:
-  mode: all
-  groups: all
+  mode: cache
+  groups: cms
   members:
-    - 10.75.6.130
+    - 10.75.6.144-145 # CACHE 1-2
+    #- 10.75.7.144-145 # CACHE 3
     - 127.0.0.1
     - localhost
 
 infinispan:
-  cachePath: /data/ion/cms/resource/ice2/cache
+  cachePath: /data/ion/api/resource/ice2/cache
 
 tomcat:
   access-log-enabled: true
@@ -41,7 +45,7 @@ logging:
 
 file:
   default:
-    path: /data/ion/cms/resource/ice2/files
+    path: /data/ion/api/resource/ice2/files
 
 
 i18n:
@@ -60,5 +64,6 @@ aws:
     secretKey: P1c7asDMAXzodFn+4YGRgAo+w4ZUdGfuu1ncIzzK
 
 
+
 temp-file:
-  dir: /data/ion/cms/resource/ice2/cache
+  dir: /data/ion/api/resource/ice2/cache

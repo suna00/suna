@@ -58,8 +58,15 @@ aws:
     accessKey: AKIAIBQJZKS334ELQ7KA
     secretKey: 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
 
+
 temp-file:
   dir: /resource/cj_ice2/cache/
 
 image:
   prefixUrl: http://125.131.88.147:8080/image/
+  s3PrefixUrl: https://cjmwave-dev.s3.ap-northeast-2.amazonaws.com/ion/
+
+mobile:
+  push:
+    fcmApiKey: AAAA-z1uhx4:APA91bHlHSqGakLe7RKY1fuvTpUyx1hZKX5BG7ydfK96Kfy9bCX0upciPQ6UlpOXECEcc4tsYFiiEUy6aHSWWMZwwN-V6rtu-aeOAGg0_r6GAFaVkJF3jEOxiO4kblsi4tNDOAApMZx2
+    fcmApiUrl: https://fcm.googleapis.com/fcm/send

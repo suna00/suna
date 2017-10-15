@@ -68,4 +68,8 @@ public class ContsRetvService {
         }
         return returnVal;
     }
+
+    public void dayStats(){
+
+    }
 }

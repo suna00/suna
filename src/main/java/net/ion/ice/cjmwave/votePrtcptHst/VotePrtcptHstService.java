@@ -1,30 +1,27 @@
 package net.ion.ice.cjmwave.votePrtcptHst;
 
-import net.ion.ice.IceRuntimeException;
+import net.ion.ice.cjmwave.errMsgInfo.ErrMsgUtil;
 import net.ion.ice.core.api.ApiException;
+import net.ion.ice.core.cluster.ClusterService;
 import net.ion.ice.core.context.ExecuteContext;
-import net.ion.ice.core.data.bind.NodeBindingUtils;
-import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
+import net.ion.ice.core.node.PropertyType;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
-import org.apache.commons.lang3.time.DateUtils;
 import org.apache.commons.lang3.time.FastDateFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
-import java.lang.management.LockInfo;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -35,11 +32,19 @@ import static java.util.Collections.synchronizedList;
  */
 @Service("votePrtcptHstService")
 public class VotePrtcptHstService {
+
+    private static Logger logger = LoggerFactory.getLogger(VotePrtcptHstService.class);
+
+    private ErrMsgUtil errMsgUtil = new ErrMsgUtil();
+
     public static final String VOTE_BAS_INFO = "voteBasInfo";
     public static final String VOTE_SEQ = "voteSeq";
 
-    private static Logger logger = LoggerFactory.getLogger(VotePrtcptHstService.class);
-    private static String[] pidArray = {"sersVoteSeq", "voteSeq", "voteItemSeq", "prtcpMbrId", "connIpAdr"};
+    public static final String VOTE_ITEM_INFO = "voteItemInfo";
+    public static final String VOTE_ITEM_SEQ = "voteItemSeq";
+
+    public static final String PRTCP_MBR_ID = "prtcpMbrId";
+    public static final String CONN_IP_ADR = "connIpAdr";
 
     @Autowired
     private NodeService nodeService;
@@ -52,6 +57,8 @@ public class VotePrtcptHstService {
     private Map<String, String> voteHstSelectSqlMap = new ConcurrentHashMap<>() ;
     private Map<String, String> voteHstByIpSelectSqlMap = new ConcurrentHashMap<>() ;
 
+    // Ip 접근 관리
+    private Map<String, Integer> voteIPCntMap = new ConcurrentHashMap<>();
 
     private Map<String, Map<String, Integer>> mbrVoteCount = new ConcurrentHashMap<>() ;
 
@@ -70,40 +77,37 @@ public class VotePrtcptHstService {
         }
         Map<String, Object> data = context.getData() ;
 
-
         Date now = new Date();
         String mbrId = data.get("snsTypeCd") + ">" + data.get("snsKey");
         String voteDate = DateFormatUtils.format(now, "yyyyMMdd");
 
-        String connIpAdr = data.get("connIpAdr").toString();
+        String connIpAdr = data.get(CONN_IP_ADR).toString();
         if(connIpAdr==null || connIpAdr.length()<=0) {
-            throw new ApiException("402", "incorrect your IP Address.");
+            // Incorrect your IP Address.
+            throw new ApiException("421", errMsgUtil.getErrMsg(context,"421"));
         }
 
         Node voteBasInfo = NodeUtils.getNode(VOTE_BAS_INFO, data.get(VOTE_SEQ).toString());
 
         // Checking Available IP with mbrId and voteSeq
-        List<Node> dclaNodeList = NodeUtils.getNodeService()
-                .getNodeList("dclaSetupMng","setupTypeCd_matching=2&sorting=dclaSetupSeq desc&limit=1");
+        String searchText = "setupTypeCd_matching=2&sorting=dclaSetupSeq desc&limit=1";
+        List<Node> dclaNodeList = nodeService.getNodeList("dclaSetupMng", searchText);
         Node dclaNode = dclaNodeList.get(0);
-
         Integer ipDclaCnt = dclaNode.getIntValue("setupBaseCnt");
 
-        String selectIpDclaCnt = "SELECT count(*) ipCnt FROM voteHstByIp WHERE ipAdr=? AND voteDate=?";
-        Map<String, Object> ipCntMap = jdbcTemplate.queryForMap(selectIpDclaCnt, connIpAdr, voteDate);
-        Integer mbrIpDclaCnt = Integer.parseInt(ipCntMap.get("ipCnt").toString());
-
+        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate);
         if (mbrIpDclaCnt >= ipDclaCnt) {
-            throw new ApiException("401", "This IP connection has exceeded the maximum number.");
+            // This IP connection has exceeded the maximum number.
+            throw new ApiException("421", errMsgUtil.getErrMsg(context,"421"));
         }
 
         if (voteBasInfo!=null) {
-
             // Checking Available Date
             String pstngStDt = voteBasInfo.get("pstngStDt").toString().substring(0, 8);   // 투표 시작일
             String pstngFnsDt = voteBasInfo.get("pstngFnsDt").toString().substring(0, 8); // 투표 종료일
             if (voteDate.compareTo(pstngStDt) < 0 || voteDate.compareTo(pstngFnsDt) > 0) {
-                throw new ApiException("400", "Required Parameter : It is not voting period.");
+                // It is not voting period.
+                throw new ApiException("422", errMsgUtil.getErrMsg(context,"422"));
             }
 
             String rstrtnPredDivCd = (String) voteBasInfo.getStoreValue("rstrtnPredDivCd");
@@ -111,6 +115,10 @@ public class VotePrtcptHstService {
                 case "rstrtnPredDivCd>day" : {
                     Integer rstrtnDayCnt = voteBasInfo.getIntValue("rstrtnDayCnt") ;
                     Integer rstrtnVoteCnt = voteBasInfo.getIntValue("rstrtnVoteCnt") ;
+
+                    if (rstrtnDayCnt==null || rstrtnDayCnt==0) {
+                        FastDateFormat dateFormat = FastDateFormat.getInstance("yyyyMMdd");
+                    }
 
                     if(!mbrVoteCount.containsKey(mbrId)) {
                         Map<String, Integer> voteHstMap = new ConcurrentHashMap<>() ;
@@ -124,15 +132,17 @@ public class VotePrtcptHstService {
                     }
 
                     if(mbrVoteCount.get(mbrId).get(voteBasInfo.getId()) >= rstrtnVoteCnt){
-                        throw new ApiException("403", "over day vote limit ") ;
+                        // 투표수 초과
+                        throw new ApiException("423", errMsgUtil.getErrMsg(context,"423"));
                     }
                 }
             }
 
-            // TODO - insert ip history
             // 접근 IP 관리 테이블에 등록
             String insertIpDclaCnt = "INSERT INTO voteHstByIp (voteDate, ipAdr, created) VALUES(?,?,?)";
             jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now);
+            // 접근 IP Count 관리 Map에 등록
+            voteIPCntMap.put(connIpAdr, mbrIpDclaCnt+1);
 
             // Vote by Mbr
             mbrVoteCount.get(mbrId).put(voteBasInfo.getId(), mbrVoteCount.get(mbrId).get(voteBasInfo.getId()) + 1);
@@ -165,16 +175,16 @@ public class VotePrtcptHstService {
             // TODO - IP Number Count
         }
         else {
-            throw new ApiException("404", "could not found item on VoteBasInfo");
+            throw new ApiException("424", errMsgUtil.getErrMsg(context,"424"));
         }
-
 
         Map<String, Object> createItem = new ConcurrentHashMap<>();
         Map<String, Integer> resMap = new ConcurrentHashMap<>();
 
+
+
         resMap.put("userVoteCnt", mbrVoteCount.get(mbrId).get(voteBasInfo.getId()));
         resMap.put("userPvCnt", 10);    // TODO - PV Count
-        //resMap.put("ipAdrVoteCnt", getNumberOfDclaSetMngCnt() - selectVoteHstByIp((String) data.get("connIpAdr"), voteDate, voteBasInfo));
         resMap.put("ipAdrVoteCnt", ipDclaCnt - mbrIpDclaCnt - 1);
         //data.put("createItem", resMap);
 
@@ -192,47 +202,49 @@ public class VotePrtcptHstService {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
         }
 
-        Map<String, String> returnResult = new HashMap<>();//response
         Map<String, Object> data = context.getData();
-        if (data.isEmpty()) {
-            throw new ApiException("400", "Parameter is null");
+        if (data.isEmpty()) {   // Parameter is null
+            throw new ApiException("420", errMsgUtil.getErrMsg(context,"420"));
+        }
+        if (data.get("voteResult") == null || StringUtils.isEmpty(data.get("voteResult").toString())) {
+            // Required Parameter : voteResult
+            throw new ApiException("420", errMsgUtil.getErrMsg(context,"420"));
+        }
+        if (data.get("connIpAdr") == null || StringUtils.isEmpty(data.get(CONN_IP_ADR).toString())) {
+            // Required Parameter : connIpAdr
+            throw new ApiException("420", errMsgUtil.getErrMsg(context,"420"));
         }
 
-        if (data.get("voteResult") == null || StringUtils.isEmpty(data.get("voteResult").toString())) {
-            throw new ApiException("400", "Required Parameter : voteResult");
-        }
-        if (data.get("connIpAdr") == null || StringUtils.isEmpty(data.get("connIpAdr").toString())) {
-            throw new ApiException("400", "Required Parameter : connIpAdr");
-        }
         String voteResult = data.get("voteResult").toString();
-        String connIpAdr = data.get("connIpAdr").toString();
+        String connIpAdr = data.get(CONN_IP_ADR).toString();
 
         //Json parsing
         List<Map<String, Object>> reqJson = null;
         try{
             reqJson = JsonUtils.parsingJsonToList(voteResult);
-            if (reqJson.isEmpty()) throw new ApiException("410", "voteResult is not array");
+            if (reqJson.isEmpty()) {
+                // voteResult is not array
+                throw new ApiException("420", errMsgUtil.getErrMsg(context,"420"));
+            }
         }catch (IOException e){
-            throw new ApiException("410", "voteResult format is incorrect");
+            // voteResult format is incorrect
+            throw new ApiException("420", errMsgUtil.getErrMsg(context,"420"));
         }
 
         Date now = new Date();
-        //SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
         FastDateFormat dateFormat = FastDateFormat.getInstance("yyyyMMdd");
 
         Node seriesVoteBasInfo = null;
         String mbrId = null;
 
-        //List<Map<String, Object>> resList = synchronizedList(new ArrayList());
         List<Map<String, Object>> insertList = synchronizedList(new ArrayList());
         for (Map<String, Object> voteData : reqJson) {
-            //voteData.put("connIpAdr",connIpAdr);//ip
             if (seriesVoteBasInfo == null) {
                 seriesVoteBasInfo = NodeUtils.getNode(VOTE_BAS_INFO, voteData.get("sersVoteSeq").toString());
             }
             // 사용자 ID
             if (mbrId==null || mbrId.length()<=0) {
-                mbrId = voteData.get("prtcpMbrId").toString();
+                mbrId = voteData.get(PRTCP_MBR_ID).toString();
             }
             insertList.add(voteData);
         }
@@ -243,7 +255,8 @@ public class VotePrtcptHstService {
 
         // Checking Available Date
         if (voteDate.compareTo(pstngStDt) < 0 || voteDate.compareTo(pstngFnsDt) > 0) {
-            throw new ApiException("400", "Required Parameter : It is not voting period.");
+            // It is not voting period.
+            throw new ApiException("422", errMsgUtil.getErrMsg(context,"422"));
         }
 
         // Checking Available IP with mbrId and voteSeq
@@ -253,24 +266,24 @@ public class VotePrtcptHstService {
 
         Integer ipDclaCnt = dclaNode.getIntValue("setupBaseCnt");
 
-        String selectIpDclaCnt = "SELECT count(*) ipCnt FROM voteHstByIp WHERE ipAdr=? AND voteDate=?";
-        Map<String, Object> ipCntMap = jdbcTemplate.queryForMap(selectIpDclaCnt, connIpAdr, voteDate);
-        Integer mbrIpDclaCnt = Integer.parseInt(ipCntMap.get("ipCnt").toString());
 
+        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate);
         if (mbrIpDclaCnt >= ipDclaCnt) {
-            throw new ApiException("401", "This IP connection has exceeded the maximum number.");
+            // This IP connection has exceeded the maximum number.
+            throw new ApiException("421", errMsgUtil.getErrMsg(context,"421"));
         }
 
         Long pstngStDtTime = 0L;    // 투표 시작일 (DateTime)
         Long pstngFnsDtTime = 0L;   // 투표 종료일 (DateTime)
         Long voteDtTime = 0L;       // 투표 진행일 - 현재날짜 (DateTime)
-        // TODO 날짜 카운트 방식 변경 - 속도 비교 필요.
         try {
             pstngStDtTime = dateFormat.parse(pstngStDt).getTime();
             pstngFnsDtTime = dateFormat.parse(pstngFnsDt).getTime();
             voteDtTime = dateFormat.parse(voteDate).getTime();
         } catch (ParseException e) {
-            throw new ApiException("500", e.getMessage());
+            // Server Error
+            //throw new ApiException("501", e.getMessage());
+            throw new ApiException("425", errMsgUtil.getErrMsg(context,"425"));
         }
         // 총 투표 기간 - Day Count
         Long seriesDayCnt = (pstngFnsDtTime - pstngStDtTime) / (24*60*60*1000);
@@ -287,12 +300,6 @@ public class VotePrtcptHstService {
         if (rstrtnDayCnt==0 || rstrtnDayCnt==null) {
             rstrtnDayCnt = seriesDayCnt;
         }
-        /*
-        // TODO - 무제한 투표수 확인 - 투표 날짜 간격은 무제한일 경우 기간으로 대체 가능한데... 투표수는 무제한이 가능한가......
-        if (rstrtnVoteCnt==0 || rstrtnVoteCnt==null) {
-            rstrtnVoteCnt = seriesDayCnt;
-        }
-        */
 
         // Response Parameter
         // 날짜 간격 투표수
@@ -305,7 +312,6 @@ public class VotePrtcptHstService {
             if((dayCntByPeriod % rstrtnDayCnt) > 0) {
                 maxVoteCntByMbr += rstrtnVoteCnt;
             }
-            // 누적 투표수
             voteCntByMbr = selectSeriesVoteHstByAccum(seriesVoteBasInfo.get("voteSeq").toString(), mbrId, pstngStDt.toString(), voteDate);
 
         } else {
@@ -317,32 +323,71 @@ public class VotePrtcptHstService {
             if (voteCntStDt.compareTo(pstngStDt) < 0) {
                 voteCntStDt = pstngStDt;
             }
-            // 현재기준 투표수
             voteCntByMbr = selectSeriesVoteHstByAccum(seriesVoteBasInfo.get("voteSeq").toString(), mbrId, voteCntStDt.toString(), voteDate);
         }
 
         // 가능한 투표수 확인
         if(voteCntByMbr>=maxVoteCntByMbr) {
-            throw new ApiException("420", "You have exceeded the number of votes");
+            throw new ApiException("423", errMsgUtil.getErrMsg(context,"423"));
         }
 
         // 접근 IP 관리 테이블에 등록
         String insertIpDclaCnt = "INSERT INTO voteHstByIp (voteDate, ipAdr, created) VALUES(?,?,?)";
         jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now);
+        // 접근 IP Count 관리 Map에 등록
+        voteIPCntMap.put(connIpAdr, mbrIpDclaCnt+1);
 
         // 투표 등록
         String insertVoteHst = "INSERT INTO " + seriesVoteBasInfo.get(VOTE_SEQ).toString() + "_voteHstByMbr" +
                 "(voteDate, mbrId, created) VALUES(?,?,?)";
         jdbcTemplate.update(insertVoteHst, voteDate, mbrId, now);
+
+        // TODO 관리를 위한 Map 생성 및 업데이트
+        //seriesVoteInfoMap.put(seriesVoteBasInfo.get(VOTE_SEQ), )
+
         // 투표 하위 아이템 등록
         for (Map<String, Object> voteData : insertList) {
-            String voteItemSeq = voteData.get("voteItemSeq").toString();
+            String voteItemSeq = voteData.get(VOTE_ITEM_SEQ).toString();
             // Vote Item 투표 등록 // TODO - series 요청일 경우 "voteQueiSeq"와 같이 입력값이 여러개 인지 확인 필요.
             String insertSeriesVoteItemHst = "INSERT INTO " + voteData.get(VOTE_SEQ) + "_voteItemHstByMbr " +
                     "(voteDate, voteItemSeq, mbrId, created) VALUES(?,?,?,?)";
             jdbcTemplate.update(insertSeriesVoteItemHst, voteDate, voteItemSeq, mbrId, now);
         }
 
+        // 이벤트 투표 생성
+        Integer dayEventVoteRstrtnCnt = Integer.parseInt(seriesVoteBasInfo.get("dayEventVoteRstrtnCnt").toString());
+        Integer contnuEventVoteRstrtnCnt = Integer.parseInt(seriesVoteBasInfo.get("contnuEventVoteRstrtnCnt").toString());
+        if (dayEventVoteRstrtnCnt>0 && contnuEventVoteRstrtnCnt>0) {
+
+            Map<String, Object> voteEvtMap = selectVoteEvtByMbr(mbrId);
+
+            Integer incVoteNum = dayEventVoteRstrtnCnt;
+
+            // yesterday
+            Calendar calendar = Calendar.getInstance();
+            calendar.add(calendar.DATE, -1);
+            String yesterday = DateFormatUtils.format(calendar, "yyyyMMdd");
+
+            if (voteEvtMap==null) {
+                String insertVoteEvtQuery = "INSERT INTO voteEvtByMbr (mbrId, continuedDayCnt, usedVoteNum, voteNum, created) VALUES(?,?,?,?,?)";
+                jdbcTemplate.update(insertVoteEvtQuery, mbrId, 1, 0, incVoteNum, now);
+            }
+            else {
+                Date created = (Date) voteEvtMap.get("created");
+                String chkDt = DateFormatUtils.format(created, "yyyyMMdd");
+                Integer continued = Integer.parseInt(voteEvtMap.get("continuedDayCnt").toString()) + 1;
+                if (continued==2 && chkDt.equals(yesterday)) {
+                    incVoteNum = incVoteNum * contnuEventVoteRstrtnCnt;
+                } else {
+                    continued = 1;
+                }
+
+                Integer voteNum = Integer.parseInt(voteEvtMap.get("voteNum").toString()) + incVoteNum;
+                String updateVoteEvtQuery = "UPDATE voteEvtByMbr SET continuedDayCnt=?, voteNum=?, created=? WHERE mbrId=?";
+                jdbcTemplate.update(updateVoteEvtQuery, continued, voteNum, now, mbrId);
+            }
+
+        }
 
         //node create
         Map<String, Object> responseMap = new ConcurrentHashMap<>() ;
@@ -360,6 +405,19 @@ public class VotePrtcptHstService {
         }
     }
 
+    // 접근 IP Count 조회
+    private Integer getIpCnt(String connIpAdr, String voteDate) {
+        Integer mbrIpDclaCnt;
+        if (voteIPCntMap.get(connIpAdr) != null) {
+            mbrIpDclaCnt = voteIPCntMap.get(connIpAdr);
+        } else {
+            String selectIpDclaCnt = "SELECT count(*) ipCnt FROM voteHstByIp WHERE ipAdr=? AND voteDate=?";
+            Map<String, Object> ipCntMap = jdbcTemplate.queryForMap(selectIpDclaCnt, connIpAdr, voteDate);
+            mbrIpDclaCnt = Integer.parseInt(ipCntMap.get("ipCnt").toString());
+            voteIPCntMap.put(connIpAdr, mbrIpDclaCnt);
+        }
+        return mbrIpDclaCnt;
+    }
 
     public void hstTableCreate(ExecuteContext context) {
         if(jdbcTemplate == null){
@@ -397,7 +455,6 @@ public class VotePrtcptHstService {
                 , itemTableName);
 
         try {
-            //JdbcTemplate jdbcTemplate2 = NodeUtils.getNodeBindingService().getNodeBindingInfo("voteBasInfo").getJdbcTemplate();
             jdbcTemplate.execute(createMbrTableSql);
             jdbcTemplate.execute(createItemTableSql);
             String voteFormlCd = voteBasNode.getStringValue("voteFormlCd");
@@ -407,16 +464,6 @@ public class VotePrtcptHstService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-
-    // TODO - id 값 확인 필요.
-    private Integer getNumberOfDclaSetMngCnt() {
-        Node dclaSetupMngNode = NodeUtils.getNode("dclaSetupMng", "2"); // TODO 변경 필요.
-        if (dclaSetupMngNode == null) {
-            return 0;
-        }
-        return dclaSetupMngNode.getIntValue("setupBaseCnt");
     }
 
     private Integer selectVoteHstByDate(String mbrId, String voteDate, Node voteBasInfo) {
@@ -451,18 +498,106 @@ public class VotePrtcptHstService {
         return Long.parseLong(result.get("voteCnt").toString());
     }
 
-    // TODO - IP
-    private Integer selectVoteHstByIp(String ip, String voteDate, Node voteBasInfo) {
-        if(!voteHstByIpSelectSqlMap.containsKey(voteBasInfo.getId())) {
-            String voteHstSelectByDate = "SELECT count(*) cnt " +
-                    "FROM voteHstByIp " +
-                    "WHERE ipAdr = ? and voteDate = ? "; // TODO - voteDate가 필요한지 확인 - 투표 전체가 대상인지 또는 일자별로 구분할지 확인 필요
-            voteHstByIpSelectSqlMap.put(voteBasInfo.getId(), voteHstSelectByDate) ;
+    public void evtVoting(ExecuteContext context) {
+        if (jdbcTemplate == null) {
+           jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
         }
-        Map<String, Object> result = jdbcTemplate.queryForMap(voteHstSelectSqlMap.get(voteBasInfo.getId()), ip, voteDate) ;
-        Integer cnt = Integer.parseInt(result.get("cnt").toString()) ;
 
-        return cnt;
+        Map<String, Object> data = context.getData();
+        if (data.isEmpty()) {   // Parameter is null
+            throw new ApiException("420", errMsgUtil.getErrMsg(context,"420"));
+        }
+        if (data.get("connIpAdr") == null || StringUtils.isEmpty(data.get(CONN_IP_ADR).toString())) {
+            // Required Parameter : connIpAdr
+            throw new ApiException("420", errMsgUtil.getErrMsg(context,"420"));
+        }
+
+        // 사용자 ID
+        String mbrId = data.get("snsTypeCd") + ">" + data.get("snsKey");
+        String connIpAdr = data.get(CONN_IP_ADR).toString();
+
+        Date now = new Date();
+        FastDateFormat dateFormat = FastDateFormat.getInstance("yyyyMMdd");
+        String voteDate = DateFormatUtils.format(now, "yyyyMMdd");
+
+        // 이벤트 투표 정보 조회
+        Node eventVoteBasInfo = NodeUtils.getNode(VOTE_BAS_INFO, data.get("voteSeq").toString());
+        String pstngStDt = eventVoteBasInfo.get("pstngStDt").toString().substring(0, 8);   // 투표 시작일
+        String pstngFnsDt = eventVoteBasInfo.get("pstngFnsDt").toString().substring(0, 8); // 투표 종료일
+
+        // Checking Available Date
+        if (voteDate.compareTo(pstngStDt) < 0 || voteDate.compareTo(pstngFnsDt) > 0) {
+            // It is not voting period.
+            throw new ApiException("422", errMsgUtil.getErrMsg(context,"422"));
+        }
+
+        // Checking Available IP with mbrId and voteSeq
+        List<Node> dclaNodeList = NodeUtils.getNodeService()
+                .getNodeList("dclaSetupMng","setupTypeCd_matching=2&sorting=dclaSetupSeq desc&limit=1");
+        Node dclaNode = dclaNodeList.get(0);
+
+        Integer ipDclaCnt = dclaNode.getIntValue("setupBaseCnt");
+        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate);
+        if (mbrIpDclaCnt >= ipDclaCnt) {
+            // This IP connection has exceeded the maximum number.
+            throw new ApiException("421", errMsgUtil.getErrMsg(context,"421"));
+        }
+
+        // 투표수 확인
+        Map<String, Object> voteEvtCntByMbr = selectVoteEvtByMbr(mbrId);
+        if (voteEvtCntByMbr == null) {
+            throw new ApiException("426", "You do not have event votes.");
+        }
+        //Integer voteCnt = selectVoteCntByMbrId(data.get(VOTE_SEQ).toString(), mbrId);
+        Integer usedVoteNum = Integer.parseInt(voteEvtCntByMbr.get("usedVoteNum").toString());
+        Integer voteNum= Integer.parseInt(voteEvtCntByMbr.get("voteNum").toString());
+        if (usedVoteNum >= voteNum) {
+            throw new ApiException("423", errMsgUtil.getErrMsg(context, "423"));
+        }
+
+        String insertEventVoteHst = "INSERT INTO " + eventVoteBasInfo.getId().toString() + "_voteHstByMbr " +
+                "(voteDate, mbrId, created) VALUES(?,?,?)";
+        //voteHstSqlMap.put(eventVoteBasInfo.getId(), voteHstInsert);
+        jdbcTemplate.update(insertEventVoteHst, voteDate, mbrId, now);
+
+        String voteItemSeqs = (String) data.get("voteQueiSeq");
+        String insertEventVoteItemHst = "INSERT INTO " + data.get(VOTE_SEQ) + "_voteItemHstByMbr " +
+                "(voteDate, voteItemSeq, mbrId, created) VALUES(?,?,?,?)";
+
+        for (String voteItemSeq : StringUtils.split(voteItemSeqs, ",")) {
+            jdbcTemplate.update(insertEventVoteItemHst, voteDate, voteItemSeq, mbrId, now);
+        }
+
+        // Event 투표수 증가
+        usedVoteNum += 1;
+        String increaseUsedVoteNum = "UPDATE voteEvtByMbr SET usedVoteNum=? WHERE mbrId=?";
+        jdbcTemplate.update(increaseUsedVoteNum, usedVoteNum,mbrId);
+
+        // 접근 IP 관리 테이블에 등록
+        String insertIpDclaCnt = "INSERT INTO voteHstByIp (voteDate, ipAdr, created) VALUES(?,?,?)";
+        jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now);
+
+        //node create
+        Map<String, Object> resDataMap = new ConcurrentHashMap<>();
+        resDataMap.put("ipAdrVoteCnt", ipDclaCnt - mbrIpDclaCnt - 1);
+        resDataMap.put("userEvtVoteCnt", voteNum - usedVoteNum);
+
+        Map<String, Object> response = new ConcurrentHashMap<>();
+        response.put("response", resDataMap);
+        context.setResult(response);
     }
 
+    private Map<String,Object> selectVoteEvtByMbr(String mbrId) {
+        if (jdbcTemplate == null) {
+            jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
+        }
+
+        String selectVoteEvt = "SELECT mbrId, continuedDayCnt, usedVoteNum, voteNum, created FROM voteEvtByMbr WHERE mbrId=?";
+        try {
+            return jdbcTemplate.queryForMap(selectVoteEvt, mbrId);
+        } catch (EmptyResultDataAccessException e) {
+            logger.info("이벤트 투표권이 없습니다.");
+            return null;
+        }
+    }
 }

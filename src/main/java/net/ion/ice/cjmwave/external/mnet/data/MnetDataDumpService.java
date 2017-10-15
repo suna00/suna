@@ -6,6 +6,7 @@ import net.ion.ice.cjmwave.external.utils.MigrationUtils;
 import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
+import org.apache.commons.collections.map.HashedMap;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -89,7 +90,9 @@ public class MnetDataDumpService {
         }
 
         if(qResult == null || qResult.isEmpty()) {
-            return new Date();
+            Calendar cal = Calendar.getInstance();
+            cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 14);
+            return cal.getTime();
         } else {
             Date lastDate = (Date) qResult.get("jobStarted");
             return lastDate;
@@ -189,15 +192,14 @@ public class MnetDataDumpService {
 
     private void  migrate(Node replicationNode, Object foreignKey, Date provided) {
 
-        logger.info("in migrate method");
+        logger.info("in migrate method :: DATE");
         Date startDate = new Date();
         Map<String, Object> migReport = new HashMap<String, Object>();
         String fromTable = "", toTable = "";
 
         try{
 
-//            String q = String.valueOf(replicationNode.get("query"));
-            String q = String.valueOf(replicationNode.get("query_nosp"));
+            String q = String.valueOf(replicationNode.get("query"));
             fromTable = String.valueOf(replicationNode.get("fromTable"));
             toTable = String.valueOf(replicationNode.get("toTable"));
             String subTasks = String.valueOf(replicationNode.get("subTasks"));
@@ -263,22 +265,94 @@ public class MnetDataDumpService {
         }
     }
 
+    private void  migrateWithList(Node replicationNode, Object foreignKey, List<String> ids) {
 
-    // 특별한 테이블이 지정되지 않은 경우 모든 테이블에 대한 작업을 수행함
-    public void copyData () {
-        copyData("ALL", null);
+        logger.info("in migrate method :: LIST");
+        Date startDate = new Date();
+        Map<String, Object> migReport = new HashMap<String, Object>();
+        String fromTable = "", toTable = "";
+
+        try{
+
+            String q = String.valueOf(replicationNode.get("query"));
+            fromTable = String.valueOf(replicationNode.get("fromTable"));
+            toTable = String.valueOf(replicationNode.get("toTable"));
+            String subTasks = String.valueOf(replicationNode.get("subTasks"));
+            String subTaskKey = String.valueOf(replicationNode.get("subTaskKey")).trim();
+            Date lastUpdated = getLastUpdated(fromTable, toTable);
+            boolean isTopNode = (boolean) replicationNode.getTypeId().toLowerCase().contains("receive");
+
+
+            // 이 노드가 standAlone 이 아니라면 파라미터는 subTaskKey 를 써야 함
+            // standAlone 이라면 날짜가 테이블에 있다.
+            Map<String, Object> preparedQuery = null;
+            Map<String, Object> params = new HashMap<>();
+            if(isTopNode) {
+                if(ids.size() == 1) {
+                    params.put("id", ids.get(0));
+                } else if(ids.size() > 1) {
+                    for(int i = 1; i < 11; i++) {
+                        params.put("id" + i, ids.get(i - 1));
+                    }
+                }
+            } else if(foreignKey != null) {
+                subTaskKey = String.valueOf(replicationNode.get("subTaskKey")).trim();
+                params.put("id", foreignKey);
+            }
+            preparedQuery = SyntaxUtils.parse(q, params);
+
+
+            logger.info("print jdbcTemplate Query :: " + String.valueOf(preparedQuery.get("query")));
+
+            // MSSQL 로부터 데이터 가져오기
+            List<Map<String, Object>> newData = queryMsSql(
+                    String.valueOf(preparedQuery.get("query"))
+                    , (Object[]) preparedQuery.get("params"));
+
+            logger.info("Length of Query result :: " + newData.size());
+
+            if(isTopNode && !"null".equals(subTasks)) {
+                for(Map<String, Object> singleDataToInput : newData){
+                    Object subTaskKeyValue = null;
+                    if(singleDataToInput.containsKey(subTaskKey.toLowerCase())){
+                        subTaskKeyValue = singleDataToInput.get(subTaskKey.toLowerCase());
+                        executeSubTask(replicationNode, subTaskKeyValue);
+                    } else if(singleDataToInput.containsKey(subTaskKey.toUpperCase())) {
+                        subTaskKeyValue = singleDataToInput.get(subTaskKey.toUpperCase());
+                        executeSubTask(replicationNode, subTaskKeyValue);
+                    }
+                }
+            }
+
+            //mySql 에 밀어넣기
+            migReport.putAll(upsertData(fromTable, toTable, newData));
+        } catch (Exception e) {
+            logger.error("error", e);
+        }
+        Date end = new Date();
+        migReport.put("mssqlTable", fromTable);
+        migReport.put("mysqlTable", toTable);
+        migReport.put("jobStarted", startDate);
+        migReport.put("jobFinished", end);
+        migReport.put("jobDuration", (end.getTime() - startDate.getTime()));
+        try{
+            updateReport(toTable, migReport);
+        } catch (Exception e) {
+            logger.info("It does not make you fool even though you are a poor reporter..." + toTable);
+        }
     }
+
 
 
     public void copyData (String target, Date provided) {
         // 각자 레포트 보고
-        logger.info("parameters :: target :: " + target + " :: provided :: " + provided);
+        logger.info("START COPY DATA :: " + target);
         // 리포트 정보 초기화
         migrationReports = new HashMap<>();
-
+        target = target.trim().toLowerCase();
         try{
             switch (target) {
-                case  "ALL" :
+                case  "all" :
                     List<Node> repNodeList = nodeService.getNodeList(REP_TID, "");
                     for(Node repNode : repNodeList) {
                         if((boolean)repNode.get("standAlone")) {
@@ -304,6 +378,80 @@ public class MnetDataDumpService {
                 MigrationUtils.recordDataCopyRecord(ice2Template, (Map) migrationReports.get(reportKey));
             }
 
+        } catch (Exception e) {
+            logger.error("Error occurred while copy data from MSSQL to MYSQL", e);
+        }
+    }
+
+    /*
+    * ===================== 아 이게 될려나 ...
+    * ===================== 임시 처리를 위해 추가되는 부분
+    * */
+    public void copyData (String target, List<String> ids) {
+        // 각자 레포트 보고
+        logger.info("START TEMPORARY COPY DATA :: " + target);
+        // 리포트 정보 초기화
+        migrationReports = new HashMap<>();
+        target = target.trim().toLowerCase();
+        // 멀티를 뽑을건지 싱글을 뽑을 건지 여기서 결정되어야 함
+        try {
+            int targetLength = ids.size();
+            int unit = 10;
+            int head = targetLength / unit;
+            int tail = targetLength % unit;
+            int toIndex = 1;
+
+            Node replicationMultiLogic = null;
+            Node replicationSingleLogic = null;
+            switch (target.toLowerCase()) {
+                case "artist":
+                    replicationMultiLogic = nodeService.read(REP_TID, "retrieveMultiArtist");
+                    replicationSingleLogic = nodeService.read(REP_TID, "retrieveSingleArtist");
+                    break;
+                case "album":
+                    replicationMultiLogic = nodeService.read(REP_TID, "retrieveMultiAlbum");
+                    replicationSingleLogic = nodeService.read(REP_TID, "retrieveSingleAlbum");
+                    break;
+                case "musicvideo":
+                    replicationMultiLogic = nodeService.read(REP_TID, "retrieveMultiMusicVideo");
+                    replicationSingleLogic = nodeService.read(REP_TID, "retrieveSingleMusicVideo");
+                    break;
+                case "song" :
+                    replicationMultiLogic = nodeService.read(REP_TID, "retrieveMultiSong");
+                    replicationSingleLogic = nodeService.read(REP_TID, "retrieveSingleSong");
+                    break;
+                default:
+                    logger.info("Invalid Type :: " + target);
+                    return;
+            }
+
+            logger.info("TotalCount :: " + ids.size());
+            logger.info("UnitCount :: " + head);
+            logger.info("LeftCount :: " + tail);
+
+            // 10 개씩 묶어서 처리
+            Map<String, Object> multiMapParams = new HashedMap();
+            for(int i = 0; i < head; i++) {
+                int startIdx = (i * unit);
+                toIndex = ((i + 1) * unit);
+                List<String> subListByUnit = ids.subList((i+1 * unit), unit);
+                migrateWithList(replicationMultiLogic, null, subListByUnit);
+            }
+
+            // 남은 항목에 대한 개별 처리
+            List<String> left = ids.subList(toIndex -1, ids.size());
+            for(int i = 0; i < left.size(); i++) {
+                // 1 개짜리 복사
+                List<String> singleList = new ArrayList<>();
+                singleList.add(left.get(i));
+                migrateWithList(replicationSingleLogic, null, singleList);
+            }
+
+            Iterator<String> migRepoIterator = migrationReports.keySet().iterator();
+            while(migRepoIterator.hasNext()) {
+                String reportKey = migRepoIterator.next();
+                MigrationUtils.recordDataCopyRecord(ice2Template, (Map) migrationReports.get(reportKey));
+            }
         } catch (Exception e) {
             logger.error("Error occurred while copy data from MSSQL to MYSQL", e);
         }

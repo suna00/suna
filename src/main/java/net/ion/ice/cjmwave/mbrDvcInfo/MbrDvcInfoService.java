@@ -6,6 +6,7 @@ import net.ion.ice.core.node.NodeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -14,27 +15,39 @@ import java.util.Map;
 
 @Service("mbrDvcInfoService")
 public class MbrDvcInfoService {
+
+    public static final String SNS_TYPE_CD = "snsTypeCd";
+    public static final String SNS_KEY = "snsKey";
+    public static final String MBR_DVC_INFO = "mbrDvcInfo";
+    public static final String DVC_ID = "dvcId";
+    public static final String MBR_ID = "mbrId";
+
     public void mbrDvcInfoSave(ExecuteContext context) {
         try {
             Map<String, Object> data = context.getData();
-            if (data.get("snsTypeCd") == null || StringUtils.isEmpty(data.get("snsTypeCd").toString())) {
+            Map<String, Object> createData = new LinkedHashMap<>();
+            if (data.get(SNS_TYPE_CD) == null || StringUtils.isEmpty(data.get(SNS_TYPE_CD).toString())) {
                 //skip
                 return;
-            } else if (data.get("snsKey") == null || StringUtils.isEmpty(data.get("snsKey").toString())) {
+            } else if (data.get(SNS_KEY) == null || StringUtils.isEmpty(data.get(SNS_KEY).toString())) {
                 //skip
                 return;
             }
-            String snsKey = data.get("snsKey").toString();
-            String snsTypeCd = data.get("snsTypeCd").toString();
+            String snsKey = data.get(SNS_KEY).toString();
+            String snsTypeCd = data.get(SNS_TYPE_CD).toString();
 
             if(StringUtils.contains(snsTypeCd,"snsTypeCd>")){
                 snsTypeCd = StringUtils.replace(snsTypeCd,"snsTypeCd>","");
             }
 
-            if (data.get("dvcId") != null) {
+            if (data.get(DVC_ID) != null) {
                 //creates
-                data.put("mbrId", snsTypeCd + ">" + snsKey);
-                NodeUtils.getNodeService().executeNode(data, "mbrDvcInfo", EventService.SAVE);
+                createData.put(MBR_ID, snsTypeCd + ">" + snsKey);
+                createData.put(DVC_ID, data.get(DVC_ID));
+                createData.put("dvcNm", data.get("dvcNm"));
+                createData.put("osCd", data.get("osCd"));
+                createData.put("osVer", data.get("osVer"));
+                NodeUtils.getNodeService().executeNode(createData, MBR_DVC_INFO, EventService.SAVE);
             }
         }catch (Exception e){
             e.printStackTrace();
