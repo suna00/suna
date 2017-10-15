@@ -178,12 +178,12 @@ public class NodeHelperService  {
 
             Date changed = lastChangedMap.get(typeId) ;
 
-            if(core || changed == null || changed.before(last)){
-                data.put("changed", last) ;
+//            if(core || changed == null || changed.before(last)){
+//                data.put("changed", last) ;
                 nodeService.saveNode(data) ;
-            }else{
-                logger.info("After last schema : " + typeId);
-            }
+//            }else{
+//                logger.info("After last schema : " + typeId);
+//            }
         }
     }
 }
