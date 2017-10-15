@@ -24,8 +24,8 @@ jwtConfig:
 
 # 스케일업할 때 members 가 자동으로 늘어나나?
 cluster:
-  mode: all
-  groups: all
+  mode: api
+  groups: api
   members:
     - 10.75.6.140
     - 10.75.7.140

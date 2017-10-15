@@ -32,7 +32,7 @@ public class DBSyncService {
     private final String PROCESS_TID = "dbSyncProcess"
             , MAPPER_TID = "dbSyncMapper";
 
-    private static int BATCH_UNIT = 200;
+    private static int BATCH_UNIT = 100;
 
     boolean useBatch = true;
 
