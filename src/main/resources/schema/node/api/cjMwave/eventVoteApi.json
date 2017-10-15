@@ -229,5 +229,41 @@
         }
       }
     }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMev003",
+    "apiName": "MAMA용 스폰서(외부) 투표하기",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "voteResult",
+        "required": true
+      },
+      {
+        "paramName": "infoOttpAgreeYn",
+        "required": true
+      },
+      {
+        "paramName": "connIpAdr",
+        "required": true
+      }
+    ],
+    "config": {
+      "createItem": {
+        "typeId": "voteBasInfo",
+        "event": "sponsorEvtVoting",
+        "response": {
+          "_all_": "",
+          "userEvtVoteCnt": {
+            "value": "10"
+          },
+          "ipAdrVoteCnt": {
+            "value": "10000"
+          }
+        }
+      }
+    }
   }
 ]
