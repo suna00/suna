@@ -65,7 +65,6 @@
       "typeId": "newProductMap",
       "query" : [
         {"field" : "newProductMapStatus", "method" : "matching", "value" : "y" },
-        {"field" : "categoryIds", "method" : "matching", "value" : "{{:categoryId}}" },
         {"field" : "newProductId", "method" : "referenceJoin", "value" : "newProductStatus_matching=y&siteType_matching=siteType>{{:siteType}}&year_matching={{:year}}&month_matching={{:month}}" },
         {"field" : "productId", "method" : "referenceJoin", "value" : "name_matching={{:searchValue}}&salePrice_fromto={{:salePrice}}" },
         {"includeReferenced" : false, "referenceView" : "newProductId,productId"},
