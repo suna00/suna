@@ -192,9 +192,17 @@ public class VoteResponseService {
 
             List<Node> sersVoteItemList = nodeService.getNodeList(SERS_VOTE_ITEM_INFO, voteItemTerms);
             for (Node voteItem : sersVoteItemList) {
-                context.makeReferenceView("sersItemVoteSeq,contsMetaId"); // referenceView 설정
+                context.makeReferenceView("sersItemVoteSeq"); // referenceView 설정
                 context.setIncludeReferenced(true);
                 voteItem.toDisplay(context);
+                String serVoteItemTerms = "voteSeq_matching=" + voteItem.getStringValue("sersItemVoteSeq") +
+                        "&langCd_matching=" + data.get("langCd");
+                List<Node> serVoteItemList = nodeService.getNodeList(VOTE_ITEM_INFO, serVoteItemTerms);
+                for (Node serVoteItem : serVoteItemList) {
+                    context.makeReferenceView("contsMetaId"); // referenceView 설정
+                    serVoteItem.toDisplay(context);
+                }
+                voteItem.put("refdItemList",serVoteItemList);
             }
 
             voteBasInfo.toDisplay(context);
@@ -311,6 +319,14 @@ public class VoteResponseService {
                     context.makeReferenceView("sersItemVoteSeq,contsMetaId"); // referenceView 설정
                     context.setIncludeReferenced(true);
                     voteItem.toDisplay(context);
+                    String serVoteItemTerms = "voteSeq_matching=" + voteItem.getStringValue("sersItemVoteSeq") +
+                            "&langCd_matching=" + data.get("langCd");
+                    List<Node> serVoteItemList = nodeService.getNodeList(VOTE_ITEM_INFO, serVoteItemTerms);
+                    for (Node serVoteItem : serVoteItemList) {
+                        context.makeReferenceView("contsMetaId"); // referenceView 설정
+                        serVoteItem.toDisplay(context);
+                    }
+                    voteItem.put("refdItemList",serVoteItemList);
                 }
 
                 voteBasInfo.toDisplay(context);
