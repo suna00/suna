@@ -623,7 +623,6 @@ public class QueryContext extends ReadContext {
         }
         if(getFacetTerms() != null && getFacetTerms().size() > 0){
             QueryResult facets = new QueryResult() ;
-            try {
                 for (FacetTerm facetTerm : getFacetTerms()) {
 //                List<Map<String, Object>> facet = new ArrayList<>() ;
                     Map<String, Object> facet = new HashMap<>();
@@ -641,7 +640,6 @@ public class QueryContext extends ReadContext {
                     }
                     facets.put(facetTerm.getName(), facet);
                 }
-            }catch (Exception e){}
             queryResult.put("facets", facets) ;
         }
         queryResult.put(fieldName, list) ;
