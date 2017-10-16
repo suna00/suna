@@ -428,6 +428,7 @@ public class DBSyncService {
                     ,targetNodeType, successCnt, skippedCnt, jobTaken, startTime);
         } else {
             if(idReport.isEmpty()) {
+
                 idReport.put(MigrationUtils.MIGTARGET, mig_target);
                 idReport.put(MigrationUtils.MIGTYPE, mig_type);
                 idReport.put(MigrationUtils.NODE_TARGET, targetNodeType);
@@ -814,27 +815,27 @@ public class DBSyncService {
 
     private Map<String, Object> mergeReport(Map<String, Object> oldReport, Map<String, Object> newReport){
         try {
-            if(oldReport.containsKey("successCnt")) {
-                int successCnt = (int) oldReport.get("successCnt");
-                int newSuccessCnt = (newReport.get("successCnt") == null ? 0 : (int) newReport.get("successCnt"));
-                newReport.put("successCnt", successCnt + newSuccessCnt);
+            if(oldReport.containsKey(MigrationUtils.JOB_SUCCESS)) {
+                int successCnt = (int) oldReport.get(MigrationUtils.JOB_SUCCESS);
+                int newSuccessCnt = (newReport.get(MigrationUtils.JOB_SUCCESS) == null ? 0 : (int) newReport.get(MigrationUtils.JOB_SUCCESS));
+                oldReport.put(MigrationUtils.JOB_SUCCESS, successCnt + newSuccessCnt);
             }
 
-            if(oldReport.containsKey("skippedCnt")) {
-                int skippedCnt = (int) oldReport.get("skippedCnt");
-                int newSkippedCnt = (newReport.get("skippedCnt") == null ? 0 : (int) newReport.get("skippedCnt"));
-                newReport.put("skippedCnt", skippedCnt + newSkippedCnt);
+            if(oldReport.containsKey(MigrationUtils.JOB_SKIPPED)) {
+                int skippedCnt = (int) oldReport.get(MigrationUtils.JOB_SKIPPED);
+                int newSkippedCnt = (newReport.get(MigrationUtils.JOB_SKIPPED) == null ? 0 : (int) newReport.get(MigrationUtils.JOB_SKIPPED));
+                oldReport.put(MigrationUtils.JOB_SKIPPED, skippedCnt + newSkippedCnt);
             }
 
-            if(oldReport.containsKey("jobTaken")) {
-                long taskDuration = (long) oldReport.get("jobTaken");
-                long newTaskDuration = (newReport.get("jobTaken") == null ? 0 : (long) newReport.get("taskDuration"));
-                newReport.put("jobTaken", taskDuration + newTaskDuration);
+            if(oldReport.containsKey(MigrationUtils.JOB_DURATION)) {
+                long taskDuration = (long) oldReport.get(MigrationUtils.JOB_DURATION);
+                long newTaskDuration = (newReport.get(MigrationUtils.JOB_DURATION) == null ? 0 : (long) newReport.get(MigrationUtils.JOB_DURATION));
+                oldReport.put(MigrationUtils.JOB_DURATION, taskDuration + newTaskDuration);
             }
         } catch (Exception e) {
             logger.error("Failed to merge migration report :: by ids", e);
         }
-        return newReport;
+        return oldReport;
     }
 
     public void executeForTempData (String mig_target, String type, List<String> ids) throws Exception {
