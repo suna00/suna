@@ -249,17 +249,32 @@ public class NodeService {
 
     public Node saveNode(Map<String, Object> data) {
         try {
-            NodeType nodeType = getNodeType(data.get(Node.TYPEID).toString()) ;
-            if(!clusterService.checkClusterGroup(nodeType)) return null;
-
-            ExecuteContext context = ExecuteContext.makeContextFromMap(data);
-            context.execute();
-            Node saveNode =  context.getNode();
+//            NodeType nodeType = getNodeType(data.get(Node.TYPEID).toString()) ;
+//            if(!clusterService.checkClusterGroup(nodeType)) return null;
+//
+//            ExecuteContext context = ExecuteContext.makeContextFromMap(data);
+//            context.execute();
+//            Node saveNode =  context.getNode();
+            Node saveNode = saveNodeWithException(data);
             return saveNode ;
         }catch (Exception e){
             logger.error(data.toString(), e);
         }
         return null ;
+    }
+
+    /*
+    * saveNode 와 동일한 기능
+    * 다만 caller 에서 발생한 오류를 처리할 수 있게 예외를 던짐
+    * */
+    public Node saveNodeWithException(Map<String, Object> data) {
+        NodeType nodeType = getNodeType(data.get(Node.TYPEID).toString()) ;
+        if(!clusterService.checkClusterGroup(nodeType)) return null;
+
+        ExecuteContext context = ExecuteContext.makeContextFromMap(data);
+        context.execute();
+        Node saveNode =  context.getNode();
+        return saveNode ;
     }
 
     public Node createNode(Map<String, Object> data, String typeId) {
