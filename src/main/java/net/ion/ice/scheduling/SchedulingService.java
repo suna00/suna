@@ -23,7 +23,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 
 @Component("schedulingService")
-public class SchedulingService implements InitializingBean{
+public class SchedulingService implements InitializingBean {
     public static final String DEFAULT_TASK_SCHEDULER_BEAN_NAME = "taskScheduler";
 
     private Logger logger = LoggerFactory.getLogger(getClass());
@@ -51,10 +51,15 @@ public class SchedulingService implements InitializingBean{
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        List<Node> scheduleNodes = nodeService.getNodeList("scheduleTask", "enable_matching=true") ;
-        logger.info("Schedule Register : " + scheduleNodes);
-        for(Node scheduleNode : scheduleNodes){
-            makeSchedule(scheduleNode) ;
+        try{
+            List<Node> scheduleNodes = nodeService.getNodeList("scheduleTask", "enable_matching=true") ;
+            logger.info("Schedule Register : " + scheduleNodes);
+            for(Node scheduleNode : scheduleNodes){
+                makeSchedule(scheduleNode) ;
+            }
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
         }
 
     }
