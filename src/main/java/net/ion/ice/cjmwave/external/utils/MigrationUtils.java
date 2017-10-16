@@ -84,7 +84,7 @@ public class MigrationUtils {
 
     public static void printReport(Date startTime, String executeId, String failPolicy, int successCnt, int skippedCnt) {
         long jobTaken = (new Date().getTime() - startTime.getTime());
-        logger.info(
+        System.out.println(
                 "\n##### Execute Report :: ######" +
                         "\nExecutionId : " + executeId +
                         "\nStarted on : " + startTime +

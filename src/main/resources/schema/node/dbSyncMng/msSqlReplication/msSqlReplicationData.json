@@ -462,13 +462,14 @@
   , {
     "typeId": "msSqlReplication"
     , "standAlone" : false
-    , "subTasks" : "song_artist, song_country, song_keyword, song_keyword_meta, song_meta, album_songs"
+    , "subTasks" : "song_artist, song_country, song_keyword, song_keyword_meta, song_meta"
+    , "notion" : "Remove album_songs 1016"
     , "subTaskKey" : "song_id"
     , "executeId": "retrieveMultiSong"
     , "targetDs": "mnetDb"
     , "fromTable" : "MT_SONG"
     , "toTable" : "MT_SONG"
-    , "query": "EXEC retrieveMultiSong @SongId1 = @{INT.id1}, @SongId2 = @{INT.id2}, @SongId3 = @{INT.id3}, @SongId4 = @{INT.id4}, @SongId5 = @{INT.id5}, @SongId6 = @{INT.id6}, @SongIdId7 = @{INT.id7}, @SongId8 = @{INT.id8}, @SongId9 = @{INT.id9}, @SongId10 = @{INT.id10}"
+    , "query": "EXEC retrieveMultiSong @SongId1 = @{INT.id1}, @SongId2 = @{INT.id2}, @SongId3 = @{INT.id3}, @SongId4 = @{INT.id4}, @SongId5 = @{INT.id5}, @SongId6 = @{INT.id6}, @SongId7 = @{INT.id7}, @SongId8 = @{INT.id8}, @SongId9 = @{INT.id9}, @SongId10 = @{INT.id10}"
     , "query_nosp": ""
   }
 ]
