@@ -192,7 +192,7 @@ public class VoteResponseService {
 
             List<Node> sersVoteItemList = nodeService.getNodeList(SERS_VOTE_ITEM_INFO, voteItemTerms);
             for (Node voteItem : sersVoteItemList) {
-                context.makeReferenceView("sersItemVoteSeq"); // referenceView 설정
+                context.makeReferenceView("sersItemVoteSeq,contsMetaId"); // referenceView 설정
                 context.setIncludeReferenced(true);
                 voteItem.toDisplay(context);
             }
@@ -308,7 +308,7 @@ public class VoteResponseService {
 
                 List<Node> sersVoteItemList = nodeService.getNodeList(SERS_VOTE_ITEM_INFO, voteItemTerms);
                 for (Node voteItem : sersVoteItemList) {
-                    context.makeReferenceView("sersItemVoteSeq"); // referenceView 설정
+                    context.makeReferenceView("sersItemVoteSeq,contsMetaId"); // referenceView 설정
                     context.setIncludeReferenced(true);
                     voteItem.toDisplay(context);
                 }
