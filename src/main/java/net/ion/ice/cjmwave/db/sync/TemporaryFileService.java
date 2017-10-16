@@ -53,7 +53,7 @@ public class TemporaryFileService {
                         ", ARTIST_NATIONALITY as bpnac , RIGHT(ARTIST_GENDER, 3) as sex ,  RIGHT(ARTIST_TYPE_CD, 3) as typeCd" +
                         ", STR_TO_DATE(DEBUT_YMD, '%Y%m%d') as debutDt , DEBUT_ALBUM_ID as debutAlbum " +
                         ", ARTIST_INTRO as artistDesc , ARTIST_NM as atvyName, DISPLAY_FLG as showYn " +
-                        ", 1 as mnetIfTrtYn FROM MT_ARTIST WHERE ARTIST_ID = ?";
+                        ", true as mnetIfTrtYn FROM MT_ARTIST WHERE ARTIST_ID = ?";
 
                 try{
                     Map<String, Object> rs = ice2template.queryForMap(query, artistId);
