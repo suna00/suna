@@ -1,5 +1,6 @@
 package net.ion.ice.core.context;
 
+import net.ion.ice.core.cluster.ClusterUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.query.QueryResult;
@@ -39,7 +40,10 @@ public class ApiReadContext extends ReadContext implements CacheableContext {
         readContext.nodeType = NodeUtils.getNodeType((String) ContextUtils.getValue(config.get("typeId"), data));
         readContext.config = config;
         readContext.data = data;
-
+        if(!ClusterUtils.getClusterService().checkClusterGroup(readContext.nodeType)){
+            readContext.remote = true ;
+            return readContext ;
+        }
         for (String key : config.keySet()) {
             if (key.equals("typeId")) continue;
 

@@ -8,9 +8,13 @@ import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -19,6 +23,7 @@ import java.util.Set;
  */
 @Service
 public class ClusterService {
+    private Logger logger = LoggerFactory.getLogger(ClusterService.class);
 
     @Autowired
     private ClusterConfiguration clusterConfiguration ;
@@ -52,6 +57,9 @@ public class ClusterService {
         if(clusterConfiguration.isAll()){
             return true ;
         }
+        if(nodeType.isDataType()){
+            return true ;
+        }
         String clusterGroup = nodeType.getClusterGroup() ;
         if(StringUtils.isEmpty(clusterGroup)){
             clusterGroup = "cms" ;
@@ -72,4 +80,25 @@ public class ClusterService {
     }
 
 
+
+    public List<Member> getClusterCacheSyncServers() {
+        Set<Member> members = clusterConfiguration.getClusterMembers() ;
+
+        String local = clusterConfiguration.getLocalMemberUUID() ;
+        String mode = clusterConfiguration.getMode() ;
+        List<Member> otherMembers = new ArrayList<>();
+
+        for(Member member : members){
+            String memberMode = member.getStringAttribute("mode") ;
+            if("all".equals(memberMode) || "cms".equals(memberMode) || (mode.equals("cache") && "cache".equals(memberMode))){
+                if(!local.equals(member.getUuid())) {
+                    otherMembers.add(member);
+                }
+            }
+        }
+
+        logger.info("Cache sync servers : " + otherMembers.size());
+
+        return otherMembers ;
+    }
 }

@@ -23,7 +23,7 @@ public class DBQuery {
 
         if (queryContext.getQueryTerms() != null && !queryContext.getQueryTerms().isEmpty()) {
             for (QueryTerm queryTerm : queryContext.getQueryTerms()) {
-                if(queryTerm.getMethodQuery().equals("IN")){
+                if(queryTerm.getMethodQuery().equals("IN") || queryTerm.getMethodQuery().equals("EXISTS")){
                     String[] values = queryTerm.getQueryValue().split(",");
                     List<String> holder = new ArrayList<>();
                     for(String value : values){
