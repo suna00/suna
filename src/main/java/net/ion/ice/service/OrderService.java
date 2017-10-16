@@ -148,7 +148,6 @@ public class OrderService {
     }
 
 
-
     public Double getFinalPrice(String reqTempOrderId, String reqMemberNo, String reqUseYPoint, String reqUseWelfarepoint, String usedCoupon) {
         double totalPrice = 0;
 
@@ -170,7 +169,7 @@ public class OrderService {
                 deliveryPrice += (Double) priceList.get(0).get("deliveryPrice");
             }
 
-            for(Map<String, Object> tempOrderProduct : tempOrderProducts){
+            for (Map<String, Object> tempOrderProduct : tempOrderProducts) {
                 String tempOrderProductId = JsonUtils.getStringValue(tempOrderProduct, "tempOrderProductId");
                 Integer couponId = JsonUtils.getIntNullableValue(couponIds, tempOrderProductId);
                 Integer memberNo = Integer.parseInt(reqMemberNo);
@@ -179,7 +178,6 @@ public class OrderService {
                 Double resultOrderPrice = discountPriceMap.get("resultOrderPrice");
                 totalPrice += resultOrderPrice;
             }
-
 
 
             totalPrice = totalPrice - useYPoint - useWelfarepoint + deliveryPrice;
@@ -225,7 +223,7 @@ public class OrderService {
 //            }
             List<Map<String, Object>> tempOrderProducts = nodeBindingService.list("tempOrderProduct", "sorting=created&tempOrderId_equals=" + context.getData().get("tempOrderId"));
 
-            for(Map<String, Object> tempOrderProduct : tempOrderProducts){
+            for (Map<String, Object> tempOrderProduct : tempOrderProducts) {
                 String tempOrderProductId = JsonUtils.getStringValue(tempOrderProduct, "tempOrderProductId");
                 Integer couponId = JsonUtils.getIntNullableValue(couponIds, tempOrderProductId);
                 Integer memberNo = JsonUtils.getIntValue(session, "member.memberNo");
@@ -258,7 +256,8 @@ public class OrderService {
             e.printStackTrace();
         }
     }
-    public ExecuteContext pointOrder(ExecuteContext context){
+
+    public ExecuteContext pointOrder(ExecuteContext context) {
         Map<String, Object> data = context.getData();
 
         List<Map<String, Object>> tempOrderProducts = nodeBindingService.list("tempOrderProduct", "sorting=created&tempOrderId_equals=" + String.valueOf(data.get("ordrIdxx")));
@@ -391,7 +390,7 @@ public class OrderService {
 
         totalOrderPrice = totalProductPrice - useYPoint - useWelfarepoint + totalDeliveryPrice; //총 주문금액
 
-        if(totalPaymentPrice != totalProductPrice){
+        if (totalPaymentPrice != totalProductPrice) {
             context.setResult(CommonService.getResult("O0006"));
             return context;
         }
@@ -440,8 +439,8 @@ public class OrderService {
         return context;
 
 
-
     }
+
     public String createOrderSheet(Map<String, Object> responseMap, HttpServletRequest request) {
         String bSucc = "true";
         List<Map<String, Object>> tempOrderProducts = nodeBindingService.list("tempOrderProduct", "sorting=created&tempOrderId_equals=" + String.valueOf(responseMap.get("ordrIdxx")));
@@ -571,8 +570,8 @@ public class OrderService {
 
         storeOrderSheet.put("orderSheetId", responseMap.get("ordrIdxx"));   //주문서 번호
         storeOrderSheet.put("cartId", "");              //카트 아이디
-        storeOrderSheet.put("memberNo", "");          //회원번호
-        storeOrderSheet.put("siteId", "");              //사이트 아이디
+        storeOrderSheet.put("memberNo", JsonUtils.getIntValue(session, "member.memberNo"));          //회원번호
+        storeOrderSheet.put("siteId", JsonUtils.getStringValue(session, "member.siteId"));              //사이트 아이디
         storeOrderSheet.put("totalProductPrice", totalProductPrice);         //총상품가격
         storeOrderSheet.put("totalOrderPrice", totalOrderPrice);             //총주문가격
         storeOrderSheet.put("totalDiscountPrice", totalDiscountPrice);       //총할인액
