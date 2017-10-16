@@ -7,11 +7,16 @@ import net.ion.ice.core.context.ApiQueryContext;
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.json.JsonUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Map;
 
 public class ClusterUtils {
+
+    private static Logger logger = LoggerFactory.getLogger(ClusterUtils.class) ;
+
     public static final String CONFIG_ = "_config_";
     public static final String DATE_FORMAT_ = "_dateFormat_";
     public static final String FILE_URL_FORMAT_ = "_fileUrlFormat_";
@@ -67,7 +72,8 @@ public class ClusterUtils {
         try {
             String resultStr = ApiUtils.callApiMethod(url, null, 5000, 20000, ApiUtils.GET) ;
             return JsonUtils.parsingJsonToMap(resultStr) ;
-        } catch (IOException e) {
+        } catch (Exception e) {
+            logger.error("CONNECT ERROR : " + url );
             e.printStackTrace();
         }
         return null;
