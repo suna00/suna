@@ -72,11 +72,7 @@ public class VoteItemStatsTask {
                 // Rank Gap - pass
                 // TODO - VoteRate
 
-                Integer voteNum = 0;
-                if (voteNumInfo.get("voteNum") != null) {
-                    voteNum = (Integer) voteNumInfo.get("voteNum");
-                }
-                Double voteNumDouble = Double.parseDouble(String.valueOf(voteNum));
+                Double voteNumDouble = Double.parseDouble(voteNumInfo.get("voteNum").toString());
                 BigDecimal voteCnt = new BigDecimal(voteNumDouble*100);
                 BigDecimal totalCnt = new BigDecimal(totalVoteNum);
 
