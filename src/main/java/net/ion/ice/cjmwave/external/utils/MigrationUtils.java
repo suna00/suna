@@ -15,6 +15,22 @@ public class MigrationUtils {
 
     private static Logger logger = Logger.getLogger(MigrationUtils.class);
 
+    public static final String
+        DB_FROMTABLE = "fromTable"
+        , DB_TOTABLE = "toTable"
+        , JOB_DURATION = "duration"
+        , JOB_STARTON = "start"
+        , JOB_SUCCESS = "successCnt"
+        , JOB_SKIPPED = "skippedCnt"
+        , MIGTYPE = "migrationType"
+        , MIGTARGET = "migrationTarget"
+        , NET_REQIP = "requestIp"
+        , NET_PARAMS = "migrationParams"
+        , NODE_TARGET = "targetNode";
+
+
+
+
     public static void recordDataCopyRecord (JdbcTemplate template, Map<String, Object> report) {
         String query = "INSERT INTO MSSQL_DUMP_REPORT " +
                 "(mssqlTable, mysqlTable, successCnt, skippedCnt" +
@@ -41,6 +57,17 @@ public class MigrationUtils {
         }
     }
 
+    public static void recordResult(JdbcTemplate template, Map<String, Object> report) {
+        recordResult(template,
+                String.valueOf(report.get(MIGTARGET)), String.valueOf(report.get(MIGTYPE))
+                , String.valueOf(report.get(NET_PARAMS)), String.valueOf(report.get(NET_REQIP))
+                , String.valueOf(report.get(NODE_TARGET))
+                , (int) report.get(JOB_SUCCESS)
+                , (int) report.get(JOB_SKIPPED)
+                , (long) report.get(JOB_DURATION)
+                , (Date) report.get(JOB_STARTON)
+        );
+    }
 
     public static void recordResult(JdbcTemplate template
             , String mig_target, String mig_type, String mig_parameter, String requestIp

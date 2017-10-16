@@ -79,14 +79,14 @@ public class TemporaryFileService {
             // 앨범 / 뮤직비디오 / 곡
             List<String> ids = new ArrayList<>();
             String key = "";
-            switch (nodeType){
+            switch (nodeType.toLowerCase()){
                 case "album":
                     key = "albumId";
                     break;
                 case  "song":
                     key = "songId";
                     break;
-                case "musicVideo":
+                case "musicvideo":
                     key = "mvId";
                     break;
             }

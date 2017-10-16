@@ -365,7 +365,7 @@ public class DBSyncService {
             multiLangQuery = String.valueOf(executionNode.get("multiLanguageQuery"));
         }
 
-
+        System.out.println("MYSQL QUERY RESULT COUNT :: " + queryRs.size());
         for (Map qMap : queryRs) {
             int rs = 0;
             // 만약에 Node 의 mnetIfTrtYn 가 false 라면 무시한다.
@@ -425,18 +425,18 @@ public class DBSyncService {
                     ,targetNodeType, successCnt, skippedCnt, jobTaken, startTime);
         } else {
             if(idReport.isEmpty()) {
-                idReport.put("mig_target", mig_target);
-                idReport.put("mig_type", mig_type);
-                idReport.put("targetNode", targetNodeType);
-                idReport.put("successCnt", successCnt);
-                idReport.put("skippedCnt", skippedCnt);
-                idReport.put("jobTaken", jobTaken);
-                idReport.put("startTime", startTime);
+                idReport.put(MigrationUtils.MIGTARGET, mig_target);
+                idReport.put(MigrationUtils.MIGTYPE, mig_type);
+                idReport.put(MigrationUtils.NODE_TARGET, targetNodeType);
+                idReport.put(MigrationUtils.JOB_SUCCESS, successCnt);
+                idReport.put(MigrationUtils.JOB_SKIPPED, skippedCnt);
+                idReport.put(MigrationUtils.JOB_DURATION, jobTaken);
+                idReport.put(MigrationUtils.JOB_STARTON, startTime);
             } else {
                 Map<String, Object> newRepo = new HashMap<String, Object>();
-                idReport.put("successCnt", successCnt);
-                idReport.put("skippedCnt", skippedCnt);
-                idReport.put("jobTaken", jobTaken);
+                idReport.put(MigrationUtils.JOB_SUCCESS, successCnt);
+                idReport.put(MigrationUtils.JOB_SKIPPED, skippedCnt);
+                idReport.put(MigrationUtils.JOB_DURATION, jobTaken);
                 mergeReport(idReport, newRepo);
             }
         }
@@ -834,19 +834,10 @@ public class DBSyncService {
                                 this.dbSyncService.executeWithId(mig_target, this.executeId, ids.get(i), idMigrationReport);
                             }
                             try{
-                                System.out.println("dsfsdfdsfsdfsdfdsfsdfdsfsdfds  :: " + String.valueOf(idMigrationReport));
                                 MigrationUtils.printReport(startTime, type, "SKIP"
-                                        , (int) idMigrationReport.get("successCnt")
-                                        , (int) idMigrationReport.get("skippedCnt"));
-                                MigrationUtils.recordResult(ice2Template
-                                        , String.valueOf(idMigrationReport.get("mig_target"))
-                                        , String.valueOf(idMigrationReport.get("mig_type"))
-                                        , null, null
-                                        , String.valueOf(idMigrationReport.get("targetNode"))
-                                        , (int) idMigrationReport.get("successCnt")
-                                        , (int) idMigrationReport.get("skippedCnt")
-                                        , (long)idMigrationReport.get("jobTaken")
-                                        , startTime);
+                                        , (int) idMigrationReport.get(MigrationUtils.JOB_SUCCESS)
+                                        , (int) idMigrationReport.get(MigrationUtils.JOB_SKIPPED));
+                                MigrationUtils.recordResult(ice2Template, idMigrationReport);
                             } catch (Exception e) {
                                 logger.error("Failed to handout report :: migration by ids", e);
                             }
@@ -865,19 +856,10 @@ public class DBSyncService {
                                 this.dbSyncService.executeWithId(mig_target, this.executeId, ids.get(i), idMigrationReport);
                             }
                             try{
-                                System.out.println("dsfsdfdsfsdfsdfdsfsdfdsfsdfds  :: " + String.valueOf(idMigrationReport));
                                 MigrationUtils.printReport(startTime, type, "SKIP"
-                                        , (int) idMigrationReport.get("successCnt")
-                                        , (int) idMigrationReport.get("skippedCnt"));
-                                MigrationUtils.recordResult(ice2Template
-                                        , String.valueOf(idMigrationReport.get("mig_target"))
-                                        , String.valueOf(idMigrationReport.get("mig_type"))
-                                        , null, null
-                                        , String.valueOf(idMigrationReport.get("targetNode"))
-                                        , (int) idMigrationReport.get("successCnt")
-                                        , (int) idMigrationReport.get("skippedCnt")
-                                        , (long)idMigrationReport.get("jobTaken")
-                                        , startTime);
+                                        , (int) idMigrationReport.get(MigrationUtils.JOB_SUCCESS)
+                                        , (int) idMigrationReport.get(MigrationUtils.JOB_SKIPPED));
+                                MigrationUtils.recordResult(ice2Template, idMigrationReport);
                             } catch (Exception e) {
                                 logger.error("Failed to handout report :: migration by ids", e);
                             }
@@ -896,19 +878,10 @@ public class DBSyncService {
                                 this.dbSyncService.executeWithId(mig_target, this.executeId, ids.get(i), idMigrationReport);
                             }
                             try{
-                                System.out.println("dsfsdfdsfsdfsdfdsfsdfdsfsdfds  :: " + String.valueOf(idMigrationReport));
                                 MigrationUtils.printReport(startTime, type, "SKIP"
-                                        , (int) idMigrationReport.get("successCnt")
-                                        , (int) idMigrationReport.get("skippedCnt"));
-                                MigrationUtils.recordResult(ice2Template
-                                        , String.valueOf(idMigrationReport.get("mig_target"))
-                                        , String.valueOf(idMigrationReport.get("mig_type"))
-                                        , null, null
-                                        , String.valueOf(idMigrationReport.get("targetNode"))
-                                        , (int) idMigrationReport.get("successCnt")
-                                        , (int) idMigrationReport.get("skippedCnt")
-                                        , (long)idMigrationReport.get("jobTaken")
-                                        , startTime);
+                                        , (int) idMigrationReport.get(MigrationUtils.JOB_SUCCESS)
+                                        , (int) idMigrationReport.get(MigrationUtils.JOB_SKIPPED));
+                                MigrationUtils.recordResult(ice2Template, idMigrationReport);
                             } catch (Exception e) {
                                 logger.error("Failed to handout report :: migration by ids", e);
                             }
@@ -929,17 +902,9 @@ public class DBSyncService {
                             }
                             try{
                                 MigrationUtils.printReport(startTime, type, "SKIP"
-                                        , (int) idMigrationReport.get("successCnt")
-                                        , (int) idMigrationReport.get("skippedCnt"));
-                                MigrationUtils.recordResult(ice2Template
-                                        , String.valueOf(idMigrationReport.get("mig_target"))
-                                        , String.valueOf(idMigrationReport.get("mig_type"))
-                                        , null, null
-                                        , String.valueOf(idMigrationReport.get("targetNode"))
-                                        , (int) idMigrationReport.get("successCnt")
-                                        , (int) idMigrationReport.get("skippedCnt")
-                                        , (long)idMigrationReport.get("jobTaken")
-                                        , startTime);
+                                        , (int) idMigrationReport.get(MigrationUtils.JOB_SUCCESS)
+                                        , (int) idMigrationReport.get(MigrationUtils.JOB_SKIPPED));
+                                MigrationUtils.recordResult(ice2Template, idMigrationReport);
                             } catch (Exception e) {
                                 logger.error("Failed to handout report :: migration by ids", e);
                             }
