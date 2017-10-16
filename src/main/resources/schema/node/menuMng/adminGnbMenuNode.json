@@ -38,15 +38,6 @@
   {
     "typeId": "adminGnbMenu",
     "backOfficeId": "admin",
-    "menuId": "statMng",
-    "menuName": "통계 관리",
-    "order": "50",
-    "icon": "",
-    "active": "true"
-  },
-  {
-    "typeId": "adminGnbMenu",
-    "backOfficeId": "admin",
     "menuId": "systemMng",
     "menuName": "시스템 관리",
     "order": "60",
@@ -65,11 +56,20 @@
   {
     "typeId": "adminGnbMenu",
     "backOfficeId": "admin",
+    "menuId": "statMng",
+    "menuName": "통계 관리",
+    "order": "80",
+    "icon": "",
+    "active": "false"
+  },
+  {
+    "typeId": "adminGnbMenu",
+    "backOfficeId": "admin",
     "menuId": "custom",
     "menuName": "테스트 컴포넌트",
     "order": "200",
     "icon": "",
-    "active": "true"
+    "active": "false"
   },
   {
     "typeId": "adminGnbMenu",
@@ -78,6 +78,6 @@
     "menuName": "설정 관리",
     "order": "201",
     "icon": "",
-    "active": "true"
+    "active": "false"
   }
 ]
