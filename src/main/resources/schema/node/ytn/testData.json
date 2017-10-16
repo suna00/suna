@@ -147,9 +147,9 @@
       "refId": "ion"
     },
     "affiliateId": {
-      "value": "1",
+      "value": "100",
       "label": "아이온커뮤니케이션즈",
-      "refId": "1"
+      "refId": "100"
     },
     "userId": "jlee84@i-on.net",
     "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
@@ -203,7 +203,8 @@
     "snsLinkYn": null,
     "snsType": null,
     "snsId": null,
-    "snsProfileLink": null
+    "snsProfileLink": null,
+    "welfarePoint" : 2000
   },
   {
     "typeId": "member",
@@ -214,9 +215,9 @@
       "refId": "ion"
     },
     "affiliateId": {
-      "value": "1",
+      "value": "100",
       "label": "아이온커뮤니케이션즈",
-      "refId": "1"
+      "refId": "100"
     },
     "userId": "swyoon@i-on.net",
     "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
@@ -270,7 +271,8 @@
     "snsLinkYn": null,
     "snsType": null,
     "snsId": null,
-    "snsProfileLink": null
+    "snsProfileLink": null,
+    "welfarePoint" : 1000
   },
   {
     "typeId": "member",
@@ -281,9 +283,9 @@
       "refId": "ion"
     },
     "affiliateId": {
-      "value": "1",
+      "value": "100",
       "label": "아이온커뮤니케이션즈",
-      "refId": "1"
+      "refId": "100"
     },
     "userId": "1234",
     "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
@@ -337,7 +339,8 @@
     "snsLinkYn": null,
     "snsType": null,
     "snsId": null,
-    "snsProfileLink": null
+    "snsProfileLink": null,
+    "welfarePoint" : 100
   },
   {
     "typeId": "member",
@@ -405,7 +408,8 @@
     "snsLinkYn": null,
     "snsType": null,
     "snsId": null,
-    "snsProfileLink": null
+    "snsProfileLink": null,
+    "welfarePoint" : 500
   },
   {
     "typeId": "member",
@@ -486,9 +490,9 @@
       "refId": "ion"
     },
     "affiliateId": {
-      "value": "1",
+      "value": "100",
       "label": "아이온커뮤니케이션즈",
-      "refId": "1"
+      "refId": "100"
     },
     "userId": "sohapark@i-on.net",
     "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
@@ -542,7 +546,8 @@
     "snsLinkYn": null,
     "snsType": null,
     "snsId": null,
-    "snsProfileLink": null
+    "snsProfileLink": null,
+    "welfarePoint" : 500
   },
   {
     "typeId": "member",
@@ -657,7 +662,8 @@
     "snsLinkYn": null,
     "snsType": null,
     "snsId": null,
-    "snsProfileLink": null
+    "snsProfileLink": null,
+    "welfarePoint" : 54000
   },
   {
     "typeId": "myRefundAccount",
