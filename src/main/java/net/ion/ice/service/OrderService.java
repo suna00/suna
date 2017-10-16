@@ -399,8 +399,8 @@ public class OrderService {
 
         storeOrderSheet.put("orderSheetId", data.get("ordrIdxx"));   //주문서 번호
         storeOrderSheet.put("cartId", "");              //카트 아이디
-        storeOrderSheet.put("memberNo", "");          //회원번호
-        storeOrderSheet.put("siteId", "");              //사이트 아이디
+        storeOrderSheet.put("memberNo", JsonUtils.getIntValue(session, "member.memberNo"));          //회원번호
+        storeOrderSheet.put("siteId", JsonUtils.getStringValue(session, "member.siteId"));              //사이트 아이디
         storeOrderSheet.put("totalProductPrice", totalProductPrice);         //총상품가격
         storeOrderSheet.put("totalOrderPrice", totalOrderPrice);             //총주문가격
         storeOrderSheet.put("totalDiscountPrice", totalDiscountPrice);       //총할인액
@@ -443,6 +443,7 @@ public class OrderService {
 
     public String createOrderSheet(Map<String, Object> responseMap, HttpServletRequest request) {
         String bSucc = "true";
+        List<Map<String, Object>> tempOrder = nodeBindingService.list("tempOrder", "tempOrderId_equals=" + String.valueOf(responseMap.get("ordrIdxx")));
         List<Map<String, Object>> tempOrderProducts = nodeBindingService.list("tempOrderProduct", "sorting=created&tempOrderId_equals=" + String.valueOf(responseMap.get("ordrIdxx")));
         List<Map<String, Object>> tempOrderProductItems = nodeBindingService.list("tempOrderProductItem", "sorting=created&tempOrderId_equals=" + String.valueOf(responseMap.get("ordrIdxx")));
         Map<String, Object> session = null;
@@ -570,8 +571,9 @@ public class OrderService {
 
         storeOrderSheet.put("orderSheetId", responseMap.get("ordrIdxx"));   //주문서 번호
         storeOrderSheet.put("cartId", "");              //카트 아이디
-        storeOrderSheet.put("memberNo", JsonUtils.getIntValue(session, "member.memberNo"));          //회원번호
-        storeOrderSheet.put("siteId", JsonUtils.getStringValue(session, "member.siteId"));              //사이트 아이디
+        storeOrderSheet.put("memberNo", JsonUtils.getIntValue(tempOrder.get(0), "memberNo"));          //회원번호
+        Node memberNode = nodeService.getNode("member", JsonUtils.getStringValue(tempOrder.get(0), "memberNo"));
+        storeOrderSheet.put("siteId", JsonUtils.getStringValue(memberNode, "siteId"));             //사이트 아이디
         storeOrderSheet.put("totalProductPrice", totalProductPrice);         //총상품가격
         storeOrderSheet.put("totalOrderPrice", totalOrderPrice);             //총주문가격
         storeOrderSheet.put("totalDiscountPrice", totalDiscountPrice);       //총할인액
@@ -887,8 +889,8 @@ public class OrderService {
 
         Map<String, Object> storeTempOrder = new HashMap<>();
         storeTempOrder.put("tempOrderId", orderNumberGenerator());
+        storeTempOrder.put("memberNo", JsonUtils.getIntValue(data, "session.member.memberNo"));
         Node tempOrderNode = (Node) nodeService.executeNode(storeTempOrder, "tempOrder", CommonService.CREATE);
-
         String tempOrderId = tempOrderNode.getId();
 
         createTempOrderProduct(tempOrderId, data);
