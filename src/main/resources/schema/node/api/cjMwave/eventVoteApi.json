@@ -125,6 +125,7 @@
               ],
               "response": {
                 "voteNum": "",
+                "statsCreated":"created",
                 "myVoteYn": {
                   "select": {
                     "ds": "cjDb",
