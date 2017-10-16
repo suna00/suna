@@ -45,7 +45,7 @@ public class SchedulingService implements InitializingBean{
     public void initSchedule(){
         if (this.scheduler != null) {
             this.registrar.setScheduler(this.scheduler);
-            logger.info(this.scheduler.toString());
+            logger.info(String.valueOf(this.scheduler));
         }
     }
 
