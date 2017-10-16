@@ -401,6 +401,7 @@ public class DBSyncService {
 
             logger.info("CREATE MIGRATION NODE :: " + String.valueOf(fit));
             try{
+                fit.put("mnetIfTrtYn", true);
                 Node finished = nodeService.saveNodeWithException(fit); // 반환 안됨
                 successIds.add(finished.getId());
                 successCnt ++;
@@ -536,6 +537,7 @@ public class DBSyncService {
                     System.out.println("CREATE INITIAL MIGRATION NODE :: " + String.valueOf(fit));
 
                     try{
+                        fit.put("mnetIfTrtYn", true);
                         nodeService.saveNodeWithException(fit);
                         successCnt ++;
                         rs = 1;
