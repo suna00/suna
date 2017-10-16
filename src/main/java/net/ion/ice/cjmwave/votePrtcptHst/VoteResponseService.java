@@ -194,15 +194,16 @@ public class VoteResponseService {
             for (Node voteItem : sersVoteItemList) {
                 context.makeReferenceView("sersItemVoteSeq"); // referenceView 설정
                 context.setIncludeReferenced(true);
-                voteItem.toDisplay(context);
-                String serVoteItemTerms = "voteSeq_matching=" + voteItem.getStringValue("sersItemVoteSeq") +
+                String sersSubVoteItemTerms = "voteSeq_matching=" + voteItem.getStringValue("sersItemVoteSeq") +
                         "&langCd_matching=" + data.get("langCd");
-                List<Node> serVoteItemList = nodeService.getNodeList(VOTE_ITEM_INFO, serVoteItemTerms);
-                for (Node serVoteItem : serVoteItemList) {
+                List<Node> serSubVoteItemList = nodeService.getNodeList(VOTE_ITEM_INFO, sersSubVoteItemTerms);
+                for (Node serVoteItem : serSubVoteItemList) {
                     context.makeReferenceView("contsMetaId"); // referenceView 설정
                     serVoteItem.toDisplay(context);
                 }
-                voteItem.put("refdItemList",serVoteItemList);
+                voteItem.toDisplay(context);
+
+                voteItem.put("refdItemList",serSubVoteItemList);
             }
 
             voteBasInfo.toDisplay(context);
@@ -318,15 +319,17 @@ public class VoteResponseService {
                 for (Node voteItem : sersVoteItemList) {
                     context.makeReferenceView("sersItemVoteSeq,contsMetaId"); // referenceView 설정
                     context.setIncludeReferenced(true);
-                    voteItem.toDisplay(context);
-                    String serVoteItemTerms = "voteSeq_matching=" + voteItem.getStringValue("sersItemVoteSeq") +
+
+                    String sersSubVoteItemTerms = "voteSeq_matching=" + voteItem.getStringValue("sersItemVoteSeq") +
                             "&langCd_matching=" + data.get("langCd");
-                    List<Node> serVoteItemList = nodeService.getNodeList(VOTE_ITEM_INFO, serVoteItemTerms);
-                    for (Node serVoteItem : serVoteItemList) {
+                    List<Node> serSubVoteItemList = nodeService.getNodeList(VOTE_ITEM_INFO, sersSubVoteItemTerms);
+                    for (Node serVoteItem : serSubVoteItemList) {
                         context.makeReferenceView("contsMetaId"); // referenceView 설정
                         serVoteItem.toDisplay(context);
                     }
-                    voteItem.put("refdItemList",serVoteItemList);
+                    voteItem.toDisplay(context);
+
+                    voteItem.put("refdItemList",serSubVoteItemList);
                 }
 
                 voteBasInfo.toDisplay(context);
