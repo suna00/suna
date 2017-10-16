@@ -33,6 +33,9 @@ public class NodeMappingUtils {
         Map<String, Object> combined = new HashMap<String, Object>();
         mapperStore.forEach((k, v) -> {
             combined.put(k, singleQueryResult.get(v));
+            if(k.equals("mnetIfTrtYn")){
+                combined.put(k, true);
+            }
         });
         combined.put("typeId", targetNodeType);
         return combined;
