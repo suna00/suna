@@ -145,11 +145,6 @@
               "field": "voteSeq",
               "method": "referenceJoin",
               "value": "voteSeq_matching={{:voteSeq}}"
-            },
-            {
-              "field": "langCd",
-              "method": "matching",
-              "value": "{{:langCd}}"
             }
           ]
         },
@@ -160,11 +155,6 @@
               "field": "voteSeq",
               "method": "referenceJoin",
               "value": "voteSeq_matching={{:voteSeq}}"
-            },
-            {
-              "field": "langCd",
-              "method": "matching",
-              "value": "{{:langCd}}"
             }
           ]
         },
@@ -303,11 +293,6 @@
               "value": "voteSeq_matching={{:voteSeq}}"
             },
             {
-              "field": "langCd",
-              "method": "matching",
-              "value": "{{:langCd}}"
-            },
-            {
               "referenceView": "contsMetaId"
             }
           ]
@@ -319,11 +304,6 @@
               "field": "voteSeq",
               "method": "referenceJoin",
               "value": "voteSeq_matching={{:voteSeq}}"
-            },
-            {
-              "field": "langCd",
-              "method": "matching",
-              "value": "{{:langCd}}"
             },
             {
               "referenceView": "sersItemVoteSeq",
@@ -570,19 +550,9 @@
           "value": "artist::{{:artistId}}"
         },
         {
-          "field": "langCd",
-          "method": "matching",
-          "value": "{{:langCd}}"
-        },
-        {
           "field": "voteSeq",
           "method": "referenceJoin",
           "value": "voteFormlCd_matching=voteFormlCd>1,voteFormlCd>2,voteFormlCd>4,voteFormlCd>5"
-        },
-        {
-          "field": "langCd",
-          "method": "matching",
-          "value": "{{:langCd}}"
         },
         {
           "limit": "3",
