@@ -1,21 +1,12 @@
 [
   {
     "typeId": "event",
-    "id": "voteBasInfo>selCreate",
     "tid": "voteBasInfo",
     "event": "selCreate",
     "eventName": "selCreate Node Type"
   },
   {
-    "typeId": "event",
-    "id": "eventAction>selCreate",
-    "tid": "eventAction",
-    "event": "selCreate",
-    "eventName": "selCreate eventAction"
-  },
-  {
     "typeId": "eventAction",
-    "id": "voteBasInfo>selCreate>selCreateEvent",
     "event": "voteBasInfo>selCreate",
     "action": "selCreateEvent",
     "actionType": "service",
@@ -173,6 +164,22 @@
     "actionName": "MyVoteList EventAction",
     "actionType": "service",
     "actionBody": "voteResponseService.resIfUlc002",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "voteBasInfo",
+    "event": "send",
+    "noneExecute": true,
+    "eventName": "selCreate Node Type"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "voteBasInfo>send",
+    "action": "send",
+    "actionName": "hwyoon test",
+    "actionType": "service",
+    "actionBody": "voteDayCntryService.voteBasStatsDaySetNum",
     "order": 1
   }
 ]

@@ -1,9 +1,11 @@
 package net.ion.ice.cjmwave.votePrtcptHst;
 
+import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -24,67 +26,91 @@ public class VoteDayCntryService {
     @Autowired
     private NodeService nodeService;
 
+    private Logger logger = Logger.getLogger(VoteDayCntryService.class);
 
 
-    public void voteBasStatsDaySetNum() {
+    public void voteBasStatsDaySetNum(ExecuteContext context) {
+
+        if (jdbcTemplate==null) {
+            jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
+        }
 
         int limitCnt = 100;
 
         Date now = new Date();
-        String voteDay = DateFormatUtils.format(now, "yyyyMMdd");
+        //String voteDay = DateFormatUtils.format(now, "yyyyMMdd");
+        String voteDay = "20171016"; //test 용
         String voteDateTime = DateFormatUtils.format(now, "yyyyMMddHHmmss");
 
-        // 투표 기간안에 있는 모든 VoteBasInfo 조회
-        List<Node> voteBasInfoList = NodeUtils.getNodeList(VOTE_BAS_INFO, "pstngStDt_below=" + voteDateTime + "&pstngFnsDt_above="+ voteDateTime);
-        for (Node voteBasInfo : voteBasInfoList) {
-            String voteSeq = voteBasInfo.getId().toString();
-            String tableNm = voteSeq+"_voteHstByMbr";
-            Integer lastSeq = 0;
+        try {
 
-            //voteSeq,voteDay별로 스케쥴 돌리고 나서 해당 _voteHstByMbr 테이블에 마지막 seq를 voteBasStatsByDayLastSeq에 저장한다.
-            //스케쥴 시작시에 voteBasStatsByDayLastSeq에에 저장된 seq가 있는지 조회하고 없을때는 신규!
-            Map<String, Object> lastSeqInfo = getVoteBasByDayLstSeq(voteSeq, voteDay);
-            if(lastSeqInfo != null){
-                lastSeq = Integer.parseInt(lastSeqInfo.get("seq").toString());
-            }
+            // 투표 기간안에 있는 모든 VoteBasInfo 조회
+            List<Node> voteBasInfoList = NodeUtils.getNodeList(VOTE_BAS_INFO, "pstngStDt_below=" + voteDateTime + "&pstngFnsDt_above="+ voteDateTime);
+            logger.info("===============> voteBasInfoList size :: " + voteBasInfoList.size() );
 
-            List<Map<String, Object>> voteMbrList = getVoteHstByMbrList(tableNm, voteDay, lastSeq, limitCnt);
-            Integer voteMbrListSize = voteMbrList.size();
+            for (Node voteBasInfo : voteBasInfoList) {
 
-            //1. voteSeq&일자별 테이블 voteNum 업데이트
-            if(lastSeqInfo == null){
-                insertVoteBasDay(voteMbrListSize, voteSeq, voteDay, "anonymous", voteDateTime);
-            }else{
-                updateVoteBasDay(voteMbrListSize, voteDateTime, voteSeq, voteDay);
-            }
+                String voteSeq = voteBasInfo.getId().toString();
+                logger.info("===============> voteBasInfo - voteSeq :: " + voteSeq );
 
+                String tableNm = voteSeq+"_voteHstByMbr";
 
-            //2. voteSeq&일자&국가별 테이블 voteNum 업데이트
-            for(int i=0; i<voteMbrListSize; i++){
-                Map<String, Object> mapData = voteMbrList.get(i);
-                String mbrId = mapData.get("mbrId").toString();
-
-                //회원정보의 국가 정보 가져온다
-                Node mbrInfo = NodeUtils.getNodeService().read(MBR_INFO, mbrId);
-                String cntryCd = mbrInfo.getStringValue("cntryCd");
-                Integer cntryCheckCnt = getVoteBasCntryCount(voteSeq, voteDay, cntryCd);
-
-                //voteSeq&일자&국가별 테이블 voteNum 업데이트
-                if(cntryCheckCnt > 0){
-                    updateVoteCntryDay(voteDateTime, voteSeq, voteDay, cntryCd);
-                }else{
-                    insertVoteCntryDay(voteSeq, voteDay, cntryCd, 1, "anonymous", voteDateTime);
+                //voteSeq,voteDay별로 스케쥴 돌리고 나서 해당 _voteHstByMbr 테이블에 마지막 seq를 voteBasStatsByDayLastSeq에 저장한다.
+                //스케쥴 시작시에 voteBasStatsByDayLastSeq에에 저장된 seq가 있는지 조회하고 없을때는 신규!
+                Integer lastSeq = 0;
+                Map<String, Object> lastSeqInfo = getVoteBasByDayLstSeq(voteSeq, voteDay);
+                if(lastSeqInfo != null){
+                    lastSeq = Integer.parseInt(lastSeqInfo.get("seq").toString());
                 }
+
+                List<Map<String, Object>> voteMbrList = getVoteHstByMbrList(tableNm, voteDay, lastSeq, limitCnt);
+                if(voteMbrList != null){
+
+                    Integer voteMbrListSize = voteMbrListSize = voteMbrList.size();
+                    //1. voteSeq&일자별 테이블 voteNum 업데이트
+                    if(lastSeqInfo == null){
+                        insertVoteBasDay(voteMbrListSize, voteSeq, voteDay, "anonymous", voteDateTime);
+                        logger.info("===============> insertVoteBasDay :: " + voteMbrListSize);
+                    }else{
+                        updateVoteBasDay(voteMbrListSize, voteDateTime, voteSeq, voteDay);
+                        logger.info("===============> updateVoteBasDay :: " + voteMbrListSize);
+                    }
+
+                    //2. voteSeq&일자&국가별 테이블 voteNum 업데이트
+                    for(int i=0; i<voteMbrListSize; i++){
+                        Map<String, Object> mapData = voteMbrList.get(i);
+                        String mbrId = mapData.get("mbrId").toString();
+
+                        //회원정보의 국가 정보 가져온다
+                        Node mbrInfo = NodeUtils.getNodeService().read(MBR_INFO, mbrId);
+                        String cntryCd = mbrInfo.getStringValue("cntryCd");
+                        Integer cntryCheckCnt = getVoteBasCntryCount(voteSeq, voteDay, cntryCd);
+
+                        //voteSeq&일자&국가별 테이블 voteNum 업데이트
+                        if(cntryCheckCnt > 0){
+                            updateVoteCntryDay(voteDateTime, voteSeq, voteDay, cntryCd);
+                        }else{
+                            insertVoteCntryDay(voteSeq, voteDay, cntryCd, 1, "anonymous", voteDateTime);
+                        }
+                    }
+
+
+                    //해당 _voteHstByMbr 테이블에 마지막 seq를 저장
+                    Integer lastListSeq = Integer.parseInt(voteMbrList.get(voteMbrListSize-1).get("seq").toString());
+                    if(lastSeqInfo == null){
+                        insertVoteBasByDayLstSeq(lastListSeq, voteSeq, voteDay);
+                    }else{
+                        updateVoteBasByDayLstSeq(lastListSeq, voteSeq, voteDay);
+                    }
+
+                }else{
+                    logger.info("===============> 해당 테이블에 일치하는 데이터 없어~~~ :: " + tableNm );
+                }
+
             }
 
-            //해당 _voteHstByMbr 테이블에 마지막 seq를 저장
-            Integer lastListSeq = Integer.parseInt(voteMbrList.get(voteMbrListSize-1).get("seq").toString());
-            if(lastSeqInfo == null){
-                insertVoteBasByDayLstSeq(lastListSeq, voteSeq, voteDay);
-            }else{
-                updateVoteBasByDayLstSeq(lastListSeq, voteSeq, voteDay);
-            }
-
+        }catch (Exception e) {
+            logger.error("Failed to voteDayCntryService voteBasStatsDaySetNum");
         }
 
     }
