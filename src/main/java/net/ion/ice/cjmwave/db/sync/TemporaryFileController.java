@@ -65,8 +65,10 @@ public class TemporaryFileController {
         try {
             //CSV 읽어서 노드로 만들기
             String targetNodeType = request.getParameter("nodeType");
+            String strSkipMsSql = request.getParameter("skipMsSql");
+            boolean skipMsSql = (strSkipMsSql != null && strSkipMsSql.toLowerCase().equals("true"));
             String fullPath = request.getParameter("csv");
-            temporaryFileService.registerNodeFromCSV(targetNodeType, fullPath);
+            temporaryFileService.registerNodeFromCSV(targetNodeType, fullPath, skipMsSql);
             result = "200";
             result_msg = "SUCCESS";
         } catch (Exception e) {

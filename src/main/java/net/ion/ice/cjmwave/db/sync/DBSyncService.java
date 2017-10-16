@@ -9,6 +9,7 @@ import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
+import org.apache.commons.collections.map.HashedMap;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -339,7 +340,7 @@ public class DBSyncService {
         return imageValues;
     }
 
-    private List<String> executeSingleTaskAndRecord (Node executionNode, List<Map<String, Object>> queryRs, String mig_target, String mig_type) throws Exception {
+    private List<String> executeSingleTaskAndRecord (Node executionNode, List<Map<String, Object>> queryRs, String mig_target, String mig_type, boolean byId, Map<String, Object> idReport) throws Exception {
         List<String> successIds = new ArrayList<>();
         int successCnt = 0;
         int skippedCnt = 0;
@@ -364,7 +365,7 @@ public class DBSyncService {
             multiLangQuery = String.valueOf(executionNode.get("multiLanguageQuery"));
         }
 
-
+        logger.info("MYSQL QUERY RESULT COUNT :: " + queryRs.size());
         for (Map qMap : queryRs) {
             int rs = 0;
             // 만약에 Node 의 mnetIfTrtYn 가 false 라면 무시한다.
@@ -375,7 +376,10 @@ public class DBSyncService {
                     boolean mnetIfTrtYn = targetNode.getBooleanValue("mnetIfTrtYn");
                     logger.info("mnetIfTrtYn Value For :: " + targetNodeType + " :: "
                             + pkValue + " :: mnetIfTrtYn :: " + String.valueOf(mnetIfTrtYn));
-                    if(!mnetIfTrtYn) continue;
+                    if(!mnetIfTrtYn) {
+                        logger.info("mnetIfTrtYn is [ false ]. Skip update");
+                        continue;
+                    }
                 }
             } catch (Exception e) {
                 logger.error("Failed to check [ mnetIfTrtYn ]. Ignore and override");
@@ -395,9 +399,9 @@ public class DBSyncService {
             fit.putAll(getImageInfo(qMap,targetNodeType, currentNodePKPid));
 
 
-            logger.debug("CREATE MIGRATION NODE :: " + String.valueOf(fit));
+            logger.info("CREATE MIGRATION NODE :: " + String.valueOf(fit));
             try{
-                Node finished = nodeService.saveNodeWithException(fit);
+                Node finished = nodeService.saveNodeWithException(fit); // 반환 안됨
                 successIds.add(finished.getId());
                 successCnt ++;
                 rs = 1;
@@ -418,9 +422,28 @@ public class DBSyncService {
         }
 
         long jobTaken = (new Date().getTime() - startTime.getTime());
-        MigrationUtils.printReport(startTime, executeId, failPolicy, successCnt, skippedCnt);
-        MigrationUtils.recordResult(ice2Template, mig_target, mig_type, null, null
-                ,targetNodeType, successCnt, skippedCnt, jobTaken, startTime);
+        if(!byId){
+            MigrationUtils.printReport(startTime, executeId, failPolicy, successCnt, skippedCnt);
+            MigrationUtils.recordResult(ice2Template, mig_target, mig_type, null, null
+                    ,targetNodeType, successCnt, skippedCnt, jobTaken, startTime);
+        } else {
+            if(idReport.isEmpty()) {
+
+                idReport.put(MigrationUtils.MIGTARGET, mig_target);
+                idReport.put(MigrationUtils.MIGTYPE, mig_type);
+                idReport.put(MigrationUtils.NODE_TARGET, targetNodeType);
+                idReport.put(MigrationUtils.JOB_SUCCESS, successCnt);
+                idReport.put(MigrationUtils.JOB_SKIPPED, skippedCnt);
+                idReport.put(MigrationUtils.JOB_DURATION, jobTaken);
+                idReport.put(MigrationUtils.JOB_STARTON, startTime);
+            } else {
+                Map<String, Object> newRepo = new HashMap<String, Object>();
+                newRepo.put(MigrationUtils.JOB_SUCCESS, successCnt);
+                newRepo.put(MigrationUtils.JOB_SKIPPED, skippedCnt);
+                newRepo.put(MigrationUtils.JOB_DURATION, jobTaken);
+                mergeReport(idReport, newRepo);
+            }
+        }
         return  successIds;
     }
 
@@ -580,16 +603,36 @@ public class DBSyncService {
         List<Map<String, Object>> targets2Update =
                 ice2Template.queryForList(jdbcQuery, params);
 
-        successIds = executeSingleTaskAndRecord(executionNode, targets2Update, "MNET", "SCHEDULE");
+        successIds = executeSingleTaskAndRecord(executionNode, targets2Update, "MNET", "SCHEDULE", false, null);
     }
 
-    private void executeWithId(String mig_target, String executeId, String id) throws Exception {
+    private void executeWithIds(String mig_target, String executeId, List<String> ids) throws Exception {
+        Map<String, Object> idReport = new HashedMap();
+        Date startTime = new Date();
+
         Node tempExecutionNode = nodeService.getNode(PROCESS_TID, executeId);
         String query = String.valueOf(tempExecutionNode.get("query"));
         // executeId 실행하고 결과 처리
-        List<Map<String, Object>> targets2Update =
-                ice2Template.queryForList(query, id);
-        executeSingleTaskAndRecord(tempExecutionNode, targets2Update, mig_target.toLowerCase(), "MANUAL");
+
+
+        for(String id : ids) {
+            Map<String, Object> idMap = new HashMap<>();
+            idMap.put("id", id);
+            Map<String, Object> preparedQueryMap = SyntaxUtils.parse(query, idMap);
+            query = String.valueOf(preparedQueryMap.get("query"));
+            List<Map<String, Object>> targets2Update =
+                    ice2Template.queryForList(query, id);
+            executeSingleTaskAndRecord(tempExecutionNode, targets2Update, mig_target.toLowerCase(), "MANUAL", true, idReport);
+        }
+
+        try{
+            MigrationUtils.printReport(startTime, executeId, "SKIP"
+                    , (int) idReport.get(MigrationUtils.JOB_SUCCESS)
+                    , (int) idReport.get(MigrationUtils.JOB_SKIPPED));
+            MigrationUtils.recordResult(ice2Template, idReport);
+        } catch (Exception e) {
+            logger.error("Failed to handout report :: migration by ids", e);
+        }
     }
 
 
@@ -770,6 +813,33 @@ public class DBSyncService {
         }
     }
 
+    private Map<String, Object> mergeReport(Map<String, Object> oldReport, Map<String, Object> newReport){
+//        System.out.println("이전 리포트 :: " +  String.valueOf(oldReport));
+//        System.out.println("신규 리포트 :: " +  String.valueOf(newReport));
+        try {
+            if(oldReport.containsKey(MigrationUtils.JOB_SUCCESS)) {
+                int successCnt = (int) oldReport.get(MigrationUtils.JOB_SUCCESS);
+                int newSuccessCnt = (newReport.get(MigrationUtils.JOB_SUCCESS) == null ? 0 : (int) newReport.get(MigrationUtils.JOB_SUCCESS));
+                oldReport.put(MigrationUtils.JOB_SUCCESS, successCnt + newSuccessCnt);
+            }
+
+            if(oldReport.containsKey(MigrationUtils.JOB_SKIPPED)) {
+                int skippedCnt = (int) oldReport.get(MigrationUtils.JOB_SKIPPED);
+                int newSkippedCnt = (newReport.get(MigrationUtils.JOB_SKIPPED) == null ? 0 : (int) newReport.get(MigrationUtils.JOB_SKIPPED));
+                oldReport.put(MigrationUtils.JOB_SKIPPED, skippedCnt + newSkippedCnt);
+            }
+
+            if(oldReport.containsKey(MigrationUtils.JOB_DURATION)) {
+                long taskDuration = (long) oldReport.get(MigrationUtils.JOB_DURATION);
+                long newTaskDuration = (newReport.get(MigrationUtils.JOB_DURATION) == null ? 0 : (long) newReport.get(MigrationUtils.JOB_DURATION));
+                oldReport.put(MigrationUtils.JOB_DURATION, taskDuration + newTaskDuration);
+            }
+        } catch (Exception e) {
+            logger.error("Failed to merge migration report :: by ids", e);
+        }
+        return oldReport;
+    }
+
     public void executeForTempData (String mig_target, String type, List<String> ids) throws Exception {
         switch (type.toLowerCase()) {
             case "album" :
@@ -777,9 +847,7 @@ public class DBSyncService {
                     taskExecutor.execute(new ParallelDBSyncExecutor("tempAlbum") {
                         @Override
                         public void action() throws Exception {
-                            for(int i = 0; i < ids.size(); i++){
-                                this.dbSyncService.executeWithId(mig_target, this.executeId, ids.get(i));
-                            }
+                            this.dbSyncService.executeWithIds(mig_target, this.executeId, ids);
                         }
                     });
                 } else {
@@ -791,9 +859,7 @@ public class DBSyncService {
                     taskExecutor.execute(new ParallelDBSyncExecutor("tempArtist") {
                         @Override
                         public void action() throws Exception {
-                            for(int i = 0; i < ids.size(); i++){
-                                this.dbSyncService.executeWithId(mig_target, this.executeId, ids.get(i));
-                            }
+                            this.dbSyncService.executeWithIds(mig_target, this.executeId, ids);
                         }
                     });
                 } else {
@@ -805,9 +871,7 @@ public class DBSyncService {
                     taskExecutor.execute(new ParallelDBSyncExecutor("tempSong") {
                         @Override
                         public void action() throws Exception {
-                            for(int i = 0; i < ids.size(); i++){
-                                this.dbSyncService.executeWithId(mig_target, this.executeId, ids.get(i));
-                            }
+                            this.dbSyncService.executeWithIds(mig_target, this.executeId, ids);
                         }
                     });
                 } else {
@@ -819,9 +883,7 @@ public class DBSyncService {
                     taskExecutor.execute(new ParallelDBSyncExecutor("tempMusicVideo") {
                         @Override
                         public void action() throws Exception {
-                            for(int i = 0; i < ids.size(); i++){
-                                this.dbSyncService.executeWithId(mig_target, this.executeId, ids.get(i));
-                            }
+                            this.dbSyncService.executeWithIds(mig_target, this.executeId, ids);
                         }
                     });
                 } else {

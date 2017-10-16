@@ -22,7 +22,7 @@
     "menuName": "DefaultList",
     "order": "10",
     "icon": "fa-square-o",
-    "active": "true",
+    "active": "false",
     "index": "false",
     "pages": [],
     "customPages": [
@@ -53,7 +53,7 @@
     "menuName": "EditList",
     "order": "20",
     "icon": "fa-square-o",
-    "active": "true",
+    "active": "false",
     "index": "false",
     "pages": [],
     "customPages": [
@@ -72,7 +72,7 @@
     "menuName": "TreeList",
     "order": "30",
     "icon": "fa-square-o",
-    "active": "true",
+    "active": "false",
     "index": "false",
     "pages": [],
     "customPages": [
@@ -91,7 +91,7 @@
     "menuName": "TreeAndList",
     "order": "40",
     "icon": "fa-square-o",
-    "active": "true",
+    "active": "false",
     "index": "false",
     "pages": [],
     "customPages": [
@@ -110,7 +110,7 @@
     "menuName": "defaultTabs",
     "order": "30",
     "icon": "fa-square-o",
-    "active": "true",
+    "active": "false",
     "index": "false",
     "pages": [],
     "customPages": [
@@ -133,7 +133,7 @@
     "menuName": "defaultTabs2",
     "order": "40",
     "icon": "fa-square-o",
-    "active": "true",
+    "active": "false",
     "index": "false",
     "pages": [],
     "customPages": [

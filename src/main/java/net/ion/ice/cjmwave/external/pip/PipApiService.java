@@ -79,7 +79,7 @@ public class PipApiService {
     private Map<String,Object> match (String nodeTypeId, Map<String, Object> data) throws Exception {
         Map <String, Object> transformed = new HashMap<String, Object>();
         transformed.put("typeId", nodeTypeId);
-        transformed.put("mnetIfTrtYn", 1);  // default
+        transformed.put("mnetIfTrtYn", true);  // default
         SimpleDateFormat sdf14 = new SimpleDateFormat("yyyyMMddHHmmss");
         String isUse = "N";
         String regDateStr = "", modifyDateStr = "";

@@ -4,7 +4,7 @@
     , "executeId": "album"
     , "targetDs": "cjDb"
     , "targetNodeType": "album"
-    , "query": "SELECT ALBUM_ID as albumId, ALBUM_NM as albumNm, REPLACE(ARTIST_IDS, '♩', ',') as artistId, STR_TO_DATE(RELEASE_YMD, '%Y%m%d') as comotDt, RELEASE_COUNTRY_CD as comotCntry, ALBUM_TYPE_CD as typeCd, DISTRIBUTE_COMPANY_NM as dstrbCrcrt, ALBUM_SUBNM as subName, SERIES_TAG as sersName, ALBUM_INTRO as albumDesc, 1 as mnetIfTrtYn FROM (SELECT * FROM MT_ALBUM ORDER BY ALBUM_ID DESC LIMIT @{BIGINT.start}, @{BIGINT.unit}) ALBUM"
+    , "query": "SELECT ALBUM_ID as albumId, ALBUM_NM as albumNm, REPLACE(ARTIST_IDS, '♩', ',') as artistId, STR_TO_DATE(RELEASE_YMD, '%Y%m%d') as comotDt, RELEASE_COUNTRY_CD as comotCntry, ALBUM_TYPE_CD as typeCd, DISTRIBUTE_COMPANY_NM as dstrbCrcrt, ALBUM_SUBNM as subName, SERIES_TAG as sersName, ALBUM_INTRO as albumDesc, true as mnetIfTrtYn FROM (SELECT * FROM MT_ALBUM ORDER BY ALBUM_ID DESC LIMIT @{BIGINT.start}, @{BIGINT.unit}) ALBUM MASTER"
     , "multiLanguageQuery" : "SELECT lang_cd as langCd , album_nm as albumNm , album_subnm as subName , series_tag as sersName , album_intro as albumDesc FROM MT_ALBUM_META ALBUM_META WHERE album_id=@{VARCHAR.id}"
     , "onFail": "skip"
   }
@@ -14,7 +14,7 @@
     , "executeId": "artist"
     , "targetDs": "cjDb"
     , "targetNodeType": "artist"
-    , "query": "SELECT ARTIST_ID as artistId , ARTIST_NM as artistNm , STR_TO_DATE(ARTIST_BIRTH_YMD, '%Y%m%d')  as cretDt , ARTIST_NATIONALITY as bpnac , RIGHT(ARTIST_GENDER, 3) as sex ,  RIGHT(ARTIST_TYPE_CD, 3) as typeCd, STR_TO_DATE(DEBUT_YMD, '%Y%m%d') as debutDt , DEBUT_ALBUM_ID as debutAlbum , ARTIST_INTRO as artistDesc , ARTIST_NM as atvyName, DISPLAY_FLG as showYn , 1 as mnetIfTrtYn FROM (SELECT * FROM MT_ARTIST ORDER BY ARTIST_ID DESC LIMIT @{BIGINT.start}, @{BIGINT.unit}) ARTIST"
+    , "query": "SELECT ARTIST_ID as artistId , ARTIST_NM as artistNm , STR_TO_DATE(ARTIST_BIRTH_YMD, '%Y%m%d')  as cretDt , ARTIST_NATIONALITY as bpnac , RIGHT(ARTIST_GENDER, 3) as sex ,  RIGHT(ARTIST_TYPE_CD, 3) as typeCd, STR_TO_DATE(DEBUT_YMD, '%Y%m%d') as debutDt , DEBUT_ALBUM_ID as debutAlbum , ARTIST_INTRO as artistDesc , ARTIST_NM as atvyName, DISPLAY_FLG as showYn , true as mnetIfTrtYn FROM (SELECT * FROM MT_ARTIST ORDER BY ARTIST_ID DESC LIMIT @{BIGINT.start}, @{BIGINT.unit}) ARTIST MASTER"
     , "multiLanguageQuery" : "SELECT lang_cd as langCd , artist_nm as artistNm , artist_intro as artistDesc , artist_prev_active_nm as atvyName FROM MT_ARTIST_META ARTIST_META WHERE artist_id=@{VARCHAR.id}"
     , "onFail": "skip"
   }
@@ -24,7 +24,7 @@
     , "executeId": "song"
     , "targetDs": "cjDb"
     , "targetNodeType": "song"
-    , "query": "SELECT SONG_ID as songId , SONG_NM as songNm , SONG_SHORT_INFO as subName , SONG_MEDIA_INFO as songDesc , REPLACE(ARTIST_IDS, '♩', ',') as artistId , ALBUM_ID as albumId , RUNNING_TIME as playTime , (SELECT LYRIC FROM MT_SONG_LYRIC WHERE SONG_ID = SONG.SONG_ID) as wrds, 1 as mnetIfTrtYn FROM (SELECT * FROM MT_SONG ORDER BY SONG_ID DESC LIMIT @{BIGINT.start}, @{BIGINT.unit}) SONG"
+    , "query": "SELECT SONG_ID as songId , SONG_NM as songNm , SONG_SHORT_INFO as subName , SONG_MEDIA_INFO as songDesc , REPLACE(ARTIST_IDS, '♩', ',') as artistId , ALBUM_ID as albumId , RUNNING_TIME as playTime , (SELECT LYRIC FROM MT_SONG_LYRIC WHERE SONG_ID = MASTER.SONG_ID) as wrds, true as mnetIfTrtYn FROM (SELECT * FROM MT_SONG ORDER BY SONG_ID DESC LIMIT @{BIGINT.start}, @{BIGINT.unit}) SONG MASTER"
     , "multiLanguageQuery" : "SELECT lang_cd as langCd , song_nm as songNm , song_short_info as subName , song_media_info as songDesc FROM MT_SONG_META MSM WHERE song_id=@{VARCHAR.id}"
     , "onFail": "skip"
   }
@@ -34,7 +34,7 @@
     , "executeId": "musicVideo"
     , "targetDs": "cjDb"
     , "targetNodeType": "musicVideo"
-    , "query": "SELECT MV_ID as musicVideoId , MV_TITLE as musicVideoNm , MV_SUBTITLE as subName , GENRE_CD as genreCd , MV_INTRO as musicVideoDesc, STR_TO_DATE(RELEASE_YMD, '%Y%m%d') as comotDt , REPLACE(ARTIST_IDS, '♩', ',') as artistId , (SELECT YOUTUBE_URL FROM MT_MV_EMBED WHERE MV_ID = MV.MV_ID) as youtubeUrl , (SELECT TUDOU_URL FROM MT_MV_EMBED WHERE MV_ID = MV.MV_ID) as todouUrl , RUNNING_TIME as playTime, 1 as mnetIfTrtYn , DISPLAY_FLG as showYn , SONG_ID as relSongIds FROM (SELECT * FROM MT_MV ORDER BY MV_ID DESC LIMIT @{BIGINT.start}, @{BIGINT.unit}) MV"
+    , "query": "SELECT MV_ID as musicVideoId , MV_TITLE as musicVideoNm , MV_SUBTITLE as subName , GENRE_CD as genreCd , MV_INTRO as musicVideoDesc, STR_TO_DATE(RELEASE_YMD, '%Y%m%d') as comotDt , REPLACE(ARTIST_IDS, '♩', ',') as artistId , (SELECT YOUTUBE_URL FROM MT_MV_EMBED WHERE MV_ID = MASTER.MV_ID) as youtubeUrl , (SELECT TUDOU_URL FROM MT_MV_EMBED WHERE MV_ID = MASTER.MV_ID) as todouUrl , RUNNING_TIME as playTime, true as mnetIfTrtYn , DISPLAY_FLG as showYn , SONG_ID as relSongIds FROM (SELECT * FROM MT_MV ORDER BY MV_ID DESC LIMIT @{BIGINT.start}, @{BIGINT.unit}) MASTER"
     , "multiLanguageQuery" : "SELECT mv_id as musicVideoId , lang_cd as langCd , mv_title as musicVideoNm , mv_subtitle as subName , mv_intro as musicVideoDesc , (SELECT YOUTUBE_URL FROM MT_MV_EMBED WHERE MV_ID = MMM.mv_id) as youtubeUrl , (SELECT TUDOU_URL FROM MT_MV_EMBED WHERE MV_ID = MMM.mv_id) as todouUrl FROM MT_MV_META MMM WHERE mv_id=@{VARCHAR.id}"
     , "onFail": "skip"
   }
@@ -72,7 +72,7 @@
       , "executeId": "albumPart"
       , "targetDs": "cjDb"
       , "targetNodeType": "album"
-      , "query": "SELECT ALBUM_ID as albumId , ALBUM_NM as albumNm , REPLACE(ARTIST_IDS, '♩', ',') as artistId , STR_TO_DATE(RELEASE_YMD, '%Y%m%d') as comotDt , RELEASE_COUNTRY_CD as comotCntry , ALBUM_TYPE_CD as typeCd, DISTRIBUTE_COMPANY_NM as dstrbCrcrt , ALBUM_SUBNM as subName , SERIES_TAG as sersName , ALBUM_INTRO as albumDesc, 1 as mnetIfTrtYn FROM MT_ALBUM ALBUM WHERE CREATE_DT > @{DATETIME.lastUpdated} OR UPDATE_DT > @{DATETIME.lastUpdated}"
+      , "query": "SELECT ALBUM_ID as albumId , ALBUM_NM as albumNm , REPLACE(ARTIST_IDS, '♩', ',') as artistId , STR_TO_DATE(RELEASE_YMD, '%Y%m%d') as comotDt , RELEASE_COUNTRY_CD as comotCntry , ALBUM_TYPE_CD as typeCd, DISTRIBUTE_COMPANY_NM as dstrbCrcrt , ALBUM_SUBNM as subName , SERIES_TAG as sersName , ALBUM_INTRO as albumDesc, true as mnetIfTrtYn FROM MT_ALBUM MASTER WHERE CREATE_DT > @{DATETIME.lastUpdated} OR UPDATE_DT > @{DATETIME.lastUpdated}"
       , "multiLanguageQuery" : "SELECT album_id as albumId , lang_cd as langCd , album_nm as albumNm , album_subnm as subName , series_tag as sersName , album_intro as albumDesc FROM MT_ALBUM_META ALBUM_META WHERE album_id=@{VARCHAR.id}"
       , "onFail": "skip"
     }
@@ -82,7 +82,7 @@
     , "executeId": "artistPart"
     , "targetDs": "cjDb"
     , "targetNodeType": "artist"
-    , "query": "SELECT ARTIST_ID as artistId , ARTIST_NM as artistNm , STR_TO_DATE(ARTIST_BIRTH_YMD, '%Y%m%d') as cretDt , ARTIST_NATIONALITY as bpnac , RIGHT(ARTIST_GENDER, 3) as sex , RIGHT(ARTIST_TYPE_CD, 3) as typeCd, STR_TO_DATE(DEBUT_YMD, '%Y%m%d') as debutDt , DEBUT_ALBUM_ID as debutAlbum , ARTIST_INTRO as artistDesc , ARTIST_NM as atvyName, DISPLAY_FLG as showYn , 1 as mnetIfTrtYn FROM MT_ARTIST ARTIST WHERE CREATE_DT > @{DATETIME.lastUpdated} OR UPDATE_DT > @{DATETIME.lastUpdated}"
+    , "query": "SELECT ARTIST_ID as artistId , ARTIST_NM as artistNm , STR_TO_DATE(ARTIST_BIRTH_YMD, '%Y%m%d') as cretDt , ARTIST_NATIONALITY as bpnac , RIGHT(ARTIST_GENDER, 3) as sex , RIGHT(ARTIST_TYPE_CD, 3) as typeCd, STR_TO_DATE(DEBUT_YMD, '%Y%m%d') as debutDt , DEBUT_ALBUM_ID as debutAlbum , ARTIST_INTRO as artistDesc , ARTIST_NM as atvyName, DISPLAY_FLG as showYn , true as mnetIfTrtYn FROM MT_ARTIST MASTER WHERE CREATE_DT > @{DATETIME.lastUpdated} OR UPDATE_DT > @{DATETIME.lastUpdated}"
     , "multiLanguageQuery" : "SELECT artist_id as artistId , lang_cd as langCd , artist_nm as artistNm , artist_intro as artistDesc , artist_prev_active_nm as atvyName FROM MT_ARTIST_META ARTIST_META WHERE artist_id=@{VARCHAR.id}"
     , "onFail": "skip"
   }
@@ -92,7 +92,7 @@
     , "executeId": "songPart"
     , "targetDs": "cjDb"
     , "targetNodeType": "song"
-    , "query": "SELECT SONG_ID as songId , SONG_NM as songNm , SONG_SHORT_INFO as subName , SONG_MEDIA_INFO as songDesc , REPLACE(ARTIST_IDS, '♩', ',') as artistId , ALBUM_ID as albumId , RUNNING_TIME as playTime , (SELECT LYRIC FROM MT_SONG_LYRIC WHERE SONG_ID = SONG.SONG_ID) as wrds, 1 as mnetIfTrtYn FROM MT_SONG SONG WHERE CREATE_DT > @{DATETIME.lastUpdated} OR UPDATE_DT > @{DATETIME.lastUpdated}"
+    , "query": "SELECT SONG_ID as songId , SONG_NM as songNm , SONG_SHORT_INFO as subName , SONG_MEDIA_INFO as songDesc , REPLACE(ARTIST_IDS, '♩', ',') as artistId , ALBUM_ID as albumId , RUNNING_TIME as playTime , (SELECT LYRIC FROM MT_SONG_LYRIC WHERE SONG_ID = MASTER.SONG_ID) as wrds, true as mnetIfTrtYn FROM MT_SONG MASTER WHERE CREATE_DT > @{DATETIME.lastUpdated} OR UPDATE_DT > @{DATETIME.lastUpdated}"
     , "multiLanguageQuery" : "SELECT song_id as songId , lang_cd as langCd , song_nm as songNm , song_short_info as subName , song_media_info as songDesc FROM MT_SONG_META MSM WHERE song_id=@{VARCHAR.id}"
     , "onFail": "skip"
   }
@@ -102,7 +102,7 @@
     , "executeId": "musicVideoPart"
     , "targetDs": "cjDb"
     , "targetNodeType": "musicVideo"
-    , "query": "SELECT MV_ID as musicVideoId , MV_TITLE as musicVideoNm , MV_SUBTITLE as subName , GENRE_CD as genreCd , MV_INTRO as musicVideoDesc, STR_TO_DATE(RELEASE_YMD, '%Y%m%d') as comotDt , REPLACE(ARTIST_IDS, '♩', ',') as artistId , (SELECT YOUTUBE_URL FROM MT_MV_EMBED WHERE MV_ID = MV.MV_ID) as youtubeUrl , (SELECT TUDOU_URL FROM MT_MV_EMBED WHERE MV_ID = MV.MV_ID) as todouUrl , RUNNING_TIME as playTime, 1 as mnetIfTrtYn , DISPLAY_FLG as showYn , SONG_ID as relSongIds FROM MT_MV MV WHERE CREATE_DT > @{DATETIME.lastUpdated} OR UPDATE_DT > @{DATETIME.lastUpdated}"
+    , "query": "SELECT MV_ID as musicVideoId , MV_TITLE as musicVideoNm , MV_SUBTITLE as subName , GENRE_CD as genreCd , MV_INTRO as musicVideoDesc, STR_TO_DATE(RELEASE_YMD, '%Y%m%d') as comotDt , REPLACE(ARTIST_IDS, '♩', ',') as artistId , (SELECT YOUTUBE_URL FROM MT_MV_EMBED WHERE MV_ID = MASTER.MV_ID) as youtubeUrl , (SELECT TUDOU_URL FROM MT_MV_EMBED WHERE MV_ID = MASTER.MV_ID) as todouUrl , RUNNING_TIME as playTime, true as mnetIfTrtYn , DISPLAY_FLG as showYn , SONG_ID as relSongIds FROM MT_MV MASTER WHERE CREATE_DT > @{DATETIME.lastUpdated} OR UPDATE_DT > @{DATETIME.lastUpdated}"
     , "multiLanguageQuery" : "SELECT mv_id as musicVideoId , lang_cd as langCd , mv_title as musicVideoNm , mv_subtitle as subName , mv_intro as musicVideoDesc , (SELECT YOUTUBE_URL FROM MT_MV_EMBED WHERE MV_ID = MMM.mv_id) as youtubeUrl , (SELECT TUDOU_URL FROM MT_MV_EMBED WHERE MV_ID = MMM.mv_id) as todouUrl FROM MT_MV_META MMM WHERE mv_id=@{VARCHAR.id}"
     , "onFail": "skip"
   }
@@ -143,7 +143,7 @@
     , "executeId": "tempAlbum"
     , "targetDs": "cjDb"
     , "targetNodeType": "album"
-    , "query": "SELECT ALBUM_ID as albumId, ALBUM_NM as albumNm, REPLACE(ARTIST_IDS, '♩', ',') as artistId, STR_TO_DATE(RELEASE_YMD, '%Y%m%d') as comotDt, RELEASE_COUNTRY_CD as comotCntry, ALBUM_TYPE_CD as typeCd, DISTRIBUTE_COMPANY_NM as dstrbCrcrt, ALBUM_SUBNM as subName, SERIES_TAG as sersName, ALBUM_INTRO as albumDesc, 1 as mnetIfTrtYn FROM MT_ALBUM WHERE ALBUM_ID = @{VARCHAR.id}"
+    , "query": "SELECT ALBUM_ID as albumId, ALBUM_NM as albumNm, REPLACE(ARTIST_IDS, '♩', ',') as artistId, STR_TO_DATE(RELEASE_YMD, '%Y%m%d') as comotDt, RELEASE_COUNTRY_CD as comotCntry, ALBUM_TYPE_CD as typeCd, DISTRIBUTE_COMPANY_NM as dstrbCrcrt, ALBUM_SUBNM as subName, SERIES_TAG as sersName, ALBUM_INTRO as albumDesc, true as mnetIfTrtYn FROM MT_ALBUM WHERE ALBUM_ID = @{VARCHAR.id}"
     , "multiLanguageQuery" : "SELECT lang_cd as langCd , album_nm as albumNm , album_subnm as subName , series_tag as sersName , album_intro as albumDesc FROM MT_ALBUM_META ALBUM_META WHERE album_id=@{VARCHAR.id}"
     , "onFail": "skip"
   }
@@ -153,7 +153,7 @@
     , "executeId": "tempArtist"
     , "targetDs": "cjDb"
     , "targetNodeType": "artist"
-    , "query": "SELECT ARTIST_ID as artistId , ARTIST_NM as artistNm , STR_TO_DATE(ARTIST_BIRTH_YMD, '%Y%m%d')  as cretDt , ARTIST_NATIONALITY as bpnac , RIGHT(ARTIST_GENDER, 3) as sex ,  RIGHT(ARTIST_TYPE_CD, 3) as typeCd, STR_TO_DATE(DEBUT_YMD, '%Y%m%d') as debutDt , DEBUT_ALBUM_ID as debutAlbum , ARTIST_INTRO as artistDesc , ARTIST_NM as atvyName, DISPLAY_FLG as showYn , 1 as mnetIfTrtYn FROM MT_ARTIST WHERE ARTIST_ID = @{VARCHAR.id}"
+    , "query": "SELECT ARTIST_ID as artistId , ARTIST_NM as artistNm , STR_TO_DATE(ARTIST_BIRTH_YMD, '%Y%m%d')  as cretDt , ARTIST_NATIONALITY as bpnac , RIGHT(ARTIST_GENDER, 3) as sex ,  RIGHT(ARTIST_TYPE_CD, 3) as typeCd, STR_TO_DATE(DEBUT_YMD, '%Y%m%d') as debutDt , DEBUT_ALBUM_ID as debutAlbum , ARTIST_INTRO as artistDesc , ARTIST_NM as atvyName, DISPLAY_FLG as showYn , true as mnetIfTrtYn FROM MT_ARTIST WHERE ARTIST_ID = @{VARCHAR.id}"
     , "multiLanguageQuery" : "SELECT lang_cd as langCd , artist_nm as artistNm , artist_intro as artistDesc , artist_prev_active_nm as atvyName FROM MT_ARTIST_META ARTIST_META WHERE artist_id=@{VARCHAR.id}"
     , "onFail": "skip"
   }
@@ -163,7 +163,7 @@
     , "executeId": "tempSong"
     , "targetDs": "cjDb"
     , "targetNodeType": "song"
-    , "query": "SELECT SONG_ID as songId , SONG_NM as songNm , SONG_SHORT_INFO as subName , SONG_MEDIA_INFO as songDesc , REPLACE(ARTIST_IDS, '♩', ',') as artistId , ALBUM_ID as albumId , RUNNING_TIME as playTime , (SELECT LYRIC FROM MT_SONG_LYRIC WHERE SONG_ID = SONG_ID) as wrds, 1 as mnetIfTrtYn FROM MT_SONG WHERE SONG_ID = @{VARCHAR.id}"
+    , "query": "SELECT SONG_ID as songId , SONG_NM as songNm , SONG_SHORT_INFO as subName , SONG_MEDIA_INFO as songDesc , REPLACE(ARTIST_IDS, '♩', ',') as artistId , ALBUM_ID as albumId , RUNNING_TIME as playTime , (SELECT LYRIC FROM MT_SONG_LYRIC WHERE SONG_ID = MASTER.SONG_ID) as wrds, true as mnetIfTrtYn FROM MT_SONG MASTER WHERE SONG_ID = @{VARCHAR.id}"
     , "multiLanguageQuery" : "SELECT lang_cd as langCd , song_nm as songNm , song_short_info as subName , song_media_info as songDesc FROM MT_SONG_META MSM WHERE song_id=@{VARCHAR.id}"
     , "onFail": "skip"
   }
@@ -173,10 +173,8 @@
     , "executeId": "tempMusicVideo"
     , "targetDs": "cjDb"
     , "targetNodeType": "musicVideo"
-    , "query": "SELECT MV_ID as musicVideoId , MV_TITLE as musicVideoNm , MV_SUBTITLE as subName , GENRE_CD as genreCd , MV_INTRO as musicVideoDesc, STR_TO_DATE(RELEASE_YMD, '%Y%m%d') as comotDt , REPLACE(ARTIST_IDS, '♩', ',') as artistId , (SELECT YOUTUBE_URL FROM MT_MV_EMBED WHERE MV_ID = MV_ID) as youtubeUrl , (SELECT TUDOU_URL FROM MT_MV_EMBED WHERE MV_ID = MV_ID) as todouUrl , RUNNING_TIME as playTime, 1 as mnetIfTrtYn , DISPLAY_FLG as showYn , SONG_ID as relSongIds FROM MT_MV WHERE MV_ID = @{VARCHAR.id}"
+    , "query": "SELECT MV_ID as musicVideoId , MV_TITLE as musicVideoNm , MV_SUBTITLE as subName , GENRE_CD as genreCd , MV_INTRO as musicVideoDesc, STR_TO_DATE(RELEASE_YMD, '%Y%m%d') as comotDt , REPLACE(ARTIST_IDS, '♩', ',') as artistId , (SELECT YOUTUBE_URL FROM MT_MV_EMBED WHERE MV_ID = MASTER.MV_ID) as youtubeUrl , (SELECT TUDOU_URL FROM MT_MV_EMBED WHERE MV_ID = MASTER.MV_ID) as todouUrl , RUNNING_TIME as playTime, true as mnetIfTrtYn , DISPLAY_FLG as showYn , SONG_ID as relSongIds FROM MT_MV MASTER WHERE MV_ID = @{VARCHAR.id}"
     , "multiLanguageQuery" : "SELECT mv_id as musicVideoId , lang_cd as langCd , mv_title as musicVideoNm , mv_subtitle as subName , mv_intro as musicVideoDesc , (SELECT YOUTUBE_URL FROM MT_MV_EMBED WHERE MV_ID = MMM.mv_id) as youtubeUrl , (SELECT TUDOU_URL FROM MT_MV_EMBED WHERE MV_ID = MMM.mv_id) as todouUrl FROM MT_MV_META MMM WHERE mv_id=@{VARCHAR.id}"
     , "onFail": "skip"
   }
-
-
 ]

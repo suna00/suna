@@ -40,12 +40,12 @@ public class TemporaryFileService {
         }
     }
 
-    public void registerNodeFromCSV (String nodeType, String fullPath) throws Exception {
+    public void registerNodeFromCSV (String nodeType, String fullPath, boolean skipMsSql) throws Exception {
         List<Map<String, Object>> csvRowList = MigrationUtils.readFromCSV(fullPath, ",");
         int success = 0;
         int fail = 0;
 
-        if("artist".equals(nodeType)) {
+        if("artist".equals(nodeType) && skipMsSql) {
             for(Map<String, Object> mapData : csvRowList) {
                 String artistId = String.valueOf(mapData.get("artistId"));
                 String query = "SELECT " +
@@ -53,7 +53,7 @@ public class TemporaryFileService {
                         ", ARTIST_NATIONALITY as bpnac , RIGHT(ARTIST_GENDER, 3) as sex ,  RIGHT(ARTIST_TYPE_CD, 3) as typeCd" +
                         ", STR_TO_DATE(DEBUT_YMD, '%Y%m%d') as debutDt , DEBUT_ALBUM_ID as debutAlbum " +
                         ", ARTIST_INTRO as artistDesc , ARTIST_NM as atvyName, DISPLAY_FLG as showYn " +
-                        ", 1 as mnetIfTrtYn FROM MT_ARTIST WHERE ARTIST_ID = ?";
+                        ", true as mnetIfTrtYn FROM MT_ARTIST WHERE ARTIST_ID = ?";
 
                 try{
                     Map<String, Object> rs = ice2template.queryForMap(query, artistId);
@@ -79,14 +79,17 @@ public class TemporaryFileService {
             // 앨범 / 뮤직비디오 / 곡
             List<String> ids = new ArrayList<>();
             String key = "";
-            switch (nodeType){
+            switch (nodeType.toLowerCase()){
+                case "artist":
+                    key = "artistId";
+                    break;
                 case "album":
                     key = "albumId";
                     break;
                 case  "song":
                     key = "songId";
                     break;
-                case "musicVideo":
+                case "musicvideo":
                     key = "mvId";
                     break;
             }
