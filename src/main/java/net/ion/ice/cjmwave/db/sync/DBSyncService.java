@@ -438,9 +438,9 @@ public class DBSyncService {
                 idReport.put(MigrationUtils.JOB_STARTON, startTime);
             } else {
                 Map<String, Object> newRepo = new HashMap<String, Object>();
-                idReport.put(MigrationUtils.JOB_SUCCESS, successCnt);
-                idReport.put(MigrationUtils.JOB_SKIPPED, skippedCnt);
-                idReport.put(MigrationUtils.JOB_DURATION, jobTaken);
+                newRepo.put(MigrationUtils.JOB_SUCCESS, successCnt);
+                newRepo.put(MigrationUtils.JOB_SKIPPED, skippedCnt);
+                newRepo.put(MigrationUtils.JOB_DURATION, jobTaken);
                 mergeReport(idReport, newRepo);
             }
         }
@@ -814,6 +814,8 @@ public class DBSyncService {
     }
 
     private Map<String, Object> mergeReport(Map<String, Object> oldReport, Map<String, Object> newReport){
+//        System.out.println("이전 리포트 :: " +  String.valueOf(oldReport));
+//        System.out.println("신규 리포트 :: " +  String.valueOf(newReport));
         try {
             if(oldReport.containsKey(MigrationUtils.JOB_SUCCESS)) {
                 int successCnt = (int) oldReport.get(MigrationUtils.JOB_SUCCESS);
