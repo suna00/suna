@@ -40,12 +40,12 @@ public class TemporaryFileService {
         }
     }
 
-    public void registerNodeFromCSV (String nodeType, String fullPath) throws Exception {
+    public void registerNodeFromCSV (String nodeType, String fullPath, boolean skipMsSql) throws Exception {
         List<Map<String, Object>> csvRowList = MigrationUtils.readFromCSV(fullPath, ",");
         int success = 0;
         int fail = 0;
 
-        if("artist".equals(nodeType)) {
+        if("artist".equals(nodeType) && skipMsSql) {
             for(Map<String, Object> mapData : csvRowList) {
                 String artistId = String.valueOf(mapData.get("artistId"));
                 String query = "SELECT " +
@@ -80,6 +80,9 @@ public class TemporaryFileService {
             List<String> ids = new ArrayList<>();
             String key = "";
             switch (nodeType.toLowerCase()){
+                case "artist":
+                    key = "artistId";
+                    break;
                 case "album":
                     key = "albumId";
                     break;
