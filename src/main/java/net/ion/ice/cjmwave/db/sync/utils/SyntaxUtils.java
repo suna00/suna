@@ -83,6 +83,7 @@ public class SyntaxUtils {
                     switch (dataType) {
                         case "BIGINT":
                         case "INT":
+                            System.out.println("1016 VALUE ===== :: " + String.valueOf(value));
                             value = Integer.parseInt(value.toString());
                             break;
                         case "DATETIME":
