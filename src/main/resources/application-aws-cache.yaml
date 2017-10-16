@@ -67,3 +67,7 @@ aws:
 
 temp-file:
   dir: /data/ion/api/resource/ice2/cache
+
+image:
+  prefixUrl: http://125.131.88.147:8080/image/
+  s3PrefixUrl: https://cmsimg.mwave.me/

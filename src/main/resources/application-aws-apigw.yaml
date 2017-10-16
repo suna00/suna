@@ -42,7 +42,7 @@ tomcat:
   basedir: tomcat
 
 logging:
-  config:
+  config:  s3PrefixUrl: https://cjmwave-dev.s3.ap-northeast-2.amazonaws.com/ion/
     classpath:
       - logback-access-dev-2.xml
       - logback-dev-2.xml
@@ -73,7 +73,7 @@ temp-file:
 
 image:
   prefixUrl: http://g-api-elb-579243851.ap-northeast-2.elb.amazonaws.com/image/
-  s3PrefixUrl: https://cjmwave-prd.s3.ap-northeast-2.amazonaws.com/ion/
+  s3PrefixUrl: https://cmsimg.mwave.me/
 
 mobile:
   push:
