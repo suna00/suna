@@ -64,6 +64,7 @@ public class ClusterUtils {
 
     public static Map<String, Object> callNodeList(Member member, String typeId, String queryString) {
         String url = "http://" + member.getAddress().getHost() + ":" + member.getStringAttribute("port")  + "/node/" + typeId + "?" + queryString ;
+        System.out.println("CONNECTING URL :: " + url);
         try {
             String resultStr = ApiUtils.callApiMethod(url, null, 5000, 20000, ApiUtils.GET) ;
             return JsonUtils.parsingJsonToMap(resultStr) ;

@@ -438,7 +438,7 @@ public class MnetDataDumpService {
             for(int i = 0; i < head; i++) {
                 int startIdx = (i * unit);
                 toIndex = ((i + 1) * unit);
-                List<String> subListByUnit = ids.subList((i * unit), unit);
+                List<String> subListByUnit = ids.subList(startIdx, toIndex);
                 migrateWithList(replicationMultiLogic, null, subListByUnit);
             }
 
