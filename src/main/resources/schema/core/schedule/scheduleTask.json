@@ -27,5 +27,15 @@
     "enable": false,
     "actionType": "service",
     "actionBody": "scheduledMnetService.executeAuto1"
+  },
+  {
+    "typeId": "scheduleTask",
+    "id": "voteItemStatsTask",
+    "name": "voteItemStats Schedule Task",
+    "type": "cron",
+    "config": "1 * * * * *",
+    "enable": false,
+    "actionType": "service",
+    "actionBody": "voteItemStatsTask.voteItemStatsJob"
   }
 ]
