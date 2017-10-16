@@ -102,7 +102,8 @@
     "referenceType": "",
     "referenceValue": "",
     "defaultValue": "",
-    "i18n": true
+    "i18n": true,
+    "fileHandler":"s3"
   },
   {
     "typeId": "propertyType",
@@ -120,7 +121,8 @@
     "referenceType": "",
     "referenceValue": "",
     "defaultValue": "",
-    "i18n": true
+    "i18n": true,
+    "fileHandler":"s3"
   },
   {
     "typeId": "propertyType",
