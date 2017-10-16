@@ -41,7 +41,7 @@
     "id": "voteItemInfo>langCd",
     "propertyTypeName": "언어코드",
     "valueType": "REFERENCE",
-    "required": true,
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
@@ -83,7 +83,8 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "i18n": true
   },
   {
     "typeId": "propertyType",
@@ -100,7 +101,8 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "i18n": true
   },
   {
     "typeId": "propertyType",
@@ -117,7 +119,8 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "i18n": true
   },
   {
     "typeId": "propertyType",

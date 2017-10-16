@@ -248,7 +248,8 @@
     "typeName": "투표 항목 정보",
     "repositoryType": "node",
     "eviction": 0,
-    "tableName": "cjDb#voteItemInfo"
+    "tableName": "cjDb#voteItemInfo",
+    "i18n": true
   },
   {
     "parentId": "cjServiceMng",
