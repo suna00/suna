@@ -19,6 +19,8 @@ import org.springframework.core.env.Environment;
 import javax.annotation.PostConstruct;
 import java.util.*;
 
+//import static com.hazelcast.config.MaxSizeConfig.MaxSizePolicy.PER_NODE;
+
 /**
  * A conditional configuration that potentially adds the bean definitions in
  * this class to the Spring application context, depending on whether the
@@ -37,6 +39,11 @@ public class ClusterConfiguration {
 
     private String groups ;
     private static HazelcastInstance hazelcast  ;
+
+    /*
+    private Boolean voteMap ;
+    private Boolean voteCore ;
+    */
 
     private List<String> groupList = new ArrayList<>() ;
 
@@ -63,6 +70,14 @@ public class ClusterConfiguration {
             }
 
             this.localMemberUUID = hazelcast.getCluster().getLocalMember().getUuid() ;
+            /*
+            if(voteCore != null && voteCore){
+                IQueue queue = getMbrVoteQueue() ;
+                VoteExecuter executer = new VoteExecuter(queue) ;
+                executer.setDaemon(true);
+                executer.start();
+            }
+            */
         }
     }
 
@@ -110,6 +125,25 @@ public class ClusterConfiguration {
                     .setMaxSize(0)
                     .setStatisticsEnabled(true);
         }
+
+        /*
+        if(this.voteMap != null && this.voteMap){
+            MapConfig mapConfig = config.getMapConfig("mbrVoteMap") ;
+            mapConfig.getMaxSizeConfig().setMaxSizePolicy(PER_NODE).setSize(20000);
+            mapConfig.setBackupCount(1) ;
+
+            QueueConfig queueConfig = config.getQueueConfig( "mbrVoteQueue");
+            queueConfig.setName("mbrVoteQueue")
+                    .setBackupCount(1)
+                    .setMaxSize(0)
+                    .setStatisticsEnabled(true);
+        }
+        if(this.voteCore != null && this.voteCore){
+            MapConfig mapConfig = config.getMapConfig("artistVote") ;
+            mapConfig.getMaxSizeConfig().setMaxSizePolicy(PER_NODE).setSize(20000);
+            mapConfig.setBackupCount(1) ;
+        }
+        */
 
         return config;
     }
@@ -170,5 +204,26 @@ public class ClusterConfiguration {
     public String getMode(){
         return mode ;
     }
+
+    /*
+    public void setVoteMap(Boolean voteMap) {
+        this.voteMap = voteMap;
+    }
+
+    public IMap<String, Map<String, Integer>> getMbrVoteMap(){
+        return hazelcast.getMap("mbrVoteMap") ;
+    }
+    */
+
+    /*
+    public void setVoteCore(Boolean voteCore) {
+        this.voteCore = voteCore;
+    }
+
+    public IQueue<VoteSql> getMbrVoteQueue(){
+        return hazelcast.getQueue("mbrVoteQueue") ;
+    }
+    */
+
 }
 

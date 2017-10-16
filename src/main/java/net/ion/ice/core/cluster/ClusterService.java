@@ -101,4 +101,14 @@ public class ClusterService {
 
         return otherMembers ;
     }
+
+    /*
+    public IMap getMbrVoteMap(){
+        return clusterConfiguration.getMbrVoteMap() ;
+    }
+
+    public IQueue<VoteSql> getMbrVoteQueue() {
+        return clusterConfiguration.getMbrVoteQueue();
+    }
+    */
 }
