@@ -15,7 +15,7 @@ echo "Service [$APP_NAME] - [$1] STOP"
 if ! pkill -0 -f $WORK_DIR/$WAR_FILE > /dev/null 2>&1
 then
     echo "Service [$APP_NAME] is not running. Ignoring shutdown request."
-    exit 1
+    exit 0
 fi
 
 # First, we will try to trigger a controlled shutdown using
