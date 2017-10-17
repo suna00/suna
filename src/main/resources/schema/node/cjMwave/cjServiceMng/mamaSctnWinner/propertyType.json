@@ -94,7 +94,7 @@
     "id": "mamaSctnWinner>winnerSongId",
     "propertyTypeName": "수상 곡 아이디",
     "valueType": "REFERENCE",
-    "required": true,
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
