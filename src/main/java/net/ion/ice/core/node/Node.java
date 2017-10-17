@@ -1,6 +1,5 @@
 package net.ion.ice.core.node;
 
-import net.ion.ice.core.context.QueryContext;
 import net.ion.ice.core.context.ReadContext;
 import net.ion.ice.core.infinispan.lucene.CodeAnalyzer;
 import org.apache.commons.lang3.StringUtils;
@@ -8,7 +7,6 @@ import org.hibernate.search.annotations.*;
 
 import java.io.Serializable;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by jaeho on 2017. 3. 31..
