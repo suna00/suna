@@ -278,37 +278,45 @@ public class MemberService {
         if (commonService.requiredParams(context, data, params)) return context;
 
         String certCode = data.get("certCode").toString();
-        String email = data.get("email").toString();
 
-        NodeBindingInfo nodeBindingInfo = NodeUtils.getNodeBindingInfo("emailCertification");
-        String query = " SELECT emailcertificationId, email, memberNo, certCode, certStatus, certRequestDate, date_add(certRequestDate, INTERVAL +60 MINUTE) AS certExpireDate, (certStatus = 'request' AND date_add(certRequestDate, INTERVAL +60 MINUTE) > now() AND certCode = ?) AS available FROM emailcertification WHERE certCode = ? and email = ? limit 1";
-        List<Map<String, Object>> list = nodeBindingInfo.getJdbcTemplate().queryForList(query, certCode, certCode, email);
-
-        if (0 < list.size()) {
-            Map<String, Object> map = list.get(0);
-            String available = map.get("available").toString();
-
-            if ("1".equals(available)) {
-                Map<String, Object> emailCertificationData = new HashMap<>();
-                emailCertificationData.put("emailCertificationId", map.get("emailCertificationId"));
-                emailCertificationData.put("certStatus", "success");
-                emailCertificationData.put("certSuccessDate", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()));
-
-                nodeService.executeNode(emailCertificationData, "emailCertification", CommonService.UPDATE);
-
-                Map<String, Object> resultObject = new HashMap<>();
-                Map<String, Object> item = new HashMap<>();
-
-                item.put("memberNo", map.get("memberNo"));
-                item.put("email", email); // 회원가입
-                resultObject.put("item", item);
-
-                context.setResult(resultObject);
-            } else {
-                commonService.setErrorMessage(context, "U0003");
-            }
+        if("memberRegistBannerCert".equals(certCode)){
+            return context;
         } else {
-            commonService.setErrorMessage(context, "U0002");
+            if(data.get("email") != null){
+                String email = data.get("email").toString();
+
+                NodeBindingInfo nodeBindingInfo = NodeUtils.getNodeBindingInfo("emailCertification");
+                String query = " SELECT emailcertificationId, email, memberNo, certCode, certStatus, certRequestDate, date_add(certRequestDate, INTERVAL +60 MINUTE) AS certExpireDate, (certStatus = 'request' AND date_add(certRequestDate, INTERVAL +60 MINUTE) > now() AND certCode = ?) AS available FROM emailcertification WHERE certCode = ? and email = ? limit 1";
+                List<Map<String, Object>> list = nodeBindingInfo.getJdbcTemplate().queryForList(query, certCode, certCode, email);
+
+                if (0 < list.size()) {
+                    Map<String, Object> map = list.get(0);
+                    String available = map.get("available").toString();
+
+                    if ("1".equals(available)) {
+                        Map<String, Object> emailCertificationData = new HashMap<>();
+                        emailCertificationData.put("emailCertificationId", map.get("emailCertificationId"));
+                        emailCertificationData.put("certStatus", "success");
+                        emailCertificationData.put("certSuccessDate", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()));
+
+                        nodeService.executeNode(emailCertificationData, "emailCertification", CommonService.UPDATE);
+                        Map<String, Object> resultObject = new HashMap<>();
+                        Map<String, Object> item = new HashMap<>();
+
+                        item.put("memberNo", map.get("memberNo"));
+                        item.put("email", email); // 회원가입
+                        resultObject.put("item", item);
+
+                        context.setResult(resultObject);
+                    } else {
+                        commonService.setErrorMessage(context, "U0003");
+                    }
+                } else {
+                    commonService.setErrorMessage(context, "U0002");
+                }
+            } else {
+                commonService.setErrorMessage(context, "U0002");
+            }
         }
 
         return context;
