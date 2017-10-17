@@ -242,7 +242,8 @@
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
       "order": [
         "8220ba89-f275-5cb0-d541-1bb64333ada3",
-        "6a1088f3-f0c6-22ea-d3cf-083587832528"
+        "6a1088f3-f0c6-22ea-d3cf-083587832528",
+        "7495faca-7963-efb6-be44-cefe5a0194be"
       ],
       "owner": "2433871",
       "folders_order": [],
@@ -2361,6 +2362,52 @@
       "description": "",
       "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
       "responses": []
+    },
+    {
+      "id": "7495faca-7963-efb6-be44-cefe5a0194be",
+      "headers": "",
+      "headerData": [],
+      "url": "{{protocol}}://{{hostname}}:{{port}}/api/vote/IfMev003?",
+      "queryParams": [],
+      "pathVariables": {},
+      "pathVariableData": [],
+      "preRequestScript": null,
+      "method": "POST",
+      "collectionId": "2adae506-64a6-1c57-e5a4-d46e3ec4655b",
+      "data": [
+        {
+          "key": "voteResult",
+          "value": "[\n\t{\n\t\t\"sersVoteSeq\":800041,\n\t\t\"voteSeq\":800022,\n\t\t\"voteItemSeq\":\"7000300\",\n\t\t\"prtcpMbrId\":\"1>park100\"\n\t},\n\t{\n\t\t\"sersVoteSeq\":800041,\n\t\t\"voteSeq\":800023,\n\t\t\"voteItemSeq\":\"7000311\",\n\t\t\"prtcpMbrId\":\"1>park100\"\n\t}\n]",
+          "description": "시리즈 투표 내역(JsonString) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "connIpAdr",
+          "value": "127.0.0.1",
+          "description": "접속IP주소(String) NotNull",
+          "type": "text",
+          "enabled": true
+        },
+        {
+          "key": "infoOttpAgreeYn",
+          "value": "",
+          "description": "정보제공동의여부(String) NotNull",
+          "type": "text",
+          "enabled": true
+        }
+      ],
+      "dataMode": "params",
+      "name": "MAMA용 스폰서(외부) 투표하기(IF_MEV_003)",
+      "description": "",
+      "descriptionFormat": "html",
+      "time": 1508216673969,
+      "version": 2,
+      "responses": [],
+      "tests": null,
+      "currentHelper": "normal",
+      "helperAttributes": {},
+      "folder": "4b2afada-e40c-fe37-f225-30f7042eb600"
     },
     {
       "id": "769dddf0-1526-7e56-1c36-6632e1980e53",
