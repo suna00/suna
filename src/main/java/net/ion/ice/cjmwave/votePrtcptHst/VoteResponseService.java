@@ -86,7 +86,7 @@ public class VoteResponseService {
         String term = "voteFormlCd_matching={{:voteFormlCd}}&showLoCd_matching={{:showLoCd}}&pstngStDt_below={{:conditionSysdate(progYn,true)}}"
                 + "&pstngFnsDt_above={{:conditionSysdate(progYn,true)}}&pstngFnsDt_under={{:conditionSysdate(progYn,false)}}&showYn_matching=true&evVoteYn_matching=false"
                 + "&voteNm_{{:langCd}}_wildcardShould={{:searchKeyword}}*&voteDesc_{{:langCd}}_wildcardShould={{:searchKeyword}}*"
-                + "&findKywrd_matchingShould={{:searchKeyword}}&sorting={{:sorting}}&page={{:page}}&pageSize={{:pageSize}}&langCd_matching={{:langCd}}";
+                + "&findKywrd_matchingShould={{:searchKeyword}}&voteSeq_NotMatching=800100&sorting={{:sorting}}&page={{:page}}&pageSize={{:pageSize}}&langCd_matching={{:langCd}}";
         try {
             Map<String, Object> data = context.getData();
             if (data.get("pageSize") == null || Integer.parseInt(data.get("pageSize").toString()) <= 0) {
@@ -154,7 +154,7 @@ public class VoteResponseService {
 
         String term = "voteSeq_matching={{:voteSeq}}&pstngStDt_above={{:concatStr(voteYear,0101)}}&pstngStDt_below={{:concatStr(voteYear,1231)}}"
                 + "&showLoCd_matching={{:showLoCd}}&voteFormlCd_matching={{:voteFormlCd}}&showYn_matching=true&evVoteYn_matching=false"
-                + "&sorting=voteSeq desc&limit=1";
+                + "&voteSeq_NotMatching=800100&sorting=voteSeq desc&limit=1";
 
         Map<String, Object> data = context.getData();
 
@@ -254,7 +254,7 @@ public class VoteResponseService {
 
         String term = "voteFormlCd_matching=2&showLoCd_matching=4&showYn_matching=true&evVoteYn_matching=false"
                 + "&bradTelcsDt_above={{:concatStr(bradTelcsDt,000000)}}&bradTelcsDt_below={{:concatStr(bradTelcsDt,235959)}}&"
-                + "&sorting=voteSeq desc&limit=1";
+                + "&voteSeq_NotMatching=800100&sorting=voteSeq desc&limit=1";
         try {
             Map<String, Object> data = context.getData();
             if (data.get("pageSize") == null || Integer.parseInt(data.get("pageSize").toString()) <= 0) {
@@ -295,7 +295,7 @@ public class VoteResponseService {
             Integer ipCnt = getIpCnt(connIpAdr, voteDate);
 
             Integer ipAdrVoteCnt = ipDclaCnt - ipCnt;
-
+            List<Map<String, Object>> voteBasResultList = new ArrayList<>() ;
             for (Node voteBasInfo : voteInfoList) {
                 String voteItemTerms = "voteSeq_matching=" + voteBasInfo.getId();
 
@@ -305,31 +305,22 @@ public class VoteResponseService {
                     voteItem.toDisplay(context);
                 }
 
+                context.makeIncludeReferenced("refdItemList");
+                context.makeReferenceView("sersItemVoteSeq,sersItemVoteSeq.refdItemList.contsMetaId");
                 List<Node> sersVoteItemList = nodeService.getNodeList(SERS_VOTE_ITEM_INFO, voteItemTerms);
                 for (Node voteItem : sersVoteItemList) {
-                    context.makeReferenceView("sersItemVoteSeq,contsMetaId"); // referenceView 설정
-                    context.setIncludeReferenced(true);
-
-                    /*String sersSubVoteItemTerms = "voteSeq_matching=" + voteItem.getStringValue("sersItemVoteSeq") +
-                            "&langCd_matching=" + data.get("langCd");
-                    List<Node> serSubVoteItemList = nodeService.getNodeList(VOTE_ITEM_INFO, sersSubVoteItemTerms);
-                    for (Node serVoteItem : serSubVoteItemList) {
-                        context.makeReferenceView("contsMetaId"); // referenceView 설정
-                        serVoteItem.toDisplay(context);
-                    }*/
                     voteItem.toDisplay(context);
-
-                    //voteItem.put("refdItemList",serSubVoteItemList);
                 }
 
-                voteBasInfo.toDisplay(context);
+                Map<String, Object> voteBaseResult = new HashMap<>() ;
+                voteBaseResult.putAll(voteBasInfo.toDisplay(context));
 
-                voteBasInfo.put("refdItemList", voteItemList);
-                voteBasInfo.put("refdSeriesItemList", sersVoteItemList);
+                voteBaseResult.put("refdItemList", voteItemList);
+                voteBaseResult.put("refdSeriesItemList", sersVoteItemList);
 
                 // voteNum 계산
                 Integer voteNum = getVoteNum(voteBasInfo.getId());
-                voteBasInfo.put("voteNum", (voteNum == null) ? 0 : voteNum);
+                voteBaseResult.put("voteNum", (voteNum == null) ? 0 : voteNum);
 
                 // userVoteCnt
                 Integer userVoteCnt = 0;
@@ -337,12 +328,13 @@ public class VoteResponseService {
                     userVoteCnt = getUserVoteCnt(voteBasInfo.getId(), mbrId);
                 }
                 //voteBasInfo.put("userVoteCnt", (userVoteCnt == null) ? 0 : userVoteCnt);
-                voteBasInfo.put("userVoteCnt", 0);
-                voteBasInfo.put("userPvCnt", 0);
-                voteBasInfo.put("ipAdrVoteCnt", ipAdrVoteCnt);
+                voteBaseResult.put("userVoteCnt", 0);
+                voteBaseResult.put("userPvCnt", 0);
+                voteBaseResult.put("ipAdrVoteCnt", ipAdrVoteCnt);
+                voteBasResultList.add(voteBaseResult);
             }
 
-            queryResult.put("items", voteInfoList);
+            queryResult.put("items", voteBasResultList);
             context.setResult(queryResult);
         } catch (Exception e) {
             e.printStackTrace();
