@@ -14,6 +14,7 @@ import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.lucene.document.DateTools;
 import org.apache.lucene.search.SortField;
+import org.infinispan.Cache;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,28 +55,49 @@ public class NodeHelperService  {
     }
 
     public void syncSchema() throws IOException {
-        NodeType nodeType = nodeService.getNodeType("nodeType") ;
-        Date nodeTypeLast = (Date) nodeService.getSortedValue(nodeType.getTypeId(), "changed", SortField.Type.LONG, true );
-        String lastChanged = DateFormatUtils.format(nodeTypeLast, "yyyyMMddHHmmss");
-        logger.info("nodeType Last : " + nodeTypeLast);
+        syncNodeList(nodeService.getNodeType("nodeType"), "");
+        syncNodeType("propertyType");
 
+        Cache<String, Node> nodeTypeCache = infinispanRepositoryService.getNodeCache("nodeType") ;
+
+        for(String typeId : nodeTypeCache.keySet()){
+            try {
+                syncNodeType(typeId);
+            }catch (Exception e){
+                logger.error("sync list error : " + typeId);
+            }
+        }
+    }
+
+    private void syncNodeType(String typeId) {
+        NodeType nodeType = nodeService.getNodeType(typeId) ;
+        if(!clusterService.checkClusterGroup(nodeType)) return  ;
+        Date nodeTypeLast = (Date) nodeService.getSortedValue(nodeType.getTypeId(), "changed", SortField.Type.LONG, true );
+        if(nodeTypeLast == null){
+            logger.info(nodeType.getTypeId() + " ALL Sync : ");
+            syncNodeList(nodeType, "");
+        }else {
+            String lastChanged = DateFormatUtils.format(nodeTypeLast, "yyyyMMddHHmmss");
+            logger.info(nodeType.getTypeId() + " Last Sync : " + nodeTypeLast);
+            syncNodeList(nodeType, "chagned_excess=" + lastChanged);
+        }
+    }
+
+    private void syncNodeList(NodeType nodeType, String query) {
         List<Member> cacheServers = clusterService.getClusterCacheSyncServers() ;
 
         for(Member cacheServer : cacheServers){
-            Map<String, Object> result = ClusterUtils.callNodeList(cacheServer, nodeType.getTypeId(), "chagned_excess=" + lastChanged)  ;
-            List<Map<String, Object>> items = (List<Map<String, Object>>) result.get("items");
+            List<Map<String, Object>> items = ClusterUtils.callNodeList(cacheServer, nodeType.getTypeId(), query)  ;
 
-            if(items.size() > 0){
+            if(items != null && items.size() > 0){
                 for(Map<String, Object> item : items){
-                    ExecuteContext context = ExecuteContext.createContextFromMap(nodeType, item) ;
-                    Node node = context.getNode() ;
+                    Node node = new Node(item) ;
                     if(node != null) {
                         infinispanRepositoryService.cacheNode(node);
                     }
                 }
             }
         }
-
     }
 
     public void reloadSchema(String resourcePath) throws IOException {

@@ -270,9 +270,6 @@ public class NodeService {
         return (Node) executeNode(data, typeId, EventService.UPDATE);
     }
 
-    public Object executeResult(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap) {
-        return null ;
-    }
 
     public Object executeNode(Map<String, Object> data, String typeId, String event) {
         ExecuteContext context = ExecuteContext.makeContextFromMap(data, typeId, event) ;
@@ -332,6 +329,15 @@ public class NodeService {
         return readContext.makeResult() ;
     }
 
+    public Node getNode(NodeType nodeType, String id) {
+        if(!clusterService.checkClusterGroup(nodeType)){
+            Map<String, Object> data = ClusterUtils.callNode(nodeType, id) ;
+            return new Node(data) ;
+        }
+        Node node = infinispanRepositoryService.getNode(nodeType.getTypeId(), id) ;
+        return node ;
+    }
+
     public Node getNode(String typeId, String id) {
         Node node = infinispanRepositoryService.getNode(typeId, id) ;
         return node ;
@@ -346,7 +352,7 @@ public class NodeService {
         return infinispanRepositoryService.getSortedValue(typeId, pid, sortType, reverse) ;
     }
 
-    public QueryResult getQueryResult(Map<String, String[]> parameterMap) throws IOException {
+    private Map<String, Object> getConfig(Map<String, String[]> parameterMap) throws IOException {
         Map<String, Object> config = JsonUtils.parsingJsonToMap(parameterMap.get(ClusterUtils.CONFIG_)[0]) ;
         if(parameterMap.containsKey(ClusterUtils.DATE_FORMAT_)){
             config.put(ApiContext.DATE_FORMAT, parameterMap.get(ClusterUtils.DATE_FORMAT_)[0]) ;
@@ -354,8 +360,24 @@ public class NodeService {
         if(parameterMap.containsKey(ClusterUtils.FILE_URL_FORMAT_)){
             config.put(ApiContext.FILE_URL_FORMAT, parameterMap.get(ClusterUtils.FILE_URL_FORMAT_)[0]) ;
         }
+        return config;
+    }
 
 
+    public QueryResult executeResult(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap) throws IOException {
+        Map<String, Object> config = getConfig(parameterMap);
+        Map<String, Object> data = ContextUtils.makeContextData(parameterMap) ;
+
+        ApiExecuteContext executeContex = ApiExecuteContext.makeContextFromConfig(config, data) ;
+        QueryResult queryResult = executeContex.makeQueryResult();
+        return queryResult;
+    }
+
+
+
+
+    public QueryResult getQueryResult(Map<String, String[]> parameterMap) throws IOException {
+        Map<String, Object> config = getConfig(parameterMap);
         Map<String, Object> data = ContextUtils.makeContextData(parameterMap) ;
 
         ApiQueryContext queryContext = ApiQueryContext.makeContextFromConfig(config, data) ;

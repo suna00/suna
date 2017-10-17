@@ -32,14 +32,13 @@ public class ApiQueryContext extends QueryContext implements CacheableContext{
         if(cacheable != null && cacheable){
             String cacheKey = makeCacheKey() ;
             return ContextUtils.makeCacheResult(cacheKey, this) ;
-
         }
         return makeQueryResult(result, null, resultType);
     }
 
 
     public String makeCacheKey(){
-        String keySrc = httpRequest.getRequestURI() + "?" + httpRequest.getQueryString() ;
+        String keySrc = httpRequest.getRequestURI() + "?" + httpRequest.getParameterMap().toString() ;
         return keySrc ;
     }
 
@@ -49,6 +48,9 @@ public class ApiQueryContext extends QueryContext implements CacheableContext{
         queryContext.config = config ;
         queryContext.data = data ;
 
+        checkCacheable(config, data, queryContext) ;
+
+
         if(!ClusterUtils.getClusterService().checkClusterGroup(nodeType)){
             queryContext.remote = true ;
             if(config.containsKey("if")) {
@@ -56,8 +58,6 @@ public class ApiQueryContext extends QueryContext implements CacheableContext{
             }
             return queryContext ;
         }
-
-
 
         for(String key : config.keySet()) {
             if(key.equals("typeId")) continue ;
@@ -72,9 +72,6 @@ public class ApiQueryContext extends QueryContext implements CacheableContext{
                 makeApiContext(config, queryContext, key);
             }
         }
-
-        makeApiContextParam(data, queryContext) ;
-
         return queryContext;
     }
 
