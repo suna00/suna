@@ -54,6 +54,14 @@ jar {
     }
 }
 
+war {
+    baseName = 'ice2-core'
+    manifest {
+        attributes('Main-Class': 'net.ion.ice.Ice2Application')
+    }
+    destinationDir = file("$projectDir/codedeploy")
+}
+
 bootRepackage {
     mainClass = 'net.ion.ice.Ice2Application'
 }
