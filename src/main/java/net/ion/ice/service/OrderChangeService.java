@@ -168,10 +168,9 @@ public class OrderChangeService {
                 String deliveryMethod = JsonUtils.getStringValue(product, "deliveryMethod");
                 if("deliveryMethod>sms".equals(deliveryMethod) || "deliveryMethod>lg".equals(deliveryMethod) || "deliveryMethod>samsung".equals(deliveryMethod)) return false;
 
-                //order005	배송중 / order006	배송완료 / order007	구매확정
+                //order005	배송중 / order006	배송완료
                 if(!("order005".equals(orderProduct.get("orderStatus"))
-                        || "order006".equals(orderProduct.get("orderStatus"))
-                        || "order007".equals(orderProduct.get("orderStatus")))) return false;
+                        || "order006".equals(orderProduct.get("orderStatus")))) return false;
             }else{
                 //cancel
                 //order001	주문완료 / order002	입금대기 / order003	결제완료 / order004	상품준비중
