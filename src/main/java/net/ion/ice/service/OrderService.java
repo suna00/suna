@@ -801,11 +801,10 @@ public class OrderService {
         boolean result = false;
         Map<String, Object> storeRefineDelivery = new HashMap<>();
 
-        String address = String.valueOf(responseMap.get("shippingAddress")).concat(" ").concat(String.valueOf(responseMap.get("shippingDetailedAddress")));
-
         storeRefineDelivery.put("orderSheetId", responseMap.get("ordrIdxx"));
         storeRefineDelivery.put("addressName", responseMap.get("addressName"));
-        storeRefineDelivery.put("address", address);
+        storeRefineDelivery.put("address", responseMap.get("shippingAddress"));
+        storeRefineDelivery.put("detailedAddress", responseMap.get("shippingDetailedAddress"));
         storeRefineDelivery.put("cellphone", responseMap.get("shippingCellPhone"));
         storeRefineDelivery.put("phone", responseMap.get("shippingPhone"));
         storeRefineDelivery.put("deliveryMemo", responseMap.get("deliveryMemo"));

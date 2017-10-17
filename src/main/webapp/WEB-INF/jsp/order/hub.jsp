@@ -604,7 +604,8 @@
 <%
     if (res_cd.equals("0000")){
 %>
-<form name="pay_info" method="post" action="http://test.ygoon.com/<%=siteId%>/order/complete">
+<%--<form name="pay_info" method="post" action="http://test.ygoon.com/<%=siteId%>/order/complete">--%>
+<form name="pay_info" method="post" action="http://localhost:3090/<%=siteId%>/order/complete">
     <input type="hidden" name="site_cd" value="<%= g_conf_site_cd   %>">    <!-- 사이트 코드 -->
     <input type="hidden" name="req_tx" value="<%= req_tx           %>">    <!-- 요청 구분 -->
     <input type="hidden" name="use_pay_method" value="<%= use_pay_method   %>">    <!-- 사용한 결제 수단 -->
@@ -664,7 +665,8 @@
 <%
     }else{
 %>
-<form name="pay_info" method="get" action="http://test.ygoon.com/<%=siteId%>/order/<%=ordr_idxx%>"></form>
+<%--<form name="pay_info" method="get" action="http://test.ygoon.com/<%=siteId%>/order/<%=ordr_idxx%>"></form>--%>
+<form name="pay_info" method="post" action="http://localhost:3090/<%=siteId%>/order/<%=ordr_idxx%>"></form>
 <%
     }
 %>

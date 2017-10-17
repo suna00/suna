@@ -3,8 +3,8 @@
     "typeId": "apiCategory",
     "id": "myDeliveryAddress",
     "categoryName": "나의 배송지",
-    "fileUrlFormat" : {
-       "default": "{{:getEnvValue(cluster.file-prefix, url)}}"
+    "fileUrlFormat": {
+      "default": "{{:getEnvValue(cluster.file-prefix, url)}}"
     }
   },
   {
@@ -17,13 +17,13 @@
     ],
     "config": {
       "asis": {
-        "select" : {
-          "ds" : "ytnDevDb",
-          "resultType" : "read",
-          "sql" : "select min(myDeliveryAddressId) as asisId from myDeliveryAddress where memberNo = @{session.member.memberNo} and defaultYn='y' "
+        "select": {
+          "ds": "ytnDevDb",
+          "resultType": "read",
+          "sql": "select min(myDeliveryAddressId) as asisId from myDeliveryAddress where memberNo = @{session.member.memberNo} and defaultYn='y' "
         }
       },
-      "asisSetN" : {
+      "asisSetN": {
         "typeId": "myDeliveryAddress",
         "event": "update",
         "data": {
@@ -32,7 +32,7 @@
           "changed": ""
         }
       },
-      "tobeSetY" : {
+      "tobeSetY": {
         "typeId": "myDeliveryAddress",
         "event": "update",
         "data": {
@@ -41,6 +41,22 @@
           "changed": ""
         }
       }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "myDeliveryAddress",
+    "apiId": "latestDelivery",
+    "apiName": "최근 배송지",
+    "method": "POST",
+    "parameters": [
+    ],
+    "config" : {
+      "typeId": "delivery",
+      "query" : [
+        {"field" : "memberNo", "method" : "matching", "value" : "{{:session.member.memberNo}}" },
+        {"sorting" : "created desc", "pageSize": "3", "page": "1"}
+      ]
     }
   }
 ]
