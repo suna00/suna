@@ -327,6 +327,23 @@
   {
     "typeId": "propertyType",
     "tid": "delivery",
+    "pid": "detailedAddress",
+    "propertyTypeName": "상세주소",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "delivery",
     "pid": "recipient",
     "propertyTypeName": "주문자명",
     "valueType": "STRING",

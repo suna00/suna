@@ -1290,7 +1290,7 @@
     "originProductId": "",
     "modelName": "MN006K",
     "modelNo": "",
-    "returnExchangePolicyId": "",
+    "returnExchangePolicyId": "1",
     "productOptionSetId": "",
     "baseOptionType": "mix",
     "addOptionType": "n",
