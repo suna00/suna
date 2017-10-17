@@ -1,6 +1,5 @@
 package net.ion.ice.core.node;
 
-import com.sun.deploy.security.ValidationState;
 import net.ion.ice.core.context.QueryContext;
 import net.ion.ice.core.context.ReadContext;
 import net.ion.ice.core.infinispan.lucene.CodeAnalyzer;
@@ -16,7 +15,6 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Indexed
 public class Node implements Map<String, Object>, Serializable, Cloneable{
-    private static final long serialVersionUID = 1L;
 
     public static final String ID = "id";
     public static final String TYPEID = "typeId";
