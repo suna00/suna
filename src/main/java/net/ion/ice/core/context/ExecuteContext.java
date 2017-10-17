@@ -273,7 +273,7 @@ public class ExecuteContext extends ReadContext{
 
         for(String key : data.keySet()){
             Object value = data.get(key) ;
-            if(value instanceof List && (this.nodeType.getPropertyType(key) != null && this.nodeType.getPropertyType(key).isList()) && NodeUtils.getNodeType(key) != null){
+            if(value instanceof List && !key.equals("code") && ((this.nodeType.getPropertyType(key) != null && this.nodeType.getPropertyType(key).isList()) || NodeUtils.getNodeType(key) != null)){
                 for(Map<String, Object> subData : (List<Map<String, Object>>)value){
                     Map<String, Object> _data = new HashMap<>() ;
 //                    _data.putAll(data);
