@@ -51,6 +51,7 @@ public class TopicListener implements MessageListener<String>{
                     Node node = new Node(data);
                     NodeUtils.getInfinispanService().cacheNode(node);
                 }
+
             }
         }catch (Exception e){
             e.printStackTrace();

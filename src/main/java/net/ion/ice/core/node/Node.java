@@ -132,13 +132,16 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         }else{
             this.modifier = userId ;
         }
-        if(data.containsKey(CREATED)){
+        if(data.containsKey(CREATED) && data.get(CREATED) instanceof Long){
             this.created = new Date((Long) data.get(CREATED)) ;
+            data.remove(CREATED) ;
         }else{
             this.created = new Date() ;
         }
-        if(data.containsKey(CHANGED)){
+        if(data.containsKey(CHANGED) && data.get(CHANGED) instanceof Long){
             this.changed = new Date((Long) data.get(CHANGED)) ;
+            data.remove(CHANGED) ;
+
         }else{
             this.changed = new Date() ;
         }
@@ -146,8 +149,6 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         data.remove(TYPEID) ;
         data.remove(OWNER) ;
         data.remove(MODIFIER) ;
-        data.remove(CREATED) ;
-        data.remove(CHANGED) ;
 
 
         properties = new Properties() ;
