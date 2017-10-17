@@ -14,8 +14,7 @@
     "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
-    "codeFilter": "",
-    "defaultValue": ""
+    "codeFilter": ""
   },
   {
     "typeId": "propertyType",
