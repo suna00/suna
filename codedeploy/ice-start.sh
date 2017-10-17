@@ -4,11 +4,9 @@ export JAVA_HOME=java
 export APP_HOME=.
 export APP_NAME=ice2-core
 export WAR_FILE=ice2-core-0.0.1-SNAPSHOT.war
-export PROFILE=cj-dev
+export PROFILE=scalegw
 export APP_PORT=8080
-export WORK_DIR=/home/ion/cms/core
-export CACHE_DIR=/home/ion/cms/resource/ice2/cache
-
+export WORK_DIR=/home/ion/api/core
 
 echo "Service [$APP_NAME] - [$1] START"
 
