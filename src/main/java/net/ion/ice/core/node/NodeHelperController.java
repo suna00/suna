@@ -20,7 +20,7 @@ public class NodeHelperController {
     @Autowired
     private NodeHelperService nodeHelperService ;
 
-    @RequestMapping(value = "/node/helper/reloadSchema.json", method = RequestMethod.GET)
+    @RequestMapping(value = "/helper/reloadSchema.json", method = RequestMethod.GET)
     @ResponseBody
     public Object saveJson(HttpServletRequest request, @RequestParam String filePath)  {
         try {
@@ -32,5 +32,17 @@ public class NodeHelperController {
 
         }
         return JsonResponse.create() ;
+    }
+
+    @RequestMapping(value = "/helper/read", method = RequestMethod.GET)
+    @ResponseBody
+    public Object readNode(HttpServletRequest request, @RequestParam String typeId, @RequestParam String id)  {
+        try {
+            logger.info("node read : {}, {}", typeId, id);
+            return NodeUtils.readNode(typeId, id).toMap();
+        }catch(Exception e){
+            logger.error(e.getMessage(), e);
+            return JsonResponse.error(e) ;
+        }
     }
 }

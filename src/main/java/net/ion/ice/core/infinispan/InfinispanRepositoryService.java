@@ -115,6 +115,11 @@ public class InfinispanRepositoryService {
         nodeCache.remove(node.getId().toString());
     }
 
+    public void deleteNode(String typeId, String id) {
+        Cache<String, Node> nodeCache = getNodeCache(typeId);
+        nodeCache.remove(id);
+    }
+
     private List<Object> executeQuery(String typeId, QueryContext queryContext) {
         Cache<String, Node> cache = getNodeCache(typeId);
 

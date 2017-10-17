@@ -54,13 +54,22 @@ public class NodeUtils {
     public static Node getNode(NodeType nodeType, String id) {
         if(nodeType == null) return null ;
         if(nodeType.getRepositoryType().equals("data")){
-            if (getNodeBindingService() == null) return null ;
-            Map<String, Object> resultData =  getNodeBindingService().getNodeBindingInfo(nodeType.getTypeId()).retrieve(id) ;
-            return new Node(resultData, nodeType.getTypeId());
+            return getDataNode(nodeType, id);
         }else {
             if (getNodeService() == null) return null;
             return nodeService.getNode(nodeType.getTypeId(), id);
         }
+    }
+
+    private static Node getDataNode(NodeType nodeType, String id) {
+        if (getNodeBindingService() == null) return null ;
+        Map<String, Object> resultData =  getNodeBindingService().getNodeBindingInfo(nodeType.getTypeId()).retrieve(id) ;
+        return new Node(resultData, nodeType.getTypeId());
+    }
+
+    public static Node readNode(String typeId, String id) {
+        if (getNodeService() == null) return null;
+        return nodeService.read(typeId, id);
     }
 
     static InfinispanRepositoryService infinispanService;

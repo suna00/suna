@@ -45,11 +45,13 @@ public class ClusterService {
         if(node != null) {
             NodeType nodeType = NodeUtils.getNodeType(node.getTypeId()) ;
             String clusterGroup = nodeType.getClusterGroup() ;
-            ITopic topic = clusterConfiguration.getTopic(clusterGroup);
+            ITopic<String> topic = clusterConfiguration.getTopic(clusterGroup);
             if(topic == null){
                 topic = clusterConfiguration.getTopic("all") ;
             }
-            topic.publish(new CacheMessage(executeContext.getEvent(), node));
+            topic.publish(new CacheMessage(executeContext.getEvent(), node).toString());
+//            topic.publish( node.getId());
+
         }
     }
 

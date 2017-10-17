@@ -11,7 +11,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -54,7 +53,7 @@ public class ClusterConfiguration {
         if(hazelcast == null) {
             hazelcast = Hazelcast.getOrCreateHazelcastInstance(config());
             for(String grp : groupList){
-                ITopic topic = hazelcast.getReliableTopic(grp + "_topic") ;
+                ITopic<String> topic = hazelcast.getReliableTopic(grp + "_topic") ;
                 topic.addMessageListener(new TopicListener(this)) ;
                 topicMap.put(grp, topic) ;
 

@@ -69,6 +69,10 @@ public class ClusterUtils {
 
     public static Map<String, Object> callNodeList(Member member, String typeId, String queryString) {
         String url = "http://" + member.getAddress().getHost() + ":" + member.getStringAttribute("port")  + "/node/" + typeId + "?" + queryString ;
+        return getSyncNodeResult(url);
+    }
+
+    private static Map<String, Object> getSyncNodeResult(String url) {
         try {
             String resultStr = ApiUtils.callApiMethod(url, null, 5000, 20000, ApiUtils.GET) ;
             return JsonUtils.parsingJsonToMap(resultStr) ;
@@ -77,6 +81,11 @@ public class ClusterUtils {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static Map<String, Object> callNode(Member member, String typeId, String id) {
+        String url = "http://" + member.getAddress().getHost() + ":" + member.getStringAttribute("port")  + "/helper/read?typeId=" + typeId + "&id=" + id ;
+        return getSyncNodeResult(url);
     }
 
 }
