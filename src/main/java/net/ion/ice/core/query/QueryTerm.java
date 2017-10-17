@@ -191,6 +191,13 @@ public class QueryTerm {
     }
 
     public String getMethodQuery() {
+        if(isNot()){
+            if(QueryMethod.MATCHING.equals(method) || QueryMethod.IN.equals(method)){
+                return "NOT ".concat(method.getQueryString());
+            }else if(QueryMethod.EQUALS.equals(method)){
+                return "!".concat(method.getQueryString());
+            }
+        }
         return method.getQueryString();
     }
 
@@ -198,7 +205,13 @@ public class QueryTerm {
         return valueType;
     }
 
+    public String getValue(){
+        return queryValue.toString() ;
+    }
 
+    public String toString(){
+        return this.queryKey + "=" + this.queryValue ;
+    }
     public enum QueryMethod {
         PHRASE("LIKE"),
         WILDCARD("LIKE"),
@@ -210,7 +223,8 @@ public class QueryTerm {
         BELOW("<="),
         EXCESS(">"),
         UNDER("<"),
-        FROMTO("");
+        FROMTO("BETWEEN"),
+        EXISTS("IN");
 
 
         private String queryString;

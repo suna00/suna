@@ -18,7 +18,6 @@ import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.lucene.document.DateTools;
 import org.apache.lucene.search.SortField;
-import org.infinispan.Cache;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -53,14 +52,24 @@ public class NodeUtils {
     }
 
     public static Node getNode(NodeType nodeType, String id) {
+        if(nodeType == null) return null ;
         if(nodeType.getRepositoryType().equals("data")){
-            if (getNodeBindingService() == null) return null ;
-            Map<String, Object> resultData =  getNodeBindingService().getNodeBindingInfo(nodeType.getTypeId()).retrieve(id) ;
-            return new Node(resultData, nodeType.getTypeId());
+            return getDataNode(nodeType, id);
         }else {
             if (getNodeService() == null) return null;
             return nodeService.getNode(nodeType.getTypeId(), id);
         }
+    }
+
+    private static Node getDataNode(NodeType nodeType, String id) {
+        if (getNodeBindingService() == null) return null ;
+        Map<String, Object> resultData =  getNodeBindingService().getNodeBindingInfo(nodeType.getTypeId()).retrieve(id) ;
+        return new Node(resultData, nodeType.getTypeId());
+    }
+
+    public static Node readNode(String typeId, String id) {
+        if (getNodeService() == null) return null;
+        return nodeService.read(typeId, id);
     }
 
     static InfinispanRepositoryService infinispanService;
@@ -75,7 +84,7 @@ public class NodeUtils {
 
     public static List<Node> makeNodeList(Collection<Map<String, Object>> nodeDataList, String typeId) {
         List<Node> nodeList = new ArrayList<Node>();
-        nodeDataList.forEach(data -> nodeList.add(new Node(data)));
+        nodeDataList.forEach(data -> nodeList.add( new Node(data)));
         return nodeList;
     }
 
@@ -166,7 +175,7 @@ public class NodeUtils {
     }
 
     public static Long getDateLongValue(Object value){
-        return DateTools.round(NodeUtils.getDateValue(value), DateTools.Resolution.SECOND).getTime() ;
+        return DateTools.round(NodeUtils.getDateValue(value), DateTools.Resolution.MILLISECOND).getTime() ;
     }
 
     public static String getDateStringValue(Object value, String dateFormat) {
@@ -181,12 +190,13 @@ public class NodeUtils {
         } else if (value instanceof String && ((String) value).length() == 14 && dateFormat.equals("yyyyMMddHHmmss")) {
             return (String) value;
         } else {
-            try {
-                return DateFormatUtils.format(DateTools.stringToDate(value.toString()), dateFormat);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            return value.toString();
+//            try {
+//                return DateFormatUtils.format(DateTools.stringToDate(value.toString()), dateFormat);//DateTools에서 시간이 변환될때 value에 +9시간 되서 수정
+            return DateFormatUtils.format(NodeUtils.getDateValue(value), dateFormat);
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//            }
+//            return value.toString();
         }
     }
 
@@ -230,7 +240,7 @@ public class NodeUtils {
             }
             case FILE: {
 //                if (value instanceof FileValue) {
-                    return value;
+                return value;
 //                }else {
 //
 //                }
@@ -243,21 +253,18 @@ public class NodeUtils {
 
     public static ReferenceView getReferenceValueView(ReadContext context, Object value, PropertyType pt) {
         try {
-            NodeService nodeService = getNodeService();
-
-            String referenceType = pt.getReferenceType() ;
-            String refId = value.toString() ;
-            if(StringUtils.contains(refId, "::")){
-                referenceType = StringUtils.substringBefore(refId, "::") ;
-                refId = StringUtils.substringAfter(refId, "::") ;
-            }
-            if(StringUtils.isNotEmpty(pt.getCodeFilter()) && !StringUtils.contains(refId, Node.ID_SEPERATOR)){
-                refId = pt.getCodeFilter() + Node.ID_SEPERATOR + refId ;
-            }
-
-            Node refNode = getNode(referenceType, refId);
-            NodeType nodeType = nodeService.getNodeType(referenceType);
-            return new ReferenceView(refNode.toDisplay(context), nodeType, context);
+            Node refNode = getReferenceNode(value, pt);
+//            context.setExcludeReferenceType(context.getNodeType().getTypeId()) ;
+            ReadContext subReadContext = ReadContext.makeQueryContextForReference(pt, (Node) refNode);
+            subReadContext.setData(context.getData()) ;
+            subReadContext.setReferenceView(context.getReferenceView());
+            subReadContext.setReferenceViewFields(context.getSubReferenceViewFields(pt.getPid()));
+            subReadContext.setIncludeReferenced(context.isIncludeReferencedValue());
+            subReadContext.setIncludeReferencedFields(context.getIncludeReferencedFields());
+            subReadContext.setDateFormat(context.getDateFormat()) ;
+            subReadContext.setFileUrlFormat(context.getFileUrlFormat()) ;
+            subReadContext.setLevel(context.getLevel() + 1);
+            return new ReferenceView(refNode.toDisplay(subReadContext), subReadContext);
 
         } catch (Exception e) {
             return new ReferenceView(value.toString(), value.toString());
@@ -266,24 +273,27 @@ public class NodeUtils {
 
     public static Reference getReferenceValue(ReadContext context, Object value, PropertyType pt) {
         try {
-            NodeService nodeService = getNodeService();
-            String referenceType = pt.getReferenceType() ;
-            String refId = value.toString() ;
-
-            if(StringUtils.contains(refId, "::")){
-                referenceType = StringUtils.substringBefore(refId, "::") ;
-                refId = StringUtils.substringAfter(refId, "::") ;
-            }
-            if(StringUtils.isNotEmpty(pt.getCodeFilter()) && !StringUtils.contains(refId, Node.ID_SEPERATOR)){
-                refId = pt.getCodeFilter() + Node.ID_SEPERATOR + refId ;
-            }
-
-            Node refNode = getNode(referenceType, refId);
-            NodeType nodeType = nodeService.getNodeType(referenceType);
-            return new Reference(refNode, nodeType, context);
+            Node refNode = getReferenceNode(value, pt);
+            return new Reference(refNode, context);
         } catch (Exception e) {
             return new Reference(value.toString(), value.toString());
         }
+    }
+
+    public static Node getReferenceNode(Object value, PropertyType pt) {
+        if(value == null || pt == null) return null;
+        String referenceType = pt.getReferenceType() ;
+        String refId = value.toString() ;
+
+        if(StringUtils.contains(refId, "::")){
+            referenceType = StringUtils.substringBefore(refId, "::") ;
+            refId = StringUtils.substringAfter(refId, "::") ;
+        }
+        if(StringUtils.isNotEmpty(pt.getCodeFilter()) && !StringUtils.contains(refId, Node.ID_SEPERATOR)){
+            refId = pt.getCodeFilter() + Node.ID_SEPERATOR + refId ;
+        }
+
+        return getNode(referenceType, refId);
     }
 
     public static Object getResultValue(ReadContext context, PropertyType pt, Map<String, Object> node) {
@@ -298,11 +308,14 @@ public class NodeUtils {
                 if (value instanceof Code) {
                     return value;
                 }
+                if(pt.getCode() == null){
+                    return new Code(value, value.toString()) ;
+                }
                 return pt.getCode().get(value);
             }
             case REFERENCE: {
                 if (value == null) return null;
-                if (context.isReferenceView(pt.getPid())) {
+                if (context.isReferenceView(pt)) {
                     if (value instanceof ReferenceView) {
                         return NodeUtils.getReferenceValueView(context, ((ReferenceView) value).getRefId(), pt);
                     }
@@ -322,7 +335,7 @@ public class NodeUtils {
                 List<Reference> refValues = new ArrayList<>();
                 if (value != null && StringUtils.isNotEmpty(value.toString())) {
                     for (String refVal : StringUtils.split(value.toString(), ",")) {
-                        if (context.isReferenceView(pt.getPid())) {
+                        if (context.isReferenceView(pt)) {
                             refValues.add(NodeUtils.getReferenceValueView(context, refVal, pt));
                         } else {
                             refValues.add(NodeUtils.getReferenceValue(context, refVal, pt));
@@ -338,7 +351,7 @@ public class NodeUtils {
             case FILE: {
                 if (value == null) return null;
                 if(pt.isI18n() && context.hasLocale() && value instanceof Map){
-                    if(((Map) value).containsKey(context.getLocale())){
+                    if(StringUtils.isNotEmpty(context.getLocale()) && ((Map) value).containsKey(context.getLocale())){
                         return getFileResultValue(context, pt, ((Map) value).get(context.getLocale()));
                     }else{
                         return getFileResultValue(context, pt, ((Map) value).get(getNodeService().getDefaultLocale())) ;
@@ -347,16 +360,24 @@ public class NodeUtils {
                 return getFileResultValue(context, pt, value);
             }
             case REFERENCED: {
-                if (context != null && context.isIncludeReferenced() && context.getLevel() < 3 && node instanceof Node) {
+                if (context != null && context.isIncludeReferenced(pt) && context.getLevel() < 5 && node instanceof Node) {
                     QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(getNodeType(((Node)node).getTypeId()), pt, (Node) node);
+                    subQueryContext.setData(context.getData());
+                    subQueryContext.setReferenceView(context.getReferenceView());
+                    subQueryContext.setReferenceViewFields(context.getSubReferenceViewFields(pt.getPid()));
+                    subQueryContext.setIncludeReferenced(context.isIncludeReferencedValue());
+                    subQueryContext.setIncludeReferencedFields(context.getIncludeReferencedFields());
+                    subQueryContext.setDateFormat(context.getDateFormat()) ;
+                    subQueryContext.setFileUrlFormat(context.getFileUrlFormat()) ;
                     subQueryContext.setLevel(context.getLevel() + 1);
+
                     return getNodeService().getDisplayNodeList(pt.getReferenceType(), subQueryContext);
                 }
                 return null;
             }
             default:
                 if(pt.isI18n() && context.hasLocale() && value instanceof Map){
-                    if(((Map) value).containsKey(context.getLocale())){
+                    if(StringUtils.isNotEmpty(context.getLocale()) &&((Map) value).containsKey(context.getLocale())){
                         return ((Map) value).get(context.getLocale()) ;
                     }else{
                         return ((Map) value).get(getNodeService().getDefaultLocale()) ;
@@ -385,7 +406,8 @@ public class NodeUtils {
 
         switch (pt.getValueType()) {
             case DATE: {
-                return DateTools.dateToString(NodeUtils.getDateValue(value), DateTools.Resolution.SECOND);
+//                return DateTools.dateToString(NodeUtils.getDateValue(value), DateTools.Resolution.SECOND);
+                return DateFormatUtils.format(NodeUtils.getDateValue(value), "yyyyMMddHHmmss");
             }
             case STRING:
             case TEXT: {
@@ -480,6 +502,9 @@ public class NodeUtils {
                 } else if (value instanceof MultipartFile) {
                     FileValue fileValue = getFileService().saveMultipartFile(pt, id, (MultipartFile) value);
                     return fileValue;
+                } else if (value instanceof String && JsonUtils.isJson((String) value)) {
+                    FileValue fileValue = getFileService().fileValueMapper((String) value);
+                    return fileValue;
                 } else if (value instanceof String) {
                     return value ;
                 }
@@ -521,6 +546,7 @@ public class NodeUtils {
     }
 
 
+
     public static Object getBindingValue(Object value, PropertyType pt, String id) {
         if (value == null || "".equals(value.toString().trim())) return null;
         if (value instanceof Code) {
@@ -555,6 +581,9 @@ public class NodeUtils {
             case OBJECT: {
                 if (value instanceof Map) {
                     return JsonUtils.toJsonString((Map<String, Object>) value);
+                }
+                if (value instanceof List) {
+                    return JsonUtils.toJsonString((List<?>) value);
                 }
                 if (value instanceof String) {
                     return value;
@@ -669,6 +698,7 @@ public class NodeUtils {
             value = NodeUtils.getStoreValue(value, pt, id);
             if (value instanceof String || value instanceof FileValue) {
                 i18nData.put(getDefaultLocale(), value);
+                data.put(pt.getPid(), value) ;
             } else if (value instanceof Map) {
                 i18nData = (Map<String, Object>) value;
             }
@@ -684,16 +714,6 @@ public class NodeUtils {
             for (String fieldName : removePids) {
                 data.remove(fieldName);
             }
-            List<String> removeLocale = new ArrayList<>() ;
-            for(String key : i18nData.keySet()){
-                Object val = i18nData.get(key) ;
-                if(val instanceof String && val.equals("_null_")){
-                    removeLocale.add(key) ;
-                }
-            }
-            for(String loc : removeLocale){
-                i18nData.remove(loc) ;
-            }
 
             if(i18nData.size() > 0) {
                 return i18nData;
@@ -701,7 +721,11 @@ public class NodeUtils {
                 return null ;
             }
         }
-        return NodeUtils.getStoreValue(value, pt, id);
+        Object resultValue = NodeUtils.getStoreValue(value, pt, id);
+        if(resultValue instanceof FileValue){
+            data.put(pt.getPid(), resultValue) ;
+        }
+        return resultValue ;
     }
 
     public static List<Node> initDataNodeList(String typeId, List<Map<String, Object>> resultList) {

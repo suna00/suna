@@ -1,0 +1,12 @@
+[
+  {
+    "typeId": "scheduleTask",
+    "id": "testDelay",
+    "name": "Delay Test 30 sec",
+    "type": "delay",
+    "config": "30000",
+    "enable": true,
+    "actionType": "service",
+    "actionBody": "testService.schedule"
+  }
+]

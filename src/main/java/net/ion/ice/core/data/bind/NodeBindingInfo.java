@@ -1,10 +1,14 @@
 package net.ion.ice.core.data.bind;
 
+import net.ion.ice.IceRuntimeException;
 import net.ion.ice.core.context.QueryContext;
+import net.ion.ice.core.context.Template;
 import net.ion.ice.core.data.DBDataTypes;
 import net.ion.ice.core.data.DBQuery;
 import net.ion.ice.core.data.DBTypes;
 import net.ion.ice.core.data.table.Column;
+import net.ion.ice.core.infinispan.NotFoundNodeException;
+import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.PropertyType;
@@ -12,8 +16,10 @@ import net.ion.ice.core.query.QueryTerm;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
@@ -24,7 +30,7 @@ import java.util.*;
  * Created by seonwoong on 2017. 6. 28..
  */
 
-public class NodeBindingInfo {
+public class NodeBindingInfo implements Serializable {
     private static Logger logger = LoggerFactory.getLogger(NodeBindingInfo.class);
 
     private NodeType nodeType;
@@ -200,6 +206,7 @@ public class NodeBindingInfo {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new IceRuntimeException("db error ", e);
         }
         return columnList;
     }
@@ -234,8 +241,13 @@ public class NodeBindingInfo {
 
     public Map<String, Object> retrieve(String id) {
         List<String> parameters = retrieveParameters(id);
-        Map<String, Object> result = jdbcTemplate.queryForMap(retrieveSql, parameters.toArray());
-        return result;
+        try {
+            Map<String, Object> result = jdbcTemplate.queryForMap(retrieveSql, parameters.toArray());
+            return result ;
+        }catch(EmptyResultDataAccessException e){
+            logger.error("Node Binding Retrieve Error : "+ retrieveSql + " : " + id);
+            throw new NotFoundNodeException("data", id) ;
+        }
     }
 
     public Long retrieveSequence() {
@@ -254,6 +266,17 @@ public class NodeBindingInfo {
     }
 
     public List<Map<String, Object>> list(QueryContext queryContext) {
+        if (queryContext.getQueryTerms() != null && !queryContext.getQueryTerms().isEmpty()) {
+            for (QueryTerm queryTerm : queryContext.getQueryTerms()) {
+                if("EXISTS".equals(queryTerm.getMethod().toString())){
+                    Template sqlTemplate = new Template(queryTerm.getQueryValue());
+                    sqlTemplate.parsing();
+                    Map<String, Object> result = jdbcTemplate.queryForMap(sqlTemplate.format(queryContext.getData()).toString(), sqlTemplate.getSqlParameterValues(queryContext.getData()));
+                    queryTerm.setQueryValue(JsonUtils.getStringValue(result, "inValue"));
+                }
+            }
+        }
+
         DBQuery dbQuery = new DBQuery(tableName, queryContext);
         Map<String, Object> totalCount;
         if (dbQuery.getResultCountValue() == null || dbQuery.getResultCountValue().isEmpty()) {
@@ -263,6 +286,11 @@ public class NodeBindingInfo {
         }
         List<Map<String, Object>> items = jdbcTemplate.queryForList(dbQuery.getListParamSql(), dbQuery.getSearchListValue().toArray());
         queryContext.setResultSize(((Long) totalCount.get("totalCount")).intValue());
+
+//        if(queryContext.getStart() > 0) {
+//            items = items.subList(queryContext.getStart(), items.size()) ;
+//        }
+
         queryContext.setQueryListSize(items.size());
         return items;
     }
@@ -279,12 +307,39 @@ public class NodeBindingInfo {
         return queryCallBack;
     }
 
+    public int delete(String id) {
+        List<String> parameters = retrieveParameters(id);
+        int queryCallBack = jdbcTemplate.update(deleteSql, parameters.toArray());
+        return queryCallBack;
+    }
+    /**
+     * 디비 저장 시 디비 컬럼이 null이 가능한지 체크 하고 가능하면 null 저장
+     * 불가능하면 빈 텍스트 저장하도록 수정. 테스트 필요.. 문제되면 알려주세요.
+     * */
     private List<Object> insertParameters(Map<String, String[]> parameterMap) {
-        List<Object> parameters = new ArrayList<>();
+        List<Object> insertParameters = new ArrayList<>();
         for (PropertyType pid : insertPids) {
-            parameters.add(parameterMap.get(pid.getPid())[0]);
+            for (Column column : columnList) {
+                if (column.getColumnName().equals(pid.getPid())) {
+                    if (column.getNullable()) {
+                        if (parameterMap.get(pid.getPid()) == null || parameterMap.get(pid.getPid())[0].equals("")) {
+                            insertParameters.add(null);
+                        } else {
+                            insertParameters.add(parameterMap.get(pid.getPid())[0]);
+                        }
+
+                    } else {
+                        if (parameterMap.get(pid.getPid()) == null || parameterMap.get(pid.getPid())[0].equals("")) {
+                            insertParameters.add("");
+                        } else {
+                            insertParameters.add(parameterMap.get(pid.getPid())[0]);
+                        }
+                    }
+                    break;
+                }
+            }
         }
-        return parameters;
+        return insertParameters;
     }
 
     private List<Object> insertParameters(Node node) {
@@ -296,19 +351,37 @@ public class NodeBindingInfo {
     }
 
     private List<Object> updateParameters(Map<String, String[]> parameterMap) {
-        List<Object> parameters = new ArrayList<>();
+        List<Object> updateParameters = new ArrayList<>();
         for (PropertyType pid : updatePids) {
-            parameters.add(parameterMap.get(pid.getPid())[0]);
+            for (Column column : columnList) {
+                if (column.getColumnName().equals(pid.getPid())) {
+                    if (column.getNullable()) {
+                        if (parameterMap.get(pid.getPid()) == null || parameterMap.get(pid.getPid())[0].equals("")) {
+                            updateParameters.add(null);
+                        } else {
+                            updateParameters.add(parameterMap.get(pid.getPid())[0]);
+                        }
+
+                    } else {
+                        if (parameterMap.get(pid.getPid()) == null || parameterMap.get(pid.getPid())[0].equals("")) {
+                            updateParameters.add("");
+                        } else {
+                            updateParameters.add(parameterMap.get(pid.getPid())[0]);
+                        }
+                    }
+                    break;
+                }
+            }
         }
 
         for (PropertyType pid : wherePids) {
-            if(pid.getIdType().equals(PropertyType.IdType.autoIncrement)){
+            if (pid.getIdType().equals(PropertyType.IdType.autoIncrement)) {
 
             }
-            parameters.add(parameterMap.get(pid.getPid())[0]);
+            updateParameters.add(parameterMap.get(pid.getPid())[0]);
 
         }
-        return parameters;
+        return updateParameters;
     }
 
     private List<Object> updateParameters(Node node) {
@@ -332,6 +405,7 @@ public class NodeBindingInfo {
         }
         return parameters;
     }
+
 
     public Object extractNodeValue(Node node, String pid) {
         return node.getBindingValue(pid);

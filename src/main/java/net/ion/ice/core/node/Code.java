@@ -34,4 +34,13 @@ public class Code implements Serializable{
     public String toString(){
         return value + " " +  label ;
     }
+
+    @Override
+    public boolean equals(Object code){
+        if(code instanceof Code){
+            return getValue().equals(((Code) code).getValue());
+        }
+
+        return getValue().equals(code) ;
+    }
 }

@@ -16,6 +16,10 @@ public class QueryResult implements Map<String, Object> {
         this.result = new LinkedHashMap<>() ;
     }
 
+    public QueryResult(Map<String, Object> queryResult) {
+        this.result = queryResult ;
+    }
+
     public QueryResult setResult(String result){
         put("result", result) ;
         return this ;

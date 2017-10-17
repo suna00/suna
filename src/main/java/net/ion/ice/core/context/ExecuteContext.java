@@ -8,12 +8,14 @@ import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
-import net.ion.ice.core.query.QueryTerm;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.core.io.Resource;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.text.SimpleDateFormat;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.util.*;
 
 /**
@@ -33,10 +35,24 @@ public class ExecuteContext extends ReadContext{
     protected Date time ;
     protected String event;
 
-    protected String ifTest ;
-
     protected ExecuteContext parentContext ;
     protected List<ExecuteContext> subExecuteContexts ;
+
+    protected HttpServletRequest httpRequest ;
+    protected HttpServletResponse httpResponse ;
+
+
+    public static ExecuteContext createContextFromMap(NodeType nodeType, Map<String, Object> data) {
+        ExecuteContext ctx = new ExecuteContext();
+        ctx.setData(data);
+        ctx.event = "save";
+        ctx.setNodeType(nodeType);
+
+        ctx.init() ;
+
+        return ctx ;
+
+    }
 
     public static ExecuteContext createContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType, String event, String id) {
         ExecuteContext ctx = new ExecuteContext();
@@ -119,6 +135,11 @@ public class ExecuteContext extends ReadContext{
 
     protected void init() {
         this.time = new Date() ;
+        if(this.event == null && data.containsKey("event") && getNodeType().getPropertyType("event") == null){
+            this.event = (String) data.get("event");
+        }
+
+
         if(nodeType == null){
             this.node = new Node(data);
             execute = true ;
@@ -129,9 +150,6 @@ public class ExecuteContext extends ReadContext{
         }catch(Exception e){
         }
         exist = existNode != null ;
-        if(this.event == null && data.containsKey("event") && getNodeType().getPropertyType("event") == null){
-            this.event = (String) data.get("event");
-        }
 
         if(exist){
             if(event != null && event.equals("create")){
@@ -154,8 +172,12 @@ public class ExecuteContext extends ReadContext{
 
                 if(newValue == null && existValue == null) {
                     continue;
+                }else if(existValue != null &&newValue instanceof String && "_null_".equals(newValue)){
+                    node.remove(pt.getPid()) ;
+                    changedProperties.add(pt.getPid()) ;
                 }else if(pt.isFile()){
-                    if(newValue != null && newValue instanceof String && ((String) newValue).contains("classpath:")) {
+                    if(newValue != null) data.put(pt.getPid(), newValue) ;
+                    if(newValue != null && newValue instanceof String && (((String) newValue).startsWith("classpath:") || ((String) newValue).startsWith("http://") || ((String) newValue).startsWith("https://") || ((String) newValue).startsWith("/"))) {
                         if (existValue == null) {
                             node.put(pt.getPid(), NodeUtils.getFileService().saveResourceFile(pt, id, (String) newValue));
                             changedProperties.add(pt.getPid());
@@ -164,10 +186,42 @@ public class ExecuteContext extends ReadContext{
                             changedProperties.add(pt.getPid());
                         }
                     }else if(newValue != null && newValue instanceof FileValue){
-                        node.put(pt.getPid(), newValue) ;
+                        FileValue newFileValue = ((FileValue) newValue);
+                        String newValueStorePath = newFileValue.getStorePath();
+                        String[] newValueStorePathSplit = StringUtils.split(newValueStorePath, "/");
+                        String newValueTid = newValueStorePathSplit.length > 1 ? newValueStorePathSplit[0] : "";
+                        String newValuePid = newValueStorePathSplit.length > 2 ? newValueStorePathSplit[1] : "";
+
+                        if (!StringUtils.equals(newValueTid, nodeType.getTypeId()) && !StringUtils.equals(newValuePid, pt.getPid()) ) {
+                            Resource resource = NodeUtils.getFileService().loadAsResource(newValueTid, newValuePid, newValueStorePath);
+                            File resourceFile = null;
+                            try {
+                                resourceFile = resource.getFile();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            FileValue fileValue = NodeUtils.getFileService().saveFile(pt, id, resourceFile, newFileValue.getFileName(), newFileValue.getContentType());
+                            node.put(pt.getPid(), fileValue) ;
+                            changedProperties.add(pt.getPid()) ;
+                        } else {
+                            node.put(pt.getPid(), newValue) ;
+                            changedProperties.add(pt.getPid()) ;
+                        }
+                    }else if(newValue == null && existValue != null) {
+                        node.remove(pt.getPid()) ;
                         changedProperties.add(pt.getPid()) ;
                     }else if(pt.isI18n()){
-                        ((Map<String, Object>) existValue).putAll((Map<? extends String, ?>) newValue);
+                        if(!(existValue instanceof Map)){
+                            existValue = newValue ;
+                        }else {
+                            existValue = i18nRemove((Map<? extends String, ?>) newValue, (Map<String, Object>) existValue);
+                        }
+                        for(String locKey : ((Map<String, Object>) existValue).keySet()){
+                            Object locVal = ((Map<String, Object>) existValue).get(locKey) ;
+                            if(locVal instanceof String && (((String) locVal).startsWith("classpath:") || ((String) locVal).startsWith("http://") || ((String) locVal).startsWith("https://") || ((String) locVal).startsWith("/"))) {
+                                ((Map<String, Object>) existValue).put(locKey, NodeUtils.getFileService().saveResourceFile(pt, id, (String) locVal));
+                            }
+                        }
                         node.put(pt.getPid(), existValue);
                         changedProperties.add(pt.getPid()) ;
                     }
@@ -180,7 +234,11 @@ public class ExecuteContext extends ReadContext{
                     changedProperties.add(pt.getPid()) ;
                 }else if(!newValue.equals(existValue)){
                     if(pt.isI18n()){
-                        ((Map<String, Object>) existValue).putAll((Map<? extends String, ?>) newValue);
+                        if(!(existValue instanceof Map)){
+                            existValue = newValue ;
+                        }else {
+                            existValue = i18nRemove((Map<? extends String, ?>) newValue, (Map<String, Object>) existValue);
+                        }
                         node.put(pt.getPid(), existValue);
                     }else {
                         node.put(pt.getPid(), newValue);
@@ -191,7 +249,7 @@ public class ExecuteContext extends ReadContext{
             execute = changedProperties.size() > 0 ;
             if(execute) {
                 node.setUpdate(userId, time);
-            }else if(event != null && !event.equals("update") ){
+            }else if(event != null && !(event.equals("update") || event.equals("save"))){
                 execute = true;
             }
 
@@ -211,13 +269,15 @@ public class ExecuteContext extends ReadContext{
             }
         }
 
+        List<String> subDataKeys = new ArrayList<>();
+
         for(String key : data.keySet()){
             Object value = data.get(key) ;
-            if(value instanceof List && (this.nodeType.getPropertyType(key) == null || !this.nodeType.getPropertyType(key).isList()) && NodeUtils.getNodeType(key) != null){
+            if(value instanceof List && !key.equals("code") && ((this.nodeType.getPropertyType(key) != null && this.nodeType.getPropertyType(key).isList()) || NodeUtils.getNodeType(key) != null)){
                 for(Map<String, Object> subData : (List<Map<String, Object>>)value){
                     Map<String, Object> _data = new HashMap<>() ;
-                    _data.putAll(data);
-                    _data.remove(key) ;
+//                    _data.putAll(data);
+//                    _data.remove(key) ;
                     _data.putAll(subData);
                     for(String _key : subData.keySet()){
                         Object _val = subData.get(_key) ;
@@ -233,8 +293,34 @@ public class ExecuteContext extends ReadContext{
                         subExecuteContexts.add(subContext);
                     }
                 }
+
+                subDataKeys.add(key);
             }
         }
+
+        for(String subDataKey : subDataKeys) {
+            data.remove(subDataKey);
+        }
+    }
+
+    private Map<String, Object> i18nRemove(Map<? extends String, ?> newValue, Map<String, Object> existValue) {
+        if(existValue == null){
+            existValue = (Map<String, Object>) newValue;
+        }else {
+            existValue.putAll(newValue);
+        }
+        List<String> removeLocale = new ArrayList<>() ;
+        for(String key :  existValue.keySet()){
+            Object val =  existValue.get(key) ;
+            if(val instanceof String && val.equals("_null_")){
+                removeLocale.add(key) ;
+            }
+        }
+        for(String loc : removeLocale){
+            existValue.remove(loc) ;
+        }
+
+        return existValue ;
     }
 
 
@@ -288,39 +374,6 @@ public class ExecuteContext extends ReadContext{
         }
     }
 
-    public static ExecuteContext makeContextFromConfig(Map<String, Object> config, Map<String, Object> data) {
-        ExecuteContext ctx = new ExecuteContext();
-
-
-        NodeType nodeType = NodeUtils.getNodeType((String) ContextUtils.getValue(config.get("typeId"), data));
-        ctx.setNodeType(nodeType);
-
-        ctx.event = (String) ContextUtils.getValue(config.get("event"), data);
-
-        if(config.containsKey("data")){
-            Map<String, Object> _data = new HashMap<>();
-            Map<String, Object> subData = (Map<String, Object>) config.get("data");
-            for(String key : subData.keySet()){
-                _data.put(key, ContextUtils.getValue(subData.get(key), data)) ;
-            }
-            ctx.data = _data ;
-        }else{
-            ctx.data = data ;
-        }
-
-        if(config.containsKey("response")){
-            ContextUtils.makeApiResponse((Map<String, Object>) config.get("response"), ctx);
-        }
-
-        if(config.containsKey("if")){
-            ctx.ifTest =  ContextUtils.getValue(config.get("if"), data).toString();
-        }
-
-        ctx.init() ;
-
-        return ctx ;
-    }
-
     public static ExecuteContext makeEventContextFromParameter(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, NodeType nodeType, String event) {
         EventExecuteContext ctx = new EventExecuteContext();
 
@@ -340,11 +393,11 @@ public class ExecuteContext extends ReadContext{
         if(this.ifTest != null && !(this.ifTest.equalsIgnoreCase("true"))){
             return false ;
         }
-        EventService eventService = ApplicationContextManager.getBean(EventService.class) ;
-        eventService.execute(this) ;
+        EventService eventService = ApplicationContextManager.getBean(EventService.class);
+        eventService.execute(this);
 
-        if(subExecuteContexts != null){
-            for(ExecuteContext subExecuteContext : subExecuteContexts){
+        if (subExecuteContexts != null) {
+            for (ExecuteContext subExecuteContext : subExecuteContexts) {
                 eventService.execute(subExecuteContext);
             }
         }
@@ -395,8 +448,35 @@ public class ExecuteContext extends ReadContext{
         }else if(this.node != null){
             this.result = node ;
             return node ;
+        }else if(StringUtils.isNotEmpty(id)){
+            try {
+                return NodeUtils.getNode(nodeType.getTypeId(), id);
+            }catch(Exception e){
+                return new HashMap<String, Object>() ;
+            }
         }else{
-            return NodeUtils.getNode(nodeType.getTypeId(), id) ;
+            return new HashMap<String, Object>() ;
         }
     }
+
+    public HttpServletRequest getHttpRequest() {
+        return httpRequest;
+    }
+
+    public HttpServletResponse getHttpResponse() {
+        return httpResponse;
+    }
+
+    public List<String> getChangedProperties(){
+        return this.changedProperties ;
+    }
+
+    public Node getExistNode(){
+        return existNode ;
+    }
+
+    public boolean isExist(){
+        return  exist ;
+    }
+
 }

@@ -1,6 +1,6 @@
 package net.ion.ice.security.auth;
 
-import net.ion.ice.security.User.UserContext;
+import net.ion.ice.security.UserContext;
 import net.ion.ice.security.token.RawAccessJwtToken;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,10 +19,9 @@ public class JwtAuthenticationToken extends AbstractAuthenticationToken {
         this.setAuthenticated(false);
     }
 
-    public JwtAuthenticationToken(UserContext userContext) {
+    public JwtAuthenticationToken() {
         super(null);
         this.eraseCredentials();
-        this.userContext = userContext;
         super.setAuthenticated(true);
     }
 
@@ -56,7 +55,7 @@ public class JwtAuthenticationToken extends AbstractAuthenticationToken {
     }
 
     @Override
-    public void eraseCredentials() {        
+    public void eraseCredentials() {
         super.eraseCredentials();
         this.rawAccessToken = null;
     }

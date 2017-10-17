@@ -6,6 +6,7 @@ package net.ion.ice.core.file;
 
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.node.PropertyType;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -68,6 +69,24 @@ public class DefaultFileRepository implements FileRepository{
     }
 
     @Override
+    public FileValue saveFile(PropertyType pt, String id, File file, String fileName, String contentType) {
+        String savePath = pt.getTid() + "/" +  pt.getPid() + "/" + DateFormatUtils.format(new Date(), "yyyyMM/dd/") + UUID.randomUUID() + "." + StringUtils.substringAfterLast(file.getName(), ".");
+        File saveFile = new File(fileRoot, savePath) ;
+        try {
+            if(!saveFile.getParentFile().exists()){
+                saveFile.getParentFile().mkdirs() ;
+            }
+
+            FileUtils.copyFile(file, saveFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("FILE SAVE ERROR : " + e.getMessage()) ;
+        }
+
+        return new FileValue(pt, id, file, savePath, fileName, contentType) ;
+    }
+
+    @Override
     public Resource loadAsResource(String path) {
         File file = new File(fileRoot, path) ;
         return new FileSystemResource(file);
@@ -76,6 +95,7 @@ public class DefaultFileRepository implements FileRepository{
 
     @Override
     public FileValue saveResourceFile(PropertyType pt, String id, String path) {
+        if(path.startsWith("/")) path = "file:" + path ;
         Resource res = ApplicationContextManager.getResource(path) ;
 
         String savePath = pt.getTid() + "/" +  pt.getPid() + "/" + DateFormatUtils.format(new Date(), "yyyyMM/dd/") + UUID.randomUUID() + "." + StringUtils.substringAfterLast(res.getFilename(), ".");

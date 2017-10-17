@@ -1,44 +1,55 @@
 package net.ion.ice.core.context;
 
+import net.ion.ice.core.cluster.ClusterUtils;
 import net.ion.ice.core.node.Node;
-import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.query.QueryResult;
-import net.ion.ice.core.query.QueryTerm;
-import net.ion.ice.core.query.QueryUtils;
-import net.ion.ice.core.query.ResultField;
-import org.apache.commons.lang3.StringUtils;
 
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
-public class ApiReadContext extends ReadContext{
+public class ApiReadContext extends ReadContext implements CacheableContext {
 
-    protected Map<String, Object> config  ;
+    protected Map<String, Object> config;
+    protected HttpServletRequest httpRequest;
+    protected HttpServletResponse httpResponse;
 
-    protected ResultField.ResultType resultType ;
 
     public ApiReadContext() {
         super();
     }
 
     public QueryResult makeQueryResult() {
+        if (cacheable != null && cacheable) {
+            String cacheKey = makeCacheKey();
+            return ContextUtils.makeCacheResult(cacheKey, this);
+        }
         return makeQueryResult(result, null, resultType);
+    }
+
+
+    public String makeCacheKey() {
+        String keySrc = httpRequest.getRequestURI() + "?" + httpRequest.getQueryString();
+        return keySrc;
     }
 
 
     public static ApiReadContext makeContextFromConfig(Map<String, Object> config, Map<String, Object> data) {
         ApiReadContext readContext = new ApiReadContext();
-        readContext.nodeType = NodeUtils.getNodeType((String) ContextUtils.getValue(config.get("typeId"), data)) ;
-        readContext.config = config ;
-        readContext.data = data ;
+        readContext.nodeType = NodeUtils.getNodeType((String) ContextUtils.getValue(config.get("typeId"), data));
+        readContext.config = config;
+        readContext.data = data;
+        if(!ClusterUtils.getClusterService().checkClusterGroup(readContext.nodeType)){
+            readContext.remote = true ;
+            return readContext ;
+        }
+        for (String key : config.keySet()) {
+            if (key.equals("typeId")) continue;
 
-        for(String key : config.keySet()) {
-            if(key.equals("typeId")) continue ;
-
-            if(key.equals("id")){
-                readContext.id = ContextUtils.getValue(config.get(key), data).toString() ;
-            }else {
+            if (key.equals("id")) {
+                readContext.id = ContextUtils.getValue(config.get(key), data).toString();
+            } else {
                 makeApiContext(config, readContext, key);
             }
         }
@@ -46,20 +57,26 @@ public class ApiReadContext extends ReadContext{
         return readContext;
     }
 
-    protected static void makeApiContext(Map<String, Object> config, ApiReadContext readContext, String key) {
-        if(key.equals("response")){
-            ContextUtils.makeApiResponse((Map<String, Object>) config.get(key), readContext);
-        }else if(config.get(key) != null){
-            ContextUtils.makeContextConfig(readContext, key, config.get(key).toString());
-        }else if(key.equals("resultType")){
-            readContext.resultType = ResultField.ResultType.valueOf(config.get("resultType").toString().toUpperCase());
-        }
+    public static ApiReadContext makeContextFromConfig(Map<String, Object> config, Map<String, Object> data, HttpServletRequest httpRequest, HttpServletResponse httpResponse) {
+        ApiReadContext readContext = makeContextFromConfig(config, data) ;
+        readContext.httpRequest = httpRequest ;
+        readContext.httpResponse = httpResponse ;
+        return readContext ;
     }
 
-
-    public Node getNode(){
-        return  NodeUtils.getNode(nodeType.getTypeId(), id) ;
+    public Node getNode() {
+        Node node = NodeUtils.getNode(nodeType.getTypeId(), id);
+        this.result = node;
+        return node;
     }
 
+    @Override
+    public String getCacheTime() {
+        return cacheTime;
+    }
 
+    @Override
+    public QueryResult makeCacheResult() {
+        return makeQueryResult(result, null, resultType);
+    }
 }

@@ -1,6 +1,7 @@
 package net.ion.ice.core.data.bind;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import net.ion.ice.IceRuntimeException;
 import net.ion.ice.core.context.DataQueryContext;
 import net.ion.ice.core.context.DataReadContext;
 import net.ion.ice.core.context.ExecuteContext;
@@ -9,6 +10,7 @@ import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.data.DBUtils;
 import net.ion.ice.core.node.*;
 import net.ion.ice.core.query.QueryResult;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,12 +80,22 @@ public class NodeBindingService {
         Node node = context.getNode();
         NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(node.getTypeId());
 
-        int callback = nodeBindingInfo.update(node);
-        if (callback == 0) {
-            nodeBindingInfo.insert(node);
+        if(nodeBindingInfo == null) {
+            logger.error("Node Binding Error : " +  node.getTypeId());
+            throw new IceRuntimeException("Node Binding Error : " +  node.getTypeId()) ;
+        }
+        int callback = 0;
+        try {
+            callback = nodeBindingInfo.update(node);
+            if (callback == 0) {
+                nodeBindingInfo.insert(node);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new IceRuntimeException("Node Binding Execute Error : " +  e.getMessage(), e) ;
         }
         context.setResult(node);
-        logger.info("Node Binding {} - {} :  " + (callback == 0 ? "insert" : "update"), node.getTypeId(), node.getId());
+        logger.info("Node Binding {} - {} - {} :  " + (callback == 0 ? "insert" : "update"), node.getTypeId(), node.getId(), context.getEvent());
     }
 
     public void createTable(String typeId, HttpServletResponse response) {
@@ -138,7 +150,7 @@ public class NodeBindingService {
 
     public List<Map<String, Object>> list(String tid, String searchText) {
         NodeType nodeType = NodeUtils.getNodeType(tid);
-        QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, nodeType);
+        QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, nodeType, null);
         NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(tid);
         return nodeBindingInfo.list(queryContext);
     }
@@ -152,6 +164,11 @@ public class NodeBindingService {
         Node node = context.getNode();
         NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(node.getTypeId());
         nodeBindingInfo.delete(node);
+    }
+
+    public void delete(String typeId, String id) {
+        NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(typeId);
+        nodeBindingInfo.delete(id);
     }
 
     public Long sequence(String typeId) {

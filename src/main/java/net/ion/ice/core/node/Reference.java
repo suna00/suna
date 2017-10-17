@@ -16,12 +16,24 @@ public class Reference extends Code {
         this.label = label ;
     }
 
-    public Reference(Node node, NodeType nodeType, ReadContext context) {
-        this(node.getId(), node.getLabel(nodeType, context)) ;
+    public Reference(Node node, ReadContext context) {
+        this(node.getId(), node.getLabel(context)) ;
     }
 
 
     public String getRefId() {
         return refId;
     }
+
+
+    @Override
+    public boolean equals(Object reference){
+        if(reference instanceof Reference){
+            return getRefId().equals(((Reference) reference).getRefId());
+        }
+
+        return getRefId().equals(reference) ;
+    }
+
+
 }

@@ -1,8 +1,8 @@
 [
   {
     "typeId" : "datasource",
-    "datasourceId" : "mariaDb",
-    "profiles": "dev",
+    "id" : "mariaDb",
+    "ssl" : false,
     "dsName" : "Test DB (Maria)",
     "jdbcUrl" : "jdbc:mysql://125.131.88.77:3306/ice2",
     "dbType" : "maria",
@@ -11,8 +11,8 @@
   },
   {
     "typeId" : "datasource",
-    "datasourceId" : "oracleDb",
-    "profiles": "dev",
+    "id" : "oracleDb",
+    "ssl" : false,
     "dsName" : "Test DB (Oracle)",
     "jdbcUrl" : "jdbc:oracle:thin:@125.131.88.69:8200:ORCL",
     "dbType" : "oracle",
@@ -21,8 +21,8 @@
   },
   {
     "typeId" : "datasource",
-    "datasourceId" : "msDb",
-    "profiles": "dev",
+    "id" : "msDb",
+    "ssl" : false,
     "dsName" : "Test DB (MS)",
     "jdbcUrl" : "jdbc:sqlserver://125.131.88.94:1500;databaseName=IPS",
     "dbType" : "msSql",

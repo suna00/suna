@@ -4,6 +4,7 @@ import net.ion.ice.core.infinispan.lucene.AnalyzerFactory;
 import org.apache.lucene.analysis.Analyzer;
 import org.stagemonitor.util.StringUtils;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +12,7 @@ import java.util.Map;
 /**
  * Created by jaeho on 2017. 5. 15..
  */
-public class PropertyType {
+public class PropertyType implements Serializable{
     public static final String PROPERTYTYPE = "propertyType";
     public static final String DEFAULT_VALUE = "defaultValue";
     public static final String ID_TYPE = "idType";
@@ -20,6 +21,7 @@ public class PropertyType {
     public static final String REFERENCE_VALUE = "referenceValue";
     public static final String REFERENCE_VIEW = "referenceView";
     public static final String CODE_FILTER = "codeFilter";
+    public static final String REFERENCED_FILTER = "referencedFilter";
 
     public static final String FILE_HANDLER = "fileHandler";
     public static final String SORTABLE = "sortable";
@@ -167,6 +169,10 @@ public class PropertyType {
         return propertyTypeNode.getStringValue(CODE_FILTER);
     }
 
+    public String getReferencedFilter() {
+        return propertyTypeNode.getStringValue(REFERENCED_FILTER);
+    }
+
     public boolean isTreeable() {
         return propertyTypeNode.getBooleanValue(TREEABLE);
     }
@@ -188,6 +194,12 @@ public class PropertyType {
         if (codeMap == null) {
             codeMap = new HashMap<>();
             Collection<Map<String, Object>> codeValues = (Collection<Map<String, Object>>) propertyTypeNode.get("code");
+            if(codeValues == null){
+                codeValues =  (Collection<Map<String, Object>>) propertyTypeNode.get("code");
+            }
+            if(codeValues == null){
+                return null ;
+            }
             for (Map<String, Object> codeValue : codeValues) {
                 codeMap.put(codeValue.get("value"), new Code(codeValue));
             }

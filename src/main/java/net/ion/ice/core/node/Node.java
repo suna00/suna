@@ -11,10 +11,9 @@ import java.util.*;
 /**
  * Created by jaeho on 2017. 3. 31..
  */
-
-@ProvidedId
 @Indexed
 public class Node implements Map<String, Object>, Serializable, Cloneable{
+
     public static final String ID = "id";
     public static final String TYPEID = "typeId";
     public static final String USERID = "userId";
@@ -22,15 +21,20 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     public static final String SYSTEM = "system";
     public static final String TYPE_SEPERATOR = "::";
     public static final String ID_SEPERATOR = ">";
+    public static final String OWNER = "owner";
+    public static final String MODIFIER = "modifier";
+    public static final String CREATED = "created";
+    public static final String CHANGED = "changed";
 
-    public static List<String> NODE_VALUE_KEYS = Arrays.asList(new String[] {"id", "typeId", "owner", "modifier", "created", "changed", "status"}) ;
-
-
+    public static List<String> NODE_VALUE_KEYS = Arrays.asList(new String[] {"id", "typeId", "owner", "modifier", "created", "changed"}) ;
 
     @DocumentId
     @Field
     @Analyzer(impl = CodeAnalyzer.class)
     private String id ;
+
+    @Field(analyze = Analyze.NO)
+    private String facet ;
 
     @Field
     @Analyzer(impl = CodeAnalyzer.class)
@@ -46,17 +50,17 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
 
     @Field(analyze = Analyze.NO)
-    @DateBridge(resolution = Resolution.SECOND)
+    @DateBridge(resolution = Resolution.MILLISECOND)
     private Date created ;
 
     @Field(analyze = Analyze.NO)
-    @DateBridge(resolution = Resolution.SECOND)
+    @DateBridge(resolution = Resolution.MILLISECOND)
     private Date changed ;
 
 
-    @Field
+    @Field(analyze = Analyze.NO)
     @FieldBridge(impl = PropertiesFieldBridge.class)
-    private Properties properties ;
+    private Properties<String, Object> properties ;
 
 
     public Node(){
@@ -95,8 +99,23 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     public Node(Map<String, Object> data){
         properties = new Properties() ;
         this.id = data.get(ID).toString();
-        this.putAll(data);
         this.properties.setId(id) ;
+
+        if(data.containsKey(TYPEID) && data.containsKey(CHANGED) && data.get(CHANGED) instanceof Long){
+            this.typeId = (String) data.get(TYPEID);
+            this.owner = (String) data.get(OWNER);
+            this.modifier = (String) data.get(MODIFIER);
+            this.created = new Date((Long) data.get(CREATED)) ;
+            this.changed = new Date((Long) data.get(CHANGED)) ;
+
+            data.remove(TYPEID) ;
+            data.remove(OWNER) ;
+            data.remove(MODIFIER) ;
+            data.remove(CREATED) ;
+            data.remove(CHANGED) ;
+            this.properties.setTypeId(typeId);
+        }
+        properties.putAll(data);
     }
 
 
@@ -144,10 +163,9 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
                 }
             }
         }
-
-        this.putAll(data, typeId);
         this.properties.setId(id) ;
         this.properties.setTypeId(typeId) ;
+        this.putAll(data, typeId);
     }
 
     private boolean isNullId() {
@@ -245,13 +263,13 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     @Override
     public void putAll(Map<? extends String, ?> m) {
         if(getTypeId() != null){
-            putAll(m, getTypeId()) ;
+            putAll((Map<String, Object>) m, getTypeId()) ;
         }else {
             properties.putAll(m);
         }
     }
 
-    public void putAll(Map<? extends String, ?> m, String typeId) {
+    public void putAll(Map<String, Object> m, String typeId) {
         NodeType nodeType = NodeUtils.getNodeType(typeId) ;
         if(nodeType != null && nodeType.isInit()){
             properties.putAll(m, nodeType);
@@ -356,7 +374,8 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         return getId().toString() ;
     }
 
-    public String getLabel(NodeType nodeType, ReadContext context) {
+    public String getLabel(ReadContext context) {
+        NodeType nodeType = NodeUtils.getNodeType(getTypeId()) ;
         if(context == null) return getLabel(nodeType) ;
         for(PropertyType pt : nodeType.getPropertyTypes()){
             if(pt.isLabelable()){
@@ -375,7 +394,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         if(value instanceof String){
             return (String) value;
         }else if(value instanceof Map){
-            if(((Map) value).containsKey(locale)){
+            if(StringUtils.isNotEmpty(locale) && ((Map) value).containsKey(locale)){
                 return ((Map) value).get(locale).toString();
             }else{
                 return (String) ((Map) value).get(NodeUtils.getNodeService().getDefaultLocale());
@@ -404,6 +423,20 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         return cloneNode ;
     }
 
+    public Map<String, Object> toMap(){
+        Map<String, Object> map = new HashMap<>() ;
+        map.putAll(properties) ;
+
+        map.put(ID, id);
+        map.put(TYPEID, typeId);
+
+        map.put(OWNER, owner);
+        map.put(MODIFIER, modifier);
+        map.put(CREATED, created.getTime());
+        map.put(CHANGED, changed.getTime());
+
+        return map ;
+    }
     public Node clone(String typeId){
         Node cloneNode = new Node() ;
         cloneNode.properties = properties.clone() ;
@@ -497,7 +530,6 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
         return NodeUtils.getNode(referenceType, refId);
     }
-
 
 
 

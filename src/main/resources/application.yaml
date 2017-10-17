@@ -9,19 +9,38 @@ spring:
     multipart:
       max-request-size: 10MB
       max-file-size: 20MB
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+  resources:
+    chain:
+      cache: true
+      enabled: true
+    cache-period: 3600
 
 server:
   port: 8080
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain,text/javascript,application/javascript,text/css
+  tomcat:
+    uri-encoding: UTF-8
+
 
 jwtConfig:
   issuer: I-ON
   secretKey: dkdldhs!@#$
   tokenPrefix: SDP
   headString: X-Authorization
-  tokenExpirationTime: 15 #분
-  refreshTokenExpTime: 60 #분
+  tokenExpirationTime: 1800 #분
+  refreshTokenExpTime: 1800 #분
 
 cluster:
+  api-prefix: http://localhost:8080/
+  front-prefix: http://localhost:3090/
+  mode: all
+  groups: all
   members:
     - 127.0.0.1
 
@@ -32,6 +51,7 @@ tomcat:
   access-log-enabled: true
   access-log-pattern: "%h %l %u %t \"%r\" %s %b %D"
   basedir: tomcat
+
 
 logging:
   config:
@@ -47,6 +67,8 @@ file:
 
 i18n:
   defaults: en
+
+
 
 ---
 #-Dspring.profiles.active=dev
@@ -81,115 +103,6 @@ session:
 
 hazelcast:
   baseDir: /resource/ice2/data_2
-
----
-spring:
-  profiles: cj-dev
-  http:
-    multipart:
-      max-request-size: 10MB
-      max-file-size: 20MB
-
-server:
-  port: 8080
-
-jwtConfig:
-  issuer: I-ON
-  secretKey: dkdldhs!@#$
-  tokenPrefix: SDP
-  headString: X-Authorization
-  tokenExpirationTime: 15 #분
-  refreshTokenExpTime: 60 #분
-
-
-cluster:
-  members:
-    - 125.131.88.147
-
-infinispan:
-  cachePath: /resource/ice2/cache
-
-tomcat:
-  access-log-enabled: true
-  access-log-pattern: "%h %l %u %t \"%r\" %s %b %D"
-  basedir: tomcat
-
-logging:
-  config:
-    classpath:
-      - logback-access-dev-2.xml
-      - logback-dev-2.xml
-
-
-file:
-  default:
-    path: /resource/ice2/files
----
-
-#-Dspring.profiles.active=cjCms
-spring:
-  profiles: cjCms
-logging:
-  config: classpath:logback-dev.xml
-
-cluster:
-  baseDir: /resource/ice2/data_1
-  members:
-    - 127.0.0.1
-    - localhost
-    - 125.131.88.147
-
-
-session:
-  mode: cluster
-  baseDir: /resource/ice2/server
-  members:
-    - 127.0.0.1
-    - 125.131.88.147
-
----
-spring:
-  profiles: cj-local
-  http:
-    multipart:
-      max-request-size: 10MB
-      max-file-size: 20MB
-
-server:
-  port: 8080
-
-jwtConfig:
-  issuer: I-ON
-  secretKey: dkdldhs!@#$
-  tokenPrefix: SDP
-  headString: X-Authorization
-  tokenExpirationTime: 15 #분
-  refreshTokenExpTime: 60 #분
-
-
-cluster:
-  members:
-    - 127.0.0.1
-    - localhost
-
-infinispan:
-  cachePath: /resource/cj_ice2/cache
-
-tomcat:
-  access-log-enabled: true
-  access-log-pattern: "%h %l %u %t \"%r\" %s %b %D"
-  basedir: tomcat
-
-logging:
-  config:
-    classpath:
-      - logback-access-dev-2.xml
-      - logback-dev-2.xml
-
-
-file:
-  default:
-    path: /resource/cj_ice2/files
 
 ---
 # 교보 개발 서버

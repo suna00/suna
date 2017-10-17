@@ -1,13 +1,18 @@
 package net.ion.ice.core.context;
 
+import net.ion.ice.core.api.ApiException;
+import net.ion.ice.core.api.RequestParameter;
 import net.ion.ice.core.node.Node;
-import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.ResultField;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -16,6 +21,9 @@ import java.util.*;
  */
 public class ApiContext {
     public static final String COMMON_RESPONSE = "commonResponse";
+    public static final String COMMON_PARAMETERS = "commonParameters";
+
+    public static final String PARAMETERS = "parameters";
     public static final String DATE_FORMAT = "dateFormat";
     public static final String FILE_URL_FORMAT = "fileUrlFormat";
     private Node apiCategory;
@@ -27,10 +35,22 @@ public class ApiContext {
     private List<ResultField> commonResultFieldList ;
     private List<ResultField> resultFields ;
 
-    public static ApiContext createContext(Node apiCategory, Node apiNode, String typeId, Map<String, Object> config, Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap, Map<String, Object> session) {
+    private List<RequestParameter> parameters ;
+
+    private HttpServletRequest httpRequest ;
+    private HttpServletResponse httpResponse ;
+
+    public static ApiContext createContext(Node apiCategory, Node apiNode, String typeId, String event, Map<String, Object> config, NativeWebRequest request, HttpServletResponse response, Map<String, Object> session) {
+        Map<String, String[]> parameterMap = request.getParameterMap() ;
+        MultiValueMap<String, MultipartFile> multiFileMap = null ;
+        if(request.getNativeRequest() instanceof MultipartHttpServletRequest) {
+            multiFileMap = ((MultipartHttpServletRequest) request.getNativeRequest()).getMultiFileMap() ;
+        }
         ApiContext ctx = new ApiContext() ;
         ctx.apiCategory = apiCategory ;
         ctx.apiNode = apiNode ;
+        ctx.httpRequest = request.getNativeRequest(HttpServletRequest.class) ;
+        ctx.httpResponse = response ;
         ctx.data = ContextUtils.makeContextData(parameterMap, multiFileMap) ;
         ctx.data.put("session", session);
         ctx.data.put("now", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())) ;
@@ -39,17 +59,46 @@ public class ApiContext {
             ctx.data.put("typeId", typeId);
         }
 
+        if(event != null) {
+            ctx.data.put("event", event);
+        }
+
+        if(apiCategory.getId().equals("node") && apiNode.getId().equals("node>read")){
+            if(!request.getParameterMap().containsKey("id")){
+                ctx.data.put("id", ReadContext.getParamId(request.getParameterMap(), typeId)) ;
+            }
+        }
+
 
         if(apiCategory.containsKey(COMMON_RESPONSE) && apiCategory.get(COMMON_RESPONSE) != null && ((Map<String, Object>) apiCategory.get(COMMON_RESPONSE)).size() > 0) {
             ctx.makeCommonResponse((Map<String, Object>) apiCategory.get(COMMON_RESPONSE)) ;
         }
 
+        if(apiCategory.containsKey(ApiContext.COMMON_PARAMETERS) && apiCategory.get(ApiContext.COMMON_PARAMETERS) != null && ((List<Map<String, Object>>) apiCategory.get(ApiContext.COMMON_PARAMETERS)).size() > 0) {
+            checkRequiredParameter((List<Map<String, Object>>) apiCategory.get(ApiContext.COMMON_PARAMETERS), parameterMap, multiFileMap);
+        }
+
+
+        if(apiNode.containsKey(ApiContext.PARAMETERS) && apiNode.get(ApiContext.PARAMETERS) != null && ((List<Map<String, Object>>) apiNode.get(ApiContext.PARAMETERS)).size() > 0) {
+            checkRequiredParameter((List<Map<String, Object>>) apiNode.get(ApiContext.PARAMETERS), parameterMap, multiFileMap);
+        }
 
 //        ctx.config = new HashMap<>() ;
 //        ctx.config.putAll(apiCategory);
         ctx.config = config ;
 
         return ctx ;
+    }
+
+    private static void checkRequiredParameter(List<Map<String, Object>> parameterConfig, Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap) {
+        for(Map<String, Object> param : parameterConfig){
+            if(param.containsKey("required") && (boolean) param.get("required")){
+                String paramName = (String) param.get("paramName");
+                if(!((parameterMap != null && parameterMap.containsKey(paramName) && parameterMap.get(paramName) != null && parameterMap.get(paramName).length > 0 && StringUtils.isNotEmpty(parameterMap.get(paramName) [0])) || (multiFileMap != null && multiFileMap.containsKey(paramName)))){
+                    throw new ApiException("400", "Required Parameter : " + paramName) ;
+                }
+            }
+        }
     }
 
     private void makeCommonResponse(Map<String, Object> response){
@@ -66,7 +115,7 @@ public class ApiContext {
                 }
             } else if (fieldValue instanceof Map) {
                 if (((Map) fieldValue).containsKey("select")) {
-                    commonResultFieldList.add(new ResultField(fieldName, ApiSelectContext.makeContextFromConfig((Map<String, Object>) fieldValue, data)));
+                    commonResultFieldList.add(new ResultField(fieldName, ApiSelectContext.makeContextFromConfig((Map<String, Object>) fieldValue, data, httpRequest, httpResponse)));
                 } else {
                     commonResultFieldList.add(new ResultField(fieldName, (Map<String, Object>) fieldValue));
                 }
@@ -76,22 +125,17 @@ public class ApiContext {
 
     private Map<String, Object> makeSubApiReuslt(Map<String, Object> ctxRootConfig) {
         if(ctxRootConfig.containsKey("event")){
-            ExecuteContext executeContext = ExecuteContext.makeContextFromConfig(ctxRootConfig, data) ;
-            if(executeContext.execute()) {
-                if(executeContext.getResult() != null){
-                    addResultData(executeContext.getResult()) ;
-                }else if(executeContext.getNode() != null) {
-                    Node node = executeContext.getNode();
-                    addResultData(node.clone());
-                }
+            ApiExecuteContext executeContext = ApiExecuteContext.makeContextFromConfig(ctxRootConfig, data, httpRequest, httpResponse) ;
+            setApiResultFormat(executeContext);
 
-                return executeContext.makeResult() ;
-            }else{
-                return new QueryResult().setResult("0").setResultMessage("None Executed") ;
-            }
+            QueryResult queryResult = executeContext.makeQueryResult() ;
+
+            addResultData(executeContext.getResult());
+
+            return queryResult ;
 
         }else if(ctxRootConfig.containsKey("query")){
-            ApiQueryContext queryContext = ApiQueryContext.makeContextFromConfig(ctxRootConfig, data) ;
+            ApiQueryContext queryContext = ApiQueryContext.makeContextFromConfig(ctxRootConfig, data, httpRequest, httpResponse) ;
             setApiResultFormat(queryContext);
 
             QueryResult queryResult = queryContext.makeQueryResult() ;
@@ -100,28 +144,37 @@ public class ApiContext {
 
             return queryResult ;
         }else if(ctxRootConfig.containsKey("select")){
-            ApiSelectContext selectContext = ApiSelectContext.makeContextFromConfig(ctxRootConfig, data) ;
+            ApiSelectContext selectContext = ApiSelectContext.makeContextFromConfig(ctxRootConfig, data, httpRequest, httpResponse) ;
             setApiResultFormat(selectContext);
 
-            QueryResult queryResult =  selectContext.makeQueryResult(null, null) ;
+            QueryResult queryResult =  selectContext.makeQueryResult() ;
             addResultData(selectContext.getResult());
 
             return queryResult ;
         }else if(ctxRootConfig.containsKey("id")){
-            ApiReadContext readContext = ApiReadContext.makeContextFromConfig(ctxRootConfig, data) ;
+            ApiReadContext readContext = ApiReadContext.makeContextFromConfig(ctxRootConfig, data, httpRequest, httpResponse) ;
             setApiResultFormat(readContext);
 
             Node node = readContext.getNode() ;
-            addResultData(node.clone());
+            addResultData(node);
 
             return readContext.makeResult() ;
         }else if(ctxRootConfig.containsKey("ids")){
-            ApiReadsContext readsContext = ApiReadsContext.makeContextFromConfig(ctxRootConfig, data) ;
+            ApiQueryContext readsContext = ApiReadsContext.makeContextFromConfig(ctxRootConfig, data, httpRequest, httpResponse) ;
             setApiResultFormat(readsContext);
 
             QueryResult queryResult = readsContext.makeQueryResult() ;
 
             addResultData(readsContext.getResult());
+
+            return queryResult ;
+        }else if(ctxRootConfig.containsKey("endpoint")){
+            ApiRelayContext relayContext = ApiRelayContext.makeContextFromConfig(ctxRootConfig, data) ;
+//            setApiResultFormat(readsContext);
+
+            QueryResult queryResult = relayContext.makeQueryResult() ;
+
+            addResultData(relayContext.getResult());
 
             return queryResult ;
         }
@@ -135,12 +188,15 @@ public class ApiContext {
 
         if(apiCategory.containsKey(FILE_URL_FORMAT) && apiCategory.get(FILE_URL_FORMAT) != null && ((Map<String, Object>) apiCategory.get(FILE_URL_FORMAT)).size() > 0){
             queryContext.fileUrlFormat = (Map<String, Object>) apiCategory.get(FILE_URL_FORMAT);
+            for(String key : queryContext.fileUrlFormat.keySet()){
+                queryContext.fileUrlFormat.put(key, ContextUtils.getValue(queryContext.fileUrlFormat.get(key), data)) ;
+            }
         }
     }
 
 
     public Object makeApiResult() {
-        if(config.containsKey("typeId") || config.containsKey("apiType") || config.containsKey("select")){
+        if(config.containsKey("typeId") || config.containsKey("apiType") || config.containsKey("select") || config.containsKey("endpoint")){
             if(this.commonResultFieldList != null && this.commonResultFieldList.size() > 0){
                 QueryResult queryResult = getCommonResult();
                 queryResult.putAll(makeSubApiReuslt(config));
@@ -185,7 +241,6 @@ public class ApiContext {
 
 
     public void addResultData(Object result) {
-
         Map<String, Object> _data = new HashMap<>() ;
         _data.putAll(data);
 

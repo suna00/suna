@@ -78,7 +78,30 @@
         {"field" : "categoryType", "method" : "matching", "value" : "{{:categoryType}}" },
         {"sorting" : "changed desc"},
         {"page" : "{{:page}}", "pageSize":2},
-        {"includeReferenced" : true}
+        {"includeReferenced" : false}
+      ],
+      "response": {
+        "position": "_position_",
+        "_all_": ""
+      }
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "testApi",
+    "apiId" : "naviReadCategory",
+    "apiName" : "Navigation Read Category Sample",
+    "method" : "GET",
+    "config" : {
+      "typeId": "testCategory",
+      "resultType" : "naviRead",
+      "naviId" : [{"field" : "categoryId", "value" : "{{:categoryId}}"}],
+      "query" : [
+        {"field" : "categoryType", "method" : "matching", "value" : "{{:categoryType}}" },
+        {"sorting" : "changed desc"},
+        {"page" : "{{:page}}", "pageSize":2},
+        {"position" : "{{:position}}"},
+        {"includeReferenced" : false}
       ]
     }
   },
@@ -142,7 +165,8 @@
             "field": "category",
             "method": "match",
             "value": "{{:category}}"
-          }
+          },
+          {"referenceView" : true}
         ],
         "response": {
           "_all_": "",
@@ -150,6 +174,26 @@
             "field": "menus",
             "referenceView": true,
             "includeReferenced": false
+          },
+          "category": {
+            "field": "category",
+            "response":{
+              "_all_":"",
+              "commentList" : {
+                "select" : {
+                  "ds" : "mariaDb",
+                  "resultType" : "list",
+                  "sql" : "select * from testComment where itemId = @{id}"
+                }
+              },
+              "commentCnt" : {
+                "select" : {
+                  "ds" : "mariaDb",
+                  "resultType" : "value",
+                  "sql" : "select count(*) from testComment where itemId = @{id}"
+                }
+              }
+            }
           },
           "itemTitle": "title",
           "itemDesc": "body",

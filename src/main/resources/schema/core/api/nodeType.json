@@ -4,21 +4,24 @@
     "parentId" : "root",
     "typeId" : "nodeType",
     "repositoryType" : "path",
-    "typeName" : "API"
+    "typeName" : "API",
+    "clusterGroup": "all"
   },
   {
     "tid" : "apiCategory",
     "parentId" : "api",
     "typeId" : "nodeType",
     "repositoryType" : "node",
-    "typeName" : "API Category Configuration"
+    "typeName" : "API Category Configuration",
+    "clusterGroup": "all"
   },
   {
-  "tid" : "apiConfig",
-  "parentId" : "api",
-  "typeId" : "nodeType",
-  "repositoryType" : "node",
-  "typeName" : "API Configuration"
+    "tid" : "apiConfig",
+    "parentId" : "api",
+    "typeId" : "nodeType",
+    "repositoryType" : "node",
+    "typeName" : "API Configuration",
+    "clusterGroup": "all"
   },
   {
     "typeId" : "propertyType",
@@ -144,6 +147,29 @@
     "labelable" : false,
     "required" : true,
     "code" : [{"value" : "POST", "label" : "POST"}, {"value" : "GET", "label" : "GET"}, {"value" : "PUT", "label" : "PUT"}, {"value" : "DELETE", "label" : "DELETE"}, {"value" : "PATCH", "label" : "PATCH"}]
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "apiConfig",
+    "pid" : "role",
+    "propertyTypeName" : "ROLE",
+    "valueType" : "REFERENCES",
+    "idable" : false,
+    "indexable" : true,
+    "labelable" : false,
+    "required" : false,
+    "referenceType" : "role"
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "apiConfig",
+    "pid" : "secure",
+    "propertyTypeName" : "Secure",
+    "valueType" : "BOOLEAN",
+    "idable" : false,
+    "indexable" : false,
+    "labelable" : false,
+    "required" : false
   },
   {
     "typeId" : "propertyType",

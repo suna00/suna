@@ -5,12 +5,14 @@ import net.ion.ice.core.infinispan.lucene.LuceneQueryUtils;
 import net.ion.ice.core.infinispan.lucene.QueryType;
 import net.ion.ice.core.node.*;
 import net.ion.ice.core.context.QueryContext;
+import net.ion.ice.core.query.FacetTerm;
 import net.ion.ice.core.query.SimpleQueryResult;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.search.Sort;
 import org.apache.lucene.search.SortField;
 import org.hibernate.search.query.dsl.BooleanJunction;
 import org.hibernate.search.query.dsl.QueryBuilder;
+import org.hibernate.search.query.facet.Facet;
 import org.infinispan.Cache;
 import org.infinispan.query.CacheQuery;
 import org.infinispan.query.Search;
@@ -34,8 +36,6 @@ public class InfinispanRepositoryService {
     @Autowired
     private InfinispanCacheManager cacheManager;
 
-    @Autowired
-    private NodeService nodeService;
 
     public Cache<String, Node> getNodeCache(String tid) {
         return cacheManager.getCache(tid, 100000);
@@ -66,6 +66,18 @@ public class InfinispanRepositoryService {
         return (Collection<Node>) getNodeCache(typeId).values();
     }
 
+
+    public void startBatch(String typeId){
+        Cache<String, Node> nodeCache = getNodeCache(typeId);
+        nodeCache.startBatch() ;
+    }
+
+    public void endBatch(String typeId, boolean commit){
+        Cache<String, Node> nodeCache = getNodeCache(typeId);
+        nodeCache.endBatch(commit);
+    }
+
+
     public Node execute(ExecuteContext context) {
         Node node = context.getNode();
         if (!context.isExecute()) return node;
@@ -73,7 +85,11 @@ public class InfinispanRepositoryService {
             deleteNode(node);
             return node ;
         }
+        cacheNode(node);
+        return node.clone();
+    }
 
+    public void cacheNode(Node node) {
         Cache<String, Node> nodeCache = null ;
 
         try {
@@ -88,7 +104,6 @@ public class InfinispanRepositoryService {
             e.printStackTrace();
             logger.error(node.toString(), e);
         }
-        return node.clone();
     }
 
     public void remove(ExecuteContext context) {
@@ -98,6 +113,11 @@ public class InfinispanRepositoryService {
     public void deleteNode(Node node) {
         Cache<String, Node> nodeCache = getNodeCache(node.getTypeId());
         nodeCache.remove(node.getId().toString());
+    }
+
+    public void deleteNode(String typeId, String id) {
+        Cache<String, Node> nodeCache = getNodeCache(typeId);
+        nodeCache.remove(id);
     }
 
     private List<Object> executeQuery(String typeId, QueryContext queryContext) {
@@ -112,10 +132,21 @@ public class InfinispanRepositoryService {
             e.printStackTrace();
         }
 
+        if(cacheQuery == null){
+            queryContext.setResultSize(0);
+            queryContext.setQueryListSize(0) ;
+            return new ArrayList<>() ;
+        }
+
+
         List<Object> list = cacheQuery.list();
         queryContext.setResultSize(cacheQuery.getResultSize());
         queryContext.setQueryListSize(list.size()) ;
-
+        if(queryContext.getFacetTerms() != null) {
+            for (FacetTerm facet : queryContext.getFacetTerms()) {
+                facet.setFacets(cacheQuery.getFacetManager().getFacets(facet.getName()));
+            }
+        }
         if(queryContext.getStart() > 0) {
             return list.subList(queryContext.getStart(), list.size()) ;
         }
@@ -207,9 +238,22 @@ public class InfinispanRepositoryService {
             e.printStackTrace();
         }
 
+        if(cacheQuery == null){
+            queryContext.setResultSize(0);
+            queryContext.setQueryListSize(0) ;
+            return new ArrayList<>() ;
+        }
+
         List<Object> list = cacheQuery.list();
         queryContext.setResultSize(cacheQuery.getResultSize());
         queryContext.setQueryListSize(list.size()) ;
+
+        if(queryContext.getFacetTerms() != null && queryContext.getFacetTerms().size() > 0){
+            for(FacetTerm facetTerm : queryContext.getFacetTerms()){
+                List<Facet> facets = cacheQuery.getFacetManager().getFacets(facetTerm.getName()) ;
+                facetTerm.setFacets(facets) ;
+            }
+        }
 
         if(queryContext.getStart() > 0) {
             return list.subList(queryContext.getStart(), list.size()) ;

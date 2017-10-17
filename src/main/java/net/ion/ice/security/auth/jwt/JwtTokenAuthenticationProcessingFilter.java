@@ -1,9 +1,13 @@
 package net.ion.ice.security.auth.jwt;
 
+import io.jsonwebtoken.ExpiredJwtException;
+import net.ion.ice.ApplicationContextManager;
+import net.ion.ice.core.session.SessionService;
 import net.ion.ice.security.auth.JwtAuthenticationToken;
 import net.ion.ice.security.auth.jwt.extractor.TokenExtractor;
 import net.ion.ice.security.common.CookieUtil;
 import net.ion.ice.security.token.RawAccessJwtToken;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.core.Authentication;
@@ -40,10 +44,17 @@ public class JwtTokenAuthenticationProcessingFilter extends AbstractAuthenticati
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
 //        String tokenPayload = request.getHeader(jwtConfig.getHeadString());
         String tokenPayload = CookieUtil.getValue(request, "iceJWT");
+        if(StringUtils.isEmpty(tokenPayload)){
+            ApplicationContextManager.getBean(SessionService.class).putSession(request, response, null);
+            tokenPayload = CookieUtil.getValue(request, "iceJWT");
+        }
         RawAccessJwtToken token = new RawAccessJwtToken(tokenExtractor.extract(tokenPayload));
         try {
             return getAuthenticationManager().authenticate(new JwtAuthenticationToken(token));
-        } catch (NullPointerException ex) {
+        } catch(Exception e){
+//            ApplicationContextManager.getBean(SessionService.class).createTempSession(request, response) ;
+            CookieUtil.clear(response, "iceJWT");
+            CookieUtil.clear(response, "iceRefreshJWT");
             throw new AuthenticationServiceException("Token is not exist in session");
         }
     }

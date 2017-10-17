@@ -23,7 +23,7 @@ public class DBQuery {
 
         if (queryContext.getQueryTerms() != null && !queryContext.getQueryTerms().isEmpty()) {
             for (QueryTerm queryTerm : queryContext.getQueryTerms()) {
-                if(queryTerm.getMethodQuery().equals("IN")){
+                if(queryTerm.getMethodQuery().equals("IN") || queryTerm.getMethodQuery().equals("EXISTS")){
                     String[] values = queryTerm.getQueryValue().split(",");
                     List<String> holder = new ArrayList<>();
                     for(String value : values){
@@ -32,11 +32,28 @@ public class DBQuery {
                     }
                     String query = String.format("%s %s (%s)", queryTerm.getQueryKey(), queryTerm.getMethodQuery(), StringUtils.join(holder, ", "));
                     searchListQuery.add(query);
-                }else{
-                    String query = String.format("%s %s ?", queryTerm.getQueryKey(), queryTerm.getMethodQuery());
-                    String value = queryTerm.getQueryValue();
+                }else if(queryTerm.getMethodQuery().equals("BETWEEN")){
+                    String query = String.format("(%s %s ? AND ?)", queryTerm.getQueryKey(), queryTerm.getMethodQuery(), StringUtils.substringBefore(queryTerm.getQueryValue(),"~"), StringUtils.substringAfter(queryTerm.getQueryValue(),"~"));
+                    String[] values = queryTerm.getQueryValue().split("~");
+                    for(String value : values){
+                        searchListValue.add(value);
+                    }
                     searchListQuery.add(query);
-                    searchListValue.add(value);
+                }else{
+                    String value = queryTerm.getQueryValue();
+                    String term = queryTerm.getMethodQuery();
+                    if("null".equals(value)){
+                        term = "is";
+                        if(queryTerm.getMethodQuery().contains("!")){
+                            term += " not ";
+                        }
+                        String query = String.format("%s %s null", queryTerm.getQueryKey(), term);
+                        searchListQuery.add(query);
+                    }else{
+                        String query = String.format("%s %s ?", queryTerm.getQueryKey(), term);
+                        searchListQuery.add(query);
+                        searchListValue.add(value);
+                    }
                 }
             }
 
@@ -57,7 +74,11 @@ public class DBQuery {
         }
 
         listParamSql = listParamSql.concat(String.format(" LIMIT ?").concat(String.format(" OFFSET ?")));
-        searchListValue.add(queryContext.getLimit());
+        if(queryContext.isPaging()) {
+            searchListValue.add(queryContext.getPageSize());
+        }else{
+            searchListValue.add(queryContext.getLimit());
+        }
         searchListValue.add(queryContext.getOffset());
     }
 
