@@ -217,6 +217,17 @@ public class InfinispanRepositoryService {
         return resultList;
     }
 
+    public List<Map<String, Object>> getSyncQueryList(String typeId, QueryContext queryContext) {
+        List<Object> list = executeQuery(typeId, queryContext);
+
+        List<Map<String, Object>> resultList = new ArrayList<>();
+        for (Object item : list) {
+            Node node = (Node) item;
+            resultList.add(node.toMap()) ;
+        }
+        return resultList;
+    }
+
     public SimpleQueryResult getQueryCodeNodes(String typeId, QueryContext queryContext) {
         queryContext.setIncludeReferenced(false);
         List<Node> result = getSubQueryNodes(typeId, queryContext);

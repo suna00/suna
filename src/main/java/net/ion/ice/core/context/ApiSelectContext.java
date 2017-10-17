@@ -35,6 +35,8 @@ public class ApiSelectContext extends ReadContext implements CacheableContext{
         selectContext.config = config ;
         selectContext.data = data ;
 
+        checkCacheable(config, data, selectContext) ;
+
         for(String key : config.keySet()) {
             if(key.equals("select")) continue ;
             makeApiContext(config, selectContext, key);
@@ -51,6 +53,7 @@ public class ApiSelectContext extends ReadContext implements CacheableContext{
         selectContext.jdbcTemplate = dbService.getJdbcTemplate(selectContext.ds) ;
         selectContext.sqlTemplate = new Template(selectContext.sql) ;
         selectContext.sqlTemplate.parsing();
+
 
         return selectContext;
     }
@@ -75,7 +78,7 @@ public class ApiSelectContext extends ReadContext implements CacheableContext{
 
 
     public String makeCacheKey(){
-        String keySrc = httpRequest.getRequestURI() + "?" + httpRequest.getQueryString() ;
+        String keySrc = httpRequest.getRequestURI() + "?" + httpRequest.getParameterMap().toString() ;
         return keySrc ;
     }
 

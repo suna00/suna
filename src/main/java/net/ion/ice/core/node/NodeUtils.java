@@ -57,7 +57,7 @@ public class NodeUtils {
             return getDataNode(nodeType, id);
         }else {
             if (getNodeService() == null) return null;
-            return nodeService.getNode(nodeType.getTypeId(), id);
+            return nodeService.getNode(nodeType, id);
         }
     }
 
