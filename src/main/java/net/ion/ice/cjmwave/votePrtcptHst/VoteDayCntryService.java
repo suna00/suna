@@ -41,8 +41,8 @@ public class VoteDayCntryService {
         Integer limitCnt = 100;
 
         Date now = new Date();
-        //String voteDay = DateFormatUtils.format(now, "yyyyMMdd");
-        String voteDay = "20171014"; //test 용
+        String voteDay = DateFormatUtils.format(now, "yyyyMMdd");
+        //String voteDay = "20171014"; //test 용
         String voteDateTime = DateFormatUtils.format(now, "yyyyMMddHHmmss");
 
         List<Node> voteBasInfoList = new ArrayList<>();
@@ -77,13 +77,11 @@ public class VoteDayCntryService {
                     //1. voteSeq&일자별 테이블 voteNum 업데이트
                     Integer voteBasDayCnt = 0;
                     if(lastSeqInfo == null){
-                        voteBasDayCnt = jdbcTemplate.update("INSERT INTO voteBasStatsByDay (voteSeq, voteDay, voteNum, owner, created) VALUES(?,?,?,?,?)"
-                                , voteSeq, voteDay,  voteMbrListSize, "anonymous", now);
-                        //logger.info("===============> insertVoteBasDay :: " + voteBasDayCnt);
+                        voteBasDayCnt = insertVoteBasDay(voteSeq, voteDay, voteMbrListSize, "anonymous", now);
+                        logger.info("===============> insertVoteBasDay :: " + voteBasDayCnt);
                     }else{
-                        voteBasDayCnt = jdbcTemplate.update("UPDATE voteBasStatsByDay SET voteNum=voteNum+?, created= ? WHERE voteSeq=? AND voteDay=?"
-                                , voteMbrListSize, now, voteSeq, voteDay);
-                        //logger.info("===============> updateVoteBasDay :: " + voteBasDayCnt);
+                        voteBasDayCnt = updateVoteBasDay(voteMbrListSize, now, voteSeq, voteDay);
+                        logger.info("===============> updateVoteBasDay :: " + voteBasDayCnt);
                     }
 
                     //2. voteSeq&일자&국가별 테이블 voteNum 업데이트
@@ -106,13 +104,10 @@ public class VoteDayCntryService {
                                 Integer cntryCheckCnt = getVoteBasCntryCount(voteSeq, voteDay, cntryCd);
                                 //voteSeq&일자&국가별 테이블 voteNum 업데이트
                                 if(cntryCheckCnt > 0){
-                                    voteCntryDayCnt = jdbcTemplate.update("UPDATE voteBasStatsByDayToCntry SET voteNum=voteNum+1, created= ? WHERE voteSeq=? AND voteDay=? AND cntryCd=?"
-                                            , now, voteSeq, voteDay, cntryCd);
-
+                                    voteCntryDayCnt = updateVoteCntryDay(now, voteSeq, voteDay, cntryCd);
                                     logger.info("===============> updateVoteCntryDay :: " + cntryCheckCnt);
                                 }else{
-                                    voteCntryDayCnt = jdbcTemplate.update("INSERT INTO voteBasStatsByDayToCntry (voteSeq, voteDay, cntryCd, voteNum, owner, created) VALUES(?,?,?,?,?,?)"
-                                            ,voteSeq, voteDay, cntryCd, 1, "anonymous", now);
+                                    voteCntryDayCnt = insertVoteCntryDay(voteSeq, voteDay, cntryCd, 1, "anonymous", now);
                                     logger.info("===============> insertVoteCntryDay :: " + cntryCheckCnt);
                                 }
                             }
