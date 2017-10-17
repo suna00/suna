@@ -780,11 +780,6 @@
             "typeId": "news",
             "query": [
               {
-                "field": "relArtistIds",
-                "method": "matching",
-                "value": "{{:getCommaItem(relArtistIds,0,뺿뺿))}}"
-              },
-              {
                 "field": "apvSttusCd",
                 "method": "matching",
                 "value": "2"
@@ -1014,11 +1009,6 @@
           "rcmdNewsList": {
             "typeId": "news",
             "query": [
-              {
-                "field": "relArtistIds",
-                "method": "matching",
-                "value": "{{:getCommaItem(relArtistIds,0,뺿뺿))}}"
-              },
               {
                 "field": "apvSttusCd",
                 "method": "matching",
@@ -1269,11 +1259,6 @@
           "typeId": "news",
           "query": [
             {
-              "field": "relArtistIds",
-              "method": "matching",
-              "value": "{{:getCommaItem(relArtistIds,0,뺿뺿))}}"
-            },
-            {
               "field": "apvSttusCd",
               "method": "matching",
               "value": "2"
@@ -1516,11 +1501,6 @@
           "rcmdNewsList": {
             "typeId": "news",
             "query": [
-              {
-                "field": "relArtistIds",
-                "method": "matching",
-                "value": "{{:getCommaItem(prsnNo,0,뺿뺿)}}"
-              },
               {
                 "field": "apvSttusCd",
                 "method": "matching",
