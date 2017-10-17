@@ -211,7 +211,8 @@ public class VoteResponseService {
             if (mbrId != null && mbrId.length() > 0) {
                 userVoteCnt = getUserVoteCnt(voteBasInfo.getId(), mbrId);
             }
-            voteBasInfo.put("userVoteCnt", (userVoteCnt == null) ? 0 : userVoteCnt);
+            //voteBasInfo.put("userVoteCnt", (userVoteCnt == null) ? 0 : userVoteCnt);
+            voteBasInfo.put("userVoteCnt", 0);
             voteBasInfo.put("userPvCnt", 0);
             voteBasInfo.put("ipAdrVoteCnt", ipAdrVoteCnt);
         }
@@ -337,7 +338,8 @@ public class VoteResponseService {
                 if (mbrId != null && mbrId.length() > 0) {
                     userVoteCnt = getUserVoteCnt(voteBasInfo.getId(), mbrId);
                 }
-                voteBasInfo.put("userVoteCnt", (userVoteCnt == null) ? 0 : userVoteCnt);
+                //voteBasInfo.put("userVoteCnt", (userVoteCnt == null) ? 0 : userVoteCnt);
+                voteBasInfo.put("userVoteCnt", 0);
                 voteBasInfo.put("userPvCnt", 0);
                 voteBasInfo.put("ipAdrVoteCnt", ipAdrVoteCnt);
             }
