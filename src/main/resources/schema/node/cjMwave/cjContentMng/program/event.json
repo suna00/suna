@@ -1,0 +1,40 @@
+[
+  {
+    "typeId" : "event",
+    "tid": "program",
+    "event" : "saveMetadata",
+    "eventName" : "Save metadata"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "program>saveMetadata",
+    "action" : "saveMetadata",
+    "actionType" : "service",
+    "actionBody" : "metadataService.saveMetadata",
+    "order" : 1
+  },
+  {
+    "typeId": "event",
+    "tid": "program",
+    "event": "view",
+    "noneExecute": true,
+    "eventName": "hitNum Event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "program>view",
+    "action": "hitNumUpdEvent",
+    "actionName": "program 조회수 업데이트",
+    "actionType": "service",
+    "actionBody": "contsRetvService.hitNumUpdate",
+    "order": 1
+  },
+  {
+    "typeId": "eventListener",
+    "tid": "contsRetvHst",
+    "event": "program>view",
+    "listenerName": "program 조회시 콘텐츠 조회 create",
+    "actionType": "service",
+    "actionBody": "contsRetvService.insert"
+  }
+]
