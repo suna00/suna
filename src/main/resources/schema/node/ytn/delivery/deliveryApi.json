@@ -55,7 +55,7 @@
       "typeId": "delivery",
       "query" : [
         {"field" : "memberNo", "method" : "matching", "value" : "{{:session.member.memberNo}}" },
-        {"sorting" : "created desc", "pageSize": "3", "page": "1"}
+        {"sorting" : "created desc", "pageSize": "3", "page": "1", "deliveryType_equals": "deliveryAddress"}
       ]
     }
   }
