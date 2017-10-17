@@ -308,6 +308,9 @@ public class NodeUtils {
                 if (value instanceof Code) {
                     return value;
                 }
+                if(pt.getCode() == null){
+                    return new Code(value, value.toString()) ;
+                }
                 return pt.getCode().get(value);
             }
             case REFERENCE: {
