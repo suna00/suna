@@ -103,8 +103,8 @@
               "referenceView": "contsMetaId"
             }
           ],
-          "response":{
-            "_all_":"",
+          "response": {
+            "_all_": "",
             "statsList": {
               "typeId": "voteItemStats",
               "resultType": "merge",
@@ -125,7 +125,7 @@
               ],
               "response": {
                 "voteNum": "",
-                "statsCreated":"created",
+                "statsCreated": "created",
                 "myVoteYn": {
                   "select": {
                     "ds": "cjDb",
@@ -234,10 +234,8 @@
       }
     ],
     "config": {
-      "createItem": {
-        "typeId": "voteBasInfo",
-        "event": "sponsorEvtVoting"
-      }
+      "typeId": "voteBasInfo",
+      "event": "sponsorEvtVoting"
     }
   }
 ]
