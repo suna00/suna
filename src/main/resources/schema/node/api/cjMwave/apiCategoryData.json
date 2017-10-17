@@ -6,7 +6,7 @@
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
       "default": "{{:getEnvValue(image.prefixUrl,url)}}",
-      "s3":""
+      "s3":"{{:getEnvValue(image.s3PrefixUrl,url)}}"
     },
     "commonParameters": [
       {
@@ -41,7 +41,7 @@
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
       "default": "{{:getEnvValue(image.prefixUrl,url)}}",
-      "s3":""
+      "s3":"{{:getEnvValue(image.s3PrefixUrl,url)}}"
     },
     "commonParameters": [
       {
@@ -76,7 +76,7 @@
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
       "default": "{{:getEnvValue(image.prefixUrl,url)}}",
-      "s3":""
+      "s3":"{{:getEnvValue(image.s3PrefixUrl,url)}}"
     },
     "commonParameters": [
       {
@@ -111,7 +111,7 @@
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
       "default": "{{:getEnvValue(image.prefixUrl,url)}}",
-      "s3":""
+      "s3":"{{:getEnvValue(image.s3PrefixUrl,url)}}"
     },
     "commonParameters": [
       {
@@ -146,7 +146,7 @@
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
       "default": "{{:getEnvValue(image.prefixUrl,url)}}",
-      "s3":""
+      "s3":"{{:getEnvValue(image.s3PrefixUrl,url)}}"
     },
     "commonParameters": [
       {
@@ -181,7 +181,7 @@
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
       "default": "{{:getEnvValue(image.prefixUrl,url)}}",
-      "s3":""
+      "s3":"{{:getEnvValue(image.s3PrefixUrl,url)}}"
     },
     "commonParameters": [
       {
@@ -216,7 +216,7 @@
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
       "default": "{{:getEnvValue(image.prefixUrl,url)}}",
-      "s3":""
+      "s3":"{{:getEnvValue(image.s3PrefixUrl,url)}}"
     },
     "commonParameters": [
       {
@@ -251,7 +251,7 @@
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
       "default": "{{:getEnvValue(image.prefixUrl,url)}}",
-      "s3":""
+      "s3":"{{:getEnvValue(image.s3PrefixUrl,url)}}"
     },
     "commonParameters": [
       {
@@ -286,7 +286,7 @@
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
       "default": "{{:getEnvValue(image.prefixUrl,url)}}",
-      "s3":""
+      "s3":"{{:getEnvValue(image.s3PrefixUrl,url)}}"
     },
     "commonParameters": [
       {
@@ -321,7 +321,7 @@
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
       "default": "{{:getEnvValue(image.prefixUrl,url)}}",
-      "s3":""
+      "s3":"{{:getEnvValue(image.s3PrefixUrl,url)}}"
     },
     "commonParameters": [
       {
@@ -356,7 +356,7 @@
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
       "default": "{{:getEnvValue(image.prefixUrl,url)}}",
-      "s3":""
+      "s3":"{{:getEnvValue(image.s3PrefixUrl,url)}}"
     },
     "commonParameters": [
       {
@@ -391,7 +391,7 @@
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
       "default": "{{:getEnvValue(image.prefixUrl,url)}}",
-      "s3":""
+      "s3":"{{:getEnvValue(image.s3PrefixUrl,url)}}"
     },
     "commonParameters": [
       {
@@ -426,7 +426,7 @@
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
       "default": "{{:getEnvValue(image.prefixUrl,url)}}",
-      "s3":""
+      "s3":"{{:getEnvValue(image.s3PrefixUrl,url)}}"
     },
     "commonParameters": [
       {
@@ -461,7 +461,7 @@
     "dateFormat": "yyyy-MM-dd HH:mm:ss",
     "fileUrlFormat": {
       "default": "{{:getEnvValue(image.prefixUrl,url)}}",
-      "s3":""
+      "s3":"{{:getEnvValue(image.s3PrefixUrl,url)}}"
     },
     "commonParameters": [
       {

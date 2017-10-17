@@ -67,6 +67,7 @@ public class S3FileRepository implements FileRepository {
         s3Client = AmazonS3ClientBuilder.standard()
                 .withRegion("ap-northeast-2") //로컬에서 오류나면 해제
                 .withCredentials(new AWSStaticCredentialsProvider(awsCredentials))
+                .withAccelerateModeEnabled(true)
                 .build();
         logger.info("bucketLocation with client :: " + s3Client.getBucketLocation(bucketName));
     }

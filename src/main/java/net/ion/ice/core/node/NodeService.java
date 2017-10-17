@@ -29,7 +29,6 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -59,11 +58,13 @@ public class NodeService {
     @Autowired
     private Environment environment;
 
+    @Autowired
+    private NodeHelperService nodeHelperService;
+
 
     private Map<String, NodeType> nodeTypeCache ;
     private Map<String, NodeType> initNodeType  ;
     private Map<String, Node> datasource  ;
-    private Map<String, Node> scheduler;
 
 
     @PostConstruct
@@ -76,7 +77,7 @@ public class NodeService {
         }
 
         try {
-            initSchema();
+            nodeHelperService.initSchema(environment.getActiveProfiles()[0]);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -205,31 +206,17 @@ public class NodeService {
         initSaveNodeType("classpath:schema/core/datasource/nodeType.json");
         initPropertyType("classpath:schema/core/datasource/propertyType.json");
 
-        try{
-            initSaveNodeType("classpath:schema/core/schedule/nodeType.json");
-            initPropertyType("classpath:schema/core/schedule/propertyType.json");
-        } catch (Exception e) {
-            logger.info("This server is unable to run scheduler :: " + e.getClass().getName());
-        }
-
         datasource = new ConcurrentHashMap<>() ;
-        scheduler = new HashMap<>();
 
         initDatasource("classpath:schema/core/datasource/dataSource.json");
-        initScheduler("classpath:schema/core/schedule/scheduleTask.json");
 
         try {
             initDatasource("classpath:schema/core/datasource/" + environment.getActiveProfiles()[0] + "/dataSource.json");
         }catch(Exception e){
-            logger.error("Failed to load DataSource for current profile");
+
         }
 
-        try {
-            initScheduler("classpath:schema/core/schedule/" + environment.getActiveProfiles()[0] + "/scheduleTask.json");
-            logger.info("Success to load ScheduleTask for current profile");
-        }catch(Exception e){
-            logger.error("Failed to load ScheduleTask for current profile");
-        }
+
     }
 
     private void initDatasource(String file) throws IOException {
@@ -238,15 +225,6 @@ public class NodeService {
         List<Node> dsList = NodeUtils.makeNodeList(dsDataList, "datasource") ;
         for(Node ds : dsList){
             datasource.put(ds.getId(), ds) ;
-        }
-    }
-
-    private void initScheduler(String file) throws IOException {
-        Collection<Map<String, Object>> scheduleDataList = JsonUtils.parsingJsonResourceToList(applicationContextManager.getResource(file)) ;
-
-        List<Node> scheduleList = NodeUtils.makeNodeList(scheduleDataList, "scheduleTask") ;
-        for(Node schedule : scheduleList){
-            scheduler.put(schedule.getId(), schedule) ;
         }
     }
 
@@ -269,84 +247,15 @@ public class NodeService {
         }
     }
 
-    private void  initSchema() throws IOException {
-        saveSchema("classpath:schema/core/*.json");
-        saveSchema("classpath:schema/core/*/*.json");
-        try {
-            saveSchema("classpath:schema/core/datasource/" + environment.getActiveProfiles()[0] + "/dataSource.json");
-        }catch (Exception e){}
-
-        try {
-            saveSchema("classpath:schema/core/schedule/" + environment.getActiveProfiles()[0] + "/scheduleTask.json");
-        }catch (Exception e){}
-
-//        saveSchema("classpath:schema/node/*.json", lastChanged);
-//        saveSchema("classpath:schema/node/**/*.json");
-//        saveSchema("classpath:schema/test/*.json", lastChanged);
-//        saveSchema("classpath:schema/test/**/*.json");
-
-    }
-    public void saveSchema(String resourcePath) throws IOException {
-        saveSchema(resourcePath, true);
-        saveSchema(resourcePath, false);
-    }
-
-    private void saveSchema(String resourcePath, boolean core) throws IOException {
-        Resource[] resources = applicationContextManager.getResources(resourcePath);
-        if(core) {
-            for (Resource resource : resources) {
-                if (resource.getFilename().equals("nodeType.json")) {
-                    fileNodeSave(resource);
-                }
-            }
-
-            for (Resource resource : resources) {
-                if (resource.getFilename().equals("propertyType.json")) {
-                    fileNodeSave(resource);
-                }
-            }
-
-            for (Resource resource : resources) {
-                if (resource.getFilename().equals("event.json")) {
-                    fileNodeSave(resource);
-                }
-            }
-        }else {
-            for (Resource resource : resources) {
-                if (!(resource.getFilename().equals("nodeType.json") || resource.getFilename().equals("propertyType.json") || resource.getFilename().equals("event.json"))) {
-                    fileNodeSave(resource);
-                }
-            }
-        }
-    }
-
-    private void fileNodeSave(Resource resource) throws IOException {
-        try{
-            String fileName = StringUtils.substringBefore(resource.getFilename(), ".json");
-            Collection<Map<String, Object>> nodeDataList = JsonUtils.parsingJsonResourceToList(resource) ;
-//        List<Map<String, Object>> dataList = NodeUtils.makeDataListFilterBy(nodeDataList, lastChanged) ;
-
-            for(Map<String, Object> data : nodeDataList) {
-                try{
-                    saveNode(data);
-                } catch (Exception e) {
-                    logger.error("Fail node save :: " + String.valueOf(data), e);
-                }
-            }
-        } catch (Exception e) {
-            logger.error("Fail fileNodeSave :: ", e);
-        }
-    }
-
-
     public Node saveNode(Map<String, Object> data) {
         try {
-            NodeType nodeType = getNodeType(data.get(Node.TYPEID).toString()) ;
-            if(!clusterService.checkClusterGroup(nodeType)) return null;
-
-            ExecuteContext context = ExecuteContext.makeContextFromMap(data);
-            context.execute();
-            Node saveNode =  context.getNode();
+//            NodeType nodeType = getNodeType(data.get(Node.TYPEID).toString()) ;
+//            if(!clusterService.checkClusterGroup(nodeType)) return null;
+//
+//            ExecuteContext context = ExecuteContext.makeContextFromMap(data);
+//            context.execute();
+//            Node saveNode =  context.getNode();
+            Node saveNode = saveNodeWithException(data);
             return saveNode ;
         }catch (Exception e){
             logger.error(data.toString(), e);
@@ -359,12 +268,14 @@ public class NodeService {
     * 다만 caller 에서 발생한 오류를 처리할 수 있게 예외를 던짐
     * */
     public Node saveNodeWithException(Map<String, Object> data) {
+        NodeType nodeType = getNodeType(data.get(Node.TYPEID).toString()) ;
+        if(!clusterService.checkClusterGroup(nodeType)) return null;
+
         ExecuteContext context = ExecuteContext.makeContextFromMap(data);
         context.execute();
         Node saveNode =  context.getNode();
         return saveNode ;
     }
-
 
     public Node createNode(Map<String, Object> data, String typeId) {
         return (Node) executeNode(data, typeId, EventService.CREATE);

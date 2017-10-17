@@ -90,7 +90,8 @@
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "fileHandler":"s3"
   },
   {
     "typeId": "propertyType",
@@ -108,7 +109,8 @@
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "fileHandler":"s3"
   },
   {
     "typeId": "propertyType",
@@ -126,7 +128,8 @@
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "fileHandler":"s3"
   },
   {
     "typeId": "propertyType",
@@ -294,15 +297,15 @@
     "typeId": "propertyType",
     "tid": "singlePhoto",
     "pid": "mkeDay",
-    "id": "groupPhoto>mkeDay",
+    "id": "singlePhoto>mkeDay",
     "propertyTypeName": "작성일",
     "valueType": "DATE",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": false,
-    "analyzer": null,
+    "indexable": true,
+    "analyzer": "simple",
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",

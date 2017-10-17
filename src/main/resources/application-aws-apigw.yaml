@@ -73,7 +73,7 @@ temp-file:
 
 image:
   prefixUrl: http://g-api-elb-579243851.ap-northeast-2.elb.amazonaws.com/image/
-  s3PrefixUrl: https://cjmwave-prd.s3.ap-northeast-2.amazonaws.com/ion/
+  s3PrefixUrl: https://cmsing.mwave.me/
 
 mobile:
   push:

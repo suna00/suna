@@ -7,7 +7,7 @@
     "typeName": "아티스트별 주간 투표 현황",
     "repositoryType": "data",
     "eviction": 0,
-    "tableName": "cjDb#wlyVoteStatsByArtist"
+    "tableName": "authDb#wlyVoteStatsByArtist"
   },
   {
     "parentId": "cjStatsMng",
@@ -17,7 +17,7 @@
     "typeName": "아티스트별 국가 투표 현황",
     "repositoryType": "data",
     "eviction": 0,
-    "tableName": "cjDb#cntryVoteStatsByArtist"
+    "tableName": "authDb#cntryVoteStatsByArtist"
   },
   {
     "parentId": "cjStatsMng",
@@ -27,7 +27,7 @@
     "typeName": "아티스트별 투표회원 현황",
     "repositoryType": "data",
     "eviction": 0,
-    "tableName": "cjDb#voteMbrStatsByArtist"
+    "tableName": "authDb#voteMbrStatsByArtist"
   },
   {
     "parentId": "cjStatsMng",
@@ -37,7 +37,7 @@
     "typeName": "국가별 아티스트 투표현황",
     "repositoryType": "data",
     "eviction": 0,
-    "tableName": "cjDb#artistVoteStatsByCntry"
+    "tableName": "authDb#artistVoteStatsByCntry"
   },
   {
     "parentId": "cjStatsMng",
@@ -47,7 +47,7 @@
     "typeName": "성별 아티스트 투표현황",
     "repositoryType": "data",
     "eviction": 0,
-    "tableName": "cjDb#artistVoteStatsBySex"
+    "tableName": "authDb#artistVoteStatsBySex"
   },
   {
     "parentId": "cjStatsMng",
@@ -57,7 +57,7 @@
     "typeName": "타입별 아티스트 투표현황",
     "repositoryType": "data",
     "eviction": 0,
-    "tableName": "cjDb#artistVoteStatsByType"
+    "tableName": "authDb#artistVoteStatsByType"
   },
   {
     "parentId": "cjStatsMng",
@@ -67,7 +67,7 @@
     "typeName": "전체 국가 투표 현황",
     "repositoryType": "data",
     "eviction": 0,
-    "tableName": "cjDb#cntryVoteStats"
+    "tableName": "authDb#cntryVoteStats"
   },
   {
     "parentId": "cjStatsMng",
@@ -77,7 +77,7 @@
     "typeName": "주간 아티스트 투표현황",
     "repositoryType": "data",
     "eviction": 0,
-    "tableName": "cjDb#artistVoteStatsByWly"
+    "tableName": "authDb#artistVoteStatsByWly"
   },
   {
     "parentId": "cjStatsMng",
@@ -87,7 +87,7 @@
     "typeName": "월간 아티스트 투표현황",
     "repositoryType": "data",
     "eviction": 0,
-    "tableName": "cjDb#artistVoteStatsByMly"
+    "tableName": "authDb#artistVoteStatsByMly"
   },
   {
     "parentId": "cjStatsMng",
@@ -97,7 +97,7 @@
     "typeName": "년간 아티스트 투표현황",
     "repositoryType": "data",
     "eviction": 0,
-    "tableName": "cjDb#artistVoteStatsByYear"
+    "tableName": "authDb#artistVoteStatsByYear"
   },
   {
     "parentId": "cjStatsMng",
@@ -107,7 +107,7 @@
     "typeName": "주별 투표항목 현황",
     "repositoryType": "data",
     "eviction": 0,
-    "tableName": "cjDb#voteItemStatsByWly"
+    "tableName": "authDb#voteItemStatsByWly"
   },
   {
     "parentId": "cjStatsMng",
@@ -117,7 +117,7 @@
     "typeName": "국가별 투표항목 현황",
     "repositoryType": "data",
     "eviction": 0,
-    "tableName": "cjDb#voteItemStatsByCntry"
+    "tableName": "authDb#voteItemStatsByCntry"
   },
   {
     "parentId": "cjStatsMng",
@@ -127,7 +127,7 @@
     "typeName": "성별 투표항목 현황",
     "repositoryType": "data",
     "eviction": 0,
-    "tableName": "cjDb#voteItemStatsBySex"
+    "tableName": "authDb#voteItemStatsBySex"
   },
   {
     "parentId": "cjStatsMng",
@@ -137,7 +137,7 @@
     "typeName": "투표항목 현황",
     "repositoryType": "data",
     "eviction": 0,
-    "tableName": "cjDb#voteItemStats"
+    "tableName": "authDb#voteItemStats"
   },
   {
     "parentId": "cjStatsMng",
@@ -147,7 +147,7 @@
     "typeName": "MCD chart 기본정보",
     "repositoryType": "data",
     "eviction": 0,
-    "tableName": "cjDb#mcdChartBasInfo"
+    "tableName": "authDb#mcdChartBasInfo"
   },
   {
     "parentId": "cjStatsMng",
@@ -157,7 +157,7 @@
     "typeName": "MCD chart 현황",
     "repositoryType": "data",
     "eviction": 0,
-    "tableName": "cjDb#mcdChartStats"
+    "tableName": "authDb#mcdChartStats"
   },
   {
     "parentId": "cjStatsMng",
@@ -167,7 +167,7 @@
     "typeName": "성별 아티스트 일별 투표현황",
     "repositoryType": "data",
     "eviction": 0,
-    "tableName": "cjDb#artistSexVoteStatsByDly"
+    "tableName": "authDb#artistSexVoteStatsByDly"
   },
   {
     "parentId": "cjStatsMng",
@@ -177,6 +177,6 @@
     "typeName": "투표별 전체 국가 투표 현황",
     "repositoryType": "data",
     "eviction": 0,
-    "tableName": "cjDb#cntryVoteStatsByVote"
+    "tableName": "authDb#cntryVoteStatsByVote"
   }
 ]

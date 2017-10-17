@@ -44,6 +44,19 @@ public class ExecuteContext extends ReadContext{
     protected HttpServletResponse httpResponse ;
     private Logger logger = Logger.getLogger(ExecuteContext.class);
 
+
+    public static ExecuteContext createContextFromMap(NodeType nodeType, Map<String, Object> data) {
+        ExecuteContext ctx = new ExecuteContext();
+        ctx.setData(data);
+        ctx.event = "save";
+        ctx.setNodeType(nodeType);
+
+        ctx.init() ;
+
+        return ctx ;
+
+    }
+
     public static ExecuteContext createContextFromParameter(Map<String, String[]> parameterMap, NodeType nodeType, String event, String id) {
         ExecuteContext ctx = new ExecuteContext();
 
@@ -277,7 +290,7 @@ public class ExecuteContext extends ReadContext{
 
         for(String key : data.keySet()){
             Object value = data.get(key) ;
-            if(value instanceof List && (this.nodeType.getPropertyType(key) != null && this.nodeType.getPropertyType(key).isList()) && NodeUtils.getNodeType(key) != null){
+            if(value instanceof List && !key.equals("code") && ((this.nodeType.getPropertyType(key) != null && this.nodeType.getPropertyType(key).isList()) || NodeUtils.getNodeType(key) != null)){
                 for(Map<String, Object> subData : (List<Map<String, Object>>)value){
                     Map<String, Object> _data = new HashMap<>() ;
 //                    _data.putAll(data);
@@ -482,4 +495,5 @@ public class ExecuteContext extends ReadContext{
     public boolean isExist(){
         return  exist ;
     }
+
 }

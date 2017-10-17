@@ -49,7 +49,8 @@
     "analyzer": "cjk",
     "referenceType": "",
     "referenceValue": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "i18n": true
   },
   {
     "typeId": "propertyType",
@@ -64,8 +65,8 @@
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "artist",
-    "referenceValue": "artistId",
+    "referenceType": "node",
+    "referenceValue": "",
     "defaultValue": ""
   },
   {
@@ -83,7 +84,8 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "i18n": true
   },
   {
     "typeId": "propertyType",
@@ -98,8 +100,8 @@
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "song",
-    "referenceValue": "songId",
+    "referenceType": "node",
+    "referenceValue": "",
     "defaultValue": ""
   },
   {
@@ -117,7 +119,8 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "i18n": true
   },
   {
     "typeId": "propertyType",
@@ -134,7 +137,8 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "fileHandler":"s3"
   },
   {
     "typeId": "propertyType",
@@ -204,7 +208,8 @@
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "fileHandler":"s3"
   },
   {
     "typeId": "propertyType",

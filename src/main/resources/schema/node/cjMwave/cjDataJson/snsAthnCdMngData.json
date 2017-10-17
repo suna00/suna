@@ -48,5 +48,15 @@
     "appId": "skfjawkfd",
     "athnCd1": "998191",
     "athnCd8": "189189"
+  },
+  {
+    "typeId": "snsAthnCdMng",
+    "athnSeq": 847931,
+    "srvrDivCd": "108994811",
+    "snsTypeCd": "10",
+    "snsTypeNm": "qoo10",
+    "appId": "skfpkrmos",
+    "athnCd1": "198191",
+    "athnCd8": "189190"
   }
 ]

@@ -1,21 +1,12 @@
 [
   {
     "typeId": "event",
-    "id": "voteBasInfo>selCreate",
     "tid": "voteBasInfo",
     "event": "selCreate",
     "eventName": "selCreate Node Type"
   },
   {
-    "typeId": "event",
-    "id": "eventAction>selCreate",
-    "tid": "eventAction",
-    "event": "selCreate",
-    "eventName": "selCreate eventAction"
-  },
-  {
     "typeId": "eventAction",
-    "id": "voteBasInfo>selCreate>selCreateEvent",
     "event": "voteBasInfo>selCreate",
     "action": "selCreateEvent",
     "actionType": "service",
@@ -62,6 +53,7 @@
     "actionBody": "voteResponseService.voteStatus",
     "order": 1
   },
+
   {
     "typeId": "event",
     "tid": "voteBasInfo",
@@ -76,6 +68,22 @@
     "actionName": "EVENT VOTING Save",
     "actionType": "service",
     "actionBody": "votePrtcptHstService.evtVoting",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "voteBasInfo",
+    "event": "sponsorEvtVoting",
+    "noneExecute" : true,
+    "eventName": "Sponsor Event Voting Save Event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "voteBasInfo>sponsorEvtVoting",
+    "action": "sponsorEvtVotingEvent",
+    "actionName": "Sponsor Event Voting Save",
+    "actionType": "service",
+    "actionBody": "votePrtcptHstService.sponsorEvtVoting",
     "order": 1
   },
   {

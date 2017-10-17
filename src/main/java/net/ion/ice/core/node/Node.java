@@ -1,6 +1,5 @@
 package net.ion.ice.core.node;
 
-import net.ion.ice.core.context.QueryContext;
 import net.ion.ice.core.context.ReadContext;
 import net.ion.ice.core.infinispan.lucene.CodeAnalyzer;
 import org.apache.commons.lang3.StringUtils;
@@ -8,13 +7,13 @@ import org.hibernate.search.annotations.*;
 
 import java.io.Serializable;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by jaeho on 2017. 3. 31..
  */
 @Indexed
 public class Node implements Map<String, Object>, Serializable, Cloneable{
+
     public static final String ID = "id";
     public static final String TYPEID = "typeId";
     public static final String USERID = "userId";
@@ -22,8 +21,12 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     public static final String SYSTEM = "system";
     public static final String TYPE_SEPERATOR = "::";
     public static final String ID_SEPERATOR = ">";
+    public static final String OWNER = "owner";
+    public static final String MODIFIER = "modifier";
+    public static final String CREATED = "created";
+    public static final String CHANGED = "changed";
 
-    public static List<String> NODE_VALUE_KEYS = Arrays.asList(new String[] {"id", "typeId", "owner", "modifier", "created", "changed", "status"}) ;
+    public static List<String> NODE_VALUE_KEYS = Arrays.asList(new String[] {"id", "typeId", "owner", "modifier", "created", "changed"}) ;
 
     @DocumentId
     @Field
@@ -97,7 +100,22 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         properties = new Properties() ;
         this.id = data.get(ID).toString();
         this.properties.setId(id) ;
-        this.putAll(data);
+
+        if(data.containsKey(TYPEID) && data.containsKey(CHANGED) && data.get(CHANGED) instanceof Long){
+            this.typeId = (String) data.get(TYPEID);
+            this.owner = (String) data.get(OWNER);
+            this.modifier = (String) data.get(MODIFIER);
+            this.created = new Date((Long) data.get(CREATED)) ;
+            this.changed = new Date((Long) data.get(CHANGED)) ;
+
+            data.remove(TYPEID) ;
+            data.remove(OWNER) ;
+            data.remove(MODIFIER) ;
+            data.remove(CREATED) ;
+            data.remove(CHANGED) ;
+            this.properties.setTypeId(typeId);
+        }
+        properties.putAll(data);
     }
 
 
@@ -405,6 +423,20 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         return cloneNode ;
     }
 
+    public Map<String, Object> toMap(){
+        Map<String, Object> map = new HashMap<>() ;
+        map.putAll(properties) ;
+
+        map.put(ID, id);
+        map.put(TYPEID, typeId);
+
+        map.put(OWNER, owner);
+        map.put(MODIFIER, modifier);
+        map.put(CREATED, created.getTime());
+        map.put(CHANGED, changed.getTime());
+
+        return map ;
+    }
     public Node clone(String typeId){
         Node cloneNode = new Node() ;
         cloneNode.properties = properties.clone() ;

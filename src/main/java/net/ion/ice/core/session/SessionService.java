@@ -1,5 +1,6 @@
 package net.ion.ice.core.session;
 
+import net.ion.ice.core.api.ApiException;
 import net.ion.ice.core.cluster.ClusterConfiguration;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
@@ -12,9 +13,9 @@ import net.ion.ice.security.config.JwtConfig;
 import net.ion.ice.security.token.JwtTokenFactory;
 import net.ion.ice.security.token.RawAccessJwtToken;
 import net.ion.ice.security.token.RefreshToken;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.stagemonitor.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -127,32 +128,21 @@ public class SessionService {
     }
 
 
-    public void memberLogin(HttpServletRequest request, HttpServletResponse response, String userId, String password, String siteId) {
-        if(StringUtils.isEmpty(siteId)){
-            siteId = "default" ;
-        }
-        NodeType memberType = nodeService.getNodeType("member") ;
-        List<QueryTerm> queryTerms = new ArrayList<>() ;
-        queryTerms.add(QueryUtils.makePropertyQueryTerm(memberType, "siteId", null, siteId)) ;
-        queryTerms.add(QueryUtils.makePropertyQueryTerm(memberType, "userId", null, userId)) ;
+    public Map<String, Object> userLogin(HttpServletRequest request, HttpServletResponse response, String userId, String password) {
+        Node node = nodeService.getNode("user", userId) ;
 
-        List<Node> nodes = nodeService.getNodeList(memberType, queryTerms) ;
-
-        if(nodes == null || nodes.size() ==0){
-
+        if(node == null || !StringUtils.equals(node.getStringValue("password"), password)){
+            throw new ApiException("300", "Login Fail") ;
         }
 
-        Node member = nodes.get(0) ;
-
-        if(!member.getStringValue("password").equals(password)){
-
-        }
-
+        Map<String, Object> session = new HashMap<>();
+        session.put("user", node);
+        session.put("role", "admin");
         try {
-            putSession(request, response, member);
+            putSession(request, response, session);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-
+        return session ;
     }
 }

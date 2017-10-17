@@ -4,6 +4,8 @@ import net.ion.ice.cjmwave.errMsgInfo.ErrMsgUtil;
 import net.ion.ice.core.api.ApiException;
 import net.ion.ice.core.cluster.ClusterService;
 import net.ion.ice.core.context.ExecuteContext;
+import net.ion.ice.core.data.bind.NodeBindingUtils;
+import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
@@ -12,6 +14,7 @@ import net.ion.ice.core.node.PropertyType;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.FastDateFormat;
+import org.infinispan.commons.util.ByRef;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,8 +106,14 @@ public class VotePrtcptHstService {
 
         if (voteBasInfo!=null) {
             // Checking Available Date
-            String pstngStDt = voteBasInfo.get("pstngStDt").toString().substring(0, 8);   // 투표 시작일
-            String pstngFnsDt = voteBasInfo.get("pstngFnsDt").toString().substring(0, 8); // 투표 종료일
+            String pstngStDt = voteBasInfo.getStringValue("pstngStDt");
+            if (pstngStDt.length()>0) {
+                pstngStDt = pstngStDt.substring(0, 8);   // 투표 시작일
+            }
+            String pstngFnsDt = voteBasInfo.getStringValue("pstngFnsDt");
+            if (pstngFnsDt.length()>0) {
+                pstngFnsDt = pstngFnsDt.substring(0, 8); // 투표 종료일
+            }
             if (voteDate.compareTo(pstngStDt) < 0 || voteDate.compareTo(pstngFnsDt) > 0) {
                 // It is not voting period.
                 throw new ApiException("422", errMsgUtil.getErrMsg(context,"422"));
@@ -181,8 +190,6 @@ public class VotePrtcptHstService {
         Map<String, Object> createItem = new ConcurrentHashMap<>();
         Map<String, Integer> resMap = new ConcurrentHashMap<>();
 
-
-
         resMap.put("userVoteCnt", mbrVoteCount.get(mbrId).get(voteBasInfo.getId()));
         resMap.put("userPvCnt", 10);    // TODO - PV Count
         resMap.put("ipAdrVoteCnt", ipDclaCnt - mbrIpDclaCnt - 1);
@@ -250,8 +257,14 @@ public class VotePrtcptHstService {
         }
 
         String voteDate = DateFormatUtils.format(now, "yyyyMMdd");          // 투표 진행일 (현재날짜)
-        String pstngStDt = seriesVoteBasInfo.get("pstngStDt").toString().substring(0, 8);   // 투표 시작일
-        String pstngFnsDt = seriesVoteBasInfo.get("pstngFnsDt").toString().substring(0, 8); // 투표 종료일
+        String pstngStDt = seriesVoteBasInfo.getStringValue("pstngStDt");
+        if (pstngStDt.length()>0) {
+            pstngStDt = pstngStDt.substring(0, 8);   // 투표 시작일
+        }
+        String pstngFnsDt = seriesVoteBasInfo.getStringValue("pstngFnsDt");
+        if (pstngFnsDt.length()>0) {
+            pstngFnsDt = pstngFnsDt.substring(0, 8); // 투표 종료일
+        }
 
         // Checking Available Date
         if (voteDate.compareTo(pstngStDt) < 0 || voteDate.compareTo(pstngFnsDt) > 0) {
@@ -355,38 +368,10 @@ public class VotePrtcptHstService {
         }
 
         // 이벤트 투표 생성
-        Integer dayEventVoteRstrtnCnt = Integer.parseInt(seriesVoteBasInfo.get("dayEventVoteRstrtnCnt").toString());
-        Integer contnuEventVoteRstrtnCnt = Integer.parseInt(seriesVoteBasInfo.get("contnuEventVoteRstrtnCnt").toString());
+        Integer dayEventVoteRstrtnCnt = Integer.parseInt(seriesVoteBasInfo.getStringValue("dayEventVoteRstrtnCnt"));
+        Integer contnuEventVoteRstrtnCnt = Integer.parseInt(seriesVoteBasInfo.getStringValue("contnuEventVoteRstrtnCnt"));
         if (dayEventVoteRstrtnCnt>0 && contnuEventVoteRstrtnCnt>0) {
-
-            Map<String, Object> voteEvtMap = selectVoteEvtByMbr(mbrId);
-
-            Integer incVoteNum = dayEventVoteRstrtnCnt;
-
-            // yesterday
-            Calendar calendar = Calendar.getInstance();
-            calendar.add(calendar.DATE, -1);
-            String yesterday = DateFormatUtils.format(calendar, "yyyyMMdd");
-
-            if (voteEvtMap==null) {
-                String insertVoteEvtQuery = "INSERT INTO voteEvtByMbr (mbrId, continuedDayCnt, usedVoteNum, voteNum, created) VALUES(?,?,?,?,?)";
-                jdbcTemplate.update(insertVoteEvtQuery, mbrId, 1, 0, incVoteNum, now);
-            }
-            else {
-                Date created = (Date) voteEvtMap.get("created");
-                String chkDt = DateFormatUtils.format(created, "yyyyMMdd");
-                Integer continued = Integer.parseInt(voteEvtMap.get("continuedDayCnt").toString()) + 1;
-                if (continued==2 && chkDt.equals(yesterday)) {
-                    incVoteNum = incVoteNum * contnuEventVoteRstrtnCnt;
-                } else {
-                    continued = 1;
-                }
-
-                Integer voteNum = Integer.parseInt(voteEvtMap.get("voteNum").toString()) + incVoteNum;
-                String updateVoteEvtQuery = "UPDATE voteEvtByMbr SET continuedDayCnt=?, voteNum=?, created=? WHERE mbrId=?";
-                jdbcTemplate.update(updateVoteEvtQuery, continued, voteNum, now, mbrId);
-            }
-
+            addEvtVoteNum(now, mbrId, dayEventVoteRstrtnCnt, contnuEventVoteRstrtnCnt);
         }
 
         //node create
@@ -409,7 +394,7 @@ public class VotePrtcptHstService {
     private Integer getIpCnt(String connIpAdr, String voteDate) {
         Integer mbrIpDclaCnt;
         if (voteIPCntMap.get(connIpAdr) != null) {
-            mbrIpDclaCnt = voteIPCntMap.get(connIpAdr);
+            mbrIpDclaCnt = (Integer) voteIPCntMap.get(connIpAdr);
         } else {
             String selectIpDclaCnt = "SELECT count(*) ipCnt FROM voteHstByIp WHERE ipAdr=? AND voteDate=?";
             Map<String, Object> ipCntMap = jdbcTemplate.queryForMap(selectIpDclaCnt, connIpAdr, voteDate);
@@ -498,6 +483,7 @@ public class VotePrtcptHstService {
         return Long.parseLong(result.get("voteCnt").toString());
     }
 
+    // [IF-MEV-002] 이벤트 투표
     public void evtVoting(ExecuteContext context) {
         if (jdbcTemplate == null) {
            jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
@@ -522,8 +508,14 @@ public class VotePrtcptHstService {
 
         // 이벤트 투표 정보 조회
         Node eventVoteBasInfo = NodeUtils.getNode(VOTE_BAS_INFO, data.get("voteSeq").toString());
-        String pstngStDt = eventVoteBasInfo.get("pstngStDt").toString().substring(0, 8);   // 투표 시작일
-        String pstngFnsDt = eventVoteBasInfo.get("pstngFnsDt").toString().substring(0, 8); // 투표 종료일
+        String pstngStDt = eventVoteBasInfo.getStringValue("pstngStDt");
+        if (pstngStDt.length()>0) {
+            pstngStDt = pstngStDt.substring(0, 8);   // 투표 시작일
+        }
+        String pstngFnsDt = eventVoteBasInfo.getStringValue("pstngFnsDt");
+        if (pstngFnsDt.length()>0) {
+            pstngFnsDt = pstngFnsDt.substring(0, 8); // 투표 종료일
+        }
 
         // Checking Available Date
         if (voteDate.compareTo(pstngStDt) < 0 || voteDate.compareTo(pstngFnsDt) > 0) {
@@ -555,7 +547,8 @@ public class VotePrtcptHstService {
             throw new ApiException("423", errMsgUtil.getErrMsg(context, "423"));
         }
 
-        String insertEventVoteHst = "INSERT INTO " + eventVoteBasInfo.getId().toString() + "_voteHstByMbr " +
+        // 투표 진행
+        String insertEventVoteHst = "INSERT INTO " + eventVoteBasInfo.getId() + "_voteHstByMbr " +
                 "(voteDate, mbrId, created) VALUES(?,?,?)";
         //voteHstSqlMap.put(eventVoteBasInfo.getId(), voteHstInsert);
         jdbcTemplate.update(insertEventVoteHst, voteDate, mbrId, now);
@@ -568,7 +561,7 @@ public class VotePrtcptHstService {
             jdbcTemplate.update(insertEventVoteItemHst, voteDate, voteItemSeq, mbrId, now);
         }
 
-        // Event 투표수 증가
+        // 사용한 Event 투표수 증가
         usedVoteNum += 1;
         String increaseUsedVoteNum = "UPDATE voteEvtByMbr SET usedVoteNum=? WHERE mbrId=?";
         jdbcTemplate.update(increaseUsedVoteNum, usedVoteNum,mbrId);
@@ -579,7 +572,10 @@ public class VotePrtcptHstService {
 
         //node create
         Map<String, Object> resDataMap = new ConcurrentHashMap<>();
+
         resDataMap.put("ipAdrVoteCnt", ipDclaCnt - mbrIpDclaCnt - 1);
+        voteIPCntMap.put(connIpAdr, mbrIpDclaCnt+1);
+
         resDataMap.put("userEvtVoteCnt", voteNum - usedVoteNum);
 
         Map<String, Object> response = new ConcurrentHashMap<>();
@@ -598,6 +594,247 @@ public class VotePrtcptHstService {
         } catch (EmptyResultDataAccessException e) {
             logger.info("이벤트 투표권이 없습니다.");
             return null;
+        }
+    }
+
+    // [IF-MEV-003] sponsor 투표
+    public void sponsorEvtVoting(ExecuteContext context) {
+
+        if (jdbcTemplate == null) {
+            jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
+        }
+
+        Map<String, Object> data = context.getData();
+        if (data.isEmpty()) {   // Parameter is null
+            throw new ApiException("420", errMsgUtil.getErrMsg(context,"420"));
+        }
+        if (data.get("voteResult") == null || StringUtils.isEmpty(data.get("voteResult").toString())) {
+            // Required Parameter : voteResult
+            throw new ApiException("420", errMsgUtil.getErrMsg(context,"420"));
+        }
+        if (data.get("connIpAdr") == null || StringUtils.isEmpty(data.get(CONN_IP_ADR).toString())) {
+            // Required Parameter : connIpAdr
+            throw new ApiException("420", errMsgUtil.getErrMsg(context,"420"));
+        }
+
+        String voteResult = data.get("voteResult").toString();
+        String connIpAdr = data.get(CONN_IP_ADR).toString();
+
+        //Json parsing
+        List<Map<String, Object>> reqJson = null;
+        try{
+            reqJson = JsonUtils.parsingJsonToList(voteResult);
+            if (reqJson.isEmpty()) {
+                // voteResult is not array
+                throw new ApiException("420", errMsgUtil.getErrMsg(context,"420"));
+            }
+        }catch (IOException e){
+            // voteResult format is incorrect
+            throw new ApiException("420", errMsgUtil.getErrMsg(context,"420"));
+        }
+
+        Date now = new Date();
+        FastDateFormat dateFormat = FastDateFormat.getInstance("yyyyMMdd");
+
+        Node seriesVoteBasInfo = null;
+        String mbrId = null;
+        boolean infoOttpAgreeYn = Boolean.parseBoolean(data.get("infoOttpAgreeYn").toString());
+
+        List<Map<String, Object>> insertList = synchronizedList(new ArrayList());
+        for (Map<String, Object> voteData : reqJson) {
+            if (seriesVoteBasInfo == null) {
+                seriesVoteBasInfo = NodeUtils.getNode(VOTE_BAS_INFO, voteData.get("sersVoteSeq").toString());
+            }
+            // 사용자 ID
+            if (mbrId==null || mbrId.length()<=0) {
+                mbrId = voteData.get(PRTCP_MBR_ID).toString();
+            }
+            insertList.add(voteData);
+        }
+
+        // TODO - snsTypeCd 변경 필요.
+        if (mbrId!=null && mbrId.startsWith("10>")) {
+
+            String[] mbrIdArray  = mbrId.split(">");
+            String snsTypeCd = mbrIdArray[0];;
+            String snsKey = mbrIdArray[1];
+
+            //user screate
+            data.put("snsTypeCd", mbrIdArray[0]);
+            data.put("snsKey", snsKey);
+            data.put("mbrDivCd", "1");
+            data.put("mbrSttusCd", "1");
+            data.put("infoOttpAgreeYn", infoOttpAgreeYn);
+            data.put("pushMsgRcvYn", false);
+            data.put("sbscShapCd", "1");
+            data.put("sttusChgSbst", "스폰서 이벤트 가입");
+            data.put("sbscDt", new Date());
+
+            Node result = (Node) NodeUtils.getNodeService().executeNode(data, "mbrInfo", EventService.SAVE);
+            context.setResult(result);
+        }
+
+        String voteDate = DateFormatUtils.format(now, "yyyyMMdd");          // 투표 진행일 (현재날짜)
+
+        String pstngStDt = seriesVoteBasInfo.getStringValue("pstngStDt");
+        if (pstngStDt.length()>0) {
+            pstngStDt = pstngStDt.substring(0, 8);   // 투표 시작일
+        }
+        String pstngFnsDt = seriesVoteBasInfo.getStringValue("pstngFnsDt");
+        if (pstngFnsDt.length()>0) {
+            pstngFnsDt = pstngFnsDt.substring(0, 8); // 투표 종료일
+        }
+        // Checking Available Date
+        if (voteDate.compareTo(pstngStDt) < 0 || voteDate.compareTo(pstngFnsDt) > 0) {
+            // It is not voting period.
+            throw new ApiException("422", errMsgUtil.getErrMsg(context,"422"));
+        }
+
+        // Checking Available IP with mbrId and voteSeq
+        List<Node> dclaNodeList = NodeUtils.getNodeService()
+                .getNodeList("dclaSetupMng","setupTypeCd_matching=2&sorting=dclaSetupSeq desc&limit=1");
+        Node dclaNode = dclaNodeList.get(0);
+
+        Integer ipDclaCnt = dclaNode.getIntValue("setupBaseCnt");
+
+
+        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate);
+        if (mbrIpDclaCnt >= ipDclaCnt) {
+            // This IP connection has exceeded the maximum number.
+            throw new ApiException("421", errMsgUtil.getErrMsg(context,"421"));
+        }
+
+        Long pstngStDtTime = 0L;    // 투표 시작일 (DateTime)
+        Long pstngFnsDtTime = 0L;   // 투표 종료일 (DateTime)
+        Long voteDtTime = 0L;       // 투표 진행일 - 현재날짜 (DateTime)
+        try {
+            pstngStDtTime = dateFormat.parse(pstngStDt).getTime();
+            pstngFnsDtTime = dateFormat.parse(pstngFnsDt).getTime();
+            voteDtTime = dateFormat.parse(voteDate).getTime();
+        } catch (ParseException e) {
+            // Server Error
+            //throw new ApiException("501", e.getMessage());
+            throw new ApiException("425", errMsgUtil.getErrMsg(context,"425"));
+        }
+        // 총 투표 기간 - Day Count
+        Long seriesDayCnt = (pstngFnsDtTime - pstngStDtTime) / (24*60*60*1000);
+        seriesDayCnt += 1; // 시작일 포함
+        // 현재까지의 투표 기간 - Day Count
+        Long dayCntByPeriod = (voteDtTime - pstngStDtTime) / (24*60*60*1000);
+        dayCntByPeriod += 1; // 시작일 포함
+
+        // 투표 날짜 간격
+        Long rstrtnDayCnt = Long.valueOf(seriesVoteBasInfo.getIntValue("rstrtnDayCnt"));
+        // 투표 날짜 간격별 투표수
+        Long rstrtnVoteCnt = Long.valueOf(seriesVoteBasInfo.getIntValue("rstrtnVoteCnt"));
+
+        if (rstrtnDayCnt==0 || rstrtnDayCnt==null) {
+            rstrtnDayCnt = seriesDayCnt;
+        }
+
+        // Response Parameter
+        // 날짜 간격 투표수
+        Long maxVoteCntByMbr = Long.valueOf(rstrtnVoteCnt);
+        Long voteCntByMbr = 0L;
+        // 누적 투표 여부 확인
+        if (seriesVoteBasInfo.getBooleanValue("accumRstrtnAlwdYn")) {
+            // 현재기준 최대 누적 투표수 (날짜 간격 투표수 계산)
+            maxVoteCntByMbr = (dayCntByPeriod / rstrtnDayCnt) * rstrtnVoteCnt;
+            if((dayCntByPeriod % rstrtnDayCnt) > 0) {
+                maxVoteCntByMbr += rstrtnVoteCnt;
+            }
+            voteCntByMbr = selectSeriesVoteHstByAccum(seriesVoteBasInfo.get("voteSeq").toString(), mbrId, pstngStDt.toString(), voteDate);
+
+        } else {
+            // 날짜 간격별 조회를 위한 시작일 계산   ---- 투표 진행일수
+            Long rstrtnStDate = voteDtTime - ((dayCntByPeriod % rstrtnDayCnt) * (24*60*60*1000));
+            Date chkDt = new Date(rstrtnStDate);
+            String voteCntStDt = DateFormatUtils.format(chkDt, "yyyyMMdd");
+
+            if (voteCntStDt.compareTo(pstngStDt) < 0) {
+                voteCntStDt = pstngStDt;
+            }
+            voteCntByMbr = selectSeriesVoteHstByAccum(seriesVoteBasInfo.get("voteSeq").toString(), mbrId, voteCntStDt.toString(), voteDate);
+        }
+
+        // 가능한 투표수 확인
+        if(voteCntByMbr>=maxVoteCntByMbr) {
+            throw new ApiException("423", errMsgUtil.getErrMsg(context,"423"));
+        }
+
+        // 접근 IP 관리 테이블에 등록
+        String insertIpDclaCnt = "INSERT INTO voteHstByIp (voteDate, ipAdr, created) VALUES(?,?,?)";
+        jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now);
+        // 접근 IP Count 관리 Map에 등록
+        voteIPCntMap.put(connIpAdr, mbrIpDclaCnt+1);
+
+        // 투표 등록
+        String insertVoteHst = "INSERT INTO " + seriesVoteBasInfo.get(VOTE_SEQ).toString() + "_voteHstByMbr" +
+                "(voteDate, mbrId, created) VALUES(?,?,?)";
+        jdbcTemplate.update(insertVoteHst, voteDate, mbrId, now);
+
+        // TODO 관리를 위한 Map 생성 및 업데이트
+        //seriesVoteInfoMap.put(seriesVoteBasInfo.get(VOTE_SEQ), )
+
+        // 투표 하위 아이템 등록
+        for (Map<String, Object> voteData : insertList) {
+            String voteItemSeq = voteData.get(VOTE_ITEM_SEQ).toString();
+            // Vote Item 투표 등록 // TODO - series 요청일 경우 "voteQueiSeq"와 같이 입력값이 여러개 인지 확인 필요.
+            String insertSeriesVoteItemHst = "INSERT INTO " + voteData.get(VOTE_SEQ) + "_voteItemHstByMbr " +
+                    "(voteDate, voteItemSeq, mbrId, created) VALUES(?,?,?,?)";
+            jdbcTemplate.update(insertSeriesVoteItemHst, voteDate, voteItemSeq, mbrId, now);
+        }
+
+        // 이벤트 투표 생성
+        Integer dayEventVoteRstrtnCnt = seriesVoteBasInfo.getIntValue("dayEventVoteRstrtnCnt");
+        Integer contnuEventVoteRstrtnCnt = seriesVoteBasInfo.getIntValue("contnuEventVoteRstrtnCnt");
+        if (dayEventVoteRstrtnCnt>0 && contnuEventVoteRstrtnCnt>0) {
+            addEvtVoteNum(now, mbrId, dayEventVoteRstrtnCnt, contnuEventVoteRstrtnCnt);
+        }
+
+        //node create
+        Map<String, Object> responseMap = new ConcurrentHashMap<>() ;
+        //responseMap.put("sersVoteSeq", seriesVoteBasInfo.get(VOTE_SEQ).toString());
+        //responseMap.put("maxVoteCnt", maxVoteCntByMbr);
+        responseMap.put("userVoteCnt", voteCntByMbr + 1);
+        responseMap.put("ipAdrVoteCnt", ipDclaCnt - mbrIpDclaCnt - 1);
+
+        Map<String, Object> response = new ConcurrentHashMap<>();
+        response.put("response", responseMap);
+        if (response.size() > 0) {
+            context.setResult(response);
+        } else {
+            logger.info("###sersVotePrtcptHst result null ");
+        }
+    }
+
+
+    private void addEvtVoteNum(Date now, String mbrId, Integer dayEventVoteRstrtnCnt, Integer contnuEventVoteRstrtnCnt) {
+        Map<String, Object> voteEvtMap = selectVoteEvtByMbr(mbrId);
+        Integer incVoteNum = dayEventVoteRstrtnCnt;
+
+        // yesterday
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(calendar.DATE, -1);
+        String yesterday = DateFormatUtils.format(calendar, "yyyyMMdd");
+
+        if (voteEvtMap==null) {
+            String insertVoteEvtQuery = "INSERT INTO voteEvtByMbr (mbrId, continuedDayCnt, usedVoteNum, voteNum, created) VALUES(?,?,?,?,?)";
+            jdbcTemplate.update(insertVoteEvtQuery, mbrId, 1, 0, incVoteNum, now);
+        }
+        else {
+            Date created = (Date) voteEvtMap.get("created");
+            String chkDt = DateFormatUtils.format(created, "yyyyMMdd");
+            Integer continued = Integer.parseInt(voteEvtMap.get("continuedDayCnt").toString()) + 1;
+            if (continued==2 && chkDt.equals(yesterday)) {
+                incVoteNum = incVoteNum * contnuEventVoteRstrtnCnt;
+            } else {
+                continued = 1;
+            }
+
+            Integer voteNum = Integer.parseInt(voteEvtMap.get("voteNum").toString()) + incVoteNum;
+            String updateVoteEvtQuery = "UPDATE voteEvtByMbr SET continuedDayCnt=?, voteNum=?, created=? WHERE mbrId=?";
+            jdbcTemplate.update(updateVoteEvtQuery, continued, voteNum, now, mbrId);
         }
     }
 }

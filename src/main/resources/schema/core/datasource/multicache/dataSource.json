@@ -1,0 +1,32 @@
+[
+  {
+    "typeId": "datasource",
+    "id": "cjDb",
+    "dsName": "CMS DB PROD",
+    "jdbcUrl": "jdbc:mysql://cmsdb.cfwzre2kzbc1.ap-northeast-2.rds.amazonaws.com:3306/ice2test?zeroDateTimeBehavior=convertToNull",
+    "ssl" : false,
+    "dbType": "mySql",
+    "username": "cjmwave",
+    "password": "cjmwave0!@#"
+  },
+  {
+    "typeId" : "datasource",
+    "id" : "mnetDb",
+    "dsName" : "REAL MNET DB",
+    "jdbcUrl" : "jdbc:sqlserver://172.16.37.242:6231;databaseName=mmis",
+    "ssl" : false,
+    "dbType" : "msSql",
+    "username" : "cjmwave_back",
+    "password" : "!dpadnpdlqm!@12"
+  },
+  {
+    "typeId": "datasource",
+    "id": "authDb",
+    "dsName": "PROD USER/VOTE RDS",
+    "jdbcUrl": "jdbc:authdb.cfwzre2kzbc1.ap-northeast-2.rds.amazonaws.com:3306/authdb",
+    "ssl" : false,
+    "dbType": "mySql",
+    "username": "cjmwave",
+    "password": "cjmwave0!@#"
+  }
+]

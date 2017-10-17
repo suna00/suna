@@ -1,11 +1,10 @@
-# 운영 API 캐시 서버 (10.75.6.144) 설정
-# - 운영 API 캐시는 API 게이트웨이(48) 로 부터 API 요청을 받는다
-# - 운영 API 캐시는 CMSWEBWAS(130) 와 통신할 수 있음(필수. API)
-# - 운영 API 캐시는 RDS 와 통신하지 않는다 - datasource.json 에 설정이 필요없음
-
+# CMS 캐시 동기화 테스트용 프로파일
+# 10.75.7.144, 10.75.7.145
+# 디비 필요없음
+# hazelcast
 
 spring:
-  profiles: aws-apicache
+  profiles: multicms
   http:
     multipart:
       max-request-size: 10MB
@@ -23,17 +22,19 @@ jwtConfig:
   refreshTokenExpTime: 60 #분
 
 
-# 스케일업할 때 members 가 자동으로 늘어나나?
 cluster:
-  mode: all
-  groups: all
+  mode: cms
+  groups: cms
   members:
+    - 10.75.6.131
+    - 10.75.7.130
     - 10.75.6.144
+    - 10.75.7.144
     - 127.0.0.1
     - localhost
 
 infinispan:
-  cachePath: /data/ion/api/resource/ice2/cache
+  cachePath: /data/ion/cms-core/resource/ice2/cache
 
 tomcat:
   access-log-enabled: true
@@ -48,7 +49,7 @@ logging:
 
 file:
   default:
-    path: /data/ion/api/resource/ice2/files
+    path: /data/ion/cms-core/resource/ice2/files
 
 
 i18n:
@@ -67,6 +68,14 @@ aws:
     secretKey: P1c7asDMAXzodFn+4YGRgAo+w4ZUdGfuu1ncIzzK
 
 
-
 temp-file:
-  dir: /data/ion/api/resource/ice2/cache
+  dir: /data/ion/cms-core/resource/ice2/cache
+
+image:
+  prefixUrl: http://125.131.88.147:8080/image/
+  s3PrefixUrl: https://cjmwave-prd.s3.ap-northeast-2.amazonaws.com/ion/
+
+mobile:
+  push:
+    fcmApiKey: AAAA-z1uhx4:APA91bHlHSqGakLe7RKY1fuvTpUyx1hZKX5BG7ydfK96Kfy9bCX0upciPQ6UlpOXECEcc4tsYFiiEUy6aHSWWMZwwN-V6rtu-aeOAGg0_r6GAFaVkJF3jEOxiO4kblsi4tNDOAApMZx2
+    fcmApiUrl: https://fcm.googleapis.com/fcm/send

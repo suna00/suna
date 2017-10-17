@@ -102,7 +102,40 @@
             {
               "referenceView": "contsMetaId"
             }
-          ]
+          ],
+          "response": {
+            "_all_": "",
+            "statsList": {
+              "typeId": "voteItemStats",
+              "resultType": "merge",
+              "query": [
+                {
+                  "field": "voteSeq",
+                  "method": "equals",
+                  "value": "{{:voteSeq}}"
+                },
+                {
+                  "field": "voteItemSeq",
+                  "method": "equals",
+                  "value": "{{:voteItemSeq}}"
+                },
+                {
+                  "sorting": "rankNum"
+                }
+              ],
+              "response": {
+                "voteNum": "",
+                "statsCreated": "created",
+                "myVoteYn": {
+                  "select": {
+                    "ds": "cjDb",
+                    "resultType": "value",
+                    "sql": "select  if(count(*)>0,'true','false') myVoteYn from @{voteSeq}_voteItemHstByMbr where voteItemSeq = @{voteItemSeq} and voteItemSeq =(select voteItemSeq from @{voteSeq}_voteItemHstByMbr where mbrId = @{makeIdValue(>,snsTypeCd,snsKey)} order by created desc limit 0,1)"
+                  }
+                }
+              }
+            }
+          }
         },
         "refdSeriesItemList": {
           "typeId": "sersVoteItemInfo",
@@ -142,47 +175,6 @@
   {
     "typeId": "apiConfig",
     "category": "vote",
-    "apiId": "IfMev001-2",
-    "apiName": "이벤트 투표 상세조회 - 2",
-    "method": "GET",
-    "parameters": [
-      {
-        "paramName": "voteSeq",
-        "required": false
-      },
-      {
-        "paramName": "voteYear",
-        "required": false
-      },
-      {
-        "paramName": "showLoCd",
-        "required": false
-      },
-      {
-        "paramName": "voteFormlCd",
-        "required": false
-      },
-      {
-        "paramName": "snsKey",
-        "required": false
-      },
-      {
-        "paramName": "snsTypeCd",
-        "required": false
-      },
-      {
-        "paramName": "connIpAdr",
-        "required": true
-      }
-    ],
-    "config": {
-      "typeId": "voteBasInfo",
-      "event": "voteDetail"
-    }
-  },
-  {
-    "typeId": "apiConfig",
-    "category": "vote",
     "apiId": "IfMev002",
     "apiName": "MAMA용 이벤트 투표하기",
     "method": "POST",
@@ -217,17 +209,33 @@
           "voteItemSeq": "{{:voteQueiSeq}}",
           "prtcpMbrId": "{{:snsTypeCd}}>{{:snsKey}}",
           "connIpAdr": "{{:connIpAdr}}"
-        },
-        "response": {
-          "_all_": "",
-          "userEvtVoteCnt": {
-            "value": "10"
-          },
-          "ipAdrVoteCnt": {
-            "value": "10000"
-          }
         }
       }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMev003",
+    "apiName": "MAMA용 스폰서(외부) 투표하기",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "voteResult",
+        "required": true
+      },
+      {
+        "paramName": "infoOttpAgreeYn",
+        "required": true
+      },
+      {
+        "paramName": "connIpAdr",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "voteBasInfo",
+      "event": "sponsorEvtVoting"
     }
   }
 ]

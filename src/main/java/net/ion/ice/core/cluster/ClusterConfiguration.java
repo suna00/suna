@@ -11,13 +11,14 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 
 import javax.annotation.PostConstruct;
 import java.util.*;
+
+//import static com.hazelcast.config.MaxSizeConfig.MaxSizePolicy.PER_NODE;
 
 /**
  * A conditional configuration that potentially adds the bean definitions in
@@ -38,6 +39,11 @@ public class ClusterConfiguration {
     private String groups ;
     private static HazelcastInstance hazelcast  ;
 
+    /*
+    private Boolean voteMap ;
+    private Boolean voteCore ;
+    */
+
     private List<String> groupList = new ArrayList<>() ;
 
     private Map<String, ITopic> topicMap = new HashMap<>() ;
@@ -46,6 +52,7 @@ public class ClusterConfiguration {
     @Autowired
     private Environment environment;
 
+    private String localMemberUUID ;
 
     @PostConstruct
     public void init(){
@@ -53,13 +60,23 @@ public class ClusterConfiguration {
         if(hazelcast == null) {
             hazelcast = Hazelcast.getOrCreateHazelcastInstance(config());
             for(String grp : groupList){
-                ITopic topic = hazelcast.getReliableTopic(grp + "_topic") ;
+                ITopic<String> topic = hazelcast.getReliableTopic(grp + "_topic") ;
                 topic.addMessageListener(new TopicListener(this)) ;
                 topicMap.put(grp, topic) ;
 
                 IQueue queue = hazelcast.getQueue(grp + "_queue") ;
 
             }
+
+            this.localMemberUUID = hazelcast.getCluster().getLocalMember().getUuid() ;
+            /*
+            if(voteCore != null && voteCore){
+                IQueue queue = getMbrVoteQueue() ;
+                VoteExecuter executer = new VoteExecuter(queue) ;
+                executer.setDaemon(true);
+                executer.start();
+            }
+            */
         }
     }
 
@@ -108,6 +125,25 @@ public class ClusterConfiguration {
                     .setStatisticsEnabled(true);
         }
 
+        /*
+        if(this.voteMap != null && this.voteMap){
+            MapConfig mapConfig = config.getMapConfig("mbrVoteMap") ;
+            mapConfig.getMaxSizeConfig().setMaxSizePolicy(PER_NODE).setSize(20000);
+            mapConfig.setBackupCount(1) ;
+
+            QueueConfig queueConfig = config.getQueueConfig( "mbrVoteQueue");
+            queueConfig.setName("mbrVoteQueue")
+                    .setBackupCount(1)
+                    .setMaxSize(0)
+                    .setStatisticsEnabled(true);
+        }
+        if(this.voteCore != null && this.voteCore){
+            MapConfig mapConfig = config.getMapConfig("artistVote") ;
+            mapConfig.getMaxSizeConfig().setMaxSizePolicy(PER_NODE).setSize(20000);
+            mapConfig.setBackupCount(1) ;
+        }
+        */
+
         return config;
     }
 
@@ -125,6 +161,9 @@ public class ClusterConfiguration {
         return hazelcast ;
     }
 
+    public String getLocalMemberUUID(){
+        return localMemberUUID ;
+    }
     public IAtomicLong getIAtomicLong(String name) {
         if(hazelcast == null) return null ;
         return hazelcast.getAtomicLong(name) ;
@@ -134,6 +173,12 @@ public class ClusterConfiguration {
         if(hazelcast == null) return null ;
         return hazelcast.getReplicatedMap("ice_session");
     }
+
+    public Map<String, Map<String, Object>> getSesssionMap(String siteId) {
+        if(hazelcast == null) return null ;
+        return hazelcast.getReplicatedMap(siteId + "_session");
+    }
+
 
     public ITopic getTopic(String group) {
         return this.topicMap.get(group);
@@ -154,5 +199,30 @@ public class ClusterConfiguration {
     public boolean isAll() {
         return mode == null || mode.equals("all");
     }
+
+    public String getMode(){
+        return mode ;
+    }
+
+    /*
+    public void setVoteMap(Boolean voteMap) {
+        this.voteMap = voteMap;
+    }
+
+    public IMap<String, Map<String, Integer>> getMbrVoteMap(){
+        return hazelcast.getMap("mbrVoteMap") ;
+    }
+    */
+
+    /*
+    public void setVoteCore(Boolean voteCore) {
+        this.voteCore = voteCore;
+    }
+
+    public IQueue<VoteSql> getMbrVoteQueue(){
+        return hazelcast.getQueue("mbrVoteQueue") ;
+    }
+    */
+
 }
 

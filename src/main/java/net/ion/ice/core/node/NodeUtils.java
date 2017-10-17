@@ -54,13 +54,22 @@ public class NodeUtils {
     public static Node getNode(NodeType nodeType, String id) {
         if(nodeType == null) return null ;
         if(nodeType.getRepositoryType().equals("data")){
-            if (getNodeBindingService() == null) return null ;
-            Map<String, Object> resultData =  getNodeBindingService().getNodeBindingInfo(nodeType.getTypeId()).retrieve(id) ;
-            return new Node(resultData, nodeType.getTypeId());
+            return getDataNode(nodeType, id);
         }else {
             if (getNodeService() == null) return null;
             return nodeService.getNode(nodeType.getTypeId(), id);
         }
+    }
+
+    private static Node getDataNode(NodeType nodeType, String id) {
+        if (getNodeBindingService() == null) return null ;
+        Map<String, Object> resultData =  getNodeBindingService().getNodeBindingInfo(nodeType.getTypeId()).retrieve(id) ;
+        return new Node(resultData, nodeType.getTypeId());
+    }
+
+    public static Node readNode(String typeId, String id) {
+        if (getNodeService() == null) return null;
+        return nodeService.read(typeId, id);
     }
 
     static InfinispanRepositoryService infinispanService;
@@ -247,6 +256,7 @@ public class NodeUtils {
             Node refNode = getReferenceNode(value, pt);
 //            context.setExcludeReferenceType(context.getNodeType().getTypeId()) ;
             ReadContext subReadContext = ReadContext.makeQueryContextForReference(pt, (Node) refNode);
+            subReadContext.setData(context.getData()) ;
             subReadContext.setReferenceView(context.getReferenceView());
             subReadContext.setReferenceViewFields(context.getSubReferenceViewFields(pt.getPid()));
             subReadContext.setIncludeReferenced(context.isIncludeReferencedValue());
@@ -297,6 +307,9 @@ public class NodeUtils {
                 if (value == null) return null;
                 if (value instanceof Code) {
                     return value;
+                }
+                if(pt.getCode() == null){
+                    return new Code(value, value.toString()) ;
                 }
                 return pt.getCode().get(value);
             }
@@ -349,6 +362,7 @@ public class NodeUtils {
             case REFERENCED: {
                 if (context != null && context.isIncludeReferenced(pt) && context.getLevel() < 5 && node instanceof Node) {
                     QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(getNodeType(((Node)node).getTypeId()), pt, (Node) node);
+                    subQueryContext.setData(context.getData());
                     subQueryContext.setReferenceView(context.getReferenceView());
                     subQueryContext.setReferenceViewFields(context.getSubReferenceViewFields(pt.getPid()));
                     subQueryContext.setIncludeReferenced(context.isIncludeReferencedValue());

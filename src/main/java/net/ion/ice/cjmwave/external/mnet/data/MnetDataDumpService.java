@@ -7,6 +7,7 @@ import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import org.apache.commons.collections.map.HashedMap;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -280,25 +281,29 @@ public class MnetDataDumpService {
             String subTasks = String.valueOf(replicationNode.get("subTasks"));
             String subTaskKey = String.valueOf(replicationNode.get("subTaskKey")).trim();
             Date lastUpdated = getLastUpdated(fromTable, toTable);
-            boolean isTopNode = (boolean) replicationNode.getTypeId().toLowerCase().contains("receive");
-
+            boolean isTopNode = (boolean) replicationNode.getId().toLowerCase().contains("retrieve");
 
             // 이 노드가 standAlone 이 아니라면 파라미터는 subTaskKey 를 써야 함
             // standAlone 이라면 날짜가 테이블에 있다.
             Map<String, Object> preparedQuery = null;
             Map<String, Object> params = new HashMap<>();
             if(isTopNode) {
+                System.out.println("========= IS TOP NODE ============= ");
                 if(ids.size() == 1) {
                     params.put("id", ids.get(0));
-                } else if(ids.size() > 1) {
+                } else if(ids.size() == 10) {
                     for(int i = 1; i < 11; i++) {
                         params.put("id" + i, ids.get(i - 1));
                     }
                 }
+                System.out.println("========= IDS ============= " + StringUtils.join(ids.toArray()));
             } else if(foreignKey != null) {
                 subTaskKey = String.valueOf(replicationNode.get("subTaskKey")).trim();
                 params.put("id", foreignKey);
             }
+
+            System.out.println("Query is :: " + q);
+            System.out.println("Query is :: " + String.valueOf(params));
             preparedQuery = SyntaxUtils.parse(q, params);
 
 
@@ -430,11 +435,10 @@ public class MnetDataDumpService {
             logger.info("LeftCount :: " + tail);
 
             // 10 개씩 묶어서 처리
-            Map<String, Object> multiMapParams = new HashedMap();
             for(int i = 0; i < head; i++) {
                 int startIdx = (i * unit);
                 toIndex = ((i + 1) * unit);
-                List<String> subListByUnit = ids.subList((i+1 * unit), unit);
+                List<String> subListByUnit = ids.subList(startIdx, toIndex);
                 migrateWithList(replicationMultiLogic, null, subListByUnit);
             }
 

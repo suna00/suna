@@ -109,6 +109,7 @@
     "referenceValue": "",
     "codeFilter": "",
     "defaultValue": "",
+    "fileHandler":"s3",
     "i18n": true
   },
   {

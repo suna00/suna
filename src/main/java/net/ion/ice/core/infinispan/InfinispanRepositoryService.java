@@ -115,6 +115,11 @@ public class InfinispanRepositoryService {
         nodeCache.remove(node.getId().toString());
     }
 
+    public void deleteNode(String typeId, String id) {
+        Cache<String, Node> nodeCache = getNodeCache(typeId);
+        nodeCache.remove(id);
+    }
+
     private List<Object> executeQuery(String typeId, QueryContext queryContext) {
         Cache<String, Node> cache = getNodeCache(typeId);
 
@@ -126,6 +131,13 @@ public class InfinispanRepositoryService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        if(cacheQuery == null){
+            queryContext.setResultSize(0);
+            queryContext.setQueryListSize(0) ;
+            return new ArrayList<>() ;
+        }
+
 
         List<Object> list = cacheQuery.list();
         queryContext.setResultSize(cacheQuery.getResultSize());
@@ -224,6 +236,12 @@ public class InfinispanRepositoryService {
             cacheQuery = LuceneQueryUtils.makeQuery(queryContext);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+        if(cacheQuery == null){
+            queryContext.setResultSize(0);
+            queryContext.setQueryListSize(0) ;
+            return new ArrayList<>() ;
         }
 
         List<Object> list = cacheQuery.list();
