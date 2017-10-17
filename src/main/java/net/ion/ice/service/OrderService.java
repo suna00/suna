@@ -604,185 +604,12 @@ public class OrderService {
         List<Map<String, Object>> orderDeliveryProductList = deliveryService.makeDeliveryData(orderProducts, "order");
         Map<String, Object> orderDeliveryPriceList = deliveryService.calculateDeliveryPrice(orderDeliveryProductList, "order");
 
+        createDelivery(responseMap, JsonUtils.getIntValue(tempOrder.get(0), "memberNo"));
 
         deliveryService.makeDeliveryPrice(String.valueOf(responseMap.get("ordrIdxx")), orderDeliveryPriceList);
 
         return bSucc;
     }
-
-
-    /**
-     * 결제 후 최종적으로 한번 더 검증하여 주문서를 생성하는 Method.
-     */
-//    public String createOrderSheet(Map<String, Object> responseMap) {
-//        String bSucc;
-//
-//        List<Map<String, Object>> tempOrderProducts = nodeBindingService.list("tempOrderProduct", "sorting=created&tempOrderId_equals=" + String.valueOf(responseMap.get("ordrIdxx")));
-//        Map<String, Object> tempOrder = nodeBindingService.getNodeBindingInfo("tempOrder").retrieve(String.valueOf(responseMap.get("ordrIdxx")));
-//        List<Map<String, Object>> deliveryProductList = deliveryService.makeDeliveryData(tempOrderProducts, "tempOrder");
-//        Map<String, Object> deliveryPriceList = deliveryService.calculateDeliveryPrice(deliveryProductList, "tempOrder");
-//
-//        List<QueryResult> items = new ArrayList<>();
-//        double totalProductPrice = 0;
-//        double totalDeliveryPrice = 0;
-//        double totalDiscountPrice = 0;
-//        double totalOrderPrice = 0;
-//        double couponDiscountPrice = 0;
-//        double totalPaymentPrice = Double.parseDouble(String.valueOf(responseMap.get("amount")));
-//        double totalWelfarePoint = Double.parseDouble(String.valueOf(responseMap.get("useWelfarepoint")));
-//        double totalYPoint = Double.parseDouble(String.valueOf(responseMap.get("useYPoint")));
-//
-//        for (String key : deliveryPriceList.keySet()) {
-//            QueryResult itemResult = new QueryResult();
-//            itemResult.put("deliverySeq", key);
-//            List<Map<String, Object>> priceList = (List<Map<String, Object>>) deliveryPriceList.get(key);
-//
-//            totalDeliveryPrice += Double.parseDouble(String.valueOf(priceList.get(0).get("deliveryPrice")));
-//
-//            List<Map<String, Object>> subProductResult = new ArrayList<>();
-//            for (Map<String, Object> priceProduct : priceList) {
-//                subProductResult.add(priceProduct);
-//            }
-//
-//            itemResult.put("item", subProductResult);
-//            items.add(itemResult);
-//        }
-//
-//
-//        Map<String, Object> summaryResponse = getSummary((String) responseMap.get("memberNo"));
-//
-//        double useableYPoint = (double) ((Map<String, Object>) summaryResponse.get("item")).get("useableYPoint");
-//        double useableWelfarepoint = (double) ((Map<String, Object>) summaryResponse.get("item")).get("useableWelfarepoint");
-//
-//
-//        /**
-//         * 사용자 포인트를 조회하여 사용 포인트와 체크한다.
-//         * 사용 포인트 > 보유 포인트 시 bSucc = "true"
-//         * 사용 포인트 > 보유 포인트 시 bSucc = "false"
-//         * */
-//        if (totalYPoint > useableYPoint && totalWelfarePoint > useableWelfarepoint) {
-//            bSucc = "false";
-//            return bSucc;
-//        }
-//
-//        Map<String, Object> couponIds = null;
-//        try {
-//            couponIds = JsonUtils.parsingJsonToMap((String) responseMap.get("usedCoupon"));
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        List<Map<String, Object>> couponResponseItems = getCoupons((String) responseMap.get("memberNo"), (String) responseMap.get("ordrIdxx")); //상품 정보
-//
-//        boolean duplicated = repetitionCheck(couponIds.values()); // 쿠폰 아이디 중복 체크
-//
-//        /**
-//         * productPrice - couponDiscountPrice 가격을 모두 더하여 totalProductPrice 값을 만든다.
-//         * orderProduct 생성
-//         * */
-//        for (Map<String, Object> item : couponResponseItems) {
-//            double orderPrice = (double) item.get("orderPrice");
-//
-//            Map<String, Object> storeOrderProduct = new HashMap<>();
-//
-//            storeOrderProduct.put("orderSheetId", responseMap.get("ordrIdxx"));                                     //주문서 아이디
-//            storeOrderProduct.put("productId", JsonUtils.getValue(item, "productId.value"));                   //상품 아이디
-//            storeOrderProduct.put("baseOptionItemId", JsonUtils.getValue(item, "baseOptionItemId.value"));     //기본옵션 아이템 아이디
-//            storeOrderProduct.put("baseOptionItemName", JsonUtils.getValue(item, "baseOptionItemId.label"));   //기본옵션 아이템명
-//            storeOrderProduct.put("quantity", item.get("quantity"));                                                //수량
-//            storeOrderProduct.put("salePrice", item.get("salePrice"));                                              //판매가
-//            storeOrderProduct.put("baseAddPrice", item.get("baseAddPrice"));                                        //기본옵션추가금액
-//            storeOrderProduct.put("productPrice", item.get("productPrice"));                                        //상품금액
-//            storeOrderProduct.put("totalAddOptionPrice", item.get("totalAddOptionPrice"));                          //추가옵션금액
-//            storeOrderProduct.put("orderPrice", item.get("orderPrice"));                                            //주문금액
-//            storeOrderProduct.put("orderStatus", responseMap.get("orderStatus"));                                   //주문상태
-//            storeOrderProduct.put("vendorId", item.get("vendorId"));                                                //벤더사 아이디
-//            storeOrderProduct.put("purchasePhoneNo", "");                                                           //유가증권 구매 전화번호
-//
-//
-//            String couponId = String.valueOf(couponIds.get("tempOrderProductId"));
-//
-//            List<Map<String, Object>> applicableCoupons = (List<Map<String, Object>>) item.get("applicableCoupons");
-//            for (Map<String, Object> applicableCoupon : applicableCoupons) {
-//                if (couponId.equals(applicableCoupon.get("couponId"))) {
-//                    storeOrderProduct.put("couponId", applicableCoupon.get("couponId"));                     //쿠폰 아이디
-//                    storeOrderProduct.put("discountPrice", applicableCoupon.get("discountPrice"));           //쿠폰 할인금액
-//
-//                    orderPrice = orderPrice - (double) applicableCoupon.get("discountPrice");
-//                    couponDiscountPrice = couponDiscountPrice + (double) applicableCoupon.get("discountPrice");
-//                }
-//            }
-//            Node orderProductNode = (Node) nodeService.executeNode(storeOrderProduct, "orderProduct", CommonService.CREATE);
-//
-//            orderProductIds.add(orderProductNode.getId()); //orderDeliveryPrice | orderProductIds 에 넣기 위하여.
-//            /**
-//             * orderProductItem 생성
-//             * */
-//
-//            List<Map<String, Object>> tempOrderProductItemList = nodeBindingService.list("tempOrderProductItem", "tempOrderProductId_in=".concat(String.valueOf(item.get("tempOrderProductId"))));
-//            for (Map<String, Object> tempOrderProductItem : tempOrderProductItemList) {
-//                Map<String, Object> storeOrderProductItem = new HashMap<>();
-//
-//                storeOrderProductItem.put("orderSheetId", responseMap.get("ordrIdxx"));
-//                storeOrderProductItem.put("orderProductId", orderProductNode.getId());
-//                storeOrderProductItem.put("productId", tempOrderProductItem.get("productId"));
-//                storeOrderProductItem.put("addOptionItemId", tempOrderProductItem.get("addOptionItemId"));
-////                storeOrderProductItem.put("addOptionItemName", tempOrderProductItem.get(""));
-//                storeOrderProductItem.put("quantity", tempOrderProductItem.get("quantity"));
-//                storeOrderProductItem.put("addOptionPrice", tempOrderProductItem.get("addOptionPrice"));
-//
-//                nodeService.executeNode(storeOrderProductItem, "orderProductItem", CommonService.CREATE);
-//            }
-//            totalProductPrice = totalProductPrice + orderPrice;
-//        }
-//        totalDiscountPrice = totalYPoint + totalWelfarePoint + couponDiscountPrice; // 총 할인액
-//        totalOrderPrice = totalProductPrice - totalYPoint - totalWelfarePoint + totalDeliveryPrice; //총 주문금액
-//
-//        /**
-//         * 최종으로 totalOrderPrice 와 totalPaymentPrice 을 체크 및 쿠폰 중복 체크.
-//         * 성공 시, bSucc = "true"
-//         * 실패 시, bSucc = "false"
-//         * */
-//
-//
-////        List<Map<String, Object>> tempOrderProductList = nodeBindingService.list("tempOrderProduct", "tempOrderId_in=" + tempOrder.get("tempOrderId"));
-////
-////        for (Map<String, Object> tempOrderProduct : tempOrderProductList) {
-////            totalOrderPrice += (double) tempOrderProduct.get("orderPrice");
-////        }
-//
-//
-////        orderSheet.put("sessionId", tempOrder.get("sessionId"));
-//        storeOrderSheet.put("orderSheetId", responseMap.get("ordrIdxx"));   //주문서 번호
-//        storeOrderSheet.put("cartId", tempOrder.get("cartId"));              //카트 아이디
-//        storeOrderSheet.put("memberNo", tempOrder.get("memberNo"));          //회원번호
-//        storeOrderSheet.put("siteId", tempOrder.get("siteId"));              //사이트 아이디
-//        storeOrderSheet.put("totalProductPrice", totalProductPrice);         //총상품가격
-//        storeOrderSheet.put("totalOrderPrice", totalOrderPrice);             //총주문가격
-//        storeOrderSheet.put("totalDiscountPrice", totalDiscountPrice);       //총할인액
-//        storeOrderSheet.put("totalDeliveryPrice", totalDeliveryPrice);       //총배송비
-//        storeOrderSheet.put("totalPaymentPrice", totalPaymentPrice);         //결제금액
-//        storeOrderSheet.put("couponDiscountPrice", couponDiscountPrice);     //쿠폰 할인액
-//        storeOrderSheet.put("totalWelfarePoint", totalWelfarePoint);         //사용한 복지포인트
-//        storeOrderSheet.put("totalYPoint", totalYPoint);                     //사용한 Y포인트
-//        storeOrderSheet.put("purchaseaAgreementYn", "y");
-//        storeOrderSheet.put("purchaseDeviceType", tempOrder.get(""));
-//
-//        nodeService.executeNode(storeOrderSheet, "orderSheet", CommonService.CREATE);
-//
-//        storeOrderDeliveryPrice.put("orderSheetId", responseMap.get("ordrIdxx"));
-//        storeOrderDeliveryPrice.put("orderProductIds", StringUtils.join(orderProductIds, ","));
-//        storeOrderDeliveryPrice.put("vendorId", StringUtils.join(orderProductIds, ","));
-//
-//        boolean saveDelivery = createDelivery(responseMap); // 배송지 저장
-//
-//        if (totalOrderPrice == totalPaymentPrice && !duplicated && saveDelivery) {
-//            bSucc = "true";
-//        } else {
-//            bSucc = "false";
-//        }
-//        return bSucc;
-//    }
 
     /**
      * 결제 정보를 저장하는 Method.
@@ -796,7 +623,7 @@ public class OrderService {
     /**
      * 주문서 배송지를 저장하는 Method.
      */
-    public boolean createDelivery(Map<String, Object> responseMap) {
+    public boolean createDelivery(Map<String, Object> responseMap, Integer memberNo) {
 
         boolean result = false;
         Map<String, Object> storeRefineDelivery = new HashMap<>();
