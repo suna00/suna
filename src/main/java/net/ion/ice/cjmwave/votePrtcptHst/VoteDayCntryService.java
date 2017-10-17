@@ -1,6 +1,5 @@
 package net.ion.ice.cjmwave.votePrtcptHst;
 
-import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
@@ -11,9 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 import java.math.BigDecimal;
+import java.util.*;
 
 @Service("voteDayCntryService")
 public class VoteDayCntryService {
@@ -31,7 +29,7 @@ public class VoteDayCntryService {
 
 
     //voteSeq 기준으로 매주(월~일) 결과를 다시 주간 투표별 국가현황 테이블에 쌓는다.
-    public void voteBasStatsCntryJob(ExecuteContext context){
+    public void voteBasStatsCntryJob(){
 
         if (jdbcTemplate==null) {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
@@ -110,15 +108,6 @@ public class VoteDayCntryService {
                 logger.info("===============> voteBasStatsByDayToCntry에서 해당 날짜 조건검색으로 데이터 없음");
             }
 
-
-            Map<String, Object> returnMap = new ConcurrentHashMap<>();
-            returnMap.put("jobNm", "voteBasStatsCntryJob");
-            returnMap.put("monDay", monDay);
-            returnMap.put("sunDay", sunDay);
-            returnMap.put("voteCntryStatsList", voteCntryStatsList);
-            context.setResult(returnMap);
-
-
         }catch (Exception e) {
             logger.error("Failed to voteDayCntryService.voteBasStatsCntryJob");
         }
@@ -128,13 +117,13 @@ public class VoteDayCntryService {
 
 
     //voteSeq 기준으로 매일의 voteNum을 쌓는다.
-    public void voteBasStatsDayJob(ExecuteContext context) {
+    public void voteBasStatsDayJob() {
 
         if (jdbcTemplate==null) {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
         }
 
-        Integer limitCnt = 100; //test용 리밋수 스케쥴에서 몇개씩 돌릴지 안정해짐~
+        Integer limitCnt = 1000; //test용 리밋수 스케쥴에서 몇개씩 돌릴지 안정해짐~
 
         Date now = new Date();
         String voteDay = DateFormatUtils.format(now, "yyyyMMdd");
@@ -226,12 +215,6 @@ public class VoteDayCntryService {
                 }
 
             }
-
-            Map<String, Object> returnMap = new ConcurrentHashMap<>();
-            returnMap.put("jobNm", "voteBasStatsDaySetNum");
-            returnMap.put("voteDay", voteDay);
-            returnMap.put("voteBasInfoList", voteBasInfoList);
-            context.setResult(returnMap);
 
         }catch (Exception e) {
             logger.error("Failed to voteDayCntryService.voteBasStatsDaySetNum");
