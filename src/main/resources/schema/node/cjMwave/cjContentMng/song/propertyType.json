@@ -181,7 +181,8 @@
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "fileHandler":"s3"
   },
   {
     "typeId": "propertyType",
