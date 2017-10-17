@@ -6532,5 +6532,32 @@
     "description": "",
     "sortOrder": "3",
     "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "couponDistributeTarget",
+    "upperCode": "root",
+    "name": "쿠폰 발송 대상",
+    "description": "",
+    "sortOrder": "119",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "companyMember",
+    "upperCode": "couponDistributeTarget",
+    "name": "기업회원전체",
+    "description": "",
+    "sortOrder": "10",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "universityMember",
+    "upperCode": "couponDistributeTarget",
+    "name": "대학회원전체",
+    "description": "",
+    "sortOrder": "20",
+    "commonCodeStatus": "y"
   }
 ]
