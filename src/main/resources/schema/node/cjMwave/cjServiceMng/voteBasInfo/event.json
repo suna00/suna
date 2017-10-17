@@ -165,5 +165,37 @@
     "actionType": "service",
     "actionBody": "voteResponseService.resIfUlc002",
     "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "voteBasInfo",
+    "event": "voteBasSatasDay",
+    "noneExecute": true,
+    "eventName": "vote day num set Event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "voteBasInfo>voteBasSatasDay",
+    "action": "voteBasSatasDayEvent",
+    "actionName": "vote day num set EventAction",
+    "actionType": "service",
+    "actionBody": "voteDayCntryService.voteBasStatsDayJob",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "voteBasInfo",
+    "event": "voteBasStatsCntry",
+    "noneExecute": true,
+    "eventName": "vote day num set Event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "voteBasInfo>voteBasStatsCntry",
+    "action": "voteBasStatsCntryEvent",
+    "actionName": "vote day num set EventAction",
+    "actionType": "service",
+    "actionBody": "voteDayCntryService.voteBasStatsCntryJob",
+    "order": 1
   }
 ]
