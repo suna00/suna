@@ -214,6 +214,7 @@ public class S3FileRepository implements FileRepository {
 
     @Override
     public FileValue saveResourceFile(PropertyType pt, String id, String path) {
+        if(path.startsWith("/")) path = "file:" + path ;
         Resource res = ApplicationContextManager.getResource(path) ;
         String savePath =
                 pt.getTid() + "/" +  pt.getPid()
