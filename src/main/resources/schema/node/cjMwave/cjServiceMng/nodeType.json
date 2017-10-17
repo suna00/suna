@@ -167,7 +167,8 @@
     "typeName": "서비스 메뉴 정보",
     "repositoryType": "node",
     "eviction": 0,
-    "tableName": "cjDb#svcMenuInfo"
+    "tableName": "cjDb#svcMenuInfo",
+    "i18n": true
   },
   {
     "parentId": "cjServiceMng",
