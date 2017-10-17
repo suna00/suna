@@ -1,6 +1,9 @@
 package net.ion.ice.core.context;
 
 import net.ion.ice.ApplicationContextManager;
+import net.ion.ice.core.file.FileValue;
+import net.ion.ice.core.node.Node;
+import net.ion.ice.core.node.NodeUtils;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
@@ -297,6 +300,20 @@ public class MethodHelper {
                 }else{
                     return value.toString();
                 }
+            }
+            case "fileName":{
+                if(methodParams == null || methodParams.length < 2) return "";
+                if(value == null || StringUtils.isEmpty(value.toString())) return "" ;
+
+                String typeId = methodParams[1] ;
+                String pid = methodParams[2] ;
+
+                Node node = NodeUtils.getNode(typeId, (String) value) ;
+                FileValue fileValue = (FileValue) node.get(pid);
+                if(fileValue != null){
+                    return fileValue.getFileName() ;
+                }
+                return "" ;
             }
 
             default :
