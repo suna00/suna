@@ -52,7 +52,11 @@ public class VoteDayCntryService {
 
         try {
 
-            //1. voteBasStatsByDayToCntry 테이블에서 월~일요일 날짜 까지 가져온다
+            //1. voteBasStatsByDayToCntry 테이블 전체 delete
+            Integer deleteCnt = jdbcTemplate.update("DELETE FROM cntryVoteStatsByVote");
+            logger.info("===============> delete1  cntryVoteStatsByVote:: " + deleteCnt);
+
+            //2. voteBasStatsByDayToCntry 테이블에서 월~일요일 날짜 까지 가져온다
             String totalListQuery = "SELECT a.voteSeq, a.cntryCd, a.voteNum, b.totalVoteNum "+
                     " FROM ( SELECT voteSeq, cntryCd, sum(voteNum) AS voteNum " +
                     " FROM voteBasStatsByDayToCntry WHERE voteDay >=? AND voteDay <=? " +
@@ -66,10 +70,6 @@ public class VoteDayCntryService {
             logger.info("===============> voteCntryStatsList :: " + voteCntryStatsList);
 
             if(voteCntryStatsList != null && voteCntryStatsList.size() > 0){
-
-                //2. voteBasStatsByDayToCntry 테이블 전체 delete
-                Integer deleteCnt = jdbcTemplate.update("DELETE FROM cntryVoteStatsByVote");
-                logger.info("===============> delete1  cntryVoteStatsByVote:: " + deleteCnt);
 
                 Integer rankNum = 0;
                 String voteSeq = "";

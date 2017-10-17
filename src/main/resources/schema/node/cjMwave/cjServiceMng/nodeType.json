@@ -229,7 +229,8 @@
     "repositoryType": "node",
     "eviction": 0,
     "tableName": "cjDb#voteBasInfo",
-    "i18n": true
+    "i18n": true,
+    "clusterGroup": "all"
   },
   {
     "parentId": "cjServiceMng",
@@ -239,7 +240,8 @@
     "typeName": "투표 기간 제한 정보",
     "repositoryType": "node",
     "eviction": 0,
-    "tableName": "cjDb#votePredRstrtnInfo"
+    "tableName": "cjDb#votePredRstrtnInfo",
+    "clusterGroup": "all"
   },
   {
     "parentId": "cjServiceMng",
@@ -250,7 +252,8 @@
     "repositoryType": "node",
     "eviction": 0,
     "tableName": "cjDb#voteItemInfo",
-    "i18n": true
+    "i18n": true,
+    "clusterGroup": "all"
   },
   {
     "parentId": "cjServiceMng",
@@ -260,7 +263,8 @@
     "typeName": "시리즈 투표 항목 정보",
     "repositoryType": "node",
     "eviction": 0,
-    "tableName": "cjDb#sersVoteItemInfo"
+    "tableName": "cjDb#sersVoteItemInfo",
+    "clusterGroup": "all"
   },
   {
     "parentId": "cjServiceMng",
