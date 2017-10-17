@@ -5068,20 +5068,6 @@
   },
   {
     "typeId": "productOption",
-    "productOptionId": 10004,
-    "productId": 100003,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
-  },
-  {
-    "typeId": "productOption",
     "productOptionId": 10005,
     "productId": 100004,
     "productOptionType": "single",
@@ -5093,34 +5079,6 @@
     "modifier": "anonymous",
     "changed": 20171015000000,
     "productOptionCodes": "필수1,필수2"
-  },
-  {
-    "typeId": "productOption",
-    "productOptionId": 10006,
-    "productId": 100004,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
-  },
-  {
-    "typeId": "productOption",
-    "productOptionId": 10007,
-    "productId": 100004,
-    "productOptionType": "single",
-    "name": "필수옵션3",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수31,필수32"
   },
   {
     "typeId": "productOption",
@@ -5166,20 +5124,6 @@
   },
   {
     "typeId": "productOption",
-    "productOptionId": 10011,
-    "productId": 100008,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
-  },
-  {
-    "typeId": "productOption",
     "productOptionId": 10012,
     "productId": 100009,
     "productOptionType": "single",
@@ -5194,34 +5138,6 @@
   },
   {
     "typeId": "productOption",
-    "productOptionId": 10013,
-    "productId": 100009,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
-  },
-  {
-    "typeId": "productOption",
-    "productOptionId": 10014,
-    "productId": 100009,
-    "productOptionType": "single",
-    "name": "필수옵션3",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수31,필수32"
-  },
-  {
-    "typeId": "productOption",
     "productOptionId": 10015,
     "productId": 100012,
     "productOptionType": "single",
@@ -5233,20 +5149,6 @@
     "modifier": "anonymous",
     "changed": 20171015000000,
     "productOptionCodes": "필수1,필수2"
-  },
-  {
-    "typeId": "productOption",
-    "productOptionId": 10016,
-    "productId": 100012,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
   },
   {
     "typeId": "productOption",
@@ -5306,20 +5208,6 @@
   },
   {
     "typeId": "productOption",
-    "productOptionId": 10021,
-    "productId": 100016,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
-  },
-  {
-    "typeId": "productOption",
     "productOptionId": 10022,
     "productId": 100017,
     "productOptionType": "single",
@@ -5331,20 +5219,6 @@
     "modifier": "anonymous",
     "changed": 20171015000000,
     "productOptionCodes": "필수1,필수2"
-  },
-  {
-    "typeId": "productOption",
-    "productOptionId": 10023,
-    "productId": 100017,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
   },
   {
     "typeId": "productOption",
@@ -5362,20 +5236,6 @@
   },
   {
     "typeId": "productOption",
-    "productOptionId": 10025,
-    "productId": 100018,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
-  },
-  {
-    "typeId": "productOption",
     "productOptionId": 10026,
     "productId": 100019,
     "productOptionType": "single",
@@ -5387,20 +5247,6 @@
     "modifier": "anonymous",
     "changed": 20171015000000,
     "productOptionCodes": "필수1,필수2"
-  },
-  {
-    "typeId": "productOption",
-    "productOptionId": 10027,
-    "productId": 100019,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
   },
   {
     "typeId": "productOption",
@@ -5418,20 +5264,6 @@
   },
   {
     "typeId": "productOption",
-    "productOptionId": 10029,
-    "productId": 100020,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
-  },
-  {
-    "typeId": "productOption",
     "productOptionId": 10030,
     "productId": 100023,
     "productOptionType": "single",
@@ -5443,20 +5275,6 @@
     "modifier": "anonymous",
     "changed": 20171015000000,
     "productOptionCodes": "필수1,필수2"
-  },
-  {
-    "typeId": "productOption",
-    "productOptionId": 10031,
-    "productId": 100023,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
   },
   {
     "typeId": "productOption",
@@ -5474,20 +5292,6 @@
   },
   {
     "typeId": "productOption",
-    "productOptionId": 10033,
-    "productId": 100024,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
-  },
-  {
-    "typeId": "productOption",
     "productOptionId": 10034,
     "productId": 100025,
     "productOptionType": "single",
@@ -5499,20 +5303,6 @@
     "modifier": "anonymous",
     "changed": 20171015000000,
     "productOptionCodes": "필수1,필수2"
-  },
-  {
-    "typeId": "productOption",
-    "productOptionId": 10035,
-    "productId": 100025,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
   },
   {
     "typeId": "productOption",
@@ -5530,20 +5320,6 @@
   },
   {
     "typeId": "productOption",
-    "productOptionId": 10037,
-    "productId": 100026,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
-  },
-  {
-    "typeId": "productOption",
     "productOptionId": 10038,
     "productId": 100027,
     "productOptionType": "single",
@@ -5558,20 +5334,6 @@
   },
   {
     "typeId": "productOption",
-    "productOptionId": 10039,
-    "productId": 100027,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
-  },
-  {
-    "typeId": "productOption",
     "productOptionId": 10040,
     "productId": 100031,
     "productOptionType": "single",
@@ -5583,20 +5345,6 @@
     "modifier": "anonymous",
     "changed": 20171015000000,
     "productOptionCodes": "필수1,필수2"
-  },
-  {
-    "typeId": "productOption",
-    "productOptionId": 10041,
-    "productId": 100031,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
   },
   {
     "typeId": "productOption",
@@ -5656,20 +5404,6 @@
   },
   {
     "typeId": "productOption",
-    "productOptionId": 10046,
-    "productId": 100035,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
-  },
-  {
-    "typeId": "productOption",
     "productOptionId": 10047,
     "productId": 100036,
     "productOptionType": "single",
@@ -5681,20 +5415,6 @@
     "modifier": "anonymous",
     "changed": 20171015000000,
     "productOptionCodes": "필수1,필수2"
-  },
-  {
-    "typeId": "productOption",
-    "productOptionId": 10048,
-    "productId": 100036,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
   },
   {
     "typeId": "productOption",
@@ -5712,20 +5432,6 @@
   },
   {
     "typeId": "productOption",
-    "productOptionId": 10050,
-    "productId": 100037,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
-  },
-  {
-    "typeId": "productOption",
     "productOptionId": 10051,
     "productId": 100038,
     "productOptionType": "single",
@@ -5737,20 +5443,6 @@
     "modifier": "anonymous",
     "changed": 20171015000000,
     "productOptionCodes": "필수1,필수2"
-  },
-  {
-    "typeId": "productOption",
-    "productOptionId": 10052,
-    "productId": 100038,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
   },
   {
     "typeId": "productOption",
@@ -5768,20 +5460,6 @@
   },
   {
     "typeId": "productOption",
-    "productOptionId": 10054,
-    "productId": 100039,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
-  },
-  {
-    "typeId": "productOption",
     "productOptionId": 10055,
     "productId": 100042,
     "productOptionType": "single",
@@ -5793,20 +5471,6 @@
     "modifier": "anonymous",
     "changed": 20171015000000,
     "productOptionCodes": "필수1,필수2"
-  },
-  {
-    "typeId": "productOption",
-    "productOptionId": 10056,
-    "productId": 100042,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
   },
   {
     "typeId": "productOption",
@@ -5824,20 +5488,6 @@
   },
   {
     "typeId": "productOption",
-    "productOptionId": 10058,
-    "productId": 100043,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
-  },
-  {
-    "typeId": "productOption",
     "productOptionId": 10059,
     "productId": 100044,
     "productOptionType": "single",
@@ -5849,20 +5499,6 @@
     "modifier": "anonymous",
     "changed": 20171015000000,
     "productOptionCodes": "필수1,필수2"
-  },
-  {
-    "typeId": "productOption",
-    "productOptionId": 10060,
-    "productId": 100044,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
   },
   {
     "typeId": "productOption",
@@ -5880,20 +5516,6 @@
   },
   {
     "typeId": "productOption",
-    "productOptionId": 10062,
-    "productId": 100045,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
-  },
-  {
-    "typeId": "productOption",
     "productOptionId": 10063,
     "productId": 100046,
     "productOptionType": "single",
@@ -5905,20 +5527,6 @@
     "modifier": "anonymous",
     "changed": 20171015000000,
     "productOptionCodes": "필수1,필수2"
-  },
-  {
-    "typeId": "productOption",
-    "productOptionId": 10064,
-    "productId": 100046,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
   },
   {
     "typeId": "productOption",
@@ -5964,20 +5572,6 @@
   },
   {
     "typeId": "productOption",
-    "productOptionId": 10068,
-    "productId": 100054,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
-  },
-  {
-    "typeId": "productOption",
     "productOptionId": 10069,
     "productId": 100055,
     "productOptionType": "single",
@@ -5989,20 +5583,6 @@
     "modifier": "anonymous",
     "changed": 20171015000000,
     "productOptionCodes": "필수1,필수2"
-  },
-  {
-    "typeId": "productOption",
-    "productOptionId": 10070,
-    "productId": 100055,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
   },
   {
     "typeId": "productOption",
@@ -6020,20 +5600,6 @@
   },
   {
     "typeId": "productOption",
-    "productOptionId": 10072,
-    "productId": 100056,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
-  },
-  {
-    "typeId": "productOption",
     "productOptionId": 10073,
     "productId": 100057,
     "productOptionType": "single",
@@ -6045,20 +5611,6 @@
     "modifier": "anonymous",
     "changed": 20171015000000,
     "productOptionCodes": "필수1,필수2"
-  },
-  {
-    "typeId": "productOption",
-    "productOptionId": 10074,
-    "productId": 100057,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
   },
   {
     "typeId": "productOption",
@@ -6076,20 +5628,6 @@
   },
   {
     "typeId": "productOption",
-    "productOptionId": 10076,
-    "productId": 100058,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
-  },
-  {
-    "typeId": "productOption",
     "productOptionId": 10077,
     "productId": 100061,
     "productOptionType": "single",
@@ -6101,20 +5639,6 @@
     "modifier": "anonymous",
     "changed": 20171015000000,
     "productOptionCodes": "필수1,필수2"
-  },
-  {
-    "typeId": "productOption",
-    "productOptionId": 10078,
-    "productId": 100061,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
   },
   {
     "typeId": "productOption",
@@ -6132,20 +5656,6 @@
   },
   {
     "typeId": "productOption",
-    "productOptionId": 10080,
-    "productId": 100062,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
-  },
-  {
-    "typeId": "productOption",
     "productOptionId": 10081,
     "productId": 100063,
     "productOptionType": "single",
@@ -6157,20 +5667,6 @@
     "modifier": "anonymous",
     "changed": 20171015000000,
     "productOptionCodes": "필수1,필수2"
-  },
-  {
-    "typeId": "productOption",
-    "productOptionId": 10082,
-    "productId": 100063,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
   },
   {
     "typeId": "productOption",
@@ -6188,20 +5684,6 @@
   },
   {
     "typeId": "productOption",
-    "productOptionId": 10084,
-    "productId": 100064,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
-  },
-  {
-    "typeId": "productOption",
     "productOptionId": 10085,
     "productId": 100065,
     "productOptionType": "single",
@@ -6213,20 +5695,6 @@
     "modifier": "anonymous",
     "changed": 20171015000000,
     "productOptionCodes": "필수1,필수2"
-  },
-  {
-    "typeId": "productOption",
-    "productOptionId": 10086,
-    "productId": 100065,
-    "productOptionType": "single",
-    "name": "필수옵션2",
-    "required": "y",
-    "productOptionStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionCodes": "필수21,필수22"
   },
   {
     "typeId": "productOption",
@@ -6633,6 +6101,34 @@
     "modifier": "anonymous",
     "changed": 20171015000000,
     "productOptionCodes": "추가1,추가2"
+  },
+  {
+    "typeId": "productOption",
+    "productOptionId": 10116,
+    "productId": 100050,
+    "productOptionType": "single",
+    "name": "필수옵션1",
+    "required": "y",
+    "productOptionStatus": "y",
+    "owner": "anonymous",
+    "created": 20171015000000,
+    "modifier": "anonymous",
+    "changed": 20171015000000,
+    "productOptionCodes": "필수1,필수2"
+  },
+  {
+    "typeId": "productOption",
+    "productOptionId": 10117,
+    "productId": 100051,
+    "productOptionType": "single",
+    "name": "필수옵션1",
+    "required": "y",
+    "productOptionStatus": "y",
+    "owner": "anonymous",
+    "created": 20171015000000,
+    "modifier": "anonymous",
+    "changed": 20171015000000,
+    "productOptionCodes": "필수1,필수2"
   },
   {
     "typeId": "productOptionItem",
@@ -8268,22 +7764,6 @@
   },
   {
     "typeId": "productOptionItem",
-    "productOptionItemId": 800103,
-    "productOptionCodeCase": "필수3",
-    "productId": 100004,
-    "name": "필수3",
-    "addPrice": 0,
-    "supplyPrice": 0,
-    "stockQuantity": 999,
-    "productOptionItemStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionType": "single"
-  },
-  {
-    "typeId": "productOptionItem",
     "productOptionItemId": 800104,
     "productOptionCodeCase": "필수1",
     "productId": 100009,
@@ -8304,22 +7784,6 @@
     "productOptionCodeCase": "필수2",
     "productId": 100009,
     "name": "필수2",
-    "addPrice": 0,
-    "supplyPrice": 0,
-    "stockQuantity": 999,
-    "productOptionItemStatus": "y",
-    "owner": "anonymous",
-    "created": 20171015000000,
-    "modifier": "anonymous",
-    "changed": 20171015000000,
-    "productOptionType": "single"
-  },
-  {
-    "typeId": "productOptionItem",
-    "productOptionItemId": 800106,
-    "productOptionCodeCase": "필수3",
-    "productId": 100009,
-    "name": "필수3",
     "addPrice": 0,
     "supplyPrice": 0,
     "stockQuantity": 999,
@@ -9273,6 +8737,38 @@
     "modifier": "anonymous",
     "changed": 20171015000000,
     "productOptionType": "add"
+  },
+  {
+    "typeId": "productOptionItem",
+    "productOptionItemId": 800165,
+    "productOptionCodeCase": "필수2",
+    "productId": 100051,
+    "name": "필수2",
+    "addPrice": 0,
+    "supplyPrice": 0,
+    "stockQuantity": 999,
+    "productOptionItemStatus": "y",
+    "owner": "anonymous",
+    "created": 20171015000000,
+    "modifier": "anonymous",
+    "changed": 20171015000000,
+    "productOptionType": "single"
+  },
+  {
+    "typeId": "productOptionItem",
+    "productOptionItemId": 800166,
+    "productOptionCodeCase": "필수2",
+    "productId": 100052,
+    "name": "필수2",
+    "addPrice": 0,
+    "supplyPrice": 0,
+    "stockQuantity": 999,
+    "productOptionItemStatus": "y",
+    "owner": "anonymous",
+    "created": 20171015000000,
+    "modifier": "anonymous",
+    "changed": 20171015000000,
+    "productOptionType": "single"
   },
   {
     "typeId": "productOptionItem",
