@@ -87,7 +87,11 @@ public class ReadContext implements Context, Serializable {
     }
 
 
-    protected static void makeApiContextParam(Map<String, Object> data, ReadContext readContext) {
+    protected static void checkCacheable(Map<String, Object> config, Map<String, Object> data, ReadContext readContext) {
+        if(config != null && config.containsKey("cacheTime") && config.get("cacheTime") != null && StringUtils.isNotEmpty(config.get("cacheTime").toString())){
+            readContext.cacheable = true ;
+            readContext.cacheTime = config.get("cacheTime").toString() ;
+        }
         if(data.containsKey("cacheTime") && data.get("cacheTime") != null && StringUtils.isNotEmpty(data.get("cacheTime").toString())){
             readContext.cacheable = true ;
             readContext.cacheTime = data.get("cacheTime").toString() ;
@@ -277,7 +281,7 @@ public class ReadContext implements Context, Serializable {
             this.result = node ;
             queryResult.put("item", makeResult(node));
         }else{
-            Node node = NodeUtils.getNode(nodeType.getTypeId(), id) ;
+            Node node = NodeUtils.getNode(nodeType, id) ;
             if(node != null) {
                 queryResult.put("item", makeResult(node));
             }else{
