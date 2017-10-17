@@ -638,6 +638,7 @@ public class OrderService {
         storeRefineDelivery.put("postCode", responseMap.get("postCode"));
         storeRefineDelivery.put("recipient", responseMap.get("recipient"));
         storeRefineDelivery.put("deliveryType", responseMap.get("deliveryType"));
+        storeRefineDelivery.put("memberNo", memberNo);
 
         nodeService.executeNode(storeRefineDelivery, "delivery", CommonService.CREATE);
 
@@ -647,7 +648,7 @@ public class OrderService {
 
             Map<String, Object> storeMyDeliveryAddress = new HashMap<>();
 
-            storeMyDeliveryAddress.put("memberNo", responseMap.get("memberNo"));
+            storeMyDeliveryAddress.put("memberNo", memberNo);
             storeMyDeliveryAddress.put("siteId", responseMap.get("siteId"));
             storeMyDeliveryAddress.put("addressName", responseMap.get("addressName"));
             storeMyDeliveryAddress.put("postCode", responseMap.get("postCode"));
