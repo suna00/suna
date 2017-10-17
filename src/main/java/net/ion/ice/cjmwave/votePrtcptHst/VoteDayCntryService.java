@@ -153,7 +153,7 @@ public class VoteDayCntryService {
                 List<Map<String, Object>> voteMbrList =
                         jdbcTemplate.queryForList("SELECT seq, voteDate, mbrId FROM " + tableNm + " WHERE voteDate=? AND seq>? ORDER BY seq LIMIT ?"
                                 , voteDay, lastSeq, limitCnt);
-                logger.info("===============> voteMbrList :: " + voteMbrList);
+                //logger.info("===============> voteMbrList :: " + voteMbrList);
 
                 if(voteMbrList != null && voteMbrList.size() > 0){
 
@@ -170,7 +170,7 @@ public class VoteDayCntryService {
                     }
 
                     //2. voteSeq&일자&국가별 테이블 voteNum 업데이트
-                    logger.info("===============> voteMbrList 돌릴거다 :: ");
+                    //logger.info("===============> voteMbrList 돌릴거다 :: ");
                     Integer voteCntryDayCnt = 0;
 
                     for(Map<String, Object> mapData : voteMbrList){
@@ -184,7 +184,7 @@ public class VoteDayCntryService {
                         if(mbrInfos.size() > 0){
                            Node mbrInfo =  mbrInfos.get(0);
                             String cntryCd = mbrInfo.getStringValue("cntryCd");
-                            logger.info("===============> cntryCd :: " + cntryCd);
+                            //logger.info("===============> cntryCd :: " + cntryCd);
                             if(!StringUtils.isEmpty(cntryCd)){
                                 Integer cntryCheckCnt = getVoteBasCntryCount(voteSeq, voteDay, cntryCd);
                                 //voteSeq&일자&국가별 테이블 voteNum 업데이트
@@ -202,7 +202,7 @@ public class VoteDayCntryService {
 
                     //해당 _voteHstByMbr 테이블에 마지막 seq를 저장
                     Integer lastListSeq = Integer.parseInt(voteMbrList.get(voteMbrListSize-1).get("seq").toString());
-                    logger.info("===============> lastListSeq :: " + lastListSeq);
+                    //logger.info("===============> lastListSeq :: " + lastListSeq);
                     Integer dayLstSeqCnt = 0;
                     if(lastSeqInfo == null){
                         dayLstSeqCnt = insertVoteBasByDayLstSeq(lastListSeq, voteSeq, voteDay);
