@@ -4,18 +4,16 @@ import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
-import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.math.BigDecimal;
 
 @Service("voteDayCntryService")
 public class VoteDayCntryService {
@@ -32,17 +30,115 @@ public class VoteDayCntryService {
     private Logger logger = Logger.getLogger(VoteDayCntryService.class);
 
 
-    public void voteBasStatsDaySetNum(ExecuteContext context) {
+    //voteSeq 기준으로 매주(월~일) 결과를 다시 주간 투표별 국가현황 테이블에 쌓는다.
+    public void voteBasStatsCntryJob(ExecuteContext context){
 
         if (jdbcTemplate==null) {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
         }
 
-        Integer limitCnt = 100;
+        Date now = new Date();
+        Calendar cal = Calendar.getInstance();
+
+        Integer weekNum = cal.get(Calendar.DAY_OF_WEEK); //1.일요일 ~ 7.토요일 이다.
+        //String toDay = DateFormatUtils.format(cal, "yyyyMMdd"); //오늘 날짜 - yyyyMMdd형식
+
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+        String monDay = DateFormatUtils.format(cal, "yyyyMMdd");
+        String saveMon = DateFormatUtils.format(cal, "yyyy-MM-dd");
+
+        cal.add(Calendar.DATE, 7);
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+        String sunDay = DateFormatUtils.format(cal, "yyyyMMdd");
+        String saveSun = DateFormatUtils.format(cal, "yyyy-MM-dd");
+
+        try {
+
+            //1. voteBasStatsByDayToCntry 테이블에서 월~일요일 날짜 까지 가져온다
+            String totalListQuery = "SELECT a.voteSeq, a.cntryCd, a.voteNum, b.totalVoteNum "+
+                    " FROM ( SELECT voteSeq, cntryCd, sum(voteNum) AS voteNum " +
+                    " FROM voteBasStatsByDayToCntry WHERE voteDay >=? AND voteDay <=? " +
+                    " GROUP BY voteSeq, cntryCd) a LEFT OUTER JOIN " +
+                    " (SELECT voteSeq, sum(voteNum) AS totalVoteNum " +
+                    " FROM voteBasStatsByDayToCntry WHERE voteDay >=? AND voteDay <=? " +
+                    " GROUP BY voteSeq) b " +
+                    " ON a.voteSeq = b.voteSeq " +
+                    " ORDER BY a.voteSeq, a.voteNum desc ";
+            List<Map<String, Object>> voteCntryStatsList = jdbcTemplate.queryForList(totalListQuery, monDay, sunDay, monDay, sunDay);
+            logger.info("===============> voteCntryStatsList :: " + voteCntryStatsList);
+
+            if(voteCntryStatsList != null && voteCntryStatsList.size() > 0){
+
+                //2. voteBasStatsByDayToCntry 테이블 전체 delete
+                Integer deleteCnt = jdbcTemplate.update("DELETE FROM cntryVoteStatsByVote");
+                logger.info("===============> delete  cntryVoteStatsByVote:: " + deleteCnt);
+
+                Integer rankNum = 0;
+                String voteSeq = "";
+                for(int i=0; i<voteCntryStatsList.size(); i++){
+                    Map<String, Object> mapData = voteCntryStatsList.get(i);
+
+                    if(i == 0){
+                        voteSeq = mapData.get("voteSeq").toString();
+                        rankNum = 1;
+                    }else{
+                        if(!voteSeq.equals(mapData.get("voteSeq").toString())){
+                            voteSeq = mapData.get("voteSeq").toString();
+                            rankNum = 1;
+                        }
+                    }
+
+                    String cntryCd = mapData.get("cntryCd").toString();
+                    Integer voteNum = Integer.parseInt(mapData.get("voteNum").toString());
+                    Integer totalVoteNum = Integer.parseInt(mapData.get("totalVoteNum").toString());
+
+                    Double voteNumDouble = Double.parseDouble(mapData.get("voteNum").toString());
+                    BigDecimal voteCnt = new BigDecimal(voteNumDouble*100);
+                    BigDecimal totalCnt = new BigDecimal(totalVoteNum);
+                    BigDecimal voteRate = voteCnt.divide(totalCnt, 1, BigDecimal.ROUND_HALF_UP);
+
+                    //3. voteBasStatsByDayToCntry 테이블에 insert
+                    String insertVoteCntryQuery = "INSERT INTO cntryVoteStatsByVote "+
+                            "(perdStDate, perdFnsDate, voteSeq, cntryCd, rankNum, voteRate, voteNum, owner, created) "+
+                            "VALUES(?,?,?,?,?,?,?,?,?)";
+                    Integer insertCnt = jdbcTemplate.update(insertVoteCntryQuery,
+                            saveMon, saveSun, Integer.parseInt(voteSeq), cntryCd, rankNum, voteRate, voteNum, "system", now);
+
+                    rankNum++; //다음을 위해 +1 새로운 voteSeq가 왔을땐 다시 1부터 시작
+                }
+            }else{
+                logger.info("===============> voteBasStatsByDayToCntry에서 해당 날짜 조건검색으로 데이터 없음");
+            }
+
+
+            Map<String, Object> returnMap = new ConcurrentHashMap<>();
+            returnMap.put("jobNm", "voteBasStatsCntryJob");
+            returnMap.put("monDay", monDay);
+            returnMap.put("sunDay", sunDay);
+            returnMap.put("voteCntryStatsList", voteCntryStatsList);
+            context.setResult(returnMap);
+
+
+        }catch (Exception e) {
+            logger.error("Failed to voteDayCntryService.voteBasStatsCntryJob");
+        }
+
+
+    }
+
+
+    //voteSeq 기준으로 매일의 voteNum을 쌓는다.
+    public void voteBasStatsDayJob(ExecuteContext context) {
+
+        if (jdbcTemplate==null) {
+            jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
+        }
+
+        Integer limitCnt = 100; //test용 리밋수 스케쥴에서 몇개씩 돌릴지 안정해짐~
 
         Date now = new Date();
-        String voteDay = DateFormatUtils.format(now, "yyyyMMdd");
-        //String voteDay = "20171014"; //test 용
+        //String voteDay = DateFormatUtils.format(now, "yyyyMMdd");
+        String voteDay = "20171014"; //test 용
         String voteDateTime = DateFormatUtils.format(now, "yyyyMMddHHmmss");
 
         List<Node> voteBasInfoList = new ArrayList<>();
@@ -70,14 +166,14 @@ public class VoteDayCntryService {
                                 , voteDay, lastSeq, limitCnt);
                 logger.info("===============> voteMbrList :: " + voteMbrList);
 
-                if(voteMbrList != null){
+                if(voteMbrList != null && voteMbrList.size() > 0){
 
                     Integer voteMbrListSize = voteMbrList.size();
 
                     //1. voteSeq&일자별 테이블 voteNum 업데이트
                     Integer voteBasDayCnt = 0;
                     if(lastSeqInfo == null){
-                        voteBasDayCnt = insertVoteBasDay(voteSeq, voteDay, voteMbrListSize, "anonymous", now);
+                        voteBasDayCnt = insertVoteBasDay(voteSeq, voteDay, voteMbrListSize, "system", now);
                         logger.info("===============> insertVoteBasDay :: " + voteBasDayCnt);
                     }else{
                         voteBasDayCnt = updateVoteBasDay(voteMbrListSize, now, voteSeq, voteDay);
@@ -107,7 +203,7 @@ public class VoteDayCntryService {
                                     voteCntryDayCnt = updateVoteCntryDay(now, voteSeq, voteDay, cntryCd);
                                     logger.info("===============> updateVoteCntryDay :: " + cntryCheckCnt);
                                 }else{
-                                    voteCntryDayCnt = insertVoteCntryDay(voteSeq, voteDay, cntryCd, 1, "anonymous", now);
+                                    voteCntryDayCnt = insertVoteCntryDay(voteSeq, voteDay, cntryCd, 1, "system", now);
                                     logger.info("===============> insertVoteCntryDay :: " + cntryCheckCnt);
                                 }
                             }
@@ -132,12 +228,13 @@ public class VoteDayCntryService {
             }
 
             Map<String, Object> returnMap = new ConcurrentHashMap<>();
+            returnMap.put("jobNm", "voteBasStatsDaySetNum");
             returnMap.put("voteDay", voteDay);
             returnMap.put("voteBasInfoList", voteBasInfoList);
             context.setResult(returnMap);
 
         }catch (Exception e) {
-            logger.error("Failed to voteDayCntryService voteBasStatsDaySetNum");
+            logger.error("Failed to voteDayCntryService.voteBasStatsDaySetNum");
         }
 
     }
