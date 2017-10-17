@@ -37,5 +37,25 @@
     "enable": false,
     "actionType": "service",
     "actionBody": "voteItemStatsTask.voteItemStatsJob"
+  },
+  {
+    "typeId": "scheduleTask",
+    "id": "voteBasStatsDayJob",
+    "name": "day voteBasStatsDay set Schedule",
+    "type": "cron",
+    "config": "1 * * * * *",
+    "enable": false,
+    "actionType": "service",
+    "actionBody": "voteDayCntryService.voteBasStatsDayJob"
+  },
+  {
+    "typeId": "scheduleTask",
+    "id": "voteBasStatsCntryJob",
+    "name": "week voteBasStatsCntry set Schedule",
+    "type": "cron",
+    "config": "01 0 * * 1 *",
+    "enable": false,
+    "actionType": "service",
+    "actionBody": "voteDayCntryService.voteBasStatsCntryJob"
   }
 ]
