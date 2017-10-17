@@ -240,14 +240,14 @@ public class CartService {
             return context;
         }
 
-        if (changeCartProductQuantity > maxOrderQuantity) {
+        if (maxOrderQuantity != 0 && changeCartProductQuantity > maxOrderQuantity) {
             extraData.put("code", "F");
             extraData.put("message", "구매 가능한 수량을 초과하였습니다.");
             context.setResult(extraData);
             return context;
         }
 
-        if (minOrderQuantity > changeCartProductQuantity) {
+        if (minOrderQuantity !=0 && minOrderQuantity > changeCartProductQuantity) {
             extraData.put("code", "F");
             extraData.put("message", "최소 구매수량 " + minOrderQuantity + " 입니다");
             context.setResult(extraData);

@@ -198,7 +198,7 @@ public class OrderService {
             Map<String, Object> session = sessionService.getSession(context.getHttpRequest());
             Map<String, Object> couponIds = JsonUtils.parsingJsonToMap((String) data.get("usedCoupon"));
             /*포인트*/
-            Map<String, Object> summaryResponse = getSummary((String) data.get("memberNo"));
+            Map<String, Object> summaryResponse = getSummary(JsonUtils.getStringValue(session, "member.memberNo"));
 
             double useableYPoint = ((BigDecimal) summaryResponse.get("useableYPoint")).doubleValue();
             double useableWelfarepoint = ((BigDecimal) summaryResponse.get("useableWelfarepoint")).doubleValue();
