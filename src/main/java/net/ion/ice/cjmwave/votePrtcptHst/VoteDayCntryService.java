@@ -137,8 +137,8 @@ public class VoteDayCntryService {
         Integer limitCnt = 100; //test용 리밋수 스케쥴에서 몇개씩 돌릴지 안정해짐~
 
         Date now = new Date();
-        //String voteDay = DateFormatUtils.format(now, "yyyyMMdd");
-        String voteDay = "20171014"; //test 용
+        String voteDay = DateFormatUtils.format(now, "yyyyMMdd");
+        //String voteDay = "20171014"; //test 용
         String voteDateTime = DateFormatUtils.format(now, "yyyyMMddHHmmss");
 
         List<Node> voteBasInfoList = new ArrayList<>();
