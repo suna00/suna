@@ -62,8 +62,8 @@
     "typeId": "scheduleTask",
     "id": "voteItemStatsHstByMbrTask",
     "name": "voteItemStatsHstByMbr Schedule Task",
-    "type": "delay",
-    "config": "60000",
+    "type": "cron",
+    "config": "0 */5 * * * *",
     "enable": false,
     "actionType": "service",
     "actionBody": "voteItemStatsHstByMbrTask.execVoteItemStatsHstByMbr"
@@ -72,8 +72,8 @@
     "typeId": "scheduleTask",
     "id": "voteItemStatsBySexTask",
     "name": "voteItemStatsHstByMbr Schedule Task",
-    "type": "delay",
-    "config": "60000",
+    "type": "cron",
+    "config": "0 59 23 * * *",
     "enable": false,
     "actionType": "service",
     "actionBody": "voteItemStatsByMbrTask.execVoteItemStatsBySex"
@@ -82,8 +82,8 @@
     "typeId": "scheduleTask",
     "id": "voteItemStatsByCntryTask",
     "name": "voteItemStatsHstByMbr Schedule Task",
-    "type": "delay",
-    "config": "60000",
+    "type": "cron",
+    "config": "0 59 23 * * *",
     "enable": false,
     "actionType": "service",
     "actionBody": "voteItemStatsByMbrTask.execVoteItemStatsByCntry"

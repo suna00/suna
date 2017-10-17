@@ -126,6 +126,11 @@
           "value": "{{:searchKeyword}}"
         },
         {
+          "field": "voteSeq",
+          "method": "NotMatching",
+          "value": "800100"
+        },
+        {
           "sorting": "{{:sorting}}"
         },
         {
@@ -555,6 +560,11 @@
           "value": "voteFormlCd_matching=voteFormlCd>1,voteFormlCd>2,voteFormlCd>4,voteFormlCd>5"
         },
         {
+          "field": "voteSeq",
+          "method": "NotMatching",
+          "value": "800100"
+        },
+        {
           "limit": "3",
           "sorting": "voteSeq desc",
           "referenceView": "voteSeq"
@@ -580,19 +590,7 @@
     ],
     "config": {
       "typeId": "sersVotePrtcptHst",
-      "event": "sersVoting",
-      "response": {
-        "sersVoteSeq": "",
-        "userVoteCnt": {
-          "value": "10"
-        },
-        "userPvCnt": {
-          "value": "1000"
-        },
-        "ipAdrVoteCnt": {
-          "value": "10000"
-        }
-      }
+      "event": "sersVoting"
     }
   },
   {
@@ -628,6 +626,11 @@
           "field": "pstngFnsDt",
           "method": "under",
           "value": "{{:now}}"
+        },
+        {
+          "field": "voteSeq",
+          "method": "NotMatching",
+          "value": "800100"
         },
         {
           "sorting": "{{:sorting}}"
@@ -1148,6 +1151,11 @@
           "value": "{{:concatStr(bradTelcsDt,235959)}}"
         },
         {
+          "field": "voteSeq",
+          "method": "NotMatching",
+          "value": "800100"
+        },
+        {
           "limit": "1",
           "sorting": "voteSeq desc"
         },
@@ -1362,6 +1370,11 @@
           "field": "evVoteYn",
           "method": "matching",
           "value": "false"
+        },
+        {
+          "field": "voteSeq",
+          "method": "NotMatching",
+          "value": "800100"
         },
         {
           "sorting": "{{:sorting}}"
