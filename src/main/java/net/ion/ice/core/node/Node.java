@@ -1,7 +1,5 @@
 package net.ion.ice.core.node;
 
-import com.sun.deploy.security.ValidationState;
-import net.ion.ice.core.context.QueryContext;
 import net.ion.ice.core.context.ReadContext;
 import net.ion.ice.core.infinispan.lucene.CodeAnalyzer;
 import org.apache.commons.lang3.StringUtils;
@@ -9,14 +7,12 @@ import org.hibernate.search.annotations.*;
 
 import java.io.Serializable;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by jaeho on 2017. 3. 31..
  */
 @Indexed
 public class Node implements Map<String, Object>, Serializable, Cloneable{
-    private static final long serialVersionUID = 1L;
 
     public static final String ID = "id";
     public static final String TYPEID = "typeId";
