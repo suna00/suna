@@ -3,15 +3,12 @@ os: linux
 files:
   - source: / #<- 배포할 repository path
     destination: /home/ion/api/core1 #<- 배포될 서버의 path
-#hooks:
-#  BeforeInstall:
-#  - location: scripts/install_dependencies.sh #<- BeforeInstall 단계에 실행할 script
-#    timeout: 10 #<- script 실행 timeout
-#    runas: root #<- 위 스크립트 실행 user
-#  - location: scripts/start_server.sh
-#    timeout: 30
-#    runas: root
-#ApplicationStop:
-#  - location: scripts/stop_server.sh
-#    timeout: 10
-#    runas: root
+hooks:
+  ApplicationStart:
+  - location: ice-start.sh #<- BeforeInstall 단계에 실행할 script
+    timeout: 20 #<- script 실행 timeout
+    runas: ion #<- 위 스크립트 실행 user
+  ApplicationStop:
+    - location: ice-stop.sh
+      timeout: 20
+      runas: ion
