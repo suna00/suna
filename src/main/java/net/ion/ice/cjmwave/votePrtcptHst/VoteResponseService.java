@@ -115,8 +115,7 @@ public class VoteResponseService {
 
             for (Node voteBasInfo : voteInfoList) {
                 // TODO - voteSeq_referenceJoin 처리관련 문의 요청 필요
-                String voteItemTerms = "voteSeq_matching=" + voteBasInfo.getId() +
-                        "&langCd_matching=" + data.get("langCd");
+                String voteItemTerms = "voteSeq_matching=" + voteBasInfo.getId();
 
                 List<Node> refdItemList = nodeService.getNodeList(VOTE_ITEM_INFO, voteItemTerms);
                 for (Node refdItem : refdItemList) {
@@ -179,32 +178,31 @@ public class VoteResponseService {
 
         Integer ipAdrVoteCnt = ipDclaCnt - ipCnt;
 
+        List<Map<String, Object>> voteBasResultList = new ArrayList<>() ;
         for (Node voteBasInfo : voteInfoList) {
-
-            String voteItemTerms = "voteSeq_matching=" + voteBasInfo.getId() +
-                    "&langCd_matching=" + data.get("langCd");
+            String voteItemTerms = "voteSeq_matching=" + voteBasInfo.getId();
 
             List<Node> voteItemList = nodeService.getNodeList(VOTE_ITEM_INFO, voteItemTerms);
             for (Node voteItem : voteItemList) {
                 context.makeReferenceView("contsMetaId"); // referenceView 설정
                 voteItem.toDisplay(context);
             }
-
+            context.makeIncludeReferenced("refdItemList");
+            context.makeReferenceView("sersItemVoteSeq,sersItemVoteSeq.refdItemList.contsMetaId");
             List<Node> sersVoteItemList = nodeService.getNodeList(SERS_VOTE_ITEM_INFO, voteItemTerms);
             for (Node voteItem : sersVoteItemList) {
-                context.makeReferenceView("sersItemVoteSeq"); // referenceView 설정
-                context.setIncludeReferenced(true);
                 voteItem.toDisplay(context);
             }
 
-            voteBasInfo.toDisplay(context);
+            Map<String, Object> voteBaseResult = new HashMap<>() ;
+            voteBaseResult.putAll(voteBasInfo.toDisplay(context));
 
-            voteBasInfo.put("refdItemList", voteItemList);
-            voteBasInfo.put("refdSeriesItemList", sersVoteItemList);
+            voteBaseResult.put("refdItemList", voteItemList);
+            voteBaseResult.put("refdSeriesItemList", sersVoteItemList);
 
             // voteNum 계산
             Integer voteNum = getVoteNum(voteBasInfo.getId());
-            voteBasInfo.put("voteNum", (voteNum == null) ? 0 : voteNum);
+            voteBaseResult.put("voteNum", (voteNum == null) ? 0 : voteNum);
 
             // userVoteCnt
             Integer userVoteCnt = 0;
@@ -212,12 +210,13 @@ public class VoteResponseService {
                 userVoteCnt = getUserVoteCnt(voteBasInfo.getId(), mbrId);
             }
             //voteBasInfo.put("userVoteCnt", (userVoteCnt == null) ? 0 : userVoteCnt);
-            voteBasInfo.put("userVoteCnt", 0);
-            voteBasInfo.put("userPvCnt", 0);
-            voteBasInfo.put("ipAdrVoteCnt", ipAdrVoteCnt);
+            voteBaseResult.put("userVoteCnt", 0);
+            voteBaseResult.put("userPvCnt", 0);
+            voteBaseResult.put("ipAdrVoteCnt", ipAdrVoteCnt);
+            voteBasResultList.add(voteBaseResult);
         }
 
-        data.put("items", voteInfoList);
+        data.put("items", voteBasResultList);
 
         context.setResult(data);
     }
@@ -298,8 +297,7 @@ public class VoteResponseService {
             Integer ipAdrVoteCnt = ipDclaCnt - ipCnt;
 
             for (Node voteBasInfo : voteInfoList) {
-                String voteItemTerms = "voteSeq_matching=" + voteBasInfo.getId() +
-                        "&langCd_matching=" + data.get("langCd");
+                String voteItemTerms = "voteSeq_matching=" + voteBasInfo.getId();
 
                 List<Node> voteItemList = nodeService.getNodeList(VOTE_ITEM_INFO, voteItemTerms);
                 for (Node voteItem : voteItemList) {
