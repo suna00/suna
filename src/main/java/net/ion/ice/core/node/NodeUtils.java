@@ -92,6 +92,11 @@ public class NodeUtils {
         return getNodeService().getNodeList(typeId, searchText);
     }
 
+    public static List<Node> getQueryList(String typeId, String searchText){
+        QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, getNodeType(typeId), null) ;
+        return queryContext.getQueryList() ;
+    }
+
     //노드 타입별 비교 및 노드 별 비교 로직 추가 필요
     public static List<Map<String, Object>> makeDataListFilterBy(Collection<Map<String, Object>> nodeDataList, String lastChanged) {
         List<Map<String, Object>> dataList = new ArrayList<>();
