@@ -71,7 +71,7 @@ public class VoteDayCntryService {
 
                 //2. voteBasStatsByDayToCntry 테이블 전체 delete
                 Integer deleteCnt = jdbcTemplate.update("DELETE FROM cntryVoteStatsByVote");
-                logger.info("===============> delete  cntryVoteStatsByVote:: " + deleteCnt);
+                logger.info("===============> delete1  cntryVoteStatsByVote:: " + deleteCnt);
 
                 Integer rankNum = 0;
                 String voteSeq = "";
