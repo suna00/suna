@@ -3,7 +3,7 @@
     "typeId": "apiConfig",
     "category": "orderSheet",
     "apiId": "orderList",
-    "apiName": "전체 주문 리스트",
+    "apiName": "전주문 리스트",
     "method": "GET",
     "parameters": [
     ],
