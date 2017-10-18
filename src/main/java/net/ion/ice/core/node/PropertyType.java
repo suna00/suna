@@ -253,7 +253,7 @@ public class PropertyType implements Serializable{
 
     public boolean isList() {
         switch (getValueType()){
-            case ARRAY: case JSON: case REFERENCED: case REFERENCES:
+            case ARRAY: case REFERENCED: case REFERENCES:
                 return true ;
         }
         return false ;

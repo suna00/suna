@@ -30,6 +30,7 @@ public class ApiReadsContext extends ApiQueryContext implements CacheableContext
         readsContext.nodeType = NodeUtils.getNodeType((String) ContextUtils.getValue(config.get("typeId"), data)) ;
         readsContext.config = config ;
         readsContext.data = data ;
+        checkCacheable(config, data, readsContext) ;
 
         for(String key : config.keySet()) {
             if(key.equals("typeId")) continue ;
@@ -61,7 +62,7 @@ public class ApiReadsContext extends ApiQueryContext implements CacheableContext
         List<Node> nodes = new ArrayList<>() ;
 
         for(String _id : ids){
-            Node _node = NodeUtils.getNode(nodeType.getTypeId(), _id ) ;
+            Node _node = NodeUtils.getNode(nodeType, _id ) ;
             if(_node != null) {
                 nodes.add(_node);
             }
