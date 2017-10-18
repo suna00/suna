@@ -123,7 +123,7 @@ public class VoteDayCntryService {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
         }
 
-        Integer limitCnt = 27; //test용 리밋수 스케쥴에서 몇개씩 돌릴지 안정해짐~
+        Integer limitCnt = 1000; //test용 리밋수 스케쥴에서 몇개씩 돌릴지 안정해짐~
 
         Date now = new Date();
         //String voteDay = DateFormatUtils.format(now, "yyyyMMdd");
