@@ -96,9 +96,12 @@ public class VoteItemStatsTask {
                 // Response List에 추가
                 rtVoteItemStatsList.add(voteNumInfo);
                 checkVoteItemSeqList.add(voteNumInfo.get("voteItemSeq").toString());
+                logger.info("vote item add schedule task - {} - {}", voteBasInfo.getId(), voteNumInfo.get("voteItemSeq").toString());
+
             }
 
             for (Node voteItemInfo : voteItemInfoList) {
+                logger.info("vote item exist schedule task - {} - {} {}", voteBasInfo.getId(), checkVoteItemSeqList.contains(voteItemInfo.get("voteItemSeq").toString()), voteItemInfo.get("voteItemSeq").toString());
                 if(!checkVoteItemSeqList.contains(voteItemInfo.get("voteItemSeq").toString())) {
                     Map<String, Object> tmpVoteItemInfoMap = new ConcurrentHashMap<>();
                     tmpVoteItemInfoMap.put("voteSeq", voteItemInfo.get("voteSeq"));
