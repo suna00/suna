@@ -25,6 +25,7 @@ jwtConfig:
 cluster:
   mode: api
   groups: api
+  dataQueue: 10.75.6.140,10.75.7.140
   members:
     - 10.75.6.131
     - 10.75.7.130
