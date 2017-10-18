@@ -349,7 +349,7 @@ public class CouponService {
 
            for (String memberNo : memberNoList) {
                 Node memberNode = nodeService.getNode("member", memberNo);
-                String memberStatus = memberNode.getStringValue("memberStatus");
+                String memberStatus = memberNode.getBindingValue("memberStatus").toString();
                 if (StringUtils.equals(memberStatus, "join")) {
                     createCoupon(couponTypeNode, memberNode, publishedDate);
                 }
@@ -359,7 +359,7 @@ public class CouponService {
 
             for (String memberNo : memberNoList) {
                 Node memberNode = nodeService.getNode("member", memberNo);
-                String memberStatus = memberNode.getStringValue("memberStatus");
+                String memberStatus = memberNode.getBindingValue("memberStatus").toString();
                 if (StringUtils.equals(memberStatus, "join")) {
                     createCoupon(couponTypeNode, memberNode, publishedDate);
                 }
@@ -372,7 +372,7 @@ public class CouponService {
     private void createCoupon(Node couponTypeNode, Node memberNode, Date publishedDate) {
         if (couponTypeNode == null || memberNode == null) return;
 
-        String validPeriodType = couponTypeNode.getStringValue("validPeriodType");
+        String validPeriodType = couponTypeNode.getBindingValue("validPeriodType").toString();
         Date startDate = null;
         Date endDate = null;
         if (StringUtils.equals(validPeriodType, "limit")) {
@@ -388,12 +388,12 @@ public class CouponService {
         }
 
         Map<String, Object> couponData = new HashMap<>();
-        couponData.put("name", couponTypeNode.getStringValue("name"));
-        couponData.put("memberNo", memberNode.getStringValue("memberNo"));
-        couponData.put("siteType", memberNode.getStringValue("siteType"));
-        couponData.put("channelType", couponTypeNode.getStringValue("channelType"));
-        couponData.put("affiliateId", memberNode.getStringValue("affiliateId"));
-        couponData.put("couponTypeId", couponTypeNode.getStringValue("couponTypeId"));
+        couponData.put("name", couponTypeNode.getBindingValue("name"));
+        couponData.put("memberNo", memberNode.getBindingValue("memberNo"));
+        couponData.put("siteType", memberNode.getBindingValue("siteType"));
+        couponData.put("channelType", couponTypeNode.getBindingValue("channelType"));
+        couponData.put("affiliateId", memberNode.getBindingValue("affiliateId"));
+        couponData.put("couponTypeId", couponTypeNode.getBindingValue("couponTypeId"));
         couponData.put("publishedDate", publishedDate);
         couponData.put("startDate", startDate);
         couponData.put("endDate", endDate);
