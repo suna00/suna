@@ -4,12 +4,12 @@ import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -181,21 +181,29 @@ public class VoteDayCntryService {
 
                 if(voteMbrList != null && voteMbrList.size() > 0){
 
-                    Integer voteCntryDayCnt = 0;
-                    logger.info("===============> 여길못타나봐11 :: ");
-                    for(Map<String, Object> mapData : voteMbrList){
+                    //Integer voteMbrListSize = voteMbrList.size();
+                    for(int i=0; i<voteMbrList.size(); i++){
 
+                        Map<String, Object> mapData = voteMbrList.get(i);
                         String mbrId = mapData.get("mbrId").toString();
                         String voteDate = mapData.get("voteDate").toString();
 
                         //2. voteSeq&일자&국가별 테이블 insert / update
                         //회원정보의 국가 정보 가져온다 - but 회원정보의 국가코드 필수입력사항 아니므로 혹시몰라서~ cntryCd null아닐때만 테이블 insert하게 체크
-                        //Node mbrInfo = NodeUtils.getNodeService().read("mbrInfo", mbrId); read 로 조회 했을때 혹시라도 회원정보 없으면 무조건 에러로 감.....
-                        List<Node> mbrInfos = new ArrayList<>();
-                        mbrInfos = NodeUtils.getNodeService().getNodeList("mbrInfo", "snsTypeCd=" + mbrId.split(">")[0].toString() + "&snsKey="+ mbrId.split(">")[1].toString());
-                        if(mbrInfos.size() > 0){
-                            Node mbrInfo =  mbrInfos.get(0);
+                        Node mbrInfo = new Node();
+                        try{
+                            mbrInfo = NodeUtils.getNode("mbrInfo", mbrId);
+                            //logger.info("===============> mbrInfo :: " + mbrInfo);
+                        }catch(Exception e){
+                            logger.error("mbrInfo null");
+                        }
+
+
+                        if (mbrInfo != null && !mbrInfo.isEmpty()) {
+                            //logger.info("===============> mbrInfo not null :: ");
+                            Integer voteCntryDayCnt = 0;
                             String cntryCd = mbrInfo.getStringValue("cntryCd");
+                            //cntryCd null아닐때만 테이블 insert하게 체크
                             if(!StringUtils.isEmpty(cntryCd)){
                                 Integer cntryCheckCnt = getVoteBasCntryCount(voteSeq, voteDate, cntryCd);
                                 //voteSeq&일자&국가별 테이블 voteNum 업데이트
@@ -208,19 +216,21 @@ public class VoteDayCntryService {
                                 }
                             }
                         }
-                    }
 
-
-                    //해당 _voteHstByMbr 테이블에 마지막 seq를 저장
-                    logger.info("===============> 여길못타나봐22 :: ");
-                    Integer voteMbrListSize = voteMbrList.size();
-                    Integer lastListSeq = Integer.parseInt(voteMbrList.get(voteMbrListSize-1).get("seq").toString());
-                    //logger.info("===============> lastListSeq :: " + lastListSeq);
-                    Integer dayLstSeqCnt = 0;
-                    if(lastSeqInfo == null){
-                        dayLstSeqCnt = insertVoteBasByLastSeq(lastListSeq, voteSeq);
-                    }else{
-                        dayLstSeqCnt = updateVoteBasByLastSeq(lastListSeq, voteSeq);
+                        //돌고나서 제일 마지막~일때 라스트 시퀀스 저장 혹은 갱신
+                        if(i == voteMbrList.size()-1){
+                            //해당 _voteHstByMbr 테이블에 마지막 seq를 저장
+                            Integer lastListSeq = Integer.parseInt(mapData.get("seq").toString());
+                            logger.info("===============> 마지막 시퀀스 갱신 시작 :: lastListSeq" + lastListSeq);
+                            Integer dayLstSeqCnt = 0;
+                            if(lastSeqInfo == null){
+                                dayLstSeqCnt = insertVoteBasByLastSeq(lastListSeq, voteSeq);
+                                logger.info("===============> insertVoteBasByLastSeq :: voteSeq ? " + voteSeq + " :: lastListSeq ? " + lastListSeq);
+                            }else{
+                                dayLstSeqCnt = updateVoteBasByLastSeq(lastListSeq, voteSeq);
+                                logger.info("===============> updateVoteBasByLastSeq :: voteSeq ? " + voteSeq + " :: lastListSeq ? " + lastListSeq);
+                            }
+                        }
                     }
 
                 }else{
@@ -250,8 +260,8 @@ public class VoteDayCntryService {
 
     //voteSeq&투표일자(yyyymmdd)별 카운트한 마지막 seq insert
     private Integer insertVoteBasByLastSeq(Integer seq, Integer voteSeq) {
-        String insertQuery = "INSERT INTO voteBasStatsByLastSeq (seq, voteSeq) VALUES(?,?,)";
-        Integer cnt = jdbcTemplate.update(insertQuery, seq, voteSeq);
+        String insertQuery = "INSERT INTO voteBasStatsByLastSeq (voteSeq, seq) VALUES(?,?)";
+        Integer cnt = jdbcTemplate.update(insertQuery, voteSeq, seq);
         return cnt;
     }
 
