@@ -128,7 +128,7 @@
         {
           "field": "voteSeq",
           "method": "NotMatching",
-          "value": "800100"
+          "value": "800121"
         },
         {
           "sorting": "{{:sorting}}"
@@ -562,7 +562,7 @@
         {
           "field": "voteSeq",
           "method": "NotMatching",
-          "value": "800100"
+          "value": "800121"
         },
         {
           "limit": "3",
@@ -630,7 +630,7 @@
         {
           "field": "voteSeq",
           "method": "NotMatching",
-          "value": "800100"
+          "value": "800121"
         },
         {
           "sorting": "{{:sorting}}"
@@ -1153,7 +1153,7 @@
         {
           "field": "voteSeq",
           "method": "NotMatching",
-          "value": "800100"
+          "value": "800121"
         },
         {
           "limit": "1",
@@ -1374,7 +1374,7 @@
         {
           "field": "voteSeq",
           "method": "NotMatching",
-          "value": "800100"
+          "value": "800121"
         },
         {
           "sorting": "{{:sorting}}"

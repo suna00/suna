@@ -83,7 +83,8 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "defaultValue": ""
+    "defaultValue": "",
+    "fileHandler":"s3"
   },
   {
     "typeId": "propertyType",

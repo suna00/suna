@@ -7,13 +7,19 @@ hooks:
   BeforeInstall:
     - location: ice-clean.sh
       timeout: 20
-      runas: root
+      runas: ion
 
   ApplicationStart:
     - location: ice-start.sh #<- BeforeInstall 단계에 실행할 script
       timeout: 20 #<- script 실행 timeout
-      runas: root #<- 위 스크립트 실행 user
+      runas: ion #<- 위 스크립트 실행 user
   ApplicationStop:
     - location: ice-stop.sh
       timeout: 20
-      runas: root
+      runas: ion
+
+permissions:
+  - object: /home/ion/cms
+    owner: ion
+    group: ion
+    mode: 755
