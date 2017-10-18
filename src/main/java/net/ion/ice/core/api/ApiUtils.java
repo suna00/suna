@@ -7,7 +7,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.net.*;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.zip.GZIPInputStream;
 
@@ -20,44 +19,12 @@ public class ApiUtils {
     public static HttpURLConnection getUrlConnection(String apiUrl, Map<String, Object> data, int connectTimeout, int readTimeout, String method) throws IOException {
         if (!apiUrl.startsWith("http"))
             apiUrl = "http://" + apiUrl;
-
-        if(GET.equals(method)) {
-            try{
-                String plain = "";
-                String paramStr = "";
-                if(apiUrl.contains("?")) {
-                    plain = apiUrl.substring(0, apiUrl.indexOf("?"));
-                    paramStr = apiUrl.substring(apiUrl.indexOf("?"), apiUrl.length());
-                } else {
-                    plain = apiUrl;
-                }
-
-                if(!data.isEmpty()) {
-                    Iterator<String> iter = data.keySet().iterator();
-                    int i = 0;
-                    while(iter.hasNext()) {
-                        if(i == 0) paramStr = "?";
-                        else paramStr = paramStr + "&";
-                        String k = iter.next();
-                        String v = String.valueOf(data.get(k));
-                        paramStr = paramStr + k + "=" + v;
-                        i++;
-                    }
-                }
-
-                if(paramStr.length() > 0) {
-                    apiUrl = plain + paramStr;
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
         URL url = new URL(apiUrl);
+
         HttpURLConnection conn;
         conn = (HttpURLConnection) url.openConnection();
-		conn.setReadTimeout(readTimeout);
-		conn.setConnectTimeout(connectTimeout);
+        conn.setReadTimeout(readTimeout);
+        conn.setConnectTimeout(connectTimeout);
 
         boolean isMultipart = false ;
 
