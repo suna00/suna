@@ -13,6 +13,7 @@
     ],
     "config": {
       "typeId": "mcdLineupInfo",
+      "cacheTime": "60",
       "query": [
         {
           "field": "bradDate",
