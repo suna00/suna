@@ -121,10 +121,35 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
     private void construct(Map<String, Object> data, String typeId, String userId) {
         this.typeId = typeId ;
-        this.owner = userId ;
-        this.modifier = userId ;
-        this.created = new Date() ;
-        this.changed = created ;
+        if(data.containsKey(OWNER)){
+            this.owner = (String) data.get(OWNER);
+        }else{
+            this.owner = userId ;
+        }
+
+        if(data.containsKey(MODIFIER)){
+            this.modifier = (String) data.get(MODIFIER);
+        }else{
+            this.modifier = userId ;
+        }
+        if(data.containsKey(CREATED) && data.get(CREATED) instanceof Long){
+            this.created = new Date((Long) data.get(CREATED)) ;
+            data.remove(CREATED) ;
+        }else{
+            this.created = new Date() ;
+        }
+        if(data.containsKey(CHANGED) && data.get(CHANGED) instanceof Long){
+            this.changed = new Date((Long) data.get(CHANGED)) ;
+            data.remove(CHANGED) ;
+
+        }else{
+            this.changed = new Date() ;
+        }
+
+        data.remove(TYPEID) ;
+        data.remove(OWNER) ;
+        data.remove(MODIFIER) ;
+
 
         properties = new Properties() ;
         if(data.containsKey(ID)) {

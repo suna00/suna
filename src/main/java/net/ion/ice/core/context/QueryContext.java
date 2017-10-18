@@ -6,6 +6,7 @@ import net.ion.ice.core.node.*;
 import net.ion.ice.core.query.*;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.search.query.facet.Facet;
+import org.infinispan.commons.hash.Hash;
 import org.infinispan.query.SearchManager;
 
 import java.util.*;
@@ -559,23 +560,27 @@ public class QueryContext extends ReadContext {
                         throw new ApiException("404", "Not Found Position") ;
                     }
                     queryResult.put("position", this.position) ;
+                    QueryResult node = null ;
                     if(this.position == 1){
-                        queryResult.put("prev", null) ;
-                        queryResult.put("item", list.get(0)) ;
+                        node = (QueryResult) list.get(0);
+                        node.put("prevItem", new HashMap<>()) ;
                         if(list.size() > 1){
-                            queryResult.put("next", list.get(1)) ;
+                            node.put("nextItem", list.get(1)) ;
                         }else{
-                            queryResult.put("next", null) ;
+                            node.put("nextItem", new HashMap<>()) ;
                         }
                     }else{
-                        queryResult.put("prev", list.get(0)) ;
-                        queryResult.put("item", list.get(1)) ;
+                        node = (QueryResult) list.get(1);
+                        node.put("prevItem", list.get(0)) ;
+
                         if(list.size() > 2){
-                            queryResult.put("next", list.get(2)) ;
+                            node.put("nextItem", list.get(2)) ;
                         }else{
-                            queryResult.put("next", null) ;
+                            node.put("nextItem", new HashMap<>()) ;
                         }
                     }
+                    queryResult.put("item", node) ;
+                    this.setResult(node);
                 }
 
                 for(int i=0; i<list.size(); i++){
@@ -590,15 +595,20 @@ public class QueryContext extends ReadContext {
                         }
                     }
                     if(matched == true){
+                        Node node = (Node) item;
                         queryResult.put("position", getStart() + i + 1) ;
                         if(i > 0){
-                            queryResult.put("prev", list.get(i-1)) ;
+                            node.put("prevItem", list.get(i-1)) ;
+                        }else{
+                            node.put("prevItem", new HashMap<>()) ;
                         }
-                        queryResult.put("item", item) ;
                         if((i + 1) < list.size()){
-                            queryResult.put("next", list.get(i+1)) ;
+                            node.put("nextItem", list.get(i+1)) ;
+                        }else{
+                            node.put("nextItem", new HashMap<>()) ;
                         }
-
+                        queryResult.put("item", node) ;
+                        this.setResult(node);
                         break ;
                     }
                 }
@@ -623,23 +633,23 @@ public class QueryContext extends ReadContext {
         }
         if(getFacetTerms() != null && getFacetTerms().size() > 0){
             QueryResult facets = new QueryResult() ;
-                for (FacetTerm facetTerm : getFacetTerms()) {
+            for (FacetTerm facetTerm : getFacetTerms()) {
 //                List<Map<String, Object>> facet = new ArrayList<>() ;
-                    Map<String, Object> facet = new HashMap<>();
-                    for (Facet fc : facetTerm.getFacets()) {
+                Map<String, Object> facet = new HashMap<>();
+                for (Facet fc : facetTerm.getFacets()) {
 //                    Map<String, Object> fcv = new HashMap<>() ;
 //                    fcv.put("value", fc.getValue()) ;
 //                    fcv.put("count", fc.getValue()) ;
-                        if (fc.getValue().contains(",")) {
-                            for (String fck : StringUtils.split(fc.getValue(), ",")) {
-                                facet.put(fck, facet.containsKey(fck) ? (Integer) facet.get(fck) + fc.getCount() : fc.getCount());
-                            }
-                        } else {
-                            facet.put(fc.getValue(), fc.getCount());
+                    if (fc.getValue().contains(",")) {
+                        for (String fck : StringUtils.split(fc.getValue(), ",")) {
+                            facet.put(fck, facet.containsKey(fck) ? (Integer) facet.get(fck) + fc.getCount() : fc.getCount());
                         }
+                    } else {
+                        facet.put(fc.getValue(), fc.getCount());
                     }
-                    facets.put(facetTerm.getName(), facet);
                 }
+                facets.put(facetTerm.getName(), facet);
+            }
             queryResult.put("facets", facets) ;
         }
         queryResult.put(fieldName, list) ;
