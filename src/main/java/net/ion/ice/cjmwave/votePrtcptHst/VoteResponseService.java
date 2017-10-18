@@ -86,7 +86,7 @@ public class VoteResponseService {
         String term = "voteFormlCd_matching={{:voteFormlCd}}&showLoCd_matching={{:showLoCd}}&pstngStDt_below={{:conditionSysdate(progYn,true)}}"
                 + "&pstngFnsDt_above={{:conditionSysdate(progYn,true)}}&pstngFnsDt_under={{:conditionSysdate(progYn,false)}}&showYn_matching=true&evVoteYn_matching=false"
                 + "&voteNm_{{:langCd}}_wildcardShould={{:searchKeyword}}*&voteDesc_{{:langCd}}_wildcardShould={{:searchKeyword}}*"
-                + "&findKywrd_matchingShould={{:searchKeyword}}&voteSeq_NotMatching=800100&sorting={{:sorting}}&page={{:page}}&pageSize={{:pageSize}}&langCd_matching={{:langCd}}";
+                + "&findKywrd_matchingShould={{:searchKeyword}}&voteSeq_NotMatching=800121&sorting={{:sorting}}&page={{:page}}&pageSize={{:pageSize}}&langCd_matching={{:langCd}}";
         try {
             Map<String, Object> data = context.getData();
             if (data.get("pageSize") == null || Integer.parseInt(data.get("pageSize").toString()) <= 0) {
@@ -154,7 +154,7 @@ public class VoteResponseService {
 
         String term = "voteSeq_matching={{:voteSeq}}&pstngStDt_above={{:concatStr(voteYear,0101)}}&pstngStDt_below={{:concatStr(voteYear,1231)}}"
                 + "&showLoCd_matching={{:showLoCd}}&voteFormlCd_matching={{:voteFormlCd}}&showYn_matching=true&evVoteYn_matching=false"
-                + "&voteSeq_NotMatching=800100&sorting=voteSeq desc&limit=1";
+                + "&voteSeq_NotMatching=800121&sorting=voteSeq desc&limit=1";
 
         Map<String, Object> data = context.getData();
 
@@ -254,7 +254,7 @@ public class VoteResponseService {
 
         String term = "voteFormlCd_matching=2&showLoCd_matching=4&showYn_matching=true&evVoteYn_matching=false"
                 + "&bradTelcsDt_above={{:concatStr(bradTelcsDt,000000)}}&bradTelcsDt_below={{:concatStr(bradTelcsDt,235959)}}&"
-                + "&voteSeq_NotMatching=800100&sorting=voteSeq desc&limit=1";
+                + "&voteSeq_NotMatching=800121&sorting=voteSeq desc&limit=1";
         try {
             Map<String, Object> data = context.getData();
             if (data.get("pageSize") == null || Integer.parseInt(data.get("pageSize").toString()) <= 0) {
