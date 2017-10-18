@@ -590,19 +590,7 @@
     ],
     "config": {
       "typeId": "sersVotePrtcptHst",
-      "event": "sersVoting",
-      "response": {
-        "sersVoteSeq": "",
-        "userVoteCnt": {
-          "value": "10"
-        },
-        "userPvCnt": {
-          "value": "1000"
-        },
-        "ipAdrVoteCnt": {
-          "value": "10000"
-        }
-      }
+      "event": "sersVoting"
     }
   },
   {

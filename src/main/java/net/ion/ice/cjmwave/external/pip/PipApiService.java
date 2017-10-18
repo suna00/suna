@@ -161,6 +161,7 @@ public class PipApiService {
                 transformed.put("modifyDate", parse14(modifyDateStr));
 
                 transformed.put("contentImgUrl", data.get("contentimg"));
+                transformed.put("contentImgPip", data.get("contentimg"));
 
                 transformed.put("playTime", data.get("playtime"));
                 transformed.put("targetAge", data.get("targetage"));
