@@ -1,0 +1,23 @@
+[
+  {
+    "typeId": "scheduleTask",
+    "id": "pipPartial",
+    "name": "PIP PARTIAL",
+    "type": "cron",
+    "Description" : "72 시간 기준 PIP 배치",
+    "config": "0 0 */72 * * *",
+    "enable": false,
+    "actionType": "service",
+    "actionBody": "scheduledPipService.execute"
+  }, {
+    "typeId": "scheduleTask",
+    "id": "mnetPartial",
+    "name": "MNET Partial Batch",
+    "type": "cron",
+    "Description" : "이틀마다 mnet 증분 배치",
+    "config": "0 0 */48 * * *",
+    "enable": false,
+    "actionType": "service",
+    "actionBody": "scheduledMnetService.executeAuto"
+  }
+]
