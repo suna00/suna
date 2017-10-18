@@ -6532,5 +6532,68 @@
     "description": "",
     "sortOrder": "3",
     "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "couponDistributeTargetType",
+    "upperCode": "root",
+    "name": "쿠폰 발송 대상 타입",
+    "description": "",
+    "sortOrder": "119",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "group",
+    "upperCode": "couponDistributeTargetType",
+    "name": "그룹발송",
+    "description": "",
+    "sortOrder": "10",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "search",
+    "upperCode": "couponDistributeTargetType",
+    "name": "검색발송",
+    "description": "",
+    "sortOrder": "20",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "excel",
+    "upperCode": "couponDistributeTargetType",
+    "name": "엑셀업로드발송",
+    "description": "",
+    "sortOrder": "30",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "couponDistributeTarget",
+    "upperCode": "root",
+    "name": "쿠폰 발송 대상",
+    "description": "",
+    "sortOrder": "120",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "companyMember",
+    "upperCode": "couponDistributeTarget",
+    "name": "기업회원전체",
+    "description": "",
+    "sortOrder": "10",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "universityMember",
+    "upperCode": "couponDistributeTarget",
+    "name": "대학회원전체",
+    "description": "",
+    "sortOrder": "20",
+    "commonCodeStatus": "y"
   }
 ]

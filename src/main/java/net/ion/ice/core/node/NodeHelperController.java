@@ -1,6 +1,8 @@
 package net.ion.ice.core.node;
 
 
+import net.ion.ice.core.context.QueryContext;
+import net.ion.ice.core.infinispan.InfinispanRepositoryService;
 import net.ion.ice.core.response.JsonResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +22,11 @@ public class NodeHelperController {
     @Autowired
     private NodeHelperService nodeHelperService ;
 
-    @RequestMapping(value = "/node/helper/reloadSchema.json", method = RequestMethod.GET)
+    @Autowired
+    private InfinispanRepositoryService infinispanRepositoryService ;
+
+
+    @RequestMapping(value = "/helper/reloadSchema.json", method = RequestMethod.GET)
     @ResponseBody
     public Object saveJson(HttpServletRequest request, @RequestParam String filePath)  {
         try {
@@ -32,5 +38,30 @@ public class NodeHelperController {
 
         }
         return JsonResponse.create() ;
+    }
+
+    @RequestMapping(value = "/helper/read")
+    @ResponseBody
+    public Object readNode(HttpServletRequest request, @RequestParam String typeId, @RequestParam String id)  {
+        try {
+            logger.info("node read : {}, {}", typeId, id);
+            return infinispanRepositoryService.read(typeId, id).toMap();
+        }catch(Exception e){
+            logger.error(e.getMessage(), e);
+            return JsonResponse.error(e) ;
+        }
+    }
+
+    @RequestMapping(value = "/helper/list")
+    @ResponseBody
+    public Object listNode(HttpServletRequest request, @RequestParam String typeId, @RequestParam String query)  {
+        try {
+            logger.info("node list : {}, {}", typeId, query);
+            QueryContext queryContext = QueryContext.createQueryContextFromText(query, NodeUtils.getNodeType(typeId), null) ;
+            return infinispanRepositoryService.getSyncQueryList(typeId, queryContext);
+        }catch(Exception e){
+            logger.error(e.getMessage(), e);
+            return JsonResponse.error(e) ;
+        }
     }
 }

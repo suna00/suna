@@ -146,7 +146,7 @@ public class ExecuteContext extends ReadContext{
             return ;
         }
         try {
-            existNode = NodeUtils.getNode(nodeType.getTypeId(), getId());
+            existNode = NodeUtils.getNode(nodeType, getId());
         }catch(Exception e){
         }
         exist = existNode != null ;
@@ -273,7 +273,7 @@ public class ExecuteContext extends ReadContext{
 
         for(String key : data.keySet()){
             Object value = data.get(key) ;
-            if(value instanceof List && (this.nodeType.getPropertyType(key) != null && this.nodeType.getPropertyType(key).isList()) && NodeUtils.getNodeType(key) != null){
+            if(value instanceof List && !key.equals("code") && ((this.nodeType.getPropertyType(key) != null && this.nodeType.getPropertyType(key).isList()) || NodeUtils.getNodeType(key) != null)){
                 for(Map<String, Object> subData : (List<Map<String, Object>>)value){
                     Map<String, Object> _data = new HashMap<>() ;
 //                    _data.putAll(data);
@@ -450,7 +450,7 @@ public class ExecuteContext extends ReadContext{
             return node ;
         }else if(StringUtils.isNotEmpty(id)){
             try {
-                return NodeUtils.getNode(nodeType.getTypeId(), id);
+                return NodeUtils.getNode(nodeType, id);
             }catch(Exception e){
                 return new HashMap<String, Object>() ;
             }
@@ -478,5 +478,6 @@ public class ExecuteContext extends ReadContext{
     public boolean isExist(){
         return  exist ;
     }
+
 
 }

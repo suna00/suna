@@ -115,6 +115,11 @@ public class InfinispanRepositoryService {
         nodeCache.remove(node.getId().toString());
     }
 
+    public void deleteNode(String typeId, String id) {
+        Cache<String, Node> nodeCache = getNodeCache(typeId);
+        nodeCache.remove(id);
+    }
+
     private List<Object> executeQuery(String typeId, QueryContext queryContext) {
         Cache<String, Node> cache = getNodeCache(typeId);
 
@@ -209,6 +214,17 @@ public class InfinispanRepositoryService {
             resultList.add(node);
         }
 
+        return resultList;
+    }
+
+    public List<Map<String, Object>> getSyncQueryList(String typeId, QueryContext queryContext) {
+        List<Object> list = executeQuery(typeId, queryContext);
+
+        List<Map<String, Object>> resultList = new ArrayList<>();
+        for (Object item : list) {
+            Node node = (Node) item;
+            resultList.add(node.toMap()) ;
+        }
         return resultList;
     }
 

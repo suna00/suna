@@ -214,6 +214,7 @@
     ],
     "config" : {
       "typeId": "testCategory",
+      "cacheTime": 30,
       "query" : [
         {"field" : "categoryType", "method" : "matching", "value" : "{{:categoryType}}" },
         {"includeReferenced" : false}

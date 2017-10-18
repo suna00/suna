@@ -9,7 +9,7 @@
     "order": "10",
     "icon": "fa-dashboard",
     "active": "true",
-    "index": "true",
+    "index": "false",
     "pages": [],
     "customPages": []
   },
@@ -24,7 +24,7 @@
     "order": "10",
     "icon": "fa-list",
     "active": "true",
-    "index": "false",
+    "index": "true",
     "pages": [],
     "customPages": [
       { "pageName": "목록", "pageUrl": "ytn/product/List" }
