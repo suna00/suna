@@ -20,16 +20,6 @@ hooks:
 
 permissions:
   - object: /home/ion/api
-#    pattern: **
-#    except: exception-specification
     owner: ion
     group: ion
     mode: 755
-#    acls:
-#      - acls-specification
-#    context:
-#      user: user-specification
-#      type: type-specification
-#      range: range-specification
-#    type:
-#      - object-type
