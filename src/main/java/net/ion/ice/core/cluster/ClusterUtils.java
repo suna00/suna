@@ -109,6 +109,7 @@ public class ClusterUtils {
             Map<String, Object> param = new HashMap<>();
             param.put("typeId", typeId) ;
             param.put("id", id) ;
+            logger.info("CALL NODE : {} - {}", url, param);
 
             String resultStr = ApiUtils.callApiMethod(url, param, 5000, 20000, ApiUtils.POST) ;
             Map<String, Object> result = JsonUtils.parsingJsonToMap(resultStr) ;

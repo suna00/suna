@@ -2,6 +2,7 @@ package net.ion.ice.scheduling;
 
 import com.hazelcast.core.HazelcastInstance;
 import net.ion.ice.core.cluster.ClusterConfiguration;
+import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import org.slf4j.Logger;
@@ -25,7 +26,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 
 @Component("schedulingService")
-public class SchedulingService implements InitializingBean {
+public class SchedulingService implements InitializingBean{
     public static final String DEFAULT_TASK_SCHEDULER_BEAN_NAME = "taskScheduler";
 
     private Logger logger = LoggerFactory.getLogger(getClass());
@@ -40,66 +41,68 @@ public class SchedulingService implements InitializingBean {
     private BeanFactory beanFactory;
 
     @Autowired
-    private ClusterConfiguration clusterConfiguration;
+    ClusterConfiguration clusterConfiguration;
 
-    private HazelcastInstance hazelcastInstance;
 
     private final ScheduledTaskRegistrar registrar = new ScheduledTaskRegistrar();
 
-    private final Map<Node, ScheduledTask> scheduledTasks =new ConcurrentHashMap<>();
+    private final Map<String, ScheduledTask> scheduledTasks =new ConcurrentHashMap<>();
 
     @PostConstruct
     public void initSchedule(){
         if (this.scheduler != null) {
             this.registrar.setScheduler(this.scheduler);
-            logger.info(String.valueOf(this.scheduler));
-        }
-
-        try{
-            hazelcastInstance = clusterConfiguration.getHazelcast();
-        } catch (Exception e) {
-            logger.error("Hazelcast Locking is disabled, since :: ", e);
+            logger.info(this.scheduler.toString());
         }
     }
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        try{
-            List<Node> scheduleNodes = nodeService.getNodeList("scheduleTask", "enable_matching=true") ;
-            logger.info("Schedule Register : " + scheduleNodes);
-            for(Node scheduleNode : scheduleNodes){
-                makeSchedule(scheduleNode) ;
-            }
-
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
+        List<Node> scheduleNodes = nodeService.getNodeList("scheduleTask", "enable_matching=true") ;
+        logger.info("Schedule Register : " + scheduleNodes);
+        for(Node scheduleNode : scheduleNodes){
+            makeSchedule(scheduleNode) ;
         }
 
     }
 
-    private void makeSchedule(Node scheduleNode) {
+    public void save(ExecuteContext context){
+        Node scheduleNode = context.getNode() ;
+        if(!scheduleNode.getBooleanValue("enable") && scheduledTasks.containsKey(scheduleNode.getId())){
+            scheduledTasks.get(scheduleNode.getId()).cancel();
+        }else{
+            makeSchedule(scheduleNode);
+        }
+    }
 
+
+    private void makeSchedule(Node scheduleNode) {
         // Determine initial delay
         long initialDelay = 10000;
 
         String scheduleType = scheduleNode.getStringValue("type") ;
         String scheduleConfig = scheduleNode.getStringValue("config") ;
 
-        ScheduleNodeRunner runnable = new ScheduleNodeRunner(scheduleNode, hazelcastInstance) ;
+        if(scheduledTasks.containsKey(scheduleNode.getId())){
+            try {
+                scheduledTasks.get(scheduleNode.getId()).cancel();
+            }catch(Exception e){}
+        }
+        ScheduleNodeRunner runnable = new ScheduleNodeRunner(scheduleNode, clusterConfiguration.getHazelcast()) ;
 
         switch (scheduleType){
             case "cron":{
-                scheduledTasks.put(scheduleNode, this.registrar.scheduleCronTask(new CronTask(runnable, new CronTrigger(scheduleConfig))));
+                scheduledTasks.put(scheduleNode.getId(), this.registrar.scheduleCronTask(new CronTask(runnable, new CronTrigger(scheduleConfig))));
                 break ;
             }
             case "delay":{
                 long fixedDelay = Long.parseLong(scheduleConfig);
-                scheduledTasks.put(scheduleNode, this.registrar.scheduleFixedDelayTask(new IntervalTask(runnable, fixedDelay, initialDelay)));
+                scheduledTasks.put(scheduleNode.getId(), this.registrar.scheduleFixedDelayTask(new IntervalTask(runnable, fixedDelay, initialDelay)));
                 break ;
             }
             case "rate":{
                 long fixedRate = Long.parseLong(scheduleConfig);
-                scheduledTasks.put(scheduleNode, this.registrar.scheduleFixedRateTask(new IntervalTask(runnable, fixedRate, initialDelay)));
+                scheduledTasks.put(scheduleNode.getId(), this.registrar.scheduleFixedRateTask(new IntervalTask(runnable, fixedRate, initialDelay)));
                 break ;
             }
         }
