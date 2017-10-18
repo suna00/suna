@@ -166,7 +166,7 @@ public class VoteDayCntryService {
                             voteBasDayCnt = updateVoteBasDay(addNum, now, voteSeq, voteDate);
                             logger.info("===============> updateVoteBasDay :: " + voteBasDayCnt);
                         }else{
-                            voteBasDayCnt = insertVoteBasDay(voteSeq, voteDate, 1,"system", now);
+                            voteBasDayCnt = insertVoteBasDay(voteSeq, voteDate, addNum,"system", now);
                             logger.info("===============> insertVoteBasDay :: " + voteBasDayCnt);
                         }
                     }
