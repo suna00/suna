@@ -302,13 +302,23 @@ public class MethodHelper {
                 }
             }
             case "fileName":{
-                if(methodParams == null || methodParams.length < 2) return "";
+                if(methodParams == null || methodParams.length < 4) return "";
                 if(value == null || StringUtils.isEmpty(value.toString())) return "" ;
+                String snsTypeCd = "";
+                if(data.containsKey(methodParams[0])){
+                    snsTypeCd = data.get(methodParams[0]).toString();
+                }
+                if(StringUtils.contains(snsTypeCd,"snsTypeCd>")){
+                    snsTypeCd = StringUtils.replace(snsTypeCd,"snsTypeCd>","");
+                }
+                String snsKey = "";
+                if(data.containsKey(methodParams[1])){
+                    snsKey = data.get(methodParams[1]).toString();
+                }
+                String typeId = methodParams[2] ;
+                String pid = methodParams[3] ;
 
-                String typeId = methodParams[1] ;
-                String pid = methodParams[2] ;
-
-                Node node = NodeUtils.getNode(typeId, (String) value) ;
+                Node node = NodeUtils.getNode(typeId, snsTypeCd+">"+snsKey) ;
                 FileValue fileValue = (FileValue) node.get(pid);
                 if(fileValue != null){
                     return fileValue.getFileName() ;

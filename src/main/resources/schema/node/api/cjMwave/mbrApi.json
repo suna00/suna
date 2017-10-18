@@ -188,7 +188,7 @@
         "response": {
           "_all_": "",
           "imgFileName": {
-            "value": "{{:getFileNm(imgUrl)}}"
+            "value": "{{:fileName(snsTypeCd,snsKey,mbrInfo,imgUrl)}}"
           }
         }
       },
