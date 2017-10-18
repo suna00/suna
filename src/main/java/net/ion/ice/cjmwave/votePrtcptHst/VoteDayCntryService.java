@@ -151,8 +151,11 @@ public class VoteDayCntryService {
 
                 //해당 voteSeq_voteHstByMbr 테이블에서 리스트 조회
                 List<Map<String, Object>> voteMbrList =
-                        jdbcTemplate.queryForList("SELECT seq, voteDate, mbrId FROM " + tableNm + " WHERE voteDate=? AND seq>? ORDER BY seq LIMIT ?"
+                        jdbcTemplate.queryForList("SELECT seq, voteDate, mbrId FROM " + tableNm + " WHERE seq>? ORDER BY seq LIMIT ?"
                                 , voteDay, lastSeq, limitCnt);
+                //날짜 조건은 없어도 되지 않을까요????
+//                        jdbcTemplate.queryForList("SELECT seq, voteDate, mbrId FROM " + tableNm + " WHERE voteDate=? AND seq>? ORDER BY seq LIMIT ?"
+//                                , voteDay, lastSeq, limitCnt);
                 //logger.info("===============> voteMbrList :: " + voteMbrList);
 
                 if(voteMbrList != null && voteMbrList.size() > 0){
