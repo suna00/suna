@@ -53,7 +53,7 @@ public class VoteItemStatsHstByMbrTask {
             logger.info("vote item hstseq - {} - {} ", voteBasInfo.getId(), startHstSeq);
 
             List<Map<String,Object>> voteItemHstInfoList
-                    = selectVoteItemHstInfoList(voteBasInfo.getId(), startHstSeq, SELECT_LIST_COUNT + startHstSeq, DateFormatUtils.format(now, "yyyyMMdd"));
+                    = selectVoteItemHstInfoList(voteBasInfo.getId(), startHstSeq, SELECT_LIST_COUNT + startHstSeq, DateFormatUtils.format(new Date(), "yyyyMMdd"));
 
             logger.info("vote item infolist - {} - {} ", voteBasInfo.getId(), voteItemHstInfoList.size());
 
