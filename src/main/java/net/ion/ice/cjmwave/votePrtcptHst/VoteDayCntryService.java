@@ -123,7 +123,7 @@ public class VoteDayCntryService {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
         }
 
-        Integer limitCnt = 2; //test용 리밋수 스케쥴에서 몇개씩 돌릴지 안정해짐~
+        Integer limitCnt = 1000; //test용 리밋수 스케쥴에서 몇개씩 돌릴지 안정해짐~
 
         Date now = new Date();
         //String voteDay = DateFormatUtils.format(now, "yyyyMMdd");
@@ -148,6 +148,8 @@ public class VoteDayCntryService {
                 if(lastSeqInfo != null){
                     lastSeq = Integer.parseInt(lastSeqInfo.get("seq").toString());
                 }
+                logger.info("===============> voteSeq별 라스트 시퀀스 쌓는 테이블 조회결과 :: lastSeqInfo" + lastSeqInfo);
+                logger.info("===============> voteSeq별 라스트 시퀀스 쌓는 테이블 조회결과 :: lastSeq" + lastSeq);
 
                 //해당 voteSeq_voteHstByMbr 테이블에서 리스트 조회
                 List<Map<String, Object>> voteMbrList =
@@ -162,6 +164,9 @@ public class VoteDayCntryService {
                         Map<String, Object> mapData = voteMbrList.get(i);
                         String mbrId = mapData.get("mbrId").toString();
                         String voteDate = mapData.get("voteDate").toString();
+                        Integer seq = Integer.parseInt(mapData.get("seq").toString());
+
+                        logger.info("===============> limit으로 짜른 이력 리스트 for문 seq :: " + seq);
 
                         //1. voteSeq&일자 테이블 insert / update
                         Integer voteBasDayCnt = 0;
@@ -206,15 +211,14 @@ public class VoteDayCntryService {
                         //돌고나서 제일 마지막~일때 라스트 시퀀스 저장 혹은 갱신
                         if(i == voteMbrList.size()-1){
                             //해당 _voteHstByMbr 테이블에 마지막 seq를 저장
-                            Integer lastListSeq = Integer.parseInt(mapData.get("seq").toString());
-                            logger.info("===============> 마지막 시퀀스 갱신 시작 :: lastListSeq" + lastListSeq);
+                            logger.info("===============> 마지막 시퀀스 갱신 시작 :: lastListSeq" + seq);
                             Integer dayLstSeqCnt = 0;
                             if(lastSeqInfo == null){
-                                dayLstSeqCnt = insertVoteBasByLastSeq(lastListSeq, voteSeq);
-                                logger.info("===============> insertVoteBasByLastSeq :: voteSeq ? " + voteSeq + " :: lastListSeq ? " + lastListSeq);
+                                dayLstSeqCnt = insertVoteBasByLastSeq(seq, voteSeq);
+                                logger.info("===============> insertVoteBasByLastSeq :: voteSeq ? " + voteSeq + " :: lastListSeq ? " + seq);
                             }else{
-                                dayLstSeqCnt = updateVoteBasByLastSeq(lastListSeq, voteSeq);
-                                logger.info("===============> updateVoteBasByLastSeq :: voteSeq ? " + voteSeq + " :: lastListSeq ? " + lastListSeq);
+                                dayLstSeqCnt = updateVoteBasByLastSeq(seq, voteSeq);
+                                logger.info("===============> updateVoteBasByLastSeq :: voteSeq ? " + voteSeq + " :: lastListSeq ? " + seq);
                             }
                         }
                     }
