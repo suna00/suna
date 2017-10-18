@@ -57,7 +57,7 @@ public class NodeUtils {
             return getDataNode(nodeType, id);
         }else {
             if (getNodeService() == null) return null;
-            return nodeService.getNode(nodeType.getTypeId(), id);
+            return nodeService.getNode(nodeType, id);
         }
     }
 
@@ -90,6 +90,11 @@ public class NodeUtils {
 
     public static List<Node> getNodeList(String typeId, String searchText) {
         return getNodeService().getNodeList(typeId, searchText);
+    }
+
+    public static List<Node> getQueryList(String typeId, String searchText){
+        QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, getNodeType(typeId), null) ;
+        return queryContext.getQueryList() ;
     }
 
     //노드 타입별 비교 및 노드 별 비교 로직 추가 필요

@@ -211,7 +211,9 @@ public class NodeType implements Serializable{
 	}
 
 	public String getClusterGroup() {
-		if(StringUtils.isEmpty((String) nodeTypeNode.get(CLUSTER_GROUP))){
+		String nodeClusterGroup = String.valueOf(nodeTypeNode.get(CLUSTER_GROUP)).trim();
+		if("null".equals(nodeClusterGroup) || "".equals(nodeClusterGroup)){
+//		if( StringUtils.isEmpty((String) nodeTypeNode.get(CLUSTER_GROUP))){
 			return "cms" ;
 		}
 		return (String) nodeTypeNode.get(CLUSTER_GROUP) ;

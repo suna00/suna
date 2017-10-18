@@ -40,6 +40,7 @@ public class VideItgInfoService {
             saveData.put("hitNum", node.get("hitNum"));
             saveData.put("risingHitNum", node.get("risingHitNum"));
             saveData.put("hotHitNum", node.get("hotHitNum"));
+            saveData.put("mkeDay", node.get("created"));
 
             logger.info("videItgInfoMusicVideoSave!!! : " + saveData);
 
@@ -72,6 +73,7 @@ public class VideItgInfoService {
             saveData.put("hitNum", node.get("hitNum"));
             saveData.put("risingHitNum", node.get("risingHitNum"));
             saveData.put("hotHitNum", node.get("hotHitNum"));
+            saveData.put("mkeDay", node.get("mkeDay"));
 
             logger.info("videItgInfo pgm save : " + saveData);
             nodeService.executeNode(saveData, "videItgInfo", "save");

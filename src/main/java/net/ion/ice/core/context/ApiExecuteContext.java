@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class ApiExecuteContext extends ExecuteContext{
+public class ApiExecuteContext extends ExecuteContext implements CacheableContext{
     protected Map<String, Object> config  ;
 
 
@@ -23,6 +23,11 @@ public class ApiExecuteContext extends ExecuteContext{
         if(this.ifTest != null && !(this.ifTest.equalsIgnoreCase("true"))){
             return new QueryResult().setResult("0").setResultMessage("None Executed") ;
         }
+        if(cacheable != null && cacheable){
+            String cacheKey = makeCacheKey() ;
+            return ContextUtils.makeCacheResult(cacheKey, this) ;
+        }
+
         if(this.remote != null && this.remote){
             Map<String, Object> queryResult = ClusterUtils.callExecute(this) ;
             if(queryResult.containsKey("item")) {
@@ -39,30 +44,25 @@ public class ApiExecuteContext extends ExecuteContext{
             }
             return new QueryResult(queryResult) ;
         }else {
-            EventService eventService = ApplicationContextManager.getBean(EventService.class);
-            eventService.execute(this);
-
-            if (subExecuteContexts != null) {
-                for (ExecuteContext subExecuteContext : subExecuteContexts) {
-                    eventService.execute(subExecuteContext);
-                }
-            }
-            return makeResult() ;
+            return makeCacheResult();
         }
     }
 
-
-    public static ApiExecuteContext makeContextFromConfig(Map<String, Object> config, Map<String, Object> data, HttpServletRequest httpRequest, HttpServletResponse httpResponse) {
+    public String makeCacheKey(){
+        String keySrc = httpRequest.getRequestURI() + "?" + httpRequest.getParameterMap().toString() ;
+        return keySrc ;
+    }
+    public static ApiExecuteContext makeContextFromConfig(Map<String, Object> config, Map<String, Object> data) {
         ApiExecuteContext ctx = new ApiExecuteContext();
-        ctx.httpRequest = httpRequest;
-        ctx.httpResponse = httpResponse ;
-
 
         NodeType nodeType = NodeUtils.getNodeType((String) ContextUtils.getValue(config.get("typeId"), data));
         ctx.setNodeType(nodeType);
 
         ctx.event = (String) ContextUtils.getValue(config.get("event"), data);
         ctx.config = config ;
+
+        checkCacheable(config, data, ctx) ;
+
 
         if(config.containsKey("if")){
             ctx.ifTest =  ContextUtils.getValue(config.get("if"), data).toString();
@@ -95,4 +95,32 @@ public class ApiExecuteContext extends ExecuteContext{
     }
 
 
+    public static ApiExecuteContext makeContextFromConfig(Map<String, Object> config, Map<String, Object> data, HttpServletRequest httpRequest, HttpServletResponse httpResponse) {
+        ApiExecuteContext ctx = makeContextFromConfig(config, data);
+        ctx.httpRequest = httpRequest;
+        ctx.httpResponse = httpResponse ;
+
+        return ctx ;
+    }
+    public Map<String, Object> getConfig() {
+        return config;
+    }
+
+    @Override
+    public String getCacheTime() {
+        return cacheTime;
+    }
+
+    @Override
+    public QueryResult makeCacheResult() {
+        EventService eventService = ApplicationContextManager.getBean(EventService.class);
+        eventService.execute(this);
+
+        if (subExecuteContexts != null) {
+            for (ExecuteContext subExecuteContext : subExecuteContexts) {
+                eventService.execute(subExecuteContext);
+            }
+        }
+        return makeResult() ;
+    }
 }

@@ -230,9 +230,9 @@ public class MbrInfoService {
             throw new ApiException("400", "Required Parameter : infoOttpAgreeYn");
         }
         String infoOttpAgreeYn = data.get("infoOttpAgreeYn").toString();
-        if(!"true".equals(infoOttpAgreeYn)){
+        /*if(!"true".equals(infoOttpAgreeYn)){
             throw new ApiException("413", errMsgUtil.getErrMsg(context,"413"));
-        }
+        }*/
 
         Node anode = null;
         try {

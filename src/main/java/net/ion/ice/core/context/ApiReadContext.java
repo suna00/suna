@@ -30,7 +30,7 @@ public class ApiReadContext extends ReadContext implements CacheableContext {
 
 
     public String makeCacheKey() {
-        String keySrc = httpRequest.getRequestURI() + "?" + httpRequest.getQueryString();
+        String keySrc = httpRequest.getRequestURI() + "?" + httpRequest.getParameterMap().toString() ;
         return keySrc;
     }
 
@@ -40,6 +40,8 @@ public class ApiReadContext extends ReadContext implements CacheableContext {
         readContext.nodeType = NodeUtils.getNodeType((String) ContextUtils.getValue(config.get("typeId"), data));
         readContext.config = config;
         readContext.data = data;
+        checkCacheable(config, data, readContext) ;
+
         if(!ClusterUtils.getClusterService().checkClusterGroup(readContext.nodeType)){
             readContext.remote = true ;
             return readContext ;
@@ -65,7 +67,7 @@ public class ApiReadContext extends ReadContext implements CacheableContext {
     }
 
     public Node getNode() {
-        Node node = NodeUtils.getNode(nodeType.getTypeId(), id);
+        Node node = NodeUtils.getNode(nodeType, id);
         this.result = node;
         return node;
     }

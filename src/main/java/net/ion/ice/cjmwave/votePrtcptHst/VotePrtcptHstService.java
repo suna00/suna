@@ -368,9 +368,9 @@ public class VotePrtcptHstService {
         }
 
         // 이벤트 투표 생성
-        Integer dayEventVoteRstrtnCnt = Integer.parseInt(seriesVoteBasInfo.getStringValue("dayEventVoteRstrtnCnt"));
-        Integer contnuEventVoteRstrtnCnt = Integer.parseInt(seriesVoteBasInfo.getStringValue("contnuEventVoteRstrtnCnt"));
-        if (dayEventVoteRstrtnCnt>0 && contnuEventVoteRstrtnCnt>0) {
+        Integer dayEventVoteRstrtnCnt = seriesVoteBasInfo.getIntValue("dayEventVoteRstrtnCnt");
+        Integer contnuEventVoteRstrtnCnt = seriesVoteBasInfo.getIntValue("contnuEventVoteRstrtnCnt");
+        if (dayEventVoteRstrtnCnt>0) {
             addEvtVoteNum(now, mbrId, dayEventVoteRstrtnCnt, contnuEventVoteRstrtnCnt);
         }
 
@@ -788,7 +788,7 @@ public class VotePrtcptHstService {
         // 이벤트 투표 생성
         Integer dayEventVoteRstrtnCnt = seriesVoteBasInfo.getIntValue("dayEventVoteRstrtnCnt");
         Integer contnuEventVoteRstrtnCnt = seriesVoteBasInfo.getIntValue("contnuEventVoteRstrtnCnt");
-        if (dayEventVoteRstrtnCnt>0 && contnuEventVoteRstrtnCnt>0) {
+        if (dayEventVoteRstrtnCnt>0) {
             addEvtVoteNum(now, mbrId, dayEventVoteRstrtnCnt, contnuEventVoteRstrtnCnt);
         }
 
