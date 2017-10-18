@@ -77,11 +77,11 @@ public class NodeHelperService  {
         Date nodeTypeLast = (Date) nodeService.getSortedValue(nodeType.getTypeId(), "changed", SortField.Type.LONG, true );
         if(nodeTypeLast == null){
             logger.info(nodeType.getTypeId() + " ALL Sync : ");
-            syncNodeList(nodeType, "limit=100&sorting=changed desc");
+            syncNodeList(nodeType, "limit=10&sorting=changed desc");
         }else {
             String lastChanged = DateFormatUtils.format(nodeTypeLast, "yyyyMMddHHmmss");
             logger.info(nodeType.getTypeId() + " Last Sync : " + nodeTypeLast);
-            syncNodeList(nodeType, "limit=100&sorting=changed desc&chagned_excess=" + lastChanged);
+            syncNodeList(nodeType, "limit=10&sorting=changed desc&chagned_excess=" + lastChanged);
         }
     }
 
@@ -90,7 +90,6 @@ public class NodeHelperService  {
 
         for(Member cacheServer : cacheServers){
             List<Map<String, Object>> items = ClusterUtils.callNodeList(cacheServer, nodeType.getTypeId(), query)  ;
-
             if(items != null && items.size() > 0){
                 for(Map<String, Object> item : items){
                     Node node = new Node(item) ;
@@ -100,6 +99,7 @@ public class NodeHelperService  {
                         infinispanRepositoryService.cacheNode(node);
                     }
                 }
+                return ;
             }
         }
     }

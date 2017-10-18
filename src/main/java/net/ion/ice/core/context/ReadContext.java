@@ -115,7 +115,7 @@ public class ReadContext implements Context, Serializable {
         if(pids != null) {
             readContext.excludePids = new ArrayList<>();
             for (String pid : StringUtils.split(pids, ',')){
-                readContext.excludePids.add(pid) ;
+                readContext.excludePids.add(pid.trim()) ;
             }
         }
     }
@@ -623,5 +623,9 @@ public class ReadContext implements Context, Serializable {
 
     public List<String> getExcludePids() {
         return excludePids;
+    }
+
+    public void setExcludePids(List<String> excludePids) {
+        this.excludePids = excludePids;
     }
 }

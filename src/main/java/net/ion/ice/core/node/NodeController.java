@@ -14,6 +14,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 
@@ -193,18 +194,19 @@ public class NodeController {
     }
 
 
-    @RequestMapping(value = "/node/query")
+    @RequestMapping(value = "/node/query", method = RequestMethod.POST)
     @ResponseBody
-    public Object queryeRest(WebRequest request) throws IOException {
-        return query(request);
+    public Object queryeRest(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        return query(request, response);
     }
 
-    private Object query(WebRequest request) {
+    private Object query(HttpServletRequest request, HttpServletResponse response) {
         try {
             Map<String, String[]> parameterMap = request.getParameterMap() ;
-            QueryResult queryResult = nodeService.getQueryResult(parameterMap) ;
+            QueryResult queryResult = nodeService.getQueryResult(request, response, parameterMap) ;
             return queryResult ;
         } catch (Exception e) {
+            e.printStackTrace();
             logger.error(e.getMessage(), e);
             if(e.getCause() instanceof ClassCastException){
                 return JsonResponse.error(new Exception("형식이 맞지 않습니다."));
@@ -214,13 +216,13 @@ public class NodeController {
         }
     }
 
-    @RequestMapping(value = "/node/event")
+    @RequestMapping(value = "/node/event", method = RequestMethod.POST)
     @ResponseBody
-    public Object eventRest(HttpServletRequest request) throws IOException {
+    public Object eventRest(HttpServletRequest request, HttpServletResponse response) throws IOException {
         if (request instanceof MultipartHttpServletRequest) {
-            return nodeService.executeResult(request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap());
+            return nodeService.executeResult(request, response, request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap());
         }
-        return nodeService.executeResult(request.getParameterMap(), null);
+        return nodeService.executeResult(request, response, request.getParameterMap(), null);
     }
 
 

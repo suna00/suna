@@ -37,6 +37,7 @@
     ],
     "config": {
       "typeId": "voteBasInfo",
+      "excludePids": "showCntryCdList",
       "query": [
         {
           "field": "voteSeq",

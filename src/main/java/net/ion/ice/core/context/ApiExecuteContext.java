@@ -31,7 +31,7 @@ public class ApiExecuteContext extends ExecuteContext implements CacheableContex
         if(this.remote != null && this.remote){
             Map<String, Object> queryResult = ClusterUtils.callExecute(this) ;
             if(queryResult.containsKey("item")) {
-                this.result = (Map<String, Object>) queryResult.get("item");
+                this.result = queryResult.get("item");
             }else{
                 Map<String, Object> callResult = new LinkedHashMap<>() ;
                 for(String key : queryResult.keySet()){
@@ -71,6 +71,8 @@ public class ApiExecuteContext extends ExecuteContext implements CacheableContex
 
         if(!ClusterUtils.getClusterService().checkClusterGroup(nodeType)){
             ctx.remote = true ;
+            ctx.data = data ;
+
             return ctx ;
         }
 

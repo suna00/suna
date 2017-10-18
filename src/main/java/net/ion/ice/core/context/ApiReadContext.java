@@ -41,9 +41,12 @@ public class ApiReadContext extends ReadContext implements CacheableContext {
         readContext.config = config;
         readContext.data = data;
         checkCacheable(config, data, readContext) ;
+        checkExclude(config, data, readContext); ;
 
         if(!ClusterUtils.getClusterService().checkClusterGroup(readContext.nodeType)){
             readContext.remote = true ;
+            readContext.id = ContextUtils.getValue(config.get("id"), data).toString();
+
             return readContext ;
         }
         for (String key : config.keySet()) {

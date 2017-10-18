@@ -25,7 +25,8 @@
     ],
     "config": {
       "typeId": "banrBasInfo",
-      "cacheTime": "60",
+      "cacheTime": "300",
+      "excludePids": "showCntryCdList",
       "query": [
         {
           "field": "banrSeq",

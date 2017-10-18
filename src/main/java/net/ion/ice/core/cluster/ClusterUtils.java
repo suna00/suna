@@ -45,7 +45,7 @@ public class ClusterUtils {
             if(executeContext.getFileUrlFormat() != null) {
                 executeContext.getData().put(FILE_URL_FORMAT_, JsonUtils.toJsonString(executeContext.getFileUrlFormat()));
             }
-            resultStr = ApiUtils.callApiMethod(url, executeContext.getData(), 5000, 20000, ApiUtils.POST) ;
+            resultStr = ApiUtils.callApiMethod(url, executeContext.getData(), 5000, 30000, ApiUtils.POST) ;
             return JsonUtils.parsingJsonToMap(resultStr) ;
         } catch (IOException e) {
             e.printStackTrace();
@@ -70,7 +70,7 @@ public class ClusterUtils {
                 queryContext.getData().put(FILE_URL_FORMAT_, JsonUtils.toJsonString(queryContext.getFileUrlFormat()));
             }
 
-            resultStr = ApiUtils.callApiMethod(url, queryContext.getData(), 5000, 10000, ApiUtils.POST) ;
+            resultStr = ApiUtils.callApiMethod(url, queryContext.getData(), 5000, 20000, ApiUtils.POST) ;
             return JsonUtils.parsingJsonToMap(resultStr) ;
         } catch (IOException e) {
             logger.error(resultStr);
