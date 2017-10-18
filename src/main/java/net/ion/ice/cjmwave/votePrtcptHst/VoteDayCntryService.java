@@ -265,7 +265,7 @@ public class VoteDayCntryService {
 
     //투표일련번호&투표일자별 :: 투표수 넣는 테이블 조건으로 데이터 있는지 카운트 조회 없을땐 insert 할꺼다
     private Integer getVoteBasDayCount(Integer voteSeq, String voteDate) {
-        String selectQuery = "SELECT count(*) AS CNT FROM voteBasStatsByDay WHERE voteSeq=? AND voteDate=?";
+        String selectQuery = "SELECT count(*) AS CNT FROM voteBasStatsByDay WHERE voteSeq=? AND voteDay=?";
         Map retMap = jdbcTemplate.queryForMap(selectQuery, voteSeq, voteDate);
         return Integer.parseInt(retMap.get("CNT").toString());
     }
