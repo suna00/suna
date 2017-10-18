@@ -21,6 +21,8 @@ public class ApiUtils {
             apiUrl = "http://" + apiUrl;
         URL url = new URL(apiUrl);
 
+        System.out.println("======================= ApiUtils ::  apiUrl " + apiUrl + ", Map Parameter :: " + String.valueOf(data) );
+
         HttpURLConnection conn;
         conn = (HttpURLConnection) url.openConnection();
         conn.setReadTimeout(readTimeout);
