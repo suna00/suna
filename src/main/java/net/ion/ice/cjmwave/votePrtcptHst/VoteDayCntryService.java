@@ -1,5 +1,6 @@
 package net.ion.ice.cjmwave.votePrtcptHst;
 
+import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
@@ -117,7 +118,7 @@ public class VoteDayCntryService {
 
 
     //voteSeq 기준으로 매일의 voteNum을 쌓는다.
-    public void voteBasStatsDayJob() {
+    public void voteBasStatsDayJob(ExecuteContext context) {
 
         if (jdbcTemplate==null) {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
@@ -161,7 +162,7 @@ public class VoteDayCntryService {
                         Integer addNum = Integer.parseInt(dayCntMap.get("addNum").toString());
 
                         //1. voteBasStatsByDay 테이블 insert / update
-                        Integer dayCheckCnt = getVoteBasDayCount(voteSeq);
+                        Integer dayCheckCnt = getVoteBasDayCount(voteSeq, voteDate);
                         if(dayCheckCnt > 0){
                             voteBasDayCnt = updateVoteBasDay(addNum, now, voteSeq, voteDate);
                             logger.info("===============> updateVoteBasDay :: " + voteBasDayCnt);
@@ -181,6 +182,7 @@ public class VoteDayCntryService {
                 if(voteMbrList != null && voteMbrList.size() > 0){
 
                     Integer voteCntryDayCnt = 0;
+                    logger.info("===============> 여길못타나봐11 :: ");
                     for(Map<String, Object> mapData : voteMbrList){
 
                         String mbrId = mapData.get("mbrId").toString();
@@ -210,6 +212,7 @@ public class VoteDayCntryService {
 
 
                     //해당 _voteHstByMbr 테이블에 마지막 seq를 저장
+                    logger.info("===============> 여길못타나봐22 :: ");
                     Integer voteMbrListSize = voteMbrList.size();
                     Integer lastListSeq = Integer.parseInt(voteMbrList.get(voteMbrListSize-1).get("seq").toString());
                     //logger.info("===============> lastListSeq :: " + lastListSeq);
@@ -261,9 +264,9 @@ public class VoteDayCntryService {
 
 
     //투표일련번호&투표일자별 :: 투표수 넣는 테이블 조건으로 데이터 있는지 카운트 조회 없을땐 insert 할꺼다
-    private Integer getVoteBasDayCount(Integer voteSeq) {
-        String selectQuery = "SELECT count(*) AS CNT FROM voteBasStatsByDay WHERE voteSeq=?";
-        Map retMap = jdbcTemplate.queryForMap(selectQuery, voteSeq);
+    private Integer getVoteBasDayCount(Integer voteSeq, String voteDate) {
+        String selectQuery = "SELECT count(*) AS CNT FROM voteBasStatsByDay WHERE voteSeq=? AND voteDate=?";
+        Map retMap = jdbcTemplate.queryForMap(selectQuery, voteSeq, voteDate);
         return Integer.parseInt(retMap.get("CNT").toString());
     }
 
