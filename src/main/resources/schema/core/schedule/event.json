@@ -1,0 +1,20 @@
+[
+  {
+    "typeId" : "eventAction",
+    "id" : "scheduleTask>create>createSchedule",
+    "event": "scheduleTask>create",
+    "action" : "createSchedule",
+    "actionType" : "service",
+    "actionBody" : "schedulingService.save",
+    "order" : 1
+  },
+  {
+    "typeId" : "eventAction",
+    "id" : "scheduleTask>update>updateSchedule",
+    "event": "scheduleTask>update",
+    "action" : "updateSchedule",
+    "actionType" : "service",
+    "actionBody" : "schedulingService.save",
+    "order" : 1
+  }
+]

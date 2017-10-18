@@ -1,6 +1,7 @@
 package net.ion.ice.scheduling;
 
 import com.hazelcast.core.HazelcastInstance;
+import com.hazelcast.core.ILock;
 import net.ion.ice.core.event.Action;
 import net.ion.ice.core.node.Node;
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ public class ScheduleNodeRunner implements Runnable{
     private static Logger logger = LoggerFactory.getLogger(ScheduleNodeRunner.class);
 
     private Node scheduleNode ;
+
     HazelcastInstance hazelcastInstance;
 
     public ScheduleNodeRunner(Node scheduleNode, HazelcastInstance hazelcastInstance) {
