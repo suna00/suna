@@ -13,6 +13,7 @@
     ],
     "config": {
       "typeId": "cntryMng",
+      "cacheTime": "60",
       "query": [
         {
           "field": "useYn",
@@ -49,6 +50,7 @@
     ],
     "config": {
       "typeId": "code",
+      "cacheTime": "60",
       "query": [
         {
           "field": "groupCodeId",
@@ -92,6 +94,7 @@
     ],
     "config": {
       "typeId": "contsCtgry",
+      "cacheTime": "60",
       "query": [
         {
           "field": "contsMetaDivCd",
