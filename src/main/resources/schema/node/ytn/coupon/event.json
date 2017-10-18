@@ -46,7 +46,21 @@
     "actionType": "service",
     "actionBody": "couponService.applicableCouponList",
     "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "coupon",
+    "event": "distribute",
+    "noneExecute": true,
+    "eventName": "쿠폰 발급"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "coupon>distribute",
+    "action": "distribute",
+    "actionName": "쿠폰 발급 ACTION ",
+    "actionType": "service",
+    "actionBody": "couponService.distribute",
+    "order": 1
   }
-
-
 ]
