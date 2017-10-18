@@ -154,7 +154,7 @@ public class VoteResponseService {
 
         String term = "voteSeq_matching={{:voteSeq}}&pstngStDt_above={{:concatStr(voteYear,0101)}}&pstngStDt_below={{:concatStr(voteYear,1231)}}"
                 + "&showLoCd_matching={{:showLoCd}}&voteFormlCd_matching={{:voteFormlCd}}&showYn_matching=true&evVoteYn_matching=false"
-                + "&voteSeq_NotMatching=800121&sorting=voteSeq desc&limit=1";
+                + "&sorting=voteSeq desc&limit=1";
 
         Map<String, Object> data = context.getData();
 
