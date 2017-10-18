@@ -64,7 +64,7 @@
     "name": "voteItemStatsHstByMbr Schedule Task",
     "type": "cron",
     "config": "0 */5 * * * *",
-    "enable": false,
+    "enable": true,
     "actionType": "service",
     "actionBody": "voteItemStatsHstByMbrTask.execVoteItemStatsHstByMbr"
   },
@@ -74,7 +74,7 @@
     "name": "voteItemStatsHstByMbr Schedule Task",
     "type": "cron",
     "config": "0 59 23 * * *",
-    "enable": false,
+    "enable": true,
     "actionType": "service",
     "actionBody": "voteItemStatsByMbrTask.execVoteItemStatsBySex"
   },
@@ -84,8 +84,28 @@
     "name": "voteItemStatsHstByMbr Schedule Task",
     "type": "cron",
     "config": "0 59 23 * * *",
-    "enable": false,
+    "enable": true,
     "actionType": "service",
     "actionBody": "voteItemStatsByMbrTask.execVoteItemStatsByCntry"
+  },
+  {
+    "typeId": "scheduleTask",
+    "id": "voteItemStatsHstByWlyTask",
+    "name": "voteItemStatsByWly Schedule Task",
+    "type": "cron",
+    "config": "0 */5 * * * *",
+    "enable": true,
+    "actionType": "service",
+    "actionBody": "voteItemStatsHstByWlyTask.execVoteItemStatsHstByWly"
+  },
+  {
+    "typeId": "scheduleTask",
+    "id": "voteItemStatsByWlyTask",
+    "name": "voteItemStatsByWly Schedule Task",
+    "type": "cron",
+    "config": "0 59 23 * * *",
+    "enable": true,
+    "actionType": "service",
+    "actionBody": "voteItemStatsByWlyTask.execVoteItemStatsByWly"
   }
 ]
