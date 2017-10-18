@@ -1,15 +1,14 @@
 package net.ion.ice.cjmwave.votePrtcptHst;
 
-import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
-import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -118,13 +117,13 @@ public class VoteDayCntryService {
 
 
     //voteSeq 기준으로 매일의 voteNum을 쌓는다.
-    public void voteBasStatsDayJob(ExecuteContext context) {
+    public void voteBasStatsDayJob() {
 
         if (jdbcTemplate==null) {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
         }
 
-        Integer limitCnt = 1000; //test용 리밋수 스케쥴에서 몇개씩 돌릴지 안정해짐~
+        Integer limitCnt = 2; //test용 리밋수 스케쥴에서 몇개씩 돌릴지 안정해짐~
 
         Date now = new Date();
         //String voteDay = DateFormatUtils.format(now, "yyyyMMdd");
