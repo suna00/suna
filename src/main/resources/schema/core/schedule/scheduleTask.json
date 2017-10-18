@@ -15,18 +15,18 @@
     "name": "PIP PARTIAL",
     "type": "cron",
     "config": "0 0 */72 * * *",
-    "enable": false,
+    "enable": true,
     "actionType": "service",
     "actionBody": "scheduledPipService.execute"
   }, {
     "typeId": "scheduleTask",
     "id": "mnetPartial",
     "name": "MNET Partial Batch",
-    "type": "delay",
-    "config": "30000",
-    "enable": false,
+    "type": "cron",
+    "config": "0 0 */24 * * *",
+    "enable": true,
     "actionType": "service",
-    "actionBody": "scheduledMnetService.executeAuto1"
+    "actionBody": "scheduledMnetService.executeAuto"
   },
   {
     "typeId": "scheduleTask",
