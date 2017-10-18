@@ -77,7 +77,8 @@ public class VoteItemStatsTask {
 
             List<String> checkVoteItemSeqList = new ArrayList<>();
             for (Map<String, Object> voteNumInfo : voteNumInfoList) {
-                if(!voteBasInfo.getId().equals(voteNumInfo.get("voteSeq"))){
+                logger.info("vote item exist schedule task - {} - {} {}", voteBasInfo.getId(), voteNumInfo.get("voteSeq"), voteBasInfo.getId().equals(voteNumInfo.get("voteSeq").toString()));
+                if(!voteBasInfo.getId().equals(voteNumInfo.get("voteSeq").toString())){
                     continue;
                 }
                 // Rank Gap - pass
@@ -101,7 +102,6 @@ public class VoteItemStatsTask {
             }
 
             for (Node voteItemInfo : voteItemInfoList) {
-                logger.info("vote item exist schedule task - {} - {} {}", voteBasInfo.getId(), checkVoteItemSeqList.contains(voteItemInfo.get("voteItemSeq").toString()), voteItemInfo.get("voteItemSeq").toString());
                 if(!checkVoteItemSeqList.contains(voteItemInfo.get("voteItemSeq").toString())) {
                     Map<String, Object> tmpVoteItemInfoMap = new ConcurrentHashMap<>();
                     tmpVoteItemInfoMap.put("voteSeq", voteItemInfo.get("voteSeq"));

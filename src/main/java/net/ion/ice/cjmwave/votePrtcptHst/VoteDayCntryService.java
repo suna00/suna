@@ -1,15 +1,14 @@
 package net.ion.ice.cjmwave.votePrtcptHst;
 
-import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
-import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -118,7 +117,7 @@ public class VoteDayCntryService {
 
 
     //voteSeq 기준으로 매일의 voteNum을 쌓는다.
-    public void voteBasStatsDayJob(ExecuteContext context) {
+    public void voteBasStatsDayJob() {
 
         if (jdbcTemplate==null) {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
@@ -149,10 +148,12 @@ public class VoteDayCntryService {
                 if(lastSeqInfo != null){
                     lastSeq = Integer.parseInt(lastSeqInfo.get("seq").toString());
                 }
+                logger.info("===============> voteSeq별 라스트 시퀀스 쌓는 테이블 조회결과 :: lastSeqInfo" + lastSeqInfo);
+                logger.info("===============> voteSeq별 라스트 시퀀스 쌓는 테이블 조회결과 :: lastSeq" + lastSeq);
 
                 //해당 voteSeq_voteHstByMbr 테이블에서 voteDate별 리스트 조회
                 List<Map<String, Object>> voteMbrListDayByCntList =
-                        jdbcTemplate.queryForList("SELECT voteDate, count(voteDate) as addNum FROM " + tableNm + " WHERE seq>? GROUP BY voteDate LIMIT ?"
+                        jdbcTemplate.queryForList("SELECT a.voteDate, count(a.voteDate) as addNum FROM (SELECT seq, voteDate, mbrId FROM " + tableNm +" WHERE seq>? LIMIT ?) a GROUP BY a.voteDate"
                                 , lastSeq, limitCnt);
 
                 if(voteMbrListDayByCntList != null && voteMbrListDayByCntList.size() > 0){
@@ -173,7 +174,6 @@ public class VoteDayCntryService {
                     }
                 }
 
-
                 //해당 voteSeq_voteHstByMbr 테이블에서 리스트 조회
                 List<Map<String, Object>> voteMbrList =
                         jdbcTemplate.queryForList("SELECT seq, voteDate, mbrId FROM " + tableNm + " WHERE seq>? ORDER BY seq LIMIT ?"
@@ -187,6 +187,9 @@ public class VoteDayCntryService {
                         Map<String, Object> mapData = voteMbrList.get(i);
                         String mbrId = mapData.get("mbrId").toString();
                         String voteDate = mapData.get("voteDate").toString();
+                        Integer seq = Integer.parseInt(mapData.get("seq").toString());
+
+                        logger.info("===============> limit으로 짜른 이력 리스트 for문 seq :: " + seq);
 
                         //2. voteSeq&일자&국가별 테이블 insert / update
                         //회원정보의 국가 정보 가져온다 - but 회원정보의 국가코드 필수입력사항 아니므로 혹시몰라서~ cntryCd null아닐때만 테이블 insert하게 체크
@@ -220,15 +223,14 @@ public class VoteDayCntryService {
                         //돌고나서 제일 마지막~일때 라스트 시퀀스 저장 혹은 갱신
                         if(i == voteMbrList.size()-1){
                             //해당 _voteHstByMbr 테이블에 마지막 seq를 저장
-                            Integer lastListSeq = Integer.parseInt(mapData.get("seq").toString());
-                            logger.info("===============> 마지막 시퀀스 갱신 시작 :: lastListSeq" + lastListSeq);
+                            logger.info("===============> 마지막 시퀀스 갱신 시작 :: lastListSeq" + seq);
                             Integer dayLstSeqCnt = 0;
                             if(lastSeqInfo == null){
-                                dayLstSeqCnt = insertVoteBasByLastSeq(lastListSeq, voteSeq);
-                                logger.info("===============> insertVoteBasByLastSeq :: voteSeq ? " + voteSeq + " :: lastListSeq ? " + lastListSeq);
+                                dayLstSeqCnt = insertVoteBasByLastSeq(seq, voteSeq);
+                                logger.info("===============> insertVoteBasByLastSeq :: voteSeq ? " + voteSeq + " :: lastListSeq ? " + seq);
                             }else{
-                                dayLstSeqCnt = updateVoteBasByLastSeq(lastListSeq, voteSeq);
-                                logger.info("===============> updateVoteBasByLastSeq :: voteSeq ? " + voteSeq + " :: lastListSeq ? " + lastListSeq);
+                                dayLstSeqCnt = updateVoteBasByLastSeq(seq, voteSeq);
+                                logger.info("===============> updateVoteBasByLastSeq :: voteSeq ? " + voteSeq + " :: lastListSeq ? " + seq);
                             }
                         }
                     }
@@ -290,7 +292,7 @@ public class VoteDayCntryService {
 
     //투표일련번호&투표일자별 :: 투표수 넣는 테이블 처음 투표수+addNum
     private Integer updateVoteBasDay(Integer addNum, Date created, Integer voteSeq, String voteDate) {
-        String updateQuery = "UPDATE voteBasStatsByDay SET voteNum=voteNum+?, created= ? WHERE voteSeq=? AND voteDay=?";
+        String updateQuery = "UPDATE voteBasStatsByDay SET voteNum=voteNum+addNum, created= ? WHERE voteSeq=? AND voteDay=?";
         Integer cnt = jdbcTemplate.update(updateQuery, addNum, created, voteSeq, voteDate);
         return cnt;
     }

@@ -29,6 +29,7 @@
     ],
     "config": {
       "typeId": "mamaAwardSctnInfo",
+      "cacheTime": "60",
       "query": [
         {
           "field": "awardYear",

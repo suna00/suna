@@ -55,6 +55,7 @@
       },
       "root": {
         "typeId": "compItemInfo",
+        "cacheTime": "60",
         "query": [
           {
             "field": "mainSeq",
@@ -447,6 +448,7 @@
     "config": {
       "root": {
         "typeId": "svcMenuInfo",
+        "cacheTime": "60",
         "query": [
           {
             "field": "svcMenuGroupSeq",

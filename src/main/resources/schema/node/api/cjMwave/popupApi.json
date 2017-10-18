@@ -33,6 +33,7 @@
     ],
     "config": {
       "typeId": "popupInfo",
+      "cacheTime": "60",
       "query": [
         {
           "field": "svcTermlDivCd",
