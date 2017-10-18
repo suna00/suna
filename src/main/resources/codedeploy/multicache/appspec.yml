@@ -20,7 +20,7 @@ hooks:
 
 permissions:
   - object: /home/ion/api/core
-    pattern: **
+#    pattern: **
 #    except: exception-specification
     owner: ion
     group: ion
