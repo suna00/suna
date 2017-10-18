@@ -71,7 +71,7 @@ public class NodeHelperService  {
 
     private void syncNodeType(String typeId) {
         NodeType nodeType = nodeService.getNodeType(typeId) ;
-        if(!clusterService.checkClusterGroup(nodeType)) return  ;
+        if(nodeType.isNode() && !clusterService.checkClusterGroup(nodeType)) return  ;
         Date nodeTypeLast = (Date) nodeService.getSortedValue(nodeType.getTypeId(), "changed", SortField.Type.LONG, true );
         if(nodeTypeLast == null){
             logger.info(nodeType.getTypeId() + " ALL Sync : ");
