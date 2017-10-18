@@ -113,7 +113,7 @@ public class VoteItemStatsByMbrTask {
             logger.info("vote item cntry stat schedule task - {} - {} ", voteBasInfo.getId(), voteBasInfo.getStringValue("voteNm"));
 
             Integer startHstSeq = 0;
-            List<Map<String,Object>> voteItemStatsByCntryList = selectItemStatsByCntryList(voteBasInfo.getId(), DateFormatUtils.format(now, "yyyyMMdd"));
+            List<Map<String,Object>> voteItemStatsByCntryList = selectItemStatsByCntryList(voteBasInfo.getId(), DateFormatUtils.format(new Date(), "yyyyMMdd"));
             List<Map<String,Object>> insertItemStatsByCntryList = new ArrayList<>();
             Integer totalVoteNum = 0;
             for (Map voteItemStatsByCntry : voteItemStatsByCntryList) {
