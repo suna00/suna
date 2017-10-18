@@ -6,6 +6,7 @@ import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.QueryTerm;
 import net.ion.ice.core.query.QueryUtils;
+import net.ion.ice.core.query.ResultField;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -59,6 +60,10 @@ public class ApiQueryContext extends QueryContext implements CacheableContext{
             queryContext.remote = true ;
             if(config.containsKey("if")) {
                 queryContext.ifTest = ContextUtils.getValue(config.get("if"), queryContext.data).toString();
+            }
+
+            if(config.containsKey("resultType")){
+                queryContext.resultType = ResultField.ResultType.valueOf(config.get("resultType").toString().toUpperCase());
             }
             return queryContext ;
         }
