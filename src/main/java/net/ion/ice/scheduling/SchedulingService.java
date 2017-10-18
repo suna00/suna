@@ -77,6 +77,8 @@ public class SchedulingService implements InitializingBean{
 
 
     private void makeSchedule(Node scheduleNode) {
+        if(clusterConfiguration == null) return ;
+        if(!(clusterConfiguration.getMode().equals("all") || clusterConfiguration.getMode().equals("cms"))) return ;
         // Determine initial delay
         long initialDelay = 10000;
 
