@@ -77,8 +77,8 @@ public class VoteItemStatsTask {
 
             List<String> checkVoteItemSeqList = new ArrayList<>();
             for (Map<String, Object> voteNumInfo : voteNumInfoList) {
-                logger.info("vote item exist schedule task - {} - {} {}", voteBasInfo.getId(), voteNumInfo.get("voteSeq"), voteBasInfo.getId().equals(voteNumInfo.get("voteSeq")));
-                if(!voteBasInfo.getId().equals(voteNumInfo.get("voteSeq"))){
+                logger.info("vote item exist schedule task - {} - {} {}", voteBasInfo.getId(), voteNumInfo.get("voteSeq"), voteBasInfo.getId().equals(voteNumInfo.get("voteSeq").toString()));
+                if(!voteBasInfo.getId().equals(voteNumInfo.get("voteSeq").toString())){
                     continue;
                 }
                 // Rank Gap - pass
