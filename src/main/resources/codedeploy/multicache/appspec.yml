@@ -19,7 +19,7 @@ hooks:
       runas: ion
 
 permissions:
-  - object: /home/ion/api/core
+  - object: /home/ion/api
 #    pattern: **
 #    except: exception-specification
     owner: ion
