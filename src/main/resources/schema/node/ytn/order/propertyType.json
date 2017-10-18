@@ -2006,7 +2006,7 @@
     "analyzer": null,
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "codeFilter": "orderChangeStatus",
+    "codeFilter": "orderStatus",
     "defaultValue": ""
   },
   {
