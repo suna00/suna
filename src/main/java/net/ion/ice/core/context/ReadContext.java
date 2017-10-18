@@ -89,12 +89,17 @@ public class ReadContext implements Context, Serializable {
 
     protected static void checkCacheable(Map<String, Object> config, Map<String, Object> data, ReadContext readContext) {
         if(config != null && config.containsKey("cacheTime") && config.get("cacheTime") != null && StringUtils.isNotEmpty(config.get("cacheTime").toString())){
-            readContext.cacheable = true ;
-            readContext.cacheTime = config.get("cacheTime").toString() ;
+            if(!config.get("cacheTime").toString().equals("0")) {
+                readContext.cacheTime = config.get("cacheTime").toString();
+                readContext.cacheable = true;
+            }
+
         }
         if(data.containsKey("cacheTime") && data.get("cacheTime") != null && StringUtils.isNotEmpty(data.get("cacheTime").toString())){
-            readContext.cacheable = true ;
-            readContext.cacheTime = data.get("cacheTime").toString() ;
+            if(!config.get("cacheTime").toString().equals("0")) {
+                readContext.cacheTime = data.get("cacheTime").toString();
+                readContext.cacheable = true;
+            }
         }
     }
 
