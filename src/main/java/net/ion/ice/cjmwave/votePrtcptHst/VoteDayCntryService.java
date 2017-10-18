@@ -149,32 +149,42 @@ public class VoteDayCntryService {
                     lastSeq = Integer.parseInt(lastSeqInfo.get("seq").toString());
                 }
 
-                //해당 voteSeq_voteHstByMbr 테이블에서 리스트 조회
-                List<Map<String, Object>> voteMbrList =
-                        jdbcTemplate.queryForList("SELECT seq, voteDate, mbrId FROM " + tableNm + " WHERE seq>? ORDER BY seq LIMIT ?"
+                //해당 voteSeq_voteHstByMbr 테이블에서 voteDate별 리스트 조회
+                List<Map<String, Object>> voteMbrListDayByCntList =
+                        jdbcTemplate.queryForList("SELECT voteDate, count(voteDate) as addNum FROM " + tableNm + " WHERE seq>? GROUP BY voteDate LIMIT ?"
                                 , lastSeq, limitCnt);
-                //logger.info("===============> voteMbrList :: " + voteMbrList);
 
-                if(voteMbrList != null && voteMbrList.size() > 0){
-
-                    //logger.info("===============> voteMbrList 돌릴거다 :: ");
-                    Integer voteCntryDayCnt = 0;
+                if(voteMbrListDayByCntList != null && voteMbrListDayByCntList.size() > 0){
                     Integer voteBasDayCnt = 0;
-                    for(Map<String, Object> mapData : voteMbrList){
-
-                        String mbrId = mapData.get("mbrId").toString();
-                        String voteDate = mapData.get("voteDate").toString();
+                    for(Map<String, Object> dayCntMap : voteMbrListDayByCntList){
+                        String voteDate = dayCntMap.get("voteDate").toString();
+                        Integer addNum = Integer.parseInt(dayCntMap.get("addNum").toString());
 
                         //1. voteBasStatsByDay 테이블 insert / update
                         Integer dayCheckCnt = getVoteBasDayCount(voteSeq);
                         if(dayCheckCnt > 0){
-                            voteBasDayCnt = updateVoteBasDay(now, voteSeq, voteDate);
+                            voteBasDayCnt = updateVoteBasDay(addNum, now, voteSeq, voteDate);
                             logger.info("===============> updateVoteBasDay :: " + voteBasDayCnt);
                         }else{
                             voteBasDayCnt = insertVoteBasDay(voteSeq, voteDate, 1,"system", now);
                             logger.info("===============> insertVoteBasDay :: " + voteBasDayCnt);
                         }
+                    }
+                }
 
+
+                //해당 voteSeq_voteHstByMbr 테이블에서 리스트 조회
+                List<Map<String, Object>> voteMbrList =
+                        jdbcTemplate.queryForList("SELECT seq, voteDate, mbrId FROM " + tableNm + " WHERE seq>? ORDER BY seq LIMIT ?"
+                                , lastSeq, limitCnt);
+
+                if(voteMbrList != null && voteMbrList.size() > 0){
+
+                    Integer voteCntryDayCnt = 0;
+                    for(Map<String, Object> mapData : voteMbrList){
+
+                        String mbrId = mapData.get("mbrId").toString();
+                        String voteDate = mapData.get("voteDate").toString();
 
                         //2. voteSeq&일자&국가별 테이블 insert / update
                         //회원정보의 국가 정보 가져온다 - but 회원정보의 국가코드 필수입력사항 아니므로 혹시몰라서~ cntryCd null아닐때만 테이블 insert하게 체크
@@ -260,15 +270,15 @@ public class VoteDayCntryService {
     //투표일련번호&투표일자별 :: 투표수 넣는 테이블 처음 투표수 생성
     private Integer insertVoteBasDay(Integer voteSeq, String voteDate, Integer addNum, String owner, Date created) {
         String insertQuery = "INSERT INTO voteBasStatsByDay (voteSeq, voteDay, voteNum, owner, created) VALUES(?,?,?,?,?)";
-        Integer cnt = jdbcTemplate.update(insertQuery, voteSeq, voteDate,  addNum, owner, created);
+        Integer cnt = jdbcTemplate.update(insertQuery, voteSeq, voteDate, addNum, owner, created);
         return cnt;
     }
 
 
-    //투표일련번호&투표일자별 :: 투표수 넣는 테이블 처음 투표수+1
-    private Integer updateVoteBasDay(Date created, Integer voteSeq, String voteDate) {
-        String updateQuery = "UPDATE voteBasStatsByDay SET voteNum=voteNum+1, created= ? WHERE voteSeq=? AND voteDay=?";
-        Integer cnt = jdbcTemplate.update(updateQuery, created, voteSeq, voteDate);
+    //투표일련번호&투표일자별 :: 투표수 넣는 테이블 처음 투표수+addNum
+    private Integer updateVoteBasDay(Integer addNum, Date created, Integer voteSeq, String voteDate) {
+        String updateQuery = "UPDATE voteBasStatsByDay SET voteNum=voteNum+?, created= ? WHERE voteSeq=? AND voteDay=?";
+        Integer cnt = jdbcTemplate.update(updateQuery, addNum, created, voteSeq, voteDate);
         return cnt;
     }
 
