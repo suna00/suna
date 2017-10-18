@@ -1,5 +1,7 @@
 package net.ion.ice.scheduling;
 
+import com.hazelcast.core.HazelcastInstance;
+import net.ion.ice.core.cluster.ClusterConfiguration;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import org.slf4j.Logger;
@@ -37,6 +39,11 @@ public class SchedulingService implements InitializingBean{
     @Autowired
     private BeanFactory beanFactory;
 
+    @Autowired
+    ClusterConfiguration clusterConfiguration;
+
+    private HazelcastInstance hazelcastInstance;
+
     private final ScheduledTaskRegistrar registrar = new ScheduledTaskRegistrar();
 
     private final Map<Node, ScheduledTask> scheduledTasks =new ConcurrentHashMap<>();
@@ -46,6 +53,11 @@ public class SchedulingService implements InitializingBean{
         if (this.scheduler != null) {
             this.registrar.setScheduler(this.scheduler);
             logger.info(this.scheduler.toString());
+        }
+        try {
+            hazelcastInstance = clusterConfiguration.getHazelcast();
+        } catch (Exception e) {
+            logger.error("Hazelcast Cluster Lock for Schedule is disabled :: ", e);
         }
     }
 
@@ -67,7 +79,7 @@ public class SchedulingService implements InitializingBean{
         String scheduleType = scheduleNode.getStringValue("type") ;
         String scheduleConfig = scheduleNode.getStringValue("config") ;
 
-        ScheduleNodeRunner runnable = new ScheduleNodeRunner(scheduleNode) ;
+        ScheduleNodeRunner runnable = new ScheduleNodeRunner(scheduleNode, hazelcastInstance) ;
 
         switch (scheduleType){
             case "cron":{
