@@ -348,6 +348,8 @@ public class ReadContext implements Context, Serializable {
                 ReadContext subQueryContext = (ReadContext) resultField.getContext();
                 subQueryContext.dateFormat = this.dateFormat ;
                 subQueryContext.fileUrlFormat = this.fileUrlFormat ;
+                subQueryContext.excludePids = this.excludePids ;
+
                 if (node != null) {
                     subQueryContext.setNodeData(node);
                 }
@@ -361,6 +363,8 @@ public class ReadContext implements Context, Serializable {
                         ApiQueryContext apiQueryContext = ApiQueryContext.makeContextFromConfig(resultField.getFieldOption(), _data);
                         apiQueryContext.dateFormat = this.dateFormat ;
                         apiQueryContext.fileUrlFormat = this.fileUrlFormat ;
+                        apiQueryContext.excludePids = this.excludePids ;
+
                         apiQueryContext.makeQueryResult(itemResult, resultField.getFieldName(), resultField.getResultType());
                         break ;
                     }
@@ -368,6 +372,8 @@ public class ReadContext implements Context, Serializable {
                         ApiSelectContext apiQueryContext = ApiSelectContext.makeContextFromConfig(resultField.getFieldOption(), _data);
                         apiQueryContext.dateFormat = this.dateFormat ;
                         apiQueryContext.fileUrlFormat = this.fileUrlFormat ;
+                        apiQueryContext.excludePids = this.excludePids ;
+
                         apiQueryContext.makeQueryResult(itemResult, resultField.getFieldName());
                         break ;
                     }
@@ -385,6 +391,8 @@ public class ReadContext implements Context, Serializable {
                         FieldContext fieldContext = FieldContext.makeContextFromConfig(resultField.getFieldOption(), _data);
                         fieldContext.dateFormat = this.dateFormat ;
                         fieldContext.fileUrlFormat = this.fileUrlFormat ;
+                        fieldContext.excludePids = this.excludePids ;
+
                         if(StringUtils.isNotEmpty(pt.getReferenceType()) && NodeUtils.getNodeType(pt.getReferenceType()) != null ){
                             fieldContext.nodeType = NodeUtils.getNodeType(pt.getReferenceType()) ;
                         }
