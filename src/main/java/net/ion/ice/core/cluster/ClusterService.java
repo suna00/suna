@@ -104,6 +104,10 @@ public class ClusterService {
         return otherMembers ;
     }
 
+    public String getServerMode() {
+        return clusterConfiguration.getMode();
+    }
+
     /*
     public IMap getMbrVoteMap(){
         return clusterConfiguration.getMbrVoteMap() ;

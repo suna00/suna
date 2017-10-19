@@ -23,7 +23,7 @@ public class ApiExecuteContext extends ExecuteContext implements CacheableContex
         if(this.ifTest != null && !(this.ifTest.equalsIgnoreCase("true"))){
             return new QueryResult().setResult("0").setResultMessage("None Executed") ;
         }
-        if(cacheable != null && cacheable){
+        if (cacheable != null && cacheable && !ClusterUtils.getClusterService().getServerMode().equals("cache")) {
             String cacheKey = makeCacheKey() ;
             return ContextUtils.makeCacheResult(cacheKey, this) ;
         }
@@ -48,10 +48,18 @@ public class ApiExecuteContext extends ExecuteContext implements CacheableContex
         }
     }
 
-    public String makeCacheKey(){
-        String keySrc = httpRequest.getRequestURI() + "?" + httpRequest.getParameterMap().toString() ;
-        return keySrc ;
+    public String makeCacheKey() {
+        StringBuffer params = new StringBuffer() ;
+        for(String key : httpRequest.getParameterMap().keySet()){
+            params.append(key);
+            params.append("=") ;
+            params.append(httpRequest.getParameter(key)) ;
+        }
+        String keySrc = httpRequest.getRequestURI() + "?" + params;
+        return keySrc;
     }
+
+
     public static ApiExecuteContext makeContextFromConfig(Map<String, Object> config, Map<String, Object> data) {
         ApiExecuteContext ctx = new ApiExecuteContext();
 

@@ -399,7 +399,7 @@ public class NodeService {
     public QueryResult getQueryResult(HttpServletRequest request, HttpServletResponse response, Map<String, String[]> parameterMap) throws IOException {
         Map<String, Object> config = getConfig(parameterMap);
         Map<String, Object> data = ContextUtils.makeContextData(parameterMap) ;
-        logger.info("API CALL : " + data.toString());
+//        logger.info("API CALL : " + data.toString());
         ApiQueryContext queryContext = ApiQueryContext.makeContextFromConfig(config, data, request, response) ;
 
         QueryResult queryResult =  queryContext.makeQueryResult();

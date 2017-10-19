@@ -30,7 +30,7 @@ public class ApiQueryContext extends QueryContext implements CacheableContext{
     }
 
     public QueryResult makeQueryResult() {
-        if(cacheable != null && cacheable){
+        if (cacheable != null && cacheable && !ClusterUtils.getClusterService().getServerMode().equals("cache")) {
             String cacheKey = makeCacheKey() ;
             return ContextUtils.makeCacheResult(cacheKey, this) ;
         }
@@ -38,12 +38,15 @@ public class ApiQueryContext extends QueryContext implements CacheableContext{
     }
 
 
-    public String makeCacheKey(){
-        if(this.httpRequest != null) {
-            String keySrc = httpRequest.getRequestURI() + "?" + httpRequest.getParameterMap().toString();
-            return keySrc;
+    public String makeCacheKey() {
+        StringBuffer params = new StringBuffer() ;
+        for(String key : httpRequest.getParameterMap().keySet()){
+            params.append(key);
+            params.append("=") ;
+            params.append(httpRequest.getParameter(key)) ;
         }
-        return this.config.toString() + this.data.toString() ;
+        String keySrc = httpRequest.getRequestURI() + "?" + params;
+        return keySrc;
     }
 
     public static ApiQueryContext makeContextFromConfig(Map<String, Object> config, Map<String, Object> data) {
