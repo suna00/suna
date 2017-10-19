@@ -315,6 +315,9 @@ public class NodeUtils {
             }
             case REFERENCE: {
                 if (value == null) return null;
+                if(context.getExcludePids() != null && context.getExcludePids().contains(pt.getPid())){
+                    return null ;
+                }
                 if (context.isReferenceView(pt)) {
                     if (value instanceof ReferenceView) {
                         return NodeUtils.getReferenceValueView(context, ((ReferenceView) value).getRefId(), pt);
@@ -329,6 +332,9 @@ public class NodeUtils {
             }
             case REFERENCES: {
                 if (value == null) return null;
+                if(context.getExcludePids() != null && context.getExcludePids().contains(pt.getPid())){
+                    return null ;
+                }
                 if (value instanceof List) {
                     return value;
                 }
@@ -360,6 +366,9 @@ public class NodeUtils {
                 return getFileResultValue(context, pt, value);
             }
             case REFERENCED: {
+                if(context.getExcludePids() != null && context.getExcludePids().contains(pt.getPid())){
+                    return null ;
+                }
                 if (context != null && context.isIncludeReferenced(pt) && context.getLevel() < 5 && node instanceof Node) {
                     QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(getNodeType(((Node)node).getTypeId()), pt, (Node) node);
                     subQueryContext.setData(context.getData());

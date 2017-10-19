@@ -63,6 +63,7 @@ public class ApiExecuteContext extends ExecuteContext implements CacheableContex
 
         checkCacheable(config, data, ctx) ;
 
+        checkExclude(config, data, ctx) ;
 
         if(config.containsKey("if")){
             ctx.ifTest =  ContextUtils.getValue(config.get("if"), data).toString();
