@@ -19,7 +19,6 @@ jwtConfig:
   tokenExpirationTime: 15 #분
   refreshTokenExpTime: 60 #분
 
-
 cluster:
   mode: cms
   groups: cms
