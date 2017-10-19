@@ -97,12 +97,16 @@ public class ReadContext implements Context, Serializable {
             }
 
         }
-        if(data.containsKey("cacheTime") && data.get("cacheTime") != null && StringUtils.isNotEmpty(data.get("cacheTime").toString())){
-            if(!config.get("cacheTime").toString().equals("0")) {
-                readContext.cacheTime = data.get("cacheTime").toString();
-                readContext.cacheable = true;
-            }
-        }
+        /**
+         * 2017.10.19
+         * cacheTime 이 없는 관계로 에러나서 주석처리(feat.본부장님)
+         **/
+//        if(data.containsKey("cacheTime") && data.get("cacheTime") != null && StringUtils.isNotEmpty(data.get("cacheTime").toString())){
+//            if(!config.get("cacheTime").toString().equals("0")) {
+//                readContext.cacheTime = data.get("cacheTime").toString();
+//                readContext.cacheable = true;
+//            }
+//        }
     }
     protected static void checkExclude(Map<String, Object> config, Map<String, Object> data, ReadContext readContext) {
         String pids = null ;

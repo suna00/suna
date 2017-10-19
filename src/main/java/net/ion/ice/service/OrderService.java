@@ -205,7 +205,6 @@ public class OrderService {
             double useableWelfarepoint = ((BigDecimal) summaryResponse.get("useableWelfarepoint")).doubleValue();
             double useYPoint = JsonUtils.getDoubleValue(data, "useYPoint");
             double useWelfarepoint = JsonUtils.getDoubleValue(data, "useWelfarepoint");
-            double deliveryPrice = JsonUtils.getDoubleValue(data, "deliveryPrice");
             double finalDeliveryPrice = 0;
 
             double finalPrice = JsonUtils.getDoubleValue(data, "finalPrice");
