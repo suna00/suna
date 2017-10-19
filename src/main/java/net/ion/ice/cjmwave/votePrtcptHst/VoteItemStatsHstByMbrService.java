@@ -1,5 +1,6 @@
 package net.ion.ice.cjmwave.votePrtcptHst;
 
+import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
@@ -11,21 +12,22 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
-@Service("voteItemStatsHstByMbrTask")
-public class VoteItemStatsHstByMbrTask {
+@Service("voteItemStatsHstByMbrService")
+public class VoteItemStatsHstByMbrService {
 
-    private static Logger logger = LoggerFactory.getLogger(VoteItemStatsHstByMbrTask.class);
+    private static Logger logger = LoggerFactory.getLogger(VoteItemStatsHstByMbrService.class);
 
     public static final String VOTE_BAS_INFO = "voteBasInfo";
-    public static final Integer SELECT_LIST_COUNT = 20000;
+    public static final Integer SELECT_LIST_COUNT = 50000;
 
     @Autowired
     NodeService nodeService;
 
     JdbcTemplate jdbcTemplate;
 
-    public void execVoteItemStatsHstByMbr() {
+    public void execVoteItemStatsHstByMbr(ExecuteContext context) {
 
         logger.info("start schedule task - execVoteItemStatsHstByMbr");
 
@@ -107,6 +109,10 @@ public class VoteItemStatsHstByMbrTask {
             }
         }
         logger.info("complete schedule task - execVoteItemStatsHstByMbr");
+
+        Map<String, String> resultServiceMap = new ConcurrentHashMap<>();
+        resultServiceMap.put("status", "COMPLETE");
+        context.setResult(resultServiceMap);
     }
 
     private Map<String, Object> selectVoteItemHstInfo(String voteSeq, String voteItemSeq, String mbrId) {

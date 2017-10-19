@@ -707,7 +707,7 @@ public class VotePrtcptHstService {
             insertList.add(voteData);
         }
 
-        // TODO - snsTypeCd 변경 필요.
+        // 스폰서 snsType => 10
         if (mbrId!=null && mbrId.startsWith("10>")) {
 
             String[] mbrIdArray  = mbrId.split(">");

@@ -1,5 +1,6 @@
 package net.ion.ice.cjmwave.votePrtcptHst;
 
+import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
@@ -13,9 +14,9 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
-@Service("voteItemStatsByWlyTask")
-public class VoteItemStatsByWlyTask {
-    private static Logger logger = LoggerFactory.getLogger(VoteItemStatsByWlyTask.class);
+@Service("voteItemStatsByWlyService")
+public class VoteItemStatsByWlyService {
+    private static Logger logger = LoggerFactory.getLogger(VoteItemStatsByWlyService.class);
 
     public static final String VOTE_BAS_INFO = "voteBasInfo";
     public static final String VOTE_ITEM_INFO = "voteItemInfo";
@@ -25,7 +26,7 @@ public class VoteItemStatsByWlyTask {
 
     JdbcTemplate jdbcTemplate;
 
-    public void execVoteItemStatsByWly() {
+    public void execVoteItemStatsByWly(ExecuteContext context) {
 
         logger.info("start schedule task - execVoteItemStatsByWly");
 
@@ -97,6 +98,10 @@ public class VoteItemStatsByWlyTask {
         }
 
         logger.info("complete schedule task - execVoteItemStatsByWly");
+
+        Map<String, String> resultServiceMap = new ConcurrentHashMap<>();
+        resultServiceMap.put("status", "COMPLETE");
+        context.setResult(resultServiceMap);
     }
 
     private List<Map<String, Object>> selectVoteItemStatsHstByWlyList(String voteSeq, String perdStDate, String perdFnsDate) {

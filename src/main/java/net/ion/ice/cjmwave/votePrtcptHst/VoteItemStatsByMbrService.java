@@ -1,5 +1,6 @@
 package net.ion.ice.cjmwave.votePrtcptHst;
 
+import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
@@ -12,11 +13,12 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
-@Service("voteItemStatsByMbrTask")
-public class VoteItemStatsByMbrTask {
+@Service("voteItemStatsByMbrService")
+public class VoteItemStatsByMbrService {
 
-    private static Logger logger = LoggerFactory.getLogger(VoteItemStatsByMbrTask.class);
+    private static Logger logger = LoggerFactory.getLogger(VoteItemStatsByMbrService.class);
 
     public static final String VOTE_BAS_INFO = "voteBasInfo";
 
@@ -26,7 +28,7 @@ public class VoteItemStatsByMbrTask {
     JdbcTemplate jdbcTemplate;
 
     // 성별.
-    public void execVoteItemStatsBySex() {
+    public void execVoteItemStatsBySex(ExecuteContext context) {
 
         logger.info("start schedule task - execVoteItemStatsBySex");
 
@@ -87,6 +89,10 @@ public class VoteItemStatsByMbrTask {
         }
 
         logger.info("complete schedule task - execVoteItemStatsBySex");
+
+        Map<String, String> resultServiceMap = new ConcurrentHashMap<>();
+        resultServiceMap.put("status", "COMPLETE");
+        context.setResult(resultServiceMap);
     }
 
     private List<Map<String,Object>> selectItemStatsBySexList(String voteSeq, String voteDate) {
@@ -102,7 +108,7 @@ public class VoteItemStatsByMbrTask {
     }
 
     // 국가.
-    public void execVoteItemStatsByCntry() {
+    public void execVoteItemStatsByCntry(ExecuteContext context) {
 
         logger.info("start schedule task - execVoteItemStatsByCntry");
 
@@ -164,6 +170,10 @@ public class VoteItemStatsByMbrTask {
         }
 
         logger.info("complete schedule task - execVoteItemStatsByCntry");
+
+        Map<String, String> resultServiceMap = new ConcurrentHashMap<>();
+        resultServiceMap.put("status", "COMPLETE");
+        context.setResult(resultServiceMap);
     }
 
     private List<Map<String,Object>> selectItemStatsByCntryList(String voteSeq, String voteDate) {
