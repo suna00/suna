@@ -90,6 +90,10 @@ public class CommonService {
         /*WelfarePoint*/
         resultCodeMap.put("W0001", "복지포인트 잔액이 부족합니다.");
 
+        /*InterestList*/
+        resultCodeMap.put("I0001", "위시리스트에 등록되었습니다.");
+        resultCodeMap.put("I0002", "이미 등록된 상품 입니다.");
+
         resultCodeMap.put("CORE#JWT01", "Get JWT Success");
         resultCodeMap.put("CORE#JWT02", "JWT Expired");
     }

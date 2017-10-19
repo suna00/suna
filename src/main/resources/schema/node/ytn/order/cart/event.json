@@ -110,5 +110,21 @@
     "actionType" : "service",
     "actionBody" : "cartService.cartRead",
     "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "cart",
+    "event" : "addInterestProductList",
+    "noneExecute": true,
+    "eventName" : "위시리스트 추가"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "cart>addInterestProductList",
+    "action" : "addInterestProductList",
+    "actionName" : "위시리스트 추가",
+    "actionType" : "service",
+    "actionBody" : "cartService.addInterestProductList",
+    "order" : 1
   }
 ]

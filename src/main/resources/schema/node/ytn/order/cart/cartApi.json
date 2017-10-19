@@ -79,5 +79,21 @@
         "cartId": "{{:cartId}}"
       }
     }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "cart",
+    "apiId": "addInterestProductList",
+    "apiName": "장바구니 조회",
+    "method": "POST",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "cart",
+      "noneExecute": true,
+      "event" : "addInterestProductList",
+      "data": {
+      }
+    }
   }
 ]

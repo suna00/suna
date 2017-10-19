@@ -4,10 +4,12 @@ import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
+import net.ion.ice.core.node.NodeQuery;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.session.SessionService;
+import org.apache.avro.data.Json;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +18,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 @Service("cartService")
@@ -528,6 +531,51 @@ public class CartService {
             }
         }
     }
+
+    public ExecuteContext addInterestProductList(ExecuteContext context) {
+        try {
+            Map<String, Object> data = context.getData();
+            List<Map<String, Object>> cartProductList = JsonUtils.parsingJsonToList(String.valueOf(data.get("product")));
+            String siteId = JsonUtils.getStringValue(data, "siteId");
+            Map<String, Object> session = sessionService.getSession(context.getHttpRequest());
+            String memberNo = JsonUtils.getStringValue(session, "member.memberNo");
+            List<Node> interestProductList = (List<Node>) NodeQuery.build("interestProduct").matching("memberNo", memberNo).getList();
+            Boolean saved = false;
+
+            for (Map<String, Object> cartProduct : cartProductList) {
+                Boolean duplicated = false;
+                for (Node interestProduct : interestProductList) {
+                    if (StringUtils.equals(JsonUtils.getStringValue(cartProduct, "productId"), interestProduct.getStringValue("productId"))) {
+                        duplicated = true;
+                    }
+                }
+
+                if (!duplicated) {
+                    Map<String, Object> storeData = new HashMap<>();
+                    storeData.put("productId", JsonUtils.getStringValue(cartProduct, "productId"));
+                    storeData.put("memberNo", memberNo);
+                    storeData.put("siteId", siteId);
+
+                    nodeService.executeNode(storeData, "interestProduct", CommonService.CREATE);
+                    saved = true;
+
+                }
+            }
+            if(saved) {
+                context.setResult(CommonService.getResult("I0001"));
+            }else{
+                context.setResult(CommonService.getResult("I0002"));
+            }
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return context;
+    }
+
 
     public Map<String, Object> getCouponCount(String productId, String siteType) {
         JdbcTemplate jdbcTemplate = nodeBindingService.getNodeBindingInfo("couponType").getJdbcTemplate();
