@@ -121,17 +121,17 @@
   {
     "typeId": "event",
     "tid": "voteBasInfo",
-    "event": "resIfMwv101",
+    "event": "voteItemStatsJob",
     "noneExecute": true,
     "eventName": "get Total Vote Count Event"
   },
   {
     "typeId": "eventAction",
-    "event": "voteBasInfo>resIfMwv101",
-    "action": "resIfMwv101Event",
+    "event": "voteBasInfo>voteItemStatsJob",
+    "action": "voteItemStatsJobEvent",
     "actionName": "get Total voting Count Event Action",
     "actionType": "service",
-    "actionBody": "voteStatisticsService.IFMwave101",
+    "actionBody": "voteStatisticsService.voteItemStatsJob",
     "order": 1
   },
   {
