@@ -16,10 +16,13 @@ jwtConfig:
   tokenExpirationTime: 15 #분
   refreshTokenExpTime: 60 #분
 
+# Check IP - 10.75.6.140,10.75.7.140
 cluster:
   mode: api
   groups: api
   dataQueue: 10.75.6.140,10.75.7.140
+  dataQueueDs: authDb
+  map: mbrVoteMap,ipVoteCnt
   members:
     - 10.75.6.131
     - 10.75.7.130
