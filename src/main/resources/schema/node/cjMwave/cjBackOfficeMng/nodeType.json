@@ -18,6 +18,7 @@
     "repositoryType": "node",
     "eviction": 0,
     "tableName": "cjDb#errMsgInfo",
-    "i18n": true
+    "i18n": true,
+    "clusterGroup": "all"
   }
 ]
