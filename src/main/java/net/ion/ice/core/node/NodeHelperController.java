@@ -40,7 +40,7 @@ public class NodeHelperController {
         return JsonResponse.create() ;
     }
 
-    @RequestMapping(value = "/helper/read")
+    @RequestMapping(value = "/helper/read", method = RequestMethod.POST)
     @ResponseBody
     public Object readNode(HttpServletRequest request, @RequestParam String typeId, @RequestParam String id)  {
         try {
@@ -52,7 +52,7 @@ public class NodeHelperController {
         }
     }
 
-    @RequestMapping(value = "/helper/list")
+    @RequestMapping(value = "/helper/list", method = RequestMethod.POST)
     @ResponseBody
     public Object listNode(HttpServletRequest request, @RequestParam String typeId, @RequestParam String query)  {
         try {

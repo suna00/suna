@@ -55,7 +55,9 @@ public class NodeHelperService  {
     }
 
     public void syncSchema() throws IOException {
-        syncNodeList(nodeService.getNodeType("nodeType"), "");
+//        syncNodeList(nodeService.getNodeType("nodeType"), "limit=1000");
+        syncNodeType("nodeType");
+
         syncNodeType("propertyType");
 
         Cache<String, Node> nodeTypeCache = infinispanRepositoryService.getNodeCache("nodeType") ;
@@ -71,15 +73,15 @@ public class NodeHelperService  {
 
     private void syncNodeType(String typeId) {
         NodeType nodeType = nodeService.getNodeType(typeId) ;
-        if(!clusterService.checkClusterGroup(nodeType)) return  ;
+        if(nodeType.isNode() && !clusterService.checkClusterGroup(nodeType)) return  ;
         Date nodeTypeLast = (Date) nodeService.getSortedValue(nodeType.getTypeId(), "changed", SortField.Type.LONG, true );
         if(nodeTypeLast == null){
             logger.info(nodeType.getTypeId() + " ALL Sync : ");
-            syncNodeList(nodeType, "");
+            syncNodeList(nodeType, "limit=100&sorting=changed desc");
         }else {
             String lastChanged = DateFormatUtils.format(nodeTypeLast, "yyyyMMddHHmmss");
             logger.info(nodeType.getTypeId() + " Last Sync : " + nodeTypeLast);
-            syncNodeList(nodeType, "chagned_excess=" + lastChanged);
+            syncNodeList(nodeType, "limit=100&sorting=changed desc&chagned_excess=" + lastChanged);
         }
     }
 
@@ -92,6 +94,8 @@ public class NodeHelperService  {
             if(items != null && items.size() > 0){
                 for(Map<String, Object> item : items){
                     Node node = new Node(item) ;
+//                    logger.info("nodeSync : " + item + "\n" + node );
+
                     if(node != null) {
                         infinispanRepositoryService.cacheNode(node);
                     }
