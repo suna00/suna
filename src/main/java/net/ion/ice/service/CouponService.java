@@ -2,6 +2,7 @@ package net.ion.ice.service;
 
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.data.bind.NodeBindingService;
+import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeQuery;
@@ -313,5 +314,90 @@ public class CouponService {
         result.put("resultDiscountPrice", resultDiscountPrice);
 
         return result;
+    }
+
+    public ExecuteContext distribute(ExecuteContext context){
+        Map<String, Object> data = context.getData();
+
+        String couponTypeIdValue = data.get("couponTypeId") == null ? "" : data.get("couponTypeId").toString();
+        String couponDistributeTargetTypeValue = data.get("couponDistributeTargetType") == null ? "" : data.get("couponDistributeTargetType").toString();
+        String couponDistributeTargetValue = data.get("couponDistributeTarget") == null ? "" : data.get("couponDistributeTarget").toString();
+        Date publishedDate = new Date();
+
+        Node couponTypeNode = nodeService.getNode("couponType", couponTypeIdValue);
+
+        if (StringUtils.equals(couponDistributeTargetTypeValue, "group")) {
+            List<String> couponDistributeTargetList = Arrays.asList(StringUtils.split(couponDistributeTargetValue, ","));
+
+            for (String couponDistributeTarget : couponDistributeTargetList) {
+                if (StringUtils.equals(couponDistributeTarget, "companyMember")) {
+                    List<Node> companyMemberNodeList = (List<Node>) NodeQuery.build("member").matching("siteType", "company").matching("memberStatus", "join").getList();
+
+                    for (Node companyMemberNode : companyMemberNodeList) {
+                        createCoupon(couponTypeNode, companyMemberNode, publishedDate);
+                    }
+                } else if (StringUtils.equals(couponDistributeTarget, "universityMember")) {
+                    List<Node> universityMemberNodeList = (List<Node>) NodeQuery.build("member").matching("siteType", "university").matching("memberStatus", "join").getList();
+
+                    for (Node universityMemberNode : universityMemberNodeList) {
+                        createCoupon(couponTypeNode, universityMemberNode, publishedDate);
+                    }
+                }
+            }
+        } else if (StringUtils.equals(couponDistributeTargetTypeValue, "search")) {
+           List<String> memberNoList = Arrays.asList(StringUtils.split(couponDistributeTargetValue, ","));
+
+           for (String memberNo : memberNoList) {
+                Node memberNode = nodeService.getNode("member", memberNo);
+                String memberStatus = memberNode.getBindingValue("memberStatus").toString();
+                if (StringUtils.equals(memberStatus, "join")) {
+                    createCoupon(couponTypeNode, memberNode, publishedDate);
+                }
+           }
+        } else if (StringUtils.equals(couponDistributeTargetTypeValue, "excel")) {
+            List<String> memberNoList = Arrays.asList(StringUtils.split(couponDistributeTargetValue, ","));
+
+            for (String memberNo : memberNoList) {
+                Node memberNode = nodeService.getNode("member", memberNo);
+                String memberStatus = memberNode.getBindingValue("memberStatus").toString();
+                if (StringUtils.equals(memberStatus, "join")) {
+                    createCoupon(couponTypeNode, memberNode, publishedDate);
+                }
+            }
+        }
+
+        return context;
+    }
+
+    private void createCoupon(Node couponTypeNode, Node memberNode, Date publishedDate) {
+        if (couponTypeNode == null || memberNode == null) return;
+
+        String validPeriodType = couponTypeNode.getBindingValue("validPeriodType").toString();
+        Date startDate = null;
+        Date endDate = null;
+        if (StringUtils.equals(validPeriodType, "limit")) {
+            Integer validPeriod = (Integer) couponTypeNode.getStoreValue("validPeriod");
+            if (validPeriod == null) validPeriod = 0;
+
+            Calendar publishedCal = Calendar.getInstance();
+            publishedCal.setTime(publishedDate);
+
+            startDate = publishedCal.getTime();
+            publishedCal.add(Calendar.DATE, validPeriod);
+            endDate = publishedCal.getTime();
+        }
+
+        Map<String, Object> couponData = new HashMap<>();
+        couponData.put("name", couponTypeNode.getBindingValue("name"));
+        couponData.put("memberNo", memberNode.getBindingValue("memberNo"));
+        couponData.put("siteType", memberNode.getBindingValue("siteType"));
+        couponData.put("channelType", couponTypeNode.getBindingValue("channelType"));
+        couponData.put("affiliateId", memberNode.getBindingValue("affiliateId"));
+        couponData.put("couponTypeId", couponTypeNode.getBindingValue("couponTypeId"));
+        couponData.put("publishedDate", publishedDate);
+        couponData.put("startDate", startDate);
+        couponData.put("endDate", endDate);
+        couponData.put("couponStatus", "y");
+        nodeService.executeNode(couponData, "coupon", EventService.CREATE);
     }
 }
