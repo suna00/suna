@@ -136,7 +136,8 @@ public class ExcelService {
 
     private CellStyle getHeaderCellStyle(Workbook workbook) {
         CellStyle cellStyle = workbook.createCellStyle();
-        cellStyle.setFillBackgroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+        cellStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+        cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         return cellStyle;
     }
 
