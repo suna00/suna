@@ -48,4 +48,24 @@ public class NodeMappingUtils {
         if(idables != null && idables.size() == 1) pk = idables.get(0);
         return pk;
     }
+
+    // 1 을 toLowerCase 하면 뭐 나오는데
+
+    public static Map<String, Object> convertBooleanValues (String key, Map<String, Object> data) {
+        return convertBooleanValues(key, data, false);
+    }
+    public static Map<String, Object> convertBooleanValues (String key, Map<String, Object> data, boolean defaultValue){
+        if(!data.containsKey(key)) return data;
+        String strBoolValue = String.valueOf(data.get(key)).trim().toLowerCase();
+        if("null".equals(strBoolValue) || "".equals(strBoolValue)){
+            data.put(key, (defaultValue) ? defaultValue : false);
+        } else if("false".equals(strBoolValue) || "0".equals(strBoolValue)) {
+            data.put(key, false);
+        } else if ("true".equals(strBoolValue) || "1".equals(strBoolValue)) {
+            data.put(key, true);
+        } else  {
+            System.out.println("No Boolean matching value for Keyword [ " + key + " ]");
+        }
+        return data;
+    }
 }

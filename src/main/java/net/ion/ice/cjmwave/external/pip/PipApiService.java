@@ -129,7 +129,8 @@ public class PipApiService {
                 transformed.put("actor", data.get("actor"));
                 transformed.put("director", data.get("director"));
                 isUse = String.valueOf("isuse").toUpperCase();
-                transformed.put("isUse", "Y".equals(isUse) ? 1 : 0);
+//                transformed.put("isUse", "Y".equals(isUse) ? 1 : 0);
+                transformed.put("isUse", "Y".equals(isUse));
                 break;
             case "pgmVideo" :
 
@@ -169,15 +170,20 @@ public class PipApiService {
                 transformed.put("price", data.get("price"));
 
                 String isMasterClip = String.valueOf(data.get("ismasterclip")).trim().toUpperCase();
-                transformed.put("isMasterClip", ("Y".equals(isMasterClip) ? 1: 0));
+//                transformed.put("isMasterClip", ("Y".equals(isMasterClip) ? 1: 0));
+                transformed.put("isMasterClip", "Y".equals(isMasterClip));
+
 
                 isUse = String.valueOf(data.get("isuse")).trim().toUpperCase();
-                transformed.put("isUse", ("Y".equals(isUse) ? 1: 0));
+//                transformed.put("isUse", ("Y".equals(isUse) ? 1: 0));
+                transformed.put("isUse", "Y".equals(isUse));
 
                 String isFullVod = String.valueOf(data.get("isfullvod")).trim().toUpperCase();
-                transformed.put("isFullVod", ("Y".equals(isFullVod) ? 1: 0));
+//                transformed.put("isFullVod", ("Y".equals(isFullVod) ? 1: 0));
+                transformed.put("isFullVod", "Y".equals(isFullVod));
 
-                transformed.put("rcmdContsYn", 0); // 모르겠음 - 추천 여부 디폴트는 0
+//                transformed.put("rcmdContsYn", 0); // 모르겠음 - 추천 여부 디폴트는 0
+                transformed.put("rcmdContsYn", false); // 모르겠음 - 추천 여부 디폴트는 0
 
                 break;
         }
