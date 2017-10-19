@@ -399,9 +399,13 @@ public class DBSyncService {
             fit.putAll(getImageInfo(qMap,targetNodeType, currentNodePKPid));
 
 
-            logger.info("CREATE MIGRATION NODE :: " + String.valueOf(fit));
+            logger.info("TRY CREATE MIGRATION NODE :: " + String.valueOf(fit));
             try{
                 fit.put("mnetIfTrtYn", true);
+                NodeMappingUtils.convertBooleanValues("showYn", fit);
+                NodeMappingUtils.convertBooleanValues("rcmdContsYn", fit);
+                logger.info("CREATE MIGRATION NODE :: " + String.valueOf(fit));
+
                 Node finished = nodeService.saveNodeWithException(fit); // 반환 안됨
                 successIds.add(finished.getId());
                 successCnt ++;
@@ -537,7 +541,9 @@ public class DBSyncService {
                     System.out.println("CREATE INITIAL MIGRATION NODE :: " + String.valueOf(fit));
 
                     try{
-                        fit.put("mnetIfTrtYn", true);
+                        fit.put("mnetIfTrtYn", true);   // rcmdContsYn
+                        NodeMappingUtils.convertBooleanValues("showYn", fit);
+                        NodeMappingUtils.convertBooleanValues("rcmdContsYn", fit);
                         nodeService.saveNodeWithException(fit);
                         successCnt ++;
                         rs = 1;
