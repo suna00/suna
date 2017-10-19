@@ -35,6 +35,7 @@ public class MbrInfoService {
         Node anode = null;
         try {
             anode = NodeUtils.getNodeService().read("mbrInfo", snsTypeCd + ">" + snsKey);
+
         } catch (NotFoundNodeException e) {
 
         }
@@ -44,6 +45,7 @@ public class MbrInfoService {
             resultDate.put("chkResult", true);
             context.setResult(resultDate);
         } else {
+            System.out.println("######chkMbr :"+anode);
             throw new ApiException("405", "Information that meets the conditions already exists.");
         }
     }
