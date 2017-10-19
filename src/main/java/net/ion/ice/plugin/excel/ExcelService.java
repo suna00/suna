@@ -1,6 +1,5 @@
 package net.ion.ice.plugin.excel;
 
-import net.ion.ice.core.file.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
@@ -9,12 +8,13 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +27,9 @@ public class ExcelService {
     public static final String DEFAULT_FILE_NAME = "export";
     public static final String DEFAULT_EXTENSION = "xlsx";
 
-    public ResponseEntity downloadForm(Map<String, String[]> parameterMap, HttpServletResponse response) {
+    public void downloadForm(HttpServletRequest request, HttpServletResponse response) {
+        Map<String, String[]> parameterMap = request.getParameterMap();
+
         String fileName = parameterMap.get("fileName") == null ? DEFAULT_FILE_NAME : parameterMap.get("fileName")[0];
         String extension = parameterMap.get("extension") == null ? DEFAULT_EXTENSION : parameterMap.get("extension")[0];
         String sheetNames = parameterMap.get("sheetNames") == null ? "" : parameterMap.get("sheetNames")[0];
@@ -70,15 +72,10 @@ public class ExcelService {
                 }
             }
 
+            response.setHeader(HttpHeaders.CONTENT_TYPE, "application/vnd.ms-excel");
+            response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""+encodingFileName(request, fileName)+"\"."+extension);
             outputStream = response.getOutputStream();
             workbook.write(outputStream);
-
-            return ResponseEntity
-                    .ok()
-                    .header(HttpHeaders.CONTENT_TYPE, "application/vnd.ms-excel")
-                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""+fileName+"\"")
-                    .body(outputStream);
-
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         } finally {
@@ -98,8 +95,36 @@ public class ExcelService {
                 }
             }
         }
+    }
 
-        return null;
+    private String encodingFileName(HttpServletRequest request, String fileName) {
+        String encodingFilenName = fileName;
+        String header = request.getHeader("User-Agent");
+        String browser = "Firefox";
+
+        if (StringUtils.contains(header, "MSIE")) {
+            browser = "MSIE";
+        } else if(StringUtils.contains(header, "Chrome")) {
+            browser = "Chrome";
+        } else if(StringUtils.contains(header, "Opera")) {
+            browser = "Opera";
+        }
+
+        try {
+            if (StringUtils.equals(browser, "MSIE")) {
+                encodingFilenName = URLEncoder.encode(fileName,"UTF-8").replaceAll("\\+", "%20");
+            } else if (StringUtils.equals(browser, "Firefox")) {
+                encodingFilenName = new String(fileName.getBytes("UTF-8"), "ISO-8859-1");
+            } else if (StringUtils.equals(browser, "Opera")) {
+                encodingFilenName = new String(fileName.getBytes("UTF-8"), "ISO-8859-1");
+            } else if (StringUtils.equals(browser, "Chrome")) {
+                encodingFilenName = new String(fileName.getBytes("UTF-8"), "ISO-8859-1");
+            }
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+
+        return encodingFilenName;
     }
 
     private HSSFWorkbook getXlsWorkbook() {
