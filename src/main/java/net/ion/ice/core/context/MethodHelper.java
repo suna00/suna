@@ -329,7 +329,7 @@ public class MethodHelper {
                         return fileValue.getFileName();
                     }
                 }
-                return value != null ? value.toString() : "" ;
+                return "";
             }
 
             default :
