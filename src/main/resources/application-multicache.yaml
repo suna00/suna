@@ -76,8 +76,10 @@ temp-file:
   dir: /data/ion/cache-core/resource/ice2/cache
 
 image:
-  prefixUrl: http://125.131.88.147:8080/image/
-  s3PrefixUrl: https://cjmwave-prd.s3.ap-northeast-2.amazonaws.com/ion/
+#  prefixUrl: http://125.131.88.147:8080/image/
+#  s3PrefixUrl: https://cjmwave-prd.s3.ap-northeast-2.amazonaws.com/ion/
+  prefixUrl: http://g-p-api-elb-321213426.ap-northeast-2.elb.amazonaws.com/image/
+  s3PrefixUrl: https://cmsimg.mwave.me/
 
 mobile:
   push:
