@@ -329,25 +329,24 @@ public class CartService {
 //    }
 
     // 동일 장바구니 상품 처리 여부
-    private boolean existCartProduct(Map<String, Object> reqProduct, Map<String, Object> cartProduct, Node product) {
+    private boolean existCartProduct(Map<String, Object> reqProduct, Map<String, Object> cartProduct, Node productNode) {
         boolean isFirstRow = StringUtils.equals(JsonUtils.getStringValue(reqProduct, "baseOptionItemId"), JsonUtils.getStringValue(cartProduct, "baseOptionItemId"));
-        String deliveryPriceType = String.valueOf(product.getBindingValue("deliveryPriceType"));
+        String deliveryPriceType = String.valueOf(productNode.getBindingValue("deliveryPriceType"));
 
         if (!StringUtils.equals(JsonUtils.getStringValue(reqProduct, "baseOptionItemId"), JsonUtils.getStringValue(cartProduct, "baseOptionItemId"))) {
             return false;
         }
 
-//        Map<String, Object> m = deliveryService.getCartDeliveryPriceMap(cartProduct.get("cartProductId").toString());
-//        if ("deliveryDateType>hopeDelivery".equals(product.get("deliveryDateType"))) {
-//            String cartDate = m.get("hopeDeliveryDate").toString();
-//            String mapDate = map.get("hopeDeliveryDate").toString();
-//            if (!cartDate.equals(mapDate)) return false;
-//        }
+        if ("deliveryDateType>hopeDelivery".equals(productNode.get("deliveryDateType"))) {
+            String existProductHopeDeliveryDate = cartProduct.get("hopeDeliveryDate").toString();   //기존카트상품
+            String reqProductHopeDeliveryDate = reqProduct.get("hopeDeliveryDate").toString();      //요청상품
+            if (StringUtils.equals(existProductHopeDeliveryDate, reqProductHopeDeliveryDate)) return false;
+        }
 
-//        if ("deliveryDateType>scheduledDelivery".equals(product.get("deliveryDateType"))) {
-//            String cartDate = m.get("scheduledDeliveryDate").toString();
-//            String productDate = product.get("scheduledDeliveryDate").toString();
-//            if (!cartDate.equals(productDate)) return false;
+//        if ("scheduledDelivery".equals(productNode.getBindingValue("deliveryDateType"))) {
+//            String reqProductScheduledDeliveryDate = cartProduct.get("scheduledDeliveryDate").toString();
+//            String productScheduledDeliveryDate = productNode.get("scheduledDeliveryDate").toString();
+//            if (!reqProductScheduledDeliveryDate.equals(productScheduledDeliveryDate)) return false;
 //        }
 
         if (StringUtils.equals(deliveryPriceType, "quantity") && isFirstRow) {

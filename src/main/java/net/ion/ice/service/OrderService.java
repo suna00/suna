@@ -1,5 +1,6 @@
 package net.ion.ice.service;
 
+import net.ion.ice.core.context.Context;
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.json.JsonUtils;
@@ -37,8 +38,6 @@ public class OrderService {
     private CouponService couponService;
     @Autowired
     private SessionService sessionService;
-    @Autowired
-    private Environment environment;
 
     /**
      * 임시 주문서 조회
@@ -93,7 +92,7 @@ public class OrderService {
      */
     public void buyItNow(ExecuteContext context) {
         try {
-            String tempOrderId = createTempOrder(context.getData());
+            String tempOrderId = createTempOrder(context, true);
             Map<String, Object> extraData = new HashMap<>();
             extraData.put("tempOrderId", tempOrderId);
             context.setResult(CommonService.getResult("O0001", extraData)); // 성공 시
@@ -108,7 +107,7 @@ public class OrderService {
      */
     public void addTempOrder(ExecuteContext context) {
         try {
-            String tempOrderId = createTempOrder(context.getData());
+            String tempOrderId = createTempOrder(context, false);
             Map<String, Object> extraData = new HashMap<>();
             extraData.put("tempOrderId", tempOrderId);
             context.setResult(CommonService.getResult("O0001", extraData)); // 성공 시
@@ -147,7 +146,9 @@ public class OrderService {
 
     }
 
-
+    /**
+     * 최종가격을 계산
+     */
     public Double getFinalPrice(String reqTempOrderId, String reqMemberNo, String reqUseYPoint, String reqUseWelfarepoint, String usedCoupon) {
         double totalPrice = 0;
 
@@ -256,7 +257,9 @@ public class OrderService {
             e.printStackTrace();
         }
     }
-
+    /**
+     * 포인트로 인한 0원 결제
+     */
     public ExecuteContext pointOrder(ExecuteContext context) {
         Map<String, Object> data = context.getData();
 
@@ -440,6 +443,9 @@ public class OrderService {
 
 
     }
+    /**
+     * 최종 주문서 생성
+     */
 
     public String createOrderSheet(Map<String, Object> responseMap, HttpServletRequest request) {
         String bSucc = "true";
@@ -472,7 +478,9 @@ public class OrderService {
         double totalPaymentPrice = Double.parseDouble(String.valueOf(responseMap.get("amount")));
         double totalWelfarePoint = Double.parseDouble(String.valueOf(responseMap.get("useWelfarepoint")));
         double totalYPoint = Double.parseDouble(String.valueOf(responseMap.get("useYPoint")));
-
+        Integer memberNo = JsonUtils.getIntValue(session, "member.memberNo");
+        String memberName = JsonUtils.getStringValue(session, "member.name");
+        String memberCellphone = JsonUtils.getStringValue(session, "member.cellphone");
         List<Map<String, Object>> deliveryProductList = deliveryService.makeDeliveryData(tempOrderProducts, "tempOrder");
         Map<String, Object> deliveryPriceList = deliveryService.calculateDeliveryPrice(deliveryProductList, "tempOrder");
 
@@ -531,7 +539,6 @@ public class OrderService {
                 String tempOrderProductId = JsonUtils.getStringValue(product, "tempOrderProductId");
                 Integer couponId = JsonUtils.getIntNullableValue(couponIds, tempOrderProductId);
                 storeOrderProduct.put("couponId", couponId);
-                Integer memberNo = JsonUtils.getIntValue(session, "member.memberNo");
 
                 Map<String, Double> discountPriceMap = couponService.productCouponDiscountPrice(Integer.parseInt(tempOrderProductId), couponId, "", memberNo);
                 storeOrderProduct.put("couponDiscountPrice", discountPriceMap.get("resultDiscountPrice"));
@@ -569,19 +576,20 @@ public class OrderService {
 
         Map<String, Object> storeOrderSheet = new HashMap<>();
 
-        storeOrderSheet.put("orderSheetId", responseMap.get("ordrIdxx"));   //주문서 번호
-        storeOrderSheet.put("cartId", "");              //카트 아이디
-        storeOrderSheet.put("memberNo", JsonUtils.getIntValue(tempOrder.get(0), "memberNo"));          //회원번호
-        Node memberNode = nodeService.getNode("member", JsonUtils.getStringValue(tempOrder.get(0), "memberNo"));
-        storeOrderSheet.put("siteId", JsonUtils.getStringValue(memberNode, "siteId"));             //사이트 아이디
-        storeOrderSheet.put("totalProductPrice", totalProductPrice);         //총상품가격
-        storeOrderSheet.put("totalOrderPrice", totalOrderPrice);             //총주문가격
-        storeOrderSheet.put("totalDiscountPrice", totalDiscountPrice);       //총할인액
-        storeOrderSheet.put("totalDeliveryPrice", totalDeliveryPrice);       //총배송비
-        storeOrderSheet.put("totalPaymentPrice", totalPaymentPrice);         //결제금액
-        storeOrderSheet.put("couponDiscountPrice", couponDiscountPrice);     //쿠폰 할인액
-        storeOrderSheet.put("totalWelfarePoint", totalWelfarePoint);         //사용한 복지포인트
-        storeOrderSheet.put("totalYPoint", totalYPoint);                     //사용한 Y포인트
+        storeOrderSheet.put("orderSheetId", responseMap.get("ordrIdxx"));                           //주문서 번호
+        storeOrderSheet.put("memberNo", memberNo);                                                  //회원번호
+        storeOrderSheet.put("buyerName", memberName);                                               //구매자명
+        storeOrderSheet.put("buyerTel", memberCellphone);                                           //구매자전화번호
+        storeOrderSheet.put("cartId", JsonUtils.getIntValue(tempOrder.get(0), "cartId"));      //카트 아이디
+        storeOrderSheet.put("siteId", JsonUtils.getStringValue(tempOrder.get(0), "siteId"));   //사이트 아이디
+        storeOrderSheet.put("totalProductPrice", totalProductPrice);                                //총상품가격
+        storeOrderSheet.put("totalOrderPrice", totalOrderPrice);                                    //총주문가격
+        storeOrderSheet.put("totalDiscountPrice", totalDiscountPrice);                              //총할인액
+        storeOrderSheet.put("totalDeliveryPrice", totalDeliveryPrice);                              //총배송비
+        storeOrderSheet.put("totalPaymentPrice", totalPaymentPrice);                                //결제금액
+        storeOrderSheet.put("couponDiscountPrice", couponDiscountPrice);                            //쿠폰 할인액
+        storeOrderSheet.put("totalWelfarePoint", totalWelfarePoint);                                //사용한 복지포인트
+        storeOrderSheet.put("totalYPoint", totalYPoint);                                            //사용한 Y포인트
         storeOrderSheet.put("purchaseaAgreementYn", "y");
         storeOrderSheet.put("purchaseDeviceType", "");
         nodeService.executeNode(storeOrderSheet, "orderSheet", CommonService.CREATE);
@@ -712,11 +720,21 @@ public class OrderService {
      * 주문서 생성 Method
      */
 
-    private String createTempOrder(Map<String, Object> data) throws IOException {
-
+    private String createTempOrder(ExecuteContext context, boolean buyItNow) throws IOException {
         Map<String, Object> storeTempOrder = new HashMap<>();
+        Map<String, Object> data = context.getData();
         storeTempOrder.put("tempOrderId", orderNumberGenerator());
         storeTempOrder.put("memberNo", JsonUtils.getIntValue(data, "session.member.memberNo"));
+        storeTempOrder.put("sessionId", sessionService.getSessionKey(context.getHttpRequest()));
+        storeTempOrder.put("cartId", JsonUtils.getIntValue(data, "cartId"));
+        storeTempOrder.put("siteId", JsonUtils.getStringValue(data, "siteId"));
+        storeTempOrder.put("finishedYn", "n");
+
+        if(buyItNow){
+            storeTempOrder.put("buyNowYn", "y");
+        }else{
+            storeTempOrder.put("buyNowYn", "n");
+        }
         Node tempOrderNode = (Node) nodeService.executeNode(storeTempOrder, "tempOrder", CommonService.CREATE);
         String tempOrderId = tempOrderNode.getId();
 
