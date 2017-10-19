@@ -135,11 +135,15 @@ public class ExcelService {
     }
 
     private CellStyle getHeaderCellStyle(Workbook workbook) {
+        Font font = workbook.createFont();
+        font.setBold(true);
+        font.setFontHeight((short) 15);
+
         CellStyle cellStyle = workbook.createCellStyle();
         cellStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
         cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        cellStyle.setFont(font);
+
         return cellStyle;
     }
-
-
 }
