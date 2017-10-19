@@ -197,5 +197,85 @@
     "actionType": "service",
     "actionBody": "voteDayCntryService.voteBasStatsCntryEvt",
     "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "voteBasInfo",
+    "event": "voteItemStatsHstByMbr",
+    "noneExecute": true,
+    "eventName": "vote item statistics history event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "voteBasInfo>voteItemStatsHstByMbr",
+    "action": "voteItemStatsHstByMbrEvent",
+    "actionName": "execute vote item statistics history",
+    "actionType": "service",
+    "actionBody": "voteItemStatsHstByMbrService.execVoteItemStatsHstByMbr",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "voteBasInfo",
+    "event": "voteItemStatsByMbrCntry",
+    "noneExecute": true,
+    "eventName": "vote item statistics history event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "voteBasInfo>voteItemStatsByMbrCntry",
+    "action": "voteItemStatsByMbrCntryEvent",
+    "actionName": "execute vote item statistics",
+    "actionType": "service",
+    "actionBody": "voteItemStatsByMbrService.execVoteItemStatsByCntry",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "voteBasInfo",
+    "event": "voteItemStatsByMbrSex",
+    "noneExecute": true,
+    "eventName": "vote item statistics history event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "voteBasInfo>voteItemStatsByMbrSex",
+    "action": "voteItemStatsByMbrSexEvent",
+    "actionName": "execute vote item statistics",
+    "actionType": "service",
+    "actionBody": "voteItemStatsByMbrService.execVoteItemStatsBySex",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "voteBasInfo",
+    "event": "voteItemStatsHstByWly",
+    "noneExecute": true,
+    "eventName": "vote item statistics history event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "voteBasInfo>voteItemStatsHstByWly",
+    "action": "voteItemStatsByMbrSexEvent",
+    "actionName": "execute vote item statistics history",
+    "actionType": "service",
+    "actionBody": "voteItemStatsHstByWlyService.execVoteItemStatsHstByWly",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "voteBasInfo",
+    "event": "voteItemStatsByWly",
+    "noneExecute": true,
+    "eventName": "vote item statistics history event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "voteBasInfo>voteItemStatsByWly",
+    "action": "voteItemStatsByWlyEvent",
+    "actionName": "execute vote item statistics",
+    "actionType": "service",
+    "actionBody": "voteItemStatsByWlyService.execVoteItemStatsByWly",
+    "order": 1
   }
 ]
