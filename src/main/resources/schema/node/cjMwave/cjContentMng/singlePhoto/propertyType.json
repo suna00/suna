@@ -91,7 +91,7 @@
     "referenceValue": "",
     "codeFilter": "",
     "defaultValue": "",
-    "fileHandler":"s3"
+    "fileHandler":"default"
   },
   {
     "typeId": "propertyType",
@@ -110,7 +110,7 @@
     "referenceValue": "",
     "codeFilter": "",
     "defaultValue": "",
-    "fileHandler":"s3"
+    "fileHandler":"default"
   },
   {
     "typeId": "propertyType",
@@ -129,7 +129,7 @@
     "referenceValue": "",
     "codeFilter": "",
     "defaultValue": "",
-    "fileHandler":"s3"
+    "fileHandler":"default"
   },
   {
     "typeId": "propertyType",
