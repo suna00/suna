@@ -49,12 +49,9 @@ public class ApiReadContext extends ReadContext implements CacheableContext {
         checkCacheable(config, data, readContext) ;
         checkExclude(config, data, readContext); ;
 
-        if(!ClusterUtils.getClusterService().checkClusterGroup(readContext.nodeType)){
-            readContext.remote = true ;
-            readContext.id = ContextUtils.getValue(config.get("id"), data).toString();
-
-            return readContext ;
-        }
+//        if(!ClusterUtils.getClusterService().checkClusterGroup(readContext.nodeType)){
+//            readContext.remote = true ;
+//        }
         for (String key : config.keySet()) {
             if (key.equals("typeId")) continue;
 

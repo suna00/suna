@@ -319,11 +319,17 @@ public class MethodHelper {
                 String pid = methodParams[3] ;
 
                 Node node = NodeUtils.getNode(typeId, snsTypeCd+">"+snsKey) ;
-                FileValue fileValue = (FileValue) node.get(pid);
-                if(fileValue != null){
-                    return fileValue.getFileName() ;
+                Object val = node.get(pid) ;
+
+                if(val instanceof Map){
+                    return (String) ((Map) val).get("fileName");
+                }else if(val instanceof FileValue) {
+                    FileValue fileValue = (FileValue) node.get(pid);
+                    if (fileValue != null) {
+                        return fileValue.getFileName();
+                    }
                 }
-                return "" ;
+                return value != null ? value.toString() : "" ;
             }
 
             default :

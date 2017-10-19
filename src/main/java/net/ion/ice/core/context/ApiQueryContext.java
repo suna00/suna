@@ -30,7 +30,7 @@ public class ApiQueryContext extends QueryContext implements CacheableContext{
     }
 
     public QueryResult makeQueryResult() {
-        if (cacheable != null && cacheable && !ClusterUtils.getClusterService().getServerMode().equals("cache")) {
+        if (cacheable != null && cacheable) {
             String cacheKey = makeCacheKey() ;
             return ContextUtils.makeCacheResult(cacheKey, this) ;
         }
