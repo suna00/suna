@@ -108,7 +108,7 @@ public class MemberService {
         Node node;
 
         if (contextData.get("memberNo") == null) {
-            contextData.put("barcode", setBarcode());
+            //contextData.put("barcode", setBarcode()); 회원바코드 생성
             node = (Node) nodeService.executeNode(contextData, "member", CommonService.CREATE);
 
             Map<String, String> emailTemplate = getEmailTemplate("회원가입");
