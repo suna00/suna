@@ -55,6 +55,7 @@
       },
       "root": {
         "typeId": "compItemInfo",
+        "cacheTime": "300",
         "excludePids": "showCntryCdList",
         "query": [
           {
@@ -448,6 +449,7 @@
     "config": {
       "root": {
         "typeId": "svcMenuInfo",
+        "cacheTime": "300",
         "query": [
           {
             "field": "svcMenuGroupSeq",

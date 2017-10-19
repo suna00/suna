@@ -37,6 +37,7 @@
     ],
     "config": {
       "typeId": "voteBasInfo",
+      "cacheTime": "30",
       "excludePids": "showCntryCdList",
       "query": [
         {
