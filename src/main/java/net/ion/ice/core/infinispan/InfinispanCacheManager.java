@@ -112,7 +112,7 @@ public class InfinispanCacheManager {
     private static <K,V> Cache<K,V> initLocalCache(String time){
         long idle = Integer.parseInt(time) * 1000L ;
         manager.defineConfiguration(time, new ConfigurationBuilder()
-                .eviction().strategy(EvictionStrategy.LIRS).maxEntries(5000).expiration().wakeUpInterval(30001).lifespan(idle).maxIdle(idle)
+                .eviction().strategy(EvictionStrategy.LIRS).maxEntries(10000).expiration().wakeUpInterval(30001).lifespan(idle).maxIdle(idle)
                 .build());
         Cache<K, V> cache = manager.getCache(time);
         cache.start();

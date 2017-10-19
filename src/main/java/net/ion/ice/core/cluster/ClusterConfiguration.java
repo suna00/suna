@@ -62,6 +62,8 @@ public class ClusterConfiguration {
 
     private String localMemberUUID ;
 
+    private String localIp ;
+
     @PostConstruct
     public void init(){
         this.port = environment.getProperty("server.port") ;
@@ -95,6 +97,7 @@ public class ClusterConfiguration {
 
 
             this.localMemberUUID = hazelcast.getCluster().getLocalMember().getUuid() ;
+            this.localIp = StringUtils.substringBeforeLast(hazelcast.getCluster().getLocalMember().getAddress().getHost(), ".") ;
             /*
             if(voteCore != null && voteCore){
                 IQueue queue = getMbrVoteQueue() ;
@@ -232,6 +235,10 @@ public class ClusterConfiguration {
 
     public String getMode(){
         return mode ;
+    }
+
+    public String getLocalIp() {
+        return localIp;
     }
 
 

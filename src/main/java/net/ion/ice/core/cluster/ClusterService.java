@@ -68,9 +68,22 @@ public class ClusterService {
         return clusterConfiguration.getGroupList().contains(clusterGroup) ;
     }
 
-    public Member getClusterServer(String mode, String clusterGroup) {
+    public Member getClusterServer(String mode, String clusterGroup, boolean retry) {
         Set<Member> members = clusterConfiguration.getClusterMembers() ;
 
+        if(retry){
+            for(Member member : members){
+                if(mode.equals(member.getStringAttribute("mode")) && StringUtils.contains(member.getStringAttribute("groups"), clusterGroup) && !member.getAddress().getHost().startsWith(clusterConfiguration.getLocalIp())){
+                    return member ;
+                }
+            }
+        }else {
+            for (Member member : members) {
+                if (mode.equals(member.getStringAttribute("mode")) && StringUtils.contains(member.getStringAttribute("groups"), clusterGroup) && member.getAddress().getHost().startsWith(clusterConfiguration.getLocalIp())) {
+                    return member;
+                }
+            }
+        }
         for(Member member : members){
             if(mode.equals(member.getStringAttribute("mode")) && StringUtils.contains(member.getStringAttribute("groups"), clusterGroup)){
                 return member ;

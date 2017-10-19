@@ -64,4 +64,19 @@ public class NodeHelperController {
             return JsonResponse.error(e) ;
         }
     }
+
+
+    @RequestMapping(value = "/helper/syncList", method = RequestMethod.GET)
+    @ResponseBody
+    public Object listNode(HttpServletRequest request, @RequestParam String typeId, @RequestParam String query, @RequestParam String server)  {
+        try {
+            logger.info("node sync list : {}, {}", typeId, query);
+            nodeHelperService.syncNodeList(NodeUtils.getNodeType(typeId), query, server);
+            JsonResponse.create() ;
+        }catch(Exception e){
+            logger.error(e.getMessage(), e);
+            return JsonResponse.error(e) ;
+        }
+        return null ;
+    }
 }

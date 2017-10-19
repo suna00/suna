@@ -23,13 +23,13 @@ public class ApiExecuteContext extends ExecuteContext implements CacheableContex
         if(this.ifTest != null && !(this.ifTest.equalsIgnoreCase("true"))){
             return new QueryResult().setResult("0").setResultMessage("None Executed") ;
         }
-        if (cacheable != null && cacheable && !ClusterUtils.getClusterService().getServerMode().equals("cache")) {
+        if (cacheable != null && cacheable ) {
             String cacheKey = makeCacheKey() ;
             return ContextUtils.makeCacheResult(cacheKey, this) ;
         }
 
         if(this.remote != null && this.remote){
-            Map<String, Object> queryResult = ClusterUtils.callExecute(this) ;
+            Map<String, Object> queryResult = ClusterUtils.callExecute(this, false) ;
             if(queryResult.containsKey("item")) {
                 this.result = queryResult.get("item");
             }else{

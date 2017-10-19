@@ -347,7 +347,10 @@ public class NodeService {
 
     public Node getNode(NodeType nodeType, String id) {
         if(!clusterService.checkClusterGroup(nodeType)){
-            Map<String, Object> data = ClusterUtils.callNode(nodeType, id) ;
+            Map<String, Object> data = ClusterUtils.callNode(nodeType, id, false) ;
+            if(data == null){
+                return null ;
+            }
             return new Node(data) ;
         }
         Node node = infinispanRepositoryService.getNode(nodeType.getTypeId(), id) ;
