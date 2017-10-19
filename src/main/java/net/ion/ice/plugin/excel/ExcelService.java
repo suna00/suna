@@ -137,11 +137,16 @@ public class ExcelService {
     private CellStyle getHeaderCellStyle(Workbook workbook) {
         Font font = workbook.createFont();
         font.setBold(true);
-        font.setFontHeight((short) 15);
+        font.setFontHeightInPoints((short) 15);
 
         CellStyle cellStyle = workbook.createCellStyle();
+        cellStyle.setBorderTop(BorderStyle.THIN);
+        cellStyle.setBorderRight(BorderStyle.THIN);
+        cellStyle.setBorderBottom(BorderStyle.THIN);
+        cellStyle.setBorderLeft(BorderStyle.THIN);
         cellStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
         cellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        cellStyle.setAlignment(HorizontalAlignment.CENTER);
         cellStyle.setFont(font);
 
         return cellStyle;
