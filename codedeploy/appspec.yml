@@ -13,6 +13,7 @@ hooks:
     - location: ice-start.sh #<- BeforeInstall 단계에 실행할 script
       timeout: 20 #<- script 실행 timeout
       runas: ion #<- 위 스크립트 실행 user
+
   ApplicationStop:
     - location: ice-stop.sh
       timeout: 20

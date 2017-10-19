@@ -354,9 +354,9 @@ public class MnetDataDumpService {
         logger.info("START COPY DATA :: " + target);
         // 리포트 정보 초기화
         migrationReports = new HashMap<>();
-        target = target.trim().toLowerCase();
+        String type = target.trim().toLowerCase();
         try{
-            switch (target) {
+            switch (type) {
                 case  "all" :
                     List<Node> repNodeList = nodeService.getNodeList(REP_TID, "");
                     for(Node repNode : repNodeList) {
@@ -364,6 +364,14 @@ public class MnetDataDumpService {
                             migrate(repNode, null, provided);
                         }
                     }
+                case  "chart" :
+                    Node charMstNode = nodeService.getNode(REP_TID, "chartMst");
+                    logger.info("repNode :: " + charMstNode);
+                    migrate(charMstNode, null, provided);
+                    Node chartLstNode = nodeService.getNode(REP_TID, "chartLst");
+                    logger.info("repNode :: " + chartLstNode);
+                    migrate(chartLstNode, null, provided);
+                    break;
                 default:
                     Node repNode = nodeService.getNode(REP_TID, target);
                     logger.info("repNode :: " + repNode);

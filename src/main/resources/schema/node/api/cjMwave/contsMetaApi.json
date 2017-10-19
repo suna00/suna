@@ -25,6 +25,8 @@
     ],
     "config": {
       "typeId": "album",
+      
+      "excludePids": "showCntryCdList",
       "query": [
         {
           "field": "artistId",
@@ -86,6 +88,8 @@
     "config": {
       "root": {
         "typeId": "album",
+        "cacheTime": "60",
+        "excludePids": "showCntryCdList",
         "id": "{{:albumId}}",
         "response": {
           "_all_": "",
@@ -128,6 +132,8 @@
     ],
     "config": {
       "typeId": "song",
+      "cacheTime": "30",
+      "excludePids": "showCntryCdList",
       "query": [
         {
           "field": "artistId",
@@ -210,6 +216,8 @@
     ],
     "config": {
       "typeId": "artist",
+      "cacheTime": "30",
+      "excludePids": "showCntryCdList",
       "query": [
         {
           "field": "typeCd",
@@ -266,6 +274,7 @@
     "config": {
       "root": {
         "typeId": "artist",
+        "cacheTime": "30",
         "id": "{{:artistId}}",
         "response": {
           "_all_": "",
@@ -308,6 +317,8 @@
     ],
     "config": {
       "typeId": "musicVideo",
+      "cacheTime": "30",
+      "excludePids": "showCntryCdList",
       "query": [
         {
           "field": "artistId",
@@ -389,6 +400,8 @@
     "config": {
       "root": {
         "typeId": "musicVideo",
+        "cacheTime": "30",
+        "excludePids": "showCntryCdList",
         "id": "{{:musicVideoId}}",
         "response": {
           "_all_": "",
@@ -556,6 +569,8 @@
     "config": {
       "root": {
         "typeId": "news",
+        "cacheTime": "30",
+        "excludePids": "showCntryCdList",
         "query": [
           {
             "field": "contsMetaCtgryId",
@@ -666,6 +681,8 @@
     "config": {
       "root": {
         "typeId": "news",
+        "cacheTime": "30",
+        "excludePids": "showCntryCdList",
         "id": "{{:newsId}}",
         "response": {
           "_all_": "",
@@ -886,6 +903,8 @@
     ],
     "config": {
       "typeId": "groupPhoto",
+      "cacheTime": "30",
+      "excludePids": "showCntryCdList",
       "query": [
         {
           "field": "contsMetaCtgryId",
@@ -963,6 +982,8 @@
     "config": {
       "root": {
         "typeId": "groupPhoto",
+        "cacheTime": "30",
+        "excludePids": "showCntryCdList",
         "id": "{{:groupPhotoId}}",
         "referenceView": "compontSinglePhotoIds",
         "response": {
@@ -1142,6 +1163,8 @@
     ],
     "config": {
       "typeId": "singlePhoto",
+      "cacheTime": "30",
+      "excludePids": "showCntryCdList",
       "query": [
         {
           "field": "contsMetaCtgryId",
@@ -1217,6 +1240,8 @@
     ],
     "config": {
       "typeId": "singlePhoto",
+      "cacheTime": "30",
+      "excludePids": "showCntryCdList",
       "id": "{{:singlePhotoId}}",
       "response": {
         "_all_": "",
@@ -1364,6 +1389,8 @@
     ],
     "config": {
       "typeId": "pgmVideo",
+      "cacheTime": "30",
+      "excludePids": "showCntryCdList",
       "query": [
         {
           "field": "contsMetaCtgryId",
@@ -1455,6 +1482,8 @@
     "config": {
       "root": {
         "typeId": "pgmVideo",
+        "cacheTime": "30",
+        "excludePids": "showCntryCdList",
         "id": "{{:contentId}}",
         "response": {
           "_all_": "",
@@ -1616,6 +1645,8 @@
     ],
     "config": {
       "typeId": "videItgInfo",
+      "cacheTime": "30",
+      "excludePids": "showCntryCdList",
       "query": [
         {
           "field": "contsMetaCtgryId",

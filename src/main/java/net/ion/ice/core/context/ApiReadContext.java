@@ -21,7 +21,7 @@ public class ApiReadContext extends ReadContext implements CacheableContext {
     }
 
     public QueryResult makeQueryResult() {
-        if (cacheable != null && cacheable) {
+        if (cacheable != null && cacheable && !ClusterUtils.getClusterService().getServerMode().equals("cache")) {
             String cacheKey = makeCacheKey();
             return ContextUtils.makeCacheResult(cacheKey, this);
         }
@@ -29,11 +29,17 @@ public class ApiReadContext extends ReadContext implements CacheableContext {
     }
 
 
+
     public String makeCacheKey() {
-        String keySrc = httpRequest.getRequestURI() + "?" + httpRequest.getParameterMap().toString() ;
+        StringBuffer params = new StringBuffer() ;
+        for(String key : httpRequest.getParameterMap().keySet()){
+            params.append(key);
+            params.append("=") ;
+            params.append(httpRequest.getParameter(key)) ;
+        }
+        String keySrc = httpRequest.getRequestURI() + "?" + params;
         return keySrc;
     }
-
 
     public static ApiReadContext makeContextFromConfig(Map<String, Object> config, Map<String, Object> data) {
         ApiReadContext readContext = new ApiReadContext();
@@ -41,9 +47,12 @@ public class ApiReadContext extends ReadContext implements CacheableContext {
         readContext.config = config;
         readContext.data = data;
         checkCacheable(config, data, readContext) ;
+        checkExclude(config, data, readContext); ;
 
         if(!ClusterUtils.getClusterService().checkClusterGroup(readContext.nodeType)){
             readContext.remote = true ;
+            readContext.id = ContextUtils.getValue(config.get("id"), data).toString();
+
             return readContext ;
         }
         for (String key : config.keySet()) {

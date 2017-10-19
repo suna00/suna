@@ -456,7 +456,11 @@ public class QueryContext extends ReadContext {
         }
         if(this.remote != null && this.remote){
             Map<String, Object> queryResult = ClusterUtils.callQuery((ApiQueryContext) this) ;
-            this.result = (List<Map<String, Object>>) queryResult.get("items");
+            this.result = queryResult.containsKey("items") ? queryResult.get("items") : queryResult.containsKey("item")? queryResult.get("item") : queryResult.get("result");
+
+            if(resultType != null && resultType == ResultField.ResultType.NONE){
+                return null;
+            }
             return new QueryResult(queryResult) ;
         }else {
             List<Node> resultNodeList = getQueryList();

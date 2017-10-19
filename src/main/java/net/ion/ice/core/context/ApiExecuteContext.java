@@ -23,7 +23,7 @@ public class ApiExecuteContext extends ExecuteContext implements CacheableContex
         if(this.ifTest != null && !(this.ifTest.equalsIgnoreCase("true"))){
             return new QueryResult().setResult("0").setResultMessage("None Executed") ;
         }
-        if(cacheable != null && cacheable){
+        if (cacheable != null && cacheable && !ClusterUtils.getClusterService().getServerMode().equals("cache")) {
             String cacheKey = makeCacheKey() ;
             return ContextUtils.makeCacheResult(cacheKey, this) ;
         }
@@ -31,7 +31,7 @@ public class ApiExecuteContext extends ExecuteContext implements CacheableContex
         if(this.remote != null && this.remote){
             Map<String, Object> queryResult = ClusterUtils.callExecute(this) ;
             if(queryResult.containsKey("item")) {
-                this.result = (Map<String, Object>) queryResult.get("item");
+                this.result = queryResult.get("item");
             }else{
                 Map<String, Object> callResult = new LinkedHashMap<>() ;
                 for(String key : queryResult.keySet()){
@@ -48,10 +48,18 @@ public class ApiExecuteContext extends ExecuteContext implements CacheableContex
         }
     }
 
-    public String makeCacheKey(){
-        String keySrc = httpRequest.getRequestURI() + "?" + httpRequest.getParameterMap().toString() ;
-        return keySrc ;
+    public String makeCacheKey() {
+        StringBuffer params = new StringBuffer() ;
+        for(String key : httpRequest.getParameterMap().keySet()){
+            params.append(key);
+            params.append("=") ;
+            params.append(httpRequest.getParameter(key)) ;
+        }
+        String keySrc = httpRequest.getRequestURI() + "?" + params;
+        return keySrc;
     }
+
+
     public static ApiExecuteContext makeContextFromConfig(Map<String, Object> config, Map<String, Object> data) {
         ApiExecuteContext ctx = new ApiExecuteContext();
 
@@ -63,6 +71,7 @@ public class ApiExecuteContext extends ExecuteContext implements CacheableContex
 
         checkCacheable(config, data, ctx) ;
 
+        checkExclude(config, data, ctx) ;
 
         if(config.containsKey("if")){
             ctx.ifTest =  ContextUtils.getValue(config.get("if"), data).toString();
@@ -70,6 +79,8 @@ public class ApiExecuteContext extends ExecuteContext implements CacheableContex
 
         if(!ClusterUtils.getClusterService().checkClusterGroup(nodeType)){
             ctx.remote = true ;
+            ctx.data = data ;
+
             return ctx ;
         }
 

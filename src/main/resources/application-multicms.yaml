@@ -25,13 +25,16 @@ jwtConfig:
 cluster:
   mode: cms
   groups: cms
+  dataQueue: 10.75.6.140,10.75.7.140
   members:
     - 10.75.6.131
     - 10.75.7.130
     - 10.75.6.144
     - 10.75.7.144
+    - 10.75.6.140
+    - 10.75.7.140
     - 127.0.0.1
-    - localhost
+    - lcalhost
 
 infinispan:
   cachePath: /data/ion/cms-core/resource/ice2/cache
@@ -72,7 +75,7 @@ temp-file:
   dir: /data/ion/cms-core/resource/ice2/cache
 
 image:
-  prefixUrl: http://125.131.88.147:8080/image/
+  prefixUrl: http://g-p-cmswebwas-elb-467616234.ap-northeast-2.elb.amazonaws.com:8080/image/
   s3PrefixUrl: https://cmsimg.mwave.me/
 
 mobile:

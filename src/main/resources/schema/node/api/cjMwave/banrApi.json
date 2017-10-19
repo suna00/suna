@@ -25,6 +25,7 @@
     ],
     "config": {
       "typeId": "banrBasInfo",
+      "excludePids": "showCntryCdList",
       "query": [
         {
           "field": "banrSeq",

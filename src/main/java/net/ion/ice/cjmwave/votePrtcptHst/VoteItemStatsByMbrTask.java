@@ -11,10 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service("voteItemStatsByMbrTask")
 public class VoteItemStatsByMbrTask {
@@ -34,24 +31,30 @@ public class VoteItemStatsByMbrTask {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
         }
         // 통계를 위한 대상 voteSeq List
-        Date now = new Date();
-        String voteDate = DateFormatUtils.format(now, "yyyyMMddHHmmss");
+
+        Calendar cal = Calendar.getInstance() ;
+        cal.add(Calendar.DATE, -1);
+        Date before = cal.getTime() ;
+        Calendar now = Calendar.getInstance() ;
+        now.add(Calendar.DATE, +1);
+        String voteDate = DateFormatUtils.format(now.getTime(), "yyyyMMddHHmmss");
         // 투표 기간안에 있는 모든 VoteBasInfo 조회
-        List<Node> voteBasInfoList = NodeUtils.getNodeList(VOTE_BAS_INFO, "pstngStDt_below=" + voteDate + "&pstngFnsDt_above="+ voteDate);
+        List<Node> voteBasInfoList = NodeUtils.getNodeList(VOTE_BAS_INFO, "pstngStDt_below=" + voteDate + "&pstngFnsDt_above="+ DateFormatUtils.format(before, "yyyyMMddHHmmss"));
         for (Node voteBasInfo : voteBasInfoList) {
+            logger.info("vote item sex stat schedule task - {} - {} ", voteBasInfo.getId(), voteBasInfo.getStringValue("voteNm"));
+
             Integer startHstSeq = 0;
-            List<Map<String,Object>> voteItemStatsBySexList = selectItemStatsBySexList(voteBasInfo.getId(), DateFormatUtils.format(now, "yyyyMMdd"));
+            List<Map<String,Object>> voteItemStatsBySexList = selectItemStatsBySexList(voteBasInfo.getId(), DateFormatUtils.format(new Date(), "yyyyMMdd"));
             List<Map<String,Object>> insertItemStatsBySexList = new ArrayList<>();
             Integer totalVoteNum = 0;
             for (Map voteItemStatsBySex : voteItemStatsBySexList) {
-
                 Integer voteNum =
                         voteItemStatsBySex.get("voteNum")==null ? 0 : Integer.parseInt(voteItemStatsBySex.get("voteNum").toString());
                 totalVoteNum += voteNum;
 
                 voteItemStatsBySex.put("voteRate",0);
                 voteItemStatsBySex.put("owner","anonymous");
-                voteItemStatsBySex.put("created",now);
+                voteItemStatsBySex.put("created",DateFormatUtils.format(new Date(), "yyyyMMddHHmmss"));
                 insertItemStatsBySexList.add(voteItemStatsBySex);
             }
 
@@ -64,14 +67,17 @@ public class VoteItemStatsByMbrTask {
 
                 BigDecimal voteRate = voteCnt.divide(totalCnt, 1, BigDecimal.ROUND_HALF_UP);
                 insertVoteItemStats.put("voteRate", voteRate.doubleValue());
+                logger.info("vote item sex rate schedule task - {} - {} {} {}", voteBasInfo.getId(), voteCnt, totalCnt, voteRate);
 
                 String searchText = "voteSeq_matching=" + voteBasInfo.getId()
                         + "&voteItemSeq_matching=" + insertVoteItemStats.get("voteItemSeq").toString()
                         + "&sexCd_matching=" + insertVoteItemStats.get("sexCd").toString();
                 List<Node> voteItemInfoList = NodeUtils.getQueryList("voteItemStatsBySex", searchText);
                 if (voteItemInfoList.size()>0) {
+                    logger.info("vote item sex insert - {} ", voteBasInfo.getId());
                     Node voteItemStats = nodeService.updateNode(insertVoteItemStats, "voteItemStatsBySex");
                 } else {
+                    logger.info("vote item sex update - {} ", voteBasInfo.getId());
                     Node voteItemStats = nodeService.createNode(insertVoteItemStats, "voteItemStatsBySex");
                 }
             }
@@ -87,7 +93,6 @@ public class VoteItemStatsByMbrTask {
                 "  ON v.snsTypeCd = m.snsTypeCd AND v.snsKey = m.snsKey) t " +
                 "WHERE voteDate=? AND voteSeq=? AND sexCd IS NOT NULL AND cntryCd IS NOT NULL " +
                 "GROUP BY voteDate, voteSeq, voteItemSeq, sexCd ";
-        voteDate = "20171012";
         return jdbcTemplate.queryForList(selectQuery, voteDate, voteSeq);
     }
 
@@ -96,15 +101,19 @@ public class VoteItemStatsByMbrTask {
         if (jdbcTemplate == null) {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
         }
-        // 통계를 위한 대상 voteSeq List
-        Date now = new Date();
-        String voteDate = DateFormatUtils.format(now, "yyyyMMddHHmmss");
+        Calendar cal = Calendar.getInstance() ;
+        cal.add(Calendar.DATE, -1);
+        Date before = cal.getTime() ;
+        Calendar now = Calendar.getInstance() ;
+        now.add(Calendar.DATE, +1);
+        String voteDate = DateFormatUtils.format(now.getTime(), "yyyyMMddHHmmss");
         // 투표 기간안에 있는 모든 VoteBasInfo 조회
-        List<Node> voteBasInfoList = NodeUtils.getNodeList(VOTE_BAS_INFO, "pstngStDt_below=" + voteDate + "&pstngFnsDt_above="+ voteDate);
-
+        List<Node> voteBasInfoList = NodeUtils.getNodeList(VOTE_BAS_INFO, "pstngStDt_below=" + voteDate + "&pstngFnsDt_above="+ DateFormatUtils.format(before, "yyyyMMddHHmmss"));
         for (Node voteBasInfo : voteBasInfoList) {
+            logger.info("vote item cntry stat schedule task - {} - {} ", voteBasInfo.getId(), voteBasInfo.getStringValue("voteNm"));
+
             Integer startHstSeq = 0;
-            List<Map<String,Object>> voteItemStatsByCntryList = selectItemStatsByCntryList(voteBasInfo.getId(), DateFormatUtils.format(now, "yyyyMMdd"));
+            List<Map<String,Object>> voteItemStatsByCntryList = selectItemStatsByCntryList(voteBasInfo.getId(), DateFormatUtils.format(new Date(), "yyyyMMdd"));
             List<Map<String,Object>> insertItemStatsByCntryList = new ArrayList<>();
             Integer totalVoteNum = 0;
             for (Map voteItemStatsByCntry : voteItemStatsByCntryList) {
@@ -115,7 +124,7 @@ public class VoteItemStatsByMbrTask {
 
                 voteItemStatsByCntry.put("voteRate",0);
                 voteItemStatsByCntry.put("owner","anonymous");
-                voteItemStatsByCntry.put("created",now);
+                voteItemStatsByCntry.put("created",DateFormatUtils.format(new Date(), "yyyyMMddHHmmss"));
 
                 insertItemStatsByCntryList.add(voteItemStatsByCntry);
             }
@@ -129,6 +138,7 @@ public class VoteItemStatsByMbrTask {
 
                 BigDecimal voteRate = voteCnt.divide(totalCnt, 1, BigDecimal.ROUND_HALF_UP);
                 insertVoteItemStats.put("voteRate", voteRate.doubleValue());
+                logger.info("vote item sex rate schedule task - {} - {} {} {}", voteBasInfo.getId(), voteCnt, totalCnt, voteRate);
 
                 String searchText = "voteSeq_matching=" + voteBasInfo.getId()
                         + "&voteItemSeq_matching=" + insertVoteItemStats.get("voteItemSeq").toString()
@@ -136,8 +146,10 @@ public class VoteItemStatsByMbrTask {
                 List<Node> voteItemInfoList = NodeUtils.getQueryList("voteItemStatsByCntry", searchText);
 
                 if (voteItemInfoList.size()>0) {
+                    logger.info("vote item sex insert - {} ", voteBasInfo.getId());
                     Node voteItemStats = nodeService.updateNode(insertVoteItemStats, "voteItemStatsByCntry");
                 } else {
+                    logger.info("vote item sex insert - {} ", voteBasInfo.getId());
                     Node voteItemStats = nodeService.createNode(insertVoteItemStats, "voteItemStatsByCntry");
                 }
             }
@@ -154,7 +166,6 @@ public class VoteItemStatsByMbrTask {
                 "  ON v.snsTypeCd = m.snsTypeCd AND v.snsKey = m.snsKey) t " +
                 "WHERE voteDate=? AND voteSeq=? AND sexCd IS NOT NULL AND cntryCd IS NOT NULL " +
                 "GROUP BY voteDate, voteSeq, voteItemSeq, cntryCd ";
-        voteDate = "20171012";
         return jdbcTemplate.queryForList(selectQuery, voteDate, voteSeq);
     }
 

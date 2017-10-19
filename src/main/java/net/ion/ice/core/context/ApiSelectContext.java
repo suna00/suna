@@ -1,6 +1,7 @@
 package net.ion.ice.core.context;
 
 import net.ion.ice.ApplicationContextManager;
+import net.ion.ice.core.cluster.ClusterUtils;
 import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
@@ -68,7 +69,7 @@ public class ApiSelectContext extends ReadContext implements CacheableContext{
 
 
     public QueryResult makeQueryResult() {
-        if(cacheable != null && cacheable){
+        if (cacheable != null && cacheable && !ClusterUtils.getClusterService().getServerMode().equals("cache")) {
             String cacheKey = makeCacheKey() ;
             return ContextUtils.makeCacheResult(cacheKey, this) ;
 
@@ -77,9 +78,15 @@ public class ApiSelectContext extends ReadContext implements CacheableContext{
     }
 
 
-    public String makeCacheKey(){
-        String keySrc = httpRequest.getRequestURI() + "?" + httpRequest.getParameterMap().toString() ;
-        return keySrc ;
+    public String makeCacheKey() {
+        StringBuffer params = new StringBuffer() ;
+        for(String key : httpRequest.getParameterMap().keySet()){
+            params.append(key);
+            params.append("=") ;
+            params.append(httpRequest.getParameter(key)) ;
+        }
+        String keySrc = httpRequest.getRequestURI() + "?" + params;
+        return keySrc;
     }
 
     public QueryResult makeQueryResult(Object result, String fieldName) {

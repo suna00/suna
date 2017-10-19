@@ -6,6 +6,7 @@ import net.ion.ice.core.node.*;
 import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.QueryTerm;
 import net.ion.ice.core.query.ResultField;
+import org.apache.avro.generic.GenericData;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
@@ -58,6 +59,7 @@ public class ReadContext implements Context, Serializable {
     protected Boolean cacheable ;
     protected String cacheTime ;
 
+    protected List<String> excludePids ;
     public NodeType getNodetype() {
         return nodeType;
     }
@@ -89,15 +91,34 @@ public class ReadContext implements Context, Serializable {
 
     protected static void checkCacheable(Map<String, Object> config, Map<String, Object> data, ReadContext readContext) {
         if(config != null && config.containsKey("cacheTime") && config.get("cacheTime") != null && StringUtils.isNotEmpty(config.get("cacheTime").toString())){
-            readContext.cacheable = true ;
-            readContext.cacheTime = config.get("cacheTime").toString() ;
+            if(!config.get("cacheTime").toString().equals("0")) {
+                readContext.cacheTime = config.get("cacheTime").toString();
+                readContext.cacheable = true;
+            }
+
         }
         if(data.containsKey("cacheTime") && data.get("cacheTime") != null && StringUtils.isNotEmpty(data.get("cacheTime").toString())){
-            readContext.cacheable = true ;
-            readContext.cacheTime = data.get("cacheTime").toString() ;
+            if(!config.get("cacheTime").toString().equals("0")) {
+                readContext.cacheTime = data.get("cacheTime").toString();
+                readContext.cacheable = true;
+            }
         }
     }
-
+    protected static void checkExclude(Map<String, Object> config, Map<String, Object> data, ReadContext readContext) {
+        String pids = null ;
+        if(config != null && config.containsKey("excludePids") && config.get("excludePids") != null && StringUtils.isNotEmpty(config.get("excludePids").toString())){
+            pids = config.get("excludePids").toString() ;
+        }
+        if(data.containsKey("excludePids") && data.get("excludePids") != null && StringUtils.isNotEmpty(data.get("excludePids").toString())){
+            pids = data.get("excludePids").toString() ;
+        }
+        if(pids != null) {
+            readContext.excludePids = new ArrayList<>();
+            for (String pid : StringUtils.split(pids, ',')){
+                readContext.excludePids.add(pid.trim()) ;
+            }
+        }
+    }
 
     protected static void makeResultField(ReadContext context, String fields) {
         if(StringUtils.contains(fields,",")) {
@@ -327,6 +348,8 @@ public class ReadContext implements Context, Serializable {
                 ReadContext subQueryContext = (ReadContext) resultField.getContext();
                 subQueryContext.dateFormat = this.dateFormat ;
                 subQueryContext.fileUrlFormat = this.fileUrlFormat ;
+                subQueryContext.excludePids = this.excludePids ;
+
                 if (node != null) {
                     subQueryContext.setNodeData(node);
                 }
@@ -340,6 +363,8 @@ public class ReadContext implements Context, Serializable {
                         ApiQueryContext apiQueryContext = ApiQueryContext.makeContextFromConfig(resultField.getFieldOption(), _data);
                         apiQueryContext.dateFormat = this.dateFormat ;
                         apiQueryContext.fileUrlFormat = this.fileUrlFormat ;
+                        apiQueryContext.excludePids = this.excludePids ;
+
                         apiQueryContext.makeQueryResult(itemResult, resultField.getFieldName(), resultField.getResultType());
                         break ;
                     }
@@ -347,6 +372,8 @@ public class ReadContext implements Context, Serializable {
                         ApiSelectContext apiQueryContext = ApiSelectContext.makeContextFromConfig(resultField.getFieldOption(), _data);
                         apiQueryContext.dateFormat = this.dateFormat ;
                         apiQueryContext.fileUrlFormat = this.fileUrlFormat ;
+                        apiQueryContext.excludePids = this.excludePids ;
+
                         apiQueryContext.makeQueryResult(itemResult, resultField.getFieldName());
                         break ;
                     }
@@ -364,6 +391,8 @@ public class ReadContext implements Context, Serializable {
                         FieldContext fieldContext = FieldContext.makeContextFromConfig(resultField.getFieldOption(), _data);
                         fieldContext.dateFormat = this.dateFormat ;
                         fieldContext.fileUrlFormat = this.fileUrlFormat ;
+                        fieldContext.excludePids = this.excludePids ;
+
                         if(StringUtils.isNotEmpty(pt.getReferenceType()) && NodeUtils.getNodeType(pt.getReferenceType()) != null ){
                             fieldContext.nodeType = NodeUtils.getNodeType(pt.getReferenceType()) ;
                         }
@@ -598,5 +627,13 @@ public class ReadContext implements Context, Serializable {
 
     public void setData(Map<String,Object> data) {
         this.data = data;
+    }
+
+    public List<String> getExcludePids() {
+        return excludePids;
+    }
+
+    public void setExcludePids(List<String> excludePids) {
+        this.excludePids = excludePids;
     }
 }

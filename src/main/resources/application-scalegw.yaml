@@ -25,7 +25,14 @@ jwtConfig:
 cluster:
   mode: api
   groups: api
+  dataQueue: 10.75.6.140,10.75.7.140
   members:
+    - 10.75.6.131
+    - 10.75.7.130
+    - 10.75.6.144
+    - 10.75.7.144
+    - 10.75.6.140
+    - 10.75.7.140
     - 10.75.6.70
     - 10.75.6.0-255
     - 10.75.7.0-255
@@ -71,8 +78,10 @@ temp-file:
   dir: /data/ion/gw-core/resource/ice2/cache
 
 image:
-  prefixUrl: http://g-api-elb-579243851.ap-northeast-2.elb.amazonaws.com/image/
-  s3PrefixUrl: https://cjmwave-prd.s3.ap-northeast-2.amazonaws.com/ion/
+#  prefixUrl: http://g-api-elb-579243851.ap-northeast-2.elb.amazonaws.com/image/
+#  s3PrefixUrl: https://cjmwave-prd.s3.ap-northeast-2.amazonaws.com/ion/
+  prefixUrl: http://g-p-api-elb-321213426.ap-northeast-2.elb.amazonaws.com/image/
+  s3PrefixUrl: https://cmsimg.mwave.me/
 
 mobile:
   push:

@@ -36,7 +36,7 @@ public class ClusterUtils {
     public static Map<String, Object> callExecute(ApiExecuteContext executeContext) {
         Member server = getClusterService().getClusterServer("cms", executeContext.getNodeType().getClusterGroup()) ;
         String url =  "http://" + server.getAddress().getHost() + ":" + server.getStringAttribute("port") + "/node/" + executeContext.getNodeType().getTypeId() + "/" + executeContext.getEvent() + ".json" ;
-
+        String resultStr = "";
         try {
             executeContext.getData().put(CONFIG_, JsonUtils.toJsonString(executeContext.getConfig())) ;
             if(StringUtils.isNotEmpty(executeContext.getDateFormat())) {
@@ -45,7 +45,7 @@ public class ClusterUtils {
             if(executeContext.getFileUrlFormat() != null) {
                 executeContext.getData().put(FILE_URL_FORMAT_, JsonUtils.toJsonString(executeContext.getFileUrlFormat()));
             }
-            String resultStr = ApiUtils.callApiMethod(url, executeContext.getData(), 5000, 20000, ApiUtils.POST) ;
+            resultStr = ApiUtils.callApiMethod(url, executeContext.getData(), 5000, 30000, ApiUtils.POST) ;
             return JsonUtils.parsingJsonToMap(resultStr) ;
         } catch (IOException e) {
             e.printStackTrace();
@@ -60,7 +60,7 @@ public class ClusterUtils {
             server = getClusterService().getClusterServer("cms", queryContext.getNodeType().getClusterGroup()) ;
         }
         String url = "http://" + server.getAddress().getHost() + ":" + server.getStringAttribute("port")  + "/node/query" ;
-
+        String resultStr = "" ;
         try {
             queryContext.getData().put(CONFIG_, JsonUtils.toJsonString(queryContext.getConfig())) ;
             if(StringUtils.isNotEmpty(queryContext.getDateFormat())) {
@@ -70,9 +70,10 @@ public class ClusterUtils {
                 queryContext.getData().put(FILE_URL_FORMAT_, JsonUtils.toJsonString(queryContext.getFileUrlFormat()));
             }
 
-            String resultStr = ApiUtils.callApiMethod(url, queryContext.getData(), 5000, 10000, ApiUtils.POST) ;
+            resultStr = ApiUtils.callApiMethod(url, queryContext.getData(), 5000, 20000, ApiUtils.POST) ;
             return JsonUtils.parsingJsonToMap(resultStr) ;
         } catch (IOException e) {
+            logger.error(resultStr);
             e.printStackTrace();
         }
         return null;
@@ -109,6 +110,7 @@ public class ClusterUtils {
             Map<String, Object> param = new HashMap<>();
             param.put("typeId", typeId) ;
             param.put("id", id) ;
+            logger.info("CALL NODE : {} - {}", url, param);
 
             String resultStr = ApiUtils.callApiMethod(url, param, 5000, 20000, ApiUtils.POST) ;
             Map<String, Object> result = JsonUtils.parsingJsonToMap(resultStr) ;

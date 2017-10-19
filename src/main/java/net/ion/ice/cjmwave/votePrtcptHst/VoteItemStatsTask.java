@@ -4,19 +4,19 @@ import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Service("voteItemStatsTask")
 public class VoteItemStatsTask {
+    private static Logger logger = LoggerFactory.getLogger(VoteItemStatsTask.class);
 
     public static final String VOTE_BAS_INFO = "voteBasInfo";
     public static final String VOTE_ITEM_INFO = "voteItemInfo";
@@ -40,12 +40,18 @@ public class VoteItemStatsTask {
         }
 
         // 통계를 위한 대상 voteSeq List
-        Date now = new Date();
-        String voteDate = DateFormatUtils.format(now, "yyyyMMddHHmmss");
+        Calendar cal = Calendar.getInstance() ;
+        cal.add(Calendar.DATE, -1);
+        Date before = cal.getTime() ;
+        Calendar now = Calendar.getInstance() ;
+        now.add(Calendar.DATE, +1);
+        String voteDate = DateFormatUtils.format(now.getTime(), "yyyyMMddHHmmss");
 
         // 투표 기간안에 있는 모든 VoteBasInfo 조회
-        List<Node> voteBasInfoList = NodeUtils.getNodeList(VOTE_BAS_INFO, "pstngStDt_below=" + voteDate + "&pstngFnsDt_above="+ voteDate);
+        List<Node> voteBasInfoList = NodeUtils.getNodeList(VOTE_BAS_INFO, "pstngStDt_below=" + voteDate + "&pstngFnsDt_above="+ DateFormatUtils.format(before, "yyyyMMddHHmmss"));
         for (Node voteBasInfo : voteBasInfoList) {
+            logger.info("vote item stat schedule task - {} - {} ", voteBasInfo.getId(), voteBasInfo.getStringValue("voteNm"));
+
             // 총 투표수
             Integer totalVoteNum = 0;
             /*// Hazelcast 사용시.
@@ -57,18 +63,24 @@ public class VoteItemStatsTask {
             }
             */
             totalVoteNum = getTotalVoteCnt(voteBasInfo.getId());
+            logger.info("vote item total vote num schedule task - {} - {} ", voteBasInfo.getId(), totalVoteNum);
 
             // VoteSeq에 해당 하는 모든 voteItemInfo 가져오기
             List<Node> voteItemInfoList = NodeUtils.getNodeList(VOTE_ITEM_INFO, "voteSeq_matching=" + voteBasInfo.getId());
+            logger.info("vote item list num schedule task - {} - {} ", voteBasInfo.getId(), voteItemInfoList.size());
 
             // 각 투표가 진행된 voteItem 정보 및 Count 조회
             List<Map<String, Object>> voteNumInfoList = getVoteNumByVoteItemList(voteBasInfo.getId());
             List<Map<String, Object>> rtVoteItemStatsList = new ArrayList<>();
 
-            int rankNum = 1;
+            logger.info("vote item num schedule task - {} - {} ", voteBasInfo.getId(), voteNumInfoList.size());
+
             List<String> checkVoteItemSeqList = new ArrayList<>();
             for (Map<String, Object> voteNumInfo : voteNumInfoList) {
-                voteNumInfo.put("rankNum", rankNum);
+                logger.info("vote item exist schedule task - {} - {} {}", voteBasInfo.getId(), voteNumInfo.get("voteSeq"), voteBasInfo.getId().equals(voteNumInfo.get("voteSeq").toString()));
+                if(!voteBasInfo.getId().equals(voteNumInfo.get("voteSeq").toString())){
+                    continue;
+                }
                 // Rank Gap - pass
                 // TODO - VoteRate
 
@@ -79,12 +91,14 @@ public class VoteItemStatsTask {
                 BigDecimal voteRate = voteCnt.divide(totalCnt, 1, BigDecimal.ROUND_HALF_UP);
                 voteNumInfo.put("voteRate", voteRate.doubleValue());
                 voteNumInfo.put("voteNum", voteNumInfo.get("voteNum"));
-                voteNumInfo.put("created", now);
+                voteNumInfo.put("created", DateFormatUtils.format(new Date(), "yyyyMMddHHmmss"));
+                logger.info("vote item  rate schedule task - {} - {} {} {}", voteBasInfo.getId(), voteCnt, totalCnt, voteRate);
 
                 // Response List에 추가
                 rtVoteItemStatsList.add(voteNumInfo);
                 checkVoteItemSeqList.add(voteNumInfo.get("voteItemSeq").toString());
-                rankNum++;
+                logger.info("vote item add schedule task - {} - {}", voteBasInfo.getId(), voteNumInfo.get("voteItemSeq").toString());
+
             }
 
             for (Node voteItemInfo : voteItemInfoList) {
@@ -93,30 +107,28 @@ public class VoteItemStatsTask {
                     tmpVoteItemInfoMap.put("voteSeq", voteItemInfo.get("voteSeq"));
                     tmpVoteItemInfoMap.put("voteItemSeq", voteItemInfo.get("voteItemSeq"));
 
-                    tmpVoteItemInfoMap.put("rankNum", rankNum);
                     // Rank Gap - pass
                     // TODO - VoteRate
                     //Double voteNumDouble = Double.parseDouble(voteNumInfo.get("voteNum").toString());
                     tmpVoteItemInfoMap.put("voteRate", 0);
                     tmpVoteItemInfoMap.put("voteNum", 0);
-                    tmpVoteItemInfoMap.put("created", now);
+                    tmpVoteItemInfoMap.put("created", DateFormatUtils.format(new Date(), "yyyyMMddHHmmss"));
 
                     // Response List에 추가
                     rtVoteItemStatsList.add(tmpVoteItemInfoMap);
-                    rankNum++;
                 }
             }
 
             // Hazelcase 등록 대상 Data - rtVoteItemStatsList
             // Insert or Update
+            int del = deleteVoteItemStats(voteBasInfo.getId());
+            logger.info("vote item delete schedule task - {} - {} - insert {} ", voteBasInfo.getId(), del, rtVoteItemStatsList.size());
+
+            int rankNum = 1;
+
             for (Map<String, Object> voteItemStatsMap : rtVoteItemStatsList) {
-                Map<String, Object> checkVoteItemStats = selectVoteItemStats(voteItemStatsMap.get("voteSeq").toString(),
-                        Integer.parseInt(voteItemStatsMap.get("rankNum").toString()));
-                if (checkVoteItemStats == null) {
-                    insertVoteItemStats(voteItemStatsMap);
-                } else {
-                    updateVoteItemStats(voteItemStatsMap);
-                }
+                insertVoteItemStats(voteItemStatsMap, rankNum);
+                rankNum++;
             }
         }
     }
@@ -142,30 +154,21 @@ public class VoteItemStatsTask {
     }
 
 
-    private Map<String, Object> selectVoteItemStats(String voteSeq, Integer rankNum) {
-        String selectQuery = "SELECT voteSeq, voteItemSeq, rankNum, rankGapNum, voteRate, voteNum, owner, created " +
-                "FROM voteItemStats WHERE voteSeq=? AND rankNum=?";
+    private int deleteVoteItemStats(String voteSeq) {
+        String deleteQuery = "DELETE  FROM voteItemStats WHERE voteSeq=?";
         try {
-            Map retMap = jdbcTemplate.queryForMap(selectQuery, voteSeq, rankNum);
-            return retMap;
+            return jdbcTemplate.update(deleteQuery, voteSeq);
         } catch (Exception e) {
-            return null;
+            return 0;
         }
     }
 
-    private void insertVoteItemStats(Map<String, Object> voteItemStats) {
+    private void insertVoteItemStats(Map<String, Object> voteItemStats, int rankNum) {
         String insertQuery = "INSERT INTO voteItemStats (voteSeq, voteItemSeq, rankNum, rankGapNum, voteRate, voteNum, owner, created) "
                             + "VALUES(?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(insertQuery,
-                voteItemStats.get("voteSeq"),voteItemStats.get("voteItemSeq"),voteItemStats.get("rankNum"),0,
+                voteItemStats.get("voteSeq"),voteItemStats.get("voteItemSeq"),rankNum, 0,
                 voteItemStats.get("voteRate"),voteItemStats.get("voteNum"),"anonymous",voteItemStats.get("created"));
     }
 
-    private void updateVoteItemStats(Map<String, Object> voteItemStats) {
-        String updateQuery = "UPDATE voteItemStats SET voteItemSeq= ?, voteRate= ?, voteNum= ?, created= ? WHERE voteSeq=? AND rankNum=?";
-
-        jdbcTemplate.update(updateQuery,
-                voteItemStats.get("voteItemSeq"), voteItemStats.get("voteRate"), voteItemStats.get("voteNum"), voteItemStats.get("created"),
-                voteItemStats.get("voteSeq"), voteItemStats.get("rankNum"));
-    }
 }

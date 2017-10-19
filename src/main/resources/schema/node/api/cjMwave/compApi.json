@@ -55,6 +55,7 @@
       },
       "root": {
         "typeId": "compItemInfo",
+        "excludePids": "showCntryCdList",
         "query": [
           {
             "field": "mainSeq",
