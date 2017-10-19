@@ -27,6 +27,9 @@ public class VoteItemStatsByMbrTask {
 
     // 성별.
     public void execVoteItemStatsBySex() {
+
+        logger.info("start execVoteItemStatsBySex");
+
         if (jdbcTemplate == null) {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
         }

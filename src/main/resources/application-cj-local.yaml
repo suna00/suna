@@ -20,6 +20,9 @@ jwtConfig:
 cluster:
   mode: all
   groups: all
+  dataQueue: localhost
+  dataQueueDs: cjDb
+  map: mbrVoteMap,ipVoteCnt
   members:
     - 127.0.0.1
     - localhost

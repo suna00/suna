@@ -13,6 +13,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.util.HashMap;
@@ -32,6 +33,18 @@ public class DBService {
     private NodeService nodeService;
 
     public static Map<String, JdbcTemplate> dataSourceTemplate = new ConcurrentHashMap<>();
+
+    private static DBService _inst ;
+
+    public static JdbcTemplate getJdbc(String ds){
+        if(_inst == null) return null;
+        return _inst.getJdbcTemplate(ds) ;
+    }
+
+    @PostConstruct
+    public void init(){
+        DBService._inst = this ;
+    }
 
     public JdbcTemplate getJdbcTemplate(String dsId) {
         if (!dataSourceTemplate.containsKey(dsId)) {
