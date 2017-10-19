@@ -136,7 +136,7 @@ public class MbrInfoService {
                     resultData.put(pt.getPid(), NodeUtils.getResultValue(context, pt, result)) ;
                 }
                 resultData.put("imgFileName", imgName);
-
+                System.out.println("========" + resultData);
                 context.setResult(resultData);
             }
         } catch (NotFoundNodeException e) {
