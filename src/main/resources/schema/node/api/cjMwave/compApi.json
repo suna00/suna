@@ -193,7 +193,11 @@
                   }
                 ],
                 "response": {
-                  "_all_": "",
+                  "newsId": "",
+                  "newsNm": "",
+                  "thumImgUrl": "",
+                  "created": "",
+                  "mkeDay": "",
                   "replNum": {
                     "select": {
                       "ds": "cjDb",
@@ -225,7 +229,12 @@
                   }
                 ],
                 "response": {
-                  "_all_": "",
+                  "contentId": "",
+                  "title": "",
+                  "contentImgUrl": "",
+                  "playTime": "",
+                  "mkeDay": "",
+                  "created": "",
                   "replNum": {
                     "select": {
                       "ds": "cjDb",
@@ -348,7 +357,11 @@
                   }
                 ],
                 "response": {
-                  "_all_": "",
+                  "newsId": "",
+                  "newsNm": "",
+                  "thumImgUrl": "",
+                  "created": "",
+                  "mkeDay": "",
                   "replNum": {
                     "select": {
                       "ds": "cjDb",
@@ -380,7 +393,12 @@
                   }
                 ],
                 "response": {
-                  "_all_": "",
+                  "contentId": "",
+                  "title": "",
+                  "contentImgUrl": "",
+                  "playTime": "",
+                  "mkeDay": "",
+                  "created": "",
                   "replNum": {
                     "select": {
                       "ds": "cjDb",

@@ -137,7 +137,7 @@ public class FCMPushService implements MobilePushService<String, Map, String, Ic
 
         String title = infoNode.getStringValue("pushTitle");
         String description = infoNode.getStringValue("pushSbst");
-        String fileUrlFormat = ApplicationContextManager.getContext().getEnvironment().getProperty("image.prefixUrl");
+        String fileUrlFormat = ApplicationContextManager.getContext().getEnvironment().getProperty("image.s3PrefixUrl");
         String fullImgUrl = "";
         if (infoNode.get(THUM_IMG_PATH) != null) {
             fullImgUrl = fileUrlFormat + ((FileValue) infoNode.get(THUM_IMG_PATH)).getStorePath();
