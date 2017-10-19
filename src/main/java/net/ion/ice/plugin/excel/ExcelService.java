@@ -46,7 +46,7 @@ public class ExcelService {
             for (String sheetName : sheetNameList) {
                 Sheet sheet = workbook.createSheet(sheetName);
 
-                CellStyle cellStyle = StringUtils.equals(extension, "xls") ? getXlsHeaderCellStyle(workbook) : getXlsxHeaderCellStyle(workbook);
+                CellStyle cellStyle = getHeaderCellStyle(workbook);
 
                 Row row = sheet.createRow(0);
                 int cellIndex = 0;
@@ -131,19 +131,15 @@ public class ExcelService {
         return new HSSFWorkbook();
     }
 
-    private CellStyle getXlsHeaderCellStyle(Workbook workbook) {
-        CellStyle cellStyle = workbook.createCellStyle();
-        cellStyle.setFillBackgroundColor(HSSFColor.HSSFColorPredefined.GREY_25_PERCENT.getIndex());
-        return cellStyle;
-    }
-
     private XSSFWorkbook getXlsxWorkbook() {
         return new XSSFWorkbook();
     }
 
-    private CellStyle getXlsxHeaderCellStyle(Workbook workbook) {
+    private CellStyle getHeaderCellStyle(Workbook workbook) {
         CellStyle cellStyle = workbook.createCellStyle();
-        cellStyle.setFillBackgroundColor(HSSFColor.HSSFColorPredefined.GREY_25_PERCENT.getIndex());
+        cellStyle.setFillBackgroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
         return cellStyle;
     }
+
+
 }
