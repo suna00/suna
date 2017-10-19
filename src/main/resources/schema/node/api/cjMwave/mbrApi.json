@@ -182,23 +182,8 @@
       }
     ],
     "config": {
-      "root": {
-        "typeId": "mbrInfo",
-        "id": "{{:makeIdValue(>,snsTypeCd,snsKey)}}",
-        "response": {
-          "_all_": "",
-          "imgFileName": {
-            "value": "{{:fileName(imgUrl)}}"
-          }
-        }
-      },
-      "lastLoginDtUpd": {
-        "typeId": "mbrInfo",
-        "event": "svcLogin",
-        "response": {
-          "lastLoginDt": ""
-        }
-      }
+      "typeId": "mbrInfo",
+      "event": "svcLogin"
     }
   },
   {

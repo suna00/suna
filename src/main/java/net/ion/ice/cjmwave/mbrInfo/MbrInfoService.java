@@ -7,6 +7,7 @@ import net.ion.ice.cjmwave.errMsgInfo.ErrMsgUtil;
 import net.ion.ice.core.api.ApiException;
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.event.EventService;
+import net.ion.ice.core.file.FileValue;
 import net.ion.ice.core.infinispan.NotFoundNodeException;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeUtils;
@@ -117,10 +118,19 @@ public class MbrInfoService {
                 updateData.put("id", snsTypeCd + ">" + snsKey);
                 updateData.put("lastLoginDt", new Date());
                 Node result = (Node) NodeUtils.getNodeService().executeNode(updateData, "mbrInfo", EventService.UPDATE);
-                context.setResult(result);
+                Object imgUrlObj = result.get("imgUrl");
+                String imgName = "";
+                if(imgUrlObj instanceof FileValue) {
+                    FileValue fileValue = (FileValue) imgUrlObj;
+                    if (fileValue != null) {
+                        imgName = fileValue.getFileName();
+                    }
+                }
+                result.put("imgFileName", imgName);
+                context.setNodeData(result);
             }
         } catch (NotFoundNodeException e) {
-            e.printStackTrace();
+            throw new ApiException("404", "Not Found Member");
         }
     }
 
