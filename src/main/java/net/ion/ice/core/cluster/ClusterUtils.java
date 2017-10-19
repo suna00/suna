@@ -28,6 +28,9 @@ public class ClusterUtils {
     public static final String FILE_URL_FORMAT_ = "_fileUrlFormat_";
     static ClusterService clusterService ;
 
+    public static Member defaultServer ;
+
+
     public static ClusterService getClusterService() {
         if (clusterService == null) {
             clusterService = ApplicationContextManager.getBean(ClusterService.class);
@@ -40,7 +43,7 @@ public class ClusterUtils {
 
     public static Map<String, Object> callExecute(ApiExecuteContext executeContext, boolean retry) {
         Member server = getClusterService().getClusterServer("cms", executeContext.getNodeType().getClusterGroup(), retry) ;
-        String url =  "http://" + server.getAddress().getHost() + ":" + server.getStringAttribute("port") + "/node/" + executeContext.getNodeType().getTypeId() + "/" + executeContext.getEvent() + ".json" ;
+        String url =  "http://" + server.getAddress().getHost() + ":" + server.getStringAttribute("port") + "/node/event" ;
         String resultStr = "";
         try {
             executeContext.getData().put(CONFIG_, JsonUtils.toJsonString(executeContext.getConfig())) ;
@@ -54,7 +57,7 @@ public class ClusterUtils {
             return JsonUtils.parsingJsonToMap(resultStr) ;
         } catch (IOException e) {
             if(!retry){
-                callExecute(executeContext, true);
+                return callExecute(executeContext, true);
             }
             e.printStackTrace();
         }
@@ -83,7 +86,7 @@ public class ClusterUtils {
             return JsonUtils.parsingJsonToMap(resultStr) ;
         } catch (IOException e) {
             if(!retry){
-                callQuery(queryContext, true) ;
+                return callQuery(queryContext, true) ;
             }
             logger.error(resultStr);
         }
@@ -129,14 +132,14 @@ public class ClusterUtils {
             String resultStr = ApiUtils.callApiMethod(url, param, 5000, 1000, ApiUtils.POST) ;
             Map<String, Object> result = JsonUtils.parsingJsonToMap(resultStr) ;
             if(result.containsKey("result") && result.containsKey("resultMessage")){
-                logger.error("CALL NODE ERROR : {} - {}", url, result);
+                logger.error("CALL NODE ERROR : {} - {} - {}, {}", url, result, typeId, id);
                 nofoundNode.put(typeId + "::" + id, 1) ;
                 return null;
             }
             return result ;
         } catch (Exception e) {
             if(!retry){
-                callNode(NodeUtils.getNodeType(typeId), id, true) ;
+                return callNode(NodeUtils.getNodeType(typeId), id, true) ;
             }
             logger.error("CONNECT ERROR : " + url );
         }

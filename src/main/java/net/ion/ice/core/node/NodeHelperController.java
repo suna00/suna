@@ -47,7 +47,7 @@ public class NodeHelperController {
             logger.info("node read : {}, {}", typeId, id);
             return infinispanRepositoryService.read(typeId, id).toMap();
         }catch(Exception e){
-            logger.error(e.getMessage(), e);
+//            logger.error(e.getMessage(), e);
             return JsonResponse.error(e) ;
         }
     }

@@ -219,10 +219,19 @@ public class NodeController {
     @RequestMapping(value = "/node/event", method = RequestMethod.POST)
     @ResponseBody
     public Object eventRest(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        if (request instanceof MultipartHttpServletRequest) {
-            return nodeService.executeResult(request, response, request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap());
+        try{
+            if (request instanceof MultipartHttpServletRequest) {
+                return nodeService.executeResult(request, response, request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap());
+            }
+            return nodeService.executeResult(request, response, request.getParameterMap(), null);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            if(e.getCause() instanceof ClassCastException){
+                return JsonResponse.error(new Exception("형식이 맞지 않습니다."));
+            }else{
+                return JsonResponse.error(e);
+            }
         }
-        return nodeService.executeResult(request, response, request.getParameterMap(), null);
     }
 
 

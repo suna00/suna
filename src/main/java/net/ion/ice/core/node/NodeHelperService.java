@@ -109,8 +109,10 @@ public class NodeHelperService  {
     public void reloadSchema(String resourcePath) throws IOException {
         if(resourcePath.equals("node")){
             saveResourceSchema("classpath:schema/node/**/*.json");
-        }else if(resourcePath.equals("test")){
+        }else if(resourcePath.equals("test")) {
             saveResourceSchema("classpath:schema/test/**/*.json");
+        }else if(!resourcePath.startsWith("/")){
+            saveResourceSchema("classpath:schema/" + resourcePath + "/**/*.json");
         }else {
             saveFileSchema(resourcePath);
         }

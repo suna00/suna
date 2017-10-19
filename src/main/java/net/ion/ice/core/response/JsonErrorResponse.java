@@ -1,6 +1,7 @@
 package net.ion.ice.core.response;
 
 import net.ion.ice.core.api.ApiException;
+import net.ion.ice.core.infinispan.NotFoundNodeException;
 
 /**
  * Created by jaeho on 2017. 5. 18..
@@ -14,8 +15,10 @@ public class JsonErrorResponse extends JsonResponse {
     }
 
     public JsonErrorResponse(Exception e) {
-        if(e instanceof ApiException){
-             this.result = ((ApiException) e).getResultCode() ;
+        if(e instanceof ApiException) {
+            this.result = ((ApiException) e).getResultCode();
+        }else if(e instanceof NotFoundNodeException){
+            this.result = "404" ;
         }else{
             this.result = "500" ;
         }

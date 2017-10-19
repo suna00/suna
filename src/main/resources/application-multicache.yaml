@@ -32,8 +32,7 @@ cluster:
     - 10.75.7.144
     - 10.75.6.140
     - 10.75.7.140
-    - 127.0.0.1
-    - localhost
+
 
 infinispan:
   cachePath: /data/resource/ice2/cache
