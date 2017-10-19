@@ -6595,5 +6595,68 @@
     "description": "",
     "sortOrder": "20",
     "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "deliveryLevelSweet",
+    "upperCode": "root",
+    "name": "스윗트래커 상태",
+    "description": "",
+    "sortOrder": "120",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "1",
+    "upperCode": "deliveryLevelSweet",
+    "name": "배송준비",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "2",
+    "upperCode": "deliveryLevelSweet",
+    "name": "집화완료",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "3",
+    "upperCode": "deliveryLevelSweet",
+    "name": "배송진행 중",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "4",
+    "upperCode": "deliveryLevelSweet",
+    "name": "지점 도착",
+    "description": "",
+    "sortOrder": "4",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "5",
+    "upperCode": "deliveryLevelSweet",
+    "name": "배송 출발",
+    "description": "",
+    "sortOrder": "5",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "6",
+    "upperCode": "deliveryLevelSweet",
+    "name": "배송 완료",
+    "description": "",
+    "sortOrder": "6",
+    "commonCodeStatus": "y"
   }
 ]

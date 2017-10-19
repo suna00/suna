@@ -127,12 +127,12 @@ public class SweettrackerService {
         List<Map<String, Object>> orderProducts = nodeBindingService.list(orderProduct, "orderProductId_in=" + map.get("orderProductIds"));
         String orderStatusByLevel = deliveryStatusMap.get(data.get("level"));
         for(Map<String, Object> op : orderProducts){
-            if(checkUpdateYn(orderStatusByLevel, op)){
+//            if(checkUpdateYn(orderStatusByLevel, op)){
                 op.put("orderStatus", orderStatusByLevel);
                 op.put("changed", new Date());
                 nodeService.executeNode(op, orderProduct, CommonService.UPDATE);
                 data.put("orderStatus", orderStatusByLevel);
-            }
+//            }
         }
         return orderStatusByLevel;
     }

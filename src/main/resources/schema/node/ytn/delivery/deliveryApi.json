@@ -51,12 +51,55 @@
     "method": "POST",
     "parameters": [
     ],
-    "config" : {
+    "config": {
       "typeId": "delivery",
-      "query" : [
-        {"field" : "memberNo", "method" : "equals", "value" : "{{:session.member.memberNo}}" },
-        {"sorting" : "created desc", "pageSize": "3", "page": "1", "deliveryType_equals": "deliveryAddress"}
+      "query": [
+        {
+          "field": "memberNo",
+          "method": "equals",
+          "value": "{{:session.member.memberNo}}"
+        },
+        {
+          "sorting": "created desc",
+          "pageSize": "3",
+          "page": "1",
+          "deliveryType_equals": "deliveryAddress"
+        }
       ]
+    }
+  },
+  {
+    "typeId": "apiCategory",
+    "id": "deliveryTrackingInfo",
+    "categoryName": "주문 배송조회",
+    "fileUrlFormat": {
+      "default": "{{:getEnvValue(cluster.file-prefix, url)}}"
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "deliveryTrackingInfo",
+    "apiId": "view",
+    "apiName": "주문 배송조회",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "select": {
+        "ds": "ytnDevDb",
+        "resultType": "read",
+        "sql": "select orderDeliveryPriceId,(select name from deliveryenterprise c where deliveryEnterpriseId = b.deliveryEnterpriseId) as deliveryEnterpriseName ,trackingNo,(select name from commoncode where upperCode='orderStatus' and code = deliveryStatus) as deliveryStatus , (select max(recipient) from delivery a where a.orderSheetId = b.orderSheetId) as recipient from orderdeliveryprice b, ordersheet d where b.orderDeliveryPriceId = @{orderDeliveryPriceId} and b.orderSheetId = d.orderSheetId and d.memberNo = @{session.member.memberNo} "
+      },
+      "response": {
+        "_all_": "",
+        "statusList": {
+          "select": {
+            "ds": "ytnDevDb",
+            "resultType": "list",
+            "sql": "select timeTrans, location, telnoOffice, telnoMan, (select name from commoncode where upperCode='deliveryLevelSweet' and code = level) as level from deliverytrackinginfo where orderDeliveryPriceId = @{orderDeliveryPriceId} order by deliveryTrackingInfoId "
+          }
+        }
+      }
     }
   }
 ]
