@@ -1,8 +1,6 @@
 package net.ion.ice.core.cluster;
 
-import com.hazelcast.core.IAtomicLong;
-import com.hazelcast.core.ITopic;
-import com.hazelcast.core.Member;
+import com.hazelcast.core.*;
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
@@ -106,6 +104,14 @@ public class ClusterService {
 
     public String getServerMode() {
         return clusterConfiguration.getMode();
+    }
+
+    public <K, V> IMap<K, V> getMap(String mapName) {
+        return clusterConfiguration.getMap(mapName) ;
+    }
+
+    public IQueue<JdbcSqlData> getDataQueue() {
+        return clusterConfiguration.getDataQueue() ;
     }
 
     /*

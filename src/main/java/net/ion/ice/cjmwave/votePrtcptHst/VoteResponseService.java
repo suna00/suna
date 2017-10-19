@@ -114,7 +114,7 @@ public class VoteResponseService {
             queryResult.put("currentPage", queryContext.getCurrentPage());
 
             for (Node voteBasInfo : voteInfoList) {
-                // TODO - voteSeq_referenceJoin 처리관련 문의 요청 필요
+
                 String voteItemTerms = "voteSeq_matching=" + voteBasInfo.getId();
 
                 List<Node> refdItemList = nodeService.getNodeList(VOTE_ITEM_INFO, voteItemTerms);

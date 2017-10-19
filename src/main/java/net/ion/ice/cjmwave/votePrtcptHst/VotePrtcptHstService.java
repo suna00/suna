@@ -1,8 +1,11 @@
 package net.ion.ice.cjmwave.votePrtcptHst;
 
+import com.hazelcast.core.IMap;
+import com.hazelcast.core.IQueue;
 import net.ion.ice.cjmwave.errMsgInfo.ErrMsgUtil;
 import net.ion.ice.core.api.ApiException;
 import net.ion.ice.core.cluster.ClusterService;
+import net.ion.ice.core.cluster.JdbcSqlData;
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.data.bind.NodeBindingUtils;
 import net.ion.ice.core.event.EventService;
@@ -52,6 +55,10 @@ public class VotePrtcptHstService {
     @Autowired
     private NodeService nodeService;
 
+    @Autowired
+    private ClusterService clusterService ;
+
+
     private JdbcTemplate jdbcTemplate ;
 
     private Map<String, String> voteHstSqlMap = new ConcurrentHashMap<>() ;
@@ -61,13 +68,18 @@ public class VotePrtcptHstService {
     private Map<String, String> voteHstByIpSelectSqlMap = new ConcurrentHashMap<>() ;
 
     // Ip 접근 관리
-    private Map<String, Integer> voteIPCntMap = new ConcurrentHashMap<>();
+    private IMap<String, Integer> voteIPCntMap ;
 
-    private Map<String, Map<String, Integer>> mbrVoteCount = new ConcurrentHashMap<>() ;
+    private IMap<String, Map<String, Integer>> mbrVoteCount  ;
+
+    private IQueue<JdbcSqlData> jdbcQueue ;
+
 
     @PostConstruct
     public void init() {
-        // TODO - 캐시 데이터가 없을 경우 오류 발생
+        voteIPCntMap = clusterService.getMap("ipVoteCnt") ;
+        mbrVoteCount = clusterService.getMap("mbrVoteMap") ;
+        jdbcQueue = clusterService.getDataQueue();
     }
 
     /**
@@ -91,6 +103,13 @@ public class VotePrtcptHstService {
         }
 
         Node voteBasInfo = NodeUtils.getNode(VOTE_BAS_INFO, data.get(VOTE_SEQ).toString());
+        for (String voteItemSeq : data.get("voteQueiSeq").toString().split(",")) {
+            Node voteItemInfo = NodeUtils.getNode("voteItemInfo", voteItemSeq.trim());
+            if(voteItemInfo == null || !voteItemInfo.get("voteSeq").toString().equals(voteBasInfo.getId())){
+                logger.warn("VOTE INFO WARNING : {} - {}.{}", voteBasInfo.getId(), voteItemInfo.get("voteSeq"), voteItemSeq);
+                throw new ApiException("424", errMsgUtil.getErrMsg(context,"424"));
+            }
+        }
 
         // Checking Available IP with mbrId and voteSeq
         String searchText = "setupTypeCd_matching=2&sorting=dclaSetupSeq desc&limit=1";
@@ -148,29 +167,41 @@ public class VotePrtcptHstService {
             }
 
             // 접근 IP 관리 테이블에 등록
-            String insertIpDclaCnt = "INSERT INTO voteHstByIp (voteDate, ipAdr, created) VALUES(?,?,?)";
-            jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now);
+            executeQuery(insertIpDclaCnt, voteDate, connIpAdr, now);
+//            jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now);
             // 접근 IP Count 관리 Map에 등록
-            voteIPCntMap.put(connIpAdr, mbrIpDclaCnt+1);
+            voteIPCntMap.put(connIpAdr+">"+voteDate, mbrIpDclaCnt+1);
 
             // Vote by Mbr
-            mbrVoteCount.get(mbrId).put(voteBasInfo.getId(), mbrVoteCount.get(mbrId).get(voteBasInfo.getId()) + 1);
+            Integer chkVoteCnt = mbrVoteCount.get(mbrId).get(voteBasInfo.getId());
+            Map<String, Integer> mbrMap = mbrVoteCount.get(mbrId);
+            mbrMap.put(voteBasInfo.getId(), chkVoteCnt + 1) ;
+
+            mbrVoteCount.put(mbrId, mbrMap) ;
+
+            Map<String, Integer> checkMap = mbrVoteCount.get(mbrId);
+            logger.info("mbrVoteCount data - {} - {} ", checkMap, checkMap.get(voteBasInfo.getId()).toString());
+
+
             if (!voteHstSqlMap.containsKey(voteBasInfo.getId())) {
                 String voteHstInsert = "INSERT INTO " + voteBasInfo.getId().toString() + "_voteHstByMbr " +
                                         "(voteDate, mbrId, created) VALUES(?,?,?)";
                 voteHstSqlMap.put(voteBasInfo.getId(), voteHstInsert);
             }
-            jdbcTemplate.update(voteHstSqlMap.get(voteBasInfo.getId()), voteDate, mbrId, now);
+
+            executeQuery(voteHstSqlMap.get(voteBasInfo.getId()), voteDate, mbrId, now);
+//            jdbcTemplate.update(voteHstSqlMap.get(voteBasInfo.getId()), voteDate, mbrId, now);
 
             // Vote by Item
-            String voteItemSeqs = (String) data.get("voteQueiSeq");
             if (!voteItemHstSqlMap.containsKey(voteBasInfo.getId())) {
                 String voteItemHstInsert = "INSERT INTO " + voteBasInfo.getId().toString() + "_voteItemHstByMbr " +
                                             "(voteDate, voteItemSeq, mbrId, created) VALUES(?,?,?,?)";
                 voteItemHstSqlMap.put(voteBasInfo.getId(), voteItemHstInsert);
             }
+            String voteItemSeqs = (String) data.get("voteQueiSeq");
             for(String voteItemSeq : StringUtils.split(voteItemSeqs,",")) {
-                jdbcTemplate.update(voteItemHstSqlMap.get(voteBasInfo.getId()), voteDate, voteItemSeq, mbrId, now);
+                executeQuery(voteItemHstSqlMap.get(voteBasInfo.getId()), voteDate, voteItemSeq, mbrId, now);
+//                jdbcTemplate.update(voteItemHstSqlMap.get(voteBasInfo.getId()), voteDate, voteItemSeq, mbrId, now);
             }
 
             // TODO - PV Number Count
@@ -197,6 +228,15 @@ public class VotePrtcptHstService {
 
         createItem.put("createItem", resMap);
         context.setResult(createItem);
+    }
+
+    private void executeQuery(String sql, Object... params) {
+        try {
+            jdbcQueue.put(new JdbcSqlData(sql, params));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            jdbcTemplate.update(sql, params);
+        }
     }
 
     /**
@@ -227,13 +267,13 @@ public class VotePrtcptHstService {
 
         //Json parsing
         List<Map<String, Object>> reqJson = null;
-        try{
+        try {
             reqJson = JsonUtils.parsingJsonToList(voteResult);
             if (reqJson.isEmpty()) {
                 // voteResult is not array
                 throw new ApiException("420", errMsgUtil.getErrMsg(context,"420"));
             }
-        }catch (IOException e){
+        } catch (IOException e){
             // voteResult format is incorrect
             throw new ApiException("420", errMsgUtil.getErrMsg(context,"420"));
         }
@@ -278,8 +318,7 @@ public class VotePrtcptHstService {
         Node dclaNode = dclaNodeList.get(0);
 
         Integer ipDclaCnt = dclaNode.getIntValue("setupBaseCnt");
-
-
+        // 접근 IP 관리
         Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate);
         if (mbrIpDclaCnt >= ipDclaCnt) {
             // This IP connection has exceeded the maximum number.
@@ -295,7 +334,6 @@ public class VotePrtcptHstService {
             voteDtTime = dateFormat.parse(voteDate).getTime();
         } catch (ParseException e) {
             // Server Error
-            //throw new ApiException("501", e.getMessage());
             throw new ApiException("425", errMsgUtil.getErrMsg(context,"425"));
         }
         // 총 투표 기간 - Day Count
@@ -345,15 +383,16 @@ public class VotePrtcptHstService {
         }
 
         // 접근 IP 관리 테이블에 등록
-        String insertIpDclaCnt = "INSERT INTO voteHstByIp (voteDate, ipAdr, created) VALUES(?,?,?)";
-        jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now);
+        executeQuery(insertIpDclaCnt, voteDate, connIpAdr, now);
+//        jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now);
         // 접근 IP Count 관리 Map에 등록
-        voteIPCntMap.put(connIpAdr, mbrIpDclaCnt+1);
+        voteIPCntMap.put(connIpAdr+">"+voteDate, mbrIpDclaCnt+1);
 
         // 투표 등록
         String insertVoteHst = "INSERT INTO " + seriesVoteBasInfo.get(VOTE_SEQ).toString() + "_voteHstByMbr" +
                 "(voteDate, mbrId, created) VALUES(?,?,?)";
-        jdbcTemplate.update(insertVoteHst, voteDate, mbrId, now);
+        executeQuery(insertVoteHst, voteDate, mbrId, now);
+//        jdbcTemplate.update(insertVoteHst, voteDate, mbrId, now);
 
         // TODO 관리를 위한 Map 생성 및 업데이트
         //seriesVoteInfoMap.put(seriesVoteBasInfo.get(VOTE_SEQ), )
@@ -364,8 +403,16 @@ public class VotePrtcptHstService {
             // Vote Item 투표 등록 // TODO - series 요청일 경우 "voteQueiSeq"와 같이 입력값이 여러개 인지 확인 필요.
             String insertSeriesVoteItemHst = "INSERT INTO " + voteData.get(VOTE_SEQ) + "_voteItemHstByMbr " +
                     "(voteDate, voteItemSeq, mbrId, created) VALUES(?,?,?,?)";
-            jdbcTemplate.update(insertSeriesVoteItemHst, voteDate, voteItemSeq, mbrId, now);
+            executeQuery(insertSeriesVoteItemHst, voteDate, voteItemSeq, mbrId, now);
+//            jdbcTemplate.update(insertSeriesVoteItemHst, voteDate, voteItemSeq, mbrId, now);
         }
+
+        // 접근 IP 관리 테이블에 등록
+        executeQuery(insertIpDclaCnt, voteDate, connIpAdr, now);
+        // jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now);
+        // 접근 IP Count 관리 Map에 등록
+        voteIPCntMap.put(connIpAdr+">"+voteDate, mbrIpDclaCnt+1);
+
 
         // 이벤트 투표 생성
         Integer dayEventVoteRstrtnCnt = seriesVoteBasInfo.getIntValue("dayEventVoteRstrtnCnt");
@@ -393,15 +440,20 @@ public class VotePrtcptHstService {
     // 접근 IP Count 조회
     private Integer getIpCnt(String connIpAdr, String voteDate) {
         Integer mbrIpDclaCnt;
-        if (voteIPCntMap.get(connIpAdr) != null) {
-            mbrIpDclaCnt = (Integer) voteIPCntMap.get(connIpAdr);
+        String ipCntKey = connIpAdr + ">" + voteDate;
+        if (voteIPCntMap.get(ipCntKey) != null) {
+            mbrIpDclaCnt = (Integer) voteIPCntMap.get(ipCntKey);
         } else {
             String selectIpDclaCnt = "SELECT count(*) ipCnt FROM voteHstByIp WHERE ipAdr=? AND voteDate=?";
             Map<String, Object> ipCntMap = jdbcTemplate.queryForMap(selectIpDclaCnt, connIpAdr, voteDate);
             mbrIpDclaCnt = Integer.parseInt(ipCntMap.get("ipCnt").toString());
-            voteIPCntMap.put(connIpAdr, mbrIpDclaCnt);
+            voteIPCntMap.put(ipCntKey, mbrIpDclaCnt);
         }
         return mbrIpDclaCnt;
+    }
+
+    private void putIpCntInfo(String connIpAdr, String voteDate) {
+
     }
 
     public void hstTableCreate(ExecuteContext context) {
@@ -551,44 +603,46 @@ public class VotePrtcptHstService {
         String insertEventVoteHst = "INSERT INTO " + eventVoteBasInfo.getId() + "_voteHstByMbr " +
                 "(voteDate, mbrId, created) VALUES(?,?,?)";
         //voteHstSqlMap.put(eventVoteBasInfo.getId(), voteHstInsert);
-        jdbcTemplate.update(insertEventVoteHst, voteDate, mbrId, now);
+        executeQuery(insertEventVoteHst, voteDate, mbrId, now);
+//        jdbcTemplate.update(insertEventVoteHst, voteDate, mbrId, now);
 
         String voteItemSeqs = (String) data.get("voteQueiSeq");
         String insertEventVoteItemHst = "INSERT INTO " + data.get(VOTE_SEQ) + "_voteItemHstByMbr " +
                 "(voteDate, voteItemSeq, mbrId, created) VALUES(?,?,?,?)";
 
         for (String voteItemSeq : StringUtils.split(voteItemSeqs, ",")) {
-            jdbcTemplate.update(insertEventVoteItemHst, voteDate, voteItemSeq, mbrId, now);
+            executeQuery(insertEventVoteItemHst, voteDate, voteItemSeq, mbrId, now);
+//            jdbcTemplate.update(insertEventVoteItemHst, voteDate, voteItemSeq, mbrId, now);
         }
 
         // 사용한 Event 투표수 증가
         usedVoteNum += 1;
         String increaseUsedVoteNum = "UPDATE voteEvtByMbr SET usedVoteNum=? WHERE mbrId=?";
-        jdbcTemplate.update(increaseUsedVoteNum, usedVoteNum,mbrId);
+        executeQuery(increaseUsedVoteNum, usedVoteNum,mbrId);
+//        jdbcTemplate.update(increaseUsedVoteNum, usedVoteNum,mbrId);
 
         // 접근 IP 관리 테이블에 등록
-        String insertIpDclaCnt = "INSERT INTO voteHstByIp (voteDate, ipAdr, created) VALUES(?,?,?)";
-        jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now);
+        executeQuery(insertIpDclaCnt, voteDate, connIpAdr, now);
+//        jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now);
+        voteIPCntMap.put(connIpAdr+">"+voteDate, mbrIpDclaCnt+1);
 
         //node create
         Map<String, Object> resDataMap = new ConcurrentHashMap<>();
 
         resDataMap.put("ipAdrVoteCnt", ipDclaCnt - mbrIpDclaCnt - 1);
-        voteIPCntMap.put(connIpAdr, mbrIpDclaCnt+1);
-
         resDataMap.put("userEvtVoteCnt", voteNum - usedVoteNum);
 
         Map<String, Object> response = new ConcurrentHashMap<>();
         response.put("response", resDataMap);
         context.setResult(response);
     }
+    String selectVoteEvt = "SELECT mbrId, continuedDayCnt, usedVoteNum, voteNum, created FROM voteEvtByMbr WHERE mbrId=?";
 
     private Map<String,Object> selectVoteEvtByMbr(String mbrId) {
         if (jdbcTemplate == null) {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
         }
 
-        String selectVoteEvt = "SELECT mbrId, continuedDayCnt, usedVoteNum, voteNum, created FROM voteEvtByMbr WHERE mbrId=?";
         try {
             return jdbcTemplate.queryForMap(selectVoteEvt, mbrId);
         } catch (EmptyResultDataAccessException e) {
@@ -596,6 +650,7 @@ public class VotePrtcptHstService {
             return null;
         }
     }
+    String insertIpDclaCnt = "INSERT INTO voteHstByIp (voteDate, ipAdr, created) VALUES(?,?,?)";
 
     // [IF-MEV-003] sponsor 투표
     public void sponsorEvtVoting(ExecuteContext context) {
@@ -763,15 +818,16 @@ public class VotePrtcptHstService {
         }
 
         // 접근 IP 관리 테이블에 등록
-        String insertIpDclaCnt = "INSERT INTO voteHstByIp (voteDate, ipAdr, created) VALUES(?,?,?)";
-        jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now);
+        executeQuery(insertIpDclaCnt, voteDate, connIpAdr, now);
+//        jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now);
         // 접근 IP Count 관리 Map에 등록
-        voteIPCntMap.put(connIpAdr, mbrIpDclaCnt+1);
+        voteIPCntMap.put(connIpAdr+">"+voteDate, mbrIpDclaCnt+1);
 
         // 투표 등록
         String insertVoteHst = "INSERT INTO " + seriesVoteBasInfo.get(VOTE_SEQ).toString() + "_voteHstByMbr" +
                 "(voteDate, mbrId, created) VALUES(?,?,?)";
-        jdbcTemplate.update(insertVoteHst, voteDate, mbrId, now);
+        executeQuery(insertVoteHst, voteDate, mbrId, now);
+//        jdbcTemplate.update(insertVoteHst, voteDate, mbrId, now);
 
         // TODO 관리를 위한 Map 생성 및 업데이트
         //seriesVoteInfoMap.put(seriesVoteBasInfo.get(VOTE_SEQ), )
@@ -782,7 +838,8 @@ public class VotePrtcptHstService {
             // Vote Item 투표 등록 // TODO - series 요청일 경우 "voteQueiSeq"와 같이 입력값이 여러개 인지 확인 필요.
             String insertSeriesVoteItemHst = "INSERT INTO " + voteData.get(VOTE_SEQ) + "_voteItemHstByMbr " +
                     "(voteDate, voteItemSeq, mbrId, created) VALUES(?,?,?,?)";
-            jdbcTemplate.update(insertSeriesVoteItemHst, voteDate, voteItemSeq, mbrId, now);
+            executeQuery(insertSeriesVoteItemHst, voteDate, voteItemSeq, mbrId, now);
+//            jdbcTemplate.update(insertSeriesVoteItemHst, voteDate, voteItemSeq, mbrId, now);
         }
 
         // 이벤트 투표 생성
@@ -808,6 +865,8 @@ public class VotePrtcptHstService {
         }
     }
 
+    String insertVoteEvtQuery = "INSERT INTO voteEvtByMbr (mbrId, continuedDayCnt, usedVoteNum, voteNum, created) VALUES(?,?,?,?,?)";
+    String updateVoteEvtQuery = "UPDATE voteEvtByMbr SET continuedDayCnt=?, voteNum=?, created=? WHERE mbrId=?";
 
     private void addEvtVoteNum(Date now, String mbrId, Integer dayEventVoteRstrtnCnt, Integer contnuEventVoteRstrtnCnt) {
         Map<String, Object> voteEvtMap = selectVoteEvtByMbr(mbrId);
@@ -819,8 +878,8 @@ public class VotePrtcptHstService {
         String yesterday = DateFormatUtils.format(calendar, "yyyyMMdd");
 
         if (voteEvtMap==null) {
-            String insertVoteEvtQuery = "INSERT INTO voteEvtByMbr (mbrId, continuedDayCnt, usedVoteNum, voteNum, created) VALUES(?,?,?,?,?)";
-            jdbcTemplate.update(insertVoteEvtQuery, mbrId, 1, 0, incVoteNum, now);
+            executeQuery(insertVoteEvtQuery, mbrId, 1, 0, incVoteNum, now);
+//            jdbcTemplate.update(insertVoteEvtQuery, mbrId, 1, 0, incVoteNum, now);
         }
         else {
             Date created = (Date) voteEvtMap.get("created");
@@ -833,8 +892,8 @@ public class VotePrtcptHstService {
             }
 
             Integer voteNum = Integer.parseInt(voteEvtMap.get("voteNum").toString()) + incVoteNum;
-            String updateVoteEvtQuery = "UPDATE voteEvtByMbr SET continuedDayCnt=?, voteNum=?, created=? WHERE mbrId=?";
-            jdbcTemplate.update(updateVoteEvtQuery, continued, voteNum, now, mbrId);
+            executeQuery(updateVoteEvtQuery, continued, voteNum, now, mbrId);
+//            jdbcTemplate.update(updateVoteEvtQuery, continued, voteNum, now, mbrId);
         }
     }
 }

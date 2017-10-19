@@ -31,6 +31,8 @@ public class VoteItemStatsTask {
 
     public void voteItemStatsJob() {
 
+        logger.info("start voteItemStatsJob");
+
         if (jdbcTemplate==null) {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
         }
@@ -130,6 +132,8 @@ public class VoteItemStatsTask {
                 insertVoteItemStats(voteItemStatsMap, rankNum);
                 rankNum++;
             }
+
+            logger.info("complete voteItemStatsJob");
         }
     }
 
