@@ -46,7 +46,7 @@
     "contents": "이용후기\n이용후기\n이용후기\n이용후기\n",
     "reviewStatus": "y",
     "photoStatus": "false",
-    "bestStatus": "false",
+    "bestStatus": "true",
     "score": "3",
     "created": "20170820193448"
   },
@@ -63,7 +63,7 @@
     "contents": "이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n",
     "reviewStatus": "y",
     "photoStatus": "false",
-    "bestStatus": "true",
+    "bestStatus": "false",
     "score": "4",
     "created": "20170820193448"
   },
@@ -80,7 +80,7 @@
     "contents": "이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n",
     "reviewStatus": "y",
     "photoStatus": "false",
-    "bestStatus": "true",
+    "bestStatus": "false",
     "score": "5",
     "created": "20170821044407"
   },
@@ -97,7 +97,7 @@
     "contents": "이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n",
     "reviewStatus": "y",
     "photoStatus": "false",
-    "bestStatus": "true",
+    "bestStatus": "false",
     "score": "5",
     "created": "20170821044407"
   },
@@ -114,7 +114,7 @@
     "contents": "이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n",
     "reviewStatus": "y",
     "photoStatus": "false",
-    "bestStatus": "true",
+    "bestStatus": "false",
     "score": "5",
     "created": "20170821044407"
   },
@@ -131,7 +131,7 @@
     "contents": "이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n",
     "reviewStatus": "y",
     "photoStatus": "false",
-    "bestStatus": "true",
+    "bestStatus": "false",
     "score": "5",
     "created": "20170821044407"
   },
@@ -148,7 +148,7 @@
     "contents": "999이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n이용후기\n",
     "reviewStatus": "y",
     "photoStatus": "false",
-    "bestStatus": "true",
+    "bestStatus": "false",
     "score": "5",
     "created": "20170821044407"
   },
@@ -165,7 +165,7 @@
     "contents": "후기",
     "reviewStatus": "y",
     "photoStatus": "false",
-    "bestStatus": "true",
+    "bestStatus": "false",
     "score": "5",
     "created": "20170821044407"
   },
@@ -182,7 +182,7 @@
     "contents": "24242414242",
     "reviewStatus": "y",
     "photoStatus": "false",
-    "bestStatus": "true",
+    "bestStatus": "false",
     "score": "5",
     "created": "20170821044407"
   },
@@ -199,7 +199,7 @@
     "contents": "22222222222222222222222222222222222222222222222222222222222222222222",
     "reviewStatus": "y",
     "photoStatus": "false",
-    "bestStatus": "true",
+    "bestStatus": "false",
     "score": "5",
     "created": "20170821044407"
   }
