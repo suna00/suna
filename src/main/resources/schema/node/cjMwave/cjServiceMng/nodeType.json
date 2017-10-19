@@ -97,7 +97,8 @@
     "typeName": "신고 설정관리",
     "repositoryType": "node",
     "eviction": 0,
-    "tableName": "authDb#dclaSetupMng"
+    "tableName": "authDb#dclaSetupMng",
+    "clusterGroup": "all"
   },
   {
     "parentId": "cjServiceMng",
