@@ -261,7 +261,7 @@ public class OrderService {
      */
     public ExecuteContext pointOrder(ExecuteContext context) {
         Map<String, Object> data = context.getData();
-
+        List<Map<String, Object>> tempOrder = nodeBindingService.list("tempOrder", "tempOrderId_equals=" + String.valueOf(data.get("ordrIdxx")));
         List<Map<String, Object>> tempOrderProducts = nodeBindingService.list("tempOrderProduct", "sorting=created&tempOrderId_equals=" + String.valueOf(data.get("ordrIdxx")));
         List<Map<String, Object>> tempOrderProductItems = nodeBindingService.list("tempOrderProductItem", "sorting=created&tempOrderId_equals=" + String.valueOf(data.get("ordrIdxx")));
         Map<String, Object> session = null;
@@ -270,6 +270,8 @@ public class OrderService {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
+
+
 
         for (Map<String, Object> tempOrderProduct : tempOrderProducts) {
             Integer tempOrderProductId = JsonUtils.getIntValue(tempOrderProduct, "tempOrderProductId");
@@ -288,16 +290,19 @@ public class OrderService {
         double totalOrderPrice = 0;
         double couponDiscountPrice = 0;
         double totalPaymentPrice = JsonUtils.getDoubleValue(data, "finalPrice");
+        double totalWelfarePoint = Double.parseDouble(String.valueOf(data.get("useWelfarepoint")));
+        double totalYPoint = Double.parseDouble(String.valueOf(data.get("useYPoint")));
+        Integer memberNo = JsonUtils.getIntValue(session, "member.memberNo");
+        String memberName = JsonUtils.getStringValue(session, "member.name");
+        String memberCellphone = JsonUtils.getStringValue(session, "member.cellphone");
 
         Map<String, Object> summaryResponse = getSummary(JsonUtils.getStringValue(session, "member.memberNo"));
 
         double useableYPoint = ((BigDecimal) summaryResponse.get("useableYPoint")).doubleValue();
         double useableWelfarepoint = ((BigDecimal) summaryResponse.get("useableWelfarepoint")).doubleValue();
 
-        double useYPoint = JsonUtils.getDoubleValue(data, "useYPoint");
-        double useWelfarepoint = JsonUtils.getDoubleValue(data, "useWelfarepoint");
 
-        if (useYPoint > useableYPoint && useWelfarepoint > useableWelfarepoint) {
+        if (totalYPoint > useableYPoint && totalWelfarePoint > useableWelfarepoint) {
             context.setResult(CommonService.getResult("O0006"));
         }
 
@@ -310,8 +315,6 @@ public class OrderService {
             itemResult.put("deliverySeq", key);
             List<Map<String, Object>> priceList = (List<Map<String, Object>>) deliveryPriceList.get(key);
             itemResult.put("deliveryPrice", priceList.get(0).get("deliveryPrice"));
-            totalDeliveryPrice += Double.parseDouble(String.valueOf(priceList.get(0).get("deliveryPrice")));
-
             List<Map<String, Object>> subProductResult = new ArrayList<>();
             for (Map<String, Object> priceProduct : priceList) {
                 subProductResult.add(priceProduct);
@@ -337,9 +340,10 @@ public class OrderService {
 
         for (Map<String, Object> deliveryItem : items) {
 
+            totalDeliveryPrice += JsonUtils.getDoubleValue(deliveryItem, "deliveryPrice");
+
             for (Map<String, Object> product : (List<Map<String, Object>>) deliveryItem.get("item")) {
                 Map<String, Object> storeOrderProduct = new HashMap<>();
-
                 ///////orderProduct////////
                 storeOrderProduct.put("orderSheetId", JsonUtils.getStringValue(data, "ordrIdxx"));
                 storeOrderProduct.put("productId", JsonUtils.getIntValue(product, "productId"));
@@ -355,7 +359,6 @@ public class OrderService {
                 String tempOrderProductId = JsonUtils.getStringValue(product, "tempOrderProductId");
                 Integer couponId = JsonUtils.getIntNullableValue(couponIds, tempOrderProductId);
                 storeOrderProduct.put("couponId", couponId);
-                Integer memberNo = JsonUtils.getIntValue(session, "member.memberNo");
 
                 Map<String, Double> discountPriceMap = couponService.productCouponDiscountPrice(Integer.parseInt(tempOrderProductId), couponId, "", memberNo);
                 storeOrderProduct.put("couponDiscountPrice", discountPriceMap.get("resultDiscountPrice"));
@@ -364,7 +367,7 @@ public class OrderService {
                 storeOrderProduct.put("paymentPrice", discountPriceMap.get("resultOrderPrice"));
 
                 totalProductPrice += discountPriceMap.get("resultOrderPrice");
-
+                totalDiscountPrice += discountPriceMap.get("resultDiscountPrice");
                 ///////orderDeliveryPrice////////
 //                storeOrderDeliveryPrice.put("deliveryMethod", JsonUtils.getValue(product, "product.deliveryMethod"));
 //                storeOrderDeliveryPrice.put("bundleDeliveryYn", JsonUtils.getValue(product, "product.bundleDeliveryYn"));
@@ -390,9 +393,9 @@ public class OrderService {
 //            nodeService.executeNode(storeOrderDeliveryPrice, "orderDeliveryPrice", CommonService.CREATE);
         }
 
-        totalOrderPrice = totalProductPrice - useYPoint - useWelfarepoint + totalDeliveryPrice; //총 주문금액
-
-        if (totalPaymentPrice != totalProductPrice) {
+        totalOrderPrice = totalProductPrice - totalYPoint - totalWelfarePoint + totalDeliveryPrice; //총 주문금액
+        totalDiscountPrice =  totalDiscountPrice + totalYPoint + totalWelfarePoint;
+        if (totalPaymentPrice != totalOrderPrice) {
             context.setResult(CommonService.getResult("O0006"));
             return context;
         }
@@ -400,17 +403,20 @@ public class OrderService {
         Map<String, Object> storeOrderSheet = new HashMap<>();
 
         storeOrderSheet.put("orderSheetId", data.get("ordrIdxx"));   //주문서 번호
-        storeOrderSheet.put("cartId", "");              //카트 아이디
-        storeOrderSheet.put("memberNo", JsonUtils.getIntValue(session, "member.memberNo"));          //회원번호
-        storeOrderSheet.put("siteId", JsonUtils.getStringValue(session, "member.siteId"));              //사이트 아이디
+
+        storeOrderSheet.put("memberNo", memberNo);                                                  //회원번호
+        storeOrderSheet.put("buyerName", memberName);                                               //구매자명
+        storeOrderSheet.put("buyerTel", memberCellphone);                                           //구매자전화번호
+        storeOrderSheet.put("cartId", JsonUtils.getIntValue(tempOrder.get(0), "cartId"));      //카트 아이디
+        storeOrderSheet.put("siteId", JsonUtils.getStringValue(tempOrder.get(0), "siteId"));   //사이트 아이디
         storeOrderSheet.put("totalProductPrice", totalProductPrice);         //총상품가격
         storeOrderSheet.put("totalOrderPrice", totalOrderPrice);             //총주문가격
         storeOrderSheet.put("totalDiscountPrice", totalDiscountPrice);       //총할인액
         storeOrderSheet.put("totalDeliveryPrice", totalDeliveryPrice);       //총배송비
         storeOrderSheet.put("totalPaymentPrice", totalPaymentPrice);         //결제금액
         storeOrderSheet.put("couponDiscountPrice", couponDiscountPrice);     //쿠폰 할인액
-        storeOrderSheet.put("totalWelfarePoint", useYPoint);         //사용한 복지포인트
-        storeOrderSheet.put("totalYPoint", useWelfarepoint);                     //사용한 Y포인트
+        storeOrderSheet.put("totalWelfarePoint", totalWelfarePoint);         //사용한 복지포인트
+        storeOrderSheet.put("totalYPoint", totalYPoint);                     //사용한 Y포인트
         storeOrderSheet.put("purchaseaAgreementYn", "y");
         storeOrderSheet.put("purchaseDeviceType", "");
         nodeService.executeNode(storeOrderSheet, "orderSheet", CommonService.CREATE);
@@ -545,6 +551,7 @@ public class OrderService {
                 storeOrderProduct.put("paymentPrice", discountPriceMap.get("resultOrderPrice"));
                 storeOrderProduct.put("orderStatus", JsonUtils.getStringValue(responseMap, "orderStatus"));
                 totalProductPrice += discountPriceMap.get("resultOrderPrice");
+                totalDiscountPrice += discountPriceMap.get("resultDiscountPrice");
 
                 ///////orderDeliveryPrice////////
 //                storeOrderDeliveryPrice.put("deliveryMethod", JsonUtils.getValue(product, "product.deliveryMethod"));
@@ -572,7 +579,11 @@ public class OrderService {
         }
 
         totalOrderPrice = totalProductPrice - totalYPoint - totalWelfarePoint + totalDeliveryPrice; //총 주문금액
-
+        totalDiscountPrice =  totalDiscountPrice + totalYPoint + totalWelfarePoint;
+        if (totalPaymentPrice != totalOrderPrice) {
+            bSucc = "false";
+            return bSucc;
+        }
         Map<String, Object> storeOrderSheet = new HashMap<>();
 
         storeOrderSheet.put("orderSheetId", responseMap.get("ordrIdxx"));                           //주문서 번호
