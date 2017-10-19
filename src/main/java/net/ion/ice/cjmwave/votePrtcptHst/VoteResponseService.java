@@ -47,8 +47,7 @@ public class VoteResponseService {
 
 
         for (Node voteBasInfo : voteInfoList) {
-            String voteItemTerms = "voteSeq_matching=" + voteBasInfo.getId() +
-                    "&langCd_matching" + data.get("langCd");
+            String voteItemTerms = "voteSeq_matching=" + voteBasInfo.getId() + "&sorting=sortOdrg";
             List<Node> voteItemList = nodeService.getNodeList(VOTE_ITEM_INFO, voteItemTerms);
             for (Node voteItem : voteItemList) {
                 context.makeReferenceView("contsMetaId"); // referenceView 설정
@@ -114,8 +113,8 @@ public class VoteResponseService {
             queryResult.put("currentPage", queryContext.getCurrentPage());
 
             for (Node voteBasInfo : voteInfoList) {
-
-                String voteItemTerms = "voteSeq_matching=" + voteBasInfo.getId();
+                // TODO - voteSeq_referenceJoin 처리관련 문의 요청 필요
+                String voteItemTerms = "voteSeq_matching=" + voteBasInfo.getId() + "&sorting=sortOdrg";
 
                 List<Node> refdItemList = nodeService.getNodeList(VOTE_ITEM_INFO, voteItemTerms);
                 for (Node refdItem : refdItemList) {
@@ -180,7 +179,7 @@ public class VoteResponseService {
 
         List<Map<String, Object>> voteBasResultList = new ArrayList<>() ;
         for (Node voteBasInfo : voteInfoList) {
-            String voteItemTerms = "voteSeq_matching=" + voteBasInfo.getId();
+            String voteItemTerms = "voteSeq_matching=" + voteBasInfo.getId()+"&sorting=sortOdrg";
 
             List<Node> voteItemList = nodeService.getNodeList(VOTE_ITEM_INFO, voteItemTerms);
             for (Node voteItem : voteItemList) {
@@ -297,7 +296,7 @@ public class VoteResponseService {
             Integer ipAdrVoteCnt = ipDclaCnt - ipCnt;
             List<Map<String, Object>> voteBasResultList = new ArrayList<>() ;
             for (Node voteBasInfo : voteInfoList) {
-                String voteItemTerms = "voteSeq_matching=" + voteBasInfo.getId();
+                String voteItemTerms = "voteSeq_matching=" + voteBasInfo.getId() + "&sorting=sortOdrg";
 
                 List<Node> voteItemList = nodeService.getNodeList(VOTE_ITEM_INFO, voteItemTerms);
                 for (Node voteItem : voteItemList) {
