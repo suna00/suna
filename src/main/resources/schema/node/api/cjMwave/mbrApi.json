@@ -135,10 +135,7 @@
     ],
     "config": {
       "typeId": "mbrInfo",
-      "event": "rglrMbrJoin",
-      "response": {
-        "changed": ""
-      }
+      "event": "rglrMbrJoin"
     }
   },
   {
@@ -159,10 +156,7 @@
     ],
     "config": {
       "typeId": "mbrInfo",
-      "event": "secession",
-      "response": {
-        "rtrmmbDate": ""
-      }
+      "event": "secession"
     }
   },
   {
@@ -208,10 +202,7 @@
     ],
     "config": {
       "typeId": "mbrInfo",
-      "event": "dormReles",
-      "response": {
-        "changed": ""
-      }
+      "event": "dormReles"
     }
   },
   {
@@ -236,10 +227,7 @@
     ],
     "config": {
       "typeId": "mbrInfo",
-      "event": "rejoin",
-      "response": {
-        "changed": ""
-      }
+      "event": "rejoin"
     }
   },
   {
@@ -275,9 +263,6 @@
       "event": "save",
       "data": {
         "firstConnDt": "{{:now}}"
-      },
-      "response": {
-        "dvcId": ""
       }
     }
   },
@@ -303,10 +288,7 @@
     ],
     "config": {
       "typeId": "mbrInfo",
-      "event": "save",
-      "response": {
-        "imgUrl": ""
-      }
+      "event": "save"
     }
   },
   {
