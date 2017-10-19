@@ -44,7 +44,7 @@
     "name": "day voteBasStatsDay set Schedule",
     "type": "cron",
     "config": "0 */5 * * * *",
-    "enable": true,
+    "enable": false,
     "actionType": "service",
     "actionBody": "voteDayCntryService.voteBasStatsDayJob"
   },
@@ -54,7 +54,7 @@
     "name": "week voteBasStatsCntry set Schedule",
     "type": "cron",
     "config": "0 3 0 * * *",
-    "enable": true,
+    "enable": false,
     "actionType": "service",
     "actionBody": "voteDayCntryService.voteBasStatsCntryJob"
   },
