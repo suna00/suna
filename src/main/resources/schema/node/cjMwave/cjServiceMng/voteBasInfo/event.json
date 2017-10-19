@@ -169,33 +169,33 @@
   {
     "typeId": "event",
     "tid": "voteBasInfo",
-    "event": "voteBasSatasDay",
+    "event": "voteBasSatasDayEvt",
     "noneExecute": true,
     "eventName": "vote day num set Event"
   },
   {
     "typeId": "eventAction",
-    "event": "voteBasInfo>voteBasSatasDay",
+    "event": "voteBasInfo>voteBasSatasDayEvt",
     "action": "voteBasSatasDayEvent",
-    "actionName": "vote day num set EventAction",
+    "actionName": "voteDayNum EventAction",
     "actionType": "service",
-    "actionBody": "voteDayCntryService.voteBasStatsDayJob",
+    "actionBody": "voteDayCntryService.voteBasSatasDayEvt",
     "order": 1
   },
   {
     "typeId": "event",
     "tid": "voteBasInfo",
-    "event": "voteBasStatsCntry",
+    "event": "voteBasStatsCntryEvt",
     "noneExecute": true,
     "eventName": "vote day num set Event"
   },
   {
     "typeId": "eventAction",
-    "event": "voteBasInfo>voteBasStatsCntry",
+    "event": "voteBasInfo>voteBasStatsCntryEvt",
     "action": "voteBasStatsCntryEvent",
-    "actionName": "vote day num set EventAction",
+    "actionName": "voteWeekNum EventAction",
     "actionType": "service",
-    "actionBody": "voteDayCntryService.voteBasStatsCntryJob",
+    "actionBody": "voteDayCntryService.voteBasStatsCntryEvt",
     "order": 1
   }
 ]
