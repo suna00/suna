@@ -10,7 +10,9 @@ import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.file.FileValue;
 import net.ion.ice.core.infinispan.NotFoundNodeException;
 import net.ion.ice.core.node.Node;
+import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
+import net.ion.ice.core.node.PropertyType;
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -126,10 +128,16 @@ public class MbrInfoService {
                         imgName = fileValue.getFileName();
                     }
                 }
-                result.toDisplay(context);
-                result.put("imgFileName", imgName);
 
-                context.setNodeData(result);
+                Map<String, Object> resultData = new LinkedHashMap<>() ;
+                NodeType nodeType = NodeUtils.getNodeType(result.getTypeId()) ;
+                context.setDateFormat("yyyy-MM-dd HH:mm:ss");
+                for(PropertyType pt : nodeType.getPropertyTypes()){
+                    resultData.put(pt.getPid(), NodeUtils.getResultValue(context, pt, result)) ;
+                }
+                resultData.put("imgFileName", imgName);
+
+                context.setResult(resultData);
             }
         } catch (NotFoundNodeException e) {
             throw new ApiException("404", "Not Found Member");
