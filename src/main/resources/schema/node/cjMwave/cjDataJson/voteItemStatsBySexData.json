@@ -1,0 +1,98 @@
+[
+  {
+    "typeId": "voteItemStatsBySex",
+    "voteSeq": 800039,
+    "voteItemSeq": 7000564,
+    "sexCd": 1,
+    "voteRate": 40,
+    "voteNum": 40000
+  },
+  {
+    "typeId": "voteItemStatsBySex",
+    "voteSeq": 800039,
+    "voteItemSeq": 7000564,
+    "sexCd": 2,
+    "voteRate": 60,
+    "voteNum": 60000
+  },
+  {
+    "typeId": "voteItemStatsBySex",
+    "voteSeq": 800039,
+    "voteItemSeq": 7000565,
+    "sexCd": 1,
+    "voteRate": 60,
+    "voteNum": 60000
+  },
+  {
+    "typeId": "voteItemStatsBySex",
+    "voteSeq": 800039,
+    "voteItemSeq": 7000565,
+    "sexCd": 2,
+    "voteRate": 40,
+    "voteNum": 40000
+  },
+  {
+    "typeId": "voteItemStatsBySex",
+    "voteSeq": 800039,
+    "voteItemSeq": 7000566,
+    "sexCd": 1,
+    "voteRate": 40,
+    "voteNum": 40000
+  },
+  {
+    "typeId": "voteItemStatsBySex",
+    "voteSeq": 800039,
+    "voteItemSeq": 7000566,
+    "sexCd": 2,
+    "voteRate": 60,
+    "voteNum": 60000
+  },
+  {
+    "typeId": "voteItemStatsBySex",
+    "voteSeq": 800039,
+    "voteItemSeq": 7000567,
+    "sexCd": 1,
+    "voteRate": 40,
+    "voteNum": 40000
+  },
+  {
+    "typeId": "voteItemStatsBySex",
+    "voteSeq": 800039,
+    "voteItemSeq": 7000567,
+    "sexCd": 2,
+    "voteRate": 60,
+    "voteNum": 60000
+  },
+  {
+    "typeId": "voteItemStatsBySex",
+    "voteSeq": 800039,
+    "voteItemSeq": 7000568,
+    "sexCd": 1,
+    "voteRate": 40,
+    "voteNum": 40000
+  },
+  {
+    "typeId": "voteItemStatsBySex",
+    "voteSeq": 800039,
+    "voteItemSeq": 7000568,
+    "sexCd": 2,
+    "voteRate": 60,
+    "voteNum": 60000
+  },
+  {
+    "typeId": "voteItemStatsBySex",
+    "voteSeq": 800039,
+    "voteItemSeq": 7000569,
+    "sexCd": 1,
+    "voteRate": 40,
+    "voteNum": 40000
+  },
+  {
+    "typeId": "voteItemStatsBySex",
+    "voteSeq": 800039,
+    "voteItemSeq": 7000569,
+    "sexCd": 2,
+    "voteRate": 60,
+    "voteNum": 60000
+  }
+]

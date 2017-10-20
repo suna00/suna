@@ -1,0 +1,24 @@
+[
+  {
+    "typeId": "onairTranInfo",
+    "tranSeq": 1,
+    "onairSeq": 54515,
+    "langCd": "eng",
+    "tranSbst": "2017년도 MAMA를 시작하겠습니다.올해에도 홍콩에서 열리게 되었습니다.첫번째 순서는 EXO입니다.",
+    "owner": "anonymous",
+    "created": "20170914215907",
+    "modifier": "anonymous",
+    "changed": "20170914215907"
+  },
+  {
+    "typeId": "onairTranInfo",
+    "tranSeq": 2,
+    "onairSeq": 54515,
+    "langCd": "eng",
+    "tranSbst": "ZHOCN_2017년도 MAMA를 시작하겠습니다. 올해에도 홍콩에서 열리게 되었습니다. 첫번째 순서는 EXO입니다.",
+    "owner": "anonymous",
+    "created": "20170914220053",
+    "modifier": "anonymous",
+    "changed": "20170914220053"
+  }
+]

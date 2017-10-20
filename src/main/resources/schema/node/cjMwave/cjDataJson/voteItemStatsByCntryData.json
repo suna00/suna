@@ -1,0 +1,1060 @@
+[
+  [
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000564,
+      "cntryCd": "CHN",
+      "voteRate": 0.17,
+      "voteNum": 100
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000564,
+      "cntryCd": "JPN",
+      "voteRate": 0.17,
+      "voteNum": 99
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000564,
+      "cntryCd": "KOR",
+      "voteRate": 0.17,
+      "voteNum": 98
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000564,
+      "cntryCd": "USA",
+      "voteRate": 0.17,
+      "voteNum": 97
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000564,
+      "cntryCd": "HKG",
+      "voteRate": 0.16,
+      "voteNum": 96
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000564,
+      "cntryCd": "VNM",
+      "voteRate": 0.16,
+      "voteNum": 95
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000565,
+      "cntryCd": "CHN",
+      "voteRate": 0.17,
+      "voteNum": 100
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000565,
+      "cntryCd": "JPN",
+      "voteRate": 0.17,
+      "voteNum": 99
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000565,
+      "cntryCd": "KOR",
+      "voteRate": 0.17,
+      "voteNum": 98
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000565,
+      "cntryCd": "USA",
+      "voteRate": 0.17,
+      "voteNum": 97
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000565,
+      "cntryCd": "HKG",
+      "voteRate": 0.16,
+      "voteNum": 96
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000565,
+      "cntryCd": "VNM",
+      "voteRate": 0.16,
+      "voteNum": 95
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000566,
+      "cntryCd": "CHN",
+      "voteRate": 0.17,
+      "voteNum": 100
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000566,
+      "cntryCd": "JPN",
+      "voteRate": 0.17,
+      "voteNum": 99
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000566,
+      "cntryCd": "KOR",
+      "voteRate": 0.17,
+      "voteNum": 98
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000566,
+      "cntryCd": "USA",
+      "voteRate": 0.17,
+      "voteNum": 97
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000566,
+      "cntryCd": "HKG",
+      "voteRate": 0.16,
+      "voteNum": 96
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000566,
+      "cntryCd": "VNM",
+      "voteRate": 0.16,
+      "voteNum": 95
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000567,
+      "cntryCd": "CHN",
+      "voteRate": 0.17,
+      "voteNum": 100
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000567,
+      "cntryCd": "JPN",
+      "voteRate": 0.17,
+      "voteNum": 99
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000567,
+      "cntryCd": "KOR",
+      "voteRate": 0.17,
+      "voteNum": 98
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000567,
+      "cntryCd": "USA",
+      "voteRate": 0.17,
+      "voteNum": 97
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000567,
+      "cntryCd": "HKG",
+      "voteRate": 0.16,
+      "voteNum": 96
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000567,
+      "cntryCd": "VNM",
+      "voteRate": 0.16,
+      "voteNum": 95
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000568,
+      "cntryCd": "CHN",
+      "voteRate": 0.17,
+      "voteNum": 100
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000568,
+      "cntryCd": "JPN",
+      "voteRate": 0.17,
+      "voteNum": 99
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000568,
+      "cntryCd": "KOR",
+      "voteRate": 0.17,
+      "voteNum": 98
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000568,
+      "cntryCd": "USA",
+      "voteRate": 0.17,
+      "voteNum": 97
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000568,
+      "cntryCd": "HKG",
+      "voteRate": 0.16,
+      "voteNum": 96
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000568,
+      "cntryCd": "VNM",
+      "voteRate": 0.16,
+      "voteNum": 95
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000569,
+      "cntryCd": "CHN",
+      "voteRate": 0.17,
+      "voteNum": 100
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000569,
+      "cntryCd": "JPN",
+      "voteRate": 0.17,
+      "voteNum": 99
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000569,
+      "cntryCd": "KOR",
+      "voteRate": 0.17,
+      "voteNum": 98
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000569,
+      "cntryCd": "USA",
+      "voteRate": 0.17,
+      "voteNum": 97
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000569,
+      "cntryCd": "HKG",
+      "voteRate": 0.16,
+      "voteNum": 96
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800039,
+      "voteItemSeq": 7000569,
+      "cntryCd": "VNM",
+      "voteRate": 0.16,
+      "voteNum": 95
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800040,
+      "voteItemSeq": 7000575,
+      "cntryCd": "CHN",
+      "voteRate": 0.17,
+      "voteNum": 100
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800040,
+      "voteItemSeq": 7000575,
+      "cntryCd": "JPN",
+      "voteRate": 0.17,
+      "voteNum": 99
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800040,
+      "voteItemSeq": 7000575,
+      "cntryCd": "KOR",
+      "voteRate": 0.17,
+      "voteNum": 98
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800040,
+      "voteItemSeq": 7000575,
+      "cntryCd": "USA",
+      "voteRate": 0.17,
+      "voteNum": 97
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800040,
+      "voteItemSeq": 7000575,
+      "cntryCd": "HKG",
+      "voteRate": 0.16,
+      "voteNum": 96
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800040,
+      "voteItemSeq": 7000575,
+      "cntryCd": "VNM",
+      "voteRate": 0.16,
+      "voteNum": 95
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800040,
+      "voteItemSeq": 7000576,
+      "cntryCd": "CHN",
+      "voteRate": 0.17,
+      "voteNum": 100
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800040,
+      "voteItemSeq": 7000576,
+      "cntryCd": "JPN",
+      "voteRate": 0.17,
+      "voteNum": 99
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800040,
+      "voteItemSeq": 7000576,
+      "cntryCd": "KOR",
+      "voteRate": 0.17,
+      "voteNum": 98
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800040,
+      "voteItemSeq": 7000576,
+      "cntryCd": "USA",
+      "voteRate": 0.17,
+      "voteNum": 97
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800040,
+      "voteItemSeq": 7000576,
+      "cntryCd": "HKG",
+      "voteRate": 0.16,
+      "voteNum": 96
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800040,
+      "voteItemSeq": 7000576,
+      "cntryCd": "VNM",
+      "voteRate": 0.16,
+      "voteNum": 95
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800040,
+      "voteItemSeq": 7000577,
+      "cntryCd": "CHN",
+      "voteRate": 0.17,
+      "voteNum": 100
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800040,
+      "voteItemSeq": 7000577,
+      "cntryCd": "JPN",
+      "voteRate": 0.17,
+      "voteNum": 99
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800040,
+      "voteItemSeq": 7000577,
+      "cntryCd": "KOR",
+      "voteRate": 0.17,
+      "voteNum": 98
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800040,
+      "voteItemSeq": 7000577,
+      "cntryCd": "USA",
+      "voteRate": 0.17,
+      "voteNum": 97
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800040,
+      "voteItemSeq": 7000577,
+      "cntryCd": "HKG",
+      "voteRate": 0.16,
+      "voteNum": 96
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800040,
+      "voteItemSeq": 7000577,
+      "cntryCd": "VNM",
+      "voteRate": 0.16,
+      "voteNum": 95
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800040,
+      "voteItemSeq": 7000578,
+      "cntryCd": "CHN",
+      "voteRate": 0.17,
+      "voteNum": 100
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800040,
+      "voteItemSeq": 7000578,
+      "cntryCd": "JPN",
+      "voteRate": 0.17,
+      "voteNum": 99
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800040,
+      "voteItemSeq": 7000578,
+      "cntryCd": "KOR",
+      "voteRate": 0.17,
+      "voteNum": 98
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800040,
+      "voteItemSeq": 7000578,
+      "cntryCd": "USA",
+      "voteRate": 0.17,
+      "voteNum": 97
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800040,
+      "voteItemSeq": 7000578,
+      "cntryCd": "HKG",
+      "voteRate": 0.16,
+      "voteNum": 96
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800040,
+      "voteItemSeq": 7000578,
+      "cntryCd": "VNM",
+      "voteRate": 0.16,
+      "voteNum": 95
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000300,
+      "cntryCd": "CHN",
+      "voteRate": 0.17,
+      "voteNum": 100
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000300,
+      "cntryCd": "JPN",
+      "voteRate": 0.17,
+      "voteNum": 99
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000300,
+      "cntryCd": "KOR",
+      "voteRate": 0.17,
+      "voteNum": 98
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000300,
+      "cntryCd": "USA",
+      "voteRate": 0.17,
+      "voteNum": 97
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000300,
+      "cntryCd": "HKG",
+      "voteRate": 0.16,
+      "voteNum": 96
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000300,
+      "cntryCd": "VNM",
+      "voteRate": 0.16,
+      "voteNum": 95
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000301,
+      "cntryCd": "CHN",
+      "voteRate": 0.17,
+      "voteNum": 100
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000301,
+      "cntryCd": "JPN",
+      "voteRate": 0.17,
+      "voteNum": 99
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000301,
+      "cntryCd": "KOR",
+      "voteRate": 0.17,
+      "voteNum": 98
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000301,
+      "cntryCd": "USA",
+      "voteRate": 0.17,
+      "voteNum": 97
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000301,
+      "cntryCd": "HKG",
+      "voteRate": 0.16,
+      "voteNum": 96
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000301,
+      "cntryCd": "VNM",
+      "voteRate": 0.16,
+      "voteNum": 95
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000302,
+      "cntryCd": "CHN",
+      "voteRate": 0.17,
+      "voteNum": 100
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000302,
+      "cntryCd": "JPN",
+      "voteRate": 0.17,
+      "voteNum": 99
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000302,
+      "cntryCd": "KOR",
+      "voteRate": 0.17,
+      "voteNum": 98
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000302,
+      "cntryCd": "USA",
+      "voteRate": 0.17,
+      "voteNum": 97
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000302,
+      "cntryCd": "HKG",
+      "voteRate": 0.16,
+      "voteNum": 96
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000302,
+      "cntryCd": "VNM",
+      "voteRate": 0.16,
+      "voteNum": 95
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000303,
+      "cntryCd": "CHN",
+      "voteRate": 0.17,
+      "voteNum": 100
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000303,
+      "cntryCd": "JPN",
+      "voteRate": 0.17,
+      "voteNum": 99
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000303,
+      "cntryCd": "KOR",
+      "voteRate": 0.17,
+      "voteNum": 98
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000303,
+      "cntryCd": "USA",
+      "voteRate": 0.17,
+      "voteNum": 97
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000303,
+      "cntryCd": "HKG",
+      "voteRate": 0.16,
+      "voteNum": 96
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000303,
+      "cntryCd": "VNM",
+      "voteRate": 0.16,
+      "voteNum": 95
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000304,
+      "cntryCd": "CHN",
+      "voteRate": 0.17,
+      "voteNum": 100
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000304,
+      "cntryCd": "JPN",
+      "voteRate": 0.17,
+      "voteNum": 99
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000304,
+      "cntryCd": "KOR",
+      "voteRate": 0.17,
+      "voteNum": 98
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000304,
+      "cntryCd": "USA",
+      "voteRate": 0.17,
+      "voteNum": 97
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000304,
+      "cntryCd": "HKG",
+      "voteRate": 0.16,
+      "voteNum": 96
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000304,
+      "cntryCd": "VNM",
+      "voteRate": 0.16,
+      "voteNum": 95
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000305,
+      "cntryCd": "CHN",
+      "voteRate": 0.17,
+      "voteNum": 100
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000305,
+      "cntryCd": "JPN",
+      "voteRate": 0.17,
+      "voteNum": 99
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000305,
+      "cntryCd": "KOR",
+      "voteRate": 0.17,
+      "voteNum": 98
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000305,
+      "cntryCd": "USA",
+      "voteRate": 0.17,
+      "voteNum": 97
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000305,
+      "cntryCd": "HKG",
+      "voteRate": 0.16,
+      "voteNum": 96
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800022,
+      "voteItemSeq": 7000305,
+      "cntryCd": "VNM",
+      "voteRate": 0.16,
+      "voteNum": 95
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000311,
+      "cntryCd": "CHN",
+      "voteRate": 0.17,
+      "voteNum": 100
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000311,
+      "cntryCd": "JPN",
+      "voteRate": 0.17,
+      "voteNum": 99
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000311,
+      "cntryCd": "KOR",
+      "voteRate": 0.17,
+      "voteNum": 98
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000311,
+      "cntryCd": "USA",
+      "voteRate": 0.17,
+      "voteNum": 97
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000311,
+      "cntryCd": "HKG",
+      "voteRate": 0.16,
+      "voteNum": 96
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000311,
+      "cntryCd": "VNM",
+      "voteRate": 0.16,
+      "voteNum": 95
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000312,
+      "cntryCd": "CHN",
+      "voteRate": 0.17,
+      "voteNum": 100
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000312,
+      "cntryCd": "JPN",
+      "voteRate": 0.17,
+      "voteNum": 99
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000312,
+      "cntryCd": "KOR",
+      "voteRate": 0.17,
+      "voteNum": 98
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000312,
+      "cntryCd": "USA",
+      "voteRate": 0.17,
+      "voteNum": 97
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000312,
+      "cntryCd": "HKG",
+      "voteRate": 0.16,
+      "voteNum": 96
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000312,
+      "cntryCd": "VNM",
+      "voteRate": 0.16,
+      "voteNum": 95
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000313,
+      "cntryCd": "CHN",
+      "voteRate": 0.17,
+      "voteNum": 100
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000313,
+      "cntryCd": "JPN",
+      "voteRate": 0.17,
+      "voteNum": 99
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000313,
+      "cntryCd": "KOR",
+      "voteRate": 0.17,
+      "voteNum": 98
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000313,
+      "cntryCd": "USA",
+      "voteRate": 0.17,
+      "voteNum": 97
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000313,
+      "cntryCd": "HKG",
+      "voteRate": 0.16,
+      "voteNum": 96
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000313,
+      "cntryCd": "VNM",
+      "voteRate": 0.16,
+      "voteNum": 95
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000314,
+      "cntryCd": "CHN",
+      "voteRate": 0.17,
+      "voteNum": 100
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000314,
+      "cntryCd": "JPN",
+      "voteRate": 0.17,
+      "voteNum": 99
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000314,
+      "cntryCd": "KOR",
+      "voteRate": 0.17,
+      "voteNum": 98
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000314,
+      "cntryCd": "USA",
+      "voteRate": 0.17,
+      "voteNum": 97
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000314,
+      "cntryCd": "HKG",
+      "voteRate": 0.16,
+      "voteNum": 96
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000314,
+      "cntryCd": "VNM",
+      "voteRate": 0.16,
+      "voteNum": 95
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000315,
+      "cntryCd": "CHN",
+      "voteRate": 0.17,
+      "voteNum": 100
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000315,
+      "cntryCd": "JPN",
+      "voteRate": 0.17,
+      "voteNum": 99
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000315,
+      "cntryCd": "KOR",
+      "voteRate": 0.17,
+      "voteNum": 98
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000315,
+      "cntryCd": "USA",
+      "voteRate": 0.17,
+      "voteNum": 97
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000315,
+      "cntryCd": "HKG",
+      "voteRate": 0.16,
+      "voteNum": 96
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000315,
+      "cntryCd": "VNM",
+      "voteRate": 0.16,
+      "voteNum": 95
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000316,
+      "cntryCd": "CHN",
+      "voteRate": 0.17,
+      "voteNum": 100
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000316,
+      "cntryCd": "JPN",
+      "voteRate": 0.17,
+      "voteNum": 99
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000316,
+      "cntryCd": "KOR",
+      "voteRate": 0.17,
+      "voteNum": 98
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000316,
+      "cntryCd": "USA",
+      "voteRate": 0.17,
+      "voteNum": 97
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000316,
+      "cntryCd": "HKG",
+      "voteRate": 0.16,
+      "voteNum": 96
+    },
+    {
+      "typeId": "voteItemStatsByCntry",
+      "voteSeq": 800023,
+      "voteItemSeq": 7000316,
+      "cntryCd": "VNM",
+      "voteRate": 0.16,
+      "voteNum": 95
+    }
+  ]
+]

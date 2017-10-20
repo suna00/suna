@@ -1,0 +1,30 @@
+[
+  {
+    "typeId": "onairInfo",
+    "onairSeq": 54515,
+    "showNm": "8017년 MAMA 페스티벌",
+    "bradChCd": "1",
+    "showLoCd": "1",
+    "svcTypeCd": "1",
+    "bradStDate": "80170505170000",
+    "bradFnsDate": "80170505170000",
+    "bradStTime": "17:00",
+    "bradFnsTime": "17:50",
+    "thumImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90790.jpg",
+    "url": "http://mcountdownlive9-i.akamaihd.net/hls/live/841579/mcountdownlive1/mcountdownlive1.m9u8?hdnts=exp=1508401654~acl=/*~hmac=e54bacc1e0f5df4b99800e99ecbfff7aeb0b95849698ae969819c0d81cfd4091"
+  },
+  {
+    "typeId": "onairInfo",
+    "onairSeq": 55155,
+    "showNm": "8018년 MAMA 페스티벌",
+    "bradChCd": "1",
+    "showLoCd": "8",
+    "svcTypeCd": "8",
+    "bradStDate": "80180506170000",
+    "bradFnsDate": "80180506170000",
+    "bradStTime": "17:00",
+    "bradFnsTime": "17:50",
+    "thumImgPath": "http://cmsimg.global.mnet.com/clipimage/vod/Other/610/000/090/90790.jpg",
+    "url": "http://mcountdownlive9-i.akamaihd.net/hls/live/841579/mcountdownlive1/mcountdownlive1.m9u8?hdnts=exp=1508401654~acl=/*~hmac=e54bacc1e0f5df4b99800e99ecbfff7aeb0b95849698ae969819c0d81cfd4091"
+  }
+]

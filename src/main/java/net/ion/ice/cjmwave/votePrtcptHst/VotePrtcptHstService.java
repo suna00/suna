@@ -68,17 +68,22 @@ public class VotePrtcptHstService {
     private Map<String, String> voteHstByIpSelectSqlMap = new ConcurrentHashMap<>() ;
 
     // Ip 접근 관리
-    private IMap<String, Integer> voteIPCntMap ;
+    //private IMap<String, Integer> voteIPCntMap ;
+    private Map<String, Integer> voteIPCntMap ;
 
-    private IMap<String, Map<String, Integer>> mbrVoteCount  ;
+    //private IMap<String, Map<String, Integer>> mbrVoteCount  ;
+    private Map<String, Map<String, Integer>> mbrVoteCount  ;
 
     private IQueue<JdbcSqlData> jdbcQueue ;
 
 
     @PostConstruct
     public void init() {
-        voteIPCntMap = clusterService.getMap("ipVoteCnt") ;
-        mbrVoteCount = clusterService.getMap("mbrVoteMap") ;
+        //voteIPCntMap = clusterService.getMap("ipVoteCnt") ;
+        voteIPCntMap = new ConcurrentHashMap<>();
+        //mbrVoteCount = clusterService.getMap("mbrVoteMap") ;
+        mbrVoteCount = new ConcurrentHashMap<>();
+
         jdbcQueue = clusterService.getDataQueue();
     }
 

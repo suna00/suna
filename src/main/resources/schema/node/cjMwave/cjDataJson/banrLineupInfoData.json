@@ -1,0 +1,42 @@
+[
+  {
+    "typeId": "banrLineupInfo",
+    "banrLineupSeq": 500000,
+    "banrItemSeq": 1780106,
+    "contsDivCd": "1",
+    "showDateTabNm": "2017.09.07_artist",
+    "advmUrl": "<iframe src=\"http://ipn.mwave.me/sand?id=xfaDtkS2\" scrolling=\"no\" border=\"0\" marginWidth=\"0\" marginHeight=\"0\" frameBorder=\"0\" width=\"900\" height=\"200\"></iframe>",
+    "advmShowOdrg": "true",
+    "showYn": true
+  },
+  {
+    "typeId": "banrLineupInfo",
+    "banrLineupSeq": 500001,
+    "banrItemSeq": 1780106,
+    "contsDivCd": "2",
+    "showDateTabNm": "2017.09.14_song",
+    "advmUrl": "<iframe src=\"http://ipn.mwave.me/sand?id=xfaDtkS2\" scrolling=\"no\" border=\"0\" marginWidth=\"0\" marginHeight=\"0\" frameBorder=\"0\" width=\"900\" height=\"200\"></iframe>",
+    "advmShowOdrg": "true",
+    "showYn": true
+  },
+  {
+    "typeId": "banrLineupInfo",
+    "banrLineupSeq": 500002,
+    "banrItemSeq": 1780106,
+    "contsDivCd": "7",
+    "showDateTabNm": "2017.09.21_singlephoto",
+    "advmUrl": "<iframe src=\"http://ipn.mwave.me/sand?id=xfaDtkS2\" scrolling=\"no\" border=\"0\" marginWidth=\"0\" marginHeight=\"0\" frameBorder=\"0\" width=\"900\" height=\"200\"></iframe>",
+    "advmShowOdrg": "true",
+    "showYn": true
+  },
+  {
+    "typeId": "banrLineupInfo",
+    "banrLineupSeq": 500003,
+    "banrItemSeq": 1780126,
+    "contsDivCd": "1",
+    "showDateTabNm": "2017.09.07_artist",
+    "advmUrl": "",
+    "advmShowOdrg": "true",
+    "showYn": true
+  }
+]
