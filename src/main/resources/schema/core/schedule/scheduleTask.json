@@ -33,8 +33,8 @@
     "id": "voteItemStatsTask",
     "name": "voteItemStats Schedule Task",
     "type": "cron",
-    "config": "1 * * * * *",
-    "enable": false,
+    "config": "0 */5 * * * *",
+    "enable": true,
     "actionType": "service",
     "actionBody": "voteItemStatsTask.voteItemStatsJob"
   },
@@ -44,7 +44,7 @@
     "name": "day voteBasStatsDay set Schedule",
     "type": "cron",
     "config": "0 */5 * * * *",
-    "enable": false,
+    "enable": true,
     "actionType": "service",
     "actionBody": "voteDayCntryService.voteBasStatsDayJob"
   },
@@ -54,7 +54,7 @@
     "name": "week voteBasStatsCntry set Schedule",
     "type": "cron",
     "config": "0 3 0 * * *",
-    "enable": false,
+    "enable": true,
     "actionType": "service",
     "actionBody": "voteDayCntryService.voteBasStatsCntryJob"
   },
@@ -64,7 +64,7 @@
     "name": "voteItemStatsHstByMbr Schedule Task",
     "type": "cron",
     "config": "0 */5 * * * *",
-    "enable": false,
+    "enable": true,
     "actionType": "service",
     "actionBody": "voteItemStatsHstByMbrTask.execVoteItemStatsHstByMbr"
   },
@@ -73,8 +73,8 @@
     "id": "voteItemStatsBySexTask",
     "name": "voteItemStatsHstByMbr Schedule Task",
     "type": "cron",
-    "config": "0 59 23 * * *",
-    "enable": false,
+    "config": "0 */5 * * * *",
+    "enable": true,
     "actionType": "service",
     "actionBody": "voteItemStatsByMbrTask.execVoteItemStatsBySex"
   },
@@ -83,8 +83,8 @@
     "id": "voteItemStatsByCntryTask",
     "name": "voteItemStatsHstByMbr Schedule Task",
     "type": "cron",
-    "config": "0 59 23 * * *",
-    "enable": false,
+    "config": "0 */5 * * * *",
+    "enable": true,
     "actionType": "service",
     "actionBody": "voteItemStatsByMbrTask.execVoteItemStatsByCntry"
   },
@@ -94,7 +94,7 @@
     "name": "voteItemStatsByWly Schedule Task",
     "type": "cron",
     "config": "0 */5 * * * *",
-    "enable": false,
+    "enable": true,
     "actionType": "service",
     "actionBody": "voteItemStatsHstByWlyTask.execVoteItemStatsHstByWly"
   },
@@ -104,7 +104,7 @@
     "name": "voteItemStatsByWly Schedule Task",
     "type": "cron",
     "config": "0 59 23 * * *",
-    "enable": false,
+    "enable": true,
     "actionType": "service",
     "actionBody": "voteItemStatsByWlyTask.execVoteItemStatsByWly"
   }
