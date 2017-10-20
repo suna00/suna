@@ -633,6 +633,7 @@ public class OrderService {
      * 결제 정보를 저장하는 Method.
      */
     public String createPayment(Map<String, Object> responseMap) {
+
         Node node = (Node) nodeService.executeNode(responseMap, "payment", CommonService.CREATE);
         return node.getId();
     }

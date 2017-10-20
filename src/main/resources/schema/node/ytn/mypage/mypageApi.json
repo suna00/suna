@@ -100,7 +100,7 @@
   },
   {
     "typeId": "apiConfig",
-    "category": "member",
+    "category": "mypage",
     "apiId": "accountNumberValidation",
     "apiName": "계좌조회",
     "method": "POST",

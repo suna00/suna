@@ -7,6 +7,7 @@ import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.*;
 import net.ion.ice.core.session.SessionService;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,7 @@ import java.io.*;
 import java.net.SocketException;
 import java.security.Security;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service("mypageOrderService")
 public class MypageOrderService {
@@ -56,19 +54,21 @@ public class MypageOrderService {
         String inq_rsn = "20";              // 조회사유 - 10:회원가입 20:기존회원가입 30:성인인증 40:비회원확인 90:기타사유
         String svc_cls = "";                 // 내-외국인구분
         String strGbn = "1";                // 1 : 개인, 2: 사업자
-        String strOrderNo   = sdf.format(new Date()) + (Math.round(Math.random() * 10000000000L) + "");
+        String strOrderNo = sdf.format(new Date()) + (Math.round(Math.random() * 10000000000L) + "");
 
         String result = start(niceUid, svcPwd, service, strGbn, strResId, strNm, strBankCode, strAccountNo, svcGbn, strOrderNo, svc_cls, inq_rsn);
 
         String[] results = result.split("\\|");
         String resultOrderNo = results[0];
-        String resultCode    = results[1];
-        String resultMsg     = results[2];
+        String resultCode = results[1];
+        String resultMsg = results[2];
 
-        logger.info("resultOrderNo="+resultOrderNo);
-        logger.info("resultCode="+resultCode);
-        logger.info("resultMsg="+resultMsg);
-        context.setResult("");
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("resultOrderNo", resultOrderNo);
+        resultMap.put("resultCode", resultCode);
+        resultMap.put("resultMsg", resultMsg);
+        context.setResult(resultMap);
+
         return context;
     }
 
