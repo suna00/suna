@@ -44,7 +44,7 @@
     "name": "day voteBasStatsDay set Schedule",
     "type": "cron",
     "config": "0 */5 * * * *",
-    "enable": true,
+    "enable": false,
     "actionType": "service",
     "actionBody": "voteDayCntryService.voteBasStatsDayJob"
   },
@@ -54,7 +54,7 @@
     "name": "week voteBasStatsCntry set Schedule",
     "type": "cron",
     "config": "0 */10 * * * *",
-    "enable": true,
+    "enable": false,
     "actionType": "service",
     "actionBody": "voteDayCntryService.voteBasStatsCntryJob"
   },
@@ -64,7 +64,7 @@
     "name": "voteItemStatsHstByMbr Schedule Task",
     "type": "cron",
     "config": "0 */5 * * * *",
-    "enable": true,
+    "enable": false,
     "actionType": "service",
     "actionBody": "voteItemStatsHstByMbrTask.execVoteItemStatsHstByMbr"
   },
@@ -74,7 +74,7 @@
     "name": "voteItemStatsHstByMbr Schedule Task",
     "type": "cron",
     "config": "0 */10 * * * *",
-    "enable": true,
+    "enable": false,
     "actionType": "service",
     "actionBody": "voteItemStatsByMbrTask.execVoteItemStatsBySex"
   },
@@ -84,7 +84,7 @@
     "name": "voteItemStatsHstByMbr Schedule Task",
     "type": "cron",
     "config": "0 */10 * * * *",
-    "enable": true,
+    "enable": false,
     "actionType": "service",
     "actionBody": "voteItemStatsByMbrTask.execVoteItemStatsByCntry"
   },
@@ -94,7 +94,7 @@
     "name": "voteItemStatsByWly Schedule Task",
     "type": "cron",
     "config": "0 */5 * * * *",
-    "enable": true,
+    "enable": false,
     "actionType": "service",
     "actionBody": "voteItemStatsHstByWlyTask.execVoteItemStatsHstByWly"
   },
@@ -104,7 +104,7 @@
     "name": "voteItemStatsByWly Schedule Task",
     "type": "cron",
     "config": "0 */10 * * * *",
-    "enable": true,
+    "enable": false,
     "actionType": "service",
     "actionBody": "voteItemStatsByWlyTask.execVoteItemStatsByWly"
   }
