@@ -74,7 +74,7 @@ public class VotePrtcptHstService {
     //private IMap<String, Map<String, Integer>> mbrVoteCount  ;
     private Map<String, Map<String, Integer>> mbrVoteCount  ;
 
-    //private IQueue<JdbcSqlData> jdbcQueue ;
+    private IQueue<JdbcSqlData> jdbcQueue ;
 
 
     @PostConstruct
