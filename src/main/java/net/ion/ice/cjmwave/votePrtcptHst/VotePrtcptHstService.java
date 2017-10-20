@@ -159,6 +159,7 @@ public class VotePrtcptHstService {
 //                    if(!voteHstMap.containsKey(voteBasInfo.getId())) {
 //                        voteHstMap.put(voteBasInfo.getId(), selectVoteHstByDate(mbrId, voteDate, voteBasInfo));
 //                    }
+            logger.info("================ vote compare " + selectVoteHstByDate(mbrId, voteDate, voteBasInfo) + " : " + rstrtnVoteCnt);
 
                     if(selectVoteHstByDate(mbrId, voteDate, voteBasInfo) >= rstrtnVoteCnt){
 //                        if(mbrVoteCount.get(mbrId).get(voteBasInfo.getId()) >= rstrtnVoteCnt){
