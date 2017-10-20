@@ -341,6 +341,7 @@ public class VoteResponseService {
     }
 
     private Integer getVoteNum(String voteSeq) {
+        System.out.println("###getVoteNum : voteNum start "+ DateFormatUtils.format(new Date(), "yyyy/MM/dd HH:mm:ss"));
         if (jdbcTemplate == null) {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
         }
@@ -349,6 +350,7 @@ public class VoteResponseService {
         Map voteNumMap = jdbcTemplate.queryForMap(voteNumSQL);
 
         Integer retValue = voteNumMap.get("voteNum") == null ? 0 : Integer.parseInt(voteNumMap.get("voteNum").toString());
+        System.out.println("###resIfMwv108 : voteNum end "+DateFormatUtils.format(new Date(), "yyyy/MM/dd HH:mm:ss"));
         return retValue;
     }
 

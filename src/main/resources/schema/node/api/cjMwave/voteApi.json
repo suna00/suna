@@ -970,18 +970,6 @@
       {
         "paramName": "bradTelcsDt",
         "required": true
-      },
-      {
-        "paramName": "snsKey",
-        "required": false
-      },
-      {
-        "paramName": "snsTypeCd",
-        "required": false
-      },
-      {
-        "paramName": "connIpAdr",
-        "required": true
       }
     ],
     "config": {
