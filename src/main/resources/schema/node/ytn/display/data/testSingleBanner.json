@@ -6,7 +6,7 @@
     "categoryId": "",
     "sortOrder": 1,
     "file": "classpath:schema/node/ytn/display/file/singleSide1.jpeg",
-    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=2",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=99",
     "bannerStatus": "y"
   },
   {
@@ -26,7 +26,7 @@
     "categoryId": "",
     "sortOrder": 1,
     "file": "classpath:schema/node/ytn/display/file/nextToSearch1.jpeg",
-    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=1",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=98",
     "bannerStatus": "y"
   },
   {
@@ -36,7 +36,7 @@
     "categoryId": "",
     "sortOrder": 2,
     "file": "classpath:schema/node/ytn/display/file/nextToSearch2.jpeg",
-    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=2",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=99",
     "bannerStatus": "y"
   },
   {
@@ -66,7 +66,7 @@
     "categoryId": "",
     "sortOrder": 1,
     "file": "classpath:schema/node/ytn/display/file/mypageMain.jpg",
-    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=1",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=98",
     "bannerStatus": "y"
   },
   {
@@ -76,7 +76,7 @@
     "categoryId": "",
     "sortOrder": 1,
     "file": "classpath:schema/node/ytn/display/file/serviceCenterMain1.jpeg",
-    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=2",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=99",
     "bannerStatus": "y"
   },
   {
@@ -96,7 +96,7 @@
     "categoryId": "",
     "sortOrder": 1,
     "file": "classpath:schema/node/ytn/display/file/login.jpeg",
-    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=2",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=99",
     "bannerStatus": "y"
   },
   {
@@ -116,7 +116,7 @@
     "categoryId": "",
     "sortOrder": 2,
     "file": "classpath:schema/node/ytn/display/file/pop2.jpeg",
-    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=1",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=98",
     "bannerStatus": "y"
   },
   {
@@ -126,7 +126,7 @@
     "categoryId": "",
     "sortOrder": 1,
     "file": "classpath:schema/node/ytn/display/file/pop3.jpeg",
-    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=2",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=99",
     "bannerStatus": "y"
   },
   {
@@ -136,7 +136,7 @@
     "categoryId": "",
     "sortOrder": 2,
     "file": "classpath:schema/node/ytn/display/file/pop4.jpeg",
-    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=2",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=99",
     "bannerStatus": "y"
   },
   {
@@ -156,7 +156,7 @@
     "categoryId": "",
     "sortOrder": 1,
     "file": "classpath:schema/node/ytn/display/file/top1.jpeg",
-    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=1",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=98",
     "bannerStatus": "y"
   },
   {
@@ -176,7 +176,7 @@
     "categoryId": 1,
     "sortOrder": 2,
     "file": "classpath:schema/node/ytn/display/file/hotitem3.jpg",
-    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=1",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=98",
     "bannerStatus": "y"
   },
   {
@@ -186,7 +186,7 @@
     "categoryId": 1,
     "sortOrder": 3,
     "file": "classpath:schema/node/ytn/display/file/hotitem1.jpg",
-    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=2",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=99",
     "bannerStatus": "y"
   },
   {
@@ -216,7 +216,7 @@
     "categoryId": 3,
     "sortOrder": 1,
     "file": "classpath:schema/node/ytn/display/file/hotitem6.png",
-    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=1",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=98",
     "bannerStatus": "y"
   },
   {
@@ -226,7 +226,7 @@
     "categoryId": 4,
     "sortOrder": 1,
     "file": "classpath:schema/node/ytn/display/file/hotitem7.jpg",
-    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=2",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=99",
     "bannerStatus": "y"
   },
   {
@@ -246,7 +246,7 @@
     "categoryId": 6,
     "sortOrder": 1,
     "file": "classpath:schema/node/ytn/display/file/hotitem9.jpeg",
-    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=2",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=99",
     "bannerStatus": "y"
   },
   {
@@ -266,7 +266,7 @@
     "categoryId": 8,
     "sortOrder": 1,
     "file": "classpath:schema/node/ytn/display/file/hotitem11.jpeg",
-    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=1",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=98",
     "bannerStatus": "y"
   },
   {
@@ -276,7 +276,7 @@
     "categoryId": 9,
     "sortOrder": 1,
     "file": "classpath:schema/node/ytn/display/file/hotitem12.jpeg",
-    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=2",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=99",
     "bannerStatus": "y"
   },
   {
@@ -286,7 +286,7 @@
     "categoryId": 10,
     "sortOrder": 1,
     "file": "classpath:schema/node/ytn/display/file/hotitem13.jpeg",
-    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=2",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=99",
     "bannerStatus": "y"
   },
   {
@@ -296,7 +296,7 @@
     "categoryId": 11,
     "sortOrder": 1,
     "file": "classpath:schema/node/ytn/display/file/hotitem14.jpeg",
-    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=2",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=99",
     "bannerStatus": "y"
   }
 ]
