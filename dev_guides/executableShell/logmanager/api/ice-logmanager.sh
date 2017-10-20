@@ -1,4 +1,5 @@
 #!/bin/bash
+
 export PROJECT_HOME=/home/ion/api
 export LOG_HOME=$PROJECT_HOME/core
 #export MAX_LOGSIZE=$((1024*1024*50))
