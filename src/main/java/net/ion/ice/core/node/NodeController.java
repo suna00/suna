@@ -225,7 +225,7 @@ public class NodeController {
             }
             return nodeService.executeResult(request, response, request.getParameterMap(), null);
         } catch (Exception e) {
-            logger.error(e.getMessage(), e);
+            logger.error(e.getMessage());
             if(e.getCause() instanceof ClassCastException){
                 return JsonResponse.error(new Exception("형식이 맞지 않습니다."));
             }else{

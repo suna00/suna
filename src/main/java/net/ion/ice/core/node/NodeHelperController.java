@@ -66,7 +66,7 @@ public class NodeHelperController {
     }
 
 
-    @RequestMapping(value = "/helper/syncList", method = RequestMethod.GET)
+    @RequestMapping(value = "/helper/syncList", method = RequestMethod.POST)
     @ResponseBody
     public Object listNode(HttpServletRequest request, @RequestParam String typeId, @RequestParam String query, @RequestParam String server)  {
         try {

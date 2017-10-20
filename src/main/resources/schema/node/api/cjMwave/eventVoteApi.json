@@ -130,7 +130,7 @@
                 "statsCreated": "created",
                 "myVoteYn": {
                   "select": {
-                    "ds": "cjDb",
+                    "ds": "cjAuth",
                     "resultType": "value",
                     "sql": "select  if(count(*)>0,'true','false') myVoteYn from @{voteSeq}_voteItemHstByMbr where voteItemSeq = @{voteItemSeq} and voteItemSeq =(select voteItemSeq from @{voteSeq}_voteItemHstByMbr where mbrId = @{makeIdValue(>,snsTypeCd,snsKey)} order by created desc limit 0,1)"
                   }
@@ -160,7 +160,7 @@
         },
         "voteNum": {
           "select": {
-            "ds": "cjDb",
+            "ds": "cjAuth",
             "resultType": "value",
             "sql": "select sum(voteNum)as voteNum from voteItemStats where voteSeq = @{voteSeq}"
           }

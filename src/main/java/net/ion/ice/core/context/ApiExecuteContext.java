@@ -3,6 +3,7 @@ package net.ion.ice.core.context;
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.cluster.ClusterUtils;
 import net.ion.ice.core.event.EventService;
+import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
@@ -11,6 +12,7 @@ import org.springframework.web.context.request.NativeWebRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -32,10 +34,13 @@ public class ApiExecuteContext extends ExecuteContext implements CacheableContex
             Map<String, Object> queryResult = ClusterUtils.callExecute(this, false) ;
             if(queryResult.containsKey("item")) {
                 this.result = queryResult.get("item");
-                if(config.containsKey("response") && this.result instanceof Map) {
-                    return new QueryResult((Map<String, Object>) this.result) ;
-                }
+//                if(config.containsKey("response") && this.result instanceof Map) {
+//                    return new QueryResult((Map<String, Object>) this.result) ;
+//                }
             }else{
+                if(queryResult.containsKey("result") && !queryResult.get("result").equals("200")){
+                    return new QueryResult(queryResult) ;
+                }
                 Map<String, Object> callResult = new LinkedHashMap<>() ;
                 for(String key : queryResult.keySet()){
                     if(key.equals("result") || key.equals("resultMessage")){
@@ -107,6 +112,14 @@ public class ApiExecuteContext extends ExecuteContext implements CacheableContex
             ContextUtils.makeApiResponse((Map<String, Object>) config.get("response"), ctx);
         }
 
+        if(config.containsKey(ApiContext.DATE_FORMAT)){
+            ctx.dateFormat = config.get(ApiContext.DATE_FORMAT).toString() ;
+        } else if(config.containsKey(ApiContext.FILE_URL_FORMAT)){
+            try {
+                ctx.fileUrlFormat = JsonUtils.parsingJsonToMap(config.get(ApiContext.FILE_URL_FORMAT).toString()) ;
+            } catch (IOException e) {
+            }
+        }
         ctx.init() ;
 
         return ctx ;
@@ -120,6 +133,8 @@ public class ApiExecuteContext extends ExecuteContext implements CacheableContex
 
         return ctx ;
     }
+
+
     public Map<String, Object> getConfig() {
         return config;
     }

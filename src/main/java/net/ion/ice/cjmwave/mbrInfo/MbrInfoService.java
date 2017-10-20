@@ -13,6 +13,7 @@ import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
+import net.ion.ice.core.query.QueryResult;
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -136,8 +137,10 @@ public class MbrInfoService {
                     resultData.put(pt.getPid(), NodeUtils.getResultValue(context, pt, result)) ;
                 }
                 resultData.put("imgFileName", imgName);
-                System.out.println("========" + resultData);
-                context.setResult(resultData);
+//                System.out.println("========" + resultData);
+                QueryResult queryResult = new QueryResult() ;
+                queryResult.put("item", resultData) ;
+                context.setResult(queryResult);
             }
         } catch (NotFoundNodeException e) {
             throw new ApiException("404", "Not Found Member");

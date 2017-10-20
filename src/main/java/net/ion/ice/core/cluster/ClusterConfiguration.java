@@ -137,7 +137,7 @@ public class ClusterConfiguration {
 
         logger.info("Define Cluster Group List : " + groupList );
 
-        JoinConfig joinConfig = config.getNetworkConfig().getJoin();
+        JoinConfig joinConfig = config.getNetworkConfig().setPort(5701).setPortAutoIncrement(false).getJoin();
 
         joinConfig.getMulticastConfig().setEnabled(false);
         joinConfig.getTcpIpConfig().setEnabled(true).setMembers(members);

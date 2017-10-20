@@ -217,7 +217,10 @@ public class ApiContext {
                     queryResult.putAll(makeSubApiReuslt(ctxRootConfig)) ;
                 }else{
                     Map<String, Object> subQueryResult = makeSubApiReuslt(ctxRootConfig) ;
-                    if(subQueryResult != null) {
+                    if(subQueryResult != null && subQueryResult.containsKey("result") && !subQueryResult.get("result").equals("200")){
+                        queryResult.putAll(subQueryResult) ;
+                        return queryResult ;
+                    }else if(subQueryResult != null) {
                         queryResult.put(key, subQueryResult);
                     }
                 }
