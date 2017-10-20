@@ -342,8 +342,8 @@ public class CouponService {
                     String userId = memberNode.getBindingValue("userId").toString();
                     String name = memberNode.getBindingValue("name").toString();
                     String siteType = memberNode.getBindingValue("siteType").toString();
-                    String company = memberNode.getBindingValue("company").toString();
-                    String universityName = memberNode.getBindingValue("universityName").toString();
+                    String company = memberNode.getBindingValue("company") == null ? "" : memberNode.getBindingValue("company").toString();
+                    String universityName = memberNode.getBindingValue("universityName") == null ? "" : memberNode.getBindingValue("universityName").toString();
                     String companyUniversityName = "";
                     if (StringUtils.equals(siteType, "company")) {
                         companyUniversityName = company;
