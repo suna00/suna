@@ -393,6 +393,7 @@
     responseMap.put("useYPoint", useYPoint);
     responseMap.put("useWelfarepoint", useWelfarepoint);
     responseMap.put("usedCoupon", usedCoupon);
+    responseMap.put("memberNo", memberNo);
 
     String paymentId = orderService.createPayment(responseMap);
 
