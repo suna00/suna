@@ -467,6 +467,11 @@ public class QueryContext extends ReadContext {
             if(resultType != null && resultType == ResultField.ResultType.NONE){
                 return null;
             }
+
+            if(result instanceof Map && queryResult.containsKey("items")){
+                ((Map) result).put(fieldName == null ? "items" : fieldName, queryResult.get("items")) ;
+                return (QueryResult) result;
+            }
             return new QueryResult(queryResult) ;
         }else {
             List<Node> resultNodeList = getQueryList();
