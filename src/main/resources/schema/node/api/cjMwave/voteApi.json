@@ -51,131 +51,6 @@
   {
     "typeId": "apiConfig",
     "category": "vote",
-    "apiId": "IfMwv001-1",
-     "apiName": " MWAVE 투표 목록조회",
-    "method": "GET",
-    "parameters": [
-      {
-        "paramName": "voteFormlCd",
-        "required": false
-      },
-      {
-        "paramName": "showLoCd",
-        "required": false
-      },
-      {
-        "paramName": "searchKeyword",
-        "required": false
-      },
-      {
-        "paramName": "progYn",
-        "required": false
-      }
-    ],
-    "config": {
-      "typeId": "voteBasInfo",
-      "query": [
-        {
-          "field": "voteFormlCd",
-          "method": "matching",
-          "value": "{{:voteFormlCd}}"
-        },
-        {
-          "field": "showLoCd",
-          "method": "matching",
-          "value": "{{:showLoCd}}"
-        },
-        {
-          "field": "pstngStDt",
-          "method": "below",
-          "value": "{{:conditionSysdate(progYn,true)}}"
-        },
-        {
-          "field": "pstngFnsDt",
-          "method": "above",
-          "value": "{{:conditionSysdate(progYn,true)}}"
-        },
-        {
-          "field": "pstngFnsDt",
-          "method": "under",
-          "value": "{{:conditionSysdate(progYn,false)}}"
-        },
-        {
-          "field": "showYn",
-          "method": "matching",
-          "value": "true"
-        },
-        {
-          "field": "evVoteYn",
-          "method": "matching",
-          "value": "false"
-        },
-        {
-          "field": "voteNm_{{:langCd}}",
-          "method": "wildcardShould",
-          "value": "{{:searchKeyword}}*"
-        },
-        {
-          "field": "voteDesc_{{:langCd}}",
-          "method": "wildcardShould",
-          "value": "{{:searchKeyword}}*"
-        },
-        {
-          "field": "findKywrd",
-          "method": "matchingShould",
-          "value": "{{:searchKeyword}}"
-        },
-        {
-          "field": "voteSeq",
-          "method": "NotMatching",
-          "value": "800121"
-        },
-        {
-          "sorting": "{{:sorting}}"
-        },
-        {
-          "page": "{{:page}}",
-          "pageSize": "{{:pageSize}}"
-        },
-        {
-          "includeReferenced": true
-        }
-      ],
-      "response": {
-        "_all_": "",
-        "refdItemList": {
-          "typeId": "voteItemInfo",
-          "query": [
-            {
-              "field": "voteSeq",
-              "method": "referenceJoin",
-              "value": "voteSeq_matching={{:voteSeq}}"
-            }
-          ]
-        },
-        "refdSeriesItemList": {
-          "typeId": "sersVoteItemInfo",
-          "query": [
-            {
-              "field": "voteSeq",
-              "method": "referenceJoin",
-              "value": "voteSeq_matching={{:voteSeq}}"
-            }
-          ]
-        },
-        "voteNum": {
-          "select": {
-            "ds": "authDb",
-            "resultType": "value",
-            "sql": "select sum(voteNum)as voteNum from voteItemStats where voteSeq = @{voteSeq}"
-          }
-        }
-      }
-    }
-  },
-  {
-    "typeId": "apiConfig",
-    "category": "vote",
     "apiId": "IfMwv001",
      "apiName": " MWAVE 투표 목록조회",
     "method": "GET",
@@ -199,142 +74,9 @@
     ],
     "config": {
       "typeId": "voteBasInfo",
-      "cacheTime": "30",
+      "cacheTime": "600",
       "excludePids": "showCntryCdList",
       "event": "resIfMwv001"
-    }
-  },
-  {
-    "typeId": "apiConfig",
-    "category": "vote",
-    "apiId": "IfMwv002-1",
-     "apiName": " MWAVE 투표 상세조회",
-    "method": "GET",
-    "parameters": [
-      {
-        "paramName": "voteSeq",
-        "required": false
-      },
-      {
-        "paramName": "voteYear",
-        "required": false
-      },
-      {
-        "paramName": "showLoCd",
-        "required": false
-      },
-      {
-        "paramName": "voteFormlCd",
-        "required": false
-      },
-      {
-        "paramName": "snsKey",
-        "required": false
-      },
-      {
-        "paramName": "snsTypeCd",
-        "required": false
-      },
-      {
-        "paramName": "connIpAdr",
-        "required": true
-      }
-    ],
-    "config": {
-      "typeId": "voteBasInfo",
-      "query": [
-        {
-          "field": "voteSeq",
-          "method": "matching",
-          "value": "{{:voteSeq}}"
-        },
-        {
-          "field": "pstngStDt",
-          "method": "above",
-          "value": "{{:concatStr(voteYear,0101)}}"
-        },
-        {
-          "field": "pstngStDt",
-          "method": "below",
-          "value": "{{:concatStr(voteYear,1231)}}"
-        },
-        {
-          "field": "showLoCd",
-          "method": "matching",
-          "value": "{{:showLoCd}}"
-        },
-        {
-          "field": "voteFormlCd",
-          "method": "matching",
-          "value": "{{:voteFormlCd}}"
-        },
-        {
-          "field": "showYn",
-          "method": "matching",
-          "value": "true"
-        },
-        {
-          "field": "evVoteYn",
-          "method": "matching",
-          "value": "false"
-        },
-        {
-          "sorting": "voteSeq desc"
-        },
-        {
-          "limit": "1"
-        },
-        {
-          "referenceView": "sersItemVoteSeq",
-          "includeReferenced": true
-        }
-      ],
-      "response": {
-        "_all_": "",
-        "refdItemList": {
-          "typeId": "voteItemInfo",
-          "query": [
-            {
-              "field": "voteSeq",
-              "method": "referenceJoin",
-              "value": "voteSeq_matching={{:voteSeq}}"
-            },
-            {
-              "referenceView": "contsMetaId"
-            }
-          ]
-        },
-        "refdSeriesItemList": {
-          "typeId": "sersVoteItemInfo",
-          "query": [
-            {
-              "field": "voteSeq",
-              "method": "referenceJoin",
-              "value": "voteSeq_matching={{:voteSeq}}"
-            },
-            {
-              "referenceView": "sersItemVoteSeq",
-              "includeReferenced": true
-            }
-          ]
-        },
-        "voteNum": {
-          "select": {
-            "ds": "authDb",
-            "resultType": "value",
-            "sql": "select sum(voteNum)as voteNum from voteItemStats where voteSeq = @{voteSeq}"
-          }
-        },
-        "userVoteCnt": {
-          "value": "10"
-        },
-        "userPvCnt": {
-          "value": "1000"
-        },
-        "ipAdrVoteCnt": {
-          "value": "10000"
-        }
-      }
     }
   },
   {
@@ -359,23 +101,11 @@
       {
         "paramName": "voteFormlCd",
         "required": false
-      },
-      {
-        "paramName": "snsKey",
-        "required": false
-      },
-      {
-        "paramName": "snsTypeCd",
-        "required": false
-      },
-      {
-        "paramName": "connIpAdr",
-        "required": true
       }
     ],
     "config": {
       "typeId": "voteBasInfo",
-      "cacheTime": "30",
+      "cacheTime": "600",
       "excludePids": "showCntryCdList",
       "event": "resIfMwv002"
     }
@@ -618,7 +348,7 @@
     ],
     "config": {
       "typeId": "voteBasInfo",
-      "cacheTime": "30",
+      "cacheTime": "600",
       "query": [
         {
           "field": "voteFormlCd",
@@ -701,7 +431,7 @@
     "config": {
       "root": {
         "typeId": "voteBasInfo",
-        "cacheTime": "30",
+        "cacheTime": "600",
         "excludePids": "showCntryCdList",
         "id": "{{:voteSeq}}",
         "response": {
@@ -1053,7 +783,7 @@
     ],
     "config": {
       "typeId": "voteBasInfo",
-      "cacheTime": "30",
+      "cacheTime": "600",
       "excludePids": "showCntryCdList",
       "query": [
         {
@@ -1256,7 +986,7 @@
     ],
     "config": {
       "typeId": "voteBasInfo",
-      "cacheTime": "30",
+      "cacheTime": "600",
       "excludePids": "showCntryCdList",
       "event": "resIfMwv108"
     }
@@ -1366,7 +1096,7 @@
     ],
     "config": {
       "typeId": "voteBasInfo",
-      "cacheTime": "30",
+      "cacheTime": "600",
       "excludePids": "showCntryCdList",
       "query": [
         {

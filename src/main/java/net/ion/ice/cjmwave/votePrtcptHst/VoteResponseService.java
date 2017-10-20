@@ -159,23 +159,23 @@ public class VoteResponseService {
 
         List<Node> voteInfoList = nodeService.getNodeList(VOTE_BAS_INFO, (String) ContextUtils.getValue(term, data));
 
-        String mbrId = "";
+        /*String mbrId = "";
         if (data.get("snsTypeCd") != null || data.get("snsKey") != null) {
             mbrId = data.get("snsTypeCd").toString() + ">" + data.get("snsKey").toString();
-        }
+        }*/
 
-        Date now = new Date();
-        String connIpAdr = data.get("connIpAdr").toString();
-        String voteDate = DateFormatUtils.format(now, "yyyyMMdd");
+//        Date now = new Date();
+//        String connIpAdr = data.get("connIpAdr").toString();
+//        String voteDate = DateFormatUtils.format(now, "yyyyMMdd");
 
         // Checking Available IP with mbrId and voteSeq
-        String searchText = "setupTypeCd_matching=2&sorting=dclaSetupSeq desc&limit=1";
-        List<Node> dclaNodeList = nodeService.getNodeList("dclaSetupMng", searchText);
-        Node dclaNode = dclaNodeList.get(0);
-        Integer ipDclaCnt = dclaNode.getIntValue("setupBaseCnt");
-        Integer ipCnt = getIpCnt(connIpAdr, voteDate);
-
-        Integer ipAdrVoteCnt = ipDclaCnt - ipCnt;
+//        String searchText = "setupTypeCd_matching=2&sorting=dclaSetupSeq desc&limit=1";
+//        List<Node> dclaNodeList = nodeService.getNodeList("dclaSetupMng", searchText);
+//        Node dclaNode = dclaNodeList.get(0);
+//        Integer ipDclaCnt = dclaNode.getIntValue("setupBaseCnt");
+//        Integer ipCnt = getIpCnt(connIpAdr, voteDate);
+//
+//        Integer ipAdrVoteCnt = ipDclaCnt - ipCnt;
 
         List<Map<String, Object>> voteBasResultList = new ArrayList<>() ;
         for (Node voteBasInfo : voteInfoList) {
@@ -204,14 +204,14 @@ public class VoteResponseService {
             voteBaseResult.put("voteNum", (voteNum == null) ? 0 : voteNum);
 
             // userVoteCnt
-            Integer userVoteCnt = 0;
-            if (mbrId != null && mbrId.length() > 0) {
-                userVoteCnt = getUserVoteCnt(voteBasInfo.getId(), mbrId);
-            }
+//            Integer userVoteCnt = 0;
+//            if (mbrId != null && mbrId.length() > 0) {
+//                userVoteCnt = getUserVoteCnt(voteBasInfo.getId(), mbrId);
+//            }
             //voteBasInfo.put("userVoteCnt", (userVoteCnt == null) ? 0 : userVoteCnt);
-            voteBaseResult.put("userVoteCnt", 0);
-            voteBaseResult.put("userPvCnt", 0);
-            voteBaseResult.put("ipAdrVoteCnt", ipAdrVoteCnt);
+//            voteBaseResult.put("userVoteCnt", 0);
+//            voteBaseResult.put("userPvCnt", 0);
+//            voteBaseResult.put("ipAdrVoteCnt", ipAdrVoteCnt);
             voteBasResultList.add(voteBaseResult);
         }
 
@@ -277,23 +277,23 @@ public class VoteResponseService {
             queryResult.put("totalCount", queryContext.getResultSize());
             queryResult.put("resultCount", voteInfoList.size());
 
-            String mbrId = "";
-            if (data.get("snsTypeCd") != null || data.get("snsKey") != null) {
-                mbrId = data.get("snsTypeCd").toString() + ">" + data.get("snsKey").toString();
-            }
-
-            Date now = new Date();
-            String connIpAdr = data.get("connIpAdr").toString();
-            String voteDate = DateFormatUtils.format(now, "yyyyMMdd");
+//            String mbrId = "";
+//            if (data.get("snsTypeCd") != null || data.get("snsKey") != null) {
+//                mbrId = data.get("snsTypeCd").toString() + ">" + data.get("snsKey").toString();
+//            }
+//
+//            Date now = new Date();
+//            String connIpAdr = data.get("connIpAdr").toString();
+//            String voteDate = DateFormatUtils.format(now, "yyyyMMdd");
 
             // Checking Available IP with mbrId and voteSeq
-            String searchText = "setupTypeCd_matching=2&sorting=dclaSetupSeq desc&limit=1";
-            List<Node> dclaNodeList = nodeService.getNodeList("dclaSetupMng", searchText);
-            Node dclaNode = dclaNodeList.get(0);
-            Integer ipDclaCnt = dclaNode.getIntValue("setupBaseCnt");
-            Integer ipCnt = getIpCnt(connIpAdr, voteDate);
-
-            Integer ipAdrVoteCnt = ipDclaCnt - ipCnt;
+//            String searchText = "setupTypeCd_matching=2&sorting=dclaSetupSeq desc&limit=1";
+//            List<Node> dclaNodeList = nodeService.getNodeList("dclaSetupMng", searchText);
+//            Node dclaNode = dclaNodeList.get(0);
+//            Integer ipDclaCnt = dclaNode.getIntValue("setupBaseCnt");
+//            Integer ipCnt = getIpCnt(connIpAdr, voteDate);
+//
+//            Integer ipAdrVoteCnt = ipDclaCnt - ipCnt;
             List<Map<String, Object>> voteBasResultList = new ArrayList<>() ;
             for (Node voteBasInfo : voteInfoList) {
                 String voteItemTerms = "voteSeq_matching=" + voteBasInfo.getId() + "&sorting=sortOdrg";
@@ -322,14 +322,14 @@ public class VoteResponseService {
                 voteBaseResult.put("voteNum", (voteNum == null) ? 0 : voteNum);
 
                 // userVoteCnt
-                Integer userVoteCnt = 0;
-                if (mbrId != null && mbrId.length() > 0) {
-                    userVoteCnt = getUserVoteCnt(voteBasInfo.getId(), mbrId);
-                }
-                //voteBasInfo.put("userVoteCnt", (userVoteCnt == null) ? 0 : userVoteCnt);
-                voteBaseResult.put("userVoteCnt", 0);
-                voteBaseResult.put("userPvCnt", 0);
-                voteBaseResult.put("ipAdrVoteCnt", ipAdrVoteCnt);
+//                Integer userVoteCnt = 0;
+//                if (mbrId != null && mbrId.length() > 0) {
+//                    userVoteCnt = getUserVoteCnt(voteBasInfo.getId(), mbrId);
+//                }
+//                //voteBasInfo.put("userVoteCnt", (userVoteCnt == null) ? 0 : userVoteCnt);
+//                voteBaseResult.put("userVoteCnt", 0);
+//                voteBaseResult.put("userPvCnt", 0);
+//                voteBaseResult.put("ipAdrVoteCnt", ipAdrVoteCnt);
                 voteBasResultList.add(voteBaseResult);
             }
 
