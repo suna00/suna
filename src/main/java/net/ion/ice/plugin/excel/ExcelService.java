@@ -114,47 +114,49 @@ public class ExcelService {
             is = file.getInputStream();
             workbook = StringUtils.equals(extension, "xls") ? getXlsWorkbook(is) : getXlsxWorkbook(is);
 
-            int totalSheetCount = workbook.getNumberOfSheets();
+            if (workbook != null) {
+                int totalSheetCount = workbook.getNumberOfSheets();
 
-            for (int i=0; i<totalSheetCount; i++) {
-                Sheet sheet = workbook.getSheetAt(i);
+                for (int i=0; i<totalSheetCount; i++) {
+                    Sheet sheet = workbook.getSheetAt(i);
 
-                List<String> columnNameList = new ArrayList<>();
+                    List<String> columnNameList = new ArrayList<>();
 
-                Iterator<Row> rowIterator = sheet.iterator();
-                if (rowIterator.hasNext()) {
-                    Row row = rowIterator.next();
-                    Iterator<Cell> cellIterator = row.iterator();
-                    while (cellIterator.hasNext()) {
-                        Cell cell = cellIterator.next();
-                        columnNameList.add(getStringValue(cell));
-                    }
-                }
-
-                List<Object> dataList = new ArrayList<>();
-
-                rowIterator = sheet.iterator();
-                int rowIndex = 0;
-                while (rowIterator.hasNext()) {
-                    if (rowIndex == 0) {
-                        rowIterator.next();
-                    } else {
+                    Iterator<Row> rowIterator = sheet.iterator();
+                    if (rowIterator.hasNext()) {
                         Row row = rowIterator.next();
-                        Map<String, String> data = new LinkedHashMap<>();
                         Iterator<Cell> cellIterator = row.iterator();
-                        int cellIndex = 0;
-                        while (cellIterator.hasNext() && cellIndex <= columnNameList.size()) {
+                        while (cellIterator.hasNext()) {
                             Cell cell = cellIterator.next();
-                            data.put(columnNameList.get(cellIndex) , getStringValue(cell));
-                            cellIndex++;
+                            columnNameList.add(getStringValue(cell));
                         }
-
-                        dataList.add(data);
                     }
-                    rowIndex++;
-                }
 
-                result.put(sheet.getSheetName(), dataList);
+                    List<Object> dataList = new ArrayList<>();
+
+                    rowIterator = sheet.iterator();
+                    int rowIndex = 0;
+                    while (rowIterator.hasNext()) {
+                        if (rowIndex == 0) {
+                            rowIterator.next();
+                        } else {
+                            Row row = rowIterator.next();
+                            Map<String, String> data = new LinkedHashMap<>();
+                            Iterator<Cell> cellIterator = row.iterator();
+                            int cellIndex = 0;
+                            while (cellIterator.hasNext() && cellIndex <= columnNameList.size()) {
+                                Cell cell = cellIterator.next();
+                                data.put(columnNameList.get(cellIndex) , getStringValue(cell));
+                                cellIndex++;
+                            }
+
+                            dataList.add(data);
+                        }
+                        rowIndex++;
+                    }
+
+                    result.put(sheet.getSheetName(), dataList);
+                }
             }
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
@@ -191,6 +193,9 @@ public class ExcelService {
                     value = fdf.format(cell.getDateCellValue());
                 } else {
                     value = String.valueOf(cell.getNumericCellValue());
+                    if (StringUtils.contains(value, ".") && StringUtils.equals(StringUtils.split(value, ".")[1], "0")) {
+                        value = StringUtils.substringBefore(value, ".");
+                    }
                 }
                 break;
             case BOOLEAN:
