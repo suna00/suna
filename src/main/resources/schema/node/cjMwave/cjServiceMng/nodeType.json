@@ -45,7 +45,7 @@
     "id": "blacklistHst",
     "tid": "blacklistHst",
     "typeName": "블랙리스트 이력",
-    "repositoryType": "node",
+    "repositoryType": "data",
     "eviction": 0,
     "tableName": "authDb#blacklistHst"
   },
