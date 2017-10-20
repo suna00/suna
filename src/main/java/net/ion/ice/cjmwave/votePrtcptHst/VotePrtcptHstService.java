@@ -139,8 +139,9 @@ public class VotePrtcptHstService {
             }
 
             String rstrtnPredDivCd = (String) voteBasInfo.getStoreValue("rstrtnPredDivCd");
-            switch (rstrtnPredDivCd) {
-                case "rstrtnPredDivCd>day" : {
+            logger.info("vote rstrtnPredDivCd = " + rstrtnPredDivCd);
+//            switch (rstrtnPredDivCd) {
+//                case "rstrtnPredDivCd>day" : {
                     Integer rstrtnDayCnt = voteBasInfo.getIntValue("rstrtnDayCnt") ;
                     Integer rstrtnVoteCnt = voteBasInfo.getIntValue("rstrtnVoteCnt") ;
 
@@ -163,8 +164,8 @@ public class VotePrtcptHstService {
                         // 투표수 초과
                         throw new ApiException("423", errMsgUtil.getErrMsg(context,"423"));
                     }
-                }
-            }
+//                }
+//            }
 
             // 접근 IP 관리 테이블에 등록
             executeQuery(insertIpDclaCnt, voteDate, connIpAdr, now);
