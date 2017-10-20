@@ -101,7 +101,7 @@ public class ExcelService {
     }
 
     public Map<String, Object> parsingExcelFile(MultipartFile file) {
-        Map<String, Object> result = new HashMap<>();
+        Map<String, Object> result = new LinkedHashMap<>();
         if (file == null) return result;
 
         String originalFileName = file.getOriginalFilename();
@@ -140,7 +140,7 @@ public class ExcelService {
                         rowIterator.next();
                     } else {
                         Row row = rowIterator.next();
-                        Map<String, String> data = new HashMap<>();
+                        Map<String, String> data = new LinkedHashMap<>();
                         Iterator<Cell> cellIterator = row.iterator();
                         int cellIndex = 0;
                         while (cellIterator.hasNext() && cellIndex <= columnNameList.size()) {
