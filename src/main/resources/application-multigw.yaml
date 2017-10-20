@@ -51,6 +51,8 @@ logging:
   config:
     classpath:
       - logback-cj.xml
+  level: error
+
 
 file:
   default:

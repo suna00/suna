@@ -4,7 +4,7 @@
     <!--<property name="LOG_PATH" value="/Users/juneyoungoh/Desktop/docker_elk/logstash/logs"/>-->
 
     <!-- 콘솔 로그 출력 -->
-    <appender name="TEXT_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <appender level="ERROR" name="TEXT_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <charset>UTF-8</charset>
             <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %-4relative - [%thread] %logger{35} : %msg %n</Pattern>
@@ -28,7 +28,7 @@
     </appender>
 
     <!-- ERROR 레벨 이하 로그를 콘솔 및 파일로 출력 -->
-    <root level="error">
+    <root level="ERROR">
         <appender-ref ref="TEXT_CONSOLE"/>
         <appender-ref ref="TEXT_FILE"/>
     </root>

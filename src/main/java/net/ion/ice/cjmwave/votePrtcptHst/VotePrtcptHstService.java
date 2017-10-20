@@ -149,18 +149,20 @@ public class VotePrtcptHstService {
                         FastDateFormat dateFormat = FastDateFormat.getInstance("yyyyMMdd");
                     }
 
-                    if(!mbrVoteCount.containsKey(mbrId)) {
-                        Map<String, Integer> voteHstMap = new ConcurrentHashMap<>() ;
-                        voteHstMap.put(voteBasInfo.getId(), selectVoteHstByDate(mbrId, voteDate, voteBasInfo));
-                        mbrVoteCount.put(mbrId, voteHstMap);
-                    }
+//                    if(!mbrVoteCount.containsKey(mbrId)) {
+//                        Map<String, Integer> voteHstMap = new ConcurrentHashMap<>() ;
+//                        voteHstMap.put(voteBasInfo.getId(), selectVoteHstByDate(mbrId, voteDate, voteBasInfo));
+//                        mbrVoteCount.put(mbrId, voteHstMap);
+//                    }
 
-                    Map<String, Integer> voteHstMap = mbrVoteCount.get(mbrId);
-                    if(!voteHstMap.containsKey(voteBasInfo.getId())) {
-                        voteHstMap.put(voteBasInfo.getId(), selectVoteHstByDate(mbrId, voteDate, voteBasInfo));
-                    }
+//                    Map<String, Integer> voteHstMap = mbrVoteCount.get(mbrId);
+//                    if(!voteHstMap.containsKey(voteBasInfo.getId())) {
+//                        voteHstMap.put(voteBasInfo.getId(), selectVoteHstByDate(mbrId, voteDate, voteBasInfo));
+//                    }
 
-                    if(mbrVoteCount.get(mbrId).get(voteBasInfo.getId()) >= rstrtnVoteCnt){
+                    if(selectVoteHstByDate(mbrId, voteDate, voteBasInfo) >= rstrtnVoteCnt){
+//                        if(mbrVoteCount.get(mbrId).get(voteBasInfo.getId()) >= rstrtnVoteCnt){
+
                         // 투표수 초과
                         throw new ApiException("423", errMsgUtil.getErrMsg(context,"423"));
                     }
