@@ -103,7 +103,7 @@
     "id": "voteItemStatsByWlyTask",
     "name": "voteItemStatsByWly Schedule Task",
     "type": "cron",
-    "config": "0 59 23 * * *",
+    "config": "0 */5 * * * *",
     "enable": true,
     "actionType": "service",
     "actionBody": "voteItemStatsByWlyTask.execVoteItemStatsByWly"
