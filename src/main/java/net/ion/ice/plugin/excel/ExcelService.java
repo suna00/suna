@@ -193,6 +193,9 @@ public class ExcelService {
                     value = fdf.format(cell.getDateCellValue());
                 } else {
                     value = String.valueOf(cell.getNumericCellValue());
+                    if (StringUtils.contains(value, ".") && StringUtils.equals(StringUtils.split(value, ".")[1], "0")) {
+                        value = StringUtils.substringBefore(value, ".");
+                    }
                 }
                 break;
             case BOOLEAN:
