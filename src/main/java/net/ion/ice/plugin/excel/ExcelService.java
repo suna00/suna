@@ -66,6 +66,9 @@ public class ExcelService {
                         Cell cell = row.createCell(cellIndex);
                         cell.setCellValue(convertHeaderName);
                         cell.setCellStyle(cellStyle);
+
+                        sheet.autoSizeColumn(cellIndex);
+
                         cellIndex++;
                     }
                 }
