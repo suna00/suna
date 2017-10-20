@@ -105,6 +105,24 @@
     "eventName" : "delete CommonNotice"
   },
   {
+    "typeId": "eventAction",
+    "event": "frequentlyAskedQuestion>create",
+    "action": "create",
+    "actionName": "FAQ 등록",
+    "actionType": "service",
+    "actionBody": "FaqService.create",
+    "order": 0
+  },
+  {
+    "typeId": "eventAction",
+    "event": "frequentlyAskedQuestion>update",
+    "action": "update",
+    "actionName": "FAQ 수정",
+    "actionType": "service",
+    "actionBody": "FaqService.update",
+    "order": 0
+  },
+  {
     "typeId" : "event",
     "id" : "frequentlyUsedAnswer>create",
     "tid": "frequentlyUsedAnswer",
