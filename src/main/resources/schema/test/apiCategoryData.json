@@ -1,0 +1,492 @@
+[
+  {
+    "typeId": "apiCategory",
+    "id": "vote",
+    "categoryName": "Vote API",
+    "dateFormat": "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat": {
+      "default": "{{:getEnvValue(image.prefixUrl,url)}}",
+      "s3":"{{:getEnvValue(image.s3PrefixUrl,url)}}"
+    },
+    "commonParameters": [
+      {
+        "paramName": "apiKey",
+        "required": false
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "commonResponse": {
+      "sysDt": "{{:convertString(sysdate)}}"
+    }
+  },
+  {
+    "typeId": "apiCategory",
+    "id": "comp",
+    "categoryName": "Component API",
+    "dateFormat": "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat": {
+      "default": "{{:getEnvValue(image.prefixUrl,url)}}",
+      "s3":"{{:getEnvValue(image.s3PrefixUrl,url)}}"
+    },
+    "commonParameters": [
+      {
+        "paramName": "apiKey",
+        "required": false
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "commonResponse": {
+      "sysDt": "{{:convertString(sysdate)}}"
+    }
+  },
+  {
+    "typeId": "apiCategory",
+    "id": "ban",
+    "categoryName": "Banner API",
+    "dateFormat": "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat": {
+      "default": "{{:getEnvValue(image.prefixUrl,url)}}",
+      "s3":"{{:getEnvValue(image.s3PrefixUrl,url)}}"
+    },
+    "commonParameters": [
+      {
+        "paramName": "apiKey",
+        "required": false
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "commonResponse": {
+      "sysDt": "{{:convertString(sysdate)}}"
+    }
+  },
+  {
+    "typeId": "apiCategory",
+    "id": "system",
+    "categoryName": "System common API",
+    "dateFormat": "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat": {
+      "default": "{{:getEnvValue(image.prefixUrl,url)}}",
+      "s3":"{{:getEnvValue(image.s3PrefixUrl,url)}}"
+    },
+    "commonParameters": [
+      {
+        "paramName": "apiKey",
+        "required": false
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "commonResponse": {
+      "sysDt": "{{:convertString(sysdate)}}"
+    }
+  },
+  {
+    "typeId": "apiCategory",
+    "id": "svcBbs",
+    "categoryName": "Service Bbs API",
+    "dateFormat": "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat": {
+      "default": "{{:getEnvValue(image.prefixUrl,url)}}",
+      "s3":"{{:getEnvValue(image.s3PrefixUrl,url)}}"
+    },
+    "commonParameters": [
+      {
+        "paramName": "apiKey",
+        "required": false
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "commonResponse": {
+      "sysDt": "{{:convertString(sysdate)}}"
+    }
+  },
+  {
+    "typeId": "apiCategory",
+    "id": "svcEvent",
+    "categoryName": "Service EVENT API",
+    "dateFormat": "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat": {
+      "default": "{{:getEnvValue(image.prefixUrl,url)}}",
+      "s3":"{{:getEnvValue(image.s3PrefixUrl,url)}}"
+    },
+    "commonParameters": [
+      {
+        "paramName": "apiKey",
+        "required": false
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "commonResponse": {
+      "sysDt": "{{:convertString(sysdate)}}"
+    }
+  },
+  {
+    "typeId": "apiCategory",
+    "id": "popup",
+    "categoryName": "POPUP API",
+    "dateFormat": "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat": {
+      "default": "{{:getEnvValue(image.prefixUrl,url)}}",
+      "s3":"{{:getEnvValue(image.s3PrefixUrl,url)}}"
+    },
+    "commonParameters": [
+      {
+        "paramName": "apiKey",
+        "required": false
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "commonResponse": {
+      "sysDt": "{{:convertString(sysdate)}}"
+    }
+  },
+  {
+    "typeId": "apiCategory",
+    "id": "contsMeta",
+    "categoryName": "Contents Meta API",
+    "dateFormat": "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat": {
+      "default": "{{:getEnvValue(image.prefixUrl,url)}}",
+      "s3":"{{:getEnvValue(image.s3PrefixUrl,url)}}"
+    },
+    "commonParameters": [
+      {
+        "paramName": "apiKey",
+        "required": false
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "commonResponse": {
+      "sysDt": "{{:convertString(sysdate)}}"
+    }
+  },
+  {
+    "typeId": "apiCategory",
+    "id": "onair",
+    "categoryName": "ON-AIR API",
+    "dateFormat": "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat": {
+      "default": "{{:getEnvValue(image.prefixUrl,url)}}",
+      "s3":"{{:getEnvValue(image.s3PrefixUrl,url)}}"
+    },
+    "commonParameters": [
+      {
+        "paramName": "apiKey",
+        "required": false
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "commonResponse": {
+      "sysDt": "{{:convertString(sysdate)}}"
+    }
+  },
+  {
+    "typeId": "apiCategory",
+    "id": "mcdlineup",
+    "categoryName": "MCD LINEUP API",
+    "dateFormat": "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat": {
+      "default": "{{:getEnvValue(image.prefixUrl,url)}}",
+      "s3":"{{:getEnvValue(image.s3PrefixUrl,url)}}"
+    },
+    "commonParameters": [
+      {
+        "paramName": "apiKey",
+        "required": false
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "commonResponse": {
+      "sysDt": "{{:convertString(sysdate)}}"
+    }
+  },
+  {
+    "typeId": "apiCategory",
+    "id": "member",
+    "categoryName": "MEMBER API",
+    "dateFormat": "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat": {
+      "default": "{{:getEnvValue(image.prefixUrl,url)}}",
+      "s3":"{{:getEnvValue(image.s3PrefixUrl,url)}}"
+    },
+    "commonParameters": [
+      {
+        "paramName": "apiKey",
+        "required": false
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "commonResponse": {
+      "sysDt": "{{:convertString(sysdate)}}"
+    }
+  },
+  {
+    "typeId": "apiCategory",
+    "id": "mypage",
+    "categoryName": "MYPAGE API",
+    "dateFormat": "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat": {
+      "default": "{{:getEnvValue(image.prefixUrl,url)}}",
+      "s3":"{{:getEnvValue(image.s3PrefixUrl,url)}}"
+    },
+    "commonParameters": [
+      {
+        "paramName": "apiKey",
+        "required": false
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "commonResponse": {
+      "sysDt": "{{:convertString(sysdate)}}"
+    }
+  },
+  {
+    "typeId": "apiCategory",
+    "id": "mbrContsAtvy",
+    "categoryName": "MEMBER CONTENTS ACTIVITY API",
+    "dateFormat": "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat": {
+      "default": "{{:getEnvValue(image.prefixUrl,url)}}",
+      "s3":"{{:getEnvValue(image.s3PrefixUrl,url)}}"
+    },
+    "commonParameters": [
+      {
+        "paramName": "apiKey",
+        "required": false
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "commonResponse": {
+      "sysDt": "{{:convertString(sysdate)}}"
+    }
+  },
+  {
+    "typeId": "apiCategory",
+    "id": "push",
+    "categoryName": "PUSH MESSAGE API",
+    "dateFormat": "yyyy-MM-dd HH:mm:ss",
+    "fileUrlFormat": {
+      "default": "{{:getEnvValue(image.prefixUrl,url)}}",
+      "s3":"{{:getEnvValue(image.s3PrefixUrl,url)}}"
+    },
+    "commonParameters": [
+      {
+        "paramName": "apiKey",
+        "required": false
+      },
+      {
+        "paramName": "page",
+        "required": false
+      },
+      {
+        "paramName": "pageSize",
+        "required": false
+      },
+      {
+        "paramName": "sorting",
+        "required": false
+      },
+      {
+        "paramName": "langCd",
+        "required": false
+      }
+    ],
+    "commonResponse": {
+      "sysDt": "{{:convertString(sysdate)}}"
+    }
+  }
+]
