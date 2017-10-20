@@ -110,7 +110,7 @@
     "action": "create",
     "actionName": "FAQ 등록",
     "actionType": "service",
-    "actionBody": "FaqService.create",
+    "actionBody": "faqService.create",
     "order": 0
   },
   {
@@ -119,7 +119,7 @@
     "action": "update",
     "actionName": "FAQ 수정",
     "actionType": "service",
-    "actionBody": "FaqService.update",
+    "actionBody": "faqService.update",
     "order": 0
   },
   {
