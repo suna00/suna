@@ -118,10 +118,10 @@ public class MbrInfoService {
             if (anode != null && !anode.isEmpty()) {
                 //node에 최종수정일 디바이스 정보 등 수정
                 Map<String, Object> updateData = new LinkedHashMap<>();
-                updateData.put("id", snsTypeCd + ">" + snsKey);
-                updateData.put("lastLoginDt", new Date());
-                Node result = (Node) NodeUtils.getNodeService().executeNode(updateData, "mbrInfo", EventService.UPDATE);
-                Object imgUrlObj = result.get("imgUrl");
+//                updateData.put("id", snsTypeCd + ">" + snsKey);
+//                updateData.put("lastLoginDt", new Date());
+//                Node result = (Node) NodeUtils.getNodeService().executeNode(updateData, "mbrInfo", EventService.UPDATE);
+                Object imgUrlObj = anode.get("imgUrl");
                 String imgName = "";
                 if(imgUrlObj instanceof FileValue) {
                     FileValue fileValue = (FileValue) imgUrlObj;
@@ -131,10 +131,10 @@ public class MbrInfoService {
                 }
 
                 Map<String, Object> resultData = new LinkedHashMap<>() ;
-                NodeType nodeType = NodeUtils.getNodeType(result.getTypeId()) ;
+                NodeType nodeType = NodeUtils.getNodeType(anode.getTypeId()) ;
                 context.setDateFormat("yyyy-MM-dd HH:mm:ss");
                 for(PropertyType pt : nodeType.getPropertyTypes()){
-                    resultData.put(pt.getPid(), NodeUtils.getResultValue(context, pt, result)) ;
+                    resultData.put(pt.getPid(), NodeUtils.getResultValue(context, pt, anode)) ;
                 }
                 resultData.put("imgFileName", imgName);
 //                System.out.println("========" + resultData);

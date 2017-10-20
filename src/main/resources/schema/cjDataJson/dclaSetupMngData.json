@@ -10,7 +10,7 @@
     "typeId": "dclaSetupMng",
     "dclaSetupSeq": 1504,
     "setupBaseDayNum": 1,
-    "setupBaseCnt": 2000,
+    "setupBaseCnt": 10,
     "setupTypeCd": "2"
   },
   {
