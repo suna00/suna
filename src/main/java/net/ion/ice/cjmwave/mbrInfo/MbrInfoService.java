@@ -24,6 +24,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -78,30 +79,7 @@ public class MbrInfoService {
 
     public void semiMbrJoin(ExecuteContext context){
         if (jdbcTemplate == null) {
-            jdbcTemplate = dbService.getJdbcTemplate("authDB");
-        }
-
-        Map<String, Object> data = context.getData();
-        chkSnsParams(data);
-        String snsKey = data.get("snsKey").toString();
-        String snsTypeCd = data.get("snsTypeCd").toString();
-
-        String chkMbrSql = "select  if(count(*)>0,'false','true') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
-        int chkResult = jdbcTemplate.update(chkMbrSql, snsTypeCd, snsKey);
-        if(chkResult > 0){
-            throw new ApiException("405", "Information that meets the conditions already exists.");
-        }
-
-        data.put("sttusChgSbst", "준회원 가입");
-        int result = jdbcTemplate.update("insert into mbrInfo(snsTypeCd, snsKey, mbrDivCd, sbscDt, aliasNm, pushMsgRcvYn, sbscShapCd, infoOttpAgreeYn) values (?, ?, '2', sysdate(),?,?,?,?)",snsTypeCd,snsKey,data.get("aliasNm"),data.get("pushMsgRcvYn"),data.get("sbscShapCd"),data.get("infoOttpAgreeYn"));
-        //Node result = (Node) NodeUtils.getNodeService().executeNode(data, "mbrInfo", EventService.CREATE);
-
-        context.setResult(result);
-    }
-
-    public void rglrMbrJoin(ExecuteContext context){
-        if (jdbcTemplate == null) {
-            jdbcTemplate = dbService.getJdbcTemplate("authDB");
+            jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo("mbrInfo").getJdbcTemplate();
         }
 
         Map<String, Object> data = context.getData();
@@ -110,8 +88,32 @@ public class MbrInfoService {
         String snsTypeCd = data.get("snsTypeCd").toString();
 
         String chkMbrSql = "select  if(count(*)>0,'true','false') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
-        int chkResult = jdbcTemplate.update(chkMbrSql, snsTypeCd, snsKey);
-        if(chkResult < 0){
+        Boolean chkResult = Boolean.parseBoolean(jdbcTemplate.queryForMap(chkMbrSql, snsTypeCd, snsKey).get("chkResult").toString());
+        if(chkResult){
+            throw new ApiException("405", "Information that meets the conditions already exists.");
+        }
+
+        data.put("sttusChgSbst", "준회원 가입");
+        int result = jdbcTemplate.update("insert into mbrInfo(snsTypeCd, snsKey, mbrDivCd, sbscDt, aliasNm, pushMsgRcvYn, sbscShapCd, infoOttpAgreeYn, mbrSttusCd) values (?, ?, '1', sysdate(),?,?,?,?,?)",snsTypeCd,snsKey,data.get("aliasNm"),"true".equals(data.get("pushMsgRcvYn")) ? 1:0,data.get("sbscShapCd"),"true".equals(data.get("infoOttpAgreeYn")) ? 1:0, "1");
+
+        Map<String, Object> exe = new LinkedHashMap<>() ;
+        exe.put("sbscDt", new Date());
+        context.setResult(exe);
+    }
+
+    public void rglrMbrJoin(ExecuteContext context){
+        if (jdbcTemplate == null) {
+            jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo("mbrInfo").getJdbcTemplate();
+        }
+
+        Map<String, Object> data = context.getData();
+        chkSnsParams(data);
+        String snsKey = data.get("snsKey").toString();
+        String snsTypeCd = data.get("snsTypeCd").toString();
+
+        String chkMbrSql = "select  if(count(*)<0,'true','false') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
+        Boolean chkResult = Boolean.parseBoolean(jdbcTemplate.queryForMap(chkMbrSql, snsTypeCd, snsKey).get("chkResult").toString());
+        if(chkResult){
             throw new ApiException("404", "Not Found");
         }
 
@@ -136,7 +138,7 @@ public class MbrInfoService {
         data.put("snsKey", snsKey);
         data.put("mbrDivCd", "2");
         data.put("sttusChgSbst", "정회원 전환");
-        int result = jdbcTemplate.update("update mbrInfo set mbrDivCd='2', aliasNm=?,cntryCd=?,sexCd=?,imgUrl=?,bthYear=?,intrstCdList=?,email=?,emailRcvYn=?, pushMsgRcvYn=?, sbscShapCd=?,infoOttpAgreeYn=?  where snsTypeCd=? and snsKey=? ",snsTypeCd,snsKey,data.get("aliasNm"),data.get("cntryCd"),data.get("sexCd"),data.get("imgUrl"),data.get("bthYear"),data.get("intrstCdList"),data.get("email"),data.get("emailRcvYn"),data.get("pushMsgRcvYn"),data.get("sbscShapCd"),data.get("infoOttpAgreeYn"));
+        int result = jdbcTemplate.update("update mbrInfo set mbrDivCd='2', aliasNm=?,cntryCd=?,sexCd=?,imgUrl=?,bthYear=?,intrstCdList=?,email=?,emailRcvYn=?, pushMsgRcvYn=?, sbscShapCd=?,infoOttpAgreeYn=?  where snsTypeCd=? and snsKey=? ",snsTypeCd,snsKey,data.get("aliasNm"),data.get("cntryCd"),data.get("sexCd"),data.get("imgUrl"),data.get("bthYear"),data.get("intrstCdList"),data.get("email"),"true".equals(data.get("emailRcvYn")) ? 1:0,"true".equals(data.get("pushMsgRcvYn")) ? 1:0,data.get("sbscShapCd"),"true".equals(data.get("infoOttpAgreeYn")) ? 1:0);
         //Node result = (Node) NodeUtils.getNodeService().executeNode(data, "mbrInfo", EventService.UPDATE);
         context.setResult(result);
     }
@@ -151,9 +153,9 @@ public class MbrInfoService {
         String snsKey = data.get("snsKey").toString();
         String snsTypeCd = data.get("snsTypeCd").toString();
 
-        String chkMbrSql = "select  if(count(*)>0,'true','false') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
-        int chkResult = jdbcTemplate.update(chkMbrSql, snsTypeCd, snsKey);
-        if(chkResult < 0){
+        String chkMbrSql = "select  if(count(*)<0,'true','false') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
+        Boolean chkResult = Boolean.parseBoolean(jdbcTemplate.queryForMap(chkMbrSql, snsTypeCd, snsKey).get("chkResult").toString());
+        if(chkResult){
             throw new ApiException("404", "Not Found");
         }
 
@@ -207,9 +209,9 @@ public class MbrInfoService {
         String snsKey = data.get("snsKey").toString();
         String snsTypeCd = data.get("snsTypeCd").toString();
 
-        String chkMbrSql = "select  if(count(*)>0,'true','false') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
-        int chkResult = jdbcTemplate.update(chkMbrSql, snsTypeCd, snsKey);
-        if(chkResult < 0){
+        String chkMbrSql = "select  if(count(*)<0,'true','false') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
+        Boolean chkResult = Boolean.parseBoolean(jdbcTemplate.queryForMap(chkMbrSql, snsTypeCd, snsKey).get("chkResult").toString());
+        if(chkResult){
             throw new ApiException("404", "Not Found");
         }
 
@@ -287,9 +289,9 @@ public class MbrInfoService {
         String snsKey = data.get("snsKey").toString();
         String snsTypeCd = data.get("snsTypeCd").toString();
 
-        String chkMbrSql = "select  if(count(*)>0,'true','false') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
-        int chkResult = jdbcTemplate.update(chkMbrSql, snsTypeCd, snsKey);
-        if(chkResult < 0){
+        String chkMbrSql = "select  if(count(*)<0,'true','false') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
+        Boolean chkResult = Boolean.parseBoolean(jdbcTemplate.queryForMap(chkMbrSql, snsTypeCd, snsKey).get("chkResult").toString());
+        if(chkResult){
             throw new ApiException("404", "Not Found");
         }
 
@@ -327,9 +329,9 @@ public class MbrInfoService {
         String snsKey = data.get("snsKey").toString();
         String snsTypeCd = data.get("snsTypeCd").toString();
 
-        String chkMbrSql = "select  if(count(*)>0,'true','false') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
-        int chkResult = jdbcTemplate.update(chkMbrSql, snsTypeCd, snsKey);
-        if(chkResult < 0){
+        String chkMbrSql = "select  if(count(*)<0,'true','false') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
+        Boolean chkResult = Boolean.parseBoolean(jdbcTemplate.queryForMap(chkMbrSql, snsTypeCd, snsKey).get("chkResult").toString());
+        if(chkResult){
             throw new ApiException("404", "Not Found");
         }
 
@@ -358,7 +360,7 @@ public class MbrInfoService {
             data.put("mbrSttusCd", "1");
             data.put("dormTrtDate", "");
             data.put("sttusChgSbst", "휴면 해제");
-            int result = jdbcTemplate.update("update mbrInfo set mbrSttusCd='1',dormTrtDate='' where snsTypeCd=? and snsKey=? ",snsTypeCd,snsKey);
+            int result = jdbcTemplate.update("update mbrInfo set mbrSttusCd='1',dormTrtDate='',infoOttpAgreeYn=? where snsTypeCd=? and snsKey=? ","true".equals(infoOttpAgreeYn)?1:0,snsTypeCd,snsKey);
             //Node result = (Node) NodeUtils.getNodeService().executeNode(data, "mbrInfo", EventService.UPDATE);
             context.setResult(result);
         } catch (NotFoundNodeException e) {
@@ -378,9 +380,9 @@ public class MbrInfoService {
         String snsKey = data.get("snsKey").toString();
         String snsTypeCd = data.get("snsTypeCd").toString();
 
-        String chkMbrSql = "select  if(count(*)>0,'true','false') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
-        int chkResult = jdbcTemplate.update(chkMbrSql, snsTypeCd, snsKey);
-        if(chkResult < 0){
+        String chkMbrSql = "select  if(count(*)<0,'true','false') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
+        Boolean chkResult = Boolean.parseBoolean(jdbcTemplate.queryForMap(chkMbrSql, snsTypeCd, snsKey).get("chkResult").toString());
+        if(chkResult){
             throw new ApiException("404", "Not Found");
         }
 
@@ -414,7 +416,7 @@ public class MbrInfoService {
         }
         //update
 
-        int result = jdbcTemplate.update("update mbrInfo set aliasNm=?,cntryCd=?,sexCd=?,imgUrl=?,bthYear=?,intrstCdList=?,email=?,infoOttpAgreeYn=?  where snsTypeCd=? and snsKey=? ",data.get("aliasNm"),data.get("cntryCd"),data.get("sexCd"),(file!= null && file.getStorePath()!=null ? file.getStorePath():imgurl),data.get("bthYear"),data.get("intrstCdList"),data.get("email"),data.get("infoOttpAgreeYn"),snsTypeCd,snsKey);
+        int result = jdbcTemplate.update("update mbrInfo set aliasNm=?,cntryCd=?,sexCd=?,imgUrl=?,bthYear=?,intrstCdList=?,email=?,infoOttpAgreeYn=?  where snsTypeCd=? and snsKey=? ",data.get("aliasNm"),data.get("cntryCd"),data.get("sexCd"),(file!= null && file.getStorePath()!=null ? file.getStorePath():imgurl),data.get("bthYear"),data.get("intrstCdList"),data.get("email"),"true".equals(data.get("infoOttpAgreeYn"))?1:0,snsTypeCd,snsKey);
         //Node result = (Node) NodeUtils.getNodeService().executeNode(data, "mbrInfo", EventService.UPDATE);
         context.setResult(result);
     }
@@ -429,9 +431,9 @@ public class MbrInfoService {
         String snsKey = data.get("snsKey").toString();
         String snsTypeCd = data.get("snsTypeCd").toString();
 
-        String chkMbrSql = "select  if(count(*)>0,'true','false') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
-        int chkResult = jdbcTemplate.update(chkMbrSql, snsTypeCd, snsKey);
-        if(chkResult < 0){
+        String chkMbrSql = "select  if(count(*)<0,'true','false') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
+        Boolean chkResult = Boolean.parseBoolean(jdbcTemplate.queryForMap(chkMbrSql, snsTypeCd, snsKey).get("chkResult").toString());
+        if(chkResult){
             throw new ApiException("404", "Not Found");
         }
 
@@ -446,8 +448,13 @@ public class MbrInfoService {
         PropertyType imgUrlPt = nodeType.getPropertyType("imgUrl");
         FileValue file = null;
         String imgurl = "";
-        if(data.get("imgUrl") != null){
-            file = (FileValue) NodeUtils.getStoreValue(data.get("imgUrl"), imgUrlPt,snsTypeCd+">"+snsKey );
+
+        if(data.get("imgUrl") != null && data.get("imgUrl") instanceof MultipartFile){
+            try {
+                file = (FileValue) NodeUtils.getStoreValue(data.get("imgUrl"), imgUrlPt, snsTypeCd + ">" + snsKey);
+            }catch (Exception e){
+
+            }
         }else{
             imgurl = data.get("imgUrl").toString();
             if("_null_".equals(imgurl)){

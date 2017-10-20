@@ -150,5 +150,37 @@
     "actionType": "service",
     "actionBody": "mbrInfoService.dormReles",
     "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "mbrInfo",
+    "event": "mbrUpd",
+    "noneExecute": true,
+    "eventName": "member update Event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "mbrInfo>mbrUpd",
+    "action": "mbrUpdEvent",
+    "actionName": "정보수정",
+    "actionType": "service",
+    "actionBody": "mbrInfoService.mbrUpd",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "mbrInfo",
+    "event": "mbrImgUpd",
+    "noneExecute": true,
+    "eventName": "member mbrImgUpd Event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "mbrInfo>mbrImgUpd",
+    "action": "mbrImgUpdEvent",
+    "actionName": "이미지 수정",
+    "actionType": "service",
+    "actionBody": "mbrInfoService.mbrImgUpd",
+    "order": 1
   }
 ]
