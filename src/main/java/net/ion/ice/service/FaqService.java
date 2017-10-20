@@ -17,7 +17,7 @@ public class FaqService {
     @Autowired
     private NodeService nodeService;
 
-    public ExecuteContext create(ExecuteContext context) {
+    public ExecuteContext createAction(ExecuteContext context) {
         Map<String, Object> data = context.getData();
 
         String topStatus = data.get("topStatus") == null ? "" : data.get("topStatus").toString();
@@ -29,7 +29,7 @@ public class FaqService {
                 Map<String, Object> updateData = new HashMap<>();
                 updateData.put("frequentlyAskedQuestionId", node.getBindingValue("frequentlyAskedQuestionId"));
                 updateData.put("topStatus", "inactive");
-                updateData.put("topNumber", "_null_");
+                updateData.put("topNumber", null);
 
                 nodeService.executeNode(updateData, "frequentlyAskedQuestion", EventService.UPDATE);
             }
@@ -40,7 +40,7 @@ public class FaqService {
         return context;
     }
 
-    public ExecuteContext update(ExecuteContext context) {
+    public ExecuteContext updateAction(ExecuteContext context) {
         Map<String, Object> data = context.getData();
 
         String topStatus = data.get("topStatus") == null ? "" : data.get("topStatus").toString();
@@ -52,7 +52,7 @@ public class FaqService {
                 Map<String, Object> updateData = new HashMap<>();
                 updateData.put("frequentlyAskedQuestionId", node.getBindingValue("frequentlyAskedQuestionId"));
                 updateData.put("topStatus", "inactive");
-                updateData.put("topNumber", "_null_");
+                updateData.put("topNumber", null);
 
                 nodeService.executeNode(updateData, "frequentlyAskedQuestion", EventService.UPDATE);
             }
