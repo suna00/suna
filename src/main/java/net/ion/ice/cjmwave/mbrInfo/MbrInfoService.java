@@ -1,11 +1,13 @@
 package net.ion.ice.cjmwave.mbrInfo;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.List;
 
 import net.ion.ice.cjmwave.errMsgInfo.ErrMsgUtil;
 import net.ion.ice.core.api.ApiException;
 import net.ion.ice.core.context.ExecuteContext;
+import net.ion.ice.core.data.bind.NodeBindingUtils;
 import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.file.FileValue;
 import net.ion.ice.core.infinispan.NotFoundNodeException;
@@ -14,8 +16,10 @@ import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
 import net.ion.ice.core.query.QueryResult;
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -29,17 +33,16 @@ import java.util.Map;
 @Service("mbrInfoService")
 public class MbrInfoService {
     private ErrMsgUtil errMsgUtil = new ErrMsgUtil();
+    private JdbcTemplate jdbcTemplate;
     public void chkMbr(ExecuteContext context) {
         Map<String, Object> data = context.getData();
         chkSnsParams(data);
         String snsKey = data.get("snsKey").toString();
         String snsTypeCd = data.get("snsTypeCd").toString();
 
-
         Node anode = null;
         try {
             anode = NodeUtils.getNodeService().read("mbrInfo", snsTypeCd + ">" + snsKey);
-
         } catch (NotFoundNodeException e) {
 
         }
@@ -55,20 +58,39 @@ public class MbrInfoService {
     }
 
     public void semiMbrJoin(ExecuteContext context){
+        if (jdbcTemplate == null) {
+            jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo("mbrInfo").getJdbcTemplate();
+        }
+
         Map<String, Object> data = context.getData();
         chkSnsParams(data);
         String snsKey = data.get("snsKey").toString();
         String snsTypeCd = data.get("snsTypeCd").toString();
 
+        String chkMbrSql = "select  if(count(*)>0,'false','true') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
+        int chkResult = jdbcTemplate.update(chkMbrSql, snsTypeCd, snsKey);
+        if(chkResult > 0){
+            throw new ApiException("405", "Information that meets the conditions already exists.");
+        }
+        Map<String, String[]> createDate = context.getHttpRequest().getParameterMap();
+        String[] value = new String[1];
+        value[0] = "1";
         //create
-        data.put("snsTypeCd", snsTypeCd);
-        data.put("snsKey", snsKey);
-        data.put("mbrDivCd", "1");
-        data.put("mbrSttusCd", "1");
-        data.put("sttusChgSbst", "준회원 가입");
-        data.put("sbscDt", new Date());
+        //createDate.put("snsTypeCd", value[0]);
+        //createDate.put("snsKey", snsKey);
+        createDate.put("mbrDivCd", value);
+        createDate.put("mbrSttusCd", value);
+        Date nowDate = new Date();
+        String sbscDt = DateFormatUtils.format(nowDate, "yyyy-MM-dd HH:mm:ss");
+        value[0] = sbscDt;
+        createDate.put("sbscDt", value);
 
-        Node result = (Node) NodeUtils.getNodeService().executeNode(data, "mbrInfo", EventService.CREATE);
+        NodeBindingUtils.getNodeBindingService().save(createDate, "mbrInfo");
+        value[0] = "준회원 가입";
+        data.put("sttusChgSbst", "준회원 가입");
+        //Node result = (Node) NodeUtils.getNodeService().executeNode(data, "mbrInfo", EventService.CREATE);
+        Map<String, Object> result = context.getData();
+        result.put("sbscDt",sbscDt);
         context.setResult(result);
     }
 
@@ -80,7 +102,7 @@ public class MbrInfoService {
 
         Node anode = null;
         try {
-            anode = NodeUtils.getNodeService().read("mbrInfo", snsTypeCd + ">" + snsKey);
+            anode = NodeUtils.getNode("mbrInfo", snsTypeCd + ">" + snsKey);
 
             String mbrSttusCd = anode.getStringValue("mbrSttusCd");
             if("mbrSttusCd>2".equals(mbrSttusCd) || "mbrSttusCd>3".equals(mbrSttusCd)){
@@ -114,7 +136,7 @@ public class MbrInfoService {
             if(StringUtils.contains(snsTypeCd,"snsTypeCd>")){
                 snsTypeCd = StringUtils.replace(snsTypeCd,"snsTypeCd>","");
             }
-            anode = NodeUtils.getNodeService().read("mbrInfo", snsTypeCd + ">" + snsKey);
+            anode = NodeUtils.getNode("mbrInfo", snsTypeCd + ">" + snsKey);
             if (anode != null && !anode.isEmpty()) {
                 //node에 최종수정일 디바이스 정보 등 수정
                 Map<String, Object> updateData = new LinkedHashMap<>();
@@ -128,7 +150,9 @@ public class MbrInfoService {
                     if (fileValue != null) {
                         imgName = fileValue.getFileName();
                     }
-                }
+                }//else if(){
+                    //
+               // }
 
                 Map<String, Object> resultData = new LinkedHashMap<>() ;
                 NodeType nodeType = NodeUtils.getNodeType(anode.getTypeId()) ;
@@ -163,7 +187,7 @@ public class MbrInfoService {
 
         Node anode = null;
         try {
-            anode = NodeUtils.getNodeService().read("mbrInfo", snsTypeCd + ">" + snsKey);
+            anode = NodeUtils.getNode("mbrInfo", snsTypeCd + ">" + snsKey);
 
             String mbrSttusCd = anode.getStringValue("mbrSttusCd");
             Date rtrmmbDate = null;
@@ -225,7 +249,7 @@ public class MbrInfoService {
 
         Node anode = null;
         try {
-            anode = NodeUtils.getNodeService().read("mbrInfo", snsTypeCd + ">" + snsKey);
+            anode = NodeUtils.getNode("mbrInfo", snsTypeCd + ">" + snsKey);
 
             String mbrSttusCd = anode.getStringValue("mbrSttusCd");
             if("mbrSttusCd>3".equals(mbrSttusCd)){
@@ -261,7 +285,7 @@ public class MbrInfoService {
 
         Node anode = null;
         try {
-            anode = NodeUtils.getNodeService().read("mbrInfo", snsTypeCd + ">" + snsKey);
+            anode = NodeUtils.getNode("mbrInfo", snsTypeCd + ">" + snsKey);
 
             String mbrSttusCd = anode.getStringValue("mbrSttusCd");
             if("mbrSttusCd>1".equals(mbrSttusCd)){

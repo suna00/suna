@@ -25,7 +25,7 @@
     "id": "mbrInfo",
     "tid": "mbrInfo",
     "typeName": "회원정보",
-    "repositoryType": "data",
+    "repositoryType": "node",
     "eviction": 10000,
     "tableName": "authDb#mbrInfo"
   },
@@ -35,7 +35,7 @@
     "id": "mbrDvcInfo",
     "tid": "mbrDvcInfo",
     "typeName": "회원 디바이스 정보",
-    "repositoryType": "data",
+    "repositoryType": "node",
     "eviction": 0,
     "tableName": "authDb#mbrDvcInfo"
   },
@@ -55,7 +55,7 @@
     "id": "mbrSttusHst",
     "tid": "mbrSttusHst",
     "typeName": "회원 상태 이력",
-    "repositoryType": "data",
+    "repositoryType": "node",
     "eviction": 0,
     "tableName": "authDb#mbrSttusHst"
   },
@@ -75,7 +75,7 @@
     "id": "nonMbrInfo",
     "tid": "nonMbrInfo",
     "typeName": "비회원정보",
-    "repositoryType": "data",
+    "repositoryType": "node",
     "eviction": 0,
     "tableName": "authDb#nonMbrInfo"
   },
