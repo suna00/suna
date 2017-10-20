@@ -128,6 +128,7 @@ public class VotePrtcptHstService {
             throw new ApiException("421", errMsgUtil.getErrMsg(context,"421"));
         }
 
+        Integer userVoteCnt = 0;
         if (voteBasInfo!=null) {
             // Checking Available Date
             String pstngStDt = voteBasInfo.getStringValue("pstngStDt");
@@ -154,20 +155,20 @@ public class VotePrtcptHstService {
                         FastDateFormat dateFormat = FastDateFormat.getInstance("yyyyMMdd");
                     }
 
-                    if(!mbrVoteCount.containsKey(mbrId)) {
-                        Map<String, Integer> voteHstMap = new ConcurrentHashMap<>() ;
-                        voteHstMap.put(voteBasInfo.getId(), selectVoteHstByDate(mbrId, voteDate, voteBasInfo));
-                        mbrVoteCount.put(mbrId, voteHstMap);
-                    }
+//                    if(!mbrVoteCount.containsKey(mbrId)) {
+//                        Map<String, Integer> voteHstMap = new ConcurrentHashMap<>() ;
+//                        voteHstMap.put(voteBasInfo.getId(), selectVoteHstByDate(mbrId, voteDate, voteBasInfo));
+//                        mbrVoteCount.put(mbrId, voteHstMap);
+//                    }
+
 //                    Map<String, Integer> voteHstMap = mbrVoteCount.get(mbrId);
 //                    if(!voteHstMap.containsKey(voteBasInfo.getId())) {
 //                        voteHstMap.put(voteBasInfo.getId(), selectVoteHstByDate(mbrId, voteDate, voteBasInfo));
 //                    }
-            logger.info("================ vote compare " + selectVoteHstByDate(mbrId, voteDate, voteBasInfo) + " : " + rstrtnVoteCnt);
-
+                    userVoteCnt = selectVoteHstByDate(mbrId, voteDate, voteBasInfo);
+                    logger.info("================ vote compare " + userVoteCnt + " : " + rstrtnVoteCnt);
                     if(selectVoteHstByDate(mbrId, voteDate, voteBasInfo) >= rstrtnVoteCnt){
 //                        if(mbrVoteCount.get(mbrId).get(voteBasInfo.getId()) >= rstrtnVoteCnt){
-
                         // 투표수 초과
                         throw new ApiException("423", errMsgUtil.getErrMsg(context,"423"));
                     }
@@ -181,11 +182,11 @@ public class VotePrtcptHstService {
             voteIPCntMap.put(connIpAdr+">"+voteDate, mbrIpDclaCnt+1);
 
             // Vote by Mbr
-            Integer chkVoteCnt = mbrVoteCount.get(mbrId).get(voteBasInfo.getId());
-            Map<String, Integer> mbrMap = mbrVoteCount.get(mbrId);
-            mbrMap.put(voteBasInfo.getId(), chkVoteCnt + 1) ;
-
-            mbrVoteCount.put(mbrId, mbrMap) ;
+//            Integer chkVoteCnt = mbrVoteCount.get(mbrId).get(voteBasInfo.getId());
+//            Map<String, Integer> mbrMap = mbrVoteCount.get(mbrId);
+//            mbrMap.put(voteBasInfo.getId(), chkVoteCnt + 1) ;
+//
+//            mbrVoteCount.put(mbrId, mbrMap) ;
 
 //            Map<String, Integer> checkMap = mbrVoteCount.get(mbrId);
 //            logger.info("mbrVoteCount data - {} - {} ", checkMap, checkMap.get(voteBasInfo.getId()).toString());
@@ -229,7 +230,7 @@ public class VotePrtcptHstService {
         Map<String, Object> createItem = new ConcurrentHashMap<>();
         Map<String, Integer> resMap = new ConcurrentHashMap<>();
 
-        resMap.put("userVoteCnt", mbrVoteCount.get(mbrId).get(voteBasInfo.getId()));
+        resMap.put("userVoteCnt", userVoteCnt + 1);
         resMap.put("userPvCnt", 10);    // TODO - PV Count
         resMap.put("ipAdrVoteCnt", ipDclaCnt - mbrIpDclaCnt - 1);
         //data.put("createItem", resMap);
