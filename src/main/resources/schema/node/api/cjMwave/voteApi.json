@@ -165,7 +165,7 @@
         },
         "voteNum": {
           "select": {
-            "ds": "cjAuth",
+            "ds": "authDb",
             "resultType": "value",
             "sql": "select sum(voteNum)as voteNum from voteItemStats where voteSeq = @{voteSeq}"
           }
@@ -320,7 +320,7 @@
         },
         "voteNum": {
           "select": {
-            "ds": "cjAuth",
+            "ds": "authDb",
             "resultType": "value",
             "sql": "select sum(voteNum)as voteNum from voteItemStats where voteSeq = @{voteSeq}"
           }
@@ -723,7 +723,7 @@
               "_all_": "",
               "myVoteYn": {
                 "select": {
-                  "ds": "cjAuth",
+                  "ds": "authDb",
                   "resultType": "value",
                   "sql": "select  if(count(*)>0,'true','false') myVoteYn from @{voteSeq}_voteItemHstByMbr where voteItemSeq = @{voteItemSeq} and voteItemSeq =(select voteItemSeq from @{voteSeq}_voteItemHstByMbr where mbrId = @{makeIdValue(>,snsTypeCd,snsKey)} order by created desc limit 0,1)"
                 }
@@ -1100,7 +1100,7 @@
             "_all_": "",
             "myVoteYn": {
               "select": {
-                "ds": "cjAuth",
+                "ds": "authDb",
                 "resultType": "value",
                 "sql": "select if(count(*)>0,'true','false') myVoteYn from @{voteSeq}_voteItemHstByMbr where voteItemSeq = @{voteItemSeq} and voteItemSeq =(select voteItemSeq from @{voteSeq}_voteItemHstByMbr where mbrId = @{makeIdValue(>,snsTypeCd,snsKey)} order by voteDate desc limit 0,1)"
               }
@@ -1213,7 +1213,7 @@
         },
         "voteNum": {
           "select": {
-            "ds": "cjAuth",
+            "ds": "authDb",
             "resultType": "value",
             "sql": "select sum(voteNum)as voteNum from voteItemStats where voteSeq = @{voteSeq}"
           }
@@ -1749,7 +1749,7 @@
       },
       "getTotalVoteNum": {
         "select": {
-          "ds": "cjAuth",
+          "ds": "authDb",
           "resultType": "value",
           "sql": "select sum(voteNum) as totalVoteNum from cntryVoteStats where perdStDate = @{perdStDate} and perdFnsDate = @{perdFnsDate}"
         }
@@ -1791,7 +1791,7 @@
       },
       "getTotalVoteNum": {
         "select": {
-          "ds": "cjAuth",
+          "ds": "authDb",
           "resultType": "value",
           "sql": "select sum(voteNum) as totalVoteNum from cntryVoteStats where @{dateFormat(sysdate,yyyy-MM-dd)} BETWEEN perdStDate and perdFnsDate"
         }
@@ -1844,7 +1844,7 @@
       },
       "getTotalVoteNum": {
         "select": {
-          "ds": "cjAuth",
+          "ds": "authDb",
           "resultType": "value",
           "sql": "select sum(voteNum) as totalVoteNum from cntryVoteStatsByVote where voteSeq = @{voteSeq} and perdStDate = @{weekDate(2,yyyy-MM-dd,뺿뺿)} and perdFnsDate = @{weekDate(8,yyyy-MM-dd,뺿뺿)}"
         }

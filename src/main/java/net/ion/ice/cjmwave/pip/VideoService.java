@@ -62,7 +62,9 @@ public class VideoService {
         }
         String fullUrl = "";
         if (node.get("contentImgUrl") != null) {
-            fullUrl = fileUrlFormat + ((FileValue) node.get("contentImgUrl")).getStorePath();
+            if(node.get("contentImgUrl") instanceof FileValue) {
+                fullUrl = fileUrlFormat + ((FileValue) node.get("contentImgUrl")).getStorePath();
+            }
         }
         returnResult.put("contentImgUrl", fullUrl);//노드에서 가져오도록 추가
 
