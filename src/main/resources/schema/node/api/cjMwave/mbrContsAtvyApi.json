@@ -38,7 +38,7 @@
         },
         "getposreNum": {
           "select": {
-            "ds": "cjDb",
+            "ds": "authDb",
             "resultType": "value",
             "sql": "select count(*) as posreNum from contsLikeInfo where contsMetaDivCd = @{contsMetaDivCd} and contsMetaId = concat(@{name},'::',@{contsMetaId})"
           }
@@ -92,7 +92,7 @@
       },
       "chkContsLike": {
         "select": {
-          "ds": "cjDb",
+          "ds": "authDb",
           "sql": "select if(count(*)>0,'false','true') likeNullYn from contsLikeInfo where contsMetaDivCd=@{contsMetaDivCd} and contsMetaId=@{makeIdValue(::,name,contsMetaId)} and mbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
         }
       },
@@ -157,7 +157,7 @@
       },
       "chkContsLike": {
         "select": {
-          "ds": "cjDb",
+          "ds": "authDb",
           "sql": "select if(count(*)>0,'true','false') likeYn, max(likeSeq) likeSeq from contsLikeInfo where contsMetaDivCd=@{contsMetaDivCd} and contsMetaId=@{makeIdValue(::,name,contsMetaId)} and mbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
         }
       },
@@ -197,7 +197,7 @@
     "config": {
       "myLikeYn": {
         "select": {
-          "ds": "cjDb",
+          "ds": "authDb",
           "sql": "select if(count(*)>0,'false','true') myLikeYn from replLikeInfo where replSeq=@{contsReplSeq} and mbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
         }
       },
@@ -356,28 +356,28 @@
           "mkerId": "",
           "replLikeNum": {
             "select": {
-              "ds": "cjDb",
+              "ds": "authDb",
               "resultType": "value",
               "sql": "select count(*) replLikeNum from replLikeInfo where replSeq = @{replSeq}"
             }
           },
           "myLikeYn": {
             "select": {
-              "ds": "cjDb",
+              "ds": "authDb",
               "resultType": "value",
               "sql": "select if(count(*)>0,'Y','N') myLikeYn from replLikeInfo where replSeq = @{replSeq} and mbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
             }
           },
           "dclaNum": {
             "select": {
-              "ds": "cjDb",
+              "ds": "authDb",
               "resultType": "value",
               "sql": "select count(*) dclaNum from replDclaHst where replSeq = @{replSeq}"
             }
           },
           "myDclaYn": {
             "select": {
-              "ds": "cjDb",
+              "ds": "authDb",
               "resultType": "value",
               "sql": "select if(count(*)>0,'Y','N') myDclaYn from replDclaHst where replSeq = @{replSeq} and dclarId = @{makeIdValue(>,snsTypeCd,snsKey)}"
             }
@@ -520,7 +520,7 @@
     "config": {
       "chkMyRelp": {
         "select": {
-          "ds": "cjDb",
+          "ds": "authDb",
           "sql": "select if(count(*)>0,'true','false') MyRelpYn from replInfo where replSeq=@{contsReplSeq} and mkerId = @{makeIdValue(>,snsTypeCd,snsKey)}"
         }
       },

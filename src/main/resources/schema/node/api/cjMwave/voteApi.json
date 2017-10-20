@@ -3,7 +3,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMcv001",
-    "apiName": "MCD 주간 투표 결과조회",
+     "apiName": " MCD 주간 투표 결과조회",
     "method": "GET",
     "parameters": [
       {
@@ -52,7 +52,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv001-1",
-    "apiName": "MWAVE 투표 목록조회",
+     "apiName": " MWAVE 투표 목록조회",
     "method": "GET",
     "parameters": [
       {
@@ -177,7 +177,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv001",
-    "apiName": "MWAVE 투표 목록조회",
+     "apiName": " MWAVE 투표 목록조회",
     "method": "GET",
     "parameters": [
       {
@@ -208,7 +208,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv002-1",
-    "apiName": "MWAVE 투표 상세조회",
+     "apiName": " MWAVE 투표 상세조회",
     "method": "GET",
     "parameters": [
       {
@@ -341,7 +341,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv002",
-    "apiName": "MWAVE 투표 상세조회",
+     "apiName": " MWAVE 투표 상세조회",
     "method": "GET",
     "parameters": [
       {
@@ -384,7 +384,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv003",
-    "apiName": "MWAVE 투표하기",
+     "apiName": " MWAVE 투표하기",
     "method": "POST",
     "parameters": [
       {
@@ -437,7 +437,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv004",
-    "apiName": "투표 당첨자 조회",
+     "apiName": " 투표 당첨자 조회",
     "method": "GET",
     "parameters": [
       {
@@ -500,7 +500,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv005",
-    "apiName": "일별 투표내역 상세 조회(아티스트 성별)",
+     "apiName": " 일별 투표내역 상세 조회(아티스트 성별)",
     "method": "GET",
     "parameters": [
       {
@@ -543,7 +543,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv006",
-    "apiName": "아티스트별 진행투표 목록 조회",
+     "apiName": " 아티스트별 진행투표 목록 조회",
     "method": "GET",
     "parameters": [
       {
@@ -583,7 +583,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv007",
-    "apiName": "MAMA용 투표하기",
+     "apiName": " MAMA용 투표하기",
     "method": "POST",
     "parameters": [
       {
@@ -604,7 +604,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv100",
-    "apiName": "MWAVE 투표결과 목록조회",
+     "apiName": " MWAVE 투표결과 목록조회",
     "method": "GET",
     "parameters": [
       {
@@ -682,7 +682,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv101",
-    "apiName": "투표내역 상세",
+     "apiName": " 투표내역 상세",
     "method": "GET",
     "parameters": [
       {
@@ -738,7 +738,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv102",
-    "apiName": "국가별 투표 현황",
+     "apiName": " 국가별 투표 현황",
     "method": "GET",
     "parameters": [
       {
@@ -778,7 +778,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv103",
-    "apiName": "투표항목별 투표 현황",
+     "apiName": " 투표항목별 투표 현황",
     "method": "GET",
     "parameters": [
       {
@@ -879,7 +879,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv104",
-    "apiName": "아티스트별 주간 투표 현황",
+     "apiName": " 아티스트별 주간 투표 현황",
     "method": "GET",
     "parameters": [
       {
@@ -931,7 +931,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv105",
-    "apiName": "아티스트별 국가 투표 현황",
+     "apiName": " 아티스트별 국가 투표 현황",
     "method": "GET",
     "parameters": [
       {
@@ -983,7 +983,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv106",
-    "apiName": "아티스트별 투표회원 현황",
+     "apiName": " 아티스트별 투표회원 현황",
     "method": "GET",
     "parameters": [
       {
@@ -1035,7 +1035,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv107",
-    "apiName": "MCD 투표내역 상세",
+     "apiName": " MCD 투표내역 상세",
     "method": "GET",
     "parameters": [
       {
@@ -1114,7 +1114,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv108-1",
-    "apiName": "MCD 투표 상세조회",
+     "apiName": " MCD 투표 상세조회",
     "method": "GET",
     "parameters": [
       {
@@ -1234,7 +1234,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv108",
-    "apiName": "MCD 투표 상세조회",
+     "apiName": " MCD 투표 상세조회",
     "method": "GET",
     "parameters": [
       {
@@ -1265,7 +1265,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv109",
-    "apiName": "아티스트별 국가 투표 현황(금주)",
+     "apiName": " 아티스트별 국가 투표 현황(금주)",
     "method": "GET",
     "parameters": [
       {
@@ -1308,7 +1308,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv110",
-    "apiName": "아티스트별 투표회원 현황(금주)",
+     "apiName": " 아티스트별 투표회원 현황(금주)",
     "method": "GET",
     "parameters": [
       {
@@ -1352,7 +1352,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv111",
-    "apiName": "MWAVE 투표 진행현황 목록조회",
+     "apiName": " MWAVE 투표 진행현황 목록조회",
     "method": "GET",
     "parameters": [
       {
@@ -1441,7 +1441,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv200",
-    "apiName": "주별 아티스트 투표현황",
+     "apiName": " 주별 아티스트 투표현황",
     "method": "GET",
     "parameters": [
       {
@@ -1484,7 +1484,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv201",
-    "apiName": "월별 아티스트 투표현황",
+     "apiName": " 월별 아티스트 투표현황",
     "method": "GET",
     "parameters": [
       {
@@ -1518,7 +1518,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv202",
-    "apiName": "년별 아티스트 투표현황",
+     "apiName": " 년별 아티스트 투표현황",
     "method": "GET",
     "parameters": [
       {
@@ -1552,7 +1552,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv203",
-    "apiName": "국가별 아티스트 투표현황",
+     "apiName": " 국가별 아티스트 투표현황",
     "method": "GET",
     "parameters": [
       {
@@ -1604,7 +1604,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv204",
-    "apiName": "성별 아티스트 투표현황",
+     "apiName": " 성별 아티스트 투표현황",
     "method": "GET",
     "parameters": [
       {
@@ -1656,7 +1656,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv205",
-    "apiName": "타입별 아티스트 투표현황",
+     "apiName": " 타입별 아티스트 투표현황",
     "method": "GET",
     "parameters": [
       {
@@ -1708,7 +1708,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv206",
-    "apiName": "전체 국가 투표현황",
+     "apiName": " 전체 국가 투표현황",
     "method": "GET",
     "parameters": [
       {
@@ -1760,7 +1760,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv207",
-    "apiName": "전체 국가 투표현황(금주)",
+     "apiName": " 전체 국가 투표현황(금주)",
     "method": "GET",
     "config": {
       "root": {
@@ -1802,7 +1802,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv208",
-    "apiName": "투표별 국가 투표 현황(금주)",
+     "apiName": " 투표별 국가 투표 현황(금주)",
     "method": "GET",
     "parameters": [
       {
@@ -1855,7 +1855,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv209",
-    "apiName": "주별 아티스트 투표현황(금주)",
+     "apiName": " 주별 아티스트 투표현황(금주)",
     "method": "GET",
     "config": {
       "typeId": "artistVoteStatsByWly",
@@ -1888,7 +1888,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv210",
-    "apiName": "국가별 아티스트 투표현황(금주)",
+     "apiName": " 국가별 아티스트 투표현황(금주)",
     "method": "GET",
     "parameters": [
       {
@@ -1932,7 +1932,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv211",
-    "apiName": "성별 아티스트 투표현황(금주)",
+     "apiName": " 성별 아티스트 투표현황(금주)",
     "method": "GET",
     "parameters": [
       {
@@ -1976,7 +1976,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv212",
-    "apiName": "타입별 아티스트 투표현황(금주)",
+     "apiName": " 타입별 아티스트 투표현황(금주)",
     "method": "GET",
     "parameters": [
       {

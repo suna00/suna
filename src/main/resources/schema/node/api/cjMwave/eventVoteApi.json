@@ -3,7 +3,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMev001",
-    "apiName": "이벤트 투표 상세조회",
+    "apiName": "이벤트 투표 상세조회 ",
     "method": "GET",
     "parameters": [
       {
@@ -178,7 +178,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMev002",
-    "apiName": "MAMA용 이벤트 투표하기",
+    "apiName": "MAMA용 이벤트 투표하기 ",
     "method": "POST",
     "parameters": [
       {
@@ -219,7 +219,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMev003",
-    "apiName": "MAMA용 스폰서(외부) 투표하기",
+    "apiName": "MAMA용 스폰서(외부) 투표하기 ",
     "method": "POST",
     "parameters": [
       {
