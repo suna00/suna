@@ -176,14 +176,14 @@ public class VotePrtcptHstService {
             voteIPCntMap.put(connIpAdr+">"+voteDate, mbrIpDclaCnt+1);
 
             // Vote by Mbr
-            Integer chkVoteCnt = mbrVoteCount.get(mbrId).get(voteBasInfo.getId());
-            Map<String, Integer> mbrMap = mbrVoteCount.get(mbrId);
-            mbrMap.put(voteBasInfo.getId(), chkVoteCnt + 1) ;
+//            Integer chkVoteCnt = mbrVoteCount.get(mbrId).get(voteBasInfo.getId());
+//            Map<String, Integer> mbrMap = mbrVoteCount.get(mbrId);
+//            mbrMap.put(voteBasInfo.getId(), chkVoteCnt + 1) ;
+//
+//            mbrVoteCount.put(mbrId, mbrMap) ;
 
-            mbrVoteCount.put(mbrId, mbrMap) ;
-
-            Map<String, Integer> checkMap = mbrVoteCount.get(mbrId);
-            logger.info("mbrVoteCount data - {} - {} ", checkMap, checkMap.get(voteBasInfo.getId()).toString());
+//            Map<String, Integer> checkMap = mbrVoteCount.get(mbrId);
+//            logger.info("mbrVoteCount data - {} - {} ", checkMap, checkMap.get(voteBasInfo.getId()).toString());
 
 
             if (!voteHstSqlMap.containsKey(voteBasInfo.getId())) {
