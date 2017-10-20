@@ -335,6 +335,7 @@
     responseMap.put("resCd", res_cd);
     responseMap.put("resMsg", res_msg);
     responseMap.put("ordrIdxx", ordr_idxx);
+    responseMap.put("orderSheetId", ordr_idxx);
     responseMap.put("tno", tno);
     responseMap.put("goodName", good_name);
     responseMap.put("buyrName", buyr_name);
@@ -392,6 +393,7 @@
     responseMap.put("useYPoint", useYPoint);
     responseMap.put("useWelfarepoint", useWelfarepoint);
     responseMap.put("usedCoupon", usedCoupon);
+    responseMap.put("memberNo", memberNo);
 
     String paymentId = orderService.createPayment(responseMap);
 

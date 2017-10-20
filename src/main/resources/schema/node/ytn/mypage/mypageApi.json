@@ -97,5 +97,24 @@
         }
       }
     }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "mypage",
+    "apiId": "accountNumberValidation",
+    "apiName": "계좌조회",
+    "method": "POST",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "member",
+      "noneExecute": true,
+      "event" : "accountNumberValidation",
+      "data": {
+        "name": "{{:name}}",
+        "accountNumber": "{{:accountNumber}}",
+        "bankCode": "{{:bankCode}}"
+      }
+    }
   }
 ]
