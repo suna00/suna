@@ -29,7 +29,7 @@ public class FaqService {
                 Map<String, Object> updateData = new HashMap<>();
                 updateData.put("frequentlyAskedQuestionId", node.getBindingValue("frequentlyAskedQuestionId"));
                 updateData.put("topStatus", "inactive");
-                updateData.put("topNumber", null);
+                updateData.put("topNumber", "");
 
                 nodeService.executeNode(updateData, "frequentlyAskedQuestion", EventService.UPDATE);
             }
@@ -52,7 +52,7 @@ public class FaqService {
                 Map<String, Object> updateData = new HashMap<>();
                 updateData.put("frequentlyAskedQuestionId", node.getBindingValue("frequentlyAskedQuestionId"));
                 updateData.put("topStatus", "inactive");
-                updateData.put("topNumber", null);
+                updateData.put("topNumber", "");
 
                 nodeService.executeNode(updateData, "frequentlyAskedQuestion", EventService.UPDATE);
             }
