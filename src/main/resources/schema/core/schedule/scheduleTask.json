@@ -73,7 +73,7 @@
     "id": "voteItemStatsBySexTask",
     "name": "voteItemStatsHstByMbr Schedule Task",
     "type": "cron",
-    "config": "0 */5 * * * *",
+    "config": "0 */10 * * * *",
     "enable": true,
     "actionType": "service",
     "actionBody": "voteItemStatsByMbrTask.execVoteItemStatsBySex"
@@ -83,7 +83,7 @@
     "id": "voteItemStatsByCntryTask",
     "name": "voteItemStatsHstByMbr Schedule Task",
     "type": "cron",
-    "config": "0 */5 * * * *",
+    "config": "0 */10 * * * *",
     "enable": true,
     "actionType": "service",
     "actionBody": "voteItemStatsByMbrTask.execVoteItemStatsByCntry"
@@ -103,7 +103,7 @@
     "id": "voteItemStatsByWlyTask",
     "name": "voteItemStatsByWly Schedule Task",
     "type": "cron",
-    "config": "0 */5 * * * *",
+    "config": "0 */10 * * * *",
     "enable": true,
     "actionType": "service",
     "actionBody": "voteItemStatsByWlyTask.execVoteItemStatsByWly"
