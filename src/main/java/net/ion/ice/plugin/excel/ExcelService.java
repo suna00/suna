@@ -32,7 +32,7 @@ public class ExcelService {
         String fileName = parameterMap.get("fileName") == null ? DEFAULT_FILE_NAME : parameterMap.get("fileName")[0];
         String extension = parameterMap.get("extension") == null ? DEFAULT_EXTENSION : parameterMap.get("extension")[0];
         String sheetNames = parameterMap.get("sheetNames") == null ? "" : parameterMap.get("sheetNames")[0];
-        String headers = parameterMap.get("headers") == null ? "" : parameterMap.get("headers")[0];
+        String headerNames = parameterMap.get("headerNames") == null ? "" : parameterMap.get("headerNames")[0];
 
         Workbook workbook = null;
         OutputStream outputStream = null;
@@ -50,21 +50,21 @@ public class ExcelService {
                 Row row = sheet.createRow(0);
                 int cellIndex = 0;
 
-                List<String> headerList = Arrays.asList(StringUtils.split(headers, ","));
-                for (String header : headerList) {
-                    String headerName = "";
-                    if (StringUtils.contains(header, ".")) {
-                        String[] headerSplit = StringUtils.split(header, ".");
+                List<String> headerNameList = Arrays.asList(StringUtils.split(headerNames, ","));
+                for (String headerName : headerNameList) {
+                    String convertHeaderName = "";
+                    if (StringUtils.contains(headerName, ".")) {
+                        String[] headerSplit = StringUtils.split(headerName, ".");
                         if (StringUtils.equals(sheetName, headerSplit[0])) {
-                            headerName = headerSplit[1];
+                            convertHeaderName = headerSplit[1];
                         }
                     } else {
-                        headerName = header;
+                        convertHeaderName = headerName;
                     }
 
-                    if (!StringUtils.isEmpty(headerName)) {
+                    if (!StringUtils.isEmpty(convertHeaderName)) {
                         Cell cell = row.createCell(cellIndex);
-                        cell.setCellValue(headerName);
+                        cell.setCellValue(convertHeaderName);
                         cell.setCellStyle(cellStyle);
                         cellIndex++;
                     }
