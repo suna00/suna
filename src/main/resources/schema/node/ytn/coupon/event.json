@@ -50,6 +50,22 @@
   {
     "typeId": "event",
     "tid": "coupon",
+    "event": "uploadExcel",
+    "noneExecute": true,
+    "eventName": "엑셀 업로드"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "coupon>uploadExcel",
+    "action": "uploadExcel",
+    "actionName": "엑셀 업로드 ACTION ",
+    "actionType": "service",
+    "actionBody": "couponService.uploadExcel",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "coupon",
     "event": "distribute",
     "noneExecute": true,
     "eventName": "쿠폰 발급"

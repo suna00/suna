@@ -10,9 +10,11 @@ import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.session.SessionService;
+import net.ion.ice.plugin.excel.ExcelService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
@@ -30,6 +32,8 @@ public class CouponService {
     NodeBindingService nodeBindingService;
     @Autowired
     SessionService sessionService;
+    @Autowired
+    private ExcelService excelService;
 
     CommonService common;
 
@@ -316,7 +320,55 @@ public class CouponService {
         return result;
     }
 
-    public ExecuteContext distribute(ExecuteContext context){
+    public ExecuteContext uploadExcel(ExecuteContext context) {
+        Map<String, Object> data = context.getData();
+        MultipartFile file = data.get("excelFile") == null ? null : (MultipartFile) data.get("excelFile");
+        Map<String, Object> parsedResult = excelService.parsingExcelFile(file);
+        Iterator<String> parsedResultKeyIterator = parsedResult.keySet().iterator();
+        String firstKey = parsedResultKeyIterator.next();
+
+        List<Map<String, String>> items = new ArrayList<>();
+
+        if (parsedResult.get(firstKey) != null) {
+            List<Map<String, String>> memberDataList = (List<Map<String, String>>) parsedResult.get("회원정보");
+            for (Map<String, String> memberData : memberDataList) {
+                List<String> values = new ArrayList<>(memberData.values());
+
+                String memberId = values.get(0);
+
+                Node memberNode = nodeService.getNode("member", memberId);
+                if (memberNode != null) {
+                    String memberNo = memberNode.getBindingValue("memberNo").toString();
+                    String userId = memberNode.getBindingValue("userId").toString();
+                    String name = memberNode.getBindingValue("name").toString();
+                    String siteType = memberNode.getBindingValue("siteType").toString();
+                    String company = memberNode.getBindingValue("company").toString();
+                    String universityName = memberNode.getBindingValue("universityName").toString();
+                    String companyUniversityName = "";
+                    if (StringUtils.equals(siteType, "company")) {
+                        companyUniversityName = company;
+                    } else if (StringUtils.equals(siteType, "university")) {
+                        companyUniversityName = universityName;
+                    }
+
+                    Map<String, String> item = new HashMap<>();
+                    item.put("label", String.format("%s(%s/%s)", userId, name, companyUniversityName));
+                    item.put("value", memberNo);
+
+                    items.add(item);
+                }
+            }
+        }
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("items", items);
+
+        context.setResult(result);
+
+        return context;
+    }
+
+    public ExecuteContext distribute(ExecuteContext context) {
         Map<String, Object> data = context.getData();
 
         String couponTypeIdValue = data.get("couponTypeId") == null ? "" : data.get("couponTypeId").toString();
