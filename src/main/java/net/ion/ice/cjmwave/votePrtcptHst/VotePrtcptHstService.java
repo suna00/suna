@@ -154,12 +154,11 @@ public class VotePrtcptHstService {
                         FastDateFormat dateFormat = FastDateFormat.getInstance("yyyyMMdd");
                     }
 
-//                    if(!mbrVoteCount.containsKey(mbrId)) {
-//                        Map<String, Integer> voteHstMap = new ConcurrentHashMap<>() ;
-//                        voteHstMap.put(voteBasInfo.getId(), selectVoteHstByDate(mbrId, voteDate, voteBasInfo));
-//                        mbrVoteCount.put(mbrId, voteHstMap);
-//                    }
-
+                    if(!mbrVoteCount.containsKey(mbrId)) {
+                        Map<String, Integer> voteHstMap = new ConcurrentHashMap<>() ;
+                        voteHstMap.put(voteBasInfo.getId(), selectVoteHstByDate(mbrId, voteDate, voteBasInfo));
+                        mbrVoteCount.put(mbrId, voteHstMap);
+                    }
 //                    Map<String, Integer> voteHstMap = mbrVoteCount.get(mbrId);
 //                    if(!voteHstMap.containsKey(voteBasInfo.getId())) {
 //                        voteHstMap.put(voteBasInfo.getId(), selectVoteHstByDate(mbrId, voteDate, voteBasInfo));
@@ -182,11 +181,11 @@ public class VotePrtcptHstService {
             voteIPCntMap.put(connIpAdr+">"+voteDate, mbrIpDclaCnt+1);
 
             // Vote by Mbr
-//            Integer chkVoteCnt = mbrVoteCount.get(mbrId).get(voteBasInfo.getId());
-//            Map<String, Integer> mbrMap = mbrVoteCount.get(mbrId);
-//            mbrMap.put(voteBasInfo.getId(), chkVoteCnt + 1) ;
-//
-//            mbrVoteCount.put(mbrId, mbrMap) ;
+            Integer chkVoteCnt = mbrVoteCount.get(mbrId).get(voteBasInfo.getId());
+            Map<String, Integer> mbrMap = mbrVoteCount.get(mbrId);
+            mbrMap.put(voteBasInfo.getId(), chkVoteCnt + 1) ;
+
+            mbrVoteCount.put(mbrId, mbrMap) ;
 
 //            Map<String, Integer> checkMap = mbrVoteCount.get(mbrId);
 //            logger.info("mbrVoteCount data - {} - {} ", checkMap, checkMap.get(voteBasInfo.getId()).toString());
