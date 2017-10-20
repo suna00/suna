@@ -190,28 +190,28 @@
     }
   },{
   "typeId": "specialExhibitionHotKeyword",
-  "specialExhibitionHotKeywordId": 98,
+  "specialExhibitionHotKeywordId": 1,
   "siteId": null,
   "name": "핫키워드1",
-  "specialExhibitionId":"1",
+  "specialExhibitionId":"98",
   "sortOrder": 1,
   "hotKeywordStatus": "y"
 },
   {
     "typeId": "specialExhibitionHotKeyword",
-    "specialExhibitionHotKeywordId": 98,
+    "specialExhibitionHotKeywordId": 2,
     "siteId": null,
     "name": "핫키워드2",
-    "specialExhibitionId": "1",
+    "specialExhibitionId": "98",
     "sortOrder": 2,
     "hotKeywordStatus": "y"
   },
   {
     "typeId": "specialExhibitionHotKeyword",
-    "specialExhibitionHotKeywordId": 98,
+    "specialExhibitionHotKeywordId": 3,
     "siteId": null,
     "name": "핫키워드3",
-    "specialExhibitionId": "1",
+    "specialExhibitionId": "98",
     "sortOrder": 3,
     "hotKeywordStatus": "y"
   },
@@ -219,7 +219,7 @@
     "typeId": "specialExhibitionMainBanner",
     "specialExhibitionMainBannerId": "1",
     "sortOrder": "1",
-    "specialExhibitionId" : "1",
+    "specialExhibitionId" : "98",
     "deviceType" : "pc",
     "bannerElementStatus" : "y",
     "bannerElementType" : "slide"
@@ -228,7 +228,7 @@
     "typeId": "specialExhibitionMainBanner",
     "specialExhibitionMainBannerId": "2",
     "sortOrder": "2",
-    "specialExhibitionId" : "2",
+    "specialExhibitionId" : "99",
     "deviceType" : "pc",
     "bannerElementStatus" : "y",
     "bannerElementType" : "fix"
