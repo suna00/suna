@@ -103,7 +103,7 @@
     "category": "member",
     "apiId": "accountNumberValidation",
     "apiName": "계좌조회",
-    "method": "GET",
+    "method": "POST",
     "parameters": [
     ],
     "config": {
