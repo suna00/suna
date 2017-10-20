@@ -43,6 +43,9 @@ public class ClusterUtils {
 
     public static Map<String, Object> callExecute(ApiExecuteContext executeContext, boolean retry) {
         Member server = getClusterService().getClusterServer("cms", executeContext.getNodeType().getClusterGroup(), retry) ;
+        if(server == null){
+            server = getClusterService().getClusterServer("cache", executeContext.getNodeType().getClusterGroup(), retry) ;
+        }
         String url =  "http://" + server.getAddress().getHost() + ":" + server.getStringAttribute("port") + "/node/event" ;
         String resultStr = "";
         try {

@@ -26,7 +26,7 @@
     "tid": "mbrInfo",
     "typeName": "회원정보",
     "repositoryType": "node",
-    "eviction": 0,
+    "eviction": 20000,
     "tableName": "authDb#mbrInfo"
   },
   {
@@ -36,7 +36,7 @@
     "tid": "mbrDvcInfo",
     "typeName": "회원 디바이스 정보",
     "repositoryType": "node",
-    "eviction": 0,
+    "eviction": 20000,
     "tableName": "authDb#mbrDvcInfo"
   },
   {
@@ -46,7 +46,7 @@
     "tid": "blacklistHst",
     "typeName": "블랙리스트 이력",
     "repositoryType": "node",
-    "eviction": 0,
+    "eviction": 1000,
     "tableName": "authDb#blacklistHst"
   },
   {
@@ -56,7 +56,7 @@
     "tid": "mbrSttusHst",
     "typeName": "회원 상태 이력",
     "repositoryType": "node",
-    "eviction": 0,
+    "eviction": 20000,
     "tableName": "authDb#mbrSttusHst"
   },
   {
@@ -76,7 +76,7 @@
     "tid": "nonMbrInfo",
     "typeName": "비회원정보",
     "repositoryType": "node",
-    "eviction": 0,
+    "eviction": 10000,
     "tableName": "authDb#nonMbrInfo"
   },
   {

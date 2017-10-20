@@ -26,18 +26,14 @@ jwtConfig:
 cluster:
   mode: api
   groups: api
-  dataQueue: 10.75.6.140,10.75.7.140
-  dataQueueDs: authDb
   map: mbrVoteMap,ipVoteCnt
   members:
     - 10.75.6.131
     - 10.75.7.130
-    - 10.75.7.140
-    - 10.75.6.140
     - 10.75.7.144
     - 10.75.6.144
-    - 10.75.7.150-164
-    - 10.75.6.150-164
+    - 10.75.7.150-158
+    - 10.75.6.150-158
 
 infinispan:
   cachePath: /data/resource/ice2/cache

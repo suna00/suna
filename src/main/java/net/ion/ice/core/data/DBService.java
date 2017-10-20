@@ -99,8 +99,8 @@ public class DBService {
         basicDataSource.setUsername(dataConfiguration.getUsername());
         basicDataSource.setPassword(dataConfiguration.getPassword());
         basicDataSource.setUrl(dataConfiguration.getJdbcUrl());
-        basicDataSource.setInitialSize(3);
-        basicDataSource.setMaxTotal(256);
+        basicDataSource.setInitialSize(20);
+        basicDataSource.setMaxTotal(100);
         basicDataSource.setDefaultAutoCommit(true);
         basicDataSource.setRemoveAbandonedOnBorrow(true);
         basicDataSource.setMaxWaitMillis(3000);
@@ -127,8 +127,8 @@ public class DBService {
         }else{
             basicDataSource.setConnectionProperties("useSSL=false");
         }
-        basicDataSource.setInitialSize(3);
-        basicDataSource.setMaxTotal(256);
+        basicDataSource.setInitialSize(50);
+        basicDataSource.setMaxTotal(100);
         basicDataSource.setDefaultAutoCommit(true);
         basicDataSource.setRemoveAbandonedOnBorrow(true);
         basicDataSource.setMaxWaitMillis(3000);
@@ -149,8 +149,8 @@ public class DBService {
         basicDataSource.setUsername(dataConfiguration.getUsername());
         basicDataSource.setPassword(dataConfiguration.getPassword());
         basicDataSource.setUrl(dataConfiguration.getJdbcUrl());
-        basicDataSource.setInitialSize(3);
-        basicDataSource.setMaxTotal(256);
+        basicDataSource.setInitialSize(50);
+        basicDataSource.setMaxTotal(100);
         basicDataSource.setDefaultAutoCommit(true);
         basicDataSource.setRemoveAbandonedOnBorrow(true);
         basicDataSource.setMaxWaitMillis(3000);

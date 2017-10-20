@@ -145,7 +145,7 @@ public class ClusterConfiguration {
         for(String grp : groupList){
             ReliableTopicConfig rtConfig = config.getReliableTopicConfig(grp + "_topic") ;
             rtConfig.setName(grp + "_topic") ;
-            rtConfig.setTopicOverloadPolicy(TopicOverloadPolicy.BLOCK).setReadBatchSize(10) ;
+            rtConfig.setTopicOverloadPolicy(TopicOverloadPolicy.DISCARD_OLDEST).setReadBatchSize(10) ;
 
             QueueConfig queueConfig = config.getQueueConfig(grp + "_queue");
             queueConfig.setName(grp + "_queue")
