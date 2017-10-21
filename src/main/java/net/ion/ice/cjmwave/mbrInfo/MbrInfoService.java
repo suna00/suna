@@ -111,7 +111,7 @@ public class MbrInfoService {
         String snsKey = data.get("snsKey").toString();
         String snsTypeCd = data.get("snsTypeCd").toString();
 
-        String chkMbrSql = "select  if(count(*)<0,'true','false') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
+        String chkMbrSql = "select  if(count(*)>0,'false','true') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
         Boolean chkResult = Boolean.parseBoolean(jdbcTemplate.queryForMap(chkMbrSql, snsTypeCd, snsKey).get("chkResult").toString());
         if(chkResult){
             throw new ApiException("404", "Not Found");
@@ -153,7 +153,7 @@ public class MbrInfoService {
         String snsKey = data.get("snsKey").toString();
         String snsTypeCd = data.get("snsTypeCd").toString();
 
-        String chkMbrSql = "select  if(count(*)<0,'true','false') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
+        String chkMbrSql = "select  if(count(*)>0,'false','true') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
         Boolean chkResult = Boolean.parseBoolean(jdbcTemplate.queryForMap(chkMbrSql, snsTypeCd, snsKey).get("chkResult").toString());
         if(chkResult){
             throw new ApiException("404", "Not Found");
@@ -209,7 +209,7 @@ public class MbrInfoService {
         String snsKey = data.get("snsKey").toString();
         String snsTypeCd = data.get("snsTypeCd").toString();
 
-        String chkMbrSql = "select  if(count(*)<0,'true','false') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
+        String chkMbrSql = "select if(count(*)>0,'false','true') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
         Boolean chkResult = Boolean.parseBoolean(jdbcTemplate.queryForMap(chkMbrSql, snsTypeCd, snsKey).get("chkResult").toString());
         if(chkResult){
             throw new ApiException("404", "Not Found");
@@ -289,7 +289,7 @@ public class MbrInfoService {
         String snsKey = data.get("snsKey").toString();
         String snsTypeCd = data.get("snsTypeCd").toString();
 
-        String chkMbrSql = "select  if(count(*)<0,'true','false') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
+        String chkMbrSql = "select  if(count(*)>0,'false','true') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
         Boolean chkResult = Boolean.parseBoolean(jdbcTemplate.queryForMap(chkMbrSql, snsTypeCd, snsKey).get("chkResult").toString());
         if(chkResult){
             throw new ApiException("404", "Not Found");
@@ -329,7 +329,7 @@ public class MbrInfoService {
         String snsKey = data.get("snsKey").toString();
         String snsTypeCd = data.get("snsTypeCd").toString();
 
-        String chkMbrSql = "select  if(count(*)<0,'true','false') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
+        String chkMbrSql = "select  if(count(*)>0,'false','true') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
         Boolean chkResult = Boolean.parseBoolean(jdbcTemplate.queryForMap(chkMbrSql, snsTypeCd, snsKey).get("chkResult").toString());
         if(chkResult){
             throw new ApiException("404", "Not Found");
@@ -380,7 +380,7 @@ public class MbrInfoService {
         String snsKey = data.get("snsKey").toString();
         String snsTypeCd = data.get("snsTypeCd").toString();
 
-        String chkMbrSql = "select  if(count(*)<0,'true','false') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
+        String chkMbrSql = "select  if(count(*)>0,'false','true') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
         Boolean chkResult = Boolean.parseBoolean(jdbcTemplate.queryForMap(chkMbrSql, snsTypeCd, snsKey).get("chkResult").toString());
         if(chkResult){
             throw new ApiException("404", "Not Found");
@@ -431,7 +431,7 @@ public class MbrInfoService {
         String snsKey = data.get("snsKey").toString();
         String snsTypeCd = data.get("snsTypeCd").toString();
 
-        String chkMbrSql = "select  if(count(*)<0,'true','false') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
+        String chkMbrSql = "select  if(count(*)>0,'false','true') chkResult from mbrInfo where snsTypeCd = ? and snsKey = ?";
         Boolean chkResult = Boolean.parseBoolean(jdbcTemplate.queryForMap(chkMbrSql, snsTypeCd, snsKey).get("chkResult").toString());
         if(chkResult){
             throw new ApiException("404", "Not Found");
