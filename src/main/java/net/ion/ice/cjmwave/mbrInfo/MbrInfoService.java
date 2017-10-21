@@ -138,7 +138,7 @@ public class MbrInfoService {
         data.put("snsKey", snsKey);
         data.put("mbrDivCd", "2");
         data.put("sttusChgSbst", "정회원 전환");
-        int result = jdbcTemplate.update("update mbrInfo set mbrDivCd='2', aliasNm=?,cntryCd=?,sexCd=?,imgUrl=?,bthYear=?,intrstCdList=?,email=?,emailRcvYn=?, pushMsgRcvYn=?, sbscShapCd=?,infoOttpAgreeYn=?  where snsTypeCd=? and snsKey=? ",snsTypeCd,snsKey,data.get("aliasNm"),data.get("cntryCd"),data.get("sexCd"),data.get("imgUrl"),data.get("bthYear"),data.get("intrstCdList"),data.get("email"),"true".equals(data.get("emailRcvYn")) ? 1:0,"true".equals(data.get("pushMsgRcvYn")) ? 1:0,data.get("sbscShapCd"),"true".equals(data.get("infoOttpAgreeYn")) ? 1:0);
+        int result = jdbcTemplate.update("update mbrInfo set mbrDivCd='2', aliasNm=?,cntryCd=?,sexCd=?,imgUrl=?,bthYear=?,intrstCdList=?,email=?,emailRcvYn=?, pushMsgRcvYn=?, sbscShapCd=?,infoOttpAgreeYn=?  where snsTypeCd=? and snsKey=? ",data.get("aliasNm"),data.get("cntryCd"),data.get("sexCd"),data.get("imgUrl"),data.get("bthYear"),data.get("intrstCdList"),data.get("email"),"true".equals(data.get("emailRcvYn")) ? 1:0,"true".equals(data.get("pushMsgRcvYn")) ? 1:0,data.get("sbscShapCd"),"true".equals(data.get("infoOttpAgreeYn")) ? 1:0,snsTypeCd,snsKey);
         //Node result = (Node) NodeUtils.getNodeService().executeNode(data, "mbrInfo", EventService.UPDATE);
         context.setResult(result);
     }
