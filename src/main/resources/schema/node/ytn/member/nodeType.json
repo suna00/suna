@@ -69,14 +69,5 @@
     "tableName": "ytnDevDb#requestToleaveMember",
     "repositoryType": "node",
     "eviction": 0
-  },
-  {
-    "parentId": "customerPath",
-    "typeId": "nodeType",
-    "tid": "leaveMember",
-    "typeName": "탈퇴회원",
-    "tableName": "ytnDevDb#leaveMember",
-    "repositoryType": "node",
-    "eviction": 0
   }
 ]
