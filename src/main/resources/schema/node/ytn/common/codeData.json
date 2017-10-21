@@ -6658,5 +6658,761 @@
     "description": "",
     "sortOrder": "6",
     "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "bankCode",
+    "upperCode": "root",
+    "name": "은행코드",
+    "description": "",
+    "sortOrder": "121",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "1",
+    "upperCode": "bankCode",
+    "name": "한국은행",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "2",
+    "upperCode": "bankCode",
+    "name": "산업은행",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "3",
+    "upperCode": "bankCode",
+    "name": "기업은행",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "4",
+    "upperCode": "bankCode",
+    "name": "국민은행",
+    "description": "",
+    "sortOrder": "4",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "7",
+    "upperCode": "bankCode",
+    "name": "수협은행",
+    "description": "",
+    "sortOrder": "5",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "8",
+    "upperCode": "bankCode",
+    "name": "수출입은행",
+    "description": "",
+    "sortOrder": "6",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "11",
+    "upperCode": "bankCode",
+    "name": "농협은행",
+    "description": "",
+    "sortOrder": "7",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "12",
+    "upperCode": "bankCode",
+    "name": "지역농․축협",
+    "description": "",
+    "sortOrder": "8",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "20",
+    "upperCode": "bankCode",
+    "name": "우리은행",
+    "description": "",
+    "sortOrder": "9",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "23",
+    "upperCode": "bankCode",
+    "name": "SC제일은행",
+    "description": "",
+    "sortOrder": "10",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "27",
+    "upperCode": "bankCode",
+    "name": "한국씨티은행",
+    "description": "",
+    "sortOrder": "11",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "31",
+    "upperCode": "bankCode",
+    "name": "대구은행",
+    "description": "",
+    "sortOrder": "12",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "32",
+    "upperCode": "bankCode",
+    "name": "부산은행",
+    "description": "",
+    "sortOrder": "13",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "34",
+    "upperCode": "bankCode",
+    "name": "광주은행",
+    "description": "",
+    "sortOrder": "14",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "35",
+    "upperCode": "bankCode",
+    "name": "제주은행",
+    "description": "",
+    "sortOrder": "15",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "37",
+    "upperCode": "bankCode",
+    "name": "전북은행",
+    "description": "",
+    "sortOrder": "16",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "39",
+    "upperCode": "bankCode",
+    "name": "경남은행",
+    "description": "",
+    "sortOrder": "17",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "41",
+    "upperCode": "bankCode",
+    "name": "우리카드",
+    "description": "",
+    "sortOrder": "18",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "44",
+    "upperCode": "bankCode",
+    "name": "외환카드",
+    "description": "",
+    "sortOrder": "19",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "45",
+    "upperCode": "bankCode",
+    "name": "새마을금고중앙회",
+    "description": "",
+    "sortOrder": "20",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "48",
+    "upperCode": "bankCode",
+    "name": "신협중앙회",
+    "description": "",
+    "sortOrder": "21",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "50",
+    "upperCode": "bankCode",
+    "name": "상호저축은행",
+    "description": "",
+    "sortOrder": "22",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "52",
+    "upperCode": "bankCode",
+    "name": "모건스탠리은행",
+    "description": "",
+    "sortOrder": "23",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "54",
+    "upperCode": "bankCode",
+    "name": "HSBC은행",
+    "description": "",
+    "sortOrder": "24",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "55",
+    "upperCode": "bankCode",
+    "name": "도이치은행",
+    "description": "",
+    "sortOrder": "25",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "57",
+    "upperCode": "bankCode",
+    "name": "제이피모간체이스은행",
+    "description": "",
+    "sortOrder": "26",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "58",
+    "upperCode": "bankCode",
+    "name": "미즈호은행",
+    "description": "",
+    "sortOrder": "27",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "59",
+    "upperCode": "bankCode",
+    "name": "미쓰비시도쿄UFJ은행",
+    "description": "",
+    "sortOrder": "28",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "60",
+    "upperCode": "bankCode",
+    "name": "BOA은행",
+    "description": "",
+    "sortOrder": "29",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "61",
+    "upperCode": "bankCode",
+    "name": "비엔피파리바은행",
+    "description": "",
+    "sortOrder": "30",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "62",
+    "upperCode": "bankCode",
+    "name": "중국공상은행",
+    "description": "",
+    "sortOrder": "31",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "63",
+    "upperCode": "bankCode",
+    "name": "중국은행",
+    "description": "",
+    "sortOrder": "32",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "64",
+    "upperCode": "bankCode",
+    "name": "산림조합중앙회",
+    "description": "",
+    "sortOrder": "33",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "65",
+    "upperCode": "bankCode",
+    "name": "대화은행",
+    "description": "",
+    "sortOrder": "34",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "66",
+    "upperCode": "bankCode",
+    "name": "교통은행",
+    "description": "",
+    "sortOrder": "35",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "71",
+    "upperCode": "bankCode",
+    "name": "우체국",
+    "description": "",
+    "sortOrder": "36",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "76",
+    "upperCode": "bankCode",
+    "name": "신용보증기금",
+    "description": "",
+    "sortOrder": "37",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "77",
+    "upperCode": "bankCode",
+    "name": "기술보증기금",
+    "description": "",
+    "sortOrder": "38",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "81",
+    "upperCode": "bankCode",
+    "name": "KEB하나은행",
+    "description": "",
+    "sortOrder": "39",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "88",
+    "upperCode": "bankCode",
+    "name": "신한은행",
+    "description": "",
+    "sortOrder": "40",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "89",
+    "upperCode": "bankCode",
+    "name": "케이뱅크",
+    "description": "",
+    "sortOrder": "41",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "90",
+    "upperCode": "bankCode",
+    "name": "카카오뱅크",
+    "description": "",
+    "sortOrder": "42",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "93",
+    "upperCode": "bankCode",
+    "name": "한국주택금융공사",
+    "description": "",
+    "sortOrder": "43",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "94",
+    "upperCode": "bankCode",
+    "name": "서울보증보험",
+    "description": "",
+    "sortOrder": "44",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "95",
+    "upperCode": "bankCode",
+    "name": "경찰청",
+    "description": "",
+    "sortOrder": "45",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "96",
+    "upperCode": "bankCode",
+    "name": "한국전자금융(주)",
+    "description": "",
+    "sortOrder": "46",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "99",
+    "upperCode": "bankCode",
+    "name": "금융결제원",
+    "description": "",
+    "sortOrder": "47",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "101",
+    "upperCode": "bankCode",
+    "name": "한국신용정보원",
+    "description": "",
+    "sortOrder": "48",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "102",
+    "upperCode": "bankCode",
+    "name": "대신저축은행",
+    "description": "",
+    "sortOrder": "49",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "103",
+    "upperCode": "bankCode",
+    "name": "에스비아이저축은행",
+    "description": "",
+    "sortOrder": "50",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "104",
+    "upperCode": "bankCode",
+    "name": "에이치케이저축은행",
+    "description": "",
+    "sortOrder": "51",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "105",
+    "upperCode": "bankCode",
+    "name": "웰컴저축은행",
+    "description": "",
+    "sortOrder": "52",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "209",
+    "upperCode": "bankCode",
+    "name": "유안타증권",
+    "description": "",
+    "sortOrder": "53",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "218",
+    "upperCode": "bankCode",
+    "name": "KB증권",
+    "description": "",
+    "sortOrder": "54",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "221",
+    "upperCode": "bankCode",
+    "name": "골든브릿지투자증권",
+    "description": "",
+    "sortOrder": "55",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "222",
+    "upperCode": "bankCode",
+    "name": "한양증권",
+    "description": "",
+    "sortOrder": "56",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "223",
+    "upperCode": "bankCode",
+    "name": "리딩투자증권",
+    "description": "",
+    "sortOrder": "57",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "224",
+    "upperCode": "bankCode",
+    "name": "BNK투자증권",
+    "description": "",
+    "sortOrder": "58",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "225",
+    "upperCode": "bankCode",
+    "name": "IBK투자증권",
+    "description": "",
+    "sortOrder": "59",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "227",
+    "upperCode": "bankCode",
+    "name": "KTB투자증권",
+    "description": "",
+    "sortOrder": "60",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "238",
+    "upperCode": "bankCode",
+    "name": "미래에셋대우",
+    "description": "",
+    "sortOrder": "61",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "240",
+    "upperCode": "bankCode",
+    "name": "삼성증권",
+    "description": "",
+    "sortOrder": "62",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "243",
+    "upperCode": "bankCode",
+    "name": "한국투자증권",
+    "description": "",
+    "sortOrder": "63",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "247",
+    "upperCode": "bankCode",
+    "name": "NH투자증권",
+    "description": "",
+    "sortOrder": "64",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "261",
+    "upperCode": "bankCode",
+    "name": "교보증권",
+    "description": "",
+    "sortOrder": "65",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "262",
+    "upperCode": "bankCode",
+    "name": "하이투자증권",
+    "description": "",
+    "sortOrder": "66",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "263",
+    "upperCode": "bankCode",
+    "name": "현대차투자증권",
+    "description": "",
+    "sortOrder": "67",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "264",
+    "upperCode": "bankCode",
+    "name": "키움증권",
+    "description": "",
+    "sortOrder": "68",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "265",
+    "upperCode": "bankCode",
+    "name": "이베스트투자증권",
+    "description": "",
+    "sortOrder": "69",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "266",
+    "upperCode": "bankCode",
+    "name": "SK증권",
+    "description": "",
+    "sortOrder": "70",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "267",
+    "upperCode": "bankCode",
+    "name": "대신증권",
+    "description": "",
+    "sortOrder": "71",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "269",
+    "upperCode": "bankCode",
+    "name": "한화투자증권",
+    "description": "",
+    "sortOrder": "72",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "270",
+    "upperCode": "bankCode",
+    "name": "하나금융투자",
+    "description": "",
+    "sortOrder": "73",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "278",
+    "upperCode": "bankCode",
+    "name": "신한금융투자",
+    "description": "",
+    "sortOrder": "74",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "279",
+    "upperCode": "bankCode",
+    "name": "동부증권",
+    "description": "",
+    "sortOrder": "75",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "280",
+    "upperCode": "bankCode",
+    "name": "유진투자증권",
+    "description": "",
+    "sortOrder": "76",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "287",
+    "upperCode": "bankCode",
+    "name": "메리츠종합금융증권",
+    "description": "",
+    "sortOrder": "77",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "290",
+    "upperCode": "bankCode",
+    "name": "부국증권",
+    "description": "",
+    "sortOrder": "78",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "291",
+    "upperCode": "bankCode",
+    "name": "신영증권",
+    "description": "",
+    "sortOrder": "79",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "292",
+    "upperCode": "bankCode",
+    "name": "케이프투자증권",
+    "description": "",
+    "sortOrder": "80",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "293",
+    "upperCode": "bankCode",
+    "name": "한국증권금융",
+    "description": "",
+    "sortOrder": "81",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "294",
+    "upperCode": "bankCode",
+    "name": "펀드온라인코리아",
+    "description": "",
+    "sortOrder": "82",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "295",
+    "upperCode": "bankCode",
+    "name": "우리종합금융",
+    "description": "",
+    "sortOrder": "83",
+    "commonCodeStatus": "y"
   }
 ]

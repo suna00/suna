@@ -16,5 +16,59 @@
     "tableName": "ytnDevDb#affiliate",
     "repositoryType": "node",
     "eviction": 500
+  },
+  {
+    "parentId": "productPath",
+    "typeId": "nodeType",
+    "tid": "affiliateMallProduct",
+    "typeName": "제휴몰 상품",
+    "tableName": "ytnDevDb#affiliateMallProduct",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "affiliateMallOrderSheet",
+    "typeName": "제휴몰 주문서",
+    "tableName": "ytnDevDb#affiliateMallOrderSheet",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "affiliateMallOrderSheetHistory",
+    "typeName": "제휴몰 주문서 이력",
+    "tableName": "ytnDevDb#affiliateMallOrderSheetHistory",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "affiliateMallOrderProduct",
+    "typeName": "제휴몰 주문서 상품",
+    "tableName": "ytnDevDb#affiliateMallOrderProduct",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "affiliateMallOrderChange",
+    "typeName": "제휴몰 주문 변경",
+    "tableName": "ytnDevDb#affiliateMallOrderChange",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "affiliateMallOrderChangeProduct",
+    "typeName": "제휴몰 주문 변경 상품",
+    "tableName": "ytnDevDb#affiliateMallOrderChangeProduct",
+    "repositoryType": "data",
+    "eviction": 0
   }
 ]
