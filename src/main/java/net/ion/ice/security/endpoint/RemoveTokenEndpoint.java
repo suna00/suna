@@ -29,6 +29,9 @@ public class RemoveTokenEndpoint {
 
         sessionService.removeSession(request);
 
+//        Map<String, Object> session = sessionService.getSession(request);
+//        session.remove("member");
+
         CookieUtil.clear(request, response, "iceJWT");
         CookieUtil.clear(request, response, "iceRefreshJWT");
 

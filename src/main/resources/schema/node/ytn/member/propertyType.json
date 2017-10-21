@@ -1299,6 +1299,23 @@
   {
     "typeId": "propertyType",
     "tid": "member",
+    "pid": "cartId",
+    "propertyTypeName": "장바구니 ID",
+    "valueType": "INT",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "member",
     "pid": "entranceYear",
     "propertyTypeName": "입학년도",
     "valueType": "INT",

@@ -49,12 +49,18 @@ public class CartService {
         if (sessionData.containsKey("cartId")) {
             context.getData().put("cartId", sessionData.get("cartId"));
         } else {
-            context.getData().put("cartId", "abcdefg");
+            Node memberNode = (Node) NodeQuery.build("member").matching("memberNo", JsonUtils.getStringValue(sessionData, "member.memberNo")).getList().get(0);
+            memberNode.getValue("cartId");
+            if(memberNode.getValue("cartId") != null){
+                context.getData().put("cartId", memberNode.getValue("cartId"));
+            }else{
+                context.getData().put("cartId", "abcdefg");
+            }
         }
 
         context.getData().put("sessionId", sessionId);
         if (sessionData.containsKey("member")) {
-            context.getData().put("memberNo", JsonUtils.getStringValue(sessionData, "memberNo"));
+            context.getData().put("memberNo", JsonUtils.getStringValue(sessionData, "member.memberNo"));
         }
 
         Integer totalSize = 0;
@@ -131,21 +137,38 @@ public class CartService {
         }
 
         data.put("sessionId", sessionId);
+
         if (sessionData.containsKey("member")) {
-            data.put("memberNo", JsonUtils.getStringValue(sessionData, "memberNo"));
+            data.put("memberNo", JsonUtils.getStringValue(sessionData, "member.memberNo"));
+            data.put("siteId", JsonUtils.getStringValue(sessionData, "member.siteId"));
         }
 
-        Node cart = (Node) nodeService.executeNode(data, "cart", CommonService.SAVE);
-        data.put("cartId", cart.getId());
-        sessionData.put("cartId", cart.getId());
 
+
+        Node memberNode = (Node) NodeQuery.build("member").matching("memberNo", JsonUtils.getStringValue(sessionData, "member.memberNo")).getList().get(0);
+        Integer cartId;
+
+        if(memberNode.getValue("cartId") != null){
+            cartId = memberNode.getIntValue("cartId");
+            data.put("cartId", cartId);
+            nodeService.executeNode(data, "cart", CommonService.UPDATE);
+
+        }else{
+            Node cart = (Node) nodeService.executeNode(data, "cart", CommonService.CREATE);
+            cartId = Integer.parseInt(cart.getId());
+            memberNode.put("cartId", cartId);
+            nodeService.executeNode(memberNode, "member", CommonService.UPDATE);
+            data.put("cartId", cartId);
+        }
+
+        sessionData.put("cartId", cartId);
 
         if (data.get("product") != null) {
-            addProducts(data, cart.getId());
+            addProducts(data, cartId);
         }
 
         Map<String, Object> result = new HashMap<>();
-        result.put("cartId", cart.getId());
+        result.put("cartId", cartId);
         context.setResult(CommonService.getResult("S0002", result));
 
         return context;
@@ -372,7 +395,7 @@ public class CartService {
                 if (existCartProduct(reqProduct, cartProduct, product)) {
                     changeQuantity(cartProduct, Integer.parseInt(reqProduct.get("quantity").toString()));
                     cartProduct.putAll(reqProduct);
-                    if (reqProduct.get(cartProductItem_TID) != null) createCartProductItem(cartProduct);
+                    if (reqProduct.get("productItem") != null) createCartProductItem(cartProduct);
                     exist = true;
                 }
             }
@@ -385,7 +408,7 @@ public class CartService {
                     Map<String, Object> cartProductMap = createCartProduct(reqProduct);
                     cartProductMap.putAll(product);
 
-                    if (reqProduct.get(cartProductItem_TID) != null) {
+                    if (reqProduct.get("productItem") != null) {
                         createCartProductItem(cartProductMap);
                     }
                 }
