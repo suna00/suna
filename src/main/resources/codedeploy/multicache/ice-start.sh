@@ -1,5 +1,4 @@
 #!/bin/bash
-
 export JAVA_HOME=java
 export APP_HOME=.
 export APP_NAME=ice2-core
@@ -10,7 +9,6 @@ export WORK_DIR=/home/ion/api/core
 export LOG_DIR=/data/ion/logs
 
 echo "Service [$APP_NAME] - [$1] START"
-
 echo "    JAVA_HOME=$JAVA_HOME"
 echo "    APP_HOME=$APP_HOME"
 echo "    APP_NAME=$APP_NAME"
@@ -27,9 +25,8 @@ then
     echo "Service [$APP_NAME] is already running. Ignoring startup request."
     exit 1
 fi
-echo "Starting application..."
 
+echo "Starting application..."
 nohup $JAVA_HOME -jar  -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:-CMSParallelRemarkEnabled -Xmx10G -Xms10G -Dspring.profiles.active=$PROFILE $WORK_DIR/$WAR_FILE \
     < /dev/null > $LOG_DIR/ice.log 2>&1 &
-
 exit 0
