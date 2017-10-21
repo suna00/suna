@@ -1,0 +1,29 @@
+[
+  {
+    "parentId": "root",
+    "typeId": "nodeType",
+    "id": "eventMng",
+    "tid": "eventMng",
+    "typeName": "이벤트 관리",
+    "repositoryType": "path",
+    "eviction": 0
+  },
+  {
+    "parentId": "eventMng",
+    "typeId": "nodeType",
+    "id": "shopEvent",
+    "tid": "shopEvent",
+    "typeName": "이벤트",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "eventMng",
+    "typeId": "nodeType",
+    "id": "specialExhibition",
+    "tid": "specialExhibition",
+    "typeName": "기획전",
+    "repositoryType": "node",
+    "eviction": 0
+  }
+]

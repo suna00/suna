@@ -1,20 +1,317 @@
 [
   {
-    "parentId" : "root",
-    "typeId" : "nodeType",
-    "id" : "backOfficeMng",
-    "tid" : "backOfficeMng",
-    "typeName" : "백오피스 관리",
-    "repositoryType" : "path",
-    "eviction" : 0
+    "parentId": "root",
+    "typeId": "nodeType",
+    "id": "backOfficeMng",
+    "tid": "backOfficeMng",
+    "typeName": "백오피스 관리",
+    "repositoryType": "path",
+    "eviction": 0
   },
   {
-    "parentId" : "backOfficeMng",
-    "typeId" : "nodeType",
-    "id" : "backOffice",
-    "tid" : "backOffice",
-    "typeName" : "백오피스",
-    "repositoryType" : "node",
-    "eviction" : 10
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "affiliateMall",
+    "tid": "affiliateMall",
+    "typeName": "제휴몰",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "affiliate",
+    "tid": "affiliate",
+    "typeName": "제휴사",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "authority",
+    "tid": "authority",
+    "typeName": "권한",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "authorityMap",
+    "tid": "authorityMap",
+    "typeName": "권한 매핑",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "brand",
+    "tid": "brand",
+    "typeName": "브랜드",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "collectRank",
+    "tid": "collectRank",
+    "typeName": "랭킹 수집",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "commonCode",
+    "tid": "commonCode",
+    "typeName": "코드",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "commonMemo",
+    "tid": "commonMemo",
+    "typeName": "메모",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "commonResource",
+    "tid": "commonResource",
+    "typeName": "리소스",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "couponType",
+    "tid": "couponType",
+    "typeName": "쿠폰유형",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "emailSendingHistory",
+    "tid": "emailSendingHistory",
+    "typeName": "이메일 발송내역",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "emailTemplate",
+    "tid": "emailTemplate",
+    "typeName": "이메일 템플릿",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "eventPrizeWinner",
+    "tid": "eventPrizeWinner",
+    "typeName": "이벤트 당첨자",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "gradingRules",
+    "tid": "gradingRules",
+    "typeName": "등급별 적립 룰",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "userGroup",
+    "tid": "userGroup",
+    "typeName": "사용자 그룹",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "menuOfCMS",
+    "tid": "menuOfCMS",
+    "typeName": "CMS 메뉴",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "operatingScore",
+    "tid": "operatingScore",
+    "typeName": "운영 점수",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "operatingScorePolicy",
+    "tid": "operatingScorePolicy",
+    "typeName": "운영 점수 정책",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "point",
+    "tid": "point",
+    "typeName": "제휴사 포인트",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "interestFreeInstallment",
+    "tid": "interestFreeInstallment",
+    "typeName": "무이자할부",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "addBenefit",
+    "tid": "addBenefit",
+    "typeName": "추가혜택",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "productToCouponTypeMap",
+    "tid": "productToCouponTypeMap",
+    "typeName": "상품 쿠폰유형 매핑",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "setDeliveryPrice",
+    "tid": "setDeliveryPrice",
+    "typeName": "배송비 설정",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "deliveryEnterprise",
+    "tid": "deliveryEnterprise",
+    "typeName": "택배사",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "site",
+    "tid": "site",
+    "typeName": "사이트",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "smsSendingHistory",
+    "tid": "smsSendingHistory",
+    "typeName": "SMS 발송내역",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "smsTemplate",
+    "tid": "smsTemplate",
+    "typeName": "SMS 템플릿",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "snsEasyLoginHistory",
+    "tid": "snsEasyLoginHistory",
+    "typeName": "SNS 간편 로그인 로그",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "subContactPerson",
+    "tid": "subContactPerson",
+    "typeName": "서브담당자",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "supplier",
+    "tid": "supplier",
+    "typeName": "공급업체",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "terms",
+    "tid": "terms",
+    "typeName": "약관 관리",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "user",
+    "tid": "user",
+    "typeName": "사용자/관리자",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "vendor",
+    "tid": "vendor",
+    "typeName": "밴더사",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficeMng",
+    "typeId": "nodeType",
+    "id": "vendorNotice",
+    "tid": "vendorNotice",
+    "typeName": "밴더사 공지사항",
+    "repositoryType": "node",
+    "eviction": 0
   }
 ]

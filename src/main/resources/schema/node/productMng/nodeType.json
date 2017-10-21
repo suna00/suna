@@ -1,0 +1,92 @@
+[
+  {
+    "parentId": "root",
+    "typeId": "nodeType",
+    "id": "productMng",
+    "tid": "productMng",
+    "typeName": "상품 관리",
+    "repositoryType": "path",
+    "eviction": 0
+  },
+  {
+    "parentId": "productMng",
+    "typeId": "nodeType",
+    "id": "review",
+    "tid": "review",
+    "typeName": "상품평",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "productMng",
+    "typeId": "nodeType",
+    "id": "goods",
+    "tid": "goods",
+    "typeName": "제품",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "productMng",
+    "typeId": "nodeType",
+    "id": "product",
+    "tid": "product",
+    "typeName": "상품",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "productMng",
+    "typeId": "nodeType",
+    "id": "productAnswer",
+    "tid": "productAnswer",
+    "typeName": "QNA 답변",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "productMng",
+    "typeId": "nodeType",
+    "id": "productOption",
+    "tid": "productOption",
+    "typeName": "상품 옵션",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "productMng",
+    "typeId": "nodeType",
+    "id": "productQuestion",
+    "tid": "productQuestion",
+    "typeName": "QNA 질문",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "productMng",
+    "typeId": "nodeType",
+    "id": "productToDeliveryPriceMap",
+    "tid": "productToDeliveryPriceMap",
+    "typeName": "상품 배송비 매핑",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "productMng",
+    "typeId": "nodeType",
+    "id": "productOptionItem",
+    "tid": "productOptionItem",
+    "typeName": "상품 옵션 아이템",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "productMng",
+    "typeId": "nodeType",
+    "id": "reportReview",
+    "tid": "reportReview",
+    "typeName": "상품평 신고",
+    "repositoryType": "node",
+    "eviction": 0
+  }
+]

@@ -1,0 +1,92 @@
+[
+  {
+    "parentId": "root",
+    "typeId": "nodeType",
+    "id": "orderMng",
+    "tid": "orderMng",
+    "typeName": "주문 관리",
+    "repositoryType": "path",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderMng",
+    "typeId": "nodeType",
+    "id": "cart",
+    "tid": "cart",
+    "typeName": "장바구니",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderMng",
+    "typeId": "nodeType",
+    "id": "cartItem",
+    "tid": "cartItem",
+    "typeName": "장바구니 아이템",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderMng",
+    "typeId": "nodeType",
+    "id": "coupon",
+    "tid": "coupon",
+    "typeName": "쿠폰",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderMng",
+    "typeId": "nodeType",
+    "id": "delivery",
+    "tid": "delivery",
+    "typeName": "배송 정보",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderMng",
+    "typeId": "nodeType",
+    "id": "developmentFundHistory",
+    "tid": "developmentFundHistory",
+    "typeName": "발전기금 내역",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderMng",
+    "typeId": "nodeType",
+    "id": "purchaseOrder",
+    "tid": "purchaseOrder",
+    "typeName": "주문서",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderMng",
+    "typeId": "nodeType",
+    "id": "orderItem",
+    "tid": "orderItem",
+    "typeName": "주문서 아이템",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderMng",
+    "typeId": "nodeType",
+    "id": "payment",
+    "tid": "payment",
+    "typeName": "결재",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderMng",
+    "typeId": "nodeType",
+    "id": "requestChangeOfOrder",
+    "tid": "requestChangeOfOrder",
+    "typeName": "주문 변경 요청",
+    "repositoryType": "data",
+    "eviction": 0
+  }
+]
