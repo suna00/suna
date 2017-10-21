@@ -46,11 +46,12 @@ public class MbrInfoService {
         if (jdbcTemplate == null) {
             jdbcTemplate = dbService.getJdbcTemplate("authDB");
         }
-
-        Map<String, Object> data = jdbcTemplate.queryForMap("select  * from mbrInfo where snsTypeCd = ? and snsKey = ?", snsType, snsKey);
-        if(data != null){
-            return new Node(data, "mbrInfo") ;
-        }
+        try {
+            Map<String, Object> data = jdbcTemplate.queryForMap("select  * from mbrInfo where snsTypeCd = ? and snsKey = ?", snsType, snsKey);
+            if (data != null) {
+                return new Node(data, "mbrInfo");
+            }
+        }catch (Exception e){}
         return null;
     }
     public void chkMbr(ExecuteContext context) {
