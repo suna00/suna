@@ -7,32 +7,5 @@
     "shopEventId" : "1",
     "deviceType" : "pc",
     "bannerElementStatus" : "y"
-  },
-  {
-    "typeId": "shopEventMainBanner",
-    "shopEventMainBannerId": "2",
-    "sortOrder": "2",
-    "file": "classpath:schema/node/ytn/display/file/eventMain2.jpeg",
-    "shopEventId" : "2",
-    "deviceType" : "pc",
-    "bannerElementStatus" : "y"
-  },
-  {
-    "typeId": "shopEventMainBanner",
-    "shopEventMainBannerId": "3",
-    "sortOrder": "3",
-    "file": "classpath:schema/node/ytn/display/file/eventMain3.jpeg",
-    "shopEventId" : "3",
-    "deviceType" : "pc",
-    "bannerElementStatus" : "y"
-  },
-  {
-    "typeId": "shopEventMainBanner",
-    "shopEventMainBannerId": "4",
-    "sortOrder": "4",
-    "file": "classpath:schema/node/ytn/display/file/eventMain4.jpeg",
-    "shopEventId" : "4",
-    "deviceType" : "pc",
-    "bannerElementStatus" : "y"
   }
 ]
