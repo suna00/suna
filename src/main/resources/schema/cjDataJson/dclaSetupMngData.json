@@ -3,7 +3,7 @@
     "typeId": "dclaSetupMng",
     "dclaSetupSeq": 1500,
     "setupBaseDayNum": 1,
-    "setupBaseCnt": 10,
+    "setupBaseCnt": 30,
     "setupTypeCd": "1"
   },
   {
