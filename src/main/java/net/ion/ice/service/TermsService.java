@@ -47,7 +47,7 @@ public class TermsService {
             historyData.put("title", currentTitle);
             historyData.put("contents", currentContents);
 
-            nodeService.executeNode(historyData, "termsHistory", EventService.UPDATE);
+            nodeService.executeNode(historyData, "termsHistory", EventService.CREATE);
         }
 
         nodeService.executeNode(data, "terms", EventService.UPDATE);
