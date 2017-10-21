@@ -28,8 +28,12 @@ then
     echo "Service [$APP_NAME] is already running. Ignoring startup request."
     exit 1
 fi
+
+nohup $JAVA_HOME -jar-Dspring.profiles.active=$PROFILE $WORK_DIR/$WAR_FILE \
+    < /dev/null > $WORK_DIR/ice.log 2>&1 &
+
 echo "Starting application..."
-nohup $JAVA_HOME -jar -Dspring.profiles.active=$PROFILE $WORK_DIR/$WAR_FILE \
+nohup $JAVA_HOME -jar -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:-CMSParallelRemarkEnabled -Xmx12g -Xms12g -Dspring.profiles.active=$PROFILE $WORK_DIR/$WAR_FILE \
     < /dev/null > $LOG_DIR/ice.log 2>&1 &
 
 exit 0
