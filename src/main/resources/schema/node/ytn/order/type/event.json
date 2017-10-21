@@ -82,22 +82,6 @@
   {
     "typeId": "event",
     "tid": "orderSheet",
-    "event": "adminOrderList",
-    "noneExecute": true,
-    "eventName": "전체주문리스트"
-  },
-  {
-    "typeId": "eventAction",
-    "event": "orderSheet>adminOrderList",
-    "action": "adminOrderList",
-    "actionName": "전체주문리스트",
-    "actionType": "service",
-    "actionBody": "mypageOrderService.getAdminOrderList",
-    "order": 1
-  },
-  {
-    "typeId": "event",
-    "tid": "orderSheet",
     "event": "pointOrder",
     "noneExecute": true,
     "eventName": "포인트구매"
