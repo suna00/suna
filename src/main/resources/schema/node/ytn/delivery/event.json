@@ -1,0 +1,66 @@
+[
+  {
+    "typeId": "event",
+    "tid": "myDeliveryAddress",
+    "event": "setData",
+    "noneExecute": true,
+    "eventName": "기본배송지"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "myDeliveryAddress>setData",
+    "action": "setMyDeliveryAddress",
+    "actionName": "기본배송지 등록/수정 ",
+    "actionType": "service",
+    "actionBody": "mypageService.setMyDeliveryAddress",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "myDeliveryAddress",
+    "event": "remove",
+    "noneExecute": true,
+    "eventName": "배송지삭제이벤트코드"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "myDeliveryAddress>remove",
+    "action": "remove",
+    "actionName": "배송지삭제 ",
+    "actionType": "service",
+    "actionBody": "mypageService.removeMyDeliveryAddress",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "delivery",
+    "event": "updateOrderDeliveryAddress",
+    "noneExecute": true,
+    "eventName": "주문서 상세조회 배송지 변경"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "delivery>updateOrderDeliveryAddress",
+    "action": "updateOrderDeliveryAddress",
+    "actionName": "주문서 상세조회 배송지 변경",
+    "actionType": "service",
+    "actionBody": "mypageService.updateOrderDeliveryAddress",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "orderDeliveryPrice",
+    "event": "sweettrackerGetData",
+    "noneExecute": true,
+    "eventName": "스윗트래커 callback url"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "orderDeliveryPrice>sweettrackerGetData",
+    "action": "sweettrackerGetData",
+    "actionName": "스윗트래커 callback url",
+    "actionType": "service",
+    "actionBody": "sweettrackerService.getData",
+    "order": 1
+  }
+]

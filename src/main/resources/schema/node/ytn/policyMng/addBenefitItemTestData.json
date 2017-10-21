@@ -1,0 +1,38 @@
+[
+  {
+    "typeId": "addBenefitItem",
+    "addBenefitItemId": 1,
+    "addBenefitId": 1,
+    "addBenefitPaymentType": "abp001",
+    "discountType": "charge",
+    "description": "할인 7% / 최대 50,000원",
+    "sortOrder": "1"
+  },
+  {
+    "typeId": "addBenefitItem",
+    "addBenefitItemId": 2,
+    "addBenefitId": 1,
+    "addBenefitPaymentType": "abp002",
+    "discountType": "priority",
+    "description": "할인 7% / 최대 100,000원",
+    "sortOrder": "2"
+  },
+  {
+    "typeId": "addBenefitItem",
+    "addBenefitItemId": 3,
+    "addBenefitId": 2,
+    "addBenefitPaymentType": "abp001",
+    "discountType": "charge",
+    "description": "할인 7% / 최대 50,000원",
+    "sortOrder": "1"
+  },
+  {
+    "typeId": "addBenefitItem",
+    "addBenefitItemId": 4,
+    "addBenefitId": 2,
+    "addBenefitPaymentType": "abp002",
+    "discountType": "priority",
+    "description": "할인 7% / 최대 100,000원",
+    "sortOrder": "2"
+  }
+]

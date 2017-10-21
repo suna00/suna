@@ -1,0 +1,139 @@
+[
+  {
+    "typeId": "apiCategory",
+    "id": "smsCertification",
+    "categoryName": "SMS 인증",
+    "fileUrlFormat" : {
+       "default": "{{:getEnvValue(cluster.file-prefix, url)}}"
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "smsCertification",
+    "apiId": "req",
+    "apiName": "인증코드(숫자4자리 난수발생)  sms send 넣기 ",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "getCertCode": {
+        "select" : {
+          "ds" : "ytnDevDb",
+          "resultType" : "read",
+          "sql" : "select FLOOR(1000 + (RAND()*8999)) as certCode "
+        }
+      },
+      "createCertification" : {
+        "typeId": "smsCertification",
+        "event": "create",
+        "data": {
+          "smsCertificationId": "{{:smsCertificationId}}",
+          "name": "SMS 인증요청",
+          "smsCertificationType": "{{:smsCertificationType}}",
+          "adminId": "{{:adminId}}",
+          "memberNo": "{{:memberNo}}",
+          "cellphone": "{{:cellphone}}",
+          "certCode": "{{:certCode}}",
+          "certStatus": "request",
+          "certRequestDate": "{{:now}}"
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "smsCertification",
+    "apiId": "cert",
+    "apiName": "인증코드 유효체크 ",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "item": {
+        "select" : {
+          "ds" : "ytnDevDb",
+          "resultType" : "read",
+          "sql" : "SELECT smsCertificationId, certCode, certStatus, certRequestDate, date_add(certRequestDate, INTERVAL +3 MINUTE) AS certExpireDate, (certStatus = 'request' AND date_add(certRequestDate, INTERVAL +3 MINUTE) > now() AND certCode = @{certCode}) AS available FROM smscertification WHERE certCode = @{certCode} limit 1"
+        }
+      },
+      "successCertification" : {
+        "typeId": "smsCertification",
+        "event": "update",
+        "if" : "{{:aboveInt(available, 1)}}",
+        "data": {
+          "smsCertificationId": "{{:smsCertificationId}}",
+          "certSuccessDate": "{{:now}}",
+          "certStatus": "success"
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiCategory",
+    "id": "emailCertification",
+    "categoryName": "EMAIL 인증",
+    "fileUrlFormat" : {
+       "default": "{{:getEnvValue(cluster.file-prefix, url)}}"
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "emailCertification",
+    "apiId": "req",
+    "apiName": "인증코드",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "getCertCode": {
+        "select" : {
+          "ds" : "ytnDevDb",
+          "resultType" : "read",
+          "sql" : "select to_base64(concat('ygoon!@#SHOP ',now())) as certCode "
+        }
+      },
+      "createCertification" : {
+        "typeId": "emailCertification",
+        "event": "create",
+        "data": {
+          "name": "이메일 인증요청",
+          "emailCertificationType": "{{:emailCertificationType}}",
+          "adminId": "{{:adminId}}",
+          "memberNo": "{{:memberNo}}",
+          "email": "{{:email}}",
+          "certCode": "{{:certCode}}",
+          "certStatus": "request",
+          "certRequestDate": "{{:now}}"
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "emailCertification",
+    "apiId": "cert",
+    "apiName": "인증코드 유효체크 ",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "item": {
+        "select" : {
+          "ds" : "ytnDevDb",
+          "resultType" : "read",
+          "sql" : "SELECT emailcertificationId, certCode certStatus, certRequestDate, date_add(certRequestDate, INTERVAL +3 MINUTE) AS certExpireDate, (certStatus = 'request' AND date_add(certRequestDate, INTERVAL +3 MINUTE) > now() AND certCode = @{certCode}) AS available FROM emailcertification WHERE certCode = @{certCode}  limit 1"
+        }
+      },
+      "successCertification" : {
+        "typeId": "emailCertification",
+        "event": "update",
+        "if" : "{{:aboveInt(available, 1)}}",
+        "data": {
+          "emailCertificationId": "{{:emailcertificationId}}",
+          "certSuccessDate": "{{:now}}",
+          "certStatus": "success"
+        }
+      }
+    }
+  }
+]

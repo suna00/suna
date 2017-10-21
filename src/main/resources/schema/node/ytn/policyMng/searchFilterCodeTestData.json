@@ -1,0 +1,58 @@
+[
+  {
+    "typeId": "searchFilterCode",
+    "searchFilterCodeId": 101,
+    "name": "삼성전자",
+    "searchFilterId": "101",
+    "searchFilterCodeStatus": "approve"
+  },
+  {
+    "typeId": "searchFilterCode",
+    "searchFilterCodeId": 102,
+    "name": "LG전자",
+    "searchFilterId": "101",
+    "searchFilterCodeStatus": "approve"
+  },
+  {
+    "typeId": "searchFilterCode",
+    "searchFilterCodeId": 103,
+    "name": "나이키",
+    "searchFilterId": "102",
+    "searchFilterCodeStatus": "approve"
+  },
+  {
+    "typeId": "searchFilterCode",
+    "searchFilterCodeId": 104,
+    "name": "아디다스 ",
+    "searchFilterId": "102",
+    "searchFilterCodeStatus": "approve"
+  },
+  {
+    "typeId": "searchFilterCode",
+    "searchFilterCodeId": 105,
+    "name": "FILA",
+    "searchFilterId": "102",
+    "searchFilterCodeStatus": "approve"
+  },
+  {
+    "typeId": "searchFilterCode",
+    "searchFilterCodeId": 106,
+    "name": "인텔 ",
+    "searchFilterId": "103",
+    "searchFilterCodeStatus": "approve"
+  },
+  {
+    "typeId": "searchFilterCode",
+    "searchFilterCodeId": 107,
+    "name": "인텔 코어 X-시리즈",
+    "searchFilterId": "103",
+    "searchFilterCodeStatus": "approve"
+  },
+  {
+    "typeId": "searchFilterCode",
+    "searchFilterCodeId": 108,
+    "name": "AMD",
+    "searchFilterId": "103",
+    "searchFilterCodeStatus": "approve"
+  }
+]

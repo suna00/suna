@@ -1,0 +1,11 @@
+[
+  {
+    "parentId": "eventPath",
+    "typeId": "nodeType",
+    "tid": "shopEvent",
+    "typeName": "이벤트",
+    "tableName": "ytnDevDb#shopEvent",
+    "repositoryType": "node",
+    "eviction": 10000
+  }
+]

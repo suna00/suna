@@ -1,0 +1,244 @@
+[
+  {
+    "parentId": "root",
+    "typeId": "nodeType",
+    "tid": "backOfficePath",
+    "typeName": "BackOffice",
+    "repositoryType": "path",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "brand",
+    "typeName": "브랜드",
+    "tableName": "ytnDevDb#brand",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "collectRank",
+    "typeName": "랭킹 수집",
+    "tableName": "ytnDevDb#collectRank",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "emailSendingHistory",
+    "typeName": "이메일 발송내역",
+    "tableName": "ytnDevDb#emailSendingHistory",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "emailTemplate",
+    "typeName": "이메일 템플릿",
+    "tableName": "ytnDevDb#emailTemplate",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "eventPrizeWinner",
+    "typeName": "이벤트 당첨자",
+    "tableName": "ytnDevDb#eventPrizeWinner",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "gradingRules",
+    "typeName": "등급별 적립 룰",
+    "tableName": "ytnDevDb#gradingRules",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "menu",
+    "typeName": "admin 메뉴",
+    "tableName": "ytnDevDb#menu",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "operatingScore",
+    "typeName": "운영 점수",
+    "tableName": "ytnDevDb#operatingScore",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "operatingScorePolicy",
+    "typeName": "운영 점수 정책",
+    "tableName": "ytnDevDb#operatingScorePolicy",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "deliveryEnterprise",
+    "typeName": "택배사",
+    "tableName": "ytnDevDb#deliveryEnterprise",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "site",
+    "typeName": "사이트",
+    "tableName": "ytnDevDb#site",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "smsSendingHistory",
+    "typeName": "SMS 발송내역",
+    "tableName": "ytnDevDb#smsSendingHistory",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "smsTemplate",
+    "typeName": "SMS 템플릿",
+    "tableName": "ytnDevDb#smsTemplate",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "subContactPerson",
+    "typeName": "서브담당자",
+    "tableName": "ytnDevDb#subContactPerson",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "vendor",
+    "typeName": "밴더사",
+    "tableName": "ytnDevDb#vendor",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "vendorNotice",
+    "typeName": "밴더사 공지사항",
+    "tableName": "ytnDevDb#vendorNotice",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "smsCertification",
+    "typeName": "SMS 인증 이력",
+    "tableName": "ytnDevDb#smsCertification",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "productApprovalHistory",
+    "typeName": "상품 승인 이력",
+    "tableName": "ytnDevDb#productApprovalHistory",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "productBulkRegistration",
+    "typeName": "상품일괄등록 내역",
+    "tableName": "ytnDevDb#productBulkRegistration",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "productBulkRegistrationFailed",
+    "typeName": "상품일괄등록 실패케이스",
+    "tableName": "ytnDevDb#productBulkRegistrationFailed",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "productOptionByVendor",
+    "typeName": "벤더별 상품옵션설정",
+    "tableName": "ytnDevDb#productOptionByVendor",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "searchWordHistory",
+    "typeName": "검색어 이력",
+    "tableName": "ytnDevDb#searchWordHistory",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "affliateRequest",
+    "typeName": "제휴 신청서",
+    "tableName": "ytnDevDb#affliateRequest",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "newStoreRequest",
+    "typeName": "입점 신청서",
+    "tableName": "ytnDevDb#newStoreRequest",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "emailCertification",
+    "typeName": "이메일 인증",
+    "tableName": "ytnDevDb#emailCertification",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "productViewHistory",
+    "typeName": "상품 조회 이력",
+    "tableName": "ytnDevDb#productViewHistory",
+    "repositoryType": "data",
+    "eviction": 0
+  }
+]

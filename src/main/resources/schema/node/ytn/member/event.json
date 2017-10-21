@@ -1,0 +1,194 @@
+[
+  {
+    "typeId" : "event",
+    "tid": "interestProduct",
+    "event" : "removeOutOfStock",
+    "noneExecute" : true,
+    "eventName" : "품절상품 삭제"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "interestProduct>removeOutOfStock",
+    "action" : "removeOutOfStock",
+    "actionName" : "품절상품 삭제",
+    "actionType" : "service",
+    "actionBody" : "mypageService.removeOutOfStockProduct",
+    "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "member",
+    "event" : "pwAuth",
+    "noneExecute" : true,
+    "eventName" : "비밀번호 인증"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "member>pwAuth",
+    "action" : "pwAuth",
+    "actionName" : "비밀번호 인증",
+    "actionType" : "service",
+    "actionBody" : "mypageService.passwordAuthentication",
+    "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "member",
+    "event" : "sendEmail",
+    "noneExecute" : true,
+    "eventName" : "인증 메일전송"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "member>sendEmail",
+    "action" : "sendEmail",
+    "actionName" : "인증 메일전송",
+    "actionType" : "service",
+    "actionBody" : "memberService.authenticationSendEmail",
+    "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "member",
+    "event" : "sendSms",
+    "noneExecute" : true,
+    "eventName" : "인증 SMS전송"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "member>sendSms",
+    "action" : "sendSms",
+    "actionName" : "인증 SMS전송",
+    "actionType" : "service",
+    "actionBody" : "memberService.authenticationSendSms",
+    "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "member",
+    "event" : "certEmail",
+    "noneExecute" : true,
+    "eventName" : "인증 Email 유효체크"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "member>certEmail",
+    "action" : "certEmail",
+    "actionName" : "인증 Email 유효체크",
+    "actionType" : "service",
+    "actionBody" : "memberService.authenticationCertEmail",
+    "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "member",
+    "event" : "certSms",
+    "noneExecute" : true,
+    "eventName" : "인증 SMS 유효체크"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "member>certSms",
+    "action" : "certSms",
+    "actionName" : "인증 SMS 유효체크",
+    "actionType" : "service",
+    "actionBody" : "memberService.authenticationCertSms",
+    "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "member",
+    "event" : "leave",
+    "noneExecute" : true,
+    "eventName" : "회원탈퇴"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "member>leave",
+    "action" : "leave",
+    "actionName" : "회원탈퇴",
+    "actionType" : "service",
+    "actionBody" : "memberService.leaveMembership",
+    "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "member",
+    "event" : "getTempPassword",
+    "noneExecute" : true,
+    "eventName" : "임시 비밀번호 생성"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "member>getTempPassword",
+    "action" : "getTempPassword",
+    "actionName" : "임시 비밀번호 생성",
+    "actionType" : "service",
+    "actionBody" : "memberService.getTempPassword",
+    "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "member",
+    "event" : "saveMemberInfo",
+    "noneExecute" : true,
+    "eventName" : "회원정보저장"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "member>saveMemberInfo",
+    "action" : "saveMember",
+    "actionName" : "회원정보저장",
+    "actionType" : "service",
+    "actionBody" : "memberService.saveMemberInfo",
+    "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "member",
+    "event" : "certPassword",
+    "noneExecute" : true,
+    "eventName" : "비밀번호인증"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "member>certPassword",
+    "action" : "certPassword",
+    "actionName" : "비밀번호인증",
+    "actionType" : "service",
+    "actionBody" : "memberService.certPassword",
+    "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "member",
+    "event" : "signIn",
+    "noneExecute" : true,
+    "eventName" : "로그인"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "member>signIn",
+    "action" : "signIn",
+    "actionName" : "로그인",
+    "actionType" : "service",
+    "actionBody" : "memberService.signIn",
+    "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "member",
+    "event" : "me",
+    "noneExecute" : true,
+    "eventName" : "로그인 상태 체크"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "member>me",
+    "action" : "me",
+    "actionName" : "상태체크",
+    "actionType" : "service",
+    "actionBody" : "memberService.me",
+    "order" : 1
+  }
+]

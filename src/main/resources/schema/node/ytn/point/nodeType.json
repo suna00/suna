@@ -1,0 +1,55 @@
+[
+  {
+    "parentId": "root",
+    "typeId": "nodeType",
+    "tid": "pointPath",
+    "typeName": "포인트 관리",
+    "repositoryType": "path",
+    "eviction": 0
+  },
+  {
+    "parentId": "pointPath",
+    "typeId": "nodeType",
+    "tid": "usedWelfarePointMap",
+    "typeName": "복지 포인트 사용 매핑",
+    "tableName": "ytnDevDb#usedWelfarePointMap",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "pointPath",
+    "typeId": "nodeType",
+    "tid": "affiliatePoint",
+    "typeName": "제휴사 포인트",
+    "tableName": "ytnDevDb#affiliatePoint",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "pointPath",
+    "typeId": "nodeType",
+    "tid": "welfarePoint",
+    "typeName": "복지 포인트",
+    "tableName": "ytnDevDb#welfarePoint",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "pointPath",
+    "typeId": "nodeType",
+    "tid": "usedYPointMap",
+    "typeName": "Y포인트 사용 매핑",
+    "tableName": "ytnDevDb#usedYPointMap",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "pointPath",
+    "typeId": "nodeType",
+    "tid": "YPoint",
+    "typeName": "Y포인트",
+    "tableName": "ytnDevDb#YPoint",
+    "repositoryType": "data",
+    "eviction": 0
+  }
+]
