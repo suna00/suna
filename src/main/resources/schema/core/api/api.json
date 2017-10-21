@@ -4,7 +4,7 @@
     "id" : "node",
     "categoryName" : "Node API Relay",
     "fileUrlFormat" : {
-      "default": "{{:getEnvValue(cluster.file-prefix, url)}}"
+      "default": "{{:getEnvValue(cluster.api-prefix, url)}}"
     }
   },
   {
