@@ -1,0 +1,13 @@
+[
+  {
+    "typeId": "datasource",
+    "id": "ytnDevDb",
+    "profiles": "dev",
+    "ssl" : false,
+    "dsName": "YTN Dev DB",
+    "jdbcUrl": "jdbc:mysql://125.131.88.147:3306/ytn",
+    "dbType": "mySql",
+    "username": "iceuser",
+    "password": "iceuser"
+  }
+]

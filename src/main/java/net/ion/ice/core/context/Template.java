@@ -1,6 +1,8 @@
 package net.ion.ice.core.context;
 
 
+import net.ion.ice.core.node.Node;
+import net.ion.ice.core.node.NodeType;
 import org.apache.commons.lang3.StringUtils;
 
 import java.text.ParseException;
@@ -29,9 +31,9 @@ public class Template {
 
     public Template(String templateStr){
         this.templateStr = templateStr ;
-        this.templateArrays = new ArrayList<TemplateArray>();
-        this.templateParams = new ArrayList<TemplateParam>();
-        this.sqlParams = new ArrayList<SqlParam>();
+        this.templateArrays = new ArrayList<>();
+        this.templateParams = new ArrayList<>();
+        this.sqlParams = new ArrayList<>();
 
     }
 
@@ -79,7 +81,10 @@ public class Template {
     }
 
 
-    public String format(Map<String, Object> data) {
+    public Object format(Map<String, Object> data) {
+        if(templateParams.size() == 1 && templateStr.equals(templateParams.get(0).getTemplateStr())){
+            return templateParams.get(0).getValue(data) ;
+        }
         String resultStr = templateStr ;
         for(TemplateArray templateArray : templateArrays){
             resultStr = StringUtils.replace(resultStr, templateArray.getReplaceStr(), templateArray.format(data)) ;
@@ -87,6 +92,23 @@ public class Template {
 
         for(TemplateParam templateParam : templateParams){
             resultStr = StringUtils.replace(resultStr, templateParam.getTemplateStr(), templateParam.format(data)) ;
+        }
+
+        for(SqlParam sqlParam : sqlParams){
+            resultStr = StringUtils.replace(resultStr, sqlParam.getTemplateStr(), "?") ;
+        }
+
+        return resultStr ;
+    }
+
+    public String format(Map<String, Object> data, ReadContext readContext, NodeType nodeType, Node node) {
+        String resultStr = templateStr ;
+//        for(TemplateArray templateArray : templateArrays){
+//            resultStr = StringUtils.replace(resultStr, templateArray.getReplaceStr(), templateArray.format(data)) ;
+//        }
+
+        for(TemplateParam templateParam : templateParams){
+            resultStr = StringUtils.replace(resultStr, templateParam.getTemplateStr(), templateParam.format(data, readContext, nodeType, node)) ;
         }
 
         for(SqlParam sqlParam : sqlParams){
@@ -138,4 +160,6 @@ public class Template {
         }
         return values.toArray();
     }
+
+
 }

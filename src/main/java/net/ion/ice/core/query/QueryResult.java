@@ -9,10 +9,30 @@ import java.util.Set;
  * Created by jaeho on 2017. 6. 15..
  */
 public class QueryResult implements Map<String, Object> {
+
     private Map<String, Object> result ;
 
     public QueryResult(){
         this.result = new LinkedHashMap<>() ;
+    }
+
+    public QueryResult(Map<String, Object> queryResult) {
+        this.result = queryResult ;
+    }
+
+    public QueryResult setResult(String result){
+        put("result", result) ;
+        return this ;
+    }
+
+    public QueryResult setResultMessage(String resultMessage){
+        put("resultMessage", resultMessage) ;
+        return this ;
+    }
+
+    public QueryResult setItem(Object item){
+        put("item", item) ;
+        return this ;
     }
 
     @Override

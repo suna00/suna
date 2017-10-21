@@ -1,13 +1,16 @@
 package net.ion.ice.core.data;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import net.ion.ice.IceRuntimeException;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
+import net.ion.ice.core.node.NodeUtils;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +46,11 @@ public class DBService {
 
     public JdbcTemplate getJdbcTemplate(String dsId) {
         if (!dataSourceTemplate.containsKey(dsId)) {
-            Node dataSourceNode = nodeService.read("datasource", dsId);
+//            Node dataSourceNode = nodeService.getDatasource(dsId); 캐시가 없을때, nodeService를 못가져옴
+            Node dataSourceNode = NodeUtils.getNodeService().getDatasource(dsId);
+            if(dataSourceNode == null){
+                throw new IceRuntimeException("Not found datasource : " + dsId) ;
+            }
             DBConfiguration configuration = new DBConfiguration(dataSourceNode);
             dataSourceTemplate.put(dsId, new JdbcTemplate(setDataSource(configuration)));
         }
@@ -116,6 +123,11 @@ public class DBService {
         basicDataSource.setUsername(dataConfiguration.getUsername());
         basicDataSource.setPassword(dataConfiguration.getPassword());
         basicDataSource.setUrl(dataConfiguration.getJdbcUrl());
+        if(dataConfiguration.isSsl()){
+            basicDataSource.setConnectionProperties("useSSL=true");
+        }else{
+            basicDataSource.setConnectionProperties("useSSL=false");
+        }
         basicDataSource.setInitialSize(3);
         basicDataSource.setMaxTotal(256);
         basicDataSource.setDefaultAutoCommit(true);

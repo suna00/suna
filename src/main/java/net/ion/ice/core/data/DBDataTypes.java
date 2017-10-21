@@ -25,7 +25,6 @@ public class DBDataTypes {
             case DOUBLE:
             case BOOLEAN:
                 return "NUMBER";
-
             case DATE:
                 return "DATE";
 

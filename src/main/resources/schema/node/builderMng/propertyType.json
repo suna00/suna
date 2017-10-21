@@ -2,7 +2,7 @@
   {
     "typeId" : "propertyType",
     "tid": "builderPage",
-    "id": "builderPage@id",
+    "id": "builderPage>id",
     "pid": "id",
     "propertyTypeName": "페이지 아이디",
     "valueType": "STRING",
@@ -13,20 +13,12 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "builderPage",
-    "id": "builderPage@content",
+    "id": "builderPage>content",
     "pid": "content",
     "propertyTypeName": "페이지 내용",
     "valueType": "JSON",
@@ -37,20 +29,28 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": false, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "builderContainerComponent",
-    "id": "builderContainerComponent@componentClass",
+    "id": "builderContainerComponent>componentClassType",
+    "pid": "componentClassType",
+    "propertyTypeName": "Component Class Type",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "builderContainerComponent",
+    "id": "builderContainerComponent>componentClass",
     "pid": "componentClass",
     "propertyTypeName": "Component Class",
     "valueType": "STRING",
@@ -61,20 +61,12 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "builderContainerComponent",
-    "id": "builderContainerComponent@componentClassName",
+    "id": "builderContainerComponent>componentClassName",
     "pid": "componentClassName",
     "propertyTypeName": "Component Class Name",
     "valueType": "STRING",
@@ -85,20 +77,12 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "builderContainerComponent",
-    "id": "builderContainerComponent@icon",
+    "id": "builderContainerComponent>icon",
     "pid": "icon",
     "propertyTypeName": "ICON",
     "valueType": "STRING",
@@ -109,22 +93,14 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "builderContainerComponent",
-    "id": "builderContainerComponent@order",
+    "id": "builderContainerComponent>order",
     "pid": "order",
-    "propertyTypeName": "순서",
+    "propertyTypeName": "Order",
     "valueType": "LONG",
     "required": true,
     "idable": false,
@@ -134,20 +110,78 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "defaultValue": 0,
-    "validationTypes": {
-      "required": { "value": false, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "defaultValue": 0
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "builderContainerComponent",
+    "id": "builderContainerComponent>active",
+    "pid": "active",
+    "propertyTypeName": "Active",
+    "valueType": "BOOLEAN",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": true
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "builderContainerComponent",
+    "id": "builderContainerComponent>componentChildren",
+    "pid": "componentChildren",
+    "propertyTypeName": "Children ComponentClass",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "builderPresentationalComponent",
-    "id": "builderPresentationalComponent@componentClass",
+    "id": "builderPresentationalComponent>componentTemplateType",
+    "pid": "componentTemplateType",
+    "propertyTypeName": "Component Template Type",
+    "valueType": "STRING",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "builderPresentationalComponent",
+    "id": "builderPresentationalComponent>componentClassType",
+    "pid": "componentClassType",
+    "propertyTypeName": "Component Class Type",
+    "valueType": "STRING",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "builderPresentationalComponent",
+    "id": "builderPresentationalComponent>componentClass",
     "pid": "componentClass",
     "propertyTypeName": "Component Class",
     "valueType": "STRING",
@@ -158,20 +192,12 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "builderPresentationalComponent",
-    "id": "builderPresentationalComponent@componentClassName",
+    "id": "builderPresentationalComponent>componentClassName",
     "pid": "componentClassName",
     "propertyTypeName": "Component Class Name",
     "valueType": "STRING",
@@ -182,20 +208,12 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "builderPresentationalComponent",
-    "id": "builderPresentationalComponent@icon",
+    "id": "builderPresentationalComponent>icon",
     "pid": "icon",
     "propertyTypeName": "ICON",
     "valueType": "STRING",
@@ -206,22 +224,14 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "builderPresentationalComponent",
-    "id": "builderPresentationalComponent@order",
+    "id": "builderPresentationalComponent>order",
     "pid": "order",
-    "propertyTypeName": "순서",
+    "propertyTypeName": "Order",
     "valueType": "LONG",
     "required": true,
     "idable": false,
@@ -231,14 +241,39 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "defaultValue": 0,
-    "validationTypes": {
-      "required": { "value": false, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "defaultValue": 0
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "builderPresentationalComponent",
+    "id": "builderPresentationalComponent>active",
+    "pid": "active",
+    "propertyTypeName": "Active",
+    "valueType": "BOOLEAN",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": true
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "builderPresentationalComponent",
+    "id": "builderPresentationalComponent>componentChildren",
+    "pid": "componentChildren",
+    "propertyTypeName": "Children ComponentClass",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
   }
 ]

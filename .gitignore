@@ -2,7 +2,7 @@
 /build/
 !gradle/wrapper/gradle-wrapper.jar
 lib
-
+out/
 
 ### STS ###
 .apt_generated
@@ -29,3 +29,6 @@ nbdist/
 
 ### OSX ###
 .DS_Store
+
+
+/classes

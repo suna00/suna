@@ -1,0 +1,22 @@
+[
+  {
+    "typeId": "addBenefit",
+    "addBenefitId": 1,
+    "year": 2017,
+    "month": 10,
+    "startDay": 1,
+    "endDay": 25,
+    "addBenefitType": "all",
+    "addBenefitStatus": "y"
+  },
+  {
+    "typeId": "addBenefit",
+    "addBenefitId": 2,
+    "year": 2017,
+    "month": 10,
+    "startDay": 1,
+    "endDay": 28,
+    "addBenefitType": "special",
+    "addBenefitStatus": "y"
+  }
+]

@@ -1,0 +1,19 @@
+[
+  {
+    "parentId": "root",
+    "typeId": "nodeType",
+    "tid": "contentsPath",
+    "typeName": "컨텐츠 관리",
+    "repositoryType": "path",
+    "eviction": 0
+  },
+  {
+    "parentId": "contentsPath",
+    "typeId": "nodeType",
+    "tid": "paymentTypeByContents",
+    "typeName": "컨텐츠별 결제 수단",
+    "tableName": "ytnDevDb#paymentTypeByContents",
+    "repositoryType": "node",
+    "eviction": 0
+  }
+]

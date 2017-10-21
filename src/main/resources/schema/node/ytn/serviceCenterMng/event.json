@@ -1,0 +1,34 @@
+[
+  {
+    "typeId": "event",
+    "tid": "frequentlyAskedQuestion",
+    "event": "createEvent",
+    "noneExecute": true,
+    "eventName": "FAQ 등록"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "frequentlyAskedQuestion>createEvent",
+    "action": "createAction",
+    "actionName": "FAQ 등록",
+    "actionType": "service",
+    "actionBody": "faqService.createAction",
+    "order": 0
+  },
+  {
+    "typeId": "event",
+    "tid": "frequentlyAskedQuestion",
+    "event": "updateEvent",
+    "noneExecute": true,
+    "eventName": "FAQ 수정"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "frequentlyAskedQuestion>updateEvent",
+    "action": "updateAction",
+    "actionName": "FAQ 수정",
+    "actionType": "service",
+    "actionBody": "faqService.updateAction",
+    "order": 0
+  }
+]

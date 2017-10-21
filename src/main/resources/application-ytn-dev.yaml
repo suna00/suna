@@ -1,0 +1,58 @@
+# YTN 개발 서버
+spring:
+  profiles: ytn-dev
+  http:
+    multipart:
+      max-request-size: 20MB
+      max-file-size: 1024MB
+    mvc:
+      view:
+        prefix: /WEB-INF/jsp/
+        suffix: .jsp
+  resources:
+    chain:
+      cache: true
+      enabled: true
+    cache-period: 3600
+
+server:
+  port: 8080
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain,application/javascript,text/css
+
+jwtConfig:
+  issuer: I-ON
+  secretKey: dkdldhs!@#$
+  tokenPrefix: SDP
+  headString: X-Authorization
+  tokenExpirationTime: 1800 #분
+  refreshTokenExpTime: 1800 #분
+
+cluster:
+  api-prefix: http://test.ygoon.com:8080/
+  front-prefix: http://test.ygoon.com:8888/
+  file-prefix: http://test.ygoon.com:8888/
+  mode: all
+  groups: all
+  members:
+    - 125.131.88.206
+
+infinispan:
+  cachePath: /resource/ice2/cache
+
+tomcat:
+  access-log-enabled: true
+  access-log-pattern: "%h %l %u %t \"%r\" %s %b %D"
+  basedir: tomcat
+
+logging:
+  config:
+    classpath:
+      - logback-access-dev-2.xml
+      - logback-dev-2.xml
+
+file:
+  default:
+    path: /resource/ice2/files
+

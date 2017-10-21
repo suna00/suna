@@ -1,0 +1,73 @@
+[
+  {
+    "parentId": "root",
+    "typeId": "nodeType",
+    "tid": "customerPath",
+    "typeName": "고객 관리",
+    "repositoryType": "path",
+    "eviction": 0
+  },
+  {
+    "parentId": "customerPath",
+    "typeId": "nodeType",
+    "tid": "blackConsumer",
+    "typeName": "블랙컨슈머",
+    "tableName": "ytnDevDb#blackConsumer",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "customerPath",
+    "typeId": "nodeType",
+    "tid": "device",
+    "typeName": "디바이스",
+    "tableName": "ytnDevDb#device",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "customerPath",
+    "typeId": "nodeType",
+    "tid": "interestProduct",
+    "typeName": "관심상품",
+    "tableName": "ytnDevDb#interestProduct",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "customerPath",
+    "typeId": "nodeType",
+    "tid": "loginHistory",
+    "typeName": "로그인 이력",
+    "tableName": "ytnDevDb#loginHistory",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "customerPath",
+    "typeId": "nodeType",
+    "tid": "member",
+    "typeName": "회원 ",
+    "tableName": "ytnDevDb#member",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "customerPath",
+    "typeId": "nodeType",
+    "tid": "myRefundAccount",
+    "typeName": "나의 환불 계좌",
+    "tableName": "ytnDevDb#myRefundAccount",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "customerPath",
+    "typeId": "nodeType",
+    "tid": "requestToleaveMember",
+    "typeName": "탈퇴신청",
+    "tableName": "ytnDevDb#requestToleaveMember",
+    "repositoryType": "node",
+    "eviction": 0
+  }
+]

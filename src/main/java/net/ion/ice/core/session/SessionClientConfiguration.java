@@ -28,9 +28,9 @@ import java.util.Properties;
  * instance to Tomcat for storage of HTTP sessions, instead of Tomcat's default
  * implementation.
  */
-@Configuration
-@ConfigurationProperties(prefix = "session")
-@ConditionalOnExpression("'${session.mode}' == 'client'")
+//@Configuration
+//@ConfigurationProperties(prefix = "session")
+//@ConditionalOnExpression("'${session.mode}' == 'client'")
 public class SessionClientConfiguration {
     private List<String> members = new ArrayList<>();
 
@@ -51,7 +51,7 @@ public class SessionClientConfiguration {
     public ClientConfig config() {
 
         ClientConfig config = new ClientConfig();
-        config.setInstanceName("session-hazelcast") ;
+        config.setInstanceName("ice-session-hazelcast") ;
 //        ClientNetworkConfig clientConfig = config.getNetworkConfig();
 //        clientConfig.addAddress("localhost:5701");
 //        config.setNetworkConfig(clientConfig) ;

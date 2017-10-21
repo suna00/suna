@@ -1,16 +1,25 @@
 package net.ion.ice.core.data.bind;
 
+import net.ion.ice.IceRuntimeException;
+import net.ion.ice.core.context.QueryContext;
+import net.ion.ice.core.context.Template;
 import net.ion.ice.core.data.DBDataTypes;
+import net.ion.ice.core.data.DBQuery;
 import net.ion.ice.core.data.DBTypes;
 import net.ion.ice.core.data.table.Column;
+import net.ion.ice.core.infinispan.NotFoundNodeException;
+import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.PropertyType;
+import net.ion.ice.core.query.QueryTerm;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
@@ -21,7 +30,7 @@ import java.util.*;
  * Created by seonwoong on 2017. 6. 28..
  */
 
-public class NodeBindingInfo {
+public class NodeBindingInfo implements Serializable {
     private static Logger logger = LoggerFactory.getLogger(NodeBindingInfo.class);
 
     private NodeType nodeType;
@@ -35,16 +44,19 @@ public class NodeBindingInfo {
     private String deleteSql = "";
     private String retrieveSql = "";
     private String listSql = "";
+    private String insertSequenceSql = "";
+    private String updateSequenceSql = "";
+    private String retrieveSequenceSql = "";
 
     private JdbcTemplate jdbcTemplate;
 
 
     private List<Column> columnList;
     private List<Column> createColumnList;
-    private List<String> insertPids = new LinkedList<>();
+    private List<PropertyType> insertPids = new ArrayList<>();
 
-    private List<String> updatePids = new LinkedList<>();
-    private List<String> wherePids = new LinkedList<>();
+    private List<PropertyType> updatePids = new ArrayList<>();
+    private List<PropertyType> wherePids = new ArrayList<>();
 
 
     private Collection<PropertyType> propertyTypes;
@@ -89,16 +101,16 @@ public class NodeBindingInfo {
                     if (propertyType.getPid().equalsIgnoreCase(column.getColumnName())) {
                         insertColumns.add(column.getColumnName());
                         insertSetKeys.add("?");
-                        insertPids.add(propertyType.getPid());
+                        insertPids.add(propertyType);
 
                         if (!propertyType.isIdable()) {
                             updateColumns.add(String.format("%s = ?", column.getColumnName()));
-                            updatePids.add(propertyType.getPid());
+                            updatePids.add(propertyType);
                             break;
                         }
                         if (propertyType.isIdable()) {
                             whereIds.add(String.format("%s = ?", propertyType.getPid()));
-                            wherePids.add(propertyType.getPid());
+                            wherePids.add(propertyType);
                             break;
                         }
                     }
@@ -106,8 +118,6 @@ public class NodeBindingInfo {
             }
 
         }
-
-        updatePids.addAll(wherePids);
 
         if (createColumnList.size() > 0) {
             for (Column column : createColumnList) {
@@ -120,13 +130,13 @@ public class NodeBindingInfo {
 
         if (DBType.equalsIgnoreCase("mySql")) {
             listSql = String.format("SELECT * FROM %s LIMIT 1000", tableName);
-            retrieveSql = String.format("SELECT * FROM %s WITH(nolock) WHERE %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
-
-        }else if(DBType.equalsIgnoreCase("msSql")){
-            listSql = String.format("SELECT TOP 100 * FROM %s", tableName);
             retrieveSql = String.format("SELECT * FROM %s WHERE %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
 
-        }else if(DBType.equalsIgnoreCase("maria")){
+        } else if (DBType.equalsIgnoreCase("msSql")) {
+            listSql = String.format("SELECT TOP 1000 * FROM %s", tableName);
+            retrieveSql = String.format("SELECT * FROM %s WITH(nolock) WHERE %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
+
+        } else if (DBType.equalsIgnoreCase("maria")) {
             listSql = String.format("SELECT * FROM %s LIMIT 1000", tableName);
             retrieveSql = String.format("SELECT * FROM %s WHERE %s", tableName, StringUtils.join(whereIds.toArray(), " AND "));
 
@@ -157,7 +167,9 @@ public class NodeBindingInfo {
                     , tableName
                     , StringUtils.join(createColumns.toArray(), ", "));
         }
-
+        updateSequenceSql = String.format("UPDATE datasequence SET sequence = sequence + 1 WHERE nodeType = '%s'", nodeType.getTypeId());
+        insertSequenceSql = String.format("INSERT INTO datasequence (nodeType, sequence) VALUES ('%s', 1)", nodeType.getTypeId());
+        retrieveSequenceSql = String.format("SELECT sequence FROM datasequence WHERE nodeType = '%s'", nodeType.getTypeId());
     }
 
     public List<Column> getTableColumns(String tableName, String DBType) {
@@ -194,6 +206,7 @@ public class NodeBindingInfo {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new IceRuntimeException("db error ", e);
         }
         return columnList;
     }
@@ -228,18 +241,58 @@ public class NodeBindingInfo {
 
     public Map<String, Object> retrieve(String id) {
         List<String> parameters = retrieveParameters(id);
-        Map<String, Object> result = jdbcTemplate.queryForMap(retrieveSql, parameters.toArray());
-        return result;
+        try {
+            Map<String, Object> result = jdbcTemplate.queryForMap(retrieveSql, parameters.toArray());
+            return result ;
+        }catch(EmptyResultDataAccessException e){
+            logger.error("Node Binding Retrieve Error : "+ retrieveSql + " : " + id);
+            throw new NotFoundNodeException("data", id) ;
+        }
     }
+
+    public Long retrieveSequence() {
+        int callback = jdbcTemplate.update(updateSequenceSql);
+        if (callback == 0) {
+            jdbcTemplate.update(insertSequenceSql);
+        }
+        Long sequence = jdbcTemplate.queryForObject(retrieveSequenceSql, Long.class);
+
+        return sequence;
+    }
+
 
     public List<Map<String, Object>> list() {
-        List<Map<String, Object>> result = jdbcTemplate.queryForList(listSql);
-        return result;
+        return jdbcTemplate.queryForList(listSql);
     }
 
-    public List<Map<String, Object>> list(String listSql) {
-        List<Map<String, Object>> result = jdbcTemplate.queryForList(listSql);
-        return result;
+    public List<Map<String, Object>> list(QueryContext queryContext) {
+        if (queryContext.getQueryTerms() != null && !queryContext.getQueryTerms().isEmpty()) {
+            for (QueryTerm queryTerm : queryContext.getQueryTerms()) {
+                if("EXISTS".equals(queryTerm.getMethod().toString())){
+                    Template sqlTemplate = new Template(queryTerm.getQueryValue());
+                    sqlTemplate.parsing();
+                    Map<String, Object> result = jdbcTemplate.queryForMap(sqlTemplate.format(queryContext.getData()).toString(), sqlTemplate.getSqlParameterValues(queryContext.getData()));
+                    queryTerm.setQueryValue(JsonUtils.getStringValue(result, "inValue"));
+                }
+            }
+        }
+
+        DBQuery dbQuery = new DBQuery(tableName, queryContext);
+        Map<String, Object> totalCount;
+        if (dbQuery.getResultCountValue() == null || dbQuery.getResultCountValue().isEmpty()) {
+            totalCount = jdbcTemplate.queryForMap(dbQuery.getTotalCountSql());
+        } else {
+            totalCount = jdbcTemplate.queryForMap(dbQuery.getTotalCountSql(), dbQuery.getResultCountValue().toArray());
+        }
+        List<Map<String, Object>> items = jdbcTemplate.queryForList(dbQuery.getListParamSql(), dbQuery.getSearchListValue().toArray());
+        queryContext.setResultSize(((Long) totalCount.get("totalCount")).intValue());
+
+//        if(queryContext.getStart() > 0) {
+//            items = items.subList(queryContext.getStart(), items.size()) ;
+//        }
+
+        queryContext.setQueryListSize(items.size());
+        return items;
     }
 
     public int delete(Map<String, String[]> parameterMap) {
@@ -249,44 +302,121 @@ public class NodeBindingInfo {
     }
 
     public int delete(Node node) {
-        List<Object> parameters = updateParameters(node);
+        List<Object> parameters = deleteParameters(node);
         int queryCallBack = jdbcTemplate.update(deleteSql, parameters.toArray());
         return queryCallBack;
     }
 
+    public int delete(String id) {
+        List<String> parameters = retrieveParameters(id);
+        int queryCallBack = jdbcTemplate.update(deleteSql, parameters.toArray());
+        return queryCallBack;
+    }
+    /**
+     * 디비 저장 시 디비 컬럼이 null이 가능한지 체크 하고 가능하면 null 저장
+     * 불가능하면 빈 텍스트 저장하도록 수정. 테스트 필요.. 문제되면 알려주세요.
+     * */
     private List<Object> insertParameters(Map<String, String[]> parameterMap) {
-        List<Object> parameters = new ArrayList<>();
-        for (String pid : insertPids) {
-            parameters.add(parameterMap.get(pid)[0]);
+        List<Object> insertParameters = new ArrayList<>();
+        for (PropertyType pid : insertPids) {
+            for (Column column : columnList) {
+                if (column.getColumnName().equals(pid.getPid())) {
+                    if (column.getNullable()) {
+                        if (parameterMap.get(pid.getPid()) == null || parameterMap.get(pid.getPid())[0].equals("")) {
+                            insertParameters.add(null);
+                        } else {
+                            insertParameters.add(parameterMap.get(pid.getPid())[0]);
+                        }
+
+                    } else {
+                        if (parameterMap.get(pid.getPid()) == null || parameterMap.get(pid.getPid())[0].equals("")) {
+                            insertParameters.add("");
+                        } else {
+                            insertParameters.add(parameterMap.get(pid.getPid())[0]);
+                        }
+                    }
+                    break;
+                }
+            }
         }
-        return parameters;
+        return insertParameters;
     }
 
-    private List<Object> insertParameters(Node Node) {
+    private List<Object> insertParameters(Node node) {
         List<Object> parameters = new ArrayList<>();
-        for (String pid : insertPids) {
-            parameters.add(Node.getValue(pid));
+        for (PropertyType pid : insertPids) {
+            parameters.add(extractNodeValue(node, pid.getPid()));
         }
         return parameters;
     }
 
     private List<Object> updateParameters(Map<String, String[]> parameterMap) {
-        List<Object> parameters = new ArrayList<>();
-        for (String pid : updatePids) {
-            parameters.add(parameterMap.get(pid)[0]);
+        List<Object> updateParameters = new ArrayList<>();
+        for (PropertyType pid : updatePids) {
+            for (Column column : columnList) {
+                if (column.getColumnName().equals(pid.getPid())) {
+                    if (column.getNullable()) {
+                        if (parameterMap.get(pid.getPid()) == null || parameterMap.get(pid.getPid())[0].equals("")) {
+                            updateParameters.add(null);
+                        } else {
+                            updateParameters.add(parameterMap.get(pid.getPid())[0]);
+                        }
+
+                    } else {
+                        if (parameterMap.get(pid.getPid()) == null || parameterMap.get(pid.getPid())[0].equals("")) {
+                            updateParameters.add("");
+                        } else {
+                            updateParameters.add(parameterMap.get(pid.getPid())[0]);
+                        }
+                    }
+                    break;
+                }
+            }
         }
-        return parameters;
+
+        for (PropertyType pid : wherePids) {
+            if (pid.getIdType().equals(PropertyType.IdType.autoIncrement)) {
+
+            }
+            updateParameters.add(parameterMap.get(pid.getPid())[0]);
+
+        }
+        return updateParameters;
     }
 
     private List<Object> updateParameters(Node node) {
         List<Object> parameters = new ArrayList<>();
-        for (String pid : updatePids) {
-            parameters.add(node.getValue(pid));
+
+        for (PropertyType pid : updatePids) {
+            parameters.add(extractNodeValue(node, pid.getPid()));
+        }
+
+        for (PropertyType pid : wherePids) {
+            parameters.add(extractNodeValue(node, pid.getPid()));
         }
         return parameters;
     }
 
+    private List<Object> deleteParameters(Node node) {
+        List<Object> parameters = new ArrayList<>();
+
+        for (PropertyType pid : wherePids) {
+            parameters.add(extractNodeValue(node, pid.getPid()));
+        }
+        return parameters;
+    }
+
+
+    public Object extractNodeValue(Node node, String pid) {
+        return node.getBindingValue(pid);
+    }
+
     private List<String> retrieveParameters(String id) {
-        return Arrays.asList(id.split("@"));
+        return Arrays.asList(id.split(Node.ID_SEPERATOR));
+    }
+
+
+    public JdbcTemplate getJdbcTemplate() {
+        return jdbcTemplate;
     }
 }

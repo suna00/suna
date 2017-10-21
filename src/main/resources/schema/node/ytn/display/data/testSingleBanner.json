@@ -1,0 +1,302 @@
+[
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 1,
+    "singleBannerLocation": "leftSide",
+    "categoryId": "",
+    "sortOrder": 1,
+    "file": "classpath:schema/node/ytn/display/file/singleSide1.jpeg",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=99",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 2,
+    "singleBannerLocation": "rightSide",
+    "categoryId": "",
+    "sortOrder": 1,
+    "file": "classpath:schema/node/ytn/display/file/singleSide2.jpeg",
+    "url": "/product/view?categoryId=12&productId=1",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 3,
+    "singleBannerLocation": "nextToSearch",
+    "categoryId": "",
+    "sortOrder": 1,
+    "file": "classpath:schema/node/ytn/display/file/nextToSearch1.jpeg",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=98",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 4,
+    "singleBannerLocation": "nextToSearch",
+    "categoryId": "",
+    "sortOrder": 2,
+    "file": "classpath:schema/node/ytn/display/file/nextToSearch2.jpeg",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=99",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 5,
+    "singleBannerLocation": "nextToSearch",
+    "categoryId": "",
+    "sortOrder": 3,
+    "file": "classpath:schema/node/ytn/display/file/nextToSearch3.jpeg",
+    "url": "/product/view?categoryId=12&productId=64063",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 6,
+    "singleBannerLocation": "nextToSearch",
+    "categoryId": "",
+    "sortOrder": 4,
+    "file": "classpath:schema/node/ytn/display/file/nextToSearch4.jpeg",
+    "url": "/product/view?categoryId=12&productId=1",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 7,
+    "singleBannerLocation": "mypageMain",
+    "categoryId": "",
+    "sortOrder": 1,
+    "file": "classpath:schema/node/ytn/display/file/mypageMain.jpg",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=98",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 8,
+    "singleBannerLocation": "serviceCenterMain",
+    "categoryId": "",
+    "sortOrder": 1,
+    "file": "classpath:schema/node/ytn/display/file/serviceCenterMain1.jpeg",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=99",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 9,
+    "singleBannerLocation": "serviceCenterMain",
+    "categoryId": "",
+    "sortOrder": 2,
+    "file": "classpath:schema/node/ytn/display/file/serviceCenterMain2.jpeg",
+    "url": "/product/view?categoryId=12&productId=64063",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 10,
+    "singleBannerLocation": "login",
+    "categoryId": "",
+    "sortOrder": 1,
+    "file": "classpath:schema/node/ytn/display/file/login.jpeg",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=99",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 11,
+    "singleBannerLocation": "popup1",
+    "categoryId": "",
+    "sortOrder": 1,
+    "file": "classpath:schema/node/ytn/display/file/pop1.jpeg",
+    "url": "/product/view?categoryId=12&productId=1",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 12,
+    "singleBannerLocation": "popup1",
+    "categoryId": "",
+    "sortOrder": 2,
+    "file": "classpath:schema/node/ytn/display/file/pop2.jpeg",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=98",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 13,
+    "singleBannerLocation": "popup2",
+    "categoryId": "",
+    "sortOrder": 1,
+    "file": "classpath:schema/node/ytn/display/file/pop3.jpeg",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=99",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 14,
+    "singleBannerLocation": "popup2",
+    "categoryId": "",
+    "sortOrder": 2,
+    "file": "classpath:schema/node/ytn/display/file/pop4.jpeg",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=99",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 15,
+    "singleBannerLocation": "popup2",
+    "categoryId": "",
+    "sortOrder": 3,
+    "file": "classpath:schema/node/ytn/display/file/pop5.jpeg",
+    "url": "/product/view?categoryId=12&productId=1",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 16,
+    "singleBannerLocation": "top",
+    "categoryId": "",
+    "sortOrder": 1,
+    "file": "classpath:schema/node/ytn/display/file/top1.jpeg",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=98",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 17,
+    "singleBannerLocation": "hotItem",
+    "categoryId": 1,
+    "sortOrder": 1,
+    "file": "classpath:schema/node/ytn/display/file/hotitem2.jpg",
+    "url": "/product/view?categoryId=12&productId=1",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 18,
+    "singleBannerLocation": "hotItem",
+    "categoryId": 1,
+    "sortOrder": 2,
+    "file": "classpath:schema/node/ytn/display/file/hotitem3.jpg",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=98",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 19,
+    "singleBannerLocation": "hotItem",
+    "categoryId": 1,
+    "sortOrder": 3,
+    "file": "classpath:schema/node/ytn/display/file/hotitem1.jpg",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=99",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 20,
+    "singleBannerLocation": "hotItem",
+    "categoryId": 2,
+    "sortOrder": 1,
+    "file": "classpath:schema/node/ytn/display/file/hotitem4.jpg",
+    "url": "/product/view?categoryId=12&productId=64063",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 21,
+    "singleBannerLocation": "hotItem",
+    "categoryId": 2,
+    "sortOrder": 2,
+    "file": "classpath:schema/node/ytn/display/file/hotitem5.jpg",
+    "url": "/product/view?categoryId=12&productId=1",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 22,
+    "singleBannerLocation": "hotItem",
+    "categoryId": 3,
+    "sortOrder": 1,
+    "file": "classpath:schema/node/ytn/display/file/hotitem6.png",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=98",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 23,
+    "singleBannerLocation": "hotItem",
+    "categoryId": 4,
+    "sortOrder": 1,
+    "file": "classpath:schema/node/ytn/display/file/hotitem7.jpg",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=99",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 24,
+    "singleBannerLocation": "hotItem",
+    "categoryId": 5,
+    "sortOrder": 1,
+    "file": "classpath:schema/node/ytn/display/file/hotitem8.jpg",
+    "url": "/product/view?categoryId=12&productId=64063",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 25,
+    "singleBannerLocation": "hotItem",
+    "categoryId": 6,
+    "sortOrder": 1,
+    "file": "classpath:schema/node/ytn/display/file/hotitem9.jpeg",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=99",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 26,
+    "singleBannerLocation": "hotItem",
+    "categoryId": 7,
+    "sortOrder": 1,
+    "file": "classpath:schema/node/ytn/display/file/hotitem10.jpeg",
+    "url": "/product/view?categoryId=12&productId=1",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 27,
+    "singleBannerLocation": "hotItem",
+    "categoryId": 8,
+    "sortOrder": 1,
+    "file": "classpath:schema/node/ytn/display/file/hotitem11.jpeg",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=98",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 28,
+    "singleBannerLocation": "hotItem",
+    "categoryId": 9,
+    "sortOrder": 1,
+    "file": "classpath:schema/node/ytn/display/file/hotitem12.jpeg",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=99",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 29,
+    "singleBannerLocation": "hotItem",
+    "categoryId": 10,
+    "sortOrder": 1,
+    "file": "classpath:schema/node/ytn/display/file/hotitem13.jpeg",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=99",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "singleBanner",
+    "singleBannerId": 30,
+    "singleBannerLocation": "hotItem",
+    "categoryId": 11,
+    "sortOrder": 1,
+    "file": "classpath:schema/node/ytn/display/file/hotitem14.jpeg",
+    "url": "/specialExhibition/view?specialExhibitionSortType=all&categoryId=&searchText=&specialExhibitionId=99",
+    "bannerStatus": "y"
+  }
+]

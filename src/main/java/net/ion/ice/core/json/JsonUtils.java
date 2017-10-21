@@ -1,6 +1,9 @@
 package net.ion.ice.core.json;
 
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import net.ion.ice.core.node.Reference;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -21,6 +24,10 @@ import java.util.Map;
 public class JsonUtils {
     private static Logger logger = LoggerFactory.getLogger(JsonUtils.class);
     private static ObjectMapper objectMapper = new ObjectMapper();
+
+    static {
+        objectMapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
+    }
 
     public static boolean isJson(String jsonString) {
         try {
@@ -141,11 +148,87 @@ public class JsonUtils {
                 result = StringUtils.substringBeforeLast(result, ",") ;
             }
             return result ;
-        }else if(val instanceof Map){
-            return getValue((Map<String, Object>) val, StringUtils.substringAfter(key, ".")) ;
+        }else if(val instanceof Map) {
+            return getValue((Map<String, Object>) val, StringUtils.substringAfter(key, "."));
+        }else if(val instanceof Reference){
+            return ((Reference) val).getValue() ;
         }else if(val != null){
             return val ;
         }
         return null ;
+    }
+
+    public static String toJsonString(Map<String, Object> jsonData){
+        try {
+            return objectMapper.writeValueAsString(jsonData) ;
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return null ;
+        }
+    }
+
+    public static String toJsonString(List<?> jsonData){
+        try {
+            return objectMapper.writeValueAsString(jsonData) ;
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return null ;
+        }
+    }
+
+
+    public static Double getDoubleValue(Map<String, Object> data, String key){
+        Object value = getValue(data, key) ;
+
+        if(value == null) return 0D ;
+
+        if(value instanceof Double){
+            return (Double) value;
+        }
+        return Double.parseDouble(value.toString()) ;
+
+    }
+
+    public static Integer getIntValue(Map<String, Object> data, String key) {
+        Object value = getValue(data, key) ;
+
+        if(value == null) return 0 ;
+
+        if(value instanceof Integer){
+            return (Integer) value;
+        }
+        return Integer.parseInt(value.toString()) ;
+
+    }
+
+    public static Integer getIntNullableValue(Map<String, Object> data, String key) {
+        Integer value = getIntValue(data, key) ;
+
+        if(value == 0) return null;
+
+        return Integer.parseInt(value.toString()) ;
+
+    }
+
+    public static String getStringValue(Map<String, Object> data, String key) {
+        Object value = getValue(data, key) ;
+
+        if(value == null) return "" ;
+
+        if(value instanceof String){
+            return (String) value;
+        }
+        return value.toString() ;
+    }
+
+    public static boolean getBooleanValue(Map<String, Object> data, String key) {
+        Object value = getValue(data, key) ;
+
+        if(value == null) return false ;
+
+        if(value instanceof String){
+            return (boolean) value;
+        }
+        return (boolean) value ;
     }
 }

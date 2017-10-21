@@ -4,11 +4,13 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import net.ion.ice.security.config.JwtConfig;
-import net.ion.ice.security.User.UserContext;
+import net.ion.ice.security.UserContext;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
@@ -17,22 +19,16 @@ import java.util.UUID;
 @Component
 public class JwtTokenFactory {
     private final JwtConfig jwtConfig;
+    private Date infinityExpire = DateUtils.parseDate("29990101", "yyyyMMdd") ;
 
     @Autowired
-    public JwtTokenFactory(JwtConfig jwtConfig) {
+    public JwtTokenFactory(JwtConfig jwtConfig) throws ParseException {
         this.jwtConfig = jwtConfig;
     }
 
-    public AccessJwtToken createAccessJwtToken(UserContext userContext) {
-        if (StringUtils.isBlank(userContext.getUserId()))
-            throw new IllegalArgumentException("Cannot create JWT Token without userId");
-
-//        if (userContext.getAuthorities() == null || userContext.getAuthorities().isEmpty())
-//            throw new IllegalArgumentException("User doesn't have any privileges");
-
+    public AccessJwtToken createInitJwtToken() {
         Claims claims = Jwts.claims();
-        claims.setSubject(userContext.getUserId());
-//        claims.put("scopes", userContext.getAuthorities().stream().map(s -> s.toString()).collect(Collectors.toList()));
+        claims.setSubject("Anonymous");
 
         LocalDateTime currentTime = LocalDateTime.now();
 
@@ -47,24 +43,24 @@ public class JwtTokenFactory {
         return new AccessJwtToken(token, claims);
     }
 
-    public JwtToken createRefreshToken(UserContext userContext) {
-        if (StringUtils.isBlank(userContext.getUserId())) {
-            throw new IllegalArgumentException("Cannot create JWT Token without userId");
-        }
+
+    public JwtToken createRefreshToken(boolean logined) {
+//        if (StringUtils.isBlank(userContext.getUserId())) {
+//            throw new IllegalArgumentException("Cannot create JWT Token without userId");
+//        }
 
         LocalDateTime currentTime = LocalDateTime.now();
 
-        Claims claims = Jwts.claims().setSubject(userContext.getUserId());
+//        Claims claims = Jwts.claims().setSubject(userContext.getUserId());
+        Claims claims = Jwts.claims().setSubject(logined ? "Customer" : "Anonymous");
 //        claims.put("scopes", Arrays.asList(Scopes.REFRESH_TOKEN.authority()));
-
+        Date expireDate = logined ? Date.from(currentTime.plusMinutes(jwtConfig.getRefreshTokenExpTime()).atZone(ZoneId.systemDefault()).toInstant()) : infinityExpire ;
         String token = Jwts.builder()
                 .setClaims(claims)
                 .setIssuer(jwtConfig.getIssuer())
                 .setId(UUID.randomUUID().toString())
                 .setIssuedAt(Date.from(currentTime.atZone(ZoneId.systemDefault()).toInstant()))
-                .setExpiration(Date.from(currentTime
-                        .plusMinutes(jwtConfig.getRefreshTokenExpTime())
-                        .atZone(ZoneId.systemDefault()).toInstant()))
+                .setExpiration(expireDate)
                 .signWith(SignatureAlgorithm.HS512, jwtConfig.getSecretKey())
                 .compact();
 

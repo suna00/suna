@@ -1,5 +1,7 @@
 package net.ion.ice.core.event;
 
+import net.ion.ice.IceRuntimeException;
+import net.ion.ice.core.cluster.ClusterService;
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
 import net.ion.ice.core.node.Node;
@@ -22,6 +24,7 @@ public class EventService {
 
     public static final String CREATE = "create";
     public static final String UPDATE = "update";
+    public static final String SAVE = "save";
     public static final String DELETE = "delete";
     public static final String ALL_EVENT = "allEvent";
 
@@ -34,8 +37,10 @@ public class EventService {
     private NodeService nodeService ;
 
     @Autowired
-    private InfinispanRepositoryService infinispznService ;
+    private InfinispanRepositoryService infinispanService ;
 
+    @Autowired
+    private ClusterService clusterService ;
 
     @Autowired
     private EventBroker eventBroker ;
@@ -62,7 +67,7 @@ public class EventService {
         eventData.put(EVENT, event) ;
         eventData.put("eventName", event + " " + node.get("typeName")) ;
 
-        return nodeService.executeNode(eventData, EVENT, CREATE) ;
+        return (Node) nodeService.executeNode(eventData, EVENT, SAVE);
     }
 
     private Node createEventAction(Node eventNode, String event) {
@@ -73,24 +78,39 @@ public class EventService {
         eventActionData.put("actionBody", DELETE.equals(event) ? "nodeBindingService.delete" : "nodeBindingService.execute") ;
         eventActionData.put("order", 1) ;
 
-        return nodeService.executeNode(eventActionData, EVENT_ACTION, CREATE) ;
+        return (Node) nodeService.executeNode(eventActionData, EVENT_ACTION, SAVE);
     }
 
     public void execute(ExecuteContext executeContext) {
+        if(!executeContext.isExecute()) return  ;
+
         NodeType nodeType = executeContext.getNodeType() ;
-        if(nodeType.isNode()) {
-            infinispznService.execute(executeContext) ;
-        }
 
         Event event = nodeType.getEvent(executeContext.getEvent()) ;
-        if(event == null){
-            return  ;
+
+        if((event == null || !event.isNoneExecute()) && nodeType.isNode() && executeContext.getNode() != null) {
+            infinispanService.execute(executeContext) ;
+            clusterService.cache(executeContext) ;
+            if(executeContext.getResult() == null) {
+                executeContext.setResult(executeContext.getNode());
+            }
+        }
+
+        if(event == null) {
+            return ;
+        }else if(!event.isNoneExecute() && !nodeType.isNode()){
+            executeContext.getNode().toStore();
         }
 
         Event allEvent = nodeType.getEvent(ALL_EVENT) ;
 
-        executeEventAction(executeContext, event);
-        executeEventAction(executeContext, allEvent);
+        try {
+            executeEventAction(executeContext, event);
+            executeEventAction(executeContext, allEvent);
+        }catch(IceRuntimeException e){
+            infinispanService.execute(executeContext.makeRollbackContext()) ;
+            throw e ;
+        }
 
         executeEventListener(executeContext, event);
         executeEventListener(executeContext, allEvent);

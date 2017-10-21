@@ -7,8 +7,11 @@ import java.util.Map;
  * Created by jaeho on 2017. 6. 5..
  */
 public class Code implements Serializable{
-    private Object value ;
-    private String label ;
+    protected Object value ;
+    protected String label ;
+
+    public Code (){
+    }
 
     public Code(Object value, String label){
         this.value = value ;
@@ -20,12 +23,6 @@ public class Code implements Serializable{
         this.label = (String) codeValue.get("label");
     }
 
-    public Code(Node node, NodeType nodeType) {
-        this.value = node.getId() ;
-        this.label = node.getLabel(nodeType) ;
-    }
-
-
     public String getLabel() {
         return label;
     }
@@ -36,5 +33,14 @@ public class Code implements Serializable{
 
     public String toString(){
         return value + " " +  label ;
+    }
+
+    @Override
+    public boolean equals(Object code){
+        if(code instanceof Code){
+            return getValue().equals(((Code) code).getValue());
+        }
+
+        return getValue().equals(code) ;
     }
 }

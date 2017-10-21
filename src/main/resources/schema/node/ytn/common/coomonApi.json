@@ -1,0 +1,46 @@
+[
+  {
+    "typeId" : "apiCategory",
+    "id" : "common",
+    "categoryName" : "코드 API",
+    "fileUrlFormat" : {
+      "default": "{{:getEnvValue(cluster.file-prefix, url)}}"
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "common",
+    "apiId" : "3depthCode",
+    "apiName" : "3depth Code 조회",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId" : "commonCode",
+      "query" : [
+        {"field" : "commonCodeStatus", "method" : "matching", "value" : "y"},
+        {"field" : "code", "method" : "matching", "value" : "{{:code}}"}
+      ],
+      "response": {
+        "_all_": "",
+        "children" : {
+          "typeId" : "commonCode",
+          "query" : [
+            {"field" : "commonCodeStatus", "method" : "matching", "value" : "y"},
+            {"field" : "upperCode", "method" : "matching", "value" : "{{:code}}"}
+          ],
+          "response": {
+            "_all_": "",
+            "children" : {
+              "typeId" : "commonCode",
+              "query" : [
+                {"field" : "commonCodeStatus", "method" : "matching", "value" : "y"},
+                {"field" : "upperCode", "method" : "matching", "value" : "{{:code}}"}
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,102 @@
+[
+  {
+    "typeId" : "testCategory",
+    "categoryId": "id1",
+    "categoryName" : "test1",
+    "parentCategory" : "root",
+    "categoryType" : "content",
+    "orderNo": ""
+  },
+  {
+    "typeId" : "testCategory",
+    "categoryId": "drama",
+    "categoryName" : "drama",
+    "categoryName_kr" : "드라마",
+    "categoryName_en" : "Drama",
+    "parentCategory" : "test1",
+    "categoryType" : "content",
+    "orderNo": 2
+  },
+  {
+    "typeId" : "testCategory",
+    "categoryId": "movie",
+    "categoryName" : "movie",
+    "parentCategory" : "test1",
+    "categoryType" : "content",
+    "orderNo": 3
+  },
+  {
+    "typeId" : "testCategory",
+    "categoryId": "fashion",
+    "categoryName" : "fashion",
+    "parentCategory" : "test1",
+    "categoryType" : "product",
+    "orderNo": 4
+  },
+  {
+    "typeId" : "testCategory",
+    "categoryId": "hat",
+    "categoryName" : "hat",
+    "parentCategory" : "fashion",
+    "categoryType" : "product",
+    "orderNo": 5
+  },
+  {
+    "typeId" : "testCategory",
+    "categoryId": "pants",
+    "categoryName" : "pants",
+    "parentCategory" : "fashion",
+    "categoryType" : "product",
+    "orderNo": 6
+  },
+  {
+    "typeId" : "testMenu",
+    "menuId": "menu1",
+    "menuName" : "Menu 1"
+  },
+  {
+    "typeId" : "testMenu",
+    "menuId": "menu2",
+    "menuName" : "Menu 2"
+  },
+  {
+    "typeId" : "testMenu",
+    "menuId": "menu3",
+    "menuName" : "Menu 3"
+  },
+  {
+    "typeId" : "testMenu",
+    "menuId": "menu4",
+    "menuName" : "Menu 4"
+  },
+  {
+    "typeId" : "testItem",
+    "id" : 1,
+    "category" : "drama",
+    "menus" : "menu1,menu2",
+    "title" : "도깨비 test abc",
+    "body" : "공유나오는 도깨비",
+    "date" : "20170110",
+    "testFile" : "/resource/exe1.txt"
+  },
+  {
+    "typeId" : "testItem",
+    "id" : 2,
+    "baseItem" : 1,
+    "category" : "drama",
+    "menus" : "menu2",
+    "title" : "태양의 후예 TEST BY",
+    "body" : "송중기 나오네",
+    "date" : "20161102",
+    "testFile" : "classpath:schema/test/testPdf.pdf"
+  },
+  {
+    "typeId" : "testItem",
+    "id" : 11,
+    "category" : "hat",
+    "menus" : "menu3, menu4",
+    "title" : "NY 모자",
+    "body" : "MLB 모자",
+    "date" : "20150501"
+  }
+]

@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * Created by jaehocho on 2017. 5. 17..
@@ -31,39 +32,57 @@ public class NodeController {
     @RequestMapping(value = "/node/{typeId}", method = RequestMethod.PUT)
     @ResponseBody
     public Object saveRest(HttpServletRequest request, @PathVariable String typeId) throws IOException {
-        return save(request, typeId);
+        return execute(request, typeId, "save");
     }
 
     @RequestMapping(value = "/node/{typeId}/save.json", method = RequestMethod.POST)
     @ResponseBody
     public Object saveJson(HttpServletRequest request, @PathVariable String typeId) throws IOException {
-        return save(request, typeId);
+        return execute(request, typeId, "save");
+    }
+
+    @RequestMapping(value = "/node/{typeId}/create.json", method = RequestMethod.POST)
+    @ResponseBody
+    public Object createJson(HttpServletRequest request, @PathVariable String typeId) throws IOException {
+        return execute(request, typeId, "create");
+    }
+
+    @RequestMapping(value = "/node/{typeId}/update.json", method = RequestMethod.POST)
+    @ResponseBody
+    public Object updateJson(HttpServletRequest request, @PathVariable String typeId) throws IOException {
+        return execute(request, typeId, "update");
+    }
+
+    @RequestMapping(value = "/node/{typeId}/{event}.json", method = RequestMethod.POST)
+    @ResponseBody
+    public Object updateJson(HttpServletRequest request, @PathVariable String typeId, @PathVariable String event) throws IOException {
+        return execute(request, typeId, event);
     }
 
 
-    private Object save(HttpServletRequest request, String typeId) {
+    private Object execute(HttpServletRequest request, String typeId, String event) {
         if(request instanceof MultipartHttpServletRequest) {
-            return JsonResponse.create(nodeService.saveNode(request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap(), typeId)) ;
+            return nodeService.executeNode(request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap(), typeId, event) ;
         }
-        return JsonResponse.create(nodeService.saveNode(request.getParameterMap(), typeId)) ;
+        return nodeService.executeNode(request.getParameterMap(), null, typeId, event) ;
     }
 
 
     @RequestMapping(value = "/node/{typeId}/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public Object deleteRest(WebRequest request, @PathVariable String typeId, @PathVariable String id) throws IOException {
-        return JsonResponse.create(nodeService.deleteNode(typeId, id)) ;
+        return delete(request, typeId, id);
     }
 
     @RequestMapping(value = "/node/{typeId}/delete.json", method = RequestMethod.POST)
     @ResponseBody
     public Object deleteJson(WebRequest request, @PathVariable String typeId) throws IOException {
-        return delete(request, typeId);
+        return delete(request, typeId, null);
     }
 
 
-    private Object delete(WebRequest request, String typeId) {
-        return JsonResponse.create(nodeService.deleteNode(request.getParameterMap(), typeId)) ;
+    private Object delete(WebRequest request, String typeId, String id) {
+        return nodeService.deleteNode(request.getParameterMap(), typeId, id) ;
     }
 
     @RequestMapping(value = "/node/{typeId}/{id}", method = RequestMethod.GET)
@@ -79,11 +98,11 @@ public class NodeController {
     }
 
     private Object read(WebRequest request, String typeId, String id) throws JsonProcessingException {
-        return JsonResponse.create(nodeService.readNode(request.getParameterMap(), typeId, id)) ;
+        return nodeService.readNode(request.getParameterMap(), typeId, id) ;
     }
 
     private Object read(WebRequest request, String typeId) throws JsonProcessingException {
-        return JsonResponse.create(nodeService.readNode(request.getParameterMap(), typeId)) ;
+        return nodeService.readNode(request.getParameterMap(), typeId) ;
     }
 
 
@@ -101,8 +120,10 @@ public class NodeController {
 
     private Object list(WebRequest request, @PathVariable String typeId) {
         try {
-            SimpleQueryResult simpleQueryResult = nodeService.getNodeList(typeId, request.getParameterMap()) ;
-            return JsonResponse.create(simpleQueryResult) ;
+            QueryResult queryResult = nodeService.getQueryResult(typeId, request.getParameterMap()) ;
+            return queryResult ;
+//            SimpleQueryResult simpleQueryResult = nodeService.getNodeList(typeId, request.getParameterMap()) ;
+//            return JsonResponse.create(simpleQueryResult) ;
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             if(e.getCause() instanceof ClassCastException){
@@ -147,8 +168,10 @@ public class NodeController {
 
     private Object code(WebRequest request, @PathVariable String typeId) {
         try {
-            SimpleQueryResult simpleQueryResult = nodeService.getNodeCode(typeId, request.getParameterMap()) ;
-            return JsonResponse.create(simpleQueryResult) ;
+            QueryResult queryResult = nodeService.getReferenceQueryResult(typeId, request.getParameterMap()) ;
+            return queryResult ;
+//            SimpleQueryResult simpleQueryResult = nodeService.getNodeCode(typeId, request.getParameterMap()) ;
+//            return JsonResponse.create(simpleQueryResult) ;
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             if(e.getCause() instanceof ClassCastException){
@@ -172,13 +195,14 @@ public class NodeController {
 
     @RequestMapping(value = "/node/query")
     @ResponseBody
-    public Object queryeRest(WebRequest request, @RequestParam(value = "query") String query) throws IOException {
-        return query(request, query);
+    public Object queryeRest(WebRequest request) throws IOException {
+        return query(request);
     }
 
-    private Object query(WebRequest request, String query) {
+    private Object query(WebRequest request) {
         try {
-            QueryResult queryResult = nodeService.getQueryResult(query) ;
+            Map<String, String[]> parameterMap = request.getParameterMap() ;
+            QueryResult queryResult = nodeService.getQueryResult(parameterMap) ;
             return queryResult ;
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
@@ -190,20 +214,24 @@ public class NodeController {
         }
     }
 
+    @RequestMapping(value = "/node/event")
+    @ResponseBody
+    public Object eventRest(HttpServletRequest request) throws IOException {
+        if (request instanceof MultipartHttpServletRequest) {
+            return nodeService.executeResult(request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap());
+        }
+        return nodeService.executeResult(request.getParameterMap(), null);
+    }
 
-    @RequestMapping(value = "/node/{typeId}/event/{event}", method = RequestMethod.POST)
+
+
+
+    @RequestMapping(value = "/node/{typeId}/event/{event}")
     @ResponseBody
     public Object eventJson(HttpServletRequest request, @PathVariable String typeId, @PathVariable String event) throws IOException {
-        return event(request, typeId, event);
+        return execute(request, typeId, event);
     }
 
-
-    private Object event(HttpServletRequest request, String typeId, String event) {
-        if(request instanceof MultipartHttpServletRequest) {
-            return JsonResponse.create(nodeService.event(request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap(), typeId, event)) ;
-        }
-        return JsonResponse.create(nodeService.event(request.getParameterMap(), null, typeId, event)) ;
-    }
 
 }
 

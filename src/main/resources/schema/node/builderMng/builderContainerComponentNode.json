@@ -1,51 +1,222 @@
 [
   {
     "typeId" : "builderContainerComponent",
+    "componentClassType": "",
     "componentClass": "IceGrid",
     "componentClassName": "GRID",
     "icon": "fa-object-ungroup",
-    "order": 10
+    "order": 10,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderContainerComponent",
+    "componentClassType": "TABLES",
     "componentClass": "DefaultList",
     "componentClassName": "DEFAULT LIST",
     "icon": "fa-list",
-    "order": 20
+    "order": 20,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderContainerComponent",
-    "componentClass": "EditList",
-    "componentClassName": "EDIT LIST",
+    "componentClassType": "TABLES",
+    "componentClass": "BootstrapListOne",
+    "componentClassName": "BOOTSTRAP LIST 1",
     "icon": "fa-list",
-    "order": 30
+    "order": 21,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderContainerComponent",
+    "componentClassType": "TABLES",
+    "componentClass": "BootstrapListTwo",
+    "componentClassName": "BOOTSTRAP LIST 2",
+    "icon": "fa-list",
+    "order": 22,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClassType": "TABLES",
     "componentClass": "DefaultListSearch",
     "componentClassName": "DEFAULT LIST SEARCH",
     "icon": "fa-search",
-    "order": 40
+    "order": 23,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderContainerComponent",
+    "componentClassType": "TABLES",
     "componentClass": "DefaultListFooter",
     "componentClassName": "DEFAULT LIST FOOTER",
     "icon": "fa-toggle-on",
-    "order": 50
+    "order": 24,
+    "active": true,
+    "componentChildren": ""
   },
   {
     "typeId" : "builderContainerComponent",
+    "componentClassType": "TABLES",
+    "componentClass": "DefaultTab",
+    "componentClassName": "DEFAULT TAB",
+    "icon": "fa-columns",
+    "order": 25,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClassType": "FORMS",
     "componentClass": "DefaultView",
     "componentClassName": "DEFAULT VIEW",
     "icon": "fa-square-o",
-    "order": 60
+    "order": 30,
+    "active": true,
+    "componentChildren": "DefaultFormFooter"
   },
   {
     "typeId" : "builderContainerComponent",
+    "componentClassType": "FORMS",
     "componentClass": "DefaultForm",
     "componentClassName": "DEFAULT FORM",
     "icon": "fa-edit",
-    "order": 70
+    "order": 31,
+    "active": true,
+    "componentChildren": "DefaultFormFooter"
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClassType": "FORMS",
+    "componentClass": "SortableForm",
+    "componentClassName": "SORTABLE FORM",
+    "icon": "fa-sort",
+    "order": 32,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClassType": "FORMS",
+    "componentClass": "NestableForm",
+    "componentClassName": "NESTABLE FORM",
+    "icon": "fa-indent",
+    "order": 33,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClassType": "FORMS",
+    "componentClass": "DefaultFormFooter",
+    "componentClassName": "DEFAULT FORM/VIEW FOOTER",
+    "icon": "fa-toggle-on",
+    "order": 32,
+    "active": false,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClassType": "CHARTS",
+    "componentClass": "BasicColumnChart",
+    "componentClassName": "BASIC COLUMN CHART",
+    "icon": "fa-bar-chart",
+    "order": 40,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClassType": "CHARTS",
+    "componentClass": "PieWidthLegendChart",
+    "componentClassName": "PIE WIDTH LEGEND CHART",
+    "icon": "fa-bar-chart",
+    "order": 41,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClassType": "CHARTS",
+    "componentClass": "BasicColumnAltChart",
+    "componentClassName": "BASIC COLUMN ALT CHART",
+    "icon": "fa-bar-chart",
+    "order": 42,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClassType": "CHARTS",
+    "componentClass": "StackedColumnChart",
+    "componentClassName": "STACKED COLUMN CHART",
+    "icon": "fa-bar-chart",
+    "order": 43,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClassType": "CHARTS",
+    "componentClass": "PolarChart",
+    "componentClassName": "POLAR CHART",
+    "icon": "fa-bar-chart",
+    "order": 44,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClassType": "CHARTS",
+    "componentClass": "BasicBarChart",
+    "componentClassName": "BASIC BAR CHART",
+    "icon": "fa-bar-chart",
+    "order": 45,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClassType": "CHARTS",
+    "componentClass": "StackedAreaChart",
+    "componentClassName": "STACKED AREA CHART",
+    "icon": "fa-bar-chart",
+    "order": 46,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClassType": "CHARTS",
+    "componentClass": "SpiderwebChart",
+    "componentClassName": "SPIDERWEB CHART",
+    "icon": "fa-bar-chart",
+    "order": 47,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClassType": "CALENDARS",
+    "componentClass": "DefaultFullCalendar",
+    "componentClassName": "FULL CALENDAR",
+    "icon": "fa-calendar",
+    "order": 50,
+    "active": true,
+    "componentChildren": ""
+  },
+  {
+    "typeId" : "builderContainerComponent",
+    "componentClassType": "TREE",
+    "componentClass": "DefaultTree",
+    "componentClassName": "DEFAULT TREE",
+    "icon": "fa-sitemap",
+    "order": 60,
+    "active": true,
+    "componentChildren": ""
   }
 ]

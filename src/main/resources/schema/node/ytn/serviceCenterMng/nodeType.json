@@ -1,0 +1,118 @@
+[
+  {
+    "parentId": "root",
+    "typeId": "nodeType",
+    "tid": "serviceCenterMng",
+    "typeName": "고객센터 관리",
+    "repositoryType": "path",
+    "eviction": 0
+  },
+  {
+    "parentId": "serviceCenterMng",
+    "typeId": "nodeType",
+    "tid": "oneToOneQuestion",
+    "typeName": "1대1문의",
+    "tableName": "ytnDevDb#oneToOneQuestion",
+    "repositoryType": "node",
+    "eviction": 100000
+  },
+  {
+    "parentId": "serviceCenterMng",
+    "typeId": "nodeType",
+    "tid": "oneToOneQuestionView",
+    "typeName": "1대1문의(VIEW)",
+    "tableName": "ytnDevDb#oneToOneQuestionView",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "serviceCenterMng",
+    "typeId": "nodeType",
+    "tid": "oneToOneAnswer",
+    "typeName": "1대1답변",
+    "tableName": "ytnDevDb#oneToOneAnswer",
+    "repositoryType": "node",
+    "eviction": 200000
+  },
+  {
+    "parentId": "serviceCenterMng",
+    "typeId": "nodeType",
+    "tid": "productQuestion",
+    "typeName": "QNA 질문",
+    "tableName": "ytnDevDb#productQuestion",
+    "repositoryType": "node",
+    "eviction": 100000
+  },
+  {
+    "parentId": "serviceCenterMng",
+    "typeId": "nodeType",
+    "tid": "productQuestionView",
+    "typeName": "QNA 질문(VIEW)",
+    "tableName": "ytnDevDb#productQuestionView",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "serviceCenterMng",
+    "typeId": "nodeType",
+    "tid": "productAnswer",
+    "typeName": "QNA 답변",
+    "tableName": "ytnDevDb#productAnswer",
+    "repositoryType": "node",
+    "eviction": 200000
+  },
+  {
+    "parentId": "serviceCenterMng",
+    "typeId": "nodeType",
+    "tid": "review",
+    "typeName": "상품평",
+    "tableName": "ytnDevDb#review",
+    "repositoryType": "node",
+    "eviction": 100000
+  },
+  {
+    "parentId": "serviceCenterMng",
+    "typeId": "nodeType",
+    "tid": "reviewView",
+    "typeName": "상품평(VIEW)",
+    "tableName": "ytnDevDb#reviewView",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "serviceCenterMng",
+    "typeId": "nodeType",
+    "tid": "reportReview",
+    "typeName": "상품평 신고",
+    "tableName": "ytnDevDb#reportReview",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "serviceCenterMng",
+    "typeId": "nodeType",
+    "tid": "frequentlyAskedQuestion",
+    "typeName": "FAQ",
+    "tableName": "ytnDevDb#frequentlyAskedQuestion",
+    "repositoryType": "node",
+    "eviction": 100
+  },
+  {
+    "parentId": "serviceCenterMng",
+    "typeId": "nodeType",
+    "tid": "commonNotice",
+    "typeName": "공지사항",
+    "tableName": "ytnDevDb#commonNotice",
+    "repositoryType": "node",
+    "eviction": 2000
+  },
+  {
+    "parentId": "serviceCenterMng",
+    "typeId": "nodeType",
+    "tid": "frequentlyUsedAnswer",
+    "typeName": "자주쓰는답변",
+    "tableName": "ytnDevDb#frequentlyUsedAnswer",
+    "repositoryType": "node",
+    "eviction": 100
+  }
+]

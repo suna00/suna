@@ -2,7 +2,7 @@
   {
     "typeId" : "propertyType",
     "tid": "nodeType",
-    "id": "nodeType@parentId",
+    "id": "nodeType>parentId",
     "pid": "parentId",
     "propertyTypeName": "Parent NodeType ID",
     "valueType": "REFERENCE",
@@ -13,20 +13,12 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "nodeType",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "nodeType",
-    "id": "nodeType@tid",
+    "id": "nodeType>tid",
     "pid": "tid",
     "propertyTypeName": "NodeType ID",
     "valueType": "STRING",
@@ -37,20 +29,12 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "nodeType",
-    "id": "nodeType@repositoryType",
+    "id": "nodeType>repositoryType",
     "pid": "repositoryType",
     "propertyTypeName": "Repository Type",
     "valueType": "CODE",
@@ -59,23 +43,16 @@
     "labelable": false,
     "treeable": false,
     "indexable": true,
+    "sortable" : true,
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "code": [{"value": "node", "label": "Node"}, {"value": "data", "label": "Data"}, {"value": "logic", "label": "Logic"}, {"value": "path", "label": "Path"}],
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "code": [{"value": "node", "label": "Node"}, {"value": "data", "label": "Data"}, {"value": "logic", "label": "Logic"}, {"value": "path", "label": "Path"}]
   },
   {
     "typeId" : "propertyType",
     "tid": "nodeType",
-    "id": "nodeType@typeName",
+    "id": "nodeType>typeName",
     "pid": "typeName",
     "propertyTypeName": "NodeType Name",
     "valueType": "STRING",
@@ -86,20 +63,28 @@
     "indexable": true,
     "analyzer": "cjk",
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "nodeType",
-    "id": "nodeType@eviction",
+    "id": "nodeType>clusterGroup",
+    "pid": "clusterGroup",
+    "propertyTypeName": "Clustering Group",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "nodeType",
+    "id": "nodeType>eviction",
     "pid": "eviction",
     "propertyTypeName": "Eviction Size",
     "valueType": "LONG",
@@ -111,20 +96,28 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "defaultValue": 10000,
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "defaultValue": 10000
   },
   {
     "typeId" : "propertyType",
     "tid": "nodeType",
-    "id": "nodeType@tableName",
+    "id": "nodeType>i18n",
+    "pid": "i18n",
+    "propertyTypeName": "I18N",
+    "valueType": "BOOLEAN",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "nodeType",
+    "id": "nodeType>tableName",
     "pid": "tableName",
     "propertyTypeName": "Table Name",
     "valueType": "STRING",
@@ -140,7 +133,7 @@
   {
     "typeId" : "propertyType",
     "tid": "nodeType",
-    "id": "nodeType@propertyTypes",
+    "id": "nodeType>propertyTypes",
     "pid": "propertyTypes",
     "propertyTypeName": "Property Type List",
     "valueType": "REFERENCED",
@@ -156,7 +149,7 @@
   {
     "typeId" : "propertyType",
     "tid": "nodeType",
-    "id": "nodeType@events",
+    "id": "nodeType>events",
     "pid": "events",
     "propertyTypeName": "Event List",
     "valueType": "REFERENCED",
@@ -172,7 +165,7 @@
   {
     "typeId" : "propertyType",
     "tid": "nodeType",
-    "id": "nodeType@eventListeners",
+    "id": "nodeType>eventListeners",
     "pid": "eventListeners",
     "propertyTypeName": "Event Listeners List",
     "valueType": "REFERENCED",
@@ -188,7 +181,7 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@tid",
+    "id": "propertyType>tid",
     "pid": "tid",
     "propertyTypeName": "NodeType ID",
     "valueType": "STRING",
@@ -199,20 +192,12 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@pid",
+    "id": "propertyType>pid",
     "pid": "pid",
     "propertyTypeName": "PropertyType ID",
     "valueType": "STRING",
@@ -223,20 +208,12 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@propertyTypeName",
+    "id": "propertyType>propertyTypeName",
     "pid": "propertyTypeName",
     "propertyTypeName": "PropertyType Name",
     "valueType": "STRING",
@@ -247,20 +224,12 @@
     "indexable": true,
     "analyzer": "standard",
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@valueType",
+    "id": "propertyType>valueType",
     "pid": "valueType",
     "propertyTypeName": "Value Type",
     "valueType": "CODE",
@@ -274,21 +243,29 @@
     "referenceValue": "",
     "code": [{"value": "STRING", "label": "String"}, {"value": "INT", "label": "Integer"}, {"value": "LONG", "label": "Long"}, {"value": "DOUBLE", "label": "double"},
       {"value": "BOOLEAN", "label": "Boolean"}, {"value": "DATE", "label": "Date"}, {"value": "TEXT", "label": "Text"}, {"value": "FILE", "label": "File"},
-      {"value": "REFERENCE", "label": "Reference"},
-      {"value": "REFERENCED", "label": "Referenced List"}, {"value": "ARRAY", "label": "Data Array"}, {"value": "OBJECT", "label": "Data Object"}],
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+      {"value": "REFERENCE", "label": "Reference"},{"value": "REFERENCES", "label": "Multi Reference"}, {"value": "REFERENCED", "label": "Referenced List"},
+      {"value": "ARRAY", "label": "Data Array"}, {"value": "OBJECT", "label": "Data Object"}, {"value": "CONTENT", "label": "Content Builder"}]
   },
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@required",
+    "id": "propertyType>defaultValue",
+    "pid": "defaultValue",
+    "propertyTypeName": "Default Value",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "propertyType",
+    "id": "propertyType>required",
     "pid": "required",
     "propertyTypeName": "Required",
     "valueType": "BOOLEAN",
@@ -299,20 +276,12 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": false, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@idable",
+    "id": "propertyType>idable",
     "pid": "idable",
     "propertyTypeName": "ID Able",
     "valueType": "BOOLEAN",
@@ -323,20 +292,12 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": false, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@labelable",
+    "id": "propertyType>labelable",
     "pid": "labelable",
     "propertyTypeName": "Label Able",
     "valueType": "BOOLEAN",
@@ -347,20 +308,12 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": false, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@treeable",
+    "id": "propertyType>treeable",
     "pid": "treeable",
     "propertyTypeName": "Tree Able",
     "valueType": "BOOLEAN",
@@ -371,20 +324,44 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": false, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@indexable",
+    "id": "propertyType>ignoreHierarchyValue",
+    "pid": "ignoreHierarchyValue",
+    "propertyTypeName": "Ignore Hierarchy Value",
+    "valueType": "BOOLEAN",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "propertyType",
+    "id": "propertyType>i18n",
+    "pid": "i18n",
+    "propertyTypeName": "I18N",
+    "valueType": "BOOLEAN",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "propertyType",
+    "id": "propertyType>indexable",
     "pid": "indexable",
     "propertyTypeName": "Index Able",
     "valueType": "BOOLEAN",
@@ -395,20 +372,28 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": false, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@analyzer",
+    "id": "propertyType>sortable",
+    "pid": "sortable",
+    "propertyTypeName": "Sorting Able",
+    "valueType": "BOOLEAN",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "propertyType",
+    "id": "propertyType>analyzer",
     "pid": "analyzer",
     "propertyTypeName": "Analyzer",
     "valueType": "CODE",
@@ -420,20 +405,12 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "code": [{"value": "simple", "label": "Simple Analyzer"}, {"value": "standard", "label": "Standard Analyzer"}, {"value": "cjk", "label": "CJK Analyzer"}, {"value": "code", "label": "Code Analyzer"}],
-    "validationTypes": {
-      "required": { "value": false, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "code": [{"value": "simple", "label": "Simple Analyzer"}, {"value": "standard", "label": "Standard Analyzer"}, {"value": "cjk", "label": "CJK Analyzer"}, {"value": "code", "label": "Code Analyzer"}]
   },
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@referenceType",
+    "id": "propertyType>referenceType",
     "pid": "referenceType",
     "propertyTypeName": "ReferenceType ID",
     "valueType": "REFERENCE",
@@ -444,20 +421,12 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "nodeType",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": false, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@referenceValue",
+    "id": "propertyType>referenceValue",
     "pid": "referenceValue",
     "propertyTypeName": "Reference Property ID",
     "valueType": "REFERENCE",
@@ -468,21 +437,80 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "propertyType",
-    "referenceValue": "",
-    "parentValue": "tid",
-    "validationTypes": {
-      "required": { "value": false, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@code",
+    "id": "propertyType>codeFilter",
+    "pid": "codeFilter",
+    "propertyTypeName": "Code Property Filter",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": "",
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "propertyType",
+    "id": "propertyType>referencedFilter",
+    "pid": "referencedFilter",
+    "propertyTypeName": "Referenced Property Filter",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": "",
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "propertyType",
+    "id": "propertyType>options",
+    "pid": "options",
+    "propertyTypeName": "Options",
+    "valueType": "JSON",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "parentValue": "",
+    "defaultValue": "{}"
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "propertyType",
+    "id": "propertyType>fileHandler",
+    "pid": "fileHandler",
+    "propertyTypeName": "File Handler",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "",
+    "referenceValue": "",
+    "parentValue": "",
+    "defaultValue": "default"
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "propertyType",
+    "id": "propertyType>code",
     "pid": "code",
     "propertyTypeName": "Code List",
     "valueType": "ARRAY",
@@ -498,7 +526,7 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@idType",
+    "id": "propertyType>idType",
     "pid": "idType",
     "propertyTypeName": "ID Type",
     "valueType": "CODE",
@@ -515,7 +543,7 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@max",
+    "id": "propertyType>max",
     "pid": "max",
     "propertyTypeName": "Max",
     "valueType": "INT",
@@ -531,23 +559,23 @@
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@validationTypes",
+    "id": "propertyType>validationTypes",
     "pid": "validationTypes",
     "propertyTypeName": "Validation",
-    "valueType": "OBJECT",
+    "valueType": "REFERENCED",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": false,
     "analyzer": null,
-    "referenceType": "",
-    "referenceValue": ""
+    "referenceType": "propertyTypeValidation",
+    "referenceValue": "propertyTypeId"
   },
   {
     "typeId" : "propertyType",
     "tid": "propertyType",
-    "id": "propertyType@length",
+    "id": "propertyType>length",
     "pid": "length",
     "propertyTypeName": "Length",
     "valueType": "INT",
@@ -562,7 +590,56 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "event@tid",
+    "tid": "propertyTypeValidation",
+    "id": "propertyTypeValidation>id",
+    "pid": "id",
+    "propertyTypeName": "Id",
+    "valueType": "STRING",
+    "required": true,
+    "idable": true,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "",
+    "referenceValue": "",
+    "idType": "UUID"
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "propertyTypeValidation",
+    "id": "propertyTypeValidation>propertyTypeId",
+    "pid": "propertyTypeId",
+    "propertyTypeName": "PropertyTypeId",
+    "valueType": "REFERENCE",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "propertyType",
+    "referenceValue": "id"
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "propertyTypeValidation",
+    "id": "propertyTypeValidation>validation",
+    "pid": "validation",
+    "propertyTypeName": "Validation",
+    "valueType": "OBJECT",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "id": "event>tid",
     "tid": "event",
     "pid": "tid",
     "propertyTypeName": "NodeType ID",
@@ -578,7 +655,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "event@event",
+    "id": "event>event",
     "tid": "event",
     "pid": "event",
     "propertyTypeName": "Event",
@@ -594,7 +671,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "event@eventName",
+    "id": "event>eventName",
     "tid": "event",
     "pid": "eventName",
     "propertyTypeName": "Event Name",
@@ -610,7 +687,23 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "event@eventActions",
+    "id": "event>noneExecute",
+    "tid": "event",
+    "pid": "noneExecute",
+    "propertyTypeName": "None Execute Event",
+    "valueType": "BOOLEAN",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": "",
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "id": "event>eventActions",
     "tid": "event",
     "pid": "eventActions",
     "propertyTypeName": "Event Action List",
@@ -626,7 +719,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "event@eventListeners",
+    "id": "event>eventListeners",
     "tid": "event",
     "pid": "eventListeners",
     "propertyTypeName": "Event Listener List",
@@ -642,7 +735,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "eventAction@event",
+    "id": "eventAction>event",
     "tid": "eventAction",
     "pid": "event",
     "propertyTypeName": "Event",
@@ -658,7 +751,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "eventAction@action",
+    "id": "eventAction>action",
     "tid": "eventAction",
     "pid": "action",
     "propertyTypeName": "Action",
@@ -674,7 +767,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "eventAction@actionType",
+    "id": "eventAction>actionType",
     "tid": "eventAction",
     "pid": "actionType",
     "propertyTypeName": "Action Type",
@@ -691,7 +784,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "eventAction@datasource",
+    "id": "eventAction>datasource",
     "tid": "eventAction",
     "pid": "datasource",
     "propertyTypeName": "Datasource",
@@ -707,7 +800,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "eventAction@actionBody",
+    "id": "eventAction>actionBody",
     "tid": "eventAction",
     "pid": "actionBody",
     "propertyTypeName": "Action Body",
@@ -723,7 +816,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "eventAction@order",
+    "id": "eventAction>order",
     "tid": "eventAction",
     "pid": "order",
     "propertyTypeName": "Action Order",
@@ -739,7 +832,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "eventListener@tid",
+    "id": "eventListener>tid",
     "tid": "eventListener",
     "pid": "tid",
     "propertyTypeName": "Node Type",
@@ -755,7 +848,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "eventListener@event",
+    "id": "eventListener>event",
     "tid": "eventListener",
     "pid": "event",
     "propertyTypeName": "Event",
@@ -771,7 +864,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "eventListener@actionType",
+    "id": "eventListener>actionType",
     "tid": "eventListener",
     "pid": "actionType",
     "propertyTypeName": "Action Type",
@@ -788,7 +881,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "eventListener@datasource",
+    "id": "eventListener>datasource",
     "tid": "eventListener",
     "pid": "datasource",
     "propertyTypeName": "Datasource",
@@ -804,7 +897,7 @@
   },
   {
     "typeId" : "propertyType",
-    "id": "eventListener@actionBody",
+    "id": "eventListener>actionBody",
     "tid": "eventListener",
     "pid": "actionBody",
     "propertyTypeName": "Action Body",

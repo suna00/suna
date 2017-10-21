@@ -71,14 +71,13 @@ public class NodeBindingController {
         return list(request, typeId);
     }
 
-    private Object list(@PathVariable String typeId) {
-        return ResponseUtils.response(nodeBindingService.list(typeId));
-    }
+//    private Object list(@PathVariable String typeId) {
+//        return ResponseUtils.response(nodeBindingService.list(typeId));
+//    }
 
     private Object list(WebRequest request, @PathVariable String typeId) {
-        return ResponseUtils.response(nodeBindingService.list(typeId, request));
+        return nodeBindingService.list(typeId, request);
     }
-
 
     @RequestMapping(value = "/data/{typeId}/{id}", method = RequestMethod.GET)
     @ResponseBody
@@ -95,7 +94,7 @@ public class NodeBindingController {
 
     private Object read(WebRequest request, String typeId, String id) throws JsonProcessingException {
         try {
-            return JsonResponse.create(nodeBindingService.read(typeId, id));
+            return nodeBindingService.read(request.getParameterMap(), typeId, id);
         } catch (EmptyResultDataAccessException e) {
             return JsonErrorResponse.error(e);
         }
@@ -104,7 +103,7 @@ public class NodeBindingController {
     private Object read(WebRequest request, String typeId) throws JsonProcessingException {
         try {
 
-            return JsonResponse.create(nodeBindingService.read(request.getParameterMap(), typeId));
+            return nodeBindingService.read(request.getParameterMap(), typeId);
         } catch (EmptyResultDataAccessException e) {
             return JsonErrorResponse.error(e);
         }

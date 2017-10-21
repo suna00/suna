@@ -2,8 +2,8 @@
   {
     "typeId" : "propertyType",
     "tid": "groupCode",
-    "id": "groupCode@id",
-    "pid": "id",
+    "id": "groupCode>groupCodeId",
+    "pid": "groupCodeId",
     "propertyTypeName": "그룹코드 아이디",
     "valueType": "STRING",
     "required": true,
@@ -13,20 +13,12 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "groupCode",
-    "id": "groupCode@name",
+    "id": "groupCode>name",
     "pid": "name",
     "propertyTypeName": "그룹코드 명",
     "valueType": "STRING",
@@ -37,20 +29,12 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "groupCode",
-    "id": "groupCode@active",
+    "id": "groupCode>active",
     "pid": "active",
     "propertyTypeName": "활성 여부",
     "valueType": "BOOLEAN",
@@ -61,20 +45,12 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": false, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "code",
-    "id": "code@groupCodeId",
+    "id": "code>groupCodeId",
     "pid": "groupCodeId",
     "propertyTypeName": "그룹코드 아이디",
     "valueType": "STRING",
@@ -85,21 +61,13 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "groupCode",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "code",
-    "id": "code@id",
-    "pid": "id",
+    "id": "code>codeId",
+    "pid": "codeId",
     "propertyTypeName": "코드 아이디",
     "valueType": "STRING",
     "required": true,
@@ -109,20 +77,12 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "code",
-    "id": "code@name",
+    "id": "code>name",
     "pid": "name",
     "propertyTypeName": "코드 명",
     "valueType": "STRING",
@@ -133,20 +93,12 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "code",
-    "id": "code@order",
+    "id": "code>order",
     "pid": "order",
     "propertyTypeName": "정렬 순서",
     "valueType": "LONG",
@@ -158,20 +110,12 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "defaultValue": 0,
-    "validationTypes": {
-      "required": { "value": false, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "defaultValue": 0
   },
   {
     "typeId" : "propertyType",
     "tid": "code",
-    "id": "code@active",
+    "id": "code>active",
     "pid": "active",
     "propertyTypeName": "활성 여부",
     "valueType": "BOOLEAN",
@@ -182,14 +126,6 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": false, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   }
 ]

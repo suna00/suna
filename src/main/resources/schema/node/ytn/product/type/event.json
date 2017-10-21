@@ -1,0 +1,50 @@
+[
+  {
+    "typeId": "event",
+    "tid": "product",
+    "event": "sabangnet",
+    "noneExecute": true,
+    "eventName": "상품"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "product>sabangnet",
+    "action": "saveProduct",
+    "actionName": "사방넷 표준 상품 등록 API",
+    "actionType": "service",
+    "actionBody": "productService.save",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "product",
+    "event": "make",
+    "noneExecute": true,
+    "eventName": "상품"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "product>make",
+    "action": "saveProduct",
+    "actionName": "상품 등록 API",
+    "actionType": "service",
+    "actionBody": "productService.make",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "product",
+    "event": "getGroupCount",
+    "noneExecute": true,
+    "eventName": "검색카테고리 그룹카운트"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "product>getGroupCount",
+    "action": "getGroupCount",
+    "actionName": "검색카테고리 그룹카운트",
+    "actionType": "service",
+    "actionBody": "productSearchService.getGroupCount",
+    "order": 1
+  }
+]

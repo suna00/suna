@@ -2,14 +2,16 @@ package net.ion.ice.core.event;
 
 import net.ion.ice.core.node.Node;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by jaeho on 2017. 7. 12..
  */
-public class Event {
+public class Event implements Serializable{
     public static final String EVENT = "event";
+    public static final String NONE_EXECUTE = "noneExecute";
 
     private Node eventNode;
     private List<EventAction> eventActions;
@@ -52,14 +54,41 @@ public class Event {
         if(eventActions == null){
             eventActions = new ArrayList<>() ;
         }
-        eventActions.add(eventAction) ;
+        boolean exist = false ;
+        for(EventAction action : eventActions){
+            if(action.getId().equals(eventAction.getId())){
+                action = eventAction ;
+                exist = true;
+                break ;
+            }
+        }
+        if(!exist) {
+            eventActions.add(eventAction);
+        }
     }
 
     public void addEventListener(EventListener eventListener) {
         if(eventListeners == null){
             eventListeners = new ArrayList<>() ;
         }
-        eventListeners.add(eventListener) ;
+        boolean exist = false ;
+        for(EventListener listener : eventListeners){
+            if(listener.getId().equals(eventListener.getId())){
+                listener = eventListener ;
+                exist = true;
+                break ;
+            }
+        }
+        if(!exist) {
+            eventListeners.add(eventListener);
+        }
     }
 
+    public String getId() {
+        return eventNode.getId();
+    }
+
+    public boolean isNoneExecute(){
+        return eventNode.getBooleanValue(NONE_EXECUTE) ;
+    }
 }

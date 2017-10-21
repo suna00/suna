@@ -1,10 +1,10 @@
 package net.ion.ice.core.node;
 
-import infinispan.com.mchange.lang.ObjectUtils;
 import net.ion.ice.core.infinispan.lucene.AnalyzerFactory;
 import org.apache.lucene.analysis.Analyzer;
+import org.stagemonitor.util.StringUtils;
 
-import java.util.BitSet;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,18 +12,22 @@ import java.util.Map;
 /**
  * Created by jaeho on 2017. 5. 15..
  */
-public class PropertyType {
+public class PropertyType implements Serializable{
     public static final String PROPERTYTYPE = "propertyType";
     public static final String DEFAULT_VALUE = "defaultValue";
     public static final String ID_TYPE = "idType";
     public static final String VALUE_TYPE = "valueType";
     public static final String REFERENCE_TYPE = "referenceType";
     public static final String REFERENCE_VALUE = "referenceValue";
+    public static final String REFERENCE_VIEW = "referenceView";
+    public static final String CODE_FILTER = "codeFilter";
+    public static final String REFERENCED_FILTER = "referencedFilter";
 
     public static final String FILE_HANDLER = "fileHandler";
+    public static final String SORTABLE = "sortable";
 
 
-    public enum ValueType {STRING, CODE, DATE, LONG, INT, DOUBLE, BOOLEAN, REFERENCED, REFERENCE, TEXT, ARRAY, OBJECT, JSON, FILE}
+    public enum ValueType {STRING, CODE, DATE, LONG, INT, DOUBLE, BOOLEAN, REFERENCED, REFERENCE, REFERENCES, TEXT, ARRAY, OBJECT, JSON, FILE, FILES, CONTENT}
 
     public enum AnalyzerType {simple, code, whitespace, standard, cjk, korean}
 
@@ -37,7 +41,11 @@ public class PropertyType {
     public static final String LABELABLE = "labelable";
     public static final String REQUIRED = "required";
     public static final String TREEABLE = "treeable";
+    public static final String IGNORE_HIERARCHY_VALUE = "ignoreHierarchyValue";
     public static final String LENGTH = "length";
+
+    public static final String I18N = "i18n";
+
 
     public static final String TID = "tid";
     public static final String PID = "pid";
@@ -62,36 +70,41 @@ public class PropertyType {
         try {
             return AnalyzerType.valueOf(getAnalyzer());
         } catch (NullPointerException e) {
-            return null;
-        }
-    }
-
-    public Analyzer getLuceneAnalyzer() {
-        AnalyzerType analyzerType = getAnalyzerType();
-        if (analyzerType == null) {
             if (isIdable()) {
-                analyzerType = PropertyType.AnalyzerType.code;
+                return PropertyType.AnalyzerType.code;
             } else if (isLabelable()) {
-                analyzerType = PropertyType.AnalyzerType.cjk;
+                return PropertyType.AnalyzerType.cjk;
             } else {
                 switch (getValueType()) {
                     case CODE: {
-                        analyzerType = PropertyType.AnalyzerType.code;
-                        break;
+                        return PropertyType.AnalyzerType.code;
                     }
                     case TEXT: {
-                        analyzerType = PropertyType.AnalyzerType.standard;
-                        break;
+                        return PropertyType.AnalyzerType.standard;
                     }
                     default: {
-                        analyzerType = PropertyType.AnalyzerType.simple;
-                        break;
+                        return PropertyType.AnalyzerType.simple;
                     }
                 }
             }
         }
+    }
+
+
+    public Analyzer getLuceneAnalyzer() {
+        AnalyzerType analyzerType = getAnalyzerType();
+
         return AnalyzerFactory.getAnalyzer(analyzerType);
     }
+
+    public boolean isSorted(){
+        switch (getAnalyzerType()){
+            case simple:
+                return true ;
+        }
+        return false ;
+    }
+
 
     public boolean isIdable() {
         return propertyTypeNode.getBooleanValue(IDABLE);
@@ -99,6 +112,7 @@ public class PropertyType {
 
     public IdType getIdType() {
         Object idType = propertyTypeNode.get(ID_TYPE);
+
         if (idType instanceof IdType) return (IdType) idType;
         return IdType.valueOf((String) idType);
     }
@@ -151,9 +165,20 @@ public class PropertyType {
         return propertyTypeNode.getStringValue(REFERENCE_VALUE);
     }
 
+    public String getCodeFilter() {
+        return propertyTypeNode.getStringValue(CODE_FILTER);
+    }
+
+    public String getReferencedFilter() {
+        return propertyTypeNode.getStringValue(REFERENCED_FILTER);
+    }
 
     public boolean isTreeable() {
         return propertyTypeNode.getBooleanValue(TREEABLE);
+    }
+
+    public boolean isIgnoreHierarchyValue() {
+        return propertyTypeNode.getBooleanValue(IGNORE_HIERARCHY_VALUE);
     }
 
     public boolean hasDefaultValue() {
@@ -169,6 +194,12 @@ public class PropertyType {
         if (codeMap == null) {
             codeMap = new HashMap<>();
             Collection<Map<String, Object>> codeValues = (Collection<Map<String, Object>>) propertyTypeNode.get("code");
+            if(codeValues == null){
+                codeValues =  (Collection<Map<String, Object>>) propertyTypeNode.get("code");
+            }
+            if(codeValues == null){
+                return null ;
+            }
             for (Map<String, Object> codeValue : codeValues) {
                 codeMap.put(codeValue.get("value"), new Code(codeValue));
             }
@@ -177,7 +208,11 @@ public class PropertyType {
     }
 
     public String getFileHandler() {
-        return propertyTypeNode.getStringValue(FILE_HANDLER);
+        String handler = propertyTypeNode.getStringValue(FILE_HANDLER);
+        if(StringUtils.isEmpty(handler)){
+            return "default" ;
+        }
+        return handler ;
     }
 
     public Integer getLength() {
@@ -196,4 +231,32 @@ public class PropertyType {
         }
         return (Integer) propertyTypeNode.getValue(LENGTH);
     }
+
+    public boolean isI18n() {
+        return propertyTypeNode.getBooleanValue(I18N);
+    }
+    public boolean isReferenceView() {
+        return propertyTypeNode.getBooleanValue(REFERENCE_VIEW);
+    }
+
+    public boolean isSortable() {
+        return propertyTypeNode.getBooleanValue(SORTABLE);
+    }
+
+    public boolean isNumeric(){
+        switch (getValueType()){
+            case INT: case LONG: case DOUBLE: case DATE:
+                return true ;
+        }
+        return false ;
+    }
+
+    public boolean isList() {
+        switch (getValueType()){
+            case ARRAY: case REFERENCED: case REFERENCES:
+                return true ;
+        }
+        return false ;
+    }
+
 }

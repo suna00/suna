@@ -6,6 +6,7 @@ package net.ion.ice.core.file;
 
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.node.PropertyType;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -17,15 +18,12 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.URL;
 import java.util.Date;
 import java.util.UUID;
 
 /**
  * A conditional configuration that potentially adds the bean definitions in
- * this class to the Spring application context, depending on whether the
+ * this class to the Spring application context, depending on whether theㅁㅁ
  * {@code @ConditionalOnExpression} is true or not.
  *
  */
@@ -54,7 +52,7 @@ public class DefaultFileRepository implements FileRepository{
     }
 
     @Override
-    public String saveMutipartFile(PropertyType pt, String id, MultipartFile multipartFile ) {
+    public FileValue saveMutipartFile(PropertyType pt, String id, MultipartFile multipartFile ) {
         String savePath = pt.getTid() + "/" +  pt.getPid() + "/" + DateFormatUtils.format(new Date(), "yyyyMM/dd/") + UUID.randomUUID() + "." + StringUtils.substringAfterLast(multipartFile.getOriginalFilename(), ".");
         File saveFile = new File(fileRoot, savePath) ;
         try {
@@ -67,12 +65,47 @@ public class DefaultFileRepository implements FileRepository{
             throw new RuntimeException("FILE SAVE ERROR : " + e.getMessage()) ;
         }
 
-        return savePath ;
+        return new FileValue(pt, id, multipartFile, savePath) ;
+    }
+
+    @Override
+    public FileValue saveFile(PropertyType pt, String id, File file, String fileName, String contentType) {
+        String savePath = pt.getTid() + "/" +  pt.getPid() + "/" + DateFormatUtils.format(new Date(), "yyyyMM/dd/") + UUID.randomUUID() + "." + StringUtils.substringAfterLast(file.getName(), ".");
+        File saveFile = new File(fileRoot, savePath) ;
+        try {
+            if(!saveFile.getParentFile().exists()){
+                saveFile.getParentFile().mkdirs() ;
+            }
+
+            FileUtils.copyFile(file, saveFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("FILE SAVE ERROR : " + e.getMessage()) ;
+        }
+
+        return new FileValue(pt, id, file, savePath, fileName, contentType) ;
     }
 
     @Override
     public Resource loadAsResource(String path) {
         File file = new File(fileRoot, path) ;
         return new FileSystemResource(file);
+    }
+
+
+    @Override
+    public FileValue saveResourceFile(PropertyType pt, String id, String path) {
+        if(path.startsWith("/")) path = "file:" + path ;
+        Resource res = ApplicationContextManager.getResource(path) ;
+
+        String savePath = pt.getTid() + "/" +  pt.getPid() + "/" + DateFormatUtils.format(new Date(), "yyyyMM/dd/") + UUID.randomUUID() + "." + StringUtils.substringAfterLast(res.getFilename(), ".");
+        File saveFile = new File(fileRoot, savePath) ;
+        try {
+            org.apache.commons.io.FileUtils.copyToFile(res.getInputStream(), saveFile) ;
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException("FILE SAVE ERROR : " + e.getMessage()) ;
+        }
+        return new FileValue(pt, res, savePath);
     }
 }

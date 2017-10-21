@@ -2,7 +2,7 @@
   {
     "typeId" : "propertyType",
     "tid": "adminGnbMenu",
-    "id": "adminGnbMenu@backOfficeId",
+    "id": "adminGnbMenu>backOfficeId",
     "pid": "backOfficeId",
     "propertyTypeName": "백오피스",
     "valueType": "REFERENCE",
@@ -13,20 +13,12 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "backOffice",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "adminGnbMenu",
-    "id": "adminGnbMenu@menuId",
+    "id": "adminGnbMenu>menuId",
     "pid": "menuId",
     "propertyTypeName": "메뉴 아이디",
     "valueType": "STRING",
@@ -37,20 +29,12 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "adminGnbMenu",
-    "id": "adminGnbMenu@menuName",
+    "id": "adminGnbMenu>menuName",
     "pid": "menuName",
     "propertyTypeName": "메뉴 명",
     "valueType": "STRING",
@@ -61,20 +45,12 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "adminGnbMenu",
-    "id": "adminGnbMenu@order",
+    "id": "adminGnbMenu>order",
     "pid": "order",
     "propertyTypeName": "메뉴 순서",
     "valueType": "LONG",
@@ -86,20 +62,12 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "defaultValue": 0,
-    "validationTypes": {
-      "required": { "value": false, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "defaultValue": 0
   },
   {
     "typeId" : "propertyType",
     "tid": "adminGnbMenu",
-    "id": "adminGnbMenu@icon",
+    "id": "adminGnbMenu>icon",
     "pid": "icon",
     "propertyTypeName": "아이콘",
     "valueType": "STRING",
@@ -110,20 +78,12 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": false, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "adminGnbMenu",
-    "id": "adminGnbMenu@active",
+    "id": "adminGnbMenu>active",
     "pid": "active",
     "propertyTypeName": "활성 여부",
     "valueType": "BOOLEAN",
@@ -134,20 +94,12 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": false, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "adminLnbMenu",
-    "id": "adminLnbMenu@backOfficeId",
+    "id": "adminLnbMenu>backOfficeId",
     "pid": "backOfficeId",
     "propertyTypeName": "백오피스",
     "valueType": "REFERENCE",
@@ -158,68 +110,43 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "backOffice",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "adminLnbMenu",
-    "id": "adminLnbMenu@gnbMenuId",
+    "id": "adminLnbMenu>gnbMenuId",
     "pid": "gnbMenuId",
     "propertyTypeName": "GNB 아이디",
-    "valueType": "REFERENCE",
+    "valueType": "STRING",
     "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "adminGnbMenu",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceType": "",
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "adminLnbMenu",
-    "id": "adminLnbMenu@parentMenuId",
+    "id": "adminLnbMenu>parentMenuId",
     "pid": "parentMenuId",
     "propertyTypeName": "상위 메뉴 아이디",
-    "valueType": "REFERENCE",
+    "valueType": "STRING",
     "required": true,
     "idable": true,
     "labelable": false,
     "treeable": true,
     "indexable": true,
     "analyzer": null,
-    "referenceType": "adminLnbMenu",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceType": "adminLnbMenu"
   },
   {
     "typeId" : "propertyType",
     "tid": "adminLnbMenu",
-    "id": "adminLnbMenu@menuId",
+    "id": "adminLnbMenu>menuId",
     "pid": "menuId",
     "propertyTypeName": "메뉴 아이디",
     "valueType": "STRING",
@@ -230,20 +157,12 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "adminLnbMenu",
-    "id": "adminLnbMenu@menuName",
+    "id": "adminLnbMenu>menuName",
     "pid": "menuName",
     "propertyTypeName": "메뉴 명",
     "valueType": "STRING",
@@ -254,20 +173,12 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "adminLnbMenu",
-    "id": "adminLnbMenu@order",
+    "id": "adminLnbMenu>order",
     "pid": "order",
     "propertyTypeName": "메뉴 순서",
     "valueType": "LONG",
@@ -279,20 +190,12 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "defaultValue": 0,
-    "validationTypes": {
-      "required": { "value": false, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "defaultValue": 0
   },
   {
     "typeId" : "propertyType",
     "tid": "adminLnbMenu",
-    "id": "adminLnbMenu@icon",
+    "id": "adminLnbMenu>icon",
     "pid": "icon",
     "propertyTypeName": "아이콘",
     "valueType": "STRING",
@@ -303,20 +206,12 @@
     "indexable": false,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": false, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "adminLnbMenu",
-    "id": "adminLnbMenu@active",
+    "id": "adminLnbMenu>active",
     "pid": "active",
     "propertyTypeName": "활성 여부",
     "valueType": "BOOLEAN",
@@ -327,20 +222,12 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": false, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "adminLnbMenu",
-    "id": "adminLnbMenu@index",
+    "id": "adminLnbMenu>index",
     "pid": "index",
     "propertyTypeName": "Index 여부",
     "valueType": "BOOLEAN",
@@ -351,20 +238,12 @@
     "indexable": true,
     "analyzer": null,
     "referenceType": "",
-    "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": false, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "referenceValue": ""
   },
   {
     "typeId" : "propertyType",
     "tid": "adminLnbMenu",
-    "id": "adminLnbMenu@pages",
+    "id": "adminLnbMenu>pages",
     "pid": "pages",
     "propertyTypeName": "Pages",
     "valueType": "OBJECT",
@@ -376,19 +255,13 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": false, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "defaultValue": "[{\"pageName\": \"목록\",\"pageUrl\": \"list\"},{\"pageName\": \"등록\",\"pageUrl\": \"createForm\"},{\"pageName\": \"수정\",\"pageUrl\": \"updateForm\"},{\"pageName\": \"상세\",\"pageUrl\": \"view\"}]",
+    "options": "{\"schema\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"pageName\":{\"type\":\"string\"},\"pageUrl\":{\"type\":\"string\"}},\"required\":[\"pageName\",\"pageUrl\"],\"collapsed\":true}}}"
   },
   {
     "typeId" : "propertyType",
     "tid": "adminLnbMenu",
-    "id": "adminLnbMenu@customPages",
+    "id": "adminLnbMenu>customPages",
     "pid": "customPages",
     "propertyTypeName": "Custom Pages",
     "valueType": "OBJECT",
@@ -400,13 +273,6 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": "",
-    "validationTypes": {
-      "required": { "value": false, "description": "필수 값 입니다." },
-      "duplicated": { "value": false, "description": "중복된 값 입니다." },
-      "min": { "value": 0, "description": "최소 값 입니다." },
-      "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "확장자를 허용하지 않습니다." },
-      "regularExpression": { "value": "", "description": "" }
-    }
+    "options": "{\"schema\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"pageName\":{\"type\":\"string\"},\"pageUrl\":{\"type\":\"string\"}},\"required\":[\"pageName\",\"pageUrl\"],\"collapsed\":true}}}"
   }
 ]

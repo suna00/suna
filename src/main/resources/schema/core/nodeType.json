@@ -1,4 +1,16 @@
 [
+
+  {
+    "parentId" : "",
+    "typeId" : "nodeType",
+    "id" : "root",
+    "tid" : "root",
+    "typeName" : "ROOT",
+    "repositoryType" : "path",
+    "tableName": "",
+    "clusterGroup": "all",
+    "eviction" : 0
+  },
   {
     "parentId" : "root",
     "typeId" : "nodeType",
@@ -6,6 +18,8 @@
     "tid" : "system",
     "typeName" : "System",
     "repositoryType" : "path",
+    "tableName": "",
+    "clusterGroup": "all",
     "eviction" : 0
   },
   {
@@ -15,6 +29,8 @@
     "tid" : "nodeType",
     "typeName" : "NodeType",
     "repositoryType" : "node",
+    "tableName": "",
+    "clusterGroup": "all",
     "eviction" : 1000
   },
   {
@@ -24,7 +40,19 @@
     "tid" : "propertyType",
     "typeName" : "PropertyType",
     "repositoryType" : "node",
+    "tableName": "",
+    "clusterGroup": "all",
     "eviction" : 10000
+  },
+  {
+    "parentId" : "system",
+    "typeId" : "nodeType",
+    "id" : "propertyTypeValidation",
+    "tid" : "propertyTypeValidation",
+    "typeName" : "PropertyType Validation",
+    "repositoryType" : "node",
+    "clusterGroup": "all",
+    "eviction" : 30000
   },
   {
     "parentId" : "system",
@@ -33,6 +61,8 @@
     "tid" : "dataSource",
     "typeName" : "DataSource",
     "repositoryType" : "node",
+    "tableName": "",
+    "clusterGroup": "all",
     "eviction" : 10
   },
   {
@@ -42,6 +72,8 @@
     "tid" : "event",
     "typeName" : "Event",
     "repositoryType" : "node",
+    "tableName": "",
+    "clusterGroup": "all",
     "eviction" : 1000
   },
   {
@@ -51,6 +83,8 @@
     "tid" : "eventAction",
     "typeName" : "Event Action",
     "repositoryType" : "node",
+    "tableName": "",
+    "clusterGroup": "all",
     "eviction" : 1000
   },
   {
@@ -60,6 +94,19 @@
     "tid" : "eventListener",
     "typeName" : "Event Listener",
     "repositoryType" : "node",
+    "tableName": "",
+    "clusterGroup": "all",
+    "eviction" : 1000
+  },
+  {
+    "parentId" : "system",
+    "typeId" : "nodeType",
+    "id" : "eventAction",
+    "tid" : "eventAction",
+    "typeName" : "Event Action",
+    "repositoryType" : "node",
+    "tableName": "",
+    "clusterGroup": "all",
     "eviction" : 1000
   }
 ]

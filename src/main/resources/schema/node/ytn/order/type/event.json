@@ -1,0 +1,98 @@
+[
+  {
+    "typeId": "event",
+    "tid": "orderChange",
+    "event": "getRefundablePrice",
+    "noneExecute": true,
+    "eventName": "취소대상 선택"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "orderChange>getRefundablePrice",
+    "action": "getRefundablePrice",
+    "actionName": "취소대상 선택",
+    "actionType": "service",
+    "actionBody": "orderChangeService.getRefundablePrice",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "orderChange",
+    "event": "requestCancel",
+    "noneExecute": true,
+    "eventName": "취소신청"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "orderChange>requestCancel",
+    "action": "requestCancel",
+    "actionName": "취소신청",
+    "actionType": "service",
+    "actionBody": "orderChangeService.requestCancel",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "orderChange",
+    "event": "requestExchange",
+    "noneExecute": true,
+    "eventName": "교환신청"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "orderChange>requestExchange",
+    "action": "requestExchange",
+    "actionName": "교환신청",
+    "actionType": "service",
+    "actionBody": "orderChangeService.requestExchange",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "orderChange",
+    "event": "requestReturn",
+    "noneExecute": true,
+    "eventName": "반품신청"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "orderChange>requestReturn",
+    "action": "requestReturn",
+    "actionName": "반품신청",
+    "actionType": "service",
+    "actionBody": "orderChangeService.requestReturn",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "orderSheet",
+    "event": "orderList",
+    "noneExecute": true,
+    "eventName": "주문리스트"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "orderSheet>orderList",
+    "action": "orderList",
+    "actionName": "주문리스트",
+    "actionType": "service",
+    "actionBody": "mypageOrderService.getMypageOrderList",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "orderSheet",
+    "event": "pointOrder",
+    "noneExecute": true,
+    "eventName": "포인트구매"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "orderSheet>pointOrder",
+    "action": "pointOrder",
+    "actionName": "반품신청",
+    "actionType": "service",
+    "actionBody": "orderService.pointOrder",
+    "order": 1
+  }
+]

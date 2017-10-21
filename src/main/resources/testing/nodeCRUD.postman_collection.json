@@ -15,7 +15,7 @@
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"Body is correct\"] = responseBody === \"{\\\"result\\\":\\\"200\\\",\\\"resultMessage\\\":\\\"SUCCESS\\\",\\\"item\\\":{\\\"categoryType\\\":\\\"content\\\",\\\"parentCategory\\\":\\\"root\\\",\\\"categoryName\\\":\\\"test2\\\"}}\";"
+							"tests[\"Body is correct\"] = responseBody === '{\"result\":\"200\",\"resultMessage\":\"SUCCESS\",\"item\":{\"categoryType\":{\"value\":\"content\",\"label\":\"Content\"},\"parentCategory\":\"root\",\"categoryName\":\"test2\",\"categoryId\":\"test2\",\"orderNo\":null}}';"
 						]
 					}
 				}
@@ -50,6 +50,12 @@
 							"value": "test2",
 							"description": "",
 							"type": "text"
+						},
+						{
+							"key": "categoryId",
+							"value": "test2",
+							"description": "",
+							"type": "text"
 						}
 					]
 				},
@@ -57,7 +63,7 @@
 			},
 			"response": [
 				{
-					"id": "f7559b7d-5a2d-4df4-a836-7034ca32ae1f",
+					"id": "5da26aa1-cf43-40f8-975d-6528f0c9df63",
 					"name": "saveCategory",
 					"originalRequest": {
 						"url": "http://{{host}}/node/testCategory?",
@@ -186,7 +192,7 @@
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"Body is correct\"] = responseBody === '{\"result\":\"200\",\"resultMessage\":\"SUCCESS\",\"item\":{\"categoryType\":\"content\",\"parentCategory\":\"test2\",\"categoryName\":\"test3\"}}';"
+							"tests[\"Body is correct\"] = responseBody === '{\"result\":\"200\",\"resultMessage\":\"SUCCESS\",\"item\":{\"categoryType\":{\"value\":\"content\",\"label\":\"Content\"},\"parentCategory\":\"test2\",\"categoryName\":\"test3\",\"categoryId\":\"test3\",\"orderNo\":null}}';"
 						]
 					}
 				}
@@ -218,6 +224,12 @@
 							"key": "categoryName",
 							"value": "test3",
 							"description": ""
+						},
+						{
+							"key": "categoryId",
+							"value": "test3",
+							"description": "",
+							"type": "text"
 						}
 					]
 				},
@@ -233,7 +245,7 @@
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"Body is correct\"] = responseBody === '{\"result\":\"200\",\"resultMessage\":\"SUCCESS\",\"totalCount\":1,\"resultCount\":1,\"items\":[{\"categoryType\":{\"value\":\"content\",\"label\":\"Content\"},\"parentCategory\":\"test2\",\"itemList\":[],\"categoryName\":\"test3\"}]}';"
+							"tests[\"Body is correct\"] = responseBody === '{\"result\":\"200\",\"resultMessage\":\"SUCCESS\",\"totalCount\":1,\"resultCount\":1,\"items\":[{\"categoryType\":{\"value\":\"content\",\"label\":\"Content\"},\"parentCategory\":\"test2\",\"categoryName\":\"test3\",\"categoryId\":\"test3\",\"orderNo\":null}]}';"
 						]
 					}
 				}
@@ -274,7 +286,7 @@
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"Body is correct\"] = responseBody === '{\"result\":\"200\",\"resultMessage\":\"SUCCESS\",\"item\":{\"categoryType\":\"content\",\"parentCategory\":\"test2\",\"categoryName\":\"test3\"}}';"
+							"tests[\"Body is correct\"] = responseBody === '{\"result\":\"200\",\"resultMessage\":\"SUCCESS\",\"item\":{\"categoryType\":{\"value\":\"content\",\"label\":\"Content\"},\"parentCategory\":\"test2\",\"categoryName\":\"test3\",\"categoryId\":\"test3\",\"orderNo\":null}}';"
 						]
 					}
 				}
@@ -296,7 +308,7 @@
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"tests[\"Body is correct\"] = responseBody === '{\"result\":\"200\",\"resultMessage\":\"SUCCESS\",\"item\":{\"categoryType\":\"content\",\"parentCategory\":\"root\",\"categoryName\":\"test2\"}}';"
+							"tests[\"Body is correct\"] = responseBody === '{\"result\":\"200\",\"resultMessage\":\"SUCCESS\",\"item\":{\"categoryType\":{\"value\":\"content\",\"label\":\"Content\"},\"parentCategory\":\"root\",\"categoryName\":\"test2\",\"categoryId\":\"test2\",\"orderNo\":null}}';"
 						]
 					}
 				}

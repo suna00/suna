@@ -1,0 +1,44 @@
+[
+  {
+    "typeId": "frequentlyUsedAnswer",
+    "frequentlyUsedAnswerId": "1",
+    "faqType1": "faq101",
+    "title": "주문 관련",
+    "contents": "주문이 정상적으로 처리되었습니다."
+  },
+  {
+    "typeId": "frequentlyUsedAnswer",
+    "frequentlyUsedAnswerId": "2",
+    "faqType1": "faq101",
+    "title": "배송 관련",
+    "contents": "배송이 늦어지고 있는 점에 대해서 진심으로 사과드립니다."
+  },
+  {
+    "typeId": "frequentlyUsedAnswer",
+    "frequentlyUsedAnswerId": "3",
+    "faqType1": "faq101",
+    "title": "결제 관련",
+    "contents": "정상적으로 결제 되었습니다."
+  },
+  {
+    "typeId": "frequentlyUsedAnswer",
+    "frequentlyUsedAnswerId": "4",
+    "faqType1": "faq102",
+    "title": "반품 관련",
+    "contents": "본 상품은 반품이 불가합니다."
+  },
+  {
+    "typeId": "frequentlyUsedAnswer",
+    "frequentlyUsedAnswerId": "5",
+    "faqType1": "faq103",
+    "title": "회원혜택 관련",
+    "contents": "회원은 등급별로 혜택이 주어집니다."
+  },
+  {
+    "typeId": "frequentlyUsedAnswer",
+    "frequentlyUsedAnswerId": "6",
+    "faqType1": "faq104",
+    "title": "모바일 이용안내",
+    "contents": "모바일에서도 정상적으로 이용하실 수 있습니다."
+  }
+]
