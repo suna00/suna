@@ -11,7 +11,7 @@ server:
     enabled: true
     mime-types: application/json,application/xml,text/html,text/xml,text/plain,text/javascript,application/javascript,text/css
   tomcat:
-    max-threads: 8000
+    max-threads: 16000
 
 
 jwtConfig:
