@@ -10,9 +10,11 @@ import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.session.SessionService;
+import net.ion.ice.plugin.excel.ExcelService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
@@ -30,6 +32,8 @@ public class CouponService {
     NodeBindingService nodeBindingService;
     @Autowired
     SessionService sessionService;
+    @Autowired
+    private ExcelService excelService;
 
     CommonService common;
 
@@ -316,7 +320,55 @@ public class CouponService {
         return result;
     }
 
-    public ExecuteContext distribute(ExecuteContext context){
+    public ExecuteContext uploadExcel(ExecuteContext context) {
+        Map<String, Object> data = context.getData();
+        MultipartFile file = data.get("excelFile") == null ? null : (MultipartFile) data.get("excelFile");
+        Map<String, Object> parsedResult = excelService.parsingExcelFile(file);
+        Iterator<String> parsedResultKeyIterator = parsedResult.keySet().iterator();
+        String firstKey = parsedResultKeyIterator.next();
+
+        List<Map<String, String>> items = new ArrayList<>();
+
+        if (parsedResult.get(firstKey) != null) {
+            List<Map<String, String>> memberDataList = (List<Map<String, String>>) parsedResult.get("회원정보");
+            for (Map<String, String> memberData : memberDataList) {
+                List<String> values = new ArrayList<>(memberData.values());
+
+                String memberId = values.get(0);
+
+                Node memberNode = nodeService.getNode("member", memberId);
+                if (memberNode != null) {
+                    String memberNo = memberNode.getBindingValue("memberNo").toString();
+                    String userId = memberNode.getBindingValue("userId").toString();
+                    String name = memberNode.getBindingValue("name").toString();
+                    String siteType = memberNode.getBindingValue("siteType").toString();
+                    String company = memberNode.getBindingValue("company") == null ? "" : memberNode.getBindingValue("company").toString();
+                    String universityName = memberNode.getBindingValue("universityName") == null ? "" : memberNode.getBindingValue("universityName").toString();
+                    String companyUniversityName = "";
+                    if (StringUtils.equals(siteType, "company")) {
+                        companyUniversityName = company;
+                    } else if (StringUtils.equals(siteType, "university")) {
+                        companyUniversityName = universityName;
+                    }
+
+                    Map<String, String> item = new HashMap<>();
+                    item.put("label", String.format("%s(%s/%s)", userId, name, companyUniversityName));
+                    item.put("value", memberNo);
+
+                    items.add(item);
+                }
+            }
+        }
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("items", items);
+
+        context.setResult(result);
+
+        return context;
+    }
+
+    public ExecuteContext distribute(ExecuteContext context) {
         Map<String, Object> data = context.getData();
 
         String couponTypeIdValue = data.get("couponTypeId") == null ? "" : data.get("couponTypeId").toString();
@@ -326,44 +378,63 @@ public class CouponService {
 
         Node couponTypeNode = nodeService.getNode("couponType", couponTypeIdValue);
 
-        if (StringUtils.equals(couponDistributeTargetTypeValue, "group")) {
-            List<String> couponDistributeTargetList = Arrays.asList(StringUtils.split(couponDistributeTargetValue, ","));
+        Boolean distributeValidation = true;
 
-            for (String couponDistributeTarget : couponDistributeTargetList) {
-                if (StringUtils.equals(couponDistributeTarget, "companyMember")) {
-                    List<Node> companyMemberNodeList = (List<Node>) NodeQuery.build("member").matching("siteType", "company").matching("memberStatus", "join").getList();
+        String limitedQuantityType = couponTypeNode.getBindingValue("limitedQuantityType") == null ? "" : couponTypeNode.getBindingValue("limitedQuantityType").toString();
+        if (StringUtils.equals(limitedQuantityType, "limit")) {
+            Integer limitedQuantity = couponTypeNode.getBindingValue("limitedQuantity") == null ? 0 : (Integer) couponTypeNode.getBindingValue("limitedQuantity");
+            Integer distributeQuantity = couponTypeNode.getBindingValue("distributeQuantity") == null ? 0 : (Integer) couponTypeNode.getBindingValue("distributeQuantity");
 
-                    for (Node companyMemberNode : companyMemberNodeList) {
-                        createCoupon(couponTypeNode, companyMemberNode, publishedDate);
+            if (distributeQuantity >= limitedQuantity) distributeValidation = false;
+        }
+
+        if (distributeValidation) {
+            if (StringUtils.equals(couponDistributeTargetTypeValue, "group")) {
+                List<String> couponDistributeTargetList = Arrays.asList(StringUtils.split(couponDistributeTargetValue, ","));
+
+                for (String couponDistributeTarget : couponDistributeTargetList) {
+                    if (StringUtils.equals(couponDistributeTarget, "companyMember")) {
+                        List<Node> companyMemberNodeList = (List<Node>) NodeQuery.build("member").matching("siteType", "company").matching("memberStatus", "join").getList();
+
+                        for (Node companyMemberNode : companyMemberNodeList) {
+                            createCoupon(couponTypeNode, companyMemberNode, publishedDate);
+                        }
+                    } else if (StringUtils.equals(couponDistributeTarget, "universityMember")) {
+                        List<Node> universityMemberNodeList = (List<Node>) NodeQuery.build("member").matching("siteType", "university").matching("memberStatus", "join").getList();
+
+                        for (Node universityMemberNode : universityMemberNodeList) {
+                            createCoupon(couponTypeNode, universityMemberNode, publishedDate);
+                        }
                     }
-                } else if (StringUtils.equals(couponDistributeTarget, "universityMember")) {
-                    List<Node> universityMemberNodeList = (List<Node>) NodeQuery.build("member").matching("siteType", "university").matching("memberStatus", "join").getList();
+                }
+            } else if (StringUtils.equals(couponDistributeTargetTypeValue, "search")) {
+                List<String> memberNoList = Arrays.asList(StringUtils.split(couponDistributeTargetValue, ","));
 
-                    for (Node universityMemberNode : universityMemberNodeList) {
-                        createCoupon(couponTypeNode, universityMemberNode, publishedDate);
+                for (String memberNo : memberNoList) {
+                    Node memberNode = nodeService.getNode("member", memberNo);
+                    String memberStatus = memberNode.getBindingValue("memberStatus").toString();
+                    if (StringUtils.equals(memberStatus, "join")) {
+                        createCoupon(couponTypeNode, memberNode, publishedDate);
+                    }
+                }
+            } else if (StringUtils.equals(couponDistributeTargetTypeValue, "excel")) {
+                List<String> memberNoList = Arrays.asList(StringUtils.split(couponDistributeTargetValue, ","));
+
+                for (String memberNo : memberNoList) {
+                    Node memberNode = nodeService.getNode("member", memberNo);
+                    String memberStatus = memberNode.getBindingValue("memberStatus").toString();
+                    if (StringUtils.equals(memberStatus, "join")) {
+                        createCoupon(couponTypeNode, memberNode, publishedDate);
                     }
                 }
             }
-        } else if (StringUtils.equals(couponDistributeTargetTypeValue, "search")) {
-           List<String> memberNoList = Arrays.asList(StringUtils.split(couponDistributeTargetValue, ","));
 
-           for (String memberNo : memberNoList) {
-                Node memberNode = nodeService.getNode("member", memberNo);
-                String memberStatus = memberNode.getBindingValue("memberStatus").toString();
-                if (StringUtils.equals(memberStatus, "join")) {
-                    createCoupon(couponTypeNode, memberNode, publishedDate);
-                }
-           }
-        } else if (StringUtils.equals(couponDistributeTargetTypeValue, "excel")) {
-            List<String> memberNoList = Arrays.asList(StringUtils.split(couponDistributeTargetValue, ","));
+            Integer distributeQuantity = couponTypeNode.getBindingValue("distributeQuantity") == null ? 0 : (Integer) couponTypeNode.getBindingValue("distributeQuantity");
 
-            for (String memberNo : memberNoList) {
-                Node memberNode = nodeService.getNode("member", memberNo);
-                String memberStatus = memberNode.getBindingValue("memberStatus").toString();
-                if (StringUtils.equals(memberStatus, "join")) {
-                    createCoupon(couponTypeNode, memberNode, publishedDate);
-                }
-            }
+            Map<String, Object> couponTypeData = new HashMap<>();
+            couponTypeData.put("couponTypeId", couponTypeNode.getBindingValue("couponTypeId"));
+            couponTypeData.put("distributeQuantity", distributeQuantity+1);
+            nodeService.executeNode(couponTypeData, "couponType", EventService.UPDATE);
         }
 
         return context;

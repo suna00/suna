@@ -2719,6 +2719,23 @@
   {
     "typeId": "propertyType",
     "tid": "categoryBanner",
+    "pid": "name",
+    "propertyTypeName": "이름",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": true,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "cjk",
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "categoryBanner",
     "pid": "linkContentsType",
     "propertyTypeName": "링크유형",
     "valueType": "REFERENCE",

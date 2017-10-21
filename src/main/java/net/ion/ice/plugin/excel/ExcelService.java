@@ -1,6 +1,7 @@
 package net.ion.ice.plugin.excel;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.FastDateFormat;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -8,15 +9,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLEncoder;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @Service("excelService")
@@ -32,7 +33,7 @@ public class ExcelService {
         String fileName = parameterMap.get("fileName") == null ? DEFAULT_FILE_NAME : parameterMap.get("fileName")[0];
         String extension = parameterMap.get("extension") == null ? DEFAULT_EXTENSION : parameterMap.get("extension")[0];
         String sheetNames = parameterMap.get("sheetNames") == null ? "" : parameterMap.get("sheetNames")[0];
-        String headers = parameterMap.get("headers") == null ? "" : parameterMap.get("headers")[0];
+        String headerNames = parameterMap.get("headerNames") == null ? "" : parameterMap.get("headerNames")[0];
 
         Workbook workbook = null;
         OutputStream outputStream = null;
@@ -50,22 +51,25 @@ public class ExcelService {
                 Row row = sheet.createRow(0);
                 int cellIndex = 0;
 
-                List<String> headerList = Arrays.asList(StringUtils.split(headers, ","));
-                for (String header : headerList) {
-                    String headerName = "";
-                    if (StringUtils.contains(header, ".")) {
-                        String[] headerSplit = StringUtils.split(header, ".");
+                List<String> headerNameList = Arrays.asList(StringUtils.split(headerNames, ","));
+                for (String headerName : headerNameList) {
+                    String convertHeaderName = "";
+                    if (StringUtils.contains(headerName, ".")) {
+                        String[] headerSplit = StringUtils.split(headerName, ".");
                         if (StringUtils.equals(sheetName, headerSplit[0])) {
-                            headerName = headerSplit[1];
+                            convertHeaderName = headerSplit[1];
                         }
                     } else {
-                        headerName = header;
+                        convertHeaderName = headerName;
                     }
 
-                    if (!StringUtils.isEmpty(headerName)) {
+                    if (!StringUtils.isEmpty(convertHeaderName)) {
                         Cell cell = row.createCell(cellIndex);
-                        cell.setCellValue(headerName);
+                        cell.setCellValue(convertHeaderName);
                         cell.setCellStyle(cellStyle);
+
+                        sheet.autoSizeColumn(cellIndex);
+
                         cellIndex++;
                     }
                 }
@@ -78,13 +82,6 @@ public class ExcelService {
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         } finally {
-            if (workbook != null) {
-                try {
-                    workbook.close();
-                } catch (IOException e) {
-                    logger.error(e.getMessage(), e);
-                }
-            }
             if (outputStream != null) {
                 try {
                     outputStream.flush();
@@ -93,7 +90,124 @@ public class ExcelService {
                     logger.error(e.getMessage(), e);
                 }
             }
+            if (workbook != null) {
+                try {
+                    workbook.close();
+                } catch (IOException e) {
+                    logger.error(e.getMessage(), e);
+                }
+            }
         }
+    }
+
+    public Map<String, Object> parsingExcelFile(MultipartFile file) {
+        Map<String, Object> result = new LinkedHashMap<>();
+        if (file == null) return result;
+
+        String originalFileName = file.getOriginalFilename();
+        String extension = StringUtils.substringAfterLast(originalFileName, ".");
+
+        Workbook workbook = null;
+        InputStream is = null;
+
+        try {
+            is = file.getInputStream();
+            workbook = StringUtils.equals(extension, "xls") ? getXlsWorkbook(is) : getXlsxWorkbook(is);
+
+            if (workbook != null) {
+                int totalSheetCount = workbook.getNumberOfSheets();
+
+                for (int i=0; i<totalSheetCount; i++) {
+                    Sheet sheet = workbook.getSheetAt(i);
+
+                    List<String> columnNameList = new ArrayList<>();
+
+                    Iterator<Row> rowIterator = sheet.iterator();
+                    if (rowIterator.hasNext()) {
+                        Row row = rowIterator.next();
+                        Iterator<Cell> cellIterator = row.iterator();
+                        while (cellIterator.hasNext()) {
+                            Cell cell = cellIterator.next();
+                            columnNameList.add(getStringValue(cell));
+                        }
+                    }
+
+                    List<Object> dataList = new ArrayList<>();
+
+                    rowIterator = sheet.iterator();
+                    int rowIndex = 0;
+                    while (rowIterator.hasNext()) {
+                        if (rowIndex == 0) {
+                            rowIterator.next();
+                        } else {
+                            Row row = rowIterator.next();
+                            Map<String, String> data = new LinkedHashMap<>();
+                            Iterator<Cell> cellIterator = row.iterator();
+                            int cellIndex = 0;
+                            while (cellIterator.hasNext() && cellIndex <= columnNameList.size()) {
+                                Cell cell = cellIterator.next();
+                                data.put(columnNameList.get(cellIndex) , getStringValue(cell));
+                                cellIndex++;
+                            }
+
+                            dataList.add(data);
+                        }
+                        rowIndex++;
+                    }
+
+                    result.put(sheet.getSheetName(), dataList);
+                }
+            }
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (Exception e) {
+                    logger.error(e.getMessage(), e);
+                }
+            }
+            if (workbook != null) {
+                try {
+                    workbook.close();
+                } catch (IOException e) {
+                    logger.error(e.getMessage(), e);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    private String getStringValue(Cell cell) {
+        String value = "";
+
+        switch (cell.getCellTypeEnum()) {
+            case STRING:
+                value = cell.getStringCellValue();
+                break;
+            case NUMERIC:
+                if (DateUtil.isCellDateFormatted(cell)) {
+                    FastDateFormat fdf = FastDateFormat.getInstance("yyyyMMddHHmmss");
+                    value = fdf.format(cell.getDateCellValue());
+                } else {
+                    value = String.valueOf(cell.getNumericCellValue());
+                    if (StringUtils.contains(value, ".") && StringUtils.equals(StringUtils.split(value, ".")[1], "0")) {
+                        value = StringUtils.substringBefore(value, ".");
+                    }
+                }
+                break;
+            case BOOLEAN:
+                value = String.valueOf(cell.getBooleanCellValue());
+                break;
+            case FORMULA:
+                value = cell.getCellFormula();
+                break;
+            default:
+        }
+
+        return value;
     }
 
     private String encodingFileName(HttpServletRequest request, String fileName) {
@@ -130,8 +244,28 @@ public class ExcelService {
         return new HSSFWorkbook();
     }
 
+    private HSSFWorkbook getXlsWorkbook(InputStream is) {
+        HSSFWorkbook workbook = null;
+        try {
+            workbook = new HSSFWorkbook(is);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+        return workbook;
+    }
+
     private XSSFWorkbook getXlsxWorkbook() {
         return new XSSFWorkbook();
+    }
+
+    private XSSFWorkbook getXlsxWorkbook(InputStream is) {
+        XSSFWorkbook workbook = null;
+        try {
+            workbook = new XSSFWorkbook(is);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+        return workbook;
     }
 
     private CellStyle getHeaderCellStyle(Workbook workbook) {

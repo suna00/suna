@@ -548,8 +548,8 @@
   {
     "typeId": "propertyType",
     "tid": "couponType",
-    "pid": "remainingQuantity",
-    "propertyTypeName": "발급가능한 남은 수량",
+    "pid": "distributeQuantity",
+    "propertyTypeName": "발급 수량",
     "valueType": "INT",
     "required": false,
     "idable": false,
@@ -560,7 +560,7 @@
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",
-    "defaultValue": ""
+    "defaultValue": "0"
   },
   {
     "typeId": "propertyType",
