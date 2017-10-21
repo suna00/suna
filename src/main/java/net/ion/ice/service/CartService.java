@@ -113,19 +113,6 @@ public class CartService {
     public ExecuteContext addCart(ExecuteContext context) throws IOException {
         Map<String, Object> data = context.getData();
 
-        // validate
-//        List<Map<String, Object>> maps = JsonUtils.parsingJsonToList(data.get(cartProduct_TID).toString());
-//        for(Map<String, Object> map : maps){
-//            if(!checkSaleStatus(context, map.get("productId").toString())) return context;
-//            if(!checkStock(context, map.get("baseOptionItemId").toString(), (int) map.get("quantity"))) return context;
-//            if(map.get(cartProductItem_TID) != null){
-//                for(Map<String, Object> item : (List<Map<String, Object>>) map.get(cartProductItem_TID)){
-//                    if(!checkStock(context, item.get("addOptionItemId").toString(), (int) item.get("quantity"))) return context;
-//                }
-//            }
-//            if(!checkQuantity(context, map)) return context;
-//        }
-
         Map<String, Object> sessionData = sessionService.getSession(context.getHttpRequest());
 
         String sessionId = sessionService.getSessionKey(context.getHttpRequest());
@@ -142,8 +129,6 @@ public class CartService {
             data.put("memberNo", JsonUtils.getStringValue(sessionData, "member.memberNo"));
             data.put("siteId", JsonUtils.getStringValue(sessionData, "member.siteId"));
         }
-
-
 
         Node memberNode = (Node) NodeQuery.build("member").matching("memberNo", JsonUtils.getStringValue(sessionData, "member.memberNo")).getList().get(0);
         Integer cartId;
@@ -344,15 +329,8 @@ public class CartService {
                     nodeBindingService.delete(cartProductItem_TID, String.valueOf(cartProductItem.get("cartProductItemId")));
                 }
             }
-//            deliveryService.removeDeliveryPrice(cartProductId);
-
         }
     }
-
-//    private void removeDeliveryPrice(String cartProductId) throws IOException {
-//
-//        deliveryService.removeDeliveryPrice(cartProductId);
-//    }
 
     // 동일 장바구니 상품 처리 여부
     private boolean existCartProduct(Map<String, Object> reqProduct, Map<String, Object> cartProduct, Node productNode) {
