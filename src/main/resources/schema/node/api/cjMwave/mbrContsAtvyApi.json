@@ -324,12 +324,12 @@
         "query": [
           {
             "field": "contsMetaDivCd",
-            "method": "matching",
+            "method": "equals",
             "value": "{{:contsMetaDivCd}}"
           },
           {
             "field": "contsMetaId",
-            "method": "matching",
+            "method": "equals",
             "value": "{{:makeIdValue(::,name,contsMetaId)}}"
           },
           {
