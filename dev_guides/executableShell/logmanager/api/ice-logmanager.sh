@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export PROJECT_HOME=/home/ion/api
+export PROJECT_HOME=/home/ice/projects/cj
 export LOG_HOME=$PROJECT_HOME/core
 #export MAX_LOGSIZE=$((1024*1024*50))
 export MAX_LOGSIZE=1024
@@ -78,12 +78,14 @@ function killChildren() {
 }
 
 
-ICE_PID=`ps -ef | grep ice2-core-0.0.1-SNAPSHOT.war | awk '{print $2}' 2>&1 | head -1`
+#ICE_PID=`ps -ef | grep ice2-core-0.0.1-SNAPSHOT.war | awk '{print $2}' 2>&1 | head -1`
+ICE_PID=`ps -ef | grep ice2-core-0.0.1-SNAPSHOT.war | awk '{print $2}' | head -1`
+
 
 # make home folder
 if [ ! -d "$LOG_DESTINATION" ]; then
   echo "MAKE LOGS HOME DIRECTORY :: $LOG_DESTINATION"
-  mkdir $LOG_DESTINATION
+  mkdir -p $LOG_DESTINATION
 fi
 
 
