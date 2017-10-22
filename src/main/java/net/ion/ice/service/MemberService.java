@@ -60,7 +60,7 @@ public class MemberService {
 
         Node member = nodes.get(0);
 
-        if("leave".equals(member.getBindingValue("memberStatus"))){
+        if("leave".equals(member.getBindingValue("memberStatus")) || "leaveRequest".equals(member.getBindingValue("memberStatus"))){
             throw new ApiException("400", "Not Found User");
         }
 
@@ -77,7 +77,7 @@ public class MemberService {
             e.printStackTrace();
         }
 
-        if("sleepMember".equals(member.getBindingValue("memberStatus"))){
+        if("sleep".equals(member.getBindingValue("memberStatus"))){
             context.setResult(CommonService.getResult("U0011"));
         } else {
             context.setResult(CommonService.getResult("U0007"));
