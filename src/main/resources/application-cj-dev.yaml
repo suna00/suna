@@ -23,7 +23,7 @@ jwtConfig:
 logging:
   config:
     classpath:
-      - logback-dev.xml
+      - logback.xml
 
 cluster:
   mode: all
