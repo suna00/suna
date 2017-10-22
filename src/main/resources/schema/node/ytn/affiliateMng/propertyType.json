@@ -1409,13 +1409,13 @@
     "analyzer": null,
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "codeFilter": "purchaseDeviceType",
+    "codeFilter": "deviceType",
     "defaultValue": ""
   },
   {
     "typeId": "propertyType",
     "tid": "affiliateMallOrderSheet",
-    "pid": "paymentMethod",
+    "pid": "paymentType",
     "propertyTypeName": "결제수단",
     "valueType": "REFERENCE",
     "required": false,
@@ -1426,7 +1426,7 @@
     "analyzer": null,
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "codeFilter": "paymentMethod",
+    "codeFilter": "paymentType",
     "defaultValue": ""
   },
   {

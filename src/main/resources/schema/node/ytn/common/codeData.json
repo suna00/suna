@@ -3439,6 +3439,15 @@
   },
   {
     "typeId": "commonCode",
+    "code": "payType100",
+    "upperCode": "paymentType",
+    "name": "기타",
+    "description": "",
+    "sortOrder": "8",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
     "code": "admin",
     "upperCode": "pointType",
     "name": "Admin",
@@ -7413,6 +7422,33 @@
     "name": "우리종합금융",
     "description": "",
     "sortOrder": "83",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "scopeOfChange",
+    "upperCode": "root",
+    "name": "변경범위",
+    "description": "",
+    "sortOrder": "122",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "all",
+    "upperCode": "scopeOfChange",
+    "name": "전체취소",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "part",
+    "upperCode": "scopeOfChange",
+    "name": "부분취소",
+    "description": "",
+    "sortOrder": "2",
     "commonCodeStatus": "y"
   }
 ]
