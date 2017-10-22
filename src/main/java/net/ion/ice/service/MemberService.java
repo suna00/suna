@@ -185,7 +185,7 @@ public class MemberService {
         // 회원가입 : join
         if ("join".equals(emailCertificationType)) {
             String email = data.get("email").toString();
-            String count = nodeBindingInfo.getJdbcTemplate().queryForList(" select count(memberNo) as count from member where email=? and memberStatus in ('join','sleep') ", email).get(0).get("count").toString();
+            String count = nodeBindingInfo.getJdbcTemplate().queryForList(" select count(memberNo) as count from member where email=? ", email).get(0).get("count").toString();
 
             if ("0".equals(count)) {
                 sendEmail(emailCertificationType, email, data);
