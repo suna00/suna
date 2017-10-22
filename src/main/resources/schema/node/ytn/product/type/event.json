@@ -46,5 +46,36 @@
     "actionType": "service",
     "actionBody": "productSearchService.getGroupCount",
     "order": 1
+  },
+  {
+    "typeId" : "eventListener",
+    "tid" : "product",
+    "event": "review>create",
+    "listenerName" : "리뷰 건수 리뷰평점 ",
+    "actionType" : "service",
+    "actionBody" : "productListenService.review"
+  },
+  {
+    "typeId" : "eventListener",
+    "tid" : "product",
+    "event": "orderProduct>create",
+    "listenerName" : "구매 건수 ",
+    "actionType" : "service",
+    "actionBody" : "productListenService.purchaseCount"
+  },
+  {
+    "typeId" : "event",
+    "tid": "product",
+    "event" : "view",
+    "noneExecute" : true,
+    "eventName" : "상품 조회"
+  },
+  {
+    "typeId" : "eventListener",
+    "tid" : "product",
+    "event": "product>view",
+    "listenerName" : "조회수",
+    "actionType" : "service",
+    "actionBody" : "productListenService.viewCount"
   }
 ]
