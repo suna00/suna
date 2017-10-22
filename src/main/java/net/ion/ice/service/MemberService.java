@@ -60,6 +60,10 @@ public class MemberService {
 
         Node member = nodes.get(0);
 
+        if("leave".equals(member.getBindingValue("memberStatus")) || "leaveRequest".equals(member.getBindingValue("memberStatus"))){
+            throw new ApiException("400", "Not Found User");
+        }
+
         if (!member.getStringValue("password").equals(password)) {
             throw new ApiException("400", "The password is incorrect");
         }
@@ -72,7 +76,12 @@ public class MemberService {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        context.setResult(CommonService.getResult("U0007"));
+
+        if("sleep".equals(member.getBindingValue("memberStatus"))){
+            context.setResult(CommonService.getResult("U0011"));
+        } else {
+            context.setResult(CommonService.getResult("U0007"));
+        }
         return context;
     }
 
@@ -91,6 +100,8 @@ public class MemberService {
             if (null == memberNode) {
                 context.setResult(CommonService.getResult("U0010"));    //로그인을 하지않은 사용자
             } else {
+                extraData.put("siteId", memberNode.get("siteId"));
+                extraData.put("siteType", memberNode.get("siteType"));
                 extraData.put("memberNo", memberNode.get("memberNo"));
                 extraData.put("userId", memberNode.get("userId"));
                 extraData.put("name", memberNode.get("name"));
@@ -190,9 +201,9 @@ public class MemberService {
         if ("password".equals(emailCertificationType) || "sleepMember".equals(emailCertificationType)) {
             List<Map<String, Object>> memberList;
             if ("password".equals(emailCertificationType)) {
-                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and userId=? ", data.get("name").toString(), data.get("userId").toString());
+                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and userId=? and memberStatus='join' ", data.get("name").toString(), data.get("userId").toString());
             } else {
-                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and email=? ", data.get("name").toString(), data.get("email").toString());
+                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and email=? and memberStatus='sleep' ", data.get("name").toString(), data.get("email").toString());
             }
 
             if (0 < memberList.size()) {
@@ -229,7 +240,7 @@ public class MemberService {
 
         // 아이디 : id
         if ("id".equals(smsCertificationType)) {
-            List<Map<String, Object>> memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" SELECT * FROM member WHERE cellphone=? ORDER BY memberNo DESC ", cellphone);
+            List<Map<String, Object>> memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" SELECT * FROM member WHERE cellphone=? and memberStatus in ('join','sleep') ORDER BY memberNo DESC ", cellphone);
 
             if (0 < memberList.size()) {
                 Map<String, Object> member = memberList.get(0);
@@ -249,9 +260,9 @@ public class MemberService {
             List<Map<String, Object>> memberList;
 
             if ("password".equals(smsCertificationType)) {
-                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and userId=? and cellphone=? ", data.get("name").toString(), data.get("userId").toString(), cellphone);
+                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and userId=? and cellphone=? and memberStatus='join' ", data.get("name").toString(), data.get("userId").toString(), cellphone);
             } else {
-                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and email=? and cellphone=? ", data.get("name").toString(), data.get("email").toString(), cellphone);
+                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and email=? and cellphone=? and memberStatus='sleep' ", data.get("name").toString(), data.get("email").toString(), cellphone);
             }
 
             if (0 < memberList.size()) {
