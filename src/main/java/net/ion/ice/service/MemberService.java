@@ -60,6 +60,10 @@ public class MemberService {
 
         Node member = nodes.get(0);
 
+        if("leave".equals(member.getBindingValue("memberStatus"))){
+            throw new ApiException("400", "Not Found User");
+        }
+
         if (!member.getStringValue("password").equals(password)) {
             throw new ApiException("400", "The password is incorrect");
         }
@@ -72,7 +76,12 @@ public class MemberService {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        context.setResult(CommonService.getResult("U0007"));
+
+        if("sleepMember".equals(member.getBindingValue("memberStatus"))){
+            context.setResult(CommonService.getResult("U0011"));
+        } else {
+            context.setResult(CommonService.getResult("U0007"));
+        }
         return context;
     }
 
