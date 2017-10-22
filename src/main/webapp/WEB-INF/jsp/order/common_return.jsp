@@ -1,3 +1,8 @@
+<%@ page import="net.ion.ice.core.node.NodeService" %>
+<%@ page import="net.ion.ice.ApplicationContextManager" %>
+<%@ page import="net.ion.ice.core.data.bind.NodeBindingService" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html;charset=utf-8"%>
 <%
     /* ============================================================================== */
@@ -59,6 +64,9 @@
     String cash_a_dt    = "";                                                    // 현금영수증 승인시간
     String cash_no      = "";                                                    // 현금영수증 거래번호
     /* = -------------------------------------------------------------------------- = */
+    NodeBindingService nodeBindingService = (NodeBindingService) ApplicationContextManager.getContext().getBean("nodeBindingService");
+    List<Map<String, Object>> payment = nodeBindingService.list("payment", "orderSheetId_equals=".concat(order_no));
+
 
     /* = -------------------------------------------------------------------------- = */
     /* =   02-1. 가상계좌 입금 통보 데이터 받기                                     = */
@@ -99,6 +107,8 @@
     /* = -------------------------------------------------------------------------- = */
     if ( tx_cd.equals("TX00") )
     {
+
+
     }
 
     /* = -------------------------------------------------------------------------- = */

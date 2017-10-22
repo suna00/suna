@@ -38,6 +38,13 @@ public class OrderController {
         return mv;
     }
 
+    @RequestMapping("/order/pp_cli_hub")
+    public ModelAndView pp_cli_hub() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("/order/pp_cli_hub");
+        return mv;
+    }
+
     @RequestMapping("/order/result")
     public ModelAndView result() {
         ModelAndView mv = new ModelAndView();
