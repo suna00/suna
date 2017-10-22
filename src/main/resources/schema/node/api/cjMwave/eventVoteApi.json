@@ -129,11 +129,7 @@
                 "voteNum": "",
                 "statsCreated": "created",
                 "myVoteYn": {
-                  "select": {
-                    "ds": "authDb",
-                    "resultType": "value",
-                    "sql": "select  if(count(*)>0,'true','false') myVoteYn from @{voteSeq}_voteItemHstByMbr where voteItemSeq = @{voteItemSeq} and voteItemSeq =(select voteItemSeq from @{voteSeq}_voteItemHstByMbr where mbrId = @{makeIdValue(>,snsTypeCd,snsKey)} order by created desc limit 0,1)"
-                  }
+                  "value":"false"
                 }
               }
             }

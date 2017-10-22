@@ -1059,10 +1059,99 @@
     }
   },
   {
+  "typeId": "apiConfig",
+  "category": "vote",
+  "apiId": "IfMwv111-1",
+  "apiName": " MWAVE 투표 진행현황 목록조회",
+  "method": "GET",
+  "parameters": [
+    {
+      "paramName": "voteFormlCd",
+      "required": true
+    },
+    {
+      "paramName": "showLoCd",
+      "required": true
+    }
+  ],
+  "config": {
+    "typeId": "voteBasInfo",
+    "cacheTime": "600",
+    "excludePids": "showCntryCdList",
+    "query": [
+      {
+        "field": "voteFormlCd",
+        "method": "matching",
+        "value": "{{:voteFormlCd}}"
+      },
+      {
+        "field": "showLoCd",
+        "method": "matching",
+        "value": "{{:showLoCd}}"
+      },
+      {
+        "field": "pstngStDt",
+        "method": "below",
+        "value": "{{:dateFormat(sysdate,yyyy-MM-dd)}}"
+      },
+      {
+        "field": "pstngFnsDt",
+        "method": "above",
+        "value": "{{:dateFormat(sysdate,yyyy-MM-dd)}}"
+      },
+      {
+        "field": "evVoteYn",
+        "method": "matching",
+        "value": "false"
+      },
+      {
+        "field": "voteSeq",
+        "method": "NotMatching",
+        "value": "800121"
+      },
+      {
+        "sorting": "{{:sorting}}"
+      },
+      {
+        "page": "{{:page}}",
+        "pageSize": "{{:pageSize}}"
+      }
+    ],
+    "response": {
+      "voteSeq": "",
+      "voteFormlCd": "",
+      "voteNm": "",
+      "voteDesc": "",
+      "pstngStDt": "",
+      "pstngFnsDt": "",
+      "spnsrLogoImgPath": "",
+      "thumImgUrl": "",
+      "topRankItem": {
+        "typeId": "voteItemStats",
+        "query": [
+          {
+            "field": "voteSeq",
+            "method": "equals",
+            "value": "{{:voteSeq}}"
+          },
+          {
+            "field": "rankNum",
+            "method": "equals",
+            "value": "1"
+          },
+          {
+            "referenceView": "voteItemSeq"
+          }
+        ]
+      }
+    }
+  }
+},
+  {
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMwv111",
-     "apiName": " MWAVE 투표 진행현황 목록조회",
+    "apiName": " MWAVE 투표 진행현황 목록조회",
     "method": "GET",
     "parameters": [
       {
@@ -1078,45 +1167,7 @@
       "typeId": "voteBasInfo",
       "cacheTime": "600",
       "excludePids": "showCntryCdList",
-      "query": [
-        {
-          "field": "voteFormlCd",
-          "method": "matching",
-          "value": "{{:voteFormlCd}}"
-        },
-        {
-          "field": "showLoCd",
-          "method": "matching",
-          "value": "{{:showLoCd}}"
-        },
-        {
-          "field": "pstngStDt",
-          "method": "below",
-          "value": "{{:dateFormat(sysdate,yyyy-MM-dd)}}"
-        },
-        {
-          "field": "pstngFnsDt",
-          "method": "above",
-          "value": "{{:dateFormat(sysdate,yyyy-MM-dd)}}"
-        },
-        {
-          "field": "evVoteYn",
-          "method": "matching",
-          "value": "false"
-        },
-        {
-          "field": "voteSeq",
-          "method": "NotMatching",
-          "value": "800121"
-        },
-        {
-          "sorting": "{{:sorting}}"
-        },
-        {
-          "page": "{{:page}}",
-          "pageSize": "{{:pageSize}}"
-        }
-      ],
+      "ids":"800104,800105,800106,800107,800108,800109,800110,800111,800112,800113,800114,800115,800116,800117,800118,800119,800120,800101,800102",
       "response": {
         "voteSeq": "",
         "voteFormlCd": "",
