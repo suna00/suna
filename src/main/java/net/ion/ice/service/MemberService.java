@@ -185,7 +185,7 @@ public class MemberService {
         // 회원가입 : join
         if ("join".equals(emailCertificationType)) {
             String email = data.get("email").toString();
-            String count = nodeBindingInfo.getJdbcTemplate().queryForList(" select count(memberNo) as count from member where email=? ", email).get(0).get("count").toString();
+            String count = nodeBindingInfo.getJdbcTemplate().queryForList(" select count(memberNo) as count from member where email=? and memberStatus in ('join','sleep') ", email).get(0).get("count").toString();
 
             if ("0".equals(count)) {
                 sendEmail(emailCertificationType, email, data);
@@ -199,9 +199,9 @@ public class MemberService {
         if ("password".equals(emailCertificationType) || "sleepMember".equals(emailCertificationType)) {
             List<Map<String, Object>> memberList;
             if ("password".equals(emailCertificationType)) {
-                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and userId=? ", data.get("name").toString(), data.get("userId").toString());
+                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and userId=? and memberStatus='join' ", data.get("name").toString(), data.get("userId").toString());
             } else {
-                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and email=? ", data.get("name").toString(), data.get("email").toString());
+                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and email=? and memberStatus='sleep' ", data.get("name").toString(), data.get("email").toString());
             }
 
             if (0 < memberList.size()) {
@@ -238,7 +238,7 @@ public class MemberService {
 
         // 아이디 : id
         if ("id".equals(smsCertificationType)) {
-            List<Map<String, Object>> memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" SELECT * FROM member WHERE cellphone=? ORDER BY memberNo DESC ", cellphone);
+            List<Map<String, Object>> memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" SELECT * FROM member WHERE cellphone=? and memberStatus in ('join','sleep') ORDER BY memberNo DESC ", cellphone);
 
             if (0 < memberList.size()) {
                 Map<String, Object> member = memberList.get(0);
@@ -258,9 +258,9 @@ public class MemberService {
             List<Map<String, Object>> memberList;
 
             if ("password".equals(smsCertificationType)) {
-                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and userId=? and cellphone=? ", data.get("name").toString(), data.get("userId").toString(), cellphone);
+                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and userId=? and cellphone=? and memberStatus='join' ", data.get("name").toString(), data.get("userId").toString(), cellphone);
             } else {
-                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and email=? and cellphone=? ", data.get("name").toString(), data.get("email").toString(), cellphone);
+                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and email=? and cellphone=? and memberStatus='sleep' ", data.get("name").toString(), data.get("email").toString(), cellphone);
             }
 
             if (0 < memberList.size()) {
