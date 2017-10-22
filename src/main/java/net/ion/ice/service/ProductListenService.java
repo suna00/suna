@@ -2,6 +2,7 @@ package net.ion.ice.service;
 
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.data.bind.NodeBindingService;
+import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeType;
@@ -47,4 +48,30 @@ public class ProductListenService {
         nodeService.updateNode(product, "product") ;
         return context ;
     }
+
+
+    public ExecuteContext purchaseCount(ExecuteContext context){
+        String productId = JsonUtils.getStringValue(context.getData(), "productId");
+        if(productId == null || productId == "") return context;
+
+        Node product = NodeUtils.getNode("product", productId);
+        Integer purchaseCount = product.getIntValue("purchaseCount");
+        product.put("purchaseCount", purchaseCount + 1);
+        nodeService.updateNode(product, "product") ;
+
+        return context;
+    }
+
+    public ExecuteContext viewCount(ExecuteContext context){
+        String productId = JsonUtils.getStringValue(context.getData(), "productId");
+        if(productId == null || productId == "") return context;
+
+        Node product = NodeUtils.getNode("product", productId);
+        Integer viewCount = product.getIntValue("viewCount");
+        product.put("viewCount", viewCount + 1);
+        nodeService.updateNode(product, "product") ;
+        return context;
+    }
+
+
 }
