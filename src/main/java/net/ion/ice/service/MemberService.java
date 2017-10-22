@@ -100,6 +100,8 @@ public class MemberService {
             if (null == memberNode) {
                 context.setResult(CommonService.getResult("U0010"));    //로그인을 하지않은 사용자
             } else {
+                extraData.put("siteId", memberNode.get("siteId"));
+                extraData.put("siteType", memberNode.get("siteType"));
                 extraData.put("memberNo", memberNode.get("memberNo"));
                 extraData.put("userId", memberNode.get("userId"));
                 extraData.put("name", memberNode.get("name"));
