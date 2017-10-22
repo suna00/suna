@@ -1556,6 +1556,23 @@
   {
     "typeId": "propertyType",
     "tid": "requestToleaveMember",
+    "pid": "email",
+    "propertyTypeName": "이메일",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "cjk",
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "requestToleaveMember",
     "pid": "name",
     "propertyTypeName": "이름",
     "valueType": "STRING",
