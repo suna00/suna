@@ -14,7 +14,8 @@
     </appender>
 
 
-    <appender name="catalinaConsoleAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+    <appender name="catalinaAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_PATH}/ice.log</file>
         <!-- 시간 베이스 롤링 -->
         <!--<prudent>true</prudent>--> <!-- 파일 락 관련한 부분, prudent true 면 파일 락 걸음  -->
@@ -23,7 +24,7 @@
         <!--<maxHistory>10</maxHistory>-->
         <!--</rollingPolicy>-->
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${STD_PATH}/std-ice_%d{yyyy-MM-dd}.%i.txt</fileNamePattern>
+            <fileNamePattern>${STD_PATH}/ice_%d{yyyy-MM-dd}.%i.txt</fileNamePattern>
             <maxFileSize>500MB</maxFileSize>
             <maxHistory>10</maxHistory>
             <totalSizeCap>5GB</totalSizeCap>
@@ -43,6 +44,6 @@
     <root level="INFO">
         <!--<appender-ref ref="stdoutErrorAppender"/>-->
         <appender-ref ref="localConsoleAppender"/>
-        <appender-ref ref="catalinaConsoleAppender"/>
+        <appender-ref ref="catalinaAppender"/>
     </root>
 </configuration>
