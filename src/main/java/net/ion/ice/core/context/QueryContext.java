@@ -636,19 +636,21 @@ public class QueryContext extends ReadContext {
             for (FacetTerm facetTerm : getFacetTerms()) {
 //                List<Map<String, Object>> facet = new ArrayList<>() ;
                 Map<String, Object> facet = new HashMap<>();
-                for (Facet fc : facetTerm.getFacets()) {
+                if(facetTerm.getFacets() != null) {
+                    for (Facet fc : facetTerm.getFacets()) {
 //                    Map<String, Object> fcv = new HashMap<>() ;
 //                    fcv.put("value", fc.getValue()) ;
 //                    fcv.put("count", fc.getValue()) ;
-                    if (fc.getValue().contains(",")) {
-                        for (String fck : StringUtils.split(fc.getValue(), ",")) {
-                            facet.put(fck, facet.containsKey(fck) ? (Integer) facet.get(fck) + fc.getCount() : fc.getCount());
+                        if (fc.getValue().contains(",")) {
+                            for (String fck : StringUtils.split(fc.getValue(), ",")) {
+                                facet.put(fck, facet.containsKey(fck) ? (Integer) facet.get(fck) + fc.getCount() : fc.getCount());
+                            }
+                        } else {
+                            facet.put(fc.getValue(), fc.getCount());
                         }
-                    } else {
-                        facet.put(fc.getValue(), fc.getCount());
                     }
+                    facets.put(facetTerm.getName(), facet);
                 }
-                facets.put(facetTerm.getName(), facet);
             }
             queryResult.put("facets", facets) ;
         }

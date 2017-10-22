@@ -3,9 +3,8 @@ package net.ion.ice.core.node;
 import net.ion.ice.core.infinispan.lucene.AnalyzerFactory;
 import net.ion.ice.core.infinispan.lucene.AnalyzerField;
 import net.ion.ice.core.infinispan.lucene.AnalyzerFieldType;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.document.DateTools;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.FieldType;
@@ -97,8 +96,14 @@ public class PropertiesFieldBridge implements FieldBridge {
                     if(propertyType.isSortable() && !propertyType.isNumeric()) {
                         document.add(new SortedSetDocValuesFacetField(pid + "_sort", entry.getValue().toString()));
                     }
-                    document.add(getKeywordField(propertyType, pid, entry.getValue().toString()));
+
                     if(propertyType.getValueType() == PropertyType.ValueType.REFERENCE){
+                        if(propertyType.getAnalyzerType() == PropertyType.AnalyzerType.code && StringUtils.contains(entry.getValue().toString(), ">")){
+                            String value = entry.getValue().toString() + "," + StringUtils.substringAfterLast(entry.getValue().toString(), ">") ;
+                            document.add(getKeywordField(propertyType, pid, value));
+                        }else{
+                            document.add(getKeywordField(propertyType, pid, entry.getValue().toString()));
+                        }
                         try {
                             Node refNode = NodeUtils.getReferenceNode(entry.getValue(), propertyType);
                             if(refNode != null){
@@ -106,6 +111,8 @@ public class PropertiesFieldBridge implements FieldBridge {
                             }
                         }catch (Exception e){}
 
+                    }else{
+                        document.add(getKeywordField(propertyType, pid, entry.getValue().toString()));
                     }
                 }
                 break;

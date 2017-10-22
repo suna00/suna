@@ -9,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service("productSearchService")
 public class ProductSearchService {
@@ -34,11 +31,17 @@ public class ProductSearchService {
 //                }
     public ExecuteContext getGroupCount(ExecuteContext context) throws IOException {
         Map<String, Object> data = context.getData();
-        if(data.get("categoryMap") == null) return null;
+
+        Map<String, Object> map = null;
+        if(data.get("categoryMap") == null){
+            map = new HashMap<>();
+        }else{
+            map = JsonUtils.parsingJsonToMap((String) data.get("categoryMap"));
+        }
+
 
         Map<String, Object> result = new LinkedHashMap<>();
 
-        Map<String, Object> map = JsonUtils.parsingJsonToMap((String) data.get("categoryMap"));
         List<Node> levelA = nodeService.getNodeList("category", "level=A");
         for(Node A : levelA){
             int count = 0;
