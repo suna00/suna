@@ -24,7 +24,7 @@
         <!--<maxHistory>10</maxHistory>-->
         <!--</rollingPolicy>-->
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${STD_PATH}/ice_%d{yyyy-MM-dd}.%i.txt</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}/ice_%d{yyyy-MM-dd}.%i.txt</fileNamePattern>
             <maxFileSize>500MB</maxFileSize>
             <maxHistory>10</maxHistory>
             <totalSizeCap>5GB</totalSizeCap>

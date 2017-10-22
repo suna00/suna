@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <!--<property name="LOG_PATH" value="/Users/juneyoungoh/Documents/logTest/icelogs" />-->
+    <!--<property name="USER_HOME" value="/Users/juneyoungoh" />-->
+    <!--<property name="LOG_PATH" value="${USER_HOME}/Documents/logTest/icelogs" />-->
     <!--<property name="ERR_PATH" value="/Users/juneyoungoh/Documents/logTest/errlogs" />-->
     <property name="LOG_PATH" value="/data/ion/logs/icelogs" />
     <property name="ERR_PATH" value="/data/ion/logs/errlogs" />
@@ -38,7 +39,7 @@
             <!--<maxHistory>10</maxHistory>-->
         <!--</rollingPolicy>-->
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <fileNamePattern>${STD_PATH}/ice_%d{yyyy-MM-dd}.%i.txt</fileNamePattern>
+            <fileNamePattern>${LOG_PATH}/ice_%d{yyyy-MM-dd}.%i.txt</fileNamePattern>
             <maxFileSize>500MB</maxFileSize>
             <maxHistory>10</maxHistory>
             <totalSizeCap>5GB</totalSizeCap>
