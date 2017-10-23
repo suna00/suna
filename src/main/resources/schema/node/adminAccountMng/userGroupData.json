@@ -7,16 +7,16 @@
   {
     "typeId": "userGroup",
     "userGroupId": "admin",
-    "name": "Admin Group"
+    "name": "관리자 그룹"
   },
   {
     "typeId": "userGroup",
     "userGroupId": "affiliate",
-    "name": "Affiliate Group"
+    "name": "제휴사 그룹"
   },
   {
     "typeId": "userGroup",
     "userGroupId": "vendor",
-    "name": "Vendor Group"
+    "name": "벤더 그룹"
   }
 ]
