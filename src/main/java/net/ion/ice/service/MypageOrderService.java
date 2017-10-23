@@ -2,11 +2,14 @@ package net.ion.ice.service;
 
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.context.QueryContext;
+import net.ion.ice.core.context.ReadContext;
 import net.ion.ice.core.data.bind.NodeBindingInfo;
 import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.*;
 import net.ion.ice.core.session.SessionService;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.FastDateFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +21,7 @@ import javax.net.ssl.SSLSocketFactory;
 import java.io.*;
 import java.net.SocketException;
 import java.security.Security;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -103,13 +107,24 @@ public class MypageOrderService {
 
         String existsQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderProduct where IF(@{productId} = '' ,'1',productId) = IF(@{productId} = '' ,'1',@{productId}) and IF(@{orderStatus} = '' ,'1',orderStatus) = IF(@{orderStatus} = '' ,'1',@{orderStatus})";
 
-        String searchText = "pageSize=" + pageSize +
-                "&page=" + currentPage +
-                "&sorting=created desc" +
-                (orderSheetId != "" ? "&orderSheetId_equals=" + orderSheetId : "") +
-                (productId != "" || orderStatus != "" ? "&orderSheetId_exists=" + existsQuery : "") +
-                (createdFromto != "" ? "&created_fromto=" + createdFromto : "") +
-                (memberNo != "" ? "&memberNo_equals=" + memberNo : "");
+        List<String> search = new ArrayList<>();
+        search.add("pageSize="+pageSize);
+        search.add("page="+currentPage);
+        search.add("sorting=created desc");
+        search.add("referenceView=memberNo");
+        if (!StringUtils.isEmpty(orderSheetId)) search.add("orderSheetId_equals="+orderSheetId);
+        if (!StringUtils.isEmpty(orderStatus)) search.add("orderSheetId_exists="+existsQuery);
+        if (!StringUtils.isEmpty(createdFromto)) search.add("created_fromto="+createdFromto);
+
+        String searchText = StringUtils.join(search, "&");
+
+//        String searchText = "pageSize=" + pageSize +
+//                "&page=" + currentPage +
+//                "&sorting=created desc" +
+//                (orderSheetId != "" ? "&orderSheetId_equals=" + orderSheetId : "") +
+//                (productId != "" || orderStatus != "" ? "&orderSheetId_exists=" + existsQuery : "") +
+//                (createdFromto != "" ? "&created_fromto=" + createdFromto : "") +
+//                (memberNo != "" ? "&memberNo_equals=" + memberNo : "");
 
         List<Map<String, Object>> sheetTotalList = nodeBindingService.list(orderSheet_TID, "");
 
@@ -120,7 +135,31 @@ public class MypageOrderService {
         NodeBindingInfo nodeBindingInfo = nodeBindingService.getNodeBindingInfo(orderSheet_TID);
         List<Map<String, Object>> sheetList = nodeBindingInfo.list(queryContext);
 
+        ReadContext readContext = new ReadContext();
+
         for (Map<String, Object> sheet : sheetList) {
+            Timestamp created = sheet.get("created") == null ? null : (Timestamp) sheet.get("created");
+            if (created != null) sheet.put("created", FastDateFormat.getInstance("yyyyMMddHHmmss").format(created.getTime()));
+            Long memberNoValue = sheet.get("memberNo") == null ? null : (Long) sheet.get("memberNo");
+            if (memberNoValue == null) {
+                sheet.put("memberItem", new HashMap<>());
+            } else {
+                Node memberNode = nodeService.getNode("member", memberNoValue.toString());
+                if (memberNode == null) {
+                    sheet.put("memberItem", new HashMap<>());
+                } else {
+                    Map<String, Object> memberItem = new HashMap<>();
+                    NodeType memberNodeType = NodeUtils.getNodeType("member");
+                    List<PropertyType> memberPropertyList = new ArrayList<>(memberNodeType.getPropertyTypes());
+                    for (PropertyType memberProperty : memberPropertyList) {
+                        if (!StringUtils.equals(memberProperty.getPid(), "password")) {
+                            memberItem.put(memberProperty.getPid(), NodeUtils.getResultValue(readContext, memberProperty, memberNode));
+                        }
+                    }
+                    sheet.put("memberItem", memberItem);
+                }
+            }
+
             List<Map<String, Object>> opList = nodeBindingService.list(orderProduct_TID, "orderSheetId_equals=" + JsonUtils.getStringValue(sheet, "orderSheetId"));
             for (Map<String, Object> op : opList) {
                 Node product = NodeUtils.getNode("product", JsonUtils.getStringValue(op, "productId"));
@@ -136,7 +175,7 @@ public class MypageOrderService {
             putReferenceValue("orderSheet", context, sheet);
         }
 
-        int pageCount = (int) Math.ceil((double) sheetList.size() / (double) pageSize);
+        int pageCount = (int) Math.ceil((double) sheetTotalList.size() / (double) pageSize);
 
         Map<String, Object> item = new LinkedHashMap<>();
         item.put("totalCount", sheetTotalList.size());
