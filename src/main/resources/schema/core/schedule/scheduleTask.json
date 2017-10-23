@@ -31,9 +31,9 @@
   {
     "typeId" : "scheduleTask",
     "id" : "voteItemStatsTask",
-    "name" : "voteItemStats Schedule Task",
+    "name" : "voteItemStats Schedule Task ",
     "type" : "cron",
-    "config" : "0 */5 * * * *",
+    "config" : "0 */30 * * * *",
     "enable" : false,
     "actionType" : "service",
     "actionBody" : "voteItemStatsTask.voteItemStatsJob"
