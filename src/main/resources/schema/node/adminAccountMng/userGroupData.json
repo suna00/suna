@@ -3,5 +3,10 @@
     "typeId": "userGroup",
     "userGroupId": "system",
     "name": "System Group"
+  },
+  {
+    "typeId": "userGroup",
+    "userGroupId": "admin",
+    "name": "Admin Group"
   }
 ]
