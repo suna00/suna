@@ -60,6 +60,10 @@ public class ReadContext implements Context, Serializable {
     protected String cacheTime ;
 
     protected List<String> excludePids ;
+
+    protected List<String> excludeCache ;
+
+
     public NodeType getNodetype() {
         return nodeType;
     }
@@ -118,6 +122,21 @@ public class ReadContext implements Context, Serializable {
                 readContext.excludePids.add(pid.trim()) ;
             }
         }
+
+        String cacheKeys = null ;
+        if(config != null && config.containsKey("excludeCache") && config.get("excludeCache") != null && StringUtils.isNotEmpty(config.get("excludeCache").toString())){
+            cacheKeys = config.get("excludeCache").toString() ;
+        }
+        if(data.containsKey("excludeCache") && data.get("excludeCache") != null && StringUtils.isNotEmpty(data.get("excludeCache").toString())){
+            cacheKeys = data.get("excludeCache").toString() ;
+        }
+        if(cacheKeys != null) {
+            readContext.excludeCache = new ArrayList<>();
+            for (String cacheKey : StringUtils.split(cacheKeys, ',')){
+                readContext.excludeCache.add(cacheKey.trim()) ;
+            }
+        }
+
     }
 
     protected static void makeResultField(ReadContext context, String fields) {

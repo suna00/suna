@@ -81,6 +81,7 @@ public class ApiSelectContext extends ReadContext implements CacheableContext{
     public String makeCacheKey() {
         StringBuffer params = new StringBuffer() ;
         for(String key : httpRequest.getParameterMap().keySet()){
+            if(key.equals(ClusterUtils.CONFIG_) || key.equals(ClusterUtils.DATE_FORMAT_) || key.equals(ClusterUtils.FILE_URL_FORMAT_) || key.equals("now")|| key.equals("sysdate") || key.equals("session") || (excludeCache != null && excludeCache.contains(key))) continue;
             params.append(key);
             params.append("=") ;
             params.append(httpRequest.getParameter(key)) ;
@@ -88,6 +89,7 @@ public class ApiSelectContext extends ReadContext implements CacheableContext{
         String keySrc = httpRequest.getRequestURI() + "?" + params;
         return keySrc;
     }
+
 
     public QueryResult makeQueryResult(Object result, String fieldName) {
         if(this.ifTest != null && !(this.ifTest.equalsIgnoreCase("true"))) {

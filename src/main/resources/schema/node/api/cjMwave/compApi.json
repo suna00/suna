@@ -55,7 +55,7 @@
       },
       "root": {
         "typeId": "compItemInfo",
-        "cacheTime": "3600",
+        "cacheTime": "1800",
         "excludePids": "showCntryCdList",
         "query": [
           {
@@ -106,9 +106,11 @@
                 "method": "matching",
                 "value": "false"
               },
+
               {
                 "referenceView": "contsId",
-                "includeReferenced": true
+                "includeReferenced": true,
+                "sorting":"compAtribSeq"
               }
             ],
             "response": {
@@ -272,7 +274,8 @@
               },
               {
                 "referenceView": "contsId",
-                "includeReferenced": true
+                "includeReferenced": true,
+                "sorting":"compAtribSeq"
               }
             ],
             "response": {

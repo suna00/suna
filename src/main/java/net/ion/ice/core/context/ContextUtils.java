@@ -10,17 +10,19 @@ import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.ResultField;
 import org.apache.commons.lang3.StringUtils;
 import org.infinispan.Cache;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
  * Created by jaeho on 2017. 7. 5..
  */
 public class ContextUtils {
+    private static Logger logger = LoggerFactory.getLogger(ContextUtils.class);
 
     public static Map<String, Object> makeContextData(Map<String, String[]> parameterMap) {
         Map<String, Object> dataMap = new LinkedHashMap<>();
@@ -270,10 +272,10 @@ public class ContextUtils {
         Cache<String, QueryResult> cache = InfinispanCacheManager.getLocalCache(cacheableContext.getCacheTime()) ;
         QueryResult queryResult = cache.get(cacheKey) ;
         if(queryResult == null){
+            logger.info("cache hit fail : " + cacheKey);
             queryResult =  cacheableContext.makeCacheResult();
             cache.put(cacheKey, queryResult) ;
         }
         return queryResult ;
     }
-
 }
