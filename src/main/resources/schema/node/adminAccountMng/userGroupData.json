@@ -6,6 +6,11 @@
   },
   {
     "typeId": "userGroup",
+    "userGroupId": "admin",
+    "name": "Admin Group"
+  },
+  {
+    "typeId": "userGroup",
     "userGroupId": "affiliate",
     "name": "Affiliate Group"
   },
