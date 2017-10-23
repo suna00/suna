@@ -7,7 +7,6 @@ spring:
 
 server:
   port: 8080
-
 jwtConfig:
   issuer: I-ON
   secretKey: dkdldhs!@#$
@@ -16,6 +15,15 @@ jwtConfig:
   tokenExpirationTime: 15 #분
   refreshTokenExpTime: 60 #분
 
+#tomcat:
+#  access-log-enabled: true
+#  access-log-pattern: "%h %l %u %t \"%r\" %s %b %D"
+#  basedir: tomcat
+
+logging:
+  config:
+    classpath:
+      - logback-cj.xml
 
 cluster:
   mode: all
@@ -27,18 +35,6 @@ cluster:
 
 infinispan:
   cachePath: /resource/ice2/cache
-
-tomcat:
-  access-log-enabled: true
-  access-log-pattern: "%h %l %u %t \"%r\" %s %b %D"
-  basedir: tomcat
-
-logging:
-  config:
-    classpath:
-      - logback-access-dev-2.xml
-      - logback-dev-2.xml
-
 
 file:
   default:

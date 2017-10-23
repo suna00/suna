@@ -25,7 +25,7 @@
     ],
     "config": {
       "typeId": "album",
-      "cacheTime": "30",
+      "cacheTime": "60",
       "excludePids": "showCntryCdList",
       "query": [
         {
@@ -132,7 +132,7 @@
     ],
     "config": {
       "typeId": "song",
-      "cacheTime": "30",
+      "cacheTime": "60",
       "excludePids": "showCntryCdList",
       "query": [
         {
@@ -216,7 +216,7 @@
     ],
     "config": {
       "typeId": "artist",
-      "cacheTime": "30",
+      "cacheTime": "60",
       "excludePids": "showCntryCdList",
       "query": [
         {
@@ -274,7 +274,7 @@
     "config": {
       "root": {
         "typeId": "artist",
-        "cacheTime": "30",
+        "cacheTime": "60",
         "id": "{{:artistId}}",
         "response": {
           "_all_": "",
@@ -317,7 +317,7 @@
     ],
     "config": {
       "typeId": "musicVideo",
-      "cacheTime": "30",
+      "cacheTime": "60",
       "excludePids": "showCntryCdList",
       "query": [
         {
@@ -362,14 +362,14 @@
         "_all_": "",
         "replNum": {
           "select": {
-            "ds": "cjDb",
+            "ds": "authDb",
             "resultType": "value",
             "sql": "select count(*)as replNum from replInfo where contsMetaId = concat('musicVideo','::',@{musicVideoId})"
           }
         },
         "likeNum": {
           "select": {
-            "ds": "cjDb",
+            "ds": "authDb",
             "resultType": "value",
             "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('musicVideo','::',@{musicVideoId})"
           }
@@ -400,7 +400,7 @@
     "config": {
       "root": {
         "typeId": "musicVideo",
-        "cacheTime": "30",
+        "cacheTime": "60",
         "excludePids": "showCntryCdList",
         "id": "{{:musicVideoId}}",
         "response": {
@@ -412,21 +412,21 @@
           "seoKywrd": "findKywrd",
           "replNum": {
             "select": {
-              "ds": "cjDb",
+              "ds": "authDb",
               "resultType": "value",
               "sql": "select count(*)as replNum from replInfo where contsMetaId = concat('musicVideo','::',@{musicVideoId})"
             }
           },
           "likeNum": {
             "select": {
-              "ds": "cjDb",
+              "ds": "authDb",
               "resultType": "value",
               "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('musicVideo','::',@{musicVideoId})"
             }
           },
           "myLikeYn": {
             "select": {
-              "ds": "cjDb",
+              "ds": "authDb",
               "resultType": "value",
               "sql": "select if(count(*)>0,'Y','N') myLikeYn from contsLikeInfo where contsMetaDivCd = '4' and contsMetaId = concat('musicVideo','::',@{musicVideoId}) and mbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
             }
@@ -569,7 +569,7 @@
     "config": {
       "root": {
         "typeId": "news",
-        "cacheTime": "30",
+        "cacheTime": "60",
         "excludePids": "showCntryCdList",
         "query": [
           {
@@ -624,14 +624,14 @@
           "_all_": "",
           "replNum": {
             "select": {
-              "ds": "cjDb",
+              "ds": "authDb",
               "resultType": "value",
               "sql": "select count(*)as replNum from replInfo where contsMetaId = concat('news','::',@{newsId})"
             }
           },
           "likeNum": {
             "select": {
-              "ds": "cjDb",
+              "ds": "authDb",
               "resultType": "value",
               "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('news','::',@{newsId})"
             }
@@ -681,7 +681,7 @@
     "config": {
       "root": {
         "typeId": "news",
-        "cacheTime": "30",
+        "cacheTime": "60",
         "excludePids": "showCntryCdList",
         "id": "{{:newsId}}",
         "response": {
@@ -694,21 +694,21 @@
           "seoUrl": "seoUrl",
           "replNum": {
             "select": {
-              "ds": "cjDb",
+              "ds": "authDb",
               "resultType": "value",
               "sql": "select count(*)as replNum from replInfo where contsMetaId = concat('news','::',@{newsId})"
             }
           },
           "likeNum": {
             "select": {
-              "ds": "cjDb",
+              "ds": "authDb",
               "resultType": "value",
               "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('news','::',@{newsId})"
             }
           },
           "myLikeYn": {
             "select": {
-              "ds": "cjDb",
+              "ds": "authDb",
               "resultType": "value",
               "sql": "select if(count(*)>0,'Y','N') myLikeYn from contsLikeInfo where contsMetaDivCd = '8' and contsMetaId = concat('news','::',@{newsId}) and mbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
             }
@@ -903,7 +903,7 @@
     ],
     "config": {
       "typeId": "groupPhoto",
-      "cacheTime": "30",
+      "cacheTime": "60",
       "excludePids": "showCntryCdList",
       "query": [
         {
@@ -940,14 +940,14 @@
         },
         "replNum": {
           "select": {
-            "ds": "cjDb",
+            "ds": "authDb",
             "resultType": "value",
             "sql": "select count(*)as replNum from replInfo where contsMetaId = concat('groupPhoto','::',@{groupPhotoId})"
           }
         },
         "likeNum": {
           "select": {
-            "ds": "cjDb",
+            "ds": "authDb",
             "resultType": "value",
             "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('groupPhoto','::',@{groupPhotoId})"
           }
@@ -982,7 +982,7 @@
     "config": {
       "root": {
         "typeId": "groupPhoto",
-        "cacheTime": "30",
+        "cacheTime": "60",
         "excludePids": "showCntryCdList",
         "id": "{{:groupPhotoId}}",
         "referenceView": "compontSinglePhotoIds",
@@ -994,21 +994,21 @@
           },
           "replNum": {
             "select": {
-              "ds": "cjDb",
+              "ds": "authDb",
               "resultType": "value",
               "sql": "select count(*) as replNum from replInfo where contsMetaId = concat('groupPhoto','::',@{groupPhotoId})"
             }
           },
           "likeNum": {
             "select": {
-              "ds": "cjDb",
+              "ds": "authDb",
               "resultType": "value",
               "sql": "select count(*) as likeNum from contsLikeInfo where contsMetaId = concat('groupPhoto','::',@{groupPhotoId})"
             }
           },
           "myLikeYn": {
             "select": {
-              "ds": "cjDb",
+              "ds": "authDb",
               "resultType": "value",
               "sql": "select if(count(*)>0,'Y','N') myLikeYn from contsLikeInfo where contsMetaDivCd = '6' and contsMetaId = concat('groupPhoto','::',@{groupPhotoId}) and mbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
             }
@@ -1163,7 +1163,7 @@
     ],
     "config": {
       "typeId": "singlePhoto",
-      "cacheTime": "30",
+      "cacheTime": "60",
       "excludePids": "showCntryCdList",
       "query": [
         {
@@ -1203,14 +1203,14 @@
         "_all_": "",
         "replNum": {
           "select": {
-            "ds": "cjDb",
+            "ds": "authDb",
             "resultType": "value",
             "sql": "select count(*)as replNum from replInfo where contsMetaId = concat('singlePhoto','::',@{singlePhotoId})"
           }
         },
         "likeNum": {
           "select": {
-            "ds": "cjDb",
+            "ds": "authDb",
             "resultType": "value",
             "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('singlePhoto','::',@{singlePhotoId})"
           }
@@ -1240,28 +1240,28 @@
     ],
     "config": {
       "typeId": "singlePhoto",
-      "cacheTime": "30",
+      "cacheTime": "60",
       "excludePids": "showCntryCdList",
       "id": "{{:singlePhotoId}}",
       "response": {
         "_all_": "",
         "replNum": {
           "select": {
-            "ds": "cjDb",
+            "ds": "authDb",
             "resultType": "value",
             "sql": "select count(*)as replNum from replInfo where contsMetaId = concat('singlePhoto','::',@{singlePhotoId})"
           }
         },
         "likeNum": {
           "select": {
-            "ds": "cjDb",
+            "ds": "authDb",
             "resultType": "value",
             "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('singlePhoto','::',@{singlePhotoId})"
           }
         },
         "myLikeYn": {
           "select": {
-            "ds": "cjDb",
+            "ds": "authDb",
             "resultType": "value",
             "sql": "select if(count(*)>0,'Y','N') myLikeYn from contsLikeInfo where contsMetaDivCd = '7' and contsMetaId = concat('singlePhoto','::',@{singlePhotoId}) and mbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
           }
@@ -1389,7 +1389,7 @@
     ],
     "config": {
       "typeId": "pgmVideo",
-      "cacheTime": "30",
+      "cacheTime": "60",
       "excludePids": "showCntryCdList",
       "query": [
         {
@@ -1444,14 +1444,14 @@
         "_all_": "",
         "replNum": {
           "select": {
-            "ds": "cjDb",
+            "ds": "authDb",
             "resultType": "value",
             "sql": "select count(*)as replNum from replInfo where contsMetaId = concat('pgmVideo','::',@{contentId})"
           }
         },
         "likeNum": {
           "select": {
-            "ds": "cjDb",
+            "ds": "authDb",
             "resultType": "value",
             "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('pgmVideo','::',@{contentId})"
           }
@@ -1482,28 +1482,28 @@
     "config": {
       "root": {
         "typeId": "pgmVideo",
-        "cacheTime": "30",
+        "cacheTime": "60",
         "excludePids": "showCntryCdList",
         "id": "{{:contentId}}",
         "response": {
           "_all_": "",
           "replNum": {
             "select": {
-              "ds": "cjDb",
+              "ds": "authDb",
               "resultType": "value",
               "sql": "select count(*)as replNum from replInfo where contsMetaId = concat('pgmVideo','::',@{contentId})"
             }
           },
           "likeNum": {
             "select": {
-              "ds": "cjDb",
+              "ds": "authDb",
               "resultType": "value",
               "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('pgmVideo','::',@{contentId})"
             }
           },
           "myLikeYn": {
             "select": {
-              "ds": "cjDb",
+              "ds": "authDb",
               "resultType": "value",
               "sql": "select if(count(*)>0,'Y','N') myLikeYn from contsLikeInfo where contsMetaDivCd = '5' and contsMetaId = concat('pgmVideo','::',@{contentId}) and mbrId = @{makeIdValue(>,snsTypeCd,snsKey)}"
             }
@@ -1645,7 +1645,7 @@
     ],
     "config": {
       "typeId": "videItgInfo",
-      "cacheTime": "30",
+      "cacheTime": "60",
       "excludePids": "showCntryCdList",
       "query": [
         {
@@ -1709,14 +1709,14 @@
         "hotHitNum": "",
         "replNum": {
           "select": {
-            "ds": "cjDb",
+            "ds": "authDb",
             "resultType": "value",
             "sql": "select count(*)as replNum from replInfo where contsMetaId = @{videoId}"
           }
         },
         "likeNum": {
           "select": {
-            "ds": "cjDb",
+            "ds": "authDb",
             "resultType": "value",
             "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = @{videoId}"
           }

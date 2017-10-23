@@ -33,6 +33,7 @@ public class ApiReadContext extends ReadContext implements CacheableContext {
     public String makeCacheKey() {
         StringBuffer params = new StringBuffer() ;
         for(String key : httpRequest.getParameterMap().keySet()){
+            if(key.equals(ClusterUtils.CONFIG_) || key.equals(ClusterUtils.DATE_FORMAT_) || key.equals(ClusterUtils.FILE_URL_FORMAT_) || key.equals("now")|| key.equals("sysdate") || key.equals("session")) continue;
             params.append(key);
             params.append("=") ;
             params.append(httpRequest.getParameter(key)) ;
@@ -49,12 +50,9 @@ public class ApiReadContext extends ReadContext implements CacheableContext {
         checkCacheable(config, data, readContext) ;
         checkExclude(config, data, readContext); ;
 
-        if(!ClusterUtils.getClusterService().checkClusterGroup(readContext.nodeType)){
-            readContext.remote = true ;
-            readContext.id = ContextUtils.getValue(config.get("id"), data).toString();
-
-            return readContext ;
-        }
+//        if(!ClusterUtils.getClusterService().checkClusterGroup(readContext.nodeType)){
+//            readContext.remote = true ;
+//        }
         for (String key : config.keySet()) {
             if (key.equals("typeId")) continue;
 

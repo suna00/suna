@@ -27,7 +27,7 @@ public class VoteItemStatsByWlyTask {
 
     public void execVoteItemStatsByWly() {
 
-        logger.info("start execVoteItemStatsByWly");
+        logger.info("start schedule task - execVoteItemStatsByWly");
 
         if (jdbcTemplate == null) {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
@@ -96,8 +96,7 @@ public class VoteItemStatsByWlyTask {
             }
         }
 
-        logger.info("complete execVoteItemStatsByWly");
-
+        logger.info("complete schedule task - execVoteItemStatsByWly");
     }
 
     private List<Map<String, Object>> selectVoteItemStatsHstByWlyList(String voteSeq, String perdStDate, String perdFnsDate) {

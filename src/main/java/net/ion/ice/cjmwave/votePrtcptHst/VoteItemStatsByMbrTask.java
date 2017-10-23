@@ -27,6 +27,9 @@ public class VoteItemStatsByMbrTask {
 
     // 성별.
     public void execVoteItemStatsBySex() {
+
+        logger.info("start schedule task - execVoteItemStatsBySex");
+
         if (jdbcTemplate == null) {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
         }
@@ -82,6 +85,8 @@ public class VoteItemStatsByMbrTask {
                 }
             }
         }
+
+        logger.info("complete schedule task - execVoteItemStatsBySex");
     }
 
     private List<Map<String,Object>> selectItemStatsBySexList(String voteSeq, String voteDate) {
@@ -98,6 +103,9 @@ public class VoteItemStatsByMbrTask {
 
     // 국가.
     public void execVoteItemStatsByCntry() {
+
+        logger.info("start schedule task - execVoteItemStatsByCntry");
+
         if (jdbcTemplate == null) {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
         }
@@ -154,6 +162,8 @@ public class VoteItemStatsByMbrTask {
                 }
             }
         }
+
+        logger.info("complete schedule task - execVoteItemStatsByCntry");
     }
 
     private List<Map<String,Object>> selectItemStatsByCntryList(String voteSeq, String voteDate) {

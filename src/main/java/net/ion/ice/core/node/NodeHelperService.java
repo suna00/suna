@@ -77,29 +77,31 @@ public class NodeHelperService  {
         Date nodeTypeLast = (Date) nodeService.getSortedValue(nodeType.getTypeId(), "changed", SortField.Type.LONG, true );
         if(nodeTypeLast == null){
             logger.info(nodeType.getTypeId() + " ALL Sync : ");
-            syncNodeList(nodeType, "limit=10&sorting=changed desc");
+            syncNodeList(nodeType, "limit=10&sorting=changed desc", null);
         }else {
             String lastChanged = DateFormatUtils.format(nodeTypeLast, "yyyyMMddHHmmss");
             logger.info(nodeType.getTypeId() + " Last Sync : " + nodeTypeLast);
-            syncNodeList(nodeType, "limit=10&sorting=changed desc&chagned_excess=" + lastChanged);
+            syncNodeList(nodeType, "limit=10&sorting=changed desc&chagned_excess=" + lastChanged, null);
         }
     }
 
-    private void syncNodeList(NodeType nodeType, String query) {
+    public void syncNodeList(NodeType nodeType, String query, String server) {
         List<Member> cacheServers = clusterService.getClusterCacheSyncServers() ;
 
         for(Member cacheServer : cacheServers){
-            List<Map<String, Object>> items = ClusterUtils.callNodeList(cacheServer, nodeType.getTypeId(), query)  ;
-            if(items != null && items.size() > 0){
-                for(Map<String, Object> item : items){
-                    Node node = new Node(item) ;
+            if(server == null || cacheServer.getAddress().getHost().equals(server)) {
+                List<Map<String, Object>> items = ClusterUtils.callNodeList(cacheServer, nodeType.getTypeId(), query);
+                if (items != null && items.size() > 0) {
+                    for (Map<String, Object> item : items) {
+                        Node node = new Node(item);
 //                    logger.info("nodeSync : " + item + "\n" + node );
 
-                    if(node != null) {
-                        infinispanRepositoryService.cacheNode(node);
+                        if (node != null) {
+                            infinispanRepositoryService.cacheNode(node);
+                        }
                     }
+                    return;
                 }
-                return ;
             }
         }
     }
@@ -107,8 +109,10 @@ public class NodeHelperService  {
     public void reloadSchema(String resourcePath) throws IOException {
         if(resourcePath.equals("node")){
             saveResourceSchema("classpath:schema/node/**/*.json");
-        }else if(resourcePath.equals("test")){
+        }else if(resourcePath.equals("test")) {
             saveResourceSchema("classpath:schema/test/**/*.json");
+        }else if(!resourcePath.startsWith("/")){
+            saveResourceSchema("classpath:schema/" + resourcePath + "/**/*.json");
         }else {
             saveFileSchema(resourcePath);
         }

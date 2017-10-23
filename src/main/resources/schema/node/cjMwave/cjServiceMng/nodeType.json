@@ -25,8 +25,8 @@
     "id": "mbrInfo",
     "tid": "mbrInfo",
     "typeName": "회원정보",
-    "repositoryType": "node",
-    "eviction": 0,
+    "repositoryType": "data",
+    "eviction": 10000,
     "tableName": "authDb#mbrInfo"
   },
   {
@@ -35,7 +35,7 @@
     "id": "mbrDvcInfo",
     "tid": "mbrDvcInfo",
     "typeName": "회원 디바이스 정보",
-    "repositoryType": "node",
+    "repositoryType": "data",
     "eviction": 0,
     "tableName": "authDb#mbrDvcInfo"
   },
@@ -45,7 +45,7 @@
     "id": "blacklistHst",
     "tid": "blacklistHst",
     "typeName": "블랙리스트 이력",
-    "repositoryType": "node",
+    "repositoryType": "data",
     "eviction": 0,
     "tableName": "authDb#blacklistHst"
   },
@@ -55,7 +55,7 @@
     "id": "mbrSttusHst",
     "tid": "mbrSttusHst",
     "typeName": "회원 상태 이력",
-    "repositoryType": "node",
+    "repositoryType": "data",
     "eviction": 0,
     "tableName": "authDb#mbrSttusHst"
   },
@@ -75,7 +75,7 @@
     "id": "nonMbrInfo",
     "tid": "nonMbrInfo",
     "typeName": "비회원정보",
-    "repositoryType": "node",
+    "repositoryType": "data",
     "eviction": 0,
     "tableName": "authDb#nonMbrInfo"
   },
@@ -97,7 +97,8 @@
     "typeName": "신고 설정관리",
     "repositoryType": "node",
     "eviction": 0,
-    "tableName": "authDb#dclaSetupMng"
+    "tableName": "authDb#dclaSetupMng",
+    "clusterGroup": "all"
   },
   {
     "parentId": "cjServiceMng",
@@ -215,7 +216,7 @@
     "typeId": "nodeType",
     "id": "voteBasInfo",
     "tid": "voteBasInfo",
-    "typeName": "투표 기본 정보",
+    "typeName": "투표 기본 정보 ",
     "repositoryType": "node",
     "eviction": 0,
     "tableName": "authDb#voteBasInfo",
@@ -227,7 +228,7 @@
     "typeId": "nodeType",
     "id": "votePredRstrtnInfo",
     "tid": "votePredRstrtnInfo",
-    "typeName": "투표 기간 제한 정보",
+    "typeName": "투표 기간 제한 정보 ",
     "repositoryType": "node",
     "eviction": 0,
     "tableName": "authDb#votePredRstrtnInfo",
@@ -238,7 +239,7 @@
     "typeId": "nodeType",
     "id": "voteItemInfo",
     "tid": "voteItemInfo",
-    "typeName": "투표 항목 정보",
+    "typeName": "투표 항목 정보 ",
     "repositoryType": "node",
     "eviction": 0,
     "tableName": "authDb#voteItemInfo",
@@ -250,7 +251,7 @@
     "typeId": "nodeType",
     "id": "sersVoteItemInfo",
     "tid": "sersVoteItemInfo",
-    "typeName": "시리즈 투표 항목 정보",
+    "typeName": "시리즈 투표 항목 정보 ",
     "repositoryType": "node",
     "eviction": 0,
     "tableName": "authDb#sersVoteItemInfo",

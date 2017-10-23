@@ -44,6 +44,9 @@ public class QueryContext extends ReadContext {
 
     public QueryContext(NodeType nodeType) {
         this.nodeType = nodeType;
+        if(nodeType == null){
+            return ;
+        }
         if(this.nodeType.getRepositoryType().equals("node")){
             this.queryTermType = QueryTerm.QueryTermType.NODE ;
         }else if(this.nodeType.getRepositoryType().equals("data")){
@@ -455,11 +458,19 @@ public class QueryContext extends ReadContext {
             return null ;
         }
         if(this.remote != null && this.remote){
-            Map<String, Object> queryResult = ClusterUtils.callQuery((ApiQueryContext) this) ;
-            this.result = queryResult.containsKey("items") ? queryResult.get("items") : queryResult.containsKey("item")? queryResult.get("item") : queryResult.get("result");
+            Map<String, Object> queryResult = ClusterUtils.callQuery((ApiQueryContext) this, false) ;
+            if(queryResult == null) {
+                return null ;
+            }
+            this.result = queryResult.containsKey("items") ? queryResult.get("items") : queryResult.containsKey("item") ? queryResult.get("item") : queryResult.containsKey("result") ? queryResult.get("result") : null ;
 
             if(resultType != null && resultType == ResultField.ResultType.NONE){
                 return null;
+            }
+
+            if(result instanceof Map && queryResult.containsKey("items")){
+                ((Map) result).put(fieldName == null ? "items" : fieldName, queryResult.get("items")) ;
+                return (QueryResult) result;
             }
             return new QueryResult(queryResult) ;
         }else {

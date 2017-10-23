@@ -30,7 +30,7 @@ public class ApiQueryContext extends QueryContext implements CacheableContext{
     }
 
     public QueryResult makeQueryResult() {
-        if (cacheable != null && cacheable && !ClusterUtils.getClusterService().getServerMode().equals("cache")) {
+        if (cacheable != null && cacheable) {
             String cacheKey = makeCacheKey() ;
             return ContextUtils.makeCacheResult(cacheKey, this) ;
         }
@@ -41,6 +41,7 @@ public class ApiQueryContext extends QueryContext implements CacheableContext{
     public String makeCacheKey() {
         StringBuffer params = new StringBuffer() ;
         for(String key : httpRequest.getParameterMap().keySet()){
+            if(key.equals(ClusterUtils.CONFIG_) || key.equals(ClusterUtils.DATE_FORMAT_) || key.equals(ClusterUtils.FILE_URL_FORMAT_) || key.equals("now")|| key.equals("sysdate") || key.equals("session")) continue;
             params.append(key);
             params.append("=") ;
             params.append(httpRequest.getParameter(key)) ;

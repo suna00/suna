@@ -31,6 +31,8 @@ public class VoteItemStatsTask {
 
     public void voteItemStatsJob() {
 
+        logger.info("start schedule task - voteItemStatsJob");
+
         if (jdbcTemplate==null) {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
         }
@@ -130,7 +132,9 @@ public class VoteItemStatsTask {
                 insertVoteItemStats(voteItemStatsMap, rankNum);
                 rankNum++;
             }
+
         }
+        logger.info("complete schedule task - voteItemStatsJob");
     }
 
     private Integer getTotalVoteCnt(String voteSeq) {
