@@ -49,11 +49,13 @@ public class SearchWordService {
         Integer totalCount = jdbcTemplate.queryForObject(totalQuery.toString(), Integer.class);
         List<Map<String, Object>> list = jdbcTemplate.queryForList(query.toString());
 
+        Integer pageCount = (int) Math.ceil(totalCount / Integer.parseInt(pageSize));
+
         Map<String, Object> item = new LinkedHashMap<>();
         item.put("totalCount", totalCount);
         item.put("resultCount", list.size());
         item.put("pageSize", Integer.parseInt(pageSize));
-        item.put("pageCount", (int) Math.ceil(totalCount / Integer.parseInt(pageSize)));
+        item.put("pageCount", pageCount == 0 ? 1 : pageCount);
         item.put("currentPage", Integer.parseInt(page));
         item.put("items", list);
 
