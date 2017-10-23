@@ -4,11 +4,9 @@ export JAVA_HOME=java
 export APP_HOME=.
 export APP_NAME=ice2-core
 export WAR_FILE=ice2-core-0.0.1-SNAPSHOT.war
-export PROFILE=cj-dev
+export PROFILE=multicache
 export APP_PORT=8080
-export WORK_DIR=/home/ion/cms/core
-export CACHE_DIR=/home/ion/cms/resource/ice2/cache
-
+export WORK_DIR=/home/ion/api/core
 
 echo "Service [$APP_NAME] - [$1] START"
 
@@ -25,7 +23,7 @@ then
     exit 1
 fi
 echo "Starting application..."
-nohup $JAVA_HOME -jar -Dspring.profiles.active=$PROFILE $WORK_DIR/$WAR_FILE \
+nohup $JAVA_HOME -jar  -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:-CMSParallelRemarkEnabled -Xmx10G -Xms10G -Dspring.profiles.active=$PROFILE $WORK_DIR/$WAR_FILE \
     < /dev/null > $WORK_DIR/ice.log 2>&1 &
 
 exit 0

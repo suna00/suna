@@ -3,7 +3,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMev001",
-    "apiName": "이벤트 투표 상세조회",
+    "apiName": "이벤트 투표 상세조회 ",
     "method": "GET",
     "parameters": [
       {
@@ -37,6 +37,8 @@
     ],
     "config": {
       "typeId": "voteBasInfo",
+      "cacheTime": "30",
+      "excludePids": "showCntryCdList",
       "query": [
         {
           "field": "voteSeq",
@@ -127,11 +129,7 @@
                 "voteNum": "",
                 "statsCreated": "created",
                 "myVoteYn": {
-                  "select": {
-                    "ds": "cjDb",
-                    "resultType": "value",
-                    "sql": "select  if(count(*)>0,'true','false') myVoteYn from @{voteSeq}_voteItemHstByMbr where voteItemSeq = @{voteItemSeq} and voteItemSeq =(select voteItemSeq from @{voteSeq}_voteItemHstByMbr where mbrId = @{makeIdValue(>,snsTypeCd,snsKey)} order by created desc limit 0,1)"
-                  }
+                  "value":"false"
                 }
               }
             }
@@ -158,7 +156,7 @@
         },
         "voteNum": {
           "select": {
-            "ds": "cjDb",
+            "ds": "authDb",
             "resultType": "value",
             "sql": "select sum(voteNum)as voteNum from voteItemStats where voteSeq = @{voteSeq}"
           }
@@ -176,7 +174,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMev002",
-    "apiName": "MAMA용 이벤트 투표하기",
+    "apiName": "MAMA용 이벤트 투표하기 ",
     "method": "POST",
     "parameters": [
       {
@@ -217,7 +215,7 @@
     "typeId": "apiConfig",
     "category": "vote",
     "apiId": "IfMev003",
-    "apiName": "MAMA용 스폰서(외부) 투표하기",
+    "apiName": "MAMA용 스폰서(외부) 투표하기 ",
     "method": "POST",
     "parameters": [
       {

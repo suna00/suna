@@ -1,0 +1,243 @@
+[
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMev001",
+    "apiName": "이벤트 투표 상세조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "voteSeq",
+        "required": false
+      },
+      {
+        "paramName": "voteYear",
+        "required": false
+      },
+      {
+        "paramName": "showLoCd",
+        "required": false
+      },
+      {
+        "paramName": "voteFormlCd",
+        "required": false
+      },
+      {
+        "paramName": "snsKey",
+        "required": false
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": false
+      },
+      {
+        "paramName": "connIpAdr",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "voteBasInfo",
+      "cacheTime": "30",
+      "excludePids": "showCntryCdList",
+      "query": [
+        {
+          "field": "voteSeq",
+          "method": "matching",
+          "value": "{{:voteSeq}}"
+        },
+        {
+          "field": "pstngStDt",
+          "method": "above",
+          "value": "{{:concatStr(voteYear,0101)}}"
+        },
+        {
+          "field": "pstngStDt",
+          "method": "below",
+          "value": "{{:concatStr(voteYear,1231)}}"
+        },
+        {
+          "field": "showLoCd",
+          "method": "matching",
+          "value": "{{:showLoCd}}"
+        },
+        {
+          "field": "voteFormlCd",
+          "method": "matching",
+          "value": "{{:voteFormlCd}}"
+        },
+        {
+          "field": "showYn",
+          "method": "matching",
+          "value": "true"
+        },
+        {
+          "field": "evVoteYn",
+          "method": "matching",
+          "value": "true"
+        },
+        {
+          "sorting": "voteSeq desc"
+        },
+        {
+          "limit": "1"
+        },
+        {
+          "referenceView": "sersItemVoteSeq",
+          "includeReferenced": true
+        }
+      ],
+      "response": {
+        "_all_": "",
+        "refdItemList": {
+          "typeId": "voteItemInfo",
+          "query": [
+            {
+              "field": "voteSeq",
+              "method": "referenceJoin",
+              "value": "voteSeq_matching={{:voteSeq}}"
+            },
+            {
+              "field": "langCd",
+              "method": "matching",
+              "value": "{{:langCd}}"
+            },
+            {
+              "referenceView": "contsMetaId"
+            }
+          ],
+          "response": {
+            "_all_": "",
+            "statsList": {
+              "typeId": "voteItemStats",
+              "resultType": "merge",
+              "query": [
+                {
+                  "field": "voteSeq",
+                  "method": "equals",
+                  "value": "{{:voteSeq}}"
+                },
+                {
+                  "field": "voteItemSeq",
+                  "method": "equals",
+                  "value": "{{:voteItemSeq}}"
+                },
+                {
+                  "sorting": "rankNum"
+                }
+              ],
+              "response": {
+                "voteNum": "",
+                "statsCreated": "created",
+                "myVoteYn": {
+                  "select": {
+                    "ds": "authDb",
+                    "resultType": "value",
+                    "sql": "select  if(count(*)>0,'true','false') myVoteYn from @{voteSeq}_voteItemHstByMbr where voteItemSeq = @{voteItemSeq} and voteItemSeq =(select voteItemSeq from @{voteSeq}_voteItemHstByMbr where mbrId = @{makeIdValue(>,snsTypeCd,snsKey)} order by created desc limit 0,1)"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "refdSeriesItemList": {
+          "typeId": "sersVoteItemInfo",
+          "query": [
+            {
+              "field": "voteSeq",
+              "method": "referenceJoin",
+              "value": "voteSeq_matching={{:voteSeq}}"
+            },
+            {
+              "field": "langCd",
+              "method": "matching",
+              "value": "{{:langCd}}"
+            },
+            {
+              "referenceView": "sersItemVoteSeq",
+              "includeReferenced": true
+            }
+          ]
+        },
+        "voteNum": {
+          "select": {
+            "ds": "authDb",
+            "resultType": "value",
+            "sql": "select sum(voteNum)as voteNum from voteItemStats where voteSeq = @{voteSeq}"
+          }
+        },
+        "userEvtVoteCnt": {
+          "value": "10"
+        },
+        "ipAdrVoteCnt": {
+          "value": "10000"
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMev002",
+    "apiName": "MAMA용 이벤트 투표하기",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "voteSeq",
+        "required": true
+      },
+      {
+        "paramName": "voteQueiSeq",
+        "required": true
+      },
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      },
+      {
+        "paramName": "connIpAdr",
+        "required": true
+      }
+    ],
+    "config": {
+      "createItem": {
+        "typeId": "voteBasInfo",
+        "event": "evtVoting",
+        "data": {
+          "voteSeq": "{{:voteSeq}}",
+          "voteItemSeq": "{{:voteQueiSeq}}",
+          "prtcpMbrId": "{{:snsTypeCd}}>{{:snsKey}}",
+          "connIpAdr": "{{:connIpAdr}}"
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "vote",
+    "apiId": "IfMev003",
+    "apiName": "MAMA용 스폰서(외부) 투표하기",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "voteResult",
+        "required": true
+      },
+      {
+        "paramName": "infoOttpAgreeYn",
+        "required": true
+      },
+      {
+        "paramName": "connIpAdr",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "voteBasInfo",
+      "event": "sponsorEvtVoting"
+    }
+  }
+]

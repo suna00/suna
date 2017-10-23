@@ -1,0 +1,330 @@
+[
+  {
+    "typeId": "apiConfig",
+    "category": "member",
+    "apiId": "IfUser001",
+    "apiName": "준회원 가입",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      },
+      {
+        "paramName": "aliasNm",
+        "required": false
+      },
+      {
+        "paramName": "pushMsgRcvYn",
+        "required": false
+      },
+      {
+        "paramName": "sbscShapCd",
+        "required": true
+      },
+      {
+        "paramName": "infoOttpAgreeYn",
+        "required": true
+      },
+      {
+        "paramName": "dvcId",
+        "required": false
+      },
+      {
+        "paramName": "dvcNm",
+        "required": false
+      },
+      {
+        "paramName": "osCd",
+        "required": false
+      },
+      {
+        "paramName": "osVer",
+        "required": false
+      }
+    ],
+    "config": {
+      "typeId": "mbrInfo",
+      "event": "semiMbrJoin"
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "member",
+    "apiId": "IfUser002",
+    "apiName": "정회원 전환",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      },
+      {
+        "paramName": "aliasNm",
+        "required": false
+      },
+      {
+        "paramName": "cntryCd",
+        "required": true
+      },
+      {
+        "paramName": "sexCd",
+        "required": true
+      },
+      {
+        "paramName": "imgUrl",
+        "required": false
+      },
+      {
+        "paramName": "bthYear",
+        "required": false
+      },
+      {
+        "paramName": "intrstCdList",
+        "required": false
+      },
+      {
+        "paramName": "infoOttpAgreeYn",
+        "required": true
+      },
+      {
+        "paramName": "email",
+        "required": false
+      },
+      {
+        "paramName": "emailRcvYn",
+        "required": true
+      },
+      {
+        "paramName": "dvcId",
+        "required": false
+      },
+      {
+        "paramName": "dvcNm",
+        "required": false
+      },
+      {
+        "paramName": "osCd",
+        "required": false
+      },
+      {
+        "paramName": "osVer",
+        "required": false
+      }
+    ],
+    "config": {
+      "typeId": "mbrInfo",
+      "event": "rglrMbrJoin"
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "member",
+    "apiId": "IfUser003",
+    "apiName": "회원 탈퇴",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "mbrInfo",
+      "event": "secession"
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "member",
+    "apiId": "IfUser004",
+    "apiName": "회원 ID 인증정보 조회",
+    "method": "GET",
+    "parameters": [
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "mbrInfo",
+      "event": "svcLogin"
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "member",
+    "apiId": "IfUser005",
+    "apiName": "휴면 회원 해제",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      },
+      {
+        "paramName": "infoOttpAgreeYn",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "mbrInfo",
+      "event": "dormReles"
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "member",
+    "apiId": "IfUser006",
+    "apiName": "탈퇴회원 재가입",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      },
+      {
+        "paramName": "infoOttpAgreeYn",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "mbrInfo",
+      "event": "rejoin"
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "member",
+    "apiId": "IfUser007",
+    "apiName": "비회원 정보 전송",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "dvcId",
+        "required": true
+      },
+      {
+        "paramName": "dvcNm",
+        "required": false
+      },
+      {
+        "paramName": "osCd",
+        "required": false
+      },
+      {
+        "paramName": "osVer",
+        "required": false
+      },
+      {
+        "paramName": "connCntryCd",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "nonMbrInfo",
+      "event": "save",
+      "data": {
+        "firstConnDt": "{{:now}}"
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "member",
+    "apiId": "IfUser100",
+    "apiName": "회원 프로필 이미지 수정",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      },
+      {
+        "paramName": "imgUrl",
+        "required": true
+      }
+    ],
+    "config": {
+      "typeId": "mbrInfo",
+      "event": "save"
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "member",
+    "apiId": "IfUser101",
+    "apiName": "회원 정보 수정",
+    "method": "POST",
+    "parameters": [
+      {
+        "paramName": "snsKey",
+        "required": true
+      },
+      {
+        "paramName": "snsTypeCd",
+        "required": true
+      },
+      {
+        "paramName": "aliasNm",
+        "required": false
+      },
+      {
+        "paramName": "cntryCd",
+        "required": false
+      },
+      {
+        "paramName": "sexCd",
+        "required": false
+      },
+      {
+        "paramName": "bthYear",
+        "required": false
+      },
+      {
+        "paramName": "intrstCdList",
+        "required": false
+      },
+      {
+        "paramName": "infoOttpAgreeYn",
+        "required": false
+      },
+      {
+        "paramName": "email",
+        "required": false
+      }
+    ],
+    "config": {
+      "typeId": "mbrInfo",
+      "event": "update"
+    }
+  }
+]

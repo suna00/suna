@@ -302,18 +302,44 @@ public class MethodHelper {
                 }
             }
             case "fileName":{
-                if(methodParams == null || methodParams.length < 2) return "";
+                if(methodParams == null ) return "";
                 if(value == null || StringUtils.isEmpty(value.toString())) return "" ;
 
-                String typeId = methodParams[1] ;
-                String pid = methodParams[2] ;
-
-                Node node = NodeUtils.getNode(typeId, (String) value) ;
-                FileValue fileValue = (FileValue) node.get(pid);
-                if(fileValue != null){
-                    return fileValue.getFileName() ;
+                if(value instanceof Map){
+                    return (String) ((Map) value).get("fileName");
+                }else if(value instanceof FileValue) {
+                    FileValue fileValue = (FileValue) value;
+                    if (fileValue != null) {
+                        return fileValue.getFileName();
+                    }
                 }
-                return "" ;
+                return value.toString() ;
+//                String snsTypeCd = "";
+//                if(data.containsKey(methodParams[0])){
+//                    snsTypeCd = data.get(methodParams[0]).toString();
+//                }
+//                if(StringUtils.contains(snsTypeCd,"snsTypeCd>")){
+//                    snsTypeCd = StringUtils.replace(snsTypeCd,"snsTypeCd>","");
+//                }
+//                String snsKey = "";
+//                if(data.containsKey(methodParams[1])){
+//                    snsKey = data.get(methodParams[1]).toString();
+//                }
+//                String typeId = methodParams[2] ;
+//                String pid = methodParams[3] ;
+//
+//                Node node = NodeUtils.getNode(typeId, snsTypeCd+">"+snsKey) ;
+//                Object val = node.get(pid) ;
+//                System.out.println(val);
+//                if(val instanceof Map){
+//                    return (String) ((Map) val).get("fileName");
+//                }else if(val instanceof FileValue) {
+//                    FileValue fileValue = (FileValue) node.get(pid);
+//                    if (fileValue != null) {
+//                        return fileValue.getFileName();
+//                    }
+//                }
+//                return "";
             }
 
             default :

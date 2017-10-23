@@ -1,42 +1,42 @@
 [
   {
-    "typeId": "scheduleTask",
-    "id": "testDelay",
-    "name": "Delay Test 30 sec",
-    "type": "delay",
-    "config": "30000",
-    "enable": false,
-    "actionType": "service",
-    "actionBody": "testService.schedule"
+    "typeId" : "scheduleTask",
+    "id" : "testDelay",
+    "name" : "Delay Test 30 sec",
+    "type" : "delay",
+    "config" : "30000",
+    "enable" : false,
+    "actionType" : "service",
+    "actionBody" : "testService.schedule"
   }
   , {
-    "typeId": "scheduleTask",
-    "id": "pipPartial",
-    "name": "PIP PARTIAL",
-    "type": "cron",
-    "config": "0 0 */72 * * *",
-    "enable": false,
-    "actionType": "service",
-    "actionBody": "scheduledPipService.execute"
+    "typeId" : "scheduleTask",
+    "id" : "pipPartial",
+    "name" : "PIP PARTIAL",
+    "type" : "cron",
+    "config" : "0 0 */72 * * *",
+    "enable" : false,
+    "actionType" : "service",
+    "actionBody" : "scheduledPipService.execute"
   }, {
-    "typeId": "scheduleTask",
-    "id": "mnetPartial",
-    "name": "MNET Partial Batch",
-    "type": "delay",
-    "config": "30000",
-    "enable": false,
-    "actionType": "service",
-    "actionBody": "scheduledMnetService.executeAuto1"
+    "typeId" : "scheduleTask",
+    "id" : "mnetPartial",
+    "name" : "MNET Partial Batch",
+    "type" : "cron",
+    "config" : "0 0 */24 * * *",
+    "enable" : false,
+    "actionType" : "service",
+    "actionBody" : "scheduledMnetService.executeAuto"
   },
   {
-    "typeId": "scheduleTask",
-    "id": "voteItemStatsTask",
-    "name": "voteItemStats Schedule Task",
-    "type": "cron",
-    "config": "1 * * * * *",
-    "enable": false,
-    "actionType": "service",
-    "actionBody": "voteItemStatsTask.voteItemStatsJob"
+    "typeId" : "scheduleTask",
+    "id" : "voteItemStatsTask",
+    "name" : "voteItemStats Schedule Task ",
+    "type" : "cron",
+    "config" : "0 */30 * * * *",
+    "enable" : false,
+    "actionType" : "service",
+    "actionBody" : "voteItemStatsTask.voteItemStatsJob"
   },
   {
     "typeId": "scheduleTask",
@@ -44,7 +44,7 @@
     "name": "day voteBasStatsDay set Schedule",
     "type": "cron",
     "config": "0 */5 * * * *",
-    "enable": true,
+    "enable": false,
     "actionType": "service",
     "actionBody": "voteDayCntryService.voteBasStatsDayJob"
   },
@@ -53,8 +53,8 @@
     "id": "voteBasStatsCntryJob",
     "name": "week voteBasStatsCntry set Schedule",
     "type": "cron",
-    "config": "0 3 0 * * *",
-    "enable": true,
+    "config": "0 */10 * * * *",
+    "enable": false,
     "actionType": "service",
     "actionBody": "voteDayCntryService.voteBasStatsCntryJob"
   },
@@ -64,7 +64,7 @@
     "name": "voteItemStatsHstByMbr Schedule Task",
     "type": "cron",
     "config": "0 */5 * * * *",
-    "enable": true,
+    "enable": false,
     "actionType": "service",
     "actionBody": "voteItemStatsHstByMbrTask.execVoteItemStatsHstByMbr"
   },
@@ -73,8 +73,8 @@
     "id": "voteItemStatsBySexTask",
     "name": "voteItemStatsHstByMbr Schedule Task",
     "type": "cron",
-    "config": "0 59 23 * * *",
-    "enable": true,
+    "config": "0 */10 * * * *",
+    "enable": false,
     "actionType": "service",
     "actionBody": "voteItemStatsByMbrTask.execVoteItemStatsBySex"
   },
@@ -83,8 +83,8 @@
     "id": "voteItemStatsByCntryTask",
     "name": "voteItemStatsHstByMbr Schedule Task",
     "type": "cron",
-    "config": "0 59 23 * * *",
-    "enable": true,
+    "config": "0 */10 * * * *",
+    "enable": false,
     "actionType": "service",
     "actionBody": "voteItemStatsByMbrTask.execVoteItemStatsByCntry"
   },
@@ -94,7 +94,7 @@
     "name": "voteItemStatsByWly Schedule Task",
     "type": "cron",
     "config": "0 */5 * * * *",
-    "enable": true,
+    "enable": false,
     "actionType": "service",
     "actionBody": "voteItemStatsHstByWlyTask.execVoteItemStatsHstByWly"
   },
@@ -103,8 +103,8 @@
     "id": "voteItemStatsByWlyTask",
     "name": "voteItemStatsByWly Schedule Task",
     "type": "cron",
-    "config": "0 59 23 * * *",
-    "enable": true,
+    "config": "0 */10 * * * *",
+    "enable": false,
     "actionType": "service",
     "actionBody": "voteItemStatsByWlyTask.execVoteItemStatsByWly"
   }

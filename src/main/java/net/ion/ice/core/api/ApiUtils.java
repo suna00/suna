@@ -7,7 +7,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.net.*;
-import java.util.List;
 import java.util.Map;
 import java.util.zip.GZIPInputStream;
 
@@ -22,10 +21,12 @@ public class ApiUtils {
             apiUrl = "http://" + apiUrl;
         URL url = new URL(apiUrl);
 
+//        System.out.println("======================= ApiUtils ::  apiUrl " + apiUrl + ", Map Parameter :: " + String.valueOf(data) );
+
         HttpURLConnection conn;
         conn = (HttpURLConnection) url.openConnection();
-		conn.setReadTimeout(readTimeout);
-		conn.setConnectTimeout(connectTimeout);
+        conn.setReadTimeout(readTimeout);
+        conn.setConnectTimeout(connectTimeout);
 
         boolean isMultipart = false ;
 

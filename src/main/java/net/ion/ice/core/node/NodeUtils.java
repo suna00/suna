@@ -269,6 +269,8 @@ public class NodeUtils {
             subReadContext.setDateFormat(context.getDateFormat()) ;
             subReadContext.setFileUrlFormat(context.getFileUrlFormat()) ;
             subReadContext.setLevel(context.getLevel() + 1);
+            subReadContext.setExcludePids(context.getExcludePids());
+
             return new ReferenceView(refNode.toDisplay(subReadContext), subReadContext);
 
         } catch (Exception e) {
@@ -320,6 +322,9 @@ public class NodeUtils {
             }
             case REFERENCE: {
                 if (value == null) return null;
+                if(context.getExcludePids() != null && context.getExcludePids().contains(pt.getPid())){
+                    return null ;
+                }
                 if (context.isReferenceView(pt)) {
                     if (value instanceof ReferenceView) {
                         return NodeUtils.getReferenceValueView(context, ((ReferenceView) value).getRefId(), pt);
@@ -334,6 +339,9 @@ public class NodeUtils {
             }
             case REFERENCES: {
                 if (value == null) return null;
+                if(context.getExcludePids() != null && context.getExcludePids().contains(pt.getPid())){
+                    return null ;
+                }
                 if (value instanceof List) {
                     return value;
                 }
@@ -365,6 +373,9 @@ public class NodeUtils {
                 return getFileResultValue(context, pt, value);
             }
             case REFERENCED: {
+                if(context.getExcludePids() != null && context.getExcludePids().contains(pt.getPid())){
+                    return null ;
+                }
                 if (context != null && context.isIncludeReferenced(pt) && context.getLevel() < 5 && node instanceof Node) {
                     QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(getNodeType(((Node)node).getTypeId()), pt, (Node) node);
                     subQueryContext.setData(context.getData());
@@ -375,6 +386,7 @@ public class NodeUtils {
                     subQueryContext.setDateFormat(context.getDateFormat()) ;
                     subQueryContext.setFileUrlFormat(context.getFileUrlFormat()) ;
                     subQueryContext.setLevel(context.getLevel() + 1);
+                    subQueryContext.setExcludePids(context.getExcludePids());
 
                     return getNodeService().getDisplayNodeList(pt.getReferenceType(), subQueryContext);
                 }
@@ -397,7 +409,9 @@ public class NodeUtils {
             String fileUrlFormat = (String) context.getFileUrlFormat().get(pt.getFileHandler());
             if (value instanceof FileValue) {
                 return fileUrlFormat + ((FileValue) value).getStorePath();
-            }else{
+            }else if(value instanceof Map){
+                return fileUrlFormat + ((Map) value).get("storePath") ;
+            }else {
                 return fileUrlFormat + value ;
             }
         }else {

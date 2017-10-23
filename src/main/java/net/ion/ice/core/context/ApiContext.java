@@ -69,7 +69,6 @@ public class ApiContext {
             }
         }
 
-
         if(apiCategory.containsKey(COMMON_RESPONSE) && apiCategory.get(COMMON_RESPONSE) != null && ((Map<String, Object>) apiCategory.get(COMMON_RESPONSE)).size() > 0) {
             ctx.makeCommonResponse((Map<String, Object>) apiCategory.get(COMMON_RESPONSE)) ;
         }
@@ -218,7 +217,10 @@ public class ApiContext {
                     queryResult.putAll(makeSubApiReuslt(ctxRootConfig)) ;
                 }else{
                     Map<String, Object> subQueryResult = makeSubApiReuslt(ctxRootConfig) ;
-                    if(subQueryResult != null) {
+                    if(subQueryResult != null && subQueryResult.containsKey("result") && !subQueryResult.get("result").equals("200")){
+                        queryResult.putAll(subQueryResult) ;
+                        return queryResult ;
+                    }else if(subQueryResult != null) {
                         queryResult.put(key, subQueryResult);
                     }
                 }

@@ -1,8 +1,6 @@
 package net.ion.ice.core.cluster;
 
-import com.hazelcast.core.IAtomicLong;
-import com.hazelcast.core.ITopic;
-import com.hazelcast.core.Member;
+import com.hazelcast.core.*;
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
@@ -70,9 +68,22 @@ public class ClusterService {
         return clusterConfiguration.getGroupList().contains(clusterGroup) ;
     }
 
-    public Member getClusterServer(String mode, String clusterGroup) {
+    public Member getClusterServer(String mode, String clusterGroup, boolean retry) {
         Set<Member> members = clusterConfiguration.getClusterMembers() ;
 
+        if(retry){
+            for(Member member : members){
+                if(mode.equals(member.getStringAttribute("mode")) && StringUtils.contains(member.getStringAttribute("groups"), clusterGroup) && !member.getAddress().getHost().startsWith(clusterConfiguration.getLocalIp())){
+                    return member ;
+                }
+            }
+        }else {
+            for (Member member : members) {
+                if (mode.equals(member.getStringAttribute("mode")) && StringUtils.contains(member.getStringAttribute("groups"), clusterGroup) && member.getAddress().getHost().startsWith(clusterConfiguration.getLocalIp())) {
+                    return member;
+                }
+            }
+        }
         for(Member member : members){
             if(mode.equals(member.getStringAttribute("mode")) && StringUtils.contains(member.getStringAttribute("groups"), clusterGroup)){
                 return member ;
@@ -102,6 +113,18 @@ public class ClusterService {
         logger.info("Cache sync servers : " + otherMembers.size());
 
         return otherMembers ;
+    }
+
+    public String getServerMode() {
+        return clusterConfiguration.getMode();
+    }
+
+    public <K, V> IMap<K, V> getMap(String mapName) {
+        return clusterConfiguration.getMap(mapName) ;
+    }
+
+    public IQueue<JdbcSqlData> getDataQueue() {
+        return clusterConfiguration.getDataQueue() ;
     }
 
     /*

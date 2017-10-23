@@ -40,19 +40,19 @@ public class NodeHelperController {
         return JsonResponse.create() ;
     }
 
-    @RequestMapping(value = "/helper/read")
+    @RequestMapping(value = "/helper/read", method = RequestMethod.POST)
     @ResponseBody
     public Object readNode(HttpServletRequest request, @RequestParam String typeId, @RequestParam String id)  {
         try {
             logger.info("node read : {}, {}", typeId, id);
             return infinispanRepositoryService.read(typeId, id).toMap();
         }catch(Exception e){
-            logger.error(e.getMessage(), e);
+//            logger.error(e.getMessage(), e);
             return JsonResponse.error(e) ;
         }
     }
 
-    @RequestMapping(value = "/helper/list")
+    @RequestMapping(value = "/helper/list", method = RequestMethod.POST)
     @ResponseBody
     public Object listNode(HttpServletRequest request, @RequestParam String typeId, @RequestParam String query)  {
         try {
@@ -63,5 +63,20 @@ public class NodeHelperController {
             logger.error(e.getMessage(), e);
             return JsonResponse.error(e) ;
         }
+    }
+
+
+    @RequestMapping(value = "/helper/syncList", method = RequestMethod.POST)
+    @ResponseBody
+    public Object listNode(HttpServletRequest request, @RequestParam String typeId, @RequestParam String query, @RequestParam String server)  {
+        try {
+            logger.info("node sync list : {}, {}", typeId, query);
+            nodeHelperService.syncNodeList(NodeUtils.getNodeType(typeId), query, server);
+            JsonResponse.create() ;
+        }catch(Exception e){
+            logger.error(e.getMessage(), e);
+            return JsonResponse.error(e) ;
+        }
+        return null ;
     }
 }

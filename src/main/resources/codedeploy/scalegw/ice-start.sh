@@ -4,7 +4,7 @@ export JAVA_HOME=java
 export APP_HOME=.
 export APP_NAME=ice2-core
 export WAR_FILE=ice2-core-0.0.1-SNAPSHOT.war
-export PROFILE=multigw
+export PROFILE=scalegw
 export APP_PORT=8080
 export WORK_DIR=/home/ion/api/core
 

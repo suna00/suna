@@ -55,6 +55,8 @@
       },
       "root": {
         "typeId": "compItemInfo",
+        "cacheTime": "1800",
+        "excludePids": "showCntryCdList",
         "query": [
           {
             "field": "mainSeq",
@@ -104,9 +106,11 @@
                 "method": "matching",
                 "value": "false"
               },
+
               {
                 "referenceView": "contsId",
-                "includeReferenced": true
+                "includeReferenced": true,
+                "sorting":"compAtribSeq"
               }
             ],
             "response": {
@@ -140,14 +144,14 @@
                   },
                   "replNum": {
                     "select": {
-                      "ds": "cjDb",
+                      "ds": "authDb",
                       "resultType": "value",
                       "sql": "select count(*)as replNum from replInfo where contsMetaId = concat( if(@{newsId} is not null ,'news',if(@{pgmVideoId} is not null,'pgmVideo',if(@{groupPhotoId} is not null,'groupPhoto',''))),'::',if(@{newsId} is not null ,@{newsId},if(@{pgmVideoId} is not null,@{pgmVideoId},if(@{groupPhotoId} is not null,@{groupPhotoId},''))))"
                     }
                   },
                   "likeNum": {
                     "select": {
-                      "ds": "cjDb",
+                      "ds": "authDb",
                       "resultType": "value",
                       "sql": "select count(*) as likeNum from contsLikeInfo where contsMetaId = concat( if(@{newsId} is not null ,'news',if(@{pgmVideoId} is not null,'pgmVideo',if(@{groupPhotoId} is not null,'groupPhoto',''))),'::',if(@{newsId} is not null ,@{newsId},if(@{pgmVideoId} is not null,@{pgmVideoId},if(@{groupPhotoId} is not null,@{groupPhotoId},''))))"
                     }
@@ -191,17 +195,21 @@
                   }
                 ],
                 "response": {
-                  "_all_": "",
+                  "newsId": "",
+                  "newsNm": "",
+                  "thumImgUrl": "",
+                  "created": "",
+                  "mkeDay": "",
                   "replNum": {
                     "select": {
-                      "ds": "cjDb",
+                      "ds": "authDb",
                       "resultType": "value",
                       "sql": "select count(*)as replNum from replInfo where contsMetaId = concat('news','::',@{newsId})"
                     }
                   },
                   "likeNum": {
                     "select": {
-                      "ds": "cjDb",
+                      "ds": "authDb",
                       "resultType": "value",
                       "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('news','::',@{newsId})"
                     }
@@ -223,17 +231,22 @@
                   }
                 ],
                 "response": {
-                  "_all_": "",
+                  "contentId": "",
+                  "title": "",
+                  "contentImgUrl": "",
+                  "playTime": "",
+                  "mkeDay": "",
+                  "created": "",
                   "replNum": {
                     "select": {
-                      "ds": "cjDb",
+                      "ds": "authDb",
                       "resultType": "value",
                       "sql": "select count(*)as replNum from replInfo where contsMetaId = concat('pgmVideo','::',@{contentId})"
                     }
                   },
                   "likeNum": {
                     "select": {
-                      "ds": "cjDb",
+                      "ds": "authDb",
                       "resultType": "value",
                       "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('pgmVideo','::',@{contentId})"
                     }
@@ -261,7 +274,8 @@
               },
               {
                 "referenceView": "contsId",
-                "includeReferenced": true
+                "includeReferenced": true,
+                "sorting":"compAtribSeq"
               }
             ],
             "response": {
@@ -295,14 +309,14 @@
                   },
                   "replNum": {
                     "select": {
-                      "ds": "cjDb",
+                      "ds": "authDb",
                       "resultType": "value",
                       "sql": "select count(*)as replNum from replInfo where contsMetaId = concat( if(@{newsId} is not null ,'news',if(@{pgmVideoId} is not null,'pgmVideo',if(@{groupPhotoId} is not null,'groupPhoto',''))),'::',if(@{newsId} is not null ,@{newsId},if(@{pgmVideoId} is not null,@{pgmVideoId},if(@{groupPhotoId} is not null,@{groupPhotoId},''))))"
                     }
                   },
                   "likeNum": {
                     "select": {
-                      "ds": "cjDb",
+                      "ds": "authDb",
                       "resultType": "value",
                       "sql": "select count(*) as likeNum from contsLikeInfo where contsMetaId = concat( if(@{newsId} is not null ,'news',if(@{pgmVideoId} is not null,'pgmVideo',if(@{groupPhotoId} is not null,'groupPhoto',''))),'::',if(@{newsId} is not null ,@{newsId},if(@{pgmVideoId} is not null,@{pgmVideoId},if(@{groupPhotoId} is not null,@{groupPhotoId},''))))"
                     }
@@ -346,17 +360,21 @@
                   }
                 ],
                 "response": {
-                  "_all_": "",
+                  "newsId": "",
+                  "newsNm": "",
+                  "thumImgUrl": "",
+                  "created": "",
+                  "mkeDay": "",
                   "replNum": {
                     "select": {
-                      "ds": "cjDb",
+                      "ds": "authDb",
                       "resultType": "value",
                       "sql": "select count(*)as replNum from replInfo where contsMetaId = concat('news','::',@{newsId})"
                     }
                   },
                   "likeNum": {
                     "select": {
-                      "ds": "cjDb",
+                      "ds": "authDb",
                       "resultType": "value",
                       "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('news','::',@{newsId})"
                     }
@@ -378,17 +396,22 @@
                   }
                 ],
                 "response": {
-                  "_all_": "",
+                  "contentId": "",
+                  "title": "",
+                  "contentImgUrl": "",
+                  "playTime": "",
+                  "mkeDay": "",
+                  "created": "",
                   "replNum": {
                     "select": {
-                      "ds": "cjDb",
+                      "ds": "authDb",
                       "resultType": "value",
                       "sql": "select count(*)as replNum from replInfo where contsMetaId = concat('pgmVideo','::',@{contentId})"
                     }
                   },
                   "likeNum": {
                     "select": {
-                      "ds": "cjDb",
+                      "ds": "authDb",
                       "resultType": "value",
                       "sql": "select count(*)as likeNum from contsLikeInfo where contsMetaId = concat('pgmVideo','::',@{contentId})"
                     }
@@ -447,6 +470,7 @@
     "config": {
       "root": {
         "typeId": "svcMenuInfo",
+        "cacheTime": "3600",
         "query": [
           {
             "field": "svcMenuGroupSeq",

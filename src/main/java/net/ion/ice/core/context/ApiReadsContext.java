@@ -1,5 +1,6 @@
 package net.ion.ice.core.context;
 
+import net.ion.ice.core.cluster.ClusterUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.query.QueryResult;
@@ -16,7 +17,7 @@ public class ApiReadsContext extends ApiQueryContext implements CacheableContext
     protected List<String> ids ;
 
     public QueryResult makeQueryResult() {
-        if (cacheable != null && cacheable) {
+        if (cacheable != null && cacheable && !ClusterUtils.getClusterService().getServerMode().equals("cache")) {
             String cacheKey = makeCacheKey();
             return ContextUtils.makeCacheResult(cacheKey, this);
         }

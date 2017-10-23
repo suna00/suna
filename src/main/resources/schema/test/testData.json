@@ -71,16 +71,6 @@
   },
   {
     "typeId" : "testItem",
-    "id" : 1,
-    "category" : "drama",
-    "menus" : "menu1,menu2",
-    "title" : "도깨비 test abc",
-    "body" : "공유나오는 도깨비",
-    "date" : "20170110",
-    "testFile" : "/resource/exe1.txt"
-  },
-  {
-    "typeId" : "testItem",
     "id" : 2,
     "baseItem" : 1,
     "category" : "drama",

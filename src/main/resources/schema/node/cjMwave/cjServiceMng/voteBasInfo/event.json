@@ -121,17 +121,17 @@
   {
     "typeId": "event",
     "tid": "voteBasInfo",
-    "event": "resIfMwv101",
+    "event": "voteItemStatsJob",
     "noneExecute": true,
     "eventName": "get Total Vote Count Event"
   },
   {
     "typeId": "eventAction",
-    "event": "voteBasInfo>resIfMwv101",
-    "action": "resIfMwv101Event",
+    "event": "voteBasInfo>voteItemStatsJob",
+    "action": "voteItemStatsJobEvent",
     "actionName": "get Total voting Count Event Action",
     "actionType": "service",
-    "actionBody": "voteStatisticsService.IFMwave101",
+    "actionBody": "voteStatisticsService.voteItemStatsJob",
     "order": 1
   },
   {
@@ -169,33 +169,113 @@
   {
     "typeId": "event",
     "tid": "voteBasInfo",
-    "event": "voteBasSatasDay",
+    "event": "voteBasSatasDayEvt",
     "noneExecute": true,
     "eventName": "vote day num set Event"
   },
   {
     "typeId": "eventAction",
-    "event": "voteBasInfo>voteBasSatasDay",
+    "event": "voteBasInfo>voteBasSatasDayEvt",
     "action": "voteBasSatasDayEvent",
-    "actionName": "vote day num set EventAction",
+    "actionName": "voteDayNum EventAction",
     "actionType": "service",
-    "actionBody": "voteDayCntryService.voteBasStatsDayJob",
+    "actionBody": "voteDayCntryService.voteBasSatasDayEvt",
     "order": 1
   },
   {
     "typeId": "event",
     "tid": "voteBasInfo",
-    "event": "voteBasStatsCntry",
+    "event": "voteBasStatsCntryEvt",
     "noneExecute": true,
     "eventName": "vote day num set Event"
   },
   {
     "typeId": "eventAction",
-    "event": "voteBasInfo>voteBasStatsCntry",
+    "event": "voteBasInfo>voteBasStatsCntryEvt",
     "action": "voteBasStatsCntryEvent",
-    "actionName": "vote day num set EventAction",
+    "actionName": "voteWeekNum EventAction",
     "actionType": "service",
-    "actionBody": "voteDayCntryService.voteBasStatsCntryJob",
+    "actionBody": "voteDayCntryService.voteBasStatsCntryEvt",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "voteBasInfo",
+    "event": "voteItemStatsHstByMbr",
+    "noneExecute": true,
+    "eventName": "vote item statistics history event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "voteBasInfo>voteItemStatsHstByMbr",
+    "action": "voteItemStatsHstByMbrEvent",
+    "actionName": "execute vote item statistics history",
+    "actionType": "service",
+    "actionBody": "voteItemStatsHstByMbrService.execVoteItemStatsHstByMbr",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "voteBasInfo",
+    "event": "voteItemStatsByMbrCntry",
+    "noneExecute": true,
+    "eventName": "vote item statistics history event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "voteBasInfo>voteItemStatsByMbrCntry",
+    "action": "voteItemStatsByMbrCntryEvent",
+    "actionName": "execute vote item statistics",
+    "actionType": "service",
+    "actionBody": "voteItemStatsByMbrService.execVoteItemStatsByCntry",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "voteBasInfo",
+    "event": "voteItemStatsByMbrSex",
+    "noneExecute": true,
+    "eventName": "vote item statistics history event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "voteBasInfo>voteItemStatsByMbrSex",
+    "action": "voteItemStatsByMbrSexEvent",
+    "actionName": "execute vote item statistics",
+    "actionType": "service",
+    "actionBody": "voteItemStatsByMbrService.execVoteItemStatsBySex",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "voteBasInfo",
+    "event": "voteItemStatsHstByWly",
+    "noneExecute": true,
+    "eventName": "vote item statistics history event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "voteBasInfo>voteItemStatsHstByWly",
+    "action": "voteItemStatsByMbrSexEvent",
+    "actionName": "execute vote item statistics history",
+    "actionType": "service",
+    "actionBody": "voteItemStatsHstByWlyService.execVoteItemStatsHstByWly",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "voteBasInfo",
+    "event": "voteItemStatsByWly",
+    "noneExecute": true,
+    "eventName": "vote item statistics history event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "voteBasInfo>voteItemStatsByWly",
+    "action": "voteItemStatsByWlyEvent",
+    "actionName": "execute vote item statistics",
+    "actionType": "service",
+    "actionBody": "voteItemStatsByWlyService.execVoteItemStatsByWly",
     "order": 1
   }
 ]

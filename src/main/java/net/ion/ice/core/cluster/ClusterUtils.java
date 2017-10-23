@@ -8,6 +8,7 @@ import net.ion.ice.core.context.ApiQueryContext;
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.NodeType;
+import net.ion.ice.core.node.NodeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ClusterUtils {
 
@@ -26,6 +28,9 @@ public class ClusterUtils {
     public static final String FILE_URL_FORMAT_ = "_fileUrlFormat_";
     static ClusterService clusterService ;
 
+    public static Member defaultServer ;
+
+
     public static ClusterService getClusterService() {
         if (clusterService == null) {
             clusterService = ApplicationContextManager.getBean(ClusterService.class);
@@ -33,10 +38,16 @@ public class ClusterUtils {
         return clusterService;
     }
 
-    public static Map<String, Object> callExecute(ApiExecuteContext executeContext) {
-        Member server = getClusterService().getClusterServer("cms", executeContext.getNodeType().getClusterGroup()) ;
-        String url =  "http://" + server.getAddress().getHost() + ":" + server.getStringAttribute("port") + "/node/" + executeContext.getNodeType().getTypeId() + "/" + executeContext.getEvent() + ".json" ;
+    private static Map<String, Integer> nofoundNode = new ConcurrentHashMap<>(2000) ;
 
+
+    public static Map<String, Object> callExecute(ApiExecuteContext executeContext, boolean retry) {
+        Member server = getClusterService().getClusterServer("cms", executeContext.getNodeType().getClusterGroup(), retry) ;
+        if(server == null){
+            server = getClusterService().getClusterServer("cache", executeContext.getNodeType().getClusterGroup(), retry) ;
+        }
+        String url =  "http://" + server.getAddress().getHost() + ":" + server.getStringAttribute("port") + "/node/event" ;
+        String resultStr = "";
         try {
             executeContext.getData().put(CONFIG_, JsonUtils.toJsonString(executeContext.getConfig())) ;
             if(StringUtils.isNotEmpty(executeContext.getDateFormat())) {
@@ -45,22 +56,26 @@ public class ClusterUtils {
             if(executeContext.getFileUrlFormat() != null) {
                 executeContext.getData().put(FILE_URL_FORMAT_, JsonUtils.toJsonString(executeContext.getFileUrlFormat()));
             }
-            String resultStr = ApiUtils.callApiMethod(url, executeContext.getData(), 5000, 20000, ApiUtils.POST) ;
+            resultStr = ApiUtils.callApiMethod(url, executeContext.getData(), 5000, 1500, ApiUtils.POST) ;
             return JsonUtils.parsingJsonToMap(resultStr) ;
         } catch (IOException e) {
+            if(!retry){
+                return callExecute(executeContext, true);
+            }
             e.printStackTrace();
         }
         return null;
     }
 
 
-    public static Map<String, Object> callQuery(ApiQueryContext queryContext) {
-        Member server = getClusterService().getClusterServer("cache", queryContext.getNodeType().getClusterGroup()) ;
+    public static Map<String, Object> callQuery(ApiQueryContext queryContext, boolean retry) {
+        Member server = getClusterService().getClusterServer("cache", queryContext.getNodeType().getClusterGroup(), retry) ;
+
         if(server == null){
-            server = getClusterService().getClusterServer("cms", queryContext.getNodeType().getClusterGroup()) ;
+            server = getClusterService().getClusterServer("cms", queryContext.getNodeType().getClusterGroup(), retry) ;
         }
         String url = "http://" + server.getAddress().getHost() + ":" + server.getStringAttribute("port")  + "/node/query" ;
-
+        String resultStr = "" ;
         try {
             queryContext.getData().put(CONFIG_, JsonUtils.toJsonString(queryContext.getConfig())) ;
             if(StringUtils.isNotEmpty(queryContext.getDateFormat())) {
@@ -70,10 +85,13 @@ public class ClusterUtils {
                 queryContext.getData().put(FILE_URL_FORMAT_, JsonUtils.toJsonString(queryContext.getFileUrlFormat()));
             }
 
-            String resultStr = ApiUtils.callApiMethod(url, queryContext.getData(), 5000, 10000, ApiUtils.POST) ;
+            resultStr = ApiUtils.callApiMethod(url, queryContext.getData(), 5000, 1000, ApiUtils.POST) ;
             return JsonUtils.parsingJsonToMap(resultStr) ;
         } catch (IOException e) {
-            e.printStackTrace();
+            if(!retry){
+                return callQuery(queryContext, true) ;
+            }
+            logger.error(resultStr);
         }
         return null;
     }
@@ -90,36 +108,43 @@ public class ClusterUtils {
             return result ;
         } catch (Exception e) {
             logger.error("CALL NODE LIST ERROR : {} - {}", url, resultStr);
-            e.printStackTrace();
         }
         return null ;
     }
 
-    public static Map<String, Object> callNode(NodeType nodeType, String id) {
-        Member server = getClusterService().getClusterServer("cache", nodeType.getClusterGroup()) ;
+    public static Map<String, Object> callNode(NodeType nodeType, String id, boolean retry) {
+        Member server = getClusterService().getClusterServer("cache", nodeType.getClusterGroup(), retry) ;
         if(server == null){
-            server = getClusterService().getClusterServer("cms", nodeType.getClusterGroup()) ;
+            server = getClusterService().getClusterServer("cms", nodeType.getClusterGroup(), retry) ;
         }
         String url = "http://" + server.getAddress().getHost() + ":" + server.getStringAttribute("port")  + "/helper/read" ;
-        return getSyncNodeResult(url, nodeType.getTypeId(), id);
+        return getSyncNodeResult(url, nodeType.getTypeId(), id, retry);
     }
 
-    private static Map<String, Object> getSyncNodeResult(String url, String typeId, String id) {
+    private static Map<String, Object> getSyncNodeResult(String url, String typeId, String id, boolean retry) {
         try {
+            if(nofoundNode.containsKey(typeId + "::" + id)){
+                return null;
+            }
+
             Map<String, Object> param = new HashMap<>();
             param.put("typeId", typeId) ;
             param.put("id", id) ;
+//            logger.info("CALL NODE : {} - {}", url, param);
 
-            String resultStr = ApiUtils.callApiMethod(url, param, 5000, 20000, ApiUtils.POST) ;
+            String resultStr = ApiUtils.callApiMethod(url, param, 5000, 1000, ApiUtils.POST) ;
             Map<String, Object> result = JsonUtils.parsingJsonToMap(resultStr) ;
             if(result.containsKey("result") && result.containsKey("resultMessage")){
-                logger.error("CALL NODE ERROR : {} - {}", url, result);
+                logger.error("CALL NODE ERROR : {} - {} - {}, {}", url, result, typeId, id);
+                nofoundNode.put(typeId + "::" + id, 1) ;
                 return null;
             }
             return result ;
         } catch (Exception e) {
+            if(!retry){
+                return callNode(NodeUtils.getNodeType(typeId), id, true) ;
+            }
             logger.error("CONNECT ERROR : " + url );
-            e.printStackTrace();
         }
         return null ;
     }
@@ -127,7 +152,7 @@ public class ClusterUtils {
 
     public static Map<String, Object> callNode(Member member, String typeId, String id) {
         String url = "http://" + member.getAddress().getHost() + ":" + member.getStringAttribute("port")  + "/helper/read" ;
-        return getSyncNodeResult(url, typeId, id);
+        return getSyncNodeResult(url, typeId, id, false);
     }
 
 }

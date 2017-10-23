@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!--<property name="USER_HOME" value="/Users/juneyoungoh" />-->
+    <!--<property name="LOG_PATH" value="${USER_HOME}/Documents/logTest/icelogs" />-->
+    <!--<property name="ERR_PATH" value="/Users/juneyoungoh/Documents/logTest/errlogs" />-->
+    <property name="LOG_PATH" value="/data/ion/logs/icelogs" />
+    <property name="ERR_PATH" value="/data/ion/logs/errlogs" />
+
+    <!-- 콘솔 로그 출력 -->
+    <appender level="INFO" name="localConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>UTF-8</charset>
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %-4relative - [%thread] %logger{35} : %msg %n</Pattern>
+        </encoder>
+    </appender>
+
+    <!--<appender name="catalinaErrorAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+        <!--<file>${STD_PATH}/std-ice.log</file>-->
+        <!--<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">-->
+            <!--<fileNamePattern>${STD_PATH}/std-ice_%d{yyyy-MM-dd}.%i.txt</fileNamePattern>-->
+            <!--<maxFileSize>500MB</maxFileSize>-->
+            <!--<maxHistory>10</maxHistory>-->
+            <!--<totalSizeCap>5GB</totalSizeCap>-->
+        <!--</rollingPolicy>-->
+        <!--<filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+            <!--<level>ERROR</level>-->
+        <!--</filter>-->
+        <!--<encoder>-->
+            <!--<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %-4relative - [%thread] %logger{35} : %msg %n</Pattern>-->
+        <!--</encoder>-->
+    <!--</appender>-->
+
+    <appender name="catalinaAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/ice.log</file>
+        <!-- 시간 베이스 롤링 -->
+        <!--<prudent>true</prudent>--> <!-- 파일 락 관련한 부분, prudent true 면 파일 락 걸음  -->
+        <!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+            <!--<fileNamePattern>${LOG_PATH}/ice_%d{yyyy-MM-dd}.log</fileNamePattern>-->
+            <!--<maxHistory>10</maxHistory>-->
+        <!--</rollingPolicy>-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/ice_%d{yyyy-MM-dd}.%i.txt</fileNamePattern>
+            <maxFileSize>500MB</maxFileSize>
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>5GB</totalSizeCap>
+        </rollingPolicy>
+
+
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+
+        <encoder>
+            <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %-4relative - [%thread] %logger{35} : %msg %n</Pattern>
+        </encoder>
+    </appender>
+
+    <!-- INFO 레벨 이하 로그를 콘솔 및 파일로 출력 -->
+    <root level="INFO">
+        <!--<appender-ref ref="stdoutErrorAppender"/>-->
+        <appender-ref ref="localConsoleAppender"/>
+        <appender-ref ref="catalinaAppender"/>
+    </root>
+</configuration>

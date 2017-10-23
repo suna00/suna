@@ -21,12 +21,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
@@ -346,7 +347,10 @@ public class NodeService {
 
     public Node getNode(NodeType nodeType, String id) {
         if(!clusterService.checkClusterGroup(nodeType)){
-            Map<String, Object> data = ClusterUtils.callNode(nodeType, id) ;
+            Map<String, Object> data = ClusterUtils.callNode(nodeType, id, false) ;
+            if(data == null){
+                return null ;
+            }
             return new Node(data) ;
         }
         Node node = infinispanRepositoryService.getNode(nodeType.getTypeId(), id) ;
@@ -379,25 +383,35 @@ public class NodeService {
     }
 
 
-    public QueryResult executeResult(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap) throws IOException {
+    public QueryResult executeResult(HttpServletRequest request, HttpServletResponse response, Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap) throws IOException {
         Map<String, Object> config = getConfig(parameterMap);
         Map<String, Object> data = ContextUtils.makeContextData(parameterMap) ;
 
-        ApiExecuteContext executeContex = ApiExecuteContext.makeContextFromConfig(config, data) ;
-        QueryResult queryResult = executeContex.makeQueryResult();
-        return queryResult;
+        ApiExecuteContext executeContex = ApiExecuteContext.makeContextFromConfig(config, data, request, response) ;
+        QueryResult queryResult =  executeContex.makeQueryResult();
+        if(queryResult == null){
+            queryResult = new QueryResult() ;
+            queryResult.put("result", executeContex.getResult()) ;
+        }
+        return queryResult ;
     }
 
 
 
 
-    public QueryResult getQueryResult(Map<String, String[]> parameterMap) throws IOException {
+    public QueryResult getQueryResult(HttpServletRequest request, HttpServletResponse response, Map<String, String[]> parameterMap) throws IOException {
         Map<String, Object> config = getConfig(parameterMap);
         Map<String, Object> data = ContextUtils.makeContextData(parameterMap) ;
+//        logger.info("API CALL : " + data.toString());
+        ApiQueryContext queryContext = ApiQueryContext.makeContextFromConfig(config, data, request, response) ;
 
-        ApiQueryContext queryContext = ApiQueryContext.makeContextFromConfig(config, data) ;
-        QueryResult queryResult = queryContext.makeQueryResult();
-        return queryResult;
+        QueryResult queryResult =  queryContext.makeQueryResult();
+        if(queryResult == null){
+            queryResult = new QueryResult() ;
+            queryResult.put("result", queryContext.getResult()) ;
+//            logger.info("REUSLT " + queryContext.getResult());
+        }
+        return queryResult ;
     }
 
     public QueryResult getQueryResult(String typeId, Map<String, String[]> parameterMap) {

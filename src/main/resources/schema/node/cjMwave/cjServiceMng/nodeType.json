@@ -25,8 +25,8 @@
     "id": "mbrInfo",
     "tid": "mbrInfo",
     "typeName": "회원정보",
-    "repositoryType": "node",
-    "eviction": 0,
+    "repositoryType": "data",
+    "eviction": 10000,
     "tableName": "authDb#mbrInfo"
   },
   {
@@ -35,7 +35,7 @@
     "id": "mbrDvcInfo",
     "tid": "mbrDvcInfo",
     "typeName": "회원 디바이스 정보",
-    "repositoryType": "node",
+    "repositoryType": "data",
     "eviction": 0,
     "tableName": "authDb#mbrDvcInfo"
   },
@@ -45,7 +45,7 @@
     "id": "blacklistHst",
     "tid": "blacklistHst",
     "typeName": "블랙리스트 이력",
-    "repositoryType": "node",
+    "repositoryType": "data",
     "eviction": 0,
     "tableName": "authDb#blacklistHst"
   },
@@ -55,7 +55,7 @@
     "id": "mbrSttusHst",
     "tid": "mbrSttusHst",
     "typeName": "회원 상태 이력",
-    "repositoryType": "node",
+    "repositoryType": "data",
     "eviction": 0,
     "tableName": "authDb#mbrSttusHst"
   },
@@ -75,7 +75,7 @@
     "id": "nonMbrInfo",
     "tid": "nonMbrInfo",
     "typeName": "비회원정보",
-    "repositoryType": "node",
+    "repositoryType": "data",
     "eviction": 0,
     "tableName": "authDb#nonMbrInfo"
   },
@@ -97,7 +97,8 @@
     "typeName": "신고 설정관리",
     "repositoryType": "node",
     "eviction": 0,
-    "tableName": "authDb#dclaSetupMng"
+    "tableName": "authDb#dclaSetupMng",
+    "clusterGroup": "all"
   },
   {
     "parentId": "cjServiceMng",
@@ -108,16 +109,6 @@
     "repositoryType": "node",
     "eviction": 0,
     "tableName": "cjDb#ntfBbs"
-  },
-  {
-    "parentId": "cjServiceMng",
-    "typeId": "nodeType",
-    "id": "ntfBbsMultiLangInfo",
-    "tid": "ntfBbsMultiLangInfo",
-    "typeName": "공지사항 게시판 다국어 정보",
-    "repositoryType": "node",
-    "eviction": 0,
-    "tableName": "cjDb#ntfBbsMultiLangInfo"
   },
   {
     "parentId": "cjServiceMng",
@@ -225,10 +216,10 @@
     "typeId": "nodeType",
     "id": "voteBasInfo",
     "tid": "voteBasInfo",
-    "typeName": "투표 기본 정보",
+    "typeName": "투표 기본 정보 ",
     "repositoryType": "node",
     "eviction": 0,
-    "tableName": "cjDb#voteBasInfo",
+    "tableName": "authDb#voteBasInfo",
     "i18n": true,
     "clusterGroup": "all"
   },
@@ -237,10 +228,10 @@
     "typeId": "nodeType",
     "id": "votePredRstrtnInfo",
     "tid": "votePredRstrtnInfo",
-    "typeName": "투표 기간 제한 정보",
+    "typeName": "투표 기간 제한 정보 ",
     "repositoryType": "node",
     "eviction": 0,
-    "tableName": "cjDb#votePredRstrtnInfo",
+    "tableName": "authDb#votePredRstrtnInfo",
     "clusterGroup": "all"
   },
   {
@@ -248,10 +239,10 @@
     "typeId": "nodeType",
     "id": "voteItemInfo",
     "tid": "voteItemInfo",
-    "typeName": "투표 항목 정보",
+    "typeName": "투표 항목 정보 ",
     "repositoryType": "node",
     "eviction": 0,
-    "tableName": "cjDb#voteItemInfo",
+    "tableName": "authDb#voteItemInfo",
     "i18n": true,
     "clusterGroup": "all"
   },
@@ -260,10 +251,10 @@
     "typeId": "nodeType",
     "id": "sersVoteItemInfo",
     "tid": "sersVoteItemInfo",
-    "typeName": "시리즈 투표 항목 정보",
+    "typeName": "시리즈 투표 항목 정보 ",
     "repositoryType": "node",
     "eviction": 0,
-    "tableName": "cjDb#sersVoteItemInfo",
+    "tableName": "authDb#sersVoteItemInfo",
     "clusterGroup": "all"
   },
   {
@@ -334,7 +325,7 @@
     "typeName": "댓글 정보",
     "repositoryType": "data",
     "eviction": 0,
-    "tableName": "cjDb#replInfo"
+    "tableName": "authDb#replInfo"
   },
   {
     "parentId": "cjServiceMng",
@@ -404,7 +395,7 @@
     "typeName": "Global Chat 정보",
     "repositoryType": "node",
     "eviction": 0,
-    "tableName": "cjDb#glblChatInfo"
+    "tableName": "authDb#glblChatInfo"
   },
   {
     "parentId": "cjServiceMng",
@@ -504,7 +495,7 @@
     "typeName": "콘텐츠 조회 정보",
     "repositoryType": "data",
     "eviction": 0,
-    "tableName": "cjDb#contsRetvHst"
+    "tableName": "authDb#contsRetvHst"
   },
   {
     "parentId": "cjServiceMng",
@@ -534,7 +525,7 @@
     "typeName": "시리즈 투표 참여 이력",
     "repositoryType": "data",
     "eviction": 0,
-    "tableName": "cjDb#sersVotePrtcptHst"
+    "tableName": "authDb#sersVotePrtcptHst"
   },
   {
     "parentId": "cjServiceMng",
@@ -544,7 +535,7 @@
     "typeName": "회원 앱아이디 정보",
     "repositoryType": "data",
     "eviction": 0,
-    "tableName": "cjDb#mbrAppIdInfo"
+    "tableName": "authDb#mbrAppIdInfo"
   },
   {
     "parentId": "cjServiceMng",
@@ -564,6 +555,6 @@
     "typeName": "투표 당첨자 입력 정보",
     "repositoryType": "data",
     "eviction": 0,
-    "tableName": "cjDb#votePwnrInputInfo"
+    "tableName": "authDb#votePwnrInputInfo"
   }
 ]

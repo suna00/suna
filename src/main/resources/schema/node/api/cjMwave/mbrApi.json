@@ -48,21 +48,8 @@
       }
     ],
     "config": {
-      "chkMbr": {
-        "typeId": "mbrInfo",
-        "event": "chkMbr",
-        "response": {
-          "chkResult": ""
-        }
-      },
-      "root": {
-        "typeId": "mbrInfo",
-        "event": "semiMbrJoin",
-        "if": "{{:chkResult}}",
-        "response": {
-          "sbscDt": ""
-        }
-      }
+      "typeId": "mbrInfo",
+      "event": "semiMbrJoin"
     }
   },
   {
@@ -135,10 +122,7 @@
     ],
     "config": {
       "typeId": "mbrInfo",
-      "event": "rglrMbrJoin",
-      "response": {
-        "changed": ""
-      }
+      "event": "rglrMbrJoin"
     }
   },
   {
@@ -159,10 +143,7 @@
     ],
     "config": {
       "typeId": "mbrInfo",
-      "event": "secession",
-      "response": {
-        "rtrmmbDate": ""
-      }
+      "event": "secession"
     }
   },
   {
@@ -182,23 +163,8 @@
       }
     ],
     "config": {
-      "root": {
-        "typeId": "mbrInfo",
-        "id": "{{:makeIdValue(>,snsTypeCd,snsKey)}}",
-        "response": {
-          "_all_": "",
-          "imgFileName": {
-            "value": "{{:getFileNm(imgUrl)}}"
-          }
-        }
-      },
-      "lastLoginDtUpd": {
-        "typeId": "mbrInfo",
-        "event": "svcLogin",
-        "response": {
-          "lastLoginDt": ""
-        }
-      }
+      "typeId": "mbrInfo",
+      "event": "svcLogin"
     }
   },
   {
@@ -223,10 +189,7 @@
     ],
     "config": {
       "typeId": "mbrInfo",
-      "event": "dormReles",
-      "response": {
-        "changed": ""
-      }
+      "event": "dormReles"
     }
   },
   {
@@ -251,10 +214,7 @@
     ],
     "config": {
       "typeId": "mbrInfo",
-      "event": "rejoin",
-      "response": {
-        "changed": ""
-      }
+      "event": "rejoin"
     }
   },
   {
@@ -290,9 +250,6 @@
       "event": "save",
       "data": {
         "firstConnDt": "{{:now}}"
-      },
-      "response": {
-        "dvcId": ""
       }
     }
   },
@@ -318,10 +275,7 @@
     ],
     "config": {
       "typeId": "mbrInfo",
-      "event": "save",
-      "response": {
-        "imgUrl": ""
-      }
+      "event": "mbrUpd"
     }
   },
   {
@@ -370,7 +324,7 @@
     ],
     "config": {
       "typeId": "mbrInfo",
-      "event": "update"
+      "event": "mbrImgUpd"
     }
   }
 ]
