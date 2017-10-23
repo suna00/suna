@@ -113,7 +113,7 @@ public class MypageOrderService {
         search.add("sorting=created desc");
         search.add("referenceView=memberNo");
         if (!StringUtils.isEmpty(orderSheetId)) search.add("orderSheetId_equals="+orderSheetId);
-        if (!StringUtils.isEmpty(productId) && !StringUtils.isEmpty(orderStatus)) search.add("orderSheetId_exists="+existsQuery);
+        if (!StringUtils.isEmpty(orderStatus)) search.add("orderSheetId_exists="+existsQuery);
         if (!StringUtils.isEmpty(createdFromto)) search.add("created_fromto="+createdFromto);
 
         String searchText = StringUtils.join(search, "&");
