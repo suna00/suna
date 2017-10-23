@@ -3,5 +3,15 @@
     "typeId": "userGroup",
     "userGroupId": "system",
     "name": "System Group"
+  },
+  {
+    "typeId": "userGroup",
+    "userGroupId": "affiliate",
+    "name": "Affiliate Group"
+  },
+  {
+    "typeId": "userGroup",
+    "userGroupId": "vendor",
+    "name": "Vendor Group"
   }
 ]

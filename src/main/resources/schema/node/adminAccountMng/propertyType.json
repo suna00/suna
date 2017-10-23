@@ -162,6 +162,22 @@
   {
     "typeId": "propertyType",
     "tid": "user",
+    "pid": "userId",
+    "propertyTypeName": "관리자 ID",
+    "valueType": "STRING",
+    "required": true,
+    "idable": true,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "user",
     "pid": "name",
     "propertyTypeName": "관리자명",
     "valueType": "STRING",
