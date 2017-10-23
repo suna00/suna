@@ -69,6 +69,30 @@
   {
     "typeId" : "apiConfig",
     "category" : "product",
+    "apiId" : "read",
+    "apiName" : "상품 read",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "product",
+      "id": "{{:productId}}",
+      "includeReferenced" : "true",
+      "response": {
+        "_all_": "",
+        "referencedProductToCategoryMap" : {
+          "typeId": "productToCategoryMap",
+          "query" : [
+            {"field" : "productId", "method" : "matching", "value" : "{{:productId}}" },
+            {"referenceView": "categoryId"}
+          ]
+        }
+      }
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "product",
     "apiId" : "searchFilterList",
     "apiName" : "카테고리별 상세 검색코드 리스트",
     "method" : "GET",
