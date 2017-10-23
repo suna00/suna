@@ -41,23 +41,27 @@
   {
     "typeId" : "apiConfig",
     "category" : "product",
-    "apiId" : "read",
-    "apiName" : "상품 read",
+    "apiId" : "view",
+    "apiName" : "상품 view",
     "method" : "GET",
     "parameters" : [
     ],
     "config" : {
-      "typeId": "product",
-      "id": "{{:productId}}",
-      "includeReferenced" : "true",
-      "response": {
-        "_all_": "",
-        "referencedProductToCategoryMap" : {
-          "typeId": "productToCategoryMap",
-          "query" : [
-            {"field" : "productId", "method" : "matching", "value" : "{{:productId}}" },
-            {"referenceView": "categoryId"}
-          ]
+      "updateViewCount" : {
+        "typeId": "product",
+        "noneExecute": true,
+        "resultType" : "none",
+        "event" : "view",
+        "data": {
+          "productId": "{{:productId}}"
+        }
+      },
+      "root": {
+        "typeId": "product",
+        "id": "{{:productId}}",
+        "includeReferenced": "true",
+        "response": {
+          "_all_": ""
         }
       }
     }
@@ -120,6 +124,22 @@
           "description": "구매평 위시리스트 카운트 조회",
           "sql": "select (select count(*) as wishCount from interestproduct where productId=@{productId}) as wishCount,(select round(sum(score)/count(reviewId)) as reviewAverageScore from review where productId=@{productId}) as reviewAverageScore;"
         }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "product",
+    "apiId": "addWishList",
+    "apiName": "위시리스트 삭제",
+    "method": "POST",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "interestProduct",
+      "noneExecute": true,
+      "event" : "addWishList",
+      "data": {
       }
     }
   }

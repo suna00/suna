@@ -157,7 +157,7 @@
 <div id="sample_wrap">
 
     <!-- 주문정보 입력 form : order_info -->
-    <form name="order_info" method="post" action="hub">
+    <form name="order_info" method="post" action="pp_cli_hub">
 
         <%
             /* ============================================================================== */

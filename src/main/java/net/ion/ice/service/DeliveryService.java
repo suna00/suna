@@ -153,6 +153,8 @@ public class DeliveryService {
         for(Map<String, Object> map : list){
             double productPrice = 0 ;
             Node product = nodeService.getNode("product", map.get("productId").toString()) ;
+            List<Node> productMainImage = nodeService.getNodeList("commonResource", "tid_matching=product&name_matching=main".concat("&contentsId_matching=".concat(product.getId())));
+            product.put("referencedMainImage",productMainImage);
             map.put("product", product) ;
             productPrice = Double.parseDouble(product.getStringValue("salePrice")) ;
 

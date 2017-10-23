@@ -65,9 +65,9 @@
       "typeId": "newProductMap",
       "query" : [
         {"field" : "newProductMapStatus", "method" : "matching", "value" : "y" },
-        {"field" : "newProductId", "method" : "referenceJoin", "value" : "newProductStatus_matching=y&siteType_matching=siteType>{{:siteType}}&year_matching={{:year}}&month_matching={{:month}}" },
+        {"field" : "newProductId", "method" : "referenceJoin", "value" : "newProductStatus_matching=y&siteType_matching={{:siteType}}&year_matching={{:year}}&month_matching={{:month}}" },
         {"field" : "productId", "method" : "referenceJoin", "value" : "name_matching={{:searchValue}}&salePrice_fromto={{:salePrice}}" },
-        {"includeReferenced" : false, "referenceView" : "newProductId,productId"},
+        {"includeReferenced" : false},
         {"pageSize": "1", "page": "1"},
         {"facet":"categoryIds"}
       ]
@@ -87,9 +87,10 @@
         "resultType" : "none",
         "query" : [
           {"field" : "newProductStatus", "method" : "matching", "value" : "y" },
-          {"field" : "siteType", "method" : "matching", "value" : "siteType>{{:siteType}}" },
+          {"field" : "siteType", "method" : "matching", "value" : "{{:siteType}}" },
           {"field" : "year", "method" : "matching", "value" : "{{:year}}" },
-          {"field" : "month", "method" : "matching", "value" : "{{:month}}" }
+          {"field" : "month", "method" : "matching", "value" : "{{:month}}" },
+          {"limit": "1000"}
         ]
       },
       "root": {
@@ -108,12 +109,13 @@
           {
             "field": "referencedNewProductMap",
             "method": "hasReferenced",
-            "value": "newProductId={{:newProductId}}&newProductMapStatus_matching=y&categoryIds_matching={{:categoryId}}"
+            "value": "newProductId={{:default(newProductId,_null_)}}&newProductMapStatus_matching=y&categoryIds_matching={{:categoryId}}"
           },
           {
             "sorting": "{{:sorting}}"
           },
-          {"includeReferenced" : "referencedMainImage"}
+          {"includeReferenced" : "referencedMainImage"},
+          {"page" :"{{:page}}", "pageSize": "{{:pageSize}}", "limit": 1000}
         ],
         "response": {
           "_all_": "",

@@ -1,18 +1,34 @@
 [
   {
-    "typeId" : "event",
+    "typeId": "event",
     "tid": "member",
-    "event" : "accountNumberValidation",
-    "noneExecute" : true,
-    "eventName" : "계좌확인"
+    "event": "accountNumberValidation",
+    "noneExecute": true,
+    "eventName": "계좌확인"
   },
   {
-    "typeId" : "eventAction",
+    "typeId": "eventAction",
     "event": "member>accountNumberValidation",
-    "action" : "accountNumberValidation",
-    "actionName" : "계좌확인",
-    "actionType" : "service",
-    "actionBody" : "mypageOrderService.accountNumberValidation",
-    "order" : 1
+    "action": "accountNumberValidation",
+    "actionName": "계좌확인",
+    "actionType": "service",
+    "actionBody": "mypageOrderService.accountNumberValidation",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "interestProduct",
+    "event": "addWishList",
+    "noneExecute": true,
+    "eventName": "위시리스트 삭제"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "interestProduct>addWishList",
+    "action": "addWishList",
+    "actionName": "위시리스트 삭제",
+    "actionType": "service",
+    "actionBody": "mypageService.addWishList",
+    "order": 1
   }
 ]
