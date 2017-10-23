@@ -43,8 +43,8 @@ public class SearchWordService {
         query.append("ORDER BY cnt DESC ");
 
         StringBuffer totalQuery = new StringBuffer();
-        totalQuery.append("SELECT COUNT(*) ");
-        totalQuery.append("FROM ("+query.toString()+") ");
+        totalQuery.append("SELECT COUNT(t.name) ");
+        totalQuery.append("FROM ("+query.toString()+") t ");
 
         Integer totalCount = jdbcTemplate.queryForObject(totalQuery.toString(), Integer.class);
         List<Map<String, Object>> list = jdbcTemplate.queryForList(query.toString());
@@ -56,6 +56,8 @@ public class SearchWordService {
         item.put("pageCount", (int) Math.ceil(totalCount / Integer.parseInt(pageSize)));
         item.put("currentPage", Integer.parseInt(page));
         item.put("items", list);
+
+        context.setResult(item);
 
         return context;
     }

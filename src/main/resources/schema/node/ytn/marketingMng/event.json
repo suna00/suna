@@ -1,14 +1,14 @@
 [
   {
     "typeId": "event",
-    "tid": "searchWordHistory",
+    "tid": "popularSearches",
     "event": "countList",
     "noneExecute": true,
-    "eventName": "추천검색어"
+    "eventName": "추천검색어 이력"
   },
   {
     "typeId": "eventAction",
-    "event": "searchWordHistory>countList",
+    "event": "popularSearches>countList",
     "action": "countList",
     "actionName": "추천검색어",
     "actionType": "service",
