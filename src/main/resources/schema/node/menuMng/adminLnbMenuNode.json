@@ -492,6 +492,42 @@
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "adm",
+    "gnbMenuId": "vendorMng",
+    "parentMenuId": "root",
+    "menuId": "vendor",
+    "menuName": "벤더사관리",
+    "order": "10",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "ytn/vendor/List" },
+      { "pageName": "등록", "pageUrl": "ytn/vendor/createForm" },
+      { "pageName": "수정", "pageUrl": "ytn/vendor/updateForm" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "vendorMng",
+    "parentMenuId": "root",
+    "menuId": "notice",
+    "menuName": "벤더공지사항",
+    "order": "20",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" },
+      { "pageName": "등록", "pageUrl": "createForm" },
+      { "pageName": "수정", "pageUrl": "updateForm" }
+    ],
+    "customPages": []
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
     "gnbMenuId": "policyMng",
     "parentMenuId": "root",
     "menuId": "code",
