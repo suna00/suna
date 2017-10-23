@@ -1,0 +1,18 @@
+[
+  {
+    "typeId": "event",
+    "tid": "searchWordHistory",
+    "event": "countList",
+    "noneExecute": true,
+    "eventName": "추천검색어"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "searchWordHistory>countList",
+    "action": "countList",
+    "actionName": "추천검색어",
+    "actionType": "service",
+    "actionBody": "searchWordService.countList",
+    "order": 1
+  }
+]
