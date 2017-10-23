@@ -1597,42 +1597,6 @@
     "memo": "메모있다"
   },
   {
-    "typeId": "usedYPointMap",
-    "usedYPointMapId": 1,
-    "YPointId": 3,
-    "usedPrice": -120
-  },
-  {
-    "typeId": "usedYPointMap",
-    "usedYPointMapId": 2,
-    "YPointId": 4,
-    "usedPrice": -50
-  },
-  {
-    "typeId": "usedYPointMap",
-    "usedYPointMapId": 3,
-    "YPointId": 6,
-    "usedPrice": -100
-  },
-  {
-    "typeId": "usedYPointMap",
-    "usedYPointMapId": 4,
-    "YPointId": 7,
-    "usedPrice": -100
-  },
-  {
-    "typeId": "usedYPointMap",
-    "usedYPointMapId": 5,
-    "YPointId": 8,
-    "usedPrice": -100
-  },
-  {
-    "typeId": "usedYPointMap",
-    "usedYPointMapId": 6,
-    "YPointId": 9,
-    "usedPrice": -50
-  },
-  {
     "typeId": "commonMemo",
     "item": {
       "commonMemoId": 101,
