@@ -104,8 +104,13 @@ public class MypageOrderService {
         String orderSheetId = JsonUtils.getStringValue(data, "orderSheetId");
         String productId = JsonUtils.getStringValue(data, "productId");
         String orderStatus = JsonUtils.getStringValue(data, "orderStatus");
+        List<String> splitOrderStatusList = Arrays.asList(StringUtils.split(orderStatus, ","));
+        List<String> inOrderStatusList = new ArrayList<>();
+        for (String splitOrderStatus : splitOrderStatusList) {
+            inOrderStatusList.add(String.format("'%s'", splitOrderStatus));
+        }
 
-        String existsQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderProduct where IF(@{productId} = '' ,'1',productId) = IF(@{productId} = '' ,'1',@{productId}) and IF(@{orderStatus} = '' ,'1',orderStatus) = IF(@{orderStatus} = '' ,'1',@{orderStatus})";
+        String existsQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderProduct where IF(@{productId} = '' ,'1',productId) = IF(@{productId} = '' ,'1',@{productId}) and orderStatus in ("+StringUtils.join(inOrderStatusList, ",")+")";
 
         List<String> search = new ArrayList<>();
         search.add("pageSize="+pageSize);
