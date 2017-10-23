@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -51,9 +52,9 @@ public class CartService {
         } else {
             Node memberNode = (Node) NodeQuery.build("member").matching("memberNo", JsonUtils.getStringValue(sessionData, "member.memberNo")).getList().get(0);
             memberNode.getValue("cartId");
-            if(memberNode.getValue("cartId") != null){
+            if (memberNode.getValue("cartId") != null) {
                 context.getData().put("cartId", memberNode.getValue("cartId"));
-            }else{
+            } else {
                 context.getData().put("cartId", "abcdefg");
             }
         }
@@ -133,12 +134,12 @@ public class CartService {
         Node memberNode = (Node) NodeQuery.build("member").matching("memberNo", JsonUtils.getStringValue(sessionData, "member.memberNo")).getList().get(0);
         Integer cartId;
 
-        if(memberNode.getValue("cartId") != null){
+        if (memberNode.getValue("cartId") != null) {
             cartId = memberNode.getIntValue("cartId");
             data.put("cartId", cartId);
             nodeService.executeNode(data, "cart", CommonService.UPDATE);
 
-        }else{
+        } else {
             Node cart = (Node) nodeService.executeNode(data, "cart", CommonService.CREATE);
             cartId = Integer.parseInt(cart.getId());
             memberNode.put("cartId", cartId);
@@ -147,15 +148,16 @@ public class CartService {
         }
 
         sessionData.put("cartId", cartId);
-
-        if (data.get("product") != null) {
-            addProducts(data, cartId);
-        }
-
         Map<String, Object> result = new HashMap<>();
         result.put("cartId", cartId);
-        context.setResult(CommonService.getResult("S0002", result));
 
+        if (data.get("product") != null) {
+            if (!addProducts(data, cartId)) {
+                context.setResult(CommonService.getResult("S0002", result));
+            } else {
+                context.setResult(CommonService.getResult("S0003", result));
+            }
+        }
         return context;
     }
 
@@ -337,14 +339,14 @@ public class CartService {
         boolean isFirstRow = StringUtils.equals(JsonUtils.getStringValue(reqProduct, "baseOptionItemId"), JsonUtils.getStringValue(cartProduct, "baseOptionItemId"));
         String deliveryPriceType = String.valueOf(productNode.getBindingValue("deliveryPriceType"));
 
-        if (!StringUtils.equals(JsonUtils.getStringValue(reqProduct, "baseOptionItemId"), JsonUtils.getStringValue(cartProduct, "baseOptionItemId"))) {
-            return false;
+        if (StringUtils.equals(JsonUtils.getStringValue(reqProduct, "baseOptionItemId"), JsonUtils.getStringValue(cartProduct, "baseOptionItemId"))) {
+            return true;
         }
 
         if ("deliveryDateType>hopeDelivery".equals(productNode.get("deliveryDateType"))) {
             String existProductHopeDeliveryDate = cartProduct.get("hopeDeliveryDate").toString();   //기존카트상품
             String reqProductHopeDeliveryDate = reqProduct.get("hopeDeliveryDate").toString();      //요청상품
-            if (StringUtils.equals(existProductHopeDeliveryDate, reqProductHopeDeliveryDate)) return false;
+            if (StringUtils.equals(existProductHopeDeliveryDate, reqProductHopeDeliveryDate)) return true;
         }
 
 //        if ("scheduledDelivery".equals(productNode.getBindingValue("deliveryDateType"))) {
@@ -356,25 +358,25 @@ public class CartService {
         if (StringUtils.equals(deliveryPriceType, "quantity") && isFirstRow) {
             return false;
         }
-
-        return true;
+        return false;
     }
 
-    private void addProducts(Map<String, Object> data, Object cartId) throws IOException {
+    private boolean addProducts(Map<String, Object> data, Object cartId) throws IOException {
         List<Map<String, Object>> cartProducts = nodeBindingService.list(cartProduct_TID, "cartId_equals=" + cartId);
         List<Map<String, Object>> reqProducts = JsonUtils.parsingJsonToList(data.get("product").toString());
-
+        boolean exist = false;
         for (Map<String, Object> reqProduct : reqProducts) {
             Node product = NodeUtils.getNode("product", reqProduct.get("productId").toString());
-            boolean exist = false;
+            exist = false;
             String deliveryPriceType = String.valueOf(product.getBindingValue("deliveryPriceType"));
 
             for (Map<String, Object> cartProduct : cartProducts) {
                 if (existCartProduct(reqProduct, cartProduct, product)) {
-                    changeQuantity(cartProduct, Integer.parseInt(reqProduct.get("quantity").toString()));
-                    cartProduct.putAll(reqProduct);
-                    if (reqProduct.get("productItem") != null) createCartProductItem(cartProduct);
+//                    changeQuantity(cartProduct, Integer.parseInt(reqProduct.get("quantity").toString()));
+//                    cartProduct.putAll(reqProduct);
+//                    if (reqProduct.get("productItem") != null) createCartProductItem(cartProduct);
                     exist = true;
+                    return exist;
                 }
             }
             if (!exist) {
@@ -392,6 +394,7 @@ public class CartService {
                 }
             }
         }
+        return exist;
     }
 
     // 수량별 배송비 경우 기준수량 초과 시 cartProduct 나누기.
@@ -562,9 +565,9 @@ public class CartService {
 
                 }
             }
-            if(saved) {
+            if (saved) {
                 context.setResult(CommonService.getResult("I0001"));
-            }else{
+            } else {
                 context.setResult(CommonService.getResult("I0002"));
             }
 
