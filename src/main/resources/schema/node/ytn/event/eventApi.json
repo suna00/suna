@@ -89,7 +89,8 @@
           {"field" : "newProductStatus", "method" : "matching", "value" : "y" },
           {"field" : "siteType", "method" : "matching", "value" : "{{:siteType}}" },
           {"field" : "year", "method" : "matching", "value" : "{{:year}}" },
-          {"field" : "month", "method" : "matching", "value" : "{{:month}}" }
+          {"field" : "month", "method" : "matching", "value" : "{{:month}}" },
+          {"limit": "1000"}
         ]
       },
       "root": {
@@ -114,7 +115,7 @@
             "sorting": "{{:sorting}}"
           },
           {"includeReferenced" : "referencedMainImage"},
-          {"page" :"{{:page}}", "pageSize": "{{:pageSize}}"}
+          {"page" :"{{:page}}", "pageSize": "{{:pageSize}}", "limit": 1000}
         ],
         "response": {
           "_all_": "",

@@ -115,6 +115,7 @@ public class QueryContext extends ReadContext {
             }
         }
         queryContext.setQueryTerms(queryTerms);
+        queryContext.setMaxSize("10000");
         return queryContext;
     }
 
