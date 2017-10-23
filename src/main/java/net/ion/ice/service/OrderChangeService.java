@@ -58,7 +58,7 @@ public class OrderChangeService {
         ],
         "refundAccount": {  //무통장입금
             "accountNo": "000-1123-121412",
-            "bankName": "하나은행",
+            "bankCode": "하나은행",
             "accountOwner": "윤서눙",
             "myRefundAccountYn": true
         }
@@ -86,7 +86,7 @@ public class OrderChangeService {
         ],
         "refundAccount": {
             "accountNo": "000-1123-121412",
-            "bankName": "하나은행",
+            "bankCode": "하나은행",
             "accountOwner": "윤서눙",
             "myRefundAccountYn": true
         },
