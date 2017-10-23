@@ -98,16 +98,16 @@ public class MypageOrderService {
         int currentPage = (page == 0 ? 1 : page);
         String createdFromto = JsonUtils.getStringValue(data, "createdFromto");
         String orderSheetId = JsonUtils.getStringValue(data, "orderSheetId");
-        String orderProductId = JsonUtils.getStringValue(data, "orderProductId");
+        String productId = JsonUtils.getStringValue(data, "productId");
         String orderStatus = JsonUtils.getStringValue(data, "orderStatus");
 
         String existsQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderProduct where IF(@{productId} = '' ,'1',productId) = IF(@{productId} = '' ,'1',@{productId}) and IF(@{orderStatus} = '' ,'1',orderStatus) = IF(@{orderStatus} = '' ,'1',@{orderStatus})";
 
         String searchText = "pageSize=" + pageSize +
-                "&page=" + page +
+                "&page=" + currentPage +
                 "&sorting=created desc" +
                 (orderSheetId != "" ? "&orderSheetId_equals=" + orderSheetId : "") +
-                (orderProductId != "" || orderStatus != "" ? "&orderSheetId_exists=" + existsQuery : "") +
+                (productId != "" || orderStatus != "" ? "&orderSheetId_exists=" + existsQuery : "") +
                 (createdFromto != "" ? "&created_fromto=" + createdFromto : "") +
                 (memberNo != "" ? "&memberNo_equals=" + memberNo : "");
 

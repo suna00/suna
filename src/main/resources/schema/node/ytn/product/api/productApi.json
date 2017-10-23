@@ -126,5 +126,21 @@
         }
       }
     }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "product",
+    "apiId": "addWishList",
+    "apiName": "위시리스트 삭제",
+    "method": "POST",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "interestProduct",
+      "noneExecute": true,
+      "event" : "addWishList",
+      "data": {
+      }
+    }
   }
 ]

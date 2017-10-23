@@ -47,13 +47,15 @@
     "actionBody": "productSearchService.getGroupCount",
     "order": 1
   },
+
   {
-    "typeId" : "eventListener",
-    "tid" : "product",
+    "typeId" : "eventAction",
     "event": "review>create",
-    "listenerName" : "리뷰 건수 리뷰평점 ",
+    "action" : "create",
+    "actionName" : "리뷰 건수 리뷰평점",
     "actionType" : "service",
-    "actionBody" : "productListenService.review"
+    "actionBody" : "productListenService.review",
+    "order" : 1
   },
   {
     "typeId" : "eventListener",
