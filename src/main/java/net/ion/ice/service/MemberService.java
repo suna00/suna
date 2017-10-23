@@ -60,6 +60,7 @@ public class MemberService {
 
         Node member = nodes.get(0);
 
+        // 탈퇴회원 체크
         if("leave".equals(member.getBindingValue("memberStatus")) || "leaveRequest".equals(member.getBindingValue("memberStatus"))){
             throw new ApiException("400", "Not Found User");
         }
@@ -77,11 +78,20 @@ public class MemberService {
             e.printStackTrace();
         }
 
+        // 휴면회원 체크
         if("sleep".equals(member.getBindingValue("memberStatus"))){
             context.setResult(CommonService.getResult("U0011"));
         } else {
-            context.setResult(CommonService.getResult("U0007"));
+            // 패스워드 5회 이상 실패 시 체크
+            Integer failedCount = (member.getValue("failedCount") == null ? 0 : Integer.parseInt(member.getValue("failedCount").toString()));
+
+            if (failedCount < 5) {
+                context.setResult(CommonService.getResult("U0007"));
+            } else {
+                context.setResult(CommonService.getResult("M0008"));
+            }
         }
+
         return context;
     }
 
