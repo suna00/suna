@@ -518,32 +518,32 @@ public class DeliveryService {
         return jdbcTemplate.queryForMap(query, ids);
     }
 
-    public Map<String, Object> getCartDeliveryPriceMap(String cartProductId) {
-        JdbcTemplate jdbcTemplate = nodeBindingService.getNodeBindingInfo("YPoint").getJdbcTemplate();
-        String query = "select\n" +
-                "  cartDeliveryPriceId\n" +
-                "  ,cartId\n" +
-                "  ,cartProductIds\n" +
-                "  ,vendorId\n" +
-                "  ,deliveryPrice\n" +
-                "  ,bundleDeliveryYn\n" +
-                "  ,deliveryMethod\n" +
-                "  ,deliveryPriceType\n" +
-                "  ,deliveryDateType\n" +
-                "  ,date_format(scheduledDeliveryDate, '%Y%m%d%H%i%s') as scheduledDeliveryDate\n" +
-                "  ,date_format(hopeDeliveryDate, '%Y%m%d%H%i%s') as hopeDeliveryDate\n" +
-                "  ,created\n" +
-                "  ,changed\n" +
-                "from cartdeliveryprice\n" +
-                "where find_in_set(?, cartProductIds) > 0 ";
-        return jdbcTemplate.queryForMap(query, cartProductId);
-    }
+//    public Map<String, Object> getCartDeliveryPriceMap(String cartProductId) {
+//        JdbcTemplate jdbcTemplate = nodeBindingService.getNodeBindingInfo("YPoint").getJdbcTemplate();
+//        String query = "select\n" +
+//                "  cartDeliveryPriceId\n" +
+//                "  ,cartId\n" +
+//                "  ,cartProductIds\n" +
+//                "  ,vendorId\n" +
+//                "  ,deliveryPrice\n" +
+//                "  ,bundleDeliveryYn\n" +
+//                "  ,deliveryMethod\n" +
+//                "  ,deliveryPriceType\n" +
+//                "  ,deliveryDateType\n" +
+//                "  ,date_format(scheduledDeliveryDate, '%Y%m%d%H%i%s') as scheduledDeliveryDate\n" +
+//                "  ,date_format(hopeDeliveryDate, '%Y%m%d%H%i%s') as hopeDeliveryDate\n" +
+//                "  ,created\n" +
+//                "  ,changed\n" +
+//                "from cartdeliveryprice\n" +
+//                "where find_in_set(?, cartProductIds) > 0 ";
+//        return jdbcTemplate.queryForMap(query, cartProductId);
+//    }
 
-    public Map<String, Object> getOrderDeliveryPriceMap(String orderProductId) {
+    public Map<String, Object> getOrderDeliveryPriceMap(String orderSheetId, String orderProductId) {
         JdbcTemplate jdbcTemplate = nodeBindingService.getNodeBindingInfo("YPoint").getJdbcTemplate();
         String query = "select *" +
                 "from orderdeliveryprice\n" +
-                "where find_in_set(?, orderProductIds) > 0 ";
-        return jdbcTemplate.queryForMap(query, orderProductId);
+                "where orderSheetId = ? and find_in_set(?, orderProductIds) > 0 ";
+        return jdbcTemplate.queryForMap(query, orderSheetId, orderProductId);
     }
 }
