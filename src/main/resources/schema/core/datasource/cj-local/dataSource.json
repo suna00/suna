@@ -2,8 +2,8 @@
   {
     "typeId": "datasource",
     "id": "cjDb",
-    "dsName": "CMS DB PROD",
-    "jdbcUrl": "jdbc:mysql://cmsdb.cfwzre2kzbc1.ap-northeast-2.rds.amazonaws.com:3306/ice2?zeroDateTimeBehavior=convertToNull",
+    "dsName": "DEV CMS DB",
+    "jdbcUrl": "jdbc:mysql://125.131.88.156:3306/ice2",
     "ssl" : false,
     "dbType": "mySql",
     "username": "cjmwave",
@@ -12,18 +12,19 @@
   {
     "typeId" : "datasource",
     "id" : "mnetDb",
-    "dsName" : "REAL MNET DB",
-    "jdbcUrl" : "jdbc:sqlserver://172.16.37.242:6231;databaseName=mmis",
+    "ssl" : false,
+    "dsName" : "DEV MNET DB",
+    "jdbcUrl" : "jdbc:sqlserver://125.131.88.94:1500;databaseName=ice2",
     "ssl" : false,
     "dbType" : "msSql",
-    "username" : "cjmwave_back",
-    "password" : "!dpadnpdlqm!@12"
+    "username" : "iceuser",
+    "password" : "iceuser"
   },
   {
     "typeId": "datasource",
     "id": "authDb",
-    "dsName": "PROD USER/VOTE RDS",
-    "jdbcUrl": "jdbc:mysql://authdb.cfwzre2kzbc1.ap-northeast-2.rds.amazonaws.com:3306/ice2?zeroDateTimeBehavior=convertToNull",
+    "dsName": "DEV USER/VOTE RDS",
+    "jdbcUrl": "jdbc:mysql://125.131.88.156:3306/cj-vote",
     "ssl" : false,
     "dbType": "mySql",
     "username": "cjmwave",
