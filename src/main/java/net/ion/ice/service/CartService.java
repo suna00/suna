@@ -565,12 +565,7 @@ public class CartService {
 
                 }
             }
-            if (saved) {
-                context.setResult(CommonService.getResult("I0001"));
-            } else {
-                context.setResult(CommonService.getResult("I0002"));
-            }
-
+            context.setResult(CommonService.getResult("I0001"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
 
