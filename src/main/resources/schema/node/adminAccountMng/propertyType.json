@@ -194,23 +194,6 @@
   {
     "typeId": "propertyType",
     "tid": "user",
-    "pid": "status",
-    "propertyTypeName": "상태",
-    "valueType": "REFERENCE",
-    "required": true,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
-    "referenceType": "commonCodeToBe",
-    "referenceValue": "code",
-    "codeFilter": "userStatus",
-    "defaultValue": "active"
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "user",
     "pid": "created",
     "propertyTypeName": "등록일",
     "valueType": "DATE",
@@ -301,22 +284,6 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "",
-    "referenceValue": "",
-    "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "groupAuthority",
-    "pid": "status",
-    "propertyTypeName": "상태",
-    "valueType": "REFERENCE",
-    "required": true,
-    "idable": false,
-    "labelable": false,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
-    "referenceType": "commonCodeToBe",
     "referenceValue": "",
     "defaultValue": ""
   }
