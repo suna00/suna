@@ -537,7 +537,7 @@ public class OrderChangeService {
 
         Map<String, Double> orderChangeProducsDeliveryPrice = new HashMap<>();  //변경신청할 상품의 기존 배송비 distinct
         for(Map<String, Object> map : orderChangeProducts){
-            Map<String, Object> deliveryPriceMap = deliveryService.getOrderDeliveryPriceMap(JsonUtils.getStringValue(map, "orderProductId"));
+            Map<String, Object> deliveryPriceMap = deliveryService.getOrderDeliveryPriceMap(JsonUtils.getStringValue(data, "orderSheetId"), JsonUtils.getStringValue(map, "orderProductId"));
             orderChangeProducsDeliveryPrice.put(JsonUtils.getStringValue(deliveryPriceMap, "orderDeliveryPriceId"), JsonUtils.getDoubleValue(deliveryPriceMap, "deliveryPrice"));
         }
         for(String key : orderChangeProducsDeliveryPrice.keySet()){
