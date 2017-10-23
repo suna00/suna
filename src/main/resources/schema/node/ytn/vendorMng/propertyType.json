@@ -394,6 +394,23 @@
   {
     "typeId": "propertyType",
     "tid": "vendor",
+    "pid": "userId",
+    "propertyTypeName": "관리자",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "user",
+    "referenceValue": "userId",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "vendor",
     "pid": "owner",
     "propertyTypeName": "등록자",
     "valueType": "REFERENCE",

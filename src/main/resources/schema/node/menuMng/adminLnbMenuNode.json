@@ -503,8 +503,8 @@
     "pages": [],
     "customPages": [
       { "pageName": "목록", "pageUrl": "ytn/vendor/List" },
-      { "pageName": "등록", "pageUrl": "ytn/vendor/createForm" },
-      { "pageName": "수정", "pageUrl": "ytn/vendor/updateForm" }
+      { "pageName": "등록", "pageUrl": "ytn/vendor/CreateForm" },
+      { "pageName": "수정", "pageUrl": "ytn/vendor/UpdateForm" }
     ]
   },
   {
