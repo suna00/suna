@@ -119,7 +119,7 @@
     "pid": "gnbMenuId",
     "propertyTypeName": "GNB 아이디",
     "valueType": "STRING",
-    "required": false,
+    "required": true,
     "idable": false,
     "labelable": false,
     "treeable": false,
