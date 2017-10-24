@@ -436,9 +436,18 @@ public class InfinispanRepositoryService {
 //			Sort sort = new Sort( new SortField("nid", SortField.LONG, true));
 //		    cacheQuery.sort(sort) ;
         }
-
         return cacheQuery;
     }
 
 
+    public void rebuild(String typeId) {
+        Cache<String, Node> cache = getNodeCache(typeId) ;
+
+//        SearchManager searchManager = Search.getSearchManager(cache);
+//        searchManager.getMassIndexer().start();
+
+        for(Node node : cache.values()){
+            cache.put(node.getId(), node.toIndexing()) ;
+        }
+    }
 }
