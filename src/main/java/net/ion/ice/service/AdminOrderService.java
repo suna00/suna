@@ -33,6 +33,9 @@ public class AdminOrderService {
     public static final String orderSheet_TID = "orderSheet";
     public static final String orderProduct_TID = "orderProduct";
     public static final String orderDeliveryPrice_TID = "orderDeliveryPrice";
+    public static final String delivery_TID = "delivery";
+    public static final String deliveryTrackingInfo_TID = "deliveryTrackingInfo";
+
 
     private String trackingApi;
     private String tier;
@@ -206,15 +209,31 @@ public class AdminOrderService {
         return JsonUtils.parsingJsonToMap(resultStr);
     }
 
+    //배송주문조회
     public ExecuteContext deliveryTrackingInfoView(ExecuteContext context) {
         Map<String, Object> data = context.getData();
 
         String[] params = {"orderDeliveryPriceId"};
         if (CommonService.requiredParams(context, data, params)) return context;
 
+        Node node = NodeUtils.getNode(orderDeliveryPrice_TID, JsonUtils.getStringValue(data, "orderDeliveryPriceId"));
+        Map<String, Object> orderDeliveryPrice = new LinkedHashMap<>();
+        orderDeliveryPrice = commonService.putReferenceValue(orderDeliveryPrice_TID, context, node);
+        List<Map<String, Object>> deliveryAddress = nodeBindingService.list(delivery_TID, "deliveryType_equals=deliveryAddress&orderSheetId_equals=" + orderDeliveryPrice.get("orderSheetId"));
+        if(deliveryAddress.size() > 0){
+            orderDeliveryPrice.put("delivery", commonService.putReferenceValue(delivery_TID, context, deliveryAddress.get(0)));
+        }
 
+        List<Map<String, Object>> list = new ArrayList<>();
+        List<Map<String, Object>> deliveryTrackingList = nodeBindingService.list(deliveryTrackingInfo_TID, "orderDeliveryPriceId_equals=" + orderDeliveryPrice.get("orderDeliveryPriceId"));
+        for(Map<String, Object> map : deliveryTrackingList){
+            list.add(commonService.putReferenceValue(deliveryTrackingInfo_TID, context, map));
+        }
+        orderDeliveryPrice.put("statusList", list);
 
-
+        Map<String, Object> item = new LinkedHashMap<>();
+        item.put("item", orderDeliveryPrice);
+        context.setResult(item);
 
         return context;
     }

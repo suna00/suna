@@ -62,5 +62,21 @@
     "actionType": "service",
     "actionBody": "sweettrackerService.getData",
     "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "deliveryTrackingInfo",
+    "event": "deliveryTrackingInfoView",
+    "noneExecute": true,
+    "eventName": "배송조회"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "deliveryTrackingInfo>deliveryTrackingInfoView",
+    "action": "deliveryTrackingInfoView",
+    "actionName": "배송조회",
+    "actionType": "service",
+    "actionBody": "adminOrderService.deliveryTrackingInfoView",
+    "order": 1
   }
 ]
