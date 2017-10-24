@@ -11,6 +11,15 @@
   {
     "parentId": "backOfficePath",
     "typeId": "nodeType",
+    "tid": "operatingScore",
+    "typeName": "운영 점수",
+    "tableName": "ytnDevDb#operatingScore",
+    "repositoryType": "node",
+    "eviction": 10000
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
     "tid": "vendorNotice",
     "typeName": "밴더사 공지사항",
     "tableName": "ytnDevDb#vendorNotice",
