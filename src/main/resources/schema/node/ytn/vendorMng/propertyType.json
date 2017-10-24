@@ -833,7 +833,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "codeFilter": "trueFalse",
+    "codeFilter": "commonNoticeTopStatus",
     "defaultValue": ""
   },
   {
