@@ -447,7 +447,7 @@ public class InfinispanRepositoryService {
 //        searchManager.getMassIndexer().start();
 
         for(Node node : cache.values()){
-            cache.put(node.getId(), node) ;
+            cache.put(node.getId(), node.toIndexing()) ;
         }
     }
 }

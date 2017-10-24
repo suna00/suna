@@ -2190,6 +2190,23 @@
   {
     "typeId": "propertyType",
     "tid": "deliveryEnterprise",
+    "pid": "sweettrackerId",
+    "propertyTypeName": "스윗트래커 택배사 코드",
+    "valueType": "STRING",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "deliveryEnterprise",
     "pid": "owner",
     "propertyTypeName": "등록자",
     "valueType": "REFERENCE",

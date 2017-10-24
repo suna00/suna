@@ -557,6 +557,11 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     }
 
 
+    public Node toIndexing(){
+        this.properties.setTypeId(typeId);
+        this.properties.setId(id);
+        return this ;
+    }
 
 //    public Object getValue(String pid, PropertyType.ValueType valueType) {
 //        Object value = get(pid) ;

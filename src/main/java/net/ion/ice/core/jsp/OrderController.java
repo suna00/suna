@@ -17,19 +17,19 @@ public class OrderController {
     @Autowired
     OrderService orderService;
 
-    @RequestMapping("/order")
-    public ModelAndView order() {
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("/order/index");
-        return mv;
-    }
-
-    @RequestMapping("/order/orderTest")
-    public ModelAndView orderTest() {
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("/order/orderTest");
-        return mv;
-    }
+//    @RequestMapping("/order")
+//    public ModelAndView order() {
+//        ModelAndView mv = new ModelAndView();
+//        mv.setViewName("/order/index");
+//        return mv;
+//    }
+//
+//    @RequestMapping("/order/orderTest")
+//    public ModelAndView orderTest() {
+//        ModelAndView mv = new ModelAndView();
+//        mv.setViewName("/order/orderTest");
+//        return mv;
+//    }
 
     @RequestMapping("/order/hub")
     public ModelAndView hub() {
@@ -38,19 +38,19 @@ public class OrderController {
         return mv;
     }
 
-    @RequestMapping("/order/pp_cli_hub")
-    public ModelAndView pp_cli_hub() {
+    @RequestMapping("/order/cash_hub")
+    public ModelAndView cashHub() {
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("/order/pp_cli_hub");
+        mv.setViewName("/order/cash_hub");
         return mv;
     }
 
-    @RequestMapping("/order/result")
-    public ModelAndView result() {
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("/order/result");
-        return mv;
-    }
+//    @RequestMapping("/order/result")
+//    public ModelAndView result() {
+//        ModelAndView mv = new ModelAndView();
+//        mv.setViewName("/order/result");
+//        return mv;
+//    }
     @RequestMapping("/order/common_return")
     public ModelAndView commonResult() {
         ModelAndView mv = new ModelAndView();
