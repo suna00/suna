@@ -443,7 +443,11 @@ public class InfinispanRepositoryService {
     public void rebuild(String typeId) {
         Cache<String, Node> cache = getNodeCache(typeId) ;
 
-        SearchManager searchManager = Search.getSearchManager(cache);
-        searchManager.getMassIndexer().start();
+//        SearchManager searchManager = Search.getSearchManager(cache);
+//        searchManager.getMassIndexer().start();
+
+        for(Node node : cache.values()){
+            cache.put(node.getId(), node) ;
+        }
     }
 }
