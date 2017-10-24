@@ -68,7 +68,11 @@ file:
 i18n:
   defaults: en
 
-
+sweettracker:
+  trackingApi: https://dev-tracking-api.sweettracker.net/add_invoice
+  tier: ytn
+  key: LaTfL9LcqSZKG6maH6OPhQ
+  callbackUrl: http://localhost:8080/node/orderDeliveryPrice/event/sweettrackerGetData
 
 ---
 #-Dspring.profiles.active=dev
@@ -103,6 +107,7 @@ session:
 
 hazelcast:
   baseDir: /resource/ice2/data_2
+
 
 ---
 # 교보 개발 서버
