@@ -19,6 +19,15 @@
   {
     "parentId": "backOfficePath",
     "typeId": "nodeType",
+    "tid": "subContactPerson",
+    "typeName": "서브담당자",
+    "tableName": "ytnDevDb#subContactPerson",
+    "repositoryType": "node",
+    "eviction": 1000
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
     "tid": "collectRank",
     "typeName": "랭킹 수집",
     "tableName": "ytnDevDb#collectRank",
