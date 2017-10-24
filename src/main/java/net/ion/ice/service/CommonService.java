@@ -1,6 +1,9 @@
 package net.ion.ice.service;
 
 import net.ion.ice.core.context.ExecuteContext;
+import net.ion.ice.core.node.NodeType;
+import net.ion.ice.core.node.NodeUtils;
+import net.ion.ice.core.node.PropertyType;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -97,6 +100,7 @@ public class CommonService {
 
         resultCodeMap.put("CORE#JWT01", "Get JWT Success");
         resultCodeMap.put("CORE#JWT02", "JWT Expired");
+
     }
 
     public static boolean requiredParams(ExecuteContext context, Map<String, Object> data, String[] params) {
@@ -162,4 +166,14 @@ public class CommonService {
         return map;
     }
 
+
+    public static Map<String, Object> putReferenceValue(String nodeTypeId, ExecuteContext context, Map<String, Object> op) {
+        NodeType nodeType = NodeUtils.getNodeType(nodeTypeId);
+        for (PropertyType pt : nodeType.getPropertyTypes()) {
+            if ("REFERENCE".equals(pt.getValueType().toString()) && op.get(pt.getPid()) != null) {
+                op.put(pt.getPid(), NodeUtils.getReferenceValue(context, op.get(pt.getPid()), pt));
+            }
+        }
+        return op;
+    }
 }

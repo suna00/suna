@@ -41,6 +41,7 @@ public class MypageOrderService {
     @Autowired
     private NodeService nodeService;
 
+    CommonService commonService;
 
     public ExecuteContext accountNumberValidation(ExecuteContext context) {
         Map<String, Object> data = context.getData();
@@ -168,10 +169,10 @@ public class MypageOrderService {
                 Map<String, Object> orderDeliveryPrice = getOrderDeliveryPrice(JsonUtils.getStringValue(op, "orderSheetId"), JsonUtils.getStringValue(op, "orderProductId"));
                 op.put("referencedOrderDeliveryPrice", orderDeliveryPrice);
                 op.put("functionBtn", getFunctionBtn(orderDeliveryPrice, op, product));
-                putReferenceValue("orderProduct", context, op);
+                commonService.putReferenceValue("orderProduct", context, op);
             }
             sheet.put("referencedOrderProduct", opList);
-            putReferenceValue("orderSheet", context, sheet);
+            commonService.putReferenceValue("orderSheet", context, sheet);
         }
 
         int pageCount = (int) Math.ceil((double) sheetTotalList.size() / (double) pageSize);
@@ -228,10 +229,10 @@ public class MypageOrderService {
                 Map<String, Object> orderDeliveryPrice = getOrderDeliveryPrice(JsonUtils.getStringValue(op, "orderSheetId"), JsonUtils.getStringValue(op, "orderProductId"));
                 op.put("referencedOrderDeliveryPrice", orderDeliveryPrice);
                 op.put("functionBtn", getFunctionBtn(orderDeliveryPrice, op, product));
-                putReferenceValue("orderProduct", context, op);
+                commonService.putReferenceValue("orderProduct", context, op);
             }
             sheet.put("referencedOrderProduct", opList);
-            putReferenceValue("orderSheet", context, sheet);
+            commonService.putReferenceValue("orderSheet", context, sheet);
         }
 
         int pageCount = (int) Math.ceil((double) sheetList.size() / (double) pageSize);
@@ -245,15 +246,6 @@ public class MypageOrderService {
 
         item.put("items", sheetList);
         context.setResult(item);
-    }
-
-    public void putReferenceValue(String nodeTypeId, ExecuteContext context, Map<String, Object> op) {
-        NodeType nodeType = NodeUtils.getNodeType(nodeTypeId);
-        for (PropertyType pt : nodeType.getPropertyTypes()) {
-            if ("REFERENCE".equals(pt.getValueType().toString()) && op.get(pt.getPid()) != null) {
-                op.put(pt.getPid(), NodeUtils.getReferenceValue(context, op.get(pt.getPid()), pt));
-            }
-        }
     }
 
     public Map<String, Object> getFunctionBtn(Map<String, Object> orderDeliveryPrice, Map<String, Object> orderProduct, Map<String, Object> product) {
