@@ -1,0 +1,50 @@
+[
+  {
+    "typeId": "event",
+    "tid": "orderDeliveryPrice",
+    "event": "multiStatusChangeTarget",
+    "noneExecute": true,
+    "eventName": "멀티 배송상태 변경 대상 선택"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "orderDeliveryPrice>multiStatusChangeTarget",
+    "action": "multiStatusChangeTarget",
+    "actionName": "멀티 배송상태 변경 대상 선택",
+    "actionType": "service",
+    "actionBody": "adminOrderService.multiDeliveryStatusChangeTarget",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "orderDeliveryPrice",
+    "event": "singleStatusChangeTarget",
+    "noneExecute": true,
+    "eventName": "단일 배송상태 변경 대상 선택"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "orderDeliveryPrice>singleStatusChangeTarget",
+    "action": "singleStatusChangeTarget",
+    "actionName": "단일 변경 대상 선택",
+    "actionType": "service",
+    "actionBody": "adminOrderService.singleDeliveryStatusChangeTarget",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "orderDeliveryPrice",
+    "event": "changeDeliveryStatus",
+    "noneExecute": true,
+    "eventName": "배송상태 변경"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "orderDeliveryPrice>changeDeliveryStatus",
+    "action": "changeDeliveryStatus",
+    "actionName": "배송상태 변경",
+    "actionType": "service",
+    "actionBody": "adminOrderService.changeDeliveryStatus",
+    "order": 1
+  }
+]
