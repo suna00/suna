@@ -20,6 +20,23 @@
   {
     "typeId": "propertyType",
     "tid": "usedWelfarePointMap",
+    "pid": "oderSheetId",
+    "propertyTypeName": "주문서 아이디",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "oderSheet",
+    "referenceValue": "oderSheetId",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "usedWelfarePointMap",
     "pid": "welfarePointId",
     "propertyTypeName": "복지 포인트 ID",
     "valueType": "REFERENCE",
@@ -563,6 +580,23 @@
     "codeFilter": "",
     "defaultValue": "",
     "idType": "autoIncrement"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "usedYPointMap",
+    "pid": "orderSheetId",
+    "propertyTypeName": "주문서 ID",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "orderSheet",
+    "referenceValue": "orderSheetId",
+    "codeFilter": "",
+    "defaultValue": ""
   },
   {
     "typeId": "propertyType",
