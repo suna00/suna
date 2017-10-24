@@ -420,7 +420,7 @@
     "treeable": false,
     "indexable": false,
     "analyzer": "",
-    "referenceType": "OperatingScore",
+    "referenceType": "operatingScore",
     "referenceValue": "vendorId",
     "referencedFilter": "sorting=created desc",
     "codeFilter": "",
