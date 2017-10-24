@@ -59,7 +59,7 @@ public class ApiExecuteContext extends ExecuteContext implements CacheableContex
     public String makeCacheKey() {
         StringBuffer params = new StringBuffer() ;
         for(String key : httpRequest.getParameterMap().keySet()){
-            if(key.equals(ClusterUtils.CONFIG_) || key.equals(ClusterUtils.DATE_FORMAT_) || key.equals(ClusterUtils.FILE_URL_FORMAT_) || key.equals("now")|| key.equals("sysdate") || key.equals("session")) continue;
+            if(key.equals(ClusterUtils.CONFIG_) || key.equals(ClusterUtils.DATE_FORMAT_) || key.equals(ClusterUtils.FILE_URL_FORMAT_) || key.equals("now")|| key.equals("sysdate") || key.equals("session")|| (excludeCache != null && excludeCache.contains(key))) continue;
 
             params.append(key);
             params.append("=") ;

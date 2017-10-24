@@ -80,6 +80,15 @@ public class SchedulingService implements InitializingBean{
         if(clusterConfiguration == null) return ;
         if(!(clusterConfiguration.getMode().equals("all") || clusterConfiguration.getMode().equals("cms"))) return ;
         // Determine initial delay
+
+        if(!clusterConfiguration.getHazelcast().getCluster().getLocalMember().getAddress().getHost().equals("10.75.7.130")){
+            return;
+        }
+
+        logger.info("Schedule RUN : " + scheduleNode);
+
+
+
         long initialDelay = 10000;
 
         String scheduleType = scheduleNode.getStringValue("type") ;
