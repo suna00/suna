@@ -1020,7 +1020,7 @@
     "analyzer": null,
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "codeFilter": "deliveryStatus",
+    "codeFilter": "orderStatus",
     "defaultValue": ""
   },
   {
@@ -1498,7 +1498,7 @@
     "analyzer": null,
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "codeFilter": "deliveryStatus",
+    "codeFilter": "orderStatus",
     "defaultValue": ""
   },
   {
