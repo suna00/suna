@@ -64,4 +64,20 @@ public class NodeHelperController {
             return JsonResponse.error(e) ;
         }
     }
+
+    @RequestMapping(value = "/helper/rebuild", method = RequestMethod.GET)
+    @ResponseBody
+    public Object rebuildIndex(HttpServletRequest request, @RequestParam String typeId)  {
+        try {
+            long start = System.currentTimeMillis() ;
+            logger.info("index rebuild start : {}", typeId);
+            infinispanRepositoryService.rebuild(typeId) ;
+            logger.info("index rebuild end : {} {}ms", typeId, System.currentTimeMillis() - start);
+            return JsonResponse.create() ;
+        }catch(Exception e){
+            logger.error(e.getMessage(), e);
+            return JsonResponse.error(e) ;
+        }
+    }
+
 }
