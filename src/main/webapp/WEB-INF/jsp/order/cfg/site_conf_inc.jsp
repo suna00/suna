@@ -73,6 +73,11 @@
 //    String g_conf_site_cd   = "T0000";
 //    String g_conf_site_key  = "3grptw1.zW0GSo4PQdaGvsF__";
 
+    //현금 영수증 모듈
+    String g_conf_user_type = "PGNW" ;
+    String g_conf_site_id   = "T0000" ; //이게 결제 모듈의 site_cd를 의미
+
+
     /* ============================================================================== */
     /* = g_conf_site_name 설정                                                      = */
     /* =----------------------------------------------------------------------------= */
