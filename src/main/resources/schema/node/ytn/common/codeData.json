@@ -5851,7 +5851,7 @@
   },
   {
     "typeId": "commonCode",
-    "code": "purchase",
+    "code": "use",
     "upperCode": "welfarePointType",
     "name": "상품구매",
     "description": "",

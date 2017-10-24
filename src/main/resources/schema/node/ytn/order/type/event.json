@@ -98,17 +98,17 @@
   {
     "typeId": "event",
     "tid": "orderSheet",
-    "event": "pointOrder",
+    "event": "nonePgOrder",
     "noneExecute": true,
     "eventName": "포인트구매"
   },
   {
     "typeId": "eventAction",
-    "event": "orderSheet>pointOrder",
-    "action": "pointOrder",
+    "event": "orderSheet>nonePgOrder",
+    "action": "nonePgOrder",
     "actionName": "반품신청",
     "actionType": "service",
-    "actionBody": "orderService.pointOrder",
+    "actionBody": "orderService.nonePgOrder",
     "order": 1
   }
 ]

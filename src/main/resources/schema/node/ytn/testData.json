@@ -405,7 +405,8 @@
     "snsType": null,
     "snsId": null,
     "snsProfileLink": null,
-    "welfarePoint" : 1000
+    "welfarePoint" : 1000,
+    "YPoint" : 128125541
   },
   {
     "typeId": "member",
