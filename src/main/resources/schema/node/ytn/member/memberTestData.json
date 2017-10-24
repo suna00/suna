@@ -65,7 +65,8 @@
     "snsType": null,
     "snsId": null,
     "snsProfileLink": null,
-    "welfarePoint" : 2000
+    "YPoint" : 50,
+    "welfarePoint" : 85000
   },
   {
     "typeId": "member",
@@ -271,7 +272,8 @@
     "snsType": null,
     "snsId": null,
     "snsProfileLink": null,
-    "welfarePoint" : 500
+    "YPoint" : 10000000000,
+    "welfarePoint" : 9999999999
   },
   {
     "typeId": "member",
@@ -409,7 +411,8 @@
     "snsType": null,
     "snsId": null,
     "snsProfileLink": null,
-    "welfarePoint" : 500
+    "YPoint" : 10000000000,
+    "welfarePoint" : 9999999999
   },
   {
     "typeId": "member",
