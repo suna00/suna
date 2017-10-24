@@ -11,6 +11,15 @@
   {
     "parentId": "backOfficePath",
     "typeId": "nodeType",
+    "tid": "subContactPerson",
+    "typeName": "서브담당자",
+    "tableName": "ytnDevDb#subContactPerson",
+    "repositoryType": "node",
+    "eviction": 1000
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
     "tid": "vendorNotice",
     "typeName": "밴더사 공지사항",
     "tableName": "ytnDevDb#vendorNotice",

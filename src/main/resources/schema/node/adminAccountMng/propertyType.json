@@ -276,6 +276,22 @@
   {
     "typeId": "propertyType",
     "tid": "user",
+    "pid": "postPosition",
+    "propertyTypeName": "직위",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "user",
     "pid": "email",
     "propertyTypeName": "이메일",
     "valueType": "STRING",
@@ -308,7 +324,7 @@
   {
     "typeId": "propertyType",
     "tid": "user",
-    "pid": "tel",
+    "pid": "phone",
     "propertyTypeName": "전화",
     "valueType": "STRING",
     "required": false,
