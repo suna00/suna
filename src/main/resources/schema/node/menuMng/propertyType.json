@@ -120,7 +120,7 @@
     "propertyTypeName": "GNB 아이디",
     "valueType": "STRING",
     "required": false,
-    "idable": false,
+    "idable": true,
     "labelable": false,
     "treeable": false,
     "indexable": true,
