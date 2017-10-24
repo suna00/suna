@@ -1,6 +1,35 @@
 [
   {
     "typeId" : "apiCategory",
+    "id" : "adminProduct",
+    "categoryName" : "관리자 상품 API"
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "adminProduct",
+    "apiId" : "read",
+    "apiName" : "상품 read",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "product",
+      "id": "{{:productId}}",
+      "includeReferenced" : "true",
+      "response": {
+        "_all_": "",
+        "referencedProductToCategoryMap" : {
+          "typeId": "productToCategoryMap",
+          "query" : [
+            {"field" : "productId", "method" : "matching", "value" : "{{:productId}}" },
+            {"referenceView": "categoryId"}
+          ]
+        }
+      }
+    }
+  },
+  {
+    "typeId" : "apiCategory",
     "id" : "product",
     "categoryName" : "상품 API",
     "fileUrlFormat" : {

@@ -1,0 +1,26 @@
+[
+  {
+    "typeId" : "apiCategory",
+    "id" : "popularSearches",
+    "categoryName" : "추천검색어 이력 API",
+    "fileUrlFormat" : {
+      "default": "{{:getEnvValue(cluster.file-prefix, url)}}"
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "popularSearches",
+    "apiId": "countList",
+    "apiName": "추천검색어 이력",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "popularSearches",
+      "noneExecute": true,
+      "event": "countList",
+      "data": {
+      }
+    }
+  }
+]

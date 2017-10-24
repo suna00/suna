@@ -65,7 +65,7 @@
   {
     "typeId" : "adminGnbMenu",
     "backOfficeId": "adm",
-    "menuId": "venderMng",
+    "menuId": "vendorMng",
     "menuName": "벤더",
     "order": "90",
     "icon": "",

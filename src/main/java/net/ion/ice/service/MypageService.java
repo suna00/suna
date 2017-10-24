@@ -114,8 +114,10 @@ public class MypageService {
 
         Node node = nodeService.read("member", data.get("memberNo").toString());
         String nodePw = node.getValue("password").toString();
+        Integer failedCount = (node.getValue("failedCount") == null ? 0 : Integer.parseInt(node.getValue("failedCount").toString()));
+
         if (!nodePw.equals(data.get("password").toString())) {
-            Integer failedCount = (node.getValue("failedCount") == null ? 0 : Integer.parseInt(node.getValue("failedCount").toString())) + 1;
+            failedCount+=1;
             node.put("failedCount", failedCount);
             node.put("lastFailedDate", new Date());
             nodeService.updateNode(node, "member");
@@ -127,6 +129,12 @@ public class MypageService {
                 CommonService.setErrorMessage(context, "M0008");
             }
         } else {
+            if (0 < failedCount) {
+                node.put("failedCount", null);
+                node.put("lastFailedDate", null);
+                nodeService.updateNode(node, "member");
+            }
+
             context.setResult("비밀번호 인증 성공");
         }
 

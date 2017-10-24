@@ -59,13 +59,30 @@ public class MemberService {
         }
 
         Node member = nodes.get(0);
+        Integer failedCount = (member.getValue("failedCount") == null ? 0 : Integer.parseInt(member.getValue("failedCount").toString()));
 
+        // 탈퇴회원 체크
         if("leave".equals(member.getBindingValue("memberStatus")) || "leaveRequest".equals(member.getBindingValue("memberStatus"))){
             throw new ApiException("400", "Not Found User");
         }
 
+        // 패스워드 5회 이상 실패 체크
         if (!member.getStringValue("password").equals(password)) {
+            failedCount+=1;
+            member.put("failedCount", failedCount);
+            member.put("lastFailedDate", new Date());
+            nodeService.updateNode(member, "member");
+
+            if (5 <= failedCount) {
+                throw new ApiException("400", "M0008");
+            }
             throw new ApiException("400", "The password is incorrect");
+        } else {
+            if (0 < failedCount) {
+                member.put("failedCount", null);
+                member.put("lastFailedDate", null);
+                nodeService.updateNode(member, "member");
+            }
         }
 
         Map<String, Object> session = new HashMap<>();
@@ -77,11 +94,16 @@ public class MemberService {
             e.printStackTrace();
         }
 
+        // 휴면회원 체크
         if("sleep".equals(member.getBindingValue("memberStatus"))){
             context.setResult(CommonService.getResult("U0011"));
         } else {
+            member.put("lastLoginDate", new Date());
+            nodeService.updateNode(member, "member");
+
             context.setResult(CommonService.getResult("U0007"));
         }
+
         return context;
     }
 
@@ -127,6 +149,7 @@ public class MemberService {
         } else {
             if (contextData.containsKey("password")) {
                 contextData.put("failedCount", null);
+                contextData.put("lastFailedDate", null);
             }
             node = (Node) nodeService.executeNode(contextData, "member", CommonService.UPDATE);
 

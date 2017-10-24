@@ -114,22 +114,6 @@
   {
     "typeId": "propertyType",
     "tid": "user",
-    "pid": "userId",
-    "propertyTypeName": "관리자 ID",
-    "valueType": "STRING",
-    "required": true,
-    "idable": true,
-    "labelable": false,
-    "treeable": false,
-    "indexable": true,
-    "analyzer": "code",
-    "referenceType": "",
-    "referenceValue": "",
-    "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "user",
     "pid": "userGroupId",
     "propertyTypeName": "관리자 그룹 ID",
     "valueType": "STRING",
@@ -173,6 +157,22 @@
     "analyzer": "code",
     "referenceType": "vendor",
     "referenceValue": "vendorId",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "user",
+    "pid": "userId",
+    "propertyTypeName": "관리자 ID",
+    "valueType": "STRING",
+    "required": true,
+    "idable": true,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "",
+    "referenceValue": "",
     "defaultValue": ""
   },
   {
@@ -292,6 +292,22 @@
   {
     "typeId": "propertyType",
     "tid": "user",
+    "pid": "tel",
+    "propertyTypeName": "전화",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "user",
     "pid": "loginIP",
     "propertyTypeName": "로그인 IP",
     "valueType": "STRING",
@@ -327,7 +343,7 @@
     "pid": "loginValidTime",
     "propertyTypeName": "로그인 인증 유효시간",
     "valueType": "STRING",
-    "required": true,
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
@@ -343,7 +359,7 @@
     "pid": "authorityGroupId",
     "propertyTypeName": "그룹 권한 ID",
     "valueType": "REFERENCE",
-    "required": true,
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
@@ -417,8 +433,6 @@
     "referenceValue": "userId",
     "defaultValue": ""
   },
-
-
   {
     "typeId": "propertyType",
     "tid": "groupAuthority",

@@ -1,0 +1,22 @@
+[
+  {
+    "typeId": "userGroup",
+    "userGroupId": "system",
+    "name": "System Group"
+  },
+  {
+    "typeId": "userGroup",
+    "userGroupId": "admin",
+    "name": "관리자 그룹"
+  },
+  {
+    "typeId": "userGroup",
+    "userGroupId": "affiliate",
+    "name": "제휴사 그룹"
+  },
+  {
+    "typeId": "userGroup",
+    "userGroupId": "vendor",
+    "name": "벤더 그룹"
+  }
+]

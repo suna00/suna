@@ -90,12 +90,6 @@ public class MypageOrderService {
     }
 
     public ExecuteContext getAdminOrderList(ExecuteContext context) {
-        getOrderSheetList(context, "");
-
-        return context;
-    }
-
-    public void getOrderSheetList(ExecuteContext context, String memberNo) {
         Map<String, Object> data = context.getData();
         int pageSize = (JsonUtils.getIntValue(data, "pageSize") == 0 ? 10 : JsonUtils.getIntValue(data, "pageSize"));
         int page = JsonUtils.getIntValue(data, "page");
@@ -181,6 +175,66 @@ public class MypageOrderService {
         }
 
         int pageCount = (int) Math.ceil((double) sheetTotalList.size() / (double) pageSize);
+
+        Map<String, Object> item = new LinkedHashMap<>();
+        item.put("totalCount", sheetTotalList.size());
+        item.put("resultCount", sheetList.size());
+        item.put("pageSize", pageSize);
+        item.put("pageCount", pageCount);
+        item.put("currentPage", currentPage);
+
+        item.put("items", sheetList);
+        context.setResult(item);
+
+        return context;
+    }
+
+    public void getOrderSheetList(ExecuteContext context, String memberNo) {
+        Map<String, Object> data = context.getData();
+        int pageSize = (JsonUtils.getIntValue(data, "pageSize") == 0 ? 10 : JsonUtils.getIntValue(data, "pageSize"));
+        int page = JsonUtils.getIntValue(data, "page");
+        int currentPage = (page == 0 ? 1 : page);
+        String createdFromto = JsonUtils.getStringValue(data, "createdFromto");
+        String orderSheetId = JsonUtils.getStringValue(data, "orderSheetId");
+        String productId = JsonUtils.getStringValue(data, "productId");
+        String orderStatus = JsonUtils.getStringValue(data, "orderStatus");
+
+        String existsQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderProduct where IF(@{productId} = '' ,'1',productId) = IF(@{productId} = '' ,'1',@{productId}) and IF(@{orderStatus} = '' ,'1',orderStatus) = IF(@{orderStatus} = '' ,'1',@{orderStatus})";
+
+        String searchText = "pageSize=" + pageSize +
+                "&page=" + currentPage +
+                "&sorting=created desc" +
+                (orderSheetId != "" ? "&orderSheetId_equals=" + orderSheetId : "") +
+                (productId != "" || orderStatus != "" ? "&orderSheetId_exists=" + existsQuery : "") +
+                (createdFromto != "" ? "&created_fromto=" + createdFromto : "") +
+                (memberNo != "" ? "&memberNo_equals=" + memberNo : "");
+
+        List<Map<String, Object>> sheetTotalList = nodeBindingService.list(orderSheet_TID, "");
+
+
+        NodeType nodeType = NodeUtils.getNodeType(orderSheet_TID);
+        QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, nodeType, null);
+        queryContext.setData(context.getData());
+        NodeBindingInfo nodeBindingInfo = nodeBindingService.getNodeBindingInfo(orderSheet_TID);
+        List<Map<String, Object>> sheetList = nodeBindingInfo.list(queryContext);
+
+        for (Map<String, Object> sheet : sheetList) {
+            List<Map<String, Object>> opList = nodeBindingService.list(orderProduct_TID, "orderSheetId_equals=" + JsonUtils.getStringValue(sheet, "orderSheetId"));
+            for (Map<String, Object> op : opList) {
+                Node product = NodeUtils.getNode("product", JsonUtils.getStringValue(op, "productId"));
+                List<Map<String, Object>> mainImages = nodeBindingService.list(commonResource_TID, "contentsId_matching=" + product.getId() + "&tid_matching=product&name_matching=main");
+                product.put("referencedMainImage", mainImages);
+
+                Map<String, Object> orderDeliveryPrice = getOrderDeliveryPrice(JsonUtils.getStringValue(op, "orderSheetId"), JsonUtils.getStringValue(op, "orderProductId"));
+                op.put("referencedOrderDeliveryPrice", orderDeliveryPrice);
+                op.put("functionBtn", getFunctionBtn(orderDeliveryPrice, op, product));
+                putReferenceValue("orderProduct", context, op);
+            }
+            sheet.put("referencedOrderProduct", opList);
+            putReferenceValue("orderSheet", context, sheet);
+        }
+
+        int pageCount = (int) Math.ceil((double) sheetList.size() / (double) pageSize);
 
         Map<String, Object> item = new LinkedHashMap<>();
         item.put("totalCount", sheetTotalList.size());

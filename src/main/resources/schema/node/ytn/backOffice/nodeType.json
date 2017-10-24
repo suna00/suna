@@ -136,24 +136,6 @@
   {
     "parentId": "backOfficePath",
     "typeId": "nodeType",
-    "tid": "vendor",
-    "typeName": "밴더사",
-    "tableName": "ytnDevDb#vendor",
-    "repositoryType": "node",
-    "eviction": 0
-  },
-  {
-    "parentId": "backOfficePath",
-    "typeId": "nodeType",
-    "tid": "vendorNotice",
-    "typeName": "밴더사 공지사항",
-    "tableName": "ytnDevDb#vendorNotice",
-    "repositoryType": "node",
-    "eviction": 0
-  },
-  {
-    "parentId": "backOfficePath",
-    "typeId": "nodeType",
     "tid": "smsCertification",
     "typeName": "SMS 인증 이력",
     "tableName": "ytnDevDb#smsCertification",
@@ -194,15 +176,6 @@
     "typeName": "벤더별 상품옵션설정",
     "tableName": "ytnDevDb#productOptionByVendor",
     "repositoryType": "node",
-    "eviction": 0
-  },
-  {
-    "parentId": "backOfficePath",
-    "typeId": "nodeType",
-    "tid": "searchWordHistory",
-    "typeName": "검색어 이력",
-    "tableName": "ytnDevDb#searchWordHistory",
-    "repositoryType": "data",
     "eviction": 0
   },
   {
