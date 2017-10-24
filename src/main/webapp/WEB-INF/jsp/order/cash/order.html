@@ -1,0 +1,336 @@
+
+<!--
+    /* ============================================================================== */
+    /* =   PAGE : 등록 요청 PAGE                                                    = */
+    /* = -------------------------------------------------------------------------- = */
+    /* =   연동시 오류가 발생하는 경우 아래의 주소로 접속하셔서 확인하시기 바랍니다.= */
+    /* =   접속 주소 : http://testpay.kcp.co.kr/pgsample/FAQ/search_error.jsp       = */
+    /* = -------------------------------------------------------------------------- = */
+    /* =   Copyright (c)  2007   KCP Inc.   All Rights Reserved.                    = */
+    /* ============================================================================== */
+//-->
+
+<html>
+<head>
+    <title>*** KCP Online Payment System [JSP Version] ***</title>
+    <link href="css/sample.css" rel="stylesheet" type="text/css">
+    <script language="javascript">
+
+        // 주문번호 생성 예제
+        function init_orderid()
+        {
+            var today = new Date();
+            var year  = today.getFullYear();
+            var month = today.getMonth()+ 1;
+            var date  = today.getDate();
+            var time  = today.getTime();
+
+            if(parseInt(month) < 10)
+            {
+                month = "0" + month;
+            }
+
+            var vOrderID = year + "" + month + "" + date + "" + time;
+
+            document.forms[0].ordr_idxx.value = vOrderID;
+        }
+
+        // 현금영수증 MAIN FUNC
+        function  jsf__pay_cash( form )
+        {
+            jsf__show_progress(true);
+
+            if ( jsf__chk_cash( form ) == false )
+            {
+                jsf__show_progress(false);
+                return;
+            }
+
+            form.submit();
+        }
+
+        // 진행 바
+        function  jsf__show_progress( show )
+        {
+            if ( show == true )
+            {
+                window.show_pay_btn.style.display  = "none";
+                window.show_progress.style.display = "inline";
+            }
+            else
+            {
+                window.show_pay_btn.style.display  = "inline";
+                window.show_progress.style.display = "none";
+            }
+        }
+
+        // 포맷 체크
+        function  jsf__chk_cash( form )
+        {
+            if ( form.trad_time.value.length != 14 )
+            {
+                alert("원 거래 시각을 정확히 입력해 주시기 바랍니다.");
+                form.trad_time.select();
+                form.trad_time.focus();
+                return false;
+            }
+
+            if ( form.corp_type.value == "1" )
+            {
+                if ( form.corp_tax_no.value.length != 10 )
+                {
+                    alert("발행 사업자번호를 정확히 입력해 주시기 바랍니다.");
+                    form.corp_tax_no.select();
+                    form.corp_tax_no.focus();
+                    return false;
+                }
+            }
+
+            if (  form.tr_code[0].checked )
+            {
+                if ( form.id_info.value.length != 10 &&
+                    form.id_info.value.length != 11 &&
+                    form.id_info.value.length != 13 )
+                {
+                    alert("주민번호 또는 휴대폰번호를 정확히 입력해 주시기 바랍니다.");
+                    form.id_info.select();
+                    form.id_info.focus();
+                    return false;
+                }
+            }
+            else if (  form.tr_code[1].checked )
+            {
+                if ( form.id_info.value.length != 10 )
+                {
+                    alert("사업자번호를 정확히 입력해 주시기 바랍니다.");
+                    form.id_info.select();
+                    form.id_info.focus();
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function  jsf__chk_tr_code( form )
+        {
+            var span_tr_code_0 = document.getElementById( "span_tr_code_0" );
+            var span_tr_code_1 = document.getElementById( "span_tr_code_1" );
+
+            if ( form.tr_code[0].checked )
+            {
+                span_tr_code_0.style.display = "block";
+                span_tr_code_1.style.display = "none";
+            }
+            else if (form.tr_code[1].checked )
+            {
+                span_tr_code_0.style.display = "none";
+                span_tr_code_1.style.display = "block";
+            }
+        }
+
+    </script>
+</head>
+<body onload="init_orderid();">
+<form name="cash_form" action="./cash_hub.jsp" method="post">
+    <table border="0" cellpadding="0" cellspacing="1" width="500" align="center">
+        <tr>
+            <td align="left" height="25"><img src="./img/KcpLogo.jpg" border="0" width="65" height="50"></td>
+            <td align="right" class="txt_main">KCP Online Payment System [JSP HUB Version]</td>
+        </tr>
+        <tr>
+            <td bgcolor="CFCFCF" height="3" colspan="2"></td>
+        </tr>
+        <tr>
+            <td align="center" valign="middle" colspan="2" height="30">
+                <font style="font-size:12px;font-weight:bold">이 페이지는 현금영수증 등록을 요청하는 페이지로써 샘플(예시) 페이지입니다.</font>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <table width="90%" align="center">
+                    <tr>
+                        <td bgcolor="CFCFCF" height="2"></td>
+                    </tr>
+                    <tr>
+                        <td align="center"><B>주문 정보</B></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="CFCFCF" height="2"></td>
+                    </tr>
+                </table>
+                <table width="90%" align="center">
+                    <tr>
+                        <td>주문 번호</td>
+                        <td><input type="text" name="ordr_idxx" size="30" maxlength="40" value=""></td>
+                    </tr>
+                    <tr><td colspan="2"><IMG SRC="./img/dot_line.gif" width="100%"></td></tr>
+                    <tr>
+                        <td>상품 정보</td>
+                        <td><input type="text" name="good_name" maxlength="30" value="핸드폰"></td>
+                    </tr>
+                    <tr><td colspan="2"><IMG SRC="./img/dot_line.gif" width="100%"></td></tr>
+                    <!-- 소득공제용인 경우 : 개인명으로 설정 -->
+                    <!-- 지출증빙용인 경우 : 사업자명으로 설정 -->
+                    <tr>
+                        <td>주문자 이름</td>
+                        <td><input type="text" name="buyr_name" size="20" maxlength="20" value="홍길동"></td>
+                    </tr>
+                    <tr><td colspan="2"><IMG SRC="./img/dot_line.gif" width="100%"></td></tr>
+                    <tr>
+                        <td>주문자 E-Mail</td>
+                        <td><input type="text" name="buyr_mail" size="20" maxlength="50" value="test@kcp.co.kr"></td>
+                    </tr>
+                    <tr><td colspan="2"><IMG SRC="./img/dot_line.gif" width="100%"></td></tr>
+                    <tr>
+                        <td>주문자 전화번호</td>
+                        <td><input type="text" name="buyr_tel1" size="20" maxlength="20" value="02-2108-1000"></td>
+                    </tr>
+                    <tr><td colspan="2"><IMG SRC="./img/dot_line.gif" width="100%"></td></tr>
+                    <tr>
+                        <td>비고</td>
+                        <td><input type="text" name="comment" size="20" maxlength="40" value=""></td>
+                    </tr>
+                    <tr><td colspan="2"><IMG SRC="./img/dot_line.gif" width="100%"></td></tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="CFCFCF" height="2" colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <td align="center" colspan="2"><B>가맹점 정보</B></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="CFCFCF" height="2" colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <td>사업장 구분</td>
+                        <td>
+                            <input type="radio" name="corp_type" value="0" checked>직접 판매&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="corp_type" value="1" >입점몰 판매
+                        </td>
+                    </tr>
+                    <tr><td colspan="2"><IMG SRC="./img/dot_line.gif" width="100%"></td></tr>
+                    <tr>
+                        <td>과세/면세 구분</td>
+                        <td>
+                            <input type="radio" name="corp_tax_type" value="TG01" checked>과세&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="corp_tax_type" value="TG02" >면세
+                        </td>
+                    </tr>
+                    <tr><td colspan="2"><IMG SRC="./img/dot_line.gif" width="100%"></td></tr>
+                    <tr>
+                        <td>발행 사업자 번호</td>
+                        <td><input type="text" name="corp_tax_no" size="20" maxlength="10" value=""></td>
+                    </tr>
+                    <tr><td colspan="2"><IMG SRC="./img/dot_line.gif" width="100%"></td></tr>
+                    <tr>
+                        <td>상호</td>
+                        <td><input type="text" name="corp_nm" size="20" maxlength="40" value="(주)한국사이버결제"></td>
+                    </tr>
+                    <tr><td colspan="2"><IMG SRC="./img/dot_line.gif" width="100%"></td></tr>
+                    <tr>
+                        <td>대표자명</td>
+                        <td><input type="text" name="corp_owner_nm" size="20" maxlength="40" value="홍길동"></td>
+                    </tr>
+                    <tr><td colspan="2"><IMG SRC="./img/dot_line.gif" width="100%"></td></tr>
+                    <tr>
+                        <td>사업장 주소</td>
+                        <td><input type="text" name="corp_addr" size="40" maxlength="200" value="서울시 구로구 구로동 170-5 우림 1차 508호"></td>
+                    </tr>
+                    <tr><td colspan="2"><IMG SRC="./img/dot_line.gif" width="100%"></td></tr>
+                    <tr>
+                        <td>사업장 대표자 연락처</td>
+                        <td><input type="text" name="corp_telno" size="20" maxlength="20" value="02-2108-1000"></td>
+                    </tr>
+                    <tr><td colspan="2"><IMG SRC="./img/dot_line.gif" width="100%"></td></tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="CFCFCF" height="2" colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <td align="center" colspan="2"><B>현금영수증 발급 정보</B></td>
+                    </tr>
+                    <tr>
+                        <td bgcolor="CFCFCF" height="2" colspan="2"></td>
+                    </tr>
+                    <tr>
+                        <td>원 거래 시각</td>
+                        <td>
+                            <input type="text" name="trad_time" size="20" maxlength="14" value="">
+                            <br>(예: 2007년 12월 1일 1시 10분 30초의 경우 <br>"20071201011030" 와 같이 입력)
+                        </td>
+                    </tr>
+                    <tr><td colspan="2"><IMG SRC="./img/dot_line.gif" width="100%"></td></tr>
+                    <tr>
+                        <td>발행 용도</td>
+                        <td>
+                            <input type="radio" name="tr_code" value="0" onClick="jsf__chk_tr_code( this.form )" checked>소득공제용&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="tr_code" value="1" onClick="jsf__chk_tr_code( this.form )">지출증빙용
+                        </td>
+                    </tr>
+                    <tr><td colspan="2"><IMG SRC="./img/dot_line.gif" width="100%"></td></tr>
+                    <tr>
+                        <td width="40%">
+                            <span id="span_tr_code_0" style="display:block;">주민(휴대폰)번호</span>
+                            <span id="span_tr_code_1" style="display:none;">사업자번호</span>
+                        </td>
+                        <td width="60%">
+                            <input type="text" name="id_info" size="16" maxlength="13" value=""> ("-" 생략)
+                        </td>
+                    </tr>
+                    <tr><td colspan="2"><IMG SRC="./img/dot_line.gif" width="100%"></td></tr>
+                    <tr>
+                        <td>거래금액 총합</td>
+                        <td>
+                            <input type="text" name="amt_tot" size="12" maxlength="9" value="10000"><br>(공급가액 + 봉사료 + 부가가치세)
+                        </td>
+                    </tr>
+                    <tr><td colspan="2"><IMG SRC="./img/dot_line.gif" width="100%"></td></tr>
+                    <tr>
+                        <td>공급가액</td>
+                        <td><input type="text" name="amt_sup" size="12" maxlength="9" value="9091"><br>(거래금액 총 합 - 봉사료 - 부가가치세)
+                        </td>
+                    </tr>
+                    <tr><td colspan="2"><IMG SRC="./img/dot_line.gif" width="100%"></td></tr>
+                    <tr>
+                        <td>봉사료</td>
+                        <td><input type="text" name="amt_svc" size="12" maxlength="9" value="0"></td>
+                    </tr>
+                    <tr><td colspan="2"><IMG SRC="./img/dot_line.gif" width="100%"></td></tr>
+                    <tr>
+                        <td>부가가치세</td>
+                        <td><input type="text" name="amt_tax" size="12" maxlength="9" value="909"><br>공급가액의 10%
+                        </td>
+                    </tr>
+                    <tr><td colspan="2"><IMG SRC="./img/dot_line.gif" width="100%"></td></tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center">
+                        <span id="show_pay_btn">
+                            <input type="button" value="등록 요청" onclick="jsf__pay_cash( this.form )" class="box">
+                        </span>
+                            <span id="show_progress" style="display:none">
+                            <b>등록 진행중입니다. 잠시만 기다려주십시오</b>
+                        </span>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="CFCFCF" height="3" colspan="2"></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center" height="25">ⓒ Copyright 2007. KCP Inc.  All Rights Reserved.</td>
+        </tr>
+    </table>
+    <!-- 요청종류 승인(pay)/변경(mod) 요청시 사용 -->
+    <input type="hidden" name="req_tx" value="pay">
+</form>
+</body>
+</html>
