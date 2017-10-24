@@ -56,3 +56,8 @@ file:
   default:
     path: /resource/ice2/files
 
+sweettracker:
+  trackingApi: https://dev-tracking-api.sweettracker.net/add_invoice
+  tier: ytn
+  key: LaTfL9LcqSZKG6maH6OPhQ
+  callbackUrl: http://test.ygoon.com:8080/node/orderDeliveryPrice/event/sweettrackerGetData

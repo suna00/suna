@@ -101,5 +101,21 @@
         }
       }
     }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "deliveryTrackingInfo",
+    "apiId": "adminView",
+    "apiName": "주문 배송조회",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "deliveryTrackingInfo",
+      "event": "deliveryTrackingInfoView",
+      "data": {
+        "orderDeliveryPriceId": "{{:orderDeliveryPriceId}}"
+      }
+    }
   }
 ]

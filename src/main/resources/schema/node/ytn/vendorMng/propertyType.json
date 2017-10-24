@@ -328,7 +328,7 @@
     "tid": "vendor",
     "pid": "productInflowRoute",
     "propertyTypeName": "제품유입경로",
-    "valueType": "REFERENCE",
+    "valueType": "REFERENCES",
     "required": false,
     "idable": false,
     "labelable": false,

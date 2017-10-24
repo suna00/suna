@@ -276,6 +276,22 @@
   {
     "typeId": "propertyType",
     "tid": "user",
+    "pid": "email",
+    "propertyTypeName": "이메일",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "user",
     "pid": "cellphone",
     "propertyTypeName": "휴대폰",
     "valueType": "STRING",

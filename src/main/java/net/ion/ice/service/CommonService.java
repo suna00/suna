@@ -4,12 +4,14 @@ import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
+import org.apache.commons.collections4.map.LinkedMap;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class CommonService {
@@ -28,6 +30,8 @@ public class CommonService {
         resultCodeMap.put("S0001", "required param. ");
         resultCodeMap.put("S0002", "저장 성공");
         resultCodeMap.put("S0003", "저장 실패");
+
+        resultCodeMap.put("S0004", "스윗트래커 실패");
 
         /*product*/
         resultCodeMap.put("P0001", "미승인 상품입니다.");
@@ -124,8 +128,8 @@ public class CommonService {
     }
 
     public static Object getResult(String code, Map<String, Object> extraData){
-        Map<String, Object> object = new HashMap<>();
-        Map<String, Object> object2 = new HashMap<>();
+        Map<String, Object> object = new LinkedMap<>();
+        Map<String, Object> object2 = new LinkedMap<>();
         object2.put("code", code);
         object2.putAll(extraData);
         object2.put("message", resultCodeMap.get(code));

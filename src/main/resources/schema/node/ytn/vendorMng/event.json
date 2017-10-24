@@ -1,0 +1,18 @@
+[
+  {
+    "typeId": "event",
+    "tid": "vendor",
+    "event": "saveEvent",
+    "noneExecute": true,
+    "eventName": "Vendor SAVE"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "vendor>saveEvent",
+    "action": "saveEvent",
+    "actionName": "Vendor SAVE",
+    "actionType": "service",
+    "actionBody": "vendorService.saveEvent",
+    "order": 1
+  }
+]
