@@ -47,7 +47,7 @@ public class NodeHelperController {
             logger.info("node read : {}, {}", typeId, id);
             return infinispanRepositoryService.read(typeId, id).toMap();
         }catch(Exception e){
-//            logger.error(e.getMessage(), e);
+            logger.error(e.getMessage(), e);
             return JsonResponse.error(e) ;
         }
     }
@@ -65,18 +65,19 @@ public class NodeHelperController {
         }
     }
 
-
-    @RequestMapping(value = "/helper/syncList", method = RequestMethod.POST)
+    @RequestMapping(value = "/helper/rebuild", method = RequestMethod.GET)
     @ResponseBody
-    public Object listNode(HttpServletRequest request, @RequestParam String typeId, @RequestParam String query, @RequestParam String server)  {
+    public Object rebuildIndex(HttpServletRequest request, @RequestParam String typeId)  {
         try {
-            logger.info("node sync list : {}, {}", typeId, query);
-            nodeHelperService.syncNodeList(NodeUtils.getNodeType(typeId), query, server);
-            JsonResponse.create() ;
+            long start = System.currentTimeMillis() ;
+            logger.info("index rebuild start : {}", typeId);
+            infinispanRepositoryService.rebuild(typeId) ;
+            logger.info("index rebuild end : {} {}ms", typeId, System.currentTimeMillis() - start);
+            return JsonResponse.create() ;
         }catch(Exception e){
             logger.error(e.getMessage(), e);
             return JsonResponse.error(e) ;
         }
-        return null ;
     }
+
 }
