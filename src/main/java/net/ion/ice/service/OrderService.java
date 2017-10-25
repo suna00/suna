@@ -711,7 +711,7 @@ public class OrderService {
 
         boolean result = false;
         Map<String, Object> storeRefineDelivery = new HashMap<>();
-        String myDeliveryAddressId = String.valueOf(responseMap.get("myDeliveryAddressId"));
+
         storeRefineDelivery.put("orderSheetId", responseMap.get("ordrIdxx"));
         storeRefineDelivery.put("addressName", responseMap.get("addressName"));
         storeRefineDelivery.put("address", responseMap.get("shippingAddress"));
@@ -723,7 +723,7 @@ public class OrderService {
         storeRefineDelivery.put("recipient", responseMap.get("recipient"));
         storeRefineDelivery.put("deliveryType", responseMap.get("deliveryType"));
         storeRefineDelivery.put("memberNo", memberNo);
-        storeRefineDelivery.put("myDeliveryAddressId", myDeliveryAddressId);
+        storeRefineDelivery.put("myDeliveryAddressId", JsonUtils.getIntValue(responseMap, "myDeliveryAddressId"));
 
         nodeService.executeNode(storeRefineDelivery, "delivery", CommonService.CREATE);
 
@@ -764,6 +764,7 @@ public class OrderService {
                 myDefaultDeliveryAddressNode.put("defaultYn", "n");
                 nodeService.updateNode(myDefaultDeliveryAddressNode, "myDeliveryAddress");
 
+                String myDeliveryAddressId = JsonUtils.getStringValue(responseMap, "myDeliveryAddressId");
                 List<Node> myDeliveryAddressNodeList = nodeService.getNodeList("myDeliveryAddress", "myDeliveryAddressId_matching=".concat(myDeliveryAddressId));
                 Node myDeliveryAddressNode = myDeliveryAddressNodeList.get(0);
                 myDeliveryAddressNode.put("defaultYn", "y");
