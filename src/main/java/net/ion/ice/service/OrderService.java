@@ -433,7 +433,7 @@ public class OrderService {
         storeOrderSheet.put("totalYPoint", YPoint);                     //사용한 Y포인트
 
 
-        if(StringUtils.equals(JsonUtils.getStringValue(data, "payMethodCode"), "000000000000")){
+        if(StringUtils.equals(JsonUtils.getStringValue(data, "usePayMethod"), "000000000000")){
             storeOrderSheet.put("usePayMethod", "000000000000");
             storeOrderSheet.put("usePayMethodName", "무통장입금");
         }else{
@@ -463,21 +463,21 @@ public class OrderService {
         Map<String, Object> orderDeliveryPriceList = deliveryService.calculateDeliveryPrice(orderDeliveryProductList, "order");
 
 
-        deliveryService.makeDeliveryPrice(String.valueOf(data.get("ordrIdxx")), orderDeliveryPriceList);
+        deliveryService.makeDeliveryPrice(orderSheetId, orderDeliveryPriceList);
 
         Map<String, Object> storePayment = new HashMap<>();
 
-        if(StringUtils.equals(JsonUtils.getStringValue(data, "payMethodCode"), "000000000000")){
+        if(StringUtils.equals(JsonUtils.getStringValue(data, "usePayMethod"), "000000000000")){
             storePayment.put("orderSheetId", orderSheetId);
             storePayment.put("memberNo", memberNo);
             storePayment.put("depositor", JsonUtils.getStringValue(data, "depositor"));
-            storePayment.put("usePayMethod", "000000000000");
+            storePayment.put("usePayMethod", JsonUtils.getStringValue(data, "usePayMethod"));
             storePayment.put("usePayMethodName", "무통장입금");
 
         }else{
             storePayment.put("orderSheetId", orderSheetId);
             storePayment.put("memberNo", memberNo);
-            storePayment.put("usePayMethod", "111111111111");
+            storePayment.put("usePayMethod", JsonUtils.getStringValue(data, "usePayMethod"));
             storePayment.put("usePayMethodName", "포인트결제");
 
         }
@@ -687,7 +687,7 @@ public class OrderService {
 
         createDelivery(responseMap, JsonUtils.getIntValue(tempOrder.get(0), "memberNo"));
 
-        deliveryService.makeDeliveryPrice(String.valueOf(orderSheetId), orderDeliveryPriceList);
+        deliveryService.makeDeliveryPrice(orderSheetId, orderDeliveryPriceList);
 
         nodeBindingService.delete("tempOrder", orderSheetId);
 
