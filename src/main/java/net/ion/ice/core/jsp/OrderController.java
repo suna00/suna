@@ -24,12 +24,12 @@ public class OrderController {
 //        return mv;
 //    }
 //
-//    @RequestMapping("/order/orderTest")
-//    public ModelAndView orderTest() {
-//        ModelAndView mv = new ModelAndView();
-//        mv.setViewName("/order/orderTest");
-//        return mv;
-//    }
+    @RequestMapping("/order/orderTest")
+    public ModelAndView orderTest() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("/order/orderTest");
+        return mv;
+    }
 
     @RequestMapping("/order/hub")
     public ModelAndView hub() {

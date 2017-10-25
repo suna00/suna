@@ -1,8 +1,10 @@
-<%@ page import="net.ion.ice.core.node.NodeService" %>
 <%@ page import="net.ion.ice.ApplicationContextManager" %>
 <%@ page import="net.ion.ice.core.data.bind.NodeBindingService" %>
-<%@ page import="java.util.Map" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="net.ion.ice.service.OrderService" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="org.apache.log4j.Logger" %>
 <%@ page language="java" contentType="text/html;charset=utf-8"%>
 <%
     /* ============================================================================== */
@@ -15,9 +17,14 @@
     /* ============================================================================== */
 %>
 <%!
+    static Logger logger = Logger.getLogger("common_return.jsp");
+%>
+
+<%!
     /* ============================================================================== */
     /* =   null 값을 처리하는 메소드                                                = */
     /* = -------------------------------------------------------------------------- = */
+
     public String f_get_parm( String val )
     {
         if ( val == null ) val = "";
@@ -53,20 +60,39 @@
     String tx_cd        = f_get_parm( request.getParameter( "tx_cd"        ) );  // 업무처리 구분 코드
     String tx_tm        = f_get_parm( request.getParameter( "tx_tm"        ) );  // 업무처리 완료 시간
     /* = -------------------------------------------------------------------------- = */
-    String ipgm_name    = "";                                                    // 주문자명
-    String remitter     = "";                                                    // 입금자명
-    String ipgm_mnyx    = "";                                                    // 입금 금액
-    String bank_code    = "";                                                    // 은행코드
-    String account      = "";                                                    // 가상계좌 입금계좌번호
-    String op_cd        = "";                                                    // 처리구분 코드
-    String noti_id      = "";                                                    // 통보 아이디
-    String cash_a_no    = "";                                                    // 현금영수증 승인번호
-    String cash_a_dt    = "";                                                    // 현금영수증 승인시간
-    String cash_no      = "";                                                    // 현금영수증 거래번호
+    String ipgm_name    = f_get_parm( request.getParameter( "ipgm_name" ) );     // 주문자명
+    String remitter     = f_get_parm( request.getParameter( "remitter"  ) );     // 입금자명
+    String ipgm_mnyx    = f_get_parm( request.getParameter( "ipgm_mnyx" ) );     // 입금 금액
+    String bank_code    = f_get_parm( request.getParameter( "bank_code" ) );     // 은행코드
+    String account      = f_get_parm( request.getParameter( "account"   ) );     // 가상계좌 입금계좌번호
+    String op_cd        = f_get_parm( request.getParameter( "op_cd"     ) );     // 처리구분 코드
+    String noti_id      = f_get_parm( request.getParameter( "noti_id"   ) );     // 통보 아이디
+    String cash_a_no    = f_get_parm( request.getParameter( "cash_a_no" ) );     // 현금영수증 승인번호
+    String cash_a_dt    = f_get_parm( request.getParameter( "cash_a_dt" ) );     // 현금영수증 승인시간
+    String cash_no      = f_get_parm( request.getParameter( "cash_no"   ) );     // 현금영수증 거래번호
     /* = -------------------------------------------------------------------------- = */
     NodeBindingService nodeBindingService = (NodeBindingService) ApplicationContextManager.getContext().getBean("nodeBindingService");
     List<Map<String, Object>> payment = nodeBindingService.list("payment", "orderSheetId_equals=".concat(order_no));
+    OrderService orderService = (OrderService) ApplicationContextManager.getContext().getBean("orderService");
+    Map<String, Object> responseMap = new HashMap<>();
 
+    responseMap.put("accSiteCd", site_cd);      //사이트코드
+    responseMap.put("accTno", tno);             //KCP거래번호
+    responseMap.put("orderSheetId", order_no);  //주문번호
+    responseMap.put("accTxCd", tx_cd);          //업무처리구분코드
+    responseMap.put("accTxTm", tx_tm);          //업무처리완료시간
+    responseMap.put("accIpgmName", ipgm_name);  //주문자명
+    responseMap.put("accRemitter", remitter);   //입금자명
+    responseMap.put("accIpgmMnyx", ipgm_mnyx);  //입금금액
+    responseMap.put("accBankCode", bank_code);  //은행코드
+    responseMap.put("accAccount", account);     //가상계좌입금계좌번호
+    responseMap.put("accOpCd", op_cd);          //처리구분코드
+    responseMap.put("accNotiId", noti_id);      //통보아이디
+    responseMap.put("accCashAno", cash_a_no);   //현금영수증승인번호
+    responseMap.put("accCashAdt", cash_a_dt);   //현금영수증승인시간
+    responseMap.put("accCashNo", cash_no);      //현금영수증거래번호
+
+    orderService.accountTransferUpdate(responseMap);
 
     /* = -------------------------------------------------------------------------- = */
     /* =   02-1. 가상계좌 입금 통보 데이터 받기                                     = */
@@ -108,7 +134,6 @@
     if ( tx_cd.equals("TX00") )
     {
 
-
     }
 
     /* = -------------------------------------------------------------------------- = */
@@ -125,5 +150,27 @@
     /* = -------------------------------------------------------------------------- = */
     /* =   정상적으로 처리된 경우 value값을 0000으로 설정하여 주시기 바랍니다.      = */
     /* ============================================================================== */
+
+    /* ============================================================================== */
+    /* =   로그                                                  = */
+    /* ============================================================================== */
+
+    logger.info("=============common_return.jsp(" +order_no+ ")=============");
+    logger.info("사이트 코드(site_cd) : "+ site_cd);
+    logger.info("KCP 거래번호(tno) : "+ tno);
+    logger.info("주문번호(order_no) : "+ order_no);
+    logger.info("업무처리 구분 코드(tx_cd) : "+ tx_cd);
+    logger.info("업무처리 완료 시간(tx_tm) : "+ tx_tm);
+    logger.info("주문자명(ipgm_name) : "+ ipgm_name);
+    logger.info("입금자명(remitter) : "+ remitter);
+    logger.info("입금 금액(ipgm_mnyx) : "+ ipgm_mnyx);
+    logger.info("은행코드(bank_code) : "+ bank_code);
+    logger.info("가상계좌 입금계좌번호(account) : "+ account);
+    logger.info("처리구분 코드(op_cd) : "+ op_cd);
+    logger.info("통보 아이디(noti_id) : "+ noti_id);
+    logger.info("현금영수증 승인번호(cash_a_no) : "+ cash_a_no);
+    logger.info("현금영수증 승인시간(cash_a_dt) : "+ cash_a_dt);
+    logger.info("현금영수증 거래번호(cash_no) : "+ cash_no);
+    logger.info("\"==========================================================\"");
 %>
 <html><body><form><input type="hidden" name="result" value="0000"></form></body></html>
