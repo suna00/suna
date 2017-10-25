@@ -28,6 +28,8 @@
       },
       "root": {
         "typeId": "mcdChartStats",
+        "cacheTime": "300",
+        "excludeCache" : "connIpAdr,snsKey,snsTypeCd",
         "query": [
           {
             "field": "chMstId",
@@ -436,6 +438,7 @@
         "typeId": "voteBasInfo",
         "cacheTime": "600",
         "excludePids": "showCntryCdList",
+        "excludeCache" : "connIpAdr,snsKey,snsTypeCd",
         "id": "{{:voteSeq}}",
         "response": {
           "_all_": "",
@@ -784,6 +787,7 @@
       "typeId": "voteBasInfo",
       "cacheTime": "600",
       "excludePids": "showCntryCdList",
+      "excludeCache" : "connIpAdr,snsKey,snsTypeCd",
       "query": [
         {
           "field": "voteFormlCd",
