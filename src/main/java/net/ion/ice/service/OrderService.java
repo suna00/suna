@@ -679,9 +679,10 @@ public class OrderService {
     /**
      * 결제 정보를 저장하는 Method.
      */
-    public String createPayment(Map<String, Object> responseMap) {
-        Node node = (Node) nodeService.executeNode(responseMap, "payment", CommonService.CREATE);
-        return node.getId();
+    public void createPayment(Map<String, Object> responseMap, String pgId) {
+
+        responseMap.put("pgId", Integer.parseInt(pgId));
+        nodeService.executeNode(responseMap, "payment", CommonService.CREATE);
     }
 
 
@@ -759,18 +760,17 @@ public class OrderService {
     /**
      * PG return 데이터를 저장하는  Method.(리턴 값을 가공하지 JsonString 으로 저장, 일종의 Backup Data)
      */
-    public void createPgResponse(Map<String, Object> responseMap, String paymentId) {
+    public String createPgResponse(Map<String, Object> responseMap) {
         Map<String, Object> storePg = new HashMap<>();
 
         String JsonString = JsonUtils.toJsonString(responseMap);
         String orderSheetId = String.valueOf(responseMap.get("ordrIdxx"));
 
-        storePg.put("paymentId", paymentId);
         storePg.put("orderSheetId", orderSheetId);
         storePg.put("jsonResponse", JsonString);
 
-        nodeService.executeNode(storePg, "pg", CommonService.CREATE);
-
+        Node node = (Node) nodeService.executeNode(storePg, "pg", CommonService.CREATE);
+        return node.getId();
     }
 
     /**
