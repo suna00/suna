@@ -77,7 +77,7 @@
     "title" : "도깨비 test abc",
     "body" : "공유나오는 도깨비",
     "date" : "20170110",
-    "testFile" : "/resource/exe1.txt"
+    "testFile" : "classpath:schema/test/testImage.png"
   },
   {
     "typeId" : "testItem",
