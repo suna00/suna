@@ -23,7 +23,7 @@
     "typeId": "datasource",
     "id": "authDb",
     "dsName": "PROD USER/VOTE RDS",
-    "jdbcUrl": "jdbc:mysql://authdbdev.cfwzre2kzbc1.ap-northeast-2.rds.amazonaws.com:3306/ice2?zeroDateTimeBehavior=convertToNull",
+    "jdbcUrl": "jdbc:mysql://authdevdb.cfwzre2kzbc1.ap-northeast-2.rds.amazonaws.com:3306/ice2?zeroDateTimeBehavior=convertToNull",
     "ssl" : false,
     "dbType": "mySql",
     "username": "cjmwave",
