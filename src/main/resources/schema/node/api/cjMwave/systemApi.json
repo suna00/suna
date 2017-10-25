@@ -14,6 +14,7 @@
     "config": {
       "typeId": "cntryMng",
       "cacheTime": "600",
+      "excludeCache" : "connIpAdr,snsKey,snsTypeCd",
       "query": [
         {
           "field": "useYn",
@@ -51,6 +52,7 @@
     "config": {
       "typeId": "code",
       "cacheTime": "600",
+      "excludeCache" : "connIpAdr,snsKey,snsTypeCd",
       "query": [
         {
           "field": "groupCodeId",
@@ -95,6 +97,7 @@
     "config": {
       "typeId": "contsCtgry",
       "cacheTime": "600",
+      "excludeCache" : "connIpAdr,snsKey,snsTypeCd",
       "query": [
         {
           "field": "contsMetaDivCd",

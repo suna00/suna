@@ -23,10 +23,8 @@ public class ContsRetvService {
             throw new IceRuntimeException("Node is Null") ;
         }
         int hitNum = targetNode.getIntValue("hitNum") + 1;
-        Map<String, Object> updateData = new LinkedHashMap<>();
-        updateData.put("id", targetNode.getId());
-        updateData.put("hitNum", hitNum);
-        Node result = (Node)NodeUtils.getNodeService().executeNode(updateData, context.getNodeType().getTypeId(), EventService.UPDATE) ;
+        targetNode.put("hitNum", hitNum);
+        Node result = (Node)NodeUtils.getNodeService().executeNode(targetNode, context.getNodeType().getTypeId(), EventService.UPDATE) ;
 
         context.setResult(result);
     }

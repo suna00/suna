@@ -32,6 +32,7 @@ public class ApiReadsContext extends ApiQueryContext implements CacheableContext
         readsContext.config = config ;
         readsContext.data = data ;
         checkCacheable(config, data, readsContext) ;
+        checkExclude(config, data, readsContext); ;
 
         for(String key : config.keySet()) {
             if(key.equals("typeId")) continue ;

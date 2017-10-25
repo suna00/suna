@@ -1,0 +1,80 @@
+spring:
+  profiles: devcms
+  http:
+    multipart:
+      max-request-size: 10MB
+      max-file-size: 20MB
+
+server:
+  port: 8080
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain,text/javascript,application/javascript,text/css
+  tomcat:
+    max-threads: 12000
+
+
+jwtConfig:
+  issuer: I-ON
+  secretKey: dkdldhs!@#$
+  tokenPrefix: SDP
+  headString: X-Authorization
+  tokenExpirationTime: 15 #분
+  refreshTokenExpTime: 60 #분
+
+cluster:
+  mode: cms
+  groups: cms
+  members:
+    - 10.75.6.165 # API1
+    - 10.75.7.166 # API2
+    - 10.75.6.166 # CACHE1
+    - 10.75.7.167 # CACHE2
+    - 10.75.6.167 # CMS1
+    - 10.75.7.168 # CMS2
+
+infinispan:
+  cachePath: /data/resource/ice2/cache
+
+tomcat:
+  access-log-enabled: true
+  access-log-pattern: "%h %l %u %t \"%r\" %s %b %D"
+  basedir: tomcat
+
+logging:
+  config:
+    classpath:
+      - logback-cj.xml
+  level: error
+
+
+file:
+  default:
+    path: /data/resource/ice2/files
+
+temp-file:
+  dir: /data/resource/ice2/cache
+
+i18n:
+  defaults: eng
+
+cjapi:
+  pip:
+    programurl: http://pipapi.itvs.cjenm.com/json/data/v1.0/global/programinfo.asp
+    clipmediaurl: http://pipapi.itvs.cjenm.com/json/data/v1.0/global/clipmediainfo.asp
+
+aws:
+  s3:
+    bucketName: cjmwave-dev
+    bucketKey: ion
+    accessKey: AKIAIBQJZKS334ELQ7KA
+    secretKey: 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
+
+image:
+  prefixUrl: http://test-cms-elb-1428735206.ap-northeast-2.elb.amazonaws.com:8080/image/
+  s3PrefixUrl: https://cmsimg.mwave.me/
+
+mobile:
+  push:
+    fcmApiKey: AAAA-z1uhx4:APA91bHlHSqGakLe7RKY1fuvTpUyx1hZKX5BG7ydfK96Kfy9bCX0upciPQ6UlpOXECEcc4tsYFiiEUy6aHSWWMZwwN-V6rtu-aeOAGg0_r6GAFaVkJF3jEOxiO4kblsi4tNDOAApMZx2
+    fcmApiUrl: https://fcm.googleapis.com/fcm/send

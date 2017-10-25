@@ -18,6 +18,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -54,7 +55,6 @@ public class S3FileRepository implements FileRepository {
     private String accessKey;
     private String secretAccessKey;
 
-
     private AWSCredentials awsCredentials;
     private AmazonS3 s3Client;
 
@@ -64,11 +64,20 @@ public class S3FileRepository implements FileRepository {
     * */
     private void initializeS3Client () throws Exception {
         awsCredentials = new BasicAWSCredentials(accessKey, secretAccessKey);
-        s3Client = AmazonS3ClientBuilder.standard()
-                .withRegion("ap-northeast-2") //로컬에서 오류나면 해제
-                .withCredentials(new AWSStaticCredentialsProvider(awsCredentials))
-                .withAccelerateModeEnabled(true)
-                .build();
+
+        String profile = bootEnv.getActiveProfiles()[0];
+        if(profile.contains("dev")){
+            s3Client = AmazonS3ClientBuilder.standard()
+                    .withRegion("ap-northeast-2") //로컬에서 오류나면 해제
+                    .withCredentials(new AWSStaticCredentialsProvider(awsCredentials))
+                    .build();
+        } else {
+            s3Client = AmazonS3ClientBuilder.standard()
+                    .withRegion("ap-northeast-2") //로컬에서 오류나면 해제
+                    .withCredentials(new AWSStaticCredentialsProvider(awsCredentials))
+                    .withAccelerateModeEnabled(true)
+                    .build();
+        }
         logger.info("bucketLocation with client :: " + s3Client.getBucketLocation(bucketName));
     }
 
