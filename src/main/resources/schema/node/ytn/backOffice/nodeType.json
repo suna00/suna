@@ -19,6 +19,15 @@
   {
     "parentId": "backOfficePath",
     "typeId": "nodeType",
+    "tid": "subContactPerson",
+    "typeName": "서브담당자",
+    "tableName": "ytnDevDb#subContactPerson",
+    "repositoryType": "node",
+    "eviction": 1000
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
     "tid": "collectRank",
     "typeName": "랭킹 수집",
     "tableName": "ytnDevDb#collectRank",
@@ -73,15 +82,6 @@
   {
     "parentId": "backOfficePath",
     "typeId": "nodeType",
-    "tid": "operatingScore",
-    "typeName": "운영 점수",
-    "tableName": "ytnDevDb#operatingScore",
-    "repositoryType": "node",
-    "eviction": 0
-  },
-  {
-    "parentId": "backOfficePath",
-    "typeId": "nodeType",
     "tid": "operatingScorePolicy",
     "typeName": "운영 점수 정책",
     "tableName": "ytnDevDb#operatingScorePolicy",
@@ -121,15 +121,6 @@
     "tid": "smsTemplate",
     "typeName": "SMS 템플릿",
     "tableName": "ytnDevDb#smsTemplate",
-    "repositoryType": "node",
-    "eviction": 0
-  },
-  {
-    "parentId": "backOfficePath",
-    "typeId": "nodeType",
-    "tid": "subContactPerson",
-    "typeName": "서브담당자",
-    "tableName": "ytnDevDb#subContactPerson",
     "repositoryType": "node",
     "eviction": 0
   },
