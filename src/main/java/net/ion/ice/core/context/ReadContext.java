@@ -60,6 +60,10 @@ public class ReadContext implements Context, Serializable {
     protected String cacheTime ;
 
     protected List<String> excludePids ;
+
+    protected List<String> excludeCache ;
+
+
     public NodeType getNodetype() {
         return nodeType;
     }
@@ -119,9 +123,24 @@ public class ReadContext implements Context, Serializable {
         if(pids != null) {
             readContext.excludePids = new ArrayList<>();
             for (String pid : StringUtils.split(pids, ',')){
-                readContext.excludePids.add(pid) ;
+                readContext.excludePids.add(pid.trim()) ;
             }
         }
+
+        String cacheKeys = null ;
+        if(config != null && config.containsKey("excludeCache") && config.get("excludeCache") != null && StringUtils.isNotEmpty(config.get("excludeCache").toString())){
+            cacheKeys = config.get("excludeCache").toString() ;
+        }
+        if(data.containsKey("excludeCache") && data.get("excludeCache") != null && StringUtils.isNotEmpty(data.get("excludeCache").toString())){
+            cacheKeys = data.get("excludeCache").toString() ;
+        }
+        if(cacheKeys != null) {
+            readContext.excludeCache = new ArrayList<>();
+            for (String cacheKey : StringUtils.split(cacheKeys, ',')){
+                readContext.excludeCache.add(cacheKey.trim()) ;
+            }
+        }
+
     }
 
     protected static void makeResultField(ReadContext context, String fields) {
@@ -352,6 +371,8 @@ public class ReadContext implements Context, Serializable {
                 ReadContext subQueryContext = (ReadContext) resultField.getContext();
                 subQueryContext.dateFormat = this.dateFormat ;
                 subQueryContext.fileUrlFormat = this.fileUrlFormat ;
+                subQueryContext.excludePids = this.excludePids ;
+
                 if (node != null) {
                     subQueryContext.setNodeData(node);
                 }
@@ -365,6 +386,8 @@ public class ReadContext implements Context, Serializable {
                         ApiQueryContext apiQueryContext = ApiQueryContext.makeContextFromConfig(resultField.getFieldOption(), _data);
                         apiQueryContext.dateFormat = this.dateFormat ;
                         apiQueryContext.fileUrlFormat = this.fileUrlFormat ;
+                        apiQueryContext.excludePids = this.excludePids ;
+
                         apiQueryContext.makeQueryResult(itemResult, resultField.getFieldName(), resultField.getResultType());
                         break ;
                     }
@@ -372,6 +395,8 @@ public class ReadContext implements Context, Serializable {
                         ApiSelectContext apiQueryContext = ApiSelectContext.makeContextFromConfig(resultField.getFieldOption(), _data);
                         apiQueryContext.dateFormat = this.dateFormat ;
                         apiQueryContext.fileUrlFormat = this.fileUrlFormat ;
+                        apiQueryContext.excludePids = this.excludePids ;
+
                         apiQueryContext.makeQueryResult(itemResult, resultField.getFieldName());
                         break ;
                     }
@@ -389,6 +414,8 @@ public class ReadContext implements Context, Serializable {
                         FieldContext fieldContext = FieldContext.makeContextFromConfig(resultField.getFieldOption(), _data);
                         fieldContext.dateFormat = this.dateFormat ;
                         fieldContext.fileUrlFormat = this.fileUrlFormat ;
+                        fieldContext.excludePids = this.excludePids ;
+
                         if(StringUtils.isNotEmpty(pt.getReferenceType()) && NodeUtils.getNodeType(pt.getReferenceType()) != null ){
                             fieldContext.nodeType = NodeUtils.getNodeType(pt.getReferenceType()) ;
                         }
@@ -627,5 +654,9 @@ public class ReadContext implements Context, Serializable {
 
     public List<String> getExcludePids() {
         return excludePids;
+    }
+
+    public void setExcludePids(List<String> excludePids) {
+        this.excludePids = excludePids;
     }
 }

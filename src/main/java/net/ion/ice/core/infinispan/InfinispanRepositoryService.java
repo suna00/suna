@@ -45,6 +45,7 @@ public class InfinispanRepositoryService {
         Cache<String, Node> cache = getNodeCache(typeId);
         Node srcNode = cache.get(id);
         if (srcNode == null) {
+            logger.error("Not found Node : {},{}", typeId, id) ;
             throw new NotFoundNodeException(typeId, id);
         }
 
