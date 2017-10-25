@@ -467,7 +467,7 @@ public class OrderService {
             nodeService.executeNode(storePayment, "payment", CommonService.CREATE);
         }
 
-        nodeBindingService.delete("tempOrder", orderSheetId);
+        nodeService.deleteNode("tempOrder", orderSheetId);
 
         context.setResult(CommonService.getResult("O0005"));
 
@@ -878,12 +878,16 @@ public class OrderService {
 
     public void accountTransferUpdate(Map<String, Object> responseMap){
         String orderSheetId = JsonUtils.getStringValue(responseMap, "orderSheetId");
-
+        logger.info("payment orderSheetId : "+ orderSheetId);
         if(!orderSheetId.equals("")){
             List<Map<String, Object>> paymentList = nodeBindingService.list("payment", "orderSheetId_equals=".concat(orderSheetId));
+            logger.info("payment paymentList length : " + paymentList.size());
             Map<String, Object> paymentMap = paymentList.get(0);
+            logger.info("payment paymentMap : " + paymentList.get(0).toString());
             if(paymentMap != null){
+                logger.info("payment responseMap : "+ responseMap.toString());
                 paymentMap.putAll(responseMap);
+                logger.info("payment paymentMap : "+ paymentMap.toString());
                 nodeService.executeNode(paymentMap, "payment", CommonService.UPDATE);
             }
         }
