@@ -67,8 +67,8 @@
     /* =            로 설정해 주십시오.                                             = */
     /* ============================================================================== */
 //    페이코 가능한 것
-    String g_conf_site_cd   = "A52CY";
     String g_conf_site_key  = "41pFyIHVN8KT.mFblwqIPaY__";
+    String g_conf_site_cd   = "A52CY";
 
 //    String g_conf_site_cd   = "T0000";
 //    String g_conf_site_key  = "3grptw1.zW0GSo4PQdaGvsF__";
