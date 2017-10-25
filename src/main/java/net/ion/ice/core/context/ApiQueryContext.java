@@ -6,6 +6,7 @@ import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.QueryTerm;
 import net.ion.ice.core.query.QueryUtils;
+import net.ion.ice.core.query.ResultField;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +21,7 @@ public class ApiQueryContext extends QueryContext implements CacheableContext{
     protected HttpServletRequest httpRequest ;
     protected HttpServletResponse httpResponse ;
 
+
     public ApiQueryContext(NodeType nodeType) {
         super(nodeType) ;
     }
@@ -29,7 +31,7 @@ public class ApiQueryContext extends QueryContext implements CacheableContext{
     }
 
     public QueryResult makeQueryResult() {
-        if(cacheable != null && cacheable){
+        if (cacheable != null && cacheable) {
             String cacheKey = makeCacheKey() ;
             return ContextUtils.makeCacheResult(cacheKey, this) ;
         }
@@ -37,9 +39,16 @@ public class ApiQueryContext extends QueryContext implements CacheableContext{
     }
 
 
-    public String makeCacheKey(){
-        String keySrc = httpRequest.getRequestURI() + "?" + httpRequest.getParameterMap().toString() ;
-        return keySrc ;
+    public String makeCacheKey() {
+        StringBuffer params = new StringBuffer() ;
+        for(String key : httpRequest.getParameterMap().keySet()){
+            if(key.equals(ClusterUtils.CONFIG_) || key.equals(ClusterUtils.DATE_FORMAT_) || key.equals(ClusterUtils.FILE_URL_FORMAT_) || key.equals("now")|| key.equals("sysdate") || key.equals("session") || (excludeCache != null && excludeCache.contains(key))) continue;
+            params.append(key);
+            params.append("=") ;
+            params.append(httpRequest.getParameter(key)) ;
+        }
+        String keySrc = httpRequest.getRequestURI() + "?" + params;
+        return keySrc;
     }
 
     public static ApiQueryContext makeContextFromConfig(Map<String, Object> config, Map<String, Object> data) {
@@ -49,12 +58,17 @@ public class ApiQueryContext extends QueryContext implements CacheableContext{
         queryContext.data = data ;
 
         checkCacheable(config, data, queryContext) ;
+        checkExclude(config, data, queryContext); ;
 
 
         if(!ClusterUtils.getClusterService().checkClusterGroup(nodeType)){
             queryContext.remote = true ;
             if(config.containsKey("if")) {
                 queryContext.ifTest = ContextUtils.getValue(config.get("if"), queryContext.data).toString();
+            }
+
+            if(config.containsKey("resultType")){
+                queryContext.resultType = ResultField.ResultType.valueOf(config.get("resultType").toString().toUpperCase());
             }
             return queryContext ;
         }
