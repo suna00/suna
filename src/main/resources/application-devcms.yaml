@@ -26,12 +26,12 @@ cluster:
   mode: cms
   groups: cms
   members:
-#    - 10.75.6.131
-#    - 10.75.7.130
-#    - 10.75.7.144
-#    - 10.75.6.144
-#    - 10.75.7.150-159
-#    - 10.75.6.150-159
+    - 10.75.6.165 # API1
+    - 10.75.7.166 # API2
+    - 10.75.6.166 # CACHE1
+    - 10.75.7.167 # CACHE2
+    - 10.75.6.167 # CMS1
+    - 10.75.7.168 # CMS2
 
 infinispan:
   cachePath: /data/resource/ice2/cache
@@ -65,13 +65,13 @@ cjapi:
 
 aws:
   s3:
-    bucketName: cjmwave-prd
+    bucketName: cjmwave-dev
     bucketKey: ion
-    accessKey: AKIAJWGJBWJU3TLXANWA
-    secretKey: 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
+    accessKey: AKIAIBQJZKS334ELQ7KA
+    secretKey: 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
 
 image:
-  prefixUrl: http://g-p-cmswebwas-elb-467616234.ap-northeast-2.elb.amazonaws.com:8080/image/
+  prefixUrl: http://test-cms-elb-1428735206.ap-northeast-2.elb.amazonaws.com:8080/image/
   s3PrefixUrl: https://cmsimg.mwave.me/
 
 mobile:
