@@ -191,6 +191,14 @@ public class VoteResponseService {
             List<Node> sersVoteItemList = nodeService.getNodeList(SERS_VOTE_ITEM_INFO, voteItemTerms);
             for (Node voteItem : sersVoteItemList) {
                 voteItem.toDisplay(context);
+                ///sersItemVoteSeq referenceView 형으로 설정해야함
+//                String sersItemVoteSeq = refdSeriesItem.getStringValue("sersItemVoteSeq");
+//                nodeService.getNode(VOTE_BAS_INFO, sersItemVoteSeq);
+//                Map<String, Object> sersItemVoteSeqInfo = new LinkedHashMap<>();
+//                sersItemVoteSeqInfo.put("value", voteInfo.getStringValue("voteSeq"));
+//                sersItemVoteSeqInfo.put("label", voteInfo.getStringValue("voteNm"));
+//                sersItemVoteSeqInfo.put("refId", voteInfo.getStringValue("voteSeq"));
+//                sersItemVoteSeqInfo.put("item", voteInfo);
             }
 
             Map<String, Object> voteBaseResult = new HashMap<>() ;
@@ -345,7 +353,8 @@ public class VoteResponseService {
         if (jdbcTemplate == null) {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
         }
-        String voteNumSQL = "SELECT count(*) AS voteNum FROM " + voteSeq + "_voteHstByMbr";
+        //String voteNumSQL = "SELECT count(*) AS voteNum FROM " + voteSeq + "_voteHstByMbr";
+        String voteNumSQL = "select sum(voteNum) as voteNum from voteItemStats where voteSeq =" + voteSeq;
 
         Map voteNumMap = jdbcTemplate.queryForMap(voteNumSQL);
 
