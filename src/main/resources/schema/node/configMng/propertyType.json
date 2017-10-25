@@ -43,8 +43,8 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": false,
-    "analyzer": null,
+    "indexable": true,
+    "analyzer": "simple",
     "referenceType": "",
     "referenceValue": ""
   },
@@ -142,8 +142,8 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": false,
-    "analyzer": null,
+    "indexable": true,
+    "analyzer": "simple",
     "referenceType": "",
     "referenceValue": ""
   }
