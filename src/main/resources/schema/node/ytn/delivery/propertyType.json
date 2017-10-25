@@ -496,6 +496,22 @@
   },
   {
     "typeId": "propertyType",
+    "tid": "delivery",
+    "pid": "myDeliveryAddressId",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "myDeliveryAddress",
+    "referenceValue": "myDeliveryAddressId",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
     "tid": "myDeliveryAddress",
     "pid": "myDeliveryAddressId",
     "propertyTypeName": "ID",
