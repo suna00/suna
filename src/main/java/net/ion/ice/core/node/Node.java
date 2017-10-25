@@ -30,11 +30,10 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
     @DocumentId
     @Field
+    @SortableField
     @Analyzer(impl = CodeAnalyzer.class)
     private String id ;
 
-    @Field(analyze = Analyze.NO)
-    private String facet ;
 
     @Field
     @Analyzer(impl = CodeAnalyzer.class)
@@ -50,10 +49,12 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
 
 
     @Field(analyze = Analyze.NO)
+    @SortableField
     @DateBridge(resolution = Resolution.MILLISECOND)
     private Date created ;
 
     @Field(analyze = Analyze.NO)
+    @SortableField
     @DateBridge(resolution = Resolution.MILLISECOND)
     private Date changed ;
 

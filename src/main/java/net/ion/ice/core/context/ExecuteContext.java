@@ -4,11 +4,13 @@ import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.IceRuntimeException;
 import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.file.FileValue;
+import net.ion.ice.core.file.TolerableMissingFileException;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.core.io.Resource;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
@@ -40,6 +42,7 @@ public class ExecuteContext extends ReadContext{
 
     protected HttpServletRequest httpRequest ;
     protected HttpServletResponse httpResponse ;
+    private Logger logger = Logger.getLogger(ExecuteContext.class);
 
 
     public static ExecuteContext createContextFromMap(NodeType nodeType, Map<String, Object> data) {
@@ -178,12 +181,18 @@ public class ExecuteContext extends ReadContext{
                 }else if(pt.isFile()){
                     if(newValue != null) data.put(pt.getPid(), newValue) ;
                     if(newValue != null && newValue instanceof String && (((String) newValue).startsWith("classpath:") || ((String) newValue).startsWith("http://") || ((String) newValue).startsWith("https://") || ((String) newValue).startsWith("/"))) {
-                        if (existValue == null) {
-                            node.put(pt.getPid(), NodeUtils.getFileService().saveResourceFile(pt, id, (String) newValue));
-                            changedProperties.add(pt.getPid());
-                        } else if (existValue instanceof FileValue && !((FileValue) existValue).getFileName().equals(StringUtils.substringAfterLast((String) newValue, "/"))) {
-                            node.put(pt.getPid(), NodeUtils.getFileService().saveResourceFile(pt, id, (String) newValue));
-                            changedProperties.add(pt.getPid());
+                        try{
+                            if (existValue == null) {
+                                node.put(pt.getPid(), NodeUtils.getFileService().saveResourceFile(pt, id, (String) newValue));
+                                changedProperties.add(pt.getPid());
+                            } else if (existValue instanceof FileValue && !((FileValue) existValue).getFileName().equals(StringUtils.substringAfterLast((String) newValue, "/"))) {
+                                node.put(pt.getPid(), NodeUtils.getFileService().saveResourceFile(pt, id, (String) newValue));
+                                changedProperties.add(pt.getPid());
+                            }
+                        } catch (Exception e) {
+                            if(e instanceof TolerableMissingFileException) {
+                                logger.info("Fetching Not found image is not an error");
+                            }
                         }
                     }else if(newValue != null && newValue instanceof FileValue){
                         FileValue newFileValue = ((FileValue) newValue);
@@ -195,12 +204,17 @@ public class ExecuteContext extends ReadContext{
                         if (!StringUtils.equals(newValueTid, nodeType.getTypeId()) && !StringUtils.equals(newValuePid, pt.getPid()) ) {
                             Resource resource = NodeUtils.getFileService().loadAsResource(newValueTid, newValuePid, newValueStorePath);
                             File resourceFile = null;
+                            FileValue fileValue = null;
                             try {
                                 resourceFile = resource.getFile();
+                                fileValue = NodeUtils.getFileService().saveFile(pt, id, resourceFile, newFileValue.getFileName(), newFileValue.getContentType());
                             } catch (Exception e) {
+                                if(e instanceof IceRuntimeException){
+                                    throw new IceRuntimeException("File Exception :", e);
+                                }
                                 e.printStackTrace();
                             }
-                            FileValue fileValue = NodeUtils.getFileService().saveFile(pt, id, resourceFile, newFileValue.getFileName(), newFileValue.getContentType());
+//                            FileValue fileValue = NodeUtils.getFileService().saveFile(pt, id, resourceFile, newFileValue.getFileName(), newFileValue.getContentType());
                             node.put(pt.getPid(), fileValue) ;
                             changedProperties.add(pt.getPid()) ;
                         } else {
@@ -266,6 +280,9 @@ public class ExecuteContext extends ReadContext{
                 execute = true;
             }catch(Exception e){
                 execute =false ;
+                if(e instanceof IceRuntimeException){
+                    throw new IceRuntimeException("File Exception :", e);
+                }
             }
         }
 

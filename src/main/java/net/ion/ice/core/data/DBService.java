@@ -13,6 +13,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.util.HashMap;
@@ -31,17 +32,19 @@ public class DBService {
     @Autowired
     private NodeService nodeService;
 
-    static Map<String, JdbcTemplate> dataSourceTemplate = new ConcurrentHashMap<>();
+    public static Map<String, JdbcTemplate> dataSourceTemplate = new ConcurrentHashMap<>();
 
-//    일단 미사용
-//
-//    @PostConstruct
-//    public void initJdbcDataSource() {
-//        for(Node dataSourceNode : nodeService.getNodeList("datasource", "")){
-//            setDatabaseConfiguration(dataSourceNode);
-//            dataSourceTemplate.put((String) dataSourceNode.get("id"), new JdbcTemplate(setDataSource(configuration)));
-//        }
-//    }
+    private static DBService _inst ;
+
+    public static JdbcTemplate getJdbc(String ds){
+        if(_inst == null) return null;
+        return _inst.getJdbcTemplate(ds) ;
+    }
+
+    @PostConstruct
+    public void init(){
+        DBService._inst = this ;
+    }
 
     public JdbcTemplate getJdbcTemplate(String dsId) {
         if (!dataSourceTemplate.containsKey(dsId)) {
@@ -96,8 +99,8 @@ public class DBService {
         basicDataSource.setUsername(dataConfiguration.getUsername());
         basicDataSource.setPassword(dataConfiguration.getPassword());
         basicDataSource.setUrl(dataConfiguration.getJdbcUrl());
-        basicDataSource.setInitialSize(3);
-        basicDataSource.setMaxTotal(256);
+        basicDataSource.setInitialSize(20);
+        basicDataSource.setMaxTotal(100);
         basicDataSource.setDefaultAutoCommit(true);
         basicDataSource.setRemoveAbandonedOnBorrow(true);
         basicDataSource.setMaxWaitMillis(3000);
@@ -124,8 +127,8 @@ public class DBService {
         }else{
             basicDataSource.setConnectionProperties("useSSL=false");
         }
-        basicDataSource.setInitialSize(3);
-        basicDataSource.setMaxTotal(256);
+        basicDataSource.setInitialSize(50);
+        basicDataSource.setMaxTotal(100);
         basicDataSource.setDefaultAutoCommit(true);
         basicDataSource.setRemoveAbandonedOnBorrow(true);
         basicDataSource.setMaxWaitMillis(3000);
@@ -146,8 +149,8 @@ public class DBService {
         basicDataSource.setUsername(dataConfiguration.getUsername());
         basicDataSource.setPassword(dataConfiguration.getPassword());
         basicDataSource.setUrl(dataConfiguration.getJdbcUrl());
-        basicDataSource.setInitialSize(3);
-        basicDataSource.setMaxTotal(256);
+        basicDataSource.setInitialSize(50);
+        basicDataSource.setMaxTotal(100);
         basicDataSource.setDefaultAutoCommit(true);
         basicDataSource.setRemoveAbandonedOnBorrow(true);
         basicDataSource.setMaxWaitMillis(3000);
