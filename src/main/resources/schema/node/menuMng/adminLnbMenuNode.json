@@ -1739,25 +1739,25 @@
     "pages": [
       {
         "pageName": "목록",
-        "pageUrl": "list"
+        "pageUrl": "cj/generalmng/indvInfo/IndvInfoList"
       },
       {
         "pageName": "등록",
-        "pageUrl": "form"
+        "pageUrl": "cj/generalmng/indvInfo/IndvInfoForm"
       },
       {
         "pageName": "수정",
-        "pageUrl": "uform"
+        "pageUrl": "cj/generalmng/indvInfo/IndvInfoUform"
       },
       {
         "pageName": "상세",
-        "pageUrl": "view"
+        "pageUrl": "cj/generalmng/indvInfo/IndvInfoView"
       }
     ],
     "customPages": []
   },
   {
-    "typeId": "adminLnbMenu",
+    "typeIO": "adminLnbMenu",
     "backOfficeId": "admin",
     "gnbMenuId": "systemMng",
     "parentMenuId": "admin>root>generalMng",
@@ -1770,19 +1770,19 @@
     "pages": [
       {
         "pageName": "목록",
-        "pageUrl": "list"
+        "pageUrl": "cj/generalmng/tngrPrtct/TngrPrtctList"
       },
       {
         "pageName": "등록",
-        "pageUrl": "form"
+        "pageUrl": "cj/generalmng/tngrPrtct/TngrPrtctForm"
       },
       {
         "pageName": "수정",
-        "pageUrl": "uform"
+        "pageUrl": "cj/generalmng/tngrPrtct/TngrPrtctUform"
       },
       {
         "pageName": "상세",
-        "pageUrl": "view"
+        "pageUrl": "cj/generalmng/tngrPrtct/TngrPrtctView"
       }
     ],
     "customPages": []
