@@ -11,7 +11,6 @@ import org.apache.lucene.document.FieldType;
 import org.apache.lucene.facet.sortedset.SortedSetDocValuesFacetField;
 import org.apache.lucene.index.DocValuesType;
 import org.apache.lucene.index.IndexOptions;
-import org.apache.lucene.util.BytesRef;
 import org.hibernate.search.bridge.FieldBridge;
 import org.hibernate.search.bridge.LuceneOptions;
 import org.hibernate.search.bridge.MetadataProvidingFieldBridge;
@@ -56,7 +55,7 @@ public class PropertiesFieldBridge implements FieldBridge {
         if(propertyType == null) return ;
         String pid  = entry.getKey() ;
 
-        if(!propertyType.isIndexable()) return ;
+        if(!propertyType.isIndexable() || Node.NODE_VALUE_KEYS.contains(pid)) return ;
 
         PropertyType.ValueType valueType = propertyType.getValueType() ;
         Object value = entry.getValue() ;
@@ -94,7 +93,7 @@ public class PropertiesFieldBridge implements FieldBridge {
                         for(String key : i18nMap.keySet()){
 //                            document.add(getKeywordField(propertyType, pid + "_" + key, i18nMap.get(key).toString()));
                             if(i18nMap.containsKey(key) && i18nMap.get(key) != null){
-                                setKeywordField(document, propertyType, pid + "_" + key, i18nMap.get(key).toString());
+                                document.add(getKeywordField(propertyType, pid + "_" + key, i18nMap.get(key).toString()));
                             }
                         }
                     }
@@ -107,19 +106,19 @@ public class PropertiesFieldBridge implements FieldBridge {
                     if(propertyType.getValueType() == PropertyType.ValueType.REFERENCE){
                         if(propertyType.getAnalyzerType() == PropertyType.AnalyzerType.code && StringUtils.contains(entry.getValue().toString(), ">")){
                             String val = entry.getValue().toString() + "," + StringUtils.substringAfterLast(entry.getValue().toString(), ">") ;
-                            setKeywordField(document, propertyType, pid, val);
+                            document.add(getKeywordField(propertyType, pid, val));
                         }else{
-                            setKeywordField(document, propertyType, pid, entry.getValue().toString());
+                            document.add(getKeywordField(propertyType, pid, entry.getValue().toString()));
                         }
                         try {
                             Node refNode = NodeUtils.getReferenceNode(entry.getValue(), propertyType);
                             if(refNode != null){
-                                setKeywordField(document, propertyType, pid + "_label", refNode.getLabel(NodeUtils.getNodeType(refNode.getTypeId())));
+                                document.add(getKeywordField(propertyType, pid + "_label", refNode.getLabel(NodeUtils.getNodeType(refNode.getTypeId()))));
                             }
                         }catch (Exception e){}
 
                     }else{
-                        setKeywordField(document,propertyType, pid, entry.getValue().toString());
+                        document.add(getKeywordField(propertyType, pid, entry.getValue().toString()));
                     }
                 }
                 break;
@@ -127,23 +126,14 @@ public class PropertiesFieldBridge implements FieldBridge {
         }
     }
 
-    private void setKeywordField(Document document, PropertyType propertyType, String key, String value){
-        Field field = getKeywordField(propertyType, key, value) ;
-        if(field != null){
-            document.add(field);
-        }
-    }
-
     private Field getKeywordField(PropertyType propertyType, String key, String value){
         if(propertyType.isSorted()) {
-            if(StringUtils.isEmpty(value)) return null;
-            return new Field(key, new BytesRef(value), sortedFieldAnalyzer());
+            return new AnalyzerField(key, value, sortedFieldAnalyzer());
         }else{
             return new AnalyzerField(key, value, fieldAnalyzer(propertyType.getLuceneAnalyzer()));
         }
 
     }
-
 
     private void indexEntry(Map.Entry<String, Object> entry, Document document, LuceneOptions luceneOptions) {
         String pid  = entry.getKey() ;
@@ -204,7 +194,7 @@ public class PropertiesFieldBridge implements FieldBridge {
         AnalyzerFieldType fieldType = new AnalyzerFieldType();
         fieldType.setIndexOptions(IndexOptions.DOCS_AND_FREQS);
         fieldType.setNumericType(FieldType.NumericType.valueOf(valueType.toString()));
-        fieldType.setDocValuesType(DocValuesType.SORTED_NUMERIC);
+        fieldType.setDocValuesType(DocValuesType.NONE);
         fieldType.setStored(false);
         fieldType.setTokenized(false);
         fieldType.setOmitNorms(false);
@@ -227,9 +217,9 @@ public class PropertiesFieldBridge implements FieldBridge {
 
 
     public static org.apache.lucene.document.FieldType sortedFieldAnalyzer() {
-        FieldType fieldType = new FieldType();
+        AnalyzerFieldType fieldType = new AnalyzerFieldType();
         fieldType.setIndexOptions(IndexOptions.DOCS_AND_FREQS);
-        fieldType.setDocValuesType(DocValuesType.SORTED_SET);
+        fieldType.setDocValuesType(DocValuesType.NONE);
         fieldType.setStored(false);
         fieldType.setTokenized(false);
         fieldType.setOmitNorms(false);
