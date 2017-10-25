@@ -40,8 +40,11 @@ public class SessionService {
     private NodeService nodeService ;
 
     public Map<String, Object> getSession(HttpServletRequest request) throws UnsupportedEncodingException {
-
-        Map<String, Object> sessionMap = clusterConfiguration.getSesssionMap().get(getSessionKey(request));
+        String sessionKey = getSessionKey(request) ;
+        if(StringUtils.isEmpty(sessionKey)){
+            return null;
+        }
+        Map<String, Object> sessionMap = clusterConfiguration.getSesssionMap().get(sessionKey);
 
         return sessionMap;
     }
