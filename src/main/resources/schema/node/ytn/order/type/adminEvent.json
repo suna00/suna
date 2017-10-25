@@ -46,5 +46,21 @@
     "actionType": "service",
     "actionBody": "adminOrderService.changeDeliveryStatus",
     "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "orderSheet",
+    "event": "changeOrderStatus",
+    "noneExecute": true,
+    "eventName": "주문상태변경(입금확인,상품준비중처리,배송완료 처리)"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "orderSheet>changeOrderStatus",
+    "action": "changeOrderStatus",
+    "actionName": "주문상태변경(입금확인,상품준비중처리,배송완료 처리)",
+    "actionType": "service",
+    "actionBody": "adminOrderService.changeOrderStatus",
+    "order": 1
   }
 ]

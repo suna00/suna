@@ -18,10 +18,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @Configuration
 @ConfigurationProperties(prefix = "sweettracker")
@@ -36,13 +35,6 @@ public class AdminOrderService {
     public static final String delivery_TID = "delivery";
     public static final String deliveryTrackingInfo_TID = "deliveryTrackingInfo";
 
-
-    private String trackingApi;
-    private String tier;
-    private String key;
-    private String callbackUrl;
-
-
     @Autowired
     private SessionService sessionService;
     @Autowired
@@ -50,6 +42,46 @@ public class AdminOrderService {
     @Autowired
     private NodeService nodeService;
     CommonService commonService;
+
+
+    private String trackingApi;
+    private String tier;
+    private String key;
+    private String callbackUrl;
+
+
+    public String getTrackingApi() {
+        return trackingApi;
+    }
+
+    public void setTrackingApi(String trackingApi) {
+        this.trackingApi = trackingApi;
+    }
+
+    public String getTier() {
+        return tier;
+    }
+
+    public void setTier(String tier) {
+        this.tier = tier;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getCallbackUrl() {
+        return callbackUrl;
+    }
+
+    public void setCallbackUrl(String callbackUrl) {
+        this.callbackUrl = callbackUrl;
+    }
+
 
     // N개 주문서ID check 상태변경 버튼 클릭
     public ExecuteContext multiDeliveryStatusChangeTarget(ExecuteContext context) {
@@ -129,7 +161,6 @@ public class AdminOrderService {
         return list;
     }
 
-    // 배송 상태변경 처리
     /*
             order004,상품준비중
             order005,배송중
@@ -155,6 +186,7 @@ public class AdminOrderService {
             }
 
     */
+    // 배송 상태변경 처리
     public ExecuteContext changeDeliveryStatus(ExecuteContext context) {
         Map<String, Object> data = context.getData();
 
@@ -171,7 +203,12 @@ public class AdminOrderService {
                     node.putAll(map);
                     Map<String, Object> result = sweettrackerTrackingApi(map);
                     if(JsonUtils.getBooleanValue(result, "success")){
+                        setDeliveryCompleteDate(node.getStringValue("deliveryStatus"), node);
                         nodeService.executeNode(node, orderDeliveryPrice_TID, CommonService.UPDATE);
+
+                        List<Map<String, Object>> orderProductList = nodeBindingService.list(orderProduct_TID, "orderProductId_in=" + node.get("orderProductIds"));
+                        changeOrderStatus(orderProductList, JsonUtils.getStringValue(map, "deliveryStatus"));
+
                     }else{
                         //스윗트래커 실패
                         item.putAll((Map<? extends String, ?>) CommonService.getResult("S0004"));
@@ -193,6 +230,15 @@ public class AdminOrderService {
     }
 
     public Map<String, Object> sweettrackerTrackingApi(Map<String, Object> map) throws IOException {
+
+        //스윗트래커 콜백 이력 있으면 전송안함.
+        List<Map<String, Object>> deliveryTrackingInfo = nodeBindingService.list(deliveryTrackingInfo_TID, "orderDeliveryPriceId_equals=" + JsonUtils.getStringValue(map, "orderDeliveryPriceId") + "&trackingNo_equals" + JsonUtils.getStringValue(map, "trackingNo")) ;
+        if(deliveryTrackingInfo.size() > 0){
+            Map<String, Object> result = new HashMap<>();
+            result.put("success", true);
+            return result;
+        }
+
         String deliveryEnterpriseId = JsonUtils.getStringValue(map, "deliveryEnterpriseId");
         Node deliveryEnterprise = NodeUtils.getNode("deliveryEnterprise", deliveryEnterpriseId);
         if (deliveryEnterprise.get("sweettrackerId") == null) return null;
@@ -207,6 +253,48 @@ public class AdminOrderService {
         String resultStr = ApiUtils.callApiMethod(this.trackingApi, data, 5000, 10000, ApiUtils.POST);
         logger.info("sweettrackerTrackingApi - "+resultStr);
         return JsonUtils.parsingJsonToMap(resultStr);
+    }
+
+    //    주문상태변경(입금확인,상품준비중처리,배송완료 처리)
+    public ExecuteContext changeOrderStatus(ExecuteContext context) {
+        Map<String, Object> data = context.getData();
+
+        String[] params = {"orderSheetIds", "orderStatus"};
+        if (CommonService.requiredParams(context, data, params)) return context;
+
+        String status = JsonUtils.getStringValue(data, "orderStatus");
+        List<Map<String, Object>> orderProductList = nodeBindingService.list(orderProduct_TID, "orderSheetId_in=" + JsonUtils.getStringValue(data, "orderSheetIds"));
+        changeOrderStatus(orderProductList, status); //order003,결제완료 / order004,상품준비중 / order006,배송완료
+        if("order006".equals(status)){
+            // orderDeliveryPrice deliveryStatus 업뎃
+            List<Map<String, Object>> orderDeliveryPriceList = nodeBindingService.list(orderDeliveryPrice_TID, "orderSheetId_in=" + JsonUtils.getStringValue(data, "orderSheetIds"));
+            for(Map<String, Object> map : orderDeliveryPriceList){
+                map.put("deliveryStatus", status);
+                setDeliveryCompleteDate(status, map);
+                nodeService.executeNode(map, orderDeliveryPrice_TID, CommonService.UPDATE);
+            }
+        }
+
+        Map<String, Object> item = new LinkedHashMap<>();
+        item.putAll((Map<? extends String, ?>) CommonService.getResult("S0002"));
+        context.setResult(item);
+
+        return context;
+    }
+
+    public Map<String, Object> setDeliveryCompleteDate(String status, Map<String, Object> map) {
+        if("order006".equals(status)){
+            map.put("completeDate", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")));
+        }
+        return map;
+    }
+
+    // 주문 상태변경 처리
+    public void changeOrderStatus(List<Map<String, Object>> orderProductList, String deliveryStatus) {
+        for (Map<String, Object> map : orderProductList) {
+            map.put("orderStatus", deliveryStatus);
+            nodeService.executeNode(map, orderProduct_TID, CommonService.UPDATE);
+        }
     }
 
     //배송주문조회
@@ -236,37 +324,5 @@ public class AdminOrderService {
         context.setResult(item);
 
         return context;
-    }
-
-    public String getTrackingApi() {
-        return trackingApi;
-    }
-
-    public void setTrackingApi(String trackingApi) {
-        this.trackingApi = trackingApi;
-    }
-
-    public String getTier() {
-        return tier;
-    }
-
-    public void setTier(String tier) {
-        this.tier = tier;
-    }
-
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
-
-    public String getCallbackUrl() {
-        return callbackUrl;
-    }
-
-    public void setCallbackUrl(String callbackUrl) {
-        this.callbackUrl = callbackUrl;
     }
 }
