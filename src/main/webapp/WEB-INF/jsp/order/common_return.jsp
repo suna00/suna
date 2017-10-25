@@ -71,8 +71,6 @@
     String cash_a_dt    = f_get_parm( request.getParameter( "cash_a_dt" ) );     // 현금영수증 승인시간
     String cash_no      = f_get_parm( request.getParameter( "cash_no"   ) );     // 현금영수증 거래번호
     /* = -------------------------------------------------------------------------- = */
-    NodeBindingService nodeBindingService = (NodeBindingService) ApplicationContextManager.getContext().getBean("nodeBindingService");
-    List<Map<String, Object>> payment = nodeBindingService.list("payment", "orderSheetId_equals=".concat(order_no));
     OrderService orderService = (OrderService) ApplicationContextManager.getContext().getBean("orderService");
     Map<String, Object> responseMap = new HashMap<>();
 

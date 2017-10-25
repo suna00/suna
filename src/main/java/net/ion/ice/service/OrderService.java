@@ -879,26 +879,12 @@ public class OrderService {
     public void accountTransferUpdate(Map<String, Object> responseMap){
         String orderSheetId = JsonUtils.getStringValue(responseMap, "orderSheetId");
 
-        String accSiteCd = JsonUtils.getStringValue(responseMap, "accSiteCd");          //사이트코드
-        String accTno = JsonUtils.getStringValue(responseMap, "accTno");                //KCP거래번호
-        String accTxCd = JsonUtils.getStringValue(responseMap, "accTxCd");              //업무처리구분코드
-        String accTxTm = JsonUtils.getStringValue(responseMap, "accTxTm");              //업무처리완료시간
-        String accIpgmName = JsonUtils.getStringValue(responseMap, "accIpgmName");      //주문자명
-        String accRemitter = JsonUtils.getStringValue(responseMap, "accRemitter");      //입금자명
-        String accIpgmMnyx = JsonUtils.getStringValue(responseMap, "accIpgmMnyx");      //입금금액
-        String accBankCode = JsonUtils.getStringValue(responseMap, "accBankCode");      //은행코드
-        String accAccount = JsonUtils.getStringValue(responseMap, "accAccount");        //가상계좌입금계좌번호
-        String accOpCd = JsonUtils.getStringValue(responseMap, "accOpCd");              //처리구분코드
-        String accNotiId = JsonUtils.getStringValue(responseMap, "accNotiId");          //통보아이디
-        String accCashAno = JsonUtils.getStringValue(responseMap, "accCashAno");        //현금영수증승인번호
-        String accCashAdt = JsonUtils.getStringValue(responseMap, "accCashAdt");        //현금영수증승인시간
-        String accCashNo = JsonUtils.getStringValue(responseMap, "accCashNo");          //현금영수증거래번호
-
         if(!orderSheetId.equals("")){
             List<Map<String, Object>> paymentList = nodeBindingService.list("payment", "orderSheetId_equals=".concat(orderSheetId));
             Map<String, Object> paymentMap = paymentList.get(0);
             if(paymentMap != null){
                 paymentMap.putAll(responseMap);
+                nodeService.executeNode(paymentMap, "payment", CommonService.UPDATE);
             }
         }
     }
