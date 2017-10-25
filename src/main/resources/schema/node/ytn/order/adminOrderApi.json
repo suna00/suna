@@ -1,0 +1,104 @@
+[
+  {
+    "typeId": "apiConfig",
+    "category": "orderSheet",
+    "apiId": "orderList",
+    "apiName": "전주문 리스트",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "orderSheet",
+      "noneExecute": true,
+      "event": "orderList",
+      "data": {
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "orderSheet",
+    "apiId": "adminOrderList",
+    "apiName": "전체 주문 리스트",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "orderSheet",
+      "noneExecute": true,
+      "event": "adminOrderList",
+      "data": {
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "orderSheet",
+    "apiId": "multiStatusChangeTarget",
+    "apiName": "배송 상태변경 팝업(멀티)",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "orderDeliveryPrice",
+      "noneExecute": true,
+      "event": "multiStatusChangeTarget",
+      "data": {
+        "orderSheetIds": "{{:orderSheetIds}}"
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "orderSheet",
+    "apiId": "singleStatusChangeTarget",
+    "apiName": "배송 상태변경 팝업(싱글)",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "orderDeliveryPrice",
+      "noneExecute": true,
+      "event": "singleStatusChangeTarget",
+      "data": {
+        "orderSheetId": "{{:orderSheetId}}",
+        "orderDeliveryPriceId": "{{:orderDeliveryPriceId}}"
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "orderSheet",
+    "apiId": "changeDeliveryStatus",
+    "apiName": "배송 상태변경 팝업 저장",
+    "method": "POST",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "orderDeliveryPrice",
+      "noneExecute": true,
+      "event": "changeDeliveryStatus",
+      "data": {
+        "changeDeliveryStatusList": "{{:changeDeliveryStatusList}}"
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "orderSheet",
+    "apiId": "changeOrderStatus",
+    "apiName": "주문상태변경(입금확인,상품준비중처리,배송완료 처리)",
+    "method": "POST",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "orderSheet",
+      "noneExecute": true,
+      "event": "changeOrderStatus",
+      "data": {
+        "orderSheetIds": "{{:orderSheetIds}}",
+        "orderStatus": "{{:orderStatus}}"
+      }
+    }
+  }
+]

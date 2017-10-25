@@ -431,6 +431,15 @@ public class OrderService {
         storeOrderSheet.put("couponDiscountPrice", couponDiscountPrice);     //쿠폰 할인액
         storeOrderSheet.put("totalWelfarePoint", welfarePoint);         //사용한 복지포인트
         storeOrderSheet.put("totalYPoint", YPoint);                     //사용한 Y포인트
+
+
+        if(StringUtils.equals(JsonUtils.getStringValue(data, "usePayMethod"), "000000000000")){
+            storeOrderSheet.put("usePayMethod", "000000000000");
+            storeOrderSheet.put("usePayMethodName", "무통장입금");
+        }else{
+            storeOrderSheet.put("usePayMethod", "111111111111");
+            storeOrderSheet.put("usePayMethodName", "포인트결제");
+        }
         storeOrderSheet.put("purchaseaAgreementYn", "y");
         storeOrderSheet.put("purchaseDeviceType", "");
         nodeService.executeNode(storeOrderSheet, "orderSheet", CommonService.CREATE);
@@ -454,18 +463,25 @@ public class OrderService {
         Map<String, Object> orderDeliveryPriceList = deliveryService.calculateDeliveryPrice(orderDeliveryProductList, "order");
 
 
-        deliveryService.makeDeliveryPrice(String.valueOf(data.get("ordrIdxx")), orderDeliveryPriceList);
+        deliveryService.makeDeliveryPrice(orderSheetId, orderDeliveryPriceList);
 
-        if(StringUtils.equals(JsonUtils.getStringValue(data, "payMethodCode"), "000000000000")){
-            Map<String, Object> storePayment = new HashMap<>();
+        Map<String, Object> storePayment = new HashMap<>();
+
+        if(StringUtils.equals(JsonUtils.getStringValue(data, "usePayMethod"), "000000000000")){
             storePayment.put("orderSheetId", orderSheetId);
             storePayment.put("memberNo", memberNo);
             storePayment.put("depositor", JsonUtils.getStringValue(data, "depositor"));
-            storePayment.put("usePayMethod", "000000000000");
+            storePayment.put("usePayMethod", JsonUtils.getStringValue(data, "usePayMethod"));
             storePayment.put("usePayMethodName", "무통장입금");
 
-            nodeService.executeNode(storePayment, "payment", CommonService.CREATE);
+        }else{
+            storePayment.put("orderSheetId", orderSheetId);
+            storePayment.put("memberNo", memberNo);
+            storePayment.put("usePayMethod", JsonUtils.getStringValue(data, "usePayMethod"));
+            storePayment.put("usePayMethodName", "포인트결제");
+
         }
+        nodeService.executeNode(storePayment, "payment", CommonService.CREATE);
 
         nodeService.deleteNode("tempOrder", orderSheetId);
 
@@ -646,6 +662,8 @@ public class OrderService {
         storeOrderSheet.put("totalWelfarePoint", welfarePoint);                                //사용한 복지포인트
         storeOrderSheet.put("totalYPoint", YPoint);                                            //사용한 Y포인트
         storeOrderSheet.put("purchaseaAgreementYn", "y");
+        storeOrderSheet.put("usePayMethod", JsonUtils.getStringValue(responseMap, "usePayMethod"));
+        storeOrderSheet.put("usePayMethodName", JsonUtils.getStringValue(responseMap, "usePayMethodName"));
         storeOrderSheet.put("purchaseDeviceType", "");
         nodeService.executeNode(storeOrderSheet, "orderSheet", CommonService.CREATE);
 
@@ -669,7 +687,7 @@ public class OrderService {
 
         createDelivery(responseMap, JsonUtils.getIntValue(tempOrder.get(0), "memberNo"));
 
-        deliveryService.makeDeliveryPrice(String.valueOf(orderSheetId), orderDeliveryPriceList);
+        deliveryService.makeDeliveryPrice(orderSheetId, orderDeliveryPriceList);
 
         nodeBindingService.delete("tempOrder", orderSheetId);
 
@@ -679,9 +697,10 @@ public class OrderService {
     /**
      * 결제 정보를 저장하는 Method.
      */
-    public String createPayment(Map<String, Object> responseMap) {
-        Node node = (Node) nodeService.executeNode(responseMap, "payment", CommonService.CREATE);
-        return node.getId();
+    public void createPayment(Map<String, Object> responseMap, String pgId) {
+
+        responseMap.put("pgId", Integer.parseInt(pgId));
+        nodeService.executeNode(responseMap, "payment", CommonService.CREATE);
     }
 
 
@@ -704,10 +723,10 @@ public class OrderService {
         storeRefineDelivery.put("recipient", responseMap.get("recipient"));
         storeRefineDelivery.put("deliveryType", responseMap.get("deliveryType"));
         storeRefineDelivery.put("memberNo", memberNo);
+        storeRefineDelivery.put("myDeliveryAddressId", JsonUtils.getIntValue(responseMap, "myDeliveryAddressId"));
 
         nodeService.executeNode(storeRefineDelivery, "delivery", CommonService.CREATE);
 
-        String myDeliveryAddressId = String.valueOf(responseMap.get("myDeliveryAddressId"));
 
         if (responseMap.get("addMyDeliveryAddress").equals("on")) {       //주소록 추가
 
@@ -745,6 +764,7 @@ public class OrderService {
                 myDefaultDeliveryAddressNode.put("defaultYn", "n");
                 nodeService.updateNode(myDefaultDeliveryAddressNode, "myDeliveryAddress");
 
+                String myDeliveryAddressId = JsonUtils.getStringValue(responseMap, "myDeliveryAddressId");
                 List<Node> myDeliveryAddressNodeList = nodeService.getNodeList("myDeliveryAddress", "myDeliveryAddressId_matching=".concat(myDeliveryAddressId));
                 Node myDeliveryAddressNode = myDeliveryAddressNodeList.get(0);
                 myDeliveryAddressNode.put("defaultYn", "y");
@@ -759,18 +779,17 @@ public class OrderService {
     /**
      * PG return 데이터를 저장하는  Method.(리턴 값을 가공하지 JsonString 으로 저장, 일종의 Backup Data)
      */
-    public void createPgResponse(Map<String, Object> responseMap, String paymentId) {
+    public String createPgResponse(Map<String, Object> responseMap) {
         Map<String, Object> storePg = new HashMap<>();
 
         String JsonString = JsonUtils.toJsonString(responseMap);
         String orderSheetId = String.valueOf(responseMap.get("ordrIdxx"));
 
-        storePg.put("paymentId", paymentId);
         storePg.put("orderSheetId", orderSheetId);
         storePg.put("jsonResponse", JsonString);
 
-        nodeService.executeNode(storePg, "pg", CommonService.CREATE);
-
+        Node node = (Node) nodeService.executeNode(storePg, "pg", CommonService.CREATE);
+        return node.getId();
     }
 
     /**

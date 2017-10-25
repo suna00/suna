@@ -72,7 +72,7 @@
         "payment":{
           "typeId" : "payment",
           "query" : [
-            {"field" : "ordrIdxx", "method" : "equals", "value" : "{{:orderSheetId}}"}
+            {"field" : "orderSheetId", "method" : "equals", "value" : "{{:orderSheetId}}"}
           ]
         }
       }
@@ -319,7 +319,7 @@
         "payment":{
           "typeId" : "payment",
           "query" : [
-            {"field" : "ordrIdxx", "method" : "equals", "value" : "{{:orderSheetId}}"}
+            {"field" : "orderSheetId", "method" : "equals", "value" : "{{:orderSheetId}}"}
           ]
         }
       }

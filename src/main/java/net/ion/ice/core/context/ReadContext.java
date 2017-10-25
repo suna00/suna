@@ -659,4 +659,8 @@ public class ReadContext implements Context, Serializable {
     public void setExcludePids(List<String> excludePids) {
         this.excludePids = excludePids;
     }
+
+    public void setNodeType(NodeType nodeType) {
+        this.nodeType = nodeType;
+    }
 }

@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Service("sweettrackerService")
@@ -120,6 +122,9 @@ public class SweettrackerService {
     public void updateDeliveryPriceStatus(Map<String, Object> map, String orderStatusByLevel, String orderDeliveryPrice) {
         map.put("deliveryStatus", orderStatusByLevel);
         map.put("changed", new Date());
+        if("order006".equals(orderStatusByLevel)){
+            map.put("completeDate", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")));
+        }
         nodeService.executeNode(map, orderDeliveryPrice, CommonService.UPDATE);
     }
 
@@ -129,7 +134,7 @@ public class SweettrackerService {
         for(Map<String, Object> op : orderProducts){
 //            if(checkUpdateYn(orderStatusByLevel, op)){
                 op.put("orderStatus", orderStatusByLevel);
-                op.put("changed", new Date());
+                op.put("changed", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")));
                 nodeService.executeNode(op, orderProduct, CommonService.UPDATE);
                 data.put("orderStatus", orderStatusByLevel);
 //            }

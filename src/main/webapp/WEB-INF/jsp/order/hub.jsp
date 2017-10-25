@@ -395,7 +395,7 @@
     responseMap.put("usedCoupon", usedCoupon);
     responseMap.put("memberNo", memberNo);
 
-    String paymentId = orderService.createPayment(responseMap);
+    String pgId = orderService.createPgResponse(responseMap);
 
     if (req_tx.equals("pay")) {
     /* = -------------------------------------------------------------------------- = */
@@ -405,8 +405,6 @@
     /* = -------------------------------------------------------------------------- = */
         if (StringUtils.equals(res_cd, "0000")){
             try {
-                orderService.createPgResponse(responseMap, paymentId);
-
                 // 07-1-1. 신용카드
                 if (use_pay_method.equals("100000000000")) {
                     responseMap.put("orderStatus", "order003"); //결제 완료
@@ -444,7 +442,9 @@
                     responseMap.put("usePayMethodName", "상품권");
                 }
 
+                orderService.createPayment(responseMap, pgId);
                 bSucc = orderService.createOrderSheet(responseMap, request);
+
 
             } catch (Exception e) {
                 bSucc = "false";
