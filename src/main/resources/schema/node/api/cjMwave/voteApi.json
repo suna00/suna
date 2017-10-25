@@ -74,8 +74,9 @@
     ],
     "config": {
       "typeId": "voteBasInfo",
-      "cacheTime": "600",
+      "cacheTime": "300",
       "excludePids": "showCntryCdList",
+      "excludeCache" : "connIpAdr,snsKey,snsTypeCd",
       "event": "resIfMwv001"
     }
   },
@@ -105,8 +106,9 @@
     ],
     "config": {
       "typeId": "voteBasInfo",
-      "cacheTime": "600",
+      "cacheTime": "300",
       "excludePids": "showCntryCdList",
+      "excludeCache" : "connIpAdr,snsKey,snsTypeCd",
       "event": "resIfMwv002"
     }
   },
@@ -348,7 +350,8 @@
     ],
     "config": {
       "typeId": "voteBasInfo",
-      "cacheTime": "600",
+      "cacheTime": "300",
+      "excludeCache" : "connIpAdr,snsKey,snsTypeCd",
       "query": [
         {
           "field": "voteFormlCd",
@@ -966,8 +969,9 @@
     ],
     "config": {
       "typeId": "voteBasInfo",
-      "cacheTime": "600",
+      "cacheTime": "60",
       "excludePids": "showCntryCdList",
+      "excludeCache" : "connIpAdr,snsKey,snsTypeCd",
       "event": "resIfMwv108"
     }
   },
@@ -1076,8 +1080,9 @@
   ],
   "config": {
     "typeId": "voteBasInfo",
-    "cacheTime": "600",
+    "cacheTime": "300",
     "excludePids": "showCntryCdList",
+    "excludeCache" : "connIpAdr,snsKey,snsTypeCd",
     "query": [
       {
         "field": "voteFormlCd",
@@ -1165,8 +1170,9 @@
     ],
     "config": {
       "typeId": "voteBasInfo",
-      "cacheTime": "600",
+      "cacheTime": "300",
       "excludePids": "showCntryCdList",
+      "excludeCache" : "connIpAdr,snsKey,snsTypeCd",
       "ids":"800104,800105,800106,800107,800108,800109,800110,800111,800112,800113,800114,800115,800116,800117,800118,800119,800120,800101,800102",
       "response": {
         "voteSeq": "",
