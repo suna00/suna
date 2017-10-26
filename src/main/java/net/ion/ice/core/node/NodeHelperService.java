@@ -81,7 +81,7 @@ public class NodeHelperService  {
         }else {
             String lastChanged = DateFormatUtils.format(nodeTypeLast, "yyyyMMddHHmmss");
             logger.info(nodeType.getTypeId() + " Last Sync : " + nodeTypeLast);
-            syncNodeList(nodeType, "limit=100&sorting=changed desc&chagned_excess=" + lastChanged, null);
+            syncNodeList(nodeType, "limit=100&sorting=changed desc&changed_excess=" + lastChanged, null);
         }
     }
 
