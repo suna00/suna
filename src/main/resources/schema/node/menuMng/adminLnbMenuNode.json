@@ -624,7 +624,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "AddBenefitForm" }
+      { "pageName": "등록", "pageUrl": "addBenefit/Form" }
     ]
   },
   {
@@ -640,7 +640,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "InterestFreeForm" }
+      { "pageName": "등록", "pageUrl": "interestFree/Form" }
     ]
   },
   {
@@ -656,7 +656,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "QuestionList" }
+      { "pageName": "목록", "pageUrl": "question/List" }
     ]
   },
   {
@@ -672,7 +672,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "QNAList" }
+      { "pageName": "목록", "pageUrl": "qna/List" }
     ]
   },
   {
@@ -688,7 +688,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "ReviewList" }
+      { "pageName": "목록", "pageUrl": "review/List" }
     ]
   },
   {
