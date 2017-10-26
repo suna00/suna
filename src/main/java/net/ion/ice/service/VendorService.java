@@ -26,11 +26,9 @@ public class VendorService {
         userData.put("userGroupId", "vendor");
 
         for (String key : data.keySet()) {
-            if (StringUtils.equals(key, "user")) {
-                List<Map<String, Object>> userDataList = (List<Map<String, Object>>) data.get("user");
-                for (Map<String, Object> userDataMap : userDataList) {
-                    userData.putAll(userDataMap);
-                }
+            if (StringUtils.contains(key, "user>")) {
+                String[] splitKey = StringUtils.split(key, ">");
+                userData.put(splitKey[1], data.get(key));
             } else {
                 vendorData.put(key, data.get(key));
             }
