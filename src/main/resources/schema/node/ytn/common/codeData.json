@@ -3306,7 +3306,7 @@
     "typeId": "commonCode",
     "code": "order016",
     "upperCode": "orderStatus",
-    "name": "교환배송완료",
+    "name": "교환완료",
     "description": "",
     "sortOrder": "16",
     "commonCodeStatus": "y"
