@@ -1736,7 +1736,8 @@
     "icon": "",
     "active": "true",
     "index": "false",
-    "pages": [
+    "pages": [],
+    "customPages": [
       {
         "pageName": "목록",
         "pageUrl": "cj/generalmng/indvInfo/IndvInfoList"
@@ -1753,8 +1754,7 @@
         "pageName": "상세",
         "pageUrl": "cj/generalmng/indvInfo/IndvInfoView"
       }
-    ],
-    "customPages": []
+    ]
   },
   {
     "typeIO": "adminLnbMenu",
@@ -1767,7 +1767,8 @@
     "icon": "",
     "active": "true",
     "index": "false",
-    "pages": [
+    "pages": [],
+    "customPages": [
       {
         "pageName": "목록",
         "pageUrl": "cj/generalmng/tngrPrtct/TngrPrtctList"
@@ -1784,8 +1785,7 @@
         "pageName": "상세",
         "pageUrl": "cj/generalmng/tngrPrtct/TngrPrtctView"
       }
-    ],
-    "customPages": []
+    ]
   },
   {
     "typeId": "adminLnbMenu",
