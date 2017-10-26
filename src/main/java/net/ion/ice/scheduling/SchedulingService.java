@@ -91,6 +91,10 @@ public class SchedulingService implements InitializingBean{
             return;
         }
 
+        if(!clusterConfiguration.getHazelcast().getCluster().getLocalMember().getAddress().getHost().equals("10.75.6.167")){
+            return;
+        }
+
         logger.info("Schedule RUN : " + scheduleNode);
 
 
