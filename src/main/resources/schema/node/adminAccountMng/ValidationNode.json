@@ -6,7 +6,7 @@
     "validation": {
       "language": "ko",
       "required": { "value": true, "description": "필수 값 입니다." },
-      "duplicated": { "value": true, "description": "이미 등록된 아이디 입니다." },
+      "duplicated": { "value": true, "description": "이미 등록된 아이디 입니다.", "reqUrl": "/node/user/list.json" },
       "min": { "value": 4, "description": "최소 값 입니다." },
       "max": { "value": 12, "description": "최대 값 입니다." },
       "extention": { "value": "", "description": "" },
