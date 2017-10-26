@@ -3,13 +3,15 @@ package net.ion.ice.service;
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.api.ApiUtils;
 import net.ion.ice.core.context.ExecuteContext;
+import net.ion.ice.core.context.QueryContext;
+import net.ion.ice.core.context.ReadContext;
+import net.ion.ice.core.data.bind.NodeBindingInfo;
 import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.json.JsonUtils;
-import net.ion.ice.core.node.Node;
-import net.ion.ice.core.node.NodeService;
-import net.ion.ice.core.node.NodeUtils;
+import net.ion.ice.core.node.*;
 import net.ion.ice.core.session.SessionService;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.FastDateFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -35,6 +38,11 @@ public class AdminOrderService {
     public static final String delivery_TID = "delivery";
     public static final String deliveryTrackingInfo_TID = "deliveryTrackingInfo";
 
+    public static final String commonResource_TID = "commonResource";
+
+    public static final String orderChange_TID = "orderChange";
+    public static final String orderChangeProduct_TID = "orderChangeProduct";
+
     @Autowired
     private SessionService sessionService;
     @Autowired
@@ -43,6 +51,8 @@ public class AdminOrderService {
     private NodeService nodeService;
     CommonService commonService;
 
+    @Autowired
+    private MypageOrderService mypageOrderService;
 
     private String trackingApi;
     private String tier;
@@ -80,6 +90,167 @@ public class AdminOrderService {
 
     public void setCallbackUrl(String callbackUrl) {
         this.callbackUrl = callbackUrl;
+    }
+
+
+    //주문리스트
+    public ExecuteContext getAdminOrderList(ExecuteContext context) {
+        Map<String, Object> data = context.getData();
+        int pageSize = (JsonUtils.getIntValue(data, "pageSize") == 0 ? 10 : JsonUtils.getIntValue(data, "pageSize"));
+        int page = JsonUtils.getIntValue(data, "page");
+        int currentPage = (page == 0 ? 1 : page);
+        String createdFromto = JsonUtils.getStringValue(data, "createdFromto");
+        String orderSheetId = JsonUtils.getStringValue(data, "orderSheetId");
+        String productId = JsonUtils.getStringValue(data, "productId");
+        String orderStatus = JsonUtils.getStringValue(data, "orderStatus");
+        List<String> splitOrderStatusList = Arrays.asList(StringUtils.split(orderStatus, ","));
+        List<String> inOrderStatusList = new ArrayList<>();
+        for (String splitOrderStatus : splitOrderStatusList) {
+            inOrderStatusList.add(String.format("'%s'", splitOrderStatus));
+        }
+
+        String existsQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderProduct where IF(@{productId} = '' ,'1',productId) = IF(@{productId} = '' ,'1',@{productId}) and orderStatus in ("+StringUtils.join(inOrderStatusList, ",")+")";
+
+        List<String> search = new ArrayList<>();
+        search.add("pageSize="+pageSize);
+        search.add("page="+currentPage);
+        search.add("sorting=created desc");
+        search.add("referenceView=memberNo");
+        if (!StringUtils.isEmpty(orderSheetId)) search.add("orderSheetId_equals="+orderSheetId);
+        if (!StringUtils.isEmpty(orderStatus)) search.add("orderSheetId_exists="+existsQuery);
+        if (!StringUtils.isEmpty(createdFromto)) search.add("created_fromto="+createdFromto);
+
+        String searchText = StringUtils.join(search, "&");
+
+//        String searchText = "pageSize=" + pageSize +
+//                "&page=" + currentPage +
+//                "&sorting=created desc" +
+//                (orderSheetId != "" ? "&orderSheetId_equals=" + orderSheetId : "") +
+//                (productId != "" || orderStatus != "" ? "&orderSheetId_exists=" + existsQuery : "") +
+//                (createdFromto != "" ? "&created_fromto=" + createdFromto : "") +
+//                (memberNo != "" ? "&memberNo_equals=" + memberNo : "");
+
+        List<Map<String, Object>> sheetTotalList = nodeBindingService.list(orderSheet_TID, "");
+
+
+        NodeType nodeType = NodeUtils.getNodeType(orderSheet_TID);
+        QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, nodeType, null);
+        queryContext.setData(context.getData());
+        NodeBindingInfo nodeBindingInfo = nodeBindingService.getNodeBindingInfo(orderSheet_TID);
+        List<Map<String, Object>> sheetList = nodeBindingInfo.list(queryContext);
+
+        ReadContext readContext = new ReadContext();
+
+        for (Map<String, Object> sheet : sheetList) {
+            Timestamp created = sheet.get("created") == null ? null : (Timestamp) sheet.get("created");
+            if (created != null) sheet.put("created", FastDateFormat.getInstance("yyyyMMddHHmmss").format(created.getTime()));
+            Long memberNoValue = sheet.get("memberNo") == null ? null : (Long) sheet.get("memberNo");
+            if (memberNoValue == null) {
+                sheet.put("memberItem", new HashMap<>());
+            } else {
+                Node memberNode = nodeService.getNode("member", memberNoValue.toString());
+                if (memberNode == null) {
+                    sheet.put("memberItem", new HashMap<>());
+                } else {
+                    Map<String, Object> memberItem = new HashMap<>();
+                    NodeType memberNodeType = NodeUtils.getNodeType("member");
+                    List<PropertyType> memberPropertyList = new ArrayList<>(memberNodeType.getPropertyTypes());
+                    for (PropertyType memberProperty : memberPropertyList) {
+                        if (!StringUtils.equals(memberProperty.getPid(), "password")) {
+                            memberItem.put(memberProperty.getPid(), NodeUtils.getResultValue(readContext, memberProperty, memberNode));
+                        }
+                    }
+                    sheet.put("memberItem", memberItem);
+                }
+            }
+
+            List<Map<String, Object>> opList = nodeBindingService.list(orderProduct_TID, "orderSheetId_equals=" + JsonUtils.getStringValue(sheet, "orderSheetId"));
+            for (Map<String, Object> op : opList) {
+                Node product = NodeUtils.getNode("product", JsonUtils.getStringValue(op, "productId"));
+                List<Map<String, Object>> mainImages = nodeBindingService.list(mypageOrderService.commonResource_TID, "contentsId_matching=" + product.getId() + "&tid_matching=product&name_matching=main");
+                op.put("referencedMainImage", mainImages);
+
+                Map<String, Object> orderDeliveryPrice = mypageOrderService.getOrderDeliveryPrice(JsonUtils.getStringValue(op, "orderSheetId"), JsonUtils.getStringValue(op, "orderProductId"));
+                op.put("referencedOrderDeliveryPrice", orderDeliveryPrice);
+                op.put("functionBtn", mypageOrderService.getFunctionBtn(orderDeliveryPrice, op, product));
+                commonService.putReferenceValue("orderProduct", context, op);
+            }
+            sheet.put("referencedOrderProduct", opList);
+            commonService.putReferenceValue("orderSheet", context, sheet);
+        }
+
+        int pageCount = (int) Math.ceil((double) sheetTotalList.size() / (double) pageSize);
+
+        Map<String, Object> item = new LinkedHashMap<>();
+        item.put("totalCount", sheetTotalList.size());
+        item.put("resultCount", sheetList.size());
+        item.put("pageSize", pageSize);
+        item.put("pageCount", pageCount);
+        item.put("currentPage", currentPage);
+
+        item.put("items", sheetList);
+        context.setResult(item);
+
+        return context;
+    }
+
+
+    // 주문취소교환반품 리스트
+    public void getAdminChangeList(ExecuteContext context) {
+        Map<String, Object> data = context.getData();
+        int pageSize = (JsonUtils.getIntValue(data, "pageSize") == 0 ? 10 : JsonUtils.getIntValue(data, "pageSize"));
+        int page = JsonUtils.getIntValue(data, "page");
+        int currentPage = (page == 0 ? 1 : page);
+        String createdFromto = JsonUtils.getStringValue(data, "createdFromto");
+        String orderSheetId = JsonUtils.getStringValue(data, "orderSheetId");
+        String productId = JsonUtils.getStringValue(data, "productId");
+        String changeType = JsonUtils.getStringValue(data, "changeType");
+
+        String existsQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderChangeProduct where IF(@{productId} = '' ,'1',productId) = IF(@{productId} = '' ,'1',@{productId}) ";
+
+        String searchText = "pageSize=" + pageSize +
+                "&page=" + currentPage +
+                "&sorting=created desc" +
+                (orderSheetId != "" ? "&orderSheetId_equals=" + orderSheetId : "") +
+                (changeType != "" ? "&changeType_equals=" + changeType : "") +
+                (productId != "" ? "&orderSheetId_exists=" + existsQuery : "") +
+                (createdFromto != "" ? "&created_fromto=" + createdFromto : "");
+
+        List<Map<String, Object>> changeTotalList = nodeBindingService.list(orderChange_TID, "");
+
+
+        NodeType nodeType = NodeUtils.getNodeType(orderChange_TID);
+        QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, nodeType, null);
+        queryContext.setData(context.getData());
+        NodeBindingInfo nodeBindingInfo = nodeBindingService.getNodeBindingInfo(orderChange_TID);
+        List<Map<String, Object>> changeList = nodeBindingInfo.list(queryContext);
+
+        for (Map<String, Object> change : changeList) {
+            List<Map<String, Object>> opList = nodeBindingService.list(orderChangeProduct_TID, "orderChangeId_equals=" + JsonUtils.getStringValue(change, "orderChangeId"));
+            for (Map<String, Object> op : opList) {
+                Node product = NodeUtils.getNode("product", JsonUtils.getStringValue(op, "productId"));
+                List<Map<String, Object>> mainImages = nodeBindingService.list(commonResource_TID, "contentsId_matching=" + product.getId() + "&tid_matching=product&name_matching=main");
+                op.put("referencedMainImage", mainImages);
+//                Map<String, Object> orderDeliveryPrice = mypageOrderService.getOrderDeliveryPrice(JsonUtils.getStringValue(op, "orderSheetId"), JsonUtils.getStringValue(op, "orderProductId"));
+//                op.put("referencedOrderDeliveryPrice", orderDeliveryPrice);
+//                op.put("functionBtn", mypageOrderService.getFunctionBtn(orderDeliveryPrice, op, product));
+                commonService.putReferenceValue("orderProduct", context, op);
+            }
+            change.put("referencedOrderChangeProduct", opList);
+            commonService.putReferenceValue("orderSheet", context, change);
+        }
+
+        int pageCount = (int) Math.ceil((double) changeList.size() / (double) pageSize);
+
+        Map<String, Object> item = new LinkedHashMap<>();
+        item.put("totalCount", changeTotalList.size());
+        item.put("resultCount", changeList.size());
+        item.put("pageSize", pageSize);
+        item.put("pageCount", pageCount);
+        item.put("currentPage", currentPage);
+
+        item.put("items", changeList);
+        context.setResult(item);
     }
 
 
@@ -167,7 +338,7 @@ public class AdminOrderService {
             order006,배송완료
 
            {
-              "changeDeliveryStatusList": [
+              "updateDeliveryStatusList": [
                 {
                   "orderDeliveryPriceId": 4,
                   "trackingNo": "504254237701",
@@ -187,16 +358,16 @@ public class AdminOrderService {
 
     */
     // 배송 상태변경 처리
-    public ExecuteContext changeDeliveryStatus(ExecuteContext context) {
+    public ExecuteContext updateDeliveryStatus(ExecuteContext context) {
         Map<String, Object> data = context.getData();
 
-        String[] params = {"changeDeliveryStatusList"};
+        String[] params = {"updateDeliveryStatusList"};
         if (CommonService.requiredParams(context, data, params)) return context;
 
         List<Map<String, Object>> list = new ArrayList<>();
         Map<String, Object> item = new LinkedHashMap<>();
         try {
-            list = JsonUtils.parsingJsonToList(JsonUtils.getStringValue(data, "changeDeliveryStatusList"));
+            list = JsonUtils.parsingJsonToList(JsonUtils.getStringValue(data, "updateDeliveryStatusList"));
             if (list.size() > 0) {
                 for (Map<String, Object> map : list) {
                     Node node = NodeUtils.getNode(orderDeliveryPrice_TID, JsonUtils.getStringValue(map, "orderDeliveryPriceId"));
@@ -207,7 +378,7 @@ public class AdminOrderService {
                         nodeService.executeNode(node, orderDeliveryPrice_TID, CommonService.UPDATE);
 
                         List<Map<String, Object>> orderProductList = nodeBindingService.list(orderProduct_TID, "orderProductId_in=" + node.get("orderProductIds"));
-                        changeOrderStatus(orderProductList, JsonUtils.getStringValue(map, "deliveryStatus"));
+                        updateOrderStatus(orderProductList, JsonUtils.getStringValue(map, "deliveryStatus"));
 
                     }else{
                         //스윗트래커 실패
@@ -256,7 +427,7 @@ public class AdminOrderService {
     }
 
     //    주문상태변경(입금확인,상품준비중처리,배송완료 처리)
-    public ExecuteContext changeOrderStatus(ExecuteContext context) {
+    public ExecuteContext updateOrderStatus(ExecuteContext context) {
         Map<String, Object> data = context.getData();
 
         String[] params = {"orderSheetIds", "orderStatus"};
@@ -264,7 +435,7 @@ public class AdminOrderService {
 
         String status = JsonUtils.getStringValue(data, "orderStatus");
         List<Map<String, Object>> orderProductList = nodeBindingService.list(orderProduct_TID, "orderSheetId_in=" + JsonUtils.getStringValue(data, "orderSheetIds"));
-        changeOrderStatus(orderProductList, status); //order003,결제완료 / order004,상품준비중 / order006,배송완료
+        updateOrderStatus(orderProductList, status); //order003,결제완료 / order004,상품준비중 / order006,배송완료
         if("order006".equals(status)){
             // orderDeliveryPrice deliveryStatus 업뎃
             List<Map<String, Object>> orderDeliveryPriceList = nodeBindingService.list(orderDeliveryPrice_TID, "orderSheetId_in=" + JsonUtils.getStringValue(data, "orderSheetIds"));
@@ -290,12 +461,32 @@ public class AdminOrderService {
     }
 
     // 주문 상태변경 처리
-    public void changeOrderStatus(List<Map<String, Object>> orderProductList, String deliveryStatus) {
+    public void updateOrderStatus(List<Map<String, Object>> orderProductList, String deliveryStatus) {
         for (Map<String, Object> map : orderProductList) {
             map.put("orderStatus", deliveryStatus);
             nodeService.executeNode(map, orderProduct_TID, CommonService.UPDATE);
         }
     }
+
+
+    //주문변경신청 상태 변경(취소교환반품)
+    public ExecuteContext updateOrderChangeStatus(ExecuteContext context) {
+        Map<String, Object> data = context.getData();
+
+        String[] params = {"orderChangeId", "orderChangeStatus"};
+        if (CommonService.requiredParams(context, data, params)) return context;
+
+//
+//# order009,취소완료
+//# order016,교환완료
+//# order021,반품완료
+
+
+
+
+        return context;
+    }
+
 
     //배송주문조회
     public ExecuteContext deliveryTrackingInfoView(ExecuteContext context) {

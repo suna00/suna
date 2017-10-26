@@ -377,7 +377,13 @@ public class OrderService {
                 Map<String, Double> discountPriceMap = couponService.productCouponDiscountPrice(Integer.parseInt(tempOrderProductId), couponId, "", memberNo);
                 storeOrderProduct.put("couponDiscountPrice", discountPriceMap.get("resultDiscountPrice"));
                 storeOrderProduct.put("vendorId", JsonUtils.getIntValue(product, "vendorId"));
-                storeOrderProduct.put("orderStatus", "order003");
+
+                if(StringUtils.equals(JsonUtils.getStringValue(data, "usePayMethod"), "000000000000")){
+                    storeOrderProduct.put("orderStatus", "order002"); //무통장입금_입금대기
+                }else{
+                    storeOrderProduct.put("orderStatus", "order003"); //포인트전액결제_결제완료
+                }
+
                 storeOrderProduct.put("paymentPrice", discountPriceMap.get("resultOrderPrice"));
 
                 totalProductPrice += discountPriceMap.get("resultOrderPrice");
@@ -436,6 +442,19 @@ public class OrderService {
         if(StringUtils.equals(JsonUtils.getStringValue(data, "usePayMethod"), "000000000000")){
             storeOrderSheet.put("usePayMethod", "000000000000");
             storeOrderSheet.put("usePayMethodName", "무통장입금");
+
+            /*현금영수증발급신청데이터*/
+            if(!JsonUtils.getStringValue(data, "trCode").equals("")){
+
+                Map<String, Object> storeCashReceiptRequest = new HashMap<>();
+
+                storeCashReceiptRequest.put("orderSheetId", orderSheetId);
+                storeCashReceiptRequest.put("trCode", JsonUtils.getStringValue(data, "trCode"));
+                storeCashReceiptRequest.put("idInfo", JsonUtils.getStringValue(data, "idInfo"));
+
+                nodeService.executeNode(storeCashReceiptRequest, "cashReceiptRequest", CommonService.CREATE);
+            }
+
         }else{
             storeOrderSheet.put("usePayMethod", "111111111111");
             storeOrderSheet.put("usePayMethodName", "포인트결제");
@@ -482,6 +501,8 @@ public class OrderService {
 
         }
         nodeService.executeNode(storePayment, "payment", CommonService.CREATE);
+
+        createDelivery(data, JsonUtils.getIntValue(session, "member.memberNo"));
 
         nodeService.deleteNode("tempOrder", orderSheetId);
 
@@ -685,7 +706,7 @@ public class OrderService {
         List<Map<String, Object>> orderDeliveryProductList = deliveryService.makeDeliveryData(orderProducts, "order");
         Map<String, Object> orderDeliveryPriceList = deliveryService.calculateDeliveryPrice(orderDeliveryProductList, "order");
 
-        createDelivery(responseMap, JsonUtils.getIntValue(tempOrder.get(0), "memberNo"));
+        createDelivery(responseMap, JsonUtils.getIntValue(session, "member.memberNo"));
 
         deliveryService.makeDeliveryPrice(orderSheetId, orderDeliveryPriceList);
 
@@ -723,7 +744,7 @@ public class OrderService {
         storeRefineDelivery.put("recipient", responseMap.get("recipient"));
         storeRefineDelivery.put("deliveryType", responseMap.get("deliveryType"));
         storeRefineDelivery.put("memberNo", memberNo);
-        storeRefineDelivery.put("myDeliveryAddressId", JsonUtils.getIntValue(responseMap, "myDeliveryAddressId"));
+        storeRefineDelivery.put("myDeliveryAddressId", JsonUtils.getStringValue(responseMap, "myDeliveryAddressId"));
 
         nodeService.executeNode(storeRefineDelivery, "delivery", CommonService.CREATE);
 
@@ -739,13 +760,16 @@ public class OrderService {
             storeMyDeliveryAddress.put("address", responseMap.get("shippingAddress"));
             storeMyDeliveryAddress.put("detailedAddress", responseMap.get("shippingDetailedAddress"));
             storeMyDeliveryAddress.put("cellphone", responseMap.get("shippingCellPhone"));
-            storeMyDeliveryAddress.put("phone", responseMap.get("phone"));
+            storeMyDeliveryAddress.put("phone", responseMap.get("shippingPhone"));
+            storeMyDeliveryAddress.put("recipient", responseMap.get("recipient"));
             if (responseMap.get("changeDefaultAddress").equals("on")) {   //기본 배송지
 
                 List<Node> myDeliveryAddressNodeList = nodeService.getNodeList("myDeliveryAddress", "defaultYn_matching=y");
-                Node myDeliveryAddressNode = myDeliveryAddressNodeList.get(0);
-                myDeliveryAddressNode.put("defaultYn", "n");
-                nodeService.updateNode(myDeliveryAddressNode, "myDeliveryAddress");
+                if(myDeliveryAddressNodeList.size() > 0){
+                    Node myDeliveryAddressNode = myDeliveryAddressNodeList.get(0);
+                    myDeliveryAddressNode.put("defaultYn", "n");
+                    nodeService.updateNode(myDeliveryAddressNode, "myDeliveryAddress");
+                }
 
                 storeMyDeliveryAddress.put("defaultYn", "y");
 

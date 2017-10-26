@@ -156,7 +156,16 @@
     "typeId": "nodeType",
     "tid": "orderSheetAdmin",
     "typeName": "전체 주문서",
-    "tableName": "ytnDevDb#nodeType",
+    "tableName": "ytnDevDb#orderSheetAdmin",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "cashReceiptRequest",
+    "typeName": "현금영수증발급신청데이터",
+    "tableName": "ytnDevDb#cashReceiptRequest",
     "repositoryType": "data",
     "eviction": 0
   }

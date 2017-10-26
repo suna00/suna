@@ -57,7 +57,7 @@
         {
           "field": "memberNo",
           "method": "equals",
-          "value": "{{:session.member.memberNo}}"
+          "value": "{{:default(session.member.memberNo, xxxxxx)}}"
         },
         {
           "sorting": "created desc",
