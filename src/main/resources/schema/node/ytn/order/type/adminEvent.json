@@ -1,15 +1,47 @@
 [
   {
     "typeId": "event",
+    "tid": "orderSheet",
+    "event": "adminList",
+    "noneExecute": true,
+    "eventName": "admin전체주문리스트"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "orderSheet>adminList",
+    "action": "adminList",
+    "actionName": "admin전체주문리스트",
+    "actionType": "service",
+    "actionBody": "adminOrderService.getAdminOrderList",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "orderChange",
+    "event": "adminList",
+    "noneExecute": true,
+    "eventName": "admin전체주문변경리스트"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "orderChange>adminList",
+    "action": "adminList",
+    "actionName": "admin전체주문변경리스트",
+    "actionType": "service",
+    "actionBody": "adminOrderService.getAdminChangeList",
+    "order": 1
+  },
+  {
+    "typeId": "event",
     "tid": "orderDeliveryPrice",
-    "event": "multiStatusChangeTarget",
+    "event": "updateStatusMultiTarget",
     "noneExecute": true,
     "eventName": "멀티 배송상태 변경 대상 선택"
   },
   {
     "typeId": "eventAction",
-    "event": "orderDeliveryPrice>multiStatusChangeTarget",
-    "action": "multiStatusChangeTarget",
+    "event": "orderDeliveryPrice>updateStatusMultiTarget",
+    "action": "updateStatusMultiTarget",
     "actionName": "멀티 배송상태 변경 대상 선택",
     "actionType": "service",
     "actionBody": "adminOrderService.multiDeliveryStatusChangeTarget",
@@ -18,14 +50,14 @@
   {
     "typeId": "event",
     "tid": "orderDeliveryPrice",
-    "event": "singleStatusChangeTarget",
+    "event": "updateStatusSingleTarget",
     "noneExecute": true,
     "eventName": "단일 배송상태 변경 대상 선택"
   },
   {
     "typeId": "eventAction",
-    "event": "orderDeliveryPrice>singleStatusChangeTarget",
-    "action": "singleStatusChangeTarget",
+    "event": "orderDeliveryPrice>updateStatusSingleTarget",
+    "action": "updateStatusSingleTarget",
     "actionName": "단일 변경 대상 선택",
     "actionType": "service",
     "actionBody": "adminOrderService.singleDeliveryStatusChangeTarget",
@@ -34,33 +66,49 @@
   {
     "typeId": "event",
     "tid": "orderDeliveryPrice",
-    "event": "changeDeliveryStatus",
+    "event": "updateDeliveryStatus",
     "noneExecute": true,
     "eventName": "배송상태 변경"
   },
   {
     "typeId": "eventAction",
-    "event": "orderDeliveryPrice>changeDeliveryStatus",
-    "action": "changeDeliveryStatus",
+    "event": "orderDeliveryPrice>updateDeliveryStatus",
+    "action": "updateDeliveryStatus",
     "actionName": "배송상태 변경",
     "actionType": "service",
-    "actionBody": "adminOrderService.changeDeliveryStatus",
+    "actionBody": "adminOrderService.updateDeliveryStatus",
     "order": 1
   },
   {
     "typeId": "event",
     "tid": "orderSheet",
-    "event": "changeOrderStatus",
+    "event": "updateOrderStatus",
     "noneExecute": true,
     "eventName": "주문상태변경(입금확인,상품준비중처리,배송완료 처리)"
   },
   {
     "typeId": "eventAction",
-    "event": "orderSheet>changeOrderStatus",
-    "action": "changeOrderStatus",
+    "event": "orderSheet>updateOrderStatus",
+    "action": "updateOrderStatus",
     "actionName": "주문상태변경(입금확인,상품준비중처리,배송완료 처리)",
     "actionType": "service",
-    "actionBody": "adminOrderService.changeOrderStatus",
+    "actionBody": "adminOrderService.updateOrderStatus",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "orderChange",
+    "event": "updateStatus",
+    "noneExecute": true,
+    "eventName": "주문변경신청 상태 변경(취소교환반품)"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "orderChange>updateStatus",
+    "action": "updateStatus",
+    "actionName": "주문변경신청 상태 변경(취소교환반품)",
+    "actionType": "service",
+    "actionBody": "adminOrderService.updateOrderChangeStatus",
     "order": 1
   }
 ]

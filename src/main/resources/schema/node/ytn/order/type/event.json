@@ -81,18 +81,18 @@
   },
   {
     "typeId": "event",
-    "tid": "orderSheet",
-    "event": "adminOrderList",
+    "tid": "orderChange",
+    "event": "changeList",
     "noneExecute": true,
-    "eventName": "전체주문리스트"
+    "eventName": "주문변경리스트"
   },
   {
     "typeId": "eventAction",
-    "event": "orderSheet>adminOrderList",
-    "action": "adminOrderList",
-    "actionName": "전체주문리스트",
+    "event": "orderChange>changeList",
+    "action": "changeList",
+    "actionName": "주문변경리스트",
     "actionType": "service",
-    "actionBody": "mypageOrderService.getAdminOrderList",
+    "actionBody": "mypageOrderService.getMypageChangeList",
     "order": 1
   },
   {
