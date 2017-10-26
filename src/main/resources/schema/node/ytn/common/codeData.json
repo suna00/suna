@@ -775,7 +775,7 @@
   },
   {
     "typeId": "commonCode",
-    "code": "affilieateType",
+    "code": "affiliateType",
     "upperCode": "root",
     "name": "제휴사타입",
     "description": "",
@@ -4547,7 +4547,7 @@
   {
     "typeId": "commonCode",
     "code": "general",
-    "upperCode": "affilieateType",
+    "upperCode": "affiliateType",
     "name": "일반",
     "description": "",
     "sortOrder": "1",
@@ -4556,7 +4556,7 @@
   {
     "typeId": "commonCode",
     "code": "nomember",
-    "upperCode": "affilieateType",
+    "upperCode": "affiliateType",
     "name": "비회원",
     "description": "",
     "sortOrder": "2",
@@ -4565,7 +4565,7 @@
   {
     "typeId": "commonCode",
     "code": "affiliateStoreMall",
-    "upperCode": "affilieateType",
+    "upperCode": "affiliateType",
     "name": "제휴입점",
     "description": "",
     "sortOrder": "3",

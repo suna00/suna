@@ -376,7 +376,7 @@
   {
     "typeId": "propertyType",
     "tid": "affiliate",
-    "pid": "affilieateType",
+    "pid": "affiliateType",
     "propertyTypeName": "제휴사타입",
     "valueType": "REFERENCE",
     "required": false,
@@ -387,7 +387,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "codeFilter": "affilieateType",
+    "codeFilter": "affiliateType",
     "defaultValue": ""
   },
   {
