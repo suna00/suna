@@ -483,6 +483,8 @@ public class OrderService {
         }
         nodeService.executeNode(storePayment, "payment", CommonService.CREATE);
 
+        createDelivery(data, JsonUtils.getIntValue(session, "member.memberNo"));
+
         nodeService.deleteNode("tempOrder", orderSheetId);
 
         context.setResult(CommonService.getResult("O0005"));
@@ -685,7 +687,7 @@ public class OrderService {
         List<Map<String, Object>> orderDeliveryProductList = deliveryService.makeDeliveryData(orderProducts, "order");
         Map<String, Object> orderDeliveryPriceList = deliveryService.calculateDeliveryPrice(orderDeliveryProductList, "order");
 
-        createDelivery(responseMap, JsonUtils.getIntValue(tempOrder.get(0), "memberNo"));
+        createDelivery(responseMap, JsonUtils.getIntValue(session, "member.memberNo"));
 
         deliveryService.makeDeliveryPrice(orderSheetId, orderDeliveryPriceList);
 
@@ -723,7 +725,7 @@ public class OrderService {
         storeRefineDelivery.put("recipient", responseMap.get("recipient"));
         storeRefineDelivery.put("deliveryType", responseMap.get("deliveryType"));
         storeRefineDelivery.put("memberNo", memberNo);
-        storeRefineDelivery.put("myDeliveryAddressId", JsonUtils.getIntValue(responseMap, "myDeliveryAddressId"));
+        storeRefineDelivery.put("myDeliveryAddressId", JsonUtils.getStringValue(responseMap, "myDeliveryAddressId"));
 
         nodeService.executeNode(storeRefineDelivery, "delivery", CommonService.CREATE);
 
@@ -739,13 +741,16 @@ public class OrderService {
             storeMyDeliveryAddress.put("address", responseMap.get("shippingAddress"));
             storeMyDeliveryAddress.put("detailedAddress", responseMap.get("shippingDetailedAddress"));
             storeMyDeliveryAddress.put("cellphone", responseMap.get("shippingCellPhone"));
-            storeMyDeliveryAddress.put("phone", responseMap.get("phone"));
+            storeMyDeliveryAddress.put("phone", responseMap.get("shippingPhone"));
+            storeMyDeliveryAddress.put("recipient", responseMap.get("recipient"));
             if (responseMap.get("changeDefaultAddress").equals("on")) {   //기본 배송지
 
                 List<Node> myDeliveryAddressNodeList = nodeService.getNodeList("myDeliveryAddress", "defaultYn_matching=y");
-                Node myDeliveryAddressNode = myDeliveryAddressNodeList.get(0);
-                myDeliveryAddressNode.put("defaultYn", "n");
-                nodeService.updateNode(myDeliveryAddressNode, "myDeliveryAddress");
+                if(myDeliveryAddressNodeList.size() > 0){
+                    Node myDeliveryAddressNode = myDeliveryAddressNodeList.get(0);
+                    myDeliveryAddressNode.put("defaultYn", "n");
+                    nodeService.updateNode(myDeliveryAddressNode, "myDeliveryAddress");
+                }
 
                 storeMyDeliveryAddress.put("defaultYn", "y");
 
