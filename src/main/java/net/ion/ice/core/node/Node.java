@@ -561,6 +561,10 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         return this ;
     }
 
+    public String getModifier() {
+        return modifier;
+    }
+
 //    public Object getValue(String pid, PropertyType.ValueType valueType) {
 //        Object value = get(pid) ;
 //
