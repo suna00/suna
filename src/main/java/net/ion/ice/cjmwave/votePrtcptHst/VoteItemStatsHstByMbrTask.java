@@ -18,7 +18,7 @@ public class VoteItemStatsHstByMbrTask {
     private static Logger logger = LoggerFactory.getLogger(VoteItemStatsHstByMbrTask.class);
 
     public static final String VOTE_BAS_INFO = "voteBasInfo";
-    public static final Integer SELECT_LIST_COUNT = 20000;
+    public static final Integer SELECT_LIST_COUNT = 30;
 
     @Autowired
     NodeService nodeService;
@@ -45,15 +45,22 @@ public class VoteItemStatsHstByMbrTask {
             // TODO - voteItemStatsHstByMbr Table에서 조회.
             logger.info("vote item stat schedule task - {} - {} ", voteBasInfo.getId(), voteBasInfo.getStringValue("voteNm"));
 
-            Integer startHstSeq = 0;
+            Integer lastHstSeq = 0;
             String selectLastHstSeqQuery = "SELECT max(hstSeq) AS lastSeq FROM voteItemStatsHstByMbr WHERE voteSeq=?";
             Map<String, Object> startHstSeqMap = jdbcTemplate.queryForMap(selectLastHstSeqQuery, voteBasInfo.getId());
-            startHstSeq = startHstSeqMap.get("lastSeq")==null ? 0 : Integer.parseInt(startHstSeqMap.get("lastSeq").toString());
-//            startHstSeq += 1;
-            logger.info("vote item hstseq - {} - {} ", voteBasInfo.getId(), startHstSeq);
+            lastHstSeq = startHstSeqMap.get("lastSeq")==null ? 0 : Integer.parseInt(startHstSeqMap.get("lastSeq").toString());
+
+            String searchStartSeqQuery = "SELECT min(seq) AS startSeq FROM " + voteBasInfo.getId() + "_voteItemHstByMbr WHERE seq>?";
+            Map<String, Object> startSeqMap = jdbcTemplate.queryForMap(searchStartSeqQuery, lastHstSeq);
+            Integer startSeq = 0 ;
+            if (startSeqMap!=null && startSeqMap.get("startSeq")!=null) {
+                startSeq = Integer.parseInt(startSeqMap.get("startSeq").toString());
+            }
+
+            logger.info("vote item hstseq - {} - {} ", voteBasInfo.getId(), startSeq);
 
             List<Map<String,Object>> voteItemHstInfoList
-                    = selectVoteItemHstInfoList(voteBasInfo.getId(), startHstSeq, SELECT_LIST_COUNT + startHstSeq, DateFormatUtils.format(new Date(), "yyyyMMdd"));
+                    = selectVoteItemHstInfoList(voteBasInfo.getId(), startSeq, SELECT_LIST_COUNT + startSeq, DateFormatUtils.format(new Date(), "yyyyMMdd"));
 
             logger.info("vote item infolist - {} - {} ", voteBasInfo.getId(), voteItemHstInfoList.size());
 
@@ -61,8 +68,8 @@ public class VoteItemStatsHstByMbrTask {
             for (Map voteItemHstInfo : voteItemHstInfoList) {
                 // add to list for insert to vote count table
                 Integer hstSeq = voteItemHstInfo.get("hstSeq")==null ? 0 : Integer.parseInt(voteItemHstInfo.get("hstSeq").toString());
-                if (hstSeq>startHstSeq) {
-                    startHstSeq = hstSeq;
+                if (hstSeq>startSeq) {
+                    startSeq = hstSeq;
                 }
                 insertVoteItemStatsHstByMbrList.add(voteItemHstInfo);
             }
@@ -70,13 +77,9 @@ public class VoteItemStatsHstByMbrTask {
             for (Map voteItemStatsHstByMbr : insertVoteItemStatsHstByMbrList) {
 
                 voteItemStatsHstByMbr.put("voteSeq", voteBasInfo.getId());
-                voteItemStatsHstByMbr.put("hstSeq", startHstSeq);
+                voteItemStatsHstByMbr.put("hstSeq", startSeq);
                 voteItemStatsHstByMbr.put("created", now);
-//
-//                Map<String, Object> chkVoteItemStatsHstByMbr = selectVoteItemHstInfo(voteBasInfo.getId(),
-//                        voteItemStatsHstByMbr.get("voteItemSeq").toString(),
-//                        voteItemStatsHstByMbr.get("mbrId").toString());
-//                if (chkVoteItemStatsHstByMbr == null) {
+
                 String mbrId = voteItemStatsHstByMbr.get("mbrId")==null ? null : voteItemStatsHstByMbr.get("mbrId").toString();
                 String[] mbrIdArr = null;
                 if (mbrId!=null) {
@@ -89,21 +92,7 @@ public class VoteItemStatsHstByMbrTask {
                 }
 
                 mergeVoteItemStatsHstByMbr(voteItemStatsHstByMbr);
-//                    }
-//
-//                } else {
-//                    Integer newVoteNum = 0;
-//                    if (voteItemStatsHstByMbr.get("voteNum") != null) {
-//                        newVoteNum = Integer.parseInt(voteItemStatsHstByMbr.get("voteNum").toString());
-//                    }
-//                    Integer chkVoteNum = 0;
-//                    if (chkVoteItemStatsHstByMbr.get("voteNum") != null) {
-//                        chkVoteNum = Integer.parseInt(chkVoteItemStatsHstByMbr.get("voteNum").toString());
-//                    }
-//                    voteItemStatsHstByMbr.put("voteNum", chkVoteNum + newVoteNum);
-//
-//                    updatetVoteItemStatsHstByMbr(voteItemStatsHstByMbr);
-//                }
+
             }
         }
         logger.info("complete schedule task - execVoteItemStatsHstByMbr");
@@ -137,15 +126,6 @@ public class VoteItemStatsHstByMbrTask {
 
 
     }
-//
-//    public void updatetVoteItemStatsHstByMbr(Map<String, Object> voteItemHstByMbr) {
-//        String updateQuery = "UPDATE voteItemStatsHstByMbr "
-//                + "SET voteNum=?, hstSeq=?, voteDate=?, created=? "
-//                + "WHERE voteSeq=? AND voteItemSeq=? AND mbrId=?";
-//        jdbcTemplate.update(updateQuery,
-//                voteItemHstByMbr.get("voteNum"), voteItemHstByMbr.get("hstSeq"), voteItemHstByMbr.get("voteDate"), voteItemHstByMbr.get("created"),
-//                voteItemHstByMbr.get("voteSeq"), voteItemHstByMbr.get("voteItemSeq"), voteItemHstByMbr.get("mbrId"));
-//    }
 
     private List<Map<String, Object>> selectVoteItemHstInfoList(String voteSeq, Integer startHstSeq, Integer maxSeq, String voteDate) {
         String selectListQuery =
@@ -153,7 +133,7 @@ public class VoteItemStatsHstByMbrTask {
                         "FROM (" +
                         "       SELECT seq, voteDate, voteItemSeq, mbrId, created " +
                         "       FROM " + voteSeq + "_voteItemHstByMbr " +
-                        "       WHERE seq>? AND seq<? AND voteDate=?" +
+                        "       WHERE seq>=? AND seq<? AND voteDate=?" +
                         "     ) a " +
                         "GROUP BY voteItemSeq, mbrId " +
                         "ORDER BY hstSeq";
