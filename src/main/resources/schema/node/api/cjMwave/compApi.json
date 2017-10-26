@@ -191,7 +191,8 @@
                     "value": "{{:default(newsHubKywrd,뺿뺿)}}"
                   },
                   {
-                    "sorting": "created desc"
+                    "sorting": "mkeDay desc",
+                    "limit":"5"
                   }
                 ],
                 "response": {
@@ -228,6 +229,10 @@
                     "field": "searchKeyword",
                     "method": "matchingShould",
                     "value": "{{:default(newsHubKywrd,뺿뺿)}}"
+                  },
+                  {
+                    "sorting": "mkeDay desc",
+                    "limit":"5"
                   }
                 ],
                 "response": {
@@ -356,7 +361,8 @@
                     "value": "{{:default(newsHubKywrd,뺿뺿)}}"
                   },
                   {
-                    "sorting": "created desc"
+                    "sorting": "mkeDay desc",
+                    "limit":"5"
                   }
                 ],
                 "response": {
@@ -393,6 +399,10 @@
                     "field": "searchKeyword",
                     "method": "matchingShould",
                     "value": "{{:default(newsHubKywrd,뺿뺿)}}"
+                  },
+                  {
+                    "sorting": "mkeDay desc",
+                    "limit":"5"
                   }
                 ],
                 "response": {
@@ -470,7 +480,7 @@
     "config": {
       "root": {
         "typeId": "svcMenuInfo",
-        "cacheTime": "3600",
+        "cacheTime": "1800",
         "query": [
           {
             "field": "svcMenuGroupSeq",
