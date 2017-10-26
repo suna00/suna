@@ -511,6 +511,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "",
+    "codeFilter": "useYn",
     "defaultValue": ""
   },
   {
