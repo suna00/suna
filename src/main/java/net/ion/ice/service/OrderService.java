@@ -377,7 +377,13 @@ public class OrderService {
                 Map<String, Double> discountPriceMap = couponService.productCouponDiscountPrice(Integer.parseInt(tempOrderProductId), couponId, "", memberNo);
                 storeOrderProduct.put("couponDiscountPrice", discountPriceMap.get("resultDiscountPrice"));
                 storeOrderProduct.put("vendorId", JsonUtils.getIntValue(product, "vendorId"));
-                storeOrderProduct.put("orderStatus", "order003");
+
+                if(StringUtils.equals(JsonUtils.getStringValue(data, "usePayMethod"), "000000000000")){
+                    storeOrderProduct.put("orderStatus", "order002"); //무통장입금_입금대기
+                }else{
+                    storeOrderProduct.put("orderStatus", "order003"); //포인트전액결제_결제완료
+                }
+
                 storeOrderProduct.put("paymentPrice", discountPriceMap.get("resultOrderPrice"));
 
                 totalProductPrice += discountPriceMap.get("resultOrderPrice");
@@ -436,6 +442,19 @@ public class OrderService {
         if(StringUtils.equals(JsonUtils.getStringValue(data, "usePayMethod"), "000000000000")){
             storeOrderSheet.put("usePayMethod", "000000000000");
             storeOrderSheet.put("usePayMethodName", "무통장입금");
+
+            /*현금영수증발급신청데이터*/
+            if(!JsonUtils.getStringValue(data, "trCode").equals("")){
+
+                Map<String, Object> storeCashReceiptRequest = new HashMap<>();
+
+                storeCashReceiptRequest.put("orderSheetId", orderSheetId);
+                storeCashReceiptRequest.put("trCode", JsonUtils.getStringValue(data, "trCode"));
+                storeCashReceiptRequest.put("idInfo", JsonUtils.getStringValue(data, "idInfo"));
+
+                nodeService.executeNode(storeCashReceiptRequest, "cashReceiptRequest", CommonService.CREATE);
+            }
+
         }else{
             storeOrderSheet.put("usePayMethod", "111111111111");
             storeOrderSheet.put("usePayMethodName", "포인트결제");

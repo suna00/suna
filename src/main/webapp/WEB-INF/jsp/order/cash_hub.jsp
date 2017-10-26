@@ -87,7 +87,7 @@
     /* = -------------------------------------------------------------------------- = */
     J_PP_CLI_N  c_PayPlus = new J_PP_CLI_N();
 
-    c_PayPlus.mf_init( "", g_conf_gw_url, g_conf_gw_port, g_conf_tx_mode, g_conf_log_dir );
+    c_PayPlus.mf_init( "", g_conf_gw_url, g_conf_gw_port, g_conf_tx_mode, g_conf_cash_log_dir );
     c_PayPlus.mf_init_set();
     /* ============================================================================== */
 
