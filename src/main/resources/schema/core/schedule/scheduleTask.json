@@ -33,7 +33,7 @@
     "id" : "voteItemStatsTask",
     "name" : "voteItemStats Schedule Task",
     "type" : "cron",
-    "config" : "0 */30 * * * *",
+    "config" : "0 */6 * * * *",
     "enable" : false,
     "actionType" : "service",
     "actionBody" : "voteItemStatsTask.voteItemStatsJob"

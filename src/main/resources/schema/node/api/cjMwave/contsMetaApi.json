@@ -101,14 +101,6 @@
           "seoDesc": "albumDesc",
           "seoKywrd": "findKywrd"
         }
-      },
-      "hitNumUpdate": {
-        "typeId": "album",
-        "resultType": "none",
-        "event": "view",
-        "response": {
-          "hitNum": ""
-        }
       }
     }
   },
@@ -288,14 +280,6 @@
           },
           "seoDesc": "artistDesc",
           "seoKywrd": "findKywrd"
-        }
-      },
-      "hitNumUpdate": {
-        "typeId": "artist",
-        "resultType": "none",
-        "event": "view",
-        "response": {
-          "hitNum": ""
         }
       }
     }
@@ -536,14 +520,6 @@
               }
             }
           }
-        }
-      },
-      "hitNumUpdate": {
-        "typeId": "musicVideo",
-        "resultType": "none",
-        "event": "view",
-        "response": {
-          "hitNum": ""
         }
       }
     }
@@ -882,14 +858,6 @@
             }
           }
         }
-      },
-      "hitNumUpdate": {
-        "typeId": "news",
-        "resultType": "none",
-        "event": "view",
-        "response": {
-          "hitNum": ""
-        }
       }
     }
   },
@@ -1136,14 +1104,6 @@
             "includeReferenced": true
           }
         ]
-      },
-      "hitNumUpdate": {
-        "typeId": "groupPhoto",
-        "resultType": "none",
-        "event": "view",
-        "response": {
-          "hitNum": ""
-        }
       }
     }
   },
@@ -1618,14 +1578,6 @@
               }
             }
           }
-        }
-      },
-      "hitNumUpdate": {
-        "typeId": "pgmVideo",
-        "resultType": "none",
-        "event": "view",
-        "response": {
-          "hitNum": ""
         }
       }
     }
