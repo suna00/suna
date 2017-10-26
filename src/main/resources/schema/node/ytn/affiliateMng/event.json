@@ -1,0 +1,18 @@
+[
+  {
+    "typeId": "event",
+    "tid": "affiliate",
+    "event": "saveEvent",
+    "noneExecute": true,
+    "eventName": "Affiliate SAVE"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "affiliate>saveEvent",
+    "action": "saveEvent",
+    "actionName": "Affiliate SAVE",
+    "actionType": "service",
+    "actionBody": "affiliateService.saveEvent",
+    "order": 1
+  }
+]
