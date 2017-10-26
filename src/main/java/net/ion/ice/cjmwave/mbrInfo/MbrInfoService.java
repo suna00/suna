@@ -44,7 +44,7 @@ public class MbrInfoService {
 
     public Node getMbrNode(String snsType, String snsKey){
         if (jdbcTemplate == null) {
-            jdbcTemplate = dbService.getJdbcTemplate("authDB");
+            jdbcTemplate = dbService.getJdbcTemplate("authDb");
         }
         try {
             Map<String, Object> data = jdbcTemplate.queryForMap("select  * from mbrInfo where snsTypeCd = ? and snsKey = ?", snsType, snsKey);
@@ -146,7 +146,7 @@ public class MbrInfoService {
 
     public void updLoginInfo(ExecuteContext context) {
         if (jdbcTemplate == null) {
-            jdbcTemplate = dbService.getJdbcTemplate("authDB");
+            jdbcTemplate = dbService.getJdbcTemplate("authDb");
         }
 
         Map<String, Object> data = context.getData();
@@ -202,7 +202,7 @@ public class MbrInfoService {
 
     public void rejoin(ExecuteContext context){
         if (jdbcTemplate == null) {
-            jdbcTemplate = dbService.getJdbcTemplate("authDB");
+            jdbcTemplate = dbService.getJdbcTemplate("authDb");
         }
 
         Map<String, Object> data = context.getData();
@@ -282,7 +282,7 @@ public class MbrInfoService {
 
     public void secession(ExecuteContext context) {
         if (jdbcTemplate == null) {
-            jdbcTemplate = dbService.getJdbcTemplate("authDB");
+            jdbcTemplate = dbService.getJdbcTemplate("authDb");
         }
 
         Map<String, Object> data = context.getData();
@@ -322,7 +322,7 @@ public class MbrInfoService {
 
     public void dormReles(ExecuteContext context) {
         if (jdbcTemplate == null) {
-            jdbcTemplate = dbService.getJdbcTemplate("authDB");
+            jdbcTemplate = dbService.getJdbcTemplate("authDb");
         }
 
         Map<String, Object> data = context.getData();
@@ -373,7 +373,7 @@ public class MbrInfoService {
 
     public void mbrUpd(ExecuteContext context){
         if (jdbcTemplate == null) {
-            jdbcTemplate = dbService.getJdbcTemplate("authDB");
+            jdbcTemplate = dbService.getJdbcTemplate("authDb");
         }
 
         Map<String, Object> data = context.getData();
@@ -424,7 +424,7 @@ public class MbrInfoService {
 
     public void mbrImgUpd(ExecuteContext context){
         if (jdbcTemplate == null) {
-            jdbcTemplate = dbService.getJdbcTemplate("authDB");
+            jdbcTemplate = dbService.getJdbcTemplate("authDb");
         }
 
         Map<String, Object> data = context.getData();

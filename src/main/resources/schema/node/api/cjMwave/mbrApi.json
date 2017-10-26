@@ -29,22 +29,6 @@
       {
         "paramName": "infoOttpAgreeYn",
         "required": true
-      },
-      {
-        "paramName": "dvcId",
-        "required": false
-      },
-      {
-        "paramName": "dvcNm",
-        "required": false
-      },
-      {
-        "paramName": "osCd",
-        "required": false
-      },
-      {
-        "paramName": "osVer",
-        "required": false
       }
     ],
     "config": {
@@ -102,22 +86,6 @@
       {
         "paramName": "emailRcvYn",
         "required": true
-      },
-      {
-        "paramName": "dvcId",
-        "required": false
-      },
-      {
-        "paramName": "dvcNm",
-        "required": false
-      },
-      {
-        "paramName": "osCd",
-        "required": false
-      },
-      {
-        "paramName": "osVer",
-        "required": false
       }
     ],
     "config": {
@@ -160,7 +128,28 @@
       {
         "paramName": "snsTypeCd",
         "required": true
+      },
+      {
+        "paramName": "dvcId",
+        "required": false
+      },
+      {
+        "paramName": "dvcNm",
+        "required": false
+      },
+      {
+        "paramName": "osCd",
+        "required": false
+      },
+      {
+        "paramName": "osVer",
+        "required": false
+      },
+      {
+        "paramName": "adId",
+        "required": false
       }
+
     ],
     "config": {
       "typeId": "mbrInfo",
@@ -243,6 +232,10 @@
       {
         "paramName": "connCntryCd",
         "required": true
+      },
+      {
+        "paramName": "adId",
+        "required": false
       }
     ],
     "config": {

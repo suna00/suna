@@ -47,6 +47,7 @@ public class MbrDvcInfoService {
                 createData.put("dvcNm", data.get("dvcNm"));
                 createData.put("osCd", data.get("osCd"));
                 createData.put("osVer", data.get("osVer"));
+                createData.put("adId", data.get("adId"));
                 NodeUtils.getNodeService().executeNode(createData, MBR_DVC_INFO, EventService.SAVE);
             }
         }catch (Exception e){

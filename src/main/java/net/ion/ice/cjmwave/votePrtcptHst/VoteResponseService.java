@@ -189,16 +189,9 @@ public class VoteResponseService {
             context.makeIncludeReferenced("refdItemList");
             context.makeReferenceView("sersItemVoteSeq,sersItemVoteSeq.refdItemList.contsMetaId");
             List<Node> sersVoteItemList = nodeService.getNodeList(SERS_VOTE_ITEM_INFO, voteItemTerms);
-            for (Node voteItem : sersVoteItemList) {
-                voteItem.toDisplay(context);
+            for (Node sersVoteItem : sersVoteItemList) {
                 ///sersItemVoteSeq referenceView 형으로 설정해야함
-//                String sersItemVoteSeq = refdSeriesItem.getStringValue("sersItemVoteSeq");
-//                nodeService.getNode(VOTE_BAS_INFO, sersItemVoteSeq);
-//                Map<String, Object> sersItemVoteSeqInfo = new LinkedHashMap<>();
-//                sersItemVoteSeqInfo.put("value", voteInfo.getStringValue("voteSeq"));
-//                sersItemVoteSeqInfo.put("label", voteInfo.getStringValue("voteNm"));
-//                sersItemVoteSeqInfo.put("refId", voteInfo.getStringValue("voteSeq"));
-//                sersItemVoteSeqInfo.put("item", voteInfo);
+                sersVoteItem.toDisplay(context);
             }
 
             Map<String, Object> voteBaseResult = new HashMap<>() ;

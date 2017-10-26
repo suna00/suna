@@ -626,6 +626,7 @@
     "analyzer": null,
     "referenceType": "voteItemInfo",
     "referenceValue": "voteSeq",
+    "referencedFilter": "sorting=sortOdrg",
     "defaultValue": ""
   },
   {
@@ -643,6 +644,7 @@
     "analyzer": null,
     "referenceType": "sersVoteItemInfo",
     "referenceValue": "voteSeq",
+    "referencedFilter": "sorting=sortOdrg",
     "defaultValue": ""
   },
   {
