@@ -31,8 +31,13 @@ public class VoteItemStatsByMbrService {
 
         logger.info("start schedule task - execVoteItemStatsBySex");
 
-        // execute voteItemStatsByMbrTaskBySex only once
-        voteItemStatsByMbrTask.execVoteItemStatsBySex();
+        // execute voteItemStatsHstByMbrTask only once
+        Map data = context.getData();
+        if (data.get("mode") != null && data.get("mode").toString().equals("all")) {
+            voteItemStatsByMbrTask.execVoteItemStatsBySexAll();
+        } else {
+            voteItemStatsByMbrTask.execVoteItemStatsBySex();
+        }
 
         logger.info("complete schedule task - execVoteItemStatsBySex");
 
@@ -45,9 +50,15 @@ public class VoteItemStatsByMbrService {
     public void execVoteItemStatsByCntry(ExecuteContext context) {
 
         logger.info("start schedule task - execVoteItemStatsByCntry");
+        Map data = context.getData();
 
         // execute voteItemStatsByMbrTaskByCntry only once
-        voteItemStatsByMbrTask.execVoteItemStatsByCntry();
+        // execute voteItemStatsHstByMbrTask only once
+        if (data.get("mode") != null && data.get("mode").toString().equals("all")) {
+            voteItemStatsByMbrTask.execVoteItemStatsByCntryAll();
+        } else {
+            voteItemStatsByMbrTask.execVoteItemStatsByCntry();
+        }
 
         logger.info("complete schedule task - execVoteItemStatsByCntry");
 

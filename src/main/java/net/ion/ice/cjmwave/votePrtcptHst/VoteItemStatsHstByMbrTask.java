@@ -28,10 +28,10 @@ public class VoteItemStatsHstByMbrTask {
     public void execVoteItemStatsHstByMbr() {
 
         logger.info("start schedule task - execVoteItemStatsHstByMbr");
-
         if (jdbcTemplate == null) {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
         }
+
         // 통계를 위한 대상 voteSeq List
         Calendar cal = Calendar.getInstance() ;
         cal.add(Calendar.DATE, -1);
@@ -62,7 +62,7 @@ public class VoteItemStatsHstByMbrTask {
             List<Map<String,Object>> voteItemHstInfoList
                     = selectVoteItemHstInfoList(voteBasInfo.getId(), startSeq, SELECT_LIST_COUNT + startSeq, DateFormatUtils.format(new Date(), "yyyyMMdd"));
 
-            logger.info("vote item infolist - {} - {} ", voteBasInfo.getId(), voteItemHstInfoList.size());
+            logger.info("vote item infolist - {} - {} ", voteBasInfo.getId(), voteItemHstInfoList==null ? 0 : voteItemHstInfoList.size());
 
             List<Map<String,Object>> insertVoteItemStatsHstByMbrList = new ArrayList<>();
             for (Map voteItemHstInfo : voteItemHstInfoList) {
@@ -141,6 +141,96 @@ public class VoteItemStatsHstByMbrTask {
         try {
             //retList = jdbcTemplate.queryForList(selectListQuery, startHstSeq, maxSeq, "20171012");
             retList = jdbcTemplate.queryForList(selectListQuery, startHstSeq, maxSeq, voteDate);
+        } catch (Exception e) {
+            return null;
+        }
+        return retList;
+    }
+
+    public void execVoteItemStatsHstByMbrAll() {
+
+        logger.info("start statistics task - execVoteItemStatsHstByMbr");
+        if (jdbcTemplate == null) {
+            jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
+        }
+
+        // 통계를 위한 대상 voteSeq List
+        Calendar cal = Calendar.getInstance() ;
+        cal.add(Calendar.DATE, -1);
+        Date before = cal.getTime() ;
+        Calendar now = Calendar.getInstance() ;
+        now.add(Calendar.DATE, +1);
+        String voteDate = DateFormatUtils.format(now.getTime(), "yyyyMMddHHmmss");
+        // 투표 기간안에 있는 모든 VoteBasInfo 조회
+        List<Node> voteBasInfoList = NodeUtils.getNodeList(VOTE_BAS_INFO, "pstngStDt_below=" + voteDate + "&pstngFnsDt_above="+ DateFormatUtils.format(before, "yyyyMMddHHmmss"));
+        for (Node voteBasInfo : voteBasInfoList) {
+            // TODO - voteItemStatsHstByMbr Table에서 조회.
+            logger.info("vote item stat schedule task - {} - {} ", voteBasInfo.getId(), voteBasInfo.getStringValue("voteNm"));
+
+            Integer lastHstSeq = 0;
+            String selectLastHstSeqQuery = "SELECT max(hstSeq) AS lastSeq FROM voteItemStatsHstByMbr WHERE voteSeq=?";
+            Map<String, Object> startHstSeqMap = jdbcTemplate.queryForMap(selectLastHstSeqQuery, voteBasInfo.getId());
+            lastHstSeq = startHstSeqMap.get("lastSeq")==null ? 0 : Integer.parseInt(startHstSeqMap.get("lastSeq").toString());
+
+            String searchStartSeqQuery = "SELECT min(seq) AS startSeq FROM " + voteBasInfo.getId() + "_voteItemHstByMbr WHERE seq>?";
+            Map<String, Object> startSeqMap = jdbcTemplate.queryForMap(searchStartSeqQuery, lastHstSeq);
+            Integer startSeq = 0 ;
+            if (startSeqMap!=null && startSeqMap.get("startSeq")!=null) {
+                startSeq = Integer.parseInt(startSeqMap.get("startSeq").toString());
+            }
+
+            logger.info("vote item hstseq - {} - {} ", voteBasInfo.getId(), startSeq);
+
+            List<Map<String,Object>> voteItemHstInfoList
+                    = selectVoteItemHstInfoListAll(voteBasInfo.getId(), startSeq, SELECT_LIST_COUNT + startSeq);
+
+            logger.info("vote item infolist - {} - {} ", voteBasInfo.getId(), voteItemHstInfoList==null ? 0 : voteItemHstInfoList.size());
+
+            List<Map<String,Object>> insertVoteItemStatsHstByMbrList = new ArrayList<>();
+            for (Map voteItemHstInfo : voteItemHstInfoList) {
+                // add to list for insert to vote count table
+                Integer hstSeq = voteItemHstInfo.get("hstSeq")==null ? 0 : Integer.parseInt(voteItemHstInfo.get("hstSeq").toString());
+                if (hstSeq>startSeq) {
+                    startSeq = hstSeq;
+                }
+                insertVoteItemStatsHstByMbrList.add(voteItemHstInfo);
+            }
+
+            for (Map voteItemStatsHstByMbr : insertVoteItemStatsHstByMbrList) {
+
+                voteItemStatsHstByMbr.put("voteSeq", voteBasInfo.getId());
+                voteItemStatsHstByMbr.put("hstSeq", startSeq);
+                voteItemStatsHstByMbr.put("created", now);
+
+                String mbrId = voteItemStatsHstByMbr.get("mbrId")==null ? null : voteItemStatsHstByMbr.get("mbrId").toString();
+                String[] mbrIdArr = null;
+                if (mbrId!=null) {
+                    mbrIdArr = mbrId.split(">");
+                }
+
+                if (mbrIdArr!=null && mbrIdArr.length>1) {
+                    voteItemStatsHstByMbr.put("snsTypeCd", mbrIdArr[0]);
+                    voteItemStatsHstByMbr.put("snsKey", mbrIdArr[1]);
+                }
+                mergeVoteItemStatsHstByMbr(voteItemStatsHstByMbr);
+            }
+        }
+        logger.info("complete statistics task - execVoteItemStatsHstByMbr");
+    }
+
+    private List<Map<String, Object>> selectVoteItemHstInfoListAll(String voteSeq, Integer startHstSeq, Integer maxSeq) {
+        String selectListQuery =
+                "SELECT max(seq) AS hstSeq, voteItemSeq, mbrId, voteDate, count(seq) AS voteNum " +
+                        "FROM (" +
+                        "       SELECT seq, voteDate, voteItemSeq, mbrId, created " +
+                        "       FROM " + voteSeq + "_voteItemHstByMbr " +
+                        "       WHERE seq>=? AND seq<? " +
+                        "     ) a " +
+                        "GROUP BY voteItemSeq, mbrId, voteDate " +
+                        "ORDER BY hstSeq";
+        List retList = null;
+        try {
+            retList = jdbcTemplate.queryForList(selectListQuery, startHstSeq, maxSeq);
         } catch (Exception e) {
             return null;
         }

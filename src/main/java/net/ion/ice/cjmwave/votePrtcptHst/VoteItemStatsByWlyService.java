@@ -25,8 +25,20 @@ public class VoteItemStatsByWlyService {
 
         logger.info("start schedule task - execVoteItemStatsByWly");
 
-        // execute voteItemStatsByWlyTask only once
-        voteItemStatsByWlyTask.execVoteItemStatsByWly();
+        // execute voteItemStatsHstByMbrTask only once
+        Map data = context.getData();
+        if (data.get("mode") != null && data.get("mode").toString().equals("all")) {
+            String target = null;
+            if (data.get("voteDate") != null && data.get("voteDate").toString().length()>0){
+                target = data.get("voteDate").toString();
+            } else {
+                Date now = new Date();
+                target = DateFormatUtils.format(now, "yyyyMMdd");
+            }
+            voteItemStatsByWlyTask.execVoteItemStatsByWlyAll(target);
+        } else {
+            voteItemStatsByWlyTask.execVoteItemStatsByWly();
+        }
 
         logger.info("complete schedule task - execVoteItemStatsByWly");
 

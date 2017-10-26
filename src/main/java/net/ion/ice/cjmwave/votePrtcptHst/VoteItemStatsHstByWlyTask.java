@@ -11,6 +11,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service("voteItemStatsHstByWlyTask")
@@ -28,7 +30,6 @@ public class VoteItemStatsHstByWlyTask {
     public void execVoteItemStatsHstByWly() {
 
         logger.info("start execVoteItemStatsHstByWly");
-
         if (jdbcTemplate == null) {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
         }
@@ -134,5 +135,88 @@ public class VoteItemStatsHstByWlyTask {
         c.add(c.DATE,7);
         return formatter.format(c.getTime());
     }
+
+
+
+    public void execVoteItemStatsHstByWlyAll(String targetDate) {
+        logger.info("start execVoteItemStatsHstByWlyAll");
+        if (jdbcTemplate == null) {
+            jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
+        }
+
+        Date now = new Date();
+        String voteDate = DateFormatUtils.format(now, "yyyyMMddHHmmss");
+        // 투표 기간안에 있는 모든 VoteBasInfo 조회
+        List<Node> voteBasInfoList = NodeUtils.getNodeList(VOTE_BAS_INFO, "pstngStDt_below=" + voteDate + "&pstngFnsDt_above="+ voteDate);
+
+        for (Node voteBasInfo : voteBasInfoList) {
+
+            String perdStDate = getCurMonday(targetDate);
+            String perdFnsDate = getCurSunday(targetDate);
+
+            List<Map<String, Object>> voteItemCntInfoList
+                    = voteItemHstList(voteBasInfo.getId(), perdStDate.replaceAll("-", ""), perdFnsDate.replaceAll("-", ""));
+            List<Map<String, Object>> insertVoteItemCntInfoList = new ArrayList<>();
+
+            for (Map voteItemCntInfo : voteItemCntInfoList) {
+                voteItemCntInfo.put("voteSeq", voteBasInfo.getId());
+                voteItemCntInfo.put("perdStDate", perdStDate);
+                voteItemCntInfo.put("perdFnsDate", perdFnsDate);
+                voteItemCntInfo.put("owner", "anonymous");
+                voteItemCntInfo.put("created", now);
+
+                insertVoteItemCntInfoList.add(voteItemCntInfo);
+            }
+
+            for (Map<String, Object> insertVoteItem : insertVoteItemCntInfoList) {
+
+                Map<String, Object> voteItemStatsHstMap  = selectVoteItemStatsHstMap(voteBasInfo.getId(),
+                        insertVoteItem.get("voteItemSeq").toString(),
+                        insertVoteItem.get("voteDate").toString());
+
+                if (voteItemStatsHstMap==null) {
+                    insertVoteItemStatsHst(insertVoteItem);
+                } else {
+                    updateVoteItemStatsHst(insertVoteItem);
+                }
+            }
+        }
+        logger.info("complete execVoteItemStatsHstByWlyAll");
+    }
+
+    //선택한 날짜 월요일
+    private String getCurMonday(String voteDate){
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat transForm = new SimpleDateFormat("yyyyMMdd");
+        Date vD = null;
+        try {
+            vD = transForm.parse(voteDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        c.setTime(vD);
+        c.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
+        return formatter.format(c.getTime());
+    }
+
+    //선택한 날짜 일요일
+    private String getCurSunday(String voteDate){
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat transForm = new SimpleDateFormat("yyyyMMdd");
+        Date vD = null;
+        try {
+            vD = transForm.parse(voteDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        c.setTime(vD);
+        c.set(Calendar.DAY_OF_WEEK,Calendar.SUNDAY);
+        c.add(c.DATE,7);
+        return formatter.format(c.getTime());
+    }
+
+
 
 }

@@ -12,6 +12,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -27,8 +28,20 @@ public class VoteItemStatsHstByWlyService {
 
         logger.info("start schedule task - execVoteItemStatsHstByWly");
 
-        // execute voteItemStatsHstByWlyTask only once
-        voteItemStatsHstByWlyTask.execVoteItemStatsHstByWly();
+        // execute voteItemStatsHstByMbrTask only once
+        Map data = context.getData();
+        if (data.get("mode") != null && data.get("mode").toString().equals("all")) {
+            String target = null;
+            if (data.get("voteDate") != null && data.get("voteDate").toString().length()>0){
+                target = data.get("voteDate").toString();
+            } else {
+                Date now = new Date();
+                target = DateFormatUtils.format(now, "yyyyMMdd");
+            }
+            voteItemStatsHstByWlyTask.execVoteItemStatsHstByWlyAll(target);
+        } else {
+            voteItemStatsHstByWlyTask.execVoteItemStatsHstByWly();
+        }
 
         logger.info("complete schedule task - execVoteItemStatsHstByWly");
 

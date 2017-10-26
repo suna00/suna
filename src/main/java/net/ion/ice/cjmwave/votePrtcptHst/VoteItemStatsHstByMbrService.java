@@ -30,7 +30,12 @@ public class VoteItemStatsHstByMbrService {
         logger.info("start schedule task - execVoteItemStatsHstByMbr");
 
         // execute voteItemStatsHstByMbrTask only once
-        voteItemStatsHstByMbrTask.execVoteItemStatsHstByMbr();
+        Map data = context.getData();
+        if (data.get("mode") != null && data.get("mode").toString().equals("all")) {
+            voteItemStatsHstByMbrTask.execVoteItemStatsHstByMbrAll();
+        } else {
+            voteItemStatsHstByMbrTask.execVoteItemStatsHstByMbr();
+        }
 
         logger.info("complete schedule task - execVoteItemStatsHstByMbr");
 
