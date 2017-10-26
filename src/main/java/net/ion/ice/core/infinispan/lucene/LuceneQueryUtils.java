@@ -253,7 +253,8 @@ public class LuceneQueryUtils {
                 sortTypeStr = StringUtils.substringBefore(sortField, "(").trim().toUpperCase();
                 sortField = StringUtils.substringBetween(sortField, "(", ")");
             }else{
-                PropertyType pt = queryContext.getNodetype().getPropertyType(sortField) ;
+
+                PropertyType pt = queryContext.getNodetype().getPropertyType(StringUtils.substringBefore(sortField, "_")) ;
                 if(pt != null) {
                     sortTypeStr = pt.getValueType().toString();
                     if(!pt.isSorted() && pt.isSortable() && !pt.isNumeric()){
