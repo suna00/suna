@@ -18,7 +18,7 @@ public class VoteItemStatsHstByMbrTask {
     private static Logger logger = LoggerFactory.getLogger(VoteItemStatsHstByMbrTask.class);
 
     public static final String VOTE_BAS_INFO = "voteBasInfo";
-    public static final Integer SELECT_LIST_COUNT = 30;
+    public static final Integer SELECT_LIST_COUNT = 50000;
 
     @Autowired
     NodeService nodeService;
