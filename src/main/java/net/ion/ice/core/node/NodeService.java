@@ -139,18 +139,19 @@ public class NodeService {
 
     public List<Node> getNodeList(String typeId, String searchText) {
         QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, getNodeType(typeId), null) ;
-        return infinispanRepositoryService.getSubQueryNodes(typeId, queryContext) ;
+        return infinispanRepositoryService.getSubQueryNodes(queryContext) ;
     }
 
     public List<Node> getNodeList(NodeType nodeType, List<QueryTerm> queryTerms) {
         QueryContext queryContext = QueryContext.createQueryContextFromTerms(queryTerms, nodeType) ;
-        return infinispanRepositoryService.getSubQueryNodes(nodeType.getTypeId(), queryContext) ;
+        return infinispanRepositoryService.getSubQueryNodes(queryContext) ;
 
     }
 
 
     public List<Node> getNodeList(String typeId, QueryContext queryContext) {
-        return infinispanRepositoryService.getSubQueryNodes(typeId, queryContext) ;
+        queryContext.setNodeType(getNodeType(typeId)) ;
+        return infinispanRepositoryService.getSubQueryNodes(queryContext) ;
     }
     public List<Node> getDisplayNodeList(String typeId, QueryContext queryContext) {
         NodeType nodeType = getNodeType(typeId) ;
@@ -174,12 +175,12 @@ public class NodeService {
 
     public SimpleQueryResult getNodeList(String typeId, Map<String, String[]> parameterMap) {
         QueryContext queryContext = QueryContext.createQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
-        return infinispanRepositoryService.getQueryNodes(typeId, queryContext) ;
+        return infinispanRepositoryService.getQueryNodes(queryContext) ;
     }
 
     public SimpleQueryResult getNodeTree(String typeId, Map<String, String[]> parameterMap) {
         QueryContext queryContext = QueryContext.createQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
-        return infinispanRepositoryService.getQueryTreeNodes(typeId, queryContext) ;
+        return infinispanRepositoryService.getQueryTreeNodes(queryContext) ;
     }
 
     private void initNodeType() throws IOException {

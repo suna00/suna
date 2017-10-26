@@ -185,6 +185,19 @@
     "referenceValue" : "category"
   },
   {
+    "typeId" : "propertyType",
+    "tid" : "testCategory",
+    "pid" : "authority",
+    "propertyTypeName" : "Authority",
+    "valueType" : "REFERENCES",
+    "idable" : false,
+    "indexable" : true,
+    "labelable" : false,
+    "required" : false,
+    "analyzer" : "code",
+    "referenceType" : "role"
+  },
+  {
     "typeId": "propertyType",
     "tid": "testMenu",
     "pid": "menuId",

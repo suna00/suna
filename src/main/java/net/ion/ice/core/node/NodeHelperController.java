@@ -58,7 +58,7 @@ public class NodeHelperController {
         try {
             logger.info("node list : {}, {}", typeId, query);
             QueryContext queryContext = QueryContext.createQueryContextFromText(query, NodeUtils.getNodeType(typeId), null) ;
-            return infinispanRepositoryService.getSyncQueryList(typeId, queryContext);
+            return infinispanRepositoryService.getSyncQueryList(queryContext);
         }catch(Exception e){
             logger.error(e.getMessage(), e);
             return JsonResponse.error(e) ;
