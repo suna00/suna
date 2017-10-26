@@ -79,11 +79,11 @@ public class SchedulingService implements InitializingBean{
     private void makeSchedule(Node scheduleNode) {
         if(clusterConfiguration == null) return ;
         if(!(clusterConfiguration.getMode().equals("all") || clusterConfiguration.getMode().equals("cms"))) return ;
-        if(!clusterConfiguration.getHazelcast().getCluster().getLocalMember().getAddress().getHost().equals("10.75.7.130")){
+        /*if(!clusterConfiguration.getHazelcast().getCluster().getLocalMember().getAddress().getHost().equals("10.75.7.130")){
             return;
         }
 
-        logger.info("Schedule RUN : " + scheduleNode);
+        logger.info("Schedule RUN : " + scheduleNode);*/
 
         // Determine initial delay
 
