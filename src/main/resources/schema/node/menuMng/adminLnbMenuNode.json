@@ -392,12 +392,11 @@
     "icon": "fa-list",
     "active": "true",
     "index": "false",
-    "pages": [
-      { "pageName": "목록", "pageUrl": "list" }
-    ],
+    "pages": [],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "affiliate/AffComCreateForm" },
-      { "pageName": "수정", "pageUrl": "affiliate/AffComUpdateForm" }
+      { "pageName": "목록", "pageUrl": "affiliateCompany/List" },
+      { "pageName": "등록", "pageUrl": "affiliateCompany/CreateForm" },
+      { "pageName": "수정", "pageUrl": "affiliateCompany/UpdateForm" }
     ]
   },
   {
@@ -411,12 +410,11 @@
     "icon": "fa-list",
     "active": "true",
     "index": "false",
-    "pages": [
-      { "pageName": "목록", "pageUrl": "list" }
-    ],
+    "pages": [],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "AffComMemberCreateForm" },
-      { "pageName": "수정", "pageUrl": "AffComMemberUpdateForm" }
+      { "pageName": "목록", "pageUrl": "affiliateCompanyMember/List" },
+      { "pageName": "등록", "pageUrl": "affiliateCompanyMember/CreateForm" },
+      { "pageName": "수정", "pageUrl": "affiliateCompanyMember/UpdateForm" }
     ]
   },
   {
@@ -430,12 +428,11 @@
     "icon": "fa-list",
     "active": "true",
     "index": "false",
-    "pages": [
-      { "pageName": "목록", "pageUrl": "list" }
-    ],
+    "pages": [],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "affiliate/AffUniCreateForm" },
-      { "pageName": "수정", "pageUrl": "affiliate/AffUniUpdateForm" }
+      { "pageName": "목록", "pageUrl": "affiliateUniversity/List" },
+      { "pageName": "등록", "pageUrl": "affiliateUniversity/CreateForm" },
+      { "pageName": "수정", "pageUrl": "affiliateUniversity/UpdateForm" }
     ]
   },
   {
@@ -449,12 +446,11 @@
     "icon": "fa-list",
     "active": "true",
     "index": "false",
-    "pages": [
-      { "pageName": "목록", "pageUrl": "list" }
-    ],
+    "pages": [],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "AffUniMemberCreateForm" },
-      { "pageName": "수정", "pageUrl": "AffUniMemberUpdateForm" }
+      { "pageName": "목록", "pageUrl": "affiliateUniversityMember/List" },
+      { "pageName": "등록", "pageUrl": "affiliateUniversityMember/CreateForm" },
+      { "pageName": "수정", "pageUrl": "affiliateUniversityMember/UpdateForm" }
     ]
   },
   {
@@ -468,10 +464,12 @@
     "icon": "fa-list",
     "active": "true",
     "index": "false",
-    "pages": [
-      { "pageName": "목록", "pageUrl": "list" }
-    ],
-    "customPages": []
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "affiliateMall/List" },
+      { "pageName": "등록", "pageUrl": "affiliateMall/CreateForm" },
+      { "pageName": "수정", "pageUrl": "affiliateMall/UpdateForm" }
+    ]
   },
   {
     "typeId" : "adminLnbMenu",
