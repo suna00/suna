@@ -1757,7 +1757,7 @@
     ]
   },
   {
-    "typeIO": "adminLnbMenu",
+    "typeId": "adminLnbMenu",
     "backOfficeId": "admin",
     "gnbMenuId": "systemMng",
     "parentMenuId": "admin>systemMng>root>generalMng",
