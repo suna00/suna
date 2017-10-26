@@ -27,7 +27,7 @@
       "typeId": "album",
       "cacheTime": "60",
       "excludePids": "showCntryCdList",
-      "excludeCache" : "connIpAdr,snsKey,snsTypeCd",
+      "excludeCache": "connIpAdr,snsKey,snsTypeCd",
       "query": [
         {
           "field": "artistId",
@@ -91,7 +91,7 @@
         "typeId": "album",
         "cacheTime": "60",
         "excludePids": "showCntryCdList",
-        "excludeCache" : "connIpAdr,snsKey,snsTypeCd",
+        "excludeCache": "connIpAdr,snsKey,snsTypeCd",
         "id": "{{:albumId}}",
         "response": {
           "_all_": "",
@@ -100,6 +100,14 @@
           },
           "seoDesc": "albumDesc",
           "seoKywrd": "findKywrd"
+        }
+      },
+      "hitNumUpdate": {
+        "typeId": "album",
+        "resultType": "none",
+        "event": "view",
+        "response": {
+          "hitNum": ""
         }
       }
     }
@@ -128,7 +136,7 @@
       "typeId": "song",
       "cacheTime": "60",
       "excludePids": "showCntryCdList",
-      "excludeCache" : "connIpAdr,snsKey,snsTypeCd",
+      "excludeCache": "connIpAdr,snsKey,snsTypeCd",
       "query": [
         {
           "field": "artistId",
@@ -213,7 +221,7 @@
       "typeId": "artist",
       "cacheTime": "60",
       "excludePids": "showCntryCdList",
-      "excludeCache" : "connIpAdr,snsKey,snsTypeCd",
+      "excludeCache": "connIpAdr,snsKey,snsTypeCd",
       "query": [
         {
           "field": "typeCd",
@@ -271,7 +279,7 @@
       "root": {
         "typeId": "artist",
         "cacheTime": "60",
-        "excludeCache" : "connIpAdr,snsKey,snsTypeCd",
+        "excludeCache": "connIpAdr,snsKey,snsTypeCd",
         "id": "{{:artistId}}",
         "response": {
           "_all_": "",
@@ -280,6 +288,14 @@
           },
           "seoDesc": "artistDesc",
           "seoKywrd": "findKywrd"
+        }
+      },
+      "hitNumUpdate": {
+        "typeId": "artist",
+        "resultType": "none",
+        "event": "view",
+        "response": {
+          "hitNum": ""
         }
       }
     }
@@ -308,7 +324,7 @@
       "typeId": "musicVideo",
       "cacheTime": "60",
       "excludePids": "showCntryCdList",
-      "excludeCache" : "connIpAdr,snsKey,snsTypeCd",
+      "excludeCache": "connIpAdr,snsKey,snsTypeCd",
       "query": [
         {
           "field": "artistId",
@@ -505,6 +521,9 @@
                     "field": "voteSeq",
                     "method": "referenceJoin",
                     "value": "voteSeq_matching={{:voteSeq}}"
+                  },
+                  {
+                    "sorting": "sortOdrg"
                   }
                 ]
               },
@@ -515,11 +534,22 @@
                     "field": "voteSeq",
                     "method": "referenceJoin",
                     "value": "voteSeq_matching={{:voteSeq}}"
+                  },
+                  {
+                    "sorting": "sortOdrg"
                   }
                 ]
               }
             }
           }
+        }
+      },
+      "hitNumUpdate": {
+        "typeId": "musicVideo",
+        "resultType": "none",
+        "event": "view",
+        "response": {
+          "hitNum": ""
         }
       }
     }
@@ -553,7 +583,7 @@
         "typeId": "news",
         "cacheTime": "60",
         "excludePids": "showCntryCdList",
-        "excludeCache" : "connIpAdr,snsKey,snsTypeCd",
+        "excludeCache": "connIpAdr,snsKey,snsTypeCd",
         "query": [
           {
             "field": "contsMetaCtgryId",
@@ -666,7 +696,7 @@
         "typeId": "news",
         "cacheTime": "60",
         "excludePids": "showCntryCdList",
-        "excludeCache" : "connIpAdr",
+        "excludeCache": "connIpAdr",
         "id": "{{:newsId}}",
         "response": {
           "_all_": "",
@@ -716,7 +746,7 @@
                 "value": "{{:conditionDefault(langCd,eng,eng,zho-cn,zho-tw)}}"
               },
               {
-                "sorting": "{{:sorting}}",
+                "sorting": "newsId desc",
                 "limit": "1"
               }
             ],
@@ -772,7 +802,7 @@
                 "value": "{{:conditionDefault(langCd,eng,eng,zho-cn,zho-tw)}}"
               },
               {
-                "sorting": "created desc",
+                "sorting": "mkeDay desc",
                 "limit": "15"
               }
             ]
@@ -791,7 +821,7 @@
                 "value": "{{:conditionDefault(langCd,eng,eng,zho-cn,zho-tw)}}"
               },
               {
-                "sorting": "created desc",
+                "sorting": "mkeDay desc",
                 "limit": "2"
               }
             ]
@@ -809,7 +839,7 @@
             "typeId": "singlePhoto",
             "query": [
               {
-                "sorting": "created desc",
+                "sorting": "mkeDay desc",
                 "limit": "2"
               }
             ]
@@ -842,6 +872,9 @@
                     "field": "voteSeq",
                     "method": "referenceJoin",
                     "value": "voteSeq_matching={{:voteSeq}}"
+                  },
+                  {
+                    "sorting": "sortOdrg"
                   }
                 ]
               },
@@ -852,11 +885,22 @@
                     "field": "voteSeq",
                     "method": "referenceJoin",
                     "value": "voteSeq_matching={{:voteSeq}}"
+                  },
+                  {
+                    "sorting": "sortOdrg"
                   }
                 ]
               }
             }
           }
+        }
+      },
+      "hitNumUpdate": {
+        "typeId": "news",
+        "resultType": "none",
+        "event": "view",
+        "response": {
+          "hitNum": ""
         }
       }
     }
@@ -881,7 +925,7 @@
       "typeId": "groupPhoto",
       "cacheTime": "60",
       "excludePids": "showCntryCdList",
-      "excludeCache" : "connIpAdr,snsKey,snsTypeCd",
+      "excludeCache": "connIpAdr,snsKey,snsTypeCd",
       "query": [
         {
           "field": "contsMetaCtgryId",
@@ -961,7 +1005,7 @@
         "typeId": "groupPhoto",
         "cacheTime": "60",
         "excludePids": "showCntryCdList",
-        "excludeCache" : "connIpAdr,snsKey,snsTypeCd",
+        "excludeCache": "connIpAdr,snsKey,snsTypeCd",
         "id": "{{:groupPhotoId}}",
         "referenceView": "compontSinglePhotoIds",
         "response": {
@@ -1000,7 +1044,7 @@
                 "value": "{{:getCommaItem(contsMetaCtgryId,last,뺿뺿)}}"
               },
               {
-                "sorting": "created desc",
+                "sorting": "mkeDay desc",
                 "limit": "15"
               }
             ]
@@ -1019,7 +1063,7 @@
                 "value": "{{:conditionDefault(langCd,eng,eng,zho-cn,zho-tw)}}"
               },
               {
-                "sorting": "created desc",
+                "sorting": "mkeDay desc",
                 "limit": "2"
               }
             ]
@@ -1037,7 +1081,7 @@
             "typeId": "singlePhoto",
             "query": [
               {
-                "sorting": "created desc",
+                "sorting": "mkeDay desc",
                 "limit": "2"
               }
             ]
@@ -1070,6 +1114,9 @@
                     "field": "voteSeq",
                     "method": "referenceJoin",
                     "value": "voteSeq_matching={{:voteSeq}}"
+                  },
+                  {
+                    "sorting": "sortOdrg"
                   }
                 ]
               },
@@ -1080,6 +1127,9 @@
                     "field": "voteSeq",
                     "method": "referenceJoin",
                     "value": "voteSeq_matching={{:voteSeq}}"
+                  },
+                  {
+                    "sorting": "sortOdrg"
                   }
                 ]
               }
@@ -1104,6 +1154,14 @@
             "includeReferenced": true
           }
         ]
+      },
+      "hitNumUpdate": {
+        "typeId": "groupPhoto",
+        "resultType": "none",
+        "event": "view",
+        "response": {
+          "hitNum": ""
+        }
       }
     }
   },
@@ -1134,7 +1192,7 @@
     "config": {
       "typeId": "singlePhoto",
       "cacheTime": "60",
-      "excludeCache" : "connIpAdr,snsKey,snsTypeCd",
+      "excludeCache": "connIpAdr,snsKey,snsTypeCd",
       "excludePids": "showCntryCdList",
       "query": [
         {
@@ -1246,7 +1304,7 @@
               "value": "{{:getCommaItem(contsMetaCtgryId,last,뺿뺿)}}"
             },
             {
-              "sorting": "created desc",
+              "sorting": "mkeDay desc",
               "limit": "15"
             }
           ]
@@ -1265,7 +1323,7 @@
               "value": "{{:conditionDefault(langCd,eng,eng,zho-cn,zho-tw)}}"
             },
             {
-              "sorting": "created desc",
+              "sorting": "mkeDay desc",
               "limit": "2"
             }
           ]
@@ -1283,7 +1341,7 @@
           "typeId": "singlePhoto",
           "query": [
             {
-              "sorting": "created desc",
+              "sorting": "mkeDay desc",
               "limit": "2"
             }
           ]
@@ -1316,6 +1374,9 @@
                   "field": "voteSeq",
                   "method": "referenceJoin",
                   "value": "voteSeq_matching={{:voteSeq}}"
+                },
+                {
+                  "sorting": "sortOdrg"
                 }
               ]
             },
@@ -1326,6 +1387,9 @@
                   "field": "voteSeq",
                   "method": "referenceJoin",
                   "value": "voteSeq_matching={{:voteSeq}}"
+                },
+                {
+                  "sorting": "sortOdrg"
                 }
               ]
             }
@@ -1493,7 +1557,7 @@
                 "value": "true"
               },
               {
-                "sorting": "created desc",
+                "sorting": "mkeDay desc",
                 "limit": "15"
               }
             ]
@@ -1512,7 +1576,7 @@
                 "value": "{{:conditionDefault(langCd,eng,eng,zho-cn,zho-tw)}}"
               },
               {
-                "sorting": "created desc",
+                "sorting": "mkeDay desc",
                 "limit": "2"
               }
             ]
@@ -1530,7 +1594,7 @@
             "typeId": "singlePhoto",
             "query": [
               {
-                "sorting": "created desc",
+                "sorting": "mkeDay desc",
                 "limit": "2"
               }
             ]
@@ -1563,6 +1627,9 @@
                     "field": "voteSeq",
                     "method": "referenceJoin",
                     "value": "voteSeq_matching={{:voteSeq}}"
+                  },
+                  {
+                    "sorting": "sortOdrg"
                   }
                 ]
               },
@@ -1573,11 +1640,22 @@
                     "field": "voteSeq",
                     "method": "referenceJoin",
                     "value": "voteSeq_matching={{:voteSeq}}"
+                  },
+                  {
+                    "sorting": "sortOdrg"
                   }
                 ]
               }
             }
           }
+        }
+      },
+      "hitNumUpdate": {
+        "typeId": "pgmVideo",
+        "resultType": "none",
+        "event": "view",
+        "response": {
+          "hitNum": ""
         }
       }
     }
@@ -1610,7 +1688,7 @@
       "typeId": "videItgInfo",
       "cacheTime": "60",
       "excludePids": "showCntryCdList",
-      "excludeCache" : "connIpAdr,snsKey,snsTypeCd",
+      "excludeCache": "connIpAdr,snsKey,snsTypeCd",
       "query": [
         {
           "field": "contsMetaCtgryId",
@@ -1704,7 +1782,7 @@
       "typeId": "seoMetaInfo",
       "id": "{{:pageId}}",
       "cacheTime": "300",
-      "excludeCache" : "connIpAdr,snsKey,snsTypeCd"
+      "excludeCache": "connIpAdr,snsKey,snsTypeCd"
     }
   },
   {
