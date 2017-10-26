@@ -111,7 +111,9 @@ public class MemberService {
             member.put("lastLoginDate", new Date());
             nodeService.updateNode(member, "member");
 
-            context.setResult(CommonService.getResult("U0007"));
+            Map<String, Object> item = new HashMap<>();
+            item.put("memberNo", member.get("memberNo"));
+            context.setResult(CommonService.getResult("U0007", item));
         }
 
         return context;

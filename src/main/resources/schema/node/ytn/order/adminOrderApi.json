@@ -87,7 +87,7 @@
     "typeId": "apiConfig",
     "category": "orderSheet",
     "apiId": "changeOrderStatus",
-    "apiName": "주문상태변경(입금확인,상품준비중처리)",
+    "apiName": "주문상태변경(입금확인,상품준비중처리,배송완료 처리)",
     "method": "POST",
     "parameters": [
     ],
