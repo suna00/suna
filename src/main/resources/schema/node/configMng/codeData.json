@@ -2374,5 +2374,21 @@
     "name": "전체",
     "order": 1,
     "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "accDivCd",
+    "codeId": "1",
+    "name": "일반계정",
+    "order": 1,
+    "active": true
+  },
+  {
+    "typeId": "code",
+    "groupCodeId": "accDivCd",
+    "codeId": "2",
+    "name": "휴면계정",
+    "order": 2,
+    "active": true
   }
 ]

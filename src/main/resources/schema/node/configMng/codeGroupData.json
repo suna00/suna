@@ -474,5 +474,12 @@
     "name": "푸쉬 발송 대상 코드",
     "active": true,
     "desc": "푸쉬 발송 대상 코드"
+  },
+  {
+    "typeId": "groupCode",
+    "groupCodeId": "accDivCd",
+    "name": "계정 구분 코드",
+    "active": true,
+    "desc": "약관관리 계정 구분 코드"
   }
 ]

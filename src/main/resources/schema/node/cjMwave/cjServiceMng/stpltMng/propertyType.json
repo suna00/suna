@@ -50,6 +50,7 @@
     "analyzer" : "code",
     "referenceType" : "code",
     "referenceValue" : "",
+    "codeFilter": "accDivCd",
     "defaultValue" : ""
   }
   ,{
