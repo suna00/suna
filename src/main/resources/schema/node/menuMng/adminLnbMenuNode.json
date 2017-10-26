@@ -27,7 +27,7 @@
     "index": "true",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "ytn/product/List" }
+      { "pageName": "목록", "pageUrl": "product/List" }
     ]
   },
   {
@@ -43,8 +43,8 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "ytn/product/CreateGoodsForm" },
-      { "pageName": "수정", "pageUrl": "ytn/product/UpdateGoodsForm" }
+      { "pageName": "등록", "pageUrl": "product/CreateGoodsForm" },
+      { "pageName": "수정", "pageUrl": "product/UpdateGoodsForm" }
     ]
   },
   {
@@ -60,8 +60,8 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "ytn/product/CreatePhoneForm" },
-      { "pageName": "수정", "pageUrl": "ytn/product/UpdatePhoneForm" }
+      { "pageName": "등록", "pageUrl": "product/CreatePhoneForm" },
+      { "pageName": "수정", "pageUrl": "product/UpdatePhoneForm" }
     ]
   },
   {
@@ -77,8 +77,8 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "ytn/product/CreateHealthForm" },
-      { "pageName": "수정", "pageUrl": "ytn/product/UpdateHealthForm" }
+      { "pageName": "등록", "pageUrl": "product/CreateHealthForm" },
+      { "pageName": "수정", "pageUrl": "product/UpdateHealthForm" }
     ]
   },
   {
@@ -94,7 +94,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "ytn/productUpdate/List" }
+      { "pageName": "목록", "pageUrl": "productUpdate/List" }
     ]
   },
   {
@@ -110,7 +110,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "ytn/productDelete/List" }
+      { "pageName": "목록", "pageUrl": "productDelete/List" }
     ]
   },
   {
@@ -128,8 +128,8 @@
       { "pageName": "목록", "pageUrl": "list" }
     ],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "ytn/productOptionSet/CreateForm" },
-      { "pageName": "수정", "pageUrl": "ytn/productOptionSet/UpdateForm" }
+      { "pageName": "등록", "pageUrl": "productOptionSet/CreateForm" },
+      { "pageName": "수정", "pageUrl": "productOptionSet/UpdateForm" }
     ]
   },
   {
@@ -147,8 +147,8 @@
       { "pageName": "목록", "pageUrl": "list" }
     ],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "ytn/productNoticeBanner/CreateForm" },
-      { "pageName": "수정", "pageUrl": "ytn/productNoticeBanner/UpdateForm" }
+      { "pageName": "등록", "pageUrl": "productNoticeBanner/CreateForm" },
+      { "pageName": "수정", "pageUrl": "productNoticeBanner/UpdateForm" }
     ]
   },
 
@@ -179,7 +179,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "ytn/displayBestSale/UniversityForm" }
+      { "pageName": "등록", "pageUrl": "displayBestSale/UniversityForm" }
     ]
   },
   {
@@ -195,7 +195,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "ytn/displayBestSale/CompanyForm" }
+      { "pageName": "등록", "pageUrl": "displayBestSale/CompanyForm" }
     ]
   },
   {
@@ -225,7 +225,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "ytn/displayBestMd/UniversityForm" }
+      { "pageName": "등록", "pageUrl": "displayBestMd/UniversityForm" }
     ]
   },
   {
@@ -241,7 +241,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "ytn/displayBestMd/CompanyForm" }
+      { "pageName": "등록", "pageUrl": "displayBestMd/CompanyForm" }
     ]
   },
   {
@@ -257,7 +257,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "ytn/displayMenu/Form" }
+      { "pageName": "등록", "pageUrl": "displayMenu/Form" }
     ]
   },
 
@@ -276,8 +276,8 @@
       { "pageName": "목록", "pageUrl": "list" }
     ],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "ytn/marketingCoupon/CreateForm" },
-      { "pageName": "수정", "pageUrl": "ytn/marketingCoupon/UpdateForm" }
+      { "pageName": "등록", "pageUrl": "marketingCoupon/CreateForm" },
+      { "pageName": "수정", "pageUrl": "marketingCoupon/UpdateForm" }
     ]
   },
   {
@@ -295,8 +295,8 @@
       { "pageName": "목록", "pageUrl": "list" }
     ],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "ytn/marketingEvent/CreateForm" },
-      { "pageName": "수정", "pageUrl": "ytn/marketingEvent/UpdateForm" }
+      { "pageName": "등록", "pageUrl": "marketingEvent/CreateForm" },
+      { "pageName": "수정", "pageUrl": "marketingEvent/UpdateForm" }
     ]
   },
   {
@@ -312,7 +312,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "ytn/marketingSearch/Form" }
+      { "pageName": "등록", "pageUrl": "marketingSearch/Form" }
     ]
   },
 
@@ -329,7 +329,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "ytn/orderDelivery/List" }
+      { "pageName": "목록", "pageUrl": "orderDelivery/List" }
     ]
   },
   {
@@ -345,7 +345,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "ytn/orderCancel/List" }
+      { "pageName": "목록", "pageUrl": "orderCancel/List" }
     ]
   },
   {
@@ -361,7 +361,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "ytn/orderExchange/List" }
+      { "pageName": "목록", "pageUrl": "orderExchange/List" }
     ]
   },
   {
@@ -377,7 +377,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "ytn/orderReturn/List" }
+      { "pageName": "목록", "pageUrl": "orderReturn/List" }
     ]
   },
 
@@ -396,8 +396,8 @@
       { "pageName": "목록", "pageUrl": "list" }
     ],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "ytn/affiliate/AffComCreateForm" },
-      { "pageName": "수정", "pageUrl": "ytn/affiliate/AffComUpdateForm" }
+      { "pageName": "등록", "pageUrl": "affiliate/AffComCreateForm" },
+      { "pageName": "수정", "pageUrl": "affiliate/AffComUpdateForm" }
     ]
   },
   {
@@ -415,8 +415,8 @@
       { "pageName": "목록", "pageUrl": "list" }
     ],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "ytn/AffComMemberCreateForm" },
-      { "pageName": "수정", "pageUrl": "ytn/AffComMemberUpdateForm" }
+      { "pageName": "등록", "pageUrl": "AffComMemberCreateForm" },
+      { "pageName": "수정", "pageUrl": "AffComMemberUpdateForm" }
     ]
   },
   {
@@ -434,8 +434,8 @@
       { "pageName": "목록", "pageUrl": "list" }
     ],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "ytn/affiliate/AffUniCreateForm" },
-      { "pageName": "수정", "pageUrl": "ytn/affiliate/AffUniUpdateForm" }
+      { "pageName": "등록", "pageUrl": "affiliate/AffUniCreateForm" },
+      { "pageName": "수정", "pageUrl": "affiliate/AffUniUpdateForm" }
     ]
   },
   {
@@ -453,8 +453,8 @@
       { "pageName": "목록", "pageUrl": "list" }
     ],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "ytn/AffUniMemberCreateForm" },
-      { "pageName": "수정", "pageUrl": "ytn/AffUniMemberUpdateForm" }
+      { "pageName": "등록", "pageUrl": "AffUniMemberCreateForm" },
+      { "pageName": "수정", "pageUrl": "AffUniMemberUpdateForm" }
     ]
   },
   {
@@ -502,9 +502,9 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "ytn/vendor/List" },
-      { "pageName": "등록", "pageUrl": "ytn/vendor/CreateForm" },
-      { "pageName": "수정", "pageUrl": "ytn/vendor/UpdateForm" }
+      { "pageName": "목록", "pageUrl": "vendor/List" },
+      { "pageName": "등록", "pageUrl": "vendor/CreateForm" },
+      { "pageName": "수정", "pageUrl": "vendor/UpdateForm" }
     ]
   },
   {
@@ -624,7 +624,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "ytn/AddBenefitForm" }
+      { "pageName": "등록", "pageUrl": "AddBenefitForm" }
     ]
   },
   {
@@ -640,7 +640,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "ytn/InterestFreeForm" }
+      { "pageName": "등록", "pageUrl": "InterestFreeForm" }
     ]
   },
   {
@@ -656,7 +656,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "ytn/QuestionList" }
+      { "pageName": "목록", "pageUrl": "QuestionList" }
     ]
   },
   {
@@ -672,7 +672,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "ytn/QNAList" }
+      { "pageName": "목록", "pageUrl": "QNAList" }
     ]
   },
   {
@@ -688,7 +688,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "ytn/ReviewList" }
+      { "pageName": "목록", "pageUrl": "ReviewList" }
     ]
   },
   {
@@ -726,7 +726,7 @@
       { "pageName": "수정", "pageUrl": "updateForm" }
     ],
     "customPages": [
-      { "pageName": "테스트", "pageUrl": "ytn/FilesTest" }
+      { "pageName": "테스트", "pageUrl": "FilesTest" }
     ]
   },
   {
@@ -778,10 +778,10 @@
     "index": "false",
     "pages": [
       { "pageName": "목록", "pageUrl": "list" },
-      { "pageName": "등록/수정", "pageUrl": "form" }
+      { "pageName": "등록", "pageUrl": "createForm" }
     ],
     "customPages": [
-      { "pageName": "테스트", "pageUrl": "ytn/GroupAuthorityRoute" }
+      { "pageName": "수정", "pageUrl": "groupAuthority/updateForm" }
     ]
   },
 
@@ -813,7 +813,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "ytn/QuestionList" }
+      { "pageName": "목록", "pageUrl": "QuestionList" }
     ]
   },
   {
@@ -829,7 +829,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "ytn/QNAList" }
+      { "pageName": "목록", "pageUrl": "QNAList" }
     ]
   },
   {
@@ -845,7 +845,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "ytn/ReviewList" }
+      { "pageName": "목록", "pageUrl": "ReviewList" }
     ]
   },
   {
