@@ -87,11 +87,7 @@ public class SchedulingService implements InitializingBean{
 
         // Determine initial delay
 
-        if(!clusterConfiguration.getHazelcast().getCluster().getLocalMember().getAddress().getHost().equals("10.75.7.130")){
-            return;
-        }
-
-        if(!clusterConfiguration.getHazelcast().getCluster().getLocalMember().getAddress().getHost().equals("10.75.6.167")){
+        if(!clusterConfiguration.getHazelcast().getCluster().getLocalMember().getAddress().getHost().equals("10.75.7.130")||!clusterConfiguration.getHazelcast().getCluster().getLocalMember().getAddress().getHost().equals("10.75.6.167")){
             return;
         }
 
