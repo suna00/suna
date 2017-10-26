@@ -781,7 +781,7 @@
       { "pageName": "등록", "pageUrl": "createForm" }
     ],
     "customPages": [
-      { "pageName": "수정", "pageUrl": "groupAuthority/updateForm" }
+      { "pageName": "수정", "pageUrl": "groupAuthority/UpdateForm" }
     ]
   },
 
@@ -813,7 +813,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "QuestionList" }
+      { "pageName": "목록", "pageUrl": "question/List" }
     ]
   },
   {
@@ -829,7 +829,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "QNAList" }
+      { "pageName": "목록", "pageUrl": "qna/List" }
     ]
   },
   {
@@ -845,7 +845,7 @@
     "index": "false",
     "pages": [],
     "customPages": [
-      { "pageName": "목록", "pageUrl": "ReviewList" }
+      { "pageName": "목록", "pageUrl": "review/List" }
     ]
   },
   {
