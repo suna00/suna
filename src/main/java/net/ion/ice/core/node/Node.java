@@ -33,6 +33,9 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     @Analyzer(impl = CodeAnalyzer.class)
     private String id ;
 
+    @Field(analyze = Analyze.NO)
+    private String facet ;
+
 
     @Field(store = Store.NO)
     @Analyzer(impl = CodeAnalyzer.class)
