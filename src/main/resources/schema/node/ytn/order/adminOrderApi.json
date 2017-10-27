@@ -1,0 +1,258 @@
+[
+  {
+    "typeId": "apiConfig",
+    "category": "orderSheet",
+    "apiId": "orderList",
+    "apiName": "전주문 리스트",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "orderSheet",
+      "noneExecute": true,
+      "event": "orderList",
+      "data": {
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "orderSheet",
+    "apiId": "adminList",
+    "apiName": "ADMIN 주문 리스트",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "orderSheet",
+      "noneExecute": true,
+      "event": "adminList",
+      "data": {
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "orderChange",
+    "apiId": "adminList",
+    "apiName": "ADMIN 주문변경 리스트",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "orderChange",
+      "noneExecute": true,
+      "event": "adminList",
+      "data": {
+      }
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "orderSheet",
+    "apiId" : "adminRead",
+    "apiName" : "ADMIN 주문서 조회",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId" : "orderSheet",
+      "query" : [
+        {"field" : "orderSheetId", "method" : "matching", "value" : "{{:orderSheetId}}"},
+        {"referenceView": "memberNo"}
+      ],
+      "response": {
+        "_all_": "",
+        "referencedOrderDeliveryPrice" : {
+          "select": {
+            "ds": "ytnDevDb",
+            "resultType": "list",
+            "description": "주문배송비 정보",
+            "sql": "select a.orderDeliveryPriceId ,a.orderSheetId ,a.orderProductIds ,a.vendorId ,a.deliveryPrice ,a.bundleDeliveryYn ,a.deliveryMethod ,a.deliveryPriceType ,a.couponId ,a.deliveryEnterpriseId ,a.sendingDate ,a.trackingNo ,a.deliveryStatus ,a.deliveryDateType ,a.scheduledDeliveryDate ,a.hopeDeliveryDate ,a.changed ,a.created ,b.name ,b.deliverySearchUrl ,b.deliveryEnterpriseStatus from orderdeliveryprice a LEFT JOIN deliveryenterprise b on a.deliveryEnterpriseId = b.deliveryEnterpriseId where a.orderSheetId= @{orderSheetId} "
+          },
+          "response": {
+            "_all_": "",
+            "referencedOrderProduct" : {
+              "typeId" : "orderProduct",
+              "query" : [
+                {"field" : "orderSheetId", "method" : "equals", "value" : "{{:orderSheetId}}"},
+                {"field" : "orderProductId", "method" : "in", "value" : "{{:orderProductIds}}"},
+                {"includeReferenced" : "vendorId", "referenceView": "deliveryEnterpriseId,vendorId"}
+              ],
+              "response": {
+                "_all_": "",
+                "referencedMainImage" : {
+                  "typeId" : "commonResource",
+                  "query" : [
+                    {"field" : "contentsId", "method" : "matching", "value" : "{{:productId}}"},
+                    {"field" : "tid", "method" : "matching", "value" : "product"},
+                    {"field" : "name", "method" : "matching", "value" : "main"}
+                  ]
+                },
+                "functionBtn": {
+                  "select": {
+                    "ds": "ytnDevDb",
+                    "resultType": "read",
+                    "description": "버튼 조회 정보",
+                    "sql": "SELECT if(a.orderstatus = 'order002' || a.orderstatus = 'order003' || a.orderStatus = 'order004', 'true', 'false') AS cancelBtn, if(b.contentsType = 'goods' && (a.orderstatus = 'order005' || a.orderstatus = 'order006'), 'true', 'false') AS exchangeBtn, if(b.contentsType = 'goods' && (a.orderstatus = 'order005' || a.orderstatus = 'order006'), 'true', 'false') AS returnBtn, (CASE WHEN b.contentsType = 'goods' THEN if((SELECT IFNULL(max(if((sendingDate + INTERVAL 30 DAY) >= now(), TRUE, FALSE)), FALSE)FROM orderdeliveryprice WHERE orderSheetId = @{orderSheetId} and find_in_set(@{orderProductId}, orderProductIds) > 0) && (a.orderstatus = 'order005' || a.orderstatus = 'order006' || a.orderstatus = 'order007'), 'true', 'false') ELSE if(a.orderstatus = 'order005' || a.orderstatus = 'order006' || a.orderstatus = 'order007', 'true', 'false') END ) AS reviewBtn, if(b.contentsType = 'goods' && b.deliveryMethod = 'delivery' && (a.orderstatus = 'order005' || a.orderstatus = 'order006' || a.orderstatus = 'order015' || a.orderstatus = 'order016'), 'true', 'false') AS trackingViewBtn, if(b.contentsType = 'goods' && (a.orderstatus = 'order002' || a.orderstatus = 'order003'), 'true','false') AS addressChangeBtn FROM orderproduct a, product b WHERE a.productId = b.productId AND a.orderProductId = @{orderProductId} "
+                  }
+                }
+              }
+            }
+          }
+        },
+        "delivery":{
+          "typeId" : "delivery",
+          "query" : [
+            {"field" : "orderSheetId", "method" : "equals", "value" : "{{:orderSheetId}}"},
+            {"field" : "deliveryType", "method" : "equals", "value" : "deliveryAddress"}
+          ]
+        },
+        "payment":{
+          "typeId" : "payment",
+          "query" : [
+            {"field" : "orderSheetId", "method" : "equals", "value" : "{{:orderSheetId}}"}
+          ]
+        }
+      }
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "orderChange",
+    "apiId" : "adminRead",
+    "apiName" : "ADMIN 취소교환반품 조회",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId" : "orderChange",
+      "query" : [
+        {"field" : "orderChangeId", "method" : "matching", "value" : "{{:orderChangeId}}"},
+        {"includeReferenced" : true, "referenceView": "memberNo"}
+      ],
+      "response": {
+        "_all_": "",
+        "referencedOrderChangeProduct" : {
+          "typeId" : "orderChangeProduct",
+          "query" : [
+            {"field" : "orderChangeId", "method" : "equals", "value" : "{{:orderChangeId}}"},
+            {"includeReferenced" : true, "referenceView": "orderProductIds"}
+          ],
+          "response": {
+            "_all_": "",
+            "referencedMainImage" : {
+              "typeId" : "commonResource",
+              "query" : [
+                {"field" : "contentsId", "method" : "matching", "value" : "{{:productId}}"},
+                {"field" : "tid", "method" : "matching", "value" : "product"},
+                {"field" : "name", "method" : "matching", "value" : "main"}
+              ]
+            }
+          }
+        },
+        "delivery":{
+          "typeId" : "delivery",
+          "query" : [
+            {"field" : "orderSheetId", "method" : "equals", "value" : "{{:orderSheetId}}"},
+            {"field" : "deliveryType", "method" : "notEquals", "value" : "deliveryAddress"}
+          ]
+        },
+        "payment":{
+          "typeId" : "payment",
+          "query" : [
+            {"field" : "orderSheetId", "method" : "equals", "value" : "{{:orderSheetId}}"}
+          ]
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "orderSheet",
+    "apiId": "updateStatusMultiTarget",
+    "apiName": "배송 상태변경 팝업(멀티)",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "orderDeliveryPrice",
+      "noneExecute": true,
+      "event": "updateStatusMultiTarget",
+      "data": {
+        "orderSheetIds": "{{:orderSheetIds}}"
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "orderSheet",
+    "apiId": "updateStatusSingleTarget",
+    "apiName": "배송 상태변경 팝업(싱글)",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "orderDeliveryPrice",
+      "noneExecute": true,
+      "event": "updateStatusSingleTarget",
+      "data": {
+        "orderSheetId": "{{:orderSheetId}}",
+        "orderDeliveryPriceId": "{{:orderDeliveryPriceId}}"
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "orderSheet",
+    "apiId": "updateDeliveryStatus",
+    "apiName": "배송 상태변경 팝업 저장",
+    "method": "POST",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "orderDeliveryPrice",
+      "noneExecute": true,
+      "event": "updateDeliveryStatus",
+      "data": {
+        "updateDeliveryStatusList": "{{:updateDeliveryStatusList}}"
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "orderSheet",
+    "apiId": "updateOrderStatus",
+    "apiName": "주문상태변경(입금확인,상품준비중처리,배송완료 처리)",
+    "method": "POST",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "orderSheet",
+      "noneExecute": true,
+      "event": "updateOrderStatus",
+      "data": {
+        "orderSheetIds": "{{:orderSheetIds}}",
+        "orderStatus": "{{:orderStatus}}"
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "orderChange",
+    "apiId": "updateStatus",
+    "apiName": "주문변경신청 상태 변경(취소교환반품)",
+    "method": "POST",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "orderChange",
+      "noneExecute": true,
+      "event": "updateStatus",
+      "data": {
+        "orderChangeId": "{{:orderChangeId}}",
+        "orderChangeStatus": "{{:orderChangeStatus}}"
+      }
+    }
+  }
+]

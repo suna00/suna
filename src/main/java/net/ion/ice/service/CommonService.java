@@ -57,6 +57,7 @@ public class CommonService {
         resultCodeMap.put("U0009", "로그인 사용자");
         resultCodeMap.put("U0010", "비로그인 사용자");
         resultCodeMap.put("U0011", "휴면계정 사용자");
+        resultCodeMap.put("U0012", "비밀번호 변경 안내.회원님의 비밀번호 변경이 필요한 시기입니다.");
 
         /*Coupon*/
         resultCodeMap.put("V0001", "존재하지 않는 쿠폰유형입니다.");

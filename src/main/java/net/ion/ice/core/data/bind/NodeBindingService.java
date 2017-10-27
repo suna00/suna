@@ -122,6 +122,13 @@ public class NodeBindingService {
         return readContext.makeResult();
     }
 
+    public Map<String, Object> read(String typeId, String id) throws JsonProcessingException {
+        NodeBindingInfo nodeBindingInfo = getNodeBindingInfo(typeId);
+        return nodeBindingInfo.retrieve(id);
+    }
+
+
+
     public NodeBindingInfo getNodeBindingInfo(String typeId) {
         nodeBindProcess(typeId);
         return nodeBindingInfoMap.get(typeId);

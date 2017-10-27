@@ -18,6 +18,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -94,6 +95,15 @@ public class MemberService {
             e.printStackTrace();
         }
 
+        // 비밀번호 교체 안내 체크
+        String date = (member.get("lastPasswordChangeDate") == null ? member.get("joinDate").toString() : member.get("lastPasswordChangeDate").toString());
+        LocalDateTime limitChangeDate = LocalDateTime.parse(date, DateTimeFormatter.ofPattern("yyyyMMddHHmmss")).plusMonths(3);
+        LocalDateTime now = LocalDateTime.now();
+        if(limitChangeDate.isBefore(now)){
+            context.setResult(CommonService.getResult("U0012"));
+            return context;
+        }
+
         // 휴면회원 체크
         if("sleep".equals(member.getBindingValue("memberStatus"))){
             context.setResult(CommonService.getResult("U0011"));
@@ -101,7 +111,9 @@ public class MemberService {
             member.put("lastLoginDate", new Date());
             nodeService.updateNode(member, "member");
 
-            context.setResult(CommonService.getResult("U0007"));
+            Map<String, Object> item = new HashMap<>();
+            item.put("memberNo", member.get("memberNo"));
+            context.setResult(CommonService.getResult("U0007", item));
         }
 
         return context;

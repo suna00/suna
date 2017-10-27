@@ -38,7 +38,7 @@ public class MypageService {
         List<Map<String, Object>> orderProducts = nodeBindingService.list("orderProduct", "orderSheetId_equals=" + data.get("orderSheetId"));
         for (Map<String, Object> orderProduct : orderProducts) {
             String orderStatus = orderProduct.get("orderStatus").toString();
-            if (!("order001".equals(orderStatus) || "order002".equals(orderStatus))) {
+            if (!("order001".equals(orderStatus) || "order002".equals(orderStatus) || "order003".equals(orderStatus))) {
                 context.setResult(CommonService.getResult("M0002"));
                 return context;
             }

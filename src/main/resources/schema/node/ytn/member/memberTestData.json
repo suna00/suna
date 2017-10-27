@@ -32,11 +32,7 @@
     "lastName": null,
     "nickName": null,
     "profileImage": null,
-    "gender": {
-      "value": "woman",
-      "label": "여자",
-      "refId": "genderType>woman"
-    },
+    "gender": "woman",
     "birthday": null,
     "company": null,
     "department": null,
@@ -51,8 +47,8 @@
     "receiveMarketingEmailAgreeYn": null,
     "receiveMarketingSMSAgreeYn": null,
     "inflowRoute": null,
-    "joinDate": null,
-    "lastLoginDate": null,
+    "joinDate": "20171022235959",
+    "lastLoginDate": "20171022235959",
     "dormancyExtensionDate": null,
     "acceptTermsYn": null,
     "recommendedPerson": null,
@@ -65,7 +61,8 @@
     "snsType": null,
     "snsId": null,
     "snsProfileLink": null,
-    "welfarePoint" : 2000
+    "YPoint" : 50,
+    "welfarePoint" : 85000
   },
   {
     "typeId": "member",
@@ -119,7 +116,7 @@
     "receiveMarketingEmailAgreeYn": null,
     "receiveMarketingSMSAgreeYn": null,
     "inflowRoute": null,
-    "joinDate": null,
+    "joinDate": "20171022235959",
     "lastLoginDate": null,
     "dormancyExtensionDate": null,
     "acceptTermsYn": null,
@@ -188,7 +185,7 @@
     "receiveMarketingEmailAgreeYn": null,
     "receiveMarketingSMSAgreeYn": null,
     "inflowRoute": null,
-    "joinDate": null,
+    "joinDate": "20171022235959",
     "lastLoginDate": null,
     "dormancyExtensionDate": null,
     "acceptTermsYn": null,
@@ -256,7 +253,7 @@
     "receiveMarketingEmailAgreeYn": null,
     "receiveMarketingSMSAgreeYn": null,
     "inflowRoute": null,
-    "joinDate": null,
+    "joinDate": "20171022235959",
     "lastLoginDate": null,
     "dormancyExtensionDate": null,
     "acceptTermsYn": null,
@@ -271,7 +268,8 @@
     "snsType": null,
     "snsId": null,
     "snsProfileLink": null,
-    "welfarePoint" : 500
+    "YPoint" : 10000000000,
+    "welfarePoint" : 9999999999
   },
   {
     "typeId": "member",
@@ -327,7 +325,7 @@
     "receiveMarketingEmailAgreeYn": null,
     "receiveMarketingSMSAgreeYn": null,
     "inflowRoute": null,
-    "joinDate": null,
+    "joinDate": "20171022235959",
     "lastLoginDate": null,
     "dormancyExtensionDate": null,
     "acceptTermsYn": null,
@@ -409,7 +407,8 @@
     "snsType": null,
     "snsId": null,
     "snsProfileLink": null,
-    "welfarePoint" : 500
+    "YPoint" : 10000000000,
+    "welfarePoint" : 9999999999
   },
   {
     "typeId": "member",

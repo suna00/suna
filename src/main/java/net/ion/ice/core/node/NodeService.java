@@ -21,12 +21,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
@@ -138,18 +139,19 @@ public class NodeService {
 
     public List<Node> getNodeList(String typeId, String searchText) {
         QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, getNodeType(typeId), null) ;
-        return infinispanRepositoryService.getSubQueryNodes(typeId, queryContext) ;
+        return infinispanRepositoryService.getSubQueryNodes(queryContext) ;
     }
 
     public List<Node> getNodeList(NodeType nodeType, List<QueryTerm> queryTerms) {
         QueryContext queryContext = QueryContext.createQueryContextFromTerms(queryTerms, nodeType) ;
-        return infinispanRepositoryService.getSubQueryNodes(nodeType.getTypeId(), queryContext) ;
+        return infinispanRepositoryService.getSubQueryNodes(queryContext) ;
 
     }
 
 
     public List<Node> getNodeList(String typeId, QueryContext queryContext) {
-        return infinispanRepositoryService.getSubQueryNodes(typeId, queryContext) ;
+        queryContext.setNodeType(getNodeType(typeId)) ;
+        return infinispanRepositoryService.getSubQueryNodes(queryContext) ;
     }
     public List<Node> getDisplayNodeList(String typeId, QueryContext queryContext) {
         NodeType nodeType = getNodeType(typeId) ;
@@ -173,12 +175,12 @@ public class NodeService {
 
     public SimpleQueryResult getNodeList(String typeId, Map<String, String[]> parameterMap) {
         QueryContext queryContext = QueryContext.createQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
-        return infinispanRepositoryService.getQueryNodes(typeId, queryContext) ;
+        return infinispanRepositoryService.getQueryNodes(queryContext) ;
     }
 
     public SimpleQueryResult getNodeTree(String typeId, Map<String, String[]> parameterMap) {
         QueryContext queryContext = QueryContext.createQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
-        return infinispanRepositoryService.getQueryTreeNodes(typeId, queryContext) ;
+        return infinispanRepositoryService.getQueryTreeNodes(queryContext) ;
     }
 
     private void initNodeType() throws IOException {
@@ -249,17 +251,32 @@ public class NodeService {
 
     public Node saveNode(Map<String, Object> data) {
         try {
-            NodeType nodeType = getNodeType(data.get(Node.TYPEID).toString()) ;
-            if(!clusterService.checkClusterGroup(nodeType)) return null;
-
-            ExecuteContext context = ExecuteContext.makeContextFromMap(data);
-            context.execute();
-            Node saveNode =  context.getNode();
+//            NodeType nodeType = getNodeType(data.get(Node.TYPEID).toString()) ;
+//            if(!clusterService.checkClusterGroup(nodeType)) return null;
+//
+//            ExecuteContext context = ExecuteContext.makeContextFromMap(data);
+//            context.execute();
+//            Node saveNode =  context.getNode();
+            Node saveNode = saveNodeWithException(data);
             return saveNode ;
         }catch (Exception e){
             logger.error(data.toString(), e);
         }
         return null ;
+    }
+
+    /*
+    * saveNode 와 동일한 기능
+    * 다만 caller 에서 발생한 오류를 처리할 수 있게 예외를 던짐
+    * */
+    public Node saveNodeWithException(Map<String, Object> data) {
+        NodeType nodeType = getNodeType(data.get(Node.TYPEID).toString()) ;
+        if(!clusterService.checkClusterGroup(nodeType)) return null;
+
+        ExecuteContext context = ExecuteContext.makeContextFromMap(data);
+        context.execute();
+        Node saveNode =  context.getNode();
+        return saveNode ;
     }
 
     public Node createNode(Map<String, Object> data, String typeId) {
@@ -331,7 +348,10 @@ public class NodeService {
 
     public Node getNode(NodeType nodeType, String id) {
         if(!clusterService.checkClusterGroup(nodeType)){
-            Map<String, Object> data = ClusterUtils.callNode(nodeType, id) ;
+            Map<String, Object> data = ClusterUtils.callNode(nodeType, id, false) ;
+            if(data == null){
+                return null ;
+            }
             return new Node(data) ;
         }
         Node node = infinispanRepositoryService.getNode(nodeType.getTypeId(), id) ;
@@ -364,25 +384,35 @@ public class NodeService {
     }
 
 
-    public QueryResult executeResult(Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap) throws IOException {
+    public QueryResult executeResult(HttpServletRequest request, HttpServletResponse response, Map<String, String[]> parameterMap, MultiValueMap<String, MultipartFile> multiFileMap) throws IOException {
         Map<String, Object> config = getConfig(parameterMap);
         Map<String, Object> data = ContextUtils.makeContextData(parameterMap) ;
 
-        ApiExecuteContext executeContex = ApiExecuteContext.makeContextFromConfig(config, data) ;
-        QueryResult queryResult = executeContex.makeQueryResult();
-        return queryResult;
+        ApiExecuteContext executeContex = ApiExecuteContext.makeContextFromConfig(config, data, request, response) ;
+        QueryResult queryResult =  executeContex.makeQueryResult();
+        if(queryResult == null){
+            queryResult = new QueryResult() ;
+            queryResult.put("result", executeContex.getResult()) ;
+        }
+        return queryResult ;
     }
 
 
 
 
-    public QueryResult getQueryResult(Map<String, String[]> parameterMap) throws IOException {
+    public QueryResult getQueryResult(HttpServletRequest request, HttpServletResponse response, Map<String, String[]> parameterMap) throws IOException {
         Map<String, Object> config = getConfig(parameterMap);
         Map<String, Object> data = ContextUtils.makeContextData(parameterMap) ;
+//        logger.info("API CALL : " + data.toString());
+        ApiQueryContext queryContext = ApiQueryContext.makeContextFromConfig(config, data, request, response) ;
 
-        ApiQueryContext queryContext = ApiQueryContext.makeContextFromConfig(config, data) ;
-        QueryResult queryResult = queryContext.makeQueryResult();
-        return queryResult;
+        QueryResult queryResult =  queryContext.makeQueryResult();
+        if(queryResult == null){
+            queryResult = new QueryResult() ;
+            queryResult.put("result", queryContext.getResult()) ;
+//            logger.info("REUSLT " + queryContext.getResult());
+        }
+        return queryResult ;
     }
 
     public QueryResult getQueryResult(String typeId, Map<String, String[]> parameterMap) {

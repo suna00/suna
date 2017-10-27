@@ -775,7 +775,7 @@
   },
   {
     "typeId": "commonCode",
-    "code": "affilieateType",
+    "code": "affiliateType",
     "upperCode": "root",
     "name": "제휴사타입",
     "description": "",
@@ -3306,7 +3306,7 @@
     "typeId": "commonCode",
     "code": "order016",
     "upperCode": "orderStatus",
-    "name": "교환배송완료",
+    "name": "교환완료",
     "description": "",
     "sortOrder": "16",
     "commonCodeStatus": "y"
@@ -4547,7 +4547,7 @@
   {
     "typeId": "commonCode",
     "code": "general",
-    "upperCode": "affilieateType",
+    "upperCode": "affiliateType",
     "name": "일반",
     "description": "",
     "sortOrder": "1",
@@ -4556,7 +4556,7 @@
   {
     "typeId": "commonCode",
     "code": "nomember",
-    "upperCode": "affilieateType",
+    "upperCode": "affiliateType",
     "name": "비회원",
     "description": "",
     "sortOrder": "2",
@@ -4565,7 +4565,7 @@
   {
     "typeId": "commonCode",
     "code": "affiliateStoreMall",
-    "upperCode": "affilieateType",
+    "upperCode": "affiliateType",
     "name": "제휴입점",
     "description": "",
     "sortOrder": "3",
@@ -7449,6 +7449,78 @@
     "name": "부분취소",
     "description": "",
     "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "areaCode",
+    "upperCode": "root",
+    "name": "지역",
+    "description": "",
+    "sortOrder": "123",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "10",
+    "upperCode": "areaCode",
+    "name": "서울/경기",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "20",
+    "upperCode": "areaCode",
+    "name": "경북/경남",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "30",
+    "upperCode": "areaCode",
+    "name": "전북/전남",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "40",
+    "upperCode": "areaCode",
+    "name": "충북/충남",
+    "description": "",
+    "sortOrder": "4",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "50",
+    "upperCode": "areaCode",
+    "name": "강원도",
+    "description": "",
+    "sortOrder": "5",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "60",
+    "upperCode": "areaCode",
+    "name": "제주도",
+    "description": "",
+    "sortOrder": "6",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "100",
+    "upperCode": "areaCode",
+    "name": "기타",
+    "description": "",
+    "sortOrder": "10",
     "commonCodeStatus": "y"
   }
 ]

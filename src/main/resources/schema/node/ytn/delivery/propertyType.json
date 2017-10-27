@@ -496,6 +496,22 @@
   },
   {
     "typeId": "propertyType",
+    "tid": "delivery",
+    "pid": "myDeliveryAddressId",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "myDeliveryAddress",
+    "referenceValue": "myDeliveryAddressId",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
     "tid": "myDeliveryAddress",
     "pid": "myDeliveryAddressId",
     "propertyTypeName": "ID",
@@ -975,6 +991,23 @@
   {
     "typeId": "propertyType",
     "tid": "orderDeliveryPrice",
+    "pid": "completeDate",
+    "propertyTypeName": "배송완료일",
+    "valueType": "DATE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "orderDeliveryPrice",
     "pid": "trackingNo",
     "propertyTypeName": "운송장번호",
     "valueType": "STRING",
@@ -1020,7 +1053,7 @@
     "analyzer": null,
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "codeFilter": "deliveryStatus",
+    "codeFilter": "orderStatus",
     "defaultValue": ""
   },
   {
@@ -1498,7 +1531,7 @@
     "analyzer": null,
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "codeFilter": "deliveryStatus",
+    "codeFilter": "orderStatus",
     "defaultValue": ""
   },
   {

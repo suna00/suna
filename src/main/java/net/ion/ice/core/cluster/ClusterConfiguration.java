@@ -16,7 +16,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 
 import javax.annotation.PostConstruct;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.*;
+
+//import static com.hazelcast.config.MaxSizeConfig.MaxSizePolicy.PER_NODE;
 
 /**
  * A conditional configuration that potentially adds the bean definitions in
@@ -37,6 +41,17 @@ public class ClusterConfiguration {
     private String groups ;
     private static HazelcastInstance hazelcast  ;
 
+    private String dataQueue ;
+    private String dataQueueDs ;
+
+    private String map ;
+
+
+    /*
+    private Boolean voteMap ;
+    private Boolean voteCore ;
+    */
+
     private List<String> groupList = new ArrayList<>() ;
 
     private Map<String, ITopic> topicMap = new HashMap<>() ;
@@ -47,21 +62,50 @@ public class ClusterConfiguration {
 
     private String localMemberUUID ;
 
+    private String localIp ;
+
     @PostConstruct
     public void init(){
         this.port = environment.getProperty("server.port") ;
+
+
         if(hazelcast == null) {
             hazelcast = Hazelcast.getOrCreateHazelcastInstance(config());
             for(String grp : groupList){
                 ITopic<String> topic = hazelcast.getReliableTopic(grp + "_topic") ;
                 topic.addMessageListener(new TopicListener(this)) ;
                 topicMap.put(grp, topic) ;
-
-                IQueue queue = hazelcast.getQueue(grp + "_queue") ;
-
             }
 
+            if(StringUtils.isNotEmpty(this.dataQueue)){
+                for(String queue : StringUtils.split(this.dataQueue, ',')){
+                    String ip = "" ;
+                    try {
+                        ip = InetAddress.getLocalHost().getHostAddress();
+                    } catch (UnknownHostException e) {
+                    }
+                    logger.info("data queue : {} = {} or {} ", queue, hazelcast.getCluster().getLocalMember().getAddress().getHost(), ip);
+                    if(hazelcast.getCluster().getLocalMember().getAddress().getHost().equals(queue) || queue.equals(ip)){
+                        IQueue<JdbcSqlData> dataQueue = hazelcast.getQueue("dataQueue");
+                        DataQueueProcess dataQueueProcess = new DataQueueProcess(dataQueue, dataQueueDs) ;
+                        Thread thread = new Thread(dataQueueProcess) ;
+                        thread.setDaemon(true);
+                        thread.start();
+                    }
+                }
+            }
+
+
             this.localMemberUUID = hazelcast.getCluster().getLocalMember().getUuid() ;
+            this.localIp = StringUtils.substringBeforeLast(hazelcast.getCluster().getLocalMember().getAddress().getHost(), ".") ;
+            /*
+            if(voteCore != null && voteCore){
+                IQueue queue = getMbrVoteQueue() ;
+                VoteExecuter executer = new VoteExecuter(queue) ;
+                executer.setDaemon(true);
+                executer.start();
+            }
+            */
         }
     }
 
@@ -93,18 +137,33 @@ public class ClusterConfiguration {
 
         logger.info("Define Cluster Group List : " + groupList );
 
-        JoinConfig joinConfig = config.getNetworkConfig().getJoin();
-
+//        JoinConfig joinConfig = config.getNetworkConfig().setPort(5701).setPortAutoIncrement(false).getJoin();
+        JoinConfig joinConfig = config.getNetworkConfig().getJoin() ;
         joinConfig.getMulticastConfig().setEnabled(false);
         joinConfig.getTcpIpConfig().setEnabled(true).setMembers(members);
 
         for(String grp : groupList){
             ReliableTopicConfig rtConfig = config.getReliableTopicConfig(grp + "_topic") ;
             rtConfig.setName(grp + "_topic") ;
-            rtConfig.setTopicOverloadPolicy(TopicOverloadPolicy.BLOCK).setReadBatchSize(10) ;
+            rtConfig.setTopicOverloadPolicy(TopicOverloadPolicy.DISCARD_OLDEST).setReadBatchSize(10) ;
 
             QueueConfig queueConfig = config.getQueueConfig(grp + "_queue");
             queueConfig.setName(grp + "_queue")
+                    .setBackupCount(1)
+                    .setMaxSize(0)
+                    .setStatisticsEnabled(true);
+        }
+        if(StringUtils.isNotEmpty(this.map)){
+            for(String m : StringUtils.split(map, ",")){
+                MapConfig mapConfig = config.getMapConfig(m) ;
+                mapConfig.getMaxSizeConfig().setMaxSizePolicy(MaxSizeConfig.MaxSizePolicy.PER_NODE).setSize(20000);
+                mapConfig.setBackupCount(1) ;
+            }
+        }
+
+        if(StringUtils.isNotEmpty(this.dataQueue)){
+            QueueConfig queueConfig = config.getQueueConfig( "dataQueue");
+            queueConfig.setName("dataQueue")
                     .setBackupCount(1)
                     .setMaxSize(0)
                     .setStatisticsEnabled(true);
@@ -154,6 +213,14 @@ public class ClusterConfiguration {
         return this.groupList ;
     }
 
+    public IMap getMap(String mapName){
+        return hazelcast.getMap(mapName) ;
+    }
+
+    public IQueue<JdbcSqlData> getDataQueue(){
+        return hazelcast.getQueue("dataQueue") ;
+    }
+
     public void setGroups(String groups) {
         this.groups = groups;
     }
@@ -169,5 +236,44 @@ public class ClusterConfiguration {
     public String getMode(){
         return mode ;
     }
+
+    public String getLocalIp() {
+        return localIp;
+    }
+
+
+
+    public void setDataQueue(String dataQueue) {
+        this.dataQueue = dataQueue;
+    }
+
+    public void setMap(String map) {
+        this.map = map;
+    }
+
+    public void setDataQueueDs(String dataQueueDs) {
+        this.dataQueueDs = dataQueueDs;
+    }
+
+    /*
+    public void setVoteMap(Boolean voteMap) {
+        this.voteMap = voteMap;
+    }
+
+    public IMap<String, Map<String, Integer>> getMbrVoteMap(){
+        return hazelcast.getMap("mbrVoteMap") ;
+    }
+    */
+
+    /*
+    public void setVoteCore(Boolean voteCore) {
+        this.voteCore = voteCore;
+    }
+
+    public IQueue<VoteSql> getMbrVoteQueue(){
+        return hazelcast.getQueue("mbrVoteQueue") ;
+    }
+    */
+
 }
 

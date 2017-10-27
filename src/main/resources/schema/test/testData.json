@@ -5,7 +5,8 @@
     "categoryName" : "test1",
     "parentCategory" : "root",
     "categoryType" : "content",
-    "orderNo": ""
+    "orderNo": "",
+    "authority": "anonymous"
   },
   {
     "typeId" : "testCategory",
@@ -15,7 +16,8 @@
     "categoryName_en" : "Drama",
     "parentCategory" : "test1",
     "categoryType" : "content",
-    "orderNo": 2
+    "orderNo": 2,
+    "authority": "system,admin"
   },
   {
     "typeId" : "testCategory",
@@ -23,7 +25,8 @@
     "categoryName" : "movie",
     "parentCategory" : "test1",
     "categoryType" : "content",
-    "orderNo": 3
+    "orderNo": 3,
+    "authority": "admin,customer"
   },
   {
     "typeId" : "testCategory",
@@ -31,7 +34,8 @@
     "categoryName" : "fashion",
     "parentCategory" : "test1",
     "categoryType" : "product",
-    "orderNo": 4
+    "orderNo": 4,
+    "authority": ""
   },
   {
     "typeId" : "testCategory",
@@ -77,7 +81,7 @@
     "title" : "도깨비 test abc",
     "body" : "공유나오는 도깨비",
     "date" : "20170110",
-    "testFile" : "/resource/exe1.txt"
+    "testFile" : "classpath:schema/test/testImage.png"
   },
   {
     "typeId" : "testItem",

@@ -3,6 +3,8 @@ package net.ion.ice.core.infinispan.lucene;
 
 import net.ion.ice.IceRuntimeException;
 import net.ion.ice.core.context.QueryContext;
+import net.ion.ice.core.context.RequestDataHolder;
+import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
@@ -108,6 +110,16 @@ public class LuceneQueryUtils {
                     innerQueries.add(createLuceneQuery(term));
                 }
             }
+        }
+
+
+        if(queryContext.getNodeType().hasAuthority()){
+            String role = JsonUtils.getStringValue(RequestDataHolder.getRequestData(), "session.role");
+            if(StringUtils.isEmpty(role)){
+                role = Node.ANONYMOUS;
+            }
+            QueryTerm term = new QueryTerm(queryContext.getQueryTermType(), "authority", role);
+            innerQueries.add(createLuceneQuery(term));
         }
 
         if(innerQueries.size() == 0 && shouldInnerQueries.size() == 0 && notInnerQueries.size() == 0){

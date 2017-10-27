@@ -55,24 +55,29 @@ public class PropertiesFieldBridge implements FieldBridge {
         if(propertyType == null) return ;
         String pid  = entry.getKey() ;
 
-        if(!propertyType.isIndexable()) return ;
+        if(!propertyType.isIndexable() || Node.NODE_VALUE_KEYS.contains(pid)) return ;
 
         PropertyType.ValueType valueType = propertyType.getValueType() ;
+        Object value = entry.getValue() ;
 
         switch (valueType) {
             case LONG :{
+                if(value == null) return ;
                 document.add(new org.apache.lucene.document.LongField(pid, NodeUtils.getLongValue(entry.getValue()), numericFieldType(valueType)));
                 break;
             }
             case INT :{
+                if(value == null) return ;
                 document.add(new org.apache.lucene.document.IntField(pid, NodeUtils.getIntValue(entry.getValue()), numericFieldType(valueType)));
                 break;
             }
             case DOUBLE :{
+                if(value == null) return ;
                 document.add(new org.apache.lucene.document.DoubleField(pid, NodeUtils.getDoubleValue(entry.getValue()), numericFieldType(valueType)));
                 break;
             }
             case DATE :{
+                if(value == null) return ;
                 document.add(new org.apache.lucene.document.LongField(pid,NodeUtils.getDateLongValue(entry.getValue()), numericFieldType(PropertyType.ValueType.LONG)));
                 break;
             }
@@ -99,8 +104,8 @@ public class PropertiesFieldBridge implements FieldBridge {
 
                     if(propertyType.getValueType() == PropertyType.ValueType.REFERENCE){
                         if(propertyType.getAnalyzerType() == PropertyType.AnalyzerType.code && StringUtils.contains(entry.getValue().toString(), ">")){
-                            String value = entry.getValue().toString() + "," + StringUtils.substringAfterLast(entry.getValue().toString(), ">") ;
-                            document.add(getKeywordField(propertyType, pid, value));
+                            String val = entry.getValue().toString() + "," + StringUtils.substringAfterLast(entry.getValue().toString(), ">") ;
+                            document.add(getKeywordField(propertyType, pid, val));
                         }else{
                             document.add(getKeywordField(propertyType, pid, entry.getValue().toString()));
                         }

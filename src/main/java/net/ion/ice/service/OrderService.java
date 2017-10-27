@@ -377,7 +377,13 @@ public class OrderService {
                 Map<String, Double> discountPriceMap = couponService.productCouponDiscountPrice(Integer.parseInt(tempOrderProductId), couponId, "", memberNo);
                 storeOrderProduct.put("couponDiscountPrice", discountPriceMap.get("resultDiscountPrice"));
                 storeOrderProduct.put("vendorId", JsonUtils.getIntValue(product, "vendorId"));
-                storeOrderProduct.put("orderStatus", "order003");
+
+                if(StringUtils.equals(JsonUtils.getStringValue(data, "usePayMethod"), "000000000000")){
+                    storeOrderProduct.put("orderStatus", "order002"); //무통장입금_입금대기
+                }else{
+                    storeOrderProduct.put("orderStatus", "order003"); //포인트전액결제_결제완료
+                }
+
                 storeOrderProduct.put("paymentPrice", discountPriceMap.get("resultOrderPrice"));
 
                 totalProductPrice += discountPriceMap.get("resultOrderPrice");
@@ -431,6 +437,28 @@ public class OrderService {
         storeOrderSheet.put("couponDiscountPrice", couponDiscountPrice);     //쿠폰 할인액
         storeOrderSheet.put("totalWelfarePoint", welfarePoint);         //사용한 복지포인트
         storeOrderSheet.put("totalYPoint", YPoint);                     //사용한 Y포인트
+
+
+        if(StringUtils.equals(JsonUtils.getStringValue(data, "usePayMethod"), "000000000000")){
+            storeOrderSheet.put("usePayMethod", "000000000000");
+            storeOrderSheet.put("usePayMethodName", "무통장입금");
+
+            /*현금영수증발급신청데이터*/
+            if(!JsonUtils.getStringValue(data, "trCode").equals("")){
+
+                Map<String, Object> storeCashReceiptRequest = new HashMap<>();
+
+                storeCashReceiptRequest.put("orderSheetId", orderSheetId);
+                storeCashReceiptRequest.put("trCode", JsonUtils.getStringValue(data, "trCode"));
+                storeCashReceiptRequest.put("idInfo", JsonUtils.getStringValue(data, "idInfo"));
+
+                nodeService.executeNode(storeCashReceiptRequest, "cashReceiptRequest", CommonService.CREATE);
+            }
+
+        }else{
+            storeOrderSheet.put("usePayMethod", "111111111111");
+            storeOrderSheet.put("usePayMethodName", "포인트결제");
+        }
         storeOrderSheet.put("purchaseaAgreementYn", "y");
         storeOrderSheet.put("purchaseDeviceType", "");
         nodeService.executeNode(storeOrderSheet, "orderSheet", CommonService.CREATE);
@@ -454,18 +482,29 @@ public class OrderService {
         Map<String, Object> orderDeliveryPriceList = deliveryService.calculateDeliveryPrice(orderDeliveryProductList, "order");
 
 
-        deliveryService.makeDeliveryPrice(String.valueOf(data.get("ordrIdxx")), orderDeliveryPriceList);
+        deliveryService.makeDeliveryPrice(orderSheetId, orderDeliveryPriceList);
 
-        if(StringUtils.equals(JsonUtils.getStringValue(data, "payMethodCode"), "000000000000")){
-            Map<String, Object> storePayment = new HashMap<>();
+        Map<String, Object> storePayment = new HashMap<>();
+
+        if(StringUtils.equals(JsonUtils.getStringValue(data, "usePayMethod"), "000000000000")){
             storePayment.put("orderSheetId", orderSheetId);
             storePayment.put("memberNo", memberNo);
             storePayment.put("depositor", JsonUtils.getStringValue(data, "depositor"));
-            storePayment.put("usePayMethod", "000000000000");
+            storePayment.put("usePayMethod", JsonUtils.getStringValue(data, "usePayMethod"));
             storePayment.put("usePayMethodName", "무통장입금");
 
-            nodeService.executeNode(storePayment, "payment", CommonService.CREATE);
+        }else{
+            storePayment.put("orderSheetId", orderSheetId);
+            storePayment.put("memberNo", memberNo);
+            storePayment.put("usePayMethod", JsonUtils.getStringValue(data, "usePayMethod"));
+            storePayment.put("usePayMethodName", "포인트결제");
+
         }
+        nodeService.executeNode(storePayment, "payment", CommonService.CREATE);
+
+        createDelivery(data, JsonUtils.getIntValue(session, "member.memberNo"));
+
+        nodeService.deleteNode("tempOrder", orderSheetId);
 
         context.setResult(CommonService.getResult("O0005"));
 
@@ -644,6 +683,8 @@ public class OrderService {
         storeOrderSheet.put("totalWelfarePoint", welfarePoint);                                //사용한 복지포인트
         storeOrderSheet.put("totalYPoint", YPoint);                                            //사용한 Y포인트
         storeOrderSheet.put("purchaseaAgreementYn", "y");
+        storeOrderSheet.put("usePayMethod", JsonUtils.getStringValue(responseMap, "usePayMethod"));
+        storeOrderSheet.put("usePayMethodName", JsonUtils.getStringValue(responseMap, "usePayMethodName"));
         storeOrderSheet.put("purchaseDeviceType", "");
         nodeService.executeNode(storeOrderSheet, "orderSheet", CommonService.CREATE);
 
@@ -665,9 +706,11 @@ public class OrderService {
         List<Map<String, Object>> orderDeliveryProductList = deliveryService.makeDeliveryData(orderProducts, "order");
         Map<String, Object> orderDeliveryPriceList = deliveryService.calculateDeliveryPrice(orderDeliveryProductList, "order");
 
-        createDelivery(responseMap, JsonUtils.getIntValue(tempOrder.get(0), "memberNo"));
+        createDelivery(responseMap, JsonUtils.getIntValue(session, "member.memberNo"));
 
-        deliveryService.makeDeliveryPrice(String.valueOf(orderSheetId), orderDeliveryPriceList);
+        deliveryService.makeDeliveryPrice(orderSheetId, orderDeliveryPriceList);
+
+        nodeBindingService.delete("tempOrder", orderSheetId);
 
         return bSucc;
     }
@@ -675,9 +718,10 @@ public class OrderService {
     /**
      * 결제 정보를 저장하는 Method.
      */
-    public String createPayment(Map<String, Object> responseMap) {
-        Node node = (Node) nodeService.executeNode(responseMap, "payment", CommonService.CREATE);
-        return node.getId();
+    public void createPayment(Map<String, Object> responseMap, String pgId) {
+
+        responseMap.put("pgId", Integer.parseInt(pgId));
+        nodeService.executeNode(responseMap, "payment", CommonService.CREATE);
     }
 
 
@@ -700,10 +744,10 @@ public class OrderService {
         storeRefineDelivery.put("recipient", responseMap.get("recipient"));
         storeRefineDelivery.put("deliveryType", responseMap.get("deliveryType"));
         storeRefineDelivery.put("memberNo", memberNo);
+        storeRefineDelivery.put("myDeliveryAddressId", JsonUtils.getStringValue(responseMap, "myDeliveryAddressId"));
 
         nodeService.executeNode(storeRefineDelivery, "delivery", CommonService.CREATE);
 
-        String myDeliveryAddressId = String.valueOf(responseMap.get("myDeliveryAddressId"));
 
         if (responseMap.get("addMyDeliveryAddress").equals("on")) {       //주소록 추가
 
@@ -716,13 +760,16 @@ public class OrderService {
             storeMyDeliveryAddress.put("address", responseMap.get("shippingAddress"));
             storeMyDeliveryAddress.put("detailedAddress", responseMap.get("shippingDetailedAddress"));
             storeMyDeliveryAddress.put("cellphone", responseMap.get("shippingCellPhone"));
-            storeMyDeliveryAddress.put("phone", responseMap.get("phone"));
+            storeMyDeliveryAddress.put("phone", responseMap.get("shippingPhone"));
+            storeMyDeliveryAddress.put("recipient", responseMap.get("recipient"));
             if (responseMap.get("changeDefaultAddress").equals("on")) {   //기본 배송지
 
                 List<Node> myDeliveryAddressNodeList = nodeService.getNodeList("myDeliveryAddress", "defaultYn_matching=y");
-                Node myDeliveryAddressNode = myDeliveryAddressNodeList.get(0);
-                myDeliveryAddressNode.put("defaultYn", "n");
-                nodeService.updateNode(myDeliveryAddressNode, "myDeliveryAddress");
+                if(myDeliveryAddressNodeList.size() > 0){
+                    Node myDeliveryAddressNode = myDeliveryAddressNodeList.get(0);
+                    myDeliveryAddressNode.put("defaultYn", "n");
+                    nodeService.updateNode(myDeliveryAddressNode, "myDeliveryAddress");
+                }
 
                 storeMyDeliveryAddress.put("defaultYn", "y");
 
@@ -741,6 +788,7 @@ public class OrderService {
                 myDefaultDeliveryAddressNode.put("defaultYn", "n");
                 nodeService.updateNode(myDefaultDeliveryAddressNode, "myDeliveryAddress");
 
+                String myDeliveryAddressId = JsonUtils.getStringValue(responseMap, "myDeliveryAddressId");
                 List<Node> myDeliveryAddressNodeList = nodeService.getNodeList("myDeliveryAddress", "myDeliveryAddressId_matching=".concat(myDeliveryAddressId));
                 Node myDeliveryAddressNode = myDeliveryAddressNodeList.get(0);
                 myDeliveryAddressNode.put("defaultYn", "y");
@@ -755,18 +803,17 @@ public class OrderService {
     /**
      * PG return 데이터를 저장하는  Method.(리턴 값을 가공하지 JsonString 으로 저장, 일종의 Backup Data)
      */
-    public void createPgResponse(Map<String, Object> responseMap, String paymentId) {
+    public String createPgResponse(Map<String, Object> responseMap) {
         Map<String, Object> storePg = new HashMap<>();
 
         String JsonString = JsonUtils.toJsonString(responseMap);
         String orderSheetId = String.valueOf(responseMap.get("ordrIdxx"));
 
-        storePg.put("paymentId", paymentId);
         storePg.put("orderSheetId", orderSheetId);
         storePg.put("jsonResponse", JsonString);
 
-        nodeService.executeNode(storePg, "pg", CommonService.CREATE);
-
+        Node node = (Node) nodeService.executeNode(storePg, "pg", CommonService.CREATE);
+        return node.getId();
     }
 
     /**
@@ -871,6 +918,24 @@ public class OrderService {
             e.printStackTrace();
         }
     }
+
+    public void accountTransferUpdate(Map<String, Object> responseMap){
+        String orderSheetId = JsonUtils.getStringValue(responseMap, "orderSheetId");
+        logger.info("payment orderSheetId : "+ orderSheetId);
+        if(!orderSheetId.equals("")){
+            List<Map<String, Object>> paymentList = nodeBindingService.list("payment", "orderSheetId_equals=".concat(orderSheetId));
+            logger.info("payment paymentList length : " + paymentList.size());
+            Map<String, Object> paymentMap = paymentList.get(0);
+            logger.info("payment paymentMap : " + paymentList.get(0).toString());
+            if(paymentMap != null){
+                logger.info("payment responseMap : "+ responseMap.toString());
+                paymentMap.putAll(responseMap);
+                logger.info("payment paymentMap : "+ paymentMap.toString());
+                nodeService.executeNode(paymentMap, "payment", CommonService.UPDATE);
+            }
+        }
+    }
+
 
     /**
      * 쿠폰 중복 체크 Method.

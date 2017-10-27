@@ -29,31 +29,29 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     public static List<String> NODE_VALUE_KEYS = Arrays.asList(new String[] {"id", "typeId", "owner", "modifier", "created", "changed"}) ;
 
     @DocumentId
-    @Field
+    @Field(store = Store.NO)
     @Analyzer(impl = CodeAnalyzer.class)
     private String id ;
 
-    @Field(analyze = Analyze.NO)
-    private String facet ;
 
-    @Field
+    @Field(store = Store.NO)
     @Analyzer(impl = CodeAnalyzer.class)
     private String typeId;
 
-    @Field
+    @Field(store = Store.NO)
     @Analyzer(impl = CodeAnalyzer.class)
     private String owner ;
 
-    @Field
+    @Field(store = Store.NO)
     @Analyzer(impl = CodeAnalyzer.class)
     private String modifier ;
 
 
-    @Field(analyze = Analyze.NO)
+    @Field(analyze = Analyze.NO, store = Store.NO)
     @DateBridge(resolution = Resolution.MILLISECOND)
     private Date created ;
 
-    @Field(analyze = Analyze.NO)
+    @Field(analyze = Analyze.NO, store = Store.NO)
     @DateBridge(resolution = Resolution.MILLISECOND)
     private Date changed ;
 
@@ -561,6 +559,10 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         this.properties.setTypeId(typeId);
         this.properties.setId(id);
         return this ;
+    }
+
+    public String getModifier() {
+        return modifier;
     }
 
 //    public Object getValue(String pid, PropertyType.ValueType valueType) {
