@@ -28,5 +28,15 @@
     "dbType": "mySql",
     "username": "cjmwave",
     "password": "cjmwave0!@#"
+  },
+  {
+    "typeId": "datasource",
+    "id": "authDbReplica",
+    "dsName": "DEV USER/VOTE RDS",
+    "jdbcUrl": "jdbc:mysql://authdbreplica.cfwzre2kzbc1.ap-northeast-2.rds.amazonaws.com:3306/ice2?zeroDateTimeBehavior=convertToNull",
+    "ssl" : false,
+    "dbType": "mySql",
+    "username": "cjmwave",
+    "password": "cjmwave0!@#"
   }
 ]
