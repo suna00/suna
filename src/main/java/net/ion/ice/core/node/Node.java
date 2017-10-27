@@ -33,6 +33,9 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
     @Analyzer(impl = CodeAnalyzer.class)
     private String id ;
 
+    @Field(analyze = Analyze.NO)
+    private String facet ;
+
 
     @Field(store = Store.NO)
     @Analyzer(impl = CodeAnalyzer.class)
@@ -559,6 +562,10 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         this.properties.setTypeId(typeId);
         this.properties.setId(id);
         return this ;
+    }
+
+    public String getModifier() {
+        return modifier;
     }
 
 //    public Object getValue(String pid, PropertyType.ValueType valueType) {

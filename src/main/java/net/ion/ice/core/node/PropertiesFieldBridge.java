@@ -99,8 +99,9 @@ public class PropertiesFieldBridge implements FieldBridge {
                     }
                 }else {
                     if(propertyType.isSortable() && !propertyType.isNumeric()) {
-                        if(value == null) return ;
-                        document.add(new SortedSetDocValuesFacetField(pid + "_sort", entry.getValue().toString()));
+                        Field field = new SortedSetDocValuesFacetField(pid + "_sort", entry.getValue().toString()) ;
+                        document.add(field);
+//                        document.add(new Field(pid + "_sort", entry.getValue().toString(), sortedFieldAnalyzer()));
                     }
 
                     if(propertyType.getValueType() == PropertyType.ValueType.REFERENCE){

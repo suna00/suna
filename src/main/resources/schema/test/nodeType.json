@@ -281,6 +281,7 @@
     "indexable": true,
     "labelable": false,
     "required": true,
+    "sortable":true,
     "analyzer": "code",
     "referenceType": "testMenu"
   },
