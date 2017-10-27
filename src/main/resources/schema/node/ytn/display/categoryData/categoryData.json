@@ -353,7 +353,7 @@
   {
     "typeId": "category",
     "categoryId": "26",
-    "name": "유아동.주니어 의류",
+    "name": "유아동/주니어 의류",
     "upperId": "2",
     "description": "",
     "type": "",
@@ -392,7 +392,7 @@
   {
     "typeId": "category",
     "categoryId": "29",
-    "name": "여행.가방.소품",
+    "name": "여행/가방/소품",
     "upperId": "3",
     "description": "",
     "type": "",
@@ -522,7 +522,7 @@
   {
     "typeId": "category",
     "categoryId": "39",
-    "name": "스포츠 의류.신발.가방",
+    "name": "스포츠 의류/신발/가방",
     "upperId": "5",
     "description": "",
     "type": "",
@@ -535,7 +535,7 @@
   {
     "typeId": "category",
     "categoryId": "40",
-    "name": "골프 의류.용품",
+    "name": "골프 의류/용품",
     "upperId": "5",
     "description": "",
     "type": "",
@@ -548,7 +548,7 @@
   {
     "typeId": "category",
     "categoryId": "41",
-    "name": "캠핑.낚시 용품",
+    "name": "캠핑/낚시 용품",
     "upperId": "5",
     "description": "",
     "type": "",
@@ -587,7 +587,7 @@
   {
     "typeId": "category",
     "categoryId": "44",
-    "name": "수영.구기 용품",
+    "name": "수영/구기 용품",
     "upperId": "5",
     "description": "",
     "type": "",
@@ -600,7 +600,7 @@
   {
     "typeId": "category",
     "categoryId": "45",
-    "name": "등산/아웃도어 의류.용품",
+    "name": "등산/아웃도어 의류/용품",
     "upperId": "5",
     "description": "",
     "type": "",
@@ -2797,7 +2797,7 @@
   {
     "typeId": "category",
     "categoryId": "213",
-    "name": "시즌.테마 의류",
+    "name": "시즌/테마 의류",
     "upperId": "26",
     "description": "",
     "type": "",
@@ -3148,7 +3148,7 @@
   {
     "typeId": "category",
     "categoryId": "240",
-    "name": "이민.유학 가방",
+    "name": "이민/유학 가방",
     "upperId": "29",
     "description": "",
     "type": "",
@@ -3603,7 +3603,7 @@
   {
     "typeId": "category",
     "categoryId": "275",
-    "name": "수분.보슴 관리",
+    "name": "수분/보슴 관리",
     "upperId": "32",
     "description": "",
     "type": "",
@@ -3642,7 +3642,7 @@
   {
     "typeId": "category",
     "categoryId": "278",
-    "name": "모공.트러블.진정 관리",
+    "name": "모공/트러블/진정 관리",
     "upperId": "32",
     "description": "",
     "type": "",
@@ -3681,7 +3681,7 @@
   {
     "typeId": "category",
     "categoryId": "281",
-    "name": "클렌징 오일.워터.크림",
+    "name": "클렌징 오일/워터/크림",
     "upperId": "33",
     "description": "",
     "type": "",
@@ -3694,7 +3694,7 @@
   {
     "typeId": "category",
     "categoryId": "282",
-    "name": "각질제거/필링.스크럽",
+    "name": "각질제거/필링/스크럽",
     "upperId": "33",
     "description": "",
     "type": "",
@@ -3733,7 +3733,7 @@
   {
     "typeId": "category",
     "categoryId": "285",
-    "name": "코팩/핸드.풋케어팩",
+    "name": "코팩/핸드/풋케어팩",
     "upperId": "33",
     "description": "",
     "type": "",
@@ -3759,7 +3759,7 @@
   {
     "typeId": "category",
     "categoryId": "287",
-    "name": "선스틱.미스트.스프레이",
+    "name": "선스틱/미스트/스프레이",
     "upperId": "33",
     "description": "",
     "type": "",
@@ -4981,7 +4981,7 @@
   {
     "typeId": "category",
     "categoryId": "381",
-    "name": "자전거 용품.부품",
+    "name": "자전거 용품/부품",
     "upperId": "46",
     "description": "",
     "type": "",
@@ -5046,7 +5046,7 @@
   {
     "typeId": "category",
     "categoryId": "386",
-    "name": "차량용 시트.매트",
+    "name": "차량용 시트/매트",
     "upperId": "47",
     "description": "",
     "type": "",
@@ -5059,7 +5059,7 @@
   {
     "typeId": "category",
     "categoryId": "387",
-    "name": "실내용품/전기.가전 용품",
+    "name": "실내용품/전기/가전 용품",
     "upperId": "47",
     "description": "",
     "type": "",
@@ -5098,7 +5098,7 @@
   {
     "typeId": "category",
     "categoryId": "390",
-    "name": "세차.안전.케미컬 관리용품",
+    "name": "세차/안전/케미컬 관리용품",
     "upperId": "47",
     "description": "",
     "type": "",
@@ -5111,7 +5111,7 @@
   {
     "typeId": "category",
     "categoryId": "391",
-    "name": "안전.편의 용품",
+    "name": "안전/편의 용품",
     "upperId": "47",
     "description": "",
     "type": "",

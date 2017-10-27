@@ -139,7 +139,7 @@
     "themeTemplate": "",
     "siteType": "all",
     "categoryId": 3,
-    "name": "여행.가방.소품",
+    "name": "여행/가방/소품",
     "sortOrder": 12,
     "themeStatus": "y"
   },
@@ -223,7 +223,7 @@
     "themeTemplate": "",
     "siteType": "all",
     "categoryId": 5,
-    "name": "스포츠 의류.신발.가방",
+    "name": "스포츠 의류/신발/가방",
     "sortOrder": 19,
     "themeStatus": "y"
   },
@@ -235,7 +235,7 @@
     "themeTemplate": "",
     "siteType": "all",
     "categoryId": 5,
-    "name": "골프 의류.용품",
+    "name": "골프 의류/용품",
     "sortOrder": 20,
     "themeStatus": "y"
   },
@@ -247,7 +247,7 @@
     "themeTemplate": "",
     "siteType": "all",
     "categoryId": 5,
-    "name": "캠핑.낚시 용품",
+    "name": "캠핑/낚시 용품",
     "sortOrder": 21,
     "themeStatus": "y"
   },
@@ -715,7 +715,7 @@
     "themeTemplate": "",
     "siteType": "all",
     "categoryId": 2,
-    "name": "유아동.주니어 의류",
+    "name": "유아동/주니어 의류",
     "sortOrder": 15,
     "themeStatus": "y"
   },
@@ -751,7 +751,7 @@
     "themeTemplate": "",
     "siteType": "all",
     "categoryId": 3,
-    "name": "여행.가방.소품",
+    "name": "여행/가방/소품",
     "sortOrder": 18,
     "themeStatus": "y"
   },
@@ -871,7 +871,7 @@
     "themeTemplate": "",
     "siteType": "all",
     "categoryId": 5,
-    "name": "스포츠 의류.신발.가방",
+    "name": "스포츠 의류/신발/가방",
     "sortOrder": 28,
     "themeStatus": "y"
   },
@@ -883,7 +883,7 @@
     "themeTemplate": "",
     "siteType": "all",
     "categoryId": 5,
-    "name": "골프 의류.용품",
+    "name": "골프 의류/용품",
     "sortOrder": 29,
     "themeStatus": "y"
   },
@@ -895,7 +895,7 @@
     "themeTemplate": "",
     "siteType": "all",
     "categoryId": 5,
-    "name": "캠핑.낚시 용품",
+    "name": "캠핑/낚시 용품",
     "sortOrder": 30,
     "themeStatus": "y"
   },
@@ -931,7 +931,7 @@
     "themeTemplate": "",
     "siteType": "all",
     "categoryId": 5,
-    "name": "수영.구기 용품",
+    "name": "수영/구기 용품",
     "sortOrder": 33,
     "themeStatus": "y"
   },
@@ -943,7 +943,7 @@
     "themeTemplate": "",
     "siteType": "all",
     "categoryId": 5,
-    "name": "등산/아웃도어 의류.용품",
+    "name": "등산/아웃도어 의류/용품",
     "sortOrder": 34,
     "themeStatus": "y"
   },
