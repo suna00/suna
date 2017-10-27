@@ -418,27 +418,27 @@
 
                 // 07-1-2. 계좌이체
                 if (use_pay_method.equals("010000000000")) {
-                    responseMap.put("orderStatus", "order002"); //입금대기
+                    responseMap.put("orderStatus", "order003"); //결제완료
                     responseMap.put("usePayMethodName", "계좌이체");
                 }
                 // 07-1-3. 가상계좌
                 if (use_pay_method.equals("001000000000")) {
-                    responseMap.put("orderStatus", "order003"); //결제 완료
+                    responseMap.put("orderStatus", "order002"); //입금대기
                     responseMap.put("usePayMethodName", "가상계좌");
                 }
                 // 07-1-4. 포인트
                 if (use_pay_method.equals("000100000000")) {
-                    responseMap.put("orderStatus", "order003"); //결제 완료
+                    responseMap.put("orderStatus", "order003"); //결제완료
                     responseMap.put("usePayMethodName", "포인트");
                 }
                 // 07-1-5. 휴대폰
                 if (use_pay_method.equals("000010000000")) {
-                    responseMap.put("orderStatus", "order003"); //결제 완료
+                    responseMap.put("orderStatus", "order003"); //결제완료
                     responseMap.put("usePayMethodName", "휴대폰");
                 }
                 // 07-1-6. 상품권
                 if (use_pay_method.equals("000000001000")) {
-                    responseMap.put("orderStatus", "order003"); //결제 완료
+                    responseMap.put("orderStatus", "order003"); //결제완료
                     responseMap.put("usePayMethodName", "상품권");
                 }
 
@@ -517,13 +517,37 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>*** NHN KCP [AX-HUB Version] ***</title>
-    <script type="text/javascript">
-        function goResult() {
-            var openwin = window.open('proc_win.html', 'proc_win', '')
-            document.pay_info.submit();
-            openwin.close()
-        }
+    <%
+        if (res_cd.equals("0000")){
+    %>
+            <script type="application/javascript">
+                function goResult() {
+//                    var openwin = window.open('proc_win.html', 'proc_win', '');
+                    alert('<%=res_msg%>');
+                    document.pay_info.submit();
+//                    openwin.close();
 
+
+//                    alert('success');
+                }
+            </script>
+    <%
+        } else {
+    %>
+            <script type="application/javascript">
+                function goResult() {
+//                    var openwin = window.open('proc_win.html', 'proc_win', '');
+                    alert('<%=res_msg%>');
+//                    document.pay_info.submit();
+//                    openwin.close();
+                }
+            </script>
+
+    <%
+        }
+    %>
+
+    <script type="text/javascript">
         // 결제 중 새로고침 방지 샘플 스크립트
         function noRefresh() {
             /* CTRL + N키 막음. */
@@ -606,69 +630,15 @@
 <%
     if (res_cd.equals("0000")){
 %>
-<form name="pay_info" method="post" action="http://test.ygoon.com/<%=siteId%>/order/complete">
-<%--<form name="pay_info" method="post" action="http://localhost:3090/<%=siteId%>/order/complete">--%>
-    <input type="hidden" name="site_cd" value="<%= g_conf_site_cd   %>">    <!-- 사이트 코드 -->
-    <input type="hidden" name="req_tx" value="<%= req_tx           %>">    <!-- 요청 구분 -->
-    <input type="hidden" name="use_pay_method" value="<%= use_pay_method   %>">    <!-- 사용한 결제 수단 -->
-    <input type="hidden" name="bSucc" value="<%= bSucc            %>">    <!-- 쇼핑몰 DB 처리 성공 여부 -->
-
-    <input type="hidden" name="amount" value="<%= amount           %>">    <!-- KCP 실제 거래 금액 -->
-    <input type="hidden" name="res_cd" value="<%= res_cd           %>">    <!-- 결과 코드 -->
-    <input type="hidden" name="res_msg" value="<%= res_msg          %>">    <!-- 결과 메세지 -->
+<%--<form name="pay_info" method="post" action="http://localhost:3090/<%=siteId%>/order/complete" target="_parent">--%>
+<form name="pay_info" method="post" action="http://test.ygoon.com/<%=siteId%>/order/complete" target="_parent">
     <input type="hidden" name="ordr_idxx" value="<%= ordr_idxx        %>">    <!-- 주문번호 -->
-    <input type="hidden" name="tno" value="<%= tno              %>">    <!-- KCP 거래번호 -->
-    <input type="hidden" name="good_name" value="<%= good_name        %>">    <!-- 상품명 -->
-    <input type="hidden" name="buyr_name" value="<%= buyr_name        %>">    <!-- 주문자명 -->
-    <input type="hidden" name="buyr_tel1" value="<%= buyr_tel1        %>">    <!-- 주문자 전화번호 -->
-    <input type="hidden" name="buyr_tel2" value="<%= buyr_tel2        %>">    <!-- 주문자 휴대폰번호 -->
-    <input type="hidden" name="buyr_mail" value="<%= buyr_mail        %>">    <!-- 주문자 E-mail -->
-
-    <input type="hidden" name="app_time" value="<%= app_time         %>">    <!-- 승인시간 -->
-    <!-- 신용카드 정보 -->
-    <input type="hidden" name="card_cd" value="<%= card_cd          %>">    <!-- 카드코드 -->
-    <input type="hidden" name="card_name" value="<%= card_name        %>">    <!-- 카드이름 -->
-    <input type="hidden" name="app_no" value="<%= app_no           %>">    <!-- 승인번호 -->
-    <input type="hidden" name="noinf" value="<%= noinf            %>">    <!-- 무이자여부 -->
-    <input type="hidden" name="quota" value="<%= quota            %>">    <!-- 할부개월 -->
-    <input type="hidden" name="partcanc_yn" value="<%= partcanc_yn      %>">    <!-- 부분취소가능유무 -->
-    <input type="hidden" name="card_bin_type_01" value="<%= card_bin_type_01 %>">   <!-- 카드구분1 -->
-    <input type="hidden" name="card_bin_type_02" value="<%= card_bin_type_02 %>">   <!-- 카드구분2 -->
-    <!-- 계좌이체 정보 -->
-    <input type="hidden" name="bank_name" value="<%= bank_name        %>">    <!-- 은행명 -->
-    <input type="hidden" name="bank_code" value="<%= bank_code        %>">    <!-- 은행코드 -->
-    <!-- 가상계좌 정보 -->
-    <input type="hidden" name="bankname" value="<%= bankname         %>">    <!-- 입금 은행 -->
-    <input type="hidden" name="depositor" value="<%= depositor        %>">    <!-- 입금계좌 예금주 -->
-    <input type="hidden" name="account" value="<%= account          %>">    <!-- 입금계좌 번호 -->
-    <input type="hidden" name="va_date" value="<%= va_date          %>">    <!-- 가상계좌 입금마감시간 -->
-    <!-- 포인트 정보 -->
-    <input type="hidden" name="pnt_issue" value="<%= pnt_issue        %>">    <!-- 포인트 서비스사 -->
-    <input type="hidden" name="pnt_app_time" value="<%= pnt_app_time     %>">    <!-- 승인시간 -->
-    <input type="hidden" name="pnt_app_no" value="<%= pnt_app_no       %>">    <!-- 승인번호 -->
-    <input type="hidden" name="pnt_amount" value="<%= pnt_amount       %>">    <!-- 적립금액 or 사용금액 -->
-    <input type="hidden" name="add_pnt" value="<%= add_pnt          %>">    <!-- 발생 포인트 -->
-    <input type="hidden" name="use_pnt" value="<%= use_pnt          %>">    <!-- 사용가능 포인트 -->
-    <input type="hidden" name="rsv_pnt" value="<%= rsv_pnt          %>">    <!-- 총 누적 포인트 -->
-    <!-- 휴대폰 정보 -->
-    <input type="hidden" name="commid" value="<%= commid           %>">    <!-- 통신사 코드 -->
-    <input type="hidden" name="mobile_no" value="<%= mobile_no        %>">    <!-- 휴대폰 번호 -->
-    <!-- 상품권 정보 -->
-    <input type="hidden" name="tk_van_code" value="<%= tk_van_code      %>">    <!-- 발급사 코드 -->
-    <input type="hidden" name="tk_app_no" value="<%= tk_app_no        %>">    <!-- 승인 번호 -->
-    <!-- 현금영수증 정보 -->
-    <input type="hidden" name="cash_yn" value="<%= cash_yn          %>">    <!-- 현금영수증 등록 여부 -->
-    <input type="hidden" name="cash_authno" value="<%= cash_authno      %>">    <!-- 현금 영수증 승인 번호 -->
-    <input type="hidden" name="cash_tr_code" value="<%= cash_tr_code     %>">    <!-- 현금 영수증 발행 구분 -->
-    <input type="hidden" name="cash_id_info" value="<%= cash_id_info     %>">    <!-- 현금 영수증 등록 번호 -->
-    <input type="hidden" name="cash_no" value="<%= cash_no          %>">    <!-- 현금 영수증 거래 번호 -->
-
 </form>
 <%
     }else{
 %>
-<form name="pay_info" method="get" action="http://test.ygoon.com/<%=siteId%>/order/<%=ordr_idxx%>"></form>
-<%--<form name="pay_info" method="post" action="http://localhost:3090/<%=siteId%>/order/<%=ordr_idxx%>"></form>--%>
+<%--<form name="pay_info" method="get" action="http://localhost:8080/<%=siteId%>/order/<%=ordr_idxx%>"></form>--%>
+<form name="pay_info" method="post" action="http://test.ygoon.com/<%=siteId%>/order/<%=ordr_idxx%>" target="_parent"></form>
 <%
     }
 %>

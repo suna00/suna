@@ -30,6 +30,7 @@ public class CORSFilter implements Filter {
         response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
         response.setHeader("Access-Control-Expose-Headers", "Location");
         response.setHeader("Access-Control-Allow-Credentials", "true");
+        response.setHeader("X-Frame-Options", "SAMEORIGIN");
         chain.doFilter(req, res);
     }
 
