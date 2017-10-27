@@ -2,7 +2,6 @@
   {
     "typeId" : "propertyType",
     "tid": "adminGnbMenu",
-    "id": "adminGnbMenu>backOfficeId",
     "pid": "backOfficeId",
     "propertyTypeName": "백오피스",
     "valueType": "REFERENCE",
@@ -18,7 +17,6 @@
   {
     "typeId" : "propertyType",
     "tid": "adminGnbMenu",
-    "id": "adminGnbMenu>menuId",
     "pid": "menuId",
     "propertyTypeName": "메뉴 아이디",
     "valueType": "STRING",
@@ -34,7 +32,6 @@
   {
     "typeId" : "propertyType",
     "tid": "adminGnbMenu",
-    "id": "adminGnbMenu>menuName",
     "pid": "menuName",
     "propertyTypeName": "메뉴 명",
     "valueType": "STRING",
@@ -50,7 +47,6 @@
   {
     "typeId" : "propertyType",
     "tid": "adminGnbMenu",
-    "id": "adminGnbMenu>order",
     "pid": "order",
     "propertyTypeName": "메뉴 순서",
     "valueType": "LONG",
@@ -67,7 +63,6 @@
   {
     "typeId" : "propertyType",
     "tid": "adminGnbMenu",
-    "id": "adminGnbMenu>icon",
     "pid": "icon",
     "propertyTypeName": "아이콘",
     "valueType": "STRING",
@@ -83,7 +78,6 @@
   {
     "typeId" : "propertyType",
     "tid": "adminGnbMenu",
-    "id": "adminGnbMenu>active",
     "pid": "active",
     "propertyTypeName": "활성 여부",
     "valueType": "BOOLEAN",
@@ -99,7 +93,6 @@
   {
     "typeId" : "propertyType",
     "tid": "adminLnbMenu",
-    "id": "adminLnbMenu>backOfficeId",
     "pid": "backOfficeId",
     "propertyTypeName": "백오피스",
     "valueType": "REFERENCE",
@@ -115,7 +108,6 @@
   {
     "typeId" : "propertyType",
     "tid": "adminLnbMenu",
-    "id": "adminLnbMenu>gnbMenuId",
     "pid": "gnbMenuId",
     "propertyTypeName": "GNB 아이디",
     "valueType": "STRING",
@@ -131,7 +123,6 @@
   {
     "typeId" : "propertyType",
     "tid": "adminLnbMenu",
-    "id": "adminLnbMenu>parentMenuId",
     "pid": "parentMenuId",
     "propertyTypeName": "상위 메뉴 아이디",
     "valueType": "STRING",
@@ -146,7 +137,6 @@
   {
     "typeId" : "propertyType",
     "tid": "adminLnbMenu",
-    "id": "adminLnbMenu>menuId",
     "pid": "menuId",
     "propertyTypeName": "메뉴 아이디",
     "valueType": "STRING",
@@ -162,7 +152,6 @@
   {
     "typeId" : "propertyType",
     "tid": "adminLnbMenu",
-    "id": "adminLnbMenu>menuName",
     "pid": "menuName",
     "propertyTypeName": "메뉴 명",
     "valueType": "STRING",
@@ -178,7 +167,6 @@
   {
     "typeId" : "propertyType",
     "tid": "adminLnbMenu",
-    "id": "adminLnbMenu>order",
     "pid": "order",
     "propertyTypeName": "메뉴 순서",
     "valueType": "LONG",
@@ -195,7 +183,6 @@
   {
     "typeId" : "propertyType",
     "tid": "adminLnbMenu",
-    "id": "adminLnbMenu>icon",
     "pid": "icon",
     "propertyTypeName": "아이콘",
     "valueType": "STRING",
@@ -211,7 +198,6 @@
   {
     "typeId" : "propertyType",
     "tid": "adminLnbMenu",
-    "id": "adminLnbMenu>active",
     "pid": "active",
     "propertyTypeName": "활성 여부",
     "valueType": "BOOLEAN",
@@ -227,7 +213,6 @@
   {
     "typeId" : "propertyType",
     "tid": "adminLnbMenu",
-    "id": "adminLnbMenu>index",
     "pid": "index",
     "propertyTypeName": "Index 여부",
     "valueType": "BOOLEAN",
@@ -243,7 +228,6 @@
   {
     "typeId" : "propertyType",
     "tid": "adminLnbMenu",
-    "id": "adminLnbMenu>pages",
     "pid": "pages",
     "propertyTypeName": "Pages",
     "valueType": "OBJECT",
@@ -261,7 +245,6 @@
   {
     "typeId" : "propertyType",
     "tid": "adminLnbMenu",
-    "id": "adminLnbMenu>customPages",
     "pid": "customPages",
     "propertyTypeName": "Custom Pages",
     "valueType": "OBJECT",
