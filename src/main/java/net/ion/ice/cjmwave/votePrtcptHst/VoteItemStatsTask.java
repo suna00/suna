@@ -152,11 +152,21 @@ public class VoteItemStatsTask {
 
     private List<Map<String, Object>> getVoteNumByVoteItemList(String voteSeq) {
         // TODO - Hazelcast 내용 추가.
-        String query = "SELECT vi.voteSeq, vihbm.voteItemSeq, count(*) AS voteNum " +
-                "FROM " + voteSeq + "_voteItemHstByMbr vihbm, voteItemInfo vi " +
-                "WHERE vihbm.voteItemSeq=vi.voteItemSeq " +
-                "GROUP BY vihbm.voteItemSeq " +
-                "ORDER BY voteNum DESC";
+//        String query = "SELECT vi.voteSeq, vihbm.voteItemSeq, count(*) AS voteNum " +
+//                "FROM " + voteSeq + "_voteItemHstByMbr vihbm, voteItemInfo vi " +
+//                "WHERE vihbm.voteItemSeq=vi.voteItemSeq " +
+//                "GROUP BY vihbm.voteItemSeq " +
+//                "ORDER BY voteNum DESC";
+        String query =
+                "SELECT " +
+                "  b.voteSeq, a.voteItemSeq, a.voteNum " +
+                "FROM ( " +
+                "       SELECT voteItemSeq, count(*) as voteNum " +
+                "       FROM " + voteSeq + "_voteItemHstByMbr a " +
+                "       group by voteItemSeq " +
+                "     ) a, voteItemInfo b " +
+                "WHERE a.voteItemSeq=b.voteItemSeq " +
+                "ORDER BY a.voteNum DESC";
 
         return jdbcTemplate_replica.queryForList(query);
     }
