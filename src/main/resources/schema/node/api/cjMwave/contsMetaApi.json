@@ -25,7 +25,7 @@
     ],
     "config": {
       "typeId": "album",
-      "cacheTime": "60",
+      "cacheTime": "300",
       "excludePids": "showCntryCdList",
       "excludeCache": "connIpAdr,snsKey,snsTypeCd",
       "query": [
@@ -89,7 +89,7 @@
     "config": {
       "root": {
         "typeId": "album",
-        "cacheTime": "60",
+        "cacheTime": "300",
         "excludePids": "showCntryCdList",
         "excludeCache": "connIpAdr,snsKey,snsTypeCd",
         "id": "{{:albumId}}",
@@ -100,14 +100,6 @@
           },
           "seoDesc": "albumDesc",
           "seoKywrd": "findKywrd"
-        }
-      },
-      "hitNumUpdate": {
-        "typeId": "album",
-        "resultType": "none",
-        "event": "view",
-        "response": {
-          "hitNum": ""
         }
       }
     }
@@ -134,7 +126,7 @@
     ],
     "config": {
       "typeId": "song",
-      "cacheTime": "60",
+      "cacheTime": "300",
       "excludePids": "showCntryCdList",
       "excludeCache": "connIpAdr,snsKey,snsTypeCd",
       "query": [
@@ -219,7 +211,7 @@
     ],
     "config": {
       "typeId": "artist",
-      "cacheTime": "60",
+      "cacheTime": "300",
       "excludePids": "showCntryCdList",
       "excludeCache": "connIpAdr,snsKey,snsTypeCd",
       "query": [
@@ -278,7 +270,7 @@
     "config": {
       "root": {
         "typeId": "artist",
-        "cacheTime": "60",
+        "cacheTime": "300",
         "excludeCache": "connIpAdr,snsKey,snsTypeCd",
         "id": "{{:artistId}}",
         "response": {
@@ -288,14 +280,6 @@
           },
           "seoDesc": "artistDesc",
           "seoKywrd": "findKywrd"
-        }
-      },
-      "hitNumUpdate": {
-        "typeId": "artist",
-        "resultType": "none",
-        "event": "view",
-        "response": {
-          "hitNum": ""
         }
       }
     }
@@ -322,7 +306,7 @@
     ],
     "config": {
       "typeId": "musicVideo",
-      "cacheTime": "60",
+      "cacheTime": "300",
       "excludePids": "showCntryCdList",
       "excludeCache": "connIpAdr,snsKey,snsTypeCd",
       "query": [
@@ -406,7 +390,7 @@
     "config": {
       "root": {
         "typeId": "musicVideo",
-        "cacheTime": "60",
+        "cacheTime": "300",
         "excludePids": "showCntryCdList",
         "id": "{{:musicVideoId}}",
         "response": {
@@ -543,14 +527,6 @@
             }
           }
         }
-      },
-      "hitNumUpdate": {
-        "typeId": "musicVideo",
-        "resultType": "none",
-        "event": "view",
-        "response": {
-          "hitNum": ""
-        }
       }
     }
   },
@@ -581,7 +557,7 @@
     "config": {
       "root": {
         "typeId": "news",
-        "cacheTime": "60",
+        "cacheTime": "300",
         "excludePids": "showCntryCdList",
         "excludeCache": "connIpAdr,snsKey,snsTypeCd",
         "query": [
@@ -694,7 +670,7 @@
     "config": {
       "root": {
         "typeId": "news",
-        "cacheTime": "60",
+        "cacheTime": "300",
         "excludePids": "showCntryCdList",
         "excludeCache": "connIpAdr",
         "id": "{{:newsId}}",
@@ -894,14 +870,6 @@
             }
           }
         }
-      },
-      "hitNumUpdate": {
-        "typeId": "news",
-        "resultType": "none",
-        "event": "view",
-        "response": {
-          "hitNum": ""
-        }
       }
     }
   },
@@ -923,7 +891,7 @@
     ],
     "config": {
       "typeId": "groupPhoto",
-      "cacheTime": "60",
+      "cacheTime": "300",
       "excludePids": "showCntryCdList",
       "excludeCache": "connIpAdr,snsKey,snsTypeCd",
       "query": [
@@ -1003,7 +971,7 @@
     "config": {
       "root": {
         "typeId": "groupPhoto",
-        "cacheTime": "60",
+        "cacheTime": "300",
         "excludePids": "showCntryCdList",
         "excludeCache": "connIpAdr,snsKey,snsTypeCd",
         "id": "{{:groupPhotoId}}",
@@ -1154,14 +1122,6 @@
             "includeReferenced": true
           }
         ]
-      },
-      "hitNumUpdate": {
-        "typeId": "groupPhoto",
-        "resultType": "none",
-        "event": "view",
-        "response": {
-          "hitNum": ""
-        }
       }
     }
   },
@@ -1191,7 +1151,7 @@
     ],
     "config": {
       "typeId": "singlePhoto",
-      "cacheTime": "60",
+      "cacheTime": "300",
       "excludeCache": "connIpAdr,snsKey,snsTypeCd",
       "excludePids": "showCntryCdList",
       "query": [
@@ -1269,7 +1229,7 @@
     ],
     "config": {
       "typeId": "singlePhoto",
-      "cacheTime": "60",
+      "cacheTime": "300",
       "excludePids": "showCntryCdList",
       "id": "{{:singlePhotoId}}",
       "response": {
@@ -1424,7 +1384,7 @@
     ],
     "config": {
       "typeId": "pgmVideo",
-      "cacheTime": "60",
+      "cacheTime": "300",
       "excludePids": "showCntryCdList",
       "query": [
         {
@@ -1517,7 +1477,7 @@
     "config": {
       "root": {
         "typeId": "pgmVideo",
-        "cacheTime": "60",
+        "cacheTime": "300",
         "excludePids": "showCntryCdList",
         "id": "{{:contentId}}",
         "response": {
@@ -1649,14 +1609,6 @@
             }
           }
         }
-      },
-      "hitNumUpdate": {
-        "typeId": "pgmVideo",
-        "resultType": "none",
-        "event": "view",
-        "response": {
-          "hitNum": ""
-        }
       }
     }
   },
@@ -1686,7 +1638,7 @@
     ],
     "config": {
       "typeId": "videItgInfo",
-      "cacheTime": "60",
+      "cacheTime": "300",
       "excludePids": "showCntryCdList",
       "excludeCache": "connIpAdr,snsKey,snsTypeCd",
       "query": [

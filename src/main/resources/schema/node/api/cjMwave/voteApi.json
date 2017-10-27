@@ -248,7 +248,7 @@
     ],
     "config": {
       "typeId": "artistSexVoteStatsByDly",
-      "cacheTime": "30",
+      "cacheTime": "300",
       "query": [
         {
           "field": "perdDate",
@@ -287,7 +287,7 @@
     ],
     "config": {
       "typeId": "voteItemInfo",
-      "cacheTime": "30",
+      "cacheTime": "300",
       "excludePids": "showCntryCdList",
       "query": [
         {
@@ -484,7 +484,7 @@
     ],
     "config": {
       "typeId": "voteItemStatsByCntry",
-      "cacheTime": "30",
+      "cacheTime": "300",
       "query": [
         {
           "field": "voteSeq",
@@ -524,7 +524,7 @@
     ],
     "config": {
       "typeId": "voteItemStats",
-      "cacheTime": "30",
+      "cacheTime": "300",
       "query": [
         {
           "field": "voteSeq",
@@ -629,7 +629,7 @@
     ],
     "config": {
       "typeId": "wlyVoteStatsByArtist",
-      "cacheTime": "30",
+      "cacheTime": "300",
       "query": [
         {
           "field": "artistId",
@@ -681,7 +681,7 @@
     ],
     "config": {
       "typeId": "cntryVoteStatsByArtist",
-      "cacheTime": "30",
+      "cacheTime": "300",
       "query": [
         {
           "field": "artistId",
@@ -733,7 +733,7 @@
     ],
     "config": {
       "typeId": "voteMbrStatsByArtist",
-      "cacheTime": "30",
+      "cacheTime": "300",
       "query": [
         {
           "field": "artistId",
@@ -865,7 +865,7 @@
     ],
     "config": {
       "typeId": "voteBasInfo",
-      "cacheTime": "10",
+      "cacheTime": "300",
       "query": [
         {
           "field": "voteFormlCd",
@@ -973,7 +973,7 @@
     ],
     "config": {
       "typeId": "voteBasInfo",
-      "cacheTime": "60",
+      "cacheTime": "300",
       "excludePids": "showCntryCdList",
       "excludeCache" : "connIpAdr,snsKey,snsTypeCd",
       "event": "resIfMwv108"
@@ -1036,7 +1036,7 @@
     ],
     "config": {
       "typeId": "voteMbrStatsByArtist",
-      "cacheTime": "30",
+      "cacheTime": "300",
       "query": [
         {
           "field": "artistId",
@@ -1226,7 +1226,7 @@
     ],
     "config": {
       "typeId": "artistVoteStatsByWly",
-      "cacheTime": "30",
+      "cacheTime": "300",
       "query": [
         {
           "field": "perdStDate",
@@ -1265,7 +1265,7 @@
     ],
     "config": {
       "typeId": "artistVoteStatsByMly",
-      "cacheTime": "30",
+      "cacheTime": "300",
       "query": [
         {
           "field": "perdYm",
@@ -1299,7 +1299,7 @@
     ],
     "config": {
       "typeId": "artistVoteStatsByYear",
-      "cacheTime": "30",
+      "cacheTime": "300",
       "query": [
         {
           "field": "perdYear",
@@ -1341,7 +1341,7 @@
     ],
     "config": {
       "typeId": "artistVoteStatsByCntry",
-      "cacheTime": "30",
+      "cacheTime": "300",
       "query": [
         {
           "field": "cntryCd",
@@ -1393,7 +1393,7 @@
     ],
     "config": {
       "typeId": "artistVoteStatsBySex",
-      "cacheTime": "30",
+      "cacheTime": "300",
       "query": [
         {
           "field": "sexCd",
@@ -1445,7 +1445,7 @@
     ],
     "config": {
       "typeId": "artistVoteStatsByType",
-      "cacheTime": "30",
+      "cacheTime": "300",
       "query": [
         {
           "field": "typeCd",
@@ -1494,7 +1494,7 @@
     "config": {
       "root": {
         "typeId": "cntryVoteStats",
-        "cacheTime": "30",
+        "cacheTime": "300",
         "query": [
           {
             "field": "perdStDate",
@@ -1536,7 +1536,7 @@
     "config": {
       "root": {
         "typeId": "cntryVoteStats",
-        "cacheTime": "30",
+        "cacheTime": "300",
         "query": [
           {
             "field": "perdStDate",
@@ -1584,7 +1584,7 @@
     "config": {
       "root": {
         "typeId": "cntryVoteStatsByVote",
-        "cacheTime": "30",
+        "cacheTime": "300",
         "query": [
           {
             "field": "voteSeq",
@@ -1630,7 +1630,7 @@
     "method": "GET",
     "config": {
       "typeId": "artistVoteStatsByWly",
-      "cacheTime": "30",
+      "cacheTime": "300",
       "query": [
         {
           "field": "perdStDate",
@@ -1669,7 +1669,7 @@
     ],
     "config": {
       "typeId": "artistVoteStatsByCntry",
-      "cacheTime": "30",
+      "cacheTime": "300",
       "query": [
         {
           "field": "cntryCd",
@@ -1713,7 +1713,7 @@
     ],
     "config": {
       "typeId": "artistVoteStatsBySex",
-      "cacheTime": "30",
+      "cacheTime": "300",
       "query": [
         {
           "field": "sexCd",
@@ -1757,7 +1757,7 @@
     ],
     "config": {
       "typeId": "artistVoteStatsByType",
-      "cacheTime": "30",
+      "cacheTime": "300",
       "query": [
         {
           "field": "typeCd",

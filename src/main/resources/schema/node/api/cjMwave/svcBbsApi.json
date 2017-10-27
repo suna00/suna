@@ -37,6 +37,7 @@
     ],
     "config": {
       "typeId": "ntfBbs",
+      "cacheTime": "300",
       "query": [
         {
           "field": "svcTermlDivCd",
@@ -104,6 +105,7 @@
     "config": {
       "root": {
         "typeId": "ntfBbs",
+        "cacheTime": "300",
         "id": "{{:ntfBbsSeq}}",
         "response": {
           "ntfBbsSeq": "",
@@ -182,14 +184,6 @@
             }
           }
         }
-      },
-      "hitNumUpdate": {
-        "typeId": "ntfBbs",
-        "resultType": "none",
-        "event": "view",
-        "response":{
-          "hitNum":""
-        }
       }
     }
   },
@@ -264,6 +258,7 @@
     ],
     "config": {
       "typeId": "faqCtgryInfo",
+      "cacheTime": "300",
       "query": [
         {
           "field": "showYn",
@@ -321,6 +316,7 @@
     ],
     "config": {
       "typeId": "faq",
+      "cacheTime": "300",
       "query": [
         {
           "field": "faqCtgrySeq",

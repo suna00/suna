@@ -29,7 +29,7 @@
     ],
     "config": {
       "typeId": "mamaAwardSctnInfo",
-      "cacheTime": "60",
+      "cacheTime": "300",
       "excludeCache" : "connIpAdr,snsKey,snsTypeCd",
       "query": [
         {

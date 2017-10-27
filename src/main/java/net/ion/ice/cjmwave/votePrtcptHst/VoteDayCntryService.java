@@ -6,12 +6,14 @@ import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -36,10 +38,10 @@ public class VoteDayCntryService {
     * */
     public void voteBasStatsCntryJob() {
 
-        voteCntryProcess();
+        voteCntryProcess(null);
     }
 
-    private void voteCntryProcess() {
+    private void voteCntryProcess(Calendar paramCal) {
         if (jdbcTemplate == null) {
             //jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
             jdbcTemplate = dbService.getJdbcTemplate("authDb");
@@ -50,7 +52,12 @@ public class VoteDayCntryService {
         }
 
         Date now = new Date();
-        Calendar cal = Calendar.getInstance();
+        Calendar cal = null;
+        if(paramCal != null){
+            cal = paramCal;
+        }else{
+            cal = Calendar.getInstance();//현재일자
+        }
 
         Integer weekNum = cal.get(Calendar.DAY_OF_WEEK); //1.일요일 ~ 7.토요일 이다.
         //String toDay = DateFormatUtils.format(cal, "yyyyMMdd"); //오늘 날짜 - yyyyMMdd형식
@@ -67,8 +74,8 @@ public class VoteDayCntryService {
         try {
 
             //1. voteBasStatsByDayToCntry 테이블 전체 delete
-            Integer deleteCnt = jdbcTemplate.update("DELETE FROM cntryVoteStatsByVote");
-            logger.info("===============> delete1  cntryVoteStatsByVote:: " + deleteCnt);
+            Integer deleteCnt = jdbcTemplate.update("DELETE FROM cntryVoteStatsByVote where perdStDate = ? and perdFnsDate = ?",saveMon,saveSun);
+            logger.info("===============> delete1  cntryVoteStatsByVote:: " + deleteCnt+", saveMon = "+saveMon+", saveSun = "+saveSun);
 
             //2. voteBasStatsByDayToCntry 테이블에서 월~일요일 날짜 까지 가져온다
             String totalListQuery = "SELECT a.voteSeq, a.cntryCd, a.voteNum, b.totalVoteNum " +
@@ -133,8 +140,26 @@ public class VoteDayCntryService {
     * voteSeq 기준으로 매주(월~일) 결과를 다시 주간 투표별 국가현황 테이블에 쌓는다.
     * */
     public void voteBasStatsCntryEvt(ExecuteContext context) {
+        logger.info("voteDayCntryService.voteBasStatsCntryEvt manual!!!!!!");
+        Calendar paramCal = Calendar.getInstance();
+        Map<String, Object> data = context.getData();
+        if (data.get("paramDate") != null) {//파라미터로 전달된 날짜가 있으면 변경
+            //try {
 
-        voteCntryProcess();
+                String paramDtStr = data.get("paramDate").toString();
+                String[] dateArr = paramDtStr.split("-");
+                String year =dateArr[0];
+                String mon = dateArr[1];
+                String day = dateArr[2];
+            logger.error("voteDayCntryService.voteBasStatsCntryEvt paramDate : "+data.get("paramDate").toString()+", parse year="+year+",mon="+mon+", day="+day);
+                paramCal.set(Integer.parseInt(year), Integer.parseInt(mon)-1, Integer.parseInt(day));
+                logger.info("voteDayCntryService.voteBasStatsCntryEvt : paramDate ="+ data.get("paramDate").toString()+", calendar = "+DateFormatUtils.format(paramCal, "yyyy-MM-dd"));
+            //}catch (ParseException e){
+                //logger.error("Failed to voteDayCntryService.voteBasStatsCntryEvt : "+e);
+            //}
+        }
+
+        voteCntryProcess(paramCal);
 
         Map<String, Object> returnMap = new ConcurrentHashMap<>();
         returnMap.put("event", "voteBasStatsCntryEvt 성공");
@@ -185,18 +210,22 @@ public class VoteDayCntryService {
                 Map<String, Object> lastSeqInfo = getVoteBasByLastSeq(voteSeq);
                 if (lastSeqInfo != null) {
                     lastSeq = Integer.parseInt(lastSeqInfo.get("seq").toString());
+                }else{
+                    continue;
                 }
-                logger.info("===============> voteSeq별 라스트 시퀀스 쌓는 테이블 조회결과 :: lastSeqInfo" + lastSeqInfo);
+                logger.info(voteSeq + "===============> voteSeq별 라스트 시퀀스 쌓는 테이블 조회결과 :: lastSeqInfo" + lastSeqInfo);
                 //logger.info("===============> voteSeq별 라스트 시퀀스 쌓는 테이블 조회결과 :: lastSeq" + lastSeq);
 
                 //해당 voteSeq_voteHstByMbr 테이블에서 리스트 조회
                 List<Map<String, Object>> voteMbrList =
-                        jdbcTemplate_replica.queryForList("SELECT seq, voteDate, mbrId FROM " + tableNm + " WHERE seq>? ORDER BY seq LIMIT ?"
+                        jdbcTemplate_replica.queryForList("SELECT seq FROM " + tableNm + " WHERE seq>? ORDER BY seq LIMIT ?"
                                 , lastSeq, limitCnt);
+                logger.info(voteSeq + "===============> voteMbrList ::" + voteMbrList.size());
 
                 List<Map<String, Object>> voteSeqList =
                         jdbcTemplate_replica.queryForList("SELECT hst.voteDate, count(*) voteNum FROM ( SELECT seq, voteDate, mbrId FROM " + tableNm + " WHERE seq>? ORDER BY seq LIMIT ? ) hst GROUP BY hst.voteDate"
                                 , lastSeq, limitCnt);
+                logger.info(voteSeq + "===============> voteSeqList ::" + voteSeqList.size());
 
                 List<Map<String, Object>> voteMbrNumList =
                         jdbcTemplate_replica.queryForList("select cntryCd, voteDate, count(*) voteNum\n" +
@@ -204,13 +233,16 @@ public class VoteDayCntryService {
                                         "  SELECT\n" +
                                         "    b.cntryCd,\n" +
                                         "    a.voteDate\n" +
-                                        "  FROM (select * from ? where seq > ? order by seq LIMIT ?) a, mbrInfo b\n" +
+                                        "  FROM (select * from " + tableNm + "  where seq > ? order by seq LIMIT ?) a, mbrInfo b\n" +
                                         "  WHERE substring_index(a.mbrId, '>', 1) = b.snsTypeCd\n" +
                                         "        AND substring_index(a.mbrId, '>', -1) = b.snsKey\n" +
                                         "        AND b.cntryCd IS NOT NULL\n" +
                                         ") t\n" +
                                         " group by cntryCd, voteDate"
-                                , tableNm, lastSeq, limitCnt);
+                                , lastSeq, limitCnt);
+
+                logger.info(voteSeq + "===============> voteMbrNumList ::" + voteMbrNumList.size());
+
                 for (int i = 0; i < voteSeqList.size(); i++) {
                     Map<String, Object> mapData = voteSeqList.get(i);
                     String voteDate = mapData.get("voteDate").toString();
@@ -265,7 +297,7 @@ public class VoteDayCntryService {
             }
 
         } catch (Exception e) {
-            logger.error("Failed to voteDayCntryService.voteBasStatsDaySetNum");
+            logger.error("Failed to voteDayCntryService.voteBasStatsDaySetNum", e);
         }
     }
 
@@ -275,7 +307,7 @@ public class VoteDayCntryService {
     * voteSeq 기준으로 매일의 voteNum을 계속 쌓는다.
     * */
     public void voteBasSatasDayEvt(ExecuteContext context) {
-        Integer limitCnt = 20000;//기본 처리 건수
+        Integer limitCnt = 10000;//기본 처리 건수
 
         Map<String, Object> data = context.getData();
         if (data.get("cnt") != null) {//파라미터로 전달된 처리 건수가 있으면 변경
