@@ -180,6 +180,7 @@ public class DeliveryService {
             }
             map.put("totalAddOptionPrice", totalAddOptionPrice);
             map.put("orderPrice", orderPrice);
+            map.put("paymentPrice", orderPrice);
             map.put(type+"ProductItems", productItems) ;
         }
 

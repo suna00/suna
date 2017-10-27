@@ -1,6 +1,5 @@
 package net.ion.ice.service;
 
-import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.api.ApiUtils;
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.context.QueryContext;
@@ -469,25 +468,6 @@ public class AdminOrderService {
     }
 
 
-    //주문변경신청 상태 변경(취소교환반품)
-    public ExecuteContext updateOrderChangeStatus(ExecuteContext context) {
-        Map<String, Object> data = context.getData();
-
-        String[] params = {"orderChangeId", "orderChangeStatus"};
-        if (CommonService.requiredParams(context, data, params)) return context;
-
-//
-//# order009,취소완료
-//# order016,교환완료
-//# order021,반품완료
-
-
-
-
-        return context;
-    }
-
-
     //배송주문조회
     public ExecuteContext deliveryTrackingInfoView(ExecuteContext context) {
         Map<String, Object> data = context.getData();
@@ -516,4 +496,50 @@ public class AdminOrderService {
 
         return context;
     }
+
+    //주문변경신청 상태 변경(취소교환반품)
+    public ExecuteContext updateOrderChangeStatus(ExecuteContext context) {
+        Map<String, Object> data = context.getData();
+
+        String[] params = {"orderSheetId", "orderChangeId", "orderChangeStatus"};
+        if (CommonService.requiredParams(context, data, params)) return context;
+
+        String orderChangeStatus = JsonUtils.getStringValue(data, "orderChangeStatus");
+
+        List<Map<String, Object>> orderChangeProductList = nodeBindingService.list(orderChangeProduct_TID, "orderChangeId_equals=" + JsonUtils.getStringValue(data, "orderChangeId"));
+        for(Map<String, Object> ocp : orderChangeProductList){
+            ocp.put("orderChangeStatus", orderChangeStatus);
+            nodeService.executeNode(ocp, orderChangeProduct_TID, CommonService.UPDATE);
+            // order009,취소완료/ order016,교환완료/ order021,반품완료
+            if("order009".equals(orderChangeStatus) || "order016".equals(orderChangeStatus) || "order021".equals(orderChangeStatus)){
+                // 취소교환반품 완료시 주문상품에 반영
+                Map<String, Object> op = NodeUtils.getNode(orderProduct_TID, JsonUtils.getStringValue(ocp, "orderProductId"));
+                int opQuantity = JsonUtils.getIntValue(op, "quantity");
+                int ocpQuantity = JsonUtils.getIntValue(ocp, "quantity");
+                int opOrderPrice = JsonUtils.getIntValue(op, "orderPrice");
+                int ocpOrderPrice = JsonUtils.getIntValue(ocp, "orderPrice");
+                int opPaymentPrice = JsonUtils.getIntValue(op, "paymentPrice");
+                int ocpPaymentPrice = JsonUtils.getIntValue(ocp, "paymentPrice");
+
+                if(opQuantity == ocpQuantity){
+                    op.put("orderStatus", orderChangeStatus);
+                }
+                //주문변경분 주문상품에 반영
+                op.put("quantity", opQuantity - ocpQuantity);
+                op.put("orderPrice", opOrderPrice - ocpOrderPrice);
+                op.put("paymentPrice", opPaymentPrice - ocpPaymentPrice);
+                nodeService.executeNode(op, orderProduct_TID, CommonService.UPDATE);
+            }
+        }
+
+        if("order009".equals(orderChangeStatus) || "order016".equals(orderChangeStatus) || "order021".equals(orderChangeStatus)){
+            Map<String, Object> orderChange = NodeUtils.getNode(orderChange_TID, JsonUtils.getStringValue(data, "orderChangeId"));
+            Map<String, Object> orderSheet = NodeUtils.getNode(orderSheet_TID, JsonUtils.getStringValue(data, "orderSheetId"));
+
+
+
+        }
+        return context;
+    }
+
 }
