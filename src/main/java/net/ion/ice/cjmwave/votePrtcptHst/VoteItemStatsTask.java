@@ -1,7 +1,7 @@
 package net.ion.ice.cjmwave.votePrtcptHst;
 
+import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.node.Node;
-import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.slf4j.Logger;
@@ -22,9 +22,10 @@ public class VoteItemStatsTask {
     public static final String VOTE_ITEM_INFO = "voteItemInfo";
 
     private JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate_replica;
 
     @Autowired
-    private NodeService nodeService;
+    private DBService dbService ;
 
     // Total VoteCount
     Map<String, Integer> totalVoteCntByVoteSeq;
@@ -34,7 +35,10 @@ public class VoteItemStatsTask {
         logger.info("start schedule task - voteItemStatsJob");
 
         if (jdbcTemplate==null) {
-            jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
+            jdbcTemplate = dbService.getJdbcTemplate("authDb");
+        }
+        if (jdbcTemplate_replica==null) {
+            jdbcTemplate_replica = dbService.getJdbcTemplate("authDbReplica");
         }
 
         if (totalVoteCntByVoteSeq == null) {
@@ -142,7 +146,7 @@ public class VoteItemStatsTask {
         String query = "SELECT count(*) AS voteNum " +
                 "FROM " + voteSeq + "_voteItemHstByMbr " ;
 
-        Map retMap = jdbcTemplate.queryForMap(query);
+        Map retMap = jdbcTemplate_replica.queryForMap(query);
         return Integer.parseInt(retMap.get("voteNum").toString());
     }
 
@@ -154,7 +158,7 @@ public class VoteItemStatsTask {
                 "GROUP BY vihbm.voteItemSeq " +
                 "ORDER BY voteNum DESC";
 
-        return jdbcTemplate.queryForList(query);
+        return jdbcTemplate_replica.queryForList(query);
     }
 
 
