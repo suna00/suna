@@ -515,7 +515,7 @@ public class DeliveryService {
                 "   group by cp.cartId\n" +
                 ") x";
 
-        return jdbcTemplate.queryForMap(query, ids);
+        return jdbcTemplate.queryForMap(query, (Object[]) ids);
     }
 
 //    public Map<String, Object> getCartDeliveryPriceMap(String cartProductId) {
