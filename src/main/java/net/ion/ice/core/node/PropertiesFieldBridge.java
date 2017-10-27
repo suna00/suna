@@ -99,7 +99,6 @@ public class PropertiesFieldBridge implements FieldBridge {
                     }
                 }else {
                     if(propertyType.isSortable() && !propertyType.isNumeric()) {
-                        if(value == null) return ;
                         document.add(new SortedSetDocValuesFacetField(pid + "_sort", entry.getValue().toString()));
                     }
 
