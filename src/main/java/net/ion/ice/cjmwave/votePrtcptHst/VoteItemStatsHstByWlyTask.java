@@ -15,6 +15,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import net.ion.ice.cjmwave.external.utils.CommonDateUtils;
+
 @Service("voteItemStatsHstByWlyTask")
 public class VoteItemStatsHstByWlyTask {
     private static Logger logger = LoggerFactory.getLogger(VoteItemStatsHstByWlyTask.class);
@@ -34,8 +36,8 @@ public class VoteItemStatsHstByWlyTask {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
         }
 
-        String perdStDate = getCurMonday();
-        String perdFnsDate = getCurSunday();
+        String perdStDate = getCurMonday();     // CommonDateUtils.getCurMondayOrSunday("Monday","");
+        String perdFnsDate = getCurSunday();    // CommonDateUtils.getCurMondayOrSunday("Sunday","");
 
         Date now = new Date();
         String voteDate = DateFormatUtils.format(now, "yyyyMMddHHmmss");
@@ -151,8 +153,8 @@ public class VoteItemStatsHstByWlyTask {
 
         for (Node voteBasInfo : voteBasInfoList) {
 
-            String perdStDate = getCurMonday(targetDate);
-            String perdFnsDate = getCurSunday(targetDate);
+            String perdStDate = getCurMonday(targetDate);       // CommonDateUtils.getCurMondayOrSunday("Monday",targetDate);
+            String perdFnsDate = getCurSunday(targetDate);      // CommonDateUtils.getCurMondayOrSunday("Sunday",targetDate);
 
             List<Map<String, Object>> voteItemCntInfoList
                     = voteItemHstList(voteBasInfo.getId(), perdStDate.replaceAll("-", ""), perdFnsDate.replaceAll("-", ""));
