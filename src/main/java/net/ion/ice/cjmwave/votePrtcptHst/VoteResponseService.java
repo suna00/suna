@@ -347,7 +347,7 @@ public class VoteResponseService {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
         }
         //String voteNumSQL = "SELECT count(*) AS voteNum FROM " + voteSeq + "_voteHstByMbr";
-        String voteNumSQL = "select sum(voteNum) as voteNum from voteItemStats where voteSeq =" + voteSeq;
+        String voteNumSQL = "select sum(voteNum) as voteNum from voteBasStatsByDay where voteSeq =" + voteSeq;
 
         Map voteNumMap = jdbcTemplate.queryForMap(voteNumSQL);
 

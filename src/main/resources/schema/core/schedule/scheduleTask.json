@@ -34,7 +34,7 @@
     "name" : "voteItemStats Schedule Task",
     "type" : "cron",
     "config" : "0 */6 * * * *",
-    "enable" : false,
+    "enable" : true,
     "actionType" : "service",
     "actionBody" : "voteItemStatsTask.voteItemStatsJob"
   },
@@ -43,7 +43,7 @@
     "id": "voteBasStatsDayJob",
     "name": "day voteBasStatsDay set Schedule",
     "type": "cron",
-    "config": "0 */2 * * * *",
+    "config": "0 */1 * * * *",
     "enable": true,
     "actionType": "service",
     "actionBody": "voteDayCntryService.voteBasStatsDayJob"

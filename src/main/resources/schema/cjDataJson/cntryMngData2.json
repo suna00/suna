@@ -1,0 +1,10 @@
+[
+  {
+    "typeId": "cntryMng",
+    "cntryId": "OTHER",
+    "cntryNm": "OTHER",
+    "cntryImgPath": "/home/ion/cms/JsonData/otherTemp.png",
+    "useYn": true,
+    "sortOdrg": 51
+  }
+]

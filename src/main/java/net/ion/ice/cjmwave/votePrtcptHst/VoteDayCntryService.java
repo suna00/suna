@@ -231,6 +231,7 @@ public class VoteDayCntryService {
                                 , lastSeq, limitCnt);
                 logger.info(voteSeq + "===============> voteSeqList ::" + voteSeqList.size());
 
+                /* 국가코드가 없거나, 잘못된 국가코드에 대한 처리가 없는 쿼리
                 List<Map<String, Object>> voteMbrNumList =
                         jdbcTemplate_replica.queryForList("select cntryCd, voteDate, count(*) voteNum\n" +
                                         "from (\n" +
@@ -243,8 +244,26 @@ public class VoteDayCntryService {
                                         "        AND b.cntryCd IS NOT NULL\n" +
                                         ") t\n" +
                                         " group by cntryCd, voteDate"
+                                , lastSeq, limitCnt);*/
+                List<Map<String, Object>> voteMbrNumList =
+                        jdbcTemplate_replica.queryForList("select if(length(cntryCd)!=3, 'OTHER', ifnull(cntryCd,'OTHER') ) as cntryCd, voteDate, sum(voteNum) voteNum from (\n" +
+                                        "  SELECT\n" +
+                                        "    cntryCd, voteDate, count(*) voteNum\n" +
+                                        "  FROM (\n" +
+                                        "         SELECT\n" +
+                                        "           b.cntryCd,\n" +
+                                        "           a.voteDate\n" +
+                                        "         FROM ( SELECT *\n" +
+                                        "               FROM " + tableNm + " \n" +
+                                        "               WHERE seq > ?\n" +
+                                        "               ORDER BY seq LIMIT ? ) a, mbrInfo b\n" +
+                                        "         WHERE substring_index(a.mbrId, '>', 1) = b.snsTypeCd\n" +
+                                        "               AND substring_index(a.mbrId, '>', -1) = b.snsKey\n" +
+                                        "       ) t\n" +
+                                        "  GROUP BY cntryCd, voteDate\n" +
+                                        ") total\n" +
+                                        "group by if(length(cntryCd)!=3, 'OTHER', ifnull(cntryCd,'OTHER') ),voteDate "
                                 , lastSeq, limitCnt);
-
                 logger.info(voteSeq + "===============> voteMbrNumList ::" + voteMbrNumList.size());
 
                 for (int i = 0; i < voteSeqList.size(); i++) {

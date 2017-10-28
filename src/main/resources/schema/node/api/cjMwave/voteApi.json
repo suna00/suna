@@ -1599,7 +1599,7 @@
           },
           {
             "page": "{{:page}}",
-            "pageSize": "100"
+            "pageSize": "55"
           }
         ]
       },
