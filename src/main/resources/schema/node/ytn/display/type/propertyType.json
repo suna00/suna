@@ -1648,9 +1648,9 @@
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "sortable" : true,
+    "sortable" : false,
     "referenceType": "category",
-    "referenceValue": "",
+    "referenceValue": "categoryId",
     "codeFilter": "",
     "defaultValue": ""
   },

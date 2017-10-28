@@ -23,6 +23,6 @@
     "typeName": "리소스",
     "tableName": "ytnDevDb#commonResource",
     "repositoryType": "node",
-    "eviction": 0
+    "eviction": 100000
   }
 ]
