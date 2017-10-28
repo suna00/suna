@@ -9,7 +9,7 @@
       "duplicated": { "value": false, "description": "" },
       "min": { "value": 0, "description": "최소 값 입니다." },
       "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "" },
+      "extension": { "value": "", "description": "" },
       "regularExpression": { "value": "", "description": "" }
     }
   },
@@ -23,7 +23,7 @@
       "duplicated": { "value": false, "description": "" },
       "min": { "value": 0, "description": "최소 값 입니다." },
       "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "" },
+      "extension": { "value": "", "description": "" },
       "regularExpression": { "value": "", "description": "" }
     }
   }
