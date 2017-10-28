@@ -38,10 +38,10 @@ public class VoteDayCntryService {
     * */
     public void voteBasStatsCntryJob() {
 
-        voteCntryProcess(null);
+        voteCntryProcess();
     }
 
-    private void voteCntryProcess(Calendar paramCal) {
+    private void voteCntryProcess() {
         if (jdbcTemplate == null) {
             //jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
             jdbcTemplate = dbService.getJdbcTemplate("authDb");
@@ -52,7 +52,8 @@ public class VoteDayCntryService {
         }
 
         Date now = new Date();
-        Calendar cal = null;
+        String voteDateTime = DateFormatUtils.format(now, "yyyyMMddHHmmss");
+        /*Calendar cal = null;
         if(paramCal != null){
             cal = paramCal;
         }else{
@@ -69,16 +70,23 @@ public class VoteDayCntryService {
         cal.add(Calendar.DATE, 7);
         cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
         String sunDay = DateFormatUtils.format(cal, "yyyyMMdd");
-        String saveSun = DateFormatUtils.format(cal, "yyyy-MM-dd");
+        String saveSun = DateFormatUtils.format(cal, "yyyy-MM-dd");*/
 
         try {
 
             //1. voteBasStatsByDayToCntry 테이블 전체 delete
-            Integer deleteCnt = jdbcTemplate.update("DELETE FROM cntryVoteStatsByVote where perdStDate = ? and perdFnsDate = ?",saveMon,saveSun);
-            logger.info("===============> delete1  cntryVoteStatsByVote:: " + deleteCnt+", saveMon = "+saveMon+", saveSun = "+saveSun);
+            //Integer deleteCnt = jdbcTemplate.update("DELETE FROM cntryVoteStatsByVote where perdStDate = ? and perdFnsDate = ?",saveMon,saveSun);
+            //logger.info("===============> delete1  cntryVoteStatsByVote:: " + deleteCnt+", saveMon = "+saveMon+", saveSun = "+saveSun);
 
+            //1. voteBasStatsByDayToCntry 에서 진행중인 voteSeq 만  delete 10-28 leehh 주별 통계가 아니라 전체통계로 변경되면서 수정함
+            // 투표 기간안에 있는 모든 VoteBasInfo 조회
+            List<Node> voteBasInfoList = NodeUtils.getNodeList(VOTE_BAS_INFO, "pstngStDt_below=" + voteDateTime + "&pstngFnsDt_above=" + voteDateTime);
+            for (Node voteBasInfo : voteBasInfoList) {
+                Integer deleteCnt = jdbcTemplate.update("DELETE FROM cntryVoteStatsByVote where voteSeq = ? ",voteBasInfo.getId());
+                logger.info("===============> delete1  cntryVoteStatsByVote:: " + deleteCnt+", voteSeq = "+voteBasInfo.getId());
+            }
             //2. voteBasStatsByDayToCntry 테이블에서 월~일요일 날짜 까지 가져온다
-            String totalListQuery = "SELECT a.voteSeq, a.cntryCd, a.voteNum, b.totalVoteNum " +
+            /*String totalListQuery = "SELECT a.voteSeq, a.cntryCd, a.voteNum, b.totalVoteNum " +
                     " FROM ( SELECT voteSeq, cntryCd, sum(voteNum) AS voteNum " +
                     " FROM voteBasStatsByDayToCntry WHERE voteDay >=? AND voteDay <=? " +
                     " GROUP BY voteSeq, cntryCd) a LEFT OUTER JOIN " +
@@ -87,7 +95,17 @@ public class VoteDayCntryService {
                     " GROUP BY voteSeq) b " +
                     " ON a.voteSeq = b.voteSeq " +
                     " ORDER BY a.voteSeq, a.voteNum desc ";
-            List<Map<String, Object>> voteCntryStatsList = jdbcTemplate.queryForList(totalListQuery, monDay, sunDay, monDay, sunDay);
+            List<Map<String, Object>> voteCntryStatsList = jdbcTemplate.queryForList(totalListQuery, monDay, sunDay, monDay, sunDay);*/
+            //2. voteBasStatsByDayToCntry 테이블에서 투표별로 데이터를 가져온다
+            String totalListQuery = "SELECT voteSeq, cntryCd, sum(voteNum) AS voteNum " +
+                    " FROM voteBasStatsByDayToCntry " +
+                    " GROUP BY voteSeq, cntryCd) a LEFT OUTER JOIN " +
+                    " (SELECT voteSeq, sum(voteNum) AS totalVoteNum " +
+                    " FROM voteBasStatsByDayToCntry " +
+                    " GROUP BY voteSeq) b " +
+                    " ON a.voteSeq = b.voteSeq " +
+                    " ORDER BY a.voteSeq, a.voteNum desc ";
+            List<Map<String, Object>> voteCntryStatsList = jdbcTemplate.queryForList(totalListQuery);
             logger.info("===============> voteCntryStatsList :: " + voteCntryStatsList);
 
             if (voteCntryStatsList != null && voteCntryStatsList.size() > 0) {
@@ -116,12 +134,18 @@ public class VoteDayCntryService {
                     BigDecimal totalCnt = new BigDecimal(totalVoteNum);
                     BigDecimal voteRate = voteCnt.divide(totalCnt, 1, BigDecimal.ROUND_HALF_UP);
 
-                    //3. voteBasStatsByDayToCntry 테이블에 insert
+                    /*//3. voteBasStatsByDayToCntry 테이블에 insert
                     String insertVoteCntryQuery = "INSERT INTO cntryVoteStatsByVote " +
                             "(perdStDate, perdFnsDate, voteSeq, cntryCd, rankNum, voteRate, voteNum, owner, created) " +
                             "VALUES(?,?,?,?,?,?,?,?,?)";
                     Integer insertCnt = jdbcTemplate.update(insertVoteCntryQuery,
-                            saveMon, saveSun, Integer.parseInt(voteSeq), cntryCd, rankNum, voteRate, voteNum, "system", now);
+                            saveMon, saveSun, Integer.parseInt(voteSeq), cntryCd, rankNum, voteRate, voteNum, "system", now);*/
+                    //3. voteBasStatsByDayToCntry 테이블에 insert, 주간 기준 삭제함 10-28 leehh
+                    String insertVoteCntryQuery = "INSERT INTO cntryVoteStatsByVote " +
+                            "(voteSeq, cntryCd, rankNum, voteRate, voteNum, owner, created) " +
+                            "VALUES(?,?,?,?,?,?,?)";
+                    Integer insertCnt = jdbcTemplate.update(insertVoteCntryQuery,
+                            Integer.parseInt(voteSeq), cntryCd, rankNum, voteRate, voteNum, "system", now);
 
                     rankNum++; //다음을 위해 +1 새로운 voteSeq가 왔을땐 다시 1부터 시작
                 }
@@ -141,25 +165,8 @@ public class VoteDayCntryService {
     * */
     public void voteBasStatsCntryEvt(ExecuteContext context) {
         logger.info("voteDayCntryService.voteBasStatsCntryEvt manual!!!!!!");
-        Calendar paramCal = Calendar.getInstance();
-        Map<String, Object> data = context.getData();
-        if (data.get("paramDate") != null) {//파라미터로 전달된 날짜가 있으면 변경
-            //try {
 
-                String paramDtStr = data.get("paramDate").toString();
-                String[] dateArr = paramDtStr.split("-");
-                String year =dateArr[0];
-                String mon = dateArr[1];
-                String day = dateArr[2];
-            logger.error("voteDayCntryService.voteBasStatsCntryEvt paramDate : "+data.get("paramDate").toString()+", parse year="+year+",mon="+mon+", day="+day);
-                paramCal.set(Integer.parseInt(year), Integer.parseInt(mon)-1, Integer.parseInt(day));
-                logger.info("voteDayCntryService.voteBasStatsCntryEvt : paramDate ="+ data.get("paramDate").toString()+", calendar = "+DateFormatUtils.format(paramCal, "yyyy-MM-dd"));
-            //}catch (ParseException e){
-                //logger.error("Failed to voteDayCntryService.voteBasStatsCntryEvt : "+e);
-            //}
-        }
-
-        voteCntryProcess(paramCal);
+        voteCntryProcess();
 
         Map<String, Object> returnMap = new ConcurrentHashMap<>();
         returnMap.put("event", "voteBasStatsCntryEvt 성공");
@@ -172,7 +179,7 @@ public class VoteDayCntryService {
     * voteSeq 기준으로 매일의 voteNum을 계속 쌓는다.
     * */
     public void voteBasStatsDayJob() {
-        Integer limitCnt = 20000;
+        Integer limitCnt = 100000;
         voteStatsDayProcess(limitCnt);
     }
 
@@ -210,7 +217,7 @@ public class VoteDayCntryService {
                 Map<String, Object> lastSeqInfo = getVoteBasByLastSeq(voteSeq);
                 if (lastSeqInfo != null) {
                     lastSeq = Integer.parseInt(lastSeqInfo.get("seq").toString());
-                }else{
+                } else {
                     continue;
                 }
                 logger.info(voteSeq + "===============> voteSeq별 라스트 시퀀스 쌓는 테이블 조회결과 :: lastSeqInfo" + lastSeqInfo);
