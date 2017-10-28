@@ -43,11 +43,9 @@ public class VoteDayCntryService {
 
     private void voteCntryProcess() {
         if (jdbcTemplate == null) {
-            //jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
             jdbcTemplate = dbService.getJdbcTemplate("authDb");
         }
         if (jdbcTemplate_replica == null) {
-            //jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
             jdbcTemplate_replica = dbService.getJdbcTemplate("authDbReplica");
         }
 
@@ -80,7 +78,7 @@ public class VoteDayCntryService {
 
             //1. voteBasStatsByDayToCntry 에서 진행중인 voteSeq 만  delete 10-28 leehh 주별 통계가 아니라 전체통계로 변경되면서 수정함
             // 투표 기간안에 있는 모든 VoteBasInfo 조회
-            List<Node> voteBasInfoList = NodeUtils.getNodeList(VOTE_BAS_INFO, "pstngStDt_below=" + voteDateTime + "&pstngFnsDt_above=" + voteDateTime);
+            List<Node> voteBasInfoList = NodeUtils.getNodeService().getNodeList(VOTE_BAS_INFO, "pstngStDt_below=" + voteDateTime + "&pstngFnsDt_above=" + voteDateTime);
             for (Node voteBasInfo : voteBasInfoList) {
                 Integer deleteCnt = jdbcTemplate.update("DELETE FROM cntryVoteStatsByVote where voteSeq = ? ",voteBasInfo.getId());
                 logger.info("===============> delete1  cntryVoteStatsByVote:: " + deleteCnt+", voteSeq = "+voteBasInfo.getId());
@@ -97,11 +95,12 @@ public class VoteDayCntryService {
                     " ORDER BY a.voteSeq, a.voteNum desc ";
             List<Map<String, Object>> voteCntryStatsList = jdbcTemplate.queryForList(totalListQuery, monDay, sunDay, monDay, sunDay);*/
             //2. voteBasStatsByDayToCntry 테이블에서 투표별로 데이터를 가져온다
-            String totalListQuery = "SELECT voteSeq, cntryCd, sum(voteNum) AS voteNum " +
-                    " FROM voteBasStatsByDayToCntry " +
+            String totalListQuery =  "SELECT a.voteSeq, a.cntryCd, a.voteNum, b.totalVoteNum " +
+                    " FROM ( SELECT voteSeq, cntryCd, sum(voteNum) AS voteNum " +
+                    " FROM voteBasStatsByDayToCntry  " +
                     " GROUP BY voteSeq, cntryCd) a LEFT OUTER JOIN " +
                     " (SELECT voteSeq, sum(voteNum) AS totalVoteNum " +
-                    " FROM voteBasStatsByDayToCntry " +
+                    " FROM voteBasStatsByDayToCntry  " +
                     " GROUP BY voteSeq) b " +
                     " ON a.voteSeq = b.voteSeq " +
                     " ORDER BY a.voteSeq, a.voteNum desc ";
@@ -185,11 +184,9 @@ public class VoteDayCntryService {
 
     private void voteStatsDayProcess(int cnt) {
         if (jdbcTemplate == null) {
-            //jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
             jdbcTemplate = dbService.getJdbcTemplate("authDb");
         }
         if (jdbcTemplate_replica == null) {
-            //jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
             jdbcTemplate_replica = dbService.getJdbcTemplate("authDbReplica");
         }
 
@@ -205,7 +202,7 @@ public class VoteDayCntryService {
         try {
 
             // 투표 기간안에 있는 모든 VoteBasInfo 조회
-            voteBasInfoList = NodeUtils.getNodeList(VOTE_BAS_INFO, "pstngStDt_below=" + voteDateTime + "&pstngFnsDt_above=" + voteDateTime);
+            voteBasInfoList = NodeUtils.getNodeService().getNodeList(VOTE_BAS_INFO, "pstngStDt_below=" + voteDateTime + "&pstngFnsDt_above=" + voteDateTime);
             for (Node voteBasInfo : voteBasInfoList) {
 
                 Integer voteSeq = Integer.parseInt(voteBasInfo.getId().toString());
@@ -218,7 +215,7 @@ public class VoteDayCntryService {
                 if (lastSeqInfo != null) {
                     lastSeq = Integer.parseInt(lastSeqInfo.get("seq").toString());
                 } else {
-                    continue;
+                    lastSeq = 0;
                 }
                 logger.info(voteSeq + "===============> voteSeq별 라스트 시퀀스 쌓는 테이블 조회결과 :: lastSeqInfo" + lastSeqInfo);
                 //logger.info("===============> voteSeq별 라스트 시퀀스 쌓는 테이블 조회결과 :: lastSeq" + lastSeq);
@@ -289,7 +286,13 @@ public class VoteDayCntryService {
 
 
                 //돌고나서 제일 마지막~일때 라스트 시퀀스 저장 혹은 갱신
-                Integer newLastSeq = Integer.parseInt(voteMbrList.get(voteMbrList.size() - 1).get("seq").toString());
+                Integer newLastSeq = 0;
+                if(voteMbrList.size() > 0){
+                    newLastSeq = Integer.parseInt(voteMbrList.get(voteMbrList.size() - 1).get("seq").toString());
+                }else{
+                    newLastSeq = 0;
+                }
+
                 //해당 _voteHstByMbr 테이블에 마지막 seq를 저장
                 logger.info("===============> 마지막 시퀀스 갱신 시작 :: lastListSeq" + newLastSeq);
                 Integer dayLstSeqCnt = 0;
