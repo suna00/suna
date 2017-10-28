@@ -1307,7 +1307,8 @@
     "indexable": true,
     "analyzer": "code",
     "referenceType": "gnb",
-    "referenceValue": "gnbId",
+    "referenceValue": "upperId",
+    "referencedFilter": "sorting=sortOrder asc",
     "defaultValue": ""
   },
   {
