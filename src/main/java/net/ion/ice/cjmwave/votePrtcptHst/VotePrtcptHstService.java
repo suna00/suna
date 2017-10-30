@@ -886,9 +886,6 @@ public class VotePrtcptHstService {
             throw new ApiException("423", errMsgUtil.getErrMsg(context,"423"));
         }
 
-        // 접근 IP 관리 테이블에 등록
-//        executeQuery(insertIpDclaCnt, voteDate, connIpAdr, now);
-        jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now);
         // 접근 IP Count 관리 Map에 등록
         voteIPCntMap.put(connIpAdr+">"+voteDate, mbrIpDclaCnt+1);
 
@@ -910,6 +907,13 @@ public class VotePrtcptHstService {
         Integer contnuEventVoteRstrtnCnt = seriesVoteBasInfo.getIntValue("contnuEventVoteRstrtnCnt");
         if (dayEventVoteRstrtnCnt>0) {
             addEvtVoteNum(now, mbrId, dayEventVoteRstrtnCnt, contnuEventVoteRstrtnCnt);
+        }
+
+        // 접근 IP 관리 테이블에 등록
+//        executeQuery(insertIpDclaCnt, voteDate, connIpAdr, now);
+//        jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now);
+        for (Map<String, Object> voteData : insertList) {
+            jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now, Integer.parseInt(voteData.get("voteSeq").toString()));
         }
 
         // 투표 등록
