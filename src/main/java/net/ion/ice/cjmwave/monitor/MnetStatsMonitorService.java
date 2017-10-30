@@ -27,7 +27,7 @@ public class MnetStatsMonitorService {
     @PostConstruct
     public void init(){
         try{
-            authReplicaTemplate = dbService.getJdbcTemplate("authReplica");
+            authReplicaTemplate = dbService.getJdbcTemplate("authDbReplica");
         } catch (Exception e) {
             logger.error("Stat Monitoring function disabled, since :: ", e);
         }
