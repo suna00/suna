@@ -118,10 +118,12 @@ public class VotePrtcptHstService {
         List<Node> dclaNodeList = nodeService.getNodeList("dclaSetupMng", searchText);
         Node dclaNode = dclaNodeList.get(0);
         Integer ipDclaCnt = dclaNode.getIntValue("setupBaseCnt");
+        Integer ipAdrVoteCnt = dclaNode.getIntValue("ipAdrVoteCnt");
 
-//        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, Integer.parseInt(data.get(VOTE_SEQ).toString()));
-        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, -1);   // 2017.10.30 이금춘 일단 원복...
-        if (mbrIpDclaCnt >= ipDclaCnt) {
+        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, Integer.parseInt(data.get(VOTE_SEQ).toString()));
+//        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, -1);   // 2017.10.30 이금춘 일단 원복...
+//        if (mbrIpDclaCnt >= ipDclaCnt) {
+        if (mbrIpDclaCnt >= ipAdrVoteCnt) {
             // This IP connection has exceeded the maximum number.
             throw new ApiException("421", errMsgUtil.getErrMsg(context,"421"));
         }
@@ -323,10 +325,12 @@ public class VotePrtcptHstService {
         Node dclaNode = dclaNodeList.get(0);
 
         Integer ipDclaCnt = dclaNode.getIntValue("setupBaseCnt");
+        Integer ipAdrVoteCnt = dclaNode.getIntValue("ipAdrVoteCnt");
         // 접근 IP 관리
 //        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, Integer.parseInt(seriesVoteBasInfo.get("voteSeq").toString()));
         Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, -1);    // 2017.10.30 이금춘 일단 원복...
-        if (mbrIpDclaCnt >= ipDclaCnt) {
+//        if (mbrIpDclaCnt >= ipDclaCnt) {
+        if (mbrIpDclaCnt >= ipAdrVoteCnt) {
             // This IP connection has exceeded the maximum number.
             throw new ApiException("421", errMsgUtil.getErrMsg(context,"421"));
         }
@@ -626,8 +630,8 @@ public class VotePrtcptHstService {
         // ========================================================================================================
         // Checking Available IP with mbrId and voteSeq
         Integer ipDclaCnt = dclaNode.getIntValue("setupBaseCnt");
-//        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, voteNum);
-        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, -1);   // 2017.10.30 이금춘 일단 원복...
+        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, voteNum);
+//        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, -1);   // 2017.10.30 이금춘 일단 원복...
         if (mbrIpDclaCnt >= ipDclaCnt) {
             // This IP connection has exceeded the maximum number.
             throw new ApiException("421", errMsgUtil.getErrMsg(context,"421"));
@@ -685,8 +689,8 @@ public class VotePrtcptHstService {
             return null;
         }
     }
-//    String insertIpDclaCnt = "INSERT INTO voteHstByIp (voteDate, ipAdr, created, voteSeq) VALUES(?,?,?,?)";
-    String insertIpDclaCnt = "INSERT INTO voteHstByIp (voteDate, ipAdr, created) VALUES(?,?,?)";    // 2017.10.30 이금춘 일단 원복...
+    String insertIpDclaCnt = "INSERT INTO voteHstByIp (voteDate, ipAdr, created, voteSeq) VALUES(?,?,?,?)";
+//    String insertIpDclaCnt = "INSERT INTO voteHstByIp (voteDate, ipAdr, created) VALUES(?,?,?)";    // 2017.10.30 이금춘 일단 원복...
 
     // [IF-MEV-003] sponsor 투표
     public void sponsorEvtVoting(ExecuteContext context) {
@@ -786,11 +790,12 @@ public class VotePrtcptHstService {
         Node dclaNode = dclaNodeList.get(0);
 
         Integer ipDclaCnt = dclaNode.getIntValue("setupBaseCnt");
+        Integer ipAdrVoteCnt = dclaNode.getIntValue("ipAdrVoteCnt");
 
-
-//        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, Integer.parseInt(seriesVoteBasInfo.get("voteSeq").toString()));
-        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, -1);    // 2017.10.30 이금춘 일단 원복...
-        if (mbrIpDclaCnt >= ipDclaCnt) {
+        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, Integer.parseInt(seriesVoteBasInfo.get("voteSeq").toString()));
+//        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, -1);    // 2017.10.30 이금춘 일단 원복...
+//        if (mbrIpDclaCnt >= ipDclaCnt) {
+        if (mbrIpDclaCnt >= ipAdrVoteCnt) {
             // This IP connection has exceeded the maximum number.
             throw new ApiException("421", errMsgUtil.getErrMsg(context,"421"));
         }
