@@ -71,7 +71,7 @@ aws:
 
 image:
   prefixUrl: http://test-api-elb-334897221.ap-northeast-2.elb.amazonaws.com/image/
-  s3PrefixUrl: https://cmsimg.mwave.me/
+  s3PrefixUrl: https://cjmwave-dev.s3.ap-northeast-2.amazonaws.com/ion/
 
 mobile:
   push:
