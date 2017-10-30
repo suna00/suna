@@ -545,6 +545,23 @@
   {
     "typeId": "propertyType",
     "tid": "voteBasInfo",
+    "pid": "ipRstrtnCnt",
+    "id": "voteBasInfo>ipRstrtnCnt",
+    "propertyTypeName": "IP 제한 갯수",
+    "valueType": "INT",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "voteBasInfo",
     "pid": "mwmcUnearnedWinYn",
     "id": "voteBasInfo>mwmcUnearnedWinYn",
     "propertyTypeName": "MWave MusicChart 부전승 여부",
