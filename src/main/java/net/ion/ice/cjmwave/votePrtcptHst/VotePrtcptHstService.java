@@ -178,7 +178,8 @@ public class VotePrtcptHstService {
 
             // 접근 IP 관리 테이블에 등록
 //            executeQuery(insertIpDclaCnt, voteDate, connIpAdr, now);
-            jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now);
+//            jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now);
+            jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now, Integer.parseInt(data.get(VOTE_SEQ).toString()));
             // 접근 IP Count 관리 Map에 등록
             voteIPCntMap.put(connIpAdr+">"+voteDate, mbrIpDclaCnt+1);
 
