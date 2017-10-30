@@ -452,7 +452,18 @@ public class NodeUtils {
             case BOOLEAN: {
                 if (value instanceof Boolean) {
                     return value;
+                } else if(value instanceof Number){
+                    if(((Number)value).intValue() == 1){
+                        return Boolean.TRUE ;
+                    }else{
+                        return Boolean.FALSE ;
+                    }
                 } else {
+                    if(value.toString().equals("1")){
+                        return Boolean.TRUE ;
+                    }else if(value.toString().equals("2")){
+                        return Boolean.FALSE ;
+                    }
                     return BooleanUtils.toBoolean(value.toString());
                 }
             }
