@@ -685,7 +685,8 @@ public class VotePrtcptHstService {
             return null;
         }
     }
-    String insertIpDclaCnt = "INSERT INTO voteHstByIp (voteDate, ipAdr, created, voteSeq) VALUES(?,?,?,?)";
+//    String insertIpDclaCnt = "INSERT INTO voteHstByIp (voteDate, ipAdr, created, voteSeq) VALUES(?,?,?,?)";
+    String insertIpDclaCnt = "INSERT INTO voteHstByIp (voteDate, ipAdr, created) VALUES(?,?,?)";    // 2017.10.30 이금춘 일단 원복...
 
     // [IF-MEV-003] sponsor 투표
     public void sponsorEvtVoting(ExecuteContext context) {
