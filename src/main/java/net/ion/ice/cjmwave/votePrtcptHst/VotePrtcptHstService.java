@@ -310,6 +310,7 @@ public class VotePrtcptHstService {
 
             Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, Integer.parseInt(voteData.get("voteSeq").toString()));
 //        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, -1);    // 2017.10.30 이금춘 일단 원복...
+            logger.info(mbrIpDclaCnt + "===================="+ipRstrtnCnt);
             if (mbrIpDclaCnt >= ipRstrtnCnt) {
                 // This IP connection has exceeded the maximum number.
                 throw new ApiException("421", errMsgUtil.getErrMsg(context,"421"));
@@ -407,9 +408,6 @@ public class VotePrtcptHstService {
             throw new ApiException("423", errMsgUtil.getErrMsg(context,"423"));
         }
 
-        // 접근 IP 관리 테이블에 등록
-//        executeQuery(insertIpDclaCnt, voteDate, connIpAdr, now);
-        jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now);
         // 접근 IP Count 관리 Map에 등록
         voteIPCntMap.put(connIpAdr+">"+voteDate, mbrIpDclaCnt+1);
 
@@ -435,7 +433,10 @@ public class VotePrtcptHstService {
 
         // 접근 IP 관리 테이블에 등록
 //        executeQuery(insertIpDclaCnt, voteDate, connIpAdr, now);
-         jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now);
+//         jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now);
+        for (Map<String, Object> voteData : insertList) {
+            jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now, voteData.get(VOTE_SEQ));
+        }
         // 접근 IP Count 관리 Map에 등록
         voteIPCntMap.put(connIpAdr+">"+voteDate, mbrIpDclaCnt+1);
 
