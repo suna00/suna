@@ -118,12 +118,13 @@ public class VotePrtcptHstService {
         List<Node> dclaNodeList = nodeService.getNodeList("dclaSetupMng", searchText);
         Node dclaNode = dclaNodeList.get(0);
         Integer ipDclaCnt = dclaNode.getIntValue("setupBaseCnt");
-        Integer ipAdrVoteCnt = dclaNode.getIntValue("ipAdrVoteCnt");
+        Integer ipRstrtnCnt = voteBasInfo.getIntValue("ipRstrtnCnt");
 
         Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, Integer.parseInt(data.get(VOTE_SEQ).toString()));
 //        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, -1);   // 2017.10.30 이금춘 일단 원복...
 //        if (mbrIpDclaCnt >= ipDclaCnt) {
-        if (mbrIpDclaCnt >= ipAdrVoteCnt) {
+        logger.info("mbrIpDclaCnt " + mbrIpDclaCnt + " : " + ipRstrtnCnt);
+        if (mbrIpDclaCnt >= ipRstrtnCnt) {
             // This IP connection has exceeded the maximum number.
             throw new ApiException("421", errMsgUtil.getErrMsg(context,"421"));
         }
@@ -291,6 +292,8 @@ public class VotePrtcptHstService {
         Node seriesVoteBasInfo = null;
         String mbrId = null;
 
+        String voteDate = DateFormatUtils.format(now, "yyyyMMdd");          // 투표 진행일 (현재날짜)
+
         List<Map<String, Object>> insertList = synchronizedList(new ArrayList());
         for (Map<String, Object> voteData : reqJson) {
             if (seriesVoteBasInfo == null) {
@@ -300,10 +303,21 @@ public class VotePrtcptHstService {
             if (mbrId==null || mbrId.length()<=0) {
                 mbrId = voteData.get(PRTCP_MBR_ID).toString();
             }
+
+            Node voteBasInfo = NodeUtils.getNode(VOTE_BAS_INFO, voteData.get(VOTE_SEQ).toString());
+            Integer ipRstrtnCnt = voteBasInfo.getIntValue("ipRstrtnCnt");
+
+            Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, Integer.parseInt(voteData.get("voteSeq").toString()));
+//        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, -1);    // 2017.10.30 이금춘 일단 원복...
+            if (mbrIpDclaCnt >= ipRstrtnCnt) {
+                // This IP connection has exceeded the maximum number.
+                throw new ApiException("421", errMsgUtil.getErrMsg(context,"421"));
+            }
+
             insertList.add(voteData);
         }
 
-        String voteDate = DateFormatUtils.format(now, "yyyyMMdd");          // 투표 진행일 (현재날짜)
+
         String pstngStDt = seriesVoteBasInfo.getStringValue("pstngStDt");
         if (pstngStDt.length()>0) {
             pstngStDt = pstngStDt.substring(0, 8);   // 투표 시작일
@@ -325,15 +339,15 @@ public class VotePrtcptHstService {
         Node dclaNode = dclaNodeList.get(0);
 
         Integer ipDclaCnt = dclaNode.getIntValue("setupBaseCnt");
-        Integer ipAdrVoteCnt = dclaNode.getIntValue("ipAdrVoteCnt");
+//        Integer ipRstrtnCnt = dclaNode.getIntValue("ipRstrtnCnt");
+//        Integer ipRstrtnCnt = voteBasInfo.getIntValue("ipRstrtnCnt");
         // 접근 IP 관리
         Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, Integer.parseInt(seriesVoteBasInfo.get("voteSeq").toString()));
 //        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, -1);    // 2017.10.30 이금춘 일단 원복...
 //        if (mbrIpDclaCnt >= ipDclaCnt) {
-        if (mbrIpDclaCnt >= ipAdrVoteCnt) {
-            // This IP connection has exceeded the maximum number.
-            throw new ApiException("421", errMsgUtil.getErrMsg(context,"421"));
-        }
+//            // This IP connection has exceeded the maximum number.
+//            throw new ApiException("421", errMsgUtil.getErrMsg(context,"421"));
+//        }
 
         Long pstngStDtTime = 0L;    // 투표 시작일 (DateTime)
         Long pstngFnsDtTime = 0L;   // 투표 종료일 (DateTime)
@@ -662,7 +676,8 @@ public class VotePrtcptHstService {
 
         // 접근 IP 관리 테이블에 등록
 //        executeQuery(insertIpDclaCnt, voteDate, connIpAdr, now);
-        jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now);
+//        jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now);
+        jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now, voteNum);
         voteIPCntMap.put(connIpAdr+">"+voteDate, mbrIpDclaCnt+1);
 
         //node create
@@ -735,6 +750,8 @@ public class VotePrtcptHstService {
         String mbrId = null;
         boolean infoOttpAgreeYn = Boolean.parseBoolean(data.get("infoOttpAgreeYn").toString());
 
+        String voteDate = DateFormatUtils.format(now, "yyyyMMdd");          // 투표 진행일 (현재날짜)
+
         List<Map<String, Object>> insertList = synchronizedList(new ArrayList());
         for (Map<String, Object> voteData : reqJson) {
             if (seriesVoteBasInfo == null) {
@@ -744,6 +761,17 @@ public class VotePrtcptHstService {
             if (mbrId==null || mbrId.length()<=0) {
                 mbrId = voteData.get(PRTCP_MBR_ID).toString();
             }
+
+            Node voteBasInfo = NodeUtils.getNode(VOTE_BAS_INFO, voteData.get(VOTE_SEQ).toString());
+            Integer ipRstrtnCnt = voteBasInfo.getIntValue("ipRstrtnCnt");
+
+            Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, Integer.parseInt(voteData.get("voteSeq").toString()));
+//        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, -1);    // 2017.10.30 이금춘 일단 원복...
+            if (mbrIpDclaCnt >= ipRstrtnCnt) {
+                // This IP connection has exceeded the maximum number.
+                throw new ApiException("421", errMsgUtil.getErrMsg(context,"421"));
+            }
+
             insertList.add(voteData);
         }
 
@@ -768,8 +796,6 @@ public class VotePrtcptHstService {
             Node result = (Node) NodeUtils.getNodeService().executeNode(data, "mbrInfo", EventService.SAVE);
             context.setResult(result);
         }
-
-        String voteDate = DateFormatUtils.format(now, "yyyyMMdd");          // 투표 진행일 (현재날짜)
 
         String pstngStDt = seriesVoteBasInfo.getStringValue("pstngStDt");
         if (pstngStDt.length()>0) {
