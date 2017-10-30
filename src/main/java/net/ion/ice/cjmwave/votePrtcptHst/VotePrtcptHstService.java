@@ -7,17 +7,14 @@ import net.ion.ice.core.api.ApiException;
 import net.ion.ice.core.cluster.ClusterService;
 import net.ion.ice.core.cluster.JdbcSqlData;
 import net.ion.ice.core.context.ExecuteContext;
-import net.ion.ice.core.data.bind.NodeBindingUtils;
 import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
-import net.ion.ice.core.node.PropertyType;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.FastDateFormat;
-import org.infinispan.commons.util.ByRef;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,14 +40,14 @@ public class VotePrtcptHstService {
 
     private ErrMsgUtil errMsgUtil = new ErrMsgUtil();
 
-    public static final String VOTE_BAS_INFO = "voteBasInfo";
-    public static final String VOTE_SEQ = "voteSeq";
+    private static final String VOTE_BAS_INFO = "voteBasInfo";
+    private static final String VOTE_SEQ = "voteSeq";
 
-    public static final String VOTE_ITEM_INFO = "voteItemInfo";
-    public static final String VOTE_ITEM_SEQ = "voteItemSeq";
+    private static final String VOTE_ITEM_INFO = "voteItemInfo";
+    private static final String VOTE_ITEM_SEQ = "voteItemSeq";
 
-    public static final String PRTCP_MBR_ID = "prtcpMbrId";
-    public static final String CONN_IP_ADR = "connIpAdr";
+    private static final String PRTCP_MBR_ID = "prtcpMbrId";
+    private static final String CONN_IP_ADR = "connIpAdr";
 
     @Autowired
     private NodeService nodeService;
@@ -122,7 +119,8 @@ public class VotePrtcptHstService {
         Node dclaNode = dclaNodeList.get(0);
         Integer ipDclaCnt = dclaNode.getIntValue("setupBaseCnt");
 
-        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate);
+//        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, Integer.parseInt(data.get(VOTE_SEQ).toString()));    // 2017.10.30 이금춘 일단 원복...
+        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, -1);
         if (mbrIpDclaCnt >= ipDclaCnt) {
             // This IP connection has exceeded the maximum number.
             throw new ApiException("421", errMsgUtil.getErrMsg(context,"421"));
@@ -326,7 +324,8 @@ public class VotePrtcptHstService {
 
         Integer ipDclaCnt = dclaNode.getIntValue("setupBaseCnt");
         // 접근 IP 관리
-        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate);
+//        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, Integer.parseInt(seriesVoteBasInfo.get("voteSeq").toString()));    // 2017.10.30 이금춘 일단 원복...
+        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, -1);    // 2017.10.30 이금춘 일단 원복...
         if (mbrIpDclaCnt >= ipDclaCnt) {
             // This IP connection has exceeded the maximum number.
             throw new ApiException("421", errMsgUtil.getErrMsg(context,"421"));
@@ -446,14 +445,16 @@ public class VotePrtcptHstService {
     }
 
     // 접근 IP Count 조회
-    private Integer getIpCnt(String connIpAdr, String voteDate) {
+    private Integer getIpCnt(String connIpAdr, String voteDate, Integer voteSeq) {
         Integer mbrIpDclaCnt;
         String ipCntKey = connIpAdr + ">" + voteDate;
         if (voteIPCntMap.get(ipCntKey) != null) {
             mbrIpDclaCnt = (Integer) voteIPCntMap.get(ipCntKey);
         } else {
-            String selectIpDclaCnt = "SELECT count(*) ipCnt FROM voteHstByIp WHERE ipAdr=? AND voteDate=?";
-            Map<String, Object> ipCntMap = jdbcTemplate.queryForMap(selectIpDclaCnt, connIpAdr, voteDate);
+            String selectIpDclaCnt = "/* ion_VotePrtcptHstService.getIpCnt() */";
+            selectIpDclaCnt += " SELECT count(*) ipCnt FROM voteHstByIp WHERE ipAdr=? AND voteDate=?";
+            if(voteSeq >= 0) selectIpDclaCnt += " AND voteSeq=?";
+            Map<String, Object> ipCntMap = jdbcTemplate.queryForMap(selectIpDclaCnt, connIpAdr, voteDate, voteSeq);
             mbrIpDclaCnt = Integer.parseInt(ipCntMap.get("ipCnt").toString());
             voteIPCntMap.put(ipCntKey, mbrIpDclaCnt);
         }
@@ -604,28 +605,34 @@ public class VotePrtcptHstService {
         }
 
         // Checking Available IP with mbrId and voteSeq
-        List<Node> dclaNodeList = NodeUtils.getNodeService()
-                .getNodeList("dclaSetupMng","setupTypeCd_matching=2&sorting=dclaSetupSeq desc&limit=1");
+        List<Node> dclaNodeList = NodeUtils.getNodeService().getNodeList("dclaSetupMng","setupTypeCd_matching=2&sorting=dclaSetupSeq desc&limit=1");
         Node dclaNode = dclaNodeList.get(0);
 
-        Integer ipDclaCnt = dclaNode.getIntValue("setupBaseCnt");
-        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate);
-        if (mbrIpDclaCnt >= ipDclaCnt) {
-            // This IP connection has exceeded the maximum number.
-            throw new ApiException("421", errMsgUtil.getErrMsg(context,"421"));
-        }
+
 
         // 투표수 확인
         Map<String, Object> voteEvtCntByMbr = selectVoteEvtByMbr(mbrId);
         if (voteEvtCntByMbr == null) {
             throw new ApiException("426", "You do not have event votes.");
         }
+
         //Integer voteCnt = selectVoteCntByMbrId(data.get(VOTE_SEQ).toString(), mbrId);
         Integer usedVoteNum = Integer.parseInt(voteEvtCntByMbr.get("usedVoteNum").toString());
         Integer voteNum= Integer.parseInt(voteEvtCntByMbr.get("voteNum").toString());
         if (usedVoteNum >= voteNum) {
             throw new ApiException("423", errMsgUtil.getErrMsg(context, "423"));
         }
+
+        // ========================================================================================================
+        // Checking Available IP with mbrId and voteSeq
+        Integer ipDclaCnt = dclaNode.getIntValue("setupBaseCnt");
+//        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, voteNum);        // 2017.10.30 이금춘 일단 원복...
+        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, -1);
+        if (mbrIpDclaCnt >= ipDclaCnt) {
+            // This IP connection has exceeded the maximum number.
+            throw new ApiException("421", errMsgUtil.getErrMsg(context,"421"));
+        }
+        // ========================================================================================================
 
         String voteItemSeqs = (String) data.get("voteQueiSeq");
         String insertEventVoteItemHst = "INSERT INTO " + data.get(VOTE_SEQ) + "_voteItemHstByMbr " +
@@ -678,7 +685,7 @@ public class VotePrtcptHstService {
             return null;
         }
     }
-    String insertIpDclaCnt = "INSERT INTO voteHstByIp (voteDate, ipAdr, created) VALUES(?,?,?)";
+    String insertIpDclaCnt = "INSERT INTO voteHstByIp (voteDate, ipAdr, created, voteSeq) VALUES(?,?,?,?)";
 
     // [IF-MEV-003] sponsor 투표
     public void sponsorEvtVoting(ExecuteContext context) {
@@ -774,14 +781,14 @@ public class VotePrtcptHstService {
         }
 
         // Checking Available IP with mbrId and voteSeq
-        List<Node> dclaNodeList = NodeUtils.getNodeService()
-                .getNodeList("dclaSetupMng","setupTypeCd_matching=2&sorting=dclaSetupSeq desc&limit=1");
+        List<Node> dclaNodeList = NodeUtils.getNodeService().getNodeList("dclaSetupMng","setupTypeCd_matching=2&sorting=dclaSetupSeq desc&limit=1");
         Node dclaNode = dclaNodeList.get(0);
 
         Integer ipDclaCnt = dclaNode.getIntValue("setupBaseCnt");
 
 
-        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate);
+//        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, Integer.parseInt(seriesVoteBasInfo.get("voteSeq").toString()));    // 2017.10.30 이금춘 일단 원복...
+        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, -1);    // 2017.10.30 이금춘 일단 원복...
         if (mbrIpDclaCnt >= ipDclaCnt) {
             // This IP connection has exceeded the maximum number.
             throw new ApiException("421", errMsgUtil.getErrMsg(context,"421"));
