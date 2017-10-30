@@ -191,7 +191,7 @@ public class PropertyType implements Serializable{
     }
 
     public Map<Object, Code> getCode() {
-        if (codeMap == null) {
+        if (codeMap == null || codeMap.size() == 0) {
             codeMap = new HashMap<>();
             Collection<Map<String, Object>> codeValues = (Collection<Map<String, Object>>) propertyTypeNode.get("code");
             if(codeValues == null){
