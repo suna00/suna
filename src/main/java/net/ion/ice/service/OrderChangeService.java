@@ -206,17 +206,20 @@ public class OrderChangeService {
     }
 
     // 부분취소/부분반품 가능여부
-    public boolean isPartChangePossible(Map<String, Object> data){
-        List<Map<String, Object>> list = nodeBindingService.list(payment, "ordrIdxx_equals=" + JsonUtils.getStringValue(data, "orderSheetId"));
-        if(list.size() > 0){
-            for(Map<String, Object> map : list){
-                String usePayMethod = map.get("usePayMethod").toString();
-                data.put("usePayMethod", usePayMethod);
-                //계좌이체 : 010000000000
-                //무통장입금 가상계좌 : 001000000000
-                if("010000000000".equals(usePayMethod) || "001000000000".equals(usePayMethod))return false;
-            }
+    public boolean isPartChangePossible(Map<String, Object> data) throws IOException {
+        if("part".equals(getChangeRange(data))){
 
+            List<Map<String, Object>> list = nodeBindingService.list(payment, "ordrIdxx_equals=" + JsonUtils.getStringValue(data, "orderSheetId"));
+            if(list.size() > 0){
+                for(Map<String, Object> map : list){
+                    String usePayMethod = map.get("usePayMethod").toString();
+                    data.put("usePayMethod", usePayMethod);
+                    //계좌이체 : 010000000000
+                    //무통장입금 가상계좌 : 001000000000
+                    if("010000000000".equals(usePayMethod) || "001000000000".equals(usePayMethod))return false;
+                }
+
+            }
         }
 
         return true;
@@ -265,11 +268,9 @@ public class OrderChangeService {
             return context;
         }
 
-        if("part".equals(getChangeRange(data))){
-            if(!isPartChangePossible(data)){
-                context.setResult(CommonService.getResult("M0003"));
-                return context;
-            }
+        if(!isPartChangePossible(data)){
+            context.setResult(CommonService.getResult("M0003"));
+            return context;
         }
         Map<String, Object> map = new LinkedHashMap<>();
         if("010000000000".equals(JsonUtils.getStringValue(data, "usePayMethod")) || "001000000000".equals(JsonUtils.getStringValue(data, "usePayMethod"))) {
@@ -357,12 +358,9 @@ public class OrderChangeService {
             return context;
         }
 
-        if("part".equals(getChangeRange(data))){
-            if(!isPartChangePossible(data)){
-                context.setResult(CommonService.getResult("M0003"));
-                return context;
-            }
-
+        if(!isPartChangePossible(data)){
+            context.setResult(CommonService.getResult("M0003"));
+            return context;
         }
 
         Map<String, Object> map = new LinkedHashMap<>();
@@ -494,6 +492,7 @@ public class OrderChangeService {
         Map<String, Object> data = context.getData();
         String[] params = { "memberNo", "orderSheetId","orderChangeProduct" };
         if (CommonService.requiredParams(context, data, params)) return context;
+
         if(!isPartChangePossible(data)){
             context.setResult(CommonService.getResult("M0003"));
             return context;
