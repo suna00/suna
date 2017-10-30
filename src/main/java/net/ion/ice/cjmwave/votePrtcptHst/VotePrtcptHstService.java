@@ -327,8 +327,8 @@ public class VotePrtcptHstService {
         Integer ipDclaCnt = dclaNode.getIntValue("setupBaseCnt");
         Integer ipAdrVoteCnt = dclaNode.getIntValue("ipAdrVoteCnt");
         // 접근 IP 관리
-//        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, Integer.parseInt(seriesVoteBasInfo.get("voteSeq").toString()));
-        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, -1);    // 2017.10.30 이금춘 일단 원복...
+        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, Integer.parseInt(seriesVoteBasInfo.get("voteSeq").toString()));
+//        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, -1);    // 2017.10.30 이금춘 일단 원복...
 //        if (mbrIpDclaCnt >= ipDclaCnt) {
         if (mbrIpDclaCnt >= ipAdrVoteCnt) {
             // This IP connection has exceeded the maximum number.
