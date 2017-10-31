@@ -580,6 +580,23 @@
   {
     "typeId": "propertyType",
     "tid": "affiliate",
+    "pid": "joinReferrerStatus",
+    "propertyTypeName": "회원가입 리퍼러 상태",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "commonCode",
+    "referenceValue": "",
+    "codeFilter": "useYn",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "affiliate",
     "pid": "joinReferrer",
     "propertyTypeName": "회원가입 리퍼러",
     "valueType": "STRING",
