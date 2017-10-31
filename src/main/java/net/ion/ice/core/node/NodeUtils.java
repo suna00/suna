@@ -384,6 +384,15 @@ public class NodeUtils {
                 }
                 return null;
             }
+            case HISTORY: {
+                if(context.getExcludePids() != null && context.getExcludePids().contains(pt.getPid())){
+                    return null ;
+                }
+                if (context != null && node instanceof Node) {
+                    return getNodeHistoryService().getHistoryList(context.getNodeType(), (Node) node);
+                }
+                return null;
+            }
             default:
                 if(pt.isI18n() && context.hasLocale() && value instanceof Map){
                     if(StringUtils.isNotEmpty(context.getLocale()) &&((Map) value).containsKey(context.getLocale())){
@@ -758,5 +767,15 @@ public class NodeUtils {
 
     public static String getDefaultLocale(){
         return getNodeService().getDefaultLocale() ;
+    }
+
+    static NodeHistoryService historyService;
+
+
+    public static NodeHistoryService getNodeHistoryService() {
+        if(historyService == null){
+            historyService = ApplicationContextManager.getBean(NodeHistoryService.class) ;
+        }
+        return historyService;
     }
 }

@@ -290,28 +290,36 @@ public class ExecuteContext extends ReadContext{
 
         for(String key : data.keySet()){
             Object value = data.get(key) ;
-            if(value instanceof List && !key.equals("code") && ((this.nodeType.getPropertyType(key) != null && this.nodeType.getPropertyType(key).isList()) || NodeUtils.getNodeType(key) != null)){
-                for(Map<String, Object> subData : (List<Map<String, Object>>)value){
-                    Map<String, Object> _data = new HashMap<>() ;
+            if(value instanceof List && !key.equals("code")){
+                String subTypeId = null ;
+                if(this.nodeType.getPropertyType(key) != null && this.nodeType.getPropertyType(key).isList()){
+                    subTypeId = this.nodeType.getPropertyType(key).getReferenceType() ;
+                }else if(NodeUtils.getNodeType(key) != null){
+                    subTypeId = key ;
+                }
+                if(subTypeId != null) {
+                    for (Map<String, Object> subData : (List<Map<String, Object>>) value) {
+                        Map<String, Object> _data = new HashMap<>();
 //                    _data.putAll(data);
 //                    _data.remove(key) ;
-                    _data.putAll(subData);
-                    for(String _key : subData.keySet()){
-                        Object _val = subData.get(_key) ;
-                        if(_val instanceof String && "_parentId_".equals(_val)){
-                            _data.put(_key, this.id) ;
+                        _data.putAll(subData);
+                        for (String _key : subData.keySet()) {
+                            Object _val = subData.get(_key);
+                            if (_val instanceof String && "_parentId_".equals(_val)) {
+                                _data.put(_key, this.id);
+                            }
+                        }
+                        ExecuteContext subContext = ExecuteContext.makeContextFromMap(_data, subTypeId, this);
+                        if (subExecuteContexts == null) {
+                            subExecuteContexts = new ArrayList<>();
+                        }
+                        if (subContext != null) {
+                            subExecuteContexts.add(subContext);
                         }
                     }
-                    ExecuteContext subContext = ExecuteContext.makeContextFromMap(_data, key, this) ;
-                    if(subExecuteContexts == null){
-                        subExecuteContexts = new ArrayList<>() ;
-                    }
-                    if(subContext != null) {
-                        subExecuteContexts.add(subContext);
-                    }
-                }
 
-                subDataKeys.add(key);
+                    subDataKeys.add(key);
+                }
             }
         }
 
