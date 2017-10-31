@@ -117,6 +117,22 @@
   {
     "typeId" : "propertyType",
     "tid": "nodeType",
+    "id": "nodeType>historyable",
+    "pid": "historyable",
+    "propertyTypeName": "Historyable",
+    "valueType": "BOOLEAN",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "nodeType",
     "id": "nodeType>tableName",
     "pid": "tableName",
     "propertyTypeName": "Table Name",
@@ -244,7 +260,7 @@
     "code": [{"value": "STRING", "label": "String"}, {"value": "INT", "label": "Integer"}, {"value": "LONG", "label": "Long"}, {"value": "DOUBLE", "label": "double"},
       {"value": "BOOLEAN", "label": "Boolean"}, {"value": "DATE", "label": "Date"}, {"value": "TEXT", "label": "Text"}, {"value": "FILE", "label": "File"},
       {"value": "REFERENCE", "label": "Reference"},{"value": "REFERENCES", "label": "Multi Reference"}, {"value": "REFERENCED", "label": "Referenced List"},
-      {"value": "ARRAY", "label": "Data Array"}, {"value": "OBJECT", "label": "Data Object"}, {"value": "CONTENT", "label": "Content Builder"}]
+      {"value": "ARRAY", "label": "Data Array"}, {"value": "OBJECT", "label": "Data Object"}, {"value": "CONTENT", "label": "Content Builder"}, {"value": "HISTORY", "label":"History List"}]
   },
   {
     "typeId" : "propertyType",
@@ -885,6 +901,22 @@
     "tid": "eventListener",
     "pid": "datasource",
     "propertyTypeName": "Datasource",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "eventListener",
+    "id": "eventListener>clusterGroup",
+    "pid": "clusterGroup",
+    "propertyTypeName": "Clustering Group",
     "valueType": "STRING",
     "required": false,
     "idable": false,

@@ -38,7 +38,9 @@ public class InfinispanRepositoryService {
 
 
     public Cache<String, Node> getNodeCache(String tid) {
-        return cacheManager.getCache(tid, 100000);
+        NodeType nodeType = NodeUtils.getNodeType(tid) ;
+        Integer eviction = nodeType.getEviction() ;
+        return cacheManager.getCache(tid, eviction == 0 ? 10000 : eviction);
     }
 
     public Node read(String typeId, String id) {
@@ -419,5 +421,38 @@ public class InfinispanRepositoryService {
         for(Node node : cache.values()){
             cache.put(node.getId(), node.toIndexing()) ;
         }
+    }
+
+    public Integer lastHistoryVersion(String typeId, String id) {
+        Cache<String, NodeHistory> cache = cacheManager.getCache(typeId + "_history", 20000);
+        SearchManager qf = Search.getSearchManager(cache);
+        QueryBuilder queryBuilder = qf.buildQueryBuilderForClass(NodeHistory.class).get();
+        CacheQuery cacheQuery = qf.getQuery(queryBuilder.bool().must(queryBuilder.keyword().onField("id").matching(id).createQuery()).createQuery());
+        cacheQuery.sort(new Sort(new SortField("version", SortField.Type.INT, true)));
+        cacheQuery.maxResults(1);
+
+        List result = cacheQuery.list();
+        if (result == null || result.size() == 0) return 0;
+        NodeHistory history = (NodeHistory) result.get(0);
+        return history.getVersion();
+    }
+
+    public void cacheHistory(String typeId, NodeHistory history) {
+        Cache<String, NodeHistory> cache = cacheManager.getCache( typeId + "_history", 20000);
+        if(cache.containsKey(history.getHistoryId())){
+            history.increment();
+        }
+        cache.put(history.getHistoryId(), history) ;
+    }
+
+    public List<NodeHistory> getHistories(String typeId, String id) {
+        Cache<String, NodeHistory> cache = cacheManager.getCache( typeId + "_history", 20000);
+        SearchManager qf = Search.getSearchManager(cache);
+        QueryBuilder queryBuilder = qf.buildQueryBuilderForClass(NodeHistory.class).get();
+        CacheQuery cacheQuery = qf.getQuery(queryBuilder.bool().must(queryBuilder.keyword().onField("id").matching(id).createQuery()).createQuery());
+        cacheQuery.sort(new Sort(new SortField("version", SortField.Type.INT, true)));
+
+        List result = cacheQuery.list();
+        return result ;
     }
 }
