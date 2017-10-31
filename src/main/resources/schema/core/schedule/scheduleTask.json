@@ -107,5 +107,16 @@
     "enable": false,
     "actionType": "service",
     "actionBody": "voteItemStatsByWlyTask.execVoteItemStatsByWly"
+  },
+
+  {
+    "typeId": "scheduleTask",
+    "id": "artistVoteStatsTask",
+    "name": "artistVoteStatsTask Schedule Task",
+    "type": "cron",
+    "config": "0 0 */1 * * *",
+    "enable": false,
+    "actionType": "service",
+    "actionBody": "artistVoteStatsTask.artistVoteStatsJob"
   }
 ]

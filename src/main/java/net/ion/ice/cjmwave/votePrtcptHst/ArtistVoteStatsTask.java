@@ -3,7 +3,6 @@ package net.ion.ice.cjmwave.votePrtcptHst;
 import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeUtils;
-import org.apache.commons.lang3.time.DateFormatUtils;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeConstants;
 import org.joda.time.format.DateTimeFormat;
@@ -32,6 +31,10 @@ public class ArtistVoteStatsTask {
     private DBService dbService;
 
     public void artistVoteStatsJob() {
+        artistVoteStatsJob(null);
+    }
+
+    public void artistVoteStatsJob(String dateString) {
         logger.info("start schedule task - artistVoteStatsJob");
 
         if (jdbcTemplate == null) {
@@ -46,11 +49,11 @@ public class ArtistVoteStatsTask {
         // 작업일자
         DateTime workingDate = new DateTime();
         DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("yyyyMMdd");
-//        if (dateString != null) {
-//            try {
-//                workingDate = dateTimeFormatter.parseDateTime(dateString);
-//            } catch (Exception e) { }
-//        }
+        if (dateString != null) {
+            try {
+                workingDate = dateTimeFormatter.parseDateTime(dateString);
+            } catch (Exception e) { }
+        }
 
 //        workingDate = workingDate.minusMinutes(10);
 

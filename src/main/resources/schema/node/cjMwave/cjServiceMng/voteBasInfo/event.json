@@ -277,5 +277,25 @@
     "actionType": "service",
     "actionBody": "voteItemStatsByWlyService.execVoteItemStatsByWly",
     "order": 1
+  },
+
+
+
+
+  {
+    "typeId": "event",
+    "tid": "voteBasInfo",
+    "event": "artistVoteStats",
+    "noneExecute": true,
+    "eventName": "count by artist"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "voteBasInfo>artistVoteStats",
+    "action": "artistVoteStatsEvent",
+    "actionName": "count by artist",
+    "actionType": "service",
+    "actionBody": "artistVoteStatService.execArtistVoteStats",
+    "order": 1
   }
 ]
