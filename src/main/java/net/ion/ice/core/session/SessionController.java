@@ -41,8 +41,8 @@ public class SessionController {
     public Object logout(HttpServletRequest request, HttpServletResponse response) {
         try {
             sessionService.removeSession(request);
-            CookieUtil.clear(response, "iceJWT");
-            CookieUtil.clear(response, "iceRefreshJWT");
+            CookieUtil.clear(response, "iceJWT", request.getServerName());
+            CookieUtil.clear(response, "iceRefreshJWT", request.getServerName());
             return JsonResponse.create();
         }catch(Exception e){
             return JsonResponse.error(e) ;

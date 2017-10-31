@@ -31,8 +31,15 @@ public class CookieUtil {
         response.addCookie(cookie);
     }
 
-    public static void clear(HttpServletResponse response, String name) {
+    public static void clear(HttpServletResponse response, String name, String domain) {
         Cookie cookie = new Cookie(name, null);
+        if(domain != null) {
+            String[] domains = StringUtils.split(domain, ".");
+            if (domains != null && domains.length == 3) {
+                domain = domains[1] + "." + domains[2];
+            }
+            cookie.setDomain(domain);
+        }
         cookie.setPath("/");
         cookie.setHttpOnly(true);
         cookie.setMaxAge(0);
