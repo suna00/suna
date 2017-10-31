@@ -4,9 +4,9 @@
     "id": "ytnDevDb",
     "ssl" : false,
     "dsName": "YTN Dev DB",
-    "jdbcUrl": "jdbc:mysql://172.16.1.53:3306/ytn",
+    "jdbcUrl": "jdbc:mysql://172.16.1.30:3306/ytn",
     "dbType": "mySql",
     "username": "ygoon",
-    "password": "qhrwl_sdb"
+    "password": "qhrwl_sdp"
   }
 ]
