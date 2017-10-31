@@ -903,7 +903,7 @@ public class OrderService {
                 storeTempOrderProduct.put("productPrice", productPrice);
                 storeTempOrderProduct.put("totalAddOptionPrice", totalAddOptionPrice);
 
-                double orderPrice = productPrice + totalAddOptionPrice;
+                double orderPrice = (productPrice + totalAddOptionPrice) * quantity;
 
                 storeTempOrderProduct.put("orderPrice", orderPrice);
 
@@ -921,17 +921,19 @@ public class OrderService {
 
     public void accountTransferUpdate(Map<String, Object> responseMap){
         String orderSheetId = JsonUtils.getStringValue(responseMap, "orderSheetId");
-        logger.info("payment orderSheetId : "+ orderSheetId);
         if(!orderSheetId.equals("")){
             List<Map<String, Object>> paymentList = nodeBindingService.list("payment", "orderSheetId_equals=".concat(orderSheetId));
-            logger.info("payment paymentList length : " + paymentList.size());
+            List<Map<String, Object>> orderProductList = nodeBindingService.list("orderProduct", "orderSheetId_equals=".concat(orderSheetId));
             Map<String, Object> paymentMap = paymentList.get(0);
-            logger.info("payment paymentMap : " + paymentList.get(0).toString());
             if(paymentMap != null){
-                logger.info("payment responseMap : "+ responseMap.toString());
                 paymentMap.putAll(responseMap);
-                logger.info("payment paymentMap : "+ paymentMap.toString());
                 nodeService.executeNode(paymentMap, "payment", CommonService.UPDATE);
+            }
+            if(orderProductList.size() > 0){
+                for(Map<String, Object> orderProduct : orderProductList){
+                    orderProduct.put("orderStatus", "order003");
+                    nodeService.executeNode(orderProduct, "orderProduct", CommonService.UPDATE);
+                }
             }
         }
     }
