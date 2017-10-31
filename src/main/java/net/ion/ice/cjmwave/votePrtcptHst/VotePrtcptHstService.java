@@ -7,6 +7,7 @@ import net.ion.ice.core.api.ApiException;
 import net.ion.ice.core.cluster.ClusterService;
 import net.ion.ice.core.cluster.JdbcSqlData;
 import net.ion.ice.core.context.ExecuteContext;
+import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
@@ -54,6 +55,9 @@ public class VotePrtcptHstService {
 
     @Autowired
     private ClusterService clusterService ;
+
+    @Autowired
+    private DBService dbService ;
 
 
     private JdbcTemplate jdbcTemplate ;
@@ -290,31 +294,76 @@ public class VotePrtcptHstService {
         Date now = new Date();
         FastDateFormat dateFormat = FastDateFormat.getInstance("yyyyMMdd");
 
-        Node seriesVoteBasInfo = null;
+        Node seriesVoteBasInfo = NodeUtils.getNode(VOTE_BAS_INFO, reqJson.get(0).get("sersVoteSeq").toString());
+
         String mbrId = null;
 
         String voteDate = DateFormatUtils.format(now, "yyyyMMdd");          // 투표 진행일 (현재날짜)
 
+        List<Node> sersVoteItemInfos = nodeService.getNodeList("sersVoteItemInfo", "voteSeq_matching=" + seriesVoteBasInfo.get("voteSeq"));
+
         List<Map<String, Object>> insertList = synchronizedList(new ArrayList());
+        if(reqJson.size()<sersVoteItemInfos.size()){
+            throw new ApiException("430", "Invalid Vote!");
+        }
         for (Map<String, Object> voteData : reqJson) {
-            if (seriesVoteBasInfo == null) {
-                seriesVoteBasInfo = NodeUtils.getNode(VOTE_BAS_INFO, voteData.get("sersVoteSeq").toString());
+
+            if(!seriesVoteBasInfo.get("voteSeq").equals(voteData.get("sersVoteSeq").toString())){
+                throw new ApiException("430", "Invalid Vote!");
             }
             // 사용자 ID
-            if (mbrId==null || mbrId.length()<=0) {
+            /*if (mbrId==null || mbrId.length()<=0) {
                 mbrId = voteData.get(PRTCP_MBR_ID).toString();
+            }*/
+            // 회원정보 체크
+            if(voteData.get(PRTCP_MBR_ID) != null && StringUtils.isNotEmpty(voteData.get(PRTCP_MBR_ID).toString())){
+
+                mbrId = voteData.get(PRTCP_MBR_ID).toString();
+                String[] mbrIds = mbrId.split(">");
+                if( mbrIds != null && mbrIds.length == 2) {
+                    Node mbrNode = getMbrNode(mbrIds[0], mbrIds[1]);
+
+                    if(mbrNode == null){
+                        throw new ApiException("427", "MemberInfo is null");
+                    }else{
+                        String mbrSttusCd = mbrNode.getStringValue("mbrSttusCd");
+                        String mbrDivCd = mbrNode.getStringValue("mbrDivCd");
+                        if("2".equals(mbrSttusCd) || "3".equals(mbrSttusCd) || !"2".equals(mbrDivCd)) {//탈퇴,휴면 상태이거나 정회원이 아닌 경우 에러.
+                            throw new ApiException("427", "MemberInfo is not valid");
+                        }
+                    }
+                }else{
+                    throw new ApiException("426", "MemberId is not valid");
+                }
+            }else{
+                throw new ApiException("400", "Required Parameter : "+PRTCP_MBR_ID);
             }
 
-            Node voteBasInfo = NodeUtils.getNode(VOTE_BAS_INFO, voteData.get(VOTE_SEQ).toString());
-            Integer ipRstrtnCnt = voteBasInfo.getIntValue("ipRstrtnCnt");
-
-            Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, Integer.parseInt(voteData.get("voteSeq").toString()));
-//        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, -1);    // 2017.10.30 이금춘 일단 원복...
-            logger.info(mbrIpDclaCnt + "===================="+ipRstrtnCnt);
-            if (mbrIpDclaCnt >= ipRstrtnCnt) {
-                // This IP connection has exceeded the maximum number.
-                throw new ApiException("421", errMsgUtil.getErrMsg(context,"421"));
+//            List<> refItemList = seriesVoteBasInfo.get("");
+            Node voteItemInfo = NodeUtils.getNode(VOTE_BAS_INFO, voteData.get(VOTE_SEQ).toString());
+            if(voteItemInfo == null){
+                throw new ApiException("430", "Invalid Vote!");
             }
+            boolean hasSeries = false ;
+            for(Node sersVoteItem : sersVoteItemInfos){
+                if(sersVoteItem.get("sersItemVoteSeq").equals(voteData.get(VOTE_SEQ).toString())){
+                    hasSeries = true;
+                    break;
+                }
+            }
+
+            if(!hasSeries){
+                throw new ApiException("430", "Invalid Vote!");
+            }
+            //            Integer ipRstrtnCnt = voteBasInfo.getIntValue("ipRstrtnCnt");
+//
+//            Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, Integer.parseInt(voteData.get("voteSeq").toString()));
+////        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, -1);    // 2017.10.30 이금춘 일단 원복...
+//            logger.info(mbrIpDclaCnt + "===================="+ipRstrtnCnt);
+//            if (mbrIpDclaCnt >= ipRstrtnCnt) {
+//                // This IP connection has exceeded the maximum number.
+//                throw new ApiException("421", errMsgUtil.getErrMsg(context,"421"));
+//            }
 
             insertList.add(voteData);
         }
@@ -750,38 +799,85 @@ public class VotePrtcptHstService {
             // voteResult format is incorrect
             throw new ApiException("420", errMsgUtil.getErrMsg(context,"420"));
         }
+        Node seriesVoteBasInfo = NodeUtils.getNode(VOTE_BAS_INFO, reqJson.get(0).get("sersVoteSeq").toString());
+        List<Node> sersVoteItemInfos = nodeService.getNodeList("sersVoteItemInfo", "voteSeq_matching=" + seriesVoteBasInfo.get("voteSeq"));
+
+        List<Map<String, Object>> insertList = synchronizedList(new ArrayList());
+        if(reqJson.size()<sersVoteItemInfos.size()){
+            throw new ApiException("430", "Invalid Vote!");
+        }
 
         Date now = new Date();
         FastDateFormat dateFormat = FastDateFormat.getInstance("yyyyMMdd");
 
-        Node seriesVoteBasInfo = null;
+       //Node seriesVoteBasInfo = null;
         String mbrId = null;
         boolean infoOttpAgreeYn = Boolean.parseBoolean(data.get("infoOttpAgreeYn").toString());
 
         String voteDate = DateFormatUtils.format(now, "yyyyMMdd");          // 투표 진행일 (현재날짜)
 
-        List<Map<String, Object>> insertList = synchronizedList(new ArrayList());
         for (Map<String, Object> voteData : reqJson) {
             if (seriesVoteBasInfo == null) {
                 seriesVoteBasInfo = NodeUtils.getNode(VOTE_BAS_INFO, voteData.get("sersVoteSeq").toString());
             }
             // 사용자 ID
-            if (mbrId==null || mbrId.length()<=0) {
+//            if (mbrId==null || mbrId.length()<=0) {
+//                mbrId = voteData.get(PRTCP_MBR_ID).toString();
+//            }
+            // 회원정보 체크
+            if(voteData.get(PRTCP_MBR_ID) != null && StringUtils.isNotEmpty(voteData.get(PRTCP_MBR_ID).toString())){
+
                 mbrId = voteData.get(PRTCP_MBR_ID).toString();
+                String[] mbrIds = mbrId.split(">");
+                if( mbrIds != null && mbrIds.length == 2) {
+                    Node mbrNode = getMbrNode(mbrIds[0], mbrIds[1]);
+
+                    if(mbrNode == null){
+                        throw new ApiException("427", "MemberInfo is null");
+                    }else{
+                        String mbrSttusCd = mbrNode.getStringValue("mbrSttusCd");
+                        String mbrDivCd = mbrNode.getStringValue("mbrDivCd");
+                        if("2".equals(mbrSttusCd) || "3".equals(mbrSttusCd) || !"2".equals(mbrDivCd)) {//탈퇴,휴면 상태이거나 정회원이 아닌 경우 에러.
+                            throw new ApiException("427", "MemberInfo is not valid");
+                        }
+                    }
+                }else{
+                    throw new ApiException("426", "MemberId is not valid");
+                }
+            }else{
+                throw new ApiException("400", "Required Parameter : "+PRTCP_MBR_ID);
             }
 
-            Node voteBasInfo = NodeUtils.getNode(VOTE_BAS_INFO, voteData.get(VOTE_SEQ).toString());
-            Integer ipRstrtnCnt = voteBasInfo.getIntValue("ipRstrtnCnt");
-
-            Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, Integer.parseInt(voteData.get("voteSeq").toString()));
-//        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, -1);    // 2017.10.30 이금춘 일단 원복...
-            if (mbrIpDclaCnt >= ipRstrtnCnt) {
-                // This IP connection has exceeded the maximum number.
-                throw new ApiException("421", errMsgUtil.getErrMsg(context,"421"));
+//            List<> refItemList = seriesVoteBasInfo.get("");
+            Node voteItemInfo = NodeUtils.getNode(VOTE_BAS_INFO, voteData.get(VOTE_SEQ).toString());
+            if(voteItemInfo == null){
+                throw new ApiException("430", "Invalid Vote!");
             }
+            boolean hasSeries = false ;
+            for(Node sersVoteItem : sersVoteItemInfos){
+                if(sersVoteItem.get("sersItemVoteSeq").equals(voteData.get(VOTE_SEQ).toString())){
+                    hasSeries = true;
+                    break;
+                }
+            }
+
+            if(!hasSeries){
+                throw new ApiException("430", "Invalid Vote!");
+            }
+
+           // Node voteBasInfo = NodeUtils.getNode(VOTE_BAS_INFO, voteData.get(VOTE_SEQ).toString());
+//            Integer ipRstrtnCnt = voteBasInfo.getIntValue("ipRstrtnCnt");
+//
+//            Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, Integer.parseInt(voteData.get("voteSeq").toString()));
+////        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, -1);    // 2017.10.30 이금춘 일단 원복...
+//            if (mbrIpDclaCnt >= ipRstrtnCnt) {
+//                // This IP connection has exceeded the maximum number.
+//                throw new ApiException("421", errMsgUtil.getErrMsg(context,"421"));
+//            }
 
             insertList.add(voteData);
         }
+
 
         // 스폰서 snsType => 10
         if (mbrId!=null && mbrId.startsWith("10>")) {
@@ -974,5 +1070,18 @@ public class VotePrtcptHstService {
 //            executeQuery(updateVoteEvtQuery, continued, voteNum, now, mbrId);
             jdbcTemplate.update(updateVoteEvtQuery, continued, voteNum, now, mbrId);
         }
+    }
+
+    public Node getMbrNode(String snsType, String snsKey){
+        if (jdbcTemplate == null) {
+            jdbcTemplate = dbService.getJdbcTemplate("authDb");
+        }
+        try {
+            Map<String, Object> data = jdbcTemplate.queryForMap("select  * from mbrInfo where snsTypeCd = ? and snsKey = ?", snsType, snsKey);
+            if (data != null) {
+                return new Node(data, "mbrInfo");
+            }
+        }catch (Exception e){}
+        return null;
     }
 }
