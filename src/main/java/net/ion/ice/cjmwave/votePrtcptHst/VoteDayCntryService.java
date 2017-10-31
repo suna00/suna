@@ -51,31 +51,8 @@ public class VoteDayCntryService {
 
         Date now = new Date();
         String voteDateTime = DateFormatUtils.format(now, "yyyyMMddHHmmss");
-        /*Calendar cal = null;
-        if(paramCal != null){
-            cal = paramCal;
-        }else{
-            cal = Calendar.getInstance();//현재일자
-        }
-
-        Integer weekNum = cal.get(Calendar.DAY_OF_WEEK); //1.일요일 ~ 7.토요일 이다.
-        //String toDay = DateFormatUtils.format(cal, "yyyyMMdd"); //오늘 날짜 - yyyyMMdd형식
-
-        cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-        String monDay = DateFormatUtils.format(cal, "yyyyMMdd");
-        String saveMon = DateFormatUtils.format(cal, "yyyy-MM-dd");
-
-        cal.add(Calendar.DATE, 7);
-        cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
-        String sunDay = DateFormatUtils.format(cal, "yyyyMMdd");
-        String saveSun = DateFormatUtils.format(cal, "yyyy-MM-dd");*/
 
         try {
-
-            //1. voteBasStatsByDayToCntry 테이블 전체 delete
-            //Integer deleteCnt = jdbcTemplate.update("DELETE FROM cntryVoteStatsByVote where perdStDate = ? and perdFnsDate = ?",saveMon,saveSun);
-            //logger.info("===============> delete1  cntryVoteStatsByVote:: " + deleteCnt+", saveMon = "+saveMon+", saveSun = "+saveSun);
-
             //1. voteBasStatsByDayToCntry 에서 진행중인 voteSeq 만  delete 10-28 leehh 주별 통계가 아니라 전체통계로 변경되면서 수정함
             // 투표 기간안에 있는 모든 VoteBasInfo 조회
             List<Node> voteBasInfoList = NodeUtils.getNodeService().getNodeList(VOTE_BAS_INFO, "pstngStDt_below=" + voteDateTime + "&pstngFnsDt_above=" + voteDateTime);
@@ -83,17 +60,6 @@ public class VoteDayCntryService {
                 Integer deleteCnt = jdbcTemplate.update("DELETE FROM cntryVoteStatsByVote where voteSeq = ? ",voteBasInfo.getId());
                 logger.info("===============> delete1  cntryVoteStatsByVote:: " + deleteCnt+", voteSeq = "+voteBasInfo.getId());
             }
-            //2. voteBasStatsByDayToCntry 테이블에서 월~일요일 날짜 까지 가져온다
-            /*String totalListQuery = "SELECT a.voteSeq, a.cntryCd, a.voteNum, b.totalVoteNum " +
-                    " FROM ( SELECT voteSeq, cntryCd, sum(voteNum) AS voteNum " +
-                    " FROM voteBasStatsByDayToCntry WHERE voteDay >=? AND voteDay <=? " +
-                    " GROUP BY voteSeq, cntryCd) a LEFT OUTER JOIN " +
-                    " (SELECT voteSeq, sum(voteNum) AS totalVoteNum " +
-                    " FROM voteBasStatsByDayToCntry WHERE voteDay >=? AND voteDay <=? " +
-                    " GROUP BY voteSeq) b " +
-                    " ON a.voteSeq = b.voteSeq " +
-                    " ORDER BY a.voteSeq, a.voteNum desc ";
-            List<Map<String, Object>> voteCntryStatsList = jdbcTemplate.queryForList(totalListQuery, monDay, sunDay, monDay, sunDay);*/
             //2. voteBasStatsByDayToCntry 테이블에서 투표별로 데이터를 가져온다
             String totalListQuery =  "SELECT a.voteSeq, a.cntryCd, a.voteNum, b.totalVoteNum " +
                     " FROM ( SELECT voteSeq, cntryCd, sum(voteNum) AS voteNum " +
@@ -133,12 +99,6 @@ public class VoteDayCntryService {
                     BigDecimal totalCnt = new BigDecimal(totalVoteNum);
                     BigDecimal voteRate = voteCnt.divide(totalCnt, 1, BigDecimal.ROUND_HALF_UP);
 
-                    /*//3. voteBasStatsByDayToCntry 테이블에 insert
-                    String insertVoteCntryQuery = "INSERT INTO cntryVoteStatsByVote " +
-                            "(perdStDate, perdFnsDate, voteSeq, cntryCd, rankNum, voteRate, voteNum, owner, created) " +
-                            "VALUES(?,?,?,?,?,?,?,?,?)";
-                    Integer insertCnt = jdbcTemplate.update(insertVoteCntryQuery,
-                            saveMon, saveSun, Integer.parseInt(voteSeq), cntryCd, rankNum, voteRate, voteNum, "system", now);*/
                     //3. voteBasStatsByDayToCntry 테이블에 insert, 주간 기준 삭제함 10-28 leehh
                     String insertVoteCntryQuery = "INSERT INTO cntryVoteStatsByVote " +
                             "(voteSeq, cntryCd, rankNum, voteRate, voteNum, owner, created) " +
@@ -231,20 +191,7 @@ public class VoteDayCntryService {
                                 , lastSeq, limitCnt);
                 logger.info(voteSeq + "===============> voteSeqList ::" + voteSeqList.size());
 
-                /* 국가코드가 없거나, 잘못된 국가코드에 대한 처리가 없는 쿼리
-                List<Map<String, Object>> voteMbrNumList =
-                        jdbcTemplate_replica.queryForList("select cntryCd, voteDate, count(*) voteNum\n" +
-                                        "from (\n" +
-                                        "  SELECT\n" +
-                                        "    b.cntryCd,\n" +
-                                        "    a.voteDate\n" +
-                                        "  FROM (select * from " + tableNm + "  where seq > ? order by seq LIMIT ?) a, mbrInfo b\n" +
-                                        "  WHERE substring_index(a.mbrId, '>', 1) = b.snsTypeCd\n" +
-                                        "        AND substring_index(a.mbrId, '>', -1) = b.snsKey\n" +
-                                        "        AND b.cntryCd IS NOT NULL\n" +
-                                        ") t\n" +
-                                        " group by cntryCd, voteDate"
-                                , lastSeq, limitCnt);*/
+                /* 국가코드가 없거나, 잘못된 국가코드에 대해서 other 로 처리함*/
                 List<Map<String, Object>> voteMbrNumList =
                         jdbcTemplate_replica.queryForList("select if(length(cntryCd)!=3, 'OTHER', ifnull(cntryCd,'OTHER') ) as cntryCd, voteDate, sum(voteNum) voteNum from (\n" +
                                         "  SELECT\n" +
