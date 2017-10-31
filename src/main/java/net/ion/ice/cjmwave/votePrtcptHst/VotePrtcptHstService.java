@@ -473,9 +473,15 @@ public class VotePrtcptHstService {
         } else {
             String selectIpDclaCnt = "/* ion_VotePrtcptHstService.getIpCnt() */";
             selectIpDclaCnt += " SELECT count(*) ipCnt FROM voteHstByIp WHERE ipAdr=? AND voteDate=?";
-            if(voteSeq >= 0) selectIpDclaCnt += " AND voteSeq=?";
-            Map<String, Object> ipCntMap = jdbcTemplate.queryForMap(selectIpDclaCnt, connIpAdr, voteDate, voteSeq);
+            Map<String, Object> ipCntMap = new ConcurrentHashMap<>();
+            if(voteSeq >= 0) {
+                selectIpDclaCnt += " AND voteSeq=?";
+                ipCntMap = jdbcTemplate.queryForMap(selectIpDclaCnt, connIpAdr, voteDate, voteSeq);
+            } else {
+                ipCntMap = jdbcTemplate.queryForMap(selectIpDclaCnt, connIpAdr, voteDate);
+            }
             mbrIpDclaCnt = Integer.parseInt(ipCntMap.get("ipCnt").toString());
+
             voteIPCntMap.put(ipCntKey, mbrIpDclaCnt);
         }
         logger.info("VotePrtcptHstService > getIpCnt > " + ipCntKey + " > " + mbrIpDclaCnt);
