@@ -510,16 +510,17 @@ public class AdminOrderService {
         for(Map<String, Object> ocp : orderChangeProductList){
             ocp.put("orderChangeStatus", orderChangeStatus);
             nodeService.executeNode(ocp, orderChangeProduct_TID, CommonService.UPDATE);
+
             // order009,취소완료/ order016,교환완료/ order021,반품완료
             if("order009".equals(orderChangeStatus) || "order016".equals(orderChangeStatus) || "order021".equals(orderChangeStatus)){
                 // 취소교환반품 완료시 주문상품에 반영
                 Map<String, Object> op = NodeUtils.getNode(orderProduct_TID, JsonUtils.getStringValue(ocp, "orderProductId"));
                 int opQuantity = JsonUtils.getIntValue(op, "quantity");
                 int ocpQuantity = JsonUtils.getIntValue(ocp, "quantity");
-                int opOrderPrice = JsonUtils.getIntValue(op, "orderPrice");
-                int ocpOrderPrice = JsonUtils.getIntValue(ocp, "orderPrice");
-                int opPaymentPrice = JsonUtils.getIntValue(op, "paymentPrice");
-                int ocpPaymentPrice = JsonUtils.getIntValue(ocp, "paymentPrice");
+                double opOrderPrice = JsonUtils.getDoubleValue(op, "orderPrice");
+                double ocpOrderPrice = JsonUtils.getDoubleValue(ocp, "orderPrice");
+                double opPaymentPrice = JsonUtils.getDoubleValue(op, "paymentPrice");
+                double ocpPaymentPrice = JsonUtils.getDoubleValue(ocp, "paymentPrice");
 
                 if(opQuantity == ocpQuantity){
                     op.put("orderStatus", orderChangeStatus);
@@ -536,7 +537,40 @@ public class AdminOrderService {
             Map<String, Object> orderChange = NodeUtils.getNode(orderChange_TID, JsonUtils.getStringValue(data, "orderChangeId"));
             Map<String, Object> orderSheet = NodeUtils.getNode(orderSheet_TID, JsonUtils.getStringValue(data, "orderSheetId"));
 
+            double totalProductPrice = JsonUtils.getDoubleValue(orderSheet, "totalProductPrice");
+            double totalDeliveryPrice = JsonUtils.getDoubleValue(orderSheet, "totalDeliveryPrice");
+            double totalDiscountPrice = JsonUtils.getDoubleValue(orderSheet, "totalDiscountPrice");
+            double totalOrderPrice = JsonUtils.getDoubleValue(orderSheet, "totalOrderPrice");
+            double totalPaymentPrice = JsonUtils.getDoubleValue(orderSheet, "totalPaymentPrice");
+            double couponDiscountPrice = JsonUtils.getDoubleValue(orderSheet, "couponDiscountPrice");
+            double totalWelfarePoint = JsonUtils.getDoubleValue(orderSheet, "totalWelfarePoint");
+            double totalYPoint = JsonUtils.getDoubleValue(orderSheet, "totalYPoint");
 
+            double cancelOrderPrice = JsonUtils.getDoubleValue(orderChange, "cancelOrderPrice");
+            double cancelProductPrice = JsonUtils.getDoubleValue(orderChange, "cancelProductPrice");
+            double cancelDeliveryPrice = JsonUtils.getDoubleValue(orderChange, "cancelDeliveryPrice");
+            double deductPrice = JsonUtils.getDoubleValue(orderChange, "deductPrice");
+            double addDeliveryPrice = JsonUtils.getDoubleValue(orderChange, "addDeliveryPrice");
+            double refundPrice = JsonUtils.getDoubleValue(orderChange, "refundPrice");
+            double refundWelfarePoint = JsonUtils.getDoubleValue(orderChange, "refundWelfarePoint");
+            double refundYPoint = JsonUtils.getDoubleValue(orderChange, "refundYPoint");
+            double refundPaymentPrice = JsonUtils.getDoubleValue(orderChange, "refundPaymentPrice");
+
+            totalProductPrice = totalProductPrice - cancelProductPrice ;
+            totalDeliveryPrice = totalDeliveryPrice - cancelDeliveryPrice + addDeliveryPrice ;
+            totalOrderPrice = totalOrderPrice - cancelOrderPrice + addDeliveryPrice ;
+            totalPaymentPrice = totalOrderPrice - couponDiscountPrice - refundWelfarePoint - refundYPoint ;
+            totalWelfarePoint = totalWelfarePoint - refundWelfarePoint ;
+            totalYPoint = totalYPoint - refundYPoint ;
+
+            orderSheet.put("totalProductPrice", totalProductPrice);
+            orderSheet.put("totalDeliveryPrice", totalDeliveryPrice);
+            orderSheet.put("totalOrderPrice", totalOrderPrice);
+            orderSheet.put("totalPaymentPrice", totalPaymentPrice);
+            orderSheet.put("totalWelfarePoint", totalWelfarePoint);
+            orderSheet.put("totalYPoint", totalYPoint);
+
+            nodeService.executeNode(orderSheet, orderSheet_TID, CommonService.UPDATE);
 
         }
         return context;
