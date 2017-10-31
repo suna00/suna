@@ -43,7 +43,7 @@
     "id": "voteBasStatsDayJob",
     "name": "day voteBasStatsDay set Schedule",
     "type": "cron",
-    "config": "0 */1 * * * *",
+    "config": "0 */2 * * * *",
     "enable": false,
     "actionType": "service",
     "actionBody": "voteDayCntryService.voteBasStatsDayJob"
