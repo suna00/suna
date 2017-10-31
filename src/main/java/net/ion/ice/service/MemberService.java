@@ -48,12 +48,13 @@ public class MemberService {
         if (StringUtils.isEmpty(siteId)) {
             siteId = "default";
         }
-        NodeType memberType = nodeService.getNodeType("member");
-        List<QueryTerm> queryTerms = new ArrayList<>();
-        queryTerms.add(QueryUtils.makePropertyQueryTerm(memberType, "siteId", null, siteId));
-        queryTerms.add(QueryUtils.makePropertyQueryTerm(memberType, "userId", null, userId));
+        //NodeType memberType = nodeService.getNodeType("member");
+        //List<QueryTerm> queryTerms = new ArrayList<>();
+        //queryTerms.add(QueryUtils.makePropertyQueryTerm(memberType, "siteId", null, siteId));
+        //queryTerms.add(QueryUtils.makePropertyQueryTerm(memberType, "userId", null, userId));
 
-        List<Node> nodes = nodeService.getNodeList(memberType, queryTerms);
+        //List<Node> nodes = nodeService.getNodeList(memberType, queryTerms);
+        List<Node> nodes = nodeService.getNodeList("member", "sorting=memberNo desc&siteId_equals="+siteId+"&userId_equals="+userId);
 
         if (nodes == null || nodes.size() == 0) {
             throw new ApiException("400", "Not Found User");
