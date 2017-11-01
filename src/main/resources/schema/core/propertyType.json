@@ -149,6 +149,22 @@
   {
     "typeId" : "propertyType",
     "tid": "nodeType",
+    "id": "nodeType>authorityRule",
+    "pid": "authorityRule",
+    "propertyTypeName": "Authority Rule",
+    "valueType": "JSON",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid": "nodeType",
     "id": "nodeType>propertyTypes",
     "pid": "propertyTypes",
     "propertyTypeName": "Property Type List",

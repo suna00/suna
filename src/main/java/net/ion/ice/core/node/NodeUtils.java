@@ -3,7 +3,6 @@ package net.ion.ice.core.node;
 import com.hazelcast.core.IAtomicLong;
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.cluster.ClusterService;
-import net.ion.ice.core.context.DataQueryContext;
 import net.ion.ice.core.context.QueryContext;
 import net.ion.ice.core.context.ReadContext;
 import net.ion.ice.core.data.bind.NodeBindingInfo;
@@ -11,6 +10,7 @@ import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.file.FileService;
 import net.ion.ice.core.file.FileValue;
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
+import net.ion.ice.core.infinispan.NotFoundNodeException;
 import net.ion.ice.core.json.JsonUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -18,6 +18,8 @@ import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.lucene.document.DateTools;
 import org.apache.lucene.search.SortField;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -30,6 +32,7 @@ import java.util.concurrent.ConcurrentMap;
  * Created by jaehocho on 2017. 5. 17..
  */
 public class NodeUtils {
+    private static Logger logger = LoggerFactory.getLogger(NodeUtils.class);
 
     static NodeService nodeService;
 
@@ -292,8 +295,12 @@ public class NodeUtils {
         if(StringUtils.isNotEmpty(pt.getCodeFilter()) && !StringUtils.contains(refId, Node.ID_SEPERATOR)){
             refId = pt.getCodeFilter() + Node.ID_SEPERATOR + refId ;
         }
-
-        return getNode(referenceType, refId);
+        try {
+            return getNode(referenceType, refId);
+        }catch(NotFoundNodeException e){
+            logger.warn("Not Found Reference : {} {}", pt.getPid(), value);
+            throw e ;
+        }
     }
 
     public static Object getResultValue(ReadContext context, PropertyType pt, Map<String, Object> node) {

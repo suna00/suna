@@ -2,6 +2,7 @@ package net.ion.ice.core.context;
 
 import net.ion.ice.core.api.ApiException;
 import net.ion.ice.core.cluster.ClusterUtils;
+import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.*;
 import net.ion.ice.core.query.*;
 import org.apache.commons.lang3.StringUtils;
@@ -63,10 +64,32 @@ public class QueryContext extends ReadContext {
         ReadContext.makeContextFromParameter(parameterMap, nodeType, queryContext);
 
         queryContext.makeQueryTerm(nodeType) ;
-
         queryContext.makeSearchFields() ;
+        queryContext.makeAuthorityQuery() ;
 
         return queryContext;
+    }
+
+    public void makeAuthorityQuery() {
+        if(StringUtils.isNotEmpty(getNodeType().getAuthorityRuleString())){
+            Object authorityRule = getNodeType().getAuthorityRule() ;
+            if(authorityRule instanceof Map){
+                for(String key : ((Map<String, Object>) authorityRule).keySet()){
+                    QueryTerm term = new QueryTerm(getQueryTermType(), key,
+                            "matchingShould",
+                            JsonUtils.getStringValue((Map<String, Object>) RequestDataHolder.getRequestData().get("session"), ((Map) authorityRule).get(key).toString()));
+                    addQueryTerm(term);
+                }
+            }
+        }
+        if(getNodeType().hasAuthority()){
+            String role = JsonUtils.getStringValue(RequestDataHolder.getRequestData(), "session.role");
+            if(StringUtils.isEmpty(role)){
+                role = Node.ANONYMOUS;
+            }
+            QueryTerm term = new QueryTerm(getQueryTermType(), "authority", role);
+            addQueryTerm(term);
+        }
     }
 
     public void makeQueryTerm(NodeType nodeType) {
@@ -118,6 +141,8 @@ public class QueryContext extends ReadContext {
             }
         }
         queryContext.setQueryTerms(queryTerms);
+        queryContext.makeAuthorityQuery() ;
+
         queryContext.setMaxSize("10000");
         return queryContext;
     }
@@ -125,6 +150,8 @@ public class QueryContext extends ReadContext {
     public static QueryContext createQueryContextFromTerms(List<QueryTerm> queryTerms, NodeType nodeType) {
         QueryContext queryContext = new QueryContext(nodeType);
         queryContext.setQueryTerms(queryTerms);
+        queryContext.makeAuthorityQuery() ;
+
         return queryContext;
     }
 
@@ -371,6 +398,8 @@ public class QueryContext extends ReadContext {
         }
 
         queryContext.setQueryTerms(queryTerms);
+//        queryContext.makeAuthorityQuery() ;
+
         queryContext.setIncludeReferenced(true);
         return queryContext;
 
@@ -387,6 +416,8 @@ public class QueryContext extends ReadContext {
         QueryUtils.makeQueryTerm(nodeType, queryContext, queryTerms, pt.getPid()+"_matching", value);
 
         queryContext.setQueryTerms(queryTerms);
+        queryContext.makeAuthorityQuery() ;
+
         return queryContext;
     }
 
@@ -410,6 +441,7 @@ public class QueryContext extends ReadContext {
         QueryUtils.makeQueryTerm(refNodeType, queryContext, queryTerms, idPids.get(0), value);
 
         queryContext.setQueryTerms(queryTerms);
+
         return queryContext;
 
     }
@@ -667,6 +699,7 @@ public class QueryContext extends ReadContext {
                     }
                     facets.put(facetTerm.getName(), facet);
                 }
+                facets.put(facetTerm.getName(), facet);
             }
             queryResult.put("facets", facets) ;
         }

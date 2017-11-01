@@ -63,4 +63,6 @@
         <appender-ref ref="JSON_FILE"/>
         <appender-ref ref="STASH" />
     </root>
+
+    <logger name="org.hibernate.search" level="ERROR"/>
 </configuration>
