@@ -229,6 +229,22 @@
   {
     "typeId": "propertyType",
     "tid": "affiliateMall",
+    "pid": "businessPhone",
+    "propertyTypeName": "대표전화",
+    "valueType": "STRING",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "cjk",
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "affiliateMall",
     "pid": "contactPerson",
     "propertyTypeName": "담당자",
     "valueType": "STRING",
