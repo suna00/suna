@@ -335,7 +335,7 @@ public class VotePrtcptHstService {
 
         for (Map<String, Object> voteData : reqJson) {
             //시리즈투표일련번호 확인
-            if (!seriesVoteBasInfo.get("voteSeq").equals(voteData.get("sersVoteSeq").toString())) {
+            if (!seriesVoteBasInfo.getId().toString().equals(voteData.get("sersVoteSeq").toString())) {
                 throw new ApiException("430", "Invalid Vote!66");
             }
 
