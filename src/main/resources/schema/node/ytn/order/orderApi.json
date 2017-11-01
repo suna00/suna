@@ -347,37 +347,15 @@
     "apiId" : "cashReceiptList",
     "apiName" : "현금영수증 리스트 조회",
     "method" : "GET",
-    "parameters" : [
-    ],
+    "parameters" : [],
     "config" : {
-      "typeId" : "orderSheet",
+      "typeId" : "cashReceipt",
       "query" : [
         {"field" : "memberNo", "method" : "equals", "value" : "{{:default(session.member.memberNo, xxxxxx)}}"},
-        {"field" : "created", "method" : "fromto", "value" : "{{:createdFromto}}"},
-        {"field" : "usePayMethod", "method" : "in", "value" : "000000000000,010000000000,001000000000"},
-        {"includeReferenced" : true, "sorting" : "orderSheetId desc", "pageSize": "{{:pageSize}}", "page": "{{:page}}"},
-        {"field" : "referencedOrderProduct", "method" : "hasReferenced", "value" : "productId_equals={{:productId}}&orderStatus_equals=003"}
+        {"field" : "appTime", "method" : "fromto", "value" : "{{:appTime}}"}
       ],
       "response": {
-        "_all_": "",
-        "payment":{
-          "typeId" : "payment",
-          "query" : [
-            {"field" : "orderSheetId", "method" : "equals", "value" : "{{:orderSheetId}}"},
-            {"field" : "accCashNo", "method" : "notEquals", "value" : "null"}
-          ]
-        },
-        "referencedOrderProduct" : {
-          "typeId" : "orderProduct",
-          "query" : [
-            {"field" : "orderSheetId", "method" : "equals", "value" : "{{:orderSheetId}}"},
-            {"field" : "productId", "method" : "equals", "value" : "{{:productId}}"},
-            {"includeReferenced" : true, "referenceView": "deliveryEnterpriseId"}
-          ],
-          "response": {
-            "_all_": ""
-          }
-        }
+        "_all_": ""
       }
     }
   }

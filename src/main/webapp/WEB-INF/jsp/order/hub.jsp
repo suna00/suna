@@ -457,7 +457,10 @@
                     storeCashReceiptMap.put("appTime", app_time);
                     storeCashReceiptMap.put("regStat", "NTNC");
                     storeCashReceiptMap.put("remMny", "국세청 등록완료");
-                    //orderSheet 데이터를 조회하기 때문에 생성된 후에 진행해야 합니다.
+
+                    /**
+                     * orderSheet 데이터를 조회하기 때문에 생성된 후에 진행해야 합니다.
+                     */
                     orderService.createCashReceipt(storeCashReceiptMap);
                 }
 

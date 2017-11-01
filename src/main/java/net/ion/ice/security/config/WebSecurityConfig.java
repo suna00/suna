@@ -104,6 +104,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(FORM_BASED_LOGIN_ENTRY_POINT).permitAll()  // Login end-point
                 .antMatchers(TOKEN_ENTRY_POINT).permitAll()     // Token refresh end-point
                 .antMatchers(TOKEN_REFRESH_ENTRY_POINT).permitAll()     // Token refresh end-point
+                .antMatchers(TOKEN_REMOVE_ENTRY_POINT).permitAll()     // Token remove end-point
                 .antMatchers(FORM_BASED_LOGOUT_ENTRY_POINT).permitAll() // Logout end-point
                 .and()
                 .authorizeRequests()
