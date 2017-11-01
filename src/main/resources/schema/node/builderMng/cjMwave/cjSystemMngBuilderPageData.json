@@ -338,7 +338,7 @@
                         "refId": "admrInfo>admrId"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": true,
                           "description": "필수 값 입니다."
@@ -356,7 +356,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -385,7 +385,7 @@
                         "refId": "admrInfo>admrNm"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": true,
                           "description": "필수 값 입니다."
@@ -402,7 +402,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -431,7 +431,7 @@
                         "refId": "admrInfo>empNo"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": false,
                           "description": "필수 값 입니다."
@@ -448,7 +448,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -477,7 +477,7 @@
                         "refId": "admrInfo>dept"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": false,
                           "description": "필수 값 입니다."
@@ -494,7 +494,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -523,7 +523,7 @@
                         "refId": "admrInfo>email"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": false,
                           "description": "필수 값 입니다."
@@ -540,7 +540,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -569,7 +569,7 @@
                         "refId": "admrInfo>phone"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": false,
                           "description": "필수 값 입니다."
@@ -586,7 +586,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -615,7 +615,7 @@
                         "refId": "admrInfo>admrSttusYn"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": true,
                           "description": "필수 값 입니다."
@@ -632,7 +632,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -661,7 +661,7 @@
                         "refId": "admrInfo>tkcgWrkjob"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": false,
                           "description": "필수 값 입니다."
@@ -678,7 +678,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -836,7 +836,7 @@
                         "refId": "admrInfo>admrId"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": true,
                           "description": "필수 값 입니다."
@@ -854,7 +854,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -883,7 +883,7 @@
                         "refId": "admrInfo>admrNm"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": true,
                           "description": "필수 값 입니다."
@@ -900,7 +900,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -929,7 +929,7 @@
                         "refId": "admrInfo>empNo"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": false,
                           "description": "필수 값 입니다."
@@ -946,7 +946,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -975,7 +975,7 @@
                         "refId": "admrInfo>dept"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": false,
                           "description": "필수 값 입니다."
@@ -992,7 +992,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -1021,7 +1021,7 @@
                         "refId": "admrInfo>email"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": false,
                           "description": "필수 값 입니다."
@@ -1038,7 +1038,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -1067,7 +1067,7 @@
                         "refId": "admrInfo>phone"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": false,
                           "description": "필수 값 입니다."
@@ -1084,7 +1084,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -1113,7 +1113,7 @@
                         "refId": "admrInfo>admrSttusYn"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": true,
                           "description": "필수 값 입니다."
@@ -1130,7 +1130,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -1159,7 +1159,7 @@
                         "refId": "admrInfo>tkcgWrkjob"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": false,
                           "description": "필수 값 입니다."
@@ -1176,7 +1176,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -1518,7 +1518,7 @@
                         "refId": "admrGroup>admrGroupId"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": true,
                           "description": "필수 값 입니다."
@@ -1536,7 +1536,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -1565,7 +1565,7 @@
                         "refId": "admrGroup>admrGroupNm"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": true,
                           "description": "필수 값 입니다."
@@ -1582,7 +1582,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -1611,7 +1611,7 @@
                         "refId": "admrGroup>admrGroupDesc"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": false,
                           "description": "필수 값 입니다."
@@ -1628,7 +1628,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -1759,7 +1759,7 @@
                         "refId": "admrGroup>admrGroupId"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": true,
                           "description": "필수 값 입니다."
@@ -1777,7 +1777,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -1806,7 +1806,7 @@
                         "refId": "admrGroup>admrGroupNm"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": true,
                           "description": "필수 값 입니다."
@@ -1823,7 +1823,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -1852,7 +1852,7 @@
                         "refId": "admrGroup>admrGroupDesc"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": false,
                           "description": "필수 값 입니다."
@@ -1869,7 +1869,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -1999,7 +1999,7 @@
                         "refId": "admrGroup>admrGroupId"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": true,
                           "description": "필수 값 입니다."
@@ -2017,7 +2017,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -2046,7 +2046,7 @@
                         "refId": "admrGroup>admrGroupNm"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": true,
                           "description": "필수 값 입니다."
@@ -2063,7 +2063,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -2092,7 +2092,7 @@
                         "refId": "admrGroup>admrGroupDesc"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": false,
                           "description": "필수 값 입니다."
@@ -2109,7 +2109,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -2240,7 +2240,7 @@
                         "refId": "admrInfo>admrId"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": true,
                           "description": "필수 값 입니다."
@@ -2258,7 +2258,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -2287,7 +2287,7 @@
                         "refId": "admrInfo>admrNm"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": true,
                           "description": "필수 값 입니다."
@@ -2304,7 +2304,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -2333,7 +2333,7 @@
                         "refId": "admrInfo>empNo"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": false,
                           "description": "필수 값 입니다."
@@ -2350,7 +2350,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -2379,7 +2379,7 @@
                         "refId": "admrInfo>dept"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": false,
                           "description": "필수 값 입니다."
@@ -2396,7 +2396,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -2425,7 +2425,7 @@
                         "refId": "admrInfo>email"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": false,
                           "description": "필수 값 입니다."
@@ -2442,7 +2442,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -2471,7 +2471,7 @@
                         "refId": "admrInfo>phone"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": false,
                           "description": "필수 값 입니다."
@@ -2488,7 +2488,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -2517,7 +2517,7 @@
                         "refId": "admrInfo>admrSttusYn"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": true,
                           "description": "필수 값 입니다."
@@ -2534,7 +2534,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
@@ -2563,7 +2563,7 @@
                         "refId": "admrInfo>tkcgWrkjob"
                       },
                       "validation": {
-                        "language": "ko",
+                        "language": "eng",
                         "required": {
                           "value": false,
                           "description": "필수 값 입니다."
@@ -2580,7 +2580,7 @@
                           "value": 0,
                           "description": "최대 값 입니다."
                         },
-                        "extention": {
+                        "extension": {
                           "value": "",
                           "description": "확장자를 허용하지 않습니다."
                         },
