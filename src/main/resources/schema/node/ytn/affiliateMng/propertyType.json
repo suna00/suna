@@ -67,6 +67,22 @@
   {
     "typeId": "propertyType",
     "tid": "affiliateMall",
+    "pid": "logoImage",
+    "propertyTypeName": "로고이미지",
+    "valueType": "FILE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "affiliateMall",
     "pid": "affiliateMallStatus",
     "propertyTypeName": "사용여부",
     "valueType": "REFERENCE",
