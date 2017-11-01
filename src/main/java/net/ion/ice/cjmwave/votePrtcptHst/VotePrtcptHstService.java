@@ -314,7 +314,7 @@ public class VotePrtcptHstService {
 
         List<Map<String, Object>> insertList = synchronizedList(new ArrayList());
         if(reqJson.size()<sersVoteItemInfos.size()){
-            throw new ApiException("430", "Invalid Vote!");
+            throw new ApiException("430", "Invalid Vote! 11");
         }
 
         // 회원정보 체크
@@ -326,36 +326,36 @@ public class VotePrtcptHstService {
                 Node mbrNode = getMbrNode(mbrIds[0], mbrIds[1]);
 
                 if(mbrNode == null){
-                    throw new ApiException("430", "Invalid Vote!");
+                    throw new ApiException("430", "Invalid Vote!22");
                 }else{
                     String mbrSttusCd = mbrNode.getStringValue("mbrSttusCd");
                     String mbrDivCd = mbrNode.getStringValue("mbrDivCd");
                     if("2".equals(mbrSttusCd) || "3".equals(mbrSttusCd) || !"2".equals(mbrDivCd)) {//탈퇴,휴면 상태이거나 정회원이 아닌 경우 에러.
-                        throw new ApiException("430", "Invalid Vote!");
+                        throw new ApiException("430", "Invalid Vote!33");
                     }
                 }
             }else{
-                throw new ApiException("430", "Invalid Vote!");
+                throw new ApiException("430", "Invalid Vote!44");
             }
         }else{
-            throw new ApiException("430", "Invalid Vote!");
+            throw new ApiException("430", "Invalid Vote!55");
         }
 
         for (Map<String, Object> voteData : reqJson) {
             //시리즈투표일련번호 확인
             if(!seriesVoteBasInfo.get("voteSeq").equals(voteData.get("sersVoteSeq").toString())){
-                throw new ApiException("430", "Invalid Vote!");
+                throw new ApiException("430", "Invalid Vote!66");
             }
 
             // 사용자 ID 확인
             if (!mbrId.equals(voteData.get(PRTCP_MBR_ID).toString())) {
-                throw new ApiException("430", "Invalid Vote!");
+                throw new ApiException("430", "Invalid Vote!77");
             }
 
             //단일 투표 확인
             Node selectVoteInfo = NodeUtils.getNode(VOTE_BAS_INFO, voteData.get(VOTE_SEQ).toString());
             if(selectVoteInfo == null){
-                throw new ApiException("430", "Invalid Vote!");
+                throw new ApiException("430", "Invalid Vote!88");
             }
             //시리즈 투표에 전달된 단일투표가 속해 있는지 확인
             boolean hasSeries = false ;
@@ -367,17 +367,17 @@ public class VotePrtcptHstService {
             }
 
             if(!hasSeries){
-                throw new ApiException("430", "Invalid Vote!");
+                throw new ApiException("430", "Invalid Vote!99");
             }
 
             //단일 투표에 전달된 투표항목이 속해 있는지 확인
             Node voteItemInfo = NodeUtils.getNode(VOTE_ITEM_INFO, voteData.get(VOTE_ITEM_SEQ).toString());
             if(voteItemInfo == null){
-                throw new ApiException("430", "Invalid Vote!");
+                throw new ApiException("430", "Invalid Vote!101010");
             }
             String itemVoteSeq = voteItemInfo.get(VOTE_SEQ).toString();
              if(!itemVoteSeq.equals(voteData.get(VOTE_SEQ).toString())){
-                 throw new ApiException("430", "Invalid Vote!");
+                 throw new ApiException("430", "Invalid Vote!11");
              }
 
             insertList.add(voteData);
