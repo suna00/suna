@@ -363,6 +363,7 @@ public class VotePrtcptHstService {
 
             //단일 투표에 전달된 투표항목이 속해 있는지 확인
             Node voteItemInfo = NodeUtils.getNode(VOTE_ITEM_INFO, voteData.get(VOTE_ITEM_SEQ).toString());
+            logger.info("mama voting: voteItemInfo ="+voteItemInfo);
             if (voteItemInfo == null) {
                 throw new ApiException("430", "Invalid Vote!101010");
             }
@@ -375,10 +376,12 @@ public class VotePrtcptHstService {
         }
 
         String pstngStDt = seriesVoteBasInfo.getStringValue("pstngStDt");
+        logger.info("mama voting pstngStDt~~:"+pstngStDt);
         if (pstngStDt.length() > 0) {
             pstngStDt = pstngStDt.substring(0, 8);   // 투표 시작일
         }
         String pstngFnsDt = seriesVoteBasInfo.getStringValue("pstngFnsDt");
+        logger.info("mama voting pstngFnsDt~~:"+pstngFnsDt);
         if (pstngFnsDt.length() > 0) {
             pstngFnsDt = pstngFnsDt.substring(0, 8); // 투표 종료일
         }
@@ -392,6 +395,7 @@ public class VotePrtcptHstService {
         // Checking Available IP with mbrId and voteSeq
         String searchTextDefault = "setupTypeCd_matching=2&sorting=dclaSetupSeq desc&limit=1";
         String searchText = "setupTypeCd_matching=2&sorting=dclaSetupSeq desc&refVoteSeqs_matching=" + seriesVoteBasInfo.getId() + "&limit=1";
+        logger.info("mama voing searchText="+searchText);
         List<Node> dclaNodeList = nodeService.getNodeList("dclaSetupMng", searchText);
         if (dclaNodeList.size() == 0) {//투표 일련번호로 제한 조건이 설정되어 있지 않으면 기본 정보를 가져옴
             dclaNodeList = nodeService.getNodeList("dclaSetupMng", searchTextDefault);
