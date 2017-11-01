@@ -60,10 +60,10 @@ public class SessionService {
                 refreshSessionKey = tokenFactory.createRefreshToken(false).getToken();
                 sessionData = new HashMap<>();
             }else{
-                refreshSessionKey = tokenFactory.createRefreshToken(true).getToken();
+                refreshSessionKey = tokenFactory.createRefreshToken(false).getToken();
             }
             sessionMap.put(sessionKey, sessionData);
-            CookieUtil.create(response, "iceJWT", jwtConfig.getTokenPrefix().concat(" ").concat(sessionKey), false, false, -1, request.getServerName());
+            CookieUtil.create(response, "iceJWT", jwtConfig.getTokenPrefix().concat(" ").concat(sessionKey), true, false, -1, request.getServerName());
             CookieUtil.create(response, "iceRefreshJWT", jwtConfig.getTokenPrefix().concat(" ").concat(refreshSessionKey), true, false, -1, request.getServerName());
         }else{
             Map<String, Object> session = getSession(request);
@@ -79,7 +79,7 @@ public class SessionService {
 
         refreshSessionKey = tokenFactory.createRefreshToken(false).getToken();
         String token = jwtConfig.getTokenPrefix().concat(" ").concat(sessionKey) ;
-        CookieUtil.create(response, "iceJWT", token, false, false, -1, request.getServerName());
+        CookieUtil.create(response, "iceJWT", token, true, false, -1, request.getServerName());
         CookieUtil.create(response, "iceRefreshJWT", jwtConfig.getTokenPrefix().concat(" ").concat(refreshSessionKey), true, false, -1, request.getServerName());
         return token ;
     }
@@ -100,7 +100,7 @@ public class SessionService {
             String sessionKey = tokenFactory.createInitJwtToken().getToken();
             sessionMap.put(sessionKey, getSession(request));
             removeSession(request);
-            CookieUtil.create(response, "iceJWT", jwtConfig.getTokenPrefix().concat(" ").concat(sessionKey), false, false, -1, request.getServerName());
+            CookieUtil.create(response, "iceJWT", jwtConfig.getTokenPrefix().concat(" ").concat(sessionKey), true, false, -1, request.getServerName());
         }else{
             putSession(request, response, null);
         }

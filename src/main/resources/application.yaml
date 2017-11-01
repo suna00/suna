@@ -33,8 +33,8 @@ jwtConfig:
   secretKey: dkdldhs!@#$
   tokenPrefix: SDP
   headString: X-Authorization
-  tokenExpirationTime: 1800 #분
-  refreshTokenExpTime: 1800 #분
+  tokenExpirationTime: 30 #분
+  refreshTokenExpTime: 1440 #분
 
 cluster:
   api-prefix: http://localhost:8080/

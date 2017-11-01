@@ -24,6 +24,7 @@
 <%@ page import="java.util.concurrent.ConcurrentHashMap" %>
 <%@ page import="org.apache.commons.lang3.StringUtils" %>
 <%@ page import="org.apache.log4j.Logger" %>
+<%@ page import="java.util.HashMap" %>
 <%@ include file="cfg/site_conf_inc.jsp" %>
 <%
     /* = -------------------------------------------------------------------------- = */
@@ -65,69 +66,69 @@
     /* ============================================================================== */
     /* =   02. 지불 요청 정보 설정                                                  = */
     /* = -------------------------------------------------------------------------- = */
-    String req_tx = f_get_parm(request.getParameter("req_tx")); // 요청 종류
-    String tran_cd = f_get_parm(request.getParameter("tran_cd")); // 처리 종류
+    String req_tx = f_get_parm(request.getParameter("req_tx"));                 // 요청 종류
+    String tran_cd = f_get_parm(request.getParameter("tran_cd"));               // 처리 종류
     /* = -------------------------------------------------------------------------- = */
-    String cust_ip = f_get_parm(request.getRemoteAddr()); // 요청 IP
-    String ordr_idxx = f_get_parm(request.getParameter("ordr_idxx")); // 쇼핑몰 주문번호
-    String good_name = f_get_parm(request.getParameter("good_name")); // 상품명
-    String ordr_chk = f_get_parm(request.getParameter("ordr_chk")); //
+    String cust_ip = f_get_parm(request.getRemoteAddr());                       // 요청 IP
+    String ordr_idxx = f_get_parm(request.getParameter("ordr_idxx"));           // 쇼핑몰 주문번호
+    String good_name = f_get_parm(request.getParameter("good_name"));           // 상품명
+    String ordr_chk = f_get_parm(request.getParameter("ordr_chk"));             // ordr_chk
     /* = -------------------------------------------------------------------------- = */
-    String res_cd = "";                                                     // 응답코드
-    String res_msg = "";                                                     // 응답 메세지
-    String tno = f_get_parm(request.getParameter("tno")); // KCP 거래 고유 번호
+    String res_cd = "";                                                         // 응답코드
+    String res_msg = "";                                                        // 응답 메세지
+    String tno = f_get_parm(request.getParameter("tno"));                       // KCP 거래 고유 번호
     /* = -------------------------------------------------------------------------- = */
-    String buyr_name = f_get_parm(request.getParameter("buyr_name")); // 주문자명
-    String buyr_tel1 = f_get_parm(request.getParameter("buyr_tel1")); // 주문자 전화번호
-    String buyr_tel2 = f_get_parm(request.getParameter("buyr_tel2")); // 주문자 핸드폰 번호
-    String buyr_mail = f_get_parm(request.getParameter("buyr_mail")); // 주문자 E-mail 주소
+    String buyr_name = f_get_parm(request.getParameter("buyr_name"));           // 주문자명
+    String buyr_tel1 = f_get_parm(request.getParameter("buyr_tel1"));           // 주문자 전화번호
+    String buyr_tel2 = f_get_parm(request.getParameter("buyr_tel2"));           // 주문자 핸드폰 번호
+    String buyr_mail = f_get_parm(request.getParameter("buyr_mail"));           // 주문자 E-mail 주소
     /* = -------------------------------------------------------------------------- = */
     String use_pay_method = f_get_parm(request.getParameter("use_pay_method")); // 결제 방법
     String bSucc = "false";                                                     // 업체 DB 처리 성공 여부
     /* = -------------------------------------------------------------------------- = */
-    String app_time = "";                                                     // 승인시간 (모든 결제 수단 공통)
-    String amount = "";                                                     // KCP 실제 거래금액
-    String total_amount = "0";                                                    // 복합결제시 총 거래금액
+    String app_time = "";                                                       // 승인시간 (모든 결제 수단 공통)
+    String amount = "";                                                         // KCP 실제 거래금액
+    String total_amount = "0";                                                  // 복합결제시 총 거래금액
     String coupon_mny = "";                                                     // 쿠폰금액
     /* = -------------------------------------------------------------------------- = */
-    String card_cd = "";                                                     // 신용카드 코드
-    String card_name = "";                                                     // 신용카드 명
-    String app_no = "";                                                     // 신용카드 승인번호
-    String noinf = "";                                                     // 신용카드 무이자 여부
-    String quota = "";                                                     // 신용카드 할부개월
-    String partcanc_yn = "";                                                     // 부분취소 가능유무
-    String card_bin_type_01 = "";                                                   // 카드구분1
-    String card_bin_type_02 = "";                                                   // 카드구분2
-    String card_mny = "";                                                     // 카드결제금액
+    String card_cd = "";                                                        // 신용카드 코드
+    String card_name = "";                                                      // 신용카드 명
+    String app_no = "";                                                         // 신용카드 승인번호
+    String noinf = "";                                                          // 신용카드 무이자 여부
+    String quota = "";                                                          // 신용카드 할부개월
+    String partcanc_yn = "";                                                    // 부분취소 가능유무
+    String card_bin_type_01 = "";                                               // 카드구분1
+    String card_bin_type_02 = "";                                               // 카드구분2
+    String card_mny = "";                                                       // 카드결제금액
     /* = -------------------------------------------------------------------------- = */
-    String bank_name = "";                                                     // 은행명
-    String bank_code = "";                                                     // 은행코드
-    String bk_mny = "";                                                     // 계좌이체결제금액
+    String bank_name = "";                                                      // 은행명
+    String bank_code = "";                                                      // 은행코드
+    String bk_mny = "";                                                         // 계좌이체결제금액
     /* = -------------------------------------------------------------------------- = */
-    String bankname = "";                                                     // 입금 은행명
-    String depositor = "";                                                     // 입금 계좌 예금주 성명
-    String account = "";                                                     // 입금 계좌 번호
-    String va_date = "";                                                     // 가상계좌 입금마감시간
-    /* = -------------------------------------------------------------------------- = */
-    String pnt_issue = "";                                                     // 결제 포인트사 코드
+    String bankname = "";                                                       // 입금 은행명
+    String depositor = "";                                                      // 입금 계좌 예금주 성명
+    String account = "";                                                        // 입금 계좌 번호
+    String va_date = "";                                                        // 가상계좌 입금마감시간
+    /* = ------------------------------------------------------------------------- = */
+    String pnt_issue = "";                                                      // 결제 포인트사 코드
     String pnt_amount = "";                                                     // 적립금액 or 사용금액
-    String pnt_app_time = "";                                                     // 승인시간
+    String pnt_app_time = "";                                                   // 승인시간
     String pnt_app_no = "";                                                     // 승인번호
-    String add_pnt = "";                                                     // 발생 포인트
-    String use_pnt = "";                                                     // 사용가능 포인트
-    String rsv_pnt = "";                                                     // 총 누적 포인트
-    /* = -------------------------------------------------------------------------- = */
-    String commid = "";                                                     // 통신사코드
-    String mobile_no = "";                                                     // 휴대폰번호
-    /* = -------------------------------------------------------------------------- = */
-    String shop_user_id = f_get_parm(request.getParameter("shop_user_id")); // 가맹점 고객 아이디
-    String tk_van_code = "";                                                     // 발급사코드
-    String tk_app_no = "";                                                     // 승인번호
+    String add_pnt = "";                                                        // 발생 포인트
+    String use_pnt = "";                                                        // 사용가능 포인트
+    String rsv_pnt = "";                                                        // 총 누적 포인트
+    /* = ------------------------------------------------------------------------- = */
+    String commid = "";                                                         // 통신사코드
+    String mobile_no = "";                                                      // 휴대폰번호
+    /* = ------------------------------------------------------------------------- = */
+    String shop_user_id = f_get_parm(request.getParameter("shop_user_id"));     // 가맹점 고객 아이디
+    String tk_van_code = "";                                                    // 발급사코드
+    String tk_app_no = "";                                                      // 승인번호
     /* = -------------------------------------------------------------------------- = */
     String cash_yn = f_get_parm(request.getParameter("cash_yn")); // 현금 영수증 등록 여부
-    String cash_authno = "";                                                     // 현금 영수증 승인 번호
-    String cash_tr_code = f_get_parm(request.getParameter("cash_tr_code")); // 현금 영수증 발행 구분
-    String cash_id_info = f_get_parm(request.getParameter("cash_id_info")); // 현금 영수증 등록 번호
+    String cash_authno = "";                                                 // 현금 영수증 승인 번호
+    String cash_tr_code = f_get_parm(request.getParameter("cash_tr_code"));  // 현금 영수증 발행 구분
+    String cash_id_info = f_get_parm(request.getParameter("cash_id_info"));  // 현금 영수증 등록 번호
     String cash_no = "";                                                     // 현금 영수증 거래 번호
     String good_mny = f_get_parm(request.getParameter("cash_id_info"));
 
@@ -447,6 +448,17 @@
                 orderService.createPayment(responseMap, pgId);
                 bSucc = orderService.createOrderSheet(responseMap, request);
 
+                if(use_pay_method.equals("010000000000") || use_pay_method.equals("000000001000"))
+                if(StringUtils.equalsIgnoreCase("cashYn", "Y")){
+                    Map<String, Object> storeCashReceiptMap = new HashMap<>();
+                    storeCashReceiptMap.put("orderSheetId", ordr_idxx);
+                    storeCashReceiptMap.put("cashNo", cash_no);
+                    storeCashReceiptMap.put("receiptNo", cash_authno);
+                    storeCashReceiptMap.put("appTime", app_time);
+                    storeCashReceiptMap.put("regStat", "NTNC");
+                    storeCashReceiptMap.put("remMny", "국세청 등록완료");
+                    orderService.createCashReceipt(storeCashReceiptMap);
+                }
 
             } catch (Exception e) {
                 bSucc = "false";

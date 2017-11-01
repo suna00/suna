@@ -72,25 +72,35 @@
     String cash_no      = f_get_parm( request.getParameter( "cash_no"   ) );     // 현금영수증 거래번호
     /* = -------------------------------------------------------------------------- = */
     OrderService orderService = (OrderService) ApplicationContextManager.getContext().getBean("orderService");
-    Map<String, Object> responseMap = new HashMap<>();
+    Map<String, Object> storeOrderSheetMap = new HashMap<>();
+    Map<String, Object> storeCashReceiptMap = new HashMap<>();
 
-    responseMap.put("accSiteCd", site_cd);      //사이트코드
-    responseMap.put("accTno", tno);             //KCP거래번호
-    responseMap.put("orderSheetId", order_no);  //주문번호
-    responseMap.put("accTxCd", tx_cd);          //업무처리구분코드
-    responseMap.put("accTxTm", tx_tm);          //업무처리완료시간
-    responseMap.put("accIpgmName", ipgm_name);  //주문자명
-    responseMap.put("accRemitter", remitter);   //입금자명
-    responseMap.put("accIpgmMnyx", ipgm_mnyx);  //입금금액
-    responseMap.put("accBankCode", bank_code);  //은행코드
-    responseMap.put("accAccount", account);     //가상계좌입금계좌번호
-    responseMap.put("accOpCd", op_cd);          //처리구분코드
-    responseMap.put("accNotiId", noti_id);      //통보아이디
-    responseMap.put("accCashAno", cash_a_no);   //현금영수증승인번호
-    responseMap.put("accCashAdt", cash_a_dt);   //현금영수증승인시간
-    responseMap.put("accCashNo", cash_no);      //현금영수증거래번호
+    storeOrderSheetMap.put("accSiteCd", site_cd);           //사이트코드
+    storeOrderSheetMap.put("accTno", tno);                  //KCP거래번호
+    storeOrderSheetMap.put("orderSheetId", order_no);       //주문번호
+    storeOrderSheetMap.put("accTxCd", tx_cd);               //업무처리구분코드
+    storeOrderSheetMap.put("accTxTm", tx_tm);               //업무처리완료시간
+    storeOrderSheetMap.put("accIpgmName", ipgm_name);       //주문자명
+    storeOrderSheetMap.put("accRemitter", remitter);        //입금자명
+    storeOrderSheetMap.put("accIpgmMnyx", ipgm_mnyx);       //입금금액
+    storeOrderSheetMap.put("accBankCode", bank_code);       //은행코드
+    storeOrderSheetMap.put("accAccount", account);          //가상계좌입금계좌번호
+    storeOrderSheetMap.put("accOpCd", op_cd);               //처리구분코드
+    storeOrderSheetMap.put("accNotiId", noti_id);           //통보아이디
+    storeOrderSheetMap.put("accCashAno", cash_a_no);        //현금영수증승인번호
+    storeOrderSheetMap.put("accCashAdt", cash_a_dt);        //현금영수증승인시간
+    storeOrderSheetMap.put("accCashNo", cash_no);           //현금영수증거래번호
 
-    orderService.accountTransferUpdate(responseMap);
+    storeCashReceiptMap.put("cashNo", cash_no);             //현금영수증거래번호
+    storeCashReceiptMap.put("receiptNo",cash_a_no);         //현금영수증승인번호
+    storeCashReceiptMap.put("appTime", tx_tm);              //업무처리완료시간
+    storeCashReceiptMap.put("regStat", "NTNC");             //등록상태
+    storeCashReceiptMap.put("remMny", "국세청 등록완료");        //상태설명
+    storeCashReceiptMap.put("orderSheetId", order_no);      //주문번호
+
+
+    orderService.createCashReceipt(storeCashReceiptMap);          //현금영수증 저장
+    orderService.accountTransferUpdate(storeOrderSheetMap);//주문서관련업데이트
 
     /* = -------------------------------------------------------------------------- = */
     /* =   02-1. 가상계좌 입금 통보 데이터 받기                                     = */

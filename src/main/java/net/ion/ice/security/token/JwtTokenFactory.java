@@ -19,7 +19,7 @@ import java.util.UUID;
 @Component
 public class JwtTokenFactory {
     private final JwtConfig jwtConfig;
-    private Date infinityExpire = DateUtils.parseDate("29990101", "yyyyMMdd") ;
+    private Date infinityExpire = DateUtils.parseDate("21000101", "yyyyMMdd") ;
 
     @Autowired
     public JwtTokenFactory(JwtConfig jwtConfig) throws ParseException {
@@ -44,7 +44,7 @@ public class JwtTokenFactory {
     }
 
 
-    public JwtToken createRefreshToken(boolean logined) {
+    public JwtToken createRefreshToken(boolean signed) {
 //        if (StringUtils.isBlank(userContext.getUserId())) {
 //            throw new IllegalArgumentException("Cannot create JWT Token without userId");
 //        }
@@ -52,9 +52,9 @@ public class JwtTokenFactory {
         LocalDateTime currentTime = LocalDateTime.now();
 
 //        Claims claims = Jwts.claims().setSubject(userContext.getUserId());
-        Claims claims = Jwts.claims().setSubject(logined ? "Customer" : "Anonymous");
+        Claims claims = Jwts.claims().setSubject(signed ? "Customer" : "Anonymous");
 //        claims.put("scopes", Arrays.asList(Scopes.REFRESH_TOKEN.authority()));
-        Date expireDate = logined ? Date.from(currentTime.plusMinutes(jwtConfig.getRefreshTokenExpTime()).atZone(ZoneId.systemDefault()).toInstant()) : infinityExpire ;
+        Date expireDate = signed ? Date.from(currentTime.plusMinutes(jwtConfig.getRefreshTokenExpTime()).atZone(ZoneId.systemDefault()).toInstant()) : infinityExpire ;
         String token = Jwts.builder()
                 .setClaims(claims)
                 .setIssuer(jwtConfig.getIssuer())

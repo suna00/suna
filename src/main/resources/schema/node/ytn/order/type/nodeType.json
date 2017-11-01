@@ -168,5 +168,14 @@
     "tableName": "ytnDevDb#cashReceiptRequest",
     "repositoryType": "data",
     "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "cashReceipt",
+    "typeName": "현금영수증",
+    "tableName": "ytnDevDb#cashReceipt",
+    "repositoryType": "data",
+    "eviction": 0
   }
 ]

@@ -38,6 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //    public static final String TOKEN_BASED_AUTH_ENTRY_POINT = "/certification/**";
     public static final String TOKEN_ENTRY_POINT = "/api/auth/token";
     public static final String TOKEN_REFRESH_ENTRY_POINT = "/api/auth/refreshToken";
+    public static final String TOKEN_REMOVE_ENTRY_POINT = "/api/auth/remove";
 
     @Autowired
     private AuthenticationSuccessHandler successHandler;
@@ -70,7 +71,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     protected JwtTokenAuthenticationProcessingFilter buildJwtTokenAuthenticationProcessingFilter() throws Exception {
-        List<String> pathsToSkip = Arrays.asList(TOKEN_ENTRY_POINT,TOKEN_REFRESH_ENTRY_POINT, FORM_BASED_LOGIN_ENTRY_POINT, FORM_BASED_LOGOUT_ENTRY_POINT);
+        List<String> pathsToSkip = Arrays.asList(TOKEN_ENTRY_POINT,TOKEN_REFRESH_ENTRY_POINT, TOKEN_REMOVE_ENTRY_POINT,FORM_BASED_LOGIN_ENTRY_POINT, FORM_BASED_LOGOUT_ENTRY_POINT);
         SkipPathRequestMatcher matcher = new SkipPathRequestMatcher(pathsToSkip, TOKEN_BASED_AUTH_ENTRY_POINT);
         JwtTokenAuthenticationProcessingFilter filter = new JwtTokenAuthenticationProcessingFilter(failureHandler, tokenExtractor, matcher);
         filter.setAuthenticationManager(this.authenticationManager);

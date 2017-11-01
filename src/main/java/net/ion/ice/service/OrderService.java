@@ -710,6 +710,7 @@ public class OrderService {
 
         deliveryService.makeDeliveryPrice(orderSheetId, orderDeliveryPriceList);
 
+
         nodeBindingService.delete("tempOrder", orderSheetId);
 
         return bSucc;
@@ -918,7 +919,10 @@ public class OrderService {
             e.printStackTrace();
         }
     }
-
+    /**
+     * common_return.jsp
+     * 주문서 업데이트 Method
+     */
     public void accountTransferUpdate(Map<String, Object> responseMap){
         String orderSheetId = JsonUtils.getStringValue(responseMap, "orderSheetId");
         if(!orderSheetId.equals("")){
@@ -938,6 +942,35 @@ public class OrderService {
         }
     }
 
+    /**
+     * 현금영수증 create Method
+     */
+
+    public void createCashReceipt(Map<String, Object> responseMap){
+        String orderSheetId = JsonUtils.getStringValue(responseMap, "orderSheetId");
+
+        try {
+
+            if(!StringUtils.equals(orderSheetId, "")){
+                Map<String, Object> orderSheetData = nodeBindingService.read("orderSheet", orderSheetId);
+
+                Map<String, Object> storeCashReceiptMap = new HashMap<>();
+
+                storeCashReceiptMap.putAll(responseMap);
+
+                storeCashReceiptMap.put("appTime", JsonUtils.getDateValue(responseMap, "appTime"));
+                storeCashReceiptMap.put("memberNo", JsonUtils.getIntNullableValue(orderSheetData, "memberNo"));
+                storeCashReceiptMap.put("orderCreateDate", JsonUtils.getDateValue(orderSheetData, "created"));
+                storeCashReceiptMap.put("amount", JsonUtils.getDoubleValue(orderSheetData, "totalOrderPrice"));
+
+                nodeService.executeNode(storeCashReceiptMap, "cashReceipt", CommonService.CREATE);
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     /**
      * 쿠폰 중복 체크 Method.

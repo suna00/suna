@@ -20,13 +20,13 @@ public class RawAccessJwtToken implements JwtToken {
         try {
             return Jwts.parser().setSigningKey(signingKey).parseClaimsJws(this.token);
         } catch (NullPointerException ex) {
-            logger.error("Session JWT Token not Exist", ex);
+            logger.info("Session JWT Token not Exist");
             throw new NullPointerException("Session JWT Token not Exist");
         } catch (UnsupportedJwtException | MalformedJwtException | IllegalArgumentException | SignatureException ex) {
-            logger.error("Invalid JWT Token", ex);
+            logger.info("Invalid JWT Token");
             throw new BadCredentialsException("Invalid JWT token: ", ex);
         } catch (ExpiredJwtException expiredEx) {
-            logger.info("JWT Token is expired", expiredEx);
+            logger.info("JWT Token is expired");
             throw new JwtExpiredTokenException(this, "JWT Token expired", ErrorCode.JWT_TOKEN_EXPIRED, expiredEx);
         }
     }

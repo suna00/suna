@@ -14,9 +14,9 @@ import org.springframework.core.io.Resource;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by jaehocho on 2017. 2. 11..
@@ -218,6 +218,10 @@ public class JsonUtils {
         if(value instanceof String){
             return (String) value;
         }
+
+        if(value instanceof Date){
+            return new SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA).format(value);
+        }
         return value.toString() ;
     }
 
@@ -230,5 +234,19 @@ public class JsonUtils {
             return (boolean) value;
         }
         return (boolean) value ;
+    }
+
+    public static Date getDateValue(Map<String, Object> data, String key) {
+        Object value = getValue(data, key) ;
+
+        if(value instanceof String){
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+            try {
+                return simpleDateFormat.parse((String) value);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return (Date) value;
     }
 }

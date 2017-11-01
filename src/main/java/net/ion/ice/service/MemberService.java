@@ -135,12 +135,18 @@ public class MemberService {
             if (null == memberNode) {
                 context.setResult(CommonService.getResult("U0010"));    //로그인을 하지않은 사용자
             } else {
+                try {
+                    sessionService.refreshSession(context.getHttpRequest(), context.getHttpResponse());
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
                 extraData.put("siteId", memberNode.get("siteId"));
                 extraData.put("siteType", memberNode.get("siteType"));
                 extraData.put("memberNo", memberNode.get("memberNo"));
                 extraData.put("userId", memberNode.get("userId"));
                 extraData.put("name", memberNode.get("name"));
                 context.setResult(CommonService.getResult("U0009", extraData));    //로그인을 한 사용자
+
             }
         }
         return context;
