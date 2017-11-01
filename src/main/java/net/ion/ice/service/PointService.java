@@ -2,11 +2,14 @@ package net.ion.ice.service;
 
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.data.bind.NodeBindingService;
+import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
+import net.ion.ice.core.node.NodeQuery;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.session.SessionService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -16,16 +19,14 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service("pointService")
 public class PointService {
 
     public static final String YPOINT = "YPoint";
     public static final String WELFAREPOINT = "welfarePoint";
+    public static final String AFFILIATE_POINT = "affiliatePoint";
 
     public static final String usedYPointMap = "usedYPointMap";
     public static final String usedWelfarePointMap = "usedWelfarePointMap";
@@ -372,4 +373,125 @@ public class PointService {
         return context;
     }
 
+    public ExecuteContext distribute(ExecuteContext context) {
+        Map<String, Object> params = context.getData();
+
+        String affiliateId = params.get("affiliateId") == null ? "" : params.get("affiliateId").toString();
+        String point = params.get("point") == null ? "" : params.get("point").toString();
+        String memberNo = params.get("memberNo") == null ? "" : params.get("memberNo").toString();
+
+        if (!StringUtils.isEmpty(affiliateId) && !StringUtils.isEmpty(point) && !StringUtils.isEmpty(memberNo)) {
+            List<String> memberNoList = Arrays.asList(StringUtils.split(memberNo, ","));
+
+            BigDecimal parsePoint = new BigDecimal(point);
+            BigDecimal memberCount = new BigDecimal(memberNoList.size());
+            BigDecimal distributePoint = parsePoint.divide(memberCount, BigDecimal.ROUND_DOWN);
+            BigDecimal firstAffiliatePointBalance = getFirstAffiliatePointBalance(affiliateId);
+
+            Map<String, Object> affiliatePointData = new HashMap<>();
+            affiliatePointData.put("affiliateId", affiliateId);
+            affiliatePointData.put("welfarePointType", "divide");
+            affiliatePointData.put("price", parsePoint.toString());
+            affiliatePointData.put("balance", firstAffiliatePointBalance.subtract(parsePoint).toString());
+            Map<String, Object> affiliatePointResult = (Map<String, Object>) nodeService.executeNode(affiliatePointData, AFFILIATE_POINT, EventService.SAVE);
+
+            for (String memberId : memberNoList) {
+                Node memberNode = nodeService.getNode("member", memberId);
+                if (memberNode != null) {
+                    String welfarePoint = memberNode.getBindingValue("welfarePoint") == null ? "0" : memberNode.getBindingValue("welfarePoint").toString();
+                    BigDecimal parseWelfarePoint = new BigDecimal(welfarePoint);
+
+                    Map<String, Object> memberData = new HashMap<>();
+                    memberData.put("memberNo", memberId);
+                    memberData.put("welfarePoint", parseWelfarePoint.add(distributePoint).doubleValue());
+                    nodeService.executeNode(memberData, MEMBER, EventService.UPDATE);
+
+                    BigDecimal firstWelfarePointBalance = getFirstWelfarePointBalance(affiliateId, memberId);
+
+                    Map<String, Object> welfarePointData = new HashMap<>();
+                    welfarePointData.put("memberNo", memberId);
+                    welfarePointData.put("affiliateId", affiliateId);
+                    welfarePointData.put("welfarePointType", "divide");
+                    welfarePointData.put("affiliatePointId", affiliatePointResult.get("affiliatePointId"));
+                    welfarePointData.put("price", distributePoint.toString());
+                    welfarePointData.put("balance", firstWelfarePointBalance.add(distributePoint).toString());
+                    nodeService.executeNode(welfarePointData, WELFAREPOINT, EventService.CREATE);
+                }
+            }
+        }
+
+        return context;
+    }
+
+    public ExecuteContext collect(ExecuteContext context) {
+        Map<String, Object> params = context.getData();
+
+        String affiliateId = params.get("affiliateId") == null ? "" : params.get("affiliateId").toString();
+        String point = params.get("point") == null ? "" : params.get("point").toString();
+        String memberNo = params.get("memberNo") == null ? "" : params.get("memberNo").toString();
+
+        if (!StringUtils.isEmpty(affiliateId) && !StringUtils.isEmpty(point) && !StringUtils.isEmpty(memberNo)) {
+            List<String> memberNoList = Arrays.asList(StringUtils.split(memberNo, ","));
+
+            BigDecimal parsePoint = new BigDecimal(point);
+            BigDecimal memberCount = new BigDecimal(memberNoList.size());
+            BigDecimal collectPoint = parsePoint.multiply(memberCount);
+            BigDecimal firstAffiliatePointBalance = getFirstAffiliatePointBalance(affiliateId);
+
+            Map<String, Object> affiliatePointData = new HashMap<>();
+            affiliatePointData.put("affiliateId", affiliateId);
+            affiliatePointData.put("welfarePointType", "getback");
+            affiliatePointData.put("price", collectPoint.toString());
+            affiliatePointData.put("balance", firstAffiliatePointBalance.add(collectPoint).toString());
+            Map<String, Object> affiliatePointResult = (Map<String, Object>) nodeService.executeNode(affiliatePointData, AFFILIATE_POINT, EventService.SAVE);
+
+            for (String memberId : memberNoList) {
+                Node memberNode = nodeService.getNode("member", memberId);
+                if (memberNode != null) {
+                    String welfarePoint = memberNode.getBindingValue("welfarePoint") == null ? "0" : memberNode.getBindingValue("welfarePoint").toString();
+                    BigDecimal parseWelfarePoint = new BigDecimal(welfarePoint);
+
+                    Map<String, Object> memberData = new HashMap<>();
+                    memberData.put("memberNo", memberId);
+                    memberData.put("welfarePoint", parseWelfarePoint.subtract(parsePoint).doubleValue());
+                    nodeService.executeNode(memberData, MEMBER, EventService.UPDATE);
+
+                    BigDecimal firstWelfarePointBalance = getFirstWelfarePointBalance(affiliateId, memberId);
+
+                    Map<String, Object> welfarePointData = new HashMap<>();
+                    welfarePointData.put("memberNo", memberId);
+                    welfarePointData.put("affiliateId", affiliateId);
+                    welfarePointData.put("welfarePointType", "getback");
+                    welfarePointData.put("affiliatePointId", affiliatePointResult.get("affiliatePointId"));
+                    welfarePointData.put("price", parsePoint.toString());
+                    welfarePointData.put("balance", firstWelfarePointBalance.subtract(parsePoint).toString());
+                    nodeService.executeNode(welfarePointData, WELFAREPOINT, EventService.CREATE);
+                }
+            }
+        }
+
+        return context;
+    }
+
+    private BigDecimal getFirstAffiliatePointBalance(String affiliateId) {
+        BigDecimal firstAffiliatePointBalance = BigDecimal.ZERO;
+        List<Map<String, Object>> affiliatePointList = (List<Map<String, Object>>) NodeQuery.build("affiliatePoint").matching("affiliateId", affiliateId).sorting("created desc").getList();
+        if (!affiliatePointList.isEmpty()) {
+            Map<String, Object> firstAffiliatePoint = affiliatePointList.get(0);
+            if (firstAffiliatePoint.get("balance") != null) firstAffiliatePointBalance = new BigDecimal(firstAffiliatePoint.get("balance").toString());
+        }
+
+        return firstAffiliatePointBalance;
+    }
+
+    private BigDecimal getFirstWelfarePointBalance(String affiliateId, String memberNo) {
+        BigDecimal firstWelfarePointBalance = BigDecimal.ZERO;
+        List<Map<String, Object>> welfarePointList = (List<Map<String, Object>>) NodeQuery.build("welfarePoint").matching("affiliateId", affiliateId).matching("memberNo", memberNo).sorting("created desc").getList();
+        if (!welfarePointList.isEmpty()) {
+            Map<String, Object> firstWelfarePoint = welfarePointList.get(0);
+            if (firstWelfarePoint.get("balance") != null) firstWelfarePointBalance = new BigDecimal(firstWelfarePoint.get("balance").toString());
+        }
+
+        return firstWelfarePointBalance;
+    }
 }

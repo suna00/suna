@@ -78,5 +78,37 @@
     "actionType": "service",
     "actionBody": "pointService.refundWelfarePoint",
     "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "welfarePoint",
+    "event": "distribute",
+    "noneExecute": true,
+    "eventName": "welfarePoint 분배"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "welfarePoint>distribute",
+    "action": "distribute",
+    "actionName": "WelfarePoint 분배",
+    "actionType": "service",
+    "actionBody": "pointService.distribute",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "welfarePoint",
+    "event": "collect",
+    "noneExecute": true,
+    "eventName": "welfarePoint 회수"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "welfarePoint>collect",
+    "action": "collect",
+    "actionName": "WelfarePoint 회수",
+    "actionType": "service",
+    "actionBody": "pointService.collect",
+    "order": 1
   }
 ]

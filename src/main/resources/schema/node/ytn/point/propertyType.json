@@ -242,6 +242,23 @@
   {
     "typeId": "propertyType",
     "tid": "affiliatePoint",
+    "pid": "memo",
+    "propertyTypeName": "메모",
+    "valueType": "TEXT",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "affiliatePoint",
     "pid": "owner",
     "propertyTypeName": "등록자",
     "valueType": "REFERENCE",
