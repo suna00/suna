@@ -805,57 +805,69 @@ public class VotePrtcptHstService {
             // voteResult format is incorrect
             throw new ApiException("420", errMsgUtil.getErrMsg(context, "420"));
         }
-        Node seriesVoteBasInfo = NodeUtils.getNode(VOTE_BAS_INFO, reqJson.get(0).get("sersVoteSeq").toString());
-        List<Node> sersVoteItemInfos = nodeService.getNodeList("sersVoteItemInfo", "voteSeq_matching=" + seriesVoteBasInfo.get("voteSeq"));
-
-        List<Map<String, Object>> insertList = synchronizedList(new ArrayList());
-        if (reqJson.size() < sersVoteItemInfos.size()) {
-            throw new ApiException("430", "Invalid Vote!");
-        }
 
         Date now = new Date();
         FastDateFormat dateFormat = FastDateFormat.getInstance("yyyyMMdd");
 
-        //Node seriesVoteBasInfo = null;
+        Node seriesVoteBasInfo = NodeUtils.getNode(VOTE_BAS_INFO, reqJson.get(0).get("sersVoteSeq").toString());
+
         String mbrId = null;
-        boolean infoOttpAgreeYn = Boolean.parseBoolean(data.get("infoOttpAgreeYn").toString());
 
         String voteDate = DateFormatUtils.format(now, "yyyyMMdd");          // 투표 진행일 (현재날짜)
 
+        List<Node> sersVoteItemInfos = nodeService.getNodeList("sersVoteItemInfo", "voteSeq_matching=" + seriesVoteBasInfo.get("voteSeq"));
 
+        List<Map<String, Object>> insertList = synchronizedList(new ArrayList());
+        if (reqJson.size() < sersVoteItemInfos.size()) {
+            throw new ApiException("430", "Invalid Vote! sponsor 1");
+        }
+
+        boolean infoOttpAgreeYn = Boolean.parseBoolean(data.get("infoOttpAgreeYn").toString());
+        //스폰서 투표에서는 회원 validation을 하지 않음
+// 회원정보 체크
+        if (reqJson.get(0).get(PRTCP_MBR_ID) != null && StringUtils.isNotEmpty(reqJson.get(0).get(PRTCP_MBR_ID).toString())) {
+            mbrId = reqJson.get(0).get(PRTCP_MBR_ID).toString();
+        } else {
+            throw new ApiException("430", "Invalid Vote! sponsor 2");
+        }
         for (Map<String, Object> voteData : reqJson) {
-            if (!seriesVoteBasInfo.get("voteSeq").equals(voteData.get("sersVoteSeq").toString())) {
-                throw new ApiException("430", "Invalid Vote!");
-            }
-            // 사용자 ID
-            if (!mbrId.equals(voteData.get(PRTCP_MBR_ID).toString())) {
-                throw new ApiException("430", "Invalid Vote!");
+            //시리즈투표일련번호 확인
+            if (!seriesVoteBasInfo.getId().toString().equals(voteData.get("sersVoteSeq").toString())) {
+                throw new ApiException("430", "Invalid Vote! sponsor3");
             }
 
+            // 사용자 ID 확인
+            if (!mbrId.equals(voteData.get(PRTCP_MBR_ID).toString())) {
+                throw new ApiException("430", "Invalid Vote! sponsor 4");
+            }
+
+            //단일 투표 확인
             Node selectVoteInfo = NodeUtils.getNode(VOTE_BAS_INFO, voteData.get(VOTE_SEQ).toString());
             if (selectVoteInfo == null) {
-                throw new ApiException("430", "Invalid Vote!");
+                throw new ApiException("430", "Invalid Vote! sponsor 5");
             }
+            //시리즈 투표에 전달된 단일투표가 속해 있는지 확인
             boolean hasSeries = false;
             for (Node sersVoteItem : sersVoteItemInfos) {
-                if (sersVoteItem.get("sersItemVoteSeq").equals(voteData.get(VOTE_SEQ).toString())) {
+                if (sersVoteItem.get("sersItemVoteSeq").toString().equals(voteData.get(VOTE_SEQ).toString())) {
                     hasSeries = true;
                     break;
                 }
             }
 
             if (!hasSeries) {
-                throw new ApiException("430", "Invalid Vote!");
+                throw new ApiException("430", "Invalid Vote! sponsor 6");
             }
 
             //단일 투표에 전달된 투표항목이 속해 있는지 확인
             Node voteItemInfo = NodeUtils.getNode(VOTE_ITEM_INFO, voteData.get(VOTE_ITEM_SEQ).toString());
+            logger.info("mama voting: voteItemInfo ="+voteItemInfo);
             if (voteItemInfo == null) {
-                throw new ApiException("430", "Invalid Vote!");
+                throw new ApiException("430", "Invalid Vote! sponsor 7");
             }
             String itemVoteSeq = voteItemInfo.get(VOTE_SEQ).toString();
             if (!itemVoteSeq.equals(voteData.get(VOTE_SEQ).toString())) {
-                throw new ApiException("430", "Invalid Vote!");
+                throw new ApiException("430", "Invalid Vote! sponsor 8");
             }
 
             insertList.add(voteData);
@@ -884,6 +896,8 @@ public class VotePrtcptHstService {
 
                 Node result = (Node) NodeUtils.getNodeService().executeNode(data, "mbrInfo", EventService.SAVE);
             }
+        }else{
+            throw new ApiException("430", "Invalid Vote! sponsor 9");
         }
 
         String pstngStDt = seriesVoteBasInfo.getStringValue("pstngStDt");
@@ -901,16 +915,23 @@ public class VotePrtcptHstService {
         }
 
         // Checking Available IP with mbrId and voteSeq
-        List<Node> dclaNodeList = NodeUtils.getNodeService().getNodeList("dclaSetupMng", "setupTypeCd_matching=2&sorting=dclaSetupSeq desc&limit=1");
+        String searchTextDefault = "setupTypeCd_matching=2&sorting=dclaSetupSeq desc&limit=1";
+        String searchText = "setupTypeCd_matching=2&sorting=dclaSetupSeq desc&refVoteSeqs_matching=" + seriesVoteBasInfo.getId() + "&limit=1";
+        logger.info("mama voing searchText="+searchText);
+        List<Node> dclaNodeList = nodeService.getNodeList("dclaSetupMng", searchText);
+        if (dclaNodeList.size() == 0) {//투표 일련번호로 제한 조건이 설정되어 있지 않으면 기본 정보를 가져옴
+            dclaNodeList = nodeService.getNodeList("dclaSetupMng", searchTextDefault);
+        }
+        if (dclaNodeList.size() == 0) {
+            throw new ApiException("424", errMsgUtil.getErrMsg(context, "424"));
+        }
         Node dclaNode = dclaNodeList.get(0);
-
         Integer ipDclaCnt = dclaNode.getIntValue("setupBaseCnt");
-        Integer ipAdrVoteCnt = dclaNode.getIntValue("ipAdrVoteCnt");
 
-        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, Integer.parseInt(seriesVoteBasInfo.get("voteSeq").toString()));
-//        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, -1);    // 2017.10.30 이금춘 일단 원복...
-//        if (mbrIpDclaCnt >= ipDclaCnt) {
-        if (mbrIpDclaCnt >= ipAdrVoteCnt) {
+        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, Integer.parseInt(seriesVoteBasInfo.getId().toString()));//이력테이블 데이터
+
+        logger.info("mbrIpDclaCnt " + mbrIpDclaCnt + " : " + ipDclaCnt);
+        if (mbrIpDclaCnt >= ipDclaCnt) {
             // This IP connection has exceeded the maximum number.
             throw new ApiException("421", errMsgUtil.getErrMsg(context, "421"));
         }
@@ -973,12 +994,6 @@ public class VotePrtcptHstService {
             throw new ApiException("423", errMsgUtil.getErrMsg(context, "423"));
         }
 
-        // 접근 IP Count 관리 Map에 등록
-        voteIPCntMap.put(connIpAdr + ">" + voteDate, mbrIpDclaCnt + 1);
-
-        // TODO 관리를 위한 Map 생성 및 업데이트
-        //seriesVoteInfoMap.put(seriesVoteBasInfo.get(VOTE_SEQ), )
-
         // 투표 하위 아이템 등록
         for (Map<String, Object> voteData : insertList) {
             String voteItemSeq = voteData.get(VOTE_ITEM_SEQ).toString();
@@ -989,25 +1004,25 @@ public class VotePrtcptHstService {
             jdbcTemplate.update(insertSeriesVoteItemHst, voteDate, voteItemSeq, mbrId, now);
         }
 
+        // 투표 등록
+        String insertVoteHst = "INSERT INTO " + seriesVoteBasInfo.get(VOTE_SEQ).toString() + "_voteHstByMbr" +
+                "(voteDate, mbrId, created) VALUES(?,?,?)";
+//        executeQuery(insertVoteHst, voteDate, mbrId, now);
+        jdbcTemplate.update(insertVoteHst, voteDate, mbrId, now);
+
+
+        // 접근 IP 관리 테이블에 등록
+        jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now, Integer.parseInt(seriesVoteBasInfo.getId().toString()));
+
+        // 접근 IP Count 관리 Map에 등록
+        voteIPCntMap.put(connIpAdr + ">" + voteDate + ">" + seriesVoteBasInfo.getId().toString(), mbrIpDclaCnt + 1);
+
         // 이벤트 투표 생성
         Integer dayEventVoteRstrtnCnt = seriesVoteBasInfo.getIntValue("dayEventVoteRstrtnCnt");
         Integer contnuEventVoteRstrtnCnt = seriesVoteBasInfo.getIntValue("contnuEventVoteRstrtnCnt");
         if (dayEventVoteRstrtnCnt > 0) {
             addEvtVoteNum(now, mbrId, dayEventVoteRstrtnCnt, contnuEventVoteRstrtnCnt);
         }
-
-        // 접근 IP 관리 테이블에 등록
-//        executeQuery(insertIpDclaCnt, voteDate, connIpAdr, now);
-//        jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now);
-        for (Map<String, Object> voteData : insertList) {
-            jdbcTemplate.update(insertIpDclaCnt, voteDate, connIpAdr, now, Integer.parseInt(voteData.get("voteSeq").toString()));
-        }
-
-        // 투표 등록
-        String insertVoteHst = "INSERT INTO " + seriesVoteBasInfo.get(VOTE_SEQ).toString() + "_voteHstByMbr" +
-                "(voteDate, mbrId, created) VALUES(?,?,?)";
-//        executeQuery(insertVoteHst, voteDate, mbrId, now);
-        jdbcTemplate.update(insertVoteHst, voteDate, mbrId, now);
 
         //node create
         Map<String, Object> responseMap = new ConcurrentHashMap<>();
