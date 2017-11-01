@@ -9,13 +9,11 @@ import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.session.SessionService;
-import org.apache.avro.data.Json;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -93,11 +91,13 @@ public class CartService {
             itemResult.put("deliveryPrice", priceList.get(0).get("deliveryPrice"));
 
             List<Map<String, Object>> subProductResult = new ArrayList<>();
+            Double totalOrderPrice = 0D;
             for (Map<String, Object> priceProduct : priceList) {
                 priceProduct.put("downloadableCoupon", getCouponCount(JsonUtils.getStringValue(priceProduct, "productId"), JsonUtils.getStringValue(sessionData, "siteType")));
                 subProductResult.add(priceProduct);
+                totalOrderPrice += JsonUtils.getDoubleValue(priceProduct, "orderPrice");
             }
-
+            itemResult.put("totalOrderPrice", totalOrderPrice);
             itemResult.put("item", subProductResult);
             totalSize += subProductResult.size();
             items.add(itemResult);

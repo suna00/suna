@@ -29,6 +29,7 @@
     /* = -------------------------------------------------------------------------- = */
     /* =   환경 설정 파일 Include END                                               = */
     /* ============================================================================== */
+
 %>
 
 <%!
@@ -44,6 +45,7 @@
 
 <%!
     static Logger logger = Logger.getLogger("hub.jsp");
+
 %>
 
 <%
@@ -523,7 +525,6 @@
             <script type="application/javascript">
                 function goResult() {
 //                    var openwin = window.open('proc_win.html', 'proc_win', '');
-                    alert('<%=res_msg%>');
                     document.pay_info.submit();
 //                    openwin.close();
 
@@ -630,15 +631,15 @@
 <%
     if (res_cd.equals("0000")){
 %>
-<%--<form name="pay_info" method="post" action="http://localhost:3090/<%=siteId%>/order/complete" target="_parent">--%>
-<form name="pay_info" method="post" action="http://test.ygoon.com/<%=siteId%>/order/complete" target="_parent">
+<form name="pay_info" method="post" action="http://localhost:3090/<%=siteId%>/order/complete" target="_parent">
+<%--<form name="pay_info" method="post" action="http://test.ygoon.com/<%=siteId%>/order/complete" target="_parent">--%>
     <input type="hidden" name="ordr_idxx" value="<%= ordr_idxx        %>">    <!-- 주문번호 -->
 </form>
 <%
     }else{
 %>
-<%--<form name="pay_info" method="get" action="http://localhost:8080/<%=siteId%>/order/<%=ordr_idxx%>"></form>--%>
-<form name="pay_info" method="post" action="http://test.ygoon.com/<%=siteId%>/order/<%=ordr_idxx%>" target="_parent"></form>
+<form name="pay_info" method="get" action="http://localhost:8080/<%=siteId%>/order/<%=ordr_idxx%>"></form>
+<%--<form name="pay_info" method="post" action="http://test.ygoon.com/<%=siteId%>/order/<%=ordr_idxx%>" target="_parent"></form>--%>
 <%
     }
 %>
