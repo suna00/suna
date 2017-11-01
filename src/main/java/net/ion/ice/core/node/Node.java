@@ -493,10 +493,10 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
             if(value != null || pt.isReferenced()){
                 value = NodeUtils.getDisplayValue(value, pt) ;
                 if(value != null) {
-                    put(pt.getPid(), value);
+                    properties.put(pt.getPid(), value);
                 }
             }else{
-                put(pt.getPid(), null) ;
+                properties.put(pt.getPid(), null) ;
             }
         }
         return this ;
@@ -508,7 +508,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         }
         NodeType nodeType = NodeUtils.getNodeType(getTypeId()) ;
         for(PropertyType pt : nodeType.getPropertyTypes()){
-            put(pt.getPid(), NodeUtils.getResultValue(context, pt, this)) ;
+            properties.put(pt.getPid(), NodeUtils.getResultValue(context, pt, this)) ;
         }
         return this ;
     }
