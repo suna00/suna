@@ -218,4 +218,12 @@ public class NodeType implements Serializable{
 	public boolean isHistoryable() {
 		return nodeTypeNode.getBooleanValue("historyable");
 	}
+
+	public String getAuthorityRuleString() {
+		return nodeTypeNode.getStringValue("authorityRule");
+	}
+
+	public Object getAuthorityRule(){
+		return nodeTypeNode.get("authorityRule");
+	}
 }
