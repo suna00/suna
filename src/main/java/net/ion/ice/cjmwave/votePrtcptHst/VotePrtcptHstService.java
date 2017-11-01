@@ -352,7 +352,7 @@ public class VotePrtcptHstService {
             //시리즈 투표에 전달된 단일투표가 속해 있는지 확인
             boolean hasSeries = false;
             for (Node sersVoteItem : sersVoteItemInfos) {
-                if (sersVoteItem.get("sersItemVoteSeq").equals(voteData.get(VOTE_SEQ).toString())) {
+                if (sersVoteItem.get("sersItemVoteSeq").toString().equals(voteData.get(VOTE_SEQ).toString())) {
                     hasSeries = true;
                     break;
                 }
