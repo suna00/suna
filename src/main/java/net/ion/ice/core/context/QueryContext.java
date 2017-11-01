@@ -143,6 +143,7 @@ public class QueryContext extends ReadContext {
         queryContext.setQueryTerms(queryTerms);
         queryContext.makeAuthorityQuery() ;
 
+        queryContext.setMaxSize("100000");
         return queryContext;
     }
 
