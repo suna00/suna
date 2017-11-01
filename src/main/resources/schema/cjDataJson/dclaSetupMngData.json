@@ -33,6 +33,6 @@
     "setupBaseDayNum": 1,
     "setupBaseCnt": 10,
     "setupTypeCd": "2",
-    "refVoteSeqs":"800100,800103,800122"
+    "refVoteSeqs":"800100,800103"
   }
 ]
