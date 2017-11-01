@@ -188,7 +188,7 @@
         int ordr_data_set_no;
 
         ordr_data_set_no = c_PayPlus.mf_add_set("ordr_data");
-        Double orderPay = orderService.getFinalPrice(ordr_idxx, memberNo,  useYPoint, useWelfarepoint, usedCoupon);
+        Double orderPay = orderService.getFinalPrice(ordr_idxx, memberNo, useYPoint, useWelfarepoint, usedCoupon);
         c_PayPlus.mf_set_us(ordr_data_set_no, "ordr_mony", String.valueOf(orderPay.intValue()));
 
 
@@ -406,7 +406,7 @@
     /* = -------------------------------------------------------------------------- = */
     /* =        각 결제수단을 구분하시어 DB 처리를 하시기 바랍니다.                 = */
     /* = -------------------------------------------------------------------------- = */
-        if (StringUtils.equals(res_cd, "0000")){
+        if (StringUtils.equals(res_cd, "0000")) {
             try {
                 // 07-1-1. 신용카드
                 if (use_pay_method.equals("100000000000")) {
@@ -448,8 +448,8 @@
                 orderService.createPayment(responseMap, pgId);
                 bSucc = orderService.createOrderSheet(responseMap, request);
 
-                if(use_pay_method.equals("010000000000") || use_pay_method.equals("000000001000"))
-                if(StringUtils.equalsIgnoreCase("cashYn", "Y")){
+
+                if (!StringUtils.equals("cash_no", "")) {
                     Map<String, Object> storeCashReceiptMap = new HashMap<>();
                     storeCashReceiptMap.put("orderSheetId", ordr_idxx);
                     storeCashReceiptMap.put("cashNo", cash_no);
@@ -457,6 +457,7 @@
                     storeCashReceiptMap.put("appTime", app_time);
                     storeCashReceiptMap.put("regStat", "NTNC");
                     storeCashReceiptMap.put("remMny", "국세청 등록완료");
+                    //orderSheet 데이터를 조회하기 때문에 생성된 후에 진행해야 합니다.
                     orderService.createCashReceipt(storeCashReceiptMap);
                 }
 
@@ -532,29 +533,29 @@
 <head>
     <title>*** NHN KCP [AX-HUB Version] ***</title>
     <%
-        if (res_cd.equals("0000")){
+        if (res_cd.equals("0000")) {
     %>
-            <script type="application/javascript">
-                function goResult() {
+    <script type="application/javascript">
+        function goResult() {
 //                    var openwin = window.open('proc_win.html', 'proc_win', '');
-                    document.pay_info.submit();
+            document.pay_info.submit();
 //                    openwin.close();
 
 
 //                    alert('success');
-                }
-            </script>
+        }
+    </script>
     <%
-        } else {
+    } else {
     %>
-            <script type="application/javascript">
-                function goResult() {
+    <script type="application/javascript">
+        function goResult() {
 //                    var openwin = window.open('proc_win.html', 'proc_win', '');
-                    alert('<%=res_msg%>');
+            alert('<%=res_msg%>');
 //                    document.pay_info.submit();
 //                    openwin.close();
-                }
-            </script>
+        }
+    </script>
 
     <%
         }
@@ -641,14 +642,14 @@
 
 <body onload="goResult()">
 <%
-    if (res_cd.equals("0000")){
+    if (res_cd.equals("0000")) {
 %>
 <form name="pay_info" method="post" action="http://localhost:3090/<%=siteId%>/order/complete" target="_parent">
-<%--<form name="pay_info" method="post" action="http://test.ygoon.com/<%=siteId%>/order/complete" target="_parent">--%>
+    <%--<form name="pay_info" method="post" action="http://test.ygoon.com/<%=siteId%>/order/complete" target="_parent">--%>
     <input type="hidden" name="ordr_idxx" value="<%= ordr_idxx        %>">    <!-- 주문번호 -->
 </form>
 <%
-    }else{
+} else {
 %>
 <form name="pay_info" method="get" action="http://localhost:8080/<%=siteId%>/order/<%=ordr_idxx%>"></form>
 <%--<form name="pay_info" method="post" action="http://test.ygoon.com/<%=siteId%>/order/<%=ordr_idxx%>" target="_parent"></form>--%>
