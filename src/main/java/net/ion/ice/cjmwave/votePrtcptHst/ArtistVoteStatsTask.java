@@ -42,7 +42,8 @@ public class ArtistVoteStatsTask {
         }
 
         if (jdbcTemplateReplica == null) {
-            jdbcTemplateReplica = dbService.getJdbcTemplate("authDbReplica");
+//            jdbcTemplateReplica = dbService.getJdbcTemplate("authDbReplica");
+            jdbcTemplateReplica = dbService.getJdbcTemplate("authDb");
         }
 
 
@@ -135,6 +136,7 @@ public class ArtistVoteStatsTask {
     }
 
 
+    // 주별 아티스트 투표 현황
     private void weeklyProc(DateTime workingDate) {
         String perdStDate = workingDate.withDayOfWeek(DateTimeConstants.MONDAY).toString("yyyy-MM-dd");
         String perdFnsDate = workingDate.withDayOfWeek(DateTimeConstants.SUNDAY).toString("yyyy-MM-dd");
@@ -172,10 +174,16 @@ public class ArtistVoteStatsTask {
             weeklyVoteStat.rankNum = new BigDecimal(rank++);
         }
 
+        // IF_MWV_200, IF_MWV_209
         persistWeeklyStat(weeklyVoteStatList);
+
+        // IF_MWV_104
+        persistWeeklyStat2(weeklyVoteStatList);
+
     }
 
 
+    // 월별 아티스트 투표 현황
     private void monthlyProc(DateTime workingDate) {
         String perdYm = workingDate.toString("yyyy-MM");
 
@@ -214,10 +222,12 @@ public class ArtistVoteStatsTask {
             monthlyVoteStat.rankNum = new BigDecimal(rank++);
         }
 
+        // IF_MWV_201
         persistMonthlyStat(monthlyVoteStatList);
     }
 
 
+    // 년별 아티스트 투표 현황
     private void yearlyProc(DateTime workingDate) {
         String perdYear = workingDate.toString("yyyy");
 
@@ -256,6 +266,7 @@ public class ArtistVoteStatsTask {
             yearlyVoteStat.rankNum = new BigDecimal(rank++);
         }
 
+        // IF_MWV_202
         persistYearlyStat(yearlyVoteStatList);
     }
 
@@ -342,6 +353,30 @@ public class ArtistVoteStatsTask {
                     weeklyVoteStat.rankNum,
                     weeklyVoteStat.voteRate,
                     weeklyVoteStat.voteNum);
+        }
+    }
+
+
+    private void persistWeeklyStat2(List<VoteStatInfo> weeklyVoteStatList) {
+        // 작업주 통계 삭제
+        String delete = "DELETE FROM wlyVoteStatsByArtist WHERE perdStDate = ?";
+        jdbcTemplate.update(delete, weeklyVoteStatList.get(0).perdStDate);
+        logger.info("DELETE FROM wlyVoteStatsByArtist WHERE perdStDate = '{}';", weeklyVoteStatList.get(0).perdStDate);
+
+        // 새로운 통계 기록
+        String insert = "INSERT INTO wlyVoteStatsByArtist(perdStDate, perdFnsDate, artistId, rankNum, owner, created) " +
+                "VALUES(?, ?, ?, ?, 'owner', NOW())";
+        for (VoteStatInfo weeklyVoteStat : weeklyVoteStatList) {
+            jdbcTemplate.update(insert,
+                    weeklyVoteStat.perdStDate,
+                    weeklyVoteStat.perdFnsDate,
+                    weeklyVoteStat.artistId,
+                    weeklyVoteStat.rankNum);
+            logger.info("INSERT INTO artistVoteStatsByWly(perdStDate, perdFnsDate, artistId, rankNum, owner, created) VALUES('{}', '{}', '{}', {}, 'owner', NOW());",
+                    weeklyVoteStat.perdStDate,
+                    weeklyVoteStat.perdFnsDate,
+                    weeklyVoteStat.artistId,
+                    weeklyVoteStat.rankNum);
         }
     }
 
