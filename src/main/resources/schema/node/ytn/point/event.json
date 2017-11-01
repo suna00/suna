@@ -81,32 +81,32 @@
   },
   {
     "typeId": "event",
-    "tid": "welfarePoint",
+    "tid": "affiliatePoint",
     "event": "distribute",
     "noneExecute": true,
-    "eventName": "welfarePoint 분배"
+    "eventName": "AffiliatePoint 분배"
   },
   {
     "typeId": "eventAction",
-    "event": "welfarePoint>distribute",
+    "event": "affiliatePoint>distribute",
     "action": "distribute",
-    "actionName": "WelfarePoint 분배",
+    "actionName": "AffiliatePoint 분배",
     "actionType": "service",
     "actionBody": "pointService.distribute",
     "order": 1
   },
   {
     "typeId": "event",
-    "tid": "welfarePoint",
+    "tid": "affiliatePoint",
     "event": "collect",
     "noneExecute": true,
-    "eventName": "welfarePoint 회수"
+    "eventName": "AffiliatePoint 회수"
   },
   {
     "typeId": "eventAction",
-    "event": "welfarePoint>collect",
+    "event": "affiliatePoint>collect",
     "action": "collect",
-    "actionName": "WelfarePoint 회수",
+    "actionName": "AffiliatePoint 회수",
     "actionType": "service",
     "actionBody": "pointService.collect",
     "order": 1
