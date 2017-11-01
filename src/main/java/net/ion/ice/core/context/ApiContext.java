@@ -2,10 +2,13 @@ package net.ion.ice.core.context;
 
 import net.ion.ice.core.api.ApiException;
 import net.ion.ice.core.api.RequestParameter;
+import net.ion.ice.core.cluster.ClusterUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.query.QueryResult;
 import net.ion.ice.core.query.ResultField;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +23,8 @@ import java.util.*;
  * Created by jaehocho on 2017. 7. 4..
  */
 public class ApiContext {
+    private static Logger logger = LoggerFactory.getLogger(ApiContext.class);
+
     public static final String COMMON_RESPONSE = "commonResponse";
     public static final String COMMON_PARAMETERS = "commonParameters";
 
@@ -124,6 +129,15 @@ public class ApiContext {
 
     private Map<String, Object> makeSubApiReuslt(Map<String, Object> ctxRootConfig) {
         if(ctxRootConfig.containsKey("event")){
+
+            StringBuffer params = new StringBuffer() ;
+            for(String key : httpRequest.getParameterMap().keySet()){
+                if(key.equals(ClusterUtils.CONFIG_) || key.equals(ClusterUtils.DATE_FORMAT_) || key.equals(ClusterUtils.FILE_URL_FORMAT_)) continue;
+                params.append(key);
+                params.append("=") ;
+                params.append(httpRequest.getParameter(key)) ;
+            }
+            logger.info("event logging : {} {} {}", httpRequest.getServerName(), httpRequest.getRequestURI(), params.toString());
             ApiExecuteContext executeContext = ApiExecuteContext.makeContextFromConfig(ctxRootConfig, data, httpRequest, httpResponse) ;
             setApiResultFormat(executeContext);
 

@@ -117,6 +117,16 @@ public class VotePrtcptHstService {
             }
         }
 
+        // 단일 투표로 마마 투표
+        List<Node> sersVoteItemInfos = nodeService.getNodeList("sersVoteItemInfo", "sersItemVoteSeq_matching=" + voteBasInfo.get("voteSeq"));
+        if(sersVoteItemInfos != null && sersVoteItemInfos.size() > 0){
+            for(Node sersVoteItemInfo : sersVoteItemInfos){
+                if(sersVoteItemInfo.getStringValue("voteSeq").equals("800100")){
+                    throw new ApiException("430", "Invalid Vote!");
+                }
+            }
+        }
+
         // Checking Available IP with mbrId and voteSeq
         String searchText = "setupTypeCd_matching=2&sorting=dclaSetupSeq desc&limit=1";
         List<Node> dclaNodeList = nodeService.getNodeList("dclaSetupMng", searchText);
@@ -306,40 +316,43 @@ public class VotePrtcptHstService {
         if(reqJson.size()<sersVoteItemInfos.size()){
             throw new ApiException("430", "Invalid Vote!");
         }
+
+        // 회원정보 체크
+        if(reqJson.get(0).get(PRTCP_MBR_ID) != null && StringUtils.isNotEmpty(reqJson.get(0).get(PRTCP_MBR_ID).toString())){
+
+            mbrId = reqJson.get(0).get(PRTCP_MBR_ID).toString();
+            String[] mbrIds = mbrId.split(">");
+            if( mbrIds != null && mbrIds.length == 2) {
+                Node mbrNode = getMbrNode(mbrIds[0], mbrIds[1]);
+
+                if(mbrNode == null){
+                    throw new ApiException("430", "Invalid Vote!");
+                }else{
+                    String mbrSttusCd = mbrNode.getStringValue("mbrSttusCd");
+                    String mbrDivCd = mbrNode.getStringValue("mbrDivCd");
+                    if("2".equals(mbrSttusCd) || "3".equals(mbrSttusCd) || !"2".equals(mbrDivCd)) {//탈퇴,휴면 상태이거나 정회원이 아닌 경우 에러.
+                        throw new ApiException("430", "Invalid Vote!");
+                    }
+                }
+            }else{
+                throw new ApiException("430", "Invalid Vote!");
+            }
+        }else{
+            throw new ApiException("430", "Invalid Vote!");
+        }
+
         for (Map<String, Object> voteData : reqJson) {
 
             if(!seriesVoteBasInfo.get("voteSeq").equals(voteData.get("sersVoteSeq").toString())){
                 throw new ApiException("430", "Invalid Vote!");
             }
+
             // 사용자 ID
-            /*if (mbrId==null || mbrId.length()<=0) {
-                mbrId = voteData.get(PRTCP_MBR_ID).toString();
-            }*/
-            // 회원정보 체크
-            if(voteData.get(PRTCP_MBR_ID) != null && StringUtils.isNotEmpty(voteData.get(PRTCP_MBR_ID).toString())){
-
-                mbrId = voteData.get(PRTCP_MBR_ID).toString();
-                String[] mbrIds = mbrId.split(">");
-                if( mbrIds != null && mbrIds.length == 2) {
-                    Node mbrNode = getMbrNode(mbrIds[0], mbrIds[1]);
-
-                    if(mbrNode == null){
-                        throw new ApiException("427", "MemberInfo is null");
-                    }else{
-                        String mbrSttusCd = mbrNode.getStringValue("mbrSttusCd");
-                        String mbrDivCd = mbrNode.getStringValue("mbrDivCd");
-                        if("2".equals(mbrSttusCd) || "3".equals(mbrSttusCd) || !"2".equals(mbrDivCd)) {//탈퇴,휴면 상태이거나 정회원이 아닌 경우 에러.
-                            throw new ApiException("427", "MemberInfo is not valid");
-                        }
-                    }
-                }else{
-                    throw new ApiException("426", "MemberId is not valid");
-                }
-            }else{
-                throw new ApiException("400", "Required Parameter : "+PRTCP_MBR_ID);
+            if (!mbrId.equals(voteData.get(PRTCP_MBR_ID).toString())) {
+                throw new ApiException("430", "Invalid Vote!");
             }
 
-//            List<> refItemList = seriesVoteBasInfo.get("");
+
             Node voteItemInfo = NodeUtils.getNode(VOTE_BAS_INFO, voteData.get(VOTE_SEQ).toString());
             if(voteItemInfo == null){
                 throw new ApiException("430", "Invalid Vote!");
@@ -355,15 +368,6 @@ public class VotePrtcptHstService {
             if(!hasSeries){
                 throw new ApiException("430", "Invalid Vote!");
             }
-            //            Integer ipRstrtnCnt = voteBasInfo.getIntValue("ipRstrtnCnt");
-//
-//            Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, Integer.parseInt(voteData.get("voteSeq").toString()));
-////        Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, -1);    // 2017.10.30 이금춘 일단 원복...
-//            logger.info(mbrIpDclaCnt + "===================="+ipRstrtnCnt);
-//            if (mbrIpDclaCnt >= ipRstrtnCnt) {
-//                // This IP connection has exceeded the maximum number.
-//                throw new ApiException("421", errMsgUtil.getErrMsg(context,"421"));
-//            }
 
             insertList.add(voteData);
         }
@@ -816,37 +820,18 @@ public class VotePrtcptHstService {
 
         String voteDate = DateFormatUtils.format(now, "yyyyMMdd");          // 투표 진행일 (현재날짜)
 
+
+
         for (Map<String, Object> voteData : reqJson) {
-            if (seriesVoteBasInfo == null) {
-                seriesVoteBasInfo = NodeUtils.getNode(VOTE_BAS_INFO, voteData.get("sersVoteSeq").toString());
+            if(!seriesVoteBasInfo.get("voteSeq").equals(voteData.get("sersVoteSeq").toString())){
+                throw new ApiException("430", "Invalid Vote!");
             }
             // 사용자 ID
-//            if (mbrId==null || mbrId.length()<=0) {
-//                mbrId = voteData.get(PRTCP_MBR_ID).toString();
-//            }
-            // 회원정보 체크
-            if(voteData.get(PRTCP_MBR_ID) != null && StringUtils.isNotEmpty(voteData.get(PRTCP_MBR_ID).toString())){
-
-                mbrId = voteData.get(PRTCP_MBR_ID).toString();
-                String[] mbrIds = mbrId.split(">");
-                if( mbrIds != null && mbrIds.length == 2) {
-                    Node mbrNode = getMbrNode(mbrIds[0], mbrIds[1]);
-
-                    if(mbrNode == null){
-                        throw new ApiException("427", "MemberInfo is null");
-                    }else{
-                        String mbrSttusCd = mbrNode.getStringValue("mbrSttusCd");
-                        String mbrDivCd = mbrNode.getStringValue("mbrDivCd");
-                        if("2".equals(mbrSttusCd) || "3".equals(mbrSttusCd) || !"2".equals(mbrDivCd)) {//탈퇴,휴면 상태이거나 정회원이 아닌 경우 에러.
-                            throw new ApiException("427", "MemberInfo is not valid");
-                        }
-                    }
-                }else{
-                    throw new ApiException("426", "MemberId is not valid");
-                }
-            }else{
-                throw new ApiException("400", "Required Parameter : "+PRTCP_MBR_ID);
+            if (!mbrId.equals(voteData.get(PRTCP_MBR_ID).toString())) {
+                throw new ApiException("430", "Invalid Vote!");
             }
+            // 회원정보 체크
+
 
 //            List<> refItemList = seriesVoteBasInfo.get("");
             Node voteItemInfo = NodeUtils.getNode(VOTE_BAS_INFO, voteData.get(VOTE_SEQ).toString());
@@ -885,20 +870,21 @@ public class VotePrtcptHstService {
             String[] mbrIdArray  = mbrId.split(">");
             String snsTypeCd = mbrIdArray[0];;
             String snsKey = mbrIdArray[1];
+            Node mbrNode = getMbrNode(snsTypeCd, snsKey);
+            if(mbrNode == null) {
+                //user screate
+                data.put("snsTypeCd", mbrIdArray[0]);
+                data.put("snsKey", snsKey);
+                data.put("mbrDivCd", "1");
+                data.put("mbrSttusCd", "1");
+                data.put("infoOttpAgreeYn", infoOttpAgreeYn);
+                data.put("pushMsgRcvYn", false);
+                data.put("sbscShapCd", "1");
+                data.put("sttusChgSbst", "스폰서 이벤트 가입");
+                data.put("sbscDt", new Date());
 
-            //user screate
-            data.put("snsTypeCd", mbrIdArray[0]);
-            data.put("snsKey", snsKey);
-            data.put("mbrDivCd", "1");
-            data.put("mbrSttusCd", "1");
-            data.put("infoOttpAgreeYn", infoOttpAgreeYn);
-            data.put("pushMsgRcvYn", false);
-            data.put("sbscShapCd", "1");
-            data.put("sttusChgSbst", "스폰서 이벤트 가입");
-            data.put("sbscDt", new Date());
-
-            Node result = (Node) NodeUtils.getNodeService().executeNode(data, "mbrInfo", EventService.SAVE);
-            context.setResult(result);
+                Node result = (Node) NodeUtils.getNodeService().executeNode(data, "mbrInfo", EventService.SAVE);
+            }
         }
 
         String pstngStDt = seriesVoteBasInfo.getStringValue("pstngStDt");
