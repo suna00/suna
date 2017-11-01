@@ -4,7 +4,7 @@
     "id": "propertyTypeValidation>album>albumId",
     "propertyTypeId": "album>albumId",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": true,
         "description": "필수 값 입니다."
@@ -21,7 +21,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -36,7 +36,7 @@
     "id": "propertyTypeValidation>album>albumNm",
     "propertyTypeId": "album>albumNm",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": true,
         "description": "필수 값 입니다."
@@ -53,7 +53,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -68,7 +68,7 @@
     "id": "propertyTypeValidation>album>artistId",
     "propertyTypeId": "album>artistId",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": true,
         "description": "필수 값 입니다."
@@ -85,7 +85,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -100,7 +100,7 @@
     "id": "propertyTypeValidation>album>comotDt",
     "propertyTypeId": "album>comotDt",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -117,7 +117,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -132,7 +132,7 @@
     "id": "propertyTypeValidation>album>comotCntry",
     "propertyTypeId": "album>comotCntry",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -149,7 +149,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -164,7 +164,7 @@
     "id": "propertyTypeValidation>album>typeCd",
     "propertyTypeId": "album>typeCd",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": true,
         "description": "필수 값 입니다."
@@ -181,7 +181,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -196,7 +196,7 @@
     "id": "propertyTypeValidation>album>genreCd",
     "propertyTypeId": "album>genreCd",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": true,
         "description": "필수 값 입니다."
@@ -213,7 +213,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -228,7 +228,7 @@
     "id": "propertyTypeValidation>album>dstrbCrcrt",
     "propertyTypeId": "album>dstrbCrcrt",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -245,7 +245,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -260,7 +260,7 @@
     "id": "propertyTypeValidation>album>subName",
     "propertyTypeId": "album>subName",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -277,7 +277,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -292,7 +292,7 @@
     "id": "propertyTypeValidation>album>sersName",
     "propertyTypeId": "album>sersName",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -309,7 +309,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -324,7 +324,7 @@
     "id": "propertyTypeValidation>album>albumDesc",
     "propertyTypeId": "album>albumDesc",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -341,7 +341,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -356,7 +356,7 @@
     "id": "propertyTypeValidation>album>imgUrl",
     "propertyTypeId": "album>imgUrl",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -373,7 +373,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -388,7 +388,7 @@
     "id": "propertyTypeValidation>album>findKywrd",
     "propertyTypeId": "album>findKywrd",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -405,7 +405,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -420,7 +420,7 @@
     "id": "propertyTypeValidation>album>showCntryCdList",
     "propertyTypeId": "album>showCntryCdList",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -437,7 +437,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -452,7 +452,7 @@
     "id": "propertyTypeValidation>album>relAlbumIds",
     "propertyTypeId": "album>relAlbumIds",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -469,7 +469,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -484,7 +484,7 @@
     "id": "propertyTypeValidation>album>relsongIds",
     "propertyTypeId": "album>relsongIds",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -501,7 +501,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -516,7 +516,7 @@
     "id": "propertyTypeValidation>album>mnetIfTrtYn",
     "propertyTypeId": "album>mnetIfTrtYn",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -533,7 +533,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -548,7 +548,7 @@
     "id": "propertyTypeValidation>album>showYn",
     "propertyTypeId": "album>showYn",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": true,
         "description": "필수 값 입니다."
@@ -565,7 +565,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -580,7 +580,7 @@
     "id": "propertyTypeValidation>album>hitNum",
     "propertyTypeId": "album>hitNum",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": true,
         "description": "필수 값 입니다."
@@ -597,7 +597,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -612,7 +612,7 @@
     "id": "propertyTypeValidation>album>owner",
     "propertyTypeId": "album>owner",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -629,7 +629,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -644,7 +644,7 @@
     "id": "propertyTypeValidation>album>created",
     "propertyTypeId": "album>created",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -661,7 +661,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -676,7 +676,7 @@
     "id": "propertyTypeValidation>album>modifier",
     "propertyTypeId": "album>modifier",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -693,7 +693,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -708,7 +708,7 @@
     "id": "propertyTypeValidation>album>changed",
     "propertyTypeId": "album>changed",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -725,7 +725,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },

@@ -4,7 +4,7 @@
     "id": "propertyTypeValidation>qna>qnaSeq",
     "propertyTypeId": "qna>qnaSeq",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": true,
         "description": "필수 값 입니다."
@@ -21,7 +21,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -36,7 +36,7 @@
     "id": "propertyTypeValidation>qna>qstnrEmail",
     "propertyTypeId": "qna>qstnrEmail",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -53,7 +53,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -68,7 +68,7 @@
     "id": "propertyTypeValidation>qna>qnaNm",
     "propertyTypeId": "qna>qnaNm",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": true,
         "description": "필수 값 입니다."
@@ -85,7 +85,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -100,7 +100,7 @@
     "id": "propertyTypeValidation>qna>qnaFildCd",
     "propertyTypeId": "qna>qnaFildCd",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": true,
         "description": "필수 값 입니다."
@@ -117,7 +117,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -132,7 +132,7 @@
     "id": "propertyTypeValidation>qna>qnarId",
     "propertyTypeId": "qna>qnarId",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": true,
         "description": "필수 값 입니다."
@@ -149,7 +149,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -164,7 +164,7 @@
     "id": "propertyTypeValidation>qna>qstnSbst",
     "propertyTypeId": "qna>qstnSbst",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": true,
         "description": "필수 값 입니다."
@@ -181,7 +181,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -196,7 +196,7 @@
     "id": "propertyTypeValidation>qna>trtSttusCd",
     "propertyTypeId": "qna>trtSttusCd",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": true,
         "description": "필수 값 입니다."
@@ -213,7 +213,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -228,7 +228,7 @@
     "id": "propertyTypeValidation>qna>qstnAtcFilePath",
     "propertyTypeId": "qna>qstnAtcFilePath",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -245,7 +245,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -260,7 +260,7 @@
     "id": "propertyTypeValidation>qna>qstnAtcFileNm",
     "propertyTypeId": "qna>qstnAtcFileNm",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -277,7 +277,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -292,7 +292,7 @@
     "id": "propertyTypeValidation>qna>ansrName",
     "propertyTypeId": "qna>ansrName",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -309,7 +309,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -324,7 +324,7 @@
     "id": "propertyTypeValidation>qna>ansrSbst",
     "propertyTypeId": "qna>ansrSbst",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -341,7 +341,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -356,7 +356,7 @@
     "id": "propertyTypeValidation>qna>owner",
     "propertyTypeId": "qna>owner",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -373,7 +373,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -388,7 +388,7 @@
     "id": "propertyTypeValidation>qna>created",
     "propertyTypeId": "qna>created",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -405,7 +405,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -420,7 +420,7 @@
     "id": "propertyTypeValidation>qna>modifier",
     "propertyTypeId": "qna>modifier",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -437,7 +437,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -452,7 +452,7 @@
     "id": "propertyTypeValidation>qna>changed",
     "propertyTypeId": "qna>changed",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -469,7 +469,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },

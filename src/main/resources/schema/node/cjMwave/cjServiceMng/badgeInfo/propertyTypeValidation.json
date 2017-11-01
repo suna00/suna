@@ -4,7 +4,7 @@
     "id": "propertyTypeValidation>badgeInfo>badgeSeq",
     "propertyTypeId": "badgeInfo>badgeSeq",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": true,
         "description": "필수 값 입니다."
@@ -21,7 +21,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -36,7 +36,7 @@
     "id": "propertyTypeValidation>badgeInfo>badgeNm",
     "propertyTypeId": "badgeInfo>badgeNm",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": true,
         "description": "필수 값 입니다."
@@ -53,7 +53,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -68,7 +68,7 @@
     "id": "propertyTypeValidation>badgeInfo>badgeDtl",
     "propertyTypeId": "badgeInfo>badgeDtl",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -85,7 +85,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -100,7 +100,7 @@
     "id": "propertyTypeValidation>badgeInfo>badgeCtgryCd",
     "propertyTypeId": "badgeInfo>badgeCtgryCd",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": true,
         "description": "필수 값 입니다."
@@ -117,7 +117,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -132,7 +132,7 @@
     "id": "propertyTypeValidation>badgeInfo>useYn",
     "propertyTypeId": "badgeInfo>useYn",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": true,
         "description": "필수 값 입니다."
@@ -149,7 +149,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -164,7 +164,7 @@
     "id": "propertyTypeValidation>badgeInfo>svcTermlDivCd",
     "propertyTypeId": "badgeInfo>svcTermlDivCd",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": true,
         "description": "필수 값 입니다."
@@ -181,7 +181,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -196,7 +196,7 @@
     "id": "propertyTypeValidation>badgeInfo>imgPath",
     "propertyTypeId": "badgeInfo>imgPath",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -213,7 +213,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -228,7 +228,7 @@
     "id": "propertyTypeValidation>badgeInfo>owner",
     "propertyTypeId": "badgeInfo>owner",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -245,7 +245,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -260,7 +260,7 @@
     "id": "propertyTypeValidation>badgeInfo>created",
     "propertyTypeId": "badgeInfo>created",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -277,7 +277,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -292,7 +292,7 @@
     "id": "propertyTypeValidation>badgeInfo>modifier",
     "propertyTypeId": "badgeInfo>modifier",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -309,7 +309,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -324,7 +324,7 @@
     "id": "propertyTypeValidation>badgeInfo>changed",
     "propertyTypeId": "badgeInfo>changed",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -341,7 +341,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },

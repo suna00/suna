@@ -4,7 +4,7 @@
     "id": "propertyTypeValidation>pgmVideo>contentId",
     "propertyTypeId": "pgmVideo>contentId",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": true,
         "description": "필수 값 입니다."
@@ -21,7 +21,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -36,7 +36,7 @@
     "id": "propertyTypeValidation>pgmVideo>programId",
     "propertyTypeId": "pgmVideo>programId",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": true,
         "description": "필수 값 입니다."
@@ -53,7 +53,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -68,7 +68,7 @@
     "id": "propertyTypeValidation>pgmVideo>title",
     "propertyTypeId": "pgmVideo>title",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -85,7 +85,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -100,7 +100,7 @@
     "id": "propertyTypeValidation>pgmVideo>clipType",
     "propertyTypeId": "pgmVideo>clipType",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": true,
         "description": "필수 값 입니다."
@@ -117,7 +117,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -132,7 +132,7 @@
     "id": "propertyTypeValidation>pgmVideo>contentTitle",
     "propertyTypeId": "pgmVideo>contentTitle",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -149,7 +149,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -164,7 +164,7 @@
     "id": "propertyTypeValidation>pgmVideo>cornerId",
     "propertyTypeId": "pgmVideo>cornerId",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -181,7 +181,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -196,7 +196,7 @@
     "id": "propertyTypeValidation>pgmVideo>clipOrder",
     "propertyTypeId": "pgmVideo>clipOrder",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -213,7 +213,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -228,7 +228,7 @@
     "id": "propertyTypeValidation>pgmVideo>synopsis",
     "propertyTypeId": "pgmVideo>synopsis",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -245,7 +245,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -260,7 +260,7 @@
     "id": "propertyTypeValidation>pgmVideo>prsnName",
     "propertyTypeId": "pgmVideo>prsnName",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -277,7 +277,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -292,7 +292,7 @@
     "id": "propertyTypeValidation>pgmVideo>prsnFName",
     "propertyTypeId": "pgmVideo>prsnFName",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -309,7 +309,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -324,7 +324,7 @@
     "id": "propertyTypeValidation>pgmVideo>prsnNo",
     "propertyTypeId": "pgmVideo>prsnNo",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -341,7 +341,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -356,7 +356,7 @@
     "id": "propertyTypeValidation>pgmVideo>searchKeyword",
     "propertyTypeId": "pgmVideo>searchKeyword",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -373,7 +373,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -388,7 +388,7 @@
     "id": "propertyTypeValidation>pgmVideo>mediaUrl",
     "propertyTypeId": "pgmVideo>mediaUrl",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -405,7 +405,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -420,7 +420,7 @@
     "id": "propertyTypeValidation>pgmVideo>itemTypeId",
     "propertyTypeId": "pgmVideo>itemTypeId",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": true,
         "description": "필수 값 입니다."
@@ -437,7 +437,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -452,7 +452,7 @@
     "id": "propertyTypeValidation>pgmVideo>contentType",
     "propertyTypeId": "pgmVideo>contentType",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": true,
         "description": "필수 값 입니다."
@@ -469,7 +469,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -484,7 +484,7 @@
     "id": "propertyTypeValidation>pgmVideo>broadDate",
     "propertyTypeId": "pgmVideo>broadDate",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": true,
         "description": "필수 값 입니다."
@@ -501,7 +501,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -516,7 +516,7 @@
     "id": "propertyTypeValidation>pgmVideo>contentImgUrl",
     "propertyTypeId": "pgmVideo>contentImgUrl",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -533,7 +533,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -548,7 +548,7 @@
     "id": "propertyTypeValidation>pgmVideo>contentImgPip",
     "propertyTypeId": "pgmVideo>contentImgPip",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": true,
         "description": "필수 값 입니다."
@@ -565,7 +565,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -580,7 +580,7 @@
     "id": "propertyTypeValidation>pgmVideo>playTime",
     "propertyTypeId": "pgmVideo>playTime",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": true,
         "description": "필수 값 입니다."
@@ -597,7 +597,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -612,7 +612,7 @@
     "id": "propertyTypeValidation>pgmVideo>targetAge",
     "propertyTypeId": "pgmVideo>targetAge",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -629,7 +629,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -644,7 +644,7 @@
     "id": "propertyTypeValidation>pgmVideo>price",
     "propertyTypeId": "pgmVideo>price",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -661,7 +661,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -676,7 +676,7 @@
     "id": "propertyTypeValidation>pgmVideo>isMasterClip",
     "propertyTypeId": "pgmVideo>isMasterClip",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -693,7 +693,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -708,7 +708,7 @@
     "id": "propertyTypeValidation>pgmVideo>isFullVod",
     "propertyTypeId": "pgmVideo>isFullVod",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -725,7 +725,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -740,7 +740,7 @@
     "id": "propertyTypeValidation>pgmVideo>isUse",
     "propertyTypeId": "pgmVideo>isUse",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": true,
         "description": "필수 값 입니다."
@@ -757,7 +757,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -772,7 +772,7 @@
     "id": "propertyTypeValidation>pgmVideo>subtitlePath",
     "propertyTypeId": "pgmVideo>subtitlePath",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -789,7 +789,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -804,7 +804,7 @@
     "id": "propertyTypeValidation>pgmVideo>showCntryCdList",
     "propertyTypeId": "pgmVideo>showCntryCdList",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -821,7 +821,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -836,7 +836,7 @@
     "id": "propertyTypeValidation>pgmVideo>mnetIfTrtYn",
     "propertyTypeId": "pgmVideo>mnetIfTrtYn",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": true,
         "description": "필수 값 입니다."
@@ -853,7 +853,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -868,7 +868,7 @@
     "id": "propertyTypeValidation>pgmVideo>owner",
     "propertyTypeId": "pgmVideo>owner",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -885,7 +885,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -900,7 +900,7 @@
     "id": "propertyTypeValidation>pgmVideo>contsMetaCtgryId",
     "propertyTypeId": "pgmVideo>contsMetaCtgryId",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -917,7 +917,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -932,7 +932,7 @@
     "id": "propertyTypeValidation>pgmVideo>created",
     "propertyTypeId": "pgmVideo>created",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -949,7 +949,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -964,7 +964,7 @@
     "id": "propertyTypeValidation>pgmVideo>modifier",
     "propertyTypeId": "pgmVideo>modifier",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -981,7 +981,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
@@ -996,7 +996,7 @@
     "id": "propertyTypeValidation>pgmVideo>changed",
     "propertyTypeId": "pgmVideo>changed",
     "validation": {
-      "language": "ko",
+      "language": "eng",
       "required": {
         "value": false,
         "description": "필수 값 입니다."
@@ -1013,7 +1013,7 @@
         "value": 0,
         "description": "최대 값 입니다."
       },
-      "extention": {
+      "extension": {
         "value": "",
         "description": "확장자를 허용하지 않습니다."
       },
