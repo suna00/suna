@@ -390,7 +390,7 @@ public class PointService {
 
             Map<String, Object> affiliatePointData = new HashMap<>();
             affiliatePointData.put("affiliateId", affiliateId);
-            affiliatePointData.put("welfarePointType", "divide");
+            affiliatePointData.put("affiliatePointType", "divide");
             affiliatePointData.put("price", parsePoint.toString());
             affiliatePointData.put("balance", firstAffiliatePointBalance.subtract(parsePoint).toString());
             Map<String, Object> affiliatePointResult = (Map<String, Object>) nodeService.executeNode(affiliatePointData, AFFILIATE_POINT, EventService.SAVE);
@@ -418,6 +418,8 @@ public class PointService {
                     nodeService.executeNode(welfarePointData, WELFAREPOINT, EventService.CREATE);
                 }
             }
+
+            context.setResult(affiliatePointResult);
         }
 
         return context;
@@ -440,7 +442,7 @@ public class PointService {
 
             Map<String, Object> affiliatePointData = new HashMap<>();
             affiliatePointData.put("affiliateId", affiliateId);
-            affiliatePointData.put("welfarePointType", "getback");
+            affiliatePointData.put("affiliatePointType", "getback");
             affiliatePointData.put("price", collectPoint.toString());
             affiliatePointData.put("balance", firstAffiliatePointBalance.add(collectPoint).toString());
             Map<String, Object> affiliatePointResult = (Map<String, Object>) nodeService.executeNode(affiliatePointData, AFFILIATE_POINT, EventService.SAVE);
@@ -468,6 +470,8 @@ public class PointService {
                     nodeService.executeNode(welfarePointData, WELFAREPOINT, EventService.CREATE);
                 }
             }
+
+            context.setResult(affiliatePointResult);
         }
 
         return context;
