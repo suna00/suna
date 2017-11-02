@@ -113,7 +113,7 @@ public class SchedulingService implements InitializingBean{
             }
             case "delay":{
                 long fixedDelay = Long.parseLong(scheduleConfig);
-                scheduledTasks.put(scheduleNode.getId(), this.registrar.scheduleFixedDelayTask(new IntervalTask(runnable, fixedDelay, initialDelay)));
+                scheduledTasks.put(scheduleNode.getId(), this.registrar.scheduleFixedDelayTask(new IntervalTask(runnable, fixedDelay, fixedDelay)));
                 break ;
             }
             case "rate":{
