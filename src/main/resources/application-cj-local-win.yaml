@@ -42,7 +42,6 @@ logging:
 file:
   default:
     path: c:/resource/cj_ice2/files
-#    path: c:/Tmp/resource/cj_ice2/files
 
 i18n:
   defaults: eng

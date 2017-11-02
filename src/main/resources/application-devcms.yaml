@@ -35,7 +35,6 @@ cluster:
 
 infinispan:
   cachePath: /data/resource/ice2/cache
-#  cachePath: C:/Tmp/devcms/cache
 
 tomcat:
   access-log-enabled: true
@@ -52,11 +51,9 @@ logging:
 file:
   default:
     path: /data/resource/ice2/files
-#    path: C:/Tmp/devcms/files
 
 temp-file:
   dir: /data/resource/ice2/cache
-#  dir: C:/Tmp/devcms/cache
 
 i18n:
   defaults: eng
