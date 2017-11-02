@@ -184,6 +184,14 @@
             }
           }
         }
+      },
+      "hitNumUpdate": {
+        "typeId": "ntfBbs",
+        "resultType": "none",
+        "event": "view",
+        "response":{
+          "hitNum":""
+        }
       }
     }
   },
