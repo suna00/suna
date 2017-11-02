@@ -654,7 +654,7 @@
 <%
 } else {
 %>
-<form name="pay_info" method="get" action="http://localhost:8080/<%=siteId%>/order/<%=ordr_idxx%>"></form>
+<form name="pay_info" method="get" action="http://localhost:8080/<%=siteId%>/order/<%=ordr_idxx%>" target="_parent"></form>
 <%--<form name="pay_info" method="post" action="http://test.ygoon.com/<%=siteId%>/order/<%=ordr_idxx%>" target="_parent"></form>--%>
 <%
     }

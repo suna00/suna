@@ -957,7 +957,6 @@ public class OrderService {
                 Map<String, Object> storeCashReceiptMap = new HashMap<>();
 
                 storeCashReceiptMap.putAll(responseMap);
-
                 storeCashReceiptMap.put("appTime", JsonUtils.getDateValue(responseMap, "appTime"));
                 storeCashReceiptMap.put("memberNo", JsonUtils.getIntNullableValue(orderSheetData, "memberNo"));
                 storeCashReceiptMap.put("orderCreateDate", JsonUtils.getDateValue(orderSheetData, "created"));

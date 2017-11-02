@@ -352,10 +352,20 @@
       "typeId" : "cashReceipt",
       "query" : [
         {"field" : "memberNo", "method" : "equals", "value" : "{{:default(session.member.memberNo, xxxxxx)}}"},
-        {"field" : "appTime", "method" : "fromto", "value" : "{{:appTime}}"}
+        {"field" : "appTime", "method" : "fromto", "value" : "{{:appTime}}"},
+        {"sorting" : "created desc", "pageSize": "{{:pageSize}}", "page": "{{:page}}"}
       ],
       "response": {
-        "_all_": ""
+        "_all_": "",
+        "product": {
+          "typeId" : "orderProduct",
+          "query" : [
+            {"field" : "orderSheetId", "method" : "equals", "value" : "{{:orderSheetId}}"}
+          ],
+          "response": {
+            "productId": ""
+          }
+        }
       }
     }
   }
