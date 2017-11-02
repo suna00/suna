@@ -267,17 +267,20 @@ public class ArtistVoteStatsTask {
 
         int length = dailyVoteStatList.size();
         for (int i = 0; i < length; i++) {
-            if (i > 0) {
-                if (dailyVoteStatList.get(i - 1).voteCount == dailyVoteStatList.get(i).voteCount) {
-                    dailyVoteStatList.get(i).rank = dailyVoteStatList.get(i - 1).rank;
-                } else {
-                    dailyVoteStatList.get(i).rank = rank;
-                }
-            } else {
-                dailyVoteStatList.get(i).rank = rank;
-            }
+            // 동률처리
+//            if (i > 0) {
+//                if (dailyVoteStatList.get(i - 1).voteCount == dailyVoteStatList.get(i).voteCount) {
+//                    dailyVoteStatList.get(i).rank = dailyVoteStatList.get(i - 1).rank;
+//                } else {
+//                    dailyVoteStatList.get(i).rank = rank;
+//                }
+//            } else {
+//                dailyVoteStatList.get(i).rank = rank;
+//            }
+//
+//            rank++;
 
-            rank++;
+            dailyVoteStatList.get(i).rank = rank++;
         }
 
         return dailyVoteStatList;
@@ -291,18 +294,21 @@ public class ArtistVoteStatsTask {
         for (int i = 0; i < length; i++) {
             // 점유율
             voteStatList.get(i).voteRate = Double.parseDouble(String.format("%.2f", voteStatList.get(i).voteNum.doubleValue() / totalCount.doubleValue() * 100));
+// 동률처리
+//            if (i > 0) {
+//                if (voteStatList.get(i - 1).voteNum == voteStatList.get(i).voteNum) {
+//                    voteStatList.get(i).rankNum = voteStatList.get(i - 1).rankNum;
+//                } else {
+//                    voteStatList.get(i).rankNum = new BigDecimal(rank);
+//                }
+//            } else {
+//                voteStatList.get(i).rankNum = new BigDecimal(rank);
+//            }
+//
+//            rank++;
 
-            if (i > 0) {
-                if (voteStatList.get(i - 1).voteNum == voteStatList.get(i).voteNum) {
-                    voteStatList.get(i).rankNum = voteStatList.get(i - 1).rankNum;
-                } else {
-                    voteStatList.get(i).rankNum = new BigDecimal(rank);
-                }
-            } else {
-                voteStatList.get(i).rankNum = new BigDecimal(rank);
-            }
+            voteStatList.get(i).rankNum = new BigDecimal(rank++);
 
-            rank++;
         }
     }
 
