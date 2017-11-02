@@ -78,5 +78,37 @@
     "actionType": "service",
     "actionBody": "pointService.refundWelfarePoint",
     "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "affiliatePoint",
+    "event": "distribute",
+    "noneExecute": true,
+    "eventName": "AffiliatePoint 분배"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "affiliatePoint>distribute",
+    "action": "distribute",
+    "actionName": "AffiliatePoint 분배",
+    "actionType": "service",
+    "actionBody": "pointService.distribute",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "affiliatePoint",
+    "event": "collect",
+    "noneExecute": true,
+    "eventName": "AffiliatePoint 회수"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "affiliatePoint>collect",
+    "action": "collect",
+    "actionName": "AffiliatePoint 회수",
+    "actionType": "service",
+    "actionBody": "pointService.collect",
+    "order": 1
   }
 ]

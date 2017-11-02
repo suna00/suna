@@ -957,7 +957,7 @@
     "tid": "productAttributeCategory",
     "pid": "productAttributeCategoryId",
     "propertyTypeName": "ID",
-    "valueType": "INT",
+    "valueType": "STRING",
     "required": false,
     "idable": true,
     "labelable": false,
@@ -968,7 +968,7 @@
     "referenceValue": "",
     "codeFilter": "",
     "defaultValue": "",
-    "idType": "autoIncrement"
+    "idType": ""
   },
   {
     "typeId": "propertyType",
@@ -1094,7 +1094,7 @@
     "tid": "productAttributeCategoryItem",
     "pid": "productAttributeCategoryItemId",
     "propertyTypeName": "ID",
-    "valueType": "INT",
+    "valueType": "STRING",
     "required": true,
     "idable": true,
     "labelable": false,
@@ -1105,7 +1105,7 @@
     "referenceValue": "",
     "codeFilter": "",
     "defaultValue": "",
-    "idType": "autoIncrement"
+    "idType": ""
   },
   {
     "typeId": "propertyType",

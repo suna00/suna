@@ -7522,5 +7522,32 @@
     "description": "",
     "sortOrder": "10",
     "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "publishCouponStatus",
+    "upperCode": "root",
+    "name": "쿠폰 발행",
+    "description": "",
+    "sortOrder": "124",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "y",
+    "upperCode": "publishCouponStatus",
+    "name": "발행",
+    "description": "",
+    "sortOrder": "10",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "n",
+    "upperCode": "publishCouponStatus",
+    "name": "발행 안함",
+    "description": "",
+    "sortOrder": "20",
+    "commonCodeStatus": "y"
   }
 ]
