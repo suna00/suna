@@ -111,7 +111,7 @@ public class VotePrtcptHstService {
             Node mbrNode = getMbrNode(data.get("snsTypeCd").toString(), data.get("snsKey").toString());
 
             if (mbrNode == null) {
-                throw new ApiException("430", "Invalid Vote!");
+                throw new ApiException("426", errMsgUtil.getErrMsg(context, "426"));
             } else {
                 String mbrSttusCd = mbrNode.getStringValue("mbrSttusCd");
                 String mbrDivCd = mbrNode.getStringValue("mbrDivCd");
@@ -306,7 +306,7 @@ public class VotePrtcptHstService {
 
         List<Map<String, Object>> insertList = synchronizedList(new ArrayList());
         if (reqJson.size() < sersVoteItemInfos.size()) {
-            throw new ApiException("430", "Invalid Vote!");
+            throw new ApiException("427", errMsgUtil.getErrMsg(context, "427"));
         }
 
         // 회원정보 체크
@@ -318,7 +318,7 @@ public class VotePrtcptHstService {
                 Node mbrNode = getMbrNode(mbrIds[0], mbrIds[1]);
 
                 if (mbrNode == null) {
-                    throw new ApiException("430", "Invalid Vote!");
+                    throw new ApiException("426", errMsgUtil.getErrMsg(context, "426"));
                 } else {
                     String mbrSttusCd = mbrNode.getStringValue("mbrSttusCd");
                     String mbrDivCd = mbrNode.getStringValue("mbrDivCd");
@@ -819,7 +819,7 @@ public class VotePrtcptHstService {
 
         List<Map<String, Object>> insertList = synchronizedList(new ArrayList());
         if (reqJson.size() < sersVoteItemInfos.size()) {
-            throw new ApiException("430", "Invalid Vote!");
+            throw new ApiException("427", errMsgUtil.getErrMsg(context, "427"));
         }
 
         boolean infoOttpAgreeYn = Boolean.parseBoolean(data.get("infoOttpAgreeYn").toString());

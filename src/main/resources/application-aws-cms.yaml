@@ -69,7 +69,7 @@ temp-file:
 
 image:
   prefixUrl: http://125.131.88.147:8080/image/
-  s3PrefixUrl: https://cmsimg.mwave.me/
+  s3PrefixUrl: http://cmsimg.mwave.me/
 
 mobile:
   push:

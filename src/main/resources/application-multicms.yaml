@@ -72,7 +72,7 @@ aws:
 
 image:
   prefixUrl: http://g-p-cmswebwas-elb-467616234.ap-northeast-2.elb.amazonaws.com:8080/image/
-  s3PrefixUrl: https://cmsimg.mwave.me/
+  s3PrefixUrl: http://cmsimg.mwave.me/
 
 mobile:
   push:

@@ -74,7 +74,7 @@ aws:
 
 image:
   prefixUrl: http://g-p-api-elb-321213426.ap-northeast-2.elb.amazonaws.com/image/
-  s3PrefixUrl: https://cmsimg.mwave.me/
+  s3PrefixUrl: http://cmsimg.mwave.me/
 
 mobile:
   push:

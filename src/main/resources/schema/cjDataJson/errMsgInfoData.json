@@ -2,128 +2,128 @@
   {
     "typeId": "errMsgInfo",
     "errCd": 411,
-    "errMsg": "You are already a full member",
-    "errMsg_eng": "You are already a full member",
-    "errMsg_kor": "이미 정회원 입니다",
-    "errMsg_zho-cn": "已经是正式会员",
-    "errMsg_zho-tw": "已經是正式會員",
-    "errMsg_jpn": "既に正会員に登録されています"
+    "errMsg": "You're already a member! Would you like to log on now?",
+    "errMsg_eng": "You're already a member! Would you like to log on now?",
+    "errMsg_kor": "이미 정회원으로 가입되어 있습니다. 정회원으로 로그인 하시겠습니까?",
+    "errMsg_zho-cn": "已经成為正式会员。要以正式会员身份登入吗?",
+    "errMsg_zho-tw": "已經成為正式會員。要以正式會員身份登入嗎?",
+    "errMsg_jpn": "既に正会員になっています。正会員アカウントでログインなさいますか？"
   },
   {
     "typeId": "errMsgInfo",
     "errCd": 412,
-    "errMsg": "You are in an impossible state of full membership.",
-    "errMsg_eng": "You are in an impossible state of full membership.",
-    "errMsg_kor": "정회원 전환이 불가능한 상태입니다",
-    "errMsg_zho-cn": "无法转为正式会员",
-    "errMsg_zho-tw": "無法轉為正式會員",
-    "errMsg_jpn": "正会員に転換できない状態です"
+    "errMsg": "Looks like your registration couldn't be processed.",
+    "errMsg_eng": "Looks like your registration couldn't be processed.",
+    "errMsg_kor": "정회원 전환이 불가능합니다.",
+    "errMsg_zho-cn": "无法转為正式会员",
+    "errMsg_zho-tw": "無法轉為正式會員。",
+    "errMsg_jpn": "正会員への転換が不可能です。"
   },
   {
     "typeId": "errMsgInfo",
     "errCd": 413,
-    "errMsg": "Personal Data Collection Agreement status is not 'true'",
-    "errMsg_eng": "Personal Data Collection Agreement status is not 'true'",
-    "errMsg_kor": "정보제공동의여부가 true가 아닙니다",
-    "errMsg_zho-cn": "资料提供同意与否并非true",
-    "errMsg_zho-tw": "資料提供同意與否並非true",
-    "errMsg_jpn": "情報提供同意の欄にチェックしてください"
+    "errMsg": "Please tap“agree\" on the Personal Data Collection Agreement.",
+    "errMsg_eng": "Please tap“agree\" on the Personal Data Collection Agreement.",
+    "errMsg_kor": "개인 정보 제공에 동의해 주세요.",
+    "errMsg_zho-cn": "请同意提供个人资料",
+    "errMsg_zho-tw": "請同意提供個人資料",
+    "errMsg_jpn": "個人情報のご提供に同意してください。"
   },
   {
     "typeId": "errMsgInfo",
     "errCd": 414,
-    "errMsg": "You are not in a state to rejoin.",
-    "errMsg_eng": "You are not in a state to rejoin.",
-    "errMsg_kor": "재가입을 할 수 없는 상태입니다",
-    "errMsg_zho-cn": "无法再加入的状态",
-    "errMsg_zho-tw": "無法再加入的狀態",
-    "errMsg_jpn": "再入会ができない状態です"
+    "errMsg": "You can't rejoin at this time. Please contact us through CS.",
+    "errMsg_eng": "You can't rejoin at this time. Please contact us through CS.",
+    "errMsg_kor": "재가입을 할 수 없습니다. CS로 문의해 주세요.",
+    "errMsg_zho-cn": "无法再加入,请向CS咨询",
+    "errMsg_zho-tw": "無法再加入,請向CS咨詢",
+    "errMsg_jpn": "再入会ができません。CSにお問い合わせお願いいたします。"
   },
   {
     "typeId": "errMsgInfo",
     "errCd": 415,
-    "errMsg": "The date of your account been deleted is null",
-    "errMsg_eng": "The date of your account been deleted is null",
-    "errMsg_kor": "탈퇴일자가 null 입니다",
-    "errMsg_zho-cn": "退出日期为null",
-    "errMsg_zho-tw": "退出日期為null",
-    "errMsg_jpn": "脱退日の情報がありません"
+    "errMsg": "Your account closure date couldn't be confirmed.",
+    "errMsg_eng": "Your account closure date couldn't be confirmed.",
+    "errMsg_kor": "회원 탈퇴일을 확인할 수 없습니다.",
+    "errMsg_zho-cn": "无法确定会员退出的日期",
+    "errMsg_zho-tw": "無法確定會員退出的日期",
+    "errMsg_jpn": "会員脱退の日時がご確認できません。"
   },
   {
     "typeId": "errMsgInfo",
     "errCd": 416,
-    "errMsg": "There is no membership rejoin condition.",
-    "errMsg_eng": "There is no membership rejoin condition.",
-    "errMsg_kor": "회원 재가입 기준이 없습니다",
-    "errMsg_zho-cn": "没有再加入会员的标准",
-    "errMsg_zho-tw": "沒有再加入會員的標準",
-    "errMsg_jpn": "再入会ができない状態です"
+    "errMsg": "After deletion, you must wait 30 days to rejoin.",
+    "errMsg_eng": "After deletion, you must wait 30 days to rejoin.",
+    "errMsg_kor": "회원 탈퇴 시 30일 이후 재가입이 가능합니다.",
+    "errMsg_zho-cn": "会员退出后30天才能再加入",
+    "errMsg_zho-tw": "會員退出後30天才能再加入",
+    "errMsg_jpn": "会員脱退の場合、30日以後にご再入会できます"
   },
   {
     "typeId": "errMsgInfo",
     "errCd": 417,
-    "errMsg": "Rejoin is possible after %s days.",
-    "errMsg_eng": "Rejoin is possible after %s days.",
-    "errMsg_kor": "재가입은 %s일 후에 가능합니다",
-    "errMsg_zho-cn": "%s天以后可以再加入",
-    "errMsg_zho-tw": "%s天以後可以再加入",
-    "errMsg_jpn": "再入会は脱退から%s日後にできます"
+    "errMsg": "Take note! After deleting your account, you must wait 30 days to rejoin.",
+    "errMsg_eng": "Take note! After deleting your account, you must wait 30 days to rejoin.",
+    "errMsg_kor": "회원 탈퇴 30일 이후 재가입이 가능합니다.",
+    "errMsg_zho-cn": "会员退出30天后可以再加入",
+    "errMsg_zho-tw": "會員退出30天後可以再加入",
+    "errMsg_jpn": "会員脱退30日以後、ご再入会ができます。"
   },
   {
     "typeId": "errMsgInfo",
     "errCd": 418,
-    "errMsg": "Your account has been deleted.",
-    "errMsg_eng": "Your account has been deleted.",
-    "errMsg_kor": "당신은 이미 탈퇴 상태입니다",
-    "errMsg_zho-cn": "您已经是退出的状态",
-    "errMsg_zho-tw": "您已經是退出的狀態",
-    "errMsg_jpn": "脱退した会員です"
+    "errMsg": "We couldn't locate your membership information. Would you like to rejoin?",
+    "errMsg_eng": "We couldn't locate your membership information. Would you like to rejoin?",
+    "errMsg_kor": "회원 정보를 찾을 수 없습니다. 재가입하시겠습니까?",
+    "errMsg_zho-cn": "搜寻不到会员资料。要再加入吗?",
+    "errMsg_zho-tw": "搜尋不到會員資料。要再加入嗎?",
+    "errMsg_jpn": "会員情報がみつかりませんでした。ご再加入なさいますか？"
   },
   {
     "typeId": "errMsgInfo",
     "errCd": 420,
-    "errMsg": "Incorrect Parameter",
-    "errMsg_eng": "Incorrect Parameter",
-    "errMsg_kor": "입력값이 잘못되었습니다.",
-    "errMsg_zho-cn": "输入无效/번체:輸入無效",
-    "errMsg_zho-tw": "輸入無效",
-    "errMsg_jpn": "情報を正しく入力してください"
+    "errMsg": "There's something wrong in the membership info you've entered. Please take another look.",
+    "errMsg_eng": "There's something wrong in the membership info you've entered. Please take another look.",
+    "errMsg_kor": "회원 가입 중 잘 못 입력된 항목이 있습니다. 다시 확인해 주세요",
+    "errMsg_zho-cn": "加入会员时有未输入的项目。请再确认一遍。",
+    "errMsg_zho-tw": "加入會員時有未輸入的項目。請再確認一遍。",
+    "errMsg_jpn": "会員登録の途中、間違って入力された項目があります。再び、ご確認お願いいたします。"
   },
   {
     "typeId": "errMsgInfo",
     "errCd": 421,
-    "errMsg": "Your IP has exceeded the acceptance criteria.",
-    "errMsg_eng": "Your IP has exceeded the acceptance criteria.",
-    "errMsg_kor": "해당 IP는 허용기준이 초과되었습니다.",
-    "errMsg_zho-cn": "该IP地址已超过允许的标准",
-    "errMsg_zho-tw": "該IP地址已超過允許的標準",
-    "errMsg_jpn": "該当IPの投票回数を超えました"
+    "errMsg": "We're sorry to report that your IP has exceeded the usage criteria.",
+    "errMsg_eng": "We're sorry to report that your IP has exceeded the usage criteria.",
+    "errMsg_kor": "사용하신 IP는 사용횟수 기준이 초과되었습니다.",
+    "errMsg_zho-cn": "使用中的IP超过标準使用次数",
+    "errMsg_zho-tw": "使用中的IP超過標準使用次數",
+    "errMsg_jpn": "ご使用のIPはご利用できる回数基準を超過しました。"
   },
   {
     "typeId": "errMsgInfo",
     "errCd": 422,
-    "errMsg": "It is not a voting period.",
-    "errMsg_eng": "It is not a voting period.",
-    "errMsg_kor": "투표기간이 아닙니다.",
-    "errMsg_zho-cn": "非投票期间",
-    "errMsg_zho-tw": "非投票期間",
-    "errMsg_jpn": "投票期間ではありません"
+    "errMsg": "The voting period is not open. Please try back a little later.",
+    "errMsg_eng": "The voting period is not open. Please try back a little later.",
+    "errMsg_kor": "지금은 투표 기간이 아닙니다. 투표 기간에 다시 이용해 주세요.",
+    "errMsg_zho-cn": "现在不是投票期间。请於投票期间再利用。",
+    "errMsg_zho-tw": "現在不是投票期間。請於投票期間再利用。",
+    "errMsg_jpn": "現在、投票期間ではありません。投票期間に、再びご利用お願いいたします。"
   },
   {
     "typeId": "errMsgInfo",
     "errCd": 423,
-    "errMsg": "You have exceeded the number of votes.",
-    "errMsg_eng": "You have exceeded the number of votes.",
-    "errMsg_kor": "투표수를 초과하였습니다.",
-    "errMsg_zho-cn": "超过投票数",
-    "errMsg_zho-tw": "超過投票數",
-    "errMsg_jpn": "投票可能回数を超えました"
+    "errMsg": "Whoops! It looks like you've exceeded the daily voting submission limit. Try again tomorrow!",
+    "errMsg_eng": "Whoops! It looks like you've exceeded the daily voting submission limit. Try again tomorrow!",
+    "errMsg_kor": "허용된 투표 횟수를 초과하였습니다.",
+    "errMsg_zho-cn": "超过允许的投票次数",
+    "errMsg_zho-tw": "超過允許的投票次數",
+    "errMsg_jpn": "許容されている投票回数を超過しました。"
   },
   {
     "typeId": "errMsgInfo",
     "errCd": 424,
-    "errMsg": "The item could not be found.",
-    "errMsg_eng": "The item could not be found.",
+    "errMsg": "The item couldn't be found.",
+    "errMsg_eng": "The item couldn't be found.",
     "errMsg_kor": "해당 투표항목을 찾을수 없습니다.",
     "errMsg_zho-cn": "无法找到该项目",
     "errMsg_zho-tw": "無法找到該項目",
@@ -132,11 +132,31 @@
   {
     "typeId": "errMsgInfo",
     "errCd": 425,
-    "errMsg": "Date Parse Error.",
-    "errMsg_eng": "Date Parse Error.",
-    "errMsg_kor": "날짜 변경 오류",
-    "errMsg_zho-cn": "变更日期出现错误",
-    "errMsg_zho-tw": "變更日期出現錯誤",
-    "errMsg_jpn": "日付変換のエラー"
+    "errMsg": "Please re-enter the date.",
+    "errMsg_eng": "Please re-enter the date.",
+    "errMsg_kor": "날짜를 다시 등록해 주세요",
+    "errMsg_zho-cn": "请再输入日期",
+    "errMsg_zho-tw": "請再輸入日期",
+    "errMsg_jpn": "日付のご再登録をお願いいたします。"
+  },
+  {
+    "typeId": "errMsgInfo",
+    "errCd": 426,
+    "errMsg": "Your membership couldn't be validated.",
+    "errMsg_eng": "Your membership couldn't be validated.",
+    "errMsg_kor": "인증되지 않은 회원입니다.",
+    "errMsg_zho-cn": "是尚未认证的会员",
+    "errMsg_zho-tw": "是尚未認證的會員",
+    "errMsg_jpn": "認証されていない会員です"
+  },
+  {
+    "typeId": "errMsgInfo",
+    "errCd": 427,
+    "errMsg": "You must vote in EVERY category to submit your MAMA vote. Please vote again.",
+    "errMsg_eng": "You must vote in EVERY category to submit your MAMA vote. Please vote again.",
+    "errMsg_kor": "MAMA 전 부문의 투표가 완료되지 않았습니다. 다시 투표해 주세요",
+    "errMsg_zho-cn": "尚未完成MAMA所有部门的投票。请再投票一次。",
+    "errMsg_zho-tw": "尚未完成MAMA所有部門的投票。請再投票一次。",
+    "errMsg_jpn": "MAMA全部門の投票が完了していません。再投票お願いします。"
   }
 ]

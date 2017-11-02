@@ -61,7 +61,7 @@ temp-file:
 
 image:
   prefixUrl: http://125.131.88.147:8080/image/
-  s3PrefixUrl: https://cjmwave-dev.s3.ap-northeast-2.amazonaws.com/ion/
+  s3PrefixUrl: http://cjmwave-dev.s3.ap-northeast-2.amazonaws.com/ion/
 
 mobile:
   push:
