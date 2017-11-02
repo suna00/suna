@@ -15,7 +15,7 @@
     "name" : "PIP PARTIAL",
     "type" : "cron",
     "config" : "0 0 * * * *",
-    "enable" : true,
+    "enable" : false,
     "actionType" : "service",
     "actionBody" : "scheduledPipService.execute"
   }, {
