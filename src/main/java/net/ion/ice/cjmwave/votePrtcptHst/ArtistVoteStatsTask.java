@@ -121,7 +121,6 @@ public class ArtistVoteStatsTask {
             // 일간 통계 적재
             persistDailyStat(dailyVoteStatList, workingDate);
 
-
             // 주간 통계
             weeklyProc(workingDate);
 
@@ -163,16 +162,8 @@ public class ArtistVoteStatsTask {
         // 아티스트 투표수 정렬
         weeklyVoteStatList.sort(Comparator.comparing(VoteStatInfo::getVoteNum).reversed());
 
-
         // 점유율, 순위
-        int rank = 1;
-        for (VoteStatInfo weeklyVoteStat : weeklyVoteStatList) {
-            // 점유율 = 아티스트 투표수 / 총 투표수 * 100
-            weeklyVoteStat.voteRate = Double.parseDouble(String.format("%.2f", weeklyVoteStat.voteNum.doubleValue() / totalVoteCount.doubleValue() * 100));
-
-            // 순위
-            weeklyVoteStat.rankNum = new BigDecimal(rank++);
-        }
+        determineRankingAndShare(weeklyVoteStatList, totalVoteCount.longValue());
 
         // IF_MWV_200, IF_MWV_209
         persistWeeklyStat(weeklyVoteStatList);
@@ -211,16 +202,8 @@ public class ArtistVoteStatsTask {
         // 아티스트 투표수 정렬
         monthlyVoteStatList.sort(Comparator.comparing(VoteStatInfo::getVoteNum).reversed());
 
-
         // 점유율, 순위
-        int rank = 1;
-        for (VoteStatInfo monthlyVoteStat : monthlyVoteStatList) {
-            // 점유율 = 아티스트 투표수 / 총 투표수 * 100
-            monthlyVoteStat.voteRate = Double.parseDouble(String.format("%.2f", monthlyVoteStat.voteNum.doubleValue() / totalVoteCount.doubleValue() * 100));
-
-            // 순위
-            monthlyVoteStat.rankNum = new BigDecimal(rank++);
-        }
+        determineRankingAndShare(monthlyVoteStatList, totalVoteCount.longValue());
 
         // IF_MWV_201
         persistMonthlyStat(monthlyVoteStatList);
@@ -255,16 +238,8 @@ public class ArtistVoteStatsTask {
         // 아티스트 투표수 정렬
         yearlyVoteStatList.sort(Comparator.comparing(VoteStatInfo::getVoteNum).reversed());
 
-
         // 점유율, 순위
-        int rank = 1;
-        for (VoteStatInfo yearlyVoteStat : yearlyVoteStatList) {
-            // 점유율 = 아티스트 투표수 / 총 투표수 * 100
-            yearlyVoteStat.voteRate = Double.parseDouble(String.format("%.2f", yearlyVoteStat.voteNum.doubleValue() / totalVoteCount.doubleValue() * 100));
-
-            // 순위
-            yearlyVoteStat.rankNum = new BigDecimal(rank++);
-        }
+        determineRankingAndShare(yearlyVoteStatList, totalVoteCount.longValue());
 
         // IF_MWV_202
         persistYearlyStat(yearlyVoteStatList);
@@ -289,11 +264,46 @@ public class ArtistVoteStatsTask {
 
         // 순위
         int rank = 1;
-        for (DailyVoteStat dailyVoteStat : dailyVoteStatList) {
-            dailyVoteStat.rank = rank++;
+
+        int length = dailyVoteStatList.size();
+        for (int i = 0; i < length; i++) {
+            if (i > 0) {
+                if (dailyVoteStatList.get(i - 1).voteCount == dailyVoteStatList.get(i).voteCount) {
+                    dailyVoteStatList.get(i).rank = dailyVoteStatList.get(i - 1).rank;
+                } else {
+                    dailyVoteStatList.get(i).rank = rank;
+                }
+            } else {
+                dailyVoteStatList.get(i).rank = rank;
+            }
+
+            rank++;
         }
 
         return dailyVoteStatList;
+    }
+
+
+    private void determineRankingAndShare(List<VoteStatInfo> voteStatList, Long totalCount) {
+        int rank = 1;
+
+        int length = voteStatList.size();
+        for (int i = 0; i < length; i++) {
+            // 점유율
+            voteStatList.get(i).voteRate = Double.parseDouble(String.format("%.2f", voteStatList.get(i).voteNum.doubleValue() / totalCount.doubleValue() * 100));
+
+            if (i > 0) {
+                if (voteStatList.get(i - 1).voteNum == voteStatList.get(i).voteNum) {
+                    voteStatList.get(i).rankNum = voteStatList.get(i - 1).rankNum;
+                } else {
+                    voteStatList.get(i).rankNum = new BigDecimal(rank);
+                }
+            } else {
+                voteStatList.get(i).rankNum = new BigDecimal(rank);
+            }
+
+            rank++;
+        }
     }
 
 
