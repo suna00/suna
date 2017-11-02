@@ -123,10 +123,6 @@ public class ClusterUtils {
 
     private static Map<String, Object> getSyncNodeResult(String url, String typeId, String id, boolean retry) {
         try {
-            if(nofoundNode.containsKey(typeId + "::" + id)){
-                return null;
-            }
-
             Map<String, Object> param = new HashMap<>();
             param.put("typeId", typeId) ;
             param.put("id", id) ;
@@ -136,7 +132,9 @@ public class ClusterUtils {
             Map<String, Object> result = JsonUtils.parsingJsonToMap(resultStr) ;
             if(result.containsKey("result") && result.containsKey("resultMessage")){
                 logger.error("CALL NODE ERROR : {} - {} - {}, {}", url, result, typeId, id);
-                nofoundNode.put(typeId + "::" + id, 1) ;
+                if(!retry){
+                    return callNode(NodeUtils.getNodeType(typeId), id, true) ;
+                }
                 return null;
             }
             return result ;
@@ -155,4 +153,8 @@ public class ClusterUtils {
         return getSyncNodeResult(url, typeId, id, false);
     }
 
+    public static Map<String, Object> callNode(String server, String typeId, String id) {
+        String url = "http://" + server + "/helper/read" ;
+        return getSyncNodeResult(url, typeId, id, false);
+    }
 }

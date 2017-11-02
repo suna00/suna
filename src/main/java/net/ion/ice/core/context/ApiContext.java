@@ -129,15 +129,6 @@ public class ApiContext {
 
     private Map<String, Object> makeSubApiReuslt(Map<String, Object> ctxRootConfig) {
         if(ctxRootConfig.containsKey("event")){
-
-            StringBuffer params = new StringBuffer() ;
-            for(String key : httpRequest.getParameterMap().keySet()){
-                if(key.equals(ClusterUtils.CONFIG_) || key.equals(ClusterUtils.DATE_FORMAT_) || key.equals(ClusterUtils.FILE_URL_FORMAT_)) continue;
-                params.append(key);
-                params.append("=") ;
-                params.append(httpRequest.getParameter(key)) ;
-            }
-            logger.info("event logging : {} {} {}", httpRequest.getServerName(), httpRequest.getRequestURI(), params.toString());
             ApiExecuteContext executeContext = ApiExecuteContext.makeContextFromConfig(ctxRootConfig, data, httpRequest, httpResponse) ;
             setApiResultFormat(executeContext);
 
@@ -210,6 +201,8 @@ public class ApiContext {
 
     public Object makeApiResult() {
         if(config.containsKey("typeId") || config.containsKey("apiType") || config.containsKey("select") || config.containsKey("endpoint")){
+            log();
+
             if(this.commonResultFieldList != null && this.commonResultFieldList.size() > 0){
                 QueryResult queryResult = getCommonResult();
                 queryResult.putAll(makeSubApiReuslt(config));
@@ -228,6 +221,8 @@ public class ApiContext {
             for (String key : config.keySet()) {
                 Map<String, Object> ctxRootConfig = (Map<String, Object>) config.get(key);
                 if("root".equals(key)) {
+                    log();
+
                     queryResult.putAll(makeSubApiReuslt(ctxRootConfig)) ;
                 }else{
                     Map<String, Object> subQueryResult = makeSubApiReuslt(ctxRootConfig) ;
@@ -241,6 +236,18 @@ public class ApiContext {
             }
             return queryResult ;
         }
+    }
+
+    private void log() {
+        StringBuffer params = new StringBuffer() ;
+        for(String key : httpRequest.getParameterMap().keySet()){
+            if(key.equals(ClusterUtils.CONFIG_) || key.equals(ClusterUtils.DATE_FORMAT_) || key.equals(ClusterUtils.FILE_URL_FORMAT_)) continue;
+            params.append(key);
+            params.append("=") ;
+            params.append(httpRequest.getParameter(key)) ;
+            params.append("&") ;
+        }
+        logger.info("api logging : {} {} {}", httpRequest.getServerName(), httpRequest.getRequestURI(), params.toString());
     }
 
     private QueryResult getCommonResult() {
