@@ -14,8 +14,8 @@
     "id" : "pipPartial",
     "name" : "PIP PARTIAL",
     "type" : "cron",
-    "config" : "0 0 */72 * * *",
-    "enable" : false,
+    "config" : "0 0 * * * *",
+    "enable" : true,
     "actionType" : "service",
     "actionBody" : "scheduledPipService.execute"
   }, {
