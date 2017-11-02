@@ -26,5 +26,13 @@
     "setupBaseDayNum": 30,
     "setupBaseCnt": 0,
     "setupTypeCd": "4"
+  },
+  {
+    "typeId": "dclaSetupMng",
+    "dclaSetupSeq": 1505,
+    "setupBaseDayNum": 1,
+    "setupBaseCnt": 10,
+    "setupTypeCd": "2",
+    "refVoteSeqs":"800100,800103"
   }
 ]
