@@ -425,7 +425,7 @@ public class MemberService {
             if (10000 <= randomInt) {
                 randomInt = randomInt - 1000;
             }
-            barcode += (randomInt + " ");
+            barcode += randomInt;
         }
 
         barcode = barcode.substring(0, barcode.length() - 1);
