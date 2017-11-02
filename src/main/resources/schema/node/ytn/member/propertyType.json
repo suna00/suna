@@ -1148,7 +1148,7 @@
     "tid": "member",
     "pid": "snsId",
     "propertyTypeName": "SNS ID",
-    "valueType": "INT",
+    "valueType": "LONG",
     "required": false,
     "idable": false,
     "labelable": false,
