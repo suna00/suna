@@ -45,6 +45,11 @@ public class TopicListener implements MessageListener<String>{
         String event = msgs[0] ;
         String typeId = msgs[1] ;
         String id = msgs[2] ;
+        if(msgs.length == 4){
+            id = id + "::" + msgs[3] ;
+        }else if(msgs.length == 5){
+            id = id + "::" + msgs[3] + "::" + msgs[4];
+        }
         logger.info("{} Cache Sync : {}.{} ", event, typeId, id);
 
         try {
