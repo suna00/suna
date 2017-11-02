@@ -1,6 +1,7 @@
 package net.ion.ice.cjmwave.votePrtcptHst;
 
 import net.ion.ice.core.context.ExecuteContext;
+import net.ion.ice.core.node.NodeService;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -51,4 +52,93 @@ public class ArtistVoteStatsService {
         resultServiceMap.put("status", "COMPLETE");
         context.setResult(resultServiceMap);
     }
+
+
+    @Autowired
+    NodeService nodeService;
+
+    @Autowired
+    private ArtistVoteStatsBySexTask artistVoteStatsBySexTask;
+
+    @Autowired
+    private ArtistVoteStatsBySexWlyTask artistVoteStatsBySexWlyTask;
+
+    @Autowired
+    private ArtistVoteStatsByCntryTask artistVoteStatsByCntryTask;
+
+    @Autowired
+    private ArtistVoteStatsByCntryWlyTask artistVoteStatsByCntryWlyTask;
+
+    /**
+     * 성별 아티스트 투표현황 일별
+     * @param context
+     */
+    public void execArtistVoteStatsBySex(ExecuteContext context) {
+
+        logger.info("start schedule task - execArtistVoteStatsBySex");
+
+        // execute voteItemStatsByMbrTaskBySex only once
+        artistVoteStatsBySexTask.execArtistVoteStatsBySex();
+
+        logger.info("complete schedule task - execArtistVoteStatsBySex");
+
+        Map<String, String> resultServiceMap = new ConcurrentHashMap<>();
+        resultServiceMap.put("status", "COMPLETE");
+        if(context != null) context.setResult(resultServiceMap);
+    }
+
+    /**
+     * 성별 아티스트 투표현황  주별
+     * @param context
+     */
+    public void execArtistVoteStatsBySexWly(ExecuteContext context) {
+
+        logger.info("start schedule task - execArtistVoteStatsBySexWly");
+
+        // execute voteItemStatsByMbrTaskBySex only once
+        artistVoteStatsBySexWlyTask.execArtistVoteStatsBySex();
+
+        logger.info("complete schedule task - execArtistVoteStatsBySexWly");
+
+        Map<String, String> resultServiceMap = new ConcurrentHashMap<>();
+        resultServiceMap.put("status", "COMPLETE");
+        if(context != null) context.setResult(resultServiceMap);
+    }
+
+    /**
+     * 국가별 아티스트 투표현황.. 일별
+     * @param context
+     */
+    public void execArtistVoteStatsByCntry(ExecuteContext context) {
+
+        logger.info("start schedule task - execArtistVoteStatsByCntry");
+
+        // execute voteItemStatsByMbrTaskByCntry only once
+        artistVoteStatsByCntryTask.execArtistVoteStatsByCntry();
+
+        logger.info("complete schedule task - execArtistVoteStatsByCntry");
+
+        Map<String, String> resultServiceMap = new ConcurrentHashMap<>();
+        resultServiceMap.put("status", "COMPLETE");
+        if(context != null) context.setResult(resultServiceMap);
+    }
+
+    /**
+     * 국가별 아티스트 투표현황.. 주별
+     * @param context
+     */
+    public void execArtistVoteStatsByCntryWly(ExecuteContext context) {
+
+        logger.info("start schedule task - execArtistVoteStatsByCntryWly");
+
+        // execute voteItemStatsByMbrTaskByCntry only once
+        artistVoteStatsByCntryWlyTask.execArtistVoteStatsByCntry();
+
+        logger.info("complete schedule task - execArtistVoteStatsByCntryWly");
+
+        Map<String, String> resultServiceMap = new ConcurrentHashMap<>();
+        resultServiceMap.put("status", "COMPLETE");
+        if(context != null) context.setResult(resultServiceMap);
+    }
+
 }

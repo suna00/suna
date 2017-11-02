@@ -76,7 +76,7 @@ public class VoteItemStatsTask {
             logger.info("vote item list num schedule task - {} - {} ", voteBasInfo.getId(), voteItemInfoList.size());
 
             // 각 투표가 진행된 voteItem 정보 및 Count 조회
-            List<Map<String, Object>> voteNumInfoList = getVoteNumByVoteItemList(voteBasInfo.getId());
+            List<Map<String, Object>> voteNumInfoList = getVoteNumByVoteItemList(voteBasInfo.getId()); // voteItem 당.. 건수를 가져옴
             List<Map<String, Object>> rtVoteItemStatsList = new ArrayList<>();
 
             logger.info("vote item num schedule task - {} - {} ", voteBasInfo.getId(), voteNumInfoList.size());
