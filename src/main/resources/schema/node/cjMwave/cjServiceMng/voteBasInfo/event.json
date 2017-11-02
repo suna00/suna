@@ -278,9 +278,71 @@
     "actionBody": "voteItemStatsByWlyService.execVoteItemStatsByWly",
     "order": 1
   },
+  {
+    "typeId": "event",
+    "tid": "voteBasInfo",
+    "event": "voteItemStatsHstByCntry",
+    "noneExecute": true,
+    "eventName": "vote item statistics history event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "voteBasInfo>voteItemStatsHstByCntry",
+    "action": "voteItemStatsHstByCntryEvent",
+    "actionName": "execute vote item statistics",
+    "actionType": "service",
+    "actionBody": "voteItemStatsHstByCntryService.execVoteItemStatsHstByCntry",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "voteBasInfo",
+    "event": "voteItemStatsHstBySex",
+    "noneExecute": true,
+    "eventName": "vote item statistics history event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "voteBasInfo>voteItemStatsHstBySex",
+    "action": "voteItemStatsHstBySexEvent",
+    "actionName": "execute vote item statistics",
+    "actionType": "service",
+    "actionBody": "voteItemStatsHstBySexService.execVoteItemStatsHstBySex",
+    "order": 1
+  },
 
-
-
+  {
+    "typeId": "event",
+    "tid": "voteBasInfo",
+    "event": "voteItemStatsByCntry",
+    "noneExecute": true,
+    "eventName": "vote item statistics history event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "voteBasInfo>voteItemStatsByCntry",
+    "action": "voteItemStatsByCntryEvent",
+    "actionName": "execute vote item statistics",
+    "actionType": "service",
+    "actionBody": "voteItemStatsByCntryService.execVoteItemStatsByCntry",
+    "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "voteBasInfo",
+    "event": "voteItemStatsBySex",
+    "noneExecute": true,
+    "eventName": "vote item statistics history event"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "voteBasInfo>voteItemStatsBySex",
+    "action": "voteItemStatsBySexEvent",
+    "actionName": "execute vote item statistics",
+    "actionType": "service",
+    "actionBody": "voteItemStatsBySexService.execVoteItemStatsBySex",
+    "order": 1
+  },
 
   {
     "typeId": "event",
