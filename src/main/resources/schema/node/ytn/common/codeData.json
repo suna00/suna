@@ -5905,11 +5905,29 @@
   },
   {
     "typeId": "commonCode",
+    "code": "increase",
+    "upperCode": "YPointType",
+    "name": "관리자 증액",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "diminish",
+    "upperCode": "YPointType",
+    "name": "관리자 감액",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  }
+  {
+    "typeId": "commonCode",
     "code": "add",
     "upperCode": "YPointType",
     "name": "적립",
     "description": "",
-    "sortOrder": "1",
+    "sortOrder": "3",
     "commonCodeStatus": "y"
   },
   {
@@ -5918,7 +5936,7 @@
     "upperCode": "YPointType",
     "name": "사용",
     "description": "",
-    "sortOrder": "2",
+    "sortOrder": "4",
     "commonCodeStatus": "y"
   },
   {
@@ -5927,7 +5945,7 @@
     "upperCode": "YPointType",
     "name": "소멸",
     "description": "",
-    "sortOrder": "3",
+    "sortOrder": "5",
     "commonCodeStatus": "y"
   },
   {
@@ -5936,7 +5954,7 @@
     "upperCode": "YPointType",
     "name": "회수",
     "description": "",
-    "sortOrder": "4",
+    "sortOrder": "6",
     "commonCodeStatus": "y"
   },
   {
@@ -5945,7 +5963,7 @@
     "upperCode": "YPointType",
     "name": "적립예정",
     "description": "",
-    "sortOrder": "5",
+    "sortOrder": "7",
     "commonCodeStatus": "y"
   },
   {
@@ -5954,7 +5972,7 @@
     "upperCode": "YPointType",
     "name": "취소",
     "description": "",
-    "sortOrder": "6",
+    "sortOrder": "8",
     "commonCodeStatus": "y"
   },
   {
@@ -5963,7 +5981,7 @@
     "upperCode": "YPointType",
     "name": "반품",
     "description": "",
-    "sortOrder": "7",
+    "sortOrder": "9",
     "commonCodeStatus": "y"
   },
   {
