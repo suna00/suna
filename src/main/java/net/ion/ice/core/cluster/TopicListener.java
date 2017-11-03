@@ -61,13 +61,13 @@ public class TopicListener implements MessageListener<String>{
                     Node node = new Node(data);
                     NodeUtils.getInfinispanService().cacheNode(node);
                 }else{
-//                    this.cacheSyncQueue.put(new CacheMessage(message.getPublishingMember(), typeId, id));
+                    this.cacheSyncQueue.put(new CacheMessage(message.getPublishingMember(), typeId, id));
                 }
             }
         }catch (Exception e){
             e.printStackTrace();
             if (!"delete".equals(event)) {
-//                this.cacheSyncQueue.put(new CacheMessage(message.getPublishingMember(), typeId, id));
+                this.cacheSyncQueue.put(new CacheMessage(message.getPublishingMember(), typeId, id));
             }
         }
     }
