@@ -99,7 +99,7 @@
   {
     "typeId" : "propertyType",
     "tid" : "adminGnbMenu",
-    "pid" : "authority",
+    "pid" : "adminGnbMenu>authority",
     "propertyTypeName" : "Authority",
     "valueType" : "REFERENCES",
     "idable" : false,
@@ -256,7 +256,7 @@
   {
     "typeId" : "propertyType",
     "tid" : "adminLnbMenu",
-    "pid" : "authority",
+    "pid" : "adminLnbMenu>authority",
     "propertyTypeName" : "Authority",
     "valueType" : "REFERENCES",
     "idable" : false,
