@@ -98,6 +98,19 @@
   },
   {
     "typeId" : "propertyType",
+    "tid" : "adminGnbMenu",
+    "pid" : "authority",
+    "propertyTypeName" : "Authority",
+    "valueType" : "REFERENCES",
+    "idable" : false,
+    "indexable" : true,
+    "labelable" : false,
+    "required" : false,
+    "analyzer" : "code",
+    "referenceType" : "role"
+  },
+  {
+    "typeId" : "propertyType",
     "tid": "adminLnbMenu",
     "id": "adminLnbMenu>backOfficeId",
     "pid": "backOfficeId",
@@ -239,6 +252,19 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "adminLnbMenu",
+    "pid" : "authority",
+    "propertyTypeName" : "Authority",
+    "valueType" : "REFERENCES",
+    "idable" : false,
+    "indexable" : true,
+    "labelable" : false,
+    "required" : false,
+    "analyzer" : "code",
+    "referenceType" : "role"
   },
   {
     "typeId" : "propertyType",
