@@ -72,10 +72,13 @@ public class OrderService {
             itemResult.put("deliveryPrice", priceList.get(0).get("deliveryPrice"));
 
             List<Map<String, Object>> subProductResult = new ArrayList<>();
+            Double totalOrderPrice = 0D;
             for (Map<String, Object> priceProduct : priceList) {
                 subProductResult.add(priceProduct);
+                totalOrderPrice += JsonUtils.getDoubleValue(priceProduct, "orderPrice");
             }
 
+            itemResult.put("orderPrice", totalOrderPrice);
             itemResult.put("item", subProductResult);
             totalSize += subProductResult.size();
             items.add(itemResult);

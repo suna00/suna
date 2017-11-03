@@ -97,7 +97,7 @@ public class CartService {
                 subProductResult.add(priceProduct);
                 totalOrderPrice += JsonUtils.getDoubleValue(priceProduct, "orderPrice");
             }
-            itemResult.put("totalOrderPrice", totalOrderPrice);
+            itemResult.put("orderPrice", totalOrderPrice);
             itemResult.put("item", subProductResult);
             totalSize += subProductResult.size();
             items.add(itemResult);
