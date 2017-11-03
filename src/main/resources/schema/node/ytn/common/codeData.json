@@ -847,6 +847,15 @@
   },
   {
     "typeId": "commonCode",
+    "code": "joinRoute",
+    "upperCode": "root",
+    "name": "가입경로",
+    "description": "",
+    "sortOrder": "96",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
     "code": "all",
     "upperCode": "addBenefitType",
     "name": "전체",
@@ -7548,6 +7557,60 @@
     "name": "발행 안함",
     "description": "",
     "sortOrder": "20",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "join001",
+    "upperCode": "joinRoute",
+    "name": "검색",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "join002",
+    "upperCode": "joinRoute",
+    "name": "블로그",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "join003",
+    "upperCode": "joinRoute",
+    "name": "SNS",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "join004",
+    "upperCode": "joinRoute",
+    "name": "친구 추천",
+    "description": "",
+    "sortOrder": "4",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "join005",
+    "upperCode": "joinRoute",
+    "name": "학교 홈페이지",
+    "description": "",
+    "sortOrder": "5",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "join006",
+    "upperCode": "joinRoute",
+    "name": "광고",
+    "description": "",
+    "sortOrder": "6",
     "commonCodeStatus": "y"
   }
 ]
