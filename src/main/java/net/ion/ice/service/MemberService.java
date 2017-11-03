@@ -145,6 +145,7 @@ public class MemberService {
                 extraData.put("memberNo", memberNode.get("memberNo"));
                 extraData.put("userId", memberNode.get("userId"));
                 extraData.put("name", memberNode.get("name"));
+                extraData.put("cellphone", memberNode.get("cellphone"));
                 context.setResult(CommonService.getResult("U0009", extraData));    //로그인을 한 사용자
 
             }
