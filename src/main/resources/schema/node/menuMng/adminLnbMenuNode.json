@@ -482,10 +482,10 @@
     "icon": "fa-list",
     "active": "true",
     "index": "false",
-    "pages": [
-      { "pageName": "목록", "pageUrl": "list" }
-    ],
-    "customPages": []
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "affiliateMemberUpload/List" }
+    ]
   },
   {
     "typeId" : "adminLnbMenu",
