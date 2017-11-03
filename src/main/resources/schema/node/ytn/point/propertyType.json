@@ -783,7 +783,7 @@
     "analyzer": null,
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "codeFilter": "",
+    "codeFilter": "YPointType",
     "defaultValue": ""
   },
   {
