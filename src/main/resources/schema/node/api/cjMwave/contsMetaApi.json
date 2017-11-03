@@ -87,6 +87,14 @@
       }
     ],
     "config": {
+    "hitNumUpdate": {
+      "typeId": "album",
+      "resultType": "none",
+      "event": "view",
+      "response": {
+        "hitNum": ""
+      }
+    },
       "root": {
         "typeId": "album",
         "cacheTime": "300",
@@ -268,6 +276,14 @@
       }
     ],
     "config": {
+    "hitNumUpdate": {
+      "typeId": "artist",
+      "resultType": "none",
+      "event": "view",
+      "response": {
+        "hitNum": ""
+      }
+    },
       "root": {
         "typeId": "artist",
         "cacheTime": "300",
@@ -388,6 +404,14 @@
       }
     ],
     "config": {
+    "hitNumUpdate": {
+      "typeId": "musicVideo",
+      "resultType": "none",
+      "event": "view",
+      "response": {
+        "hitNum": ""
+      }
+    },
       "root": {
         "typeId": "musicVideo",
         "cacheTime": "300",
@@ -668,6 +692,14 @@
       }
     ],
     "config": {
+    "hitNumUpdate": {
+      "typeId": "news",
+      "resultType": "none",
+      "event": "view",
+      "response": {
+        "hitNum": ""
+      }
+    },
       "root": {
         "typeId": "news",
         "cacheTime": "300",
@@ -969,6 +1001,14 @@
       }
     ],
     "config": {
+    "hitNumUpdate": {
+      "typeId": "groupPhoto",
+      "resultType": "none",
+      "event": "view",
+      "response": {
+        "hitNum": ""
+      }
+    },
       "root": {
         "typeId": "groupPhoto",
         "cacheTime": "300",
@@ -1475,6 +1515,14 @@
       }
     ],
     "config": {
+    "hitNumUpdate": {
+      "typeId": "pgmVideo",
+      "resultType": "none",
+      "event": "view",
+      "response": {
+        "hitNum": ""
+      }
+    },
       "root": {
         "typeId": "pgmVideo",
         "cacheTime": "300",
