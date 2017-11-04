@@ -158,7 +158,12 @@ public class ExecuteContext extends ReadContext{
             if(event != null && event.equals("create")){
                 throw new IceRuntimeException("Exist Node Error : " + getId()) ;
             }
-
+            if(event != null && event.equals("delete")){
+                this.execute = true ;
+                this.node = existNode;
+                this.id = this.node.getId() ;
+                return ;
+            }
             changedProperties = new ArrayList<>() ;
             this.node = existNode.clone() ;
             for(PropertyType pt : nodeType.getPropertyTypes()){
