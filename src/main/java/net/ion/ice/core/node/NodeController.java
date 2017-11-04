@@ -224,7 +224,7 @@ public class NodeController {
         }
     }
 
-    @RequestMapping(value = "/node/event", method = RequestMethod.POST)
+    @RequestMapping(value = "/node/event")
     @ResponseBody
     public Object eventRest(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try{
