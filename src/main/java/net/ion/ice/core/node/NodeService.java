@@ -24,6 +24,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
@@ -305,6 +306,18 @@ public class NodeService {
         context.execute();
 //        Node node = (Node) context.getResult();
 //        node.toDisplay();
+        return context.makeResult();
+    }
+
+    public Object executeNode(HttpServletRequest request, HttpServletResponse response, String typeId, String event) {
+        NodeType nodeType = getNodeType(typeId) ;
+        if(!clusterService.checkClusterGroup(nodeType)){
+            throw new IceRuntimeException("Not Support Type Error") ;
+        }
+
+        ExecuteContext context = ExecuteContext.makeContextFromParameter(request, response, nodeType, event);
+        context.execute();
+
         return context.makeResult();
     }
 
