@@ -181,7 +181,7 @@ public class ExcelService {
         return result;
     }
 
-    private String getStringValue(Cell cell) {
+    public String getStringValue(Cell cell) {
         String value = "";
 
         switch (cell.getCellTypeEnum()) {
@@ -211,7 +211,7 @@ public class ExcelService {
         return value;
     }
 
-    private String encodingFileName(HttpServletRequest request, String fileName) {
+    public String encodingFileName(HttpServletRequest request, String fileName) {
         String encodingFilenName = fileName;
         String header = request.getHeader("User-Agent");
         String browser = "Firefox";
@@ -241,11 +241,11 @@ public class ExcelService {
         return encodingFilenName;
     }
 
-    private HSSFWorkbook getXlsWorkbook() {
+    public HSSFWorkbook getXlsWorkbook() {
         return new HSSFWorkbook();
     }
 
-    private HSSFWorkbook getXlsWorkbook(InputStream is) {
+    public HSSFWorkbook getXlsWorkbook(InputStream is) {
         HSSFWorkbook workbook = null;
         try {
             workbook = new HSSFWorkbook(is);
@@ -255,11 +255,11 @@ public class ExcelService {
         return workbook;
     }
 
-    private XSSFWorkbook getXlsxWorkbook() {
+    public XSSFWorkbook getXlsxWorkbook() {
         return new XSSFWorkbook();
     }
 
-    private XSSFWorkbook getXlsxWorkbook(InputStream is) {
+    public XSSFWorkbook getXlsxWorkbook(InputStream is) {
         XSSFWorkbook workbook = null;
         try {
             workbook = new XSSFWorkbook(is);
@@ -269,7 +269,7 @@ public class ExcelService {
         return workbook;
     }
 
-    private CellStyle getHeaderCellStyle(Workbook workbook) {
+    public CellStyle getHeaderCellStyle(Workbook workbook) {
         Font font = workbook.createFont();
         font.setBold(true);
         font.setFontHeightInPoints((short) 15);
