@@ -27,7 +27,7 @@ public class PropertyType implements Serializable{
     public static final String SORTABLE = "sortable";
 
 
-    public enum ValueType {STRING, CODE, DATE, LONG, INT, DOUBLE, BOOLEAN, REFERENCED, REFERENCE, REFERENCES, TEXT, ARRAY, OBJECT, JSON, FILE, FILES, CONTENT}
+    public enum ValueType {STRING, CODE, DATE, LONG, INT, DOUBLE, BOOLEAN, REFERENCED, REFERENCE, REFERENCES, TEXT, ARRAY, OBJECT, JSON, FILE, FILES, CONTENT, HISTORY}
 
     public enum AnalyzerType {simple, code, whitespace, standard, cjk, korean}
 
@@ -191,7 +191,7 @@ public class PropertyType implements Serializable{
     }
 
     public Map<Object, Code> getCode() {
-        if (codeMap == null) {
+        if (codeMap == null || codeMap.size() == 0) {
             codeMap = new HashMap<>();
             Collection<Map<String, Object>> codeValues = (Collection<Map<String, Object>>) propertyTypeNode.get("code");
             if(codeValues == null){

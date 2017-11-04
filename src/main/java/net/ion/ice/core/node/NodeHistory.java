@@ -16,20 +16,18 @@ public class NodeHistory implements Serializable{
 
 
     @DocumentId
-    @Field(store = Store.NO)
-    @Analyzer(impl = CodeAnalyzer.class)
+    @Field(store = Store.NO, analyze = Analyze.NO)
     private String historyId ;
 
 
-    @Field(store = Store.NO)
-    @Analyzer(impl = CodeAnalyzer.class)
+    @Field(store = Store.NO, analyze = Analyze.NO)
     private String id;
 
-    @Field(store = Store.NO)
-    @Analyzer(impl = CodeAnalyzer.class)
+    @Field(store = Store.NO, analyze = Analyze.NO)
     private String event;
 
-    @Field(analyze = Analyze.NO, store = Store.NO)
+    @Field(store = Store.NO, analyze = Analyze.NO)
+    @SortableField
     private Integer version ;
 
     @Field(store = Store.NO)
@@ -43,8 +41,9 @@ public class NodeHistory implements Serializable{
 
     private Properties<String, Object> properties ;
 
-    public NodeHistory(Node node, String event, List<String> changePids){
+    public NodeHistory(Node node, Integer version, String event, List<String> changePids){
         this.id = node.getId() ;
+        this.version = version ;
         this.modifier = node.getModifier();
         this.changed = node.getChanged();
         this.event = event ;
@@ -54,6 +53,39 @@ public class NodeHistory implements Serializable{
                 this.properties.put(pid, node.get(pid)) ;
             }
         }
+        this.historyId = this.id + "_" + this.version ;
+    }
+    public void increment() {
+        this.version = this.version + 1 ;
+        this.historyId = this.id + "_" + this.version ;
     }
 
+    public String getHistoryId() {
+        return historyId;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+
+    public String getEvent() {
+        return event;
+    }
+
+    public String getModifier() {
+        return modifier;
+    }
+
+    public String getChanged() {
+        return NodeUtils.getDateStringValue(changed, null);
+    }
+
+    public Properties<String, Object> getProperties(){
+        return this.properties ;
+    }
 }

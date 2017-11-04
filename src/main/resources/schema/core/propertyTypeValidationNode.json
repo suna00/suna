@@ -9,7 +9,7 @@
       "duplicated": { "value": false, "description": "중복된 값 입니다." },
       "min": { "value": 0, "description": "최소 값 입니다." },
       "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "타입만 가능합니다." },
+      "extension": { "value": "", "description": "타입만 가능합니다." },
       "regularExpression": { "value": "", "description": "" }
     }
   },
@@ -23,7 +23,7 @@
       "duplicated": { "value": false, "description": "중복된 값 입니다." },
       "min": { "value": 0, "description": "최소 값 입니다." },
       "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "타입만 가능합니다." },
+      "extension": { "value": "", "description": "타입만 가능합니다." },
       "regularExpression": { "value": "", "description": "" }
     }
   },
@@ -37,7 +37,7 @@
       "duplicated": { "value": false, "description": "중복된 값 입니다." },
       "min": { "value": 0, "description": "최소 값 입니다." },
       "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "타입만 가능합니다." },
+      "extension": { "value": "", "description": "타입만 가능합니다." },
       "regularExpression": { "value": "", "description": "" }
     }
   },
@@ -51,7 +51,7 @@
       "duplicated": { "value": false, "description": "중복된 값 입니다." },
       "min": { "value": 0, "description": "최소 값 입니다." },
       "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "타입만 가능합니다." },
+      "extension": { "value": "", "description": "타입만 가능합니다." },
       "regularExpression": { "value": "", "description": "" }
     }
   },
@@ -65,7 +65,7 @@
       "duplicated": { "value": false, "description": "중복된 값 입니다." },
       "min": { "value": 0, "description": "최소 값 입니다." },
       "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "타입만 가능합니다." },
+      "extension": { "value": "", "description": "타입만 가능합니다." },
       "regularExpression": { "value": "", "description": "" }
     }
   },
@@ -79,7 +79,7 @@
       "duplicated": { "value": false, "description": "중복된 값 입니다." },
       "min": { "value": 0, "description": "최소 값 입니다." },
       "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "타입만 가능합니다." },
+      "extension": { "value": "", "description": "타입만 가능합니다." },
       "regularExpression": { "value": "", "description": "" }
     }
   },
@@ -93,7 +93,7 @@
       "duplicated": { "value": false, "description": "중복된 값 입니다." },
       "min": { "value": 0, "description": "최소 값 입니다." },
       "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "타입만 가능합니다." },
+      "extension": { "value": "", "description": "타입만 가능합니다." },
       "regularExpression": { "value": "", "description": "" }
     }
   },
@@ -107,7 +107,7 @@
       "duplicated": { "value": false, "description": "중복된 값 입니다." },
       "min": { "value": 0, "description": "최소 값 입니다." },
       "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "타입만 가능합니다." },
+      "extension": { "value": "", "description": "타입만 가능합니다." },
       "regularExpression": { "value": "", "description": "" }
     }
   },
@@ -121,7 +121,7 @@
       "duplicated": { "value": false, "description": "중복된 값 입니다." },
       "min": { "value": 0, "description": "최소 값 입니다." },
       "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "타입만 가능합니다." },
+      "extension": { "value": "", "description": "타입만 가능합니다." },
       "regularExpression": { "value": "", "description": "" }
     }
   },
@@ -135,7 +135,7 @@
       "duplicated": { "value": false, "description": "중복된 값 입니다." },
       "min": { "value": 0, "description": "최소 값 입니다." },
       "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "타입만 가능합니다." },
+      "extension": { "value": "", "description": "타입만 가능합니다." },
       "regularExpression": { "value": "", "description": "" }
     }
   },
@@ -149,7 +149,7 @@
       "duplicated": { "value": false, "description": "중복된 값 입니다." },
       "min": { "value": 0, "description": "최소 값 입니다." },
       "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "타입만 가능합니다." },
+      "extension": { "value": "", "description": "타입만 가능합니다." },
       "regularExpression": { "value": "", "description": "" }
     }
   },
@@ -163,7 +163,7 @@
       "duplicated": { "value": false, "description": "중복된 값 입니다." },
       "min": { "value": 0, "description": "최소 값 입니다." },
       "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "타입만 가능합니다." },
+      "extension": { "value": "", "description": "타입만 가능합니다." },
       "regularExpression": { "value": "", "description": "" }
     }
   }

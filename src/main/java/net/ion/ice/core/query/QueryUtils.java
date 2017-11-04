@@ -176,6 +176,9 @@ public class QueryUtils {
         if(propertyType == null && fieldId.contains("_")){
             propertyType = nodeType.getPropertyType(StringUtils.substringBeforeLast(fieldId, "_"));
         }
+        if(propertyType == null && fieldId.contains("_")){
+            propertyType = nodeType.getPropertyType(StringUtils.substringBefore(fieldId, "_"));
+        }
         if(propertyType == null && Node.NODE_VALUE_KEYS.contains(fieldId)){
             switch (fieldId){
                 case "created": case "changed" :{

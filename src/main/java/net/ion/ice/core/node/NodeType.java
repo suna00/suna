@@ -210,4 +210,20 @@ public class NodeType implements Serializable{
 		}
 		return (String) nodeTypeNode.get(CLUSTER_GROUP) ;
 	}
+
+	public Integer getEviction() {
+		return nodeTypeNode.getIntValue("eviction");
+	}
+
+	public boolean isHistoryable() {
+		return nodeTypeNode.getBooleanValue("historyable");
+	}
+
+	public String getAuthorityRuleString() {
+		return nodeTypeNode.getStringValue("authorityRule");
+	}
+
+	public Object getAuthorityRule(){
+		return nodeTypeNode.get("authorityRule");
+	}
 }

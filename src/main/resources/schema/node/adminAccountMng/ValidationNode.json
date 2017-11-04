@@ -9,7 +9,7 @@
       "duplicated": { "value": true, "description": "이미 등록된 아이디 입니다." },
       "min": { "value": 4, "description": "최소 값 입니다." },
       "max": { "value": 12, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "" },
+      "extension": { "value": "", "description": "" },
       "regularExpression": { "value": "/[^가-힣ㄱ-ㅎㅏ-ㅣa-zA-Z0-9]/", "description": "특수문자는 입력 할 수 없습니다." }
     }
   },
@@ -23,7 +23,7 @@
       "duplicated": { "value": false, "description": "" },
       "min": { "value": 4, "description": "최소 값 입니다." },
       "max": { "value": 12, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "" },
+      "extension": { "value": "", "description": "" },
       "regularExpression": { "value": "", "description": "" }
     }
   },
@@ -37,7 +37,7 @@
       "duplicated": { "value": false, "description": "" },
       "min": { "value": 0, "description": "" },
       "max": { "value": 0, "description": "" },
-      "extention": { "value": "", "description": "" },
+      "extension": { "value": "", "description": "" },
       "regularExpression": { "value": "", "description": "" }
     }
   },
@@ -51,7 +51,7 @@
       "duplicated": { "value": false, "description": "" },
       "min": { "value": 0, "description": "" },
       "max": { "value": 0, "description": "" },
-      "extention": { "value": "", "description": "" },
+      "extension": { "value": "", "description": "" },
       "regularExpression": { "value": "", "description": "" }
     }
   },
@@ -64,7 +64,7 @@
       "duplicated": { "value": true, "description": "이미 등록된 아이디 입니다." },
       "min": { "value": 0, "description": "최소 값 입니다." },
       "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "" },
+      "extension": { "value": "", "description": "" },
       "regularExpression": { "value": "", "description": "특수문자는 입력 할 수 없습니다." }
     }
   },
@@ -77,7 +77,7 @@
       "duplicated": { "value": false, "description": "" },
       "min": { "value": 0, "description": "최소 값 입니다." },
       "max": { "value": 0, "description": "최대 값 입니다." },
-      "extention": { "value": "", "description": "" },
+      "extension": { "value": "", "description": "" },
       "regularExpression": { "value": "", "description": "" }
     }
   }
