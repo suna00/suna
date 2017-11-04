@@ -271,6 +271,7 @@ public class ExcelService {
 
     public CellStyle getHeaderCellStyle(Workbook workbook) {
         Font font = workbook.createFont();
+        font.setFontName("맑은 고딕");
         font.setBold(true);
         font.setFontHeightInPoints((short) 15);
 
