@@ -297,8 +297,10 @@ public class ExecuteContext extends ReadContext{
             Object value = data.get(key) ;
             if(value instanceof List && !key.equals("code")){
                 String subTypeId = null ;
-                if(this.nodeType.getPropertyType(key) != null && this.nodeType.getPropertyType(key).isList()){
-                    subTypeId = this.nodeType.getPropertyType(key).getReferenceType() ;
+                if(this.nodeType.getPropertyType(key) != null){
+                     if(this.nodeType.getPropertyType(key).isList()) {
+                         subTypeId = this.nodeType.getPropertyType(key).getReferenceType();
+                     }
                 }else if(NodeUtils.getNodeType(key) != null){
                     subTypeId = key ;
                 }
