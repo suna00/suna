@@ -5,12 +5,15 @@ import net.ion.ice.IceRuntimeException;
 import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.file.FileValue;
 import net.ion.ice.core.file.TolerableMissingFileException;
+import net.ion.ice.core.infinispan.NotFoundNodeException;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
+import net.ion.ice.core.session.SessionService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,6 +28,7 @@ import java.util.*;
  * Created by jaeho on 2017. 5. 31..
  */
 public class ExecuteContext extends ReadContext{
+    private static org.slf4j.Logger logger = LoggerFactory.getLogger(ExecuteContext.class);
 
     protected Node existNode ;
 
@@ -43,7 +47,6 @@ public class ExecuteContext extends ReadContext{
 
     protected HttpServletRequest httpRequest ;
     protected HttpServletResponse httpResponse ;
-    private Logger logger = Logger.getLogger(ExecuteContext.class);
 
 
     public static ExecuteContext createContextFromMap(NodeType nodeType, Map<String, Object> data) {
@@ -174,9 +177,14 @@ public class ExecuteContext extends ReadContext{
             return ;
         }
         try {
-            existNode = NodeUtils.getNode(nodeType, getId());
+            if (event == null || !event.equals("create")) {
+                existNode = NodeUtils.getNode(nodeType, getId());
+            }
+        }catch (NotFoundNodeException e){
+            logger.error("Not found Node : {},{}", nodeType.getTypeId(), getId()) ;
         }catch(Exception e){
         }
+
         exist = existNode != null ;
 
         if(exist){
