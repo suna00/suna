@@ -42,7 +42,7 @@
             <fileNamePattern>${LOG_PATH}/ice_%d{yyyy-MM-dd}.%i.log</fileNamePattern>
             <maxFileSize>500MB</maxFileSize>
             <maxHistory>10</maxHistory>
-            <totalSizeCap>5GB</totalSizeCap>
+            <!--<totalSizeCap>5GB</totalSizeCap>-->
         </rollingPolicy>
 
 
