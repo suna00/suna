@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import org.springframework.core.io.Resource;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -81,6 +82,30 @@ public class ExecuteContext extends ReadContext{
 
         Map<String, Object> data = ContextUtils.makeContextData(parameterMap, multiFileMap);
 
+        ctx.setData(data);
+
+        if(event != null) {
+            ctx.event = event;
+        }
+        ctx.setNodeType(nodeType);
+
+        ctx.init() ;
+
+        return ctx ;
+    }
+
+    public static ExecuteContext makeContextFromParameter(HttpServletRequest request, HttpServletResponse response, NodeType nodeType, String event) {
+        ExecuteContext ctx = new ExecuteContext();
+
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        MultiValueMap<String, MultipartFile> multiFileMap = null;
+        if(request instanceof MultipartHttpServletRequest) {
+            multiFileMap = ((MultipartHttpServletRequest) request).getMultiFileMap();
+        }
+        Map<String, Object> data = ContextUtils.makeContextData(parameterMap, multiFileMap);
+
+        ctx.httpRequest = request;
+        ctx.httpResponse = response;
         ctx.setData(data);
 
         if(event != null) {
