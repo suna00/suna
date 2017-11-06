@@ -156,7 +156,6 @@ public class SessionService {
             addRoles(roles, group);
         }
 
-        roles.add("admin") ;
         roles.add("customer") ;
         roles.add("anonymous") ;
         session.put("role", String.join(",", roles));

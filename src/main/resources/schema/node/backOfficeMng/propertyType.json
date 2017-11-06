@@ -67,7 +67,8 @@
   {
     "typeId" : "propertyType",
     "tid" : "backOffice",
-    "pid" : "backOffice>authority",
+    "id" : "backOffice>authority",
+    "pid" : "authority",
     "propertyTypeName" : "Authority",
     "valueType" : "REFERENCES",
     "defaultValue" : "anonymous",

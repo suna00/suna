@@ -866,8 +866,6 @@
     ],
     "authority": "system,admin"
   },
-
-
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "ven",
@@ -881,6 +879,115 @@
     "index": "true",
     "pages": [],
     "customPages": []
+  },
+
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "ven",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "root",
+    "menuId": "productList",
+    "menuName": "상품목록",
+    "order": "10",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "true",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "product/List" }
+    ],
+    "authority": "system,vendor"
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "ven",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "root",
+    "menuId": "productGoodsForm",
+    "menuName": "상품 등록/수정",
+    "order": "20",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "product/CreateGoodsForm" },
+      { "pageName": "수정", "pageUrl": "product/UpdateGoodsForm" }
+    ],
+    "authority": "system,vendor"
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "ven",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "root",
+    "menuId": "productPhoneForm",
+    "menuName": "휴대폰개통상품 등록/수정",
+    "order": "21",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "product/CreatePhoneForm" },
+      { "pageName": "수정", "pageUrl": "product/UpdatePhoneForm" }
+    ],
+    "authority": "system,vendor"
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "ven",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "root",
+    "menuId": "productHealthForm",
+    "menuName": "건강검진상품 등록/수정",
+    "order": "22",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "product/CreateHealthForm" },
+      { "pageName": "수정", "pageUrl": "product/UpdateHealthForm" }
+    ],
+    "authority": "system,vendor"
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "ven",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "root",
+    "menuId": "productUpdateList",
+    "menuName": "상품정보 일괄변경",
+    "order": "30",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "productUpdate/List" }
+    ],
+    "authority": "system,vendor"
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "ven",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "root",
+    "menuId": "productOptionSet",
+    "menuName": "상품옵션 세트설정",
+    "order": "60",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" }
+    ],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "productOptionSet/CreateForm" },
+      { "pageName": "수정", "pageUrl": "productOptionSet/UpdateForm" }
+    ],
+    "authority": "system,vendor"
   },
   {
     "typeId" : "adminLnbMenu",
