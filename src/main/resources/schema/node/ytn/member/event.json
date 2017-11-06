@@ -190,5 +190,37 @@
     "actionType" : "service",
     "actionBody" : "memberService.me",
     "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "member",
+    "event" : "downloadExcelForm",
+    "noneExecute" : true,
+    "eventName" : "회원정보 엑셀양식 다운로드"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "member>downloadExcelForm",
+    "action" : "downloadExcelForm",
+    "actionName" : "회원정보 엑셀양식 다운로드",
+    "actionType" : "service",
+    "actionBody" : "memberService.downloadExcelForm",
+    "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "member",
+    "event" : "uploadExcel",
+    "noneExecute" : true,
+    "eventName" : "회원정보 엑셀 업로드"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "member>uploadExcel",
+    "action" : "uploadExcel",
+    "actionName" : "회원정보 엑셀 업로드",
+    "actionType" : "service",
+    "actionBody" : "memberService.uploadExcel",
+    "order" : 1
   }
 ]

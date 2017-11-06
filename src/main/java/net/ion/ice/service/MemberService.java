@@ -5,17 +5,25 @@ import net.ion.ice.core.api.ApiException;
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.data.bind.NodeBindingInfo;
 import net.ion.ice.core.data.bind.NodeBindingService;
-import net.ion.ice.core.node.Node;
-import net.ion.ice.core.node.NodeService;
-import net.ion.ice.core.node.NodeType;
-import net.ion.ice.core.node.NodeUtils;
+import net.ion.ice.core.event.EventService;
+import net.ion.ice.core.node.*;
 import net.ion.ice.core.query.QueryTerm;
 import net.ion.ice.core.query.QueryUtils;
 import net.ion.ice.core.session.SessionService;
+import net.ion.ice.plugin.excel.ExcelService;
+import org.apache.poi.ss.usermodel.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -25,6 +33,7 @@ import java.util.*;
 
 @Service("memberService")
 public class MemberService {
+    private Logger logger = LoggerFactory.getLogger(MemberService.class);
 
     @Autowired
     private NodeService nodeService;
@@ -34,6 +43,9 @@ public class MemberService {
 
     @Autowired
     private SessionService sessionService;
+
+    @Autowired
+    private ExcelService excelService;
 
 
     private CommonService commonService;
@@ -145,6 +157,7 @@ public class MemberService {
                 extraData.put("memberNo", memberNode.get("memberNo"));
                 extraData.put("userId", memberNode.get("userId"));
                 extraData.put("name", memberNode.get("name"));
+                extraData.put("cellphone", memberNode.get("cellphone"));
                 context.setResult(CommonService.getResult("U0009", extraData));    //로그인을 한 사용자
 
             }
@@ -228,8 +241,9 @@ public class MemberService {
 
         // 회원가입 : join
         if ("join".equals(emailCertificationType)) {
+            String siteId = data.get("siteId").toString();
             String email = data.get("email").toString();
-            String count = nodeBindingInfo.getJdbcTemplate().queryForList(" select count(memberNo) as count from member where email=? ", email).get(0).get("count").toString();
+            String count = nodeBindingInfo.getJdbcTemplate().queryForList(" select count(memberNo) as count from member where siteId=? and email=? ", siteId, email).get(0).get("count").toString();
 
             if ("0".equals(count)) {
                 sendEmail(emailCertificationType, email, data);
@@ -438,7 +452,7 @@ public class MemberService {
         // 회원가입 : join
         if ("join".equals(emailCertificationType)) {
             String certCode = getEmailCertCode("이메일 인증요청", emailCertificationType, null, email, "request");
-            String linkUrl = data.get("siteId") + "/signUp/stepTwo?certCode=" + certCode + "&email=" + email + "&affiliateId=" + data.get("affiliateId") + "&acceptTermsYn=" + data.get("acceptTermsYn") + "&receiveMarketingEmailAgreeYn=" + data.get("receiveMarketingEmailAgreeYn") + "&receiveMarketingSMSAgreeYn=" + data.get("receiveMarketingSMSAgreeYn");
+            String linkUrl = data.get("siteId") + "/signUp/stepTwo?certCode=" + certCode + "&email=" + email + "&affiliateId=" + data.get("affiliateId") + "&inflowRoute=" + data.get("inflowRoute") + "&acceptTermsYn=" + data.get("acceptTermsYn") + "&receiveMarketingEmailAgreeYn=" + data.get("receiveMarketingEmailAgreeYn") + "&receiveMarketingSMSAgreeYn=" + data.get("receiveMarketingSMSAgreeYn");
             html = setHtml("본인인증", linkUrl);
         }
 
@@ -612,5 +626,697 @@ public class MemberService {
         setHtmlMap.put("contents", contents);
 
         return setHtmlMap;
+    }
+
+    public ExecuteContext downloadExcelForm(ExecuteContext context) {
+        HttpServletRequest request = context.getHttpRequest();
+        HttpServletResponse response = context.getHttpResponse();
+
+        Map<String, Object> params = context.getData();
+        String siteType = params.get("siteType") == null ? "" : params.get("siteType").toString();
+        String fileName = StringUtils.equals(siteType, "company") ? "기업회원정보 등록 양식" : "대학회원정보 등록 양식";
+
+        Workbook workbook = null;
+        OutputStream outputStream = null;
+
+        try {
+            workbook = excelService.getXlsxWorkbook();
+
+            if (StringUtils.equals(siteType, "company")) {
+                setCompanySheet(workbook);
+            } else if (StringUtils.equals(siteType, "university")) {
+                setUniversitySheet(workbook);
+            }
+
+            response.setHeader(HttpHeaders.CONTENT_TYPE, "application/vnd.ms-excel");
+            response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""+excelService.encodingFileName(request, fileName)+"\".xlsx");
+            outputStream = response.getOutputStream();
+            workbook.write(outputStream);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        } finally {
+            if (outputStream != null) {
+                try {
+                    outputStream.flush();
+                    outputStream.close();
+                } catch (IOException e) {
+                    logger.error(e.getMessage(), e);
+                }
+            }
+            if (workbook != null) {
+                try {
+                    workbook.close();
+                } catch (IOException e) {
+                    logger.error(e.getMessage(), e);
+                }
+            }
+        }
+
+        return context;
+    }
+
+    private void setCompanySheet(Workbook workbook) {
+        Sheet sheet1 = workbook.createSheet("기업회원정보");
+        Row row1 = sheet1.createRow(0);
+
+        Cell cell0 = row1.createCell(0);
+        cell0.setCellValue("기업");
+        cell0.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        Cell cell1 = row1.createCell(1);
+        cell1.setCellValue("회원등급");
+        cell1.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        Cell cell2 = row1.createCell(2);
+        cell2.setCellValue("아이디");
+        cell2.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        Cell cell3 = row1.createCell(3);
+        cell3.setCellValue("비밀번호");
+        cell3.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        Cell cell4 = row1.createCell(4);
+        cell4.setCellValue("이름");
+        cell4.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        Cell cell5 = row1.createCell(5);
+        cell5.setCellValue("휴대폰 번호");
+        cell5.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        Cell cell6 = row1.createCell(6);
+        cell6.setCellValue("기타 연락처");
+        cell6.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        Cell cell7 = row1.createCell(7);
+        cell7.setCellValue("우편번호");
+        cell7.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        Cell cell8 = row1.createCell(8);
+        cell8.setCellValue("주소");
+        cell8.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        Cell cell9 = row1.createCell(9);
+        cell9.setCellValue("상세주소");
+        cell9.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        Cell cell10 = row1.createCell(10);
+        cell10.setCellValue("성별");
+        cell10.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        Cell cell11 = row1.createCell(11);
+        cell11.setCellValue("관심분야");
+        cell11.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        Cell cell12 = row1.createCell(12);
+        cell12.setCellValue("마케팅 이메일 수신동의");
+        cell12.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        Cell cell13 = row1.createCell(13);
+        cell13.setCellValue("마케팅 SMS 수신동의");
+        cell13.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        for (int i=0; i<14; i++) {
+            sheet1.autoSizeColumn(i);
+        }
+
+        Sheet sheet2 = workbook.createSheet("기업 코드");
+        setAffiliateSheet(workbook, sheet2, "company");
+
+        Sheet sheet3 = workbook.createSheet("회원등급 코드");
+        setCodeSheet(workbook, sheet3, "membershipLevel");
+
+        Sheet sheet4 = workbook.createSheet("성별 코드");
+        setCodeSheet(workbook, sheet4, "genderType");
+
+        Sheet sheet5 = workbook.createSheet("관심분야 코드");
+        setCodeSheet(workbook, sheet5, "interests");
+
+        Sheet sheet6 = workbook.createSheet("마케팅 이메일 수신동의 코드");
+        setCodeSheet(workbook, sheet6, "agreeYn");
+
+        Sheet sheet7 = workbook.createSheet("마케팅 SMS 수신동의 코드");
+        setCodeSheet(workbook, sheet7, "agreeYn");
+    }
+
+    private void setUniversitySheet(Workbook workbook) {
+        Sheet sheet1 = workbook.createSheet("대학회원정보");
+        Row row1 = sheet1.createRow(0);
+
+        Cell cell0 = row1.createCell(0);
+        cell0.setCellValue("대학");
+        cell0.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        Cell cell1 = row1.createCell(1);
+        cell1.setCellValue("회원등급");
+        cell1.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        Cell cell2 = row1.createCell(2);
+        cell2.setCellValue("아이디");
+        cell2.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        Cell cell3 = row1.createCell(3);
+        cell3.setCellValue("비밀번호");
+        cell3.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        Cell cell4 = row1.createCell(4);
+        cell4.setCellValue("이름");
+        cell4.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        Cell cell5 = row1.createCell(5);
+        cell5.setCellValue("휴대폰 번호");
+        cell5.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        Cell cell6 = row1.createCell(6);
+        cell6.setCellValue("기타 연락처");
+        cell6.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        Cell cell7 = row1.createCell(7);
+        cell7.setCellValue("우편번호");
+        cell7.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        Cell cell8 = row1.createCell(8);
+        cell8.setCellValue("주소");
+        cell8.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        Cell cell9 = row1.createCell(9);
+        cell9.setCellValue("상세주소");
+        cell9.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        Cell cell10 = row1.createCell(10);
+        cell10.setCellValue("학부/학과");
+        cell10.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        Cell cell11 = row1.createCell(11);
+        cell11.setCellValue("교직원");
+        cell11.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        Cell cell12 = row1.createCell(12);
+        cell12.setCellValue("입학년도");
+        cell12.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        Cell cell13 = row1.createCell(13);
+        cell13.setCellValue("성별");
+        cell13.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        Cell cell14 = row1.createCell(14);
+        cell14.setCellValue("관심분야");
+        cell14.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        Cell cell15 = row1.createCell(15);
+        cell15.setCellValue("마케팅 이메일 수신동의");
+        cell15.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        Cell cell16 = row1.createCell(16);
+        cell16.setCellValue("마케팅 SMS 수신동의");
+        cell16.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        for (int i=0; i<17; i++) {
+            sheet1.autoSizeColumn(i);
+        }
+
+        Sheet sheet2 = workbook.createSheet("대학 코드");
+        setAffiliateSheet(workbook, sheet2, "university");
+
+        Sheet sheet3 = workbook.createSheet("회원등급 코드");
+        setCodeSheet(workbook, sheet3, "membershipLevel");
+
+        Sheet sheet4 = workbook.createSheet("성별 코드");
+        setCodeSheet(workbook, sheet4, "genderType");
+
+        Sheet sheet5 = workbook.createSheet("관심분야 코드");
+        setCodeSheet(workbook, sheet5, "interests");
+
+        Sheet sheet6 = workbook.createSheet("마케팅 이메일 수신동의 코드");
+        setCodeSheet(workbook, sheet6, "agreeYn");
+
+        Sheet sheet7 = workbook.createSheet("마케팅 SMS 수신동의 코드");
+        setCodeSheet(workbook, sheet7, "agreeYn");
+    }
+
+    private void setAffiliateSheet(Workbook workbook, Sheet sheet, String siteType) {
+        Row headerRow = sheet.createRow(0);
+        Cell headerCell0 = headerRow.createCell(0);
+        headerCell0.setCellValue(StringUtils.equals(siteType, "company") ? "기업 코드값" : "대학 코드값");
+        headerCell0.setCellStyle(excelService.getHeaderCellStyle(workbook));
+        Cell headerCell1 = headerRow.createCell(1);
+        headerCell1.setCellValue(StringUtils.equals(siteType, "company") ? "기업 코드명" : "대학 코드명");
+        headerCell1.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        int rowCount = 1;
+        List<Node> affiliateList = (List<Node>) NodeQuery.build("affiliate").matching("siteType", siteType).matching("affiliateStatus", "y").sorting("created desc").getList();
+        for (Node affiliateNode : affiliateList) {
+            Row dataRow = sheet.createRow(rowCount);
+            Cell dataCell0 = dataRow.createCell(0);
+            dataCell0.setCellValue(affiliateNode.getBindingValue("affiliateId").toString());
+            Cell dataCell1 = dataRow.createCell(1);
+            dataCell1.setCellValue(affiliateNode.getBindingValue("name").toString());
+
+            rowCount++;
+        }
+
+        sheet.autoSizeColumn(0);
+        sheet.autoSizeColumn(1);
+    }
+
+    private void setCodeSheet(Workbook workbook, Sheet sheet, String upperCode) {
+        Row headerRow = sheet.createRow(0);
+        Cell headerCell0 = headerRow.createCell(0);
+        headerCell0.setCellValue("코드값");
+        headerCell0.setCellStyle(excelService.getHeaderCellStyle(workbook));
+        Cell headerCell1 = headerRow.createCell(1);
+        headerCell1.setCellValue("코드명");
+        headerCell1.setCellStyle(excelService.getHeaderCellStyle(workbook));
+
+        int rowCount = 1;
+        List<Node> codeList = (List<Node>) NodeQuery.build("commonCode").matching("upperCode", upperCode).matching("commonCodeStatus", "y").sorting("sortOrder asc").getList();
+        for (Node codeNode : codeList) {
+            Row dataRow = sheet.createRow(rowCount);
+            Cell dataCell0 = dataRow.createCell(0);
+            dataCell0.setCellValue(codeNode.getBindingValue("code").toString());
+            Cell dataCell1 = dataRow.createCell(1);
+            dataCell1.setCellValue(codeNode.getBindingValue("name").toString());
+
+            rowCount++;
+        }
+
+        sheet.autoSizeColumn(0);
+        sheet.autoSizeColumn(1);
+    }
+
+    public ExecuteContext uploadExcel(ExecuteContext context) {
+        Map<String, Object> data = context.getData();
+        MultipartFile file = data.get("excelFile") == null ? null : (MultipartFile) data.get("excelFile");
+        String siteType = data.get("siteType") == null ? "" : data.get("siteType").toString();
+        String fileName = file.getOriginalFilename();
+
+        Map<String, Object> parsedResult = excelService.parsingExcelFile(file);
+        Map<String, Object> saveResult = new HashMap<>();
+
+        if (StringUtils.equals(siteType, "company")) {
+            saveResult = saveCompanyMembers(parsedResult);
+        } else if (StringUtils.equals(siteType, "university")) {
+            saveResult = saveUniversityMembers(parsedResult);
+        }
+
+        Map<String, Object> affiliateMemberUploadData = new HashMap<>();
+        affiliateMemberUploadData.put("siteType", siteType);
+        affiliateMemberUploadData.put("name", fileName);
+        affiliateMemberUploadData.put("file", file);
+        affiliateMemberUploadData.put("successCount", saveResult.get("successCount"));
+        affiliateMemberUploadData.put("failCount", saveResult.get("failCount"));
+        affiliateMemberUploadData.put("failDescription", saveResult.get("failDescription"));
+
+        Node result = (Node) nodeService.executeNode(affiliateMemberUploadData, "affiliateMemberUpload", EventService.CREATE);
+        context.setResult(result);
+
+        return context;
+    }
+
+    private Map<String, Object> saveCompanyMembers(Map<String, Object> parsedResult) {
+        Iterator<String> parsedResultKeyIterator = parsedResult.keySet().iterator();
+        String firstKey = parsedResultKeyIterator.next();
+
+        StringBuffer failDescription = new StringBuffer();
+        int successCount = 0;
+        int failCount = 0;
+        List<Map<String, Object>> creatableItems = new ArrayList<>();
+
+        if (parsedResult.get(firstKey) != null) {
+            List<Map<String, String>> memberDataList = (List<Map<String, String>>) parsedResult.get("기업회원정보");
+            int rowIndex = 1;
+            for (Map<String, String> memberData : memberDataList) {
+                List<String> values = new ArrayList<>(memberData.values());
+
+                String affiliateId = values.get(0);
+                String membershipLevel = values.get(1);
+                String userId = values.get(2);
+                String password = values.get(3);
+                String name = values.get(4);
+                String cellphone = values.get(5);
+                String phone = values.get(6);
+                String postCode = values.get(7);
+                String address = values.get(8);
+                String detailedAddress = values.get(9);
+                String gender = values.get(10);
+                String interests = values.get(11);
+                String receiveMarketingEmailAgreeYn = values.get(12);
+                String receiveMarketingSMSAgreeYn = values.get(13);
+
+                boolean validation = false;
+
+                if (StringUtils.isEmpty(affiliateId)) {
+                    failDescription.append(String.format("%d 행 1 열 대학 값이 비어있습니다.\r\n", rowIndex));
+                    validation = true;
+                }
+                if (!StringUtils.isEmpty(affiliateId)) {
+                    Node affiliateNode = nodeService.getNode("affiliate", affiliateId);
+                    if (affiliateNode == null) {
+                        failDescription.append(String.format("%d 행 1 열 잘못된 대학 값입니다.\r\n", rowIndex));
+                        validation = true;
+                    }
+                }
+                if (StringUtils.isEmpty(membershipLevel)) {
+                    failDescription.append(String.format("%d 행 2 열 회원등급 값이 비어있습니다.\r\n", rowIndex));
+                    validation = true;
+                }
+                if (!StringUtils.isEmpty(membershipLevel)) {
+                    List<Node> codeNodes = (List<Node>) NodeQuery.build("commonCode").matching("upperCode", "membershipLevel").matching("commonCodeStatus", "y").getList();
+                    boolean codeValidation = true;
+                    for (Node codeNode : codeNodes) {
+                        String code = codeNode.getBindingValue("code").toString();
+                        if (StringUtils.equals(code, membershipLevel)) codeValidation = false;
+                    }
+                    if (codeValidation) {
+                        failDescription.append(String.format("%d 행 2 열 잘못된 회원등급 값입니다.\r\n", rowIndex));
+                        validation = true;
+                    }
+                }
+                if (StringUtils.isEmpty(userId)) {
+                    failDescription.append(String.format("%d 행 3 열 아이디 값이 비어있습니다.\r\n", rowIndex));
+                    validation = true;
+                }
+                if (!StringUtils.isEmpty(userId)) {
+                    Node memberNode = nodeService.getNode("member", userId);
+                    if (memberNode != null) {
+                        failDescription.append(String.format("%d 행 3 열 이미 등록된 아이디 값입니다.\r\n", rowIndex));
+                        validation = true;
+                    }
+                }
+                if (StringUtils.isEmpty(password)) {
+                    failDescription.append(String.format("%d 행 4 열 비밀번호 값이 비어있습니다.\r\n", rowIndex));
+                    validation = true;
+                }
+                if (StringUtils.isEmpty(name)) {
+                    failDescription.append(String.format("%d 행 5 열 이름 값이 비어있습니다.\r\n", rowIndex));
+                    validation = true;
+                }
+                if (StringUtils.isEmpty(gender)) {
+                    failDescription.append(String.format("%d 행 11 열 성별 값이 비어있습니다.\r\n", rowIndex));
+                    validation = true;
+                }
+                if (!StringUtils.isEmpty(gender)) {
+                    List<Node> codeNodes = (List<Node>) NodeQuery.build("commonCode").matching("upperCode", "genderType").matching("commonCodeStatus", "y").getList();
+                    boolean codeValidation = true;
+                    for (Node codeNode : codeNodes) {
+                        String code = codeNode.getBindingValue("code").toString();
+                        if (StringUtils.equals(code, gender)) codeValidation = false;
+                    }
+                    if (codeValidation) {
+                        failDescription.append(String.format("%d 행 11 열 잘못된 성별 값입니다.\r\n", rowIndex));
+                        validation = true;
+                    }
+                }
+                if (!StringUtils.isEmpty(interests)) {
+                    List<Node> codeNodes = (List<Node>) NodeQuery.build("commonCode").matching("upperCode", "interests").matching("commonCodeStatus", "y").getList();
+                    List<String> interestsValues = Arrays.asList(StringUtils.split(interests, ","));
+                    boolean codeValidation = true;
+                    for (String interestsValue : interestsValues) {
+                        boolean codeSubValidation = false;
+                        for (Node codeNode : codeNodes) {
+                            String code = codeNode.getBindingValue("code").toString();
+                            if (StringUtils.equals(code, interestsValue)) { codeSubValidation = true; }
+                        }
+                        if (!codeSubValidation) {
+                            codeValidation = false;
+                            break;
+                        }
+                    }
+                    if (!codeValidation) {
+                        failDescription.append(String.format("%d 행 12 열 잘못된 관심분야 값입니다.\r\n", rowIndex));
+                        validation = true;
+                    }
+                }
+                if (StringUtils.isEmpty(receiveMarketingEmailAgreeYn)) {
+                    failDescription.append(String.format("%d 행 13 열 마케팅 이메일 수신동의 값이 비어있습니다.\r\n", rowIndex));
+                    validation = true;
+                }
+                if (!StringUtils.isEmpty(receiveMarketingEmailAgreeYn)) {
+                    List<Node> codeNodes = (List<Node>) NodeQuery.build("commonCode").matching("upperCode", "agreeYn").matching("commonCodeStatus", "y").getList();
+                    boolean codeValidation = true;
+                    for (Node codeNode : codeNodes) {
+                        String code = codeNode.getBindingValue("code").toString();
+                        if (StringUtils.equals(code, receiveMarketingEmailAgreeYn)) codeValidation = false;
+                    }
+                    if (codeValidation) {
+                        failDescription.append(String.format("%d 행 13 열 잘못된 마케팅 이메일 수신동의 값입니다.\r\n", rowIndex));
+                        validation = true;
+                    }
+                }
+                if (StringUtils.isEmpty(receiveMarketingSMSAgreeYn)) {
+                    failDescription.append(String.format("%d 행 14 열 마케팅 SMS 수신동의 값이 비어있습니다.\r\n", rowIndex));
+                    validation = true;
+                }
+                if (!StringUtils.isEmpty(receiveMarketingSMSAgreeYn)) {
+                    List<Node> codeNodes = (List<Node>) NodeQuery.build("commonCode").matching("upperCode", "agreeYn").matching("commonCodeStatus", "y").getList();
+                    boolean codeValidation = true;
+                    for (Node codeNode : codeNodes) {
+                        String code = codeNode.getBindingValue("code").toString();
+                        if (StringUtils.equals(code, receiveMarketingSMSAgreeYn)) codeValidation = false;
+                    }
+                    if (codeValidation) {
+                        failDescription.append(String.format("%d 행 14 열 잘못된 마케팅 SMS 수신동의 값입니다.\r\n", rowIndex));
+                        validation = true;
+                    }
+                }
+
+                if (validation) {
+                    failCount++;
+                } else {
+                    Map<String, Object> createMemberData = new HashMap<>();
+                    createMemberData.put("affiliateId", affiliateId);
+                    createMemberData.put("membershipLevel", membershipLevel);
+                    createMemberData.put("userId", userId);
+                    createMemberData.put("password", password);
+                    createMemberData.put("name", name);
+                    createMemberData.put("cellphone", cellphone);
+                    createMemberData.put("phone", phone);
+                    createMemberData.put("postCode", postCode);
+                    createMemberData.put("address", address);
+                    createMemberData.put("detailedAddress", detailedAddress);
+                    createMemberData.put("gender", gender);
+                    createMemberData.put("interests", interests);
+                    createMemberData.put("receiveMarketingEmailAgreeYn", receiveMarketingEmailAgreeYn);
+                    createMemberData.put("receiveMarketingSMSAgreeYn", receiveMarketingSMSAgreeYn);
+                    createMemberData.put("siteType", "company");
+                    createMemberData.put("memberStatus", "join");
+
+                    creatableItems.add(createMemberData);
+
+                    successCount++;
+                }
+
+                rowIndex++;
+            }
+        }
+
+        if (failCount == 0) {
+            for (Map<String, Object> creatableItem : creatableItems) {
+                nodeService.executeNode(creatableItem, "member", EventService.CREATE);
+            }
+        }
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("successCount", successCount);
+        result.put("failCount", failCount);
+        result.put("failDescription", failDescription.toString());
+
+        return result;
+    }
+
+    private Map<String, Object> saveUniversityMembers(Map<String, Object> parsedResult) {
+        Iterator<String> parsedResultKeyIterator = parsedResult.keySet().iterator();
+        String firstKey = parsedResultKeyIterator.next();
+
+        StringBuffer failDescription = new StringBuffer();
+        int successCount = 0;
+        int failCount = 0;
+        List<Map<String, Object>> creatableItems = new ArrayList<>();
+
+        if (parsedResult.get(firstKey) != null) {
+            List<Map<String, String>> memberDataList = (List<Map<String, String>>) parsedResult.get("대학회원정보");
+            int rowIndex = 1;
+            for (Map<String, String> memberData : memberDataList) {
+                List<String> values = new ArrayList<>(memberData.values());
+
+                String affiliateId = values.get(0);
+                String membershipLevel = values.get(1);
+                String userId = values.get(2);
+                String password = values.get(3);
+                String name = values.get(4);
+                String cellphone = values.get(5);
+                String phone = values.get(6);
+                String postCode = values.get(7);
+                String address = values.get(8);
+                String detailedAddress = values.get(9);
+                String major = values.get(10);
+                String uniEmployee = values.get(11);
+                String entranceYear = values.get(12);
+                String gender = values.get(13);
+                String interests = values.get(14);
+                String receiveMarketingEmailAgreeYn = values.get(15);
+                String receiveMarketingSMSAgreeYn = values.get(16);
+
+                boolean validation = false;
+
+                if (StringUtils.isEmpty(affiliateId)) {
+                    failDescription.append(String.format("%d 행 1 열 기업 값이 비어있습니다.\r\n", rowIndex));
+                    validation = true;
+                }
+                if (!StringUtils.isEmpty(affiliateId)) {
+                    Node affiliateNode = nodeService.getNode("affiliate", affiliateId);
+                    if (affiliateNode == null) {
+                        failDescription.append(String.format("%d 행 1 열 잘못된 기업 값입니다.\r\n", rowIndex));
+                        validation = true;
+                    }
+                }
+                if (StringUtils.isEmpty(membershipLevel)) {
+                    failDescription.append(String.format("%d 행 2 열 회원등급 값이 비어있습니다.\r\n", rowIndex));
+                    validation = true;
+                }
+                if (!StringUtils.isEmpty(membershipLevel)) {
+                    List<Node> codeNodes = (List<Node>) NodeQuery.build("commonCode").matching("upperCode", "membershipLevel").matching("commonCodeStatus", "y").getList();
+                    boolean codeValidation = true;
+                    for (Node codeNode : codeNodes) {
+                        String code = codeNode.getBindingValue("code").toString();
+                        if (StringUtils.equals(code, membershipLevel)) codeValidation = false;
+                    }
+                    if (codeValidation) {
+                        failDescription.append(String.format("%d 행 2 열 잘못된 회원등급 값입니다.\r\n", rowIndex));
+                        validation = true;
+                    }
+                }
+                if (StringUtils.isEmpty(userId)) {
+                    failDescription.append(String.format("%d 행 3 열 아이디 값이 비어있습니다.\r\n", rowIndex));
+                    validation = true;
+                }
+                if (!StringUtils.isEmpty(userId)) {
+                    Node memberNode = nodeService.getNode("member", userId);
+                    if (memberNode != null) {
+                        failDescription.append(String.format("%d 행 3 열 이미 등록된 아이디 값입니다.\r\n", rowIndex));
+                        validation = true;
+                    }
+                }
+                if (StringUtils.isEmpty(password)) {
+                    failDescription.append(String.format("%d 행 4 열 비밀번호 값이 비어있습니다.\r\n", rowIndex));
+                    validation = true;
+                }
+                if (StringUtils.isEmpty(name)) {
+                    failDescription.append(String.format("%d 행 5 열 이름 값이 비어있습니다.\r\n", rowIndex));
+                    validation = true;
+                }
+                if (StringUtils.isEmpty(gender)) {
+                    failDescription.append(String.format("%d 행 11 열 성별 값이 비어있습니다.\r\n", rowIndex));
+                    validation = true;
+                }
+                if (!StringUtils.isEmpty(gender)) {
+                    List<Node> codeNodes = (List<Node>) NodeQuery.build("commonCode").matching("upperCode", "genderType").matching("commonCodeStatus", "y").getList();
+                    boolean codeValidation = true;
+                    for (Node codeNode : codeNodes) {
+                        String code = codeNode.getBindingValue("code").toString();
+                        if (StringUtils.equals(code, gender)) codeValidation = false;
+                    }
+                    if (codeValidation) {
+                        failDescription.append(String.format("%d 행 11 열 잘못된 성별 값입니다.\r\n", rowIndex));
+                        validation = true;
+                    }
+                }
+                if (!StringUtils.isEmpty(interests)) {
+                    List<Node> codeNodes = (List<Node>) NodeQuery.build("commonCode").matching("upperCode", "interests").matching("commonCodeStatus", "y").getList();
+                    List<String> interestsValues = Arrays.asList(StringUtils.split(interests, ","));
+                    boolean codeValidation = true;
+                    for (String interestsValue : interestsValues) {
+                        boolean codeSubValidation = false;
+                        for (Node codeNode : codeNodes) {
+                            String code = codeNode.getBindingValue("code").toString();
+                            if (StringUtils.equals(code, interestsValue)) { codeSubValidation = true; }
+                        }
+                        if (!codeSubValidation) {
+                            codeValidation = false;
+                            break;
+                        }
+                    }
+                    if (!codeValidation) {
+                        failDescription.append(String.format("%d 행 12 열 잘못된 관심분야 값입니다.\r\n", rowIndex));
+                        validation = true;
+                    }
+                }
+                if (StringUtils.isEmpty(receiveMarketingEmailAgreeYn)) {
+                    failDescription.append(String.format("%d 행 13 열 마케팅 이메일 수신동의 값이 비어있습니다.\r\n", rowIndex));
+                    validation = true;
+                }
+                if (!StringUtils.isEmpty(receiveMarketingEmailAgreeYn)) {
+                    List<Node> codeNodes = (List<Node>) NodeQuery.build("commonCode").matching("upperCode", "agreeYn").matching("commonCodeStatus", "y").getList();
+                    boolean codeValidation = true;
+                    for (Node codeNode : codeNodes) {
+                        String code = codeNode.getBindingValue("code").toString();
+                        if (StringUtils.equals(code, receiveMarketingEmailAgreeYn)) codeValidation = false;
+                    }
+                    if (codeValidation) {
+                        failDescription.append(String.format("%d 행 13 열 잘못된 마케팅 이메일 수신동의 값입니다.\r\n", rowIndex));
+                        validation = true;
+                    }
+                }
+                if (StringUtils.isEmpty(receiveMarketingSMSAgreeYn)) {
+                    failDescription.append(String.format("%d 행 14 열 마케팅 SMS 수신동의 값이 비어있습니다.\r\n", rowIndex));
+                    validation = true;
+                }
+                if (!StringUtils.isEmpty(receiveMarketingSMSAgreeYn)) {
+                    List<Node> codeNodes = (List<Node>) NodeQuery.build("commonCode").matching("upperCode", "agreeYn").matching("commonCodeStatus", "y").getList();
+                    boolean codeValidation = true;
+                    for (Node codeNode : codeNodes) {
+                        String code = codeNode.getBindingValue("code").toString();
+                        if (StringUtils.equals(code, receiveMarketingSMSAgreeYn)) codeValidation = false;
+                    }
+                    if (codeValidation) {
+                        failDescription.append(String.format("%d 행 14 열 잘못된 마케팅 SMS 수신동의 값입니다.\r\n", rowIndex));
+                        validation = true;
+                    }
+                }
+
+                if (validation) {
+                    failCount++;
+                } else {
+                    Map<String, Object> createMemberData = new HashMap<>();
+                    createMemberData.put("affiliateId", affiliateId);
+                    createMemberData.put("membershipLevel", membershipLevel);
+                    createMemberData.put("userId", userId);
+                    createMemberData.put("password", password);
+                    createMemberData.put("name", name);
+                    createMemberData.put("cellphone", cellphone);
+                    createMemberData.put("phone", phone);
+                    createMemberData.put("postCode", postCode);
+                    createMemberData.put("address", address);
+                    createMemberData.put("detailedAddress", detailedAddress);
+                    createMemberData.put("major", major);
+                    createMemberData.put("uniEmployee", uniEmployee);
+                    createMemberData.put("entranceYear", entranceYear);
+                    createMemberData.put("gender", gender);
+                    createMemberData.put("interests", interests);
+                    createMemberData.put("receiveMarketingEmailAgreeYn", receiveMarketingEmailAgreeYn);
+                    createMemberData.put("receiveMarketingSMSAgreeYn", receiveMarketingSMSAgreeYn);
+                    createMemberData.put("siteType", "university");
+                    createMemberData.put("memberStatus", "join");
+
+                    creatableItems.add(createMemberData);
+
+                    successCount++;
+                }
+
+                rowIndex++;
+            }
+        }
+
+        if (failCount == 0) {
+            for (Map<String, Object> creatableItem : creatableItems) {
+                nodeService.executeNode(creatableItem, "member", EventService.CREATE);
+            }
+        }
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("successCount", successCount);
+        result.put("failCount", failCount);
+        result.put("failDescription", failDescription.toString());
+
+        return result;
     }
 }

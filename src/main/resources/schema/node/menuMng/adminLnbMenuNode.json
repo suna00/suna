@@ -476,16 +476,32 @@
     "backOfficeId": "adm",
     "gnbMenuId": "affiliateMng",
     "parentMenuId": "root",
-    "menuId": "affiliateMemberUpload",
-    "menuName": "회원정보 엑셀등록",
+    "menuId": "affiliateCompanyMemberUpload",
+    "menuName": "기업회원정보 엑셀등록",
     "order": "60",
     "icon": "fa-list",
     "active": "true",
     "index": "false",
-    "pages": [
-      { "pageName": "목록", "pageUrl": "list" }
-    ],
-    "customPages": []
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "affiliateMemberUpload/CompanyList" }
+    ]
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "affiliateMng",
+    "parentMenuId": "root",
+    "menuId": "affiliateUniversityMemberUpload",
+    "menuName": "대학회원정보 엑셀등록",
+    "order": "70",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "affiliateMemberUpload/UniversityList" }
+    ]
   },
   {
     "typeId" : "adminLnbMenu",
