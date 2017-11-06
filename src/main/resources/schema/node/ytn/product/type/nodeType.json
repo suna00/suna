@@ -14,7 +14,9 @@
     "typeName": "상품",
     "tableName": "ytnDevDb#product",
     "repositoryType": "node",
-    "authorityRule": "",
+    "authorityRule": [
+      {"role":"vendor", "pid":"vendorId", "method":"matching", "value":"session.user.vendorId"}
+    ],
     "eviction": 1000000
   },
   {
