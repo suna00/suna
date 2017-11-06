@@ -7630,5 +7630,78 @@
     "description": "",
     "sortOrder": "6",
     "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "notiSendType",
+    "upperCode": "root",
+    "name": "알림 발송 상태",
+    "description": "",
+    "sortOrder": "98",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "noti01",
+    "upperCode": "notiSendType",
+    "name": "발송완료",
+    "description": "",
+    "sortOrder": "10",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "noti02",
+    "upperCode": "notiSendType",
+    "name": "예약발송",
+    "description": "",
+    "sortOrder": "20",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "noti03",
+    "upperCode": "notiSendType",
+    "name": "발송취소",
+    "description": "",
+    "sortOrder": "30",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "ios",
+    "upperCode": "osType",
+    "name": "ios",
+    "description": "",
+    "sortOrder": "30",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "android",
+    "upperCode": "osType",
+    "name": "안드로이드",
+    "description": "",
+    "sortOrder": "30",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "univMall",
+    "upperCode": "sendTarget",
+    "name": "대학몰",
+    "description": "",
+    "sortOrder": "30",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "enterpMall",
+    "upperCode": "sendTarget",
+    "name": "기업몰",
+    "description": "",
+    "sortOrder": "30",
+    "commonCodeStatus": "y"
   }
+
 ]
