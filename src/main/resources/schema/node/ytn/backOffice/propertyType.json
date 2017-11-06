@@ -4106,7 +4106,7 @@
     "pid": "newStoreRequestType",
     "propertyTypeName": "분류",
     "valueType": "REFERENCES",
-    "required": true,
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,
