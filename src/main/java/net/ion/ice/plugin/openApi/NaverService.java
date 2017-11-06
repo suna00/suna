@@ -1,10 +1,14 @@
 package net.ion.ice.plugin.openApi;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import net.ion.ice.core.context.ExecuteContext;
+import net.ion.ice.core.node.Node;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -12,9 +16,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 
 @ConfigurationProperties(prefix = "openApiNaver")
@@ -90,5 +92,31 @@ public class NaverService {
         }
 
         return result;
+    }
+
+    public ExecuteContext request(ExecuteContext context) {
+        Map<String, Object> result = new HashMap<>();
+
+        Map<String, Object> data = context.getData();
+
+        String method = data.get("method") == null ? "" : data.get("method").toString();
+        String apiUrl = data.get("apiUrl") == null ? "" : data.get("apiUrl").toString();
+        String params = data.get("params") == null ? "" : data.get("params").toString();
+
+        if (!StringUtils.isEmpty(method) && !StringUtils.isEmpty(apiUrl)) {
+            String response = requestApi(method, apiUrl, params);
+            if (!StringUtils.isEmpty(response)) {
+                ObjectMapper objectMapper = new ObjectMapper();
+                try {
+                    result = objectMapper.readValue(response, Map.class);
+                } catch (Exception e) {
+                    logger.error(e.getMessage(), e);
+                }
+            }
+        }
+
+        context.setResult(result);
+
+        return context;
     }
 }

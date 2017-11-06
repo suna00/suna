@@ -1,0 +1,18 @@
+[
+  {
+    "typeId": "event",
+    "tid": "openApiNaver",
+    "event": "request",
+    "noneExecute": true,
+    "eventName": "Naver Open API 호출"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "openApiNaver>request",
+    "action": "request",
+    "actionName": "Naver Open API 호출",
+    "actionType": "service",
+    "actionBody": "naverService.request",
+    "order": 1
+  }
+]
