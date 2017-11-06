@@ -471,6 +471,7 @@
     "joinRoute": null,
     "joinDate": 20170801000000,
     "lastLoginDate": 20170830000000,
+    "lastPasswordChangeDate": 20171101000000,
     "dormancyExtensionDate": null,
     "acceptTermsYn": null,
     "recommendedPerson": null,
