@@ -1,6 +1,7 @@
 package net.ion.ice.cjmwave.votePrtcptHst;
 
 import net.ion.ice.cjmwave.votePrtcptHst.vo.ArtistSexVO;
+import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
@@ -24,7 +25,11 @@ public class ArtistVoteStatsBySexTask {
     @Autowired
     NodeService nodeService;
 
-    JdbcTemplate jdbcTemplate;
+    @Autowired
+    private DBService dbService ;
+
+    private JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate_replica;
 
     /**
      * 날짜별 처리를... 어떻게 할지는 고민해봐야겠군.
@@ -36,6 +41,9 @@ public class ArtistVoteStatsBySexTask {
 
         if (jdbcTemplate == null) {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
+        }
+        if (jdbcTemplate_replica==null) {
+            jdbcTemplate_replica = dbService.getJdbcTemplate("authDbReplica");
         }
 
         // 통계를 위한 대상 voteSeq List
@@ -218,7 +226,7 @@ public class ArtistVoteStatsBySexTask {
                 + " 	sexCd,                                                                                                                         "
                 + " 	contsMetaId                                                                                                                  "
                 ;
-        return jdbcTemplate.queryForList(selectQuery, sVoteEnd, voteSeq);
+        return jdbcTemplate_replica.queryForList(selectQuery, sVoteEnd, voteSeq);
     }
 
 }

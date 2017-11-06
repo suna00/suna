@@ -1,6 +1,7 @@
 package net.ion.ice.cjmwave.votePrtcptHst;
 
 import net.ion.ice.cjmwave.votePrtcptHst.vo.CntryVoteByVoteVO;
+import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
@@ -24,7 +25,11 @@ public class CntryVoteStatsByVoteWlyTask {
     @Autowired
     NodeService nodeService;
 
-    JdbcTemplate jdbcTemplate;
+    @Autowired
+    private DBService dbService ;
+
+    private JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate_replica;
 
     /**
      */
@@ -34,6 +39,9 @@ public class CntryVoteStatsByVoteWlyTask {
 
         if (jdbcTemplate == null) {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
+        }
+        if (jdbcTemplate_replica==null) {
+            jdbcTemplate_replica = dbService.getJdbcTemplate("authDbReplica");
         }
 
         // 통계를 위한 대상 voteSeq List
@@ -183,7 +191,7 @@ public class CntryVoteStatsByVoteWlyTask {
                 + " 	cntryCd                                                                                                    "
                 ;
 
-        return jdbcTemplate.queryForList(selectQuery, sVoteStart, sVoteEnd, voteSeq);
+        return jdbcTemplate_replica.queryForList(selectQuery, sVoteStart, sVoteEnd, voteSeq);
     }
 
 }
