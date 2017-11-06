@@ -80,6 +80,13 @@ public class QueryContext extends ReadContext {
                             JsonUtils.getStringValue((Map<String, Object>) RequestDataHolder.getRequestData().get("session"), ((Map) authorityRule).get(key).toString()));
                     addQueryTerm(term);
                 }
+            }else if(authorityRule instanceof List){
+                for(Map<String, Object> authRule : (List<Map<String, Object>>) authorityRule){
+                    if(authRule.containsKey("target")){
+                        String role = JsonUtils.getStringValue(RequestDataHolder.getRequestData(), "session.role");
+
+                    }
+                }
             }
         }
         if(getNodeType().hasAuthority()){
@@ -322,6 +329,9 @@ public class QueryContext extends ReadContext {
 
 
     public Integer getPageSize() {
+        if(pageSize == null){
+            pageSize = 10;
+        }
         return pageSize;
     }
 
@@ -333,12 +343,12 @@ public class QueryContext extends ReadContext {
 
         if (paging) {
             if(this.resultType != null && this.resultType == ResultField.ResultType.NAVIREAD){
-                int start =  (currentPage - 1) * pageSize;
+                int start =  (currentPage - 1) * getPageSize();
                 if(start >0){
                     return start - 1;
                 }
             }
-            return (currentPage - 1) * pageSize;
+            return (currentPage - 1) * getPageSize();
         }
         return 0;
     }

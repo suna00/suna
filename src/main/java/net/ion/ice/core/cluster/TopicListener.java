@@ -22,9 +22,14 @@ public class TopicListener implements MessageListener<String>{
 
     private String uuid ;
 
+    private CacheSyncQueue cacheSyncQueue ;
+
     public TopicListener(ClusterConfiguration clusterConfiguration) {
         this.clusterConfiguration = clusterConfiguration ;
         this.uuid = clusterConfiguration.getHazelcast().getCluster().getLocalMember().getUuid() ;
+        this.cacheSyncQueue = new CacheSyncQueue();
+        this.cacheSyncQueue.setDaemon(true);
+        this.cacheSyncQueue.start();
     }
 
 
@@ -35,14 +40,19 @@ public class TopicListener implements MessageListener<String>{
         if(uuid.equals(message.getPublishingMember().getUuid())){
             return ;
         }
+        String msg = message.getMessageObject() ;
+        String[] msgs = StringUtils.split(msg, "::") ;
+        String event = msgs[0] ;
+        String typeId = msgs[1] ;
+        String id = msgs[2] ;
+        if(msgs.length == 4){
+            id = id + "::" + msgs[3] ;
+        }else if(msgs.length == 5){
+            id = id + "::" + msgs[3] + "::" + msgs[4];
+        }
+        logger.info("{} Cache Sync : {}.{} ", event, typeId, id);
 
         try {
-            String msg = message.getMessageObject() ;
-            String[] msgs = StringUtils.split(msg, "::") ;
-            String event = msgs[0] ;
-            String typeId = msgs[1] ;
-            String id = msgs[2] ;
-            logger.info("{} Cache Sync : {}.{} ", event, typeId, id);
             if ("delete".equals(event)) {
                 NodeUtils.getInfinispanService().deleteNode(typeId, id);
             } else {
@@ -50,11 +60,15 @@ public class TopicListener implements MessageListener<String>{
                 if(data != null) {
                     Node node = new Node(data);
                     NodeUtils.getInfinispanService().cacheNode(node);
+                }else{
+                    this.cacheSyncQueue.put(new CacheMessage(message.getPublishingMember(), typeId, id));
                 }
-
             }
         }catch (Exception e){
             e.printStackTrace();
+            if (!"delete".equals(event)) {
+                this.cacheSyncQueue.put(new CacheMessage(message.getPublishingMember(), typeId, id));
+            }
         }
     }
 }
