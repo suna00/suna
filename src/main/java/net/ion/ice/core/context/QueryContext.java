@@ -82,8 +82,14 @@ public class QueryContext extends ReadContext {
                 }
             }else if(authorityRule instanceof List){
                 for(Map<String, Object> authRule : (List<Map<String, Object>>) authorityRule){
-                    if(authRule.containsKey("target")){
+                    if(authRule.containsKey("role")){
                         String role = JsonUtils.getStringValue(RequestDataHolder.getRequestData(), "session.role");
+                        List<String> roles = Arrays.asList(StringUtils.split(role, ","));
+                        if(roles.contains(authRule.get("role"))){
+                            QueryTerm term = new QueryTerm(getQueryTermType(), (String) authRule.get("pid"), "code", (String) authRule.get("method"),
+                                    JsonUtils.getStringValue((Map<String, Object>) RequestDataHolder.getRequestData(), ((Map) authorityRule).get("value").toString()), null);
+                            addQueryTerm(term);
+                        }
 
                     }
                 }
