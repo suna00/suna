@@ -103,7 +103,6 @@
     "propertyTypeName" : "Authority",
     "valueType" : "REFERENCES",
     "defaultValue" : "anonymous",
-
     "idable" : false,
     "indexable" : true,
     "labelable" : false,
