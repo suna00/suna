@@ -160,6 +160,8 @@ public class NodeController {
     }
 
     private Object tree(HttpServletRequest request, @PathVariable String typeId) {
+        RequestDataHolder.setRequestDataValue("request", request);
+        RequestDataHolder.setRequestDataValue("session", getSession(request));
         try {
             SimpleQueryResult simpleQueryResult = nodeService.getNodeTree(typeId, request.getParameterMap()) ;
             return JsonResponse.create(simpleQueryResult) ;
