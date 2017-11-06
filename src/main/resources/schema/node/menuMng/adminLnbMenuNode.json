@@ -912,5 +912,212 @@
       { "pageName": "상세", "pageUrl": "view" }
     ],
     "customPages": []
+  },
+
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "noticeMng",
+    "parentMenuId": "root",
+    "menuId": "emailNotice",
+    "menuName": "e-mail 알림",
+    "order": "10",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": []
+  },
+
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "noticeMng",
+    "parentMenuId": "adm>noticeMng>root>emailNotice",
+    "menuId": "emailSendList",
+    "menuName": "발송목록",
+    "order": "20",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" }
+    ],
+    "customPages": []
+  },
+
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "noticeMng",
+    "parentMenuId": "adm>noticeMng>root>emailNotice",
+    "menuId": "notiSendList",
+    "menuName": "알림발송",
+    "order": "30",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "등록", "pageUrl": "createForm" }
+    ],
+    "customPages": [
+    ]
+  },
+
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "noticeMng",
+    "parentMenuId": "adm>noticeMng>root>emailNotice",
+    "menuId": "templList",
+    "menuName": "템플릿관리",
+    "order": "40",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" },
+      { "pageName": "등록", "pageUrl": "createForm" }
+    ],
+    "customPages": [
+    ]
+  },
+
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "noticeMng",
+    "parentMenuId": "root",
+    "menuId": "SMSNotice",
+    "menuName": "SMS 알림",
+    "order": "10",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": []
+  },
+
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "noticeMng",
+    "parentMenuId": "adm>noticeMng>root>SMSNotice",
+    "menuId": "smsSendList",
+    "menuName": "발송목록",
+    "order": "20",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" }
+    ],
+    "customPages": []
+  },
+
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "noticeMng",
+    "parentMenuId": "adm>noticeMng>root>SMSNotice",
+    "menuId": "smsNotiSend",
+    "menuName": "알림발송",
+    "order": "30",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "등록", "pageUrl": "createForm" }
+    ],
+    "customPages": [
+    ]
+  },
+
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "noticeMng",
+    "parentMenuId": "adm>noticeMng>root>SMSNotice",
+    "menuId": "smstemplList",
+    "menuName": "템플릿관리",
+    "order": "40",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" },
+      { "pageName": "등록", "pageUrl": "createForm" }
+    ],
+    "customPages": [
+    ]
+  },
+
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "noticeMng",
+    "parentMenuId": "root",
+    "menuId": "pushNotice",
+    "menuName": "푸쉬 알림",
+    "order": "10",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": []
+  },
+
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "noticeMng",
+    "parentMenuId": "adm>noticeMng>root>pushNotice",
+    "menuId": "pushSendList",
+    "menuName": "발송목록",
+    "order": "20",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" }
+    ],
+    "customPages": []
+  },
+
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "noticeMng",
+    "parentMenuId": "adm>noticeMng>root>pushNotice",
+    "menuId": "pushNotiSend",
+    "menuName": "알림발송",
+    "order": "30",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "등록", "pageUrl": "createForm" }
+    ],
+    "customPages": [
+    ]
+  },
+
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "noticeMng",
+    "parentMenuId": "adm>noticeMng>root>pushNotice",
+    "menuId": "pushShoplList",
+    "menuName": "쇼핑몰소식",
+    "order": "40",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" },
+      { "pageName": "등록", "pageUrl": "createForm" }
+    ],
+    "customPages": [
+    ]
   }
 ]

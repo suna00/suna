@@ -17,6 +17,7 @@ import java.util.Map;
 public class ProductListenService {
 
     public static final String PRODUCT_ID = "productId";
+    public static final String SITE_ID = "siteId";
     public static final String REVIEW_AVERAGE_SCORE = "reviewAverageScore";
     public static final String REVIEW_COUNT = "reviewCount";
 
@@ -34,7 +35,7 @@ public class ProductListenService {
 
         JdbcTemplate jdbcTemplate = nodeBindingService.getNodeBindingInfo(reviewType.getTypeId()).getJdbcTemplate() ;
 
-        Map<String, Object> result = jdbcTemplate.queryForMap("select count(*) as cnt, sum(score) as tot from review where productId = ?", review.get(PRODUCT_ID)) ;
+        Map<String, Object> result = jdbcTemplate.queryForMap("select count(*) as cnt, sum(score) as tot from review where productId = ? and siteId = ?", review.get(PRODUCT_ID), review.get(SITE_ID)) ;
 
         Node product = NodeUtils.getReferenceNode(review.get(PRODUCT_ID), reviewType.getPropertyType(PRODUCT_ID));
         Integer cnt = (result.get("cnt") == null ? 0 : Integer.parseInt(result.get("cnt").toString())) ;
