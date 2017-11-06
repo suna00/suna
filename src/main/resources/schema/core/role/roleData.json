@@ -11,6 +11,16 @@
   },
   {
     "typeId": "role",
+    "name": "제휴사",
+    "id": "affiliate"
+  },
+  {
+    "typeId": "role",
+    "name": "벤더",
+    "id": "vendor"
+  },
+  {
+    "typeId": "role",
     "name": "비로그인 사용자",
     "id": "anonymous"
   }

@@ -11,7 +11,8 @@
     "active": "true",
     "index": "false",
     "pages": [],
-    "customPages": []
+    "customPages": [],
+    "authority": "system,admin"
   },
 
   {
@@ -28,7 +29,8 @@
     "pages": [],
     "customPages": [
       { "pageName": "목록", "pageUrl": "product/List" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -45,7 +47,8 @@
     "customPages": [
       { "pageName": "등록", "pageUrl": "product/CreateGoodsForm" },
       { "pageName": "수정", "pageUrl": "product/UpdateGoodsForm" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -62,7 +65,8 @@
     "customPages": [
       { "pageName": "등록", "pageUrl": "product/CreatePhoneForm" },
       { "pageName": "수정", "pageUrl": "product/UpdatePhoneForm" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -79,7 +83,8 @@
     "customPages": [
       { "pageName": "등록", "pageUrl": "product/CreateHealthForm" },
       { "pageName": "수정", "pageUrl": "product/UpdateHealthForm" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -95,7 +100,8 @@
     "pages": [],
     "customPages": [
       { "pageName": "목록", "pageUrl": "productUpdate/List" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -111,7 +117,8 @@
     "pages": [],
     "customPages": [
       { "pageName": "목록", "pageUrl": "productDelete/List" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -130,7 +137,8 @@
     "customPages": [
       { "pageName": "등록", "pageUrl": "productOptionSet/CreateForm" },
       { "pageName": "수정", "pageUrl": "productOptionSet/UpdateForm" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -149,7 +157,8 @@
     "customPages": [
       { "pageName": "등록", "pageUrl": "productNoticeBanner/CreateForm" },
       { "pageName": "수정", "pageUrl": "productNoticeBanner/UpdateForm" }
-    ]
+    ],
+    "authority": "system,admin"
   },
 
   {
@@ -164,7 +173,8 @@
     "active": "true",
     "index": "false",
     "pages": [],
-    "customPages": []
+    "customPages": [],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -180,7 +190,8 @@
     "pages": [],
     "customPages": [
       { "pageName": "등록", "pageUrl": "displayBestSale/UniversityForm" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -196,7 +207,8 @@
     "pages": [],
     "customPages": [
       { "pageName": "등록", "pageUrl": "displayBestSale/CompanyForm" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -210,7 +222,8 @@
     "active": "true",
     "index": "false",
     "pages": [],
-    "customPages": []
+    "customPages": [],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -226,7 +239,8 @@
     "pages": [],
     "customPages": [
       { "pageName": "등록", "pageUrl": "displayBestMd/UniversityForm" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -242,7 +256,8 @@
     "pages": [],
     "customPages": [
       { "pageName": "등록", "pageUrl": "displayBestMd/CompanyForm" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -258,7 +273,8 @@
     "pages": [],
     "customPages": [
       { "pageName": "등록", "pageUrl": "displayMenu/Form" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -274,7 +290,8 @@
     "pages": [],
     "customPages": [
       { "pageName": "등록", "pageUrl": "displayEtcBanner/Form" }
-    ]
+    ],
+    "authority": "system,admin"
   },
 
   {
@@ -294,7 +311,8 @@
     "customPages": [
       { "pageName": "등록", "pageUrl": "marketingCoupon/CreateForm" },
       { "pageName": "수정", "pageUrl": "marketingCoupon/UpdateForm" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -313,7 +331,8 @@
     "customPages": [
       { "pageName": "등록", "pageUrl": "marketingEvent/CreateForm" },
       { "pageName": "수정", "pageUrl": "marketingEvent/UpdateForm" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -329,7 +348,8 @@
     "pages": [],
     "customPages": [
       { "pageName": "등록", "pageUrl": "marketingSearch/Form" }
-    ]
+    ],
+    "authority": "system,admin"
   },
 
   {
@@ -346,7 +366,8 @@
     "pages": [],
     "customPages": [
       { "pageName": "목록", "pageUrl": "orderDelivery/List" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -362,7 +383,8 @@
     "pages": [],
     "customPages": [
       { "pageName": "목록", "pageUrl": "orderCancel/List" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -378,7 +400,8 @@
     "pages": [],
     "customPages": [
       { "pageName": "목록", "pageUrl": "orderExchange/List" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -394,7 +417,8 @@
     "pages": [],
     "customPages": [
       { "pageName": "목록", "pageUrl": "orderReturn/List" }
-    ]
+    ],
+    "authority": "system,admin"
   },
 
   {
@@ -413,7 +437,8 @@
       { "pageName": "목록", "pageUrl": "affiliateCompany/List" },
       { "pageName": "등록", "pageUrl": "affiliateCompany/CreateForm" },
       { "pageName": "수정", "pageUrl": "affiliateCompany/UpdateForm" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -431,7 +456,8 @@
       { "pageName": "목록", "pageUrl": "affiliateCompanyMember/List" },
       { "pageName": "등록", "pageUrl": "affiliateCompanyMember/CreateForm" },
       { "pageName": "수정", "pageUrl": "affiliateCompanyMember/UpdateForm" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -449,7 +475,8 @@
       { "pageName": "목록", "pageUrl": "affiliateUniversity/List" },
       { "pageName": "등록", "pageUrl": "affiliateUniversity/CreateForm" },
       { "pageName": "수정", "pageUrl": "affiliateUniversity/UpdateForm" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -467,7 +494,8 @@
       { "pageName": "목록", "pageUrl": "affiliateUniversityMember/List" },
       { "pageName": "등록", "pageUrl": "affiliateUniversityMember/CreateForm" },
       { "pageName": "수정", "pageUrl": "affiliateUniversityMember/UpdateForm" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -485,7 +513,8 @@
       { "pageName": "목록", "pageUrl": "affiliateMall/List" },
       { "pageName": "등록", "pageUrl": "affiliateMall/CreateForm" },
       { "pageName": "수정", "pageUrl": "affiliateMall/UpdateForm" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -501,7 +530,8 @@
     "pages": [],
     "customPages": [
       { "pageName": "목록", "pageUrl": "affiliateMemberUpload/CompanyList" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -517,7 +547,8 @@
     "pages": [],
     "customPages": [
       { "pageName": "목록", "pageUrl": "affiliateMemberUpload/UniversityList" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -535,7 +566,8 @@
       { "pageName": "목록", "pageUrl": "vendor/List" },
       { "pageName": "등록", "pageUrl": "vendor/CreateForm" },
       { "pageName": "수정", "pageUrl": "vendor/UpdateForm" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -553,7 +585,8 @@
       { "pageName": "등록", "pageUrl": "createForm" },
       { "pageName": "수정", "pageUrl": "updateForm" }
     ],
-    "customPages": []
+    "customPages": [],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -571,7 +604,8 @@
       { "pageName": "등록", "pageUrl": "createForm" },
       { "pageName": "수정", "pageUrl": "updateForm" }
     ],
-    "customPages": []
+    "customPages": [],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -588,7 +622,9 @@
       { "pageName": "목록", "pageUrl": "list" },
       { "pageName": "등록", "pageUrl": "createForm" },
       { "pageName": "수정", "pageUrl": "updateForm" }
-    ]
+    ],
+    "customPages": [],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -605,7 +641,9 @@
       { "pageName": "목록", "pageUrl": "list" },
       { "pageName": "등록", "pageUrl": "createForm" },
       { "pageName": "수정", "pageUrl": "updateForm" }
-    ]
+    ],
+    "customPages": [],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -622,7 +660,9 @@
       { "pageName": "목록", "pageUrl": "list" },
       { "pageName": "등록", "pageUrl": "createForm" },
       { "pageName": "수정", "pageUrl": "updateForm" }
-    ]
+    ],
+    "customPages": [],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -639,7 +679,9 @@
       { "pageName": "목록", "pageUrl": "list" },
       { "pageName": "등록", "pageUrl": "createForm" },
       { "pageName": "수정", "pageUrl": "updateForm" }
-    ]
+    ],
+    "customPages": [],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -655,7 +697,8 @@
     "pages": [],
     "customPages": [
       { "pageName": "등록", "pageUrl": "addBenefit/Form" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -671,7 +714,8 @@
     "pages": [],
     "customPages": [
       { "pageName": "등록", "pageUrl": "interestFree/Form" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -687,7 +731,8 @@
     "pages": [],
     "customPages": [
       { "pageName": "목록", "pageUrl": "question/List" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -703,7 +748,8 @@
     "pages": [],
     "customPages": [
       { "pageName": "목록", "pageUrl": "qna/List" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -719,7 +765,8 @@
     "pages": [],
     "customPages": [
       { "pageName": "목록", "pageUrl": "review/List" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -737,7 +784,8 @@
       { "pageName": "등록", "pageUrl": "createForm" },
       { "pageName": "수정", "pageUrl": "updateForm" }
     ],
-    "customPages": []
+    "customPages": [],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -757,7 +805,8 @@
     ],
     "customPages": [
       { "pageName": "테스트", "pageUrl": "FilesTest" }
-    ]
+    ],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -775,7 +824,8 @@
       { "pageName": "등록", "pageUrl": "createForm" },
       { "pageName": "수정", "pageUrl": "updateForm" }
     ],
-    "customPages": []
+    "customPages": [],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -793,7 +843,8 @@
       { "pageName": "등록", "pageUrl": "createForm" },
       { "pageName": "수정", "pageUrl": "updateForm" }
     ],
-    "customPages": []
+    "customPages": [],
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminLnbMenu",
@@ -812,7 +863,8 @@
     ],
     "customPages": [
       { "pageName": "수정", "pageUrl": "groupAuthority/UpdateForm" }
-    ]
+    ],
+    "authority": "system,admin"
   },
 
 
