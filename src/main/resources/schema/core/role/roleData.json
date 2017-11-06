@@ -1,0 +1,17 @@
+[
+  {
+    "typeId": "role",
+    "name": "시스템",
+    "id": "system"
+  },
+  {
+    "typeId": "role",
+    "name": "관리자",
+    "id": "admin"
+  },
+  {
+    "typeId": "role",
+    "name": "비로그인 사용자",
+    "id": "anonymous"
+  }
+]
