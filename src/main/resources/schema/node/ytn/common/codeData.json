@@ -4762,7 +4762,7 @@
   },
   {
     "typeId": "commonCode",
-    "code": "linkvod",
+    "code": "linkVod",
     "upperCode": "categoryBannerType",
     "name": "동영상(링크형)",
     "description": "",
@@ -4771,7 +4771,7 @@
   },
   {
     "typeId": "commonCode",
-    "code": "playvod",
+    "code": "playVod",
     "upperCode": "categoryBannerType",
     "name": "동영상(플레이형)",
     "description": "",
