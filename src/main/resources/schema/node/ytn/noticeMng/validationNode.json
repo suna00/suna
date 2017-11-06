@@ -1,0 +1,58 @@
+[
+  {
+    "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation>emailTemplate>name",
+    "propertyTypeId": "emailTemplate>name",
+    "validation": {
+      "language": "ko",
+      "required": { "value": true, "description": "필수 값 입니다." },
+      "duplicated": { "value": true, "description": "이미 등록된 템플릿입니다.", "reqUrl": "/node/emailTemplate/list.json?name_matching=" },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extension": { "value": "", "description": "" },
+      "regularExpression": { "value": "", "description": "" }
+    }
+  },
+  {
+    "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation>emailTemplate>title",
+    "propertyTypeId": "emailTemplate>title",
+    "validation": {
+      "language": "ko",
+      "required": { "value": true, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "" },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extension": { "value": "", "description": "" },
+      "regularExpression": { "value": "", "description": "" }
+    }
+  },
+  {
+    "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation>emailTemplate>contents",
+    "propertyTypeId": "emailTemplate>contents",
+    "validation": {
+      "language": "ko",
+      "required": { "value": true, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "" },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extension": { "value": "", "description": "" },
+      "regularExpression": { "value": "", "description": "" }
+    }
+  },
+  {
+    "typeId" : "propertyTypeValidation",
+    "id": "propertyTypeValidation>emailNotiSend>title",
+    "propertyTypeId": "emailNotiSend>title",
+    "validation": {
+      "language": "ko",
+      "required": { "value": true, "description": "필수 값 입니다." },
+      "duplicated": { "value": false, "description": "" },
+      "min": { "value": 0, "description": "최소 값 입니다." },
+      "max": { "value": 0, "description": "최대 값 입니다." },
+      "extension": { "value": "", "description": "" },
+      "regularExpression": { "value": "", "description": "" }
+    }
+  }
+]

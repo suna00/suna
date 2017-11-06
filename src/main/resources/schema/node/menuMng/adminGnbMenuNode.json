@@ -6,7 +6,8 @@
     "menuName": "Dashboard",
     "order": "10",
     "icon": "",
-    "active": "false"
+    "active": "true",
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminGnbMenu",
@@ -15,7 +16,8 @@
     "menuName": "상품",
     "order": "20",
     "icon": "",
-    "active": "true"
+    "active": "true",
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminGnbMenu",
@@ -24,7 +26,8 @@
     "menuName": "전시",
     "order": "30",
     "icon": "",
-    "active": "true"
+    "active": "true",
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminGnbMenu",
@@ -33,7 +36,8 @@
     "menuName": "마케팅",
     "order": "50",
     "icon": "",
-    "active": "true"
+    "active": "true",
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminGnbMenu",
@@ -42,7 +46,8 @@
     "menuName": "주문/결재",
     "order": "60",
     "icon": "",
-    "active": "true"
+    "active": "true",
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminGnbMenu",
@@ -51,7 +56,8 @@
     "menuName": "정산",
     "order": "70",
     "icon": "",
-    "active": "true"
+    "active": "true",
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminGnbMenu",
@@ -60,7 +66,8 @@
     "menuName": "제휴사",
     "order": "80",
     "icon": "",
-    "active": "true"
+    "active": "true",
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminGnbMenu",
@@ -69,7 +76,8 @@
     "menuName": "벤더",
     "order": "90",
     "icon": "",
-    "active": "true"
+    "active": "true",
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminGnbMenu",
@@ -78,7 +86,8 @@
     "menuName": "알림",
     "order": "100",
     "icon": "",
-    "active": "true"
+    "active": "true",
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminGnbMenu",
@@ -87,7 +96,8 @@
     "menuName": "정책",
     "order": "110",
     "icon": "",
-    "active": "true"
+    "active": "true",
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminGnbMenu",
@@ -96,7 +106,8 @@
     "menuName": "분석/통계",
     "order": "120",
     "icon": "",
-    "active": "true"
+    "active": "true",
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminGnbMenu",
@@ -105,7 +116,8 @@
     "menuName": "고객센터",
     "order": "130",
     "icon": "",
-    "active": "true"
+    "active": "true",
+    "authority": "system,admin"
   },
   {
     "typeId" : "adminGnbMenu",
@@ -114,7 +126,8 @@
     "menuName": "관리자계정",
     "order": "140",
     "icon": "",
-    "active": "true"
+    "active": "true",
+    "authority": "system,admin"
   },
 
 
@@ -125,7 +138,8 @@
     "menuName": "Dashboard",
     "order": "10",
     "icon": "",
-    "active": "false"
+    "active": "true",
+    "authority": "system,vendor"
   },
   {
     "typeId" : "adminGnbMenu",
@@ -134,7 +148,8 @@
     "menuName": "상품",
     "order": "20",
     "icon": "",
-    "active": "true"
+    "active": "true",
+    "authority": "system,vendor"
   },
   {
     "typeId" : "adminGnbMenu",
@@ -143,7 +158,8 @@
     "menuName": "주문/결재",
     "order": "30",
     "icon": "",
-    "active": "true"
+    "active": "true",
+    "authority": "system,vendor"
   },
   {
     "typeId" : "adminGnbMenu",
@@ -152,7 +168,8 @@
     "menuName": "클레임",
     "order": "40",
     "icon": "",
-    "active": "true"
+    "active": "true",
+    "authority": "system,vendor"
   },
   {
     "typeId" : "adminGnbMenu",
@@ -161,7 +178,8 @@
     "menuName": "벤더 공지사항",
     "order": "50",
     "icon": "",
-    "active": "true"
+    "active": "true",
+    "authority": "system,vendor"
   },
   {
     "typeId" : "adminGnbMenu",
@@ -170,7 +188,8 @@
     "menuName": "분석/통계",
     "order": "60",
     "icon": "",
-    "active": "true"
+    "active": "true",
+    "authority": "system,vendor"
   },
   {
     "typeId" : "adminGnbMenu",
@@ -179,6 +198,7 @@
     "menuName": "분석/통계",
     "order": "70",
     "icon": "",
-    "active": "true"
+    "active": "true",
+    "authority": "system,vendor"
   }
 ]

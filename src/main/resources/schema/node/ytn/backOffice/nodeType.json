@@ -46,15 +46,6 @@
   {
     "parentId": "backOfficePath",
     "typeId": "nodeType",
-    "tid": "emailTemplate",
-    "typeName": "이메일 템플릿",
-    "tableName": "ytnDevDb#emailTemplate",
-    "repositoryType": "node",
-    "eviction": 0
-  },
-  {
-    "parentId": "backOfficePath",
-    "typeId": "nodeType",
     "tid": "eventPrizeWinner",
     "typeName": "이벤트 당첨자",
     "tableName": "ytnDevDb#eventPrizeWinner",
