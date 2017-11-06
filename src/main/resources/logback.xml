@@ -31,17 +31,17 @@
             -->
             <maxFileSize>500MB</maxFileSize>
             <!--<maxFileSize>50KB</maxFileSize>-->
-            <maxHistory>3</maxHistory>
+            <maxHistory>10</maxHistory>
             <totalSizeCap>2GB</totalSizeCap>
         </rollingPolicy>
 
 
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <!-- FOR LOCAL -->
-            <!--<level>INFO</level>-->
+            <level>INFO</level>
 
             <!-- FOR PROD -->
-            <level>ERROR</level>
+            <!--<level>ERROR</level>-->
         </filter>
 
         <encoder>
@@ -51,10 +51,10 @@
 
     <!-- INFO 레벨 이하 로그를 콘솔 및 파일로 출력 -->
     <!-- FOR LOCAL -->
-    <!--<root level="INFO">-->
+    <root level="INFO">
 
     <!-- FOR LOCAL -->
-    <root level="ERROR">
+    <!--<root level="ERROR">-->
         <appender-ref ref="localConsoleAppender"/>
         <appender-ref ref="catalinaAppender"/>
     </root>
