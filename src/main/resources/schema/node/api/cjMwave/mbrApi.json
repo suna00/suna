@@ -268,7 +268,7 @@
     ],
     "config": {
       "typeId": "mbrInfo",
-      "event": "mbrUpd"
+      "event": "mbrImgUpd"
     }
   },
   {
@@ -316,8 +316,8 @@
       }
     ],
     "config": {
-      "typeId": "mbrInfo",
-      "event": "mbrImgUpd"
+      "typeId": "mbrInfo2",
+      "event": "mbrUpd2"
     }
   }
 ]
