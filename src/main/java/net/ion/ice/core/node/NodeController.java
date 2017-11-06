@@ -74,6 +74,10 @@ public class NodeController {
         return nodeService.executeNode(request.getParameterMap(), null, typeId, event) ;
     }
 
+    private Object execute(HttpServletRequest request, HttpServletResponse response, String typeId, String event) {
+        return nodeService.executeNode(request, response, typeId, event) ;
+    }
+
 
     @RequestMapping(value = "/node/{typeId}/{id}", method = RequestMethod.DELETE)
     @ResponseBody
@@ -247,6 +251,12 @@ public class NodeController {
     @ResponseBody
     public Object eventJson(HttpServletRequest request, @PathVariable String typeId, @PathVariable String event) throws IOException {
         return execute(request, typeId, event);
+    }
+
+    @RequestMapping(value = "/event/{typeId}/{event}")
+    @ResponseBody
+    public Object eventJson(HttpServletRequest request, HttpServletResponse response, @PathVariable String typeId, @PathVariable String event) throws IOException {
+        return execute(request, response, typeId, event);
     }
 
     public Map<String, Object> getSession(HttpServletRequest request){

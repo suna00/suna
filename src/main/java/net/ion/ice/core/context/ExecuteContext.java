@@ -5,15 +5,19 @@ import net.ion.ice.IceRuntimeException;
 import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.file.FileValue;
 import net.ion.ice.core.file.TolerableMissingFileException;
+import net.ion.ice.core.infinispan.NotFoundNodeException;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
+import net.ion.ice.core.session.SessionService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +28,7 @@ import java.util.*;
  * Created by jaeho on 2017. 5. 31..
  */
 public class ExecuteContext extends ReadContext{
+    private static org.slf4j.Logger logger = LoggerFactory.getLogger(ExecuteContext.class);
 
     protected Node existNode ;
 
@@ -42,7 +47,6 @@ public class ExecuteContext extends ReadContext{
 
     protected HttpServletRequest httpRequest ;
     protected HttpServletResponse httpResponse ;
-    private Logger logger = Logger.getLogger(ExecuteContext.class);
 
 
     public static ExecuteContext createContextFromMap(NodeType nodeType, Map<String, Object> data) {
@@ -81,6 +85,30 @@ public class ExecuteContext extends ReadContext{
 
         Map<String, Object> data = ContextUtils.makeContextData(parameterMap, multiFileMap);
 
+        ctx.setData(data);
+
+        if(event != null) {
+            ctx.event = event;
+        }
+        ctx.setNodeType(nodeType);
+
+        ctx.init() ;
+
+        return ctx ;
+    }
+
+    public static ExecuteContext makeContextFromParameter(HttpServletRequest request, HttpServletResponse response, NodeType nodeType, String event) {
+        ExecuteContext ctx = new ExecuteContext();
+
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        MultiValueMap<String, MultipartFile> multiFileMap = null;
+        if(request instanceof MultipartHttpServletRequest) {
+            multiFileMap = ((MultipartHttpServletRequest) request).getMultiFileMap();
+        }
+        Map<String, Object> data = ContextUtils.makeContextData(parameterMap, multiFileMap);
+
+        ctx.httpRequest = request;
+        ctx.httpResponse = response;
         ctx.setData(data);
 
         if(event != null) {
@@ -149,16 +177,26 @@ public class ExecuteContext extends ReadContext{
             return ;
         }
         try {
-            existNode = NodeUtils.getNode(nodeType, getId());
+            if (event == null || !event.equals("create")) {
+                existNode = NodeUtils.getNode(nodeType, getId());
+            }
+        }catch (NotFoundNodeException e){
+            logger.error("Not found Node : {},{}", nodeType.getTypeId(), getId()) ;
         }catch(Exception e){
         }
+
         exist = existNode != null ;
 
         if(exist){
             if(event != null && event.equals("create")){
                 throw new IceRuntimeException("Exist Node Error : " + getId()) ;
             }
-
+            if(event != null && event.equals("delete")){
+                this.execute = true ;
+                this.node = existNode;
+                this.id = this.node.getId() ;
+                return ;
+            }
             changedProperties = new ArrayList<>() ;
             this.node = existNode.clone() ;
             for(PropertyType pt : nodeType.getPropertyTypes()){
@@ -292,8 +330,10 @@ public class ExecuteContext extends ReadContext{
             Object value = data.get(key) ;
             if(value instanceof List && !key.equals("code")){
                 String subTypeId = null ;
-                if(this.nodeType.getPropertyType(key) != null && this.nodeType.getPropertyType(key).isList()){
-                    subTypeId = this.nodeType.getPropertyType(key).getReferenceType() ;
+                if(this.nodeType.getPropertyType(key) != null){
+                     if(this.nodeType.getPropertyType(key).isList()) {
+                         subTypeId = this.nodeType.getPropertyType(key).getReferenceType();
+                     }
                 }else if(NodeUtils.getNodeType(key) != null){
                     subTypeId = key ;
                 }
