@@ -260,6 +260,22 @@
       { "pageName": "등록", "pageUrl": "displayMenu/Form" }
     ]
   },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "displayMng",
+    "parentMenuId": "root",
+    "menuId": "etcBanner",
+    "menuName": "기타 배너관리",
+    "order": "80",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "displayEtcBanner/Form" }
+    ]
+  },
 
   {
     "typeId" : "adminLnbMenu",
