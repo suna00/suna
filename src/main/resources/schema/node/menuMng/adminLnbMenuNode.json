@@ -978,7 +978,8 @@
     "active": "true",
     "index": "false",
     "pages": [],
-    "customPages": []
+    "customPages": [],
+    "authority": "system,admin"
   },
 
   {
@@ -995,7 +996,8 @@
     "pages": [
       { "pageName": "목록", "pageUrl": "list" }
     ],
-    "customPages": []
+    "customPages": [],
+    "authority": "system,admin"
   },
 
   {
@@ -1013,7 +1015,8 @@
       { "pageName": "등록", "pageUrl": "createForm" }
     ],
     "customPages": [
-    ]
+    ],
+    "authority": "system,admin"
   },
 
   {
@@ -1032,7 +1035,8 @@
       { "pageName": "등록", "pageUrl": "createForm" }
     ],
     "customPages": [
-    ]
+    ],
+    "authority": "system,admin"
   },
 
   {
@@ -1047,7 +1051,8 @@
     "active": "true",
     "index": "false",
     "pages": [],
-    "customPages": []
+    "customPages": [],
+    "authority": "system,admin"
   },
 
   {
@@ -1064,7 +1069,8 @@
     "pages": [
       { "pageName": "목록", "pageUrl": "list" }
     ],
-    "customPages": []
+    "customPages": [],
+    "authority": "system,admin"
   },
 
   {
@@ -1082,7 +1088,8 @@
       { "pageName": "등록", "pageUrl": "createForm" }
     ],
     "customPages": [
-    ]
+    ],
+    "authority": "system,admin"
   },
 
   {
@@ -1101,7 +1108,8 @@
       { "pageName": "등록", "pageUrl": "createForm" }
     ],
     "customPages": [
-    ]
+    ],
+    "authority": "system,admin"
   },
 
   {
@@ -1116,7 +1124,8 @@
     "active": "true",
     "index": "false",
     "pages": [],
-    "customPages": []
+    "customPages": [],
+    "authority": "system,admin"
   },
 
   {
@@ -1133,7 +1142,8 @@
     "pages": [
       { "pageName": "목록", "pageUrl": "list" }
     ],
-    "customPages": []
+    "customPages": [],
+    "authority": "system,admin"
   },
 
   {
@@ -1151,7 +1161,8 @@
       { "pageName": "등록", "pageUrl": "createForm" }
     ],
     "customPages": [
-    ]
+    ],
+    "authority": "system,admin"
   },
 
   {
@@ -1170,6 +1181,7 @@
       { "pageName": "등록", "pageUrl": "createForm" }
     ],
     "customPages": [
-    ]
+    ],
+    "authority": "system,admin"
   }
 ]
