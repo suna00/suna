@@ -20,6 +20,23 @@
   {
     "typeId": "propertyType",
     "tid": "urlBasedBanner",
+    "pid": "urlBasedBannerType",
+    "propertyTypeName": "URL 배너 유형",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
+    "codeFilter": "urlBasedBannerType",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "urlBasedBanner",
     "pid": "url",
     "propertyTypeName": "배너 링크",
     "valueType": "STRING",
@@ -34,7 +51,6 @@
     "codeFilter": "",
     "defaultValue": ""
   },
-
   {
     "typeId": "propertyType",
     "tid": "urlBasedBanner",
@@ -92,7 +108,7 @@
   {
     "typeId": "propertyType",
     "tid": "urlBasedBanner",
-    "pid": "title",
+    "pid": "description",
     "propertyTypeName": "배너 설명",
     "valueType": "TEXT",
     "required": false,
