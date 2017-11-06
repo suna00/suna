@@ -1,0 +1,28 @@
+[
+  {
+    "parentId": "root",
+    "typeId": "nodeType",
+    "tid": "gridDisplay",
+    "typeName": "그리드 전시",
+    "repositoryType": "path",
+    "eviction": 0
+  },
+
+  {
+    "parentId": "gridDisplay",
+    "typeId": "nodeType",
+    "tid": "gridDisplayGroup",
+    "typeName": "그리드 전시 그룹",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+
+  {
+    "parentId": "gridDisplayGroup",
+    "typeId": "nodeType",
+    "tid": "gridDisplayItem",
+    "typeName": "그리드 전시 아이템",
+    "repositoryType": "node",
+    "eviction": 0
+  }
+]

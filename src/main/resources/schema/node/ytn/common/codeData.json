@@ -4762,7 +4762,7 @@
   },
   {
     "typeId": "commonCode",
-    "code": "linkvod",
+    "code": "linkVod",
     "upperCode": "categoryBannerType",
     "name": "동영상(링크형)",
     "description": "",
@@ -4771,7 +4771,7 @@
   },
   {
     "typeId": "commonCode",
-    "code": "playvod",
+    "code": "playVod",
     "upperCode": "categoryBannerType",
     "name": "동영상(플레이형)",
     "description": "",
@@ -7702,6 +7702,50 @@
     "description": "",
     "sortOrder": "30",
     "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "urlBasedBannerType",
+    "upperCode": "root",
+    "name": "URL 배너 유형",
+    "description": "",
+    "sortOrder": "124",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "login",
+    "upperCode": "urlBasedBannerType",
+    "name": "로그인",
+    "description": "",
+    "sortOrder": "10",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "myPageLnbBottom",
+    "upperCode": "urlBasedBannerType",
+    "name": "마이페이지 LNB 하단",
+    "description": "",
+    "sortOrder": "20",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "serviceCenterLnbBottom",
+    "upperCode": "urlBasedBannerType",
+    "name": "고객센터 LNB 하단",
+    "description": "",
+    "sortOrder": "30",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "quickMenu",
+    "upperCode": "urlBasedBannerType",
+    "name": "퀵메뉴",
+    "description": "",
+    "sortOrder": "40",
+    "commonCodeStatus": "y"
   }
-
 ]
