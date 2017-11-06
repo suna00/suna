@@ -11,6 +11,11 @@
   },
   {
     "typeId": "role",
+    "name": "서비스 사용자",
+    "id": "customer"
+  },
+  {
+    "typeId": "role",
     "name": "비로그인 사용자",
     "id": "anonymous"
   }
