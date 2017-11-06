@@ -94,7 +94,7 @@ public class QueryContext extends ReadContext {
             if(StringUtils.isEmpty(role)){
                 role = Node.ANONYMOUS;
             }
-            QueryTerm term = new QueryTerm(getQueryTermType(), "authority", role);
+            QueryTerm term = new QueryTerm(getQueryTermType(), "authority", "code", "matching", role, null);
             addQueryTerm(term);
         }
     }
