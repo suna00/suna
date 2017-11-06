@@ -9,7 +9,8 @@
     "title": "",
     "description": "",
     "linkName": "",
-    "product": ""
+    "product": "",
+    "bannerStatus": "y"
   },
   {
     "typeId": "urlBasedBanner",
@@ -21,7 +22,8 @@
     "title": "",
     "description": "",
     "linkName": "",
-    "product": ""
+    "product": "",
+    "bannerStatus": "y"
   },
   {
     "typeId": "urlBasedBanner",
@@ -33,7 +35,8 @@
     "title": "",
     "description": "",
     "linkName": "",
-    "product": ""
+    "product": "",
+    "bannerStatus": "y"
   },
   {
     "typeId": "urlBasedBanner",
@@ -45,6 +48,7 @@
     "title": "",
     "description": "",
     "linkName": "",
-    "product": ""
+    "product": "",
+    "bannerStatus": "y"
   }
 ]
