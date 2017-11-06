@@ -122,7 +122,7 @@
   {
     "typeId": "propertyType",
     "tid": "gridDisplayGroup",
-    "pid": "items",
+    "pid": "referencedItems",
     "propertyTypeName": "셀 아이템 목록",
     "valueType": "REFERENCED",
     "required": false,
@@ -132,7 +132,7 @@
     "indexable": false,
     "analyzer": "code",
     "referenceType": "gridDisplayItem",
-    "referenceValue": "gridDisplayItemId",
+    "referenceValue": "gridDisplayGroupId",
     "codeFilter": "",
     "defaultValue": ""
   },
@@ -248,7 +248,7 @@
   {
     "typeId": "propertyType",
     "tid": "gridDisplayItem",
-    "pid": "cellWidth",
+    "pid": "w",
     "propertyTypeName": "셀 넓이",
     "valueType": "INT",
     "required": false,
@@ -266,7 +266,7 @@
   {
     "typeId": "propertyType",
     "tid": "gridDisplayItem",
-    "pid": "cellHeight",
+    "pid": "h",
     "propertyTypeName": "셀 높이",
     "valueType": "INT",
     "required": false,
@@ -284,7 +284,7 @@
   {
     "typeId": "propertyType",
     "tid": "gridDisplayItem",
-    "pid": "cellKey",
+    "pid": "i",
     "propertyTypeName": "셀 키",
     "valueType": "STRING",
     "required": false,
