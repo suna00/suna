@@ -84,7 +84,7 @@ public class ArtistVoteStatsByCntryTask {
             for (Map artistCntryCntResultMap : artistCntryCntResultList) {
                 BigDecimal voteNum = new BigDecimal(artistCntryCntResultMap.get("voteNum").toString());
 //                Integer voteNum = artistCntryCntResultMap.get("voteNum")==null ? 0 : Integer.parseInt(artistCntryCntResultMap.get("voteNum").toString());
-                totalVoteNum.add(voteNum);
+                totalVoteNum = totalVoteNum.add(voteNum);
                 Object oCntryCd = artistCntryCntResultMap.get("cntryCd");
                 if(oCntryCd == null) ;
                 else {
