@@ -253,7 +253,7 @@
     "referenceType": "commonCode",
     "referenceValue": "code",
     "codeFilter": "approvalStatus",
-    "defaultValue": ""
+    "defaultValue": "request"
   },
   {
     "typeId": "propertyType",
