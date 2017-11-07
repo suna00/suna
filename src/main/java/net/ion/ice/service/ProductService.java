@@ -425,18 +425,18 @@ public class ProductService {
         try {
             Map<String, Object> session = sessionService.getSession(context.getHttpRequest());
             String memberNo = JsonUtils.getStringValue(session, "member.memberNo");
-            Calendar cal = Calendar.getInstance();
-            String now = new SimpleDateFormat("yyyyMMddHHmmss").format(cal.getTime());
-
-            cal.add(Calendar.MONTH, -1);
-
-            String aMonthAgo = new SimpleDateFormat("yyyyMMddHHmmss").format(cal.getTime());
+//            Calendar cal = Calendar.getInstance();
+//            String now = new SimpleDateFormat("yyyyMMddHHmmss").format(cal.getTime());
+//
+//            cal.add(Calendar.MONTH, -1);
+//
+//            String aMonthAgo = new SimpleDateFormat("yyyyMMddHHmmss").format(cal.getTime());
 
             Map<String, Object> data = context.getData();
             String productId = JsonUtils.getStringValue(data, "productId");
 
-//        List<Map<String, Object>> productList = nodeBindingService.list("orderProduct", "productId_equals=".concat(productId).concat("&created_fromto=".concat(aMonthAgo).concat("~").concat(now)).concat("&orderStatus_equals=order007"));
-            List<Map<String, Object>> orderSheetList = nodeBindingService.list("orderSheet", "memberNo_equals=".concat(memberNo).concat("&created_fromto=").concat(aMonthAgo).concat("~").concat(now));
+//            List<Map<String, Object>> orderSheetList = nodeBindingService.list("orderSheet", "memberNo_equals=".concat(memberNo).concat("&created_fromto=").concat(aMonthAgo).concat("~").concat(now));
+            List<Map<String, Object>> orderSheetList = nodeBindingService.list("orderSheet", "memberNo_equals=".concat(memberNo));
 
             resultMap.put("isPurchase", false);
 
