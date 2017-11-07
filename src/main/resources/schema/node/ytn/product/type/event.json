@@ -79,5 +79,21 @@
     "listenerName" : "조회수",
     "actionType" : "service",
     "actionBody" : "productListenService.viewCount"
+  },
+  {
+    "typeId" : "event",
+    "tid": "product",
+    "event" : "confirmPurchasingHistory",
+    "noneExecute" : true,
+    "eventName" : "구매이력확인"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "product>confirmPurchasingHistory",
+    "action": "confirmPurchasingHistory",
+    "actionName": "구매이력확인",
+    "actionType": "service",
+    "actionBody": "productService.confirmPurchasingHistory",
+    "order": 1
   }
 ]

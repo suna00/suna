@@ -1,22 +1,30 @@
 package net.ion.ice.service;
 
 import net.ion.ice.core.context.ExecuteContext;
+import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeQuery;
 import net.ion.ice.core.node.NodeService;
+import net.ion.ice.core.session.SessionService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service("productService")
 public class ProductService {
     @Autowired
-    private NodeService nodeService ;
+    private NodeService nodeService;
+    @Autowired
+    private NodeBindingService nodeBindingService;
+    @Autowired
+    private SessionService sessionService;
 
     public void make(ExecuteContext context) {
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
@@ -111,7 +119,8 @@ public class ProductService {
             }
 
             Map<String, Object> saveProductBaseOptionItem = new HashMap<>();
-            if (tempExistProductBaseOptionItem != null) saveProductBaseOptionItem.put("productOptionItemId", tempExistProductBaseOptionItem.getStringValue("productOptionItemId"));
+            if (tempExistProductBaseOptionItem != null)
+                saveProductBaseOptionItem.put("productOptionItemId", tempExistProductBaseOptionItem.getStringValue("productOptionItemId"));
             saveProductBaseOptionItem.put("productOptionCodeCase", productOptionCodeCase);
             saveProductBaseOptionItem.put("productId", productId);
             saveProductBaseOptionItem.put("name", productBaseOptionItem.get("name"));
@@ -132,7 +141,8 @@ public class ProductService {
             boolean exist = false;
             for (Map<String, Object> productBaseOption : productBaseOptionList) {
                 String productOptionCodeCase = productBaseOption.get("productOptionCodeCase").toString();
-                if (StringUtils.equals(existProductOptionCodeCase, productOptionCodeCase) && StringUtils.equals(existProductOptionType, baseOptionType)) exist = true;
+                if (StringUtils.equals(existProductOptionCodeCase, productOptionCodeCase) && StringUtils.equals(existProductOptionType, baseOptionType))
+                    exist = true;
             }
 
             if (!exist) deleteProductBaseOptionItemList.add(existProductOptionItem);
@@ -190,7 +200,8 @@ public class ProductService {
             }
 
             Map<String, Object> saveProductAddOptionItem = new HashMap<>();
-            if (tempExistProductAddOptionItem != null) saveProductAddOptionItem.put("productOptionItemId", tempExistProductAddOptionItem.getStringValue("productOptionItemId"));
+            if (tempExistProductAddOptionItem != null)
+                saveProductAddOptionItem.put("productOptionItemId", tempExistProductAddOptionItem.getStringValue("productOptionItemId"));
             saveProductAddOptionItem.put("productOptionCodeCase", productOptionCodeCase);
             saveProductAddOptionItem.put("productId", productId);
             saveProductAddOptionItem.put("name", productAddOptionItem.get("name"));
@@ -211,7 +222,8 @@ public class ProductService {
             boolean exist = false;
             for (Map<String, Object> productAddOption : productAddOptionList) {
                 String productOptionCodeCase = productAddOption.get("productOptionCodeCase").toString();
-                if (StringUtils.equals(existProductOptionCodeCase, productOptionCodeCase) && StringUtils.equals(existProductOptionType, addOptionType)) exist = true;
+                if (StringUtils.equals(existProductOptionCodeCase, productOptionCodeCase) && StringUtils.equals(existProductOptionType, addOptionType))
+                    exist = true;
             }
 
             if (!exist) deleteProductAddOptionItemList.add(existProductOptionItem);
@@ -273,7 +285,8 @@ public class ProductService {
             }
 
             Map<String, Object> saveProductAttribute = new HashMap<>();
-            if (tempExistProductAttribute != null) saveProductAttribute.put("productAttributeId", tempExistProductAttribute.getStringValue("productAttributeId"));
+            if (tempExistProductAttribute != null)
+                saveProductAttribute.put("productAttributeId", tempExistProductAttribute.getStringValue("productAttributeId"));
             saveProductAttribute.put("productId", productId);
             saveProductAttribute.put("productAttributeCategoryId", productAttributeCategoryId);
             saveProductAttribute.put("productAttributeCategoryItemId", productAttribute.get("productAttributeCategoryItemId"));
@@ -326,7 +339,8 @@ public class ProductService {
             }
 
             Map<String, Object> saveProductToCategoryMap = new HashMap<>();
-            if (tempExistProductToCategoryMap != null) saveProductToCategoryMap.put("productToCategoryMapId", tempExistProductToCategoryMap.get("productToCategoryMapId"));
+            if (tempExistProductToCategoryMap != null)
+                saveProductToCategoryMap.put("productToCategoryMapId", tempExistProductToCategoryMap.get("productToCategoryMapId"));
             saveProductToCategoryMap.put("productId", productId);
             saveProductToCategoryMap.put("categoryId", productToCategoryMap.get("categoryId"));
 
@@ -376,7 +390,8 @@ public class ProductService {
             }
 
             Map<String, Object> saveProductSearchFilter = new HashMap<>();
-            if (tempExistProductSearchFilter != null) saveProductSearchFilter.put("productSearchFilterId", tempExistProductSearchFilter.get("productSearchFilterId"));
+            if (tempExistProductSearchFilter != null)
+                saveProductSearchFilter.put("productSearchFilterId", tempExistProductSearchFilter.get("productSearchFilterId"));
             saveProductSearchFilter.put("productId", productId);
             saveProductSearchFilter.put("searchFilterId", productSearchFilter.get("searchFilterId"));
             saveProductSearchFilter.put("searchFilterCodeIds", productSearchFilter.get("searchFilterCodeIds"));
@@ -403,5 +418,42 @@ public class ProductService {
         for (Map<String, Object> deleteProductSearchFilter : deleteProductSearchFilterList) {
             nodeService.executeNode(deleteProductSearchFilter, "productSearchFilter", EventService.DELETE);
         }
+    }
+
+    public void confirmPurchasingHistory(ExecuteContext context) {
+        Map<String, Object> resultMap = new HashMap<>();
+        try {
+            Map<String, Object> session = sessionService.getSession(context.getHttpRequest());
+            String memberNo = JsonUtils.getStringValue(session, "member.memberNo");
+//            Calendar cal = Calendar.getInstance();
+//            String now = new SimpleDateFormat("yyyyMMddHHmmss").format(cal.getTime());
+//
+//            cal.add(Calendar.MONTH, -1);
+//
+//            String aMonthAgo = new SimpleDateFormat("yyyyMMddHHmmss").format(cal.getTime());
+
+            Map<String, Object> data = context.getData();
+            String productId = JsonUtils.getStringValue(data, "productId");
+
+//            List<Map<String, Object>> orderSheetList = nodeBindingService.list("orderSheet", "memberNo_equals=".concat(memberNo).concat("&created_fromto=").concat(aMonthAgo).concat("~").concat(now));
+            List<Map<String, Object>> orderSheetList = nodeBindingService.list("orderSheet", "memberNo_equals=".concat(memberNo));
+
+            resultMap.put("isPurchase", false);
+
+            if (orderSheetList.size() > 0) {
+                for (Map<String, Object> orderSheet : orderSheetList) {
+                    String orderSheetId = JsonUtils.getStringValue(orderSheet, "orderSheetId");
+                    /*배송완료, 구매확정, 교환완료*/
+                    List<Map<String, Object>> orderProductList = nodeBindingService.list("orderProduct", "orderSheetId_equals=".concat(orderSheetId).concat("&orderStatus_in=order006,order007,order016").concat("&productId_equals=").concat(productId));
+                    if(orderProductList.size() > 0){
+                        resultMap.put("isPurchase", true);
+                        break;
+                    }
+                }
+            }
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        context.setResult(resultMap);
     }
 }
