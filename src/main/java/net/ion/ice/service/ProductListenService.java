@@ -7,6 +7,7 @@ import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -18,8 +19,10 @@ public class ProductListenService {
 
     public static final String PRODUCT_ID = "productId";
     public static final String SITE_ID = "siteId";
-    public static final String REVIEW_AVERAGE_SCORE = "reviewAverageScore";
-    public static final String REVIEW_COUNT = "reviewCount";
+    public static final String COMPANY_REVIEW_AVERAGE_SCORE = "companyReviewAverageScore";
+    public static final String COMPANY_REVIEW_COUNT = "companyReviewCount";
+    public static final String UNIVERSITY_REVIEW_AVERAGE_SCORE = "universityReviewAverageScore";
+    public static final String UNIVERSITY_REVIEW_COUNT = "universityReviewCount";
 
     @Autowired
     private NodeBindingService nodeBindingService ;
@@ -39,11 +42,13 @@ public class ProductListenService {
 
         Node product = NodeUtils.getReferenceNode(review.get(PRODUCT_ID), reviewType.getPropertyType(PRODUCT_ID));
         Integer cnt = (result.get("cnt") == null ? 0 : Integer.parseInt(result.get("cnt").toString())) ;
-        product.put(REVIEW_COUNT, result.get("cnt")) ;
-        if(cnt == 0){
-            product.put(REVIEW_AVERAGE_SCORE, 0) ;
-        }else {
-            product.put(REVIEW_AVERAGE_SCORE, Double.parseDouble(result.get("tot").toString()) / Double.parseDouble(result.get("cnt").toString()));
+
+        if(StringUtils.equals("ion",review.getStringValue(SITE_ID))) {
+            product.put(COMPANY_REVIEW_COUNT, result.get("cnt"));
+            product.put(COMPANY_REVIEW_AVERAGE_SCORE, cnt == 0 ? 0 : (Double.parseDouble(result.get("tot").toString()) / Double.parseDouble(result.get("cnt").toString())));
+        } else {
+            product.put(UNIVERSITY_REVIEW_COUNT, result.get("cnt"));
+            product.put(UNIVERSITY_REVIEW_AVERAGE_SCORE, cnt == 0 ? 0 : (Double.parseDouble(result.get("tot").toString()) / Double.parseDouble(result.get("cnt").toString())));
         }
 
         nodeService.updateNode(product, "product") ;
