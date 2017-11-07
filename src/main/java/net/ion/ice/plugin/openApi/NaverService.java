@@ -79,10 +79,10 @@ public class NaverService {
                 con = (HttpURLConnection) url.openConnection();
                 con.setDoOutput(true);
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(con.getOutputStream());
-                outputStreamWriter.write(params.toString());
+                outputStreamWriter.write(StringUtils.join(newParamList, "&"));
                 outputStreamWriter.flush();
             } else {
-                apiUrl = apiUrl+'?'+StringUtils.join(encodeParamList, "&");
+                apiUrl = apiUrl+'?'+StringUtils.join(newParamList, "&");
                 url = new URL(apiUrl);
                 con = (HttpURLConnection) url.openConnection();
             }
