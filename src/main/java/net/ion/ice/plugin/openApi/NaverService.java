@@ -67,7 +67,7 @@ public class NaverService {
 
                 if (!StringUtils.isEmpty(paramName)) {
                     String encodeParamValue = StringUtils.isEmpty(paramValue) ? "" : URLEncoder.encode(paramValue, "UTF-8");
-                    encodeParamList.add(paramName+"="+encodeParamValue);
+                    newParamList.add(paramName+"="+encodeParamValue);
                 }
             }
 
