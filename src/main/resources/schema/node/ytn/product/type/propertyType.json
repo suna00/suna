@@ -513,6 +513,23 @@
   {
     "typeId": "propertyType",
     "tid": "product",
+    "pid": "lowestPrice",
+    "propertyTypeName": "최저가",
+    "valueType": "DOUBLE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "simple",
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "product",
     "pid": "soarPopularityYn",
     "propertyTypeName": "인기급등여부",
     "valueType": "BOOLEAN",

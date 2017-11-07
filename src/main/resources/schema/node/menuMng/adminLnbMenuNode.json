@@ -103,6 +103,74 @@
     ],
     "authority": "system,admin"
   },
+
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "root",
+    "menuId": "productUpload",
+    "menuName": "상품 엑셀등록",
+    "order": "40",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [],
+    "authority": "system,admin"
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "adm>productMng>root>productUpload",
+    "menuId": "goods",
+    "menuName": "일반상품",
+    "order": "10",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "productUpload/GoodsList" }
+    ],
+    "authority": "system,admin"
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "adm>productMng>root>productUpload",
+    "menuId": "phone",
+    "menuName": "휴대폰개통상품",
+    "order": "20",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "productUpload/PhoneList" }
+    ],
+    "authority": "system,admin"
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "adm>productMng>root>productUpload",
+    "menuId": "health",
+    "menuName": "건강검진상품",
+    "order": "30",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "productUpload/HealthList" }
+    ],
+    "authority": "system,admin"
+  },
+
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "adm",
@@ -1431,27 +1499,44 @@
   },
   {
     "typeId" : "adminLnbMenu",
-    "backOfficeId": "aff",
-    "gnbMenuId": "personInfoMng",
+    "backOfficeId": "ven",
+    "gnbMenuId": "vendorMng",
     "parentMenuId": "root",
-    "menuId": "memberMng",
+    "menuId": "vendorInfoMng",
+    "menuName": "벤더업체정보관리",
+    "order": "10",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "수정", "pageUrl": "vendor/CreateForm" }
+    ],
+    "authority": "system,vendor"
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "aff",
+    "gnbMenuId": "affiliateMng",
+    "parentMenuId": "root",
+    "menuId": "affiliateCompanyMember",
     "menuName": "회원관리",
     "order": "10",
     "icon": "fa-list",
     "active": "true",
     "index": "false",
-    "pages": [
-      { "pageName": "목록", "pageUrl": "list" },
-      { "pageName": "등록", "pageUrl": "createForm" },
-      { "pageName": "수정", "pageUrl": "updateForm" }
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "affiliateCompanyMember/List" },
+      { "pageName": "등록", "pageUrl": "affiliateCompanyMember/CreateForm" },
+      { "pageName": "수정", "pageUrl": "affiliateCompanyMember/UpdateForm" }
     ],
-    "customPages": [],
     "authority": "system,affiliate"
   },
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "aff",
-    "gnbMenuId": "personInfoMng",
+    "gnbMenuId": "affiliateMng",
     "parentMenuId": "root",
     "menuId": "purHistoty",
     "menuName": "구매내역",
@@ -1470,7 +1555,7 @@
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "aff",
-    "gnbMenuId": "personInfoMng",
+    "gnbMenuId": "affiliateMng",
     "parentMenuId": "root",
     "menuId": "csHistory",
     "menuName": "CS내역",
