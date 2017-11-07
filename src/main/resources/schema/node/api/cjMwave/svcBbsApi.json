@@ -107,6 +107,10 @@
         "typeId": "ntfBbs",
         "resultType": "none",
         "event": "view",
+        "data":{
+          "ntfBbsSeq":"{{:ntfBbsSeq}}",
+          "ntfLargeCtgCd":""
+        },
         "response":{
           "hitNum":""
         }
