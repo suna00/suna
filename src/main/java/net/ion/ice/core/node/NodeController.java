@@ -68,14 +68,26 @@ public class NodeController {
 
 
     private Object execute(HttpServletRequest request, String typeId, String event) {
-        if(request instanceof MultipartHttpServletRequest) {
-            return nodeService.executeNode(request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap(), typeId, event) ;
+        RequestDataHolder.setRequestDataValue("request", request);
+        RequestDataHolder.setRequestDataValue("session", getSession(request));
+        try {
+            if (request instanceof MultipartHttpServletRequest) {
+                return nodeService.executeNode(request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap(), typeId, event);
+            }
+            return nodeService.executeNode(request.getParameterMap(), null, typeId, event);
+        }finally {
+            RequestDataHolder.clearRequestData();
         }
-        return nodeService.executeNode(request.getParameterMap(), null, typeId, event) ;
     }
 
     private Object execute(HttpServletRequest request, HttpServletResponse response, String typeId, String event) {
-        return nodeService.executeNode(request, response, typeId, event) ;
+        RequestDataHolder.setRequestDataValue("request", request);
+        RequestDataHolder.setRequestDataValue("session", getSession(request));
+        try {
+            return nodeService.executeNode(request, response, typeId, event);
+        }finally {
+            RequestDataHolder.clearRequestData();
+        }
     }
 
 
@@ -172,6 +184,8 @@ public class NodeController {
             }else{
                 return JsonResponse.error(e);
             }
+        }finally{
+            RequestDataHolder.clearRequestData();
         }
     }
 
@@ -182,6 +196,8 @@ public class NodeController {
     }
 
     private Object code(HttpServletRequest request, @PathVariable String typeId) {
+        RequestDataHolder.setRequestDataValue("request", request);
+        RequestDataHolder.setRequestDataValue("session", getSession(request));
         try {
             QueryResult queryResult = nodeService.getReferenceQueryResult(typeId, request.getParameterMap()) ;
             return queryResult ;
@@ -194,6 +210,8 @@ public class NodeController {
             }else{
                 return JsonResponse.error(e);
             }
+        }finally{
+            RequestDataHolder.clearRequestData();
         }
     }
 
@@ -233,6 +251,8 @@ public class NodeController {
     @RequestMapping(value = "/node/event", method = RequestMethod.POST)
     @ResponseBody
     public Object eventRest(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        RequestDataHolder.setRequestDataValue("request", request);
+        RequestDataHolder.setRequestDataValue("session", getSession(request));
         try{
             if (request instanceof MultipartHttpServletRequest) {
                 return nodeService.executeResult(request, response, request.getParameterMap(), ((MultipartHttpServletRequest) request).getMultiFileMap());
@@ -245,6 +265,8 @@ public class NodeController {
             }else{
                 return JsonResponse.error(e);
             }
+        }finally{
+            RequestDataHolder.clearRequestData();
         }
     }
 
