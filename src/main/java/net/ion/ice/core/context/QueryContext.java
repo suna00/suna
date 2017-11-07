@@ -89,7 +89,7 @@ public class QueryContext extends ReadContext {
                         List<String> roles = Arrays.asList(StringUtils.split(role, ","));
                         if(roles.contains(authRule.get("role"))){
                             QueryTerm term = new QueryTerm(getQueryTermType(), (String) authRule.get("pid"), "code", (String) authRule.get("method"),
-                                    JsonUtils.getStringValue((Map<String, Object>) RequestDataHolder.getRequestData(), ((Map) authorityRule).get("value").toString()), null);
+                                    JsonUtils.getStringValue( RequestDataHolder.getRequestData(), authRule.get("value").toString()), null);
                             addQueryTerm(term);
                         }
 
