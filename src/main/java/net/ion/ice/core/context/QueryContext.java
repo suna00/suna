@@ -71,6 +71,8 @@ public class QueryContext extends ReadContext {
     }
 
     public void makeAuthorityQuery() {
+        if(RequestDataHolder.getRequestData() == null) return ;
+
         if(StringUtils.isNotEmpty(getNodeType().getAuthorityRuleString())){
             Object authorityRule = getNodeType().getAuthorityRule() ;
             if(authorityRule instanceof Map){
