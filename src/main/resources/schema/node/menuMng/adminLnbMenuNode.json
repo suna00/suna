@@ -1431,6 +1431,23 @@
   },
   {
     "typeId" : "adminLnbMenu",
+    "backOfficeId": "ven",
+    "gnbMenuId": "vendorMng",
+    "parentMenuId": "root",
+    "menuId": "vendorInfoMng",
+    "menuName": "벤더업체정보관리",
+    "order": "10",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "수정", "pageUrl": "vendor/CreateForm" }
+    ],
+    "authority": "system,vendor"
+  },
+  {
+    "typeId" : "adminLnbMenu",
     "backOfficeId": "aff",
     "gnbMenuId": "personInfoMng",
     "parentMenuId": "root",
