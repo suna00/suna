@@ -103,6 +103,74 @@
     ],
     "authority": "system,admin"
   },
+
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "root",
+    "menuId": "productUpload",
+    "menuName": "상품 엑셀등록",
+    "order": "40",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [],
+    "authority": "system,admin"
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "adm>productMng>root>productUpload",
+    "menuId": "goods",
+    "menuName": "일반상품",
+    "order": "10",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "productUpload/GoodsList" }
+    ],
+    "authority": "system,admin"
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "adm>productMng>root>productUpload",
+    "menuId": "phone",
+    "menuName": "휴대폰개통상품",
+    "order": "20",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "productUpload/PhoneList" }
+    ],
+    "authority": "system,admin"
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "adm>productMng>root>productUpload",
+    "menuId": "health",
+    "menuName": "건강검진상품",
+    "order": "30",
+    "icon": "",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "productUpload/HealthList" }
+    ],
+    "authority": "system,admin"
+  },
+
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "adm",
