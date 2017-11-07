@@ -6,6 +6,7 @@ import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,52 +48,41 @@ public class CollectService {
     public void newProduct() {
         try{
             LocalDateTime now = LocalDateTime.now();
-            LocalDateTime before = LocalDateTime.now().minusMonths(1);
 
             String[] siteTypes = {"company", "university"};
             for(String siteType : siteTypes){
-                Node newProduct = createNewProductData(now, siteType);
+
+                List<Node> newProdcuts = nodeService.getNodeList("newProduct", "siteType_matching=" + siteType +"&year_matching=" + now.getYear() + "&month_matching=" + now.getMonthValue() + "&newProductStatus_matching=y");
+                Node newProduct = null;
+
+                if(newProdcuts != null && newProdcuts.size() > 0){
+                    newProduct = newProdcuts.get(0);
+                    List<Node> newProdcutMapList = nodeService.getNodeList("newProductMap", "newProductId_matching=" + newProduct.getId());
+                    for(Node newProductMap : newProdcutMapList){
+                        nodeService.deleteNode("newProductMap", newProductMap.getId());
+                    }
+                }else {
+                    newProduct = createNewProductData(now, siteType);
+                }
 
                 String searchText = "productStatus_matching=y" +
                         "&approvalStatus_matching=approve" +
                         "&deleteStatus_notMatching=approve" +
                         "&saleStatus_matching=sale" +
                         "&sorting=approvalDate desc" +
-                        "&approvalDate_fromto=";
+                        "&siteType_matching=all," + siteType ;
 
 
-                List<Node> newList = NodeUtils.getNodeList("product", searchText.concat(getMonthDays(now)));
+                List<Node> newList = NodeUtils.getNodeList("product", searchText + "&approvalDate_fromto=" + getMonthDays(now));
                 Map<String, Object> distinctProducts = new LinkedHashMap<>();
 
                 int i = 0;
-                for(Node product : newList){
-                    Map<String, Object> npMap = new HashMap<>();
-                    npMap.put("newProductId", newProduct.getId());
-                    npMap.put("productId", product.getId());
-                    npMap.put("sortOrder", i++);
-                    npMap.put("newProductMapStatus", "y");
-                    npMap.put("fixedYn", "n");
-                    npMap.put("year", now.getYear());
-                    npMap.put("month", now.getMonthValue());
-                    nodeService.executeNode(npMap, "newProductMap", CommonService.CREATE);
-                    distinctProducts.put(product.getId(), npMap.get("year"));
-                }
+                newProductCreate(now, newProduct, newList, distinctProducts, i);
 
                 // - 해당월에 신규 등록된 상품이 없거나  30개 미만일 경우 익월 상품이 노출된다
                 if(newList.size() < 30){
-                    List<Node> beforeMonthList = nodeService.getNodeList("newProduct", "sorting=newProductId desc&year_matching="+before.getYear()+"&month_matching="+before.getMonthValue());
-                    if(beforeMonthList.size() > 0 ){
-                        Node beforeMonth = beforeMonthList.get(0);
-                        List<Map<String, Object>> beforeMaps = nodeBindingService.list("newProductMap", "sorting=sortOrder&newProductId_equals="+beforeMonth.getId());
-
-                        for(Map<String, Object> map : beforeMaps){
-                            if( i <= 30 && distinctProducts.get(JsonUtils.getStringValue(map, "productId")) != null){
-                                map.remove("newProductMap");
-                                map.put("sortOrder", i++);
-                                nodeService.executeNode(map, "newProductMap", CommonService.CREATE);
-                            }
-                        }
-                    }
+                    List<Node> beforeMonthList = nodeService.getNodeList("product", searchText + "&approvalDate_under=" + getLastMonthBefor(now) + "&limit=" + (30 - newList.size()));
+                    newProductCreate(now, newProduct, beforeMonthList, distinctProducts, i);
                 }
             }
         }catch (Exception e){
@@ -100,7 +90,24 @@ public class CollectService {
         }
     }
 
+    private void newProductCreate(LocalDateTime now, Node newProduct, List<Node> newList, Map<String, Object> distinctProducts, int i) {
+        for(Node product : newList){
+            Map<String, Object> npMap = new HashMap<>();
+            npMap.put("newProductId", newProduct.getId());
+            npMap.put("productId", product.getId());
+            npMap.put("sortOrder", i++);
+            npMap.put("newProductMapStatus", "y");
+            npMap.put("fixedYn", "n");
+            npMap.put("year", now.getYear());
+            npMap.put("month", now.getMonthValue());
+            nodeService.executeNode(npMap, "newProductMap", CommonService.CREATE);
+            distinctProducts.put(product.getId(), npMap.get("year"));
+        }
+    }
+
+
     public Node createNewProductData(LocalDateTime now, String siteType) {
+
         Map<String, Object> map = new HashMap<>();
         map.put("name", String.valueOf(now.getYear()).concat("년 ").concat(String.valueOf(now.getMonthValue())).concat("월 ").concat(siteType));
         map.put("siteType", siteType);
@@ -111,11 +118,16 @@ public class CollectService {
     }
 
     public String getMonthDays(LocalDateTime dateTime){
-        String firstDate = String.valueOf(dateTime.getYear()).concat(String.valueOf(dateTime.getMonthValue())).concat(String.valueOf(dateTime.with(TemporalAdjusters.firstDayOfMonth())));
-        String lastDate = String.valueOf(dateTime.getYear()).concat(String.valueOf(dateTime.getMonthValue())).concat(String.valueOf(dateTime.with(TemporalAdjusters.lastDayOfMonth())));
+        String ym = String.valueOf(dateTime.getYear()).concat(String.valueOf(dateTime.getMonthValue())) ;
+        String firstDate = ym + "01";
+        String lastDate = ym + (String.valueOf(dateTime.with(TemporalAdjusters.lastDayOfMonth()).getDayOfMonth()));
         return getFromToString(firstDate, lastDate);
     }
 
+    public String getLastMonthBefor(LocalDateTime dateTime){
+        String ym = String.valueOf(dateTime.getYear()).concat(String.valueOf(dateTime.getMonthValue())) ;
+        return ym + "01";
+    }
 
     public String getFromToString(String firstDate, String lastDate){
         //20170901~20170930

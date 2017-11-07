@@ -1,0 +1,18 @@
+[
+  {
+    "typeId": "event",
+    "tid": "newProduct",
+    "event": "batch",
+    "noneExecute": true,
+    "eventName": "배치"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "newProduct>batch",
+    "action": "newProductBatch",
+    "actionName": "신상품 배치",
+    "actionType": "service",
+    "actionBody": "collectService.collect",
+    "order": 1
+  }
+]
