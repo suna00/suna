@@ -757,7 +757,7 @@
     "pid": "vendorId",
     "propertyTypeName": "밴더ID",
     "valueType": "REFERENCE",
-    "required": true,
+    "required": false,
     "idable": false,
     "labelable": false,
     "treeable": false,

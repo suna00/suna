@@ -171,24 +171,27 @@ public class MemberService {
         Map<String, Object> item = new HashMap<>();
 
         Node node;
+        try {
+            if (contextData.get("memberNo") == null) {
+                contextData.put("barcode", setBarcode()); //회원바코드 생성
+                node = (Node) nodeService.executeNode(contextData, "member", CommonService.CREATE);
 
-        if (contextData.get("memberNo") == null) {
-            contextData.put("barcode", setBarcode()); //회원바코드 생성
-            node = (Node) nodeService.executeNode(contextData, "member", CommonService.CREATE);
+                Map<String, String> emailTemplate = getEmailTemplate("회원가입");
+                EmailService.setHtmlMemberJoin(node, node.get("email").toString(), emailTemplate);
+            } else {
+                if (contextData.containsKey("password")) {
+                    contextData.put("failedCount", null);
+                    contextData.put("lastFailedDate", null);
+                }
+                node = (Node) nodeService.executeNode(contextData, "member", CommonService.UPDATE);
 
-            Map<String, String> emailTemplate = getEmailTemplate("회원가입");
-            EmailService.setHtmlMemberJoin(node, node.get("email").toString(), emailTemplate);
-        } else {
-            if (contextData.containsKey("password")) {
-                contextData.put("failedCount", null);
-                contextData.put("lastFailedDate", null);
+                if (contextData.containsKey("changeMarketingAgreeYn")) {
+                    Map<String, String> emailTemplate = getEmailTemplate("광고성 정보수신동의 결과");
+                    EmailService.setHtmlMemberInfoChange(node, node.get("email").toString(), emailTemplate);
+                }
             }
-            node = (Node) nodeService.executeNode(contextData, "member", CommonService.UPDATE);
-
-            if (contextData.containsKey("changeMarketingAgreeYn")) {
-                Map<String, String> emailTemplate = getEmailTemplate("광고성 정보수신동의 결과");
-                EmailService.setHtmlMemberInfoChange(node, node.get("email").toString(), emailTemplate);
-            }
+        }catch (Exception e){
+            throw new ApiException("500", e.getMessage()) ;
         }
 
         item.put("memberNo", node.get("memberNo"));
@@ -246,7 +249,12 @@ public class MemberService {
             String count = nodeBindingInfo.getJdbcTemplate().queryForList(" select count(memberNo) as count from member where siteId=? and email=? ", siteId, email).get(0).get("count").toString();
 
             if ("0".equals(count)) {
-                sendEmail(emailCertificationType, email, data);
+                try {
+                    sendEmail(emailCertificationType, email, data);
+                } catch (IOException e) {
+                    commonService.setErrorMessage(context, "U0001");
+                    return context;
+                }
             } else {
                 commonService.setErrorMessage(context, "U0001");
                 return context;
@@ -264,7 +272,12 @@ public class MemberService {
 
             if (0 < memberList.size()) {
                 Map<String, Object> member = memberList.get(0);
-                sendEmail(emailCertificationType, member.get("email").toString(), member);
+                try {
+                    sendEmail(emailCertificationType, member.get("email").toString(), member);
+                } catch (IOException e) {
+                    commonService.setErrorMessage(context, "U0004");
+                    return context;
+                }
 
                 Map<String, Object> resultObject = new HashMap<>();
                 Map<String, Object> item = new HashMap<>();
@@ -446,7 +459,7 @@ public class MemberService {
         return barcode;
     }
 
-    public void sendEmail(String emailCertificationType, String email, Map<String, Object> data) {
+    public void sendEmail(String emailCertificationType, String email, Map<String, Object> data) throws IOException {
         Map<String, String> html = new HashMap<>();
 
         // 회원가입 : join
@@ -470,7 +483,7 @@ public class MemberService {
             html = setHtml("휴면해제이메일인증", linkUrl);
         }
 
-        emailService.sendEmailHtml(email, html.get("title"), html.get("contents"));
+        emailService.sendEmailDirect(email, html.get("title"), html.get("contents"));
     }
 
     public void sendSms(String smsCertificationType, String cellphone, Map<String, Object> data) {

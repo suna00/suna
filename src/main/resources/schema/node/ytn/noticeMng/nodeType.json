@@ -23,7 +23,7 @@
     "tid": "pushSendingHistory",
     "typeName": "PUSH 발송내역",
     "tableName": "ytnDevDb#pushSendingHistory",
-    "repositoryType": "data",
+    "repositoryType": "node",
     "eviction": 0
   },
   {
