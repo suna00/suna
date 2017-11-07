@@ -200,5 +200,35 @@
     "icon": "",
     "active": "true",
     "authority": "system,vendor"
+  },
+  {
+    "typeId" : "adminGnbMenu",
+    "backOfficeId": "aff",
+    "menuId": "personInfoMng",
+    "menuName": "회원정보관리",
+    "order": "10",
+    "icon": "",
+    "active": "true",
+    "authority": "system,affiliate"
+  },
+  {
+    "typeId" : "adminGnbMenu",
+    "backOfficeId": "aff",
+    "menuId": "devFund",
+    "menuName": "발전기금",
+    "order": "20",
+    "icon": "",
+    "active": "true",
+    "authority": "system,affiliate"
+  },
+  {
+    "typeId" : "adminGnbMenu",
+    "backOfficeId": "aff",
+    "menuId": "welFarePoint",
+    "menuName": "복지포인트",
+    "order": "30",
+    "icon": "",
+    "active": "true",
+    "authority": "system,affiliate"
   }
 ]

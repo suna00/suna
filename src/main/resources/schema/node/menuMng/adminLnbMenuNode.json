@@ -1428,5 +1428,119 @@
     ],
     "customPages": [],
     "authority": "system,vendor"
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "aff",
+    "gnbMenuId": "personInfoMng",
+    "parentMenuId": "root",
+    "menuId": "memberMng",
+    "menuName": "회원관리",
+    "order": "10",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" },
+      { "pageName": "등록", "pageUrl": "createForm" },
+      { "pageName": "수정", "pageUrl": "updateForm" }
+    ],
+    "customPages": [],
+    "authority": "system,affiliate"
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "aff",
+    "gnbMenuId": "personInfoMng",
+    "parentMenuId": "root",
+    "menuId": "purHistoty",
+    "menuName": "구매내역",
+    "order": "20",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" },
+      { "pageName": "등록", "pageUrl": "createForm" },
+      { "pageName": "수정", "pageUrl": "updateForm" }
+    ],
+    "customPages": [],
+    "authority": "system,affiliate"
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "aff",
+    "gnbMenuId": "personInfoMng",
+    "parentMenuId": "root",
+    "menuId": "csHistory",
+    "menuName": "CS내역",
+    "order": "30",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" },
+      { "pageName": "등록", "pageUrl": "createForm" },
+      { "pageName": "수정", "pageUrl": "updateForm" }
+    ],
+    "customPages": [],
+    "authority": "system,affiliate"
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "aff",
+    "gnbMenuId": "devFund",
+    "parentMenuId": "root",
+    "menuId": "devFundDet",
+    "menuName": "발전기금",
+    "order": "10",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" },
+      { "pageName": "등록", "pageUrl": "createForm" },
+      { "pageName": "수정", "pageUrl": "updateForm" }
+    ],
+    "customPages": [],
+    "authority": "system,affiliate"
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "aff",
+    "gnbMenuId": "welFarePoint",
+    "parentMenuId": "root",
+    "menuId": "divHistory",
+    "menuName": "분배내역",
+    "order": "10",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" },
+      { "pageName": "등록", "pageUrl": "createForm" },
+      { "pageName": "수정", "pageUrl": "updateForm" }
+    ],
+    "customPages": [],
+    "authority": "system,affiliate"
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "aff",
+    "gnbMenuId": "welFarePoint",
+    "parentMenuId": "root",
+    "menuId": "calculate",
+    "menuName": "정산",
+    "order": "20",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" },
+      { "pageName": "등록", "pageUrl": "createForm" },
+      { "pageName": "수정", "pageUrl": "updateForm" }
+    ],
+    "customPages": [],
+    "authority": "system,affiliate"
   }
 ]
