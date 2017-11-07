@@ -1,0 +1,128 @@
+[
+  {
+    "parentId": "commonPath",
+    "typeId": "nodeType",
+    "tid": "commonCode",
+    "typeName": "코드",
+    "tableName": "jejuDevDb#commonCode",
+    "repositoryType": "node",
+    "eviction": 2000
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "terms",
+    "typeName": "약관 관리",
+    "tableName": "jejuDevDb#terms",
+    "repositoryType": "node",
+    "eviction": 200
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "termsHistory",
+    "typeName": "약관 이력",
+    "tableName": "jejuDevDb#termsHistory",
+    "repositoryType": "node",
+    "eviction": 2000
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "returnExchangePolicy",
+    "typeName": "반품/교환 정책",
+    "tableName": "jejuDevDb#returnExchangePolicy",
+    "repositoryType": "node",
+    "eviction": 10
+  },
+  {
+    "parentId": "productPath",
+    "typeId": "nodeType",
+    "tid": "searchFilter",
+    "typeName": "검색필터정책",
+    "tableName": "jejuDevDb#searchFilter",
+    "repositoryType": "node",
+    "eviction": 1000
+  },
+  {
+    "parentId": "productPath",
+    "typeId": "nodeType",
+    "tid": "searchFilterCode",
+    "typeName": "검색필터정책코드",
+    "tableName": "jejuDevDb#searchFilterCode",
+    "repositoryType": "node",
+    "eviction": 20000
+  },
+  {
+    "parentId": "productPath",
+    "typeId": "nodeType",
+    "tid": "productAttributeCategory",
+    "typeName": "상품고시 분류",
+    "tableName": "jejuDevDb#productAttributeCategory",
+    "repositoryType": "node",
+    "eviction": 1000
+  },
+  {
+    "parentId": "productPath",
+    "typeId": "nodeType",
+    "tid": "productAttributeCategoryItem",
+    "typeName": "상품고시 분류 항목",
+    "tableName": "jejuDevDb#productAttributeCategoryItem",
+    "repositoryType": "node",
+    "eviction": 10000
+  },
+  {
+    "parentId": "contentsPath",
+    "typeId": "nodeType",
+    "tid": "contentsOptionType",
+    "typeName": "컨텐츠 옵션 타입(상품정보 고시)",
+    "tableName": "jejuDevDb#contentsOptionType",
+    "repositoryType": "node",
+    "eviction": 200
+  },
+  {
+    "parentId": "contentsPath",
+    "typeId": "nodeType",
+    "tid": "contentsOptionTypeFields",
+    "typeName": "컨텐츠 옵션 타입의 필드 정의",
+    "tableName": "jejuDevDb#contentsOptionTypeFields",
+    "repositoryType": "node",
+    "eviction": 2000
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "addBenefit",
+    "typeName": "추가혜택",
+    "tableName": "jejuDevDb#addBenefit",
+    "repositoryType": "node",
+    "eviction": 1000
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "addBenefitItem",
+    "typeName": "추가혜택 Item",
+    "tableName": "jejuDevDb#addBenefitItem",
+    "repositoryType": "node",
+    "eviction": 10000
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "interestFreeInstallment",
+    "typeName": "무이자할부",
+    "tableName": "jejuDevDb#interestFreeInstallment",
+    "repositoryType": "node",
+    "eviction": 1000
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "interestFreeInstallmentItem",
+    "typeName": "무이자할부 Item",
+    "tableName": "jejuDevDb#interestFreeInstallmentItem",
+    "repositoryType": "node",
+    "eviction": 10000
+  }
+]

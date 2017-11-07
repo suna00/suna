@@ -1,0 +1,29 @@
+[
+  {
+    "parentId": "eventPath",
+    "typeId": "nodeType",
+    "tid": "shopEvent",
+    "typeName": "이벤트",
+    "tableName": "jejuDevDb#shopEvent",
+    "repositoryType": "node",
+    "eviction": 10000
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "searchWordHistory",
+    "typeName": "검색어 이력",
+    "tableName": "jejuDevDb#searchWordHistory",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "popularSearches",
+    "typeName": "인기 검색어",
+    "tableName": "jejuDevDb#popularSearches",
+    "repositoryType": "node",
+    "eviction": 1000
+  }
+]

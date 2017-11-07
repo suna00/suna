@@ -1,0 +1,46 @@
+[
+  {
+    "parentId": "root",
+    "typeId": "nodeType",
+    "tid": "couponPath",
+    "typeName": "쿠폰 관리",
+    "repositoryType": "path",
+    "eviction": 0
+  },
+  {
+    "parentId": "couponPath",
+    "typeId": "nodeType",
+    "tid": "coupon",
+    "typeName": "쿠폰",
+    "tableName": "jejuDevDb#coupon",
+    "repositoryType": "node",
+    "eviction": 1000000
+  },
+  {
+    "parentId": "couponPath",
+    "typeId": "nodeType",
+    "tid": "couponType",
+    "typeName": "쿠폰유형",
+    "tableName": "jejuDevDb#couponType",
+    "repositoryType": "node",
+    "eviction": 10000
+  },
+  {
+    "parentId": "couponPath",
+    "typeId": "nodeType",
+    "tid": "couponTypeToProductMap",
+    "typeName": "쿠폰유형 상품 매핑",
+    "tableName": "jejuDevDb#couponTypeToProductMap",
+    "repositoryType": "data",
+    "eviction": 100000
+  },
+  {
+    "parentId": "couponPath",
+    "typeId": "nodeType",
+    "tid": "couponTypeToCategoryMap",
+    "typeName": "쿠폰유형 카테고리 매핑",
+    "tableName": "jejuDevDb#couponTypeToCategoryMap",
+    "repositoryType": "data",
+    "eviction": 500000
+  }
+]

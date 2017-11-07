@@ -41,7 +41,7 @@ public class EmailService {
         MimeMessage message = new MimeMessage(session);
 
         try {
-            message.setSender(new InternetAddress("ytn@ytn.co.kr"));
+            message.setSender(new InternetAddress("jeju@jeju.co.kr"));
             message.setSubject(title);
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
 
@@ -102,7 +102,7 @@ public class EmailService {
 
         contents = contents.replaceAll("<img src=\"header\">", header);
         contents = contents.replaceAll("src=\"../assets/images/", "src=" + apiUrl + "/image");
-        contents = contents.replaceAll("userId", node.getStringValue("userId")); // abc***@ytn.co.kr
+        contents = contents.replaceAll("userId", node.getStringValue("userId")); // abc***@jeju.co.kr
         contents = contents.replaceAll("joinDate", node.getStringValue("joinDate")); // 2017-07-21
         contents = contents.replaceAll("name", node.getStringValue("name")); // 홍*동
         contents = contents.replaceAll("cellphone", node.getStringValue("cellphone")); // 010-11**-11**

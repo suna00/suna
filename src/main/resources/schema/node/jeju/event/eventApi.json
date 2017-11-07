@@ -1,0 +1,133 @@
+[
+  {
+    "typeId" : "apiCategory",
+    "id" : "specialExhibitionApi",
+    "categoryName" : "이벤트 API",
+    "fileUrlFormat" : {
+       "default": "{{:getEnvValue(cluster.file-prefix, url)}}"
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "specialExhibitionApi",
+    "apiId" : "list",
+    "apiName" : "기획전 리스트",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "specialExhibition",
+      "query" : [
+        {"field" : "startDate", "method" : "below", "value" : "{{:toDay}}" },
+        {"field" : "endDate", "method" : "above", "value" : "{{:toDay}}" },
+        {"field" : "categoryId", "method" : "matching", "value" : "{{:categoryId}}" },
+        {"field" : "siteType", "method" : "matching", "value" : "all,{{:siteType}}" },
+        {"field" : "specialExhibitionStatus", "method" : "matching", "value" : "use" },
+        {"field" : "name", "method" : "matching", "value" : "{{:searchValue}}" },
+        {"includeReferenced" : false}
+      ]
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "specialExhibitionApi",
+    "apiId" : "view",
+    "apiName" : "기획전 조회_날짜조회필요",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "specialExhibitionAnker",
+      "query" : [
+        {"field" : "specialExhibitionId", "method" : "matching", "value" : "{{:specialExhibitionId}}" },
+        {"includeReferenced" : true, "referenceView" : "specialExhibitionId"},
+        {"field" : "specialExhibitionId", "method" : "referenceJoin", "value" : "specialExhibitionStatus_matching=use&categoryId_matching={{:categoryId}}&siteType_matching=all,{{:siteType}}" }
+      ]
+    }
+  },
+  {
+    "typeId" : "apiCategory",
+    "id" : "newProduct",
+    "categoryName" : "신상품 API",
+    "fileUrlFormat" : {
+       "default": "{{:getEnvValue(cluster.file-prefix, url)}}"
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "newProduct",
+    "apiId" : "facetData",
+    "apiName" : "신상품 리스트 facet",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "newProductMap",
+      "query" : [
+        {"field" : "newProductMapStatus", "method" : "matching", "value" : "y" },
+        {"field" : "newProductId", "method" : "referenceJoin", "value" : "newProductStatus_matching=y&siteType_matching={{:siteType}}&year_matching={{:year}}&month_matching={{:month}}" },
+        {"field" : "productId", "method" : "referenceJoin", "value" : "name_matching={{:searchValue}}&salePrice_fromto={{:salePrice}}" },
+        {"includeReferenced" : false},
+        {"pageSize": "1", "page": "1"},
+        {"facet":"categoryIds"}
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "newProduct",
+    "apiId": "list",
+    "apiName": "신상품 리스트",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "newProduct":{
+        "typeId": "newProduct",
+        "resultType" : "none",
+        "query" : [
+          {"field" : "newProductStatus", "method" : "matching", "value" : "y" },
+          {"field" : "siteType", "method" : "matching", "value" : "{{:siteType}}" },
+          {"field" : "year", "method" : "matching", "value" : "{{:year}}" },
+          {"field" : "month", "method" : "matching", "value" : "{{:month}}" },
+          {"limit": "1000"}
+        ]
+      },
+      "root": {
+        "typeId": "product",
+        "query": [
+          {
+            "field": "name",
+            "method": "matching",
+            "value": "{{:searchValue}}"
+          },
+          {
+            "field": "salePrice",
+            "method": "fromto",
+            "value": "{{:salePrice}}"
+          },
+          {
+            "field": "referencedNewProductMap",
+            "method": "hasReferenced",
+            "value": "newProductId={{:default(newProductId,_null_)}}&newProductMapStatus_matching=y&categoryIds_matching={{:categoryId}}"
+          },
+          {
+            "sorting": "{{:sorting}}"
+          },
+          {"includeReferenced" : "referencedMainImage"},
+          {"page" :"{{:page}}", "pageSize": "{{:pageSize}}", "limit": 1000}
+        ],
+        "response": {
+          "_all_": "",
+          "downloadableCoupon": {
+            "select": {
+              "ds": "jejuDevDb",
+              "resultType": "read",
+              "sql": "select count(*) as couponCount from ( SELECT couponTypeId FROM couponTypeToCategoryMap c, producttocategorymap p WHERE productId = @{productId} AND p.categoryId = c.categoryId GROUP BY couponTypeId union ALL select couponTypeId from couponTypeToProductMap WHERE productId = @{productId} ) a, coupontype b WHERE b.couponTypeId = a.couponTypeId AND b.couponType in ('product','category') AND b.siteType != IF(IFNULL(@{session.member.siteType}, 'company') = 'university', 'company', 'university') AND createPeriodType != 'stop' AND createStartDate <= now() AND createEndDate >= now()  "
+            }
+          }
+        }
+      }
+    }
+  }
+]

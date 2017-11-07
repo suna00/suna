@@ -1,0 +1,19 @@
+ [
+   {
+     "parentId": "root",
+     "typeId": "nodeType",
+     "tid": "mypagePath",
+     "typeName": "마이페이지 관리",
+     "repositoryType": "path",
+     "eviction": 0
+   },
+   {
+     "parentId": "mypagePath",
+     "typeId": "nodeType",
+     "tid": "writableReview",
+     "typeName": "작성가능한 리뷰",
+     "tableName": "jejuDevDb#mypageWritableReviewView",
+     "repositoryType": "data",
+     "eviction": 0
+   }
+ ]

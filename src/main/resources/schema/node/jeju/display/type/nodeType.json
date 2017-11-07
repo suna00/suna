@@ -1,0 +1,181 @@
+[
+  {
+    "parentId": "root",
+    "typeId": "nodeType",
+    "tid": "displayPath",
+    "typeName": "전시 관리",
+    "repositoryType": "path",
+    "eviction": 0
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "banner",
+    "typeName": "배너",
+    "tableName": "jejuDevDb#banner",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "bannerElement",
+    "typeName": "배너 구성",
+    "tableName": "jejuDevDb#bannerElement",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "bannerMap",
+    "typeName": "배너 매핑",
+    "tableName": "jejuDevDb#bannerMap",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "category",
+    "typeName": "카테고리",
+    "tableName": "jejuDevDb#category",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "gnb",
+    "typeName": "GNB",
+    "tableName": "jejuDevDb#gnb",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "popup",
+    "typeName": "팝업",
+    "tableName": "jejuDevDb#popup",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "productToCategoryMap",
+    "typeName": "카테고리 상품 매핑",
+    "tableName": "jejuDevDb#productToCategoryMap",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "referenceProduct",
+    "typeName": "참조 상품",
+    "tableName": "jejuDevDb#referenceProduct",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "newProductMap",
+    "typeName": "신상품 매핑",
+    "tableName": "jejuDevDb#newProductMap",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "newProduct",
+    "typeName": "신상품",
+    "tableName": "jejuDevDb#newProduct",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "productToThemeMap",
+    "typeName": "테마 상품 매핑",
+    "tableName": "jejuDevDb#producttothememap",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "theme",
+    "typeName": "테마",
+    "tableName": "jejuDevDb#theme",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "categoryBanner",
+    "typeName": "카테고리 배너",
+    "tableName": "jejuDevDb#categoryBanner",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "mainBanner",
+    "typeName": "메인 배너",
+    "tableName": "jejuDevDb#mainBanner",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "beltBanner",
+    "typeName": "띠 배너",
+    "tableName": "jejuDevDb#beltBanner",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "beltBannerElement",
+    "typeName": "띠 배너 구성",
+    "tableName": "jejuDevDb#beltBannerElement",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "singleBanner",
+    "typeName": "독립 배너",
+    "tableName": "jejuDevDb#singleBanner",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "displayBanner",
+    "typeName": "전시 배너",
+    "tableName": "jejuDevDb#displayBanner",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "displayBannerElement",
+    "typeName": "전시 배너 구성",
+    "tableName": "jejuDevDb#displayBannerElement",
+    "repositoryType": "node",
+    "eviction": 0
+  }
+]

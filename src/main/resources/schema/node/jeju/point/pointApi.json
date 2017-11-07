@@ -1,0 +1,29 @@
+[
+  {
+    "typeId": "apiCategory",
+    "id": "YPoint",
+    "categoryName": "YPoint API",
+    "fileUrlFormat" : {
+       "default": "{{:getEnvValue(cluster.file-prefix, url)}}"
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "YPoint",
+    "apiId": "summary",
+    "apiName": "Y포인트 리스트 상단 서머리",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "item": {
+        "select": {
+          "ds": "jejuDevDb",
+          "resultType": "read",
+          "description": "Y포인트 리스트 상단 서머리",
+          "sql": "SELECT IFNULL(sum(IF(YPointType != 'tobe', balance, 0)), 0) AS useableYPoint, IFNULL(sum(IF(YPointType = 'tobe', balance, 0)), 0) AS tobeYPoint, IFNULL(sum(IF((adddate(now(), INTERVAL 1 MONTH) >= endDate), balance, 0)), 0) AS expiringYPoint FROM ypoint WHERE memberNo = @{session.member.memberNo} "
+        }
+      }
+    }
+  }
+]

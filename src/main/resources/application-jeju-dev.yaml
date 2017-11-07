@@ -30,9 +30,9 @@ jwtConfig:
   refreshTokenExpTime: 1800 #분
 
 cluster:
-  api-prefix: http://test.ygoon.com:8080/
-  front-prefix: http://test.ygoon.com:8888/
-  file-prefix: http://test.ygoon.com:8888/
+  api-prefix: http://localhost:8080/
+  front-prefix: http://localhost:8080/
+  file-prefix: http://localhost:8080/
   mode: all
   groups: all
   members:
@@ -56,8 +56,8 @@ file:
   default:
     path: /resource/ice2/files
 
-sweettracker:
-  trackingApi: https://dev-tracking-api.sweettracker.net/add_invoice
-  tier: jeju
-  key: LaTfL9LcqSZKG6maH6OPhQ
-  callbackUrl: http://test.ygoon.com:8080/node/orderDeliveryPrice/event/sweettrackerGetData
+#sweettracker:
+#  trackingApi: https://dev-tracking-api.sweettracker.net/add_invoice
+#  tier: jeju
+#  key: LaTfL9LcqSZKG6maH6OPhQ
+#  callbackUrl: http://localhost:8080/node/orderDeliveryPrice/event/sweettrackerGetData

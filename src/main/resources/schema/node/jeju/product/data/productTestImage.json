@@ -1,0 +1,50 @@
+[
+  {
+    "typeId": "commonResource",
+    "commonResourceId": 20,
+    "tid": "product",
+    "contentsId": 65190,
+    "file": "classpath:schema/node/jeju/product/file/65190.jpeg",
+    "name": "main"
+  },
+  {
+    "typeId": "commonResource",
+    "commonResourceId": 21,
+    "tid": "product",
+    "contentsId": 65191,
+    "file": "classpath:schema/node/jeju/product/file/65191.jpeg",
+    "name": "main"
+  },
+  {
+    "typeId": "commonResource",
+    "commonResourceId": 22,
+    "tid": "product",
+    "contentsId": 65192,
+    "file": "classpath:schema/node/jeju/product/file/65192.jpeg",
+    "name": "main"
+  },
+  {
+    "typeId": "commonResource",
+    "commonResourceId": 23,
+    "tid": "product",
+    "contentsId": 65193,
+    "file": "classpath:schema/node/jeju/product/file/65193.jpeg",
+    "name": "main"
+  },
+  {
+    "typeId": "commonResource",
+    "commonResourceId": 24,
+    "tid": "product",
+    "contentsId": 65194,
+    "file": "classpath:schema/node/jeju/product/file/65194.jpeg",
+    "name": "main"
+  },
+  {
+    "typeId": "commonResource",
+    "commonResourceId": 25,
+    "tid": "product",
+    "contentsId": 65195,
+    "file": "classpath:schema/node/jeju/product/file/65195.jpeg",
+    "name": "main"
+  }
+]

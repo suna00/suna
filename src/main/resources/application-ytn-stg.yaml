@@ -1,6 +1,6 @@
 # YTN 개발 서버
 spring:
-  profiles: ytn-stg
+  profiles: jeju-stg
   http:
     multipart:
       max-request-size: 20MB
@@ -62,6 +62,6 @@ file:
 
 sweettracker:
   tracking-api: https://dev-tracking-api.sweettracker.net/add_invoice
-  tier: ytn
+  tier: jeju
   key: LaTfL9LcqSZKG6maH6OPhQ
   callbackUrl: http://tapi.ygoon.com/node/orderDeliveryPrice/event/sweettrackerGetData

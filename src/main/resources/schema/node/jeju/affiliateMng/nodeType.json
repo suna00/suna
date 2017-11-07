@@ -1,0 +1,74 @@
+[
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "affiliateMall",
+    "typeName": "제휴몰",
+    "tableName": "jejuDevDb#affiliateMall",
+    "repositoryType": "node",
+    "eviction": 500
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "affiliate",
+    "typeName": "제휴사",
+    "tableName": "jejuDevDb#affiliate",
+    "repositoryType": "node",
+    "eviction": 500
+  },
+  {
+    "parentId": "productPath",
+    "typeId": "nodeType",
+    "tid": "affiliateMallProduct",
+    "typeName": "제휴몰 상품",
+    "tableName": "jejuDevDb#affiliateMallProduct",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "affiliateMallOrderSheet",
+    "typeName": "제휴몰 주문서",
+    "tableName": "jejuDevDb#affiliateMallOrderSheet",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "affiliateMallOrderSheetHistory",
+    "typeName": "제휴몰 주문서 이력",
+    "tableName": "jejuDevDb#affiliateMallOrderSheetHistory",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "affiliateMallOrderProduct",
+    "typeName": "제휴몰 주문서 상품",
+    "tableName": "jejuDevDb#affiliateMallOrderProduct",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "affiliateMallOrderChange",
+    "typeName": "제휴몰 주문 변경",
+    "tableName": "jejuDevDb#affiliateMallOrderChange",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "orderPath",
+    "typeId": "nodeType",
+    "tid": "affiliateMallOrderChangeProduct",
+    "typeName": "제휴몰 주문 변경 상품",
+    "tableName": "jejuDevDb#affiliateMallOrderChangeProduct",
+    "repositoryType": "data",
+    "eviction": 0
+  }
+]

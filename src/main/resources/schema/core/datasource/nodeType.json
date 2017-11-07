@@ -14,7 +14,7 @@
     "parentId" : "system",
     "typeId" : "nodeType",
     "repositoryType" : "node",
-    "tableName": "ytnDevDb#datasequence",
+    "tableName": "jejuDevDb#datasequence",
     "typeName" : "Data Sequence"
   }
 ]

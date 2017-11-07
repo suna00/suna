@@ -1,0 +1,28 @@
+[
+  {
+    "parentId": "root",
+    "typeId": "nodeType",
+    "tid": "commonPath",
+    "typeName": "공통 관리",
+    "repositoryType": "path",
+    "eviction": 0
+  },
+  {
+    "parentId": "commonPath",
+    "typeId": "nodeType",
+    "tid": "commonMemo",
+    "typeName": "메모",
+    "tableName": "jejuDevDb#commonMemo",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "commonPath",
+    "typeId": "nodeType",
+    "tid": "commonResource",
+    "typeName": "리소스",
+    "tableName": "jejuDevDb#commonResource",
+    "repositoryType": "node",
+    "eviction": 100000
+  }
+]

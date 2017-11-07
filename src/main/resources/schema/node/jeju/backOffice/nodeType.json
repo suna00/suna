@@ -1,0 +1,208 @@
+[
+  {
+    "parentId": "root",
+    "typeId": "nodeType",
+    "tid": "backOfficePath",
+    "typeName": "BackOffice",
+    "repositoryType": "path",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "brand",
+    "typeName": "브랜드",
+    "tableName": "jejuDevDb#brand",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "subContactPerson",
+    "typeName": "서브담당자",
+    "tableName": "jejuDevDb#subContactPerson",
+    "repositoryType": "node",
+    "eviction": 1000
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "collectRank",
+    "typeName": "랭킹 수집",
+    "tableName": "jejuDevDb#collectRank",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "emailSendingHistory",
+    "typeName": "이메일 발송내역",
+    "tableName": "jejuDevDb#emailSendingHistory",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "emailTemplate",
+    "typeName": "이메일 템플릿",
+    "tableName": "jejuDevDb#emailTemplate",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "eventPrizeWinner",
+    "typeName": "이벤트 당첨자",
+    "tableName": "jejuDevDb#eventPrizeWinner",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "gradingRules",
+    "typeName": "등급별 적립 룰",
+    "tableName": "jejuDevDb#gradingRules",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "menu",
+    "typeName": "admin 메뉴",
+    "tableName": "jejuDevDb#menu",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "operatingScorePolicy",
+    "typeName": "운영 점수 정책",
+    "tableName": "jejuDevDb#operatingScorePolicy",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "deliveryEnterprise",
+    "typeName": "택배사",
+    "tableName": "jejuDevDb#deliveryEnterprise",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "site",
+    "typeName": "사이트",
+    "tableName": "jejuDevDb#site",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "smsSendingHistory",
+    "typeName": "SMS 발송내역",
+    "tableName": "jejuDevDb#smsSendingHistory",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "smsTemplate",
+    "typeName": "SMS 템플릿",
+    "tableName": "jejuDevDb#smsTemplate",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "smsCertification",
+    "typeName": "SMS 인증 이력",
+    "tableName": "jejuDevDb#smsCertification",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "productApprovalHistory",
+    "typeName": "상품 승인 이력",
+    "tableName": "jejuDevDb#productApprovalHistory",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "productBulkRegistration",
+    "typeName": "상품일괄등록 내역",
+    "tableName": "jejuDevDb#productBulkRegistration",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "productBulkRegistrationFailed",
+    "typeName": "상품일괄등록 실패케이스",
+    "tableName": "jejuDevDb#productBulkRegistrationFailed",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "productOptionByVendor",
+    "typeName": "벤더별 상품옵션설정",
+    "tableName": "jejuDevDb#productOptionByVendor",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "affliateRequest",
+    "typeName": "제휴 신청서",
+    "tableName": "jejuDevDb#affliateRequest",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "newStoreRequest",
+    "typeName": "입점 신청서",
+    "tableName": "jejuDevDb#newStoreRequest",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "emailCertification",
+    "typeName": "이메일 인증",
+    "tableName": "jejuDevDb#emailCertification",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "productViewHistory",
+    "typeName": "상품 조회 이력",
+    "tableName": "jejuDevDb#productViewHistory",
+    "repositoryType": "data",
+    "eviction": 0
+  }
+]

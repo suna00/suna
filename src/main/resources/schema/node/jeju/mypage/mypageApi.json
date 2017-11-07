@@ -1,0 +1,120 @@
+[
+  {
+    "typeId": "apiCategory",
+    "id": "mypage",
+    "categoryName": "마이페이지",
+    "fileUrlFormat" : {
+       "default": "{{:getEnvValue(cluster.file-prefix, url)}}"
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "mypage",
+    "apiId": "mainSummary",
+    "apiName": "마이페이지 메인 상단 서머리 대학(마일리지/쿠폰), 기업(마일리지/복지포인트/쿠폰)",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "item": {
+        "select": {
+          "ds": "jejuDevDb",
+          "resultType": "read",
+          "description": "Y포인트 리스트 상단 서머리",
+          "sql": "SELECT name, membershipLevel, date_format(now(),'%m') as month,(SELECT IFNULL(sum(balance), 0) AS useableYPoint FROM ypoint WHERE memberNo = @{session.member.memberNo} AND YPointType != 'tobe')                 AS useableYPoint, (SELECT IFNULL(sum(balance), 0) AS useableWelfarepoint FROM welfarepoint WHERE memberNo = @{session.member.memberNo})                                           AS useableWelfarepoint, (SELECT IFNULL(count(*), 0) AS haveCoupon FROM coupon WHERE memberNo = @{session.member.memberNo} AND couponStatus='n' AND endDate >= now()) AS haveCoupon from member where memberNo = @{session.member.memberNo}"
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "mypage",
+    "apiId": "orderStatus",
+    "apiName": "마이페이지 메인 주문 현황",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "item": {
+        "select": {
+          "ds": "jejuDevDb",
+          "resultType": "read",
+          "description": "마이페이지 메인 주문 현황",
+          "sql": "SELECT a.memberNo, sum(orderStatus in ('order001','order002')) as orderReception, sum(orderStatus = 'order003') as completePayment, sum(orderStatus = 'order004') as preparingProduct, sum(orderStatus = 'order005') as delivering, sum(orderStatus = 'order006') as completeDelivery, (select count(*) from mypagewritablereviewview where memberNo = @{session.member.memberNo}) as writableReview, sum(orderStatus >= 'order008') as cancelExchangeReturn from ordersheet a, orderproduct b where a.memberNo=@{session.member.memberNo} and a.orderSheetId = b.orderSheetId group by a.memberNo "
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "mypage",
+    "apiId": "writableReview",
+    "apiName": "작성가능한 리뷰",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config" : {
+      "typeId": "writableReview",
+      "query" : [
+        {"field" : "memberNo", "method" : "matching", "value" : "{{:session.member.memberNo}}" },
+        {"includeReferenced" : true, "referenceView" : "productId, baseOptionItemId"},
+        {"sorting" : "orderCreated desc", "pageSize": "{{:pageSize}}", "page": "{{:page}}"}
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "mypage",
+    "apiId": "writtenReview",
+    "apiName": "작성한 리뷰",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config" : {
+      "typeId": "review",
+      "query" : [
+        {"field" : "memberNo", "method" : "matching", "value" : "{{:session.member.memberNo}}" },
+        {"includeReferenced" : true, "referenceView" : "orderProductId,productId"},
+        {"sorting" : "orderSheetId desc", "pageSize": "{{:pageSize}}", "page": "{{:page}}"}
+      ]
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "mypage",
+    "apiId": "membershipLevel",
+    "apiName": "회원등급",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config" : {
+      "item": {
+        "select": {
+          "ds": "jejuDevDb",
+          "resultType": "read",
+          "description": "회원등급 구매횟수, 구매금액, 산정기간",
+          "sql": "select memberNo, name, userId, membershipLevel, purchaseCount, purchasePrice , concat(DATE_FORMAT(now(), '%Y'),'.01.01') as startDate , DATE_FORMAT(now(), '%Y.%m.%d') as endDate from member WHERE memberNo=@{session.member.memberNo} "
+        }
+      }
+    }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "mypage",
+    "apiId": "accountNumberValidation",
+    "apiName": "계좌조회",
+    "method": "POST",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "member",
+      "noneExecute": true,
+      "event" : "accountNumberValidation",
+      "data": {
+        "name": "{{:name}}",
+        "accountNumber": "{{:accountNumber}}",
+        "bankCode": "{{:bankCode}}"
+      }
+    }
+  }
+]

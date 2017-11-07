@@ -1,0 +1,73 @@
+[
+  {
+    "parentId": "root",
+    "typeId": "nodeType",
+    "tid": "deliveryPath",
+    "typeName": "배송 관리",
+    "repositoryType": "path",
+    "eviction": 0
+  },
+  {
+    "parentId": "deliveryPath",
+    "typeId": "nodeType",
+    "tid": "cartDeliveryPrice",
+    "typeName": "장바구니 배송비",
+    "tableName": "jejuDevDb#cartDeliveryPrice",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "deliveryPath",
+    "typeId": "nodeType",
+    "tid": "delivery",
+    "typeName": "배송 정보",
+    "tableName": "jejuDevDb#delivery",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "deliveryPath",
+    "typeId": "nodeType",
+    "tid": "myDeliveryAddress",
+    "typeName": "나의 배송지",
+    "tableName": "jejuDevDb#myDeliveryAddress",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "deliveryPath",
+    "typeId": "nodeType",
+    "tid": "orderDeliveryPrice",
+    "typeName": "주문서 배송비",
+    "tableName": "jejuDevDb#orderDeliveryPrice",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "deliveryPath",
+    "typeId": "nodeType",
+    "tid": "tempOrderDeliveryPrice",
+    "typeName": "임시 주문 배송비",
+    "tableName": "jejuDevDb#tempOrderDeliveryPrice",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "deliveryPath",
+    "typeId": "nodeType",
+    "tid": "orderChangeDeliveryPrice",
+    "typeName": "주문 변경 배송비",
+    "tableName": "jejuDevDb#orderChangeDeliveryPrice",
+    "repositoryType": "data",
+    "eviction": 0
+  },
+  {
+    "parentId": "deliveryPath",
+    "typeId": "nodeType",
+    "tid": "deliveryTrackingInfo",
+    "typeName": "배송추적정보",
+    "tableName": "jejuDevDb#deliveryTrackingInfo",
+    "repositoryType": "data",
+    "eviction": 0
+  }
+]
