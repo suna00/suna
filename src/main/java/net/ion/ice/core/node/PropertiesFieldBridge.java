@@ -106,8 +106,13 @@ public class PropertiesFieldBridge implements FieldBridge {
 
                     if(propertyType.getValueType() == PropertyType.ValueType.REFERENCE){
                         if(propertyType.getAnalyzerType() == PropertyType.AnalyzerType.code && StringUtils.contains(entry.getValue().toString(), ">")){
-                            String val = entry.getValue().toString() + "," + StringUtils.substringAfterLast(entry.getValue().toString(), ">") ;
-                            document.add(getKeywordField(propertyType, pid, val));
+                            if(StringUtils.isNotEmpty(propertyType.getCodeFilter())){
+                                String val = StringUtils.substringAfterLast(entry.getValue().toString(), ">") ;
+                                document.add(getKeywordField(propertyType, pid, val));
+                            }else {
+                                String val = entry.getValue().toString() + "," + StringUtils.substringAfterLast(entry.getValue().toString(), ">");
+                                document.add(getKeywordField(propertyType, pid, val));
+                            }
                         }else{
                             document.add(getKeywordField(propertyType, pid, entry.getValue().toString()));
                         }

@@ -1,6 +1,7 @@
 package net.ion.ice.core.node;
 
 
+import net.ion.ice.core.cluster.ClusterUtils;
 import net.ion.ice.core.context.QueryContext;
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
 import net.ion.ice.core.response.JsonResponse;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 @Controller
 public class NodeHelperController {
@@ -117,4 +119,22 @@ public class NodeHelperController {
             return JsonResponse.error(e) ;
         }
     }
+    @RequestMapping(value = "/helper/cache", method = RequestMethod.GET)
+    @ResponseBody
+    public Object cache(HttpServletRequest request, @RequestParam String typeId, @RequestParam String id, @RequestParam String server){
+        try {
+            logger.info("Cache Sync : {}.{} ", typeId, id);
+            Map<String, Object> data = ClusterUtils.callNode(server, typeId, id) ;
+            if(data != null) {
+                Node node = new Node(data);
+                NodeUtils.getInfinispanService().cacheNode(node);
+                return node ;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return JsonResponse.error(e) ;
+        }
+        return null ;
+    }
+
 }

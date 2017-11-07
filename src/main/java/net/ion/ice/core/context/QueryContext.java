@@ -2,6 +2,7 @@ package net.ion.ice.core.context;
 
 import net.ion.ice.core.api.ApiException;
 import net.ion.ice.core.cluster.ClusterUtils;
+import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.*;
 import net.ion.ice.core.query.*;
 import org.apache.commons.lang3.StringUtils;
@@ -63,10 +64,45 @@ public class QueryContext extends ReadContext {
         ReadContext.makeContextFromParameter(parameterMap, nodeType, queryContext);
 
         queryContext.makeQueryTerm(nodeType) ;
-
         queryContext.makeSearchFields() ;
+        queryContext.makeAuthorityQuery() ;
 
         return queryContext;
+    }
+
+    public void makeAuthorityQuery() {
+        if(StringUtils.isNotEmpty(getNodeType().getAuthorityRuleString())){
+            Object authorityRule = getNodeType().getAuthorityRule() ;
+            if(authorityRule instanceof Map){
+                for(String key : ((Map<String, Object>) authorityRule).keySet()){
+                    QueryTerm term = new QueryTerm(getQueryTermType(), key,
+                            "matchingShould",
+                            JsonUtils.getStringValue((Map<String, Object>) RequestDataHolder.getRequestData().get("session"), ((Map) authorityRule).get(key).toString()));
+                    addQueryTerm(term);
+                }
+            }else if(authorityRule instanceof List){
+                for(Map<String, Object> authRule : (List<Map<String, Object>>) authorityRule){
+                    if(authRule.containsKey("role")){
+                        String role = JsonUtils.getStringValue(RequestDataHolder.getRequestData(), "session.role");
+                        List<String> roles = Arrays.asList(StringUtils.split(role, ","));
+                        if(roles.contains(authRule.get("role"))){
+                            QueryTerm term = new QueryTerm(getQueryTermType(), (String) authRule.get("pid"), "code", (String) authRule.get("method"),
+                                    JsonUtils.getStringValue((Map<String, Object>) RequestDataHolder.getRequestData(), ((Map) authorityRule).get("value").toString()), null);
+                            addQueryTerm(term);
+                        }
+
+                    }
+                }
+            }
+        }
+        if(getNodeType().hasAuthority()){
+            String role = JsonUtils.getStringValue(RequestDataHolder.getRequestData(), "session.role");
+            if(StringUtils.isEmpty(role)){
+                role = Node.ANONYMOUS;
+            }
+            QueryTerm term = new QueryTerm(getQueryTermType(), "authority", "code", "matching", role, null);
+            addQueryTerm(term);
+        }
     }
 
     public void makeQueryTerm(NodeType nodeType) {
@@ -118,13 +154,17 @@ public class QueryContext extends ReadContext {
             }
         }
         queryContext.setQueryTerms(queryTerms);
-        queryContext.setMaxSize("10000");
+        queryContext.makeAuthorityQuery() ;
+
+        queryContext.setMaxSize("100000");
         return queryContext;
     }
 
     public static QueryContext createQueryContextFromTerms(List<QueryTerm> queryTerms, NodeType nodeType) {
         QueryContext queryContext = new QueryContext(nodeType);
         queryContext.setQueryTerms(queryTerms);
+        queryContext.makeAuthorityQuery() ;
+
         return queryContext;
     }
 
@@ -295,6 +335,9 @@ public class QueryContext extends ReadContext {
 
 
     public Integer getPageSize() {
+        if(pageSize == null){
+            pageSize = 10;
+        }
         return pageSize;
     }
 
@@ -306,12 +349,12 @@ public class QueryContext extends ReadContext {
 
         if (paging) {
             if(this.resultType != null && this.resultType == ResultField.ResultType.NAVIREAD){
-                int start =  (currentPage - 1) * pageSize;
+                int start =  (currentPage - 1) * getPageSize();
                 if(start >0){
                     return start - 1;
                 }
             }
-            return (currentPage - 1) * pageSize;
+            return (currentPage - 1) * getPageSize();
         }
         return 0;
     }
@@ -371,6 +414,8 @@ public class QueryContext extends ReadContext {
         }
 
         queryContext.setQueryTerms(queryTerms);
+//        queryContext.makeAuthorityQuery() ;
+
         queryContext.setIncludeReferenced(true);
         return queryContext;
 
@@ -387,6 +432,8 @@ public class QueryContext extends ReadContext {
         QueryUtils.makeQueryTerm(nodeType, queryContext, queryTerms, pt.getPid()+"_matching", value);
 
         queryContext.setQueryTerms(queryTerms);
+        queryContext.makeAuthorityQuery() ;
+
         return queryContext;
     }
 
@@ -410,6 +457,7 @@ public class QueryContext extends ReadContext {
         QueryUtils.makeQueryTerm(refNodeType, queryContext, queryTerms, idPids.get(0), value);
 
         queryContext.setQueryTerms(queryTerms);
+
         return queryContext;
 
     }
@@ -667,6 +715,7 @@ public class QueryContext extends ReadContext {
                     }
                     facets.put(facetTerm.getName(), facet);
                 }
+                facets.put(facetTerm.getName(), facet);
             }
             queryResult.put("facets", facets) ;
         }
