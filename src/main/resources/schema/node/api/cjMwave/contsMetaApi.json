@@ -1471,6 +1471,11 @@
           "value": "{{:searchKeyword}}"
         },
         {
+          "field": "isUse",
+          "method": "matching",
+          "value": "true"
+        },
+        {
           "sorting": "{{:sorting}}"
         },
         {
@@ -1731,6 +1736,11 @@
           "field": "searchKeyword",
           "method": "matchingShould",
           "value": "{{:searchKeyword}}"
+        },
+        {
+          "field": "isUse",
+          "method": "matching",
+          "value": "true"
         },
         {
           "sorting": "{{:sorting}}"
