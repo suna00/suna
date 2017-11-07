@@ -195,7 +195,7 @@
     "typeId" : "adminGnbMenu",
     "backOfficeId": "ven",
     "menuId": "vendorMng",
-    "menuName": "분석/통계",
+    "menuName": "벤더업체 정보",
     "order": "70",
     "icon": "",
     "active": "true",
