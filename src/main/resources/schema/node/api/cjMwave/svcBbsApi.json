@@ -109,7 +109,8 @@
         "event": "view",
         "data":{
           "ntfBbsSeq":"{{:ntfBbsSeq}}",
-          "ntfLargeCtgCd":""
+          "ntfLargeCtgCd":"",
+          "svcTermlDivCd":""
         },
         "response":{
           "hitNum":""
