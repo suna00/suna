@@ -696,6 +696,10 @@
       "typeId": "news",
       "resultType": "none",
       "event": "view",
+      "data":{
+        "newsId":"{{:newsId}}",
+        "langCd":""
+      },
       "response": {
         "hitNum": ""
       }
