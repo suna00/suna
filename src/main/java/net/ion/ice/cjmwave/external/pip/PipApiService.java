@@ -6,6 +6,7 @@ import net.ion.ice.cjmwave.external.utils.JSONNetworkUtils;
 import net.ion.ice.cjmwave.external.utils.MigrationUtils;
 import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.file.TolerableMissingFileException;
+import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -134,6 +135,13 @@ public class PipApiService {
                 break;
             case "pgmVideo" :
 
+                Node pgmVideoNode = null;
+                try{
+                    pgmVideoNode = nodeService.getNode("pgmVideo", String.valueOf(data.get("programid")));
+                } catch (Exception e) {
+                    logger.debug("Node Not found could happen", e);
+                }
+
                 transformed.put("programId", data.get("programid"));
                 transformed.put("contentId", data.get("contentid"));
                 transformed.put("contentTitle", data.get("contenttitle"));
@@ -161,8 +169,9 @@ public class PipApiService {
                 modifyDateStr = String.valueOf(data.get("modifydate"));
                 transformed.put("modifyDate", parse14(modifyDateStr));
 
-                transformed.put("contentImgUrl", data.get("contentimg"));
-                transformed.put("contentImgPip", data.get("contentimg"));
+//                transformed.put("contentImgUrl", data.get("contentimg"));
+                // 생성일 때만 넣을 수 있도록 합니다.
+                if(pgmVideoNode == null) transformed.put("contentImgPip", data.get("contentimg"));
 
                 transformed.put("playTime", data.get("playtime"));
                 transformed.put("targetAge", data.get("targetage"));
