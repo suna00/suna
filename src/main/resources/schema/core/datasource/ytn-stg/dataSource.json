@@ -1,7 +1,7 @@
 [
   {
     "typeId": "datasource",
-    "id": "jejuDevDb",
+    "id": "ytnDevDb",
     "profiles": "dev",
     "ssl" : false,
     "dsName": "YTN Dev DB",

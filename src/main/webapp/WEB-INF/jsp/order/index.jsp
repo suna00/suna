@@ -1713,7 +1713,7 @@
                             <li>사업자 등록번호 : 102-81-32883</li>
                             <li>통신판매업 : 마포 1507 <a href="javascript:void(0);" target="_blank">[사업자번호 확인하기]</a></li>
                             <li>전화 : 02-398-8880 팩스 : 02-398-8359</li>
-                            <li>이메일 : csmaster@ytn.co.kr</li>
+                            <li>이메일 : csmaster@i-on.net</li>
                             <li>개인정보책임관리자 : 이교준</li>
                             <li>copyright (c) 2017 (주)와이티엔. all rights reserved.</li>
                         </ul>
@@ -1722,7 +1722,7 @@
                         <p class="cs_info_tit">고객센터</p>
                         <div class="cs_info_phone">
                             <span class="mont">02-398-8880</span>
-                            <span class="mont">csmaster@ytn.co.kr</span>
+                            <span class="mont">csmaster@i-on.net</span>
                         </div>
                         <ul>
                             <li>평일 09:00~18:00</li>

@@ -214,7 +214,7 @@
       "label": "와이티엔",
       "refId": "120"
     },
-    "userId": "company@ytn.co.kr",
+    "userId": "company@i-on.net",
     "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
     "siteType": {
       "value": "company",
@@ -247,7 +247,7 @@
     "postCode": "135-080",
     "address": "서울특별시 강남구 테헤란로 10길 15 (역삼동)",
     "detailedAddress": "5",
-    "email": "testCompany@ytn.co.kr",
+    "email": "testCompany@i-on.net",
     "fax": null,
     "termsOfUseAgreeYn": null,
     "receiveMarketingEmailAgreeYn": null,
@@ -284,7 +284,7 @@
       "label": "와이티엔",
       "refId": "120"
     },
-    "userId": "university@ytn.co.kr",
+    "userId": "university@i-on.net",
     "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
     "siteType": {
       "value": "company",

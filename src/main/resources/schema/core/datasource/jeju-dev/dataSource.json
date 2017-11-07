@@ -7,7 +7,7 @@
     "dsName": "JEJU DFS Dev DB",
     "jdbcUrl": "jdbc:oracle:thin:@125.131.88.69:8200:ORCL",
     "dbType": "oracle",
-    "username": "iceuser",
-    "password": "iceuser"
+    "username": "ICE2",
+    "password": "ICE2"
   }
 ]
