@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.*;
 
-@Service("ArtistVoteStatsByCntryTask")
+@Service("artistVoteStatsByCntryTask")
 public class ArtistVoteStatsByCntryTask {
 
     private static Logger logger = LoggerFactory.getLogger(ArtistVoteStatsByCntryTask.class);
@@ -66,10 +66,10 @@ public class ArtistVoteStatsByCntryTask {
 //        String sVoteEnd     = "20171023";
 
         // 셩별로 나눠어진 artist sex voteNum 맵 을 관리
-        Map<String, Map<ArtistCntryVO,ArtistCntryVO>> allArtistMapBySex = new HashMap<String, Map<ArtistCntryVO,ArtistCntryVO>>();
+        Map<String, Map<ArtistCntryVO,ArtistCntryVO>> allArtistMapByCntry = new HashMap<String, Map<ArtistCntryVO,ArtistCntryVO>>();
 
         // 성별 카운트 저장
-        Map<String, BigDecimal> hmTolCountPerCntrycd = new HashMap<String, BigDecimal>();
+        Map<String, BigDecimal> hmTolCountPerCntry = new HashMap<String, BigDecimal>();
 
         // 전체 카운트 ... 참고
         BigDecimal totalVoteNum = new BigDecimal(0);
@@ -92,14 +92,14 @@ public class ArtistVoteStatsByCntryTask {
                     if( cntryCd.toLowerCase().equals("thailand")) cntryCd = "Thailand";
                     logger.info("[cntryCd] " + cntryCd + " [artistId] " + artistCntryCntResultMap.get("artistId") + " [voteNum] " + voteNum);
 
-                    BigDecimal bcCountPerCntry = hmTolCountPerCntrycd.get(cntryCd);
+                    BigDecimal bcCountPerCntry = hmTolCountPerCntry.get(cntryCd);
                     if( bcCountPerCntry == null ) bcCountPerCntry = new BigDecimal(0);
                     bcCountPerCntry = bcCountPerCntry.add(voteNum);
-                    hmTolCountPerCntrycd.put(cntryCd, bcCountPerCntry);
+                    hmTolCountPerCntry.put(cntryCd, bcCountPerCntry);
 
                     // 해당성별의 HashMap이 있는지 파악
                     // 해당성별의 artist 별 voteNum
-                    Map<ArtistCntryVO,ArtistCntryVO> artistCntryVOMap = allArtistMapBySex.get(artistCntryCntResultMap.get("cntryCd"));
+                    Map<ArtistCntryVO,ArtistCntryVO> artistCntryVOMap = allArtistMapByCntry.get(artistCntryCntResultMap.get("cntryCd"));
                     if( artistCntryVOMap == null ) artistCntryVOMap = new HashMap<ArtistCntryVO,ArtistCntryVO>();
 
                     ArtistCntryVO artistCntryVO = new ArtistCntryVO();
@@ -115,25 +115,25 @@ public class ArtistVoteStatsByCntryTask {
                         ArtistCntryVO2.setVoteNum(ArtistCntryVO2.getVoteNum().add(voteNum));
                         artistCntryVOMap.put(ArtistCntryVO2, ArtistCntryVO2);
                     }
-                    allArtistMapBySex.put(cntryCd, artistCntryVOMap);
+                    allArtistMapByCntry.put(cntryCd, artistCntryVOMap);
                 }
             }
         }
-        Iterator iter1 = hmTolCountPerCntrycd.keySet().iterator();
+        Iterator iter1 = hmTolCountPerCntry.keySet().iterator();
         while( iter1.hasNext() ) {
             String cntryCd = (String)iter1.next();
-            logger.info("[cntryCd " + cntryCd + "] " + hmTolCountPerCntrycd.get(cntryCd).intValue());
+            logger.info("[cntryCd " + cntryCd + "] " + hmTolCountPerCntry.get(cntryCd).intValue());
         }
 
         logger.info("deleteArtistVoteStatsByCntry ");
         deleteArtistVoteStatsByCntry(sVoteStart);
 
-        Iterator iter = allArtistMapBySex.keySet().iterator();       // 국가별...............
+        Iterator iter = allArtistMapByCntry.keySet().iterator();       // 국가별...............
         while(iter.hasNext()) {
             String countryCd = (String)iter.next();
-            BigDecimal currentVoteNumCntBySex = hmTolCountPerCntrycd.get(countryCd);
+            BigDecimal currentVoteNumCntBySex = hmTolCountPerCntry.get(countryCd);
 
-            Map<ArtistCntryVO,ArtistCntryVO> ArtistCntryVOMap = allArtistMapBySex.get(countryCd);
+            Map<ArtistCntryVO,ArtistCntryVO> ArtistCntryVOMap = allArtistMapByCntry.get(countryCd);
             List<ArtistCntryVO> ArtistCntryVOList = new ArrayList<ArtistCntryVO>(ArtistCntryVOMap.values());
 
             // 정렬
