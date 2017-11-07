@@ -4,20 +4,23 @@
     "id": "adm",
     "name": "통합 관리자",
     "order": "10",
-    "active": "true"
+    "active": "true",
+    "authority": "system,admin"
   },
   {
     "typeId" : "backOffice",
     "id": "aff",
     "name": "제휴사",
     "order": "20",
-    "active": "true"
+    "active": "true",
+    "authority": "system,affiliate"
   },
   {
     "typeId" : "backOffice",
     "id": "ven",
     "name": "벤더",
     "order": "30",
-    "active": "true"
+    "active": "true",
+    "authority": "system,vendor"
   }
 ]

@@ -23,6 +23,9 @@
     "typeName": "1대1문의(VIEW)",
     "tableName": "ytnDevDb#oneToOneQuestionView",
     "repositoryType": "data",
+    "authorityRule": [
+      {"role":"vendor", "pid":"vendorId", "method":"matching", "value":"session.user.vendorId"}
+    ],
     "eviction": 0
   },
   {
@@ -50,6 +53,9 @@
     "typeName": "QNA 질문(VIEW)",
     "tableName": "ytnDevDb#productQuestionView",
     "repositoryType": "data",
+    "authorityRule": [
+      {"role":"vendor", "pid":"vendorId", "method":"matching", "value":"session.user.vendorId"}
+    ],
     "eviction": 0
   },
   {
@@ -77,6 +83,9 @@
     "typeName": "상품평(VIEW)",
     "tableName": "ytnDevDb#reviewView",
     "repositoryType": "data",
+    "authorityRule": [
+      {"role":"vendor", "pid":"vendorId", "method":"matching", "value":"session.user.vendorId"}
+    ],
     "eviction": 0
   },
   {

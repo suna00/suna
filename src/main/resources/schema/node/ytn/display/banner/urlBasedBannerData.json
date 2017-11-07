@@ -1,0 +1,54 @@
+[
+  {
+    "typeId": "urlBasedBanner",
+    "urlBasedBannerId": "1",
+    "urlBasedBannerType": "login",
+    "url": "",
+    "urlTarget": "_blank",
+    "file": null,
+    "title": "",
+    "description": "",
+    "linkName": "",
+    "product": "",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "urlBasedBanner",
+    "urlBasedBannerId": "2",
+    "urlBasedBannerType": "myPageLnbBottom",
+    "url": "",
+    "urlTarget": "_blank",
+    "file": null,
+    "title": "",
+    "description": "",
+    "linkName": "",
+    "product": "",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "urlBasedBanner",
+    "urlBasedBannerId": "3",
+    "urlBasedBannerType": "serviceCenterLnbBottom",
+    "url": "",
+    "urlTarget": "_blank",
+    "file": null,
+    "title": "",
+    "description": "",
+    "linkName": "",
+    "product": "",
+    "bannerStatus": "y"
+  },
+  {
+    "typeId": "urlBasedBanner",
+    "urlBasedBannerId": "4",
+    "urlBasedBannerType": "quickMenu",
+    "url": "",
+    "urlTarget": "_blank",
+    "file": null,
+    "title": "",
+    "description": "",
+    "linkName": "",
+    "product": "",
+    "bannerStatus": "y"
+  }
+]

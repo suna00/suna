@@ -63,5 +63,20 @@
     "analyzer": null,
     "referenceType": "",
     "referenceValue": ""
+  },
+  {
+    "typeId" : "propertyType",
+    "tid" : "backOffice",
+    "id" : "backOffice>authority",
+    "pid" : "authority",
+    "propertyTypeName" : "Authority",
+    "valueType" : "REFERENCES",
+    "defaultValue" : "anonymous",
+    "idable" : false,
+    "indexable" : true,
+    "labelable" : false,
+    "required" : false,
+    "analyzer" : "code",
+    "referenceType" : "role"
   }
 ]

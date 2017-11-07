@@ -112,6 +112,7 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
+    "sortable": true,
     "indexable": true,
     "analyzer": "code",
     "referenceType": "category",

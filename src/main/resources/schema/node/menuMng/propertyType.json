@@ -102,6 +102,7 @@
     "pid" : "authority",
     "propertyTypeName" : "Authority",
     "valueType" : "REFERENCES",
+    "defaultValue" : "anonymous",
     "idable" : false,
     "indexable" : true,
     "labelable" : false,
@@ -138,7 +139,7 @@
     "treeable": false,
     "indexable": true,
     "analyzer": "code",
-    "referenceType": "",
+    "referenceType": "adminGnbMenu",
     "referenceValue": ""
   },
   {
@@ -256,9 +257,11 @@
   {
     "typeId" : "propertyType",
     "tid" : "adminLnbMenu",
+    "id" : "adminLnbMenu>authority",
     "pid" : "authority",
     "propertyTypeName" : "Authority",
     "valueType" : "REFERENCES",
+    "defaultValue" : "anonymous",
     "idable" : false,
     "indexable" : true,
     "labelable" : false,

@@ -151,7 +151,7 @@
           "ds": "ytnDevDb",
           "resultType": "read",
           "description": "구매평 위시리스트 카운트 조회",
-          "sql": "select (select count(*) as wishCount from interestproduct where productId=@{productId}) as wishCount,(select round(sum(score)/count(reviewId)) as reviewAverageScore from review where productId=@{productId}) as reviewAverageScore;"
+          "sql": "select (select count(*) as wishCount from interestproduct where productId=@{productId}) as wishCount,(select round(sum(score)/count(reviewId)) as reviewAverageScore from review where productId=@{productId} and siteId=@{siteId}) as reviewAverageScore;"
         }
       }
     }

@@ -1,0 +1,19 @@
+[
+  {
+    "parentId": "root",
+    "typeId": "nodeType",
+    "tid": "bannerGroup",
+    "typeName": "배너 그룹",
+    "repositoryType": "path",
+    "eviction": 0
+  },
+
+  {
+    "parentId": "bannerGroup",
+    "typeId": "nodeType",
+    "tid": "urlBasedBanner",
+    "typeName": "URL 배너",
+    "repositoryType": "node",
+    "eviction": 0
+  }
+]

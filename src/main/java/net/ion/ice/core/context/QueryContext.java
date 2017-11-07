@@ -80,6 +80,19 @@ public class QueryContext extends ReadContext {
                             JsonUtils.getStringValue((Map<String, Object>) RequestDataHolder.getRequestData().get("session"), ((Map) authorityRule).get(key).toString()));
                     addQueryTerm(term);
                 }
+            }else if(authorityRule instanceof List){
+                for(Map<String, Object> authRule : (List<Map<String, Object>>) authorityRule){
+                    if(authRule.containsKey("role")){
+                        String role = JsonUtils.getStringValue(RequestDataHolder.getRequestData(), "session.role");
+                        List<String> roles = Arrays.asList(StringUtils.split(role, ","));
+                        if(roles.contains(authRule.get("role"))){
+                            QueryTerm term = new QueryTerm(getQueryTermType(), (String) authRule.get("pid"), "code", (String) authRule.get("method"),
+                                    JsonUtils.getStringValue((Map<String, Object>) RequestDataHolder.getRequestData(), authRule.get("value").toString()), null);
+                            addQueryTerm(term);
+                        }
+
+                    }
+                }
             }
         }
         if(getNodeType().hasAuthority()){
@@ -87,7 +100,7 @@ public class QueryContext extends ReadContext {
             if(StringUtils.isEmpty(role)){
                 role = Node.ANONYMOUS;
             }
-            QueryTerm term = new QueryTerm(getQueryTermType(), "authority", role);
+            QueryTerm term = new QueryTerm(getQueryTermType(), "authority", "code", "matching", role, null);
             addQueryTerm(term);
         }
     }
@@ -322,6 +335,9 @@ public class QueryContext extends ReadContext {
 
 
     public Integer getPageSize() {
+        if(pageSize == null){
+            pageSize = 10;
+        }
         return pageSize;
     }
 
@@ -333,12 +349,12 @@ public class QueryContext extends ReadContext {
 
         if (paging) {
             if(this.resultType != null && this.resultType == ResultField.ResultType.NAVIREAD){
-                int start =  (currentPage - 1) * pageSize;
+                int start =  (currentPage - 1) * getPageSize();
                 if(start >0){
                     return start - 1;
                 }
             }
-            return (currentPage - 1) * pageSize;
+            return (currentPage - 1) * getPageSize();
         }
         return 0;
     }

@@ -1,0 +1,38 @@
+[
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "emailNotiSend",
+    "typeName": "이메일 알림 발송내역",
+    "tableName": "",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "emailTemplate",
+    "typeName": "이메일 템플릿",
+    "tableName": "ytnDevDb#emailTemplate",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "pushSendingHistory",
+    "typeName": "PUSH 발송내역",
+    "tableName": "ytnDevDb#pushSendingHistory",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "shopHistory",
+    "typeName": "쇼핑몰 소식",
+    "tableName": "ytnDevDb#shopHistory",
+    "repositoryType": "node",
+    "eviction": 0
+  }
+]

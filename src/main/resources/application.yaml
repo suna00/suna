@@ -74,6 +74,10 @@ sweettracker:
   key: LaTfL9LcqSZKG6maH6OPhQ
   callbackUrl: http://localhost:8080/node/orderDeliveryPrice/event/sweettrackerGetData
 
+openApiNaver:
+  clientId: PhX5hrcXBVoN9HPDLJGs
+  clientSecret: XQWKsSLzay
+
 ---
 #-Dspring.profiles.active=dev
 spring:
