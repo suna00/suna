@@ -1429,7 +1429,6 @@
     "config": {
       "typeId": "pgmVideo",
       "cacheTime": "300",
-      "excludePids": "showCntryCdList",
       "query": [
         {
           "field": "contsMetaCtgryId",
@@ -1530,7 +1529,6 @@
       "root": {
         "typeId": "pgmVideo",
         "cacheTime": "300",
-        "excludePids": "showCntryCdList",
         "id": "{{:contentId}}",
         "response": {
           "_all_": "",
