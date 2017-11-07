@@ -1449,9 +1449,9 @@
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "aff",
-    "gnbMenuId": "personInfoMng",
+    "gnbMenuId": "affiliateMng",
     "parentMenuId": "root",
-    "menuId": "memberMng",
+    "menuId": "affiliateCompanyMember",
     "menuName": "회원관리",
     "order": "10",
     "icon": "fa-list",
@@ -1468,7 +1468,7 @@
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "aff",
-    "gnbMenuId": "personInfoMng",
+    "gnbMenuId": "affiliateMng",
     "parentMenuId": "root",
     "menuId": "purHistoty",
     "menuName": "구매내역",
@@ -1487,7 +1487,7 @@
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "aff",
-    "gnbMenuId": "personInfoMng",
+    "gnbMenuId": "affiliateMng",
     "parentMenuId": "root",
     "menuId": "csHistory",
     "menuName": "CS내역",
