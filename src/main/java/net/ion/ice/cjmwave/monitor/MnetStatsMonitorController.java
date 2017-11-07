@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by juneyoungoh on 2017. 10. 25..
@@ -79,6 +82,30 @@ public class MnetStatsMonitorController {
         }
         rtn.put("result", result);
         rtn.put("result_msg", result_msg);
+        rtn.put("cause", cause);
+        return String.valueOf(rtn);
+    }
+
+    @RequestMapping(value = {"getDailyReport"}, produces = {"application/json"})
+    public @ResponseBody String getDailyReport(HttpServletRequest request) throws JSONException {
+        JSONObject rtn = new JSONObject();
+        String result = "500", result_msg = "ERROR", cause = "";
+        List<Map<String, Object>> reportData = new ArrayList<>();
+
+        try{
+            // 로직
+            String date = request.getParameter("date");
+            if(date == null) throw new Exception("Parameter date(yyyyMMdd) is required");
+            result = "200";
+            result_msg = "SUCCESS";
+            reportData = mnetStatsMonitorService.getDailyReport(date);
+        } catch (Exception e) {
+            logger.error(e);
+            cause = e.getMessage();
+        }
+        rtn.put("result", result);
+        rtn.put("result_msg", result_msg);
+        rtn.put("report", reportData);
         rtn.put("cause", cause);
         return String.valueOf(rtn);
     }
