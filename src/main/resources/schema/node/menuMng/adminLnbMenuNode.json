@@ -1457,12 +1457,12 @@
     "icon": "fa-list",
     "active": "true",
     "index": "false",
-    "pages": [
-      { "pageName": "목록", "pageUrl": "list" },
-      { "pageName": "등록", "pageUrl": "createForm" },
-      { "pageName": "수정", "pageUrl": "updateForm" }
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "affiliateCompanyMember/List" },
+      { "pageName": "등록", "pageUrl": "affiliateCompanyMember/CreateForm" },
+      { "pageName": "수정", "pageUrl": "affiliateCompanyMember/UpdateForm" }
     ],
-    "customPages": [],
     "authority": "system,affiliate"
   },
   {
