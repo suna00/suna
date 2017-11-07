@@ -171,5 +171,21 @@
       "data": {
       }
     }
+  },
+  {
+    "typeId": "apiConfig",
+    "category": "product",
+    "apiId": "confirmPurchasingHistory",
+    "apiName": "구매이력확인",
+    "method": "POST",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "product",
+      "noneExecute": true,
+      "event" : "confirmPurchasingHistory",
+      "data": {
+      }
+    }
   }
 ]
