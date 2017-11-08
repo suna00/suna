@@ -326,5 +326,23 @@
     "referenceValue": "",
     "codeFilter": "",
     "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "videItgInfo",
+    "pid": "isUse",
+    "id": "videItgInfo>isUse",
+    "propertyTypeName": "사용여부",
+    "valueType": "BOOLEAN",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
   }
 ]

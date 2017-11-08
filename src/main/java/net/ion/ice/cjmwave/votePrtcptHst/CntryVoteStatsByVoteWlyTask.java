@@ -33,7 +33,7 @@ public class CntryVoteStatsByVoteWlyTask {
 
     /**
      */
-    public void execCntryVoteStatsByVoteWly() {
+    public void execCntryVoteStatsByVoteWly(String sDate, String eDate) {
 
         logger.info("start schedule task - execCntryVoteStatsByVoteWly");
 
@@ -58,10 +58,9 @@ public class CntryVoteStatsByVoteWlyTask {
         Calendar cVoteStart = Calendar.getInstance() ;
         cVoteStart.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
         Calendar cVoteEnd = Calendar.getInstance() ;
-        String sVoteStart = DateFormatUtils.format(cVoteStart.getTime(), "yyyy-MM-dd");
-        String sVoteEnd = DateFormatUtils.format(cVoteEnd.getTime(), "yyyy-MM-dd");
-//        String sVoteStart   = "20171023";
-//        String sVoteEnd     = "20171024";
+        String sVoteStart = DateFormatUtils.format(cVoteStart.getTime(), "yyyyMMdd");
+        String sVoteEnd = DateFormatUtils.format(cVoteEnd.getTime(), "yyyyMMdd");
+        if( sDate != null ) {sVoteStart = sDate;sVoteEnd = eDate;}
 
         // 국가별 카운트 저장
         Map<CntryVoteByVoteVO, CntryVoteByVoteVO> hmTolCountPerCntrycd = new HashMap<CntryVoteByVoteVO, CntryVoteByVoteVO>();

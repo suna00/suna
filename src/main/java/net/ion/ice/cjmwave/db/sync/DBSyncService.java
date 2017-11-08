@@ -538,7 +538,7 @@ public class DBSyncService {
                     }
                     fit.putAll(getImageInfo(qMap,targetNodeType, currentNodePKPid));
 //                    logger.debug("CREATE INITIAL MIGRATION NODE :: " + String.valueOf(fit));
-                    System.out.println("CREATE INITIAL MIGRATION NODE :: " + String.valueOf(fit));
+                    logger.info("CREATE INITIAL MIGRATION NODE :: " + String.valueOf(fit));
 
                     try{
                         fit.put("mnetIfTrtYn", true);   // rcmdContsYn
@@ -661,7 +661,7 @@ public class DBSyncService {
                     taskExecutor.execute(new ParallelDBSyncExecutor("album") {
                         @Override
                         public void action() throws Exception {
-                            System.out.println(this.executeId + " :: " + start + " :: " + total);
+                            logger.info(this.executeId + " :: " + start + " :: " + total);
                             this.dbSyncService.executeWithIteration(this.executeId, start, total);
                         }
                     });

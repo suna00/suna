@@ -35,7 +35,7 @@ public class CntryVoteStatsWlyTask {
      * 날짜별 처리를... 어떻게 할지는 고민해봐야겠군.
      * 성별.
      */
-    public void execCntryVoteStatsWly() {
+    public void execCntryVoteStatsWly(String sDate, String eDate) {
 
         logger.info("start schedule task - execCntryVoteStatsWly");
 
@@ -60,10 +60,9 @@ public class CntryVoteStatsWlyTask {
         Calendar cVoteStart = Calendar.getInstance() ;
         cVoteStart.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
         Calendar cVoteEnd = Calendar.getInstance() ;
-        String sVoteStart = DateFormatUtils.format(cVoteStart.getTime(), "yyyy-MM-dd");
-        String sVoteEnd = DateFormatUtils.format(cVoteEnd.getTime(), "yyyy-MM-dd");
-//        String sVoteStart   = "20171023";
-//        String sVoteEnd     = "20171024";
+        String sVoteStart = DateFormatUtils.format(cVoteStart.getTime(), "yyyyMMdd");
+        String sVoteEnd = DateFormatUtils.format(cVoteEnd.getTime(), "yyyyMMdd");
+        if( sDate != null ) {sVoteStart = sDate;sVoteEnd = eDate;}
 
         // 국가별 카운트 저장
         Map<CntryVoteVO, CntryVoteVO> hmTolCountPerCntrycd = new HashMap<CntryVoteVO, CntryVoteVO>();

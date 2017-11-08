@@ -107,7 +107,7 @@ public class VideoService {
             throw new IceRuntimeException("pipImgSave required value is null : clipType=" + clipType + ", contentImgPip=" + contentImgPip);
         } else {
             pipImgUrl = getImgUrl(clipType, contentImgPip);
-            System.out.println("pipImgUrl:" + pipImgUrl);
+            logger.info("pipImgUrl:" + pipImgUrl);
         }
 
         PropertyType contentImgUrlPt = context.getNodeType().getPropertyType("contentImgUrl");
@@ -121,7 +121,7 @@ public class VideoService {
             Node result = (Node) NodeUtils.getNodeService().executeNode(updateData, "pgmVideo", EventService.SAVE);
             context.setResult(result);
         } else {
-            System.out.println("contentImgUrlFile is null");
+            logger.info("contentImgUrlFile is null");
         }
     }
 

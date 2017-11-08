@@ -32,12 +32,12 @@ public class CntryVoteStatsService {
      * 전체 국가 투표현황
      * @param context
      */
-    public void execCntryVoteStats(ExecuteContext context) {
+    public void execCntryVoteStats(ExecuteContext context, String statDate) {
 
         logger.info("start schedule task - execCntryVoteStats");
 
         // execute voteItemStatsByMbrTaskBySex only once
-        cntryVoteStatsTask.execCntryVoteStats();
+        cntryVoteStatsTask.execCntryVoteStats(statDate);
 
         logger.info("complete schedule task - execCntryVoteStats");
 
@@ -50,12 +50,13 @@ public class CntryVoteStatsService {
      * 전체 국가 투표현황(금주)
      * @param context
      */
-    public void execCntryVoteStatsWly(ExecuteContext context) {
+    public void execCntryVoteStatsWly(ExecuteContext context, String sDate, String eDate) {
 
         logger.info("start schedule task - execCntryVoteStatsWly");
 
         // execute voteItemStatsByMbrTaskByCntry only once
-        cntryVoteStatsWlyTask.execCntryVoteStatsWly();
+        if(sDate != null) cntryVoteStatsWlyTask.execCntryVoteStatsWly(sDate, eDate);
+        else cntryVoteStatsWlyTask.execCntryVoteStatsWly(null, null);
 
         logger.info("complete schedule task - execCntryVoteStatsWly");
 
@@ -68,12 +69,13 @@ public class CntryVoteStatsService {
      * 투표별 국가 투표 현황(금주)
      * @param context
      */
-    public void execCntryVoteStatsByVoteWly(ExecuteContext context) {
+    public void execCntryVoteStatsByVoteWly(ExecuteContext context, String sDate, String eDate) {
 
         logger.info("start schedule task - execCntryVoteStatsByVoteWly");
 
         // execute voteItemStatsByMbrTaskByCntry only once
-        cntryVoteStatsByVoteWlyTask.execCntryVoteStatsByVoteWly();
+        if(sDate != null) cntryVoteStatsByVoteWlyTask.execCntryVoteStatsByVoteWly(sDate, eDate);
+        else cntryVoteStatsByVoteWlyTask.execCntryVoteStatsByVoteWly(null, null);
 
         logger.info("complete schedule task - execCntryVoteStatsByVoteWly");
 

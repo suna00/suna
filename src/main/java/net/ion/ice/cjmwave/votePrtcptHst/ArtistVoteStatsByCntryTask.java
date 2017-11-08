@@ -35,7 +35,7 @@ public class ArtistVoteStatsByCntryTask {
      * 날짜별 처리를... 어떻게 할지는 고민해봐야겠군.
      * 성별.
      */
-    public void execArtistVoteStatsByCntry() {
+    public void execArtistVoteStatsByCntry(String statDate) {
 
         logger.info("start schedule task - execArtistVoteStatsByCntry");
 
@@ -60,10 +60,9 @@ public class ArtistVoteStatsByCntryTask {
 
         Calendar cVoteStart = Calendar.getInstance() ;
         cVoteStart.add(Calendar.DATE, -1);
-        String sVoteStart = DateFormatUtils.format(cVoteStart.getTime(), "yyyy-MM-dd");
+        String sVoteStart = DateFormatUtils.format(cVoteStart.getTime(), "yyyyMMdd");
         String sVoteEnd = sVoteStart;     // 현재날짜
-//        String sVoteStart   = "20171023";
-//        String sVoteEnd     = "20171023";
+        if( statDate != null ) {sVoteStart = statDate;sVoteEnd = statDate;}
 
         // 셩별로 나눠어진 artist sex voteNum 맵 을 관리
         Map<String, Map<ArtistCntryVO,ArtistCntryVO>> allArtistMapByCntry = new HashMap<String, Map<ArtistCntryVO,ArtistCntryVO>>();

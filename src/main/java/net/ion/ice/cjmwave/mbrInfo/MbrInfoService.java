@@ -21,6 +21,7 @@ import net.ion.ice.core.query.QueryResult;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,8 @@ import java.util.Map;
 public class MbrInfoService {
     private ErrMsgUtil errMsgUtil = new ErrMsgUtil();
     private JdbcTemplate jdbcTemplate;
+
+    private Logger logger = Logger.getLogger(MbrInfoService.class);
 
     @Autowired
     private DBService dbService ;
@@ -73,7 +76,7 @@ public class MbrInfoService {
             resultDate.put("chkResult", true);
             context.setResult(resultDate);
         } else {
-            System.out.println("######chkMbr :"+anode);
+            logger.info("######chkMbr :"+anode);
             throw new ApiException("405", "Information that meets the conditions already exists.");
         }
     }
@@ -121,7 +124,7 @@ public class MbrInfoService {
         Node anode = null;
         try {
             anode = getMbrNode(snsTypeCd , snsKey);
-            System.out.println("##anode:"+anode);
+            logger.info("##anode:"+anode);
             String mbrSttusCd = anode.getStringValue("mbrSttusCd");
             if("2".equals(mbrSttusCd) || "3".equals(mbrSttusCd)){
                 throw new ApiException("412", errMsgUtil.getErrMsg(context,"412"));
@@ -258,9 +261,9 @@ public class MbrInfoService {
             int setupBaseDayNum = dclaNode.getIntValue("setupBaseDayNum");
 
             Date rejoinAbleDate = DateUtils.addDays(rtrmmbDate,setupBaseDayNum);
-            System.out.println("rejoinAbleDate:"+rejoinAbleDate);
+            logger.info("rejoinAbleDate:"+rejoinAbleDate);
             Date current = new Date();
-            System.out.println("current:"+current);
+            logger.info("current:"+current);
             if(current.getTime() < rejoinAbleDate.getTime()){
                 throw new ApiException("417", String.format(errMsgUtil.getErrMsg(context,"417"),setupBaseDayNum));
             }
