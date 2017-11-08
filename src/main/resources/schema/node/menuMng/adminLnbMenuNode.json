@@ -1642,14 +1642,16 @@
     "backOfficeId": "affCom",
     "gnbMenuId": "welfarePointMng",
     "parentMenuId": "root",
-    "menuId": "divHistory",
+    "menuId": "welfarePoint",
     "menuName": "분배내역",
     "order": "10",
     "icon": "fa-list",
     "active": "true",
     "index": "false",
     "pages": [],
-    "customPages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "affiliateWelfarePoint/List" }
+    ],
     "authority": "system,affiliateCompany"
   },
   {
