@@ -1615,7 +1615,9 @@
     "active": "true",
     "index": "false",
     "pages": [],
-    "customPages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "csHistory/List" }
+    ],
     "authority": "system,affiliateCompany"
   },
   {
