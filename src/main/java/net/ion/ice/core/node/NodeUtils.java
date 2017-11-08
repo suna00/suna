@@ -599,7 +599,7 @@ public class NodeUtils {
                 }
             }
             case DATE: {
-                return getDateStringValue(value, null);
+                return getDateValue(value);
             }
             case REFERENCE: {
                 if (StringUtils.isEmpty(pt.getCodeFilter())) {
