@@ -180,9 +180,32 @@ public class MemberService {
                 EmailService.setHtmlMemberJoin(node, node.get("email").toString(), emailTemplate);
             } else {
                 if (contextData.containsKey("password")) {
+                    if(contextData.containsKey("updateType")){
+                        Node memberNode = nodeService.read("member", contextData.get("memberNo").toString());
+
+                        String memberNodePassword = memberNode.getValue("password").toString();
+                        Integer failedCount = (memberNode.getValue("failedCount") == null ? 0 : Integer.parseInt(memberNode.getValue("failedCount").toString()));
+
+                        if (!memberNodePassword.equals(contextData.get("oriPassword").toString())) {
+                            failedCount+=1;
+                            memberNode.put("failedCount", failedCount);
+                            memberNode.put("lastFailedDate", new Date());
+                            nodeService.updateNode(memberNode, "member");
+
+                            if (failedCount < 5) {
+                                commonService.setErrorMessage(context, "M0007");
+                                return context;
+                            } else {
+                                commonService.setErrorMessage(context, "M0008");
+                                return context;
+                            }
+                        }
+                    }
+
                     contextData.put("failedCount", null);
                     contextData.put("lastFailedDate", null);
                 }
+
                 node = (Node) nodeService.executeNode(contextData, "member", CommonService.UPDATE);
 
                 if (contextData.containsKey("changeMarketingAgreeYn")) {
