@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 @Controller
 public class TestController {
 
@@ -17,8 +20,18 @@ public class TestController {
     CntryVoteStatsService cntryVoteStatsService;
 
     @RequestMapping("/test/artistSex")
-    public ModelAndView artistSex() {
-        artistVoteStatsService.execArtistVoteStatsBySex(null);
+    public ModelAndView artistSex(HttpServletRequest req, HttpServletResponse res) {
+        String statDate = req.getParameter("date");
+        if( statDate != null ) {
+            if( statDate.indexOf(",") != -1 ) {
+                String[] sDates = statDate.split(",");
+                for( String date: sDates) {
+                    artistVoteStatsService.execArtistVoteStatsBySex(null, date);
+                }
+            }
+            else artistVoteStatsService.execArtistVoteStatsBySex(null, statDate);
+        }
+        else artistVoteStatsService.execArtistVoteStatsBySex(null, null);
         return null;
     }
     @RequestMapping("/test/artistSexWly")
@@ -27,8 +40,18 @@ public class TestController {
         return null;
     }
     @RequestMapping("/test/artistCntry")
-    public ModelAndView artistCntry() {
-        artistVoteStatsService.execArtistVoteStatsByCntry(null);
+    public ModelAndView artistCntry(HttpServletRequest req, HttpServletResponse res) {
+        String statDate = req.getParameter("date");
+        if( statDate != null ) {
+            if( statDate.indexOf(",") != -1 ) {
+                String[] sDates = statDate.split(",");
+                for( String date: sDates) {
+                    artistVoteStatsService.execArtistVoteStatsByCntry(null, date);
+                }
+            }
+            else artistVoteStatsService.execArtistVoteStatsByCntry(null, statDate);
+        }
+        else artistVoteStatsService.execArtistVoteStatsByCntry(null, null);
         return null;
     }
     @RequestMapping("/test/artistCntryWly")
@@ -38,8 +61,19 @@ public class TestController {
     }
 
     @RequestMapping("/test/cntryVote")
-    public ModelAndView cntryVote() {
-        cntryVoteStatsService.execCntryVoteStats(null);
+    public ModelAndView cntryVote(HttpServletRequest req, HttpServletResponse res) {
+        String statDate = req.getParameter("date");
+        if( statDate != null ) {
+            if( statDate.indexOf(",") != -1 ) {
+                String[] sDates = statDate.split(",");
+                for( String date: sDates) {
+                    cntryVoteStatsService.execCntryVoteStats(null, date);
+                }
+            }
+            else cntryVoteStatsService.execCntryVoteStats(null, statDate);
+        }
+        else cntryVoteStatsService.execCntryVoteStats(null, null);
+
         return null;
     }
     @RequestMapping("/test/cntryVoteWly")

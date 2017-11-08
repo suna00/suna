@@ -32,12 +32,12 @@ public class CntryVoteStatsService {
      * 전체 국가 투표현황
      * @param context
      */
-    public void execCntryVoteStats(ExecuteContext context) {
+    public void execCntryVoteStats(ExecuteContext context, String statDate) {
 
         logger.info("start schedule task - execCntryVoteStats");
 
         // execute voteItemStatsByMbrTaskBySex only once
-        cntryVoteStatsTask.execCntryVoteStats();
+        cntryVoteStatsTask.execCntryVoteStats(statDate);
 
         logger.info("complete schedule task - execCntryVoteStats");
 

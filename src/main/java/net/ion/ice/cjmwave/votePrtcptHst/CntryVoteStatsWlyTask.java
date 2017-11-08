@@ -60,8 +60,8 @@ public class CntryVoteStatsWlyTask {
         Calendar cVoteStart = Calendar.getInstance() ;
         cVoteStart.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
         Calendar cVoteEnd = Calendar.getInstance() ;
-        String sVoteStart = DateFormatUtils.format(cVoteStart.getTime(), "yyyy-MM-dd");
-        String sVoteEnd = DateFormatUtils.format(cVoteEnd.getTime(), "yyyy-MM-dd");
+        String sVoteStart = DateFormatUtils.format(cVoteStart.getTime(), "yyyyMMdd");
+        String sVoteEnd = DateFormatUtils.format(cVoteEnd.getTime(), "yyyyMMdd");
 //        String sVoteStart   = "20171023";
 //        String sVoteEnd     = "20171024";
 

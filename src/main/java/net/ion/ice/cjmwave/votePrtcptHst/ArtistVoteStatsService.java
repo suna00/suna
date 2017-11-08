@@ -73,12 +73,12 @@ public class ArtistVoteStatsService {
      * 성별 아티스트 투표현황 일별
      * @param context
      */
-    public void execArtistVoteStatsBySex(ExecuteContext context) {
+    public void execArtistVoteStatsBySex(ExecuteContext context, String statDate) {
 
         logger.info("start schedule task - execArtistVoteStatsBySex");
 
         // execute voteItemStatsByMbrTaskBySex only once
-        artistVoteStatsBySexTask.execArtistVoteStatsBySex();
+        artistVoteStatsBySexTask.execArtistVoteStatsBySex(statDate);
 
         logger.info("complete schedule task - execArtistVoteStatsBySex");
 
@@ -109,12 +109,12 @@ public class ArtistVoteStatsService {
      * 국가별 아티스트 투표현황.. 일별
      * @param context
      */
-    public void execArtistVoteStatsByCntry(ExecuteContext context) {
+    public void execArtistVoteStatsByCntry(ExecuteContext context, String statDate) {
 
         logger.info("start schedule task - execArtistVoteStatsByCntry");
 
         // execute voteItemStatsByMbrTaskByCntry only once
-        artistVoteStatsByCntryTask.execArtistVoteStatsByCntry();
+        artistVoteStatsByCntryTask.execArtistVoteStatsByCntry(statDate);
 
         logger.info("complete schedule task - execArtistVoteStatsByCntry");
 
