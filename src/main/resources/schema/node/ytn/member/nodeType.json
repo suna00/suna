@@ -50,6 +50,9 @@
     "typeName": "회원 ",
     "tableName": "ytnDevDb#member",
     "repositoryType": "node",
+    "authorityRule": [
+      {"role":"affiliateCompany", "pid":"affiliateId", "method":"matching", "value":"session.user.affiliateId"}
+    ],
     "eviction": 0
   },
   {

@@ -218,7 +218,7 @@
   {
     "typeId" : "adminGnbMenu",
     "backOfficeId": "affCom",
-    "menuId": "memberMng",
+    "menuId": "affiliateMng",
     "menuName": "회원정보관리",
     "order": "10",
     "icon": "",

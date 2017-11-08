@@ -1561,16 +1561,18 @@
     "order": "10",
     "icon": "fa-list",
     "active": "true",
-    "index": "false",
+    "index": "true",
     "pages": [],
-    "customPages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "developmentFund/List" }
+    ],
     "authority": "system,affiliateUniversity"
   },
 
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "affCom",
-    "gnbMenuId": "memberMng",
+    "gnbMenuId": "affiliateMng",
     "parentMenuId": "root",
     "menuId": "affiliateCompanyMember",
     "menuName": "회원관리",
@@ -1589,7 +1591,7 @@
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "affCom",
-    "gnbMenuId": "memberMng",
+    "gnbMenuId": "affiliateMng",
     "parentMenuId": "root",
     "menuId": "purchaseHistory",
     "menuName": "구매내역",
@@ -1604,7 +1606,7 @@
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "affCom",
-    "gnbMenuId": "memberMng",
+    "gnbMenuId": "affiliateMng",
     "parentMenuId": "root",
     "menuId": "csHistory",
     "menuName": "CS 내역",
@@ -1628,7 +1630,9 @@
     "active": "true",
     "index": "false",
     "pages": [],
-    "customPages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "developmentFund/List" }
+    ],
     "authority": "system,affiliateCompany"
   },
   {
