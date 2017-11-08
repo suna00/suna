@@ -91,6 +91,24 @@
     "backOfficeId": "adm",
     "gnbMenuId": "productMng",
     "parentMenuId": "root",
+    "menuId": "productTextForm",
+    "menuName": "문자발송상품 등록/수정",
+    "order": "23",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "product/CreateTextForm" },
+      { "pageName": "수정", "pageUrl": "product/UpdateTextForm" }
+    ],
+    "authority": "system,admin"
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "root",
     "menuId": "productUpdateList",
     "menuName": "상품정보 일괄변경",
     "order": "30",
@@ -933,6 +951,8 @@
     ],
     "authority": "system,admin"
   },
+
+
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "ven",
@@ -947,7 +967,6 @@
     "pages": [],
     "customPages": []
   },
-
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "ven",
@@ -1016,6 +1035,24 @@
     "customPages": [
       { "pageName": "등록", "pageUrl": "product/CreateHealthForm" },
       { "pageName": "수정", "pageUrl": "product/UpdateHealthForm" }
+    ],
+    "authority": "system,vendor"
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "ven",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "root",
+    "menuId": "productTextForm",
+    "menuName": "문자발송상품 등록/수정",
+    "order": "23",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "product/CreateTextForm" },
+      { "pageName": "수정", "pageUrl": "product/UpdateTextForm" }
     ],
     "authority": "system,vendor"
   },
