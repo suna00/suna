@@ -84,7 +84,7 @@
     "id": "voteItemStatsByCntryTask",
     "name": "voteItemStatsByCntryTask Schedule Task",
     "type": "cron",
-    "config": "0 */10 * * * *",
+    "config": "0 */13 * * * *",
     "enable": false,
     "actionType": "service",
     "actionBody": "voteItemStatsByCntryTask.execVoteItemStatsByCntry"
