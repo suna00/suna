@@ -62,13 +62,7 @@ public class CntryVoteStatsTask {
         cVoteStart.add(Calendar.DATE, -1);
         String sVoteStart = DateFormatUtils.format(cVoteStart.getTime(), "yyyyMMdd");
         String sVoteEnd = sVoteStart;
-        if( statDate != null ) {
-            sVoteStart = statDate;
-            sVoteEnd = statDate;
-        }
-
-//        String sVoteStart   = "20171023";
-//        String sVoteEnd     = "20171023";
+        if( statDate != null ) {sVoteStart = statDate;sVoteEnd = statDate;}
 
         // 국가별 카운트 저장
         Map<CntryVoteVO, CntryVoteVO> hmTolCountPerCntrycd = new HashMap<CntryVoteVO, CntryVoteVO>();

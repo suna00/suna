@@ -35,7 +35,7 @@ public class ArtistVoteStatsByCntryWlyTask {
     /**
      * 국가별.
      */
-    public void execArtistVoteStatsByCntry() {
+    public void execArtistVoteStatsByCntry(String sDate, String eDate) {
 
         logger.info("start schedule task - execArtistVoteStatsByCntry");
 
@@ -62,8 +62,7 @@ public class ArtistVoteStatsByCntryWlyTask {
         Calendar cVoteEnd = Calendar.getInstance() ;
         String sVoteStart = DateFormatUtils.format(cVoteStart.getTime(), "yyyyMMdd");
         String sVoteEnd = DateFormatUtils.format(cVoteEnd.getTime(), "yyyyMMdd");
-//        String sVoteStart   = "20171023";
-//        String sVoteEnd     = "20171024";
+        if( sDate != null ) {sVoteStart = sDate;sVoteEnd = eDate;}
 
         // 셩별로 나눠어진 artist sex voteNum 맵 을 관리
         Map<String, Map<ArtistCntryVO,ArtistCntryVO>> allArtistMapBySex = new HashMap<String, Map<ArtistCntryVO,ArtistCntryVO>>();

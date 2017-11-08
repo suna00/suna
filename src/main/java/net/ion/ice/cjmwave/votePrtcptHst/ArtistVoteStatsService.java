@@ -91,12 +91,13 @@ public class ArtistVoteStatsService {
      * 성별 아티스트 투표현황  주별
      * @param context
      */
-    public void execArtistVoteStatsBySexWly(ExecuteContext context) {
+    public void execArtistVoteStatsBySexWly(ExecuteContext context, String sDate, String eDate) {
 
         logger.info("start schedule task - execArtistVoteStatsBySexWly");
 
         // execute voteItemStatsByMbrTaskBySex only once
-        artistVoteStatsBySexWlyTask.execArtistVoteStatsBySex();
+        if(sDate != null) artistVoteStatsBySexWlyTask.execArtistVoteStatsBySex(sDate, eDate);
+        else artistVoteStatsBySexWlyTask.execArtistVoteStatsBySex(null, null);
 
         logger.info("complete schedule task - execArtistVoteStatsBySexWly");
 
@@ -127,12 +128,13 @@ public class ArtistVoteStatsService {
      * 국가별 아티스트 투표현황.. 주별
      * @param context
      */
-    public void execArtistVoteStatsByCntryWly(ExecuteContext context) {
+    public void execArtistVoteStatsByCntryWly(ExecuteContext context, String sDate, String eDate) {
 
         logger.info("start schedule task - execArtistVoteStatsByCntryWly");
 
         // execute voteItemStatsByMbrTaskByCntry only once
-        artistVoteStatsByCntryWlyTask.execArtistVoteStatsByCntry();
+        if(sDate != null) artistVoteStatsByCntryWlyTask.execArtistVoteStatsByCntry(sDate, eDate);
+        else artistVoteStatsByCntryWlyTask.execArtistVoteStatsByCntry(null, null);
 
         logger.info("complete schedule task - execArtistVoteStatsByCntryWly");
 

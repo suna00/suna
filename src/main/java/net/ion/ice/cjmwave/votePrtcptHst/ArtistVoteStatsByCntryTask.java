@@ -62,13 +62,7 @@ public class ArtistVoteStatsByCntryTask {
         cVoteStart.add(Calendar.DATE, -1);
         String sVoteStart = DateFormatUtils.format(cVoteStart.getTime(), "yyyyMMdd");
         String sVoteEnd = sVoteStart;     // 현재날짜
-        if( statDate != null ) {
-            sVoteStart = statDate;
-            sVoteEnd = statDate;
-        }
-
-//        String sVoteStart   = "20171023";
-//        String sVoteEnd     = "20171023";
+        if( statDate != null ) {sVoteStart = statDate;sVoteEnd = statDate;}
 
         // 셩별로 나눠어진 artist sex voteNum 맵 을 관리
         Map<String, Map<ArtistCntryVO,ArtistCntryVO>> allArtistMapByCntry = new HashMap<String, Map<ArtistCntryVO,ArtistCntryVO>>();

@@ -35,8 +35,11 @@ public class TestController {
         return null;
     }
     @RequestMapping("/test/artistSexWly")
-    public ModelAndView artistSexWly() {
-        artistVoteStatsService.execArtistVoteStatsBySexWly(null);
+    public ModelAndView artistSexWly(HttpServletRequest req, HttpServletResponse res) {
+        String sDate = req.getParameter("sdate");
+        String eDate = req.getParameter("edate");
+        if(sDate != null) artistVoteStatsService.execArtistVoteStatsBySexWly(null, sDate, eDate);
+        else artistVoteStatsService.execArtistVoteStatsBySexWly(null, null, null);
         return null;
     }
     @RequestMapping("/test/artistCntry")
@@ -55,8 +58,11 @@ public class TestController {
         return null;
     }
     @RequestMapping("/test/artistCntryWly")
-    public ModelAndView artistCntryWly() {
-        artistVoteStatsService.execArtistVoteStatsByCntryWly(null);
+    public ModelAndView artistCntryWly(HttpServletRequest req, HttpServletResponse res) {
+        String sDate = req.getParameter("sdate");
+        String eDate = req.getParameter("edate");
+        if(sDate != null) artistVoteStatsService.execArtistVoteStatsByCntryWly(null, sDate, eDate);
+        else artistVoteStatsService.execArtistVoteStatsByCntryWly(null, null, null);
         return null;
     }
 
@@ -77,13 +83,19 @@ public class TestController {
         return null;
     }
     @RequestMapping("/test/cntryVoteWly")
-    public ModelAndView cntryVoteWly() {
-        cntryVoteStatsService.execCntryVoteStatsWly(null);
+    public ModelAndView cntryVoteWly(HttpServletRequest req, HttpServletResponse res) {
+        String sDate = req.getParameter("sdate");
+        String eDate = req.getParameter("edate");
+        if(sDate != null) cntryVoteStatsService.execCntryVoteStatsWly(null, sDate, eDate);
+        else cntryVoteStatsService.execCntryVoteStatsWly(null, null, null);
         return null;
     }
     @RequestMapping("/test/cntryVoteByVoteWly")
-    public ModelAndView cntryVoteCntry() {
-        cntryVoteStatsService.execCntryVoteStatsByVoteWly(null);
+    public ModelAndView cntryVoteCntry(HttpServletRequest req, HttpServletResponse res) {
+        String sDate = req.getParameter("sdate");
+        String eDate = req.getParameter("edate");
+        if(sDate != null) cntryVoteStatsService.execCntryVoteStatsByVoteWly(null, sDate, eDate);
+        else cntryVoteStatsService.execCntryVoteStatsByVoteWly(null, null, null);
         return null;
     }
 

@@ -36,7 +36,7 @@ public class ArtistVoteStatsBySexWlyTask {
      * 날짜별 처리를... 어떻게 할지는 고민해봐야겠군.
      * 성별.
      */
-    public void execArtistVoteStatsBySex() {
+    public void execArtistVoteStatsBySex(String sDate, String eDate) {
 
         logger.info("start schedule task - execArtistVoteStatsBySex");
 
@@ -63,8 +63,7 @@ public class ArtistVoteStatsBySexWlyTask {
         Calendar cVoteEnd = Calendar.getInstance() ;
         String sVoteStart = DateFormatUtils.format(cVoteStart.getTime(), "yyyyMMdd");
         String sVoteEnd = DateFormatUtils.format(cVoteEnd.getTime(), "yyyyMMdd");
-//        String sVoteStart   = "20171023";
-//        String sVoteEnd     = "20171024";
+        if( sDate != null ) {sVoteStart = sDate;sVoteEnd = eDate;}
 
         // 셩별로 나눠어진 artist sex voteNum 맵 을 관리
         Map<String, Map<ArtistSexVO,ArtistSexVO>> allArtistMapBySex = new HashMap<String, Map<ArtistSexVO,ArtistSexVO>>();
