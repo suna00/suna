@@ -1481,6 +1481,23 @@
   {
     "typeId": "propertyType",
     "tid": "productOptionSet",
+    "pid": "vendorId",
+    "propertyTypeName": "벤더",
+    "valueType": "REFERENCE",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "vendor",
+    "referenceValue": "vendorId",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "productOptionSet",
     "pid": "name",
     "propertyTypeName": "옵션세트명",
     "valueType": "STRING",
