@@ -2,7 +2,7 @@
 
 export LOG_DIR=/data/ion/logs/icelogs
 export FILE_CNT=0
-export MAX_CNT=20
+export MAX_CNT=70
 
 echo "Delete file except ice.log and recent $MAX_CNT files"
 
@@ -10,7 +10,7 @@ if [ ! -d $LOG_DIR ]; then
     echo "Making log directory $LOG_DIR"
     mkdir -p $LOG_DIR
 else
-    echo "A log directory already exists. $LOG_DIR "
+    echo "A log directory already exists. $LOG_DIR "s
 fi
 
 

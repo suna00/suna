@@ -24,7 +24,7 @@ then
 fi
 
 echo "Starting application..."
-nohup $JAVA_HOME -jar -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:-CMSParallelRemarkEnabled -Xmx12g -Xms12g -Dspring.profiles.active=$PROFILE $WORK_DIR/$WAR_FILE \
+nohup $JAVA_HOME -jar -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:-CMSParallelRemarkEnabled -Xmx4g -Xms4g -Dspring.profiles.active=$PROFILE $WORK_DIR/$WAR_FILE \
     1> /dev/null > 2>&1 &
 
 exit 0

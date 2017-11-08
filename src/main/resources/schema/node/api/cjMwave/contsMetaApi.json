@@ -1429,7 +1429,6 @@
     "config": {
       "typeId": "pgmVideo",
       "cacheTime": "300",
-      "excludePids": "showCntryCdList",
       "query": [
         {
           "field": "contsMetaCtgryId",
@@ -1470,6 +1469,11 @@
           "field": "searchKeyword",
           "method": "matchingShould",
           "value": "{{:searchKeyword}}"
+        },
+        {
+          "field": "isUse",
+          "method": "matching",
+          "value": "true"
         },
         {
           "sorting": "{{:sorting}}"
@@ -1530,7 +1534,6 @@
       "root": {
         "typeId": "pgmVideo",
         "cacheTime": "300",
-        "excludePids": "showCntryCdList",
         "id": "{{:contentId}}",
         "response": {
           "_all_": "",
@@ -1733,6 +1736,11 @@
           "field": "searchKeyword",
           "method": "matchingShould",
           "value": "{{:searchKeyword}}"
+        },
+        {
+          "field": "isUse",
+          "method": "matching",
+          "value": "true"
         },
         {
           "sorting": "{{:sorting}}"
