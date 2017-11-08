@@ -40,22 +40,34 @@ public class NaverService {
     }
 
 
-    public String requestApi(String method, String apiUrl, String params) {
+    public String requestApi(String method, String apiUrl, String params, String encodeParams) {
         String result = "";
 
         if (StringUtils.contains(apiUrl, "?")) apiUrl = StringUtils.substringBefore(apiUrl, "?");
 
         try {
-            List<String> encodeParamList = new ArrayList<>();
+            List<String> newParamList = new ArrayList<>();
             List<String> paramList = Arrays.asList(StringUtils.split(params, "&"));
+            List<String> encodeParamList = Arrays.asList(StringUtils.split(encodeParams, "&"));
+
             for (String param : paramList) {
                 String[] splitParam = StringUtils.split(param, "=");
                 String paramName = splitParam.length >= 1 ? splitParam[0] : "";
                 String paramValue = splitParam.length >= 2 ? splitParam[1] : "";
 
                 if (!StringUtils.isEmpty(paramName)) {
+                    newParamList.add(paramName+"="+paramValue);
+                }
+            }
+
+            for (String param : encodeParamList) {
+                String[] splitParam = StringUtils.split(param, "=");
+                String paramName = splitParam.length >= 1 ? splitParam[0] : "";
+                String paramValue = splitParam.length >= 2 ? splitParam[1] : "";
+
+                if (!StringUtils.isEmpty(paramName)) {
                     String encodeParamValue = StringUtils.isEmpty(paramValue) ? "" : URLEncoder.encode(paramValue, "UTF-8");
-                    encodeParamList.add(paramName+"="+encodeParamValue);
+                    newParamList.add(paramName+"="+encodeParamValue);
                 }
             }
 
@@ -67,10 +79,10 @@ public class NaverService {
                 con = (HttpURLConnection) url.openConnection();
                 con.setDoOutput(true);
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(con.getOutputStream());
-                outputStreamWriter.write(params.toString());
+                outputStreamWriter.write(StringUtils.join(newParamList, "&"));
                 outputStreamWriter.flush();
             } else {
-                apiUrl = apiUrl+'?'+StringUtils.join(encodeParamList, "&");
+                apiUrl = apiUrl+'?'+StringUtils.join(newParamList, "&");
                 url = new URL(apiUrl);
                 con = (HttpURLConnection) url.openConnection();
             }
@@ -102,9 +114,10 @@ public class NaverService {
         String method = data.get("method") == null ? "" : data.get("method").toString();
         String apiUrl = data.get("apiUrl") == null ? "" : data.get("apiUrl").toString();
         String params = data.get("params") == null ? "" : data.get("params").toString();
+        String encodeParams = data.get("encodeParams") == null ? "" : data.get("encodeParams").toString();
 
         if (!StringUtils.isEmpty(method) && !StringUtils.isEmpty(apiUrl)) {
-            String response = requestApi(method, apiUrl, params);
+            String response = requestApi(method, apiUrl, params, encodeParams);
             if (!StringUtils.isEmpty(response)) {
                 ObjectMapper objectMapper = new ObjectMapper();
                 try {

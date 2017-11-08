@@ -71,6 +71,8 @@ public class QueryContext extends ReadContext {
     }
 
     public void makeAuthorityQuery() {
+        if(RequestDataHolder.getRequestData() == null) return ;
+
         if(StringUtils.isNotEmpty(getNodeType().getAuthorityRuleString())){
             Object authorityRule = getNodeType().getAuthorityRule() ;
             if(authorityRule instanceof Map){
@@ -87,7 +89,7 @@ public class QueryContext extends ReadContext {
                         List<String> roles = Arrays.asList(StringUtils.split(role, ","));
                         if(roles.contains(authRule.get("role"))){
                             QueryTerm term = new QueryTerm(getQueryTermType(), (String) authRule.get("pid"), "code", (String) authRule.get("method"),
-                                    JsonUtils.getStringValue((Map<String, Object>) RequestDataHolder.getRequestData(), ((Map) authorityRule).get("value").toString()), null);
+                                    JsonUtils.getStringValue( RequestDataHolder.getRequestData(), authRule.get("value").toString()), null);
                             addQueryTerm(term);
                         }
 
