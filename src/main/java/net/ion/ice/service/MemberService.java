@@ -265,13 +265,19 @@ public class MemberService {
         if ("password".equals(emailCertificationType) || "sleepMember".equals(emailCertificationType)) {
             List<Map<String, Object>> memberList;
             if ("password".equals(emailCertificationType)) {
-                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and userId=? and memberStatus='join' ", data.get("name").toString(), data.get("userId").toString());
+                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and userId=? order by memberNo desc limit 1", data.get("name").toString(), data.get("userId").toString());
             } else {
-                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and email=? and memberStatus='sleep' ", data.get("name").toString(), data.get("email").toString());
+                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and email=? order by memberNo desc limit 1", data.get("name").toString(), data.get("email").toString());
             }
 
             if (0 < memberList.size()) {
                 Map<String, Object> member = memberList.get(0);
+
+                if("leave".equals(member.get("memberStatus").toString()) || "leaveRequest".equals(member.get("memberStatus").toString())){
+                    commonService.setErrorMessage(context, "L0003");
+                    return context;
+                }
+
                 try {
                     sendEmail(emailCertificationType, member.get("email").toString(), member);
                 } catch (IOException e) {
@@ -309,10 +315,16 @@ public class MemberService {
 
         // 아이디 : id
         if ("id".equals(smsCertificationType)) {
-            List<Map<String, Object>> memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" SELECT * FROM member WHERE cellphone=? and memberStatus in ('join','sleep') ORDER BY memberNo DESC ", cellphone);
+            List<Map<String, Object>> memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" SELECT * FROM member WHERE cellphone=? ORDER BY memberNo DESC LIMIT 1", cellphone);
 
             if (0 < memberList.size()) {
                 Map<String, Object> member = memberList.get(0);
+
+                if("leave".equals(member.get("memberStatus").toString()) || "leaveRequest".equals(member.get("memberStatus").toString())){
+                    commonService.setErrorMessage(context, "L0003");
+                    return context;
+                }
+
                 sendSms(smsCertificationType, cellphone, member);
 
                 item.put("cellphone", member.get("cellphone"));
@@ -329,13 +341,19 @@ public class MemberService {
             List<Map<String, Object>> memberList;
 
             if ("password".equals(smsCertificationType)) {
-                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and userId=? and cellphone=? and memberStatus='join' ", data.get("name").toString(), data.get("userId").toString(), cellphone);
+                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and userId=? and cellphone=? order by memberNo desc limit 1 ", data.get("name").toString(), data.get("userId").toString(), cellphone);
             } else {
-                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and email=? and cellphone=? and memberStatus='sleep' ", data.get("name").toString(), data.get("email").toString(), cellphone);
+                memberList = nodeBindingInfo.getJdbcTemplate().queryForList(" select * from member where name=? and email=? and cellphone=? order by memberNo desc limit 1", data.get("name").toString(), data.get("email").toString(), cellphone);
             }
 
             if (0 < memberList.size()) {
                 Map<String, Object> member = memberList.get(0);
+
+                if("leave".equals(member.get("memberStatus").toString()) || "leaveRequest".equals(member.get("memberStatus").toString())){
+                    commonService.setErrorMessage(context, "L0003");
+                    return context;
+                }
+
                 sendSms(smsCertificationType, cellphone, member);
 
                 item.put("memberNo", member.get("memberNo"));
