@@ -5,6 +5,7 @@ import net.ion.ice.core.cluster.ClusterConfiguration;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeType;
+import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.query.QueryTerm;
 import net.ion.ice.core.query.QueryUtils;
 import net.ion.ice.security.auth.jwt.extractor.TokenExtractor;
@@ -14,6 +15,8 @@ import net.ion.ice.security.token.JwtTokenFactory;
 import net.ion.ice.security.token.RawAccessJwtToken;
 import net.ion.ice.security.token.RefreshToken;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +30,8 @@ import java.util.Map;
 
 @Service
 public class SessionService {
+    private static Logger logger = LoggerFactory.getLogger(SessionService.class);
+
     @Autowired
     private ClusterConfiguration clusterConfiguration;
     @Autowired
@@ -40,8 +45,11 @@ public class SessionService {
     private NodeService nodeService ;
 
     public Map<String, Object> getSession(HttpServletRequest request) throws UnsupportedEncodingException {
-
-        Map<String, Object> sessionMap = clusterConfiguration.getSesssionMap().get(getSessionKey(request));
+        String sessionKey = getSessionKey(request) ;
+        if(StringUtils.isEmpty(sessionKey)){
+            return null;
+        }
+        Map<String, Object> sessionMap = clusterConfiguration.getSesssionMap().get(sessionKey);
 
         return sessionMap;
     }
@@ -137,12 +145,34 @@ public class SessionService {
 
         Map<String, Object> session = new HashMap<>();
         session.put("user", node);
-        session.put("role", "admin");
+        List<String> roles = new ArrayList<>();
+
+        addRoles(roles, node);
+
+        Node group = node.getReferenceNode("userGroupId");
+        if(group != null){
+            addRoles(roles, group);
+        }
+
+        roles.add("admin") ;
+        roles.add("customer") ;
+        roles.add("anonymous") ;
+        session.put("role", String.join(",", roles));
+
+        logger.info("{} user has roles : {}", userId, session.get("role"));
         try {
             putSession(request, response, session);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
         return session ;
+    }
+
+    private void addRoles(List<String> roles, Node group) {
+        for(String role : StringUtils.split(group.getStringValue("role"), ",")){
+            if(!roles.contains(role)){
+                roles.add(role) ;
+            }
+        }
     }
 }

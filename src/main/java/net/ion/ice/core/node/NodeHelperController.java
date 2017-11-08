@@ -61,11 +61,25 @@ public class NodeHelperController {
         try {
             logger.info("node list : {}, {}", typeId, query);
             QueryContext queryContext = QueryContext.createQueryContextFromText(query, NodeUtils.getNodeType(typeId), null) ;
-            return infinispanRepositoryService.getSyncQueryList(typeId, queryContext);
+            return infinispanRepositoryService.getSyncQueryList(queryContext);
         }catch(Exception e){
             logger.error(e.getMessage(), e);
             return JsonResponse.error(e) ;
         }
+    }
+
+    @RequestMapping(value = "/helper/syncList", method = RequestMethod.POST)
+    @ResponseBody
+    public Object listNode(HttpServletRequest request, @RequestParam String typeId, @RequestParam String query, @RequestParam String server)  {
+        try {
+            logger.info("node sync list : {}, {}", typeId, query);
+            nodeHelperService.syncNodeList(NodeUtils.getNodeType(typeId), query, server);
+            JsonResponse.create() ;
+        }catch(Exception e){
+            logger.error(e.getMessage(), e);
+            return JsonResponse.error(e) ;
+        }
+        return null ;
     }
 
     @RequestMapping(value = "/helper/rebuild", method = RequestMethod.GET)
@@ -83,6 +97,29 @@ public class NodeHelperController {
         }
     }
 
+    @RequestMapping(value = "/helper/syncDb", method = RequestMethod.POST)
+    @ResponseBody
+    public Object syncDb(HttpServletRequest request, @RequestParam String typeId, @RequestParam String query, @RequestParam String ds)  {
+        try {
+            logger.info("db node sync : {}, {}", typeId, query);
+            return nodeHelperService.syncNodeQuery(typeId, query, ds);
+        }catch(Exception e){
+            logger.error(e.getMessage(), e);
+            return JsonResponse.error(e) ;
+        }
+    }
+
+    @RequestMapping(value = "/helper/syncBinding", method = RequestMethod.GET)
+    @ResponseBody
+    public Object syncBinding(HttpServletRequest request, @RequestParam String typeId, @RequestParam(required = false) String id, @RequestParam(required = false) Integer limit, @RequestParam(required = false) Integer roofCount)  {
+        try {
+            logger.info("db node sync : {}, {}", typeId, id);
+            return nodeHelperService.syncNodeBinding(typeId, id, limit, roofCount);
+        }catch(Exception e){
+            logger.error(e.getMessage(), e);
+            return JsonResponse.error(e) ;
+        }
+    }
     @RequestMapping(value = "/helper/cache", method = RequestMethod.GET)
     @ResponseBody
     public Object cache(HttpServletRequest request, @RequestParam String typeId, @RequestParam String id, @RequestParam String server){

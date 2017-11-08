@@ -18,6 +18,7 @@ public class NodeType implements Serializable{
 
 	public static final String NODE = "node";
 	public static final String DATA = "data";
+	public static final String AUTHORITY = "authority";
 
 	private Node nodeTypeNode ;
 	private Map<String, PropertyType> propertyTypes ;
@@ -116,6 +117,10 @@ public class NodeType implements Serializable{
 			if(pt.isReferenced()) return true ;
 		}
 		return false ;
+	}
+
+	public boolean hasAuthority() {
+		return propertyTypes.containsKey(AUTHORITY) ;
 	}
 
 	public Collection<PropertyType> getPropertyTypes(PropertyType.ValueType valueType) {
@@ -217,5 +222,21 @@ public class NodeType implements Serializable{
 			return "cms" ;
 		}
 		return (String) nodeTypeNode.get(CLUSTER_GROUP) ;
+	}
+
+	public Integer getEviction() {
+		return nodeTypeNode.getIntValue("eviction");
+	}
+
+	public boolean isHistoryable() {
+		return nodeTypeNode.getBooleanValue("historyable");
+	}
+
+	public String getAuthorityRuleString() {
+		return nodeTypeNode.getStringValue("authorityRule");
+	}
+
+	public Object getAuthorityRule(){
+		return nodeTypeNode.get("authorityRule");
 	}
 }

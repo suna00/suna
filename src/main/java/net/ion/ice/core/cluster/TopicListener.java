@@ -38,7 +38,7 @@ public class TopicListener implements MessageListener<String>{
 //        logger.info(message.getPublishingMember().getUuid() + "=" + clusterConfiguration.getHazelcast().getCluster().getLocalMember().getUuid());
 
         if(uuid.equals(message.getPublishingMember().getUuid())){
-           return ;
+            return ;
         }
         String msg = message.getMessageObject() ;
         String[] msgs = StringUtils.split(msg, "::") ;

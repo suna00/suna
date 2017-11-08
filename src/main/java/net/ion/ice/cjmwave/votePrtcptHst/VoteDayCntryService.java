@@ -193,7 +193,7 @@ public class VoteDayCntryService {
 
                 /* 국가코드가 없거나, 잘못된 국가코드에 대해서 other 로 처리함*/
                 List<Map<String, Object>> voteMbrNumList =
-                        jdbcTemplate_replica.queryForList("select if(length(cntryCd)!=3, 'OTHERS', ifnull(cntryCd,'OTHERS') ) as cntryCd, voteDate, sum(voteNum) voteNum from (\n" +
+                        jdbcTemplate_replica.queryForList("select if(length(cntryCd)!=3, 'OTHERS', ifnull(if(cntryCd='THR','OTHERS',cntryCd),'OTHERS') ) as cntryCd, voteDate, sum(voteNum) voteNum from (\n" +
                                         "  SELECT\n" +
                                         "    cntryCd, voteDate, count(*) voteNum\n" +
                                         "  FROM (\n" +
@@ -209,7 +209,7 @@ public class VoteDayCntryService {
                                         "       ) t\n" +
                                         "  GROUP BY cntryCd, voteDate\n" +
                                         ") total\n" +
-                                        "group by if(length(cntryCd)!=3, 'OTHERS', ifnull(cntryCd,'OTHERS') ),voteDate "
+                                        "group by if(length(cntryCd)!=3, 'OTHERS', ifnull(if(cntryCd='THR','OTHERS',cntryCd),'OTHERS') ),voteDate "
                                 , lastSeq, limitCnt);
                 logger.info(voteSeq + "===============> voteMbrNumList ::" + voteMbrNumList.size());
 
