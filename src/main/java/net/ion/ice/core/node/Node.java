@@ -13,7 +13,7 @@ import java.util.*;
  */
 @Indexed
 public class Node implements Map<String, Object>, Serializable, Cloneable{
-
+    private static final long serialVersionUID = -8080180774568744031L;
     public static final String ID = "id";
     public static final String TYPEID = "typeId";
     public static final String USERID = "userId";
