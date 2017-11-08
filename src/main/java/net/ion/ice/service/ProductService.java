@@ -30,16 +30,30 @@ public class ProductService {
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
 
         try {
-            nodeService.executeNode(data, "product", EventService.SAVE);
+            Node node = (Node) nodeService.executeNode(data, "product", EventService.SAVE);
 
             productOption(data);
             productAttribute(data);
             productToCategoryMap(data);
             productSearchFilter(data);
 
+            if(context.getChangedProperties().size() > 0){
+                List<Node> histories = (List<Node>) NodeQuery.build("productHistory").matching("productId", node.getId()).sorting("version desc").getList();
+                Map<String, Object> history = new LinkedHashMap<>();
+                history.put("productId", node.getId()) ;
+                history.put("version", histories.size() > 0 ? histories.get(0).getIntValue("version") + 1 : 1) ;
+                String historyText = "";
+                for(String pid : context.getChangedProperties()){
+                    historyText += String.format("%s : %s -> %s \r\n", pid, context.getExistNode().getStringValue(pid), node.getStringValue(pid));
+                }
+                historyText = StringUtils.substringBeforeLast(historyText, "\r\n");
+                history.put("history", historyText) ;
+                nodeService.createNode(history, "productHistory");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     public void productOption(Map<String, Object> data) throws IOException {

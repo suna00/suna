@@ -26,6 +26,9 @@
     "typeName": "상품 옵션 세트",
     "tableName": "ytnDevDb#productOptionSet",
     "repositoryType": "node",
+    "authorityRule": [
+      {"role":"vendor", "pid":"vendorId", "method":"matching", "value":"session.user.vendorId"}
+    ],
     "eviction": 1000
   },
   {
@@ -72,5 +75,13 @@
     "tableName": "ytnDevDb#productNoticeBanner",
     "repositoryType": "node",
     "eviction": 1000
+  },
+  {
+    "parentId": "productPath",
+    "typeId": "nodeType",
+    "tid": "productHistory",
+    "typeName": "상품 히스토리",
+    "repositoryType": "node",
+    "eviction": 10000
   }
 ]

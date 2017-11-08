@@ -98,8 +98,10 @@ public class AdminOrderService {
         int pageSize = (JsonUtils.getIntValue(data, "pageSize") == 0 ? 10 : JsonUtils.getIntValue(data, "pageSize"));
         int page = JsonUtils.getIntValue(data, "page");
         int currentPage = (page == 0 ? 1 : page);
+
         String createdFromto = JsonUtils.getStringValue(data, "createdFromto");
         String orderSheetId = JsonUtils.getStringValue(data, "orderSheetId");
+
         String productId = JsonUtils.getStringValue(data, "productId");
         String orderStatus = JsonUtils.getStringValue(data, "orderStatus");
         List<String> splitOrderStatusList = Arrays.asList(StringUtils.split(orderStatus, ","));
@@ -203,17 +205,23 @@ public class AdminOrderService {
         String createdFromto = JsonUtils.getStringValue(data, "createdFromto");
         String orderSheetId = JsonUtils.getStringValue(data, "orderSheetId");
         String productId = JsonUtils.getStringValue(data, "productId");
+        String productName = JsonUtils.getStringValue(data, "productName");
+        String vendor = JsonUtils.getStringValue(data, "vendor");
         String changeType = JsonUtils.getStringValue(data, "changeType");
 
-        String existsQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderChangeProduct where IF(@{productId} = '' ,'1',productId) = IF(@{productId} = '' ,'1',@{productId}) ";
+        String existsProductIdQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderChangeProduct where productId like concat(@{productId}, '%') ";
+        String existsProductNameQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderChangeProduct a, product b where a.productId = b.productId and b.name like concat('%', @{productName}, '%') ";
+        String existsVendorQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderChangeProduct a, vendor b where a.vendorId = b.vendorId and b.name like concat('%', @{vendor}, '%') ";
 
         String searchText = "pageSize=" + pageSize +
                 "&page=" + currentPage +
                 "&sorting=created desc" +
-                (orderSheetId != "" ? "&orderSheetId_equals=" + orderSheetId : "") +
-                (changeType != "" ? "&changeType_equals=" + changeType : "") +
-                (productId != "" ? "&orderSheetId_exists=" + existsQuery : "") +
-                (createdFromto != "" ? "&created_fromto=" + createdFromto : "");
+                (StringUtils.isNotEmpty(orderSheetId) ? "&orderSheetId_equals=" + orderSheetId : "") +
+                (StringUtils.isNotEmpty(changeType) ? "&changeType_equals=" + changeType : "") +
+                (StringUtils.isNotEmpty(productId) ? "&orderSheetId_exists=" + existsProductIdQuery : "") +
+                (StringUtils.isNotEmpty(productName) ? "&orderSheetId_exists=" + existsProductNameQuery : "") +
+                (StringUtils.isNotEmpty(vendor) ? "&orderSheetId_exists=" + existsVendorQuery : "") +
+                (StringUtils.isNotEmpty(createdFromto) ? "&created_fromto=" + createdFromto : "");
 
         List<Map<String, Object>> changeTotalList = nodeBindingService.list(orderChange_TID, "");
 
