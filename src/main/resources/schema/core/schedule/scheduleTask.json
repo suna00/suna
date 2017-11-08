@@ -59,14 +59,12 @@
     "actionBody": "voteDayCntryService.voteBasStatsCntryJob"
   },
 
-
-
   {
     "typeId": "scheduleTask",
     "id": "voteItemStatsHstByCntryTask",
     "name": "voteItemStatsHstByCntryTask Schedule Task",
     "type": "cron",
-    "config": "0 */5 * * * *",
+    "config": "0 */7 * * * *",
     "enable": false,
     "actionType": "service",
     "actionBody": "voteItemStatsHstByCntryTask.execVoteItemStatsHstByCntry"
