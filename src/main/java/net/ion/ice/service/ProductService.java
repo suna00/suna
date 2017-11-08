@@ -44,9 +44,9 @@ public class ProductService {
                 history.put("version", histories.size() > 0 ? histories.get(0).getIntValue("version") + 1 : 1) ;
                 String historyText = "";
                 for(String pid : context.getChangedProperties()){
-                    historyText += String.format("%s : %s -> %s \n", pid, context.getExistNode().getStringValue(pid), node.getStringValue(pid));
+                    historyText += String.format("%s : %s -> %s \r\n", pid, context.getExistNode().getStringValue(pid), node.getStringValue(pid));
                 }
-                historyText = StringUtils.substringBeforeLast(historyText, "\n");
+                historyText = StringUtils.substringBeforeLast(historyText, "\r\n");
                 history.put("history", historyText) ;
                 nodeService.createNode(history, "productHistory");
             }
