@@ -1,6 +1,7 @@
 package net.ion.ice.core.infinispan;
 
 import net.ion.ice.core.node.Node;
+import net.ion.ice.core.node.NodeHistory;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.search.cfg.Environment;
 import org.infinispan.Cache;
@@ -99,6 +100,14 @@ public class InfinispanCacheManager {
         return cache;
     }
 
+    public Cache<String, NodeHistory> getHistoryCache(String cacheType, int size){
+        Cache<String, NodeHistory> cache = manager.getCache(cacheType + "_history", false) ;
+        if(cache == null){
+            cache = cacheInit(cacheType, size) ;
+        }
+        return cache;
+    }
+    
     private static String[] times = new String[]{"10", "30", "60", "300", "3600"} ;
 
 
@@ -128,4 +137,6 @@ public class InfinispanCacheManager {
         }
         return cache;
     }
+    
+    
 }

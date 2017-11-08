@@ -38,7 +38,9 @@ public class InfinispanRepositoryService {
 
 
     public Cache<String, Node> getNodeCache(String tid) {
-        return cacheManager.getCache(tid, 100000);
+        NodeType nodeType = NodeUtils.getNodeType(tid) ;
+        Integer eviction = nodeType.getEviction() ;
+        return cacheManager.getCache(tid, eviction == 0 ? 10000 : eviction);
     }
 
     public Node read(String typeId, String id) {
@@ -121,122 +123,6 @@ public class InfinispanRepositoryService {
         nodeCache.remove(id);
     }
 
-    private List<Object> executeQuery(String typeId, QueryContext queryContext) {
-        Cache<String, Node> cache = getNodeCache(typeId);
-
-        queryContext.setSearchManager(Search.getSearchManager(cache));
-
-        CacheQuery cacheQuery = null;
-        try {
-            cacheQuery = LuceneQueryUtils.makeQuery(queryContext);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        if(cacheQuery == null){
-            queryContext.setResultSize(0);
-            queryContext.setQueryListSize(0) ;
-            return new ArrayList<>() ;
-        }
-
-
-        List<Object> list = cacheQuery.list();
-        queryContext.setResultSize(cacheQuery.getResultSize());
-        queryContext.setQueryListSize(list.size()) ;
-        if(queryContext.getFacetTerms() != null) {
-            for (FacetTerm facet : queryContext.getFacetTerms()) {
-                facet.setFacets(cacheQuery.getFacetManager().getFacets(facet.getName()));
-            }
-        }
-        if(queryContext.getStart() > 0) {
-            return list.subList(queryContext.getStart(), list.size()) ;
-        }
-        return list;
-    }
-
-
-    public SimpleQueryResult getQueryTreeNodes(String typeId, QueryContext queryContext) {
-        NodeType nodeType = queryContext.getNodetype();
-        for (PropertyType pt : nodeType.getPropertyTypes()) {
-            if (pt.isTreeable()) {
-                QueryContext subQueryContext = QueryContext.makeQueryContextForTree(nodeType, pt, queryContext.getQueryTerms() == null || queryContext.getQueryTerms().isEmpty() ? "root" : "");
-                if (queryContext.getQueryTerms() != null && !queryContext.getQueryTerms().isEmpty()) {
-                    subQueryContext.getQueryTerms().addAll(queryContext.getQueryTerms());
-                }
-                subQueryContext.setTreeable(true);
-                subQueryContext.setLimit(queryContext.getLimit().toString());
-                subQueryContext.setSorting(queryContext.getSorting());
-                List<Node> result = getSubQueryNodes(pt.getReferenceType(), subQueryContext);
-                for (Node node : result) {
-                    node.toDisplay(subQueryContext);
-                }
-                return new SimpleQueryResult(result, subQueryContext);
-            }
-        }
-        return null;
-    }
-
-    public SimpleQueryResult getQueryNodes(String typeId, QueryContext queryContext) {
-//        queryContext.setIncludeReferenced(true);
-        List<Node> result = getSubQueryNodes(typeId, queryContext);
-        for (Node node : result) {
-            node.toDisplay(queryContext);
-        }
-        return new SimpleQueryResult(result, queryContext);
-    }
-
-
-    public List<Node> getSubQueryNodes(String typeId, QueryContext queryContext) {
-        List<Object> list = executeQuery(typeId, queryContext);
-
-        NodeType nodeType = NodeUtils.getNodeType(typeId);
-        List<Node> resultList = new ArrayList<>();
-        for (Object item : list) {
-            Node node = (Node) item;
-            node = node.clone();
-
-//            if (queryContext.isIncludeReferenced()) {
-//                for (PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)) {
-//                    QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(nodeType, pt, node);
-//                    node.put(pt.getPid(), getSubQueryNodes(pt.getReferenceType(), subQueryContext));
-//                }
-//            }
-            if (queryContext.isTreeable()) {
-                for (PropertyType pt : nodeType.getPropertyTypes()) {
-                    if (pt.isTreeable()) {
-                        QueryContext subQueryContext = QueryContext.makeQueryContextForTree(nodeType, pt, node.getId().toString());
-                        subQueryContext.setTreeable(true);
-//                        if (queryContext.getQueryTerms() != null) subQueryContext.getQueryTerms().addAll(queryContext.getQueryTerms());
-                        if (queryContext.getSorting() != null ) subQueryContext.setSorting(queryContext.getSorting());
-                        node.put("children", getSubQueryNodes(pt.getReferenceType(), subQueryContext));
-                    }
-                }
-            }
-            resultList.add(node);
-        }
-
-        return resultList;
-    }
-
-    public List<Map<String, Object>> getSyncQueryList(String typeId, QueryContext queryContext) {
-        List<Object> list = executeQuery(typeId, queryContext);
-
-        List<Map<String, Object>> resultList = new ArrayList<>();
-        for (Object item : list) {
-            Node node = (Node) item;
-            resultList.add(node.toMap()) ;
-        }
-        return resultList;
-    }
-
-    public SimpleQueryResult getQueryCodeNodes(String typeId, QueryContext queryContext) {
-        queryContext.setIncludeReferenced(false);
-        List<Node> result = getSubQueryNodes(typeId, queryContext);
-        for (Node node : result) {
-            node.toCode();
-        }
-        return new SimpleQueryResult(result, queryContext);
-    }
 
     public List<Object> executeQuery(QueryContext queryContext) {
         Cache<String, Node> cache = getNodeCache(queryContext.getNodetype().getTypeId());
@@ -273,6 +159,91 @@ public class InfinispanRepositoryService {
 
         return list;
     }
+
+    public SimpleQueryResult getQueryTreeNodes(QueryContext queryContext) {
+        NodeType nodeType = queryContext.getNodetype();
+        for (PropertyType pt : nodeType.getPropertyTypes()) {
+            if (pt.isTreeable()) {
+                QueryContext subQueryContext = QueryContext.makeQueryContextForTree(nodeType, pt, queryContext.getQueryTerms() == null || queryContext.getQueryTerms().isEmpty() ? "root" : "");
+                if (queryContext.getQueryTerms() != null && !queryContext.getQueryTerms().isEmpty()) {
+                    subQueryContext.getQueryTerms().addAll(queryContext.getQueryTerms());
+                }
+                subQueryContext.setTreeable(true);
+                subQueryContext.setLimit(queryContext.getLimit().toString());
+                subQueryContext.setSorting(queryContext.getSorting());
+                List<Node> result = getSubQueryNodes(subQueryContext);
+                for (Node node : result) {
+                    node.toDisplay(subQueryContext);
+                }
+                return new SimpleQueryResult(result, subQueryContext);
+            }
+        }
+        return null;
+    }
+
+    public SimpleQueryResult getQueryNodes(QueryContext queryContext) {
+//        queryContext.setIncludeReferenced(true);
+        List<Node> result = getSubQueryNodes(queryContext);
+        for (Node node : result) {
+            node.toDisplay(queryContext);
+        }
+        return new SimpleQueryResult(result, queryContext);
+    }
+
+
+    public List<Node> getSubQueryNodes(QueryContext queryContext) {
+        List<Object> list = executeQuery(queryContext);
+
+        NodeType nodeType = queryContext.getNodeType();
+        List<Node> resultList = new ArrayList<>();
+        for (Object item : list) {
+            Node node = (Node) item;
+            node = node.clone();
+
+//            if (queryContext.isIncludeReferenced()) {
+//                for (PropertyType pt : nodeType.getPropertyTypes(PropertyType.ValueType.REFERENCED)) {
+//                    QueryContext subQueryContext = QueryContext.makeQueryContextForReferenced(nodeType, pt, node);
+//                    node.put(pt.getPid(), getSubQueryNodes(pt.getReferenceType(), subQueryContext));
+//                }
+//            }
+            if (queryContext.isTreeable()) {
+                for (PropertyType pt : nodeType.getPropertyTypes()) {
+                    if (pt.isTreeable()) {
+                        QueryContext subQueryContext = QueryContext.makeQueryContextForTree(nodeType, pt, node.getId().toString());
+                        subQueryContext.setTreeable(true);
+//                        if (queryContext.getQueryTerms() != null) subQueryContext.getQueryTerms().addAll(queryContext.getQueryTerms());
+                        if (queryContext.getSorting() != null ) subQueryContext.setSorting(queryContext.getSorting());
+                        node.put("children", getSubQueryNodes(subQueryContext));
+                    }
+                }
+            }
+            resultList.add(node);
+        }
+
+        return resultList;
+    }
+
+    public List<Map<String, Object>> getSyncQueryList(QueryContext queryContext) {
+        List<Object> list = executeQuery(queryContext);
+
+        List<Map<String, Object>> resultList = new ArrayList<>();
+        for (Object item : list) {
+            Node node = (Node) item;
+            resultList.add(node.toMap()) ;
+        }
+        return resultList;
+    }
+
+    public SimpleQueryResult getQueryCodeNodes(String typeId, QueryContext queryContext) {
+        queryContext.setIncludeReferenced(false);
+        List<Node> result = getSubQueryNodes(queryContext);
+        for (Node node : result) {
+            node.toCode();
+        }
+        return new SimpleQueryResult(result, queryContext);
+    }
+
+
 
     public Date getLastCacheNode(String typeId) {
         return (Date) getSortedValue(typeId,"changed", SortField.Type.LONG, true);
@@ -450,5 +421,38 @@ public class InfinispanRepositoryService {
         for(Node node : cache.values()){
             cache.put(node.getId(), node.toIndexing()) ;
         }
+    }
+
+    public Integer lastHistoryVersion(String typeId, String id) {
+        Cache<String, NodeHistory> cache = cacheManager.getCache(typeId + "_history", 20000);
+        SearchManager qf = Search.getSearchManager(cache);
+        QueryBuilder queryBuilder = qf.buildQueryBuilderForClass(NodeHistory.class).get();
+        CacheQuery cacheQuery = qf.getQuery(queryBuilder.bool().must(queryBuilder.keyword().onField("id").matching(id).createQuery()).createQuery());
+        cacheQuery.sort(new Sort(new SortField("version", SortField.Type.INT, true)));
+        cacheQuery.maxResults(1);
+
+        List result = cacheQuery.list();
+        if (result == null || result.size() == 0) return 0;
+        NodeHistory history = (NodeHistory) result.get(0);
+        return history.getVersion();
+    }
+
+    public void cacheHistory(String typeId, NodeHistory history) {
+        Cache<String, NodeHistory> cache = cacheManager.getCache( typeId + "_history", 20000);
+        if(cache.containsKey(history.getHistoryId())){
+            history.increment();
+        }
+        cache.put(history.getHistoryId(), history) ;
+    }
+
+    public List<NodeHistory> getHistories(String typeId, String id) {
+        Cache<String, NodeHistory> cache = cacheManager.getCache( typeId + "_history", 20000);
+        SearchManager qf = Search.getSearchManager(cache);
+        QueryBuilder queryBuilder = qf.buildQueryBuilderForClass(NodeHistory.class).get();
+        CacheQuery cacheQuery = qf.getQuery(queryBuilder.bool().must(queryBuilder.keyword().onField("id").matching(id).createQuery()).createQuery());
+        cacheQuery.sort(new Sort(new SortField("version", SortField.Type.INT, true)));
+
+        List result = cacheQuery.list();
+        return result ;
     }
 }
