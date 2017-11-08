@@ -7810,5 +7810,32 @@
     "description": "",
     "sortOrder": "20",
     "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "targetType",
+    "upperCode": "root",
+    "name": "대상유형",
+    "description": "",
+    "sortOrder": "127",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "all",
+    "upperCode": "targetType",
+    "name": "전체",
+    "description": "",
+    "sortOrder": "10",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "select",
+    "upperCode": "targetType",
+    "name": "지정",
+    "description": "",
+    "sortOrder": "20",
+    "commonCodeStatus": "y"
   }
 ]
