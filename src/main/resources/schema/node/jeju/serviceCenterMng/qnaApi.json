@@ -1,0 +1,28 @@
+[
+  {
+    "typeId": "apiCategory",
+    "id": "qna",
+    "categoryName": "QNA (1:1문의 상품문의 부문)",
+    "fileUrlFormat" : {
+      "default": "{{:getEnvValue(cluster.file-prefix, url)}}"
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "qna",
+    "apiId" : "productQnaList",
+    "apiName" : "상품상세 QNA 리스트",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "oneToOneQuestion",
+      "query" : [
+        {"field" : "oneToOneQuestionType", "method" : "matching", "value" : "oneToOne101" },
+        {"field" : "productId", "method" : "matching", "value" : "{{:productId}}" },
+        {"includeReferenced" : false},
+        {"pageSize": "{{:pageSize}}", "page": "{{:page}}", "sorting": "created desc"}
+      ]
+    }
+  }
+]
