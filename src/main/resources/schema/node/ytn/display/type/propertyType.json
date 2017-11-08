@@ -1400,8 +1400,8 @@
   {
     "typeId": "propertyType",
     "tid": "popup",
-    "pid": "deviceType",
-    "propertyTypeName": "디바이스",
+    "pid": "popupType",
+    "propertyTypeName": "유형",
     "valueType": "REFERENCE",
     "required": false,
     "idable": false,
@@ -1411,7 +1411,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "codeFilter": "deviceType",
+    "codeFilter": "popupType",
     "defaultValue": ""
   },
   {
