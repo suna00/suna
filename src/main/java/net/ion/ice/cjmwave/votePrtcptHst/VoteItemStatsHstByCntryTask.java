@@ -19,7 +19,7 @@ public class VoteItemStatsHstByCntryTask {
     private static Logger logger = LoggerFactory.getLogger(VoteItemStatsHstByCntryTask.class);
 
     public static final String VOTE_BAS_INFO = "voteBasInfo";
-    public static final Integer SELECT_LIST_COUNT = 200000;
+    public static final Integer SELECT_LIST_COUNT = 500000;
 
     @Autowired
     NodeService nodeService;
