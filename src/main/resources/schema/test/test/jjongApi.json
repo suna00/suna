@@ -101,5 +101,41 @@
     "referenceValue": "",
     "codeFilter": "",
     "defaultValue": ""
+  },
+  {
+    "typeId": "apiCategory",
+    "id": "propertyCode",
+    "categoryName": "columns",
+    "fileUrlFormat" : {
+      "default": "{{:getEnvValue(cluster.file-prefix, url)}}"
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "propertyCode",
+    "apiId" : "list",
+    "apiName" : "",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "propertyType",
+      "query" : [
+        {"field" : "referenceType", "method" : "matching", "value" : "commonCode" },
+        {"field" : "tid", "method" : "matching", "value" : "{{:tid}}" },
+        {"field" : "pid", "method" : "matching", "value" : "{{:pid}}" }
+      ],
+      "response" : {
+        "tid": "",
+        "pid": "",
+        "propertyTypeName": "",
+        "codeList": {
+          "typeId": "commonCode",
+          "query" : [
+            {"field" : "upperCode", "method" : "matching", "value" : "{{:codeFilter}}" }
+          ]
+        }
+      }
+    }
   }
 ]
