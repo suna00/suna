@@ -193,26 +193,6 @@
     "backOfficeId": "adm",
     "gnbMenuId": "productMng",
     "parentMenuId": "root",
-    "menuId": "productOptionSet",
-    "menuName": "상품옵션 세트설정",
-    "order": "60",
-    "icon": "fa-list",
-    "active": "true",
-    "index": "false",
-    "pages": [
-      { "pageName": "목록", "pageUrl": "list" }
-    ],
-    "customPages": [
-      { "pageName": "등록", "pageUrl": "productOptionSet/CreateForm" },
-      { "pageName": "수정", "pageUrl": "productOptionSet/UpdateForm" }
-    ],
-    "authority": "system,admin"
-  },
-  {
-    "typeId" : "adminLnbMenu",
-    "backOfficeId": "adm",
-    "gnbMenuId": "productMng",
-    "parentMenuId": "root",
     "menuId": "productNoticeBanner",
     "menuName": "상품공지 배너관리",
     "order": "70",
@@ -416,6 +396,25 @@
     "pages": [],
     "customPages": [
       { "pageName": "등록", "pageUrl": "marketingSearch/Form" }
+    ],
+    "authority": "system,admin"
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "marketingMng",
+    "parentMenuId": "root",
+    "menuId": "popup",
+    "menuName": "팝업관리",
+    "order": "60",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "marketingPopup/List" },
+      { "pageName": "등록", "pageUrl": "marketingPopup/CreateForm" },
+      { "pageName": "수정", "pageUrl": "marketingPopup/updateForm" }
     ],
     "authority": "system,admin"
   },

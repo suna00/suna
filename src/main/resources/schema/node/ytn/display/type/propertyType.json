@@ -1229,6 +1229,23 @@
   {
     "typeId": "propertyType",
     "tid": "gnb",
+    "pid": "mobileFile",
+    "propertyTypeName": "모바일 아이콘",
+    "valueType": "FILE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": null,
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "gnb",
     "pid": "created",
     "propertyTypeName": "등록일",
     "valueType": "DATE",

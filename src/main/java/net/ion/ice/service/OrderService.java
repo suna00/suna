@@ -391,12 +391,18 @@ public class OrderService {
 
                 totalProductPrice += discountPriceMap.get("resultOrderPrice");
                 totalDiscountPrice += discountPriceMap.get("resultDiscountPrice");
-                ///////orderDeliveryPrice////////
-//                storeOrderDeliveryPrice.put("deliveryMethod", JsonUtils.getValue(product, "product.deliveryMethod"));
-//                storeOrderDeliveryPrice.put("bundleDeliveryYn", JsonUtils.getValue(product, "product.bundleDeliveryYn"));
-//                storeOrderDeliveryPrice.put("deliveryPriceType", JsonUtils.getValue(product, "product.deliveryPriceType"));
-//                storeOrderDeliveryPrice.put("vendorId", JsonUtils.getIntValue(product, "vendorId"));
-//
+
+                Node productBaseOptionItemNode = nodeService.getNode("productOptionItem", JsonUtils.getStringValue(product, "baseOptionItemId"));
+
+                Integer beforeQuantity =  productBaseOptionItemNode.getIntValue("stockQuantity");
+
+                if(beforeQuantity > 0) {
+                    Integer afterQuantity = beforeQuantity -  JsonUtils.getIntValue(product, "quantity");
+
+                    productBaseOptionItemNode.put("stockQuantity", afterQuantity);
+                    nodeService.executeNode(productBaseOptionItemNode, "productOptionItem", CommonService.UPDATE);
+                }
+
                 Node orderProductNode = (Node) nodeService.executeNode(storeOrderProduct, "orderProduct", CommonService.CREATE);
 
                 for (Map<String, Object> productItem : (List<Map<String, Object>>) product.get("tempOrderProductItem")) {
@@ -408,6 +414,18 @@ public class OrderService {
                     storeOrderProductItem.put("addOptionItemName", "");
                     storeOrderProductItem.put("quantity", JsonUtils.getStringValue(productItem, "quantity"));
                     storeOrderProductItem.put("addOptionPrice", JsonUtils.getStringValue(productItem, "addOptionPrice"));
+
+                    Node productItemBaseOptionItemNode = nodeService.getNode("productOptionItem", JsonUtils.getStringValue(product, "addOptionItemId"));
+
+                    Integer productItemBeforeQuantity =  productItemBaseOptionItemNode.getIntValue("stockQuantity");
+
+                    if(beforeQuantity > 0) {
+                        Integer afterQuantity = productItemBeforeQuantity -  JsonUtils.getIntValue(product, "quantity");
+
+                        productItemBaseOptionItemNode.put("stockQuantity", afterQuantity);
+                        nodeService.executeNode(productItemBaseOptionItemNode, "productOptionItem", CommonService.UPDATE);
+                    }
+
                     nodeService.executeNode(storeOrderProductItem, "orderProductItem", CommonService.CREATE);
                 }
 //                orderProductIds.add(orderProductNode.getId());
@@ -512,8 +530,6 @@ public class OrderService {
         context.setResult(CommonService.getResult("O0005"));
 
         return context;
-
-
     }
     /**
      * 최종 주문서 생성
@@ -638,12 +654,17 @@ public class OrderService {
                 totalProductPrice += discountPriceMap.get("resultOrderPrice");
                 totalDiscountPrice += discountPriceMap.get("resultDiscountPrice");
 
-                ///////orderDeliveryPrice////////
-//                storeOrderDeliveryPrice.put("deliveryMethod", JsonUtils.getValue(product, "product.deliveryMethod"));
-//                storeOrderDeliveryPrice.put("bundleDeliveryYn", JsonUtils.getValue(product, "product.bundleDeliveryYn"));
-//                storeOrderDeliveryPrice.put("deliveryPriceType", JsonUtils.getValue(product, "product.deliveryPriceType"));
-//                storeOrderDeliveryPrice.put("vendorId", JsonUtils.getIntValue(product, "vendorId"));
-//
+                Node productBaseOptionItemNode = nodeService.getNode("productOptionItem", JsonUtils.getStringValue(product, "baseOptionItemId"));
+
+                Integer beforeQuantity =  productBaseOptionItemNode.getIntValue("stockQuantity");
+
+                if(beforeQuantity > 0) {
+                    Integer afterQuantity = beforeQuantity -  JsonUtils.getIntValue(product, "quantity");
+
+                    productBaseOptionItemNode.put("stockQuantity", afterQuantity);
+                    nodeService.executeNode(productBaseOptionItemNode, "productOptionItem", CommonService.UPDATE);
+                }
+
                 Node orderProductNode = (Node) nodeService.executeNode(storeOrderProduct, "orderProduct", CommonService.CREATE);
 
                 for (Map<String, Object> productItem : (List<Map<String, Object>>) product.get("tempOrderProductItem")) {
@@ -655,6 +676,18 @@ public class OrderService {
                     storeOrderProductItem.put("addOptionItemName", "");
                     storeOrderProductItem.put("quantity", JsonUtils.getStringValue(productItem, "quantity"));
                     storeOrderProductItem.put("addOptionPrice", JsonUtils.getStringValue(productItem, "addOptionPrice"));
+
+                    Node productItemBaseOptionItemNode = nodeService.getNode("productOptionItem", JsonUtils.getStringValue(product, "addOptionItemId"));
+
+                    Integer productItemBeforeQuantity =  productItemBaseOptionItemNode.getIntValue("stockQuantity");
+
+                    if(beforeQuantity > 0) {
+                        Integer afterQuantity = productItemBeforeQuantity -  JsonUtils.getIntValue(product, "quantity");
+
+                        productItemBaseOptionItemNode.put("stockQuantity", afterQuantity);
+                        nodeService.executeNode(productItemBaseOptionItemNode, "productOptionItem", CommonService.UPDATE);
+                    }
+
                     nodeService.executeNode(storeOrderProductItem, "orderProductItem", CommonService.CREATE);
                 }
 //                orderProductIds.add(orderProductNode.getId());

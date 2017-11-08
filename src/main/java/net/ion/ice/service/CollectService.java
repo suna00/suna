@@ -79,11 +79,17 @@ public class CollectService {
                 int i = 0;
                 newProductCreate(now, newProduct, newList, distinctProducts, i);
 
-                // - 해당월에 신규 등록된 상품이 없거나  30개 미만일 경우 익월 상품이 노출된다
-                if(newList.size() < 30){
-                    List<Node> beforeMonthList = nodeService.getNodeList("product", searchText + "&approvalDate_under=" + getLastMonthBefor(now) + "&limit=" + (30 - newList.size()));
-                    newProductCreate(now, newProduct, beforeMonthList, distinctProducts, i);
+                // - 해당월에 신규 등록된 상품이 없거나  30개 미만일 경우 최근순으로 30개를 생성
+                List<Node> categoryList = nodeService.getNodeList("category", "level_matching=A&status_matching=y");
+
+                for(Node category : categoryList){
+                    List<Node> newProdcutMapList = nodeService.getNodeList("newProductMap", "newProductId_matching=" + newProduct.getId() + "&categoryIds_matching=" + category.get("categoryId"));
+                    if(newProdcutMapList.size() < 30){
+                        List<Node> beforeMonthList = nodeService.getNodeList("product", searchText + "&referencedProductToCategoryMap_hasReferenced=categoryId_matching=" + category.get("categoryId") + "&approvalDate_under=" + getLastMonthBefor(now) + "&limit=" + (30 - newList.size()));
+                        newProductCreate(now, newProduct, beforeMonthList, distinctProducts, i);
+                    }
                 }
+
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -92,16 +98,19 @@ public class CollectService {
 
     private void newProductCreate(LocalDateTime now, Node newProduct, List<Node> newList, Map<String, Object> distinctProducts, int i) {
         for(Node product : newList){
-            Map<String, Object> npMap = new HashMap<>();
-            npMap.put("newProductId", newProduct.getId());
-            npMap.put("productId", product.getId());
-            npMap.put("sortOrder", i++);
-            npMap.put("newProductMapStatus", "y");
-            npMap.put("fixedYn", "n");
-            npMap.put("year", now.getYear());
-            npMap.put("month", now.getMonthValue());
-            nodeService.executeNode(npMap, "newProductMap", CommonService.CREATE);
-            distinctProducts.put(product.getId(), npMap.get("year"));
+            List<Node> categoryMap = nodeService.getNodeList("productToCategoryMap", "productId_matching=" + product.getId());
+            for(Node category : categoryMap) {
+                Map<String, Object> npMap = new HashMap<>();
+                npMap.put("newProductId", newProduct.getId());
+                npMap.put("productId", product.getId());
+                npMap.put("sortOrder", i++);
+                npMap.put("newProductMapStatus", "y");
+                npMap.put("fixedYn", "n");
+                npMap.put("year", now.getYear());
+                npMap.put("month", now.getMonthValue());
+                npMap.put("categoryIds", category.getStringValue("categoryId"));
+                nodeService.executeNode(npMap, "newProductMap", CommonService.CREATE);
+            }
         }
     }
 

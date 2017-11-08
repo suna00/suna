@@ -56,4 +56,18 @@ public class OrderController {
         mv.setViewName("/order/common_return");
         return mv;
     }
+
+    @RequestMapping("/order/order_approval")
+    public ModelAndView approval() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("/order/order_approval");
+        return mv;
+    }
+
+    @RequestMapping("/order/order_mobile")
+    public ModelAndView mobileOrder() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("/order/order_mobile");
+        return mv;
+    }
 }
