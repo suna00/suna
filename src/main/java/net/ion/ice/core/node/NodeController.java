@@ -184,6 +184,8 @@ public class NodeController {
             }else{
                 return JsonResponse.error(e);
             }
+        }finally{
+            RequestDataHolder.clearRequestData();
         }
     }
 
