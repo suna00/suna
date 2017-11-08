@@ -123,6 +123,7 @@ public class VoteItemStatsBySexTask {
 //                "FROM voteItemStatsHstBySex " +
 //                "WHERE voteDate=? AND voteSeq=?" +
 //                "GROUP BY voteSeq, voteItemSeq, sexCd, voteDate ";
+        logger.info("vote item select sql - voteSeq : {}", voteSeq);
 
         return jdbcTemplate.queryForList(selectItemStatsQuery, voteSeq);
     }
