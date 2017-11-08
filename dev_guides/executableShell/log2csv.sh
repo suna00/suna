@@ -4,8 +4,8 @@
 # 1. cat 명령어로 특정 키워드(사용자 Input)가 포함된 문자열을 찾아서 대상 폴더에 같은 이름으로 리디렉션 
 # 2. csv 로 만들기 (how)
 
-export LOG_DIR=/home/ice/shellTest
-export TARGET_DIR=/home/ice/shellTest/filtered
+export LOG_DIR=/data/ion/logs/icelogs
+export TARGET_DIR=/data/ion/logs/icelogs/analytics
 export SEARCH_TEXT="VotePrtcptHstService > getIpCnt"
 export VERSION=0.1
 export TIMESTAMP=`date +%Y-%m-%d`
