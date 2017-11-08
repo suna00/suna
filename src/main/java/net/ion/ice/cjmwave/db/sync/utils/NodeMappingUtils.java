@@ -3,6 +3,7 @@ package net.ion.ice.cjmwave.db.sync.utils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeType;
+import org.apache.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +13,8 @@ import java.util.Map;
  * Created by juneyoungoh on 2017. 9. 5..
  */
 public class NodeMappingUtils {
+
+    static private Logger logger = Logger.getLogger(NodeMappingUtils.class);
 
     public static Map<String, String> extractPropertyColumnMap(List<Node> mappers) {
         Map<String, String> mapperMap = new HashMap<>();
@@ -64,7 +67,7 @@ public class NodeMappingUtils {
         } else if ("true".equals(strBoolValue) || "1".equals(strBoolValue)) {
             data.put(key, true);
         } else  {
-            System.out.println("No Boolean matching value for Keyword [ " + key + " ]");
+            logger.info("No Boolean matching value for Keyword [ " + key + " ]");
         }
         return data;
     }

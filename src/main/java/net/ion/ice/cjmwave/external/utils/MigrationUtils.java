@@ -38,7 +38,7 @@ public class MigrationUtils {
                 "(?, ?, ?, ?" +
                 ", ?, ?, ?)";
         try{
-            System.out.println(
+            logger.info(
                     "\n#### DATA COPY Report :: #####" +
                             "\nMsSql Table : " + report.get("mssqlTable") +
                             "\nMySql Table : " + report.get("mysqlTable") +
@@ -84,7 +84,7 @@ public class MigrationUtils {
 
     public static void printReport(Date startTime, String executeId, String failPolicy, int successCnt, int skippedCnt) {
         long jobTaken = (new Date().getTime() - startTime.getTime());
-        System.out.println(
+        logger.info(
                 "\n##### Execute Report :: ######" +
                         "\nExecutionId : " + executeId +
                         "\nStarted on : " + startTime +
