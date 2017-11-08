@@ -24,7 +24,8 @@
     "tableName": "ytnDevDb#oneToOneQuestionView",
     "repositoryType": "data",
     "authorityRule": [
-      {"role":"vendor", "pid":"vendorId", "method":"matching", "value":"session.user.vendorId"}
+      {"role":"vendor", "pid":"vendorId", "method":"matching", "value":"session.user.vendorId"},
+      {"role":"affiliateCompany", "pid":"affiliateId", "method":"matching", "value":"session.user.affiliateId"}
     ],
     "eviction": 0
   },
@@ -54,7 +55,8 @@
     "tableName": "ytnDevDb#productQuestionView",
     "repositoryType": "data",
     "authorityRule": [
-      {"role":"vendor", "pid":"vendorId", "method":"matching", "value":"session.user.vendorId"}
+      {"role":"vendor", "pid":"vendorId", "method":"matching", "value":"session.user.vendorId"},
+      {"role":"affiliateCompany", "pid":"affiliateId", "method":"matching", "value":"session.user.affiliateId"}
     ],
     "eviction": 0
   },
