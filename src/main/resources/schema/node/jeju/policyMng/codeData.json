@@ -1128,9 +1128,18 @@
     "typeId": "commonCode",
     "code": "general",
     "upperCode": "commonNoticeType",
-    "name": "일반",
+    "name": "일반공지",
     "description": "",
     "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "important",
+    "upperCode": "commonNoticeType",
+    "name": "중요공지",
+    "description": "",
+    "sortOrder": "2",
     "commonCodeStatus": "y"
   },
   {
@@ -1139,8 +1148,8 @@
     "upperCode": "commonNoticeType",
     "name": "이벤트",
     "description": "",
-    "sortOrder": "2",
-    "commonCodeStatus": "y"
+    "sortOrder": "3",
+    "commonCodeStatus": "n"
   },
   {
     "typeId": "commonCode",
@@ -1578,7 +1587,7 @@
     "typeId": "commonCode",
     "code": "faq101",
     "upperCode": "faqType",
-    "name": "주문/배송/결제",
+    "name": "상품문의",
     "description": "",
     "sortOrder": "1",
     "commonCodeStatus": "y"
@@ -1587,7 +1596,7 @@
     "typeId": "commonCode",
     "code": "faq102",
     "upperCode": "faqType",
-    "name": "취소/반품/교환/환불",
+    "name": "결제문의",
     "description": "",
     "sortOrder": "2",
     "commonCodeStatus": "y"
@@ -1596,7 +1605,7 @@
     "typeId": "commonCode",
     "code": "faq103",
     "upperCode": "faqType",
-    "name": "회원혜택",
+    "name": "스페셜오더",
     "description": "",
     "sortOrder": "3",
     "commonCodeStatus": "y"
@@ -1605,7 +1614,7 @@
     "typeId": "commonCode",
     "code": "faq104",
     "upperCode": "faqType",
-    "name": "모바일 이용안내",
+    "name": "환불취소문의",
     "description": "",
     "sortOrder": "4",
     "commonCodeStatus": "y"
@@ -1614,108 +1623,9 @@
     "typeId": "commonCode",
     "code": "faq105",
     "upperCode": "faqType",
-    "name": "기타",
+    "name": "기타문의",
     "description": "",
     "sortOrder": "5",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "faq201",
-    "upperCode": "faq101",
-    "name": "배송",
-    "description": "",
-    "sortOrder": "1",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "faq202",
-    "upperCode": "faq101",
-    "name": "결제",
-    "description": "",
-    "sortOrder": "2",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "faq203",
-    "upperCode": "faq101",
-    "name": "주문",
-    "description": "",
-    "sortOrder": "3",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "faq204",
-    "upperCode": "faq101",
-    "name": "증빙서류 발급",
-    "description": "",
-    "sortOrder": "4",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "faq205",
-    "upperCode": "faq102",
-    "name": "취소",
-    "description": "",
-    "sortOrder": "1",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "faq206",
-    "upperCode": "faq102",
-    "name": "교환/반품",
-    "description": "",
-    "sortOrder": "2",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "faq207",
-    "upperCode": "faq102",
-    "name": "환불",
-    "description": "",
-    "sortOrder": "3",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "faq208",
-    "upperCode": "faq103",
-    "name": "마일리지",
-    "description": "",
-    "sortOrder": "1",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "faq209",
-    "upperCode": "faq103",
-    "name": "쿠폰",
-    "description": "",
-    "sortOrder": "2",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "faq210",
-    "upperCode": "faq103",
-    "name": "등급",
-    "description": "",
-    "sortOrder": "3",
-    "commonCodeStatus": "y"
-  },
-  {
-    "typeId": "commonCode",
-    "code": "faq211",
-    "upperCode": "faq104",
-    "name": "모바일웹",
-    "description": "",
-    "sortOrder": "1",
     "commonCodeStatus": "y"
   },
   {
@@ -7521,6 +7431,60 @@
     "name": "기타",
     "description": "",
     "sortOrder": "10",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "oneToOneQuestionType",
+    "upperCode": "root",
+    "name": "일대일문의 유형",
+    "description": "",
+    "sortOrder": "122",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "oneToOne101",
+    "upperCode": "oneToOneQuestionType",
+    "name": "상품문의",
+    "description": "",
+    "sortOrder": "1",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "oneToOne102",
+    "upperCode": "oneToOneQuestionType",
+    "name": "주문문의",
+    "description": "",
+    "sortOrder": "2",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "oneToOne103",
+    "upperCode": "oneToOneQuestionType",
+    "name": "결제문의",
+    "description": "",
+    "sortOrder": "3",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "oneToOne104",
+    "upperCode": "oneToOneQuestionType",
+    "name": "환불/취소문의",
+    "description": "",
+    "sortOrder": "4",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "oneToOne105",
+    "upperCode": "oneToOneQuestionType",
+    "name": "기타문의",
+    "description": "",
+    "sortOrder": "5",
     "commonCodeStatus": "y"
   }
 ]

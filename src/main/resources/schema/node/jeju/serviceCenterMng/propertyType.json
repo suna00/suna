@@ -88,6 +88,23 @@
   {
     "typeId": "propertyType",
     "tid": "oneToOneQuestion",
+    "pid": "productId",
+    "propertyTypeName": "상품",
+    "valueType": "REFERENCE",
+    "required": true,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "product",
+    "referenceValue": "productId",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "oneToOneQuestion",
     "pid": "cellPhoneNumber",
     "propertyTypeName": "휴대폰번호",
     "valueType": "STRING",
@@ -170,7 +187,7 @@
   {
     "typeId": "propertyType",
     "tid": "oneToOneQuestion",
-    "pid": "faqType1",
+    "pid": "oneToOneQuestionType",
     "propertyTypeName": "문의유형",
     "valueType": "REFERENCE",
     "required": false,
@@ -181,7 +198,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "codeFilter": "faqType",
+    "codeFilter": "oneToOneQuestionType",
     "defaultValue": ""
   },
   {
@@ -374,7 +391,7 @@
   {
     "typeId": "propertyType",
     "tid": "oneToOneQuestionView",
-    "pid": "faqType1",
+    "pid": "oneToOneQuestionType",
     "propertyTypeName": "문의유형",
     "valueType": "REFERENCE",
     "required": false,
@@ -385,7 +402,7 @@
     "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
-    "codeFilter": "faqType",
+    "codeFilter": "oneToOneQuestionType",
     "defaultValue": ""
   },
   {
@@ -2634,6 +2651,23 @@
     "treeable": false,
     "indexable": true,
     "analyzer": "simple",
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "commonNotice",
+    "pid": "notSpecifyEndDate",
+    "propertyTypeName": "종료일 미지정",
+    "valueType": "BOOLEAN",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
     "referenceType": "",
     "referenceValue": "",
     "codeFilter": "",

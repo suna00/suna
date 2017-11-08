@@ -36,7 +36,7 @@ cluster:
   mode: all
   groups: all
   members:
-    - 125.131.88.206
+    - 127.0.0.1
 
 infinispan:
   cachePath: /resource/ice2/cache
