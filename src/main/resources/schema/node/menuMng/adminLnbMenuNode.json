@@ -399,6 +399,25 @@
     ],
     "authority": "system,admin"
   },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "marketingMng",
+    "parentMenuId": "root",
+    "menuId": "popup",
+    "menuName": "팝업관리",
+    "order": "60",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "marketingPopup/List" },
+      { "pageName": "등록", "pageUrl": "marketingPopup/CreateForm" },
+      { "pageName": "수정", "pageUrl": "marketingPopup/updateForm" }
+    ],
+    "authority": "system,admin"
+  },
 
   {
     "typeId" : "adminLnbMenu",
