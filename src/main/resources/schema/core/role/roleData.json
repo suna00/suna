@@ -11,8 +11,13 @@
   },
   {
     "typeId": "role",
-    "name": "제휴사",
-    "id": "affiliate"
+    "name": "제휴사(기업)",
+    "id": "affiliateCompany"
+  },
+  {
+    "typeId": "role",
+    "name": "제휴사(대학)",
+    "id": "affiliateUniversity"
   },
   {
     "typeId": "role",

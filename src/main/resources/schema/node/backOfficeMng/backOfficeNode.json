@@ -9,17 +9,25 @@
   },
   {
     "typeId" : "backOffice",
-    "id": "aff",
-    "name": "제휴사",
+    "id": "affCom",
+    "name": "제휴사(기업)",
     "order": "20",
     "active": "true",
-    "authority": "system,affiliate"
+    "authority": "system,affiliateCompany"
+  },
+  {
+    "typeId" : "backOffice",
+    "id": "affUni",
+    "name": "제휴사(대학)",
+    "order": "30",
+    "active": "true",
+    "authority": "system,affiliateUniversity"
   },
   {
     "typeId" : "backOffice",
     "id": "ven",
     "name": "벤더",
-    "order": "30",
+    "order": "40",
     "active": "true",
     "authority": "system,vendor"
   }

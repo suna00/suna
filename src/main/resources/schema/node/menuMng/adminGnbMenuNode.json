@@ -201,34 +201,48 @@
     "active": "true",
     "authority": "system,vendor"
   },
+
+
   {
     "typeId" : "adminGnbMenu",
-    "backOfficeId": "aff",
-    "menuId": "affiliateMng",
-    "menuName": "회원정보관리",
-    "order": "10",
-    "icon": "",
-    "active": "true",
-    "authority": "system,affiliate"
-  },
-  {
-    "typeId" : "adminGnbMenu",
-    "backOfficeId": "aff",
-    "menuId": "devFund",
+    "backOfficeId": "affUni",
+    "menuId": "developmentFundMng",
     "menuName": "발전기금",
     "order": "20",
     "icon": "",
     "active": "true",
-    "authority": "system,affiliate"
+    "authority": "system,affiliateUniversity"
+  },
+
+
+  {
+    "typeId" : "adminGnbMenu",
+    "backOfficeId": "affCom",
+    "menuId": "memberMng",
+    "menuName": "회원정보관리",
+    "order": "10",
+    "icon": "",
+    "active": "true",
+    "authority": "system,affiliateCompany"
   },
   {
     "typeId" : "adminGnbMenu",
-    "backOfficeId": "aff",
-    "menuId": "welFarePoint",
+    "backOfficeId": "affCom",
+    "menuId": "developmentFundMng",
+    "menuName": "발전기금",
+    "order": "20",
+    "icon": "",
+    "active": "true",
+    "authority": "system,affiliateCompany"
+  },
+  {
+    "typeId" : "adminGnbMenu",
+    "backOfficeId": "affCom",
+    "menuId": "welfarePointMng",
     "menuName": "복지포인트",
     "order": "30",
     "icon": "",
     "active": "true",
-    "authority": "system,affiliate"
+    "authority": "system,affiliateCompany"
   }
 ]
