@@ -414,7 +414,7 @@
     "customPages": [
       { "pageName": "목록", "pageUrl": "marketingPopup/List" },
       { "pageName": "등록", "pageUrl": "marketingPopup/CreateForm" },
-      { "pageName": "수정", "pageUrl": "marketingPopup/updateForm" }
+      { "pageName": "수정", "pageUrl": "marketingPopup/UpdateForm" }
     ],
     "authority": "system,admin"
   },
