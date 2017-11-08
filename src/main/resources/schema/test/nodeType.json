@@ -12,7 +12,8 @@
     "typeId": "nodeType",
     "repositoryType": "node",
     "typeName": "TEST Category",
-    "tableName": ""
+    "tableName": "",
+    "historyable":true
   },
   {
     "tid": "testMenu",
@@ -183,6 +184,18 @@
     "required": false,
     "referenceType" : "testItem",
     "referenceValue" : "category"
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "testCategory",
+    "pid": "histories",
+    "propertyTypeName": "Histories",
+    "valueType": "HISTORY",
+    "idable": false,
+    "indexable": false,
+    "required": false,
+    "referenceType" : "",
+    "referenceValue" : ""
   },
   {
     "typeId" : "propertyType",

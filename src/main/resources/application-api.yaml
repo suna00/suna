@@ -10,6 +10,9 @@ server:
   compression:
     enabled: true
     mime-types: application/json,application/xml,text/html,text/xml,text/plain,text/javascript,application/javascript,text/css
+  tomcat:
+    max-threads: 1024
+
 
 
 jwtConfig:

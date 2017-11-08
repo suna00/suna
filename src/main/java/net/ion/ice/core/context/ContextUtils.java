@@ -46,7 +46,7 @@ public class ContextUtils {
                     String[] values = parameterMap.get(paramName);
                     String value = null;
 
-                    if (values == null || StringUtils.isEmpty(values[0])) {
+                    if (values == null) {
                         continue;
                     }else if ( values.length == 1 ) {
                         value = values[0];
@@ -76,7 +76,7 @@ public class ContextUtils {
             String[] values = parameterMap.get(paramName);
             String value = null;
 
-            if (values == null || StringUtils.isEmpty(values[0])) {
+            if (values == null) {
                 continue;
             }else if ( values.length == 1 ) {
                 value = values[0];

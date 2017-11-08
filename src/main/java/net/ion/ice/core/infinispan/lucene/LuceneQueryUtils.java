@@ -112,16 +112,6 @@ public class LuceneQueryUtils {
             }
         }
 
-
-        if(queryContext.getNodeType().hasAuthority()){
-            String role = JsonUtils.getStringValue(RequestDataHolder.getRequestData(), "session.role");
-            if(StringUtils.isEmpty(role)){
-                role = Node.ANONYMOUS;
-            }
-            QueryTerm term = new QueryTerm(queryContext.getQueryTermType(), "authority", role);
-            innerQueries.add(createLuceneQuery(term));
-        }
-
         if(innerQueries.size() == 0 && shouldInnerQueries.size() == 0 && notInnerQueries.size() == 0){
             query = new MatchAllDocsQuery() ;
         }else  if(innerQueries.size() == 1 && shouldInnerQueries.size() == 0 && notInnerQueries.size() == 0){
@@ -312,8 +302,14 @@ public class LuceneQueryUtils {
     private static Query createLuceneQuery(QueryTerm term) throws IOException {
 
         switch (term.getMethod()) {
-            case MATCHING: case WILDCARD:{
+            case MATCHING:{
                 return createKeywordTermQuery(term);
+            }
+            case WILDCARD: {
+                if(!StringUtils.contains(term.getQueryValue(), "*")){
+                    return createTermQuery( term, "*" + term.getQueryValue() +"*" );
+                }
+                return createTermQuery( term, term.getQueryValue() );
             }
             case EQUALS:{
                 return createTermQuery(term, term.getQueryValue());

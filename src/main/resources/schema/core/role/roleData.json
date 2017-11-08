@@ -1,8 +1,8 @@
 [
   {
     "typeId": "role",
-    "name": "일반",
-    "id": "user"
+    "name": "시스템",
+    "id": "system"
   },
   {
     "typeId": "role",
@@ -11,17 +11,12 @@
   },
   {
     "typeId": "role",
-    "name": "시스템",
-    "id": "system"
+    "name": "서비스 사용자",
+    "id": "customer"
   },
   {
     "typeId": "role",
     "name": "비로그인 사용자",
     "id": "anonymous"
-  },
-  {
-    "typeId": "role",
-    "name": "서비스 사용자",
-    "id": "customer"
   }
 ]

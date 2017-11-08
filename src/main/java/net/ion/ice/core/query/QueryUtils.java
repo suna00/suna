@@ -176,6 +176,9 @@ public class QueryUtils {
         if(propertyType == null && fieldId.contains("_")){
             propertyType = nodeType.getPropertyType(StringUtils.substringBeforeLast(fieldId, "_"));
         }
+        if(propertyType == null && fieldId.contains("_")){
+            propertyType = nodeType.getPropertyType(StringUtils.substringBefore(fieldId, "_"));
+        }
         if(propertyType == null && Node.NODE_VALUE_KEYS.contains(fieldId)){
             switch (fieldId){
                 case "created": case "changed" :{
@@ -190,9 +193,10 @@ public class QueryUtils {
             try {
                 if(StringUtils.isNotEmpty(propertyType.getCodeFilter())){
                     if(StringUtils.contains(value, ">")) {
-                        return new QueryTerm(fieldId, propertyType.getLuceneAnalyzer(), method, value, propertyType.getValueType());
+                        return new QueryTerm(fieldId, propertyType.getLuceneAnalyzer(), method, StringUtils.substringAfterLast(value, ">"), propertyType.getValueType());
                     }else{
-                        return new QueryTerm(fieldId, propertyType.getLuceneAnalyzer(), method, propertyType.getCodeFilter() + ">" + value, propertyType.getValueType());
+//                        return new QueryTerm(fieldId, propertyType.getLuceneAnalyzer(), method, propertyType.getCodeFilter() + ">" + value, propertyType.getValueType());
+                        return new QueryTerm(fieldId, propertyType.getLuceneAnalyzer(), method, value, propertyType.getValueType());
                     }
                 }else {
                     return new QueryTerm(fieldId, propertyType.getLuceneAnalyzer(), method, value, propertyType.getValueType());
