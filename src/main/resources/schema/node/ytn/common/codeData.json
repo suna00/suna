@@ -1252,11 +1252,20 @@
   },
   {
     "typeId": "commonCode",
+    "code": "text",
+    "upperCode": "contentsType",
+    "name": "문자발송",
+    "description": "",
+    "sortOrder": "4",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
     "code": "securities",
     "upperCode": "contentsType",
     "name": "유가증권",
     "description": "",
-    "sortOrder": "4",
+    "sortOrder": "5",
     "commonCodeStatus": "y"
   },
   {
