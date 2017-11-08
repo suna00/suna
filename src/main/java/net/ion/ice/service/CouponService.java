@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.print.DocFlavor;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
@@ -29,9 +30,9 @@ public class CouponService {
     @Autowired
     private NodeService nodeService;
     @Autowired
-    NodeBindingService nodeBindingService;
+    private NodeBindingService nodeBindingService;
     @Autowired
-    SessionService sessionService;
+    private SessionService sessionService;
     @Autowired
     private ExcelService excelService;
 
@@ -40,6 +41,12 @@ public class CouponService {
 
     public ExecuteContext download(ExecuteContext context) {
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
+        Map<String, Object> session = null;
+        try {
+            session = sessionService.getSession(context.getHttpRequest());
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(common.PATTERN);
         LocalDateTime now = LocalDateTime.now();
@@ -53,7 +60,7 @@ public class CouponService {
             return context;
         }
 
-        List<Node> list = nodeService.getNodeList("coupon", "memberNo_matching=" + data.get("memberNo") + "&couponTypeId_matching=" + data.get("couponTypeId"));
+        List<Node> list = nodeService.getNodeList("coupon", "memberNo_matching=" + JsonUtils.getStringValue(session, "member.memberNo") + "&couponTypeId_matching=" + data.get("couponTypeId"));
         if (list.size() > 0) {
             common.setErrorMessage(context, "V0005");
         }
@@ -90,7 +97,7 @@ public class CouponService {
         data.putAll(couponType);
 
         String endDate = common.unlimitedDate;
-        if ("limitYn>limit".equals(couponType.getValue("validePeriodType"))) {
+        if (StringUtils.equals("limit", String.valueOf(couponType.getBindingValue("validePeriodType")))) {
             LocalDateTime after = now.plusDays(Integer.parseInt(couponType.getValue("validePeriod").toString()));
             endDate = after.format(formatter);
         }

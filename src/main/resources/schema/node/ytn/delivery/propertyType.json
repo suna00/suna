@@ -573,7 +573,7 @@
     "labelable": false,
     "treeable": false,
     "indexable": true,
-    "analyzer": "simple",
+    "analyzer": "code",
     "referenceType": "commonCode",
     "referenceValue": "code",
     "codeFilter": "useYn",
