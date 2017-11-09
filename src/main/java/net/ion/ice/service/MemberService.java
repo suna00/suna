@@ -77,6 +77,12 @@ public class MemberService {
 
         // 탈퇴회원 체크
         if("leave".equals(member.getBindingValue("memberStatus")) || "leaveRequest".equals(member.getBindingValue("memberStatus"))){
+            // 휴면지속자동탈퇴 체크
+            Node leaveMemberNode = nodeService.getNode("requestToleaveMember", member.get("memberNo").toString());
+            if("leave001".equals(leaveMemberNode.getBindingValue("leaveType"))){
+                throw new ApiException("400", "U0013");
+            }
+
             throw new ApiException("400", "Not Found User");
         }
 
@@ -113,20 +119,20 @@ public class MemberService {
         LocalDateTime limitChangeDate = LocalDateTime.parse(date, DateTimeFormatter.ofPattern("yyyyMMddHHmmss")).plusMonths(3);
         LocalDateTime now = LocalDateTime.now();
         if(limitChangeDate.isBefore(now)){
-            context.setResult(CommonService.getResult("U0012"));
+            context.setResult(CommonService.getResult("U0007"));
             return context;
         }
 
         // 휴면회원 체크
         if("sleep".equals(member.getBindingValue("memberStatus"))){
-            context.setResult(CommonService.getResult("U0011"));
+            context.setResult(CommonService.getResult("U0012"));
         } else {
             member.put("lastLoginDate", new Date());
             nodeService.updateNode(member, "member");
 
             Map<String, Object> item = new HashMap<>();
             item.put("memberNo", member.get("memberNo"));
-            context.setResult(CommonService.getResult("U0007", item));
+            context.setResult(CommonService.getResult("U0008", item));
         }
 
         return context;
@@ -145,7 +151,7 @@ public class MemberService {
             Map<String, Object> extraData = new HashMap<>();
 
             if (null == memberNode) {
-                context.setResult(CommonService.getResult("U0010"));    //로그인을 하지않은 사용자
+                context.setResult(CommonService.getResult("U0011"));    //로그인을 하지않은 사용자
             } else {
                 try {
                     sessionService.refreshSession(context.getHttpRequest(), context.getHttpResponse());
@@ -158,7 +164,7 @@ public class MemberService {
                 extraData.put("userId", memberNode.get("userId"));
                 extraData.put("name", memberNode.get("name"));
                 extraData.put("cellphone", memberNode.get("cellphone"));
-                context.setResult(CommonService.getResult("U0009", extraData));    //로그인을 한 사용자
+                context.setResult(CommonService.getResult("U0010", extraData));    //로그인을 한 사용자
 
             }
         }
