@@ -70,6 +70,7 @@ public class NodeHelperService  {
             try {
                 syncNodeType(typeId);
             }catch (Exception e){
+                e.printStackTrace();
                 logger.error("sync list error : " + typeId);
             }
         }
@@ -78,14 +79,16 @@ public class NodeHelperService  {
     private void syncNodeType(String typeId) {
         NodeType nodeType = nodeService.getNodeType(typeId) ;
         if(nodeType.isNode() && !clusterService.checkClusterGroup(nodeType)) return  ;
+        logger.info(nodeType.getTypeId() + " Last Sync Check ");
+
         Date nodeTypeLast = (Date) nodeService.getSortedValue(nodeType.getTypeId(), "changed", SortField.Type.LONG, true );
         if(nodeTypeLast == null){
             logger.info(nodeType.getTypeId() + " ALL Sync : ");
-            syncNodeList(nodeType, "limit=10&sorting=changed desc", null);
+//            syncNodeList(nodeType, "limit=10&sorting=changed desc", null);
         }else {
             String lastChanged = DateFormatUtils.format(nodeTypeLast, "yyyyMMddHHmmss");
             logger.info(nodeType.getTypeId() + " Last Sync : " + nodeTypeLast);
-            syncNodeList(nodeType, "limit=10&sorting=changed desc&chagned_excess=" + lastChanged, null);
+//            syncNodeList(nodeType, "limit=10&sorting=changed desc&chagned_excess=" + lastChanged, null);
         }
     }
 
@@ -95,6 +98,7 @@ public class NodeHelperService  {
         for(Member cacheServer : cacheServers){
             if(server == null || cacheServer.getAddress().getHost().equals(server)) {
                 List<Map<String, Object>> items = ClusterUtils.callNodeList(cacheServer, nodeType.getTypeId(), query);
+                logger.info("cache sync node list size : " + items.size());
                 if (items != null && items.size() > 0) {
                     for (Map<String, Object> item : items) {
                         Node node = new Node(item);

@@ -107,7 +107,7 @@ public class VoteResponseService {
             Object values = ContextUtils.getValue(term, data);
             //System.out.println("#####values :" + values);
             QueryContext queryContext = QueryContext.createQueryContextFromText((String) values, voteBasInfoNodeType, null);
-            List<Node> voteInfoList = infinispanRepositoryService.getSubQueryNodes(voteBasInfoNodeType.getTypeId(), queryContext);
+            List<Node> voteInfoList = infinispanRepositoryService.getSubQueryNodes(queryContext);
 
             QueryResult queryResult = new QueryResult();
             queryResult.put("totalCount", queryContext.getResultSize());
@@ -276,7 +276,7 @@ public class VoteResponseService {
             Object values = ContextUtils.getValue(term, data);
             //System.out.println("#####values :" + values);
             QueryContext queryContext = QueryContext.createQueryContextFromText((String) values, voteBasInfoNodeType, null);
-            List<Node> voteInfoList = infinispanRepositoryService.getSubQueryNodes(voteBasInfoNodeType.getTypeId(), queryContext);
+            List<Node> voteInfoList = infinispanRepositoryService.getSubQueryNodes(queryContext);
 
             QueryResult queryResult = new QueryResult();
             queryResult.put("totalCount", queryContext.getResultSize());

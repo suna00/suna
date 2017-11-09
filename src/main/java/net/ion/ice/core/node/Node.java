@@ -13,7 +13,7 @@ import java.util.*;
  */
 @Indexed
 public class Node implements Map<String, Object>, Serializable, Cloneable{
-
+    private static final long serialVersionUID = -8080180774568744031L;
     public static final String ID = "id";
     public static final String TYPEID = "typeId";
     public static final String USERID = "userId";
@@ -493,10 +493,10 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
             if(value != null || pt.isReferenced()){
                 value = NodeUtils.getDisplayValue(value, pt) ;
                 if(value != null) {
-                    properties.put(pt.getPid(), value);
+                    put(pt.getPid(), value);
                 }
             }else{
-                properties.put(pt.getPid(), null) ;
+                put(pt.getPid(), null) ;
             }
         }
         return this ;
@@ -508,7 +508,7 @@ public class Node implements Map<String, Object>, Serializable, Cloneable{
         }
         NodeType nodeType = NodeUtils.getNodeType(getTypeId()) ;
         for(PropertyType pt : nodeType.getPropertyTypes()){
-            properties.put(pt.getPid(), NodeUtils.getResultValue(context, pt, this)) ;
+            put(pt.getPid(), NodeUtils.getResultValue(context, pt, this)) ;
         }
         return this ;
     }

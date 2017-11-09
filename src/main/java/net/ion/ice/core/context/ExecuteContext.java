@@ -220,6 +220,7 @@ public class ExecuteContext extends ReadContext{
                     if(newValue != null) data.put(pt.getPid(), newValue) ;
                     if(newValue != null && newValue instanceof String && (((String) newValue).startsWith("classpath:") || ((String) newValue).startsWith("http://") || ((String) newValue).startsWith("https://") || ((String) newValue).startsWith("/"))) {
                         try{
+                            logger.info(existValue.toString());
                             if (existValue == null) {
                                 node.put(pt.getPid(), NodeUtils.getFileService().saveResourceFile(pt, id, (String) newValue));
                                 changedProperties.add(pt.getPid());
