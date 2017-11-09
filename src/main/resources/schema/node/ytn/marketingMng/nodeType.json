@@ -25,5 +25,14 @@
     "tableName": "ytnDevDb#popularSearches",
     "repositoryType": "node",
     "eviction": 1000
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "popup",
+    "typeName": "팝업",
+    "tableName": "ytnDevDb#popup",
+    "repositoryType": "node",
+    "eviction": 0
   }
 ]
