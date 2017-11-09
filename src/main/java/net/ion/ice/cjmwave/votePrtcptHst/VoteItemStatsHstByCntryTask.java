@@ -111,7 +111,8 @@ public class VoteItemStatsHstByCntryTask {
         try {
             retList = jdbcTemplate_replica.queryForList(selectListQuery, startHstSeq, maxSeq);
         } catch (Exception e) {
-            return null;
+            logger.error("Dose not exist database configuration - {} - {} : start : {}, end : {} ", voteSeq + "_voteItemHstByMbr", voteSeq, startHstSeq, maxSeq);
+            return new ArrayList<>();
         }
         return retList;
     }
