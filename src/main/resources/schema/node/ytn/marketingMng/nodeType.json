@@ -11,6 +11,15 @@
   {
     "parentId": "eventPath",
     "typeId": "nodeType",
+    "tid": "specialExhibitionAnker",
+    "typeName": "기획전 앵커",
+    "tableName": "ytnDevDb#specialExhibitionAnker",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "eventPath",
+    "typeId": "nodeType",
     "tid": "shopEvent",
     "typeName": "이벤트",
     "tableName": "ytnDevDb#shopEvent",
