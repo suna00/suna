@@ -10,15 +10,6 @@
   {
     "parentId": "eventPath",
     "typeId": "nodeType",
-    "tid": "specialExhibition",
-    "typeName": "기획전",
-    "tableName": "ytnDevDb#specialExhibition",
-    "repositoryType": "node",
-    "eviction": 0
-  },
-  {
-    "parentId": "eventPath",
-    "typeId": "nodeType",
     "tid": "specialExhibitionHotKeyword",
     "typeName": "기획전 핫키워드",
     "tableName": "ytnDevDb#specialExhibitionHotKeyword",

@@ -2,6 +2,15 @@
   {
     "parentId": "eventPath",
     "typeId": "nodeType",
+    "tid": "specialExhibition",
+    "typeName": "기획전",
+    "tableName": "ytnDevDb#specialExhibition",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "eventPath",
+    "typeId": "nodeType",
     "tid": "shopEvent",
     "typeName": "이벤트",
     "tableName": "ytnDevDb#shopEvent",
@@ -25,5 +34,14 @@
     "tableName": "ytnDevDb#popularSearches",
     "repositoryType": "node",
     "eviction": 1000
+  },
+  {
+    "parentId": "displayPath",
+    "typeId": "nodeType",
+    "tid": "popup",
+    "typeName": "팝업",
+    "tableName": "ytnDevDb#popup",
+    "repositoryType": "node",
+    "eviction": 0
   }
 ]

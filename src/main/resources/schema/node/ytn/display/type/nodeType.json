@@ -55,15 +55,6 @@
   {
     "parentId": "displayPath",
     "typeId": "nodeType",
-    "tid": "popup",
-    "typeName": "팝업",
-    "tableName": "ytnDevDb#popup",
-    "repositoryType": "node",
-    "eviction": 0
-  },
-  {
-    "parentId": "displayPath",
-    "typeId": "nodeType",
     "tid": "productToCategoryMap",
     "typeName": "카테고리 상품 매핑",
     "tableName": "ytnDevDb#productToCategoryMap",
