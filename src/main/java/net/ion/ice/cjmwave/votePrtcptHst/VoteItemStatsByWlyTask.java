@@ -1,5 +1,6 @@
 package net.ion.ice.cjmwave.votePrtcptHst;
 
+import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
@@ -25,14 +26,17 @@ public class VoteItemStatsByWlyTask {
     @Autowired
     NodeService nodeService;
 
+    @Autowired
+    private DBService dbService ;
+
     JdbcTemplate jdbcTemplate;
 
     public void execVoteItemStatsByWly() {
 
         logger.info("start schedule task - execVoteItemStatsByWly");
 
-        if (jdbcTemplate == null) {
-            jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
+        if (jdbcTemplate==null) {
+            jdbcTemplate = dbService.getJdbcTemplate("authDb");
         }
 
         String perdStDate = getCurMonday();
@@ -132,8 +136,8 @@ public class VoteItemStatsByWlyTask {
 
         logger.info("start schedule task - execVoteItemStatsByWly");
 
-        if (jdbcTemplate == null) {
-            jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
+        if (jdbcTemplate==null) {
+            jdbcTemplate = dbService.getJdbcTemplate("authDb");
         }
 
         Date now = new Date();
