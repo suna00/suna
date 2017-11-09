@@ -49,8 +49,8 @@
       "query" : [
         {"field" : "salePrice", "method" : "fromto", "value" : "{{:salePrice}}" },
         {"sorting" : "{{:sorting}}", "pageSize": "{{:pageSize}}", "page": "{{:page}}"},
-        {"field" : "name", "method" : "matchingShould", "value" : "{{:wildcard(searchValue)}}" },
-        {"field" : "modelName", "method" : "matchingShould", "value" : "{{:wildcard(searchValue)}}" },
+        {"field" : "name", "method" : "wildcardShould", "value" : "{{:wildcard(searchValue)}}" },
+        {"field" : "modelName", "method" : "wildcardShould", "value" : "{{:wildcard(searchValue)}}" },
         {"field" : "referencedProductSearchFilter", "method" : "hasReferenced", "value" : "searchFilterCodeIds_matching={{:searchFilterCodeIds}}"},
         {"field" : "referencedProductToCategoryMap", "method" : "hasReferenced", "value" : "categoryId_matching={{:categoryId}}"},
         {"includeReferenced" : "referencedMainImage,referencedProductSearchFilter"}
