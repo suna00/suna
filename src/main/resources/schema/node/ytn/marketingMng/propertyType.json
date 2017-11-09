@@ -327,6 +327,23 @@
   {
     "typeId": "propertyType",
     "tid": "specialExhibition",
+    "pid": "referencedAnker",
+    "propertyTypeName": "기획전 그룹",
+    "valueType": "REFERENCED",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": "",
+    "referenceType": "specialExhibitionAnker",
+    "referenceValue": "specialExhibitionId",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "specialExhibition",
     "pid": "created",
     "propertyTypeName": "등록일",
     "valueType": "DATE",
@@ -476,6 +493,23 @@
     "referenceType": "commonCode",
     "referenceValue": "code",
     "codeFilter": "useYn",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "specialExhibitionAnker",
+    "pid": "referencedProduct",
+    "propertyTypeName": "기획전 상품",
+    "valueType": "REFERENCED",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": false,
+    "analyzer": "",
+    "referenceType": "product",
+    "referenceValue": "specialExhibitionAnkerId",
+    "codeFilter": "",
     "defaultValue": ""
   },
   {

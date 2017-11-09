@@ -6,7 +6,7 @@
     "typeName": "기획전",
     "tableName": "ytnDevDb#specialExhibition",
     "repositoryType": "node",
-    "eviction": 0
+    "eviction": 1000
   },
   {
     "parentId": "eventPath",
@@ -15,7 +15,7 @@
     "typeName": "기획전 앵커",
     "tableName": "ytnDevDb#specialExhibitionAnker",
     "repositoryType": "node",
-    "eviction": 0
+    "eviction": 2000
   },
   {
     "parentId": "eventPath",
