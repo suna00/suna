@@ -37,8 +37,9 @@ public class VoteDayCntryService {
     * voteSeq 기준으로 매주(월~일) 결과를 다시 주간 투표별 국가현황 테이블에 쌓는다.
     * */
     public void voteBasStatsCntryJob() {
-
+        logger.info("voteDayCntryService.voteBasStatsCntryJob Start!!!!!!");
         voteCntryProcess();
+        logger.info("voteDayCntryService.voteBasStatsCntryJob End!!!!!!");
     }
 
     private void voteCntryProcess() {
@@ -123,10 +124,9 @@ public class VoteDayCntryService {
     * voteSeq 기준으로 매주(월~일) 결과를 다시 주간 투표별 국가현황 테이블에 쌓는다.
     * */
     public void voteBasStatsCntryEvt(ExecuteContext context) {
-        logger.info("voteDayCntryService.voteBasStatsCntryEvt manual!!!!!!");
-
+        logger.info("voteDayCntryService.voteBasStatsCntryEvt manual Start!!!!!!");
         voteCntryProcess();
-
+        logger.info("voteDayCntryService.voteBasStatsCntryEvt manual End!!!!!!");
         Map<String, Object> returnMap = new ConcurrentHashMap<>();
         returnMap.put("event", "voteBasStatsCntryEvt 성공");
         context.setResult(returnMap);
@@ -138,8 +138,10 @@ public class VoteDayCntryService {
     * voteSeq 기준으로 매일의 voteNum을 계속 쌓는다.
     * */
     public void voteBasStatsDayJob() {
+        logger.info("voteDayCntryService.voteBasStatsDayJob Start!!!!!!");
         Integer limitCnt = 100000;
         voteStatsDayProcess(limitCnt);
+        logger.info("voteDayCntryService.voteBasStatsDayJob End!!!!!!");
     }
 
     private void voteStatsDayProcess(int cnt) {
@@ -193,7 +195,7 @@ public class VoteDayCntryService {
 
                 /* 국가코드가 없거나, 잘못된 국가코드에 대해서 other 로 처리함*/
                     List<Map<String, Object>> voteMbrNumList =
-                            jdbcTemplate_replica.queryForList("select if(length(cntryCd)!=3, 'OTHERS', ifnull(if(cntryCd='THR','OTHERS',cntryCd),'OTHERS') ) as cntryCd, voteDate, sum(voteNum) voteNum from (\n" +
+                            jdbcTemplate_replica.queryForList("select if(length(cntryCd)!=3, 'OTHERS', ifnull(if(cntryCd='DUE','OTHERS',cntryCd),'OTHERS') ) as cntryCd, voteDate, sum(voteNum) voteNum from (\n" +
                                             "  SELECT\n" +
                                             "    cntryCd, voteDate, count(*) voteNum\n" +
                                             "  FROM (\n" +
@@ -209,7 +211,7 @@ public class VoteDayCntryService {
                                             "       ) t\n" +
                                             "  GROUP BY cntryCd, voteDate\n" +
                                             ") total\n" +
-                                            "group by if(length(cntryCd)!=3, 'OTHERS', ifnull(if(cntryCd='THR','OTHERS',cntryCd),'OTHERS') ),voteDate "
+                                            "group by if(length(cntryCd)!=3, 'OTHERS', ifnull(if(cntryCd='DUE','OTHERS',cntryCd),'OTHERS') ),voteDate "
                                     , lastSeq, limitCnt);
                     logger.info(voteSeq + "===============> voteMbrNumList ::" + voteMbrNumList.size());
 
@@ -287,6 +289,7 @@ public class VoteDayCntryService {
     * voteSeq 기준으로 매일의 voteNum을 계속 쌓는다.
     * */
     public void voteBasSatasDayEvt(ExecuteContext context) {
+        logger.info("voteDayCntryService.voteBasSatasDayEvt manual Start!!!!!!");
         Integer limitCnt = 10000;//기본 처리 건수
 
         Map<String, Object> data = context.getData();
@@ -295,7 +298,7 @@ public class VoteDayCntryService {
         }
 
         voteStatsDayProcess(limitCnt);//매일 통계 처리
-
+        logger.info("voteDayCntryService.voteBasSatasDayEvt manual End!!!!!!");
         Map<String, Object> returnMap = new ConcurrentHashMap<>();
         returnMap.put("event", "voteBasSatasDayEvt 성공");
         context.setResult(returnMap);

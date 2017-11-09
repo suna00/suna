@@ -104,8 +104,6 @@ public class ApiExecuteContext extends ExecuteContext implements CacheableContex
 
         if(!ClusterUtils.getClusterService().checkClusterGroup(nodeType)){
             ctx.remote = true ;
-            ctx.data = data ;
-
             return ctx ;
         }
 

@@ -599,7 +599,7 @@
               "value": "{{:voteItemSeq}}"
             },
             {
-              "sorting": "rankNum",
+              "sorting": "perdStDate",
               "limit": "5"
             }
           ]
