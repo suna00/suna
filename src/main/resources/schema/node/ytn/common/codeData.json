@@ -6076,6 +6076,15 @@
   },
   {
     "typeId": "commonCode",
+    "code": "leave009",
+    "upperCode": "reasonType",
+    "name": "휴면지속자동탈퇴",
+    "description": "",
+    "sortOrder": "9",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
     "code": "developmentFundStatus",
     "upperCode": "root",
     "name": "발전기금 적립여부",
