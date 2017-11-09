@@ -47,19 +47,11 @@ public class QueryUtils {
                 } else if (method.startsWith("hasReferenced")) {
                     NodeType refNodeType = NodeUtils.getNodeType(nodeType.getPropertyType(fieldId).getReferenceType());
                     QueryContext joinQueryContext = QueryContext.createQueryContextFromText(value, refNodeType, StringUtils.substringAfter(method, "hasReferenced"));
-                    if (joinQueryContext != null) {
-                        joinQueryContext.setTargetJoinField(nodeType.getPropertyType(fieldId).getReferenceValue());
-                        joinQueryContext.setSourceJoinField("id");
-                        queryContext.addJoinQuery(joinQueryContext);
-                    }
+                    makeHasReferencedContext(queryContext, nodeType, fieldId, joinQueryContext);
                 } else if (method.startsWith("referenceJoin")) {
                     NodeType refNodeType = NodeUtils.getNodeType(nodeType.getPropertyType(fieldId).getReferenceType());
                     QueryContext joinQueryContext = QueryContext.createQueryContextFromText(value, refNodeType, StringUtils.substringAfter(method, "referenceJoin"));
-                    if (joinQueryContext != null) {
-                        joinQueryContext.setTargetJoinField("id");
-                        joinQueryContext.setSourceJoinField(fieldId);
-                        queryContext.addJoinQuery(joinQueryContext);
-                    }
+                    makeJoinContext(queryContext, fieldId, joinQueryContext);
                 }
                 QueryTerm queryTerm = QueryUtils.makePropertyQueryTerm(queryContext.getQueryTermType(), nodeType, fieldId, method, value);
                 if (queryTerm == null) {
@@ -77,6 +69,15 @@ public class QueryUtils {
                 }
             }
 
+        }
+    }
+
+    private static void makeJoinContext(QueryContext queryContext, String fieldId, QueryContext joinQueryContext) {
+        if (joinQueryContext != null) {
+            joinQueryContext.setMaxSize("100000");
+            joinQueryContext.setTargetJoinField("id");
+            joinQueryContext.setSourceJoinField(fieldId);
+            queryContext.addJoinQuery(joinQueryContext);
         }
     }
 
@@ -132,19 +133,11 @@ public class QueryUtils {
             if (method.startsWith("hasReferenced")) {
                 NodeType refNodeType = NodeUtils.getNodeType(nodeType.getPropertyType(field).getReferenceType());
                 QueryContext joinQueryContext = QueryContext.createQueryContextFromText(queryValue, refNodeType, StringUtils.substringAfter(method, "hasReferenced"));
-                if (joinQueryContext != null) {
-                    joinQueryContext.setTargetJoinField(nodeType.getPropertyType(field).getReferenceValue());
-                    joinQueryContext.setSourceJoinField("id");
-                    context.addJoinQuery(joinQueryContext);
-                }
+                makeHasReferencedContext(context, nodeType, field, joinQueryContext);
             } else if (method.startsWith("referenceJoin")) {
                 NodeType refNodeType = NodeUtils.getNodeType(nodeType.getPropertyType(field).getReferenceType());
                 QueryContext joinQueryContext = QueryContext.createQueryContextFromText(queryValue, refNodeType, StringUtils.substringAfter(method, "referenceJoin"));
-                if (joinQueryContext != null) {
-                    joinQueryContext.setTargetJoinField("id");
-                    joinQueryContext.setSourceJoinField(field);
-                    context.addJoinQuery(joinQueryContext);
-                }
+                makeJoinContext(context, field, joinQueryContext);
             } else {
                 QueryTerm queryTerm = makePropertyQueryTerm(context.getQueryTermType(), nodeType, field, method, queryValue);
                 if (queryTerm != null) {
@@ -164,6 +157,15 @@ public class QueryUtils {
             for (String key : q.keySet()) {
                 makeQueryTerm(nodeType, context, queryTerms, key, ContextUtils.getValue(q.get(key).toString(), context.getData()));
             }
+        }
+    }
+
+    private static void makeHasReferencedContext(QueryContext context, NodeType nodeType, String field, QueryContext joinQueryContext) {
+        if (joinQueryContext != null) {
+            joinQueryContext.setMaxSize("100000");
+            joinQueryContext.setTargetJoinField(nodeType.getPropertyType(field).getReferenceValue());
+            joinQueryContext.setSourceJoinField("id");
+            context.addJoinQuery(joinQueryContext);
         }
     }
 
