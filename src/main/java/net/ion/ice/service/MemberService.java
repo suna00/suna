@@ -78,10 +78,10 @@ public class MemberService {
         // 탈퇴회원 체크
         if("leave".equals(member.getBindingValue("memberStatus")) || "leaveRequest".equals(member.getBindingValue("memberStatus"))){
             // 휴면지속자동탈퇴 체크
-            Node leaveMemberNode = nodeService.getNode("requestToleaveMember", member.get("memberNo").toString());
-            if("leave001".equals(leaveMemberNode.getBindingValue("leaveType"))){
-                throw new ApiException("400", "U0013");
-            }
+//            Node leaveMemberNode = nodeService.getNode("requestToleaveMember", member.get("memberNo").toString());
+//            if("leave001".equals(leaveMemberNode.getBindingValue("leaveType"))){
+//                throw new ApiException("400", "U0013");
+//            }
 
             throw new ApiException("400", "Not Found User");
         }
