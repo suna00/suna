@@ -1,0 +1,14 @@
+[
+  {
+    "typeId": "requestToleaveMember",
+    "memberNo": 99999,
+    "affiliateId": "2",
+    "userId": "sleepleave@ytn.co.kr",
+    "email": "thekid0@naver.com",
+    "name": "휴면탈퇴사용자",
+    "joinDate": 20170801000000,
+    "leaveType": "leave001",
+    "reasonType": "leave009",
+    "reasonComment": null
+  }
+]
