@@ -19,6 +19,7 @@
     String g_conf_pay_log_dir   = "/resource/log/pg/pay";             // LOG 디렉토리 절대경로 입력
     String g_conf_cancel_log_dir   = "/resource/log/pg/cancel";             // LOG 디렉토리 절대경로 입력
     String g_conf_cash_log_dir   = "/resource/log/pg/cash";             // LOG 디렉토리 절대경로 입력
+    String g_conf_log_dir   = "/resource/log/pg/conf";             // LOG 디렉토리 절대경로 입력
 
     /* ============================================================================== */
     /* = ※ 주의 ※                                                                 = */

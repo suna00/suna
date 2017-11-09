@@ -1,5 +1,6 @@
 package net.ion.ice.core.jsp;
 
+import net.ion.ice.core.context.RequestDataHolder;
 import net.ion.ice.core.data.bind.NodeBindingInfo;
 import net.ion.ice.service.OrderService;
 import org.slf4j.Logger;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class OrderController {
@@ -70,4 +73,34 @@ public class OrderController {
         mv.setViewName("/order/order_mobile");
         return mv;
     }
+
+    @RequestMapping("/order/cancel")
+    public ModelAndView cancel() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("/order/cancel/hub");
+        return mv;
+    }
+
+    @RequestMapping("/order/refundTest")
+    public ModelAndView refund() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("/order/refund/order_refund_test");
+        return mv;
+    }
+
+    @RequestMapping("/order/refundTest1")
+    public ModelAndView refund1() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("/order/refund/refund");
+        return mv;
+    }
+
+    @RequestMapping("/order/refundTest2")
+    public ModelAndView refund2() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("/order/refund/result");
+        return mv;
+    }
+
+
 }
