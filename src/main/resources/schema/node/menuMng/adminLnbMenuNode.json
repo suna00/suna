@@ -91,6 +91,24 @@
     "backOfficeId": "adm",
     "gnbMenuId": "productMng",
     "parentMenuId": "root",
+    "menuId": "productTextForm",
+    "menuName": "문자발송상품 등록/수정",
+    "order": "23",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "product/CreateTextForm" },
+      { "pageName": "수정", "pageUrl": "product/UpdateTextForm" }
+    ],
+    "authority": "system,admin"
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "root",
     "menuId": "productUpdateList",
     "menuName": "상품정보 일괄변경",
     "order": "30",
@@ -396,6 +414,25 @@
     "pages": [],
     "customPages": [
       { "pageName": "등록", "pageUrl": "marketingSearch/Form" }
+    ],
+    "authority": "system,admin"
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "marketingMng",
+    "parentMenuId": "root",
+    "menuId": "popup",
+    "menuName": "팝업관리",
+    "order": "60",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "marketingPopup/List" },
+      { "pageName": "등록", "pageUrl": "marketingPopup/CreateForm" },
+      { "pageName": "수정", "pageUrl": "marketingPopup/UpdateForm" }
     ],
     "authority": "system,admin"
   },
@@ -914,6 +951,8 @@
     ],
     "authority": "system,admin"
   },
+
+
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "ven",
@@ -928,7 +967,6 @@
     "pages": [],
     "customPages": []
   },
-
   {
     "typeId" : "adminLnbMenu",
     "backOfficeId": "ven",
@@ -997,6 +1035,24 @@
     "customPages": [
       { "pageName": "등록", "pageUrl": "product/CreateHealthForm" },
       { "pageName": "수정", "pageUrl": "product/UpdateHealthForm" }
+    ],
+    "authority": "system,vendor"
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "ven",
+    "gnbMenuId": "productMng",
+    "parentMenuId": "root",
+    "menuId": "productTextForm",
+    "menuName": "문자발송상품 등록/수정",
+    "order": "23",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "product/CreateTextForm" },
+      { "pageName": "수정", "pageUrl": "product/UpdateTextForm" }
     ],
     "authority": "system,vendor"
   },
@@ -1494,9 +1550,28 @@
     ],
     "authority": "system,vendor"
   },
+
   {
     "typeId" : "adminLnbMenu",
-    "backOfficeId": "aff",
+    "backOfficeId": "affUni",
+    "gnbMenuId": "developmentFundMng",
+    "parentMenuId": "root",
+    "menuId": "developmentFund",
+    "menuName": "발전기금",
+    "order": "10",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "true",
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "developmentFund/List" }
+    ],
+    "authority": "system,affiliateUniversity"
+  },
+
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "affCom",
     "gnbMenuId": "affiliateMng",
     "parentMenuId": "root",
     "menuId": "affiliateCompanyMember",
@@ -1504,95 +1579,85 @@
     "order": "10",
     "icon": "fa-list",
     "active": "true",
-    "index": "false",
+    "index": "true",
     "pages": [],
     "customPages": [
       { "pageName": "목록", "pageUrl": "affiliateCompanyMember/List" },
       { "pageName": "등록", "pageUrl": "affiliateCompanyMember/CreateForm" },
       { "pageName": "수정", "pageUrl": "affiliateCompanyMember/UpdateForm" }
     ],
-    "authority": "system,affiliate"
+    "authority": "system,affiliateCompany"
   },
   {
     "typeId" : "adminLnbMenu",
-    "backOfficeId": "aff",
+    "backOfficeId": "affCom",
     "gnbMenuId": "affiliateMng",
     "parentMenuId": "root",
-    "menuId": "purHistoty",
+    "menuId": "purchaseHistory",
     "menuName": "구매내역",
     "order": "20",
     "icon": "fa-list",
     "active": "true",
     "index": "false",
-    "pages": [
-      { "pageName": "목록", "pageUrl": "list" },
-      { "pageName": "등록", "pageUrl": "createForm" },
-      { "pageName": "수정", "pageUrl": "updateForm" }
-    ],
+    "pages": [],
     "customPages": [],
-    "authority": "system,affiliate"
+    "authority": "system,affiliateCompany"
   },
   {
     "typeId" : "adminLnbMenu",
-    "backOfficeId": "aff",
+    "backOfficeId": "affCom",
     "gnbMenuId": "affiliateMng",
     "parentMenuId": "root",
     "menuId": "csHistory",
-    "menuName": "CS내역",
+    "menuName": "CS 내역",
     "order": "30",
     "icon": "fa-list",
     "active": "true",
     "index": "false",
-    "pages": [
-      { "pageName": "목록", "pageUrl": "list" },
-      { "pageName": "등록", "pageUrl": "createForm" },
-      { "pageName": "수정", "pageUrl": "updateForm" }
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "csHistory/List" }
     ],
-    "customPages": [],
-    "authority": "system,affiliate"
+    "authority": "system,affiliateCompany"
   },
   {
     "typeId" : "adminLnbMenu",
-    "backOfficeId": "aff",
-    "gnbMenuId": "devFund",
+    "backOfficeId": "affCom",
+    "gnbMenuId": "developmentFundMng",
     "parentMenuId": "root",
-    "menuId": "devFundDet",
+    "menuId": "developmentFund",
     "menuName": "발전기금",
     "order": "10",
     "icon": "fa-list",
     "active": "true",
     "index": "false",
-    "pages": [
-      { "pageName": "목록", "pageUrl": "list" },
-      { "pageName": "등록", "pageUrl": "createForm" },
-      { "pageName": "수정", "pageUrl": "updateForm" }
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "developmentFund/List" }
     ],
-    "customPages": [],
-    "authority": "system,affiliate"
+    "authority": "system,affiliateCompany"
   },
   {
     "typeId" : "adminLnbMenu",
-    "backOfficeId": "aff",
-    "gnbMenuId": "welFarePoint",
+    "backOfficeId": "affCom",
+    "gnbMenuId": "welfarePointMng",
     "parentMenuId": "root",
-    "menuId": "divHistory",
+    "menuId": "welfarePoint",
     "menuName": "분배내역",
     "order": "10",
     "icon": "fa-list",
     "active": "true",
     "index": "false",
-    "pages": [
-      { "pageName": "목록", "pageUrl": "list" },
-      { "pageName": "등록", "pageUrl": "createForm" },
-      { "pageName": "수정", "pageUrl": "updateForm" }
+    "pages": [],
+    "customPages": [
+      { "pageName": "목록", "pageUrl": "affiliateWelfarePoint/List" }
     ],
-    "customPages": [],
-    "authority": "system,affiliate"
+    "authority": "system,affiliateCompany"
   },
   {
     "typeId" : "adminLnbMenu",
-    "backOfficeId": "aff",
-    "gnbMenuId": "welFarePoint",
+    "backOfficeId": "affCom",
+    "gnbMenuId": "welfarePointMng",
     "parentMenuId": "root",
     "menuId": "calculate",
     "menuName": "정산",
@@ -1600,12 +1665,8 @@
     "icon": "fa-list",
     "active": "true",
     "index": "false",
-    "pages": [
-      { "pageName": "목록", "pageUrl": "list" },
-      { "pageName": "등록", "pageUrl": "createForm" },
-      { "pageName": "수정", "pageUrl": "updateForm" }
-    ],
+    "pages": [],
     "customPages": [],
-    "authority": "system,affiliate"
+    "authority": "system,affiliateCompany"
   }
 ]

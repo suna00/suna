@@ -786,7 +786,7 @@
   {
     "typeId": "propertyType",
     "tid": "monthlyDevelopmentFund",
-    "pid": "DeliveryPrice",
+    "pid": "deliveryPrice",
     "propertyTypeName": "배송비",
     "valueType": "DOUBLE",
     "required": false,

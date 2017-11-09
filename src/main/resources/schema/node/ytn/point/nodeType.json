@@ -23,6 +23,9 @@
     "typeName": "제휴사 포인트",
     "tableName": "ytnDevDb#affiliatePoint",
     "repositoryType": "data",
+    "authorityRule": [
+      {"role":"affiliateCompany", "pid":"affiliateId", "method":"matching", "value":"session.user.affiliateId"}
+    ],
     "eviction": 0
   },
   {

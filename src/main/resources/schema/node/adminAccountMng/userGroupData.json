@@ -11,8 +11,13 @@
   },
   {
     "typeId": "userGroup",
-    "userGroupId": "affiliate",
-    "name": "제휴사 그룹"
+    "userGroupId": "affiliateCompany",
+    "name": "제휴사 기업 그룹"
+  },
+  {
+    "typeId": "userGroup",
+    "userGroupId": "affiliateUniversity",
+    "name": "제휴사 대학 그룹"
   },
   {
     "typeId": "userGroup",
