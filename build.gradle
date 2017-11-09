@@ -129,6 +129,9 @@ dependencies {
     compile ("com.amazonaws:aws-java-sdk-s3:1.11.197")
     compile ("com.opencsv:opencsv:4.0")
 
+    compile('org.apache.tomcat.embed:tomcat-embed-jasper')//jsp
+    compile('javax.servlet:jstl:1.2')//jsp
+
 // https://mvnrepository.com/artifact/joda-time/joda-time
     compile group: 'joda-time', name: 'joda-time', version: '2.9.9'
 }
