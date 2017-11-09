@@ -54,7 +54,7 @@
   {
     "typeId": "propertyType",
     "tid": "specialExhibition",
-    "pid": "name",
+    "pid": "기획전명",
     "propertyTypeName": "이름",
     "valueType": "STRING",
     "required": false,

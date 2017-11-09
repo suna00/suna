@@ -365,7 +365,7 @@
     "backOfficeId": "adm",
     "gnbMenuId": "marketingMng",
     "parentMenuId": "root",
-    "menuId": "",
+    "menuId": "specialExhibition",
     "menuName": "기획전 관리",
     "order": "10",
     "icon": "fa-list",
@@ -375,8 +375,8 @@
       { "pageName": "목록", "pageUrl": "list" }
     ],
     "customPages": [
-      { "pageName": "등록", "pageUrl": "marketingCoupon/CreateForm" },
-      { "pageName": "수정", "pageUrl": "marketingCoupon/UpdateForm" }
+      { "pageName": "등록", "pageUrl": "specialExhibition/CreateForm" },
+      { "pageName": "수정", "pageUrl": "specialExhibition/UpdateForm" }
     ],
     "authority": "system,admin"
   },
