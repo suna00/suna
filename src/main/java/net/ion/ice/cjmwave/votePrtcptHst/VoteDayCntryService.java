@@ -39,7 +39,7 @@ public class VoteDayCntryService {
     public void voteBasStatsCntryJob() {
         logger.info("voteDayCntryService.voteBasStatsCntryJob Start!!!!!!");
         voteCntryProcess();
-        logger.info("voteDayCntryService.voteBasStatsCntryJob Start!!!!!!");
+        logger.info("voteDayCntryService.voteBasStatsCntryJob End!!!!!!");
     }
 
     private void voteCntryProcess() {
