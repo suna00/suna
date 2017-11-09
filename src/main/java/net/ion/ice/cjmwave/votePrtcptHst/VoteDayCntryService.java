@@ -179,95 +179,99 @@ public class VoteDayCntryService {
                 }
                 logger.info(voteSeq + "===============> voteSeq별 라스트 시퀀스 쌓는 테이블 조회결과 :: lastSeqInfo" + lastSeqInfo);
                 //logger.info("===============> voteSeq별 라스트 시퀀스 쌓는 테이블 조회결과 :: lastSeq" + lastSeq);
+                try {
+                    //해당 voteSeq_voteHstByMbr 테이블에서 리스트 조회
+                    List<Map<String, Object>> voteMbrList =
+                            jdbcTemplate_replica.queryForList("SELECT seq FROM " + tableNm + " WHERE seq>? ORDER BY seq LIMIT ?"
+                                    , lastSeq, limitCnt);
+                    logger.info(voteSeq + "===============> voteMbrList ::" + voteMbrList.size());
 
-                //해당 voteSeq_voteHstByMbr 테이블에서 리스트 조회
-                List<Map<String, Object>> voteMbrList =
-                        jdbcTemplate_replica.queryForList("SELECT seq FROM " + tableNm + " WHERE seq>? ORDER BY seq LIMIT ?"
-                                , lastSeq, limitCnt);
-                logger.info(voteSeq + "===============> voteMbrList ::" + voteMbrList.size());
-
-                List<Map<String, Object>> voteSeqList =
-                        jdbcTemplate_replica.queryForList("SELECT hst.voteDate, count(*) voteNum FROM ( SELECT seq, voteDate, mbrId FROM " + tableNm + " WHERE seq>? ORDER BY seq LIMIT ? ) hst GROUP BY hst.voteDate"
-                                , lastSeq, limitCnt);
-                logger.info(voteSeq + "===============> voteSeqList ::" + voteSeqList.size());
+                    List<Map<String, Object>> voteSeqList =
+                            jdbcTemplate_replica.queryForList("SELECT hst.voteDate, count(*) voteNum FROM ( SELECT seq, voteDate, mbrId FROM " + tableNm + " WHERE seq>? ORDER BY seq LIMIT ? ) hst GROUP BY hst.voteDate"
+                                    , lastSeq, limitCnt);
+                    logger.info(voteSeq + "===============> voteSeqList ::" + voteSeqList.size());
 
                 /* 국가코드가 없거나, 잘못된 국가코드에 대해서 other 로 처리함*/
-                List<Map<String, Object>> voteMbrNumList =
-                        jdbcTemplate_replica.queryForList("select if(length(cntryCd)!=3, 'OTHERS', ifnull(if(cntryCd='THR','OTHERS',cntryCd),'OTHERS') ) as cntryCd, voteDate, sum(voteNum) voteNum from (\n" +
-                                        "  SELECT\n" +
-                                        "    cntryCd, voteDate, count(*) voteNum\n" +
-                                        "  FROM (\n" +
-                                        "         SELECT\n" +
-                                        "           b.cntryCd,\n" +
-                                        "           a.voteDate\n" +
-                                        "         FROM ( SELECT *\n" +
-                                        "               FROM " + tableNm + " \n" +
-                                        "               WHERE seq > ?\n" +
-                                        "               ORDER BY seq LIMIT ? ) a, mbrInfo b\n" +
-                                        "         WHERE substring_index(a.mbrId, '>', 1) = b.snsTypeCd\n" +
-                                        "               AND substring_index(a.mbrId, '>', -1) = b.snsKey\n" +
-                                        "       ) t\n" +
-                                        "  GROUP BY cntryCd, voteDate\n" +
-                                        ") total\n" +
-                                        "group by if(length(cntryCd)!=3, 'OTHERS', ifnull(if(cntryCd='THR','OTHERS',cntryCd),'OTHERS') ),voteDate "
-                                , lastSeq, limitCnt);
-                logger.info(voteSeq + "===============> voteMbrNumList ::" + voteMbrNumList.size());
+                    List<Map<String, Object>> voteMbrNumList =
+                            jdbcTemplate_replica.queryForList("select if(length(cntryCd)!=3, 'OTHERS', ifnull(if(cntryCd='THR','OTHERS',cntryCd),'OTHERS') ) as cntryCd, voteDate, sum(voteNum) voteNum from (\n" +
+                                            "  SELECT\n" +
+                                            "    cntryCd, voteDate, count(*) voteNum\n" +
+                                            "  FROM (\n" +
+                                            "         SELECT\n" +
+                                            "           b.cntryCd,\n" +
+                                            "           a.voteDate\n" +
+                                            "         FROM ( SELECT *\n" +
+                                            "               FROM " + tableNm + " \n" +
+                                            "               WHERE seq > ?\n" +
+                                            "               ORDER BY seq LIMIT ? ) a, mbrInfo b\n" +
+                                            "         WHERE substring_index(a.mbrId, '>', 1) = b.snsTypeCd\n" +
+                                            "               AND substring_index(a.mbrId, '>', -1) = b.snsKey\n" +
+                                            "       ) t\n" +
+                                            "  GROUP BY cntryCd, voteDate\n" +
+                                            ") total\n" +
+                                            "group by if(length(cntryCd)!=3, 'OTHERS', ifnull(if(cntryCd='THR','OTHERS',cntryCd),'OTHERS') ),voteDate "
+                                    , lastSeq, limitCnt);
+                    logger.info(voteSeq + "===============> voteMbrNumList ::" + voteMbrNumList.size());
 
-                for (int i = 0; i < voteSeqList.size(); i++) {
-                    Map<String, Object> mapData = voteSeqList.get(i);
-                    String voteDate = mapData.get("voteDate").toString();
-                    Integer addNum = Integer.parseInt(mapData.get("voteNum").toString());
+                    for (int i = 0; i < voteSeqList.size(); i++) {
+                        Map<String, Object> mapData = voteSeqList.get(i);
+                        String voteDate = mapData.get("voteDate").toString();
+                        Integer addNum = Integer.parseInt(mapData.get("voteNum").toString());
 
-                    //1. voteSeq&일자 테이블 insert / update
-                    Integer voteBasDayCnt = 0;
-                    Integer dayCheckCnt = getVoteBasDayCount(voteSeq, voteDate);
-                    if (dayCheckCnt > 0) {
-                        voteBasDayCnt = updateVoteBasDayNum(now, voteSeq, voteDate, addNum);
-                        logger.info("===============> updateVoteBasDay :: " + voteBasDayCnt);
-                    } else {
-                        voteBasDayCnt = insertVoteBasDay(voteSeq, voteDate, addNum, "system", now);
-                        logger.info("===============> insertVoteBasDay :: " + voteBasDayCnt);
+                        //1. voteSeq&일자 테이블 insert / update
+                        Integer voteBasDayCnt = 0;
+                        Integer dayCheckCnt = getVoteBasDayCount(voteSeq, voteDate);
+                        if (dayCheckCnt > 0) {
+                            voteBasDayCnt = updateVoteBasDayNum(now, voteSeq, voteDate, addNum);
+                            logger.info("===============> updateVoteBasDay :: " + voteBasDayCnt);
+                        } else {
+                            voteBasDayCnt = insertVoteBasDay(voteSeq, voteDate, addNum, "system", now);
+                            logger.info("===============> insertVoteBasDay :: " + voteBasDayCnt);
+                        }
                     }
-                }
 
-                //2. voteSeq&일자&국가별 테이블 insert / update
-                //회원정보의 국가 정보 가져온다 - but 회원정보의 국가코드 필수입력사항 아니므로 혹시몰라서~ cntryCd null아닐때만 테이블 insert하게 체크
-                for (int i = 0; i < voteMbrNumList.size(); i++) {
-                    Map<String, Object> mapData = voteMbrNumList.get(i);
-                    String voteDate = mapData.get("voteDate").toString();
-                    String cntryCd = mapData.get("cntryCd").toString();
-                    Integer addNum = Integer.parseInt(mapData.get("voteNum").toString());
+                    //2. voteSeq&일자&국가별 테이블 insert / update
+                    //회원정보의 국가 정보 가져온다 - but 회원정보의 국가코드 필수입력사항 아니므로 혹시몰라서~ cntryCd null아닐때만 테이블 insert하게 체크
+                    for (int i = 0; i < voteMbrNumList.size(); i++) {
+                        Map<String, Object> mapData = voteMbrNumList.get(i);
+                        String voteDate = mapData.get("voteDate").toString();
+                        String cntryCd = mapData.get("cntryCd").toString();
+                        Integer addNum = Integer.parseInt(mapData.get("voteNum").toString());
 
-                    Integer voteCntryDayCnt = 0;
-                    Integer cntryCheckCnt = getVoteBasCntryCount(voteSeq, voteDate, cntryCd);
-                    //voteSeq&일자&국가별 테이블 voteNum 업데이트
-                    if (cntryCheckCnt > 0) {
-                        voteCntryDayCnt = updateVoteCntryDay(now, voteSeq, voteDate, cntryCd, addNum);
-                        logger.info("===============> updateVoteCntryDay :: " + cntryCheckCnt);
-                    } else {
-                        voteCntryDayCnt = insertVoteCntryDay(voteSeq, voteDate, cntryCd, addNum, "system", now);
-                        logger.info("===============> insertVoteCntryDay :: " + cntryCheckCnt);
+                        Integer voteCntryDayCnt = 0;
+                        Integer cntryCheckCnt = getVoteBasCntryCount(voteSeq, voteDate, cntryCd);
+                        //voteSeq&일자&국가별 테이블 voteNum 업데이트
+                        if (cntryCheckCnt > 0) {
+                            voteCntryDayCnt = updateVoteCntryDay(now, voteSeq, voteDate, cntryCd, addNum);
+                            logger.info("===============> updateVoteCntryDay :: " + cntryCheckCnt);
+                        } else {
+                            voteCntryDayCnt = insertVoteCntryDay(voteSeq, voteDate, cntryCd, addNum, "system", now);
+                            logger.info("===============> insertVoteCntryDay :: " + cntryCheckCnt);
+                        }
                     }
-                }
 
 
-                //돌고나서 제일 마지막~일때 라스트 시퀀스 저장 혹은 갱신
-                Integer newLastSeq = 0;
-                if(voteMbrList.size() > 0){
-                    newLastSeq = Integer.parseInt(voteMbrList.get(voteMbrList.size() - 1).get("seq").toString());
-                }else{
-                    newLastSeq = 0;
-                }
+                    //돌고나서 제일 마지막~일때 라스트 시퀀스 저장 혹은 갱신
+                    Integer newLastSeq = 0;
+                    if (voteMbrList.size() > 0) {
+                        newLastSeq = Integer.parseInt(voteMbrList.get(voteMbrList.size() - 1).get("seq").toString());
+                    } else {
+                        newLastSeq = 0;
+                    }
 
-                //해당 _voteHstByMbr 테이블에 마지막 seq를 저장
-                logger.info("===============> 마지막 시퀀스 갱신 시작 :: lastListSeq" + newLastSeq);
-                Integer dayLstSeqCnt = 0;
-                if (lastSeqInfo == null) {
-                    dayLstSeqCnt = insertVoteBasByLastSeq(newLastSeq, voteSeq);
-                    logger.info("===============> insertVoteBasByLastSeq :: voteSeq ? " + voteSeq + " :: lastListSeq ? " + newLastSeq);
-                } else {
-                    dayLstSeqCnt = updateVoteBasByLastSeq(newLastSeq, voteSeq);
-                    logger.info("===============> updateVoteBasByLastSeq :: voteSeq ? " + voteSeq + " :: lastListSeq ? " + newLastSeq);
+                    //해당 _voteHstByMbr 테이블에 마지막 seq를 저장
+                    logger.info("===============> 마지막 시퀀스 갱신 시작 :: lastListSeq" + newLastSeq);
+                    Integer dayLstSeqCnt = 0;
+                    if (lastSeqInfo == null) {
+                        dayLstSeqCnt = insertVoteBasByLastSeq(newLastSeq, voteSeq);
+                        logger.info("===============> insertVoteBasByLastSeq :: voteSeq ? " + voteSeq + " :: lastListSeq ? " + newLastSeq);
+                    } else {
+                        dayLstSeqCnt = updateVoteBasByLastSeq(newLastSeq, voteSeq);
+                        logger.info("===============> updateVoteBasByLastSeq :: voteSeq ? " + voteSeq + " :: lastListSeq ? " + newLastSeq);
+                    }
+                }catch (Exception e){
+                    logger.error("Failed to voteDayCntryService.voteStatsDayProcess For", e);
+                    continue;
                 }
 
             }
