@@ -160,6 +160,14 @@ public class VotePrtcptHstService {
         if (dclaNodeList.size() == 0) {
             throw new ApiException("424", errMsgUtil.getErrMsg(context, "424"));
         }
+
+        // ======================================================================================================
+        // 2017.11.10 leetaiji 고객의 요청에 의해서 어뷰징 아이피가 투표할 경우에는 투표가 안되도록 차단한다.
+//        Integer badIpCnt = 0;
+//        if(Integer.parseInt(data.get(VOTE_SEQ).toString()) == 800103) badIpCnt = getBadIp(connIpAdr);
+//        if(badIpCnt > 0) throw new ApiException("421", errMsgUtil.getErrMsg(context, "421"));
+        // ======================================================================================================
+
         Node dclaNode = dclaNodeList.get(0);
         Integer ipDclaCnt = dclaNode.getIntValue("setupBaseCnt");//기준정보
         Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, Integer.parseInt(data.get(VOTE_SEQ).toString()));//이력테이블 데이터
@@ -403,6 +411,14 @@ public class VotePrtcptHstService {
         if (dclaNodeList.size() == 0) {
             throw new ApiException("424", errMsgUtil.getErrMsg(context, "424"));
         }
+
+        // ======================================================================================================
+        // 2017.11.10 leetaiji 고객의 요청에 의해서 어뷰징 아이피가 투표할 경우에는 투표가 안되도록 차단한다.
+//        Integer badIpCnt = 0;
+//        if(Integer.parseInt(seriesVoteBasInfo.getId().toString()) == 800103) badIpCnt = getBadIp(connIpAdr);
+//        if(badIpCnt > 0) throw new ApiException("421", errMsgUtil.getErrMsg(context, "421"));
+        // ======================================================================================================
+
         Node dclaNode = dclaNodeList.get(0);
         Integer ipDclaCnt = dclaNode.getIntValue("setupBaseCnt");
 
@@ -518,7 +534,13 @@ public class VotePrtcptHstService {
         }
     }
 
-    // 접근 IP Count 조회
+    /**
+     * 접근 IP Count 조회
+     * @param connIpAdr
+     * @param voteDate
+     * @param voteSeq
+     * @return
+     */
     private Integer getIpCnt(String connIpAdr, String voteDate, Integer voteSeq) {
         Integer mbrIpDclaCnt;
         String ipCntKey = connIpAdr + ">" + voteDate + ">" + voteSeq;
@@ -539,6 +561,22 @@ public class VotePrtcptHstService {
             voteIPCntMap.put(ipCntKey, mbrIpDclaCnt);
         }
         logger.info("VotePrtcptHstService > getIpCnt > " + ipCntKey + " > " + mbrIpDclaCnt);
+        return mbrIpDclaCnt;
+    }
+
+    // 접근 IP Count 조회
+    private Integer getBadIp(String connIpAdr) {
+        Integer mbrIpDclaCnt;
+
+        String selectIpDclaCnt = "/* ion_VotePrtcptHstService.getBadIp() */";
+        selectIpDclaCnt += " select count(*) as ipCnt from ip_blacklist where ipAdr=?";
+        Map<String, Object> ipCntMap = new ConcurrentHashMap<>();
+
+        ipCntMap = jdbcTemplate.queryForMap(selectIpDclaCnt, connIpAdr);
+
+        mbrIpDclaCnt = Integer.parseInt(ipCntMap.get("ipCnt").toString());
+
+        logger.info("VotePrtcptHstService > getBadIp > " + connIpAdr + " > " + mbrIpDclaCnt);
         return mbrIpDclaCnt;
     }
 
@@ -701,6 +739,13 @@ public class VotePrtcptHstService {
         if (usedVoteNum >= voteNum) {
             throw new ApiException("423", errMsgUtil.getErrMsg(context, "423"));
         }
+
+        // ======================================================================================================
+        // 2017.11.10 leetaiji 고객의 요청에 의해서 어뷰징 아이피가 투표할 경우에는 투표가 안되도록 차단한다.
+//        Integer badIpCnt = 0;
+//        if(voteNum == 800103) badIpCnt = getBadIp(connIpAdr);
+//        if(badIpCnt > 0) throw new ApiException("421", errMsgUtil.getErrMsg(context, "421"));
+        // ======================================================================================================
 
         // ========================================================================================================
         // Checking Available IP with mbrId and voteSeq
@@ -927,6 +972,13 @@ public class VotePrtcptHstService {
         }
         Node dclaNode = dclaNodeList.get(0);
         Integer ipDclaCnt = dclaNode.getIntValue("setupBaseCnt");
+
+        // ======================================================================================================
+        // 2017.11.10 leetaiji 고객의 요청에 의해서 어뷰징 아이피가 투표할 경우에는 투표가 안되도록 차단한다.
+//        Integer badIpCnt = 0;
+//        if(Integer.parseInt(seriesVoteBasInfo.getId().toString()) == 800103) badIpCnt = getBadIp(connIpAdr);
+//        if(badIpCnt > 0) throw new ApiException("421", errMsgUtil.getErrMsg(context, "421"));
+        // ======================================================================================================
 
         Integer mbrIpDclaCnt = getIpCnt(connIpAdr, voteDate, Integer.parseInt(seriesVoteBasInfo.getId().toString()));//이력테이블 데이터
 
