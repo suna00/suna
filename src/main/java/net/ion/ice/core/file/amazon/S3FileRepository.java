@@ -193,6 +193,34 @@ public class S3FileRepository implements FileRepository {
         return new FileValue(pt, id, multipartFile, savePath) ;
     }
 
+    public String saveFrontMultiPartFile(MultipartFile multipartFile){
+        String savePath = "front/editor/" + DateFormatUtils.format(new Date(), "yyyyMM/dd/") + UUID.randomUUID() + "."
+                + StringUtils.substringAfterLast(multipartFile.getOriginalFilename(), ".");
+        File saveFile = null;
+        String bucketUrl = null;
+        try {
+            saveFile = new File(fileRoot, savePath);
+            if(!saveFile.getParentFile().exists()){
+                saveFile.getParentFile().mkdirs() ;
+            }
+            multipartFile.transferTo(saveFile);
+            uploadFile(savePath, saveFile);
+            bucketUrl = retrieveS3URL(savePath, saveFile);
+            saveFile.delete();
+        } catch (Exception e) {
+            logger.error("S3 MULTIPART FILE SAVE ERROR");
+            throw new TolerableMissingFileException("S3 MULTIPART FILE SAVE ERROR : ", e);
+        }
+        finally {
+            if(saveFile != null && saveFile.exists()) {
+                saveFile.delete();
+            }
+        }
+        return bucketUrl;
+    }
+
+
+
     @Override
     public FileValue saveFile(PropertyType pt, String id, File file, String fileName, String contentType) {
         String savePath = pt.getTid() + "/" +  pt.getPid() + "/" + DateFormatUtils.format(new Date(), "yyyyMM/dd/") + UUID.randomUUID() + "." + StringUtils.substringAfterLast(file.getName(), ".");
