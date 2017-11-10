@@ -140,19 +140,15 @@ public class CntryVoteStatsWlyTask {
         String insertQuery = "INSERT INTO cntryVoteStatsWly " +
                 " (perdStDate, perdFnsDate, cntryCd, rankNum, voteRate, voteNum, owner, created) " +
                 " VALUES(?, ?, ?, ?, ?, ?, ?, NOW())";
-//        try {
-            int com = jdbcTemplate.update(insertQuery,
-                    cntryVoteVO.getVoteStart()
-                    , cntryVoteVO.getVoteEnd()
-                    , cntryVoteVO.getCntryCd()
-                    , cntryVoteVO.getRankNum()
-                    , cntryVoteVO.getVoteRate()
-                    , cntryVoteVO.getVoteNum()
-                    , "system");
-            logger.info("insertCntryVoteStats - {} - {}", cntryVoteVO.getVoteNum(), com);
-//        } catch ( Exception ex ) {
-//            logger.error(ex.getMessage(), ex);
-//        }
+        int com = jdbcTemplate.update(insertQuery,
+                cntryVoteVO.getVoteStart()
+                , cntryVoteVO.getVoteEnd()
+                , cntryVoteVO.getCntryCd()
+                , cntryVoteVO.getRankNum()
+                , cntryVoteVO.getVoteRate()
+                , cntryVoteVO.getVoteNum()
+                , "system");
+        logger.info("insertCntryVoteStats - {} - {}", cntryVoteVO.getVoteNum(), com);
     }
 
 
@@ -165,6 +161,7 @@ public class CntryVoteStatsWlyTask {
                 + " group by cntryCd                   "
                 ;
         return jdbcTemplate_replica.queryForList(selectQuery, sVoteStart, sVoteEnd);
+//        return jdbcTemplate.queryForList(selectQuery, sVoteStart, sVoteEnd);
     }
 
 }

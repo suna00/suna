@@ -146,19 +146,15 @@ public class CntryVoteStatsTask {
         String insertQuery = "INSERT INTO cntryVoteStats " +
                 " (perdStDate, perdFnsDate, cntryCd, rankNum, voteRate, voteNum, owner, created) " +
                 " VALUES(?, ?, ?, ?, ?, ?, ?, NOW())";
-//        try {
-            int com = jdbcTemplate.update(insertQuery,
-                    cntryVoteVO.getVoteStart()
-                    , cntryVoteVO.getVoteEnd()
-                    , cntryVoteVO.getCntryCd()
-                    , cntryVoteVO.getRankNum()
-                    , cntryVoteVO.getVoteRate()
-                    , cntryVoteVO.getVoteNum()
-                    , "system");
-            logger.info("insertCntryVoteStats - {} - {}", cntryVoteVO.getVoteNum(), com);
-//        } catch ( Exception ex ) {
-//            logger.error(ex.getMessage(), ex);
-//        }
+        int com = jdbcTemplate.update(insertQuery,
+                cntryVoteVO.getVoteStart()
+                , cntryVoteVO.getVoteEnd()
+                , cntryVoteVO.getCntryCd()
+                , cntryVoteVO.getRankNum()
+                , cntryVoteVO.getVoteRate()
+                , cntryVoteVO.getVoteNum()
+                , "system");
+        logger.info("insertCntryVoteStats - {} - {}", cntryVoteVO.getVoteNum(), com);
     }
 
 
