@@ -1761,6 +1761,8 @@
         "hitNum": "",
         "risingHitNum": "",
         "hotHitNum": "",
+        "mkeDay": "",
+        "isUse": "",
         "replNum": {
           "select": {
             "ds": "authDb",
