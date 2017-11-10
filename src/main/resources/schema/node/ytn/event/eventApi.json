@@ -31,6 +31,28 @@
   {
     "typeId" : "apiConfig",
     "category" : "specialExhibitionApi",
+    "apiId" : "facet",
+    "apiName" : "기획전 리스트 Facet",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
+      "typeId": "specialExhibition",
+      "query" : [
+        {"field" : "startDate", "method" : "below", "value" : "{{:toDay}}" },
+        {"field" : "endDate", "method" : "above", "value" : "{{:toDay}}" },
+        {"field" : "siteType", "method" : "matching", "value" : "all,{{:siteType}}" },
+        {"field" : "specialExhibitionStatus", "method" : "matching", "value" : "use" },
+        {"field" : "name", "method" : "matching", "value" : "{{:searchValue}}" },
+        {"facet" : "categoryId"},
+        {"limit" : "1"},
+        {"includeReferenced" : false}
+      ]
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "specialExhibitionApi",
     "apiId" : "view",
     "apiName" : "기획전 조회_날짜조회필요",
     "method" : "GET",

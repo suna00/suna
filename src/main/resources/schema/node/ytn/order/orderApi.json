@@ -138,6 +138,22 @@
   {
     "typeId" : "apiConfig",
     "category" : "orderSheet",
+    "apiId": "orderList",
+    "apiName": "주문/배송 리스트",
+    "method": "GET",
+    "parameters": [
+    ],
+    "config": {
+      "typeId": "orderSheet",
+      "noneExecute": true,
+      "event": "orderList",
+      "data": {
+      }
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "orderSheet",
     "apiId" : "recentlyList",
     "apiName" : "최근 주문/배송조회 리스트",
     "method" : "GET",
