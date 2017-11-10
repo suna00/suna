@@ -13,10 +13,7 @@ import net.ion.ice.core.data.bind.NodeBindingUtils;
 import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.file.FileValue;
 import net.ion.ice.core.infinispan.NotFoundNodeException;
-import net.ion.ice.core.node.Node;
-import net.ion.ice.core.node.NodeType;
-import net.ion.ice.core.node.NodeUtils;
-import net.ion.ice.core.node.PropertyType;
+import net.ion.ice.core.node.*;
 import net.ion.ice.core.query.QueryResult;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
@@ -39,9 +36,9 @@ public class MbrInfoService {
     private JdbcTemplate jdbcTemplate;
 
     private Logger logger = Logger.getLogger(MbrInfoService.class);
-    private List<String> cntryMngMap = new ArrayList<String>();
-    private List<String> sexCdMap = new ArrayList<String>();
-    private List<String> snsTypeCdMap = new ArrayList<String>();
+    private List<String> cntryMngMap = Arrays.asList("CHN","KOR","THA","PHL","IDN","VNM","USA","TWN","MAL","JPN","BRA","MEX","SGP","HKG","GBR","RUS","PER","SAU","CDN","AUS","RCH","ARG","TUR","DEU","FRA","MMR","IND","COL","ESP","KAZ","ITA","KHM","POL","ECU","ARE","NLD","BOL","MAR","NZL","DZA","IRQ","UKR","EGY","SWE","BRU","HUN","VEN","PRT","FIN","MAC","OTHERS");
+    private List<String> sexCdMap = Arrays.asList("1","2","3");
+    private List<String> snsTypeCdMap = Arrays.asList("1","2","3","4","5","6","7","8","9","10");
 
 
     @Autowired
@@ -92,6 +89,8 @@ public class MbrInfoService {
 
         Map<String, Object> data = context.getData();
         chkSnsParams(data);
+        //snsTypeCd 확인
+        chkSnsTypeCd(data);
         String snsKey = data.get("snsKey").toString();
         String snsTypeCd = data.get("snsTypeCd").toString();
 
@@ -492,28 +491,14 @@ public class MbrInfoService {
         } else if (data.get("snsKey") == null || StringUtils.isEmpty(data.get("snsKey").toString())) {
             throw new ApiException("400", "Required Parameter :snsKey");
         }
-
-        //snsTypeCd 확인
-        chkSnsTypeCd(data);
     }
 
     private void chkCntryCd(Map<String, Object> data) {
         //국가코드 확인
         String paramCntryId = (data.get("cntryCd") != null) ? data.get("cntryCd").toString() : "";
-        if (cntryMngMap.isEmpty()) {
-            List<Node> cntryMngList = NodeUtils.getNodeService().getNodeList("cntryMng", "useYn_matching=true&sorting=sortOdrg&langCd=eng");
-
-            for (Node cntryInfo : cntryMngList) {
-                String cntryId = cntryInfo.getStringValue("cntryId");
-                cntryMngMap.add(cntryId);
-            }
-        }
         boolean chkCntry = false;
-        for (String cntryId : cntryMngMap) {
-            if (cntryId.equals(paramCntryId)) {
-                chkCntry = true;
-                break;
-            }
+        if(cntryMngMap.contains(paramCntryId)){
+            chkCntry = true;
         }
 
         if (!chkCntry) {
@@ -524,21 +509,9 @@ public class MbrInfoService {
     private void chkSexCd(Map<String, Object> data) {
         String paramSexCd = (data.get("sexCd") != null) ? data.get("sexCd").toString() : "";
 
-        if (sexCdMap.isEmpty()) {
-            List<Node> sexCdList = NodeUtils.getNodeService().getNodeList("code", "groupCodeId_matching=sexCd");
-
-            for (Node codeNode : sexCdList) {
-                String codeId = codeNode.getStringValue("codeId");
-                sexCdMap.add(codeId);
-            }
-        }
-
         boolean chkSex = false;
-        for (String sexCd : sexCdMap) {
-            if (sexCd.equals(paramSexCd)) {
-                chkSex = true;
-                break;
-            }
+        if(sexCdMap.contains(paramSexCd)){
+            chkSex = true;
         }
 
         if (!chkSex) {
@@ -549,21 +522,9 @@ public class MbrInfoService {
     private void chkSnsTypeCd(Map<String, Object> data) {
         String paramSnsTypeCd = (data.get("snsTypeCd") != null) ? data.get("snsTypeCd").toString() : "";
 
-        if (snsTypeCdMap.isEmpty()) {
-            List<Node> snsTypeCdList = NodeUtils.getNodeService().getNodeList("code", "groupCodeId_matching=snsTypeCd");
-
-            for (Node codeNode : snsTypeCdList) {
-                String codeId = codeNode.getStringValue("codeId");
-                snsTypeCdMap.add(codeId);
-            }
-        }
-
         boolean chkSnsType = false;
-        for (String snsTypeCd : snsTypeCdMap) {
-            if (snsTypeCd.equals(paramSnsTypeCd)) {
-                chkSnsType = true;
-                break;
-            }
+        if(snsTypeCdMap.contains(paramSnsTypeCd)){
+            chkSnsType = true;
         }
 
         if (!chkSnsType) {
