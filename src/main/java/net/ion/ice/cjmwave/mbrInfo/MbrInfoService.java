@@ -90,7 +90,7 @@ public class MbrInfoService {
         Map<String, Object> data = context.getData();
         chkSnsParams(data);
         //snsTypeCd 확인
-        chkSnsTypeCd(data);
+        //chkSnsTypeCd(data);
         String snsKey = data.get("snsKey").toString();
         String snsTypeCd = data.get("snsTypeCd").toString();
 
@@ -140,9 +140,9 @@ public class MbrInfoService {
             throw new ApiException("404", "Not Found Member");
         }
         //국가코드 확인
-        chkCntryCd(data);
+        //chkCntryCd(data);
         //성별코드 확인
-        chkSexCd(data);
+        //chkSexCd(data);
 
         //update
         data.put("snsTypeCd", snsTypeCd);
@@ -414,9 +414,9 @@ public class MbrInfoService {
         }
 
         //국가코드 확인
-        chkCntryCd(data);
+        //chkCntryCd(data);
         //성별코드 확인
-        chkSexCd(data);
+        //chkSexCd(data);
 
 
         NodeType nodeType = NodeUtils.getNodeType("mbrInfo");
@@ -502,6 +502,7 @@ public class MbrInfoService {
         }
 
         if (!chkCntry) {
+            logger.info("##chkCntryCd : paramCntryId="+paramCntryId+", cntryMngMap size="+cntryMngMap.size()+", chkCntry="+chkCntry);
             throw new ApiException("404", "Not Found Cntry");
         }
     }
@@ -515,6 +516,7 @@ public class MbrInfoService {
         }
 
         if (!chkSex) {
+            logger.info("##chkSexCd : paramSexCd="+paramSexCd+", sexCdMap size="+sexCdMap.size()+", chkSex="+chkSex);
             throw new ApiException("404", "Not Found SexCd");
         }
     }
@@ -528,6 +530,7 @@ public class MbrInfoService {
         }
 
         if (!chkSnsType) {
+            logger.info("##chkSnsTypeCd : paramSnsTypeCd="+paramSnsTypeCd+", snsTypeCdMap size="+snsTypeCdMap.size()+", chkSnsType="+chkSnsType);
             throw new ApiException("404", "Not Found SnsTypeCd");
         }
     }
