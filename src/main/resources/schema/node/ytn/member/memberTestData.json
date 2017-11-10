@@ -484,5 +484,75 @@
     "snsType": null,
     "snsId": null,
     "snsProfileLink": null
+  },
+  {
+    "typeId": "member",
+    "memberNo": 878787,
+    "siteId": {
+      "value": "ion",
+      "label": "아이온커뮤니케이션즈",
+      "refId": "ion"
+    },
+    "affiliateId": {
+      "value": "100",
+      "label": "아이온커뮤니케이션즈",
+      "refId": "100"
+    },
+    "userId": "swyoon@i-on.net",
+    "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+    "siteType": {
+      "value": "company",
+      "label": "기업",
+      "refId": "siteType>company"
+    },
+    "memberStatus": {
+      "value": "join",
+      "label": "가입",
+      "refId": "memberStatus>join"
+    },
+    "name": "이수민",
+    "universityName": null,
+    "major": null,
+    "studentId": null,
+    "firstName": null,
+    "lastName": null,
+    "nickName": null,
+    "profileImage": null,
+    "gender": {
+      "value": "man",
+      "label": "남자",
+      "refId": "genderType>man"
+    },
+    "birthday": null,
+    "company": null,
+    "department": null,
+    "phone": null,
+    "cellphone": "010-1111-2222",
+    "postCode": "135-080",
+    "address": "서울특별시 강남구 테헤란로 10길 15 (역삼동)",
+    "detailedAddress": "가나다라마바사",
+    "email": "smlee@i-on.net",
+    "fax": null,
+    "termsOfUseAgreeYn": null,
+    "receiveMarketingEmailAgreeYn": null,
+    "receiveMarketingSMSAgreeYn": null,
+    "inflowRoute": null,
+    "joinRoute": null,
+    "joinDate": "20171109235959",
+    "lastLoginDate": null,
+    "dormancyExtensionDate": null,
+    "acceptTermsYn": null,
+    "recommendedPerson": null,
+    "numberOfRecommendations": null,
+    "failedCount": null,
+    "lastFailedDate": null,
+    "membershipLevel": "general",
+    "barcode": null,
+    "snsLinkYn": null,
+    "snsType": null,
+    "snsId": null,
+    "snsProfileLink": null,
+    "welfarePoint" : 10000,
+    "YPoint" : 127973983
   }
 ]
