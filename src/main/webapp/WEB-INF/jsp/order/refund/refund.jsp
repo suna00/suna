@@ -1,31 +1,32 @@
-<%@ page language="java" contentType="text/html;charset=euc-kr"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     /* ============================================================================== */
-    /* =   PAGE : °èÁÂÀÎÁõ ¿äÃ» ¹× °á°ú Ã³¸® PAGE                                   = */
+    /* =   PAGE : ê³„ì¢Œì¸ì¦ ìš”ì²­ ë° ê²°ê³¼ ì²˜ë¦¬ PAGE                                   = */
     /* = -------------------------------------------------------------------------- = */
-    /* =   ¿¬µ¿½Ã ¿À·ù°¡ ¹ß»ıÇÏ´Â °æ¿ì ¾Æ·¡ÀÇ ÁÖ¼Ò·Î Á¢¼ÓÇÏ¼Å¼­ È®ÀÎÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.= */
-    /* =   Á¢¼Ó ÁÖ¼Ò : http://kcp.co.kr/technique.requestcode.do                    = */
+    /* =   ì—°ë™ì‹œ ì˜¤ë¥˜ê°€ ë°œìƒí•˜ëŠ” ê²½ìš° ì•„ë˜ì˜ ì£¼ì†Œë¡œ ì ‘ì†í•˜ì…”ì„œ í™•ì¸í•˜ì‹œê¸° ë°”ëë‹ˆë‹¤.= */
+    /* =   ì ‘ì† ì£¼ì†Œ : http://kcp.co.kr/technique.requestcode.do                    = */
     /* = -------------------------------------------------------------------------- = */
     /* =   Copyright (c)  2013   KCP Inc.   All Rights Reserverd.                   = */
     /* ============================================================================== */
 %>
 <%
     /* ============================================================================== */
-    /* = ¶óÀÌºê·¯¸® ¹× »çÀÌÆ® Á¤º¸ include                                          = */
+    /* = ë¼ì´ë¸ŒëŸ¬ë¦¬ ë° ì‚¬ì´íŠ¸ ì •ë³´ include                                          = */
     /* = -------------------------------------------------------------------------- = */
 %>
 <%@ page import="com.kcp.*"%>
 <%@ page import="java.net.URLEncoder"%>
+<%@ page import="java.net.URLDecoder" %>
 <%@ include file = "../cfg/site_conf_inc.jsp"%>
 <%
     /* = -------------------------------------------------------------------------- = */
-    /* =   È¯°æ ¼³Á¤ ÆÄÀÏ Include END                                               = */
+    /* =   í™˜ê²½ ì„¤ì • íŒŒì¼ Include END                                               = */
     /* ============================================================================== */
 %>
 
 <%!
     /* ============================================================================== */
-    /* =   null °ªÀ» Ã³¸®ÇÏ´Â ¸Ş¼Òµå                                                = */
+    /* =   null ê°’ì„ ì²˜ë¦¬í•˜ëŠ” ë©”ì†Œë“œ                                                = */
     /* = -------------------------------------------------------------------------- = */
     public String f_get_parm( String val )
     {
@@ -37,11 +38,11 @@
 
 <%
     /* ============================================================================== */
-    /* =   POST Çü½Ä Ã¼Å©ºÎºĞ                                                       = */
+    /* =   POST í˜•ì‹ ì²´í¬ë¶€ë¶„                                                       = */
     /* = -------------------------------------------------------------------------- = */
     if (!request.getMethod().equals("POST"))
     {
-        out.println("Àß¸øµÈ °æ·Î·Î Á¢¼ÓÇÏ¿´½À´Ï´Ù.");
+        out.println("ì˜ëª»ëœ ê²½ë¡œë¡œ ì ‘ì†í•˜ì˜€ìŠµë‹ˆë‹¤.");
         return;
     }
     /* ============================================================================== */
@@ -50,33 +51,33 @@
 <%
     /* ============================================================================== */
 
-    request.setCharacterEncoding ( "euc-kr" ) ;
+    request.setCharacterEncoding("UTF-8");
     /* ============================================================================== */
-    /* =   01. ÁöºÒ ¿äÃ» Á¤º¸ ¼³Á¤                                                  = */
+    /* =   01. ì§€ë¶ˆ ìš”ì²­ ì •ë³´ ì„¤ì •                                                  = */
     /* = -------------------------------------------------------------------------- = */
-    String cust_ip      = request.getRemoteAddr();                                   // ¿äÃ» IP
-    String req_tx       = f_get_parm( request.getParameter( "req_tx"       ) );      // ¿äÃ» Á¾·ù
-    String tran_cd      = "";                                                        // Æ®·£Àè¼Ç ÄÚµå
+    String cust_ip      = request.getRemoteAddr();                                   // ìš”ì²­ IP
+    String req_tx       = f_get_parm( request.getParameter( "req_tx"       ) );      // ìš”ì²­ ì¢…ë¥˜
+    String tran_cd      = "";                                                        // íŠ¸ëœì­ì…˜ ì½”ë“œ
     /* = -------------------------------------------------------------------------- = */
-    String res_cd       = "";                                                        // °á°úÄÚµå
-    String res_msg      = "";                                                        // °á°ú¸Ş½ÃÁö
-    String app_time     = "";                                                        // ÀÎÁõ½Ã°£
+    String res_cd       = "";                                                        // ê²°ê³¼ì½”ë“œ
+    String res_msg      = "";                                                        // ê²°ê³¼ë©”ì‹œì§€
+    String app_time     = "";                                                        // ì¸ì¦ì‹œê°„
     /* = -------------------------------------------------------------------------- = */
-    String mod_type      = f_get_parm( request.getParameter( "mod_type"      ) );     // º¯°æÀ¯Çü
-    String mod_desc      = f_get_parm( request.getParameter( "mod_desc"      ) );     // º¯°æÀ¯Çü
-    String tno           = f_get_parm( request.getParameter( "tno"           ) );     // KCP °Å·¡¹øÈ£
-    String mod_mny       = f_get_parm( request.getParameter( "mod_mny"       ) );     // È¯ºÒ±İ¾×
-    String rem_mny       = f_get_parm( request.getParameter( "rem_mny"       ) );     // È¯ºÒ Àü ±İ¾×
-    String mod_bankcode  = f_get_parm( request.getParameter( "mod_bankcode"  ) );     // ÀºÇà ÄÚµå
-    String mod_account   = f_get_parm( request.getParameter( "mod_account"   ) );     // ¹ß±Ş °èÁÂ
-    String mod_depositor = f_get_parm( request.getParameter( "mod_depositor" ) );     // ¿¹±İÁÖ
-    String mod_comp_type = f_get_parm( request.getParameter( "mod_comp_type" ) );     // ÀºÇà ÄÚµå
-    String mod_socno     = f_get_parm( request.getParameter( "mod_socno"     ) );     // ¹ß±Ş °èÁÂ
-    String mod_socname   = f_get_parm( request.getParameter( "mod_socname"   ) );     // ¿¹±İÁÖ
+    String mod_type      = f_get_parm( request.getParameter( "mod_type"      ) );     // ë³€ê²½ìœ í˜•
+    String mod_desc      = f_get_parm( request.getParameter( "mod_desc"      ) );     // ë³€ê²½ìœ í˜•
+    String tno           = f_get_parm( request.getParameter( "tno"           ) );     // KCP ê±°ë˜ë²ˆí˜¸
+    String mod_mny       = f_get_parm( request.getParameter( "mod_mny"       ) );     // í™˜ë¶ˆê¸ˆì•¡
+    String rem_mny       = f_get_parm( request.getParameter( "rem_mny"       ) );     // í™˜ë¶ˆ ì „ ê¸ˆì•¡
+    String mod_bankcode  = f_get_parm( request.getParameter( "mod_bankcode"  ) );     // ì€í–‰ ì½”ë“œ
+    String mod_account   = f_get_parm( request.getParameter( "mod_account"   ) );     // ë°œê¸‰ ê³„ì¢Œ
+    String mod_depositor = f_get_parm( request.getParameter( "mod_depositor" ) );     // ì˜ˆê¸ˆì£¼
+    String mod_comp_type = f_get_parm( request.getParameter( "mod_comp_type" ) );     // ì€í–‰ ì½”ë“œ
+    String mod_socno     = f_get_parm( request.getParameter( "mod_socno"     ) );     // ë°œê¸‰ ê³„ì¢Œ
+    String mod_socname   = f_get_parm( request.getParameter( "mod_socname"   ) );     // ì˜ˆê¸ˆì£¼
     /* = -------------------------------------------------------------------------- = */
 
     /* ============================================================================== */
-    /* =   02. ÀÎ½ºÅÏ½º »ı¼º ¹× ÃÊ±âÈ­                                              = */
+    /* =   02. ì¸ìŠ¤í„´ìŠ¤ ìƒì„± ë° ì´ˆê¸°í™”                                              = */
     /* = -------------------------------------------------------------------------- = */
     J_PP_CLI_N c_PayPlus = new J_PP_CLI_N();
 
@@ -86,13 +87,13 @@
 
 
     /* ============================================================================== */
-    /* =   03. Ã³¸® ¿äÃ» Á¤º¸ ¼³Á¤, ½ÇÇà                                            = */
+    /* =   03. ì²˜ë¦¬ ìš”ì²­ ì •ë³´ ì„¤ì •, ì‹¤í–‰                                            = */
     /* = -------------------------------------------------------------------------- = */
 
     /* = -------------------------------------------------------------------------- = */
-    /* =   03-1. ½ÂÀÎ ¿äÃ»                                                          = */
+    /* =   03-1. ìŠ¹ì¸ ìš”ì²­                                                          = */
     /* = -------------------------------------------------------------------------- = */
-    // ¾÷Ã¼ È¯°æ Á¤º¸
+    // ì—…ì²´ í™˜ê²½ ì •ë³´
 
     if ( req_tx.equals("mod") )
     {
@@ -101,64 +102,68 @@
         tran_cd = "00200000";
         mod_data_set_no = c_PayPlus.mf_add_set( "mod_data" );
 
-        c_PayPlus.mf_set_us( mod_data_set_no, "mod_type",  mod_type              );     // ¿ø°Å·¡ º¯°æ ¿äÃ» Á¾·ù
-        c_PayPlus.mf_set_us( mod_data_set_no, "tno",       tno                   );     // °Å·¡¹øÈ£
-        c_PayPlus.mf_set_us( mod_data_set_no, "mod_ip",    cust_ip               );     // º¯°æ ¿äÃ»ÀÚ IP
-        c_PayPlus.mf_set_us( mod_data_set_no, "mod_desc",  mod_desc              );     // º¯°æ »çÀ¯
+        c_PayPlus.mf_set_us( mod_data_set_no, "mod_type",  mod_type              );     // ì›ê±°ë˜ ë³€ê²½ ìš”ì²­ ì¢…ë¥˜
+        c_PayPlus.mf_set_us( mod_data_set_no, "tno",       tno                   );     // ê±°ë˜ë²ˆí˜¸
+        c_PayPlus.mf_set_us( mod_data_set_no, "mod_ip",    cust_ip               );     // ë³€ê²½ ìš”ì²­ì IP
+        c_PayPlus.mf_set_us( mod_data_set_no, "mod_desc",  mod_desc              );     // ë³€ê²½ ì‚¬ìœ 
 
-        c_PayPlus.mf_set_us( mod_data_set_no, "mod_bankcode",   mod_bankcode     );     // È¯ºÒ ¿äÃ» ÀºÇà ÄÚµå
-        c_PayPlus.mf_set_us( mod_data_set_no, "mod_account",    mod_account      );     // È¯ºÒ ¿äÃ» °èÁÂ
-        c_PayPlus.mf_set_us( mod_data_set_no, "mod_depositor",  mod_depositor    );     // È¯ºÒ ¿äÃ» °èÁÂÁÖ¸í
+        c_PayPlus.mf_set_us( mod_data_set_no, "mod_bankcode",   mod_bankcode     );     // í™˜ë¶ˆ ìš”ì²­ ì€í–‰ ì½”ë“œ
+        c_PayPlus.mf_set_us( mod_data_set_no, "mod_account",    mod_account      );     // í™˜ë¶ˆ ìš”ì²­ ê³„ì¢Œ
+        c_PayPlus.mf_set_us( mod_data_set_no, "mod_depositor",  mod_depositor    );     // í™˜ë¶ˆ ìš”ì²­ ê³„ì¢Œì£¼ëª…
 
         if ( mod_type.equals("STHD") )
         {
-            c_PayPlus.mf_set_us( mod_data_set_no, "mod_sub_type",   "MDSC00"        );      // º¯°æ À¯Çü
+            c_PayPlus.mf_set_us( mod_data_set_no, "mod_sub_type",   "MDSC00"        );      // ë³€ê²½ ìœ í˜•
         }
         else if ( mod_type.equals("STPD") )
         {
-            c_PayPlus.mf_set_us( mod_data_set_no, "mod_sub_type",   "MDSC03"        );      // º¯°æ À¯Çü
-            c_PayPlus.mf_set_us( mod_data_set_no, "mod_mny",        mod_mny         );      // È¯ºÒ ¿äÃ» ±İ¾×
-            c_PayPlus.mf_set_us( mod_data_set_no, "rem_mny",        rem_mny         );      // È¯ºÒ Àü ±İ¾×
+            c_PayPlus.mf_set_us( mod_data_set_no, "mod_sub_type",   "MDSC03"        );      // ë³€ê²½ ìœ í˜•
+            c_PayPlus.mf_set_us( mod_data_set_no, "mod_mny",        mod_mny         );      // í™˜ë¶ˆ ìš”ì²­ ê¸ˆì•¡
+            c_PayPlus.mf_set_us( mod_data_set_no, "rem_mny",        rem_mny         );      // í™˜ë¶ˆ ì „ ê¸ˆì•¡
         }
 
         if (mod_comp_type.equals("MDCP01"))
         {
-            c_PayPlus.mf_set_us( mod_data_set_no, "mod_comp_type",   "MDCP01"        );      // º¯°æ À¯Çü
+            c_PayPlus.mf_set_us( mod_data_set_no, "mod_comp_type",   "MDCP01"        );      // ë³€ê²½ ìœ í˜•
         }
         else if (mod_comp_type.equals("MDCP02"))
         {
-            c_PayPlus.mf_set_us( mod_data_set_no, "mod_comp_type",   "MDCP02"        );      // º¯°æ À¯Çü
-            c_PayPlus.mf_set_us( mod_data_set_no, "mod_socno",       mod_socno       );      // ½Ç¸íÈ®ÀÎ ÁÖ¹Î¹øÈ£
-            c_PayPlus.mf_set_us( mod_data_set_no, "mod_socname",     mod_socname     );      // ½Ç¸íÈ®ÀÎ ¼º¸í
+            c_PayPlus.mf_set_us( mod_data_set_no, "mod_comp_type",   "MDCP02"        );      // ë³€ê²½ ìœ í˜•
+            c_PayPlus.mf_set_us( mod_data_set_no, "mod_socno",       mod_socno       );      // ì‹¤ëª…í™•ì¸ ì£¼ë¯¼ë²ˆí˜¸
+            c_PayPlus.mf_set_us( mod_data_set_no, "mod_socname",     mod_socname     );      // ì‹¤ëª…í™•ì¸ ì„±ëª…
         }
     }
     /* ============================================================================== */
 
     /* ============================================================================== */
-    /* =   04. ½ÇÇà                                                                 = */
+    /* =   04. ì‹¤í–‰                                                                 = */
     /* ------------------------------------------------------------------------------ */
     if ( tran_cd.length() > 0 )
     {
-        c_PayPlus.mf_do_tx( g_conf_site_cd, g_conf_site_key, tran_cd, cust_ip, "", "3", "0" );
+        c_PayPlus.mf_do_tx( g_conf_site_cd, g_conf_site_key, tran_cd, cust_ip, "", "3", "1" );
     }
     else
     {
         c_PayPlus.m_res_cd  = "9562";
-        c_PayPlus.m_res_msg = "¿¬µ¿ ¿À·ù";
+        c_PayPlus.m_res_msg = "ì—°ë™ ì˜¤ë¥˜";
     }
-    res_cd  = c_PayPlus.m_res_cd;                      // °á°ú ÄÚµå
-    res_msg = c_PayPlus.m_res_msg;                     // °á°ú ¸Ş½ÃÁö
+    res_cd  = c_PayPlus.m_res_cd;                      // ê²°ê³¼ ì½”ë“œ
+    res_msg = c_PayPlus.m_res_msg;                     // ê²°ê³¼ ë©”ì‹œì§€
+    System.out.println("#############################################################");
+    System.out.println(c_PayPlus.getLogRecvMsg());
+    System.out.println(new String(res_msg.getBytes("KSC5601"), "UTF-8"));
+    System.out.println("#############################################################");
     /* ============================================================================== */
 
 
     /* ============================================================================== */
-    /* =   05. °¡»ó°èÁÂ È¯ºÒ °á°ú Ã³¸®                                              = */
+    /* =   05. ê°€ìƒê³„ì¢Œ í™˜ë¶ˆ ê²°ê³¼ ì²˜ë¦¬                                              = */
     /* = -------------------------------------------------------------------------- = */
     if ( req_tx == "mod" )
     {
         if ( res_cd == "0000" )
         {
-            tno = c_PayPlus.mf_get_res( "tno" );       // KCP °Å·¡ °íÀ¯ ¹øÈ£
+            tno = c_PayPlus.mf_get_res( "tno" );       // KCP ê±°ë˜ ê³ ìœ  ë²ˆí˜¸
         }
         else if ( res_cd != "0000" )
         {
@@ -167,7 +172,7 @@
     }      /* End of Process */
 
     /* ============================================================================== */
-    /* =   07. Æû ±¸¼º ¹× °á°úÆäÀÌÁö È£Ãâ                                           = */
+    /* =   07. í¼ êµ¬ì„± ë° ê²°ê³¼í˜ì´ì§€ í˜¸ì¶œ                                           = */
     /* ============================================================================== */
 
 %>
@@ -175,7 +180,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>*** KCP Online Payment System Ver 6.0 [HUB Version] ***</title>
     <script type="text/javascript">
         function goResult()
@@ -183,16 +188,16 @@
             document.pay_info.submit();
         }
 
-        // °áÁ¦ Áß »õ·Î°íÄ§ ¹æÁö »ùÇÃ ½ºÅ©¸³Æ®
+        // ê²°ì œ ì¤‘ ìƒˆë¡œê³ ì¹¨ ë°©ì§€ ìƒ˜í”Œ ìŠ¤í¬ë¦½íŠ¸
         function noRefresh()
         {
-            /* CTRL + NÅ° ¸·À½. */
+            /* CTRL + Ní‚¤ ë§‰ìŒ. */
             if ((event.keyCode == 78) && (event.ctrlKey == true))
             {
                 event.keyCode = 0;
                 return false;
             }
-            /* F5 ¹øÅ° ¸·À½. */
+            /* F5 ë²ˆí‚¤ ë§‰ìŒ. */
             if(event.keyCode == 116)
             {
                 event.keyCode = 0;
@@ -207,13 +212,13 @@
 <body onload="goResult();" >
 
 <form name="pay_info" method="post" action="/order/refundTest2">
-    <input type="hidden" name="req_tx"         value="<%= req_tx        %>">     <!--   ¿äÃ» ±¸ºĞ     -->
-    <input type="hidden" name="res_cd"         value="<%= res_cd        %>">     <!--   °á°ú ÄÚµå     -->
-    <input type="hidden" name="res_msg"        value="<%= res_msg       %>">     <!--   °á°ú ¸Ş¼¼Áö   -->
-    <input type="hidden" name="app_time"       value="<%= app_time      %>">     <!--   ÀÎÁõ½Ã°£      -->
-    <input type="hidden" name="mod_account"    value="<%= mod_account   %>">     <!--   È¯ºÒ°èÁÂ¹øÈ£  -->
-    <input type="hidden" name="mod_depositor"  value="<%= mod_depositor %>">     <!--   ¿¹±İÁÖ¸í      -->
-    <input type="hidden" name="mod_bankcode"   value="<%= mod_bankcode  %>">     <!--   È¯ºÒÀºÇàÄÚµå  -->
+    <input type="hidden" name="req_tx"         value="<%= req_tx        %>">     <!--   ìš”ì²­ êµ¬ë¶„     -->
+    <input type="hidden" name="res_cd"         value="<%= res_cd        %>">     <!--   ê²°ê³¼ ì½”ë“œ     -->
+    <input type="hidden" name="res_msg"        value="<%= res_msg       %>">     <!--   ê²°ê³¼ ë©”ì„¸ì§€   -->
+    <input type="hidden" name="app_time"       value="<%= app_time      %>">     <!--   ì¸ì¦ì‹œê°„      -->
+    <input type="hidden" name="mod_account"    value="<%= mod_account   %>">     <!--   í™˜ë¶ˆê³„ì¢Œë²ˆí˜¸  -->
+    <input type="hidden" name="mod_depositor"  value="<%= mod_depositor %>">     <!--   ì˜ˆê¸ˆì£¼ëª…      -->
+    <input type="hidden" name="mod_bankcode"   value="<%= mod_bankcode  %>">     <!--   í™˜ë¶ˆì€í–‰ì½”ë“œ  -->
 </form>
 </body>
 </html>

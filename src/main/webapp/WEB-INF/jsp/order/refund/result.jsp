@@ -1,14 +1,14 @@
-<%@ page language="java" contentType="text/html;charset=euc-kr"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     /* ============================================================================== */
-    /* =   PAGE : °èÁÂ ÀÎÁõ °á°ú PAGE                                               = */
+    /* =   PAGE : ê³„ì¢Œ ì¸ì¦ ê²°ê³¼ PAGE                                               = */
     /* = -------------------------------------------------------------------------- = */
     /* =   Copyright (c)  2013   KCP Inc.   All Rights Reserved.                    = */
     /* ============================================================================== */
 %>
 <%!
     /* ============================================================================== */
-    /* =   null °ªÀ» Ã³¸®ÇÏ´Â ¸Ş¼Òµå                                                = */
+    /* =   null ê°’ì„ ì²˜ë¦¬í•˜ëŠ” ë©”ì†Œë“œ                                                = */
     /* = -------------------------------------------------------------------------- = */
     public String f_get_parm( String val )
     {
@@ -18,17 +18,17 @@
     /* ============================================================================== */
 %>
 <%
-    request.setCharacterEncoding ( "euc-kr" ) ;
+    request.setCharacterEncoding("UTF-8");
     /* ============================================================================== */
-    /* =   ÁöºÒ °á°ú                                                                = */
+    /* =   ì§€ë¶ˆ ê²°ê³¼                                                                = */
     /* = -------------------------------------------------------------------------- = */
-    String res_cd          = request.getParameter( "res_cd"         );      // °á°ú ÄÚµå
-    String res_msg         = request.getParameter( "res_msg"        );      // °á°ú ¸Ş½ÃÁö
-    String app_time        = request.getParameter( "app_time"       );      // ÀÎÁõ½Ã°£
+    String res_cd          = request.getParameter( "res_cd"         );      // ê²°ê³¼ ì½”ë“œ
+    String res_msg         = request.getParameter( "res_msg"        );      // ê²°ê³¼ ë©”ì‹œì§€
+    String app_time        = request.getParameter( "app_time"       );      // ì¸ì¦ì‹œê°„
     /* = -------------------------------------------------------------------------- = */
-    String mod_account     = request.getParameter( "mod_account"    );      // È¯ºÒ ¹ŞÀ» °èÁÂ
-    String mod_depositor   = request.getParameter( "mod_depositor"  );      // È¯ºÒ ¹ŞÀ» °èÁÂÁÖ¸í
-    String mod_bankcode    = request.getParameter( "mod_bankcode"   );      // È¯ºÒ ¹ŞÀ» ÀºÇàÄÚµå
+    String mod_account     = request.getParameter( "mod_account"    );      // í™˜ë¶ˆ ë°›ì„ ê³„ì¢Œ
+    String mod_depositor   = request.getParameter( "mod_depositor"  );      // í™˜ë¶ˆ ë°›ì„ ê³„ì¢Œì£¼ëª…
+    String mod_bankcode    = request.getParameter( "mod_bankcode"   );      // í™˜ë¶ˆ ë°›ì„ ì€í–‰ì½”ë“œ
    /* = -------------------------------------------------------------------------- = */
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -54,7 +54,7 @@
         #sample_index {width:400px; height:400px; position:absolute; background:#0e66a4; left:50%; top:50%; margin:-300px 0 0 -200px; overflow:hidden;}
         #sample_index h1 {font-size:20px; color:#fff; text-align:center; margin:25px 15px 15px; padding-bottom:25px; border-bottom:1px solid #60aee6;}
         #sample_index .btnSet {margin:30px 50px 0;}
-        #sample_index a {position:relative; font-family:HY°ß°íµñ; display:inline-block; color:#fff;  font-size:16px; width:270px; text-align:leftr; padding:25px 0 20px 20px; margin-bottom:20px; cursor: pointer;
+        #sample_index a {position:relative; font-family:HYê²¬ê³ ë”•; display:inline-block; color:#fff;  font-size:16px; width:270px; text-align:leftr; padding:25px 0 20px 20px; margin-bottom:20px; cursor: pointer;
             -webkit-box-shadow: 5px 5px 7px 0px rgba(5, 50, 70, 0.5);
             -o-box-shadow: 5px 5px 7px 0px rgba(5, 50, 70, 0.5);
             box-shadow: 5px 5px 7px 0px rgba(5, 50, 70, 0.5);
@@ -106,42 +106,42 @@
 <body>
 <div id="sample_wrap">
 
-    <!-- Å¸ÀÌÆ² Start -->
-    <h1>[°á°úÃâ·Â] <span>ÀÌ ÆäÀÌÁö´Â ¿äÃ» °á°ú¸¦ Ãâ·ÂÇÏ´Â »ùÇÃ(¿¹½Ã) ÆäÀÌÁöÀÔ´Ï´Ù.</span></h1>
-    <!-- Å¸ÀÌÆ² End -->
+    <!-- íƒ€ì´í‹€ Start -->
+    <h1>[ê²°ê³¼ì¶œë ¥] <span>ì´ í˜ì´ì§€ëŠ” ìš”ì²­ ê²°ê³¼ë¥¼ ì¶œë ¥í•˜ëŠ” ìƒ˜í”Œ(ì˜ˆì‹œ) í˜ì´ì§€ì…ë‹ˆë‹¤.</span></h1>
+    <!-- íƒ€ì´í‹€ End -->
 
     <div class="sample">
 
-        <!--»ó´Ü Å×ÀÌºí Start-->
+        <!--ìƒë‹¨ í…Œì´ë¸” Start-->
         <p>
-            ¿äÃ» °á°ú¸¦ Ãâ·ÂÇÏ´Â ÆäÀÌÁöÀÔ´Ï´Ù.<br />
-            ¿äÃ»ÀÌ Á¤»óÀûÀ¸·Î Ã³¸®µÈ °æ¿ì °á°úÄÚµå(res_cd)°ªÀÌ 0000À¸·Î Ç¥½ÃµË´Ï´Ù.
+            ìš”ì²­ ê²°ê³¼ë¥¼ ì¶œë ¥í•˜ëŠ” í˜ì´ì§€ì…ë‹ˆë‹¤.<br />
+            ìš”ì²­ì´ ì •ìƒì ìœ¼ë¡œ ì²˜ë¦¬ëœ ê²½ìš° ê²°ê³¼ì½”ë“œ(res_cd)ê°’ì´ 0000ìœ¼ë¡œ í‘œì‹œë©ë‹ˆë‹¤.
         </p>
-        <!--»ó´Ü Å×ÀÌºí End-->
+        <!--ìƒë‹¨ í…Œì´ë¸” End-->
         <%
             /* ============================================================================== */
-    /* =   Ã³¸® °á°ú ÄÚµå ¹× ¸Ş½ÃÁö Ãâ·Â(°á°úÆäÀÌÁö¿¡ ¹İµå½Ã Ãâ·ÂÇØÁÖ½Ã±â ¹Ù¶ø´Ï´Ù.)= */
+    /* =   ì²˜ë¦¬ ê²°ê³¼ ì½”ë“œ ë° ë©”ì‹œì§€ ì¶œë ¥(ê²°ê³¼í˜ì´ì§€ì— ë°˜ë“œì‹œ ì¶œë ¥í•´ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤.)= */
     /* = -------------------------------------------------------------------------- = */
-    /* =   Ã³¸® Á¤»ó : res_cd°ªÀÌ 0000À¸·Î ¼³Á¤µË´Ï´Ù.                              = */
-    /* =   Ã³¸® ½ÇÆĞ : res_cd°ªÀÌ 0000ÀÌ¿ÜÀÇ °ªÀ¸·Î ¼³Á¤µË´Ï´Ù.                     = */
+    /* =   ì²˜ë¦¬ ì •ìƒ : res_cdê°’ì´ 0000ìœ¼ë¡œ ì„¤ì •ë©ë‹ˆë‹¤.                              = */
+    /* =   ì²˜ë¦¬ ì‹¤íŒ¨ : res_cdê°’ì´ 0000ì´ì™¸ì˜ ê°’ìœ¼ë¡œ ì„¤ì •ë©ë‹ˆë‹¤.                     = */
     /* = -------------------------------------------------------------------------- = */
         %>
-        <h2>&sdot; °áÁ¦ °á°ú</h2>
+        <h2>&sdot; ê²°ì œ ê²°ê³¼</h2>
         <table class="tbl" cellpadding="0" cellspacing="0">
-            <!-- °á°ú ÄÚµå -->
+            <!-- ê²°ê³¼ ì½”ë“œ -->
             <tr>
-                <th>°á°ú ÄÚµå</th>
+                <th>ê²°ê³¼ ì½”ë“œ</th>
                 <td><%=res_cd%></td>
             </tr>
-            <!-- °á°ú ¸Ş½ÃÁö -->
+            <!-- ê²°ê³¼ ë©”ì‹œì§€ -->
             <tr>
-                <th>°á°ú ¸Ş¼¼Áö</th>
+                <th>ê²°ê³¼ ë©”ì„¸ì§€</th>
                 <td><%=res_msg%></td>
             </tr>
         </table>
-        <!-- ¸ÅÀÔ ¿äÃ»/Ã³À½À¸·Î ÀÌ¹ÌÁö ¹öÆ° -->
+        <!-- ë§¤ì… ìš”ì²­/ì²˜ìŒìœ¼ë¡œ ì´ë¯¸ì§€ ë²„íŠ¼ -->
         <div class="btnset">
-            <a href="index.html" class="home">Ã³À½À¸·Î</a>
+            <a href="/order/refundTest" class="home">ì²˜ìŒìœ¼ë¡œ</a>
         </div>
     </div>
     <div class="footer">
