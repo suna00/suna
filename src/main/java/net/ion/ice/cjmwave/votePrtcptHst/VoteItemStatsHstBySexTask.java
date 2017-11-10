@@ -94,19 +94,18 @@ public class VoteItemStatsHstBySexTask {
 
     private List<Map<String, Object>> selectVoteItemHstInfoList(String voteSeq, Integer startHstSeq, Integer maxSeq) {
         String selectListQuery =
-                "SELECT voteItemSeq, sexCd, voteDate, count(seq) AS voteNum, max(seq) AS hstSeq " +
+                "SELECT voteItemSeq, ifnull(if(sexCd=1,sexCd,if(sexCd=2,sexCd,3)),3) AS sexCd, voteDate, count(seq) AS voteNum, max(seq) AS hstSeq " +
                 "FROM ( SELECT v.seq, v.voteDate, v.voteItemSeq, v.mbrId " +
-                "           , (SELECT sexCd FROM mbrInfo WHERE snsTypeCd = v.snsTypeCd AND snsKey = v.snsKey) AS sexCd " +
-                "     FROM ( SELECT seq, voteDate, voteItemSeq, mbrId " +
-                "               , SUBSTRING_INDEX(mbrId, '>', 1) AS snsTypeCd " +
-                "               , SUBSTRING_INDEX(mbrId, '>', -1) AS snsKey " +
-                "               , created " +
-                "           FROM " + voteSeq + "_voteItemHstByMbr " +
-                "           WHERE seq>=? AND seq<? " +
-                "       ) v " +
-                "   ) rt " +
-                "WHERE rt.sexCd IS NOT NULL " +
-                "GROUP BY rt.voteItemSeq, rt.sexCd, rt.voteDate";
+                "         , (SELECT sexCd FROM mbrInfo WHERE snsTypeCd = v.snsTypeCd AND snsKey = v.snsKey) AS sexCd " +
+                "       FROM ( SELECT seq, voteDate, voteItemSeq, mbrId " +
+                "                , SUBSTRING_INDEX(mbrId, '>', 1) AS snsTypeCd " +
+                "                , SUBSTRING_INDEX(mbrId, '>', -1) AS snsKey " +
+                "                , created " +
+                "              FROM " + voteSeq + "_voteItemHstByMbr " +
+                "              WHERE seq>=? AND seq<? " +
+                "            ) v " +
+                "     ) rt " +
+                "GROUP BY rt.voteItemSeq, ifnull(if(sexCd=1,sexCd,if(sexCd=2,sexCd,3)),3), rt.voteDate " ;
         List retList = null;
         try {
             retList = jdbcTemplate_replica.queryForList(selectListQuery, startHstSeq, maxSeq);
