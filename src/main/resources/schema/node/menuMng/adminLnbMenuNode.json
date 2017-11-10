@@ -1484,21 +1484,25 @@
     "icon": "fa-tag",
     "active": "true",
     "index": "false",
-    "pages": [],
-    "customPages": [
+    "pages": [
       {
         "pageName": "목록",
-        "pageUrl": "cj/admr/info/List"
+        "pageUrl": "list"
       },
       {
-        "pageName": "등록/수정",
-        "pageUrl": "cj/admr/info/Form"
+        "pageName": "등록",
+        "pageUrl": "createForm"
+      },
+      {
+        "pageName": "수정",
+        "pageUrl": "updateForm"
       },
       {
         "pageName": "상세",
-        "pageUrl": "cj/admr/info/View"
+        "pageUrl": "view"
       }
-    ]
+    ],
+    "customPages": []
   },
   {
     "typeId": "adminLnbMenu",

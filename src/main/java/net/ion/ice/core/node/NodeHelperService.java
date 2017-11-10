@@ -4,21 +4,21 @@ import com.hazelcast.core.Member;
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.cluster.ClusterService;
 import net.ion.ice.core.cluster.ClusterUtils;
-import net.ion.ice.core.context.ApiExecuteContext;
-import net.ion.ice.core.context.ExecuteContext;
-import net.ion.ice.core.infinispan.InfinispanCacheManager;
+import net.ion.ice.core.context.QueryContext;
+import net.ion.ice.core.data.DBService;
+import net.ion.ice.core.data.bind.NodeBindingInfo;
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
 import net.ion.ice.core.json.JsonUtils;
+import net.ion.ice.core.query.QueryResult;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
-import org.apache.commons.lang3.time.DateUtils;
-import org.apache.lucene.document.DateTools;
 import org.apache.lucene.search.SortField;
 import org.infinispan.Cache;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -43,6 +43,10 @@ public class NodeHelperService  {
     @Autowired
     private ClusterService clusterService ;
 
+    @Autowired
+    private DBService dbService ;
+
+
     private Map<String, Date> lastChangedMap = new ConcurrentHashMap<>() ;
 
     public void  initSchema(String profile) throws IOException {
@@ -66,6 +70,7 @@ public class NodeHelperService  {
             try {
                 syncNodeType(typeId);
             }catch (Exception e){
+                e.printStackTrace();
                 logger.error("sync list error : " + typeId);
             }
         }
@@ -74,14 +79,16 @@ public class NodeHelperService  {
     private void syncNodeType(String typeId) {
         NodeType nodeType = nodeService.getNodeType(typeId) ;
         if(nodeType.isNode() && !clusterService.checkClusterGroup(nodeType)) return  ;
+        logger.info(nodeType.getTypeId() + " Last Sync Check ");
+
         Date nodeTypeLast = (Date) nodeService.getSortedValue(nodeType.getTypeId(), "changed", SortField.Type.LONG, true );
         if(nodeTypeLast == null){
             logger.info(nodeType.getTypeId() + " ALL Sync : ");
-            syncNodeList(nodeType, "limit=10&sorting=changed desc", null);
+//            syncNodeList(nodeType, "limit=10&sorting=changed desc", null);
         }else {
             String lastChanged = DateFormatUtils.format(nodeTypeLast, "yyyyMMddHHmmss");
             logger.info(nodeType.getTypeId() + " Last Sync : " + nodeTypeLast);
-            syncNodeList(nodeType, "limit=10&sorting=changed desc&chagned_excess=" + lastChanged, null);
+//            syncNodeList(nodeType, "limit=10&sorting=changed desc&chagned_excess=" + lastChanged, null);
         }
     }
 
@@ -91,6 +98,7 @@ public class NodeHelperService  {
         for(Member cacheServer : cacheServers){
             if(server == null || cacheServer.getAddress().getHost().equals(server)) {
                 List<Map<String, Object>> items = ClusterUtils.callNodeList(cacheServer, nodeType.getTypeId(), query);
+                logger.info("cache sync node list size : " + items.size());
                 if (items != null && items.size() > 0) {
                     for (Map<String, Object> item : items) {
                         Node node = new Node(item);
@@ -100,7 +108,6 @@ public class NodeHelperService  {
                             infinispanRepositoryService.cacheNode(node);
                         }
                     }
-                    return;
                 }
             }
         }
@@ -210,10 +217,69 @@ public class NodeHelperService  {
 
 //            if(core || changed == null || changed.before(last)){
 //                data.put("changed", last) ;
-                nodeService.saveNode(data) ;
+            nodeService.saveNode(data) ;
 //            }else{
 //                logger.info("After last schema : " + typeId);
 //            }
         }
+    }
+
+    public QueryResult syncNodeQuery(String typeId, String query, String ds) {
+        JdbcTemplate jdbcTemplate = dbService.getJdbcTemplate(ds) ;
+        List<Map<String, Object>> resultList = jdbcTemplate.queryForList(query) ;
+
+        Node lastNode = null ;
+        for(Map<String, Object> data : resultList){
+            lastNode =  nodeService.saveNode(data) ;
+        }
+
+        QueryResult queryResult = new QueryResult() ;
+        queryResult.put("result", "200") ;
+        queryResult.put("resultMessage", "SUCCESS") ;
+        queryResult.put("syncSize", resultList.size()) ;
+        queryResult.put("lastNode", lastNode) ;
+        return queryResult ;
+    }
+
+    public QueryResult syncNodeBinding(String typeId, String id, Integer limit, Integer count) {
+        NodeType nodeType = nodeService.getNodeType(typeId) ;
+        List<String> ids = nodeType.getIdablePIds() ;
+        if(limit == 0){
+            limit = 100 ;
+        }
+        if(count == 0){
+            count = 1000 ;
+        }
+
+        String query = "sorting=" + ids.get(0) + " desc&limit=" + limit + "&" + ids.get(0) +  "_under=" ;
+
+        NodeBindingInfo nodeBindingInfo = NodeUtils.getNodeBindingInfo(nodeType.getTypeId()) ;
+        QueryResult queryResult = new QueryResult() ;
+        int totalCount = 0 ;
+        for(int i=0; i < count; i++) {
+            long start = System.currentTimeMillis() ;
+            QueryContext queryContext = QueryContext.createQueryContextFromText(query +  id, nodeType, null);
+            List<Map<String, Object>> resultList = nodeBindingInfo.list(queryContext);
+            totalCount += resultList.size() ;
+            Node lastNode = null ;
+            for (Map<String, Object> data : resultList) {
+                lastNode = nodeService.saveNode(data);
+            }
+            if(lastNode == null){
+                logger.info("sync node biding : {}, lastId = {}, limit = {}, size = {}, roofCount = {}, time = {}", typeId, id, limit, queryResult.size(), count, System.currentTimeMillis() - start) ;
+                break;
+            }
+            id = lastNode.getId() ;
+            logger.info("sync node biding : {}, lastId = {}, limit = {}, size = {}, roofCount = {}, time = {}", typeId, lastNode.getId(), limit, count, System.currentTimeMillis() - start) ;
+            if(resultList.size() == 0){
+                break;
+            }
+        }
+        queryResult.put("result", "200") ;
+        queryResult.put("resultMessage", "SUCCESS") ;
+        queryResult.put("syncSize", totalCount) ;
+        queryResult.put("lastId", id) ;
+        return queryResult ;
+
     }
 }

@@ -47,19 +47,11 @@ public class QueryUtils {
                 } else if (method.startsWith("hasReferenced")) {
                     NodeType refNodeType = NodeUtils.getNodeType(nodeType.getPropertyType(fieldId).getReferenceType());
                     QueryContext joinQueryContext = QueryContext.createQueryContextFromText(value, refNodeType, StringUtils.substringAfter(method, "hasReferenced"));
-                    if (joinQueryContext != null) {
-                        joinQueryContext.setTargetJoinField(nodeType.getPropertyType(fieldId).getReferenceValue());
-                        joinQueryContext.setSourceJoinField("id");
-                        queryContext.addJoinQuery(joinQueryContext);
-                    }
+                    makeHasReferencedContext(queryContext, nodeType, fieldId, joinQueryContext);
                 } else if (method.startsWith("referenceJoin")) {
                     NodeType refNodeType = NodeUtils.getNodeType(nodeType.getPropertyType(fieldId).getReferenceType());
                     QueryContext joinQueryContext = QueryContext.createQueryContextFromText(value, refNodeType, StringUtils.substringAfter(method, "referenceJoin"));
-                    if (joinQueryContext != null) {
-                        joinQueryContext.setTargetJoinField("id");
-                        joinQueryContext.setSourceJoinField(fieldId);
-                        queryContext.addJoinQuery(joinQueryContext);
-                    }
+                    makeJoinContext(queryContext, fieldId, joinQueryContext);
                 }
                 QueryTerm queryTerm = QueryUtils.makePropertyQueryTerm(queryContext.getQueryTermType(), nodeType, fieldId, method, value);
                 if (queryTerm == null) {
@@ -77,6 +69,15 @@ public class QueryUtils {
                 }
             }
 
+        }
+    }
+
+    private static void makeJoinContext(QueryContext queryContext, String fieldId, QueryContext joinQueryContext) {
+        if (joinQueryContext != null) {
+            joinQueryContext.setMaxSize("100000");
+            joinQueryContext.setTargetJoinField("id");
+            joinQueryContext.setSourceJoinField(fieldId);
+            queryContext.addJoinQuery(joinQueryContext);
         }
     }
 
@@ -132,19 +133,11 @@ public class QueryUtils {
             if (method.startsWith("hasReferenced")) {
                 NodeType refNodeType = NodeUtils.getNodeType(nodeType.getPropertyType(field).getReferenceType());
                 QueryContext joinQueryContext = QueryContext.createQueryContextFromText(queryValue, refNodeType, StringUtils.substringAfter(method, "hasReferenced"));
-                if (joinQueryContext != null) {
-                    joinQueryContext.setTargetJoinField(nodeType.getPropertyType(field).getReferenceValue());
-                    joinQueryContext.setSourceJoinField("id");
-                    context.addJoinQuery(joinQueryContext);
-                }
+                makeHasReferencedContext(context, nodeType, field, joinQueryContext);
             } else if (method.startsWith("referenceJoin")) {
                 NodeType refNodeType = NodeUtils.getNodeType(nodeType.getPropertyType(field).getReferenceType());
                 QueryContext joinQueryContext = QueryContext.createQueryContextFromText(queryValue, refNodeType, StringUtils.substringAfter(method, "referenceJoin"));
-                if (joinQueryContext != null) {
-                    joinQueryContext.setTargetJoinField("id");
-                    joinQueryContext.setSourceJoinField(field);
-                    context.addJoinQuery(joinQueryContext);
-                }
+                makeJoinContext(context, field, joinQueryContext);
             } else {
                 QueryTerm queryTerm = makePropertyQueryTerm(context.getQueryTermType(), nodeType, field, method, queryValue);
                 if (queryTerm != null) {
@@ -167,6 +160,15 @@ public class QueryUtils {
         }
     }
 
+    private static void makeHasReferencedContext(QueryContext context, NodeType nodeType, String field, QueryContext joinQueryContext) {
+        if (joinQueryContext != null) {
+            joinQueryContext.setMaxSize("100000");
+            joinQueryContext.setTargetJoinField(nodeType.getPropertyType(field).getReferenceValue());
+            joinQueryContext.setSourceJoinField("id");
+            context.addJoinQuery(joinQueryContext);
+        }
+    }
+
     public static QueryTerm makeNodeQueryTerm(NodeType nodeType, String fieldId, String method, String value) {
         if(fieldId.equals("id")){
             return new QueryTerm(fieldId, AnalyzerFactory.getAnalyzer("code"), method, value, PropertyType.ValueType.STRING);
@@ -175,6 +177,9 @@ public class QueryUtils {
         PropertyType propertyType = nodeType.getPropertyType(fieldId);
         if(propertyType == null && fieldId.contains("_")){
             propertyType = nodeType.getPropertyType(StringUtils.substringBeforeLast(fieldId, "_"));
+        }
+        if(propertyType == null && fieldId.contains("_")){
+            propertyType = nodeType.getPropertyType(StringUtils.substringBefore(fieldId, "_"));
         }
         if(propertyType == null && Node.NODE_VALUE_KEYS.contains(fieldId)){
             switch (fieldId){
@@ -190,9 +195,10 @@ public class QueryUtils {
             try {
                 if(StringUtils.isNotEmpty(propertyType.getCodeFilter())){
                     if(StringUtils.contains(value, ">")) {
-                        return new QueryTerm(fieldId, propertyType.getLuceneAnalyzer(), method, value, propertyType.getValueType());
+                        return new QueryTerm(fieldId, propertyType.getLuceneAnalyzer(), method, StringUtils.substringAfterLast(value, ">"), propertyType.getValueType());
                     }else{
-                        return new QueryTerm(fieldId, propertyType.getLuceneAnalyzer(), method, propertyType.getCodeFilter() + ">" + value, propertyType.getValueType());
+//                        return new QueryTerm(fieldId, propertyType.getLuceneAnalyzer(), method, propertyType.getCodeFilter() + ">" + value, propertyType.getValueType());
+                        return new QueryTerm(fieldId, propertyType.getLuceneAnalyzer(), method, value, propertyType.getValueType());
                     }
                 }else {
                     return new QueryTerm(fieldId, propertyType.getLuceneAnalyzer(), method, value, propertyType.getValueType());

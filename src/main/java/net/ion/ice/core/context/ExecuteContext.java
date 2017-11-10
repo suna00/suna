@@ -5,15 +5,19 @@ import net.ion.ice.IceRuntimeException;
 import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.file.FileValue;
 import net.ion.ice.core.file.TolerableMissingFileException;
+import net.ion.ice.core.infinispan.NotFoundNodeException;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeType;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
+import net.ion.ice.core.session.SessionService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +28,7 @@ import java.util.*;
  * Created by jaeho on 2017. 5. 31..
  */
 public class ExecuteContext extends ReadContext{
+    private static org.slf4j.Logger logger = LoggerFactory.getLogger(ExecuteContext.class);
 
     protected Node existNode ;
 
@@ -42,7 +47,6 @@ public class ExecuteContext extends ReadContext{
 
     protected HttpServletRequest httpRequest ;
     protected HttpServletResponse httpResponse ;
-    private Logger logger = Logger.getLogger(ExecuteContext.class);
 
 
     public static ExecuteContext createContextFromMap(NodeType nodeType, Map<String, Object> data) {
@@ -81,6 +85,30 @@ public class ExecuteContext extends ReadContext{
 
         Map<String, Object> data = ContextUtils.makeContextData(parameterMap, multiFileMap);
 
+        ctx.setData(data);
+
+        if(event != null) {
+            ctx.event = event;
+        }
+        ctx.setNodeType(nodeType);
+
+        ctx.init() ;
+
+        return ctx ;
+    }
+
+    public static ExecuteContext makeContextFromParameter(HttpServletRequest request, HttpServletResponse response, NodeType nodeType, String event) {
+        ExecuteContext ctx = new ExecuteContext();
+
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        MultiValueMap<String, MultipartFile> multiFileMap = null;
+        if(request instanceof MultipartHttpServletRequest) {
+            multiFileMap = ((MultipartHttpServletRequest) request).getMultiFileMap();
+        }
+        Map<String, Object> data = ContextUtils.makeContextData(parameterMap, multiFileMap);
+
+        ctx.httpRequest = request;
+        ctx.httpResponse = response;
         ctx.setData(data);
 
         if(event != null) {
@@ -149,9 +177,14 @@ public class ExecuteContext extends ReadContext{
             return ;
         }
         try {
-            existNode = NodeUtils.getNode(nodeType, getId());
+            if (event == null || !event.equals("create")) {
+                existNode = NodeUtils.getNode(nodeType, getId());
+            }
+        }catch (NotFoundNodeException e){
+            logger.error("Not found Node : {},{}", nodeType.getTypeId(), getId()) ;
         }catch(Exception e){
         }
+
         exist = existNode != null ;
 
         if(exist){
@@ -187,6 +220,7 @@ public class ExecuteContext extends ReadContext{
                     if(newValue != null) data.put(pt.getPid(), newValue) ;
                     if(newValue != null && newValue instanceof String && (((String) newValue).startsWith("classpath:") || ((String) newValue).startsWith("http://") || ((String) newValue).startsWith("https://") || ((String) newValue).startsWith("/"))) {
                         try{
+                            logger.info(existValue.toString());
                             if (existValue == null) {
                                 node.put(pt.getPid(), NodeUtils.getFileService().saveResourceFile(pt, id, (String) newValue));
                                 changedProperties.add(pt.getPid());
@@ -295,28 +329,38 @@ public class ExecuteContext extends ReadContext{
 
         for(String key : data.keySet()){
             Object value = data.get(key) ;
-            if(value instanceof List && !key.equals("code") && ((this.nodeType.getPropertyType(key) != null && this.nodeType.getPropertyType(key).isList()) || NodeUtils.getNodeType(key) != null)){
-                for(Map<String, Object> subData : (List<Map<String, Object>>)value){
-                    Map<String, Object> _data = new HashMap<>() ;
+            if(value instanceof List && !key.equals("code")){
+                String subTypeId = null ;
+                if(this.nodeType.getPropertyType(key) != null){
+                     if(this.nodeType.getPropertyType(key).isList()) {
+                         subTypeId = this.nodeType.getPropertyType(key).getReferenceType();
+                     }
+                }else if(NodeUtils.getNodeType(key) != null){
+                    subTypeId = key ;
+                }
+                if(subTypeId != null) {
+                    for (Map<String, Object> subData : (List<Map<String, Object>>) value) {
+                        Map<String, Object> _data = new HashMap<>();
 //                    _data.putAll(data);
 //                    _data.remove(key) ;
-                    _data.putAll(subData);
-                    for(String _key : subData.keySet()){
-                        Object _val = subData.get(_key) ;
-                        if(_val instanceof String && "_parentId_".equals(_val)){
-                            _data.put(_key, this.id) ;
+                        _data.putAll(subData);
+                        for (String _key : subData.keySet()) {
+                            Object _val = subData.get(_key);
+                            if (_val instanceof String && "_parentId_".equals(_val)) {
+                                _data.put(_key, this.id);
+                            }
+                        }
+                        ExecuteContext subContext = ExecuteContext.makeContextFromMap(_data, subTypeId, this);
+                        if (subExecuteContexts == null) {
+                            subExecuteContexts = new ArrayList<>();
+                        }
+                        if (subContext != null) {
+                            subExecuteContexts.add(subContext);
                         }
                     }
-                    ExecuteContext subContext = ExecuteContext.makeContextFromMap(_data, key, this) ;
-                    if(subExecuteContexts == null){
-                        subExecuteContexts = new ArrayList<>() ;
-                    }
-                    if(subContext != null) {
-                        subExecuteContexts.add(subContext);
-                    }
-                }
 
-                subDataKeys.add(key);
+                    subDataKeys.add(key);
+                }
             }
         }
 

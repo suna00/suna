@@ -1,0 +1,20 @@
+[
+  {
+    "parentId" : "root",
+    "typeId" : "nodeType",
+    "id" : "openApi",
+    "tid" : "openApi",
+    "typeName" : "Open Api",
+    "repositoryType" : "path",
+    "eviction" : 0
+  },
+  {
+    "parentId" : "openApi",
+    "typeId" : "nodeType",
+    "id" : "openApiNaver",
+    "tid" : "openApiNaver",
+    "typeName" : "네이버 오픈 API",
+    "repositoryType" : "node",
+    "eviction" : 0
+  }
+]

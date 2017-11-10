@@ -3,6 +3,8 @@ package net.ion.ice.core.infinispan.lucene;
 
 import net.ion.ice.IceRuntimeException;
 import net.ion.ice.core.context.QueryContext;
+import net.ion.ice.core.context.RequestDataHolder;
+import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeUtils;
 import net.ion.ice.core.node.PropertyType;
@@ -301,8 +303,14 @@ public class LuceneQueryUtils {
     private static Query createLuceneQuery(QueryTerm term) throws IOException {
 
         switch (term.getMethod()) {
-            case MATCHING: case WILDCARD:{
+            case MATCHING:{
                 return createKeywordTermQuery(term);
+            }
+            case WILDCARD: {
+                if(!StringUtils.contains(term.getQueryValue(), "*")){
+                    return createTermQuery( term, "*" + term.getQueryValue() +"*" );
+                }
+                return createTermQuery( term, term.getQueryValue() );
             }
             case EQUALS:{
                 return createTermQuery(term, term.getQueryValue());

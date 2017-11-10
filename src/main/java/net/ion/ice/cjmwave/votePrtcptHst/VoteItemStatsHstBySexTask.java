@@ -19,7 +19,7 @@ public class VoteItemStatsHstBySexTask {
     private static Logger logger = LoggerFactory.getLogger(VoteItemStatsHstBySexTask.class);
 
     public static final String VOTE_BAS_INFO = "voteBasInfo";
-    public static final Integer SELECT_LIST_COUNT = 200000;
+    public static final Integer SELECT_LIST_COUNT = 500000;
 
     @Autowired
     NodeService nodeService;
@@ -111,7 +111,8 @@ public class VoteItemStatsHstBySexTask {
         try {
             retList = jdbcTemplate_replica.queryForList(selectListQuery, startHstSeq, maxSeq);
         } catch (Exception e) {
-            return null;
+            logger.error("Dose not exist database configuration - {} - {} : start : {}, end : {} ", voteSeq + "_voteItemHstByMbr", voteSeq, startHstSeq, maxSeq);
+            return new ArrayList<>();
         }
         return retList;
     }

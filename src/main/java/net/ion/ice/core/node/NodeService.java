@@ -24,6 +24,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
@@ -139,18 +140,19 @@ public class NodeService {
 
     public List<Node> getNodeList(String typeId, String searchText) {
         QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, getNodeType(typeId), null) ;
-        return infinispanRepositoryService.getSubQueryNodes(typeId, queryContext) ;
+        return infinispanRepositoryService.getSubQueryNodes(queryContext) ;
     }
 
     public List<Node> getNodeList(NodeType nodeType, List<QueryTerm> queryTerms) {
         QueryContext queryContext = QueryContext.createQueryContextFromTerms(queryTerms, nodeType) ;
-        return infinispanRepositoryService.getSubQueryNodes(nodeType.getTypeId(), queryContext) ;
+        return infinispanRepositoryService.getSubQueryNodes(queryContext) ;
 
     }
 
 
     public List<Node> getNodeList(String typeId, QueryContext queryContext) {
-        return infinispanRepositoryService.getSubQueryNodes(typeId, queryContext) ;
+        queryContext.setNodeType(getNodeType(typeId)) ;
+        return infinispanRepositoryService.getSubQueryNodes(queryContext) ;
     }
     public List<Node> getDisplayNodeList(String typeId, QueryContext queryContext) {
         NodeType nodeType = getNodeType(typeId) ;
@@ -174,12 +176,12 @@ public class NodeService {
 
     public SimpleQueryResult getNodeList(String typeId, Map<String, String[]> parameterMap) {
         QueryContext queryContext = QueryContext.createQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
-        return infinispanRepositoryService.getQueryNodes(typeId, queryContext) ;
+        return infinispanRepositoryService.getQueryNodes(queryContext) ;
     }
 
     public SimpleQueryResult getNodeTree(String typeId, Map<String, String[]> parameterMap) {
         QueryContext queryContext = QueryContext.createQueryContextFromParameter(parameterMap, getNodeType(typeId)) ;
-        return infinispanRepositoryService.getQueryTreeNodes(typeId, queryContext) ;
+        return infinispanRepositoryService.getQueryTreeNodes(queryContext) ;
     }
 
     private void initNodeType() throws IOException {
@@ -304,6 +306,18 @@ public class NodeService {
         context.execute();
 //        Node node = (Node) context.getResult();
 //        node.toDisplay();
+        return context.makeResult();
+    }
+
+    public Object executeNode(HttpServletRequest request, HttpServletResponse response, String typeId, String event) {
+        NodeType nodeType = getNodeType(typeId) ;
+        if(!clusterService.checkClusterGroup(nodeType)){
+            throw new IceRuntimeException("Not Support Type Error") ;
+        }
+
+        ExecuteContext context = ExecuteContext.makeContextFromParameter(request, response, nodeType, event);
+        context.execute();
+
         return context.makeResult();
     }
 

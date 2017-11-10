@@ -89,12 +89,6 @@ public class ApiExecuteContext extends ExecuteContext implements CacheableContex
             ctx.ifTest =  ContextUtils.getValue(config.get("if"), data).toString();
         }
 
-        if(!ClusterUtils.getClusterService().checkClusterGroup(nodeType)){
-            ctx.remote = true ;
-            ctx.data = data ;
-
-            return ctx ;
-        }
 
         if(config.containsKey("data")){
             Map<String, Object> _data = new HashMap<>();
@@ -107,6 +101,12 @@ public class ApiExecuteContext extends ExecuteContext implements CacheableContex
         }else{
             ctx.data = data ;
         }
+
+        if(!ClusterUtils.getClusterService().checkClusterGroup(nodeType)){
+            ctx.remote = true ;
+            return ctx ;
+        }
+
 
         if(config.containsKey("response")){
             ContextUtils.makeApiResponse((Map<String, Object>) config.get("response"), ctx);

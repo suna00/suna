@@ -3,7 +3,7 @@ package net.ion.ice.cjmwave.mbrInfo;
 import java.io.File;
 import java.text.DateFormat;
 import java.text.ParseException;
-import java.util.List;
+import java.util.*;
 
 import net.ion.ice.cjmwave.errMsgInfo.ErrMsgUtil;
 import net.ion.ice.core.api.ApiException;
@@ -21,14 +21,13 @@ import net.ion.ice.core.query.QueryResult;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by leehh on 2017. 9. 25.
@@ -38,6 +37,10 @@ import java.util.Map;
 public class MbrInfoService {
     private ErrMsgUtil errMsgUtil = new ErrMsgUtil();
     private JdbcTemplate jdbcTemplate;
+
+    private Logger logger = Logger.getLogger(MbrInfoService.class);
+    private List<String> cntryMngMap = new ArrayList<String>();
+
 
     @Autowired
     private DBService dbService ;
@@ -73,7 +76,7 @@ public class MbrInfoService {
             resultDate.put("chkResult", true);
             context.setResult(resultDate);
         } else {
-            System.out.println("######chkMbr :"+anode);
+            logger.info("######chkMbr :"+anode);
             throw new ApiException("405", "Information that meets the conditions already exists.");
         }
     }
@@ -121,7 +124,7 @@ public class MbrInfoService {
         Node anode = null;
         try {
             anode = getMbrNode(snsTypeCd , snsKey);
-            System.out.println("##anode:"+anode);
+            logger.info("##anode:"+anode);
             String mbrSttusCd = anode.getStringValue("mbrSttusCd");
             if("2".equals(mbrSttusCd) || "3".equals(mbrSttusCd)){
                 throw new ApiException("412", errMsgUtil.getErrMsg(context,"412"));
@@ -133,6 +136,8 @@ public class MbrInfoService {
         } catch (NotFoundNodeException e) {
             throw new ApiException("404", "Not Found Member");
         }
+        //국가코드 확인
+        chkCntryCd(data);
 
         //update
         data.put("snsTypeCd", snsTypeCd);
@@ -258,9 +263,9 @@ public class MbrInfoService {
             int setupBaseDayNum = dclaNode.getIntValue("setupBaseDayNum");
 
             Date rejoinAbleDate = DateUtils.addDays(rtrmmbDate,setupBaseDayNum);
-            System.out.println("rejoinAbleDate:"+rejoinAbleDate);
+            logger.info("rejoinAbleDate:"+rejoinAbleDate);
             Date current = new Date();
-            System.out.println("current:"+current);
+            logger.info("current:"+current);
             if(current.getTime() < rejoinAbleDate.getTime()){
                 throw new ApiException("417", String.format(errMsgUtil.getErrMsg(context,"417"),setupBaseDayNum));
             }
@@ -402,6 +407,8 @@ public class MbrInfoService {
         } catch (NotFoundNodeException e) {
             throw new ApiException("404", "Not Found Member");
         }
+        chkCntryCd(data);
+
 
         NodeType nodeType = NodeUtils.getNodeType("mbrInfo") ;
         PropertyType imgUrlPt = nodeType.getPropertyType("imgUrl");
@@ -420,6 +427,30 @@ public class MbrInfoService {
         int result = jdbcTemplate.update("update mbrInfo set aliasNm=?,cntryCd=?,sexCd=?,imgUrl=?,bthYear=?,intrstCdList=?,email=?,infoOttpAgreeYn=?  where snsTypeCd=? and snsKey=? ",data.get("aliasNm"),data.get("cntryCd"),data.get("sexCd"),(file!= null && file.getStorePath()!=null ? file.getStorePath():imgurl),data.get("bthYear"),data.get("intrstCdList"),data.get("email"),"true".equals(data.get("infoOttpAgreeYn"))?1:0,snsTypeCd,snsKey);
         //Node result = (Node) NodeUtils.getNodeService().executeNode(data, "mbrInfo", EventService.UPDATE);
         context.setResult(result);
+    }
+
+    private void chkCntryCd(Map<String, Object> data) {
+        //국가코드 확인
+        String paramCntryId = (data.get("cntryCd") != null) ? data.get("cntryCd").toString():"";
+        if(cntryMngMap.isEmpty()){
+            List<Node> cntryMngList = NodeUtils.getNodeService().getNodeList("cntryMng","useYn_matching=true&sorting=sortOdrg&langCd=eng");
+
+            for(Node cntryInfo:cntryMngList){
+                String cntryId = cntryInfo.getStringValue("cntryId");
+                cntryMngMap.add(cntryId);
+            }
+        }
+        boolean chkCntry = false;
+        for(String cntryId:cntryMngMap){
+            if(cntryId.equals(paramCntryId)){
+                chkCntry = true;
+                break;
+            }
+        }
+
+        if(!chkCntry){
+            throw new ApiException("404", "Not Found Cntry");
+        }
     }
 
     public void mbrImgUpd(ExecuteContext context){

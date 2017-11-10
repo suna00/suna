@@ -28,8 +28,8 @@ public class ClusterService {
 
 
     public IAtomicLong getSequence(String sequenceName){
-       IAtomicLong sequence = clusterConfiguration.getIAtomicLong(sequenceName) ;
-       return sequence ;
+        IAtomicLong sequence = clusterConfiguration.getIAtomicLong(sequenceName) ;
+        return sequence ;
     }
 
     public Map<String, Object> getSession(String userToken) {

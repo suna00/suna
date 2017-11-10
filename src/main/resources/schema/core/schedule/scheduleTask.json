@@ -58,36 +58,48 @@
     "actionType": "service",
     "actionBody": "voteDayCntryService.voteBasStatsCntryJob"
   },
+
   {
     "typeId": "scheduleTask",
-    "id": "voteItemStatsHstByMbrTask",
-    "name": "voteItemStatsHstByMbr Schedule Task",
+    "id": "voteItemStatsHstByCntryTask",
+    "name": "voteItemStatsHstByCntryTask Schedule Task",
+    "type": "cron",
+    "config": "0 */7 * * * *",
+    "enable": false,
+    "actionType": "service",
+    "actionBody": "voteItemStatsHstByCntryTask.execVoteItemStatsHstByCntry"
+  },
+  {
+    "typeId": "scheduleTask",
+    "id": "voteItemStatsHstBySexTask",
+    "name": "voteItemStatsHstBySexTask Schedule Task",
     "type": "cron",
     "config": "0 */5 * * * *",
     "enable": false,
     "actionType": "service",
-    "actionBody": "voteItemStatsHstByMbrTask.execVoteItemStatsHstByMbr"
-  },
-  {
-    "typeId": "scheduleTask",
-    "id": "voteItemStatsBySexTask",
-    "name": "voteItemStatsHstByMbr Schedule Task",
-    "type": "cron",
-    "config": "0 */10 * * * *",
-    "enable": false,
-    "actionType": "service",
-    "actionBody": "voteItemStatsByMbrTask.execVoteItemStatsBySex"
+    "actionBody": "voteItemStatsHstBySexTask.execVoteItemStatsHstBySex"
   },
   {
     "typeId": "scheduleTask",
     "id": "voteItemStatsByCntryTask",
-    "name": "voteItemStatsHstByMbr Schedule Task",
+    "name": "voteItemStatsByCntryTask Schedule Task",
+    "type": "cron",
+    "config": "0 */13 * * * *",
+    "enable": false,
+    "actionType": "service",
+    "actionBody": "voteItemStatsByCntryTask.execVoteItemStatsByCntry"
+  },
+  {
+    "typeId": "scheduleTask",
+    "id": "voteItemStatsBySexTask",
+    "name": "voteItemStatsBySexTask Schedule Task",
     "type": "cron",
     "config": "0 */10 * * * *",
     "enable": false,
     "actionType": "service",
-    "actionBody": "voteItemStatsByMbrTask.execVoteItemStatsByCntry"
+    "actionBody": "voteItemStatsBySexTask.execVoteItemStatsBySex"
   },
+
   {
     "typeId": "scheduleTask",
     "id": "voteItemStatsHstByWlyTask",

@@ -19,7 +19,7 @@ public class VoteItemStatsHstByCntryTask {
     private static Logger logger = LoggerFactory.getLogger(VoteItemStatsHstByCntryTask.class);
 
     public static final String VOTE_BAS_INFO = "voteBasInfo";
-    public static final Integer SELECT_LIST_COUNT = 200000;
+    public static final Integer SELECT_LIST_COUNT = 500000;
 
     @Autowired
     NodeService nodeService;
@@ -95,9 +95,9 @@ public class VoteItemStatsHstByCntryTask {
 
     private List<Map<String, Object>> selectVoteItemHstInfoList(String voteSeq, Integer startHstSeq, Integer maxSeq) {
         String selectListQuery =
-                "SELECT voteItemSeq, cntryCd, voteDate, count(seq) AS voteNum, max(seq) AS hstSeq " +
+                "SELECT voteItemSeq, if(length(cntryCd)!=3, 'OTHERS', ifnull(if(cntryCd='THR','OTHERS',if(cntryCd='DUE','OTHERS',cntryCd)),'OTHERS') ) AS cntryCd, voteDate, count(seq) AS voteNum, max(seq) AS hstSeq " +
                 "FROM ( SELECT v.seq, v.voteDate, v.voteItemSeq, v.mbrId " +
-                "           , (SELECT cntryCd FROM mbrInfo WHERE snsTypeCd = v.snsTypeCd AND snsKey = v.snsKey) AS cntryCd " +
+                "        , (SELECT cntryCd FROM mbrInfo WHERE snsTypeCd = v.snsTypeCd AND snsKey = v.snsKey) AS cntryCd " +
                 "     FROM ( SELECT seq, voteDate, voteItemSeq, mbrId " +
                 "               , SUBSTRING_INDEX(mbrId, '>', 1) AS snsTypeCd " +
                 "               , SUBSTRING_INDEX(mbrId, '>', -1) AS snsKey " +
@@ -106,13 +106,13 @@ public class VoteItemStatsHstByCntryTask {
                 "           WHERE seq>=? AND seq<? " +
                 "       ) v " +
                 "   ) rt " +
-                "WHERE rt.cntryCd IS NOT NULL " +
-                "GROUP BY rt.voteItemSeq, rt.cntryCd, rt.voteDate";
+                "GROUP BY rt.voteItemSeq, if(length(cntryCd)!=3, 'OTHERS', ifnull(if(cntryCd='THR','OTHERS',if(cntryCd='DUE','OTHERS',cntryCd)),'OTHERS') ), rt.voteDate";
         List retList = null;
         try {
             retList = jdbcTemplate_replica.queryForList(selectListQuery, startHstSeq, maxSeq);
         } catch (Exception e) {
-            return null;
+            logger.error("Dose not exist database configuration - {} - {} : start : {}, end : {} ", voteSeq + "_voteItemHstByMbr", voteSeq, startHstSeq, maxSeq);
+            return new ArrayList<>();
         }
         return retList;
     }

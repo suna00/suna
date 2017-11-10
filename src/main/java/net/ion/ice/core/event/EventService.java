@@ -5,11 +5,13 @@ import net.ion.ice.core.cluster.ClusterService;
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.infinispan.InfinispanRepositoryService;
 import net.ion.ice.core.node.Node;
+import net.ion.ice.core.node.NodeHistoryService;
 import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeType;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.stagemonitor.util.StringUtils;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -41,6 +43,9 @@ public class EventService {
 
     @Autowired
     private ClusterService clusterService ;
+
+    @Autowired
+    private NodeHistoryService historyService ;
 
     @Autowired
     private EventBroker eventBroker ;
@@ -105,27 +110,25 @@ public class EventService {
         Event allEvent = nodeType.getEvent(ALL_EVENT) ;
 
         try {
-            executeEventAction(executeContext, event);
-            executeEventAction(executeContext, allEvent);
+            executeEventActions(executeContext, event, allEvent);
         }catch(IceRuntimeException e){
             infinispanService.execute(executeContext.makeRollbackContext()) ;
             throw e ;
         }
+
+        historyService.createHistory(executeContext);
 
         executeEventListener(executeContext, event);
         executeEventListener(executeContext, allEvent);
 
     }
 
-    private void executeEventListener(ExecuteContext executeContext, Event event) {
-        if(event == null || event.getEventListeners() == null || event.getEventListeners().size() == 0){
-            return ;
-        }
-
-        for(EventListener listener : event.getEventListeners()){
-            eventBroker.putEvent(listener, executeContext);
-        }
+    @Transactional
+    public void executeEventActions(ExecuteContext executeContext, Event event, Event allEvent) {
+        executeEventAction(executeContext, event);
+        executeEventAction(executeContext, allEvent);
     }
+
 
     private void executeEventAction(ExecuteContext executeContext, Event event) {
         if(event == null || event.getEventActions() == null || event.getEventActions().size() == 0){
@@ -137,4 +140,14 @@ public class EventService {
             action.execute(executeContext) ;
         }
     }
+    private void executeEventListener(ExecuteContext executeContext, Event event) {
+        if(event == null || event.getEventListeners() == null || event.getEventListeners().size() == 0){
+            return ;
+        }
+
+        for(EventListener listener : event.getEventListeners()){
+            eventBroker.putEvent(listener, executeContext);
+        }
+    }
+
 }

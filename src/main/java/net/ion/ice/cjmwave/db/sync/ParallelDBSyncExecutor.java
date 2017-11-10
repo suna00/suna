@@ -1,6 +1,7 @@
 package net.ion.ice.cjmwave.db.sync;
 
 import net.ion.ice.ApplicationContextManager;
+import org.apache.log4j.Logger;
 
 import java.io.Serializable;
 
@@ -14,6 +15,8 @@ public abstract class ParallelDBSyncExecutor implements Runnable, Serializable {
     public String executeId;
     public DBProcessStorage storage;
     private boolean isRun = false;
+
+    private Logger logger = Logger.getLogger(ParallelDBSyncExecutor.class);
 
     public ParallelDBSyncExecutor(String executeId){
         this.executeId = executeId;
@@ -30,10 +33,10 @@ public abstract class ParallelDBSyncExecutor implements Runnable, Serializable {
     @Override
     public void run() {
         if(!storage.isAbleToRun(executeId)) {
-            System.out.println("Runnable with [ " + executeId + " ] is already running. Ignore this request");
+            logger.info("Runnable with [ " + executeId + " ] is already running. Ignore this request");
             return;
         } else {
-            System.out.println("Runnable with [ " + executeId + " ] is getting started. Accept this request");
+            logger.info("Runnable with [ " + executeId + " ] is getting started. Accept this request");
             storage.addProcess(executeId, this);
         }
         try{
@@ -41,9 +44,9 @@ public abstract class ParallelDBSyncExecutor implements Runnable, Serializable {
             action();
             this.isRun = false;
         } catch (Exception e) {
-            System.out.println("PARALLEL DB SYNC EXECUTOR ERROR :: " );
-            e.printStackTrace();
-            System.out.println("TURNING STATUS TERMINATED");
+            logger.error("PARALLEL DB SYNC EXECUTOR ERROR :: " );
+            logger.error(e);
+            logger.error("TURNING STATUS TERMINATED");
             this.isRun = false;
         }
     }

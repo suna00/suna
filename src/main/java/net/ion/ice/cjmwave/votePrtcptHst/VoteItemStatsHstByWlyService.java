@@ -38,7 +38,7 @@ public class VoteItemStatsHstByWlyService {
                 Date now = new Date();
                 target = DateFormatUtils.format(now, "yyyyMMdd");
             }
-            voteItemStatsHstByWlyTask.execVoteItemStatsHstByWlyAll(target);
+            voteItemStatsHstByWlyTask.execVoteItemStatsHstByTargetWly(target);
         } else {
             voteItemStatsHstByWlyTask.execVoteItemStatsHstByWly();
         }

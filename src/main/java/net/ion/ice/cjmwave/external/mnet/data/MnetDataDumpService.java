@@ -287,7 +287,7 @@ public class MnetDataDumpService {
             Map<String, Object> preparedQuery = null;
             Map<String, Object> params = new HashMap<>();
             if(isTopNode) {
-                System.out.println("========= IS TOP NODE ============= ");
+                logger.info("========= IS TOP NODE ============= ");
                 if(ids.size() == 1) {
                     params.put("id", ids.get(0));
                 } else if(ids.size() == 10) {
@@ -295,14 +295,14 @@ public class MnetDataDumpService {
                         params.put("id" + i, ids.get(i - 1));
                     }
                 }
-                System.out.println("========= IDS ============= " + StringUtils.join(ids.toArray()));
+                logger.info("========= IDS ============= " + StringUtils.join(ids.toArray()));
             } else if(foreignKey != null) {
                 subTaskKey = String.valueOf(replicationNode.get("subTaskKey")).trim();
                 params.put("id", foreignKey);
             }
 
-            System.out.println("Query is :: " + q);
-            System.out.println("Query is :: " + String.valueOf(params));
+            logger.info("Query is :: " + q);
+            logger.info("Query is :: " + String.valueOf(params));
             preparedQuery = SyntaxUtils.parse(q, params);
 
 

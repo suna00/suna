@@ -20,6 +20,8 @@ import net.ion.ice.core.query.QueryUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -35,6 +37,8 @@ public class VoteResponseService {
 
     private JdbcTemplate jdbcTemplate;
     static InfinispanRepositoryService infinispanRepositoryService;
+
+    private static Logger logger = LoggerFactory.getLogger(VoteResponseService.class);
 
     public void voteStatus(ExecuteContext context) {
         Map<String, Object> data = context.getData();
@@ -103,7 +107,7 @@ public class VoteResponseService {
             Object values = ContextUtils.getValue(term, data);
             //System.out.println("#####values :" + values);
             QueryContext queryContext = QueryContext.createQueryContextFromText((String) values, voteBasInfoNodeType, null);
-            List<Node> voteInfoList = infinispanRepositoryService.getSubQueryNodes(voteBasInfoNodeType.getTypeId(), queryContext);
+            List<Node> voteInfoList = infinispanRepositoryService.getSubQueryNodes(queryContext);
 
             QueryResult queryResult = new QueryResult();
             queryResult.put("totalCount", queryContext.getResultSize());
@@ -272,7 +276,7 @@ public class VoteResponseService {
             Object values = ContextUtils.getValue(term, data);
             //System.out.println("#####values :" + values);
             QueryContext queryContext = QueryContext.createQueryContextFromText((String) values, voteBasInfoNodeType, null);
-            List<Node> voteInfoList = infinispanRepositoryService.getSubQueryNodes(voteBasInfoNodeType.getTypeId(), queryContext);
+            List<Node> voteInfoList = infinispanRepositoryService.getSubQueryNodes(queryContext);
 
             QueryResult queryResult = new QueryResult();
             queryResult.put("totalCount", queryContext.getResultSize());
@@ -342,7 +346,7 @@ public class VoteResponseService {
     }
 
     private Integer getVoteNum(String voteSeq) {
-        System.out.println("###getVoteNum : voteNum start "+ DateFormatUtils.format(new Date(), "yyyy/MM/dd HH:mm:ss"));
+        logger.info("###getVoteNum : voteNum start "+ DateFormatUtils.format(new Date(), "yyyy/MM/dd HH:mm:ss"));
         if (jdbcTemplate == null) {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
         }
@@ -352,7 +356,7 @@ public class VoteResponseService {
         Map voteNumMap = jdbcTemplate.queryForMap(voteNumSQL);
 
         Integer retValue = voteNumMap.get("voteNum") == null ? 0 : Integer.parseInt(voteNumMap.get("voteNum").toString());
-        System.out.println("###resIfMwv108 : voteNum end "+DateFormatUtils.format(new Date(), "yyyy/MM/dd HH:mm:ss"));
+        logger.info("###resIfMwv108 : voteNum end "+DateFormatUtils.format(new Date(), "yyyy/MM/dd HH:mm:ss"));
         return retValue;
     }
 
