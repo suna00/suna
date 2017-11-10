@@ -1,5 +1,6 @@
 package net.ion.ice.cjmwave.votePrtcptHst;
 
+import net.ion.ice.cjmwave.votePrtcptHst.vo.ArtistTypeVO;
 import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.node.Node;
 import net.ion.ice.core.node.NodeService;
@@ -11,15 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import net.ion.ice.cjmwave.votePrtcptHst.vo.ArtistCntryVO;
-
 import java.math.BigDecimal;
 import java.util.*;
 
-@Service("artistVoteStatsByCntryWlyTask")
-public class ArtistVoteStatsByCntryWlyTask {
+@Service("artistVoteStatsByTypeWlyTask")
+public class ArtistVoteStatsByTypeWlyTask {
 
-    private static Logger logger = LoggerFactory.getLogger(ArtistVoteStatsByCntryWlyTask.class);
+    private static Logger logger = LoggerFactory.getLogger(ArtistVoteStatsByTypeWlyTask.class);
 
     public static final String VOTE_BAS_INFO = "voteBasInfo";
 
@@ -35,7 +34,7 @@ public class ArtistVoteStatsByCntryWlyTask {
     /**
      * 국가별.
      */
-    public void execArtistVoteStatsByCntry(String sDate, String eDate) {
+    public void execArtistVoteStatsByCntry() {
 
         logger.info("start schedule task - execArtistVoteStatsByCntry");
 
@@ -60,12 +59,13 @@ public class ArtistVoteStatsByCntryWlyTask {
         Calendar cVoteStart = Calendar.getInstance() ;
         cVoteStart.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
         Calendar cVoteEnd = Calendar.getInstance() ;
-        String sVoteStart = DateFormatUtils.format(cVoteStart.getTime(), "yyyyMMdd");
-        String sVoteEnd = DateFormatUtils.format(cVoteEnd.getTime(), "yyyyMMdd");
-        if( sDate != null ) {sVoteStart = sDate;sVoteEnd = eDate;}
+        String sVoteStart = DateFormatUtils.format(cVoteStart.getTime(), "yyyy-MM-dd");
+        String sVoteEnd = DateFormatUtils.format(cVoteEnd.getTime(), "yyyy-MM-dd");
+//        String sVoteStart   = "20171023";
+//        String sVoteEnd     = "20171024";
 
         // 셩별로 나눠어진 artist sex voteNum 맵 을 관리
-        Map<String, Map<ArtistCntryVO,ArtistCntryVO>> allArtistMapBySex = new HashMap<String, Map<ArtistCntryVO,ArtistCntryVO>>();
+        Map<String, Map<ArtistTypeVO,ArtistTypeVO>> allArtistMapBySex = new HashMap<String, Map<ArtistTypeVO,ArtistTypeVO>>();
 
         // 성별 카운트 저장
         Map<String, BigDecimal> hmTolCountPerCntrycd = new HashMap<String, BigDecimal>();
@@ -81,51 +81,48 @@ public class ArtistVoteStatsByCntryWlyTask {
         for (Map voteItemVoteCntByItemSeqSex : voteItemVoteCntByItemSeqCntryList) {
             BigDecimal voteNum = new BigDecimal(voteItemVoteCntByItemSeqSex.get("voteNum").toString());
 
-            String cntryCd = (String)voteItemVoteCntByItemSeqSex.get("cntryCd");
-            if( cntryCd.toLowerCase().equals("thailand")) cntryCd = "Thailand";
-            logger.info("[cntryCd] " + cntryCd + " [artistId] " + voteItemVoteCntByItemSeqSex.get("artistId") + " [voteNum] " + voteNum);
-
-            BigDecimal bcCountPerSex = hmTolCountPerCntrycd.get(cntryCd);
+            String typeCd = (String)voteItemVoteCntByItemSeqSex.get("typeCd");
+            BigDecimal bcCountPerSex = hmTolCountPerCntrycd.get(typeCd);
             if( bcCountPerSex == null ) bcCountPerSex = new BigDecimal(0);
             bcCountPerSex = bcCountPerSex.add(voteNum);
-            hmTolCountPerCntrycd.put(cntryCd, bcCountPerSex);
+            hmTolCountPerCntrycd.put(typeCd, bcCountPerSex);
 
             // 해당성별의 HashMap이 있는지 파악
             // 해당성별의 artist 별 voteNum
-            Map<ArtistCntryVO,ArtistCntryVO> artistCntryVOMap = allArtistMapBySex.get(voteItemVoteCntByItemSeqSex.get("cntryCd"));
-            if( artistCntryVOMap == null ) artistCntryVOMap = new HashMap<ArtistCntryVO,ArtistCntryVO>();
+            Map<ArtistTypeVO,ArtistTypeVO> artistCntryVOMap = allArtistMapBySex.get(voteItemVoteCntByItemSeqSex.get("typeCd"));
+            if( artistCntryVOMap == null ) artistCntryVOMap = new HashMap<ArtistTypeVO,ArtistTypeVO>();
 
-            ArtistCntryVO artistCntryVO = new ArtistCntryVO();
+            ArtistTypeVO artistCntryVO = new ArtistTypeVO();
             artistCntryVO.setArtistId((String)voteItemVoteCntByItemSeqSex.get("artistId"));
-            artistCntryVO.setCntryCd((String)voteItemVoteCntByItemSeqSex.get("cntryCd"));
+            artistCntryVO.setTypeCd((String)voteItemVoteCntByItemSeqSex.get("typeCd"));
             artistCntryVO.setVoteStart(sVoteStart);
             artistCntryVO.setVoteEnd(sVoteEnd);
             artistCntryVO.setVoteNum(voteNum);
             artistCntryVOMap.put(artistCntryVO, artistCntryVO);
-            allArtistMapBySex.put(cntryCd, artistCntryVOMap);
+            allArtistMapBySex.put(typeCd, artistCntryVOMap);
         }
 
         Iterator iter1 = hmTolCountPerCntrycd.keySet().iterator();
         while( iter1.hasNext() ) {
-            String cntryCd = (String)iter1.next();
-            logger.info("[cntryCd " + cntryCd + "] " + hmTolCountPerCntrycd.get(cntryCd).intValue());
+            String typeCd = (String)iter1.next();
+            logger.info("[typeCd " + typeCd + "] " + hmTolCountPerCntrycd.get(typeCd).intValue());
         }
 
-        logger.info("deleteArtistVoteStatsByCntry ");
-        deleteArtistVoteStatsByCntry(sVoteStart);
+        logger.info("deleteArtistVoteStatsByType ");
+        deleteArtistVoteStatsByType(sVoteStart);
 
         Iterator iter = allArtistMapBySex.keySet().iterator();       // 국가별...............
         while(iter.hasNext()) {
             String countryCd = (String)iter.next();
             BigDecimal currentVoteNumCntBySex = hmTolCountPerCntrycd.get(countryCd);
 
-            Map<ArtistCntryVO,ArtistCntryVO> ArtistCntryVOMap = allArtistMapBySex.get(countryCd);
-            List<ArtistCntryVO> ArtistCntryVOList = new ArrayList<ArtistCntryVO>(ArtistCntryVOMap.values());
+            Map<ArtistTypeVO,ArtistTypeVO> ArtistTypeVOMap = allArtistMapBySex.get(countryCd);
+            List<ArtistTypeVO> ArtistTypeVOList = new ArrayList<ArtistTypeVO>(ArtistTypeVOMap.values());
 
             // 정렬
-            Collections.sort(ArtistCntryVOList, new Comparator<ArtistCntryVO>() {
+            Collections.sort(ArtistTypeVOList, new Comparator<ArtistTypeVO>() {
                 @Override
-                public int compare(ArtistCntryVO lhs, ArtistCntryVO rhs) {
+                public int compare(ArtistTypeVO lhs, ArtistTypeVO rhs) {
                     return rhs.getVoteNum().compareTo(lhs.getVoteNum());
                 }
             });
@@ -133,13 +130,13 @@ public class ArtistVoteStatsByCntryWlyTask {
             // VoteRate처리 및 insert
             BigDecimal prevVoteNum = null;
             BigDecimal prevRankNum = null;
-            for(int i = 0 ; i < ArtistCntryVOList.size(); i++ ) {
-                ArtistCntryVO artistCntryVO = ArtistCntryVOList.get(i);
+            for(int i = 0 ; i < ArtistTypeVOList.size(); i++ ) {
+                ArtistTypeVO artistCntryVO = ArtistTypeVOList.get(i);
                 if(prevVoteNum != null && artistCntryVO.getVoteNum().compareTo(prevVoteNum) == 0) artistCntryVO.setRankNum(prevRankNum);
                 else artistCntryVO.setRankNum(new BigDecimal(i+1));
                 artistCntryVO.setVoteRate(Math.round((artistCntryVO.getVoteNum().doubleValue()/currentVoteNumCntBySex.doubleValue()) * 1000)/10.0);
-                logger.info("... ArtistCntryVO " + artistCntryVO);
-                insertArtistVoteStatsByCntry(artistCntryVO);
+                logger.info("... ArtistTypeVO " + artistCntryVO);
+                insertArtistVoteStatsByType(artistCntryVO);
                 prevVoteNum = artistCntryVO.getVoteNum();
                 prevRankNum = artistCntryVO.getRankNum();
             }
@@ -148,27 +145,27 @@ public class ArtistVoteStatsByCntryWlyTask {
         logger.info("complete schedule task - execArtistVoteStatsByCntry");
     }
 
-    public void deleteArtistVoteStatsByCntry(String sVoteStart) {
-        String deleteQuery = "DELETE FROM artistVoteStatsByCntryWly WHERE perdStDate = ? " ;
+    public void deleteArtistVoteStatsByType(String sVoteStart) {
+        String deleteQuery = "DELETE FROM artistVoteStatsByTypeWly WHERE perdStDate = ? " ;
         int com = jdbcTemplate.update(deleteQuery, sVoteStart);
-        logger.info("deleteArtistVoteStatsByCntry - {} - {}", sVoteStart, com);
+        logger.info("deleteArtistVoteStatsByType - {} - {}", sVoteStart, com);
     }
 
-    public void insertArtistVoteStatsByCntry(ArtistCntryVO artistCntryVO) {
-        String insertQuery = "INSERT INTO artistVoteStatsByCntryWly "
-                +  " (perdStDate, perdFnsDate, artistId, cntryCd, rankNum, voteRate, voteNum, owner, created) "
+    public void insertArtistVoteStatsByType(ArtistTypeVO artistCntryVO) {
+        String insertQuery = "INSERT INTO artistVoteStatsByTypeWly "
+                +  " (perdStDate, perdFnsDate, artistId, typeCd, rankNum, voteRate, voteNum, owner, created) "
                 +  " VALUES(?, ?, ?, ?, ?, ?, ?, ?, NOW())";
 
         int com = jdbcTemplate.update(insertQuery,
                 artistCntryVO.getVoteStart()
                 , artistCntryVO.getVoteEnd()
                 , artistCntryVO.getArtistId()
-                , artistCntryVO.getCntryCd()
+                , artistCntryVO.getTypeCd()
                 , artistCntryVO.getRankNum()
                 , artistCntryVO.getVoteRate()
                 , artistCntryVO.getVoteNum()
                 , "system");
-        logger.info("insertArtistVoteStatsByCntry - {} - {} - {}", artistCntryVO.getArtistId(), artistCntryVO.getVoteNum(), com);
+        logger.info("insertArtistVoteStatsByTypeCd - {} - {} - {}", artistCntryVO.getArtistId(), artistCntryVO.getVoteNum(), com);
     }
 
 
@@ -177,7 +174,7 @@ public class ArtistVoteStatsByCntryWlyTask {
                 + " SELECT                                                "
                 + " 	perdStDate,                                       "
                 + " 	perdFnsDate,                                      "
-                + " 	cntryCd,                                            "
+                + " 	typeCd,                                            "
                 + " 	artistId,                                         "
 //                + "   rankNum,                                          "
 //                + "  	voteRate,                                         "
@@ -185,13 +182,12 @@ public class ArtistVoteStatsByCntryWlyTask {
                 + " 	owner                                             "
 //                + "  	created                                           "
                 + " FROM                                                  "
-                + " 	artistVoteStatsByCntry                              "
+                + " 	artistVoteStatsByType                              "
                 + " WHERE 1 = 1                                           "
                 + " 	and perdStDate BETWEEN ? and ?  "
-                + " group by cntryCd, artistId, voteNum	                   "
+                + " group by typeCd, artistId, voteNum	                   "
                 ;
         return jdbcTemplate_replica.queryForList(selectQuery, sVoteStart, sVoteEnd);
-//        return jdbcTemplate.queryForList(selectQuery, sVoteStart, sVoteEnd);
     }
 
 }

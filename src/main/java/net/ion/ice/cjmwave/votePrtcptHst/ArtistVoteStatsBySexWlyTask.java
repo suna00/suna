@@ -158,20 +158,16 @@ public class ArtistVoteStatsBySexWlyTask {
                               +  " (perdStDate, perdFnsDate, artistId, sexCd, rankNum, voteRate, voteNum, owner, created) "
                               +  " VALUES(?, ?, ?, ?, ?, ?, ?, ?, NOW())";
 
-//        try {
-            int com = jdbcTemplate.update(insertQuery,
-                    artistSexVO.getVoteStart()
-                    , artistSexVO.getVoteEnd()
-                    , artistSexVO.getArtistId()
-                    , artistSexVO.getSexCd()
-                    , artistSexVO.getRankNum()
-                    , artistSexVO.getVoteRate()
-                    , artistSexVO.getVoteNum()
-                    , "system");
-            logger.info("insertArtistVoteStatsBySex - {} - {} - {}", artistSexVO.getArtistId(), artistSexVO.getVoteNum(), com);
-//        } catch ( Exception ex ) {
-//            logger.error(ex.getMessage(), ex);
-//        }
+        int com = jdbcTemplate.update(insertQuery,
+                artistSexVO.getVoteStart()
+                , artistSexVO.getVoteEnd()
+                , artistSexVO.getArtistId()
+                , artistSexVO.getSexCd()
+                , artistSexVO.getRankNum()
+                , artistSexVO.getVoteRate()
+                , artistSexVO.getVoteNum()
+                , "system");
+        logger.info("insertArtistVoteStatsBySex - {} - {} - {}", artistSexVO.getArtistId(), artistSexVO.getVoteNum(), com);
     }
 
 
@@ -192,5 +188,6 @@ public class ArtistVoteStatsBySexWlyTask {
                 ;
 
         return jdbcTemplate_replica.queryForList(selectQuery, sVoteStart, sVoteEnd);
+//        return jdbcTemplate.queryForList(selectQuery, sVoteStart, sVoteEnd);
     }
 }
