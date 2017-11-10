@@ -41,6 +41,7 @@ public class MbrInfoService {
     private Logger logger = Logger.getLogger(MbrInfoService.class);
     private List<String> cntryMngMap = new ArrayList<String>();
     private List<String> sexCdMap = new ArrayList<String>();
+    private List<String> snsTypeCdMap = new ArrayList<String>();
 
 
     @Autowired
@@ -484,13 +485,16 @@ public class MbrInfoService {
         context.setResult(result);
     }
 
-    private static void chkSnsParams(Map<String, Object> data) {
+    private void chkSnsParams(Map<String, Object> data) {
 
         if (data.get("snsTypeCd") == null || StringUtils.isEmpty(data.get("snsTypeCd").toString())) {
             throw new ApiException("400", "Required Parameter : snsTypeCd");
         } else if (data.get("snsKey") == null || StringUtils.isEmpty(data.get("snsKey").toString())) {
             throw new ApiException("400", "Required Parameter :snsKey");
         }
+
+        //snsTypeCd 확인
+        chkSnsTypeCd(data);
     }
 
     private void chkCntryCd(Map<String, Object> data) {
@@ -539,6 +543,31 @@ public class MbrInfoService {
 
         if (!chkSex) {
             throw new ApiException("404", "Not Found SexCd");
+        }
+    }
+
+    private void chkSnsTypeCd(Map<String, Object> data) {
+        String paramSnsTypeCd = (data.get("snsTypeCd") != null) ? data.get("snsTypeCd").toString() : "";
+
+        if (snsTypeCdMap.isEmpty()) {
+            List<Node> snsTypeCdList = NodeUtils.getNodeService().getNodeList("code", "groupCodeId_matching=snsTypeCd");
+
+            for (Node codeNode : snsTypeCdList) {
+                String codeId = codeNode.getStringValue("codeId");
+                snsTypeCdMap.add(codeId);
+            }
+        }
+
+        boolean chkSnsType = false;
+        for (String snsTypeCd : snsTypeCdMap) {
+            if (snsTypeCd.equals(paramSnsTypeCd)) {
+                chkSnsType = true;
+                break;
+            }
+        }
+
+        if (!chkSnsType) {
+            throw new ApiException("404", "Not Found SnsTypeCd");
         }
     }
 }
