@@ -42,8 +42,8 @@ public class ArtistVoteStatsTask {
         }
 
         if (jdbcTemplateReplica == null) {
-//            jdbcTemplateReplica = dbService.getJdbcTemplate("authDbReplica");
-            jdbcTemplateReplica = dbService.getJdbcTemplate("authDb");
+            jdbcTemplateReplica = dbService.getJdbcTemplate("authDbReplica");
+//            jdbcTemplateReplica = dbService.getJdbcTemplate("authDb");
         }
 
 
@@ -448,7 +448,7 @@ public class ArtistVoteStatsTask {
         }
     }
 
-
+/*
     private List<Map<String, Object>> getVoteInfoList() {
         String query =
                 "SELECT "
@@ -464,7 +464,7 @@ public class ArtistVoteStatsTask {
                 ;
         return jdbcTemplateReplica.queryForList(query);
     }
-
+*/
 
     private List<Map<String, Object>> getVoteCountByArtist(String voteSeq, String voteDate) {
         String query = String.format(

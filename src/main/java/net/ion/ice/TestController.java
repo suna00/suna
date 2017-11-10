@@ -1,10 +1,15 @@
 package net.ion.ice;
 
+import net.ion.ice.cjmwave.votePrtcptHst.ArtistVoteStatsTask;
 import net.ion.ice.cjmwave.votePrtcptHst.CntryVoteStatsService;
 import net.ion.ice.cjmwave.votePrtcptHst.ArtistVoteStatsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,12 +17,26 @@ import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class TestController {
+    private static Logger logger = LoggerFactory.getLogger(TestController.class);
 
     @Autowired
     ArtistVoteStatsService artistVoteStatsService;
 
     @Autowired
     CntryVoteStatsService cntryVoteStatsService;
+
+    @Autowired
+    private ArtistVoteStatsTask artistVoteStatsTask;
+
+
+    @RequestMapping("/test/artistStat")
+    @ResponseBody
+    public String runArtistVoteStats(@RequestParam(name = "date", required = false) String dateString) {
+//        logger.info(dateString);
+        artistVoteStatsTask.artistVoteStatsJob(dateString);
+        return "200";
+    }
+
 
     @RequestMapping("/test/artistSex")
     public ModelAndView artistSex(HttpServletRequest req, HttpServletResponse res) {
