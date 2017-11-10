@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=euc-kr" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ page import="kr.co.kcp.net.connection.*"      %>
 <%@ page import="kr.co.kcp.net.connection.util.*" %>
 <%@ page import="kr.co.kcp.net.connection.dto.*"  %>
@@ -8,10 +8,10 @@
     response.setHeader("Pragma","no-cache");
     response.setDateHeader("Expires",0);
 
-    ConnectionKCP suc = new ConnectionKCP();  // KCP ÀÎÁõ Á¤º¸¸¦ ÀúÀåÇÏ±â À§ÇÑ Object                     ( Åë½ÅÀÇ ±âº»ÀÌ µÇ´Â °´Ã¼ ) - ÇÊ¼ö
-    OpenHash      oh  = new OpenHash();       // KCP ¿Í Åë½Å½Ã µ¥ÀÌÅÍ À§º¯Á¶¸¦ È®ÀÎ ÇÏ±â À§ÇÑ Hash Object ( ¾÷Ã¼¿Í KCP °£ÀÇ Åë½Å½Ã µ¥ÀÌÅÍ À§º¯Á¶¸¦ È®ÀÎ ÇÏ±â À§ÇØ ÇÊ¿ä. ¹Ì¼³Á¤½Ã Åë½Å ±¸°£¸¸ ¶óÀÌºê·¯¸®¿¡¼­ ÀÚÃ¼ÀûÀ¸·Î hash Ã³¸® )
-    HttpJsonXml   hjx = new HttpJsonXml();    // ÀÀ´ä°ª get value Çü½ÄÀ¸·Î °¡Á®¿Ã¼ö ÀÖ´Â Object           ( Java ¶Ç´Â JSP ³»¿¡¼­ µ¥ÀÌÅÍ¸¦ ÆÄ½ÌÇÒ¶§ ÇÊ¿ä - XML ¶Ç´Â JSON )
-    ParamData     pd  = new ParamData();      // ÆÄ¶ó¸ÞÅ¸ °ªÀ» ¼¼ÆÃÇÒ¼ö ÀÖ´Â bean Object                  ( String, HashMap µîÀ¸·Î ´ëÃ¼ °¡´É )
+    ConnectionKCP suc = new ConnectionKCP();  // KCP ì¸ì¦ ì •ë³´ë¥¼ ì €ìž¥í•˜ê¸° ìœ„í•œ Object                     ( í†µì‹ ì˜ ê¸°ë³¸ì´ ë˜ëŠ” ê°ì²´ ) - í•„ìˆ˜
+    OpenHash      oh  = new OpenHash();       // KCP ì™€ í†µì‹ ì‹œ ë°ì´í„° ìœ„ë³€ì¡°ë¥¼ í™•ì¸ í•˜ê¸° ìœ„í•œ Hash Object ( ì—…ì²´ì™€ KCP ê°„ì˜ í†µì‹ ì‹œ ë°ì´í„° ìœ„ë³€ì¡°ë¥¼ í™•ì¸ í•˜ê¸° ìœ„í•´ í•„ìš”. ë¯¸ì„¤ì •ì‹œ í†µì‹  êµ¬ê°„ë§Œ ë¼ì´ë¸ŒëŸ¬ë¦¬ì—ì„œ ìžì²´ì ìœ¼ë¡œ hash ì²˜ë¦¬ )
+    HttpJsonXml   hjx = new HttpJsonXml();    // ì‘ë‹µê°’ get value í˜•ì‹ìœ¼ë¡œ ê°€ì ¸ì˜¬ìˆ˜ ìžˆëŠ” Object           ( Java ë˜ëŠ” JSP ë‚´ì—ì„œ ë°ì´í„°ë¥¼ íŒŒì‹±í• ë•Œ í•„ìš” - XML ë˜ëŠ” JSON )
+    ParamData     pd  = new ParamData();      // íŒŒë¼ë©”íƒ€ ê°’ì„ ì„¸íŒ…í• ìˆ˜ ìžˆëŠ” bean Object                  ( String, HashMap ë“±ìœ¼ë¡œ ëŒ€ì²´ ê°€ëŠ¥ )
     
     String siteCode      = request.getParameter( "site_cd"       );
     String orderID       = request.getParameter( "ordr_idxx"     );
@@ -44,5 +44,5 @@
         pd.setResponse_type( response_type );
     }
     
-    out.println( suc.kcpPaymentSmartPhone( request, g_conf_server, pd, g_conf_pay_log_dir) ); // ÀÌÅ¬¸³½º »ó¿¡¼­ ¸Þ¼­µå¸¦ Å¬¸¯ ÈÄ F2¸¦ ´©¸£¸é »ó¼¼ ³»¿ëÀÌ ³ª¿É´Ï´Ù.
+    out.println( suc.kcpPaymentSmartPhone( request, g_conf_server, pd, g_conf_pay_log_dir) ); // ì´í´ë¦½ìŠ¤ ìƒì—ì„œ ë©”ì„œë“œë¥¼ í´ë¦­ í›„ F2ë¥¼ ëˆ„ë¥´ë©´ ìƒì„¸ ë‚´ìš©ì´ ë‚˜ì˜µë‹ˆë‹¤.
 %>

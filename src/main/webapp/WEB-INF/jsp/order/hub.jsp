@@ -591,7 +591,6 @@
     logger.info("프론트최종 결제금액(this.finalPrice) : " + good_mny);
     logger.info("요청구분 : " + req_tx);
     logger.info("사용한 결제 수단 : " + use_pay_method);
-    logger.info("사용한 결제 수단 : " + use_pay_method);
     logger.info("쇼핑몰 DB 처리 성공 여부 : " + bSucc);
     logger.info("KCP 실제 거래 금액 : " + amount);
     logger.info("복합결제시 총 거래금액 : " + total_amount);
