@@ -12,7 +12,7 @@
     /* ============================================================================== */
     /* =   POST 형식 체크부분                                                       = */
     /* = -------------------------------------------------------------------------- = */
-    if ( request.getMethod() != "POST" )
+    if (!request.getMethod().equals("POST"))
     {
         out.println("잘못된 경로로 접속하였습니다.");
         return;
@@ -52,21 +52,21 @@
     /* ============================================================================== */
     /* =   02. 지불 요청 정보 설정                                                  = */
     /* = -------------------------------------------------------------------------- = */
-    String req_tx         = "";                                                     // 취소요청
-    String tran_cd        = "";                                                     // 업무코드
+    String req_tx         = f_get_parm(request.getParameter("req_tx"));             // 취소요청
+    String tran_cd        = f_get_parm(request.getParameter("tran_cd"));            // 업무코드
     String cust_ip        = f_get_parm( request.getRemoteAddr()                  ); // 요청 IP
     /* = -------------------------------------------------------------------------- = */
     String res_cd         = "";                                                     // 응답코드
     String res_msg        = "";                                                     // 응답 메세지
-    String tno            = "";                                                     // KCP 거래 고유 번호
+    String tno            = f_get_parm(request.getParameter("tno"));                // KCP 거래 고유 번호
     /* = -------------------------------------------------------------------------- = */
-    String mod_type       = "";                                                     // 변경TYPE(승인취소시 필요)
-    String mod_desc       = "";                                                     // 변경사유
-    String panc_mod_mny   = "";                                                     // 부분취소 금액
-    String panc_rem_mny   = "";                                                     // 부분취소 가능 금액
-    String mod_tax_mny    = "";                                                     // 공급가 부분 취소 요청 금액
-    String mod_vat_mny    = "";                                                     // 부과세 부분 취소 요청 금액
-    String mod_free_mny   = "";                                                     // 비과세 부분 취소 요청 금액
+    String mod_type       = f_get_parm(request.getParameter("mod_type"));           // 변경TYPE(승인취소시 필요)
+    String mod_desc       = f_get_parm(request.getParameter("mod_desc"));           // 변경사유
+    String panc_mod_mny   = f_get_parm(request.getParameter("mod_mny"));            // 부분취소 금액
+    String panc_rem_mny   = f_get_parm(request.getParameter("rem_mny"));            // 부분취소 가능 금액
+    String mod_tax_mny    = f_get_parm(request.getParameter("mod_tax_mny"));        // 공급가 부분 취소 요청 금액
+    String mod_vat_mny    = f_get_parm(request.getParameter("mod_vat_mny"));        // 부과세 부분 취소 요청 금액
+    String mod_free_mny   = f_get_parm(request.getParameter("mod_free_mny"));       // 비과세 부분 취소 요청 금액
     /* ============================================================================== */
     /* =   02. 지불 요청 정보 설정 END                                              = */
     /* ============================================================================== */
@@ -101,15 +101,18 @@
         tran_cd = "00200000";
         mod_data_set_no = c_PayPlus.mf_add_set( "mod_data" );
 
-        c_PayPlus.mf_set_us( mod_data_set_no, "tno",        ""          ); // KCP 원거래 거래번호
-        c_PayPlus.mf_set_us( mod_data_set_no, "mod_type",   "STSC"      ); // 전체취소 STSC / 부분취소 STPC
+//        tno = "17563910507190";
+//        mod_type = "STSC";
+
+        c_PayPlus.mf_set_us( mod_data_set_no, "tno",        tno        ); // KCP 원거래 거래번호
+        c_PayPlus.mf_set_us( mod_data_set_no, "mod_type",   mod_type      ); // 전체취소 STSC / 부분취소 STPC
         c_PayPlus.mf_set_us( mod_data_set_no, "mod_ip",     cust_ip     ); // 변경 요청자 IP
-        c_PayPlus.mf_set_us( mod_data_set_no, "mod_desc",   ""          ); // 변경 사유
+        c_PayPlus.mf_set_us( mod_data_set_no, "mod_desc",   mod_desc          ); // 변경 사유
 
         if ( mod_type.equals( "STPC" ) ) // 부분취소의 경우
         {
-            c_PayPlus.mf_set_us( mod_data_set_no, "mod_mny", "" ); // 취소요청금액
-            c_PayPlus.mf_set_us( mod_data_set_no, "rem_mny", "" ); // 취소가능잔액
+            c_PayPlus.mf_set_us( mod_data_set_no, "mod_mny", panc_mod_mny ); // 취소요청금액
+            c_PayPlus.mf_set_us( mod_data_set_no, "rem_mny", panc_rem_mny ); // 취소가능잔액
 
             //복합거래 부분 취소시 주석을 풀어 주시기 바랍니다.
             //c_PayPlus.mf_set_us( mod_data_set_no, "tax_flag",     "TG03"                       ); // 복합과세 구분
@@ -155,6 +158,13 @@
         out.println( "결과코드 : "      + res_cd       + "<br>");
         out.println( "결과메세지 : "    + res_msg      + "<p>");
     }
+
+    System.out.println("req_tx : " + req_tx);
+    System.out.println("mod_type : " + mod_type);
+    System.out.println("tno : " + tno);
+    System.out.println("mod_desc : " + mod_desc);
+    System.out.println("panc_mod_mny : " + panc_mod_mny);
+    System.out.println("panc_rem_mny : " + panc_rem_mny);
 
     /* = -------------------------------------------------------------------------- = */
     /* =   06. 취소 결과 처리 END                                                   = */

@@ -51,8 +51,10 @@ public class CouponService {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(common.PATTERN);
         LocalDateTime now = LocalDateTime.now();
 
-        String[] params = {"memberNo", "couponTypeId"};
+        String[] params = {"couponTypeId"};
         if (common.requiredParams(context, data, params)) return context;
+
+        String memberNo = JsonUtils.getStringValue(session, "member.memberNo");
 
         Node couponType = nodeService.getNode("couponType", data.get("couponTypeId").toString());
         if (couponType == null) {
@@ -60,7 +62,7 @@ public class CouponService {
             return context;
         }
 
-        List<Node> list = nodeService.getNodeList("coupon", "memberNo_matching=" + JsonUtils.getStringValue(session, "member.memberNo") + "&couponTypeId_matching=" + data.get("couponTypeId"));
+        List<Node> list = nodeService.getNodeList("coupon", "memberNo_matching=" + memberNo + "&couponTypeId_matching=" + data.get("couponTypeId"));
         if (list.size() > 0) {
             common.setErrorMessage(context, "V0005");
         }
