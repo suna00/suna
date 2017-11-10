@@ -365,6 +365,26 @@
     "backOfficeId": "adm",
     "gnbMenuId": "marketingMng",
     "parentMenuId": "root",
+    "menuId": "specialExhibition",
+    "menuName": "기획전 관리",
+    "order": "10",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" }
+    ],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "specialExhibition/CreateForm" },
+      { "pageName": "수정", "pageUrl": "specialExhibition/UpdateForm" }
+    ],
+    "authority": "system,admin"
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "marketingMng",
+    "parentMenuId": "root",
     "menuId": "coupon",
     "menuName": "쿠폰 관리",
     "order": "20",

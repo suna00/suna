@@ -14,5 +14,21 @@
     "actionType": "service",
     "actionBody": "searchWordService.countList",
     "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "specialExhibition",
+    "event": "saveEvent",
+    "noneExecute": true,
+    "eventName": "기획전 저장"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "specialExhibition>saveEvent",
+    "action": "saveEvent",
+    "actionName": "기획전 저장",
+    "actionType": "service",
+    "actionBody": "specialExhibitionService.saveEvent",
+    "order": 1
   }
 ]

@@ -95,5 +95,21 @@
     "actionType": "service",
     "actionBody": "productService.confirmPurchasingHistory",
     "order": 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "product",
+    "event" : "copy",
+    "noneExecute" : true,
+    "eventName" : "상품 복사"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "product>copy",
+    "action": "copy",
+    "actionName": "상품 복사",
+    "actionType": "service",
+    "actionBody": "productService.copy",
+    "order": 1
   }
 ]

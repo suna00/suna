@@ -7855,5 +7855,41 @@
     "description": "",
     "sortOrder": "20",
     "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "specialExhibitionDisplayStatus",
+    "upperCode": "root",
+    "name": "기획전 노출",
+    "description": "",
+    "sortOrder": "128",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "all",
+    "upperCode": "specialExhibitionDisplayStatus",
+    "name": "전체",
+    "description": "",
+    "sortOrder": "10",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "pc",
+    "upperCode": "specialExhibitionDisplayStatus",
+    "name": "PC",
+    "description": "",
+    "sortOrder": "20",
+    "commonCodeStatus": "y"
+  },
+  {
+    "typeId": "commonCode",
+    "code": "mobile",
+    "upperCode": "specialExhibitionDisplayStatus",
+    "name": "모바일",
+    "description": "",
+    "sortOrder": "30",
+    "commonCodeStatus": "y"
   }
 ]

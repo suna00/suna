@@ -350,16 +350,16 @@
     "typeId": "member",
     "memberNo": 99999,
     "siteId": {
-      "value": "ion",
-      "label": "아이온커뮤니케이션즈",
-      "refId": "ion"
+      "value": "mall",
+      "label": "대학몰",
+      "refId": "mall"
     },
     "affiliateId": {
-      "value": "100",
-      "label": "아이온커뮤니케이션즈",
-      "refId": "100"
+      "value": "2",
+      "label": "서울대학교",
+      "refId": "2"
     },
-    "userId": "sohapark@i-on.net",
+    "userId": "sleepleave@ytn.co.kr",
     "password": "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
     "siteType": {
       "value": "university",
@@ -367,11 +367,11 @@
       "refId": "siteType>university"
     },
     "memberStatus": {
-      "value": "join",
-      "label": "가입",
-      "refId": "memberStatus>join"
+      "value": "leave",
+      "label": "탈퇴",
+      "refId": "memberStatus>leave"
     },
-    "name": "박소하",
+    "name": "휴면탈퇴사용자",
     "universityName": null,
     "major": null,
     "studentId": null,
@@ -392,7 +392,7 @@
     "postCode": "135-080",
     "address": "서울특별시 강남구 테헤란로 10길 15 (역삼동)",
     "detailedAddress": "5",
-    "email": "sohapark@i-on.net",
+    "email": "thekid0@naver.com",
     "fax": null,
     "termsOfUseAgreeYn": null,
     "receiveMarketingEmailAgreeYn": "y",
@@ -412,9 +412,7 @@
     "snsLinkYn": null,
     "snsType": null,
     "snsId": null,
-    "snsProfileLink": null,
-    "YPoint" : 10000000000,
-    "welfarePoint" : 9999999999
+    "snsProfileLink": null
   },
   {
     "typeId": "member",

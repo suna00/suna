@@ -4,9 +4,7 @@ import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.json.JsonUtils;
-import net.ion.ice.core.node.Node;
-import net.ion.ice.core.node.NodeQuery;
-import net.ion.ice.core.node.NodeService;
+import net.ion.ice.core.node.*;
 import net.ion.ice.core.session.SessionService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -431,6 +429,140 @@ public class ProductService {
 
         for (Map<String, Object> deleteProductSearchFilter : deleteProductSearchFilterList) {
             nodeService.executeNode(deleteProductSearchFilter, "productSearchFilter", EventService.DELETE);
+        }
+    }
+
+    public void copy(ExecuteContext context) {
+        Map<String, Object> paramData = context.getData();
+        String productId = paramData.get("productId").toString();
+        copyProduct(productId, false, null, null);
+    }
+
+    public Node copyProduct(String productId, Boolean isSpecialExhibition, String specialExhibitionId, String specialExhibitionAnkerId) {
+        Node productNode = nodeService.read("product", productId);
+        Map<String, Object> copyProductData = new HashMap<>();
+        NodeType nodeType = nodeService.getNodeType("product");
+        List<PropertyType> propertyTypes = new ArrayList<>(nodeType.getPropertyTypes());
+        for (PropertyType pt : propertyTypes) {
+            if (!StringUtils.equals(pt.getPid(), "productId")) copyProductData.put(pt.getPid(), productNode.get(pt.getPid()));
+        }
+
+        if (isSpecialExhibition) {
+            copyProductData.put("productType", "special");
+            copyProductData.put("upperId", productId);
+            copyProductData.put("specialExhibitionId", specialExhibitionId);
+            copyProductData.put("specialExhibitionAnkerId", specialExhibitionAnkerId);
+        }
+
+        Node copyProductNode = (Node) nodeService.executeNode(copyProductData, "product", EventService.SAVE);
+        String copyProductId = copyProductNode.getBindingValue("productId").toString();
+
+        copyProductOption(productId, copyProductId);
+        copyProductAttribute(productId, copyProductId);
+        copyProductToCategoryMap(productId, copyProductId);
+        copyProductSearchFilter(productId, copyProductId);
+
+        return copyProductNode;
+    }
+
+    private void copyProductOption(String productId, String newProductId) {
+        NodeType productOptionNodeType = nodeService.getNodeType("productOption");
+        List<PropertyType> productOptionPropertyTypes = new ArrayList<>(productOptionNodeType.getPropertyTypes());
+        NodeType productOptionItemNodeType = nodeService.getNodeType("productOptionItem");
+        List<PropertyType> productOptionItemPropertyTypes = new ArrayList<>(productOptionItemNodeType.getPropertyTypes());
+
+        List<Node> productOptionList = (List<Node>) NodeQuery.build("productOption").matching("productId", productId).getList();
+        List<Node> productOptionItemList = (List<Node>) NodeQuery.build("productOptionItem").matching("productId", productId).getList();
+
+        List<Map<String, Object>> copyProductOptionDataList = new ArrayList<>();
+        for (Node productOptionNode : productOptionList) {
+            Map<String, Object> copyProductOptionData = new HashMap<>();
+            for (PropertyType pt : productOptionPropertyTypes) {
+                copyProductOptionData.put(pt.getPid(), productOptionNode.get(pt.getPid()));
+            }
+            copyProductOptionData.put("productId", newProductId);
+            copyProductOptionDataList.add(copyProductOptionData);
+        }
+
+        List<Map<String, Object>> copyProductOptionItemDataList = new ArrayList<>();
+        for (Node productOptionItemNode : productOptionItemList) {
+            Map<String, Object> copyProductOptionItemData = new HashMap<>();
+            for (PropertyType pt : productOptionItemPropertyTypes) {
+                copyProductOptionItemData.put(pt.getPid(), productOptionItemNode.get(pt.getPid()));
+            }
+            copyProductOptionItemData.put("productId", newProductId);
+            copyProductOptionItemDataList.add(copyProductOptionItemData);
+        }
+
+        for (Map<String, Object> copyProductOptionData : copyProductOptionDataList) {
+            nodeService.executeNode(copyProductOptionData, "productOption", EventService.SAVE);
+        }
+
+        for (Map<String, Object> copyProductOptionItemData : copyProductOptionItemDataList) {
+            nodeService.executeNode(copyProductOptionItemData, "productOptionItem", EventService.SAVE);
+        }
+    }
+
+    private void copyProductAttribute(String productId, String newProductId) {
+        NodeType productAttributeNodeType = nodeService.getNodeType("productAttribute");
+        List<PropertyType> productAttributePropertyTypes = new ArrayList<>(productAttributeNodeType.getPropertyTypes());
+
+        List<Node> productAttributeList = (List<Node>) NodeQuery.build("productAttribute").matching("productId", productId).getList();
+
+        List<Map<String, Object>> copyProductAttributeDataList = new ArrayList<>();
+        for (Node productAttributeNode : productAttributeList) {
+            Map<String, Object> copyProductAttributeData = new HashMap<>();
+            for (PropertyType pt : productAttributePropertyTypes) {
+                copyProductAttributeData.put(pt.getPid(), productAttributeNode.get(pt.getPid()));
+            }
+            copyProductAttributeData.put("productId", newProductId);
+            copyProductAttributeDataList.add(copyProductAttributeData);
+        }
+
+        for (Map<String, Object> copyProductAttributeData : copyProductAttributeDataList) {
+            nodeService.executeNode(copyProductAttributeData, "productAttribute", EventService.SAVE);
+        }
+    }
+
+    private void copyProductToCategoryMap(String productId, String newProductId) {
+        NodeType productToCategoryMapNodeType = nodeService.getNodeType("productToCategoryMap");
+        List<PropertyType> productToCategoryMapPropertyTypes = new ArrayList<>(productToCategoryMapNodeType.getPropertyTypes());
+
+        List<Map<String, Object>> productToCategoryMapList = (List<Map<String, Object>>) NodeQuery.build("productToCategoryMap").matching("productId", productId).getList();
+
+        List<Map<String, Object>> copyProductToCategoryMapDataList = new ArrayList<>();
+        for (Map<String, Object> productToCategoryMap : productToCategoryMapList) {
+            Map<String, Object> copyProductToCategoryMapData = new HashMap<>();
+            for (PropertyType pt : productToCategoryMapPropertyTypes) {
+                copyProductToCategoryMapData.put(pt.getPid(), productToCategoryMap.get(pt.getPid()));
+            }
+            copyProductToCategoryMapData.put("productId", newProductId);
+            copyProductToCategoryMapDataList.add(copyProductToCategoryMapData);
+        }
+
+        for (Map<String, Object> copyProductToCategoryMapData : copyProductToCategoryMapDataList) {
+            nodeService.executeNode(copyProductToCategoryMapData, "productToCategoryMap", EventService.SAVE);
+        }
+    }
+
+    private void copyProductSearchFilter(String productId, String newProductId) {
+        NodeType productSearchFilterNodeType = nodeService.getNodeType("productSearchFilter");
+        List<PropertyType> productSearchFilterPropertyTypes = new ArrayList<>(productSearchFilterNodeType.getPropertyTypes());
+
+        List<Map<String, Object>> productSearchFilterList = (List<Map<String, Object>>) NodeQuery.build("productSearchFilter").matching("productId", productId).getList();
+
+        List<Map<String, Object>> copyProductSearchFilterDataList = new ArrayList<>();
+        for (Map<String, Object> productSearchFilter : productSearchFilterList) {
+            Map<String, Object> copyProductSearchFilterData = new HashMap<>();
+            for (PropertyType pt : productSearchFilterPropertyTypes) {
+                copyProductSearchFilterData.put(pt.getPid(), productSearchFilter.get(pt.getPid()));
+            }
+            copyProductSearchFilterData.put("productId", newProductId);
+            copyProductSearchFilterDataList.add(copyProductSearchFilterData);
+        }
+
+        for (Map<String, Object> copyProductToCategoryMapData : copyProductSearchFilterDataList) {
+            nodeService.executeNode(copyProductToCategoryMapData, "productSearchFilter", EventService.SAVE);
         }
     }
 
