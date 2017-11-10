@@ -19,6 +19,15 @@
   {
     "parentId": "backOfficePath",
     "typeId": "nodeType",
+    "tid": "brandToCategoryMap",
+    "typeName": "브랜드카테고리매핑",
+    "tableName": "jejuDevDb#brandToCategoryMap",
+    "repositoryType": "node",
+    "eviction": 0
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
     "tid": "subContactPerson",
     "typeName": "서브담당자",
     "tableName": "jejuDevDb#subContactPerson",

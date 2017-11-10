@@ -133,7 +133,12 @@
           "typeId": "commonCode",
           "query" : [
             {"field" : "upperCode", "method" : "matching", "value" : "{{:codeFilter}}" }
-          ]
+          ],
+          "response" : {
+            "upperCode": "",
+            "code": "",
+            "name": ""
+          }
         }
       }
     }

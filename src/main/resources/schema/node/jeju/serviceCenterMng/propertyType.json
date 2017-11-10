@@ -238,6 +238,23 @@
   {
     "typeId": "propertyType",
     "tid": "oneToOneQuestion",
+    "pid": "privateStatus",
+    "propertyTypeName": "비공개여부",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "commonCode",
+    "referenceValue": "code",
+    "codeFilter": "privateStatus",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "oneToOneQuestion",
     "pid": "file",
     "propertyTypeName": "첨부파일",
     "valueType": "FILE",
