@@ -172,20 +172,16 @@ public class ArtistVoteStatsByCntryTask {
                 +  " (perdStDate, perdFnsDate, artistId, cntryCd, rankNum, voteRate, voteNum, owner, created) "
                 +  " VALUES(?, ?, ?, ?, ?, ?, ?, ?, NOW())";
 
-//        try {
-            int com = jdbcTemplate.update(insertQuery,
-                    artistCntryVO.getVoteStart()
-                    , artistCntryVO.getVoteEnd()
-                    , artistCntryVO.getArtistId()
-                    , artistCntryVO.getCntryCd()
-                    , artistCntryVO.getRankNum()
-                    , artistCntryVO.getVoteRate()
-                    , artistCntryVO.getVoteNum()
-                    , "system");
-            logger.info("insertArtistVoteStatsByCntry - {} - {} - {}", artistCntryVO.getArtistId(), artistCntryVO.getVoteNum(), com);
-//        } catch ( Exception ex ) {
-//            logger.error(ex.getMessage(), ex);
-//        }
+        int com = jdbcTemplate.update(insertQuery,
+                artistCntryVO.getVoteStart()
+                , artistCntryVO.getVoteEnd()
+                , artistCntryVO.getArtistId()
+                , artistCntryVO.getCntryCd()
+                , artistCntryVO.getRankNum()
+                , artistCntryVO.getVoteRate()
+                , artistCntryVO.getVoteNum()
+                , "system");
+        logger.info("insertArtistVoteStatsByCntry - {} - {} - {}", artistCntryVO.getArtistId(), artistCntryVO.getVoteNum(), com);
     }
 
 

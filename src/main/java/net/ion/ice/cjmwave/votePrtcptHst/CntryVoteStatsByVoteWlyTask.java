@@ -143,18 +143,14 @@ public class CntryVoteStatsByVoteWlyTask {
                 " (voteSeq, cntryCd, rankNum, voteRate, voteNum, owner, created) " +
                 " VALUES(?, ?, ?, ?, ?, ?, NOW())";
 
-//        try {
-            int com = jdbcTemplate.update(insertQuery
-                    , cntryVoteByVoteVO.getVoteSeq()
-                    , cntryVoteByVoteVO.getCntryCd()
-                    , cntryVoteByVoteVO.getRankNum()
-                    , cntryVoteByVoteVO.getVoteRate()
-                    , cntryVoteByVoteVO.getVoteNum()
-                    , "system");
-            logger.info("insertCntryVoteStatsByVote - {} - {}", cntryVoteByVoteVO.getVoteNum(), com);
-//        } catch ( Exception ex ) {
-//            logger.error(ex.getMessage(), ex);
-//        }
+        int com = jdbcTemplate.update(insertQuery
+                , cntryVoteByVoteVO.getVoteSeq()
+                , cntryVoteByVoteVO.getCntryCd()
+                , cntryVoteByVoteVO.getRankNum()
+                , cntryVoteByVoteVO.getVoteRate()
+                , cntryVoteByVoteVO.getVoteNum()
+                , "system");
+        logger.info("insertCntryVoteStatsByVote - {} - {}", cntryVoteByVoteVO.getVoteNum(), com);
     }
 
 
