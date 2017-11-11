@@ -23,6 +23,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.ByteArrayInputStream;
 import java.io.ObjectInputStream;
 import java.util.Enumeration;
@@ -71,22 +72,38 @@ public class CaptchaService {
     }
 
     public Boolean validate(HttpServletRequest httpRequest) {
+        logger.info("CAPTCHA : " + httpRequest.getServerName());
+        Enumeration he = httpRequest.getHeaderNames();
+        while (he.hasMoreElements()) {
+            String name = (String) he.nextElement();
+            logger.info("HEADER : " + name + "=" + httpRequest.getHeader(name) );
+        }
+
         Cookie[] cookies = httpRequest.getCookies();
         if(cookies != null){
             for(Cookie cookie : cookies){
                 logger.info("COOKIE : " + cookie.getName() + "=" + cookie.getValue());
+//                if(cookie.getName().equals("sessionId")){
+//                    sessionKey= cookie.getValue();
+//                    break;
+//                }
             }
         }
 
         String vd = httpRequest.getParameter("vd");
         logger.info("VD : " + vd);
 
+        String sessionKey = httpRequest.getParameter("sessionId");
+        logger.info("sessionKey : " + sessionKey);
 
-        Enumeration e = httpRequest.getAttributeNames();
+        HttpSession session = getSession(sessionKey);
+
+        Enumeration e = session.getAttributeNames();
         while (e.hasMoreElements()) {
             String name = (String) e.nextElement();
-            logger.info("ATTRIBUTE : " + name + "=" + httpRequest.getAttribute(name) );
+            logger.info("SESSION : " + name + "=" + session.getAttribute(name) );
         }
+
 
 
         return false;
@@ -103,7 +120,7 @@ public class CaptchaService {
     }
 
 
-    public Session getSession(String sessionKey){
+    public HttpSession getSession(String sessionKey){
         DynamoSessionItem sessionItem = dynamoDBMapper.load(new DynamoSessionItem(sessionKey));
         if (sessionItem != null) {
             return toSession(sessionItem);
@@ -113,7 +130,7 @@ public class CaptchaService {
 
     }
 
-    public Session toSession(DynamoSessionItem sessionItem) {
+    public HttpSession toSession(DynamoSessionItem sessionItem) {
         ObjectInputStream ois = null;
         try {
             ByteArrayInputStream fis = new ByteArrayInputStream(sessionItem.getSessionData().array());
