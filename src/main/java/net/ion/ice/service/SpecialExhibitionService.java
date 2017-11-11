@@ -70,7 +70,7 @@ public class SpecialExhibitionService {
                         if (productSaveValueJsonNode != null && !productSaveValueJsonNode.isNull()) {
                             for (JsonNode productJsonNode : productSaveValueJsonNode) {
                                 if (productJsonNode.get("upperId") == null || productJsonNode.get("upperId").isNull()) {
-                                    String productId = productJsonNode.get("productId").toString();
+                                    String productId = productJsonNode.get("productId").asText();
                                     productService.copyProduct(productId, true, specialExhibitionId, specialExhibitionAnkerId);
                                 }
                             }
@@ -78,8 +78,8 @@ public class SpecialExhibitionService {
 
                         if (productDeleteValueJsonNode != null && !productDeleteValueJsonNode.isNull()) {
                             for (JsonNode productJsonNode : productDeleteValueJsonNode) {
-                                if (productJsonNode.get("upperId") == null || productJsonNode.get("upperId").isNull()) {
-                                    String productId = productJsonNode.get("productId").toString();
+                                if (productJsonNode.get("upperId") != null || !productJsonNode.get("upperId").isNull()) {
+                                    String productId = productJsonNode.get("productId").asText();
                                     Node productNode = nodeService.read("product", productId);
                                     if (productNode != null) {
                                         Map<String, Object> productData = new HashMap<>();
@@ -96,7 +96,7 @@ public class SpecialExhibitionService {
 
                 if (deleteAnkerListJsonNode != null && !deleteAnkerListJsonNode.isNull()) {
                     for (JsonNode deleteAnkerJsonNode : deleteAnkerListJsonNode) {
-                        String specialExhibitionAnkerId = deleteAnkerJsonNode.get("specialExhibitionAnkerId") == null ? "" : deleteAnkerJsonNode.get("specialExhibitionAnkerId").toString();
+                        String specialExhibitionAnkerId = deleteAnkerJsonNode.get("specialExhibitionAnkerId") == null ? "" : deleteAnkerJsonNode.get("specialExhibitionAnkerId").asText();
                         if (!StringUtils.isEmpty(specialExhibitionAnkerId)) {
                             nodeService.deleteNode("specialExhibitionAnker", specialExhibitionAnkerId);
 
