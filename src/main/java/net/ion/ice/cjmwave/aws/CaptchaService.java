@@ -6,10 +6,8 @@ import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.regions.RegionUtils;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import com.amazonaws.tomcatsessionmanager.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.tomcatsessionmanager.amazonaws.internal.StaticCredentialsProvider;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
 import com.amazonaws.tomcatsessionmanager.amazonaws.services.dynamodb.sessionmanager.converters.SessionConversionException;
-import com.amazonaws.tomcatsessionmanager.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
 import com.amazonaws.util.IOUtils;
 import org.apache.catalina.Session;
 import org.apache.catalina.session.StandardSession;
@@ -55,7 +53,7 @@ public class CaptchaService {
     @PostConstruct
     public void initDynamoMapper(){
         this.amazonDynamoDB =  createDynamoClient();
-        this.dynamoDBMapper = new DynamoDBMapper(amazonDynamoDB, (AWSCredentialsProvider) new DynamoDBMapperConfig(new DynamoDBMapperConfig.TableNameOverride("")));
+        this.dynamoDBMapper = new DynamoDBMapper(amazonDynamoDB, new DynamoDBMapperConfig(new DynamoDBMapperConfig.TableNameOverride("MWAVE_SESSION")));
     }
 
     /**
@@ -148,9 +146,9 @@ public class CaptchaService {
     }
 
     public AWSCredentialsProvider amazonAWSCredentials() {
-        if(StringUtils.isNotEmpty(this.amazonAWSAccessKey)){
-            return (AWSCredentialsProvider) new StaticCredentialsProvider(new BasicAWSCredentials(amazonAWSAccessKey, amazonAWSSecretKey));
-        }
+//        if(StringUtils.isNotEmpty(this.amazonAWSAccessKey)){
+//            return (AWSCredentialsProvider) new StaticCredentialsProvider(new BasicAWSCredentials(amazonAWSAccessKey, amazonAWSSecretKey));
+//        }
         AWSCredentialsProvider defaultChainProvider = new DefaultAWSCredentialsProviderChain();
         if (defaultChainProvider.getCredentials() == null) {
             logger.debug("Loading security credentials from default credentials provider chain.");
