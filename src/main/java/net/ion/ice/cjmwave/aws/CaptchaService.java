@@ -9,7 +9,10 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
 import com.amazonaws.tomcatsessionmanager.amazonaws.services.dynamodb.sessionmanager.converters.SessionConversionException;
 import com.amazonaws.util.IOUtils;
-import java.util.List;
+
+import java.io.*;
+import java.util.*;
+
 import org.apache.catalina.Session;
 import org.apache.catalina.session.StandardSession;
 import org.apache.catalina.util.CustomObjectInputStream;
@@ -25,10 +28,8 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.ByteArrayInputStream;
-import java.io.ObjectInputStream;
-import java.util.Arrays;
-import java.util.Enumeration;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * Created by leehh on 2017. 11. 11.
@@ -112,26 +113,23 @@ public class CaptchaService {
         logger.info("uuid : " + sessionKey);
 
         if(StringUtils.isNotEmpty(sessionKey)) {
-            HttpSession session = getSession(sessionKey);
+            ConcurrentMap<String, Object> attributes = getSession(sessionKey);
 
-            Enumeration e = session.getAttributeNames();
-            while (e.hasMoreElements()) {
-                String name = (String) e.nextElement();
-                logger.info("SESSION : " + name + "=" + session.getAttribute(name));
+            for(String name : attributes.keySet()) {
+                logger.info("SESSION : " + name + "=" + attributes.get(name));
             }
+
             String itemKey = "";
-            if(e.hasMoreElements()){
-                if("IfUser002".equals(reqUrl)){
-                    itemKey = session.getAttribute("mbrCaptcha_CAPTCHA").toString();
-                }else{
-                    itemKey = session.getAttribute("voteCaptcha_CAPTCHA").toString();
-                }
-                logger.info("reqUrl="+reqUrl+", itemKey="+itemKey);
-                if(StringUtils.isNotEmpty(itemKey)){
-                    boolean captchaVaild = validate(itemKey,vd);
-                    logger.info("captchaValid="+captchaVaild);
-                    return captchaVaild;
-                }
+            if("IfUser002".equals(reqUrl)){
+                itemKey = (String) attributes.get("mbrCaptcha_CAPTCHA");
+            }else{
+                itemKey = (String) attributes.get("voteCaptcha_CAPTCHA");
+            }
+            logger.info("reqUrl="+reqUrl+", itemKey="+itemKey);
+            if(StringUtils.isNotEmpty(itemKey)){
+                boolean captchaVaild = validate(itemKey,vd);
+                logger.info("captchaValid="+captchaVaild);
+                return captchaVaild;
             }
         }
 
@@ -150,17 +148,15 @@ public class CaptchaService {
     }
 
     public void checkSession(String sessionKey){
-        HttpSession session = getSession(sessionKey);
+        ConcurrentMap<String, Object> attributes = getSession(sessionKey);
 
-        Enumeration e = session.getAttributeNames();
-        while (e.hasMoreElements()) {
-            String name = (String) e.nextElement();
-            logger.info("SESSION : " + name + "=" + session.getAttribute(name));
+        for(String name : attributes.keySet()) {
+            logger.info("SESSION : " + name + "=" + attributes.get(name));
         }
     }
 
 
-    public HttpSession getSession(String sessionKey){
+    public ConcurrentMap<String, Object> getSession(String sessionKey){
         DynamoSessionItem sessionItem = dynamoDBMapper.load(new DynamoSessionItem(sessionKey));
         if (sessionItem != null) {
             return toSession(sessionItem);
@@ -170,21 +166,57 @@ public class CaptchaService {
 
     }
 
-    public HttpSession toSession(DynamoSessionItem sessionItem) {
+    public ConcurrentMap<String, Object> toSession(DynamoSessionItem sessionItem) {
         ObjectInputStream ois = null;
         try {
             ByteArrayInputStream fis = new ByteArrayInputStream(sessionItem.getSessionData().array());
             ois = new CustomObjectInputStream(fis, this.getClass().getClassLoader());
 
-            StandardSession session = new StandardSession(null);
-            session.readObjectData(ois);
-            return session;
+
+            return doReadObject(ois);
+
         } catch (Exception e) {
             throw new SessionConversionException("Unable to convert Dynamo storage representation to a Tomcat Session",
                     e);
         } finally {
             IOUtils.closeQuietly(ois, null);
         }
+    }
+
+    protected ConcurrentMap<String, Object> doReadObject(ObjectInputStream stream)
+            throws ClassNotFoundException, IOException {
+
+
+        long creationTime = ((Long) stream.readObject()).longValue();
+        long lastAccessedTime = ((Long) stream.readObject()).longValue();
+        long maxInactiveInterval = ((Integer) stream.readObject()).intValue();
+        boolean isNew = ((Boolean) stream.readObject()).booleanValue();
+        boolean isValid = ((Boolean) stream.readObject()).booleanValue();
+        long thisAccessedTime = ((Long) stream.readObject()).longValue();
+        Object principal = null;        // Transient only
+        //        setId((String) stream.readObject());
+        String id = (String) stream.readObject();
+        // Deserialize the attribute count and attribute values
+        ConcurrentMap<String, Object> attributes = new ConcurrentHashMap<>();
+        int n = ((Integer) stream.readObject()).intValue();
+        boolean isValidSave = isValid;
+        isValid = true;
+        for (int i = 0; i < n; i++) {
+            String name = (String) stream.readObject();
+            final Object value;
+            try {
+                value = stream.readObject();
+            } catch (WriteAbortedException wae) {
+                if (wae.getCause() instanceof NotSerializableException) {
+
+                    continue;
+                }
+                throw wae;
+            }
+
+            attributes.put(name, value);
+        }
+        return attributes;
     }
 
 
