@@ -93,10 +93,15 @@ public class VotePrtcptHstService {
      * 단일 투표하기 api에서 사용함
      */
     public void voting(ExecuteContext context) {
+        String cookie = context.getHttpRequest().getHeader("cookie");
+        logger.info("###rglrMbrJoin : cookie="+cookie);
         if (jdbcTemplate == null) {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
         }
         Map<String, Object> data = context.getData();
+        if(data.get("vd")!=null){
+            logger.info("###captcha vd :"+data.get("vd").toString());
+        }
         String voteSeq = data.get(VOTE_SEQ).toString();
         String voteItemSeqs = (String) data.get("voteQueiSeq");
         String[] voteItemSeqArr = voteItemSeqs.split(",");
@@ -267,12 +272,17 @@ public class VotePrtcptHstService {
      * 시리즈(MAMA) 투표하기 api에서 사용함
      */
     public void seriesVoting(ExecuteContext context) {
+        String cookie = context.getHttpRequest().getHeader("cookie");
+        logger.info("###rglrMbrJoin : cookie="+cookie);
 
         if (jdbcTemplate == null) {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
         }
 
         Map<String, Object> data = context.getData();
+        if(data.get("vd")!=null){
+            logger.info("###captcha vd :"+data.get("vd").toString());
+        }
         if (data.isEmpty()) {   // Parameter is null
             throw new ApiException("420", errMsgUtil.getErrMsg(context, "420"));
         }
@@ -817,12 +827,16 @@ public class VotePrtcptHstService {
 
     // [IF-MEV-003] sponsor 투표
     public void sponsorEvtVoting(ExecuteContext context) {
-
+        String cookie = context.getHttpRequest().getHeader("cookie");
+        logger.info("###rglrMbrJoin : cookie="+cookie);
         if (jdbcTemplate == null) {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo(VOTE_BAS_INFO).getJdbcTemplate();
         }
 
         Map<String, Object> data = context.getData();
+        if(data.get("vd")!=null){
+            logger.info("###captcha vd :"+data.get("vd").toString());
+        }
         if (data.isEmpty()) {   // Parameter is null
             throw new ApiException("420", errMsgUtil.getErrMsg(context, "420"));
         }
