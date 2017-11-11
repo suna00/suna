@@ -23,8 +23,11 @@ import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import java.io.ByteArrayInputStream;
 import java.io.ObjectInputStream;
+import java.util.Enumeration;
 
 /**
  * Created by leehh on 2017. 11. 11.
@@ -36,14 +39,11 @@ public class CaptchaService {
     @Value("${amazon.dynamodb.endpoint}")
     private String amazonDynamoDBEndpoint;
 
-    @Value("${amazon.aws.accesskey}")
     private String amazonAWSAccessKey;
 
-    @Value("${amazon.aws.secretkey}")
     private String amazonAWSSecretKey;
 
-    @Value("${amazon.aws.regionId}")
-    private String regionId;
+    private String regionId = "ap-northeast-2";
 
 
 
@@ -72,7 +72,27 @@ public class CaptchaService {
         return StringUtils.equalsIgnoreCase(captchaText, captchaValue);
     }
 
+    public Boolean validate(HttpServletRequest httpRequest) {
+        Cookie[] cookies = httpRequest.getCookies();
+        if(cookies != null){
+            for(Cookie cookie : cookies){
+                logger.info("COOKIE : " + cookie.getName() + "=" + cookie.getValue());
+            }
+        }
 
+        String vd = httpRequest.getParameter("vd");
+        logger.info("VD : " + vd);
+
+
+        Enumeration e = httpRequest.getAttributeNames();
+        while (e.hasMoreElements()) {
+            String name = (String) e.nextElement();
+            logger.info("ATTRIBUTE : " + name + "=" + httpRequest.getAttribute(name) );
+        }
+
+
+        return false;
+    }
     /**
      * 캡차 reset
      *
@@ -142,4 +162,6 @@ public class CaptchaService {
         return defaultChainProvider;
 
     }
+
+
 }

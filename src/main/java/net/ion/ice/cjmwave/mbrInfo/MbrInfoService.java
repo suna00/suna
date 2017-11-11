@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.*;
 
+import net.ion.ice.cjmwave.aws.CaptchaService;
 import net.ion.ice.cjmwave.errMsgInfo.ErrMsgUtil;
 import net.ion.ice.core.api.ApiException;
 import net.ion.ice.core.context.ExecuteContext;
@@ -43,6 +44,9 @@ public class MbrInfoService {
 
     @Autowired
     private DBService dbService;
+
+    @Autowired
+    private CaptchaService captchaService;
 
     public Node getMbrNode(String snsType, String snsKey) {
         if (jdbcTemplate == null) {
@@ -109,6 +113,9 @@ public class MbrInfoService {
     }
 
     public void rglrMbrJoin(ExecuteContext context) {
+
+        captchaService.validate(context.getHttpRequest());
+
         if (jdbcTemplate == null) {
             jdbcTemplate = NodeUtils.getNodeBindingService().getNodeBindingInfo("mbrInfo").getJdbcTemplate();
         }
