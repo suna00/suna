@@ -120,16 +120,18 @@ public class CaptchaService {
                 logger.info("SESSION : " + name + "=" + session.getAttribute(name));
             }
             String itemKey = "";
-            if("/api/member/IfUser002".equals(reqUrl)){
-                itemKey = session.getAttribute("mbrCaptcha_CAPTCHA").toString();
-            }else{
-                itemKey = session.getAttribute("voteCaptcha_CAPTCHA").toString();
-            }
-            logger.info("reqUrl="+reqUrl+", itemKey="+itemKey);
-            if(StringUtils.isNotEmpty(itemKey)){
-                boolean captchaVaild = validate(itemKey,vd);
-                logger.info("captchaValid="+captchaVaild);
-                return captchaVaild;
+            if(e.hasMoreElements()){
+                if("/api/member/IfUser002".equals(reqUrl)){
+                    itemKey = session.getAttribute("mbrCaptcha_CAPTCHA").toString();
+                }else{
+                    itemKey = session.getAttribute("voteCaptcha_CAPTCHA").toString();
+                }
+                logger.info("reqUrl="+reqUrl+", itemKey="+itemKey);
+                if(StringUtils.isNotEmpty(itemKey)){
+                    boolean captchaVaild = validate(itemKey,vd);
+                    logger.info("captchaValid="+captchaVaild);
+                    return captchaVaild;
+                }
             }
         }
 
