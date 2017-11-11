@@ -9,6 +9,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
 import com.amazonaws.tomcatsessionmanager.amazonaws.services.dynamodb.sessionmanager.converters.SessionConversionException;
 import com.amazonaws.util.IOUtils;
+import java.util.List;
 import org.apache.catalina.Session;
 import org.apache.catalina.session.StandardSession;
 import org.apache.catalina.util.CustomObjectInputStream;
@@ -26,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.ByteArrayInputStream;
 import java.io.ObjectInputStream;
+import java.util.Arrays;
 import java.util.Enumeration;
 
 /**
@@ -50,6 +52,7 @@ public class CaptchaService {
 
     private AmazonDynamoDBClient amazonDynamoDB;
 
+    private List<String> allowDomainList = Arrays.asList("internal-g-p-api-Internal-elb-1137130812.ap-northeast-2.elb.amazonaws.com","G-P-Api-ELB-321213426.ap-northeast-2.elb.amazonaws.com","mapi.mwave.me","Test-Api-ELB-334897221.ap-northeast-2.elb.amazonaws.com");
 
     @PostConstruct
     public void initDynamoMapper(){
@@ -73,6 +76,12 @@ public class CaptchaService {
 
     public Boolean validate(HttpServletRequest httpRequest) {
         logger.info("CAPTCHA : " + httpRequest.getServerName());
+        String reqServerName = httpRequest.getServerName();
+        //허용된 도메인에서 호출된 경우인지 확인
+        if(!allowDomainList.contains(reqServerName)){
+            logger.info("serverName validate : serverName="+reqServerName);
+            return false;
+        }
         Enumeration he = httpRequest.getHeaderNames();
         while (he.hasMoreElements()) {
             String name = (String) he.nextElement();
@@ -89,9 +98,15 @@ public class CaptchaService {
 //                }
             }
         }
-
+        String uuid = httpRequest.getParameter("uuid");
+        logger.info("uuid : " + uuid);
         String vd = httpRequest.getParameter("vd");
         logger.info("VD : " + vd);
+        //APP에서 호출한 경우가 아니면, vd는 꼭 넘어와야함
+        if(!"mapi.mwave.me".equals(reqServerName) && StringUtils.isEmpty(vd)){
+            logger.info("vd validate : serverName="+reqServerName+", vd="+vd);
+            return false;
+        }
 
         String sessionKey = httpRequest.getParameter("sessionId");
         logger.info("sessionKey : " + sessionKey);
@@ -107,7 +122,7 @@ public class CaptchaService {
         }
 
 
-        return false;
+        return true;
     }
     /**
      * 캡차 reset
