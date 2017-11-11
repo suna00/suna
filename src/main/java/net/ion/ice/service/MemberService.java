@@ -738,67 +738,19 @@ public class MemberService {
     }
 
     private void setCompanySheet(Workbook workbook) {
+        List<String> cellNameList = Arrays.asList(StringUtils.split("기업,회원등급,아이디,비밀번호,이름,휴대폰 번호,기타 연락처,우편번호,주소,상세주소,성별,관심분야,마케팅 이메일 수신동의,마케팅 SMS 수신동의", ","));
         Sheet sheet1 = workbook.createSheet("기업회원정보");
         Row row1 = sheet1.createRow(0);
 
-        Cell cell0 = row1.createCell(0);
-        cell0.setCellValue("기업");
-        cell0.setCellStyle(excelService.getHeaderCellStyle(workbook));
+        for (int i=0; i<cellNameList.size(); i++) {
+            Cell cell = row1.createCell(i);
+            cell.setCellValue(cellNameList.get(i));
+            cell.setCellStyle(excelService.getHeaderCellStyle(workbook));
+        }
 
-        Cell cell1 = row1.createCell(1);
-        cell1.setCellValue("회원등급");
-        cell1.setCellStyle(excelService.getHeaderCellStyle(workbook));
-
-        Cell cell2 = row1.createCell(2);
-        cell2.setCellValue("아이디");
-        cell2.setCellStyle(excelService.getHeaderCellStyle(workbook));
-
-        Cell cell3 = row1.createCell(3);
-        cell3.setCellValue("비밀번호");
-        cell3.setCellStyle(excelService.getHeaderCellStyle(workbook));
-
-        Cell cell4 = row1.createCell(4);
-        cell4.setCellValue("이름");
-        cell4.setCellStyle(excelService.getHeaderCellStyle(workbook));
-
-        Cell cell5 = row1.createCell(5);
-        cell5.setCellValue("휴대폰 번호");
-        cell5.setCellStyle(excelService.getHeaderCellStyle(workbook));
-
-        Cell cell6 = row1.createCell(6);
-        cell6.setCellValue("기타 연락처");
-        cell6.setCellStyle(excelService.getHeaderCellStyle(workbook));
-
-        Cell cell7 = row1.createCell(7);
-        cell7.setCellValue("우편번호");
-        cell7.setCellStyle(excelService.getHeaderCellStyle(workbook));
-
-        Cell cell8 = row1.createCell(8);
-        cell8.setCellValue("주소");
-        cell8.setCellStyle(excelService.getHeaderCellStyle(workbook));
-
-        Cell cell9 = row1.createCell(9);
-        cell9.setCellValue("상세주소");
-        cell9.setCellStyle(excelService.getHeaderCellStyle(workbook));
-
-        Cell cell10 = row1.createCell(10);
-        cell10.setCellValue("성별");
-        cell10.setCellStyle(excelService.getHeaderCellStyle(workbook));
-
-        Cell cell11 = row1.createCell(11);
-        cell11.setCellValue("관심분야");
-        cell11.setCellStyle(excelService.getHeaderCellStyle(workbook));
-
-        Cell cell12 = row1.createCell(12);
-        cell12.setCellValue("마케팅 이메일 수신동의");
-        cell12.setCellStyle(excelService.getHeaderCellStyle(workbook));
-
-        Cell cell13 = row1.createCell(13);
-        cell13.setCellValue("마케팅 SMS 수신동의");
-        cell13.setCellStyle(excelService.getHeaderCellStyle(workbook));
-
-        for (int i=0; i<14; i++) {
+        for (int i=0; i<cellNameList.size(); i++) {
             sheet1.autoSizeColumn(i);
+            sheet1.setColumnWidth(i, sheet1.getColumnWidth(i)+512);
         }
 
         Sheet sheet2 = workbook.createSheet("기업 코드");
@@ -821,79 +773,19 @@ public class MemberService {
     }
 
     private void setUniversitySheet(Workbook workbook) {
+        List<String> cellNameList = Arrays.asList(StringUtils.split("대학,회원등급,아이디,비밀번호,이름,휴대폰 번호,기타 연락처,우편번호,주소,상세주소,학부/학과,교직원,입학년도,성별,관심분야,마케팅 이메일 수신동의,마케팅 SMS 수신동의", ","));
         Sheet sheet1 = workbook.createSheet("대학회원정보");
         Row row1 = sheet1.createRow(0);
 
-        Cell cell0 = row1.createCell(0);
-        cell0.setCellValue("대학");
-        cell0.setCellStyle(excelService.getHeaderCellStyle(workbook));
+        for (int i=0; i<cellNameList.size(); i++) {
+            Cell cell = row1.createCell(i);
+            cell.setCellValue(cellNameList.get(i));
+            cell.setCellStyle(excelService.getHeaderCellStyle(workbook));
+        }
 
-        Cell cell1 = row1.createCell(1);
-        cell1.setCellValue("회원등급");
-        cell1.setCellStyle(excelService.getHeaderCellStyle(workbook));
-
-        Cell cell2 = row1.createCell(2);
-        cell2.setCellValue("아이디");
-        cell2.setCellStyle(excelService.getHeaderCellStyle(workbook));
-
-        Cell cell3 = row1.createCell(3);
-        cell3.setCellValue("비밀번호");
-        cell3.setCellStyle(excelService.getHeaderCellStyle(workbook));
-
-        Cell cell4 = row1.createCell(4);
-        cell4.setCellValue("이름");
-        cell4.setCellStyle(excelService.getHeaderCellStyle(workbook));
-
-        Cell cell5 = row1.createCell(5);
-        cell5.setCellValue("휴대폰 번호");
-        cell5.setCellStyle(excelService.getHeaderCellStyle(workbook));
-
-        Cell cell6 = row1.createCell(6);
-        cell6.setCellValue("기타 연락처");
-        cell6.setCellStyle(excelService.getHeaderCellStyle(workbook));
-
-        Cell cell7 = row1.createCell(7);
-        cell7.setCellValue("우편번호");
-        cell7.setCellStyle(excelService.getHeaderCellStyle(workbook));
-
-        Cell cell8 = row1.createCell(8);
-        cell8.setCellValue("주소");
-        cell8.setCellStyle(excelService.getHeaderCellStyle(workbook));
-
-        Cell cell9 = row1.createCell(9);
-        cell9.setCellValue("상세주소");
-        cell9.setCellStyle(excelService.getHeaderCellStyle(workbook));
-
-        Cell cell10 = row1.createCell(10);
-        cell10.setCellValue("학부/학과");
-        cell10.setCellStyle(excelService.getHeaderCellStyle(workbook));
-
-        Cell cell11 = row1.createCell(11);
-        cell11.setCellValue("교직원");
-        cell11.setCellStyle(excelService.getHeaderCellStyle(workbook));
-
-        Cell cell12 = row1.createCell(12);
-        cell12.setCellValue("입학년도");
-        cell12.setCellStyle(excelService.getHeaderCellStyle(workbook));
-
-        Cell cell13 = row1.createCell(13);
-        cell13.setCellValue("성별");
-        cell13.setCellStyle(excelService.getHeaderCellStyle(workbook));
-
-        Cell cell14 = row1.createCell(14);
-        cell14.setCellValue("관심분야");
-        cell14.setCellStyle(excelService.getHeaderCellStyle(workbook));
-
-        Cell cell15 = row1.createCell(15);
-        cell15.setCellValue("마케팅 이메일 수신동의");
-        cell15.setCellStyle(excelService.getHeaderCellStyle(workbook));
-
-        Cell cell16 = row1.createCell(16);
-        cell16.setCellValue("마케팅 SMS 수신동의");
-        cell16.setCellStyle(excelService.getHeaderCellStyle(workbook));
-
-        for (int i=0; i<17; i++) {
+        for (int i=0; i<cellNameList.size(); i++) {
             sheet1.autoSizeColumn(i);
+            sheet1.setColumnWidth(i, sheet1.getColumnWidth(i)+512);
         }
 
         Sheet sheet2 = workbook.createSheet("대학 코드");
@@ -937,7 +829,9 @@ public class MemberService {
         }
 
         sheet.autoSizeColumn(0);
+        sheet.setColumnWidth(0, sheet.getColumnWidth(0)+512);
         sheet.autoSizeColumn(1);
+        sheet.setColumnWidth(1, sheet.getColumnWidth(1)+512);
     }
 
     private void setCodeSheet(Workbook workbook, Sheet sheet, String upperCode) {
@@ -962,7 +856,9 @@ public class MemberService {
         }
 
         sheet.autoSizeColumn(0);
+        sheet.setColumnWidth(0, sheet.getColumnWidth(0)+512);
         sheet.autoSizeColumn(1);
+        sheet.setColumnWidth(1, sheet.getColumnWidth(1)+512);
     }
 
     public ExecuteContext uploadExcel(ExecuteContext context) {
