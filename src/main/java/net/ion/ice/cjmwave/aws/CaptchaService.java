@@ -96,14 +96,15 @@ public class CaptchaService {
         String sessionKey = httpRequest.getParameter("sessionId");
         logger.info("sessionKey : " + sessionKey);
 
-        HttpSession session = getSession(sessionKey);
+        if(StringUtils.isNotEmpty(sessionKey)) {
+            HttpSession session = getSession(sessionKey);
 
-        Enumeration e = session.getAttributeNames();
-        while (e.hasMoreElements()) {
-            String name = (String) e.nextElement();
-            logger.info("SESSION : " + name + "=" + session.getAttribute(name) );
+            Enumeration e = session.getAttributeNames();
+            while (e.hasMoreElements()) {
+                String name = (String) e.nextElement();
+                logger.info("SESSION : " + name + "=" + session.getAttribute(name));
+            }
         }
-
 
 
         return false;
