@@ -1,5 +1,16 @@
 [
   {
+    "typeId": "smsTemplate",
+    "smsTemplateId": 1,
+    "name": "인증번호",
+    "contents": "[회원제할인쇼핑몰] 인증번호 [certCode] 유효 시간 안에 입력해주세요.",
+    "smsType": "sms",
+    "autoYn": "true",
+    "sendToMemberYn": "true",
+    "sendToAdminYn": "true",
+    "sendToVendorYn": "true"
+  },
+  {
     "typeId": "emailTemplate",
     "emailTemplateId": 1,
     "name": "주문완료",
