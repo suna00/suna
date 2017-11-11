@@ -7,6 +7,7 @@ import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
+import com.amazonaws.regions.RegionUtils;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import net.ion.ice.cjmwave.votePrtcptHst.ArtistVoteStatsByCntryTask;
@@ -36,10 +37,17 @@ public class DynamoDBConfig {
     @Value("${amazon.aws.secretkey}")
     private String amazonAWSSecretKey;
 
+    @Value("${amazon.aws.regionId}")
+    private String regionId;
+
     @Bean
     public AmazonDynamoDB amazonDynamoDB() {
         AmazonDynamoDB amazonDynamoDB
                 = new AmazonDynamoDBClient(amazonAWSCredentials());
+
+        if (this.regionId != null) {
+            amazonDynamoDB.setRegion(RegionUtils.getRegion(this.regionId));
+        }
 
         if (!StringUtils.isEmpty(amazonDynamoDBEndpoint)) {
             amazonDynamoDB.setEndpoint(amazonDynamoDBEndpoint);
