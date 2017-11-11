@@ -171,8 +171,6 @@ public class CaptchaService {
         try {
             ByteArrayInputStream fis = new ByteArrayInputStream(sessionItem.getSessionData().array());
             ois = new CustomObjectInputStream(fis, this.getClass().getClassLoader());
-
-
             return doReadObject(ois);
 
         } catch (Exception e) {
@@ -185,8 +183,6 @@ public class CaptchaService {
 
     protected ConcurrentMap<String, Object> doReadObject(ObjectInputStream stream)
             throws ClassNotFoundException, IOException {
-
-
         long creationTime = ((Long) stream.readObject()).longValue();
         long lastAccessedTime = ((Long) stream.readObject()).longValue();
         long maxInactiveInterval = ((Integer) stream.readObject()).intValue();
@@ -208,7 +204,7 @@ public class CaptchaService {
                 value = stream.readObject();
             } catch (WriteAbortedException wae) {
                 if (wae.getCause() instanceof NotSerializableException) {
-
+                    wae.printStackTrace();
                     continue;
                 }
                 throw wae;
