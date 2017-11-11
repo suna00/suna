@@ -849,7 +849,7 @@ public class ProductService {
         productUploadData.put("failCount", saveResult.get("failCount"));
         productUploadData.put("failDescription", saveResult.get("failDescription"));
 
-        Node result = (Node) nodeService.executeNode(productUploadData, "productUploadData", EventService.CREATE);
+        Node result = (Node) nodeService.executeNode(productUploadData, "productUpload", EventService.CREATE);
         context.setResult(result);
 
         return context;
