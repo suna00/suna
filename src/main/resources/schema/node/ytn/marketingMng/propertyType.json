@@ -509,6 +509,7 @@
     "analyzer": "",
     "referenceType": "product",
     "referenceValue": "specialExhibitionAnkerId",
+    "referencedFilter": "deleteStatus_notWildcard=*",
     "codeFilter": "",
     "defaultValue": ""
   },
