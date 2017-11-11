@@ -2793,6 +2793,23 @@
   {
     "typeId": "propertyType",
     "tid": "productUpload",
+    "pid": "vendorId",
+    "propertyTypeName": "밴더ID",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "vendor",
+    "referenceValue": "vendorId",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "productUpload",
     "pid": "contentsType",
     "propertyTypeName": "컨텐츠타입",
     "valueType": "REFERENCE",
