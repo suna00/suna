@@ -2768,7 +2768,7 @@
     "idable": false,
     "labelable": false,
     "treeable": false,
-    "indexable": false,
+    "indexable": true,
     "analyzer": null,
     "referenceType": "commonCode",
     "referenceValue": "code",

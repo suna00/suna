@@ -173,6 +173,7 @@ public class CouponService {
             Map<String, Object> productInfo = getProductInfo(targetProduct);
             targetProduct.put("productName", productInfo.get("productName"));
             targetProduct.put("baseOptionItemName", productInfo.get("baseOptionItemName"));
+            targetProduct.put("contentsType", productInfo.get("contentsType"));
             List<Node> productToCategoryMap = nodeService.getNodeList("productToCategoryMap", "productId_matching=".concat(productId));
             List<Node> productCoupon = new ArrayList<>();
             for (Node coupon : couponList) {
@@ -289,6 +290,7 @@ public class CouponService {
         Node productOptionItemNode = nodeService.getNode("productOptionItem", baseOptionItemId);
 
         productInfo.put("productName", productNode.getStringValue("name"));
+        productInfo.put("contentsType", productNode.getBindingValue("contentsType"));
         productInfo.put("baseOptionItemName", productOptionItemNode.getStringValue("name"));
 
         return productInfo;

@@ -41,7 +41,7 @@ public class PointService {
     @Autowired
     private SessionService sessionService;
 
-    public boolean checkUsablePoint(String memberNo, String type, int usePoint) {
+    public boolean checkUsablePoint(String memberNo, String type, Double usePoint) {
         Node node = NodeUtils.getNode(MEMBER, memberNo);
         if (((Double)node.get(type)).intValue() < usePoint) return false;
         return true;
@@ -68,7 +68,7 @@ public class PointService {
 
 
     //type : YPOINT, WDLFAREPOINT
-    private Double updateMember(String memberNo, String type, Integer usePoint) {
+    private Double updateMember(String memberNo, String type, Double usePoint) {
 
         Node member = NodeUtils.getNode(MEMBER, memberNo);
         Double totalBalance = getTotalBalance(type, memberNo);
@@ -78,8 +78,8 @@ public class PointService {
     }
 
     // 유효기간 짧은순으로 순차적 차감
-    private void deductInOrder(String orderSheetId, Integer point, String searchText, String typeTid, String mapTid) {
-        Integer temp = point;
+    private void deductInOrder(String orderSheetId, Double point, String searchText, String typeTid, String mapTid) {
+        Double temp = point;
         boolean stop = false;
         List<Map<String, Object>> useablePointList = nodeBindingService.list(typeTid, searchText);
         for (Map<String, Object> p : useablePointList) {
@@ -107,7 +107,7 @@ public class PointService {
     // 특정상품 판매 및 특별이벤트 진행할 경우에 부여됩니다.
     public ExecuteContext addYPoint(ExecuteContext context) {
         Map<String, Object> data = context.getData();
-        Integer point = Integer.parseInt(data.get(YPOINT).toString());
+        Double point = Double.parseDouble(data.get(YPOINT).toString());
 
         Map<String, Object> map = new LinkedHashMap<>();
         map.putAll(data);
@@ -134,7 +134,7 @@ public class PointService {
         try {
             Map<String, Object> session = sessionService.getSession(context.getHttpRequest());
             Map<String, Object> data = context.getData();
-            Integer point = Integer.parseInt(data.get(YPOINT).toString());
+            Double point = Double.parseDouble(data.get(YPOINT).toString());
             String orderSheetId = data.get("orderSheetId").toString();
             String memberNo = JsonUtils.getStringValue(session, "member.memberNo");
             if (!checkUsablePoint(memberNo, YPOINT, point)) {
@@ -166,7 +166,7 @@ public class PointService {
 
     public Boolean useYPoint(Map<String, Object> data) {
         try {
-            Integer point = (Integer) data.get(YPOINT);
+            Double point = (Double) data.get(YPOINT);
             String memberNo = JsonUtils.getStringValue(data, "memberNo");
             String orderSheetId = JsonUtils.getStringValue(data, "orderSheetId");
             if (point  == 0) {
@@ -197,7 +197,7 @@ public class PointService {
     // cancel, return
     public ExecuteContext refundYPoint(ExecuteContext context) {
         Map<String, Object> data = context.getData();
-        Integer point = Integer.parseInt(data.get(YPOINT).toString());
+        Double point = Double.parseDouble(data.get(YPOINT).toString());
 
         List<Map<String, Object>> usedPointMapList = nodeBindingService.list(usedYPointMap, "orderSheetId_equals=" + data.get("orderSheetId"));
         for (Map<String, Object> y : usedPointMapList) {
@@ -231,14 +231,14 @@ public class PointService {
     //소멸(Batch)
     public ExecuteContext removeYPoint(ExecuteContext context) {
         Map<String, Object> data = context.getData();
-        Integer point = Integer.parseInt(data.get(YPOINT).toString());
+        Double point = Double.parseDouble(data.get(YPOINT).toString());
 
-        Integer temp = 0;
+        Double temp = 0D;
         String now = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyyMMdd")).concat("000000");
         List<Map<String, Object>> list = nodeBindingService.list(YPOINT, "YPointType_equals=add&balance_notEquals=0&endDate_below=" + now + "&sorting=endDate");
         for (Map<String, Object> y : list) {
             Node node = NodeUtils.getNode(YPOINT, y.get("YPointId").toString());
-            temp = temp + Integer.parseInt(node.get("balance").toString());
+            temp = temp + Double.parseDouble(node.get("balance").toString());
             node.put("balance", 0);
             nodeService.executeNode(node, YPOINT, CommonService.UPDATE);
         }
@@ -262,7 +262,7 @@ public class PointService {
         try {
             Map<String, Object> session = sessionService.getSession(context.getHttpRequest());
             Map<String, Object> data = context.getData();
-            Integer point = Integer.parseInt(data.get(WELFAREPOINT).toString());
+            Double point = Double.parseDouble(data.get(WELFAREPOINT).toString());
             String orderSheetId = data.get("orderSheetId").toString();
             String memberNo = JsonUtils.getStringValue(session, "member.memberNo");
             if (checkUsablePoint(memberNo, WELFAREPOINT, point)) {
@@ -291,7 +291,7 @@ public class PointService {
 
     public boolean useWelfarePoint(Map<String, Object> data) {
         try {
-            Integer point = (Integer) data.get(WELFAREPOINT);
+            Double point = (Double) data.get(WELFAREPOINT);
             String memberNo = JsonUtils.getStringValue(data, "memberNo");
             String orderSheetId = JsonUtils.getStringValue(data, "orderSheetId");
             if(point  == 0){
@@ -319,7 +319,7 @@ public class PointService {
     // cancel, return
     public ExecuteContext refundWelfarePoint(ExecuteContext context) {
         Map<String, Object> data = context.getData();
-        Integer point = Integer.parseInt(data.get(WELFAREPOINT).toString());
+        Double point = Double.parseDouble(data.get(WELFAREPOINT).toString());
 
         List<Map<String, Object>> usedPointMapList = nodeBindingService.list(usedWelfarePointMap, "orderSheetId_equals=" + data.get("orderSheetId"));
         for (Map<String, Object> y : usedPointMapList) {
