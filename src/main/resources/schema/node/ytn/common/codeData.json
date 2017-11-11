@@ -3630,7 +3630,7 @@
     "typeId": "commonCode",
     "code": "base",
     "upperCode": "productType",
-    "name": "BASE",
+    "name": "일반 상품",
     "description": "",
     "sortOrder": "1",
     "commonCodeStatus": "y"
@@ -3648,7 +3648,7 @@
     "typeId": "commonCode",
     "code": "special",
     "upperCode": "productType",
-    "name": "기획전",
+    "name": "기획전 상품",
     "description": "",
     "sortOrder": "3",
     "commonCodeStatus": "y"
