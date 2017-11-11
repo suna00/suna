@@ -77,7 +77,7 @@ public class CaptchaService {
     public Boolean validate(HttpServletRequest httpRequest) {
         logger.info("CAPTCHA : " + httpRequest.getServerName()+" | "+httpRequest.getRequestURL().toString());
         String reqServerName = httpRequest.getServerName();
-        String reqUrl = httpRequest.getRequestURL().toString();
+        String reqUrl = StringUtils.substringAfterLast(httpRequest.getRequestURL().toString(), "/");
         //허용된 도메인에서 호출된 경우인지 확인
         if(!allowDomainList.contains(reqServerName)){
             logger.info("serverName validate : serverName="+reqServerName);
@@ -121,7 +121,7 @@ public class CaptchaService {
             }
             String itemKey = "";
             if(e.hasMoreElements()){
-                if("/api/member/IfUser002".equals(reqUrl)){
+                if("IfUser002".equals(reqUrl)){
                     itemKey = session.getAttribute("mbrCaptcha_CAPTCHA").toString();
                 }else{
                     itemKey = session.getAttribute("voteCaptcha_CAPTCHA").toString();
@@ -147,6 +147,16 @@ public class CaptchaService {
 
     public void reset(String sessionKey) {
         RequestContextHolder.getRequestAttributes().removeAttribute(sessionKey, RequestAttributes.SCOPE_SESSION);
+    }
+
+    public void checkSession(String sessionKey){
+        HttpSession session = getSession(sessionKey);
+
+        Enumeration e = session.getAttributeNames();
+        while (e.hasMoreElements()) {
+            String name = (String) e.nextElement();
+            logger.info("SESSION : " + name + "=" + session.getAttribute(name));
+        }
     }
 
 
