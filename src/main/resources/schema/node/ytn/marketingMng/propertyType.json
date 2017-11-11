@@ -327,7 +327,7 @@
   {
     "typeId": "propertyType",
     "tid": "specialExhibition",
-    "pid": "referencedAnker",
+    "pid": "referencedSpecialExhibitionAnker",
     "propertyTypeName": "기획전 그룹",
     "valueType": "REFERENCED",
     "required": false,
