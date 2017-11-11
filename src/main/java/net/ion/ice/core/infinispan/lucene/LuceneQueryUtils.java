@@ -307,9 +307,9 @@ public class LuceneQueryUtils {
             }
             case WILDCARD: {
                 if(!StringUtils.contains(term.getQueryValue(), "*")){
-                    return createTermQuery( term, "*" + term.getQueryValue() +"*" );
+                    return createTermQuery( term, "*" + term.getQueryValue().toLowerCase() +"*" );
                 }
-                return createTermQuery( term, term.getQueryValue() );
+                return createTermQuery( term, term.getQueryValue().toLowerCase() );
             }
             case EQUALS:{
                 return createTermQuery(term, term.getQueryValue());
@@ -359,7 +359,7 @@ public class LuceneQueryUtils {
 
         if(term.getAnalyzer() instanceof SimpleAnalyzer){
             terms = new ArrayList<>(1) ;
-            terms.add(term.getQueryValue()) ;
+            terms.add(term.getQueryValue().toLowerCase()) ;
         }else {
             terms = getAllTermsFromText(
                     term.getQueryKey(),
