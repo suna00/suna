@@ -75,8 +75,9 @@ public class CaptchaService {
     }
 
     public Boolean validate(HttpServletRequest httpRequest) {
-        logger.info("CAPTCHA : " + httpRequest.getServerName());
+        logger.info("CAPTCHA : " + httpRequest.getServerName()+" | "+httpRequest.getRequestURL().toString());
         String reqServerName = httpRequest.getServerName();
+        String reqUrl = httpRequest.getRequestURL().toString();
         //허용된 도메인에서 호출된 경우인지 확인
         if(!allowDomainList.contains(reqServerName)){
             logger.info("serverName validate : serverName="+reqServerName);
@@ -98,8 +99,7 @@ public class CaptchaService {
 //                }
             }
         }
-        String uuid = httpRequest.getParameter("uuid");
-        logger.info("uuid : " + uuid);
+
         String vd = httpRequest.getParameter("vd");
         logger.info("VD : " + vd);
         //APP에서 호출한 경우가 아니면, vd는 꼭 넘어와야함
@@ -108,8 +108,8 @@ public class CaptchaService {
             return false;
         }
 
-        String sessionKey = httpRequest.getParameter("sessionId");
-        logger.info("sessionKey : " + sessionKey);
+        String sessionKey = httpRequest.getParameter("uuid");
+        logger.info("uuid : " + sessionKey);
 
         if(StringUtils.isNotEmpty(sessionKey)) {
             HttpSession session = getSession(sessionKey);
@@ -118,6 +118,18 @@ public class CaptchaService {
             while (e.hasMoreElements()) {
                 String name = (String) e.nextElement();
                 logger.info("SESSION : " + name + "=" + session.getAttribute(name));
+            }
+            String itemKey = "";
+            if("/api/member/IfUser002".equals(reqUrl)){
+                itemKey = session.getAttribute("mbrCaptcha_CAPTCHA").toString();
+            }else{
+                itemKey = session.getAttribute("voteCaptcha_CAPTCHA").toString();
+            }
+            logger.info("reqUrl="+reqUrl+", itemKey="+itemKey);
+            if(StringUtils.isNotEmpty(itemKey)){
+                boolean captchaVaild = validate(itemKey,vd);
+                logger.info("captchaValid="+captchaVaild);
+                return captchaVaild;
             }
         }
 
