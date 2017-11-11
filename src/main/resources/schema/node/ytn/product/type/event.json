@@ -111,5 +111,37 @@
     "actionType": "service",
     "actionBody": "productService.copy",
     "order": 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "product",
+    "event" : "downloadExcelForm",
+    "noneExecute" : true,
+    "eventName" : "상품 엑셀양식 다운로드"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "product>downloadExcelForm",
+    "action" : "downloadExcelForm",
+    "actionName" : "상품 엑셀양식 다운로드",
+    "actionType" : "service",
+    "actionBody" : "productService.downloadExcelForm",
+    "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "product",
+    "event" : "uploadExcel",
+    "noneExecute" : true,
+    "eventName" : "상품 엑셀 업로드"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "product>uploadExcel",
+    "action" : "uploadExcel",
+    "actionName" : "상품 엑셀 업로드",
+    "actionType" : "service",
+    "actionBody" : "productService.uploadExcel",
+    "order" : 1
   }
 ]
