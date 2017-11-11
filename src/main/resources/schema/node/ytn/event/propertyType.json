@@ -545,37 +545,5 @@
     "referenceValue": "",
     "codeFilter": "",
     "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "specialExhibition",
-    "pid": "referencedSpecialExhibitionAnker",
-    "propertyTypeName": "referenced앵커",
-    "valueType": "REFERENCED",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": true,
-    "indexable": true,
-    "analyzer": "code",
-    "referenceType": "specialExhibitionAnker",
-    "referenceValue": "specialExhibitiond",
-    "defaultValue": ""
-  },
-  {
-    "typeId": "propertyType",
-    "tid": "specialExhibitionAnker",
-    "pid": "referencedProduct",
-    "propertyTypeName": "referenced상품",
-    "valueType": "REFERENCED",
-    "required": false,
-    "idable": false,
-    "labelable": false,
-    "treeable": true,
-    "indexable": true,
-    "analyzer": "code",
-    "referenceType": "product",
-    "referenceValue": "specialExhibitionAnkerId",
-    "defaultValue": ""
   }
 ]
