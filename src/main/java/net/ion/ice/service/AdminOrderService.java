@@ -262,9 +262,11 @@ public class AdminOrderService {
                 for(String opId : StringUtils.split(opIds, ",")){
                     Node op = NodeUtils.getNode("orderProduct", opId);
                     Node product = NodeUtils.getNode("product", op.getStringValue("productId"));
-                    op.put("product", product.toDisplay(context));
-                    op.put("functionBtn", mypageOrderService.getFunctionBtn(dp, op, product));
-                    ops.add(op.toDisplay(context));
+                    if (product != null) {
+                        op.put("product", product.toDisplay(context));
+                        op.put("functionBtn", mypageOrderService.getFunctionBtn(dp, op, product));
+                        ops.add(op.toDisplay(context));
+                    }
 //                    List<Map<String, Object>> mainImages = nodeBindingService.list(mypageOrderService.commonResource_TID, "contentsId_matching=" + product.getId() + "&tid_matching=product&name_matching=main");
 //                    op.put("referencedMainImage", mainImages);
 //                    commonService.putReferenceValue("orderProduct", context, op);
