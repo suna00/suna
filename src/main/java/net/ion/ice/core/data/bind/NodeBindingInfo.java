@@ -278,6 +278,7 @@ public class NodeBindingInfo implements Serializable {
         }
 
         DBQuery dbQuery = new DBQuery(tableName, queryContext);
+        queryContext.setDbQuery(dbQuery);
         Map<String, Object> totalCount;
         if (dbQuery.getResultCountValue() == null || dbQuery.getResultCountValue().isEmpty()) {
             totalCount = jdbcTemplate.queryForMap(dbQuery.getTotalCountSql());
