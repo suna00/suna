@@ -30,5 +30,21 @@
     "actionType": "service",
     "actionBody": "specialExhibitionService.saveEvent",
     "order": 1
+  },
+  {
+    "typeId": "event",
+    "tid": "couponMembership",
+    "event": "saveEvent",
+    "noneExecute": true,
+    "eventName": "멤버쉽 쿠폰 저장"
+  },
+  {
+    "typeId": "eventAction",
+    "event": "couponMembership>saveEvent",
+    "action": "saveEvent",
+    "actionName": "멤버쉽 쿠폰 저장",
+    "actionType": "service",
+    "actionBody": "couponMembershipService.saveEvent",
+    "order": 1
   }
 ]
