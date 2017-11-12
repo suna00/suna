@@ -542,12 +542,33 @@ public class EmailService {
         sendEmailDirect(node.get("email").toString(), title, contents);
     }
 
-    public static void setHtmlNewStoreRequest(String email) throws IOException {
+    public static void setHtmlNewStoreRequest(String siteId, String adminEmail, Node node) throws IOException {
         // 입점상담신청	 ./pc_markup/DE_SL_FR_26_019.html
-        getEmailTemplate("입점상담신청");
+        // contactPerson, email, date, company, siteUrl, companyPhone, phone, newStoreRequestType, contents
+
+        String header = getHeaderNew(siteId);
+        String footer = getFooterNew(siteId);
+
+        Map<String, String> emailTemplate = getEmailTemplate("입점상담신청");
+        String title = emailTemplate.get("title").toString();
+        String contents = emailTemplate.get("contents").toString();
+
+        contents = contents.replaceAll("<img src=\"header\">", header);
+        contents = contents.replaceAll("::contactPerson::", node.get("contactPerson").toString());
+        contents = contents.replaceAll("::email::", node.get("email").toString());
+        contents = contents.replaceAll("::date::", node.get("created").toString());
+        contents = contents.replaceAll("::company::", node.get("company").toString());
+        contents = contents.replaceAll("::siteUrl::", node.get("siteUrl").toString());
+        contents = contents.replaceAll("::companyPhone::", node.get("companyPhone").toString());
+        contents = contents.replaceAll("::phone::", node.get("phone").toString());
+        contents = contents.replaceAll("::newStoreRequestType::", node.get("newStoreRequestType").toString());
+        contents = contents.replaceAll("::contents::", node.get("contents").toString());
+        contents = contents.replaceAll("<img src=\"footer\">", footer);
+
+        sendEmailDirect(adminEmail, title, contents);
     }
 
-    public static void setHtmlAffliateRequest(String email) throws IOException {
+    public static void setHtmlAffliateRequest(String siteId, Node node) throws IOException {
         // 제휴문의 ./pc_markup/DE_SL_FR_26_020.html
         getEmailTemplate("제휴문의");
     }
