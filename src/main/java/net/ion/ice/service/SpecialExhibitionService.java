@@ -46,30 +46,72 @@ public class SpecialExhibitionService {
             try {
                 JsonNode jsonNode = objectMapper.readValue(specialExhibitionAnker, JsonNode.class);
 
-                for (JsonNode specialExhibitionAnkerJsonNode : jsonNode) {
-                    String specialExhibitionAnkerId = specialExhibitionAnkerJsonNode.get("specialExhibitionAnkerId").asText();
-                    String name = specialExhibitionAnkerJsonNode.get("name").asText();
+                JsonNode saveAnkerListJsonNode = jsonNode.get("saveAnkerList");
+                JsonNode deleteAnkerListJsonNode = jsonNode.get("deleteAnkerList");
 
-                    Map<String, Object> specialExhibitionAnkerData = new HashMap<>();
-                    specialExhibitionAnkerData.put("specialExhibitionAnkerId", specialExhibitionAnkerId);
-                    specialExhibitionAnkerData.put("specialExhibitionId", specialExhibitionId);
-                    specialExhibitionAnkerData.put("name", name);
-                    specialExhibitionAnkerData.put("sortOrder", "0");
-                    specialExhibitionAnkerData.put("ankerStatus", "y");
+                if (saveAnkerListJsonNode != null && !saveAnkerListJsonNode.isNull()) {
+                    for (JsonNode specialExhibitionAnkerJsonNode : saveAnkerListJsonNode) {
+                        String specialExhibitionAnkerId = specialExhibitionAnkerJsonNode.get("specialExhibitionAnkerId").asText();
+                        String name = specialExhibitionAnkerJsonNode.get("name").asText();
 
-                    Node specialExhibitionAnkerNode = (Node) nodeService.executeNode(specialExhibitionAnkerData, "specialExhibitionAnker", EventService.SAVE);
-                    specialExhibitionAnkerId = specialExhibitionAnkerNode.getBindingValue("specialExhibitionAnkerId").toString();
+                        Map<String, Object> specialExhibitionAnkerData = new HashMap<>();
+                        specialExhibitionAnkerData.put("specialExhibitionAnkerId", specialExhibitionAnkerId);
+                        specialExhibitionAnkerData.put("specialExhibitionId", specialExhibitionId);
+                        specialExhibitionAnkerData.put("name", name);
+                        specialExhibitionAnkerData.put("sortOrder", "0");
+                        specialExhibitionAnkerData.put("ankerStatus", "y");
 
-                    JsonNode productSaveValueJsonNode = specialExhibitionAnkerJsonNode.get("productSaveValue");
+                        Node specialExhibitionAnkerNode = (Node) nodeService.executeNode(specialExhibitionAnkerData, "specialExhibitionAnker", EventService.SAVE);
+                        specialExhibitionAnkerId = specialExhibitionAnkerNode.getBindingValue("specialExhibitionAnkerId").toString();
 
-                    for (JsonNode productJsonNode : productSaveValueJsonNode) {
-                        if (productJsonNode.get("upperId").isNull()) {
-                            String productId = productJsonNode.get("productId").toString();
-                            productService.copyProduct(productId, true, specialExhibitionId, specialExhibitionAnkerId);
+                        JsonNode productSaveValueJsonNode = specialExhibitionAnkerJsonNode.get("productSaveValue");
+                        JsonNode productDeleteValueJsonNode = specialExhibitionAnkerJsonNode.get("productDeleteValue");
+
+                        if (productSaveValueJsonNode != null && !productSaveValueJsonNode.isNull()) {
+                            for (JsonNode productJsonNode : productSaveValueJsonNode) {
+                                if (productJsonNode.get("upperId") == null || productJsonNode.get("upperId").isNull()) {
+                                    String productId = productJsonNode.get("productId").asText();
+                                    productService.copyProduct(productId, true, specialExhibitionId, specialExhibitionAnkerId);
+                                }
+                            }
+                        }
+
+                        if (productDeleteValueJsonNode != null && !productDeleteValueJsonNode.isNull()) {
+                            for (JsonNode productJsonNode : productDeleteValueJsonNode) {
+                                if (productJsonNode.get("upperId") != null || !productJsonNode.get("upperId").isNull()) {
+                                    String productId = productJsonNode.get("productId").asText();
+                                    Node productNode = nodeService.read("product", productId);
+                                    if (productNode != null) {
+                                        Map<String, Object> productData = new HashMap<>();
+                                        productData.put("productId", productId);
+                                        productData.put("deleteStatus", "approve");
+
+                                        nodeService.executeNode(productData, "product", EventService.UPDATE);
+                                    }
+                                }
+                            }
                         }
                     }
                 }
 
+                if (deleteAnkerListJsonNode != null && !deleteAnkerListJsonNode.isNull()) {
+                    for (JsonNode deleteAnkerJsonNode : deleteAnkerListJsonNode) {
+                        String specialExhibitionAnkerId = deleteAnkerJsonNode.get("specialExhibitionAnkerId") == null ? "" : deleteAnkerJsonNode.get("specialExhibitionAnkerId").asText();
+                        if (!StringUtils.isEmpty(specialExhibitionAnkerId)) {
+                            nodeService.deleteNode("specialExhibitionAnker", specialExhibitionAnkerId);
+
+                            List<Node> productNodeList = (List<Node>) NodeQuery.build("product").matching("specialExhibitionAnkerId", specialExhibitionAnkerId).getList();
+                            for (Node productNode : productNodeList) {
+                                Map<String, Object> productData = new HashMap<>();
+                                productData.put("productId", productNode.getBindingValue("productId"));
+                                productData.put("deleteStatus", "approve");
+
+                                nodeService.executeNode(productData, "product", EventService.UPDATE);
+                            }
+                        }
+                    }
+
+                }
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
             }

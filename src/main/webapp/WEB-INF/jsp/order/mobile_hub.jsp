@@ -25,6 +25,7 @@
 <%@ page import="org.apache.commons.lang3.StringUtils" %>
 <%@ page import="org.apache.log4j.Logger" %>
 <%@ page import="java.util.HashMap" %>
+<%@ page import="net.ion.ice.core.json.JsonUtils" %>
 <%@ include file="cfg/site_conf_inc.jsp" %>
 <%
     /* = -------------------------------------------------------------------------- = */
@@ -45,7 +46,7 @@
 %>
 
 <%!
-    static Logger logger = Logger.getLogger("hub.jsp");
+    static Logger logger = Logger.getLogger("mobile_hub.jsp");
 
 %>
 
@@ -63,27 +64,29 @@
     OrderService orderService = (OrderService) ApplicationContextManager.getContext().getBean("orderService");
 
     request.setCharacterEncoding("utf-8");
+
+    Map<String, Object> resultData = JsonUtils.parsingJsonToMap(request.getParameter("result_data"));
+    logger.info("resultData: " + resultData);
     /* ============================================================================== */
     /* =   02. 지불 요청 정보 설정                                                  = */
     /* = -------------------------------------------------------------------------- = */
-    String req_tx = f_get_parm(request.getParameter("req_tx"));                 // 요청 종류
-    String tran_cd = f_get_parm(request.getParameter("tran_cd"));               // 처리 종류
+    String req_tx = JsonUtils.getStringValue(resultData, "req_tx");                 // 요청 종류
+    String tran_cd = JsonUtils.getStringValue(resultData, "tran_cd");               // 처리 종류
     /* = -------------------------------------------------------------------------- = */
     String cust_ip = f_get_parm(request.getRemoteAddr());                       // 요청 IP
-    String ordr_idxx = f_get_parm(request.getParameter("ordr_idxx"));           // 쇼핑몰 주문번호
-    String good_name = f_get_parm(request.getParameter("good_name"));           // 상품명
-    String ordr_chk = f_get_parm(request.getParameter("ordr_chk"));             // ordr_chk
+    String ordr_idxx = JsonUtils.getStringValue(resultData, "ordr_idxx");           // 쇼핑몰 주문번호
+    String good_name = JsonUtils.getStringValue(resultData, "good_name");           // 상품명
     /* = -------------------------------------------------------------------------- = */
     String res_cd = "";                                                         // 응답코드
     String res_msg = "";                                                        // 응답 메세지
-    String tno = f_get_parm(request.getParameter("tno"));                       // KCP 거래 고유 번호
+    String tno = JsonUtils.getStringValue(resultData, "tno");                       // KCP 거래 고유 번호
     /* = -------------------------------------------------------------------------- = */
-    String buyr_name = f_get_parm(request.getParameter("buyr_name"));           // 주문자명
-    String buyr_tel1 = f_get_parm(request.getParameter("buyr_tel1"));           // 주문자 전화번호
-    String buyr_tel2 = f_get_parm(request.getParameter("buyr_tel2"));           // 주문자 핸드폰 번호
-    String buyr_mail = f_get_parm(request.getParameter("buyr_mail"));           // 주문자 E-mail 주소
+    String buyr_name = JsonUtils.getStringValue(resultData, "buyr_name");           // 주문자명
+    String buyr_tel1 = JsonUtils.getStringValue(resultData, "buyr_tel1");           // 주문자 전화번호
+    String buyr_tel2 = JsonUtils.getStringValue(resultData, "buyr_tel2");           // 주문자 핸드폰 번호
+    String buyr_mail = JsonUtils.getStringValue(resultData, "buyr_mail");           // 주문자 E-mail 주소
     /* = -------------------------------------------------------------------------- = */
-    String use_pay_method = f_get_parm(request.getParameter("use_pay_method")); // 결제 방법
+    String use_pay_method = JsonUtils.getStringValue(resultData, "use_pay_method"); // 결제 방법
     String bSucc = "false";                                                     // 업체 DB 처리 성공 여부
     /* = -------------------------------------------------------------------------- = */
     String app_time = "";                                                       // 승인시간 (모든 결제 수단 공통)
@@ -121,16 +124,23 @@
     String commid = "";                                                         // 통신사코드
     String mobile_no = "";                                                      // 휴대폰번호
     /* = ------------------------------------------------------------------------- = */
-    String shop_user_id = f_get_parm(request.getParameter("shop_user_id"));     // 가맹점 고객 아이디
+    String shop_user_id = JsonUtils.getStringValue(resultData, "shop_user_id");     // 가맹점 고객 아이디
     String tk_van_code = "";                                                    // 발급사코드
     String tk_app_no = "";                                                      // 승인번호
     /* = -------------------------------------------------------------------------- = */
-    String cash_yn = f_get_parm(request.getParameter("cash_yn")); // 현금 영수증 등록 여부
+    String cash_yn = JsonUtils.getStringValue(resultData, "cash_yn"); // 현금 영수증 등록 여부
     String cash_authno = "";                                                 // 현금 영수증 승인 번호
-    String cash_tr_code = f_get_parm(request.getParameter("cash_tr_code"));  // 현금 영수증 발행 구분
-    String cash_id_info = f_get_parm(request.getParameter("cash_id_info"));  // 현금 영수증 등록 번호
+    String cash_tr_code = JsonUtils.getStringValue(resultData, "cash_tr_code");  // 현금 영수증 발행 구분
+    String cash_id_info = JsonUtils.getStringValue(resultData, "cash_id_info");  // 현금 영수증 등록 번호
     String cash_no = "";                                                     // 현금 영수증 거래 번호
-    String good_mny = f_get_parm(request.getParameter("cash_id_info"));
+    String good_mny = JsonUtils.getStringValue(resultData, "good_mny");
+
+    String param_opt_1    = JsonUtils.getStringValue(resultData, "param_opt_1");
+    String param_opt_2    = JsonUtils.getStringValue(resultData, "param_opt_2");
+
+    logger.info("tran_cd: " + JsonUtils.getStringValue(resultData, "tran_cd"));
+    logger.info("param_opt_1: " + param_opt_1);
+    logger.info("param_opt_2: " + param_opt_2);
 
     /*쉬핑 데이터*/
     String shippingAddress = f_get_parm(request.getParameter("shippingAddress"));
@@ -180,8 +190,8 @@
     /* =   04-1. 승인 요청 정보 설정                                                = */
     /* = -------------------------------------------------------------------------- = */
     if (req_tx.equals("pay")) {
-        c_PayPlus.mf_set_enc_data(f_get_parm(request.getParameter("enc_data")),
-                f_get_parm(request.getParameter("enc_info")));
+        c_PayPlus.mf_set_enc_data(JsonUtils.getStringValue(resultData, "enc_data"),
+                JsonUtils.getStringValue(resultData, "enc_info"));
 
             /* 1 원은 실제로 업체에서 결제하셔야 될 원 금액을 넣어주셔야 합니다. 결제금액 유효성 검증 */
 
@@ -422,7 +432,7 @@
                 // 07-1-2. 계좌이체
                 if (use_pay_method.equals("010000000000")) {
                     responseMap.put("orderStatus", "order003"); //결제완료
-                    responseMap.put("usePayMethodName", "실시간계좌이체");
+                    responseMap.put("usePayMethodName", "계좌이체");
                 }
                 // 07-1-3. 가상계좌
                 if (use_pay_method.equals("001000000000")) {
@@ -432,7 +442,7 @@
                 // 07-1-4. 포인트
                 if (use_pay_method.equals("000100000000")) {
                     responseMap.put("orderStatus", "order003"); //결제완료
-                    responseMap.put("usePayMethodName", "카드사포인트");
+                    responseMap.put("usePayMethodName", "포인트");
                 }
                 // 07-1-5. 휴대폰
                 if (use_pay_method.equals("000010000000")) {
@@ -587,7 +597,6 @@
 
     logger.info("-----------------결제정보(" + ordr_idxx + ")------------------");
     logger.info("사이트 코드 : " + g_conf_site_cd);
-    logger.info("ordr_chk : " + ordr_chk);
     logger.info("프론트최종 결제금액(this.finalPrice) : " + good_mny);
     logger.info("요청구분 : " + req_tx);
     logger.info("사용한 결제 수단 : " + use_pay_method);
@@ -646,14 +655,14 @@
 <%
     if (res_cd.equals("0000")) {
 %>
-<form name="pay_info" method="post" action="http://localhost:3090/<%=siteId%>/order/complete" target="_parent">
+<form name="pay_info" method="post" action="http://10.10.90.31:3091/<%=siteId%>/order/complete">
     <%--<form name="pay_info" method="post" action="http://test.ygoon.com/<%=siteId%>/order/complete" target="_parent">--%>
     <input type="hidden" name="ordr_idxx" value="<%= ordr_idxx        %>">    <!-- 주문번호 -->
 </form>
 <%
 } else {
 %>
-<form name="pay_info" method="get" action="http://localhost:8080/<%=siteId%>/order/<%=ordr_idxx%>" target="_parent"></form>
+<form name="pay_info" method="get" action="http://10.10.90.31:3091/<%=siteId%>/order/<%=ordr_idxx%>"></form>
 <%--<form name="pay_info" method="post" action="http://test.ygoon.com/<%=siteId%>/order/<%=ordr_idxx%>" target="_parent"></form>--%>
 <%
     }

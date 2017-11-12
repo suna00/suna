@@ -349,11 +349,9 @@ public class CartService {
             if (StringUtils.equals(existProductHopeDeliveryDate, reqProductHopeDeliveryDate)) return true;
         }
 
-//        if ("scheduledDelivery".equals(productNode.getBindingValue("deliveryDateType"))) {
-//            String reqProductScheduledDeliveryDate = cartProduct.get("scheduledDeliveryDate").toString();
-//            String productScheduledDeliveryDate = productNode.get("scheduledDeliveryDate").toString();
-//            if (!reqProductScheduledDeliveryDate.equals(productScheduledDeliveryDate)) return false;
-//        }
+        if ("cellphone".equals(productNode.getBindingValue("contentsType"))) {
+            return true;
+        }
 
         if (StringUtils.equals(deliveryPriceType, "quantity") && isFirstRow) {
             return false;

@@ -39,6 +39,12 @@ public class OrderController {
         mv.setViewName("/order/hub");
         return mv;
     }
+    @RequestMapping("/order/mobile_hub")
+    public ModelAndView mobileHub() {
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("/order/mobile_hub");
+        return mv;
+    }
 
     @RequestMapping("/order/cash_hub")
     public ModelAndView cashHub() {

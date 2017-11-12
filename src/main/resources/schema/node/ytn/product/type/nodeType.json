@@ -83,5 +83,17 @@
     "typeName": "상품 히스토리",
     "repositoryType": "node",
     "eviction": 10000
+  },
+  {
+    "parentId": "backOfficePath",
+    "typeId": "nodeType",
+    "tid": "productUpload",
+    "typeName": "상품 엑셀등록",
+    "tableName": "ytnDevDb#productUpload",
+    "repositoryType": "node",
+    "authorityRule": [
+      {"role":"vendor", "pid":"vendorId", "method":"matching", "value":"session.user.vendorId"}
+    ],
+    "eviction": 0
   }
 ]

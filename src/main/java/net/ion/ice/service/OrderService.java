@@ -496,10 +496,10 @@ public class OrderService {
             /*휴대폰구매*/
             if(cellPhonePaymentMode){
                 storeOrderSheet.put("usePayMethod", "999999999999");
-                storeOrderSheet.put("usePayMethodName", "휴대폰쿠폰결제");
+                storeOrderSheet.put("usePayMethodName", "휴대폰쿠폰");
             }else{
                 storeOrderSheet.put("usePayMethod", "111111111111");
-                storeOrderSheet.put("usePayMethodName", "포인트결제");
+                storeOrderSheet.put("usePayMethodName", "포인트");
             }
 
         }
