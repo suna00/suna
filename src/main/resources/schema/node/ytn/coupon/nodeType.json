@@ -42,5 +42,14 @@
     "tableName": "ytnDevDb#couponTypeToCategoryMap",
     "repositoryType": "data",
     "eviction": 500000
+  },
+  {
+    "parentId": "couponPath",
+    "typeId": "nodeType",
+    "tid": "couponMembership",
+    "typeName": "멤버쉽 쿠폰",
+    "tableName": "ytnDevDb#couponMembership",
+    "repositoryType": "node",
+    "eviction": 1000000
   }
 ]

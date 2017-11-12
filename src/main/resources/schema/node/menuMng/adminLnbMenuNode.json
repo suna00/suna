@@ -405,6 +405,26 @@
     "backOfficeId": "adm",
     "gnbMenuId": "marketingMng",
     "parentMenuId": "root",
+    "menuId": "couponMembership",
+    "menuName": "멤버쉽 쿠폰 관리",
+    "order": "30",
+    "icon": "fa-list",
+    "active": "true",
+    "index": "false",
+    "pages": [
+      { "pageName": "목록", "pageUrl": "list" }
+    ],
+    "customPages": [
+      { "pageName": "등록", "pageUrl": "marketingCouponMembership/CreateForm" },
+      { "pageName": "수정", "pageUrl": "marketingCouponMembership/UpdateForm" }
+    ],
+    "authority": "system,admin"
+  },
+  {
+    "typeId" : "adminLnbMenu",
+    "backOfficeId": "adm",
+    "gnbMenuId": "marketingMng",
+    "parentMenuId": "root",
     "menuId": "event",
     "menuName": "이벤트 관리",
     "order": "40",

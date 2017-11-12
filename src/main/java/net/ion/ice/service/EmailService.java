@@ -2,6 +2,7 @@ package net.ion.ice.service;
 
 import net.ion.ice.ApplicationContextManager;
 import net.ion.ice.core.node.Node;
+import net.ion.ice.core.node.NodeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,9 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -187,46 +191,75 @@ public class EmailService {
          */
     }
 
+    public static Map<String, String> getEmailTemplate(String name){
+        Map<String, String> setHtmlMap = new HashMap<>();
+        String title = "";
+        String contents = "";
 
-    public static void sendEmailHtmlold(String email, String title, String html) {
-        Properties props = new Properties();
-        props.setProperty("mail.transport.protocol", "smtp");
-        props.setProperty("mail.host", "smtp.gmail.com");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.port", "465");
+        List<Node> emailTemplateList = NodeUtils.getNodeList("emailTemplate", "name_matching="+name);
 
-        props.put("mail.smtp.socketFactory.port", "465");
-        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-        props.put("mail.smtp.socketFactory.fallback", "false");
-
-        props.setProperty("mail.smtp.quitwait", "false");
-
-        Authenticator auth = new Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("kimjiyeon0526@gmail.com", "14wldusdl");
-            }
-        };
-
-        Session session = Session.getInstance(props, auth);
-
-        MimeMessage message = new MimeMessage(session);
-
-        try {
-            message.setSender(new InternetAddress("ytn@ytn.co.kr"));
-            message.setSubject(title);
-            message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
-
-            Multipart multipart = new MimeMultipart();
-            MimeBodyPart mimeBodyPart = new MimeBodyPart();
-
-            mimeBodyPart.setContent(html, "text/html; charset=MS949");
-            multipart.addBodyPart(mimeBodyPart);
-            message.setContent(multipart);
-
-            Transport.send(message);
-        } catch (MessagingException e) {
-            e.printStackTrace();
+        if (0 < emailTemplateList.size()) {
+            title = emailTemplateList.get(0).get("title").toString();
+            contents = emailTemplateList.get(0).get("contents").toString();
         }
+
+        setHtmlMap.put("title", title);
+        setHtmlMap.put("contents", contents);
+
+        return setHtmlMap;
+    }
+
+    public static Map<String, String> getAffiliate(String siteId){
+        Map<String, String> setSiteInfo = new HashMap<>();
+        String siteType = "";
+        String name = "";
+
+        List<Node> affiliateList = NodeUtils.getNodeList("affiliate", "siteId_matching="+siteId);
+        if(0 < affiliateList.size()){
+            siteType = affiliateList.get(0).get("siteType").toString();
+            name = affiliateList.get(0).get("name").toString();
+        }
+
+        setSiteInfo.put("siteType", siteType);
+        setSiteInfo.put("name", name);
+
+        return setSiteInfo;
+    }
+
+    public static String getHeaderNew(String siteId){
+        String header;
+        // header-대학 : <img src="http://localhost/assets/images/email/logo_store.png" alt="YGOON 교육할인스토어" style="border:0;">
+        // header-기업 : <img src="http://localhost/assets/images/email/logo_small.png" alt="YGOON 교육할인스토어" style="border:0;"><p style="font-size:18px;font-weight:bold;color:#fff;letter-spacing:-2px;">해당 기업명 출력영역</p>
+        // header-비회원 : <img src="http://localhost/assets/images/email/logo_ygoon.png" alt="YGOON 교육할인스토어" style="border:0;">
+
+        Map<String, String> siteInfo = getAffiliate(siteId);
+
+        if("company".equals(siteInfo.get("siteType"))){
+            header = "<img src=\""+callBackUrl+"image/email/logo_small.png\" alt=\"YGOON 기업스토어\" style=\"border:0;\"><p style=\"font-size:18px;font-weight:bold;color:#fff;letter-spacing:-2px;\">"+siteInfo.get("name")+"</p>";
+        } else if("university".equals(siteInfo.get("siteType"))) {
+            header = "<img src=\""+callBackUrl+"image/email/logo_store.png\" alt=\"YGOON 교육할인스토어\" style=\"border:0;\">";
+        } else {
+            header = "<img src=\""+callBackUrl+"image/email/logo_ygoon.png\" alt=\"YGOON 특별할인스토어\" style=\"border:0;\">";
+        }
+        return header;
+    }
+
+    public static String getFooterNew(String siteId){
+        String footer;
+        // footer-대학 : <img src="http://localhost/assets/images/email/logo_store.png" alt="YGOON 교육할인스토어" width="111" style="border:0;">
+        // footer-기업 : <img src="http://localhost/assets/images/email/logo_small.png" alt="YGOON" width="49" style="border:0;"><span style="display:block;text-align:center;font-size:16px;font-weight:600;color:#fff;letter-spacing:-2px;">해당 기업명 출력영역</span>
+        // footer-비회원 : <img src="http://localhost/assets/images/email/logo_ygoon.png" alt="YGOON 특별할인스토어" width="112" style="border:0;">
+
+        Map<String, String> siteInfo = getAffiliate(siteId);
+
+        if("company".equals(siteInfo.get("siteType"))){
+            footer = "<img src=\""+callBackUrl+"image/email/logo_small.png\" alt=\"YGOON\" width=\"49\" style=\"border:0;\"><span style=\"display:block;text-align:center;font-size:16px;font-weight:600;color:#fff;letter-spacing:-2px;\">"+siteInfo.get("name")+"</span>";
+        } else if("university".equals(siteInfo.get("siteType"))) {
+            footer = "<img src=\""+callBackUrl+"image/email/logo_store.png\" alt=\"YGOON 교육할인스토어\" width=\"111\" style=\"border:0;\">";
+        } else {
+            footer = "<img src=\""+callBackUrl+"image/email/logo_ygoon.png\" alt=\"YGOON 특별할인스토어\" width=\"112\" style=\"border:0;\">";
+        }
+        return footer;
     }
 
     public static String getHeader(String siteType, String company){
@@ -236,11 +269,11 @@ public class EmailService {
         // header-비회원 : <img src="http://localhost/assets/images/email/logo_ygoon.png" alt="YGOON 교육할인스토어" style="border:0;">
 
         if("company".equals(siteType)){
-            header = "<img src="+callBackUrl+"image/email/logo_store.png\" alt=\"YGOON 교육할인스토어\" style=\"border:0;\">";
+            header = "<img src=\""+callBackUrl+"image/email/logo_small.png\" alt=\"YGOON 기업스토어\" style=\"border:0;\"><p style=\"font-size:18px;font-weight:bold;color:#fff;letter-spacing:-2px;\">"+company+"</p>";
         } else if("university".equals(siteType)) {
-            header = "<img src="+callBackUrl+"image/email/logo_small.png\" alt=\"YGOON 기업스토어\" style=\"border:0;\"><p style=\"font-size:18px;font-weight:bold;color:#fff;letter-spacing:-2px;\">"+company+"</p>";
+            header = "<img src=\""+callBackUrl+"image/email/logo_store.png\" alt=\"YGOON 교육할인스토어\" style=\"border:0;\">";
         } else {
-            header = "<img src="+callBackUrl+"image/email/logo_ygoon.png\" alt=\"YGOON 특별할인스토어\" style=\"border:0;\">";
+            header = "<img src=\""+callBackUrl+"image/email/logo_ygoon.png\" alt=\"YGOON 특별할인스토어\" style=\"border:0;\">";
         }
         return header;
     }
@@ -252,13 +285,193 @@ public class EmailService {
         // footer-비회원 : <img src="http://localhost/assets/images/email/logo_ygoon.png" alt="YGOON 특별할인스토어" width="112" style="border:0;">
 
         if("company".equals(siteType)){
-            footer = "<img src="+apiUrl+"image/email/logo_store.png\" alt=\"YGOON 교육할인스토어\" width=\"111\" style=\"border:0;\">";
+            footer = "<img src=\""+callBackUrl+"image/email/logo_small.png\" alt=\"YGOON\" width=\"49\" style=\"border:0;\"><span style=\"display:block;text-align:center;font-size:16px;font-weight:600;color:#fff;letter-spacing:-2px;\">"+company+"</span>";
         } else if("university".equals(siteType)) {
-            footer = "<img src=\"+apiUrl+\"image/email/logo_small.png\" alt=\"YGOON\" width=\"49\" style=\"border:0;\"><span style=\"display:block;text-align:center;font-size:16px;font-weight:600;color:#fff;letter-spacing:-2px;\">"+company+"</span>";
+            footer = "<img src=\""+callBackUrl+"image/email/logo_store.png\" alt=\"YGOON 교육할인스토어\" width=\"111\" style=\"border:0;\">";
         } else {
-            footer = "<img src=\"+apiUrl+\"image/email/logo_ygoon.png\" alt=\"YGOON 특별할인스토어\" width=\"112\" style=\"border:0;\">";
+            footer = "<img src=\""+callBackUrl+"image/email/logo_ygoon.png\" alt=\"YGOON 특별할인스토어\" width=\"112\" style=\"border:0;\">";
         }
         return footer;
+    }
+
+    public static String getMenu(){
+        String menu;
+        menu = "<tr>" +
+                "<td valign=\"middle\" align=\"center\">\n" +
+                "   <a href=\""+callBackUrl+"newProduct/list?listType=1&pageSize=30&categoryId=\" style=\"display:block;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', NanumGothic, dotum, gulim, sans_serif;color:#fff;font-size:15px;font-weight:bold;text-align:center;text-decoration:none;line-height:1.5;padding:9px 0;\">신상품</a>\n" +
+                "</td>\n" +
+                "<td valign=\"middle\" align=\"center\" style=\"border-left:1px solid #363636\">\n" +
+                "   <a href=\""+callBackUrl+"bestProduct/list?themeType=best1d\" style=\"display:block;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', NanumGothic, dotum, gulim, sans_serif;color:#fff;font-size:15px;font-weight:bold;text-align:center;text-decoration:none;line-height:1.5;padding:9px 0;\">BEST</a>\n" +
+                "</td>\n" +
+                "<td valign=\"middle\" align=\"center\" style=\"border-left:1px solid #363636\">\n" +
+                "   <a href=\""+callBackUrl+"specialExhibition/list?specialExhibitionSortType=all&categoryId=&searchText=\" style=\"display:block;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', NanumGothic, dotum, gulim, sans_serif;color:#fff;font-size:15px;font-weight:bold;text-align:center;text-decoration:none;line-height:1.5;padding:9px 0;\">기획전</a>\n" +
+                "</td>\n" +
+                "<td valign=\"middle\" align=\"center\" style=\"border-left:1px solid #363636\">\n" +
+                "   <a href=\""+callBackUrl+"shopEvent/list?page=1&shopEventSortType=all&searchText=\" style=\"display:block;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', NanumGothic, dotum, gulim, sans_serif;color:#fff;font-size:15px;font-weight:bold;text-align:center;text-decoration:none;line-height:1.5;padding:9px 0;\">이벤트</a>\n" +
+                "</td>\n" +
+                "</tr>";
+        return menu;
+    }
+
+    /** setHtml
+     본인인증 : setHtmlMemberCertCode
+     생일축하 : setHtmlMemberBirthday
+     회원가입 : setHtmlMemberSignUp
+     회원탈퇴 : setHtmlMemberLeave
+     휴면해제이메일인증 : setHtmlMemberSleepCancel
+     휴면전환안내 : setHtmlMemberSleepChange
+     비밀번호변경 : setHtmlMemberPasswordChange
+     광고성 정보수신동의 결과 : setHtmlMemberMarketingChange
+     수신동의 이력 안내 : setHtmlMemberMarketingNotice
+     마일리지 소멸예정 : setHtmlMemberMileage
+     상품문의답변등록 : setHtmlProductQuestion
+     1:1문의답변등록 : setHtmlOneToOneQuestion
+     입점상담신청 : setHtmlNewStoreRequest
+     제휴문의 : setHtmlAffliateRequest
+     주문완료 : setHtmlOrder
+     주문취소 : setHtmlOrderCancel
+     상품발송 : setHtmlProduct
+     배송완료 : setHtmlProductDelivery
+     교환접수 : setHtmlProductChange
+     반품접수 : setHtmlProductReturn
+     **
+     */
+
+    public static void setHtmlMemberCertCode(String email, Map<String, Object> data) throws IOException {
+        // 본인인증 ./pc_markup/DE_SL_FR_26_012.html
+        getEmailTemplate("본인인증");
+    }
+
+    public static void setHtmlMemberBirthday(String email, Map<String, Object> data) throws IOException {
+        // 생일축하 ./pc_markup/DE_SL_FR_26_015.html
+        // data : siteId, name, link
+
+        String siteId = data.get("siteId").toString();
+        String header = getHeaderNew(siteId);
+        String menu = getMenu();
+        String footer = getFooterNew(siteId);
+
+        Map<String, String> emailTemplate = getEmailTemplate("생일축하");
+        String title = emailTemplate.get("title").toString();
+        String contents = emailTemplate.get("contents").toString();
+
+        contents = contents.replaceAll("<img src=\"header\">", header);
+        contents = contents.replaceAll("<tr id=\"gnbMenu\"></tr>", menu);
+        contents = contents.replaceAll("../assets/images", callBackUrl+"image");
+        contents = contents.replaceAll("::name::", data.get("name").toString());
+        contents = contents.replaceAll("::link::", callBackUrl+siteId+"/mypage/coupon");
+        contents = contents.replaceAll("<img src=\"footer\">", footer);
+
+        sendEmailDirect(email, title, contents);
+    }
+
+    public static void setHtmlMemberSignUp(String email) throws IOException {
+        // 회원가입 ./pc_markup/DE_SL_FR_26_008.html
+        getEmailTemplate("회원가입");
+    }
+
+    public static void setHtmlMemberLeave(String email, Map<String, Object> data) throws IOException {
+        // 회원탈퇴 ./pc_markup/DE_SL_FR_26_009.html
+        // data : name, userId, date, point, link
+
+        String siteId = data.get("siteId").toString();
+        String header = getHeaderNew(siteId);
+        String footer = getFooterNew(siteId);
+
+        Map<String, String> emailTemplate = getEmailTemplate("회원탈퇴");
+        String title = emailTemplate.get("title").toString();
+        String contents = emailTemplate.get("contents").toString();
+
+        contents = contents.replaceAll("<img src=\"header\">", header);
+        contents = contents.replaceAll("../assets/images", callBackUrl+"image");
+        contents = contents.replaceAll("::name::", data.get("name").toString());
+        contents = contents.replaceAll("::userId::", data.get("userId").toString());
+        contents = contents.replaceAll("::date::", data.get("leaveDate").toString());
+        contents = contents.replaceAll("::point::", data.get("ypoint").toString());
+        contents = contents.replaceAll("::link::", callBackUrl+siteId);
+        contents = contents.replaceAll("<img src=\"footer\">", footer);
+
+        sendEmailDirect(email, title, contents);
+    }
+
+    public static void setHtmlMemberSleepCancel(String email) throws IOException {
+        // 휴면해제이메일인증	 ./pc_markup/DE_SL_FR_26_018.html
+        getEmailTemplate("휴면해제이메일인증");
+    }
+
+    public static void setHtmlMemberSleepChange(String email) throws IOException {
+        // 휴면전환안내 ./pc_markup/DE_SL_FR_26_011.html
+        getEmailTemplate("휴면전환안내");
+    }
+
+    public static void setHtmlMemberPasswordChange(String email) throws IOException {
+        // 비밀번호변경 ./pc_markup/DE_SL_FR_26_017.html
+        getEmailTemplate("비밀번호변경");
+    }
+
+    public static void setHtmlMemberMarketingChange(String email) throws IOException {
+        // 광고성 정보수신동의 결과 ./pc_markup/DE_SL_FR_26_010.html
+        getEmailTemplate("광고성 정보수신동의 결과");
+    }
+
+    public static void setHtmlMemberMarketingNotice(String email) throws IOException {
+        // 수신동의 이력 안내 ./pc_markup/DE_SL_FR_26_016.html
+        getEmailTemplate("수신동의 이력 안내");
+    }
+
+    public static void setHtmlMemberMileage(String email) throws IOException {
+        // 마일리지 소멸예정 ./pc_markup/DE_SL_FR_26_013.html
+        getEmailTemplate("마일리지 소멸예정");
+    }
+
+    public static void setHtmlProductQuestion(String email) throws IOException {
+        // 상품문의답변등록 ./pc_markup/DE_SL_FR_26_006.html
+        getEmailTemplate("상품문의답변등록");
+    }
+
+    public static void setHtmlOneToOneQuestion(String email) throws IOException {
+        // 1:1문의답변등록 ./pc_markup/DE_SL_FR_26_007.html
+        getEmailTemplate("1:1문의답변등록");
+    }
+
+    public static void setHtmlNewStoreRequest(String email) throws IOException {
+        // 입점상담신청	 ./pc_markup/DE_SL_FR_26_019.html
+        getEmailTemplate("입점상담신청");
+    }
+
+    public static void setHtmlAffliateRequest(String email) throws IOException {
+        // 제휴문의 ./pc_markup/DE_SL_FR_26_020.html
+        getEmailTemplate("제휴문의");
+    }
+
+    public static void setHtmlOrder(String email) throws IOException {
+        // 주문완료 ./pc_markup/DE_SL_FR_26_001.html
+        getEmailTemplate("주문완료");
+    }
+
+    public static void setHtmlOrderCancel(String email) throws IOException {
+        // 주문취소 ./pc_markup/DE_SL_FR_26_003.html
+        getEmailTemplate("주문취소");
+    }
+
+    public static void setHtmlProduct(String email) throws IOException {
+        // 상품발송 ./pc_markup/DE_SL_FR_26_002.html
+        getEmailTemplate("상품발송");
+    }
+
+    public static void setHtmlProductDelivery(String email) throws IOException {
+        // 배송완료 ./pc_markup/DE_SL_FR_26_014.html
+        getEmailTemplate("배송완료");
+    }
+
+    public static void setHtmlProductChange(String email) throws IOException {
+        // 교환접수 (신청) ./pc_markup/DE_SL_FR_26_004.html
+        getEmailTemplate("교환접수");
+    }
+
+    public static void setHtmlProductReturn(String email) throws IOException {
+        // 반품접수 (신청) ./pc_markup/DE_SL_FR_26_005.html
+        getEmailTemplate("반품접수");
     }
 
     public static void setHtmlMemberJoin(Node node, String email, Map<String, String> emailTemplate) throws IOException {

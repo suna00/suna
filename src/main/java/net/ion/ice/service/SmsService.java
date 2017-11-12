@@ -1,9 +1,13 @@
 package net.ion.ice.service;
 
 import net.ion.ice.core.data.DBService;
+import net.ion.ice.core.node.Node;
+import net.ion.ice.core.node.NodeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service("smsService")
 public class SmsService {
@@ -29,5 +33,23 @@ public class SmsService {
 
         jdbcTemplate.update(smsQuery, id, destPhone, sendPhone, msgBody);
 
+    }
+
+    public String getSmsTemplate(String name){
+        String message = "";
+        List<Node> node = NodeUtils.getNodeList("smsTemplate", "name_equals="+name);
+
+        if(0 < node.size()){
+            message = node.get(0).get("contents").toString();
+        }
+
+        return message;
+    }
+
+    public void sendCertCode(String cellphone, String certCode) {
+        String message = getSmsTemplate("인증번호");
+        message = message.replaceAll("[certCode]", "["+certCode+"]");
+
+        sendSms("id", cellphone, cellphone, message);
     }
 }

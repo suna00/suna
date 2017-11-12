@@ -236,6 +236,12 @@ public class MemberService {
         return context;
     }
 
+
+    // 휴면계정전환 배치
+    public void sleepMemberSchedule(){
+
+    }
+
     public ExecuteContext certPassword(ExecuteContext context) {
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
 
@@ -358,6 +364,9 @@ public class MemberService {
 
                 sendSms(smsCertificationType, cellphone, member);
 
+//                String certCdoe = getSmsCertCode("SMS 인증요청", smsCertificationType, member.get("memberNo").toString(), cellphone, "request");
+//                SmsService.sendCertCode(cellphone, certCdoe);
+
                 item.put("cellphone", member.get("cellphone"));
                 resultObject.put("item", item);
                 context.setResult(resultObject);
@@ -386,6 +395,9 @@ public class MemberService {
                 }
 
                 sendSms(smsCertificationType, cellphone, member);
+
+//                String certCdoe = getSmsCertCode("SMS 인증요청", smsCertificationType, member.get("memberNo").toString(), cellphone, "request");
+//                SmsService.sendCertCode(cellphone, certCdoe);
 
                 item.put("memberNo", member.get("memberNo"));
                 item.put("cellphone", member.get("cellphone"));

@@ -205,6 +205,12 @@ public class QueryContext extends ReadContext {
             return ;
         }
         makeSearchFields(searchFieldsStr, searchValue);
+
+        String andSearchValue = (String) data.get("andSearchValue");
+        if(StringUtils.isEmpty(andSearchValue)) {
+            return ;
+        }
+        makeAndSearchFields(searchFieldsStr, andSearchValue);
     }
 
     protected void makeSearchFields(String searchFieldsStr, String searchValue) {

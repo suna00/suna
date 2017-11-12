@@ -751,7 +751,7 @@ public class OrderService {
         storeOrderSheet.put("couponDiscountPrice", couponDiscountPrice);                            //쿠폰 할인액
         storeOrderSheet.put("totalWelfarePoint", welfarePoint);                                //사용한 복지포인트
         storeOrderSheet.put("totalYPoint", YPoint);                                            //사용한 Y포인트
-        storeOrderSheet.put("purchaseaAgreementYn", "y");
+        storeOrderSheet.put("purchaseAgreementYn", "y");
         storeOrderSheet.put("usePayMethod", JsonUtils.getStringValue(responseMap, "usePayMethod"));
         storeOrderSheet.put("usePayMethodName", JsonUtils.getStringValue(responseMap, "usePayMethodName"));
         storeOrderSheet.put("purchaseDeviceType", "");
