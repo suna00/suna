@@ -196,7 +196,7 @@ public class EmailService {
         String title = "";
         String contents = "";
 
-        List<Node> emailTemplateList = NodeUtils.getNodeList("emailTemplate", "name_equals="+name);
+        List<Node> emailTemplateList = NodeUtils.getNodeList("emailTemplate", "name_matching="+name);
 
         if (0 < emailTemplateList.size()) {
             title = emailTemplateList.get(0).get("title").toString();
@@ -209,6 +209,59 @@ public class EmailService {
         return setHtmlMap;
     }
 
+    public static Map<String, String> getAffiliate(String siteId){
+        Map<String, String> setSiteInfo = new HashMap<>();
+        String siteType = "";
+        String name = "";
+
+        List<Node> affiliateList = NodeUtils.getNodeList("affiliate", "siteId_matching="+siteId);
+        if(0 < affiliateList.size()){
+            siteType = affiliateList.get(0).get("siteType").toString();
+            name = affiliateList.get(0).get("name").toString();
+        }
+
+        setSiteInfo.put("siteType", siteType);
+        setSiteInfo.put("name", name);
+
+        return setSiteInfo;
+    }
+
+    public static String getHeaderNew(String siteId){
+        String header;
+        // header-대학 : <img src="http://localhost/assets/images/email/logo_store.png" alt="YGOON 교육할인스토어" style="border:0;">
+        // header-기업 : <img src="http://localhost/assets/images/email/logo_small.png" alt="YGOON 교육할인스토어" style="border:0;"><p style="font-size:18px;font-weight:bold;color:#fff;letter-spacing:-2px;">해당 기업명 출력영역</p>
+        // header-비회원 : <img src="http://localhost/assets/images/email/logo_ygoon.png" alt="YGOON 교육할인스토어" style="border:0;">
+
+        Map<String, String> siteInfo = getAffiliate(siteId);
+
+        if("company".equals(siteInfo.get("siteType"))){
+            header = "<img src=\""+callBackUrl+"image/email/logo_small.png\" alt=\"YGOON 기업스토어\" style=\"border:0;\"><p style=\"font-size:18px;font-weight:bold;color:#fff;letter-spacing:-2px;\">"+siteInfo.get("name")+"</p>";
+        } else if("university".equals(siteInfo.get("siteType"))) {
+            header = "<img src=\""+callBackUrl+"image/email/logo_store.png\" alt=\"YGOON 교육할인스토어\" style=\"border:0;\">";
+        } else {
+            header = "<img src=\""+callBackUrl+"image/email/logo_ygoon.png\" alt=\"YGOON 특별할인스토어\" style=\"border:0;\">";
+        }
+        return header;
+    }
+
+    public static String getFooterNew(String siteId){
+        String footer;
+        // footer-대학 : <img src="http://localhost/assets/images/email/logo_store.png" alt="YGOON 교육할인스토어" width="111" style="border:0;">
+        // footer-기업 : <img src="http://localhost/assets/images/email/logo_small.png" alt="YGOON" width="49" style="border:0;"><span style="display:block;text-align:center;font-size:16px;font-weight:600;color:#fff;letter-spacing:-2px;">해당 기업명 출력영역</span>
+        // footer-비회원 : <img src="http://localhost/assets/images/email/logo_ygoon.png" alt="YGOON 특별할인스토어" width="112" style="border:0;">
+
+        Map<String, String> siteInfo = getAffiliate(siteId);
+
+        if("company".equals(siteInfo.get("siteType"))){
+            footer = "<img src=\""+callBackUrl+"image/email/logo_small.png\" alt=\"YGOON\" width=\"49\" style=\"border:0;\"><span style=\"display:block;text-align:center;font-size:16px;font-weight:600;color:#fff;letter-spacing:-2px;\">"+siteInfo.get("name")+"</span>";
+        } else if("university".equals(siteInfo.get("siteType"))) {
+            footer = "<img src=\""+callBackUrl+"image/email/logo_store.png\" alt=\"YGOON 교육할인스토어\" width=\"111\" style=\"border:0;\">";
+        } else {
+            footer = "<img src=\""+callBackUrl+"image/email/logo_ygoon.png\" alt=\"YGOON 특별할인스토어\" width=\"112\" style=\"border:0;\">";
+        }
+        return footer;
+    }
+
     public static String getHeader(String siteType, String company){
         String header;
         // header-대학 : <img src="http://localhost/assets/images/email/logo_store.png" alt="YGOON 교육할인스토어" style="border:0;">
@@ -216,11 +269,11 @@ public class EmailService {
         // header-비회원 : <img src="http://localhost/assets/images/email/logo_ygoon.png" alt="YGOON 교육할인스토어" style="border:0;">
 
         if("company".equals(siteType)){
-            header = "<img src="+callBackUrl+"image/email/logo_small.png\" alt=\"YGOON 기업스토어\" style=\"border:0;\"><p style=\"font-size:18px;font-weight:bold;color:#fff;letter-spacing:-2px;\">"+company+"</p>";
+            header = "<img src=\""+callBackUrl+"image/email/logo_small.png\" alt=\"YGOON 기업스토어\" style=\"border:0;\"><p style=\"font-size:18px;font-weight:bold;color:#fff;letter-spacing:-2px;\">"+company+"</p>";
         } else if("university".equals(siteType)) {
-            header = "<img src="+callBackUrl+"image/email/logo_store.png\" alt=\"YGOON 교육할인스토어\" style=\"border:0;\">";
+            header = "<img src=\""+callBackUrl+"image/email/logo_store.png\" alt=\"YGOON 교육할인스토어\" style=\"border:0;\">";
         } else {
-            header = "<img src="+callBackUrl+"image/email/logo_ygoon.png\" alt=\"YGOON 특별할인스토어\" style=\"border:0;\">";
+            header = "<img src=\""+callBackUrl+"image/email/logo_ygoon.png\" alt=\"YGOON 특별할인스토어\" style=\"border:0;\">";
         }
         return header;
     }
@@ -232,13 +285,32 @@ public class EmailService {
         // footer-비회원 : <img src="http://localhost/assets/images/email/logo_ygoon.png" alt="YGOON 특별할인스토어" width="112" style="border:0;">
 
         if("company".equals(siteType)){
-            footer = "<img src=\"+apiUrl+\"image/email/logo_small.png\" alt=\"YGOON\" width=\"49\" style=\"border:0;\"><span style=\"display:block;text-align:center;font-size:16px;font-weight:600;color:#fff;letter-spacing:-2px;\">"+company+"</span>";
+            footer = "<img src=\""+callBackUrl+"image/email/logo_small.png\" alt=\"YGOON\" width=\"49\" style=\"border:0;\"><span style=\"display:block;text-align:center;font-size:16px;font-weight:600;color:#fff;letter-spacing:-2px;\">"+company+"</span>";
         } else if("university".equals(siteType)) {
-            footer = "<img src="+callBackUrl+"image/email/logo_store.png\" alt=\"YGOON 교육할인스토어\" width=\"111\" style=\"border:0;\">";
+            footer = "<img src=\""+callBackUrl+"image/email/logo_store.png\" alt=\"YGOON 교육할인스토어\" width=\"111\" style=\"border:0;\">";
         } else {
-            footer = "<img src=\"+apiUrl+\"image/email/logo_ygoon.png\" alt=\"YGOON 특별할인스토어\" width=\"112\" style=\"border:0;\">";
+            footer = "<img src=\""+callBackUrl+"image/email/logo_ygoon.png\" alt=\"YGOON 특별할인스토어\" width=\"112\" style=\"border:0;\">";
         }
         return footer;
+    }
+
+    public static String getMenu(){
+        String menu;
+        menu = "<tr>" +
+                "<td valign=\"middle\" align=\"center\">\n" +
+                "   <a href=\""+callBackUrl+"newProduct/list?listType=1&pageSize=30&categoryId=\" style=\"display:block;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', NanumGothic, dotum, gulim, sans_serif;color:#fff;font-size:15px;font-weight:bold;text-align:center;text-decoration:none;line-height:1.5;padding:9px 0;\">신상품</a>\n" +
+                "</td>\n" +
+                "<td valign=\"middle\" align=\"center\" style=\"border-left:1px solid #363636\">\n" +
+                "   <a href=\""+callBackUrl+"bestProduct/list?themeType=best1d\" style=\"display:block;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', NanumGothic, dotum, gulim, sans_serif;color:#fff;font-size:15px;font-weight:bold;text-align:center;text-decoration:none;line-height:1.5;padding:9px 0;\">BEST</a>\n" +
+                "</td>\n" +
+                "<td valign=\"middle\" align=\"center\" style=\"border-left:1px solid #363636\">\n" +
+                "   <a href=\""+callBackUrl+"specialExhibition/list?specialExhibitionSortType=all&categoryId=&searchText=\" style=\"display:block;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', NanumGothic, dotum, gulim, sans_serif;color:#fff;font-size:15px;font-weight:bold;text-align:center;text-decoration:none;line-height:1.5;padding:9px 0;\">기획전</a>\n" +
+                "</td>\n" +
+                "<td valign=\"middle\" align=\"center\" style=\"border-left:1px solid #363636\">\n" +
+                "   <a href=\""+callBackUrl+"shopEvent/list?page=1&shopEventSortType=all&searchText=\" style=\"display:block;font-family:'Malgun Gothic', 'Apple SD Gothic Neo', NanumGothic, dotum, gulim, sans_serif;color:#fff;font-size:15px;font-weight:bold;text-align:center;text-decoration:none;line-height:1.5;padding:9px 0;\">이벤트</a>\n" +
+                "</td>\n" +
+                "</tr>";
+        return menu;
     }
 
     /** setHtml
@@ -265,10 +337,11 @@ public class EmailService {
      **
      */
 
-    public static void setHtmlMemberCertCode(String siteType, String company, String email) throws IOException {
+    public static void setHtmlMemberCertCode(String email, Map<String, Object> data) throws IOException {
         // 본인인증 ./pc_markup/DE_SL_FR_26_012.html
-        String header = getHeader(siteType, company);
-        String footer = getFooter(siteType, company);
+        // link, certTime
+        String header = getHeaderNew(data.get("siteId").toString());
+        String footer = getFooterNew(data.get("siteId").toString());
 
         Map<String, String> emailTemplate = getEmailTemplate("본인인증");
         String title = emailTemplate.get("title").toString();
@@ -280,9 +353,25 @@ public class EmailService {
         sendEmailDirect(email, title, contents);
     }
 
-    public static void setHtmlMemberBirthday(String email) throws IOException {
+    public static void setHtmlMemberBirthday(String email, Map<String, Object> data) throws IOException {
         // 생일축하 ./pc_markup/DE_SL_FR_26_015.html
-        getEmailTemplate("생일축하");
+        // data : siteId, name, link
+        String header = getHeaderNew(data.get("siteId").toString());
+        String menu = getMenu();
+        String footer = getFooterNew(data.get("siteId").toString());
+
+        Map<String, String> emailTemplate = getEmailTemplate("생일축하");
+        String title = emailTemplate.get("title").toString();
+        String contents = emailTemplate.get("contents").toString();
+
+        contents = contents.replaceAll("<img src=\"header\">", header);
+        contents = contents.replaceAll("<tr id=\"gnbMenu\"></tr>", menu);
+        contents = contents.replaceAll("../assets/images", callBackUrl+"image");
+        contents = contents.replaceAll("::name::", data.get("name").toString());
+        contents = contents.replaceAll("::link::", callBackUrl+"mypage/coupon");
+        contents = contents.replaceAll("<img src=\"footer\">", footer);
+
+        sendEmailDirect(email, title, contents);
     }
 
     public static void setHtmlMemberSignUp(String email) throws IOException {
