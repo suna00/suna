@@ -342,6 +342,11 @@ public class EmailService {
         getEmailTemplate("본인인증");
     }
 
+    public static void setHtmlMemberSignUp(String email) throws IOException {
+        // 회원가입 ./pc_markup/DE_SL_FR_26_008.html
+        getEmailTemplate("회원가입");
+    }
+
     public static void setHtmlMemberBirthday(String email, Map<String, Object> data) throws IOException {
         // 생일축하 ./pc_markup/DE_SL_FR_26_015.html
         // data : siteId, name, link
@@ -363,11 +368,6 @@ public class EmailService {
         contents = contents.replaceAll("<img src=\"footer\">", footer);
 
         sendEmailDirect(email, title, contents);
-    }
-
-    public static void setHtmlMemberSignUp(String email) throws IOException {
-        // 회원가입 ./pc_markup/DE_SL_FR_26_008.html
-        getEmailTemplate("회원가입");
     }
 
     public static void setHtmlMemberLeave(String email, Map<String, Object> data) throws IOException {
@@ -399,9 +399,25 @@ public class EmailService {
         getEmailTemplate("휴면해제이메일인증");
     }
 
-    public static void setHtmlMemberSleepChange(String email) throws IOException {
+    public static void setHtmlMemberSleepChange(String email, Map<String, Object> data) throws IOException {
         // 휴면전환안내 ./pc_markup/DE_SL_FR_26_011.html
-        getEmailTemplate("휴면전환안내");
+        // data : name, date, link
+
+        String siteId = data.get("siteId").toString();
+        String header = getHeaderNew(siteId);
+        String footer = getFooterNew(siteId);
+
+        Map<String, String> emailTemplate = getEmailTemplate("휴면전환안내");
+        String title = emailTemplate.get("title").toString();
+        String contents = emailTemplate.get("contents").toString();
+
+        contents = contents.replaceAll("<img src=\"header\">", header);
+        contents = contents.replaceAll("::name::", data.get("name").toString());
+        contents = contents.replaceAll("::date::", data.get("date").toString());
+        contents = contents.replaceAll("::link::", callBackUrl+siteId);
+        contents = contents.replaceAll("<img src=\"footer\">", footer);
+
+        sendEmailDirect(email, title, contents);
     }
 
     public static void setHtmlMemberPasswordChange(String email) throws IOException {
