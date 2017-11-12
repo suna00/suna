@@ -1,5 +1,6 @@
 package net.ion.ice.core.context;
 
+import net.ion.ice.core.data.DBQuery;
 import net.ion.ice.core.data.bind.NodeBindingInfo;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.*;
@@ -35,6 +36,9 @@ public class ReadContext implements Context, Serializable {
     protected List<String> searchFields ;
     protected String searchValue ;
 
+    protected List<String> andSearchFields ;
+    protected String andSearchValue ;
+
 
     protected List<ResultField> resultFields;
 
@@ -62,6 +66,7 @@ public class ReadContext implements Context, Serializable {
     protected List<String> excludePids ;
 
     protected List<String> excludeCache ;
+    protected DBQuery dbQuery;
 
 
     public NodeType getNodetype() {
@@ -663,4 +668,13 @@ public class ReadContext implements Context, Serializable {
     public void setNodeType(NodeType nodeType) {
         this.nodeType = nodeType;
     }
+
+    public void setDbQuery(DBQuery dbQuery) {
+        this.dbQuery = dbQuery;
+    }
+
+    public DBQuery getDbQuery(){
+        return this.dbQuery;
+    }
+
 }

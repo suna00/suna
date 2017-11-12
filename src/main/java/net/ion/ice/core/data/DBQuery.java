@@ -12,12 +12,17 @@ public class DBQuery {
     private String tableName = "";
     private String listParamSql= "";
     private String totalCountSql= "";
+    private String customCountSql = "";
+
+    private String where ;
 
     private List<String> searchListQuery;
     private List<Object> searchListValue;
     private List<Object> resultCountValue;
 
     public DBQuery(String tableName, QueryContext queryContext) {
+        this.tableName = tableName;
+
         searchListQuery = new ArrayList<>();
         searchListValue = new ArrayList<>();
 
@@ -57,9 +62,12 @@ public class DBQuery {
                 }
             }
 
-            listParamSql = String.format("SELECT * FROM %s WHERE %s", tableName, StringUtils.join(searchListQuery.toArray(), " AND "));
-            totalCountSql = String.format("SELECT COUNT(*) as totalCount FROM %s WHERE %s", tableName, StringUtils.join(searchListQuery.toArray(), " AND "));
-
+            String where = StringUtils.join(searchListQuery.toArray(), " AND ");
+            listParamSql = String.format("SELECT * FROM %s WHERE %s", tableName, where);
+            totalCountSql = String.format("SELECT COUNT(*) as totalCount FROM %s WHERE %s", tableName, where);
+            if(StringUtils.isNotEmpty(customCountSql)){
+                customCountSql = String.format(customCountSql, tableName, where);
+            }
             resultCountValue = new ArrayList<>(searchListValue);
 
         } else {
@@ -104,5 +112,13 @@ public class DBQuery {
 
     public List<Object> getResultCountValue() {
         return resultCountValue;
+    }
+
+    public void setCustomCountSql(String customCountSql) {
+        this.customCountSql = customCountSql;
+    }
+
+    public String getWhere() {
+        return where;
     }
 }

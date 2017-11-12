@@ -166,7 +166,7 @@ public class PointService {
 
     public Boolean useYPoint(Map<String, Object> data) {
         try {
-            Double point = (Double) data.get(YPOINT);
+            Double point = Double.parseDouble(String.valueOf(data.get(YPOINT)));
             String memberNo = JsonUtils.getStringValue(data, "memberNo");
             String orderSheetId = JsonUtils.getStringValue(data, "orderSheetId");
             if (point  == 0) {
@@ -291,7 +291,7 @@ public class PointService {
 
     public boolean useWelfarePoint(Map<String, Object> data) {
         try {
-            Double point = (Double) data.get(WELFAREPOINT);
+            Double point = Double.parseDouble(String.valueOf(data.get(WELFAREPOINT)));
             String memberNo = JsonUtils.getStringValue(data, "memberNo");
             String orderSheetId = JsonUtils.getStringValue(data, "orderSheetId");
             if(point  == 0){
