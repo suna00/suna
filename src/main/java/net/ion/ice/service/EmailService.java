@@ -339,26 +339,17 @@ public class EmailService {
 
     public static void setHtmlMemberCertCode(String email, Map<String, Object> data) throws IOException {
         // 본인인증 ./pc_markup/DE_SL_FR_26_012.html
-        // link, certTime
-        String header = getHeaderNew(data.get("siteId").toString());
-        String footer = getFooterNew(data.get("siteId").toString());
-
-        Map<String, String> emailTemplate = getEmailTemplate("본인인증");
-        String title = emailTemplate.get("title").toString();
-        String contents = emailTemplate.get("contents").toString();
-
-        contents = contents.replaceAll("<img src=\"header\">", header);
-        contents = contents.replaceAll("<img src=\"footer\">", footer);
-
-        sendEmailDirect(email, title, contents);
+        getEmailTemplate("본인인증");
     }
 
     public static void setHtmlMemberBirthday(String email, Map<String, Object> data) throws IOException {
         // 생일축하 ./pc_markup/DE_SL_FR_26_015.html
         // data : siteId, name, link
-        String header = getHeaderNew(data.get("siteId").toString());
+
+        String siteId = data.get("siteId").toString();
+        String header = getHeaderNew(siteId);
         String menu = getMenu();
-        String footer = getFooterNew(data.get("siteId").toString());
+        String footer = getFooterNew(siteId);
 
         Map<String, String> emailTemplate = getEmailTemplate("생일축하");
         String title = emailTemplate.get("title").toString();
@@ -368,7 +359,7 @@ public class EmailService {
         contents = contents.replaceAll("<tr id=\"gnbMenu\"></tr>", menu);
         contents = contents.replaceAll("../assets/images", callBackUrl+"image");
         contents = contents.replaceAll("::name::", data.get("name").toString());
-        contents = contents.replaceAll("::link::", callBackUrl+"mypage/coupon");
+        contents = contents.replaceAll("::link::", callBackUrl+siteId+"/mypage/coupon");
         contents = contents.replaceAll("<img src=\"footer\">", footer);
 
         sendEmailDirect(email, title, contents);
@@ -379,9 +370,28 @@ public class EmailService {
         getEmailTemplate("회원가입");
     }
 
-    public static void setHtmlMemberLeave(String email) throws IOException {
+    public static void setHtmlMemberLeave(String email, Map<String, Object> data) throws IOException {
         // 회원탈퇴 ./pc_markup/DE_SL_FR_26_009.html
-        getEmailTemplate("회원탈퇴");
+        // data : name, userId, date, point, link
+
+        String siteId = data.get("siteId").toString();
+        String header = getHeaderNew(siteId);
+        String footer = getFooterNew(siteId);
+
+        Map<String, String> emailTemplate = getEmailTemplate("회원탈퇴");
+        String title = emailTemplate.get("title").toString();
+        String contents = emailTemplate.get("contents").toString();
+
+        contents = contents.replaceAll("<img src=\"header\">", header);
+        contents = contents.replaceAll("../assets/images", callBackUrl+"image");
+        contents = contents.replaceAll("::name::", data.get("name").toString());
+        contents = contents.replaceAll("::userId::", data.get("userId").toString());
+        contents = contents.replaceAll("::date::", data.get("leaveDate").toString());
+        contents = contents.replaceAll("::point::", data.get("point").toString());
+        contents = contents.replaceAll("::link::", callBackUrl+siteId);
+        contents = contents.replaceAll("<img src=\"footer\">", footer);
+
+        sendEmailDirect(email, title, contents);
     }
 
     public static void setHtmlMemberSleepCancel(String email) throws IOException {
