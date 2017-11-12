@@ -992,7 +992,7 @@
   {
     "typeId": "propertyType",
     "tid": "couponMembership",
-    "pid": "condition",
+    "pid": "couponCondition",
     "propertyTypeName": "조건",
     "valueType": "STRING",
     "required": false,
