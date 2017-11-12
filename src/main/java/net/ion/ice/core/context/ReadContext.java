@@ -1,5 +1,6 @@
 package net.ion.ice.core.context;
 
+import net.ion.ice.core.data.DBQuery;
 import net.ion.ice.core.data.bind.NodeBindingInfo;
 import net.ion.ice.core.json.JsonUtils;
 import net.ion.ice.core.node.*;
@@ -62,6 +63,7 @@ public class ReadContext implements Context, Serializable {
     protected List<String> excludePids ;
 
     protected List<String> excludeCache ;
+    protected DBQuery dbQuery;
 
 
     public NodeType getNodetype() {
@@ -101,11 +103,15 @@ public class ReadContext implements Context, Serializable {
             }
 
         }
+        /**
+         * 2017.10.19
+         * cacheTime 이 없는 관계로 에러나서 주석처리(feat.본부장님)
+         **/
         if(data.containsKey("cacheTime") && data.get("cacheTime") != null && StringUtils.isNotEmpty(data.get("cacheTime").toString())){
-            if(!config.get("cacheTime").toString().equals("0")) {
-                readContext.cacheTime = data.get("cacheTime").toString();
-                readContext.cacheable = true;
-            }
+//            if(!config.get("cacheTime").toString().equals("0")) {
+//                readContext.cacheTime = data.get("cacheTime").toString();
+//                readContext.cacheable = true;
+//            }
         }
     }
     protected static void checkExclude(Map<String, Object> config, Map<String, Object> data, ReadContext readContext) {
@@ -659,4 +665,13 @@ public class ReadContext implements Context, Serializable {
     public void setNodeType(NodeType nodeType) {
         this.nodeType = nodeType;
     }
+
+    public void setDbQuery(DBQuery dbQuery) {
+        this.dbQuery = dbQuery;
+    }
+
+    public DBQuery getDbQuery(){
+        return this.dbQuery;
+    }
+
 }

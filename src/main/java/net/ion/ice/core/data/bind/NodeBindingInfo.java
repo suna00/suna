@@ -278,6 +278,7 @@ public class NodeBindingInfo implements Serializable {
         }
 
         DBQuery dbQuery = new DBQuery(tableName, queryContext);
+        queryContext.setDbQuery(dbQuery);
         Map<String, Object> totalCount;
         if (dbQuery.getResultCountValue() == null || dbQuery.getResultCountValue().isEmpty()) {
             totalCount = jdbcTemplate.queryForMap(dbQuery.getTotalCountSql());
@@ -310,6 +311,9 @@ public class NodeBindingInfo implements Serializable {
     public int delete(String id) {
         List<String> parameters = retrieveParameters(id);
         int queryCallBack = jdbcTemplate.update(deleteSql, parameters.toArray());
+        if(queryCallBack == 1){
+            logger.info("Node Binding delete : "+ deleteSql + " : " + id);
+        }
         return queryCallBack;
     }
     /**

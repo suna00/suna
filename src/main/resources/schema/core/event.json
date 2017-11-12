@@ -172,7 +172,8 @@
     "tid" : "nodeType",
     "event": "nodeType>allEvent",
     "actionType" : "service",
-    "actionBody" : "nodeService.changeNodeType"
+    "actionBody" : "nodeService.changeNodeType",
+    "clusterGroup" : "all"
   },
   {
     "typeId" : "eventListener",
@@ -180,7 +181,8 @@
     "tid" : "nodeType",
     "event": "propertyType>allEvent",
     "actionType" : "service",
-    "actionBody" : "nodeService.changePropertyType"
+    "actionBody" : "nodeService.changePropertyType",
+    "clusterGroup" : "all"
   },
   {
     "typeId" : "eventListener",
@@ -188,6 +190,7 @@
     "tid" : "nodeType",
     "event": "eventListener>allEvent",
     "actionType" : "service",
-    "actionBody" : "nodeService.changeEventListener"
+    "actionBody" : "nodeService.changeEventListener",
+    "clusterGroup" : "all"
   }
 ]
