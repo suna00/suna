@@ -18,28 +18,21 @@ public class CouponMembershipService {
     @Autowired
     private NodeService nodeService;
 
-    public ExecuteContext saveEvent(ExecuteContext context) {
+    public void saveEvent(ExecuteContext context) {
         Map<String, Object> paramData = new LinkedHashMap<>(context.getData());
-        String couponMembershipId = paramData.get("couponMembershipId") == null ? "" : paramData.get("couponMembershipId").toString();
+        String couponNumber = paramData.get("couponNumber") == null ? "" : paramData.get("couponNumber").toString();
         String affiliateMallId = paramData.get("affiliateMallId") == null ? "" : paramData.get("affiliateMallId").toString();
 
-        boolean isCreate = true;
-        if (StringUtils.isEmpty(couponMembershipId)) {
+        if (StringUtils.isEmpty(couponNumber)) {
             Node affiliateMallNode = nodeService.read("affiliateMall", affiliateMallId);
             if (affiliateMallNode != null) {
                 String businessCode = affiliateMallNode.getBindingValue("businessCode").toString();
-                couponMembershipId = businessCode+" "+getRandomCode()+" "+getRandomCode()+" "+getRandomCode();
-                paramData.put("couponMembershipId", couponMembershipId);
+                couponNumber = businessCode+" "+getRandomCode()+" "+getRandomCode()+" "+getRandomCode();
+                paramData.put("couponNumber", couponNumber);
             }
-        } else {
-            isCreate = false;
         }
 
-        Node couponMembershipNode = (Node) nodeService.executeNode(paramData, "couponMembership", isCreate ? EventService.CREATE : EventService.UPDATE);
-
-        context.setResult(couponMembershipNode);
-
-        return context;
+        nodeService.executeNode(paramData, "couponMembership", EventService.SAVE);
     }
 
     private int getRandomCode() {
