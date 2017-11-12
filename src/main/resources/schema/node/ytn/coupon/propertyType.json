@@ -940,6 +940,23 @@
   {
     "typeId": "propertyType",
     "tid": "couponMembership",
+    "pid": "affiliateMallId",
+    "propertyTypeName": "업체",
+    "valueType": "REFERENCE",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "affiliateMall",
+    "referenceValue": "affiliateMallId",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "couponMembership",
     "pid": "name",
     "propertyTypeName": "쿠폰명",
     "valueType": "STRING",
