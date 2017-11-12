@@ -494,7 +494,7 @@ public class EmailService {
 
     public static void setHtmlProductQuestion(Node node) throws IOException {
         // 상품문의답변등록 ./pc_markup/DE_SL_FR_26_006.html
-        // title, date, productId, contents - productQuestion
+        // title, date, product, contents - productQuestion
 
         String siteId = node.getBindingValue("siteId").toString();
         String header = getHeaderNew(siteId);
@@ -517,9 +517,29 @@ public class EmailService {
         sendEmailDirect(node.get("email").toString(), title, contents);
     }
 
-    public static void setHtmlOneToOneQuestion(String email) throws IOException {
+    public static void setHtmlOneToOneQuestion(Node node) throws IOException {
         // 1:1문의답변등록 ./pc_markup/DE_SL_FR_26_007.html
-        getEmailTemplate("1:1문의답변등록");
+        // title, date, product, contents - oneToOneQuestion
+
+        String siteId = node.getBindingValue("siteId").toString();
+        String header = getHeaderNew(siteId);
+        String menu = getMenu();
+        String footer = getFooterNew(siteId);
+
+        Map<String, String> emailTemplate = getEmailTemplate("1:1문의답변등록");
+        String title = emailTemplate.get("title").toString();
+        String contents = emailTemplate.get("contents").toString();
+
+        contents = contents.replaceAll("<img src=\"header\">", header);
+        contents = contents.replaceAll("<tr id=\"gnbMenu\"></tr>", menu);
+        contents = contents.replaceAll("::title::", node.get("title").toString());
+        contents = contents.replaceAll("::date::", node.get("created").toString());
+        contents = contents.replaceAll("::product::", node.get("productId").toString());
+        contents = contents.replaceAll("::contents::", node.get("contents").toString());
+        contents = contents.replaceAll("::link::", callBackUrl+siteId+"/mypage/oneToOne");
+        contents = contents.replaceAll("<img src=\"footer\">", footer);
+
+        sendEmailDirect(node.get("email").toString(), title, contents);
     }
 
     public static void setHtmlNewStoreRequest(String email) throws IOException {
