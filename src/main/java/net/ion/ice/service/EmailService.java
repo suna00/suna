@@ -425,14 +425,43 @@ public class EmailService {
         getEmailTemplate("비밀번호변경");
     }
 
-    public static void setHtmlMemberMarketingChange(String email) throws IOException {
+    public static void setHtmlMemberMarketingChange(Map<String, String> data) throws IOException {
         // 광고성 정보수신동의 결과 ./pc_markup/DE_SL_FR_26_010.html
-        getEmailTemplate("광고성 정보수신동의 결과");
+        // agreeType, agreeYn, date, link
+
+        String siteId = data.get("siteId");
+        String header = getHeaderNew(siteId);
+        String footer = getFooterNew(siteId);
+
+        Map<String, String> emailTemplate = getEmailTemplate("광고성 정보수신동의 결과");
+        String title = emailTemplate.get("title").toString();
+        String contents = emailTemplate.get("contents").toString();
+
+        contents = contents.replaceAll("<img src=\"header\">", header);
+        contents = contents.replaceAll("::agreeType::", data.get("agreeType"));
+        contents = contents.replaceAll("::agreeYn::", data.get("agreeYn"));
+        contents = contents.replaceAll("::date::", data.get("date"));
+        contents = contents.replaceAll("::link::", callBackUrl+siteId+"/serviceCenter");
+        contents = contents.replaceAll("<img src=\"footer\">", footer);
+
+        sendEmailDirect(data.get("email"), title, contents);
     }
 
-    public static void setHtmlMemberMarketingNotice(String email) throws IOException {
+    public static void setHtmlMemberMarketingNotice(String email, Map<String, Object> data) throws IOException {
         // 수신동의 이력 안내 ./pc_markup/DE_SL_FR_26_016.html
-        getEmailTemplate("수신동의 이력 안내");
+
+        String siteId = data.get("siteId").toString();
+        String header = getHeaderNew(siteId);
+        String footer = getFooterNew(siteId);
+
+        Map<String, String> emailTemplate = getEmailTemplate("수신동의 이력 안내");
+        String title = emailTemplate.get("title").toString();
+        String contents = emailTemplate.get("contents").toString();
+
+        contents = contents.replaceAll("<img src=\"header\">", header);
+        contents = contents.replaceAll("<img src=\"footer\">", footer);
+
+        sendEmailDirect(email, title, contents);
     }
 
     public static void setHtmlMemberMileage(String email) throws IOException {
@@ -509,27 +538,6 @@ public class EmailService {
         contents = contents.replaceAll("receiveMarketingEmailAgreeYn", node.getReferenceNode("receiveMarketingEmailAgreeYn").get("name").toString()); //	동의
         contents = contents.replaceAll("receiveMarketingSMSAgreeYn", node.getReferenceNode("receiveMarketingSMSAgreeYn").get("name").toString()); // 	동의
         contents = contents.replaceAll("href=\"#\"", "href="+callBackUrl+siteId+"/intro");
-        contents = contents.replaceAll("<img src=\"footer\">", footer);
-
-        sendEmailDirect(email, title, contents);
-    }
-
-    public static void setHtmlMemberInfoChange(Node node, String email, Map<String, String> emailTemplate) throws IOException {
-        String title = emailTemplate.get("title").toString();
-        String contents = emailTemplate.get("contents").toString();
-        String siteId = node.getBindingValue("siteId").toString();
-        String siteType = node.getBindingValue("siteType").toString();
-        String company = node.getStringValue("company");
-
-        String header = getHeader(siteType, company);
-        String footer = getFooter(siteType, company);
-
-        contents = contents.replaceAll("<img src=\"header\">", header);
-        contents = contents.replaceAll("src=\"../assets/images/", "src=" + apiUrl + "/image");
-        contents = contents.replaceAll("agreeType", ""); // 이메일 , SMS
-        contents = contents.replaceAll("agreeYn", ""); // 동의
-        contents = contents.replaceAll("date", ""); // 2017-01-01
-        contents = contents.replaceAll("href=\"#\"", "href="+callBackUrl+siteId+"/serviceCenter");
         contents = contents.replaceAll("<img src=\"footer\">", footer);
 
         sendEmailDirect(email, title, contents);
