@@ -387,7 +387,7 @@ public class EmailService {
         contents = contents.replaceAll("::name::", data.get("name").toString());
         contents = contents.replaceAll("::userId::", data.get("userId").toString());
         contents = contents.replaceAll("::date::", data.get("leaveDate").toString());
-        contents = contents.replaceAll("::point::", data.get("ypoint").toString());
+        contents = contents.replaceAll("::point::", data.get("YPoint").toString());
         contents = contents.replaceAll("::link::", callBackUrl+siteId);
         contents = contents.replaceAll("<img src=\"footer\">", footer);
 
@@ -470,9 +470,26 @@ public class EmailService {
         sendEmailDirect(node.get("email").toString(), title, contents);
     }
 
-    public static void setHtmlMemberMileage(String email) throws IOException {
+    public static void setHtmlMemberMileage(Node node) throws IOException {
         // 마일리지 소멸예정 ./pc_markup/DE_SL_FR_26_013.html
-        getEmailTemplate("마일리지 소멸예정");
+        // point, expiringYPoint, date, link
+
+        String siteId = node.getBindingValue("siteId").toString();
+        String header = getHeaderNew(siteId);
+        String footer = getFooterNew(siteId);
+
+        Map<String, String> emailTemplate = getEmailTemplate("마일리지 소멸예정");
+        String title = emailTemplate.get("title").toString();
+        String contents = emailTemplate.get("contents").toString();
+
+        contents = contents.replaceAll("<img src=\"header\">", header);
+        contents = contents.replaceAll("::point::", node.get("YPoint").toString());
+        contents = contents.replaceAll("::expiringYPoint::", node.get("YPoint").toString());
+        contents = contents.replaceAll("::date::", "");
+        contents = contents.replaceAll("::link::", callBackUrl+siteId+"/mypage/mileage");
+        contents = contents.replaceAll("<img src=\"footer\">", footer);
+
+        sendEmailDirect(node.get("email").toString(), title, contents);
     }
 
     public static void setHtmlProductQuestion(String email) throws IOException {
