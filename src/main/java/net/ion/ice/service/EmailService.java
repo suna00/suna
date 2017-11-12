@@ -575,7 +575,7 @@ public class EmailService {
         String header = getHeaderNew(siteId);
         String footer = getFooterNew(siteId);
 
-        Map<String, String> emailTemplate =  getEmailTemplate("제휴문의");
+        Map<String, String> emailTemplate = getEmailTemplate("제휴문의");
         String title = emailTemplate.get("title").toString();
         String contents = emailTemplate.get("contents").toString();
 
@@ -594,34 +594,118 @@ public class EmailService {
         sendEmailDirect(adminEmail, title, contents);
     }
 
-    public static void setHtmlOrder(String email) throws IOException {
+    public static void setHtmlOrder(String siteId, String email, Node node) throws IOException {
         // 주문완료 ./pc_markup/DE_SL_FR_26_001.html
-        getEmailTemplate("주문완료");
+
+        String header = getHeaderNew(siteId);
+        String menu = getMenu();
+        String footer = getFooterNew(siteId);
+
+        Map<String, String> emailTemplate = getEmailTemplate("주문완료");
+        String title = emailTemplate.get("title").toString();
+        String contents = emailTemplate.get("contents").toString();
+
+        contents = contents.replaceAll("<img src=\"header\">", header);
+        contents = contents.replaceAll("<tr id=\"gnbMenu\"></tr>", menu);
+        contents = contents.replaceAll("::link::", callBackUrl+siteId+"/mypage/orderView?page=1");
+        contents = contents.replaceAll("<img src=\"footer\">", footer);
+
+        sendEmailDirect(email, title, contents);
     }
 
-    public static void setHtmlOrderCancel(String email) throws IOException {
-        // 주문취소 ./pc_markup/DE_SL_FR_26_003.html
-        getEmailTemplate("주문취소");
-    }
-
-    public static void setHtmlProduct(String email) throws IOException {
+    public static void setHtmlProduct(String siteId, String email, Node node) throws IOException {
         // 상품발송 ./pc_markup/DE_SL_FR_26_002.html
-        getEmailTemplate("상품발송");
+
+        String header = getHeaderNew(siteId);
+        String menu = getMenu();
+        String footer = getFooterNew(siteId);
+
+        Map<String, String> emailTemplate = getEmailTemplate("상품발송");
+        String title = emailTemplate.get("title").toString();
+        String contents = emailTemplate.get("contents").toString();
+
+        contents = contents.replaceAll("<img src=\"header\">", header);
+        contents = contents.replaceAll("<tr id=\"gnbMenu\"></tr>", menu);
+        contents = contents.replaceAll("::link::", callBackUrl+siteId+"/mypage/orderView?page=1");
+        contents = contents.replaceAll("<img src=\"footer\">", footer);
+
+        sendEmailDirect(email, title, contents);
     }
 
-    public static void setHtmlProductDelivery(String email) throws IOException {
+    public static void setHtmlOrderCancel(String siteId, String email, Node node) throws IOException {
+        // 주문취소 ./pc_markup/DE_SL_FR_26_003.html
+
+        String header = getHeaderNew(siteId);
+        String menu = getMenu();
+        String footer = getFooterNew(siteId);
+
+        Map<String, String> emailTemplate = getEmailTemplate("주문취소");
+        String title = emailTemplate.get("title").toString();
+        String contents = emailTemplate.get("contents").toString();
+
+        contents = contents.replaceAll("<img src=\"header\">", header);
+        contents = contents.replaceAll("<tr id=\"gnbMenu\"></tr>", menu);
+        contents = contents.replaceAll("::link::", callBackUrl+siteId+"/mypage/orderView/cancelReturn/list");
+        contents = contents.replaceAll("<img src=\"footer\">", footer);
+
+        sendEmailDirect(email, title, contents);
+    }
+
+    public static void setHtmlProductDelivery(String siteId, String email, Node node) throws IOException {
         // 배송완료 ./pc_markup/DE_SL_FR_26_014.html
-        getEmailTemplate("배송완료");
+
+        String header = getHeaderNew(siteId);
+        String menu = getMenu();
+        String footer = getFooterNew(siteId);
+
+        Map<String, String> emailTemplate = getEmailTemplate("배송완료");
+        String title = emailTemplate.get("title").toString();
+        String contents = emailTemplate.get("contents").toString();
+
+        contents = contents.replaceAll("<img src=\"header\">", header);
+        contents = contents.replaceAll("<tr id=\"gnbMenu\"></tr>", menu);
+        contents = contents.replaceAll("::link::", callBackUrl+siteId+"/mypage/orderView/cancelReturn/list");
+        contents = contents.replaceAll("<img src=\"footer\">", footer);
+
+        sendEmailDirect(email, title, contents);
     }
 
-    public static void setHtmlProductChange(String email) throws IOException {
+    public static void setHtmlProductChange(String siteId, String email, Node node) throws IOException {
         // 교환접수 (신청) ./pc_markup/DE_SL_FR_26_004.html
-        getEmailTemplate("교환접수");
+
+        String header = getHeaderNew(siteId);
+        String menu = getMenu();
+        String footer = getFooterNew(siteId);
+
+        Map<String, String> emailTemplate = getEmailTemplate("교환접수");
+        String title = emailTemplate.get("title").toString();
+        String contents = emailTemplate.get("contents").toString();
+
+        contents = contents.replaceAll("<img src=\"header\">", header);
+        contents = contents.replaceAll("<tr id=\"gnbMenu\"></tr>", menu);
+        contents = contents.replaceAll("::link::", callBackUrl+siteId+"/mypage/orderView/cancelReturn/list");
+        contents = contents.replaceAll("<img src=\"footer\">", footer);
+
+        sendEmailDirect(email, title, contents);
     }
 
-    public static void setHtmlProductReturn(String email) throws IOException {
+    public static void setHtmlProductReturn(String siteId, String email, Node node) throws IOException {
         // 반품접수 (신청) ./pc_markup/DE_SL_FR_26_005.html
-        getEmailTemplate("반품접수");
+
+        String header = getHeaderNew(siteId);
+        String menu = getMenu();
+        String footer = getFooterNew(siteId);
+
+        Map<String, String> emailTemplate = getEmailTemplate("반품접수");
+        String title = emailTemplate.get("title").toString();
+        String contents = emailTemplate.get("contents").toString();
+
+        contents = contents.replaceAll("<img src=\"header\">", header);
+        contents = contents.replaceAll("<tr id=\"gnbMenu\"></tr>", menu);
+        contents = contents.replaceAll("::link::", callBackUrl+siteId+"/mypage/orderView/cancelReturn/list");
+        contents = contents.replaceAll("<img src=\"footer\">", footer);
+
+        sendEmailDirect(email, title, contents);
     }
 
     public static void setHtmlMemberJoin(Node node, String email, Map<String, String> emailTemplate) throws IOException {
