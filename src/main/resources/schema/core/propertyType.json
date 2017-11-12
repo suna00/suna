@@ -275,7 +275,7 @@
     "referenceValue": "",
     "code": [{"value": "STRING", "label": "String"}, {"value": "INT", "label": "Integer"}, {"value": "LONG", "label": "Long"}, {"value": "DOUBLE", "label": "double"},
       {"value": "BOOLEAN", "label": "Boolean"}, {"value": "DATE", "label": "Date"}, {"value": "TEXT", "label": "Text"}, {"value": "FILE", "label": "File"},
-      {"value": "REFERENCE", "label": "Reference"},{"value": "REFERENCES", "label": "Multi Reference"}, {"value": "REFERENCED", "label": "Referenced List"},
+      {"value": "REFERENCE", "label": "Reference"},{"value": "REFERENCES", "label": "Multi Reference"}, {"value": "REFERENCED", "label": "Referenced List"}, {"value": "JSON", "label": "Json"},
       {"value": "ARRAY", "label": "Data Array"}, {"value": "OBJECT", "label": "Data Object"}, {"value": "CONTENT", "label": "Content Builder"}, {"value": "HISTORY", "label":"History List"}]
   },
   {
