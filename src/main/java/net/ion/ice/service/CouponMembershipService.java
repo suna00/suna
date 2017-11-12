@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
 
@@ -18,7 +19,7 @@ public class CouponMembershipService {
     private NodeService nodeService;
 
     public ExecuteContext saveEvent(ExecuteContext context) {
-        Map<String, Object> paramData = context.getData();
+        Map<String, Object> paramData = new LinkedHashMap<>(context.getData());
         String couponMembershipId = paramData.get("couponMembershipId") == null ? "" : paramData.get("couponMembershipId").toString();
         String affiliateMallId = paramData.get("affiliateMallId") == null ? "" : paramData.get("affiliateMallId").toString();
 
