@@ -337,7 +337,7 @@ public class MemberService {
         return context;
     }
 
-    public ExecuteContext authenticationSendSms(ExecuteContext context) throws IOException {
+    public ExecuteContext authenticationSendSms(ExecuteContext context) {
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
 
         Map<String, Object> resultObject = new HashMap<>();
@@ -362,9 +362,10 @@ public class MemberService {
                     return context;
                 }
 
-                String certCdoe = getSmsCertCode("SMS 인증요청", smsCertificationType, member.get("memberNo").toString(), cellphone, "request");
-                SmsService.sendCertCode(cellphone, certCdoe);
+                sendSms(smsCertificationType, cellphone, member);
 
+//                String certCdoe = getSmsCertCode("SMS 인증요청", smsCertificationType, member.get("memberNo").toString(), cellphone, "request");
+//                SmsService.sendCertCode(cellphone, certCdoe);
 
                 item.put("cellphone", member.get("cellphone"));
                 resultObject.put("item", item);
@@ -393,8 +394,10 @@ public class MemberService {
                     return context;
                 }
 
-                String certCdoe = getSmsCertCode("SMS 인증요청", smsCertificationType, member.get("memberNo").toString(), cellphone, "request");
-                SmsService.sendCertCode(cellphone, certCdoe);
+                sendSms(smsCertificationType, cellphone, member);
+
+//                String certCdoe = getSmsCertCode("SMS 인증요청", smsCertificationType, member.get("memberNo").toString(), cellphone, "request");
+//                SmsService.sendCertCode(cellphone, certCdoe);
 
                 item.put("memberNo", member.get("memberNo"));
                 item.put("cellphone", member.get("cellphone"));
@@ -542,6 +545,16 @@ public class MemberService {
         }
 
         emailService.sendEmailDirect(email, html.get("title"), html.get("contents"));
+    }
+
+    public void sendSms(String smsCertificationType, String cellphone, Map<String, Object> data) {
+        // 아이디 : id, 패스워드 : password, 휴면회원 : sleepMember
+
+        String certCdoe = getSmsCertCode("SMS 인증요청", smsCertificationType, data.get("memberNo").toString(), cellphone, "request");
+        String Message = "인증번호[" + certCdoe + "]";
+
+        System.out.println(Message);
+        // 문자 전송
     }
 
     public String getEmailCertCode(String name, String emailCertificationType, String memberNo, String email, String certStatus) {
