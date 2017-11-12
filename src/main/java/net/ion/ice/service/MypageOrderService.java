@@ -141,10 +141,10 @@ public class MypageOrderService {
         int pageCount = (int) Math.ceil((double) sheetList.size() / (double) pageSize);
 
         Map<String, Object> item = new LinkedHashMap<>();
-        item.put("totalCount", sheetTotalList.size());
+        item.put("totalCount", queryContext.getResultSize());
         item.put("resultCount", sheetList.size());
-        item.put("pageSize", pageSize);
-        item.put("pageCount", pageCount);
+        item.put("pageSize", queryContext.getPageSize());
+        item.put("pageCount", queryContext.getResultSize() / queryContext.getPageSize() + (queryContext.getResultSize() % queryContext.getPageSize() > 0? 1: 0));
         item.put("currentPage", currentPage);
 
         item.put("items", sheetList);

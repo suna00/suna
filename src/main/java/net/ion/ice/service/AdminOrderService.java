@@ -99,27 +99,123 @@ public class AdminOrderService {
         int page = JsonUtils.getIntValue(data, "page");
         int currentPage = (page == 0 ? 1 : page);
 
-        String createdFromto = JsonUtils.getStringValue(data, "createdFromto");
-        String orderSheetId = JsonUtils.getStringValue(data, "orderSheetId");
+        String createdAbove = JsonUtils.getStringValue(data, "created_above");
+        String createdBelow = JsonUtils.getStringValue(data, "created_below");
 
-        String productId = JsonUtils.getStringValue(data, "productId");
+        String vendorType = JsonUtils.getStringValue(data, "vendorType_matching");
+        String memberType = JsonUtils.getStringValue(data, "memberType_matching");
+
+        String membershipLevel = JsonUtils.getStringValue(data, "membershipLevel_matching");
+        String purchaseDeviceType = JsonUtils.getStringValue(data, "purchaseDeviceType_matching");
+        String usePayMethod = JsonUtils.getStringValue(data, "usePayMethod_matching");
+        String buyCount = JsonUtils.getStringValue(data, "buyCount_matching");
+
+        String searcheFields = JsonUtils.getStringValue(data, "searchFields");
+        String searchValue = JsonUtils.getStringValue(data, "searchValue");
+
         String orderStatus = JsonUtils.getStringValue(data, "orderStatus");
+
+
         List<String> splitOrderStatusList = Arrays.asList(StringUtils.split(orderStatus, ","));
         List<String> inOrderStatusList = new ArrayList<>();
         for (String splitOrderStatus : splitOrderStatusList) {
             inOrderStatusList.add(String.format("'%s'", splitOrderStatus));
         }
 
-        String existsQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderProduct where IF(@{productId} = '' ,'1',productId) = IF(@{productId} = '' ,'1',@{productId}) and orderStatus in ("+StringUtils.join(inOrderStatusList, ",")+")";
+        String existsSiteTypeQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderSheet a, member b where a.memberNo = b.memberNo and b.siteType in (" + memberType +") ";
+
+        String existsMembershipLevelQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderSheet a, member b where a.memberNo = b.memberNo and b.membershipLevel in (" + membershipLevel +") ";;
+
+        String existsBuyCountOneQuery = "SELECT orderSheetId as inValue, count(*) buyCount FROM ytn.orderproduct group by orderSheetId having buyCount = 1";
+        String existsBuyCountManyQuery = "SELECT orderSheetId as inValue, count(*) buyCount FROM ytn.orderproduct group by orderSheetId having buyCount > 1";
+
+        String existsOrderStatusQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderProduct where orderStatus in ("+StringUtils.join(inOrderStatusList, ",")+")";
+
+//        String existsProductIdQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderProduct where productId like concat(@{productId}, '%') ";
+        String existsProductNameQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderProduct a, product b where a.productId = b.productId and b.name like concat('%', @{searchValue}, '%') ";
+        String existsVendorQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderProduct a, vendor b where a.vendorId = b.vendorId and b.name like concat('%', @{searchValue}, '%') ";
+        String existsMemberNameQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderSheet a, member b where a.memberNo = b.memberNo and b.name like concat('%', @{searchValue}, '%') ";
+        String existsMemberIdQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderSheet a, member b where a.memberNo = b.memberNo and b.userId like concat('%', @{searchValue}, '%') ";
+        String existsOrderSheetIdQuery = "select orderSheetId as inValue from orderSheet where orderSheetId like concat('%', @{searchValue}, '%') ";
+        String existsRecipientQuery = "select group_concat(distinct(orderSheetId)) as inValue from delivery where recipient like concat('%', @{searchValue}, '%') ";
+        String existsTrackingNoQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderDeliveryPrice where trackingNo like concat('%', @{searchValue}, '%') ";
 
         List<String> search = new ArrayList<>();
         search.add("pageSize="+pageSize);
         search.add("page="+currentPage);
         search.add("sorting=created desc");
         search.add("referenceView=memberNo");
-        if (!StringUtils.isEmpty(orderSheetId)) search.add("orderSheetId_equals="+orderSheetId);
-        if (!StringUtils.isEmpty(orderStatus)) search.add("orderSheetId_exists="+existsQuery);
-        if (!StringUtils.isEmpty(createdFromto)) search.add("created_fromto="+createdFromto);
+
+        if(StringUtils.isNotEmpty(createdAbove)){
+            search.add("created_above="+createdAbove);
+        }
+
+        if(StringUtils.isNotEmpty(createdBelow)){
+            search.add("created_below="+createdBelow);
+        }
+
+        if(StringUtils.isNotEmpty(memberType)){
+            search.add("orderSheetId_exists=" + existsSiteTypeQuery);
+        }
+
+        if(StringUtils.isNotEmpty(purchaseDeviceType)){
+            search.add("purchaseDeviceType_in="+purchaseDeviceType);
+        }
+        if(StringUtils.isNotEmpty(usePayMethod)){
+            search.add("usePayMethod_in="+usePayMethod);
+        }
+        if(StringUtils.isNotEmpty(membershipLevel)){
+            search.add("orderSheetId_exists="+existsMembershipLevelQuery);
+        }
+
+        if(StringUtils.isNotEmpty(orderStatus)) {
+            search.add("orderSheetId_exists=" + existsOrderStatusQuery);
+        }
+
+        if(StringUtils.isNotEmpty(buyCount) && !StringUtils.contains(buyCount, ",")){
+            if(buyCount.equals("1")){
+                search.add("orderSheetId_exists=" + existsBuyCountOneQuery);
+            }else if(buyCount.equals("2")){
+                search.add("orderSheetId_exists=" + existsBuyCountManyQuery);
+            }
+        }
+
+        if(StringUtils.isNotEmpty(searcheFields) && StringUtils.isNotEmpty(searchValue)){
+            String searchQuery = null;
+            switch(searcheFields){
+                case "memberName":{
+                    searchQuery = existsMemberNameQuery;
+                    break;
+                }
+                case "memberId":{
+                    searchQuery = existsMemberIdQuery;
+                    break;
+                }
+                case "productName":{
+                    searchQuery = existsProductNameQuery;
+                    break;
+                }
+                case "orderSheetId":{
+                    searchQuery = existsOrderSheetIdQuery;
+                    break;
+                }
+                case "recipient":{
+                    searchQuery = existsRecipientQuery;
+                    break;
+                }
+                case "vendor":{
+                    searchQuery = existsVendorQuery;
+                    break;
+                }
+                case "trackingNo":{
+                    searchQuery = existsTrackingNoQuery;
+                    break;
+                }
+            }
+            if(searchQuery != null) {
+                search.add("orderSheetId_exists=" + searchQuery);
+            }
+        }
 
         String searchText = StringUtils.join(search, "&");
 
@@ -131,16 +227,13 @@ public class AdminOrderService {
 //                (createdFromto != "" ? "&created_fromto=" + createdFromto : "") +
 //                (memberNo != "" ? "&memberNo_equals=" + memberNo : "");
 
-        List<Map<String, Object>> sheetTotalList = nodeBindingService.list(orderSheet_TID, "");
-
 
         NodeType nodeType = NodeUtils.getNodeType(orderSheet_TID);
         QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, nodeType, null);
         queryContext.setData(context.getData());
+
         NodeBindingInfo nodeBindingInfo = nodeBindingService.getNodeBindingInfo(orderSheet_TID);
         List<Map<String, Object>> sheetList = nodeBindingInfo.list(queryContext);
-
-        ReadContext readContext = new ReadContext();
 
         for (Map<String, Object> sheet : sheetList) {
             Timestamp created = sheet.get("created") == null ? null : (Timestamp) sheet.get("created");
@@ -158,7 +251,7 @@ public class AdminOrderService {
                     List<PropertyType> memberPropertyList = new ArrayList<>(memberNodeType.getPropertyTypes());
                     for (PropertyType memberProperty : memberPropertyList) {
                         if (!StringUtils.equals(memberProperty.getPid(), "password")) {
-                            memberItem.put(memberProperty.getPid(), NodeUtils.getResultValue(readContext, memberProperty, memberNode));
+                            memberItem.put(memberProperty.getPid(), NodeUtils.getResultValue(queryContext, memberProperty, memberNode));
                         }
                     }
                     sheet.put("memberItem", memberItem);
@@ -180,13 +273,13 @@ public class AdminOrderService {
             commonService.putReferenceValue("orderSheet", context, sheet);
         }
 
-        int pageCount = (int) Math.ceil((double) sheetTotalList.size() / (double) pageSize);
+//        int pageCount = (int) Math.ceil((double) sheetTotalList.size() / (double) pageSize);
 
         Map<String, Object> item = new LinkedHashMap<>();
-        item.put("totalCount", sheetTotalList.size());
+        item.put("totalCount", queryContext.getResultSize());
         item.put("resultCount", sheetList.size());
-        item.put("pageSize", pageSize);
-        item.put("pageCount", pageCount);
+        item.put("pageSize", queryContext.getPageSize());
+        item.put("pageCount", queryContext.getResultSize() / queryContext.getPageSize() + (queryContext.getResultSize() % queryContext.getPageSize() > 0? 1: 0));
         item.put("currentPage", currentPage);
 
         item.put("items", sheetList);
