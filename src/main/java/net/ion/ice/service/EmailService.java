@@ -370,7 +370,7 @@ public class EmailService {
         sendEmailDirect(email, title, contents);
     }
 
-    public static void setHtmlMemberLeave(String email, Map<String, Object> data) throws IOException {
+    public static void setHtmlMemberLeave(Map<String, Object> data) throws IOException {
         // 회원탈퇴 ./pc_markup/DE_SL_FR_26_009.html
         // data : name, userId, date, point, link
 
@@ -391,7 +391,7 @@ public class EmailService {
         contents = contents.replaceAll("::link::", callBackUrl+siteId);
         contents = contents.replaceAll("<img src=\"footer\">", footer);
 
-        sendEmailDirect(email, title, contents);
+        sendEmailDirect(data.get("email").toString(), title, contents);
     }
 
     public static void setHtmlMemberSleepCancel(String email) throws IOException {
@@ -447,10 +447,11 @@ public class EmailService {
         sendEmailDirect(data.get("email"), title, contents);
     }
 
-    public static void setHtmlMemberMarketingNotice(String email, Map<String, Object> data) throws IOException {
+    public static void setHtmlMemberMarketingNotice(Node node) throws IOException {
         // 수신동의 이력 안내 ./pc_markup/DE_SL_FR_26_016.html
+        // receiveMarketingSMSAgreeYn, receiveMarketingSMSAgreeDate, receiveMarketingEmailAgreeYn, receiveMarketingEmailAgreeDate, link
 
-        String siteId = data.get("siteId").toString();
+        String siteId = node.getBindingValue("siteId").toString();
         String header = getHeaderNew(siteId);
         String footer = getFooterNew(siteId);
 
@@ -459,9 +460,14 @@ public class EmailService {
         String contents = emailTemplate.get("contents").toString();
 
         contents = contents.replaceAll("<img src=\"header\">", header);
+        contents = contents.replaceAll("::receiveMarketingSMSAgreeYn::", node.get("receiveMarketingSMSAgreeYn").toString());
+        contents = contents.replaceAll("::receiveMarketingSMSAgreeDate::", node.get("receiveMarketingSMSAgreeDate").toString());
+        contents = contents.replaceAll("::receiveMarketingEmailAgreeYn::", node.get("receiveMarketingEmailAgreeYn").toString());
+        contents = contents.replaceAll("::receiveMarketingEmailAgreeDate::", node.get("receiveMarketingEmailAgreeDate").toString());
+        contents = contents.replaceAll("::link::", callBackUrl+siteId);
         contents = contents.replaceAll("<img src=\"footer\">", footer);
 
-        sendEmailDirect(email, title, contents);
+        sendEmailDirect(node.get("email").toString(), title, contents);
     }
 
     public static void setHtmlMemberMileage(String email) throws IOException {
