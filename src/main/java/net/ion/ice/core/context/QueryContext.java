@@ -20,6 +20,8 @@ public class QueryContext extends ReadContext {
     private static final Integer DEFAULT_PAGESIZE = 10;
 
     protected List<QueryTerm> queryTerms;
+    protected List<QueryTerm> subQueryTerms;
+
     protected List<QueryContext> joinQueryContexts ;
     protected String targetJoinField ;
     protected String sourceJoinField ;
@@ -183,6 +185,12 @@ public class QueryContext extends ReadContext {
             return ;
         }
         makeSearchFields(searchFieldsStr, searchValue);
+
+        String andSearchValue = (String) ContextUtils.getValue(_config.get("andSearchValue"), data);
+        if(org.apache.commons.lang3.StringUtils.isEmpty(andSearchValue)) {
+            return ;
+        }
+        makeAndSearchFields(searchFieldsStr, andSearchValue);
     }
 
     public void makeSearchFields() {
@@ -222,6 +230,28 @@ public class QueryContext extends ReadContext {
         this.searchValue = searchValue ;
     }
 
+    protected void makeAndSearchFields(String searchFieldsStr, String andSearchValue) {
+        if(StringUtils.isEmpty(searchFieldsStr)) {
+            return ;
+        }
+
+        if(StringUtils.isEmpty(andSearchValue)) {
+            return ;
+        }
+
+        this.andSearchFields = new ArrayList<>() ;
+
+        for(String searchField : StringUtils.split(searchFieldsStr, ",")){
+            searchField = searchField.trim() ;
+            if(StringUtils.isNotEmpty(searchField)) {
+                this.andSearchFields.add(searchField) ;
+                QueryTerm queryTerm = QueryUtils.makePropertyQueryTerm(this.getQueryTermType(), this.nodeType, searchField, "wildcardShould", andSearchValue);
+                this.addSubQueryTerm(queryTerm);
+            }
+        }
+
+        this.andSearchValue = andSearchValue ;
+    }
     public void setQueryTerms(List<QueryTerm> queryTerms) {
         if(this.queryTerms == null) {
             this.queryTerms = queryTerms;
@@ -777,6 +807,14 @@ public class QueryContext extends ReadContext {
         this.queryTerms.add(queryTerm);
     }
 
+    protected void addSubQueryTerm(QueryTerm queryTerm) {
+        if(queryTerm == null) return ;
+        if (this.subQueryTerms == null) {
+            this.subQueryTerms = new ArrayList<>();
+        }
+        this.subQueryTerms.add(queryTerm);
+    }
+
     public List<FacetTerm> getFacetTerms() {
         return facetTerms;
     }
@@ -794,4 +832,11 @@ public class QueryContext extends ReadContext {
         return joinMethod;
     }
 
+    public boolean hasSubQueryTerms() {
+        return this.subQueryTerms!= null && this.subQueryTerms.size() > 0;
+    }
+
+    public List<QueryTerm> getSubQueryTerms() {
+        return subQueryTerms;
+    }
 }

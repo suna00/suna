@@ -53,7 +53,7 @@ public class LuceneQueryUtils {
         List<Query> innerQueries =  new ArrayList<>();
         List<Query> shouldInnerQueries = new ArrayList<>();
         List<Query> notInnerQueries = new ArrayList<>();
-
+        List<Query> subInnerQueries = new ArrayList<>();
 
         if(queryContext.getJoinQueryContexts() != null && queryContext.getJoinQueryContexts().size() >0){
             for(QueryContext joinQueryContext : queryContext.getJoinQueryContexts()){
@@ -111,6 +111,14 @@ public class LuceneQueryUtils {
                 }
             }
         }
+        if(queryContext.hasSubQueryTerms()){
+            for (QueryTerm term : queryContext.getSubQueryTerms()) {
+                if(StringUtils.isEmpty(term.getQueryValue())){
+                    continue;
+                }
+                subInnerQueries.add(createLuceneQuery(term));
+            }
+        }
 
         if(innerQueries.size() == 0 && shouldInnerQueries.size() == 0 && notInnerQueries.size() == 0){
             query = new MatchAllDocsQuery() ;
@@ -141,15 +149,10 @@ public class LuceneQueryUtils {
 
             }
 
-            if(shouldInnerQueries.size() == 1){
-                booleanQueryBuilder.add(shouldInnerQueries.get(0), BooleanClause.Occur.MUST) ;
-            }else if(shouldInnerQueries.size() > 1){
-                BooleanQuery.Builder shouldBooleanQueryBuilder = new BooleanQuery.Builder();
-                for (Query shouldQuery : shouldInnerQueries) {
-                    shouldBooleanQueryBuilder.add(shouldQuery, BooleanClause.Occur.SHOULD);
-                }
-                booleanQueryBuilder.add(shouldBooleanQueryBuilder.build(), BooleanClause.Occur.MUST) ;
-            }
+            makeShouldQuery(shouldInnerQueries, booleanQueryBuilder);
+
+            makeShouldQuery(subInnerQueries, booleanQueryBuilder);
+
             query = booleanQueryBuilder.build();
         }
 
@@ -166,6 +169,18 @@ public class LuceneQueryUtils {
         cacheQuery.maxResults(queryContext.getMaxResultSize()) ;
 
         return cacheQuery ;
+    }
+
+    private static void makeShouldQuery(List<Query> subInnerQueries, BooleanQuery.Builder booleanQueryBuilder) {
+        if(subInnerQueries.size() == 1){
+            booleanQueryBuilder.add(subInnerQueries.get(0), BooleanClause.Occur.MUST) ;
+        }else if(subInnerQueries.size() > 1){
+            BooleanQuery.Builder shouldBooleanQueryBuilder = new BooleanQuery.Builder();
+            for (Query shouldQuery : subInnerQueries) {
+                shouldBooleanQueryBuilder.add(shouldQuery, BooleanClause.Occur.SHOULD);
+            }
+            booleanQueryBuilder.add(shouldBooleanQueryBuilder.build(), BooleanClause.Occur.MUST) ;
+        }
     }
 
     private static void makeFacet(QueryContext queryContext, CacheQuery cacheQuery) {

@@ -36,6 +36,9 @@ public class ReadContext implements Context, Serializable {
     protected List<String> searchFields ;
     protected String searchValue ;
 
+    protected List<String> andSearchFields ;
+    protected String andSearchValue ;
+
 
     protected List<ResultField> resultFields;
 
