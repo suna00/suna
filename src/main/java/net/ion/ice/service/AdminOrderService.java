@@ -4,6 +4,8 @@ import net.ion.ice.core.api.ApiUtils;
 import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.context.QueryContext;
 import net.ion.ice.core.context.ReadContext;
+import net.ion.ice.core.data.DBQuery;
+import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.data.bind.NodeBindingInfo;
 import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.json.JsonUtils;
@@ -16,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -41,6 +44,8 @@ public class AdminOrderService {
 
     public static final String orderChange_TID = "orderChange";
     public static final String orderChangeProduct_TID = "orderChangeProduct";
+
+    public static List<String> orderListStatus = Arrays.asList(new String[]{"order001", "order002", "order003", "order004", "order005", "order006"});
 
     @Autowired
     private SessionService sessionService;
@@ -92,6 +97,7 @@ public class AdminOrderService {
     }
 
 
+
     //주문리스트
     public ExecuteContext getAdminOrderList(ExecuteContext context) {
         Map<String, Object> data = context.getData();
@@ -99,15 +105,23 @@ public class AdminOrderService {
         int page = JsonUtils.getIntValue(data, "page");
         int currentPage = (page == 0 ? 1 : page);
 
+
         String createdAbove = JsonUtils.getStringValue(data, "created_above");
         String createdBelow = JsonUtils.getStringValue(data, "created_below");
 
         String vendorType = JsonUtils.getStringValue(data, "vendorType_matching");
         String memberType = JsonUtils.getStringValue(data, "memberType_matching");
+        List<String> inSiteTypeList = getInValueList(memberType);
 
         String membershipLevel = JsonUtils.getStringValue(data, "membershipLevel_matching");
+        List<String> inMembershipLevelList = getInValueList(membershipLevel);
+
         String purchaseDeviceType = JsonUtils.getStringValue(data, "purchaseDeviceType_matching");
+        List<String> inpurchaseDeviceType = getInValueList(purchaseDeviceType);
+
         String usePayMethod = JsonUtils.getStringValue(data, "usePayMethod_matching");
+        List<String> inUsePayMethod = getInValueList(usePayMethod);
+
         String buyCount = JsonUtils.getStringValue(data, "buyCount_matching");
 
         String searcheFields = JsonUtils.getStringValue(data, "searchFields");
@@ -115,177 +129,173 @@ public class AdminOrderService {
 
         String orderStatus = JsonUtils.getStringValue(data, "orderStatus");
 
-
-        List<String> splitOrderStatusList = Arrays.asList(StringUtils.split(orderStatus, ","));
-        List<String> inOrderStatusList = new ArrayList<>();
-        for (String splitOrderStatus : splitOrderStatusList) {
-            inOrderStatusList.add(String.format("'%s'", splitOrderStatus));
+        if(StringUtils.isEmpty(orderStatus)){
+            orderStatus = "order001,order002,order003,order004,order005,order006";
         }
+        List<String> inOrderStatus = getInValueList(orderStatus);
 
-        String existsSiteTypeQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderSheet a, member b where a.memberNo = b.memberNo and b.siteType in (" + memberType +") ";
-
-        String existsMembershipLevelQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderSheet a, member b where a.memberNo = b.memberNo and b.membershipLevel in (" + membershipLevel +") ";;
-
-        String existsBuyCountOneQuery = "SELECT orderSheetId as inValue, count(*) buyCount FROM ytn.orderproduct group by orderSheetId having buyCount = 1";
-        String existsBuyCountManyQuery = "SELECT orderSheetId as inValue, count(*) buyCount FROM ytn.orderproduct group by orderSheetId having buyCount > 1";
-
-        String existsOrderStatusQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderProduct where orderStatus in ("+StringUtils.join(inOrderStatusList, ",")+")";
-
-//        String existsProductIdQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderProduct where productId like concat(@{productId}, '%') ";
-        String existsProductNameQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderProduct a, product b where a.productId = b.productId and b.name like concat('%', @{searchValue}, '%') ";
-        String existsVendorQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderProduct a, vendor b where a.vendorId = b.vendorId and b.name like concat('%', @{searchValue}, '%') ";
-        String existsMemberNameQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderSheet a, member b where a.memberNo = b.memberNo and b.name like concat('%', @{searchValue}, '%') ";
-        String existsMemberIdQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderSheet a, member b where a.memberNo = b.memberNo and b.userId like concat('%', @{searchValue}, '%') ";
-        String existsOrderSheetIdQuery = "select orderSheetId as inValue from orderSheet where orderSheetId like concat('%', @{searchValue}, '%') ";
-        String existsRecipientQuery = "select group_concat(distinct(orderSheetId)) as inValue from delivery where recipient like concat('%', @{searchValue}, '%') ";
-        String existsTrackingNoQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderDeliveryPrice where trackingNo like concat('%', @{searchValue}, '%') ";
-
-        List<String> search = new ArrayList<>();
-        search.add("pageSize="+pageSize);
-        search.add("page="+currentPage);
-        search.add("sorting=created desc");
-        search.add("referenceView=memberNo");
+        List<String> searchListQuery = new ArrayList<>();
+        List<Object> searchListValue = new ArrayList<>();
 
         if(StringUtils.isNotEmpty(createdAbove)){
-            search.add("created_above="+createdAbove);
+            searchListQuery.add("b.created >= ?");
+            searchListValue.add(createdAbove);
         }
 
         if(StringUtils.isNotEmpty(createdBelow)){
-            search.add("created_below="+createdBelow);
+            searchListQuery.add("b.created <= ?");
+            searchListValue.add(createdBelow);
         }
 
         if(StringUtils.isNotEmpty(memberType)){
-            search.add("orderSheetId_exists=" + existsSiteTypeQuery);
+            searchListQuery.add("c.siteType in (" + StringUtils.join(inSiteTypeList, ",") + ")");
+        }
+        if(StringUtils.isNotEmpty(membershipLevel)){
+            searchListQuery.add("c.membershipLevel in (" + StringUtils.join(inMembershipLevelList, ",") + ")");
         }
 
         if(StringUtils.isNotEmpty(purchaseDeviceType)){
-            search.add("purchaseDeviceType_in="+purchaseDeviceType);
-        }
-        if(StringUtils.isNotEmpty(usePayMethod)){
-            search.add("usePayMethod_in="+usePayMethod);
-        }
-        if(StringUtils.isNotEmpty(membershipLevel)){
-            search.add("orderSheetId_exists="+existsMembershipLevelQuery);
+            searchListQuery.add("purchaseDeviceType in ("+ StringUtils.join(inpurchaseDeviceType, ",") + ")");
         }
 
-        if(StringUtils.isNotEmpty(orderStatus)) {
-            search.add("orderSheetId_exists=" + existsOrderStatusQuery);
+        if(StringUtils.isNotEmpty(usePayMethod)){
+            searchListQuery.add("usePayMethod in ("+ StringUtils.join(inUsePayMethod, ",") + ")");
         }
 
         if(StringUtils.isNotEmpty(buyCount) && !StringUtils.contains(buyCount, ",")){
             if(buyCount.equals("1")){
-                search.add("orderSheetId_exists=" + existsBuyCountOneQuery);
+                searchListQuery.add("b.orderSheetId in (SELECT orderSheetId FROM orderproduct group by orderSheetId having count(*) = 1)");
             }else if(buyCount.equals("2")){
-                search.add("orderSheetId_exists=" + existsBuyCountManyQuery);
+                searchListQuery.add("b.orderSheetId in (SELECT orderSheetId FROM orderproduct group by orderSheetId having count(*) > 1)");
             }
         }
 
         if(StringUtils.isNotEmpty(searcheFields) && StringUtils.isNotEmpty(searchValue)){
-            String searchQuery = null;
             switch(searcheFields){
                 case "memberName":{
-                    searchQuery = existsMemberNameQuery;
+                    searchListQuery.add("c.name like concat('%', ?, '%')");
+                    searchListValue.add(searchValue);
                     break;
                 }
                 case "memberId":{
-                    searchQuery = existsMemberIdQuery;
+                    searchListQuery.add("c.userId like concat('%', ?, '%')");
+                    searchListValue.add(searchValue);
                     break;
                 }
                 case "productName":{
-                    searchQuery = existsProductNameQuery;
+                    searchListQuery.add("a.name like concat('%', ?, '%')");
+                    searchListValue.add(searchValue);
                     break;
                 }
                 case "orderSheetId":{
-                    searchQuery = existsOrderSheetIdQuery;
+                    searchListQuery.add("b.orderSheetId like concat('%', ?, '%')");
+                    searchListValue.add(searchValue);
                     break;
                 }
                 case "recipient":{
-                    searchQuery = existsRecipientQuery;
+                    searchListQuery.add("e.recipient like concat('%', ?, '%')");
+                    searchListValue.add(searchValue);
                     break;
                 }
                 case "vendor":{
-                    searchQuery = existsVendorQuery;
+                    searchListQuery.add("d.name like concat('%', ?, '%')");
+                    searchListValue.add(searchValue);
                     break;
                 }
                 case "trackingNo":{
-                    searchQuery = existsTrackingNoQuery;
+                    searchListQuery.add("b.orderSheetId in (SELECT orderSheetId FROM orderdeliveryprice where trackingNo like concat('%', ?, '%')");
+                    searchListValue.add(searchValue);
                     break;
                 }
             }
-            if(searchQuery != null) {
-                search.add("orderSheetId_exists=" + searchQuery);
-            }
         }
+        String baseSql = "select %s from orderProduct a, orderSheet b, member c, vendor d, delivery e where a.orderSheetId = b.orderSheetId and b.memberNo = c.memberNo and a.vendorId = d.vendorId and b.orderSheetId = e.orderSheetId %s %s";
 
-        String searchText = StringUtils.join(search, "&");
-
-//        String searchText = "pageSize=" + pageSize +
-//                "&page=" + currentPage +
-//                "&sorting=created desc" +
-//                (orderSheetId != "" ? "&orderSheetId_equals=" + orderSheetId : "") +
-//                (productId != "" || orderStatus != "" ? "&orderSheetId_exists=" + existsQuery : "") +
-//                (createdFromto != "" ? "&created_fromto=" + createdFromto : "") +
-//                (memberNo != "" ? "&memberNo_equals=" + memberNo : "");
-
+        String countSql =  String.format(baseSql, "a.orderStatus, count(*) as cnt ", searchListQuery.size()>0 ?  " and " : "" +  StringUtils.join(searchListQuery.toArray(), " AND "), " group by a.orderStatus");
 
         NodeType nodeType = NodeUtils.getNodeType(orderSheet_TID);
-        QueryContext queryContext = QueryContext.createQueryContextFromText(searchText, nodeType, null);
-        queryContext.setData(context.getData());
+        JdbcTemplate jdbcTemplate = DBService.getJdbc(nodeType.getDsId());
 
-        NodeBindingInfo nodeBindingInfo = nodeBindingService.getNodeBindingInfo(orderSheet_TID);
-        List<Map<String, Object>> sheetList = nodeBindingInfo.list(queryContext);
+        List<Map<String, Object>> counts = jdbcTemplate.queryForList(countSql, searchListValue.toArray());
 
-        for (Map<String, Object> sheet : sheetList) {
-            Timestamp created = sheet.get("created") == null ? null : (Timestamp) sheet.get("created");
-            if (created != null) sheet.put("created", FastDateFormat.getInstance("yyyyMMddHHmmss").format(created.getTime()));
-            Long memberNoValue = sheet.get("memberNo") == null ? null : (Long) sheet.get("memberNo");
+        if(StringUtils.isNotEmpty(orderStatus)) {
+            searchListQuery.add("a.orderStatus in (" + StringUtils.join(inOrderStatus, ",") + ")");
+        }
+
+        String totalCountSql =  String.format(baseSql, "count(*) as totalCount", " and " + StringUtils.join(searchListQuery.toArray(), " AND "), "");
+        Map<String, Object> totalCount = jdbcTemplate.queryForMap(totalCountSql, searchListValue.toArray());
+
+
+        String listSelect = "b.* ";
+        String listSql =  String.format(baseSql, listSelect, " and " + StringUtils.join(searchListQuery.toArray(), " AND "), " group by b.orderSheetId order by b.created desc limit ? offset ?");
+        searchListValue.add(pageSize);
+        searchListValue.add((currentPage - 1) * pageSize);
+
+        List<Map<String, Object>> orderList = jdbcTemplate.queryForList(listSql, searchListValue.toArray());
+
+        for (Map<String, Object> order : orderList) {
+            Timestamp created = order.get("created") == null ? null : (Timestamp) order.get("created");
+            if (created != null) order.put("created", FastDateFormat.getInstance("yyyyMMddHHmmss").format(created.getTime()));
+            Long memberNoValue = order.get("memberNo") == null ? null : (Long) order.get("memberNo");
             if (memberNoValue == null) {
-                sheet.put("memberItem", new HashMap<>());
+                order.put("memberItem", new HashMap<>());
             } else {
                 Node memberNode = nodeService.getNode("member", memberNoValue.toString());
                 if (memberNode == null) {
-                    sheet.put("memberItem", new HashMap<>());
+                    order.put("memberItem", new HashMap<>());
                 } else {
                     Map<String, Object> memberItem = new HashMap<>();
                     NodeType memberNodeType = NodeUtils.getNodeType("member");
                     List<PropertyType> memberPropertyList = new ArrayList<>(memberNodeType.getPropertyTypes());
                     for (PropertyType memberProperty : memberPropertyList) {
                         if (!StringUtils.equals(memberProperty.getPid(), "password")) {
-                            memberItem.put(memberProperty.getPid(), NodeUtils.getResultValue(queryContext, memberProperty, memberNode));
+                            memberItem.put(memberProperty.getPid(), NodeUtils.getResultValue(context, memberProperty, memberNode));
                         }
                     }
-                    sheet.put("memberItem", memberItem);
+                    order.put("memberItem", memberItem);
                 }
             }
-
-            List<Map<String, Object>> opList = nodeBindingService.list(orderProduct_TID, "orderSheetId_equals=" + JsonUtils.getStringValue(sheet, "orderSheetId"));
-            for (Map<String, Object> op : opList) {
-                Node product = NodeUtils.getNode("product", JsonUtils.getStringValue(op, "productId"));
-                List<Map<String, Object>> mainImages = nodeBindingService.list(mypageOrderService.commonResource_TID, "contentsId_matching=" + product.getId() + "&tid_matching=product&name_matching=main");
-                op.put("referencedMainImage", mainImages);
-
-                Map<String, Object> orderDeliveryPrice = mypageOrderService.getOrderDeliveryPrice(JsonUtils.getStringValue(op, "orderSheetId"), JsonUtils.getStringValue(op, "orderProductId"));
-                op.put("referencedOrderDeliveryPrice", orderDeliveryPrice);
-                op.put("functionBtn", mypageOrderService.getFunctionBtn(orderDeliveryPrice, op, product));
-                commonService.putReferenceValue("orderProduct", context, op);
+            List<Map<String, Object>> deliveryList = nodeBindingService.list(orderDeliveryPrice_TID, "orderSheetId_equals=" + JsonUtils.getStringValue(order, "orderSheetId"));
+            for (Map<String, Object> dp : deliveryList) {
+                String opIds = (String) dp.get("orderProductIds");
+                List<Node> ops = new ArrayList<>();
+                for(String opId : StringUtils.split(opIds, ",")){
+                    Node op = NodeUtils.getNode("orderProduct", opId);
+                    Node product = NodeUtils.getNode("product", op.getStringValue("productId"));
+                    op.put("product", product.toDisplay(context));
+                    op.put("functionBtn", mypageOrderService.getFunctionBtn(dp, op, product));
+                    ops.add(op);
+//                    List<Map<String, Object>> mainImages = nodeBindingService.list(mypageOrderService.commonResource_TID, "contentsId_matching=" + product.getId() + "&tid_matching=product&name_matching=main");
+//                    op.put("referencedMainImage", mainImages);
+//                    commonService.putReferenceValue("orderProduct", context, op);
+                }
+                dp.put("orderProducts", ops);
             }
-            sheet.put("referencedOrderProduct", opList);
-            commonService.putReferenceValue("orderSheet", context, sheet);
+            order.put("deliveryProducts", deliveryList);
+            commonService.putReferenceValue("orderSheet", context, order);
         }
-
-//        int pageCount = (int) Math.ceil((double) sheetTotalList.size() / (double) pageSize);
-
+        long totalCnt = (long) totalCount.get("totalCount");
         Map<String, Object> item = new LinkedHashMap<>();
-        item.put("totalCount", queryContext.getResultSize());
-        item.put("resultCount", sheetList.size());
-        item.put("pageSize", queryContext.getPageSize());
-        item.put("pageCount", queryContext.getResultSize() / queryContext.getPageSize() + (queryContext.getResultSize() % queryContext.getPageSize() > 0? 1: 0));
+        item.put("totalCount", totalCnt);
+        item.put("resultCount", orderList.size());
+        item.put("pageSize", pageSize);
+        item.put("pageCount", totalCnt / pageSize + (totalCnt % pageSize > 0? 1: 0));
         item.put("currentPage", currentPage);
 
-        item.put("items", sheetList);
+        item.put("items", orderList);
+
+        item.put("counts", counts);
         context.setResult(item);
 
         return context;
+    }
+
+    private List<String> getInValueList(String value) {
+        List<String> inValueList = new ArrayList<>();
+        for (String val : StringUtils.split(value, ",")) {
+            inValueList.add(String.format("'%s'", val));
+        }
+        return inValueList;
     }
 
 
@@ -676,5 +686,27 @@ public class AdminOrderService {
         }
         return context;
     }
+/*
 
+//        List<String> inOrderStatusList = getInValueList(orderStatus);
+
+        String existsSiteTypeQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderSheet a, member b where a.memberNo = b.memberNo and b.siteType in (" + StringUtils.join(inSiteTypeList, ",") +") ";
+
+        String existsMembershipLevelQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderSheet a, member b where a.memberNo = b.memberNo and b.membershipLevel in (" + StringUtils.join(inMembershipLevelList, ",") +") ";;
+
+        String existsBuyCountOneQuery = "select group_concat(orderSheetId) as inValue from (SELECT orderSheetId, count(*) buyCount FROM ytn.orderproduct group by orderSheetId having buyCount = 1) a";
+        String existsBuyCountManyQuery = "select group_concat(orderSheetId) as inValue from (SELECT orderSheetId, count(*) buyCount FROM ytn.orderproduct group by orderSheetId having buyCount > 1) a";
+
+        String existsOrderStatusQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderProduct where orderStatus like @{orderStatus}";
+
+//        String existsProductIdQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderProduct where productId like concat(@{productId}, '%') ";
+        String existsProductNameQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderProduct a, product b where a.productId = b.productId and b.name like concat('%', @{searchValue}, '%') ";
+        String existsVendorQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderProduct a, vendor b where a.vendorId = b.vendorId and b.name like concat('%', @{searchValue}, '%') ";
+        String existsMemberNameQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderSheet a, member b where a.memberNo = b.memberNo and b.name like concat('%', @{searchValue}, '%') ";
+        String existsMemberIdQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderSheet a, member b where a.memberNo = b.memberNo and b.userId like concat('%', @{searchValue}, '%') ";
+        String existsOrderSheetIdQuery = "select orderSheetId as inValue from orderSheet where orderSheetId like concat('%', @{searchValue}, '%') ";
+        String existsRecipientQuery = "select group_concat(distinct(orderSheetId)) as inValue from delivery where recipient like concat('%', @{searchValue}, '%') ";
+        String existsTrackingNoQuery = "select group_concat(distinct(orderSheetId)) as inValue from orderDeliveryPrice where trackingNo like concat('%', @{searchValue}, '%') ";
+
+ */
 }
