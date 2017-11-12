@@ -7,8 +7,6 @@ import net.ion.ice.core.data.bind.NodeBindingInfo;
 import net.ion.ice.core.data.bind.NodeBindingService;
 import net.ion.ice.core.event.EventService;
 import net.ion.ice.core.node.*;
-import net.ion.ice.core.query.QueryTerm;
-import net.ion.ice.core.query.QueryUtils;
 import net.ion.ice.core.session.SessionService;
 import net.ion.ice.plugin.excel.ExcelService;
 import org.apache.poi.ss.usermodel.*;
@@ -26,7 +24,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -60,12 +57,7 @@ public class MemberService {
         if (StringUtils.isEmpty(siteId)) {
             siteId = "default";
         }
-        //NodeType memberType = nodeService.getNodeType("member");
-        //List<QueryTerm> queryTerms = new ArrayList<>();
-        //queryTerms.add(QueryUtils.makePropertyQueryTerm(memberType, "siteId", null, siteId));
-        //queryTerms.add(QueryUtils.makePropertyQueryTerm(memberType, "userId", null, userId));
 
-        //List<Node> nodes = nodeService.getNodeList(memberType, queryTerms);
         List<Node> nodes = nodeService.getNodeList("member", "sorting=memberNo desc&siteId_equals="+siteId+"&userId_equals="+userId);
 
         if (nodes == null || nodes.size() == 0) {
@@ -217,8 +209,21 @@ public class MemberService {
                 node = (Node) nodeService.executeNode(contextData, "member", CommonService.UPDATE);
 
                 if (contextData.containsKey("changeMarketingAgreeYn")) {
-                    Map<String, String> emailTemplate = getEmailTemplate("광고성 정보수신동의 결과");
-                    EmailService.setHtmlMemberInfoChange(node, node.get("email").toString(), emailTemplate);
+                    Map<String, String> data = new HashMap<>();
+                    data.put("siteId", node.getBindingValue("siteId").toString());
+                    data.put("email", node.get("email").toString());
+
+                    if(contextData.containsKey("receiveMarketingEmailAgreeYn")){
+                        data.put("agreeType", "이메일");
+                        data.put("agreeYn", node.get("receiveMarketingEmailAgreeYn").toString());
+                        data.put("date", node.get("receiveMarketingEmailAgreeDate").toString());
+                    } else {
+                        data.put("agreeType", "SMS");
+                        data.put("agreeYn", node.get("receiveMarketingSMSAgreeYn").toString());
+                        data.put("date", node.get("receiveMarketingSMSAgreeDate").toString());
+                    }
+
+                    EmailService.setHtmlMemberMarketingChange(data);
                 }
             }
         }catch (Exception e){
@@ -619,7 +624,7 @@ public class MemberService {
         return setHtmlMap;
     }
 
-    public ExecuteContext leaveMembership(ExecuteContext context) {
+    public ExecuteContext leaveMembership(ExecuteContext context) throws IOException {
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
 
         String[] params = {"memberNo", "leaveType", "reasonType"};
@@ -656,6 +661,7 @@ public class MemberService {
         node.put("memberStatus", "leave");
         nodeService.executeNode(node, "member", commonService.UPDATE);
 
+        EmailService.setHtmlMemberLeave(data);
 
         return context;
     }
@@ -1289,4 +1295,11 @@ public class MemberService {
 
         return result;
     }
+
+    // 이메일 테스트
+    public ExecuteContext memberTest(ExecuteContext context) throws IOException {
+        EmailService.setHtmlMemberSignUp(null);
+        return context;
+    }
+
 }
