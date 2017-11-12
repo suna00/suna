@@ -654,7 +654,6 @@ public class EmailService {
 
         contents = contents.replaceAll("<img src=\"header\">", header);
         contents = contents.replaceAll("<tr id=\"gnbMenu\"></tr>", menu);
-        contents = contents.replaceAll("::link::", callBackUrl+siteId+"/mypage/orderView/cancelReturn/list");
         contents = contents.replaceAll("<img src=\"footer\">", footer);
 
         sendEmailDirect(email, title, contents);
