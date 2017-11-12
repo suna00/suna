@@ -387,7 +387,7 @@ public class EmailService {
         contents = contents.replaceAll("::name::", data.get("name").toString());
         contents = contents.replaceAll("::userId::", data.get("userId").toString());
         contents = contents.replaceAll("::date::", data.get("leaveDate").toString());
-        contents = contents.replaceAll("::point::", data.get("point").toString());
+        contents = contents.replaceAll("::point::", data.get("ypoint").toString());
         contents = contents.replaceAll("::link::", callBackUrl+siteId);
         contents = contents.replaceAll("<img src=\"footer\">", footer);
 
