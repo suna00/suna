@@ -22,6 +22,7 @@ public class CouponMembershipService {
         String couponMembershipId = paramData.get("couponMembershipId") == null ? "" : paramData.get("couponMembershipId").toString();
         String affiliateMallId = paramData.get("affiliateMallId") == null ? "" : paramData.get("affiliateMallId").toString();
 
+        boolean isCreate = true;
         if (StringUtils.isEmpty(couponMembershipId)) {
             Node affiliateMallNode = nodeService.read("affiliateMall", affiliateMallId);
             if (affiliateMallNode != null) {
@@ -29,9 +30,11 @@ public class CouponMembershipService {
                 couponMembershipId = businessCode+" "+getRandomCode()+" "+getRandomCode()+" "+getRandomCode();
                 paramData.put("couponMembershipId", couponMembershipId);
             }
+        } else {
+            isCreate = false;
         }
 
-        Node couponMembershipNode = (Node) nodeService.executeNode(paramData, "couponMembership", EventService.SAVE);
+        Node couponMembershipNode = (Node) nodeService.executeNode(paramData, "couponMembership", isCreate ? EventService.CREATE : EventService.UPDATE);
 
         context.setResult(couponMembershipNode);
 
