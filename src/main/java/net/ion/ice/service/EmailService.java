@@ -216,7 +216,7 @@ public class EmailService {
 
         List<Node> affiliateList = NodeUtils.getNodeList("affiliate", "siteId_matching="+siteId);
         if(0 < affiliateList.size()){
-            siteType = affiliateList.get(0).get("siteType").toString();
+            siteType = affiliateList.get(0).getBindingValue("siteType").toString();
             name = affiliateList.get(0).get("name").toString();
         }
 
@@ -226,7 +226,7 @@ public class EmailService {
         return setSiteInfo;
     }
 
-    public static String getHeaderNew(String siteId){
+    public static String getHeader(String siteId){
         String header;
         // header-대학 : <img src="http://localhost/assets/images/email/logo_store.png" alt="YGOON 교육할인스토어" style="border:0;">
         // header-기업 : <img src="http://localhost/assets/images/email/logo_small.png" alt="YGOON 교육할인스토어" style="border:0;"><p style="font-size:18px;font-weight:bold;color:#fff;letter-spacing:-2px;">해당 기업명 출력영역</p>
@@ -244,7 +244,7 @@ public class EmailService {
         return header;
     }
 
-    public static String getFooterNew(String siteId){
+    public static String getFooter(String siteId){
         String footer;
         // footer-대학 : <img src="http://localhost/assets/images/email/logo_store.png" alt="YGOON 교육할인스토어" width="111" style="border:0;">
         // footer-기업 : <img src="http://localhost/assets/images/email/logo_small.png" alt="YGOON" width="49" style="border:0;"><span style="display:block;text-align:center;font-size:16px;font-weight:600;color:#fff;letter-spacing:-2px;">해당 기업명 출력영역</span>
@@ -255,38 +255,6 @@ public class EmailService {
         if("company".equals(siteInfo.get("siteType"))){
             footer = "<img src=\""+callBackUrl+"image/email/logo_small.png\" alt=\"YGOON\" width=\"49\" style=\"border:0;\"><span style=\"display:block;text-align:center;font-size:16px;font-weight:600;color:#fff;letter-spacing:-2px;\">"+siteInfo.get("name")+"</span>";
         } else if("university".equals(siteInfo.get("siteType"))) {
-            footer = "<img src=\""+callBackUrl+"image/email/logo_store.png\" alt=\"YGOON 교육할인스토어\" width=\"111\" style=\"border:0;\">";
-        } else {
-            footer = "<img src=\""+callBackUrl+"image/email/logo_ygoon.png\" alt=\"YGOON 특별할인스토어\" width=\"112\" style=\"border:0;\">";
-        }
-        return footer;
-    }
-
-    public static String getHeader(String siteType, String company){
-        String header;
-        // header-대학 : <img src="http://localhost/assets/images/email/logo_store.png" alt="YGOON 교육할인스토어" style="border:0;">
-        // header-기업 : <img src="http://localhost/assets/images/email/logo_small.png" alt="YGOON 교육할인스토어" style="border:0;"><p style="font-size:18px;font-weight:bold;color:#fff;letter-spacing:-2px;">해당 기업명 출력영역</p>
-        // header-비회원 : <img src="http://localhost/assets/images/email/logo_ygoon.png" alt="YGOON 교육할인스토어" style="border:0;">
-
-        if("company".equals(siteType)){
-            header = "<img src=\""+callBackUrl+"image/email/logo_small.png\" alt=\"YGOON 기업스토어\" style=\"border:0;\"><p style=\"font-size:18px;font-weight:bold;color:#fff;letter-spacing:-2px;\">"+company+"</p>";
-        } else if("university".equals(siteType)) {
-            header = "<img src=\""+callBackUrl+"image/email/logo_store.png\" alt=\"YGOON 교육할인스토어\" style=\"border:0;\">";
-        } else {
-            header = "<img src=\""+callBackUrl+"image/email/logo_ygoon.png\" alt=\"YGOON 특별할인스토어\" style=\"border:0;\">";
-        }
-        return header;
-    }
-
-    public static String getFooter(String siteType, String company){
-        String footer;
-        // footer-대학 : <img src="http://localhost/assets/images/email/logo_store.png" alt="YGOON 교육할인스토어" width="111" style="border:0;">
-        // footer-기업 : <img src="http://localhost/assets/images/email/logo_small.png" alt="YGOON" width="49" style="border:0;"><span style="display:block;text-align:center;font-size:16px;font-weight:600;color:#fff;letter-spacing:-2px;">해당 기업명 출력영역</span>
-        // footer-비회원 : <img src="http://localhost/assets/images/email/logo_ygoon.png" alt="YGOON 특별할인스토어" width="112" style="border:0;">
-
-        if("company".equals(siteType)){
-            footer = "<img src=\""+callBackUrl+"image/email/logo_small.png\" alt=\"YGOON\" width=\"49\" style=\"border:0;\"><span style=\"display:block;text-align:center;font-size:16px;font-weight:600;color:#fff;letter-spacing:-2px;\">"+company+"</span>";
-        } else if("university".equals(siteType)) {
             footer = "<img src=\""+callBackUrl+"image/email/logo_store.png\" alt=\"YGOON 교육할인스토어\" width=\"111\" style=\"border:0;\">";
         } else {
             footer = "<img src=\""+callBackUrl+"image/email/logo_ygoon.png\" alt=\"YGOON 특별할인스토어\" width=\"112\" style=\"border:0;\">";
@@ -347,14 +315,36 @@ public class EmailService {
         getEmailTemplate("회원가입");
     }
 
+    public static void setHtmlMemberJoin(Node node, String email, Map<String, String> emailTemplate) throws IOException {
+        String title = emailTemplate.get("title").toString();
+        String contents = emailTemplate.get("contents").toString();
+        String siteId = node.getBindingValue("siteId").toString();
+
+        String header = getHeader(siteId);
+        String footer = getFooter(siteId);
+
+        contents = contents.replaceAll("<img src=\"header\">", header);
+        contents = contents.replaceAll("src=\"../assets/images/", "src=" + apiUrl + "/image");
+        contents = contents.replaceAll("userId", node.getStringValue("userId")); // abc***@ytn.co.kr
+        contents = contents.replaceAll("joinDate", node.getStringValue("joinDate")); // 2017-07-21
+        contents = contents.replaceAll("name", node.getStringValue("name")); // 홍*동
+        contents = contents.replaceAll("cellphone", node.getStringValue("cellphone")); // 010-11**-11**
+        contents = contents.replaceAll("receiveMarketingEmailAgreeYn", node.getReferenceNode("receiveMarketingEmailAgreeYn").get("name").toString()); //	동의
+        contents = contents.replaceAll("receiveMarketingSMSAgreeYn", node.getReferenceNode("receiveMarketingSMSAgreeYn").get("name").toString()); // 	동의
+        contents = contents.replaceAll("href=\"#\"", "href="+callBackUrl+siteId+"/intro");
+        contents = contents.replaceAll("<img src=\"footer\">", footer);
+
+        sendEmailDirect(email, title, contents);
+    }
+
     public static void setHtmlMemberBirthday(String email, Map<String, Object> data) throws IOException {
         // 생일축하 ./pc_markup/DE_SL_FR_26_015.html
         // data : siteId, name, link
 
         String siteId = data.get("siteId").toString();
-        String header = getHeaderNew(siteId);
+        String header = getHeader(siteId);
         String menu = getMenu();
-        String footer = getFooterNew(siteId);
+        String footer = getFooter(siteId);
 
         Map<String, String> emailTemplate = getEmailTemplate("생일축하");
         String title = emailTemplate.get("title").toString();
@@ -375,8 +365,8 @@ public class EmailService {
         // data : name, userId, date, point, link
 
         String siteId = data.get("siteId").toString();
-        String header = getHeaderNew(siteId);
-        String footer = getFooterNew(siteId);
+        String header = getHeader(siteId);
+        String footer = getFooter(siteId);
 
         Map<String, String> emailTemplate = getEmailTemplate("회원탈퇴");
         String title = emailTemplate.get("title").toString();
@@ -404,8 +394,8 @@ public class EmailService {
         // data : name, date, link
 
         String siteId = data.get("siteId").toString();
-        String header = getHeaderNew(siteId);
-        String footer = getFooterNew(siteId);
+        String header = getHeader(siteId);
+        String footer = getFooter(siteId);
 
         Map<String, String> emailTemplate = getEmailTemplate("휴면전환안내");
         String title = emailTemplate.get("title").toString();
@@ -430,8 +420,8 @@ public class EmailService {
         // agreeType, agreeYn, date, link
 
         String siteId = data.get("siteId");
-        String header = getHeaderNew(siteId);
-        String footer = getFooterNew(siteId);
+        String header = getHeader(siteId);
+        String footer = getFooter(siteId);
 
         Map<String, String> emailTemplate = getEmailTemplate("광고성 정보수신동의 결과");
         String title = emailTemplate.get("title").toString();
@@ -452,8 +442,8 @@ public class EmailService {
         // receiveMarketingSMSAgreeYn, receiveMarketingSMSAgreeDate, receiveMarketingEmailAgreeYn, receiveMarketingEmailAgreeDate, link
 
         String siteId = node.getBindingValue("siteId").toString();
-        String header = getHeaderNew(siteId);
-        String footer = getFooterNew(siteId);
+        String header = getHeader(siteId);
+        String footer = getFooter(siteId);
 
         Map<String, String> emailTemplate = getEmailTemplate("수신동의 이력 안내");
         String title = emailTemplate.get("title").toString();
@@ -475,8 +465,8 @@ public class EmailService {
         // point, expiringYPoint, date, link
 
         String siteId = node.getBindingValue("siteId").toString();
-        String header = getHeaderNew(siteId);
-        String footer = getFooterNew(siteId);
+        String header = getHeader(siteId);
+        String footer = getFooter(siteId);
 
         Map<String, String> emailTemplate = getEmailTemplate("마일리지 소멸예정");
         String title = emailTemplate.get("title").toString();
@@ -497,9 +487,9 @@ public class EmailService {
         // title, date, product, contents - productQuestion
 
         String siteId = node.getBindingValue("siteId").toString();
-        String header = getHeaderNew(siteId);
+        String header = getHeader(siteId);
         String menu = getMenu();
-        String footer = getFooterNew(siteId);
+        String footer = getFooter(siteId);
 
         Map<String, String> emailTemplate = getEmailTemplate("상품문의답변등록");
         String title = emailTemplate.get("title").toString();
@@ -522,9 +512,9 @@ public class EmailService {
         // title, date, product, contents - oneToOneQuestion
 
         String siteId = node.getBindingValue("siteId").toString();
-        String header = getHeaderNew(siteId);
+        String header = getHeader(siteId);
         String menu = getMenu();
-        String footer = getFooterNew(siteId);
+        String footer = getFooter(siteId);
 
         Map<String, String> emailTemplate = getEmailTemplate("1:1문의답변등록");
         String title = emailTemplate.get("title").toString();
@@ -546,8 +536,8 @@ public class EmailService {
         // 입점상담신청	 ./pc_markup/DE_SL_FR_26_019.html
         // contactPerson, email, date, company, siteUrl, companyPhone, phone, newStoreRequestType, contents
 
-        String header = getHeaderNew(siteId);
-        String footer = getFooterNew(siteId);
+        String header = getHeader(siteId);
+        String footer = getFooter(siteId);
 
         Map<String, String> emailTemplate = getEmailTemplate("입점상담신청");
         String title = emailTemplate.get("title").toString();
@@ -572,8 +562,8 @@ public class EmailService {
         // 제휴문의 ./pc_markup/DE_SL_FR_26_020.html
         // contactPerson, email, date, company, siteUrl, companyPhone, phone, affliateRequestType, contents
 
-        String header = getHeaderNew(siteId);
-        String footer = getFooterNew(siteId);
+        String header = getHeader(siteId);
+        String footer = getFooter(siteId);
 
         Map<String, String> emailTemplate = getEmailTemplate("제휴문의");
         String title = emailTemplate.get("title").toString();
@@ -597,9 +587,9 @@ public class EmailService {
     public static void setHtmlOrder(String siteId, String email, Node node) throws IOException {
         // 주문완료 ./pc_markup/DE_SL_FR_26_001.html
 
-        String header = getHeaderNew(siteId);
+        String header = getHeader(siteId);
         String menu = getMenu();
-        String footer = getFooterNew(siteId);
+        String footer = getFooter(siteId);
 
         Map<String, String> emailTemplate = getEmailTemplate("주문완료");
         String title = emailTemplate.get("title").toString();
@@ -616,9 +606,9 @@ public class EmailService {
     public static void setHtmlProduct(String siteId, String email, Node node) throws IOException {
         // 상품발송 ./pc_markup/DE_SL_FR_26_002.html
 
-        String header = getHeaderNew(siteId);
+        String header = getHeader(siteId);
         String menu = getMenu();
-        String footer = getFooterNew(siteId);
+        String footer = getFooter(siteId);
 
         Map<String, String> emailTemplate = getEmailTemplate("상품발송");
         String title = emailTemplate.get("title").toString();
@@ -635,9 +625,9 @@ public class EmailService {
     public static void setHtmlOrderCancel(String siteId, String email, Node node) throws IOException {
         // 주문취소 ./pc_markup/DE_SL_FR_26_003.html
 
-        String header = getHeaderNew(siteId);
+        String header = getHeader(siteId);
         String menu = getMenu();
-        String footer = getFooterNew(siteId);
+        String footer = getFooter(siteId);
 
         Map<String, String> emailTemplate = getEmailTemplate("주문취소");
         String title = emailTemplate.get("title").toString();
@@ -654,9 +644,9 @@ public class EmailService {
     public static void setHtmlProductDelivery(String siteId, String email, Node node) throws IOException {
         // 배송완료 ./pc_markup/DE_SL_FR_26_014.html
 
-        String header = getHeaderNew(siteId);
+        String header = getHeader(siteId);
         String menu = getMenu();
-        String footer = getFooterNew(siteId);
+        String footer = getFooter(siteId);
 
         Map<String, String> emailTemplate = getEmailTemplate("배송완료");
         String title = emailTemplate.get("title").toString();
@@ -673,9 +663,9 @@ public class EmailService {
     public static void setHtmlProductChange(String siteId, String email, Node node) throws IOException {
         // 교환접수 (신청) ./pc_markup/DE_SL_FR_26_004.html
 
-        String header = getHeaderNew(siteId);
+        String header = getHeader(siteId);
         String menu = getMenu();
-        String footer = getFooterNew(siteId);
+        String footer = getFooter(siteId);
 
         Map<String, String> emailTemplate = getEmailTemplate("교환접수");
         String title = emailTemplate.get("title").toString();
@@ -692,9 +682,9 @@ public class EmailService {
     public static void setHtmlProductReturn(String siteId, String email, Node node) throws IOException {
         // 반품접수 (신청) ./pc_markup/DE_SL_FR_26_005.html
 
-        String header = getHeaderNew(siteId);
+        String header = getHeader(siteId);
         String menu = getMenu();
-        String footer = getFooterNew(siteId);
+        String footer = getFooter(siteId);
 
         Map<String, String> emailTemplate = getEmailTemplate("반품접수");
         String title = emailTemplate.get("title").toString();
@@ -703,30 +693,6 @@ public class EmailService {
         contents = contents.replaceAll("<img src=\"header\">", header);
         contents = contents.replaceAll("<tr id=\"gnbMenu\"></tr>", menu);
         contents = contents.replaceAll("::link::", callBackUrl+siteId+"/mypage/orderView/cancelReturn/list");
-        contents = contents.replaceAll("<img src=\"footer\">", footer);
-
-        sendEmailDirect(email, title, contents);
-    }
-
-    public static void setHtmlMemberJoin(Node node, String email, Map<String, String> emailTemplate) throws IOException {
-        String title = emailTemplate.get("title").toString();
-        String contents = emailTemplate.get("contents").toString();
-        String siteId = node.getBindingValue("siteId").toString();
-        String siteType = node.getBindingValue("siteType").toString();
-        String company = node.getStringValue("company");
-
-        String header = getHeader(siteType, company);
-        String footer = getFooter(siteType, company);
-
-        contents = contents.replaceAll("<img src=\"header\">", header);
-        contents = contents.replaceAll("src=\"../assets/images/", "src=" + apiUrl + "/image");
-        contents = contents.replaceAll("userId", node.getStringValue("userId")); // abc***@ytn.co.kr
-        contents = contents.replaceAll("joinDate", node.getStringValue("joinDate")); // 2017-07-21
-        contents = contents.replaceAll("name", node.getStringValue("name")); // 홍*동
-        contents = contents.replaceAll("cellphone", node.getStringValue("cellphone")); // 010-11**-11**
-        contents = contents.replaceAll("receiveMarketingEmailAgreeYn", node.getReferenceNode("receiveMarketingEmailAgreeYn").get("name").toString()); //	동의
-        contents = contents.replaceAll("receiveMarketingSMSAgreeYn", node.getReferenceNode("receiveMarketingSMSAgreeYn").get("name").toString()); // 	동의
-        contents = contents.replaceAll("href=\"#\"", "href="+callBackUrl+siteId+"/intro");
         contents = contents.replaceAll("<img src=\"footer\">", footer);
 
         sendEmailDirect(email, title, contents);
