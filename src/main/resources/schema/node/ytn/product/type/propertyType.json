@@ -1006,6 +1006,23 @@
   {
     "typeId": "propertyType",
     "tid": "product",
+    "pid": "returnMessage",
+    "propertyTypeName": "반려",
+    "valueType": "TEXT",
+    "required": false,
+    "idable": false,
+    "labelable": false,
+    "treeable": false,
+    "indexable": true,
+    "analyzer": "code",
+    "referenceType": "",
+    "referenceValue": "",
+    "codeFilter": "",
+    "defaultValue": ""
+  },
+  {
+    "typeId": "propertyType",
+    "tid": "product",
     "pid": "owner",
     "propertyTypeName": "등록자",
     "valueType": "REFERENCE",
