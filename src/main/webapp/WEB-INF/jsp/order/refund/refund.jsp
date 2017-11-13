@@ -149,10 +149,6 @@
     }
     res_cd  = c_PayPlus.m_res_cd;                      // 결과 코드
     res_msg = c_PayPlus.m_res_msg;                     // 결과 메시지
-    System.out.println("#############################################################");
-    System.out.println(c_PayPlus.getLogRecvMsg());
-    System.out.println(new String(res_msg.getBytes("KSC5601"), "UTF-8"));
-    System.out.println("#############################################################");
     /* ============================================================================== */
 
 
