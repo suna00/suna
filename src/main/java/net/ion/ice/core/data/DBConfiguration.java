@@ -1,9 +1,7 @@
 package net.ion.ice.core.data;
 
-import lombok.Data;
 import net.ion.ice.core.node.Node;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.context.annotation.Configuration;
 
 import java.io.Serializable;
 
@@ -20,6 +18,9 @@ public class DBConfiguration implements Serializable {
     private String username;
     private String password;
     private boolean ssl;
+    private Integer initialSize = 50;
+    private Integer maxTotal = 100;
+
 
     public DBConfiguration(Node dataSourceNode) {
         this.dsId = dataSourceNode.getStringValue("id");
@@ -28,6 +29,13 @@ public class DBConfiguration implements Serializable {
         this.password = dataSourceNode.getStringValue("password");
         this.jdbcUrl = dataSourceNode.getStringValue("jdbcUrl");
         this.ssl = dataSourceNode.getBooleanValue("ssl");
+        if (dataSourceNode.getIntValue("initialSize") != null) {
+            initialSize = dataSourceNode.getIntValue("initialSize");
+        }
+        if (dataSourceNode.getIntValue("maxTotal") != null) {
+            maxTotal = dataSourceNode.getIntValue("maxTotal");
+        }
+
     }
 
     public String getDsId() {
@@ -53,5 +61,27 @@ public class DBConfiguration implements Serializable {
 
     public boolean isSsl() {
         return ssl;
+    }
+
+    public Integer getInitialSize() {
+        return initialSize;
+    }
+
+    public Integer getMaxTotal() {
+        return maxTotal;
+    }
+
+    @Override
+    public String toString() {
+        return "DBConfiguration{" +
+                "dsId='" + dsId + '\'' +
+                ", dbType='" + dbType + '\'' +
+                ", jdbcUrl='" + jdbcUrl + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", ssl=" + ssl +
+                ", initialSize=" + initialSize +
+                ", maxTotal=" + maxTotal +
+                '}';
     }
 }

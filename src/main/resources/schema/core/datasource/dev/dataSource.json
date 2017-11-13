@@ -8,6 +8,8 @@
     "jdbcUrl": "jdbc:mysql://125.131.88.147:3306/ytn",
     "dbType": "mySql",
     "username": "iceuser",
-    "password": "iceuser"
+    "password": "iceuser",
+    "initialSize": 10,
+    "maxTotal": 50
   }
 ]

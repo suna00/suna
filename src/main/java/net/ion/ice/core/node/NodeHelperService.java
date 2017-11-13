@@ -222,61 +222,64 @@ public class NodeHelperService  {
     }
 
     public QueryResult syncNodeQuery(String typeId, String query, String ds) {
-        JdbcTemplate jdbcTemplate = dbService.getJdbcTemplate(ds) ;
-        List<Map<String, Object>> resultList = jdbcTemplate.queryForList(query) ;
+        JdbcTemplate jdbcTemplate = dbService.getJdbcTemplate(ds);
+        List<Map<String, Object>> resultList = jdbcTemplate.queryForList(query);
 
-        Node lastNode = null ;
-        for(Map<String, Object> data : resultList){
-            lastNode =  nodeService.saveNode(data) ;
+        Node lastNode = null;
+        for (Map<String, Object> data : resultList) {
+            lastNode = nodeService.saveNode(data);
         }
 
-        QueryResult queryResult = new QueryResult() ;
-        queryResult.put("result", "200") ;
-        queryResult.put("resultMessage", "SUCCESS") ;
-        queryResult.put("syncSize", resultList.size()) ;
-        queryResult.put("lastNode", lastNode) ;
-        return queryResult ;
+        QueryResult queryResult = new QueryResult();
+        queryResult.put("result", "200");
+        queryResult.put("resultMessage", "SUCCESS");
+        queryResult.put("syncSize", resultList.size());
+        queryResult.put("lastNode", lastNode);
+        return queryResult;
     }
 
     public QueryResult syncNodeBinding(String typeId, String id, Integer limit, Integer count) {
-        NodeType nodeType = nodeService.getNodeType(typeId) ;
-        List<String> ids = nodeType.getIdablePIds() ;
-        if(limit == 0){
-            limit = 100 ;
+        NodeType nodeType = nodeService.getNodeType(typeId);
+        List<String> ids = nodeType.getIdablePIds();
+        if (limit == null || limit == 0) {
+            limit = 100;
         }
-        if(count == 0){
-            count = 1000 ;
+        if (count == null || count == 0) {
+            count = 1000;
         }
 
-        String query = "sorting=" + ids.get(0) + " desc&limit=" + limit + "&" + ids.get(0) +  "_under=" ;
+        String query = String.format("sorting=%s desc&limit=%d&%s_under=", ids.get(0), limit, ids.get(0));
 
-        NodeBindingInfo nodeBindingInfo = NodeUtils.getNodeBindingInfo(nodeType.getTypeId()) ;
-        QueryResult queryResult = new QueryResult() ;
-        int totalCount = 0 ;
-        for(int i=0; i < count; i++) {
-            long start = System.currentTimeMillis() ;
-            QueryContext queryContext = QueryContext.createQueryContextFromText(query +  id, nodeType, null);
+        NodeBindingInfo nodeBindingInfo = NodeUtils.getNodeBindingInfo(nodeType.getTypeId());
+        QueryResult queryResult = new QueryResult();
+        int totalCount = 0;
+        for (int i = 0; i < count; i++) {
+            long start = System.currentTimeMillis();
+            QueryContext queryContext = QueryContext.createQueryContextFromText(query + id, nodeType, null);
             List<Map<String, Object>> resultList = nodeBindingInfo.list(queryContext);
-            totalCount += resultList.size() ;
-            Node lastNode = null ;
+            totalCount += resultList.size();
+            Node lastNode = null;
             for (Map<String, Object> data : resultList) {
+                data.put("typeId", typeId);
                 lastNode = nodeService.saveNode(data);
             }
-            if(lastNode == null){
-                logger.info("sync node biding : {}, lastId = {}, limit = {}, size = {}, roofCount = {}, time = {}", typeId, id, limit, queryResult.size(), count, System.currentTimeMillis() - start) ;
+            if (lastNode == null) {
+                logger.info("sync node biding : {}, lastId = {}, limit = {}, size = {}, roofCount = {}, time = {}",
+                        typeId, id, limit, count, queryResult.size(), System.currentTimeMillis() - start);
                 break;
             }
-            id = lastNode.getId() ;
-            logger.info("sync node biding : {}, lastId = {}, limit = {}, size = {}, roofCount = {}, time = {}", typeId, lastNode.getId(), limit, count, System.currentTimeMillis() - start) ;
-            if(resultList.size() == 0){
+            id = lastNode.getId();
+            logger.info("sync node biding : {}, lastId = {}, limit = {}, size = {}, time = {}",
+                    typeId, lastNode.getId(), limit, count, System.currentTimeMillis() - start);
+            if (resultList.size() == 0) {
                 break;
             }
         }
-        queryResult.put("result", "200") ;
-        queryResult.put("resultMessage", "SUCCESS") ;
-        queryResult.put("syncSize", totalCount) ;
-        queryResult.put("lastId", id) ;
-        return queryResult ;
+        queryResult.put("result", "200");
+        queryResult.put("resultMessage", "SUCCESS");
+        queryResult.put("syncSize", totalCount);
+        queryResult.put("lastId", id);
+        return queryResult;
 
     }
 }

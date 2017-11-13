@@ -10,7 +10,6 @@ import net.ion.ice.core.data.DBService;
 import net.ion.ice.core.data.DBUtils;
 import net.ion.ice.core.node.*;
 import net.ion.ice.core.query.QueryResult;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +55,7 @@ public class NodeBindingService {
                             nodeBindingInfo.insert(param);
 
                         }
-                        logger.info("Node Binding {} - {} : " + (callback == 0 ? "insert" : "update"), typeId, sequence);
+                        logger.debug("Node Binding {} - {} : {}", typeId, sequence,(callback == 0 ? "insert" : "update"));
 
                     } else {
                         Long sequence = NodeUtils.getSequenceValue(typeId);
@@ -69,7 +68,7 @@ public class NodeBindingService {
                     int callback = nodeBindingInfo.update(param);
                     if (callback == 0) {
                         nodeBindingInfo.insert(param);
-                        logger.info("Node Binding {} - {} : " + (callback == 0 ? "insert" : "update"), typeId);
+                        logger.debug("Node Binding {} - {} : insert", typeId);
                     }
                 }
             }
@@ -95,7 +94,7 @@ public class NodeBindingService {
             throw new IceRuntimeException("Node Binding Execute Error : " +  e.getMessage(), e) ;
         }
         context.setResult(node);
-        logger.info("Node Binding {} - {} - {} :  " + (callback == 0 ? "insert" : "update"), node.getTypeId(), node.getId(), context.getEvent());
+        logger.debug("Node Binding {} - {} - {} :  {}" , node.getTypeId(), node.getId(), context.getEvent(),(callback == 0 ? "insert" : "update"));
     }
 
     public void createTable(String typeId, HttpServletResponse response) {

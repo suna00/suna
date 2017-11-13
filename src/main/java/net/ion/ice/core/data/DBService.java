@@ -10,7 +10,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -56,6 +55,7 @@ public class DBService {
             }
             DBConfiguration configuration = new DBConfiguration(dataSourceNode);
             dataSourceTemplate.put(dsId, new JdbcTemplate(setDataSource(configuration)));
+            logger.info(configuration.toString());
         }
         JdbcTemplate jdbcTemplate = dataSourceTemplate.get(dsId);
         return jdbcTemplate;
@@ -103,8 +103,8 @@ public class DBService {
         basicDataSource.setUsername(dataConfiguration.getUsername());
         basicDataSource.setPassword(dataConfiguration.getPassword());
         basicDataSource.setUrl(dataConfiguration.getJdbcUrl());
-        basicDataSource.setInitialSize(20);
-        basicDataSource.setMaxTotal(100);
+        basicDataSource.setInitialSize(dataConfiguration.getInitialSize());
+        basicDataSource.setMaxTotal(dataConfiguration.getMaxTotal());
         basicDataSource.setDefaultAutoCommit(true);
         basicDataSource.setRemoveAbandonedOnBorrow(true);
         basicDataSource.setMaxWaitMillis(3000);
@@ -131,8 +131,8 @@ public class DBService {
         }else{
             basicDataSource.setConnectionProperties("useSSL=false");
         }
-        basicDataSource.setInitialSize(50);
-        basicDataSource.setMaxTotal(100);
+        basicDataSource.setInitialSize(dataConfiguration.getInitialSize());
+        basicDataSource.setMaxTotal(dataConfiguration.getMaxTotal());
         basicDataSource.setDefaultAutoCommit(true);
         basicDataSource.setRemoveAbandonedOnBorrow(true);
         basicDataSource.setMaxWaitMillis(3000);
@@ -153,8 +153,8 @@ public class DBService {
         basicDataSource.setUsername(dataConfiguration.getUsername());
         basicDataSource.setPassword(dataConfiguration.getPassword());
         basicDataSource.setUrl(dataConfiguration.getJdbcUrl());
-        basicDataSource.setInitialSize(50);
-        basicDataSource.setMaxTotal(100);
+        basicDataSource.setInitialSize(dataConfiguration.getInitialSize());
+        basicDataSource.setMaxTotal(dataConfiguration.getMaxTotal());
         basicDataSource.setDefaultAutoCommit(true);
         basicDataSource.setRemoveAbandonedOnBorrow(true);
         basicDataSource.setMaxWaitMillis(3000);
@@ -175,8 +175,8 @@ public class DBService {
         basicDataSource.setUsername(dataConfiguration.getUsername());
         basicDataSource.setPassword(dataConfiguration.getPassword());
         basicDataSource.setUrl(dataConfiguration.getJdbcUrl());
-        basicDataSource.setInitialSize(3);
-        basicDataSource.setMaxTotal(256);
+        basicDataSource.setInitialSize(dataConfiguration.getInitialSize());
+        basicDataSource.setMaxTotal(dataConfiguration.getMaxTotal());
         basicDataSource.setDefaultAutoCommit(true);
         basicDataSource.setRemoveAbandonedOnBorrow(true);
         basicDataSource.setMaxWaitMillis(3000);
