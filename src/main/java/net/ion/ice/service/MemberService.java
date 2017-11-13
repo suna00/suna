@@ -221,11 +221,9 @@ public class MemberService {
                     if(contextData.containsKey("receiveMarketingEmailAgreeYn")){
                         data.put("agreeType", "이메일");
                         data.put("agreeYn", node.get("receiveMarketingEmailAgreeYn").toString());
-                        data.put("date", node.get("receiveMarketingEmailAgreeDate").toString());
                     } else {
                         data.put("agreeType", "SMS");
                         data.put("agreeYn", node.get("receiveMarketingSMSAgreeYn").toString());
-                        data.put("date", node.get("receiveMarketingSMSAgreeDate").toString());
                     }
 
                     emailService.setHtmlMemberMarketingChange(data);

@@ -427,7 +427,7 @@ public class EmailService {
         contents = contents.replaceAll("<img src=\"header\">", header);
         contents = contents.replaceAll("::agreeType::", data.get("agreeType"));
         contents = contents.replaceAll("::agreeYn::", data.get("agreeYn"));
-        contents = contents.replaceAll("::date::", data.get("date"));
+        contents = contents.replaceAll("::date::", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
         contents = contents.replaceAll("::link::", callBackUrl+siteId+"/serviceCenter");
         contents = contents.replaceAll("<img src=\"footer\">", footer);
 
