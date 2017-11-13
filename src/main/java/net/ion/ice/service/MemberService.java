@@ -246,12 +246,6 @@ public class MemberService {
         return context;
     }
 
-
-    // 휴면계정전환 배치
-    public void sleepMemberSchedule(){
-
-    }
-
     public ExecuteContext certPassword(ExecuteContext context) {
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
 
@@ -402,10 +396,8 @@ public class MemberService {
                     return context;
                 }
 
-                sendSms(smsCertificationType, cellphone, member);
-
-//                String certCdoe = getSmsCertCode("SMS 인증요청", smsCertificationType, member.get("memberNo").toString(), cellphone, "request");
-//                SmsService.sendCertCode(cellphone, certCdoe);
+                String certCdoe = getSmsCertCode("SMS 인증요청", smsCertificationType, member.get("memberNo").toString(), cellphone, "request");
+                smsService.sendCertCode(cellphone, certCdoe);
 
                 item.put("memberNo", member.get("memberNo"));
                 item.put("cellphone", member.get("cellphone"));
@@ -1299,10 +1291,28 @@ public class MemberService {
         return result;
     }
 
-    // 이메일 테스트
-    public ExecuteContext memberTest(ExecuteContext context) throws IOException {
-        emailService.setHtmlMemberBirthday(null, context.getData());
-        return context;
+
+    // 휴면전환안내 배치
+    public void getSleepChangeList() throws IOException {
+        emailService.setHtmlMemberSleepChange(null, null);
+
+    }
+
+    // 마일리지소멸예정 배치
+    public void getMileageList() throws IOException {
+        emailService.setHtmlMemberMileage(null);
+
+    }
+
+    // 생일축하 배치
+    public void getBirthdayList() throws IOException {
+        emailService.setHtmlMemberBirthday(null, null);
+
+    }
+
+    // 수신동의이력안내 배치
+    public void getMarketingNoticeList() throws IOException {
+        emailService.setHtmlMemberMarketingNotice(null);
     }
 
 }
