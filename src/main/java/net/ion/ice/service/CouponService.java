@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.print.DocFlavor;
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
@@ -35,9 +34,10 @@ public class CouponService {
     private SessionService sessionService;
     @Autowired
     private ExcelService excelService;
+    @Autowired
+    private DeliveryService deliveryService;
 
     CommonService common;
-
 
     public ExecuteContext download(ExecuteContext context) {
         Map<String, Object> data = new LinkedHashMap<>(context.getData());
@@ -120,12 +120,12 @@ public class CouponService {
         return context;
     }
 
-    public Map<String,Double> productCouponDiscountPrice(Integer tempOrderProductId, Integer couponId, String siteType, Integer memberNo){
+    public Map<String,Double> productCouponDiscountPrice(Integer tempOrderProductId, String couponId, String siteType, Integer memberNo){
         Map<String, Double> couponDiscountPriceMap = new HashMap<>();
         List<Map<String,Object>> tempOrderProduct = nodeBindingService.list("tempOrderProduct", "tempOrderProductId_equals=".concat(String.valueOf(tempOrderProductId)));
         String now = new SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA).format(new Date());
         List<Node> couponList = new ArrayList<>();
-        if(couponId != null){
+        if(!couponId.equals("")){
             couponList = (List<Node>) NodeQuery.build("coupon").matching("couponId", String.valueOf(couponId)).matching("memberNo", String.valueOf(memberNo)).matching("couponStatus", "n").matching("siteType", "all,".concat(siteType)).above("endDate", now).getList();
         }
 
@@ -160,76 +160,119 @@ public class CouponService {
         String idValue = JsonUtils.getStringValue(contextData, "id");
 
         List<Map<String, Object>> targetProductList = nodeBindingService.list(targetProductTypeId, "sorting=created&".concat(id).concat("_equals=").concat(idValue));
+        List<Map<String, Object>> deliveryProductList = deliveryService.makeDeliveryData(targetProductList, typeId);
+        Map<String, Object> deliveryPriceList = deliveryService.calculateDeliveryPrice(deliveryProductList, typeId);
+
+        List<QueryResult> items = new ArrayList<>();
+
+        for (String key : deliveryPriceList.keySet()) {
+            QueryResult itemResult = new QueryResult();
+            itemResult.put("deliverySeq", key);
+            List<Map<String, Object>> priceList = (List<Map<String, Object>>) deliveryPriceList.get(key);
+            itemResult.put("deliveryPrice", priceList.get(0).get("deliveryPrice"));
+            List<Map<String, Object>> subProductResult = new ArrayList<>();
+            for (Map<String, Object> priceProduct : priceList) {
+                subProductResult.add(priceProduct);
+            }
+
+            itemResult.put("item", subProductResult);
+            items.add(itemResult);
+        }
+
+
+
         Node memberNode = (Node) sessionData.get("member");
         String memberNo = memberNode.getStringValue("memberNo");
         String siteType = String.valueOf(memberNode.getBindingValue("siteType"));
         String now = new SimpleDateFormat("yyyyMMddHHmmss", Locale.KOREA).format(new Date());
         List<Node> couponList = (List<Node>) NodeQuery.build("coupon").matching("memberNo", memberNo).matching("couponStatus", "n").matching("siteType", "all,".concat(siteType)).above("endDate", now).getList();
         Map<String, Object> initCouponMap = new HashMap<>();
-        for (Map<String, Object> targetProduct : targetProductList) {
-            initCouponMap.put(String.valueOf(targetProduct.get("tempOrderProductId")), null);
-            String productId = JsonUtils.getStringValue(targetProduct, "productId");
-            Double orderPrice = JsonUtils.getDoubleValue(targetProduct, "orderPrice");
-            Map<String, Object> productInfo = getProductInfo(targetProduct);
-            targetProduct.put("productName", productInfo.get("productName"));
-            targetProduct.put("baseOptionItemName", productInfo.get("baseOptionItemName"));
-            targetProduct.put("contentsType", productInfo.get("contentsType"));
-            List<Node> productToCategoryMap = nodeService.getNodeList("productToCategoryMap", "productId_matching=".concat(productId));
-            List<Node> productCoupon = new ArrayList<>();
-            for (Node coupon : couponList) {
-                Node couponType = nodeService.getNode("couponType", JsonUtils.getStringValue(coupon, "couponTypeId"));
-                List<Map<String, Object>> couponTypeToCategoryMapList = null;
-                List<Map<String, Object>> couponTypeToProductMapList = null;
-                for (Node productCategory : productToCategoryMap) {
-                    couponTypeToCategoryMapList = nodeBindingService.list("couponTypeToCategoryMap", "couponTypeId_equals=".concat(JsonUtils.getStringValue(coupon, "couponTypeId").concat("&categoryId_equals=").concat(JsonUtils.getStringValue(productCategory, "categoryId"))));
-                    if (couponTypeToCategoryMapList != null && couponTypeToCategoryMapList.size() > 0) {
-                        for (Map<String, Object> couponTypeToCategoryMap : couponTypeToCategoryMapList) {
+        Map<String, Object> initDeliveryCouponMap = new HashMap<>();
+
+        for(Map<String, Object> item : items){
+            List<Map<String, Object>> productList = (List<Map<String, Object>>) item.get("item");
+
+            for (Map<String, Object> targetProduct : productList) {
+                initCouponMap.put(String.valueOf(targetProduct.get("tempOrderProductId")), null);
+                initDeliveryCouponMap.put(String.valueOf(targetProduct.get("tempOrderProductId")), null);
+                String productId = JsonUtils.getStringValue(targetProduct, "productId");
+                Double orderPrice = JsonUtils.getDoubleValue(targetProduct, "orderPrice");
+                Map<String, Object> productInfo = getProductInfo(targetProduct);
+                targetProduct.put("productName", productInfo.get("productName"));
+                targetProduct.put("baseOptionItemName", productInfo.get("baseOptionItemName"));
+                targetProduct.put("contentsType", productInfo.get("contentsType"));
+                targetProduct.put("deliverySeq", JsonUtils.getStringValue(item, "deliverySeq"));
+                List<Node> productToCategoryMap = nodeService.getNodeList("productToCategoryMap", "productId_matching=".concat(productId));
+                List<Node> productCoupon = new ArrayList<>();
+                for (Node coupon : couponList) {
+                    Node couponType = nodeService.getNode("couponType", JsonUtils.getStringValue(coupon, "couponTypeId"));
+                    List<Map<String, Object>> couponTypeToCategoryMapList = null;
+                    List<Map<String, Object>> couponTypeToProductMapList = null;
+                    for (Node productCategory : productToCategoryMap) {
+                        couponTypeToCategoryMapList = nodeBindingService.list("couponTypeToCategoryMap", "couponTypeId_equals=".concat(JsonUtils.getStringValue(coupon, "couponTypeId").concat("&categoryId_equals=").concat(JsonUtils.getStringValue(productCategory, "categoryId"))));
+                        if (couponTypeToCategoryMapList != null && couponTypeToCategoryMapList.size() > 0) {
+                            for (Map<String, Object> couponTypeToCategoryMap : couponTypeToCategoryMapList) {
+                                coupon.put("couponType", couponType);
+                                Map<String, Double> couponDiscountCalculatorMap = couponDiscountCalculator(orderPrice, couponType);
+                                coupon.put("tempOrderProductId", JsonUtils.getIntValue(targetProduct, "tempOrderProductId"));
+                                coupon.put("orderPrice", JsonUtils.getDoubleValue(targetProduct, "orderPrice"));
+                                coupon.put("resultDiscountPrice", couponDiscountCalculatorMap.get("resultDiscountPrice"));
+                                coupon.put("resultOrderPrice", couponDiscountCalculatorMap.get("resultOrderPrice"));
+                                coupon.put("deliveryPrice", JsonUtils.getDoubleValue(item, "deliveryPrice"));
+                                productCoupon.add(coupon.clone());
+                            }
+                        }
+                    }
+                    coupon.put("couponTypeToCategoryMapList", couponTypeToCategoryMapList);
+                    couponTypeToProductMapList = nodeBindingService.list("couponTypeToProductMap", "couponTypeId_equals=".concat(JsonUtils.getStringValue(coupon, "couponTypeId").concat("&productId_equals=").concat(productId)));
+                    if (coupon.get("couponTypeToProductMapList") != null && ((List) coupon.get("couponTypeToProductMapList")).size() > 0) {
+                        for (Map<String, Object> couponTypeToProductMap : couponTypeToProductMapList) {
                             coupon.put("couponType", couponType);
                             Map<String, Double> couponDiscountCalculatorMap = couponDiscountCalculator(orderPrice, couponType);
-                            coupon.put("tempOrderProductId", JsonUtils.getIntValue(targetProduct, "tempOrderProductId"));
-                            coupon.put("orderPrice", JsonUtils.getDoubleValue(targetProduct, "orderPrice"));
-                            coupon.put("resultDiscountPrice", couponDiscountCalculatorMap.get("resultDiscountPrice"));
-                            coupon.put("resultOrderPrice", couponDiscountCalculatorMap.get("resultOrderPrice"));
-                            productCoupon.add(coupon.clone());
+                            if (couponDiscountCalculatorMap.get("resultOrderPrice") != orderPrice) {
+                                coupon.put("tempOrderProductId", JsonUtils.getIntValue(targetProduct, "tempOrderProductId"));
+                                coupon.put("orderPrice", JsonUtils.getDoubleValue(targetProduct, "orderPrice"));
+                                coupon.put("resultDiscountPrice", couponDiscountCalculatorMap.get("resultDiscountPrice"));
+                                coupon.put("resultOrderPrice", couponDiscountCalculatorMap.get("resultOrderPrice"));
+                                coupon.put("deliveryPrice", JsonUtils.getDoubleValue(item, "deliveryPrice"));
+                                productCoupon.add(coupon.clone());
+                            }
                         }
                     }
+                    coupon.put("couponTypeToProductMapList", couponTypeToProductMapList);
                 }
-                coupon.put("couponTypeToCategoryMapList", couponTypeToCategoryMapList);
-                couponTypeToProductMapList = nodeBindingService.list("couponTypeToProductMap", "couponTypeId_equals=".concat(JsonUtils.getStringValue(coupon, "couponTypeId").concat("&productId_equals=").concat(productId)));
-                if (coupon.get("couponTypeToProductMapList") != null && ((List) coupon.get("couponTypeToProductMapList")).size() > 0) {
-                    for (Map<String, Object> couponTypeToProductMap : couponTypeToProductMapList) {
-                        coupon.put("couponType", couponType);
-                        Map<String, Double> couponDiscountCalculatorMap = couponDiscountCalculator(orderPrice, couponType);
-                        if (couponDiscountCalculatorMap.get("resultOrderPrice") != orderPrice) {
-                            coupon.put("tempOrderProductId", JsonUtils.getIntValue(targetProduct, "tempOrderProductId"));
-                            coupon.put("orderPrice", JsonUtils.getDoubleValue(targetProduct, "orderPrice"));
-                            coupon.put("resultDiscountPrice", couponDiscountCalculatorMap.get("resultDiscountPrice"));
-                            coupon.put("resultOrderPrice", couponDiscountCalculatorMap.get("resultOrderPrice"));
-                            productCoupon.add(coupon.clone());
-                        }
-                    }
-                }
-                coupon.put("couponTypeToProductMapList", couponTypeToProductMapList);
+                targetProduct.put("coupon", productCoupon);
             }
-            targetProduct.put("coupon", productCoupon);
         }
-        List<Map<String, Object>> allCouponList = allCouponList(targetProductList);
-        Map<String, Object> maximumCouponMap = sortMaximumList(initCouponMap, allCouponList);
+        List<Map<String, Object>> allBasicCouponList = allCouponList(targetProductList, "basic");
+        List<Map<String, Object>> allDeliveryCouponList = allCouponList(targetProductList, "delivery");
+        Map<String, Object> maximumCouponMap = sortMaximumList(initCouponMap, allBasicCouponList);
+        Map<String, Object> maximumDeliveryCouponMap = sortMaximumDeliveryList(initDeliveryCouponMap, allDeliveryCouponList);
+
         queryResult.put("items", targetProductList);
         queryResult.put("maximum", maximumCouponMap);
+        queryResult.put("delivery", maximumDeliveryCouponMap);
         context.setResult(queryResult);
 
         return context;
     }
 
-    private Map<String, Object> sortMaximumList(Map<String, Object> resultMap, List<Map<String, Object>> allCouponList) {
+    private Map<String, Object> sortMaximumDeliveryList(Map<String, Object> resultMap, List<Map<String, Object>> allCouponList) {
         List<Integer> selectedProductList = new ArrayList<>();
         List<Integer> selectedCouponList = new ArrayList<>();
 
         int index = 0;
+
         for (Map<String, Object> coupon : allCouponList) {
+            Map<String, Object> couponType = (Map<String, Object>) coupon.get("couponType");
+
+            if(!StringUtils.equals(JsonUtils.getStringValue(couponType,"benefitsType"), "benefitsType>freeDelivery")){
+                continue;
+            }
+
             boolean duplicated1 = false;
             boolean duplicated2 = false;
+
             if (index == 0) {
                 resultMap.put(String.valueOf(coupon.get("tempOrderProductId")), coupon.get("couponId"));
                 selectedProductList.add((Integer) coupon.get("tempOrderProductId"));
@@ -237,6 +280,7 @@ public class CouponService {
                 index++;
                 continue;
             }
+
             for (Integer tempOrderProductId : selectedProductList) {
                 if (StringUtils.equals(String.valueOf(coupon.get("tempOrderProductId")), String.valueOf(tempOrderProductId))) {
                     if(resultMap.get(String.valueOf(tempOrderProductId)) != null){
@@ -245,6 +289,7 @@ public class CouponService {
                     }
                 }
             }
+
             for (Integer couponId : selectedCouponList) {
                 if (StringUtils.equals(String.valueOf(coupon.get("couponId")), String.valueOf(couponId))) {
                     duplicated2 = true;
@@ -263,14 +308,70 @@ public class CouponService {
         return resultMap;
     }
 
-    private List<Map<String, Object>> allCouponList(List<Map<String, Object>> productList) {
+    private Map<String, Object> sortMaximumList(Map<String, Object> resultMap, List<Map<String, Object>> allCouponList) {
+        List<Integer> selectedProductList = new ArrayList<>();
+        List<Integer> selectedCouponList = new ArrayList<>();
+
+        int index = 0;
+
+        for (Map<String, Object> coupon : allCouponList) {
+            Map<String, Object> couponType = (Map<String, Object>) coupon.get("couponType");
+
+            if(StringUtils.equals(JsonUtils.getStringValue(couponType,"benefitsType"), "benefitsType>freeDelivery")){
+                break;
+            }
+
+            boolean duplicated1 = false;
+            boolean duplicated2 = false;
+
+            if (index == 0) {
+                resultMap.put(String.valueOf(coupon.get("tempOrderProductId")), coupon.get("couponId"));
+                selectedProductList.add((Integer) coupon.get("tempOrderProductId"));
+                selectedCouponList.add((Integer) coupon.get("couponId"));
+                index++;
+                continue;
+            }
+
+            for (Integer tempOrderProductId : selectedProductList) {
+                if (StringUtils.equals(String.valueOf(coupon.get("tempOrderProductId")), String.valueOf(tempOrderProductId))) {
+                    if(resultMap.get(String.valueOf(tempOrderProductId)) != null){
+                        duplicated1 = true;
+                        break;
+                    }
+                }
+            }
+
+            for (Integer couponId : selectedCouponList) {
+                if (StringUtils.equals(String.valueOf(coupon.get("couponId")), String.valueOf(couponId))) {
+                    duplicated2 = true;
+                    break;
+                }
+
+            }
+
+            if (duplicated1 || duplicated2) {
+                continue;
+            }
+            resultMap.put(String.valueOf(coupon.get("tempOrderProductId")), coupon.get("couponId"));
+            selectedProductList.add((Integer) coupon.get("tempOrderProductId"));
+            selectedCouponList.add((Integer) coupon.get("couponId"));
+        }
+        return resultMap;
+    }
+
+    private List<Map<String, Object>> allCouponList(List<Map<String, Object>> productList, String couponType) {
         List<Map<String, Object>> allCouponList = new ArrayList<>();
 
         for (Map<String, Object> product : productList) {
             List<Map<String, Object>> couponList = (List<Map<String, Object>>) product.get("coupon");
             allCouponList.addAll(couponList);
         }
-        Collections.sort(allCouponList, new sortMaximumDiscountPriceCompare());
+
+        if(couponType.equals("basic")){
+            Collections.sort(allCouponList, new sortMaximumDiscountPriceCompare());
+        }else{
+            Collections.sort(allCouponList, new sortMaximumDeliveryPriceCompare());
+        }
         return allCouponList;
     }
 
@@ -278,6 +379,14 @@ public class CouponService {
         @Override
         public int compare(Map<String, Object> o1, Map<String, Object> o2) {
             return (Double) o1.get("resultDiscountPrice") > (Double) o2.get("resultDiscountPrice") ? -1 : (Double) o1.get("resultDiscountPrice") < (Double) o2.get("resultDiscountPrice") ? 1 : 0;
+        }
+    }
+
+
+    static class sortMaximumDeliveryPriceCompare implements Comparator<Map<String, Object>> {
+        @Override
+        public int compare(Map<String, Object> o1, Map<String, Object> o2) {
+            return (Double) o1.get("deliveryPrice") > (Double) o2.get("deliveryPrice") ? -1 : (Double) o1.get("deliveryPrice") < (Double) o2.get("deliveryPrice") ? 1 : 0;
         }
     }
 

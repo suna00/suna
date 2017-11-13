@@ -150,6 +150,7 @@
     String useYPoint = request.getParameter("useYPoint");
     String useWelfarepoint = request.getParameter("useWelfarepoint");
     String usedCoupon = request.getParameter("usedCoupon");
+    String usedDeliveryCoupon = request.getParameter("usedDeliveryCoupon");
     String memberNo = request.getParameter("memberNo");
     String siteId = request.getParameter("siteId");
 
@@ -188,7 +189,7 @@
         int ordr_data_set_no;
 
         ordr_data_set_no = c_PayPlus.mf_add_set("ordr_data");
-        Double orderPay = orderService.getFinalPrice(ordr_idxx, memberNo, useYPoint, useWelfarepoint, usedCoupon);
+        Double orderPay = orderService.getFinalPrice(ordr_idxx, memberNo, useYPoint, useWelfarepoint, usedCoupon, usedDeliveryCoupon);
         c_PayPlus.mf_set_us(ordr_data_set_no, "ordr_mony", String.valueOf(orderPay.intValue()));
 
 
@@ -396,6 +397,7 @@
     responseMap.put("useYPoint", useYPoint);
     responseMap.put("useWelfarepoint", useWelfarepoint);
     responseMap.put("usedCoupon", usedCoupon);
+    responseMap.put("usedDeliveryCoupon", usedDeliveryCoupon);
     responseMap.put("memberNo", memberNo);
 
     String pgId = orderService.createPgResponse(responseMap);

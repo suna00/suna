@@ -160,12 +160,13 @@ public class OrderService {
     /**
      * 최종가격을 계산
      */
-    public Double getFinalPrice(String reqTempOrderId, String reqMemberNo, String reqUseYPoint, String reqUseWelfarepoint, String usedCoupon) {
+    public Double getFinalPrice(String reqTempOrderId, String reqMemberNo, String reqUseYPoint, String reqUseWelfarepoint, String usedCoupon, String usedDeliveryCoupon) {
         double totalPrice = 0;
 
         try {
 
             Map<String, Object> couponIds = JsonUtils.parsingJsonToMap(usedCoupon);
+            Map<String, Object> deliveryCouponIds = JsonUtils.parsingJsonToMap(usedDeliveryCoupon);
 
             /*포인트*/
             double useYPoint = Double.parseDouble(reqUseYPoint);
@@ -176,14 +177,10 @@ public class OrderService {
             List<Map<String, Object>> deliveryProductList = deliveryService.makeDeliveryData(tempOrderProducts, "tempOrder");
             Map<String, Object> deliveryPriceList = deliveryService.calculateDeliveryPrice(deliveryProductList, "tempOrder");
 
-            for (String key : deliveryPriceList.keySet()) {
-                List<Map<String, Object>> priceList = (List<Map<String, Object>>) deliveryPriceList.get(key);
-                deliveryPrice += (Double) priceList.get(0).get("deliveryPrice");
-            }
 
             for (Map<String, Object> tempOrderProduct : tempOrderProducts) {
                 String tempOrderProductId = JsonUtils.getStringValue(tempOrderProduct, "tempOrderProductId");
-                Integer couponId = JsonUtils.getIntNullableValue(couponIds, tempOrderProductId);
+                String couponId = JsonUtils.getStringValue(couponIds, tempOrderProductId);
                 Integer memberNo = Integer.parseInt(reqMemberNo);
                 Map<String, Double> discountPriceMap = couponService.productCouponDiscountPrice(Integer.parseInt(tempOrderProductId), couponId, "", memberNo);
 
@@ -191,6 +188,21 @@ public class OrderService {
                 totalPrice += resultOrderPrice;
             }
 
+            for (String key : deliveryPriceList.keySet()) {
+                boolean useDeliveryCoupon = false;
+                List<Map<String, Object>> priceList = (List<Map<String, Object>>) deliveryPriceList.get(key);
+                for(Map<String, Object> product : priceList){
+                    String tempOrderProductId = JsonUtils.getStringValue(product, "tempOrderProductId");
+                    if(!JsonUtils.getStringValue(deliveryCouponIds, tempOrderProductId).equals("")){
+                        useDeliveryCoupon = true;
+                        break;
+                    }
+                }
+
+                if (priceList.get(0).get("deliveryPrice") != null && !useDeliveryCoupon) {
+                    deliveryPrice += Double.parseDouble(String.valueOf(priceList.get(0).get("deliveryPrice")));
+                }
+            }
 
             totalPrice = totalPrice - useYPoint - useWelfarepoint + deliveryPrice;
 
@@ -209,6 +221,7 @@ public class OrderService {
             double totalPrice = 0;
             Map<String, Object> session = sessionService.getSession(context.getHttpRequest());
             Map<String, Object> couponIds = JsonUtils.parsingJsonToMap((String) data.get("usedCoupon"));
+            Map<String, Object> deliveryCouponIds = JsonUtils.parsingJsonToMap((String) data.get("usedDeliveryCoupon"));
             /*포인트*/
             Map<String, Object> summaryResponse = getSummary(JsonUtils.getStringValue(session, "member.memberNo"));
 
@@ -236,7 +249,7 @@ public class OrderService {
 
             for (Map<String, Object> tempOrderProduct : tempOrderProducts) {
                 String tempOrderProductId = JsonUtils.getStringValue(tempOrderProduct, "tempOrderProductId");
-                Integer couponId = JsonUtils.getIntNullableValue(couponIds, tempOrderProductId);
+                String couponId = JsonUtils.getStringValue(couponIds, tempOrderProductId);
                 Integer memberNo = JsonUtils.getIntValue(session, "member.memberNo");
                 Map<String, Double> discountPriceMap = couponService.productCouponDiscountPrice(Integer.parseInt(tempOrderProductId), couponId, "", memberNo);
 
@@ -248,8 +261,17 @@ public class OrderService {
             Map<String, Object> deliveryPriceList = deliveryService.calculateDeliveryPrice(deliveryProductList, "tempOrder");
 
             for (String key : deliveryPriceList.keySet()) {
+                boolean useDeliveryCoupon = false;
                 List<Map<String, Object>> priceList = (List<Map<String, Object>>) deliveryPriceList.get(key);
-                if (priceList.get(0).get("deliveryPrice") != null) {
+                for(Map<String, Object> product : priceList){
+                    String tempOrderProductId = JsonUtils.getStringValue(product, "tempOrderProductId");
+                    if(!JsonUtils.getStringValue(deliveryCouponIds, tempOrderProductId).equals("")){
+                        useDeliveryCoupon = true;
+                        break;
+                    }
+                }
+
+                if (priceList.get(0).get("deliveryPrice") != null && !useDeliveryCoupon) {
                     finalDeliveryPrice += Double.parseDouble(String.valueOf(priceList.get(0).get("deliveryPrice")));
                 }
             }
@@ -295,7 +317,26 @@ public class OrderService {
             }
             tempOrderProduct.put("tempOrderProductItem", subTempOrderProdductItems);
         }
+
+        List<Map<String, Object>> deliveryProductList = deliveryService.makeDeliveryData(tempOrderProducts, "tempOrder");
+        Map<String, Object> deliveryPriceList = deliveryService.calculateDeliveryPrice(deliveryProductList, "tempOrder");
         List<QueryResult> items = new ArrayList<>();
+
+        for (String key : deliveryPriceList.keySet()) {
+            QueryResult itemResult = new QueryResult();
+            itemResult.put("deliverySeq", key);
+            List<Map<String, Object>> priceList = (List<Map<String, Object>>) deliveryPriceList.get(key);
+            itemResult.put("deliveryPrice", priceList.get(0).get("deliveryPrice"));
+            List<Map<String, Object>> subProductResult = new ArrayList<>();
+            for (Map<String, Object> priceProduct : priceList) {
+                subProductResult.add(priceProduct);
+            }
+
+            itemResult.put("item", subProductResult);
+            items.add(itemResult);
+        }
+
+
         Double totalProductPrice = 0D;
         Double totalDeliveryPrice = 0D;
         Double totalDiscountPrice = 0D;
@@ -325,34 +366,19 @@ public class OrderService {
         pointStoreMap.put("orderSheetId", orderSheetId);
         pointStoreMap.put("memberNo", memberNo);
         pointStoreMap.put("affiliateId", affiliateId);
-        pointStoreMap.put("YPoint", YPoint.intValue());
-        pointStoreMap.put("welfarePoint", welfarePoint.intValue());
+        pointStoreMap.put("YPoint", YPoint);
+        pointStoreMap.put("welfarePoint", welfarePoint);
 
         if (!pointService.useYPoint(pointStoreMap) && !pointService.useWelfarePoint(pointStoreMap)) {
             context.setResult(CommonService.getResult("O0006"));
             return context;
         }
 
-        List<Map<String, Object>> deliveryProductList = deliveryService.makeDeliveryData(tempOrderProducts, "tempOrder");
-        Map<String, Object> deliveryPriceList = deliveryService.calculateDeliveryPrice(deliveryProductList, "tempOrder");
-
-        for (String key : deliveryPriceList.keySet()) {
-            QueryResult itemResult = new QueryResult();
-            itemResult.put("deliverySeq", key);
-            List<Map<String, Object>> priceList = (List<Map<String, Object>>) deliveryPriceList.get(key);
-            itemResult.put("deliveryPrice", priceList.get(0).get("deliveryPrice"));
-            List<Map<String, Object>> subProductResult = new ArrayList<>();
-            for (Map<String, Object> priceProduct : priceList) {
-                subProductResult.add(priceProduct);
-            }
-
-            itemResult.put("item", subProductResult);
-            items.add(itemResult);
-        }
-
         Map<String, Object> couponIds = null;
+        Map<String, Object> deliveryCouponIds = null;
         try {
             couponIds = JsonUtils.parsingJsonToMap((String) data.get("usedCoupon"));
+            deliveryCouponIds = JsonUtils.parsingJsonToMap((String) data.get("usedDeliveryCoupon"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -365,9 +391,7 @@ public class OrderService {
 //        }
         boolean cellPhonePaymentMode = false;
         for (Map<String, Object> deliveryItem : items) {
-
-            totalDeliveryPrice += JsonUtils.getDoubleValue(deliveryItem, "deliveryPrice");
-
+            boolean useDeliveryCoupon = false;
             for (Map<String, Object> product : (List<Map<String, Object>>) deliveryItem.get("item")) {
                 ///////orderProduct////////
                 Map<String, Object> storeOrderProduct = new HashMap<>();
@@ -387,7 +411,14 @@ public class OrderService {
                 storeOrderProduct.put("orderPrice", JsonUtils.getDoubleValue(product, "orderPrice"));
 
                 String tempOrderProductId = JsonUtils.getStringValue(product, "tempOrderProductId");
-                Integer couponId = JsonUtils.getIntNullableValue(couponIds, tempOrderProductId);
+                String couponId = JsonUtils.getStringValue(couponIds, tempOrderProductId);
+                String deliveryCouponId = JsonUtils.getStringValue(deliveryCouponIds, tempOrderProductId);
+
+                if(!deliveryCouponId.equals("")&& !useDeliveryCoupon){
+                    useDeliveryCoupon = true;
+                    totalDiscountPrice += JsonUtils.getDoubleValue(deliveryItem, "deliveryPrice");
+                }
+
                 storeOrderProduct.put("couponId", couponId);
 
                 Map<String, Double> discountPriceMap = couponService.productCouponDiscountPrice(Integer.parseInt(tempOrderProductId), couponId, "", memberNo);
@@ -441,10 +472,10 @@ public class OrderService {
 
                     nodeService.executeNode(storeOrderProductItem, "orderProductItem", CommonService.CREATE);
                 }
-//                orderProductIds.add(orderProductNode.getId());
             }
-//            storeOrderDeliveryPrice.put("orderProductIds", StringUtils.join(orderProductIds, ","));
-//            nodeService.executeNode(storeOrderDeliveryPrice, "orderDeliveryPrice", CommonService.CREATE);
+            if(!useDeliveryCoupon){
+                totalDeliveryPrice += JsonUtils.getDoubleValue(deliveryItem, "deliveryPrice");
+            }
         }
         /*휴대폰구매*/
         if(cellPhonePaymentMode){
@@ -612,8 +643,8 @@ public class OrderService {
         pointStoreMap.put("orderSheetId", orderSheetId);
         pointStoreMap.put("memberNo", memberNo);
         pointStoreMap.put("affiliateId", affiliateId);
-        pointStoreMap.put("YPoint", YPoint.intValue());
-        pointStoreMap.put("welfarePoint", welfarePoint.intValue());
+        pointStoreMap.put("YPoint", YPoint);
+        pointStoreMap.put("welfarePoint", welfarePoint);
 
         if (!pointService.useYPoint(pointStoreMap) && !pointService.useWelfarePoint(pointStoreMap)) {
             bSucc = "false";
@@ -639,8 +670,12 @@ public class OrderService {
         }
 
         Map<String, Object> couponIds = null;
+        Map<String, Object> deliveryCouponIds = null;
+
         try {
             couponIds = JsonUtils.parsingJsonToMap((String) responseMap.get("usedCoupon"));
+            deliveryCouponIds = JsonUtils.parsingJsonToMap((String) responseMap.get("usedDeliveryCoupon"));
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -653,12 +688,7 @@ public class OrderService {
 //        }
 
         for (Map<String, Object> deliveryItem : items) {
-//            Map<String, Object> storeOrderDeliveryPrice = new HashMap<>();
-//            List orderProductIds = new ArrayList();
-//            storeOrderDeliveryPrice.put("orderSheetId", JsonUtils.getStringValue(responseMap, "ordrIdxx"));
-//            storeOrderDeliveryPrice.put("deliveryPrice", JsonUtils.getDoubleValue(deliveryItem, "deliveryPrice"));
-
-            totalDeliveryPrice += JsonUtils.getDoubleValue(deliveryItem, "deliveryPrice");
+            boolean useDeliveryCoupon = false;
 
             for (Map<String, Object> product : (List<Map<String, Object>>) deliveryItem.get("item")) {
                 Map<String, Object> storeOrderProduct = new HashMap<>();
@@ -676,8 +706,14 @@ public class OrderService {
                 storeOrderProduct.put("orderPrice", JsonUtils.getDoubleValue(product, "orderPrice"));
 
                 String tempOrderProductId = JsonUtils.getStringValue(product, "tempOrderProductId");
-                Integer couponId = JsonUtils.getIntNullableValue(couponIds, tempOrderProductId);
+                String couponId = JsonUtils.getStringValue(couponIds, tempOrderProductId);
                 storeOrderProduct.put("couponId", couponId);
+                String deliveryCouponId = JsonUtils.getStringValue(deliveryCouponIds, tempOrderProductId);
+
+                if(!deliveryCouponId.equals("")&& !useDeliveryCoupon){
+                    useDeliveryCoupon = true;
+                    totalDiscountPrice += JsonUtils.getDoubleValue(deliveryItem, "deliveryPrice");
+                }
 
                 Map<String, Double> discountPriceMap = couponService.productCouponDiscountPrice(Integer.parseInt(tempOrderProductId), couponId, "", memberNo);
                 storeOrderProduct.put("couponDiscountPrice", discountPriceMap.get("resultDiscountPrice"));
@@ -723,10 +759,10 @@ public class OrderService {
 
                     nodeService.executeNode(storeOrderProductItem, "orderProductItem", CommonService.CREATE);
                 }
-//                orderProductIds.add(orderProductNode.getId());
             }
-//            storeOrderDeliveryPrice.put("orderProductIds", StringUtils.join(orderProductIds, ","));
-//            nodeService.executeNode(storeOrderDeliveryPrice, "orderDeliveryPrice", CommonService.CREATE);
+            if(!useDeliveryCoupon){
+                totalDeliveryPrice += JsonUtils.getDoubleValue(deliveryItem, "deliveryPrice");
+            }
         }
 
         totalOrderPrice = totalProductPrice - YPoint - welfarePoint + totalDeliveryPrice; //총 주문금액
