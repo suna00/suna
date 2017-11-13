@@ -1,27 +1,23 @@
 package net.ion.ice.service;
 
 import net.ion.ice.ApplicationContextManager;
+import net.ion.ice.core.context.ExecuteContext;
 import net.ion.ice.core.node.Node;
+import net.ion.ice.core.node.NodeService;
 import net.ion.ice.core.node.NodeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
 import java.io.IOException;
-import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
-@Service("EmailService")
+@Service("emailService")
 public class EmailService {
     private static Logger logger = LoggerFactory.getLogger(EmailService.class);
+    @Autowired
+    private NodeService nodeService;
 
     public static final String callBackUrl = ApplicationContextManager.getContext().getEnvironment().getProperty("cluster.front-prefix");
     public static final String apiUrl = ApplicationContextManager.getContext().getEnvironment().getProperty("cluster.api-prefix");
@@ -532,10 +528,17 @@ public class EmailService {
         sendEmailDirect(node.get("email").toString(), title, contents);
     }
 
-    public void setHtmlNewStoreRequest(String siteId, String adminEmail, Node node) throws IOException {
+    public ExecuteContext setHtmlNewStoreRequest(ExecuteContext context) throws IOException {
         // 입점상담신청	 ./pc_markup/DE_SL_FR_26_019.html
         // contactPerson, email, date, company, siteUrl, companyPhone, phone, newStoreRequestType, contents
 
+        Map<String, Object> contextData = new LinkedHashMap<>(context.getData());
+        String siteId = contextData.get("siteId").toString();
+
+        Node node = (Node) nodeService.executeNode(contextData, "newStoreRequest", CommonService.CREATE);
+
+        System.out.println("siteId : " + siteId);
+        System.out.println("node : " + node);
         String header = getHeader(siteId);
         String footer = getFooter(siteId);
 
@@ -555,7 +558,10 @@ public class EmailService {
         contents = contents.replaceAll("::contents::", node.get("contents").toString());
         contents = contents.replaceAll("<img src=\"footer\">", footer);
 
-        sendEmailDirect(adminEmail, title, contents);
+        System.out.println("contents: " + contents);
+        sendEmailDirect("yeon0153@i-on.net", title, contents);
+
+        return context;
     }
 
     public void setHtmlAffliateRequest(String siteId, String adminEmail, Node node) throws IOException {
