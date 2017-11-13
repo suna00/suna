@@ -50,6 +50,6 @@ public class SmsService {
         String message = getSmsTemplate("인증번호");
         message = message.replaceAll("[certCode]", "["+certCode+"]");
 
-        sendSms("id", cellphone, cellphone, message);
+        sendSms(certCode, cellphone, cellphone, message);
     }
 }
