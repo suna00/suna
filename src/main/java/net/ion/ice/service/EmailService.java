@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service("emailService")
@@ -537,8 +538,6 @@ public class EmailService {
 
         Node node = (Node) nodeService.executeNode(contextData, "newStoreRequest", CommonService.CREATE);
 
-        System.out.println("siteId : " + siteId);
-        System.out.println("node : " + node);
         String header = getHeader(siteId);
         String footer = getFooter(siteId);
 
@@ -549,24 +548,32 @@ public class EmailService {
         contents = contents.replaceAll("<img src=\"header\">", header);
         contents = contents.replaceAll("::contactPerson::", node.get("contactPerson").toString());
         contents = contents.replaceAll("::email::", node.get("email").toString());
-        contents = contents.replaceAll("::date::", node.get("created").toString());
+        contents = contents.replaceAll("::date::", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         contents = contents.replaceAll("::company::", node.get("company").toString());
         contents = contents.replaceAll("::siteUrl::", node.get("siteUrl").toString());
         contents = contents.replaceAll("::companyPhone::", node.get("companyPhone").toString());
         contents = contents.replaceAll("::phone::", node.get("phone").toString());
-        contents = contents.replaceAll("::newStoreRequestType::", node.get("newStoreRequestType").toString());
+        contents = contents.replaceAll("::newStoreRequestType::", contextData.get("newStoreRequestTypeLabel").toString());
         contents = contents.replaceAll("::contents::", node.get("contents").toString());
         contents = contents.replaceAll("<img src=\"footer\">", footer);
 
-        System.out.println("contents: " + contents);
-        sendEmailDirect("yeon0153@i-on.net", title, contents);
+        sendEmailDirect("thekid0@naver.com", title, contents);
+
+        Map<String, Object> resultObj = new HashMap<>();
+        resultObj.put("result", "200");
+        context.setResult(resultObj);
 
         return context;
     }
 
-    public void setHtmlAffliateRequest(String siteId, String adminEmail, Node node) throws IOException {
+    public ExecuteContext setHtmlAffliateRequest(ExecuteContext context) throws IOException {
         // 제휴문의 ./pc_markup/DE_SL_FR_26_020.html
         // contactPerson, email, date, company, siteUrl, companyPhone, phone, affliateRequestType, contents
+
+        Map<String, Object> contextData = new LinkedHashMap<>(context.getData());
+        String siteId = contextData.get("siteId").toString();
+
+        Node node = (Node) nodeService.executeNode(contextData, "affliateRequest", CommonService.CREATE);
 
         String header = getHeader(siteId);
         String footer = getFooter(siteId);
@@ -578,16 +585,22 @@ public class EmailService {
         contents = contents.replaceAll("<img src=\"header\">", header);
         contents = contents.replaceAll("::contactPerson::", node.get("contactPerson").toString());
         contents = contents.replaceAll("::email::", node.get("email").toString());
-        contents = contents.replaceAll("::date::", node.get("created").toString());
+        contents = contents.replaceAll("::date::", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         contents = contents.replaceAll("::company::", node.get("company").toString());
         contents = contents.replaceAll("::siteUrl::", node.get("siteUrl").toString());
         contents = contents.replaceAll("::companyPhone::", node.get("companyPhone").toString());
         contents = contents.replaceAll("::phone::", node.get("phone").toString());
-        contents = contents.replaceAll("::affliateRequestType::", node.get("affliateRequestType").toString());
+        contents = contents.replaceAll("::affliateRequestType::", contextData.get("affliateRequestTypeLabel").toString());
         contents = contents.replaceAll("::contents::", node.get("contents").toString());
         contents = contents.replaceAll("<img src=\"footer\">", footer);
 
-        sendEmailDirect(adminEmail, title, contents);
+        sendEmailDirect("thekid0@naver.com", title, contents);
+
+        Map<String, Object> resultObj = new HashMap<>();
+        resultObj.put("result", "200");
+        context.setResult(resultObj);
+
+        return context;
     }
 
     public void setHtmlOrder(String siteId, String email, Node node) throws IOException {
