@@ -1,0 +1,14 @@
+[
+  {
+    "typeId": "brand",
+    "brandId": "13EMY",
+    "name": "클로에",
+    "koName": "끌로에",
+    "enName": "Chloe",
+    "LimitedSaleQuantity": 5,
+    "brandImage": null,
+    "logoImage": null,
+    "description": "클로에 입니다...",
+    "brandStatus": "y"
+  }
+]
