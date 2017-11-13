@@ -163,7 +163,11 @@ public class QueryUtils {
     private static void makeHasReferencedContext(QueryContext context, NodeType nodeType, String field, QueryContext joinQueryContext) {
         if (joinQueryContext != null) {
             joinQueryContext.setMaxSize("100000");
-            joinQueryContext.setTargetJoinField(nodeType.getPropertyType(field).getReferenceValue());
+            if(nodeType.getTypeId().equals(nodeType.getPropertyType(field).getReferenceType())){
+                joinQueryContext.setTargetJoinField(field);
+            }else {
+                joinQueryContext.setTargetJoinField(nodeType.getPropertyType(field).getReferenceValue());
+            }
             joinQueryContext.setSourceJoinField("id");
             context.addJoinQuery(joinQueryContext);
         }
