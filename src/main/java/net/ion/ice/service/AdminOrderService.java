@@ -183,7 +183,7 @@ public class AdminOrderService {
                     break;
                 }
                 case "productName":{
-                    searchListQuery.add("a.name like concat('%', ?, '%')");
+                    searchListQuery.add("f.name like concat('%', ?, '%')");
                     searchListValue.add(searchValue);
                     break;
                 }
@@ -209,7 +209,7 @@ public class AdminOrderService {
                 }
             }
         }
-        String baseSql = "select %s from orderProduct a, orderSheet b, member c, vendor d, delivery e where a.orderSheetId = b.orderSheetId and b.memberNo = c.memberNo and a.vendorId = d.vendorId and b.orderSheetId = e.orderSheetId %s %s";
+        String baseSql = "select %s from orderProduct a, orderSheet b, member c, vendor d, delivery e, product f where a.orderSheetId = b.orderSheetId and b.memberNo = c.memberNo and a.vendorId = d.vendorId and b.orderSheetId = e.orderSheetId and a.productId = f.productId %s %s";
 
         String countSql =  String.format(baseSql, "a.orderStatus, count(distinct(b.orderSheetId)) as cnt, sum(b.totalPaymentPrice) as totalPaymentPrice ", (searchListQuery.size()>0 ?  " and " : "") +  StringUtils.join(searchListQuery.toArray(), " AND "), " group by a.orderStatus");
 
