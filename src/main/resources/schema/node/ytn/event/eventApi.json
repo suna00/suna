@@ -59,11 +59,23 @@
     "parameters" : [
     ],
     "config" : {
+      "typeId": "specialExhibition",
+      "id" : "{{:specialExhibitionId}}"
+    }
+  },
+  {
+    "typeId" : "apiConfig",
+    "category" : "specialExhibitionApi",
+    "apiId" : "anker",
+    "apiName" : "기획전 조회_날짜조회필요",
+    "method" : "GET",
+    "parameters" : [
+    ],
+    "config" : {
       "typeId": "specialExhibitionAnker",
       "query" : [
         {"field" : "specialExhibitionId", "method" : "matching", "value" : "{{:specialExhibitionId}}" },
-        {"includeReferenced" : true, "referenceView" : "specialExhibitionId"},
-        {"field" : "specialExhibitionId", "method" : "referenceJoin", "value" : "specialExhibitionStatus_matching=use&categoryId_matching={{:categoryId}}&siteType_matching=all,{{:siteType}}" }
+        {"includeReferenced" : true}
       ]
     }
   },
