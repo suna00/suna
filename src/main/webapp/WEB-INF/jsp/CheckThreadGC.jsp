@@ -218,7 +218,7 @@ function viewLockDetailTable(){
 <!---------------------- Top option part end ---------------------->
 </FORM>
 <span class="style2">
-<span class="style5">*</span>WAS Server name : <%=application.getServerInfo() %>(IP:<%= java.net.InetAddress.getLocalHost().getHostAddress() %>)  .&nbsp;&nbsp;&nbsp;
+<span class="style5">*</span><%=request.getRemoteAddr() %> WAS Server name : <%=application.getServerInfo() %>(IP:<%= java.net.InetAddress.getLocalHost().getHostAddress() %>)  .&nbsp;&nbsp;&nbsp;
 <span class="style5">*</span>최종 데이타출력시간 : <%=new Date() %>
 </span><BR><BR>
 
