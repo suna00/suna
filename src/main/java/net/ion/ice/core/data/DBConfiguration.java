@@ -29,10 +29,10 @@ public class DBConfiguration implements Serializable {
         this.password = dataSourceNode.getStringValue("password");
         this.jdbcUrl = dataSourceNode.getStringValue("jdbcUrl");
         this.ssl = dataSourceNode.getBooleanValue("ssl");
-        if (dataSourceNode.getIntValue("initialSize") != null) {
+        if (dataSourceNode.getIntValue("initialSize") != 0) {
             initialSize = dataSourceNode.getIntValue("initialSize");
         }
-        if (dataSourceNode.getIntValue("maxTotal") != null) {
+        if (dataSourceNode.getIntValue("maxTotal") != 0) {
             maxTotal = dataSourceNode.getIntValue("maxTotal");
         }
 
