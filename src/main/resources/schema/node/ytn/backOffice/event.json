@@ -1,0 +1,34 @@
+[
+  {
+    "typeId" : "event",
+    "tid": "emailTemplate",
+    "event" : "newStoreRequest",
+    "noneExecute" : true,
+    "eventName" : "입점상담신청"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "emailTemplate>newStoreRequest",
+    "action" : "newStoreRequest",
+    "actionName" : "입점상담신청",
+    "actionType" : "service",
+    "actionBody" : "emailService.setHtmlNewStoreRequest",
+    "order" : 1
+  },
+  {
+    "typeId" : "event",
+    "tid": "emailTemplate",
+    "event" : "affliateRequest",
+    "noneExecute" : true,
+    "eventName" : "제휴문의"
+  },
+  {
+    "typeId" : "eventAction",
+    "event": "emailTemplate>affliateRequest",
+    "action" : "newStoreRequest",
+    "actionName" : "제휴문의",
+    "actionType" : "service",
+    "actionBody" : "emailService.setHtmlAffliateRequest",
+    "order" : 1
+  }
+]

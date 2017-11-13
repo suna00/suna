@@ -255,6 +255,9 @@ public class AdminOrderService {
                     order.put("memberItem", memberItem);
                 }
             }
+            List<Map<String, Object>> paymentList = (List<Map<String, Object>>) NodeQuery.build("payment").matching("orderSheetId", JsonUtils.getStringValue(order, "orderSheetId")).getList();
+            order.put("payments", paymentList);
+
             List<Map<String, Object>> deliveryList = nodeBindingService.list(orderDeliveryPrice_TID, "orderSheetId_equals=" + JsonUtils.getStringValue(order, "orderSheetId"));
             for (Map<String, Object> dp : deliveryList) {
                 String opIds = (String) dp.get("orderProductIds");
@@ -274,6 +277,7 @@ public class AdminOrderService {
                 dp.put("orderProducts", ops);
             }
             order.put("deliveryProducts", deliveryList);
+
             commonService.putReferenceValue("orderSheet", context, order);
         }
         long totalCnt = (long) totalCount.get("totalCount");
