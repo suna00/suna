@@ -27,7 +27,7 @@ public class EmailService {
     public static final String apiUrl = ApplicationContextManager.getContext().getEnvironment().getProperty("cluster.api-prefix");
 
 
-    public static void sendEmailDirect(String recipients, String subject, String body) throws IOException {
+    public void sendEmailDirect(String recipients, String subject, String body) throws IOException {
         // returnURL이 없는 경우 사용하는 URL
         String url = "https://directsend.co.kr/index.php/api/v2/mail";
         // returnURL이 있을 경우 사용하는 URL
@@ -191,7 +191,7 @@ public class EmailService {
          */
     }
 
-    public static Map<String, String> getEmailTemplate(String name){
+    public Map<String, String> getEmailTemplate(String name){
         Map<String, String> setHtmlMap = new HashMap<>();
         String title = "";
         String contents = "";
@@ -209,7 +209,7 @@ public class EmailService {
         return setHtmlMap;
     }
 
-    public static Map<String, String> getAffiliate(String siteId){
+    public Map<String, String> getAffiliate(String siteId){
         Map<String, String> setSiteInfo = new HashMap<>();
         String siteType = "";
         String name = "";
@@ -226,7 +226,7 @@ public class EmailService {
         return setSiteInfo;
     }
 
-    public static String getHeader(String siteId){
+    public String getHeader(String siteId){
         String header;
         // header-대학 : <img src="http://localhost/assets/images/email/logo_store.png" alt="YGOON 교육할인스토어" style="border:0;">
         // header-기업 : <img src="http://localhost/assets/images/email/logo_small.png" alt="YGOON 교육할인스토어" style="border:0;"><p style="font-size:18px;font-weight:bold;color:#fff;letter-spacing:-2px;">해당 기업명 출력영역</p>
@@ -244,7 +244,7 @@ public class EmailService {
         return header;
     }
 
-    public static String getFooter(String siteId){
+    public String getFooter(String siteId){
         String footer;
         // footer-대학 : <img src="http://localhost/assets/images/email/logo_store.png" alt="YGOON 교육할인스토어" width="111" style="border:0;">
         // footer-기업 : <img src="http://localhost/assets/images/email/logo_small.png" alt="YGOON" width="49" style="border:0;"><span style="display:block;text-align:center;font-size:16px;font-weight:600;color:#fff;letter-spacing:-2px;">해당 기업명 출력영역</span>
@@ -262,7 +262,7 @@ public class EmailService {
         return footer;
     }
 
-    public static String getMenu(){
+    public String getMenu(){
         String menu;
         menu = "<tr>" +
                 "<td valign=\"middle\" align=\"center\">\n" +
@@ -305,17 +305,17 @@ public class EmailService {
      **
      */
 
-    public static void setHtmlMemberCertCode(String email, Map<String, Object> data) throws IOException {
+    public void setHtmlMemberCertCode(String email, Map<String, Object> data) throws IOException {
         // 본인인증 ./pc_markup/DE_SL_FR_26_012.html
         getEmailTemplate("본인인증");
     }
 
-    public static void setHtmlMemberSignUp(String email) throws IOException {
+    public void setHtmlMemberSignUp(String email) throws IOException {
         // 회원가입 ./pc_markup/DE_SL_FR_26_008.html
         getEmailTemplate("회원가입");
     }
 
-    public static void setHtmlMemberJoin(Node node, String email, Map<String, String> emailTemplate) throws IOException {
+    public void setHtmlMemberJoin(Node node, String email, Map<String, String> emailTemplate) throws IOException {
         String title = emailTemplate.get("title").toString();
         String contents = emailTemplate.get("contents").toString();
         String siteId = node.getBindingValue("siteId").toString();
@@ -337,7 +337,7 @@ public class EmailService {
         sendEmailDirect(email, title, contents);
     }
 
-    public static void setHtmlMemberBirthday(String email, Map<String, Object> data) throws IOException {
+    public void setHtmlMemberBirthday(String email, Map<String, Object> data) throws IOException {
         // 생일축하 ./pc_markup/DE_SL_FR_26_015.html
         // data : siteId, name, link
 
@@ -360,7 +360,7 @@ public class EmailService {
         sendEmailDirect(email, title, contents);
     }
 
-    public static void setHtmlMemberLeave(Map<String, Object> data) throws IOException {
+    public void setHtmlMemberLeave(Map<String, Object> data) throws IOException {
         // 회원탈퇴 ./pc_markup/DE_SL_FR_26_009.html
         // data : name, userId, date, point, link
 
@@ -384,12 +384,12 @@ public class EmailService {
         sendEmailDirect(data.get("email").toString(), title, contents);
     }
 
-    public static void setHtmlMemberSleepCancel(String email) throws IOException {
+    public void setHtmlMemberSleepCancel(String email) throws IOException {
         // 휴면해제이메일인증	 ./pc_markup/DE_SL_FR_26_018.html
         getEmailTemplate("휴면해제이메일인증");
     }
 
-    public static void setHtmlMemberSleepChange(String email, Map<String, Object> data) throws IOException {
+    public void setHtmlMemberSleepChange(String email, Map<String, Object> data) throws IOException {
         // 휴면전환안내 ./pc_markup/DE_SL_FR_26_011.html
         // data : name, date, link
 
@@ -410,12 +410,12 @@ public class EmailService {
         sendEmailDirect(email, title, contents);
     }
 
-    public static void setHtmlMemberPasswordChange(String email) throws IOException {
+    public void setHtmlMemberPasswordChange(String email) throws IOException {
         // 비밀번호변경 ./pc_markup/DE_SL_FR_26_017.html
         getEmailTemplate("비밀번호변경");
     }
 
-    public static void setHtmlMemberMarketingChange(Map<String, String> data) throws IOException {
+    public void setHtmlMemberMarketingChange(Map<String, String> data) throws IOException {
         // 광고성 정보수신동의 결과 ./pc_markup/DE_SL_FR_26_010.html
         // agreeType, agreeYn, date, link
 
@@ -437,7 +437,7 @@ public class EmailService {
         sendEmailDirect(data.get("email"), title, contents);
     }
 
-    public static void setHtmlMemberMarketingNotice(Node node) throws IOException {
+    public void setHtmlMemberMarketingNotice(Node node) throws IOException {
         // 수신동의 이력 안내 ./pc_markup/DE_SL_FR_26_016.html
         // receiveMarketingSMSAgreeYn, receiveMarketingSMSAgreeDate, receiveMarketingEmailAgreeYn, receiveMarketingEmailAgreeDate, link
 
@@ -460,7 +460,7 @@ public class EmailService {
         sendEmailDirect(node.get("email").toString(), title, contents);
     }
 
-    public static void setHtmlMemberMileage(Node node) throws IOException {
+    public void setHtmlMemberMileage(Node node) throws IOException {
         // 마일리지 소멸예정 ./pc_markup/DE_SL_FR_26_013.html
         // point, expiringYPoint, date, link
 
@@ -482,7 +482,7 @@ public class EmailService {
         sendEmailDirect(node.get("email").toString(), title, contents);
     }
 
-    public static void setHtmlProductQuestion(Node node) throws IOException {
+    public void setHtmlProductQuestion(Node node) throws IOException {
         // 상품문의답변등록 ./pc_markup/DE_SL_FR_26_006.html
         // title, date, product, contents - productQuestion
 
@@ -507,7 +507,7 @@ public class EmailService {
         sendEmailDirect(node.get("email").toString(), title, contents);
     }
 
-    public static void setHtmlOneToOneQuestion(Node node) throws IOException {
+    public void setHtmlOneToOneQuestion(Node node) throws IOException {
         // 1:1문의답변등록 ./pc_markup/DE_SL_FR_26_007.html
         // title, date, product, contents - oneToOneQuestion
 
@@ -532,7 +532,7 @@ public class EmailService {
         sendEmailDirect(node.get("email").toString(), title, contents);
     }
 
-    public static void setHtmlNewStoreRequest(String siteId, String adminEmail, Node node) throws IOException {
+    public void setHtmlNewStoreRequest(String siteId, String adminEmail, Node node) throws IOException {
         // 입점상담신청	 ./pc_markup/DE_SL_FR_26_019.html
         // contactPerson, email, date, company, siteUrl, companyPhone, phone, newStoreRequestType, contents
 
@@ -558,7 +558,7 @@ public class EmailService {
         sendEmailDirect(adminEmail, title, contents);
     }
 
-    public static void setHtmlAffliateRequest(String siteId, String adminEmail, Node node) throws IOException {
+    public void setHtmlAffliateRequest(String siteId, String adminEmail, Node node) throws IOException {
         // 제휴문의 ./pc_markup/DE_SL_FR_26_020.html
         // contactPerson, email, date, company, siteUrl, companyPhone, phone, affliateRequestType, contents
 
@@ -584,7 +584,7 @@ public class EmailService {
         sendEmailDirect(adminEmail, title, contents);
     }
 
-    public static void setHtmlOrder(String siteId, String email, Node node) throws IOException {
+    public void setHtmlOrder(String siteId, String email, Node node) throws IOException {
         // 주문완료 ./pc_markup/DE_SL_FR_26_001.html
 
         String header = getHeader(siteId);
@@ -603,7 +603,7 @@ public class EmailService {
         sendEmailDirect(email, title, contents);
     }
 
-    public static void setHtmlProduct(String siteId, String email, Node node) throws IOException {
+    public void setHtmlProduct(String siteId, String email, Node node) throws IOException {
         // 상품발송 ./pc_markup/DE_SL_FR_26_002.html
 
         String header = getHeader(siteId);
@@ -622,7 +622,7 @@ public class EmailService {
         sendEmailDirect(email, title, contents);
     }
 
-    public static void setHtmlOrderCancel(String siteId, String email, Node node) throws IOException {
+    public void setHtmlOrderCancel(String siteId, String email, Node node) throws IOException {
         // 주문취소 ./pc_markup/DE_SL_FR_26_003.html
 
         String header = getHeader(siteId);
@@ -641,7 +641,7 @@ public class EmailService {
         sendEmailDirect(email, title, contents);
     }
 
-    public static void setHtmlProductDelivery(String siteId, String email, Node node) throws IOException {
+    public void setHtmlProductDelivery(String siteId, String email, Node node) throws IOException {
         // 배송완료 ./pc_markup/DE_SL_FR_26_014.html
 
         String header = getHeader(siteId);
@@ -659,7 +659,7 @@ public class EmailService {
         sendEmailDirect(email, title, contents);
     }
 
-    public static void setHtmlProductChange(String siteId, String email, Node node) throws IOException {
+    public void setHtmlProductChange(String siteId, String email, Node node) throws IOException {
         // 교환접수 (신청) ./pc_markup/DE_SL_FR_26_004.html
 
         String header = getHeader(siteId);
@@ -678,7 +678,7 @@ public class EmailService {
         sendEmailDirect(email, title, contents);
     }
 
-    public static void setHtmlProductReturn(String siteId, String email, Node node) throws IOException {
+    public void setHtmlProductReturn(String siteId, String email, Node node) throws IOException {
         // 반품접수 (신청) ./pc_markup/DE_SL_FR_26_005.html
 
         String header = getHeader(siteId);

@@ -44,9 +44,14 @@ public class MemberService {
     @Autowired
     private ExcelService excelService;
 
+    @Autowired
+    private SmsService smsService;
+
+    @Autowired
+    private EmailService emailService;
+
 
     private CommonService commonService;
-    private EmailService emailService;
 
 
     public ExecuteContext signIn(ExecuteContext context) {
@@ -177,7 +182,7 @@ public class MemberService {
                 node = (Node) nodeService.executeNode(contextData, "member", CommonService.CREATE);
 
                 Map<String, String> emailTemplate = getEmailTemplate("회원가입");
-                EmailService.setHtmlMemberJoin(node, node.get("email").toString(), emailTemplate);
+                emailService.setHtmlMemberJoin(node, node.get("email").toString(), emailTemplate);
             } else {
                 if (contextData.containsKey("password")) {
                     if(contextData.containsKey("updateType")){
@@ -223,7 +228,7 @@ public class MemberService {
                         data.put("date", node.get("receiveMarketingSMSAgreeDate").toString());
                     }
 
-                    EmailService.setHtmlMemberMarketingChange(data);
+                    emailService.setHtmlMemberMarketingChange(data);
                 }
             }
         }catch (Exception e){
@@ -367,10 +372,8 @@ public class MemberService {
                     return context;
                 }
 
-                sendSms(smsCertificationType, cellphone, member);
-
-//                String certCdoe = getSmsCertCode("SMS 인증요청", smsCertificationType, member.get("memberNo").toString(), cellphone, "request");
-//                SmsService.sendCertCode(cellphone, certCdoe);
+                String certCdoe = getSmsCertCode("SMS 인증요청", smsCertificationType, member.get("memberNo").toString(), cellphone, "request");
+                smsService.sendCertCode(cellphone, certCdoe);
 
                 item.put("cellphone", member.get("cellphone"));
                 resultObject.put("item", item);
@@ -661,7 +664,7 @@ public class MemberService {
         node.put("memberStatus", "leave");
         nodeService.executeNode(node, "member", commonService.UPDATE);
 
-        EmailService.setHtmlMemberLeave(data);
+        emailService.setHtmlMemberLeave(data);
 
         return context;
     }
@@ -1298,7 +1301,7 @@ public class MemberService {
 
     // 이메일 테스트
     public ExecuteContext memberTest(ExecuteContext context) throws IOException {
-        EmailService.setHtmlMemberSignUp(null);
+        emailService.setHtmlMemberBirthday(null, context.getData());
         return context;
     }
 

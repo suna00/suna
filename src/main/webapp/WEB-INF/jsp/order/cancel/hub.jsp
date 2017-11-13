@@ -94,15 +94,12 @@
     /* = -------------------------------------------------------------------------- = */
     /* =   04-1. 취소/매입 요청                                                     = */
     /* = -------------------------------------------------------------------------- = */
-    if ( req_tx.equals( "" ) )
+    if ( req_tx.equals( "mod" ) )
     {
         int    mod_data_set_no;
 
         tran_cd = "00200000";
         mod_data_set_no = c_PayPlus.mf_add_set( "mod_data" );
-
-//        tno = "17563910507190";
-//        mod_type = "STSC";
 
         c_PayPlus.mf_set_us( mod_data_set_no, "tno",        tno        ); // KCP 원거래 거래번호
         c_PayPlus.mf_set_us( mod_data_set_no, "mod_type",   mod_type      ); // 전체취소 STSC / 부분취소 STPC
@@ -158,13 +155,6 @@
         out.println( "결과코드 : "      + res_cd       + "<br>");
         out.println( "결과메세지 : "    + res_msg      + "<p>");
     }
-
-    System.out.println("req_tx : " + req_tx);
-    System.out.println("mod_type : " + mod_type);
-    System.out.println("tno : " + tno);
-    System.out.println("mod_desc : " + mod_desc);
-    System.out.println("panc_mod_mny : " + panc_mod_mny);
-    System.out.println("panc_rem_mny : " + panc_rem_mny);
 
     /* = -------------------------------------------------------------------------- = */
     /* =   06. 취소 결과 처리 END                                                   = */
